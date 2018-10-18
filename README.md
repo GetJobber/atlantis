@@ -1,4 +1,4 @@
-# 🌇 Atlantis
+# 🔱 Atlantis
 
 ## Getting Started
 

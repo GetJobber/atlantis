@@ -6,8 +6,7 @@
   ],
   "jsRules": {},
   "rules": {
-    "import-name": [ true, { "react": "React" }],
-    "no-submodule-imports": [true, "@jobber"]
+    "import-name": [true, { "react": "React" }]
   },
   "rulesDirectory": []
 }
