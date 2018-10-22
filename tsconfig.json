@@ -12,10 +12,7 @@
     "sourceMap": true,
     "target": "es5",
     "jsx": "react",
-    "baseUrl": "src/",
-    "paths": {
-      "@jobber/atlantis/*": ["components/*"],
-    }
+    "baseUrl": "src/"
   },
   "include": [
     "src/components/**/*"
