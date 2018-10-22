@@ -17,11 +17,11 @@ _Note: This is **not** a `Disclosure Control`. A `Disclosure Control` is for adv
 
 ## Interface
 ```jsx
-<Collapse collapsedHeight="2 em">
+<Reveal collapsedHeight="2 em">
   <ul class="list">
     <!-- ... Content of the list that will be collapsed -->
   </ul>
-</Collapse>
+</Reveal>
 ```
 
 ## Props Table
