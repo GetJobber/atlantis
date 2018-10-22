@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
+  "files": [
+    "dist/**/*"
+  ],
   "scripts": {
     "test": "npm run lint && jest",
     "start": "docz dev",
@@ -12,7 +15,8 @@
     "lint": "tslint --project tsconfig.json ./src/\\{,**/\\}*.{ts,tsx}",
     "lint:fix": "tslint --project tsconfig.json --fix ./src/\\{,**/\\}*.{ts,tsx}",
     "fix": "npm run lint-fix",
-    "prepack": "npm run build -- --outDir ."
+    "prepack": "echo 'PREPACK' && npm run build",
+    "prepare": "echo 'PREPARE'"
   },
   "repository": {
     "type": "git",
