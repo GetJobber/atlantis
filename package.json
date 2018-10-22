@@ -12,7 +12,7 @@
     "lint": "tslint --project tsconfig.json ./src/\\{,**/\\}*.{ts,tsx}",
     "lint:fix": "tslint --project tsconfig.json --fix ./src/\\{,**/\\}*.{ts,tsx}",
     "fix": "npm run lint-fix",
-    "prepare": "npm run build -- --outDir ."
+    "prepack": "npm run build -- --outDir ."
   },
   "repository": {
     "type": "git",
