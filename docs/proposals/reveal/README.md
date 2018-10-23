@@ -13,7 +13,7 @@ It should only be used to hide away context if there's a good reason to believe 
 _Note: This is **not** a `Disclosure Control`. A `Disclosure Control` is for advanced actions._
 
 ## Wireframe
-![collapse element](https://user-images.githubusercontent.com/779421/47315129-e4b1c600-d600-11e8-822e-837f2125bc78.png)
+![mockup](https://user-images.githubusercontent.com/779421/47378214-b1c90a00-d6b4-11e8-8fff-7c42eed24184.png)
 
 ## Interface
 ```jsx
