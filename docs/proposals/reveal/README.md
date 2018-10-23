@@ -10,7 +10,7 @@ The information contained in a reveal **is** important, and should be easily dis
 
 It should only be used to hide away context if there's a good reason to believe it will not be relevant in the majority of cases
 
-_Note: This is **not** a `Disclosure Control`. A `Disclosure Control` is for advanced actions that are atypical, and you will only ever need to use rarely._
+_Note: This is **not** a `Disclosure Control`. A `Disclosure Control` is for advanced actions._
 
 ## Wireframe
 ![collapse element](https://user-images.githubusercontent.com/779421/47315129-e4b1c600-d600-11e8-822e-837f2125bc78.png)
