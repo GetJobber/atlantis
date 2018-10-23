@@ -17,7 +17,7 @@ _Note: This is **not** a `Disclosure Control`. A `Disclosure Control` is for adv
 
 ## Interface
 ```jsx
-<Reveal collapsedHeight="2 em">
+<Reveal>
   <!-- ... Content elements that will be collapsed -->
 </Reveal>
 ```
