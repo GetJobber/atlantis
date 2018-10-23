@@ -25,5 +25,4 @@ _Note: This is **not** a `Disclosure Control`. A `Disclosure Control` is for adv
 ## Props Table
 | name | type | default | description |
 |---|---|---|---|
-| `collapsedHeight` |  `string` | '0em' | The height of the component when it is collapsed |
 | `children` | `node` | `null` | The node that will be collapsed |
