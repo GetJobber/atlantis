@@ -19,14 +19,14 @@ _Note: This is **not** a `Disclosure Control`. A `Disclosure Control` is for adv
 Note: The buttons that control the reveal are not part of the component.
 ```jsx
 render() {
-  const buttonText = this.state.isExpanded ? "Show More" : "Show Less";
+  const buttonText = this.state.expanded ? "Show More" : "Show Less";
   return (
     <Card>
-      <Reveal isExpanded=this.state.isExpanded>
+      <Reveal expanded=this.state.expanded>
         <!-- ... -->
       </Reveal>
       
-      <button onClick={this.toggleIsExpanded}>{buttonText}</button>
+      <button onClick={this.toggleExpanded}>{buttonText}</button>
     </Card>
   )
 }
@@ -36,17 +36,17 @@ render() {
 render() {
   return (
     <Card>
-      {this.state.isExpanded || 
+      {this.state.expanded || 
         <CardHeader>
-          <Icon onClick={this.toggleIsExpanded} type="arrowDown"/>
+          <Icon onClick={this.toggleExpanded} type="arrowDown"/>
         </CardHeader>
       }
-      <Reveal isExpanded=this.state.isExpanded>
+      <Reveal expanded=this.state.expanded>
         <!-- ... -->
       </Reveal>
       
-      {this.state.isExpanded && 
-        <button onClick={this.toggleIsExpanded}>Show More</button>
+      {this.state.expanded && 
+        <button onClick={this.toggleExpanded}>Show More</button>
       }
     </Card>
   )
@@ -57,7 +57,7 @@ render() {
 | name | type | default | description |
 |---|---|---|---|
 | `children` | `node` | `null` | The node that will be collapsed |
-| `isExpanded` | `boolean` | `false` | Whether or not this node should be rendered in it's expanded form |
+| `expanded` | `boolean` | `false` | Whether or not this node should be rendered in it's expanded form |
 
 ## Accessibility
 While collapsed the content of this container should **not** be tabbable. 
