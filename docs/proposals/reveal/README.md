@@ -29,7 +29,7 @@ render() {
       <button onClick={this.toggleExpanded}>{buttonText}</button>
     </Card>
   )
-}
+}code
 ```
 
 ```jsx
@@ -61,6 +61,6 @@ render() {
 
 ## Accessibility
 While collapsed the content of this container should **not** be tabbable. 
-See this code pen for an `inert` polyfill https://github.com/WICG/inert#notes-on-the-polyfill
+See this repo for the `inert` polyfill https://github.com/WICG/inert#notes-on-the-polyfill
 
 When the section is expanded, the first tabbable element (if one exists) should be focused.
