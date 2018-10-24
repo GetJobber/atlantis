@@ -26,6 +26,7 @@ _Note: This is **not** a `Disclosure Control`. A `Disclosure Control` is for adv
 | name | type | default | description |
 |---|---|---|---|
 | `children` | `node` | `null` | The node that will be collapsed |
+| `isExpanded` | `boolean` | `false` | Whether or not this node should be rendered in it's expanded form |
 
 ## Accessibility
 While collapsed the content of this container should **not** be tabbable. 
