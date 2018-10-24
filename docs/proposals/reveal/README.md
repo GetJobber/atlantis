@@ -29,7 +29,7 @@ render() {
       <button onClick={this.toggleExpanded}>{buttonText}</button>
     </Card>
   )
-}code
+}
 ```
 
 ```jsx
