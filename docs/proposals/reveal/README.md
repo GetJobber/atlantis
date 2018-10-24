@@ -26,3 +26,9 @@ _Note: This is **not** a `Disclosure Control`. A `Disclosure Control` is for adv
 | name | type | default | description |
 |---|---|---|---|
 | `children` | `node` | `null` | The node that will be collapsed |
+
+## Accessibility
+While collapsed the content of this container should **not** be tabbable. 
+See this code pen for an `untabbable` container: https://codepen.io/anon/pen/xyyXzz?editors=1111
+
+When the section is expanded, the first tabbable element (if one exists) should be focused.
