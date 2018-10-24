@@ -16,10 +16,41 @@ _Note: This is **not** a `Disclosure Control`. A `Disclosure Control` is for adv
 ![mockup](https://user-images.githubusercontent.com/779421/47378214-b1c90a00-d6b4-11e8-8fff-7c42eed24184.png)
 
 ## Interface
+Note: The buttons that control the reveal are not part of the component.
 ```jsx
-<Reveal>
-  <!-- ... Content elements that will be collapsed -->
-</Reveal>
+render() {
+  const buttonText = this.state.isExpanded ? "Show More" : "Show Less";
+  return (
+    <Card>
+      <Reveal isExpanded=this.state.isExpanded>
+        <!-- ... -->
+      </Reveal>
+      
+      <button onClick={this.toggleIsExpanded}>{buttonText}</button>
+    </Card>
+  )
+}
+```
+
+```jsx
+render() {
+  return (
+    <Card>
+      {this.state.isExpanded || 
+        <CardHeader>
+          <Icon onClick={this.toggleIsExpanded} type="arrowDown"/>
+        </CardHeader>
+      }
+      <Reveal isExpanded=this.state.isExpanded>
+        <!-- ... -->
+      </Reveal>
+      
+      {this.state.isExpanded && 
+        <button onClick={this.toggleIsExpanded}>Show More</button>
+      }
+    </Card>
+  )
+}
 ```
 
 ## Props Table
