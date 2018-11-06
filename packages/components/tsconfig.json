@@ -2,12 +2,15 @@
   "extends": "../../tsconfig.settings.json",
   "compilerOptions": {
     "outDir": "dist",
+    "typeRoots": [
+      "./types"
+    ]
   },
   "include": [
-    "TextField/*"
+    "TextField/*",
+    "types/**/*"
   ],
   "files": [
-    "index.ts",
-    "styles.d.ts"
+    "index.ts"
   ]
 }

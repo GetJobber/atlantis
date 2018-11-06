@@ -21,6 +21,10 @@
     "url": "https://github.com/GetJobber/atlantis/issues"
   },
   "homepage": "https://github.com/GetJobber/atlantis#readme",
+  "dependencies": {
+    "react": "^16.7.0-alpha.0",
+    "react-dom": "^16.7.0-alpha.0"
+  },
   "devDependencies": {
     "@types/jest": "^23.3.9",
     "docz": "^0.12.9",
