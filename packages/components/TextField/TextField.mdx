@@ -1,0 +1,44 @@
+---
+name: Text field
+---
+
+import { Playground, PropsTable } from 'docz'
+import TextField from './TextField'
+
+# Text Field
+
+### Use the Text Field component to accept user input in forms.
+
+## Basic Usage
+
+The TextField component is a wrapper for an input and label with support for error states and adornments.
+
+<Playground>
+  <TextField
+    id="field_small"
+    label="Small placeholder field"
+    size="small"
+  />
+  <TextField
+    id="field_normal"
+    label="Placeholder field"
+  />
+  <TextField
+    id="field_large"
+    label="Large placeholder field"
+    size="large"
+  />
+</Playground>
+
+<Playground>
+  <TextField
+    id="field2"
+    label="Multiline placeholder field"
+    multiline
+  />
+</Playground>
+
+
+## Properties
+
+<PropsTable of={TextField} />

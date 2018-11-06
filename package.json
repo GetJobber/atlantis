@@ -1,50 +1,37 @@
 {
   "name": "atlantis",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npm run lint && jest",
+    "test": "yarn lint && jest",
     "start": "docz dev",
-    "build": "tsc --project .",
-    "build:clean": "rm -rf dist",
-    "jest": "jest",
-    "lint": "tslint --project tsconfig.json ./src/\\{,**/\\}*.{ts,tsx}",
-    "lint:fix": "tslint --project tsconfig.json --fix ./src/\\{,**/\\}*.{ts,tsx}",
-    "fix": "npm run lint:fix"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/GetJobber/atlantis.git"
+    "build": "tsc -b .",
+    "build:clean": "tsc -b . --clean",
+    "lint": "tslint --project tsconfig.json ./packages/\\{,**/\\}*.{ts,tsx}",
+    "lint:fix": "tslint --project tsconfig.json --fix ./packages/\\{,**/\\}*.{ts,tsx}",
+    "fix": "yarn lint:fix"
   },
   "author": "",
   "bugs": {
     "url": "https://github.com/GetJobber/atlantis/issues"
   },
   "homepage": "https://github.com/GetJobber/atlantis#readme",
-  "peerDependencies": {
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
-    "typescript": "^3.1.3"
-  },
-  "//": [
-    "`buble` is required explicitly in `devDependencies` as a temporary",
-    "fix for: https://github.com/pedronauck/docz/issues/416"
-  ],
   "devDependencies": {
-    "@types/jest": "^23.3.5",
-    "@types/react": "^16.4.18",
-    "@types/react-dom": "^16.0.9",
-    "buble": "^0.19.4",
-    "docz": "^0.12.5",
+    "@types/jest": "^23.3.9",
+    "docz": "^0.12.9",
+    "docz-plugin-css": "^0.11.0",
     "jest": "^23.6.0",
     "jest-junit": "^5.2.0",
     "jobber-tslint-foundation": "git+ssh://git@github.com/GetJobber/Jobber-TSLint-Foundation.git#v0.0.1",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
+    "prettier": "1.14.3",
     "ts-jest": "^23.10.4",
     "tslint": "^5.11.0",
     "tslint-react": "^3.6.0",
-    "typescript": "^3.1.3"
+    "typescript": "^3.1.6"
   }
 }

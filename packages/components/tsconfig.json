@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.settings.json",
+  "compilerOptions": {
+    "outDir": "dist",
+  },
+  "include": [
+    "TextField/*"
+  ],
+  "files": [
+    "index.ts",
+    "styles.d.ts"
+  ]
+}

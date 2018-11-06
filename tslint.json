@@ -6,7 +6,15 @@
   ],
   "jsRules": {},
   "rules": {
-    "import-name": [true, { "react": "React" }]
+    "import-name": [true, {
+      "react": "React",
+      "*.css": "styles"
+    }],
+    "missing-jsdoc": false,
+    "quotemark": [true, "single", "avoid-escpate", "avoid-template", "jsx-double"],
+    "prefer-template": true,
+    "no-default-export": false,
+    "no-relative-imports": [true, "allow-siblings"]
   },
   "rulesDirectory": []
 }

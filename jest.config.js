@@ -4,7 +4,7 @@ module.exports = {
   },
   "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
   "roots": [
-    "<rootDir>/src/"
+    "<rootDir>/packages/components"
   ],
   "moduleFileExtensions": [
     "ts",
