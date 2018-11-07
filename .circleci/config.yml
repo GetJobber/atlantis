@@ -1,0 +1,42 @@
+version: 2.1
+
+jobs:
+  lint:
+    working_directory: ~/project
+    docker:
+      - image: circleci/node
+    steps:
+      - checkout
+      - run: yarn
+      - run: yarn lint
+
+  test:
+    working_directory: ~/project
+    docker:
+      - image: circleci/node
+    steps:
+      - checkout
+      - run: yarn
+      - run: yarn test
+
+  build_docs:
+    working_directory: ~/project
+    docker:
+      - image: circleci/node
+    steps:
+      - checkout
+      - run: yarn
+      - run: yarn docs:build
+      - store_artifacts:
+          path: ~/project/.docz/dist
+          destination: docs
+
+workflows:
+  docs:
+    jobs:
+      - lint
+      - test
+      - build_docs:
+          requires:
+            - lint
+            - test

@@ -8,13 +8,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "yarn lint && jest",
+    "test": "jest",
     "start": "docz dev",
     "build": "tsc -b .",
     "build:clean": "tsc -b . --clean",
     "lint": "tslint --project tsconfig.lint.json --format stylish",
     "lint:fix": "tslint --project tsconfig.lint.json --fix",
-    "fix": "yarn lint:fix"
+    "fix": "yarn lint:fix",
+    "docs:build": "docz build"
   },
   "author": "",
   "bugs": {

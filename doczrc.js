@@ -1,6 +1,6 @@
 import {
   css
-} from 'docz-plugin-css'
+} from "docz-plugin-css";
 
 
 export default {
@@ -9,7 +9,7 @@ export default {
   port: 3333,
   plugins: [
     css({
-      preprocessor: 'postcss',
+      preprocessor: "postcss",
       cssmodules: true,
     }),
   ],
