@@ -1,6 +1,4 @@
-const path = require('path');
-
-module.exports = {
+{
   "defaultSeverity": "error",
   "extends": [
     "tslint:recommended",
@@ -26,9 +24,5 @@ module.exports = {
     "typedef": false,
     "jsx-no-multiline-js": false
   },
-  "rulesDirectory": [
-    path.join(path.dirname(require.resolve('tslint-config-prettier')), './'),
-    path.join(path.dirname(require.resolve('tslint-microsoft-contrib')), './'),
-    path.join(path.dirname(require.resolve('tslint-react')), './'),
-  ]
+  "rulesDirectory": []
 }

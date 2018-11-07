@@ -1,7 +1,7 @@
 {
   "defaultSeverity": "error",
   "extends": [
-    "jobber-tslint-foundation"
+    "jobber-tslint-foundation/tslint.json"
   ],
   "jsRules": {},
   "rules": {},
