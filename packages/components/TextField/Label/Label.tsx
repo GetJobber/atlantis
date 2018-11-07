@@ -1,8 +1,8 @@
-import classNames from 'classnames';
-import React from 'react';
-import styles from './Label.css';
+import classNames from "classnames";
+import React, { LabelHTMLAttributes } from "react";
+import styles from "./Label.css";
 
-interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
+interface LabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
   shrink?: boolean;
   error?: boolean;
 }

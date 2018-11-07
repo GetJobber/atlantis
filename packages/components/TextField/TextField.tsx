@@ -1,18 +1,15 @@
-import classNames from 'classnames';
-import React, { useState } from 'react';
-import Input from './Input/Input';
-import Label from './Label/Label';
-import styles from './TextField.css';
+import classNames from "classnames";
+import React, { InputHTMLAttributes, useState } from "react";
+import Input from "./Input/Input";
+import Label from "./Label/Label";
+import styles from "./TextField.css";
 
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 
-type Size = 'normal' | 'small' | 'large';
+type Size = "normal" | "small" | "large";
 
 interface TextFieldProps
-  extends Omit<
-      React.InputHTMLAttributes<HTMLInputElement>,
-      'size' | 'defaultValue'
-    > {
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size" | "defaultValue"> {
   /**
    * The text field label
    */
@@ -54,7 +51,7 @@ export default function TextField(props: TextFieldProps) {
     styles.TextField,
   ]);
 
-  const showLabel: boolean = size !== 'small' && label !== undefined;
+  const showLabel: boolean = size !== "small" && label !== undefined;
   let labelElement;
   if (showLabel) {
     labelElement = (
@@ -107,8 +104,8 @@ function useInputValue(initialValue: string | number) {
 }
 
 const defaultProps: TextFieldProps = {
-  size: 'normal',
-  defaultValue: '',
+  size: "normal",
+  defaultValue: "",
   rows: 3,
 };
 

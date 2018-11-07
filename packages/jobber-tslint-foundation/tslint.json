@@ -17,7 +17,7 @@
       "*.css": "styles"
     }],
     "missing-jsdoc": false,
-    "quotemark": [true, "single", "avoid-escape", "avoid-template", "jsx-double"],
+    "quotemark": [true, "double", "avoid-escape", "avoid-template", "jsx-double"],
     "prefer-template": true,
     "no-default-export": false,
     "no-relative-imports": false,

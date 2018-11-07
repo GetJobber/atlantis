@@ -1,9 +1,9 @@
-import * as React from 'react';
+import * as React from "react";
 
 /**
  * Just a simple integration tests
  */
 
-test('Runs a test', () => {
+test("Runs a test", () => {
   expect(true).toBeTruthy();
 });
