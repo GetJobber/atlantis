@@ -59,7 +59,7 @@ export default function TextField(props: TextFieldProps) {
   if (showLabel) {
     labelElement = (
       <Label htmlFor={id} error={error} shrink={filled}>
-        {label}1
+        {label}
       </Label>
     );
   }
