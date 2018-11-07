@@ -33,7 +33,7 @@ export default function TextField(props: TextFieldProps) {
   const {
     children,
     className,
-    id,
+    name,
     label,
     required,
     defaultValue,
@@ -58,18 +58,21 @@ export default function TextField(props: TextFieldProps) {
   let labelElement;
   if (showLabel) {
     labelElement = (
-      <Label htmlFor={id} error={error} shrink={filled}>
+      <Label htmlFor={name} error={error} shrink={filled}>
         {label}
       </Label>
     );
+  }
+
+  if (!filled) {
+    other.placeholder = `${label}`;
   }
 
   return (
     <div className={classes}>
       {labelElement}
       <Input
-        id={id}
-        placeholder={`${filled ? null : label}`}
+        name={name}
         multiline={multiline}
         {...handleFocus}
         {...handleInput}
