@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 import React, { useState } from 'react';
 import Input from './Input';
 import Label from './Label';
@@ -42,10 +42,11 @@ export default function TextField(props: TextFieldProps) {
     error,
     ...other
   } = props;
-  const { filled, ...handleInput } = useInputValue(defaultValue || '');
+
+  const { filled, ...handleInput } = useInputValue(defaultValue);
   const { focused, ...handleFocus } = useFocusState();
 
-  const classes = classnames([
+  const classes = classNames([
     styles[size],
     error && styles.error,
     focused && styles.focused,
@@ -53,15 +54,19 @@ export default function TextField(props: TextFieldProps) {
     styles.TextField,
   ]);
 
-  const showLabel: boolean = size !== 'small' && !!label;
+  const showLabel: boolean = size !== 'small' && label !== undefined;
+  let labelElement;
+  if (showLabel) {
+    labelElement = (
+      <Label htmlFor={id} error={error} shrink={filled}>
+        {label}1
+      </Label>
+    );
+  }
 
   return (
     <div className={classes}>
-      {showLabel && (
-        <Label htmlFor={id} error={error} shrink={filled}>
-          {label}
-        </Label>
-      )}
+      {labelElement}
       <Input
         id={id}
         placeholder={`${filled ? null : label}`}
@@ -93,13 +98,15 @@ function useInputValue(initialValue: string | number) {
     filled,
     onChange(e: React.ChangeEvent<HTMLInputElement>): void {
       setValue(e.target.value);
-      setFilled(!!e.target.value);
+      setFilled(/\S/.test(e.target.value));
     },
   };
 }
 
 const defaultProps: TextFieldProps = {
   size: 'normal',
+  defaultValue: '',
+  rows: 3,
 };
 
 TextField.defaultProps = defaultProps;

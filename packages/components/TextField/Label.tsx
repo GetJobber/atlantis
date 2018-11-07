@@ -1,8 +1,8 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 import React from 'react';
 import styles from './Label.css';
 
-interface LabelProps extends React.InputHTMLAttributes<HTMLLabelElement> {
+interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
   shrink?: boolean;
   error?: boolean;
 }
@@ -13,7 +13,7 @@ export default function Label({
   children,
   ...rest
 }: LabelProps) {
-  const classes: string = classnames([
+  const classes: string = classNames([
     shrink && styles.shrink,
     error && styles.error,
     styles.Label,

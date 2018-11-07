@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 import React from 'react';
 import styles from './Input.css';
 
@@ -10,7 +10,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 export default function Input({ multiline, ...rest }: InputProps): JSX.Element {
   const InputComponent = multiline ? 'textarea' : 'input';
-  const classes: string = classnames([
+  const classes: string = classNames([
     multiline && styles.multiline,
     styles.Input,
   ]);
