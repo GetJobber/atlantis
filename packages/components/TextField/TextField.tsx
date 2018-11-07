@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React, { useState } from 'react';
-import Input from './Input';
-import Label from './Label';
+import Input from './Input/Input';
+import Label from './Label/Label';
 import styles from './TextField.css';
 
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
