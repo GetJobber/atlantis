@@ -1,8 +1,12 @@
 import classnames from 'classnames';
 import React, { useState } from 'react';
+import Input from './Input';
+import Label from './Label';
 import styles from './TextField.css';
 
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
+
+type Size = 'normal' | 'small' | 'large';
 
 interface TextFieldProps
   extends Omit<
@@ -13,16 +17,16 @@ interface TextFieldProps
    * The text field label
    */
   label?: React.ReactNode | string;
-  required?: boolean;
   error?: boolean;
+  disabled?: boolean;
+  defaultValue?: string | number;
+  size?: Size;
+
   multiline?: boolean;
   /**
    * Number of rows for a multiline text field
    */
   rows?: number;
-  disabled?: boolean;
-  defaultValue?: string | number;
-  size?: 'normal' | 'small' | 'large';
 }
 
 export default function TextField(props: TextFieldProps) {
@@ -41,43 +45,31 @@ export default function TextField(props: TextFieldProps) {
   const { filled, ...handleInput } = useInputValue(defaultValue || '');
   const { focused, ...handleFocus } = useFocusState();
 
-  const InputCompontent = multiline ? 'textarea' : 'input';
-
-  const wrapperClasses = classnames([
-    size === 'small' && styles.Small,
-    size === 'large' && styles.Large,
-    error && styles.Error,
-    focused && styles.Focused,
-    multiline && styles.Multiline,
+  const classes = classnames([
+    styles[size],
+    error && styles.error,
+    focused && styles.focused,
+    multiline && styles.multiline,
     styles.TextField,
   ]);
 
-  const labelClasses = classnames([
-    filled && styles.Shrink,
-    focused && filled && styles.Shrink,
-    styles.Label,
-  ]);
+  const showLabel: boolean = size !== 'small' && !!label;
 
   return (
-    <div className={wrapperClasses}>
-      {size !== 'small' &&
-        label && (
-          <label htmlFor={id} className={labelClasses}>
-            {label}
-          </label>
-        )}
-      <div className={styles.InputWrapper}>
-        <InputCompontent
-          type="text"
-          id={id}
-          name={id}
-          className={styles.Input}
-          placeholder={`${label}`}
-          {...handleFocus}
-          {...handleInput}
-          {...other}
-        />
-      </div>
+    <div className={classes}>
+      {showLabel && (
+        <Label htmlFor={id} error={error} shrink={filled}>
+          {label}
+        </Label>
+      )}
+      <Input
+        id={id}
+        placeholder={`${filled ? null : label}`}
+        multiline={multiline}
+        {...handleFocus}
+        {...handleInput}
+        {...other}
+      />
     </div>
   );
 }
@@ -105,3 +97,9 @@ function useInputValue(initialValue: string | number) {
     },
   };
 }
+
+const defaultProps: TextFieldProps = {
+  size: 'normal',
+};
+
+TextField.defaultProps = defaultProps;

@@ -5,7 +5,6 @@ import {
 
 export default {
   title: "Atlantis 🔱",
-  src: ".",
   typescript: true,
   port: 3333,
   plugins: [

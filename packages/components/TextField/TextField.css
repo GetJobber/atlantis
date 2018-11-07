@@ -1,6 +1,5 @@
 .TextField {
   position: relative;
-  padding: 0 1em;
   margin: 4px 0 1rem;
   font-size: 14px;
   line-height: 3;
@@ -21,89 +20,24 @@
   pointer-events: none;
 }
 
-.Small {
+.small {
   line-height: 2;
 }
 
-.Focused::before {
+.focused::before {
   box-shadow: 0 0 0 2px #ddc30f;
 }
 
-.Small .Label {
-  display: none;
-}
-
-.Large {
+.large {
   font-size: 16px;
   line-height: 4;
 }
 
-.Error .Label {
-  color: #ef5733;
-}
-
-.Error::before {
+.error::before {
   box-shadow: 0 0 0 2px #ef5733;
 }
 
-.Label {
-  position: absolute;
-  font: inherit;
-  line-height: inherit;
-  color: rgba(0, 0, 0, 0.5);
-  transform-origin: top left;
-  transition: transform 100ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
-}
-
-.Shrink {
-  opacity: 1;
-  transform: translate(0, -0.5em) scale(calc(10/14));
-}
-
-.InputWrapper {
-  position: relative;
-  margin: 0 -1em;
-  font: inherit;
-  line-height: inherit;
-}
-
-.Input {
-  width: 100%;
-  padding: 0 1em;
-  border: none;
-  background: none;
-  font: inherit;
-  z-index: 1;
-  line-height: inherit;
-  outline: none;
-}
-
-.Label:not(:empty)+.InputWrapper>.Input::placeholder {
-  opacity: 0;
-}
-
-.Input::placeholder {
-  color: rgba(0, 0, 0, 0.5);
-}
-
-.Input:disabled {
-  background-color: #f3f3f3;
-  opacity: 0.4;
-}
-
-.Multiline {
+.multiline {
   padding-top: 1em;
   line-height: 1.5;
-}
-
-.Multiline .Shrink {
-  transform: translate(0, -1em) scale(calc(10/14));
-}
-
-.Multiline textarea {
-  position: relative;
-  margin-bottom: -6px;
-  resize: vertical;
-  text-overflow: clip;
-  white-space: normal;
 }

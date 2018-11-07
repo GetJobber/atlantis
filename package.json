@@ -21,14 +21,14 @@
     "url": "https://github.com/GetJobber/atlantis/issues"
   },
   "homepage": "https://github.com/GetJobber/atlantis#readme",
-  "dependencies": {
-    "react": "^16.7.0-alpha.0",
-    "react-dom": "^16.7.0-alpha.0"
-  },
   "devDependencies": {
     "@types/jest": "^23.3.9",
     "docz": "^0.12.9",
     "docz-plugin-css": "^0.11.0",
+    "react": "^16.7.0-alpha.0",
+    "react-dom": "^16.7.0-alpha.0",
+    "postcss": "^7.0.5",
+    "postcss-modules": "^1.4.1",
     "jest": "^23.6.0",
     "jest-junit": "^5.2.0",
     "jobber-tslint-foundation": "git+ssh://git@github.com/GetJobber/Jobber-TSLint-Foundation.git#v0.0.1",

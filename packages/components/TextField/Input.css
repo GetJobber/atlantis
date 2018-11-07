@@ -1,0 +1,27 @@
+.Input {
+  width: 100%;
+  padding: 0 1em;
+  border: none;
+  background: none;
+  font: inherit;
+  z-index: 1;
+  line-height: inherit;
+  outline: none;
+}
+
+.Input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.Input:disabled {
+  background-color: #f3f3f3;
+  opacity: 0.4;
+}
+
+.multiline {
+  position: relative;
+  margin-bottom: -6px;
+  resize: vertical;
+  text-overflow: clip;
+  white-space: normal;
+}
