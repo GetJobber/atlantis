@@ -1,0 +1,24 @@
+{
+  "name": "jobber-tslint-foundation",
+  "version": "1.0.0",
+  "description": "A TSLint config for Jobber",
+  "main": "tslint.js",
+  "repository": "https://github.com/github:GetJobber/atlantis",
+  "author": "GetJobber",
+  "private": true,
+  "dependencies": {
+    "tslint-config-prettier": "^1.15.0",
+    "tslint-microsoft-contrib": "^5.2.1",
+    "tslint-plugin-prettier": "^2.0.1",
+    "tslint-react": "^3.6.0"
+  },
+  "devDependencies": {
+    "prettier": "^1.15.1",
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.6"
+  },
+  "peerDependencies": {
+    "prettier": "^1.15.1",
+    "tslint": "^5.11.0"
+  }
+}

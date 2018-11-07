@@ -6,11 +6,8 @@
       "./types"
     ]
   },
-  "include": [
-    "TextField/*",
-    "types/**/*"
-  ],
-  "files": [
-    "index.ts"
+  "exclude": [
+    "./dist/**/*",
+    "./__tests__"
   ]
 }
