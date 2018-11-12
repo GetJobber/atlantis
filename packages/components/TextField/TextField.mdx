@@ -1,9 +1,12 @@
 ---
-name: Text field
+name: TextField
+menu: Components
+route: /components/TextField
 ---
 
-import { Playground, PropsTable } from 'docz';
-import TextField from './TextField';
+import { Playground, PropsTable } from "docz";
+import TextField from "./TextField";
+import Card from "@atlantis/icons/Card";
 
 # Text Field
 
@@ -13,14 +16,46 @@ import TextField from './TextField';
 
 The TextField component is a wrapper for an input and label with support for error states and adornments.
 
-<Playground>
-  <TextField name="field_small" label="Small placeholder field" size="small" />
-  <TextField name="field_normal" label="Placeholder field" />
-  <TextField name="field_large" label="Large placeholder field" size="large" />
-</Playground>
+```
+import TextField from "@atlantis/components/TextField";
+```
 
 <Playground>
-  <TextField name="field2" label="Multiline placeholder field" multiline />
+  <TextField label="Placeholder field" />
+</Playground>
+
+## Default value
+
+<Playground>
+  <TextField label="Placeholder field" defaultValue="This is a default" />
+</Playground>
+
+## Sizing
+
+<Playground>
+  <TextField label="Small placeholder field" size="small" />
+  <TextField label="Placeholder field" />
+  <TextField label="Large placeholder field" size="large" />
+  <TextField label="Small multiline placeholder field" size="small" multiline />
+  <TextField label="Multiline placeholder field" multiline />
+  <TextField label="Large multiline placeholder field" size="large" multiline />
+</Playground>
+
+## Affix
+
+<Playground>
+  <TextField label="Card Number" suffix={<Card />} />
+  <TextField
+    label="Multiline placeholder field"
+    multiline
+    prefix={<marquee>weeee</marquee>}
+  />
+</Playground>
+
+## Errors
+
+<Playground>
+  <TextField error label="Oh boy, what have you done?" />
 </Playground>
 
 ## Properties

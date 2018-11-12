@@ -1,7 +1,11 @@
 {
   "files": [],
   "include": [],
-  "references": [
-    { "path": "packages/components" }
+  "references": [{
+      "path": "packages/components"
+    },
+    {
+      "path": "packages/icons"
+    }
   ]
 }

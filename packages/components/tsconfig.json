@@ -9,5 +9,8 @@
   "exclude": [
     "./dist/**/*",
     "./__tests__"
+  ],
+  "references": [
+    "../icons"
   ]
 }

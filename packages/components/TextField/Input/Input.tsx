@@ -12,7 +12,7 @@ export default function Input({ multiline, ...rest }: InputProps): JSX.Element {
   const InputComponent = multiline ? "textarea" : "input";
   const classes: string = classNames([
     multiline && styles.multiline,
-    styles.Input,
+    styles.input,
   ]);
 
   if (!multiline) {

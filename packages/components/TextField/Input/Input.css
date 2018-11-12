@@ -1,27 +1,27 @@
-.Input {
-  width: 100%;
-  padding: 0 1em;
-  border: none;
+.input {
   background: none;
+  border: 0;
+  border-radius: 4px;
   font: inherit;
-  z-index: 1;
   line-height: inherit;
   outline: none;
+  padding: 0 1em;
+  position: relative;
+  width: 100%;
+  z-index: 1;
 }
 
-.Input::placeholder {
-  color: rgba(0, 0, 0, 0.5);
-}
-
-.Input:disabled {
+.input:disabled {
   background-color: #f3f3f3;
   opacity: 0.4;
 }
 
-.multiline {
+.multiline.input {
+  line-height: initial;
+  padding-bottom: 1em;
   position: relative;
-  margin-bottom: -6px;
   resize: vertical;
   text-overflow: clip;
+  vertical-align: top;
   white-space: normal;
 }

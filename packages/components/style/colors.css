@@ -1,0 +1,5 @@
+@value error: #ef5733;
+
+@value border: #e0e0e0;
+@value border--focused: #ddc30f;
+@value border--error: error;

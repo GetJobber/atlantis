@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import React, { InputHTMLAttributes, useState } from "react";
+import FieldAffix from "./FieldAffix/FieldAffix";
 import Input from "./Input/Input";
 import Label from "./Label/Label";
 import styles from "./TextField.css";
@@ -9,7 +10,10 @@ type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 type Size = "normal" | "small" | "large";
 
 interface TextFieldProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size" | "defaultValue"> {
+  extends Omit<
+      InputHTMLAttributes<HTMLInputElement>,
+      "size" | "defaultValue" | "prefix"
+    > {
   /**
    * The text field label
    */
@@ -24,6 +28,9 @@ interface TextFieldProps
    * Number of rows for a multiline text field
    */
   rows?: number;
+
+  prefix?: React.ReactNode | string;
+  suffix?: React.ReactNode | string;
 }
 
 export default function TextField(props: TextFieldProps) {
@@ -37,6 +44,8 @@ export default function TextField(props: TextFieldProps) {
     multiline,
     size,
     error,
+    prefix,
+    suffix,
     ...other
   } = props;
 
@@ -48,7 +57,7 @@ export default function TextField(props: TextFieldProps) {
     error && styles.error,
     focused && styles.focused,
     multiline && styles.multiline,
-    styles.TextField,
+    styles.wrapper,
   ]);
 
   const showLabel: boolean = size !== "small" && label !== undefined;
@@ -67,14 +76,19 @@ export default function TextField(props: TextFieldProps) {
 
   return (
     <div className={classes}>
-      {labelElement}
-      <Input
-        name={name}
-        multiline={multiline}
-        {...handleFocus}
-        {...handleInput}
-        {...other}
-      />
+      <FieldAffix position="start">{prefix}</FieldAffix>
+      <div className={styles.field}>
+        {labelElement}
+        <Input
+          id={name}
+          name={name}
+          multiline={multiline}
+          {...handleFocus}
+          {...handleInput}
+          {...other}
+        />
+      </div>
+      <FieldAffix position="end">{suffix}</FieldAffix>
     </div>
   );
 }
@@ -91,7 +105,7 @@ function useFocusState() {
 
 function useInputValue(initialValue: string | number) {
   const [value, setValue] = useState(initialValue);
-  const [filled, setFilled] = useState(false);
+  const [filled, setFilled] = useState(initialValue && initialValue !== "");
 
   return {
     value,

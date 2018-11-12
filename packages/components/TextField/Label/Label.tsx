@@ -16,7 +16,7 @@ export default function Label({
   const classes: string = classNames([
     shrink && styles.shrink,
     error && styles.error,
-    styles.Label,
+    styles.label,
   ]);
 
   return (
