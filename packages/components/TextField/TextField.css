@@ -1,6 +1,6 @@
 @value (border,
 border--focused,
-border--error) from "../style/colors.css";
+border--error) from "@atlantis/styles/colors.css";
 
 .wrapper {
   border: 2px solid border;

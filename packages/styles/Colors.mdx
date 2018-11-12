@@ -1,0 +1,28 @@
+---
+name: Colors
+menu: Style
+route: /style/colors
+---
+
+import { PropsTable } from "docz";
+import colors from "./colors.css";
+
+# 🔱 Atlantis Colors
+
+<dl>
+  {Object.entries(colors).map(([k, v]) => (
+    <>
+      <dt>
+        <pre>@value {k} from "@atlantis/style/colors"</pre>
+      </dt>
+      <dd>
+        <figure>
+          <svg height="7ch" width="7ch" viewBox="0 0 1 1">
+            <rect x="0" y="0" height="1" width="1" fill={v} />
+          </svg>
+          <figcaption style={{ color: v }}>{v}</figcaption>
+        </figure>
+      </dd>
+    </>
+  ))}
+</dl>

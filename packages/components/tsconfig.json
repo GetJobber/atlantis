@@ -1,16 +1,17 @@
 {
   "extends": "../../tsconfig.settings.json",
   "compilerOptions": {
-    "outDir": "dist",
-    "typeRoots": [
-      "./types"
-    ]
+    "outDir": "dist"
   },
   "exclude": [
     "./dist/**/*",
     "./__tests__"
   ],
-  "references": [
-    "../icons"
+  "references": [{
+      "path": "../icons"
+    },
+    {
+      "path": "../styles"
+    }
   ]
 }

@@ -1,4 +1,4 @@
-@value error from "../../style/colors.css";
+@value error from "@atlantis/styles/colors.css";
 
 .label {
   color: rgba(0, 0, 0, 0.5);
