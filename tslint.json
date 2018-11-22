@@ -1,12 +1,9 @@
 {
   "defaultSeverity": "error",
   "extends": [
-    "jobber-tslint-foundation",
-    "tslint-react"
+    "the-jobber-tslint-foundation/react"
   ],
   "jsRules": {},
-  "rules": {
-    "import-name": [true, { "react": "React" }]
-  },
+  "rules": {},
   "rulesDirectory": []
 }
