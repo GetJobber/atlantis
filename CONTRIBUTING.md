@@ -6,19 +6,19 @@ There are several ways you can make meaningful contributions to `Atlantis`.
 
 ## Submit an Issue
 
-Submitting an issue is an easy way you can contribute to `Atlantis`. An issue is a way to request a change, or start a discussion around anything related to `Atlantis`. There are several types of issues. What are issues that you can submit?
+Submitting an issue is probably the easiest way you can contribute to `Atlantis`. 
+
+An issue is a way to request a change, or start a discussion around anything related to `Atlantis`. There most common types of issues are:
 
 - ***Bugs***: Any problems that you've found in either the `Atlantis` build code, or in it's components
 - ***Feature Request***: Requests for any features you'd like to see in the `Atlantis` design system.  New components requests, Api changes to components, Improvements to the docs, etc...
 - ***Enhancement***: Requests for any changes to the build infrastructure for `Atlantis`. Such as changes to our linting rules, proposing a mono-repo structure, requesting changes to our testing tools, etc...
 
-This is not a definitive list, but covers the most common scenarios.
-
 ## Write a proposal
 
 ***What should be in a proposal?***
 
-Take a look at the [proposal template](docs/proposals/TEMPLATE.md) for a list of expected categories.
+Please use the [proposal template](docs/proposals/TEMPLATE.md) as a guide for writing proposals.
 
 ***What is the process for submitting a proposal?***
 
@@ -35,7 +35,7 @@ All components should start with a proposal. One of our [Guiding Principles](#gu
 
 ***What's process for implementing a Proposal***
 
-The process for implementing a proposal is the same as contributing any other code, but make sure to delete the `propsoal` doc as part of the implementation Pull Request.
+The process for implementing a proposal is the same as the process for [contributing code](#contributing-code) of any kind, but make sure to delete the `propsoal` doc as part of the implementation Pull Request.
 
 ## Contributing Code
 
