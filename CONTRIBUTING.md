@@ -10,9 +10,9 @@ Submitting an issue is probably the easiest way you can contribute to `Atlantis`
 
 An issue is a way to request a change, or start a discussion around anything related to `Atlantis`. There most common types of issues are:
 
-- ***Bugs***: Any problems that you've found in either the `Atlantis` build code, or in it's components
+- ***Bugs***: Any problems that you've found in either the `Atlantis` build code, or in its components
 - ***Feature Request***: Requests for any features you'd like to see in the `Atlantis` design system.  New components requests, Api changes to components, Improvements to the docs, etc...
-- ***Enhancement***: Requests for any changes to the build infrastructure for `Atlantis`. Such as changes to our linting rules, proposing a mono-repo structure, requesting changes to our testing tools, etc...
+- ***Enhancement***: Requests for any changes to the build infrastructure for `Atlantis`, such as changes to our linting rules, proposing a mono-repo structure, requesting changes to our testing tools, etc...
 
 ## Write a proposal
 
@@ -33,7 +33,7 @@ Please use the [proposal template](docs/proposals/TEMPLATE.md) as a guide for wr
 
 All components should start with a proposal. One of our [Guiding Principles](#guiding-principles) is to start all components with documentation. If you would like to implement a component, that does not have a proposal, please see [Write a proposal](#write-a-proposal).
 
-***What's process for implementing a Proposal***
+***What's the process?***
 
 The process for implementing a proposal is the same as the process for [contributing code](#contributing-code) of any kind, but make sure to delete the `propsoal` doc as part of the implementation Pull Request.
 
