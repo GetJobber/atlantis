@@ -3,7 +3,7 @@ The `<Component Name>` component will ... *<Add a breif description of the compo
 
 ## Design Patterns
 
-<*Describe the design goal of this component. What is the design purpose of this component? How do it's responsibilities relate to other components? Is there anything else that is important to describe?>*
+<*Describe the design goal of this component. What is the design purpose of this component? How do its responsibilities relate to other components? Is there anything else that is important to describe?>*
 
 ## Wireframe
 
