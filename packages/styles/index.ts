@@ -1,1 +1,1 @@
-export * from "./color.css";
+export * from "./custom-properties";

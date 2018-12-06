@@ -1,5 +1,6 @@
-@value error: #ef5733;
-
-@value border: #e0e0e0;
-@value border--focused: #ddc30f;
-@value border--error: error;
+:root {
+  --error: #ef5733;
+  --border: #e0e0e0;
+  --border-focused: #ddc30f;
+  --border--error: var(--error)
+}

@@ -1,14 +1,14 @@
 .input {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 0 1em;
+  font: inherit;
+  line-height: inherit;
   background: none;
   border: 0;
   border-radius: 4px;
-  font: inherit;
-  line-height: inherit;
   outline: none;
-  padding: 0 1em;
-  position: relative;
-  width: 100%;
-  z-index: 1;
 }
 
 .input:disabled {
@@ -17,11 +17,11 @@
 }
 
 .multiline.input {
-  line-height: initial;
-  padding-bottom: 1em;
   position: relative;
-  resize: vertical;
+  padding-bottom: 1em;
+  line-height: initial;
   text-overflow: clip;
-  vertical-align: top;
   white-space: normal;
+  vertical-align: top;
+  resize: vertical;
 }

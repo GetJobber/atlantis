@@ -1,16 +1,14 @@
-@value (border,
-border--focused,
-border--error) from "@atlantis/styles/colors.css";
+@import url("~@atlantis/styles/colors.css");
 
 .wrapper {
-  border: 2px solid border;
-  border-radius: 4px;
-  display: flex;
-  font-size: 14px;
-  line-height: 3;
-  margin: 4px 0 1rem;
   position: relative;
   z-index: 0;
+  display: flex;
+  margin: 4px 0 1rem;
+  font-size: 14px;
+  line-height: 3;
+  border: 2px solid var(--border);
+  border-radius: 4px;
 }
 
 .small {
@@ -31,9 +29,9 @@ border--error) from "@atlantis/styles/colors.css";
 }
 
 .field {
-  border-radius: 4px;
   position: relative;
   width: 100%;
+  border-radius: 4px;
 }
 
 .field:not(:first-child) {
@@ -42,8 +40,8 @@ border--error) from "@atlantis/styles/colors.css";
 }
 
 .field:not(:last-child) {
-  border-bottom-right-radius: 0;
   border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .multiline .field {
@@ -51,9 +49,9 @@ border--error) from "@atlantis/styles/colors.css";
 }
 
 .focused .field {
-  box-shadow: 0 0 0 2px border--focused;
+  box-shadow: 0 0 0 2px var(--border-focused);
 }
 
 .error .field {
-  box-shadow: 0 0 0 2px border--error;
+  box-shadow: 0 0 0 2px var(--border-error);
 }

@@ -1,19 +1,19 @@
 ---
-name: Colors
+name: Custom CSS Properties
 menu: Style
-route: /style/colors
+route: /style/custom-css-properties
 ---
 
 import { PropsTable } from "docz";
-import colors from "./colors.css";
+import { customProperties } from "./custom-properties";
 
 # 🔱 Atlantis Colors
 
 <dl>
-  {Object.entries(colors).map(([k, v]) => (
-    <>
+  {Object.entries(customProperties).map(([k, v]) => (
+    <React.Fragment key={k}>
       <dt>
-        <pre>@value {k} from "@atlantis/style/colors"</pre>
+        <pre>{k}</pre>
       </dt>
       <dd>
         <figure>
@@ -23,6 +23,6 @@ import colors from "./colors.css";
           <figcaption style={{ color: v }}>{v}</figcaption>
         </figure>
       </dd>
-    </>
+    </React.Fragment>
   ))}
 </dl>

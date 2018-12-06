@@ -1,7 +1,7 @@
+import postcssConfig from '@atlantis/styles/postcss.config';
 import {
   css
 } from "docz-plugin-css";
-
 
 export default {
   title: "Atlantis 🔱",
@@ -12,6 +12,7 @@ export default {
     css({
       preprocessor: "postcss",
       cssmodules: true,
+      loaderOpts: postcssConfig
     }),
   ],
 }
