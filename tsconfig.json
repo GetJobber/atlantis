@@ -6,6 +6,9 @@
     },
     {
       "path": "packages/icons"
+    },
+    {
+      "path": "packages/styles"
     }
   ]
 }
