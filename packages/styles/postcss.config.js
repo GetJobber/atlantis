@@ -6,10 +6,7 @@ module.exports = {
   plugins: [
     postcssPresetEnv({
       preserve: true,
-      exportTo: path.join(__dirname, "custom-properties.js"),
-      importFrom: [
-        require.resolve("./custom-properties.css")
-      ],
+      exportTo: path.join(__dirname, 'lib', "custom-properties.js"),
       features: {
         'custom-properties': true,
       },

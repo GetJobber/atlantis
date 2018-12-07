@@ -32,6 +32,7 @@
   position: relative;
   width: 100%;
   border-radius: 4px;
+  box-shadow: 0 0 0 2px var(--box-shadow-color, var(--border));
 }
 
 .field:not(:first-child) {
@@ -48,10 +49,10 @@
   padding-top: 12px;
 }
 
-.focused .field {
-  box-shadow: 0 0 0 2px var(--border-focused);
+.focused {
+  --box-shadow-color: var(--border-focused);
 }
 
-.error .field {
-  box-shadow: 0 0 0 2px var(--border-error);
+.error {
+  --box-shadow-color: var(--border-error);
 }
