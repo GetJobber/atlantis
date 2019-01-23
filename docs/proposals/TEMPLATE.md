@@ -1,5 +1,5 @@
 # Component Name
-The `<Component Name>` component will ... *<Add a breif description of the component>*
+The `<Component Name>` component will ... *<Add a brief description of the component>*
 
 ## Design Patterns
 
