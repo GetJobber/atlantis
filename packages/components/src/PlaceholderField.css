@@ -1,9 +1,19 @@
 .inputWrapper {
-  line-height: normal;
+  height: 3em;
+  margin-bottom: 1rem;
+  line-height: 1.2;
 }
 
 .inputWrapper:focus-within {
-  --input-outline-color: #ddc30f;
+  --input-border-color: #ddc30f;
+}
+
+.small {
+  height: 2.25em;
+}
+
+.large {
+  font-size: 18px;
 }
 
 .inputWrapper label {
@@ -12,15 +22,15 @@
 }
 
 .inputWrapper input {
-  padding: 0 1em;
-  font-family: inherit;
+  height: 100%;
+  padding: 0 1rem;
+  background-color: var(--input-background-color);
   border: 2px solid var(--input-border-color, #e1e1e1);
-  border-radius: 2px;
-  height: 3em;
+  border-radius: 4px;
+  outline: none;
+  font-family: inherit;
   font-size: inherit;
   line-height: inherit;
-  outline-color: var(--input-outline-color, none);
-  background-color: var(--input-background-color);
 }
 
 .inputWrapper input::placeholder {
@@ -43,7 +53,7 @@
   position: absolute;
   top: 0;
   left: 2px;
-  padding-left: 1em;
+  padding-left: 1rem;
   transform: var(--input-label-transform, none);
   transform-origin: top left;
   transition: opacity 20ms;
