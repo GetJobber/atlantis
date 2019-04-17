@@ -3,6 +3,7 @@ import classnames from "classnames";
 import styles from "./PlaceholderField.css";
 
 interface PlaceholderFieldProps {
+  readonly name?: string;
   readonly placeholder?: string;
   readonly disabled?: boolean;
   readonly defaultValue?: string;
@@ -10,6 +11,7 @@ interface PlaceholderFieldProps {
 }
 
 export default function PlaceholderField({
+  name,
   placeholder,
   disabled,
   defaultValue,
@@ -25,16 +27,17 @@ export default function PlaceholderField({
 
   return (
     <div className={wrapperClass}>
+      <label htmlFor={name}>
         <input
           type="text"
+          name={name}
           placeholder={placeholder}
           onChange={handleChanged}
           disabled={disabled}
           defaultValue={defaultValue}
-          required
         />
         {size !== "small" && (
-        <span className={styles.labelContent}>{placeholder}</span>
+          <span className={styles.labelContent}>{placeholder}</span>
         )}
       </label>
     </div>
