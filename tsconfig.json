@@ -3,9 +3,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@jobber/*": ["./packages/*/src"],
+      "@jobber/*": ["./packages/*/src"]
     }
   },
   "files": [],
-  "references": []
+  "references": [{ "path": "packages/components" }]
 }
