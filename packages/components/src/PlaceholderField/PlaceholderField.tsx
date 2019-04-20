@@ -3,32 +3,38 @@ import classnames from "classnames";
 import styles from "./PlaceholderField.css";
 
 interface PlaceholderFieldProps {
+  readonly size: "small" | "normal" | "large";
+  readonly multiline: boolean;
   readonly name?: string;
   readonly placeholder?: string;
   readonly disabled?: boolean;
   readonly defaultValue?: string;
-  readonly size: "small" | "normal" | "large";
 }
 
 export default function PlaceholderField({
+  size = "normal",
+  multiline = false,
   name,
   placeholder,
   disabled,
   defaultValue,
-  size = "normal",
 }: PlaceholderFieldProps) {
   const [, setValue] = useState();
 
-  function handleChanged(e: ChangeEvent<HTMLInputElement>) {
-    setValue(e.target.value);
+  function handleChanged({
+    target,
+  }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    setValue(target.value);
   }
 
   const wrapperClass = classnames(styles.inputWrapper, styles[size]);
+  const InputElement = multiline ? "textarea" : "input";
 
   return (
     <div className={wrapperClass}>
-      <label htmlFor={name}>
-        <input
+      <label className={styles.label} htmlFor={name}>
+        <InputElement
+          className={styles.input}
           type="text"
           name={name}
           placeholder={placeholder}

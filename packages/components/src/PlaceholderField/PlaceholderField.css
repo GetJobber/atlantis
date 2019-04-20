@@ -1,5 +1,4 @@
 .inputWrapper {
-  height: 3em;
   margin-bottom: 1rem;
   line-height: 1.2;
 }
@@ -8,22 +7,28 @@
   --input-border-color: #ddc30f;
 }
 
-.small {
+.small .input {
   height: 2.25em;
 }
+
+.normal {}
 
 .large {
   font-size: 18px;
 }
 
-.inputWrapper label {
+.label {
+  display: flex;
   position: relative;
+  height: 100%;
+  width: 100%;
   color: #657884;
 }
 
-.inputWrapper input {
-  height: 100%;
+.input {
   padding: 0 1rem;
+  height: 3em;
+  width: 100%;
   background-color: var(--input-background-color);
   border: 2px solid var(--input-border-color, #e1e1e1);
   border-radius: 4px;
@@ -33,30 +38,41 @@
   line-height: inherit;
 }
 
-.inputWrapper input::placeholder {
+.input::placeholder {
   display: block !important;
   transition: all 0ms linear 500ms;
 }
 
-.inputWrapper input:disabled {
+.input:disabled {
   --input-background-color: #f4f4f4;
   opacity: 0.6;
 }
 
-.inputWrapper input:not(:placeholder-shown) + .labelContent {
-  --input-label-transform: scale(0.75) translate(5px, -100%);
+.input:not(:placeholder-shown) + .labelContent {
+  --input-label-transform: scale(0.75) translate(1px, calc(-3px + -1em));
   opacity: 1;
-  transition: transform 100ms;
+}
+
+textarea.input {
+  padding-top: calc(1em - 1px);
+}
+
+textarea.input + .labelContent {
+  --input-label-transform: translateY(-0.5em);
+}
+
+textarea.input:not(:placeholder-shown) + .labelContent {
+  --input-label-transform: scale(0.75) translate(1px, calc(-4px + -1.5em));
 }
 
 .labelContent {
   position: absolute;
-  top: 0;
-  left: 2px;
-  padding-left: 1rem;
+  align-self: center;
+  left: 1rem;
+  border: 2px solid transparent;
   transform: var(--input-label-transform, none);
   transform-origin: top left;
-  transition: transform 100ms, opacity 60ms;
+  transition: transform 100ms, opacity 100ms;
   opacity: 0;
   pointer-events: none;
 }
