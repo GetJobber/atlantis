@@ -1,25 +1,11 @@
 {
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "declaration": true,
-    "outDir": "dist",
-    "emitDecoratorMetadata": true,
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "lib": ["es6", "dom"],
-    "module": "es6",
-    "moduleResolution": "node",
-    "sourceMap": true,
-    "target": "es5",
-    "jsx": "react",
-    "baseUrl": "src/"
+    "baseUrl": ".",
+    "paths": {
+      "@jobber/*": ["./packages/*/src"],
+    }
   },
-  "include": [
-    "src/components/**/*"
-  ],
-  "exclude": [
-    "**/*.spec.ts",
-    "node_modules"
-  ],
-  "compileOnSave": false
+  "files": [],
+  "references": []
 }

@@ -1,9 +1,0 @@
-{
-  "defaultSeverity": "error",
-  "extends": [
-    "the-jobber-tslint-foundation/react"
-  ],
-  "jsRules": {},
-  "rules": {},
-  "rulesDirectory": []
-}
