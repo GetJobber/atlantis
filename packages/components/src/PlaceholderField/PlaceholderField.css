@@ -25,6 +25,17 @@
   color: #657884;
 }
 
+.multiline .label:before {
+  display: block;
+  content: "";
+  position: absolute;
+  height: 1em;
+  background-color: #fff;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+}
+
 .input {
   padding: 0 1rem;
   height: 3em;

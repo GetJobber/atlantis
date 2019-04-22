@@ -4,4 +4,5 @@ export const input: string;
 export const normal: string;
 export const large: string;
 export const label: string;
+export const multiline: string;
 export const labelContent: string;
