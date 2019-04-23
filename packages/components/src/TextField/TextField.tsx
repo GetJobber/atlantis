@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent, useRef, useLayoutEffect } from "react";
 import classnames from "classnames";
-import styles from "./PlaceholderField.css";
+import styles from "./TextField.css";
 
 interface PlaceholderFieldProps {
   readonly size: "small" | "normal" | "large";
