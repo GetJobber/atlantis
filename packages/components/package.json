@@ -1,0 +1,19 @@
+{
+  "name": "@jobber/components",
+  "version": "1.0.0",
+  "license": "",
+  "files": [
+    "dist/**/*"
+  ],
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "typescript": "^3.4.3"
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.2.7",
+    "@types/react": "^16.8.13",
+    "@types/react-dom": "^16.8.4"
+  }
+}
