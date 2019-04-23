@@ -102,6 +102,7 @@ export default {
   typescript: true,
   port: 3333,
   menu: ["Atlantis"],
+  codeSandbox: false,
   themeConfig,
   htmlContext,
   modifyBundlerConfig,
