@@ -1,20 +1,23 @@
 .inputWrapper {
   margin-bottom: 1rem;
-  line-height: 1.2;
+  height: var(--input-height);
 }
 
 .inputWrapper:focus-within {
   --input-border-color: #ddc30f;
 }
 
-.small .input {
-  height: 2.25em;
+.small {
+  --input-height: 2em;
 }
 
-.normal {}
+.normal {
+  --input-height: 3em;
+}
 
 .large {
-  font-size: 18px;
+  --input-height: 3em;
+  font-size: 1.125em;
 }
 
 .label {
@@ -22,23 +25,23 @@
   position: relative;
   height: 100%;
   width: 100%;
-  color: #657884;
+  color: var(--label-text-color, #657884);
 }
 
 .multiline .label:before {
   display: block;
   content: "";
   position: absolute;
-  height: 1em;
+  height: 0.8em;
   background-color: #fff;
   top: 2px;
-  left: 2px;
-  right: 2px;
+  left: 1rem;
+  right: 1rem;
 }
 
 .input {
-  padding: 0 1rem;
-  height: 3em;
+  box-sizing: border-box;
+  padding: 1px 1rem;
   width: 100%;
   background-color: var(--input-background-color);
   border: 2px solid var(--input-border-color, #e1e1e1);
@@ -46,7 +49,7 @@
   outline: none;
   font-family: inherit;
   font-size: inherit;
-  line-height: inherit;
+  line-height: 1.25;
 }
 
 .input::placeholder {
@@ -60,20 +63,14 @@
 }
 
 .input:not(:placeholder-shown) + .labelContent {
-  --input-label-transform: scale(0.75) translate(1px, calc(-3px + -1em));
+  --input-label-transform: scale(0.75) translate(1px, -1em);
   opacity: 1;
 }
 
 textarea.input {
-  padding-top: calc(1em - 1px);
-}
-
-textarea.input + .labelContent {
-  --input-label-transform: translateY(-0.5em);
-}
-
-textarea.input:not(:placeholder-shown) + .labelContent {
-  --input-label-transform: scale(0.75) translate(1px, calc(-4px + -1.5em));
+  padding-top: 0.75em;
+  padding-bottom: 0.75em;
+  resize: vertical;
 }
 
 .labelContent {
