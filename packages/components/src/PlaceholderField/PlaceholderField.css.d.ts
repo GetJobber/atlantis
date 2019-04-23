@@ -5,4 +5,5 @@ export const large: string;
 export const label: string;
 export const multiline: string;
 export const input: string;
+export const autoexpand: string;
 export const labelContent: string;

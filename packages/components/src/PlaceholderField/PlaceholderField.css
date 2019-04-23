@@ -62,6 +62,16 @@
   opacity: 0.6;
 }
 
+.multiline .input {
+  padding-top: 0.75em;
+  padding-bottom: 0.75em;
+  resize: vertical;
+}
+
+.autoexpand .input {
+  resize: none;
+}
+
 .labelContent {
   position: absolute;
   left: 1rem;
@@ -77,10 +87,4 @@
 .input:not(:placeholder-shown) + .labelContent {
   --input-label-transform: scale(0.75) translate(1px, -1em);
   opacity: 1;
-}
-
-textarea.input {
-  padding-top: 0.75em;
-  padding-bottom: 0.75em;
-  resize: vertical;
 }

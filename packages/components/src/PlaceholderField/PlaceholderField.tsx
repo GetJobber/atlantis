@@ -86,6 +86,7 @@ export default function PlaceholderField({
   const wrapperClass = classnames(
     styles.inputWrapper,
     multiline && styles.multiline,
+    autoexpand && styles.autoexpand,
     styles[size],
   );
   const InputElement = multiline ? "textarea" : "input";
