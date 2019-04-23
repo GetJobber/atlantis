@@ -23,5 +23,6 @@ module.exports = {
       { trailingComma: "all" },
       { usePrettierrc: false },
     ],
+    "@typescript-eslint/explicit-function-return-type": "off",
   },
 };
