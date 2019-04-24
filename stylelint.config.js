@@ -1,8 +1,11 @@
 /* eslint-env node */
 module.exports = {
   extends: ["stylelint-config-recommended", "stylelint-config-css-modules"],
-  plugins: ["stylelint-order"],
+  plugins: ["stylelint-order", "stylelint-color-format"],
   rules: {
+    "color-format/format": {
+      format: "rgb",
+    },
     "order/properties-order": [
       "position",
       "top",
