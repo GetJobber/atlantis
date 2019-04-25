@@ -1,0 +1,126 @@
+version: 2
+
+references:
+
+  container_config: &container_config
+    docker:
+      - image: circleci/node
+    working_directory:  ~/atlantis
+
+
+  restore_repo: &restore_repo
+    restore_cache:
+      keys:
+        - v1-repo-{{ .Branch }}-{{ .Revision }}
+        - v1-repo-{{ .Branch }}
+        - v1-repo
+
+  restore_yarn_cache: &restore_yarn_cache
+    restore_cache:
+      keys:
+        - v1-yarn-packages-{{ checksum "yarn.lock" }}
+        - v1-yarn-packages
+
+  restore_node_modules: &restore_node_modules
+    restore_cache:
+      keys:
+        - v1-node-modules-{{ checksum "yarn.lock" }}
+        - v1-node-modules
+
+  yarn_install: &yarn_install
+    run:
+      name: Install Dependencies
+      command: yarn install --frozen-lockfile --non-interactive
+
+jobs:
+  checkout_code:
+    <<: *container_config
+    steps:
+      - *restore_repo
+      - checkout
+      - save_cache:
+          key: v1-repo-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - .
+
+  install_dependencies:
+    <<: *container_config
+    steps:
+      - *restore_repo
+      - *restore_yarn_cache
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile --non-interactive
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: v1-yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - save_cache:
+          name: Save Node Modules
+          key: v1-node-modules-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+
+  lint_javascript:
+    <<: *container_config
+    steps:
+      - *restore_repo
+      - *restore_node_modules
+      - run: yarn lint:js
+
+  lint_css:
+    <<: *container_config
+    steps:
+      - *restore_repo
+      - *restore_node_modules
+      - run: yarn lint:css
+
+  test:
+    <<: *container_config
+    steps:
+      - *restore_repo
+      - *restore_node_modules
+      - run: yarn test
+
+  build_docs:
+    <<: *container_config
+    steps:
+      - *restore_repo
+      - *restore_node_modules
+      - run: yarn build
+      - store_artifacts:
+          path: ~/.docz/dist
+          destination: docs
+
+workflows:
+  version: 2
+
+  docs:
+    jobs:
+      - checkout_code
+      - install_dependencies:
+          requires:
+            - checkout_code
+      - lint_javascript:
+          requires:
+            - checkout_code
+            - install_dependencies
+      - lint_css:
+          requires:
+            - checkout_code
+            - install_dependencies
+      - test:
+          requires:
+            - checkout_code
+            - install_dependencies
+      - build_docs:
+          requires:
+            - checkout_code
+            - install_dependencies
+            - lint_javascript
+            - lint_css
+            - test
+          filters:
+            branches:
+              only: master
