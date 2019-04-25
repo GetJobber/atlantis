@@ -9854,6 +9854,13 @@ stylelint-config-standard@^18.3.0:
   dependencies:
     stylelint-config-recommended "^2.2.0"
 
+stylelint-declaration-block-no-ignored-properties@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/stylelint-declaration-block-no-ignored-properties/-/stylelint-declaration-block-no-ignored-properties-2.0.0.tgz#de0e44c90be98404205639e1242bc089402e4dc9"
+  integrity sha512-3ws8jxEEG0uVCHMzXuarQa6sDpHlIxz8ufTxfTcc1oePUrKkPC4Z6Yu99+1+P+1lpSy7sOb5srQ64dOaXHigLg==
+  dependencies:
+    postcss "^7.0.14"
+
 stylelint-order@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/stylelint-order/-/stylelint-order-3.0.0.tgz#ec44afb93a3183dcf8c91540d4486de776250506"
@@ -9862,6 +9869,13 @@ stylelint-order@^3.0.0:
     lodash "^4.17.11"
     postcss "^7.0.14"
     postcss-sorting "^5.0.0"
+
+stylelint-prettier@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/stylelint-prettier/-/stylelint-prettier-1.0.6.tgz#479b76336751cb617c5beb7545d05a791f945e1e"
+  integrity sha512-XKlTyJHJYiyXs9JXRMt2FQxMJoBSjz4I6+4+/R3o8/ePof19v9naC4d0zsMKUJ88by81+qHfqXBLfmAalu46cg==
+  dependencies:
+    prettier-linter-helpers "^1.0.0"
 
 stylelint@^10.0.1:
   version "10.0.1"

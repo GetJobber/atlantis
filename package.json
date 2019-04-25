@@ -42,7 +42,9 @@
     "stylelint-color-format": "^0.2.0",
     "stylelint-config-css-modules": "^1.4.0",
     "stylelint-config-standard": "^18.3.0",
+    "stylelint-declaration-block-no-ignored-properties": "^2.0.0",
     "stylelint-order": "^3.0.0",
+    "stylelint-prettier": "^1.0.6",
     "typed-css-modules-loader": "^0.0.17",
     "typescript": "^3.4.3"
   }
