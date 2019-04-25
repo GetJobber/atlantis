@@ -3,21 +3,43 @@ import classnames from "classnames";
 import styles from "./TextField.css";
 
 interface TextFieldProps {
-  readonly size: "small" | "normal" | "large";
+  /** The input name  */
   readonly name?: string;
+  /** The text that appears when no value is set and displayed as a hover label when a value is present. */
   readonly placeholder?: string;
-  readonly disabled?: boolean;
+  /** The initial input value */
   readonly defaultValue?: string;
+
+  /**
+   * The size of the input
+   * @default normal
+   */
+  readonly size: "small" | "normal" | "large";
+  /**
+   * Indicates whether the input is disabled or not.
+   * @default false
+   */
+  readonly disabled: boolean;
+  /**
+   * Indicates whether the input is in an error state or not.
+   * @default false
+   */
+  readonly error: boolean;
 }
 
 export default function TextField({
-  size = "normal",
   name,
   placeholder,
-  disabled,
   defaultValue,
+  size = "normal",
+  disabled = false,
+  error = false,
 }: TextFieldProps) {
-  const wrapperClass = classnames(styles.inputWrapper, styles[size]);
+  const wrapperClass = classnames(
+    styles.inputWrapper,
+    styles[size],
+    error && styles.error,
+  );
 
   return (
     <div className={wrapperClass}>

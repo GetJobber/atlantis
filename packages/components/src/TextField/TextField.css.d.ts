@@ -1,4 +1,5 @@
 export const inputWrapper: string;
+export const error: string;
 export const small: string;
 export const normal: string;
 export const large: string;

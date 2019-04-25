@@ -1,10 +1,22 @@
+:root {
+  --label-text-color: rgb(101, 120, 132);
+}
+
 .inputWrapper {
   height: var(--input-height);
   margin-bottom: 1rem;
 }
 
-.inputWrapper:focus-within {
-  --input-border-color: #ddc30f;
+.inputWrapper:focus-within,
+.inputWrapper:hover {
+  --input-border-color: rgb(221, 195, 15);
+}
+
+.error,
+.error:focus-within,
+.error:hover {
+  --input-border-color: rgb(239, 87, 51);
+  --label-text-color: rgba(239, 87, 51);
 }
 
 .small {
@@ -25,7 +37,7 @@
   display: flex;
   width: 100%;
   height: 100%;
-  color: var(--label-text-color, #657884);
+  color: var(--label-text-color);
 }
 
 .multiline .label:before {
@@ -35,7 +47,7 @@
   left: 1rem;
   display: block;
   height: 0.8em;
-  background-color: #fff;
+  background-color: rgb(255, 255, 255);
   content: "";
 }
 
@@ -46,19 +58,20 @@
   font-size: inherit;
   line-height: 1.25;
   background-color: var(--input-background-color);
-  border: 2px solid var(--input-border-color, #e1e1e1);
+  border: 2px solid var(--input-border-color, rgb(225, 225, 225));
   border-radius: 4px;
-  outline: none;
+  outline-color: var(--input-border-color);
   box-sizing: border-box;
 }
 
 .input::placeholder {
   display: block !important;
+  color: var(--label-text-color);
   transition: all 0ms linear 500ms;
 }
 
 .input:disabled {
-  --input-background-color: #f4f4f4;
+  --input-background-color: rgb(244, 244, 244);
   opacity: 0.6;
 }
 
