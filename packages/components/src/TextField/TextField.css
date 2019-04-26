@@ -7,8 +7,7 @@
   margin-bottom: 1rem;
 }
 
-.inputWrapper:focus-within,
-.inputWrapper:hover {
+.inputWrapper:focus-within {
   --input-border-color: rgb(221, 195, 15);
 }
 
@@ -60,7 +59,7 @@
   background-color: var(--input-background-color);
   border: 2px solid var(--input-border-color, rgb(225, 225, 225));
   border-radius: 4px;
-  outline-color: var(--input-border-color);
+  outline: none;
   box-sizing: border-box;
 }
 
