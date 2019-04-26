@@ -87,6 +87,10 @@
 .labelContent {
   position: absolute;
   left: 1rem;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   pointer-events: none;
   border: 2px solid transparent;
   opacity: 0;
