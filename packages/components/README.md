@@ -1,6 +1,16 @@
- # 🔱 Components
+# 🔱 Components
 
- This package contains the base set of [React](https://reactjs.org/) components for Atlantis.
+---
+
+# Work In Progress
+
+This is a pre-release version. Please be aware that commands are subject to change.
+
+![Under Construction](https://d.pr/i/m5tB9t.gif)
+
+---
+
+This package contains the base set of [React](https://reactjs.org/) components for Atlantis.
 
  ## Installation
 
