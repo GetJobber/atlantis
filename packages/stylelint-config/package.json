@@ -4,6 +4,7 @@
   "main": "stylelint.config.js",
   "private": true,
   "dependencies": {
+    "prettier": "^1.17.0",
     "style-search": "^0.1.0",
     "stylelint-color-format": "^0.2.0",
     "stylelint-config-css-modules": "^1.4.0",
@@ -13,7 +14,6 @@
     "stylelint-prettier": "^1.0.6"
   },
   "peerDependencies": {
-    "prettier": "^1.17.0",
     "stylelint": "^10.0.1"
   }
 }

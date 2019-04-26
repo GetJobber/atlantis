@@ -35,7 +35,6 @@
     "jest": "^24.7.1",
     "postcss": "^7.0.14",
     "postcss-loader": "^3.0.0",
-    "prettier": "^1.17.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "style-loader": "^0.23.1",
