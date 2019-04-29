@@ -14,17 +14,17 @@ interface TextFieldProps {
    * The size of the input
    * @default normal
    */
-  readonly size: "small" | "normal" | "large";
+  readonly size?: "small" | "normal" | "large";
   /**
    * Indicates whether the input is disabled or not.
    * @default false
    */
-  readonly disabled: boolean;
+  readonly disabled?: boolean;
   /**
    * Indicates whether the input is in an error state or not.
    * @default false
    */
-  readonly error: boolean;
+  readonly error?: boolean;
 }
 
 export default function TextField({

@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="inputWrapper normal"
+>
+  <label
+    className="label"
+  >
+    <input
+      className="input"
+      disabled={false}
+      type="text"
+    />
+    <span
+      className="labelContent"
+    />
+  </label>
+</div>
+`;
