@@ -8,8 +8,6 @@ interface IconProps {
 }
 
 export function Icon({ iconName }: IconProps) {
-  console.log(IconName);
-  debugger;
   return (
     <>
       <div className={`${styles[iconName]} ${styles.icon}`} />

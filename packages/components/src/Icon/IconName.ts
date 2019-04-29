@@ -1,6 +1,6 @@
 export enum IconName {
   address = "address",
-  eyeCrossed = "eyeCrossed",
+  cross = "cross",
   list = "list",
   arrowLeft = "arrowLeft",
   arrowDown = "arrowDown",
@@ -112,6 +112,7 @@ export enum IconName {
   dropdown = "dropdown",
   timeline = "timeline",
   availability = "availability",
+  eyeCrossed = "eyeCrossed",
   request = "request",
   download = "download",
   microphone = "microphone",

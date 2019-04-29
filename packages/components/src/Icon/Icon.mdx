@@ -8,12 +8,157 @@ import { IconName } from "./IconName";
 
 # Icon
 
+Atlantis provides built-in icons that represent common tasks and types of
+content in a variety of use cases.
+
+Icons are used to visually communicate core parts of the product and available
+actions. They can act as wayfinding tools to more easily understand where they
+are in the product, and common interaction patterns that are available.
+
+It’s a good idea to use these built-in icons as much as possible because
+they're familiar to people.
+
+Use icons as intended. Provided icons have a specific, meaning. To avoid
+confusing users, it’s essential that each image be used in accordance with its
+meaning and recommended usage.
+
+Provide alternative `aria-label`s for icons. `aria-label`s aren’t visible
+onscreen, but they allow screen readers audibly describe what's onscreen,
+making navigation easier for people with visual impairments.
+
+## Properties
+
 <Props of={Icon} />
 
-## Simple Icon
+## Simple Example
 
 <Playground>
   <Icon iconName={IconName.address} />
 </Playground>
 
-## IconName
+## Available Icons
+
+| Icon                                        | `IconName`       | Meaning |
+| :------------------------------------------ | :--------------- | :------ |
+| <Icon iconName={IconName.address} />        | `address`        |         |
+| <Icon iconName={IconName.cross} />          | `cross`          |         |
+| <Icon iconName={IconName.list} />           | `list`           |         |
+| <Icon iconName={IconName.arrowLeft} />      | `arrowLeft`      |         |
+| <Icon iconName={IconName.arrowDown} />      | `arrowDown`      |         |
+| <Icon iconName={IconName.arrowUp} />        | `arrowUp`        |         |
+| <Icon iconName={IconName.arrowRight} />     | `arrowRight`     |         |
+| <Icon iconName={IconName.twitter} />        | `twitter`        |         |
+| <Icon iconName={IconName.facebook} />       | `facebook`       |         |
+| <Icon iconName={IconName.archive} />        | `archive`        |         |
+| <Icon iconName={IconName.vcard} />          | `vcard`          |         |
+| <Icon iconName={IconName.avatar} />         | `avatar`         |         |
+| <Icon iconName={IconName.search} />         | `search`         |         |
+| <Icon iconName={IconName.youtube} />        | `youtube`        |         |
+| <Icon iconName={IconName.checkmark} />      | `checkmark`      |         |
+| <Icon iconName={IconName.minus} />          | `minus`          |         |
+| <Icon iconName={IconName.plus} />           | `plus`           |         |
+| <Icon iconName={IconName.minus2} />         | `minus2`         |         |
+| <Icon iconName={IconName.plus2} />          | `plus2`          |         |
+| <Icon iconName={IconName.google} />         | `google`         |         |
+| <Icon iconName={IconName.backArrow} />      | `backArrow`      |         |
+| <Icon iconName={IconName.directions} />     | `directions`     |         |
+| <Icon iconName={IconName.email} />          | `email`          |         |
+| <Icon iconName={IconName.event} />          | `event`          |         |
+| <Icon iconName={IconName.logout} />         | `logout`         |         |
+| <Icon iconName={IconName.phone} />          | `phone`          |         |
+| <Icon iconName={IconName.property} />       | `property`       |         |
+| <Icon iconName={IconName.sync} />           | `sync`           |         |
+| <Icon iconName={IconName.task} />           | `task`           |         |
+| <Icon iconName={IconName.visit} />          | `visit`          |         |
+| <Icon iconName={IconName.starburst} />      | `starburst`      |         |
+| <Icon iconName={IconName.googlePlay} />     | `googlePlay`     |         |
+| <Icon iconName={IconName.apple} />          | `apple`          |         |
+| <Icon iconName={IconName.clients} />        | `clients`        |         |
+| <Icon iconName={IconName.clockIn} />        | `clockIn`        |         |
+| <Icon iconName={IconName.clockOut} />       | `clockOut`       |         |
+| <Icon iconName={IconName.edit} />           | `edit`           |         |
+| <Icon iconName={IconName.invoice} />        | `invoice`        |         |
+| <Icon iconName={IconName.job} />            | `job`            |         |
+| <Icon iconName={IconName.markSent} />       | `markSent`       |         |
+| <Icon iconName={IconName.moveVisits} />     | `moveVisits`     |         |
+| <Icon iconName={IconName.payment} />        | `payment`        |         |
+| <Icon iconName={IconName.pdf} />            | `pdf`            |         |
+| <Icon iconName={IconName.quickbooks} />     | `quickbooks`     |         |
+| <Icon iconName={IconName.quoteCopy} />      | `quoteCopy`      |         |
+| <Icon iconName={IconName.quote} />          | `quote`          |         |
+| <Icon iconName={IconName.redo} />           | `redo`           |         |
+| <Icon iconName={IconName.sendInvoice} />    | `sendInvoice`    |         |
+| <Icon iconName={IconName.signature} />      | `signature`      |         |
+| <Icon iconName={IconName.addNote} />        | `addNote`        |         |
+| <Icon iconName={IconName.attachment} />     | `attachment`     |         |
+| <Icon iconName={IconName.link} />           | `link`           |         |
+| <Icon iconName={IconName.note} />           | `note`           |         |
+| <Icon iconName={IconName.trash} />          | `trash`          |         |
+| <Icon iconName={IconName.excel} />          | `excel`          |         |
+| <Icon iconName={IconName.file} />           | `file`           |         |
+| <Icon iconName={IconName.word} />           | `word`           |         |
+| <Icon iconName={IconName.linkedIn} />       | `linkedIn`       |         |
+| <Icon iconName={IconName.alert} />          | `alert`          |         |
+| <Icon iconName={IconName.person} />         | `person`         |         |
+| <Icon iconName={IconName.calendar} />       | `calendar`       |         |
+| <Icon iconName={IconName.timer} />          | `timer`          |         |
+| <Icon iconName={IconName.schedule} />       | `schedule`       |         |
+| <Icon iconName={IconName.star} />           | `star`           |         |
+| <Icon iconName={IconName.starFill} />       | `starFill`       |         |
+| <Icon iconName={IconName.cog} />            | `cog`            |         |
+| <Icon iconName={IconName.cash} />           | `cash`           |         |
+| <Icon iconName={IconName.ePayment} />       | `ePayment`       |         |
+| <Icon iconName={IconName.invoiceLater} />   | `invoiceLater`   |         |
+| <Icon iconName={IconName.jobOnHold} />      | `jobOnHold`      |         |
+| <Icon iconName={IconName.chemical} />       | `chemical`       |         |
+| <Icon iconName={IconName.company} />        | `company`        |         |
+| <Icon iconName={IconName.printer} />        | `printer`        |         |
+| <Icon iconName={IconName.stamp} />          | `stamp`          |         |
+| <Icon iconName={IconName.help} />           | `help`           |         |
+| <Icon iconName={IconName.reminder} />       | `reminder`       |         |
+| <Icon iconName={IconName.grid} />           | `grid`           |         |
+| <Icon iconName={IconName.add} />            | `add`            |         |
+| <Icon iconName={IconName.badInvoice} />     | `badInvoice`     |         |
+| <Icon iconName={IconName.moveMarker} />     | `moveMarker`     |         |
+| <Icon iconName={IconName.paidInvoice} />    | `paidInvoice`    |         |
+| <Icon iconName={IconName.sms} />            | `sms`            |         |
+| <Icon iconName={IconName.dashboard} />      | `dashboard`      |         |
+| <Icon iconName={IconName.management} />     | `management`     |         |
+| <Icon iconName={IconName.work} />           | `work`           |         |
+| <Icon iconName={IconName.xero} />           | `xero`           |         |
+| <Icon iconName={IconName.userUnassigned} /> | `userUnassigned` |         |
+| <Icon iconName={IconName.user} />           | `user`           |         |
+| <Icon iconName={IconName.thumbsUp} />       | `thumbsUp`       |         |
+| <Icon iconName={IconName.shoppingCart} />   | `shoppingCart`   |         |
+| <Icon iconName={IconName.sms2} />           | `sms2`           |         |
+| <Icon iconName={IconName.sun} />            | `sun`            |         |
+| <Icon iconName={IconName.userSwitch} />     | `userSwitch`     |         |
+| <Icon iconName={IconName.menu} />           | `menu`           |         |
+| <Icon iconName={IconName.expense} />        | `expense`        |         |
+| <Icon iconName={IconName.sort} />           | `sort`           |         |
+| <Icon iconName={IconName.knot} />           | `knot`           |         |
+| <Icon iconName={IconName.clearFilters} />   | `clearFilters`   |         |
+| <Icon iconName={IconName.lock} />           | `lock`           |         |
+| <Icon iconName={IconName.textBox} />        | `textBox`        |         |
+| <Icon iconName={IconName.textField} />      | `textField`      |         |
+| <Icon iconName={IconName.checkbox} />       | `checkbox`       |         |
+| <Icon iconName={IconName.textBlock} />      | `textBlock`      |         |
+| <Icon iconName={IconName.camera} />         | `camera`         |         |
+| <Icon iconName={IconName.chat} />           | `chat`           |         |
+| <Icon iconName={IconName.eye} />            | `eye`            |         |
+| <Icon iconName={IconName.percent} />        | `percent`        |         |
+| <Icon iconName={IconName.angieslist} />     | `angieslist`     |         |
+| <Icon iconName={IconName.instagram} />      | `instagram`      |         |
+| <Icon iconName={IconName.yelp} />           | `yelp`           |         |
+| <Icon iconName={IconName.dropdown} />       | `dropdown`       |         |
+| <Icon iconName={IconName.timeline} />       | `timeline`       |         |
+| <Icon iconName={IconName.availability} />   | `availability`   |         |
+| <Icon iconName={IconName.eyeCrossed} />     | `eyeCrossed`     |         |
+| <Icon iconName={IconName.request} />        | `request`        |         |
+| <Icon iconName={IconName.download} />       | `download`       |         |
+| <Icon iconName={IconName.microphone} />     | `microphone`     |         |
+| <Icon iconName={IconName.wallet} />         | `wallet`         |         |
+| <Icon iconName={IconName.video} />          | `video`          |         |
+| <Icon iconName={IconName.more} />           | `more`           |         |
+| <Icon iconName={IconName.reports} />        | `reports`        |         |
+| <Icon iconName={IconName.upload} />         | `upload`         |         |
