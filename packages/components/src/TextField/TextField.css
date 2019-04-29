@@ -1,3 +1,12 @@
+:root {
+  --color-grey-blue--light: rgb(147, 161, 169);
+  --color-grey--lighter: rgb(225, 225, 225);
+  --color-grey--lightest: rgb(244, 244, 244);
+  --color-yellow: rgb(221, 195, 15);
+  --color-red: rgb(239, 87, 51);
+  --color-white: rgb(255, 255, 255);
+}
+
 .small {
   --input-height: var(--input-height--small, 2em);
 }
@@ -13,8 +22,8 @@
 
 .error,
 .error:focus-within {
-  --input-border-color: var(--input-border-color--error, rgb(239, 87, 51));
-  --label-text-color: var(--label-text-color--error, rgba(239, 87, 51));
+  --input-border-color: var(--input-border-color--error, var(--color-red));
+  --label-text-color: var(--label-text-color--error, var(--color-red));
 }
 
 .inputWrapper {
@@ -23,12 +32,12 @@
 }
 
 .inputWrapper:focus-within {
-  --input-border-color: var(--input-border-color--focused, rgb(221, 195, 15));
+  --input-border-color: var(--input-border-color--focused, var(--color-yellow));
 }
 
 .label,
 .input::placeholder {
-  color: var(--label-text-color, rgb(101, 120, 132));
+  color: var(--label-text-color, var(--color-grey-blue--light));
 }
 
 .label {
@@ -43,8 +52,8 @@
   padding: 0 1rem;
   font-family: inherit;
   font-size: inherit;
-  background-color: var(--input-background-color, rgb(255, 255, 255));
-  border: 2px solid var(--input-border-color, rgb(225, 225, 225));
+  background-color: var(--input-background-color, var(--color-white));
+  border: 2px solid var(--input-border-color, var(--color-grey--lighter));
   border-radius: 4px;
   outline: none;
   box-sizing: border-box;
@@ -53,7 +62,7 @@
 .input:disabled {
   --input-background-color: var(
     --input-background-color--disabled,
-    rgb(244, 244, 244)
+    var(--color-grey--lightest)
   );
   opacity: 0.6;
 }
