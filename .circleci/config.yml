@@ -90,7 +90,7 @@ jobs:
       - *restore_node_modules
       - run: yarn build
       - store_artifacts:
-          path: ~/.docz/dist
+          path: ~/atlantis/.docz/dist
           destination: docs
 
 workflows:
