@@ -1,0 +1,19 @@
+{
+  "name": "@jobber/stylelint-config",
+  "version": "0.0.1",
+  "main": "stylelint.config.js",
+  "private": true,
+  "dependencies": {
+    "prettier": "^1.17.0",
+    "style-search": "^0.1.0",
+    "stylelint-color-format": "^0.2.0",
+    "stylelint-config-css-modules": "^1.4.0",
+    "stylelint-config-standard": "^18.3.0",
+    "stylelint-declaration-block-no-ignored-properties": "^2.0.0",
+    "stylelint-order": "^3.0.0",
+    "stylelint-prettier": "^1.0.6"
+  },
+  "peerDependencies": {
+    "stylelint": "^10.0.1"
+  }
+}
