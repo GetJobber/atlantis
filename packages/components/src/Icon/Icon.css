@@ -1,27 +1,28 @@
 @font-face {
-  font-family: 'jobbericons';
-  src:
-    url('fonts/jobbericons.woff2?tr7fud') format('woff2'),
-    url('fonts/jobbericons.ttf?tr7fud') format('truetype'),
-    url('fonts/jobbericons.woff?tr7fud') format('woff'),
-    url('fonts/jobbericons.svg?tr7fud#jobbericons') format('svg');
-  font-weight: normal;
+  font-family: "jobbericons";
   font-style: normal;
+  font-weight: normal;
+  src: url("fonts/jobbericons.woff2?tr7fud") format("woff2"),
+    url("fonts/jobbericons.ttf?tr7fud") format("truetype"),
+    url("fonts/jobbericons.woff?tr7fud") format("woff"),
+    url("fonts/jobbericons.svg?tr7fud#jobbericons") format("svg");
 }
 
 .icon {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'jobbericons' !important;
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
+  /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+  font-family: "jobbericons" !important;
 
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  text-transform: none;
+  speak: none;
+  font-variant: normal;
 }
 
 .address:before {
