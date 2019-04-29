@@ -1,21 +1,20 @@
 .small {
-  --input-height: 2em;
+  --input-height: var(--input-height--small, 2em);
 }
 
 .normal {
-  --input-height: 3em;
+  --input-height: var(--input-height--normal, 3em);
 }
 
 .large {
-  --input-height: 3em;
-  font-size: 1.125em;
+  --input-height: var(--input-height--large, 3em);
+  font-size: var(--input-font-size--large, 1.125em);
 }
 
 .error,
-.error:focus-within,
-.error:hover {
-  --input-border-color: rgb(239, 87, 51);
-  --label-text-color: rgba(239, 87, 51);
+.error:focus-within {
+  --input-border-color: var(--input-border-color--error, rgb(239, 87, 51));
+  --label-text-color: var(--label-text-color--error, rgba(239, 87, 51));
 }
 
 .inputWrapper {
@@ -24,7 +23,7 @@
 }
 
 .inputWrapper:focus-within {
-  --input-border-color: rgb(221, 195, 15);
+  --input-border-color: var(--input-border-color--focused, rgb(221, 195, 15));
 }
 
 .label,
@@ -52,7 +51,10 @@
 }
 
 .input:disabled {
-  --input-background-color: rgb(244, 244, 244);
+  --input-background-color: var(
+    --input-background-color--disabled,
+    rgb(244, 244, 244)
+  );
   opacity: 0.6;
 }
 
@@ -66,13 +68,13 @@
   white-space: nowrap;
   pointer-events: none;
   opacity: 0;
-  transform: var(--input-label-transform, none);
+  transform: none;
   transition: transform 100ms, opacity 100ms;
   align-self: center;
   transform-origin: top left;
 }
 
 .input:not(:placeholder-shown) + .labelContent {
-  --input-label-transform: scale(0.75) translate(1px, -1em);
   opacity: 1;
+  transform: scale(0.75) translate(1px, -1em);
 }
