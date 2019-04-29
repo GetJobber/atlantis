@@ -52,7 +52,7 @@ export default function TextField({
           disabled={disabled}
           defaultValue={defaultValue}
         />
-        {size !== "small" && (
+        {size !== "small" && placeholder && (
           <span className={styles.labelContent}>{placeholder}</span>
         )}
       </label>

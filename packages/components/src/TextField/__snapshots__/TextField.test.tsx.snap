@@ -12,9 +12,6 @@ exports[`renders correctly 1`] = `
       disabled={false}
       type="text"
     />
-    <span
-      className="labelContent"
-    />
   </label>
 </div>
 `;
