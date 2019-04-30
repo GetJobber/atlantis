@@ -39,7 +39,7 @@ const modifyBundlerConfig = config => {
 
 const fonts = {
   // Used for headings larger than 20px.
-  display: '"Orbitron", sans-serif',
+  display: '"Poppins", sans-serif',
   // Used for code and sometimes numbers in tables.
   mono: '"Anonymous Pro", monospace',
   // Used for text and UI (which includes almost anything).
@@ -54,6 +54,23 @@ const themeConfig = {
       font-family: ${fonts.ui};
       font-size: 18px;
       line-height: 1.8;
+    `,
+    h1: css`
+      margin: 40px 0 20px;
+      font-family: ${fonts.display};
+      font-size: 48px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    `,
+    h2: css`
+      margin: 30px 0 20px;
+      line-height: 1.4em;
+      font-family: ${fonts.display};
+      font-weight: 600;
+      font-size: 28px;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
     `,
   },
 };
@@ -74,7 +91,7 @@ const htmlContext = {
       {
         rel: "stylesheet",
         href:
-          "https://fonts.googleapis.com/css?family=Orbitron:400,500,700,900",
+          "https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i",
       },
     ],
   },
