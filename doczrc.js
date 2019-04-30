@@ -2,6 +2,7 @@
 import path from "path";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { WatchIgnorePlugin } = require("webpack");
+import { css } from "styled-components";
 
 const modifyBundlerConfig = config => {
   config.resolve.alias = Object.assign({}, config.resolve.alias, {
@@ -36,9 +37,55 @@ const modifyBundlerConfig = config => {
   return config;
 };
 
+const fonts = {
+  // Used for headings larger than 20px.
+  display: '"Orbitron", sans-serif',
+  // Used for code and sometimes numbers in tables.
+  mono: '"Anonymous Pro", monospace',
+  // Used for text and UI (which includes almost anything).
+  ui: '"Noto Sans", sans-serif',
+};
+
+const themeConfig = {
+  showPlaygroundEditor: true,
+  fonts,
+  styles: {
+    body: css`
+      font-family: ${fonts.ui};
+      font-size: 18px;
+      line-height: 1.8;
+    `,
+  },
+};
+
+const htmlContext = {
+  head: {
+    links: [
+      {
+        rel: "stylesheet",
+        href:
+          "https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i",
+      },
+      {
+        rel: "stylesheet",
+        href:
+          "https://fonts.googleapis.com/css?family=Anonymous+Pro:400,400i,700,700i",
+      },
+      {
+        rel: "stylesheet",
+        href:
+          "https://fonts.googleapis.com/css?family=Orbitron:400,500,700,900",
+      },
+    ],
+  },
+};
+
 export default {
-  title: "Atlantis 🔱",
+  title: "🔱 Atlantis",
   typescript: true,
   port: 3333,
+  menu: ["Atlantis"],
+  themeConfig,
+  htmlContext,
   modifyBundlerConfig,
 };
