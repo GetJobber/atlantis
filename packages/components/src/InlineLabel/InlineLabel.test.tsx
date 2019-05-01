@@ -1,5 +1,5 @@
 import React from "react";
-import { InlineLabel } from ".";
+import { InlineLabel } from "./InlineLabel";
 import renderer from "react-test-renderer";
 
 it("renders correctly", () => {
