@@ -32,7 +32,13 @@
 
 .inputWrapper {
   margin-bottom: 1em;
-  font-family: "Noto Sans", Helvetica, Arial, sans-serif;
+  font-family: var(
+    --input-font-family,
+    "Noto Sans",
+    Helvetica,
+    Arial,
+    sans-serif
+  );
   font-size: var(--root-font-size, 16px);
 }
 
