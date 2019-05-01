@@ -8,9 +8,5 @@ interface IconProps {
 }
 
 export function Icon({ iconName }: IconProps) {
-  return (
-    <>
-      <div className={`${styles[iconName]} ${styles.icon}`} />
-    </>
-  );
+  return <div className={`${styles[iconName]} ${styles.icon}`} />;
 }
