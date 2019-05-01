@@ -27,7 +27,7 @@ interface TextFieldProps {
   readonly error?: boolean;
 }
 
-export default function TextField({
+export function TextField({
   name,
   placeholder,
   defaultValue,
