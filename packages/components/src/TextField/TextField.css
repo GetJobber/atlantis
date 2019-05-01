@@ -6,6 +6,8 @@
   --color-yellow: rgb(221, 195, 15);
   --color-red: rgb(239, 87, 51);
   --color-white: rgb(255, 255, 255);
+
+  --input-border-width: 2px;
 }
 
 .small {
@@ -66,7 +68,8 @@
   font-size: inherit;
   color: var(--input-color, var(--color-blue));
   background-color: var(--input-background-color, var(--color-white));
-  border: 2px solid var(--input-border-color, var(--color-grey--lighter));
+  border: var(--input-border-width) solid
+    var(--input-border-color, var(--color-grey--lighter));
   border-radius: 4px;
   outline: none;
   box-sizing: border-box;
@@ -84,7 +87,7 @@
   position: absolute;
   left: 1em;
   width: 100%;
-  padding: 2px;
+  padding: var(--input-border-width);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
