@@ -1,4 +1,5 @@
 :root {
+  --color-blue: rgb(1, 41, 57);
   --color-grey-blue--light: rgb(147, 161, 169);
   --color-grey--lighter: rgb(225, 225, 225);
   --color-grey--lightest: rgb(244, 244, 244);
@@ -8,27 +9,31 @@
 }
 
 .small {
-  --input-height: var(--input-height--small, 2em);
+  --input-height: var(--input-height--small, 36px);
 }
 
 .normal {
-  --input-height: var(--input-height--normal, 3em);
+  --input-height: var(--input-height--normal, 48px);
 }
 
 .large {
-  --input-height: var(--input-height--large, 3em);
-  font-size: var(--input-font-size--large, 1.125em);
+  --input-height: var(--input-height--large, 64px);
+  --input-font-size: var(--input-font-size--large, 1em);
 }
 
-.error,
-.error:focus-within {
+.error {
   --input-border-color: var(--input-border-color--error, var(--color-red));
+  --input-border-color--focused: var(
+    --input-border-color--error,
+    var(--color-red)
+  );
   --label-text-color: var(--label-text-color--error, var(--color-red));
 }
 
 .inputWrapper {
-  height: var(--input-height);
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
+  font-family: "Noto Sans", Helvetica, Arial, sans-serif;
+  font-size: var(--root-font-size, 16px);
 }
 
 .inputWrapper:focus-within {
@@ -44,14 +49,16 @@
   position: relative;
   display: flex;
   width: 100%;
-  height: 100%;
+  height: var(--input-height);
+  font-size: var(--input-font-size, 0.875em);
 }
 
 .input {
   width: 100%;
-  padding: 0 1rem;
+  padding: 0 1em;
   font-family: inherit;
   font-size: inherit;
+  color: var(--input-color, var(--color-blue));
   background-color: var(--input-background-color, var(--color-white));
   border: 2px solid var(--input-border-color, var(--color-grey--lighter));
   border-radius: 4px;
@@ -69,7 +76,7 @@
 
 .labelContent {
   position: absolute;
-  left: 1rem;
+  left: 1em;
   width: 100%;
   padding: 2px;
   overflow: hidden;
@@ -85,5 +92,5 @@
 
 .input:not(:placeholder-shown) + .labelContent {
   opacity: 1;
-  transform: scale(0.75) translate(1px, -1em);
+  transform: scale(0.7) translate(1px, -1em);
 }
