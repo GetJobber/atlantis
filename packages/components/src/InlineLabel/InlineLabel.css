@@ -1,0 +1,130 @@
+:root {
+  --color-white: rgb(255, 255, 255);
+  --color-blue: rgb(1, 41, 57);
+  --color-blue--light: rgb(77, 105, 116);
+  --color-blue--lightest: rgb(217, 223, 225);
+  --color-grey-blue--lightest: rgb(232, 235, 237);
+  --color-grey-blue--dark: rgb(66, 78, 86);
+  --color-green--dark: rgb(81, 114, 9);
+  --color-green--lightest: rgb(236, 243, 219);
+  --color-lime--dark: rgb(99, 125, 46);
+  --color-lime--lightest: rgb(240, 246, 227);
+  --color-yellow-green--dark: rgb(144, 127, 10);
+  --color-yellow-green--lightest: rgb(241, 231, 159);
+  --color-yellow--dark: rgb(144, 127, 10);
+  --color-yellow--lightest: rgb(250, 246, 219);
+  --color-red--dark: rgb(155, 57, 33);
+  --color-red--lightest: rgb(253, 230, 224);
+  --color-orange-dark: rgb(158, 98, 23);
+  --color-orange--lightest: rgb(253, 239, 222);
+  --color-pink--dark: rgb(116, 62, 98);
+  --color-pink--lightest: rgb(244, 231, 239);
+  --color-purple--dark: rgb(88, 73, 127);
+  --color-purple--lightest: rgb(237, 234, 246);
+  --color-navy: rgb(75, 106, 150);
+  --color-navy--lightest: rgb(228, 233, 239);
+  --color-indigo--dark: rgb(55, 69, 132);
+  --color-indigo--lightest: rgb(230, 233, 247);
+  --color-light-blue--dark: rgb(39, 105, 146);
+  --color-light-blue--lightest: rgb(226, 241, 250);
+  --color-teal--dark: rgb(40, 112, 95);
+  --color-teal--lightest: rgb(226, 243, 239);
+}
+
+.inlineLabel {
+  display: inline-block;
+  padding: 0.5em 0.66em;
+  text-transform: uppercase;
+  border-radius: 4px;
+}
+
+.normal {
+  font-size: 12px;
+}
+
+.medium {
+  font-size: 16px;
+}
+
+.large {
+  font-size: 24px;
+}
+
+.greyBlue {
+  color: var(--color-grey-blue--dark);
+  background-color: var(--color-grey-blue--lightest);
+}
+
+.red {
+  color: var(--color-red--dark);
+  background-color: var(--color-red--lightest);
+}
+
+.orange {
+  /* color: shade(var(--color-orange--dark), 5%); */
+  color: rgb(150, 93, 22);
+  background-color: var(--color-orange--lightest);
+}
+
+.green {
+  color: var(--color-green--dark);
+  background-color: var(--color-green--lightest);
+}
+
+.blue {
+  color: var(--color-blue);
+  background-color: var(--color-blue--lightest);
+}
+
+.navy {
+  color: var(--color-navy);
+  background-color: var(--color-navy--lightest);
+}
+
+.yellow {
+  /* color: shade(var(--color-yellow--dark), 15%); */
+  color: rgb(122, 108, 9);
+  background-color: var(--color-yellow--lightest);
+}
+
+.lime {
+  /* color: shade(var(--color-lime--Dark), 5%); */
+  color: rgb(94, 119, 44);
+  background-color: var(--color-lime--lightest);
+}
+
+.purple {
+  color: var(--color-purple--dark);
+  background-color: var(--color-purple--lightest);
+}
+
+.pink {
+  color: var(--color-pink--dark);
+  background-color: var(--color-pink--lightest);
+}
+
+.teal {
+  color: var(--color-teal--dark);
+  background-color: var(--color-teal--lightest);
+}
+
+.yellowGreen {
+  /* color: shade(var(--color-yellow-green--dark), 10%); */
+  color: rgb(110, 115, 19);
+  background-color: var(--color-yellow-green--lightest);
+}
+
+.blueDark {
+  color: var(--color-white);
+  background-color: var(--color-blue--light);
+}
+
+.lightBlue {
+  color: var(--color-light-blue--dark);
+  background-color: var(--color-light-blue--lightest);
+}
+
+.indigo {
+  color: var(--color-indigo--dark);
+  background-color: var(--color-indigo--lightest);
+}
