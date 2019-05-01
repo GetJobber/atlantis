@@ -1,4 +1,7 @@
 export const icon: string;
+export const longArrowDown: string;
+export const longArrowUp: string;
+export const remove: string;
 export const address: string;
 export const cross: string;
 export const list: string;

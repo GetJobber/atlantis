@@ -1,4 +1,10 @@
 export enum IconName {
+  // Customized Icons
+  longArrowDown = "longArrowDown",
+  longArrowUp = "longArrowUp",
+  remove = "remove",
+
+  // Generated Icons
   address = "address",
   cross = "cross",
   list = "list",

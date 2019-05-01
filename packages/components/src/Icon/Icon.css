@@ -25,6 +25,24 @@
   font-variant: normal;
 }
 
+/* Customized Icons */
+.longArrowDown:before {
+  display: inline-block;
+  content: "\e617";
+  transform: rotate(-90deg);
+}
+.longArrowUp:before {
+  display: inline-block;
+  content: "\e617";
+  transform: rotate(90deg);
+}
+.remove:before {
+  display: inline-block;
+  content: "\e911";
+  transform: rotate(45deg);
+}
+
+/* Generated Icons */
 .address:before {
   content: "\e600";
 }
