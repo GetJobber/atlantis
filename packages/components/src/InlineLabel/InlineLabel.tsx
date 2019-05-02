@@ -3,7 +3,15 @@ import classnames from "classnames";
 import styles from "./InlineLabel.css";
 
 interface InlineLabelProps {
+  /**
+   * The size of the label
+   * @default normal
+   */
   size?: "normal" | "medium" | "large";
+  /**
+   * The color of the label
+   * @default "greyBlue"
+   */
   color?:
     | "greyBlue"
     | "red"
