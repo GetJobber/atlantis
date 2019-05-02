@@ -1,35 +1,4 @@
-:root {
-  --color-white: rgb(255, 255, 255);
-  --color-blue: rgb(1, 41, 57);
-  --color-blue--light: rgb(77, 105, 116);
-  --color-blue--lightest: rgb(217, 223, 225);
-  --color-grey-blue--lightest: rgb(232, 235, 237);
-  --color-grey-blue--dark: rgb(66, 78, 86);
-  --color-green--dark: rgb(81, 114, 9);
-  --color-green--lightest: rgb(236, 243, 219);
-  --color-lime--dark: rgb(99, 125, 46);
-  --color-lime--lightest: rgb(240, 246, 227);
-  --color-yellow-green--dark: rgb(144, 127, 10);
-  --color-yellow-green--lightest: rgb(241, 231, 159);
-  --color-yellow--dark: rgb(144, 127, 10);
-  --color-yellow--lightest: rgb(250, 246, 219);
-  --color-red--dark: rgb(155, 57, 33);
-  --color-red--lightest: rgb(253, 230, 224);
-  --color-orange-dark: rgb(158, 98, 23);
-  --color-orange--lightest: rgb(253, 239, 222);
-  --color-pink--dark: rgb(116, 62, 98);
-  --color-pink--lightest: rgb(244, 231, 239);
-  --color-purple--dark: rgb(88, 73, 127);
-  --color-purple--lightest: rgb(237, 234, 246);
-  --color-navy: rgb(75, 106, 150);
-  --color-navy--lightest: rgb(228, 233, 239);
-  --color-indigo--dark: rgb(55, 69, 132);
-  --color-indigo--lightest: rgb(230, 233, 247);
-  --color-light-blue--dark: rgb(39, 105, 146);
-  --color-light-blue--lightest: rgb(226, 241, 250);
-  --color-teal--dark: rgb(40, 112, 95);
-  --color-teal--lightest: rgb(226, 243, 239);
-}
+@import "../global.css";
 
 .inlineLabel {
   display: inline-block;
