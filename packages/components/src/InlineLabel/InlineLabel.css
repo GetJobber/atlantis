@@ -34,6 +34,13 @@
 .inlineLabel {
   display: inline-block;
   padding: 0.5em 0.66em;
+  font-family: var(
+    --label-font-family,
+    "Noto Sans",
+    Helvetica,
+    Arial,
+    sans-serif
+  );
   text-align: center;
   text-transform: uppercase;
   border-radius: 4px;
