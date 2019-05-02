@@ -7,6 +7,7 @@
     "start": "docz dev",
     "test": "jest",
     "build": "docz build",
+    "clean": "rm -rf .docz",
     "lint:js": "eslint --ext .js,.jsx,.ts,.tsx .",
     "lint:css": "stylelint 'packages/**/*.css' --allow-empty-input",
     "lint": "yarn lint:js && yarn lint:css",

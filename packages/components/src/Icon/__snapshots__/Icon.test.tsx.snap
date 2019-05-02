@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders apple icon 1`] = `
+<div
+  className="apple icon"
+/>
+`;
+
+exports[`renders dashboard icon 1`] = `
+<div
+  className="dashboard icon"
+/>
+`;
