@@ -2,7 +2,7 @@
 
 .inlineLabel {
   display: inline-block;
-  padding: 0.5em 0.66em;
+  padding: 0 0.66em;
   font-family: var(
     --label-font-family,
     "Noto Sans",
@@ -16,15 +16,15 @@
 }
 
 .normal {
-  font-size: 12px;
+  font-size: 0.75em;
 }
 
 .medium {
-  font-size: 16px;
+  font-size: 1em;
 }
 
 .large {
-  font-size: 24px;
+  font-size: 1.5em;
 }
 
 .greyBlue {
