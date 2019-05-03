@@ -126,6 +126,7 @@ jobs:
           aws-access-key-id: ATLANTIS_AWS_ACCESS_KEY_ID
           aws-secret-access-key: ATLANTIS_AWS_SECRET_ACCESS_KEY
           arguments: |
+            --acl public-read \
             --cache-control "max-age=86400" \
             --delete
 workflows:
