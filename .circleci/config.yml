@@ -107,7 +107,7 @@ jobs:
       - *restore_repo
       - *restore_yarn_cache
       - *yarn_install
-      - run: yarn build --base '${CIRCLE_SHA1}'
+      - run: yarn build --base ${CIRCLE_SHA1}
       - persist_to_workspace:
           root: .docz
           paths:
@@ -121,7 +121,7 @@ jobs:
       - attach_workspace:
           at: /tmp/workspace
       - aws-s3/sync:
-          from: dist
+          from: /tmp/workspace/dist
           to: 's3://${ATLANTIS_S3_BUCKET}/${CIRCLE_SHA1}'
           aws-access-key-id: ATLANTIS_AWS_ACCESS_KEY_ID
           aws-secret-access-key: ATLANTIS_AWS_SECRET_ACCESS_KEY
