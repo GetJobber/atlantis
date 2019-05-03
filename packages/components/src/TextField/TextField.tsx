@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEventHandler } from "react";
 import classnames from "classnames";
 import styles from "./TextField.css";
 
@@ -7,9 +7,10 @@ interface TextFieldProps {
   readonly name?: string;
   /** The text that appears when no value is set and displayed as a hover label when a value is present. */
   readonly placeholder?: string;
-  /** The initial input value */
+  /** The initial input value. */
   readonly defaultValue?: string;
-
+  /** Callback fired when the value is changed. */
+  readonly onChange?: ChangeEventHandler<HTMLInputElement>;
   /**
    * The size of the input
    * @default normal
@@ -31,6 +32,7 @@ export function TextField({
   name,
   placeholder,
   defaultValue,
+  onChange,
   size = "normal",
   disabled = false,
   error = false,
@@ -50,6 +52,7 @@ export function TextField({
           name={name}
           placeholder={placeholder}
           disabled={disabled}
+          onChange={onChange}
           defaultValue={defaultValue}
         />
         {size !== "small" && placeholder && (
