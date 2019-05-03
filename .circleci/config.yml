@@ -1,4 +1,7 @@
-version: 2
+version: 2.1
+
+orbs:
+  aws-s3: circleci/aws-s3@1.0.8
 
 references:
   container_config: &container_config
@@ -105,10 +108,26 @@ jobs:
       - *restore_yarn_cache
       - *yarn_install
       - run: yarn build
-      - store_artifacts:
-          path: ~/atlantis/.docz/dist
-          destination: docs
+      - persist_to_workspace:
+          root: .docz
+          paths:
+            - dist/*
 
+  deploy_docs:
+    <<: *container_config
+    docker:
+      - image: 'circleci/python:2.7'
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - aws-s3/sync:
+          from: dist
+          to: 's3://${ATLANTIS_S3_BUCKET}/${CIRCLE_SHA1}'
+          aws-access-key-id: ATLANTIS_AWS_ACCESS_KEY_ID
+          aws-secret-access-key: ATLANTIS_AWS_SECRET_ACCESS_KEY
+          arguments: |
+            --cache-control "max-age=86400" \
+            --delete
 workflows:
   version: 2
 
@@ -137,6 +156,11 @@ workflows:
             - lint_javascript
             - lint_css
             - test
-          filters:
-            branches:
-              only: master
+      - deploy_docs:
+          requires:
+            - checkout_code
+            - install_dependencies
+            - lint_javascript
+            - lint_css
+            - test
+            - build_docs
