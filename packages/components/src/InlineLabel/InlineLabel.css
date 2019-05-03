@@ -1,0 +1,107 @@
+@import "../global.css";
+
+.inlineLabel {
+  display: inline-block;
+  padding: 0 0.66em;
+  font-family: var(
+    --label-font-family,
+    "Noto Sans",
+    Helvetica,
+    Arial,
+    sans-serif
+  );
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 4px;
+}
+
+.normal {
+  font-size: 0.75em;
+}
+
+.medium {
+  font-size: 1em;
+}
+
+.large {
+  font-size: 1.5em;
+}
+
+.greyBlue {
+  color: var(--color-grey-blue--dark);
+  background-color: var(--color-grey-blue--lightest);
+}
+
+.red {
+  color: var(--color-red--dark);
+  background-color: var(--color-red--lightest);
+}
+
+.orange {
+  /* color: shade(var(--color-orange--dark), 5%); */
+  color: rgb(150, 93, 22);
+  background-color: var(--color-orange--lightest);
+}
+
+.green {
+  color: var(--color-green--dark);
+  background-color: var(--color-green--lightest);
+}
+
+.blue {
+  color: var(--color-blue);
+  background-color: var(--color-blue--lightest);
+}
+
+.navy {
+  color: var(--color-navy);
+  background-color: var(--color-navy--lightest);
+}
+
+.yellow {
+  /* color: shade(var(--color-yellow--dark), 15%); */
+  color: rgb(122, 108, 9);
+  background-color: var(--color-yellow--lightest);
+}
+
+.lime {
+  /* color: shade(var(--color-lime--Dark), 5%); */
+  color: rgb(94, 119, 44);
+  background-color: var(--color-lime--lightest);
+}
+
+.purple {
+  color: var(--color-purple--dark);
+  background-color: var(--color-purple--lightest);
+}
+
+.pink {
+  color: var(--color-pink--dark);
+  background-color: var(--color-pink--lightest);
+}
+
+.teal {
+  color: var(--color-teal--dark);
+  background-color: var(--color-teal--lightest);
+}
+
+.yellowGreen {
+  /* color: shade(var(--color-yellow-green--dark), 10%); */
+  color: rgb(110, 115, 19);
+  background-color: var(--color-yellow-green--lightest);
+}
+
+.blueDark {
+  color: var(--color-white);
+  background-color: var(--color-blue--light);
+}
+
+.lightBlue {
+  color: var(--color-light-blue--dark);
+  background-color: var(--color-light-blue--lightest);
+}
+
+.indigo {
+  color: var(--color-indigo--dark);
+  background-color: var(--color-indigo--lightest);
+}

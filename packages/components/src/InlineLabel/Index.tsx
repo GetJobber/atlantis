@@ -1,0 +1,1 @@
+export { InlineLabel } from "./InlineLabel";
