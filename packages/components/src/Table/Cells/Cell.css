@@ -1,0 +1,26 @@
+.cell {
+  text-align: left;
+}
+
+.cell.left {
+  text-align: left;
+}
+
+.cell.center {
+  text-align: center;
+}
+
+.cell.right {
+  text-align: right;
+}
+
+.cell.numeric {
+  font-feature-settings: "tnum";
+}
+
+.cell:first-child {
+  padding-left: var(--horizontal-inset);
+}
+.cell:last-child {
+  padding-right: var(--horizontal-inset);
+}

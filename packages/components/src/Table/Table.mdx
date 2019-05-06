@@ -3,7 +3,15 @@ menu: Components
 ---
 
 import { Playground, Props } from "docz";
-import { Table, Header, Footer, Row, Cell } from "./";
+import {
+  Table,
+  Header,
+  Footer,
+  Row,
+  Cell,
+  CellCurrency,
+  CellNumeric
+} from "./";
 
 # Table
 
@@ -17,6 +25,8 @@ In addition to the base `Table` component there are additionally `Header`,
 `Footer`, `Row` and `Cell` each of which are used to construct a compliant
 table.
 
+Multiple [Cell types](#cell-types) are provided for common formats.
+
 ## Simple Example
 
 <Playground>
@@ -24,31 +34,50 @@ table.
     <Header>
       <Cell>Ship</Cell>
       <Cell>Class</Cell>
+      <Cell>Cost</Cell>
       <Cell>Crew</Cell>
     </Header>
     <Row>
       <Cell>Nostromo</Cell>
       <Cell>Towing Vehicle</Cell>
-      <Cell>7</Cell>
+      <CellCurrency value={42000000} />
+      <CellNumeric value={7} />
     </Row>
     <Row>
       <Cell>Rodger Young</Cell>
       <Cell>Corvette Transport</Cell>
-      <Cell>200</Cell>
+      <Cell />
+      <CellNumeric value={200} />
     </Row>
     <Row>
       <Cell>USS Enterprise</Cell>
       <Cell>Constitution</Cell>
-      <Cell>205</Cell>
+      <Cell />
+      <CellNumeric value={205} />
     </Row>
     <Footer>
       <Cell />
       <Cell />
-      <Cell>412</Cell>
+      <Cell />
+      <CellNumeric value={412} />
     </Footer>
   </Table>
 </Playground>
 
 ## Properties
 
-Table does not currently accept any options.
+Most table components do not currently accept options.
+
+## Cell Types
+
+### Cell
+
+<Props of={Cell} />
+
+### CellNumeric
+
+<Props of={CellNumeric} />
+
+### CellCurrency
+
+<Props of={CellCurrency} />
