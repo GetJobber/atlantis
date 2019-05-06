@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a table 1`] = `
+<table
+  className="table"
+>
+  <thead
+    className="header"
+  >
+    <tr
+      className="row"
+    >
+      <td
+        className="cell"
+      >
+        Ship
+      </td>
+      <td
+        className="cell"
+      >
+        Class
+      </td>
+      <td
+        className="cell"
+      >
+        Crew
+      </td>
+    </tr>
+  </thead>
+  <tr
+    className="row"
+  >
+    <td
+      className="cell"
+    >
+      Nostromo
+    </td>
+    <td
+      className="cell"
+    >
+      Towing Vehicle
+    </td>
+    <td
+      className="cell"
+    >
+      7
+    </td>
+  </tr>
+  <tr
+    className="row"
+  >
+    <td
+      className="cell"
+    >
+      Rodger Young
+    </td>
+    <td
+      className="cell"
+    >
+      Corvette Transport
+    </td>
+    <td
+      className="cell"
+    >
+      200
+    </td>
+  </tr>
+  <tr
+    className="row"
+  >
+    <td
+      className="cell"
+    >
+      USS Enterprise
+    </td>
+    <td
+      className="cell"
+    >
+      Constitution
+    </td>
+    <td
+      className="cell"
+    >
+      205
+    </td>
+  </tr>
+  <tfoot
+    className="footer"
+  >
+    <tr
+      className="row"
+    >
+      <td
+        className="cell"
+      />
+      <td
+        className="cell"
+      />
+      <td
+        className="cell"
+      >
+        412
+      </td>
+    </tr>
+  </tfoot>
+</table>
+`;

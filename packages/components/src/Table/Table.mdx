@@ -1,0 +1,53 @@
+---
+menu: Components
+---
+
+import { Playground, Props } from "docz";
+import { Table, Header, Footer, Row, Cell } from "./";
+
+# Table
+
+![](https://img.shields.io/badge/Stage-Pre--Release-EF5733.svg)
+![](https://img.shields.io/badge/Accessibility-—-EF5733.svg)
+
+Tables are used to organize and display tabular data to users.
+
+In addition to the base `Table` component there are additionally `Header`,
+`Footer`, `Row` and `Cell` each of which are used to construct a compliant
+table.
+
+## Simple Example
+
+<Playground>
+  <Table>
+    <Header>
+      <Cell>Ship</Cell>
+      <Cell>Class</Cell>
+      <Cell>Crew</Cell>
+    </Header>
+    <Row>
+      <Cell>Nostromo</Cell>
+      <Cell>Towing Vehicle</Cell>
+      <Cell>7</Cell>
+    </Row>
+    <Row>
+      <Cell>Rodger Young</Cell>
+      <Cell>Corvette Transport</Cell>
+      <Cell>200</Cell>
+    </Row>
+    <Row>
+      <Cell>USS Enterprise</Cell>
+      <Cell>Constitution</Cell>
+      <Cell>205</Cell>
+    </Row>
+    <Footer>
+      <Cell />
+      <Cell />
+      <Cell>412</Cell>
+    </Footer>
+  </Table>
+</Playground>
+
+## Properties
+
+Table does not currently accept any options.
