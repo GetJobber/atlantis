@@ -1,9 +1,9 @@
-import React, { ReactElement } from "react";
+import React, { ReactNode } from "react";
 import styles from "./Cell.css";
 import classnames from "classnames";
 
 interface CellProps {
-  children?: ReactElement | ReactElement[] | string;
+  children?: ReactNode | ReactNode[];
   align?: "left" | "center" | "right";
 }
 
