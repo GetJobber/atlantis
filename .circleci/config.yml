@@ -107,7 +107,7 @@ jobs:
       - *restore_repo
       - *restore_yarn_cache
       - *yarn_install
-      - run: yarn build --base "/${CIRCLE_SHA1}"
+      - run: yarn build --base "/${CIRCLE_PULL_REQUEST##*/}"
       - persist_to_workspace:
           root: .docz
           paths:
