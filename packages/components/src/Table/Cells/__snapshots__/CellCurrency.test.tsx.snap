@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a currency cell 1`] = `
+<td
+  className="cell right"
+>
+  <span
+    className="numeric"
+  >
+    $42,000,000.00
+  </span>
+</td>
+`;
+
+exports[`renders a currency cell in Pound Sterling 1`] = `
+<td
+  className="cell right"
+>
+  <span
+    className="numeric"
+  >
+    £32,074,770.00
+  </span>
+</td>
+`;

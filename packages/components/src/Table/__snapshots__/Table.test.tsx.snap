@@ -11,17 +11,22 @@ exports[`renders a table 1`] = `
       className="row"
     >
       <td
-        className="cell"
+        className="cell left"
       >
         Ship
       </td>
       <td
-        className="cell"
+        className="cell left"
       >
         Class
       </td>
       <td
-        className="cell"
+        className="cell left"
+      >
+        Cost
+      </td>
+      <td
+        className="cell left"
       >
         Crew
       </td>
@@ -31,57 +36,84 @@ exports[`renders a table 1`] = `
     className="row"
   >
     <td
-      className="cell"
+      className="cell left"
     >
       Nostromo
     </td>
     <td
-      className="cell"
+      className="cell left"
     >
       Towing Vehicle
     </td>
     <td
-      className="cell"
+      className="cell right"
     >
-      7
+      <span
+        className="numeric"
+      >
+        $42,000,000.00
+      </span>
+    </td>
+    <td
+      className="cell right"
+    >
+      <span
+        className="numeric"
+      >
+        7
+      </span>
     </td>
   </tr>
   <tr
     className="row"
   >
     <td
-      className="cell"
+      className="cell left"
     >
       Rodger Young
     </td>
     <td
-      className="cell"
+      className="cell left"
     >
       Corvette Transport
     </td>
     <td
-      className="cell"
+      className="cell left"
+    />
+    <td
+      className="cell right"
     >
-      200
+      <span
+        className="numeric"
+      >
+        200
+      </span>
     </td>
   </tr>
   <tr
     className="row"
   >
     <td
-      className="cell"
+      className="cell left"
     >
       USS Enterprise
     </td>
     <td
-      className="cell"
+      className="cell left"
     >
       Constitution
     </td>
     <td
-      className="cell"
+      className="cell left"
+    />
+    <td
+      className="cell right"
     >
-      205
+      <span
+        className="numeric"
+      >
+        205
+      </span>
     </td>
   </tr>
   <tfoot
@@ -91,15 +123,22 @@ exports[`renders a table 1`] = `
       className="row"
     >
       <td
-        className="cell"
+        className="cell left"
       />
       <td
-        className="cell"
+        className="cell left"
       />
       <td
-        className="cell"
+        className="cell left"
+      />
+      <td
+        className="cell right"
       >
-        412
+        <span
+          className="numeric"
+        >
+          412
+        </span>
       </td>
     </tr>
   </tfoot>

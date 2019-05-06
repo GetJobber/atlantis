@@ -1,6 +1,14 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { Table, Header, Footer, Row, Cell } from "./";
+import {
+  Table,
+  Header,
+  Footer,
+  Row,
+  Cell,
+  CellCurrency,
+  CellNumeric,
+} from "./";
 
 it("renders a table", () => {
   const tree = renderer
@@ -9,27 +17,32 @@ it("renders a table", () => {
         <Header>
           <Cell>Ship</Cell>
           <Cell>Class</Cell>
+          <Cell>Cost</Cell>
           <Cell>Crew</Cell>
         </Header>
         <Row>
           <Cell>Nostromo</Cell>
           <Cell>Towing Vehicle</Cell>
-          <Cell>7</Cell>
+          <CellCurrency value={42000000} />
+          <CellNumeric value={7} />
         </Row>
         <Row>
           <Cell>Rodger Young</Cell>
           <Cell>Corvette Transport</Cell>
-          <Cell>200</Cell>
+          <Cell />
+          <CellNumeric value={200} />
         </Row>
         <Row>
           <Cell>USS Enterprise</Cell>
           <Cell>Constitution</Cell>
-          <Cell>205</Cell>
+          <Cell />
+          <CellNumeric value={205} />
         </Row>
         <Footer>
           <Cell />
           <Cell />
-          <Cell>412</Cell>
+          <Cell />
+          <CellNumeric value={412} />
         </Footer>
       </Table>,
     )
