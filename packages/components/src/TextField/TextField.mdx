@@ -1,0 +1,30 @@
+---
+menu: Components
+---
+
+import { Playground, Props } from "docz";
+import { TextField } from ".";
+
+# Text Field
+
+Text fields are used in forms to accept input from users.
+
+## Basic Text Field
+
+<Playground>
+  <TextField size="small" placeholder="Small input" />
+  <TextField placeholder="Normal input" />
+  <TextField size="large" placeholder="Large input" />
+</Playground>
+
+
+## Text Field States
+
+<Playground>
+  <TextField disabled placeholder="Disabled input" />
+  <TextField error placeholder="Invalid input" />
+</Playground>
+
+## Properties
+
+<Props of={TextField} />

@@ -1114,18 +1114,18 @@
     hoist-non-react-statics "^3.3.0"
 
 "@mdx-js/loader@^1.0.10":
-  version "1.0.15"
-  resolved "https://registry.yarnpkg.com/@mdx-js/loader/-/loader-1.0.15.tgz#6f8cce7f9be1ad7d4cb8b7b116c68d9cbdb1ad1e"
-  integrity sha512-fCNZ6WkD0bMV3WK0tPOCza6d0rGOzJ/NokcxgaH9u0YeWGO65jh321t0HELItMc7MQ8y5RvASF0hWHiU0jletg==
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/@mdx-js/loader/-/loader-1.0.14.tgz#b81e1145ff09585f7f74ccfb2b92ef05b1bc7248"
+  integrity sha512-p8/AdvoQCHcp/Lp1wTEUrDy3X1fFAGTTQ4Zj6NfcILlA4EmzzRTdt1dFPq1ekhll+n0K7TtpNOb5a9lpYkKXhw==
   dependencies:
-    "@mdx-js/mdx" "^1.0.15"
-    "@mdx-js/react" "^1.0.15"
+    "@mdx-js/mdx" "^1.0.14"
+    "@mdx-js/react" "^1.0.6"
     loader-utils "^1.1.0"
 
-"@mdx-js/mdx@^1.0.15":
-  version "1.0.15"
-  resolved "https://registry.yarnpkg.com/@mdx-js/mdx/-/mdx-1.0.15.tgz#a78c084f73203e6062797ca2337de133f2f3ec29"
-  integrity sha512-7lbd2RS0s5TJvytPTbJ0YQqIkJokmggcla3hdOYUHJq2O6eG/IW6qNwf21IWEwNzRbI8IbWM6FflKEopYAPL+w==
+"@mdx-js/mdx@^1.0.14":
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/@mdx-js/mdx/-/mdx-1.0.14.tgz#f27d51cc0919c2d2be9681fb7689eb8a5a3ea1cd"
+  integrity sha512-x0V06637Ei3i/ZsagaulupSXPcwmMQC11JzKTTlITszOsLKciDleySbB51Y8WGqEYx1km7WSFacVQcQkj6ONSw==
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-syntax-jsx" "^7.2.0"
@@ -1135,7 +1135,7 @@
     hast-util-raw "^5.0.0"
     lodash.uniq "^4.5.0"
     mdast-util-to-hast "^4.0.0"
-    remark-mdx "^1.0.15"
+    remark-mdx "^1.0.14"
     remark-parse "^6.0.0"
     remark-squeeze-paragraphs "^3.0.1"
     to-style "^1.3.3"
@@ -1143,10 +1143,10 @@
     unist-builder "^1.0.1"
     unist-util-visit "^1.3.0"
 
-"@mdx-js/react@^1.0.15", "@mdx-js/react@^1.0.2":
-  version "1.0.15"
-  resolved "https://registry.yarnpkg.com/@mdx-js/react/-/react-1.0.15.tgz#1b93bb233ed56e85b8dd1c537d09ca9ae3d7ffbc"
-  integrity sha512-JMiy65fmgQxju7DFwUoysZktFnLcN3jUk5Vfis/b/jxfvZJqMRz1VpUGw5bFBrOZeefoOJ+uZQV5h+Zu4K8EOQ==
+"@mdx-js/react@^1.0.2", "@mdx-js/react@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@mdx-js/react/-/react-1.0.6.tgz#59bc131b68cc4f1a246d1e2b79f1223a897e6b65"
+  integrity sha512-y7Oua/TqZ+2JxRP7Skdno6SPuRnStAgk5LVFLcsowlhu2h6WuUfVI0HvL0KVouCW030v95qDAiLZDVhBiuDSNQ==
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -3849,9 +3849,9 @@ ejs@^2.6.1:
   integrity sha512-0xy4A/twfrRCnkhfk8ErDi5DqdAsAqeGxht4xkCUrsvhhbQNs7E+4jV0CN7+NKIY0aHE72+XvqtBIXzD31ZbXQ==
 
 electron-to-chromium@^1.3.103, electron-to-chromium@^1.3.124:
-  version "1.3.127"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.127.tgz#9b34d3d63ee0f3747967205b953b25fe7feb0e10"
-  integrity sha512-1o25iFRf/dbgauTWalEzmD1EmRN3a2CzP/K7UVpYLEBduk96LF0FyUdCcf4Ry2mAWJ1VxyblFjC93q6qlLwA2A==
+  version "1.3.125"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.125.tgz#dbde0e95e64ebe322db0eca764d951f885a5aff2"
+  integrity sha512-XxowpqQxJ4nDwUXHtVtmEhRqBpm2OnjBomZmZtHD0d2Eo0244+Ojezhk3sD/MBSSe2nxCdGQFRXHIsf/LUTL9A==
 
 elliptic@^6.0.0:
   version "6.4.1"
@@ -8837,10 +8837,10 @@ remark-frontmatter@^1.3.1:
     fault "^1.0.1"
     xtend "^4.0.1"
 
-remark-mdx@^1.0.15:
-  version "1.0.15"
-  resolved "https://registry.yarnpkg.com/remark-mdx/-/remark-mdx-1.0.15.tgz#6f2de2dcf3b94d5ed027d4140e1bd9c748c26a73"
-  integrity sha512-X9nQjfHLettXJ+DqIzHwLU6sIVFCjseJlCyaNsLVrIIRqxRcwm4MKifw1jcHa1Rb+uBf1CxJX2B/+qI9X2QAmA==
+remark-mdx@^1.0.14:
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/remark-mdx/-/remark-mdx-1.0.14.tgz#6c32995d4b8ad0623bd6099a7e02a50fbe79c252"
+  integrity sha512-JMTp43LnFAPAEHBye+89pZQTYNuFX8YjOl19LUCtMaP6PcnK51aRLxbX0OikA/dvuI7KFQbIQMs2WscB4L57Gw==
   dependencies:
     "@babel/core" "^7.2.2"
     "@babel/helper-plugin-utils" "^7.0.0"
@@ -10389,18 +10389,10 @@ uglify-js@3.4.x:
     commander "~2.19.0"
     source-map "~0.6.1"
 
-uglify-js@^3.1.4:
+uglify-js@^3.1.4, uglify-js@^3.5.1:
   version "3.5.7"
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.5.7.tgz#1442fda9991a01aa0eb2853876640477109113ff"
   integrity sha512-GCgJx3BBuaf/QMvBBkhoHDh4SVsHCC3ILEzriPw4FgJJKCuxVBSYLRkDlmT3uhXyGWKs3VN5r0mCkBIZaHWu3w==
-  dependencies:
-    commander "~2.20.0"
-    source-map "~0.6.1"
-
-uglify-js@^3.5.1:
-  version "3.5.8"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.5.8.tgz#496f62a8c23c3e6791563acbc04908edaca4025f"
-  integrity sha512-GFSjB1nZIzoIq70qvDRtWRORHX3vFkAnyK/rDExc0BN7r9+/S+Voz3t/fwJuVfjppAMz+ceR2poE7tkhvnVwQQ==
   dependencies:
     commander "~2.20.0"
     source-map "~0.6.1"
