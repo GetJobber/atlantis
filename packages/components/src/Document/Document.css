@@ -12,11 +12,15 @@
 }
 
 .documentHeader {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   padding: 2rem;
 }
 
 .topHeader {
   display: flex;
+  flex: 1 0 100%;
   justify-content: space-between;
   align-items: center;
   padding-bottom: 1rem;
@@ -39,6 +43,14 @@
 .statusWrapper {
   flex: 1 0 auto;
   margin-left: 1rem;
+}
+
+.documentMetadata {
+  flex: 1 0 12rem;
+  padding: 1rem;
+  margin-bottom: -2rem;
+  background-color: var(--color-white);
+  border-radius: 4px 0;
 }
 
 .documentContent {

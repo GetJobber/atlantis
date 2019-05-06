@@ -1,0 +1,13 @@
+.metadataGroup {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+}
+
+.metadataGroup:not(:last-of-type) {
+  border-bottom: 1px solid var(--color-grey--lighter);
+}
+
+.metadataGroup dd {
+  margin-inline-start: 0;
+}

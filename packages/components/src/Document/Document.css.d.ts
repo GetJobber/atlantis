@@ -4,4 +4,5 @@ export const documentHeader: string;
 export const topHeader: string;
 export const iconDecorator: string;
 export const statusWrapper: string;
+export const documentMetadata: string;
 export const documentContent: string;
