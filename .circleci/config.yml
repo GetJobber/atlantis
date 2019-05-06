@@ -132,9 +132,9 @@ jobs:
       - run:
           name: Notify github
           command: |
-            DOCS_S3_PREFIX="http://${ATLANTIS_S3_BUCKET}.s3-website-us-east-1.amazonaws.com"
-            DOCS_S3_URL="${DOCS_S3_PREFIX}/${CIRCLE_SHA1}"
             PULL_REQUEST_NUMBER=${CIRCLE_PULL_REQUEST##*/}
+            DOCS_S3_PREFIX="http://${ATLANTIS_S3_BUCKET}.s3-website-us-east-1.amazonaws.com"
+            DOCS_S3_URL="${DOCS_S3_PREFIX}/${PULL_REQUEST_NUMBER}"
             COMMENTS_URL="https://api.github.com/repos/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/issues/${PULL_REQUEST_NUMBER}/comments"
             curl -s -H "Authorization: token ${ATLANTIS_GITHUB_DOCS_DEPLOY_TOKEN}" \
               -X POST -d "{\"body\": \"Hi frend. Here's a preview of the docs ${DOCS_S3_URL}\"}" \
