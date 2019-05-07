@@ -1,8 +1,9 @@
 /* eslint-env node */
 import path from "path";
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { WatchIgnorePlugin } = require("webpack");
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { css } from "styled-components";
+// eslint-disable-next-line @typescript-eslint/no-var-requires, import/no-extraneous-dependencies
+const { WatchIgnorePlugin } = require("webpack");
 
 const modifyBundlerConfig = config => {
   config.resolve.alias = Object.assign({}, config.resolve.alias, {
@@ -97,6 +98,7 @@ const htmlContext = {
   },
 };
 
+// eslint-disable-next-line import/no-default-export
 export default {
   title: "🔱 Atlantis",
   typescript: true,

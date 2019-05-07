@@ -1,6 +1,6 @@
 import React from "react";
-import { TextField } from "./TextField";
 import renderer from "react-test-renderer";
+import { TextField } from "./TextField";
 
 it("renders correctly with no props", () => {
   const tree = renderer.create(<TextField />).toJSON();
