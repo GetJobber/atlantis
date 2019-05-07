@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
-import styles from "./Cell.css";
 import classnames from "classnames";
+import styles from "./Cell.css";
 
 interface CellProps {
   children?: ReactNode | ReactNode[];

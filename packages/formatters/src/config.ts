@@ -1,4 +1,4 @@
-import { CurrencyType } from "./currency";
+import { CurrencyType } from "./CurrencyType";
 
 interface AtlantisConfig {
   readonly defaultCurrency?: CurrencyType;
