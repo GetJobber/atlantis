@@ -81,7 +81,7 @@ jobs:
     steps:
       - *restore_repo
       - *restore_node_modules
-      - run: yarn test
+      - run: yarn test --runInBand --no-cache --coverage
 
   build_docs:
     <<: *container_config
