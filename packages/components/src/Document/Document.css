@@ -1,9 +1,18 @@
 @import "../global.css";
 
 .document {
-  background-color: var(--color-grey--lightest);
-  border: 1px solid var(--color-grey--lighter);
-  border-top: 0.5rem solid var(--accent-color, var(--color-grey));
+  --background-color: var(--color-grey--lightest);
+  --border-color: var(--color-grey--lighter);
+  --accent-color: var(--color-grey);
+  --content-background-color: var(--color-white);
+
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2rem;
+  overflow: scroll;
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-top: 0.5rem solid var(--accent-color);
   border-radius: 4px;
 }
 
@@ -11,32 +20,25 @@
   --accent-color: var(--color-purple);
 }
 
-.documentHeader {
-  display: grid;
-  padding: 2rem;
-  grid-template-columns: repeat(4, auto);
-  grid-template-rows: repeat(2, auto);
-}
-
-.topHeader {
-  grid-column: 1 / span 4;
+.title {
+  order: 1;
   display: flex;
-  justify-content: space-between;
+  flex: 1 0 auto;
   align-items: center;
   padding-bottom: 1rem;
   margin-bottom: 1rem;
-  border-bottom: 1px solid var(--color-grey--lighter);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .iconDecorator {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 3.5rem;
-  height: 3.5rem;
-  font-size: 1.5rem;
+  width: 3.5em;
+  height: 3.5em;
+  font-size: 1.5em;
   color: white;
-  background-color: var(--accent-color, var(--color-grey));
+  background-color: var(--accent-color);
   border-radius: 50%;
 }
 
@@ -45,17 +47,28 @@
   margin-left: 1rem;
 }
 
-.documentMetadata {
-  grid-column: 3 / span 2;
-  grid-row: 2;
-  padding: 1rem;
-  margin-bottom: -2rem;
-  background-color: var(--color-white);
-  border-radius: 4px 0;
+.header {
+  order: 2;
+  flex: 1;
+  min-width: calc(100% / 12 * 7 - 1rem);
 }
 
-.documentContent {
+.detail {
+  order: 3;
+  flex: 1 0 calc(100% / 12 * 5 - 1rem);
+  padding: 1rem;
+  background-color: var(--content-background-color);
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+}
+
+.content {
+  order: 4;
+  flex: 1 0 auto;
   min-height: 1rem;
   padding: 2rem;
-  background-color: var(--color-white);
+  margin-right: -2rem;
+  margin-bottom: -2rem;
+  margin-left: -2rem;
+  background-color: var(--content-background-color);
 }

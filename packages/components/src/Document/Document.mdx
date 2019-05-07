@@ -3,10 +3,35 @@ menu: Components
 ---
 
 import { Playground, Props } from "docz";
-import { Document } from "./Document";
+import { Document, Title, Header, Detail, Content, DecoratedIcon, StatusLabel } from "./Document";
+import { DescriptionList } from "../DescriptionList";
+import { IconName } from "../Icon";
 
 # Document
 
 <Playground>
-  <Document name="Invoice #1" accentColor="purple" status="pending" />
+  <Document accentColor="purple">
+    <Title>
+      <DecoratedIcon iconName={IconName.invoice} />
+      <StatusLabel status="pending" />
+
+      <h3>Invoice #1</h3>
+    </Title>
+
+    <Header>
+      <h2>This is the exceptionally long document header.</h2>
+    </Header>
+
+    <Detail>
+      <h4>Invoice details</h4>
+      <DescriptionList data={{
+        Issued: "2018-12-08",
+        Due: "2019-01-06",
+      }} />
+    </Detail>
+
+    <Content>
+      <p>This is the document content.</p>
+    </Content>
+  </Document>
 </Playground>

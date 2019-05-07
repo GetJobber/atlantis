@@ -1,31 +1,31 @@
 import React, { ReactNode } from "react";
 import classnames from "classnames";
-import { DescriptionList } from "../DescriptionList";
 import { Icon, IconName } from "../Icon";
 import { InlineLabel } from "../InlineLabel";
 import styles from "./Document.css";
 
 interface DocumentProps {
   readonly accentColor?: "purple";
-  readonly status?: "draft" | "pending" | "paid";
-  readonly name?: string;
+  readonly children: ReactNode;
 }
 
 interface StatusLabelProps {
   readonly status: "draft" | "pending" | "paid";
 }
 
-interface DocumentHeaderProps {
-  readonly status?: "draft" | "pending" | "paid";
-  readonly name?: string;
+interface HeaderProps {
   readonly children: ReactNode;
 }
 
-interface DocumentMetadataProps {
-  readonly data: { [index: string]: string };
+interface TitleProps {
+  readonly children: ReactNode;
 }
 
-interface DocumentContentProps {
+interface DetailProps {
+  readonly children: ReactNode;
+}
+
+interface ContentProps {
   readonly children: ReactNode;
 }
 
@@ -40,7 +40,11 @@ function getStatusLabelColour(status: string) {
   }
 }
 
-function StatusLabel({ status }: StatusLabelProps) {
+export function Header({ children }: HeaderProps) {
+  return <div className={styles.header}>{children}</div>;
+}
+
+export function StatusLabel({ status }: StatusLabelProps) {
   const statusColour = getStatusLabelColour(status);
 
   return (
@@ -50,7 +54,7 @@ function StatusLabel({ status }: StatusLabelProps) {
   );
 }
 
-function DecoratedIcon({ iconName }: { iconName: IconName }) {
+export function DecoratedIcon({ iconName }: { iconName: IconName }) {
   return (
     <span className={styles.iconDecorator}>
       <Icon iconName={iconName} />
@@ -58,54 +62,23 @@ function DecoratedIcon({ iconName }: { iconName: IconName }) {
   );
 }
 
-function DocumentHeader({ status, name, children }: DocumentHeaderProps) {
-  return (
-    <div className={styles.documentHeader}>
-      <div className={styles.topHeader}>
-        <DecoratedIcon iconName={IconName.invoice} />
-        {status && <StatusLabel status={status} />}
-        <h3>{name}</h3>
-      </div>
-
-      {children}
-    </div>
-  );
+export function Title({ children }: TitleProps) {
+  return <div className={styles.title}>{children}</div>;
 }
 
-function DocumentMetadata({ data }: DocumentMetadataProps) {
-  return (
-    <div className={styles.documentMetadata}>
-      <h4>Invoice details</h4>
-
-      <DescriptionList data={data} />
-    </div>
-  );
+export function Detail({ children }: DetailProps) {
+  return <div className={styles.detail}>{children}</div>;
 }
 
-function DocumentContent({ children }: DocumentContentProps) {
-  return <div className={styles.documentContent}>{children}</div>;
+export function Content({ children }: ContentProps) {
+  return <div className={styles.content}>{children}</div>;
 }
 
-export function Document({ accentColor, status, name }: DocumentProps) {
-  const data = {
-    Issued: "2018-12-08",
-    Due: "2019-01-06",
-  };
-
-  const wrapperClassName = classnames(
+export function Document({ accentColor, children }: DocumentProps) {
+  const className = classnames(
     styles.document,
     accentColor && styles[accentColor],
   );
 
-  return (
-    <div className={wrapperClassName}>
-      <DocumentHeader status={status} name={name}>
-        <h2>This is the document header.</h2>
-        <DocumentMetadata data={data} />
-      </DocumentHeader>
-      <DocumentContent>
-        <p>This is the document content.</p>
-      </DocumentContent>
-    </div>
-  );
+  return <div className={className}>{children}</div>;
 }
