@@ -1,4 +1,14 @@
-import { formatConfig } from "./config";
+import { config } from "./config";
+
+export function formatCurrency(
+  amount: number,
+  currency: CurrencyType = config.defaultCurrency,
+) {
+  return amount.toLocaleString("en", {
+    style: "currency",
+    currency: currency,
+  });
+}
 
 export type CurrencyType =
   | "AFN"
@@ -277,13 +287,3 @@ export type CurrencyType =
   | "XPD"
   | "XPT"
   | "XAG";
-
-export function formatCurrency(
-  amount: number,
-  currency: CurrencyType = formatConfig.currency,
-) {
-  return amount.toLocaleString("en", {
-    style: "currency",
-    currency: currency,
-  });
-}
