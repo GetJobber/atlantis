@@ -66,6 +66,7 @@
 .content {
   order: 4;
   flex: 1 0 auto;
+  min-width: 100%;
   min-height: 1rem;
   padding: 2rem;
   margin-right: -2rem;
