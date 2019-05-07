@@ -2,19 +2,19 @@
   text-align: left;
 }
 
-.cell.left {
+.left {
   text-align: left;
 }
 
-.cell.center {
+.center {
   text-align: center;
 }
 
-.cell.right {
+.right {
   text-align: right;
 }
 
-.cell.numeric {
+.numeric {
   font-feature-settings: "tnum";
 }
 
