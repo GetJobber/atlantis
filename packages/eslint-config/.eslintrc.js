@@ -42,7 +42,7 @@ module.exports = {
     "import/no-named-default": "error",
     "import/no-cycle": ["error", { maxDepth: Infinity }],
     "import/no-useless-path-segments": "error",
-    "import/no-relative-parent-imports": "error",
+    "import/no-relative-parent-imports": "warn",
     "prettier/prettier": [
       "error",
       { trailingComma: "all" },
