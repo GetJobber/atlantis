@@ -12,15 +12,15 @@
 }
 
 .documentHeader {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
   padding: 2rem;
+  grid-template-columns: repeat(4, auto);
+  grid-template-rows: repeat(2, auto);
 }
 
 .topHeader {
+  grid-column: 1 / span 4;
   display: flex;
-  flex: 1 0 100%;
   justify-content: space-between;
   align-items: center;
   padding-bottom: 1rem;
@@ -46,7 +46,8 @@
 }
 
 .documentMetadata {
-  flex: 1 0 12rem;
+  grid-column: 3 / span 2;
+  grid-row: 2;
   padding: 1rem;
   margin-bottom: -2rem;
   background-color: var(--color-white);
