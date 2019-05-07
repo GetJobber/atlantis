@@ -1,5 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import { IconName } from "../Icon";
 import {
   Document,
   Title,
@@ -9,7 +10,6 @@ import {
   DecoratedIcon,
   StatusLabel,
 } from "./Document";
-import { IconName } from "../Icon/IconName";
 
 it("renders", () => {
   const tree = renderer

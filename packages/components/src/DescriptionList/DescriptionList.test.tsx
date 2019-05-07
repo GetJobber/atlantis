@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { DescriptionList } from "./";
+import { DescriptionList } from ".";
 
 it("renders an object as a list of key value pairs", () => {
   const tree = renderer
