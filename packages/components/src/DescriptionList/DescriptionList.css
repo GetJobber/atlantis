@@ -1,21 +1,21 @@
 @import "../global.css";
 
-.metadataGroup {
+.termGroup {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 0.5rem 0;
 }
 
-.metadataGroup:not(:last-of-type) {
+.termGroup:not(:last-of-type) {
   border-bottom: 1px solid var(--color-grey--lighter);
 }
 
-.metadataGroup dd {
+.termGroup dd {
   margin-inline-start: 0;
   flex: 1 1 50%;
 }
 
-.metadataGroup dt {
+.termGroup dt {
   flex: 1 1 50%;
 }

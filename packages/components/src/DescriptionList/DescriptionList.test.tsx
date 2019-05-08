@@ -13,7 +13,7 @@ it("renders an object as a list of key value pairs", () => {
   expect(tree).toMatchInlineSnapshot(`
     <dl>
       <div
-        className="metadataGroup"
+        className="termGroup"
       >
         <dd>
           Issued
@@ -23,7 +23,7 @@ it("renders an object as a list of key value pairs", () => {
         </dt>
       </div>
       <div
-        className="metadataGroup"
+        className="termGroup"
       >
         <dd>
           Due

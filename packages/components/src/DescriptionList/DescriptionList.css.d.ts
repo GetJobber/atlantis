@@ -1,1 +1,1 @@
-export const metadataGroup: string;
+export const termGroup: string;

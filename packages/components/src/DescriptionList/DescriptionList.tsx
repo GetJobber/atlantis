@@ -13,7 +13,7 @@ export function DescriptionList({ data }: DescriptionListProps) {
   return (
     <dl>
       {data.map(([term, description]) => (
-        <div key={term} className={styles.metadataGroup}>
+        <div key={term} className={styles.termGroup}>
           <dd>{term}</dd>
           <dt>{description}</dt>
         </div>
