@@ -1,14 +1,18 @@
 import React from "react";
 import styles from "./DescriptionList.css";
 
-export function DescriptionList({
-  data,
-}: {
-  data: { [term: string]: string };
-}) {
+interface DescriptionListProps {
+  /**
+   * A tuple where the first item is the string to display as the term
+   * and the second value is the string to display as the definition
+   */
+  data: [string, string][];
+}
+
+export function DescriptionList({ data }: DescriptionListProps) {
   return (
     <dl>
-      {Object.entries(data).map(([term, description]) => (
+      {data.map(([term, description]) => (
         <div key={term} className={styles.metadataGroup}>
           <dd>{term}</dd>
           <dt>{description}</dt>

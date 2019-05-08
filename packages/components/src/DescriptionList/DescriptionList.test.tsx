@@ -6,10 +6,7 @@ it("renders an object as a list of key value pairs", () => {
   const tree = renderer
     .create(
       <DescriptionList
-        data={{
-          Issued: "2018-12-08",
-          Due: "2019-01-06",
-        }}
+        data={[["Issued", "2018-12-08"], ["Due", "2019-01-06"]]}
       />,
     )
     .toJSON();
