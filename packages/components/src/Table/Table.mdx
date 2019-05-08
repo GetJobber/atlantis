@@ -72,12 +72,21 @@ Most table components do not currently accept options.
 
 ### Cell
 
+A `Cell` can contain text, or other elements. It can also be used to make
+specialized reusable cell types such as `CellNumeric` and `CellCurrency`.
+
 <Props of={Cell} />
 
 ### CellNumeric
 
+A `CellNumeric` is used to display numeric values to users in tables. It is
+preferred to simply `Cell` as it ensures characters are visually aligned
+vertically.
+
 <Props of={CellNumeric} />
 
 ### CellCurrency
+
+A `CellCurrency` is used to format and display monetary values.
 
 <Props of={CellCurrency} />
