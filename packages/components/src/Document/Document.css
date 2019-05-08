@@ -5,6 +5,8 @@
   --border-color: var(--color-grey--lighter);
   --accent-color: var(--color-grey);
   --content-background-color: var(--color-white);
+  --subtitle-font-weight: var(--font-weight--bold, 700);
+  --subtitle-color: var(--color-grey-blue);
 
   display: flex;
   flex-wrap: wrap;
@@ -23,7 +25,8 @@
 .title {
   order: 1;
   display: flex;
-  flex: 1 0 auto;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
   min-width: 100%;
   align-items: center;
   padding-bottom: 1rem;
@@ -44,7 +47,7 @@
 }
 
 .statusWrapper {
-  flex: 1 0 auto;
+  flex: 1 1 auto;
   margin-left: 1rem;
 }
 
@@ -52,6 +55,19 @@
   order: 2;
   flex: 1;
   min-width: calc(100% / 12 * 7 - 1rem);
+  hyphens: auto;
+}
+
+.header > h2 {
+  margin-top: 0;
+  margin-bottom: 0.25em;
+}
+
+.header > p {
+  margin-top: 0;
+  margin-bottom: 1em;
+  font-weight: var(--subtitle-font-weight);
+  color: var(--subtitle-color);
 }
 
 .detail {

@@ -63,13 +63,13 @@ it("renders", () => {
           Invoice #1
         </h3>
       </div>
-      <div
+      <header
         className="header"
       >
         <h2>
           This is the exceptionally long document header.
         </h2>
-      </div>
+      </header>
       <div
         className="detail"
       >

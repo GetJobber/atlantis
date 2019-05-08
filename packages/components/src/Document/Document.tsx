@@ -41,7 +41,7 @@ function getStatusLabelColour(status: string) {
 }
 
 export function Header({ children }: HeaderProps) {
-  return <div className={styles.header}>{children}</div>;
+  return <header className={styles.header}>{children}</header>;
 }
 
 export function StatusLabel({ status }: StatusLabelProps) {
