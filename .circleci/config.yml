@@ -74,7 +74,7 @@ jobs:
       - *restore_yarn_cache
       - *yarn_install
       - run: mkdir -p reports/junit
-      - run: yarn lint:css --custom-formatter node_modules/stylelint-junit-formatter > reports/junit/css-lint-results.xml
+      - run: yarn --silent lint:css --custom-formatter node_modules/stylelint-junit-formatter > reports/junit/css-lint-results.xml
       - store_test_results:
           path: reports/junit
       - store_artifacts:
