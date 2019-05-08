@@ -1,6 +1,8 @@
 @import "../global.css";
 
 .termGroup {
+  --divider-color: var(--color-grey--lighter);
+
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -8,7 +10,7 @@
 }
 
 .termGroup:not(:last-of-type) {
-  border-bottom: 1px solid var(--color-grey--lighter);
+  border-bottom: 1px solid var(--divider-color);
 }
 
 .termGroup dd {

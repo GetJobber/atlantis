@@ -7,9 +7,9 @@ import {
   Header,
   Detail,
   Content,
-  DecoratedIcon,
   StatusLabel,
-} from "./Document";
+  DecoratedIcon,
+} from ".";
 
 it("renders", () => {
   const tree = renderer

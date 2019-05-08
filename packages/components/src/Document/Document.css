@@ -34,23 +34,6 @@
   border-bottom: 1px solid var(--border-color);
 }
 
-.iconDecorator {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 3.5rem;
-  height: 3.5rem;
-  font-size: 1.5em;
-  color: white;
-  background-color: var(--accent-color);
-  border-radius: 50%;
-}
-
-.statusWrapper {
-  flex: 1 1 auto;
-  margin-left: 1rem;
-}
-
 .header {
   order: 2;
   flex: 1;
