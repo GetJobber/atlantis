@@ -1,12 +1,10 @@
 version: 2
 
 references:
-
   container_config: &container_config
     docker:
       - image: circleci/node
-    working_directory:  ~/atlantis
-
+    working_directory: ~/atlantis
 
   restore_repo: &restore_repo
     restore_cache:
@@ -56,24 +54,21 @@ jobs:
           key: v1-yarn-packages-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
-      - save_cache:
-          name: Save Node Modules
-          key: v1-node-modules-{{ checksum "yarn.lock" }}
-          paths:
-            - node_modules
 
   lint_javascript:
     <<: *container_config
     steps:
       - *restore_repo
-      - *restore_node_modules
+      - *restore_yarn_cache
+      - *yarn_install
       - run: yarn lint:js
 
   lint_css:
     <<: *container_config
     steps:
       - *restore_repo
-      - *restore_node_modules
+      - *restore_yarn_cache
+      - *yarn_install
       - run: yarn lint:css
 
   test:
@@ -81,13 +76,15 @@ jobs:
     steps:
       - *restore_repo
       - *restore_node_modules
+      - *yarn_install
       - run: yarn test --runInBand --no-cache --coverage
 
   build_docs:
     <<: *container_config
     steps:
       - *restore_repo
-      - *restore_node_modules
+      - *restore_yarn_cache
+      - *yarn_install
       - run: yarn build
       - store_artifacts:
           path: ~/atlantis/.docz/dist

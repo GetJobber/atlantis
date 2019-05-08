@@ -1,0 +1,10 @@
+{
+  "name": "@jobber/formatters",
+  "version": "0.0.1",
+  "license": "",
+  "main": "index.ts",
+  "dependencies": {
+    "typescript": "^3.4.3"
+  },
+  "devDependencies": {}
+}

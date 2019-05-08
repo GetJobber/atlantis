@@ -1,0 +1,92 @@
+---
+menu: Components
+---
+
+import { Playground, Props } from "docz";
+import {
+  Table,
+  Header,
+  Footer,
+  Row,
+  Cell,
+  CellCurrency,
+  CellNumeric
+} from "./";
+
+# Table
+
+![](https://img.shields.io/badge/Stage-Pre--Release-EF5733.svg)
+![](https://img.shields.io/badge/Responsive-✕-EF5733.svg)
+![](https://img.shields.io/badge/Accessibility-✕-EF5733.svg)
+
+Tables are used to organize and display tabular data to users.
+
+In addition to the base `Table` component there are additionally `Header`,
+`Footer`, `Row` and `Cell` each of which are used to construct a compliant
+table.
+
+Multiple [Cell types](#cell-types) are provided for common formats.
+
+## Simple Example
+
+<Playground>
+  <Table>
+    <Header>
+      <Cell>Ship</Cell>
+      <Cell>Class</Cell>
+      <Cell>Cost</Cell>
+      <Cell>Crew</Cell>
+    </Header>
+    <Row>
+      <Cell>Nostromo</Cell>
+      <Cell>Towing Vehicle</Cell>
+      <CellCurrency value={42000000} />
+      <CellNumeric value={7} />
+    </Row>
+    <Row>
+      <Cell>Rodger Young</Cell>
+      <Cell>Corvette Transport</Cell>
+      <Cell />
+      <CellNumeric value={200} />
+    </Row>
+    <Row>
+      <Cell>USS Enterprise</Cell>
+      <Cell>Constitution</Cell>
+      <Cell />
+      <CellNumeric value={205} />
+    </Row>
+    <Footer>
+      <Cell />
+      <Cell />
+      <Cell />
+      <CellNumeric value={412} />
+    </Footer>
+  </Table>
+</Playground>
+
+## Properties
+
+Most table components do not currently accept options.
+
+## Cell Types
+
+### Cell
+
+A `Cell` can contain text, or other elements. It can also be used to make
+specialized reusable cell types such as `CellNumeric` and `CellCurrency`.
+
+<Props of={Cell} />
+
+### CellNumeric
+
+A `CellNumeric` is used to display numeric values to users in tables. It is
+preferred to simply `Cell` as it ensures characters are visually aligned
+vertically.
+
+<Props of={CellNumeric} />
+
+### CellCurrency
+
+A `CellCurrency` is used to format and display monetary values.
+
+<Props of={CellCurrency} />

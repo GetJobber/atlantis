@@ -10,8 +10,9 @@
     "clean": "rm -rf .docz",
     "lint:js": "eslint --ext .js,.jsx,.ts,.tsx .",
     "lint:css": "stylelint 'packages/**/*.css' --allow-empty-input",
+    "lint:markdown": "prettier --check '**/*.md'",
     "lint": "yarn lint:js && yarn lint:css",
-    "lint:fix": "yarn lint:js --fix && yarn lint:css --fix"
+    "lint:fix": "yarn lint:js --fix && yarn lint:css --fix && yarn lint:markdown --write"
   },
   "repository": {
     "type": "git",
