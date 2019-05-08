@@ -61,7 +61,11 @@ jobs:
       - *restore_repo
       - *restore_yarn_cache
       - *yarn_install
-      - run: yarn lint:js
+      - run: yarn lint:js --format junit -o reports/junit/js-lint-results.xml
+      - store_test_results:
+          path: reports/junit
+      - store_artifacts:
+          path: reports/junit
 
   lint_css:
     <<: *container_config
@@ -69,7 +73,12 @@ jobs:
       - *restore_repo
       - *restore_yarn_cache
       - *yarn_install
-      - run: yarn lint:css
+      - run: mkdir -p reports/junit
+      - run: yarn lint:css --custom-formatter node_modules/stylelint-junit-formatter > reports/junit/css-lint-results.xml
+      - store_test_results:
+          path: reports/junit
+      - store_artifacts:
+          path: reports/junit
 
   test:
     <<: *container_config
@@ -77,7 +86,17 @@ jobs:
       - *restore_repo
       - *restore_node_modules
       - *yarn_install
-      - run: yarn test --runInBand --no-cache --coverage
+      - run:
+          name: "Run tests with jest"
+          command: yarn test --runInBand --no-cache --coverage --reporters=jest-junit
+          environment:
+            JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
+      - store_test_results:
+          path: reports/junit
+      - store_artifacts:
+          path: reports/junit
+      - store_artifacts:
+          path: coverage
 
   build_docs:
     <<: *container_config
