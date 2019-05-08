@@ -21,8 +21,6 @@ declare global {
 const configOverrides = (window.ATLANTIS_ENV || {}).config || {};
 
 export const config: Configuration = Object.freeze({
-  ...{
-    defaultCurrency: "USD",
-  },
+  defaultCurrency: "USD",
   ...configOverrides,
 });
