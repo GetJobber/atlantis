@@ -1,8 +1,8 @@
 {
   "name": "@jobber/stylelint-config",
-  "version": "0.0.1",
+  "version": "0.0.1-pre.1",
+  "license": "UNLICENSED",
   "main": "stylelint.config.js",
-  "private": true,
   "dependencies": {
     "prettier": "^1.17.0",
     "style-search": "^0.1.0",
