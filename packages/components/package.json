@@ -1,12 +1,21 @@
 {
   "name": "@jobber/components",
-  "version": "1.0.0",
-  "license": "",
+  "version": "0.0.1-pre.5",
+  "license": "UNLICENSED",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "npm run build:tsc && npm run build:assets",
+    "build:tsc": "tsc --project .",
+    "build:assets": "copyfiles --up 1 'src/**/*.css' dist/",
+    "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
+    "prepare": "npm run clean; npm run build"
+  },
   "files": [
-    "dist/**/*"
+    "dist/*"
   ],
   "dependencies": {
-    "@jobber/formatters": "^0.0.1",
+    "@jobber/formatters": "0.0.1-pre.6",
     "classnames": "^2.2.6",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -17,6 +26,7 @@
     "@types/react": "^16.8.13",
     "@types/react-dom": "^16.8.4",
     "@types/react-test-renderer": "^16.8.1",
+    "copyfiles": "^2.1.0",
     "react-test-renderer": "^16.8.6"
   }
 }
