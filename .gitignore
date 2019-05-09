@@ -2,3 +2,5 @@ yarn-error.log*
 node_modules
 .docz
 **/tsconfig.tsbuildinfo
+packages/formatters/dist
+packages/components/dist
