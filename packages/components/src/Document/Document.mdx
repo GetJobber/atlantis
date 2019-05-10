@@ -2,7 +2,7 @@
 menu: Components
 ---
 
-import { Playground, Props } from "docz";
+import { Playground, Props, Link } from "docz";
 import { Document, Title, Header, Detail, Content, DecoratedIcon, StatusLabel } from ".";
 import { DescriptionList } from "../DescriptionList";
 import { IconName } from "../Icon";
@@ -38,13 +38,36 @@ import { IconName } from "../Icon";
 </Playground>
 
 
-## Properties
+## Document Properties
 
 <Props of={Document} />
 
-## API
+## Title
 
-- `<Title>`
-- `<Header>`
-- `<Detail>`
-- `<Content>`
+The Title section provides a top level overview.
+
+Use a `<DecoratedIcon />` and `<StatusLabel />` to communicate the type of document and the current status.
+
+### DecoratedIcon
+
+The decorated icon wraps an `<Icon />`in a background. The background color is inherited from the `accentColor` of the `<Document />`
+
+<Props of={DecoratedIcon} />
+
+### StatusLabel
+
+Displays the current state of the document. The status label wraps an `<InlineLabel />` and selects a color based on the status.
+
+<Props of={StatusLabel} />
+
+## Header
+
+Use the Header to display information about the issuee, such as the client name and property information.
+
+## Detail
+
+The Detail section is typically used for metadata, such as due dates, payment terms, and related documents.
+
+## Content
+
+The Content section can be used to present a `<Table />` of line items.
