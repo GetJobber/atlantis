@@ -87,15 +87,6 @@ module.exports = [
   "overflow-x",
   "overflow-y",
 
-  "background",
-  "background-attachment",
-  "background-color",
-  "background-image",
-  "background-position",
-  "background-repeat",
-  "background-size",
-  "background-clip",
-
   "color",
   "font",
   "font-family",
@@ -130,6 +121,15 @@ module.exports = [
   "list-style-type",
   "list-style-position",
   "list-style-image",
+
+  "background",
+  "background-attachment",
+  "background-color",
+  "background-image",
+  "background-position",
+  "background-repeat",
+  "background-size",
+  "background-clip",
 
   "touch-action",
   "pointer-events",
