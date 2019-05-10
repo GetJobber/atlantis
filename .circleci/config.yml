@@ -137,7 +137,7 @@ jobs:
             DOCS_S3_URL="${DOCS_S3_PREFIX}/${PULL_REQUEST_NUMBER}"
             COMMENTS_URL="https://api.github.com/repos/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/issues/${PULL_REQUEST_NUMBER}/comments"
             curl -s -H "Authorization: token ${ATLANTIS_GITHUB_DOCS_DEPLOY_TOKEN}" \
-              -X POST -d "{\"body\": \"Hi frend. I've prepared a preview of the docs for you. You can find them [here](${DOCS_S3_URL})\"}" \
+              -X POST -d "{\"body\": \"Hi Frend. I've prepared a preview of the docs for this branch.\n\n[![Preview](https://img.shields.io/badge/&#8599;-Preview-28a745.svg)](${DOCS_S3_URL})\"}" \
               $COMMENTS_URL
 workflows:
   version: 2
