@@ -1,27 +1,25 @@
 /* eslint-disable import/no-default-export */
-
+import multiInput from "rollup-plugin-multi-input";
 import typescript from "rollup-plugin-typescript2";
 import postcss from "rollup-plugin-postcss";
 
-const inputs = ["Icon", "InlineLabel", "Table", "TextField"];
-
-export default inputs.map(input => {
-  return {
-    input: `src/${input}/index.ts`,
-    plugins: [
-      typescript({
-        useTsconfigDeclarationDir: true,
-      }),
-      postcss({
-        modules: true,
-        plugins: [require("postcss-import"), require("autoprefixer")],
-      }),
-    ],
-    output: [
-      {
-        file: `dist/${input}/index.js`,
-        format: "cjs",
-      },
-    ],
-  };
-});
+export default {
+  input: `src/*/index.ts`,
+  plugins: [
+    multiInput(),
+    typescript({
+      declarationDir: "dist",
+    }),
+    postcss({
+      modules: true,
+      plugins: [require("postcss-import"), require("autoprefixer")],
+    }),
+  ],
+  output: [
+    {
+      dir: "dist",
+      format: "cjs",
+    },
+  ],
+  external: ["react", "classnames", "@jobber/formatters"],
+};
