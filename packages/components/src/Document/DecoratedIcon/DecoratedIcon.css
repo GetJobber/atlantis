@@ -5,12 +5,12 @@
   --background-color: var(--accent-color, var(--color-grey));
 
   display: flex;
-  justify-content: center;
-  align-items: center;
   width: 3.5rem;
   height: 3.5rem;
-  font-size: 1.5em;
-  color: var(--icon-color);
-  background-color: var(--background-color);
   border-radius: 50%;
+  color: var(--icon-color);
+  font-size: 1.5em;
+  background-color: var(--background-color);
+  justify-content: center;
+  align-items: center;
 }

@@ -9,13 +9,13 @@
   --subtitle-color: var(--color-grey-blue);
 
   display: flex;
-  flex-wrap: wrap;
   padding: 2rem;
-  overflow: scroll;
-  background-color: var(--background-color);
   border: 1px solid var(--border-color);
   border-top: 0.5rem solid var(--accent-color);
   border-radius: 4px;
+  overflow: scroll;
+  background-color: var(--background-color);
+  flex-wrap: wrap;
 }
 
 .purple {
@@ -23,15 +23,15 @@
 }
 
 .title {
-  order: 1;
   display: flex;
+  min-width: 100%;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  order: 1;
   flex: 1 1 auto;
   flex-wrap: wrap;
-  min-width: 100%;
   align-items: center;
-  padding-bottom: 1rem;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid var(--border-color);
 }
 
 .header {
@@ -49,27 +49,27 @@
 .header > p {
   margin-top: 0;
   margin-bottom: 1em;
-  font-weight: var(--subtitle-font-weight);
   color: var(--subtitle-color);
+  font-weight: var(--subtitle-font-weight);
 }
 
 .detail {
-  order: 3;
-  flex: 1 0 calc(100% / 12 * 5 - 1rem);
   padding: 1rem;
-  background-color: var(--content-background-color);
   border-top-right-radius: 4px;
   border-top-left-radius: 4px;
+  background-color: var(--content-background-color);
+  order: 3;
+  flex: 1 0 calc(100% / 12 * 5 - 1rem);
 }
 
 .content {
-  order: 4;
-  flex: 1 0 auto;
   min-width: 100%;
   min-height: 1rem;
-  padding: 2rem;
   margin-right: -2rem;
   margin-bottom: -2rem;
   margin-left: -2rem;
+  padding: 2rem;
   background-color: var(--content-background-color);
+  order: 4;
+  flex: 1 0 auto;
 }
