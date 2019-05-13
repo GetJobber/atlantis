@@ -14,6 +14,7 @@ export default inputs.map(input => {
       }),
       postcss({
         modules: true,
+        plugins: [require("postcss-import"), require("autoprefixer")],
       }),
     ],
     output: [
