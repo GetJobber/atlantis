@@ -1,6 +1,7 @@
 yarn-error.log*
 node_modules
 .docz
+coverage
 **/tsconfig.tsbuildinfo
 packages/formatters/dist
 packages/components/dist

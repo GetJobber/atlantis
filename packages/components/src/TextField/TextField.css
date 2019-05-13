@@ -54,8 +54,8 @@
 }
 
 .label {
-  position: relative;
   display: flex;
+  position: relative;
   width: 100%;
   height: var(--input-height);
   font-size: var(--input-font-size, 0.875em);
@@ -63,16 +63,16 @@
 
 .input {
   width: 100%;
+  box-sizing: border-box;
   padding: 0 1em;
-  font-family: inherit;
-  font-size: inherit;
-  color: var(--input-color, var(--color-blue));
-  background-color: var(--input-background-color, var(--color-white));
   border: var(--input-border-width) solid
     var(--input-border-color, var(--color-grey--lighter));
   border-radius: 4px;
   outline: none;
-  box-sizing: border-box;
+  color: var(--input-color, var(--color-blue));
+  font-family: inherit;
+  font-size: inherit;
+  background-color: var(--input-background-color, var(--color-white));
 }
 
 .input:disabled {

@@ -14,9 +14,9 @@
 }
 
 .header .row {
+  border-bottom: solid 1px var(--header-border-color);
   font-weight: bold;
   text-transform: uppercase;
-  border-bottom: solid 1px var(--header-border-color);
 }
 
 .footer .row {
