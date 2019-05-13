@@ -2,6 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "lib": ["dom", "es2018"],
+    "jsx": "react",
     "rootDir": "src",
     "outDir": "dist"
   },

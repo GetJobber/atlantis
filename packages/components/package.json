@@ -6,6 +6,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "npm run build:tsc && npm run build:assets",
+    "rollup": "rollup --config",
     "build:tsc": "tsc --project .",
     "build:assets": "copyfiles --up 1 'src/**/*.css' dist/",
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
@@ -18,8 +19,7 @@
     "@jobber/formatters": "0.0.1-pre.6",
     "classnames": "^2.2.6",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "typescript": "^3.4.3"
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.7",
@@ -27,6 +27,11 @@
     "@types/react-dom": "^16.8.4",
     "@types/react-test-renderer": "^16.8.1",
     "copyfiles": "^2.1.0",
-    "react-test-renderer": "^16.8.6"
+    "react-test-renderer": "^16.8.6",
+    "rollup": "^1.11.3",
+    "rollup-plugin-postcss": "^2.0.3",
+    "rollup-plugin-typescript": "^1.0.1",
+    "rollup-plugin-typescript2": "^0.21.0",
+    "typescript": "^3.4.5"
   }
 }
