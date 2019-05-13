@@ -1,6 +1,7 @@
 version: 2.1
 
 orbs:
+  aws-cli: circleci/aws-cli@0.1.1
   aws-s3: circleci/aws-s3@1.0.8
 
 references:
@@ -114,12 +115,14 @@ jobs:
             - dist/*
 
   deploy_docs:
-    <<: *container_config
-    docker:
-      - image: 'circleci/python:2.7'
+    executor: aws-cli/default
     steps:
       - attach_workspace:
           at: /tmp/workspace
+      - aws-cli/install
+      - aws-cli/configure:
+          aws-access-key-id: ATLANTIS_AWS_ACCESS_KEY_ID
+          aws-secret-access-key: ATLANTIS_AWS_SECRET_ACCESS_KEY
       - run: |
           aws s3 ls s3://${ATLANTIS_S3_BUCKET}/${CIRCLE_PULL_REQUEST##*/}
           if [[ $? -ne 0 ]]; then
