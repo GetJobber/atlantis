@@ -120,6 +120,11 @@ jobs:
     steps:
       - attach_workspace:
           at: /tmp/workspace
+      - run: |
+          aws s3 ls s3://${ATLANTIS_S3_BUCKET}/${CIRCLE_PULL_REQUEST##*/}
+          if [[ $? -ne 0 ]]; then
+            NOTIFY_GITHUB=1
+          fi
       - aws-s3/sync:
           from: /tmp/workspace/dist
           to: 's3://${ATLANTIS_S3_BUCKET}/${CIRCLE_PULL_REQUEST##*/}'
@@ -132,13 +137,15 @@ jobs:
       - run:
           name: Notify github
           command: |
-            PULL_REQUEST_NUMBER=${CIRCLE_PULL_REQUEST##*/}
-            DOCS_S3_PREFIX="http://${ATLANTIS_S3_BUCKET}.s3-website-us-east-1.amazonaws.com"
-            DOCS_S3_URL="${DOCS_S3_PREFIX}/${PULL_REQUEST_NUMBER}"
-            COMMENTS_URL="https://api.github.com/repos/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/issues/${PULL_REQUEST_NUMBER}/comments"
-            curl -s -H "Authorization: token ${ATLANTIS_GITHUB_DOCS_DEPLOY_TOKEN}" \
-              -X POST -d "{\"body\": \"Hi Frend. I've prepared a preview of the docs for this branch.\n\n[![Preview](https://img.shields.io/badge/&#8599;-Preview-28a745.svg)](${DOCS_S3_URL})\"}" \
-              $COMMENTS_URL
+            if [[ -v NOTIFY_GITHUB ]]; then
+              PULL_REQUEST_NUMBER=${CIRCLE_PULL_REQUEST##*/}
+              DOCS_S3_PREFIX="http://${ATLANTIS_S3_BUCKET}.s3-website-us-east-1.amazonaws.com"
+              DOCS_S3_URL="${DOCS_S3_PREFIX}/${PULL_REQUEST_NUMBER}"
+              COMMENTS_URL="https://api.github.com/repos/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/issues/${PULL_REQUEST_NUMBER}/comments"
+              curl -s -H "Authorization: token ${ATLANTIS_GITHUB_DOCS_DEPLOY_TOKEN}" \
+                -X POST -d "{\"body\": \"Hi Frend. I've prepared a preview of the docs for this branch.\n\n[![Preview](https://img.shields.io/badge/&#8599;-Preview-28a745.svg)](${DOCS_S3_URL})\"}" \
+                $COMMENTS_URL
+            fi
 workflows:
   version: 2
 
