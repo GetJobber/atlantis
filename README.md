@@ -1,6 +1,8 @@
 # What is Atlantis?
 
-🔱 Atlantis is a design system for Jobber. The primary objective for Atlantis is to provide a system of reusable components to help developers to quickly build beautiful and consistent interfaces for our users.
+🔱 Atlantis is a design system for Jobber. The primary objective for Atlantis is
+to provide a system of reusable components to help developers to quickly build
+beautiful and consistent interfaces for our users.
 
 ## Development
 
@@ -47,7 +49,7 @@ You can also auto fix many linting errors by running:
 yarn lint:fix
 ```
 
-
 ## Contributing
 
-Everyone is a friend of Atlantis and we welcome pull requests. See the [contribution guidelines](/CONTRIBUTING.md) to learn how.
+Everyone is a friend of Atlantis and we welcome pull requests. See the
+[contribution guidelines](/CONTRIBUTING.md) to learn how.

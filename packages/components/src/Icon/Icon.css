@@ -27,18 +27,18 @@
 
 /* Customized Icons */
 .longArrowDown:before {
-  display: inline-block;
   content: "\e617";
+  display: inline-block;
   transform: rotate(-90deg);
 }
 .longArrowUp:before {
-  display: inline-block;
   content: "\e617";
+  display: inline-block;
   transform: rotate(90deg);
 }
 .remove:before {
-  display: inline-block;
   content: "\e911";
+  display: inline-block;
   transform: rotate(45deg);
 }
 

@@ -3,6 +3,7 @@
 .inlineLabel {
   display: inline-block;
   padding: 0 0.66em;
+  border-radius: 4px;
   font-family: var(
     --label-font-family,
     "Noto Sans",
@@ -12,7 +13,6 @@
   );
   text-align: center;
   text-transform: uppercase;
-  border-radius: 4px;
 }
 
 .normal {
