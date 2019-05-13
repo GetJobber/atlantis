@@ -36,9 +36,11 @@
     "docz-theme-default": "^1.0.0",
     "eslint": "^5.16.0",
     "eslint-plugin-jest": "^22.5.0",
+    "husky": "^2.2.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.7.1",
     "jest-junit": "^6.4.0",
+    "lint-staged": "^8.1.6",
     "postcss": "^7.0.14",
     "postcss-loader": "^3.0.0",
     "react": "^16.8.6",
@@ -48,5 +50,25 @@
     "stylelint-junit-formatter": "^0.2.1",
     "typed-css-modules-loader": "^0.0.17",
     "typescript": "^3.4.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --format=codeFrame --fix",
+      "git add",
+      "jest --bail --findRelatedTests"
+    ],
+    "*.css": [
+      "stylelint --fix",
+      "git add"
+    ],
+    "*.{md,mdx}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
