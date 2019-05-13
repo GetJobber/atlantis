@@ -1,13 +1,13 @@
 {
   "name": "@jobber/components",
-  "version": "0.0.1-pre.5",
+  "version": "0.0.1-pre.6",
   "license": "UNLICENSED",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "npm run build:tsc && npm run build:assets",
-    "rollup": "rollup --config",
-    "build:tsc": "tsc --project .",
+    "build": "npm run build:tsc:deploy && npm run build:rollup",
+    "build:rollup": "rollup --config",
+    "build:tsc:deploy": "tsc --project . --emitDeclarationOnly",
     "build:assets": "copyfiles --up 1 'src/**/*.css' dist/",
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
     "prepare": "npm run clean; npm run build"

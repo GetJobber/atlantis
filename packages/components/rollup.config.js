@@ -3,13 +3,15 @@
 import typescript from "rollup-plugin-typescript2";
 import postcss from "rollup-plugin-postcss";
 
-const inputs = ["InlineLabel"];
+const inputs = ["Icon", "InlineLabel", "Table", "TextField"];
 
 export default inputs.map(input => {
   return {
     input: `src/${input}/index.ts`,
     plugins: [
-      typescript(),
+      typescript({
+        useTsconfigDeclarationDir: true,
+      }),
       postcss({
         modules: true,
       }),
@@ -22,19 +24,3 @@ export default inputs.map(input => {
     ],
   };
 });
-
-// module.exports = [{
-//   input: "src/InlineLabel/index.ts",
-//   plugins: [
-//     typescript(),
-//     postcss({
-//       modules: true
-//     })
-//   ],
-//   output: [
-//     {
-//       file: "dist/InlineLabel.js",
-//       format: "cjs"
-//     }
-//   ]
-// }];
