@@ -1,6 +1,6 @@
 # prettier-ignore
 
-version: 2
+version: 2.1
 
 references:
   container_config: &container_config
@@ -112,8 +112,6 @@ jobs:
           destination: docs
 
 workflows:
-  version: 2
-
   docs:
     jobs:
       - checkout_code
