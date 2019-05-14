@@ -8,7 +8,7 @@
     "test": "jest",
     "build": "docz build",
     "clean": "rm -rf .docz",
-    "lint:js": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "lint:js": "eslint --ext .js,.jsx,.ts,.tsx . --format=codeFrame",
     "lint:css": "stylelint 'packages/**/*.css' --allow-empty-input",
     "lint:markdown": "prettier --check '**/*.md'",
     "lint": "yarn lint:js && yarn lint:css",

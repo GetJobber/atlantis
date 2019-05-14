@@ -2,35 +2,27 @@ import React, { ReactNode } from "react";
 import classnames from "classnames";
 import styles from "./Document.css";
 
-interface HeaderProps {
+interface DocumentSectionProps {
   readonly children: ReactNode;
 }
 
-export function Header({ children }: HeaderProps) {
+export function Header({ children }: DocumentSectionProps) {
   return <header className={styles.header}>{children}</header>;
 }
 
-interface TitleProps {
-  readonly children: ReactNode;
-}
-
-export function Title({ children }: TitleProps) {
+export function Title({ children }: DocumentSectionProps) {
   return <div className={styles.title}>{children}</div>;
 }
 
-interface DetailProps {
-  readonly children: ReactNode;
+export function ContactInfo({ children }: DocumentSectionProps) {
+  return <div className={styles.contactInfo}>{children}</div>;
 }
 
-export function Detail({ children }: DetailProps) {
+export function Detail({ children }: DocumentSectionProps) {
   return <div className={styles.detail}>{children}</div>;
 }
 
-interface ContentProps {
-  readonly children: ReactNode;
-}
-
-export function Content({ children }: ContentProps) {
+export function Content({ children }: DocumentSectionProps) {
   return <div className={styles.content}>{children}</div>;
 }
 
