@@ -15,15 +15,17 @@ references:
         - v1-repo-{{ .Branch }}
         - v1-repo
 
+  sum_lockfiles: &sum_lockfiles
+    run:
+      name: Sum Lockfiles
+      command: md5sum package-lock.json packages/*/package-lock.json > /tmp/lock-sums
+
   restore_npm_cache: &restore_npm_cache
-    - run:
-        name: Sum Lockfiles
-        command: md5sum package-lock.json packages/*/package-lock.json > /tmp/lock-sums
-    - restore_cache:
-        name: Restore npm cache
-        keys:
-          - npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
-          - npm-cache-v1
+    restore_cache:
+      name: Restore npm cache
+      keys:
+        - npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
+        - npm-cache-v1
 
   npm_install: &npm_install
     run:
@@ -45,11 +47,9 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
+      - *sum_lockfiles
       - *restore_npm_cache
       - *npm_install
-      - run:
-          name: Sum Lockfiles
-          command: md5sum package-lock.json packages/*/package-lock.json > /tmp/lock-sums
       - save_cache:
           name: Save npm cache
           key: npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
@@ -60,6 +60,7 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
+      - *sum_lockfiles
       - *restore_npm_cache
       - *npm_install
       - run: npm run lint:js -- --format junit -o reports/junit/js-lint-results.xml
@@ -72,6 +73,7 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
+      - *sum_lockfiles
       - *restore_npm_cache
       - *npm_install
       - run: mkdir -p reports/junit
@@ -85,6 +87,8 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
+      - *sum_lockfiles
+      - *restore_npm_cache
       - *npm_install
       - run:
           name: "Run tests with jest"
@@ -103,6 +107,7 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
+      - *sum_lockfiles
       - *restore_npm_cache
       - *npm_install
       - run: npm run build
