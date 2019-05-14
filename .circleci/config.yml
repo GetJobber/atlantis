@@ -15,6 +15,12 @@ references:
         - v1-repo-{{ .Branch }}
         - v1-repo
 
+  npm_install: &npm_install
+    run:
+      name: Install Dependencies
+      command: npm install
+
+commands:
   restore_npm_cache: &restore_npm_cache
     steps:
       run:
@@ -25,11 +31,6 @@ references:
         keys:
           - npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
           - npm-cache-v1
-
-  npm_install: &npm_install
-    run:
-      name: Install Dependencies
-      command: npm install
 
 jobs:
   checkout_code:
@@ -46,7 +47,7 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
-      - *restore_npm_cache
+      - restore_npm_cache
       - *npm_install
       - run:
           name: Sum Lockfiles
@@ -61,7 +62,7 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
-      - *restore_npm_cache
+      - restore_npm_cache
       - *npm_install
       - run: npm run lint:js -- --format junit -o reports/junit/js-lint-results.xml
       - store_test_results:
@@ -73,7 +74,7 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
-      - *restore_npm_cache
+      - restore_npm_cache
       - *npm_install
       - run: mkdir -p reports/junit
       - run: npm run lint:css -- --custom-formatter node_modules/stylelint-junit-formatter > reports/junit/css-lint-results.xml
@@ -103,7 +104,7 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
-      - *restore_npm_cache
+      - restore_npm_cache
       - *npm_install
       - run: npm run build
       - store_artifacts:
