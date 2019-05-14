@@ -1,6 +1,6 @@
 # prettier-ignore
 
-version: 2.1
+version: 2
 
 references:
   container_config: &container_config
@@ -15,22 +15,20 @@ references:
         - v1-repo-{{ .Branch }}
         - v1-repo
 
+  restore_npm_cache: &restore_npm_cache
+    - run:
+      name: Sum Lockfiles
+      command: md5sum package-lock.json packages/*/package-lock.json > /tmp/lock-sums
+    - restore_cache:
+      name: Restore npm cache
+      keys:
+        - npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
+        - npm-cache-v1
+
   npm_install: &npm_install
     run:
       name: Install Dependencies
       command: npm install
-
-commands:
-  restore_npm_cache: &restore_npm_cache
-    steps:
-      run:
-        name: Sum Lockfiles
-        command: md5sum package-lock.json packages/*/package-lock.json > /tmp/lock-sums
-      restore_cache:
-        name: Restore npm cache
-        keys:
-          - npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
-          - npm-cache-v1
 
 jobs:
   checkout_code:
@@ -47,7 +45,7 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
-      - restore_npm_cache
+      *restore_npm_cache
       - *npm_install
       - run:
           name: Sum Lockfiles
@@ -62,7 +60,7 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
-      - restore_npm_cache
+      *restore_npm_cache
       - *npm_install
       - run: npm run lint:js -- --format junit -o reports/junit/js-lint-results.xml
       - store_test_results:
@@ -74,7 +72,7 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
-      - restore_npm_cache
+      *restore_npm_cache
       - *npm_install
       - run: mkdir -p reports/junit
       - run: npm run lint:css -- --custom-formatter node_modules/stylelint-junit-formatter > reports/junit/css-lint-results.xml
@@ -90,7 +88,8 @@ jobs:
       - *npm_install
       - run:
           name: "Run tests with jest"
-          command: npm test -- --runInBand --no-cache --coverage --reporters=jest-junit
+          command:
+            npm test -- --runInBand --no-cache --coverage --reporters=jest-junit
           environment:
             JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
       - store_test_results:
@@ -104,7 +103,7 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
-      - restore_npm_cache
+      *restore_npm_cache
       - *npm_install
       - run: npm run build
       - store_artifacts:
@@ -112,6 +111,8 @@ jobs:
           destination: docs
 
 workflows:
+  version: 2
+
   docs:
     jobs:
       - checkout_code
