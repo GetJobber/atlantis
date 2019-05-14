@@ -1,3 +1,5 @@
+# prettier-ignore
+
 version: 2
 
 references:
@@ -13,22 +15,21 @@ references:
         - v1-repo-{{ .Branch }}
         - v1-repo
 
-  restore_yarn_cache: &restore_yarn_cache
-    restore_cache:
-      keys:
-        - v1-yarn-packages-{{ checksum "yarn.lock" }}
-        - v1-yarn-packages
+  restore_npm_cache: &restore_npm_cache
+    steps:
+      run:
+        name: Sum Lockfiles
+        command: md5sum package-lock.json packages/*/package-lock.json > /tmp/lock-sums
+      restore_cache:
+        name: Restore npm cache
+        keys:
+          - npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
+          - npm-cache-v1
 
-  restore_node_modules: &restore_node_modules
-    restore_cache:
-      keys:
-        - v1-node-modules-{{ checksum "yarn.lock" }}
-        - v1-node-modules
-
-  yarn_install: &yarn_install
+  npm_install: &npm_install
     run:
       name: Install Dependencies
-      command: yarn install --frozen-lockfile --non-interactive
+      command: npm install
 
 jobs:
   checkout_code:
@@ -45,23 +46,24 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
-      - *restore_yarn_cache
+      - *restore_npm_cache
+      - *npm_install
       - run:
-          name: Install Dependencies
-          command: yarn install --frozen-lockfile --non-interactive
+          name: Sum Lockfiles
+          command: md5sum package-lock.json packages/*/package-lock.json > /tmp/lock-sums
       - save_cache:
-          name: Save Yarn Package Cache
-          key: v1-yarn-packages-{{ checksum "yarn.lock" }}
+          name: Save npm cache
+          key: npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
           paths:
-            - ~/.cache/yarn
+            - ~/.npm
 
   lint_javascript:
     <<: *container_config
     steps:
       - *restore_repo
-      - *restore_yarn_cache
-      - *yarn_install
-      - run: yarn lint:js --format junit -o reports/junit/js-lint-results.xml
+      - *restore_npm_cache
+      - *npm_install
+      - run: npm run lint:js -- --format junit -o reports/junit/js-lint-results.xml
       - store_test_results:
           path: reports/junit
       - store_artifacts:
@@ -71,10 +73,10 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
-      - *restore_yarn_cache
-      - *yarn_install
+      - *restore_npm_cache
+      - *npm_install
       - run: mkdir -p reports/junit
-      - run: yarn --silent lint:css --custom-formatter node_modules/stylelint-junit-formatter > reports/junit/css-lint-results.xml
+      - run: npm run lint:css -- --custom-formatter node_modules/stylelint-junit-formatter > reports/junit/css-lint-results.xml
       - store_test_results:
           path: reports/junit
       - store_artifacts:
@@ -84,11 +86,10 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
-      - *restore_node_modules
-      - *yarn_install
+      - *npm_install
       - run:
           name: "Run tests with jest"
-          command: yarn test --runInBand --no-cache --coverage --reporters=jest-junit
+          command: npm test -- --runInBand --no-cache --coverage --reporters=jest-junit
           environment:
             JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
       - store_test_results:
@@ -102,9 +103,9 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
-      - *restore_yarn_cache
-      - *yarn_install
-      - run: yarn build
+      - *restore_npm_cache
+      - *npm_install
+      - run: npm run build
       - store_artifacts:
           path: ~/atlantis/.docz/dist
           destination: docs
