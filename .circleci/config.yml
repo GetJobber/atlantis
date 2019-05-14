@@ -17,13 +17,13 @@ references:
 
   restore_npm_cache: &restore_npm_cache
     - run:
-      name: Sum Lockfiles
-      command: md5sum package-lock.json packages/*/package-lock.json > /tmp/lock-sums
+        name: Sum Lockfiles
+        command: md5sum package-lock.json packages/*/package-lock.json > /tmp/lock-sums
     - restore_cache:
-      name: Restore npm cache
-      keys:
-        - npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
-        - npm-cache-v1
+        name: Restore npm cache
+        keys:
+          - npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
+          - npm-cache-v1
 
   npm_install: &npm_install
     run:
@@ -45,7 +45,7 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
-      <<: *restore_npm_cache
+      - *restore_npm_cache
       - *npm_install
       - run:
           name: Sum Lockfiles
@@ -60,7 +60,7 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
-      <<: *restore_npm_cache
+      - *restore_npm_cache
       - *npm_install
       - run: npm run lint:js -- --format junit -o reports/junit/js-lint-results.xml
       - store_test_results:
@@ -72,7 +72,7 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
-      <<: *restore_npm_cache
+      - *restore_npm_cache
       - *npm_install
       - run: mkdir -p reports/junit
       - run: npm run lint:css -- --custom-formatter node_modules/stylelint-junit-formatter > reports/junit/css-lint-results.xml
@@ -103,7 +103,7 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
-      <<: *restore_npm_cache
+      - *restore_npm_cache
       - *npm_install
       - run: npm run build
       - store_artifacts:
