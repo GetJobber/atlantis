@@ -22,7 +22,7 @@
   --accent-color: var(--color-purple);
 }
 
-.title {
+.header {
   display: flex;
   min-width: 100%;
   margin-bottom: 1rem;
@@ -34,32 +34,41 @@
   align-items: center;
 }
 
-.header {
+.flexColumn {
   order: 2;
-  flex: 1;
+  flex: 1 0 20rem;
   min-width: calc(100% / 12 * 7 - 1rem);
+  margin-bottom: 1rem;
+}
+
+.title {
   hyphens: auto;
 }
 
-.header > h2 {
+.title > h2 {
   margin-top: 0;
   margin-bottom: 0.25em;
 }
 
-.header > p {
+.title > p {
   margin-top: 0;
   margin-bottom: 1em;
   color: var(--subtitle-color);
   font-weight: var(--subtitle-font-weight);
 }
 
+.contactInfo {
+  display: flex;
+}
+
 .detail {
+  min-width: calc(100% / 12 * 5 - 1rem);
   padding: 1rem;
   border-top-right-radius: 4px;
   border-top-left-radius: 4px;
   background-color: var(--content-background-color);
   order: 3;
-  flex: 1 0 calc(100% / 12 * 5 - 1rem);
+  flex: 1;
 }
 
 .content {
