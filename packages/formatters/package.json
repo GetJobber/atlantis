@@ -2,8 +2,8 @@
   "name": "@jobber/formatters",
   "version": "0.0.1-pre.7",
   "license": "UNLICENSED",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc --project .",
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",

@@ -13,13 +13,13 @@ module.exports = {
     react: { version: "detect" },
     "import/extensions": [".js", ".jsx", ".ts", ".tsx"],
     "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"]
+      "@typescript-eslint/parser": [".ts", ".tsx"],
     },
     "import/resolver": {
       node: {
-        extensions: [".js", ".jsx", ".ts", ".tsx"]
-      }
-    }
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
+      },
+    },
   },
   parserOptions: {
     ecmaFeatures: { jsx: true },
@@ -29,14 +29,17 @@ module.exports = {
   rules: {
     "import/order": "error",
     "import/no-default-export": "error",
-    'import/no-unresolved': ['error', {
-      ignore: ["\.css$"],
-    }],
-    'import/named': 'error',
-    'import/namespace': 'error',
-    'import/default': 'error',
-    'import/export': 'error',
-    'import/no-duplicates': 'error',
+    "import/no-unresolved": [
+      "error",
+      {
+        ignore: [".css$"],
+      },
+    ],
+    "import/named": "off",
+    "import/namespace": "error",
+    "import/default": "error",
+    "import/export": "error",
+    "import/no-duplicates": "error",
     "import/no-extraneous-dependencies": "error",
     "import/no-internal-modules": "error",
     "import/no-named-default": "error",

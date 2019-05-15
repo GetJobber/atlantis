@@ -19,8 +19,6 @@ interface Configuration {
   readonly defaultCurrency: CurrencyType;
 }
 
-(window as any).ATLANTIS_ENV = { config: { defaultCurrency: "GBP" } };
-
 const configOverrides =
   ((global as { ATLANTIS_ENV: AtlantisEnv }).ATLANTIS_ENV || {}).config || {};
 
