@@ -49,6 +49,7 @@
     "eslint-plugin-react": "^7.13.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.7.1",
+    "jest-junit": "^6.4.0",
     "lerna": "^3.13.4",
     "postcss": "^7.0.14",
     "postcss-loader": "^3.0.0",
@@ -56,6 +57,7 @@
     "react-dom": "^16.8.6",
     "style-loader": "^0.23.1",
     "stylelint": "^10.0.1",
+    "stylelint-junit-formatter": "^0.2.1",
     "typed-css-modules-loader": "^0.0.17",
     "typescript": "^3.4.3"
   }
