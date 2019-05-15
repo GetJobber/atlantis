@@ -8,10 +8,15 @@
     "build": "npm run build:rollup",
     "build:rollup": "rollup --config",
     "build:assets": "copyfiles --up 1 'src/**/*.css' dist/",
+    "build:entry-points": "ts-node --compiler-options '{\"module\": \"commonjs\"}' generateEntryPoints.ts",
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
-    "prepare": "npm run clean; npm run build"
+    "prepublishOnly": "npm run build:entry-points",
+    "prepare": "npm run clean; npm run build",
+    "postpublish": "npm run build:entry-points -- clean"
   },
   "files": [
+    "*.js",
+    "*.d.ts",
     "dist/*"
   ],
   "dependencies": {
@@ -22,11 +27,13 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.2.7",
+    "@types/glob": "^7.1.1",
     "@types/react": "^16.8.13",
     "@types/react-dom": "^16.8.4",
     "@types/react-test-renderer": "^16.8.1",
     "autoprefixer": "^9.5.1",
     "copyfiles": "^2.1.0",
+    "glob": "^7.1.4",
     "postcss": "^7.0.16",
     "postcss-import": "^12.0.1",
     "react-test-renderer": "^16.8.6",
@@ -37,6 +44,7 @@
     "rollup-plugin-postcss": "^2.0.3",
     "rollup-plugin-typescript": "^1.0.1",
     "rollup-plugin-typescript2": "^0.21.0",
+    "ts-node": "^8.1.0",
     "typescript": "^3.4.5"
   },
   "browserslist": [

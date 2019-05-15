@@ -53,3 +53,13 @@ yarn lint:fix
 
 Everyone is a friend of Atlantis and we welcome pull requests. See the
 [contribution guidelines](/CONTRIBUTING.md) to learn how.
+
+## Publishing
+
+### Pre-Release
+
+lerna publish --canary --dist-tag next --preid pre
+
+### For Realz
+
+lerna publish
