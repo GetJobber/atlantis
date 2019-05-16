@@ -7,7 +7,7 @@
     "rootDir": "src",
     "outDir": "dist"
   },
-  "include": ["**/*"],
+  "include": ["src"],
   "exclude": ["**/*.test.ts", "**/*.test.tsx", "entryPoints.ts"],
   "references": [{ "path": "../formatters" }]
 }
