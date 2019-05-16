@@ -8,11 +8,10 @@
     "build": "npm run build:rollup",
     "build:rollup": "rollup --config",
     "build:assets": "copyfiles --up 1 'src/**/*.css' dist/",
-    "build:entry-points": "ts-node --compiler-options '{\"module\": \"commonjs\"}' entryPoints.ts",
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
-    "prepublishOnly": "npm run build:entry-points",
+    "prepublishOnly": "scripts/entryPoints.ts",
     "prepare": "npm run clean; npm run build",
-    "postpublish": "npm run build:entry-points -- clean"
+    "postpublish": "scripts/entryPoints.ts clean"
   },
   "files": [
     "*.js",

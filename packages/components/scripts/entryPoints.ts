@@ -1,3 +1,5 @@
+#!/usr/bin/env ts-node  --project ../../tsconfig.bin.json
+
 /* eslint-disable no-console */
 
 import { promisify } from "util";
