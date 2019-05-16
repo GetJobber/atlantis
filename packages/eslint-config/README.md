@@ -1,3 +1,6 @@
 # ESLint Config _aka Dip Lint_
 
-This is just a first pass and will change as we lock down our rules.
+## Installing
+
+1. `npm install --save-dev @jobber/eslint-config`
+2. `npx install-peerdeps --dev @jobber/eslint-config`
