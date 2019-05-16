@@ -31,7 +31,18 @@ const modifyBundlerConfig = config => {
           localIdentName: "[name]__[local]--[hash:base64:5]",
         },
       },
-      { loader: require.resolve("postcss-loader") },
+      {
+        loader: require.resolve("postcss-loader"),
+        options: {
+          modules: true,
+          plugins: [
+            require("postcss-preset-env")({
+              preserve: false,
+              importFrom: [require.resolve("@jobber/colors")],
+            }),
+          ],
+        },
+      },
     ],
   });
 
