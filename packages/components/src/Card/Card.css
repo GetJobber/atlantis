@@ -1,0 +1,152 @@
+@import "../global.css";
+
+.card {
+  --background-color: var(--color-grey--lightest);
+  --border-color: var(--color-grey--lighter);
+  --content-background-color: var(--color-white);
+
+  display: flex;
+  min-width: 20rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  overflow: scroll;
+  background-color: var(--background-color);
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.accent {
+  --accent-color: var(--color-grey);
+
+  border-top: 0.5rem solid var(--accent-color);
+}
+
+.indigo {
+  --accent-color: var(--color-indigo);
+}
+
+.blue {
+  --accent-color: var(--color-blue);
+}
+
+.blueLighter {
+  --accent-color: var(--color-blue--lighter);
+}
+
+.greyBlue {
+  --accent-color: var(--color-grey-blue);
+}
+
+.greyDark {
+  --accent-color: var(--color-grey--dark);
+}
+
+.grey {
+  --accent-color: var(--color-grey);
+}
+
+.greyLight {
+  --accent-color: var(--color-grey--light);
+}
+
+.greyLighter {
+  --accent-color: var(--color-grey--lighter);
+}
+
+.green {
+  --accent-color: var(--color-green);
+}
+
+.lime {
+  --accent-color: var(--color-lime);
+}
+
+.yellowGreen {
+  --accent-color: var(--color-yellow--green);
+}
+
+.yellow {
+  --accent-color: var(--color-yellow);
+}
+
+.red {
+  --accent-color: var(--color-red);
+}
+
+.orange {
+  --accent-color: var(--color-orange);
+}
+
+.pink {
+  --accent-color: var(--color-pink);
+}
+
+.purple {
+  --accent-color: var(--color-purple);
+}
+
+.navy {
+  --accent-color: var(--color-navy);
+}
+
+.lightBlue {
+  --accent-color: var(--color-light-blue);
+}
+
+.lightBlueLighter {
+  --accent-color: var(--color-light-blue--lighter);
+}
+
+.teal {
+  --accent-color: var(--color-teal);
+}
+
+.brown {
+  --accent-color: var(--color-brown);
+}
+
+.white {
+  --accent-color: var(--color-white);
+}
+
+.banner {
+  display: flex;
+  width: 100%;
+  margin-right: 2rem;
+  margin-bottom: 1rem;
+  margin-left: 2rem;
+  border-bottom: 1px solid var(--border-color);
+  order: 1;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.header {
+  max-width: calc(100% - 2rem);
+  min-width: 18rem;
+  padding-left: 2rem;
+  hyphens: auto;
+  flex: 1 1 calc(100% / 12 * 7 - 4rem);
+  order: 2;
+}
+
+.detail {
+  margin-right: 2rem;
+  margin-left: 2rem;
+  padding: 1rem;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  background-color: var(--content-background-color);
+  flex: 1 1 calc(100% / 12 * 5 - 4rem);
+  order: 3;
+}
+
+.content {
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 1rem;
+  padding: 2rem;
+  background-color: var(--content-background-color);
+  order: 4;
+}

@@ -1,0 +1,38 @@
+---
+menu: Components
+---
+
+import { Playground, Props, Link } from "docz";
+import { Card, CardBanner, CardHeader, CardDetail, CardContent } from ".";
+
+# Card
+
+![Stage: Pre Release](https://img.shields.io/badge/Stage-Pre--Release-EF5733.svg)
+![Responsive: X](https://img.shields.io/badge/Responsive-%E2%9C%95-EF5733.svg)
+![Accessibility: X](https://img.shields.io/badge/Accessibility-%E2%9C%95-EF5733.svg)
+
+<Playground>
+  <Card accentColor="purple">
+    <CardBanner>
+      <h3>Invoice #1</h3>
+    </CardBanner>
+
+    <CardHeader>
+      <h2>This is the exceptionally long card header.</h2>
+      <p>This is the subtitle.</p>
+    </CardHeader>
+
+    <CardDetail>
+      <h4>Details</h4>
+    </CardDetail>
+
+    <CardContent>
+      <p>This is the card content.</p>
+    </CardContent>
+
+  </Card>
+</Playground>
+
+## Card Properties
+
+<Props of={Card} />
