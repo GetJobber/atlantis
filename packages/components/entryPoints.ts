@@ -34,18 +34,18 @@ async function clean() {
 async function entryPoints() {
   const indices = await pGlob("./src/*/index.ts");
 
-  return indices.reduce((accumulator: EntryPoint[], entryPoint) => {
+  return indices.reduce((entryPoints: EntryPoint[], entryPoint) => {
     const pathParts = entryPoint.split(sep);
 
-    accumulator.push({
+    entryPoints.push({
       file: `${pathParts[2]}.js`,
       content: `export * from "./dist/${pathParts[2]}";\n`,
     });
-    accumulator.push({
+    entryPoints.push({
       file: `${pathParts[2]}.d.ts`,
       content: `export * from "./dist/${pathParts[2]}";\n`,
     });
 
-    return accumulator;
+    return entryPoints;
   }, []);
 }

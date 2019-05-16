@@ -8,6 +8,6 @@
     "outDir": "dist"
   },
   "include": ["**/*"],
-  "exclude": ["**/*.test.ts", "**/*.test.tsx", "generateEntryPoints.ts"],
+  "exclude": ["**/*.test.ts", "**/*.test.tsx", "entryPoints.ts"],
   "references": [{ "path": "../formatters" }]
 }
