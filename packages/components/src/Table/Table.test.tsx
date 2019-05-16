@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { Table, Header, Footer, Row, Cell, CellCurrency, CellNumeric } from ".";
+import { Cell, CellCurrency, CellNumeric, Footer, Header, Row, Table } from ".";
 
 it("renders a table", () => {
   const tree = renderer

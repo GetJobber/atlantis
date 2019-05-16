@@ -4,7 +4,7 @@
 
 import { promisify } from "util";
 import { sep } from "path";
-import { writeFileSync, unlinkSync } from "fs";
+import { unlinkSync, writeFileSync } from "fs";
 import glob from "glob";
 
 declare const process: { argv: string[] };

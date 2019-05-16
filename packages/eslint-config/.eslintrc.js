@@ -46,6 +46,7 @@ module.exports = {
     "import/no-cycle": ["error", { maxDepth: Infinity }],
     "import/no-useless-path-segments": "error",
     "import/no-relative-parent-imports": "error",
+    "import/newline-after-import": "error",
     "prettier/prettier": [
       "error",
       { trailingComma: "all" },
@@ -53,5 +54,6 @@ module.exports = {
     ],
     "@typescript-eslint/no-use-before-define": ["error", { functions: false }],
     "@typescript-eslint/explicit-function-return-type": "off",
+    "sort-imports": ["error", { ignoreDeclarationSort: true }],
   },
 };

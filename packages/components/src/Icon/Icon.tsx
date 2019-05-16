@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./Icon.css";
 import { IconName } from "./IconName";
+import styles from "./Icon.css";
 
 interface IconProps {
   /** The icon to show.  */
