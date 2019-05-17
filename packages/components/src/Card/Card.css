@@ -4,9 +4,10 @@
   --background-color: var(--color-grey--lightest);
   --border-color: var(--color-grey--lighter);
   --content-background-color: var(--color-white);
+  --min-card-width: 20rem;
 
   display: flex;
-  min-width: 20rem;
+  min-width: var(--min-card-width);
   border: 1px solid var(--border-color);
   border-radius: 4px;
   overflow: scroll;
@@ -16,9 +17,7 @@
 }
 
 .accent {
-  --accent-color: var(--color-grey);
-
-  border-top: 0.5rem solid var(--accent-color);
+  border-top: 0.5rem solid var(--accent-color, var(--color-grey));
 }
 
 .indigo {
@@ -123,8 +122,7 @@
 }
 
 .header {
-  max-width: calc(100% - 2rem);
-  min-width: 18rem;
+  max-width: calc(100% - 4rem);
   padding-left: 2rem;
   hyphens: auto;
   flex: 1 1 calc(100% / 12 * 7 - 4rem);
@@ -132,6 +130,7 @@
 }
 
 .detail {
+  min-width: calc((5 / 12) * var(--min-card-width));
   margin-right: 2rem;
   margin-left: 2rem;
   padding: 1rem;
