@@ -39,7 +39,7 @@ import colors from "@jobber/colors";
 
 console.log(
   "Color grey blue lightest is my favortie",
-  colors.customProperties["--color-grey-blue--lightest"]
+  colors.customProperties["--color-greyBlue--lightest"]
 );
 ```
 
