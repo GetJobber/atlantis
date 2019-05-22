@@ -1,0 +1,23 @@
+.swatchBox {
+  display: inline-block;
+  width: calc(100% / 4 - 0.5rem);
+  margin: 0.25rem;
+}
+
+.swatch {
+  height: 60px;
+  border: solid 1px var(--color-blue--dark);
+  border-radius: 0.25rem;
+}
+
+.swatchBox:first-child {
+  width: calc(100% - 0.5rem);
+}
+
+.colorName,
+.colorValue {
+  width: 100%;
+  font-family: monospace;
+  font-size: 10px;
+  text-align: center;
+}

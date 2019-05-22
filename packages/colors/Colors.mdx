@@ -1,24 +1,11 @@
 ---
 name: Colors
+route: /colors
 ---
 
+import { ColorSwatches } from "@jobber/colors/ColorSwatches";
 import colors from "./colors";
 
-## Colors
+# Colors
 
-<dl style={{ display: "flex", flexWrap: "wrap" }}>
-  {Object.entries(colors.customProperties).map(([color, value]) => (
-    <div
-      style={{
-        backgroundColor: value,
-        height: "150px",
-        width: "150px",
-        margin: "1rem"
-      }}
-      key={color}
-    >
-      <dd>{color}</dd>
-      <dt>{value}</dt>
-    </div>
-  ))}
-</dl>
+<ColorSwatches colors={colors.customProperties} />
