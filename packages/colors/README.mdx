@@ -1,20 +1,16 @@
-# 🔱 Colours
+---
+name: Colors
+route: /colors
+---
 
-> Colours for the Jobber Atlantis Design System
+# Colors
+
+Colours for the Jobber Atlantis Design System
 
 ## Installation
 
-To install this package into your project with [npm](https://www.npmjs.com/)
-run:
-
 ```sh
 npm install @jobber/colors
-```
-
-Or with [Yarn](https://yarnpkg.com/en/) run:
-
-```sh
-yarn add @jobber/colors
 ```
 
 ## Usage
@@ -54,3 +50,10 @@ module.exports = {
   ]
 };
 ```
+
+## Color List
+
+import { ColorSwatches } from "@jobber/colors/ColorSwatches";
+import colors from "./colors";
+
+<ColorSwatches colors={colors.customProperties} />

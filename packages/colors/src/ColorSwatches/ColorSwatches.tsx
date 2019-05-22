@@ -23,14 +23,14 @@ export function ColorSwatches({ colors }: ColorSwatchesProps) {
   const groupedColors = groupColors(colors);
 
   return Object.entries(groupedColors).map(([name, colors]) => (
-    <>
+    <div className={styles.swatchGroup} key={name}>
       <h3 className={styles.groupTitle}>{name}</h3>
-      <div className={styles.swatchGroup} key={name}>
+      <div>
         {colors.map(({ name, value }) => (
           <ColorSwatch name={name} value={value} key={name} />
         ))}
       </div>
-    </>
+    </div>
   ));
 }
 
