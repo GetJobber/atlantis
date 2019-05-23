@@ -1,7 +1,7 @@
 {
   "name": "@jobber/colors",
   "version": "0.0.1",
-  "description": "Colours for the Jobber Atlantis Design System",
+  "description": "Colors for the Jobber Atlantis Design System",
   "license": "UNLICENSED",
   "main": "colors.js",
   "files": [
