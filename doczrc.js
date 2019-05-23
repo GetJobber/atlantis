@@ -105,6 +105,8 @@ export default {
   typescript: true,
   port: 3333,
   menu: ["Atlantis"],
+  files: "{README.md,**/*.mdx}",
+  ignore: [],
   codeSandbox: false,
   themeConfig,
   htmlContext,
