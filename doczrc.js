@@ -8,6 +8,7 @@ const { WatchIgnorePlugin } = require("webpack");
 const modifyBundlerConfig = config => {
   config.resolve.alias = Object.assign({}, config.resolve.alias, {
     "@jobber/components": path.resolve(__dirname, "packages/components/src"),
+    "@jobber/docx": path.resolve(__dirname, "packages/docx/src"),
   });
 
   config.plugins.push(new WatchIgnorePlugin([/css\.d\.ts$/]));

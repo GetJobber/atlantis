@@ -1,0 +1,11 @@
+{
+  "name": "@jobber/docx",
+  "private": true,
+  "description": "Internal Docs components.",
+  "license": "UNLICENSED",
+  "files": [],
+  "scripts": {},
+  "devDependencies": {
+    "react": "^16.8.6"
+  }
+}
