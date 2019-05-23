@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "build": "postcss src/colors.css --replace",
-    "clean": "rm colors.css colors.js colors.json",
+    "clean": "rm -f colors.css colors.js colors.json",
     "prepare": "npm run clean; npm run build"
   },
   "devDependencies": {
