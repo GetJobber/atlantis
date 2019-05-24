@@ -17,11 +17,11 @@
   --color-lime--lightest: rgb(240, 246, 227);
   --color-lime--dark: rgb(99, 125, 46);
 
-  --color-yellow-green: rgb(187, 197, 32);
-  --color-yellow-green--light: rgb(207, 214, 99);
-  --color-yellow-green--lighter: rgb(228, 232, 166);
-  --color-yellow-green--lightest: rgb(245, 246, 222);
-  --color-yellow-green--dark: rgb(122, 128, 21);
+  --color-yellowGreen: rgb(187, 197, 32);
+  --color-yellowGreen--light: rgb(207, 214, 99);
+  --color-yellowGreen--lighter: rgb(228, 232, 166);
+  --color-yellowGreen--lightest: rgb(245, 246, 222);
+  --color-yellowGreen--dark: rgb(122, 128, 21);
 
   --color-yellow: rgb(221, 195, 15);
   --color-yellow--light: rgb(231, 213, 87);
@@ -41,17 +41,17 @@
   --color-grey--lightest: rgb(244, 244, 244);
   --color-grey--dark: rgb(118, 118, 118);
 
-  --color-grey-blue: rgb(101, 120, 132);
-  --color-grey-blue--light: rgb(147, 161, 169);
-  --color-grey-blue--lighter: rgb(193, 201, 206);
-  --color-grey-blue--lightest: rgb(232, 235, 237);
-  --color-grey-blue--dark: rgb(66, 78, 86);
+  --color-greyBlue: rgb(101, 120, 132);
+  --color-greyBlue--light: rgb(147, 161, 169);
+  --color-greyBlue--lighter: rgb(193, 201, 206);
+  --color-greyBlue--lightest: rgb(232, 235, 237);
+  --color-greyBlue--dark: rgb(66, 78, 86);
 
-  --color-light-blue: rgb(60, 162, 224);
-  --color-light-blue--light: rgb(119, 190, 233);
-  --color-light-blue--lighter: rgb(177, 218, 243);
-  --color-light-blue--lightest: rgb(226, 241, 250);
-  --color-light-blue--dark: rgb(39, 105, 146);
+  --color-lightBlue: rgb(60, 162, 224);
+  --color-lightBlue--light: rgb(119, 190, 233);
+  --color-lightBlue--lighter: rgb(177, 218, 243);
+  --color-lightBlue--lightest: rgb(226, 241, 250);
+  --color-lightBlue--dark: rgb(39, 105, 146);
 
   --color-purple: rgb(136, 112, 196);
   --color-purple--light: rgb(172, 155, 214);

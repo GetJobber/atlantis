@@ -8,6 +8,7 @@ const { WatchIgnorePlugin } = require("webpack");
 const modifyBundlerConfig = config => {
   config.resolve.alias = Object.assign({}, config.resolve.alias, {
     "@jobber/components": path.resolve(__dirname, "packages/components/src"),
+    "@jobber/colors": path.resolve(__dirname, "packages/colors/src"),
   });
 
   config.plugins.push(new WatchIgnorePlugin([/css\.d\.ts$/]));
@@ -31,7 +32,18 @@ const modifyBundlerConfig = config => {
           localIdentName: "[name]__[local]--[hash:base64:5]",
         },
       },
-      { loader: require.resolve("postcss-loader") },
+      {
+        loader: require.resolve("postcss-loader"),
+        options: {
+          modules: true,
+          plugins: [
+            require("postcss-preset-env")({
+              preserve: true,
+              importFrom: [require.resolve("@jobber/colors")],
+            }),
+          ],
+        },
+      },
     ],
   });
 
@@ -94,6 +106,10 @@ const htmlContext = {
         href:
           "https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i",
       },
+      {
+        rel: "stylesheet",
+        href: "/public/colors.css",
+      },
     ],
   },
 };
@@ -107,6 +123,7 @@ export default {
   files: "{README.md,**/*.mdx}",
   ignore: [],
   codeSandbox: false,
+  public: "public",
   themeConfig,
   htmlContext,
   modifyBundlerConfig,

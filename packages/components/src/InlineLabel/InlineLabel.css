@@ -1,5 +1,3 @@
-@import "../global.css";
-
 .inlineLabel {
   display: inline-block;
   padding: 0 0.66em;
@@ -28,8 +26,8 @@
 }
 
 .greyBlue {
-  color: var(--color-grey-blue--dark);
-  background-color: var(--color-grey-blue--lightest);
+  color: var(--color-greyBlue--dark);
+  background-color: var(--color-greyBlue--lightest);
 }
 
 .red {
@@ -86,9 +84,9 @@
 }
 
 .yellowGreen {
-  /* color: shade(var(--color-yellow-green--dark), 10%); */
+  /* color: shade(var(--color-yellowGreen--dark), 10%); */
   color: rgb(110, 115, 19);
-  background-color: var(--color-yellow-green--lightest);
+  background-color: var(--color-yellowGreen--lightest);
 }
 
 .blueDark {
@@ -97,8 +95,8 @@
 }
 
 .lightBlue {
-  color: var(--color-light-blue--dark);
-  background-color: var(--color-light-blue--lightest);
+  color: var(--color-lightBlue--dark);
+  background-color: var(--color-lightBlue--lightest);
 }
 
 .indigo {
