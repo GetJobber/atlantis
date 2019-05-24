@@ -8,15 +8,15 @@ interface ColorSwatchProps {
 
 export function ColorSwatch({ name, value }: ColorSwatchProps) {
   return (
-    <div className={styles.swatchBox}>
+    <div className={styles.swatch}>
       <div
-        className={styles.swatch}
+        className={styles.color}
         style={{
           backgroundColor: value,
         }}
       />
-      <div className={styles.colorName}>{name}</div>
-      <div className={styles.colorValue}>{value}</div>
+      <div className={styles.name}>{name}</div>
+      <div className={styles.value}>{value}</div>
     </div>
   );
 }

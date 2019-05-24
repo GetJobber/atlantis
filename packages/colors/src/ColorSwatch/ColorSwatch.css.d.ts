@@ -1,4 +1,4 @@
-export const swatchBox: string;
 export const swatch: string;
-export const colorName: string;
-export const colorValue: string;
+export const color: string;
+export const name: string;
+export const value: string;
