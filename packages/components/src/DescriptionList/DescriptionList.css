@@ -1,0 +1,21 @@
+.termGroup {
+  --divider-color: var(--color-grey--lighter);
+
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0.5rem 0;
+}
+
+.termGroup:not(:last-of-type) {
+  border-bottom: 1px solid var(--divider-color);
+}
+
+.termGroup dd {
+  margin-inline-start: 0;
+  flex: 1 1 50%;
+}
+
+.termGroup dt {
+  flex: 1 1 50%;
+}
