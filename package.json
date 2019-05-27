@@ -28,6 +28,7 @@
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
+    "@jobber/colors": "file:packages/colors",
     "@jobber/eslint-config": "file:packages/eslint-config",
     "@jobber/stylelint-config": "file:packages/stylelint-config",
     "@types/jest": "^24.0.11",
@@ -52,6 +53,7 @@
     "lint-staged": "^8.1.7",
     "postcss": "^7.0.14",
     "postcss-loader": "^3.0.0",
+    "postcss-preset-env": "^6.6.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "style-loader": "^0.23.1",
@@ -79,5 +81,12 @@
       "prettier --write",
       "git add"
     ]
-  }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "Firefox ESR",
+    "iOS 9",
+    "ie >= 11"
+  ]
 }
