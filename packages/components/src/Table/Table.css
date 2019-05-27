@@ -1,5 +1,3 @@
-@import "../global.css";
-
 .table {
   --border-color: var(--color-grey--lighter);
   --header-border-color: var(--color-blue);
