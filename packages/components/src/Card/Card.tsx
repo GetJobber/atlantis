@@ -16,7 +16,16 @@ export function CardContent(props: CardSectionProps) {
 }
 
 interface CardProps {
+  /**
+   * A simple card will automatically contain only a single `CardContent`
+   * section that wraps any passed content.
+   * @default false
+   */
   readonly simple?: boolean;
+  /**
+   * The `accentColor`, if provided, will effect the color accent at the top of
+   * the card.
+   */
   readonly accentColor?: keyof typeof cardColors;
   readonly children: ReactNode | ReactNode[];
 }

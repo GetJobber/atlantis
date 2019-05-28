@@ -8,7 +8,7 @@ import { Card, CardHeader, CardContent } from ".";
 
 # Card
 
-<ComponentStatus stage="pre" responsive="no" accessible="no" />
+<ComponentStatus stage="rc" responsive="yes" accessible="no" />
 
 In Jobber a card is used to group related information and tasks to make things
 easier to scan, and action upon. Cards also contain many optional sub-components
@@ -17,8 +17,9 @@ to provide extra structure in a predictable way.
 ## Simple Example
 
 <Playground>
-  <Card simple accentColor="purple">
-    <p>This is the card content.</p>
+  <Card simple>
+    <p>This is just…</p>
+    <p>A simple card.</p>
   </Card>
 </Playground>
 
@@ -40,21 +41,43 @@ to provide extra structure in a predictable way.
 
 <Props of={Card} />
 
-## `CardBanner`
+---
 
-### Simple Example
+## ▸ `CardHeader`
+
+The `CardHeader` defines the header section of a card. This is used to provide
+supplementary information to the primary content of the card.
 
 <Playground>
   <Card>
-    <CardBanner>
-      <h3>Invoice #1</h3>
-    </CardBanner>
+    <CardHeader>
+      <h2>Sample Header</h2>
+    </CardHeader>
+
+    <CardContent />
+
+  </Card>
+</Playground>
+
+<Props of={CardHeader} />
+
+---
+
+## ▸ `CardContent`
+
+The `CardContent` defines the primary content of the card. If you only have
+content you can pass `simple` to the base `Card` and ignore `CardContent` and
+`CardHeader`.
+
+<Playground>
+  <Card>
+    <CardHeader />
 
     <CardContent>
-      <p>This is the card content.</p>
+      <p>Card Content</p>
     </CardContent>
 
   </Card>
 </Playground>
 
-<Props of={CardBanner} />
+<Props of={CardContent} />
