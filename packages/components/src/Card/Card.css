@@ -9,7 +9,6 @@
   min-width: var(--min-card-width);
   border: 1px solid var(--border-color);
   border-radius: 4px;
-  overflow: scroll;
   background-color: var(--background-color);
   justify-content: space-between;
   flex-wrap: wrap;
