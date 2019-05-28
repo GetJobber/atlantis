@@ -1,21 +1,14 @@
 import React, { ReactNode } from "react";
 import classnames from "classnames";
 import styles from "./Card.css";
+import cardColors from "./CardColors.css";
 
 interface CardSectionProps {
   readonly children: ReactNode;
 }
 
-export function CardBanner(props: CardSectionProps) {
-  return <header className={styles.banner} {...props} />;
-}
-
 export function CardHeader(props: CardSectionProps) {
   return <div className={styles.header} {...props} />;
-}
-
-export function CardDetail(props: CardSectionProps) {
-  return <div className={styles.detail} {...props} />;
 }
 
 export function CardContent(props: CardSectionProps) {
@@ -23,37 +16,23 @@ export function CardContent(props: CardSectionProps) {
 }
 
 interface CardProps {
-  readonly accentColor?:
-    | "indigo"
-    | "blue"
-    | "blueLighter"
-    | "greyBlue"
-    | "greyDark"
-    | "grey"
-    | "greyLight"
-    | "greyLighter"
-    | "green"
-    | "lime"
-    | "yellowGreen"
-    | "yellow"
-    | "red"
-    | "pink"
-    | "purple"
-    | "navy"
-    | "lightBlue"
-    | "lightBlueLighter"
-    | "teal"
-    | "brown"
-    | "white";
-  readonly children: ReactNode[];
+  readonly simple?: boolean;
+  readonly accentColor?: keyof typeof cardColors;
+  readonly children: ReactNode | ReactNode[];
 }
 
-export function Card({ accentColor, ...other }: CardProps) {
+export function Card({ simple = false, accentColor, children }: CardProps) {
   const className = classnames(
     styles.card,
     accentColor && styles.accent,
-    accentColor && styles[accentColor],
+    accentColor && cardColors[accentColor],
   );
 
-  return <div className={className} {...other} />;
+  let inside = children;
+
+  if (simple) {
+    inside = <CardContent>{children}</CardContent>;
+  }
+
+  return <div className={className}>{inside}</div>;
 }
