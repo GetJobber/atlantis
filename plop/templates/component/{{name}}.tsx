@@ -15,7 +15,7 @@ interface {{name}}Props {
 }
 
 export function {{name}}({ important = false, text }: {{name}}Props) {
-  const className = classnames(styles.{{lowerCase name}}, { [styles.important]: important });
+  const className = classnames(styles.{{camelCase name}}, { [styles.important]: important });
 
   return <div className={className}>{text}</div>;
 }

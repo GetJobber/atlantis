@@ -1,4 +1,4 @@
-.{{lowerCase name}} {
+.{{camelCase name}} {
   --message-weight: 400;
 
   font-weight: var(--message-weight);
