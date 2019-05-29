@@ -5,6 +5,7 @@
   "scripts": {
     "start": "docz dev",
     "test": "jest",
+    "plop": "plop",
     "build": "docz build",
     "clean": "rm -rf .docz",
     "lint:js": "eslint --ext .js,.jsx,.ts,.tsx .",
@@ -51,6 +52,7 @@
     "jest-junit": "^6.4.0",
     "lerna": "^3.14.1",
     "lint-staged": "^8.1.7",
+    "plop": "^2.3.0",
     "postcss": "^7.0.14",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.6.0",

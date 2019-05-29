@@ -1,0 +1,9 @@
+.{{lowerCase name}} {
+  --message-weight: 400;
+
+  font-weight: var(--message-weight);
+}
+
+.important {
+  --message-weight: 800;
+}
