@@ -4,6 +4,6 @@
   font-weight: var(--message-weight);
 }
 
-.important {
+.bold {
   --message-weight: 800;
 }

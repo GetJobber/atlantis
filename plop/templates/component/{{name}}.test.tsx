@@ -7,7 +7,7 @@ it("renders a {{name}}", () => {
   expect(tree).toMatchInlineSnapshot();
 });
 
-it("renders an important {{name}}", () => {
-  const tree = renderer.create(<{{name}} text="Foo" important />).toJSON();
+it("renders a loud {{name}}", () => {
+  const tree = renderer.create(<{{name}} text="Foo" loud />).toJSON();
   expect(tree).toMatchInlineSnapshot();
 });

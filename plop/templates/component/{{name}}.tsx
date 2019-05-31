@@ -4,18 +4,18 @@ import styles from "./{{name}}.css";
 
 interface {{name}}Props {
   /**
-   * Message is important.
+   * Message is loud.
    * @default false
    */
-  readonly important?: boolean;
+  readonly loud?: boolean;
   /**
    * Text to display.
    */
   readonly text: string;
 }
 
-export function {{name}}({ important = false, text }: {{name}}Props) {
-  const className = classnames(styles.{{camelCase name}}, { [styles.important]: important });
+export function {{name}}({ loud = false, text }: {{name}}Props) {
+  const className = classnames(styles.{{camelCase name}}, { [styles.bold]: loud });
 
   return <div className={className}>{text}</div>;
 }
