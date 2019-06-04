@@ -1,17 +1,15 @@
 .card {
-  --background-color: var(--color-grey--lightest);
-  --border-color: var(--color-grey--lighter);
+  --card-background-color: var(--color-white);
+  --header-background-color: var(--color-grey--lightest);
   --content-background-color: var(--color-white);
-  --min-card-width: 20rem;
+  --border-color: var(--color-grey--lighter);
   --accent-color: var(--color-grey);
+  --base-padding: 2rem;
 
-  display: flex;
-  min-width: var(--min-card-width);
   border: 1px solid var(--border-color);
   border-radius: 4px;
-  background-color: var(--background-color);
-  justify-content: space-between;
-  flex-wrap: wrap;
+  overflow: auto;
+  background-color: var(--card-background-color);
 }
 
 .accent {
@@ -19,18 +17,22 @@
 }
 
 .header {
-  max-width: calc(100% - 4rem);
-  padding-left: 2rem;
-  hyphens: auto;
-  flex: 1 1 calc(100% / 12 * 7 - 4rem);
-  order: 1;
+  padding: var(--base-padding);
+  background-color: var(--header-background-color);
 }
 
 .content {
-  flex: 1 1 auto;
-  width: 100%;
-  min-height: 1rem;
-  padding: 2rem;
+  padding: var(--base-padding);
   background-color: var(--content-background-color);
-  order: 2;
+}
+
+.cardTitle {
+  --card-title-color: var(--color-blue);
+
+  margin: 0;
+  overflow: hidden;
+  color: var(--card-title-color);
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

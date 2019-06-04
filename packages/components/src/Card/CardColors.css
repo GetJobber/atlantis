@@ -1,3 +1,19 @@
+.requestColor {
+  --accent-color: var(--color-request);
+}
+
+.quoteColor {
+  --accent-color: var(--color-quote);
+}
+
+.jobColor {
+  --accent-color: var(--color-job);
+}
+
+.invoiceColor {
+  --accent-color: var(--color-invoice);
+}
+
 .indigo {
   --accent-color: var(--color-indigo);
 }

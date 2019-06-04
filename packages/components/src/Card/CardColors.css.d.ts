@@ -1,3 +1,7 @@
+export const requestColor: string;
+export const quoteColor: string;
+export const jobColor: string;
+export const invoiceColor: string;
 export const indigo: string;
 export const blue: string;
 export const blueLighter: string;

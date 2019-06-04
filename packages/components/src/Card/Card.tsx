@@ -7,8 +7,23 @@ interface CardSectionProps {
   readonly children: ReactNode;
 }
 
-export function CardHeader(props: CardSectionProps) {
+function CardHeader(props: CardSectionProps) {
   return <div className={styles.header} {...props} />;
+}
+
+interface CardTitleProps {
+  /**
+   * The title for the card.
+   */
+  readonly title: string;
+}
+
+export function CardTitle({ title }: CardTitleProps) {
+  return (
+    <CardHeader>
+      <span className={styles.cardTitle}>{title}</span>
+    </CardHeader>
+  );
 }
 
 export function CardContent(props: CardSectionProps) {
@@ -26,15 +41,15 @@ interface CardProps {
    * The `accentColor`, if provided, will effect the color accent at the top of
    * the card.
    */
-  readonly accentColor?: keyof typeof cardColors;
+  readonly accent?: keyof typeof cardColors;
   readonly children: ReactNode | ReactNode[];
 }
 
-export function Card({ simple = false, accentColor, children }: CardProps) {
+export function Card({ simple = false, accent, children }: CardProps) {
   const className = classnames(
     styles.card,
-    accentColor && styles.accent,
-    accentColor && cardColors[accentColor],
+    accent && styles.accent,
+    accent && cardColors[accent],
   );
 
   let inside = children;

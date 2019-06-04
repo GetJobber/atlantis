@@ -4,7 +4,7 @@ menu: Components
 
 import { Playground, Props, Link } from "docz";
 import { ComponentStatus } from "@jobber/docx";
-import { Card, CardHeader, CardContent } from ".";
+import { Card, CardTitle, CardContent } from ".";
 
 # Card
 
@@ -24,11 +24,8 @@ to provide extra structure in a predictable way.
 </Playground>
 
 <Playground>
-  <Card accentColor="purple">
-    <CardHeader>
-      <h2>This is the exceptionally long card header.</h2>
-      <p>This is the subtitle.</p>
-    </CardHeader>
+  <Card accent="jobColor">
+    <CardTitle title="This is an exceptionally long card title" />
 
     <CardContent>
       <p>This is the card content.</p>
@@ -43,23 +40,21 @@ to provide extra structure in a predictable way.
 
 ---
 
-## ▸ `CardHeader`
+## ▸ `CardTitle`
 
-The `CardHeader` defines the header section of a card. This is used to provide
-supplementary information to the primary content of the card.
+The `CardTitle` defines the title of a card. This is used to provide context as
+to the content of the card.
 
 <Playground>
   <Card>
-    <CardHeader>
-      <h2>Sample Header</h2>
-    </CardHeader>
+    <CardTitle title="Sample Title" />
 
     <CardContent />
 
   </Card>
 </Playground>
 
-<Props of={CardHeader} />
+<Props of={CardTitle} />
 
 ---
 
@@ -71,7 +66,7 @@ content you can pass `simple` to the base `Card` and ignore `CardContent` and
 
 <Playground>
   <Card>
-    <CardHeader />
+    <CardTitle title="" />
 
     <CardContent>
       <p>Card Content</p>
