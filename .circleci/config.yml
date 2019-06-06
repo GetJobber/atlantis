@@ -118,18 +118,22 @@ jobs:
       - store_artifacts:
           path: ~/atlantis/.docz/dist
           destination: docs
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - ~/atlantis/.docz/dist
 
   deploy_docs:
     executor: aws-cli/default
     steps:
-      # - attach_workspace:
-      #     at: /tmp/workspace
+      - attach_workspace:
+          at: /tmp/workspace
       - aws-cli/install
       - aws-cli/configure:
           aws-access-key-id: ATLANTIS_AWS_ACCESS_KEY_ID
           aws-secret-access-key: ATLANTIS_AWS_SECRET_ACCESS_KEY
       - aws-s3/sync:
-          from: ~/atlantis/.docz/dist
+          from: /tmp/workspace/dist
           to: 's3://${ATLANTIS_S3_BUCKET}/${CIRCLE_PULL_REQUEST##*/}'
           aws-access-key-id: ATLANTIS_AWS_ACCESS_KEY_ID
           aws-secret-access-key: ATLANTIS_AWS_SECRET_ACCESS_KEY
@@ -163,14 +167,11 @@ workflows:
           requires:
             - checkout_code
             - install_dependencies
-            - lint_javascript
-            - lint_css
-            - test
       - deploy_docs:
           requires:
-            - checkout_code
-            - install_dependencies
-            - lint_javascript
-            - lint_css
-            - test
+            # - checkout_code
+            # - install_dependencies
+            # - lint_javascript
+            # - lint_css
+            # - test
             - build_docs
