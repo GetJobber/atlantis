@@ -156,25 +156,16 @@ workflows:
             - checkout_code
       - lint_javascript:
           requires:
-            # - checkout_code
             - install_dependencies
       - lint_css:
           requires:
-            # - checkout_code
             - install_dependencies
       - test:
           requires:
-            # - checkout_code
             - install_dependencies
       - build_docs:
           requires:
-            # - checkout_code
             - install_dependencies
       - deploy_docs:
           requires:
-            # - checkout_code
-            # - install_dependencies
-            # - lint_javascript
-            # - lint_css
-            # - test
             - build_docs
