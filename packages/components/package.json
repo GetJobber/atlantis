@@ -1,22 +1,55 @@
 {
   "name": "@jobber/components",
-  "version": "1.0.0",
-  "license": "",
+  "version": "0.0.1-pre.6",
+  "license": "UNLICENSED",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "npm run build:cssTypes && npm run build:rollup",
+    "build:rollup": "rollup --config",
+    "build:cssTypes": "tcm src",
+    "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
+    "prepublishOnly": "scripts/entryPoints.ts",
+    "prepare": "npm run clean; npm run build",
+    "postpublish": "scripts/entryPoints.ts clean"
+  },
   "files": [
-    "dist/**/*"
+    "*.js",
+    "*.d.ts",
+    "dist/*"
   ],
   "dependencies": {
-    "@jobber/formatters": "^0.0.1",
+    "@jobber/formatters": "0.0.1-pre.7",
     "classnames": "^2.2.6",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "typescript": "^3.4.3"
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.7",
+    "@types/glob": "^7.1.1",
     "@types/react": "^16.8.13",
     "@types/react-dom": "^16.8.4",
     "@types/react-test-renderer": "^16.8.1",
-    "react-test-renderer": "^16.8.6"
-  }
+    "autoprefixer": "^9.5.1",
+    "copyfiles": "^2.1.0",
+    "glob": "^7.1.4",
+    "postcss": "^7.0.16",
+    "postcss-import": "^12.0.1",
+    "react-test-renderer": "^16.8.6",
+    "rollup": "^1.11.3",
+    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-multi-input": "^0.2.2",
+    "rollup-plugin-node-resolve": "^4.2.4",
+    "rollup-plugin-postcss": "^2.0.3",
+    "rollup-plugin-typescript": "^1.0.1",
+    "rollup-plugin-typescript2": "^0.21.0",
+    "ts-node": "^8.1.0",
+    "typed-css-modules": "^0.3.6",
+    "typescript": "^3.4.5"
+  },
+  "browserslist": [
+    "last 1 version",
+    "> 1%",
+    "IE 10"
+  ]
 }

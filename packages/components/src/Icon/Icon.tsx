@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "./Icon.css";
-import { IconName } from "./IconName";
+import icons from "./Icons.css";
 
 interface IconProps {
   /** The icon to show.  */
-  readonly iconName: IconName;
+  readonly iconName: keyof typeof icons;
 }
 
 export function Icon({ iconName }: IconProps) {
-  return <div className={`${styles[iconName]} ${styles.icon}`} />;
+  return <div className={`${icons[iconName]} ${styles.icon}`} />;
 }

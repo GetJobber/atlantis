@@ -1,3 +1,5 @@
+# prettier-ignore
+
 version: 2.1
 
 orbs:
@@ -17,22 +19,22 @@ references:
         - v1-repo-{{ .Branch }}
         - v1-repo
 
-  restore_yarn_cache: &restore_yarn_cache
-    restore_cache:
-      keys:
-        - v1-yarn-packages-{{ checksum "yarn.lock" }}
-        - v1-yarn-packages
+  sum_lockfiles: &sum_lockfiles
+    run:
+      name: Sum Lockfiles
+      command: md5sum package-lock.json packages/*/package-lock.json > /tmp/lock-sums
 
-  restore_node_modules: &restore_node_modules
+  restore_npm_cache: &restore_npm_cache
     restore_cache:
+      name: Restore npm cache
       keys:
-        - v1-node-modules-{{ checksum "yarn.lock" }}
-        - v1-node-modules
+        - npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
+        - npm-cache-v1
 
-  yarn_install: &yarn_install
+  npm_install: &npm_install
     run:
       name: Install Dependencies
-      command: yarn install --frozen-lockfile --non-interactive
+      command: npm install
 
 jobs:
   checkout_code:
@@ -49,23 +51,23 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
-      - *restore_yarn_cache
-      - run:
-          name: Install Dependencies
-          command: yarn install --frozen-lockfile --non-interactive
+      - *sum_lockfiles
+      - *restore_npm_cache
+      - *npm_install
       - save_cache:
-          name: Save Yarn Package Cache
-          key: v1-yarn-packages-{{ checksum "yarn.lock" }}
+          name: Save npm cache
+          key: npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
           paths:
-            - ~/.cache/yarn
+            - ~/.npm
 
   lint_javascript:
     <<: *container_config
     steps:
       - *restore_repo
-      - *restore_yarn_cache
-      - *yarn_install
-      - run: yarn lint:js --format junit -o reports/junit/js-lint-results.xml
+      - *sum_lockfiles
+      - *restore_npm_cache
+      - *npm_install
+      - run: npm run lint:js -- --format junit -o reports/junit/js-lint-results.xml
       - store_test_results:
           path: reports/junit
       - store_artifacts:
@@ -75,10 +77,11 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
-      - *restore_yarn_cache
-      - *yarn_install
+      - *sum_lockfiles
+      - *restore_npm_cache
+      - *npm_install
       - run: mkdir -p reports/junit
-      - run: yarn --silent lint:css --custom-formatter node_modules/stylelint-junit-formatter > reports/junit/css-lint-results.xml
+      - run: npm run lint:css -- --custom-formatter node_modules/stylelint-junit-formatter > reports/junit/css-lint-results.xml
       - store_test_results:
           path: reports/junit
       - store_artifacts:
@@ -88,11 +91,13 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
-      - *restore_node_modules
-      - *yarn_install
+      - *sum_lockfiles
+      - *restore_npm_cache
+      - *npm_install
       - run:
           name: "Run tests with jest"
-          command: yarn test --runInBand --no-cache --coverage --reporters=jest-junit
+          command:
+            npm test -- --runInBand --no-cache --coverage --reporters=jest-junit
           environment:
             JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
       - store_test_results:
@@ -106,13 +111,13 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
-      - *restore_yarn_cache
-      - *yarn_install
-      - run: yarn build --base "/${CIRCLE_PULL_REQUEST##*/}"
-      - persist_to_workspace:
-          root: .docz
-          paths:
-            - dist/*
+      - *sum_lockfiles
+      - *restore_npm_cache
+      - *npm_install
+      - run: npm run build
+      - store_artifacts:
+          path: ~/atlantis/.docz/dist
+          destination: docs
 
   deploy_docs:
     executor: aws-cli/default
@@ -123,11 +128,6 @@ jobs:
       - aws-cli/configure:
           aws-access-key-id: ATLANTIS_AWS_ACCESS_KEY_ID
           aws-secret-access-key: ATLANTIS_AWS_SECRET_ACCESS_KEY
-      - run: |
-          aws s3 ls s3://${ATLANTIS_S3_BUCKET}/${CIRCLE_PULL_REQUEST##*/}
-          if [[ $? -ne 0 ]]; then
-            NOTIFY_GITHUB=1
-          fi
       - aws-s3/sync:
           from: /tmp/workspace/dist
           to: 's3://${ATLANTIS_S3_BUCKET}/${CIRCLE_PULL_REQUEST##*/}'
@@ -137,18 +137,7 @@ jobs:
             --acl public-read \
             --cache-control "max-age=86400" \
             --delete
-      - run:
-          name: Notify github
-          command: |
-            if [[ -v NOTIFY_GITHUB ]]; then
-              PULL_REQUEST_NUMBER=${CIRCLE_PULL_REQUEST##*/}
-              DOCS_S3_PREFIX="http://${ATLANTIS_S3_BUCKET}.s3-website-us-east-1.amazonaws.com"
-              DOCS_S3_URL="${DOCS_S3_PREFIX}/${PULL_REQUEST_NUMBER}"
-              COMMENTS_URL="https://api.github.com/repos/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/issues/${PULL_REQUEST_NUMBER}/comments"
-              curl -s -H "Authorization: token ${ATLANTIS_GITHUB_DOCS_DEPLOY_TOKEN}" \
-                -X POST -d "{\"body\": \"Hi Frend. I've prepared a preview of the docs for this branch.\n\n[![Preview](https://img.shields.io/badge/&#8599;-Preview-28a745.svg)](${DOCS_S3_URL})\"}" \
-                $COMMENTS_URL
-            fi
+
 workflows:
   version: 2
 

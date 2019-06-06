@@ -1,11 +1,7 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@jobber/*": ["./packages/*/src"]
-    }
+    "baseUrl": "."
   },
-  "files": [],
-  "references": [{ "path": "packages/components" }]
+  "files": []
 }

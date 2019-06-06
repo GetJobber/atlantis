@@ -1,13 +1,16 @@
 :root {
-  --color-blue: rgb(1, 41, 57);
-  --color-grey-blue--light: rgb(147, 161, 169);
-  --color-grey--lighter: rgb(225, 225, 225);
-  --color-grey--lightest: rgb(244, 244, 244);
-  --color-yellow: rgb(221, 195, 15);
-  --color-red: rgb(239, 87, 51);
-  --color-white: rgb(255, 255, 255);
-
+  --input-color: var(--color-blue);
+  --label-text-color: var(--color-greyBlue--light);
   --input-border-width: 2px;
+  --input-border-color: var(--color-grey--lighter);
+  --input-background-color: var(--color-white);
+
+  --input-border-color--focused: var(--color-yellow);
+
+  --input-background-color--disabled: var(--color-grey--lightest);
+
+  --label-text-color--error: var(--color-red);
+  --input-border-color--error: var(--color-red);
 }
 
 .small {
@@ -24,12 +27,9 @@
 }
 
 .error {
-  --input-border-color: var(--input-border-color--error, var(--color-red));
-  --input-border-color--focused: var(
-    --input-border-color--error,
-    var(--color-red)
-  );
-  --label-text-color: var(--label-text-color--error, var(--color-red));
+  --input-border-color: var(--input-border-color--error);
+  --input-border-color--focused: var(--input-border-color--error);
+  --label-text-color: var(--label-text-color--error);
 }
 
 .inputWrapper {
@@ -45,17 +45,17 @@
 }
 
 .inputWrapper:focus-within {
-  --input-border-color: var(--input-border-color--focused, var(--color-yellow));
+  --input-border-color: var(--input-border-color--focused);
 }
 
 .label,
 .input::placeholder {
-  color: var(--label-text-color, var(--color-grey-blue--light));
+  color: var(--label-text-color);
 }
 
 .label {
-  position: relative;
   display: flex;
+  position: relative;
   width: 100%;
   height: var(--input-height);
   font-size: var(--input-font-size, 0.875em);
@@ -63,23 +63,19 @@
 
 .input {
   width: 100%;
+  box-sizing: border-box;
   padding: 0 1em;
-  font-family: inherit;
-  font-size: inherit;
-  color: var(--input-color, var(--color-blue));
-  background-color: var(--input-background-color, var(--color-white));
-  border: var(--input-border-width) solid
-    var(--input-border-color, var(--color-grey--lighter));
+  border: var(--input-border-width) solid var(--input-border-color);
   border-radius: 4px;
   outline: none;
-  box-sizing: border-box;
+  color: var(--input-color);
+  font-family: inherit;
+  font-size: inherit;
+  background-color: var(--input-background-color);
 }
 
 .input:disabled {
-  --input-background-color: var(
-    --input-background-color--disabled,
-    var(--color-grey--lightest)
-  );
+  --input-background-color: var(--input-background-color--disabled);
   opacity: 0.6;
 }
 

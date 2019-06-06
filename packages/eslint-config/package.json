@@ -1,9 +1,21 @@
 {
   "name": "@jobber/eslint-config",
-  "version": "0.0.1",
+  "version": "0.0.1-pre.1",
   "main": ".eslintrc.js",
-  "private": true,
-  "dependencies": {
+  "license": "UNLICENSED",
+  "dependencies": {},
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^1.6.0",
+    "@typescript-eslint/parser": "^1.6.0",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "prettier": "^1.17.0"
+  },
+  "peerDependencies": {
+    "eslint": "^5.16.0",
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",
     "eslint-config-prettier": "^4.1.0",
@@ -11,8 +23,5 @@
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-import": "^2.17.2",
     "prettier": "^1.17.0"
-  },
-  "peerDependencies": {
-    "eslint": "^5.16.0"
   }
 }

@@ -1,18 +1,19 @@
 {
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "name": "atlantis",
+  "version": "0.0.1",
   "scripts": {
     "start": "docz dev",
     "test": "jest",
+    "plop": "plop",
     "build": "docz build",
     "clean": "rm -rf .docz",
     "lint:js": "eslint --ext .js,.jsx,.ts,.tsx .",
     "lint:css": "stylelint 'packages/**/*.css' --allow-empty-input",
     "lint:markdown": "prettier --check '**/*.md'",
-    "lint": "yarn lint:js && yarn lint:css",
-    "lint:fix": "yarn lint:js --fix && yarn lint:css --fix && yarn lint:markdown --write"
+    "lint": "npm run lint:js && npm run lint:css",
+    "lint:fix": "npm run lint:js -- --fix && npm run lint:css -- --fix && npm run lint:markdown -- --write",
+    "install": "lerna bootstrap"
   },
   "repository": {
     "type": "git",
@@ -28,19 +29,33 @@
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
+    "@jobber/colors": "file:packages/colors",
+    "@jobber/eslint-config": "file:packages/eslint-config",
+    "@jobber/stylelint-config": "file:packages/stylelint-config",
     "@types/jest": "^24.0.11",
     "@types/react": "^16.8.13",
     "@types/react-dom": "^16.8.4",
+    "@typescript-eslint/eslint-plugin": "^1.9.0",
+    "@typescript-eslint/parser": "^1.9.0",
     "css-loader": "^2.1.1",
     "docz": "^1.0.0",
     "docz-theme-default": "^1.0.0",
     "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.2.0",
+    "eslint-plugin-import": "^2.17.2",
     "eslint-plugin-jest": "^22.5.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.13.0",
+    "husky": "^2.3.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.7.1",
     "jest-junit": "^6.4.0",
+    "lerna": "^3.14.1",
+    "lint-staged": "^8.1.7",
+    "plop": "^2.3.0",
     "postcss": "^7.0.14",
     "postcss-loader": "^3.0.0",
+    "postcss-preset-env": "^6.6.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "style-loader": "^0.23.1",
@@ -48,5 +63,32 @@
     "stylelint-junit-formatter": "^0.2.1",
     "typed-css-modules-loader": "^0.0.17",
     "typescript": "^3.4.3"
-  }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --format=codeFrame --fix",
+      "git add",
+      "jest --bail --findRelatedTests"
+    ],
+    "*.css": [
+      "stylelint --fix",
+      "git add"
+    ],
+    "*.{md,mdx}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "Firefox ESR",
+    "iOS 9",
+    "ie >= 11"
+  ]
 }

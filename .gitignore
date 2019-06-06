@@ -1,5 +1,7 @@
-yarn-error.log*
-node_modules
 .docz
-**/tsconfig.tsbuildinfo
+.rpt2_cache
 coverage
+dist
+node_modules
+
+**/tsconfig.tsbuildinfo
