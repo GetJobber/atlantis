@@ -114,7 +114,7 @@ jobs:
       - *sum_lockfiles
       - *restore_npm_cache
       - *npm_install
-      - run: npm run build
+      - run: npm run build -- --base "/${CIRCLE_PULL_REQUEST##*/}"
       - store_artifacts:
           path: ~/atlantis/.docz/dist
           destination: docs
