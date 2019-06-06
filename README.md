@@ -3,7 +3,7 @@ name: Atlantis
 route: /
 ---
 
-# 🔱 Atlantis
+# 🔱 SGAtlantis
 
 ## What is Atlantis?
 
