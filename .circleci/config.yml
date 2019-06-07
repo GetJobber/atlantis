@@ -37,7 +37,11 @@ references:
       command: npm install
 
   generate_s3_path: &generate_s3_path
-    run: S3_PATH=${CIRCLE_PULL_REQUEST:-${CIRCLE_BRANCH}}
+    run: |
+      S3_PATH=${CIRCLE_PULL_REQUEST:-${CIRCLE_BRANCH}}
+      echo ${S3_PATH}
+      echo ${CIRCLE_PULL_REQUEST}
+      echo ${CIRCLE_BRANCH}
 
 jobs:
   checkout_code:
