@@ -36,6 +36,9 @@ references:
       name: Install Dependencies
       command: npm install
 
+  generate_s3_path: &generate_s3_path
+    run: S3_PATH=${CIRCLE_PULL_REQUEST:-${CIRCLE_BRANCH}}
+
 jobs:
   checkout_code:
     <<: *container_config
@@ -114,7 +117,8 @@ jobs:
       - *sum_lockfiles
       - *restore_npm_cache
       - *npm_install
-      - run: npm run build -- --base "/${CIRCLE_PULL_REQUEST##*/}"
+      - *generate_s3_path
+      - run: npm run build -- --base "/${S3_PATH}/"
       - store_artifacts:
           path: ~/atlantis/.docz/dist
           destination: docs
@@ -135,9 +139,10 @@ jobs:
       - aws-cli/configure:
           aws-access-key-id: ATLANTIS_AWS_ACCESS_KEY_ID
           aws-secret-access-key: ATLANTIS_AWS_SECRET_ACCESS_KEY
+      - *generate_s3_path
       - aws-s3/sync:
           from: /tmp/workspace/dist
-          to: 's3://${ATLANTIS_S3_BUCKET}/${CIRCLE_PULL_REQUEST##*/}'
+          to: 's3://${ATLANTIS_S3_BUCKET}/${S3_PATH}/'
           aws-access-key-id: ATLANTIS_AWS_ACCESS_KEY_ID
           aws-secret-access-key: ATLANTIS_AWS_SECRET_ACCESS_KEY
           arguments: |
