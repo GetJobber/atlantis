@@ -40,7 +40,7 @@ references:
     run:
       name: Generate S3 Path
       command: |
-        echo 'export PULL_REQUEST_NUMBER=${CIRCLE_PULL_REQUEST##*/}' >> $BASH_ENV
+        echo 'export PULL_REQUEST_NUMBER=$(basename "${CIRCLE_PULL_REQUEST}")' >> $BASH_ENV
         echo 'export BASE_PATH=${PULL_REQUEST_NUMBER:-${CIRCLE_BRANCH}}' >> $BASH_ENV
 
 jobs:
