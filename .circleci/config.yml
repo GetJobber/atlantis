@@ -114,7 +114,7 @@ jobs:
       - *sum_lockfiles
       - *restore_npm_cache
       - *npm_install
-      - run: npm run build -- --base "/${CIRCLE_PULL_REQUEST:-${CIRCLE_BRANCH}}/"
+      - run: PR=${CIRCLE_PULL_REQUEST##*/}; npm run build -- --base "/${PR:-${CIRCLE_BRANCH}}/"
       - store_artifacts:
           path: ~/atlantis/.docz/dist
           destination: docs
@@ -137,7 +137,7 @@ jobs:
           aws-secret-access-key: ATLANTIS_AWS_SECRET_ACCESS_KEY
       - aws-s3/sync:
           from: /tmp/workspace/dist
-          to: 's3://${ATLANTIS_S3_BUCKET}/${CIRCLE_PULL_REQUEST:-${CIRCLE_BRANCH}}/'
+          to: 's3://${ATLANTIS_S3_BUCKET}/${#{CIRCLE_PULL_REQUEST##*/}:-${CIRCLE_BRANCH}}/'
           aws-access-key-id: ATLANTIS_AWS_ACCESS_KEY_ID
           aws-secret-access-key: ATLANTIS_AWS_SECRET_ACCESS_KEY
           arguments: |
