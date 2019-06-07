@@ -1,0 +1,27 @@
+---
+menu: Components
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { {{name}} } from ".";
+
+# {{ name }}
+
+<ComponentStatus stage="pre" responsive="no" accessible="no" />
+
+In Jobber a {{ name }} is used to …
+
+## Simple Example
+
+<Playground>
+  <{{ name }} text="Bob" />
+</Playground>
+
+<Playground>
+  <{{ name }} text="Bob" loud />
+</Playground>
+
+## {{ name }} Properties
+
+<Props of={ {{ name }} } />

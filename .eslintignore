@@ -2,3 +2,4 @@ node_modules
 dist
 .rpt2_cache
 packages/colors/colors.js
+plop/templates

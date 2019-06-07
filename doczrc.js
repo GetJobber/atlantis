@@ -109,7 +109,7 @@ const htmlContext = {
       },
       {
         rel: "stylesheet",
-        href: "/public/colors.css",
+        href: "public/colors.css",
       },
     ],
   },
@@ -122,7 +122,7 @@ export default {
   port: 3333,
   menu: ["Atlantis"],
   files: "{README.md,**/*.mdx}",
-  ignore: [],
+  ignore: ["./plop/templates/**/*"],
   codeSandbox: false,
   public: "public",
   themeConfig,
