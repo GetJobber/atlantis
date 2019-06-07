@@ -1,6 +1,10 @@
 # prettier-ignore
 
-version: 2
+version: 2.1
+
+orbs:
+  aws-cli: circleci/aws-cli@0.1.1
+  aws-s3: circleci/aws-s3@1.0.8
 
 references:
   container_config: &container_config
@@ -110,10 +114,36 @@ jobs:
       - *sum_lockfiles
       - *restore_npm_cache
       - *npm_install
-      - run: npm run build
+      - run: npm run build -- --base "/${CIRCLE_PULL_REQUEST##*/}"
       - store_artifacts:
           path: ~/atlantis/.docz/dist
           destination: docs
+      - attach_workspace:
+          at: /tmp/workspace
+      - run: cp -r ~/atlantis/.docz/dist /tmp/workspace/
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - dist
+
+  deploy_docs:
+    executor: aws-cli/default
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - aws-cli/install
+      - aws-cli/configure:
+          aws-access-key-id: ATLANTIS_AWS_ACCESS_KEY_ID
+          aws-secret-access-key: ATLANTIS_AWS_SECRET_ACCESS_KEY
+      - aws-s3/sync:
+          from: /tmp/workspace/dist
+          to: 's3://${ATLANTIS_S3_BUCKET}/${CIRCLE_PULL_REQUEST##*/}'
+          aws-access-key-id: ATLANTIS_AWS_ACCESS_KEY_ID
+          aws-secret-access-key: ATLANTIS_AWS_SECRET_ACCESS_KEY
+          arguments: |
+            --acl public-read \
+            --cache-control "max-age=86400" \
+            --delete
 
 workflows:
   version: 2
@@ -126,23 +156,16 @@ workflows:
             - checkout_code
       - lint_javascript:
           requires:
-            - checkout_code
             - install_dependencies
       - lint_css:
           requires:
-            - checkout_code
             - install_dependencies
       - test:
           requires:
-            - checkout_code
             - install_dependencies
       - build_docs:
           requires:
-            - checkout_code
             - install_dependencies
-            - lint_javascript
-            - lint_css
-            - test
-          filters:
-            branches:
-              only: master
+      - deploy_docs:
+          requires:
+            - build_docs
