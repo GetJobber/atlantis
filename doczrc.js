@@ -109,7 +109,7 @@ const htmlContext = {
       },
       {
         rel: "stylesheet",
-        href: "/public/colors.css",
+        href: "public/colors.css",
       },
     ],
   },
