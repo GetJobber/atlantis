@@ -125,6 +125,7 @@ export default {
   ignore: ["./plop/templates/**/*"],
   codeSandbox: false,
   public: "public",
+  hashRouter: true,
   themeConfig,
   htmlContext,
   modifyBundlerConfig,
