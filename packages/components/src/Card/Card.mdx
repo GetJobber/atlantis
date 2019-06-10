@@ -1,0 +1,53 @@
+---
+menu: Components
+---
+
+import { Playground, Props, Link } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { Card, CardTitle } from ".";
+
+# Card
+
+<ComponentStatus stage="rc" responsive="yes" accessible="no" />
+
+In Jobber a card is used to group related information and tasks to make things
+easier to scan, and action upon. Cards also contain many optional sub-components
+to provide extra structure in a predictable way.
+
+## Simple Example
+
+<Playground>
+  <Card>
+    <p>This is just…</p>
+    <p>A simple card.</p>
+  </Card>
+</Playground>
+
+<Playground>
+  <Card accent="jobColor">
+    <CardTitle title="This is an exceptionally long card title" />
+
+    <p>This is the card content.</p>
+
+  </Card>
+</Playground>
+
+## Card Properties
+
+<Props of={Card} />
+
+---
+
+## ▸ `CardTitle`
+
+The `CardTitle` defines the title of a card. This is used to provide context as
+to the content of the card.
+
+<Playground>
+  <Card>
+    <CardTitle title="Sample Title" />
+
+  </Card>
+</Playground>
+
+<Props of={CardTitle} />

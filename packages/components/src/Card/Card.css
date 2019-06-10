@@ -1,0 +1,41 @@
+.card {
+  --card-background-color: var(--color-white);
+  --header-background-color: var(--color-grey--lightest);
+  --content-background-color: var(--color-white);
+  --border-color: var(--color-grey--lighter);
+  --accent-color: var(--color-grey);
+  --base-padding: 2rem;
+
+  padding: var(--base-padding);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  overflow: auto;
+  background-color: var(--card-background-color);
+}
+
+.accent {
+  border-top: 0.5rem solid var(--accent-color);
+}
+
+.fill {
+  margin-top: calc(-1 * var(--base-padding));
+  margin-bottom: calc(1 * var(--base-padding));
+  margin-left: calc(-1 * var(--base-padding));
+  margin-right: calc(-1 * var(--base-padding));
+}
+
+.header {
+  padding: var(--base-padding);
+  background-color: var(--header-background-color);
+}
+
+.title {
+  --card-title-color: var(--color-blue);
+
+  margin: 0;
+  overflow: hidden;
+  color: var(--card-title-color);
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
