@@ -23,7 +23,7 @@ interface CardTitleProps {
 export function CardTitle({ title }: CardTitleProps) {
   return (
     <CardHeader>
-      <span className={styles.cardTitle}>{title}</span>
+      <span className={styles.title}>{title}</span>
     </CardHeader>
   );
 }

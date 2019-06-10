@@ -11,14 +11,14 @@ it("renders a simple card", () => {
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="card accent purple"
-    >
-      <p>
-        This is the card content.
-      </p>
-    </div>
-  `);
+        <div
+          className="card accent purple"
+        >
+          <p>
+            This is the card content.
+          </p>
+        </div>
+    `);
 });
 
 it("renders a card", () => {
@@ -39,7 +39,7 @@ it("renders a card", () => {
         className="header fill"
       >
         <span
-          className="cardTitle"
+          className="title"
         >
           The Undiscovered Country
         </span>

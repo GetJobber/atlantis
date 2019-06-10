@@ -29,7 +29,7 @@
   background-color: var(--header-background-color);
 }
 
-.cardTitle {
+.title {
   --card-title-color: var(--color-blue);
 
   margin: 0;
