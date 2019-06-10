@@ -40,7 +40,6 @@ const modifyBundlerConfig = config => {
           plugins: [
             require("postcss-preset-env")({
               preserve: true,
-              importFrom: [require.resolve("@jobber/colors")],
             }),
           ],
         },
@@ -109,7 +108,7 @@ const htmlContext = {
       },
       {
         rel: "stylesheet",
-        href: "public/colors.css",
+        href: "public/foundation.css",
       },
     ],
   },
