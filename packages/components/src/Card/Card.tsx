@@ -30,7 +30,7 @@ export function CardTitle({ title }: CardTitleProps) {
 
 interface CardProps {
   /**
-   * The `accentColor`, if provided, will effect the color accent at the top of
+   * The `accent`, if provided, will effect the color accent at the top of
    * the card.
    */
   readonly accent?: keyof typeof cardColors;
