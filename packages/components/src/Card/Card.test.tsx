@@ -1,28 +1,24 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { Card, CardContent, CardTitle } from ".";
+import { Card, CardTitle } from ".";
 
 it("renders a simple card", () => {
   const tree = renderer
     .create(
-      <Card simple accent="purple">
+      <Card accent="purple">
         <p>This is the card content.</p>
       </Card>,
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-            <div
-              className="card accent purple"
-            >
-              <div
-                className="content"
-              >
-                <p>
-                  This is the card content.
-                </p>
-              </div>
-            </div>
-      `);
+    <div
+      className="card accent purple"
+    >
+      <p>
+        This is the card content.
+      </p>
+    </div>
+  `);
 });
 
 it("renders a card", () => {
@@ -31,9 +27,7 @@ it("renders a card", () => {
       <Card accent="green">
         <CardTitle title="The Undiscovered Country" />
 
-        <CardContent>
-          <p>This is the card content.</p>
-        </CardContent>
+        <p>This is the card content.</p>
       </Card>,
     )
     .toJSON();
@@ -42,7 +36,7 @@ it("renders a card", () => {
       className="card accent green"
     >
       <div
-        className="header"
+        className="header fill"
       >
         <span
           className="cardTitle"
@@ -50,13 +44,9 @@ it("renders a card", () => {
           The Undiscovered Country
         </span>
       </div>
-      <div
-        className="content"
-      >
-        <p>
-          This is the card content.
-        </p>
-      </div>
+      <p>
+        This is the card content.
+      </p>
     </div>
   `);
 });

@@ -6,6 +6,7 @@
   --accent-color: var(--color-grey);
   --base-padding: 2rem;
 
+  padding: var(--base-padding);
   border: 1px solid var(--border-color);
   border-radius: 4px;
   overflow: auto;
@@ -16,14 +17,16 @@
   border-top: 0.5rem solid var(--accent-color);
 }
 
+.fill {
+  margin-top: calc(-1 * var(--base-padding));
+  margin-bottom: calc(1 * var(--base-padding));
+  margin-left: calc(-1 * var(--base-padding));
+  margin-right: calc(-1 * var(--base-padding));
+}
+
 .header {
   padding: var(--base-padding);
   background-color: var(--header-background-color);
-}
-
-.content {
-  padding: var(--base-padding);
-  background-color: var(--content-background-color);
 }
 
 .cardTitle {

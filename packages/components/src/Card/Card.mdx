@@ -4,7 +4,7 @@ menu: Components
 
 import { Playground, Props, Link } from "docz";
 import { ComponentStatus } from "@jobber/docx";
-import { Card, CardTitle, CardContent } from ".";
+import { Card, CardTitle } from ".";
 
 # Card
 
@@ -17,7 +17,7 @@ to provide extra structure in a predictable way.
 ## Simple Example
 
 <Playground>
-  <Card simple>
+  <Card>
     <p>This is just…</p>
     <p>A simple card.</p>
   </Card>
@@ -27,9 +27,7 @@ to provide extra structure in a predictable way.
   <Card accent="jobColor">
     <CardTitle title="This is an exceptionally long card title" />
 
-    <CardContent>
-      <p>This is the card content.</p>
-    </CardContent>
+    <p>This is the card content.</p>
 
   </Card>
 </Playground>
@@ -49,30 +47,7 @@ to the content of the card.
   <Card>
     <CardTitle title="Sample Title" />
 
-    <CardContent />
-
   </Card>
 </Playground>
 
 <Props of={CardTitle} />
-
----
-
-## ▸ `CardContent`
-
-The `CardContent` defines the primary content of the card. If you only have
-content you can pass `simple` to the base `Card` and ignore `CardContent` and
-`CardHeader`.
-
-<Playground>
-  <Card>
-    <CardTitle title="" />
-
-    <CardContent>
-      <p>Card Content</p>
-    </CardContent>
-
-  </Card>
-</Playground>
-
-<Props of={CardContent} />

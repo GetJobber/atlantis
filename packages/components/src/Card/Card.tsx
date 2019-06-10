@@ -8,7 +8,9 @@ interface CardSectionProps {
 }
 
 function CardHeader(props: CardSectionProps) {
-  return <div className={styles.header} {...props} />;
+  const className = classnames(styles.header, styles.fill);
+
+  return <div className={className} {...props} />;
 }
 
 interface CardTitleProps {
@@ -26,17 +28,7 @@ export function CardTitle({ title }: CardTitleProps) {
   );
 }
 
-export function CardContent(props: CardSectionProps) {
-  return <div className={styles.content} {...props} />;
-}
-
 interface CardProps {
-  /**
-   * A simple card will automatically contain only a single `CardContent`
-   * section that wraps any passed content.
-   * @default false
-   */
-  readonly simple?: boolean;
   /**
    * The `accentColor`, if provided, will effect the color accent at the top of
    * the card.
@@ -45,18 +37,12 @@ interface CardProps {
   readonly children: ReactNode | ReactNode[];
 }
 
-export function Card({ simple = false, accent, children }: CardProps) {
+export function Card({ accent, children }: CardProps) {
   const className = classnames(
     styles.card,
     accent && styles.accent,
     accent && cardColors[accent],
   );
 
-  let inside = children;
-
-  if (simple) {
-    inside = <CardContent>{children}</CardContent>;
-  }
-
-  return <div className={className}>{inside}</div>;
+  return <div className={className}>{children}</div>;
 }
