@@ -40,6 +40,7 @@ const modifyBundlerConfig = config => {
           plugins: [
             require("postcss-preset-env")({
               preserve: true,
+              importFrom: [require.resolve("@jobber/colors")],
             }),
           ],
         },

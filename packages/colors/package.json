@@ -3,17 +3,21 @@
   "version": "0.0.1",
   "description": "Colors for the Jobber Atlantis Design System",
   "license": "UNLICENSED",
+  "main": "foundation.css",
   "files": [
     "foundation.css"
   ],
   "scripts": {
-    "build": "postcss src/foundation.css --output foundation.css",
-    "clean": "rm -f foundation.css",
+    "build": "npm run build:css && npm run build:colors",
+    "build:css": "postcss src/foundation.css --output foundation.css --use postcss-import",
+    "build:colors": "node buildColors.js",
+    "clean": "rm -f colors.js foundation.css",
     "prepare": "npm run clean; npm run build"
   },
   "devDependencies": {
     "postcss": "^7.0.16",
     "postcss-cli": "^6.1.2",
+    "postcss-custom-properties": "^8.0.10",
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^6.6.0",
     "react": "^16.8.6"
