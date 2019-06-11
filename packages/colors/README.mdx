@@ -1,5 +1,6 @@
 ---
-name: Foundation
+name: Design
+menu: Packages
 route: /foundation
 ---
 
@@ -17,6 +18,8 @@ npm install @jobber/foundation
 
 `@jobber/foundation` ships `foundation.css`.
 
+### CSS
+
 Import the `@jobber/foundation` stylesheet into your own css
 
 ```css
@@ -26,6 +29,11 @@ Import the `@jobber/foundation` stylesheet into your own css
   color: var(--color-blue);
 }
 ```
+
+If `foundation.css` is already included you do not need to import it for every
+css file.
+
+### PostCSS
 
 Inject `@jobber/foundation` into your css with `postcss`
 
