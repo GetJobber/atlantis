@@ -1,59 +1,40 @@
 ---
-name: Colors
-route: /colors
+name: Foundation
+route: /foundation
 ---
 
-# Colors
+# Foundation
 
-Colors for the Jobber Atlantis Design System
+Foundational colors and rhythm for the Jobber Atlantis Design System
 
 ## Installation
 
 ```sh
-npm install @jobber/colors
+npm install @jobber/foundation
 ```
 
 ## Usage
 
-`@jobber/colors` ships `colors.js`, `colors.json` and `colors.css` to allow
-flexibility in how colors are consumed.
+`@jobber/foundation` ships `foundation.css`.
 
-Import the `@jobber/colors` stylesheet into your own css
+Import the `@jobber/foundation` stylesheet into your own css
 
 ```css
-@import "~@jobber/colors/colors.css";
+@import "~@jobber/foundation/foundation.css";
 
 .myLabel {
   color: var(--color-blue);
 }
 ```
 
-Import `@jobber/colors` directly into javascript
-
-```js
-import colors from "@jobber/colors";
-
-console.log(
-  "Color grey blue lightest is my favortie",
-  colors.customProperties["--color-greyBlue--lightest"]
-);
-```
-
-Inject `@jobber/colors` into your css with `postcss`
+Inject `@jobber/foundation` into your css with `postcss`
 
 ```js
 module.exports = {
   plugins: [
     require("postcss-preset-env")({
-      importFrom: ["@jobber/colors"]
+      importFrom: ["@jobber/foundation"]
     })
   ]
 };
 ```
-
-## Color List
-
-import { ColorSwatches } from "@jobber/colors/ColorSwatches";
-import colors from "./colors";
-
-<ColorSwatches colors={colors.customProperties} />
