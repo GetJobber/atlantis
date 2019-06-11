@@ -1,0 +1,35 @@
+---
+name: Spacing
+menu: Design
+route: /space
+---
+
+# Spacing
+
+Spacing for the Jobber Atlantis Design System
+
+export const baseStyle = {
+  backgroundColor: "var(--color-indigo)",
+  width: "var(--space-base)"
+};
+
+export function Height({ of: propertyName }) {
+  const element = document.createElement("div");
+  element.style.height = `var(${propertyName})`;
+  document.body.appendChild(element);
+  const value = getComputedStyle(element).height;
+  element.remove();
+  return value;
+}
+
+| Name                  | Visual                                                              | Value                               |
+| :-------------------- | :------------------------------------------------------------------ | :---------------------------------- |
+| `--space-minuscule`   | <div style={{ ...baseStyle, height: "var(--space-minuscule)"}} />   | <Height of="--space-minuscule" />   |
+| `--space-smallest`    | <div style={{ ...baseStyle, height: "var(--space-smallest)"}} />    | <Height of="--space-smallest" />    |
+| `--space-smaller`     | <div style={{ ...baseStyle, height: "var(--space-smaller)"}} />     | <Height of="--space-smaller" />     |
+| `--space-small`       | <div style={{ ...baseStyle, height: "var(--space-small)"}} />       | <Height of="--space-small" />       |
+| `--space-base`        | <div style={{ ...baseStyle, height: "var(--space-base)" }} />       | <Height of="--space-base" />        |
+| `--space-large`       | <div style={{ ...baseStyle, height: "var(--space-large)"}} />       | <Height of="--space-large" />       |
+| `--space-larger`      | <div style={{ ...baseStyle, height: "var(--space-larger)"}} />      | <Height of="--space-larger" />      |
+| `--space-largest`     | <div style={{ ...baseStyle, height: "var(--space-largest)"}} />     | <Height of="--space-largest" />     |
+| `--space-extravagant` | <div style={{ ...baseStyle, height: "var(--space-extravagant)"}} /> | <Height of="--space-extravagant" /> |

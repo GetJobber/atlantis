@@ -1,0 +1,13 @@
+:root {
+  --space-unit: 16px;
+
+  --space-minuscule: calc(0.25 * var(--space-unit));
+  --space-smallest: calc(0.375 * var(--space-unit));
+  --space-smaller: calc(0.5 * var(--space-unit));
+  --space-small: calc(0.75 * var(--space-unit));
+  --space-base: calc(1 * var(--space-unit));
+  --space-large: calc(2 * var(--space-unit));
+  --space-larger: calc(2.5 * var(--space-unit));
+  --space-largest: calc(3 * var(--space-unit));
+  --space-extravagant: calc(3.5 * var(--space-unit));
+}
