@@ -29,7 +29,7 @@
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
-    "@jobber/colors": "file:packages/colors",
+    "@jobber/design": "file:packages/design",
     "@jobber/eslint-config": "file:packages/eslint-config",
     "@jobber/stylelint-config": "file:packages/stylelint-config",
     "@types/jest": "^24.0.11",

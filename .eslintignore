@@ -1,5 +1,5 @@
 node_modules
 dist
 .rpt2_cache
-packages/colors/colors.js
+packages/design/colors.js
 plop/templates

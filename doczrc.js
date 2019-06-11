@@ -9,7 +9,6 @@ const modifyBundlerConfig = config => {
   config.resolve.alias = Object.assign({}, config.resolve.alias, {
     "@jobber/components": path.resolve(__dirname, "packages/components/src"),
     "@jobber/docx": path.resolve(__dirname, "packages/docx/src"),
-    "@jobber/colors": path.resolve(__dirname, "packages/colors/src"),
   });
 
   config.plugins.push(new WatchIgnorePlugin([/css\.d\.ts$/]));
@@ -40,7 +39,7 @@ const modifyBundlerConfig = config => {
           plugins: [
             require("postcss-preset-env")({
               preserve: true,
-              importFrom: [require.resolve("@jobber/colors")],
+              importFrom: [require.resolve("@jobber/design")],
             }),
           ],
         },

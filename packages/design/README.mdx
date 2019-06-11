@@ -1,7 +1,7 @@
 ---
 name: Design
 menu: Packages
-route: /foundation
+route: /design
 ---
 
 # Foundation
@@ -11,19 +11,19 @@ Foundational colors and rhythm for the Jobber Atlantis Design System
 ## Installation
 
 ```sh
-npm install @jobber/foundation
+npm install @jobber/design
 ```
 
 ## Usage
 
-`@jobber/foundation` ships `foundation.css`.
+`@jobber/design` ships `foundation.css`.
 
 ### CSS
 
-Import the `@jobber/foundation` stylesheet into your own css
+Import the `@jobber/design` stylesheet into your own css
 
 ```css
-@import "~@jobber/foundation/foundation.css";
+@import "~@jobber/design/foundation.css";
 
 .myLabel {
   color: var(--color-blue);
@@ -31,8 +31,8 @@ Import the `@jobber/foundation` stylesheet into your own css
 }
 ```
 
-If `foundation.css` is already included you do not need to import it for every
-css file.
+If `design/foundation.css` is already included you do not need to import it for
+every css file.
 
 ### PostCSS
 
@@ -42,7 +42,7 @@ Inject `@jobber/foundation` into your css with `postcss`
 module.exports = {
   plugins: [
     require("postcss-preset-env")({
-      importFrom: ["@jobber/foundation"]
+      importFrom: ["@jobber/design"]
     })
   ]
 };
