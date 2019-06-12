@@ -3,7 +3,7 @@ name: Atlantis
 route: /
 ---
 
-# 🔱 Atlantis
+# 🔱 Atlantiss
 
 [![CircleCI](https://circleci.com/gh/GetJobber/atlantis/tree/master.svg?style=svg&circle-token=3f1b0343273ef589350516e23713e81c8c3ac094)](https://circleci.com/gh/GetJobber/atlantis/tree/master)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/a8bb241d-c781-4ed5-9e12-1f19094e521b/deploy-status)](https://app.netlify.com/sites/jobber-atlantis/deploys)
