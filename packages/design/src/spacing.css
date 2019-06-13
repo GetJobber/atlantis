@@ -1,13 +1,13 @@
 :root {
   --space-unit: 16px;
 
-  --space-minuscule: calc(0.25 * var(--space-unit));
-  --space-smallest: calc(0.375 * var(--space-unit));
-  --space-smaller: calc(0.5 * var(--space-unit));
-  --space-small: calc(0.75 * var(--space-unit));
-  --space-base: calc(1 * var(--space-unit));
-  --space-large: calc(2 * var(--space-unit));
-  --space-larger: calc(2.5 * var(--space-unit));
-  --space-largest: calc(3 * var(--space-unit));
-  --space-extravagant: calc(3.5 * var(--space-unit));
+  --space-minuscule: calc(var(--space-unit) / 16);
+  --space-smallest: calc(var(--space-unit) / 8);
+  --space-smaller: calc(var(--space-unit) / 4);
+  --space-small: calc(var(--space-unit) / 2);
+  --space-base: calc(var(--space-unit) * 1);
+  --space-large: calc(var(--space-unit) * 1.5);
+  --space-larger: calc(var(--space-unit) * 2);
+  --space-largest: calc(var(--space-unit) * 3);
+  --space-extravagant: calc(var(--space-unit) * 4);
 }
