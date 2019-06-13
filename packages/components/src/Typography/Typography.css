@@ -1,0 +1,97 @@
+/* -------------------------------------------------------------------------
+   Source Sans Pro Font
+   ------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Source Sans Pro Regular"), local("SourceSansPro-Regular"),
+    url("fonts/source-sans-pro-v12-latin-regular.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("fonts/source-sans-pro-v12-latin-regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+@font-face {
+  font-family: "Source Sans Pro";
+  font-style: italic;
+  font-weight: 400;
+  src: local("Source Sans Pro Italic"), local("SourceSansPro-Italic"),
+    url("fonts/source-sans-pro-v12-latin-italic.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("fonts/source-sans-pro-v12-latin-italic.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+@font-face {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Source Sans Pro Bold"), local("SourceSansPro-Bold"),
+    url("fonts/source-sans-pro-v12-latin-700.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("fonts/source-sans-pro-v12-latin-700.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+@font-face {
+  font-family: "Source Sans Pro";
+  font-style: italic;
+  font-weight: 700;
+  src: local("Source Sans Pro Bold Italic"), local("SourceSansPro-BoldItalic"),
+    url("fonts/source-sans-pro-v12-latin-700italic.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("fonts/source-sans-pro-v12-latin-700italic.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* -------------------------------------------------------------------------
+   Poppins Font
+   ------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 800;
+  src: local("Poppins ExtraBold"), local("Poppins-ExtraBold"),
+    url("fonts/poppins-v6-latin-800.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("fonts/poppins-v6-latin-800.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 900;
+  src: local("Poppins Black"), local("Poppins-Black"),
+    url("fonts/poppins-v6-latin-900.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("fonts/poppins-v6-latin-900.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* -------------------------------------------------------------------------
+   Variables
+   ------------------------------------------------------------------------- */
+
+:root {
+  /* Font Family */
+  --fontFamily-primary: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  --fontFamily-display: "Poppins", Helvetica, Arial, sans-serif;
+
+  /* Type Scale */
+  --fontSize-unit: 16px;
+
+  --fontSize-extravagant: calc(var(--fontSize-unit) * 3); /* 48 */
+  --fontSize-jumbo: calc(var(--fontSize-unit) * 2.25); /* 36 */
+  --fontSize-largest: calc(var(--fontSize-unit) * 1.5); /* 24 */
+  --fontSize-larger: calc(var(--fontSize-unit) * 1.25); /* 20 */
+  --fontSize-large: calc(var(--fontSize-unit) * 1.125); /* 18 */
+  --fontSize-base: calc(var(--fontSize-unit) * 1); /* 16 */
+  --fontSize-small: calc(var(--fontSize-unit) * 0.875); /* 14 */
+}
+
+/* -------------------------------------------------------------------------
+   Base Style
+   ------------------------------------------------------------------------- */
+
+.typography {
+  font-family: var(--fontFamily-primary);
+  font-size: var(--font-size);
+}
