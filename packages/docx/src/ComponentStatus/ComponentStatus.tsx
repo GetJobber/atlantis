@@ -52,7 +52,7 @@ const status: { [status: string]: { [stage: string]: StatusData } } = {
 };
 
 interface ComponentStatusProps {
-  readonly stage: "pre" | "ready";
+  readonly stage: "pre" | "rc" | "ready";
   readonly responsive: "no" | "partial" | "yes";
   readonly accessible: "no" | "partial" | "yes";
 }

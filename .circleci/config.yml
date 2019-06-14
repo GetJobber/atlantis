@@ -34,7 +34,7 @@ references:
   npm_install: &npm_install
     run:
       name: Install Dependencies
-      command: npm install
+      command: npm ci
 
   generate_base_path: &generate_base_path
     run:

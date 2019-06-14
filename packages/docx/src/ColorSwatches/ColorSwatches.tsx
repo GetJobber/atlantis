@@ -1,5 +1,5 @@
 import React from "react";
-import { ColorSwatch } from "../ColorSwatch";
+import { ColorSwatch } from "./ColorSwatch";
 import styles from "./ColorSwatches.css";
 
 interface Color {

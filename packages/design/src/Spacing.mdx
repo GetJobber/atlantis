@@ -1,0 +1,39 @@
+---
+name: Spacing
+menu: Design
+route: /space
+---
+
+# Spacing
+
+Spacing for the Jobber Atlantis Design System
+
+export function Example({ of: size }) {
+  const style = {
+    width: `var(--space-${size})`,
+    height: "var(--space-base)",
+    backgroundColor: "var(--color-indigo)"
+  };
+  return <div style={style} />;
+}
+
+export function Height({ of: size }) {
+  const element = document.createElement("div");
+  element.style.height = `var(--space-${size})`;
+  document.body.appendChild(element);
+  const value = getComputedStyle(element).height;
+  element.remove();
+  return value;
+}
+
+| Name                  | Visual                       | Value                       |
+| :-------------------- | :--------------------------- | :-------------------------- |
+| `--space-minuscule`   | <Example of="minuscule" />   | <Height of="minuscule" />   |
+| `--space-smallest`    | <Example of="smallest" />    | <Height of="smallest" />    |
+| `--space-smaller`     | <Example of="smaller" />     | <Height of="smaller" />     |
+| `--space-small`       | <Example of="small" />       | <Height of="small" />       |
+| `--space-base`        | <Example of="base" />        | <Height of="base" />        |
+| `--space-large`       | <Example of="large" />       | <Height of="large" />       |
+| `--space-larger`      | <Example of="larger" />      | <Height of="larger" />      |
+| `--space-largest`     | <Example of="largest" />     | <Height of="largest" />     |
+| `--space-extravagant` | <Example of="extravagant" /> | <Height of="extravagant" /> |

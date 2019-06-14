@@ -1,0 +1,49 @@
+---
+name: Design
+menu: Packages
+route: /design
+---
+
+# Foundation
+
+Foundational colors and rhythm for the Jobber Atlantis Design System
+
+## Installation
+
+```sh
+npm install @jobber/design
+```
+
+## Usage
+
+`@jobber/design` ships `foundation.css`.
+
+### CSS
+
+Import the `@jobber/design` stylesheet into your own css
+
+```css
+@import "~@jobber/design/foundation.css";
+
+.myLabel {
+  color: var(--color-blue);
+  padding: var(--space-base);
+}
+```
+
+If `design/foundation.css` is already included you do not need to import it for
+every css file.
+
+### PostCSS
+
+Inject `@jobber/foundation` into your css with `postcss`
+
+```js
+module.exports = {
+  plugins: [
+    require("postcss-preset-env")({
+      importFrom: ["@jobber/design"]
+    })
+  ]
+};
+```
