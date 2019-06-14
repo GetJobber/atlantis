@@ -2,15 +2,6 @@
   "private": true,
   "name": "atlantis",
   "version": "0.0.1",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/GetJobber/atlantis.git"
-  },
-  "author": "",
-  "bugs": {
-    "url": "https://github.com/GetJobber/atlantis/issues"
-  },
-  "homepage": "https://github.com/GetJobber/atlantis#readme",
   "scripts": {
     "start": "docz dev",
     "test": "jest",
@@ -24,6 +15,15 @@
     "lint:fix": "npm run lint:js -- --fix && npm run lint:css -- --fix && npm run lint:markdown -- --write",
     "install": "lerna bootstrap"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GetJobber/atlantis.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/GetJobber/atlantis/issues"
+  },
+  "homepage": "https://github.com/GetJobber/atlantis#readme",
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
