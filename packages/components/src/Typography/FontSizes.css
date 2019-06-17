@@ -1,0 +1,54 @@
+:root {
+  --fontSize-unit: 16px;
+  --baseline: calc(var(--fontSize-unit) / 4);
+
+  --fontSize-extravagant: calc((var(--fontSize-unit)) * 3); /* 48 */
+  --fontSize-jumbo: calc((var(--fontSize-unit)) * 2.25); /* 36 */
+  --fontSize-largest: calc((var(--fontSize-unit)) * 1.5); /* 24 */
+  --fontSize-larger: calc((var(--fontSize-unit)) * 1.25); /* 20 */
+  --fontSize-large: calc((var(--fontSize-unit)) * 1.125); /* 18 */
+  --fontSize-base: calc((var(--fontSize-unit)) * 1); /* 16 */
+  --fontSize-small: calc((var(--fontSize-unit)) * 0.875); /* 14 */
+
+  --lineHeight-large: 1.33;
+  --lineHeight-base: 1.25;
+  --lineHeight-tight: 1.2;
+  --lineHeight-tighter: 1.14;
+  --lineHeight-tightest: 1.11;
+  --lineHeight-miniscule: 1.08;
+}
+
+.extravagant {
+  --font-size: var(--fontSize-extravagant);
+  --line-height: var(--lineHeight-miniscule);
+}
+
+.jumbo {
+  --font-size: var(--fontSize-jumbo);
+  --line-height: var(--lineHeight-large);
+}
+
+.largest {
+  --font-size: var(--fontSize-largest);
+  --line-height: var(--lineHeight-large);
+}
+
+.larger {
+  --font-size: var(--fontSize-larger);
+  --line-height: var(--lineHeight-tight);
+}
+
+.large {
+  --font-size: var(--fontSize-large);
+  --line-height: var(--lineHeight-tightest);
+}
+
+.base {
+  --font-size: var(--fontSize-base);
+  --line-height: var(--lineHeight-base);
+}
+
+.small {
+  --font-size: var(--fontSize-small);
+  --line-height: var(--lineHeight-tighter);
+}

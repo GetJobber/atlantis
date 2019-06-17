@@ -75,23 +75,33 @@
   --fontFamily-primary: "Source Sans Pro", Helvetica, Arial, sans-serif;
   --fontFamily-display: "Poppins", Helvetica, Arial, sans-serif;
 
-  /* Type Scale */
-  --fontSize-unit: 16px;
-
-  --fontSize-extravagant: calc(var(--fontSize-unit) * 3); /* 48 */
-  --fontSize-jumbo: calc(var(--fontSize-unit) * 2.25); /* 36 */
-  --fontSize-largest: calc(var(--fontSize-unit) * 1.5); /* 24 */
-  --fontSize-larger: calc(var(--fontSize-unit) * 1.25); /* 20 */
-  --fontSize-large: calc(var(--fontSize-unit) * 1.125); /* 18 */
-  --fontSize-base: calc(var(--fontSize-unit) * 1); /* 16 */
-  --fontSize-small: calc(var(--fontSize-unit) * 0.875); /* 14 */
+  --font-size: 16px;
+  --line-height: 1.5;
 }
 
 /* -------------------------------------------------------------------------
    Base Style
    ------------------------------------------------------------------------- */
 
-.typography {
+.base {
+  margin: 0 0 16px 0;
   font-family: var(--fontFamily-primary);
   font-size: var(--font-size);
+  line-height: var(--line-height);
+}
+
+/* -------------------------------------------------------------------------
+   Text Case
+   ------------------------------------------------------------------------- */
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.lowercase {
+  text-transform: lowercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
 }
