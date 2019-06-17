@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import classnames from "classnames";
 import styles from "./Typography.css";
 import fontSizes from "./FontSizes.css";
+import textCases from "./TextCases.css";
 
 interface TypographyProps {
   /**
@@ -23,9 +24,7 @@ export function Typography({
   const className = classnames(
     styles.base,
     size && fontSizes[size],
-    textCase === "uppercase" && styles.uppercase,
-    textCase === "lowercase" && styles.lowercase,
-    textCase === "capitalize" && styles.capitalize,
+    textCase && textCases[textCase],
   );
   const Tag = element;
 

@@ -89,19 +89,3 @@
   font-size: var(--font-size);
   line-height: var(--line-height);
 }
-
-/* -------------------------------------------------------------------------
-   Text Case
-   ------------------------------------------------------------------------- */
-
-.uppercase {
-  text-transform: uppercase;
-}
-
-.lowercase {
-  text-transform: lowercase;
-}
-
-.capitalize {
-  text-transform: capitalize;
-}
