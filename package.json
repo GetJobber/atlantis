@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "start": "docz dev",
+    "start:withPrivateComponents": "PRIVATE_COMPONENTS=visible docz dev",
     "test": "jest",
     "plop": "plop",
     "build": "docz build",
@@ -46,6 +47,7 @@
     "eslint-plugin-jest": "^22.5.0",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.13.0",
+    "glob": "^7.1.4",
     "husky": "^2.3.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.7.1",
