@@ -1,9 +1,10 @@
+/* eslint-disable import/no-internal-modules */
 import React, { ReactNode } from "react";
 import classnames from "classnames";
-import styles from "./Typography.css";
-import fontSizes from "./FontSizes.css";
-import fontWeights from "./FontWeights.css";
-import textCases from "./TextCases.css";
+import styles from "./css/Typography.css";
+import fontSizes from "./css/FontSizes.css";
+import fontWeights from "./css/FontWeights.css";
+import textCases from "./css/TextCases.css";
 
 interface TypographyProps {
   /**

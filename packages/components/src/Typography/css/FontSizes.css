@@ -1,5 +1,5 @@
 :root {
-  --fontSize-unit: 16px;
+  --fontSize-unit: var(--base-unit);
 
   --fontSize-extravagant: calc((var(--fontSize-unit)) * 3); /* 48 */
   --fontSize-jumbo: calc((var(--fontSize-unit)) * 2.25); /* 36 */

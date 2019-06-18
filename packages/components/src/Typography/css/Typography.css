@@ -7,9 +7,9 @@
   font-style: normal;
   font-weight: 400;
   src: local("Source Sans Pro Regular"), local("SourceSansPro-Regular"),
-    url("fonts/source-sans-pro-v12-latin-regular.woff2") format("woff2"),
+    url("../fonts/source-sans-pro-v12-latin-regular.woff2") format("woff2"),
     /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url("fonts/source-sans-pro-v12-latin-regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+      url("../fonts/source-sans-pro-v12-latin-regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 @font-face {
@@ -17,9 +17,9 @@
   font-style: italic;
   font-weight: 400;
   src: local("Source Sans Pro Italic"), local("SourceSansPro-Italic"),
-    url("fonts/source-sans-pro-v12-latin-italic.woff2") format("woff2"),
+    url("../fonts/source-sans-pro-v12-latin-italic.woff2") format("woff2"),
     /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url("fonts/source-sans-pro-v12-latin-italic.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+      url("../fonts/source-sans-pro-v12-latin-italic.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 @font-face {
@@ -27,9 +27,9 @@
   font-style: normal;
   font-weight: 700;
   src: local("Source Sans Pro Bold"), local("SourceSansPro-Bold"),
-    url("fonts/source-sans-pro-v12-latin-700.woff2") format("woff2"),
+    url("../fonts/source-sans-pro-v12-latin-700.woff2") format("woff2"),
     /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url("fonts/source-sans-pro-v12-latin-700.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+      url("../fonts/source-sans-pro-v12-latin-700.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 @font-face {
@@ -37,9 +37,9 @@
   font-style: italic;
   font-weight: 700;
   src: local("Source Sans Pro Bold Italic"), local("SourceSansPro-BoldItalic"),
-    url("fonts/source-sans-pro-v12-latin-700italic.woff2") format("woff2"),
+    url("../fonts/source-sans-pro-v12-latin-700italic.woff2") format("woff2"),
     /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url("fonts/source-sans-pro-v12-latin-700italic.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+      url("../fonts/source-sans-pro-v12-latin-700italic.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 /* -------------------------------------------------------------------------
@@ -51,9 +51,9 @@
   font-style: normal;
   font-weight: 800;
   src: local("Poppins ExtraBold"), local("Poppins-ExtraBold"),
-    url("fonts/poppins-v6-latin-800.woff2") format("woff2"),
+    url("../fonts/poppins-v6-latin-800.woff2") format("woff2"),
     /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url("fonts/poppins-v6-latin-800.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+      url("../fonts/poppins-v6-latin-800.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 @font-face {
@@ -61,9 +61,9 @@
   font-style: normal;
   font-weight: 900;
   src: local("Poppins Black"), local("Poppins-Black"),
-    url("fonts/poppins-v6-latin-900.woff2") format("woff2"),
+    url("../fonts/poppins-v6-latin-900.woff2") format("woff2"),
     /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url("fonts/poppins-v6-latin-900.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+      url("../fonts/poppins-v6-latin-900.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 /* -------------------------------------------------------------------------
@@ -81,7 +81,7 @@
 
 .base {
   margin: 0 0 16px 0;
-  font-size: var(--font-size, 16px);
+  font-size: var(--font-size, var(--base-unit));
   font-weight: var(--font-weight, 400);
   line-height: var(--line-height, 1.25);
 }
