@@ -80,7 +80,8 @@
    ------------------------------------------------------------------------- */
 
 .base {
-  margin: 0 0 16px 0;
+  margin: 0;
+  padding: 0;
   font-size: var(--font-size, var(--base-unit));
   font-weight: var(--font-weight, 400);
   line-height: var(--line-height, 1.25);
