@@ -5,6 +5,7 @@ import styles from "./css/Typography.css";
 import fontSizes from "./css/FontSizes.css";
 import fontWeights from "./css/FontWeights.css";
 import textCases from "./css/TextCases.css";
+import textColors from "./css/TextColors.css";
 
 interface TypographyProps {
   /**
@@ -20,6 +21,7 @@ interface TypographyProps {
    */
   readonly fontWeight?: keyof typeof fontWeights;
   readonly textCase?: keyof typeof textCases;
+  readonly textColor?: keyof typeof textColors;
   readonly children: ReactNode;
 }
 
@@ -29,12 +31,14 @@ export function Typography({
   size = "base",
   fontWeight = "regular",
   textCase,
+  textColor,
 }: TypographyProps) {
   const className = classnames(
     styles.base,
     size && fontSizes[size],
     fontWeight && fontWeights[fontWeight],
     textCase && textCases[textCase],
+    textColor && textColors[textColor],
   );
 
   const Tag = element;
