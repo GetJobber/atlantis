@@ -7,14 +7,15 @@ import textCases from "./TextCases.css";
 
 interface TypographyProps {
   /**
-   *
    * @default "p"
    */
   readonly element: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
+  /**
+   * @default "base"
+   */
   readonly size?: keyof typeof fontSizes;
   /**
-   *
-   * @default "sourceSans"
+   * @default "regular"
    */
   readonly fontWeight?: keyof typeof fontWeights;
   readonly textCase?: keyof typeof textCases;
@@ -24,7 +25,7 @@ interface TypographyProps {
 export function Typography({
   children,
   element = "p",
-  size,
+  size = "base",
   fontWeight = "regular",
   textCase,
 }: TypographyProps) {
@@ -34,6 +35,7 @@ export function Typography({
     fontWeight && fontWeights[fontWeight],
     textCase && textCases[textCase],
   );
+
   const Tag = element;
 
   return <Tag className={className}>{children}</Tag>;
