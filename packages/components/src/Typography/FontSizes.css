@@ -20,7 +20,6 @@
 
 .extravagant {
   --font-size: var(--fontSize-extravagant);
-  --line-height: var(--lineHeight-miniscule);
 }
 
 .jumbo {

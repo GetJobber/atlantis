@@ -72,9 +72,10 @@
 
 :root {
   /* Font Family */
-  --fontFamily-primary: "Source Sans Pro", Helvetica, Arial, sans-serif;
+  --fontFamily-normal: "Source Sans Pro", Helvetica, Arial, sans-serif;
   --fontFamily-display: "Poppins", Helvetica, Arial, sans-serif;
 
+  /* Font styles */
   --font-size: 16px;
   --line-height: 1.5;
 }
@@ -85,7 +86,7 @@
 
 .base {
   margin: 0 0 16px 0;
-  font-family: var(--fontFamily-primary);
   font-size: var(--font-size);
+  font-weight: var(--font-weight);
   line-height: var(--line-height);
 }
