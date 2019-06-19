@@ -7,7 +7,7 @@ import fontWeights from "./css/FontWeights.css";
 import textCases from "./css/TextCases.css";
 import textColors from "./css/TextColors.css";
 
-interface TypographyProps {
+export interface TypographyProps {
   /**
    * @default "p"
    */

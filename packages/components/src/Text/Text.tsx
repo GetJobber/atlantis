@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { Typography } from "../Typography";
+import { Typography, TypographyProps } from "../Typography";
 
 interface TextProps {
   readonly variation?:
@@ -9,36 +9,31 @@ interface TextProps {
     | "warning"
     | "info"
     | "button"
-    | "subhead";
+    | "subhead"
+    | "default";
   readonly children: ReactNode;
 }
 
-export function Text({ variation, children }: TextProps) {
-  switch (variation) {
-    case "subdued":
-      return <Typography textColor="greyBlue">{children}</Typography>;
-    case "success":
-      return <Typography textColor="green">{children}</Typography>;
-    case "error":
-      return <Typography textColor="red">{children}</Typography>;
-    case "warning":
-      return <Typography textColor="yellow">{children}</Typography>;
-    case "info":
-      return <Typography textColor="lightBlue">{children}</Typography>;
-    case "button":
-      return (
-        <Typography
-          textCase="uppercase"
-          textColor="green"
-          fontWeight="extraBold"
-          size="small"
-        >
-          {children}
-        </Typography>
-      );
-    case "subhead":
-      return <Typography size="larger">{children}</Typography>;
-    default:
-      return <Typography>{children}</Typography>;
-  }
+interface VariationMap {
+  [variation: string]: Omit<TypographyProps, "children">;
+}
+
+export function Text({ variation = "default", children }: TextProps) {
+  const variationMap: VariationMap = {
+    default: {},
+    subdued: { textColor: "greyBlue" },
+    success: { textColor: "green" },
+    error: { textColor: "red" },
+    warning: { textColor: "yellow" },
+    info: { textColor: "blue" },
+    button: {
+      textColor: "green",
+      textCase: "uppercase",
+      fontWeight: "extraBold",
+      size: "small",
+    },
+    subhead: { size: "larger" },
+  };
+
+  return <Typography {...variationMap[variation]}>{children}</Typography>;
 }
