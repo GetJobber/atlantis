@@ -1,0 +1,41 @@
+---
+menu: Components
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { Text } from ".";
+
+# Text
+
+<ComponentStatus stage="pre" responsive="no" accessible="no" />
+
+In Jobber a Text is used to …
+
+## Simple Example
+
+<Playground>
+  <Text>Ask the information you need upfront from clients and new leads</Text>
+  <br />
+  <Text variation="subdued">Job note linked to related invoice</Text>
+  <br />
+  <Text variation="success">Invoice sent</Text>
+  <br />
+  <Text variation="error">Name is required</Text>
+  <br />
+  <Text variation="warning">Your message is over 160 characters</Text>
+  <br />
+  <Text variation="info">
+    Drag to rearrange the order that fields show up in Jobber
+  </Text>
+  <br />
+  <Text variation="button">Update Quote</Text>
+  <br />
+  <Text variation="subhead">
+    Attract new customers by asking happy clients for a Facebook recommendation
+  </Text>
+</Playground>
+
+## Text Properties
+
+<Props of={Text} />
