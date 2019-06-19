@@ -4,7 +4,7 @@
   --content-background-color: var(--color-white);
   --border-color: var(--color-grey--lighter);
   --accent-color: var(--color-grey);
-  --base-padding: 2rem;
+  --base-padding: var(--space-base);
 
   padding: var(--base-padding);
   border: 1px solid var(--border-color);
