@@ -67,25 +67,6 @@ it("renders correctly as small", () => {
   `);
 });
 
-it("renders correctly as large", () => {
-  const tree = renderer.create(<InputText size="large" />).toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="inputWrapper large"
-    >
-      <label
-        className="label"
-      >
-        <input
-          className="input"
-          disabled={false}
-          type="text"
-        />
-      </label>
-    </div>
-  `);
-});
-
 it("renders correctly in a disabled state", () => {
   const tree = renderer.create(<InputText disabled />).toJSON();
   expect(tree).toMatchInlineSnapshot(`

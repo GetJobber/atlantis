@@ -15,7 +15,7 @@ interface InputTextProps {
    * The size of the input
    * @default normal
    */
-  readonly size?: "small" | "normal" | "large";
+  readonly size?: "small" | "normal";
   /**
    * Indicates whether the input is disabled or not.
    * @default false

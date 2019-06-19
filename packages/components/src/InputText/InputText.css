@@ -21,11 +21,6 @@
   --input-height: var(--input-height--normal, 48px);
 }
 
-.large {
-  --input-height: var(--input-height--large, 64px);
-  --input-font-size: var(--input-font-size--large, 1em);
-}
-
 .error {
   --input-border-color: var(--input-border-color--error);
   --input-border-color--focused: var(--input-border-color--error);
