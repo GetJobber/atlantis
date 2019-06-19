@@ -1,0 +1,1 @@
+export { InputText } from "./InputText";

@@ -1,8 +1,8 @@
 import React, { ChangeEventHandler } from "react";
 import classnames from "classnames";
-import styles from "./TextField.css";
+import styles from "./InputText.css";
 
-interface TextFieldProps {
+interface InputTextProps {
   /** The input name  */
   readonly name?: string;
   /** The text that appears when no value is set and displayed as a hover label when a value is present. */
@@ -28,7 +28,7 @@ interface TextFieldProps {
   readonly error?: boolean;
 }
 
-export function TextField({
+export function InputText({
   name,
   placeholder,
   defaultValue,
@@ -36,7 +36,7 @@ export function TextField({
   size = "normal",
   disabled = false,
   error = false,
-}: TextFieldProps) {
+}: InputTextProps) {
   const wrapperClass = classnames(
     styles.inputWrapper,
     styles[size],

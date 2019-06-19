@@ -1,9 +1,9 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { TextField } from "./TextField";
+import { InputText } from "./InputText";
 
 it("renders correctly with no props", () => {
-  const tree = renderer.create(<TextField />).toJSON();
+  const tree = renderer.create(<InputText />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
       className="inputWrapper normal"
@@ -23,7 +23,7 @@ it("renders correctly with no props", () => {
 
 it("renders correctly with a placeholder", () => {
   const tree = renderer
-    .create(<TextField placeholder="My placeholder" />)
+    .create(<InputText placeholder="My placeholder" />)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
@@ -49,7 +49,7 @@ it("renders correctly with a placeholder", () => {
 });
 
 it("renders correctly as small", () => {
-  const tree = renderer.create(<TextField size="small" />).toJSON();
+  const tree = renderer.create(<InputText size="small" />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
       className="inputWrapper small"
@@ -68,7 +68,7 @@ it("renders correctly as small", () => {
 });
 
 it("renders correctly as large", () => {
-  const tree = renderer.create(<TextField size="large" />).toJSON();
+  const tree = renderer.create(<InputText size="large" />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
       className="inputWrapper large"
@@ -87,7 +87,7 @@ it("renders correctly as large", () => {
 });
 
 it("renders correctly in a disabled state", () => {
-  const tree = renderer.create(<TextField disabled />).toJSON();
+  const tree = renderer.create(<InputText disabled />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
       className="inputWrapper normal"
