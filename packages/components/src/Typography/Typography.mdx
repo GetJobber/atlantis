@@ -8,15 +8,16 @@ import { Typography } from ".";
 
 # Typography
 
-<ComponentStatus stage="pre" responsive="no" accessible="no" />
+<ComponentStatus stage="pre" responsive="no" accessible="yes" />
 
-In Jobber a Typography is used to …
-
-## Simple Example
+Base component that defines typographic standards across Jobber
 
 <Playground>
   <Typography element="h1" size="jumbo" textCase="uppercase" fontWeight="black">
-    Page title
+    Page
+    <Typography element="span" emphasisType="highlight">
+      title
+    </Typography>
   </Typography>
   <br />
   <Typography
@@ -45,9 +46,12 @@ In Jobber a Typography is used to …
   </Typography>
   <br />
   <Typography size="base">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat quae
-    architecto accusamus cumque voluptate aspernatur repellendus natus, quo
-    veniam illum.
+    Lorem ipsum dolor sit amet
+    <Typography element="span" emphasisType="italic">
+      consectetur adipisicing
+    </Typography>
+    elit. Placeat quae architecto accusamus cumque voluptate aspernatur
+    repellendus natus, quo veniam illum.
   </Typography>
 </Playground>
 

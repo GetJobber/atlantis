@@ -85,6 +85,7 @@
   margin: 0;
   padding: 0;
   color: var(--textColor);
+  font-family: var(--fontFamily-normal);
   font-size: var(--font-size);
   font-weight: var(--font-weight);
   line-height: var(--line-height);
