@@ -8,7 +8,7 @@ import textCases from "./css/TextCases.css";
 import textColors from "./css/TextColors.css";
 import emphasis from "./css/Emphasis.css";
 
-export interface TypographyProps {
+interface TypographyProps {
   /**
    * @default "p"
    */
@@ -33,6 +33,7 @@ export interface TypographyProps {
   readonly emphasisType?: keyof typeof emphasis;
   readonly children: ReactNode;
 }
+export type TypographyOptions = Omit<TypographyProps, "children">;
 
 export function Typography({
   children,

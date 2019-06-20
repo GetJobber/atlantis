@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { Typography, TypographyProps } from "../Typography";
+import { Typography, TypographyOptions } from "../Typography";
 
 interface TextProps {
   readonly variation?:
@@ -13,8 +13,8 @@ interface TextProps {
   readonly children: ReactNode;
 }
 
-interface VariationMap {
-  [variation: string]: Omit<TypographyProps, "children">;
+export interface VariationMap {
+  [variation: string]: TypographyOptions;
 }
 
 export function Text({ variation = "default", children }: TextProps) {

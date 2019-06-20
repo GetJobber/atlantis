@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { Typography, TypographyProps } from "../Typography";
+import { Typography, TypographyOptions } from "../Typography";
 
 interface HeadingProps {
   /**
@@ -9,8 +9,8 @@ interface HeadingProps {
   readonly children: ReactNode;
 }
 
-interface VariationMap {
-  [variation: string]: Omit<TypographyProps, "children">;
+export interface VariationMap {
+  [variation: string]: TypographyOptions;
 }
 
 export function Heading({ variation = "section", children }: HeadingProps) {
