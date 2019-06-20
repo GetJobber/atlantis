@@ -6,6 +6,7 @@ import fontSizes from "./css/FontSizes.css";
 import fontWeights from "./css/FontWeights.css";
 import textCases from "./css/TextCases.css";
 import textColors from "./css/TextColors.css";
+import emphasis from "./css/Emphasis.css";
 
 export interface TypographyProps {
   /**
@@ -22,6 +23,7 @@ export interface TypographyProps {
   readonly fontWeight?: keyof typeof fontWeights;
   readonly textCase?: keyof typeof textCases;
   readonly textColor?: keyof typeof textColors;
+  readonly emphasisType?: keyof typeof emphasis;
   readonly children: ReactNode;
 }
 
@@ -32,6 +34,7 @@ export function Typography({
   fontWeight = "regular",
   textCase,
   textColor,
+  emphasisType,
 }: TypographyProps) {
   const className = classnames(
     styles.base,
@@ -39,6 +42,7 @@ export function Typography({
     fontWeight && fontWeights[fontWeight],
     textCase && textCases[textCase],
     textColor && textColors[textColor],
+    emphasisType && emphasis[emphasisType],
   );
 
   const Tag = element;
