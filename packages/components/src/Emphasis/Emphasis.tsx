@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import { Typography, TypographyProps } from "../Typography";
 
 interface EmphasisProps {
-  variation: "bold" | "italic" | "underline" | "highlight";
+  variation: "bold" | "italic" | "highlight";
   children: ReactNode;
 }
 
