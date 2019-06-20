@@ -1,0 +1,51 @@
+---
+menu: Components
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { Emphasis } from ".";
+import { Heading } from "../Heading";
+import { Text } from "../Text";
+
+# Emphasis
+
+<ComponentStatus stage="pre" responsive="no" accessible="no" />
+
+Use this component to emphasize a certain content of a Heading or Text component
+
+## Bold
+
+Used to call attention to a text
+
+<Playground>
+  <Text>
+    <Emphasis variation="bold">Save $240</Emphasis> when you choose our Annual
+    Plan
+  </Text>
+</Playground>
+
+## Italic
+
+Used to call attention to a text that less important than a bold
+
+<Playground>
+  <Text variation="subdued">
+    <Emphasis variation="italic">Job note linked to related invoice</Emphasis>
+  </Text>
+</Playground>
+
+## Highlight
+
+Used to call attention to a specific value prop on a heading. Highlight should
+only be used on page titles and subtitle.
+
+<Playground>
+  <Heading variation="page">
+    Get paid <Emphasis variation="highlight">faster</Emphasis>
+  </Heading>
+</Playground>
+
+## Emphasis Properties
+
+<Props of={Emphasis} />
