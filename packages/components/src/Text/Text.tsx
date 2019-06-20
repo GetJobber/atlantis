@@ -3,14 +3,13 @@ import { Typography, TypographyProps } from "../Typography";
 
 interface TextProps {
   readonly variation?:
+    | "default"
     | "subdued"
+    | "intro"
     | "success"
     | "error"
     | "warning"
-    | "info"
-    | "button"
-    | "intro"
-    | "default";
+    | "info";
   readonly children: ReactNode;
 }
 
@@ -22,17 +21,11 @@ export function Text({ variation = "default", children }: TextProps) {
   const variationMap: VariationMap = {
     default: { size: "base" },
     subdued: { textColor: "greyBlue", size: "base" },
+    intro: { size: "larger" },
     success: { textColor: "green", size: "base" },
     error: { textColor: "red", size: "base" },
     warning: { textColor: "yellow", size: "base" },
     info: { textColor: "lightBlue", size: "base" },
-    button: {
-      textColor: "green",
-      textCase: "uppercase",
-      fontWeight: "extraBold",
-      size: "small",
-    },
-    intro: { size: "larger" },
   };
 
   return <Typography {...variationMap[variation]}>{children}</Typography>;

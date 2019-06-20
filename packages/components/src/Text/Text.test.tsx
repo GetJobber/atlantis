@@ -90,19 +90,6 @@ it("renders a info text", () => {
   `);
 });
 
-it("renders a button text", () => {
-  const tree = renderer
-    .create(<Text variation="button">Update Quote</Text>)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-            <p
-              className="base small extraBold uppercase green"
-            >
-              Update Quote
-            </p>
-      `);
-});
-
 it("renders an intro text", () => {
   const tree = renderer
     .create(
