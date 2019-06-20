@@ -1,22 +1,3 @@
-:root {
-  --fontSize-unit: var(--base-unit);
-
-  --fontSize-extravagant: calc((var(--fontSize-unit)) * 3); /* 48 */
-  --fontSize-jumbo: calc((var(--fontSize-unit)) * 2.25); /* 36 */
-  --fontSize-largest: calc((var(--fontSize-unit)) * 1.5); /* 24 */
-  --fontSize-larger: calc((var(--fontSize-unit)) * 1.25); /* 20 */
-  --fontSize-large: calc((var(--fontSize-unit)) * 1.125); /* 18 */
-  --fontSize-base: calc((var(--fontSize-unit)) * 1); /* 16 */
-  --fontSize-small: calc((var(--fontSize-unit)) * 0.875); /* 14 */
-
-  --lineHeight-large: 1.33;
-  --lineHeight-base: 1.25;
-  --lineHeight-tight: 1.2;
-  --lineHeight-tighter: 1.14;
-  --lineHeight-tightest: 1.11;
-  --lineHeight-miniscule: 1.08;
-}
-
 .extravagant {
   --font-size: var(--fontSize-extravagant);
 }
