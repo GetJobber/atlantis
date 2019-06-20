@@ -30,7 +30,6 @@ const modifyBundlerConfig = config => {
         options: {
           modules: true,
           importLoaders: 1,
-          localIdentName: "[name]__[local]--[hash:base64:5]",
         },
       },
       {
