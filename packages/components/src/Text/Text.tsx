@@ -25,7 +25,7 @@ export function Text({ variation = "default", children }: TextProps) {
     success: { textColor: "green" },
     error: { textColor: "red" },
     warning: { textColor: "yellow" },
-    info: { textColor: "blue" },
+    info: { textColor: "lightBlue" },
     button: {
       textColor: "green",
       textCase: "uppercase",
