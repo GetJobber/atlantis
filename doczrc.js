@@ -69,21 +69,27 @@ const themeConfig = {
       line-height: 1.8;
     `,
     h1: css`
-      margin: 40px 0 20px;
+      margin: 48px 0 16px;
       font-family: ${fonts.display};
       font-size: 48px;
+      line-height: 1.33;
       font-weight: 800;
-      letter-spacing: -0.02em;
       text-transform: uppercase;
     `,
     h2: css`
-      margin: 30px 0 20px;
-      line-height: 1.4em;
+      margin: 48px 0 16px;
       font-family: ${fonts.display};
+      font-size: 24px;
+      line-height: 1.33em;
       font-weight: 600;
-      font-size: 28px;
-      letter-spacing: -0.02em;
       text-transform: uppercase;
+    `,
+    h3: css`
+      margin: 0 0 16px;
+      font-family: ${fonts.display};
+      font-size: 20px;
+      line-height: 1.2em;
+      font-weight: 600;
     `,
   },
 };
