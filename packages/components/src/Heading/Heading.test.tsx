@@ -17,7 +17,7 @@ it("renders a Heading 1", () => {
 
 it("renders a Heading 2", () => {
   const tree = renderer
-    .create(<Heading variation="subtitle">Dis be a Heading 2</Heading>)
+    .create(<Heading variation="category">Dis be a Heading 2</Heading>)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <h2
@@ -30,7 +30,7 @@ it("renders a Heading 2", () => {
 
 it("renders a Heading 3", () => {
   const tree = renderer
-    .create(<Heading variation="content">Dis be a Heading 3</Heading>)
+    .create(<Heading variation="topic">Dis be a Heading 3</Heading>)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <h3
@@ -64,18 +64,5 @@ it("renders a Heading 5", () => {
     >
       Dis be a Heading 5
     </h5>
-  `);
-});
-
-it("renders a Heading 6", () => {
-  const tree = renderer
-    .create(<Heading variation="overline">Dis be a Heading 6</Heading>)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <h6
-      className="base small bold uppercase"
-    >
-      Dis be a Heading 6
-    </h6>
   `);
 });

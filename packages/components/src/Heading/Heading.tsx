@@ -5,13 +5,7 @@ interface HeadingProps {
   /**
    * @default "section"
    */
-  readonly variation:
-    | "page"
-    | "subtitle"
-    | "content"
-    | "section"
-    | "subsection"
-    | "overline";
+  readonly variation: "page" | "category" | "topic" | "section" | "subsection";
   readonly children: ReactNode;
 }
 
@@ -27,21 +21,15 @@ export function Heading({ variation = "section", children }: HeadingProps) {
       textCase: "uppercase",
       fontWeight: "black",
     },
-    subtitle: {
+    category: {
       element: "h2",
       size: "largest",
       textCase: "uppercase",
       fontWeight: "black",
     },
-    content: { element: "h3", size: "larger", fontWeight: "bold" },
+    topic: { element: "h3", size: "larger", fontWeight: "bold" },
     section: { element: "h4", size: "large", fontWeight: "bold" },
     subsection: { element: "h5", size: "base", fontWeight: "bold" },
-    overline: {
-      element: "h6",
-      size: "small",
-      textCase: "uppercase",
-      fontWeight: "bold",
-    },
   };
 
   return <Typography {...variationMap[variation]}>{children}</Typography>;
