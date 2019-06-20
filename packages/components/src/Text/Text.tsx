@@ -9,7 +9,7 @@ interface TextProps {
     | "warning"
     | "info"
     | "button"
-    | "subhead"
+    | "intro"
     | "default";
   readonly children: ReactNode;
 }
@@ -32,7 +32,7 @@ export function Text({ variation = "default", children }: TextProps) {
       fontWeight: "extraBold",
       size: "small",
     },
-    subhead: { size: "larger" },
+    intro: { size: "larger" },
   };
 
   return <Typography {...variationMap[variation]}>{children}</Typography>;

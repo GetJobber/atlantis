@@ -103,10 +103,10 @@ it("renders a button text", () => {
       `);
 });
 
-it("renders a subhead text", () => {
+it("renders an intro text", () => {
   const tree = renderer
     .create(
-      <Text variation="subhead">
+      <Text variation="intro">
         Attract new customers by asking happy clients for a Facebook
         recommendation
       </Text>,
