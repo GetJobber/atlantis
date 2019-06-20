@@ -12,10 +12,17 @@ export interface TypographyProps {
   /**
    * @default "p"
    */
-  readonly element?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
-  /**
-   * @default "base"
-   */
+  readonly element?:
+    | "h1"
+    | "h2"
+    | "h3"
+    | "h4"
+    | "h5"
+    | "h6"
+    | "p"
+    | "b"
+    | "em"
+    | "strong";
   readonly size?: keyof typeof fontSizes;
   /**
    * @default "regular"
@@ -30,8 +37,8 @@ export interface TypographyProps {
 export function Typography({
   children,
   element = "p",
-  size = "base",
-  fontWeight = "regular",
+  size,
+  fontWeight,
   textCase,
   textColor,
   emphasisType,

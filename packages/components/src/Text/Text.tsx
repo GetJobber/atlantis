@@ -20,12 +20,12 @@ interface VariationMap {
 
 export function Text({ variation = "default", children }: TextProps) {
   const variationMap: VariationMap = {
-    default: {},
-    subdued: { textColor: "greyBlue" },
-    success: { textColor: "green" },
-    error: { textColor: "red" },
-    warning: { textColor: "yellow" },
-    info: { textColor: "lightBlue" },
+    default: { size: "base" },
+    subdued: { textColor: "greyBlue", size: "base" },
+    success: { textColor: "green", size: "base" },
+    error: { textColor: "red", size: "base" },
+    warning: { textColor: "yellow", size: "base" },
+    info: { textColor: "lightBlue", size: "base" },
     button: {
       textColor: "green",
       textCase: "uppercase",
