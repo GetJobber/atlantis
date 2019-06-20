@@ -55,7 +55,7 @@ const fonts = {
   // Used for code and sometimes numbers in tables.
   mono: '"Anonymous Pro", monospace',
   // Used for text and UI (which includes almost anything).
-  ui: '"Source sans", sans-serif',
+  ui: '"Source Sans Pro", sans-serif',
 };
 
 const themeConfig = {
