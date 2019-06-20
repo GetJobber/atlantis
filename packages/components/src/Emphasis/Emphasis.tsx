@@ -12,15 +12,10 @@ interface VariationMap {
 
 export function Emphasis({ variation, children }: EmphasisProps) {
   const variationMap: VariationMap = {
-    bold: { fontWeight: "bold" },
-    italic: { emphasisType: "italic" },
-    underline: { emphasisType: "underline" },
-    highlight: { emphasisType: "highlight" },
+    bold: { element: "b", fontWeight: "bold" },
+    italic: { element: "em", emphasisType: "italic" },
+    highlight: { element: "strong", emphasisType: "highlight" },
   };
 
-  return (
-    <Typography {...variationMap[variation]} element="span">
-      {children}
-    </Typography>
-  );
+  return <Typography {...variationMap[variation]}>{children}</Typography>;
 }
