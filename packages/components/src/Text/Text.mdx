@@ -8,17 +8,39 @@ import { Text } from ".";
 
 # Text
 
-<ComponentStatus stage="pre" responsive="no" accessible="no" />
+<ComponentStatus stage="pre" responsive="no" accessible="yes" />
 
-In Jobber a Text is used to …
+Text is used to add an additional visual meaning on your content
 
-## Simple Example
+## Default
+
+Use this as the body text
 
 <Playground>
   <Text>Ask the information you need upfront from clients and new leads</Text>
-  <br />
+</Playground>
+
+## Subdued
+
+De-emphasize a piece of text that is less important to the user
+
+<Playground>
   <Text variation="subdued">Job note linked to related invoice</Text>
-  <br />
+</Playground>
+
+## Subhead
+
+Make the body text stand out from the body copy
+
+<Playground>
+  <Text variation="subhead">
+    Attract new customers by asking happy clients for a Facebook recommendation
+  </Text>
+</Playground>
+
+## Feedback message
+
+<Playground>
   <Text variation="success">Invoice sent</Text>
   <br />
   <Text variation="error">Name is required</Text>
@@ -28,12 +50,14 @@ In Jobber a Text is used to …
   <Text variation="info">
     Drag to rearrange the order that fields show up in Jobber
   </Text>
-  <br />
+</Playground>
+
+## Button
+
+The `button` variation should only be used with a `Button` component
+
+<Playground>
   <Text variation="button">Update Quote</Text>
-  <br />
-  <Text variation="subhead">
-    Attract new customers by asking happy clients for a Facebook recommendation
-  </Text>
 </Playground>
 
 ## Text Properties
