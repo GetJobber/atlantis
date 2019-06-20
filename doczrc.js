@@ -56,7 +56,7 @@ const fonts = {
   // Used for code and sometimes numbers in tables.
   mono: '"Anonymous Pro", monospace',
   // Used for text and UI (which includes almost anything).
-  ui: '"Noto Sans", sans-serif',
+  ui: '"Source sans", sans-serif',
 };
 
 const themeConfig = {
@@ -100,7 +100,7 @@ const htmlContext = {
       {
         rel: "stylesheet",
         href:
-          "https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i",
+          "https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i",
       },
       {
         rel: "stylesheet",
