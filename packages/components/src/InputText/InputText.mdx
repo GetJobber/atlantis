@@ -23,7 +23,12 @@ Input Text is used in forms to accept input from users.
 ## Text Field States
 
 <Playground>
-  <InputText disabled placeholder="Disabled input" />
+  <InputText disabled={true} placeholder="Disabled input" />
+  <InputText
+    readonly={true}
+    placeholder="Readonly input"
+    defaultValue="You can't change me."
+  />
   <InputText error placeholder="Invalid input" />
 </Playground>
 

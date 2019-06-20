@@ -14,6 +14,7 @@ it("renders correctly with no props", () => {
         <input
           className="input"
           disabled={false}
+          readOnly={false}
           type="text"
         />
       </label>
@@ -36,6 +37,7 @@ it("renders correctly with a placeholder", () => {
           className="input"
           disabled={false}
           placeholder="My placeholder"
+          readOnly={false}
           type="text"
         />
         <span
@@ -60,6 +62,27 @@ it("renders correctly as small", () => {
         <input
           className="input"
           disabled={false}
+          readOnly={false}
+          type="text"
+        />
+      </label>
+    </div>
+  `);
+});
+
+it("renders correctly in a readonly state", () => {
+  const tree = renderer.create(<InputText disabled />).toJSON();
+  expect(tree).toMatchInlineSnapshot(`
+    <div
+      className="inputWrapper normal"
+    >
+      <label
+        className="label"
+      >
+        <input
+          className="input"
+          disabled={true}
+          readOnly={false}
           type="text"
         />
       </label>
@@ -79,6 +102,7 @@ it("renders correctly in a disabled state", () => {
         <input
           className="input"
           disabled={true}
+          readOnly={false}
           type="text"
         />
       </label>
