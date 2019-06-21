@@ -1,0 +1,38 @@
+---
+name: InputText
+menu: Components
+route: /components/input-text
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { InputText } from ".";
+
+# Input Text
+
+<ComponentStatus stage="rc" responsive="yes" accessible="no" />
+
+Input Text is used in forms to accept input from users.
+
+## Basic InputText
+
+<Playground>
+  <InputText size="small" placeholder="Small input" />
+  <InputText placeholder="Normal input" />
+</Playground>
+
+## InputText States
+
+<Playground>
+  <InputText disabled={true} placeholder="Disabled input" />
+  <InputText
+    readonly={true}
+    placeholder="Readonly input"
+    value="You can't change me."
+  />
+  <InputText error placeholder="Invalid input" />
+</Playground>
+
+## Properties
+
+<Props of={InputText} />

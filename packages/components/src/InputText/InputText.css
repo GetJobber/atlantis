@@ -1,7 +1,7 @@
 :root {
   --input-color: var(--color-blue);
   --label-text-color: var(--color-greyBlue--light);
-  --input-border-width: 2px;
+  --input-border-width: var(--space-smallest);
   --input-border-color: var(--color-grey--lighter);
   --input-background-color: var(--color-white);
 
@@ -14,16 +14,15 @@
 }
 
 .small {
-  --input-height: var(--input-height--small, 36px);
+  /*
+   * SG-1's small input height doesn't match our flow but, thought we should
+   * keep this consistent for now.
+   */
+  --input-height: calc(var(--space-larger) + 4px);
 }
 
 .normal {
-  --input-height: var(--input-height--normal, 48px);
-}
-
-.large {
-  --input-height: var(--input-height--large, 64px);
-  --input-font-size: var(--input-font-size--large, 1em);
+  --input-height: var(--space-largest);
 }
 
 .error {
@@ -64,6 +63,7 @@
 .input {
   width: 100%;
   box-sizing: border-box;
+  margin: 0px;
   padding: 0 1em;
   border: var(--input-border-width) solid var(--input-border-color);
   border-radius: 4px;

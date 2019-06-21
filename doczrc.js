@@ -108,7 +108,7 @@ const htmlContext = {
       },
       {
         rel: "stylesheet",
-        href: "public/foundation.css",
+        href: "/public/foundation.css",
       },
     ],
   },

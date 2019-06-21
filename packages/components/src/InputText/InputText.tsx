@@ -1,47 +1,66 @@
-import React, { ChangeEventHandler } from "react";
+import React, { ChangeEvent } from "react";
 import classnames from "classnames";
-import styles from "./TextField.css";
+import styles from "./InputText.css";
 
-interface TextFieldProps {
+interface InputTextProps {
   /** The input name  */
   readonly name?: string;
+
   /** The text that appears when no value is set and displayed as a hover label when a value is present. */
   readonly placeholder?: string;
-  /** The initial input value. */
-  readonly defaultValue?: string;
+
+  readonly value?: string;
+
   /** Callback fired when the value is changed. */
-  readonly onChange?: ChangeEventHandler<HTMLInputElement>;
+  onChange?(newValue: string): void;
+
   /**
    * The size of the input
    * @default normal
    */
-  readonly size?: "small" | "normal" | "large";
+  readonly size?: "small" | "normal";
+
   /**
-   * Indicates whether the input is disabled or not.
+   * If true, the input is disabled.
    * @default false
    */
   readonly disabled?: boolean;
+
   /**
-   * Indicates whether the input is in an error state or not.
+   * If true, the input cannot be edited.
+   * @default false
+   */
+  readonly readonly?: boolean;
+
+  /**
+   * If true, the input is in an error state.
    * @default false
    */
   readonly error?: boolean;
 }
 
-export function TextField({
+export function InputText({
   name,
   placeholder,
-  defaultValue,
+  value,
   onChange,
   size = "normal",
   disabled = false,
+  readonly = false,
   error = false,
-}: TextFieldProps) {
+}: InputTextProps) {
   const wrapperClass = classnames(
     styles.inputWrapper,
     styles[size],
     error && styles.error,
   );
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const newValue = event.currentTarget.value;
+    if (onChange) {
+      onChange(newValue);
+    }
+  };
 
   return (
     <div className={wrapperClass}>
@@ -52,8 +71,9 @@ export function TextField({
           name={name}
           placeholder={placeholder}
           disabled={disabled}
-          onChange={onChange}
-          defaultValue={defaultValue}
+          readOnly={readonly}
+          onChange={handleChange}
+          defaultValue={value}
         />
         {size !== "small" && placeholder && (
           <span className={styles.labelContent}>{placeholder}</span>
