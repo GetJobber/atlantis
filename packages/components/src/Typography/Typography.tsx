@@ -37,7 +37,7 @@ export type TypographyOptions = Omit<TypographyProps, "children">;
 
 export function Typography({
   children,
-  element = "p",
+  element: Tag = "p",
   size,
   fontWeight,
   textCase,
@@ -52,8 +52,6 @@ export function Typography({
     textColor && textColors[textColor],
     emphasisType && emphasis[emphasisType],
   );
-
-  const Tag = element;
 
   return <Tag className={className}>{children}</Tag>;
 }
