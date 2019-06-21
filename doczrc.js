@@ -1,5 +1,6 @@
 /* eslint-env node */
 import path from "path";
+import glob from "glob";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { css } from "styled-components";
 // eslint-disable-next-line @typescript-eslint/no-var-requires, import/no-extraneous-dependencies
@@ -113,6 +114,17 @@ const htmlContext = {
   },
 };
 
+function privateComponentReadmies() {
+  if (process.env.PRIVATE_COMPONENTS === "visible") {
+    return [];
+  }
+  return glob.sync("packages/components/src/**/.private").map(file => {
+    const directory = path.dirname(file);
+    const componentName = path.basename(directory);
+    return path.join(directory, `${componentName}.mdx`);
+  });
+}
+
 // eslint-disable-next-line import/no-default-export
 export default {
   title: "🔱 Atlantis",
@@ -120,7 +132,7 @@ export default {
   port: 3333,
   menu: ["Atlantis"],
   files: "{README.md,**/*.mdx}",
-  ignore: ["./plop/templates/**/*"],
+  ignore: [...privateComponentReadmies(), "./plop/templates/**/*"],
   codeSandbox: false,
   public: "public",
   themeConfig,
