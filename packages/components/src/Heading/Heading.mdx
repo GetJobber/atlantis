@@ -13,16 +13,16 @@ import { Heading } from ".";
 Headings are used as the titles of each major section of a page in the
 interface. Reserved for short, important text or numbers.
 
-## Page title
+## Heading 1
 
 This should explain the main subject of the page. There should only be 1 on a
 page.
 
 <Playground>
-  <Heading variation="page">New client</Heading>
+  <Heading level="1">New client</Heading>
 </Playground>
 
-## Category
+## Heading 2
 
 Used to categorize large groups of content. For example, there are 2 main
 category when creating a new client. Client details and property details.
@@ -30,44 +30,45 @@ category when creating a new client. Client details and property details.
 This heading can be skipped if there's no large groups that need breaking up.
 
 <Playground>
-  <Heading variation="category">Client details</Heading>
+  <Heading level="2">Client details</Heading>
   ...
-  <Heading variation="category">Property details</Heading>
+  <Heading level="2">Property details</Heading>
   ...
 </Playground>
 
-## Topic
+## Heading 3
 
 Used to group content and forms on a single topic
 
 <Playground>
-  <Heading variation="topic">Contact details</Heading>
+  <Heading level="3">Contact details</Heading>
   ...
-  <Heading variation="topic">Notifications</Heading>
+  <Heading level="3">Notifications</Heading>
   ...
-  <Heading variation="topic">Additional details</Heading>
-  ...
-</Playground>
-
-## Section
-
-Used to group contents after a topic or inside a card component
-
-<Playground>
-  <Heading variation="section">Phone numbers</Heading>
-  ...
-  <Heading variation="section">Email</Heading>
-  ...
-  <Heading variation="section">Pigeon</Heading>
+  <Heading level="3">Additional details</Heading>
   ...
 </Playground>
 
-## Subsection
+## Heading 4
 
-Used to group contents after a section heading
+Used to group contents after a [heading 3](#heading-3) or inside a card
+component
 
 <Playground>
-  <Heading variation="subsection">Recieves SMS</Heading>
+  <Heading level="4">Phone numbers</Heading>
+  ...
+  <Heading level="4">Email</Heading>
+  ...
+  <Heading level="4">Pigeon</Heading>
+  ...
+</Playground>
+
+## Heading 5
+
+Used to group contents after a [heading 4](#heading-4)
+
+<Playground>
+  <Heading level="5">Recieves SMS</Heading>
 </Playground>
 
 ## Heading Properties

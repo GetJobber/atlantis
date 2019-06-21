@@ -3,34 +3,46 @@ import { Typography, TypographyOptions } from "../Typography";
 
 interface HeadingProps {
   /**
-   * @default "section"
+   * @default 5
    */
-  readonly variation: "page" | "category" | "topic" | "section" | "subsection";
+  readonly level: 1 | 2 | 3 | 4 | 5;
   readonly children: ReactNode;
 }
 
-export interface VariationMap {
-  [variation: string]: TypographyOptions;
+export interface LevelMap {
+  [level: string]: TypographyOptions;
 }
 
-export function Heading({ variation = "section", children }: HeadingProps) {
-  const variationMap: VariationMap = {
-    page: {
+export function Heading({ level = 5, children }: HeadingProps) {
+  const levelMap: LevelMap = {
+    1: {
       element: "h1",
       size: "jumbo",
       textCase: "uppercase",
       fontWeight: "black",
     },
-    category: {
+    2: {
       element: "h2",
       size: "largest",
       textCase: "uppercase",
       fontWeight: "black",
     },
-    topic: { element: "h3", size: "larger", fontWeight: "bold" },
-    section: { element: "h4", size: "large", fontWeight: "bold" },
-    subsection: { element: "h5", size: "base", fontWeight: "bold" },
+    3: {
+      element: "h3",
+      size: "larger",
+      fontWeight: "bold",
+    },
+    4: {
+      element: "h4",
+      size: "large",
+      fontWeight: "bold",
+    },
+    5: {
+      element: "h5",
+      size: "base",
+      fontWeight: "bold",
+    },
   };
 
-  return <Typography {...variationMap[variation]}>{children}</Typography>;
+  return <Typography {...levelMap[level]}>{children}</Typography>;
 }
