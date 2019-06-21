@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler } from "react";
+import React, { ChangeEvent } from "react";
 import classnames from "classnames";
 import styles from "./InputText.css";
 
@@ -9,11 +9,10 @@ interface InputTextProps {
   /** The text that appears when no value is set and displayed as a hover label when a value is present. */
   readonly placeholder?: string;
 
-  /** The initial input value. */
-  readonly defaultValue?: string;
+  readonly value?: string;
 
   /** Callback fired when the value is changed. */
-  readonly onChange?: ChangeEventHandler<HTMLInputElement>;
+  onChange?(newValue: string): void;
 
   /**
    * The size of the input
@@ -43,7 +42,7 @@ interface InputTextProps {
 export function InputText({
   name,
   placeholder,
-  defaultValue,
+  value,
   onChange,
   size = "normal",
   disabled = false,
@@ -56,6 +55,13 @@ export function InputText({
     error && styles.error,
   );
 
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const newValue = event.currentTarget.value;
+    if (onChange) {
+      onChange(newValue);
+    }
+  };
+
   return (
     <div className={wrapperClass}>
       <label className={styles.label} htmlFor={name}>
@@ -66,8 +72,8 @@ export function InputText({
           placeholder={placeholder}
           disabled={disabled}
           readOnly={readonly}
-          onChange={onChange}
-          defaultValue={defaultValue}
+          onChange={handleChange}
+          defaultValue={value}
         />
         {size !== "small" && placeholder && (
           <span className={styles.labelContent}>{placeholder}</span>
