@@ -25,6 +25,9 @@ interface TypographyProps {
     | "strong";
   readonly size?: keyof typeof fontSizes;
   /**
+   * Aside from changing the font weights, this also changes the font family.
+   * Source sans for `regular` and `bold`.
+   * Poppins for `extraBold` and `black`.
    * @default "regular"
    */
   readonly fontWeight?: keyof typeof fontWeights;

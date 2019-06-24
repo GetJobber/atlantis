@@ -12,46 +12,35 @@ import { Typography } from ".";
 
 Base component that defines typographic standards across Jobber
 
+## Element
+
 <Playground>
-  <Typography element="h1" size="jumbo" textCase="uppercase" fontWeight="black">
-    Page
-    <Typography element="span" emphasisType="highlight">
-      title
-    </Typography>
-  </Typography>
-  <br />
-  <Typography
-    element="h2"
-    size="largest"
-    textCase="uppercase"
-    fontWeight="black"
-  >
-    Subtitle
-  </Typography>
-  <br />
-  <Typography element="h3" size="larger" fontWeight="bold">
-    Content Group
-  </Typography>
-  <br />
-  <Typography element="h4" size="large" fontWeight="bold">
-    Section
-  </Typography>
-  <br />
-  <Typography element="h5" size="base" fontWeight="bold">
-    Subsection
-  </Typography>
-  <br />
-  <Typography element="h6" size="small" textCase="uppercase" fontWeight="bold">
-    Overline
-  </Typography>
-  <br />
-  <Typography size="base">
-    Lorem ipsum dolor sit amet
-    <Typography element="span" emphasisType="italic">
-      consectetur adipisicing
-    </Typography>
-    elit. Placeat quae architecto accusamus cumque voluptate aspernatur
-    repellendus natus, quo veniam illum.
+  <Typography element="h1">Change the element</Typography>
+</Playground>
+
+## Font size
+
+<Playground>
+  <Typography size="extravagant">Size prop changes the font size</Typography>
+</Playground>
+
+## Font weight
+
+<Playground>
+  <Typography fontWeight="black">Shout</Typography>
+</Playground>
+
+## Text case
+
+<Playground>
+  <Typography textCase="uppercase">Shout</Typography>
+</Playground>
+
+## Emphasis
+
+<Playground>
+  <Typography element="span" emphasisType="highlight">
+    Highlight
   </Typography>
 </Playground>
 
