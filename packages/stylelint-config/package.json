@@ -1,6 +1,6 @@
 {
   "name": "@jobber/stylelint-config",
-  "version": "0.0.1-pre.1",
+  "version": "0.0.1",
   "license": "UNLICENSED",
   "main": "stylelint.config.js",
   "dependencies": {
