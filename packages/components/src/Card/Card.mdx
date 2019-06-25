@@ -5,7 +5,7 @@ route: /components/card
 
 import { Playground, Props, Link } from "docz";
 import { ComponentStatus } from "@jobber/docx";
-import { Card, CardTitle } from ".";
+import { Card, Title } from ".";
 
 # Card
 
@@ -36,11 +36,11 @@ to provide extra structure in a predictable way.
   </Card>
 </Playground>
 
-## Card with Header
+## Card with Title
 
 <Playground>
   <Card accent="jobColor">
-    <CardTitle title="This is an exceptionally long card title" />
+    <Title title="This is an exceptionally long card title" />
 
     <p>This is the card content.</p>
 
@@ -53,16 +53,16 @@ to provide extra structure in a predictable way.
 
 ---
 
-## ▸ `CardTitle`
+## ▸ `Title`
 
-The `CardTitle` defines the title of a card. This is used to provide context as
-to the content of the card.
+The `Title` defines the title of a card. This is used to provide context as to
+the content of the card.
 
 <Playground>
   <Card>
-    <CardTitle title="Sample Title" />
+    <Title title="Sample Title" />
 
   </Card>
 </Playground>
 
-<Props of={CardTitle} />
+<Props of={Title} />

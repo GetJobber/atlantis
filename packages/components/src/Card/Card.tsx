@@ -8,7 +8,7 @@ interface CardSectionProps {
   readonly children: ReactNode;
 }
 
-function CardHeader(props: CardSectionProps) {
+function Header(props: CardSectionProps) {
   const className = classnames(styles.header, styles.fill);
 
   return <div className={className} {...props} />;
@@ -21,11 +21,11 @@ interface CardTitleProps {
   readonly title: string;
 }
 
-export function CardTitle({ title }: CardTitleProps) {
+export function Title({ title }: CardTitleProps) {
   return (
-    <CardHeader>
+    <Header>
       <span className={styles.title}>{title}</span>
-    </CardHeader>
+    </Header>
   );
 }
 

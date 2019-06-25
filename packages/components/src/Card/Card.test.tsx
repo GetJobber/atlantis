@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { fireEvent, render } from "@testing-library/react";
-import { Card, CardTitle } from ".";
+import { Card, Title } from ".";
 
 it("renders a simple card", () => {
   const tree = renderer
@@ -26,7 +26,7 @@ it("renders a card", () => {
   const tree = renderer
     .create(
       <Card accent="green">
-        <CardTitle title="The Undiscovered Country" />
+        <Title title="The Undiscovered Country" />
 
         <p>This is the card content.</p>
       </Card>,
