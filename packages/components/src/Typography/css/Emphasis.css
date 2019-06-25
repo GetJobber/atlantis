@@ -1,0 +1,17 @@
+.italic {
+  font-style: italic;
+}
+
+.highlight {
+  margin-left: calc(-1 * var(--space-smaller));
+  padding: 0 var(--space-smaller);
+  font-family: var(--fontFamily-display);
+  background-image: linear-gradient(
+    to left,
+    var(--color-green--lighter),
+    var(--color-green--lighter)
+  );
+  background-position: left 75%;
+  background-repeat: repeat-x;
+  background-size: 100% 52%;
+}

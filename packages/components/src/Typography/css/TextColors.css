@@ -1,0 +1,27 @@
+.blue {
+  --textColor: var(--color-blue);
+}
+
+.greyBlueDark {
+  --textColor: var(--color-greyBlue-dark);
+}
+
+.greyBlue {
+  --textColor: var(--color-greyBlue);
+}
+
+.green {
+  --textColor: var(--color-green);
+}
+
+.red {
+  --textColor: var(--color-red);
+}
+
+.yellow {
+  --textColor: var(--color-yellow);
+}
+
+.lightBlue {
+  --textColor: var(--color-lightBlue);
+}
