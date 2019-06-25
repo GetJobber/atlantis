@@ -9,13 +9,13 @@ import { Card, CardTitle } from ".";
 
 # Card
 
-<ComponentStatus stage="rc" responsive="yes" accessible="no" />
+<ComponentStatus stage="rc" responsive="yes" accessible="yes" />
 
 In Jobber a card is used to group related information and tasks to make things
 easier to scan, and action upon. Cards also contain many optional sub-components
 to provide extra structure in a predictable way.
 
-## Simple Example
+## Simple Card
 
 <Playground>
   <Card>
@@ -23,6 +23,20 @@ to provide extra structure in a predictable way.
     <p>A simple card.</p>
   </Card>
 </Playground>
+
+## Clickable Cards
+
+<Playground>
+  <Card href="#">
+    <p>I'm a link!</p>
+  </Card>
+
+  <Card onClick={() => { alert("😻"); }}>
+    <p>I like to be clicked!</p>
+  </Card>
+</Playground>
+
+## Card with Header
 
 <Playground>
   <Card accent="jobColor">

@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import classnames from "classnames";
+import { XOR } from "ts-xor";
 import styles from "./Card.css";
 import cardColors from "./CardColors.css";
 
@@ -37,12 +38,43 @@ interface CardProps {
   readonly children: ReactNode | ReactNode[];
 }
 
-export function Card({ accent, children }: CardProps) {
+interface LinkCardProps extends CardProps {
+  href: string;
+}
+
+interface ClickableCardProps extends CardProps {
+  onClick(): void;
+}
+
+type CardPropOptions = XOR<CardProps, XOR<LinkCardProps, ClickableCardProps>>;
+
+export function Card({ accent, children, href, onClick }: CardPropOptions) {
   const className = classnames(
     styles.card,
     accent && styles.accent,
+    (href || onClick) && styles.clickable,
     accent && cardColors[accent],
   );
 
-  return <div className={className}>{children}</div>;
+  interface InternalProps {
+    children: ReactNode | ReactNode[];
+    className: string;
+    href?: string;
+    onClick?(): void;
+  }
+
+  const Tag = href ? "a" : "div";
+  const props: InternalProps = { children, className };
+
+  if (href) {
+    props.href = href;
+  }
+
+  if (onClick) {
+    props.onClick = onClick;
+  }
+
+  return <Tag {...props} />;
 }
+
+<Card>Foo</Card>;

@@ -6,15 +6,31 @@
   --accent-color: var(--color-grey);
   --base-padding: var(--space-base);
 
+  display: block;
   padding: var(--base-padding);
   border: 1px solid var(--border-color);
   border-radius: 4px;
   overflow: auto;
   background-color: var(--card-background-color);
 }
+.card:not(:last-child) {
+  margin-bottom: var(--space-base);
+}
 
 .accent {
   border-top: 0.5rem solid var(--accent-color);
+}
+
+.clickable {
+  --border-color: trasparent;
+  box-shadow: var(--shadow-base);
+  color: inherit;
+  text-decoration: inherit;
+  cursor: pointer;
+  transition: all var(--timing-quick) linear;
+}
+.clickable:hover {
+  background-color: var(--color-yellow--lightest);
 }
 
 .fill {
