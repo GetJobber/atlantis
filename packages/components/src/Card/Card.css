@@ -41,6 +41,7 @@
 }
 
 .header {
+  width: 100%;
   padding: var(--base-padding);
   background-color: var(--header-background-color);
 }
@@ -49,9 +50,6 @@
   --card-title-color: var(--color-blue);
 
   margin: 0;
-  overflow: hidden;
   color: var(--card-title-color);
   font-weight: 700;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }

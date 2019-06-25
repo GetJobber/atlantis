@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
 import styles from "./Card.css";
-import cardColors from "./CardColors.css";
+import colors from "./colors.css";
 
 interface CardSectionProps {
   readonly children: ReactNode;
@@ -34,7 +34,7 @@ interface CardProps {
    * The `accent`, if provided, will effect the color accent at the top of
    * the card.
    */
-  readonly accent?: keyof typeof cardColors;
+  readonly accent?: keyof typeof colors;
   readonly children: ReactNode | ReactNode[];
 }
 
@@ -53,7 +53,7 @@ export function Card({ accent, children, href, onClick }: CardPropOptions) {
     styles.card,
     accent && styles.accent,
     (href || onClick) && styles.clickable,
-    accent && cardColors[accent],
+    accent && colors[accent],
   );
 
   interface InternalProps {
@@ -76,5 +76,3 @@ export function Card({ accent, children, href, onClick }: CardPropOptions) {
 
   return <Tag {...props} />;
 }
-
-<Card>Foo</Card>;
