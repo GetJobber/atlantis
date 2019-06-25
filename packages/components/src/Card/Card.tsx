@@ -39,7 +39,7 @@ interface CardProps {
 }
 
 interface LinkCardProps extends CardProps {
-  href: string;
+  url: string;
 }
 
 interface ClickableCardProps extends CardProps {
@@ -48,11 +48,11 @@ interface ClickableCardProps extends CardProps {
 
 type CardPropOptions = XOR<CardProps, XOR<LinkCardProps, ClickableCardProps>>;
 
-export function Card({ accent, children, href, onClick }: CardPropOptions) {
+export function Card({ accent, children, url, onClick }: CardPropOptions) {
   const className = classnames(
     styles.card,
     accent && styles.accent,
-    (href || onClick) && styles.clickable,
+    (url || onClick) && styles.clickable,
     accent && colors[accent],
   );
 
@@ -63,11 +63,11 @@ export function Card({ accent, children, href, onClick }: CardPropOptions) {
     onClick?(): void;
   }
 
-  const Tag = href ? "a" : "div";
+  const Tag = url ? "a" : "div";
   const props: InternalProps = { children, className };
 
-  if (href) {
-    props.href = href;
+  if (url) {
+    props.href = url;
   }
 
   if (onClick) {
