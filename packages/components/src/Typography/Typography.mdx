@@ -1,0 +1,49 @@
+---
+menu: Components
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { Typography } from ".";
+
+# Typography
+
+<ComponentStatus stage="pre" responsive="no" accessible="yes" />
+
+Base component that defines typographic standards across Jobber
+
+## Element
+
+<Playground>
+  <Typography element="h1">Change the element</Typography>
+</Playground>
+
+## Font size
+
+<Playground>
+  <Typography size="extravagant">Size prop changes the font size</Typography>
+</Playground>
+
+## Font weight
+
+<Playground>
+  <Typography fontWeight="black">Shout</Typography>
+</Playground>
+
+## Text case
+
+<Playground>
+  <Typography textCase="uppercase">Shout</Typography>
+</Playground>
+
+## Emphasis
+
+<Playground>
+  <Typography element="span" emphasisType="highlight">
+    Highlight
+  </Typography>
+</Playground>
+
+## Typography Properties
+
+<Props of={Typography} />

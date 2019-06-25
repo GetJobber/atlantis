@@ -1,0 +1,33 @@
+.extravagant {
+  --font-size: var(--fontSize-extravagant);
+}
+
+.jumbo {
+  --font-size: var(--fontSize-jumbo);
+  --line-height: var(--lineHeight-large);
+}
+
+.largest {
+  --font-size: var(--fontSize-largest);
+  --line-height: var(--lineHeight-large);
+}
+
+.larger {
+  --font-size: var(--fontSize-larger);
+  --line-height: var(--lineHeight-tight);
+}
+
+.large {
+  --font-size: var(--fontSize-large);
+  --line-height: var(--lineHeight-tightest);
+}
+
+.base {
+  --font-size: var(--fontSize-base);
+  --line-height: var(--lineHeight-base);
+}
+
+.small {
+  --font-size: var(--fontSize-small);
+  --line-height: var(--lineHeight-tighter);
+}
