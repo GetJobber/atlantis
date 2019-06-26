@@ -1,4 +1,6 @@
-@import "./spacing.css";
+@import "./borders.css";
 @import "./colors.css";
+@import "./radii.css";
+@import "./spacing.css";
 @import "./shadows.css";
 @import "./timings.css";
