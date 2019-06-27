@@ -3,7 +3,8 @@
   --color-quote: var(--color-pink);
   --color-job: var(--color-yellowGreen);
   --color-invoice: var(--color-purple);
-  --color-focus: var(--color-yellow--light);
+
+  --color-outline: var(--color-yellow--light);
 
   --color-blue: rgb(1, 41, 57);
   --color-blue--light: rgb(77, 105, 116);

@@ -11,7 +11,7 @@
   border: var(--border-base) solid var(--border-color);
   border-radius: var(--radius-base);
   overflow: auto;
-  outline-color: var(--color-focus);
+  outline-color: var(--color-outline);
   background-color: var(--card-background-color);
 }
 
