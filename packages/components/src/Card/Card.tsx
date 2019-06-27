@@ -4,11 +4,11 @@ import { XOR } from "ts-xor";
 import styles from "./Card.css";
 import colors from "./colors.css";
 
-interface CardSectionProps {
+interface HeaderProps {
   readonly children: ReactNode;
 }
 
-function Header(props: CardSectionProps) {
+function Header(props: HeaderProps) {
   const className = classnames(styles.header, styles.fill);
 
   return <div className={className} {...props} />;
@@ -60,6 +60,8 @@ export function Card({ accent, children, url, onClick }: CardPropOptions) {
     children: ReactNode | ReactNode[];
     className: string;
     href?: string;
+    role?: "button";
+    tabIndex?: 0;
     onClick?(): void;
   }
 
@@ -72,6 +74,8 @@ export function Card({ accent, children, url, onClick }: CardPropOptions) {
 
   if (onClick) {
     props.onClick = onClick;
+    props.role = "button";
+    props.tabIndex = 0;
   }
 
   return <Tag {...props} />;

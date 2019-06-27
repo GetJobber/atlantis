@@ -11,11 +11,16 @@
   border: var(--border-base) solid var(--border-color);
   border-radius: var(--radius-base);
   overflow: auto;
+  outline-color: var(--color-focus);
   background-color: var(--card-background-color);
 }
 
 .card:not(:last-child) {
   margin-bottom: var(--space-base);
+}
+
+.card:active {
+  outline: 0;
 }
 
 .accent {
@@ -24,13 +29,16 @@
 
 .clickable {
   --border-color: trasparent;
+
   box-shadow: var(--shadow-base);
   color: inherit;
   text-decoration: inherit;
   cursor: pointer;
   transition: all var(--timing-quick) linear;
 }
-.clickable:hover {
+
+.clickable:hover,
+.clickable:focus {
   background-color: var(--color-yellow--lightest);
 }
 
