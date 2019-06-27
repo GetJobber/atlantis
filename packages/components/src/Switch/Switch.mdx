@@ -6,6 +6,7 @@ route: /components/switch
 
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
+import { useState } from "react";
 import { Switch } from ".";
 
 # Switch
@@ -18,6 +19,19 @@ In Jobber a Switch is used to …
 
 <Playground>
   <Switch />
+</Playground>
+
+<Playground>
+  {() => {
+    const [value, setValue] = useState(true);
+    return (
+      <>
+        <button onClick={() => setValue(!value)}>Toggle</button>
+        <br />
+        <Switch value={value} onChange={newValue => setValue(newValue)} />
+      </>
+    );
+  }}
 </Playground>
 
 ## Switch Properties
