@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import classnames from "classnames";
+import { Typography } from "../Typography";
 import styles from "./Switch.css";
 
 interface SwitchProps {
@@ -11,8 +12,6 @@ export function Switch({ value: providedValue, onChange }: SwitchProps) {
   const [statefulValue, setValue] = useState(false);
   const value = providedValue != undefined ? providedValue : statefulValue;
 
-  const className = classnames(styles.track, { [styles.isChecked]: value });
-
   const toggle = () => {
     onChange && onChange(!value);
 
@@ -21,10 +20,38 @@ export function Switch({ value: providedValue, onChange }: SwitchProps) {
     }
   };
 
+  const className = classnames(styles.track, { [styles.isChecked]: value });
+
   return (
-    <div className={className} onClick={toggle}>
-      <input type="checkbox" className={styles.checkbox} checked={value} />
+    <button
+      type="button"
+      role="switch"
+      aria-checked={value}
+      className={className}
+      onClick={toggle}
+    >
+      <input type="hidden" value={value} />
+      <div className={styles.label}>
+        <Typography
+          textColor="white"
+          size="small"
+          fontWeight="bold"
+          textCase="uppercase"
+        >
+          On
+        </Typography>
+      </div>
+      <div className={styles.label}>
+        <Typography
+          textColor="greyBlue"
+          size="small"
+          fontWeight="bold"
+          textCase="uppercase"
+        >
+          Off
+        </Typography>
+      </div>
       <span className={styles.pip} />
-    </div>
+    </button>
   );
 }
