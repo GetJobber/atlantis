@@ -31,6 +31,7 @@
   padding: var(--space-smallest) var(--space-small);
   text-align: center;
   user-select: none;
+  pointer-events: none;
 }
 
 .pip {

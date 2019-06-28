@@ -5,6 +5,7 @@ import styles from "./Switch.css";
 
 interface SwitchProps {
   readonly value?: boolean;
+  readonly ariaLabel: string;
   onChange?(newValue: boolean): void;
 }
 
@@ -31,27 +32,28 @@ export function Switch({ value: providedValue, onChange }: SwitchProps) {
       onClick={toggle}
     >
       <input type="hidden" value={value} />
-      <div className={styles.label}>
-        <Typography
-          textColor="white"
-          size="small"
-          fontWeight="bold"
-          textCase="uppercase"
-        >
-          On
-        </Typography>
-      </div>
-      <div className={styles.label}>
-        <Typography
-          textColor="greyBlue"
-          size="small"
-          fontWeight="bold"
-          textCase="uppercase"
-        >
-          Off
-        </Typography>
-      </div>
+      <Label text="On" />
+      <Label text="Off" />
       <span className={styles.pip} />
     </button>
+  );
+}
+
+interface LabelProps {
+  readonly text: string;
+}
+
+function Label({ text }: LabelProps) {
+  return (
+    <div className={styles.label}>
+      <Typography
+        textColor={text == "On" ? "white" : "greyBlue"}
+        size="small"
+        fontWeight="bold"
+        textCase="uppercase"
+      >
+        {text}
+      </Typography>
+    </div>
   );
 }
