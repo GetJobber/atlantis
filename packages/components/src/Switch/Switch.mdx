@@ -11,14 +11,12 @@ import { Switch } from ".";
 
 # Switch
 
-<ComponentStatus stage="pre" responsive="no" accessible="no" />
+<ComponentStatus stage="pre" responsive="yes" accessible="yes" />
 
 A switch toggles the state of a single setting to on or off
 
 <Playground>
-  <Switch />
-  <br />
-  <Switch value={true} />
+  <Switch ariaLabel="Visible to clients" />
 </Playground>
 
 ## Parent controlled switch
@@ -30,7 +28,11 @@ A switch toggles the state of a single setting to on or off
       <>
         <button onClick={() => setValue(!value)}>Toggle</button>
         <br />
-        <Switch value={value} onChange={newValue => setValue(newValue)} />
+        <Switch
+          value={value}
+          onChange={newValue => setValue(newValue)}
+          ariaLabel="Toggle example?"
+        />
       </>
     );
   }}
