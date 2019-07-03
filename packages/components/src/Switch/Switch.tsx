@@ -24,20 +24,22 @@ export function Switch({ value: providedValue, onChange }: SwitchProps) {
   const className = classnames(styles.container, { [styles.isChecked]: value });
 
   return (
-    <button
-      type="button"
-      role="switch"
-      aria-checked={value}
-      className={className}
-      onClick={toggle}
-    >
-      <div className={styles.track}>
-        <input type="hidden" value={value} />
-        <Label as="On" />
-        <span className={styles.pip} />
-        <Label as="Off" />
-      </div>
-    </button>
+    <div className={className}>
+      <button
+        type="button"
+        role="switch"
+        aria-checked={value}
+        className={styles.switch}
+        onClick={toggle}
+      >
+        <span className={styles.track}>
+          <Label as="On" />
+          <span className={styles.pip} />
+          <Label as="Off" />
+        </span>
+      </button>
+      <input type="hidden" value={value} />
+    </div>
   );
 }
 
@@ -47,8 +49,9 @@ interface LabelProps {
 
 function Label({ as }: LabelProps) {
   return (
-    <div className={styles.label}>
+    <span className={styles.label}>
       <Typography
+        element="span"
         textColor={as == "On" ? "white" : "greyBlue"}
         size="small"
         fontWeight="bold"
@@ -56,6 +59,6 @@ function Label({ as }: LabelProps) {
       >
         {as}
       </Typography>
-    </div>
+    </span>
   );
 }

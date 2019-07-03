@@ -5,43 +5,47 @@ import { Switch } from ".";
 it("renders a Switch", () => {
   const tree = renderer.create(<Switch ariaLabel="Toggle me" />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
-    <button
-      aria-checked={false}
+    <div
       className="container"
-      onClick={[Function]}
-      role="switch"
-      type="button"
     >
-      <div
-        className="track"
+      <button
+        aria-checked={false}
+        className="switch"
+        onClick={[Function]}
+        role="switch"
+        type="button"
       >
-        <input
-          type="hidden"
-          value={false}
-        />
-        <div
-          className="label"
-        >
-          <p
-            className="base small bold uppercase white"
-          >
-            On
-          </p>
-        </div>
         <span
-          className="pip"
-        />
-        <div
-          className="label"
+          className="track"
         >
-          <p
-            className="base small bold uppercase greyBlue"
+          <span
+            className="label"
           >
-            Off
-          </p>
-        </div>
-      </div>
-    </button>
+            <span
+              className="base small bold uppercase white"
+            >
+              On
+            </span>
+          </span>
+          <span
+            className="pip"
+          />
+          <span
+            className="label"
+          >
+            <span
+              className="base small bold uppercase greyBlue"
+            >
+              Off
+            </span>
+          </span>
+        </span>
+      </button>
+      <input
+        type="hidden"
+        value={false}
+      />
+    </div>
   `);
 });
 
@@ -50,42 +54,46 @@ it("renders a Switch that is turned ON", () => {
     .create(<Switch ariaLabel="Toggle me" value={true} />)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-    <button
-      aria-checked={true}
+    <div
       className="container isChecked"
-      onClick={[Function]}
-      role="switch"
-      type="button"
     >
-      <div
-        className="track"
+      <button
+        aria-checked={true}
+        className="switch"
+        onClick={[Function]}
+        role="switch"
+        type="button"
       >
-        <input
-          type="hidden"
-          value={true}
-        />
-        <div
-          className="label"
-        >
-          <p
-            className="base small bold uppercase white"
-          >
-            On
-          </p>
-        </div>
         <span
-          className="pip"
-        />
-        <div
-          className="label"
+          className="track"
         >
-          <p
-            className="base small bold uppercase greyBlue"
+          <span
+            className="label"
           >
-            Off
-          </p>
-        </div>
-      </div>
-    </button>
+            <span
+              className="base small bold uppercase white"
+            >
+              On
+            </span>
+          </span>
+          <span
+            className="pip"
+          />
+          <span
+            className="label"
+          >
+            <span
+              className="base small bold uppercase greyBlue"
+            >
+              Off
+            </span>
+          </span>
+        </span>
+      </button>
+      <input
+        type="hidden"
+        value={true}
+      />
+    </div>
   `);
 });

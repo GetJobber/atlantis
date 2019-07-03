@@ -10,6 +10,13 @@
   display: inline-block;
   width: calc(var(--labelWidth) + var(--pipSize));
   height: var(--pipSize);
+  transition: all 200ms;
+}
+
+.switch {
+  display: block;
+  width: inherit;
+  height: inherit;
   padding: 0;
   border: 1px solid var(--color-grey--lighter);
   border-radius: calc(var(--pipSize) / 2);
@@ -17,13 +24,17 @@
   line-height: normal;
   background-color: var(--color-grey--lightest);
   cursor: pointer;
-  transition: all 200ms;
   appearance: none;
 }
 
-.container:focus {
+.switch:focus {
   box-shadow: 0 0px 4px 1px var(--color-yellow--light);
   outline: none;
+}
+
+.isChecked .switch {
+  border-color: var(--color-green);
+  background-color: var(--color-green);
 }
 
 .track {
@@ -33,6 +44,10 @@
   position: relative;
   transform: translateX(calc(-1 * var(--labelWidth)));
   transition: all 200ms;
+}
+
+.isChecked .track {
+  transform: translateX(0);
 }
 
 .label {
@@ -61,15 +76,6 @@
   transition: all 200ms;
 }
 
-.isChecked {
-  border-color: var(--color-green);
-  background-color: var(--color-green);
-}
-
 .isChecked .pip {
   border-color: var(--color-green);
-}
-
-.isChecked .track {
-  transform: translateX(0);
 }
