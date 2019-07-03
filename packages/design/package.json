@@ -1,6 +1,6 @@
 {
   "name": "@jobber/design",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "Design foundation for the Jobber Atlantis Design System",
   "license": "UNLICENSED",
   "main": "foundation.css",
