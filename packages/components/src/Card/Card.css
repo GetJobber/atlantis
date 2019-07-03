@@ -50,7 +50,6 @@
 }
 
 .header {
-  width: 100%;
   padding: var(--base-padding);
   background-color: var(--header-background-color);
 }
