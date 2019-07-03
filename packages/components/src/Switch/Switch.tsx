@@ -21,7 +21,7 @@ export function Switch({ value: providedValue, onChange }: SwitchProps) {
     }
   };
 
-  const className = classnames(styles.track, { [styles.isChecked]: value });
+  const className = classnames(styles.container, { [styles.isChecked]: value });
 
   return (
     <button
@@ -31,28 +31,30 @@ export function Switch({ value: providedValue, onChange }: SwitchProps) {
       className={className}
       onClick={toggle}
     >
-      <input type="hidden" value={value} />
-      <Label text="On" />
-      <Label text="Off" />
-      <span className={styles.pip} />
+      <div className={styles.track}>
+        <input type="hidden" value={value} />
+        <Label as="On" />
+        <span className={styles.pip} />
+        <Label as="Off" />
+      </div>
     </button>
   );
 }
 
 interface LabelProps {
-  readonly text: string;
+  readonly as: "On" | "Off";
 }
 
-function Label({ text }: LabelProps) {
+function Label({ as }: LabelProps) {
   return (
     <div className={styles.label}>
       <Typography
-        textColor={text == "On" ? "white" : "greyBlue"}
+        textColor={as == "On" ? "white" : "greyBlue"}
         size="small"
         fontWeight="bold"
         textCase="uppercase"
       >
-        {text}
+        {as}
       </Typography>
     </div>
   );

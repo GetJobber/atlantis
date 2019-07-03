@@ -1,49 +1,62 @@
-.track,
-.track * {
+.container,
+.container * {
   box-sizing: border-box;
 }
 
-.track {
-  display: inline-flex;
-  position: relative;
-  min-height: 16px;
-  padding: 0 var(--space-smaller);
+.container {
+  --pipSize: 32px;
+  --labelWidth: calc(var(--pipSize) * 1.25);
+
+  display: inline-block;
+  width: calc(var(--labelWidth) + var(--pipSize));
+  height: var(--pipSize);
+  padding: 0;
   border: 1px solid var(--color-grey--lighter);
-  border-radius: 24px;
+  border-radius: calc(var(--pipSize) / 2);
+  overflow: hidden;
   line-height: normal;
   background-color: var(--color-grey--lightest);
   cursor: pointer;
   transition: all 200ms;
   appearance: none;
-  flex: 1 1 100%;
-  align-items: center;
 }
 
-.track:focus {
+.container:focus {
   box-shadow: 0 0px 4px 1px var(--color-yellow--light);
   outline: none;
 }
 
+.track {
+  display: flex;
+  flex: 1 1 100%;
+  align-items: center;
+  position: relative;
+  transform: translateX(calc(-1 * var(--labelWidth)));
+  transition: all 200ms;
+}
+
 .label {
   position: relative;
-  flex-basis: 100%;
-  min-width: 24px;
-  padding: var(--space-smallest) var(--space-small);
+  min-width: var(--labelWidth);
   text-align: center;
   user-select: none;
   pointer-events: none;
 }
 
+.label:first-of-type {
+  padding-left: var(--space-smaller);
+}
+
+.label:last-of-type {
+  padding-right: var(--space-smaller);
+}
+
 .pip {
-  display: block;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 50%;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1), 0 4px 16px rgba(0, 0, 0, 0.05);
+  flex: 0 0 auto;
+  width: calc(var(--pipSize) - 2px);
+  height: calc(var(--pipSize) - 2px);
   border: 1px solid var(--color-grey);
-  border-radius: 24px;
+  border-radius: calc(var(--pipSize) / 2);
   background-color: var(--color-white);
   transition: all 200ms;
 }
@@ -54,6 +67,9 @@
 }
 
 .isChecked .pip {
-  left: 50%;
   border-color: var(--color-green);
+}
+
+.isChecked .track {
+  transform: translateX(0);
 }
