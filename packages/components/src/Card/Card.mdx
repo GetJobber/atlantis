@@ -5,17 +5,17 @@ route: /components/card
 
 import { Playground, Props, Link } from "docz";
 import { ComponentStatus } from "@jobber/docx";
-import { Card, CardTitle } from ".";
+import { Card, Title } from ".";
 
 # Card
 
-<ComponentStatus stage="rc" responsive="yes" accessible="no" />
+<ComponentStatus stage="rc" responsive="yes" accessible="yes" />
 
 In Jobber a card is used to group related information and tasks to make things
 easier to scan, and action upon. Cards also contain many optional sub-components
 to provide extra structure in a predictable way.
 
-## Simple Example
+## Simple Card
 
 <Playground>
   <Card>
@@ -24,9 +24,23 @@ to provide extra structure in a predictable way.
   </Card>
 </Playground>
 
+## Clickable Cards
+
+<Playground>
+  <Card url="#">
+    <p>I'm a link!</p>
+  </Card>
+
+  <Card onClick={() => { alert("😻"); }}>
+    <p>I like to be clicked!</p>
+  </Card>
+</Playground>
+
+## Card with Title
+
 <Playground>
   <Card accent="jobColor">
-    <CardTitle title="This is an exceptionally long card title" />
+    <Title title="This is an exceptionally long card title" />
 
     <p>This is the card content.</p>
 
@@ -39,16 +53,16 @@ to provide extra structure in a predictable way.
 
 ---
 
-## ▸ `CardTitle`
+## ▸ `Title`
 
-The `CardTitle` defines the title of a card. This is used to provide context as
-to the content of the card.
+The `Title` defines the title of a card. This is used to provide context as to
+the content of the card.
 
 <Playground>
   <Card>
-    <CardTitle title="Sample Title" />
+    <Title title="Sample Title" />
 
   </Card>
 </Playground>
 
-<Props of={CardTitle} />
+<Props of={Title} />

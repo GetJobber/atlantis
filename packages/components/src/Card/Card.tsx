@@ -1,13 +1,14 @@
 import React, { ReactNode } from "react";
 import classnames from "classnames";
+import { XOR } from "ts-xor";
 import styles from "./Card.css";
-import cardColors from "./CardColors.css";
+import colors from "./colors.css";
 
-interface CardSectionProps {
+interface HeaderProps {
   readonly children: ReactNode;
 }
 
-function CardHeader(props: CardSectionProps) {
+function Header(props: HeaderProps) {
   const className = classnames(styles.header, styles.fill);
 
   return <div className={className} {...props} />;
@@ -20,11 +21,11 @@ interface CardTitleProps {
   readonly title: string;
 }
 
-export function CardTitle({ title }: CardTitleProps) {
+export function Title({ title }: CardTitleProps) {
   return (
-    <CardHeader>
+    <Header>
       <span className={styles.title}>{title}</span>
-    </CardHeader>
+    </Header>
   );
 }
 
@@ -33,16 +34,49 @@ interface CardProps {
    * The `accent`, if provided, will effect the color accent at the top of
    * the card.
    */
-  readonly accent?: keyof typeof cardColors;
+  readonly accent?: keyof typeof colors;
   readonly children: ReactNode | ReactNode[];
 }
 
-export function Card({ accent, children }: CardProps) {
+interface LinkCardProps extends CardProps {
+  url: string;
+}
+
+interface ClickableCardProps extends CardProps {
+  onClick(): void;
+}
+
+type CardPropOptions = XOR<CardProps, XOR<LinkCardProps, ClickableCardProps>>;
+
+export function Card({ accent, children, url, onClick }: CardPropOptions) {
   const className = classnames(
     styles.card,
     accent && styles.accent,
-    accent && cardColors[accent],
+    (url || onClick) && styles.clickable,
+    accent && colors[accent],
   );
 
-  return <div className={className}>{children}</div>;
+  interface InternalProps {
+    children: ReactNode | ReactNode[];
+    className: string;
+    href?: string;
+    role?: "button";
+    tabIndex?: 0;
+    onClick?(): void;
+  }
+
+  const Tag = url ? "a" : "div";
+  const props: InternalProps = { children, className };
+
+  if (url) {
+    props.href = url;
+  }
+
+  if (onClick) {
+    props.onClick = onClick;
+    props.role = "button";
+    props.tabIndex = 0;
+  }
+
+  return <Tag {...props} />;
 }

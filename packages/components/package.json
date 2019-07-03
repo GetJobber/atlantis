@@ -22,7 +22,8 @@
     "@jobber/formatters": "^0.0.1",
     "classnames": "^2.2.6",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "ts-xor": "^1.0.8"
   },
   "devDependencies": {
     "@testing-library/react": "^8.0.1",
