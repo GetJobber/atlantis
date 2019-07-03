@@ -79,6 +79,14 @@ lerna publish --canary --dist-tag next --preid pre
 
 ### For Realz
 
+Follow semver when choosing versions.
+
 ```sh
 lerna publish
+```
+
+### What has Changed
+
+```sh
+lerna changed
 ```
