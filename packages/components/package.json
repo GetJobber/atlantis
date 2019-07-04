@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "license": "UNLICENSED",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -20,7 +20,8 @@
   ],
   "dependencies": {
     "@jobber/formatters": "^0.0.1",
-    "classnames": "^2.2.6"
+    "classnames": "^2.2.6",
+    "ts-xor": "^1.0.8"
   },
   "devDependencies": {
     "@testing-library/react": "^8.0.1",

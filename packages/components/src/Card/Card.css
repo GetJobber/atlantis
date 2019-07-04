@@ -6,15 +6,40 @@
   --accent-color: var(--color-grey);
   --base-padding: var(--space-base);
 
+  display: block;
   padding: var(--base-padding);
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
+  border: var(--border-base) solid var(--border-color);
+  border-radius: var(--radius-base);
   overflow: auto;
+  outline-color: var(--color-outline);
   background-color: var(--card-background-color);
+}
+
+.card:not(:last-child) {
+  margin-bottom: var(--space-base);
+}
+
+.card:active {
+  outline: 0;
 }
 
 .accent {
   border-top: 0.5rem solid var(--accent-color);
+}
+
+.clickable {
+  --border-color: trasparent;
+
+  box-shadow: var(--shadow-base);
+  color: inherit;
+  text-decoration: inherit;
+  cursor: pointer;
+  transition: all var(--timing-quick) linear;
+}
+
+.clickable:hover,
+.clickable:focus {
+  background-color: var(--color-yellow--lightest);
 }
 
 .fill {
@@ -33,9 +58,6 @@
   --card-title-color: var(--color-blue);
 
   margin: 0;
-  overflow: hidden;
   color: var(--card-title-color);
   font-weight: 700;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
