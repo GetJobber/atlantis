@@ -43,7 +43,7 @@
   align-items: center;
   position: relative;
   transform: translateX(calc(-1 * var(--labelWidth)));
-  transition: all var(--timing-quick);
+  transition: all var(--timing-base);
 }
 
 .isChecked .track {
@@ -73,7 +73,7 @@
   border: var(--border-base) solid var(--color-grey);
   border-radius: calc(var(--pipSize) / 2);
   background-color: var(--color-white);
-  transition: all var(--timing-quick);
+  transition: all var(--timing-base);
 }
 
 .isChecked .pip {
