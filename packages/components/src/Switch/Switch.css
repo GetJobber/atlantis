@@ -10,7 +10,7 @@
   display: inline-block;
   width: calc(var(--labelWidth) + var(--pipSize));
   height: var(--pipSize);
-  transition: all 200ms;
+  transition: all var(--timing-quick);
 }
 
 .toggle {
@@ -43,7 +43,7 @@
   align-items: center;
   position: relative;
   transform: translateX(calc(-1 * var(--labelWidth)));
-  transition: all 200ms;
+  transition: all var(--timing-quick);
 }
 
 .isChecked .track {
@@ -73,7 +73,7 @@
   border: var(--border-base) solid var(--color-grey);
   border-radius: calc(var(--pipSize) / 2);
   background-color: var(--color-white);
-  transition: all 200ms;
+  transition: all var(--timing-quick);
 }
 
 .isChecked .pip {
