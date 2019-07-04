@@ -29,7 +29,7 @@ export function Switch({ value: providedValue, onChange }: SwitchProps) {
         type="button"
         role="switch"
         aria-checked={value}
-        className={styles.switch}
+        className={styles.toggle}
         onClick={toggle}
       >
         <span className={styles.track}>
@@ -38,7 +38,7 @@ export function Switch({ value: providedValue, onChange }: SwitchProps) {
           <Label as="Off" />
         </span>
       </button>
-      <input type="hidden" value={value} />
+      <input type="hidden" value={String(value)} />
     </div>
   );
 }

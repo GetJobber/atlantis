@@ -13,7 +13,7 @@
   transition: all 200ms;
 }
 
-.switch {
+.toggle {
   display: block;
   width: inherit;
   height: inherit;
@@ -27,12 +27,12 @@
   appearance: none;
 }
 
-.switch:focus {
+.toggle:focus {
   box-shadow: 0 0px 4px 1px var(--color-yellow--light);
   outline: none;
 }
 
-.isChecked .switch {
+.isChecked .toggle {
   border-color: var(--color-green);
   background-color: var(--color-green);
 }

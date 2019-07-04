@@ -10,7 +10,7 @@ it("renders a Switch", () => {
     >
       <button
         aria-checked={false}
-        className="switch"
+        className="toggle"
         onClick={[Function]}
         role="switch"
         type="button"
@@ -43,7 +43,7 @@ it("renders a Switch", () => {
       </button>
       <input
         type="hidden"
-        value={false}
+        value="false"
       />
     </div>
   `);
@@ -59,7 +59,7 @@ it("renders a Switch that is turned ON", () => {
     >
       <button
         aria-checked={true}
-        className="switch"
+        className="toggle"
         onClick={[Function]}
         role="switch"
         type="button"
@@ -92,7 +92,7 @@ it("renders a Switch that is turned ON", () => {
       </button>
       <input
         type="hidden"
-        value={true}
+        value="true"
       />
     </div>
   `);
