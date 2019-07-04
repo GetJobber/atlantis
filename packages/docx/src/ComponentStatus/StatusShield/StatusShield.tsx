@@ -21,9 +21,7 @@ export function StatusShield({ name, text, status, url }: StatusShieldProps) {
   const shield = (
     <img
       alt={name}
-      src={`https://img.shields.io/badge/${encodedName}-${encodedText}-${
-        statusColor[status]
-      }.svg?style=for-the-badge`}
+      src={`https://img.shields.io/badge/${encodedName}-${encodedText}-${statusColor[status]}.svg?style=for-the-badge`}
     />
   );
 
