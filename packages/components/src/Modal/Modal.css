@@ -1,0 +1,59 @@
+.modal {
+  --card-background-color: var(--color-white);
+  --header-background-color: var(--color-grey--lightest);
+  --border-color: var(--color-grey--lighter);
+  --base-padding: var(--space-base) var(--space-large);
+
+  display: flex;
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  /* TODO: Find a way to overcome docz z-index */
+  z-index: 10001;
+  padding: var(--space-base);
+  overflow: auto;
+  flex: 1 1 auto;
+}
+
+.box {
+  position: relative;
+  flex: 1 1 auto;
+  max-width: 600px;
+  margin: auto;
+  border: var(--border-base) solid var(--border-color);
+  border-radius: var(--radius-base);
+  outline-color: var(--color-outline);
+  background-color: var(--card-background-color);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--base-padding);
+  background-color: var(--header-background-color);
+}
+
+.closeButton {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  appearance: none;
+}
+
+.content {
+  padding: var(--base-padding);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color-greyBlue);
+}
