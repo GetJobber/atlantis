@@ -10,7 +10,7 @@
   display: inline-block;
   width: calc(var(--labelWidth) + var(--pipSize));
   height: var(--pipSize);
-  transition: all var(--timing-quick);
+  transition: all var(--timing-base);
 }
 
 .toggle {
