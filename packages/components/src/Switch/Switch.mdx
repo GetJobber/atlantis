@@ -24,14 +24,15 @@ A switch toggles the state of a single setting to on or off.
 <Playground>
   {() => {
     const [value, setValue] = useState(true);
+    const label = "Toggle example";
     return (
       <>
-        <button onClick={() => setValue(!value)}>Toggle</button>
+        <button onClick={() => setValue(!value)}>{label}</button>
         <br />
         <Switch
           value={value}
           onChange={newValue => setValue(newValue)}
-          ariaLabel="Toggle example?"
+          ariaLabel={label}
         />
       </>
     );

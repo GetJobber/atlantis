@@ -9,7 +9,11 @@ interface SwitchProps {
   onChange?(newValue: boolean): void;
 }
 
-export function Switch({ value: providedValue, onChange }: SwitchProps) {
+export function Switch({
+  value: providedValue,
+  ariaLabel,
+  onChange,
+}: SwitchProps) {
   const [statefulValue, setValue] = useState(false);
   const value = providedValue != undefined ? providedValue : statefulValue;
 
@@ -29,6 +33,7 @@ export function Switch({ value: providedValue, onChange }: SwitchProps) {
         type="button"
         role="switch"
         aria-checked={value}
+        aria-label={ariaLabel}
         className={className}
         onClick={toggleSwitch}
       >
