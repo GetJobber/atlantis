@@ -4,9 +4,9 @@ import icons from "./Icons.css";
 
 interface IconProps {
   /** The icon to show.  */
-  readonly iconName: keyof typeof icons;
+  readonly name: keyof typeof icons;
 }
 
-export function Icon({ iconName }: IconProps) {
-  return <div className={`${icons[iconName]} ${styles.icon}`} />;
+export function Icon({ name }: IconProps) {
+  return <div className={`${icons[name]} ${styles.icon}`} />;
 }
