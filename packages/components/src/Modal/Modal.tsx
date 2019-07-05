@@ -4,6 +4,7 @@ import classnames from "classnames";
 import { Icon } from "../Icon";
 import { Typography } from "../Typography";
 import styles from "./Modal.css";
+import sizes from "./Sizes.css";
 
 interface ModalProps {
   /**
@@ -11,7 +12,7 @@ interface ModalProps {
    */
   readonly open: boolean;
   readonly title: string;
-  readonly size?: "small" | "large";
+  readonly size?: keyof typeof sizes;
   /**
    * @default true
    */
@@ -19,8 +20,6 @@ interface ModalProps {
   readonly children: ReactNode;
   onRequestClose?(): void;
 }
-
-const appRoot = document.body;
 
 export function Modal({
   open = true,
@@ -30,12 +29,13 @@ export function Modal({
   children,
   onRequestClose,
 }: ModalProps) {
+  const modalClassName = classnames(styles.modal, size && sizes[size]);
   const template = (
     <>
       {open && (
-        <div className={styles.modal}>
-          <div className={styles.overlay} />
-          <div className={styles.box}>
+        <div className={styles.container}>
+          <div className={styles.overlay} onClick={onRequestClose} />
+          <div className={modalClassName}>
             <div className={styles.header}>
               <Typography
                 element="h3"
@@ -60,5 +60,5 @@ export function Modal({
     </>
   );
 
-  return ReactDOM.createPortal(template, appRoot);
+  return ReactDOM.createPortal(template, document.body);
 }
