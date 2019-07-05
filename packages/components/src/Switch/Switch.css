@@ -1,25 +1,19 @@
-.container,
-.container * {
+.track,
+.track * {
   box-sizing: border-box;
-}
-
-.container {
-  --pipSize: 32px;
-  --labelWidth: calc(var(--pipSize) * 1.25);
-
-  display: inline-block;
-  width: calc(var(--labelWidth) + var(--pipSize));
-  height: var(--pipSize);
   transition: all var(--timing-base);
 }
 
-.toggle {
-  display: block;
-  width: inherit;
-  height: inherit;
+.track {
+  --pipSize: 30px;
+  --labelWidth: calc(var(--pipSize) * 1.3);
+  --borderOffset: calc(var(--border-base) * 2);
+
+  display: inline-block;
+  width: calc(var(--labelWidth) + var(--pipSize));
   padding: 0;
   border: var(--border-base) solid var(--color-grey--lighter);
-  border-radius: calc(var(--pipSize) / 2);
+  border-radius: calc(var(--pipSize) + var(--borderOffset) / 2);
   overflow: hidden;
   line-height: normal;
   background-color: var(--color-grey--lightest);
@@ -27,27 +21,26 @@
   appearance: none;
 }
 
-.toggle:focus {
+.track:focus {
   box-shadow: 0 0 4px 1px var(--color-yellow--light);
   outline: none;
 }
 
-.isChecked .toggle {
+.isChecked {
   border-color: var(--color-green);
   background-color: var(--color-green);
 }
 
-.track {
+.toggle {
   display: flex;
   flex: 1 1 100%;
   align-items: center;
   position: relative;
   transform: translateX(calc(-1 * var(--labelWidth)));
-  transition: all var(--timing-base);
 }
 
-.isChecked .track {
-  transform: translateX(0);
+.isChecked .toggle {
+  transform: translateX(calc(-1 * var(--borderOffset)));
 }
 
 .label {
@@ -59,21 +52,20 @@
 }
 
 .label:first-of-type {
-  padding-left: var(--space-smaller);
+  padding-left: var(--space-small);
 }
 
 .label:last-of-type {
-  padding-right: var(--space-smaller);
+  padding-right: var(--space-small);
 }
 
 .pip {
   flex: 0 0 auto;
-  width: calc(var(--pipSize) - 2px);
-  height: calc(var(--pipSize) - 2px);
+  width: var(--pipSize);
+  height: var(--pipSize);
   border: var(--border-base) solid var(--color-grey);
   border-radius: calc(var(--pipSize) / 2);
   background-color: var(--color-white);
-  transition: all var(--timing-base);
 }
 
 .isChecked .pip {

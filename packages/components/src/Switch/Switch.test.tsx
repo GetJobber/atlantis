@@ -5,18 +5,16 @@ import { Switch } from ".";
 it("renders a Switch", () => {
   const tree = renderer.create(<Switch ariaLabel="Toggle me" />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="container"
-    >
+    Array [
       <button
         aria-checked={false}
-        className="toggle"
+        className="track"
         onClick={[Function]}
         role="switch"
         type="button"
       >
         <span
-          className="track"
+          className="toggle"
         >
           <span
             className="label"
@@ -40,12 +38,12 @@ it("renders a Switch", () => {
             </span>
           </span>
         </span>
-      </button>
+      </button>,
       <input
         type="hidden"
         value="false"
-      />
-    </div>
+      />,
+    ]
   `);
 });
 
@@ -54,18 +52,16 @@ it("renders a Switch that is turned ON", () => {
     .create(<Switch ariaLabel="Toggle me" value={true} />)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="container isChecked"
-    >
+    Array [
       <button
         aria-checked={true}
-        className="toggle"
+        className="track isChecked"
         onClick={[Function]}
         role="switch"
         type="button"
       >
         <span
-          className="track"
+          className="toggle"
         >
           <span
             className="label"
@@ -89,11 +85,11 @@ it("renders a Switch that is turned ON", () => {
             </span>
           </span>
         </span>
-      </button>
+      </button>,
       <input
         type="hidden"
         value="true"
-      />
-    </div>
+      />,
+    ]
   `);
 });

@@ -13,7 +13,7 @@ export function Switch({ value: providedValue, onChange }: SwitchProps) {
   const [statefulValue, setValue] = useState(false);
   const value = providedValue != undefined ? providedValue : statefulValue;
 
-  const toggle = () => {
+  const toggleSwitch = () => {
     onChange && onChange(!value);
 
     if (providedValue == undefined) {
@@ -21,25 +21,25 @@ export function Switch({ value: providedValue, onChange }: SwitchProps) {
     }
   };
 
-  const className = classnames(styles.container, { [styles.isChecked]: value });
+  const className = classnames(styles.track, { [styles.isChecked]: value });
 
   return (
-    <div className={className}>
+    <>
       <button
         type="button"
         role="switch"
         aria-checked={value}
-        className={styles.toggle}
-        onClick={toggle}
+        className={className}
+        onClick={toggleSwitch}
       >
-        <span className={styles.track}>
+        <span className={styles.toggle}>
           <Label as="On" />
           <span className={styles.pip} />
           <Label as="Off" />
         </span>
       </button>
       <input type="hidden" value={String(value)} />
-    </div>
+    </>
   );
 }
 
