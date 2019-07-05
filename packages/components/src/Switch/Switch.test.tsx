@@ -1,6 +1,10 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import { cleanup, render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { Switch } from ".";
+
+afterEach(cleanup);
 
 it("renders a Switch", () => {
   const tree = renderer.create(<Switch ariaLabel="Toggle me" />).toJSON();
@@ -8,6 +12,7 @@ it("renders a Switch", () => {
     Array [
       <button
         aria-checked={false}
+        aria-label="Toggle me"
         className="track"
         onClick={[Function]}
         role="switch"
@@ -55,6 +60,7 @@ it("renders a Switch that is turned ON", () => {
     Array [
       <button
         aria-checked={true}
+        aria-label="Toggle me"
         className="track isChecked"
         onClick={[Function]}
         role="switch"
@@ -92,4 +98,15 @@ it("renders a Switch that is turned ON", () => {
       />,
     ]
   `);
+});
+
+test("it should change the input value on click", () => {
+  const { getByRole } = render(<Switch ariaLabel="Toggle me" />);
+  const element = getByRole("switch");
+
+  userEvent.click(element);
+  expect(element).toHaveAttribute("aria-checked", "true");
+
+  userEvent.click(element);
+  expect(element).toHaveAttribute("aria-checked", "false");
 });
