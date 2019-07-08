@@ -10,8 +10,8 @@ interface ModalProps {
   /**
    * @default false
    */
-  readonly open: boolean;
   readonly title: string;
+  readonly open?: boolean;
   readonly size?: keyof typeof sizes;
   /**
    * @default true
@@ -107,7 +107,11 @@ function Header({ children, dismissible, onRequestClose }: HeaderProps) {
       </Typography>
 
       {dismissible && (
-        <button className={styles.closeButton} onClick={onRequestClose}>
+        <button
+          className={styles.closeButton}
+          onClick={onRequestClose}
+          aria-label="Close modal"
+        >
           <Icon name="cross" />
         </button>
       )}
