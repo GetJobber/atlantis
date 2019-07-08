@@ -94,7 +94,7 @@ interface HeaderProps {
   onRequestClose?(): void;
 }
 
-export function Header({ children, dismissible, onRequestClose }: HeaderProps) {
+function Header({ children, dismissible, onRequestClose }: HeaderProps) {
   return (
     <div className={styles.header}>
       <Typography
@@ -121,7 +121,7 @@ interface ActionsProps {
   tertiary?: ActionBase;
 }
 
-export function Actions({ primary, secondary, tertiary }: ActionsProps) {
+function Actions({ primary, secondary, tertiary }: ActionsProps) {
   const shouldShow =
     primary != undefined || secondary != undefined || tertiary != undefined;
 
