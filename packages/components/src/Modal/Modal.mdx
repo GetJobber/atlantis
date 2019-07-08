@@ -6,6 +6,7 @@ route: /components/modal
 
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
+import { useState } from "react";
 import { Modal } from ".";
 
 # Modal
@@ -17,7 +18,17 @@ In Jobber a Modal is used to …
 ## Simple Example
 
 <Playground>
-  <Modal title="Bob">Haloo</Modal>
+  {() => {
+    const [value, setValue] = useState(false);
+    return (
+      <>
+        <button onClick={() => setValue(!value)}>Open Modal</button>
+        <Modal title="Bob" open={value} onRequestClose={() => setValue(!value)}>
+          Haloo
+        </Modal>
+      </>
+    );
+  }}
 </Playground>
 
 ## Modal Properties

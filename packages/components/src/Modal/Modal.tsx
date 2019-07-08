@@ -8,7 +8,7 @@ import sizes from "./Sizes.css";
 
 interface ModalProps {
   /**
-   * @default true
+   * @default false
    */
   readonly open: boolean;
   readonly title: string;
@@ -22,7 +22,7 @@ interface ModalProps {
 }
 
 export function Modal({
-  open = true,
+  open = false,
   title,
   size,
   dismissible = true,
