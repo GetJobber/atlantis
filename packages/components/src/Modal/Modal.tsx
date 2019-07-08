@@ -18,7 +18,15 @@ interface ModalProps {
    */
   readonly dismissible?: boolean;
   readonly children: ReactNode;
+  readonly primaryAction?: ActionBase;
+  readonly secondaryAction?: ActionBase;
+  readonly tertiaryAction?: ActionBase;
   onRequestClose?(): void;
+}
+
+interface ActionBase {
+  label: string;
+  onClick?(): void;
 }
 
 export function Modal({
@@ -27,6 +35,9 @@ export function Modal({
   size,
   dismissible = true,
   children,
+  primaryAction,
+  secondaryAction,
+  tertiaryAction,
   onRequestClose,
 }: ModalProps) {
   const modalClassName = classnames(styles.modal, size && sizes[size]);
@@ -54,6 +65,11 @@ export function Modal({
             </div>
 
             <div className={styles.content}>{children}</div>
+            <Actions
+              primary={primaryAction}
+              secondary={secondaryAction}
+              tertiary={tertiaryAction}
+            ></Actions>
           </div>
         </div>
       )}
@@ -61,4 +77,37 @@ export function Modal({
   );
 
   return ReactDOM.createPortal(template, document.body);
+}
+
+interface ActionsProps {
+  primary?: ActionBase;
+  secondary?: ActionBase;
+  tertiary?: ActionBase;
+}
+
+export function Actions({ primary, secondary, tertiary }: ActionsProps) {
+  const shouldShow =
+    primary != undefined || secondary != undefined || tertiary != undefined;
+
+  return (
+    <>
+      {shouldShow && (
+        <div className={styles.actionBar}>
+          {tertiary && (
+            <div className={styles.leftAction}>
+              <button onClick={tertiary.onClick}>{tertiary.label}</button>
+            </div>
+          )}
+          <div className={styles.rightAction}>
+            {secondary && (
+              <button onClick={secondary.onClick}>{secondary.label}</button>
+            )}
+            {primary && (
+              <button onClick={primary.onClick}>{primary.label}</button>
+            )}
+          </div>
+        </div>
+      )}
+    </>
+  );
 }

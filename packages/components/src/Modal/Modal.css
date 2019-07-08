@@ -44,8 +44,28 @@
   appearance: none;
 }
 
-.content {
+.content,
+.actionBar {
   padding: var(--modal-padding);
+}
+
+.actionBar {
+  display: flex;
+  flex: 1 1 100%;
+  justify-content: flex-end;
+  padding-top: 0;
+}
+
+.leftAction {
+  flex: 1 1 auto;
+}
+
+.rightAction {
+  flex: 0 0 auto;
+}
+
+.rightAction > * {
+  margin-left: var(--space-small);
 }
 
 .overlay {
