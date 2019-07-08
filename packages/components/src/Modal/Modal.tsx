@@ -45,38 +45,53 @@ export function Modal({
     <>
       {open && (
         <div className={styles.container}>
-          <div className={styles.overlay} onClick={onRequestClose} />
           <div className={modalClassName}>
-            <div className={styles.header}>
-              <Typography
-                element="h3"
-                size="larger"
-                textCase="uppercase"
-                fontWeight="extraBold"
-              >
-                {title}
-              </Typography>
-
-              {dismissible && (
-                <button className={styles.closeButton} onClick={onRequestClose}>
-                  <Icon name="cross" />
-                </button>
-              )}
-            </div>
+            <Header dismissible={dismissible} onRequestClose={onRequestClose}>
+              {title}
+            </Header>
 
             <div className={styles.content}>{children}</div>
+
             <Actions
               primary={primaryAction}
               secondary={secondaryAction}
               tertiary={tertiaryAction}
-            ></Actions>
+            />
           </div>
+          <div className={styles.overlay} onClick={onRequestClose} />
         </div>
       )}
     </>
   );
 
   return ReactDOM.createPortal(template, document.body);
+}
+
+interface HeaderProps {
+  dismissible?: boolean;
+  children: ReactNode;
+  onRequestClose?(): void;
+}
+
+export function Header({ children, dismissible, onRequestClose }: HeaderProps) {
+  return (
+    <div className={styles.header}>
+      <Typography
+        element="h3"
+        size="larger"
+        textCase="uppercase"
+        fontWeight="extraBold"
+      >
+        {children}
+      </Typography>
+
+      {dismissible && (
+        <button className={styles.closeButton} onClick={onRequestClose}>
+          <Icon name="cross" />
+        </button>
+      )}
+    </div>
+  );
 }
 
 interface ActionsProps {

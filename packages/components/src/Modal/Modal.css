@@ -19,6 +19,7 @@
 
 .modal {
   position: relative;
+  z-index: 1;
   flex: 1 1 auto;
   max-width: var(--modal-width);
   margin: auto;
