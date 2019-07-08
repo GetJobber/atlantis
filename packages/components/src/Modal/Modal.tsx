@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 import ReactDOM from "react-dom";
 import classnames from "classnames";
 import { Icon } from "../Icon";
@@ -41,6 +41,11 @@ export function Modal({
   onRequestClose,
 }: ModalProps) {
   const modalClassName = classnames(styles.modal, size && sizes[size]);
+
+  if (onRequestClose) {
+    catchKeyboardEvent("Escape", onRequestClose);
+  }
+
   const template = (
     <>
       {open && (
@@ -65,6 +70,22 @@ export function Modal({
   );
 
   return ReactDOM.createPortal(template, document.body);
+}
+
+function catchKeyboardEvent(key: string, callback: { (): void }) {
+  useEffect(() => {
+    const handler = function(event: { key: string }) {
+      if (event.key === key) {
+        callback();
+      }
+    };
+
+    window.addEventListener("keydown", handler);
+
+    return () => {
+      window.removeEventListener("keydown", handler);
+    };
+  }, []);
 }
 
 interface HeaderProps {

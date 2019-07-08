@@ -6,15 +6,24 @@
   --border-color: var(--color-grey--lighter);
 
   display: flex;
+  z-index: 10001; /* TODO: Find a way to overcome docz z-index */
+  padding: var(--space-base);
+  overflow: auto;
+  flex: 1 1 auto;
+}
+
+.container,
+.overlay {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 10001; /* TODO: Find a way to overcome docz z-index */
-  padding: var(--space-base);
-  overflow: auto;
-  flex: 1 1 auto;
+}
+
+.overlay {
+  background-color: var(--color-greyBlue);
+  opacity: 0.8;
 }
 
 .modal {
@@ -67,14 +76,4 @@
 
 .rightAction > * {
   margin-left: var(--space-small);
-}
-
-.overlay {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: var(--color-greyBlue);
-  opacity: 0.8;
 }
