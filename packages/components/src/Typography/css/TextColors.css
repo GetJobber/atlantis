@@ -25,3 +25,7 @@
 .lightBlue {
   --textColor: var(--color-lightBlue);
 }
+
+.white {
+  --textColor: var(--color-white);
+}

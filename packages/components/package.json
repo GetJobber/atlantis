@@ -21,12 +21,11 @@
   "dependencies": {
     "@jobber/formatters": "^0.0.1",
     "classnames": "^2.2.6",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
     "ts-xor": "^1.0.8"
   },
   "devDependencies": {
-    "@testing-library/react": "^8.0.1",
+    "@testing-library/react": "^8.0.4",
+    "@testing-library/user-event": "^4.1.0",
     "@types/classnames": "^2.2.7",
     "@types/glob": "^7.1.1",
     "@types/react": "^16.8.13",
@@ -35,6 +34,7 @@
     "autoprefixer": "^9.5.1",
     "copyfiles": "^2.1.0",
     "glob": "^7.1.4",
+    "jest-dom": "^3.5.0",
     "postcss": "^7.0.16",
     "postcss-import": "^12.0.1",
     "react-test-renderer": "^16.8.6",
@@ -48,6 +48,10 @@
     "ts-node": "^8.1.0",
     "typed-css-modules": "^0.3.6",
     "typescript": "^3.5.2"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
   "browserslist": [
     "last 1 version",

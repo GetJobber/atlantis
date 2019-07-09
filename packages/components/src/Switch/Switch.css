@@ -1,0 +1,74 @@
+.track,
+.track * {
+  box-sizing: border-box;
+  transition: all var(--timing-base);
+}
+
+.track {
+  --pipSize: 30px;
+  --labelWidth: calc(var(--pipSize) * 1.3);
+  --borderOffset: calc(var(--border-base) * 2);
+
+  display: inline-block;
+  width: calc(var(--labelWidth) + var(--pipSize));
+  padding: 0;
+  border: var(--border-base) solid var(--color-grey--lighter);
+  border-radius: calc(var(--pipSize) + var(--borderOffset) / 2);
+  overflow: hidden;
+  line-height: normal;
+  background-color: var(--color-grey--lightest);
+  cursor: pointer;
+  appearance: none;
+}
+
+.track:focus {
+  box-shadow: 0 0 4px 1px var(--color-yellow--light);
+  outline: none;
+}
+
+.isChecked {
+  border-color: var(--color-green);
+  background-color: var(--color-green);
+}
+
+.toggle {
+  display: flex;
+  position: relative;
+  pointer-events: none;
+  transform: translateX(calc(-1 * var(--labelWidth)));
+  flex: 1 1 100%;
+  align-items: center;
+}
+
+.isChecked .toggle {
+  transform: translateX(calc(-1 * var(--borderOffset)));
+}
+
+.label {
+  position: relative;
+  min-width: var(--labelWidth);
+  text-align: center;
+  user-select: none;
+  pointer-events: none;
+}
+
+.label:first-of-type {
+  padding-left: var(--space-small);
+}
+
+.label:last-of-type {
+  padding-right: var(--space-small);
+}
+
+.pip {
+  flex: 0 0 auto;
+  width: var(--pipSize);
+  height: var(--pipSize);
+  border: var(--border-base) solid var(--color-grey);
+  border-radius: calc(var(--pipSize) / 2);
+  background-color: var(--color-white);
+}
+
+.isChecked .pip {
+  border-color: var(--color-green);
+}
