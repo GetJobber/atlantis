@@ -22,7 +22,8 @@ interface TypographyProps {
     | "p"
     | "b"
     | "em"
-    | "strong";
+    | "strong"
+    | "span";
   readonly size?: keyof typeof fontSizes;
   /**
    * Aside from changing the font weights, this also changes the font family.
