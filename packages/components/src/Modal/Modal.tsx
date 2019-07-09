@@ -42,7 +42,7 @@ export function Modal({
 }: ModalProps) {
   const modalClassName = classnames(styles.modal, size && sizes[size]);
 
-  if (onRequestClose) {
+  if (open && onRequestClose) {
     catchKeyboardEvent("Escape", onRequestClose);
   }
 
