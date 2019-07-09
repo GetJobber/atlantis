@@ -28,14 +28,15 @@ export function Button({
   size,
   onClick,
 }: ButtonProps) {
-  const className = classnames(styles.button, {
+  const buttonClassNames = classnames(styles.button, size && styles[size], {
     [styles[interactionType]]: interactionType,
     [styles[variation]]: variation,
     [styles.disabled]: disabled,
   });
 
   const props = {
-    className: className,
+    className: buttonClassNames,
+    disabled: disabled,
     ...(!disabled && { href: url }),
     ...(!disabled && { onClick: onClick }),
     ...(external && { target: "_blank" }),
