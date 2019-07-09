@@ -13,6 +13,11 @@
   justify-content: center;
 }
 
+.button:focus {
+  box-shadow: 0 0 4px 1px var(--color-outline);
+  outline: none;
+}
+
 /* Variation */
 
 .primary {
@@ -20,7 +25,8 @@
   --hoverbgColor: var(--hoverColor);
 }
 
-.primary:hover {
+.primary:hover,
+.primary:focus {
   border-color: var(--hoverBorderColor);
   background-color: var(--hoverbgColor);
 }
@@ -29,11 +35,13 @@
   --borderColor: var(--interactionColor);
 }
 
-.secondary:hover {
-  filter: brightness(80%);
+.secondary:hover,
+.secondary:focus {
+  filter: brightness(90%);
 }
 
-.tertiary:hover {
+.tertiary:hover,
+.tertiary:focus {
   background-color: var(--color-grey--lightest);
 }
 
