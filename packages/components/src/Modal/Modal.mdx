@@ -13,19 +13,63 @@ import { Modal } from ".";
 
 <ComponentStatus stage="pre" responsive="no" accessible="no" />
 
-In Jobber a Modal is used to …
-
-## Simple Example
+Modals are overlays that allow users to view, edit, or show informations that
+doesn't require a page to be built. It also prevent users from interacting with
+the rest of the application until a specific action is taken.
 
 <Playground>
   {() => {
-    const [value, setValue] = useState(true);
+    const [value, setValue] = useState(false);
     return (
       <>
-        <button onClick={() => setValue(!value)}>Open Modal</button>
         <Modal title="Bob" open={value} onRequestClose={() => setValue(!value)}>
           Haloo
         </Modal>
+        <button onClick={() => setValue(!value)}>Open Modal</button>
+      </>
+    );
+  }}
+</Playground>
+
+## With actions
+
+You have 3 action props you can use
+
+- `primaryAction`
+- `secondaryAction`
+- `tertiaryAction`
+
+This wouldn't have a styled buttons because we don't have a `<Button />`
+component yet
+
+<Playground>
+  {() => {
+    const [value, setValue] = useState(false);
+    const handleCloseModal = () => {
+      setValue(!value);
+    };
+    const handlePrimaryAction = () => {
+      alert("✅");
+    };
+    const handleSecondaryAction = () => {
+      handleCloseModal();
+    };
+    const handleTertiaryAction = () => {
+      alert("❌");
+    };
+    return (
+      <>
+        <Modal
+          title="Bob"
+          open={value}
+          primaryAction={{ label: "Submit", onClick: handlePrimaryAction }}
+          secondaryAction={{ label: "Cancel", onClick: handleSecondaryAction }}
+          tertiaryAction={{ label: "Delete", onClick: handleTertiaryAction }}
+          onRequestClose={handleCloseModal}
+        >
+          Haloo
+        </Modal>
+        <button onClick={handleCloseModal}>Open Modal</button>
       </>
     );
   }}
