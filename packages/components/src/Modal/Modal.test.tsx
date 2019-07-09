@@ -52,3 +52,16 @@ test("modal shows the action buttons", () => {
   fireEvent.click(getByText("Delete"));
   expect(handleTertiaryAction).toHaveBeenCalledTimes(1);
 });
+
+test("modal fires onRequestClose when pressing the escape key", () => {
+  const handleClose = jest.fn();
+
+  const { getByLabelText } = render(
+    <Modal title="Press escape!" open={true} onRequestClose={handleClose}>
+      No really. Press escape!
+    </Modal>,
+  );
+
+  fireEvent.keyDown(getByLabelText("Close modal"), { key: "Escape", code: 27 });
+  expect(handleClose).toHaveBeenCalledTimes(1);
+});
