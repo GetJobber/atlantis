@@ -1,0 +1,167 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a Select with many options 1`] = `
+<div
+  className="wrapper"
+>
+  <span
+    className="icon"
+  >
+    <div
+      className="arrowDown icon"
+    />
+  </span>
+  <select
+    className="select"
+    disabled={false}
+    onChange={[Function]}
+  >
+    <option>
+      Foo
+    </option>
+    <option>
+      Bar
+    </option>
+    <option>
+      Baz
+    </option>
+    <option>
+      Quux
+    </option>
+  </select>
+</div>
+`;
+
+exports[`renders a Select with no options 1`] = `
+<div
+  className="wrapper"
+>
+  <span
+    className="icon"
+  >
+    <div
+      className="arrowDown icon"
+    />
+  </span>
+  <select
+    className="select"
+    disabled={false}
+    onChange={[Function]}
+  />
+</div>
+`;
+
+exports[`renders a Select with one option 1`] = `
+<div
+  className="wrapper"
+>
+  <span
+    className="icon"
+  >
+    <div
+      className="arrowDown icon"
+    />
+  </span>
+  <select
+    className="select"
+    disabled={false}
+    onChange={[Function]}
+  >
+    <option>
+      Foo
+    </option>
+  </select>
+</div>
+`;
+
+exports[`renders correctly as large 1`] = `
+<div
+  className="wrapper large"
+>
+  <span
+    className="icon"
+  >
+    <div
+      className="arrowDown icon"
+    />
+  </span>
+  <select
+    className="select"
+    disabled={false}
+    onChange={[Function]}
+  >
+    <option>
+      Foo
+    </option>
+  </select>
+</div>
+`;
+
+exports[`renders correctly as small 1`] = `
+<div
+  className="wrapper small"
+>
+  <span
+    className="icon"
+  >
+    <div
+      className="arrowDown icon"
+    />
+  </span>
+  <select
+    className="select"
+    disabled={false}
+    onChange={[Function]}
+  >
+    <option>
+      Foo
+    </option>
+  </select>
+</div>
+`;
+
+exports[`renders correctly when disabled 1`] = `
+<div
+  className="wrapper disabled"
+>
+  <span
+    className="icon"
+  >
+    <div
+      className="arrowDown icon"
+    />
+  </span>
+  <select
+    className="select"
+    disabled={true}
+    onChange={[Function]}
+  >
+    <option>
+      Foo
+    </option>
+  </select>
+</div>
+`;
+
+exports[`renders correctly when invalid 1`] = `
+<div
+  className="wrapper invalid"
+>
+  <span
+    className="icon"
+  >
+    <div
+      className="arrowDown icon"
+    />
+  </span>
+  <select
+    className="select"
+    disabled={false}
+    onChange={[Function]}
+  >
+    <option>
+      Foo
+    </option>
+  </select>
+</div>
+`;
