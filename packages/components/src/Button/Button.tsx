@@ -5,7 +5,7 @@ import styles from "./Button.css";
 
 interface ButtonProps {
   readonly label: string;
-  readonly interactionType?: "work" | "learning" | "destructive" | "cancel";
+  readonly type?: "work" | "learning" | "destructive" | "cancel";
   readonly variation?: "primary" | "secondary" | "tertiary";
   readonly disabled?: boolean;
   readonly url?: string;
@@ -20,7 +20,7 @@ interface TypeMap {
 
 export function Button({
   label,
-  interactionType = "work",
+  type = "work",
   variation = "primary",
   disabled,
   url,
@@ -29,7 +29,7 @@ export function Button({
   onClick,
 }: ButtonProps) {
   const buttonClassNames = classnames(styles.button, size && styles[size], {
-    [styles[interactionType]]: interactionType,
+    [styles[type]]: type,
     [styles[variation]]: variation,
     [styles.disabled]: disabled,
   });
@@ -55,7 +55,7 @@ export function Button({
     if (disabled) {
       return { ...textColorMap["disabled"] };
     } else {
-      return { ...textColorMap[interactionType] };
+      return { ...textColorMap[type] };
     }
   };
 

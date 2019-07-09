@@ -73,9 +73,9 @@ The usage pattern for Learning Actions should follow the same logic as Work
 Actions for all three levels.
 
 <Playground>
-  <Button label="Learn More" interactionType="learning" />
-  <Button label="Learn More" interactionType="learning" variation="secondary" />
-  <Button label="Learn More" interactionType="learning" variation="tertiary" />
+  <Button label="Learn More" type="learning" />
+  <Button label="Learn More" type="learning" variation="secondary" />
+  <Button label="Learn More" type="learning" variation="tertiary" />
 </Playground>
 
 ## Destructive Actions
@@ -98,8 +98,8 @@ A Secondary destructive action will either...
 - trigger a dialog to confirm a Primary destructive action
 
 <Playground>
-  <Button label="Delete" interactionType="destructive" />
-  <Button label="Delete" interactionType="destructive" variation="secondary" />
+  <Button label="Delete" type="destructive" />
+  <Button label="Delete" type="destructive" variation="secondary" />
 </Playground>
 
 ## Cancel Actions
@@ -108,7 +108,7 @@ Cancel actions allow the user to opt out of completing an action they have
 triggered, whether that action is Work, Learning, or Destructive.
 
 <Playground>
-  <Button label="Cancel" interactionType="cancel" />
+  <Button label="Cancel" type="cancel" />
 </Playground>
 
 ## Disabled Buttons
