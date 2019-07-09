@@ -5,23 +5,31 @@ import styles from "./Switch.css";
 
 interface SwitchProps {
   readonly value?: boolean;
-  readonly ariaLabel: string;
+  /**
+   * Adds a name for the hidden input and an ID so a label can be used to
+   * describe the switch instead of an aria-label. This prevents screen readers
+   * from reading the label twice
+   */
+  readonly name?: string;
+  readonly ariaLabel?: string;
   onChange?(newValue: boolean): void;
 }
 
 export function Switch({
   value: providedValue,
   ariaLabel,
+  name,
   onChange,
 }: SwitchProps) {
   const [statefulValue, setValue] = useState(false);
   const value = providedValue != undefined ? providedValue : statefulValue;
 
   const toggleSwitch = () => {
-    onChange && onChange(!value);
+    const newValue = !value;
+    onChange && onChange(newValue);
 
     if (providedValue == undefined) {
-      setValue(!statefulValue);
+      setValue(newValue);
     }
   };
 
@@ -30,6 +38,7 @@ export function Switch({
   return (
     <>
       <button
+        id={name}
         type="button"
         role="switch"
         aria-checked={value}
@@ -43,7 +52,7 @@ export function Switch({
           <Label as="Off" />
         </span>
       </button>
-      <input type="hidden" value={String(value)} />
+      <input name={name} type="hidden" value={String(value)} />
     </>
   );
 }
