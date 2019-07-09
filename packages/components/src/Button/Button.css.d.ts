@@ -6,3 +6,4 @@ export const work: string;
 export const learning: string;
 export const destructive: string;
 export const cancel: string;
+export const disabled: string;

@@ -3,8 +3,9 @@
   padding: 8px 16px;
   border: 1px solid var(--borderColor, transparent);
   border-radius: 2px;
-  outline: none;
+  color: transparent;
   -webkit-font-smoothing: antialiased;
+  text-decoration: none;
   background-color: var(--bgColor, transparent);
   cursor: pointer;
   transition: all var(--timing-base);
@@ -72,4 +73,10 @@
 
 .cancel:hover {
   filter: brightness(90%);
+}
+
+.disabled {
+  --interactionColor: var(--color-grey--lighter);
+  --hoverColor: var(--color-grey--lighter);
+  cursor: no-drop;
 }

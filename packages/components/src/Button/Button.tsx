@@ -7,6 +7,11 @@ interface ButtonProps {
   readonly label: string;
   readonly interactionType?: "work" | "learning" | "destructive" | "cancel";
   readonly variation?: "primary" | "secondary" | "tertiary";
+  readonly disabled?: boolean;
+  readonly url?: string;
+  readonly external?: boolean;
+  readonly size?: "small" | "large";
+  onClick?(): void;
 }
 
 interface TypeMap {
@@ -17,31 +22,54 @@ export function Button({
   label,
   interactionType = "work",
   variation = "primary",
+  disabled,
+  url,
+  external,
+  size,
+  onClick,
 }: ButtonProps) {
-  let isPrimary = variation === "primary";
-  const textColorMap: TypeMap = {
-    work: { textColor: isPrimary ? "white" : "green" },
-    learning: { textColor: isPrimary ? "white" : "lightBlue" },
-    destructive: { textColor: isPrimary ? "white" : "red" },
-    cancel: { textColor: "greyBlue" },
-  };
-
   const className = classnames(styles.button, {
     [styles[interactionType]]: interactionType,
     [styles[variation]]: variation,
+    [styles.disabled]: disabled,
   });
 
+  const props = {
+    className: className,
+    ...(!disabled && { href: url }),
+    ...(!disabled && { onClick: onClick }),
+    ...(external && { target: "_blank" }),
+  };
+
+  const getTextColor = () => {
+    let isPrimary = variation === "primary";
+    const textColorMap: TypeMap = {
+      work: { textColor: isPrimary ? "white" : "green" },
+      learning: { textColor: isPrimary ? "white" : "lightBlue" },
+      destructive: { textColor: isPrimary ? "white" : "red" },
+      cancel: { textColor: "greyBlue" },
+      disabled: { textColor: "grey" },
+    };
+
+    if (disabled) {
+      return { ...textColorMap["disabled"] };
+    } else {
+      return { ...textColorMap[interactionType] };
+    }
+  };
+
+  const Tag = url ? "a" : "button";
   return (
-    <button className={className}>
+    <Tag {...props}>
       <Typography
         element="span"
         textCase="uppercase"
         fontWeight="extraBold"
         size="small"
-        {...textColorMap[interactionType]}
+        {...getTextColor()}
       >
         {label}
       </Typography>
-    </button>
+    </Tag>
   );
 }
