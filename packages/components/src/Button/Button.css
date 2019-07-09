@@ -1,0 +1,67 @@
+.button {
+  display: inline-flex;
+  padding: 8px 16px;
+  border: 1px solid var(--borderColor, transparent);
+  border-radius: 2px;
+  outline: none;
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--bgColor, transparent);
+  cursor: pointer;
+  transition: all var(--timing-base);
+  appearance: none;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Variation */
+
+.primary {
+  --bgColor: var(--interactionColor);
+  --hoverbgColor: var(--hoverColor);
+}
+
+.primary:hover {
+  border-color: var(--hoverBorderColor);
+  background-color: var(--hoverbgColor);
+}
+
+.secondary {
+  --borderColor: var(--interactionColor);
+}
+
+.secondary:hover {
+  filter: brightness(80%);
+}
+
+.tertiary:hover {
+  background-color: var(--color-grey--lightest);
+}
+
+/* Interaction */
+
+.work {
+  --interactionColor: var(--color-green);
+  --hoverColor: var(--color-green--dark);
+}
+
+.learning {
+  --interactionColor: var(--color-lightBlue);
+  --hoverColor: var(--color-lightBlue--dark);
+}
+
+.destructive {
+  --interactionColor: var(--color-red);
+  --hoverColor: var(--color-red--dark);
+}
+
+/* Cancel is special because, by defualt, it's styled as a secondary button */
+
+.cancel {
+  --borderColor: var(--color-greyBlue);
+  --hoverbgColor: transparent;
+  --hoverBorderColor: var(--color-greyBlue--dark);
+}
+
+.cancel:hover {
+  filter: brightness(90%);
+}
