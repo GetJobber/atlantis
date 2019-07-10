@@ -1,5 +1,6 @@
 .button {
   display: inline-flex;
+  min-height: var(--height);
   padding: var(--padding);
   border: 1px solid var(--borderColor, transparent);
   border-radius: 2px;
@@ -86,14 +87,16 @@
 /* Sizes */
 
 .small {
+  --height: calc(var(--base-unit) * 1.5);
   --padding: var(--space-smaller) var(--space-small);
 }
 
 .base {
+  --height: calc(var(--base-unit) * 2.25);
   --padding: var(--space-small) calc(var(--space-base) - 4px);
 }
 
 .large {
+  --height: calc(var(--base-unit) * 3);
   --padding: var(--space-small) var(--space-base);
-  min-height: 48px;
 }
