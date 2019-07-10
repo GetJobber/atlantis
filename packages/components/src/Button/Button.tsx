@@ -7,10 +7,10 @@ interface ButtonProps {
   readonly label: string;
   readonly type?: "work" | "learning" | "destructive" | "cancel";
   readonly variation?: "primary" | "secondary" | "tertiary";
+  readonly size?: "small" | "base" | "large";
   readonly disabled?: boolean;
   readonly url?: string;
   readonly external?: boolean;
-  readonly size?: "small" | "large";
   onClick?(): void;
 }
 
@@ -22,10 +22,10 @@ export function Button({
   label,
   type = "work",
   variation = "primary",
-  disabled,
+  disabled = false,
   url,
   external,
-  size,
+  size = "base",
   onClick,
 }: ButtonProps) {
   const buttonClassNames = classnames(styles.button, size && styles[size], {
@@ -42,35 +42,67 @@ export function Button({
     ...(external && { target: "_blank" }),
   };
 
-  const getTextColor = () => {
-    let isPrimary = variation === "primary";
-    const textColorMap: TypeMap = {
-      work: { textColor: isPrimary ? "white" : "green" },
-      learning: { textColor: isPrimary ? "white" : "lightBlue" },
-      destructive: { textColor: isPrimary ? "white" : "red" },
-      cancel: { textColor: "greyBlue" },
-      disabled: { textColor: "grey" },
-    };
-
-    if (disabled) {
-      return { ...textColorMap["disabled"] };
-    } else {
-      return { ...textColorMap[type] };
-    }
-  };
-
   const Tag = url ? "a" : "button";
   return (
     <Tag {...props}>
-      <Typography
-        element="span"
-        textCase="uppercase"
-        fontWeight="extraBold"
-        size="small"
-        {...getTextColor()}
-      >
+      <Typography {...getTypeProps(type, variation, disabled, size)}>
         {label}
       </Typography>
     </Tag>
   );
+}
+
+function getTypeProps(
+  type: string,
+  variation: string,
+  disabled: boolean,
+  size: string,
+) {
+  let isPrimary = variation === "primary";
+  const baseTypeProps: TypographyOptions = {
+    element: "span",
+    textCase: "uppercase",
+    fontWeight: "extraBold",
+    size: getTypeSizeProps(size),
+  };
+
+  const textColorMap: TypeMap = {
+    work: {
+      ...baseTypeProps,
+      textColor: isPrimary ? "white" : "green",
+    },
+    learning: {
+      ...baseTypeProps,
+      textColor: isPrimary ? "white" : "lightBlue",
+    },
+    destructive: {
+      ...baseTypeProps,
+      textColor: isPrimary ? "white" : "red",
+    },
+    cancel: {
+      ...baseTypeProps,
+      textColor: "greyBlue",
+    },
+    disabled: {
+      ...baseTypeProps,
+      textColor: "grey",
+    },
+  };
+
+  if (disabled) {
+    return { ...textColorMap["disabled"] };
+  } else {
+    return { ...textColorMap[type] };
+  }
+}
+
+function getTypeSizeProps(size: string) {
+  switch (size) {
+    case "small":
+      return "smaller";
+    case "large":
+      return "base";
+    default:
+      return "small";
+  }
 }

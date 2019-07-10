@@ -7,3 +7,6 @@ export const learning: string;
 export const destructive: string;
 export const cancel: string;
 export const disabled: string;
+export const small: string;
+export const base: string;
+export const large: string;

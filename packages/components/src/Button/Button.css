@@ -1,6 +1,6 @@
 .button {
   display: inline-flex;
-  padding: 8px 16px;
+  padding: var(--padding);
   border: 1px solid var(--borderColor, transparent);
   border-radius: 2px;
   color: transparent;
@@ -75,8 +75,25 @@
   filter: brightness(90%);
 }
 
+/* Disabled */
+
 .disabled {
   --interactionColor: var(--color-grey--lighter);
   --hoverColor: var(--color-grey--lighter);
   cursor: no-drop;
+}
+
+/* Sizes */
+
+.small {
+  --padding: var(--space-smaller) var(--space-small);
+}
+
+.base {
+  --padding: var(--space-small) calc(var(--space-base) - 4px);
+}
+
+.large {
+  --padding: var(--space-small) var(--space-base);
+  min-height: 48px;
 }
