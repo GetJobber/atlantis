@@ -14,6 +14,7 @@ interface ButtonProps {
   readonly external?: boolean;
   readonly icon?: IconNames;
   readonly iconOnRight?: boolean;
+  readonly fullWidth?: boolean;
   onClick?(): void;
 }
 
@@ -31,6 +32,7 @@ export function Button({
   size = "base",
   icon,
   iconOnRight,
+  fullWidth,
   onClick,
 }: ButtonProps) {
   const buttonClassNames = classnames(styles.button, size && styles[size], {
@@ -39,6 +41,7 @@ export function Button({
     [styles[type]]: type,
     [styles[variation]]: variation,
     [styles.disabled]: disabled,
+    [styles.fullWidth]: fullWidth,
   });
 
   const props = {

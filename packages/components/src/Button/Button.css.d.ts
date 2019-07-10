@@ -12,3 +12,4 @@ export const base: string;
 export const large: string;
 export const hasIcon: string;
 export const iconOnRight: string;
+export const fullWidth: string;

@@ -106,6 +106,8 @@
   --padding: var(--space-smaller) var(--space-base);
 }
 
+/* Icon */
+
 .hasIcon > *:first-child {
   margin-right: var(--space-small);
 }
@@ -114,4 +116,8 @@
   margin-left: var(--space-small);
   margin-right: 0;
   order: 1;
+}
+
+.fullWidth {
+  width: 100%;
 }
