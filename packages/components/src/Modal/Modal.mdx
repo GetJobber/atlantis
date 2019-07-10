@@ -45,14 +45,14 @@ component yet
 <Playground>
   {() => {
     const [value, setValue] = useState(false);
-    const handleCloseModal = () => {
+    const toggleModal = () => {
       setValue(!value);
     };
     const handlePrimaryAction = () => {
       alert("✅");
     };
     const handleSecondaryAction = () => {
-      handleCloseModal();
+      toggleModal();
     };
     const handleTertiaryAction = () => {
       alert("❌");
@@ -65,11 +65,11 @@ component yet
           primaryAction={{ label: "Submit", onClick: handlePrimaryAction }}
           secondaryAction={{ label: "Cancel", onClick: handleSecondaryAction }}
           tertiaryAction={{ label: "Delete", onClick: handleTertiaryAction }}
-          onRequestClose={handleCloseModal}
+          onRequestClose={toggleModal}
         >
           Haloo
         </Modal>
-        <button onClick={handleCloseModal}>Open Modal</button>
+        <button onClick={toggleModal}>Open Modal</button>
       </>
     );
   }}

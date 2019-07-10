@@ -9,7 +9,6 @@
   z-index: 10001; /* TODO: Find a way to overcome docz z-index */
   padding: var(--space-base);
   overflow: auto;
-  flex: 1 1 auto;
 }
 
 .container,
@@ -28,7 +27,6 @@
 
 .modal {
   position: relative;
-  z-index: 1;
   flex: 1 1 auto;
   max-width: var(--modal-width);
   margin: auto;

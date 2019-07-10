@@ -5,26 +5,28 @@ import { Modal } from ".";
 afterEach(cleanup);
 
 test("modal shows the children and a close button", () => {
+  const title = "Dis be a title";
+  const content = "Dis be a content 🎉";
   const handleClose = jest.fn();
 
   const { getByLabelText, getByText } = render(
-    <Modal title="Dis be a title" open={true} onRequestClose={handleClose}>
-      Dis be a content 🎉
+    <Modal title={title} open={true} onRequestClose={handleClose}>
+      {content}
     </Modal>,
   );
-  expect(getByText("Dis be a title")).toBeTruthy();
-  expect(getByText("Dis be a content 🎉")).toBeTruthy();
+  expect(getByText(title)).toBeTruthy();
+  expect(getByText(content)).toBeTruthy();
 
   fireEvent.click(getByLabelText("Close modal"));
   expect(handleClose).toHaveBeenCalledTimes(1);
 });
 
 test("modal doesn't show up", () => {
-  const { queryByText } = render(
-    <Modal title="What is love?">Baby dont show me, no mo</Modal>,
-  );
-  expect(queryByText("What is love?")).toBeNull();
-  expect(queryByText("Baby dont show me, no mo")).toBeNull();
+  const title = "Dis be a title";
+  const content = "Dis be a content 🎉";
+  const { queryByText } = render(<Modal title={title}>{content}</Modal>);
+  expect(queryByText(title)).toBeNull();
+  expect(queryByText(content)).toBeNull();
 });
 
 test("modal shows the action buttons", () => {

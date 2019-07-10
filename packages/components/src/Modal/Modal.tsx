@@ -50,10 +50,13 @@ export function Modal({
     <>
       {open && (
         <div className={styles.container}>
+          <div className={styles.overlay} onClick={onRequestClose} />
           <div className={modalClassName}>
-            <Header dismissible={dismissible} onRequestClose={onRequestClose}>
-              {title}
-            </Header>
+            <Header
+              title={title}
+              dismissible={dismissible}
+              onRequestClose={onRequestClose}
+            />
 
             <div className={styles.content}>{children}</div>
 
@@ -63,7 +66,6 @@ export function Modal({
               tertiary={tertiaryAction}
             />
           </div>
-          <div className={styles.overlay} onClick={onRequestClose} />
         </div>
       )}
     </>
@@ -89,12 +91,12 @@ function catchKeyboardEvent(key: string, callback: { (): void }) {
 }
 
 interface HeaderProps {
+  title: string;
   dismissible?: boolean;
-  children: ReactNode;
   onRequestClose?(): void;
 }
 
-function Header({ children, dismissible, onRequestClose }: HeaderProps) {
+function Header({ title, dismissible, onRequestClose }: HeaderProps) {
   return (
     <div className={styles.header}>
       <Typography
@@ -103,7 +105,7 @@ function Header({ children, dismissible, onRequestClose }: HeaderProps) {
         textCase="uppercase"
         fontWeight="extraBold"
       >
-        {children}
+        {title}
       </Typography>
 
       {dismissible && (
