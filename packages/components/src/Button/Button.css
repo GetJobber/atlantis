@@ -1,10 +1,11 @@
 .button {
   display: inline-flex;
   min-height: var(--height);
+  box-sizing: border-box;
   padding: var(--padding);
   border: 1px solid var(--borderColor, transparent);
   border-radius: 2px;
-  color: transparent;
+  color: var(--buttonColor, transparent);
   -webkit-font-smoothing: antialiased;
   text-decoration: none;
   background-color: var(--bgColor, transparent);
@@ -23,7 +24,7 @@
 /* Variation */
 
 .primary {
-  --bgColor: var(--interactionColor);
+  --bgColor: var(--buttonColor);
   --hoverbgColor: var(--hoverColor);
 }
 
@@ -34,7 +35,7 @@
 }
 
 .secondary {
-  --borderColor: var(--interactionColor);
+  --borderColor: var(--buttonColor);
 }
 
 .secondary:hover,
@@ -50,17 +51,17 @@
 /* Interaction */
 
 .work {
-  --interactionColor: var(--color-green);
+  --buttonColor: var(--color-green);
   --hoverColor: var(--color-green--dark);
 }
 
 .learning {
-  --interactionColor: var(--color-lightBlue);
+  --buttonColor: var(--color-lightBlue);
   --hoverColor: var(--color-lightBlue--dark);
 }
 
 .destructive {
-  --interactionColor: var(--color-red);
+  --buttonColor: var(--color-red);
   --hoverColor: var(--color-red--dark);
 }
 
@@ -79,7 +80,7 @@
 /* Disabled */
 
 .disabled {
-  --interactionColor: var(--color-grey--lighter);
+  --buttonColor: var(--color-grey--lighter);
   --hoverColor: var(--color-grey--lighter);
   cursor: no-drop;
 }
@@ -99,4 +100,18 @@
 .large {
   --height: calc(var(--base-unit) * 3);
   --padding: var(--space-small) var(--space-base);
+}
+
+.hasIcon {
+  --padding: var(--space-smaller) var(--space-base);
+}
+
+.hasIcon > *:first-child {
+  margin-right: var(--space-small);
+}
+
+.iconOnRight > *:first-child {
+  margin-left: var(--space-small);
+  margin-right: 0;
+  order: 1;
 }

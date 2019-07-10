@@ -1,6 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import { Typography, TypographyOptions } from "../Typography";
+import { Icon, IconNames } from "../Icon";
 import styles from "./Button.css";
 
 interface ButtonProps {
@@ -11,6 +12,8 @@ interface ButtonProps {
   readonly disabled?: boolean;
   readonly url?: string;
   readonly external?: boolean;
+  readonly icon?: IconNames;
+  readonly iconOnRight?: boolean;
   onClick?(): void;
 }
 
@@ -26,9 +29,13 @@ export function Button({
   url,
   external,
   size = "base",
+  icon,
+  iconOnRight,
   onClick,
 }: ButtonProps) {
   const buttonClassNames = classnames(styles.button, size && styles[size], {
+    [styles.hasIcon]: icon,
+    [styles.iconOnRight]: iconOnRight,
     [styles[type]]: type,
     [styles[variation]]: variation,
     [styles.disabled]: disabled,
@@ -45,6 +52,7 @@ export function Button({
   const Tag = url ? "a" : "button";
   return (
     <Tag {...props}>
+      {icon && <Icon iconName={icon} size={size} />}
       <Typography {...getTypeProps(type, variation, disabled, size)}>
         {label}
       </Typography>
