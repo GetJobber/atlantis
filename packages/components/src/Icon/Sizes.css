@@ -1,0 +1,11 @@
+.small {
+  --size: calc(var(--base-unit) * 0.875);
+}
+
+.base {
+  --size: calc(var(--base-unit) * 1.5);
+}
+
+.large {
+  --size: calc(var(--base-unit) * 2);
+}

@@ -2,12 +2,24 @@
 
 exports[`renders apple icon 1`] = `
 <div
-  className="apple icon"
+  className="icon apple base"
 />
 `;
 
 exports[`renders dashboard icon 1`] = `
 <div
-  className="dashboard icon"
+  className="icon dashboard base"
+/>
+`;
+
+exports[`renders large arrowDown icon 1`] = `
+<div
+  className="icon arrowDown large"
+/>
+`;
+
+exports[`renders small more icon 1`] = `
+<div
+  className="icon more small"
 />
 `;
