@@ -73,9 +73,32 @@ The usage pattern for Learning Actions should follow the same logic as Work
 Actions for all three levels.
 
 <Playground>
-  <Button label="Learn More" type="learning" />
-  <Button label="Learn More" type="learning" variation="secondary" />
-  <Button label="Learn More" type="learning" variation="tertiary" />
+  <Button
+    label="Learn More"
+    type="learning"
+    url="//getjobber.com"
+    external={true}
+  />
+</Playground>
+
+<Playground>
+  <Button
+    label="Learn More"
+    type="learning"
+    variation="secondary"
+    url="//getjobber.com"
+    external={true}
+  />
+</Playground>
+
+<Playground>
+  <Button
+    label="Learn More"
+    type="learning"
+    variation="tertiary"
+    url="//getjobber.com"
+    external={true}
+  />
 </Playground>
 
 ## Destructive Actions
@@ -99,6 +122,9 @@ A Secondary destructive action will either...
 
 <Playground>
   <Button label="Delete" type="destructive" />
+</Playground>
+
+<Playground>
   <Button label="Delete" type="destructive" variation="secondary" />
 </Playground>
 
@@ -111,13 +137,29 @@ triggered, whether that action is Work, Learning, or Destructive.
   <Button label="Cancel" type="cancel" />
 </Playground>
 
-## Disabled Buttons
+## Disabled
 
 Buttons can be disabled for a number of reasons, users may need to do an action
 first or they may not be ready to use that button.
 
 <Playground>
   <Button label="Submit" disabled />
+</Playground>
+
+## Sizes
+
+Buttons comes in 2 extra sizes.
+
+### Small
+
+<Playground>
+  <Button label="Submit" size="small" />
+</Playground>
+
+### Large
+
+<Playground>
+  <Button label="Submit" size="large" />
 </Playground>
 
 ## Button Properties
