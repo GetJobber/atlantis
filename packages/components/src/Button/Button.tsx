@@ -63,7 +63,7 @@ function getTypeProps(
     element: "span",
     textCase: "uppercase",
     fontWeight: "extraBold",
-    size: getTypeSizeProps(size),
+    size: getTypeSizes(size),
   };
 
   const textColorMap: TypeMap = {
@@ -96,7 +96,7 @@ function getTypeProps(
   }
 }
 
-function getTypeSizeProps(size: string) {
+function getTypeSizes(size: string) {
   switch (size) {
     case "small":
       return "smaller";
