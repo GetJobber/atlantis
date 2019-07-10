@@ -3,12 +3,6 @@
 The `<TimePicker>` component will allow the selection of an hour and minute of
 the day. The input can use the 12 hour or 24 hour clock.
 
-## Design Patterns
-
-_{Describe the design goal of this component. What is the design purpose of this
-component? How do its responsibilities relate to other components? Is there
-anything else that is important to describe?}_
-
 ## Wireframe
 
 ```
@@ -21,21 +15,58 @@ anything else that is important to describe?}_
 
 https://github.com/tc39/proposal-temporal
 
+```jsx
+// Uncontrolled component. The state is handled by the HTML element
+let time = new CivilTime(2, 23);
+<TimeInput defaultValue={time} format={12}>
 ```
-let time = new CivilTime(12, 34);
-let f = x => console.log(x);
-<TimeInput defaultTime={time} format={"twelve"} onChange={f}>
+
+```jsx
+// Controlled component
+class UsingTimePicker extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: new CivilTime(23, 55)
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({ value: event.target.value });
+  }
+
+  render() {
+    return (
+      <form>
+        <label>
+          Event time:
+          <TimePicker value={this.state.value} onChange={this.handleChange} />
+        </label>
+      </form>
+    );
+  }
+}
 ```
 
 ## Props Table
 
-_{Provide a table in the following format of the component's public API}_
+| name         | type       | default   | description                                                                                                                                                            |
+| ------------ | ---------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| format       | string?    | `12 | 24` | Time format.                                                                                                                                                           |
+| defaultValue | CivilTime? | none      | Intial time                                                                                                                                                            |
+| value        | CivilTime? | none      | Set the current value of the component. The component becomes a React "controlled" component. Requires onChange also be set.                                           |
+| onChange     | function?  | none      | Callback that fires when the is changed                                                                                                                                |
+| readonly     | boolean?   | false     | Set the to component to only display the value set by `defaultValue` or `value`. If `value` is set and onChange isn't needed, set `readonly` to get rid of the warning |
+| name         | string?    | none      | Set the name of the underlying input element. Used when using the component in a form                                                                                  |
 
-| name        | type       | default  | description                              |
-| ----------- | ---------- | -------- | ---------------------------------------- |
-| defaultTime | CivilTime? | none     | Intial time                              |
-| format      | string?    | "twelve" | Time format. `["twelve" | "twentyfour"]` |
-| onChange    | function?  | none     | Callback that fires when the is changed  |
+### Stretch Goals
+
+| name | type    | default | description                                       |
+| ---- | ------- | ------- | ------------------------------------------------- |
+| min  | string? | none    | Minimum value. Supported by `<input type="time">` |
+| max  | string? | none    | Maximum value. Supported by `<input type="time">` |
 
 ## Accessibility
 
@@ -45,7 +76,3 @@ between the parts with tab/shift+tab.
 The mobile version should use native time pickers.
 
 A screen reader should read the full component value in a normal way.
-
-_{Describe the accessibility concerns for the component. Should it be keyboard
-navigatable? Should it capture input, what should a screen reader see when it's
-focused?}_
