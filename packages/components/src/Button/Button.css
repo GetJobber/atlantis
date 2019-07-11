@@ -4,7 +4,7 @@
   box-sizing: border-box;
   padding: var(--padding);
   border: 1px solid var(--borderColor, transparent);
-  border-radius: 2px;
+  border-radius: var(--radius-base);
   color: var(--buttonColor, transparent);
   -webkit-font-smoothing: antialiased;
   text-decoration: none;
@@ -17,8 +17,7 @@
 }
 
 .button:focus {
-  box-shadow: 0 0 4px 1px var(--color-outline);
-  outline: none;
+  outline-color: var(--color-outline);
 }
 
 /* Variation */
