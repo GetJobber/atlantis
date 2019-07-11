@@ -30,7 +30,6 @@
 
 .primary:hover,
 .primary:focus {
-  border-color: var(--hoverBorderColor);
   background-color: var(--hoverbgColor);
 }
 
