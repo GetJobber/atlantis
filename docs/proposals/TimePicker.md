@@ -52,14 +52,18 @@ class UsingTimePicker extends React.Component {
 
 ## Props Table
 
-| name         | type       | default   | description                                                                                                                                                            |
-| ------------ | ---------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| format       | string?    | `12 | 24` | Time format.                                                                                                                                                           |
-| defaultValue | CivilTime? | none      | Intial time                                                                                                                                                            |
-| value        | CivilTime? | none      | Set the current value of the component. The component becomes a React "controlled" component. Requires onChange also be set.                                           |
-| onChange     | function?  | none      | Callback that fires when the is changed                                                                                                                                |
-| readonly     | boolean?   | false     | Set the to component to only display the value set by `defaultValue` or `value`. If `value` is set and onChange isn't needed, set `readonly` to get rid of the warning |
-| name         | string?    | none      | Set the name of the underlying input element. Used when using the component in a form                                                                                  |
+| name         | type       | default | description                                                                                                                                                            |
+| ------------ | ---------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| defaultValue | CivilTime? | none    | Intial time                                                                                                                                                            |
+| value        | CivilTime? | none    | Set the current value of the component. The component becomes a React "controlled" component. Requires onChange also be set.                                           |
+| onChange     | function?  | none    | Callback that fires when the is changed                                                                                                                                |
+| readonly     | boolean?   | false   | Set the to component to only display the value set by `defaultValue` or `value`. If `value` is set and onChange isn't needed, set `readonly` to get rid of the warning |
+| name         | string?    | none    | Set the name of the underlying input element. Used when using the component in a form                                                                                  |
+| invalid      | boolean?   | false   | Draws a red border around the component when true.                                                                                                                     |
+| disabled     | boolean?   | false   | Greys out the input when true.                                                                                                                                         |
+
+| size | `["small" | "normal" | "large"]` | "normal" | Changes the size of the
+component. | |
 
 ### Stretch Goals
 
