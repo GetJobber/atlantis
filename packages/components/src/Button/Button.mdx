@@ -54,7 +54,7 @@ A secondary button should be used when...
   action
 
 <Playground>
-  <Button label="Submit" variation="secondary" />
+  <Button label="Submit" type="secondary" />
 </Playground>
 
 ### Tertiary
@@ -63,7 +63,7 @@ A tertiary button should be used to complete actions within the view such as
 editing, revealing details, or navigating within the view.
 
 <Playground>
-  <Button label="Submit" variation="tertiary" />
+  <Button label="Submit" type="tertiary" />
 </Playground>
 
 ## Learning Actions
@@ -79,7 +79,7 @@ Actions for all three levels.
 <Playground>
   <Button
     label="Learn More"
-    type="learning"
+    variation="learning"
     url="//getjobber.com"
     external={true}
   />
@@ -88,8 +88,8 @@ Actions for all three levels.
 <Playground>
   <Button
     label="Learn More"
-    type="learning"
-    variation="secondary"
+    variation="learning"
+    type="secondary"
     url="//getjobber.com"
     external={true}
   />
@@ -98,8 +98,8 @@ Actions for all three levels.
 <Playground>
   <Button
     label="Learn More"
-    type="learning"
-    variation="tertiary"
+    variation="learning"
+    type="tertiary"
     url="//getjobber.com"
     external={true}
   />
@@ -125,11 +125,11 @@ A Secondary destructive action will either...
 - trigger a dialog to confirm a Primary destructive action
 
 <Playground>
-  <Button label="Delete" type="destructive" />
+  <Button label="Delete" variation="destructive" />
 </Playground>
 
 <Playground>
-  <Button label="Delete" type="destructive" variation="secondary" />
+  <Button label="Delete" variation="destructive" type="secondary" />
 </Playground>
 
 ## Cancel Actions
@@ -138,7 +138,7 @@ Cancel actions allow the user to opt out of completing an action they have
 triggered, whether that action is Work, Learning, or Destructive.
 
 <Playground>
-  <Button label="Cancel" type="cancel" />
+  <Button label="Cancel" variation="cancel" />
 </Playground>
 
 ## Disabled
@@ -172,12 +172,12 @@ You can use icons inside buttons. They can stand-alone, or appear before, after,
 or on top of the button label. They can also be added before or after the label.
 
 <Playground>
-  <Button label="More" variation="secondary" icon="more" />
+  <Button label="More" type="secondary" icon="more" />
   <br />
   <br />
   <Button
     label="Actions"
-    variation="secondary"
+    type="secondary"
     icon="arrowDown"
     iconOnRight={true}
   />

@@ -6,8 +6,8 @@ import styles from "./Button.css";
 
 interface ButtonProps {
   readonly label: string;
-  readonly type?: "work" | "learning" | "destructive" | "cancel";
-  readonly variation?: "primary" | "secondary" | "tertiary";
+  readonly variation?: "work" | "learning" | "destructive" | "cancel";
+  readonly type?: "primary" | "secondary" | "tertiary";
   readonly size?: "small" | "base" | "large";
   readonly disabled?: boolean;
   readonly url?: string;
@@ -24,8 +24,8 @@ interface TypeMap {
 
 export function Button({
   label,
-  type = "work",
-  variation = "primary",
+  variation = "work",
+  type = "primary",
   disabled = false,
   url,
   external,
@@ -38,8 +38,8 @@ export function Button({
   const buttonClassNames = classnames(styles.button, size && styles[size], {
     [styles.hasIcon]: icon,
     [styles.iconOnRight]: iconOnRight,
-    [styles[type]]: type,
     [styles[variation]]: variation,
+    [styles[type]]: type,
     [styles.disabled]: disabled,
     [styles.fullWidth]: fullWidth,
   });
@@ -56,7 +56,7 @@ export function Button({
   return (
     <Tag {...props}>
       {icon && <Icon iconName={icon} size={size} />}
-      <Typography {...getTypeProps(type, variation, disabled, size)}>
+      <Typography {...getTypeProps(variation, type, disabled, size)}>
         {label}
       </Typography>
     </Tag>
@@ -64,12 +64,12 @@ export function Button({
 }
 
 function getTypeProps(
-  type: string,
   variation: string,
+  type: string,
   disabled: boolean,
   size: string,
 ) {
-  let isPrimary = variation === "primary";
+  let isPrimary = type === "primary";
   const baseTypeProps: TypographyOptions = {
     element: "span",
     textCase: "uppercase",
@@ -103,7 +103,7 @@ function getTypeProps(
   if (disabled) {
     return { ...textColorMap["disabled"] };
   } else {
-    return { ...textColorMap[type] };
+    return { ...textColorMap[variation] };
   }
 }
 
