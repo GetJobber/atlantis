@@ -1,0 +1,77 @@
+.container {
+  --modal-width: calc(var(--base-unit) * 37.5);
+  --modal-padding: var(--space-base) var(--space-large);
+  --modal-background-color: var(--color-white);
+  --header-background-color: var(--color-grey--lightest);
+  --border-color: var(--color-grey--lighter);
+
+  display: flex;
+  z-index: var(--elevation-modal);
+  padding: var(--space-base);
+  overflow: auto;
+}
+
+.container,
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.overlay {
+  background-color: var(--color-greyBlue);
+  opacity: 0.8;
+}
+
+.modal {
+  position: relative;
+  flex: 1 1 auto;
+  max-width: var(--modal-width);
+  margin: auto;
+  border: var(--border-base) solid var(--border-color);
+  border-radius: var(--radius-base);
+  outline-color: var(--color-outline);
+  background-color: var(--modal-background-color);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--modal-padding);
+  background-color: var(--header-background-color);
+}
+
+.closeButton {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  appearance: none;
+}
+
+.content,
+.actionBar {
+  padding: var(--modal-padding);
+}
+
+.actionBar {
+  display: flex;
+  flex: 1 1 100%;
+  justify-content: flex-end;
+  padding-top: 0;
+}
+
+.leftAction {
+  flex: 1 1 auto;
+}
+
+.rightAction {
+  flex: 0 0 auto;
+}
+
+.rightAction > * {
+  margin-left: var(--space-small);
+}

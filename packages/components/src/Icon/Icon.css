@@ -13,10 +13,11 @@
   /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
   font-family: "jobbericons" !important;
 
+  font-size: calc(var(--base-unit) * 1.5);
+
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
   font-style: normal;
   font-weight: normal;
   line-height: 1;
