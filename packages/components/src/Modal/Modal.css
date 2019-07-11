@@ -6,7 +6,7 @@
   --border-color: var(--color-grey--lighter);
 
   display: flex;
-  z-index: 10001; /* TODO: Find a way to overcome docz z-index */
+  z-index: var(--elevation-modal);
   padding: var(--space-base);
   overflow: auto;
 }

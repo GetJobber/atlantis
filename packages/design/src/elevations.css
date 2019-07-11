@@ -1,0 +1,7 @@
+:root {
+  /**
+   * Modal has this much z-index to overcome docz z-index. This can be lowered
+   * once we create our own docz theme
+   */
+  --elevation-modal: 1001;
+}

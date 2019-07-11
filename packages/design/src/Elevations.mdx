@@ -1,0 +1,19 @@
+---
+name: Elevation
+menu: Design
+route: /elevation
+---
+
+# Elevation
+
+The following table lists all elements that has a z-index specified on it.
+
+export function Value({ of: type }) {
+  const styles = getComputedStyle(document.documentElement);
+  const getValue = styles.getPropertyValue(`--elevation-${type}`);
+  return <>{getValue}</>;
+}
+
+| Component | Value                |
+| :-------- | :------------------- |
+| Modal     | <Value of="modal" /> |
