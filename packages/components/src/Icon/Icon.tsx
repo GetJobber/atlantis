@@ -8,11 +8,11 @@ export type IconNames = keyof typeof icons;
 
 interface IconProps {
   /** The icon to show.  */
-  readonly iconName: IconNames;
+  readonly name: IconNames;
   readonly size?: keyof typeof sizes;
 }
 
-export function Icon({ iconName, size = "base" }: IconProps) {
-  const iconClasses = classnames(styles.icon, icons[iconName], sizes[size]);
+export function Icon({ name, size = "base" }: IconProps) {
+  const iconClasses = classnames(styles.icon, icons[name], sizes[size]);
   return <div className={iconClasses} />;
 }
