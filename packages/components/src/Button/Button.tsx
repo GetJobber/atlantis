@@ -1,13 +1,12 @@
 import React from "react";
 import classnames from "classnames";
+import { XOR } from "ts-xor";
 import { Typography, TypographyOptions } from "../Typography";
 import { Icon, IconNames } from "../Icon";
 import styles from "./Button.css";
 
 interface ButtonProps {
   readonly label: string;
-  readonly variation?: "work" | "learning" | "destructive" | "cancel";
-  readonly type?: "primary" | "secondary" | "tertiary";
   readonly size?: "small" | "base" | "large";
   readonly disabled?: boolean;
   readonly url?: string;
@@ -17,6 +16,25 @@ interface ButtonProps {
   readonly fullWidth?: boolean;
   onClick?(): void;
 }
+
+interface BaseActionProps extends ButtonProps {
+  readonly variation?: "work" | "learning";
+  readonly type?: "primary" | "secondary" | "tertiary";
+}
+
+interface DestructiveActionProps extends ButtonProps {
+  readonly variation?: "destructive";
+  readonly type?: "primary" | "secondary";
+}
+
+interface CancelActionProps extends ButtonProps {
+  readonly variation?: "cancel";
+}
+
+type ButtonPropOptions = XOR<
+  ButtonProps,
+  XOR<BaseActionProps, XOR<DestructiveActionProps, CancelActionProps>>
+>;
 
 interface TypeMap {
   [type: string]: TypographyOptions;
@@ -34,7 +52,7 @@ export function Button({
   iconOnRight,
   fullWidth,
   onClick,
-}: ButtonProps) {
+}: ButtonPropOptions) {
   const buttonClassNames = classnames(styles.button, size && styles[size], {
     [styles.hasIcon]: icon,
     [styles.iconOnRight]: iconOnRight,
