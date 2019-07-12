@@ -1,12 +1,13 @@
 import React, { ChangeEvent } from "react";
 import classnames from "classnames";
+import { CivilTime } from "@std-proposal/temporal";
 import styles from "./TimePicker.css";
 
 interface TimePickerProps {
   /**
    * Intial value.
    */
-  readonly defaultValue?: string;
+  readonly defaultValue?: CivilTime;
 
   /**
    * Prevent the input from being changed.
@@ -18,7 +19,7 @@ interface TimePickerProps {
    * Must be used with onChange to create a "controlled component" or
    * set `readOnly` to silence the warning.
    */
-  readonly value?: string;
+  readonly value?: CivilTime;
 
   /**
    * Indicates an error. Adds a red border.
@@ -40,7 +41,16 @@ interface TimePickerProps {
   /**
    * Function called when user changes input value.
    */
-  onChange?(newValue: string): void;
+  onChange?(newValue: CivilTime): void;
+}
+
+function civilTimeToHTMLTime(ct: CivilTime) {
+  const s = ct.toString();
+  return s.substring(0, s.indexOf("."));
+}
+
+function htmlTimeToCivilTime(s: string) {
+  return CivilTime.fromString(s + ":00.000000000");
 }
 
 export function TimePicker({
@@ -66,19 +76,22 @@ export function TimePicker({
   }
 
   let timeProps: InternalProps = {
-    defaultValue,
     disabled,
     readOnly,
   };
 
   if (onChange) {
     timeProps.onChange = (event: ChangeEvent<HTMLInputElement>) => {
-      onChange(event.currentTarget.value);
+      onChange(htmlTimeToCivilTime(event.currentTarget.value));
     };
   }
 
+  if (defaultValue) {
+    timeProps.defaultValue = civilTimeToHTMLTime(defaultValue);
+  }
+
   if (value) {
-    timeProps.value = value;
+    timeProps.value = civilTimeToHTMLTime(value);
   }
 
   return (

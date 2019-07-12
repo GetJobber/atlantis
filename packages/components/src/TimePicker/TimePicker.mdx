@@ -7,6 +7,7 @@ route: /components/time-picker
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { TimePicker } from ".";
+import { CivilTime } from "@std-proposal/temporal";
 
 # TimePicker
 
@@ -22,9 +23,9 @@ and this component doesn't look at the Jobber setting.
 
 <Playground>
 
-  <TimePicker defaultValue="02:35" size="small" />
-  <TimePicker defaultValue="02:35" />
-  <TimePicker defaultValue="02:35" size="large" />
+  <TimePicker defaultValue={new CivilTime(2,35)} size="small" />
+  <TimePicker defaultValue={new CivilTime(2,35)} />
+  <TimePicker defaultValue={new CivilTime(2,35)} size="large" />
 
 </Playground>
 
@@ -32,9 +33,9 @@ and this component doesn't look at the Jobber setting.
 
 <Playground>
 
-  <TimePicker defaultValue="03:52" disabled />
-  <TimePicker defaultValue="03:52" readOnly />
-  <TimePicker defaultValue="02:35" invalid />
+  <TimePicker defaultValue={new CivilTime(3, 52)} disabled />
+  <TimePicker defaultValue={new CivilTime(5, 23)} readOnly />
+  <TimePicker defaultValue={new CivilTime(2, 35)} invalid />
 
 </Playground>
 
