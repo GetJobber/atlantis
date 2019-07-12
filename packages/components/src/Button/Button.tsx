@@ -55,7 +55,7 @@ export function Button({
   const Tag = url ? "a" : "button";
   return (
     <Tag {...props}>
-      {icon && <Icon iconName={icon} size={size} />}
+      {icon && <Icon name={icon} size={size} />}
       <Typography {...getTypeProps(variation, type, disabled, size)}>
         {label}
       </Typography>
