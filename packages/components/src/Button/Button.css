@@ -80,7 +80,7 @@
 .disabled {
   --buttonColor: var(--color-grey--lighter);
   --hoverColor: var(--color-grey--lighter);
-  cursor: no-drop;
+  cursor: not-allowed;
 }
 
 /* Sizes */
