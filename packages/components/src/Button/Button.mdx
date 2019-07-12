@@ -185,11 +185,21 @@ or on top of the button label. They can also be added before or after the label.
 A way to communicate to the user that a background action is being performed.
 
 <Playground>
-  <Button label="Deleting..." type="primary" variation="destructive" loading />
+  <Button
+    label="Deleting..."
+    type="primary"
+    variation="destructive"
+    loading={true}
+  />
   <br />
   <br />
-  <Button label="Loading..." type="tertiary" variation="learning" loading />
+  <Button
+    label="Loading..."
+    type="tertiary"
+    variation="learning"
+    loading={true}
+  />
   <br />
   <br />
-  <Button label="Canceling..." variation="cancel" loading />
+  <Button label="Canceling..." variation="cancel" loading={true} />
 </Playground>
