@@ -20,7 +20,7 @@
   ],
   "dependencies": {
     "@jobber/formatters": "^0.0.1",
-    "@std-proposal/temporal": "git+https://github.com/std-proposal/temporal.git",
+    "@std-proposal/temporal": "0.0.1",
     "classnames": "^2.2.6",
     "ts-xor": "^1.0.8"
   },
