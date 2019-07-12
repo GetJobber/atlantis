@@ -14,12 +14,12 @@ exports[`renders dashboard icon 1`] = `
 
 exports[`renders large arrowDown icon 1`] = `
 <div
-  className="icon arrowDown large"
+  className="icon undefined large"
 />
 `;
 
 exports[`renders small more icon 1`] = `
 <div
-  className="icon more small"
+  className="icon undefined small"
 />
 `;
