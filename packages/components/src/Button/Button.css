@@ -20,11 +20,43 @@
   outline-color: var(--color-outline);
 }
 
+/* Interaction */
+
+.work {
+  --buttonColor: var(--color-green);
+  --buttonColor--loading: var(--color-green--light);
+  --buttonColor--loading2: var(--color-green--lightest);
+  --buttonColor--hover: var(--color-green--dark);
+}
+
+.learning {
+  --buttonColor: var(--color-lightBlue);
+  --buttonColor--loading: var(--color-lightBlue--light);
+  --buttonColor--loading2: var(--color-lightBlue--lightest);
+  --buttonColor--hover: var(--color-lightBlue--dark);
+}
+
+.destructive {
+  --buttonColor: var(--color-red);
+  --buttonColor--loading: var(--color-red--light);
+  --buttonColor--loading2: var(--color-red--lightest);
+  --buttonColor--hover: var(--color-red--dark);
+}
+
+/* Cancel is special because, by defualt, it's styled as a secondary button */
+
+.cancel {
+  --buttonColor: transparent;
+  --buttonColor--loading: var(--color-greyBlue--lightest);
+  --borderColor: var(--color-greyBlue);
+}
+
 /* Variation */
 
 .primary {
   --bgColor: var(--buttonColor);
-  --hoverbgColor: var(--hoverColor);
+  --loadingColor: var(--buttonColor--loading);
+  --hoverbgColor: var(--buttonColor--hover);
 }
 
 .primary:hover,
@@ -33,12 +65,21 @@
 }
 
 .secondary {
+  --bgColor: transparent;
+  --loadingColor: var(--buttonColor--loading2);
   --borderColor: var(--buttonColor);
 }
 
 .secondary:hover,
-.secondary:focus {
+.secondary:focus,
+.cancel:focus,
+.cancel:hover {
   filter: brightness(90%);
+}
+
+.tertiary {
+  --bgColor: transparent;
+  --loadingColor: var(--buttonColor--loading2);
 }
 
 .tertiary:hover,
@@ -46,40 +87,11 @@
   background-color: var(--color-grey--lightest);
 }
 
-/* Interaction */
-
-.work {
-  --buttonColor: var(--color-green);
-  --hoverColor: var(--color-green--dark);
-}
-
-.learning {
-  --buttonColor: var(--color-lightBlue);
-  --hoverColor: var(--color-lightBlue--dark);
-}
-
-.destructive {
-  --buttonColor: var(--color-red);
-  --hoverColor: var(--color-red--dark);
-}
-
-/* Cancel is special because, by defualt, it's styled as a secondary button */
-
-.cancel {
-  --borderColor: var(--color-greyBlue);
-  --hoverbgColor: transparent;
-  --hoverBorderColor: var(--color-greyBlue--dark);
-}
-
-.cancel:hover {
-  filter: brightness(90%);
-}
-
 /* Disabled */
 
 .disabled {
   --buttonColor: var(--color-grey--lighter);
-  --hoverColor: var(--color-grey--lighter);
+  --buttonColor--hover: var(--color-grey--lighter);
   cursor: not-allowed;
 }
 
@@ -118,4 +130,34 @@
 
 .fullWidth {
   width: 100%;
+}
+
+.loading {
+  background-image: linear-gradient(
+    135deg,
+    var(--loadingColor) 0%,
+    var(--loadingColor) 25%,
+    var(--bgColor) 25%,
+    var(--bgColor) 50%,
+    var(--loadingColor) 50%,
+    var(--loadingColor) 75%,
+    var(--bgColor) 75%,
+    var(--bgColor) 100%
+  );
+  background-size: var(--space-larger) var(--space-larger);
+  pointer-events: none;
+  cursor: not-allowed;
+  animation-duration: var(--timing-slowest);
+  animation-iteration-count: infinite;
+  animation-name: animate-stripes;
+  animation-timing-function: linear;
+}
+
+@keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: var(--space-larger) var(--space-larger);
+  }
 }
