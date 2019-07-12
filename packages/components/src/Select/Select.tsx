@@ -60,7 +60,7 @@ export function Select({
   return (
     <div className={wrapperClasses}>
       <span className={styles.icon}>
-        <Icon iconName="arrowDown" />
+        <Icon name="arrowDown" />
       </span>
       <select
         className={styles.select}

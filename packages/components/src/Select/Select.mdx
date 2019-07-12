@@ -12,8 +12,8 @@ import { Select, Option } from ".";
 
 <ComponentStatus stage="pre" responsive="no" accessible="no" />
 
-In Jobber a Select is used to present a defined list of options for the user to
-choose from.
+In Jobber a `Select` is used to present a defined list of options for the user
+to choose from.
 
 ## Simple Example
 
@@ -24,7 +24,7 @@ choose from.
   </Select>
 </Playground>
 
-# Sizes
+## Sizes
 
 <Playground>
   <Select size="small">
@@ -42,13 +42,13 @@ choose from.
 </Select>
 
   <Select size="large">
-      <Option value="">Large</Option>
+    <Option value="">Large</Option>
     <Option value="sad">Tony</Option>
     <Option value="old">Steve</Option>
   </Select>
 </Playground>
 
-# States
+## States
 
 <Playground>
   <Select size="large" invalid={true}>
@@ -62,7 +62,7 @@ choose from.
   </Select>
 </Playground>
 
-# Initial Value
+## Initial Value
 
 <Playground>
   <Select defaultValue="yoink">
@@ -73,7 +73,7 @@ choose from.
   </Select>
 </Playground>
 
-# Events
+## Events
 
 <Playground>
   <Select onChange={x => console.log(x)}>
@@ -85,3 +85,13 @@ choose from.
 ## Select Properties
 
 <Props of={Select} />
+
+---
+
+## ▸ `Option`
+
+An `Option` defines a value selectable by a `<Select>`.
+
+## Option Properties
+
+<Props of={Option} />

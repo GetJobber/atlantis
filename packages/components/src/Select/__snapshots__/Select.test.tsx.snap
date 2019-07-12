@@ -8,7 +8,7 @@ exports[`renders a Select with many options 1`] = `
     className="icon"
   >
     <div
-      className="arrowDown icon"
+      className="icon arrowDown base"
     />
   </span>
   <select
@@ -40,7 +40,7 @@ exports[`renders a Select with no options 1`] = `
     className="icon"
   >
     <div
-      className="arrowDown icon"
+      className="icon arrowDown base"
     />
   </span>
   <select
@@ -59,7 +59,7 @@ exports[`renders a Select with one option 1`] = `
     className="icon"
   >
     <div
-      className="arrowDown icon"
+      className="icon arrowDown base"
     />
   </span>
   <select
@@ -82,7 +82,7 @@ exports[`renders correctly as large 1`] = `
     className="icon"
   >
     <div
-      className="arrowDown icon"
+      className="icon arrowDown base"
     />
   </span>
   <select
@@ -105,7 +105,7 @@ exports[`renders correctly as small 1`] = `
     className="icon"
   >
     <div
-      className="arrowDown icon"
+      className="icon arrowDown base"
     />
   </span>
   <select
@@ -128,7 +128,7 @@ exports[`renders correctly when disabled 1`] = `
     className="icon"
   >
     <div
-      className="arrowDown icon"
+      className="icon arrowDown base"
     />
   </span>
   <select
@@ -151,7 +151,7 @@ exports[`renders correctly when invalid 1`] = `
     className="icon"
   >
     <div
-      className="arrowDown icon"
+      className="icon arrowDown base"
     />
   </span>
   <select
