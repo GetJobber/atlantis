@@ -53,11 +53,3 @@
   padding: var(--base-padding);
   background-color: var(--header-background-color);
 }
-
-.title {
-  --card-title-color: var(--color-blue);
-
-  margin: 0;
-  color: var(--card-title-color);
-  font-weight: 700;
-}
