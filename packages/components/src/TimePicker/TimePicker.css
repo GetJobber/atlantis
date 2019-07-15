@@ -12,6 +12,7 @@
   position: relative;
   width: 100%;
   height: inherit;
+  box-sizing: border-box;
   padding-left: var(--inset);
   padding-right: var(--inset);
   border: var(--border-base) solid var(--color-grey--lighter);

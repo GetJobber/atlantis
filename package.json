@@ -33,7 +33,6 @@
     "@jobber/design": "file:packages/design",
     "@jobber/eslint-config": "file:packages/eslint-config",
     "@jobber/stylelint-config": "file:packages/stylelint-config",
-    "@std-proposal/temporal": "git+https://github.com/std-proposal/temporal.git",
     "@testing-library/react": "^8.0.4",
     "@testing-library/user-event": "^4.1.0",
     "@types/jest": "^24.0.14",
@@ -97,5 +96,7 @@
     "iOS 9",
     "ie >= 11"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "@std-proposal/temporal": "0.0.1"
+  }
 }
