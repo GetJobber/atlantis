@@ -8,6 +8,7 @@
   color: var(--color, transparent);
   -webkit-font-smoothing: antialiased;
   text-decoration: none;
+  vertical-align: middle;
   background-color: var(--bgColor, transparent);
   cursor: pointer;
   transition: all var(--timing-base);
