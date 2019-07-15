@@ -31,3 +31,8 @@
   --font-size: var(--fontSize-small);
   --line-height: var(--lineHeight-tighter);
 }
+
+.smaller {
+  --font-size: var(--fontSize-smaller);
+  --line-height: var(--lineHeight-tight);
+}

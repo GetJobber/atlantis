@@ -1,0 +1,199 @@
+---
+name: Button
+menu: Components
+route: /components/button
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { Button } from ".";
+
+# Button
+
+<ComponentStatus stage="rc" responsive="yes" accessible="yes" />
+
+Buttons are a core user interface component, as they allow users to initiate,
+complete, and reverse actions.
+
+<Playground>
+  <Button
+    label="Submit"
+    onClick={() => {
+      alert("✅");
+    }}
+  />
+</Playground>
+
+## Button Properties
+
+<Props of={Button} />
+
+## Work actions
+
+Use Work Actions buttons to enable user interactions in the goal of completing
+work in Jobber.
+
+### Primary
+
+The most important action in a view. Examples include the Save Job button, Log
+In, or the main action in a dialog. There should be one Primary action per view,
+at most.
+
+<Playground>
+  <Button label="Submit" />
+</Playground>
+
+### Secondary
+
+A secondary button should be used when...
+
+- there is one or more alternative, but less important, actions to the primary
+  action
+
+<Playground>
+  <Button label="Submit" type="secondary" />
+</Playground>
+
+### Tertiary
+
+A tertiary button should be used to complete actions within the view such as
+editing, revealing details, or navigating within the view.
+
+<Playground>
+  <Button label="Submit" type="tertiary" />
+</Playground>
+
+## Learning Actions
+
+Use the Learning Actions buttons to enable user interactions in the goal of
+learning about Jobber, whether for marketing or coaching purposes.
+
+### Primary, Secondary, Tertiary
+
+The usage pattern for Learning Actions should follow the same logic as Work
+Actions for all three levels.
+
+<Playground>
+  <Button
+    label="Learn More"
+    variation="learning"
+    url="//getjobber.com"
+    external={true}
+  />
+</Playground>
+
+<Playground>
+  <Button
+    label="Learn More"
+    variation="learning"
+    type="secondary"
+    url="//getjobber.com"
+    external={true}
+  />
+</Playground>
+
+<Playground>
+  <Button
+    label="Learn More"
+    variation="learning"
+    type="tertiary"
+    url="//getjobber.com"
+    external={true}
+  />
+</Playground>
+
+## Destructive Actions
+
+Destructive actions remove something from Jobber.
+
+### Primary
+
+A Primary destructive action will permanently destroy an object carrying
+signficant data, such as a job, quote, or client. This destructive action should
+be contained in a confirmation dialog triggered by clicking a Secondary
+destructive button.
+
+### Secondary
+
+A Secondary destructive action will either...
+
+- destroy an item on an object that can be quickly restored, such as a line item
+  on a job
+- trigger a dialog to confirm a Primary destructive action
+
+<Playground>
+  <Button label="Delete" variation="destructive" />
+</Playground>
+
+<Playground>
+  <Button label="Delete" variation="destructive" type="secondary" />
+</Playground>
+
+## Cancel Actions
+
+Cancel actions allow the user to opt out of completing an action they have
+triggered, whether that action is Work, Learning, or Destructive.
+
+<Playground>
+  <Button label="Cancel" variation="cancel" />
+</Playground>
+
+## Disabled
+
+Buttons can be disabled for a number of reasons, users may need to do an action
+first or they may not be ready to use that button.
+
+<Playground>
+  <Button label="Submit" disabled />
+</Playground>
+
+## Sizes
+
+Buttons comes in 2 extra sizes.
+
+### Small
+
+<Playground>
+  <Button label="Submit" size="small" />
+</Playground>
+
+### Large
+
+<Playground>
+  <Button label="Submit" size="large" />
+</Playground>
+
+## Icons
+
+You can use icons inside buttons. They can stand-alone, or appear before, after,
+or on top of the button label. They can also be added before or after the label.
+
+<Playground>
+  <Button label="More" type="secondary" icon="more" />
+  <Button
+    label="Actions"
+    type="secondary"
+    icon="arrowDown"
+    iconOnRight={true}
+  />
+</Playground>
+
+## Loading
+
+A way to communicate to the user that a background action is being performed.
+
+<Playground>
+  <Button
+    label="Deleting..."
+    type="primary"
+    variation="destructive"
+    loading={true}
+  />
+  <Button
+    label="Loading..."
+    type="tertiary"
+    variation="learning"
+    loading={true}
+  />
+  <Button label="Canceling..." variation="cancel" loading={true} />
+</Playground>

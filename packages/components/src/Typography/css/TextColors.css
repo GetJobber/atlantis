@@ -2,6 +2,10 @@
   --textColor: var(--color-blue);
 }
 
+.grey {
+  --textColor: var(--color-grey);
+}
+
 .greyBlueDark {
   --textColor: var(--color-greyBlue-dark);
 }

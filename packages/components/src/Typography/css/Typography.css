@@ -14,12 +14,13 @@
   --fontSize-large: calc((var(--fontSize-unit)) * 1.125); /* 18 */
   --fontSize-base: calc((var(--fontSize-unit)) * 1); /* 16 */
   --fontSize-small: calc((var(--fontSize-unit)) * 0.875); /* 14 */
+  --fontSize-smaller: calc((var(--fontSize-unit)) * 0.75); /* 12 */
 
-  --lineHeight-large: 1.33;
+  --lineHeight-large: 1.34;
   --lineHeight-base: 1.25;
   --lineHeight-tight: 1.2;
-  --lineHeight-tighter: 1.14;
-  --lineHeight-tightest: 1.11;
+  --lineHeight-tighter: 1.143;
+  --lineHeight-tightest: 1.12;
   --lineHeight-miniscule: 1.08;
 
   margin: 0;
