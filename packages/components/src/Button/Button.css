@@ -5,7 +5,7 @@
   padding: var(--padding);
   border: 1px solid var(--borderColor, transparent);
   border-radius: var(--radius-base);
-  color: var(--buttonColor, transparent);
+  color: var(--color, transparent);
   -webkit-font-smoothing: antialiased;
   text-decoration: none;
   background-color: var(--bgColor, transparent);
@@ -20,7 +20,44 @@
   outline-color: var(--color-outline);
 }
 
-/* Interaction */
+/* Type */
+
+.primary {
+  --bgColor: var(--buttonColor);
+  --color: var(--color-white);
+  --loadingColor: var(--buttonColor--loading);
+  --hoverbgColor: var(--buttonColor--hover);
+}
+
+.primary:hover,
+.primary:focus {
+  background-color: var(--hoverbgColor);
+}
+
+.secondary {
+  --bgColor: transparent;
+  --color: var(--buttonColor);
+  --borderColor: var(--buttonColor);
+  --loadingColor: var(--buttonColor--loading2);
+}
+
+.secondary:hover,
+.secondary:focus {
+  filter: brightness(90%);
+}
+
+.tertiary {
+  --bgColor: transparent;
+  --color: var(--buttonColor);
+  --loadingColor: var(--buttonColor--loading2);
+}
+
+.tertiary:hover,
+.tertiary:focus {
+  background-color: var(--color-grey--lightest);
+}
+
+/* Variation */
 
 .work {
   --buttonColor: var(--color-green);
@@ -46,45 +83,15 @@
 /* Cancel is special because, by defualt, it's styled as a secondary button */
 
 .cancel {
-  --buttonColor: transparent;
+  --bgColor: transparent;
+  --buttonColor: var(--color-greyBlue);
   --buttonColor--loading: var(--color-greyBlue--lightest);
   --borderColor: var(--color-greyBlue);
 }
 
-/* Variation */
-
-.primary {
-  --bgColor: var(--buttonColor);
-  --loadingColor: var(--buttonColor--loading);
-  --hoverbgColor: var(--buttonColor--hover);
-}
-
-.primary:hover,
-.primary:focus {
-  background-color: var(--hoverbgColor);
-}
-
-.secondary {
-  --bgColor: transparent;
-  --loadingColor: var(--buttonColor--loading2);
-  --borderColor: var(--buttonColor);
-}
-
-.secondary:hover,
-.secondary:focus,
 .cancel:focus,
 .cancel:hover {
   filter: brightness(90%);
-}
-
-.tertiary {
-  --bgColor: transparent;
-  --loadingColor: var(--buttonColor--loading2);
-}
-
-.tertiary:hover,
-.tertiary:focus {
-  background-color: var(--color-grey--lightest);
 }
 
 /* Disabled */
