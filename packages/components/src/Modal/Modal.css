@@ -64,14 +64,29 @@
   padding-top: 0;
 }
 
+/**
+ * 1. Use CSS `order` to adjust the buttons position on the UI
+ */
+
 .leftAction {
   flex: 1 1 auto;
+  order: 1; /* 1 */
 }
 
 .rightAction {
+  display: flex;
   flex: 0 0 auto;
+  order: 2; /* 1 */
 }
 
 .rightAction > * {
   margin-left: var(--space-small);
+}
+
+.rightAction *:first-child {
+  order: 2; /* 1 */
+}
+
+.rightAction *:nth-child(2) {
+  order: 1; /* 1 */
 }

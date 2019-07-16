@@ -8,6 +8,7 @@ import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { useState } from "react";
 import { Modal } from ".";
+import { Button } from "../Button";
 
 # Modal
 
@@ -25,10 +26,16 @@ the rest of the application until a specific action is taken.
         <Modal title="Bob" open={value} onRequestClose={() => setValue(!value)}>
           Haloo
         </Modal>
-        <button onClick={() => setValue(!value)}>Open Modal</button>
+
+        <Button
+          label="Open Modal"
+          onClick={() => setValue(!value)}
+        />
       </>
     );
-  }}
+
+}}
+
 </Playground>
 
 ## With actions
@@ -39,12 +46,9 @@ You have 3 action props you can use
 - `secondaryAction`
 - `tertiaryAction`
 
-This wouldn't have a styled buttons because we don't have a `<Button />`
-component yet
-
 <Playground>
   {() => {
-    const [value, setValue] = useState(false);
+    const [value, setValue] = useState(true);
     const toggleModal = () => {
       setValue(!value);
     };
@@ -62,17 +66,23 @@ component yet
         <Modal
           title="Bob"
           open={value}
-          primaryAction={{ label: "Submit", onClick: handlePrimaryAction }}
-          secondaryAction={{ label: "Cancel", onClick: handleSecondaryAction }}
+          primaryAction={{ label: "Submit", onClick: handlePrimaryAction, fullWidth: true }}
+          secondaryAction={{ label: "Cancel", onClick: handleSecondaryAction, fullWidth: true }}
           tertiaryAction={{ label: "Delete", onClick: handleTertiaryAction }}
           onRequestClose={toggleModal}
         >
           Haloo
         </Modal>
-        <button onClick={toggleModal}>Open Modal</button>
+
+        <Button
+          label="Open Modal"
+          onClick={toggleModal}
+        />
       </>
     );
-  }}
+
+}}
+
 </Playground>
 
 ## Modal Properties

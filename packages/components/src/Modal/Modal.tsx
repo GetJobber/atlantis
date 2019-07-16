@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import classnames from "classnames";
 import { Icon } from "../Icon";
 import { Typography } from "../Typography";
+import { Button, ButtonProps } from "../Button";
 import styles from "./Modal.css";
 import sizes from "./Sizes.css";
 
@@ -18,15 +19,10 @@ interface ModalProps {
    */
   readonly dismissible?: boolean;
   readonly children: ReactNode;
-  readonly primaryAction?: ActionBase;
-  readonly secondaryAction?: ActionBase;
-  readonly tertiaryAction?: ActionBase;
+  readonly primaryAction?: ButtonProps;
+  readonly secondaryAction?: ButtonProps;
+  readonly tertiaryAction?: ButtonProps;
   onRequestClose?(): void;
-}
-
-interface ActionBase {
-  label: string;
-  onClick?(): void;
 }
 
 export function Modal({
@@ -122,9 +118,9 @@ function Header({ title, dismissible, onRequestClose }: HeaderProps) {
 }
 
 interface ActionsProps {
-  primary?: ActionBase;
-  secondary?: ActionBase;
-  tertiary?: ActionBase;
+  primary?: ButtonProps;
+  secondary?: ButtonProps;
+  tertiary?: ButtonProps;
 }
 
 function Actions({ primary, secondary, tertiary }: ActionsProps) {
@@ -135,19 +131,15 @@ function Actions({ primary, secondary, tertiary }: ActionsProps) {
     <>
       {shouldShow && (
         <div className={styles.actionBar}>
+          <div className={styles.rightAction}>
+            {primary && <Button {...primary} />}
+            {secondary && <Button variation="cancel" {...secondary} />}
+          </div>
           {tertiary && (
             <div className={styles.leftAction}>
-              <button onClick={tertiary.onClick}>{tertiary.label}</button>
+              <Button variation="destructive" type="secondary" {...tertiary} />
             </div>
           )}
-          <div className={styles.rightAction}>
-            {secondary && (
-              <button onClick={secondary.onClick}>{secondary.label}</button>
-            )}
-            {primary && (
-              <button onClick={primary.onClick}>{primary.label}</button>
-            )}
-          </div>
         </div>
       )}
     </>
