@@ -6,6 +6,13 @@ import styles from "./TimePicker.css";
 interface TimePickerProps {
   /**
    * Intial value.
+   *
+   * defaultValue is for when you want to set an initial value of
+   * an uncontrolled component, i.e a component that you won't be monitoring
+   * through a value/onChange loop. The value/onChange pair is for controlled
+   * components. If you try to set value without setting onChange you end up
+   * with a readOnly component and have to set that flag to get rid of the React
+   * warning.
    */
   readonly defaultValue?: CivilTime;
 
