@@ -5,7 +5,7 @@ import { Typography, TypographyOptions } from "../Typography";
 import { Icon, IconNames } from "../Icon";
 import styles from "./Button.css";
 
-interface ButtonProps {
+export interface ButtonProps {
   readonly label: string;
   readonly size?: "small" | "base" | "large";
   readonly disabled?: boolean;

@@ -8,6 +8,8 @@ import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { useState } from "react";
 import { Modal } from ".";
+import { Button } from "../Button";
+import { Text } from "../Text";
 
 # Modal
 
@@ -22,13 +24,25 @@ the rest of the application until a specific action is taken.
     const [value, setValue] = useState(false);
     return (
       <>
-        <Modal title="Bob" open={value} onRequestClose={() => setValue(!value)}>
-          Haloo
+        <Modal
+          title="We've updated Jobber"
+          open={value}
+          onRequestClose={() => setValue(!value)}
+        >
+          <Text>
+            It's harder, better, faster, and stronger! 🤖
+          </Text>
         </Modal>
-        <button onClick={() => setValue(!value)}>Open Modal</button>
+
+        <Button
+          label="Open Modal"
+          onClick={() => setValue(!value)}
+        />
       </>
     );
-  }}
+
+}}
+
 </Playground>
 
 ## With actions
@@ -39,14 +53,10 @@ You have 3 action props you can use
 - `secondaryAction`
 - `tertiaryAction`
 
-This wouldn't have a styled buttons because we don't have a `<Button />`
-component yet
-
 <Playground>
   {() => {
     const [value, setValue] = useState(false);
-    const toggleModal = () => {
-      setValue(!value);
+    const toggleModal = () => { setValue(!value);
     };
     const handlePrimaryAction = () => {
       alert("✅");
@@ -60,19 +70,27 @@ component yet
     return (
       <>
         <Modal
-          title="Bob"
+          title="Hold the phone!"
           open={value}
           primaryAction={{ label: "Submit", onClick: handlePrimaryAction }}
           secondaryAction={{ label: "Cancel", onClick: handleSecondaryAction }}
           tertiaryAction={{ label: "Delete", onClick: handleTertiaryAction }}
           onRequestClose={toggleModal}
         >
-          Haloo
+          <Text>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe vero ratione praesentium quisquam non porro ullam maiores iure, sed odio?
+          </Text>
         </Modal>
-        <button onClick={toggleModal}>Open Modal</button>
+
+        <Button
+          label="Open Modal"
+          onClick={toggleModal}
+        />
       </>
     );
-  }}
+
+}}
+
 </Playground>
 
 ## Modal Properties
