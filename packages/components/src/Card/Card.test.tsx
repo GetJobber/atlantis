@@ -12,14 +12,14 @@ it("renders a simple card", () => {
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-                <div
-                  className="card accent purple"
-                >
-                  <p>
-                    This is the card content.
-                  </p>
-                </div>
-        `);
+                    <div
+                      className="card accent purple"
+                    >
+                      <p>
+                        This is the card content.
+                      </p>
+                    </div>
+          `);
 });
 
 it("renders a card", () => {
@@ -33,23 +33,23 @@ it("renders a card", () => {
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-            <div
-              className="card accent green"
-            >
-              <div
-                className="header fill"
-              >
-                <span
-                  className="title"
-                >
-                  The Undiscovered Country
-                </span>
-              </div>
-              <p>
-                This is the card content.
-              </p>
-            </div>
-      `);
+    <div
+      className="card accent green"
+    >
+      <div
+        className="header fill"
+      >
+        <h3
+          className="base large extraBold uppercase"
+        >
+          The Undiscovered Country
+        </h3>
+      </div>
+      <p>
+        This is the card content.
+      </p>
+    </div>
+  `);
 });
 
 it("renders a link card", () => {
@@ -61,15 +61,15 @@ it("renders a link card", () => {
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-        <a
-          className="card accent clickable green"
-          href="https://frend.space"
-        >
-          <p>
-            This is a link card.
-          </p>
-        </a>
-    `);
+            <a
+              className="card accent clickable green"
+              href="https://frend.space"
+            >
+              <p>
+                This is a link card.
+              </p>
+            </a>
+      `);
 });
 
 it("renders a clickable card", () => {
@@ -81,17 +81,17 @@ it("renders a clickable card", () => {
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="card accent clickable green"
-      onClick={[Function]}
-      role="button"
-      tabIndex={0}
-    >
-      <p>
-        This is a clickable card.
-      </p>
-    </div>
-  `);
+        <div
+          className="card accent clickable green"
+          onClick={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          <p>
+            This is a clickable card.
+          </p>
+        </div>
+    `);
 });
 
 test("it should should be clickable if it's clickable", () => {

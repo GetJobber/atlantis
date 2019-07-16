@@ -97,7 +97,7 @@ function Header({ title, dismissible, onRequestClose }: HeaderProps) {
     <div className={styles.header}>
       <Typography
         element="h3"
-        size="larger"
+        size="large"
         textCase="uppercase"
         fontWeight="extraBold"
       >

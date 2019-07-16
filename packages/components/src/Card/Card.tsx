@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
+import { Typography } from "../Typography";
 import styles from "./Card.css";
 import colors from "./colors.css";
 
@@ -14,17 +15,24 @@ function Header(props: HeaderProps) {
   return <div className={className} {...props} />;
 }
 
-interface CardTitleProps {
+interface TitleProps {
   /**
    * The title for the card.
    */
   readonly title: string;
 }
 
-export function Title({ title }: CardTitleProps) {
+export function Title({ title }: TitleProps) {
   return (
     <Header>
-      <span className={styles.title}>{title}</span>
+      <Typography
+        element="h3"
+        size="large"
+        textCase="uppercase"
+        fontWeight="extraBold"
+      >
+        {title}
+      </Typography>
     </Header>
   );
 }
