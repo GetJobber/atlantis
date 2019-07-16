@@ -1,0 +1,56 @@
+---
+name: TimePicker
+menu: Components
+route: /components/time-picker
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { TimePicker } from ".";
+import { CivilTime } from "@std-proposal/temporal";
+
+# TimePicker
+
+<ComponentStatus stage="pre" responsive="no" accessible="no" />
+
+In Jobber a TimePicker is used to select a time of day. For example the time a
+messages should be sent or when a job started/ended.
+
+At the moment the 12-hour vs 24-hour preference is set by the operating system
+and this component doesn't look at the Jobber setting.
+
+## Simple Example
+
+<Playground>
+
+  <TimePicker defaultValue={new CivilTime(2,35)} size="small" />
+  <TimePicker defaultValue={new CivilTime(2,35)} />
+  <TimePicker defaultValue={new CivilTime(2,35)} size="large" />
+
+</Playground>
+
+## States
+
+<Playground>
+
+  <TimePicker defaultValue={new CivilTime(3, 52)} disabled />
+  <TimePicker defaultValue={new CivilTime(5, 23)} readOnly />
+  <TimePicker defaultValue={new CivilTime(2, 35)} invalid />
+
+</Playground>
+
+## Events
+
+If the input starts empty the `ChangeEvent` isn't fired until a full time is
+set. Setting just the hour or minute or _meridiam_ won't fire the event. When
+the last element is set the change event will fire.
+
+<Playground>
+
+<TimePicker onChange={x => console.log(x)} />
+
+</Playground>
+
+## TimePicker Properties
+
+<Props of={TimePicker} />

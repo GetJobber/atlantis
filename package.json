@@ -95,5 +95,8 @@
     "Firefox ESR",
     "iOS 9",
     "ie >= 11"
-  ]
+  ],
+  "dependencies": {
+    "@std-proposal/temporal": "0.0.1"
+  }
 }
