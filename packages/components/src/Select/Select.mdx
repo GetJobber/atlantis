@@ -1,0 +1,97 @@
+---
+name: Select
+menu: Components
+route: /components/select
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { Select, Option } from ".";
+
+# Select
+
+<ComponentStatus stage="pre" responsive="no" accessible="no" />
+
+In Jobber a `Select` is used to present a defined list of options for the user
+to choose from.
+
+## Simple Example
+
+<Playground>
+  <Select>
+    <Option value="sad">Tony</Option>
+    <Option value="old">Steve</Option>
+  </Select>
+</Playground>
+
+## Sizes
+
+<Playground>
+  <Select size="small">
+    <Option value="">Small</Option>
+    <Option value="sad" disabled>Tony</Option>
+    <Option value="old">Steve</Option>
+    <Option value="splat" label="Natasha"></Option>
+  </Select>
+
+<Select>
+  <Option value="">Normal</Option>
+  <Option value="sad">Tony</Option>
+  <Option value="old">Steve</Option>
+  <Option value="yoink">Vision</Option>
+</Select>
+
+  <Select size="large">
+    <Option value="">Large</Option>
+    <Option value="sad">Tony</Option>
+    <Option value="old">Steve</Option>
+  </Select>
+</Playground>
+
+## States
+
+<Playground>
+  <Select size="large" invalid={true}>
+    <Option value="sad">Tony</Option>
+    <Option value="old">Steve</Option>
+  </Select>
+
+  <Select size="large" disabled={true}>
+    <Option value="sad">Tony</Option>
+    <Option value="old">Steve</Option>
+  </Select>
+</Playground>
+
+## Initial Value
+
+<Playground>
+  <Select defaultValue="yoink">
+    <Option value="sad">Tony</Option>
+    <Option value="old">Steve</Option>
+    <Option value="splat">Natasha</Option>
+    <Option value="yoink">Vision</Option>
+  </Select>
+</Playground>
+
+## Events
+
+<Playground>
+  <Select onChange={x => console.log(x)}>
+    <Option value="sad">Tony</Option>
+    <Option value="old">Steve</Option>
+  </Select>
+</Playground>
+
+## Select Properties
+
+<Props of={Select} />
+
+---
+
+## ▸ `Option`
+
+An `Option` defines a value selectable by a `<Select>`.
+
+## Option Properties
+
+<Props of={Option} />

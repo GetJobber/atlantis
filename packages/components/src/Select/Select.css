@@ -1,0 +1,96 @@
+.wrapper {
+  --inset: var(--space-base);
+
+  display: block;
+  position: relative;
+  height: var(--space-largest);
+  margin-bottom: var(--space-base);
+  border-radius: var(--radius-base);
+  background-color: var(--color-white);
+}
+
+.select {
+  position: relative;
+  width: 100%;
+  height: inherit;
+  padding-left: var(--inset);
+  padding-right: var(--inset);
+  border: var(--border-base) solid var(--color-grey--lighter);
+  border-radius: var(--radius-base);
+  color: var(--color-blue);
+  font-size: 14px;
+  background-color: transparent;
+  appearance: none;
+}
+
+/**
+ * Hides arrow in IE10 and up, the arrow is replaced by a custom font later on
+ */
+
+.select::-ms-expand {
+  display: none;
+}
+
+.small {
+  height: calc(var(--space-larger) + 4px);
+  --inset: var(--space-small);
+}
+
+.large {
+  height: var(--space-extravagant);
+  --inset: var(--space-large);
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  right: var(--inset);
+  color: var(--color-greyBlue);
+  transform: translateY(-50%);
+}
+
+/**
+ * Select wrapper disabled
+ *
+ * Used in lieu of `:disabled` on the select element when we want to use
+ * disabled styling and remove click events but still submit input value on
+ * form submission.
+ *
+ * 1. Prevents triggering 'focus and 'click' events when the element is
+ * double-clicked.
+ */
+
+.disabled {
+  user-select: none; /* 1 */
+  pointer-events: none;
+}
+
+.select:disabled {
+  background-color: var(--color-grey--lightest);
+  opacity: 0.6;
+}
+
+/**
+ * When the select is in focus, change the border to yellow
+ */
+
+.select:focus {
+  box-shadow: none;
+  border-color: var(--color-outline);
+  outline: none;
+}
+
+/**
+ * Removes outline on focus in FireFox
+ */
+
+.select select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 var(--color-blue--dark);
+}
+
+/* Invalid State */
+
+.invalid .select {
+  border-color: var(--color-red);
+}
