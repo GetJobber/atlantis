@@ -10,6 +10,7 @@ export function InputText({
   disabled = false,
   readonly = false,
   invalid = false,
+  inline = false,
 }: FormFieldProps) {
   return (
     <FormField
@@ -21,6 +22,7 @@ export function InputText({
       onChange={onChange}
       value={value}
       invalid={invalid}
+      inline={inline}
       size={size}
     />
   );
