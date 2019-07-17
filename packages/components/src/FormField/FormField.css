@@ -1,4 +1,4 @@
-.formField {
+.wrapper {
   --field-color: var(--color-blue);
   --field-placeholder-color: var(--color-greyBlue--light);
   --field-border-width: var(--border-base);
@@ -8,8 +8,14 @@
   --field-padding: var(--space-small) var(--space-base);
   --field-height: var(--space-largest);
 
-  display: block;
+  position: relative;
   width: 100%;
+  margin-bottom: var(--space-base);
+}
+
+.formField {
+  display: block;
+  width: inherit;
   height: var(--field-height);
   box-sizing: border-box;
   margin: 0;
@@ -25,12 +31,33 @@
   transition: all var(--timing-base);
 }
 
-.formField::placeholder {
-  color: var(--field-placeholder-color);
-}
-
 .formField:focus {
   --field-border-color: var(--color-outline);
+}
+
+.label {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: var(--field-height);
+  box-sizing: border-box;
+  padding: var(--field-padding);
+  overflow: hidden;
+  color: var(--field-placeholder-color);
+  font-size: var(--base-unit);
+  line-height: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: all var(--timing-quick);
+  align-items: center;
+}
+
+.inline {
+  display: inline-block;
+  width: auto;
 }
 
 /* Sizes */
@@ -45,15 +72,10 @@
   --field-height: calc(var(--space-extravagant));
 }
 
-.inline {
-  display: inline-block;
-  width: auto;
-}
-
 /* State */
 
 .invalid,
-.invalid:focus {
+.invalid .formField:focus {
   --field-border-color: var(--color-red);
 }
 
@@ -63,4 +85,25 @@
   --field-border-color: var(--color-grey--lighter);
 
   opacity: 0.6;
+}
+
+/* Has Value */
+
+.hasValue:not(.small) .formField {
+  padding-top: var(--space-large);
+  padding-bottom: var(--space-small);
+}
+
+.hasValue .label {
+  height: auto;
+  padding: var(--space-smaller) var(--space-base);
+  font-size: calc(var(--base-unit) * 0.875);
+}
+
+.hasValue.small .label {
+  display: none;
+}
+
+.hasValue.large .label {
+  padding: var(--space-small) var(--space-large);
 }
