@@ -1,0 +1,48 @@
+---
+name: FormField
+menu: Components
+route: /components/form-field
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { FormField } from ".";
+
+# FormField
+
+<ComponentStatus stage="pre" responsive="no" accessible="no" />
+
+In Jobber a FormField is used to …
+
+## Simple Example
+
+<Playground>
+  <FormField placeholder="Base" />
+</Playground>
+
+<Playground>
+  <FormField placeholder="Small" size="small" />
+</Playground>
+
+<Playground>
+  <FormField placeholder="Large" size="large" />
+</Playground>
+
+<Playground>
+  <p>
+    Send a follow-up
+    <FormField value="2" size="small" inline={true} /> days after
+  </p>
+</Playground>
+
+<Playground>
+  <FormField placeholder="Error" invalid={true} />
+</Playground>
+
+<Playground>
+  <FormField placeholder="Disabled" disabled={true} />
+</Playground>
+
+## FormField Properties
+
+<Props of={FormField} />

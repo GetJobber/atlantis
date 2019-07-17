@@ -1,0 +1,66 @@
+.formField {
+  --field-color: var(--color-blue);
+  --field-placeholder-color: var(--color-greyBlue--light);
+  --field-border-width: var(--border-base);
+  --field-border-color: var(--color-grey--lighter);
+  --field-background-color: var(--color-white);
+
+  --field-padding: var(--space-small) var(--space-base);
+  --field-height: var(--space-largest);
+
+  display: block;
+  width: 100%;
+  height: var(--field-height);
+  box-sizing: border-box;
+  margin: 0;
+  padding: var(--field-padding);
+  border: var(--field-border-width) solid var(--field-border-color);
+  border-radius: var(--radius-base);
+  outline: none;
+  color: var(--field-color);
+  font-family: inherit;
+  font-size: var(--base-unit);
+  line-height: 1.25;
+  background-color: var(--field-background-color);
+  transition: all var(--timing-base);
+}
+
+.formField::placeholder {
+  color: var(--field-placeholder-color);
+}
+
+.formField:focus {
+  --field-border-color: var(--color-outline);
+}
+
+/* Sizes */
+
+.small {
+  --field-padding: var(--space-smaller) var(--space-small);
+  --field-height: calc(var(--space-larger) + var(--space-smaller));
+}
+
+.large {
+  --field-padding: var(--space-base) var(--space-large);
+  --field-height: calc(var(--space-extravagant));
+}
+
+.inline {
+  display: inline-block;
+  width: auto;
+}
+
+/* State */
+
+.invalid,
+.invalid:focus {
+  --field-border-color: var(--color-red);
+}
+
+.disabled {
+  --field-placeholder-color: var(--color-grey);
+  --field-background-color: var(--color-grey--lightest);
+  --field-border-color: var(--color-grey--lighter);
+
+  opacity: 0.6;
+}
