@@ -2,7 +2,7 @@ import React, { ChangeEvent, useState } from "react";
 import classnames from "classnames";
 import styles from "./FormField.css";
 
-interface FormFieldProps {
+export interface FormFieldProps {
   readonly type?: string;
   readonly name?: string;
   readonly placeholder?: string;
