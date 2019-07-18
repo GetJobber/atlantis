@@ -11,7 +11,7 @@ interface InputProps extends FormFieldProps {
 }
 
 interface TextareaProps extends FormFieldProps {
-  readonly type?: "textarea";
+  readonly type?: undefined;
   readonly multiline?: boolean;
   readonly rows?: number;
 }
