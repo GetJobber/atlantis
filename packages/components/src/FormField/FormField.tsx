@@ -8,6 +8,7 @@ export interface FormFieldProps {
   readonly placeholder?: string;
   readonly value?: string;
   readonly size?: "small" | "large";
+  readonly align?: "center" | "right";
   readonly disabled?: boolean;
   readonly readonly?: boolean;
   readonly invalid?: boolean;
@@ -23,6 +24,7 @@ export function FormField({
   placeholder,
   value,
   size,
+  align,
   disabled,
   readonly,
   invalid,
@@ -71,6 +73,7 @@ export function FormField({
     styles.wrapper,
     inline && styles.inline,
     size && styles[size],
+    align && styles[align],
     invalid && styles.invalid,
     disabled && styles.disabled,
     {

@@ -1,5 +1,6 @@
 .wrapper {
   --field-color: var(--color-blue);
+  --field-textAlign: left;
   --field-placeholder-color: var(--color-greyBlue--light);
   --field-border-width: var(--border-base);
   --field-border-color: var(--color-grey--lighter);
@@ -27,6 +28,7 @@
   font-family: inherit;
   font-size: var(--base-unit);
   line-height: 1.25;
+  text-align: var(--field-textAlign);
   background-color: var(--field-background-color);
   transition: padding var(--timing-base);
   appearance: none;
@@ -76,6 +78,16 @@ textarea.formField {
 .large {
   --field-padding: var(--space-base) var(--space-large);
   --field-height: calc(var(--space-extravagant));
+}
+
+/* Alignment */
+
+.center {
+  --field-textAlign: center;
+}
+
+.right {
+  --field-textAlign: right;
 }
 
 /* State */

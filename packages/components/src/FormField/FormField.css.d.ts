@@ -4,6 +4,8 @@ export const label: string;
 export const inline: string;
 export const small: string;
 export const large: string;
+export const center: string;
+export const right: string;
 export const invalid: string;
 export const disabled: string;
 export const miniLabel: string;
