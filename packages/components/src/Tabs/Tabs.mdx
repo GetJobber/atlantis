@@ -1,0 +1,36 @@
+---
+name: Tabs
+menu: Components
+route: /components/tabs
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { Heading } from "../Heading";
+import { Tabs, Tab } from ".";
+
+# Tabs
+
+<ComponentStatus stage="pre" responsive="no" accessible="no" />
+
+In Jobber a tabs are used to alternate amongs related views within the same
+context.
+
+## Simple Example
+
+<Playground>
+  <Tabs>
+    <Tab text="Eggs">
+      <Heading level="2">Eggs</Heading>
+      <img src="https://loremflickr.com/500/200/eggs" width="100%" />
+    </Tab>
+    <Tab text="Cheese">
+      <Heading level="2">Cheese</Heading>
+      <img src="https://loremflickr.com/500/200/cheese" width="100%" />
+    </Tab>
+  </Tabs>
+</Playground>
+
+## Tab Properties
+
+<Props of={Tab} />
