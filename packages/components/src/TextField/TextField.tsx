@@ -1,39 +1,54 @@
 import React from "react";
+import { XOR } from "ts-xor";
 import { FormField, FormFieldProps } from "../FormField";
 
 interface TextFieldProps extends FormFieldProps {
-  multiline?: boolean;
+  readonly type?: "text" | "number" | "time";
 }
 
+interface InputProps extends FormFieldProps {
+  readonly type?: "text" | "number" | "time";
+}
+
+interface TextareaProps extends FormFieldProps {
+  readonly type?: "textarea";
+  readonly multiline?: boolean;
+  readonly rows?: number;
+}
+
+type TextFieldPropOptions = XOR<InputProps, TextareaProps>;
+
 export function TextField({
-  type,
-  name,
-  placeholder,
-  value,
-  size,
   align,
-  maxLength,
-  onChange,
-  multiline = false,
   disabled = false,
-  readonly = false,
-  invalid = false,
   inline = false,
-}: TextFieldProps) {
+  invalid = false,
+  maxLength,
+  multiline = false,
+  name,
+  onChange,
+  placeholder,
+  readonly = false,
+  rows,
+  size,
+  type,
+  value,
+}: TextFieldPropOptions) {
   return (
     <FormField
-      type={multiline ? "textarea" : type}
-      name={name}
-      placeholder={placeholder}
-      disabled={disabled}
-      readonly={readonly}
-      onChange={onChange}
-      value={value}
-      invalid={invalid}
-      inline={inline}
-      size={size}
-      maxLength={maxLength}
       align={align}
+      disabled={disabled}
+      inline={inline}
+      invalid={invalid}
+      maxLength={maxLength}
+      name={name}
+      onChange={onChange}
+      placeholder={placeholder}
+      readonly={readonly}
+      rows={rows}
+      size={size}
+      type={multiline ? "textarea" : type}
+      value={value}
     />
   );
 }

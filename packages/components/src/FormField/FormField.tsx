@@ -3,35 +3,37 @@ import classnames from "classnames";
 import styles from "./FormField.css";
 
 export interface FormFieldProps {
-  readonly type?: "text" | "number" | "time" | "textarea" | "select";
+  readonly align?: "center" | "right";
+  readonly children?: ReactNode;
+  readonly disabled?: boolean;
+  readonly inline?: boolean;
+  readonly invalid?: boolean;
+  readonly maxLength?: number;
   readonly name?: string;
   readonly placeholder?: string;
-  readonly value?: string;
-  readonly size?: "small" | "large";
-  readonly align?: "center" | "right";
-  readonly disabled?: boolean;
   readonly readonly?: boolean;
-  readonly invalid?: boolean;
-  readonly inline?: boolean;
-  readonly children?: ReactNode;
-  readonly maxLength?: number;
+  readonly rows?: number;
+  readonly size?: "small" | "large";
+  readonly type?: "text" | "number" | "time" | "textarea" | "select";
+  readonly value?: string;
   onChange?(newValue: string): void;
 }
 
 export function FormField({
-  type = "text",
-  name,
-  placeholder,
-  value,
-  size,
   align,
-  disabled,
-  readonly,
-  invalid,
-  inline,
   children,
+  disabled,
+  inline,
+  invalid,
   maxLength,
+  name,
   onChange,
+  placeholder,
+  readonly,
+  rows,
+  size,
+  type = "text",
+  value,
 }: FormFieldProps) {
   const [hasMiniLabel, setHasMiniLabel] = useState(value ? true : false);
 
@@ -63,7 +65,7 @@ export function FormField({
       case "select":
         return <select {...fieldProps}>{children}</select>;
       case "textarea":
-        return <textarea {...fieldProps} />;
+        return <textarea rows={rows} {...fieldProps} />;
       default:
         return <input type={type} maxLength={maxLength} {...fieldProps} />;
     }
