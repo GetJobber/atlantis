@@ -15,6 +15,7 @@
   position: relative;
   width: 100%;
   margin-bottom: var(--space-base);
+  background-color: var(--field-background-color);
 }
 
 .formField,
@@ -33,13 +34,14 @@
 
 .formField {
   display: block;
+  position: relative;
   border: var(--field-border-width) solid var(--field-border-color);
   border-radius: var(--radius-base);
   outline: none;
   color: var(--field-color);
   line-height: 1.25;
   text-align: var(--field-textAlign);
-  background-color: var(--field-background-color);
+  background-color: transparent;
   transition: padding var(--timing-base);
   appearance: none;
 }
@@ -129,6 +131,7 @@ textarea.formField {
   --field-padding-bottom: var(--space-smaller);
   --field-padding-left: var(--space-base);
   --field-padding-right: var(--space-base);
+  z-index: var(--elevation-base);
 
   height: auto;
   font-size: calc(var(--base-unit) * 0.875);
