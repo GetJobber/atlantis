@@ -7,6 +7,8 @@ export function InputText({
   value,
   onChange,
   size,
+  maxLength,
+  align,
   disabled = false,
   readonly = false,
   invalid = false,
@@ -24,6 +26,8 @@ export function InputText({
       invalid={invalid}
       inline={inline}
       size={size}
+      maxLength={maxLength}
+      align={align}
     />
   );
 }
