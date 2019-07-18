@@ -5,6 +5,7 @@
   --color-invoice: var(--color-purple);
 
   --color-outline: var(--color-yellow--light);
+  --color-error: var(--color-red);
 
   --color-blue: rgb(1, 41, 57);
   --color-blue--light: rgb(77, 105, 116);
