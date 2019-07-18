@@ -1,1 +1,0 @@
-export { InputText } from "./InputText";
