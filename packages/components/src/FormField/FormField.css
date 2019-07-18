@@ -6,7 +6,10 @@
   --field-border-color: var(--color-grey--lighter);
   --field-background-color: var(--color-white);
 
-  --field-padding: var(--space-small) var(--space-base);
+  --field-padding-top: calc(var(--space-base) - var(--space-smallest));
+  --field-padding-bottom: calc(var(--space-base) - var(--space-smallest));
+  --field-padding-left: var(--space-base);
+  --field-padding-right: var(--space-base);
   --field-height: var(--space-largest);
 
   position: relative;
@@ -14,19 +17,26 @@
   margin-bottom: var(--space-base);
 }
 
-.formField {
-  display: block;
+.formField,
+.label {
   width: inherit;
   height: var(--field-height);
   box-sizing: border-box;
   margin: 0;
-  padding: var(--field-padding);
+  padding-top: var(--field-padding-top);
+  padding-bottom: var(--field-padding-bottom);
+  padding-left: var(--field-padding-left);
+  padding-right: var(--field-padding-right);
+  font-family: inherit;
+  font-size: var(--base-unit);
+}
+
+.formField {
+  display: block;
   border: var(--field-border-width) solid var(--field-border-color);
   border-radius: var(--radius-base);
   outline: none;
   color: var(--field-color);
-  font-family: inherit;
-  font-size: var(--base-unit);
   line-height: 1.25;
   text-align: var(--field-textAlign);
   background-color: var(--field-background-color);
@@ -48,13 +58,8 @@ textarea.formField {
   position: absolute;
   top: 0;
   left: 0;
-  width: inherit;
-  height: var(--field-height);
-  box-sizing: border-box;
-  padding: var(--field-padding);
   overflow: hidden;
   color: var(--field-placeholder-color);
-  font-size: var(--base-unit);
   line-height: 1;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -71,12 +76,18 @@ textarea.formField {
 /* Sizes */
 
 .small {
-  --field-padding: var(--space-smaller) var(--space-small);
+  --field-padding-top: var(--space-smaller);
+  --field-padding-bottom: var(--space-smaller);
+  --field-padding-left: var(--space-small);
+  --field-padding-right: var(--space-small);
   --field-height: calc(var(--space-larger) + var(--space-smaller));
 }
 
 .large {
-  --field-padding: var(--space-base) var(--space-large);
+  --field-padding-top: var(--space-base);
+  --field-padding-bottom: var(--space-base);
+  --field-padding-left: var(--space-large);
+  --field-padding-right: var(--space-large);
   --field-height: calc(var(--space-extravagant));
 }
 
@@ -108,13 +119,17 @@ textarea.formField {
 /* Mini Label */
 
 .miniLabel:not(.small) .formField {
-  padding-top: var(--space-base);
-  padding-bottom: var(--space-smaller);
+  --field-padding-top: var(--space-base);
+  --field-padding-bottom: var(--space-smaller);
 }
 
 .miniLabel .label {
+  --field-padding-top: var(--space-smaller);
+  --field-padding-bottom: var(--space-smaller);
+  --field-padding-left: var(--space-base);
+  --field-padding-right: var(--space-base);
+
   height: auto;
-  padding: var(--space-smaller) var(--space-base);
   font-size: calc(var(--base-unit) * 0.875);
 }
 
@@ -123,5 +138,8 @@ textarea.formField {
 }
 
 .miniLabel.large .label {
-  padding: var(--space-small) var(--space-large);
+  --field-padding-top: var(--space-small);
+  --field-padding-bottom: var(--space-small);
+  --field-padding-left: var(--space-large);
+  --field-padding-right: var(--space-large);
 }
