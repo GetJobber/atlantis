@@ -10,34 +10,88 @@ import { FormField } from ".";
 
 # FormField
 
-<ComponentStatus stage="pre" responsive="no" accessible="no" />
+<ComponentStatus stage="rc" responsive="yes" accessible="yes" />
 
-In Jobber a FormField is used to …
+Master component for all things form field. The idea is to keep all the styles
+in one place.
 
-## Simple Example
+## Text input
 
 <Playground>
-  <FormField name="Base" placeholder="Base" />
-  <FormField name="Base" placeholder="Number" type="number" />
-  <FormField name="Base" placeholder="Time" type="time" />
+  <FormField type="text" name="age" placeholder="Your age in words" />
+</Playground>
+
+## Textarea
+
+<Playground>
   <FormField
-    name="Base"
-    placeholder="Describe your favourite colour"
     type="textarea"
+    name="describeAge"
+    placeholder="Describe your age"
   />
+</Playground>
+
+## Time input
+
+<Playground>
+  <FormField type="time" name="birthday" placeholder="Birth date" />
+</Playground>
+
+## Number input
+
+<Playground>
+  <FormField type="number" name="ageInNum" placeholder="Age" />
+</Playground>
+
+## Select
+
+<Playground>
   <FormField name="Base" placeholder="How many days?" type="select">
     <option>1</option>
     <option>2</option>
   </FormField>
 </Playground>
 
+## Sizes
+
+### Small
+
 <Playground>
   <FormField name="Small" placeholder="Small" size="small" />
 </Playground>
 
+### Large
+
 <Playground>
   <FormField name="Large" placeholder="Large" size="large" />
 </Playground>
+
+## State
+
+### Error
+
+<Playground>
+  <FormField name="Error" placeholder="Error" invalid={true} />
+</Playground>
+
+### Read only
+
+<Playground>
+  <FormField
+    name="Readonly"
+    placeholder="Readonly"
+    value="ABCXYZ"
+    readonly={true}
+  />
+</Playground>
+
+### Disabled
+
+<Playground>
+  <FormField name="Disabled" placeholder="Disabled" disabled={true} />
+</Playground>
+
+### Inline
 
 <Playground>
   <p>
@@ -51,14 +105,6 @@ In Jobber a FormField is used to …
     />
     days after
   </p>
-</Playground>
-
-<Playground>
-  <FormField name="Error" placeholder="Error" invalid={true} />
-</Playground>
-
-<Playground>
-  <FormField name="Disabled" placeholder="Disabled" disabled={true} />
 </Playground>
 
 ## FormField Properties
