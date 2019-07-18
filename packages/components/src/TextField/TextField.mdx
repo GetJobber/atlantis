@@ -1,0 +1,95 @@
+---
+name: TextField
+menu: Components
+route: /components/text-field
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { TextField } from ".";
+import { Text } from "../Text";
+
+# TextField
+
+<ComponentStatus stage="pre" responsive="no" accessible="no" />
+
+A text field is used in forms that accept short or long answers from users.
+
+## Short answer
+
+Use this to allow users to provide short answers.
+
+<Playground>
+  <TextField placeholder="Company name" />
+</Playground>
+
+## Long answer
+
+Use this to allow users to provide long answers.
+
+<Playground>
+  <TextField placeholder="Describe what your company does" multiline={true} />
+</Playground>
+
+## States
+
+### Disabled
+
+<Playground>
+  <TextField
+    placeholder="Credit card"
+    value="**** **** **** 1234"
+    disabled={true}
+    name="creditCard"
+  />
+</Playground>
+
+### Read only
+
+<Playground>
+  <TextField
+    placeholder="Your referral code"
+    value="WXYZ100"
+    readonly={true}
+    name="referralCode"
+  />
+</Playground>
+
+### Invalid
+
+<Playground>
+  <TextField
+    placeholder="Email"
+    value="atlantis"
+    invalid={true}
+    name="emailAddress"
+  />
+</Playground>
+
+## Sizes
+
+<Playground>
+  <TextField name="smallField" size="small" placeholder="Duration" />
+  <TextField name="largeField" size="large" placeholder="Your username" />
+</Playground>
+
+## Inline
+
+<Playground>
+  <Text>
+    Send a follow-up
+    <TextField
+      name="durationInDays"
+      value="2"
+      size="small"
+      inline={true}
+      maxLength={2}
+      align="center"
+    />
+    days after
+  </Text>
+</Playground>
+
+## TextField Properties
+
+<Props of={TextField} />
