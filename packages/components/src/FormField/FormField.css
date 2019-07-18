@@ -28,7 +28,13 @@
   font-size: var(--base-unit);
   line-height: 1.25;
   background-color: var(--field-background-color);
-  transition: all var(--timing-base);
+  transition: padding var(--timing-base);
+  appearance: none;
+}
+
+textarea.formField {
+  min-height: calc(var(--field-height) * 3);
+  resize: vertical;
 }
 
 .formField:focus {
@@ -87,23 +93,23 @@
   opacity: 0.6;
 }
 
-/* Has Value */
+/* Mini Label */
 
-.hasValue:not(.small) .formField {
-  padding-top: var(--space-large);
-  padding-bottom: var(--space-small);
+.miniLabel:not(.small) .formField {
+  padding-top: var(--space-base);
+  padding-bottom: var(--space-smaller);
 }
 
-.hasValue .label {
+.miniLabel .label {
   height: auto;
   padding: var(--space-smaller) var(--space-base);
   font-size: calc(var(--base-unit) * 0.875);
 }
 
-.hasValue.small .label {
+.miniLabel.small .label {
   display: none;
 }
 
-.hasValue.large .label {
+.miniLabel.large .label {
   padding: var(--space-small) var(--space-large);
 }

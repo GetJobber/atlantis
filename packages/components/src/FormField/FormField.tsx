@@ -1,9 +1,9 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, ReactNode, useState } from "react";
 import classnames from "classnames";
 import styles from "./FormField.css";
 
 export interface FormFieldProps {
-  readonly type?: string;
+  readonly type?: "text" | "number" | "time" | "textarea" | "select";
   readonly name?: string;
   readonly placeholder?: string;
   readonly value?: string;
@@ -12,6 +12,7 @@ export interface FormFieldProps {
   readonly readonly?: boolean;
   readonly invalid?: boolean;
   readonly inline?: boolean;
+  readonly children?: ReactNode;
   onChange?(newValue: string): void;
 }
 
@@ -25,13 +26,19 @@ export function FormField({
   readonly,
   invalid,
   inline,
+  children,
   onChange,
 }: FormFieldProps) {
-  const [hasVal, setHasVal] = useState(value ? true : false);
+  const [hasMiniLabel, setHasMiniLabel] = useState(value ? true : false);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    event:
+      | ChangeEvent<HTMLInputElement>
+      | ChangeEvent<HTMLTextAreaElement>
+      | ChangeEvent<HTMLSelectElement>,
+  ) => {
     const newValue = event.currentTarget.value;
-    setHasVal(newValue.length > 0);
+    setHasMiniLabel(newValue.length > 0);
     if (onChange) {
       onChange(newValue);
     }
@@ -40,12 +47,35 @@ export function FormField({
   const Wrapper = inline ? "span" : "div";
   const wrapperClassNames = classnames(
     styles.wrapper,
-    hasVal && styles.hasValue,
     inline && styles.inline,
     size && styles[size],
     invalid && styles.invalid,
     disabled && styles.disabled,
+    {
+      [styles.miniLabel]: hasMiniLabel || type === "time" || type === "select",
+    },
   );
+
+  const fieldProps = {
+    id: name,
+    className: styles.formField,
+    name: name,
+    disabled: disabled,
+    readOnly: readonly,
+    onChange: handleChange,
+    defaultValue: value,
+  };
+
+  const fieldElement = () => {
+    switch (type) {
+      case "select":
+        return <select {...fieldProps}>{children}</select>;
+      case "textarea":
+        return <textarea {...fieldProps} />;
+      default:
+        return <input type={type} {...fieldProps} />;
+    }
+  };
 
   return (
     <Wrapper className={wrapperClassNames}>
@@ -54,16 +84,7 @@ export function FormField({
           {placeholder}
         </label>
       )}
-      <input
-        type={type}
-        id={name}
-        className={styles.formField}
-        name={name}
-        disabled={disabled}
-        readOnly={readonly}
-        onChange={handleChange}
-        defaultValue={value}
-      />
+      {fieldElement()}
     </Wrapper>
   );
 }

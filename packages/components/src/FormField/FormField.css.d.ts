@@ -6,4 +6,4 @@ export const small: string;
 export const large: string;
 export const invalid: string;
 export const disabled: string;
-export const hasValue: string;
+export const miniLabel: string;
