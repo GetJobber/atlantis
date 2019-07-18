@@ -7,6 +7,7 @@ it("renders a input with a type of text", () => {
   expect(tree).toMatchInlineSnapshot(`
     <div
       className="wrapper"
+      style={Object {}}
     >
       <input
         className="formField"

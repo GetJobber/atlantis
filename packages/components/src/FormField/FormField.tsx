@@ -13,6 +13,7 @@ export interface FormFieldProps {
   readonly invalid?: boolean;
   readonly inline?: boolean;
   readonly children?: ReactNode;
+  readonly maxLength?: number;
   onChange?(newValue: string): void;
 }
 
@@ -27,6 +28,7 @@ export function FormField({
   invalid,
   inline,
   children,
+  maxLength,
   onChange,
 }: FormFieldProps) {
   const [hasMiniLabel, setHasMiniLabel] = useState(value ? true : false);
@@ -43,18 +45,6 @@ export function FormField({
       onChange(newValue);
     }
   };
-
-  const Wrapper = inline ? "span" : "div";
-  const wrapperClassNames = classnames(
-    styles.wrapper,
-    inline && styles.inline,
-    size && styles[size],
-    invalid && styles.invalid,
-    disabled && styles.disabled,
-    {
-      [styles.miniLabel]: hasMiniLabel || type === "time" || type === "select",
-    },
-  );
 
   const fieldProps = {
     id: name,
@@ -73,12 +63,33 @@ export function FormField({
       case "textarea":
         return <textarea {...fieldProps} />;
       default:
-        return <input type={type} {...fieldProps} />;
+        return <input type={type} maxLength={maxLength} {...fieldProps} />;
     }
   };
 
+  const wrapperClassNames = classnames(
+    styles.wrapper,
+    inline && styles.inline,
+    size && styles[size],
+    invalid && styles.invalid,
+    disabled && styles.disabled,
+    {
+      [styles.miniLabel]: hasMiniLabel || type === "time" || type === "select",
+    },
+  );
+
+  const baseUnit = parseInt(
+    getComputedStyle(document.documentElement).getPropertyValue("--base-unit"),
+  );
+
+  const wrapperStyle = {
+    ...(maxLength && { width: `${maxLength * baseUnit + 16}px` }),
+  };
+
+  const Wrapper = inline ? "span" : "div";
+
   return (
-    <Wrapper className={wrapperClassNames}>
+    <Wrapper className={wrapperClassNames} style={wrapperStyle}>
       {placeholder && (
         <label className={styles.label} htmlFor={name}>
           {placeholder}
