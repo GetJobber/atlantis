@@ -6,7 +6,7 @@ interface InputTextProps extends FormFieldProps {
   readonly rows?: number;
 }
 
-type TypographyOptions = Omit<InputTextProps, "type">;
+type TypographyOptions = Omit<InputTextProps, "type" | "children">;
 
 export function InputText(props: TypographyOptions) {
   return <FormField type={props.multiline ? "textarea" : "text"} {...props} />;
