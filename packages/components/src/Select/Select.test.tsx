@@ -95,6 +95,19 @@ it("renders the defaultValue when set.", () => {
   expect(select.options[select.selectedIndex].value).toBe("bar");
 });
 
+it("renders the value when set.", () => {
+  const { getByRole } = render(
+    <Select value="foo">
+      <Option value="foo">Foo</Option>
+      <Option value="bar">Bar</Option>
+    </Select>,
+  );
+
+  const select = getByRole("listbox") as HTMLSelectElement;
+
+  expect(select.options[select.selectedIndex].value).toBe("foo");
+});
+
 it("should pass the new value to the onChange handler when the selected option changes.", () => {
   const changeHandler = jest.fn();
 
