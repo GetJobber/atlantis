@@ -97,7 +97,7 @@ it("renders the defaultValue when set.", () => {
 
 it("renders the value when set.", () => {
   const { getByRole } = render(
-    <Select value="foo">
+    <Select value="bar">
       <Option value="foo">Foo</Option>
       <Option value="bar">Bar</Option>
     </Select>,
@@ -105,7 +105,7 @@ it("renders the value when set.", () => {
 
   const select = getByRole("listbox") as HTMLSelectElement;
 
-  expect(select.options[select.selectedIndex].value).toBe("foo");
+  expect(select.options[select.selectedIndex].value).toBe("bar");
 });
 
 it("should pass the new value to the onChange handler when the selected option changes.", () => {
