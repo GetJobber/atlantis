@@ -82,7 +82,7 @@ lerna publish --canary --dist-tag next --preid pre
 Follow semver when choosing versions.
 
 ```sh
-lerna publish
+npm run release-the-kraken
 ```
 
 ### What has Changed
