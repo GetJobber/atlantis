@@ -8,22 +8,21 @@ it("renders a regular input for text and numbers", () => {
     .create(<InputText placeholder="Favourite colour" />)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-        <div
-          className="wrapper"
-          style={Object {}}
-        >
-          <label
-            className="label"
-          >
-            Favourite colour
-          </label>
-          <input
-            className="formField"
-            onChange={[Function]}
-            type="text"
-          />
-        </div>
-    `);
+    <div
+      className="wrapper"
+    >
+      <label
+        className="label"
+      >
+        Favourite colour
+      </label>
+      <input
+        className="formField"
+        onChange={[Function]}
+        type="text"
+      />
+    </div>
+  `);
 });
 
 it("renders a textarea", () => {
@@ -33,21 +32,20 @@ it("renders a textarea", () => {
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-        <div
-          className="wrapper"
-          style={Object {}}
-        >
-          <label
-            className="label"
-          >
-            Describe your favourite colour?
-          </label>
-          <textarea
-            className="formField"
-            onChange={[Function]}
-          />
-        </div>
-    `);
+    <div
+      className="wrapper"
+    >
+      <label
+        className="label"
+      >
+        Describe your favourite colour?
+      </label>
+      <textarea
+        className="formField"
+        onChange={[Function]}
+      />
+    </div>
+  `);
 });
 
 it("renders a textarea with 4 rows", () => {
@@ -63,7 +61,6 @@ it("renders a textarea with 4 rows", () => {
   expect(tree).toMatchInlineSnapshot(`
     <div
       className="wrapper"
-      style={Object {}}
     >
       <label
         className="label"

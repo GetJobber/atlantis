@@ -138,23 +138,23 @@ export function FormField({
     align && styles[align],
     invalid && styles.invalid,
     disabled && styles.disabled,
+    maxLength && styles.maxLength,
     {
       [styles.miniLabel]: hasMiniLabel || type === "time" || type === "select",
     },
   );
 
-  const baseUnit = parseInt(
-    getComputedStyle(document.documentElement).getPropertyValue("--base-unit"),
-  );
-
-  const wrapperStyle = {
-    ...(maxLength && { width: `${maxLength * baseUnit + 16}px` }),
-  };
+  if (maxLength) {
+    document.documentElement.style.setProperty(
+      "--formField-maxLength",
+      `${maxLength}`,
+    );
+  }
 
   const Wrapper = inline ? "span" : "div";
 
   return (
-    <Wrapper className={wrapperClassNames} style={wrapperStyle}>
+    <Wrapper className={wrapperClassNames}>
       {placeholder && (
         <label className={styles.label} htmlFor={name}>
           {placeholder}

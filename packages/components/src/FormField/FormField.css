@@ -147,3 +147,14 @@ textarea.formField {
   --field-padding-left: var(--space-large);
   --field-padding-right: var(--space-large);
 }
+
+/**
+ * The custom property --formField-maxLength is getting defined inside the
+ * component.
+ */
+.maxLength {
+  width: calc(
+    (var(--base-unit) * var(--formField-maxLength)) + var(--field-padding-left) +
+      var(--field-padding-right)
+  );
+}
