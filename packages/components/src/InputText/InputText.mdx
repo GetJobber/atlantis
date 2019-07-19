@@ -1,15 +1,15 @@
 ---
-name: TextField
+name: InputText
 menu: Components
-route: /components/text-field
+route: /components/input-text
 ---
 
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
-import { TextField } from ".";
+import { InputText } from ".";
 import { Text } from "../Text";
 
-# TextField
+# InputText
 
 <ComponentStatus stage="rc" responsive="yes" accessible="yes" />
 
@@ -20,7 +20,7 @@ A text field is used in forms that accept short or long answers from users.
 Use this to allow users to provide short answers.
 
 <Playground>
-  <TextField placeholder="Company name" />
+  <InputText placeholder="Company name" />
 </Playground>
 
 ## Long answer
@@ -28,7 +28,7 @@ Use this to allow users to provide short answers.
 Use this to allow users to provide long answers.
 
 <Playground>
-  <TextField placeholder="Describe what your company does" multiline={true} />
+  <InputText placeholder="Describe what your company does" multiline={true} />
 </Playground>
 
 ## States
@@ -36,7 +36,7 @@ Use this to allow users to provide long answers.
 ### Disabled
 
 <Playground>
-  <TextField
+  <InputText
     placeholder="Credit card"
     value="**** **** **** 1234"
     disabled={true}
@@ -47,7 +47,7 @@ Use this to allow users to provide long answers.
 ### Read only
 
 <Playground>
-  <TextField
+  <InputText
     placeholder="Your referral code"
     value="WXYZ100"
     readonly={true}
@@ -58,7 +58,7 @@ Use this to allow users to provide long answers.
 ### Invalid
 
 <Playground>
-  <TextField
+  <InputText
     placeholder="Email"
     value="atlantis"
     invalid={true}
@@ -69,27 +69,26 @@ Use this to allow users to provide long answers.
 ## Sizes
 
 <Playground>
-  <TextField name="smallField" size="small" placeholder="Duration" />
-  <TextField name="largeField" size="large" placeholder="Your username" />
+  <InputText name="smallField" size="small" placeholder="Duration" />
+  <InputText name="largeField" size="large" placeholder="Your username" />
 </Playground>
 
 ## Inline
 
 <Playground>
   <Text>
-    Send a follow-up
-    <TextField
+    My name is
+    <InputText
       name="durationInDays"
-      value="2"
+      value="Jeff"
       size="small"
       inline={true}
-      maxLength={2}
+      maxLength={4}
       align="center"
     />
-    days after
   </Text>
 </Playground>
 
-## TextField Properties
+## InputText Properties
 
-<Props of={TextField} />
+<Props of={InputText} />
