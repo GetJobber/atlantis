@@ -1,6 +1,6 @@
 import React, { ReactElement, cloneElement, useState } from "react";
 import classnames from "classnames";
-import { Text } from "../Text";
+import { Typography } from "../Typography";
 import styles from "./Tabs.css";
 
 interface TabsProps {
@@ -21,7 +21,7 @@ export function Tabs({ children }: TabsProps) {
       <div className={styles.tabRow}>
         {React.Children.map(children, (Tab, index) => (
           <InternalTab
-            text={Tab.props.text}
+            label={Tab.props.label}
             selected={activeTab === index}
             onClick={activateTab(index)}
           />
@@ -35,28 +35,30 @@ export function Tabs({ children }: TabsProps) {
 }
 
 interface TabProps {
-  readonly text: string;
+  readonly label: string;
   readonly children: string;
 }
 
-export function Tab({ text }: TabProps) {
-  return <div>{text}</div>;
+export function Tab({ label }: TabProps) {
+  return <>{label}</>;
 }
 
 interface InternalTabProps {
-  readonly text: string;
+  readonly label: string;
   readonly selected: boolean;
   onClick(): void;
 }
 
-export function InternalTab({ text, selected, onClick }: InternalTabProps) {
+export function InternalTab({ label, selected, onClick }: InternalTabProps) {
   const className = classnames(styles.tab, { [styles.selected]: selected });
-  const variation = selected ? "success" : undefined;
+  const color = selected ? "green" : undefined;
 
   return (
     <button type="button" role="tab" className={className} onClick={onClick}>
       {/* Should I use Typography here instead? */}
-      <Text variation={variation}>{text}</Text>
+      <Typography element="span" size="base" textColor={color}>
+        {label}
+      </Typography>
     </button>
   );
 }

@@ -13,11 +13,11 @@ exports[`renders Tabs 1`] = `
       role="tab"
       type="button"
     >
-      <p
+      <span
         className="base base green"
       >
         Eggs
-      </p>
+      </span>
     </button>
     <button
       className="tab"
@@ -25,11 +25,11 @@ exports[`renders Tabs 1`] = `
       role="tab"
       type="button"
     >
-      <p
+      <span
         className="base base"
       >
         Cheese
-      </p>
+      </span>
     </button>
   </div>
   <div

@@ -7,8 +7,8 @@ afterEach(cleanup);
 
 const omelet = (
   <Tabs>
-    <Tab text="Eggs">🍳</Tab>
-    <Tab text="Cheese">🧀</Tab>
+    <Tab label="Eggs">🍳</Tab>
+    <Tab label="Cheese">🧀</Tab>
   </Tabs>
 );
 

@@ -12,12 +12,12 @@
 .tab {
   flex: 0 0 auto;
   height: var(--tab-height);
-  margin: 0px;
-  margin-bottom: -1px;
+  margin: 0;
+  margin-bottom: calc(-1 * var(--border-base));
   padding-left: var(--inset);
   padding-right: var(--inset);
   border: solid var(--border-base) var(--border-color);
-  border-right-width: 0px;
+  border-right-width: 0;
   outline-color: var(--color-outline);
   background: none;
   cursor: pointer;
