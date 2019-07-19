@@ -18,10 +18,15 @@
   padding-right: var(--inset);
   border: solid var(--border-base) var(--border-color);
   border-right-width: 0px;
+  outline-color: var(--color-outline);
   background: none;
+  cursor: pointer;
 }
 .tab:last-child {
   border-right-width: var(--border-base);
+}
+.tab:active {
+  outline: 0;
 }
 
 .selected {
