@@ -140,7 +140,8 @@ export function FormField({
     disabled && styles.disabled,
     maxLength && styles.maxLength,
     {
-      [styles.miniLabel]: hasMiniLabel || type === "time" || type === "select",
+      [styles.miniLabel]:
+        (hasMiniLabel || type === "time" || type === "select") && placeholder,
     },
   );
 
