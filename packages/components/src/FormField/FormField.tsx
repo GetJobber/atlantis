@@ -3,19 +3,79 @@ import classnames from "classnames";
 import styles from "./FormField.css";
 
 export interface FormFieldProps {
+  /**
+   * Determines the alignment of the text inside the input.
+   */
   readonly align?: "center" | "right";
+
+  /**
+   * If you need to pass in a children. For example, `<options>` inside
+   * `<select>`.
+   */
   readonly children?: ReactNode;
+
+  /**
+   * Disable the input
+   */
   readonly disabled?: boolean;
+
+  /**
+   * Adjusts the form field to go inline with a content.
+   */
   readonly inline?: boolean;
+
+  /**
+   * Highlights the field red to indicate an error.
+   */
   readonly invalid?: boolean;
+
+  /**
+   * Maximum character length for an input. This also changes the width to
+   * roughly the same size as the max length. This is to communicate that the
+   * user that on certain cases, they can only type a limited amount of
+   * characters.
+   */
   readonly maxLength?: number;
+
+  /**
+   * Name of the input
+   */
   readonly name?: string;
+
+  /**
+   * Hint text that goes above the value once the form is filled out
+   */
   readonly placeholder?: string;
+
+  /**
+   * Prevents users from editing the value
+   */
   readonly readonly?: boolean;
+
+  /**
+   * Exclusively for textareas. Specifies the cisible height of a textarea.
+   */
   readonly rows?: number;
+
+  /**
+   * Adjusts the interface to either have small or large spacing
+   */
   readonly size?: "small" | "large";
+
+  /**
+   * Determines what kind of form field should the component give you
+   */
   readonly type?: "text" | "number" | "time" | "textarea" | "select";
+
+  /**
+   * Initial value for the input
+   */
   readonly value?: string;
+
+  /**
+   * Simplified onChange handler that only provides the new value.
+   * @param newValue
+   */
   onChange?(newValue: string): void;
 }
 
