@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Tabs 1`] = `
+<div
+  className="tabs"
+>
+  <div
+    className="tabRow"
+  >
+    <button
+      className="tab selected"
+      onClick={[Function]}
+      role="tab"
+      type="button"
+    >
+      <span
+        className="base base green"
+      >
+        Eggs
+      </span>
+    </button>
+    <button
+      className="tab"
+      onClick={[Function]}
+      role="tab"
+      type="button"
+    >
+      <span
+        className="base base"
+      >
+        Cheese
+      </span>
+    </button>
+  </div>
+  <div
+    className="tabContent"
+  >
+    🍳
+  </div>
+</div>
+`;

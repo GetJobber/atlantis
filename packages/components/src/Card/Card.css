@@ -28,7 +28,7 @@
 }
 
 .clickable {
-  --border-color: trasparent;
+  --border-color: transparent;
 
   box-shadow: var(--shadow-base);
   color: inherit;
