@@ -20,7 +20,7 @@ Input text is used in forms that accept short or long answers from users.
 Use this to allow users to provide short answers.
 
 <Playground>
-  <InputText placeholder="Company name" />
+  <InputText name="age" placeholder="Your age in words" />
 </Playground>
 
 ## Long answer
@@ -28,7 +28,11 @@ Use this to allow users to provide short answers.
 Use this to allow users to provide long answers.
 
 <Playground>
-  <InputText placeholder="Describe what your company does" multiline={true} />
+  <InputText
+    multiline={true}
+    placeholder="Describe your age"
+    name="describeAge"
+  />
 </Playground>
 
 ## States
