@@ -1,7 +1,6 @@
 import React, { ChangeEvent } from "react";
 import classnames from "classnames";
 import { CivilTime } from "@std-proposal/temporal";
-import { TextField } from "../TextField";
 import styles from "./TimePicker.css";
 
 interface TimePickerProps {
