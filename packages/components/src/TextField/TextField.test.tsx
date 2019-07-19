@@ -7,24 +7,22 @@ it("renders a regular input for text and numbers", () => {
     .create(<TextField placeholder="Favourite colour" />)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-        <div
-          className="wrapper"
-          style={Object {}}
-        >
-          <label
-            className="label"
-          >
-            Favourite colour
-          </label>
-          <input
-            className="formField"
-            disabled={false}
-            onChange={[Function]}
-            readOnly={false}
-            type="text"
-          />
-        </div>
-    `);
+    <div
+      className="wrapper"
+      style={Object {}}
+    >
+      <label
+        className="label"
+      >
+        Favourite colour
+      </label>
+      <input
+        className="formField"
+        onChange={[Function]}
+        type="text"
+      />
+    </div>
+  `);
 });
 
 it("renders a textarea", () => {
@@ -34,23 +32,21 @@ it("renders a textarea", () => {
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-        <div
-          className="wrapper"
-          style={Object {}}
-        >
-          <label
-            className="label"
-          >
-            Describe your favourite colour?
-          </label>
-          <textarea
-            className="formField"
-            disabled={false}
-            onChange={[Function]}
-            readOnly={false}
-          />
-        </div>
-    `);
+    <div
+      className="wrapper"
+      style={Object {}}
+    >
+      <label
+        className="label"
+      >
+        Describe your favourite colour?
+      </label>
+      <textarea
+        className="formField"
+        onChange={[Function]}
+      />
+    </div>
+  `);
 });
 
 it("renders a number input field", () => {
@@ -69,9 +65,7 @@ it("renders a number input field", () => {
       </label>
       <input
         className="formField"
-        disabled={false}
         onChange={[Function]}
-        readOnly={false}
         type="number"
       />
     </div>
