@@ -55,7 +55,6 @@ export function InternalTab({ label, selected, onClick }: InternalTabProps) {
 
   return (
     <button type="button" role="tab" className={className} onClick={onClick}>
-      {/* Should I use Typography here instead? */}
       <Typography element="span" size="base" textColor={color}>
         {label}
       </Typography>
