@@ -15,6 +15,13 @@ export interface FormFieldProps {
   readonly children?: ReactNode;
 
   /**
+   * Intial value of the input. Only use this when you need to prepopulate the
+   * field with a data that is not controlled by the components state. If a
+   * state is controlling the value, use the `value` prop instead.
+   */
+  readonly defaultValue?: string;
+
+  /**
    * Disable the input
    */
   readonly disabled?: boolean;
@@ -38,17 +45,17 @@ export interface FormFieldProps {
   readonly maxLength?: number;
 
   /**
-   * Name of the input
+   * Name of the input.
    */
   readonly name?: string;
 
   /**
-   * Hint text that goes above the value once the form is filled out
+   * Hint text that goes above the value once the form is filled out.
    */
   readonly placeholder?: string;
 
   /**
-   * Prevents users from editing the value
+   * Prevents users from editing the value.
    */
   readonly readonly?: boolean;
 
@@ -58,17 +65,17 @@ export interface FormFieldProps {
   readonly rows?: number;
 
   /**
-   * Adjusts the interface to either have small or large spacing
+   * Adjusts the interface to either have small or large spacing.
    */
   readonly size?: "small" | "large";
 
   /**
-   * Determines what kind of form field should the component give you
+   * Determines what kind of form field should the component give you.
    */
   readonly type?: "text" | "number" | "time" | "textarea" | "select";
 
   /**
-   * Initial value for the input
+   * Set the component to the given value.
    */
   readonly value?: string;
 
@@ -82,6 +89,7 @@ export interface FormFieldProps {
 export function FormField({
   align,
   children,
+  defaultValue,
   disabled,
   inline,
   invalid,
@@ -95,7 +103,9 @@ export function FormField({
   type = "text",
   value,
 }: FormFieldProps) {
-  const [hasMiniLabel, setHasMiniLabel] = useState(value ? true : false);
+  const [hasMiniLabel, setHasMiniLabel] = useState(
+    defaultValue || value ? true : false,
+  );
 
   const handleChange = (
     event:
@@ -105,9 +115,7 @@ export function FormField({
   ) => {
     const newValue = event.currentTarget.value;
     setHasMiniLabel(newValue.length > 0);
-    if (onChange) {
-      onChange(newValue);
-    }
+    onChange && onChange(newValue);
   };
 
   const fieldProps = {
@@ -117,7 +125,8 @@ export function FormField({
     disabled: disabled,
     readOnly: readonly,
     onChange: handleChange,
-    defaultValue: value,
+    ...(defaultValue && { defaultValue: defaultValue }),
+    ...(value && { value: value }),
   };
 
   const fieldElement = () => {
@@ -145,17 +154,13 @@ export function FormField({
     },
   );
 
-  if (maxLength) {
-    document.documentElement.style.setProperty(
-      "--formField-maxLength",
-      `${maxLength}`,
-    );
-  }
-
   const Wrapper = inline ? "span" : "div";
 
   return (
-    <Wrapper className={wrapperClassNames}>
+    <Wrapper
+      className={wrapperClassNames}
+      style={{ ["--formField-maxLength" as string]: maxLength }}
+    >
       {placeholder && (
         <label className={styles.label} htmlFor={name}>
           {placeholder}

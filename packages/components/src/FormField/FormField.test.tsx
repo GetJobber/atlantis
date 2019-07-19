@@ -9,6 +9,11 @@ it("renders correctly with no props", () => {
   expect(tree).toMatchInlineSnapshot(`
     <div
       className="wrapper"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
     >
       <input
         className="formField"
@@ -26,6 +31,11 @@ it("renders correctly with a placeholder", () => {
   expect(tree).toMatchInlineSnapshot(`
     <div
       className="wrapper"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
     >
       <label
         className="label"
@@ -46,6 +56,11 @@ it("renders correctly as small", () => {
   expect(tree).toMatchInlineSnapshot(`
     <div
       className="wrapper small"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
     >
       <input
         className="formField"
@@ -61,6 +76,11 @@ it("renders correctly in a readonly state", () => {
   expect(tree).toMatchInlineSnapshot(`
     <div
       className="wrapper"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
     >
       <input
         className="formField"
@@ -77,6 +97,11 @@ it("renders correctly in a disabled state", () => {
   expect(tree).toMatchInlineSnapshot(`
     <div
       className="wrapper disabled"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
     >
       <input
         className="formField"

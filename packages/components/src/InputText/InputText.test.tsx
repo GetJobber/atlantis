@@ -10,6 +10,11 @@ it("renders a regular input for text and numbers", () => {
   expect(tree).toMatchInlineSnapshot(`
     <div
       className="wrapper"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
     >
       <label
         className="label"
@@ -34,6 +39,11 @@ it("renders a textarea", () => {
   expect(tree).toMatchInlineSnapshot(`
     <div
       className="wrapper"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
     >
       <label
         className="label"
@@ -61,6 +71,11 @@ it("renders a textarea with 4 rows", () => {
   expect(tree).toMatchInlineSnapshot(`
     <div
       className="wrapper"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
     >
       <label
         className="label"
