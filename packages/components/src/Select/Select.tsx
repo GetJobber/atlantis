@@ -33,8 +33,7 @@ interface SelectProps {
 
   /**
    * Set the component to the given value.
-   * Must be used with onChange to create a "controlled component" or
-   * set `readOnly` to silence the warning.
+   * Must be used with onChange to create a "controlled component".
    */
   readonly value?: string;
 
