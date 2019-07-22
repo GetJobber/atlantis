@@ -133,8 +133,8 @@ export function FormField({
     disabled: disabled,
     readOnly: readonly,
     onChange: handleChange,
+    value: value,
     ...(defaultValue && { defaultValue: defaultValue }),
-    ...(value && { value: value }),
   };
 
   const fieldElement = () => {

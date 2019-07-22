@@ -7,6 +7,7 @@ route: /components/input-text
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { InputText } from ".";
+import { useState } from "react";
 import { Text } from "../Text";
 
 # Input Text
@@ -20,7 +21,20 @@ Input text is used in forms that accept short or long answers from users.
 Use this to allow users to provide short answers.
 
 <Playground>
-  <InputText name="age" placeholder="Your age in words" />
+  {() => {
+    const [value, setValue] = useState("Veintisiete");
+    const handleChange = newValue => {
+      setValue(newValue);
+    };
+    return (
+      <InputText
+        value={value}
+        onChange={handleChange}
+        name="age"
+        placeholder="Age in words"
+      />
+    );
+  }}
 </Playground>
 
 ## Long answer
