@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "0.3.0",
+  "version": "0.3.1-pre.3+db2a05e",
   "license": "UNLICENSED",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -58,5 +58,6 @@
     "last 1 version",
     "> 1%",
     "IE 10"
-  ]
+  ],
+  "gitHead": "db2a05e13a8a5f95176607433d21846626ffd662"
 }

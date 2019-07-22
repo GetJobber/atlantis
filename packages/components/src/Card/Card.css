@@ -1,18 +1,20 @@
-.card {
-  --card-background-color: var(--color-white);
-  --header-background-color: var(--color-grey--lightest);
-  --content-background-color: var(--color-white);
-  --border-color: var(--color-grey--lighter);
-  --accent-color: var(--color-grey);
-  --base-padding: var(--space-base);
+:root {
+  --card--background-color: var(--color-white);
+  --card--header-background-color: var(--color-grey--lightest);
+  --card--content-background-color: var(--color-white);
+  --card--border-color: var(--color-grey--lighter);
+  --card--accent-color: var(--color-grey);
+  --card--base-padding: var(--space-base);
+}
 
+.card {
   display: block;
-  padding: var(--base-padding);
-  border: var(--border-base) solid var(--border-color);
+  padding: var(--card--base-padding);
+  border: var(--border-base) solid var(--card--border-color);
   border-radius: var(--radius-base);
   overflow: auto;
   outline-color: var(--color-outline);
-  background-color: var(--card-background-color);
+  background-color: var(--card--background-color);
 }
 
 .card:not(:last-child) {
@@ -24,11 +26,11 @@
 }
 
 .accent {
-  border-top: 0.5rem solid var(--accent-color);
+  border-top: 0.5rem solid var(--card--accent-color);
 }
 
 .clickable {
-  --border-color: transparent;
+  --card--border-color: transparent;
 
   box-shadow: var(--shadow-base);
   color: inherit;
@@ -43,13 +45,13 @@
 }
 
 .fill {
-  margin-top: calc(-1 * var(--base-padding));
-  margin-bottom: calc(1 * var(--base-padding));
-  margin-left: calc(-1 * var(--base-padding));
-  margin-right: calc(-1 * var(--base-padding));
+  margin-top: calc(-1 * var(--card--base-padding));
+  margin-bottom: calc(1 * var(--card--base-padding));
+  margin-left: calc(-1 * var(--card--base-padding));
+  margin-right: calc(-1 * var(--card--base-padding));
 }
 
 .header {
-  padding: var(--base-padding);
-  background-color: var(--header-background-color);
+  padding: var(--card--base-padding);
+  background-color: var(--card--header-background-color);
 }
