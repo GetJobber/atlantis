@@ -18,6 +18,7 @@ it("renders correctly with no props", () => {
       <input
         className="formField"
         onChange={[Function]}
+        onFocus={[Function]}
         type="text"
       />
     </div>
@@ -45,6 +46,7 @@ it("renders correctly with a placeholder", () => {
       <input
         className="formField"
         onChange={[Function]}
+        onFocus={[Function]}
         type="text"
       />
     </div>
@@ -65,6 +67,7 @@ it("renders correctly as small", () => {
       <input
         className="formField"
         onChange={[Function]}
+        onFocus={[Function]}
         type="text"
       />
     </div>
@@ -85,6 +88,7 @@ it("renders correctly in a readonly state", () => {
       <input
         className="formField"
         onChange={[Function]}
+        onFocus={[Function]}
         readOnly={true}
         type="text"
       />
@@ -107,6 +111,7 @@ it("renders correctly in a disabled state", () => {
         className="formField"
         disabled={true}
         onChange={[Function]}
+        onFocus={[Function]}
         type="text"
       />
     </div>

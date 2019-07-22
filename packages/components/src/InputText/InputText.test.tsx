@@ -24,6 +24,7 @@ it("renders a regular input for text and numbers", () => {
       <input
         className="formField"
         onChange={[Function]}
+        onFocus={[Function]}
         type="text"
       />
     </div>
@@ -53,6 +54,7 @@ it("renders a textarea", () => {
       <textarea
         className="formField"
         onChange={[Function]}
+        onFocus={[Function]}
       />
     </div>
   `);
@@ -85,6 +87,7 @@ it("renders a textarea with 4 rows", () => {
       <textarea
         className="formField"
         onChange={[Function]}
+        onFocus={[Function]}
         rows={4}
       />
     </div>

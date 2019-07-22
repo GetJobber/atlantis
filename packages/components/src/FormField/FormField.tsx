@@ -118,6 +118,14 @@ export function FormField({
     onChange && onChange(newValue);
   };
 
+  const handleFocus = (
+    event:
+      | React.FocusEvent<HTMLInputElement>
+      | React.FocusEvent<HTMLTextAreaElement>,
+  ) => {
+    readonly && event.currentTarget.select();
+  };
+
   const fieldProps = {
     id: name,
     className: styles.formField,
@@ -134,9 +142,16 @@ export function FormField({
       case "select":
         return <select {...fieldProps}>{children}</select>;
       case "textarea":
-        return <textarea rows={rows} {...fieldProps} />;
+        return <textarea rows={rows} onFocus={handleFocus} {...fieldProps} />;
       default:
-        return <input type={type} maxLength={maxLength} {...fieldProps} />;
+        return (
+          <input
+            type={type}
+            maxLength={maxLength}
+            onFocus={handleFocus}
+            {...fieldProps}
+          />
+        );
     }
   };
 
