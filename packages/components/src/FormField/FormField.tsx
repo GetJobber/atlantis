@@ -60,7 +60,7 @@ export interface FormFieldProps {
   readonly readonly?: boolean;
 
   /**
-   * Exclusively for textareas. Specifies the cisible height of a textarea.
+   * Exclusively for textareas. Specifies the visible height of a textarea.
    */
   readonly rows?: number;
 
