@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import classnames from "classnames";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
@@ -15,9 +15,14 @@ interface SectionProps {
 }
 
 export function Menu({ items }: MenuProps) {
+  const [showMenu, setShowMenu] = useState(false);
   const wrapperClassNames = classnames(styles.wrapper);
   const buttonID = "buttonID"; // TODO: Make ID unique
   const menuID = "menuID"; // TODO: Make ID unique
+
+  const toggleMenu = () => {
+    setShowMenu(!showMenu);
+  };
 
   return (
     <div className={wrapperClassNames}>
@@ -29,29 +34,32 @@ export function Menu({ items }: MenuProps) {
         icon="more"
         id={buttonID}
         type="secondary"
+        onClick={toggleMenu}
       />
 
-      <div
-        className={styles.menu}
-        role="menu"
-        aria-labelledby={buttonID}
-        id={menuID}
-      >
-        {items.map((item, key: number) => {
-          const subMenuID = `subMenu${key}`;
-          return (
-            <div role="none" key={key} className={styles.section}>
-              {item.header && (
-                <SectionHeader id={subMenuID} text={item.header} />
-              )}
+      {showMenu && (
+        <div
+          className={styles.menu}
+          role="menu"
+          aria-labelledby={buttonID}
+          id={menuID}
+        >
+          {items.map((item, key: number) => {
+            const subMenuID = `subMenu${key}`;
+            return (
+              <div role="none" key={key} className={styles.section}>
+                {item.header && (
+                  <SectionHeader id={subMenuID} text={item.header} />
+                )}
 
-              {item.actions.map(action => (
-                <Action key={action.label} {...action} />
-              ))}
-            </div>
-          );
-        })}
-      </div>
+                {item.actions.map(action => (
+                  <Action key={action.label} {...action} />
+                ))}
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
