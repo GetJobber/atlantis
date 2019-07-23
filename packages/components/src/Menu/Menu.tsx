@@ -9,7 +9,7 @@ interface MenuProps {
 }
 
 interface SectionProps {
-  header: string;
+  header?: string;
   actions: ActionProps[];
 }
 
@@ -42,6 +42,7 @@ export function Menu({ items }: MenuProps) {
             role="menu"
             aria-labelledby={buttonID}
             id={menuID}
+            data-testid="menu-popup"
           >
             {items.map((item, key: number) => (
               <div key={key} className={styles.section}>
@@ -69,6 +70,7 @@ function SectionHeader({ text }: SectionHeaderProps) {
   return (
     <div className={styles.sectionHeader} aria-hidden={true}>
       <Typography
+        element="h6"
         size="small"
         textCase="uppercase"
         textColor="greyBlue"
@@ -99,7 +101,7 @@ function Action({ label, icon, onClick }: ActionProps) {
           <Icon name={icon} />
         </span>
       )}
-      <Typography element="h6" size="base" textColor="greyBlueDark">
+      <Typography element="span" size="base" textColor="greyBlueDark">
         {label}
       </Typography>
     </button>
