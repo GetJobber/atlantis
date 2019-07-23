@@ -18,12 +18,18 @@ In Jobber a Menu is used to …
 
 <Playground>
   <Menu
-    actions={[
+    items={[
       {
-        header: "File options",
-        items: [
-          { label: "Import file", icon: ImportMinor },
-          { label: "Export file", icon: ExportMinor }
+        actions: [
+          { label: "Import file", icon: "download" },
+          { label: "Export file", icon: "upload" }
+        ]
+      },
+      {
+        header: "Mark as...",
+        actions: [
+          { label: "Sent", icon: "email" },
+          { label: "Paid", icon: "paidInvoice" }
         ]
       }
     ]}
