@@ -1,7 +1,7 @@
 {
   "name": "@jobber/stylelint-config",
   "version": "0.0.1",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "main": "stylelint.config.js",
   "dependencies": {
     "prettier": "^1.17.0",

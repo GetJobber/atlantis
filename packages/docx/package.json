@@ -2,7 +2,7 @@
   "name": "@jobber/docx",
   "private": true,
   "description": "Internal Docs components.",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "files": [],
   "scripts": {},
   "devDependencies": {
