@@ -9,6 +9,7 @@ import textColors from "./css/TextColors.css";
 import emphasis from "./css/Emphasis.css";
 
 interface TypographyProps {
+  readonly id?: string;
   /**
    * @default "p"
    */
@@ -40,6 +41,7 @@ interface TypographyProps {
 export type TypographyOptions = Omit<TypographyProps, "children">;
 
 export function Typography({
+  id,
   children,
   element: Tag = "p",
   size,
@@ -57,5 +59,9 @@ export function Typography({
     emphasisType && emphasis[emphasisType],
   );
 
-  return <Tag className={className}>{children}</Tag>;
+  return (
+    <Tag id={id} className={className}>
+      {children}
+    </Tag>
+  );
 }
