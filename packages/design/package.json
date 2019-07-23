@@ -2,7 +2,7 @@
   "name": "@jobber/design",
   "version": "0.3.0",
   "description": "Design foundation for the Jobber Atlantis Design System",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "main": "foundation.css",
   "files": [
     "foundation.css"
