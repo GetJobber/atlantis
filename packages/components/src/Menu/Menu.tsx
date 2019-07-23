@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import classnames from "classnames";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
 import { Icon, IconNames } from "../Icon";
@@ -16,7 +15,6 @@ interface SectionProps {
 
 export function Menu({ items }: MenuProps) {
   const [showMenu, setShowMenu] = useState(false);
-  const wrapperClassNames = classnames(styles.wrapper);
   const buttonID = "buttonID"; // TODO: Make ID unique
   const menuID = "menuID"; // TODO: Make ID unique
 
@@ -25,7 +23,7 @@ export function Menu({ items }: MenuProps) {
   };
 
   return (
-    <div className={wrapperClassNames}>
+    <div className={styles.wrapper}>
       <Button
         ariaControls={menuID}
         ariaExpanded={showMenu}
@@ -45,20 +43,15 @@ export function Menu({ items }: MenuProps) {
             aria-labelledby={buttonID}
             id={menuID}
           >
-            {items.map((item, key: number) => {
-              const subMenuID = `subMenu${key}`;
-              return (
-                <div role="none" key={key} className={styles.section}>
-                  {item.header && (
-                    <SectionHeader id={subMenuID} text={item.header} />
-                  )}
+            {items.map((item, key: number) => (
+              <div key={key} className={styles.section}>
+                {item.header && <SectionHeader text={item.header} />}
 
-                  {item.actions.map(action => (
-                    <Action key={action.label} {...action} />
-                  ))}
-                </div>
-              );
-            })}
+                {item.actions.map(action => (
+                  <Action key={action.label} {...action} />
+                ))}
+              </div>
+            ))}
           </div>
 
           <div className={styles.overlay} onClick={toggleMenu} />
@@ -69,15 +62,13 @@ export function Menu({ items }: MenuProps) {
 }
 
 interface SectionHeaderProps {
-  id: string;
   text: string;
 }
 
-function SectionHeader({ id, text }: SectionHeaderProps) {
+function SectionHeader({ text }: SectionHeaderProps) {
   return (
     <div className={styles.sectionHeader} aria-hidden={true}>
       <Typography
-        id={id}
         size="small"
         textCase="uppercase"
         textColor="greyBlue"
