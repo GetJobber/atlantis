@@ -1,0 +1,35 @@
+---
+name: Menu
+menu: Components
+route: /components/menu
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { Menu } from ".";
+
+# Menu
+
+<ComponentStatus stage="pre" responsive="no" accessible="no" />
+
+In Jobber a Menu is used to …
+
+## Simple Example
+
+<Playground>
+  <Menu
+    actions={[
+      {
+        header: "File options",
+        items: [
+          { label: "Import file", icon: ImportMinor },
+          { label: "Export file", icon: ExportMinor }
+        ]
+      }
+    ]}
+  />
+</Playground>
+
+## Menu Properties
+
+<Props of={Menu} />
