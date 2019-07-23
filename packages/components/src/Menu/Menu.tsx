@@ -28,7 +28,7 @@ export function Menu({ items }: MenuProps) {
     <div className={wrapperClassNames}>
       <Button
         ariaControls={menuID}
-        ariaExpanded={true}
+        ariaExpanded={showMenu}
         ariaHaspopup={true}
         label="More"
         icon="more"
