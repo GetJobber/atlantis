@@ -38,27 +38,31 @@ export function Menu({ items }: MenuProps) {
       />
 
       {showMenu && (
-        <div
-          className={styles.menu}
-          role="menu"
-          aria-labelledby={buttonID}
-          id={menuID}
-        >
-          {items.map((item, key: number) => {
-            const subMenuID = `subMenu${key}`;
-            return (
-              <div role="none" key={key} className={styles.section}>
-                {item.header && (
-                  <SectionHeader id={subMenuID} text={item.header} />
-                )}
+        <>
+          <div
+            className={styles.menu}
+            role="menu"
+            aria-labelledby={buttonID}
+            id={menuID}
+          >
+            {items.map((item, key: number) => {
+              const subMenuID = `subMenu${key}`;
+              return (
+                <div role="none" key={key} className={styles.section}>
+                  {item.header && (
+                    <SectionHeader id={subMenuID} text={item.header} />
+                  )}
 
-                {item.actions.map(action => (
-                  <Action key={action.label} {...action} />
-                ))}
-              </div>
-            );
-          })}
-        </div>
+                  {item.actions.map(action => (
+                    <Action key={action.label} {...action} />
+                  ))}
+                </div>
+              );
+            })}
+          </div>
+
+          <div className={styles.overlay} onClick={toggleMenu} />
+        </>
       )}
     </div>
   );
