@@ -7,16 +7,27 @@ afterEach(cleanup);
 jest.mock("uuid");
 
 it("renders a Menu", () => {
-  const actions = [
-    {
-      actions: [{ label: "Import file" }, { label: "Export file" }],
-    },
-    {
-      header: "Mark as...",
-      actions: [{ label: "Sent" }, { label: "Paid" }],
-    },
-  ];
-  const tree = renderer.create(<Menu items={actions} />).toJSON();
+  const tree = renderer
+    .create(
+      <Menu
+        items={[
+          {
+            header: "Send as...",
+            actions: [
+              {
+                label: "Text Message",
+                icon: "sms",
+              },
+              {
+                label: "Email",
+                icon: "email",
+              },
+            ],
+          },
+        ]}
+      />,
+    )
+    .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
       className="wrapper"
@@ -43,7 +54,7 @@ it("renders a Menu", () => {
   `);
 });
 
-test("it should call the handler with the new value", () => {
+test("It should open and close the menu", () => {
   const header = "Mark as...";
   const actionLabel = "Awaiting Response";
   const clickHandler = jest.fn();

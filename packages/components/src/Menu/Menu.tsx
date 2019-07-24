@@ -6,11 +6,21 @@ import { Icon, IconNames } from "../Icon";
 import styles from "./Menu.css";
 
 interface MenuProps {
+  /**
+   * Collection of action items.
+   */
   readonly items: SectionProps[];
 }
 
 interface SectionProps {
+  /**
+   * Defines the section header to further explain the group of actions.
+   */
   header?: string;
+
+  /**
+   * List of actions.
+   */
   actions: ActionProps[];
 }
 
@@ -84,8 +94,19 @@ function SectionHeader({ text }: SectionHeaderProps) {
 }
 
 interface ActionProps {
+  /**
+   * Action label
+   */
   label: string;
+
+  /**
+   * Visual cue for the action label
+   */
   icon?: IconNames;
+
+  /**
+   * Callback when an action gets clicked
+   */
   onClick?(): void;
 }
 

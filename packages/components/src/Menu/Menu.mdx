@@ -6,30 +6,64 @@ route: /components/menu
 
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
-import { Menu } from ".";
+import { Menu, SectionProps } from ".";
 
 # Menu
 
 <ComponentStatus stage="pre" responsive="no" accessible="yes" />
 
-In Jobber a Menu is used to …
-
-## Simple Example
+A toggleable menu that holds a list of actions.
 
 <Playground>
   <Menu
     items={[
       {
         actions: [
-          { label: "Import file", icon: "download" },
-          { label: "Export file", icon: "upload" }
+          {
+            label: "Edit",
+            icon: "edit",
+            onClick: () => {
+              alert("✏️");
+            }
+          }
+        ]
+      },
+      {
+        header: "Send as...",
+        actions: [
+          {
+            label: "Text Message",
+            icon: "sms",
+            onClick: () => {
+              alert("📱");
+            }
+          },
+          {
+            label: "Email",
+            icon: "email",
+            onClick: () => {
+              alert("📨");
+            }
+          }
         ]
       },
       {
         header: "Mark as...",
         actions: [
-          { label: "Sent", icon: "email" },
-          { label: "Paid", icon: "paidInvoice" }
+          {
+            label: "Sent",
+            icon: "sendInvoice",
+            onClick: () => {
+              alert("💌");
+            }
+          },
+          {
+            label: "Paid",
+            icon: "paidInvoice",
+            onClick: () => {
+              alert("💳");
+            }
+          }
         ]
       }
     ]}
