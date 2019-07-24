@@ -2,7 +2,7 @@
   "name": "@jobber/eslint-config",
   "version": "0.0.2",
   "main": ".eslintrc.js",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",

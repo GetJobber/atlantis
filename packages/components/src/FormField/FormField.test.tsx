@@ -1,11 +1,33 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { fireEvent, render } from "@testing-library/react";
-import { InputText } from ".";
+import { cleanup, fireEvent, render } from "@testing-library/react";
+import { FormField } from ".";
 
-it("renders a regular input for text and numbers", () => {
+afterEach(cleanup);
+it("renders correctly with no props", () => {
+  const tree = renderer.create(<FormField />).toJSON();
+  expect(tree).toMatchInlineSnapshot(`
+    <div
+      className="wrapper"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
+    >
+      <input
+        className="formField"
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="text"
+      />
+    </div>
+  `);
+});
+
+it("renders correctly with a placeholder", () => {
   const tree = renderer
-    .create(<InputText placeholder="Favourite colour" />)
+    .create(<FormField placeholder="My placeholder" />)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
@@ -19,7 +41,7 @@ it("renders a regular input for text and numbers", () => {
       <label
         className="label"
       >
-        Favourite colour
+        My placeholder
       </label>
       <input
         className="formField"
@@ -31,45 +53,29 @@ it("renders a regular input for text and numbers", () => {
   `);
 });
 
-it("renders a textarea", () => {
-  const tree = renderer
-    .create(
-      <InputText placeholder="Describe your favourite colour?" multiline />,
-    )
-    .toJSON();
+it("renders correctly as small", () => {
+  const tree = renderer.create(<FormField size="small" />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="wrapper"
+      className="wrapper small"
       style={
         Object {
           "--formField-maxLength": undefined,
         }
       }
     >
-      <label
-        className="label"
-      >
-        Describe your favourite colour?
-      </label>
-      <textarea
+      <input
         className="formField"
         onChange={[Function]}
         onFocus={[Function]}
+        type="text"
       />
     </div>
   `);
 });
 
-it("renders a textarea with 4 rows", () => {
-  const tree = renderer
-    .create(
-      <InputText
-        placeholder="Describe your favourite colour?"
-        multiline
-        rows={4}
-      />,
-    )
-    .toJSON();
+it("renders correctly in a readonly state", () => {
+  const tree = renderer.create(<FormField readonly={true} />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
       className="wrapper"
@@ -79,19 +85,44 @@ it("renders a textarea with 4 rows", () => {
         }
       }
     >
-      <label
-        className="label"
-      >
-        Describe your favourite colour?
-      </label>
-      <textarea
+      <input
         className="formField"
         onChange={[Function]}
         onFocus={[Function]}
-        rows={4}
+        readOnly={true}
+        type="text"
       />
     </div>
   `);
+});
+
+it("renders correctly in a disabled state", () => {
+  const tree = renderer.create(<FormField disabled={true} />).toJSON();
+  expect(tree).toMatchInlineSnapshot(`
+    <div
+      className="wrapper disabled"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
+    >
+      <input
+        className="formField"
+        disabled={true}
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="text"
+      />
+    </div>
+  `);
+});
+
+it("it should set the value", () => {
+  const value = "Look, some words!";
+  const { getByDisplayValue } = render(<FormField value={value} />);
+
+  expect(getByDisplayValue(value)).toBeDefined();
 });
 
 test("it should call the handler with the new value", () => {
@@ -103,7 +134,7 @@ test("it should call the handler with the new value", () => {
   const changeHandler = jest.fn();
 
   const { getByLabelText } = render(
-    <InputText
+    <FormField
       name="Got milk?"
       onChange={changeHandler}
       placeholder={placeholder}

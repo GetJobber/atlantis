@@ -2,6 +2,7 @@
   "private": true,
   "name": "atlantis",
   "version": "0.0.1",
+  "license": "MIT",
   "scripts": {
     "start": "docz dev",
     "start:withPrivateComponents": "PRIVATE_COMPONENTS=visible docz dev",
@@ -42,7 +43,7 @@
     "@typescript-eslint/eslint-plugin": "^1.10.2",
     "@typescript-eslint/parser": "^1.10.2",
     "css-loader": "^3.0.0",
-    "docz": "^1.0.0",
+    "docz": "^1.2.0",
     "docz-theme-default": "^1.0.0",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.3.0",

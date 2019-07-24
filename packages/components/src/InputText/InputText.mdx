@@ -7,32 +7,106 @@ route: /components/input-text
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { InputText } from ".";
+import { useState } from "react";
+import { Text } from "../Text";
 
 # Input Text
 
-<ComponentStatus stage="rc" responsive="yes" accessible="no" />
+<ComponentStatus stage="rc" responsive="yes" accessible="yes" />
 
-Input Text is used in forms to accept input from users.
+Input text is used in forms that accept short or long answers from users.
 
-## Basic InputText
+## Short answer
+
+Use this to allow users to provide short answers.
 
 <Playground>
-  <InputText size="small" placeholder="Small input" />
-  <InputText placeholder="Normal input" />
+  {() => {
+    const [value, setValue] = useState("Veintisiete");
+    const handleChange = newValue => {
+      setValue(newValue);
+    };
+    return (
+      <InputText
+        value={value}
+        onChange={handleChange}
+        name="age"
+        placeholder="Age in words"
+      />
+    );
+  }}
 </Playground>
 
-## InputText States
+## Long answer
+
+Use this to allow users to provide long answers.
 
 <Playground>
-  <InputText disabled={true} placeholder="Disabled input" />
   <InputText
-    readonly={true}
-    placeholder="Readonly input"
-    value="You can't change me."
+    multiline={true}
+    placeholder="Describe your age"
+    name="describeAge"
   />
-  <InputText error placeholder="Invalid input" />
 </Playground>
 
-## Properties
+## States
+
+### Disabled
+
+<Playground>
+  <InputText
+    placeholder="Credit card"
+    value="**** **** **** 1234"
+    disabled={true}
+    name="creditCard"
+  />
+</Playground>
+
+### Read only
+
+<Playground>
+  <InputText
+    placeholder="Your referral code"
+    value="WXYZ100"
+    readonly={true}
+    name="referralCode"
+  />
+</Playground>
+
+### Invalid
+
+<Playground>
+  <InputText
+    placeholder="Email"
+    value="atlantis"
+    invalid={true}
+    name="emailAddress"
+  />
+</Playground>
+
+## Sizes
+
+<Playground>
+  <InputText name="smallField" size="small" placeholder="Duration" />
+  <InputText name="largeField" size="large" placeholder="Your username" />
+</Playground>
+
+## Inline
+
+<Playground>
+  <Text>
+    My name is
+    <InputText
+      name="durationInDays"
+      value="Jeff"
+      size="small"
+      inline={true}
+      maxLength={4}
+      align="center"
+    />
+  </Text>
+</Playground>
+
+## InputText Properties
 
 <Props of={InputText} />

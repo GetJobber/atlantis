@@ -1,4 +1,5 @@
 :root {
+  --elevation-base: 1;
   --elevation-menu: 6;
   /**
    * Modal has this much z-index to overcome docz z-index. This can be lowered
