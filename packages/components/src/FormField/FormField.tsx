@@ -123,7 +123,8 @@ export function FormField({
       | React.FocusEvent<HTMLInputElement>
       | React.FocusEvent<HTMLTextAreaElement>,
   ) => {
-    readonly && event.currentTarget.select();
+    const target = event.currentTarget;
+    setTimeout(() => readonly && target.select());
   };
 
   const fieldProps = {
