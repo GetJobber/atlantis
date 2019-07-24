@@ -1,14 +1,10 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {
-  cleanup,
-  fireEvent,
-  getByLabelText,
-  render,
-} from "@testing-library/react";
+import { cleanup, fireEvent, render } from "@testing-library/react";
 import { Menu } from ".";
 
 afterEach(cleanup);
+jest.mock("uuid");
 
 it("renders a Menu", () => {
   const actions = [
@@ -26,12 +22,10 @@ it("renders a Menu", () => {
       className="wrapper"
     >
       <button
-        aria-controls="menuID"
         aria-expanded={false}
         aria-haspopup={true}
         className="button base hasIcon work secondary"
         disabled={false}
-        id="buttonID"
         onClick={[Function]}
       >
         <div

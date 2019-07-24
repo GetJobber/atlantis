@@ -11,7 +11,7 @@
   position: absolute;
   top: 100%;
   right: 0;
-  z-index: 6; /* Change this */
+  z-index: var(--elevation-menu);
   width: calc(var(--base-unit) * 12.5);
   box-shadow: var(--shadow-base);
   margin-top: var(--space-smallest);
@@ -66,5 +66,5 @@
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 5; /* Change this */
+  z-index: calc(var(--elevation-menu) - 1);
 }

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import uuid from "uuid";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
 import { Icon, IconNames } from "../Icon";
@@ -15,8 +16,8 @@ interface SectionProps {
 
 export function Menu({ items }: MenuProps) {
   const [showMenu, setShowMenu] = useState(false);
-  const buttonID = "buttonID"; // TODO: Make ID unique
-  const menuID = "menuID"; // TODO: Make ID unique
+  const buttonID = uuid();
+  const menuID = uuid();
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
