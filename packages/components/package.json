@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "0.4.0",
+  "version": "0.3.0",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,7 +19,7 @@
     "dist/*"
   ],
   "dependencies": {
-    "@jobber/formatters": "^0.0.2",
+    "@jobber/formatters": "^0.0.1",
     "@std-proposal/temporal": "0.0.1",
     "classnames": "^2.2.6",
     "ts-xor": "^1.0.8"

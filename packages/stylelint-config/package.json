@@ -1,6 +1,6 @@
 {
   "name": "@jobber/stylelint-config",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "license": "MIT",
   "main": "stylelint.config.js",
   "dependencies": {
