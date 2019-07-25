@@ -1,4 +1,4 @@
-import React, { ReactElement, cloneElement, useState } from "react";
+import React, { ReactElement, ReactNode, useState } from "react";
 import classnames from "classnames";
 import { Typography } from "../Typography";
 import styles from "./Tabs.css";
@@ -36,7 +36,7 @@ export function Tabs({ children }: TabsProps) {
 
 interface TabProps {
   readonly label: string;
-  readonly children: string;
+  readonly children: ReactNode | ReactNode[];
 }
 
 export function Tab({ label }: TabProps) {
