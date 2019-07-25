@@ -35,7 +35,12 @@ exports[`renders Tabs 1`] = `
   <div
     className="tabContent"
   >
-    🍳
+    <p>
+      🍳
+    </p>
+    <p>
+      Eggs
+    </p>
   </div>
 </div>
 `;
