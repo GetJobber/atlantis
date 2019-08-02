@@ -52,6 +52,10 @@ textarea.formField {
   resize: vertical;
 }
 
+select.formField {
+  padding-right: calc(var(--field-padding-right) + var(--space-large));
+}
+
 .formField:focus {
   --field-border-color: var(--color-outline);
 }
@@ -157,4 +161,13 @@ textarea.formField {
     (var(--base-unit) * var(--formField-maxLength)) + var(--field-padding-left) +
       var(--field-padding-right)
   );
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  right: var(--field-padding-right);
+  color: var(--color-greyBlue);
+  pointer-events: none;
+  transform: translateY(-50%);
 }

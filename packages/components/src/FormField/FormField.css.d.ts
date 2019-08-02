@@ -10,3 +10,4 @@ export const invalid: string;
 export const disabled: string;
 export const miniLabel: string;
 export const maxLength: string;
+export const icon: string;
