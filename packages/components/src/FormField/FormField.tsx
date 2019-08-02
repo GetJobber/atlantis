@@ -77,13 +77,13 @@ export interface FormFieldProps {
   /**
    * Set the component to the given value.
    */
-  readonly value?: string;
+  readonly value?: string | number;
 
   /**
    * Simplified onChange handler that only provides the new value.
    * @param newValue
    */
-  onChange?(newValue: string): void;
+  onChange?(newValue: string | number): void;
 }
 
 export function FormField({
@@ -113,8 +113,13 @@ export function FormField({
       | ChangeEvent<HTMLTextAreaElement>
       | ChangeEvent<HTMLSelectElement>,
   ) => {
-    const newValue = event.currentTarget.value;
+    let newValue: string | number;
+    newValue = event.currentTarget.value;
     setHasMiniLabel(newValue.length > 0);
+
+    if (type === "number" && newValue.length > 0) {
+      newValue = parseFloat(newValue);
+    }
     onChange && onChange(newValue);
   };
 

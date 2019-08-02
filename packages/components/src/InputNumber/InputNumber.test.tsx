@@ -27,9 +27,9 @@ it("renders an input type number", () => {
   `);
 });
 
-test("it should call the handler with the new value", () => {
+test("it should call the handler with a number value", () => {
   const changeHandler = jest.fn();
-  const newValue = "100";
+  const newValue = 100;
   const placeholder = "Count";
 
   const { getByLabelText } = render(
