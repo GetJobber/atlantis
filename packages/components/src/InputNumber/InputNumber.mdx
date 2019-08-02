@@ -7,13 +7,14 @@ route: /components/input-number
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { InputNumber } from ".";
+import { Text } from "../Text";
 import { useState } from "react";
 
 # InputNumber
 
 <ComponentStatus stage="pre" responsive="no" accessible="no" />
 
-In Jobber a InputNumber is used to …
+Input number is used in forms that accept numbers as an answer.
 
 ## Simple Example
 
@@ -29,6 +30,65 @@ In Jobber a InputNumber is used to …
   }}
 </Playground>
 
-## InputNumber Properties
+## States
+
+### Disabled
+
+<Playground>
+  <InputNumber
+    placeholder="SIN Number"
+    value={1234}
+    disabled={true}
+    name="sin"
+  />
+</Playground>
+
+### Read only
+
+<Playground>
+  <InputNumber
+    placeholder="Your pin number"
+    value={12345}
+    readonly={true}
+    name="pinNumber"
+  />
+</Playground>
+
+### Invalid
+
+<Playground>
+  <InputNumber
+    placeholder="Give a whole number"
+    defaultValue={1.1}
+    invalid={true}
+    name="wholeNumber"
+  />
+</Playground>
+
+## Sizes
+
+<Playground>
+  <InputNumber name="smallField" size="small" placeholder="Duration" />
+  <InputNumber name="largeField" size="large" placeholder="Your username" />
+</Playground>
+
+## Inline
+
+<Playground>
+  <Text>
+    Follow-up after
+    <InputNumber
+      name="durationInDays"
+      value={2}
+      size="small"
+      inline={true}
+      maxLength={4}
+      align="center"
+    />
+    days
+  </Text>
+</Playground>
+
+## Properties
 
 <Props of={InputNumber} />
