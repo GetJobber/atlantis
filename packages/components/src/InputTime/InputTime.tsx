@@ -16,7 +16,7 @@ type BaseProps = Pick<
   >
 >;
 
-interface TimePickerProps extends BaseProps {
+interface InputTimeProps extends BaseProps {
   /**
    * Intial value of the input. Only use this when you need to prepopulate the
    * field with a data that is not controlled by the components state. If a
@@ -35,12 +35,12 @@ interface TimePickerProps extends BaseProps {
   onChange?(newValue: CivilTime): void;
 }
 
-export function TimePicker({
+export function InputTime({
   defaultValue,
   value,
   onChange,
   ...params
-}: TimePickerProps) {
+}: InputTimeProps) {
   const handleChange = (newValue: string) => {
     onChange && onChange(htmlTimeToCivilTime(newValue));
   };
