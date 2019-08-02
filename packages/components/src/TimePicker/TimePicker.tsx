@@ -1,49 +1,33 @@
-import React, { ChangeEvent } from "react";
-import classnames from "classnames";
+import React from "react";
 import { CivilTime } from "@std-proposal/temporal";
-import styles from "./TimePicker.css";
+import { FormField, FormFieldProps } from "../FormField";
 
-interface TimePickerProps {
+/**
+ * The following is the same as:
+ *   type BaseProps = Omit<FormFieldProps, "type" | "children">;
+ * Unfortunately Docz doesn't currently support Omit so it has been reduced to
+ * its component parts.
+ */
+type BaseProps = Pick<
+  FormFieldProps,
+  Exclude<
+    keyof FormFieldProps,
+    "type" | "children" | "rows" | "defaultValue" | "value" | "onChange"
+  >
+>;
+
+interface TimePickerProps extends BaseProps {
   /**
-   * Intial value.
-   *
-   * defaultValue is for when you want to set an initial value of
-   * an uncontrolled component, i.e a component that you won't be monitoring
-   * through a value/onChange loop. The value/onChange pair is for controlled
-   * components. If you try to set value without setting onChange you end up
-   * with a readOnly component and have to set that flag to get rid of the React
-   * warning.
+   * Intial value of the input. Only use this when you need to prepopulate the
+   * field with a data that is not controlled by the components state. If a
+   * state is controlling the value, use the `value` prop instead.
    */
   readonly defaultValue?: CivilTime;
 
   /**
-   * Prevent the input from being changed.
-   */
-  readonly readOnly?: boolean;
-
-  /**
    * Set the component to the given value.
-   * Must be used with onChange to create a "controlled component" or
-   * set `readOnly` to silence the warning.
    */
   readonly value?: CivilTime;
-
-  /**
-   * Indicates an error. Adds a red border.
-   * @default false
-   */
-  readonly invalid?: boolean;
-
-  /**
-   * Indicates the input is not changeable. Greys out the input.
-   * @default false
-   */
-  readonly disabled?: boolean;
-
-  /**
-   * Indicates the input is not changeable. Greys out the input.
-   */
-  readonly size?: "small" | "large";
 
   /**
    * Function called when user changes input value.
@@ -51,59 +35,32 @@ interface TimePickerProps {
   onChange?(newValue: CivilTime): void;
 }
 
-function civilTimeToHTMLTime(ct: CivilTime) {
-  const s = ct.toString();
-  return s.substring(0, s.indexOf("."));
-}
-
-function htmlTimeToCivilTime(s: string) {
-  return CivilTime.fromString(s + ":00.000000000");
-}
-
 export function TimePicker({
   defaultValue,
-  readOnly,
   value,
-  disabled = false,
-  invalid = false,
-  size,
   onChange,
+  ...params
 }: TimePickerProps) {
-  const wrapperClasses = classnames(styles.wrapper, size && styles[size], {
-    [styles.disabled]: disabled,
-    [styles.invalid]: invalid,
-  });
-
-  interface InternalProps {
-    defaultValue?: string;
-    disabled?: boolean;
-    value?: string;
-    readOnly?: boolean;
-    onChange?(event: ChangeEvent<HTMLInputElement>): void;
-  }
-
-  let timeProps: InternalProps = {
-    disabled,
-    readOnly,
+  const handleChange = (newValue: string) => {
+    onChange && onChange(htmlTimeToCivilTime(newValue));
   };
 
-  if (onChange) {
-    timeProps.onChange = (event: ChangeEvent<HTMLInputElement>) => {
-      onChange(htmlTimeToCivilTime(event.currentTarget.value));
-    };
-  }
+  const fieldProps: FormFieldProps = {
+    onChange: handleChange,
+    defaultValue:
+      defaultValue != undefined ? civilTimeToHTMLTime(defaultValue) : undefined,
+    value: value != undefined ? civilTimeToHTMLTime(value) : undefined,
+    ...params,
+  };
 
-  if (defaultValue) {
-    timeProps.defaultValue = civilTimeToHTMLTime(defaultValue);
-  }
+  return <FormField type="time" {...fieldProps} />;
+}
 
-  if (value) {
-    timeProps.value = civilTimeToHTMLTime(value);
-  }
+function civilTimeToHTMLTime(civilTime: CivilTime) {
+  const timeString = civilTime.toString();
+  return timeString.substring(0, timeString.indexOf("."));
+}
 
-  return (
-    <div className={wrapperClasses}>
-      <input className={styles.input} type="time" {...timeProps} />
-    </div>
-  );
+function htmlTimeToCivilTime(timeString: string) {
+  return CivilTime.fromString(timeString + ":00.000000000");
 }
