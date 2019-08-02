@@ -6,8 +6,8 @@
   --field-border-color: var(--color-grey--lighter);
   --field-background-color: var(--color-white);
 
-  --field-padding-top: calc(var(--space-base) - var(--space-smallest));
-  --field-padding-bottom: calc(var(--space-base) - var(--space-smallest));
+  --field-padding-top: calc(var(--space-base) - var(--space-smaller));
+  --field-padding-bottom: calc(var(--space-base) - var(--space-smaller));
   --field-padding-left: var(--space-base);
   --field-padding-right: var(--space-base);
   --field-height: var(--space-largest);
