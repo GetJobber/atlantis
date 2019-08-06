@@ -1,5 +1,6 @@
 import React, { ChangeEvent, ReactNode, useState } from "react";
 import classnames from "classnames";
+import { Icon } from "../Icon";
 import styles from "./FormField.css";
 
 export interface FormFieldProps {
@@ -183,6 +184,11 @@ export function FormField({
         </label>
       )}
       {fieldElement()}
+      {type === "select" && (
+        <span className={styles.icon}>
+          <Icon name="arrowDown" />
+        </span>
+      )}
     </Wrapper>
   );
 }

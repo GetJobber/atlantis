@@ -1,83 +1,17 @@
-import React, { ChangeEvent, ReactNode } from "react";
-import classnames from "classnames";
-import { Icon } from "../Icon";
-import styles from "./Select.css";
+import React from "react";
+import { FormField, FormFieldProps } from "../FormField";
 
-interface SelectProps {
-  /**
-   * List of options
-   */
-  readonly children?: ReactNode | ReactNode[];
+/**
+ * The following is the same as:
+ *   type BaseProps = Omit<FormFieldProps, "type" | "children">;
+ * Unfortunately Docz doesn't currently support Omit so it has been reduced to
+ * its component parts.
+ */
+type SelectProps = Pick<
+  FormFieldProps,
+  Exclude<keyof FormFieldProps, "type" | "rows">
+>;
 
-  /**
-   * Text size.
-   */
-  readonly size?: "small" | "large";
-
-  /**
-   * Input is disabled.
-   * @default false
-   */
-  readonly disabled?: boolean;
-
-  /**
-   * Indicates an error. Adds a red border.
-   * @default false
-   */
-  readonly invalid?: boolean;
-
-  /**
-   * Set the initialy selected option.
-   */
-  readonly defaultValue?: string;
-
-  /**
-   * Set the component to the given value.
-   * Must be used with onChange to create a "controlled component".
-   */
-  readonly value?: string;
-
-  /**
-   * Simplified onChange handler that only provides the new value.
-   * @param newValue
-   */
-  onChange?(newValue: string): void;
-}
-
-export function Select({
-  children,
-  size,
-  disabled = false,
-  invalid = false,
-  defaultValue,
-  value,
-  onChange,
-}: SelectProps) {
-  const wrapperClasses = classnames(styles.wrapper, size && styles[size], {
-    [styles.disabled]: disabled,
-    [styles.invalid]: invalid,
-  });
-
-  const onChangeWrapper = (event: ChangeEvent<HTMLSelectElement>) => {
-    if (onChange) {
-      onChange(event.currentTarget.value);
-    }
-  };
-
-  return (
-    <div className={wrapperClasses}>
-      <span className={styles.icon}>
-        <Icon name="arrowDown" />
-      </span>
-      <select
-        className={styles.select}
-        defaultValue={defaultValue}
-        value={value}
-        disabled={disabled}
-        onChange={onChangeWrapper}
-      >
-        {children}
-      </select>
-    </div>
-  );
+export function Select(props: SelectProps) {
+  return <FormField type="select" {...props} />;
 }

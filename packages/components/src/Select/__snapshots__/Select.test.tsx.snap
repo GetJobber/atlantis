@@ -3,17 +3,14 @@
 exports[`renders a Select with many options 1`] = `
 <div
   className="wrapper"
+  style={
+    Object {
+      "--formField-maxLength": undefined,
+    }
+  }
 >
-  <span
-    className="icon"
-  >
-    <div
-      className="icon arrowDown base"
-    />
-  </span>
   <select
-    className="select"
-    disabled={false}
+    className="formField"
     onChange={[Function]}
   >
     <option>
@@ -29,13 +26,29 @@ exports[`renders a Select with many options 1`] = `
       Quux
     </option>
   </select>
+  <span
+    className="icon"
+  >
+    <div
+      className="icon arrowDown base"
+    />
+  </span>
 </div>
 `;
 
 exports[`renders a Select with no options 1`] = `
 <div
   className="wrapper"
+  style={
+    Object {
+      "--formField-maxLength": undefined,
+    }
+  }
 >
+  <select
+    className="formField"
+    onChange={[Function]}
+  />
   <span
     className="icon"
   >
@@ -43,18 +56,26 @@ exports[`renders a Select with no options 1`] = `
       className="icon arrowDown base"
     />
   </span>
-  <select
-    className="select"
-    disabled={false}
-    onChange={[Function]}
-  />
 </div>
 `;
 
 exports[`renders a Select with one option 1`] = `
 <div
   className="wrapper"
+  style={
+    Object {
+      "--formField-maxLength": undefined,
+    }
+  }
 >
+  <select
+    className="formField"
+    onChange={[Function]}
+  >
+    <option>
+      Foo
+    </option>
+  </select>
   <span
     className="icon"
   >
@@ -62,22 +83,26 @@ exports[`renders a Select with one option 1`] = `
       className="icon arrowDown base"
     />
   </span>
-  <select
-    className="select"
-    disabled={false}
-    onChange={[Function]}
-  >
-    <option>
-      Foo
-    </option>
-  </select>
 </div>
 `;
 
 exports[`renders correctly as large 1`] = `
 <div
   className="wrapper large"
+  style={
+    Object {
+      "--formField-maxLength": undefined,
+    }
+  }
 >
+  <select
+    className="formField"
+    onChange={[Function]}
+  >
+    <option>
+      Foo
+    </option>
+  </select>
   <span
     className="icon"
   >
@@ -85,45 +110,26 @@ exports[`renders correctly as large 1`] = `
       className="icon arrowDown base"
     />
   </span>
-  <select
-    className="select"
-    disabled={false}
-    onChange={[Function]}
-  >
-    <option>
-      Foo
-    </option>
-  </select>
 </div>
 `;
 
 exports[`renders correctly as small 1`] = `
 <div
   className="wrapper small"
+  style={
+    Object {
+      "--formField-maxLength": undefined,
+    }
+  }
 >
-  <span
-    className="icon"
-  >
-    <div
-      className="icon arrowDown base"
-    />
-  </span>
   <select
-    className="select"
-    disabled={false}
+    className="formField"
     onChange={[Function]}
   >
     <option>
       Foo
     </option>
   </select>
-</div>
-`;
-
-exports[`renders correctly when disabled 1`] = `
-<div
-  className="wrapper disabled"
->
   <span
     className="icon"
   >
@@ -131,8 +137,20 @@ exports[`renders correctly when disabled 1`] = `
       className="icon arrowDown base"
     />
   </span>
+</div>
+`;
+
+exports[`renders correctly when disabled 1`] = `
+<div
+  className="wrapper disabled"
+  style={
+    Object {
+      "--formField-maxLength": undefined,
+    }
+  }
+>
   <select
-    className="select"
+    className="formField"
     disabled={true}
     onChange={[Function]}
   >
@@ -140,13 +158,6 @@ exports[`renders correctly when disabled 1`] = `
       Foo
     </option>
   </select>
-</div>
-`;
-
-exports[`renders correctly when invalid 1`] = `
-<div
-  className="wrapper invalid"
->
   <span
     className="icon"
   >
@@ -154,14 +165,32 @@ exports[`renders correctly when invalid 1`] = `
       className="icon arrowDown base"
     />
   </span>
+</div>
+`;
+
+exports[`renders correctly when invalid 1`] = `
+<div
+  className="wrapper invalid"
+  style={
+    Object {
+      "--formField-maxLength": undefined,
+    }
+  }
+>
   <select
-    className="select"
-    disabled={false}
+    className="formField"
     onChange={[Function]}
   >
     <option>
       Foo
     </option>
   </select>
+  <span
+    className="icon"
+  >
+    <div
+      className="icon arrowDown base"
+    />
+  </span>
 </div>
 `;
