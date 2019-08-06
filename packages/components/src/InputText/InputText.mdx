@@ -107,6 +107,37 @@ Use this to allow users to provide long answers.
   </Text>
 </Playground>
 
+## Passing Refs
+
+<Playground>
+  {() => {
+    const externalRef = React.createRef();
+
+    function handleClick() {
+        externalRef.current.focus();
+    }
+
+    return (
+      <div>
+        <InputText
+          value="This is text"
+          forwardedRef={externalRef}
+          name="age"
+          placeholder="Age in words"
+        />
+
+        <input
+          type="button"
+          value="Focus the text input"
+          onClick={handleClick}
+        />
+      </div>
+    );
+
+}}
+
+</Playground>
+
 ## InputText Properties
 
 <Props of={InputText} />
