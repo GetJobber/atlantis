@@ -69,7 +69,11 @@ Input number is used in forms that accept numbers as an answer.
 
 <Playground>
   <InputNumber name="smallField" size="small" placeholder="Duration" />
-  <InputNumber name="largeField" size="large" placeholder="Your username" />
+  <InputNumber
+    name="largeField"
+    size="large"
+    placeholder="Duration but bigger"
+  />
 </Playground>
 
 ## Inline
@@ -79,7 +83,7 @@ Input number is used in forms that accept numbers as an answer.
     Follow-up after
     <InputNumber
       name="durationInDays"
-      value={2}
+      defaultValue={2}
       size="small"
       inline={true}
       maxLength={4}
