@@ -28,6 +28,11 @@ export interface FormFieldProps {
   readonly disabled?: boolean;
 
   /**
+   * allows for ref to be passed from parent objects
+   */
+  readonly forwardedRef?: React.RefObject<HTMLInputElement>;
+
+  /**
    * Adjusts the form field to go inline with a content.
    */
   readonly inline?: boolean;
@@ -92,6 +97,7 @@ export function FormField({
   children,
   defaultValue,
   disabled,
+  forwardedRef,
   inline,
   invalid,
   maxLength,
@@ -136,6 +142,7 @@ export function FormField({
     readOnly: readonly,
     onChange: handleChange,
     value: value,
+    ref: forwardedRef,
     ...(defaultValue && { defaultValue: defaultValue }),
   };
 
