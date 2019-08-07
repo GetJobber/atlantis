@@ -40,7 +40,3 @@ export const InputText = forwardRef(
 );
 
 InputText.displayName = "InputText";
-
-//
-// /* tslint:disable:import/no-default-export */
-// export default InputText;
