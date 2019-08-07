@@ -9,6 +9,7 @@
 
 .card {
   display: block;
+  width: 100%;
   padding: var(--card--base-padding);
   border: var(--border-base) solid var(--card--border-color);
   border-radius: var(--radius-base);
