@@ -19,9 +19,9 @@ export interface VariationMap {
 
 export function Text({ variation = "default", children }: TextProps) {
   const variationMap: VariationMap = {
-    default: { size: "base" },
+    default: { textColor: "greyBlueDark", size: "base" },
     subdued: { textColor: "greyBlue", size: "base" },
-    intro: { size: "larger" },
+    intro: { textColor: "greyBlueDark", size: "larger" },
     success: { textColor: "green", size: "base" },
     error: { textColor: "red", size: "base" },
     warning: { textColor: "yellow", size: "base" },
