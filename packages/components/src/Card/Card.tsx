@@ -70,7 +70,7 @@ export function Card({ accent, children, url, onClick }: CardPropOptions) {
     href?: string;
     role?: "button";
     tabIndex?: 0;
-    onClick?(e: React.MouseEvent<HTMLElement>): void;
+    onClick?(event: React.MouseEvent<HTMLElement>): void;
   }
 
   const Tag = url ? "a" : "div";
