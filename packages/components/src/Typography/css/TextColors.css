@@ -7,7 +7,7 @@
 }
 
 .greyBlueDark {
-  --textColor: var(--color-greyBlue-dark);
+  --textColor: var(--color-greyBlue--dark);
 }
 
 .greyBlue {
