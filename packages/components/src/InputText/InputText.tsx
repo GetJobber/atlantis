@@ -27,17 +27,20 @@ interface MultilineProps extends BaseProps {
 
 type InputTextPropOptions = XOR<BaseProps, MultilineProps>;
 
-function AnInputText(
-  props: InputTextPropOptions,
-  ref: Ref<HTMLInputElement> | undefined,
-) {
-  return (
-    <FormField
-      ref={ref}
-      type={props.multiline ? "textarea" : "text"}
-      {...props}
-    />
-  );
-}
+export const InputText = forwardRef(
+  (props: InputTextPropOptions, ref: Ref<HTMLInputElement> | undefined) => {
+    return (
+      <FormField
+        ref={ref}
+        type={props.multiline ? "textarea" : "text"}
+        {...props}
+      />
+    );
+  },
+);
 
-export const InputText = forwardRef(AnInputText);
+InputText.displayName = "InputText";
+
+//
+// /* tslint:disable:import/no-default-export */
+// export default InputText;
