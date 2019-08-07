@@ -27,18 +27,6 @@ interface MultilineProps extends BaseProps {
 
 type InputTextPropOptions = XOR<BaseProps, MultilineProps>;
 
-// const InputText = forwardRef(
-//   (props: InputTextPropOptions, ref: Ref<HTMLInputElement> | undefined) => {
-//     return (
-//       <FormField
-//         ref={ref}
-//         type={props.multiline ? "textarea" : "text"}
-//         {...props}
-//       />
-//     );
-//   },
-// );
-
 function AnInputText(
   props: InputTextPropOptions,
   ref: Ref<HTMLInputElement> | undefined,
