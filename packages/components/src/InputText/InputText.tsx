@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Ref, forwardRef } from "react";
 import { XOR } from "ts-xor";
 import { FormField, FormFieldProps } from "../FormField";
 
@@ -27,6 +27,29 @@ interface MultilineProps extends BaseProps {
 
 type InputTextPropOptions = XOR<BaseProps, MultilineProps>;
 
-export function InputText(props: InputTextPropOptions) {
-  return <FormField type={props.multiline ? "textarea" : "text"} {...props} />;
+// const InputText = forwardRef(
+//   (props: InputTextPropOptions, ref: Ref<HTMLInputElement> | undefined) => {
+//     return (
+//       <FormField
+//         ref={ref}
+//         type={props.multiline ? "textarea" : "text"}
+//         {...props}
+//       />
+//     );
+//   },
+// );
+
+function AnInputText(
+  props: InputTextPropOptions,
+  ref: Ref<HTMLInputElement> | undefined,
+) {
+  return (
+    <FormField
+      ref={ref}
+      type={props.multiline ? "textarea" : "text"}
+      {...props}
+    />
+  );
 }
+
+export const InputText = forwardRef(AnInputText);

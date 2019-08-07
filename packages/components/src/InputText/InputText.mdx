@@ -107,6 +107,38 @@ Use this to allow users to provide long answers.
   </Text>
 </Playground>
 
+## Use Refs
+
+Use this to allow users to provide short answers.
+
+<Playground>
+  {() => {
+    const ref = React.createRef();
+    focusTextInput() {
+      this.ref.current.focus();
+    }
+
+    return (
+      <div>
+      <InputText
+        value={value}
+        ref={ref}
+        name="age"
+        placeholder="Age in words"
+      />
+
+      <input
+        type="button"
+        value="Focus the text input"
+        onClick={this.focusTextInput}
+      />
+      </div>
+    );
+
+}}
+
+</Playground>
+
 ## InputText Properties
 
 <Props of={InputText} />
