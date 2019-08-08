@@ -14,5 +14,5 @@ it("renders a TimeFormatter", () => {
       />,
     )
     .toJSON();
-  expect(tree).toMatchInlineSnapshot();
+  expect(tree).toMatchInlineSnapshot(`"11:30 AM"`);
 });
