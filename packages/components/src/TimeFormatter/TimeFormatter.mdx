@@ -1,0 +1,33 @@
+---
+name: TimeFormatter
+menu: Components
+route: /components/time-formatter
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { TimeFormatter } from ".";
+
+# TimeFormatter
+
+<ComponentStatus stage="pre" responsive="no" accessible="no" />
+
+In Jobber a TimeFormatter is used to …
+
+## Simple Example
+
+<Playground>
+  <TimeFormatter civilTime={"11:30:00.000000000"} useMilitaryTime={false} />
+  <br />
+  <TimeFormatter civilTime={"17:45:00.000000000"} useMilitaryTime={false} />
+</Playground>
+
+## 24 hour Example
+
+<Playground>
+  <TimeFormatter civilTime={"17:45:00.000000000"} useMilitaryTime={true} />
+</Playground>
+
+## TimeFormatter Properties
+
+<Props of={TimeFormatter} />
