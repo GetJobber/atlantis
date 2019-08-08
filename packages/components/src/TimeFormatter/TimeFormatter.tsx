@@ -31,7 +31,7 @@ function getAmPmLabel(hour: number, useMilitaryTime: boolean) {
     return "";
   }
 
-  return hour > 12 ? "PM" : "AM";
+  return hour >= 12 ? "PM" : "AM";
 }
 
 function setCorrectHourFormat(hour: number, useMilitaryTime: boolean) {
