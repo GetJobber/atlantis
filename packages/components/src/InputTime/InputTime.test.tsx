@@ -9,22 +9,23 @@ afterEach(cleanup);
 it("renders a InputTime", () => {
   const tree = renderer.create(<InputTime />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
-        <div
-          className="wrapper"
-          style={
-            Object {
-              "--formField-maxLength": undefined,
-            }
-          }
-        >
-          <input
-            className="formField"
-            onChange={[Function]}
-            onFocus={[Function]}
-            type="time"
-          />
-        </div>
-    `);
+    <div
+      className="wrapper"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
+    >
+      <input
+        className="formField"
+        id="4d8a9f60-bded-11e9-a044-b5b3b0e4d171"
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="time"
+      />
+    </div>
+  `);
 });
 
 it("renders an initial time when given 'defaultValue'", () => {
@@ -32,23 +33,24 @@ it("renders an initial time when given 'defaultValue'", () => {
     .create(<InputTime defaultValue={new CivilTime(11, 23)} />)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-        <div
-          className="wrapper"
-          style={
-            Object {
-              "--formField-maxLength": undefined,
-            }
-          }
-        >
-          <input
-            className="formField"
-            defaultValue="11:23:00"
-            onChange={[Function]}
-            onFocus={[Function]}
-            type="time"
-          />
-        </div>
-    `);
+    <div
+      className="wrapper"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
+    >
+      <input
+        className="formField"
+        defaultValue="11:23:00"
+        id="4d941540-bded-11e9-a044-b5b3b0e4d171"
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="time"
+      />
+    </div>
+  `);
 });
 
 it("renders correctly in a readonly state", () => {
@@ -66,6 +68,7 @@ it("renders correctly in a readonly state", () => {
     >
       <input
         className="formField"
+        id="4d94d890-bded-11e9-a044-b5b3b0e4d171"
         onChange={[Function]}
         onFocus={[Function]}
         readOnly={true}
@@ -91,6 +94,7 @@ it("adds a error border when invalid", () => {
     >
       <input
         className="formField"
+        id="4d9574d0-bded-11e9-a044-b5b3b0e4d171"
         onChange={[Function]}
         onFocus={[Function]}
         readOnly={true}
@@ -104,22 +108,23 @@ it("adds a error border when invalid", () => {
 it("should set the value when given 'value' and 'onChange'", () => {
   const tree = renderer.create(<InputTime invalid />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
-        <div
-          className="wrapper invalid"
-          style={
-            Object {
-              "--formField-maxLength": undefined,
-            }
-          }
-        >
-          <input
-            className="formField"
-            onChange={[Function]}
-            onFocus={[Function]}
-            type="time"
-          />
-        </div>
-    `);
+    <div
+      className="wrapper invalid"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
+    >
+      <input
+        className="formField"
+        id="4d963820-bded-11e9-a044-b5b3b0e4d171"
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="time"
+      />
+    </div>
+  `);
 });
 
 it("should call the onChange function when the component is modified", () => {

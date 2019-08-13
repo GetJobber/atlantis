@@ -18,6 +18,7 @@ it("renders an input type number", () => {
     >
       <input
         className="formField"
+        id="4d55fad0-bded-11e9-b3ee-df707f8bb6aa"
         onChange={[Function]}
         onFocus={[Function]}
         type="number"

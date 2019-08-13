@@ -1,5 +1,6 @@
 import React, { ChangeEvent, ReactNode, useState } from "react";
 import classnames from "classnames";
+import uuid from "uuid";
 import { Icon } from "../Icon";
 import styles from "./FormField.css";
 
@@ -16,8 +17,8 @@ export interface FormFieldProps {
   readonly children?: ReactNode;
 
   /**
-   * Intial value of the input. Only use this when you need to prepopulate the
-   * field with a data that is not controlled by the components state. If a
+   * Initial value of the input. Only use this when you need to pre-populate
+   * the field with a data that is not controlled by the components state. If a
    * state is controlling the value, use the `value` prop instead.
    */
   readonly defaultValue?: string;
@@ -108,6 +109,8 @@ export function FormField({
     defaultValue || value ? true : false,
   );
 
+  const identifier = uuid.v1();
+
   const handleChange = (
     event:
       | ChangeEvent<HTMLInputElement>
@@ -134,7 +137,7 @@ export function FormField({
   };
 
   const fieldProps = {
-    id: name,
+    id: identifier,
     className: styles.formField,
     name: name,
     disabled: disabled,
@@ -184,8 +187,8 @@ export function FormField({
       style={{ ["--formField-maxLength" as string]: maxLength }}
     >
       {placeholder && (
-        <label className={styles.label} htmlFor={name}>
-          {placeholder}
+        <label className={styles.label} htmlFor={identifier}>
+          {placeholder || " "}
         </label>
       )}
       {fieldElement()}

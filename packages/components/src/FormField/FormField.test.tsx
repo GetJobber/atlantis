@@ -17,6 +17,7 @@ it("renders correctly with no props", () => {
     >
       <input
         className="formField"
+        id="4d7f54c0-bded-11e9-aade-f59e93e4e079"
         onChange={[Function]}
         onFocus={[Function]}
         type="text"
@@ -40,11 +41,13 @@ it("renders correctly with a placeholder", () => {
     >
       <label
         className="label"
+        htmlFor="4d8b62b0-bded-11e9-aade-f59e93e4e079"
       >
         My placeholder
       </label>
       <input
         className="formField"
+        id="4d8b62b0-bded-11e9-aade-f59e93e4e079"
         onChange={[Function]}
         onFocus={[Function]}
         type="text"
@@ -66,6 +69,7 @@ it("renders correctly as small", () => {
     >
       <input
         className="formField"
+        id="4d8c4d10-bded-11e9-aade-f59e93e4e079"
         onChange={[Function]}
         onFocus={[Function]}
         type="text"
@@ -87,6 +91,7 @@ it("renders correctly in a readonly state", () => {
     >
       <input
         className="formField"
+        id="4d8ce950-bded-11e9-aade-f59e93e4e079"
         onChange={[Function]}
         onFocus={[Function]}
         readOnly={true}
@@ -110,6 +115,7 @@ it("renders correctly in a disabled state", () => {
       <input
         className="formField"
         disabled={true}
+        id="4d8e21d0-bded-11e9-aade-f59e93e4e079"
         onChange={[Function]}
         onFocus={[Function]}
         type="text"

@@ -21,8 +21,11 @@
   "dependencies": {
     "@jobber/formatters": "^0.0.2",
     "@std-proposal/temporal": "0.0.1",
+    "@types/uuid": "^3.4.5",
     "classnames": "^2.2.6",
-    "ts-xor": "^1.0.8"
+    "time-input-polyfill": "^1.0.6",
+    "ts-xor": "^1.0.8",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@testing-library/react": "^8.0.4",
