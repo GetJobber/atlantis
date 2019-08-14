@@ -1,7 +1,8 @@
 .small {
-  --modal-width: calc(var(--base-unit) * 25);
-  --base-padding: var(--space-base);
+  --modal--padding: var(--space-base);
+  max-width: calc(var(--base-unit) * 25);
 }
+
 .large {
-  --modal-width: calc(var(--base-unit) * 58.75);
+  max-width: calc(var(--base-unit) * 58.75);
 }
