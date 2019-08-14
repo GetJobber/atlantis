@@ -10,8 +10,7 @@ import {
 } from "./civilTimeConversions";
 
 interface PolyfilledInputElement extends HTMLInputElement {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  polyfill: any;
+  polyfill: { update: () => void };
 }
 
 export function InputTimeSafari({
@@ -58,7 +57,6 @@ export function InputTimeSafari({
         input.polyfill.update();
       }
 
-      // TODO: Remember to unmount this.
       input.addEventListener("change", changeHandler);
       input.addEventListener("blur", blurHandler);
     }
