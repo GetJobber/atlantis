@@ -21,8 +21,10 @@
   "dependencies": {
     "@jobber/formatters": "^0.0.2",
     "@std-proposal/temporal": "0.0.1",
+    "@types/lodash": "^4.14.136",
     "@types/uuid": "^3.4.5",
     "classnames": "^2.2.6",
+    "lodash": "^4.17.15",
     "time-input-polyfill": "^1.0.6",
     "ts-xor": "^1.0.8",
     "uuid": "^3.3.2"

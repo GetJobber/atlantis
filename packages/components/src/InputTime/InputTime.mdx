@@ -7,6 +7,7 @@ route: /components/input-time
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { InputTime } from ".";
+import { useState } from "react";
 import { CivilTime } from "@std-proposal/temporal";
 
 # InputTime
@@ -46,9 +47,25 @@ set. Setting just the hour or minute or _meridiam_ won't fire the event. When
 the last element is set the change event will fire.
 
 <Playground>
-
-<InputTime onChange={x => console.log(x)} />
-
+  {() => {
+    const [time, setTime] = useState(new CivilTime(3, 52));
+    const resetTime = () => {
+      setTime(new CivilTime(3, 52));
+    };
+    const handleChange = newTime => {
+      console.log(newTime.toString());
+      setTime(newTime);
+    };
+    return (
+      <>
+        <button type="button" onClick={resetTime}>
+          Reset
+        </button>
+        <InputTime value={time} onChange={handleChange} />
+        <pre>{time.toString()}</pre>
+      </>
+    );
+  }}
 </Playground>
 
 ## InputTime Properties
