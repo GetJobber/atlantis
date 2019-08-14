@@ -30,15 +30,35 @@ return (
 }
 ```
 
+```jsx
+render() {
+return (
+      <InputColor
+    placeholder="Button Color"
+    value="#aeab2e"
+    onChange ={onChange}
+    list="dataListId"
+  />
+  <datalist id={dataListID}>
+      {dataList.map(function(color, index){
+        return <option key={index} value={color}/>
+      })}
+    </datalist>
+  );
+}
+```
+
 ## Props Table
 
 _{Provide a table in the following format of the component's public API}_
 
-| name          | type                                  | default          | description                                                                |
-| ------------- | ------------------------------------- | ---------------- | -------------------------------------------------------------------------- |
-| `value`       | `string`                              | `#7db00e`        | This will be the hex color that will be displayed                          |
-| `placeholder` | `string`                              | `Choose a color` | This will be used to give context on where/what the color will be used for |
-| `onChange`    | `onChange(newValue: colorName): void` | none             | This will be used to give context on where/what the color will be used for |
+| name          | type                                  | default          | description                                                                          |
+| ------------- | ------------------------------------- | ---------------- | ------------------------------------------------------------------------------------ |
+| `value`       | `string`                              | `#7db00e`        | This will be the hex color that will be displayed                                    |
+| `placeholder` | `string`                              | `Choose a color` | This will be used to give context on where/what the color will be used for           |
+| `onChange`    | `onChange(newValue: colorName): void` | none             | Callback that fires when the color is changed changed                                |
+| `dataListId`  | `string?`                             | none             | This will allow us to link a datalist                                                |
+| `dataList`    | `string[]?`                           | none             | This will allow us to pass in some default colors but allow them to change if wanted |
 
 ## Accessibility
 
