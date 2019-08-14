@@ -7,6 +7,7 @@ route: /components/input-time
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { InputTime } from ".";
+import { Button } from "../Button";
 import { useState } from "react";
 import { CivilTime } from "@std-proposal/temporal";
 
@@ -21,6 +22,10 @@ At the moment the 12-hour vs 24-hour preference is set by the operating system
 and this component doesn't look at the Jobber setting.
 
 ## Simple Example
+
+```ts
+import { InputTime } "@jobber/components/InputTime";
+```
 
 <Playground>
 
@@ -53,16 +58,13 @@ the last element is set the change event will fire.
       setTime(new CivilTime(3, 52));
     };
     const handleChange = newTime => {
-      console.log(newTime.toString());
       setTime(newTime);
     };
     return (
       <>
-        <button type="button" onClick={resetTime}>
-          Reset
-        </button>
         <InputTime value={time} onChange={handleChange} />
         <pre>{time.toString()}</pre>
+        <Button label="Reset" onClick={resetTime} />
       </>
     );
   }}

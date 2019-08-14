@@ -1,39 +1,13 @@
 import React from "react";
-import { CivilTime } from "@std-proposal/temporal";
+// eslint-disable-next-line import/no-internal-modules
+import supportsTime from "time-input-polyfill/supportsTime";
 import { FormField, FormFieldProps } from "../FormField";
-
-/**
- * The following is the same as:
- *   type BaseProps = Omit<FormFieldProps, "type" | "children">;
- * Unfortunately Docz doesn't currently support Omit so it has been reduced to
- * its component parts.
- */
-type BaseProps = Pick<
-  FormFieldProps,
-  Exclude<
-    keyof FormFieldProps,
-    "type" | "children" | "rows" | "defaultValue" | "value" | "onChange"
-  >
->;
-
-interface InputTimeProps extends BaseProps {
-  /**
-   * Intial value of the input. Only use this when you need to prepopulate the
-   * field with a data that is not controlled by the components state. If a
-   * state is controlling the value, use the `value` prop instead.
-   */
-  readonly defaultValue?: CivilTime;
-
-  /**
-   * Set the component to the given value.
-   */
-  readonly value?: CivilTime;
-
-  /**
-   * Function called when user changes input value.
-   */
-  onChange?(newValue: CivilTime): void;
-}
+import { InputTimeSafari } from "./InputTimeSafari";
+import {
+  civilTimeToHTMLTime,
+  htmlTimeToCivilTime,
+} from "./civilTimeConversions";
+import { InputTimeProps } from "./InputTimeProps";
 
 export function InputTime({
   defaultValue,
@@ -45,22 +19,26 @@ export function InputTime({
     onChange && onChange(htmlTimeToCivilTime(newValue));
   };
 
-  const fieldProps: FormFieldProps = {
-    onChange: handleChange,
-    defaultValue:
-      defaultValue != undefined ? civilTimeToHTMLTime(defaultValue) : undefined,
-    value: value != undefined ? civilTimeToHTMLTime(value) : undefined,
-    ...params,
-  };
+  if (supportsTime) {
+    const fieldProps: FormFieldProps = {
+      onChange: handleChange,
+      defaultValue:
+        defaultValue != undefined
+          ? civilTimeToHTMLTime(defaultValue)
+          : undefined,
+      value: value != undefined ? civilTimeToHTMLTime(value) : undefined,
+      ...params,
+    };
 
-  return <FormField type="time" {...fieldProps} />;
-}
-
-function civilTimeToHTMLTime(civilTime: CivilTime) {
-  const timeString = civilTime.toString();
-  return timeString.substring(0, timeString.indexOf("."));
-}
-
-function htmlTimeToCivilTime(timeString: string) {
-  return CivilTime.fromString(timeString + ":00.000000000");
+    return <FormField type="time" {...fieldProps} />;
+  } else {
+    return (
+      <InputTimeSafari
+        defaultValue={defaultValue}
+        value={value}
+        onChange={onChange}
+        {...params}
+      />
+    );
+  }
 }

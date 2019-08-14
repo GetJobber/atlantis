@@ -17,9 +17,15 @@ it("renders a InputTime", () => {
         }
       }
     >
+      <label
+        className="label"
+        htmlFor="123e4567-e89b-12d3-a456-426655440000"
+      >
+         
+      </label>
       <input
         className="formField"
-        id="4d8a9f60-bded-11e9-a044-b5b3b0e4d171"
+        id="123e4567-e89b-12d3-a456-426655440000"
         onChange={[Function]}
         onFocus={[Function]}
         type="time"
@@ -41,10 +47,16 @@ it("renders an initial time when given 'defaultValue'", () => {
         }
       }
     >
+      <label
+        className="label"
+        htmlFor="123e4567-e89b-12d3-a456-426655440000"
+      >
+         
+      </label>
       <input
         className="formField"
         defaultValue="11:23:00"
-        id="4d941540-bded-11e9-a044-b5b3b0e4d171"
+        id="123e4567-e89b-12d3-a456-426655440000"
         onChange={[Function]}
         onFocus={[Function]}
         type="time"
@@ -66,9 +78,15 @@ it("renders correctly in a readonly state", () => {
         }
       }
     >
+      <label
+        className="label"
+        htmlFor="123e4567-e89b-12d3-a456-426655440000"
+      >
+         
+      </label>
       <input
         className="formField"
-        id="4d94d890-bded-11e9-a044-b5b3b0e4d171"
+        id="123e4567-e89b-12d3-a456-426655440000"
         onChange={[Function]}
         onFocus={[Function]}
         readOnly={true}
@@ -92,9 +110,15 @@ it("adds a error border when invalid", () => {
         }
       }
     >
+      <label
+        className="label"
+        htmlFor="123e4567-e89b-12d3-a456-426655440000"
+      >
+         
+      </label>
       <input
         className="formField"
-        id="4d9574d0-bded-11e9-a044-b5b3b0e4d171"
+        id="123e4567-e89b-12d3-a456-426655440000"
         onChange={[Function]}
         onFocus={[Function]}
         readOnly={true}
@@ -116,9 +140,15 @@ it("should set the value when given 'value' and 'onChange'", () => {
         }
       }
     >
+      <label
+        className="label"
+        htmlFor="123e4567-e89b-12d3-a456-426655440000"
+      >
+         
+      </label>
       <input
         className="formField"
-        id="4d963820-bded-11e9-a044-b5b3b0e4d171"
+        id="123e4567-e89b-12d3-a456-426655440000"
         onChange={[Function]}
         onFocus={[Function]}
         type="time"
