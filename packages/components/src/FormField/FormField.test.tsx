@@ -15,9 +15,15 @@ it("renders correctly with no props", () => {
         }
       }
     >
+      <label
+        className="label"
+        htmlFor="123e4567-e89b-12d3-a456-426655440000"
+      >
+         
+      </label>
       <input
         className="formField"
-        id="4d7f54c0-bded-11e9-aade-f59e93e4e079"
+        id="123e4567-e89b-12d3-a456-426655440000"
         onChange={[Function]}
         onFocus={[Function]}
         type="text"
@@ -41,13 +47,13 @@ it("renders correctly with a placeholder", () => {
     >
       <label
         className="label"
-        htmlFor="4d8b62b0-bded-11e9-aade-f59e93e4e079"
+        htmlFor="123e4567-e89b-12d3-a456-426655440000"
       >
         My placeholder
       </label>
       <input
         className="formField"
-        id="4d8b62b0-bded-11e9-aade-f59e93e4e079"
+        id="123e4567-e89b-12d3-a456-426655440000"
         onChange={[Function]}
         onFocus={[Function]}
         type="text"
@@ -67,9 +73,15 @@ it("renders correctly as small", () => {
         }
       }
     >
+      <label
+        className="label"
+        htmlFor="123e4567-e89b-12d3-a456-426655440000"
+      >
+         
+      </label>
       <input
         className="formField"
-        id="4d8c4d10-bded-11e9-aade-f59e93e4e079"
+        id="123e4567-e89b-12d3-a456-426655440000"
         onChange={[Function]}
         onFocus={[Function]}
         type="text"
@@ -89,9 +101,15 @@ it("renders correctly in a readonly state", () => {
         }
       }
     >
+      <label
+        className="label"
+        htmlFor="123e4567-e89b-12d3-a456-426655440000"
+      >
+         
+      </label>
       <input
         className="formField"
-        id="4d8ce950-bded-11e9-aade-f59e93e4e079"
+        id="123e4567-e89b-12d3-a456-426655440000"
         onChange={[Function]}
         onFocus={[Function]}
         readOnly={true}
@@ -112,10 +130,16 @@ it("renders correctly in a disabled state", () => {
         }
       }
     >
+      <label
+        className="label"
+        htmlFor="123e4567-e89b-12d3-a456-426655440000"
+      >
+         
+      </label>
       <input
         className="formField"
         disabled={true}
-        id="4d8e21d0-bded-11e9-aade-f59e93e4e079"
+        id="123e4567-e89b-12d3-a456-426655440000"
         onChange={[Function]}
         onFocus={[Function]}
         type="text"

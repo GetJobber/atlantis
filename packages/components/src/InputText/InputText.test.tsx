@@ -18,13 +18,13 @@ it("renders a regular input for text and numbers", () => {
     >
       <label
         className="label"
-        htmlFor="4d5ba020-bded-11e9-beca-0167fb601a0e"
+        htmlFor="123e4567-e89b-12d3-a456-426655440000"
       >
         Favourite colour
       </label>
       <input
         className="formField"
-        id="4d5ba020-bded-11e9-beca-0167fb601a0e"
+        id="123e4567-e89b-12d3-a456-426655440000"
         onChange={[Function]}
         onFocus={[Function]}
         type="text"
@@ -50,13 +50,13 @@ it("renders a textarea", () => {
     >
       <label
         className="label"
-        htmlFor="4d656420-bded-11e9-beca-0167fb601a0e"
+        htmlFor="123e4567-e89b-12d3-a456-426655440000"
       >
         Describe your favourite colour?
       </label>
       <textarea
         className="formField"
-        id="4d656420-bded-11e9-beca-0167fb601a0e"
+        id="123e4567-e89b-12d3-a456-426655440000"
         onChange={[Function]}
         onFocus={[Function]}
       />
@@ -85,13 +85,13 @@ it("renders a textarea with 4 rows", () => {
     >
       <label
         className="label"
-        htmlFor="4d662770-bded-11e9-beca-0167fb601a0e"
+        htmlFor="123e4567-e89b-12d3-a456-426655440000"
       >
         Describe your favourite colour?
       </label>
       <textarea
         className="formField"
-        id="4d662770-bded-11e9-beca-0167fb601a0e"
+        id="123e4567-e89b-12d3-a456-426655440000"
         onChange={[Function]}
         onFocus={[Function]}
         rows={4}

@@ -9,9 +9,15 @@ exports[`renders a Select with many options 1`] = `
     }
   }
 >
+  <label
+    className="label"
+    htmlFor="123e4567-e89b-12d3-a456-426655440000"
+  >
+     
+  </label>
   <select
     className="formField"
-    id="4d32e270-bded-11e9-9859-a749597b1adf"
+    id="123e4567-e89b-12d3-a456-426655440000"
     onChange={[Function]}
   >
     <option>
@@ -46,9 +52,15 @@ exports[`renders a Select with no options 1`] = `
     }
   }
 >
+  <label
+    className="label"
+    htmlFor="123e4567-e89b-12d3-a456-426655440000"
+  >
+     
+  </label>
   <select
     className="formField"
-    id="4d2b1a40-bded-11e9-9859-a749597b1adf"
+    id="123e4567-e89b-12d3-a456-426655440000"
     onChange={[Function]}
   />
   <span
@@ -70,9 +82,15 @@ exports[`renders a Select with one option 1`] = `
     }
   }
 >
+  <label
+    className="label"
+    htmlFor="123e4567-e89b-12d3-a456-426655440000"
+  >
+     
+  </label>
   <select
     className="formField"
-    id="4d31a9f0-bded-11e9-9859-a749597b1adf"
+    id="123e4567-e89b-12d3-a456-426655440000"
     onChange={[Function]}
   >
     <option>
@@ -98,9 +116,15 @@ exports[`renders correctly as large 1`] = `
     }
   }
 >
+  <label
+    className="label"
+    htmlFor="123e4567-e89b-12d3-a456-426655440000"
+  >
+     
+  </label>
   <select
     className="formField"
-    id="4d337eb0-bded-11e9-9859-a749597b1adf"
+    id="123e4567-e89b-12d3-a456-426655440000"
     onChange={[Function]}
   >
     <option>
@@ -126,9 +150,15 @@ exports[`renders correctly as small 1`] = `
     }
   }
 >
+  <label
+    className="label"
+    htmlFor="123e4567-e89b-12d3-a456-426655440000"
+  >
+     
+  </label>
   <select
     className="formField"
-    id="4d333090-bded-11e9-9859-a749597b1adf"
+    id="123e4567-e89b-12d3-a456-426655440000"
     onChange={[Function]}
   >
     <option>
@@ -154,10 +184,16 @@ exports[`renders correctly when disabled 1`] = `
     }
   }
 >
+  <label
+    className="label"
+    htmlFor="123e4567-e89b-12d3-a456-426655440000"
+  >
+     
+  </label>
   <select
     className="formField"
     disabled={true}
-    id="4d33ccd0-bded-11e9-9859-a749597b1adf"
+    id="123e4567-e89b-12d3-a456-426655440000"
     onChange={[Function]}
   >
     <option>
@@ -183,9 +219,15 @@ exports[`renders correctly when invalid 1`] = `
     }
   }
 >
+  <label
+    className="label"
+    htmlFor="123e4567-e89b-12d3-a456-426655440000"
+  >
+     
+  </label>
   <select
     className="formField"
-    id="4d341af0-bded-11e9-9859-a749597b1adf"
+    id="123e4567-e89b-12d3-a456-426655440000"
     onChange={[Function]}
   >
     <option>
