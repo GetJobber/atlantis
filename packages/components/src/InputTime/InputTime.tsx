@@ -22,11 +22,8 @@ export function InputTime({
   if (supportsTime) {
     const fieldProps: FormFieldProps = {
       onChange: handleChange,
-      defaultValue:
-        defaultValue != undefined
-          ? civilTimeToHTMLTime(defaultValue)
-          : undefined,
-      value: value != undefined ? civilTimeToHTMLTime(value) : undefined,
+      ...(defaultValue && { defaultValue: civilTimeToHTMLTime(defaultValue) }),
+      ...(value && { value: civilTimeToHTMLTime(value) }),
       ...params,
     };
 
