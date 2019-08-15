@@ -2,6 +2,7 @@
 import multiInput from "rollup-plugin-multi-input";
 import typescript from "rollup-plugin-typescript2";
 import postcss from "rollup-plugin-postcss";
+import commonjs from "rollup-plugin-commonjs";
 
 export default {
   input: `src/*/index.ts`,
@@ -13,6 +14,12 @@ export default {
     postcss({
       modules: true,
       plugins: [require("postcss-import"), require("autoprefixer")],
+    }),
+    commonjs({
+      include: [
+        "node_modules/time-input-polyfill/index.js",
+        "node_modules/time-input-polyfill/supportsTime.js",
+      ],
     }),
   ],
   output: [

@@ -16,8 +16,15 @@ it("renders an input type number", () => {
         }
       }
     >
+      <label
+        className="label"
+        htmlFor="123e4567-e89b-12d3-a456-426655440000"
+      >
+         
+      </label>
       <input
         className="formField"
+        id="123e4567-e89b-12d3-a456-426655440000"
         onChange={[Function]}
         onFocus={[Function]}
         type="number"
