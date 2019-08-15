@@ -1,3 +1,9 @@
+:root {
+  --switch--pipSize: 30px;
+  --switch--labelWidth: calc(var(--switch--pipSize) * 1.3);
+  --switch--borderOffset: calc(var(--border-base) * 2);
+}
+
 .track,
 .track * {
   box-sizing: border-box;
@@ -5,15 +11,11 @@
 }
 
 .track {
-  --pipSize: 30px;
-  --labelWidth: calc(var(--pipSize) * 1.3);
-  --borderOffset: calc(var(--border-base) * 2);
-
-  display: inline-block;
-  width: calc(var(--labelWidth) + var(--pipSize));
+  display: inline-flex;
+  width: calc(var(--switch--labelWidth) + var(--switch--pipSize));
   padding: 0;
   border: var(--border-base) solid var(--color-grey--lighter);
-  border-radius: calc(var(--pipSize) + var(--borderOffset) / 2);
+  border-radius: var(--switch--pipSize);
   overflow: hidden;
   line-height: normal;
   background-color: var(--color-grey--lightest);
@@ -34,22 +36,24 @@
 .toggle {
   display: flex;
   position: relative;
+  margin-left: calc(-1 * var(--switch--labelWidth));
   pointer-events: none;
-  transform: translateX(calc(-1 * var(--labelWidth)));
   flex: 1 1 100%;
   align-items: center;
 }
 
 .isChecked .toggle {
-  transform: translateX(calc(-1 * var(--borderOffset)));
+  margin-left: calc(-1 * var(--switch--borderOffset));
 }
 
 .label {
+  display: flex;
   position: relative;
-  min-width: var(--labelWidth);
-  text-align: center;
+  min-width: var(--switch--labelWidth);
   user-select: none;
   pointer-events: none;
+  align-items: center;
+  justify-content: center;
 }
 
 .label:first-of-type {
@@ -62,10 +66,10 @@
 
 .pip {
   flex: 0 0 auto;
-  width: var(--pipSize);
-  height: var(--pipSize);
+  width: var(--switch--pipSize);
+  height: var(--switch--pipSize);
   border: var(--border-base) solid var(--color-grey);
-  border-radius: calc(var(--pipSize) / 2);
+  border-radius: var(--switch--pipSize);
   background-color: var(--color-white);
 }
 
