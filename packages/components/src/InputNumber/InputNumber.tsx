@@ -13,5 +13,18 @@ type InputNumberProps = Pick<
 >;
 
 export function InputNumber(props: InputNumberProps) {
-  return <FormField type="number" {...props} />;
+  const handleChange = (newValue: number) => {
+    const isOverMax = props.max && newValue > props.max;
+    const isUnderMin = props.min && newValue < props.min;
+    if (isOverMax) {
+      newValue = props.max || 0;
+    }
+
+    if (isUnderMin) {
+      newValue = props.min || 0;
+    }
+
+    props.onChange && props.onChange(newValue);
+  };
+  return <FormField type="number" {...props} onChange={handleChange} />;
 }
