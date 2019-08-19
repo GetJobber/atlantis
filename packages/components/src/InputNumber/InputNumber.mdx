@@ -20,12 +20,18 @@ Input number is used in forms that accept numbers as an answer.
 
 <Playground>
   {() => {
-    const [value, setValue] = useState(1234567890);
+    const [value, setValue] = useState(30);
     const handleChange = newValue => {
       setValue(newValue);
     };
     return (
-      <InputNumber value={value} onChange={handleChange} placeholder="Age" />
+      <InputNumber
+        value={value}
+        max={32}
+        min={0}
+        onChange={handleChange}
+        placeholder="Age"
+      />
     );
   }}
 </Playground>
@@ -86,7 +92,8 @@ Input number is used in forms that accept numbers as an answer.
       defaultValue={2}
       size="small"
       inline={true}
-      maxLength={4}
+      max={4}
+      min={0}
       align="center"
     />
     days

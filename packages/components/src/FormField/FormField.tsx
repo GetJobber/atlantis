@@ -2,6 +2,7 @@ import React, { ChangeEvent, ReactNode, Ref, useState } from "react";
 import classnames from "classnames";
 import uuid from "uuid";
 import { Icon } from "../Icon";
+import { Text } from "../Text";
 import styles from "./FormField.css";
 
 export interface FormFieldProps {
@@ -39,12 +40,22 @@ export interface FormFieldProps {
   readonly invalid?: boolean;
 
   /**
+   * Specifies the maximum numerical or date value that a user can type
+   */
+  readonly max?: number;
+
+  /**
    * Maximum character length for an input. This also changes the width to
    * roughly the same size as the max length. This is to communicate that the
    * user that on certain cases, they can only type a limited amount of
    * characters.
    */
   readonly maxLength?: number;
+
+  /**
+   * Specifies the minimum numerical or date value that a user can type
+   */
+  readonly min?: number;
 
   /**
    * Name of the input.
@@ -97,7 +108,9 @@ export const FormField = React.forwardRef(
       disabled,
       inline,
       invalid,
+      max,
       maxLength,
+      min,
       name,
       onChange,
       placeholder,
@@ -165,6 +178,8 @@ export const FormField = React.forwardRef(
             <input
               type={type}
               maxLength={maxLength}
+              max={max}
+              min={min}
               onFocus={handleFocus}
               ref={ref as Ref<HTMLInputElement>}
               {...fieldProps}
