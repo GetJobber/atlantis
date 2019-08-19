@@ -71,6 +71,19 @@ Input number is used in forms that accept numbers as an answer.
   />
 </Playground>
 
+### Invalid with message
+
+<Playground>
+  <InputNumber
+    placeholder="Days per month"
+    defaultValue={1.1}
+    max={32}
+    min={0}
+    errorMessage="Enter a number between 0 and 32"
+    name="daysPerMonth"
+  />
+</Playground>
+
 ## Sizes
 
 <Playground>

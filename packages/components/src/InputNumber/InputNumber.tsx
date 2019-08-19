@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FormField, FormFieldProps } from "../FormField";
 
 /**
@@ -13,18 +13,36 @@ type InputNumberProps = Pick<
 >;
 
 export function InputNumber(props: InputNumberProps) {
+  const [overLimit, setOverLimit] = useState("");
+
   const handleChange = (newValue: number) => {
     const isOverMax = props.max && newValue > props.max;
     const isUnderMin = props.min && newValue < props.min;
-    if (isOverMax) {
-      newValue = props.max || 0;
-    }
+    if (isOverMax || isUnderMin) {
+      let message = "";
 
-    if (isUnderMin) {
-      newValue = props.min || 0;
+      if (props.min && props.max === undefined) {
+        message = `Enter a number that is greater than or equal to ${props.min}`;
+      } else if (props.max && props.min === undefined) {
+        message = `Enter a number that is less than or equal to ${props.max}`;
+      } else {
+        message = `Enter a number between ${props.min} and ${props.max}`;
+      }
+
+      setOverLimit(message);
+    } else {
+      setOverLimit("");
     }
 
     props.onChange && props.onChange(newValue);
   };
-  return <FormField type="number" {...props} onChange={handleChange} />;
+
+  return (
+    <FormField
+      type="number"
+      {...props}
+      onChange={handleChange}
+      errorMessage={props.errorMessage || overLimit}
+    />
+  );
 }

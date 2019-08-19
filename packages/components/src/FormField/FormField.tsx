@@ -30,6 +30,11 @@ export interface FormFieldProps {
   readonly disabled?: boolean;
 
   /**
+   * Highlights the field red and show an accompanying message to the user.
+   */
+  readonly errorMessage?: string;
+
+  /**
    * Adjusts the form field to go inline with a content.
    */
   readonly inline?: boolean;
@@ -106,6 +111,7 @@ export const FormField = React.forwardRef(
       children,
       defaultValue,
       disabled,
+      errorMessage,
       inline,
       invalid,
       max,
@@ -193,7 +199,8 @@ export const FormField = React.forwardRef(
       inline && styles.inline,
       size && styles[size],
       align && styles[align],
-      invalid && styles.invalid,
+      errorMessage && styles.hasErrorMessage,
+      (invalid || errorMessage) && styles.invalid,
       disabled && styles.disabled,
       maxLength && styles.maxLength,
       {
@@ -205,20 +212,23 @@ export const FormField = React.forwardRef(
     const Wrapper = inline ? "span" : "div";
 
     return (
-      <Wrapper
-        className={wrapperClassNames}
-        style={{ ["--formField-maxLength" as string]: maxLength }}
-      >
-        <label className={styles.label} htmlFor={identifier}>
-          {placeholder || " "}
-        </label>
-        {fieldElement()}
-        {type === "select" && (
-          <span className={styles.icon}>
-            <Icon name="arrowDown" />
-          </span>
-        )}
-      </Wrapper>
+      <>
+        {errorMessage && <Text variation="error">{errorMessage}</Text>}
+        <Wrapper
+          className={wrapperClassNames}
+          style={{ ["--formField-maxLength" as string]: maxLength || max }}
+        >
+          <label className={styles.label} htmlFor={identifier}>
+            {placeholder || " "}
+          </label>
+          {fieldElement()}
+          {type === "select" && (
+            <span className={styles.icon}>
+              <Icon name="arrowDown" />
+            </span>
+          )}
+        </Wrapper>
+      </>
     );
   },
 );

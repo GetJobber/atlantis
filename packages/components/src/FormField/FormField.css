@@ -121,6 +121,10 @@ select.formField {
   --field--border-color: var(--color-red);
 }
 
+.hasErrorMessage {
+  margin-top: var(--space-smaller);
+}
+
 .disabled {
   --field--placeholder-color: var(--color-grey);
   --field--background-color: var(--color-grey--lightest);
