@@ -170,12 +170,12 @@ export const FormField = React.forwardRef(
       setTimeout(() => readonly && target.select());
     };
 
-    const handleError = () => {
+    const handleValidation = () => {
       onValidate && errorMessage && onValidate(errorMessage);
     };
 
     useEffect(() => {
-      handleError();
+      handleValidation();
     }, [value]);
 
     const fieldProps = {
