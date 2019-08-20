@@ -37,12 +37,17 @@ export function InputNumber(props: InputNumberProps) {
     props.onChange && props.onChange(newValue);
   };
 
+  const handleError = (message: string) => {
+    props.onError && props.onError(message);
+  };
+
   return (
     <FormField
       type="number"
       {...props}
       onChange={handleChange}
       errorMessage={props.errorMessage || overLimit}
+      onError={handleError}
     />
   );
 }

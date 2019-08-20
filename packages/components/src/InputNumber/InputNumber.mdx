@@ -98,19 +98,36 @@ Input number is used in forms that accept numbers as an answer.
 ## Inline
 
 <Playground>
-  <Text>
-    Follow-up after
-    <InputNumber
-      name="durationInDays"
-      defaultValue={2}
-      size="small"
-      inline={true}
-      max={4}
-      min={0}
-      align="center"
-    />
-    days
-  </Text>
+  {() => {
+    const [value, setValue] = useState(2);
+    const [errorMessage, setErrorMessage] = useState("");
+    const handleChange = newValue => {
+      setValue(newValue);
+    };
+    const handleError = message => {
+      setErrorMessage(message);
+    };
+    return (
+      <>
+        {errorMessage && <Text variation="error">{errorMessage}</Text>}
+        <Text>
+          Follow-up after
+          <InputNumber
+            name="durationInDays"
+            value={value}
+            size="small"
+            inline={true}
+            max={4}
+            min={0}
+            onChange={handleChange}
+            onError={handleError}
+            align="center"
+          />
+          days
+        </Text>
+      </>
+    );
+  }}
 </Playground>
 
 ## Properties

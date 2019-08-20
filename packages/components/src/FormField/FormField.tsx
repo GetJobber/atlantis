@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ReactNode, Ref, useState } from "react";
+import React, { ChangeEvent, ReactNode, Ref, useEffect, useState } from "react";
 import classnames from "classnames";
 import uuid from "uuid";
 import { Icon } from "../Icon";
@@ -102,6 +102,12 @@ export interface FormFieldProps {
    * @param newValue
    */
   onChange?(newValue: string | number): void;
+
+  /**
+   * Simplified onChange handler that only provides the new value.
+   * @param message
+   */
+  onError?(message: string): void;
 }
 
 export const FormField = React.forwardRef(
@@ -125,6 +131,7 @@ export const FormField = React.forwardRef(
       size,
       type = "text",
       value,
+      onError,
     }: FormFieldProps,
     ref:
       | Ref<HTMLInputElement>
@@ -134,7 +141,6 @@ export const FormField = React.forwardRef(
     const [hasMiniLabel, setHasMiniLabel] = useState(
       defaultValue || value ? true : false,
     );
-
     const identifier = uuid.v1();
 
     const handleChange = (
@@ -161,6 +167,14 @@ export const FormField = React.forwardRef(
       const target = event.currentTarget;
       setTimeout(() => readonly && target.select());
     };
+
+    const handleError = () => {
+      onError && errorMessage && onError(errorMessage);
+    };
+
+    useEffect(() => {
+      handleError();
+    });
 
     const fieldProps = {
       id: identifier,
@@ -213,7 +227,10 @@ export const FormField = React.forwardRef(
 
     return (
       <>
-        {errorMessage && <Text variation="error">{errorMessage}</Text>}
+        {errorMessage && !inline && (
+          <Text variation="error">{errorMessage}</Text>
+        )}
+
         <Wrapper
           className={wrapperClassNames}
           style={{ ["--formField-maxLength" as string]: maxLength || max }}
