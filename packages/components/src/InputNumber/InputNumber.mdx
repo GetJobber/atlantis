@@ -98,19 +98,34 @@ Input number is used in forms that accept numbers as an answer.
 ## Inline
 
 <Playground>
+  <Text>
+    Follow-up after
+    <InputNumber
+      name="durationInDays"
+      defaultValue={2}
+      size="small"
+      inline={true}
+      maxLength={2}
+      align="center"
+    />
+    days
+  </Text>
+</Playground>
+
+## Rendering the error message outside of the field
+
+<Playground>
   {() => {
     const [value, setValue] = useState(2);
     const [errorMessage, setErrorMessage] = useState("");
     const maxLength = 4;
     const minLength = 0;
-
     const handleChange = newValue => {
       setValue(newValue);
       if (newValue < maxLength && newValue > minLength) {
         setErrorMessage("");
       }
     };
-
     const handleValidation = message => {
       setErrorMessage(message);
     };
@@ -134,9 +149,7 @@ Input number is used in forms that accept numbers as an answer.
         </Text>
       </>
     );
-
-}}
-
+  }}
 </Playground>
 
 ## Properties
