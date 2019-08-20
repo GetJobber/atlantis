@@ -17,13 +17,13 @@ export function InputNumber(props: InputNumberProps) {
 
   const handleChange = (newValue: number) => {
     const isOverMax = props.max && newValue > props.max;
-    const isUnderMin = props.min && newValue <= props.min;
+    const isUnderMin = props.min && newValue < props.min;
     if (newValue.toString() === "" || isOverMax || isUnderMin) {
       let message = "";
 
-      if (props.min && props.max === undefined) {
+      if (props.min != undefined && props.max === undefined) {
         message = `Enter a number that is greater than or equal to ${props.min}`;
-      } else if (props.max && props.min === undefined) {
+      } else if (props.max != undefined && props.min === undefined) {
         message = `Enter a number that is less than or equal to ${props.max}`;
       } else {
         message = `Enter a number between ${props.min} and ${props.max}`;
