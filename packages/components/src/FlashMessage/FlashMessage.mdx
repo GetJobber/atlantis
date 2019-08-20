@@ -1,0 +1,30 @@
+---
+name: FlashMessage
+menu: Components
+route: /components/flash-message
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { FlashMessage } from ".";
+
+# FlashMessage
+
+<ComponentStatus stage="pre" responsive="no" accessible="no" />
+
+In Jobber a FlashMessage is used to provide feedback and information about user
+actions.
+
+## Simple Example
+
+<Playground>
+  <FlashMessage type="base">Base flash message</FlashMessage>
+  <FlashMessage type="notice">Notice flash message</FlashMessage>
+  <FlashMessage type="success">Success flash message</FlashMessage>
+  <FlashMessage type="warning">Warning flash message</FlashMessage>
+  <FlashMessage type="error">Error flash message</FlashMessage>
+</Playground>
+
+## FlashMessage Properties
+
+<Props of={FlashMessage} />

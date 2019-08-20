@@ -1,0 +1,28 @@
+.base {
+  border-color: var(--color-grey--light);
+  color: var(--color-black);
+  background-color: var(--color-grey--lightest);
+}
+.notice {
+  border-color: var(--color-lightBlue);
+  color: var(--color-lightBlue--dark);
+  background-color: var(--color-lightBlue--lightest);
+}
+
+.success {
+  border-color: var(--color-green);
+  color: var(--color-green--dark);
+  background-color: var(--color-green--lighter);
+}
+
+.warning {
+  border-color: var(--color-yellow);
+  color: var(--color-yellow--dark);
+  background-color: var(--color-yellow--lighter);
+}
+
+.error {
+  border-color: var(--color-red);
+  color: var(--color-red--dark);
+  background-color: var(--color-red--lighter);
+}

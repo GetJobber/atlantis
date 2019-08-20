@@ -1,0 +1,27 @@
+.flash {
+  position: relative;
+  margin-bottom: var(--space-base);
+  padding: var(--space-base);
+  border-top: var(--space-smaller) solid var(--color-grey--light);
+  border-bottom-right-radius: var(--space-smaller);
+  border-bottom-left-radius: var(--space-smaller);
+  color: var(--color-black);
+  background-color: var(--color-greyLightest);
+}
+
+.closeButton {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  appearance: none;
+}
+
+.message {
+  /* Move into .flash?? */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

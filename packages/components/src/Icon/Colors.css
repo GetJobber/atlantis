@@ -1,0 +1,18 @@
+.black {
+  color: var(--color-black);
+}
+.lightBlueDark {
+  color: var(--color-lightBlue--dark);
+}
+
+.greenDark {
+  color: var(--color-green--dark);
+}
+
+.yellowDark {
+  color: var(--color-yellow--dark);
+}
+
+.redDark {
+  color: var(--color-red--dark);
+}
