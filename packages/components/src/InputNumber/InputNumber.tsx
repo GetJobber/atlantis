@@ -17,8 +17,8 @@ export function InputNumber(props: InputNumberProps) {
 
   const handleChange = (newValue: number) => {
     const isOverMax = props.max && newValue > props.max;
-    const isUnderMin = props.min && newValue < props.min;
-    if (isOverMax || isUnderMin) {
+    const isUnderMin = props.min && newValue <= props.min;
+    if (newValue.toString() === "" || isOverMax || isUnderMin) {
       let message = "";
 
       if (props.min && props.max === undefined) {
@@ -37,8 +37,8 @@ export function InputNumber(props: InputNumberProps) {
     props.onChange && props.onChange(newValue);
   };
 
-  const handleError = (message: string) => {
-    props.onError && props.onError(message);
+  const handleValidation = (message: string) => {
+    props.onValidate && props.onValidate(message);
   };
 
   return (
@@ -47,7 +47,7 @@ export function InputNumber(props: InputNumberProps) {
       {...props}
       onChange={handleChange}
       errorMessage={props.errorMessage || overLimit}
-      onError={handleError}
+      onValidate={handleValidation}
     />
   );
 }

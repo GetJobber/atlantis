@@ -35,7 +35,9 @@ export interface FormFieldProps {
   readonly errorMessage?: string;
 
   /**
-   * Adjusts the form field to go inline with a content.
+   * Adjusts the form field to go inline with a content. This also silences the
+   * given `errorMessage` prop. You'd have to used the `onValidate` prop to
+   * capture the message and render it somewhere else using the `Text` component.
    */
   readonly inline?: boolean;
 
@@ -104,10 +106,10 @@ export interface FormFieldProps {
   onChange?(newValue: string | number): void;
 
   /**
-   * Simplified onChange handler that only provides the new value.
+   * Callback to get the built-in validation message
    * @param message
    */
-  onError?(message: string): void;
+  onValidate?(message: string): void;
 }
 
 export const FormField = React.forwardRef(
@@ -131,7 +133,7 @@ export const FormField = React.forwardRef(
       size,
       type = "text",
       value,
-      onError,
+      onValidate,
     }: FormFieldProps,
     ref:
       | Ref<HTMLInputElement>
@@ -169,7 +171,7 @@ export const FormField = React.forwardRef(
     };
 
     const handleError = () => {
-      onError && errorMessage && onError(errorMessage);
+      onValidate && errorMessage && onValidate(errorMessage);
     };
 
     useEffect(() => {

@@ -101,10 +101,17 @@ Input number is used in forms that accept numbers as an answer.
   {() => {
     const [value, setValue] = useState(2);
     const [errorMessage, setErrorMessage] = useState("");
+    const maxLength = 4;
+    const minLength = 0;
+
     const handleChange = newValue => {
       setValue(newValue);
+      if (newValue < maxLength && newValue > minLength) {
+        setErrorMessage("");
+      }
     };
-    const handleError = message => {
+
+    const handleValidation = message => {
       setErrorMessage(message);
     };
     return (
@@ -117,17 +124,19 @@ Input number is used in forms that accept numbers as an answer.
             value={value}
             size="small"
             inline={true}
-            max={4}
-            min={0}
+            max={maxLength}
+            min={minLength}
             onChange={handleChange}
-            onError={handleError}
+            onValidate={handleValidation}
             align="center"
           />
           days
         </Text>
       </>
     );
-  }}
+
+}}
+
 </Playground>
 
 ## Properties
