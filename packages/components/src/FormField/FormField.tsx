@@ -176,7 +176,7 @@ export const FormField = React.forwardRef(
 
     useEffect(() => {
       handleError();
-    });
+    }, [value]);
 
     const fieldProps = {
       id: identifier,

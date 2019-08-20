@@ -16,16 +16,17 @@ export function InputNumber(props: InputNumberProps) {
   const [overLimit, setOverLimit] = useState("");
 
   const handleChange = (newValue: number) => {
-    const isOverMax = props.max && newValue > props.max;
-    const isUnderMin = props.min && newValue < props.min;
-    if (newValue.toString() === "" || isOverMax || isUnderMin) {
+    const isOverMax = props.max != undefined && newValue > props.max;
+    const isUnderMin = props.min != undefined && newValue < props.min;
+
+    if (isOverMax || isUnderMin || newValue.toString() === "") {
       let message = "";
 
       if (props.min != undefined && props.max === undefined) {
         message = `Enter a number that is greater than or equal to ${props.min}`;
       } else if (props.max != undefined && props.min === undefined) {
         message = `Enter a number that is less than or equal to ${props.max}`;
-      } else {
+      } else if (props.min != undefined && props.max != undefined) {
         message = `Enter a number between ${props.min} and ${props.max}`;
       }
 
@@ -37,17 +38,12 @@ export function InputNumber(props: InputNumberProps) {
     props.onChange && props.onChange(newValue);
   };
 
-  const handleValidation = (message: string) => {
-    props.onValidate && props.onValidate(message);
-  };
-
   return (
     <FormField
       type="number"
       {...props}
       onChange={handleChange}
       errorMessage={props.errorMessage || overLimit}
-      onValidate={handleValidation}
     />
   );
 }
