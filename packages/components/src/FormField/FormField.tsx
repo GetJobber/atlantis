@@ -1,5 +1,6 @@
-import React, { ChangeEvent, ReactNode, useState } from "react";
+import React, { ChangeEvent, ReactNode, Ref, useState } from "react";
 import classnames from "classnames";
+import uuid from "uuid";
 import { Icon } from "../Icon";
 import styles from "./FormField.css";
 
@@ -16,8 +17,8 @@ export interface FormFieldProps {
   readonly children?: ReactNode;
 
   /**
-   * Intial value of the input. Only use this when you need to prepopulate the
-   * field with a data that is not controlled by the components state. If a
+   * Initial value of the input. Only use this when you need to pre-populate
+   * the field with a data that is not controlled by the components state. If a
    * state is controlling the value, use the `value` prop instead.
    */
   readonly defaultValue?: string;
@@ -87,113 +88,122 @@ export interface FormFieldProps {
   onChange?(newValue: string | number): void;
 }
 
-export function FormField({
-  align,
-  children,
-  defaultValue,
-  disabled,
-  inline,
-  invalid,
-  maxLength,
-  name,
-  onChange,
-  placeholder,
-  readonly,
-  rows,
-  size,
-  type = "text",
-  value,
-}: FormFieldProps) {
-  const [hasMiniLabel, setHasMiniLabel] = useState(
-    defaultValue || value ? true : false,
-  );
-
-  const handleChange = (
-    event:
-      | ChangeEvent<HTMLInputElement>
-      | ChangeEvent<HTMLTextAreaElement>
-      | ChangeEvent<HTMLSelectElement>,
-  ) => {
-    let newValue: string | number;
-    newValue = event.currentTarget.value;
-    setHasMiniLabel(newValue.length > 0);
-
-    if (type === "number" && newValue.length > 0) {
-      newValue = parseFloat(newValue);
-    }
-    onChange && onChange(newValue);
-  };
-
-  const handleFocus = (
-    event:
-      | React.FocusEvent<HTMLInputElement>
-      | React.FocusEvent<HTMLTextAreaElement>,
-  ) => {
-    const target = event.currentTarget;
-    setTimeout(() => readonly && target.select());
-  };
-
-  const fieldProps = {
-    id: name,
-    className: styles.formField,
-    name: name,
-    disabled: disabled,
-    readOnly: readonly,
-    onChange: handleChange,
-    value: value,
-    ...(defaultValue && { defaultValue: defaultValue }),
-  };
-
-  const fieldElement = () => {
-    switch (type) {
-      case "select":
-        return <select {...fieldProps}>{children}</select>;
-      case "textarea":
-        return <textarea rows={rows} onFocus={handleFocus} {...fieldProps} />;
-      default:
-        return (
-          <input
-            type={type}
-            maxLength={maxLength}
-            onFocus={handleFocus}
-            {...fieldProps}
-          />
-        );
-    }
-  };
-
-  const wrapperClassNames = classnames(
-    styles.wrapper,
-    inline && styles.inline,
-    size && styles[size],
-    align && styles[align],
-    invalid && styles.invalid,
-    disabled && styles.disabled,
-    maxLength && styles.maxLength,
+export const FormField = React.forwardRef(
+  (
     {
-      [styles.miniLabel]:
-        (hasMiniLabel || type === "time" || type === "select") && placeholder,
-    },
-  );
+      align,
+      children,
+      defaultValue,
+      disabled,
+      inline,
+      invalid,
+      maxLength,
+      name,
+      onChange,
+      placeholder,
+      readonly,
+      rows,
+      size,
+      type = "text",
+      value,
+    }: FormFieldProps,
+    ref:
+      | Ref<HTMLInputElement>
+      | Ref<HTMLTextAreaElement>
+      | Ref<HTMLSelectElement>,
+  ) => {
+    const [hasMiniLabel, setHasMiniLabel] = useState(
+      defaultValue || value ? true : false,
+    );
 
-  const Wrapper = inline ? "span" : "div";
+    const identifier = uuid.v1();
 
-  return (
-    <Wrapper
-      className={wrapperClassNames}
-      style={{ ["--formField-maxLength" as string]: maxLength }}
-    >
-      {placeholder && (
-        <label className={styles.label} htmlFor={name}>
-          {placeholder}
+    const handleChange = (
+      event:
+        | ChangeEvent<HTMLInputElement>
+        | ChangeEvent<HTMLTextAreaElement>
+        | ChangeEvent<HTMLSelectElement>,
+    ) => {
+      let newValue: string | number;
+      newValue = event.currentTarget.value;
+      setHasMiniLabel(newValue.length > 0);
+
+      if (type === "number" && newValue.length > 0) {
+        newValue = parseFloat(newValue);
+      }
+      onChange && onChange(newValue);
+    };
+
+    const handleFocus = (
+      event:
+        | React.FocusEvent<HTMLInputElement>
+        | React.FocusEvent<HTMLTextAreaElement>,
+    ) => {
+      const target = event.currentTarget;
+      setTimeout(() => readonly && target.select());
+    };
+
+    const fieldProps = {
+      id: identifier,
+      className: styles.formField,
+      name: name,
+      disabled: disabled,
+      readOnly: readonly,
+      onChange: handleChange,
+      value: value,
+      ...(defaultValue && { defaultValue: defaultValue }),
+    };
+
+    const fieldElement = () => {
+      switch (type) {
+        case "select":
+          return <select {...fieldProps}>{children}</select>;
+        case "textarea":
+          return <textarea rows={rows} onFocus={handleFocus} {...fieldProps} />;
+        default:
+          return (
+            <input
+              type={type}
+              maxLength={maxLength}
+              onFocus={handleFocus}
+              ref={ref as Ref<HTMLInputElement>}
+              {...fieldProps}
+            />
+          );
+      }
+    };
+
+    const wrapperClassNames = classnames(
+      styles.wrapper,
+      inline && styles.inline,
+      size && styles[size],
+      align && styles[align],
+      invalid && styles.invalid,
+      disabled && styles.disabled,
+      maxLength && styles.maxLength,
+      {
+        [styles.miniLabel]:
+          (hasMiniLabel || type === "time" || type === "select") && placeholder,
+      },
+    );
+
+    const Wrapper = inline ? "span" : "div";
+
+    return (
+      <Wrapper
+        className={wrapperClassNames}
+        style={{ ["--formField-maxLength" as string]: maxLength }}
+      >
+        <label className={styles.label} htmlFor={identifier}>
+          {placeholder || " "}
         </label>
-      )}
-      {fieldElement()}
-      {type === "select" && (
-        <span className={styles.icon}>
-          <Icon name="arrowDown" />
-        </span>
-      )}
-    </Wrapper>
-  );
-}
+        {fieldElement()}
+        {type === "select" && (
+          <span className={styles.icon}>
+            <Icon name="arrowDown" />
+          </span>
+        )}
+      </Wrapper>
+    );
+  },
+);
