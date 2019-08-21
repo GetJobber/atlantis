@@ -30,7 +30,9 @@ export interface FormFieldProps {
   readonly disabled?: boolean;
 
   /**
-   * Highlights the field red and show an accompanying message to the user.
+   * **EXPERIMENTAL** This feature is still under development.
+   *
+   * Show an error message and highlight the the field red.
    */
   readonly errorMessage?: string;
 
@@ -106,6 +108,8 @@ export interface FormFieldProps {
   onChange?(newValue: string | number): void;
 
   /**
+   * **EXPERIMENTAL** This feature is still under development.
+   *
    * Callback to get the the status and message when validating a field
    * @param status
    * @param message
