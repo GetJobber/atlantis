@@ -15,22 +15,24 @@ type InputNumberProps = Pick<
 export function InputNumber(props: InputNumberProps) {
   const [overLimit, setOverLimit] = useState("");
 
+  const getOverLimitErrorMessage = (): string => {
+    let message = "";
+    if (props.min != undefined && props.max === undefined) {
+      message = `Enter a number that is greater than or equal to ${props.min}`;
+    } else if (props.max != undefined && props.min === undefined) {
+      message = `Enter a number that is less than or equal to ${props.max}`;
+    } else if (props.min != undefined && props.max != undefined) {
+      message = `Enter a number between ${props.min} and ${props.max}`;
+    }
+    return message;
+  };
+
   const handleChange = (newValue: number) => {
     const isOverMax = props.max != undefined && newValue > props.max;
     const isUnderMin = props.min != undefined && newValue < props.min;
 
     if (isOverMax || isUnderMin || newValue.toString() === "") {
-      let message = "";
-
-      if (props.min != undefined && props.max === undefined) {
-        message = `Enter a number that is greater than or equal to ${props.min}`;
-      } else if (props.max != undefined && props.min === undefined) {
-        message = `Enter a number that is less than or equal to ${props.max}`;
-      } else if (props.min != undefined && props.max != undefined) {
-        message = `Enter a number between ${props.min} and ${props.max}`;
-      }
-
-      setOverLimit(message);
+      setOverLimit(getOverLimitErrorMessage);
     } else {
       setOverLimit("");
     }
