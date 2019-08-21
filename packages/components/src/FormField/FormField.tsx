@@ -147,72 +147,9 @@ export const FormField = React.forwardRef(
     );
     const identifier = uuid.v1();
 
-    const handleChange = (
-      event:
-        | ChangeEvent<HTMLInputElement>
-        | ChangeEvent<HTMLTextAreaElement>
-        | ChangeEvent<HTMLSelectElement>,
-    ) => {
-      let newValue: string | number;
-      newValue = event.currentTarget.value;
-      setHasMiniLabel(newValue.length > 0);
-
-      if (type === "number" && newValue.length > 0) {
-        newValue = parseFloat(newValue);
-      }
-      onChange && onChange(newValue);
-    };
-
-    const handleFocus = (
-      event:
-        | React.FocusEvent<HTMLInputElement>
-        | React.FocusEvent<HTMLTextAreaElement>,
-    ) => {
-      const target = event.currentTarget;
-      setTimeout(() => readonly && target.select());
-    };
-
-    const handleValidation = () => {
-      const status = errorMessage ? "fail" : "pass";
-      const message = errorMessage || "";
-      onValidate && onValidate(status, message);
-    };
-
     useEffect(() => {
       handleValidation();
     }, [value]);
-
-    const fieldProps = {
-      id: identifier,
-      className: styles.formField,
-      name: name,
-      disabled: disabled,
-      readOnly: readonly,
-      onChange: handleChange,
-      value: value,
-      ...(defaultValue && { defaultValue: defaultValue }),
-    };
-
-    const fieldElement = () => {
-      switch (type) {
-        case "select":
-          return <select {...fieldProps}>{children}</select>;
-        case "textarea":
-          return <textarea rows={rows} onFocus={handleFocus} {...fieldProps} />;
-        default:
-          return (
-            <input
-              type={type}
-              maxLength={maxLength}
-              max={max}
-              min={min}
-              onFocus={handleFocus}
-              ref={ref as Ref<HTMLInputElement>}
-              {...fieldProps}
-            />
-          );
-      }
-    };
 
     const wrapperClassNames = classnames(
       styles.wrapper,
@@ -253,5 +190,68 @@ export const FormField = React.forwardRef(
         </Wrapper>
       </>
     );
+
+    function fieldElement() {
+      const fieldProps = {
+        id: identifier,
+        className: styles.formField,
+        name: name,
+        disabled: disabled,
+        readOnly: readonly,
+        onChange: handleChange,
+        value: value,
+        ...(defaultValue && { defaultValue: defaultValue }),
+      };
+
+      switch (type) {
+        case "select":
+          return <select {...fieldProps}>{children}</select>;
+        case "textarea":
+          return <textarea rows={rows} onFocus={handleFocus} {...fieldProps} />;
+        default:
+          return (
+            <input
+              type={type}
+              maxLength={maxLength}
+              max={max}
+              min={min}
+              onFocus={handleFocus}
+              ref={ref as Ref<HTMLInputElement>}
+              {...fieldProps}
+            />
+          );
+      }
+    }
+
+    function handleChange(
+      event:
+        | ChangeEvent<HTMLInputElement>
+        | ChangeEvent<HTMLTextAreaElement>
+        | ChangeEvent<HTMLSelectElement>,
+    ) {
+      let newValue: string | number;
+      newValue = event.currentTarget.value;
+      setHasMiniLabel(newValue.length > 0);
+
+      if (type === "number" && newValue.length > 0) {
+        newValue = parseFloat(newValue);
+      }
+      onChange && onChange(newValue);
+    }
+
+    function handleFocus(
+      event:
+        | React.FocusEvent<HTMLInputElement>
+        | React.FocusEvent<HTMLTextAreaElement>,
+    ) {
+      const target = event.currentTarget;
+      setTimeout(() => readonly && target.select());
+    }
+
+    function handleValidation() {
+      const status = errorMessage ? "fail" : "pass";
+      const message = errorMessage || "";
+      onValidate && onValidate(status, message);
+    }
   },
 );
