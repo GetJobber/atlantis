@@ -106,13 +106,12 @@ export interface FormFieldProps {
   onChange?(newValue: string | number): void;
 
   /**
-   * Callback to get the built-in validation message
+   * Callback to get the the status and message when validating a field
+   * @param status
    * @param message
    */
-  onValidate?(status: ValidationStatus, message: string): void;
+  onValidate?(status: "pass" | "fail", message: string): void;
 }
-
-type ValidationStatus = "pass" | "fail";
 
 export const FormField = React.forwardRef(
   (
@@ -129,13 +128,13 @@ export const FormField = React.forwardRef(
       min,
       name,
       onChange,
+      onValidate,
       placeholder,
       readonly,
       rows,
       size,
       type = "text",
       value,
-      onValidate,
     }: FormFieldProps,
     ref:
       | Ref<HTMLInputElement>
