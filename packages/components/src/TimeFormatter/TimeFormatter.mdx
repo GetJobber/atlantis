@@ -12,20 +12,21 @@ import { TimeFormatter } from ".";
 
 <ComponentStatus stage="pre" responsive="no" accessible="no" />
 
-In Jobber a TimeFormatter is used to …
+In Jobber a TimeFormatter is used to ensure that time is displayed in the
+expected format. 12 hour vs. 24 hour time.
 
 ## Simple Example
 
 <Playground>
-  <TimeFormatter civilTime={"11:30:00.000000000"} useMilitaryTime={false} />
+  <TimeFormatter civilTime={"11:30:00.000000000"} use24HourClock={false} />
   <br />
-  <TimeFormatter civilTime={"17:45:00.000000000"} useMilitaryTime={false} />
+  <TimeFormatter civilTime={"17:45:00.000000000"} use24HourClock={false} />
 </Playground>
 
 ## 24 hour Example
 
 <Playground>
-  <TimeFormatter civilTime={"17:45:00.000000000"} useMilitaryTime={true} />
+  <TimeFormatter civilTime={"17:45:00.000000000"} use24HourClock={true} />
 </Playground>
 
 ## TimeFormatter Properties

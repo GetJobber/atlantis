@@ -8,11 +8,8 @@ afterEach(cleanup);
 it("renders a TimeFormatter", () => {
   const tree = renderer
     .create(
-      <TimeFormatter
-        civilTime={"11:30:00.000000000"}
-        useMilitaryTime={false}
-      />,
+      <TimeFormatter civilTime={"11:30:00.000000000"} use24HourClock={false} />,
     )
     .toJSON();
-  expect(tree).toMatchInlineSnapshot(`"11:30 AM"`);
+  expect(tree).toMatchInlineSnapshot(`"11:30:00 AM"`);
 });
