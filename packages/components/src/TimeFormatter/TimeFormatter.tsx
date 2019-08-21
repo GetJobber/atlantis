@@ -18,7 +18,8 @@ export function TimeFormatter(props: TimeFormatterProps) {
   const date = new Date(`August 19, 1975 ${props.civilTime}`);
 
   return date.toLocaleTimeString(undefined, {
-    timeStyle: "short",
     hour12: !props.use24HourClock,
+    minute: "2-digit",
+    hour: "numeric",
   });
 }
