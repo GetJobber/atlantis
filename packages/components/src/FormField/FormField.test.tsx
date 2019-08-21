@@ -37,29 +37,29 @@ it("renders correctly with a placeholder", () => {
     .create(<FormField placeholder="My placeholder" />)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
-    >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440000"
-      >
-        My placeholder
-      </label>
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440000"
-        onChange={[Function]}
-        onFocus={[Function]}
-        type="text"
-      />
-    </div>
-  `);
+                                <div
+                                  className="wrapper"
+                                  style={
+                                    Object {
+                                      "--formField-maxLength": undefined,
+                                    }
+                                  }
+                                >
+                                  <label
+                                    className="label"
+                                    htmlFor="123e4567-e89b-12d3-a456-426655440000"
+                                  >
+                                    My placeholder
+                                  </label>
+                                  <input
+                                    className="formField"
+                                    id="123e4567-e89b-12d3-a456-426655440000"
+                                    onChange={[Function]}
+                                    onFocus={[Function]}
+                                    type="text"
+                                  />
+                                </div>
+                `);
 });
 
 it("renders correctly as small", () => {
@@ -148,6 +148,46 @@ it("renders correctly in a disabled state", () => {
   `);
 });
 
+it("renders a field with error", () => {
+  const tree = renderer
+    .create(
+      <FormField value="wrong!" errorMessage="Enter a value that is correct" />,
+    )
+    .toJSON();
+  expect(tree).toMatchInlineSnapshot(`
+    Array [
+      <p
+        className="base base red"
+      >
+        Enter a value that is correct
+      </p>,
+      <div
+        className="wrapper hasErrorMessage invalid"
+        style={
+          Object {
+            "--formField-maxLength": undefined,
+          }
+        }
+      >
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440000"
+        >
+           
+        </label>
+        <input
+          className="formField"
+          id="123e4567-e89b-12d3-a456-426655440000"
+          onChange={[Function]}
+          onFocus={[Function]}
+          type="text"
+          value="wrong!"
+        />
+      </div>,
+    ]
+  `);
+});
+
 it("it should set the value", () => {
   const value = "Look, some words!";
   const { getByDisplayValue } = render(<FormField value={value} />);
@@ -180,4 +220,33 @@ test("it should call the handler with the new value", () => {
     target: { value: newerValue },
   });
   expect(changeHandler).toHaveBeenCalledWith(newerValue);
+});
+
+test("it should call the validation handler when typing a new value", () => {
+  const validationHandler = jest.fn();
+
+  render(
+    <FormField
+      name="Got milk?"
+      onValidate={validationHandler}
+      placeholder="I hold places."
+    />,
+  );
+
+  expect(validationHandler).toHaveBeenCalledWith("pass", "");
+});
+
+test("it should call the validation handler with a fail status when there's an error", () => {
+  const validationHandler = jest.fn();
+
+  render(
+    <FormField
+      name="Got milk?"
+      onValidate={validationHandler}
+      placeholder="I hold places"
+      errorMessage="Nope!"
+    />,
+  );
+
+  expect(validationHandler).toHaveBeenCalledWith("fail", "Nope!");
 });

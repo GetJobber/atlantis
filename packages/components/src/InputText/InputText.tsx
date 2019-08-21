@@ -10,7 +10,7 @@ import { FormField, FormFieldProps } from "../FormField";
  */
 type BaseProps = Pick<
   FormFieldProps,
-  Exclude<keyof FormFieldProps, "type" | "children" | "rows">
+  Exclude<keyof FormFieldProps, "type" | "children" | "rows" | "min" | "max">
 >;
 
 interface MultilineProps extends BaseProps {
