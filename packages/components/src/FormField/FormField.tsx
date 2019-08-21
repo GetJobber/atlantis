@@ -109,8 +109,10 @@ export interface FormFieldProps {
    * Callback to get the built-in validation message
    * @param message
    */
-  onValidate?(message: string): void;
+  onValidate?(status: ValidationStatus, message: string): void;
 }
+
+type ValidationStatus = "pass" | "fail";
 
 export const FormField = React.forwardRef(
   (
@@ -171,7 +173,9 @@ export const FormField = React.forwardRef(
     };
 
     const handleValidation = () => {
-      onValidate && errorMessage && onValidate(errorMessage);
+      const status = errorMessage ? "fail" : "pass";
+      const message = errorMessage || "";
+      onValidate && onValidate(status, message);
     };
 
     useEffect(() => {

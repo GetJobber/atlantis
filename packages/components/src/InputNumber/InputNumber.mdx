@@ -79,7 +79,7 @@ Input number is used in forms that accept numbers as an answer.
     defaultValue={1.1}
     max={32}
     min={0}
-    errorMessage="Enter a number between 0 and 32"
+    validationMessage="Enter a number between 0 and 32"
     name="daysPerMonth"
   />
 </Playground>
@@ -117,21 +117,10 @@ Input number is used in forms that accept numbers as an answer.
 <Playground>
   {() => {
     const [value, setValue] = useState(2);
-    const [errorMessage, setErrorMessage] = useState("");
-    const maxLength = 4;
-    const minLength = 0;
-    const handleChange = newValue => {
-      setValue(newValue);
-      if (newValue < maxLength && newValue > minLength) {
-        setErrorMessage("");
-      }
-    };
-    const handleValidation = message => {
-      setErrorMessage(message);
-    };
+    const [validationMessage, setValidationMessage] = useState("");
     return (
       <>
-        {errorMessage && <Text variation="error">{errorMessage}</Text>}
+        {validationMessage && <Text variation="error">{validationMessage}</Text>}
         <Text>
           Follow-up after
           <InputNumber
@@ -139,8 +128,8 @@ Input number is used in forms that accept numbers as an answer.
             value={value}
             size="small"
             inline={true}
-            max={maxLength}
-            min={minLength}
+            max={4}
+            min={0}
             onChange={handleChange}
             onValidate={handleValidation}
             align="center"
@@ -149,7 +138,17 @@ Input number is used in forms that accept numbers as an answer.
         </Text>
       </>
     );
-  }}
+
+    function handleChange(newValue) {
+      setValue(newValue);
+    };
+
+    function handleValidation(status, message) {
+      setValidationMessage(message);
+    };
+
+}}
+
 </Playground>
 
 ## Properties
