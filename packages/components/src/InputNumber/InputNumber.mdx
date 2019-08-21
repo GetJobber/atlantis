@@ -116,7 +116,7 @@ Input number is used in forms that accept numbers as an answer.
 
 <Playground>
   {() => {
-    const [value, setValue] = useState(2);
+    const [value, setValue] = useState(5);
     const [validationMessage, setValidationMessage] = useState("");
     return (
       <>
@@ -144,6 +144,7 @@ Input number is used in forms that accept numbers as an answer.
     };
 
     function handleValidation(status, message) {
+      console.log(status, message)
       setValidationMessage(message);
     };
 
