@@ -25,6 +25,7 @@
     "@types/uuid": "^3.4.5",
     "classnames": "^2.2.6",
     "lodash": "^4.17.15",
+    "react-markdown": "^4.1.0",
     "time-input-polyfill": "^1.0.6",
     "ts-xor": "^1.0.8",
     "uuid": "^3.3.2"

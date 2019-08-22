@@ -1,0 +1,41 @@
+---
+name: Markdown
+menu: Components
+route: /components/markdown
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { Markdown } from ".";
+
+# Markdown
+
+<ComponentStatus stage="pre" responsive="no" accessible="no" />
+
+Markdown component is a text-to-HTML conversion tool with a twist! Because,
+instead of using semantic HTML tags, it uses our own atlantis component.
+
+In Jobber, Markdown is used to make text styling simpler. You can use this
+component to have italicised and/or bold text. In addition, it allows to set
+heading levels.
+
+## Example
+
+<Playground>
+  {() => {
+    const message = `# This is a level 1 heading
+
+      The _quick_ brown **fox** jumps over the _lazy-ass_ **dog**.
+
+      #### This is the end of this example.
+
+    `
+    return <Markdown text={message} />
+
+}}
+
+</Playground>
+
+# Markdown Properties
+
+<Props of={Markdown} />
