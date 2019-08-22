@@ -16,10 +16,7 @@ export default {
       plugins: [require("postcss-import"), require("autoprefixer")],
     }),
     commonjs({
-      include: [
-        "node_modules/time-input-polyfill/index.js",
-        "node_modules/time-input-polyfill/supportsTime.js",
-      ],
+      ignore: ["time-input-polyfill", "time-input-polyfill/supportsTime"],
     }),
   ],
   output: [
