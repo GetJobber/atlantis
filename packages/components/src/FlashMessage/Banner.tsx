@@ -2,20 +2,20 @@ import React, { ReactNode, useState } from "react";
 import classnames from "classnames";
 import { Icon, IconColorNames } from "../Icon";
 import { Text } from "../Text";
-import styles from "./FlashMessage.css";
+import styles from "./Banner.css";
 import types from "./notificationTypes.css";
 
-interface FlashMessageProps {
+interface BannerProps {
   readonly children: ReactNode;
-  readonly type?: "notice" | "success" | "warning" | "error";
-  onClose?(): void;
+  readonly type: "notice" | "success" | "warning" | "error";
+  onDismiss?(): void;
 }
 
 interface IconColorMap {
   [variation: string]: IconColorNames;
 }
 
-export function FlashMessage({ children, type, onClose }: FlashMessageProps) {
+export function Banner({ children, type, onDismiss }: BannerProps) {
   const [showFlash, setShowFlash] = useState(true);
 
   const iconColors: IconColorMap = {
@@ -25,8 +25,7 @@ export function FlashMessage({ children, type, onClose }: FlashMessageProps) {
     error: "red",
   };
 
-  const flashClassNames = classnames(styles.flash, type && types[type]);
-  const getColors = type ? iconColors[type] : "greyBlue";
+  const flashClassNames = classnames(styles.flash, types[type]);
   return (
     <>
       {showFlash && (
@@ -38,7 +37,7 @@ export function FlashMessage({ children, type, onClose }: FlashMessageProps) {
             onClick={handleClose}
             aria-label="Close"
           >
-            <Icon name="cross" color={getColors} />
+            <Icon name="cross" color={iconColors[type]} />
           </button>
         </div>
       )}
@@ -47,6 +46,6 @@ export function FlashMessage({ children, type, onClose }: FlashMessageProps) {
 
   function handleClose() {
     setShowFlash(!showFlash);
-    onClose && onClose();
+    onDismiss && onDismiss();
   }
 }

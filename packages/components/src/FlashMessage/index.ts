@@ -1,1 +1,1 @@
-export { FlashMessage } from "./FlashMessage";
+export { Banner } from "./Banner";
