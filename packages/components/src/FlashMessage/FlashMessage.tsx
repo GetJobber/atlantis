@@ -6,41 +6,47 @@ import styles from "./FlashMessage.css";
 import types from "./notificationTypes.css";
 
 interface FlashMessageProps {
-  readonly type: "base" | "notice" | "success" | "warning" | "error";
   readonly children: ReactNode;
+  readonly type?: "notice" | "success" | "warning" | "error";
+  onClose?(): void;
 }
 
-interface IconColorVariations {
+interface IconColorMap {
   [variation: string]: IconColorNames;
 }
 
-export function FlashMessage({ type = "base", children }: FlashMessageProps) {
-  const flashClassNames = classnames(styles.flash, styles.message, types[type]);
+export function FlashMessage({ children, type, onClose }: FlashMessageProps) {
   const [showFlash, setShowFlash] = useState(true);
 
-  const iconColors: IconColorVariations = {
-    base: "black",
-    notice: "lightBlueDark",
-    success: "greenDark",
-    warning: "yellowDark",
-    error: "redDark",
+  const iconColors: IconColorMap = {
+    notice: "lightBlue",
+    success: "green",
+    warning: "yellow",
+    error: "red",
   };
 
-  const handleClose = () => setShowFlash(!showFlash);
+  const flashClassNames = classnames(styles.flash, type && types[type]);
+  const getColors = type ? iconColors[type] : "greyBlue";
   return (
     <>
       {showFlash && (
         <div className={flashClassNames}>
           <Text>{children}</Text>
+
           <button
             className={styles.closeButton}
             onClick={handleClose}
-            aria-label="close flash"
+            aria-label="Close"
           >
-            <Icon name="cross" color={iconColors[type]} />
+            <Icon name="cross" color={getColors} />
           </button>
         </div>
       )}
     </>
   );
+
+  function handleClose() {
+    setShowFlash(!showFlash);
+    onClose && onClose();
+  }
 }
