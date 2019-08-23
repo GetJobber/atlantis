@@ -24,6 +24,7 @@ it("renders correctly with no props", () => {
       <input
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440000"
+        onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
         type="text"
@@ -37,29 +38,30 @@ it("renders correctly with a placeholder", () => {
     .create(<FormField placeholder="My placeholder" />)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-                                <div
-                                  className="wrapper"
-                                  style={
-                                    Object {
-                                      "--formField-maxLength": undefined,
-                                    }
-                                  }
-                                >
-                                  <label
-                                    className="label"
-                                    htmlFor="123e4567-e89b-12d3-a456-426655440000"
-                                  >
-                                    My placeholder
-                                  </label>
-                                  <input
-                                    className="formField"
-                                    id="123e4567-e89b-12d3-a456-426655440000"
-                                    onChange={[Function]}
-                                    onFocus={[Function]}
-                                    type="text"
-                                  />
-                                </div>
-                `);
+    <div
+      className="wrapper"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
+    >
+      <label
+        className="label"
+        htmlFor="123e4567-e89b-12d3-a456-426655440000"
+      >
+        My placeholder
+      </label>
+      <input
+        className="formField"
+        id="123e4567-e89b-12d3-a456-426655440000"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="text"
+      />
+    </div>
+  `);
 });
 
 it("renders correctly as small", () => {
@@ -82,6 +84,7 @@ it("renders correctly as small", () => {
       <input
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440000"
+        onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
         type="text"
@@ -110,6 +113,7 @@ it("renders correctly in a readonly state", () => {
       <input
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440000"
+        onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
         readOnly={true}
@@ -140,6 +144,7 @@ it("renders correctly in a disabled state", () => {
         className="formField"
         disabled={true}
         id="123e4567-e89b-12d3-a456-426655440000"
+        onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
         type="text"
@@ -178,6 +183,7 @@ it("renders a field with error", () => {
         <input
           className="formField"
           id="123e4567-e89b-12d3-a456-426655440000"
+          onBlur={[Function]}
           onChange={[Function]}
           onFocus={[Function]}
           type="text"
