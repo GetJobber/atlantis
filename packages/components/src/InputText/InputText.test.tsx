@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { fireEvent, render } from "@testing-library/react";
+import { InputTextRef } from "./InputText";
 import { InputText } from ".";
 
 it("renders a regular input for text and numbers", () => {
@@ -128,4 +129,17 @@ test("it should call the handler with the new value", () => {
     target: { value: newerValue },
   });
   expect(changeHandler).toHaveBeenCalledWith(newerValue);
+});
+
+test("it should handle inserting text", () => {
+  const initial = "Got milk?";
+  const result = `YUP${initial}`;
+
+  const textRef = React.createRef<InputTextRef>();
+  const changeHandler = jest.fn();
+
+  render(<InputText value={initial} onChange={changeHandler} ref={textRef} />);
+
+  textRef.current.insert("YUP");
+  expect(changeHandler).toHaveBeenCalledWith(result);
 });

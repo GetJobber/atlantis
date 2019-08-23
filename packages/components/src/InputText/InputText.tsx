@@ -13,7 +13,7 @@ type BaseProps = Pick<
   Exclude<keyof FormFieldProps, "type" | "children" | "rows" | "min" | "max">
 >;
 
-interface InputTextRef {
+export interface InputTextRef {
   insert(text: string): void;
 }
 
