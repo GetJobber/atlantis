@@ -69,7 +69,7 @@ export function Switch({
 
 interface LabelProps {
   readonly as: "On" | "Off";
-  readonly disabled: boolean;
+  readonly disabled?: boolean;
 }
 
 function Label({ as, disabled }: LabelProps) {
