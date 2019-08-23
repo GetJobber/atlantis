@@ -108,6 +108,16 @@ export interface FormFieldProps {
   onChange?(newValue: string | number): void;
 
   /**
+   * Focus callback.
+   */
+  onFocus?(): void;
+
+  /**
+   * Blur callback.
+   */
+  onBlur?(): void;
+
+  /**
    * **EXPERIMENTAL** This feature is still under development.
    *
    * Callback to get the the status and message when validating a field
@@ -131,6 +141,8 @@ export const FormField = React.forwardRef(
       maxLength,
       min,
       name,
+      onFocus,
+      onBlur,
       onChange,
       onValidate,
       placeholder,
@@ -210,7 +222,15 @@ export const FormField = React.forwardRef(
         case "select":
           return <select {...fieldProps}>{children}</select>;
         case "textarea":
-          return <textarea rows={rows} onFocus={handleFocus} {...fieldProps} />;
+          return (
+            <textarea
+              rows={rows}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              ref={ref as Ref<HTMLTextAreaElement>}
+              {...fieldProps}
+            />
+          );
         default:
           return (
             <input
@@ -219,6 +239,7 @@ export const FormField = React.forwardRef(
               max={max}
               min={min}
               onFocus={handleFocus}
+              onBlur={handleBlur}
               ref={ref as Ref<HTMLInputElement>}
               {...fieldProps}
             />
@@ -249,6 +270,12 @@ export const FormField = React.forwardRef(
     ) {
       const target = event.currentTarget;
       setTimeout(() => readonly && target.select());
+
+      onFocus && onFocus();
+    }
+
+    function handleBlur() {
+      onBlur && onBlur();
     }
 
     function handleValidation() {
