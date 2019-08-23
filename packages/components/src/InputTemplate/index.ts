@@ -1,1 +1,0 @@
-export { InputTemplate } from "./InputTemplate";

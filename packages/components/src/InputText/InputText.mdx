@@ -8,6 +8,7 @@ import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { InputText } from ".";
 import { useState } from "react";
+import { Button } from "../Button";
 import { Text } from "../Text";
 
 # Input Text
@@ -105,6 +106,33 @@ Use this to allow users to provide long answers.
       align="center"
     />
   </Text>
+</Playground>
+
+## Insertion
+
+<Playground>
+  {() => {
+    const [text, setText] = useState("Just some words here.");
+    const textRef = React.createRef();
+
+    const handleTextChange = newValue => {
+      setText(newValue);
+    };
+
+    const insert = () => {
+      textRef.current.insert("🎉");
+    }
+
+    return (
+      <>
+        <InputText value={text} onChange={handleTextChange} ref={textRef} />
+        <pre>{text}</pre>
+        <Button label="Insert Emoji" onClick={insert} />
+      </>
+    );
+
+}}
+
 </Playground>
 
 ## InputText Properties
