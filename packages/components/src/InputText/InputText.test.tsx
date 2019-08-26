@@ -134,6 +134,7 @@ test("it should call the handler with the new value", () => {
 test("it should handle inserting text", () => {
   const initial = "Got milk?";
   const result = `YUP${initial}`;
+  const secondResult = `YUPsure${initial}`;
 
   const textRef = React.createRef<InputTextRef>();
   const changeHandler = jest.fn();
@@ -142,4 +143,7 @@ test("it should handle inserting text", () => {
 
   textRef.current.insert("YUP");
   expect(changeHandler).toHaveBeenCalledWith(result);
+
+  textRef.current.insert("sure");
+  expect(changeHandler).toHaveBeenCalledWith(secondResult);
 });
