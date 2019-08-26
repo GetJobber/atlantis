@@ -40,7 +40,11 @@ export function InputTime({
   } else {
     return (
       <InputTimeSafari
-        defaultValue={defaultValue}
+        defaultValue={
+          value == undefined && defaultValue != undefined
+            ? defaultValue
+            : undefined
+        }
         value={value}
         onChange={onChange}
         {...params}
