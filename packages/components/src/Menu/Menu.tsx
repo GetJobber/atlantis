@@ -5,10 +5,6 @@ import { Typography } from "../Typography";
 import { Icon, IconNames } from "../Icon";
 import styles from "./Menu.css";
 
-export interface MenuManager {
-  toggle(): void;
-}
-
 interface MenuProps {
   /**
    * Custom menu activator. If this is not provided a default [… More] will be used.
@@ -38,7 +34,7 @@ export function Menu({ activator, items }: MenuProps) {
   const menuID = uuid();
 
   if (!activator) {
-    activator = <Button label="More" icon="more" type="secondary" />;
+    activator = <Button label="More Actions" icon="more" type="secondary" />;
   }
 
   return (

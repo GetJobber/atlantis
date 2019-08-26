@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { cleanup, fireEvent, render } from "@testing-library/react";
+import { Button } from "../Button";
 import { Menu } from ".";
 
 afterEach(cleanup);
@@ -28,33 +29,36 @@ it("renders a Menu", () => {
       />,
     )
     .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper"
-    >
-      <button
-        aria-controls="123e4567-e89b-12d3-a456-426655440002"
-        aria-expanded={false}
-        aria-haspopup={true}
-        className="button base hasIcon work secondary"
-        disabled={false}
-        id="123e4567-e89b-12d3-a456-426655440001"
-        onClick={[Function]}
-      >
-        <div
-          className="icon more base"
-        />
-        <span
-          className="base small extraBold uppercase green"
-        >
-          More
-        </span>
-      </button>
-    </div>
-  `);
+  expect(tree).toMatchSnapshot();
 });
 
-test("It should open and close the menu", () => {
+it("renders a Menu with custom activator", () => {
+  const tree = renderer
+    .create(
+      <Menu
+        activator={<Button label="Menu" />}
+        items={[
+          {
+            header: "Send as...",
+            actions: [
+              {
+                label: "Text Message",
+                icon: "sms",
+              },
+              {
+                label: "Email",
+                icon: "email",
+              },
+            ],
+          },
+        ]}
+      />,
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
+test("it should open and close the menu", () => {
   const header = "Mark as...";
   const actionLabel = "Awaiting Response";
   const clickHandler = jest.fn();
@@ -75,4 +79,19 @@ test("It should open and close the menu", () => {
 
   fireEvent.click(getByRole("button"));
   expect(queryAllByText(actionLabel).length).toBe(0);
+});
+
+test("it should passthrough an activator's click action", () => {
+  const clickHandler = jest.fn();
+  const actions = [];
+
+  const { getByRole } = render(
+    <Menu
+      activator={<Button label="Menu" onClick={clickHandler} />}
+      items={actions}
+    />,
+  );
+
+  fireEvent.click(getByRole("button"));
+  expect(clickHandler).toHaveBeenCalledTimes(1);
 });
