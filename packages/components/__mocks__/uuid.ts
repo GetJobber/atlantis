@@ -3,8 +3,12 @@ interface UUIDFunction {
   v1: () => string;
 }
 
+let count = 0;
+const finalSection = 426655440000;
+
 function fakeUUID() {
-  return "123e4567-e89b-12d3-a456-426655440000";
+  count += 1;
+  return `123e4567-e89b-12d3-a456-${finalSection + count}`;
 }
 
 const uuid = fakeUUID as UUIDFunction;

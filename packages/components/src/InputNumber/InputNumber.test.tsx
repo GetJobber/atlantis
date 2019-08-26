@@ -20,13 +20,13 @@ it("renders an input type number", () => {
       >
         <label
           className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440000"
+          htmlFor="123e4567-e89b-12d3-a456-426655440001"
         >
            
         </label>
         <input
           className="formField"
-          id="123e4567-e89b-12d3-a456-426655440000"
+          id="123e4567-e89b-12d3-a456-426655440001"
           onChange={[Function]}
           onFocus={[Function]}
           type="number"
@@ -58,13 +58,13 @@ it("renders an error", () => {
       >
         <label
           className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440000"
+          htmlFor="123e4567-e89b-12d3-a456-426655440002"
         >
            
         </label>
         <input
           className="formField"
-          id="123e4567-e89b-12d3-a456-426655440000"
+          id="123e4567-e89b-12d3-a456-426655440002"
           onChange={[Function]}
           onFocus={[Function]}
           type="number"

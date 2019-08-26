@@ -33,12 +33,12 @@ it("renders a Menu", () => {
       className="wrapper"
     >
       <button
-        aria-controls="123e4567-e89b-12d3-a456-426655440000"
+        aria-controls="123e4567-e89b-12d3-a456-426655440002"
         aria-expanded={false}
         aria-haspopup={true}
         className="button base hasIcon work secondary"
         disabled={false}
-        id="123e4567-e89b-12d3-a456-426655440000"
+        id="123e4567-e89b-12d3-a456-426655440001"
         onClick={[Function]}
       >
         <div
