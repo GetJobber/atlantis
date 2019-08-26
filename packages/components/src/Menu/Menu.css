@@ -45,6 +45,7 @@
   padding: var(--space-small);
   border: none;
   border-radius: var(--radius-base);
+  background-color: transparent;
   cursor: pointer;
   transition: all var(--timing-base);
   align-items: center;

@@ -1,11 +1,19 @@
-import React, { useState } from "react";
+import React, { MouseEvent, ReactElement, useState } from "react";
 import uuid from "uuid";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
 import { Icon, IconNames } from "../Icon";
 import styles from "./Menu.css";
 
+export interface MenuManager {
+  toggle(): void;
+}
+
 interface MenuProps {
+  /**
+   * Custom menu activator. If this is not provided a default [… More] will be used.
+   */
+  readonly activator?: ReactElement;
   /**
    * Collection of action items.
    */
@@ -24,36 +32,31 @@ interface SectionProps {
   actions: ActionProps[];
 }
 
-export function Menu({ items }: MenuProps) {
-  const [showMenu, setShowMenu] = useState(false);
+export function Menu({ activator, items }: MenuProps) {
+  const [visible, setVisible] = useState(false);
   const buttonID = uuid();
   const menuID = uuid();
 
-  const toggleMenu = () => {
-    setShowMenu(!showMenu);
-  };
+  if (!activator) {
+    activator = <Button label="More" icon="more" type="secondary" />;
+  }
 
   return (
     <div className={styles.wrapper}>
-      <Button
-        ariaControls={menuID}
-        ariaExpanded={showMenu}
-        ariaHaspopup={true}
-        label="More"
-        icon="more"
-        id={buttonID}
-        type="secondary"
-        onClick={toggleMenu}
-      />
-
-      {showMenu && (
+      {React.cloneElement(activator, {
+        onClick: toggle(activator.props.onClick),
+        id: buttonID,
+        ariaControls: menuID,
+        ariaExpanded: visible,
+        ariaHaspopup: true,
+      })}
+      {visible && (
         <>
           <div
             className={styles.menu}
             role="menu"
             aria-labelledby={buttonID}
             id={menuID}
-            data-testid="menu-popup"
           >
             {items.map((item, key: number) => (
               <div key={key} className={styles.section}>
@@ -66,11 +69,18 @@ export function Menu({ items }: MenuProps) {
             ))}
           </div>
 
-          <div className={styles.overlay} onClick={toggleMenu} />
+          <div className={styles.overlay} onClick={toggle()} />
         </>
       )}
     </div>
   );
+
+  function toggle(callbackPassthrough?: (event?: MouseEvent) => void) {
+    return (event: MouseEvent) => {
+      setVisible(!visible);
+      callbackPassthrough && callbackPassthrough(event);
+    };
+  }
 }
 
 interface SectionHeaderProps {

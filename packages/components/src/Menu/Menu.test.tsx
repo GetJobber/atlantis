@@ -65,14 +65,14 @@ test("It should open and close the menu", () => {
     },
   ];
 
-  const { getByRole, queryByTestId } = render(<Menu items={actions} />);
+  const { getByRole, queryAllByText } = render(<Menu items={actions} />);
 
   fireEvent.click(getByRole("button"));
-  expect(queryByTestId("menu-popup")).toBeTruthy();
+  expect(queryAllByText(actionLabel).length).toBe(1);
 
   fireEvent.click(getByRole("menuitem"));
   expect(clickHandler).toHaveBeenCalledTimes(1);
 
   fireEvent.click(getByRole("button"));
-  expect(queryByTestId("menu-popup")).toBeNull();
+  expect(queryAllByText(actionLabel).length).toBe(0);
 });

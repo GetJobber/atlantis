@@ -6,6 +6,8 @@ route: /components/menu
 
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
+import { createRef, useState } from "react";
+import { Button } from "../Button";
 import { Menu } from ".";
 
 # Menu
@@ -13,6 +15,12 @@ import { Menu } from ".";
 <ComponentStatus stage="pre" responsive="no" accessible="yes" />
 
 A toggleable menu that holds a list of actions.
+
+## Simple Example
+
+```ts
+import { Menu } from "@jobber/components/Menu";
+```
 
 <Playground>
   <Menu
@@ -47,27 +55,50 @@ A toggleable menu that holds a list of actions.
           }
         ]
       },
+    ]}
+  />
+
+</Playground>
+
+## Custom Activator
+
+<Playground>
+  <Menu
+    activator={<Button label="My Fancy Menu" />}
+    items={[
       {
-        header: "Mark as...",
         actions: [
           {
-            label: "Sent",
-            icon: "sendInvoice",
+            label: "Edit",
+            icon: "edit",
             onClick: () => {
-              alert("💌");
-            }
-          },
-          {
-            label: "Paid",
-            icon: "paidInvoice",
-            onClick: () => {
-              alert("💳");
+              alert("✏️");
             }
           }
         ]
-      }
+      },
+      {
+        header: "Send as...",
+        actions: [
+          {
+            label: "Text Message",
+            icon: "sms",
+            onClick: () => {
+              alert("📱");
+            }
+          },
+          {
+            label: "Email",
+            icon: "email",
+            onClick: () => {
+              alert("📨");
+            }
+          }
+        ]
+      },
     ]}
   />
+
 </Playground>
 
 ## Menu Properties
