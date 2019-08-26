@@ -27,6 +27,7 @@ it("renders an input type number", () => {
         <input
           className="formField"
           id="123e4567-e89b-12d3-a456-426655440001"
+          onBlur={[Function]}
           onChange={[Function]}
           onFocus={[Function]}
           type="number"
@@ -65,6 +66,7 @@ it("renders an error", () => {
         <input
           className="formField"
           id="123e4567-e89b-12d3-a456-426655440002"
+          onBlur={[Function]}
           onChange={[Function]}
           onFocus={[Function]}
           type="number"
