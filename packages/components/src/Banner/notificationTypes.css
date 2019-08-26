@@ -1,0 +1,19 @@
+.notice {
+  border-color: var(--color-lightBlue);
+  background-color: var(--color-lightBlue--lightest);
+}
+
+.success {
+  border-color: var(--color-green);
+  background-color: var(--color-green--lighter);
+}
+
+.warning {
+  border-color: var(--color-yellow);
+  background-color: var(--color-yellow--lighter);
+}
+
+.error {
+  border-color: var(--color-red);
+  background-color: var(--color-red--lighter);
+}

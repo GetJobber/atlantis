@@ -9,8 +9,15 @@ exports[`renders a Select with many options 1`] = `
     }
   }
 >
+  <label
+    className="label"
+    htmlFor="123e4567-e89b-12d3-a456-426655440000"
+  >
+     
+  </label>
   <select
     className="formField"
+    id="123e4567-e89b-12d3-a456-426655440000"
     onChange={[Function]}
   >
     <option>
@@ -45,8 +52,15 @@ exports[`renders a Select with no options 1`] = `
     }
   }
 >
+  <label
+    className="label"
+    htmlFor="123e4567-e89b-12d3-a456-426655440000"
+  >
+     
+  </label>
   <select
     className="formField"
+    id="123e4567-e89b-12d3-a456-426655440000"
     onChange={[Function]}
   />
   <span
@@ -68,8 +82,15 @@ exports[`renders a Select with one option 1`] = `
     }
   }
 >
+  <label
+    className="label"
+    htmlFor="123e4567-e89b-12d3-a456-426655440000"
+  >
+     
+  </label>
   <select
     className="formField"
+    id="123e4567-e89b-12d3-a456-426655440000"
     onChange={[Function]}
   >
     <option>
@@ -95,8 +116,15 @@ exports[`renders correctly as large 1`] = `
     }
   }
 >
+  <label
+    className="label"
+    htmlFor="123e4567-e89b-12d3-a456-426655440000"
+  >
+     
+  </label>
   <select
     className="formField"
+    id="123e4567-e89b-12d3-a456-426655440000"
     onChange={[Function]}
   >
     <option>
@@ -122,8 +150,15 @@ exports[`renders correctly as small 1`] = `
     }
   }
 >
+  <label
+    className="label"
+    htmlFor="123e4567-e89b-12d3-a456-426655440000"
+  >
+     
+  </label>
   <select
     className="formField"
+    id="123e4567-e89b-12d3-a456-426655440000"
     onChange={[Function]}
   >
     <option>
@@ -149,9 +184,16 @@ exports[`renders correctly when disabled 1`] = `
     }
   }
 >
+  <label
+    className="label"
+    htmlFor="123e4567-e89b-12d3-a456-426655440000"
+  >
+     
+  </label>
   <select
     className="formField"
     disabled={true}
+    id="123e4567-e89b-12d3-a456-426655440000"
     onChange={[Function]}
   >
     <option>
@@ -177,8 +219,15 @@ exports[`renders correctly when invalid 1`] = `
     }
   }
 >
+  <label
+    className="label"
+    htmlFor="123e4567-e89b-12d3-a456-426655440000"
+  >
+     
+  </label>
   <select
     className="formField"
+    id="123e4567-e89b-12d3-a456-426655440000"
     onChange={[Function]}
   >
     <option>
