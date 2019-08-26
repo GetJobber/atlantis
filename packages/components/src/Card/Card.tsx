@@ -51,7 +51,7 @@ interface LinkCardProps extends CardProps {
 }
 
 interface ClickableCardProps extends CardProps {
-  onClick(): void;
+  onClick(event: React.MouseEvent<HTMLElement>): void;
 }
 
 type CardPropOptions = XOR<CardProps, XOR<LinkCardProps, ClickableCardProps>>;
@@ -70,7 +70,7 @@ export function Card({ accent, children, url, onClick }: CardPropOptions) {
     href?: string;
     role?: "button";
     tabIndex?: 0;
-    onClick?(): void;
+    onClick?(event: React.MouseEvent<HTMLElement>): void;
   }
 
   const Tag = url ? "a" : "div";

@@ -1,103 +1,103 @@
 .requestColor {
-  --accent-color: var(--color-request);
+  --card--accent-color: var(--color-request);
 }
 
 .quoteColor {
-  --accent-color: var(--color-quote);
+  --card--accent-color: var(--color-quote);
 }
 
 .jobColor {
-  --accent-color: var(--color-job);
+  --card--accent-color: var(--color-job);
 }
 
 .invoiceColor {
-  --accent-color: var(--color-invoice);
+  --card--accent-color: var(--color-invoice);
 }
 
 .indigo {
-  --accent-color: var(--color-indigo);
+  --card--accent-color: var(--color-indigo);
 }
 
 .blue {
-  --accent-color: var(--color-blue);
+  --card--accent-color: var(--color-blue);
 }
 
 .blueLighter {
-  --accent-color: var(--color-blue--lighter);
+  --card--accent-color: var(--color-blue--lighter);
 }
 
 .greyBlue {
-  --accent-color: var(--color-grey-blue);
+  --card--accent-color: var(--color-grey-blue);
 }
 
 .greyDark {
-  --accent-color: var(--color-grey--dark);
+  --card--accent-color: var(--color-grey--dark);
 }
 
 .grey {
-  --accent-color: var(--color-grey);
+  --card--accent-color: var(--color-grey);
 }
 
 .greyLight {
-  --accent-color: var(--color-grey--light);
+  --card--accent-color: var(--color-grey--light);
 }
 
 .greyLighter {
-  --accent-color: var(--color-grey--lighter);
+  --card--accent-color: var(--color-grey--lighter);
 }
 
 .green {
-  --accent-color: var(--color-green);
+  --card--accent-color: var(--color-green);
 }
 
 .lime {
-  --accent-color: var(--color-lime);
+  --card--accent-color: var(--color-lime);
 }
 
 .yellowGreen {
-  --accent-color: var(--color-yellow--green);
+  --card--accent-color: var(--color-yellow--green);
 }
 
 .yellow {
-  --accent-color: var(--color-yellow);
+  --card--accent-color: var(--color-yellow);
 }
 
 .red {
-  --accent-color: var(--color-red);
+  --card--accent-color: var(--color-red);
 }
 
 .orange {
-  --accent-color: var(--color-orange);
+  --card--accent-color: var(--color-orange);
 }
 
 .pink {
-  --accent-color: var(--color-pink);
+  --card--accent-color: var(--color-pink);
 }
 
 .purple {
-  --accent-color: var(--color-purple);
+  --card--accent-color: var(--color-purple);
 }
 
 .navy {
-  --accent-color: var(--color-navy);
+  --card--accent-color: var(--color-navy);
 }
 
 .lightBlue {
-  --accent-color: var(--color-light-blue);
+  --card--accent-color: var(--color-light-blue);
 }
 
 .lightBlueLighter {
-  --accent-color: var(--color-light-blue--lighter);
+  --card--accent-color: var(--color-light-blue--lighter);
 }
 
 .teal {
-  --accent-color: var(--color-teal);
+  --card--accent-color: var(--color-teal);
 }
 
 .brown {
-  --accent-color: var(--color-brown);
+  --card--accent-color: var(--color-brown);
 }
 
 .white {
-  --accent-color: var(--color-white);
+  --card--accent-color: var(--color-white);
 }

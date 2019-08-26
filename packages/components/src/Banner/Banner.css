@@ -1,0 +1,35 @@
+:root {
+  --flash--inset: var(--space-base);
+}
+
+.flash {
+  display: flex;
+  margin-bottom: var(--space-base);
+  padding: var(--flash--inset);
+  border-top: var(--border-thick) solid var(--color-grey--light);
+  border-bottom-right-radius: var(--space-smaller);
+  border-bottom-left-radius: var(--space-smaller);
+  color: var(--color-black);
+  background-color: var(--color-grey--lightest);
+  align-items: center;
+}
+
+.flash > *:first-child {
+  flex: 1 1 auto;
+}
+
+.closeButton {
+  width: var(--space-larger);
+  margin-top: calc(var(--space-smallest) - var(--flash--inset));
+  margin-right: calc(var(--space-smallest) - var(--flash--inset));
+  padding: var(--space-smallest);
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  appearance: none;
+  flex: 0;
+}
+
+.closeButton:focus {
+  outline: none;
+}

@@ -7,8 +7,13 @@ afterEach(cleanup);
 
 const omelet = (
   <Tabs>
-    <Tab label="Eggs">🍳</Tab>
-    <Tab label="Cheese">🧀</Tab>
+    <Tab label="Eggs">
+      <p>🍳</p>
+      <p>Eggs</p>
+    </Tab>
+    <Tab label="Cheese">
+      <p>🧀</p>
+    </Tab>
   </Tabs>
 );
 

@@ -1,0 +1,46 @@
+---
+name: Banner
+menu: Components
+route: /components/banner
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { Banner } from ".";
+
+# Banner
+
+<ComponentStatus stage="rc" responsive="yes" accessible="yes" />
+
+Banners provide feedback and information about user actions and app operations.
+They're positioned at the top of the screen or near the content they reference.
+
+## Notice message
+
+<Playground>
+  <Banner type="notice">
+    Getting angry would result in a great amount of smashing
+  </Banner>
+</Playground>
+
+## Success message
+
+<Playground>
+  <Banner type="success">You've successfully Hulked out</Banner>
+</Playground>
+
+## Warning message
+
+<Playground>
+  <Banner type="warning">Smashing would result in a log of rubble</Banner>
+</Playground>
+
+## Error message
+
+<Playground>
+  <Banner type="error">Hulk smash has been unsuccessful</Banner>
+</Playground>
+
+## Properties
+
+<Props of={Banner} />

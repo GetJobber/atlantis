@@ -1,19 +1,19 @@
 .regular {
-  font-family: var(--fontFamily-normal);
+  font-family: var(--typography--fontFamily-normal);
   font-weight: 400;
 }
 
 .bold {
-  font-family: var(--fontFamily-normal);
+  font-family: var(--typography--fontFamily-normal);
   font-weight: 700;
 }
 
 .extraBold {
-  font-family: var(--fontFamily-display);
+  font-family: var(--typography--fontFamily-display);
   font-weight: 800;
 }
 
 .black {
-  font-family: var(--fontFamily-display);
+  font-family: var(--typography--fontFamily-display);
   font-weight: 900;
 }

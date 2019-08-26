@@ -1,33 +1,35 @@
+:root {
+  --field--color: var(--color-blue);
+  --field--textAlign: left;
+  --field--placeholder-color: var(--color-greyBlue--light);
+  --field--border-width: var(--border-base);
+  --field--border-color: var(--color-grey--lighter);
+  --field--background-color: var(--color-white);
+
+  --field--padding-top: calc(var(--space-base) - var(--space-smaller));
+  --field--padding-bottom: calc(var(--space-base) - var(--space-smaller));
+  --field--padding-left: var(--space-base);
+  --field--padding-right: var(--space-base);
+  --field--height: var(--space-largest);
+}
+
 .wrapper {
-  --field-color: var(--color-blue);
-  --field-textAlign: left;
-  --field-placeholder-color: var(--color-greyBlue--light);
-  --field-border-width: var(--border-base);
-  --field-border-color: var(--color-grey--lighter);
-  --field-background-color: var(--color-white);
-
-  --field-padding-top: calc(var(--space-base) - var(--space-smallest));
-  --field-padding-bottom: calc(var(--space-base) - var(--space-smallest));
-  --field-padding-left: var(--space-base);
-  --field-padding-right: var(--space-base);
-  --field-height: var(--space-largest);
-
   position: relative;
   width: 100%;
   margin-bottom: var(--space-base);
-  background-color: var(--field-background-color);
+  background-color: var(--field--background-color);
 }
 
 .formField,
 .label {
   width: inherit;
-  height: var(--field-height);
+  height: var(--field--height);
   box-sizing: border-box;
   margin: 0;
-  padding-top: var(--field-padding-top);
-  padding-bottom: var(--field-padding-bottom);
-  padding-left: var(--field-padding-left);
-  padding-right: var(--field-padding-right);
+  padding-top: var(--field--padding-top);
+  padding-bottom: var(--field--padding-bottom);
+  padding-left: var(--field--padding-left);
+  padding-right: var(--field--padding-right);
   font-family: inherit;
   font-size: var(--base-unit);
 }
@@ -35,25 +37,33 @@
 .formField {
   display: block;
   position: relative;
-  border: var(--field-border-width) solid var(--field-border-color);
+  border: var(--field--border-width) solid var(--field--border-color);
   border-radius: var(--radius-base);
   outline: none;
-  color: var(--field-color);
+  color: var(--field--color);
   line-height: 1.25;
-  text-align: var(--field-textAlign);
+  text-align: var(--field--textAlign);
   background-color: transparent;
   transition: padding var(--timing-base);
   appearance: none;
 }
 
+.formField::-ms-clear {
+  display: none;
+}
+
 textarea.formField {
   height: auto;
-  min-height: calc(var(--field-height) * 2);
+  min-height: calc(var(--field--height) * 2);
   resize: vertical;
 }
 
+select.formField {
+  padding-right: calc(var(--field--padding-right) + var(--space-large));
+}
+
 .formField:focus {
-  --field-border-color: var(--color-outline);
+  --field--border-color: var(--color-outline);
 }
 
 .label {
@@ -62,7 +72,7 @@ textarea.formField {
   top: 0;
   left: 0;
   overflow: hidden;
-  color: var(--field-placeholder-color);
+  color: var(--field--placeholder-color);
   line-height: 1;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -79,42 +89,46 @@ textarea.formField {
 /* Sizes */
 
 .small {
-  --field-padding-top: var(--space-smaller);
-  --field-padding-bottom: var(--space-smaller);
-  --field-padding-left: var(--space-small);
-  --field-padding-right: var(--space-small);
-  --field-height: calc(var(--space-larger) + var(--space-smaller));
+  --field--padding-top: var(--space-smaller);
+  --field--padding-bottom: var(--space-smaller);
+  --field--padding-left: var(--space-small);
+  --field--padding-right: var(--space-small);
+  --field--height: calc(var(--space-larger) + var(--space-smaller));
 }
 
 .large {
-  --field-padding-top: var(--space-base);
-  --field-padding-bottom: var(--space-base);
-  --field-padding-left: var(--space-large);
-  --field-padding-right: var(--space-large);
-  --field-height: calc(var(--space-extravagant));
+  --field--padding-top: var(--space-base);
+  --field--padding-bottom: var(--space-base);
+  --field--padding-left: var(--space-large);
+  --field--padding-right: var(--space-large);
+  --field--height: calc(var(--space-extravagant));
 }
 
 /* Alignment */
 
 .center {
-  --field-textAlign: center;
+  --field--textAlign: center;
 }
 
 .right {
-  --field-textAlign: right;
+  --field--textAlign: right;
 }
 
 /* State */
 
 .invalid,
 .invalid .formField:focus {
-  --field-border-color: var(--color-red);
+  --field--border-color: var(--color-red);
+}
+
+.hasErrorMessage {
+  margin-top: var(--space-smaller);
 }
 
 .disabled {
-  --field-placeholder-color: var(--color-grey);
-  --field-background-color: var(--color-grey--lightest);
-  --field-border-color: var(--color-grey--lighter);
+  --field--placeholder-color: var(--color-grey);
+  --field--background-color: var(--color-grey--lightest);
+  --field--border-color: var(--color-grey--lighter);
 
   opacity: 0.6;
 }
@@ -122,15 +136,15 @@ textarea.formField {
 /* Mini Label */
 
 .miniLabel:not(.small) .formField {
-  --field-padding-top: var(--space-base);
-  --field-padding-bottom: var(--space-smaller);
+  --field--padding-top: var(--space-base);
+  --field--padding-bottom: var(--space-smaller);
 }
 
 .miniLabel .label {
-  --field-padding-top: var(--space-smaller);
-  --field-padding-bottom: var(--space-smaller);
-  --field-padding-left: var(--space-base);
-  --field-padding-right: var(--space-base);
+  --field--padding-top: var(--space-smaller);
+  --field--padding-bottom: var(--space-smaller);
+  --field--padding-left: var(--space-base);
+  --field--padding-right: var(--space-base);
   z-index: var(--elevation-base);
 
   height: auto;
@@ -142,10 +156,10 @@ textarea.formField {
 }
 
 .miniLabel.large .label {
-  --field-padding-top: var(--space-small);
-  --field-padding-bottom: var(--space-small);
-  --field-padding-left: var(--space-large);
-  --field-padding-right: var(--space-large);
+  --field--padding-top: var(--space-small);
+  --field--padding-bottom: var(--space-small);
+  --field--padding-left: var(--space-large);
+  --field--padding-right: var(--space-large);
 }
 
 /**
@@ -154,7 +168,16 @@ textarea.formField {
  */
 .maxLength {
   width: calc(
-    (var(--base-unit) * var(--formField-maxLength)) + var(--field-padding-left) +
-      var(--field-padding-right)
+    (var(--base-unit) * var(--formField-maxLength)) + var(--field--padding-left) +
+      var(--field--padding-right)
   );
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  right: var(--field--padding-right);
+  color: var(--color-greyBlue);
+  pointer-events: none;
+  transform: translateY(-50%);
 }

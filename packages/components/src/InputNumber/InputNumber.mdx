@@ -1,0 +1,158 @@
+---
+name: InputNumber
+menu: Components
+route: /components/input-number
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { InputNumber } from ".";
+import { Text } from "../Text";
+import { useState } from "react";
+
+# InputNumber
+
+<ComponentStatus stage="pre" responsive="no" accessible="no" />
+
+Input number is used in forms that accept numbers as an answer.
+
+<Playground>
+  {() => {
+    const [value, setValue] = useState(30);
+    const handleChange = newValue => {
+      setValue(newValue);
+    };
+    return (
+      <InputNumber
+        value={value}
+        max={32}
+        min={0}
+        onChange={handleChange}
+        placeholder="Age"
+      />
+    );
+  }}
+</Playground>
+
+## States
+
+### Disabled
+
+<Playground>
+  <InputNumber
+    placeholder="SIN Number"
+    value={1234}
+    disabled={true}
+    name="sin"
+  />
+</Playground>
+
+### Read only
+
+<Playground>
+  <InputNumber
+    placeholder="Your pin number"
+    value={12345}
+    readonly={true}
+    name="pinNumber"
+  />
+</Playground>
+
+### Invalid
+
+<Playground>
+  <InputNumber
+    placeholder="Give a whole number"
+    defaultValue={1.1}
+    invalid={true}
+    name="wholeNumber"
+  />
+</Playground>
+
+### Invalid with message
+
+<Playground>
+  <InputNumber
+    placeholder="Days per month"
+    defaultValue={1.1}
+    max={32}
+    min={0}
+    validationMessage="Enter a number between 0 and 32"
+    name="daysPerMonth"
+  />
+</Playground>
+
+## Sizes
+
+<Playground>
+  <InputNumber name="smallField" size="small" placeholder="Duration" />
+  <InputNumber
+    name="largeField"
+    size="large"
+    placeholder="Duration but bigger"
+  />
+</Playground>
+
+## Inline
+
+<Playground>
+  <Text>
+    Follow-up after
+    <InputNumber
+      name="durationInDays"
+      defaultValue={2}
+      size="small"
+      inline={true}
+      maxLength={2}
+      align="center"
+    />
+    days
+  </Text>
+</Playground>
+
+## Using onValidate
+
+If you need to capture the error message and render it outside of the component.
+You can use `onValidate` to catch them.
+
+<Playground>
+  {() => {
+    const [value, setValue] = useState(5);
+    const [validationMessage, setValidationMessage] = useState("");
+    return (
+      <>
+        {validationMessage && <Text variation="error">{validationMessage}</Text>}
+        <Text>
+          Follow-up after
+          <InputNumber
+            name="durationInDays"
+            value={value}
+            size="small"
+            inline={true}
+            max={4}
+            min={0}
+            onChange={handleChange}
+            onValidate={handleValidation}
+            align="center"
+          />
+          days
+        </Text>
+      </>
+    );
+
+    function handleChange(newValue) {
+      setValue(newValue);
+    };
+
+    function handleValidation(status, message) {
+      console.log(status, message)
+      setValidationMessage(message);
+    };
+
+}}
+
+</Playground>
+
+## Properties
+
+<Props of={InputNumber} />

@@ -5,37 +5,46 @@ exports[`renders Tabs 1`] = `
   className="tabs"
 >
   <div
-    className="tabRow"
+    className="overflow"
   >
-    <button
-      className="tab selected"
-      onClick={[Function]}
-      role="tab"
-      type="button"
+    <div
+      className="tabRow"
     >
-      <span
-        className="base base green"
+      <button
+        className="tab selected"
+        onClick={[Function]}
+        role="tab"
+        type="button"
       >
-        Eggs
-      </span>
-    </button>
-    <button
-      className="tab"
-      onClick={[Function]}
-      role="tab"
-      type="button"
-    >
-      <span
-        className="base base"
+        <span
+          className="base base green"
+        >
+          Eggs
+        </span>
+      </button>
+      <button
+        className="tab"
+        onClick={[Function]}
+        role="tab"
+        type="button"
       >
-        Cheese
-      </span>
-    </button>
+        <span
+          className="base base"
+        >
+          Cheese
+        </span>
+      </button>
+    </div>
   </div>
   <div
     className="tabContent"
   >
-    🍳
+    <p>
+      🍳
+    </p>
+    <p>
+      Eggs
+    </p>
   </div>
 </div>
 `;

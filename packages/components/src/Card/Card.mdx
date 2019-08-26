@@ -31,7 +31,7 @@ to provide extra structure in a predictable way.
     <p>I'm a link!</p>
   </Card>
 
-  <Card onClick={() => { alert("😻"); }}>
+  <Card onClick={(e) => { alert("😻"); console.log(e.currentTarget);}}>
     <p>I like to be clicked!</p>
   </Card>
 </Playground>
