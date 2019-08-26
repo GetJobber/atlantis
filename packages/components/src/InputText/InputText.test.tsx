@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { fireEvent, render } from "@testing-library/react";
+import { InputTextRef } from "./InputText";
 import { InputText } from ".";
 
 it("renders a regular input for text and numbers", () => {
@@ -25,6 +26,7 @@ it("renders a regular input for text and numbers", () => {
       <input
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440000"
+        onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
         type="text"
@@ -57,6 +59,7 @@ it("renders a textarea", () => {
       <textarea
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440000"
+        onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
       />
@@ -92,6 +95,7 @@ it("renders a textarea with 4 rows", () => {
       <textarea
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440000"
+        onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
         rows={4}
@@ -125,4 +129,21 @@ test("it should call the handler with the new value", () => {
     target: { value: newerValue },
   });
   expect(changeHandler).toHaveBeenCalledWith(newerValue);
+});
+
+test("it should handle inserting text", () => {
+  const initial = "Got milk?";
+  const result = `YUP${initial}`;
+  const secondResult = `YUPsure${initial}`;
+
+  const textRef = React.createRef<InputTextRef>();
+  const changeHandler = jest.fn();
+
+  render(<InputText value={initial} onChange={changeHandler} ref={textRef} />);
+
+  textRef.current.insert("YUP");
+  expect(changeHandler).toHaveBeenCalledWith(result);
+
+  textRef.current.insert("sure");
+  expect(changeHandler).toHaveBeenCalledWith(secondResult);
 });
