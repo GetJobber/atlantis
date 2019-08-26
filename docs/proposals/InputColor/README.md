@@ -22,7 +22,7 @@ render() {
     <InputColor
       placeholder="Button Color"
       value="#aeab2e"
-      onChange ={onChange}
+      onChange={onChange}
     />
   );
 }
@@ -30,13 +30,12 @@ render() {
 
 ## Props Table
 
-| name          | type                                  | default        | description                                                                                                                      |
-| ------------- | ------------------------------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `value`       | `string`                              | `#aeab2e`      | An RGB hex color value, preceeded by a number sign.                                                                              |
-| `placeholder` | `string`                              | `Button Color` | The input label that acts as a placeholder when the value is empty, and a label above the input field when `value` is not blank. |
-| `onChange`    | `onChange(newValue: colorName): void` | none           | Callback that fires when the color is changed by either input.                                                                   |
+| name          | type                                  | default          | description                                                                                                                      |
+| ------------- | ------------------------------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `value?`      | `string`                              | none             | An RGB hex color value, preceeded by a number sign.                                                                              |
+| `placeholder` | `string`                              | `Choose a Color` | The input label that acts as a placeholder when the value is empty, and a label above the input field when `value` is not blank. |
+| `onChange?`   | `onChange(newValue: colorName): void` | none             | Callback that fires when the color is changed by either input.                                                                   |
 
 ## Accessibility
 
-Should be able to navigate to it with a keyboard , something to consider is
-contrast there are a lot of third party tools that handle this.
+This component should be able to support keyboard navigation.
