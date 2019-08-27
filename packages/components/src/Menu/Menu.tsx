@@ -48,11 +48,13 @@ export function Menu({ activator, items }: MenuProps) {
       })}
       {visible && (
         <>
+          <div className={styles.overlay} onClick={toggle()} />
           <div
             className={styles.menu}
             role="menu"
             aria-labelledby={buttonID}
             id={menuID}
+            onClick={hide}
           >
             {items.map((item, key: number) => (
               <div key={key} className={styles.section}>
@@ -64,8 +66,6 @@ export function Menu({ activator, items }: MenuProps) {
               </div>
             ))}
           </div>
-
-          <div className={styles.overlay} onClick={toggle()} />
         </>
       )}
     </div>
@@ -76,6 +76,10 @@ export function Menu({ activator, items }: MenuProps) {
       setVisible(!visible);
       callbackPassthrough && callbackPassthrough(event);
     };
+  }
+
+  function hide() {
+    setVisible(false);
   }
 }
 

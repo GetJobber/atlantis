@@ -76,8 +76,6 @@ test("it should open and close the menu", () => {
 
   fireEvent.click(getByRole("menuitem"));
   expect(clickHandler).toHaveBeenCalledTimes(1);
-
-  fireEvent.click(getByRole("button"));
   expect(queryAllByText(actionLabel).length).toBe(0);
 });
 
