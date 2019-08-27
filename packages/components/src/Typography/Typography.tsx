@@ -45,15 +45,15 @@ export function Typography({
   children,
   element: Tag = "p",
   size,
-  fontWeight,
+  fontWeight = "regular",
   textCase,
   textColor,
   emphasisType,
 }: TypographyProps) {
   const className = classnames(
     styles.base,
+    fontWeights[fontWeight],
     size && fontSizes[size],
-    fontWeight && fontWeights[fontWeight],
     textCase && textCases[textCase],
     textColor && textColors[textColor],
     emphasisType && emphasis[emphasisType],

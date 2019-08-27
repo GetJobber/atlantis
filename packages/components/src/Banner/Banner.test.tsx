@@ -14,7 +14,7 @@ it("renders a success banner", () => {
       className="flash success"
     >
       <p
-        className="base base greyBlueDark"
+        className="base regular base greyBlueDark"
       >
         Success
       </p>
@@ -38,7 +38,7 @@ it("renders an error banner", () => {
       className="flash error"
     >
       <p
-        className="base base greyBlueDark"
+        className="base regular base greyBlueDark"
       >
         Fail
       </p>
@@ -64,7 +64,7 @@ it("renders a notice banner", () => {
       className="flash notice"
     >
       <p
-        className="base base greyBlueDark"
+        className="base regular base greyBlueDark"
       >
         Notice me
       </p>
@@ -88,7 +88,7 @@ it("renders a warning banner", () => {
       className="flash warning"
     >
       <p
-        className="base base greyBlueDark"
+        className="base regular base greyBlueDark"
       >
         Warn
       </p>

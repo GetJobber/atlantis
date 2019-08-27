@@ -6,6 +6,7 @@
   margin-left: calc(-1 * var(--space-smaller));
   padding: 0 var(--space-smaller);
   font-family: var(--typography--fontFamily-display);
+  font-weight: inherit;
   background-image: linear-gradient(
     to left,
     var(--color-green--lighter),
