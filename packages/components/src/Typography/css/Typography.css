@@ -25,4 +25,5 @@
 .base {
   margin: 0;
   padding: 0;
+  font-family: var(--typography--fontFamily-normal);
 }

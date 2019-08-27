@@ -11,12 +11,12 @@ it("renders a paragraph", () => {
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-        <p
-          className="base base greyBlueDark"
-        >
-          Ask the information you need upfront from clients and new leads
-        </p>
-    `);
+    <p
+      className="base regular base greyBlueDark"
+    >
+      Ask the information you need upfront from clients and new leads
+    </p>
+  `);
 });
 
 it("renders a subdued text", () => {
@@ -24,12 +24,12 @@ it("renders a subdued text", () => {
     .create(<Text variation="subdued">Job note linked to related invoice</Text>)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-            <p
-              className="base base greyBlue"
-            >
-              Job note linked to related invoice
-            </p>
-      `);
+    <p
+      className="base regular base greyBlue"
+    >
+      Job note linked to related invoice
+    </p>
+  `);
 });
 
 it("renders a success text", () => {
@@ -37,12 +37,12 @@ it("renders a success text", () => {
     .create(<Text variation="success">Invoice sent</Text>)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-            <p
-              className="base base green"
-            >
-              Invoice sent
-            </p>
-      `);
+    <p
+      className="base regular base green"
+    >
+      Invoice sent
+    </p>
+  `);
 });
 
 it("renders a error text", () => {
@@ -50,12 +50,12 @@ it("renders a error text", () => {
     .create(<Text variation="error">Name is required</Text>)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-            <p
-              className="base base red"
-            >
-              Name is required
-            </p>
-      `);
+    <p
+      className="base regular base red"
+    >
+      Name is required
+    </p>
+  `);
 });
 
 it("renders a warning text", () => {
@@ -65,12 +65,12 @@ it("renders a warning text", () => {
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-            <p
-              className="base base yellow"
-            >
-              Your message is over 160 characters
-            </p>
-      `);
+    <p
+      className="base regular base yellow"
+    >
+      Your message is over 160 characters
+    </p>
+  `);
 });
 
 it("renders a info text", () => {
@@ -82,12 +82,12 @@ it("renders a info text", () => {
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-            <p
-              className="base base lightBlue"
-            >
-              Drag to rearrange the order that fields show up in Jobber
-            </p>
-      `);
+    <p
+      className="base regular base lightBlue"
+    >
+      Drag to rearrange the order that fields show up in Jobber
+    </p>
+  `);
 });
 
 it("renders an intro text", () => {
@@ -101,7 +101,7 @@ it("renders an intro text", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <p
-      className="base larger greyBlueDark"
+      className="base regular larger greyBlueDark"
     >
       Attract new customers by asking happy clients for a Facebook recommendation
     </p>

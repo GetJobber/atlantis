@@ -17,7 +17,7 @@ exports[`renders a Menu 1`] = `
       className="icon more base"
     />
     <span
-      className="base small extraBold uppercase green"
+      className="base extraBold small uppercase green"
     >
       More Actions
     </span>
@@ -39,7 +39,7 @@ exports[`renders a Menu with custom activator 1`] = `
     onClick={[Function]}
   >
     <span
-      className="base small extraBold uppercase white"
+      className="base extraBold small uppercase white"
     >
       Menu
     </span>
