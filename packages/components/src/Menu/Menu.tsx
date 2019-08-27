@@ -1,5 +1,12 @@
-import React, { MouseEvent, ReactElement, useState } from "react";
+import React, {
+  MouseEvent,
+  ReactElement,
+  createRef,
+  useLayoutEffect,
+  useState,
+} from "react";
 import uuid from "uuid";
+import classnames from "classnames";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
 import { Icon, IconNames } from "../Icon";
@@ -30,15 +37,34 @@ interface SectionProps {
 
 export function Menu({ activator, items }: MenuProps) {
   const [visible, setVisible] = useState(false);
+  const [position, setPosition] = useState<"above" | "below">("below");
+  const wrapperRef = createRef<HTMLDivElement>();
   const buttonID = uuid();
   const menuID = uuid();
+
+  useLayoutEffect(() => {
+    if (wrapperRef.current) {
+      const bounds = wrapperRef.current.getBoundingClientRect();
+      if (bounds.top <= window.innerHeight / 2) {
+        setPosition("below");
+      } else {
+        setPosition("above");
+      }
+    }
+  }, [visible]);
 
   if (!activator) {
     activator = <Button label="More Actions" icon="more" type="secondary" />;
   }
 
+  const menuClasses = classnames(
+    styles.menu,
+    position === "above" && styles.above,
+    position === "below" && styles.below,
+  );
+
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} ref={wrapperRef}>
       {React.cloneElement(activator, {
         onClick: toggle(activator.props.onClick),
         id: buttonID,
@@ -50,7 +76,7 @@ export function Menu({ activator, items }: MenuProps) {
         <>
           <div className={styles.overlay} onClick={toggle()} />
           <div
-            className={styles.menu}
+            className={menuClasses}
             role="menu"
             aria-labelledby={buttonID}
             id={menuID}
