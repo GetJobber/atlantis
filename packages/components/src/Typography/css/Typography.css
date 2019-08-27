@@ -25,9 +25,4 @@
 .base {
   margin: 0;
   padding: 0;
-  color: var(--color-blue);
-  font-family: var(--typography--fontFamily-normal);
-  font-size: var(--typography--fontSize-base);
-  font-weight: 400;
-  line-height: var(--typography--lineHeight-base);
 }
