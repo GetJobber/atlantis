@@ -20,29 +20,13 @@ export function InputTimeSafari({
   ...params
 }: InputTimeProps) {
   const inputTime = React.createRef<HTMLInputElement>();
-  const handleChange = (newValue: string) => {
-    onChange && onChange(htmlTimeToCivilTime(newValue));
-  };
+  const debouncedHandleChange = debounce(handleChange, 1000);
 
   useLayoutEffect(() => {
     const input = inputTime.current as PolyfilledInputElement;
-    const debouncedHandleChange = debounce(handleChange, 1000);
 
-    const changeHandler = (event: Event) => {
-      const value = (event.currentTarget as HTMLInputElement).dataset.value;
-
-      if (value) {
-        debouncedHandleChange(value);
-      }
-    };
-
-    const blurHandler = (event: Event) => {
-      const value = (event.currentTarget as HTMLInputElement).dataset.value;
-
-      if (value) {
-        handleChange(value);
-      }
-    };
+    const changeHandler = generateEventHandler(debouncedHandleChange);
+    const blurHandler = generateEventHandler(handleChange);
 
     if (input) {
       new TimePolyfill(input);
@@ -84,4 +68,31 @@ export function InputTimeSafari({
   }, [value, defaultValue]);
 
   return <FormField ref={inputTime} type="time" {...params} />;
+
+  function generateEventHandler(handler: typeof handleChange) {
+    return (event: Event) => {
+      if (handler !== debouncedHandleChange) {
+        debouncedHandleChange.cancel();
+      }
+
+      const input = event.currentTarget as PolyfilledInputElement;
+      const newValue = input.dataset.value;
+
+      if (newValue && newValue !== "") {
+        handler(newValue);
+        return;
+      }
+
+      if (value) {
+        input.value = civilTimeToHTMLTime(value || "");
+        input.polyfill.update();
+        handler(civilTimeToHTMLTime(value));
+        return;
+      }
+    };
+  }
+
+  function handleChange(newValue: string) {
+    onChange && onChange(htmlTimeToCivilTime(newValue) || value);
+  }
 }

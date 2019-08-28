@@ -16,7 +16,7 @@ export function InputTime({
   ...params
 }: InputTimeProps) {
   const handleChange = (newValue: string) => {
-    onChange && onChange(htmlTimeToCivilTime(newValue));
+    onChange && onChange(htmlTimeToCivilTime(newValue) || value);
   };
 
   if (supportsTime) {

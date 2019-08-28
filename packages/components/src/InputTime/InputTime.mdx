@@ -58,12 +58,12 @@ the last element is set the change event will fire.
       setTime(new CivilTime(3, 52));
     };
     const handleChange = newTime => {
-      setTime(newTime);
+      newTime && setTime(newTime);
     };
     return (
       <>
         <InputTime value={time} onChange={handleChange} />
-        <pre>{time.toString()}</pre>
+        <pre>{time && time.toString()}</pre>
         <Button label="Reset" onClick={resetTime} />
       </>
     );
