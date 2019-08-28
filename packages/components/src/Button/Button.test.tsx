@@ -9,6 +9,7 @@ it("renders a Button", () => {
     <button
       className="button base work primary"
       disabled={false}
+      type="button"
     >
       <span
         className="base extraBold small uppercase white"
@@ -27,6 +28,7 @@ it("renders a secondary Button", () => {
     <button
       className="button base work secondary"
       disabled={false}
+      type="button"
     >
       <span
         className="base extraBold small uppercase green"
@@ -45,6 +47,7 @@ it("renders a tertiary Button", () => {
     <button
       className="button base work tertiary"
       disabled={false}
+      type="button"
     >
       <span
         className="base extraBold small uppercase green"
@@ -63,6 +66,7 @@ it("renders a destructuve Button", () => {
     <button
       className="button base destructive primary"
       disabled={false}
+      type="button"
     >
       <span
         className="base extraBold small uppercase white"
@@ -81,6 +85,7 @@ it("renders a learning Button", () => {
     <button
       className="button base learning primary"
       disabled={false}
+      type="button"
     >
       <span
         className="base extraBold small uppercase white"
@@ -99,6 +104,7 @@ it("renders a cancel Button", () => {
     <button
       className="button base cancel primary"
       disabled={false}
+      type="button"
     >
       <span
         className="base extraBold small uppercase greyBlue"
@@ -117,6 +123,7 @@ it("renders a disabled Button", () => {
     <button
       className="button base work primary disabled"
       disabled={true}
+      type="button"
     >
       <span
         className="base extraBold small uppercase grey"
@@ -132,19 +139,19 @@ it("renders a Button with a link and opens in new tab", () => {
     .create(<Button label="Submit" url="💩.com" external={true} />)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-    <a
-      className="button base work primary"
-      disabled={false}
-      href="💩.com"
-      target="_blank"
-    >
-      <span
-        className="base extraBold small uppercase white"
-      >
-        Submit
-      </span>
-    </a>
-  `);
+        <a
+          className="button base work primary"
+          disabled={false}
+          href="💩.com"
+          target="_blank"
+        >
+          <span
+            className="base extraBold small uppercase white"
+          >
+            Submit
+          </span>
+        </a>
+    `);
 });
 
 it("renders a Button with an icon", () => {
@@ -153,6 +160,7 @@ it("renders a Button with an icon", () => {
     <button
       className="button base hasIcon work primary"
       disabled={false}
+      type="button"
     >
       <div
         className="icon add base"
@@ -174,6 +182,7 @@ it("renders a Button with an icon on the right", () => {
     <button
       className="button base hasIcon iconOnRight work primary"
       disabled={false}
+      type="button"
     >
       <div
         className="icon add base"
@@ -193,6 +202,7 @@ it("renders a small Button", () => {
     <button
       className="button small work primary"
       disabled={false}
+      type="button"
     >
       <span
         className="base extraBold smaller uppercase white"
@@ -209,6 +219,7 @@ it("renders a large Button", () => {
     <button
       className="button large work primary"
       disabled={false}
+      type="button"
     >
       <span
         className="base extraBold base uppercase white"
@@ -227,6 +238,7 @@ it("renders a Button with a loading state", () => {
     <button
       className="button base work primary loading"
       disabled={false}
+      type="button"
     >
       <span
         className="base extraBold small uppercase white"

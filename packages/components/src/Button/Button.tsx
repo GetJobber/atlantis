@@ -80,6 +80,7 @@ export function Button({
     ...(!disabled && { href: url }),
     ...(!disabled && { onClick: onClick }),
     ...(external && { target: "_blank" }),
+    ...(url === undefined && { type: "button" as "button" }),
   };
 
   const Tag = url ? "a" : "button";

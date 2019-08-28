@@ -12,6 +12,7 @@ exports[`renders a Menu 1`] = `
     disabled={false}
     id="123e4567-e89b-12d3-a456-426655440001"
     onClick={[Function]}
+    type="button"
   >
     <div
       className="icon more base"
@@ -37,6 +38,7 @@ exports[`renders a Menu with custom activator 1`] = `
     disabled={false}
     id="123e4567-e89b-12d3-a456-426655440003"
     onClick={[Function]}
+    type="button"
   >
     <span
       className="base extraBold small uppercase white"
