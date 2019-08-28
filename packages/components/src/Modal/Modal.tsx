@@ -48,6 +48,7 @@ export function Modal({
       {open && (
         <div className={styles.container}>
           <motion.div
+            key={styles.overlay}
             className={styles.overlay}
             onClick={onRequestClose}
             initial={{ opacity: 0 }}
@@ -56,12 +57,17 @@ export function Modal({
             transition={{ duration: 0.2 }}
           />
           <motion.div
-            key="modal"
+            key={styles.modal}
             className={modalClassName}
             initial={{ scale: 0.8, opacity: 0.8 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{
+              type: "spring",
+              duration: 0.2,
+              damping: 20,
+              stiffness: 300,
+            }}
           >
             <Header
               title={title}
