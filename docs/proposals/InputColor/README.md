@@ -34,13 +34,10 @@ render() {
 
 ```tsx
 render() {
-  const colorRef = React.createRef()
-
   return (
     <InputColor
       placeholder="Button Color"
       defualtValue="#aeab2e"
-      ref={colorRef}
     />
   );
 }
@@ -48,13 +45,12 @@ render() {
 
 ## Props Table
 
-| name            | type                                                                   | default          | description                                                                                                                      |
-| --------------- | ---------------------------------------------------------------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `value?`        | `string`                                                               | none             | An RGB hex color value, preceeded by a number sign.                                                                              |
-| `defaultValue?` | `string`                                                               | none             | An initial value for the InputColor to have                                                                                      |
-| `placeholder`   | `string`                                                               | `Choose a Color` | The input label that acts as a placeholder when the value is empty, and a label above the input field when `value` is not blank. |
-| `onChange?`     | `onChange(newValue: colorName): void`                                  | none             | Callback that fires when the color is changed by either input.                                                                   |
-| `ref?`          | `((instance: inputcoloref | null) => void) | refobject<inputcolorref>` | none             | allows us to gain access to an element                                                                                           |
+| name            | type                                  | default          | description                                                                                                                      |
+| --------------- | ------------------------------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `value?`        | `string`                              | none             | An RGB hex color value, preceeded by a number sign.                                                                              |
+| `defaultValue?` | `string`                              | none             | An initial value for the InputColor to have                                                                                      |
+| `placeholder`   | `string`                              | `Choose a Color` | The input label that acts as a placeholder when the value is empty, and a label above the input field when `value` is not blank. |
+| `onChange?`     | `onChange(newValue: colorName): void` | none             | Callback that fires when the color is changed by either input.                                                                   |
 
 ## Accessibility
 
