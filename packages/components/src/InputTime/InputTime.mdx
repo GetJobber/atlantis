@@ -63,7 +63,7 @@ the last element is set the change event will fire.
     return (
       <>
         <InputTime value={time} onChange={handleChange} />
-        <pre>{time.toString()}</pre>
+        <pre>{time && time.toString()}</pre>
         <Button label="Reset" onClick={resetTime} />
       </>
     );
