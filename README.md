@@ -47,6 +47,23 @@ You should name your component in `PascalCase`.
 npm run plop
 ```
 
+#### Example
+
+```sh
+❯❯❯ npm run plop
+
+> atlantis@0.0.1 plop /path/to/atlantis
+> plop
+
+? Component Name: ExampleComponent
+✔  +! 5 files added
+ -> /packages/components/src/ExampleComponent/index.ts
+ -> /packages/components/src/ExampleComponent/ExampleComponent.css
+ -> /packages/components/src/ExampleComponent/ExampleComponent.mdx
+ -> /packages/components/src/ExampleComponent/ExampleComponent.test.tsx
+ -> /packages/components/src/ExampleComponent/ExampleComponent.tsx
+```
+
 ### Testing
 
 To run tests:
