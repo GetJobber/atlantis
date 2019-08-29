@@ -2,7 +2,7 @@ import { CivilTime } from "@std-proposal/temporal";
 
 export function civilTimeToHTMLTime(civilTime: CivilTime): string {
   const timeString = civilTime.toString();
-  return timeString.substring(0, timeString.indexOf("."));
+  return timeString.slice(0, 5);
 }
 
 export function htmlTimeToCivilTime(timeString: string): CivilTime {
