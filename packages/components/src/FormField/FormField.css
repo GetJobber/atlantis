@@ -48,10 +48,7 @@
   appearance: none;
 }
 
-.formField::-ms-clear {
-  display: none;
-}
-
+.formField::-ms-clear,
 .formField::-webkit-clear-button {
   display: none;
 }
