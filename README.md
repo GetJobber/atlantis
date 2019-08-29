@@ -26,13 +26,25 @@ To install Atlantis locally for development:
 ```sh
 git clone git@github.com:GetJobber/atlantis.git
 cd atlantis
-npm install
+npm ci
 ```
 
 To start the [docz](https://www.docz.site/) development server:
 
 ```sh
 npm start
+```
+
+### Generating a New Component
+
+Running the following command will prompt you for a component name and generate
+a starting point consisting of a component, tests, styling, etc to help you get
+started.
+
+You should name your component in `PascalCase`.
+
+```sh
+npm run plop
 ```
 
 ### Testing
@@ -79,7 +91,7 @@ lerna publish --canary --dist-tag next --preid pre
 
 ### For Realz
 
-Follow semver when choosing versions.
+Follow [semver](https://semver.org) when choosing versions.
 
 ```sh
 npm run release-the-kraken
