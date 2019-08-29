@@ -29,18 +29,18 @@ export function InputTimeSafari({
     const debouncedHandleChange = debounce(handleChange, 1000);
 
     const changeHandler = (event: Event) => {
-      const value = (event.currentTarget as HTMLInputElement).dataset.value;
+      const newValue = (event.currentTarget as HTMLInputElement).dataset.value;
 
-      if (value) {
-        debouncedHandleChange(value);
+      if (newValue != undefined) {
+        debouncedHandleChange(newValue);
       }
     };
 
     const blurHandler = (event: Event) => {
-      const value = (event.currentTarget as HTMLInputElement).dataset.value;
+      const newValue = (event.currentTarget as HTMLInputElement).dataset.value;
 
-      if (value) {
-        handleChange(value);
+      if (newValue != undefined) {
+        handleChange(newValue);
       }
     };
 
