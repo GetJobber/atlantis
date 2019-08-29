@@ -52,6 +52,10 @@
   display: none;
 }
 
+.formField::-webkit-clear-button {
+  display: none;
+}
+
 textarea.formField {
   height: auto;
   min-height: calc(var(--field--height) * 2);
