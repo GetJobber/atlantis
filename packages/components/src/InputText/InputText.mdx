@@ -50,6 +50,45 @@ Use this to allow users to provide long answers.
   />
 </Playground>
 
+## Validation message
+
+You can add your own custom validation messages on a field. However, this
+shouldn't replace of your server-side validation.
+
+<Playground>
+  {() => {
+    const [value, setValue] = useState("");
+    return (
+      <InputText
+        value={value}
+        onChange={handleChange}
+        name="age"
+        placeholder="What's your age"
+        validation={[
+          {
+            shouldShow: value.length > 2 && value.length < 10 && isNaN(value),
+            message: "Now that's a word, keep going!",
+            status: "success"
+          },
+          {
+            shouldShow: value.length >= 10,
+            message: "You sure you're that old?",
+            status: "warn"
+          },
+          {
+            shouldShow: value.length > 0 && !isNaN(value),
+            message: "Only type your age in words",
+            status: "error"
+          }
+        ]}
+      />
+    );
+    function handleChange(newValue) {
+      setValue(newValue);
+    }
+  }}
+</Playground>
+
 ## States
 
 ### Disabled
