@@ -97,6 +97,11 @@ export interface FormFieldProps {
   readonly type?: "text" | "number" | "time" | "textarea" | "select";
 
   /**
+   * **EXPERIMENTAL** This feature is still under development.
+   */
+  readonly validationMessages?: ValidationProp[];
+
+  /**
    * Set the component to the given value.
    */
   readonly value?: string | number;
@@ -127,6 +132,11 @@ export interface FormFieldProps {
   onValidate?(status: "pass" | "fail", message: string): void;
 }
 
+interface ValidationProp {
+  status: "success" | "error" | "warn" | "info";
+  message: string;
+}
+
 export const FormField = React.forwardRef(
   (
     {
@@ -151,6 +161,7 @@ export const FormField = React.forwardRef(
       size,
       type = "text",
       value,
+      validationMessages,
     }: FormFieldProps,
     ref:
       | Ref<HTMLInputElement>
@@ -187,6 +198,10 @@ export const FormField = React.forwardRef(
       <>
         {errorMessage && !inline && (
           <Text variation="error">{errorMessage}</Text>
+        )}
+
+        {validationMessages && (
+          <ValidationMessage messages={validationMessages} />
         )}
 
         <Wrapper
@@ -285,3 +300,30 @@ export const FormField = React.forwardRef(
     }
   },
 );
+
+interface ValidationMessageProp {
+  messages: ValidationProp[];
+}
+
+interface StatusMap {
+  [key: string]: "success" | "error" | "warning" | "info";
+}
+
+function ValidationMessage({ messages }: ValidationMessageProp) {
+  const variationMap: StatusMap = {
+    success: "success",
+    error: "error",
+    warn: "warning",
+    info: "info",
+  };
+
+  return (
+    <div className={styles.validationMessage}>
+      {messages.map(({ status, message }: ValidationProp) => (
+        <Text key={uuid()} variation={variationMap[status]}>
+          {message}
+        </Text>
+      ))}
+    </div>
+  );
+}

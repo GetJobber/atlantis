@@ -181,3 +181,7 @@ select.formField {
   pointer-events: none;
   transform: translateY(-50%);
 }
+
+.validationMessage {
+  margin-bottom: var(--space-smaller);
+}
