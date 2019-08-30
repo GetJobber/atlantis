@@ -319,16 +319,9 @@ function InputValidation({ messages }: InputValidationProp) {
     info: "info",
   };
 
-  const transitionStyle = {
-    type: "spring",
-    duration: 0.2,
-    damping: 20,
-    stiffness: 300,
-  };
-
   const variants = {
-    slideOut: { x: "5%", height: 0, opacity: 0, transition: transitionStyle },
-    slideIn: { x: 0, height: "100%", opacity: 1, transition: transitionStyle },
+    slideOut: { y: "5%", height: 0, opacity: 0 },
+    slideIn: { y: 0, height: "100%", opacity: 1 },
   };
 
   return (
@@ -342,6 +335,7 @@ function InputValidation({ messages }: InputValidationProp) {
                 initial="slideOut"
                 animate="slideIn"
                 exit="slideOut"
+                transition={{ duration: 0.2 }}
               >
                 <Text variation={variationMap[status]}>{message}</Text>
               </motion.div>
