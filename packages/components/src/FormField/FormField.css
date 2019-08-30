@@ -182,6 +182,6 @@ select.formField {
   transform: translateY(-50%);
 }
 
-.validationMessage {
+.hasValidationMessage {
   margin-bottom: var(--space-smaller);
 }
