@@ -56,7 +56,14 @@ _{Provide a table in the following format of the component's public API}_
 This component will also inherit props from `FormField`. You can see examples of
 interaction with `FormField` in our other input components.
 
-## References:
+## Notes / Requirements
 
-This component will use CivilDate as per the
-[Temporal Proposal Spec](https://github.com/tc39/proposal-temporal/blob/master/objects.md#civildate-).
+- Choosing a value from the popup calendar should update the value in the input.
+- Typing in the input should also update the calendar.
+- This component will use CivilDate as per the
+  [Temporal Proposal Spec](https://github.com/tc39/proposal-temporal/blob/master/objects.md#civildate-).
+- The text in the input should be a representation of the chosen CivilDate as
+  per the system settings and
+  [toLocaleDateString](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString).
+  For example, `new CivilDate(2012, 11, 12)` should represent as `"12/11/2012"`
+  if run in the `en-US` locale but `"2012-12-11"` if in `en-CA`.
