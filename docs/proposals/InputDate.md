@@ -45,8 +45,6 @@ import { InputTime } "@jobber/components/InputTime";
 
 ## Props Table
 
-_{Provide a table in the following format of the component's public API}_
-
 | name           | type                     | default   | description                                                                                       |
 | -------------- | ------------------------ | --------- | ------------------------------------------------------------------------------------------------- |
 | `defaultValue` | `CivilDate?`             | undefined | Value for an [uncontrolled input](https://reactjs.org/docs/uncontrolled-components.html).         |
