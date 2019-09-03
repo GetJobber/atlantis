@@ -103,7 +103,7 @@ export interface FormFieldProps {
    * Show a success, error, warn, and info message above the field. This also
    * highlights the the field red if and error message shows up.
    */
-  readonly validations?: ValidationProp[];
+  readonly validations?: ValidationProps[];
 
   /**
    * Set the component to the given value.
@@ -308,7 +308,7 @@ export const FormField = React.forwardRef(
 
 type ValidationStatus = "success" | "error" | "warn" | "info";
 
-interface ValidationProp {
+interface ValidationProps {
   /**
    * Defines the status of the validation message. This also determines how the
    * message is styled in the UI.
@@ -326,18 +326,18 @@ interface ValidationProp {
   shouldShow?: boolean;
 }
 
-interface InputValidationProp {
+interface InputValidationProps {
   /**
    * Array of validation messages
    */
-  messages: ValidationProp[];
+  messages: ValidationProps[];
 }
 
 interface StatusMap {
   [key: string]: ValidationStatus;
 }
 
-function InputValidation({ messages }: InputValidationProp) {
+function InputValidation({ messages }: InputValidationProps) {
   const variationMap: StatusMap = {
     success: "success",
     error: "error",
@@ -353,7 +353,7 @@ function InputValidation({ messages }: InputValidationProp) {
   return (
     <div className={styles.hasValidationMessage}>
       {messages.map(
-        ({ status, message, shouldShow = true }: ValidationProp) => (
+        ({ status, message, shouldShow = true }: ValidationProps) => (
           <AnimatePresence initial={false} key={`${status}-${message}`}>
             {shouldShow && (
               <motion.div
