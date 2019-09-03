@@ -64,7 +64,7 @@ shouldn't replace of your server-side validation.
         onChange={handleChange}
         name="age"
         placeholder="What's your age"
-        validation={[
+        validations={[
           {
             shouldShow: value.length > 2 && value.length < 10 && isNaN(value),
             message: "Now that's a word, keep going!",

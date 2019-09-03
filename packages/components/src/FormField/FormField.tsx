@@ -100,7 +100,7 @@ export interface FormFieldProps {
   /**
    * **EXPERIMENTAL** This feature is still under development.
    */
-  readonly validation?: ValidationProp[];
+  readonly validations?: ValidationProp[];
 
   /**
    * Set the component to the given value.
@@ -157,7 +157,7 @@ export const FormField = React.forwardRef(
       size,
       type = "text",
       value,
-      validation,
+      validations,
     }: FormFieldProps,
     ref:
       | Ref<HTMLInputElement>
@@ -173,13 +173,21 @@ export const FormField = React.forwardRef(
       handleValidation();
     }, [value]);
 
+    let hasErrors = false;
+    if (validations) {
+      hasErrors =
+        validations.filter(
+          validation => validation.shouldShow && validation.status === "error",
+        ).length > 0;
+    }
+
     const wrapperClassNames = classnames(
       styles.wrapper,
       inline && styles.inline,
       size && styles[size],
       align && styles[align],
       errorMessage && styles.hasErrorMessage,
-      (invalid || errorMessage) && styles.invalid,
+      (invalid || errorMessage || hasErrors) && styles.invalid,
       disabled && styles.disabled,
       maxLength && styles.maxLength,
       {
@@ -196,7 +204,7 @@ export const FormField = React.forwardRef(
           <Text variation="error">{errorMessage}</Text>
         )}
 
-        {validation && <InputValidation messages={validation} />}
+        {validations && <InputValidation messages={validations} />}
 
         <Wrapper
           className={wrapperClassNames}
