@@ -179,9 +179,12 @@ export const FormField = React.forwardRef(
     let hasErrors = false;
     if (validations) {
       hasErrors =
-        validations.filter(
-          validation => validation.shouldShow && validation.status === "error",
-        ).length > 0;
+        validations.filter(validation => {
+          return (
+            (validation.shouldShow || validation.shouldShow === undefined) &&
+            validation.status === "error"
+          );
+        }).length > 0;
     }
 
     const wrapperClassNames = classnames(
