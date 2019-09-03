@@ -1,0 +1,25 @@
+---
+name: Tooltip
+menu: Components
+route: /components/tooltip
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { Tooltip } from ".";
+
+# Tooltip
+
+<ComponentStatus stage="pre" responsive="no" accessible="no" />
+
+In Jobber a Tooltip is used to tip the tool
+
+## Simple Example
+
+<Playground>
+  <Tooltip message="This is a user message.">Foo</Tooltip>
+</Playground>
+
+## Tooltip Properties
+
+<Props of={Tooltip} />
