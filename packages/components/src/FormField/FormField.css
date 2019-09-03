@@ -181,7 +181,3 @@ select.formField {
   pointer-events: none;
   transform: translateY(-50%);
 }
-
-.hasValidationMessage {
-  margin-bottom: var(--space-smaller);
-}

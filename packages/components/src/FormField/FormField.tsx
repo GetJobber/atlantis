@@ -1,9 +1,9 @@
 import React, { ChangeEvent, ReactNode, Ref, useEffect, useState } from "react";
 import classnames from "classnames";
 import uuid from "uuid";
-import { AnimatePresence, motion } from "framer-motion";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
+import { InputValidation, ValidationProps } from "../InputValidation";
 import styles from "./FormField.css";
 
 export interface FormFieldProps {
@@ -127,13 +127,21 @@ export interface FormFieldProps {
   onBlur?(): void;
 
   /**
-   * **EXPERIMENTAL** This feature is still under development.
+   * **DEPRECATED** Use `onValidation` prop instead.
    *
    * Callback to get the the status and message when validating a field
    * @param status
    * @param message
    */
   onValidate?(status: "pass" | "fail", message: string): void;
+
+  /**
+   * **EXPERIMENTAL** This feature is still under development.
+   *
+   * Callback to get the the status and message when validating a field
+   * @param messages
+   */
+  onValidation?(messages: ValidationProps[]): void;
 }
 
 export const FormField = React.forwardRef(
@@ -154,6 +162,7 @@ export const FormField = React.forwardRef(
       onBlur,
       onChange,
       onValidate,
+      onValidation,
       placeholder,
       readonly,
       rows,
@@ -210,7 +219,7 @@ export const FormField = React.forwardRef(
           <Text variation="error">{errorMessage}</Text>
         )}
 
-        {validations && <InputValidation messages={validations} />}
+        {validations && !inline && <InputValidation messages={validations} />}
 
         <Wrapper
           className={wrapperClassNames}
@@ -305,73 +314,9 @@ export const FormField = React.forwardRef(
       const status = errorMessage ? "fail" : "pass";
       const message = errorMessage || "";
       onValidate && onValidate(status, message);
+
+      const validationMessages = validations ? validations : [];
+      onValidation && onValidation(validationMessages);
     }
   },
 );
-
-type ValidationStatus = "success" | "error" | "warn" | "info";
-
-interface ValidationProps {
-  /**
-   * Defines the status of the validation message. This also determines how the
-   * message is styled in the UI.
-   */
-  status: ValidationStatus;
-
-  /**
-   * The message that gets shown to the user.
-   */
-  message: string;
-
-  /**
-   * Determines if the `message` shows up for the user.
-   */
-  shouldShow?: boolean;
-}
-
-interface InputValidationProps {
-  /**
-   * Array of validation messages
-   */
-  messages: ValidationProps[];
-}
-
-interface StatusMap {
-  [key: string]: ValidationStatus;
-}
-
-function InputValidation({ messages }: InputValidationProps) {
-  const variationMap: StatusMap = {
-    success: "success",
-    error: "error",
-    warn: "warn",
-    info: "info",
-  };
-
-  const variants = {
-    slideOut: { y: "5%", height: 0, opacity: 0 },
-    slideIn: { y: 0, height: "100%", opacity: 1 },
-  };
-
-  return (
-    <div className={styles.hasValidationMessage}>
-      {messages.map(
-        ({ status, message, shouldShow = true }: ValidationProps) => (
-          <AnimatePresence initial={false} key={`${status}-${message}`}>
-            {shouldShow && (
-              <motion.div
-                variants={variants}
-                initial="slideOut"
-                animate="slideIn"
-                exit="slideOut"
-                transition={{ duration: 0.2 }}
-              >
-                <Text variation={variationMap[status]}>{message}</Text>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        ),
-      )}
-    </div>
-  );
-}

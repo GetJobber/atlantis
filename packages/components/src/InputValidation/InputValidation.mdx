@@ -1,0 +1,59 @@
+---
+name: InputValidation
+menu: Components
+route: /components/input-validation
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { InputValidation } from ".";
+import { Text } from "../Text";
+import { InputNumber } from "../InputNumber";
+import { useState } from "react";
+
+# Input Validation
+
+<ComponentStatus stage="pre" responsive="yes" accessible="yes" />
+
+This component allows you to show the validation messages outside of the inputs.
+
+<Playground>
+  {() => {
+    const [value, setValue] = useState(5);
+    const [validationMessage, setValidationMessage] = useState(undefined);
+    return (
+      <>
+        <InputValidation messages={validationMessage} />
+        <Text>
+          Follow-up after
+          <InputNumber
+            name="durationInDays"
+            value={value}
+            size="small"
+            inline={true}
+            max={4}
+            min={0}
+            onChange={handleChange}
+            onValidation={handleValidation}
+            align="center"
+          />
+          days
+        </Text>
+      </>
+    );
+
+    function handleChange(newValue) {
+      setValue(newValue);
+    };
+
+    function handleValidation(messages) {
+      setValidationMessage(messages);
+    };
+
+}}
+
+</Playground>
+
+## InputValidation Properties
+
+<Props of={InputValidation} />
