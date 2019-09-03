@@ -93,6 +93,26 @@ npm run lint:css
 npm run lint:ts
 ```
 
+## Repo Structure
+
+The `atlantis` repo is a monorepo consisting of a few different packages all
+living in the `./packages/` directory.
+
+The primary packages in here are:
+
+- `packages/`
+  - `components/`
+    - The primary home for components. Each component lives in its own folder in
+      the `./src` directory within here.
+  - `design/`
+    - A home for shareable css variables.
+  - `docx/`
+    - Any components internal to the documention viewer itself.
+
+When installing dependancies be sure to install them relative to the appropriate
+sub package. For example if you want to use package `foo` in a component you
+would run `npm install foo` from within the `components` directory.
+
 ## Contributing
 
 Everyone is a friend of Atlantis and we welcome pull requests. See the
