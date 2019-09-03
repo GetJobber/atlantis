@@ -31,7 +31,7 @@ export interface FormFieldProps {
   readonly disabled?: boolean;
 
   /**
-   * **EXPERIMENTAL** This feature is still under development.
+   * **DEPRECATED** Use `validations` prop instead.
    *
    * Show an error message and highlight the the field red.
    */
@@ -39,7 +39,7 @@ export interface FormFieldProps {
 
   /**
    * Adjusts the form field to go inline with a content. This also silences the
-   * given `errorMessage` prop. You'd have to used the `onValidate` prop to
+   * given `validations` prop. You'd have to used the `onValidate` prop to
    * capture the message and render it somewhere else using the `Text` component.
    */
   readonly inline?: boolean;
@@ -99,6 +99,9 @@ export interface FormFieldProps {
 
   /**
    * **EXPERIMENTAL** This feature is still under development.
+   *
+   * Show a success, error, warn, and info message above the field. This also
+   * highlights the the field red if and error message shows up.
    */
   readonly validations?: ValidationProp[];
 
@@ -306,12 +309,27 @@ export const FormField = React.forwardRef(
 type ValidationStatus = "success" | "error" | "warn" | "info";
 
 interface ValidationProp {
+  /**
+   * Defines the status of the validation message. This also determines how the
+   * message is styled in the UI.
+   */
   status: ValidationStatus;
+
+  /**
+   * The message that gets shown to the user.
+   */
   message: string;
+
+  /**
+   * Determines if the `message` shows up for the user.
+   */
   shouldShow?: boolean;
 }
 
 interface InputValidationProp {
+  /**
+   * Array of validation messages
+   */
   messages: ValidationProp[];
 }
 
