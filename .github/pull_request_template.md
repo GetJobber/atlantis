@@ -1,3 +1,20 @@
+<!--
+  Be sure to follow https://www.conventionalcommits.org for your Pull Request title.
+  Full list of types:
+    https://github.com/commitizen/conventional-commit-types/blob/master/index.json
+
+  eg.
+    ```
+    feat: allow provided config object to extend other configs
+
+    BREAKING CHANGE: `extends` key in config file is now used for extending other config files
+    ```
+
+    ```
+    fix(design): correct minor typos in code
+    ```
+-->
+
 ## Changes
 
 <!-- https://keepachangelog.com/en/1.0.0/ -->
