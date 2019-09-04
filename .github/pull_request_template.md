@@ -4,15 +4,9 @@
     https://github.com/commitizen/conventional-commit-types/blob/master/index.json
 
   eg.
-    ```
-    feat: allow provided config object to extend other configs
-
-    BREAKING CHANGE: `extends` key in config file is now used for extending other config files
-    ```
-
-    ```
-    fix(design): correct minor typos in code
-    ```
+    fix(pencil): stop graphite breaking when too much pressure applied — Patch Release
+    feat(pencil): add 'graphiteWidth' option — (Minor) Feature Release
+    perf(pencil): BREAKING CHANGE: remove graphiteWidth option — (Major) Breaking Release
 -->
 
 ## Changes
