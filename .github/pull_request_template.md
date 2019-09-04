@@ -1,3 +1,14 @@
+<!--
+  Be sure to follow https://www.conventionalcommits.org for your Pull Request title.
+  Full list of types:
+    https://github.com/commitizen/conventional-commit-types/blob/master/index.json
+
+  eg.
+    fix(pencil): stop graphite breaking when too much pressure applied — Patch Release
+    feat(pencil): add 'graphiteWidth' option — (Minor) Feature Release
+    perf(pencil): BREAKING CHANGE: remove graphiteWidth option — (Major) Breaking Release
+-->
+
 ## Changes
 
 <!-- https://keepachangelog.com/en/1.0.0/ -->
