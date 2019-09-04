@@ -40,7 +40,8 @@ export interface FormFieldProps {
   /**
    * Adjusts the form field to go inline with a content. This also silences the
    * given `validations` prop. You'd have to used the `onValidate` prop to
-   * capture the message and render it somewhere else using the `Text` component.
+   * capture the message and render it somewhere else using the
+   * `InputValidation` component.
    */
   readonly inline?: boolean;
 
@@ -187,13 +188,12 @@ export const FormField = React.forwardRef(
 
     let hasErrors = false;
     if (validations) {
-      hasErrors =
-        validations.filter(validation => {
-          return (
-            (validation.shouldShow || validation.shouldShow === undefined) &&
-            validation.status === "error"
-          );
-        }).length > 0;
+      hasErrors = validations.some(validation => {
+        return (
+          (validation.shouldShow || validation.shouldShow === undefined) &&
+          validation.status === "error"
+        );
+      });
     }
 
     const wrapperClassNames = classnames(
