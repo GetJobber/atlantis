@@ -30,18 +30,7 @@ interface InputValidationProps {
   messages: ValidationProps[];
 }
 
-interface StatusMap {
-  [key: string]: ValidationStatus;
-}
-
 export function InputValidation({ messages }: InputValidationProps) {
-  const variationMap: StatusMap = {
-    success: "success",
-    error: "error",
-    warn: "warn",
-    info: "info",
-  };
-
   const variants = {
     slideOut: { y: "5%", height: 0, opacity: 0 },
     slideIn: { y: 0, height: "100%", opacity: 1 },
@@ -62,7 +51,7 @@ export function InputValidation({ messages }: InputValidationProps) {
                     exit="slideOut"
                     transition={{ duration: 0.2 }}
                   >
-                    <Text variation={variationMap[status]}>{message}</Text>
+                    <Text variation={status}>{message}</Text>
                   </motion.div>
                 )}
               </AnimatePresence>
