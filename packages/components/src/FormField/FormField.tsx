@@ -183,6 +183,11 @@ export const FormField = React.forwardRef(
 
     const Wrapper = inline ? "span" : "div";
 
+    const labelClassNames = classnames(
+      styles.label,
+      type === "textarea" && styles.textareaLabel,
+    );
+
     return (
       <>
         {errorMessage && !inline && (
@@ -193,7 +198,7 @@ export const FormField = React.forwardRef(
           className={wrapperClassNames}
           style={{ ["--formField-maxLength" as string]: maxLength || max }}
         >
-          <label className={styles.label} htmlFor={identifier}>
+          <label className={labelClassNames} htmlFor={identifier}>
             {placeholder || " "}
           </label>
           {fieldElement()}
