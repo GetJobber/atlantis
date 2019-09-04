@@ -20,10 +20,10 @@ This component allows you to show the validation messages outside of the inputs.
 <Playground>
   {() => {
     const [value, setValue] = useState("Juan");
-    const [validationMessage, setValidationMessage] = useState(undefined);
+    const [validationMessages, setValidationMessages] = useState(undefined);
     return (
       <>
-        <InputValidation messages={validationMessage} />
+        <InputValidation messages={validationMessages} />
         <Text>
           My name is
           <InputText
@@ -34,7 +34,7 @@ This component allows you to show the validation messages outside of the inputs.
                 status: "error",
               },
             ]}
-            onValidation={setValidationMessage}
+            onValidation={setValidationMessages}
             name="myName"
             value={value}
             size="small"
