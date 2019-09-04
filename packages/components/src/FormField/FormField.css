@@ -166,6 +166,10 @@ select.formField {
   --field--padding-right: var(--space-large);
 }
 
+.miniLabel .textareaLabel {
+  background-color: var(--color-white);
+}
+
 /**
  * The custom property --formField-maxLength is getting defined inside the
  * component.
