@@ -6,8 +6,8 @@
   --field--border-color: var(--color-grey--lighter);
   --field--background-color: var(--color-white);
 
-  --field--padding-top: calc(var(--space-base) - var(--space-smaller));
-  --field--padding-bottom: calc(var(--space-base) - var(--space-smaller));
+  --field--padding-top: calc(var(--space-base) - var(--space-smallest));
+  --field--padding-bottom: calc(var(--space-base) - var(--space-smallest));
   --field--padding-left: var(--space-base);
   --field--padding-right: var(--space-base);
   --field--height: var(--space-largest);
@@ -22,8 +22,6 @@
 
 .formField,
 .label {
-  width: inherit;
-  height: var(--field--height);
   box-sizing: border-box;
   margin: 0;
   padding-top: var(--field--padding-top);
@@ -37,11 +35,14 @@
 .formField {
   display: block;
   position: relative;
+  width: inherit;
+  height: var(--field--height);
   border: var(--field--border-width) solid var(--field--border-color);
   border-radius: var(--radius-base);
   outline: none;
   color: var(--field--color);
-  line-height: 1.25;
+  font-size: var(--base-unit);
+  line-height: calc(var(--base-unit) * 1.25);
   text-align: var(--field--textAlign);
   background-color: transparent;
   transition: padding var(--timing-base);
@@ -67,18 +68,19 @@ select.formField {
 }
 
 .label {
-  display: flex;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: var(--field--border-width);
+  right: var(--field--border-width);
+  bottom: var(--field--border-width);
+  left: var(--field--border-width);
   overflow: hidden;
   color: var(--field--placeholder-color);
-  line-height: 1;
+  font-size: var(--base-unit);
+  line-height: calc(var(--base-unit) * 1.25);
   text-overflow: ellipsis;
   white-space: nowrap;
   pointer-events: none;
   transition: all var(--timing-quick);
-  align-items: center;
 }
 
 .inline {
@@ -89,8 +91,8 @@ select.formField {
 /* Sizes */
 
 .small {
-  --field--padding-top: var(--space-smaller);
-  --field--padding-bottom: var(--space-smaller);
+  --field--padding-top: var(--space-smallest);
+  --field--padding-bottom: var(--space-smallest);
   --field--padding-left: var(--space-small);
   --field--padding-right: var(--space-small);
   --field--height: calc(var(--space-larger) + var(--space-smaller));
@@ -136,18 +138,20 @@ select.formField {
 /* Mini Label */
 
 .miniLabel:not(.small) .formField {
-  --field--padding-top: var(--space-base);
+  --field--padding-top: calc(var(--space-base) + var(--space-smaller));
   --field--padding-bottom: var(--space-smaller);
 }
 
 .miniLabel .label {
-  --field--padding-top: var(--space-smaller);
-  --field--padding-bottom: var(--space-smaller);
+  --field--padding-top: var(--space-smallest);
+  --field--padding-bottom: var(--space-smallest);
   --field--padding-left: var(--space-base);
   --field--padding-right: var(--space-base);
+  bottom: auto;
   z-index: var(--elevation-base);
 
   height: auto;
+  color: var(--color-greyBlue);
   font-size: calc(var(--base-unit) * 0.875);
 }
 
@@ -156,7 +160,7 @@ select.formField {
 }
 
 .miniLabel.large .label {
-  --field--padding-top: var(--space-small);
+  --field--padding-top: var(--space-smallest);
   --field--padding-bottom: var(--space-small);
   --field--padding-left: var(--space-large);
   --field--padding-right: var(--space-large);
