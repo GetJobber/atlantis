@@ -1,6 +1,6 @@
 :root {
   --modal--width: calc(var(--base-unit) * 37.5);
-  --modal--padding: var(--space-base) var(--space-large);
+  --modal--padding: var(--space-base);
   --modal--border-color: var(--color-grey--lighter);
 }
 
@@ -54,16 +54,12 @@
   appearance: none;
 }
 
-.content,
-.actionBar {
-  padding: var(--modal--padding);
-}
-
 .actionBar {
   display: flex;
+  padding: var(--modal--padding);
+  padding-top: 0;
   flex: 1 1 100%;
   justify-content: flex-end;
-  padding-top: 0;
 }
 
 /**
