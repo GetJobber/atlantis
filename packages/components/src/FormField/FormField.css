@@ -86,6 +86,7 @@ select.formField {
 .inline {
   display: inline-block;
   width: auto;
+  vertical-align: -moz-middle-with-baseline;
 }
 
 /* Sizes */
