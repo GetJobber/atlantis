@@ -5,38 +5,6 @@ import { Typography } from "../Typography";
 import styles from "./Card.css";
 import colors from "./colors.css";
 
-interface HeaderProps {
-  readonly children: ReactNode;
-}
-
-function Header(props: HeaderProps) {
-  const className = classnames(styles.header, styles.fill);
-
-  return <div className={className} {...props} />;
-}
-
-interface TitleProps {
-  /**
-   * The title for the card.
-   */
-  readonly title: string;
-}
-
-export function Title({ title }: TitleProps) {
-  return (
-    <Header>
-      <Typography
-        element="h3"
-        size="large"
-        textCase="uppercase"
-        fontWeight="extraBold"
-      >
-        {title}
-      </Typography>
-    </Header>
-  );
-}
-
 interface CardProps {
   /**
    * The `accent`, if provided, will effect the color accent at the top of
@@ -44,6 +12,11 @@ interface CardProps {
    */
   readonly accent?: keyof typeof colors;
   readonly children: ReactNode | ReactNode[];
+
+  /**
+   * The title of the card.
+   */
+  readonly title?: string;
 }
 
 interface LinkCardProps extends CardProps {
@@ -56,7 +29,13 @@ interface ClickableCardProps extends CardProps {
 
 type CardPropOptions = XOR<CardProps, XOR<LinkCardProps, ClickableCardProps>>;
 
-export function Card({ accent, children, url, onClick }: CardPropOptions) {
+export function Card({
+  accent,
+  children,
+  onClick,
+  title,
+  url,
+}: CardPropOptions) {
   const className = classnames(
     styles.card,
     accent && styles.accent,
@@ -65,7 +44,6 @@ export function Card({ accent, children, url, onClick }: CardPropOptions) {
   );
 
   interface InternalProps {
-    children: ReactNode | ReactNode[];
     className: string;
     href?: string;
     role?: "button";
@@ -74,7 +52,7 @@ export function Card({ accent, children, url, onClick }: CardPropOptions) {
   }
 
   const Tag = url ? "a" : "div";
-  const props: InternalProps = { children, className };
+  const props: InternalProps = { className };
 
   if (url) {
     props.href = url;
@@ -86,5 +64,40 @@ export function Card({ accent, children, url, onClick }: CardPropOptions) {
     props.tabIndex = 0;
   }
 
-  return <Tag {...props} />;
+  return (
+    <Tag {...props}>
+      {title && <Title title={title} />}
+      {children}
+    </Tag>
+  );
+}
+
+interface TitleProps {
+  /**
+   * The title for the card.
+   */
+  readonly title: string;
+}
+
+/**
+ * **DEPRECATED** Use `title` props on the `<Card />` to add a title instead.
+ *
+ * This will be used as an internal component
+ */
+
+export function Title({ title }: TitleProps) {
+  const className = classnames(styles.header);
+
+  return (
+    <div className={className}>
+      <Typography
+        element="h3"
+        size="large"
+        textCase="uppercase"
+        fontWeight="extraBold"
+      >
+        {title}
+      </Typography>
+    </div>
+  );
 }
