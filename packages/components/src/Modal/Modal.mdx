@@ -10,6 +10,8 @@ import { useState } from "react";
 import { Modal } from ".";
 import { Button } from "../Button";
 import { Text } from "../Text";
+import { Content } from "../Content";
+import { Tabs, Tab } from "../Tabs";
 
 # Modal
 
@@ -25,13 +27,27 @@ the rest of the application until a specific action is taken.
     return (
       <>
         <Modal
-          title="We've updated Jobber"
+          title="Share and Embed"
           open={value}
           onRequestClose={() => setValue(!value)}
         >
-          <Text>
-            It's harder, better, faster, and stronger! 🤖
-          </Text>
+          <Content type="modal">
+            <Text>
+              Display your online booking request form on your website or social media
+            </Text>
+          </Content>
+          <Tabs>
+            <Tab label="Share Link">
+              <Text>
+                  Link the form on your website or social media page with the following URL:
+              </Text>
+            </Tab>
+            <Tab label="Add to Facebook">
+              <Text>
+                Follow our guide on how to add the request form into your Facebook business page by going to our Help Center.
+              </Text>
+            </Tab>
+          </Tabs>
         </Modal>
 
         <Button
@@ -56,17 +72,6 @@ You have 3 action props you can use
 <Playground>
   {() => {
     const [value, setValue] = useState(false);
-    const toggleModal = () => { setValue(!value);
-    };
-    const handlePrimaryAction = () => {
-      alert("✅");
-    };
-    const handleSecondaryAction = () => {
-      toggleModal();
-    };
-    const handleTertiaryAction = () => {
-      alert("❌");
-    };
     return (
       <>
         <Modal
@@ -77,9 +82,11 @@ You have 3 action props you can use
           tertiaryAction={{ label: "Delete", onClick: handleTertiaryAction }}
           onRequestClose={toggleModal}
         >
-          <Text>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe vero ratione praesentium quisquam non porro ullam maiores iure, sed odio?
-          </Text>
+          <Content>
+            <Text>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe vero ratione praesentium quisquam non porro ullam maiores iure, sed odio?
+            </Text>
+          </Content>
         </Modal>
 
         <Button
@@ -88,6 +95,18 @@ You have 3 action props you can use
         />
       </>
     );
+
+    function toggleModal() { setValue(!value);
+    };
+    function handlePrimaryAction() {
+      alert("✅");
+    };
+    function handleSecondaryAction() {
+      toggleModal();
+    };
+    function handleTertiaryAction() {
+      alert("❌");
+    };
 
 }}
 
