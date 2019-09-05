@@ -186,15 +186,7 @@ export const FormField = React.forwardRef(
       handleValidation();
     }, [value]);
 
-    let hasErrors = false;
-    if (validations) {
-      hasErrors = validations.some(validation => {
-        return (
-          (validation.shouldShow || validation.shouldShow === undefined) &&
-          validation.status === "error"
-        );
-      });
-    }
+    const hasErrors = hasErrorMessages(validations);
 
     const wrapperClassNames = classnames(
       styles.wrapper,
@@ -320,3 +312,15 @@ export const FormField = React.forwardRef(
     }
   },
 );
+
+function hasErrorMessages(validations?: ValidationProps[]) {
+  if (validations) {
+    return validations.some(validation => {
+      return (
+        (validation.shouldShow || validation.shouldShow === undefined) &&
+        validation.status === "error"
+      );
+    });
+  }
+  return false;
+}
