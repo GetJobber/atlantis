@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { fireEvent, render } from "@testing-library/react";
+import { InputTextRef } from "./InputText";
 import { InputText } from ".";
 
 it("renders a regular input for text and numbers", () => {
@@ -8,29 +9,30 @@ it("renders a regular input for text and numbers", () => {
     .create(<InputText placeholder="Favourite colour" />)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
-    >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440000"
-      >
-        Favourite colour
-      </label>
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440000"
-        onChange={[Function]}
-        onFocus={[Function]}
-        type="text"
-      />
-    </div>
-  `);
+        <div
+          className="wrapper"
+          style={
+            Object {
+              "--formField-maxLength": undefined,
+            }
+          }
+        >
+          <label
+            className="label"
+            htmlFor="123e4567-e89b-12d3-a456-426655440001"
+          >
+            Favourite colour
+          </label>
+          <input
+            className="formField"
+            id="123e4567-e89b-12d3-a456-426655440001"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            type="text"
+          />
+        </div>
+    `);
 });
 
 it("renders a textarea", () => {
@@ -49,14 +51,15 @@ it("renders a textarea", () => {
       }
     >
       <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440000"
+        className="label textareaLabel"
+        htmlFor="123e4567-e89b-12d3-a456-426655440002"
       >
         Describe your favourite colour?
       </label>
       <textarea
         className="formField"
-        id="123e4567-e89b-12d3-a456-426655440000"
+        id="123e4567-e89b-12d3-a456-426655440002"
+        onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
       />
@@ -84,14 +87,15 @@ it("renders a textarea with 4 rows", () => {
       }
     >
       <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440000"
+        className="label textareaLabel"
+        htmlFor="123e4567-e89b-12d3-a456-426655440003"
       >
         Describe your favourite colour?
       </label>
       <textarea
         className="formField"
-        id="123e4567-e89b-12d3-a456-426655440000"
+        id="123e4567-e89b-12d3-a456-426655440003"
+        onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
         rows={4}
@@ -125,4 +129,21 @@ test("it should call the handler with the new value", () => {
     target: { value: newerValue },
   });
   expect(changeHandler).toHaveBeenCalledWith(newerValue);
+});
+
+test("it should handle inserting text", () => {
+  const initial = "Got milk?";
+  const result = `YUP${initial}`;
+  const secondResult = `YUPsure${initial}`;
+
+  const textRef = React.createRef<InputTextRef>();
+  const changeHandler = jest.fn();
+
+  render(<InputText value={initial} onChange={changeHandler} ref={textRef} />);
+
+  textRef.current.insert("YUP");
+  expect(changeHandler).toHaveBeenCalledWith(result);
+
+  textRef.current.insert("sure");
+  expect(changeHandler).toHaveBeenCalledWith(secondResult);
 });

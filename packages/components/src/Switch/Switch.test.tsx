@@ -9,47 +9,47 @@ afterEach(cleanup);
 it("renders a Switch", () => {
   const tree = renderer.create(<Switch ariaLabel="Toggle me" />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
-        Array [
-          <button
-            aria-checked={false}
-            aria-label="Toggle me"
-            className="track"
-            onClick={[Function]}
-            role="switch"
-            type="button"
+    Array [
+      <button
+        aria-checked={false}
+        aria-label="Toggle me"
+        className="track"
+        onClick={[Function]}
+        role="switch"
+        type="button"
+      >
+        <span
+          className="toggle"
+        >
+          <span
+            className="label"
           >
             <span
-              className="toggle"
+              className="base bold small uppercase white"
             >
-              <span
-                className="label"
-              >
-                <span
-                  className="base small bold uppercase white"
-                >
-                  On
-                </span>
-              </span>
-              <span
-                className="pip"
-              />
-              <span
-                className="label"
-              >
-                <span
-                  className="base small bold uppercase greyBlue"
-                >
-                  Off
-                </span>
-              </span>
+              On
             </span>
-          </button>,
-          <input
-            type="hidden"
-            value="false"
-          />,
-        ]
-    `);
+          </span>
+          <span
+            className="pip"
+          />
+          <span
+            className="label"
+          >
+            <span
+              className="base bold small uppercase greyBlue"
+            >
+              Off
+            </span>
+          </span>
+        </span>
+      </button>,
+      <input
+        type="hidden"
+        value="false"
+      />,
+    ]
+  `);
 });
 
 it("renders a Switch that is turned ON", () => {
@@ -57,47 +57,47 @@ it("renders a Switch that is turned ON", () => {
     .create(<Switch ariaLabel="Toggle me" value={true} />)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-        Array [
-          <button
-            aria-checked={true}
-            aria-label="Toggle me"
-            className="track isChecked"
-            onClick={[Function]}
-            role="switch"
-            type="button"
+    Array [
+      <button
+        aria-checked={true}
+        aria-label="Toggle me"
+        className="track isChecked"
+        onClick={[Function]}
+        role="switch"
+        type="button"
+      >
+        <span
+          className="toggle"
+        >
+          <span
+            className="label"
           >
             <span
-              className="toggle"
+              className="base bold small uppercase white"
             >
-              <span
-                className="label"
-              >
-                <span
-                  className="base small bold uppercase white"
-                >
-                  On
-                </span>
-              </span>
-              <span
-                className="pip"
-              />
-              <span
-                className="label"
-              >
-                <span
-                  className="base small bold uppercase greyBlue"
-                >
-                  Off
-                </span>
-              </span>
+              On
             </span>
-          </button>,
-          <input
-            type="hidden"
-            value="true"
-          />,
-        ]
-    `);
+          </span>
+          <span
+            className="pip"
+          />
+          <span
+            className="label"
+          >
+            <span
+              className="base bold small uppercase greyBlue"
+            >
+              Off
+            </span>
+          </span>
+        </span>
+      </button>,
+      <input
+        type="hidden"
+        value="true"
+      />,
+    ]
+  `);
 });
 
 it("renders a disabled Switch", () => {
@@ -122,7 +122,7 @@ it("renders a disabled Switch", () => {
             className="label"
           >
             <span
-              className="base small bold uppercase grey"
+              className="base bold small uppercase grey"
             >
               On
             </span>
@@ -134,7 +134,7 @@ it("renders a disabled Switch", () => {
             className="label"
           >
             <span
-              className="base small bold uppercase grey"
+              className="base bold small uppercase grey"
             >
               Off
             </span>

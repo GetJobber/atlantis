@@ -1,6 +1,7 @@
 import React, { ReactNode, useEffect } from "react";
 import ReactDOM from "react-dom";
 import classnames from "classnames";
+import { AnimatePresence, motion } from "framer-motion";
 import { Icon } from "../Icon";
 import { Typography } from "../Typography";
 import { Button, ButtonProps } from "../Button";
@@ -43,11 +44,31 @@ export function Modal({
   }
 
   const template = (
-    <>
+    <AnimatePresence>
       {open && (
         <div className={styles.container}>
-          <div className={styles.overlay} onClick={onRequestClose} />
-          <div className={modalClassName}>
+          <motion.div
+            key={styles.overlay}
+            className={styles.overlay}
+            onClick={onRequestClose}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.8 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          />
+          <motion.div
+            key={styles.modal}
+            className={modalClassName}
+            initial={{ scale: 0.8, opacity: 0.8 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            transition={{
+              type: "spring",
+              duration: 0.2,
+              damping: 20,
+              stiffness: 300,
+            }}
+          >
             <Header
               title={title}
               dismissible={dismissible}
@@ -61,10 +82,10 @@ export function Modal({
               secondary={secondaryAction}
               tertiary={tertiaryAction}
             />
-          </div>
+          </motion.div>
         </div>
       )}
-    </>
+    </AnimatePresence>
   );
 
   return ReactDOM.createPortal(template, document.body);

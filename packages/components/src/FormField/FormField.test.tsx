@@ -7,29 +7,30 @@ afterEach(cleanup);
 it("renders correctly with no props", () => {
   const tree = renderer.create(<FormField />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
-    >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440000"
-      >
-         
-      </label>
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440000"
-        onChange={[Function]}
-        onFocus={[Function]}
-        type="text"
-      />
-    </div>
-  `);
+        <div
+          className="wrapper"
+          style={
+            Object {
+              "--formField-maxLength": undefined,
+            }
+          }
+        >
+          <label
+            className="label"
+            htmlFor="123e4567-e89b-12d3-a456-426655440001"
+          >
+             
+          </label>
+          <input
+            className="formField"
+            id="123e4567-e89b-12d3-a456-426655440001"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            type="text"
+          />
+        </div>
+    `);
 });
 
 it("renders correctly with a placeholder", () => {
@@ -37,115 +38,119 @@ it("renders correctly with a placeholder", () => {
     .create(<FormField placeholder="My placeholder" />)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-                                <div
-                                  className="wrapper"
-                                  style={
-                                    Object {
-                                      "--formField-maxLength": undefined,
-                                    }
-                                  }
-                                >
-                                  <label
-                                    className="label"
-                                    htmlFor="123e4567-e89b-12d3-a456-426655440000"
-                                  >
-                                    My placeholder
-                                  </label>
-                                  <input
-                                    className="formField"
-                                    id="123e4567-e89b-12d3-a456-426655440000"
-                                    onChange={[Function]}
-                                    onFocus={[Function]}
-                                    type="text"
-                                  />
-                                </div>
-                `);
+        <div
+          className="wrapper"
+          style={
+            Object {
+              "--formField-maxLength": undefined,
+            }
+          }
+        >
+          <label
+            className="label"
+            htmlFor="123e4567-e89b-12d3-a456-426655440002"
+          >
+            My placeholder
+          </label>
+          <input
+            className="formField"
+            id="123e4567-e89b-12d3-a456-426655440002"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            type="text"
+          />
+        </div>
+    `);
 });
 
 it("renders correctly as small", () => {
   const tree = renderer.create(<FormField size="small" />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper small"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
-    >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440000"
-      >
-         
-      </label>
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440000"
-        onChange={[Function]}
-        onFocus={[Function]}
-        type="text"
-      />
-    </div>
-  `);
+        <div
+          className="wrapper small"
+          style={
+            Object {
+              "--formField-maxLength": undefined,
+            }
+          }
+        >
+          <label
+            className="label"
+            htmlFor="123e4567-e89b-12d3-a456-426655440003"
+          >
+             
+          </label>
+          <input
+            className="formField"
+            id="123e4567-e89b-12d3-a456-426655440003"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            type="text"
+          />
+        </div>
+    `);
 });
 
 it("renders correctly in a readonly state", () => {
   const tree = renderer.create(<FormField readonly={true} />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
-    >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440000"
-      >
-         
-      </label>
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440000"
-        onChange={[Function]}
-        onFocus={[Function]}
-        readOnly={true}
-        type="text"
-      />
-    </div>
-  `);
+        <div
+          className="wrapper"
+          style={
+            Object {
+              "--formField-maxLength": undefined,
+            }
+          }
+        >
+          <label
+            className="label"
+            htmlFor="123e4567-e89b-12d3-a456-426655440004"
+          >
+             
+          </label>
+          <input
+            className="formField"
+            id="123e4567-e89b-12d3-a456-426655440004"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            readOnly={true}
+            type="text"
+          />
+        </div>
+    `);
 });
 
 it("renders correctly in a disabled state", () => {
   const tree = renderer.create(<FormField disabled={true} />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper disabled"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
-    >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440000"
-      >
-         
-      </label>
-      <input
-        className="formField"
-        disabled={true}
-        id="123e4567-e89b-12d3-a456-426655440000"
-        onChange={[Function]}
-        onFocus={[Function]}
-        type="text"
-      />
-    </div>
-  `);
+        <div
+          className="wrapper disabled"
+          style={
+            Object {
+              "--formField-maxLength": undefined,
+            }
+          }
+        >
+          <label
+            className="label"
+            htmlFor="123e4567-e89b-12d3-a456-426655440005"
+          >
+             
+          </label>
+          <input
+            className="formField"
+            disabled={true}
+            id="123e4567-e89b-12d3-a456-426655440005"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            type="text"
+          />
+        </div>
+    `);
 });
 
 it("renders a field with error", () => {
@@ -157,7 +162,7 @@ it("renders a field with error", () => {
   expect(tree).toMatchInlineSnapshot(`
     Array [
       <p
-        className="base base red"
+        className="base regular base red"
       >
         Enter a value that is correct
       </p>,
@@ -171,13 +176,14 @@ it("renders a field with error", () => {
       >
         <label
           className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440000"
+          htmlFor="123e4567-e89b-12d3-a456-426655440006"
         >
            
         </label>
         <input
           className="formField"
-          id="123e4567-e89b-12d3-a456-426655440000"
+          id="123e4567-e89b-12d3-a456-426655440006"
+          onBlur={[Function]}
           onChange={[Function]}
           onFocus={[Function]}
           type="text"

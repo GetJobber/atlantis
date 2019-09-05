@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "0.7.1",
+  "version": "0.9.3",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -24,6 +24,7 @@
     "@types/lodash": "^4.14.136",
     "@types/uuid": "^3.4.5",
     "classnames": "^2.2.6",
+    "framer-motion": "^1.6.5",
     "lodash": "^4.17.15",
     "time-input-polyfill": "^1.0.7",
     "ts-xor": "^1.0.8",
@@ -37,6 +38,7 @@
     "@types/react": "^16.8.13",
     "@types/react-dom": "^16.8.4",
     "@types/react-test-renderer": "^16.8.1",
+    "@types/uuid": "^3.4.5",
     "autoprefixer": "^9.5.1",
     "copyfiles": "^2.1.0",
     "glob": "^7.1.4",
@@ -53,7 +55,8 @@
     "rollup-plugin-typescript2": "^0.21.0",
     "ts-node": "^8.1.0",
     "typed-css-modules": "^0.3.6",
-    "typescript": "^3.5.2"
+    "typescript": "^3.5.2",
+    "uuid": "^3.3.2"
   },
   "peerDependencies": {
     "react": "^16.8.6",

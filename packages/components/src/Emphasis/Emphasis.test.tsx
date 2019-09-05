@@ -7,12 +7,12 @@ it("renders a bold text", () => {
     .create(<Emphasis variation="bold">Save $240</Emphasis>)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-    <b
-      className="base bold"
-    >
-      Save $240
-    </b>
-  `);
+        <b
+          className="base bold"
+        >
+          Save $240
+        </b>
+    `);
 });
 
 it("renders an italic text", () => {
@@ -25,7 +25,7 @@ it("renders an italic text", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <em
-      className="base italic"
+      className="base regular italic"
     >
       Job note linked to related invoice
     </em>
@@ -38,7 +38,7 @@ it("renders a highlighted text", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <strong
-      className="base highlight"
+      className="base regular highlight"
     >
       Highlight me up
     </strong>

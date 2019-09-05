@@ -20,27 +20,32 @@ export function Heading({ level = 5, children }: HeadingProps) {
       size: "jumbo",
       textCase: "uppercase",
       fontWeight: "black",
+      textColor: "blue",
     },
     2: {
       element: "h2",
       size: "largest",
       textCase: "uppercase",
       fontWeight: "black",
+      textColor: "blue",
     },
     3: {
       element: "h3",
       size: "larger",
       fontWeight: "bold",
+      textColor: "blue",
     },
     4: {
       element: "h4",
       size: "large",
       fontWeight: "bold",
+      textColor: "blue",
     },
     5: {
       element: "h5",
       size: "base",
       fontWeight: "bold",
+      textColor: "blue",
     },
   };
 

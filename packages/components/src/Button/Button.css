@@ -118,17 +118,17 @@
 /* Sizes */
 
 .small {
-  height: calc(var(--base-unit) * 1.5);
+  min-height: calc(var(--base-unit) * 1.5);
   padding: var(--space-smaller) var(--space-small);
 }
 
 .base {
-  height: calc(var(--base-unit) * 2.25);
+  min-height: calc(var(--base-unit) * 2.25);
   padding: var(--space-small) calc(var(--space-base) - 4px);
 }
 
 .large {
-  height: calc(var(--base-unit) * 3);
+  min-height: calc(var(--base-unit) * 3);
   padding: var(--space-small) var(--space-base);
 }
 

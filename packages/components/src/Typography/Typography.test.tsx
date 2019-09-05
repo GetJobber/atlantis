@@ -16,12 +16,12 @@ it("renders an H1 title", () => {
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-                <h1
-                  className="base jumbo black uppercase"
-                >
-                  Page title
-                </h1>
-        `);
+    <h1
+      className="base black jumbo uppercase"
+    >
+      Page title
+    </h1>
+  `);
 });
 
 it("renders an H2 title", () => {
@@ -38,12 +38,12 @@ it("renders an H2 title", () => {
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-            <h2
-              className="base largest black uppercase"
-            >
-              Subtitle
-            </h2>
-      `);
+    <h2
+      className="base black largest uppercase"
+    >
+      Subtitle
+    </h2>
+  `);
 });
 
 it("renders an H3 title", () => {
@@ -55,12 +55,12 @@ it("renders an H3 title", () => {
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-            <h3
-              className="base larger bold"
-            >
-              Content Group
-            </h3>
-      `);
+    <h3
+      className="base bold larger"
+    >
+      Content Group
+    </h3>
+  `);
 });
 
 it("renders an H4 title", () => {
@@ -72,12 +72,12 @@ it("renders an H4 title", () => {
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-            <h4
-              className="base large bold"
-            >
-              Section
-            </h4>
-      `);
+    <h4
+      className="base bold large"
+    >
+      Section
+    </h4>
+  `);
 });
 
 it("renders an H5 title", () => {
@@ -89,12 +89,12 @@ it("renders an H5 title", () => {
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-            <h5
-              className="base base bold"
-            >
-              Subsection
-            </h5>
-      `);
+    <h5
+      className="base bold base"
+    >
+      Subsection
+    </h5>
+  `);
 });
 
 it("renders an H6 title", () => {
@@ -111,12 +111,12 @@ it("renders an H6 title", () => {
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-            <h6
-              className="base small bold uppercase"
-            >
-              Overline
-            </h6>
-      `);
+    <h6
+      className="base bold small uppercase"
+    >
+      Overline
+    </h6>
+  `);
 });
 
 it("renders a paragraph", () => {
@@ -131,7 +131,7 @@ it("renders a paragraph", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <p
-      className="base"
+      className="base regular"
     >
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat quae architecto accusamus cumque voluptate aspernatur repellendus natus, quo veniam illum.
     </p>
@@ -144,7 +144,7 @@ it("renders a span", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <span
-      className="base"
+      className="base regular"
     >
       SHOUT!
     </span>
@@ -157,7 +157,7 @@ it("renders an uppercased span", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <p
-      className="base uppercase"
+      className="base regular uppercase"
     >
       uppercase
     </p>
@@ -170,7 +170,7 @@ it("renders a lowercased text", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <p
-      className="base lowercase"
+      className="base regular lowercase"
     >
       LOWERCASE
     </p>
@@ -185,7 +185,7 @@ it("renders a capitalized text", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <p
-      className="base capitalize"
+      className="base regular capitalize"
     >
       wElL tHiS iS hArD tO tYpE
     </p>
