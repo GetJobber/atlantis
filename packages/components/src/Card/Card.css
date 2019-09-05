@@ -10,7 +10,6 @@
 .card {
   display: block;
   width: 100%;
-  padding: var(--card--base-padding);
   border: var(--border-base) solid var(--card--border-color);
   border-radius: var(--radius-base);
   overflow: auto;
@@ -43,13 +42,6 @@
 .clickable:hover,
 .clickable:focus {
   background-color: var(--color-yellow--lightest);
-}
-
-.fill {
-  margin-top: calc(-1 * var(--card--base-padding));
-  margin-bottom: calc(1 * var(--card--base-padding));
-  margin-left: calc(-1 * var(--card--base-padding));
-  margin-right: calc(-1 * var(--card--base-padding));
 }
 
 .header {
