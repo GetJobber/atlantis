@@ -9,6 +9,7 @@ import { ComponentStatus } from "@jobber/docx";
 import { InputText } from ".";
 import { useState } from "react";
 import { Button } from "../Button";
+import { Content } from "../Content";
 import { Text } from "../Text";
 
 # Input Text
@@ -163,11 +164,11 @@ shouldn't replace server-side validation.
     }
 
     return (
-      <>
+      <Content>
         <InputText value={text} onChange={handleTextChange} ref={textRef} />
         <pre>{text}</pre>
         <Button label="Insert Emoji" onClick={insert} />
-      </>
+      </Content>
     );
 
 }}

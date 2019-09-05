@@ -193,8 +193,7 @@ export const FormField = React.forwardRef(
       inline && styles.inline,
       size && styles[size],
       align && styles[align],
-      errorMessage && styles.hasErrorMessage,
-      (invalid || errorMessage || hasErrors) && styles.invalid,
+      (invalid || errorMessage) && styles.invalid,
       disabled && styles.disabled,
       maxLength && styles.maxLength,
       {
