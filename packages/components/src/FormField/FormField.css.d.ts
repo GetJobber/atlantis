@@ -7,7 +7,6 @@ export const large: string;
 export const center: string;
 export const right: string;
 export const invalid: string;
-export const hasErrorMessage: string;
 export const disabled: string;
 export const miniLabel: string;
 export const textareaLabel: string;

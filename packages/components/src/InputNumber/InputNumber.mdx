@@ -8,6 +8,7 @@ import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { InputNumber } from ".";
 import { Text } from "../Text";
+import { Content } from "../Content";
 import { useState } from "react";
 
 # InputNumber
@@ -120,7 +121,7 @@ You can use `onValidate` to catch them.
     const [value, setValue] = useState(5);
     const [validationMessage, setValidationMessage] = useState("");
     return (
-      <>
+      <Content spacing="small">
         {validationMessage && <Text variation="error">{validationMessage}</Text>}
         <Text>
           Follow-up after
@@ -137,7 +138,7 @@ You can use `onValidate` to catch them.
           />
           days
         </Text>
-      </>
+      </Content>
     );
 
     function handleChange(newValue) {
