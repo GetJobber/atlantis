@@ -1,0 +1,15 @@
+.base {
+  padding: var(--space-base);
+}
+
+.small {
+  padding: var(--space-small);
+}
+
+.large {
+  padding: var(--space-large);
+}
+
+.none {
+  padding: 0;
+}
