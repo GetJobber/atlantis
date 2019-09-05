@@ -29,7 +29,7 @@ import { InputTime } "@jobber/components/InputTime";
 ```
 
 <Playground>
-  <Content>
+  <Content padding="none">
     <InputTime defaultValue={new CivilTime(2, 35)} size="small" />
     <InputTime defaultValue={new CivilTime(2, 35)} />
     <InputTime defaultValue={new CivilTime(2, 35)} size="large" />
@@ -39,7 +39,7 @@ import { InputTime } "@jobber/components/InputTime";
 ## States
 
 <Playground>
-  <Content>
+  <Content padding="none">
     <InputTime defaultValue={new CivilTime(3, 52)} disabled={true} />
     <InputTime defaultValue={new CivilTime(5, 23)} readonly={true} />
     <InputTime defaultValue={new CivilTime(2, 35)} invalid={true} />
@@ -62,7 +62,7 @@ the last element is set the change event will fire.
       setTime(newTime);
     };
     return (
-      <Content>
+      <Content padding="none">
         <InputTime value={time} onChange={handleChange} />
         <pre>{time && time.toString()}</pre>
         <Button label="Reset" onClick={resetTime} />

@@ -9,7 +9,7 @@ it("renders a Content", () => {
   const tree = renderer.create(<Content>Wazaaaaa</Content>).toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="base"
+      className="base base"
     >
       Wazaaaaa
     </div>
