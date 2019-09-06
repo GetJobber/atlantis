@@ -1,0 +1,47 @@
+---
+name: InputGroup
+menu: Components
+route: /components/input-group
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { InputGroup } from ".";
+import { InputText } from "../InputText";
+import { InputTime } from "../InputTime";
+import { CivilTime } from "@std-proposal/temporal";
+
+# InputGroup
+
+<ComponentStatus stage="rc" responsive="no" accessible="yes" />
+
+Group a different kinds fields to show a visual relationship. If a number of
+form fields once submitted make up a group of content (ie. an address, or first
+and last name becoming a full name) they are great candidates for an input
+group.
+
+<Playground>
+  <InputGroup>
+    <InputText placeholder="Street 1" />
+    <InputText placeholder="Street 2" />
+    <InputGroup horizontal={true}>
+      <InputText placeholder="City" />
+      <InputText placeholder="Province" />
+    </InputGroup>
+    <InputGroup horizontal={true}>
+      <InputText placeholder="Zip code" />
+      <InputText placeholder="Country" />
+    </InputGroup>
+  </InputGroup>
+</Playground>
+
+<Playground>
+  <InputGroup horizontal={true}>
+    <InputTime defaultValue={new CivilTime(8, 0)} />
+    <InputTime defaultValue={new CivilTime(17, 0)} />
+  </InputGroup>
+</Playground>
+
+## InputGroup Properties
+
+<Props of={InputGroup} />
