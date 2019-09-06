@@ -22,28 +22,32 @@ job started/ended.
 At the moment the 12-hour vs 24-hour preference is set by the operating system
 and this component doesn't look at the Jobber setting.
 
-## Simple Example
-
 ```ts
 import { InputTime } "@jobber/components/InputTime";
 ```
 
 <Playground>
-  <Content padding="none">
-    <InputTime defaultValue={new CivilTime(2, 35)} size="small" />
-    <InputTime defaultValue={new CivilTime(2, 35)} />
-    <InputTime defaultValue={new CivilTime(2, 35)} size="large" />
-  </Content>
+  <InputTime defaultValue={new CivilTime(2, 35)} />
 </Playground>
 
 ## States
 
+### Disabled
+
 <Playground>
-  <Content padding="none">
-    <InputTime defaultValue={new CivilTime(3, 52)} disabled={true} />
-    <InputTime defaultValue={new CivilTime(5, 23)} readonly={true} />
-    <InputTime defaultValue={new CivilTime(2, 35)} invalid={true} />
-  </Content>
+  <InputTime defaultValue={new CivilTime(3, 52)} disabled={true} />
+</Playground>
+
+### Read only
+
+<Playground>
+  <InputTime defaultValue={new CivilTime(5, 23)} readonly={true} />
+</Playground>
+
+### Invalid
+
+<Playground>
+  <InputTime defaultValue={new CivilTime(2, 35)} invalid={true} />
 </Playground>
 
 ## Events
