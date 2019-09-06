@@ -17,7 +17,11 @@ interface ContentProps {
   readonly spacing?: keyof typeof spacings;
 }
 
-export function Content({ children, spacing = "base", padding }: ContentProps) {
+export function Content({
+  children,
+  spacing = "base",
+  padding = "base",
+}: ContentProps) {
   const className = classnames(spacings[spacing], padding && paddings[padding]);
 
   return <div className={className}>{children}</div>;
