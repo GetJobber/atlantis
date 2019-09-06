@@ -1,0 +1,61 @@
+.vertical > *:not(:last-child) {
+  margin-bottom: -1px !important;
+}
+
+.horizontal {
+  display: flex;
+  align-items: flex-end;
+}
+
+.horizontal > *:not(:last-child) {
+  margin-bottom: auto;
+  margin-right: -1px;
+}
+
+/* Border Radius Tweak  */
+
+.inputGroup input,
+.inputGroup textarea,
+.inputGroup select {
+  border-radius: 0;
+}
+
+.vertical > :first-child > input,
+.vertical > :first-child > textarea,
+.vertical > :first-child > select {
+  border-radius: var(--radius-base) var(--radius-base) 0 0;
+}
+
+.vertical > :last-child > input,
+.vertical > :last-child > textarea,
+.vertical > :last-child > select {
+  border-radius: 0 0 var(--radius-base) var(--radius-base);
+}
+
+/* First Horizontal Input Group */
+
+.horizontal:first-child > :first-child > input,
+.horizontal:first-child > :first-child > textarea,
+.horizontal:first-child > :first-child > select {
+  border-top-left-radius: var(--radius-base);
+}
+
+.horizontal:first-child > :last-child > input,
+.horizontal:first-child > :last-child > textarea,
+.horizontal:first-child > :last-child > select {
+  border-top-right-radius: var(--radius-base);
+}
+
+/* Last Horizontal Input Group */
+
+.horizontal:last-child > :first-child > input,
+.horizontal:last-child > :first-child > textarea,
+.horizontal:last-child > :first-child > select {
+  border-bottom-left-radius: var(--radius-base);
+}
+
+.horizontal:last-child > :last-child > input,
+.horizontal:last-child > :last-child > textarea,
+.horizontal:last-child > :last-child > select {
+  border-bottom-right-radius: var(--radius-base);
+}

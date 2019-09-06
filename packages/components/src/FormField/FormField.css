@@ -11,10 +11,13 @@
   --field--padding-left: var(--space-base);
   --field--padding-right: var(--space-base);
   --field--height: var(--space-largest);
+
+  --field--wrapper-elevation: auto;
 }
 
 .wrapper {
   position: relative;
+  z-index: var(--field--wrapper-elevation);
   width: 100%;
   background-color: var(--field--background-color);
 }
@@ -66,6 +69,7 @@ select.formField {
 
 .formField:focus {
   --field--border-color: var(--color-outline);
+  --field--wrapper-elevation: var(--elevation-base);
 }
 
 .label {
@@ -128,6 +132,7 @@ select.formField {
 .invalid,
 .invalid .formField:focus {
   --field--border-color: var(--color-red);
+  --field--wrapper-elevation: var(--elevation-base);
 }
 
 .disabled {
