@@ -35,6 +35,7 @@
 .formField {
   display: block;
   position: relative;
+  z-index: auto;
   width: inherit;
   height: var(--field--height);
   border: var(--field--border-width) solid var(--field--border-color);
