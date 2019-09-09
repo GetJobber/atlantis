@@ -210,7 +210,7 @@ export const FormField = React.forwardRef(
           <Text variation="error">{errorMessage}</Text>
         )}
 
-        <InputValidation messages={validationMessages} />
+        {!inline && <InputValidation messages={validationMessages} />}
 
         <Wrapper
           className={getWrapperClassNames()}
