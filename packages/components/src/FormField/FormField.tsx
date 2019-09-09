@@ -84,6 +84,11 @@ export interface FormFieldProps {
   readonly readonly?: boolean;
 
   /**
+   * Throws an error message when left empty
+   */
+  readonly required?: boolean;
+
+  /**
    * Exclusively for textareas. Specifies the visible height of a textarea.
    */
   readonly rows?: number;
@@ -166,6 +171,7 @@ export const FormField = React.forwardRef(
       onValidation,
       placeholder,
       readonly,
+      required,
       rows,
       size,
       type = "text",
@@ -186,29 +192,17 @@ export const FormField = React.forwardRef(
       handleValidation();
     }, [value]);
 
-    const hasErrors = hasErrorMessages(validations);
+    const validationMessages = validations || [];
 
-    const wrapperClassNames = classnames(
-      styles.wrapper,
-      inline && styles.inline,
-      size && styles[size],
-      align && styles[align],
-      errorMessage && styles.hasErrorMessage,
-      (invalid || errorMessage || hasErrors) && styles.invalid,
-      disabled && styles.disabled,
-      maxLength && styles.maxLength,
-      {
-        [styles.miniLabel]:
-          (hasMiniLabel || type === "time" || type === "select") && placeholder,
-      },
-    );
+    if (required) {
+      validationMessages.push({
+        message: "shit's required hombre",
+        status: "error",
+        shouldShow: value !== undefined && value.toString().length === 0,
+      });
+    }
 
     const Wrapper = inline ? "span" : "div";
-
-    const labelClassNames = classnames(
-      styles.label,
-      type === "textarea" && styles.textareaLabel,
-    );
 
     return (
       <>
@@ -216,13 +210,13 @@ export const FormField = React.forwardRef(
           <Text variation="error">{errorMessage}</Text>
         )}
 
-        {validations && !inline && <InputValidation messages={validations} />}
+        <InputValidation messages={validationMessages} />
 
         <Wrapper
-          className={wrapperClassNames}
+          className={getWrapperClassNames()}
           style={{ ["--formField-maxLength" as string]: maxLength || max }}
         >
-          <label className={labelClassNames} htmlFor={identifier}>
+          <label className={getLabelClassNames()} htmlFor={identifier}>
             {placeholder || " "}
           </label>
           {fieldElement()}
@@ -312,8 +306,38 @@ export const FormField = React.forwardRef(
       const message = errorMessage || "";
       onValidate && onValidate(status, message);
 
-      const validationMessages = validations ? validations : [];
       onValidation && onValidation(validationMessages);
+    }
+
+    function getLabelClassNames() {
+      const labelClassNames = classnames(
+        styles.label,
+        type === "textarea" && styles.textareaLabel,
+      );
+
+      return labelClassNames;
+    }
+
+    function getWrapperClassNames() {
+      const hasErrors = hasErrorMessages(validationMessages);
+
+      const wrapperClassNames = classnames(
+        styles.wrapper,
+        inline && styles.inline,
+        size && styles[size],
+        align && styles[align],
+        errorMessage && styles.hasErrorMessage,
+        (invalid || errorMessage || hasErrors) && styles.invalid,
+        disabled && styles.disabled,
+        maxLength && styles.maxLength,
+        {
+          [styles.miniLabel]:
+            (hasMiniLabel || type === "time" || type === "select") &&
+            placeholder,
+        },
+      );
+
+      return wrapperClassNames;
     }
   },
 );
