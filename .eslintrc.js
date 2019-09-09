@@ -1,3 +1,5 @@
+require("@jobber/eslint-config/patch-eslint-plugin-resolution.js");
+
 module.exports = {
   extends: ["@jobber/eslint-config", "plugin:jest/recommended"],
   plugins: ["jest"],
