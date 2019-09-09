@@ -34,6 +34,7 @@
 .formField {
   display: block;
   position: relative;
+  z-index: auto;
   width: inherit;
   height: var(--field--height);
   border: var(--field--border-width) solid var(--field--border-color);
@@ -92,19 +93,24 @@ select.formField {
 /* Sizes */
 
 .small {
-  --field--padding-top: var(--space-smallest);
-  --field--padding-bottom: var(--space-smallest);
-  --field--padding-left: var(--space-small);
-  --field--padding-right: var(--space-small);
+  --field--padding-top: var(--space-small);
+  --field--padding-bottom: var(--space-small);
+  --field--padding-left: calc(var(--space-base) - var(--space-smaller));
+  --field--padding-right: calc(var(--space-base) - var(--space-smaller));
   --field--height: calc(var(--space-larger) + var(--space-smaller));
 }
 
 .large {
-  --field--padding-top: var(--space-base);
-  --field--padding-bottom: var(--space-base);
+  --field--padding-top: calc(var(--space-large) - var(--space-smallest));
+  --field--padding-bottom: calc(var(--space-large) - var(--space-smallest));
   --field--padding-left: var(--space-large);
   --field--padding-right: var(--space-large);
   --field--height: calc(var(--space-extravagant));
+}
+
+.large select {
+  --field--padding-top: var(--space-base);
+  --field--padding-bottom: var(--space-base);
 }
 
 /* Alignment */
@@ -157,10 +163,14 @@ select.formField {
 }
 
 .miniLabel.large .label {
-  --field--padding-top: var(--space-smallest);
-  --field--padding-bottom: var(--space-small);
+  --field--padding-top: var(--space-small);
+  --field--padding-bottom: var(--space-smallest);
   --field--padding-left: var(--space-large);
   --field--padding-right: var(--space-large);
+}
+
+.miniLabel.large textarea.formField {
+  --field--padding-top: var(--space-larger);
 }
 
 .miniLabel .textareaLabel {
