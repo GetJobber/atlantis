@@ -1,0 +1,11 @@
+.base > :not(:last-child) {
+  margin-bottom: var(--space-base);
+}
+
+.small > :not(:last-child) {
+  margin-bottom: var(--space-small);
+}
+
+.large > :not(:last-child) {
+  margin-bottom: var(--space-large);
+}
