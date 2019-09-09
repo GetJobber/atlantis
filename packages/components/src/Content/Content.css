@@ -1,0 +1,7 @@
+:root {
+  --public-content--padding: var(--space-base);
+}
+
+.padded {
+  padding: var(--public-content--padding);
+}

@@ -1,10 +1,12 @@
 :root {
   --modal--width: calc(var(--base-unit) * 37.5);
-  --modal--padding: var(--space-base);
+  --modal--padding: var(--space-base) var(--space-large);
   --modal--border-color: var(--color-grey--lighter);
 }
 
 .container {
+  --public-content--padding: var(--modal--padding);
+
   display: flex;
   flex-direction: column;
   z-index: var(--elevation-modal);

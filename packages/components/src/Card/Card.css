@@ -8,6 +8,8 @@
 }
 
 .card {
+  --public-content--padding: var(--card--base-padding);
+
   display: block;
   width: 100%;
   border: var(--border-base) solid var(--card--border-color);

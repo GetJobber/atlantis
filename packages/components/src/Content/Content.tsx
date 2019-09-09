@@ -1,28 +1,21 @@
 import React, { ReactNode } from "react";
 import classnames from "classnames";
 import spacings from "./Spacing.css";
-import paddings from "./Paddings.css";
+import styles from "./Content.css";
 
 interface ContentProps {
   readonly children: ReactNode | ReactNode[];
-  /**
-   * Determines the spacing within the component
-   */
-  readonly padding?: keyof typeof paddings;
   /**
    * The amount of vertical spacing between the children
    *
    * @default base
    */
   readonly spacing?: keyof typeof spacings;
+  readonly padded?: boolean;
 }
 
-export function Content({
-  children,
-  spacing = "base",
-  padding = "base",
-}: ContentProps) {
-  const className = classnames(spacings[spacing], padding && paddings[padding]);
+export function Content({ children, spacing = "base", padded }: ContentProps) {
+  const className = classnames(padded && styles.padded, spacings[spacing]);
 
   return <div className={className}>{children}</div>;
 }
