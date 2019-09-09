@@ -6,6 +6,7 @@
 
 .container {
   --public-content--padding: var(--modal--padding);
+  --public-tab--inset: var(--space-large);
 
   display: flex;
   flex-direction: column;
