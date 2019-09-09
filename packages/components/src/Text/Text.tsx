@@ -8,7 +8,7 @@ interface TextProps {
     | "intro"
     | "success"
     | "error"
-    | "warning"
+    | "warn"
     | "info";
   readonly children: ReactNode;
 }
@@ -24,7 +24,7 @@ export function Text({ variation = "default", children }: TextProps) {
     intro: { textColor: "greyBlueDark", size: "larger" },
     success: { textColor: "green", size: "base" },
     error: { textColor: "red", size: "base" },
-    warning: { textColor: "yellow", size: "base" },
+    warn: { textColor: "yellowDark", size: "base" },
     info: { textColor: "lightBlue", size: "base" },
   };
 
