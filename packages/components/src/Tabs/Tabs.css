@@ -3,6 +3,7 @@
   --tab--border-color--selected: var(--color-green);
   --tab--height: calc(var(--space-larger) + var(--space-small));
   --tab--inset: var(--space-base);
+  --public-tab--inset: var(--tab--inset);
 }
 
 .tabs {
@@ -45,8 +46,8 @@
   flex: 0 0 auto;
   height: var(--tab--height);
   margin: 0;
-  padding-left: var(--tab--inset);
-  padding-right: var(--tab--inset);
+  padding-left: var(--public-tab--inset);
+  padding-right: var(--public-tab--inset);
   border: solid var(--border-base) var(--tab--border-color);
   border-left-width: 0;
   outline: none;
@@ -70,5 +71,8 @@
 }
 
 .tabContent {
-  padding: var(--space-base);
+  padding-top: var(--tab--inset);
+  padding-bottom: var(--tab--inset);
+  padding-left: var(--public-tab--inset);
+  padding-right: var(--public-tab--inset);
 }
