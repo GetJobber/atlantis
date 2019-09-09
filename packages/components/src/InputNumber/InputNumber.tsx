@@ -16,40 +16,42 @@ interface InputNumberProps
 }
 
 export function InputNumber(props: InputNumberProps) {
-  const [overLimitMessage, setOverLimitMessage] = useState(
-    getOverLimitMessage(props.value),
-  );
-
+  const { max, value, min, validations } = props;
   return (
-    <FormField
-      type="number"
-      {...props}
-      onChange={handleChange}
-      errorMessage={props.errorMessage || overLimitMessage}
-    />
+    <FormField type="number" {...props} validations={generateValidations()} />
   );
 
-  function handleChange(newValue: number) {
-    setOverLimitMessage(getOverLimitMessage(newValue));
-    props.onChange && props.onChange(newValue);
-  }
+  function generateValidations() {
+    const validationMessages = validations ? validations : [];
 
-  function getOverLimitMessage(value: InputNumberProps["value"]): string {
-    let message = "";
+    const isOverMax = max != undefined && value !== undefined && value > max;
+    const isUnderMin = min != undefined && value !== undefined && value < min;
+    const emptyValue = value !== undefined && value.toString() === "";
 
-    const isOverMax = props.max != undefined && value && value > props.max;
-    const isUnderMin = props.min != undefined && value && value < props.min;
-
-    if (isOverMax || isUnderMin || (value && value.toString() === "")) {
-      if (props.min != undefined && props.max === undefined) {
-        message = `Enter a number that is greater than or equal to ${props.min}`;
-      } else if (props.max != undefined && props.min === undefined) {
-        message = `Enter a number that is less than or equal to ${props.max}`;
-      } else if (props.min != undefined && props.max != undefined) {
-        message = `Enter a number between ${props.min} and ${props.max}`;
-      }
+    if (min !== undefined && max === undefined) {
+      validationMessages.push({
+        message: `Enter a number that is greater than or equal to ${min}`,
+        status: "error",
+        shouldShow: isUnderMin || emptyValue,
+      });
     }
 
-    return message;
+    if (max !== undefined && min === undefined) {
+      validationMessages.push({
+        message: `Enter a number that is less than or equal to ${max}`,
+        status: "error",
+        shouldShow: isOverMax || emptyValue,
+      });
+    }
+
+    if (max !== undefined && min !== undefined) {
+      validationMessages.push({
+        message: `Enter a number between ${min} and ${max}`,
+        status: "error",
+        shouldShow: isUnderMin || isOverMax || emptyValue,
+      });
+    }
+
+    return validationMessages;
   }
 }

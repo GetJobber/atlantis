@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders an error 1`] = `
+Array [
+  <p
+    className="base regular base red"
+  >
+    Not a whole number
+  </p>,
+  <div
+    className="wrapper hasErrorMessage invalid"
+    style={
+      Object {
+        "--formField-maxLength": undefined,
+      }
+    }
+  >
+    <label
+      className="label"
+      htmlFor="123e4567-e89b-12d3-a456-426655440002"
+    >
+       
+    </label>
+    <input
+      className="formField"
+      id="123e4567-e89b-12d3-a456-426655440002"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      type="number"
+      value={1.1}
+    />
+  </div>,
+]
+`;
+
+exports[`renders an input type number 1`] = `
+<div
+  className="wrapper"
+  style={
+    Object {
+      "--formField-maxLength": undefined,
+    }
+  }
+>
+  <label
+    className="label"
+    htmlFor="123e4567-e89b-12d3-a456-426655440001"
+  >
+     
+  </label>
+  <input
+    className="formField"
+    id="123e4567-e89b-12d3-a456-426655440001"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    type="number"
+    value={123}
+  />
+</div>
+`;

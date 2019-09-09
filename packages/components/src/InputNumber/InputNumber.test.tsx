@@ -6,75 +6,15 @@ import { InputNumber } from ".";
 afterEach(cleanup);
 
 it("renders an input type number", () => {
-  const tree = renderer.create(<InputNumber value="123" />).toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-        Array [
-          "",
-          <div
-            className="wrapper"
-            style={
-              Object {
-                "--formField-maxLength": undefined,
-              }
-            }
-          >
-            <label
-              className="label"
-              htmlFor="123e4567-e89b-12d3-a456-426655440001"
-            >
-               
-            </label>
-            <input
-              className="formField"
-              id="123e4567-e89b-12d3-a456-426655440001"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              type="number"
-              value="123"
-            />
-          </div>,
-        ]
-    `);
+  const tree = renderer.create(<InputNumber value={123} />).toJSON();
+  expect(tree).toMatchSnapshot();
 });
 
 it("renders an error", () => {
   const tree = renderer
-    .create(<InputNumber value="1.1" errorMessage="Not a whole number" />)
+    .create(<InputNumber value={1.1} errorMessage="Not a whole number" />)
     .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    Array [
-      <p
-        className="base regular base red"
-      >
-        Not a whole number
-      </p>,
-      <div
-        className="wrapper hasErrorMessage invalid"
-        style={
-          Object {
-            "--formField-maxLength": undefined,
-          }
-        }
-      >
-        <label
-          className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440002"
-        >
-           
-        </label>
-        <input
-          className="formField"
-          id="123e4567-e89b-12d3-a456-426655440002"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          type="number"
-          value="1.1"
-        />
-      </div>,
-    ]
-  `);
+  expect(tree).toMatchSnapshot();
 });
 
 test("it should call the handler with a number value", () => {
@@ -96,73 +36,69 @@ test("it should call the handler with a number value", () => {
   expect(changeHandler).toHaveBeenCalledWith(newValue);
 });
 
-test("it should call the validation with a success status", () => {
+test("it should call the validation handler and return a range message", () => {
   const validationHandler = jest.fn();
-
-  render(
-    <InputNumber
-      value={100}
-      min={99}
-      max={100}
-      onValidate={validationHandler}
-      placeholder="Count to 100"
-    />,
-  );
-
-  expect(validationHandler).toHaveBeenCalledWith("pass", "");
-});
-
-test("it should call the validation with a range error", () => {
-  const validationHandler = jest.fn();
+  const expectedValidationCallBack = [
+    {
+      shouldShow: true,
+      message: "Enter a number between 0 and 100",
+      status: "error",
+    },
+  ];
 
   render(
     <InputNumber
       value={101}
-      min={99}
+      min={0}
       max={100}
-      onValidate={validationHandler}
+      onValidation={validationHandler}
       placeholder="Count to 100"
     />,
   );
 
-  expect(validationHandler).toHaveBeenCalledWith(
-    "fail",
-    "Enter a number between 99 and 100",
-  );
+  expect(validationHandler).toHaveBeenCalledWith(expectedValidationCallBack);
 });
 
-test("it should call the validation with a max length error", () => {
+test("it should show a over max message", () => {
   const validationHandler = jest.fn();
+  const expectedValidationCallBack = [
+    {
+      shouldShow: true,
+      message: "Enter a number that is less than or equal to 100",
+      status: "error",
+    },
+  ];
 
   render(
     <InputNumber
       value={101}
       max={100}
-      onValidate={validationHandler}
+      onValidation={validationHandler}
       placeholder="Count to 100"
     />,
   );
 
-  expect(validationHandler).toHaveBeenCalledWith(
-    "fail",
-    "Enter a number that is less than or equal to 100",
-  );
+  expect(validationHandler).toHaveBeenCalledWith(expectedValidationCallBack);
 });
 
-test("it should call the validation with a min length error", () => {
+test("it should show an under min message", () => {
   const validationHandler = jest.fn();
+  const expectedValidationCallBack = [
+    {
+      shouldShow: true,
+      message: "Enter a number that is greater than or equal to 99",
+      status: "error",
+    },
+  ];
 
   render(
     <InputNumber
       value={98}
       min={99}
-      onValidate={validationHandler}
+      onValidation={validationHandler}
       placeholder="Count to 100"
     />,
   );
 
-  expect(validationHandler).toHaveBeenCalledWith(
-    "fail",
-    "Enter a number that is greater than or equal to 99",
-  );
+  expect(validationHandler).toHaveBeenCalledWith(expectedValidationCallBack);
 });
