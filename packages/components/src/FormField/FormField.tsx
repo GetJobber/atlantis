@@ -196,7 +196,7 @@ export const FormField = React.forwardRef(
 
     if (required) {
       validationMessages.push({
-        message: "shit's required hombre",
+        message: `${placeholder || "This"} is required`,
         status: "error",
         shouldShow: value !== undefined && value.toString().length === 0,
       });
