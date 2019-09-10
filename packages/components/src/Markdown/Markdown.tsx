@@ -25,12 +25,12 @@ interface MarkdownProps {
   readonly externalLink?: boolean;
 }
 
-interface HeadingProps {
+interface HeadingRendererProps {
   readonly level: 1 | 2 | 3 | 4 | 5 | 6;
   readonly children: ReactNode;
 }
 
-interface MarkdownRendererProps {
+interface BaseRendererProps {
   children: ReactNode;
 }
 
@@ -55,19 +55,19 @@ export function Markdown({
     </Content>
   );
 
-  function renderParagraph({ children }: MarkdownRendererProps) {
+  function renderParagraph({ children }: BaseRendererProps) {
     return <Text>{children}</Text>;
   }
 
-  function renderEmphasis({ children }: MarkdownRendererProps) {
+  function renderEmphasis({ children }: BaseRendererProps) {
     return <Emphasis variation="italic">{children}</Emphasis>;
   }
 
-  function renderStrong({ children }: MarkdownRendererProps) {
+  function renderStrong({ children }: BaseRendererProps) {
     return <Emphasis variation="bold">{children}</Emphasis>;
   }
 
-  function renderHeading({ level, children }: HeadingProps) {
+  function renderHeading({ level, children }: HeadingRendererProps) {
     if (level === 6) {
       return <h6>{children}</h6>;
     }
