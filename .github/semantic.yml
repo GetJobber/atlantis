@@ -1,0 +1,11 @@
+# Always validate the PR title, and ignore the commits
+titleOnly: true
+
+# Valid scopes
+scopes:
+  - base
+  - components
+  - design
+  - docx
+  - eslint
+  - stylelint

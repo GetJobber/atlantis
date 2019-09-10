@@ -26,13 +26,42 @@ To install Atlantis locally for development:
 ```sh
 git clone git@github.com:GetJobber/atlantis.git
 cd atlantis
-npm install
+npm ci
 ```
 
 To start the [docz](https://www.docz.site/) development server:
 
 ```sh
 npm start
+```
+
+### Generating a New Component
+
+Running the following command will prompt you for a component name and generate
+a starting point consisting of a component, tests, styling, etc to help you get
+started.
+
+You should name your component in `PascalCase`.
+
+```sh
+npm run plop
+```
+
+#### Example
+
+```sh
+❯❯❯ npm run plop
+
+> atlantis@0.0.1 plop /path/to/atlantis
+> plop
+
+? Component Name: ExampleComponent
+✔  +! 5 files added
+ -> /packages/components/src/ExampleComponent/index.ts
+ -> /packages/components/src/ExampleComponent/ExampleComponent.css
+ -> /packages/components/src/ExampleComponent/ExampleComponent.mdx
+ -> /packages/components/src/ExampleComponent/ExampleComponent.test.tsx
+ -> /packages/components/src/ExampleComponent/ExampleComponent.tsx
 ```
 
 ### Testing
@@ -64,6 +93,26 @@ npm run lint:css
 npm run lint:ts
 ```
 
+## Repo Structure
+
+The `atlantis` repo is a monorepo consisting of a few different packages all
+living in the `./packages/` directory.
+
+The primary packages in here are:
+
+- `packages/`
+  - `components/`
+    - The primary home for components. Each component lives in its own folder in
+      the `./src` directory within here.
+  - `design/`
+    - A home for shareable css variables.
+  - `docx/`
+    - Any components internal to the documention viewer itself.
+
+When installing dependancies be sure to install them relative to the appropriate
+sub package. For example if you want to use package `foo` in a component you
+would run `npm install foo` from within the `components` directory.
+
 ## Contributing
 
 Everyone is a friend of Atlantis and we welcome pull requests. See the
@@ -79,7 +128,7 @@ lerna publish --canary --dist-tag next --preid pre
 
 ### For Realz
 
-Follow semver when choosing versions.
+Follow [semver](https://semver.org) when choosing versions.
 
 ```sh
 npm run release-the-kraken

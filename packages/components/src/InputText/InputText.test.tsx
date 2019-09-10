@@ -9,30 +9,30 @@ it("renders a regular input for text and numbers", () => {
     .create(<InputText placeholder="Favourite colour" />)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
-    >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440001"
-      >
-        Favourite colour
-      </label>
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440001"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        type="text"
-      />
-    </div>
-  `);
+        <div
+          className="wrapper"
+          style={
+            Object {
+              "--formField-maxLength": undefined,
+            }
+          }
+        >
+          <label
+            className="label"
+            htmlFor="123e4567-e89b-12d3-a456-426655440001"
+          >
+            Favourite colour
+          </label>
+          <input
+            className="formField"
+            id="123e4567-e89b-12d3-a456-426655440001"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            type="text"
+          />
+        </div>
+    `);
 });
 
 it("renders a textarea", () => {
@@ -51,7 +51,7 @@ it("renders a textarea", () => {
       }
     >
       <label
-        className="label"
+        className="label textareaLabel"
         htmlFor="123e4567-e89b-12d3-a456-426655440002"
       >
         Describe your favourite colour?
@@ -87,7 +87,7 @@ it("renders a textarea with 4 rows", () => {
       }
     >
       <label
-        className="label"
+        className="label textareaLabel"
         htmlFor="123e4567-e89b-12d3-a456-426655440003"
       >
         Describe your favourite colour?
