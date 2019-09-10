@@ -1,3 +1,4 @@
 :root {
   --border-base: var(--space-minuscule);
+  --border-thick: var(--space-smallest);
 }

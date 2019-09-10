@@ -23,7 +23,7 @@ export function InputTime({
     const fieldProps: FormFieldProps = {
       onChange: handleChange,
       ...(defaultValue && { defaultValue: civilTimeToHTMLTime(defaultValue) }),
-      ...(value && { value: civilTimeToHTMLTime(value) }),
+      ...(!defaultValue && { value: civilTimeToHTMLTime(value) }),
       ...params,
     };
 

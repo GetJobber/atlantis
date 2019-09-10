@@ -10,30 +10,58 @@
   width: 100%;
 }
 
+.overflow {
+  position: relative;
+  border-bottom: solid var(--border-base) var(--tab--border-color);
+}
+
+.overflowRight:after,
+.overflowLeft:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 24px;
+}
+
+.overflowRight:after {
+  right: 0;
+  box-shadow: inset -16px 0 16px -16px var(--color-blue);
+}
+
+.overflowLeft:before {
+  left: 0;
+  box-shadow: inset 16px 0 16px -16px var(--color-blue);
+}
+
 .tabRow {
   display: flex;
+  margin-bottom: calc(-1 * var(--border-base));
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .tab {
   flex: 0 0 auto;
   height: var(--tab--height);
   margin: 0;
-  margin-bottom: calc(-1 * var(--border-base));
   padding-left: var(--tab--inset);
   padding-right: var(--tab--inset);
   border: solid var(--border-base) var(--tab--border-color);
   border-right-width: 0;
-  outline-color: var(--color-outline);
-  background: none;
+  outline: none;
+  background: transparent;
   cursor: pointer;
+  transition: all var(--timing-base);
+}
+
+.tab:hover,
+.tab:focus {
+  background-color: var(--color-yellow--lightest);
 }
 
 .tab:last-child {
   border-right-width: var(--border-base);
-}
-
-.tab:active {
-  outline: 0;
 }
 
 .selected {
@@ -41,7 +69,10 @@
   border-bottom-color: var(--color-white);
 }
 
+.selected:focus {
+  background-color: transparent;
+}
+
 .tabContent {
   padding: var(--space-base);
-  border-top: solid var(--border-base) var(--tab--border-color);
 }

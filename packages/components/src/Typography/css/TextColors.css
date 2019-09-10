@@ -26,6 +26,10 @@
   color: var(--color-yellow);
 }
 
+.yellowDark {
+  color: var(--color-yellow--dark);
+}
+
 .lightBlue {
   color: var(--color-lightBlue);
 }

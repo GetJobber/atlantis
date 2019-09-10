@@ -3,6 +3,7 @@ import classnames from "classnames";
 import uuid from "uuid";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
+import { InputValidation, ValidationProps } from "../InputValidation";
 import styles from "./FormField.css";
 
 export interface FormFieldProps {
@@ -30,7 +31,7 @@ export interface FormFieldProps {
   readonly disabled?: boolean;
 
   /**
-   * **EXPERIMENTAL** This feature is still under development.
+   * **DEPRECATED** Use `validations` prop instead.
    *
    * Show an error message and highlight the the field red.
    */
@@ -38,8 +39,9 @@ export interface FormFieldProps {
 
   /**
    * Adjusts the form field to go inline with a content. This also silences the
-   * given `errorMessage` prop. You'd have to used the `onValidate` prop to
-   * capture the message and render it somewhere else using the `Text` component.
+   * given `validations` prop. You'd have to used the `onValidate` prop to
+   * capture the message and render it somewhere else using the
+   * `InputValidation` component.
    */
   readonly inline?: boolean;
 
@@ -97,6 +99,14 @@ export interface FormFieldProps {
   readonly type?: "text" | "number" | "time" | "textarea" | "select";
 
   /**
+   * **EXPERIMENTAL** This feature is still under development.
+   *
+   * Show a success, error, warn, and info message above the field. This also
+   * highlights the the field red if and error message shows up.
+   */
+  readonly validations?: ValidationProps[];
+
+  /**
    * Set the component to the given value.
    */
   readonly value?: string | number;
@@ -108,13 +118,31 @@ export interface FormFieldProps {
   onChange?(newValue: string | number): void;
 
   /**
-   * **EXPERIMENTAL** This feature is still under development.
+   * Focus callback.
+   */
+  onFocus?(): void;
+
+  /**
+   * Blur callback.
+   */
+  onBlur?(): void;
+
+  /**
+   * **DEPRECATED** Use `onValidation` prop instead.
    *
    * Callback to get the the status and message when validating a field
    * @param status
    * @param message
    */
   onValidate?(status: "pass" | "fail", message: string): void;
+
+  /**
+   * **EXPERIMENTAL** This feature is still under development.
+   *
+   * Callback to get the the status and message when validating a field
+   * @param messages
+   */
+  onValidation?(messages: ValidationProps[]): void;
 }
 
 export const FormField = React.forwardRef(
@@ -131,14 +159,18 @@ export const FormField = React.forwardRef(
       maxLength,
       min,
       name,
+      onFocus,
+      onBlur,
       onChange,
       onValidate,
+      onValidation,
       placeholder,
       readonly,
       rows,
       size,
       type = "text",
       value,
+      validations,
     }: FormFieldProps,
     ref:
       | Ref<HTMLInputElement>
@@ -154,13 +186,15 @@ export const FormField = React.forwardRef(
       handleValidation();
     }, [value]);
 
+    const hasErrors = hasErrorMessages(validations);
+
     const wrapperClassNames = classnames(
       styles.wrapper,
       inline && styles.inline,
       size && styles[size],
       align && styles[align],
       errorMessage && styles.hasErrorMessage,
-      (invalid || errorMessage) && styles.invalid,
+      (invalid || errorMessage || hasErrors) && styles.invalid,
       disabled && styles.disabled,
       maxLength && styles.maxLength,
       {
@@ -171,17 +205,24 @@ export const FormField = React.forwardRef(
 
     const Wrapper = inline ? "span" : "div";
 
+    const labelClassNames = classnames(
+      styles.label,
+      type === "textarea" && styles.textareaLabel,
+    );
+
     return (
       <>
         {errorMessage && !inline && (
           <Text variation="error">{errorMessage}</Text>
         )}
 
+        {validations && !inline && <InputValidation messages={validations} />}
+
         <Wrapper
           className={wrapperClassNames}
           style={{ ["--formField-maxLength" as string]: maxLength || max }}
         >
-          <label className={styles.label} htmlFor={identifier}>
+          <label className={labelClassNames} htmlFor={identifier}>
             {placeholder || " "}
           </label>
           {fieldElement()}
@@ -210,7 +251,15 @@ export const FormField = React.forwardRef(
         case "select":
           return <select {...fieldProps}>{children}</select>;
         case "textarea":
-          return <textarea rows={rows} onFocus={handleFocus} {...fieldProps} />;
+          return (
+            <textarea
+              rows={rows}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              ref={ref as Ref<HTMLTextAreaElement>}
+              {...fieldProps}
+            />
+          );
         default:
           return (
             <input
@@ -219,6 +268,7 @@ export const FormField = React.forwardRef(
               max={max}
               min={min}
               onFocus={handleFocus}
+              onBlur={handleBlur}
               ref={ref as Ref<HTMLInputElement>}
               {...fieldProps}
             />
@@ -249,12 +299,33 @@ export const FormField = React.forwardRef(
     ) {
       const target = event.currentTarget;
       setTimeout(() => readonly && target.select());
+
+      onFocus && onFocus();
+    }
+
+    function handleBlur() {
+      onBlur && onBlur();
     }
 
     function handleValidation() {
       const status = errorMessage ? "fail" : "pass";
       const message = errorMessage || "";
       onValidate && onValidate(status, message);
+
+      const validationMessages = validations ? validations : [];
+      onValidation && onValidation(validationMessages);
     }
   },
 );
+
+function hasErrorMessages(validations?: ValidationProps[]) {
+  if (validations) {
+    return validations.some(validation => {
+      return (
+        (validation.shouldShow || validation.shouldShow === undefined) &&
+        validation.status === "error"
+      );
+    });
+  }
+  return false;
+}

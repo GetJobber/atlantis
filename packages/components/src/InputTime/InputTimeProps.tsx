@@ -29,5 +29,5 @@ export interface InputTimeProps extends BaseProps {
   /**
    * Function called when user changes input value.
    */
-  onChange?(newValue: CivilTime): void;
+  onChange?(newValue?: CivilTime): void;
 }

@@ -6,15 +6,19 @@ import { Icon, IconNames } from "../Icon";
 import styles from "./Button.css";
 
 export interface ButtonProps {
-  readonly label: string;
-  readonly size?: "small" | "base" | "large";
+  readonly ariaControls?: string;
+  readonly ariaHaspopup?: boolean;
+  readonly ariaExpanded?: boolean;
   readonly disabled?: boolean;
-  readonly url?: string;
   readonly external?: boolean;
+  readonly fullWidth?: boolean;
   readonly icon?: IconNames;
   readonly iconOnRight?: boolean;
-  readonly fullWidth?: boolean;
+  readonly id?: string;
+  readonly label: string;
   readonly loading?: boolean;
+  readonly size?: "small" | "base" | "large";
+  readonly url?: string;
   onClick?(): void;
 }
 
@@ -42,18 +46,22 @@ interface TypeMap {
 }
 
 export function Button({
-  label,
-  variation = "work",
-  type = "primary",
+  ariaControls,
+  ariaHaspopup,
+  ariaExpanded,
   disabled = false,
-  url,
   external,
-  size = "base",
+  fullWidth,
   icon,
   iconOnRight,
-  fullWidth,
+  id,
+  label,
   loading,
   onClick,
+  size = "base",
+  type = "primary",
+  url,
+  variation = "work",
 }: ButtonPropOptions) {
   const buttonClassNames = classnames(styles.button, size && styles[size], {
     [styles.hasIcon]: icon,
@@ -68,14 +76,21 @@ export function Button({
   const props = {
     className: buttonClassNames,
     disabled: disabled,
+    id: id,
     ...(!disabled && { href: url }),
     ...(!disabled && { onClick: onClick }),
     ...(external && { target: "_blank" }),
+    ...(url === undefined && { type: "button" as "button" }),
   };
 
   const Tag = url ? "a" : "button";
   return (
-    <Tag {...props}>
+    <Tag
+      {...props}
+      aria-controls={ariaControls}
+      aria-haspopup={ariaHaspopup}
+      aria-expanded={ariaExpanded}
+    >
       {icon && <Icon name={icon} size={size} />}
       <Typography {...getTypeProps(variation, type, disabled, size)}>
         {label}

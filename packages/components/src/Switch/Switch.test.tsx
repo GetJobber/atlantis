@@ -25,7 +25,7 @@ it("renders a Switch", () => {
             className="label"
           >
             <span
-              className="base small bold uppercase white"
+              className="base bold small uppercase white"
             >
               On
             </span>
@@ -37,7 +37,7 @@ it("renders a Switch", () => {
             className="label"
           >
             <span
-              className="base small bold uppercase greyBlue"
+              className="base bold small uppercase greyBlue"
             >
               Off
             </span>
@@ -73,7 +73,7 @@ it("renders a Switch that is turned ON", () => {
             className="label"
           >
             <span
-              className="base small bold uppercase white"
+              className="base bold small uppercase white"
             >
               On
             </span>
@@ -85,7 +85,7 @@ it("renders a Switch that is turned ON", () => {
             className="label"
           >
             <span
-              className="base small bold uppercase greyBlue"
+              className="base bold small uppercase greyBlue"
             >
               Off
             </span>
