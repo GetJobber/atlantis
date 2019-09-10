@@ -1,5 +1,4 @@
-/* eslint-disable react/display-name */
-import ReactMarkdown, { LinkTargetResolver } from "react-markdown";
+import ReactMarkdown from "react-markdown";
 import React, { ReactNode } from "react";
 import { Text } from "../Text";
 import { Emphasis } from "../Emphasis";
@@ -47,23 +46,31 @@ export function Markdown({
         escapeHtml={!renderHTML}
         linkTarget={externalLink ? "_blank" : undefined}
         renderers={{
-          paragraph: ({ children }: MarkdownRendererProps) => (
-            <Text>{children}</Text>
-          ),
-          emphasis: ({ children }: MarkdownRendererProps) => (
-            <Emphasis variation="italic">{children}</Emphasis>
-          ),
-          strong: ({ children }: MarkdownRendererProps) => (
-            <Emphasis variation="bold">{children}</Emphasis>
-          ),
-          heading: ({ level, children }: HeadingProps) => {
-            if (level === 6) {
-              return <h6>{children}</h6>;
-            }
-            return <Heading level={level}>{children}</Heading>;
-          },
+          paragraph: renderParagraph,
+          emphasis: renderEmphasis,
+          strong: renderStrong,
+          heading: renderHeading,
         }}
       />
     </Content>
   );
+
+  function renderParagraph({ children }: MarkdownRendererProps) {
+    return <Text>{children}</Text>;
+  }
+
+  function renderEmphasis({ children }: MarkdownRendererProps) {
+    return <Emphasis variation="italic">{children}</Emphasis>;
+  }
+
+  function renderStrong({ children }: MarkdownRendererProps) {
+    return <Emphasis variation="bold">{children}</Emphasis>;
+  }
+
+  function renderHeading({ level, children }: HeadingProps) {
+    if (level === 6) {
+      return <h6>{children}</h6>;
+    }
+    return <Heading level={level}>{children}</Heading>;
+  }
 }
