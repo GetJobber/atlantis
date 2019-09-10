@@ -319,21 +319,20 @@ export const FormField = React.forwardRef(
     }
 
     function getWrapperClassNames() {
-      const hasErrors = hasErrorMessages(validationMessages);
-
       const wrapperClassNames = classnames(
         styles.wrapper,
         inline && styles.inline,
         size && styles[size],
         align && styles[align],
         errorMessage && styles.hasErrorMessage,
-        (invalid || errorMessage || hasErrors) && styles.invalid,
         disabled && styles.disabled,
         maxLength && styles.maxLength,
         {
           [styles.miniLabel]:
             (hasMiniLabel || type === "time" || type === "select") &&
             placeholder,
+          [styles.invalid]:
+            invalid || errorMessage || hasErrorMessages(validationMessages),
         },
       );
 
