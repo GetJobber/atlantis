@@ -105,7 +105,7 @@ function getTypeProps(
   disabled: boolean,
   size: string,
 ) {
-  let isPrimary = type === "primary";
+  const isPrimary = type === "primary";
   const baseTypeProps: TypographyOptions = {
     element: "span",
     textCase: "uppercase",
@@ -137,7 +137,7 @@ function getTypeProps(
   };
 
   if (disabled) {
-    return { ...textColorMap["disabled"] };
+    return { ...textColorMap.disabled };
   } else {
     return { ...textColorMap[variation] };
   }

@@ -20,12 +20,12 @@ export function InputTimeSafari({
   ...params
 }: InputTimeProps) {
   const inputTime = React.createRef<HTMLInputElement>();
+  const debouncedHandleChange = debounce(handleChange, 1000);
+  const changeHandler = generateEventHandler(debouncedHandleChange);
+  const blurHandler = generateEventHandler(handleChange);
 
   useLayoutEffect(() => {
     const input = inputTime.current as PolyfilledInputElement;
-    const debouncedHandleChange = debounce(handleChange, 1000);
-    const changeHandler = generateEventHandler(debouncedHandleChange);
-    const blurHandler = generateEventHandler(handleChange);
 
     new TimePolyfill(input);
 
