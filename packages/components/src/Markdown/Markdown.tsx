@@ -12,8 +12,17 @@ interface MarkdownProps {
    */
   readonly content: string;
 
-  /*  */
+  /**
+   * Render HTML tags inside the content. Only use this when you're sure that
+   * the content is not user-generated. If not, that might cause security
+   * issues.
+   * */
   readonly renderHTML?: boolean;
+
+  /**
+   * Open all links in new tab. If you require to have a mix of links that opens
+   * in new tab, please write it as a pure HTML instead and enable `renderHTML`.
+   */
   readonly externalLink?: boolean;
 }
 
