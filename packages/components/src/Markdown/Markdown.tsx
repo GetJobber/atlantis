@@ -1,15 +1,20 @@
 /* eslint-disable react/display-name */
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown, { LinkTargetResolver } from "react-markdown";
 import React, { ReactNode } from "react";
 import { Text } from "../Text";
 import { Emphasis } from "../Emphasis";
 import { Heading } from "../Heading";
+import { Content } from "../Content";
 
 interface MarkdownProps {
   /**
    * Text to display.
    */
-  readonly text: string;
+  readonly content: string;
+
+  /*  */
+  readonly renderHTML?: boolean;
+  readonly externalLink?: boolean;
 }
 
 interface HeadingProps {
@@ -21,27 +26,35 @@ interface MarkdownRendererProps {
   children: ReactNode;
 }
 
-export function Markdown({ text }: MarkdownProps) {
+export function Markdown({
+  content,
+  renderHTML = false,
+  externalLink,
+}: MarkdownProps) {
   return (
-    <ReactMarkdown
-      source={text}
-      renderers={{
-        paragraph: ({ children }: MarkdownRendererProps) => (
-          <Text>{children}</Text>
-        ),
-        emphasis: ({ children }: MarkdownRendererProps) => (
-          <Emphasis variation="italic">{children}</Emphasis>
-        ),
-        strong: ({ children }: MarkdownRendererProps) => (
-          <Emphasis variation="bold">{children}</Emphasis>
-        ),
-        heading: ({ level, children }: HeadingProps) => {
-          if (level === 6) {
-            return <h6>{children}</h6>;
-          }
-          return <Heading level={level}>{children}</Heading>;
-        },
-      }}
-    />
+    <Content>
+      <ReactMarkdown
+        source={content}
+        escapeHtml={!renderHTML}
+        linkTarget={externalLink ? "_blank" : undefined}
+        renderers={{
+          paragraph: ({ children }: MarkdownRendererProps) => (
+            <Text>{children}</Text>
+          ),
+          emphasis: ({ children }: MarkdownRendererProps) => (
+            <Emphasis variation="italic">{children}</Emphasis>
+          ),
+          strong: ({ children }: MarkdownRendererProps) => (
+            <Emphasis variation="bold">{children}</Emphasis>
+          ),
+          heading: ({ level, children }: HeadingProps) => {
+            if (level === 6) {
+              return <h6>{children}</h6>;
+            }
+            return <Heading level={level}>{children}</Heading>;
+          },
+        }}
+      />
+    </Content>
   );
 }

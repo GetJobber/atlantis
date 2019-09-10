@@ -15,27 +15,17 @@ import { Markdown } from ".";
 Markdown component is a text-to-HTML conversion tool with a twist! Because,
 instead of using semantic HTML tags, it uses our own atlantis component.
 
-In Jobber, Markdown is used to make text styling simpler. You can use this
-component to have italicised and/or bold text. In addition, it allows to set
-heading levels.
-
-## Example
-
 <Playground>
-  {() => {
-    const message = `# This is a level 1 heading
+  <Markdown content={`# Bananas
 
-      The _quick_ brown **fox** jumps over the _lazy-ass_ **dog**.
+    Bananas are **yellow** on the outside and **white** on the inside. It's also full of nutrients, _but thats just boring stuff_.
 
-      #### This is the end of this example.
+    ## Types of bananas
 
-    `
-    return <Markdown text={message} />
-
-}}
+    At this point, I'll just ask you to [google it](https://lmgtfy.com/?q=types+of+bananas)`} />
 
 </Playground>
 
-# Markdown Properties
+## Markdown Properties
 
 <Props of={Markdown} />
