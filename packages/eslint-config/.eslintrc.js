@@ -6,25 +6,18 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:jest/recommended",
+    "plugin:import/typescript",
   ],
   plugins: ["@typescript-eslint", "react", "prettier", "import", "no-null"],
   settings: {
     react: { version: "detect" },
-    "import/extensions": [".js", ".jsx", ".ts", ".tsx"],
-    "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"]
-    },
-    "import/resolver": {
-      node: {
-        extensions: [".js", ".jsx", ".ts", ".tsx"]
-      }
-    }
   },
   parserOptions: {
     ecmaFeatures: { jsx: true },
     ecmaVersion: 2018,
-    sourceType: "module"
+    sourceType: "module",
   },
   rules: {
     "import/order": "error",
@@ -32,8 +25,8 @@ module.exports = {
     "import/no-unresolved": [
       "error",
       {
-        ignore: [".css$"]
-      }
+        ignore: [".css$"],
+      },
     ],
     "import/namespace": "error",
     "import/default": "error",
@@ -42,6 +35,7 @@ module.exports = {
     "import/no-extraneous-dependencies": "error",
     "import/no-internal-modules": "error",
     "import/no-named-default": "error",
+    "import/no-named-as-default": "error",
     "import/no-cycle": ["error", { maxDepth: Infinity }],
     "import/no-useless-path-segments": "error",
     "import/no-relative-parent-imports": "error",
@@ -52,13 +46,13 @@ module.exports = {
     "prettier/prettier": [
       "error",
       { trailingComma: "all" },
-      { usePrettierrc: false }
+      { usePrettierrc: false },
     ],
     "@typescript-eslint/consistent-type-assertions": [
       "error",
       {
-        assertionStyle: "as"
-      }
+        assertionStyle: "as",
+      },
     ],
     "@typescript-eslint/no-this-alias": "error",
     "@typescript-eslint/no-extraneous-class": "error",
@@ -84,6 +78,6 @@ module.exports = {
     "no-use-before-define": ["error", { functions: false, classes: false }],
     "no-octal-escape": "error",
     radix: "error",
-    "use-isnan": "error"
-  }
+    "use-isnan": "error",
+  },
 };
