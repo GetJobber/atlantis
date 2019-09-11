@@ -40,18 +40,26 @@
   padding-bottom: var(--space-small);
 }
 
+.above .tooltip {
+  transform-origin: bottom center;
+}
+
 .above .tooltip:after {
   bottom: var(--tooltip--offset);
   border-top-width: 0;
   border-left-width: 0;
 }
 
+.below {
+  padding-top: var(--space-small);
+}
+
+.below .tooltip {
+  transform-origin: top center;
+}
+
 .below .tooltip:after {
   top: var(--tooltip--offset);
   border-bottom-width: 0;
   border-right-width: 0;
-}
-
-.below {
-  padding-top: var(--space-small);
 }

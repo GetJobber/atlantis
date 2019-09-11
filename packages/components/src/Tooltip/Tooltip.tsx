@@ -26,13 +26,13 @@ interface TooltipProps {
 export function Tooltip({ message, children }: TooltipProps) {
   const [direction, setDirection] = useState("above");
   const [visible, setVisible] = useState(false);
-  const [position, setPosition] = useState({ top: "auto", left: "auto" });
+  const [position, setPosition] = useState({ top: "0px", left: "0px" });
   const tooltipRef = createRef<HTMLDivElement>();
   const shadowRef = createRef<HTMLSpanElement>();
 
   bindHover(shadowRef, setVisible);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (
       tooltipRef.current &&
       shadowRef.current &&
@@ -75,14 +75,14 @@ export function Tooltip({ message, children }: TooltipProps) {
           {visible && (
             <div
               className={toolTipClassNames}
-              ref={tooltipRef}
               style={position}
+              ref={tooltipRef}
             >
               <motion.div
                 className={styles.tooltip}
-                initial={{ y: 6, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: 6, opacity: 0 }}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0, opacity: 0 }}
               >
                 <Text>{message}</Text>
               </motion.div>
