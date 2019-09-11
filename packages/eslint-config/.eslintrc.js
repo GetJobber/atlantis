@@ -10,7 +10,14 @@ module.exports = {
     "plugin:jest/recommended",
     "plugin:import/typescript",
   ],
-  plugins: ["@typescript-eslint", "react", "prettier", "import", "no-null"],
+  plugins: [
+    "@typescript-eslint",
+    "react",
+    "prettier",
+    "import",
+    "no-null",
+    "jest",
+  ],
   settings: {
     react: { version: "detect" },
   },
