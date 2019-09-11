@@ -1,5 +1,4 @@
 .wrapper {
-  display: inline-block; /* temporary fix; talk to derl */
   position: relative;
 }
 
@@ -10,103 +9,20 @@
   padding: 14px; /*make this relative*/
   border: 1px solid var(--color-lightBlue);
   border-radius: 2px; /*make this relative*/
+  text-align: center;
   background-color: var(--color-lightBlue--lightest);
 }
 
-.above {
-  bottom: 100%;
+.above,
+.below {
   left: 50%;
   transform: translateX(-50%);
 }
 
-/* -------------------------------------------------------------------------
-   Tooltip Margin Offset (helps calculate space used by the :after arrows below)
-   ------------------------------------------------------------------------- */
-
-.tooltip.sharedTooltip--element-attached-right,
-.tooltip--left {
-  margin-left: rem(-18px);
-  margin-right: 0;
+.above {
+  bottom: 100%;
 }
 
-.tooltip.sharedTooltip--element-attached-left,
-.tooltip--right {
-  margin-left: rem(18px);
-  margin-right: 0;
-}
-
-/* -------------------------------------------------------------------------
-      Tooltip Arrows & Positioning
-      ------------------------------------------------------------------------- */
-
-.tooltip--above:after,
-.tooltip--below:after,
-.tooltip--left:after,
-.tooltip--right:after,
-.tooltip--below-left:after,
-.tooltip--below-right:after {
-  content: "";
-  display: block;
-  position: absolute;
-  width: var(--base-unit);
-  height: var(--base-unit);
-  border: 1px solid --color-lightBlue;
-  background-color: inherit;
-}
-
-.tooltip--above:after {
-  bottom: -9px; /*how to make this dynamic??*/
-  left: 50%;
-  border-width: 0 1px 1px 0;
-  transform: translateX(-50%) rotate(45deg);
-}
-
-.tooltip--below:after,
-.tooltip--below-left:after,
-.tooltip--below-right:after {
-  top: -9px; /*how to make this dynamic?*/
-  left: 50%;
-  border-width: 1px 0 0 1px;
-  transform: translateX(-50%) rotate(45deg);
-}
-
-.tooltip--below-left:after {
-  right: auto;
-  left: var(--base-unit);
-  transform: rotate(45deg);
-}
-
-.tooltip--below-right:after {
-  right: var(--base-unit);
-  left: auto;
-  transform: rotate(45deg);
-}
-
-/**
-    * The more explicit selectors overwrite the primary direction when
-    * the JavaScript library detects it has to move the positioning due to
-    * space restrictions.
-    */
-
-.tooltip--left:after,
-.tooltip--right.sharedTooltip--element-attached-right:after {
-  top: 50%;
-  right: -9px; /*how to make this dynamic?*/
-  left: initial;
-  border-width: 1px 1px 0 0;
-  transform: translateY(-50%) rotate(45deg);
-}
-
-.tooltip--right:after,
-.tooltip--left.sharedTooltip--element-attached-left:after {
-  top: 50%;
-  right: initial;
-  left: -9px; /*how to make this dynamic*/
-  border-width: 0 0 1px 1px;
-  transform: translateY(-50%) rotate(45deg);
-}
-
-.tooltip.tooltip--below-left {
-  margin-left: 0;
-  margin-right: 0;
+.below {
+  top: 100%;
 }

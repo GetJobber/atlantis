@@ -1,4 +1,10 @@
-import React, { ReactElement } from "react";
+import React, {
+  ReactElement,
+  createRef,
+  useLayoutEffect,
+  useState,
+} from "react";
+import classnames from "classnames";
 import { Text } from "../Text";
 import styles from "./Tooltip.css";
 
@@ -14,12 +20,43 @@ interface TooltipProps {
 }
 
 export function Tooltip({ message, children }: TooltipProps) {
+  const [toolTipBelow, setToolTipBelow] = useState(true);
+  const [visible, setVisible] = useState(true);
+  const tooltipRef = createRef<HTMLDivElement>();
+
+  useLayoutEffect(() => {
+    if (tooltipRef.current) {
+      const bounds = tooltipRef.current.getBoundingClientRect();
+      if (bounds.top <= window.innerHeight / 2) {
+        setToolTipBelow(false);
+      } else {
+        setToolTipBelow(true);
+      }
+    }
+  }, [visible]);
+
+  const toolTipClassNames = classnames(
+    styles.tooltip,
+    toolTipBelow && styles.below,
+    !toolTipBelow && styles.above,
+  );
+
+  const toggleTooltip = () => {
+    setVisible(!visible);
+  };
+
   return (
-    <div className={styles.wrapper}>
+    <span
+      className={styles.wrapper}
+      onMouseEnter={toggleTooltip}
+      onMouseLeave={toggleTooltip}
+    >
       {children}
-      <div className={[styles.tooltip, styles.above].join(" ")}>
-        <Text>{message}</Text>
-      </div>
-    </div>
+      {visible && (
+        <div className={toolTipClassNames} ref={tooltipRef}>
+          <Text>{message}</Text>
+        </div>
+      )}
+    </span>
   );
 }
