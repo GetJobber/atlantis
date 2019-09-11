@@ -7,6 +7,8 @@ route: /components/tooltip
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { Tooltip } from ".";
+import { Button } from "../Button";
+import { Card } from "../Card";
 
 # Tooltip
 
@@ -17,7 +19,24 @@ In Jobber a Tooltip is used to tip the tool
 ## Simple Example
 
 <Playground>
-  <Tooltip message="This is a user message.">Foo</Tooltip>
+  <Tooltip message="This is a user message." activate>
+    <Button
+      label="Submit"
+      onClick={() => {
+        alert("✅");
+      }}
+    />
+  </Tooltip>
+</Playground>
+
+<Playground>
+  <Tooltip message="This is a user card.">
+    <Card> Henloo </Card>
+  </Tooltip>
+</Playground>
+
+<Playground>
+  <Tooltip message="This is a user text.">Foo</Tooltip>
 </Playground>
 
 ## Tooltip Properties
