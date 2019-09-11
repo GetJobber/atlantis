@@ -3,7 +3,6 @@ import React, {
   ReactNode,
   createRef,
   useEffect,
-  useLayoutEffect,
   useState,
 } from "react";
 import classnames from "classnames";
@@ -13,24 +12,26 @@ import { Text } from "../Text";
 import styles from "./Tooltip.css";
 
 interface TooltipProps {
+  readonly children: ReactElement;
   /**
    * Tooltip text
    */
   readonly message: string;
+
   /**
-   * Content to show tooltip on.
+   * Show the tooltip on load
    */
-  readonly children: ReactElement;
+  readonly showOnLoad?: boolean;
 }
 
-export function Tooltip({ message, children }: TooltipProps) {
+export function Tooltip({ message, children, showOnLoad }: TooltipProps) {
   const [direction, setDirection] = useState("above");
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(showOnLoad || false);
   const [position, setPosition] = useState({ top: "0px", left: "0px" });
   const tooltipRef = createRef<HTMLDivElement>();
   const shadowRef = createRef<HTMLSpanElement>();
 
-  bindHover(shadowRef, setVisible);
+  !showOnLoad && showOnHover(shadowRef, setVisible);
 
   useEffect(() => {
     if (
@@ -94,7 +95,7 @@ export function Tooltip({ message, children }: TooltipProps) {
   );
 }
 
-function bindHover(
+function showOnHover(
   node: React.RefObject<HTMLSpanElement>,
   setVisibleCallback: React.Dispatch<React.SetStateAction<boolean>>,
 ) {
