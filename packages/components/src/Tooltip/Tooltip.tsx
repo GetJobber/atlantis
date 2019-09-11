@@ -8,6 +8,7 @@ import React, {
 } from "react";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
+import { AnimatePresence, motion } from "framer-motion";
 import { Text } from "../Text";
 import styles from "./Tooltip.css";
 
@@ -32,13 +33,35 @@ export function Tooltip({ message, children }: TooltipProps) {
   bindHover(shadowRef, setVisible);
 
   useLayoutEffect(() => {
-    tooltipRef.current && findDirection(tooltipRef.current, setDirection);
-    shadowRef.current &&
-      findPosition(shadowRef.current, direction, setPosition);
+    if (
+      tooltipRef.current &&
+      shadowRef.current &&
+      shadowRef.current.nextElementSibling
+    ) {
+      const activatorBounds = shadowRef.current.nextElementSibling.getBoundingClientRect();
+      const tipBounds = tooltipRef.current.getBoundingClientRect();
+      const activatorCenter = activatorBounds.width / 2;
+      const tipCenter = tipBounds.width / 2;
+      const xOffset = activatorBounds.right - activatorCenter - tipCenter;
+
+      if (tipBounds.top <= window.innerHeight / 2) {
+        setDirection("below");
+        setPosition({
+          top: `${activatorBounds.bottom}px`,
+          left: `${xOffset}px`,
+        });
+      } else {
+        setDirection("above");
+        setPosition({
+          top: `${activatorBounds.top - tipBounds.height}px`,
+          left: `${xOffset}px`,
+        });
+      }
+    }
   }, [visible]);
 
   const toolTipClassNames = classnames(
-    styles.tooltip,
+    styles.tooltipWrapper,
     direction === "below" && styles.below,
     direction === "above" && styles.above,
   );
@@ -48,11 +71,24 @@ export function Tooltip({ message, children }: TooltipProps) {
       <span className={styles.wrapper} ref={shadowRef} />
       {children}
       <TooltipPortal>
-        {visible && (
-          <div className={toolTipClassNames} ref={tooltipRef} style={position}>
-            <Text>{message}</Text>
-          </div>
-        )}
+        <AnimatePresence>
+          {visible && (
+            <div
+              className={toolTipClassNames}
+              ref={tooltipRef}
+              style={position}
+            >
+              <motion.div
+                className={styles.tooltip}
+                initial={{ y: 6, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: 6, opacity: 0 }}
+              >
+                <Text>{message}</Text>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
       </TooltipPortal>
     </>
   );
@@ -60,15 +96,15 @@ export function Tooltip({ message, children }: TooltipProps) {
 
 function bindHover(
   node: React.RefObject<HTMLSpanElement>,
-  setVisible: React.Dispatch<React.SetStateAction<boolean>>,
+  setVisibleCallback: React.Dispatch<React.SetStateAction<boolean>>,
 ) {
   useEffect(() => {
     const showTooltip = () => {
-      setVisible(true);
+      setVisibleCallback(true);
     };
 
     const hideTooltip = () => {
-      setVisible(false);
+      setVisibleCallback(false);
     };
 
     if (node.current && node.current.nextElementSibling) {
@@ -82,48 +118,6 @@ function bindHover(
       window.removeEventListener("mouseleave", hideTooltip);
     };
   }, []);
-}
-
-function findPosition(
-  node: HTMLElement,
-  direction: string,
-  setPositionCallback: React.Dispatch<
-    React.SetStateAction<{
-      top: string;
-      left: string;
-    }>
-  >,
-) {
-  if (node && node.nextElementSibling) {
-    const activator = node.nextElementSibling;
-    const bounds = activator.getBoundingClientRect();
-
-    if (direction === "above") {
-      setPositionCallback({
-        top: `${bounds.top - bounds.height - 8}px`,
-        left: `${bounds.right - bounds.width / 2}px`,
-      });
-    } else {
-      setPositionCallback({
-        top: `${bounds.top + bounds.height + 8}px`,
-        left: `${bounds.right - bounds.width / 2}px`,
-      });
-    }
-  }
-}
-
-function findDirection(
-  node: HTMLElement,
-  setDirectionCallback: { (state: string): void },
-) {
-  if (node) {
-    const tipBounds = node.getBoundingClientRect();
-    if (tipBounds.top <= window.innerHeight / 2) {
-      setDirectionCallback("below");
-    } else {
-      setDirectionCallback("above");
-    }
-  }
 }
 
 interface TooltipPortalProps {
