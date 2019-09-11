@@ -12,31 +12,15 @@ import { Card } from "../Card";
 
 # Tooltip
 
-<ComponentStatus stage="pre" responsive="no" accessible="no" />
+<ComponentStatus stage="rc" responsive="yes" accessible="yes" />
 
-In Jobber a Tooltip is used to tip the tool
-
-## Simple Example
+Tooltips are extra information that briefly explain the function of a UI
+element.
 
 <Playground>
-  <Tooltip message="This is a user message." activate>
-    <Button
-      label="Submit"
-      onClick={() => {
-        alert("✅");
-      }}
-    />
+  <Tooltip message="You have been blessed by the great work button">
+    <Button label="Hover On Me" />
   </Tooltip>
-</Playground>
-
-<Playground>
-  <Tooltip message="This is a user card.">
-    <Card> Henloo </Card>
-  </Tooltip>
-</Playground>
-
-<Playground>
-  <Tooltip message="This is a user text.">Foo</Tooltip>
 </Playground>
 
 ## Tooltip Properties
