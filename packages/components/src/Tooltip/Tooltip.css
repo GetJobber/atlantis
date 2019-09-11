@@ -1,7 +1,7 @@
 :root {
   --tooltip--border-color: var(--color-lightBlue);
-  --tooltip--arrow-size: var(--space-base);
-  --tooltip--offset: calc(-1 * calc(var(--space-small) + 1px));
+  --tooltip--arrow-size: var(--space-small);
+  --tooltip--offset: calc(-1 * calc(var(--space-smaller) + 1px));
 }
 
 .wrapper {

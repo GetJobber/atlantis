@@ -21,7 +21,7 @@ interface TooltipProps {
 
 export function Tooltip({ message, children }: TooltipProps) {
   const [toolTipAbove, setToolTipAbove] = useState(true);
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
   const tooltipRef = createRef<HTMLDivElement>();
 
   useLayoutEffect(() => {
@@ -41,10 +41,6 @@ export function Tooltip({ message, children }: TooltipProps) {
     !toolTipAbove && styles.above,
   );
 
-  const toggleTooltip = () => {
-    setVisible(!visible);
-  };
-
   return (
     <span
       className={styles.wrapper}
@@ -59,4 +55,8 @@ export function Tooltip({ message, children }: TooltipProps) {
       )}
     </span>
   );
+
+  function toggleTooltip() {
+    setVisible(!visible);
+  }
 }
