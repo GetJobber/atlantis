@@ -1,3 +1,9 @@
+:root {
+  --tooltip--border-color: var(--color-lightBlue);
+  --tooltip--arrow-size: var(--space-base);
+  --tooltip--offset: calc(-1 * calc(var(--space-small) + 1px));
+}
+
 .wrapper {
   position: relative;
 }
@@ -5,10 +11,10 @@
 .tooltip {
   display: inline-block;
   position: absolute;
-  width: calc(var(--base-unit) * 15); /* 240 */
-  padding: 8px; /*make this relative*/
-  border: 1px solid var(--color-lightBlue);
-  border-radius: 2px; /*make this relative*/
+  width: calc(var(--base-unit) * 15);
+  padding: var(--space-small);
+  border: var(--border-base) solid var(--tooltip--border-color);
+  border-radius: var(--radius-base);
   text-align: center;
   background-color: var(--color-lightBlue--lightest);
 }
@@ -18,9 +24,9 @@
   display: block;
   position: absolute;
   left: 50%;
-  width: var(--space-base);
-  height: var(--space-base);
-  border: 1px solid var(--color-lightBlue);
+  width: var(--tooltip--arrow-size);
+  height: var(--tooltip--arrow-size);
+  border: 1px solid var(--tooltip--border-color);
   background-color: inherit;
   transform: translateX(-50%) rotate(45deg);
 }
@@ -33,20 +39,22 @@
 
 .above {
   bottom: 100%;
-  margin-bottom: var(--space-base);
+  margin-bottom: var(--tooltip--arrow-size);
 }
 
 .above:after {
-  bottom: -9px;
-  border-width: 0 1px 1px 0;
+  bottom: var(--tooltip--offset);
+  border-top-width: 0;
+  border-left-width: 0;
 }
 
 .below {
   top: 100%;
-  margin-top: var(--space-base);
+  margin-top: var(--tooltip--arrow-size);
 }
 
 .below:after {
-  top: -9px;
-  border-width: 1px 0 0 1px;
+  top: var(--tooltip--offset);
+  border-bottom-width: 0;
+  border-right-width: 0;
 }
