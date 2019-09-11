@@ -20,7 +20,7 @@ interface TooltipProps {
 }
 
 export function Tooltip({ message, children }: TooltipProps) {
-  const [toolTipBelow, setToolTipBelow] = useState(true);
+  const [toolTipAbove, setToolTipAbove] = useState(true);
   const [visible, setVisible] = useState(true);
   const tooltipRef = createRef<HTMLDivElement>();
 
@@ -28,17 +28,17 @@ export function Tooltip({ message, children }: TooltipProps) {
     if (tooltipRef.current) {
       const bounds = tooltipRef.current.getBoundingClientRect();
       if (bounds.top <= window.innerHeight / 2) {
-        setToolTipBelow(false);
+        setToolTipAbove(true);
       } else {
-        setToolTipBelow(true);
+        setToolTipAbove(false);
       }
     }
   }, [visible]);
 
   const toolTipClassNames = classnames(
     styles.tooltip,
-    toolTipBelow && styles.below,
-    !toolTipBelow && styles.above,
+    toolTipAbove && styles.below,
+    !toolTipAbove && styles.above,
   );
 
   const toggleTooltip = () => {
