@@ -76,3 +76,13 @@
 .isChecked .pip {
   border-color: var(--color-green);
 }
+
+.disabled {
+  border-color: var(--color-grey--lighter);
+  background-color: var(--color-grey--lightest);
+  cursor: not-allowed;
+}
+
+.disabled .pip {
+  border-color: var(--color-grey--lighter);
+}

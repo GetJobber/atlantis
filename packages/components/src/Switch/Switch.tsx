@@ -12,6 +12,7 @@ interface SwitchProps {
    */
   readonly name?: string;
   readonly ariaLabel?: string;
+  readonly disabled?: boolean;
   onChange?(newValue: boolean): void;
 }
 
@@ -19,12 +20,17 @@ export function Switch({
   value: providedValue,
   ariaLabel,
   name,
+  disabled,
   onChange,
 }: SwitchProps) {
   const [statefulValue, setValue] = useState(false);
   const value = providedValue != undefined ? providedValue : statefulValue;
 
   const toggleSwitch = () => {
+    if (disabled) {
+      return;
+    }
+
     const newValue = !value;
     onChange && onChange(newValue);
 
@@ -33,7 +39,10 @@ export function Switch({
     }
   };
 
-  const className = classnames(styles.track, { [styles.isChecked]: value });
+  const className = classnames(styles.track, {
+    [styles.isChecked]: value,
+    [styles.disabled]: disabled,
+  });
 
   return (
     <>
@@ -45,11 +54,12 @@ export function Switch({
         aria-label={ariaLabel}
         className={className}
         onClick={toggleSwitch}
+        disabled={disabled}
       >
         <span className={styles.toggle}>
-          <Label as="On" />
+          <Label as="On" disabled={disabled} />
           <span className={styles.pip} />
-          <Label as="Off" />
+          <Label as="Off" disabled={disabled} />
         </span>
       </button>
       <input name={name} type="hidden" value={String(value)} />
@@ -59,14 +69,24 @@ export function Switch({
 
 interface LabelProps {
   readonly as: "On" | "Off";
+  readonly disabled?: boolean;
 }
 
-function Label({ as }: LabelProps) {
+function Label({ as, disabled }: LabelProps) {
+  const getTextColor = () => {
+    if (disabled) {
+      return "grey";
+    } else if (as === "On") {
+      return "white";
+    }
+    return "greyBlue";
+  };
+
   return (
     <span className={styles.label}>
       <Typography
         element="span"
-        textColor={as == "On" ? "white" : "greyBlue"}
+        textColor={getTextColor()}
         size="small"
         fontWeight="bold"
         textCase="uppercase"
