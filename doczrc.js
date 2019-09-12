@@ -37,6 +37,7 @@ const modifyBundlerConfig = config => {
         options: {
           modules: true,
           plugins: [
+            // eslint-disable-next-line @typescript-eslint/no-var-requires
             require("postcss-preset-env")({
               preserve: true,
               importFrom: [require.resolve("@jobber/design")],

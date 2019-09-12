@@ -1,4 +1,5 @@
 import React, {
+  MutableRefObject,
   ReactElement,
   ReactNode,
   useEffect,
@@ -17,7 +18,7 @@ export function Tabs({ children }: TabsProps) {
   const [activeTab, setActiveTab] = useState(0);
   const [overflowRight, setOverflowRight] = useState(false);
   const [overflowLeft, setOverflowLeft] = useState(false);
-  const tabRow = useRef<HTMLDivElement>(null);
+  const tabRow = useRef() as MutableRefObject<HTMLDivElement>;
 
   const overflowClassNames = classnames(styles.overflow, {
     [styles.overflowRight]: overflowRight,
@@ -58,9 +59,9 @@ export function Tabs({ children }: TabsProps) {
     <div className={styles.tabs}>
       <div className={overflowClassNames}>
         <div className={styles.tabRow} ref={tabRow}>
-          {React.Children.map(children, (Tab, index) => (
+          {React.Children.map(children, (tab, index) => (
             <InternalTab
-              label={Tab.props.label}
+              label={tab.props.label}
               selected={activeTab === index}
               onClick={activateTab(index)}
             />

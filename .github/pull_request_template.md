@@ -6,7 +6,7 @@
   eg.
     fix(pencil): stop graphite breaking when too much pressure applied — Patch Release
     feat(pencil): add 'graphiteWidth' option — (Minor) Feature Release
-    perf(pencil): BREAKING CHANGE: remove graphiteWidth option — (Major) Breaking Release
+    feat(pencil): BREAKING CHANGE: remove graphiteWidth option — (Major) Breaking Release
 -->
 
 ## Changes
