@@ -13,6 +13,11 @@
   --field--height: var(--space-largest);
 
   --field--wrapper-elevation: auto;
+
+  --public-field--top-left-radius: var(--radius-base);
+  --public-field--top-right-radius: var(--radius-base);
+  --public-field--bottom-left-radius: var(--radius-base);
+  --public-field--bottom-right-radius: var(--radius-base);
 }
 
 .wrapper {
@@ -41,7 +46,10 @@
   width: inherit;
   height: var(--field--height);
   border: var(--field--border-width) solid var(--field--border-color);
-  border-radius: var(--radius-base);
+  border-top-right-radius: var(--public-field--top-right-radius);
+  border-bottom-right-radius: var(--public-field--bottom-right-radius);
+  border-bottom-left-radius: var(--public-field--bottom-left-radius);
+  border-top-left-radius: var(--public-field--top-left-radius);
   outline: none;
   color: var(--field--color);
   font-size: var(--base-unit);
@@ -178,7 +186,7 @@ select.formField {
   --field--padding-top: var(--space-larger);
 }
 
-.miniLabel .textareaLabel {
+.miniLabel.textareaLabel .label {
   background-color: var(--color-white);
 }
 
