@@ -119,11 +119,6 @@ function showOnHover(
       activator.addEventListener("mouseenter", showTooltip);
       activator.addEventListener("mouseleave", hideTooltip);
     }
-
-    return () => {
-      window.removeEventListener("mouseenter", showTooltip);
-      window.removeEventListener("mouseleave", hideTooltip);
-    };
   }, []);
 }
 
