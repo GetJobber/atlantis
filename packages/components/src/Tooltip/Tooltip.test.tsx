@@ -1,56 +1,49 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { act, cleanup, render } from "@testing-library/react";
 import { Tooltip } from ".";
 
 afterEach(cleanup);
 
-it("renders a Tooltip", () => {
-  // const tree = renderer.create(<Tooltip text="Foo" />).toJSON();
-  // expect(tree).toMatchInlineSnapshot(`
-  //   <span
-  //     className="wrapper"
-  //     onMouseEnter={[Function]}
-  //     onMouseLeave={[Function]}
-  //   >
-  //     <div
-  //       className="tooltip below"
-  //     >
-  //       <p
-  //         className="base regular base greyBlueDark"
-  //       />
-  //     </div>
-  //   </span>
-  // `);
+test("renders the tooltip", () => {
+  const message = "Tipping the tool on load";
+  const content = "What am I?";
+
+  const { getByText } = render(
+    <Tooltip message={message} showOnLoad={true}>
+      <span>{content}</span>
+    </Tooltip>,
+  );
+  expect(getByText(message)).toBeTruthy();
+  expect(getByText(content)).toBeTruthy();
 });
 
-it("renders a loud Tooltip", () => {
-  // const tree = renderer.create(<Tooltip text="Foo" loud />).toJSON();
-  // expect(tree).toMatchInlineSnapshot(`
-  //   <span
-  //     className="wrapper"
-  //     onMouseEnter={[Function]}
-  //     onMouseLeave={[Function]}
-  //   >
-  //     <div
-  //       className="tooltip below"
-  //     >
-  //       <p
-  //         className="base regular base greyBlueDark"
-  //       />
-  //     </div>
-  //   </span>
-  // `);
+test("tooltip shouldn't show up", () => {
+  const message = "Imma not tip the tool";
+  const content = "Don't show my tooltip";
+
+  const { getByText, queryByText } = render(
+    <Tooltip message={message}>
+      <div>{content}</div>
+    </Tooltip>,
+  );
+  expect(queryByText(message)).toBeNull();
+  expect(getByText(content)).toBeTruthy();
 });
 
-test("it should call the handler with the new value", () => {
-  // const changeHandler = jest.fn();
-  // const newValue = "Bar";
-  // const { getByLabelText } = render(
-  //   <Tooltip onChange={changeHandler} placeholder={placeholder} />
-  // );
-  // fireEvent.change(getByLabelText(placeholder), {
-  //   target: { value: newValue }
-  // });
-  // expect(changeHandler).toHaveBeenCalledWith(newValue);
+test("tooltip should show up on hover", () => {
+  const message = "Tipping the tool on hover";
+  const content = "Hover on me";
+  const contentID = "hover-on-me";
+
+  const { getByText, getByTestId } = render(
+    <Tooltip message={message}>
+      <div data-testid={contentID}>{content}</div>
+    </Tooltip>,
+  );
+
+  act(() => {
+    getByTestId(contentID).dispatchEvent(new MouseEvent("mouseenter"));
+  });
+  expect(getByText(message)).toBeTruthy();
+  expect(getByText(content)).toBeTruthy();
 });
