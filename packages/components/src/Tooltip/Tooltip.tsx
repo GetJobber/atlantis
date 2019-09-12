@@ -45,7 +45,7 @@ export function Tooltip({ message, children, showOnLoad }: TooltipProps) {
       const tipCenter = tipBounds.width / 2;
       const xOffset = activatorBounds.right - activatorCenter - tipCenter;
 
-      if (tipBounds.top <= window.innerHeight / 2) {
+      if (activatorBounds.top <= 100) {
         setDirection("below");
         setPosition({
           top: `${activatorBounds.bottom}px`,
@@ -81,9 +81,15 @@ export function Tooltip({ message, children, showOnLoad }: TooltipProps) {
             >
               <motion.div
                 className={styles.tooltip}
-                initial={{ scale: 0, opacity: 0 }}
+                initial={{ scale: 0.6, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0, opacity: 0 }}
+                exit={{ scale: 0.6, opacity: 0 }}
+                transition={{
+                  type: "spring",
+                  duration: 0.2,
+                  damping: 20,
+                  stiffness: 300,
+                }}
               >
                 <Text>{message}</Text>
               </motion.div>
