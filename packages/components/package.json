@@ -26,6 +26,7 @@
     "classnames": "^2.2.6",
     "framer-motion": "^1.6.5",
     "lodash": "^4.17.15",
+    "react-markdown": "^4.1.0",
     "time-input-polyfill": "^1.0.7",
     "ts-xor": "^1.0.8",
     "uuid": "^3.3.2"
