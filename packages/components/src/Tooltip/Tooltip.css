@@ -4,7 +4,7 @@
   --tooltip--offset: calc(-1 * calc(var(--space-smaller) + 1px));
 }
 
-.wrapper {
+.shadowActivator {
   display: none;
 }
 

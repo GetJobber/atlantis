@@ -24,9 +24,13 @@ interface TooltipProps {
   readonly showOnLoad?: boolean;
 }
 
-export function Tooltip({ message, children, showOnLoad }: TooltipProps) {
+export function Tooltip({
+  message,
+  children,
+  showOnLoad = false,
+}: TooltipProps) {
   const [direction, setDirection] = useState("above");
-  const [visible, setVisible] = useState(showOnLoad || false);
+  const [visible, setVisible] = useState(showOnLoad);
   const [position, setPosition] = useState({ top: "0px", left: "0px" });
   const tooltipRef = createRef<HTMLDivElement>();
   const shadowRef = createRef<HTMLSpanElement>();
@@ -69,7 +73,7 @@ export function Tooltip({ message, children, showOnLoad }: TooltipProps) {
 
   return (
     <>
-      <span className={styles.wrapper} ref={shadowRef} />
+      <span className={styles.shadowActivator} ref={shadowRef} />
       {children}
       <TooltipPortal>
         <AnimatePresence>
