@@ -22,18 +22,18 @@ if (process.argv[2] === "clean") {
 }
 
 async function build() {
-  (await entryPoints()).forEach(async entryPoint => {
+  (await getEntryPoints()).forEach(async entryPoint => {
     writeFileSync(entryPoint.file, entryPoint.content);
   });
 }
 
 async function clean() {
-  (await entryPoints()).forEach(entryPoint => {
+  (await getEntryPoints()).forEach(entryPoint => {
     unlinkSync(entryPoint.file);
   });
 }
 
-async function entryPoints() {
+async function getEntryPoints() {
   const indices = await pGlob("./src/*/index.ts");
 
   return indices.reduce((entryPoints: EntryPoint[], entryPoint) => {

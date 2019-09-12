@@ -1,0 +1,30 @@
+---
+name: Markdown
+menu: Components
+route: /components/markdown
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { Markdown } from ".";
+
+# Markdown
+
+<ComponentStatus stage="rc" responsive="yes" accessible="yes" />
+
+Markdown component is a text-to-HTML conversion tool with a twist! Because,
+instead of using semantic HTML tags, it uses our own atlantis component for
+paragraph, bold, italic, and heading.
+
+<Playground>
+  <Markdown
+    content={`### Bananas
+
+    Bananas are **yellow** on the outside and **white** on the inside. It's also full of nutrients, _but thats just boring stuff_. At this point, I'll just ask you to [google it](https://lmgtfy.com/?q=types+of+bananas).`}
+    externalLink={true} />
+
+</Playground>
+
+## Markdown Properties
+
+<Props of={Markdown} />
