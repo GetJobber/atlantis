@@ -20,13 +20,13 @@ interface ColorSwatchesProps {
 }
 
 export function ColorSwatches({ colors }: ColorSwatchesProps) {
-  const groupedColors = groupColors(colors);
+  const groupedColors = createColorGroups(colors);
 
-  return Object.entries(groupedColors).map(([name, colors]) => (
-    <div className={styles.swatchGroup} key={name}>
-      <h3 className={styles.groupTitle}>{name}</h3>
+  return Object.entries(groupedColors).map(([groupName, groupColors]) => (
+    <div className={styles.swatchGroup} key={groupName}>
+      <h3 className={styles.groupTitle}>{groupName}</h3>
       <div>
-        {colors.map(({ name, value }) => (
+        {groupColors.map(({ name, value }) => (
           <ColorSwatch name={name} value={value} key={name} />
         ))}
       </div>
@@ -34,7 +34,7 @@ export function ColorSwatches({ colors }: ColorSwatchesProps) {
   ));
 }
 
-function groupColors(colors: ColorDictionary): ColorGroup {
+function createColorGroups(colors: ColorDictionary): ColorGroup {
   return Object.entries(colors).reduce((colorGroups, [name, value]) => {
     const colorGroup = name.split("-")[3];
     colorGroups[colorGroup] = colorGroups[colorGroup] || [];

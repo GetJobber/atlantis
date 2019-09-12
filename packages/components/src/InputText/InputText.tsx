@@ -63,11 +63,11 @@ function InputTextInternal(
 export const InputText = forwardRef(InputTextInternal);
 
 function insertAtCursor(input: HTMLTextAreaElement, newText: string) {
-  var start = input.selectionStart || 0;
-  var end = input.selectionEnd || 0;
-  var text = input.value;
-  var before = text.substring(0, start);
-  var after = text.substring(end, text.length);
+  const start = input.selectionStart || 0;
+  const end = input.selectionEnd || 0;
+  const text = input.value;
+  const before = text.substring(0, start);
+  const after = text.substring(end, text.length);
   input.value = before + newText + after;
   input.selectionStart = input.selectionEnd = start + newText.length;
   input.focus();
