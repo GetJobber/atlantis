@@ -1,6 +1,7 @@
+require("@jobber/eslint-config/patch-eslint-plugin-resolution.js");
+
 module.exports = {
-  extends: ["@jobber/eslint-config", "plugin:jest/recommended"],
-  plugins: ["jest"],
+  extends: ["@jobber/eslint-config"],
   rules: {
     /*
       Need to figure out a good way to enforce intra vs inter module import
