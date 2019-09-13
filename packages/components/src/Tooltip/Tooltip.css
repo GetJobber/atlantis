@@ -10,7 +10,7 @@
 
 .tooltipWrapper {
   display: inline-block;
-  position: fixed;
+  position: absolute;
   z-index: 1000;
 }
 

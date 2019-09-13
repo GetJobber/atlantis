@@ -43,22 +43,26 @@ export function Tooltip({
       shadowRef.current &&
       shadowRef.current.nextElementSibling
     ) {
-      const activatorBounds = shadowRef.current.nextElementSibling.getBoundingClientRect();
-      const tipBounds = tooltipRef.current.getBoundingClientRect();
-      const activatorCenter = activatorBounds.width / 2;
-      const tipCenter = tipBounds.width / 2;
-      const xOffset = activatorBounds.right - activatorCenter - tipCenter;
+      const activator = shadowRef.current.nextElementSibling;
+      const tooltip = tooltipRef.current;
+      const activatorBounds = activator.getBoundingClientRect();
+      const xOffset =
+        activatorBounds.right -
+        activatorBounds.width / 2 -
+        tooltip.clientWidth / 2;
+      const clientY = getCumulativeScrollTop(activator);
+      const pageY = getCumulativeOffsetTop(activator);
 
       if (activatorBounds.top <= 100) {
         setDirection("below");
         setPosition({
-          top: `${activatorBounds.bottom}px`,
+          top: `${activatorBounds.bottom + window.scrollY}px`,
           left: `${xOffset}px`,
         });
       } else {
         setDirection("above");
         setPosition({
-          top: `${activatorBounds.top - tipBounds.height}px`,
+          top: `${pageY - clientY + window.scrollY - tooltip.clientHeight}px`,
           left: `${xOffset}px`,
         });
       }
@@ -70,6 +74,12 @@ export function Tooltip({
     direction === "below" && styles.below,
     direction === "above" && styles.above,
   );
+
+  const variation = {
+    initial: { scale: 0.6, opacity: 0 },
+    animate: { scale: 1, opacity: 1 },
+    exit: { scale: 0.6, opacity: 0 },
+  };
 
   return (
     <>
@@ -85,9 +95,10 @@ export function Tooltip({
             >
               <motion.div
                 className={styles.tooltip}
-                initial={{ scale: 0.6, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.6, opacity: 0 }}
+                variants={variation}
+                initial="initial"
+                animate="animate"
+                exit="exit"
                 transition={{
                   type: "spring",
                   duration: 0.2,
@@ -132,4 +143,36 @@ interface TooltipPortalProps {
 
 function TooltipPortal({ children }: TooltipPortalProps) {
   return ReactDOM.createPortal(children, document.body);
+}
+
+/**
+ * Calculate cumulative scrollTop from an Element.
+ * @param {Element} node - Element to calculate cumulative scrollTop from.
+ * @returns {number} - cumulativeScrollTop
+ */
+function getCumulativeScrollTop(node?: Node) {
+  let cumulativeScrollTop = 0;
+
+  while (node) {
+    if (node instanceof Element) {
+      cumulativeScrollTop += node.scrollTop || 0;
+    }
+
+    node = node.parentNode || undefined;
+  }
+
+  return cumulativeScrollTop;
+}
+
+function getCumulativeOffsetTop(node?: HTMLElement) {
+  let cumulativeOffsetTop = 0;
+
+  while (node) {
+    if (node instanceof HTMLElement) {
+      cumulativeOffsetTop += node.offsetTop || 0;
+    }
+    node = node.offsetParent || undefined;
+  }
+
+  return cumulativeOffsetTop;
 }
