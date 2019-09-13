@@ -50,8 +50,6 @@ export function Tooltip({
         activatorBounds.right -
         activatorBounds.width / 2 -
         tooltip.clientWidth / 2;
-      const clientY = getCumulativeScrollTop(activator);
-      const pageY = getCumulativeOffsetTop(activator);
 
       if (activatorBounds.top <= 100) {
         setDirection("below");
@@ -62,7 +60,9 @@ export function Tooltip({
       } else {
         setDirection("above");
         setPosition({
-          top: `${pageY - clientY + window.scrollY - tooltip.clientHeight}px`,
+          top: `${activatorBounds.top +
+            window.scrollY -
+            tooltip.clientHeight}px`,
           left: `${xOffset}px`,
         });
       }
@@ -143,36 +143,4 @@ interface TooltipPortalProps {
 
 function TooltipPortal({ children }: TooltipPortalProps) {
   return ReactDOM.createPortal(children, document.body);
-}
-
-/**
- * Calculate cumulative scrollTop from an Element.
- * @param {Element} node - Element to calculate cumulative scrollTop from.
- * @returns {number} - cumulativeScrollTop
- */
-function getCumulativeScrollTop(node?: Node) {
-  let cumulativeScrollTop = 0;
-
-  while (node) {
-    if (node instanceof Element) {
-      cumulativeScrollTop += node.scrollTop || 0;
-    }
-
-    node = node.parentNode || undefined;
-  }
-
-  return cumulativeScrollTop;
-}
-
-function getCumulativeOffsetTop(node?: HTMLElement) {
-  let cumulativeOffsetTop = 0;
-
-  while (node) {
-    if (node instanceof HTMLElement) {
-      cumulativeOffsetTop += node.offsetTop || 0;
-    }
-    node = node.offsetParent || undefined;
-  }
-
-  return cumulativeOffsetTop;
 }
