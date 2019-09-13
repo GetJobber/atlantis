@@ -4,19 +4,6 @@ import { Tooltip } from ".";
 
 afterEach(cleanup);
 
-test("renders the tooltip", () => {
-  const message = "Tipping the tool on load";
-  const content = "What am I?";
-
-  const { getByText } = render(
-    <Tooltip message={message} showOnLoad={true}>
-      <span>{content}</span>
-    </Tooltip>,
-  );
-  expect(getByText(message)).toBeTruthy();
-  expect(getByText(content)).toBeTruthy();
-});
-
 test("tooltip shouldn't show up", () => {
   const message = "Imma not tip the tool";
   const content = "Don't show my tooltip";

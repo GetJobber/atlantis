@@ -17,25 +17,16 @@ interface TooltipProps {
    * Tooltip text
    */
   readonly message: string;
-
-  /**
-   * Show the tooltip on load
-   */
-  readonly showOnLoad?: boolean;
 }
 
-export function Tooltip({
-  message,
-  children,
-  showOnLoad = false,
-}: TooltipProps) {
+export function Tooltip({ message, children }: TooltipProps) {
   const [direction, setDirection] = useState("above");
-  const [visible, setVisible] = useState(showOnLoad);
+  const [showOnLoad, setShowOnLoad] = useState(false);
   const [position, setPosition] = useState({ top: "0px", left: "0px" });
   const tooltipRef = createRef<HTMLDivElement>();
   const shadowRef = createRef<HTMLSpanElement>();
 
-  !showOnLoad && showOnHover(shadowRef, setVisible);
+  showOnHover(shadowRef, setShowOnLoad);
 
   useEffect(() => {
     if (
@@ -67,7 +58,7 @@ export function Tooltip({
         });
       }
     }
-  }, [visible]);
+  }, [showOnLoad]);
 
   const toolTipClassNames = classnames(
     styles.tooltipWrapper,
@@ -87,7 +78,7 @@ export function Tooltip({
       {children}
       <TooltipPortal>
         <AnimatePresence>
-          {visible && (
+          {showOnLoad && (
             <div
               className={toolTipClassNames}
               style={position}
