@@ -67,9 +67,8 @@ export function Tooltip({ message, children }: TooltipProps) {
   );
 
   const variation = {
-    initial: { scale: 0.6, opacity: 0 },
-    animate: { scale: 1, opacity: 1 },
-    exit: { scale: 0.6, opacity: 0 },
+    startOrStop: { scale: 0.6, opacity: 0 },
+    done: { scale: 1, opacity: 1 },
   };
 
   return (
@@ -87,9 +86,9 @@ export function Tooltip({ message, children }: TooltipProps) {
               <motion.div
                 className={styles.tooltip}
                 variants={variation}
-                initial="initial"
-                animate="animate"
-                exit="exit"
+                initial="startOrStop"
+                animate="done"
+                exit="startOrStop"
                 transition={{
                   type: "spring",
                   duration: 0.2,
