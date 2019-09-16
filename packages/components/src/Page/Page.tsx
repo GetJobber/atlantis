@@ -1,9 +1,9 @@
 import React, { ReactNode } from "react";
 import classnames from "classnames";
-import ReactMarkdown from "react-markdown";
 import { Heading } from "../Heading";
 import { Text } from "../Text";
 import { Content } from "../Content";
+import { Markdown } from "../Markdown";
 import styles from "./Page.css";
 
 interface PageProps {
@@ -39,12 +39,7 @@ export function Page({ title, intro, children, width }: PageProps) {
         <Content spacing="large">
           <Heading level={1}>{title}</Heading>
           <Text variation="intro">
-            {/* TODO make this use atlantis markdown component */}
-            <ReactMarkdown
-              source={intro}
-              disallowedTypes={["paragraph", "heading"]}
-              unwrapDisallowed={true}
-            />
+            <Markdown content={intro} basicUsage={true} />
           </Text>
         </Content>
         <Content>{children}</Content>
