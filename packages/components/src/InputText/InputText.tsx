@@ -31,6 +31,7 @@ interface MultilineProps extends BaseProps {
 
 type InputTextPropOptions = XOR<BaseProps, MultilineProps>;
 
+export const InputText = forwardRef(InputTextInternal);
 function InputTextInternal(
   props: InputTextPropOptions,
   ref: Ref<InputTextRef>,
@@ -59,8 +60,6 @@ function InputTextInternal(
     }
   }
 }
-
-export const InputText = forwardRef(InputTextInternal);
 
 function insertAtCursor(input: HTMLTextAreaElement, newText: string) {
   const start = input.selectionStart || 0;

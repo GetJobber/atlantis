@@ -147,199 +147,179 @@ export interface FormFieldProps {
    * Callback to get the the status and message when validating a field
    * @param messages
    */
-  onValidation?(messages: ValidationProps[]): void;
+  onValidation?(messages?: ValidationProps[]): void;
 }
 
-export const FormField = React.forwardRef(
-  (
+export const FormField = React.forwardRef(FormFieldInternal);
+
+function FormFieldInternal(
+  {
+    align,
+    children,
+    defaultValue,
+    disabled,
+    errorMessage,
+    inline,
+    invalid,
+    max,
+    maxLength,
+    min,
+    name,
+    onFocus,
+    onBlur,
+    onChange,
+    onValidate,
+    onValidation,
+    placeholder,
+    readonly,
+    required,
+    rows,
+    size,
+    type = "text",
+    value,
+    validations = [],
+  }: FormFieldProps,
+  ref:
+    | Ref<HTMLInputElement>
+    | Ref<HTMLTextAreaElement>
+    | Ref<HTMLSelectElement>,
+) {
+  const [hasMiniLabel, setHasMiniLabel] = useState(
+    defaultValue || value ? true : false,
+  );
+  const identifier = uuid.v1();
+  const Wrapper = inline ? "span" : "div";
+
+  useEffect(() => {
+    /* DEPRECATED */
+    const status = errorMessage ? "fail" : "pass";
+    const message = errorMessage || "";
+    onValidate && onValidate(status, message);
+    /* END:DEPRECATED */
+
+    onValidation && onValidation(validations);
+  }, [value]);
+
+  if (required && validations) {
+    validations.push({
+      message: `${placeholder || "This"} is required`,
+      status: "error",
+      shouldShow: value !== undefined && value.toString().length === 0,
+    });
+  }
+
+  const wrapperClassNames = classnames(
+    styles.wrapper,
+    inline && styles.inline,
+    size && styles[size],
+    align && styles[align],
+    errorMessage && styles.hasErrorMessage,
+    disabled && styles.disabled,
+    maxLength && styles.maxLength,
     {
-      align,
-      children,
-      defaultValue,
-      disabled,
-      errorMessage,
-      inline,
-      invalid,
-      max,
-      maxLength,
-      min,
-      name,
-      onFocus,
-      onBlur,
-      onChange,
-      onValidate,
-      onValidation,
-      placeholder,
-      readonly,
-      required,
-      rows,
-      size,
-      type = "text",
-      value,
-      validations,
-    }: FormFieldProps,
-    ref:
-      | Ref<HTMLInputElement>
-      | Ref<HTMLTextAreaElement>
-      | Ref<HTMLSelectElement>,
-  ) => {
-    const [hasMiniLabel, setHasMiniLabel] = useState(
-      defaultValue || value ? true : false,
-    );
-    const identifier = uuid.v1();
+      [styles.miniLabel]:
+        (hasMiniLabel || type === "time" || type === "select") && placeholder,
+      [styles.invalid]:
+        invalid || errorMessage || hasErrorMessages(validations),
+    },
+  );
 
-    useEffect(() => {
-      handleValidation();
-    }, [value]);
+  const labelClassNames = classnames(
+    styles.label,
+    type === "textarea" && styles.textareaLabel,
+  );
 
-    const validationMessages = validations || [];
+  return (
+    <>
+      {errorMessage && !inline && <Text variation="error">{errorMessage}</Text>}
 
-    if (required) {
-      validationMessages.push({
-        message: `${placeholder || "This"} is required`,
-        status: "error",
-        shouldShow: value !== undefined && value.toString().length === 0,
-      });
-    }
+      {!inline && <InputValidation messages={validations} />}
 
-    const Wrapper = inline ? "span" : "div";
-
-    return (
-      <>
-        {errorMessage && !inline && (
-          <Text variation="error">{errorMessage}</Text>
+      <Wrapper
+        className={wrapperClassNames}
+        style={{ ["--formField-maxLength" as string]: maxLength || max }}
+      >
+        <label className={labelClassNames} htmlFor={identifier}>
+          {placeholder || " "}
+        </label>
+        {fieldElement()}
+        {type === "select" && (
+          <span className={styles.icon}>
+            <Icon name="arrowDown" />
+          </span>
         )}
+      </Wrapper>
+    </>
+  );
 
-        {!inline && <InputValidation messages={validationMessages} />}
+  function fieldElement() {
+    const fieldProps = {
+      id: identifier,
+      className: styles.formField,
+      name: name,
+      disabled: disabled,
+      readOnly: readonly,
+      onChange: handleChange,
+      value: value,
+      ...(defaultValue && { defaultValue: defaultValue }),
+    };
 
-        <Wrapper
-          className={getWrapperClassNames()}
-          style={{ ["--formField-maxLength" as string]: maxLength || max }}
-        >
-          <label className={getLabelClassNames()} htmlFor={identifier}>
-            {placeholder || " "}
-          </label>
-          {fieldElement()}
-          {type === "select" && (
-            <span className={styles.icon}>
-              <Icon name="arrowDown" />
-            </span>
-          )}
-        </Wrapper>
-      </>
-    );
-
-    function fieldElement() {
-      const fieldProps = {
-        id: identifier,
-        className: styles.formField,
-        name: name,
-        disabled: disabled,
-        readOnly: readonly,
-        onChange: handleChange,
-        value: value,
-        ...(defaultValue && { defaultValue: defaultValue }),
-      };
-
-      switch (type) {
-        case "select":
-          return <select {...fieldProps}>{children}</select>;
-        case "textarea":
-          return (
-            <textarea
-              rows={rows}
-              onFocus={handleFocus}
-              onBlur={handleBlur}
-              ref={ref as Ref<HTMLTextAreaElement>}
-              {...fieldProps}
-            />
-          );
-        default:
-          return (
-            <input
-              type={type}
-              maxLength={maxLength}
-              max={max}
-              min={min}
-              onFocus={handleFocus}
-              onBlur={handleBlur}
-              ref={ref as Ref<HTMLInputElement>}
-              {...fieldProps}
-            />
-          );
-      }
+    switch (type) {
+      case "select":
+        return <select {...fieldProps}>{children}</select>;
+      case "textarea":
+        return (
+          <textarea
+            rows={rows}
+            onFocus={handleFocus}
+            onBlur={onBlur}
+            ref={ref as Ref<HTMLTextAreaElement>}
+            {...fieldProps}
+          />
+        );
+      default:
+        return (
+          <input
+            type={type}
+            maxLength={maxLength}
+            max={max}
+            min={min}
+            onFocus={handleFocus}
+            onBlur={onBlur}
+            ref={ref as Ref<HTMLInputElement>}
+            {...fieldProps}
+          />
+        );
     }
+  }
 
-    function handleChange(
-      event:
-        | ChangeEvent<HTMLInputElement>
-        | ChangeEvent<HTMLTextAreaElement>
-        | ChangeEvent<HTMLSelectElement>,
-    ) {
-      let newValue: string | number;
-      newValue = event.currentTarget.value;
-      setHasMiniLabel(newValue.length > 0);
+  function handleChange(
+    event:
+      | ChangeEvent<HTMLInputElement>
+      | ChangeEvent<HTMLTextAreaElement>
+      | ChangeEvent<HTMLSelectElement>,
+  ) {
+    let newValue: string | number;
+    newValue = event.currentTarget.value;
+    setHasMiniLabel(newValue.length > 0);
 
-      if (type === "number" && newValue.length > 0) {
-        newValue = parseFloat(newValue);
-      }
-      onChange && onChange(newValue);
+    if (type === "number" && newValue.length > 0) {
+      newValue = parseFloat(newValue);
     }
+    onChange && onChange(newValue);
+  }
 
-    function handleFocus(
-      event:
-        | React.FocusEvent<HTMLInputElement>
-        | React.FocusEvent<HTMLTextAreaElement>,
-    ) {
-      const target = event.currentTarget;
-      setTimeout(() => readonly && target.select());
+  function handleFocus(
+    event:
+      | React.FocusEvent<HTMLInputElement>
+      | React.FocusEvent<HTMLTextAreaElement>,
+  ) {
+    const target = event.currentTarget;
+    setTimeout(() => readonly && target.select());
 
-      onFocus && onFocus();
-    }
-
-    function handleBlur() {
-      onBlur && onBlur();
-    }
-
-    function handleValidation() {
-      const status = errorMessage ? "fail" : "pass";
-      const message = errorMessage || "";
-      onValidate && onValidate(status, message);
-
-      onValidation && onValidation(validationMessages);
-    }
-
-    function getLabelClassNames() {
-      const labelClassNames = classnames(
-        styles.label,
-        type === "textarea" && styles.textareaLabel,
-      );
-
-      return labelClassNames;
-    }
-
-    function getWrapperClassNames() {
-      const wrapperClassNames = classnames(
-        styles.wrapper,
-        inline && styles.inline,
-        size && styles[size],
-        align && styles[align],
-        errorMessage && styles.hasErrorMessage,
-        disabled && styles.disabled,
-        maxLength && styles.maxLength,
-        {
-          [styles.miniLabel]:
-            (hasMiniLabel || type === "time" || type === "select") &&
-            placeholder,
-          [styles.invalid]:
-            invalid || errorMessage || hasErrorMessages(validationMessages),
-        },
-      );
-
-      return wrapperClassNames;
-    }
-  },
-);
+    onFocus && onFocus();
+  }
+}
 
 function hasErrorMessages(validations?: ValidationProps[]) {
   if (validations) {
