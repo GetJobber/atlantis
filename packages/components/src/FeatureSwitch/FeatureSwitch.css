@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+}
+
+.content {
+  flex: 1 1 auto;
+  align-self: center;
+  padding-right: var(--space-base);
+}
+
+.action {
+  flex: 0 0 auto;
+}

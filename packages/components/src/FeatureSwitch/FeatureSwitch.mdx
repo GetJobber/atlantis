@@ -1,0 +1,29 @@
+---
+name: FeatureSwitch
+menu: Components
+route: /components/feature-switch
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { FeatureSwitch } from ".";
+import { Text } from "../Text";
+
+# FeatureSwitch
+
+<ComponentStatus stage="pre" responsive="no" accessible="no" />
+
+In Jobber a FeatureSwitch is used to …
+
+<Playground>
+  <FeatureSwitch
+    title="Quote follow-up"
+    description="Send a notification to your client following up on an outstanding quote."
+  >
+    <Text>Hello</Text>
+  </FeatureSwitch>
+</Playground>
+
+## Props
+
+<Props of={FeatureSwitch} />
