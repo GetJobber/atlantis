@@ -31,7 +31,7 @@
   left: 50%;
   width: var(--tooltip--arrow-size);
   height: var(--tooltip--arrow-size);
-  border: 1px solid var(--tooltip--border-color);
+  border: var(--border-base) solid var(--tooltip--border-color);
   background-color: inherit;
   transform: translateX(-50%) rotate(45deg);
 }
