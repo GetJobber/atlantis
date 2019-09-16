@@ -27,27 +27,15 @@ the rest of the application until a specific action is taken.
     return (
       <>
         <Modal
-          title="Share and Embed"
+          title="We've updated Jobber"
           open={value}
           onRequestClose={() => setValue(!value)}
         >
           <Content padded={true}>
             <Text>
-              Display your online booking request form on your website or social media
+              It's harder, better, faster, and stronger! 🤖
             </Text>
           </Content>
-          <Tabs>
-            <Tab label="Share Link">
-              <Text>
-                  Link the form on your website or social media page with the following URL:
-              </Text>
-            </Tab>
-            <Tab label="Add to Facebook">
-              <Text>
-                Follow our guide on how to add the request form into your Facebook business page by going to our Help Center.
-              </Text>
-            </Tab>
-          </Tabs>
         </Modal>
 
         <Button
