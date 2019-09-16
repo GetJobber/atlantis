@@ -11,7 +11,7 @@
 .tooltipWrapper {
   display: inline-block;
   position: absolute;
-  z-index: 1000;
+  z-index: var(--elevation-tooltip);
 }
 
 .tooltip {
