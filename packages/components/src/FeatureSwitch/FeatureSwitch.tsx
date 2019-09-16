@@ -8,10 +8,32 @@ import styles from "./FeatureSwitch.css";
 
 interface FeatureSwitchProps {
   readonly children?: ReactNode | ReactNode[];
+
+  /**
+   * Feature description.
+   */
   readonly description: string;
+
+  /**
+   * Defines if the feature should be ON or OFF by default.
+   */
   readonly enabled: boolean;
+
+  /**
+   * Feature title.
+   */
   readonly title: string;
+
+  /**
+   * Callback when interacting with the switch.
+   *
+   * @param newValue
+   */
   onSwitch?(newValue: boolean): void;
+
+  /**
+   * Callback when clicking with the edit button.
+   */
   onEdit?(): void;
 }
 

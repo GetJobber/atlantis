@@ -9,7 +9,7 @@ import { ComponentStatus } from "@jobber/docx";
 import { FeatureSwitch } from ".";
 import { Text } from "../Text";
 
-# FeatureSwitch
+# Feature Switch
 
 <ComponentStatus stage="pre" responsive="no" accessible="no" />
 
@@ -19,6 +19,12 @@ In Jobber a FeatureSwitch is used to …
   <FeatureSwitch
     title="Quote follow-up"
     description="Send a notification to your client following up on an outstanding quote."
+    onSwitch={newValue => {
+      console.log(`Feature ${newValue ? "enabled" : "disabled"}`);
+    }}
+    onEdit={() => {
+      console.log("You clicked edit");
+    }}
   >
     <Text>Hello</Text>
   </FeatureSwitch>
