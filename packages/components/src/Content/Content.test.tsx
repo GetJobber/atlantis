@@ -8,21 +8,21 @@ afterEach(cleanup);
 it("renders a Content", () => {
   const tree = renderer.create(<Content>Wazaaaaa</Content>).toJSON();
   expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="base"
-    >
-      Wazaaaaa
-    </div>
-  `);
+        <div
+          className="base"
+        >
+          Wazaaaaa
+        </div>
+    `);
 });
 
 it("renders a Content with a large spacing", () => {
   const tree = renderer
-    .create(<Content padding="large">Space me up!</Content>)
+    .create(<Content spacing="large">Space me up!</Content>)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="base"
+      className="large"
     >
       Space me up!
     </div>
@@ -31,11 +31,11 @@ it("renders a Content with a large spacing", () => {
 
 it("renders a Content with a small spacing", () => {
   const tree = renderer
-    .create(<Content padding="small">Space me down!</Content>)
+    .create(<Content spacing="small">Space me down!</Content>)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="base"
+      className="small"
     >
       Space me down!
     </div>
@@ -44,39 +44,13 @@ it("renders a Content with a small spacing", () => {
 
 it("renders a Content with a large padding", () => {
   const tree = renderer
-    .create(<Content padding="large">Pad me up!</Content>)
+    .create(<Content padded={true}>Pad me up!</Content>)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="base"
+      className="padded base"
     >
       Pad me up!
-    </div>
-  `);
-});
-
-it("renders a Content with a small padding", () => {
-  const tree = renderer
-    .create(<Content padding="small">Pad me down!</Content>)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="base"
-    >
-      Pad me down!
-    </div>
-  `);
-});
-
-it("renders a Content with no padding", () => {
-  const tree = renderer
-    .create(<Content padding="none">Pad me none!</Content>)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="base"
-    >
-      Pad me none!
     </div>
   `);
 });
