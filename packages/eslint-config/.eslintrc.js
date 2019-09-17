@@ -88,4 +88,12 @@ module.exports = {
     radix: "error",
     "use-isnan": "error",
   },
+  overrides: [
+    {
+      files: ["**/*.tsx"],
+      rules: {
+        "react/prop-types": "off",
+      },
+    },
+  ],
 };
