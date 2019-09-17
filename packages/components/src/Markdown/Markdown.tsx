@@ -35,7 +35,14 @@ interface BaseRendererProps {
 export function Markdown({ content, externalLink, basicUsage }: MarkdownProps) {
   const props = {
     ...(basicUsage && {
-      disallowedTypes: ["paragraph", "heading"],
+      disallowedTypes: [
+        "paragraph",
+        "heading",
+        "table",
+        "list",
+        "code",
+        "image",
+      ],
       unwrapDisallowed: true,
     }),
   };
