@@ -19,7 +19,7 @@ interface FeatureSwitchProps {
   /**
    * Defines if the feature should be ON or OFF by default.
    */
-  readonly enabled: boolean;
+  readonly enabled?: boolean;
 
   /**
    * Feature title.
