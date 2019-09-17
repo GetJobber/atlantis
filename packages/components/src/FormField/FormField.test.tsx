@@ -37,29 +37,29 @@ it("renders correctly with a placeholder", () => {
     .create(<FormField placeholder="My placeholder" />)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
-    >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440002"
-      >
-        My placeholder
-      </label>
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440002"
-        onChange={[Function]}
-        onFocus={[Function]}
-        type="text"
-      />
-    </div>
-  `);
+                    <div
+                      className="wrapper"
+                      style={
+                        Object {
+                          "--formField-maxLength": undefined,
+                        }
+                      }
+                    >
+                      <label
+                        className="label"
+                        htmlFor="123e4567-e89b-12d3-a456-426655440002"
+                      >
+                        My placeholder
+                      </label>
+                      <input
+                        className="formField"
+                        id="123e4567-e89b-12d3-a456-426655440002"
+                        onChange={[Function]}
+                        onFocus={[Function]}
+                        type="text"
+                      />
+                    </div>
+          `);
 });
 
 it("renders correctly as small", () => {
@@ -155,36 +155,29 @@ it("renders a field with error", () => {
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-    Array [
-      <p
-        className="base regular base red"
-      >
-        Enter a value that is correct
-      </p>,
-      <div
-        className="wrapper hasErrorMessage invalid"
-        style={
-          Object {
-            "--formField-maxLength": undefined,
-          }
+    <div
+      className="wrapper"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
         }
+      }
+    >
+      <label
+        className="label"
+        htmlFor="123e4567-e89b-12d3-a456-426655440006"
       >
-        <label
-          className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440006"
-        >
-           
-        </label>
-        <input
-          className="formField"
-          id="123e4567-e89b-12d3-a456-426655440006"
-          onChange={[Function]}
-          onFocus={[Function]}
-          type="text"
-          value="wrong!"
-        />
-      </div>,
-    ]
+         
+      </label>
+      <input
+        className="formField"
+        id="123e4567-e89b-12d3-a456-426655440006"
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="text"
+        value="wrong!"
+      />
+    </div>
   `);
 });
 
@@ -233,7 +226,7 @@ test("it should call the validation handler when typing a new value", () => {
     />,
   );
 
-  expect(validationHandler).toHaveBeenCalledWith("pass", "");
+  expect(validationHandler).toHaveBeenCalledWith([]);
 });
 
 test("it should call the validation handler with a fail status when there's an error", () => {
@@ -243,10 +236,10 @@ test("it should call the validation handler with a fail status when there's an e
     <FormField
       name="Got milk?"
       onValidate={validationHandler}
-      placeholder="I hold places"
-      errorMessage="Nope!"
+      placeholder="Name"
+      required={true}
     />,
   );
 
-  expect(validationHandler).toHaveBeenCalledWith("fail", "Nope!");
+  expect(validationHandler).toHaveBeenCalledTimes(1);
 });

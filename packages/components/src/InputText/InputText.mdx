@@ -22,8 +22,16 @@ Input text is used in forms that accept short or long answers from users.
 Use this to allow users to provide short answers.
 
 <Playground>
+  <InputText
+    required={true}
+    placeholder="Describe your age"
+    name="describeAge"
+  />
+</Playground>
+
+<Playground>
   {() => {
-    const [value, setValue] = useState("Veintisiete");
+    const [value, setValue] = useState("");
     const handleChange = newValue => {
       setValue(newValue);
     };
@@ -175,7 +183,7 @@ shouldn't replace server-side validation.
 
 </Playground>
 
-## Using onValidation
+## Using onValidate
 
 If you need to capture the error message and render it outside of the component.
 Read the [InputValidation](/components/input-validation) documentation.

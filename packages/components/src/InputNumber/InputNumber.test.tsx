@@ -51,7 +51,7 @@ test("it should call the validation handler and return a range message", () => {
       value={101}
       min={0}
       max={100}
-      onValidation={validationHandler}
+      onValidate={validationHandler}
       placeholder="Count to 100"
     />,
   );
@@ -73,7 +73,7 @@ test("it should show a over max message", () => {
     <InputNumber
       value={101}
       max={100}
-      onValidation={validationHandler}
+      onValidate={validationHandler}
       placeholder="Count to 100"
     />,
   );
@@ -95,7 +95,7 @@ test("it should show an under min message", () => {
     <InputNumber
       value={98}
       min={99}
-      onValidation={validationHandler}
+      onValidate={validationHandler}
       placeholder="Count to 100"
     />,
   );

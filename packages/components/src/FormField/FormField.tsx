@@ -2,7 +2,6 @@ import React, { ChangeEvent, ReactNode, Ref, useEffect, useState } from "react";
 import classnames from "classnames";
 import uuid from "uuid";
 import { Icon } from "../Icon";
-import { Text } from "../Text";
 import { InputValidation, ValidationProps } from "../InputValidation";
 import styles from "./FormField.css";
 
@@ -29,13 +28,6 @@ export interface FormFieldProps {
    * Disable the input
    */
   readonly disabled?: boolean;
-
-  /**
-   * **DEPRECATED** Use `validations` prop instead.
-   *
-   * Show an error message and highlight the the field red.
-   */
-  readonly errorMessage?: string;
 
   /**
    * Adjusts the form field to go inline with a content. This also silences the
@@ -133,32 +125,23 @@ export interface FormFieldProps {
   onBlur?(): void;
 
   /**
-   * **DEPRECATED** Use `onValidation` prop instead.
-   *
-   * Callback to get the the status and message when validating a field
-   * @param status
-   * @param message
-   */
-  onValidate?(status: "pass" | "fail", message: string): void;
-
-  /**
    * **EXPERIMENTAL** This feature is still under development.
    *
    * Callback to get the the status and message when validating a field
    * @param messages
    */
-  onValidation?(messages?: ValidationProps[]): void;
+  onValidate?(messages?: ValidationProps[]): void;
 }
 
 export const FormField = React.forwardRef(FormFieldInternal);
 
+// eslint-disable-next-line max-statements
 function FormFieldInternal(
   {
     align,
     children,
     defaultValue,
     disabled,
-    errorMessage,
     inline,
     invalid,
     max,
@@ -169,7 +152,6 @@ function FormFieldInternal(
     onBlur,
     onChange,
     onValidate,
-    onValidation,
     placeholder,
     readonly,
     required,
@@ -187,40 +169,35 @@ function FormFieldInternal(
   const [hasMiniLabel, setHasMiniLabel] = useState(
     defaultValue || value ? true : false,
   );
+  const [userEdited, setUserEdited] = useState(false);
+
   const identifier = uuid.v1();
-  const Wrapper = inline ? "span" : "div";
 
   useEffect(() => {
-    /* DEPRECATED */
-    const status = errorMessage ? "fail" : "pass";
-    const message = errorMessage || "";
-    onValidate && onValidate(status, message);
-    /* END:DEPRECATED */
-
-    onValidation && onValidation(validations);
+    onValidate && onValidate(validations);
   }, [value]);
 
   if (required && validations) {
     validations.push({
       message: `${placeholder || "This"} is required`,
       status: "error",
-      shouldShow: value !== undefined && value.toString().length === 0,
+      shouldShow:
+        userEdited && value !== undefined && value.toString().length === 0,
     });
   }
 
+  const Wrapper = inline ? "span" : "div";
   const wrapperClassNames = classnames(
     styles.wrapper,
     inline && styles.inline,
     size && styles[size],
     align && styles[align],
-    errorMessage && styles.hasErrorMessage,
     disabled && styles.disabled,
     maxLength && styles.maxLength,
     {
       [styles.miniLabel]:
         (hasMiniLabel || type === "time" || type === "select") && placeholder,
-      [styles.invalid]:
-        invalid || errorMessage || hasErrorMessages(validations),
+      [styles.invalid]: invalid || hasErrorMessages(validations),
     },
   );
 
@@ -231,8 +208,6 @@ function FormFieldInternal(
 
   return (
     <>
-      {errorMessage && !inline && <Text variation="error">{errorMessage}</Text>}
-
       {!inline && <InputValidation messages={validations} />}
 
       <Wrapper
@@ -301,6 +276,7 @@ function FormFieldInternal(
   ) {
     let newValue: string | number;
     newValue = event.currentTarget.value;
+    setUserEdited(true);
     setHasMiniLabel(newValue.length > 0);
 
     if (type === "number" && newValue.length > 0) {
