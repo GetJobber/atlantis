@@ -1,0 +1,158 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a full FeatureSwitch 1`] = `
+<div
+  className="base"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="content"
+    >
+      <div
+        className="base"
+      >
+        <h4
+          className="base bold large blue"
+        >
+          Quote follow-up
+        </h4>
+        <p
+          className="base regular base greyBlueDark"
+        >
+          Send a notification to your client following up on an outstanding quote.
+        </p>
+      </div>
+    </div>
+    <div
+      className="action"
+    >
+      <button
+        aria-checked={true}
+        aria-label="Send a notification to your client following up on an outstanding quote."
+        className="track isChecked"
+        onClick={[Function]}
+        role="switch"
+        type="button"
+      >
+        <span
+          className="toggle"
+        >
+          <span
+            className="label"
+          >
+            <span
+              className="base bold small uppercase white"
+            >
+              On
+            </span>
+          </span>
+          <span
+            className="pip"
+          />
+          <span
+            className="label"
+          >
+            <span
+              className="base bold small uppercase greyBlue"
+            >
+              Off
+            </span>
+          </span>
+        </span>
+      </button>
+      <input
+        type="hidden"
+        value="true"
+      />
+    </div>
+  </div>
+  <div
+    className="container"
+  >
+    <div
+      className="action"
+    >
+      <button
+        className="button base work tertiary"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        <span
+          className="base extraBold small uppercase green"
+        >
+          Edit
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders a simple FeatureSwitch 1`] = `
+<div
+  className="base"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="content"
+    >
+      <div
+        className="base"
+      >
+        <p
+          className="base regular base greyBlueDark"
+        >
+          Send a thing?
+        </p>
+      </div>
+    </div>
+    <div
+      className="action"
+    >
+      <button
+        aria-checked={false}
+        aria-label="Send a thing?"
+        className="track"
+        onClick={[Function]}
+        role="switch"
+        type="button"
+      >
+        <span
+          className="toggle"
+        >
+          <span
+            className="label"
+          >
+            <span
+              className="base bold small uppercase white"
+            >
+              On
+            </span>
+          </span>
+          <span
+            className="pip"
+          />
+          <span
+            className="label"
+          >
+            <span
+              className="base bold small uppercase greyBlue"
+            >
+              Off
+            </span>
+          </span>
+        </span>
+      </button>
+      <input
+        type="hidden"
+        value="false"
+      />
+    </div>
+  </div>
+</div>
+`;
