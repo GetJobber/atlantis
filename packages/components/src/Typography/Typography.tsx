@@ -23,6 +23,8 @@ interface TypographyProps {
     | "p"
     | "b"
     | "em"
+    | "dd"
+    | "dt"
     | "strong"
     | "span";
   readonly size?: keyof typeof fontSizes;
