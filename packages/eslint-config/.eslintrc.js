@@ -29,12 +29,7 @@ module.exports = {
   rules: {
     "import/order": "error",
     "import/no-default-export": "error",
-    "import/no-unresolved": [
-      "error",
-      {
-        ignore: [".css$"],
-      },
-    ],
+    "import/no-unresolved": ["error", { ignore: [".css$"] }],
     "import/namespace": "error",
     "import/default": "error",
     "import/export": "error",
