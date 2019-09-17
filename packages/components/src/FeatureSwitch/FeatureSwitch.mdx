@@ -13,7 +13,7 @@ import { Text } from "../Text";
 
 <ComponentStatus stage="pre" responsive="no" accessible="no" />
 
-In Jobber a FeatureSwitch is used to …
+Allow users to switch a feature on or off.
 
 <Playground>
   <FeatureSwitch
@@ -26,8 +26,19 @@ In Jobber a FeatureSwitch is used to …
       console.log("You clicked edit");
     }}
   >
-    <Text>Hello</Text>
+    <Text>Feature Content</Text>
   </FeatureSwitch>
+</Playground>
+
+## Simple usage
+
+<Playground>
+  <FeatureSwitch
+    description="Send a notification to your client following up on an outstanding quote"
+    onSwitch={newValue => {
+      console.log(`Feature ${newValue ? "enabled" : "disabled"}`);
+    }}
+  />
 </Playground>
 
 ## Props
