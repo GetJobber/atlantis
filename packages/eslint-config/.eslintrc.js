@@ -66,6 +66,7 @@ module.exports = {
     "@typescript-eslint/no-use-before-define": ["error", { functions: false }],
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-non-null-assertion": "error",
     curly: ["error", "multi-line", "consistent"],
     "prefer-const": "error",
     "dot-notation": "error",
