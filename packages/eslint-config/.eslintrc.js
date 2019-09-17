@@ -85,6 +85,7 @@ module.exports = {
     "no-unused-expressions": ["error", { allowShortCircuit: true }],
     "no-use-before-define": ["error", { functions: false, classes: false }],
     "no-octal-escape": "error",
+    "no-restricted-imports": ["error", { patterns: ["../*"] }],
     radix: "error",
     "use-isnan": "error",
   },
