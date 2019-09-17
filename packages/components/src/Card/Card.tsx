@@ -79,13 +79,7 @@ interface TitleProps {
   readonly title: string;
 }
 
-/**
- * **DEPRECATED** Use `title` props on the `<Card />` to add a title instead.
- *
- * This will be used as an internal component
- */
-
-export function Title({ title }: TitleProps) {
+function Title({ title }: TitleProps) {
   const className = classnames(styles.header);
 
   return (
