@@ -41,7 +41,8 @@ interface FeatureSwitchProps {
   onSwitch?(newValue: boolean): void;
 
   /**
-   * Callback when clicking with the edit button.
+   * Callback when clicking with the edit button. This also determines if the
+   * edit button should show up in the UI.
    */
   onEdit?(): void;
 }
