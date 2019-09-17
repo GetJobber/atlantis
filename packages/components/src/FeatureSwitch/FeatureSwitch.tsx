@@ -27,6 +27,13 @@ interface FeatureSwitchProps {
   readonly title?: string;
 
   /**
+   * Determines if a save indicator should show up when toggling the switch.
+   *
+   * @default false
+   */
+  readonly hasSaveIndicator?: boolean;
+
+  /**
    * Callback when interacting with the switch.
    *
    * @param newValue
@@ -45,6 +52,7 @@ export function FeatureSwitch({
   enabled,
   onEdit,
   onSwitch,
+  hasSaveIndicator = false,
   title,
 }: FeatureSwitchProps) {
   const [savedIndicator, setSavedIndicator] = useState(false);
@@ -64,7 +72,7 @@ export function FeatureSwitch({
             ariaLabel={description}
           />
           <AnimatePresence>
-            {savedIndicator && (
+            {hasSaveIndicator && savedIndicator && (
               <motion.div
                 className={styles.savedIndicator}
                 initial={{ y: -4, opacity: 0 }}

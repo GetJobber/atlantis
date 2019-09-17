@@ -19,6 +19,7 @@ Allow users to switch a feature on or off.
   <FeatureSwitch
     title="Quote follow-up"
     description="Send a notification to your client following up on an outstanding quote."
+    hasSaveIndicator={true}
     onSwitch={newValue => {
       console.log(`Feature ${newValue ? "enabled" : "disabled"}`);
     }}
