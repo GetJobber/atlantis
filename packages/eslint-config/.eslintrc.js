@@ -29,12 +29,7 @@ module.exports = {
   rules: {
     "import/order": "error",
     "import/no-default-export": "error",
-    "import/no-unresolved": [
-      "error",
-      {
-        ignore: [".css$"],
-      },
-    ],
+    "import/no-unresolved": ["error", { ignore: [".css$"] }],
     "import/namespace": "error",
     "import/default": "error",
     "import/export": "error",
@@ -66,6 +61,7 @@ module.exports = {
     "@typescript-eslint/no-use-before-define": ["error", { functions: false }],
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-non-null-assertion": "error",
     curly: ["error", "multi-line", "consistent"],
     "prefer-const": "error",
     "dot-notation": "error",
@@ -84,7 +80,16 @@ module.exports = {
     "no-unused-expressions": ["error", { allowShortCircuit: true }],
     "no-use-before-define": ["error", { functions: false, classes: false }],
     "no-octal-escape": "error",
+    "no-restricted-imports": ["error", { patterns: ["../*"] }],
     radix: "error",
     "use-isnan": "error",
   },
+  overrides: [
+    {
+      files: ["**/*.tsx"],
+      rules: {
+        "react/prop-types": "off",
+      },
+    },
+  ],
 };
