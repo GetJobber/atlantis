@@ -72,6 +72,11 @@ exports[`renders a full FeatureSwitch 1`] = `
     className="container"
   >
     <div
+      className="featureContent content enabled"
+    >
+      Dis dem content yo
+    </div>
+    <div
       className="action"
     >
       <button
@@ -152,6 +157,81 @@ exports[`renders a simple FeatureSwitch 1`] = `
         type="hidden"
         value="false"
       />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders a subdued FeatureSwitch content 1`] = `
+<div
+  className="base"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="content"
+    >
+      <div
+        className="base"
+      >
+        <p
+          className="base regular base greyBlueDark"
+        >
+          Send a notification to your client following up on an outstanding quote.
+        </p>
+      </div>
+    </div>
+    <div
+      className="action"
+    >
+      <button
+        aria-checked={false}
+        aria-label="Send a notification to your client following up on an outstanding quote."
+        className="track"
+        onClick={[Function]}
+        role="switch"
+        type="button"
+      >
+        <span
+          className="toggle"
+        >
+          <span
+            className="label"
+          >
+            <span
+              className="base bold small uppercase white"
+            >
+              On
+            </span>
+          </span>
+          <span
+            className="pip"
+          />
+          <span
+            className="label"
+          >
+            <span
+              className="base bold small uppercase greyBlue"
+            >
+              Off
+            </span>
+          </span>
+        </span>
+      </button>
+      <input
+        type="hidden"
+        value="false"
+      />
+    </div>
+  </div>
+  <div
+    className="container"
+  >
+    <div
+      className="featureContent content"
+    >
+      Dis dem content yo
     </div>
   </div>
 </div>

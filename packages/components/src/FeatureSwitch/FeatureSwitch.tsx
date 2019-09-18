@@ -1,5 +1,6 @@
 import React, { ReactNode, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import classnames from "classnames";
 import { Heading } from "../Heading";
 import { Text } from "../Text";
 import { Content } from "../Content";
@@ -57,6 +58,12 @@ export function FeatureSwitch({
   title,
 }: FeatureSwitchProps) {
   const [savedIndicator, setSavedIndicator] = useState(false);
+  const featureContentClassnames = classnames(
+    styles.featureContent,
+    styles.content,
+    enabled && styles.enabled,
+  );
+
   return (
     <Content>
       <div className={styles.container}>
@@ -99,7 +106,9 @@ export function FeatureSwitch({
 
       {(children || onEdit) && (
         <div className={styles.container}>
-          {children && <div className={styles.content}>{children}</div>}
+          {children && (
+            <div className={featureContentClassnames}>{children}</div>
+          )}
           {onEdit && (
             <div className={styles.action}>
               <Button label="Edit" type="tertiary" onClick={onEdit} />

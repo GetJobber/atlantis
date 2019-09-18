@@ -21,3 +21,11 @@
   margin-top: var(--space-smallest);
   text-align: center;
 }
+
+.featureContent {
+  opacity: 0.5;
+}
+
+.enabled {
+  opacity: 1;
+}

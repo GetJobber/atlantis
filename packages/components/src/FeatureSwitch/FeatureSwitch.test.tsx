@@ -26,7 +26,23 @@ it("renders a full FeatureSwitch", () => {
         onEdit={() => {
           console.log("You clicked edit");
         }}
-      />,
+      >
+        Dis dem content yo
+      </FeatureSwitch>,
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
+it("renders a subdued FeatureSwitch content", () => {
+  const tree = renderer
+    .create(
+      <FeatureSwitch
+        enabled={false}
+        description="Send a notification to your client following up on an outstanding quote."
+      >
+        Dis dem content yo
+      </FeatureSwitch>,
     )
     .toJSON();
   expect(tree).toMatchSnapshot();
