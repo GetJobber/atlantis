@@ -1,13 +1,14 @@
 import React, { ReactNode } from "react";
 import classnames from "classnames";
+import { Typography } from "../Typography";
 import styles from "./InlineLabel.css";
 
 interface InlineLabelProps {
   /**
    * The size of the label
-   * @default normal
+   * @default base
    */
-  size?: "normal" | "medium" | "large";
+  size?: "base" | "large" | "larger";
   /**
    * The color of the label
    * @default "greyBlue"
@@ -30,12 +31,28 @@ interface InlineLabelProps {
   children: ReactNode;
 }
 
+interface SizeMapProps {
+  [key: string]: "small" | "base" | "large";
+}
+
 export function InlineLabel({
-  size = "normal",
+  size = "base",
   color = "greyBlue",
   children,
 }: InlineLabelProps) {
   const className = classnames(styles.inlineLabel, styles[size], styles[color]);
 
-  return <span className={className}>{children}</span>;
+  const sizeMapper: SizeMapProps = {
+    base: "small",
+    large: "base",
+    larger: "large",
+  };
+
+  return (
+    <span className={className}>
+      <Typography element="span" size={sizeMapper[size]} textCase="uppercase">
+        {children}
+      </Typography>
+    </span>
+  );
 }
