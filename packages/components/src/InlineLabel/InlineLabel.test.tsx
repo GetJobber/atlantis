@@ -6,9 +6,13 @@ it("renders correctly", () => {
   const tree = renderer.create(<InlineLabel>My Label</InlineLabel>).toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <span
-      className="inlineLabel normal greyBlue"
+      className="inlineLabel base greyBlue"
     >
-      My Label
+      <span
+        className="base regular small uppercase"
+      >
+        My Label
+      </span>
     </span>
   `);
 });

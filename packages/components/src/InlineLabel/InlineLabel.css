@@ -1,28 +1,18 @@
 .inlineLabel {
-  display: inline-block;
-  padding: 0 0.66em;
-  border-radius: 4px;
-  font-family: var(
-    --label-font-family,
-    "Noto Sans",
-    Helvetica,
-    Arial,
-    sans-serif
-  );
-  text-align: center;
-  text-transform: uppercase;
+  display: inline-flex;
+  border-radius: var(--radius-large);
 }
 
-.normal {
-  font-size: 0.75em;
-}
-
-.medium {
-  font-size: 1em;
+.base {
+  padding: var(--space-smaller) var(--space-small);
 }
 
 .large {
-  font-size: 1.5em;
+  padding: var(--space-smaller) calc(var(--space-base) - var(--space-smallest));
+}
+
+.larger {
+  padding: var(--space-small) var(--space-base);
 }
 
 .greyBlue {
@@ -36,8 +26,7 @@
 }
 
 .orange {
-  /* color: shade(var(--color-orange--dark), 5%); */
-  color: rgb(150, 93, 22);
+  color: var(--color-orange--dark);
   background-color: var(--color-orange--lightest);
 }
 
@@ -47,24 +36,22 @@
 }
 
 .blue {
-  color: var(--color-blue);
+  color: var(--color-blue--dark);
   background-color: var(--color-blue--lightest);
 }
 
 .navy {
-  color: var(--color-navy);
+  color: var(--color-navy--dark);
   background-color: var(--color-navy--lightest);
 }
 
 .yellow {
-  /* color: shade(var(--color-yellow--dark), 15%); */
-  color: rgb(122, 108, 9);
+  color: var(--color-yellow--dark);
   background-color: var(--color-yellow--lightest);
 }
 
 .lime {
-  /* color: shade(var(--color-lime--Dark), 5%); */
-  color: rgb(94, 119, 44);
+  color: var(--color-lime--dark);
   background-color: var(--color-lime--lightest);
 }
 
@@ -84,8 +71,7 @@
 }
 
 .yellowGreen {
-  /* color: shade(var(--color-yellowGreen--dark), 10%); */
-  color: rgb(110, 115, 19);
+  color: var(--color-yellowGreen--dark);
   background-color: var(--color-yellowGreen--lightest);
 }
 
