@@ -1,14 +1,20 @@
 :root {
   --modal--width: calc(var(--base-unit) * 37.5);
-  --modal--padding: var(--space-base) var(--space-large);
+  --modal--padding: var(--space-base);
   --modal--border-color: var(--color-grey--lighter);
+}
+
+@media (--medium-screens) {
+  :root {
+    --modal--padding: var(--space-base) var(--space-large);
+  }
 }
 
 .container {
   display: flex;
   flex-direction: column;
   z-index: var(--elevation-modal);
-  padding: var(--space-base);
+  padding: var(--space-small);
   overflow: auto;
 }
 
