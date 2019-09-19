@@ -39,8 +39,12 @@ const modifyBundlerConfig = config => {
           plugins: [
             // eslint-disable-next-line @typescript-eslint/no-var-requires
             require("postcss-preset-env")({
+              stage: 1,
               preserve: true,
-              importFrom: [require.resolve("@jobber/design")],
+              importFrom: [
+                require.resolve("@jobber/design"),
+                require.resolve("@jobber/design/src/responsiveBreakpoints.css"),
+              ],
             }),
           ],
         },

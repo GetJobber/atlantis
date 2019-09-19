@@ -13,7 +13,19 @@ export default {
     }),
     postcss({
       modules: true,
-      plugins: [require("postcss-import"), require("autoprefixer")],
+      plugins: [
+        require("postcss-import"),
+        require("autoprefixer"),
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        require("postcss-preset-env")({
+          stage: 1,
+          preserve: true,
+          importFrom: [
+            require.resolve("@jobber/design"),
+            require.resolve("@jobber/design/src/responsiveBreakpoints.css"),
+          ],
+        }),
+      ],
     }),
     commonjs({
       ignore: ["time-input-polyfill", "time-input-polyfill/supportsTime"],
