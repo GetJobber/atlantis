@@ -1,7 +1,7 @@
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Text } from "../Text";
 import styles from "./InputValidation.css";
+import { Text } from "../Text";
 
 type ValidationStatus = "success" | "error" | "warn" | "info";
 
