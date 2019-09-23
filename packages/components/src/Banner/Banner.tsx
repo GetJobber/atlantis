@@ -1,9 +1,9 @@
 import React, { ReactNode, useState } from "react";
 import classnames from "classnames";
-import { Icon, IconColorNames } from "../Icon";
-import { Text } from "../Text";
 import styles from "./Banner.css";
 import types from "./notificationTypes.css";
+import { Icon, IconColorNames } from "../Icon";
+import { Text } from "../Text";
 
 interface BannerProps {
   readonly children: ReactNode;

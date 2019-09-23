@@ -2,12 +2,12 @@ import React, { useLayoutEffect } from "react";
 import TimePolyfill from "time-input-polyfill";
 // eslint-disable-next-line import/no-internal-modules
 import debounce from "lodash/debounce";
-import { FormField } from "../FormField";
 import { InputTimeProps } from "./InputTimeProps";
 import {
   civilTimeToHTMLTime,
   htmlTimeToCivilTime,
 } from "./civilTimeConversions";
+import { FormField } from "../FormField";
 
 interface PolyfilledInputElement extends HTMLInputElement {
   polyfill: { update: () => void };

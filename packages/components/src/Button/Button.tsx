@@ -1,9 +1,9 @@
 import React from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
+import styles from "./Button.css";
 import { Typography, TypographyOptions } from "../Typography";
 import { Icon, IconNames } from "../Icon";
-import styles from "./Button.css";
 
 export interface ButtonProps {
   readonly ariaControls?: string;

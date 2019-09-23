@@ -1,8 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { fireEvent, render } from "@testing-library/react";
-import { InputTextRef } from "./InputText";
 import { InputText } from ".";
+import { InputTextRef } from "./InputText";
 
 it("renders a regular input for text and numbers", () => {
   const tree = renderer

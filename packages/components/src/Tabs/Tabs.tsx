@@ -7,8 +7,8 @@ import React, {
   useState,
 } from "react";
 import classnames from "classnames";
-import { Typography } from "../Typography";
 import styles from "./Tabs.css";
+import { Typography } from "../Typography";
 
 interface TabsProps {
   readonly children: ReactElement | ReactElement[];
