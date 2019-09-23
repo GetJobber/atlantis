@@ -28,7 +28,13 @@ module.exports = {
     sourceType: "module",
   },
   rules: {
-    "import/order": "error",
+    "import/order": [
+      "error",
+      {
+        groups: ["builtin", "external", "internal", "index", "sibling"],
+        "newlines-between": "never",
+      },
+    ],
     "import/no-default-export": "error",
     "import/no-unresolved": ["error", { ignore: [".css$"] }],
     "import/namespace": "error",
