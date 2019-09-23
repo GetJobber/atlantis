@@ -20,6 +20,7 @@ module.exports = {
   ],
   settings: {
     react: { version: "detect" },
+    "import/resolver": { typescript: {} },
   },
   parserOptions: {
     ecmaFeatures: { jsx: true },
