@@ -9,7 +9,7 @@ it("renders Text Component", () => {
   const tree = renderer.create(<Markdown content="Paragraph" />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="base"
+      className="padded base"
     >
       <p
         className="base regular base greyBlueDark"
@@ -26,7 +26,7 @@ it("renders Italicized Component", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="base"
+      className="padded base"
     >
       <p
         className="base regular base greyBlueDark"
@@ -45,7 +45,7 @@ it("renders Bold Component", () => {
   const tree = renderer.create(<Markdown content="**Bold Foo**" />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="base"
+      className="padded base"
     >
       <p
         className="base regular base greyBlueDark"
@@ -64,7 +64,7 @@ it("renders Level 1 Heading Component", () => {
   const tree = renderer.create(<Markdown content="# Heading 1" />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="base"
+      className="padded base"
     >
       <h1
         className="base black jumbo uppercase blue"
@@ -79,7 +79,7 @@ it("renders Level 2 Heading Component", () => {
   const tree = renderer.create(<Markdown content="## Heading 2" />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="base"
+      className="padded base"
     >
       <h2
         className="base black largest uppercase blue"
@@ -94,7 +94,7 @@ it("renders Level 3 Heading Component", () => {
   const tree = renderer.create(<Markdown content="### Heading 3" />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="base"
+      className="padded base"
     >
       <h3
         className="base bold larger blue"
@@ -109,7 +109,7 @@ it("renders Level 4 Heading Component", () => {
   const tree = renderer.create(<Markdown content="#### Heading 4" />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="base"
+      className="padded base"
     >
       <h4
         className="base bold large blue"
@@ -124,7 +124,7 @@ it("renders Level 5 Heading Component", () => {
   const tree = renderer.create(<Markdown content="##### Heading 5" />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="base"
+      className="padded base"
     >
       <h5
         className="base bold base blue"
@@ -139,7 +139,7 @@ it("renders Level 6 Heading Component", () => {
   const tree = renderer.create(<Markdown content="###### Heading " />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="base"
+      className="padded base"
     >
       <h6>
         Heading
@@ -162,7 +162,7 @@ it("renders a combination of Markdown components", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="base"
+      className="padded base"
     />
   `);
 });
