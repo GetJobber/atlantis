@@ -8,6 +8,7 @@ import { Content } from "../Content";
 import { Switch } from "../Switch";
 import { Button } from "../Button";
 import { Emphasis } from "../Emphasis";
+import { Markdown } from "../Markdown";
 
 interface FeatureSwitchProps {
   readonly children?: ReactNode | ReactNode[];
@@ -19,8 +20,17 @@ interface FeatureSwitchProps {
 
   /**
    * Defines if the feature should be ON or OFF by default.
+   *
+   * @default false
    */
   readonly enabled?: boolean;
+
+  /**
+   * Defines if the links in the description should open in a new tab.
+   *
+   * @default false
+   */
+  readonly externalLink?: boolean;
 
   /**
    * Feature title.
@@ -51,7 +61,8 @@ interface FeatureSwitchProps {
 export function FeatureSwitch({
   children,
   description,
-  enabled,
+  enabled = false,
+  externalLink = false,
   onEdit,
   onSwitch,
   hasSaveIndicator = false,
@@ -70,7 +81,13 @@ export function FeatureSwitch({
         <div className={styles.content}>
           <Content>
             {title && <Heading level={4}>{title}</Heading>}
-            <Text>{description}</Text>
+            <Text>
+              <Markdown
+                content={description}
+                basicUsage={true}
+                externalLink={externalLink}
+              />
+            </Text>
           </Content>
         </div>
         <div className={styles.action}>
