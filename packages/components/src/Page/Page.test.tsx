@@ -15,7 +15,7 @@ it("renders a Page", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="page"
+      className="page standard"
     >
       <div
         className="base"

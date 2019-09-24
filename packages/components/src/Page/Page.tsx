@@ -21,17 +21,26 @@ interface PageProps {
   readonly title: string;
 
   /**
-   * Determines the width of the page. By default, it caps out at `1280px`.
+   * Determines the width of the page.
+   *
+   * Fill makes the width grow to 100%.
+   *
+   * Standard caps out at 1280px.
+   *
+   * Narrow caps out at 1024px.
+   *
+   * @default standard
    */
-  readonly width?: "fill" | "narrow";
+  readonly width?: "fill" | "standard" | "narrow";
 }
 
-export function Page({ title, intro, children, width }: PageProps) {
-  const className = classnames(
-    styles.page,
-    width === "fill" && styles.fill,
-    width === "narrow" && styles.narrow,
-  );
+export function Page({
+  title,
+  intro,
+  children,
+  width = "standard",
+}: PageProps) {
+  const className = classnames(styles.page, styles[width]);
 
   return (
     <div className={className}>
