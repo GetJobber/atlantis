@@ -1,7 +1,3 @@
 .padded {
   padding: var(--public-content--padding, 0);
 }
-
-.padded .padded {
-  padding: 0;
-}

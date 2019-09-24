@@ -8,8 +8,6 @@
 }
 
 .card {
-  --public-content--padding: var(--card--base-padding);
-
   display: block;
   width: 100%;
   border: var(--border-base) solid var(--card--border-color);
@@ -17,6 +15,18 @@
   overflow: auto;
   outline-color: var(--color-outline);
   background-color: var(--card--background-color);
+}
+
+/* Adjust `Content` components public padding to match the cards */
+
+.card > * {
+  --public-content--padding: var(--card--base-padding);
+}
+
+/* Remove the nested `Content` components public padding */
+
+.card > * * {
+  --public-content--padding: 0;
 }
 
 .card:active {
