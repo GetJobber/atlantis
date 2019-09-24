@@ -48,6 +48,21 @@ it("renders a subdued FeatureSwitch content", () => {
   expect(tree).toMatchSnapshot();
 });
 
+it("renders a FeatureSwitch markdown description", () => {
+  const tree = renderer
+    .create(
+      <FeatureSwitch
+        enabled={true}
+        externalLink={true}
+        description="Send a [notification](www.fakeurl.com) to your _client_ following up on an **outstanding quote**."
+      >
+        Dis dem content yo
+      </FeatureSwitch>,
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
 test("it should call the switch handler with the new value", () => {
   const switchHandler = jest.fn();
   const content = "Send a thing?";

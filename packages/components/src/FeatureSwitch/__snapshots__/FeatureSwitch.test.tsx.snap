@@ -1,5 +1,99 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`renders a FeatureSwitch markdown description 1`] = `
+<div
+  className="padded base"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="content"
+    >
+      <div
+        className="padded base"
+      >
+        <p
+          className="base regular base greyBlueDark"
+        >
+          Send a 
+          <a
+            href="www.fakeurl.com"
+            target="_blank"
+          >
+            notification
+          </a>
+           to your 
+          <em
+            className="base regular italic"
+          >
+            client
+          </em>
+           following up on an 
+          <b
+            className="base bold"
+          >
+            outstanding quote
+          </b>
+          .
+        </p>
+      </div>
+    </div>
+    <div
+      className="action"
+    >
+      <button
+        aria-checked={true}
+        aria-label="Send a [notification](www.fakeurl.com) to your _client_ following up on an **outstanding quote**."
+        className="track isChecked"
+        onClick={[Function]}
+        role="switch"
+        type="button"
+      >
+        <span
+          className="toggle"
+        >
+          <span
+            className="label"
+          >
+            <span
+              className="base bold small uppercase white"
+            >
+              On
+            </span>
+          </span>
+          <span
+            className="pip"
+          />
+          <span
+            className="label"
+          >
+            <span
+              className="base bold small uppercase greyBlue"
+            >
+              Off
+            </span>
+          </span>
+        </span>
+      </button>
+      <input
+        type="hidden"
+        value="true"
+      />
+    </div>
+  </div>
+  <div
+    className="container"
+  >
+    <div
+      className="featureContent content enabled"
+    >
+      Dis dem content yo
+    </div>
+  </div>
+</div>
+`;
+
 exports[`renders a full FeatureSwitch 1`] = `
 <div
   className="padded base"
