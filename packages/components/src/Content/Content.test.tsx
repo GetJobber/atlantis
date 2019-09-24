@@ -8,12 +8,12 @@ afterEach(cleanup);
 it("renders a Content", () => {
   const tree = renderer.create(<Content>Wazaaaaa</Content>).toJSON();
   expect(tree).toMatchInlineSnapshot(`
-        <div
-          className="base"
-        >
-          Wazaaaaa
-        </div>
-    `);
+    <div
+      className="padded base"
+    >
+      Wazaaaaa
+    </div>
+  `);
 });
 
 it("renders a Content with a large spacing", () => {
@@ -22,7 +22,7 @@ it("renders a Content with a large spacing", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="large"
+      className="padded large"
     >
       Space me up!
     </div>
@@ -35,22 +35,22 @@ it("renders a Content with a small spacing", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="small"
+      className="padded small"
     >
       Space me down!
     </div>
   `);
 });
 
-it("renders a Content with a large padding", () => {
+it("renders a Content with no padding", () => {
   const tree = renderer
-    .create(<Content padded={true}>Pad me up!</Content>)
+    .create(<Content padded={false}>Pad me none!</Content>)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="padded base"
+      className="base"
     >
-      Pad me up!
+      Pad me none!
     </div>
   `);
 });
