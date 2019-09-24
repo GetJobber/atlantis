@@ -2,7 +2,7 @@
 
 exports[`renders Bold Component 1`] = `
 <div
-  className="base"
+  className="padded base"
 >
   <p
     className="base regular base greyBlueDark"
@@ -18,7 +18,7 @@ exports[`renders Bold Component 1`] = `
 
 exports[`renders Italicized Component 1`] = `
 <div
-  className="base"
+  className="padded base"
 >
   <p
     className="base regular base greyBlueDark"
@@ -34,7 +34,7 @@ exports[`renders Italicized Component 1`] = `
 
 exports[`renders Level 1 Heading Component 1`] = `
 <div
-  className="base"
+  className="padded base"
 >
   <h1
     className="base black jumbo uppercase blue"
@@ -46,7 +46,7 @@ exports[`renders Level 1 Heading Component 1`] = `
 
 exports[`renders Level 2 Heading Component 1`] = `
 <div
-  className="base"
+  className="padded base"
 >
   <h2
     className="base black largest uppercase blue"
@@ -58,7 +58,7 @@ exports[`renders Level 2 Heading Component 1`] = `
 
 exports[`renders Level 3 Heading Component 1`] = `
 <div
-  className="base"
+  className="padded base"
 >
   <h3
     className="base bold larger blue"
@@ -70,7 +70,7 @@ exports[`renders Level 3 Heading Component 1`] = `
 
 exports[`renders Level 4 Heading Component 1`] = `
 <div
-  className="base"
+  className="padded base"
 >
   <h4
     className="base bold large blue"
@@ -82,7 +82,7 @@ exports[`renders Level 4 Heading Component 1`] = `
 
 exports[`renders Level 5 Heading Component 1`] = `
 <div
-  className="base"
+  className="padded base"
 >
   <h5
     className="base bold base blue"
@@ -94,7 +94,7 @@ exports[`renders Level 5 Heading Component 1`] = `
 
 exports[`renders Level 6 Heading Component 1`] = `
 <div
-  className="base"
+  className="padded base"
 >
   <h6>
     Heading
@@ -104,7 +104,7 @@ exports[`renders Level 6 Heading Component 1`] = `
 
 exports[`renders Text Component 1`] = `
 <div
-  className="base"
+  className="padded base"
 >
   <p
     className="base regular base greyBlueDark"
@@ -116,7 +116,7 @@ exports[`renders Text Component 1`] = `
 
 exports[`renders a combination of Markdown components 1`] = `
 <div
-  className="base"
+  className="padded base"
 >
   <h1
     className="base black jumbo uppercase blue"

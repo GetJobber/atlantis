@@ -2,7 +2,7 @@
 
 exports[`renders a full FeatureSwitch 1`] = `
 <div
-  className="base"
+  className="padded base"
 >
   <div
     className="container"
@@ -11,7 +11,7 @@ exports[`renders a full FeatureSwitch 1`] = `
       className="content"
     >
       <div
-        className="base"
+        className="padded base"
       >
         <h4
           className="base bold large blue"
@@ -98,7 +98,7 @@ exports[`renders a full FeatureSwitch 1`] = `
 
 exports[`renders a simple FeatureSwitch 1`] = `
 <div
-  className="base"
+  className="padded base"
 >
   <div
     className="container"
@@ -107,7 +107,7 @@ exports[`renders a simple FeatureSwitch 1`] = `
       className="content"
     >
       <div
-        className="base"
+        className="padded base"
       >
         <p
           className="base regular base greyBlueDark"
@@ -164,7 +164,7 @@ exports[`renders a simple FeatureSwitch 1`] = `
 
 exports[`renders a subdued FeatureSwitch content 1`] = `
 <div
-  className="base"
+  className="padded base"
 >
   <div
     className="container"
@@ -173,7 +173,7 @@ exports[`renders a subdued FeatureSwitch content 1`] = `
       className="content"
     >
       <div
-        className="base"
+        className="padded base"
       >
         <p
           className="base regular base greyBlueDark"

@@ -10,6 +10,8 @@ import { useState } from "react";
 import { Modal } from ".";
 import { Button } from "../Button";
 import { Text } from "../Text";
+import { Content } from "../Content";
+import { Tabs, Tab } from "../Tabs";
 
 # Modal
 
@@ -29,9 +31,11 @@ the rest of the application until a specific action is taken.
           open={value}
           onRequestClose={() => setValue(!value)}
         >
-          <Text>
-            It's harder, better, faster, and stronger! 🤖
-          </Text>
+          <Content>
+            <Text>
+              It's harder, better, faster, and stronger! 🤖
+            </Text>
+          </Content>
         </Modal>
 
         <Button
@@ -56,17 +60,6 @@ You have 3 action props you can use
 <Playground>
   {() => {
     const [value, setValue] = useState(false);
-    const toggleModal = () => { setValue(!value);
-    };
-    const handlePrimaryAction = () => {
-      alert("✅");
-    };
-    const handleSecondaryAction = () => {
-      toggleModal();
-    };
-    const handleTertiaryAction = () => {
-      alert("❌");
-    };
     return (
       <>
         <Modal
@@ -77,9 +70,11 @@ You have 3 action props you can use
           tertiaryAction={{ label: "Delete", onClick: handleTertiaryAction }}
           onRequestClose={toggleModal}
         >
-          <Text>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe vero ratione praesentium quisquam non porro ullam maiores iure, sed odio?
-          </Text>
+          <Content>
+            <Text>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe vero ratione praesentium quisquam non porro ullam maiores iure, sed odio?
+            </Text>
+          </Content>
         </Modal>
 
         <Button
@@ -88,6 +83,18 @@ You have 3 action props you can use
         />
       </>
     );
+
+    function toggleModal() { setValue(!value);
+    };
+    function handlePrimaryAction() {
+      alert("✅");
+    };
+    function handleSecondaryAction() {
+      toggleModal();
+    };
+    function handleTertiaryAction() {
+      alert("❌");
+    };
 
 }}
 

@@ -1,13 +1,13 @@
 import React, { ReactNode, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import classnames from "classnames";
+import styles from "./FeatureSwitch.css";
 import { Heading } from "../Heading";
 import { Text } from "../Text";
 import { Content } from "../Content";
 import { Switch } from "../Switch";
 import { Button } from "../Button";
 import { Emphasis } from "../Emphasis";
-import styles from "./FeatureSwitch.css";
 
 interface FeatureSwitchProps {
   readonly children?: ReactNode | ReactNode[];

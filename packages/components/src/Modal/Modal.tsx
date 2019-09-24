@@ -75,7 +75,7 @@ export function Modal({
               onRequestClose={onRequestClose}
             />
 
-            <div className={styles.content}>{children}</div>
+            {children}
 
             <Actions
               primary={primaryAction}

@@ -1,10 +1,10 @@
 import React, { ReactNode } from "react";
 import classnames from "classnames";
+import styles from "./Page.css";
 import { Heading } from "../Heading";
 import { Text } from "../Text";
 import { Content } from "../Content";
 import { Markdown } from "../Markdown";
-import styles from "./Page.css";
 
 interface PageProps {
   readonly children: ReactNode | ReactNode[];

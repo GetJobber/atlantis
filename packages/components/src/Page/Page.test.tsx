@@ -18,10 +18,10 @@ it("renders a Page", () => {
       className="page standard"
     >
       <div
-        className="base"
+        className="padded base"
       >
         <div
-          className="large"
+          className="padded large"
         >
           <h1
             className="base black jumbo uppercase blue"
@@ -41,7 +41,7 @@ it("renders a Page", () => {
           </p>
         </div>
         <div
-          className="base"
+          className="padded base"
         >
           Sup
         </div>
