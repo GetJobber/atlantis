@@ -1,0 +1,59 @@
+---
+name: FeatureSwitch
+menu: Patterns
+route: /components/feature-switch
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { FeatureSwitch } from ".";
+import { Text } from "../Text";
+import { useState } from "react";
+
+# Feature Switch
+
+<ComponentStatus stage="rc" responsive="yes" accessible="yes" />
+
+Allow users to switch a feature on or off.
+
+<Playground>
+  {() => {
+    const [featureEnabled, setFeatureEnabled] = useState(true);
+
+    return (
+      <FeatureSwitch
+        enabled={featureEnabled}
+        title="Quote follow-up"
+        description="Send a notification to your client following up on an outstanding quote."
+        hasSaveIndicator={true}
+        onSwitch={handleSwitch}
+        onEdit={() => {
+          console.log("You clicked edit");
+        }}
+      >
+        <Text>Extra feature content and information</Text>
+      </FeatureSwitch>
+    );
+
+    function handleSwitch(newValue) {
+      setFeatureEnabled(newValue);
+    }
+
+}}
+
+</Playground>
+
+## Simple usage
+
+<Playground>
+  <FeatureSwitch
+    description="Send a notification to your client following up on an outstanding quote"
+    onSwitch={newValue => {
+      console.log(`Feature ${newValue ? "enabled" : "disabled"}`);
+    }}
+  />
+</Playground>
+
+## Props
+
+<Props of={FeatureSwitch} />
