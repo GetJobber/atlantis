@@ -25,7 +25,7 @@
 
 /* Remove the nested `Content` components public padding */
 
-.card > * * {
+.card > * > * {
   --public-content--padding: 0;
 }
 

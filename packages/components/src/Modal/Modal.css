@@ -48,7 +48,7 @@
 
 /* Remove the nested `Content` components public padding */
 
-.modal > * * {
+.modal > * > * {
   --public-content--padding: 0;
 }
 

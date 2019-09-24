@@ -11,22 +11,10 @@ interface ContentProps {
    * @default base
    */
   readonly spacing?: keyof typeof spacings;
-  /**
-   * Adds a padding around the component. This padding adapts to the component
-   * it's used in such as Card or Modal. If there's no padding to adapt to, then
-   * the padding doesn't apply.
-   *
-   * @default true
-   */
-  readonly padded?: boolean;
 }
 
-export function Content({
-  children,
-  spacing = "base",
-  padded = true,
-}: ContentProps) {
-  const className = classnames(padded && styles.padded, spacings[spacing]);
+export function Content({ children, spacing = "base" }: ContentProps) {
+  const className = classnames(styles.padded, spacings[spacing]);
 
   return <div className={className}>{children}</div>;
 }
