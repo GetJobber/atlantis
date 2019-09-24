@@ -15,6 +15,12 @@ interface MarkdownProps {
    * Open all links in new tab.
    */
   readonly externalLink?: boolean;
+
+  /**
+   * Only allow basic inline elements such as `_italic_`, `**bold**`, and
+   * `[link name](url)`
+   */
+  readonly basicUsage?: boolean;
 }
 
 interface HeadingRendererProps {
@@ -26,21 +32,43 @@ interface BaseRendererProps {
   children: ReactNode;
 }
 
-export function Markdown({ content, externalLink }: MarkdownProps) {
+export function Markdown({ content, externalLink, basicUsage }: MarkdownProps) {
+  const props = {
+    ...(basicUsage && {
+      disallowedTypes: [
+        "paragraph",
+        "heading",
+        "table",
+        "list",
+        "code",
+        "image",
+      ],
+      unwrapDisallowed: true,
+    }),
+  };
+
   return (
-    <Content>
-      <ReactMarkdown
-        source={content}
-        linkTarget={externalLink ? "_blank" : undefined}
-        renderers={{
-          paragraph: renderParagraph,
-          emphasis: renderEmphasis,
-          strong: renderStrong,
-          heading: renderHeading,
-        }}
-      />
-    </Content>
+    <ReactMarkdown
+      {...props}
+      source={content}
+      linkTarget={externalLink ? "_blank" : undefined}
+      renderers={{
+        root: renderWrapper,
+        paragraph: renderParagraph,
+        emphasis: renderEmphasis,
+        strong: renderStrong,
+        heading: renderHeading,
+      }}
+    />
   );
+
+  function renderWrapper({ children }: BaseRendererProps) {
+    if (basicUsage) {
+      return <>{children}</>;
+    }
+
+    return <Content>{children}</Content>;
+  }
 
   function renderParagraph({ children }: BaseRendererProps) {
     return <Text>{children}</Text>;
