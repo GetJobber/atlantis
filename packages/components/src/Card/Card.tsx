@@ -1,9 +1,9 @@
 import React, { ReactNode } from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
-import { Typography } from "../Typography";
 import styles from "./Card.css";
 import colors from "./colors.css";
+import { Typography } from "../Typography";
 
 interface CardProps {
   /**

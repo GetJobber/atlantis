@@ -2,11 +2,11 @@ import React, { ReactNode, useEffect } from "react";
 import ReactDOM from "react-dom";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
+import styles from "./Modal.css";
+import sizes from "./Sizes.css";
 import { Icon } from "../Icon";
 import { Typography } from "../Typography";
 import { Button, ButtonProps } from "../Button";
-import styles from "./Modal.css";
-import sizes from "./Sizes.css";
 
 interface ModalProps {
   /**

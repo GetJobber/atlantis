@@ -1,10 +1,10 @@
 import React, { ChangeEvent, ReactNode, Ref, useEffect, useState } from "react";
 import classnames from "classnames";
 import uuid from "uuid";
+import styles from "./FormField.css";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
 import { InputValidation, ValidationProps } from "../InputValidation";
-import styles from "./FormField.css";
 
 export interface FormFieldProps {
   /**
