@@ -32,4 +32,4 @@ export default function MyComponent() {
 ## Further Reading
 
 More information on Atlanis can be found at
-[//atlantis.frend.space](https://atlantis.frend.space).
+[https://atlantis.getjobber.com](https://atlantis.getjobber.com).
