@@ -1,13 +1,6 @@
-# 🔱 Components
+# 🔱 Jobber Atlantis Components
 
----
-
-# Work In Progress
-
-This is a pre-release version. Please be aware that commands are subject to
-change.
-
-![Under Construction](https://d.pr/i/m5tB9t.gif)
+Atlantis is a component library designed and maintained by Jobber.
 
 ---
 
@@ -23,21 +16,20 @@ run:
 npm install @jobber/components
 ```
 
-Or with [Yarn](https://yarnpkg.com/en/) run:
-
-```sh
-yarn add @jobber/components
-```
-
 ## Usage
 
 Import and render an Atlantis component:
 
 ```tsx
 import React from "react";
-import { Toggle } from "@jobber/components";
+import { Switch } from "@jobber/components/Switch";
 
 export default function MyComponent() {
-  return <Toggle />;
+  return <Switch />;
 }
 ```
+
+## Further Reading
+
+More information on Atlanis can be found at
+[//atlantis.frend.space](https://atlantis.frend.space).
