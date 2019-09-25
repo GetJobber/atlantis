@@ -50,6 +50,7 @@ module.exports = {
     "import/no-relative-parent-imports": "error",
     "import/no-deprecated": "error",
     "import/newline-after-import": "error",
+    "jest/no-jasmine-globals": "error",
     "no-null/no-null": "error",
     "react/no-danger": "error",
     "prettier/prettier": [
