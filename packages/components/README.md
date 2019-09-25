@@ -1,6 +1,6 @@
 # 🔱 Jobber Atlantis Components
 
-Atlantis is a component library designed and maintained by Jobber.
+Atlantis is a component library designed and maintained by [Jobber](https://getjobber.com).
 
 ---
 
