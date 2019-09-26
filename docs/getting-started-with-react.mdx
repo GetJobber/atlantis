@@ -1,0 +1,75 @@
+---
+name: Getting Started with React
+menu: Guides
+route: /guides/react
+---
+
+# Getting Started with React
+
+## Things to know.
+
+<!--
+- We will reference Typescript in this guide. -
+  https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html -
+  https://create-react-app.dev/docs/getting-started#creating-a-typescript-app -
+  Why Typescript?
+- We will reference functional components. Older class components are still
+  around and you will see them in some guides but we should prefer functional
+  components.
+-->
+
+## What is React
+
+At its core React is simply a JavaScript view library layer. It provides us with
+a way to define and render view components. It also aids with tracking and
+re-rendering changes to data that the components are representing.
+
+## What is a Component
+
+Much as a function in programing allows you to encapsulate, test and reuse logic
+a React Component allows you to encapsulate, test and reuse pieces of your UI.
+In this way you can think of a React Component as a view function. This even
+carries into how components are themselves written.
+
+```tsx
+interface MessageProps {
+  readonly text: string;
+  readonly yell: boolean;
+}
+
+export function Message({ text, yell }: MessageProps) {
+  if (yell) {
+    text = text.toLocaleUpperCase();
+  }
+
+  return <p>{text}</p>;
+}
+```
+
+```tsx
+<Message text="foo" yell={false} /> // → <p>foo</p>
+<Message text="bar" yell={true} /> // → <p>BAR</p>
+```
+
+> **Note:** In this example you may have noticed some HTML like code embedded in
+> the JavaScript. This is called
+> [JSX ↗︎](https://reactjs.org/docs/introducing-jsx.html).
+
+As you can see here the component takes parameters in the form of `Props` and
+then returns a response in the form of a view fragment. You can also see how
+calling the component with different props results in different output.
+
+## It's Components All the Way Down
+
+In React everything is a component. A typical page will consist of one top level
+component representing the main view. Then within that page you will break down
+smaller components. Brad Frost covers this break down very well with
+[Atomic Design ↗](http://bradfrost.com/blog/post/atomic-web-design/).
+
+<img
+  src="http://bradfrost.com/wp-content/uploads/2013/06/atomic-design.png"
+  width="100%"
+/>
+
+When you are writing a front end using React each of the levels he talks about
+are represented by components functions.
