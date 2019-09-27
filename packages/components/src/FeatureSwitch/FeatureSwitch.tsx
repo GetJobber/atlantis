@@ -14,7 +14,8 @@ interface FeatureSwitchProps {
   readonly children?: ReactNode | ReactNode[];
 
   /**
-   * Feature description.
+   * Feature description. This supports basic markdown node types such as
+   * `_italic_`, `**bold**`, and `[link name](url)`
    */
   readonly description: string;
 
@@ -38,7 +39,8 @@ interface FeatureSwitchProps {
   readonly title?: string;
 
   /**
-   * Determines if a save indicator should show up when toggling the switch.
+   * Determines if a save indicator should show up when the `enabled` prop
+   * changes. This means, it would only work for controlled components.
    *
    * @default false
    */
@@ -74,14 +76,7 @@ export function FeatureSwitch({
     styles.content,
     enabled && styles.enabled,
   );
-
-  // Check if the component is mounted
-  const [didMount, setDidMount] = useState(false);
-  useEffect(() => setDidMount(true), []);
-
-  useEffect(() => {
-    didMount && hasSaveIndicator && setSavedIndicator(true);
-  }, [enabled]);
+  shouldShowSavedIndicator();
 
   return (
     <Content>
@@ -146,6 +141,15 @@ export function FeatureSwitch({
 
   function handleSwitch(newValue: boolean) {
     onSwitch && onSwitch(newValue);
+  }
+
+  function shouldShowSavedIndicator() {
+    // Check if the component is mounted
+    const [didMount, setDidMount] = useState(false);
+    useEffect(() => setDidMount(true), []);
+    useEffect(() => {
+      didMount && hasSaveIndicator && setSavedIndicator(true);
+    }, [enabled]);
   }
 
   function handleAnimationComplete() {
