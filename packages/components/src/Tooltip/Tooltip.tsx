@@ -35,14 +35,17 @@ export function Tooltip({ message, children }: TooltipProps) {
       shadowRef.current &&
       shadowRef.current.nextElementSibling
     ) {
-      const activator = shadowRef.current.nextElementSibling;
-      const activatorBounds = activator.getBoundingClientRect();
-      if (activatorBounds.top <= 100) {
+      const { bounds, positionStyle } = getPosition(
+        shadowRef.current.nextElementSibling,
+        tooltipRef.current,
+      );
+
+      if (bounds.top <= 100) {
         setDirection("below");
-        setPosition(getPosition("below", activatorBounds, tooltipRef.current));
+        setPosition(positionStyle.below);
       } else {
         setDirection("above");
-        setPosition(getPosition("above", activatorBounds, tooltipRef.current));
+        setPosition(positionStyle.above);
       }
     }
   }, [show]);
@@ -111,24 +114,21 @@ export function Tooltip({ message, children }: TooltipProps) {
   }
 }
 
-function getPosition(
-  direction: Direction,
-  bounds: ClientRect,
-  tooltip: HTMLDivElement,
-) {
+function getPosition(activator: Element, tooltip: HTMLDivElement) {
+  const bounds = activator.getBoundingClientRect();
   const xOffset = bounds.right - bounds.width / 2 - tooltip.clientWidth / 2;
-
-  if (direction === "below") {
-    return {
-      top: `${bounds.bottom + window.scrollY}px`,
-      left: `${xOffset}px`,
-    };
-  } else {
-    return {
+  const positionStyle = {
+    above: {
       top: `${bounds.top + window.scrollY - tooltip.clientHeight}px`,
       left: `${xOffset}px`,
-    };
-  }
+    },
+    below: {
+      top: `${bounds.bottom + window.scrollY}px`,
+      left: `${xOffset}px`,
+    },
+  };
+
+  return { bounds, positionStyle };
 }
 
 interface TooltipPortalProps {
