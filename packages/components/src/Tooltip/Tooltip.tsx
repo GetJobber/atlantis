@@ -29,26 +29,7 @@ export function Tooltip({ message, children }: TooltipProps) {
   const shadowRef = createRef<HTMLSpanElement>();
 
   showOnHover();
-  useEffect(() => {
-    if (
-      tooltipRef.current &&
-      shadowRef.current &&
-      shadowRef.current.nextElementSibling
-    ) {
-      const { bounds, positionStyle } = getPosition(
-        shadowRef.current.nextElementSibling,
-        tooltipRef.current,
-      );
-
-      if (bounds.top <= 100) {
-        setDirection("below");
-        setPosition(positionStyle.below);
-      } else {
-        setDirection("above");
-        setPosition(positionStyle.above);
-      }
-    }
-  }, [show]);
+  positionTooltip();
 
   const toolTipClassNames = classnames(
     styles.tooltipWrapper,
@@ -94,6 +75,28 @@ export function Tooltip({ message, children }: TooltipProps) {
       </TooltipPortal>
     </>
   );
+
+  function positionTooltip() {
+    useEffect(() => {
+      if (
+        tooltipRef.current &&
+        shadowRef.current &&
+        shadowRef.current.nextElementSibling
+      ) {
+        const { bounds, positionStyle } = getPosition(
+          shadowRef.current.nextElementSibling,
+          tooltipRef.current,
+        );
+        if (bounds.top <= 100) {
+          setDirection("below");
+          setPosition(positionStyle.below);
+        } else {
+          setDirection("above");
+          setPosition(positionStyle.above);
+        }
+      }
+    }, [show]);
+  }
 
   function showOnHover() {
     useEffect(() => {
