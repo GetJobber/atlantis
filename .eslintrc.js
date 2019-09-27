@@ -8,5 +8,6 @@ module.exports = {
       rules. For now, warn on these.
      */
     "import/no-relative-parent-imports": "warn",
+    "no-restricted-imports": "warn",
   },
 };

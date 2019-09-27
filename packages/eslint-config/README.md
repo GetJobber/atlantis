@@ -2,4 +2,4 @@
 
 ## Installing
 
-1. `npm install --save-dev @jobber/eslint-config`
+`npm install --save-dev @jobber/eslint-config`

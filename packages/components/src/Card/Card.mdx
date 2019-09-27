@@ -5,64 +5,70 @@ route: /components/card
 
 import { Playground, Props, Link } from "docz";
 import { ComponentStatus } from "@jobber/docx";
-import { Card, Title } from ".";
+import { Card } from ".";
+import { Text } from "../Text";
+import { Heading } from "../Heading";
+import { Content } from "../Content";
 
 # Card
 
-<ComponentStatus stage="rc" responsive="yes" accessible="yes" />
+<ComponentStatus stage="ready" responsive="yes" accessible="yes" />
 
-In Jobber a card is used to group related information and tasks to make things
-easier to scan, and action upon. Cards also contain many optional sub-components
-to provide extra structure in a predictable way.
-
-## Simple Card
+A card is used to group related information and tasks to make things easier to
+scan, and action upon
 
 <Playground>
-  <Card>
-    <p>This is just…</p>
-    <p>A simple card.</p>
+  <Card title="Banana">
+    <Content>
+      <Heading level={4}>Burro</Heading>
+      <Text>
+        Squatty and slightly square at the edges, these bananas are slightly
+        tangy and lemony. When ripe, the fruit is soft and the skin is yellow
+        with black spots. Also called Horse, Hog, or Orinoco bananas.
+      </Text>
+      <Heading level={4}>Cavendish</Heading>
+      <Text>
+        This is the familiar yellow banana sold in United States’ supermarkets.
+        There are also other sizes of Cavendish, including Dwarf and Giant,
+        though they are difficult to find.
+      </Text>
+    </Content>
   </Card>
 </Playground>
 
 ## Clickable Cards
 
+### Using URL
+
 <Playground>
   <Card url="#">
-    <p>I'm a link!</p>
-  </Card>
-
-  <Card onClick={(e) => { alert("😻"); console.log(e.currentTarget);}}>
-    <p>I like to be clicked!</p>
+    <Content>
+      <Heading level={4}>View All</Heading>
+      <Text>
+        See how our 20+ features can help you organize, impress, and grow.
+      </Text>
+    </Content>
   </Card>
 </Playground>
 
-## Card with Title
+### Using onClick
 
 <Playground>
-  <Card accent="jobColor">
-    <Title title="This is an exceptionally long card title" />
-
-    <p>This is the card content.</p>
-
+  <Card
+    onClick={e => {
+      alert("😻");
+      console.log(e.currentTarget);
+    }}
+  >
+    <Content>
+      <Heading level={4}>View All</Heading>
+      <Text>
+        See how our 20+ features can help you organize, impress, and grow.
+      </Text>
+    </Content>
   </Card>
 </Playground>
 
-## Card Properties
+## Props
 
 <Props of={Card} />
-
----
-
-## ▸ `Title`
-
-The `Title` defines the title of a card. This is used to provide context as to
-the content of the card.
-
-<Playground>
-  <Card>
-    <Title title="Sample Title" />
-
-  </Card>
-</Playground>
-
-<Props of={Title} />
