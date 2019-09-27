@@ -8,8 +8,8 @@ import React, {
 import classnames from "classnames";
 import ReactDOM from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { Text } from "../Text";
 import styles from "./Tooltip.css";
+import { Text } from "../Text";
 
 interface TooltipProps {
   readonly children: ReactElement;
@@ -19,15 +19,16 @@ interface TooltipProps {
   readonly message: string;
 }
 
+type Direction = "above" | "below";
+
 export function Tooltip({ message, children }: TooltipProps) {
-  const [direction, setDirection] = useState("above");
-  const [showOnLoad, setShowOnLoad] = useState(false);
+  const [direction, setDirection] = useState("above" as Direction);
   const [position, setPosition] = useState({ top: "0px", left: "0px" });
+  const [show, setShow] = useState(false);
   const tooltipRef = createRef<HTMLDivElement>();
   const shadowRef = createRef<HTMLSpanElement>();
 
-  showOnHover(shadowRef, setShowOnLoad);
-
+  showOnHover();
   useEffect(() => {
     if (
       tooltipRef.current &&
@@ -35,30 +36,16 @@ export function Tooltip({ message, children }: TooltipProps) {
       shadowRef.current.nextElementSibling
     ) {
       const activator = shadowRef.current.nextElementSibling;
-      const tooltip = tooltipRef.current;
       const activatorBounds = activator.getBoundingClientRect();
-      const xOffset =
-        activatorBounds.right -
-        activatorBounds.width / 2 -
-        tooltip.clientWidth / 2;
-
       if (activatorBounds.top <= 100) {
         setDirection("below");
-        setPosition({
-          top: `${activatorBounds.bottom + window.scrollY}px`,
-          left: `${xOffset}px`,
-        });
+        setPosition(getPosition("below", activatorBounds, tooltipRef.current));
       } else {
         setDirection("above");
-        setPosition({
-          top: `${activatorBounds.top +
-            window.scrollY -
-            tooltip.clientHeight}px`,
-          left: `${xOffset}px`,
-        });
+        setPosition(getPosition("above", activatorBounds, tooltipRef.current));
       }
     }
-  }, [showOnLoad]);
+  }, [show]);
 
   const toolTipClassNames = classnames(
     styles.tooltipWrapper,
@@ -77,7 +64,7 @@ export function Tooltip({ message, children }: TooltipProps) {
       {children}
       <TooltipPortal>
         <AnimatePresence>
-          {showOnLoad && (
+          {show && (
             <div
               className={toolTipClassNames}
               style={position}
@@ -104,27 +91,44 @@ export function Tooltip({ message, children }: TooltipProps) {
       </TooltipPortal>
     </>
   );
+
+  function showOnHover() {
+    useEffect(() => {
+      const showTooltip = () => {
+        setShow(true);
+      };
+
+      const hideTooltip = () => {
+        setShow(false);
+      };
+
+      if (shadowRef.current && shadowRef.current.nextElementSibling) {
+        const activator = shadowRef.current.nextElementSibling;
+        activator.addEventListener("mouseenter", showTooltip);
+        activator.addEventListener("mouseleave", hideTooltip);
+      }
+    }, []);
+  }
 }
 
-function showOnHover(
-  node: React.RefObject<HTMLSpanElement>,
-  setVisibleCallback: React.Dispatch<React.SetStateAction<boolean>>,
+function getPosition(
+  direction: Direction,
+  bounds: ClientRect,
+  tooltip: HTMLDivElement,
 ) {
-  useEffect(() => {
-    const showTooltip = () => {
-      setVisibleCallback(true);
-    };
+  const xOffset = bounds.right - bounds.width / 2 - tooltip.clientWidth / 2;
 
-    const hideTooltip = () => {
-      setVisibleCallback(false);
+  if (direction === "below") {
+    return {
+      top: `${bounds.bottom + window.scrollY}px`,
+      left: `${xOffset}px`,
     };
-
-    if (node.current && node.current.nextElementSibling) {
-      const activator = node.current.nextElementSibling;
-      activator.addEventListener("mouseenter", showTooltip);
-      activator.addEventListener("mouseleave", hideTooltip);
-    }
-  }, []);
+  } else {
+    return {
+      top: `${bounds.top + window.scrollY - tooltip.clientHeight}px`,
+      left: `${xOffset}px`,
+    };
+  }
 }
 
 interface TooltipPortalProps {
