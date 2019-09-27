@@ -33,6 +33,8 @@
 }
 
 .modal {
+  --public-tab--inset: var(--space-large);
+
   position: relative;
   flex: 0 0 auto;
   width: 100%;
@@ -42,6 +44,18 @@
   border-radius: var(--radius-base);
   outline-color: var(--color-outline);
   background-color: var(--color-white);
+}
+
+/* Adjust `Content` components public padding to match the modal */
+
+.modal > * {
+  --public-content--padding: var(--modal--padding);
+}
+
+/* Remove the nested `Content` components public padding */
+
+.modal > * > * {
+  --public-content--padding: 0;
 }
 
 .header {
@@ -60,16 +74,12 @@
   appearance: none;
 }
 
-.content,
-.actionBar {
-  padding: var(--modal--padding);
-}
-
 .actionBar {
   display: flex;
+  padding: var(--modal--padding);
+  padding-top: 0;
   flex: 1 1 100%;
   justify-content: flex-end;
-  padding-top: 0;
 }
 
 /**

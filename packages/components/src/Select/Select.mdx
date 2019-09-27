@@ -26,36 +26,46 @@ to choose from.
 
 ## Sizes
 
+### Small
+
 <Playground>
   <Select size="small">
     <Option value="">Small</Option>
-    <Option value="sad" disabled>Tony</Option>
+    <Option value="sad" disabled>
+      Tony
+    </Option>
     <Option value="old">Steve</Option>
     <Option value="splat" label="Natasha"></Option>
   </Select>
+</Playground>
 
-<Select>
-  <Option value="">Normal</Option>
-  <Option value="sad">Tony</Option>
-  <Option value="old">Steve</Option>
-  <Option value="yoink">Vision</Option>
-</Select>
+### Large
 
+<Playground>
   <Select size="large">
-    <Option value="">Large</Option>
-    <Option value="sad">Tony</Option>
+    <Option value="">Small</Option>
+    <Option value="sad" disabled>
+      Tony
+    </Option>
     <Option value="old">Steve</Option>
+    <Option value="splat" label="Natasha"></Option>
   </Select>
 </Playground>
 
 ## States
+
+### Invalid
 
 <Playground>
   <Select size="large" invalid={true}>
     <Option value="sad">Tony</Option>
     <Option value="old">Steve</Option>
   </Select>
+</Playground>
 
+### Disabled
+
+<Playground>
   <Select size="large" disabled={true}>
     <Option value="sad">Tony</Option>
     <Option value="old">Steve</Option>

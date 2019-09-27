@@ -123,7 +123,7 @@ Everyone is a friend of Atlantis and we welcome pull requests. See the
 ### Pre-Release
 
 ```sh
-lerna publish --canary --dist-tag next --preid pre
+npm run prerelease
 ```
 
 ### For Realz

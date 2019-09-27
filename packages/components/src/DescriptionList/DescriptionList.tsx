@@ -1,6 +1,6 @@
 import React from "react";
-import { Typography } from "../Typography";
 import styles from "./DescriptionList.css";
+import { Typography } from "../Typography";
 
 interface DescriptionListProps {
   /**

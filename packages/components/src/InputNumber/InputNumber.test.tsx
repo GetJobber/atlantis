@@ -8,34 +8,34 @@ afterEach(cleanup);
 it("renders an input type number", () => {
   const tree = renderer.create(<InputNumber value="123" />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
-        Array [
-          "",
-          <div
-            className="wrapper"
-            style={
-              Object {
-                "--formField-maxLength": undefined,
-              }
-            }
-          >
-            <label
-              className="label"
-              htmlFor="123e4567-e89b-12d3-a456-426655440001"
-            >
-               
-            </label>
-            <input
-              className="formField"
-              id="123e4567-e89b-12d3-a456-426655440001"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onFocus={[Function]}
-              type="number"
-              value="123"
-            />
-          </div>,
-        ]
-    `);
+            Array [
+              "",
+              <div
+                className="wrapper"
+                style={
+                  Object {
+                    "--formField-maxLength": undefined,
+                  }
+                }
+              >
+                <label
+                  className="label"
+                  htmlFor="123e4567-e89b-12d3-a456-426655440001"
+                >
+                   
+                </label>
+                <input
+                  className="formField"
+                  id="123e4567-e89b-12d3-a456-426655440001"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  type="number"
+                  value="123"
+                />
+              </div>,
+            ]
+      `);
 });
 
 it("renders an error", () => {
@@ -50,7 +50,7 @@ it("renders an error", () => {
         Not a whole number
       </p>,
       <div
-        className="wrapper hasErrorMessage invalid"
+        className="wrapper invalid"
         style={
           Object {
             "--formField-maxLength": undefined,

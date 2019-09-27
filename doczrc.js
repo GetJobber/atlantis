@@ -141,7 +141,7 @@ export default {
   title: "🔱 Atlantis",
   typescript: true,
   port: 3333,
-  menu: ["Atlantis"],
+  menu: ["Atlantis", "Patterns", "Components"],
   files: "{README.md,**/*.mdx}",
   ignore: [...privateComponentReadmies(), "./plop/templates/**/*"],
   codeSandbox: false,

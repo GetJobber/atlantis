@@ -18,10 +18,14 @@ export function FormatTime({ time, use24HourClock }: FormatTimeProps) {
 }
 
 function formatCivilTime(time: CivilTime, use24HourClock: boolean) {
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+  const currentMonth = currentDate.getMonth();
+  const currentDay = currentDate.getDay();
   const date = new Date(
-    0,
-    1,
-    1,
+    currentYear,
+    currentMonth,
+    currentDay,
     time.hour,
     time.minute,
     time.second,
