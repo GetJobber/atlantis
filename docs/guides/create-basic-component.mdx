@@ -254,3 +254,53 @@ names. Plus, naming is hard so you can keep writing `wrapper` on all of the
 wrapper components and it would still work.
 
 ### Writing the CSS
+
+There's nothing special here just a plain ol CSS. Open up your
+`AmountCounter.css` and drop this in there
+
+```CSS
+.wrapper {
+  display: flex;
+  align-items: center; /* Vertical align center the columns */
+}
+
+.contentColumn {
+  flex: 1 1 auto; /* Expand to take up the remaining width */
+}
+
+.actionColumn {
+  flex: 0 0 auto; /* Shrink to it's content */
+}
+
+.button {
+  display: inline-block; /* Go side by side */
+  vertical-align: middle;
+  appearance: none; /* Get rid of browser defaults */
+  border: 0;
+  cursor: pointer;
+}
+```
+
+I've also update the template to get the layout working.
+
+<img src="/public/assets/images/create-react-component/component-using-icons.png" />
+
+Few things to note:
+
+- Added a `styles.button` class name so I can reset the styling of the buttons.
+- Used the [Icon](/components/icon) component instead of `+` or `-`.
+- Check out the [InputNumber](/components/input-number#properties) props to see
+  the details of what I've added.
+
+Once you've updated your component, it should look like so.
+
+<img src="/public/assets/images/create-react-component/second-preview.png" />
+
+Looking good! Now we just need to make it work. Onwards!
+
+## Making the buttons work
+
+- Talk about handle and callback functions
+- Controlled and uncontrolled components
+- Show and explain how we can make this component a controlled component
+- Done!
