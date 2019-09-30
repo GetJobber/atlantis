@@ -7,12 +7,12 @@ afterEach(cleanup);
 
 it("renders a {{name}}", () => {
   const tree = renderer.create(<{{name}} text="Foo" />).toJSON();
-  expect(tree).toMatchInlineSnapshot();
+  expect(tree).toMatchSnapshot();
 });
 
 it("renders a loud {{name}}", () => {
   const tree = renderer.create(<{{name}} text="Foo" loud />).toJSON();
-  expect(tree).toMatchInlineSnapshot();
+  expect(tree).toMatchSnapshot();
 });
 
 test("it should call the handler with the new value", () => {
