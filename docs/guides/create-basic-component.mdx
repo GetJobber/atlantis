@@ -6,11 +6,9 @@ route: /guides/how-to-create-a-basic-react-component
 
 # Create your own component
 
-<Text variation="intro">
-  So, you want to create a react component in atlantis but, you don't know where
-  to start. This guide would help you understand the basic concepts around
-  building a component in Atlantis.
-</Text>
+So, you want to create a react component in atlantis but, you don't know where
+to start. This guide would help you understand the basic concepts around
+building a component in Atlantis.
 
 ## Before we start
 
@@ -34,7 +32,7 @@ you should be able to follow along.
 
 In this guide, we'll show you how to build a counter component.
 
-[Pic here]
+<img src="/public/assets/images/create-react-component/AmountPicker.png" />
 
 Easy peasy, right?
 
@@ -42,10 +40,10 @@ Easy peasy, right?
 
 1. [Install and run Atlantis](/#development) because you need it to create a
    component in atlantis.
-2. Autogenerate a new component called `AmountCounter` by running `npm run plop`
-   on a new terminal.
+2. Auto-generate a new component called `AmountCounter` by running
+   `npm run plop` on a new terminal.
 
-> Protip: React components are named in **`PascalCase`**
+> Tip: React components are named in **`PascalCase`**
 
 Once that's done, it should tell you where the files got added.
 
@@ -64,16 +62,30 @@ Once that's done, it should tell you where the files got added.
 
 Right, I promised to explain them.
 
-| File name                | Description                                                                                        |
-| :----------------------- | :------------------------------------------------------------------------------------------------- |
-| `index.ts`               | This tells react what to render. Honestly, You'd probably never have to touch this.                |
-| `AmountCounter.tsx`      | This file is where you make the magic happen                                                       |
-| `AmountCounter.mdx`      | This creates the page that you see in Atlantis. This is where you explain what the magic is doing. |
-| `AmountCounter.test.tsx` | Self explanatory. No? Read the file name again but, this time, sloooower                           |
-| `AmountCounter.css`      | Self explanatory.                                                                                  |
-| `AmountCounter.css.d.ts` | This is how react knows what class names you added and automagically serializes them.              |
+| File name                | Description                                                                                                                     |
+| :----------------------- | :------------------------------------------------------------------------------------------------------------------------------ |
+| `index.ts`               | This tells react what to render. Honestly, You'd probably never have to touch this.                                             |
+| `AmountCounter.tsx`      | This file is where you make the magic happen                                                                                    |
+| `AmountCounter.mdx`      | This creates the page that you see in Atlantis. This is where you explain what the magic is doing.                              |
+| `AmountCounter.test.tsx` | Self explanatory.                                                                                                               |
+| `AmountCounter.css`      | Self explanatory.                                                                                                               |
+| `AmountCounter.css.d.ts` | This is how react knows what class names you added and automagically serializes them so it doesn't clash with other components. |
 
 ## Let's get started
 
 Actually, no! Let's take a step back and look at the mock up again. But this
-time, it's annotated with the types that we think it should have.
+time, it's annotated with the HTML elements and types that we think it should
+have.
+
+<img
+  src="/public/assets/images/create-react-component/AmountPicker-annotated.png"
+  style={{ width: "100%" }}
+/>
+
+Basically, It's annotated as `Semantic Name (HTML): Props Name`. This makes it
+easier to write the code because we have an idea on what the HTML elements and
+types of props the component could take. We'll ignore the card for now as
+components should be pluggable anywhere and a card would restrict the overall
+re-usability of this component.
+
+### Time to write some code
