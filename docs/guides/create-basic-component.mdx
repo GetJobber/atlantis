@@ -115,13 +115,13 @@ simple._
 
 Let's break it down, shall we?
 
-| Artifact                           | Description                                                                                                                                 |
-| :--------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------ |
-| `/*Comment*/`                      | Explains what the prop is doing. If you use VSCode, this also show up when you hover on the prop name.                                      |
-| `readonly`                         | Prevents the prop from getting re-assigned. We gotta have some rules, people!                                                               |
-| `title` `value`                    | This is the prop name                                                                                                                       |
-| `description?` `onChange?`         | Optional props. That tells typescript that this prop is optional. That means the component—if written properly—would still work without it. |
-| `string` `number` `boolean` `void` | This is the prop type. This makes sure that you can only pass in the specified type to make the component predictable and manageable.       |
+| Artifact                           | Description                                                                                                                           |
+| :--------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------ |
+| `/*Comment*/`                      | Explains what the prop is doing. If you use VSCode, this also show up when you hover on the prop name.                                |
+| `readonly`                         | Prevents the prop from getting re-assigned. We gotta have some rules, people!                                                         |
+| `title` `value`                    | This is the prop name                                                                                                                 |
+| `description?` `onChange?`         | Still a prop name but this time it's optional. That means the component—if written properly—would still work without it.              |
+| `string` `number` `boolean` `void` | This is the prop type. This makes sure that you can only pass in the specified type to make the component predictable and manageable. |
 
 _What about the `onChange?()` prop? It looks different_
 
@@ -130,10 +130,127 @@ Yes, because it's a callback. They're used to tell the parent component that the
 them, some don't. Some have params, some doesn't need it. It really depends on
 what kind of component are you writing. In our case, we need it.
 
+_Ok, but we specified increment and decrement on the annotations. I don't see
+that here._
+
+True, part of building a component is to make sure you only specify what you
+need and improve overtime. I think the `onChange()` could encompass both
+increment and decrement. I could be wrong, but let's see where this takes us.
+
 ### Component
 
+Now that we know the base props that we need. Yes, I said _base_ because it
+might need more than what we specified. First up, we need to tell the component
+about the props we specified like so:
+
+<img src="/public/assets/images/create-react-component/component-props.png" />
+
+_Oh no, typescript is already mad at me_
+
+First of all [insert meme here], it's a machine, it got no feelings, aight?
+Second it's just telling you that you ain't using the thing yet. That's helpful
+when you's writing a component super fast!
+
+Anyhoo, let's break it down
+
+| Artifact            | Description                                                                                                           |
+| :------------------ | :-------------------------------------------------------------------------------------------------------------------- |
+| `export`            | This allows us to use the component everywhere!                                                                       |
+| `function`          | Self explanatory.                                                                                                     |
+| `AmountCounter`     | Component name and also the function name. But, you already knew that.                                                |
+| `{ ... }`           | Defines the props that you'd like to use from AmountCounterProps.                                                     |
+| `AmoutCounterProps` | Reference to the props that we specified earlier. This is how the component knows the props and the types we can use. |
+
+#### Writing the HTML structure
+
+Let's look back at the annotated mockup again for guidance.
+
+<img
+  src="/public/assets/images/create-react-component/AmountPicker-annotated.png"
+  style={{ maxWidth: "100%" }}
+/>
+
+It seems that we need a:
+
+- **Heading**: We can use the [Heading](/components/heading) component
+- **Paragraph**: We can use the [Text](/components/text) component
+- **Input**: We need an input that can only accept number. We can use the
+  [InputNumber](/components/input-number) component
+- **Buttons**: This one is special case so, we'll write our own CSS for it.
+
+Not worrying about the layout for now and focusing on making the base structure
+work first; you should have something like this.
+
+<img src="/public/assets/images/create-react-component/component-jsx.png" />
+
+Few things to note here:
+
+- Commented out the `className` const. We might need it later.
+- That `<> ... </>` is called a
+  [React fragment](https://reactjs.org/docs/fragments.html). Yes, it's way
+  better than an unstyled `div`.
+
+You should also have this on your imports because it needs to know where to get
+the `Heading`, `Text`, and `InputNumber` component.
+
+<img src="/public/assets/images/create-react-component/imported-existing-components.png" />
+
+There will be warning around the imports and that's fine. Frends is aware of it
+but that shouldn't stop you from making your own component. Onwards!
+
+#### How do I preview this?
+
+Glad you asked, go to `AmountCounter.mdx` and drop the code below on that file.
+
 ```
-export function AmountCounter({ ... }: AmountCounterProps) {
-  return <div>I'm a component</div>;
-}
+<Playground>
+  <AmountCounter
+    title="Children"
+    description="Ages 2 - 12"
+    value={0}
+  />
+</Playground>
 ```
+
+If everything is correct, you should see something like this:
+
+<img src="/public/assets/images/create-react-component/first-preview.png" />
+
+Not quite the same as the mockup but, you know, baby steps.
+
+## Style me up!
+
+Now that we have the basic structure, we can style to look like the mockup.
+Let's reference the mockup again. This time, it's annotated by a simple grid
+system.
+
+<img
+  src="/public/assets/images/create-react-component/AmountPicker-gridified.png"
+  style={{ maxWidth: "100%" }}
+/>
+
+So we have a classic 2 columns grid. In order for us to do that, we have to
+group our elements.
+
+- **Black** as the wrapping element
+- **Pink** as the column element
+- **Orange** as the elements we currently have
+
+Once grouped, you should have something like this:
+
+<img src="/public/assets/images/create-react-component/component-grouped.png" />
+
+_Oh c'mon typescript! I know it's not there because I haven't written it yet!_
+
+If you look at it as like a halfway TDD, those red underline things are errors
+that you need to get rid of by continuing to write the code! TDD Red, Green,
+Refactor, amirite? Onwards!
+
+_Quick question, what's with the `styles.wrapper` why not just type the class
+name directly?_
+
+We have to serialize those class names so it doesn't clash with other class
+names. Plus, naming is hard so you can keep writing `wrapper` on all of the
+wrapper components and it would still work.
+
+### Writing the CSS

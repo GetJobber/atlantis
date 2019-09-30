@@ -86,9 +86,16 @@ const themeConfig = {
       text-transform: uppercase;
     `,
     h3: css`
-      margin: 0 0 16px;
+      margin: 32px 0 16px;
       font-family: ${fonts.display};
       font-size: 20px;
+      line-height: 1.2em;
+      font-weight: 600;
+    `,
+    h4: css`
+      margin: 0 0 16px;
+      font-family: ${fonts.display};
+      font-size: 18px;
       line-height: 1.2em;
       font-weight: 600;
     `,
