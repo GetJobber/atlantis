@@ -7,10 +7,10 @@ import React, {
 } from "react";
 import uuid from "uuid";
 import classnames from "classnames";
+import styles from "./Menu.css";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
 import { Icon, IconNames } from "../Icon";
-import styles from "./Menu.css";
 
 interface MenuProps {
   /**

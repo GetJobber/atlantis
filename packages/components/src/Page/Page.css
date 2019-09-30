@@ -1,0 +1,17 @@
+.page {
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--space-large);
+}
+
+.fill {
+  max-width: none;
+}
+
+.standard {
+  max-width: calc(var(--base-unit) * 80);
+}
+
+.narrow {
+  max-width: calc(var(--base-unit) * 64);
+}

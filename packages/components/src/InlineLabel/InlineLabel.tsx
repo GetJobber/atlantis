@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import classnames from "classnames";
-import { Typography } from "../Typography";
 import styles from "./InlineLabel.css";
+import { Typography } from "../Typography";
 
 interface InlineLabelProps {
   /**

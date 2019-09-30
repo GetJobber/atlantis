@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classnames from "classnames";
-import { Typography } from "../Typography";
 import styles from "./Switch.css";
+import { Typography } from "../Typography";
 
 interface SwitchProps {
   readonly value?: boolean;

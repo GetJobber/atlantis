@@ -9,6 +9,7 @@ import { ComponentStatus } from "@jobber/docx";
 import { InputText } from ".";
 import { useState } from "react";
 import { Button } from "../Button";
+import { Content } from "../Content";
 import { Text } from "../Text";
 
 # Input Text
@@ -24,13 +25,10 @@ Use this to allow users to provide short answers.
 <Playground>
   {() => {
     const [value, setValue] = useState("Veintisiete");
-    const handleChange = newValue => {
-      setValue(newValue);
-    };
     return (
       <InputText
         value={value}
-        onChange={handleChange}
+        onChange={setValue}
         name="age"
         placeholder="Age in words"
       />
@@ -126,8 +124,15 @@ shouldn't replace server-side validation.
 
 ## Sizes
 
+### Small
+
 <Playground>
   <InputText name="smallField" size="small" placeholder="Duration" />
+</Playground>
+
+### Large
+
+<Playground>
   <InputText name="largeField" size="large" placeholder="Your username" />
 </Playground>
 
@@ -163,11 +168,11 @@ shouldn't replace server-side validation.
     }
 
     return (
-      <>
+      <Content>
         <InputText value={text} onChange={handleTextChange} ref={textRef} />
         <pre>{text}</pre>
         <Button label="Insert Emoji" onClick={insert} />
-      </>
+      </Content>
     );
 
 }}
