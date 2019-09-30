@@ -11,7 +11,7 @@ it("renders a {{name}}", () => {
 });
 
 it("renders a loud {{name}}", () => {
-  const tree = renderer.create(<{{name}} text="Foo" loud />).toJSON();
+  const tree = renderer.create(<{{name}} text="Foo" loud={true} />).toJSON();
   expect(tree).toMatchSnapshot();
 });
 
