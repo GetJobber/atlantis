@@ -40,7 +40,9 @@ Easy peasy, right?
 
 1. [Install and run Atlantis](/#development) because you need it to create a
    component in atlantis.
-2. Auto-generate a new component called `AmountCounter` by running
+2. Setup your editor to have have the auto fixers. Life is too short to do your
+   own fixing for code that can be automatically fixed.
+3. Auto-generate a new component called `AmountCounter` by running
    `npm run plop` on a new terminal.
 
 > Tip: React components are named in **`PascalCase`**
@@ -79,13 +81,59 @@ have.
 
 <img
   src="/public/assets/images/create-react-component/AmountPicker-annotated.png"
-  style={{ width: "100%" }}
+  style={{ maxWidth: "100%" }}
 />
 
-Basically, It's annotated as `Semantic Name (HTML): Props Name`. This makes it
-easier to write the code because we have an idea on what the HTML elements and
-types of props the component could take. We'll ignore the card for now as
-components should be pluggable anywhere and a card would restrict the overall
-re-usability of this component.
+This makes it easier to write the code because we now have an idea on what the
+HTML elements and types of props the component could take. We'll ignore the card
+for now as components should be pluggable anywhere and a card would restrict the
+overall re-usability of this component.
 
 ### Time to write some code
+
+Open the `AmountCounter.tsx` because that's where we make the magic happen. That
+file should already have boilerplate code on it that we could break down in to 3
+categories.
+
+### Imports
+
+A little blurb about imports.
+
+<img src="/public/assets/images/create-react-component/imports.png" />
+
+We'll get in to more detail about `classnames` and `styles` later.
+
+### Interface
+
+This is where you specify the prop types that we got from the annotations
+earlier.
+
+<img src="/public/assets/images/create-react-component/props.png" />
+
+_WHAT?! Where did those come from? What is happening? I thought this was
+simple._
+
+Let's break it down, shall we?
+
+| Artifact                           | Description                                                                                                                                 |
+| :--------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------ |
+| `/*Comment*/`                      | Explains what the prop is doing. If you use VSCode, this also show up when you hover on the prop name.                                      |
+| `readonly`                         | Prevents the prop from getting re-assigned. We gotta have some rules, people!                                                               |
+| `title` `value`                    | This is the prop name                                                                                                                       |
+| `description?` `onChange?`         | Optional props. That tells typescript that this prop is optional. That means the component—if written properly—would still work without it. |
+| `string` `number` `boolean` `void` | This is the prop type. This makes sure that you can only pass in the specified type to make the component predictable and manageable.       |
+
+_What about the `onChange?()` prop? It looks different_
+
+Yes, because it's a callback. They're used to tell the parent component that the
+`AmountCounter` changed and it returned a new value. Now, some components need
+them, some don't. Some have params, some doesn't need it. It really depends on
+what kind of component are you writing. In our case, we need it.
+
+### Component
+
+```
+export function AmountCounter({ ... }: AmountCounterProps) {
+  return <div>I'm a component</div>;
+}
+```
