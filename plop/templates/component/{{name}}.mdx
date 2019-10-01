@@ -14,9 +14,21 @@ import { {{name}} } from ".";
 
 Write a description about what {{ name }} component is trying to achieve.
 
+```ts
+import { {{ name }} } from "@jobber/components/{{ name }}";
+```
+
 <Playground>
   <{{ name }} text="Bob" />
 </Playground>
+
+## Props
+
+<Props of={ {{ name }} } />
+
+---
+
+# Usage
 
 ## Loud
 
@@ -25,7 +37,3 @@ Write a short description about `loud` prop.
 <Playground>
   <{{ name }} text="Fred" loud={true} />
 </Playground>
-
-## Props
-
-<Props of={ {{ name }} } />
