@@ -4,10 +4,11 @@ import styles from "./{{name}}.css";
 
 interface {{name}}Props {
   /**
-   * Message is loud.
+   * Styles the text bold and uppercased
    * @default false
    */
   readonly loud?: boolean;
+
   /**
    * Text to display.
    */
