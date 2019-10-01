@@ -4,15 +4,18 @@ menu: Guides
 route: /guides/react
 ---
 
+import { Playground } from "docz";
+import { Button } from "@jobber/components/Button";
+
 # Getting Started with React
 
 ## Things to know.
 
 <!--
-- We will reference Typescript in this guide. -
-  https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html -
-  https://create-react-app.dev/docs/getting-started#creating-a-typescript-app -
-  Why Typescript?
+- We will reference Typescript in this guide.
+  - https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html
+  - https://create-react-app.dev/docs/getting-started#creating-a-typescript-app
+  - Why Typescript?
 - We will reference functional components. Older class components are still
   around and you will see them in some guides but we should prefer functional
   components.
@@ -51,13 +54,24 @@ export function Message({ text, yell }: MessageProps) {
 <Message text="bar" yell={true} /> // → <p>BAR</p>
 ```
 
-> **Note:** In this example you may have noticed some HTML like code embedded in
-> the JavaScript. This is called
+> **Note:**
+>
+> In this example you may have noticed some HTML like code embedded in the
+> JavaScript. This is called
 > [JSX ↗︎](https://reactjs.org/docs/introducing-jsx.html).
+>
+> This example also uses a
+> [Typescript interface](https://www.typescriptlang.org/docs/handbook/interfaces.html)
+> to enforce the shape of the component's props.
 
-As you can see here the component takes parameters in the form of `Props` and
-then returns a response in the form of a view fragment. You can also see how
-calling the component with different props results in different output.
+There are a few things going on in the example above. Lets break them down:
+
+| Artifact                       | Description                                                                                                                                                                                                                                             |
+| :----------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `interface MessageProps`       | The `props` define options that a component will accept. In the examples above you ca see how calling the component with different props results in different output.                                                                                   |
+| `export function Message`      | This function is the Message component. The `export` here means that we can import the component into another file. If you are writing a local component you don't need the `export`.                                                                   |
+| `{ text, yell }: MessageProps` | There are two parts to this. Starting on the right `MessageProps` indicates that this funciton takes a parameter of type `MessageProps`. On the left the `{ text, yell }` unpacks the parameter into local variables.                                   |
+| `return <p>{text}</p>`         | Every React component will return an [element](https://reactjs.org/docs/rendering-elements.html) or [fragment](https://reactjs.org/docs/fragments.html). (Note the [fragment short hand syntax](https://reactjs.org/docs/fragments.html#short-syntax).) |
 
 ## It's Components All the Way Down
 
@@ -73,3 +87,12 @@ smaller components. Brad Frost covers this break down very well with
 
 When you are writing a front end using React each of the levels he talks about
 are represented by components functions.
+
+## Composing Components
+
+As mentioned above a lot of the power of React comes from being able to build
+components out of other components. Lets take a look at an example on how to do
+that.
+
+```tsx
+```
