@@ -3,19 +3,19 @@ import classnames from "classnames";
 import styles from "./Icon.css";
 import sizes from "./Sizes.css";
 import colors from "./Colors.css";
-import { iconObject } from "./iconList";
+import { iconObject } from "./iconObject";
+import { iconNames } from "./iconNames";
 
 interface IconMapping {
   [key: string]: string[];
 }
 
-const iconList = iconObject.icons.reduce((map: IconMapping, i) => {
-  map[i.properties.name] = i.icon.paths;
-  return map;
+const iconList = iconObject.icons.reduce((result: IconMapping, i) => {
+  result[i.properties.name] = i.icon.paths;
+  return result;
 }, {});
 
-// export type IconNames = keyof typeof icons;
-export type IconNames = keyof typeof iconList;
+export type IconNames = keyof typeof iconNames;
 export type IconColorNames = keyof typeof colors;
 
 interface IconProps {
@@ -40,18 +40,39 @@ export function Icon({
   color = "greyBlueDark",
   size = "base",
 }: IconProps) {
-  const iconClasses = classnames(styles.icon, sizes[size]);
+  const iconName = getIconNames(name);
+
+  const svgClassNames = classnames(
+    styles.icon,
+    sizes[size],
+    name === "longArrowUp" && styles.longArrowUp,
+    name === "longArrowDown" && styles.longArrowDown,
+  );
+
+  const pathClassNames = classnames(colors[color]);
 
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 1024 1024"
-      className={iconClasses}
+      viewBox={`0 0 ${iconObject.height} ${iconObject.height}`}
+      className={svgClassNames}
     >
-      {iconList[name] &&
-        iconList[name].map((path: string, key: number) => (
-          <path key={key} className={colors[color]} d={path} />
+      {iconList[iconName] &&
+        iconList[iconName].map((path: string, key: number) => (
+          <path key={key} className={pathClassNames} d={path} />
         ))}
     </svg>
   );
+}
+function getIconNames(name: string): string {
+  switch (name) {
+    case "longArrowUp":
+      return "backArrow";
+    case "longArrowDown":
+      return "backArrow";
+    case "remove":
+      return "cross";
+    default:
+      return name;
+  }
 }
