@@ -6,17 +6,20 @@ import colors from "./Colors.css";
 import { iconObject } from "./iconObject";
 import { iconNames } from "./iconNames";
 
+export type IconNames = keyof typeof iconNames;
+export type IconColorNames = keyof typeof colors;
+
 interface IconMapping {
   [key: string]: string[];
 }
 
-const iconList = iconObject.icons.reduce((result: IconMapping, i) => {
-  result[i.properties.name] = i.icon.paths;
-  return result;
-}, {});
-
-export type IconNames = keyof typeof iconNames;
-export type IconColorNames = keyof typeof colors;
+const iconList = iconObject.icons.reduce(
+  (result, i) => {
+    result[i.properties.name] = i.icon.paths;
+    return result;
+  },
+  {} as IconMapping,
+);
 
 interface IconProps {
   /** The icon to show.  */
@@ -64,7 +67,7 @@ export function Icon({ name, color, size = "base" }: IconProps) {
   );
 }
 
-function getIconNames(name: IconNames): string {
+function getIconNames(name: IconNames) {
   switch (name) {
     case "longArrowUp":
       return "backArrow";
