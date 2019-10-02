@@ -29,17 +29,14 @@ interface IconProps {
   readonly size?: keyof typeof sizes;
 
   /**
-   * Determines the color of the icon.
-   * @default greyBlueDark
+   * Determines the color of the icon. Some icons have a default system colour
+   * like quotes, jobs, and invoices. Others that doesn't have a system colour
+   * falls back to greyBlueDark.
    */
   readonly color?: IconColorNames;
 }
 
-export function Icon({
-  name,
-  color = "greyBlueDark",
-  size = "base",
-}: IconProps) {
+export function Icon({ name, color, size = "base" }: IconProps) {
   const iconName = getIconNames(name);
 
   const svgClassNames = classnames(
@@ -49,8 +46,6 @@ export function Icon({
     name === "longArrowDown" && styles.longArrowDown,
   );
 
-  const pathClassNames = classnames(colors[color]);
-
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -58,13 +53,18 @@ export function Icon({
       className={svgClassNames}
     >
       {iconList[iconName] &&
-        iconList[iconName].map((path: string, key: number) => (
-          <path key={key} className={pathClassNames} d={path} />
+        iconList[iconName].map((path: string) => (
+          <path
+            key={path}
+            className={getPathClassNames(name, color)}
+            d={path}
+          />
         ))}
     </svg>
   );
 }
-function getIconNames(name: string): string {
+
+function getIconNames(name: IconNames): string {
   switch (name) {
     case "longArrowUp":
       return "backArrow";
@@ -75,4 +75,39 @@ function getIconNames(name: string): string {
     default:
       return name;
   }
+}
+
+function getPathClassNames(name: string, color?: IconColorNames) {
+  return classnames(
+    color && colors[color],
+    name === "person" && styles.person,
+    name === "clients" && styles.clients,
+    name === "property" && styles.property,
+    name === "job" && styles.job,
+    name === "jobOnHold" && styles.jobOnHold,
+    name === "visit" && styles.visit,
+    name === "moveVisits" && styles.moveVisits,
+    name === "event" && styles.event,
+    name === "request" && styles.request,
+    name === "reminder" && styles.reminder,
+    name === "trash" && styles.trash,
+    name === "task" && styles.task,
+    name === "timer" && styles.timer,
+    name === "quote" && styles.quote,
+    name === "quoteCopy" && styles.quoteCopy,
+    name === "invoice" && styles.invoice,
+    name === "invoiceLater" && styles.invoiceLater,
+    name === "badInvoice" && styles.badInvoice,
+    name === "sendInvoice" && styles.sendInvoice,
+    name === "paidInvoice" && styles.paidInvoice,
+    name === "payment" && styles.payment,
+    name === "expense" && styles.expense,
+    name === "edit" && styles.edit,
+    name === "archive" && styles.archive,
+    name === "excel" && styles.excel,
+    name === "file" && styles.file,
+    name === "pdf" && styles.pdf,
+    name === "word" && styles.word,
+    name === "video" && styles.video,
+  );
 }

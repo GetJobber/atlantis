@@ -25,3 +25,7 @@
 .red {
   fill: var(--color-red);
 }
+
+.navy {
+  fill: var(--color-navy);
+}
