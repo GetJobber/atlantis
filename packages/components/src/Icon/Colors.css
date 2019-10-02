@@ -1,3 +1,11 @@
+.white {
+  fill: var(--color-white);
+}
+
+.grey {
+  fill: var(--color-grey);
+}
+
 .greyBlue {
   fill: var(--color-greyBlue);
 }

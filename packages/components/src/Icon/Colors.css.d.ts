@@ -1,3 +1,5 @@
+export const white: string;
+export const grey: string;
 export const greyBlue: string;
 export const greyBlueDark: string;
 export const blue: string;
