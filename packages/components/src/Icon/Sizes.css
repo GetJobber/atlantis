@@ -1,14 +1,11 @@
 .small {
   width: calc(var(--base-unit) * 0.875);
-  height: calc(var(--base-unit) * 0.875);
 }
 
 .base {
   width: calc(var(--base-unit) * 1.5);
-  height: calc(var(--base-unit) * 1.5);
 }
 
 .large {
   width: calc(var(--base-unit) * 2);
-  height: calc(var(--base-unit) * 2);
 }

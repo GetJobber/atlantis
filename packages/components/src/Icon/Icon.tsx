@@ -3,9 +3,17 @@ import classnames from "classnames";
 import styles from "./Icon.css";
 import sizes from "./Sizes.css";
 import colors from "./Colors.css";
+import { iconObject } from "./iconObject";
 import { iconNames } from "./iconNames";
-// eslint-disable-next-line import/no-internal-modules
-import svgIcon from "./fonts/jobbericons.svg";
+
+interface IconMapping {
+  [key: string]: string[];
+}
+
+const iconList = iconObject.icons.reduce((result: IconMapping, i) => {
+  result[i.properties.name] = i.icon.paths;
+  return result;
+}, {});
 
 export type IconNames = keyof typeof iconNames;
 export type IconColorNames = keyof typeof colors;
@@ -39,11 +47,19 @@ export function Icon({ name, color, size = "base" }: IconProps) {
   );
 
   return (
-    <svg className={svgClassNames}>
-      <use
-        xlinkHref={`${svgIcon}#icon--${iconName}`}
-        className={getPathClassNames(name, color)}
-      />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox={`0 0 ${iconObject.height} ${iconObject.height}`}
+      className={svgClassNames}
+    >
+      {iconList[iconName] &&
+        iconList[iconName].map((path: string) => (
+          <path
+            key={path}
+            className={getPathClassNames(name, color)}
+            d={path}
+          />
+        ))}
     </svg>
   );
 }
