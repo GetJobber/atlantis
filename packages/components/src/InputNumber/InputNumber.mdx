@@ -16,6 +16,22 @@ import { useState } from "react";
 
 Input number is used in forms that accept numbers as an answer.
 
+```ts
+import { InputNumber } from "@jobber/components/InputNumber";
+```
+
+<Playground>
+  <InputNumber defaultValue={7} max={11} min={0} placeholder="Volume" />
+</Playground>
+
+## Properties
+
+<Props of={InputNumber} />
+
+---
+
+## Controlled
+
 <Playground>
   {() => {
     const [value, setValue] = useState(30);
@@ -105,7 +121,3 @@ Input number is used in forms that accept numbers as an answer.
 
 If you need to capture the error message and render it outside of the component.
 Read the [InputValidation](/components/input-validation) documentation.
-
-## Properties
-
-<Props of={InputNumber} />

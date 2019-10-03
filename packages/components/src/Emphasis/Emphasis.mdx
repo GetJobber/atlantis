@@ -12,7 +12,24 @@ import { Text } from "../Text";
 
 <ComponentStatus stage="ready" responsive="yes" accessible="yes" />
 
-Use this component to emphasize a certain content of a Heading or Text component
+Use this component to emphasize a certain content of a Heading or Text
+component. Used to call attention to a text
+
+```ts
+import { Emphasis } from "@jobber/components/Emphasis";
+```
+
+<Playground>
+  <Text>
+    To <Emphasis variation="bold">boldly</Emphasis> go…
+  </Text>
+</Playground>
+
+## Emphasis Properties
+
+<Props of={Emphasis} />
+
+---
 
 ## Bold
 
@@ -45,7 +62,3 @@ only be used on page titles and subtitle.
     Get paid <Emphasis variation="highlight">faster</Emphasis>
   </Heading>
 </Playground>
-
-## Emphasis Properties
-
-<Props of={Emphasis} />

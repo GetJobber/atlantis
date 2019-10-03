@@ -15,11 +15,21 @@ import { Switch } from ".";
 
 A switch toggles the state of a single setting to on or off.
 
+```ts
+import { Switch } from "@jobber/components/Switch";
+```
+
 <Playground>
   <Switch ariaLabel="Visible to clients" />
 </Playground>
 
-## Parent controlled switch
+## Props
+
+<Props of={Switch} />
+
+---
+
+## Controlled Switch
 
 <Playground>
   {() => {
@@ -44,7 +54,3 @@ A switch toggles the state of a single setting to on or off.
 <Playground>
   <Switch value={true} ariaLabel="Visible to clients" disabled={true} />
 </Playground>
-
-## Switch Properties
-
-<Props of={Switch} />
