@@ -8,6 +8,7 @@
     "build": "npm run build:cssTypes && npm run build:rollup",
     "build:rollup": "rollup --config",
     "build:cssTypes": "tcm src",
+    "convertIcoMoon": "scripts/convertIcoMoon.ts",
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
     "prepublishOnly": "scripts/entryPoints.ts",
     "prepare": "npm run clean; npm run build",
