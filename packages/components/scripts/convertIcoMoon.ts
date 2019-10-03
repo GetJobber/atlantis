@@ -2,7 +2,6 @@
 
 import { readFileSync, writeFileSync } from "fs";
 import { argv, exit } from "process";
-// import icomoonIcons from "../src/Icon/selection-svg.json";
 
 if (argv[2]) {
   convertIcoMoonData(argv[2]);
