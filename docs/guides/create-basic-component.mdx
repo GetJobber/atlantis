@@ -45,16 +45,15 @@ Easy peasy, right?
 3. Auto-generate a new component called `AmountCounter` by running
    `npm run plop` on a new terminal.
 
-> Tip: React components are named in **`PascalCase`**
+> Tip: React components are named in **PascalCase**
 
 Once that's done, it should tell you where the files got added.
 
 ```sh
 ? Component Name: AmountCounter
-✔  +! 5 files added
+✔  +! 4 files added
  -> /packages/components/src/AmountCounter/index.ts
  -> /packages/components/src/AmountCounter/AmountCounter.css
- -> /packages/components/src/AmountCounter/AmountCounter.css.d.ts
  -> /packages/components/src/AmountCounter/AmountCounter.mdx
  -> /packages/components/src/AmountCounter/AmountCounter.test.tsx
  -> /packages/components/src/AmountCounter/AmountCounter.tsx
@@ -64,14 +63,14 @@ Once that's done, it should tell you where the files got added.
 
 Right, I promised to explain them.
 
-| File name                | Description                                                                                                                     |
-| :----------------------- | :------------------------------------------------------------------------------------------------------------------------------ |
-| `index.ts`               | This tells react what to render. Honestly, You'd probably never have to touch this.                                             |
-| `AmountCounter.tsx`      | This file is where you make the magic happen                                                                                    |
-| `AmountCounter.mdx`      | This creates the page that you see in Atlantis. This is where you explain what the magic is doing.                              |
-| `AmountCounter.test.tsx` | Self explanatory.                                                                                                               |
-| `AmountCounter.css`      | Self explanatory.                                                                                                               |
-| `AmountCounter.css.d.ts` | This is how react knows what class names you added and automagically serializes them so it doesn't clash with other components. |
+| File name                | Description                                                                                                                                                                               |
+| :----------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `index.ts`               | This tells react what to render. Honestly, You'd probably never have to touch this.                                                                                                       |
+| `AmountCounter.tsx`      | This file is where you make the magic happen.                                                                                                                                             |
+| `AmountCounter.mdx`      | This creates the page that you see in Atlantis. This is where you explain what the magic is doing.                                                                                        |
+| `AmountCounter.test.tsx` | Self explanatory.                                                                                                                                                                         |
+| `AmountCounter.css`      | Self explanatory.                                                                                                                                                                         |
+| `AmountCounter.css.d.ts` | This wasn't on the original list but it's very important. This is how react knows what class names you added and automagically serializes them so it doesn't clash with other components. |
 
 ## Let's get started
 
@@ -84,20 +83,20 @@ have.
   style={{ maxWidth: "100%" }}
 />
 
+<!-- Add component proposal doc -->
+
 This makes it easier to write the code because we now have an idea on what the
 HTML elements and types of props the component could take. We'll ignore the card
-for now as components should be pluggable anywhere and a card would restrict the
-overall re-usability of this component.
+for now as components should be useable on its own anywhere and a card would
+restrict the overall re-usability of this component.
 
 ### Time to write some code
 
 Open the `AmountCounter.tsx` because that's where we make the magic happen. That
 file should already have boilerplate code on it that we could break down in to 3
-categories.
+main categories.
 
 ### Imports
-
-A little blurb about imports.
 
 <img src="/public/assets/images/create-react-component/imports.png" />
 
@@ -115,13 +114,13 @@ simple._
 
 Let's break it down, shall we?
 
-| Artifact                           | Description                                                                                                                           |
-| :--------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------ |
-| `/*Comment*/`                      | Explains what the prop is doing. If you use VSCode, this also show up when you hover on the prop name.                                |
-| `readonly`                         | Prevents the prop from getting re-assigned. We gotta have some rules, people!                                                         |
-| `title` `value`                    | This is the prop name                                                                                                                 |
-| `description?` `onChange?`         | Still a prop name but this time it's optional. That means the component—if written properly—would still work without it.              |
-| `string` `number` `boolean` `void` | This is the prop type. This makes sure that you can only pass in the specified type to make the component predictable and manageable. |
+| Artifact                           | Description                                                                                                                                                            |
+| :--------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/*Comment*/`                      | Explains what the prop is doing. If you use VSCode, this also show up when you hover on the prop name. This follows the [JSDoc](https://devdocs.io/jsdoc/) convention. |
+| `readonly`                         | Prevents the prop from getting re-assigned. We gotta have some rules, people!                                                                                          |
+| `title` `value`                    | This is the prop name.                                                                                                                                                 |
+| `description?` `onChange?`         | Still a prop name but this time it's optional. That means the component—if written properly—would still work without it.                                               |
+| `string` `number` `boolean` `void` | This is the basic prop types you can use. This makes sure that you can only pass in the specified type to make the component predictable and manageable.               |
 
 _What about the `onChange?()` prop? It looks different_
 
@@ -155,7 +154,7 @@ Anyhoo, let's break it down
 
 | Artifact            | Description                                                                                                           |
 | :------------------ | :-------------------------------------------------------------------------------------------------------------------- |
-| `export`            | This allows us to use the component everywhere!                                                                       |
+| `export`            | This allows us to use the component everywhere! Granted you `import` them; we'll get to that later.                   |
 | `function`          | Self explanatory.                                                                                                     |
 | `AmountCounter`     | Component name and also the function name. But, you already knew that.                                                |
 | `{ ... }`           | Defines the props that you'd like to use from AmountCounterProps.                                                     |
@@ -176,9 +175,10 @@ It seems that we need a:
 - **Paragraph**: We can use the [Text](/components/text) component
 - **Input**: We need an input that can only accept number. We can use the
   [InputNumber](/components/input-number) component
-- **Buttons**: This one is special case so, we'll write our own CSS for it.
+- **Buttons**: This one is special case and for the sake of this guide, we'll
+  write our own CSS for it.
 
-Not worrying about the layout for now and focusing on making the base structure
+Not worrying about the layout for now and focusing on making the base elements
 work first; you should have something like this.
 
 <img src="/public/assets/images/create-react-component/component-jsx.png" />
@@ -195,8 +195,8 @@ the `Heading`, `Text`, and `InputNumber` component.
 
 <img src="/public/assets/images/create-react-component/imported-existing-components.png" />
 
-There will be warning around the imports and that's fine. Frends is aware of it
-but that shouldn't stop you from making your own component. Onwards!
+There will be warning around the imports and that's fine. We're aware of it but,
+that shouldn't stop you from making your own component. Onwards!
 
 #### How do I preview this?
 
@@ -212,11 +212,14 @@ Glad you asked, go to `AmountCounter.mdx` and drop the code below on that file.
 </Playground>
 ```
 
-If everything is correct, you should see something like this:
+Then on the sidebar, go to **Components > AmountCounter** If everything is
+correct, you should see something like this:
 
 <img src="/public/assets/images/create-react-component/first-preview.png" />
 
-Not quite the same as the mockup but, you know, baby steps.
+Not quite the same as the mockup but, you know, baby steps. Oh, if you don't see
+the props list, stop atlantis and then run `npm run clean; npm start`. That
+busts the cache 🔥.
 
 ## Style me up!
 
@@ -287,7 +290,8 @@ I've also update the template to get the layout working.
 
 Few things to note:
 
-- Added a `styles.button` class name so I can reset the styling of the buttons.
+- Added a `styles.button` class name on the `button` so I can reset the styling
+  of the buttons.
 - Used the [Icon](/components/icon) component instead of `+` or `-`.
 - Check out the [InputNumber](/components/input-number#properties) props to see
   the details of what I've added.
@@ -300,7 +304,141 @@ Looking good! Now we just need to make it work. Onwards!
 
 ## Making the buttons work
 
-- Talk about handle and callback functions
-- Controlled and uncontrolled components
-- Show and explain how we can make this component a controlled component
-- Done!
+We're gonna focus on making our `AmountCounter` work as a
+[controlled component](https://reactjs.org/docs/forms.html#controlled-components)
+because that's the preferred way for react.
+
+### What is a controlled component?
+
+The gist of it is that, it needs a parent component to control what information
+it shows to the user. I won't go in to too much details here as React
+documentation already explains
+[what a controlled component is about](https://reactjs.org/docs/forms.html#controlled-components)
+and why it's the preferred way over
+[uncontrolled components](https://reactjs.org/docs/uncontrolled-components.html).
+
+### Great, how do we make it work?
+
+To keep it simple, let's start with the increment button first and worry about
+decrement later once we're happy with the code we've written.
+
+So, we need to add 2 things
+
+- `onClick` attribute for the button so it knows to fire a click event on… well…
+  click
+- `handleClick` function so the button knows what to do when it gets clicked.
+  Since we have 2 actions, we'll name the increment `handleIncrement`.
+
+Put that together, and you'll have this!
+
+<img src="/public/assets/images/create-react-component/making-the-button-work-increment-onclick.png" />
+
+and this right after the `return` code
+
+<img src="/public/assets/images/create-react-component/making-the-button-work-increment-handler.png" />
+
+Few things to note:
+
+1. Prefixed `on` for prop names to match reacts built-in event handlers.
+2. The same goes to `handle` for function names. Naming is hard, so the more we
+   can not think about it, the better.
+3. Added a `console.log` so we can see that it fires the `handleIncrement`
+   function after the click.
+4. We'll fire the `onChange` callback prop in here with the new value so the
+   parent component have a way to know that `AmountCounter` has changed and
+   there's a new value.
+
+Right now, typescript is probably giving you this message right now.
+
+```
+Cannot invoke an object which is possibly 'undefined'.ts(2722)
+```
+
+_OMG! Typescript is the worst!_
+
+Hold your horses there, partner. Typescript is there to prevent us, humans, from
+making a silly mistake. For every typescript error, there's always a `ts(XXXX)`
+that references back to an in-depth explanation on what the error is about.
+Google is free, you should use it.
+
+So what's the issue? The `onChange` is an optional prop. Which means we have to
+make sure that the `onChange` callback only fires when it can actually be fired.
+It means, we need to guard it by checking if `onChange` is defined.
+
+```
+onChange && onChange(newValue)
+```
+
+> Tip: That's a shorthand for `if (onChange) {}`.
+
+### Pop quiz!
+
+Do the decrement part yourself because it's the exact opposite of increment. You
+should be able to handle that.
+
+All done? Great! Now that we have the buttons firing an event when we need to,
+we need to catch those events and get this component updating its value!
+Onwards!
+
+### On to the states!
+
+_'Murica!_ 🦅
+
+No, not that! I'm talking about
+[component states](https://reactjs.org/docs/faq-state.html). We'll also use
+React hooks [useState](https://reactjs.org/docs/hooks-reference.html#usestate).
+
+We'll just go with the basics of adding and updating the state. You could
+generate a new component for this, but to get this going along, we'll just use
+the `AmountCounter`'s playground.
+
+- Open up `AmountCounter.mdx` again.
+- Replace the previous example we had with this bit of code.
+
+```
+<Playground>
+  {() => {
+    const [value, setValue] = useState(0);
+
+    return (
+      <AmountCounter
+        title="Children"
+        description="Ages 2 - 12"
+        value={value}
+        onChange={setValue}
+      />
+    );
+
+    function handleChange(newValue) {
+      setValue(newValue);
+    }
+  }}
+</Playground>
+```
+
+And don't forget to add this on the `import` part of the `.mdx` so we can use
+the `useState` from react.
+
+```
+import { useState } from "react";
+```
+
+Few things to note here
+
+- [`useState`](https://reactjs.org/docs/hooks-reference.html#usestate) is a new
+  React way of adding and updating a state. I suggest you read more about it.
+
+You should be able to interact with your component now! 🎉
+
+<img
+  src="/public/assets/images/create-react-component/AmountCounter.gif"
+  style={{ border: "1px solid #f2f2f2" }}
+/>
+
+## Conclusion
+
+Creating a new react component is overwhelming. There's so many ways to write
+it. But this should set you on a right path on how to write components the
+atlantis way. Most importantly, write it the way you'd understand it. Yes,
+there's always a better way to write code but, with enough collaboration, you'd
+learn those better ways too.
