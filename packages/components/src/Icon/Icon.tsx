@@ -3,23 +3,14 @@ import classnames from "classnames";
 import styles from "./Icon.css";
 import sizes from "./Sizes.css";
 import colors from "./Colors.css";
-import { iconObject } from "./iconObject";
-import { iconNames } from "./iconNames";
+import iconMap from "./iconMap.json";
 
-export type IconNames = keyof typeof iconNames;
+export type IconNames =
+  | keyof typeof iconMap.icons
+  | "longArrowUp"
+  | "longArrowDown"
+  | "remove";
 export type IconColorNames = keyof typeof colors;
-
-interface IconMapping {
-  [key: string]: string[];
-}
-
-const iconList = iconObject.icons.reduce(
-  (result, i) => {
-    result[i.properties.name] = i.icon.paths;
-    return result;
-  },
-  {} as IconMapping,
-);
 
 interface IconProps {
   /** The icon to show.  */
@@ -40,23 +31,21 @@ interface IconProps {
 }
 
 export function Icon({ name, color, size = "base" }: IconProps) {
-  const iconName = getIconNames(name);
+  const iconName = mapToCorrectIcon(name);
 
-  const svgClassNames = classnames(
-    styles.icon,
-    sizes[size],
-    name === "longArrowUp" && styles.longArrowUp,
-    name === "longArrowDown" && styles.longArrowDown,
-  );
+  const svgClassNames = classnames(styles.icon, sizes[size], {
+    [styles.longArrowUp]: name === "longArrowUp",
+    [styles.longArrowDown]: name === "longArrowDown",
+  });
 
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox={`0 0 ${iconObject.height} ${iconObject.height}`}
+      viewBox={`0 0 ${iconMap.height} ${iconMap.height}`}
       className={svgClassNames}
     >
-      {iconList[iconName] &&
-        iconList[iconName].map((path: string) => (
+      {iconMap.icons[iconName] &&
+        iconMap.icons[iconName].map((path: string) => (
           <path
             key={path}
             className={getPathClassNames(name, color)}
@@ -67,7 +56,7 @@ export function Icon({ name, color, size = "base" }: IconProps) {
   );
 }
 
-function getIconNames(name: IconNames) {
+function mapToCorrectIcon(name: IconNames) {
   switch (name) {
     case "longArrowUp":
       return "backArrow";
@@ -81,36 +70,35 @@ function getIconNames(name: IconNames) {
 }
 
 function getPathClassNames(name: string, color?: IconColorNames) {
-  return classnames(
-    color && colors[color],
-    name === "person" && styles.person,
-    name === "clients" && styles.clients,
-    name === "property" && styles.property,
-    name === "job" && styles.job,
-    name === "jobOnHold" && styles.jobOnHold,
-    name === "visit" && styles.visit,
-    name === "moveVisits" && styles.moveVisits,
-    name === "event" && styles.event,
-    name === "request" && styles.request,
-    name === "reminder" && styles.reminder,
-    name === "trash" && styles.trash,
-    name === "task" && styles.task,
-    name === "timer" && styles.timer,
-    name === "quote" && styles.quote,
-    name === "quoteCopy" && styles.quoteCopy,
-    name === "invoice" && styles.invoice,
-    name === "invoiceLater" && styles.invoiceLater,
-    name === "badInvoice" && styles.badInvoice,
-    name === "sendInvoice" && styles.sendInvoice,
-    name === "paidInvoice" && styles.paidInvoice,
-    name === "payment" && styles.payment,
-    name === "expense" && styles.expense,
-    name === "edit" && styles.edit,
-    name === "archive" && styles.archive,
-    name === "excel" && styles.excel,
-    name === "file" && styles.file,
-    name === "pdf" && styles.pdf,
-    name === "word" && styles.word,
-    name === "video" && styles.video,
-  );
+  return classnames(color && colors[color], {
+    [styles.person]: name === "person",
+    [styles.clients]: name === "clients",
+    [styles.property]: name === "property",
+    [styles.job]: name === "job",
+    [styles.jobOnHold]: name === "jobOnHold",
+    [styles.visit]: name === "visit",
+    [styles.moveVisits]: name === "moveVisits",
+    [styles.event]: name === "event",
+    [styles.request]: name === "request",
+    [styles.reminder]: name === "reminder",
+    [styles.trash]: name === "trash",
+    [styles.task]: name === "task",
+    [styles.timer]: name === "timer",
+    [styles.quote]: name === "quote",
+    [styles.quoteCopy]: name === "quoteCopy",
+    [styles.invoice]: name === "invoice",
+    [styles.invoiceLater]: name === "invoiceLater",
+    [styles.badInvoice]: name === "badInvoice",
+    [styles.sendInvoice]: name === "sendInvoice",
+    [styles.paidInvoice]: name === "paidInvoice",
+    [styles.payment]: name === "payment",
+    [styles.expense]: name === "expense",
+    [styles.edit]: name === "edit",
+    [styles.archive]: name === "archive",
+    [styles.excel]: name === "excel",
+    [styles.file]: name === "file",
+    [styles.pdf]: name === "pdf",
+    [styles.word]: name === "word",
+    [styles.video]: name === "video",
+  });
 }
