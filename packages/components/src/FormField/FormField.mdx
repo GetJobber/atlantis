@@ -10,10 +10,24 @@ import { FormField } from ".";
 
 # FormField
 
-<ComponentStatus stage="rc" responsive="yes" accessible="yes" />
+<ComponentStatus stage="ready" responsive="yes" accessible="yes" />
 
 Master component for all things form field. The idea is to keep all the styles
 in one place.
+
+```ts
+import { FormField } from "@jobber/components/FormField";
+```
+
+<Playground>
+  <FormField type="text" placeholder="Words…" />
+</Playground>
+
+## Props
+
+<Props of={FormField} />
+
+---
 
 ## Text input
 
@@ -106,7 +120,3 @@ in one place.
     days after
   </p>
 </Playground>
-
-## FormField Properties
-
-<Props of={FormField} />

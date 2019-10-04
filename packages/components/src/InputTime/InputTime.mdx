@@ -19,8 +19,7 @@ import { CivilTime } from "@std-proposal/temporal";
 Select a time of day. For example the time a messages should be sent or when a
 job started/ended.
 
-At the moment the 12-hour vs 24-hour preference is set by the operating system
-and this component doesn't look at the Jobber setting.
+This component obeys the system locale settings to determine 24 or 12 hour time.
 
 ```ts
 import { InputTime } "@jobber/components/InputTime";
@@ -29,6 +28,12 @@ import { InputTime } "@jobber/components/InputTime";
 <Playground>
   <InputTime defaultValue={new CivilTime(2, 35)} />
 </Playground>
+
+## Props
+
+<Props of={InputTime} />
+
+---
 
 ## States
 
@@ -74,7 +79,3 @@ the last element is set the change event will fire.
     );
   }}
 </Playground>
-
-## InputTime Properties
-
-<Props of={InputTime} />

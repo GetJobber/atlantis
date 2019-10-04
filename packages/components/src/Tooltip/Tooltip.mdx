@@ -1,0 +1,34 @@
+---
+name: Tooltip
+menu: Components
+route: /components/tooltip
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { Tooltip } from ".";
+import { Button } from "../Button";
+import { Card } from "../Card";
+
+# Tooltip
+
+<ComponentStatus stage="rc" responsive="yes" accessible="yes" />
+
+Tooltips are extra information that briefly explain the function of a UI
+element.
+
+```ts
+import { Tooltip } from "@jobber/components/Tooltip";
+```
+
+<Playground>
+  <Tooltip message="'tis a button">
+    <Button label="Hover On Me" />
+  </Tooltip>
+</Playground>
+
+## Props
+
+<Props of={Tooltip} />
+
+---
