@@ -15,11 +15,15 @@ import { Tabs, Tab } from "../Tabs";
 
 # Modal
 
-<ComponentStatus stage="ready" responsive="no" accessible="yes" />
+<ComponentStatus stage="ready" responsive="yes" accessible="yes" />
 
 Modals are overlays that allow users to view, edit, or show informations that
 doesn't require a page to be built. It also prevent users from interacting with
 the rest of the application until a specific action is taken.
+
+```ts
+import { Modal } from "@jobber/components/Modal";
+```
 
 <Playground>
   {() => {
@@ -48,6 +52,12 @@ the rest of the application until a specific action is taken.
 }}
 
 </Playground>
+
+## Props
+
+<Props of={Modal} />
+
+---
 
 ## With actions
 
@@ -99,7 +109,3 @@ You have 3 action props you can use
 }}
 
 </Playground>
-
-## Modal Properties
-
-<Props of={Modal} />

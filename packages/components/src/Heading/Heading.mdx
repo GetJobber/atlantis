@@ -8,10 +8,24 @@ import { Heading } from ".";
 
 # Heading
 
-<ComponentStatus stage="ready" responsive="no" accessible="yes" />
+<ComponentStatus stage="ready" responsive="yes" accessible="yes" />
 
 Headings are used as the titles of each major section of a page in the
 interface. Reserved for short, important text or numbers.
+
+```ts
+import { Heading } from "@jobber/components/Heading";
+```
+
+<Playground>
+  <Heading level={2}>Subtitle</Heading>
+</Playground>
+
+## Props
+
+<Props of={Heading} />
+
+---
 
 ## Heading 1
 
@@ -70,7 +84,3 @@ Used to group contents after a [heading 4](#heading-4)
 <Playground>
   <Heading level={5}>Recieves SMS</Heading>
 </Playground>
-
-## Heading Properties
-
-<Props of={Heading} />
