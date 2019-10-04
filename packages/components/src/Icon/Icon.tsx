@@ -3,7 +3,7 @@ import classnames from "classnames";
 import styles from "./Icon.css";
 import sizes from "./Sizes.css";
 import colors from "./Colors.css";
-import iconMap from "./iconMap.json";
+import { iconMap } from "./iconMap";
 
 export type IconNames =
   | keyof typeof iconMap.icons
