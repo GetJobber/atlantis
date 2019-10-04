@@ -16,6 +16,10 @@ import { useState } from "react";
 
 Allow users to switch a feature on or off.
 
+```ts
+import { FormatTime } from "@jobber/components/FormatTime";
+```
+
 <Playground>
   {() => {
     const [featureEnabled, setFeatureEnabled] = useState(true);
@@ -43,7 +47,13 @@ Allow users to switch a feature on or off.
 
 </Playground>
 
-## Simple usage
+## Props
+
+<Props of={FeatureSwitch} />
+
+---
+
+## Simplified
 
 <Playground>
   <FeatureSwitch
@@ -53,7 +63,3 @@ Allow users to switch a feature on or off.
     }}
   />
 </Playground>
-
-## Props
-
-<Props of={FeatureSwitch} />

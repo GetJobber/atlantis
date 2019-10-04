@@ -18,7 +18,21 @@ import { Text } from "../Text";
 
 Input text is used in forms that accept short or long answers from users.
 
-## Short answer
+```ts
+import { InputText } from "@jobber/components/InputText";
+```
+
+<Playground>
+  <InputText defaultValue="Rocinante" placeholder="Ship Name" />
+</Playground>
+
+## Props
+
+<Props of={InputText} />
+
+---
+
+## Controlled
 
 Use this to allow users to provide short answers.
 
@@ -36,7 +50,7 @@ Use this to allow users to provide short answers.
   }}
 </Playground>
 
-## Long answer
+## Multiline
 
 Use this to allow users to provide long answers.
 
@@ -183,7 +197,3 @@ shouldn't replace server-side validation.
 
 If you need to capture the error message and render it outside of the component.
 Read the [InputValidation](/components/input-validation) documentation.
-
-## InputText Properties
-
-<Props of={InputText} />
