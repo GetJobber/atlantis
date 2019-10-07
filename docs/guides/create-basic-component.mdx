@@ -92,7 +92,7 @@ restrict the overall re-usability of this component. #componentThinking
 Alternatively, you can also create a
 [proposal doc](https://github.com/GetJobber/atlantis/blob/master/docs/proposals/TEMPLATE.md)
 to help better understand what you're building. If you just wanna see how to
-build one first, then off we go!
+build a react component first, then off we go!
 
 ### Time to write some code
 
@@ -102,7 +102,10 @@ main categories.
 
 ### Imports
 
-<img src="/public/assets/images/create-react-component/imports.png" />
+<img
+  src="/public/assets/images/create-react-component/imports.png"
+  style={{ maxWidth: "100%" }}
+/>
 
 We'll get in to more detail about `classnames` and `styles` later.
 
@@ -111,7 +114,10 @@ We'll get in to more detail about `classnames` and `styles` later.
 This is where you specify the prop types that we got from the annotations
 earlier.
 
-<img src="/public/assets/images/create-react-component/props.png" />
+<img
+  src="/public/assets/images/create-react-component/props.png"
+  style={{ maxWidth: "100%" }}
+/>
 
 _WHAT?! Where did those come from? What is happening? I thought this was
 simple._
@@ -122,8 +128,8 @@ Let's break it down, shall we?
 | :--------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `/*Comment*/`                      | Explains what the prop is doing. If you use VSCode, this also show up when you hover on the prop name. This follows the [JSDoc](https://devdocs.io/jsdoc/) convention. |
 | `readonly`                         | Prevents the prop from getting re-assigned. We gotta have some rules, people!                                                                                          |
-| `title` `value`                    | This is the prop name.                                                                                                                                                 |
-| `description?` `onChange?`         | Still a prop name but this time it's optional. That means the component—if written properly—would still work without it.                                               |
+| `title` `value`                    | This is the prop name. This determines what HTML style attributes can be passed in to the component.                                                                   |
+| `description?` `onChange?`         | Still a prop name but this time it's optional. That means the component—if written properly—would still work without these props.                                      |
 | `string` `number` `boolean` `void` | This is the basic prop types you can use. This makes sure that you can only pass in the specified type to make the component predictable and manageable.               |
 
 _What about the `onChange?()` prop? It looks different_
@@ -131,10 +137,12 @@ _What about the `onChange?()` prop? It looks different_
 Yes, because it's a callback. They're used to tell the parent component that the
 `AmountCounter` changed and it returned a new value. Now, some components need
 them, some don't. Some have params, some doesn't need it. It really depends on
-what kind of component are you writing. In our case, we need it.
+what kind of component are you writing. In our case, we need it because we need
+to know that clicking the +/- buttons increments or decrements and it returns a
+new value.
 
-_Ok, but we specified increment and decrement on the annotations. I don't see
-that here._
+_Ok, but we specified increment and decrement on the annotations as prop types.
+I don't see that here._
 
 True, part of building a component is to make sure you only specify what you
 need and improve overtime. I think the `onChange()` could encompass both
@@ -146,9 +154,15 @@ Now that we know the base props that we need. Yes, I said _base_ because it
 might need more than what we specified. First up, we need to tell the component
 about the props we specified like so:
 
-<img src="/public/assets/images/create-react-component/component-props.png" />
+<img
+  src="/public/assets/images/create-react-component/component-props.png"
+  style={{ maxWidth: "100%" }}
+/>
 
-_Oh no, typescript is already mad at me_
+At this point, typescript is probably giving you an error that says
+`'title' is defined but never used`.
+
+_Oh man, typescript is already mad at me_
 
 First of all [insert meme here], it's a machine, it got no feelings, aight?
 Second it's just telling you that you ain't using the thing yet. That's helpful
@@ -156,13 +170,13 @@ when you's writing a component super fast!
 
 Anyhoo, let's break it down
 
-| Artifact            | Description                                                                                                           |
-| :------------------ | :-------------------------------------------------------------------------------------------------------------------- |
-| `export`            | This allows us to use the component everywhere! Granted you `import` them; we'll get to that later.                   |
-| `function`          | Self explanatory.                                                                                                     |
-| `AmountCounter`     | Component name and also the function name. But, you already knew that.                                                |
-| `{ ... }`           | Defines the props that you'd like to use from AmountCounterProps.                                                     |
-| `AmoutCounterProps` | Reference to the props that we specified earlier. This is how the component knows the props and the types we can use. |
+| Artifact                      | Description                                                                                                             |
+| :---------------------------- | :---------------------------------------------------------------------------------------------------------------------- |
+| `export`                      | This allows us to use the component everywhere! Granted you `import` them; we'll get to that later.                     |
+| `function`                    | Self explanatory.                                                                                                       |
+| `AmountCounter`               | Component name and also the function name. But, you already knew that.                                                  |
+| `{ title, description, ... }` | Defines the props that you'd like to use from AmountCounterProps.                                                       |
+| `AmoutCounterProps`           | Reference to the `interface` that we specified earlier. This is how the component knows the props and types we can use. |
 
 #### Writing the HTML structure
 
@@ -185,11 +199,15 @@ It seems that we need a:
 Not worrying about the layout for now and focusing on making the base elements
 work first; you should have something like this.
 
-<img src="/public/assets/images/create-react-component/component-jsx.png" />
+<img
+  src="/public/assets/images/create-react-component/component-jsx.png"
+  style={{ maxWidth: "100%" }}
+/>
 
 Few things to note here:
 
-- Commented out the `className` const. We might need it later.
+- On the boilerplate there should be a `className` const. Remove that for now,
+  that needs its own documentation.
 - That `<> ... </>` is called a
   [React fragment](https://reactjs.org/docs/fragments.html). Yes, it's way
   better than an unstyled `div`.
@@ -197,7 +215,10 @@ Few things to note here:
 You should also have this on your imports because it needs to know where to get
 the `Heading`, `Text`, and `InputNumber` component.
 
-<img src="/public/assets/images/create-react-component/imported-existing-components.png" />
+<img
+  src="/public/assets/images/create-react-component/imported-existing-components.png"
+  style={{ maxWidth: "100%" }}
+/>
 
 There will be warning around the imports and that's fine. We're aware of it but,
 that shouldn't stop you from making your own component. Onwards!
@@ -216,14 +237,27 @@ Glad you asked, go to `AmountCounter.mdx` and drop the code below on that file.
 </Playground>
 ```
 
-Then on the sidebar, go to **Components > AmountCounter** If everything is
-correct, you should see something like this:
+Few things to note about that code snippet:
 
-<img src="/public/assets/images/create-react-component/first-preview.png" />
+- `<Playground>` is a
+  [docz built-in component](https://www.docz.site/docs/built-ins-components#playground-component)
+  that handles the preview and live editing of the code! Yes, really!
+- `<AmountCounter>` is the component we just built! See how it's the same name
+  as the function name?
+- `AmountCounter`'s HTML attributes are basically the props that we specified
+  earlier.
+
+Go to **Components > AmountCounter**. If everything is correct, you should see
+something like this:
+
+<img
+  src="/public/assets/images/create-react-component/first-preview.png"
+  style={{ maxWidth: "100%" }}
+/>
 
 Not quite the same as the mockup but, you know, baby steps. Oh, if you don't see
-the props list, stop atlantis and then run `npm run clean; npm start`. That
-busts the cache 🔥.
+the props table, stop atlantis and then run `npm run clean; npm start`. That
+busts the cache 🔥 and re-render everything.
 
 ## Style me up!
 
@@ -245,9 +279,16 @@ group our elements.
 
 Once grouped, you should have something like this:
 
-<img src="/public/assets/images/create-react-component/component-grouped.png" />
+<img
+  src="/public/assets/images/create-react-component/component-grouped.png"
+  style={{ maxWidth: "100%" }}
+/>
 
-_Oh c'mon typescript! I know it's not there because I haven't written it yet!_
+At this point, you'd get an error from typescript that's something around
+`property 'wrapper' doesn't exists` on the CSS file.
+
+_Yes! I know it's not there because I haven't written it yet! It doesn't need to
+remind me that everytime!!_
 
 If you look at it as like a halfway TDD, those red underline things are errors
 that you need to get rid of by continuing to write the code! TDD Red, Green,
@@ -268,7 +309,7 @@ There's nothing special here just a plain ol CSS. Open up your
 ```CSS
 .wrapper {
   display: flex;
-  align-items: center; /* Vertical align center the columns */
+  align-items: center; /* Fix the vertical alignment */
 }
 
 .contentColumn {
@@ -280,9 +321,9 @@ There's nothing special here just a plain ol CSS. Open up your
 }
 
 .button {
-  display: inline-block; /* Go side by side */
+  display: inline-block;
   vertical-align: middle;
-  appearance: none; /* Get rid of browser defaults */
+  appearance: none; /* Get rid of browsers styling for buttons */
   border: 0;
   cursor: pointer;
 }
@@ -290,12 +331,13 @@ There's nothing special here just a plain ol CSS. Open up your
 
 I've also update the template to get the layout working.
 
-<img src="/public/assets/images/create-react-component/component-using-icons.png" />
+<img
+  src="/public/assets/images/create-react-component/component-using-icons.png"
+  style={{ maxWidth: "100%" }}
+/>
 
 Few things to note:
 
-- Added a `styles.button` class name on the `button` so I can reset the styling
-  of the buttons.
 - Used the [Icon](/components/icon) component instead of `+` or `-`.
 - Check out the [InputNumber](/components/input-number#properties) props to see
   the details of what I've added.
