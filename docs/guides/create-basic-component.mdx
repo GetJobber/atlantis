@@ -21,8 +21,8 @@ We're here to make components! YAY!!🎉
 _"Wait hold up! Typescript?! That POS, strictly typed, PITA that gives vague
 explanation as to why..."_
 
-Hold your horses there, cowboy. Give it a chance and treat it more as a guide
-than an enemy you need to please in order to move forward.
+Hold your horses there, cowboy. Give it a chance, it's built to prevent us from
+making silly and preventable mistakes.
 
 Oh, and this also assumes that you have some familiarity with HTML, CSS, and
 Javascript. I'll do my best to explain some concepts around as we go along but,
@@ -39,9 +39,10 @@ Easy peasy, right?
 ## Prerequisites
 
 1. [Install and run Atlantis](/#development) because you need it to create a
-   component in atlantis.
+   component in… Atlantis.
 2. Setup your editor to have have the auto fixers. Life is too short to do your
    own fixing for code that can be automatically fixed.
+   [Jobber Wiki: Set up Typescript/Javascript linting](https://jobber.atlassian.net/wiki/spaces/JTW/pages/507740239/Set+up+Typescript+Javascript+linting)
 3. Auto-generate a new component called `AmountCounter` by running
    `npm run plop` on a new terminal.
 
@@ -63,32 +64,30 @@ Once that's done, it should tell you where the files got added.
 
 Right, I promised to explain them.
 
-| File name                | Description                                                                                                                                                                               |
-| :----------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `index.ts`               | This tells react what to render. Honestly, You'd probably never have to touch this.                                                                                                       |
-| `AmountCounter.tsx`      | This file is where you make the magic happen.                                                                                                                                             |
-| `AmountCounter.mdx`      | This creates the page that you see in Atlantis. This is where you explain what the magic is doing.                                                                                        |
-| `AmountCounter.test.tsx` | Self explanatory.                                                                                                                                                                         |
-| `AmountCounter.css`      | Self explanatory.                                                                                                                                                                         |
-| `AmountCounter.css.d.ts` | This wasn't on the original list but it's very important. This is how react knows what class names you added and automagically serializes them so it doesn't clash with other components. |
+| File name                | Description                                                                                                                                                                                                 |
+| :----------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `index.ts`               | This tells react what to render. Honestly, You'd rarely to touch this.                                                                                                                                      |
+| `AmountCounter.tsx`      | This file is where you make the magic happen.                                                                                                                                                               |
+| `AmountCounter.mdx`      | This creates the page that you see in Atlantis. This is where you explain what the magic is doing.                                                                                                          |
+| `AmountCounter.test.tsx` | Self explanatory.                                                                                                                                                                                           |
+| `AmountCounter.css`      | Self explanatory.                                                                                                                                                                                           |
+| `AmountCounter.css.d.ts` | This wasn't on the original list but it's very important. This is how react knows what class names you added and automagically serializes them so it doesn't clash with other components. More on it later. |
 
 ## Let's get started
 
 Actually, no! Let's take a step back and look at the mock up again. But this
-time, it's annotated with the HTML elements and types that we think it should
-have.
+time, it's annotated with the HTML elements and prop types that we think it
+should have.
 
 <img
   src="/public/assets/images/create-react-component/AmountPicker-annotated.png"
   style={{ maxWidth: "100%" }}
 />
 
-<!-- Add component proposal doc -->
-
 This makes it easier to write the code because we now have an idea on what the
 HTML elements and types of props the component could take. We'll ignore the card
 for now as components should be useable on its own anywhere and a card would
-restrict the overall re-usability of this component.
+restrict the overall re-usability of this component. #componentThinking
 
 Alternatively, you can also create a
 [proposal doc](https://github.com/GetJobber/atlantis/blob/master/docs/proposals/TEMPLATE.md)
