@@ -142,7 +142,7 @@ export default {
   typescript: true,
   port: 3333,
   menu: ["Atlantis", "Patterns", "Components"],
-  files: "{README.md,**/*.mdx}",
+  files: "{README.md,CONTRIBUTING.md,**/*.mdx}",
   ignore: [...privateComponentReadmies(), "./plop/templates/**/*"],
   codeSandbox: false,
   public: "public",
