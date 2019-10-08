@@ -19,6 +19,7 @@ interface ModalProps {
    * @default true
    */
   readonly dismissible?: boolean;
+  readonly showTitle?: boolean;
   readonly children: ReactNode;
   readonly primaryAction?: ButtonProps;
   readonly secondaryAction?: ButtonProps;
@@ -31,6 +32,7 @@ export function Modal({
   title,
   size,
   dismissible = true,
+  showTitle = true,
   children,
   primaryAction,
   secondaryAction,
@@ -69,12 +71,13 @@ export function Modal({
               stiffness: 300,
             }}
           >
-            <Header
-              title={title}
-              dismissible={dismissible}
-              onRequestClose={onRequestClose}
-            />
-
+            {showTitle && (
+              <Header
+                title={title}
+                dismissible={dismissible}
+                onRequestClose={onRequestClose}
+              />
+            )}
             {children}
 
             <Actions
