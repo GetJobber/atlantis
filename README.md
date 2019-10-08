@@ -21,6 +21,8 @@ developers to quickly build beautiful and consistent interfaces for our users.
 
 ## Development
 
+###### Requires npm v5.7.1 or higher
+
 To install Atlantis locally for development:
 
 ```sh
