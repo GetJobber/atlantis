@@ -1,19 +1,39 @@
+.white {
+  fill: var(--color-white);
+}
+
+.grey {
+  fill: var(--color-grey);
+}
+
 .greyBlue {
-  color: var(--color-greyBlue);
+  fill: var(--color-greyBlue);
+}
+
+.greyBlueDark {
+  fill: var(--color-greyBlue--dark);
+}
+
+.blue {
+  fill: var(--color-blue);
 }
 
 .lightBlue {
-  color: var(--color-lightBlue);
+  fill: var(--color-lightBlue);
 }
 
 .green {
-  color: var(--color-green);
+  fill: var(--color-green);
 }
 
 .yellow {
-  color: var(--color-yellow);
+  fill: var(--color-yellow);
 }
 
 .red {
-  color: var(--color-red);
+  fill: var(--color-red);
+}
+
+.navy {
+  fill: var(--color-navy);
 }

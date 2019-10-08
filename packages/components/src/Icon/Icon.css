@@ -1,25 +1,102 @@
-@font-face {
-  font-family: "jobbericons";
-  font-style: normal;
-  font-weight: normal;
-  src: url("fonts/jobbericons.woff2?tr7fud") format("woff2"),
-    url("fonts/jobbericons.ttf?tr7fud") format("truetype"),
-    url("fonts/jobbericons.woff?tr7fud") format("woff"),
-    url("fonts/jobbericons.svg?tr7fud#jobbericons") format("svg");
+.icon {
+  fill: var(--color-greyBlue--dark);
+  display: inline-block;
+  vertical-align: middle;
 }
 
-.icon {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
-  font-family: "jobbericons" !important;
+.longArrowUp {
+  transform: rotate(90deg);
+}
 
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-style: normal;
-  font-weight: normal;
-  line-height: 1;
-  text-transform: none;
-  speak: none;
-  font-variant: normal;
+.longArrowDown {
+  transform: rotate(-90deg);
+}
+
+.person,
+.clients,
+.property {
+  fill: var(--color-teal);
+}
+
+.job,
+.jobOnHold {
+  fill: var(--color-job);
+}
+
+.visit,
+.moveVisits {
+  fill: var(--color-lime);
+}
+
+.event {
+  fill: var(--color-yellow);
+}
+
+.request {
+  fill: var(--color-request);
+}
+
+.reminder,
+.trash {
+  fill: var(--color-red);
+}
+
+.task {
+  fill: var(--color-navy);
+}
+
+.timer {
+  fill: var(--color-lightBlue);
+}
+
+.quote,
+.quoteCopy {
+  fill: var(--color-quote);
+}
+
+.invoice,
+.invoiceLater {
+  fill: var(--color-invoice);
+}
+
+.badInvoice {
+  fill: var(--color-red);
+}
+
+.sendInvoice,
+.paidInvoice {
+  fill: var(--color-green);
+}
+
+.payment,
+.expense {
+  fill: var(--color-orange);
+}
+
+.edit {
+  fill: var(--color-brown);
+}
+
+.archive {
+  fill: var(--color-blue);
+}
+
+.excel {
+  fill: rgb(31, 115, 71);
+}
+
+.file {
+  fill: var(--color-greyBlue);
+}
+
+.pdf {
+  fill: rgb(195, 27, 0);
+}
+
+.word {
+  fill: rgb(41, 86, 154);
+}
+
+.video {
+  fill: var(--color-lightBlue);
 }
