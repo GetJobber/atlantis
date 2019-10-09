@@ -15,7 +15,9 @@ import { Select, Option } from ".";
 In Jobber a `Select` is used to present a defined list of options for the user
 to choose from.
 
-## Simple Example
+```ts
+import { Select, Option } from "@jobber/components/Select";
+```
 
 <Playground>
   <Select>
@@ -23,6 +25,12 @@ to choose from.
     <Option value="old">Steve</Option>
   </Select>
 </Playground>
+
+## Props
+
+<Props of={Select} />
+
+---
 
 ## Sizes
 
@@ -92,16 +100,12 @@ to choose from.
   </Select>
 </Playground>
 
-## Select Properties
-
-<Props of={Select} />
-
 ---
 
 ## ▸ `Option`
 
 An `Option` defines a value selectable by a `<Select>`.
 
-## Option Properties
+## Option Props
 
 <Props of={Option} />

@@ -6,4 +6,5 @@
 
 .bold {
   --message-weight: 800;
+  transform: uppercase;
 }

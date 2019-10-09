@@ -17,6 +17,10 @@ import { Content } from "../Content";
 A card is used to group related information and tasks to make things easier to
 scan, and action upon
 
+```ts
+import { Card } from "@jobber/components/Card";
+```
+
 <Playground>
   <Card title="Banana">
     <Content>
@@ -36,9 +40,15 @@ scan, and action upon
   </Card>
 </Playground>
 
-## Clickable Cards
+## Props
 
-### Using URL
+<Props of={Card} />
+
+---
+
+# Usage
+
+## Clickable with URL
 
 <Playground>
   <Card url="#">
@@ -51,7 +61,7 @@ scan, and action upon
   </Card>
 </Playground>
 
-### Using onClick
+## Clickable with onClick
 
 <Playground>
   <Card
@@ -68,7 +78,3 @@ scan, and action upon
     </Content>
   </Card>
 </Playground>
-
-## Props
-
-<Props of={Card} />

@@ -39,8 +39,12 @@ const modifyBundlerConfig = config => {
           plugins: [
             // eslint-disable-next-line @typescript-eslint/no-var-requires
             require("postcss-preset-env")({
+              stage: 1,
               preserve: true,
-              importFrom: [require.resolve("@jobber/design")],
+              importFrom: [
+                require.resolve("@jobber/design"),
+                require.resolve("@jobber/design/src/responsiveBreakpoints.css"),
+              ],
             }),
           ],
         },
@@ -138,7 +142,7 @@ export default {
   typescript: true,
   port: 3333,
   menu: ["Atlantis", "Patterns", "Components"],
-  files: "{README.md,**/*.mdx}",
+  files: "{README.md,CONTRIBUTING.md,**/*.mdx}",
   ignore: [...privateComponentReadmies(), "./plop/templates/**/*"],
   codeSandbox: false,
   public: "public",

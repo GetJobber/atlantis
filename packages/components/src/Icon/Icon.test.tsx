@@ -13,13 +13,11 @@ it("renders apple icon", () => {
 });
 
 it("renders large arrowDown icon", () => {
-  const tree = renderer
-    .create(<Icon iconName="arrowDown" size="large" />)
-    .toJSON();
+  const tree = renderer.create(<Icon name="arrowDown" size="large" />).toJSON();
   expect(tree).toMatchSnapshot();
 });
 
 it("renders small more icon", () => {
-  const tree = renderer.create(<Icon iconName="more" size="small" />).toJSON();
+  const tree = renderer.create(<Icon name="more" size="small" />).toJSON();
   expect(tree).toMatchSnapshot();
 });
