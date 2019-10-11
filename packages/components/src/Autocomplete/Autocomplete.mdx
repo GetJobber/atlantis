@@ -1,0 +1,82 @@
+---
+name: Autocomplete
+menu: Components
+route: /components/autocomplete
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { Autocomplete } from ".";
+import { useState } from "react";
+
+# Autocomplete
+
+<ComponentStatus stage="pre" responsive="no" accessible="no" />
+
+Write a description about what Autocomplete component is trying to achieve.
+
+```ts
+import { Autocomplete } from "@jobber/components/Autocomplete";
+```
+
+<Playground>
+    {() => {
+    const [value, setValue] = useState("");
+    return (
+      <Autocomplete
+        value={value}
+        onChange={onChange}
+        getOptions={getOptions}
+        placeholder="Search for something"
+      />
+    );
+
+    function onChange(selectedOption) {
+      console.log("An option was selected");
+    }
+
+    async function getOptions(text) {
+      const options = [
+        { value: "rustic", label: "Rustic" },
+        { value: "antique", label: "Antique" },
+        { value: "vinyl", label: "Vinyl" },
+        { value: "vintage", label: "Vintage" },
+        { value: "refurbished", label: "Refurbished" },
+      ];
+
+      return new Promise(resolve => {
+        setTimeout(() => {
+          if (text === "") {
+            resolve(options);
+          }
+
+          const filterRegex = new RegExp(text, "i");
+          resolve(options.filter(option => option.label.match(filterRegex)));
+        }, 500);
+      });
+    }
+
+}}
+
+</Playground>
+
+## Props
+
+<Props of={Autocomplete} />
+
+---
+
+<!--
+  It is not necessary to provide an example of each prop. Use usage examples to
+  highlight key features of a component or particular considerations.
+
+  See `Button.mdx` for a good example of this.
+-->
+
+## Loud
+
+Use `loud` to indicate that a component is yelling.
+
+<Playground>
+  <Autocomplete text="Fred" loud={true} />
+</Playground>
