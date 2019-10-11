@@ -34,7 +34,6 @@ export function Autocomplete({
   const [text, setText] = useState(value);
   const [options, setOptions] = useState(initialOptions);
   const [selectedIndex, setSelectedIndex] = useState(-1);
-  // const [rect, ref] = useClientRect();
   const ref = useRef() as MutableRefObject<InputTextRef>;
 
   useEffect(() => {
