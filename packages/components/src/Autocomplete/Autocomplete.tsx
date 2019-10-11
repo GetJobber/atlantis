@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Autocomplete.css";
 import { InputText } from "../InputText";
+import { select } from "../Select/Select.css";
 
 type OptionValue = string | number;
 
@@ -17,15 +18,53 @@ interface AutocompleteProps {
   placeholder: string;
 }
 
+enum IndexChange {
+  Previous = -1,
+  Next = 1,
+}
+
 export function Autocomplete({
   initialOptions = [],
-  value,
+  value = "",
   onChange: onSelectOption,
   getOptions,
   placeholder,
 }: AutocompleteProps) {
   const [text, setText] = useState(value);
   const [options, setOptions] = useState(initialOptions);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+
+  useEffect(() => {
+    const handleKeyDown = (event: { key: string }) => {
+      const optionsLength = options.length;
+      if (optionsLength === 0) {
+        return;
+      }
+      if (event.key === "ArrowDown" && selectedIndex < optionsLength - 1) {
+        setSelectedIndex(selectedIndex + IndexChange.Next);
+        console.log(
+          `selected: ${selectedIndex} which is: ${options[selectedIndex]}`,
+        );
+      }
+
+      if (event.key === "ArrowUp" && selectedIndex > -1) {
+        setSelectedIndex(selectedIndex + IndexChange.Previous);
+      }
+
+      if (event.key === "Enter") {
+        console.log("Enter");
+      }
+
+      if (event.key === "Escape") {
+        console.log("Escape");
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [options]);
 
   return (
     <div className={styles.autocomplete}>
@@ -35,14 +74,18 @@ export function Autocomplete({
         placeholder={placeholder}
       />
       <ul className={styles.options}>
-        {options.map(option => {
+        {options.map((option, index) => {
+          let selected = "";
+          if (selectedIndex == index) {
+            selected = "selected: ";
+          }
           return (
             <li
               className={styles.option}
               key={option.value}
               onClick={chooseThing(option)}
             >
-              {option.label}
+              {`${selected}${option.label}`}
             </li>
           );
         })}
