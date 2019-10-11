@@ -40,7 +40,7 @@ export function Autocomplete({
             <li
               className={styles.option}
               key={option.value}
-              onClick={chooseThing(option)}
+              onMouseDown={chooseThing(option)}
             >
               {option.label}
             </li>
