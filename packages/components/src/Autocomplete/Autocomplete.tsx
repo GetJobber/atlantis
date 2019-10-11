@@ -49,7 +49,7 @@ export function Autocomplete({
       }
 
       if (event.key === "Enter") {
-        console.log("Enter");
+        selectOption(options[selectedIndex])();
       }
 
       if (event.key === "Escape") {
@@ -79,7 +79,7 @@ export function Autocomplete({
             <li
               className={optionClass}
               key={option.value}
-              onMouseDown={chooseThing(option)}
+              onMouseDown={selectOption(option)}
             >
               {option.label}
             </li>
@@ -89,7 +89,7 @@ export function Autocomplete({
     </div>
   );
 
-  function chooseThing(choosenOption: Option) {
+  function selectOption(choosenOption: Option) {
     return () => {
       onSelectOption(choosenOption.value);
       setText(choosenOption.label);
