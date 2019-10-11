@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
+import classnames from "classnames";
 import styles from "./Autocomplete.css";
 import { InputText } from "../InputText";
-import { select } from "../Select/Select.css";
 
 type OptionValue = string | number;
 
@@ -75,17 +75,16 @@ export function Autocomplete({
       />
       <ul className={styles.options}>
         {options.map((option, index) => {
-          let selected = "";
-          if (selectedIndex == index) {
-            selected = "selected: ";
-          }
+          const optionClass = classnames(styles.option, {
+            [styles.active]: index === selectedIndex,
+          });
           return (
             <li
-              className={styles.option}
+              className={optionClass}
               key={option.value}
               onMouseDown={chooseThing(option)}
             >
-              {`${selected}${option.label}`}
+              {option.label}
             </li>
           );
         })}
