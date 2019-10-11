@@ -42,9 +42,6 @@ export function Autocomplete({
       }
       if (event.key === "ArrowDown" && selectedIndex < optionsLength - 1) {
         setSelectedIndex(selectedIndex + IndexChange.Next);
-        console.log(
-          `selected: ${selectedIndex} which is: ${options[selectedIndex]}`,
-        );
       }
 
       if (event.key === "ArrowUp" && selectedIndex > -1) {
@@ -64,7 +61,7 @@ export function Autocomplete({
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [options]);
+  }, [options, selectedIndex]);
 
   return (
     <div className={styles.autocomplete}>
