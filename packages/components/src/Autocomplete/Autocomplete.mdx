@@ -22,9 +22,18 @@ import { Autocomplete } from "@jobber/components/Autocomplete";
 <Playground>
     {() => {
     const [value, setValue] = useState("");
+    const options = [
+        { value: "1", label: "Nostromo" },
+        { value: "2", label: "Rodger Young" },
+        { value: "3", label: "Serenity" },
+        { value: "4", label: "Sleeper Service" },
+        { value: "5", label: "USS Enterprise" },
+      ];
+
     return (
       <Autocomplete
         value={value}
+        initialOptions={options}
         onChange={onChange}
         getOptions={getOptions}
         placeholder="Search for something"
@@ -36,14 +45,6 @@ import { Autocomplete } from "@jobber/components/Autocomplete";
     }
 
     async function getOptions(text) {
-      const options = [
-        { value: "rustic", label: "Rustic" },
-        { value: "antique", label: "Antique" },
-        { value: "vinyl", label: "Vinyl" },
-        { value: "vintage", label: "Vintage" },
-        { value: "refurbished", label: "Refurbished" },
-      ];
-
       return new Promise(resolve => {
         setTimeout(() => {
           if (text === "") {

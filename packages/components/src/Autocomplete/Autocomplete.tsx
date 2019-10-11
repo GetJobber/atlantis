@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import styles from "./Autocomplete.css";
+import styles from "./Autocomplete.css";
 import { InputText } from "../InputText";
 
 type OptionValue = string | number;
@@ -28,22 +28,26 @@ export function Autocomplete({
   const [options, setOptions] = useState(initialOptions);
 
   return (
-    <>
+    <div className={styles.autocomplete}>
       <InputText
         value={text}
         onChange={handleOnChange}
         placeholder={placeholder}
       />
-      <ul>
+      <ul className={styles.options}>
         {options.map(option => {
           return (
-            <li key={option.value} onClick={chooseThing(option)}>
+            <li
+              className={styles.option}
+              key={option.value}
+              onClick={chooseThing(option)}
+            >
               {option.label}
             </li>
           );
         })}
       </ul>
-    </>
+    </div>
   );
 
   function chooseThing(choosenOption: Option) {

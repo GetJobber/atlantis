@@ -1,2 +1,4 @@
 export const autocomplete: string;
-export const bold: string;
+export const options: string;
+export const option: string;
+export const active: string;

@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders an Autocomplete 1`] = `
-Array [
+<div
+  className="autocomplete"
+>
   <div
     className="wrapper miniLabel"
     style={
@@ -25,7 +27,9 @@ Array [
       type="text"
       value="value"
     />
-  </div>,
-  <ul />,
-]
+  </div>
+  <ul
+    className="options"
+  />
+</div>
 `;
