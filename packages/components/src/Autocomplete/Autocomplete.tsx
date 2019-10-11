@@ -2,23 +2,25 @@ import React, { useState } from "react";
 // import styles from "./Autocomplete.css";
 import { InputText } from "../InputText";
 
+type OptionValue = string | number;
+
 interface Option {
-  value: string | number;
+  value: OptionValue;
   label: string;
 }
 
 interface AutocompleteProps {
   readonly initialOptions?: Option[];
-  value: string | number;
-  onChange(newValue: string | number): void;
-  getOptions(newValue: string): Option[];
+  value: OptionValue;
+  onChange(newValue: OptionValue): void;
+  getOptions(newValue: string): Promise<Option[]>;
   placeholder: string;
 }
 
 export function Autocomplete({
   initialOptions = [],
   value,
-  // onChange: onSelectOption,
+  onChange: onSelectOption,
   getOptions,
   placeholder,
 }: AutocompleteProps) {
@@ -34,11 +36,22 @@ export function Autocomplete({
       />
       <ul>
         {options.map(option => {
-          return <li key={option.value}>{option.value}</li>;
+          return (
+            <li key={option.value} onClick={chooseThing(option)}>
+              {option.label}
+            </li>
+          );
         })}
       </ul>
     </>
   );
+
+  function chooseThing(choosenOption: Option) {
+    return () => {
+      onSelectOption(choosenOption.value);
+      setText(choosenOption.label);
+    };
+  }
 
   async function handleOnChange(newValue: string) {
     setText(newValue);
