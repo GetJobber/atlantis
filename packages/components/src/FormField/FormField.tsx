@@ -184,6 +184,7 @@ export const FormField = React.forwardRef(
 
     useEffect(() => {
       handleValidation();
+      setHasMiniLabel(String(value) ? true : false);
     }, [value]);
 
     const wrapperClassNames = classnames(
