@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { MutableRefObject, useEffect, useRef, useState } from "react";
 import classnames from "classnames";
+import useEventListener from "@use-it/event-listener";
 import styles from "./Autocomplete.css";
-import { InputText } from "../InputText";
+import { InputText, InputTextRef } from "../InputText";
 
 type OptionValue = string | number;
 
@@ -33,6 +34,8 @@ export function Autocomplete({
   const [text, setText] = useState(value);
   const [options, setOptions] = useState(initialOptions);
   const [selectedIndex, setSelectedIndex] = useState(-1);
+  // const [rect, ref] = useClientRect();
+  const ref = useRef() as MutableRefObject<InputTextRef>;
 
   useEffect(() => {
     const handleKeyDown = (event: { key: string }) => {
@@ -47,14 +50,6 @@ export function Autocomplete({
       if (event.key === "ArrowUp" && selectedIndex > -1) {
         setSelectedIndex(selectedIndex + IndexChange.Previous);
       }
-
-      if (event.key === "Enter") {
-        selectOption(options[selectedIndex])();
-      }
-
-      if (event.key === "Escape") {
-        console.log("Escape");
-      }
     };
     document.addEventListener("keydown", handleKeyDown);
 
@@ -63,12 +58,19 @@ export function Autocomplete({
     };
   }, [options, selectedIndex]);
 
+  useOnKeyDown("Escape", () => ref.current.blur());
+  useOnKeyDown("Enter", () => {
+    selectOption(options[selectedIndex])();
+    ref.current.blur();
+  });
+
   return (
     <div className={styles.autocomplete}>
       <InputText
         value={text}
         onChange={handleOnChange}
         placeholder={placeholder}
+        ref={ref}
       />
       <ul className={styles.options}>
         {options.map((option, index) => {
@@ -101,4 +103,16 @@ export function Autocomplete({
     const results = await getOptions(newValue);
     setOptions(results);
   }
+}
+
+// Split this out into a hooks package.
+function useOnKeyDown(keyName: string, handler: () => void) {
+  // Pending: https://github.com/donavon/use-event-listener/pull/12
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  //@ts-ignore
+  useEventListener<KeyboardEvent>("keydown", (event: KeyboardEvent) => {
+    if (event.key === keyName) {
+      handler();
+    }
+  });
 }
