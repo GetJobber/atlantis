@@ -82,6 +82,7 @@ export function Autocomplete({
               className={optionClass}
               key={option.value}
               onMouseDown={selectOption(option)}
+              data-testid={`option_${options[0].value}`}
             >
               <Text>{option.label}</Text>
             </button>
