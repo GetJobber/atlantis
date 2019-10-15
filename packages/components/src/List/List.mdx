@@ -29,20 +29,26 @@ import { List } from "@jobber/components/List";
         title: "Jordan Yeo completed a visit",
         content: "Build a deck",
         date: "Sep 24, 2019",
-        amount: "$300.00",
         href: "#",
+        isActive: true,
       },
 
       {
         id: 2,
-        icon: "addNote",
-        iconColor: "green",
-        title: "Taylor Wierenga added a note",
+        icon: "gift",
         content: "Nullam id dolor id nibh ultricies vehicula ut id elit. Fusce dapibus, tellus.",
         date: "Sep 24, 2019",
-        amount: "$300.00",
         onClick: () => alert("🚀"),
-      }
+      },
+
+      {
+        id: 3,
+        icon: "wallet",
+        iconColor: "orange",
+        content: "Payment for Invoice #39",
+        amount: "$300.00",
+        date: "Sep 24, 2019",
+      },
     ]} />
 
   </Card>

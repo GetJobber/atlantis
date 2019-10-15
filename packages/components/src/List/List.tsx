@@ -15,12 +15,13 @@ export function List({ items }: ListProps) {
             amount={cont.amount}
             content={cont.content}
             date={cont.date}
+            href={cont.href}
             icon={cont.icon}
             iconColor={cont.iconColor}
             id={cont.id}
-            title={cont.title}
-            href={cont.href}
+            isActive={cont.isActive}
             onClick={cont.onClick}
+            title={cont.title}
           />
         </li>
       ))}

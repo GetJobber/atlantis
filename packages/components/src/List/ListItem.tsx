@@ -11,11 +11,12 @@ export interface ListItemProps {
   readonly amount?: string;
   readonly content: string;
   readonly date?: string;
+  readonly href?: string;
   readonly icon?: IconNames;
   readonly iconColor?: IconColorNames;
   readonly id: number;
+  readonly isActive?: boolean;
   readonly title?: string;
-  readonly href?: string;
   onClick?(): void;
 }
 
@@ -23,20 +24,21 @@ export function ListItem({
   amount,
   content,
   date,
+  href,
   icon,
   iconColor,
   id,
-  href,
+  isActive,
   onClick,
   title,
 }: ListItemProps) {
-  const actionClasses = classnames(styles.action);
-  const Tag = href ? "a" : "button";
+  const actionClasses = classnames(styles.action, isActive && styles.isActive);
+  const Wrapper = onClick ? "button" : "a";
 
   return (
-    <Tag
-      className={actionClasses}
+    <Wrapper
       id={id.toString()}
+      className={actionClasses}
       href={href}
       onClick={onClick}
     >
@@ -73,6 +75,6 @@ export function ListItem({
           </Text>
         </div>
       )}
-    </Tag>
+    </Wrapper>
   );
 }

@@ -42,12 +42,20 @@
 .info {
   flex: 1 1 auto;
   min-width: 0;
+  align-self: center;
 }
 
 .amount {
-  flex: 0 0 128px;
+  flex: 0 0 auto;
+  width: 128px;
   text-align: right;
 }
+
+.isActive {
+  background-color: var(--color-green--lightest);
+}
+
+/* TODO: Move truncate in typography */
 
 .truncate {
   display: block;
