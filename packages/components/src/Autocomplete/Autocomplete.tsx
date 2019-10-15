@@ -36,7 +36,6 @@ export function Autocomplete({
   const [options, setOptions] = useState(initialOptions);
   const [optionsMenuVisible, setOptionsMenuVisible] = useState(false);
   const [text, setText] = useState((value && value.label) || "");
-
   const inputRef = useRef() as MutableRefObject<InputTextRef>;
 
   useEffect(() => {
@@ -73,11 +72,11 @@ export function Autocomplete({
     setOptionsMenuVisible(false);
   }
 
-  async function textChange(newValue: string) {
+  async function textChange(newText: string) {
     setOptionsMenuVisible(true);
-    setText(newValue);
-    if (newValue) {
-      setOptions(await getOptions(newValue));
+    setText(newText);
+    if (newText) {
+      setOptions(await getOptions(newText));
     } else {
       setOptions(initialOptions);
     }
