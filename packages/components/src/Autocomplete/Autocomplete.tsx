@@ -8,7 +8,7 @@ import { Icon } from "../Icon";
 
 type OptionValue = string | number;
 
-interface Option {
+export interface Option {
   value: OptionValue;
   label: string;
 }
