@@ -1,0 +1,53 @@
+---
+name: List
+menu: Components
+route: /components/list
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { List } from ".";
+import { Card } from "../Card";
+
+# List
+
+<ComponentStatus stage="pre" responsive="no" accessible="no" />
+
+Write a description about what List component is trying to achieve.
+
+```ts
+import { List } from "@jobber/components/List";
+```
+
+<Playground>
+  <Card>
+    <List items={[
+      {
+        id: 1,
+        icon: "checkmark",
+        iconColor: "green",
+        title: "Jordan Yeo completed a visit",
+        content: "Build a deck",
+        date: "Sep 24, 2019",
+        amount: "$300.00",
+        href: "#",
+      },
+
+      {
+        id: 2,
+        icon: "addNote",
+        iconColor: "green",
+        title: "Taylor Wierenga added a note",
+        content: "Nullam id dolor id nibh ultricies vehicula ut id elit. Fusce dapibus, tellus.",
+        date: "Sep 24, 2019",
+        amount: "$300.00",
+        onClick: () => alert("🚀"),
+      }
+    ]} />
+
+  </Card>
+</Playground>
+
+## Props
+
+<Props of={List} />
