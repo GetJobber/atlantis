@@ -28,7 +28,7 @@ exports[`renders an Autocomplete 1`] = `
       value="value"
     />
   </div>
-  <ul
+  <div
     className="options"
   />
 </div>

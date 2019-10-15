@@ -3,6 +3,7 @@ import classnames from "classnames";
 import useEventListener from "@use-it/event-listener";
 import styles from "./Autocomplete.css";
 import { InputText, InputTextRef } from "../InputText";
+import { Text } from "../Text";
 
 type OptionValue = string | number;
 
@@ -34,7 +35,7 @@ export function Autocomplete({
   const [text, setText] = useState(value);
   const [options, setOptions] = useState(initialOptions);
   const [selectedIndex, setSelectedIndex] = useState(-1);
-  const ref = useRef() as MutableRefObject<InputTextRef>;
+  const inputRef = useRef() as MutableRefObject<InputTextRef>;
 
   useEffect(() => {
     const handleKeyDown = (event: { key: string }) => {
@@ -57,10 +58,10 @@ export function Autocomplete({
     };
   }, [options, selectedIndex]);
 
-  useOnKeyDown("Escape", () => ref.current.blur());
+  useOnKeyDown("Escape", () => inputRef.current.blur());
   useOnKeyDown("Enter", () => {
     selectOption(options[selectedIndex])();
-    ref.current.blur();
+    inputRef.current.blur();
   });
 
   return (
@@ -69,31 +70,31 @@ export function Autocomplete({
         value={text}
         onChange={handleOnChange}
         placeholder={placeholder}
-        ref={ref}
+        ref={inputRef}
       />
-      <ul className={styles.options}>
+      <div className={styles.options}>
         {options.map((option, index) => {
           const optionClass = classnames(styles.option, {
             [styles.active]: index === selectedIndex,
           });
           return (
-            <li
+            <button
               className={optionClass}
               key={option.value}
               onMouseDown={selectOption(option)}
             >
-              {option.label}
-            </li>
+              <Text>{option.label}</Text>
+            </button>
           );
         })}
-      </ul>
+      </div>
     </div>
   );
 
-  function selectOption(choosenOption: Option) {
+  function selectOption(chosenOption: Option) {
     return () => {
-      onSelectOption(choosenOption.value);
-      setText(choosenOption.label);
+      onSelectOption(chosenOption.value);
+      setText(chosenOption.label);
     };
   }
 

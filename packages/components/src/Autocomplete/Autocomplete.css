@@ -7,9 +7,9 @@
   position: absolute;
   z-index: var(--elevation-menu);
   width: 100%;
-  max-height: 300px;
   box-shadow: var(--shadow-base);
   box-sizing: border-box;
+  margin: 0;
   padding: var(--space-small);
   border: var(--border-base) solid var(--color-grey--lighter);
   border-radius: var(--radius-base);
@@ -22,9 +22,12 @@
 }
 
 .option {
+  display: block;
+  width: 100%;
   padding: var(--space-small);
   border: none;
   border-radius: var(--radius-base);
+  text-align: left;
   list-style: none;
   background-color: transparent;
   cursor: pointer;
@@ -36,4 +39,9 @@
 .option.active {
   background-color: var(--color-yellow--lightest);
   outline-color: var(--color-outline);
+}
+
+.options:hover .option.active:not(:hover) {
+  background-color: transparent;
+  outline-color: transparent;
 }
