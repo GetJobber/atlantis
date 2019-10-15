@@ -37,3 +37,7 @@
 .navy {
   fill: var(--color-navy);
 }
+
+.orange {
+  fill: var(--color-orange);
+}
