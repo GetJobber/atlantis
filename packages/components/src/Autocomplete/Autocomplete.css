@@ -17,7 +17,7 @@
   background-color: var(--color-white);
 }
 
-.autocomplete:focus-within .options {
+.options.visible {
   display: block;
 }
 

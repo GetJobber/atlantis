@@ -5,7 +5,7 @@ exports[`renders an Autocomplete 1`] = `
   className="autocomplete"
 >
   <div
-    className="wrapper miniLabel"
+    className="wrapper"
     style={
       Object {
         "--formField-maxLength": undefined,
@@ -25,7 +25,7 @@ exports[`renders an Autocomplete 1`] = `
       onChange={[Function]}
       onFocus={[Function]}
       type="text"
-      value="value"
+      value=""
     />
   </div>
   <div

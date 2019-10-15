@@ -28,21 +28,21 @@ import { Autocomplete } from "@jobber/components/Autocomplete";
         { value: "3", label: "Serenity" },
         { value: "4", label: "Sleeper Service" },
         { value: "5", label: "USS Enterprise" },
+        { value: "6", label: "Serenity Now" },
       ];
 
     return (
+      <>
+      {value}
       <Autocomplete
         value={value}
         initialOptions={options}
-        onChange={onChange}
+        onChange={setValue}
         getOptions={getOptions}
         placeholder="Search for something"
       />
+      </>
     );
-
-    function onChange(selectedOption) {
-      console.log("An option was selected", selectedOption);
-    }
 
     async function getOptions(text) {
       return new Promise(resolve => {
@@ -53,7 +53,7 @@ import { Autocomplete } from "@jobber/components/Autocomplete";
 
           const filterRegex = new RegExp(text, "i");
           resolve(options.filter(option => option.label.match(filterRegex)));
-        }, 500);
+        }, 300);
       });
     }
 
