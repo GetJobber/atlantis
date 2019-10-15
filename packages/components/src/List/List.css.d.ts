@@ -6,3 +6,4 @@ export const info: string;
 export const amount: string;
 export const isActive: string;
 export const truncate: string;
+export const sectionHeader: string;

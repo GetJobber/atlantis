@@ -64,3 +64,12 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.sectionHeader {
+  padding: 24px 16px 8px;
+  border-bottom: 1px solid var(--color-blue);
+}
+
+.sectionHeader:first-of-type {
+  padding-top: 8px;
+}
