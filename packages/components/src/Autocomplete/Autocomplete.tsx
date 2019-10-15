@@ -76,8 +76,11 @@ export function Autocomplete({
   async function textChange(newValue: string) {
     setOptionsMenuVisible(true);
     setText(newValue);
-    const results = await getOptions(newValue);
-    setOptions(results);
+    if (newValue) {
+      setOptions(await getOptions(newValue));
+    } else {
+      setOptions(initialOptions);
+    }
   }
 
   function handleTextBlur() {
