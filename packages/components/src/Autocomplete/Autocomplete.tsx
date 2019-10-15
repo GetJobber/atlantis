@@ -15,8 +15,8 @@ interface Option {
 
 interface AutocompleteProps {
   readonly initialOptions?: Option[];
-  value: OptionValue;
-  onChange(newValue?: OptionValue): void;
+  value: Option | undefined;
+  onChange(newValue?: Option): void;
   getOptions(newValue: string): Promise<Option[]>;
   placeholder: string;
 }
@@ -35,11 +35,18 @@ export function Autocomplete({
 }: AutocompleteProps) {
   const [options, setOptions] = useState(initialOptions);
   const [optionsMenuVisible, setOptionsMenuVisible] = useState(false);
-
-  const activeOption = options.find(option => option.value === value);
-  const [text, setText] = useState((activeOption && activeOption.label) || "");
+  const [text, setText] = useState((value && value.label) || "");
 
   const inputRef = useRef() as MutableRefObject<InputTextRef>;
+
+  useEffect(() => {
+    if (value) {
+      setText(value.label);
+    } else {
+      setText("");
+      setOptions(initialOptions);
+    }
+  }, [value]);
 
   return (
     <div className={styles.autocomplete}>
@@ -54,18 +61,16 @@ export function Autocomplete({
       <Menu
         visible={optionsMenuVisible}
         options={options}
+        activeOption={value}
         onOptionSelect={selectOption}
-        value={value}
       />
     </div>
   );
 
   function selectOption(chosenOption: Option) {
-    return () => {
-      onSelectOption(chosenOption.value);
-      textChange(chosenOption.label);
-      setOptionsMenuVisible(false);
-    };
+    onSelectOption(chosenOption);
+    textChange(chosenOption.label);
+    setOptionsMenuVisible(false);
   }
 
   async function textChange(newValue: string) {
@@ -77,7 +82,7 @@ export function Autocomplete({
 
   function handleTextBlur() {
     setOptionsMenuVisible(false);
-    if (activeOption == undefined || activeOption.label !== text) {
+    if (value == undefined || value.label !== text) {
       onSelectOption(undefined);
     }
   }
@@ -90,11 +95,11 @@ export function Autocomplete({
 interface MenuProps {
   visible: boolean;
   options: Option[];
-  value: React.ReactText;
-  onOptionSelect: (chosenOption: Option) => () => void;
+  activeOption?: Option;
+  onOptionSelect(chosenOption: Option): void;
 }
 
-function Menu({ visible, options, value, onOptionSelect }: MenuProps) {
+function Menu({ visible, options, activeOption, onOptionSelect }: MenuProps) {
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const optionMenuClass = classnames(styles.options, {
     [styles.visible]: visible,
@@ -114,10 +119,10 @@ function Menu({ visible, options, value, onOptionSelect }: MenuProps) {
           <button
             className={optionClass}
             key={option.value}
-            onMouseDown={onOptionSelect(option)}
+            onMouseDown={handleMouseDown(option)}
           >
             <Text>
-              {option.value === value && (
+              {activeOption && option.value === activeOption.value && (
                 <>
                   <Icon name="checkmark" size="small" />{" "}
                 </>
@@ -129,6 +134,12 @@ function Menu({ visible, options, value, onOptionSelect }: MenuProps) {
       })}
     </div>
   );
+
+  function handleMouseDown(option: Option) {
+    return () => {
+      onOptionSelect(option);
+    };
+  }
 
   function setupKeyListeners() {
     useEffect(() => {
@@ -152,7 +163,7 @@ function Menu({ visible, options, value, onOptionSelect }: MenuProps) {
 
     // useOnKeyDown("Escape", () => inputRef.current.blur());
     useOnKeyDown("Enter", () => {
-      onOptionSelect(options[selectedIndex])();
+      onOptionSelect(options[selectedIndex]);
     });
   }
 }

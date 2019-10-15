@@ -21,6 +21,10 @@
   display: block;
 }
 
+.options.visible:empty {
+  display: none;
+}
+
 .option {
   display: block;
   width: 100%;
