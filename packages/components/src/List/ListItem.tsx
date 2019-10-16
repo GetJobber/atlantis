@@ -87,12 +87,17 @@ export function ListItem({
   );
   const Wrapper = onClick ? "button" : "a";
 
+  const buttonProps = {
+    ...(onClick && { role: "button", type: "button" }),
+  };
+
   return (
     <Wrapper
       id={id.toString()}
       className={actionClasses}
       href={href}
       onClick={onClick}
+      {...buttonProps}
     >
       {icon && (
         <div className={styles.icon}>
