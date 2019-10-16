@@ -8,16 +8,64 @@ import { Typography } from "../Typography";
 import { Markdown } from "../Markdown";
 
 export interface ListItemProps {
+  /**
+   * Numeric value of a list item.
+   */
   readonly amount?: string;
+
+  /**
+   * List item content. This accepts a string for a simple component and an
+   * array for a multi line content.
+   * This supports basic markdown node types such as `_italic_` and `**bold**`.
+   */
   readonly content: string | string[];
+
+  /**
+   * A date related to the list item.
+   */
   readonly date?: string;
+
+  /**
+   * This turns the list item into a clickable link.
+   */
   readonly href?: string;
+
+  /**
+   * Shows an icon on the left side of the contents.
+   */
   readonly icon?: IconNames;
+
+  /**
+   * Changes the color of the icons.
+   */
   readonly iconColor?: IconColorNames;
+
+  /**
+   * The ID of the list item. This will be helpful to know the selected list
+   * items when a batch action is implemented.
+   */
   readonly id: number;
+
+  /**
+   * Highlights the list item with the lightest green icon. This communicates
+   * that the line item needs attention.
+   */
   readonly isActive?: boolean;
+
+  /**
+   * When paired with `sectioned` props in the `List` component, this determines
+   * how to group the list items. It does nothing on its own.
+   */
   readonly section?: string;
+
+  /**
+   * Adds a heading.
+   */
   readonly title?: string;
+
+  /**
+   * Callback when a list item gets clicked.
+   */
   onClick?(): void;
 }
 

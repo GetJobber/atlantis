@@ -5,7 +5,17 @@ import { ListItem, ListItemProps } from "./ListItem";
 import { Heading } from "../Heading";
 
 interface ListProps {
+  /**
+   * Array of the list items.
+   *
+   * {@link https://atlantis.frend.space/components/list#list-item-props List Item Props}
+   */
   readonly items: ListItemProps[];
+
+  /**
+   * When paired with `section` props in the `ListItem` component,
+   * this determines how to group the list items. It does nothing on its own.
+   */
   readonly sectioned?: boolean;
 }
 
