@@ -22,74 +22,23 @@ import { List } from "@jobber/components/List";
 
 <Playground>
   <Card>
-    <List
-      sectioned={true}
-      items={[
-        {
-          id: 1,
-          icon: "checkmark",
-          iconColor: "green",
-          title: "Jordan Yeo completed a visit",
-          content: ["Build a deck", "Fa la la la la"],
-          date: "Sep 24, 2019",
-          href: "#",
-          isActive: true,
-          section: "Notification",
-        },
-
-        {
-          id: 2,
-          icon: "gift",
-          content: "Nullam id dolor id nibh ultricies vehicula ut id elit. Fusce dapibus, tellus.",
-          date: "Sep 24, 2019",
-          onClick: () => alert("🚀"),
-          section: "Notification",
-        },
-
-        {
-          id: 3,
-          icon: "wallet",
-          iconColor: "orange",
-          content: "Payment for Invoice #39",
-          amount: "$300.00",
-          date: "Sep 25, 2019",
-          section: "Billing",
-        },
-      ]}
-    />
-
-  </Card>
-</Playground>
-
-<Playground>
-  <Card>
     <List items={[
       {
         id: 1,
-        icon: "checkmark",
-        iconColor: "green",
-        title: "Jordan Yeo completed a visit",
-        content: "Build a deck",
-        date: "Sep 24, 2019",
-        href: "#",
-        isActive: true,
-      },
-
-      {
-        id: 2,
-        icon: "gift",
-        content: "Nullam id dolor id nibh ultricies vehicula ut id elit. Fusce dapibus, tellus.",
-        date: "Sep 24, 2019",
-        onClick: () => alert("🚀"),
-      },
-
-      {
-        id: 3,
         icon: "wallet",
         iconColor: "orange",
         content: "Payment for Invoice #39",
-        amount: "$300.00",
+        amount: "-$300.00",
         date: "Sep 25, 2019",
+        onClick: () => alert("TODO: Implement onClick")
+      },
+      {
+        id: 3,
+        icon: "paidInvoice",
+        content: "Invoice #39",
+        amount: "$300.00",
+        date: "Sep 24, 2019",
+        onClick: () => alert("TODO: Implement onClick")
       },
     ]} />
 
@@ -103,3 +52,46 @@ import { List } from "@jobber/components/List";
 ## List item props
 
 <Props of={ListItem} />
+
+---
+
+## Sectioned List Items
+
+<Playground>
+  <Card>
+    <List items={[
+      {
+        id: 1,
+        icon: "addNote",
+        title: "Darryl Tec added a note",
+        content: ["_\"Called the client. Asked if they want the luxury package, they said yes!\"_", "Deck Build"],
+        date: "1 minute ago",
+        section: "Today",
+        isActive: true,
+        onClick: () => alert("TODO: Implement onClick"),
+      },
+      {
+        id: 2,
+        icon: "checkmark",
+        iconColor: "green",
+        title: "Josh Elford completed a visit",
+        content: "Annual Maintenance",
+        date: "2 hours ago",
+        section: "Today",
+        onClick: () => alert("TODO: Implement onClick"),
+      },
+
+      {
+        id: 3,
+        icon: "badInvoice",
+        title: "Payment failed",
+        content: "For services rendered",
+        amount: "$300.00",
+        date: "1 day ago",
+        onClick: () => alert("TODO: Implement onClick"),
+        section: "Yesterday",
+      },
+    ]} />
+
+  </Card>
+</Playground>
