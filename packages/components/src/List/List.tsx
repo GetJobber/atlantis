@@ -1,5 +1,5 @@
 import React from "react";
-import { groupBy } from "lodash";
+import { get, groupBy } from "lodash";
 import styles from "./List.css";
 import { ListItem, ListItemProps } from "./ListItem";
 import { Heading } from "../Heading";
@@ -11,16 +11,11 @@ interface ListProps {
    * {@link https://atlantis.frend.space/components/list#list-item-props List Item Props}
    */
   readonly items: ListItemProps[];
-
-  /**
-   * When paired with `section` props in the `ListItem` component,
-   * this determines how to group the list items. It does nothing on its own.
-   */
-  readonly sectioned?: boolean;
 }
 
-export function List({ items, sectioned }: ListProps) {
-  if (sectioned) {
+export function List({ items }: ListProps) {
+  const isSectioned = items.some(item => item.section);
+  if (isSectioned) {
     return <SectionedList items={items} />;
   } else {
     return <DisplayList items={items} />;
@@ -40,7 +35,7 @@ function DisplayList({ items }: Pick<ListProps, "items">) {
 }
 
 function SectionedList({ items }: Pick<ListProps, "items">) {
-  const sectionedItems = groupBy(items, "section");
+  const sectionedItems = groupBy(items, item => get(item, "section", "Other"));
 
   return (
     <ul className={styles.list}>

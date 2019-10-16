@@ -53,8 +53,7 @@ export interface ListItemProps {
   readonly isActive?: boolean;
 
   /**
-   * When paired with `sectioned` props in the `List` component, this determines
-   * how to group the list items. It does nothing on its own.
+   * This determines how and when to group the list items
    */
   readonly section?: string;
 
