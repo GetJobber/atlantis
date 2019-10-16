@@ -11,7 +11,7 @@ interface Option {
 }
 
 function returnOptions(options: Option[]) {
-  // This test mock doesn't need string
+  // This test mock doesn't need to utilize text.
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   return async (text: string) => {
     return Promise.resolve(options);
