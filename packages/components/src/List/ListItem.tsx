@@ -9,7 +9,7 @@ import { Markdown } from "../Markdown";
 
 export interface ListItemProps {
   readonly amount?: string;
-  readonly content: string;
+  readonly content: string | string[];
   readonly date?: string;
   readonly href?: string;
   readonly icon?: IconNames;
@@ -55,12 +55,7 @@ export function ListItem({
 
       <div className={styles.info}>
         {title && <Heading level={5}>{title}</Heading>}
-
-        <Text>
-          <span className={styles.truncate}>
-            <Markdown content={content} basicUsage={true} />
-          </span>
-        </Text>
+        <Description content={content} />
 
         {date && (
           <Text variation="subdued">
@@ -82,4 +77,28 @@ export function ListItem({
       )}
     </Wrapper>
   );
+}
+
+function Description({ content }: Pick<ListItemProps, "content">) {
+  if (content instanceof Array) {
+    return (
+      <>
+        {content.map((item, i) => (
+          <Text key={i}>
+            <span className={styles.truncate}>
+              <Markdown content={item} basicUsage={true} />
+            </span>
+          </Text>
+        ))}
+      </>
+    );
+  } else {
+    return (
+      <Text>
+        <span className={styles.truncate}>
+          <Markdown content={content} basicUsage={true} />
+        </span>
+      </Text>
+    );
+  }
 }
