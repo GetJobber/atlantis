@@ -26,8 +26,13 @@
 }
 
 .option {
-  display: block;
+  display: flex;
   width: 100%;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: center;
   padding: var(--space-small);
   border: none;
   border-radius: var(--radius-base);
@@ -48,4 +53,17 @@
 .options:hover .option.active:not(:hover) {
   background-color: transparent;
   outline-color: transparent;
+}
+
+.option .icon {
+  order: 0;
+  flex: 0 1 auto;
+  align-self: auto;
+  width: var(--space-large);
+}
+
+.option .text {
+  order: 0;
+  flex: 1 1 auto;
+  align-self: auto;
 }
