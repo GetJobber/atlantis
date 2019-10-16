@@ -1,14 +1,9 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { cleanup, fireEvent, render } from "@testing-library/react";
-import { Autocomplete } from ".";
+import { Autocomplete, Option } from ".";
 
 afterEach(cleanup);
-
-interface Option {
-  value: string | number;
-  label: string;
-}
 
 function returnOptions(options: Option[]) {
   // This test mock doesn't need to utilize text.
