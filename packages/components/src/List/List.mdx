@@ -8,7 +8,6 @@ import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { List } from ".";
 import { Card } from "../Card";
-import { useState } from "react";
 
 # List
 
@@ -21,41 +20,79 @@ import { List } from "@jobber/components/List";
 ```
 
 <Playground>
-  {() => {
-    const initialData = [
+  <Card>
+    <List
+      sectioned={true}
+      items={[
+        {
+          id: 1,
+          icon: "checkmark",
+          iconColor: "green",
+          title: "Jordan Yeo completed a visit",
+          content: ["Build a deck", "Fa la la la la"],
+          date: "Sep 24, 2019",
+          href: "#",
+          isActive: true,
+          section: "Notification",
+        },
+
+        {
+          id: 2,
+          icon: "gift",
+          content: "Nullam id dolor id nibh ultricies vehicula ut id elit. Fusce dapibus, tellus.",
+          date: "Sep 24, 2019",
+          onClick: () => alert("🚀"),
+          section: "Notification",
+        },
+
+        {
+          id: 3,
+          icon: "wallet",
+          iconColor: "orange",
+          content: "Payment for Invoice #39",
+          amount: "$300.00",
+          date: "Sep 25, 2019",
+          section: "Billing",
+        },
+      ]}
+    />
+
+  </Card>
+</Playground>
+
+<Playground>
+  <Card>
+    <List items={[
+      {
+        id: 1,
+        icon: "checkmark",
+        iconColor: "green",
+        title: "Jordan Yeo completed a visit",
+        content: "Build a deck",
+        date: "Sep 24, 2019",
+        href: "#",
+        isActive: true,
+      },
+
       {
         id: 2,
         icon: "gift",
         content: "Nullam id dolor id nibh ultricies vehicula ut id elit. Fusce dapibus, tellus.",
         date: "Sep 24, 2019",
         onClick: () => alert("🚀"),
-        section: "Yesterday",
       },
-    ];
 
-    const [items, setItems] = useState(initialData);
-    return (
-      <>
-        <button onClick={handleClick}>Click me</button>
-        <Card>
-          <List items={items} />
-        </Card>
-      </>
-    );
+      {
+        id: 3,
+        icon: "wallet",
+        iconColor: "orange",
+        content: "Payment for Invoice #39",
+        amount: "$300.00",
+        date: "Sep 25, 2019",
+      },
+    ]} />
 
-    function handleClick() {
-      setItems([{
-        id: Math.random(),
-        icon: "gift",
-        content: `Nullam id dolor id nibh ultricies vehicula ut id elit. Fusce dapibus, tellus.`,
-        date: "Sep 24, 2019",
-        onClick: () => alert("🚀"),
-        section: "Today",
-      }, ...items ]);
-    }
-
-}}
-
+  </Card>
 </Playground>
 
 ## Props
