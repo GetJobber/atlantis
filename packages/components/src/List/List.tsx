@@ -1,5 +1,6 @@
 import React from "react";
 import { groupBy } from "lodash";
+import { AnimatePresence, motion } from "framer-motion";
 import styles from "./List.css";
 import { ListItem, ListItemProps } from "./ListItem";
 import { Heading } from "../Heading";
@@ -20,11 +21,27 @@ export function List({ items, sectioned }: ListProps) {
 function DisplayList({ items }: Pick<ListProps, "items">) {
   return (
     <ul className={styles.list}>
-      {items.map(item => (
-        <li key={item.id} className={styles.item}>
-          <ListItem {...item} />
-        </li>
-      ))}
+      <AnimatePresence initial={false}>
+        {items.map(item => (
+          <motion.li
+            key={item.id}
+            className={styles.item}
+            initial={{ x: 24, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            positionTransition={{
+              duration: 0.2,
+            }}
+            transition={{
+              type: "spring",
+              duration: 0.2,
+              damping: 20,
+              stiffness: 300,
+            }}
+          >
+            <ListItem {...item} />
+          </motion.li>
+        ))}
+      </AnimatePresence>
     </ul>
   );
 }
