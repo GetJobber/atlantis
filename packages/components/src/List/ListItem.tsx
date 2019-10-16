@@ -16,6 +16,7 @@ export interface ListItemProps {
   readonly iconColor?: IconColorNames;
   readonly id: number;
   readonly isActive?: boolean;
+  readonly section?: string;
   readonly title?: string;
   onClick?(): void;
 }
@@ -32,7 +33,11 @@ export function ListItem({
   onClick,
   title,
 }: ListItemProps) {
-  const actionClasses = classnames(styles.action, isActive && styles.isActive);
+  const actionClasses = classnames(
+    styles.action,
+    isActive && styles.isActive,
+    (onClick || href) && styles.hoverable,
+  );
   const Wrapper = onClick ? "button" : "a";
 
   return (

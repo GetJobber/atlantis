@@ -6,47 +6,34 @@ import { Heading } from "../Heading";
 
 interface ListProps {
   readonly items: ListItemProps[];
-  readonly sectionedBy?: keyof ListItemProps;
+  readonly sectioned?: boolean;
 }
 
-export function List({ items, sectionedBy }: ListProps) {
-  const sectionedItems = groupBy(items, item => {
-    // clean me
-    if (sectionedBy) {
-      return item[sectionedBy];
-    } else {
-      return;
-    }
-  });
+export function List({ items, sectioned }: ListProps) {
+  const sectionedItems = groupBy(items, "section");
 
   return (
     <ul className={styles.list}>
-      {sectionedBy ? sectionedListItem() : defaultListItem()}
+      {sectioned ? sectionedListItem() : defaultListItem()}
     </ul>
   );
 
   function sectionedListItem(): React.ReactNode {
     return Object.keys(sectionedItems).map(section => (
       <Fragment key={section}>
-        <li className={styles.sectionHeader}>
-          <Heading level={4}>{section}</Heading>
+        <li className={styles.section}>
+          <div className={styles.sectionHeader}>
+            <Heading level={4}>{section}</Heading>
+          </div>
+
+          <ul className={styles.list}>
+            {sectionedItems[section].map(item => (
+              <li key={item.id} className={styles.item}>
+                <ListItem {...item} />
+              </li>
+            ))}
+          </ul>
         </li>
-        {sectionedItems[section].map(item => (
-          <li key={item.id} className={styles.item}>
-            <ListItem
-              amount={item.amount}
-              content={item.content}
-              date={item.date}
-              href={item.href}
-              icon={item.icon}
-              iconColor={item.iconColor}
-              id={item.id}
-              isActive={item.isActive}
-              onClick={item.onClick}
-              title={item.title}
-            />
-          </li>
-        ))}
       </Fragment>
     ));
   }
@@ -54,18 +41,7 @@ export function List({ items, sectionedBy }: ListProps) {
   function defaultListItem() {
     return items.map(item => (
       <li key={item.id} className={styles.item}>
-        <ListItem
-          amount={item.amount}
-          content={item.content}
-          date={item.date}
-          href={item.href}
-          icon={item.icon}
-          iconColor={item.iconColor}
-          id={item.id}
-          isActive={item.isActive}
-          onClick={item.onClick}
-          title={item.title}
-        />
+        <ListItem {...item} />
       </li>
     ));
   }

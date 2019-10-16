@@ -20,13 +20,16 @@
   border: none;
   text-align: left;
   text-decoration: none;
-  cursor: pointer;
   transition: background-color var(--timing-base);
   appearance: none;
 }
 
-.action:hover,
-.action:focus {
+.hoverable {
+  cursor: pointer;
+}
+
+.hoverable:hover,
+.hoverable:focus {
   background-color: var(--color-yellow--lightest);
 }
 
@@ -65,9 +68,20 @@
   white-space: nowrap;
 }
 
+.section {
+  position: relative;
+}
+
+.section:not(:last-child) .list {
+  padding-bottom: var(--space-large);
+}
+
 .sectionHeader {
-  padding: 24px 16px 8px;
+  position: sticky;
+  top: 0;
+  padding: 8px 16px;
   border-bottom: 1px solid var(--color-blue);
+  background-color: var(--color-white);
 }
 
 .sectionHeader:first-of-type {
