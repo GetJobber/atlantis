@@ -10,37 +10,45 @@ interface ListProps {
 }
 
 export function List({ items, sectioned }: ListProps) {
+  if (sectioned) {
+    return <SectionedList items={items} />;
+  } else {
+    return <DisplayList items={items} />;
+  }
+}
+
+function DisplayList({ items }: Pick<ListProps, "items">) {
+  return (
+    <ul className={styles.list}>
+      {items.map(item => (
+        <li key={item.id} className={styles.item}>
+          <ListItem {...item} />
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function SectionedList({ items }: Pick<ListProps, "items">) {
   const sectionedItems = groupBy(items, "section");
 
   return (
     <ul className={styles.list}>
-      {sectioned ? sectionedListItem() : defaultListItem()}
+      {Object.keys(sectionedItems).map(section => (
+        <li key={section} className={styles.section}>
+          <div className={styles.sectionHeader}>
+            <Heading level={4}>{section}</Heading>
+          </div>
+
+          <ul className={styles.list}>
+            {sectionedItems[section].map(item => (
+              <li key={item.id} className={styles.item}>
+                <ListItem {...item} />
+              </li>
+            ))}
+          </ul>
+        </li>
+      ))}
     </ul>
   );
-
-  function sectionedListItem(): React.ReactNode {
-    return Object.keys(sectionedItems).map(section => (
-      <li key={section} className={styles.section}>
-        <div className={styles.sectionHeader}>
-          <Heading level={4}>{section}</Heading>
-        </div>
-
-        <ul className={styles.list}>
-          {sectionedItems[section].map(item => (
-            <li key={item.id} className={styles.item}>
-              <ListItem {...item} />
-            </li>
-          ))}
-        </ul>
-      </li>
-    ));
-  }
-
-  function defaultListItem() {
-    return items.map(item => (
-      <li key={item.id} className={styles.item}>
-        <ListItem {...item} />
-      </li>
-    ));
-  }
 }
