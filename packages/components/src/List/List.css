@@ -30,6 +30,7 @@
 
 .hoverable:hover,
 .hoverable:focus {
+  outline: none;
   background-color: var(--color-yellow--lightest);
 }
 
