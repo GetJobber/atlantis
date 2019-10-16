@@ -71,6 +71,8 @@ export function Menu({
 
   function setupKeyListeners() {
     useOnKeyDown("ArrowDown", (event: KeyboardEvent) => {
+      if (!visible) return;
+
       event.preventDefault();
       setSelectedIndex(
         Math.min(options.length - 1, selectedIndex + IndexChange.Next),
@@ -78,11 +80,15 @@ export function Menu({
     });
 
     useOnKeyDown("ArrowUp", (event: KeyboardEvent) => {
+      if (!visible) return;
+
       event.preventDefault();
       setSelectedIndex(Math.max(0, selectedIndex + IndexChange.Previous));
     });
 
     useOnKeyDown("Enter", (event: KeyboardEvent) => {
+      if (!visible) return;
+
       event.preventDefault();
       onOptionSelect(options[selectedIndex]);
     });
@@ -95,6 +101,7 @@ function useOnKeyDown(
   handler: (event: KeyboardEvent) => boolean | void,
 ) {
   // Pending: https://github.com/donavon/use-event-listener/pull/12
+  // The types in useEventListener mistakenly require a SyntheticEvent for the passed generic.
   // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   //@ts-ignore
   useEventListener<KeyboardEvent>("keydown", (event: KeyboardEvent) => {
