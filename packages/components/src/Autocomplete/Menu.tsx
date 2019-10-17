@@ -43,7 +43,7 @@ export function Menu({
           <button
             className={optionClass}
             key={option.value}
-            onMouseDown={handleMouseDown(option)}
+            onMouseDown={onOptionSelect.bind(undefined, option)}
           >
             <div className={styles.icon}>
               {isOptionSelected(option) && (
@@ -61,12 +61,6 @@ export function Menu({
 
   function isOptionSelected(option: Option) {
     return selectedOption && option.value === selectedOption.value;
-  }
-
-  function handleMouseDown(option: Option) {
-    return () => {
-      onOptionSelect(option);
-    };
   }
 
   function setupKeyListeners() {
