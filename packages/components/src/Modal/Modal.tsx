@@ -117,7 +117,7 @@ interface HeaderProps {
 
 function Header({ title, dismissible, onRequestClose }: HeaderProps) {
   return (
-    <div className={styles.header}>
+    <div className={styles.header} data-testid="modal-header">
       <Typography
         element="h3"
         size="large"
