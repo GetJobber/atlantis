@@ -38,11 +38,11 @@ Use this to allow users to provide short answers.
 
 <Playground>
   {() => {
-    const [value, setValue] = useState("Veintisiete");
+    const [age, setAge] = useState("Veintisiete");
     return (
       <InputText
-        value={value}
-        onChange={setValue}
+        value={age}
+        onChange={setAge}
         name="age"
         placeholder="Age in words"
       />
@@ -69,34 +69,34 @@ shouldn't replace server-side validation.
 
 <Playground>
   {() => {
-    const [value, setValue] = useState("");
+    const [age, setAge] = useState("");
     return (
       <InputText
-        value={value}
+        value={age}
         onChange={handleChange}
         name="age"
         placeholder="What's your age"
         validations={[
           {
-            shouldShow: value.length > 2 && value.length < 10 && isNaN(value),
+            shouldShow: age.length > 2 && age.length < 10 && isNaN(age),
             message: "Now that's a word, keep going!",
             status: "success"
           },
           {
-            shouldShow: value.length >= 10,
+            shouldShow: age.length >= 10,
             message: "You sure you're that old?",
             status: "warn"
           },
           {
-            shouldShow: value.length > 0 && !isNaN(value),
+            shouldShow: age.length > 0 && !isNaN(age),
             message: "Type your age in words",
             status: "error"
           }
         ]}
       />
     );
-    function handleChange(newValue) {
-      setValue(newValue);
+    function handleChange(newAge) {
+      setAge(newAge);
     }
   }}
 </Playground>
