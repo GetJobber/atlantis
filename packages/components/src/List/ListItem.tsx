@@ -6,6 +6,7 @@ import { Text } from "../Text";
 import { Heading } from "../Heading";
 import { Typography } from "../Typography";
 import { Markdown } from "../Markdown";
+import { Emphasis } from "../Emphasis";
 
 export interface ListItemProps {
   /**
@@ -121,9 +122,7 @@ export function ListItem({
       {amount && (
         <div className={styles.amount}>
           <Text>
-            <Typography element="b" textColor="blue" fontWeight="bold">
-              {amount}
-            </Typography>
+            <Emphasis variation="bold">{amount}</Emphasis>
           </Text>
         </div>
       )}

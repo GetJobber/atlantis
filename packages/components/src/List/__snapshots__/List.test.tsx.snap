@@ -87,7 +87,7 @@ exports[`renders 1 List item with all the props 1`] = `
               className="base regular base greyBlueDark"
             >
               <b
-                className="base bold blue"
+                className="base bold"
               >
                 $30.00
               </b>

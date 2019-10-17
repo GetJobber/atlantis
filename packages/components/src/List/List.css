@@ -53,7 +53,6 @@
 
 .amount {
   flex: 0 0 auto;
-  width: calc(var(--base-unit) * 8);
   text-align: right;
 }
 
