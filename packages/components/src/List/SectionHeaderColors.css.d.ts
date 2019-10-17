@@ -20,7 +20,6 @@ export const inProgress: string;
 export const actionRequired: string;
 export const sent: string;
 export const red: string;
-export const pendingInvoice: string;
 export const changesRequested: string;
 export const late: string;
 export const pastDue: string;

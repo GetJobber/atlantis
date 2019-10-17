@@ -61,6 +61,11 @@ import { List } from "@jobber/components/List";
 
 This groups the component in specific sections.
 
+By default, the section headers will match
+[Jobbers design system colors](#jobber-design-system-colors) depending on the
+name of the section. If you wish to not use them, simply return a `false` on
+`jobberSectionColors` prop.
+
 <Playground>
   <Card>
     <List
@@ -101,3 +106,14 @@ This groups the component in specific sections.
 
   </Card>
 </Playground>
+
+## Jobber design system colors
+
+| Matchers                                                                                              | Color    |
+| :---------------------------------------------------------------------------------------------------- | :------- |
+| Draft, Upcoming                                                                                       | GreyBlue |
+| Completed, Paid, Reimbursed, Upcoming, Today, Won, Approved                                           | Green    |
+| Archived                                                                                              | Blue     |
+| Pending, Requires Invoicing, AwaitingPayment, Unscheduled, Active, In Progress, Action Required, Sent | Orange   |
+| Changes Requested, Late, Past Due, Bad Debt, Overdue                                                  | Red      |
+| Converted                                                                                             | Teal     |
