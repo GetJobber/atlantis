@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { act, cleanup, fireEvent, render } from "@testing-library/react";
 import { Autocomplete, Option } from ".";
 
 afterEach(cleanup);
@@ -27,7 +27,7 @@ it("renders an Autocomplete", () => {
   expect(tree).toMatchSnapshot();
 });
 
-test("it should call the getOptions handler with the new value", () => {
+test("it should call the getOptions handler with the new value", async () => {
   const placeholder = "my_placeholder";
   const changeHandler = jest.fn();
   const changeOptionsHandler = jest.fn();
@@ -41,8 +41,10 @@ test("it should call the getOptions handler with the new value", () => {
       placeholder={placeholder}
     />,
   );
-  fireEvent.change(getByLabelText(placeholder), {
-    target: { value: newValue },
+  await act(async () => {
+    fireEvent.change(getByLabelText(placeholder), {
+      target: { value: newValue },
+    });
   });
   expect(changeOptionsHandler).toHaveBeenCalledWith(newValue);
 });
@@ -51,11 +53,15 @@ test("it should call the handler when an option is selected", () => {
   const changeHandler = jest.fn();
   const options = [
     {
+      value: "0",
+      label: "option_0",
+    },
+    {
       value: "1",
       label: "option_1",
     },
   ];
-  const { getByText } = render(
+  const { getByText, getByRole } = render(
     <Autocomplete
       value={undefined}
       onChange={changeHandler}
@@ -64,6 +70,7 @@ test("it should call the handler when an option is selected", () => {
       placeholder="placeholder_name"
     />,
   );
+  fireEvent.focus(getByRole("textbox"));
   fireEvent(
     getByText(`option_${options[0].value}`),
     new KeyboardEvent("keydown", {
