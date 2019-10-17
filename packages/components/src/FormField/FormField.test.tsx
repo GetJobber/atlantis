@@ -7,30 +7,30 @@ afterEach(cleanup);
 it("renders correctly with no props", () => {
   const tree = renderer.create(<FormField />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
-                <div
-                  className="wrapper"
-                  style={
-                    Object {
-                      "--formField-maxLength": undefined,
-                    }
-                  }
-                >
-                  <label
-                    className="label"
-                    htmlFor="123e4567-e89b-12d3-a456-426655440001"
-                  >
-                     
-                  </label>
-                  <input
-                    className="formField"
-                    id="123e4567-e89b-12d3-a456-426655440001"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onFocus={[Function]}
-                    type="text"
-                  />
-                </div>
-        `);
+        <div
+          className="wrapper"
+          style={
+            Object {
+              "--formField-maxLength": undefined,
+            }
+          }
+        >
+          <label
+            className="label"
+            htmlFor="123e4567-e89b-12d3-a456-426655440001"
+          >
+             
+          </label>
+          <input
+            className="formField"
+            id="123e4567-e89b-12d3-a456-426655440001"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            type="text"
+          />
+        </div>
+    `);
 });
 
 it("renders correctly with a placeholder", () => {
@@ -48,13 +48,13 @@ it("renders correctly with a placeholder", () => {
     >
       <label
         className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440003"
+        htmlFor="123e4567-e89b-12d3-a456-426655440002"
       >
         My placeholder
       </label>
       <input
         className="formField"
-        id="123e4567-e89b-12d3-a456-426655440003"
+        id="123e4567-e89b-12d3-a456-426655440002"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -77,13 +77,13 @@ it("renders correctly as small", () => {
     >
       <label
         className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440005"
+        htmlFor="123e4567-e89b-12d3-a456-426655440003"
       >
          
       </label>
       <input
         className="formField"
-        id="123e4567-e89b-12d3-a456-426655440005"
+        id="123e4567-e89b-12d3-a456-426655440003"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -106,13 +106,13 @@ it("renders correctly in a readonly state", () => {
     >
       <label
         className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440007"
+        htmlFor="123e4567-e89b-12d3-a456-426655440004"
       >
          
       </label>
       <input
         className="formField"
-        id="123e4567-e89b-12d3-a456-426655440007"
+        id="123e4567-e89b-12d3-a456-426655440004"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -136,14 +136,14 @@ it("renders correctly in a disabled state", () => {
     >
       <label
         className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440009"
+        htmlFor="123e4567-e89b-12d3-a456-426655440005"
       >
          
       </label>
       <input
         className="formField"
         disabled={true}
-        id="123e4567-e89b-12d3-a456-426655440009"
+        id="123e4567-e89b-12d3-a456-426655440005"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -176,13 +176,13 @@ it("renders a field with error", () => {
       >
         <label
           className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440011"
+          htmlFor="123e4567-e89b-12d3-a456-426655440006"
         >
            
         </label>
         <input
           className="formField"
-          id="123e4567-e89b-12d3-a456-426655440011"
+          id="123e4567-e89b-12d3-a456-426655440006"
           onBlur={[Function]}
           onChange={[Function]}
           onFocus={[Function]}
