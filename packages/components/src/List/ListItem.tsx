@@ -14,8 +14,8 @@ export interface ListItemProps {
   readonly amount?: string;
 
   /**
-   * List item content. This accepts a string for a simple component and an
-   * array for a multi line content.
+   * List item content. This accepts a string for a simple content and an array
+   * for a multi line content.
    * This supports basic markdown node types such as `_italic_` and `**bold**`.
    */
   readonly content: string | string[];
