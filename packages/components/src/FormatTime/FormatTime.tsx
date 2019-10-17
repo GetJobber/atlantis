@@ -14,10 +14,10 @@ interface FormatTimeProps {
 }
 
 export function FormatTime({ time, use24HourClock }: FormatTimeProps) {
-  return <>{formatCivilTime(time, !!use24HourClock)}</>;
+  return <>{formatCivilTime(time, use24HourClock)}</>;
 }
 
-function formatCivilTime(time: CivilTime, use24HourClock: boolean) {
+function formatCivilTime(time: CivilTime, use24HourClock?: boolean) {
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
   const currentMonth = currentDate.getMonth();
@@ -32,8 +32,8 @@ function formatCivilTime(time: CivilTime, use24HourClock: boolean) {
     time.millisecond,
   );
 
-  return date.toLocaleTimeString(undefined, {
-    hour12: !use24HourClock,
+  return date.toLocaleTimeString(navigator.language, {
+    hour12: typeof use24HourClock === "boolean" ? !use24HourClock : undefined,
     minute: "2-digit",
     hour: "numeric",
   });
