@@ -12,7 +12,7 @@ interface ModalProps {
   /**
    * @default false
    */
-  readonly title: string;
+  readonly title?: string;
   readonly open?: boolean;
   readonly size?: keyof typeof sizes;
   /**
@@ -32,7 +32,6 @@ export function Modal({
   title,
   size,
   dismissible = true,
-  showTitle = true,
   children,
   primaryAction,
   secondaryAction,
@@ -71,7 +70,7 @@ export function Modal({
               stiffness: 300,
             }}
           >
-            {showTitle && (
+            {title != undefined && (
               <Header
                 title={title}
                 dismissible={dismissible}
