@@ -1,0 +1,54 @@
+.greyBlue,
+.draft,
+.upcoming {
+  border-bottom-color: var(--color-greyBlue--light);
+  color: var(--color-greyBlue--light);
+}
+
+.green,
+.completed,
+.paid,
+.reimbursed,
+.upcoming,
+.today,
+.won,
+.approved {
+  border-bottom-color: var(--color-green);
+  color: var(--color-green);
+}
+
+.blue,
+.archived {
+  border-bottom-color: var(--color-blue);
+  color: var(--color-blue);
+}
+
+.orange,
+.pending,
+.requiresInvoicing,
+.awaitingPayment,
+.unscheduled,
+.active,
+.inProgress,
+.actionRequired,
+.sent {
+  border-bottom-color: var(--color-orange);
+  color: var(--color-orange);
+}
+
+.red,
+.pendingInvoice,
+.changesRequested,
+.late,
+.pastDue,
+.badDebt,
+.overdue {
+  border-bottom-color: var(--color-red);
+  color: var(--color-red);
+}
+
+.teal,
+.converted {
+  border-bottom-color: var(--color-teal);
+  color: var(--color-teal);
+}

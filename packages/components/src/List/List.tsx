@@ -1,8 +1,10 @@
 import React from "react";
-import { get, groupBy } from "lodash";
+import classnames from "classnames";
+import { camelCase, get, groupBy } from "lodash";
 import styles from "./List.css";
+import sectionColors from "./SectionHeaderColors.css";
 import { ListItem, ListItemProps } from "./ListItem";
-import { Heading } from "../Heading";
+import { Typography } from "../Typography";
 
 interface ListProps {
   /**
@@ -11,12 +13,22 @@ interface ListProps {
    * {@link https://atlantis.frend.space/components/list#list-item-props List Item Props}
    */
   readonly items: ListItemProps[];
+
+  /**
+   * Automatically colors the section header to match Jobbers system if a
+   * section is present.
+   *
+   * @default true
+   */
+  readonly jobberSectionColors?: boolean;
 }
 
-export function List({ items }: ListProps) {
+export function List({ items, jobberSectionColors = true }: ListProps) {
   const isSectioned = items.some(item => item.section);
   if (isSectioned) {
-    return <SectionedList items={items} />;
+    return (
+      <SectionedList items={items} jobberSectionColors={jobberSectionColors} />
+    );
   } else {
     return <DisplayList items={items} />;
   }
@@ -34,19 +46,23 @@ function DisplayList({ items }: Pick<ListProps, "items">) {
   );
 }
 
-function SectionedList({ items }: Pick<ListProps, "items">) {
+function SectionedList({ items, jobberSectionColors }: ListProps) {
   const sectionedItems = groupBy(items, item => get(item, "section", "Other"));
 
   return (
     <ul className={styles.list}>
-      {Object.keys(sectionedItems).map(section => (
-        <li key={section} className={styles.section}>
-          <div className={styles.sectionHeader}>
-            <Heading level={4}>{section}</Heading>
+      {Object.keys(sectionedItems).map(sectionName => (
+        <li key={sectionName} className={styles.section}>
+          <div
+            className={getSectionHeaderColor(sectionName, jobberSectionColors)}
+          >
+            <Typography element="h4" fontWeight="bold" size="large">
+              {sectionName}
+            </Typography>
           </div>
 
           <ul className={styles.list}>
-            {sectionedItems[section].map(item => (
+            {sectionedItems[sectionName].map(item => (
               <li key={item.id} className={styles.item}>
                 <ListItem {...item} />
               </li>
@@ -55,5 +71,13 @@ function SectionedList({ items }: Pick<ListProps, "items">) {
         </li>
       ))}
     </ul>
+  );
+}
+
+function getSectionHeaderColor(name: string, withColors?: boolean) {
+  const camelizedName = camelCase(name) as keyof typeof sectionColors;
+  return classnames(
+    styles.sectionHeader,
+    withColors && sectionColors[camelizedName],
   );
 }
