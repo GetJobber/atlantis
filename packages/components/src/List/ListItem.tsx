@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import styles from "./List.css";
+import styles from "./ListItem.css";
 import { Icon, IconColorNames, IconNames } from "../Icon";
 import { Text } from "../Text";
 import { Heading } from "../Heading";

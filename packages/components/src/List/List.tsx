@@ -2,7 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import { camelCase, get, groupBy } from "lodash";
 import styles from "./List.css";
-import sectionColors from "./SectionHeaderColors.css";
+import sectionStyles from "./SectionHeader.css";
 import { ListItem, ListItemProps } from "./ListItem";
 import { Typography } from "../Typography";
 
@@ -75,9 +75,9 @@ function SectionedList({ items, jobberSectionColors }: ListProps) {
 }
 
 function getSectionHeaderColor(name: string, withColors?: boolean) {
-  const camelizedName = camelCase(name) as keyof typeof sectionColors;
+  const camelizedName = camelCase(name) as keyof typeof sectionStyles;
   return classnames(
-    styles.sectionHeader,
-    withColors && sectionColors[camelizedName],
+    sectionStyles.sectionHeader,
+    withColors && sectionStyles[camelizedName],
   );
 }

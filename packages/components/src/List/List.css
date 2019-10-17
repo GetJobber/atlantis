@@ -4,70 +4,8 @@
   list-style: none;
 }
 
-.item {
+.item:not(:last-child) {
   border-bottom: var(--border-base) solid var(--color-grey--lighter);
-}
-
-.item:last-child {
-  border-bottom: none;
-}
-
-.action {
-  display: flex;
-  width: 100%;
-  box-sizing: border-box;
-  padding: var(--space-small);
-  border: none;
-  text-align: left;
-  text-decoration: none;
-  transition: background-color var(--timing-base);
-  appearance: none;
-  align-items: flex-start;
-}
-
-.hoverable {
-  cursor: pointer;
-}
-
-.hoverable:hover,
-.hoverable:focus {
-  outline: none;
-  background-color: var(--color-yellow--lightest);
-}
-
-.action > * {
-  padding: var(--space-small);
-}
-
-.icon {
-  display: flex;
-  flex: 0 0 auto;
-  width: var(--space-large);
-}
-
-.info {
-  flex: 1 1 auto;
-  min-width: 0;
-  align-self: center;
-}
-
-.amount {
-  flex: 0 0 auto;
-  text-align: right;
-}
-
-.isActive {
-  background-color: var(--color-green--lightest);
-}
-
-/* TODO: Move truncate in typography */
-
-.truncate {
-  display: block;
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .section {
@@ -76,12 +14,4 @@
 
 .section:not(:last-child) .list {
   padding-bottom: var(--space-large);
-}
-
-.sectionHeader {
-  position: sticky;
-  top: 0;
-  padding: var(--space-small) var(--space-base);
-  border-bottom: 1px solid var(--color-blue);
-  background-color: var(--color-white);
 }

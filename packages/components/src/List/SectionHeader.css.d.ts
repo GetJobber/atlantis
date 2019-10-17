@@ -1,3 +1,4 @@
+export const sectionHeader: string;
 export const greyBlue: string;
 export const draft: string;
 export const upcoming: string;
