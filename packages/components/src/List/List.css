@@ -5,7 +5,7 @@
 }
 
 .item {
-  border-bottom: 1px solid var(--color-grey--lighter);
+  border-bottom: var(--border-base) solid var(--color-grey--lighter);
 }
 
 .item:last-child {
@@ -36,13 +36,13 @@
 }
 
 .action > * {
-  padding: 8px;
+  padding: var(--space-small);
 }
 
 .icon {
   display: flex;
   flex: 0 0 auto;
-  width: 24px;
+  width: var(--space-large);
 }
 
 .info {
@@ -53,7 +53,7 @@
 
 .amount {
   flex: 0 0 auto;
-  width: 128px;
+  width: calc(var(--base-unit) * 8);
   text-align: right;
 }
 
@@ -82,11 +82,7 @@
 .sectionHeader {
   position: sticky;
   top: 0;
-  padding: 8px 16px;
+  padding: var(--space-small) var(--space-base);
   border-bottom: 1px solid var(--color-blue);
   background-color: var(--color-white);
-}
-
-.sectionHeader:first-of-type {
-  padding-top: 8px;
 }
