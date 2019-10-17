@@ -29,7 +29,7 @@ export interface ListItemProps {
   /**
    * This turns the list item into a clickable link.
    */
-  readonly href?: string;
+  readonly url?: string;
 
   /**
    * Shows an icon on the left side of the contents.
@@ -73,7 +73,7 @@ export function ListItem({
   amount,
   content,
   date,
-  href,
+  url,
   icon,
   iconColor,
   id,
@@ -84,7 +84,7 @@ export function ListItem({
   const actionClasses = classnames(
     styles.action,
     isActive && styles.isActive,
-    (onClick || href) && styles.hoverable,
+    (onClick || url) && styles.hoverable,
   );
   const Wrapper = onClick ? "button" : "a";
 
@@ -96,7 +96,7 @@ export function ListItem({
     <Wrapper
       id={id.toString()}
       className={actionClasses}
-      href={href}
+      href={url}
       onClick={onClick}
       {...buttonProps}
     >

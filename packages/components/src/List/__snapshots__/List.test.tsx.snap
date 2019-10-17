@@ -132,7 +132,7 @@ exports[`should render a button list item 1`] = `
 </ul>
 `;
 
-exports[`should render a link with href list item 1`] = `
+exports[`should render a link with url list item 1`] = `
 <ul
   className="list"
 >
@@ -162,7 +162,7 @@ exports[`should render a link with href list item 1`] = `
 </ul>
 `;
 
-exports[`should render an a tag with href and on click list item 1`] = `
+exports[`should render an a tag with url and on click list item 1`] = `
 <ul
   className="list"
 >

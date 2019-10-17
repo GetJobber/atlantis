@@ -14,7 +14,7 @@ it("renders 1 List item with all the props", () => {
             amount: "$30.00",
             content: ["Build a deck", "Fa la la la la"],
             date: "Sep 24, 2019",
-            href: "#",
+            url: "#",
             icon: "checkmark",
             iconColor: "green",
             id: 1,
@@ -32,7 +32,7 @@ it("renders 1 List item with all the props", () => {
   expect(tree).toMatchSnapshot();
 });
 
-it("should render a link with href list item", () => {
+it("should render a link with url list item", () => {
   const tree = renderer
     .create(
       <List
@@ -40,7 +40,7 @@ it("should render a link with href list item", () => {
           {
             id: 1,
             content: "Learn more",
-            href: "/path/to/stuff",
+            url: "/path/to/stuff",
           },
         ]}
       />,
@@ -68,7 +68,7 @@ it("should render a button list item", () => {
   expect(tree).toMatchSnapshot();
 });
 
-it("should render an a tag with href and on click list item", () => {
+it("should render an a tag with url and on click list item", () => {
   const tree = renderer
     .create(
       <List
@@ -76,7 +76,7 @@ it("should render an a tag with href and on click list item", () => {
           {
             id: 1,
             content: "Learn more",
-            href: "/path/to/stuff",
+            url: "/path/to/stuff",
             onClick: () => {
               /* do stuff */
             },
