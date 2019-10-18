@@ -30,6 +30,41 @@ exports[`renders an Autocomplete 1`] = `
   </div>
   <div
     className="options"
-  />
+  >
+    <button
+      className="option"
+      onMouseDown={[Function]}
+    >
+      <div
+        className="icon"
+      />
+      <div
+        className="text"
+      >
+        <p
+          className="base regular base greyBlueDark"
+        >
+          option_0
+        </p>
+      </div>
+    </button>
+    <button
+      className="option"
+      onMouseDown={[Function]}
+    >
+      <div
+        className="icon"
+      />
+      <div
+        className="text"
+      >
+        <p
+          className="base regular base greyBlueDark"
+        >
+          option_1
+        </p>
+      </div>
+    </button>
+  </div>
 </div>
 `;

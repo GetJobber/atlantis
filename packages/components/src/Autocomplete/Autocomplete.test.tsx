@@ -11,11 +11,23 @@ function returnOptions(options: Option[]) {
   };
 }
 
+const options = [
+  {
+    value: "0",
+    label: "option_0",
+  },
+  {
+    value: "1",
+    label: "option_1",
+  },
+];
+
 it("renders an Autocomplete", () => {
   const tree = renderer
     .create(
       <Autocomplete
         value={undefined}
+        initialOptions={options}
         onChange={() => {}}
         getOptions={returnOptions([])}
         placeholder="placeholder_name"
@@ -49,16 +61,6 @@ test("it should call the getOptions handler with the new value", async () => {
 
 test("it should call the handler when an option is selected", () => {
   const changeHandler = jest.fn();
-  const options = [
-    {
-      value: "0",
-      label: "option_0",
-    },
-    {
-      value: "1",
-      label: "option_1",
-    },
-  ];
   const { getByText, getByRole } = render(
     <Autocomplete
       value={undefined}
