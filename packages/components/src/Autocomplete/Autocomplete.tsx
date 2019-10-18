@@ -1,8 +1,8 @@
-import React, { MutableRefObject, useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Autocomplete.css";
 import { Menu } from "./Menu";
 import { Option } from "./Option";
-import { InputText, InputTextRef } from "../InputText";
+import { InputText } from "../InputText";
 
 interface AutocompleteProps {
   readonly initialOptions?: Option[];
@@ -22,7 +22,6 @@ export function Autocomplete({
   const [options, setOptions] = useState(initialOptions);
   const [optionsMenuVisible, setOptionsMenuVisible] = useState(false);
   const [text, setText] = useState((value && value.label) || "");
-  const inputRef = useRef() as MutableRefObject<InputTextRef>;
 
   useEffect(() => {
     if (value) {
@@ -41,7 +40,6 @@ export function Autocomplete({
         placeholder={placeholder}
         onFocus={handleTextFocus}
         onBlur={handleTextBlur}
-        ref={inputRef}
       />
       <Menu
         visible={optionsMenuVisible}
