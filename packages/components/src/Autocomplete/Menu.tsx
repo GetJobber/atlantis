@@ -24,14 +24,14 @@ export function Menu({
   selectedOption,
   onOptionSelect,
 }: MenuProps) {
-  const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const optionMenuClass = classnames(styles.options, {
     [styles.visible]: visible,
   });
 
   setupKeyListeners();
 
-  useEffect(() => setSelectedIndex(-1), [options]);
+  useEffect(() => setSelectedIndex(0), [options]);
 
   return (
     <div className={optionMenuClass}>

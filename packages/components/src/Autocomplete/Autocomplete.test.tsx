@@ -88,5 +88,5 @@ test("it should call the handler when an option is selected", () => {
     }),
   );
 
-  expect(changeHandler).toHaveBeenCalledWith(options[0]);
+  expect(changeHandler).toHaveBeenCalledWith(options[1]);
 });

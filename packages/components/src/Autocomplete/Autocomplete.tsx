@@ -52,11 +52,12 @@ export function Autocomplete({
   function menuChange(chosenOption: Option) {
     onChange(chosenOption);
     updateInput(chosenOption.label);
+    setMenuVisible(false);
   }
 
   function inputChange(newText: string) {
-    setMenuVisible(true);
     updateInput(newText);
+    setMenuVisible(true);
   }
 
   async function updateInput(newText: string) {
