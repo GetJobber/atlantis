@@ -15,50 +15,52 @@ interface AutocompleteProps {
 export function Autocomplete({
   initialOptions = [],
   value,
-  onChange: onSelectOption,
+  onChange,
   getOptions,
   placeholder,
 }: AutocompleteProps) {
   const [options, setOptions] = useState(initialOptions);
-  const [optionsMenuVisible, setOptionsMenuVisible] = useState(false);
-  const [text, setText] = useState((value && value.label) || "");
+  const [menuVisible, setMenuVisible] = useState(false);
+  const [inputText, setInputText] = useState((value && value.label) || "");
 
   useEffect(() => {
     if (value) {
-      setText(value.label);
+      updateInput(value.label);
     } else {
-      setText("");
-      setOptions(initialOptions);
+      updateInput("");
     }
   }, [value]);
 
   return (
     <div className={styles.autocomplete}>
       <InputText
-        value={text}
-        onChange={textChange}
+        value={inputText}
+        onChange={inputChange}
         placeholder={placeholder}
-        onFocus={handleTextFocus}
-        onBlur={handleTextBlur}
+        onFocus={inputFocus}
+        onBlur={inputBlur}
       />
       <Menu
-        visible={optionsMenuVisible}
+        visible={menuVisible}
         options={options}
         selectedOption={value}
-        onOptionSelect={selectOption}
+        onOptionSelect={menuChange}
       />
     </div>
   );
 
-  function selectOption(chosenOption: Option) {
-    onSelectOption(chosenOption);
-    textChange(chosenOption.label);
-    setOptionsMenuVisible(false);
+  function menuChange(chosenOption: Option) {
+    onChange(chosenOption);
+    updateInput(chosenOption.label);
   }
 
-  async function textChange(newText: string) {
-    setOptionsMenuVisible(true);
-    setText(newText);
+  function inputChange(newText: string) {
+    setMenuVisible(true);
+    updateInput(newText);
+  }
+
+  async function updateInput(newText: string) {
+    setInputText(newText);
     if (newText) {
       setOptions(await getOptions(newText));
     } else {
@@ -66,14 +68,14 @@ export function Autocomplete({
     }
   }
 
-  function handleTextBlur() {
-    setOptionsMenuVisible(false);
-    if (value == undefined || value.label !== text) {
-      onSelectOption(undefined);
+  function inputBlur() {
+    setMenuVisible(false);
+    if (value == undefined || value.label !== inputText) {
+      onChange(undefined);
     }
   }
 
-  function handleTextFocus() {
-    setOptionsMenuVisible(true);
+  function inputFocus() {
+    setMenuVisible(true);
   }
 }
