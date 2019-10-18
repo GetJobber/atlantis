@@ -84,7 +84,7 @@ You can supply a value to `Autocomplete` in the form of an active `Option`.
         { value: "6", label: "Enterprise-D" },
       ];
 
-    const [value, setValue] = useState("");
+    const [value, setValue] = useState();
 
     return (
       <>
@@ -130,7 +130,7 @@ using either promises or `await` in `getOptions`.
         { value: "6", label: "Enterprise-D" },
       ];
 
-    const [value, setValue] = useState("");
+    const [value, setValue] = useState();
 
     return (
       <Autocomplete
