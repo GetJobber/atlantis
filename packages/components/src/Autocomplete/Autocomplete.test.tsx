@@ -6,9 +6,7 @@ import { Autocomplete, Option } from ".";
 afterEach(cleanup);
 
 function returnOptions(options: Option[]) {
-  // This test mock doesn't need to utilize text.
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  return async (text: string) => {
+  return async () => {
     return Promise.resolve(options);
   };
 }
