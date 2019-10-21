@@ -10,9 +10,9 @@ import { Emphasis } from "../Emphasis";
 
 export interface ListItemProps {
   /**
-   * Numeric value of a list item.
+   * Subdued text under the `content` prop.
    */
-  readonly amount?: string;
+  readonly caption?: string;
 
   /**
    * List item content. This accepts a string for a simple content and an array
@@ -20,16 +20,6 @@ export interface ListItemProps {
    * This supports basic markdown node types such as `_italic_` and `**bold**`.
    */
   readonly content: string | string[];
-
-  /**
-   * A date related to the list item.
-   */
-  readonly date?: string;
-
-  /**
-   * This turns the list item into a clickable link.
-   */
-  readonly url?: string;
 
   /**
    * Shows an icon on the left side of the contents.
@@ -64,22 +54,33 @@ export interface ListItemProps {
   readonly title?: string;
 
   /**
+   * This turns the list item into a clickable link.
+   */
+  readonly url?: string;
+
+  /**
+   * A numeric value of a row. This always shows up in the right side of the row
+   * with a text aligned to the right.
+   */
+  readonly value?: string;
+
+  /**
    * Callback when a list item gets clicked.
    */
   onClick?(): void;
 }
 
 export function ListItem({
-  amount,
+  caption,
   content,
-  date,
-  url,
   icon,
   iconColor,
   id,
   isActive,
   onClick,
   title,
+  url,
+  value,
 }: ListItemProps) {
   const actionClasses = classnames(
     styles.action,
@@ -110,19 +111,19 @@ export function ListItem({
         {title && <Heading level={5}>{title}</Heading>}
         <Description content={content} />
 
-        {date && (
+        {caption && (
           <Text variation="subdued">
             <Typography element="span" size="small" emphasisType="italic">
-              {date}
+              {caption}
             </Typography>
           </Text>
         )}
       </div>
 
-      {amount && (
+      {value && (
         <div className={styles.amount}>
           <Text>
-            <Emphasis variation="bold">{amount}</Emphasis>
+            <Emphasis variation="bold">{value}</Emphasis>
           </Text>
         </div>
       )}

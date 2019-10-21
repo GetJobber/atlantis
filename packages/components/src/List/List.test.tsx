@@ -11,9 +11,9 @@ it("renders 1 List item with all the props", () => {
       <List
         items={[
           {
-            amount: "$30.00",
+            value: "$30.00",
             content: ["Build a deck", "Fa la la la la"],
-            date: "Sep 24, 2019",
+            caption: "Sep 24, 2019",
             url: "#",
             icon: "checkmark",
             iconColor: "green",
