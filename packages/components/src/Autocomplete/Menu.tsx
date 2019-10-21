@@ -24,20 +24,20 @@ export function Menu({
   selectedOption,
   onOptionSelect,
 }: MenuProps) {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [highlightedIndex, setHighlightedIndex] = useState(0);
   const optionMenuClass = classnames(styles.options, {
     [styles.visible]: visible,
   });
 
   setupKeyListeners();
 
-  useEffect(() => setSelectedIndex(0), [options]);
+  useEffect(() => setHighlightedIndex(0), [options]);
 
   return (
     <div className={optionMenuClass}>
       {options.map((option, index) => {
         const optionClass = classnames(styles.option, {
-          [styles.active]: index === selectedIndex,
+          [styles.active]: index === highlightedIndex,
         });
         return (
           <button
@@ -60,7 +60,7 @@ export function Menu({
   );
 
   function isOptionSelected(option: Option) {
-    return selectedOption && option.value === selectedOption.value;
+    return selectedOption && selectedOption.value === option.value;
   }
 
   function setupKeyListeners() {
@@ -68,8 +68,8 @@ export function Menu({
       if (!visible) return;
 
       event.preventDefault();
-      setSelectedIndex(
-        Math.min(options.length - 1, selectedIndex + IndexChange.Next),
+      setHighlightedIndex(
+        Math.min(options.length - 1, highlightedIndex + IndexChange.Next),
       );
     });
 
@@ -77,14 +77,14 @@ export function Menu({
       if (!visible) return;
 
       event.preventDefault();
-      setSelectedIndex(Math.max(0, selectedIndex + IndexChange.Previous));
+      setHighlightedIndex(Math.max(0, highlightedIndex + IndexChange.Previous));
     });
 
     useOnKeyDown("Enter", (event: KeyboardEvent) => {
       if (!visible) return;
 
       event.preventDefault();
-      onOptionSelect(options[selectedIndex]);
+      onOptionSelect(options[highlightedIndex]);
     });
   }
 }
