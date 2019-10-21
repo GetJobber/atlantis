@@ -31,7 +31,7 @@ interface IconProps {
   readonly color?: IconColorNames;
 
   /**
-   * Set a custom color for the icon.
+   * Sets a custom color for the icon. Can be a rgb() or hex value.
    */
   readonly customColor?: string;
 }
@@ -120,7 +120,7 @@ function getPathClassNames(name: string, color?: IconColorNames) {
 
 function getTruckWithColor(
   customColor?: string,
-  color?: IconColorNames = "green",
+  color: IconColorNames = "green",
 ) {
   return (
     <g
