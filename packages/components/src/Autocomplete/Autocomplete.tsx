@@ -35,30 +35,19 @@ export function Autocomplete({
     <div className={styles.autocomplete}>
       <InputText
         value={inputText}
-        onChange={inputChange}
+        onChange={handleInputChange}
         placeholder={placeholder}
-        onFocus={inputFocus}
-        onBlur={inputBlur}
+        onFocus={handleInputFocus}
+        onBlur={handleInputBlur}
       />
       <Menu
         visible={menuVisible}
         options={options}
         selectedOption={value}
-        onOptionSelect={menuChange}
+        onOptionSelect={handleMenuChange}
       />
     </div>
   );
-
-  function menuChange(chosenOption: Option) {
-    onChange(chosenOption);
-    updateInput(chosenOption.label);
-    setMenuVisible(false);
-  }
-
-  function inputChange(newText: string) {
-    updateInput(newText);
-    setMenuVisible(true);
-  }
 
   async function updateInput(newText: string) {
     setInputText(newText);
@@ -69,14 +58,25 @@ export function Autocomplete({
     }
   }
 
-  function inputBlur() {
+  function handleMenuChange(chosenOption: Option) {
+    onChange(chosenOption);
+    updateInput(chosenOption.label);
+    setMenuVisible(false);
+  }
+
+  function handleInputChange(newText: string) {
+    updateInput(newText);
+    setMenuVisible(true);
+  }
+
+  function handleInputBlur() {
     setMenuVisible(false);
     if (value == undefined || value.label !== inputText) {
       onChange(undefined);
     }
   }
 
-  function inputFocus() {
+  function handleInputFocus() {
     setMenuVisible(true);
   }
 }
