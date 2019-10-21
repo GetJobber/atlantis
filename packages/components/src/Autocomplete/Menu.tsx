@@ -12,9 +12,9 @@ enum IndexChange {
 }
 
 interface MenuProps {
-  visible: boolean;
-  options: Option[];
-  selectedOption?: Option;
+  readonly visible: boolean;
+  readonly options: Option[];
+  readonly selectedOption?: Option;
   onOptionSelect(chosenOption: Option): void;
 }
 

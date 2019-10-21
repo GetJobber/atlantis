@@ -6,10 +6,10 @@ import { InputText } from "../InputText";
 
 interface AutocompleteProps {
   readonly initialOptions?: Option[];
-  value: Option | undefined;
+  readonly value: Option | undefined;
+  readonly placeholder: string;
   onChange(newValue?: Option): void;
   getOptions(newValue: string): Option[] | Promise<Option[]>;
-  placeholder: string;
 }
 
 export function Autocomplete({
