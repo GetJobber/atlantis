@@ -9,16 +9,22 @@ test("modal shows the children and a close button", () => {
   const content = "Dis be a content 🎉";
   const handleClose = jest.fn();
 
-  const { getByLabelText, getByText } = render(
+  const { getByLabelText, getByText, queryByTestId } = render(
     <Modal title={title} open={true} onRequestClose={handleClose}>
       {content}
     </Modal>,
   );
   expect(getByText(title)).toBeTruthy();
   expect(getByText(content)).toBeTruthy();
+  expect(queryByTestId("modal-header")).not.toBeNull();
 
   fireEvent.click(getByLabelText("Close modal"));
   expect(handleClose).toHaveBeenCalledTimes(1);
+});
+
+test("modal without a title doesn't show the header", () => {
+  const { queryByTestId } = render(<Modal open={true}>Content</Modal>);
+  expect(queryByTestId("modal-header")).toBeNull();
 });
 
 test("modal doesn't show up", () => {

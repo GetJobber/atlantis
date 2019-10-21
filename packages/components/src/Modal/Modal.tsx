@@ -12,7 +12,7 @@ interface ModalProps {
   /**
    * @default false
    */
-  readonly title: string;
+  readonly title?: string;
   readonly open?: boolean;
   readonly size?: keyof typeof sizes;
   /**
@@ -69,12 +69,13 @@ export function Modal({
               stiffness: 300,
             }}
           >
-            <Header
-              title={title}
-              dismissible={dismissible}
-              onRequestClose={onRequestClose}
-            />
-
+            {title != undefined && (
+              <Header
+                title={title}
+                dismissible={dismissible}
+                onRequestClose={onRequestClose}
+              />
+            )}
             {children}
 
             <Actions
@@ -115,7 +116,7 @@ interface HeaderProps {
 
 function Header({ title, dismissible, onRequestClose }: HeaderProps) {
   return (
-    <div className={styles.header}>
+    <div className={styles.header} data-testid="modal-header">
       <Typography
         element="h3"
         size="large"
