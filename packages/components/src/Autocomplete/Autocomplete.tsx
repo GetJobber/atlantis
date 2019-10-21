@@ -8,7 +8,7 @@ interface AutocompleteProps {
   readonly initialOptions?: Option[];
   value: Option | undefined;
   onChange(newValue?: Option): void;
-  getOptions(newValue: string): Promise<Option[]>;
+  getOptions(newValue: string): Option[] | Promise<Option[]>;
   placeholder: string;
 }
 
