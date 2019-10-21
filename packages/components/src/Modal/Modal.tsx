@@ -19,7 +19,6 @@ interface ModalProps {
    * @default true
    */
   readonly dismissible?: boolean;
-  readonly showTitle?: boolean;
   readonly children: ReactNode;
   readonly primaryAction?: ButtonProps;
   readonly secondaryAction?: ButtonProps;
