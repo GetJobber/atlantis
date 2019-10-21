@@ -56,14 +56,12 @@
 }
 
 .option .icon {
-  order: 0;
   flex: 0 1 auto;
   align-self: auto;
   width: var(--space-large);
 }
 
 .option .text {
-  order: 0;
   flex: 1 1 auto;
   align-self: auto;
 }
