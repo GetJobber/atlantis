@@ -178,12 +178,13 @@ export const FormField = React.forwardRef(
       | Ref<HTMLSelectElement>,
   ) => {
     const [hasMiniLabel, setHasMiniLabel] = useState(
-      defaultValue || value ? true : false,
+      shouldShowMiniLabel(defaultValue, value),
     );
     const identifier = uuid.v1();
 
     useEffect(() => {
       handleValidation();
+      setHasMiniLabel(shouldShowMiniLabel(defaultValue, value));
     }, [value]);
 
     const wrapperClassNames = classnames(
@@ -315,6 +316,18 @@ export const FormField = React.forwardRef(
     }
   },
 );
+
+function shouldShowMiniLabel(
+  defaultValue: string | number | undefined,
+  value: string | number | undefined,
+) {
+  const activeValue = defaultValue || value;
+  if (typeof activeValue === "string") {
+    return activeValue.length > 0;
+  } else {
+    return activeValue != undefined;
+  }
+}
 
 function hasErrorMessages(validations?: ValidationProps[]) {
   if (validations) {

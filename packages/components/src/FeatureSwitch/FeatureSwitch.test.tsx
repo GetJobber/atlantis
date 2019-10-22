@@ -5,20 +5,14 @@ import { FeatureSwitch } from ".";
 
 afterEach(cleanup);
 
-it("renders a simple FeatureSwitch", () => {
-  const tree = renderer
-    .create(<FeatureSwitch description="Send a thing?" />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
-});
-
 it("renders a full FeatureSwitch", () => {
   const tree = renderer
     .create(
       <FeatureSwitch
         enabled={true}
         title="Quote follow-up"
-        description="Send a notification to your client following up on an outstanding quote."
+        externalLink={true}
+        description="Send a [notification](www.fakeurl.com) to your _client_ following up on an **outstanding quote**."
         hasSaveIndicator={true}
         onSwitch={() => {
           console.log("You clicked the switch");
@@ -40,21 +34,6 @@ it("renders a subdued FeatureSwitch content", () => {
       <FeatureSwitch
         enabled={false}
         description="Send a notification to your client following up on an outstanding quote."
-      >
-        Dis dem content yo
-      </FeatureSwitch>,
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
-});
-
-it("renders a FeatureSwitch markdown description", () => {
-  const tree = renderer
-    .create(
-      <FeatureSwitch
-        enabled={true}
-        externalLink={true}
-        description="Send a [notification](www.fakeurl.com) to your _client_ following up on an **outstanding quote**."
       >
         Dis dem content yo
       </FeatureSwitch>,
