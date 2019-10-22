@@ -5,11 +5,33 @@ import { Option } from "./Option";
 import { InputText } from "../InputText";
 
 interface AutocompleteProps {
+  /**
+   * Initial options to show when user first focuses the Autocomplete
+   */
   readonly initialOptions?: Option[];
+
+  /**
+   * Set Autocomplete value.
+   */
   readonly value: Option | undefined;
+
+  /**
+   * Hint text that goes above the value once the form is filled out.
+   */
   readonly placeholder: string;
+
+  /**
+   * Simplified onChange handler that only provides the new value.
+   * @param newValue
+   */
   onChange(newValue?: Option): void;
-  getOptions(newValue: string): Option[] | Promise<Option[]>;
+
+  /**
+   * Called as the user types in the input. The autocomplete will display what
+   * is retuned from this method to the user as available options.
+   * @param newInputText
+   */
+  getOptions(newInputText: string): Option[] | Promise<Option[]>;
 }
 
 export function Autocomplete({
