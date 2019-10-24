@@ -33,7 +33,7 @@ interface CheckboxProps {
    */
   readonly value?: string;
 
-  onChange?(newChecked: boolean): void;
+  onClick?(newChecked: boolean): void;
 }
 
 export function Checkbox({
@@ -42,7 +42,7 @@ export function Checkbox({
   label,
   value,
   undetermined = false,
-  onChange,
+  onClick,
 }: CheckboxProps) {
   const iconName = undetermined ? "minus2" : "checkmark";
 
@@ -74,6 +74,6 @@ export function Checkbox({
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const newChecked = event.currentTarget.checked;
-    onChange && onChange(newChecked);
+    onClick && onClick(newChecked);
   }
 }

@@ -7,19 +7,26 @@ route: /components/checkbox
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { Checkbox } from ".";
+import { useState } from "react";
 
 # Checkbox
 
 <ComponentStatus stage="pre" responsive="no" accessible="no" />
 
-Write a description about what Checkbox component is trying to achieve.
+Checkboxes let a user select one or more items from a set of options.
 
 ```ts
 import { Checkbox } from "@jobber/components/Checkbox";
 ```
 
 <Playground>
-  <Checkbox label="Bob" />
+  {() => {
+    const [checked, setChecked] = useState(true);
+
+    return <Checkbox checked={checked} label="Save card for future use" onClick={setChecked} />
+
+}}
+
 </Playground>
 
 ## Props
