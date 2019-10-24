@@ -12,7 +12,6 @@
   width: 100%;
   border: var(--border-base) solid var(--card--border-color);
   border-radius: var(--radius-base);
-  overflow: auto;
   outline-color: var(--color-outline);
   background-color: var(--card--background-color);
 }
