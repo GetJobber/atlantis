@@ -33,6 +33,15 @@
   align-items: center;
 }
 
+.disabled .checkBox {
+  background-color: var(--color-grey--lightest);
+  cursor: not-allowed;
+}
+
+.disabled .checkBox > * {
+  opacity: 0;
+}
+
 .input:checked + .checkBox {
   border-color: var(--color-green);
   background-color: var(--color-green);
@@ -40,6 +49,15 @@
 
 .input:focus + .checkBox {
   box-shadow: 0 0 4px 1px var(--color-outline);
+}
+
+.disabled .input:checked + .checkBox {
+  border-color: var(--color-grey--lighter);
+  background-color: var(--color-grey--lighter);
+}
+
+.disabled .input:checked + .checkBox > * {
+  opacity: 1;
 }
 
 .label {

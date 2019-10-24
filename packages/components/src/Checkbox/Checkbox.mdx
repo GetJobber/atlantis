@@ -32,3 +32,24 @@ import { Checkbox } from "@jobber/components/Checkbox";
 ## Props
 
 <Props of={Checkbox} />
+
+---
+
+## Indeterminate
+
+<Playground>
+  <Checkbox checked={true} label="2 selected" indeterminate={true} /> <br />
+  <Checkbox checked={true} label="Item 1" /> <br />
+  <Checkbox checked={true} label="Item 2" /> <br />
+  <Checkbox checked={false} label="Item 3" />
+</Playground>
+
+## Disabled
+
+<Playground>
+  <Checkbox
+    disabled={true}
+    checked={true}
+    label="Subscribe on marketing emails"
+  />
+</Playground>

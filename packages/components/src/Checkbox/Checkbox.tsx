@@ -1,4 +1,5 @@
 import React, { ChangeEvent } from "react";
+import classnames from "classnames";
 import styles from "./Checkbox.css";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
@@ -17,6 +18,10 @@ interface CheckboxProps {
   readonly defaultChecked?: boolean;
 
   /**
+   * Disables the checkbox.
+   */
+  readonly disabled?: boolean;
+  /**
    * Label that shows up beside the checkbox.
    */
   readonly label?: string;
@@ -26,7 +31,7 @@ interface CheckboxProps {
    *
    * @default false
    */
-  readonly undetermined?: boolean;
+  readonly indeterminate?: boolean;
 
   /**
    * Value of the checkbox.
@@ -39,15 +44,20 @@ interface CheckboxProps {
 export function Checkbox({
   checked,
   defaultChecked,
+  disabled,
   label,
   value,
-  undetermined = false,
+  indeterminate = false,
   onClick,
 }: CheckboxProps) {
-  const iconName = undetermined ? "minus2" : "checkmark";
+  const wrapperClassName = classnames(
+    styles.wrapper,
+    disabled && styles.disabled,
+  );
+  const iconName = indeterminate ? "minus2" : "checkmark";
 
   return (
-    <label className={styles.wrapper}>
+    <label className={wrapperClassName}>
       <span className={styles.checkHolder}>
         <input
           type="checkbox"
@@ -66,7 +76,7 @@ export function Checkbox({
 
       {label && (
         <span className={styles.label}>
-          <Text>{label}</Text>
+          <Text variation={disabled ? "subdued" : undefined}>{label}</Text>
         </span>
       )}
     </label>
