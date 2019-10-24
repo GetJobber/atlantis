@@ -24,7 +24,6 @@
   width: var(--space-base);
   height: var(--space-base);
   box-sizing: border-box;
-  margin-right: var(--space-small);
   border: var(--border-thick) solid var(--color-grey--light);
   border-radius: var(--radius-base);
   background-color: var(--color-white);
@@ -45,4 +44,5 @@
 
 .label {
   display: inline-block;
+  margin: 0 var(--space-small);
 }
