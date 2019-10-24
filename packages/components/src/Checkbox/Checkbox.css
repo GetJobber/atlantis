@@ -1,0 +1,48 @@
+.wrapper {
+  display: inline-flex;
+}
+
+.checkHolder {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+}
+
+.input {
+  /* Hide checkbox on UI but not screen readers and still allow focus state */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+  white-space: nowrap;
+}
+
+.checkBox {
+  display: inline-flex;
+  width: var(--space-base);
+  height: var(--space-base);
+  box-sizing: border-box;
+  margin-right: var(--space-small);
+  border: var(--border-thick) solid var(--color-grey--light);
+  border-radius: var(--radius-base);
+  background-color: var(--color-white);
+  cursor: pointer;
+  transition: all 200ms;
+  justify-content: center;
+  align-items: center;
+}
+
+.input:checked + .checkBox {
+  border-color: var(--color-green);
+  background-color: var(--color-green);
+}
+
+.input:focus + .checkBox {
+  box-shadow: 0 0 4px 1px var(--color-outline);
+}
+
+.label {
+  display: inline-block;
+}
