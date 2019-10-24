@@ -10,9 +10,10 @@ exports[`renders a Checkbox 1`] = `
     <input
       aria-label="Send me spam?"
       className="input"
-      name="foo"
+      name="send_me_span"
       onChange={[Function]}
       type="checkbox"
+      value="spam"
     />
     <span
       className="checkBox"
@@ -52,7 +53,6 @@ exports[`renders a checked Checkbox 1`] = `
       aria-label="Foo"
       checked={true}
       className="input"
-      name="foo"
       onChange={[Function]}
       type="checkbox"
     />
@@ -94,7 +94,6 @@ exports[`renders an indeterminate Checkbox 1`] = `
       aria-label="Foo"
       checked={true}
       className="input"
-      name="foo"
       onChange={[Function]}
       type="checkbox"
     />

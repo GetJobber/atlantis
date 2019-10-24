@@ -21,10 +21,6 @@ interface CheckboxProps {
    * Disables the checkbox.
    */
   readonly disabled?: boolean;
-  /**
-   * Label that shows up beside the checkbox.
-   */
-  readonly label?: string;
 
   /**
    * Changes the icon from checkbox to a dash.
@@ -32,6 +28,16 @@ interface CheckboxProps {
    * @default false
    */
   readonly indeterminate?: boolean;
+
+  /**
+   * Label that shows up beside the checkbox.
+   */
+  readonly label?: string;
+
+  /**
+   * Checkbox input name
+   */
+  readonly name?: string;
 
   /**
    * Value of the checkbox.
@@ -46,6 +52,7 @@ export function Checkbox({
   defaultChecked,
   disabled,
   label,
+  name,
   value,
   indeterminate = false,
   onClick,
@@ -61,13 +68,13 @@ export function Checkbox({
       <span className={styles.checkHolder}>
         <input
           type="checkbox"
-          name="foo"
           checked={checked}
           defaultChecked={defaultChecked}
           className={styles.input}
           aria-label={label}
           onChange={handleChange}
           value={value}
+          name={name}
         />
         <span className={styles.checkBox}>
           <Icon name={iconName} size="small" color="white" />

@@ -6,7 +6,9 @@ import { Checkbox } from ".";
 afterEach(cleanup);
 
 it("renders a Checkbox", () => {
-  const tree = renderer.create(<Checkbox label="Send me spam?" />).toJSON();
+  const tree = renderer
+    .create(<Checkbox label="Send me spam?" name="send_me_span" value="spam" />)
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });
 
