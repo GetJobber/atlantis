@@ -17,7 +17,7 @@ interface AutocompleteProps {
   readonly value: Option | undefined;
 
   /**
-   * Set Autocomplete value.
+   * Debounce delay time for the setOptions requests
    */
   readonly debounceTime: number | undefined;
 
