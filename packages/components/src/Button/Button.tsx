@@ -2,7 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
 import styles from "./Button.css";
-import { Typography, TypographyOptions } from "../Typography";
+import { Typography } from "../Typography";
 import { Icon, IconNames } from "../Icon";
 
 export interface ButtonProps {
@@ -40,10 +40,6 @@ type ButtonPropOptions = XOR<
   ButtonProps,
   XOR<BaseActionProps, XOR<DestructiveActionProps, CancelActionProps>>
 >;
-
-interface TypeMap {
-  [type: string]: TypographyOptions;
-}
 
 export function Button({
   ariaControls,
