@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { debounce } from "lodash";
 import styles from "./Autocomplete.css";
 import { Menu } from "./Menu";
 import { Option } from "./Option";
@@ -14,6 +15,11 @@ interface AutocompleteProps {
    * Set Autocomplete value.
    */
   readonly value: Option | undefined;
+
+  /**
+   * Set Autocomplete value.
+   */
+  readonly debounceTime: number | undefined;
 
   /**
    * Hint text that goes above the value once the form is filled out.
@@ -37,6 +43,7 @@ interface AutocompleteProps {
 export function Autocomplete({
   initialOptions = [],
   value,
+  debounceTime,
   onChange,
   getOptions,
   placeholder,
@@ -44,6 +51,10 @@ export function Autocomplete({
   const [options, setOptions] = useState(initialOptions);
   const [menuVisible, setMenuVisible] = useState(false);
   const [inputText, setInputText] = useState((value && value.label) || "");
+
+  const debouncedSetOptions = debounceTime
+    ? useRef(debounce(setOptions, debounceTime)).current
+    : setOptions;
 
   useEffect(() => {
     if (value) {
@@ -74,7 +85,7 @@ export function Autocomplete({
   async function updateInput(newText: string) {
     setInputText(newText);
     if (newText) {
-      setOptions(await getOptions(newText));
+      debouncedSetOptions(await getOptions(newText));
     } else {
       setOptions(initialOptions);
     }
