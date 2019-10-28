@@ -12,6 +12,10 @@
   transform: rotate(-90deg);
 }
 
+.thumbsDown {
+  transform: scaleY(-1);
+}
+
 .person,
 .clients,
 .property {
