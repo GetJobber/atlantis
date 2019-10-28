@@ -17,6 +17,11 @@ it("renders large arrowDown icon", () => {
   expect(tree).toMatchSnapshot();
 });
 
+it("renders thumbsDown icon", () => {
+  const tree = renderer.create(<Icon name="thumbsDown" />).toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
 it("renders small more icon", () => {
   const tree = renderer.create(<Icon name="more" size="small" />).toJSON();
   expect(tree).toMatchSnapshot();
