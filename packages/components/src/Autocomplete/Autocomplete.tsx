@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { debounce } from "lodash";
 import styles from "./Autocomplete.css";
 import { Menu } from "./Menu";
 import { Option } from "./Option";
@@ -45,6 +46,8 @@ export function Autocomplete({
   const [menuVisible, setMenuVisible] = useState(false);
   const [inputText, setInputText] = useState((value && value.label) || "");
 
+  const debouncedSetOptions = useRef(debounce(setOptions, 150)).current;
+
   useEffect(() => {
     if (value) {
       updateInput(value.label);
@@ -74,7 +77,7 @@ export function Autocomplete({
   async function updateInput(newText: string) {
     setInputText(newText);
     if (newText) {
-      setOptions(await getOptions(newText));
+      debouncedSetOptions(await getOptions(newText));
     } else {
       setOptions(initialOptions);
     }
