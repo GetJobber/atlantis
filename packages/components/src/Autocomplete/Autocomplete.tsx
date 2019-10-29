@@ -17,11 +17,6 @@ interface AutocompleteProps {
   readonly value: Option | undefined;
 
   /**
-   * Debounce delay time for the setOptions requests
-   */
-  readonly debounceTime: number | undefined;
-
-  /**
    * Hint text that goes above the value once the form is filled out.
    */
   readonly placeholder: string;
@@ -43,7 +38,6 @@ interface AutocompleteProps {
 export function Autocomplete({
   initialOptions = [],
   value,
-  debounceTime,
   onChange,
   getOptions,
   placeholder,
@@ -52,9 +46,7 @@ export function Autocomplete({
   const [menuVisible, setMenuVisible] = useState(false);
   const [inputText, setInputText] = useState((value && value.label) || "");
 
-  const debouncedSetOptions = debounceTime
-    ? useRef(debounce(setOptions, debounceTime)).current
-    : setOptions;
+  const debouncedSetOptions = useRef(debounce(setOptions, 150)).current;
 
   useEffect(() => {
     if (value) {
