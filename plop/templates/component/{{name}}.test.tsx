@@ -16,15 +16,17 @@ it("renders a loud {{name}}", () => {
 });
 
 test("it should call the handler with the new value", () => {
-  const changeHandler = jest.fn();
-  const newValue = "Bar";
+  const clickHandler = jest.fn();
+  const text = "Foo";
+  const { getByText } = render(<{{name}} onClick={clickHandler} text={text} />);
 
-  const { getByLabelText } = render(
-    <{{name}} onChange={changeHandler} placeholder={placeholder} />,
-  );
+  fireEvent.click(getByText(text));
+  expect(clickHandler).toHaveBeenCalled();
 
-  fireEvent.change(getByLabelText(placeholder), {
-    target: { value: newValue },
-  });
-  expect(changeHandler).toHaveBeenCalledWith(newValue);
+  // E.g. If you need a change event, rather than a click event:
+  //
+  // fireEvent.change(getByLabelText(placeholder), {
+  //   target: { value: newValue },
+  // });
+  // expect(changeHandler).toHaveBeenCalledWith(newValue);
 });

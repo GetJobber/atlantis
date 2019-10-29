@@ -13,10 +13,15 @@ interface {{name}}Props {
    * Text to display.
    */
   readonly text: string;
+
+  /**
+   * Click handler.
+   */
+  onClick?(): void;
 }
 
-export function {{name}}({ loud = false, text }: {{name}}Props) {
+export function {{name}}({ loud = false, text, onClick }: {{name}}Props) {
   const className = classnames(styles.{{camelCase name}}, { [styles.bold]: loud });
 
-  return <div className={className}>{text}</div>;
+  return <div className={className} onClick={onClick}>{text}</div>;
 }
