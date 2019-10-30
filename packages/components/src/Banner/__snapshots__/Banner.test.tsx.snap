@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a success banner with no button to close: 
+    <div
+      className="flash success"
+    >
+      <p
+        className="base regular base greyBlueDark"
+      >
+        Success
+    </div>
+   1`] = `
+<div
+  className="flash success"
+>
+  <p
+    className="base regular base greyBlueDark"
+  >
+    Success
+  </p>
+</div>
+`;
