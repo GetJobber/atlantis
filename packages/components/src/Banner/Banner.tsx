@@ -8,6 +8,7 @@ import { Text } from "../Text";
 interface BannerProps {
   readonly children: ReactNode;
   readonly type: "notice" | "success" | "warning" | "error";
+  readonly showClose?: boolean;
   onDismiss?(): void;
 }
 
@@ -15,7 +16,12 @@ interface IconColorMap {
   [variation: string]: IconColorNames;
 }
 
-export function Banner({ children, type, onDismiss }: BannerProps) {
+export function Banner({
+  children,
+  type,
+  onDismiss,
+  showClose = true,
+}: BannerProps) {
   const [showFlash, setShowFlash] = useState(true);
 
   const iconColors: IconColorMap = {
@@ -32,13 +38,15 @@ export function Banner({ children, type, onDismiss }: BannerProps) {
         <div className={flashClassNames}>
           <Text>{children}</Text>
 
-          <button
-            className={styles.closeButton}
-            onClick={handleClose}
-            aria-label="Close"
-          >
-            <Icon name="cross" color={iconColors[type]} />
-          </button>
+          {showClose && (
+            <button
+              className={styles.closeButton}
+              onClick={handleClose}
+              aria-label="Close"
+            >
+              <Icon name="cross" color={iconColors[type]} />
+            </button>
+          )}
         </div>
       )}
     </>

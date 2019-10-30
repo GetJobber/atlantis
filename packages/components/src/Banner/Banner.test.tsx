@@ -133,6 +133,26 @@ it("renders a warning banner", () => {
   `);
 });
 
+it("renders a success banner with no button to close", () => {
+  const tree = renderer
+    .create(
+      <Banner type="success" showClose={false}>
+        Success
+      </Banner>,
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot(`
+    <div
+      className="flash success"
+    >
+      <p
+        className="base regular base greyBlueDark"
+      >
+        Success
+    </div>
+  `);
+});
+
 test("it should call the handler with a number value", () => {
   const changeHandler = jest.fn();
 
