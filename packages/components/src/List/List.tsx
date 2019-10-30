@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import { camelCase, get, groupBy } from "lodash";
+import { get, groupBy } from "lodash";
 import styles from "./List.css";
 import sectionStyles from "./SectionHeader.css";
 import { ListItem, ListItemProps } from "./ListItem";
@@ -13,22 +13,12 @@ interface ListProps {
    * {@link https://atlantis.frend.space/components/list#list-item-props List Item Props}
    */
   readonly items: ListItemProps[];
-
-  /**
-   * Automatically colors the section header to match Jobbers system if a
-   * section is present.
-   *
-   * @default true
-   */
-  readonly jobberSectionColors?: boolean;
 }
 
-export function List({ items, jobberSectionColors = true }: ListProps) {
+export function List({ items }: ListProps) {
   const isSectioned = items.some(item => item.section);
   if (isSectioned) {
-    return (
-      <SectionedList items={items} jobberSectionColors={jobberSectionColors} />
-    );
+    return <SectionedList items={items} />;
   } else {
     return <DisplayList items={items} />;
   }
@@ -46,16 +36,15 @@ function DisplayList({ items }: Pick<ListProps, "items">) {
   );
 }
 
-function SectionedList({ items, jobberSectionColors }: ListProps) {
+function SectionedList({ items }: ListProps) {
   const sectionedItems = groupBy(items, item => get(item, "section", "Other"));
+  const sectionHeaderClassNames = classnames(sectionStyles.sectionHeader);
 
   return (
     <ul className={styles.list}>
       {Object.keys(sectionedItems).map(sectionName => (
         <li key={sectionName} className={styles.section}>
-          <div
-            className={getSectionHeaderColor(sectionName, jobberSectionColors)}
-          >
+          <div className={sectionHeaderClassNames}>
             <Typography element="h4" fontWeight="bold" size="large">
               {sectionName}
             </Typography>
@@ -71,13 +60,5 @@ function SectionedList({ items, jobberSectionColors }: ListProps) {
         </li>
       ))}
     </ul>
-  );
-}
-
-function getSectionHeaderColor(name: string, withColors?: boolean) {
-  const camelizedName = camelCase(name) as keyof typeof sectionStyles;
-  return classnames(
-    sectionStyles.sectionHeader,
-    withColors && sectionStyles[camelizedName],
   );
 }

@@ -8,7 +8,7 @@ exports[`renders 1 List item with all the props 1`] = `
     className="section"
   >
     <div
-      className="sectionHeader notification"
+      className="sectionHeader"
     >
       <h4
         className="base bold large"
