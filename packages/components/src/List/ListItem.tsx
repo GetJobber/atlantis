@@ -87,10 +87,10 @@ export function ListItem({
     isActive && styles.isActive,
     (onClick || url) && styles.hoverable,
   );
-  const Wrapper = onClick ? "button" : "a";
+  const Wrapper = url ? "a" : "button";
 
   const buttonProps = {
-    ...(onClick && { role: "button", type: "button" }),
+    ...(Wrapper === "button" && { role: "button", type: "button" }),
   };
 
   return (
