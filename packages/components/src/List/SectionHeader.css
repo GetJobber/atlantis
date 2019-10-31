@@ -6,21 +6,12 @@
   background-color: var(--color-white);
 }
 
-.greyBlue,
-.draft,
-.upcoming {
+.greyBlue {
   border-bottom-color: var(--color-greyBlue--light);
   color: var(--color-greyBlue--light);
 }
 
-.green,
-.completed,
-.paid,
-.reimbursed,
-.upcoming,
-.today,
-.won,
-.approved {
+.green {
   border-bottom-color: var(--color-green);
   color: var(--color-green);
 }
@@ -31,31 +22,17 @@
   color: var(--color-blue);
 }
 
-.orange,
-.pending,
-.requiresInvoicing,
-.awaitingPayment,
-.unscheduled,
-.active,
-.inProgress,
-.actionRequired,
-.sent {
+.orange {
   border-bottom-color: var(--color-orange);
   color: var(--color-orange);
 }
 
-.red,
-.changesRequested,
-.late,
-.pastDue,
-.badDebt,
-.overdue {
+.red {
   border-bottom-color: var(--color-red);
   color: var(--color-red);
 }
 
-.teal,
-.converted {
+.teal {
   border-bottom-color: var(--color-teal);
   color: var(--color-teal);
 }
