@@ -1,0 +1,61 @@
+.action {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--space-small);
+  border: none;
+  text-align: left;
+  text-decoration: none;
+  background-color: transparent;
+  transition: background-color var(--timing-base);
+  appearance: none;
+  align-items: flex-start;
+}
+
+.action > * {
+  padding: var(--space-small);
+}
+
+.hoverable {
+  cursor: pointer;
+}
+
+.hoverable:hover,
+.hoverable:focus {
+  outline: none;
+  background-color: var(--color-yellow--lightest);
+}
+
+.icon {
+  display: flex;
+  flex: 0 0 auto;
+  width: var(--space-large);
+  height: var(--space-large);
+}
+
+.info {
+  flex: 1 1 auto;
+  min-width: 0;
+  align-self: center;
+}
+
+.amount {
+  flex: 0 0 auto;
+  text-align: right;
+}
+
+/* States */
+
+.isActive {
+  background-color: var(--color-green--lightest);
+}
+
+/* TODO: Move truncate in typography */
+
+.truncate {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

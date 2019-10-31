@@ -1,0 +1,17 @@
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item:not(:last-child) {
+  border-bottom: var(--border-base) solid var(--color-grey--lighter);
+}
+
+.section {
+  position: relative;
+}
+
+.section:not(:last-child) .list {
+  padding-bottom: var(--space-large);
+}
