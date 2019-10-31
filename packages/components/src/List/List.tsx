@@ -24,7 +24,7 @@ export function List({ items }: ListProps) {
   }
 }
 
-function DisplayList({ items }: Pick<ListProps, "items">) {
+function DisplayList({ items }: ListProps) {
   return (
     <ul className={styles.list}>
       {items.map(item => (

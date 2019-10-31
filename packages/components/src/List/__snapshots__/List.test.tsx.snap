@@ -22,13 +22,11 @@ exports[`renders 1 List item with all the props 1`] = `
       <li
         className="item"
       >
-        <button
+        <a
           className="action isActive hoverable"
           href="#"
           id="1"
           onClick={[Function]}
-          role="button"
-          type="button"
         >
           <div
             className="icon"
@@ -93,7 +91,7 @@ exports[`renders 1 List item with all the props 1`] = `
               </b>
             </p>
           </div>
-        </button>
+        </a>
       </li>
     </ul>
   </li>
@@ -169,13 +167,11 @@ exports[`should render an a tag with url and on click list item 1`] = `
   <li
     className="item"
   >
-    <button
+    <a
       className="action hoverable"
       href="/path/to/stuff"
       id="1"
       onClick={[Function]}
-      role="button"
-      type="button"
     >
       <div
         className="info"
@@ -190,7 +186,7 @@ exports[`should render an a tag with url and on click list item 1`] = `
           </span>
         </p>
       </div>
-    </button>
+    </a>
   </li>
 </ul>
 `;
