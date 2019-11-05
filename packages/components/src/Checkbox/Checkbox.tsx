@@ -23,7 +23,7 @@ interface CheckboxProps {
   readonly disabled?: boolean;
 
   /**
-   * Changes the icon from checkbox to a dash.
+   * When `true` the checkbox to appears in indeterminate.
    *
    * @default false
    */
@@ -44,7 +44,7 @@ interface CheckboxProps {
    */
   readonly value?: string;
 
-  onClick?(newChecked: boolean): void;
+  onClick?(newValue: boolean): void;
 }
 
 export function Checkbox({
@@ -68,8 +68,12 @@ export function Checkbox({
       <span className={styles.checkHolder}>
         <input
           type="checkbox"
-          checked={checked}
-          defaultChecked={defaultChecked}
+          checked={checked != undefined ? checked || indeterminate : undefined}
+          defaultChecked={
+            defaultChecked != undefined
+              ? defaultChecked || indeterminate
+              : undefined
+          }
           className={styles.input}
           aria-label={label}
           onChange={handleChange}
@@ -81,7 +85,7 @@ export function Checkbox({
         </span>
       </span>
 
-      {label && (
+      {label != undefined && (
         <span className={styles.label}>
           <Text variation={disabled ? "subdued" : undefined}>{label}</Text>
         </span>

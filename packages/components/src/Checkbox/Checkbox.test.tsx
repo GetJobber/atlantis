@@ -12,18 +12,19 @@ it("renders a Checkbox", () => {
   expect(tree).toMatchSnapshot();
 });
 
-it("renders a checked Checkbox", () => {
-  const tree = renderer
-    .create(<Checkbox label="Foo" checked={true} />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
-});
+it("renders each variation of checked and indeterminate", () => {
+  const variations = [
+    { checked: true, indeterminate: true },
+    { checked: false, indeterminate: true },
+    { checked: true, indeterminate: false },
+    { checked: false, indeterminate: false },
+  ];
 
-it("renders an indeterminate Checkbox", () => {
-  const tree = renderer
-    .create(<Checkbox label="Foo" checked={true} indeterminate={true} />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  variations.forEach(variation => {
+    expect(
+      renderer.create(<Checkbox label="Foo" {...variation} />).toJSON(),
+    ).toMatchSnapshot();
+  });
 });
 
 describe("Clicking the checkbox it should call the handler", () => {

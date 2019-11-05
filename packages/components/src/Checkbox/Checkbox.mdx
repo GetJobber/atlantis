@@ -38,10 +38,45 @@ import { Checkbox } from "@jobber/components/Checkbox";
 ## Indeterminate
 
 <Playground>
-  <Checkbox checked={true} label="2 selected" indeterminate={true} /> <br />
-  <Checkbox checked={true} label="Item 1" /> <br />
-  <Checkbox checked={true} label="Item 2" /> <br />
-  <Checkbox checked={false} label="Item 3" />
+  {() => {
+    const [items, setItems] = useState([true, false, false]);
+
+    return (
+      <>
+        <Checkbox
+          label="Select All"
+          checked={!items.includes(false)}
+          onClick={toggleAll}
+          indeterminate={items.includes(false) && items.includes(true)}
+        />
+        <ul>
+          {items.map((value, index) => (
+            <li key={index}>
+              <Checkbox
+                label={`Item ${index}`}
+                checked={value}
+                onClick={toggleIndex(index)}
+              />
+            </li>
+          ))}
+        </ul>
+      </>
+    );
+
+    function toggleIndex(index) {
+      return (newValue) => {
+        const updatedItems = Array.from(items);
+        updatedItems[index] = newValue
+        setItems(updatedItems);
+      };
+    }
+
+    function toggleAll(newValue) {
+      setItems(Array(items.length).fill(newValue))
+    }
+
+}}
+
 </Playground>
 
 ## Disabled
@@ -49,7 +84,7 @@ import { Checkbox } from "@jobber/components/Checkbox";
 <Playground>
   <Checkbox
     disabled={true}
-    checked={true}
+    defaultChecked={true}
     label="Subscribe on marketing emails"
   />
 </Playground>
