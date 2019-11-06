@@ -23,7 +23,7 @@ import { Checkbox } from "@jobber/components/Checkbox";
   {() => {
     const [checked, setChecked] = useState(true);
 
-    return <Checkbox checked={checked} label="Save card for future use" onClick={setChecked} />
+    return <Checkbox checked={checked} label="Save card for future use" onChange={setChecked} />
 
 }}
 
@@ -46,7 +46,7 @@ import { Checkbox } from "@jobber/components/Checkbox";
         <Checkbox
           label="Select All"
           checked={!items.includes(false)}
-          onClick={toggleAll}
+          onChange={toggleAll}
           indeterminate={items.includes(false) && items.includes(true)}
         />
         <ul>
@@ -55,7 +55,7 @@ import { Checkbox } from "@jobber/components/Checkbox";
               <Checkbox
                 label={`Item ${index}`}
                 checked={value}
-                onClick={toggleIndex(index)}
+                onChange={toggleIndex(index)}
               />
             </li>
           ))}

@@ -44,7 +44,7 @@ interface CheckboxProps {
    */
   readonly value?: string;
 
-  onClick?(newValue: boolean): void;
+  onChange?(newValue: boolean): void;
 }
 
 export function Checkbox({
@@ -55,7 +55,7 @@ export function Checkbox({
   name,
   value,
   indeterminate = false,
-  onClick,
+  onChange,
 }: CheckboxProps) {
   const wrapperClassName = classnames(
     styles.wrapper,
@@ -95,6 +95,6 @@ export function Checkbox({
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const newChecked = event.currentTarget.checked;
-    onClick && onClick(newChecked);
+    onChange && onChange(newChecked);
   }
 }

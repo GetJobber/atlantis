@@ -32,7 +32,7 @@ describe("Clicking the checkbox it should call the handler", () => {
     const clickHandler = jest.fn();
 
     const { getByLabelText } = render(
-      <Checkbox checked={false} onClick={clickHandler} label="foo" />,
+      <Checkbox checked={false} onChange={clickHandler} label="foo" />,
     );
 
     fireEvent.click(getByLabelText("foo"));
@@ -43,7 +43,7 @@ describe("Clicking the checkbox it should call the handler", () => {
     const clickHandler = jest.fn();
 
     const { getByLabelText } = render(
-      <Checkbox checked={true} onClick={clickHandler} label="foo" />,
+      <Checkbox checked={true} onChange={clickHandler} label="foo" />,
     );
 
     fireEvent.click(getByLabelText("foo"));
