@@ -4,9 +4,16 @@
     https://github.com/commitizen/conventional-commit-types/blob/master/index.json
 
   eg.
-    fix(pencil): stop graphite breaking when too much pressure applied — Patch Release
-    feat(pencil): add 'graphiteWidth' option — (Minor) Feature Release
-    feat(pencil): BREAKING CHANGE: remove graphiteWidth option — (Major) Breaking Release
+    fix(SCOPE): stop graphite breaking when too much pressure applied — Patch Release
+    feat(SCOPE): add 'graphiteWidth' option — (Minor) Feature Release
+    feat(SCOPE): BREAKING CHANGE: remove graphiteWidth option — (Major) Breaking Release
+
+  Valid Scopes:
+    - components
+    - generators
+    - design
+    - eslint
+    - stylelint
 -->
 
 ## Changes
