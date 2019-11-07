@@ -12,12 +12,17 @@ it("renders a Checkbox", () => {
   expect(tree).toMatchSnapshot();
 });
 
-it("renders each variation of checked and indeterminate", () => {
+it("renders each variation of checked, defaultChecked and indeterminate", () => {
   const variations = [
     { checked: true, indeterminate: true },
     { checked: false, indeterminate: true },
     { checked: true, indeterminate: false },
     { checked: false, indeterminate: false },
+
+    { defaultChecked: true, indeterminate: true },
+    { defaultChecked: false, indeterminate: true },
+    { defaultChecked: true, indeterminate: false },
+    { defaultChecked: false, indeterminate: false },
   ];
 
   variations.forEach(variation => {

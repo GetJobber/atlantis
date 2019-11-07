@@ -43,6 +43,7 @@
   opacity: 0;
 }
 
+.input.indeterminate + .checkBox,
 .input:checked + .checkBox {
   border-color: var(--color-green);
   background-color: var(--color-green);
@@ -52,11 +53,13 @@
   box-shadow: 0 0 4px 1px var(--color-outline);
 }
 
+.disabled .input.indeterminate + .checkBox,
 .disabled .input:checked + .checkBox {
   border-color: var(--color-grey--lighter);
   background-color: var(--color-grey--lighter);
 }
 
+.disabled .input.indeterminate + .checkBox > *,
 .disabled .input:checked + .checkBox > * {
   opacity: 1;
 }

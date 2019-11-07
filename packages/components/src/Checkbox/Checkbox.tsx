@@ -12,7 +12,7 @@ interface CheckboxProps {
 
   /**
    * Initial checked value of the checkbox. Only use this when you need to
-   * pre-populate the checked attribute that is not controlled by the components
+   * pre-populate the checked attribute that is not controlled by the component's
    * state. If a state is controlling it, use the `checked` prop instead.
    */
   readonly defaultChecked?: boolean;
@@ -61,6 +61,9 @@ export function Checkbox({
     styles.wrapper,
     disabled && styles.disabled,
   );
+  const inputClassName = classnames(styles.input, {
+    [styles.indeterminate]: indeterminate,
+  });
   const iconName = indeterminate ? "minus2" : "checkmark";
 
   return (
@@ -68,13 +71,9 @@ export function Checkbox({
       <span className={styles.checkHolder}>
         <input
           type="checkbox"
-          checked={checked != undefined ? checked || indeterminate : undefined}
-          defaultChecked={
-            defaultChecked != undefined
-              ? defaultChecked || indeterminate
-              : undefined
-          }
-          className={styles.input}
+          checked={checked}
+          defaultChecked={defaultChecked}
+          className={inputClassName}
           aria-label={label}
           onChange={handleChange}
           value={value}
