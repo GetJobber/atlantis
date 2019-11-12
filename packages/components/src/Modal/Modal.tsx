@@ -1,9 +1,9 @@
 import React, { ReactNode, useEffect } from "react";
-import ReactDOM from "react-dom";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import styles from "./Modal.css";
 import sizes from "./Sizes.css";
+import { CreatePortal } from "./createPortal";
 import { Icon } from "../Icon";
 import { Typography } from "../Typography";
 import { Button, ButtonProps } from "../Button";
@@ -88,8 +88,8 @@ export function Modal({
       )}
     </AnimatePresence>
   );
-
-  return ReactDOM.createPortal(template, document.body);
+  return <CreatePortal>{template}</CreatePortal>;
+  // return ReactDOM.createPortal(template, document.body);
 }
 
 function catchKeyboardEvent(key: string, callback: { (): void }) {
