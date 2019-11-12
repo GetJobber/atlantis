@@ -6,6 +6,7 @@ scopes:
   - base
   - components
   - design
+  - formatters
   - docx
   - eslint
   - stylelint
