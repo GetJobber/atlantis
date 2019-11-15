@@ -3,7 +3,7 @@ import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import styles from "./Modal.css";
 import sizes from "./Sizes.css";
-import { CreatePortal } from "./createPortal";
+import { RootPortal } from "./RootPortal";
 import { Icon } from "../Icon";
 import { Typography } from "../Typography";
 import { Button, ButtonProps } from "../Button";
@@ -88,7 +88,7 @@ export function Modal({
       )}
     </AnimatePresence>
   );
-  return <CreatePortal>{template}</CreatePortal>;
+  return <RootPortal>{template}</RootPortal>;
   // return ReactDOM.createPortal(template, document.body);
 }
 
