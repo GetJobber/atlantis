@@ -1,6 +1,12 @@
 {
-  "packages": [
-    "packages/*"
-  ],
-  "version": "independent"
+  "version": "independent",
+  "packages": ["packages/*"],
+  "command": {
+    "version": {
+      "conventionalCommits": true
+    },
+    "publish": {
+      "ignoreChanges": ["package-lock.json"]
+    }
+  }
 }
