@@ -63,7 +63,8 @@ export function Tabs({ children }: TabsProps) {
             <InternalTab
               label={tab.props.label}
               selected={activeTab === index}
-              onClick={activateTab(index)}
+              activateTab={activateTab(index)}
+              onClick={tab.props.onClick}
             />
           ))}
         </div>
@@ -78,6 +79,7 @@ export function Tabs({ children }: TabsProps) {
 interface TabProps {
   readonly label: string;
   readonly children: ReactNode | ReactNode[];
+  onClick?(): void;
 }
 
 export function Tab({ label }: TabProps) {
@@ -87,15 +89,28 @@ export function Tab({ label }: TabProps) {
 interface InternalTabProps {
   readonly label: string;
   readonly selected: boolean;
-  onClick(): void;
+  activateTab(): void;
+  onClick?(): void;
 }
 
-export function InternalTab({ label, selected, onClick }: InternalTabProps) {
+export function InternalTab({
+  label,
+  selected,
+  activateTab,
+  onClick = () => undefined,
+}: InternalTabProps) {
   const className = classnames(styles.tab, { [styles.selected]: selected });
   const color = selected ? "green" : undefined;
-
   return (
-    <button type="button" role="tab" className={className} onClick={onClick}>
+    <button
+      type="button"
+      role="tab"
+      className={className}
+      onClick={() => {
+        activateTab();
+        onClick();
+      }}
+    >
       <Typography element="span" size="base" textColor={color}>
         {label}
       </Typography>
