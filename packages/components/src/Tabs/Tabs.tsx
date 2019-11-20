@@ -97,7 +97,9 @@ export function InternalTab({
   label,
   selected,
   activateTab,
-  onClick = () => undefined,
+  onClick = () => {
+    return;
+  },
 }: InternalTabProps) {
   const className = classnames(styles.tab, { [styles.selected]: selected });
   const color = selected ? "green" : undefined;
