@@ -6,7 +6,7 @@
       "conventionalCommits": true
     },
     "publish": {
-      "ignoreChanges": ["package-lock.json"]
+      "ignoreChanges": ["package-lock.json", "**/package-lock.json"]
     }
   }
 }
