@@ -12,7 +12,9 @@ import { Spinner } from ".";
 
 <ComponentStatus stage="pre" responsive="no" accessible="no" />
 
-Write a description about what Spinner component is trying to achieve.
+Spinners are used to visualize an undetermined load time for a section of a page
+and prevent double clicking of a UI element by overlaying it while its action is
+processing.
 
 ```ts
 import { Spinner } from "@jobber/components/Spinner";
@@ -37,8 +39,16 @@ import { Spinner } from "@jobber/components/Spinner";
 
 ## Small
 
-Use `loud` to indicate that a component is yelling.
+Use `small` to make the spinner small.
 
 <Playground>
-  <Spinner />
+  <Spinner small={true} />
+</Playground>
+
+## Inline
+
+Use `inline` to render the spinner inline.
+
+<Playground>
+  <Spinner inline={true} />
 </Playground>

@@ -5,7 +5,6 @@
   opacity: 0.6;
 }
 
-/* TODO: research react animations */
 .spinner:after {
   content: "";
   display: block;
@@ -53,4 +52,35 @@
     -webkit-transform: rotate(359deg);
     transform: rotate(359deg);
   }
+}
+
+/* -------------------------------------------------------------------------
+   Small Spinner
+   ------------------------------------------------------------------------- */
+.small:after {
+  top: 50%;
+  left: 50%;
+  width: 1rem;
+  height: 1rem;
+  -webkit-box-shadow: 0px 0px 1px 2px rgba(1, 27, 37, 0.4);
+  box-shadow: 0px 0px 1px 2px rgba(1, 27, 37, 0.4);
+  margin: -0.5rem 0 0 -0.5rem;
+  border-width: 0.25rem;
+}
+
+/* -------------------------------------------------------------------------
+   Inline Spinner
+   ------------------------------------------------------------------------- */
+.inline {
+  display: inline-block;
+}
+
+.spinner.inline {
+  width: 3rem;
+  height: 3rem;
+}
+
+.spinner.inline.small {
+  width: 1.5rem;
+  height: 1.5rem;
 }
