@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the inline spinner 1`] = `
+<div
+  className="spinner inline"
+/>
+`;
+
+exports[`renders the small spinner 1`] = `
+<div
+  className="spinner small"
+/>
+`;
+
+exports[`renders the spinner 1`] = `
+<div
+  className="spinner"
+/>
+`;
