@@ -16,6 +16,10 @@
     - stylelint
 -->
 
+## Motivations
+
+<!-- Why did you do what you did? -->
+
 ## Changes
 
 <!-- https://keepachangelog.com/en/1.0.0/ -->
