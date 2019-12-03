@@ -1,7 +1,6 @@
 /* eslint-env node */
 
 module.exports = function(plop, config) {
-  // create your generators here
   const { basePath, templateGlob } = Object.assign(
     {
       basePath: "packages/components/src",
