@@ -2,9 +2,10 @@
 
 module.exports = function(plop, config) {
   // create your generators here
-  const { basePath } = Object.assign(
+  const { basePath, templateGlob } = Object.assign(
     {
       basePath: "packages/components/src",
+      templateGlob: "*",
     },
     config || {},
   );
@@ -30,7 +31,7 @@ module.exports = function(plop, config) {
         type: "addMany",
         destination: `{{path}}/{{name}}/`,
         base: "templates/component",
-        templateFiles: "templates/component/*",
+        templateFiles: `templates/component/${templateGlob}`,
       },
     ],
   });
