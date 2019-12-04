@@ -19,7 +19,6 @@
       "autoFix": true
     }
   ],
-  "prettier.eslintIntegration": true,
   "peacock.color": "#F4E465",
   "workbench.colorCustomizations": {
     "statusBar.background": "#f4e465",
