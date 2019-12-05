@@ -16,6 +16,7 @@ interface InputPasswordProps
     >
   > {
   value?: string;
+  onChange?(newValue: string): void;
 }
 
 export function InputPassword(props: InputPasswordProps) {
