@@ -6,6 +6,8 @@ import { Content } from "../Content";
 import { InputPassword } from "../InputPassword";
 import { Text } from "../Text";
 
+type PasswordTuple = [string, boolean];
+
 interface PasswordEditorProps {
   /**
    * Placeholder Text
@@ -21,7 +23,7 @@ interface PasswordEditorProps {
   /**
    * Change handler that indicates the current value and the secure status of the password.
    */
-  onChange(newValue: [string, boolean]): void;
+  onChange(newValue: PasswordTuple): void;
 }
 
 const secureness = 3;
