@@ -1,7 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import styles from "./PasswordEditor.css";
-import { getSecureness } from "./getSecureness";
+import { testPassword } from "./testPassword";
 import { Content } from "../Content";
 import { InputPassword } from "../InputPassword";
 import { Text } from "../Text";
@@ -31,7 +31,7 @@ export function PasswordEditor({
   value,
   onChange,
 }: PasswordEditorProps) {
-  const { score, suggestion, warning } = getSecureness(value);
+  const { score, suggestion, warning } = testPassword(value);
 
   const strengthGaugeClass = classnames(
     styles.strengthGauge,
@@ -56,7 +56,7 @@ export function PasswordEditor({
   );
 
   function handleChange(newValue: string) {
-    const { score: newScore } = getSecureness(newValue);
+    const { score: newScore } = testPassword(newValue);
     onChange && onChange([newValue, newScore >= secureness]);
   }
 }

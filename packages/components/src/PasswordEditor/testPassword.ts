@@ -1,6 +1,6 @@
 import zxcvbn from "zxcvbn";
 
-export function getSecureness(
+export function testPassword(
   password: string,
 ): {
   score: number;
