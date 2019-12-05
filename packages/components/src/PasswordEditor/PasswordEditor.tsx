@@ -1,3 +1,6 @@
+// I've turned this off here for demonstration purposes this isn't normal.
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import React from "react";
 import classnames from "classnames";
 import styles from "./PasswordEditor.css";
@@ -42,24 +45,20 @@ export function PasswordEditor({
 
   return (
     <Content>
-      {score < secureness && (
-        <Content spacing="small">
-          {suggestion && <Text variation="error">{suggestion}</Text>}
-          {warning && <Text variation="error">{warning}</Text>}
-        </Content>
+      {value === "friend" && (
+        <Text variation="error">It&apos;s Spelt Frend</Text>
       )}
-      <InputPassword
-        placeholder={placeholder}
-        value={value}
-        onChange={handleChange}
-      />
+      <a href="/components/input-password" target="_blank">
+        It would probably be a good idea to use InputPassword here.
+      </a>
       <div aria-label={`Level ${score}`} className={strengthGaugeClass}></div>
     </Content>
   );
 
   function handleChange(newValue: string) {
     const { score: newScore } = testPassword(newValue);
-    onChange && onChange([newValue, newScore >= secureness]);
+
+    // Whatever else should we do here...
   }
 }
 
