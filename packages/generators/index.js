@@ -1,4 +1,7 @@
 /* eslint-env node */
+/* eslint-disable @typescript-eslint/no-var-requires */
+
+const { PathPrompt } = require("inquirer-path");
 
 module.exports = function(plop, config) {
   const { basePath, templateGlob } = Object.assign(
@@ -9,6 +12,9 @@ module.exports = function(plop, config) {
     config || {},
   );
 
+  // Add PathPrompt to Inquirer.js
+  plop.setPrompt("path", PathPrompt);
+
   plop.setGenerator("component", {
     description: "Generate a component.",
     prompts: [
@@ -18,11 +24,11 @@ module.exports = function(plop, config) {
         message: "Component Name:",
       },
       {
-        type: "input",
+        type: "path",
         name: "path",
         message: "Component Path:",
-        transformer: input => `./${basePath}/${input}`,
-        filter: input => `./${basePath}/${input}`,
+        default: basePath,
+        directoryOnly: true,
       },
     ],
     actions: [
