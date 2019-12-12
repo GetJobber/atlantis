@@ -24,5 +24,7 @@
     "statusBar.background": "#f4e465",
     "statusBarItem.hoverBackground": "#f1dc35",
     "statusBar.foreground": "#15202b"
-  }
+  },
+  "peacock.affectActivityBar": false,
+  "peacock.affectTitleBar": false
 }
