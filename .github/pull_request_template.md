@@ -8,7 +8,7 @@
     feat(SCOPE): add 'graphiteWidth' option — (Minor) Feature Release
     feat(SCOPE): BREAKING CHANGE: remove graphiteWidth option — (Major) Breaking Release
 
-  Valid Scopes:
+  Where SCOPE above is one of:
     - components
     - generators
     - design
