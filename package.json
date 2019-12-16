@@ -7,7 +7,8 @@
     "start": "docz dev",
     "start:withPrivateComponents": "PRIVATE_COMPONENTS=visible docz dev",
     "test": "jest",
-    "plop": "plop",
+    "plop": "echo '🚧 `npm run plop` is now `npm run generate`'",
+    "generate": "plop -- --path='./'",
     "build": "docz build",
     "clean": "rm -rf .docz",
     "lint:js": "eslint --ext .js,.jsx,.ts,.tsx .",
@@ -35,6 +36,7 @@
     "@babel/preset-typescript": "^7.3.3",
     "@jobber/design": "file:packages/design",
     "@jobber/eslint-config": "file:packages/eslint-config",
+    "@jobber/generators": "file:packages/generators",
     "@jobber/stylelint-config": "file:packages/stylelint-config",
     "@testing-library/react": "^9.3.0",
     "@testing-library/user-event": "^4.2.4",
@@ -53,8 +55,8 @@
     "jest-dom": "^3.5.0",
     "jest-junit": "^6.4.0",
     "lerna": "^3.15.0",
-    "lint-staged": "^9.2.5",
-    "plop": "^2.3.0",
+    "lint-staged": "^9.4.2",
+    "plop": "^2.5.3",
     "postcss": "^7.0.17",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.6.0",
@@ -62,7 +64,7 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "style-loader": "^0.23.1",
-    "stylelint": "^10.1.0",
+    "stylelint": "^11.1.1",
     "stylelint-junit-formatter": "^0.2.1",
     "typed-css-modules-loader": "^0.0.17",
     "typescript": "^3.5.2"
@@ -71,21 +73,6 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --format=codeFrame --fix",
-      "git add",
-      "jest --bail --findRelatedTests"
-    ],
-    "*.css": [
-      "stylelint --fix",
-      "git add"
-    ],
-    "*.{md,mdx}": [
-      "prettier --write",
-      "git add"
-    ]
   },
   "browserslist": [
     "> 1%",
