@@ -3,15 +3,15 @@ import classnames from "classnames";
 import styles from "./Spinner.css";
 
 export interface SpinnerProps {
-  readonly small?: boolean;
+  readonly size?: "small" | "base";
   readonly inline?: boolean;
 }
 
-export function Spinner({ small, inline }: SpinnerProps) {
-  const className = classnames(styles.spinner, {
-    [styles.small]: small,
+export function Spinner({ size = "base", inline }: SpinnerProps) {
+  const spinnerStyles = classnames(styles.spinner, {
+    [styles.small]: size === "small",
     [styles.inline]: inline,
   });
 
-  return <div className={className}></div>;
+  return <div className={spinnerStyles}></div>;
 }
