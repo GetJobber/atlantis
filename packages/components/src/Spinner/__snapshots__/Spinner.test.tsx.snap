@@ -8,7 +8,7 @@ exports[`renders the inline spinner 1`] = `
 
 exports[`renders the small spinner 1`] = `
 <div
-  className="spinner small"
+  className="spinner"
 />
 `;
 
