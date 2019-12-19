@@ -119,8 +119,7 @@
 
 .small {
   min-height: calc(var(--base-unit) * 1.5);
-  padding-left: var(--space-small);
-  padding-right: var(--space-small);
+  padding: var(--space-smaller) var(--space-small);
 }
 
 .base {
@@ -130,8 +129,7 @@
 
 .large {
   min-height: calc(var(--base-unit) * 3);
-  padding-left: var(--space-base);
-  padding-right: var(--space-base);
+  padding: var(--space-small) var(--space-base);
 }
 
 .hasIcon {
