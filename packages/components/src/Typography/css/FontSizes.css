@@ -29,7 +29,7 @@
 
 .small {
   font-size: var(--typography--fontSize-small);
-  line-height: var(--typography--lineHeight-tighter);
+  line-height: var(--typography--lineHeight-tiny);
 }
 
 .smaller {

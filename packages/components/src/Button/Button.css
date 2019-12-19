@@ -16,7 +16,7 @@
   display: inline-flex;
   min-height: calc(var(--base-unit) * 2.25);
   box-sizing: border-box;
-  padding: var(--space-small) calc(var(--space-base) - 4px);
+  padding: var(--space-smaller) calc(var(--space-base) - 4px);
   border: 1px solid transparent;
   border-radius: var(--radius-base);
   color: transparent;
@@ -119,17 +119,19 @@
 
 .small {
   min-height: calc(var(--base-unit) * 1.5);
-  padding: var(--space-smaller) var(--space-small);
+  padding-left: var(--space-small);
+  padding-right: var(--space-small);
 }
 
 .base {
   min-height: calc(var(--base-unit) * 2.25);
-  padding: var(--space-small) calc(var(--space-base) - 4px);
+  padding: var(--space-smaller) calc(var(--space-base) - 4px);
 }
 
 .large {
   min-height: calc(var(--base-unit) * 3);
-  padding: var(--space-small) var(--space-base);
+  padding-left: var(--space-base);
+  padding-right: var(--space-base);
 }
 
 .hasIcon {

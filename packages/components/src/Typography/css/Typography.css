@@ -18,6 +18,7 @@
   --typography--lineHeight-tighter: 1.143;
   --typography--lineHeight-tightest: 1.12;
   --typography--lineHeight-miniscule: 1.08;
+  --typography--lineHeight-tiny: 1;
 }
 
 @media (--handhelds) {
