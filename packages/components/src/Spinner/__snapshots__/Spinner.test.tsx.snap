@@ -2,18 +2,24 @@
 
 exports[`renders the inline spinner 1`] = `
 <div
+  aria-busy="false"
   className="spinner inline"
+  role="none"
 />
 `;
 
 exports[`renders the small spinner 1`] = `
 <div
+  aria-busy="false"
   className="spinner"
+  role="none"
 />
 `;
 
 exports[`renders the spinner 1`] = `
 <div
+  aria-busy="false"
   className="spinner"
+  role="none"
 />
 `;
