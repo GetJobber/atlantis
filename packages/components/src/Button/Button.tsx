@@ -59,7 +59,7 @@ export function Button({
   url,
   variation = "work",
 }: ButtonPropOptions) {
-  const buttonClassNames = classnames(styles.button, size && styles[size], {
+  const buttonClassNames = classnames(styles.button, styles[size], {
     [styles.hasIcon]: icon,
     [styles.iconOnRight]: iconOnRight,
     [styles[variation]]: variation,
