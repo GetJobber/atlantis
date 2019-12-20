@@ -11,7 +11,7 @@ exports[`renders the inline spinner 1`] = `
 exports[`renders the small spinner 1`] = `
 <div
   aria-busy="false"
-  className="spinner"
+  className="spinner small"
   role="none"
 />
 `;

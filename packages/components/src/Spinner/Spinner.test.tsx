@@ -8,7 +8,7 @@ it("renders the spinner", () => {
 });
 
 it("renders the small spinner", () => {
-  const tree = renderer.create(<Spinner small={true} />).toJSON();
+  const tree = renderer.create(<Spinner size={"small"} />).toJSON();
   expect(tree).toMatchSnapshot();
 });
 
