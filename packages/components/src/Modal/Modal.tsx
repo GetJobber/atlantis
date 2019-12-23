@@ -89,7 +89,6 @@ export function Modal({
     </AnimatePresence>
   );
   return <RootPortal>{template}</RootPortal>;
-  // return ReactDOM.createPortal(template, document.body);
 }
 
 function catchKeyboardEvent(key: string, callback: { (): void }) {
