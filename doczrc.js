@@ -150,7 +150,10 @@ export default {
   port: 3333,
   menu: ["Atlantis", "Patterns", "Components"],
   files: "{README.md,CONTRIBUTING.md,**/*.mdx}",
-  ignore: [...privateComponentReadmies(), "./plop/templates/**/*"],
+  ignore: [
+    ...privateComponentReadmies(),
+    "./packages/generators/templates/**/*",
+  ],
   codeSandbox: false,
   public: "public",
   themeConfig,

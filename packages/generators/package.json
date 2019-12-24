@@ -1,0 +1,10 @@
+{
+  "name": "@jobber/generators",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {},
+  "dependencies": {
+    "inquirer-path": "^1.0.0-beta5"
+  }
+}

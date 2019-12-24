@@ -1,0 +1,91 @@
+---
+name: Checkbox
+menu: Components
+route: /components/checkbox
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { Checkbox } from ".";
+import { useState } from "react";
+
+# Checkbox
+
+<ComponentStatus stage="ready" responsive="yes" accessible="yes" />
+
+Checkboxes let a user select one or more items from a set of options. If you
+intending to turn an option on or off consider a [Switch](switch) instead.
+
+```ts
+import { Checkbox } from "@jobber/components/Checkbox";
+```
+
+<Playground>
+  {() => {
+    const [checked, setChecked] = useState(true);
+
+    return <Checkbox checked={checked} label="Save card for future use" onChange={setChecked} />
+
+}}
+
+</Playground>
+
+## Props
+
+<Props of={Checkbox} />
+
+---
+
+## Indeterminate
+
+<Playground>
+  {() => {
+    const [items, setItems] = useState([true, false, false]);
+
+    return (
+      <>
+        <Checkbox
+          label="Select All"
+          checked={!items.includes(false)}
+          onChange={toggleAll}
+          indeterminate={items.includes(false) && items.includes(true)}
+        />
+        <ul>
+          {items.map((value, index) => (
+            <li key={index}>
+              <Checkbox
+                label={`Item ${index}`}
+                checked={value}
+                onChange={toggleIndex(index)}
+              />
+            </li>
+          ))}
+        </ul>
+      </>
+    );
+
+    function toggleIndex(index) {
+      return (newValue) => {
+        const updatedItems = Array.from(items);
+        updatedItems[index] = newValue
+        setItems(updatedItems);
+      };
+    }
+
+    function toggleAll(newValue) {
+      setItems(Array(items.length).fill(newValue))
+    }
+
+}}
+
+</Playground>
+
+## Disabled
+
+<Playground>
+  <Checkbox
+    disabled={true}
+    defaultChecked={true}
+    label="Subscribe on marketing emails"
+  />
+</Playground>
