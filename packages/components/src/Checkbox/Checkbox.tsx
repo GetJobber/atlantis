@@ -78,6 +78,7 @@ export function Checkbox({
           onChange={handleChange}
           value={value}
           name={name}
+          disabled={disabled}
         />
         <span className={styles.checkBox}>
           <Icon name={iconName} size="small" color="white" />
