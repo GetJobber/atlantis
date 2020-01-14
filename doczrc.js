@@ -29,7 +29,7 @@ const modifyBundlerConfig = config => {
         loader: require.resolve("css-loader"),
         options: {
           modules: {
-            localIdentName: "[name]__[local]__[hash:md5:5]",
+            localIdentName: "[name]__[local]__[hash:base64]",
           },
           importLoaders: 1,
         },
