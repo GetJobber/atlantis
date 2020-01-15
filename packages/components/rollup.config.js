@@ -12,7 +12,7 @@ export default {
       declarationDir: "dist",
     }),
     postcss({
-      modules: true,
+      modules: { generateScopedName: "[hash:base64]" },
       plugins: [
         require("postcss-import"),
         require("autoprefixer"),
