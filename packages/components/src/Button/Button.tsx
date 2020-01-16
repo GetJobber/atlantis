@@ -28,12 +28,13 @@ interface BaseActionProps extends ButtonFoundationProps {
 }
 
 interface DestructiveActionProps extends ButtonFoundationProps {
-  readonly variation?: "destructive";
+  readonly variation: "destructive";
   readonly type?: "primary" | "secondary";
 }
 
 interface CancelActionProps extends ButtonFoundationProps {
-  readonly variation?: "cancel";
+  readonly variation: "cancel";
+  readonly type?: "secondary";
 }
 
 export type ButtonProps = XOR<
