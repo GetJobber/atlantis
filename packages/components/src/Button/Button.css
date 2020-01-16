@@ -16,11 +16,11 @@
   display: inline-flex;
   min-height: calc(var(--base-unit) * 2.25);
   box-sizing: border-box;
-  padding: var(--space-small) calc(var(--space-base) - 4px);
   border: 1px solid transparent;
   border-radius: var(--radius-base);
   color: transparent;
   -webkit-font-smoothing: antialiased;
+  text-align: center;
   text-decoration: none;
   vertical-align: middle;
   background-color: transparent;
@@ -119,21 +119,21 @@
 
 .small {
   min-height: calc(var(--base-unit) * 1.5);
-  padding: var(--space-smaller) var(--space-small);
+  padding: 0 var(--space-small);
 }
 
 .base {
   min-height: calc(var(--base-unit) * 2.25);
-  padding: var(--space-small) calc(var(--space-base) - 4px);
+  padding: 0 calc(var(--space-base) - 4px);
 }
 
 .large {
   min-height: calc(var(--base-unit) * 3);
-  padding: var(--space-small) var(--space-base);
+  padding: 0 var(--space-base);
 }
 
 .hasIcon {
-  padding: var(--space-smaller) var(--space-base);
+  padding: 0 var(--space-base);
 }
 
 /* Icon */

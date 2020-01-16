@@ -96,7 +96,13 @@ export interface FormFieldProps {
   /**
    * Determines what kind of form field should the component give you.
    */
-  readonly type?: "text" | "number" | "time" | "textarea" | "select";
+  readonly type?:
+    | "text"
+    | "password"
+    | "number"
+    | "time"
+    | "textarea"
+    | "select";
 
   /**
    * **EXPERIMENTAL** This feature is still under development.

@@ -14,24 +14,132 @@
   --card--accent-color: var(--color-invoice);
 }
 
-.indigo {
-  --card--accent-color: var(--color-indigo);
+.outlineColor {
+  --card--accent-color: var(--color-outline);
+}
+
+.errorColor {
+  --card--accent-color: var(--color-error);
 }
 
 .blue {
   --card--accent-color: var(--color-blue);
 }
 
+.blueLight {
+  --card--accent-color: var(--color-blue--light);
+}
+
 .blueLighter {
   --card--accent-color: var(--color-blue--lighter);
 }
 
-.greyBlue {
-  --card--accent-color: var(--color-grey-blue);
+.blueLightest {
+  --card--accent-color: var(--color-blue--lightest);
 }
 
-.greyDark {
-  --card--accent-color: var(--color-grey--dark);
+.blueDark {
+  --card--accent-color: var(--color-blue--dark);
+}
+
+.green {
+  --card--accent-color: var(--color-green);
+}
+
+.greenLight {
+  --card--accent-color: var(--color-green--light);
+}
+
+.greenLighter {
+  --card--accent-color: var(--color-green--lighter);
+}
+
+.greenLightest {
+  --card--accent-color: var(--color-green--lightest);
+}
+
+.greenDark {
+  --card--accent-color: var(--color-green--dark);
+}
+
+.lime {
+  --card--accent-color: var(--color-lime);
+}
+
+.limeLight {
+  --card--accent-color: var(--color-lime--light);
+}
+
+.limeLighter {
+  --card--accent-color: var(--color-lime--lighter);
+}
+
+.limeLightest {
+  --card--accent-color: var(--color-lime--lightest);
+}
+
+.limeDark {
+  --card--accent-color: var(--color-lime--lightest);
+}
+
+.yellowGreen {
+  --card--accent-color: var(--color-yellowGreen);
+}
+
+.yellowGreenLight {
+  --card--accent-color: var(--color-yellowGreen--light);
+}
+
+.yellowGreenLighter {
+  --card--accent-color: var(--color-yellowGreen--lighter);
+}
+
+.yellowGreenLightest {
+  --card--accent-color: var(--color-yellowGreen--lightest);
+}
+
+.yellowGreenDark {
+  --card--accent-color: var(--color-yellowGreen--dark);
+}
+
+.yellow {
+  --card--accent-color: var(--color-yellow);
+}
+
+.yellowLight {
+  --card--accent-color: var(--color-yellow--light);
+}
+
+.yellowLighter {
+  --card--accent-color: var(--color-yellow--lighter);
+}
+
+.yellowLightest {
+  --card--accent-color: var(--color-yellow--lightest);
+}
+
+.yellowDark {
+  --card--accent-color: var(--color-yellow--dark);
+}
+
+.red {
+  --card--accent-color: var(--color-red);
+}
+
+.redLight {
+  --card--accent-color: var(--color-red--light);
+}
+
+.redLighter {
+  --card--accent-color: var(--color-red--light);
+}
+
+.redLightest {
+  --card--accent-color: var(--color-red--lightest);
+}
+
+.redDark {
+  --card--accent-color: var(--color-red--dark);
 }
 
 .grey {
@@ -46,56 +154,192 @@
   --card--accent-color: var(--color-grey--lighter);
 }
 
-.green {
-  --card--accent-color: var(--color-green);
+.greyLightest {
+  --card--accent-color: var(--color-grey--lightest);
 }
 
-.lime {
-  --card--accent-color: var(--color-lime);
+.greyDark {
+  --card--accent-color: var(--color-grey--dark);
 }
 
-.yellowGreen {
-  --card--accent-color: var(--color-yellow--green);
+.greyBlue {
+  --card--accent-color: var(--color-greyBlue);
 }
 
-.yellow {
-  --card--accent-color: var(--color-yellow);
+.greyBlueLight {
+  --card--accent-color: var(--color-greyBlue--light);
 }
 
-.red {
-  --card--accent-color: var(--color-red);
+.greyBlueLighter {
+  --card--accent-color: var(--color-greyBlue--lighter);
 }
 
-.orange {
-  --card--accent-color: var(--color-orange);
+.greyBlueLightest {
+  --card--accent-color: var(--color-greyBlue--lightest);
 }
 
-.pink {
-  --card--accent-color: var(--color-pink);
+.greyBlueDark {
+  --card--accent-color: var(--color-greyBlue--dark);
+}
+
+.lightBlue {
+  --card--accent-color: var(--color-lightBlue);
+}
+
+.lightBlueLight {
+  --card--accent-color: var(--color-lightBlue--light);
+}
+
+.lightBlueLighter {
+  --card--accent-color: var(--color-lightBlue--lighter);
+}
+
+.lightBlueLightest {
+  --card--accent-color: var(--color-lightBlue--lightest);
+}
+
+.lightBlueDark {
+  --card--accent-color: var(--color-lightBlue--dark);
 }
 
 .purple {
   --card--accent-color: var(--color-purple);
 }
 
-.navy {
-  --card--accent-color: var(--color-navy);
+.purpleLight {
+  --card--accent-color: var(--color-purple--light);
 }
 
-.lightBlue {
-  --card--accent-color: var(--color-light-blue);
+.purpleLighter {
+  --card--accent-color: var(--color-purple--lighter);
 }
 
-.lightBlueLighter {
-  --card--accent-color: var(--color-light-blue--lighter);
+.purpleLightest {
+  --card--accent-color: var(--color-purple--lightest);
+}
+
+.purpleDark {
+  --card--accent-color: var(--color-purple--dark);
+}
+
+.pink {
+  --card--accent-color: var(--color-pink);
+}
+
+.pinkLight {
+  --card--accent-color: var(--color-pink--light);
+}
+
+.pinkLighter {
+  --card--accent-color: var(--color-pink--lighter);
+}
+
+.pinkLightest {
+  --card--accent-color: var(--color-pink--lightest);
+}
+
+.pinkDark {
+  --card--accent-color: var(--color-pink--dark);
 }
 
 .teal {
   --card--accent-color: var(--color-teal);
 }
 
+.tealLight {
+  --card--accent-color: var(--color-teal--light);
+}
+
+.tealLighter {
+  --card--accent-color: var(--color-teal--lighter);
+}
+
+.tealLightest {
+  --card--accent-color: var(--color-teal--lightest);
+}
+
+.tealDark {
+  --card--accent-color: var(--color-teal--dark);
+}
+
+.orange {
+  --card--accent-color: var(--color-orange);
+}
+
+.orangeLight {
+  --card--accent-color: var(--color-orange--light);
+}
+
+.orangeLighter {
+  --card--accent-color: var(--color-orange--lighter);
+}
+
+.orangeLightest {
+  --card--accent-color: var(--color-orange--lightest);
+}
+
+.orangeDark {
+  --card--accent-color: var(--color-orange--dark);
+}
+
 .brown {
   --card--accent-color: var(--color-brown);
+}
+
+.brownLight {
+  --card--accent-color: var(--color-brown--light);
+}
+
+.brownLighter {
+  --card--accent-color: var(--color-brown--lighter);
+}
+
+.brownLightest {
+  --card--accent-color: var(--color-brown--lightest);
+}
+
+.brownDark {
+  --card--accent-color: var(--color-brown--dark);
+}
+
+.navy {
+  --card--accent-color: var(--color-navy);
+}
+
+.navyLight {
+  --card--accent-color: var(--color-navy--light);
+}
+
+.navyLighter {
+  --card--accent-color: var(--color-navy--lighter);
+}
+
+.navyLightest {
+  --card--accent-color: var(--color-navy--lightest);
+}
+
+.navyDark {
+  --card--accent-color: var(--color-navy--dark);
+}
+
+.indigo {
+  --card--accent-color: var(--color-indigo);
+}
+
+.indigoLight {
+  --card--accent-color: var(--color-indigo--light);
+}
+
+.indigoLighter {
+  --card--accent-color: var(--color-indigo--lighter);
+}
+
+.indigoLightest {
+  --card--accent-color: var(--color-indigo--lightest);
+}
+
+.indigoDark {
+  --card--accent-color: var(--color-indigo--dark);
 }
 
 .white {

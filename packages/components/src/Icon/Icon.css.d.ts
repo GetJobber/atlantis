@@ -1,6 +1,7 @@
 export const icon: string;
 export const longArrowUp: string;
 export const longArrowDown: string;
+export const thumbsDown: string;
 export const person: string;
 export const clients: string;
 export const property: string;

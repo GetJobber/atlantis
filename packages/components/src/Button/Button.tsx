@@ -2,7 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
 import styles from "./Button.css";
-import { Typography, TypographyOptions } from "../Typography";
+import { Typography } from "../Typography";
 import { Icon, IconNames } from "../Icon";
 
 interface ButtonFoundationProps {
@@ -41,10 +41,6 @@ export type ButtonProps = XOR<
   XOR<BaseActionProps, XOR<DestructiveActionProps, CancelActionProps>>
 >;
 
-interface TypeMap {
-  [type: string]: TypographyOptions;
-}
-
 export function Button({
   ariaControls,
   ariaHaspopup,
@@ -63,7 +59,7 @@ export function Button({
   url,
   variation = "work",
 }: ButtonProps) {
-  const buttonClassNames = classnames(styles.button, size && styles[size], {
+  const buttonClassNames = classnames(styles.button, styles[size], {
     [styles.hasIcon]: icon,
     [styles.iconOnRight]: iconOnRight,
     [styles[variation]]: variation,

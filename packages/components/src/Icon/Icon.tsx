@@ -10,7 +10,8 @@ export type IconNames =
   | "longArrowUp"
   | "longArrowDown"
   | "remove"
-  | "truck";
+  | "truck"
+  | "thumbsDown";
 export type IconColorNames = keyof typeof colors;
 
 interface IconProps {
@@ -42,6 +43,7 @@ export function Icon({ name, color, customColor, size = "base" }: IconProps) {
   const svgClassNames = classnames(styles.icon, sizes[size], {
     [styles.longArrowUp]: name === "longArrowUp",
     [styles.longArrowDown]: name === "longArrowDown",
+    [styles.thumbsDown]: name === "thumbsDown",
   });
 
   let icon;
@@ -80,6 +82,8 @@ function mapToCorrectIcon(name: IconNames) {
       return "backArrow";
     case "remove":
       return "cross";
+    case "thumbsDown":
+      return "thumbsUp";
     default:
       return name;
   }

@@ -28,7 +28,9 @@ const modifyBundlerConfig = config => {
       {
         loader: require.resolve("css-loader"),
         options: {
-          modules: true,
+          modules: {
+            localIdentName: "[name]__[local]__[hash:base64]",
+          },
           importLoaders: 1,
         },
       },
@@ -90,9 +92,16 @@ const themeConfig = {
       text-transform: uppercase;
     `,
     h3: css`
-      margin: 0 0 16px;
+      margin: 32px 0 16px;
       font-family: ${fonts.display};
       font-size: 20px;
+      line-height: 1.2em;
+      font-weight: 600;
+    `,
+    h4: css`
+      margin: 0 0 16px;
+      font-family: ${fonts.display};
+      font-size: 18px;
       line-height: 1.2em;
       font-weight: 600;
     `,
@@ -143,7 +152,10 @@ export default {
   port: 3333,
   menu: ["Atlantis", "Patterns", "Components"],
   files: "{README.md,CONTRIBUTING.md,**/*.mdx}",
-  ignore: [...privateComponentReadmies(), "./plop/templates/**/*"],
+  ignore: [
+    ...privateComponentReadmies(),
+    "./packages/generators/templates/**/*",
+  ],
   codeSandbox: false,
   public: "public",
   themeConfig,

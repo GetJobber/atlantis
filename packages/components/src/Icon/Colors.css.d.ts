@@ -8,3 +8,4 @@ export const green: string;
 export const yellow: string;
 export const red: string;
 export const navy: string;
+export const orange: string;
