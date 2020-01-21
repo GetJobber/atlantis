@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file. See [Conven
 
 ## [1.7.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.7.0...@jobber/components@1.7.1) (2019-12-20)
 
-**Note:** Version bump only for package @jobber/components
+### Bug Fixes
+
+- **components:** Properly handle multiline buttons
+  ([#185](https://github.com/GetJobber/atlantis/issues/185))
+  ([0e5b743](https://github.com/GetJobber/atlantis/commit/0e5b743))
 
 ## [1.7.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.6.0...@jobber/components@1.7.0) (2019-12-16)
 
