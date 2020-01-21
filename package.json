@@ -18,7 +18,8 @@
     "lint:fix": "npm run lint:js -- --fix && npm run lint:css -- --fix && npm run lint:markdown -- --write",
     "install": "lerna bootstrap",
     "release-the-kraken": "npm ci && lerna publish",
-    "prerelease": "lerna publish --canary --dist-tag next --preid pre"
+    "prerelease": "lerna publish --canary --dist-tag next --preid pre",
+    "lerna:version": "lerna version --yes --no-push --no-git-tag-version"
   },
   "repository": {
     "type": "git",
