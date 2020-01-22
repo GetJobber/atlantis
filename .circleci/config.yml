@@ -177,7 +177,8 @@ workflows:
             branches:
               only: "release-the-releasing"
           requires:
-            - lint_javascript
-            - lint_css
-            - test
-            - build_docs
+            - install_dependencies
+            # - lint_javascript
+            # - lint_css
+            # - test
+            # - build_docs
