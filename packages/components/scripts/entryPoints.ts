@@ -1,4 +1,4 @@
-#!/usr/bin/env -S npx ts-node  --project ../../tsconfig.bin.json
+#!/usr/bin/env ts-node  --project ../../tsconfig.bin.json
 
 /* eslint-disable no-console */
 

@@ -10,9 +10,9 @@
     "build:cssTypes": "tcm src",
     "convertIcoMoon": "scripts/convertIcoMoon.ts",
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
-    "prepublishOnly": "scripts/entryPoints.ts",
+    "prepublishOnly": "ts-node --project ../../tsconfig.bin.json scripts/entryPoints.ts",
     "prepare": "npm run clean; npm run build",
-    "postpublish": "scripts/entryPoints.ts clean"
+    "postpublish": "ts-node --project ../../tsconfig.bin.json scripts/entryPoints.ts clean"
   },
   "files": [
     "*.js",
