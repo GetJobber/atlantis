@@ -9,7 +9,10 @@
   --button--color-destructive--hover: var(--color-red--dark);
 
   --button--color-cancel: var(--color-greyBlue);
+  --button--bg-color-cancel: var(--color-white);
   --button--color-disabled: var(--color-grey--lighter);
+  --button--color-secondary: var(--color-white);
+  --button--color-tertiary: var(--color-white);
 }
 
 .button {
@@ -72,6 +75,7 @@
 
 .cancel {
   border-color: var(--button--color-cancel);
+  background-color: var(--button--bg-color-cancel);
 }
 
 .cancel:focus,
@@ -86,18 +90,18 @@
 }
 
 .secondary {
-  background-color: transparent;
+  background-color: var(--button--color-secondary);
 }
 
 .secondary:hover,
 .secondary:focus {
-  background-color: transparent;
+  background-color: var(--button--color-secondary);
   filter: brightness(80%);
 }
 
 .tertiary {
-  border-color: transparent;
-  background-color: transparent;
+  border-color: var(--button--color-tertiary);
+  background-color: var(--button--color-tertiary);
 }
 
 .tertiary:hover,
