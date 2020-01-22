@@ -134,10 +134,27 @@ jobs:
           paths:
             - dist
 
+  release:
+    <<: *container_config
+    steps:
+      - *restore_repo
+      - *sum_lockfiles
+      - *restore_npm_cache
+      - *npm_install
+      - run:
+          name: Authenticate with npm
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/atlantis/.npmrc
+      - run:
+          name: Publishing
+          command: npm run ci:release
+      - store_artifacts:
+          path: ~/atlantis/
+          destination: atlantis
+
 workflows:
   version: 2
 
-  docs:
+  atlantis:
     jobs:
       - checkout_code
       - install_dependencies:
@@ -155,3 +172,12 @@ workflows:
       - build_docs:
           requires:
             - install_dependencies
+      - release:
+          filters:
+            branches:
+              only: "release-the-releasing"
+          requires:
+            - lint_javascript
+            - lint_css
+            - test
+            - build_docs

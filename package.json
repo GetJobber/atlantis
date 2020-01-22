@@ -19,7 +19,7 @@
     "install": "lerna bootstrap",
     "release-the-kraken": "npm ci && lerna publish",
     "prerelease": "lerna publish --canary --dist-tag next --preid pre",
-    "lerna:version": "lerna version --yes --no-push --no-git-tag-version"
+    "ci:release": "npm run prerelease"
   },
   "repository": {
     "type": "git",
