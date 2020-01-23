@@ -147,9 +147,6 @@ jobs:
       - run:
           name: Publishing
           command: npm run ci:release
-      - store_artifacts:
-          path: ~/atlantis/
-          destination: atlantis
 
 workflows:
   version: 2
