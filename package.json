@@ -18,7 +18,8 @@
     "lint:fix": "npm run lint:js -- --fix && npm run lint:css -- --fix && npm run lint:markdown -- --write",
     "install": "lerna bootstrap",
     "release-the-kraken": "npm ci && lerna publish",
-    "prerelease": "lerna publish --canary --dist-tag next --preid pre"
+    "prerelease": "lerna publish --canary --dist-tag next --preid pre",
+    "ci:release": "lerna publish --yes"
   },
   "repository": {
     "type": "git",
@@ -54,7 +55,7 @@
     "jest": "^24.7.1",
     "jest-dom": "^3.5.0",
     "jest-junit": "^6.4.0",
-    "lerna": "^3.15.0",
+    "lerna": "^3.20.2",
     "lint-staged": "^9.4.2",
     "plop": "^2.5.3",
     "postcss": "^7.0.17",

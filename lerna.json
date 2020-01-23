@@ -3,7 +3,8 @@
   "packages": ["packages/*"],
   "command": {
     "version": {
-      "conventionalCommits": true
+      "conventionalCommits": true,
+      "allowBranch": ["master"]
     },
     "publish": {
       "ignoreChanges": ["package-lock.json", "**/package-lock.json"]
