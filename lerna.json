@@ -4,7 +4,7 @@
   "command": {
     "version": {
       "conventionalCommits": true,
-      "allowBranch": ["master", "fake-master"]
+      "allowBranch": ["master"]
     },
     "publish": {
       "ignoreChanges": ["package-lock.json", "**/package-lock.json"]
