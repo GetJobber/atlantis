@@ -175,6 +175,7 @@ workflows:
               only: "release-the-releasing"
           requires:
             - install_dependencies
+            # TODO: Reenable these before final release.
             # - lint_javascript
             # - lint_css
             # - test
