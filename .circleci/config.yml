@@ -172,7 +172,7 @@ workflows:
       - release:
           filters:
             branches:
-              only: "release-the-releasing"
+              only: "master"
           requires:
             - install_dependencies
             # TODO: Reenable these before final release.
