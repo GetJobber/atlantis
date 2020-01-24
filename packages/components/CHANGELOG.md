@@ -8,12 +8,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-* Show component class names when viewing docs. ([#188](https://github.com/GetJobber/atlantis/issues/188)) ([fd15b21](https://github.com/GetJobber/atlantis/commit/fd15b215dd4e5b22a2d7ab7247a90b5855a8660e))
-
-
-### Features
-
-* Readily Release Releases ([#189](https://github.com/GetJobber/atlantis/issues/189)) ([f12f518](https://github.com/GetJobber/atlantis/commit/f12f518443d5c4640d4d6cb95dc6b199b404bf8d))
+* Buttons consistently have no margin. ([#192](https://github.com/GetJobber/atlantis/issues/192)) ([86a0b3c](https://github.com/GetJobber/atlantis/commit/86a0b3caf7f5bf9c20823c7339a79987f0b36957))
 
 
 
