@@ -178,12 +178,19 @@ workflows:
       - build_docs:
           requires:
             - install_dependencies
-      - release:
+      - hold:
           filters:
             branches:
               only: "master"
+          type: approval # requires that an in-app button be clicked by an appropriate member of the project to continue.
           requires:
             - lint_javascript
             - lint_css
             - test
             - build_docs
+      - release:
+          filters:
+            branches:
+              only: "master"
+          requires:
+            - hold
