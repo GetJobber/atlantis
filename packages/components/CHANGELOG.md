@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.7.1...@jobber/components@1.10.0) (2020-01-24)
+
+
+### Bug Fixes
+
+* **components:** bg for tertiary buttons to white, not trasparent ([#190](https://github.com/GetJobber/atlantis/issues/190)) ([08a9049](https://github.com/GetJobber/atlantis/commit/08a9049cc6498c6917a11ae74ce6ade8b7b45dfa))
+* Show component class names when viewing docs. ([#188](https://github.com/GetJobber/atlantis/issues/188)) ([fd15b21](https://github.com/GetJobber/atlantis/commit/fd15b215dd4e5b22a2d7ab7247a90b5855a8660e))
+
+
+### Features
+
+* Readily Release Releases ([#189](https://github.com/GetJobber/atlantis/issues/189)) ([f12f518](https://github.com/GetJobber/atlantis/commit/f12f518443d5c4640d4d6cb95dc6b199b404bf8d))
+
+
+
+
+
 # [1.9.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.7.1...@jobber/components@1.9.0) (2020-01-24)
 
 
