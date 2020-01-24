@@ -4,6 +4,7 @@
   "command": {
     "version": {
       "conventionalCommits": true,
+      "message": "chore(release): Publish\n[ci skip]",
       "allowBranch": ["master"]
     },
     "publish": {
