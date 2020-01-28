@@ -157,7 +157,7 @@ jobs:
           name: Release Packages
           command: |
             if git log --max-count=1 --pretty=%s | grep -q "chore(release): Publish"; then
-              echo "Skiping run on release commit."
+              echo "Skipping run on release commit."
             else
               npm run ci:release
             fi
