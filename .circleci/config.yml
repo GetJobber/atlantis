@@ -154,8 +154,13 @@ jobs:
           name: Authenticate with npm
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/atlantis/.npmrc
       - run:
-          name: Publishing
-          command: npm run ci:release
+          name: Release Packages
+          command: |
+            if git log --max-count=1 --pretty=%s | grep -q "chore(release): Publish"; then
+              echo "Skipping run on release commit."
+            else
+              npm run ci:release
+            fi
 
 workflows:
   version: 2
