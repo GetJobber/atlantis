@@ -15,34 +15,13 @@ export interface SpinnerProps {
    * or in line
    */
   readonly inline?: boolean;
-
-  /**
-   * Prop to be set when a relevant portion of the page is
-   * currently getting updated
-   *
-   * @default "false"
-   */
-  readonly ariaBusy?: "true" | "false";
-
-  /**
-   * When set, sends out accessible alert event to assistive
-   * technology products
-   *
-   * @default "none"
-   */
-  readonly role?: "alert" | "none";
 }
 
-export function Spinner({
-  size = "base",
-  inline,
-  ariaBusy = "false",
-  role = "none",
-}: SpinnerProps) {
+export function Spinner({ size = "base", inline }: SpinnerProps) {
   const spinnerStyles = classnames(styles.spinner, {
     [styles.small]: size === "small",
     [styles.inline]: inline,
   });
 
-  return <div className={spinnerStyles} role={role} aria-busy={ariaBusy}></div>;
+  return <div className={spinnerStyles} role="alert" aria-busy="true"></div>;
 }
