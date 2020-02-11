@@ -3,11 +3,13 @@ import React, {
   ReactNode,
   createRef,
   useEffect,
+  useLayoutEffect,
   useState,
 } from "react";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import { createPopper } from "@popperjs/core";
 import styles from "./Tooltip.css";
 import { Text } from "../Text";
 
@@ -23,13 +25,44 @@ type Direction = "above" | "below";
 
 export function Tooltip({ message, children }: TooltipProps) {
   const [direction, setDirection] = useState("above" as Direction);
-  const [position, setPosition] = useState({ top: "0px", left: "0px" });
-  const [show, setShow] = useState(false);
+  const [position, setPosition] = useState({
+    transform: "translate(0px, 0px)",
+  });
+  const [show, setShow] = useState(true);
   const tooltipRef = createRef<HTMLDivElement>();
   const shadowRef = createRef<HTMLSpanElement>();
 
-  showOnHover();
-  positionTooltip();
+  // showOnHover();
+  // positionTooltip();
+
+  useLayoutEffect(() => {
+    let popperInstance: ReturnType<typeof createPopper>;
+    if (
+      shadowRef.current &&
+      shadowRef.current.nextElementSibling &&
+      tooltipRef.current
+    ) {
+      popperInstance = createPopper(
+        shadowRef.current.nextElementSibling,
+        tooltipRef.current,
+        {
+          modifiers: [
+            {
+              name: "applyStyles",
+              fn: data => {
+                console.log({ data });
+                setPosition({ transform: data.state.styles.popper.transform });
+              },
+            },
+          ],
+        },
+      );
+    }
+
+    return () => {
+      popperInstance.destroy();
+    };
+  }, []);
 
   const toolTipClassNames = classnames(
     styles.tooltipWrapper,
@@ -76,45 +109,45 @@ export function Tooltip({ message, children }: TooltipProps) {
     </>
   );
 
-  function positionTooltip() {
-    useEffect(() => {
-      if (
-        tooltipRef.current &&
-        shadowRef.current &&
-        shadowRef.current.nextElementSibling
-      ) {
-        const { bounds, positionStyle } = getPosition(
-          shadowRef.current.nextElementSibling,
-          tooltipRef.current,
-        );
-        if (bounds.top <= 100) {
-          setDirection("below");
-          setPosition(positionStyle.below);
-        } else {
-          setDirection("above");
-          setPosition(positionStyle.above);
-        }
-      }
-    }, [show]);
-  }
+  // function positionTooltip() {
+  //   useEffect(() => {
+  //     if (
+  //       tooltipRef.current &&
+  //       shadowRef.current &&
+  //       shadowRef.current.nextElementSibling
+  //     ) {
+  //       const { bounds, positionStyle } = getPosition(
+  //         shadowRef.current.nextElementSibling,
+  //         tooltipRef.current,
+  //       );
+  //       if (bounds.top <= 100) {
+  //         setDirection("below");
+  //         setPosition(positionStyle.below);
+  //       } else {
+  //         setDirection("above");
+  //         setPosition(positionStyle.above);
+  //       }
+  //     }
+  //   }, [show]);
+  // }
 
-  function showOnHover() {
-    useEffect(() => {
-      const showTooltip = () => {
-        setShow(true);
-      };
+  // function showOnHover() {
+  //   useEffect(() => {
+  //     const showTooltip = () => {
+  //       setShow(true);
+  //     };
 
-      const hideTooltip = () => {
-        setShow(false);
-      };
+  //     const hideTooltip = () => {
+  //       setShow(false);
+  //     };
 
-      if (shadowRef.current && shadowRef.current.nextElementSibling) {
-        const activator = shadowRef.current.nextElementSibling;
-        activator.addEventListener("mouseenter", showTooltip);
-        activator.addEventListener("mouseleave", hideTooltip);
-      }
-    }, []);
-  }
+  //     if (shadowRef.current && shadowRef.current.nextElementSibling) {
+  //       const activator = shadowRef.current.nextElementSibling;
+  //       activator.addEventListener("mouseenter", showTooltip);
+  //       activator.addEventListener("mouseleave", hideTooltip);
+  //     }
+  //   }, []);
+  // }
 }
 
 function getPosition(activator: Element, tooltip: HTMLDivElement) {
