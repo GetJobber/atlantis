@@ -63,3 +63,6 @@ https://material-ui.com/components/drawers/
 https://www.lightningdesignsystem.com/components/panels/
 https://ant.design/components/drawer/
 https://designsystem.quickbooks.com/component/drawers/
+
+The Jira ticket for this component:
+https://jobber.atlassian.net/browse/JOB-18723
