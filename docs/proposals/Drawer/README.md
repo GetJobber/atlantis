@@ -1,33 +1,54 @@
 # Component Name
 
-The `<Drawer>` component will ... _{Add a brief description of the component}_
+The `<Drawer>` component will provide a dismissible side panel.
 
 ## Design Patterns
 
-_{Describe the design goal of this component. What is the design purpose of this
-component? How do its responsibilities relate to other components? Is there
-anything else that is important to describe?}_
+`<Drawer>` It will allow the user to view related content to their main task.
+Unlike a `<Modal>`, it will not obscure the main content from the user.
+
+Some scenarios for a `<Drawer>` include the following:
+
+- Show a list of notes beside a job detail view
+- Show a work request beside a new quote form
+- Show a converted quote beside an active job
+- Show a list of insight cards beside a dashboard
+
+There are also some outstanding questions:
+
+- Should the drawer be full-height of the viewport or just the parent container?
+- How should the drawer animate when it opens and closed?
+- Should we include an option for left-hand and right-hand drawers?
+- Do all drawers need to be dismissible? What about an always-open version?
+- Could the unscheduled visits accordion on the calendar turn into a drawer?
 
 ## Wireframe
 
-_{Insert a low fidelity wireframe of the components behaviour, enough for
-someone to start building it}_
+https://www.figma.com/file/wKlxfdTZlrffPrPiWpEOEB/Insightful-Dashboard-Components?node-id=0%3A1
 
 ## Interface
 
-_{Provide an example of what the component looks like in code. How would you use
-it from another react component? This should consist primarily of code blocks}_
+```
+<Drawer title="Request" subtitle="2020-02-10">
+  <Content>
+    Request goes here...
+  </Content>
+</Drawer>
+```
 
 ## Props Table
 
 _{Provide a table in the following format of the component's public API}_
 
-| name | type | default | description |
-| ---- | ---- | ------- | ----------- |
-| ...  | ...  | ...     | ...         |
+| name      | type    | default | description                                             |
+| --------- | ------- | ------- | ------------------------------------------------------- |
+| title     | String  | -       | The title of the drawer                                 |
+| subtitle  | String  | -       | The subtitle of the drawer                              |
+| overlay   | String  | -       | If the drawer overlays the main content or displaces it |
+| open      | Boolean | -       | If the drawer is visible                                |
+| activator | Boolean | -       | The component that opens the drawer                     |
 
 ## Accessibility
 
-_{Describe the accessibility concerns for the component. Should it be keyboard
-navigatable? Should it capture input, what should a screen reader see when it's
-focused?}_
+Because the drawer is secondary content it shouldn't overtake the main content
+in tab priority.
