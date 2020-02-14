@@ -1,4 +1,4 @@
-# Component Name
+# Drawer
 
 The `<Drawer>` component will provide a dismissible side panel.
 
