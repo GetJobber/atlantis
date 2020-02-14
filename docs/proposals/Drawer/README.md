@@ -5,7 +5,8 @@ The `<Drawer>` component will provide a dismissible side panel.
 ## Design Patterns
 
 `<Drawer>` It will allow the user to view related content to their main task.
-Unlike a `<Modal>`, it will not obscure the main content from the user.
+Unlike a `<Modal>`, it will take full advantage of the available viewport
+height. This will make it ideal for long lists and other scrolling content.
 
 Some scenarios for a `<Drawer>` include the following:
 
@@ -50,3 +51,15 @@ https://www.figma.com/file/wKlxfdTZlrffPrPiWpEOEB/Insightful-Dashboard-Component
 
 The user should be able to navigate to the drawer by keyboard. The drawer
 shouldn't overtake the main content in tab priority.
+
+## Resources
+
+Work request drawer:
+https://github.com/GetJobber/Jobber/blob/master/app/assets/stylesheets/desktop/application.scss#L231
+https://github.com/GetJobber/Jobber/blob/master/app/assets/javascripts/desktop/utilities/drawer.js.coffee
+
+Similar components in other design systems:
+https://material-ui.com/components/drawers/
+https://www.lightningdesignsystem.com/components/panels/
+https://ant.design/components/drawer/
+https://designsystem.quickbooks.com/component/drawers/
