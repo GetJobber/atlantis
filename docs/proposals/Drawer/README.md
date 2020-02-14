@@ -38,8 +38,6 @@ https://www.figma.com/file/wKlxfdTZlrffPrPiWpEOEB/Insightful-Dashboard-Component
 
 ## Props Table
 
-_{Provide a table in the following format of the component's public API}_
-
 | name      | type    | default | description                                             |
 | --------- | ------- | ------- | ------------------------------------------------------- |
 | title     | String  | -       | The title of the drawer                                 |
@@ -50,5 +48,5 @@ _{Provide a table in the following format of the component's public API}_
 
 ## Accessibility
 
-Because the drawer is secondary content it shouldn't overtake the main content
-in tab priority.
+The user should be able to navigate to the drawer by keyboard. The drawer
+shouldn't overtake the main content in tab priority.
