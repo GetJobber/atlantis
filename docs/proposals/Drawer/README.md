@@ -55,14 +55,16 @@ shouldn't overtake the main content in tab priority.
 ## Resources
 
 Work request drawer:
-https://github.com/GetJobber/Jobber/blob/master/app/assets/stylesheets/desktop/application.scss#L231
-https://github.com/GetJobber/Jobber/blob/master/app/assets/javascripts/desktop/utilities/drawer.js.coffee
+
+- https://github.com/GetJobber/Jobber/blob/master/app/assets/stylesheets/desktop/application.scss#L231
+- https://github.com/GetJobber/Jobber/blob/master/app/assets/javascripts/desktop/utilities/drawer.js.coffee
 
 Similar components in other design systems:
-https://material-ui.com/components/drawers/
-https://www.lightningdesignsystem.com/components/panels/
-https://ant.design/components/drawer/
-https://designsystem.quickbooks.com/component/drawers/
+
+- https://material-ui.com/components/drawers/
+- https://www.lightningdesignsystem.com/components/panels/
+- https://ant.design/components/drawer/
+- https://designsystem.quickbooks.com/component/drawers/
 
 The Jira ticket for this component:
 https://jobber.atlassian.net/browse/JOB-18723
