@@ -1,12 +1,13 @@
 # Drawer
 
-The `<Drawer>` component will provide a dismissible side panel.
+The `<Drawer>` component will provide a dismissible right-hand side panel.
 
 ## Design Patterns
 
-`<Drawer>` It will allow the user to view related content to their main task.
-Unlike a `<Modal>`, it will take full advantage of the available viewport
-height. This will make it ideal for long lists and other scrolling content.
+The `<Drawer>` component will allow users to view content that relates to their
+main task. It would appear on the right-hand side of the screen. It would allow
+the user to still view and interact with the main content. The user could
+dismiss it once they are finished.
 
 Some scenarios for a `<Drawer>` include the following:
 
@@ -30,7 +31,7 @@ https://www.figma.com/file/wKlxfdTZlrffPrPiWpEOEB/Insightful-Dashboard-Component
 ## Interface
 
 ```
-<Drawer title="Request" subtitle="2020-02-10">
+<Drawer title="Request">
   <Content>
     Request goes here...
   </Content>
@@ -39,13 +40,10 @@ https://www.figma.com/file/wKlxfdTZlrffPrPiWpEOEB/Insightful-Dashboard-Component
 
 ## Props Table
 
-| name      | type    | default | description                                             |
-| --------- | ------- | ------- | ------------------------------------------------------- |
-| title     | String  | -       | The title of the drawer                                 |
-| subtitle  | String  | -       | The subtitle of the drawer                              |
-| overlay   | String  | -       | If the drawer overlays the main content or displaces it |
-| open      | Boolean | -       | If the drawer is visible                                |
-| activator | Boolean | -       | The component that opens the drawer                     |
+| name      | type    | default | description                         |
+| --------- | ------- | ------- | ----------------------------------- |
+| title     | String  | -       | The title of the drawer             |
+| activator | Boolean | -       | The component that opens the drawer |
 
 ## Accessibility
 
