@@ -9,7 +9,7 @@ import React, {
 import classnames from "classnames";
 import ReactDOM from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { createPopper } from "@popperjs/core";
+import { Instance as PopperInstance, createPopper } from "@popperjs/core";
 import styles from "./Tooltip.css";
 import { Text } from "../Text";
 
@@ -88,7 +88,7 @@ export function Tooltip({ message, children }: TooltipProps) {
 
   function showOnHover() {
     const [popperInstance, setPopperInstance] = useState<
-      ReturnType<typeof createPopper> | undefined
+      PopperInstance | undefined
     >(undefined);
 
     useEffect(() => {
