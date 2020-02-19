@@ -34,66 +34,12 @@ export function Tooltip({ message, children }: TooltipProps) {
   const [tooltipStyles, setTooltipStyles] = useState({});
   const [arrowStyles, setArrowStyles] = useState({});
   const [show, setShow] = useState(true);
-  const [popperInstance, setPopperInstance] = useState<
-    ReturnType<typeof createPopper> | undefined
-  >(undefined);
+
   const tooltipRef = createRef<HTMLDivElement>();
   const arrowRef = createRef<HTMLDivElement>();
   const shadowRef = createRef<HTMLSpanElement>();
 
   showOnHover();
-
-  useLayoutEffect(() => {
-    if (
-      shadowRef.current &&
-      shadowRef.current.nextElementSibling &&
-      tooltipRef.current
-    ) {
-      setPopperInstance(
-        createPopper(shadowRef.current.nextElementSibling, tooltipRef.current, {
-          placement: "top",
-          modifiers: [
-            {
-              name: "preventOverflow",
-              options: {
-                padding: 5,
-              },
-            },
-            {
-              name: "flip",
-              options: { padding: 50, fallbackPlacements: ["bottom"] },
-            },
-            {
-              name: "arrow",
-              options: { element: arrowRef.current, padding: 5 },
-            },
-            {
-              name: "applyStyles",
-              fn: data => {
-                setTooltipStyles(data.state.styles.popper);
-                setArrowStyles(data.state.styles.arrow);
-
-                if (data.state.placement === "top") {
-                  setPlacement("above");
-                } else {
-                  setPlacement("below");
-                }
-              },
-            },
-          ],
-        }),
-      );
-
-      setShow(false);
-    }
-
-    return () => {
-      if (popperInstance) {
-        popperInstance.destroy();
-        setPopperInstance(undefined);
-      }
-    };
-  }, []);
 
   const toolTipClassNames = classnames(
     styles.tooltipWrapper,
@@ -141,13 +87,19 @@ export function Tooltip({ message, children }: TooltipProps) {
   );
 
   function showOnHover() {
-    useEffect(() => {
-      if (popperInstance) {
-        setTimeout(popperInstance.update);
-      }
-    }, [show]);
+    const [popperInstance, setPopperInstance] = useState<
+      ReturnType<typeof createPopper> | undefined
+    >(undefined);
 
     useEffect(() => {
+      if (popperInstance) popperInstance.update();
+    }, [show]);
+
+    useLayoutEffect(() => {
+      const popper = setupPopper();
+      setPopperInstance(popper);
+      setShow(false);
+
       const showTooltip = () => {
         setShow(true);
       };
@@ -161,7 +113,65 @@ export function Tooltip({ message, children }: TooltipProps) {
         activator.addEventListener("mouseenter", showTooltip);
         activator.addEventListener("mouseleave", hideTooltip);
       }
+
+      return () => {
+        if (popper) popper.destroy();
+
+        if (shadowRef.current && shadowRef.current.nextElementSibling) {
+          const activator = shadowRef.current.nextElementSibling;
+          activator.removeEventListener("mouseenter", showTooltip);
+          activator.removeEventListener("mouseleave", hideTooltip);
+        }
+      };
     }, []);
+  }
+
+  function setupPopper() {
+    if (
+      shadowRef.current &&
+      shadowRef.current.nextElementSibling &&
+      tooltipRef.current
+    ) {
+      const popper = createPopper(
+        shadowRef.current.nextElementSibling,
+        tooltipRef.current,
+        {
+          placement: "top",
+          modifiers: [
+            {
+              name: "preventOverflow",
+              options: {
+                padding: 5,
+              },
+            },
+            {
+              name: "flip",
+              options: { padding: 50, fallbackPlacements: ["bottom"] },
+            },
+            {
+              name: "arrow",
+              options: { element: arrowRef.current, padding: 5 },
+            },
+            {
+              name: "applyStyles",
+              fn: data => {
+                setTooltipStyles(data.state.styles.popper);
+                setArrowStyles(data.state.styles.arrow);
+                if (data.state.placement === "top") {
+                  setPlacement("above");
+                } else {
+                  setPlacement("below");
+                }
+              },
+            },
+          ],
+        },
+      );
+
+      return popper;
+    } else {
+      return undefined;
+    }
   }
 }
 
