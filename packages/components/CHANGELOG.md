@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.10.1...@jobber/components@1.10.2) (2020-02-19)
+
+
+### Bug Fixes
+
+* **components:** fix typo in Tabs documentation ([#199](https://github.com/GetJobber/atlantis/issues/199)) ([a3c30b0](https://github.com/GetJobber/atlantis/commit/a3c30b03da62a446fef45b18234c1bea77a38b9b))
+
+
+
+
+
 ## [1.10.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.10.0...@jobber/components@1.10.1) (2020-01-24)
 
 
