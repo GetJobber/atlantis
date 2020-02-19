@@ -28,7 +28,6 @@ interface TooltipProps {
 
 type Direction = "above" | "below";
 
-// eslint-disable-next-line max-statements
 export function Tooltip({ message, children }: TooltipProps) {
   const [placement, setPlacement] = useState("above" as Direction);
   const [tooltipStyles, setTooltipStyles] = useState({});
