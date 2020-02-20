@@ -2,8 +2,6 @@
 
 The `<Drawer>` component will provide a dismissible right-hand side panel.
 
-<iframe style="border: none;" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FwKlxfdTZlrffPrPiWpEOEB%2FInsightful-Dashboard-Components%3Fnode-id%3D0%253A1%26viewport%3D645%252C478%252C0.5%26scaling%3Dmin-zoom" allowfullscreen></iframe>
-
 ## Design Patterns
 
 The `<Drawer>` component will allow users to view content that relates to their
@@ -26,6 +24,10 @@ There are also some outstanding questions:
 ## Wireframe
 
 https://www.figma.com/file/wKlxfdTZlrffPrPiWpEOEB/Insightful-Dashboard-Components?node-id=0%3A1
+
+## Prototype
+
+https://www.figma.com/proto/wKlxfdTZlrffPrPiWpEOEB/Insightful-Dashboard-Components?node-id=0%3A1&viewport=645%2C478%2C0.5&scaling=min-zoom
 
 ## Interface
 
