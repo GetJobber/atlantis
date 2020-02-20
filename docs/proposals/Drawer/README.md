@@ -2,10 +2,14 @@
 
 The `<Drawer>` component will provide a dismissible right-hand side panel.
 
+<iframe style="border: none;" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FwKlxfdTZlrffPrPiWpEOEB%2FInsightful-Dashboard-Components%3Fnode-id%3D0%253A1%26viewport%3D645%252C478%252C0.5%26scaling%3Dmin-zoom" allowfullscreen></iframe>
+
 ## Design Patterns
 
 The `<Drawer>` component will allow users to view content that relates to their
-main task. It would appear on the right-hand side of the screen. It would allow
+main task. It would appear on the right-hand side of the screen. The component
+would be toggled open and closed by a specified button or link. The component
+would fill the available vertical height of the parent container. It would allow
 the user to still view and interact with the main content. The user could
 dismiss it once they are finished.
 
@@ -15,14 +19,9 @@ Some scenarios for a `<Drawer>` include the following:
 - Show a work request beside a new quote form
 - Show a converted quote beside an active job
 - Show a list of insight cards beside a dashboard
+- Show a list of unscheduled visits on the calendar
 
 There are also some outstanding questions:
-
-- Should the drawer be full-height of the viewport or just the parent container?
-- How should the drawer animate when it opens and closed?
-- Should we include an option for left-hand and right-hand drawers?
-- Do all drawers need to be dismissible? What about an always-open version?
-- Could the unscheduled visits accordion on the calendar turn into a drawer?
 
 ## Wireframe
 
