@@ -27,6 +27,11 @@
   background-color: var(--field--background-color);
 }
 
+.wrapper:focus-within {
+  --field--border-color: var(--color-outline);
+  --field--wrapper-elevation: var(--elevation-base);
+}
+
 .formField,
 .label {
   box-sizing: border-box;
@@ -73,11 +78,6 @@ textarea.formField {
 
 select.formField {
   padding-right: calc(var(--field--padding-right) + var(--space-large));
-}
-
-.formField:focus {
-  --field--border-color: var(--color-outline);
-  --field--wrapper-elevation: var(--elevation-base);
 }
 
 .label {
