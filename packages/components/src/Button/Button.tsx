@@ -1,9 +1,9 @@
 import React from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
-import { Typography, TypographyOptions } from "../Typography";
-import { Icon, IconNames } from "../Icon";
 import styles from "./Button.css";
+import { Typography } from "../Typography";
+import { Icon, IconNames } from "../Icon";
 
 export interface ButtonProps {
   readonly ariaControls?: string;
@@ -41,10 +41,6 @@ type ButtonPropOptions = XOR<
   XOR<BaseActionProps, XOR<DestructiveActionProps, CancelActionProps>>
 >;
 
-interface TypeMap {
-  [type: string]: TypographyOptions;
-}
-
 export function Button({
   ariaControls,
   ariaHaspopup,
@@ -63,7 +59,7 @@ export function Button({
   url,
   variation = "work",
 }: ButtonPropOptions) {
-  const buttonClassNames = classnames(styles.button, size && styles[size], {
+  const buttonClassNames = classnames(styles.button, styles[size], {
     [styles.hasIcon]: icon,
     [styles.iconOnRight]: iconOnRight,
     [styles[variation]]: variation,
@@ -91,56 +87,24 @@ export function Button({
       aria-haspopup={ariaHaspopup}
       aria-expanded={ariaExpanded}
     >
-      {icon && <Icon name={icon} size={size} />}
-      <Typography {...getTypeProps(variation, type, disabled, size)}>
+      {icon && (
+        <Icon
+          name={icon}
+          size={size}
+          color={getColor(variation, type, disabled)}
+        />
+      )}
+      <Typography
+        element="span"
+        textCase="uppercase"
+        fontWeight="extraBold"
+        size={getTypeSizes(size)}
+        textColor={getColor(variation, type, disabled)}
+      >
         {label}
       </Typography>
     </Tag>
   );
-}
-
-function getTypeProps(
-  variation: string,
-  type: string,
-  disabled: boolean,
-  size: string,
-) {
-  const isPrimary = type === "primary";
-  const baseTypeProps: TypographyOptions = {
-    element: "span",
-    textCase: "uppercase",
-    fontWeight: "extraBold",
-    size: getTypeSizes(size),
-  };
-
-  const textColorMap: TypeMap = {
-    work: {
-      ...baseTypeProps,
-      textColor: isPrimary ? "white" : "green",
-    },
-    learning: {
-      ...baseTypeProps,
-      textColor: isPrimary ? "white" : "lightBlue",
-    },
-    destructive: {
-      ...baseTypeProps,
-      textColor: isPrimary ? "white" : "red",
-    },
-    cancel: {
-      ...baseTypeProps,
-      textColor: "greyBlue",
-    },
-    disabled: {
-      ...baseTypeProps,
-      textColor: "grey",
-    },
-  };
-
-  if (disabled) {
-    return { ...textColorMap.disabled };
-  } else {
-    return { ...textColorMap[variation] };
-  }
 }
 
 function getTypeSizes(size: string) {
@@ -151,5 +115,26 @@ function getTypeSizes(size: string) {
       return "base";
     default:
       return "small";
+  }
+}
+
+function getColor(variation: string, type: string, disabled?: boolean) {
+  if (type === "primary" && variation !== "cancel" && !disabled) {
+    return "white";
+  }
+
+  if (disabled) {
+    return "grey";
+  }
+
+  switch (variation) {
+    case "learning":
+      return "lightBlue";
+    case "destructive":
+      return "red";
+    case "cancel":
+      return "greyBlue";
+    default:
+      return "green";
   }
 }

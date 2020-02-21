@@ -8,48 +8,58 @@ import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { InputTime } from ".";
 import { Button } from "../Button";
+import { Content } from "../Content";
 import { useState } from "react";
 import { CivilTime } from "@std-proposal/temporal";
 
 # InputTime
 
-<ComponentStatus stage="pre" responsive="no" accessible="no" />
+<ComponentStatus stage="ready" responsive="yes" accessible="yes" />
 
 Select a time of day. For example the time a messages should be sent or when a
 job started/ended.
 
-At the moment the 12-hour vs 24-hour preference is set by the operating system
-and this component doesn't look at the Jobber setting.
-
-## Simple Example
+This component obeys the system locale settings to determine 24 or 12 hour time.
 
 ```ts
 import { InputTime } "@jobber/components/InputTime";
 ```
 
 <Playground>
-
-  <InputTime defaultValue={new CivilTime(2,35)} size="small" />
-  <InputTime defaultValue={new CivilTime(2,35)} />
-  <InputTime defaultValue={new CivilTime(2,35)} size="large" />
-
+  <InputTime defaultValue={new CivilTime(2, 35)} />
 </Playground>
+
+## Props
+
+<Props of={InputTime} />
+
+---
 
 ## States
 
+### Disabled
+
 <Playground>
-
   <InputTime defaultValue={new CivilTime(3, 52)} disabled={true} />
-  <InputTime defaultValue={new CivilTime(5, 23)} readonly={true} />
-  <InputTime defaultValue={new CivilTime(2, 35)} invalid={true} />
+</Playground>
 
+### Read only
+
+<Playground>
+  <InputTime defaultValue={new CivilTime(5, 23)} readonly={true} />
+</Playground>
+
+### Invalid
+
+<Playground>
+  <InputTime defaultValue={new CivilTime(2, 35)} invalid={true} />
 </Playground>
 
 ## Events
 
 If the input starts empty the `ChangeEvent` isn't fired until a full time is
-set. Setting just the hour or minute or _meridiam_ won't fire the event. When
-the last element is set the change event will fire.
+set. Setting just the hour or minute or _period_ (AM/PM) won't fire the event. 
+When the last element is set the change event will fire.
 
 <Playground>
   {() => {
@@ -61,15 +71,11 @@ the last element is set the change event will fire.
       setTime(newTime);
     };
     return (
-      <>
+      <Content>
         <InputTime value={time} onChange={handleChange} />
         <pre>{time && time.toString()}</pre>
         <Button label="Reset" onClick={resetTime} />
-      </>
+      </Content>
     );
   }}
 </Playground>
-
-## InputTime Properties
-
-<Props of={InputTime} />

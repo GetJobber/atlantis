@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders an Autocomplete 1`] = `
+<div
+  className="autocomplete"
+>
+  <div
+    className="wrapper"
+    style={
+      Object {
+        "--formField-maxLength": undefined,
+      }
+    }
+  >
+    <label
+      className="label"
+      htmlFor="123e4567-e89b-12d3-a456-426655440001"
+    >
+      placeholder_name
+    </label>
+    <input
+      className="formField"
+      id="123e4567-e89b-12d3-a456-426655440001"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="options"
+  >
+    <button
+      className="option active"
+      onMouseDown={[Function]}
+    >
+      <div
+        className="icon"
+      />
+      <div
+        className="text"
+      >
+        <p
+          className="base regular base greyBlueDark"
+        >
+          option_0
+        </p>
+      </div>
+    </button>
+    <button
+      className="option"
+      onMouseDown={[Function]}
+    >
+      <div
+        className="icon"
+      />
+      <div
+        className="text"
+      >
+        <p
+          className="base regular base greyBlueDark"
+        >
+          option_1
+        </p>
+      </div>
+    </button>
+  </div>
+</div>
+`;

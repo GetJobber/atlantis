@@ -1,9 +1,0 @@
-.{{camelCase name}} {
-  --message-weight: 400;
-
-  font-weight: var(--message-weight);
-}
-
-.bold {
-  --message-weight: 800;
-}

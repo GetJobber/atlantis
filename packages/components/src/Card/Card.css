@@ -10,16 +10,22 @@
 .card {
   display: block;
   width: 100%;
-  padding: var(--card--base-padding);
   border: var(--border-base) solid var(--card--border-color);
   border-radius: var(--radius-base);
-  overflow: auto;
   outline-color: var(--color-outline);
   background-color: var(--card--background-color);
 }
 
-.card:not(:last-child) {
-  margin-bottom: var(--space-base);
+/* Adjust `Content` components public padding to match the cards */
+
+.card > * {
+  --public-content--padding: var(--card--base-padding);
+}
+
+/* Remove the nested `Content` components public padding */
+
+.card > * > * {
+  --public-content--padding: 0;
 }
 
 .card:active {
@@ -43,13 +49,6 @@
 .clickable:hover,
 .clickable:focus {
   background-color: var(--color-yellow--lightest);
-}
-
-.fill {
-  margin-top: calc(-1 * var(--card--base-padding));
-  margin-bottom: calc(1 * var(--card--base-padding));
-  margin-left: calc(-1 * var(--card--base-padding));
-  margin-right: calc(-1 * var(--card--base-padding));
 }
 
 .header {

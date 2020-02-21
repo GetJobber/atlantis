@@ -12,7 +12,7 @@ import { Tabs, Tab } from ".";
 
 <ComponentStatus stage="ready" responsive="yes" accessible="yes" />
 
-In Jobber a tabs are used to alternate amongst related views within the same
+In Jobber tabs are used to alternate amongst related views within the same
 context.
 
 ## Simple Example
@@ -23,7 +23,7 @@ import { Tabs, Tab } from "@jobber/components/Tabs";
 
 <Playground>
   <Tabs>
-    <Tab label="Eggs">
+    <Tab label="Eggs" onClick={() => alert("I had eggs for breakfast.")}>
       🍳 Some eggs are laid by female animals of many different species,
       including birds, reptiles, amphibians, mammals, and fish, and have been
       eaten by humans for thousands of years.
@@ -36,6 +36,8 @@ import { Tabs, Tab } from "@jobber/components/Tabs";
   </Tabs>
 </Playground>
 
-## Tab Properties
+## Tab Props
 
 <Props of={Tab} />
+
+---

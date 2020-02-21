@@ -1,29 +1,15 @@
 {
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
   "eslint.enable": true,
   "eslint.packageManager": "npm",
-  "eslint.validate": [
-    {
-      "language": "javascript",
-      "autoFix": true
-    },
-    {
-      "language": "javascriptreact",
-      "autoFix": true
-    },
-    {
-      "language": "typescript",
-      "autoFix": true
-    },
-    {
-      "language": "typescriptreact",
-      "autoFix": true
-    }
-  ],
-  "prettier.eslintIntegration": true,
   "peacock.color": "#F4E465",
   "workbench.colorCustomizations": {
     "statusBar.background": "#f4e465",
     "statusBarItem.hoverBackground": "#f1dc35",
     "statusBar.foreground": "#15202b"
-  }
+  },
+  "peacock.affectActivityBar": false,
+  "peacock.affectTitleBar": false
 }

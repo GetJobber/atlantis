@@ -21,6 +21,11 @@ developers to quickly build beautiful and consistent interfaces for our users.
 
 ## Development
 
+##### Prerequisites
+
+- `node@10` or higher
+- `npm@6` or higher
+
 To install Atlantis locally for development:
 
 ```sh
@@ -123,7 +128,7 @@ Everyone is a friend of Atlantis and we welcome pull requests. See the
 ### Pre-Release
 
 ```sh
-lerna publish --canary --dist-tag next --preid pre
+npm run prerelease
 ```
 
 ### For Realz

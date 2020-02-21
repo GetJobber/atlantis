@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+}
+
+.content {
+  flex: 1 1 auto;
+  align-self: center;
+  padding-right: var(--space-base);
+  transition: opacity var(--timing-base);
+}
+
+.action {
+  flex: 0 0 auto;
+  align-self: flex-start;
+  position: relative;
+}
+
+.savedIndicator {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  margin-top: var(--space-smallest);
+  text-align: center;
+}
+
+.featureContent {
+  opacity: 0.5;
+}
+
+.enabled {
+  opacity: 1;
+}

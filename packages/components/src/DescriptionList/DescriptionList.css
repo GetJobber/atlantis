@@ -1,21 +1,35 @@
-.termGroup {
-  --divider-color: var(--color-grey--lighter);
-
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  padding: 0.5rem 0;
+:root {
+  --descriptionList--divider-color: var(--color-grey--lighter);
 }
 
-.termGroup:not(:last-of-type) {
-  border-bottom: 1px solid var(--divider-color);
+.descriptionList {
+  margin: 0;
+}
+
+.termGroup {
+  display: flex;
+  flex-wrap: wrap;
+  padding: var(--space-small) 0;
+  border-bottom: var(--border-base) solid var(--descriptionList--divider-color);
+}
+
+.termGroup:first-child {
+  padding-top: 0;
+}
+
+.termGroup:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
 }
 
 .termGroup dd {
+  min-width: calc(var(--base-unit) * 7.5);
+  box-sizing: border-box;
+  padding-right: var(--space-small);
   margin-inline-start: 0;
-  flex: 1 1 50%;
+  flex: 1 1 40%;
 }
 
 .termGroup dt {
-  flex: 1 1 50%;
+  flex: 1 1 60%;
 }

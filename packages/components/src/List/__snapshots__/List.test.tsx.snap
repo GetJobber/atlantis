@@ -1,0 +1,198 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 1 List item with all the props 1`] = `
+<ul
+  className="list"
+>
+  <li
+    className="section"
+  >
+    <div
+      className="sectionHeader"
+    >
+      <h4
+        className="base bold large"
+      >
+        Notification
+      </h4>
+    </div>
+    <ul
+      className="list"
+    >
+      <li
+        className="item"
+      >
+        <a
+          className="action isActive hoverable"
+          href="#"
+          id="1"
+          onClick={[Function]}
+        >
+          <div
+            className="icon"
+          >
+            <svg
+              className="icon base"
+              viewBox="0 0 1024 1024"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                className="green"
+                d="M200.655 513.229c-3.936-4.075-8.644-7.326-13.849-9.562s-10.804-3.413-16.47-3.465c-5.665-0.047-11.283 1.033-16.527 3.179-5.244 2.142-10.007 5.312-14.013 9.318s-7.174 8.768-9.32 14.012c-2.145 5.244-3.225 10.863-3.176 16.529s1.226 11.264 3.462 16.469c2.236 5.205 5.487 9.911 9.562 13.85l200.491 225.83c8.001 7.996 18.851 12.489 30.165 12.489s22.164-4.493 30.165-12.489l481.828-481.832c4.079-3.936 7.326-8.644 9.566-13.849 2.236-5.206 3.409-10.804 3.46-16.47s-1.028-11.283-3.174-16.527c-2.146-5.244-5.316-10.007-9.323-14.013-4.002-4.006-8.768-7.174-14.012-9.32s-10.863-3.225-16.525-3.176c-5.666 0.049-11.264 1.226-16.469 3.462-5.21 2.236-9.916 5.487-13.85 9.562l-451.667 451.666-170.325-195.665z"
+              />
+            </svg>
+          </div>
+          <div
+            className="info"
+          >
+            <h5
+              className="base bold base blue"
+            >
+              Jordan Yeo completed a visit
+            </h5>
+            <p
+              className="base regular base greyBlueDark"
+            >
+              <span
+                className="truncate"
+              >
+                Build a deck
+              </span>
+            </p>
+            <p
+              className="base regular base greyBlueDark"
+            >
+              <span
+                className="truncate"
+              >
+                Fa la la la la
+              </span>
+            </p>
+            <p
+              className="base regular base greyBlue"
+            >
+              <span
+                className="base regular small italic"
+              >
+                Sep 24, 2019
+              </span>
+            </p>
+          </div>
+          <div
+            className="amount"
+          >
+            <p
+              className="base regular base greyBlueDark"
+            >
+              <b
+                className="base bold"
+              >
+                $30.00
+              </b>
+            </p>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
+`;
+
+exports[`should render a button list item 1`] = `
+<ul
+  className="list"
+>
+  <li
+    className="item"
+  >
+    <button
+      className="action hoverable"
+      id="1"
+      onClick={[Function]}
+      role="button"
+      type="button"
+    >
+      <div
+        className="info"
+      >
+        <p
+          className="base regular base greyBlueDark"
+        >
+          <span
+            className="truncate"
+          >
+            Click me
+          </span>
+        </p>
+      </div>
+    </button>
+  </li>
+</ul>
+`;
+
+exports[`should render a link with url list item 1`] = `
+<ul
+  className="list"
+>
+  <li
+    className="item"
+  >
+    <a
+      className="action hoverable"
+      href="/path/to/stuff"
+      id="1"
+    >
+      <div
+        className="info"
+      >
+        <p
+          className="base regular base greyBlueDark"
+        >
+          <span
+            className="truncate"
+          >
+            Learn more
+          </span>
+        </p>
+      </div>
+    </a>
+  </li>
+</ul>
+`;
+
+exports[`should render an a tag with url and on click list item 1`] = `
+<ul
+  className="list"
+>
+  <li
+    className="item"
+  >
+    <a
+      className="action hoverable"
+      href="/path/to/stuff"
+      id="1"
+      onClick={[Function]}
+    >
+      <div
+        className="info"
+      >
+        <p
+          className="base regular base greyBlueDark"
+        >
+          <span
+            className="truncate"
+          >
+            Learn more
+          </span>
+        </p>
+      </div>
+    </a>
+  </li>
+</ul>
+`;
+
+exports[`shouldn't render a list item if it's given an empty array 1`] = `
+<ul
+  className="list"
+/>
+`;

@@ -1,1 +1,2 @@
-plop/templates
+packages/generators/templates
+**/CHANGELOG.md

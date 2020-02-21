@@ -1,11 +1,11 @@
 .small {
-  font-size: calc(var(--base-unit) * 0.875);
+  width: calc(var(--base-unit) * 0.875);
 }
 
 .base {
-  font-size: calc(var(--base-unit) * 1.5);
+  width: calc(var(--base-unit) * 1.5);
 }
 
 .large {
-  font-size: calc(var(--base-unit) * 2);
+  width: calc(var(--base-unit) * 2);
 }

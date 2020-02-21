@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./DescriptionList.css";
+import { Typography } from "../Typography";
 
 interface DescriptionListProps {
   /**
@@ -11,11 +12,16 @@ interface DescriptionListProps {
 
 export function DescriptionList({ data }: DescriptionListProps) {
   return (
-    <dl>
+    <dl className={styles.descriptionList}>
       {data.map(([term, description]) => (
         <div key={term} className={styles.termGroup}>
-          <dd>{term}</dd>
-          <dt>{description}</dt>
+          <Typography element="dd" textColor="blue" size="base">
+            {term}
+          </Typography>
+
+          <Typography element="dt" textColor="greyBlue" size="base">
+            {description}
+          </Typography>
         </div>
       ))}
     </dl>

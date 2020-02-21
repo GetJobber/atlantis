@@ -7,7 +7,8 @@
     "start": "docz dev",
     "start:withPrivateComponents": "PRIVATE_COMPONENTS=visible docz dev",
     "test": "jest",
-    "plop": "plop",
+    "plop": "echo '🚧 `npm run plop` is now `npm run generate`'",
+    "generate": "plop -- --path='./'",
     "build": "docz build",
     "clean": "rm -rf .docz",
     "lint:js": "eslint --ext .js,.jsx,.ts,.tsx .",
@@ -16,7 +17,9 @@
     "lint": "npm run lint:js && npm run lint:css",
     "lint:fix": "npm run lint:js -- --fix && npm run lint:css -- --fix && npm run lint:markdown -- --write",
     "install": "lerna bootstrap",
-    "release-the-kraken": "npm ci && lerna publish"
+    "release-the-kraken": "npm ci && lerna publish",
+    "prerelease": "lerna publish --canary --dist-tag next --preid pre",
+    "ci:release": "lerna publish --yes"
   },
   "repository": {
     "type": "git",
@@ -34,12 +37,13 @@
     "@babel/preset-typescript": "^7.3.3",
     "@jobber/design": "file:packages/design",
     "@jobber/eslint-config": "file:packages/eslint-config",
+    "@jobber/generators": "file:packages/generators",
     "@jobber/stylelint-config": "file:packages/stylelint-config",
-    "@testing-library/react": "^8.0.4",
-    "@testing-library/user-event": "^4.1.0",
+    "@testing-library/react": "^9.3.0",
+    "@testing-library/user-event": "^4.2.4",
     "@types/jest": "^24.0.14",
-    "@types/react": "^16.8.20",
-    "@types/react-dom": "^16.8.4",
+    "@types/react": "^16.9.9",
+    "@types/react-dom": "^16.9.2",
     "css-loader": "^3.0.0",
     "docz": "^1.2.0",
     "docz-theme-default": "^1.0.0",
@@ -51,17 +55,17 @@
     "jest": "^24.7.1",
     "jest-dom": "^3.5.0",
     "jest-junit": "^6.4.0",
-    "lerna": "^3.15.0",
-    "lint-staged": "^9.2.5",
-    "plop": "^2.3.0",
+    "lerna": "^3.20.2",
+    "lint-staged": "^9.4.2",
+    "plop": "^2.5.3",
     "postcss": "^7.0.17",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.6.0",
     "prettier": "^1.18.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
     "style-loader": "^0.23.1",
-    "stylelint": "^10.1.0",
+    "stylelint": "^11.1.1",
     "stylelint-junit-formatter": "^0.2.1",
     "typed-css-modules-loader": "^0.0.17",
     "typescript": "^3.5.2"
@@ -70,21 +74,6 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --format=codeFrame --fix",
-      "git add",
-      "jest --bail --findRelatedTests"
-    ],
-    "*.css": [
-      "stylelint --fix",
-      "git add"
-    ],
-    "*.{md,mdx}": [
-      "prettier --write",
-      "git add"
-    ]
   },
   "browserslist": [
     "> 1%",

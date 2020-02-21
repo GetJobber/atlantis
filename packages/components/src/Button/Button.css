@@ -9,18 +9,22 @@
   --button--color-destructive--hover: var(--color-red--dark);
 
   --button--color-cancel: var(--color-greyBlue);
+  --button--bg-color-cancel: var(--color-white);
   --button--color-disabled: var(--color-grey--lighter);
+  --button--color-secondary: var(--color-white);
+  --button--color-tertiary: var(--color-white);
 }
 
 .button {
   display: inline-flex;
   min-height: calc(var(--base-unit) * 2.25);
   box-sizing: border-box;
-  padding: var(--space-small) calc(var(--space-base) - 4px);
+  margin: 0;
   border: 1px solid transparent;
   border-radius: var(--radius-base);
   color: transparent;
   -webkit-font-smoothing: antialiased;
+  text-align: center;
   text-decoration: none;
   vertical-align: middle;
   background-color: transparent;
@@ -72,6 +76,7 @@
 
 .cancel {
   border-color: var(--button--color-cancel);
+  background-color: var(--button--bg-color-cancel);
 }
 
 .cancel:focus,
@@ -86,18 +91,18 @@
 }
 
 .secondary {
-  background-color: transparent;
+  background-color: var(--button--color-secondary);
 }
 
 .secondary:hover,
 .secondary:focus {
-  background-color: transparent;
+  background-color: var(--button--color-secondary);
   filter: brightness(80%);
 }
 
 .tertiary {
-  border-color: transparent;
-  background-color: transparent;
+  border-color: var(--button--color-tertiary);
+  background-color: var(--button--color-tertiary);
 }
 
 .tertiary:hover,
@@ -119,21 +124,21 @@
 
 .small {
   min-height: calc(var(--base-unit) * 1.5);
-  padding: var(--space-smaller) var(--space-small);
+  padding: 0 var(--space-small);
 }
 
 .base {
   min-height: calc(var(--base-unit) * 2.25);
-  padding: var(--space-small) calc(var(--space-base) - 4px);
+  padding: 0 calc(var(--space-base) - 4px);
 }
 
 .large {
   min-height: calc(var(--base-unit) * 3);
-  padding: var(--space-small) var(--space-base);
+  padding: 0 var(--space-base);
 }
 
 .hasIcon {
-  padding: var(--space-smaller) var(--space-base);
+  padding: 0 var(--space-base);
 }
 
 /* Icon */

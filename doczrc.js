@@ -28,7 +28,9 @@ const modifyBundlerConfig = config => {
       {
         loader: require.resolve("css-loader"),
         options: {
-          modules: true,
+          modules: {
+            localIdentName: "[name]__[local]__[hash:base64]",
+          },
           importLoaders: 1,
         },
       },
@@ -39,8 +41,12 @@ const modifyBundlerConfig = config => {
           plugins: [
             // eslint-disable-next-line @typescript-eslint/no-var-requires
             require("postcss-preset-env")({
+              stage: 1,
               preserve: true,
-              importFrom: [require.resolve("@jobber/design")],
+              importFrom: [
+                require.resolve("@jobber/design"),
+                require.resolve("@jobber/design/src/responsiveBreakpoints.css"),
+              ],
             }),
           ],
         },
@@ -86,9 +92,16 @@ const themeConfig = {
       text-transform: uppercase;
     `,
     h3: css`
-      margin: 0 0 16px;
+      margin: 32px 0 16px;
       font-family: ${fonts.display};
       font-size: 20px;
+      line-height: 1.2em;
+      font-weight: 600;
+    `,
+    h4: css`
+      margin: 0 0 16px;
+      font-family: ${fonts.display};
+      font-size: 18px;
       line-height: 1.2em;
       font-weight: 600;
     `,
@@ -137,9 +150,12 @@ export default {
   title: "🔱 Atlantis",
   typescript: true,
   port: 3333,
-  menu: ["Atlantis"],
-  files: "{README.md,**/*.mdx}",
-  ignore: [...privateComponentReadmies(), "./plop/templates/**/*"],
+  menu: ["Atlantis", "Patterns", "Components"],
+  files: "{README.md,CONTRIBUTING.md,**/*.mdx}",
+  ignore: [
+    ...privateComponentReadmies(),
+    "./packages/generators/templates/**/*",
+  ],
   codeSandbox: false,
   public: "public",
   themeConfig,

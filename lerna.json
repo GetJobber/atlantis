@@ -1,6 +1,19 @@
 {
-  "packages": [
-    "packages/*"
-  ],
-  "version": "independent"
+  "version": "independent",
+  "packages": ["packages/*"],
+  "command": {
+    "version": {
+      "conventionalCommits": true,
+      "message": "chore(release): Publish",
+      "allowBranch": ["master"]
+    },
+    "publish": {
+      "ignoreChanges": [
+        "lerna.json",
+        "package.json",
+        "package-lock.json",
+        "CHANGELOG.md"
+      ]
+    }
+  }
 }

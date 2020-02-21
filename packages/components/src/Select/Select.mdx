@@ -10,12 +10,14 @@ import { Select, Option } from ".";
 
 # Select
 
-<ComponentStatus stage="pre" responsive="no" accessible="no" />
+<ComponentStatus stage="ready" responsive="yes" accessible="yes" />
 
 In Jobber a `Select` is used to present a defined list of options for the user
 to choose from.
 
-## Simple Example
+```ts
+import { Select, Option } from "@jobber/components/Select";
+```
 
 <Playground>
   <Select>
@@ -24,38 +26,54 @@ to choose from.
   </Select>
 </Playground>
 
+## Props
+
+<Props of={Select} />
+
+---
+
 ## Sizes
+
+### Small
 
 <Playground>
   <Select size="small">
     <Option value="">Small</Option>
-    <Option value="sad" disabled>Tony</Option>
+    <Option value="sad" disabled>
+      Tony
+    </Option>
     <Option value="old">Steve</Option>
-    <Option value="splat" label="Natasha"></Option>
+    <Option value="splat">Natasha</Option>
   </Select>
+</Playground>
 
-<Select>
-  <Option value="">Normal</Option>
-  <Option value="sad">Tony</Option>
-  <Option value="old">Steve</Option>
-  <Option value="yoink">Vision</Option>
-</Select>
+### Large
 
+<Playground>
   <Select size="large">
-    <Option value="">Large</Option>
-    <Option value="sad">Tony</Option>
+    <Option value="">Small</Option>
+    <Option value="sad" disabled>
+      Tony
+    </Option>
     <Option value="old">Steve</Option>
+    <Option value="splat">Natasha</Option>
   </Select>
 </Playground>
 
 ## States
+
+### Invalid
 
 <Playground>
   <Select size="large" invalid={true}>
     <Option value="sad">Tony</Option>
     <Option value="old">Steve</Option>
   </Select>
+</Playground>
 
+### Disabled
+
+<Playground>
   <Select size="large" disabled={true}>
     <Option value="sad">Tony</Option>
     <Option value="old">Steve</Option>
@@ -82,16 +100,12 @@ to choose from.
   </Select>
 </Playground>
 
-## Select Properties
-
-<Props of={Select} />
-
 ---
 
 ## ▸ `Option`
 
 An `Option` defines a value selectable by a `<Select>`.
 
-## Option Properties
+## Option Props
 
 <Props of={Option} />

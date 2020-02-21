@@ -1,0 +1,67 @@
+.autocomplete {
+  position: relative;
+}
+
+.options {
+  display: none;
+  position: absolute;
+  z-index: var(--elevation-menu);
+  width: 100%;
+  box-shadow: var(--shadow-base);
+  box-sizing: border-box;
+  margin: 0;
+  padding: var(--space-small);
+  border: var(--border-base) solid var(--color-grey--lighter);
+  border-radius: var(--radius-base);
+  overflow: auto;
+  background-color: var(--color-white);
+}
+
+.options.visible {
+  display: block;
+}
+
+.options.visible:empty {
+  display: none;
+}
+
+.option {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: center;
+  padding: var(--space-small);
+  border: none;
+  border-radius: var(--radius-base);
+  text-align: left;
+  list-style: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all var(--timing-base);
+}
+
+.option:hover,
+.option:focus,
+.option.active {
+  background-color: var(--color-yellow--lightest);
+  outline-color: var(--color-outline);
+}
+
+.options:hover .option.active:not(:hover) {
+  background-color: transparent;
+  outline-color: transparent;
+}
+
+.option .icon {
+  flex: 0 1 auto;
+  align-self: auto;
+  width: var(--space-large);
+}
+
+.option .text {
+  flex: 1 1 auto;
+  align-self: auto;
+}

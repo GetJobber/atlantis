@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "0.12.0",
+  "version": "1.10.2",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -8,10 +8,11 @@
     "build": "npm run build:cssTypes && npm run build:rollup",
     "build:rollup": "rollup --config",
     "build:cssTypes": "tcm src",
+    "convertIcoMoon": "scripts/convertIcoMoon.ts",
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
-    "prepublishOnly": "scripts/entryPoints.ts",
+    "prepublishOnly": "ts-node --project ../../tsconfig.bin.json scripts/entryPoints.ts",
     "prepare": "npm run clean; npm run build",
-    "postpublish": "scripts/entryPoints.ts clean"
+    "postpublish": "ts-node --project ../../tsconfig.bin.json scripts/entryPoints.ts clean"
   },
   "files": [
     "*.js",
@@ -19,10 +20,11 @@
     "dist/*"
   ],
   "dependencies": {
-    "@jobber/formatters": "^0.0.2",
+    "@jobber/formatters": "^0.0.4",
     "@std-proposal/temporal": "0.0.1",
     "@types/lodash": "^4.14.136",
     "@types/uuid": "^3.4.5",
+    "@use-it/event-listener": "^0.1.3",
     "classnames": "^2.2.6",
     "framer-motion": "^1.6.5",
     "lodash": "^4.17.15",
@@ -32,13 +34,13 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "@testing-library/react": "^8.0.4",
-    "@testing-library/user-event": "^4.1.0",
+    "@testing-library/react": "^9.3.0",
+    "@testing-library/user-event": "^4.2.4",
     "@types/classnames": "^2.2.7",
     "@types/glob": "^7.1.1",
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.8.4",
-    "@types/react-test-renderer": "^16.8.1",
+    "@types/react-test-renderer": "^16.9.1",
     "@types/uuid": "^3.4.5",
     "autoprefixer": "^9.5.1",
     "copyfiles": "^2.1.0",
@@ -46,7 +48,8 @@
     "jest-dom": "^3.5.0",
     "postcss": "^7.0.16",
     "postcss-import": "^12.0.1",
-    "react-test-renderer": "^16.8.6",
+    "postcss-preset-env": "^6.7.0",
+    "react-test-renderer": "^16.9.0",
     "rollup": "^1.11.3",
     "rollup-plugin-commonjs": "^9.3.4",
     "rollup-plugin-multi-input": "^0.2.2",

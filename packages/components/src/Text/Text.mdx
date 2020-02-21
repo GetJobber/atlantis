@@ -8,9 +8,26 @@ import { Text } from ".";
 
 # Text
 
-<ComponentStatus stage="pre" responsive="no" accessible="yes" />
+<ComponentStatus stage="ready" responsive="yes" accessible="yes" />
 
 Text is used to add an additional visual meaning on your content
+
+```ts
+import { Text } from "@jobber/components/Text";
+```
+
+<Playground>
+  <Text>
+    "640K is more memory than anyone will ever need on a computer" – Not Bill
+    Gates
+  </Text>
+</Playground>
+
+## Props
+
+<Props of={Text} />
+
+---
 
 ## Default
 
@@ -46,13 +63,9 @@ only be used right after a page title.
   <br />
   <Text variation="error">Name is required</Text>
   <br />
-  <Text variation="warning">Your message is over 160 characters</Text>
+  <Text variation="warn">Your message is over 160 characters</Text>
   <br />
   <Text variation="info">
     Drag to rearrange the order that fields show up in Jobber
   </Text>
 </Playground>
-
-## Text Properties
-
-<Props of={Text} />

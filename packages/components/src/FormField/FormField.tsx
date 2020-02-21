@@ -1,10 +1,10 @@
 import React, { ChangeEvent, ReactNode, Ref, useEffect, useState } from "react";
 import classnames from "classnames";
 import uuid from "uuid";
+import styles from "./FormField.css";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
 import { InputValidation, ValidationProps } from "../InputValidation";
-import styles from "./FormField.css";
 
 export interface FormFieldProps {
   /**
@@ -96,7 +96,13 @@ export interface FormFieldProps {
   /**
    * Determines what kind of form field should the component give you.
    */
-  readonly type?: "text" | "number" | "time" | "textarea" | "select";
+  readonly type?:
+    | "text"
+    | "password"
+    | "number"
+    | "time"
+    | "textarea"
+    | "select";
 
   /**
    * **EXPERIMENTAL** This feature is still under development.
@@ -178,12 +184,13 @@ export const FormField = React.forwardRef(
       | Ref<HTMLSelectElement>,
   ) => {
     const [hasMiniLabel, setHasMiniLabel] = useState(
-      defaultValue || value ? true : false,
+      shouldShowMiniLabel(defaultValue, value),
     );
     const identifier = uuid.v1();
 
     useEffect(() => {
       handleValidation();
+      setHasMiniLabel(shouldShowMiniLabel(defaultValue, value));
     }, [value]);
 
     const wrapperClassNames = classnames(
@@ -191,7 +198,6 @@ export const FormField = React.forwardRef(
       inline && styles.inline,
       size && styles[size],
       align && styles[align],
-      errorMessage && styles.hasErrorMessage,
       disabled && styles.disabled,
       maxLength && styles.maxLength,
       {
@@ -316,6 +322,18 @@ export const FormField = React.forwardRef(
     }
   },
 );
+
+function shouldShowMiniLabel(
+  defaultValue: string | number | undefined,
+  value: string | number | undefined,
+) {
+  const activeValue = defaultValue || value;
+  if (typeof activeValue === "string") {
+    return activeValue.length > 0;
+  } else {
+    return activeValue != undefined;
+  }
+}
 
 function hasErrorMessages(validations?: ValidationProps[]) {
   if (validations) {

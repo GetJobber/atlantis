@@ -143,10 +143,6 @@ select.formField {
   --field--wrapper-elevation: var(--elevation-base);
 }
 
-.hasErrorMessage {
-  margin-top: var(--space-smaller);
-}
-
 .disabled {
   --field--placeholder-color: var(--color-grey);
   --field--background-color: var(--color-grey--lightest);

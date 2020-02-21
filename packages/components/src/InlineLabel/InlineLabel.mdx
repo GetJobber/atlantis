@@ -10,28 +10,42 @@ import { InlineLabel } from ".";
 
 # Inline Label
 
-<ComponentStatus stage="pre" responsive="no" accessible="no" />
+<ComponentStatus stage="ready" responsive="yes" accessible="yes" />
 
 Inline labels are typically used to indicate state/status on objects within the
 application.
 
-## Sizes
+```ts
+import { InlineLabel } from "@jobber/components/InlineLabel";
+```
 
 <Playground>
-  <p>
-    <InlineLabel>Normal Label</InlineLabel>
-  </p>
-  <p>
-    <InlineLabel size="medium">Medium Label</InlineLabel>
-  </p>
-  <p>
-    <InlineLabel size="large">Large Label</InlineLabel>
-  </p>
+  <InlineLabel>Draft</InlineLabel>
 </Playground>
 
-## Properties
+## Props
 
 <Props of={InlineLabel} />
+
+---
+
+## Sizes
+
+### Large
+
+<Playground>
+  <InlineLabel size="large" color="blue">
+    Beta
+  </InlineLabel>
+</Playground>
+
+### Larger
+
+<Playground>
+  <InlineLabel size="larger" color="green">
+    99+
+  </InlineLabel>
+</Playground>
 
 ## Colours
 

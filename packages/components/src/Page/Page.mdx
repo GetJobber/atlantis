@@ -1,0 +1,35 @@
+---
+name: Page
+menu: Patterns
+route: /components/page
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { Page } from ".";
+import { Text } from "../Text";
+
+# Page
+
+<ComponentStatus stage="pre" responsive="no" accessible="yes" />
+
+Use to build the title and descriptions part of the page.
+
+```ts
+import { Page } from "@jobber/components/Page";
+```
+
+<Playground>
+  <Page
+    title="Notifications"
+    intro="Improve job completion rates, stop chasing payments, and boost your customer service by automatically communicating with your clients at key points before, during, and after a job. Read more about Notifications by visiting our [Help Center](https://help.getjobber.com/hc/en-us/articles/115009737128)."
+  >
+    <Text>Page content here</Text>
+  </Page>
+</Playground>
+
+## Props
+
+<Props of={Page} />
+
+---

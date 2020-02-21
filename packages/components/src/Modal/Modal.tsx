@@ -2,17 +2,17 @@ import React, { ReactNode, useEffect } from "react";
 import ReactDOM from "react-dom";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
+import styles from "./Modal.css";
+import sizes from "./Sizes.css";
 import { Icon } from "../Icon";
 import { Typography } from "../Typography";
 import { Button, ButtonProps } from "../Button";
-import styles from "./Modal.css";
-import sizes from "./Sizes.css";
 
 interface ModalProps {
   /**
    * @default false
    */
-  readonly title: string;
+  readonly title?: string;
   readonly open?: boolean;
   readonly size?: keyof typeof sizes;
   /**
@@ -69,13 +69,14 @@ export function Modal({
               stiffness: 300,
             }}
           >
-            <Header
-              title={title}
-              dismissible={dismissible}
-              onRequestClose={onRequestClose}
-            />
-
-            <div className={styles.content}>{children}</div>
+            {title != undefined && (
+              <Header
+                title={title}
+                dismissible={dismissible}
+                onRequestClose={onRequestClose}
+              />
+            )}
+            {children}
 
             <Actions
               primary={primaryAction}
@@ -115,7 +116,7 @@ interface HeaderProps {
 
 function Header({ title, dismissible, onRequestClose }: HeaderProps) {
   return (
-    <div className={styles.header}>
+    <div className={styles.header} data-testid="modal-header">
       <Typography
         element="h3"
         size="large"
