@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.10.2...@jobber/components@1.10.3) (2020-02-26)
+
+
+### Bug Fixes
+
+* **components:** replace spring animation in Modal ([#203](https://github.com/GetJobber/atlantis/issues/203)) ([44fa54e](https://github.com/GetJobber/atlantis/commit/44fa54ee3d277a1d8f2ee0bed84723777a189846))
+
+
+
+
+
 ## [1.10.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.10.1...@jobber/components@1.10.2) (2020-02-19)
 
 
