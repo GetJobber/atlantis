@@ -59,7 +59,7 @@ export function Modal({
           <motion.div
             key={styles.modal}
             className={modalClassName}
-            initial={{ scale: 0.9, opacity: 0.8 }}
+            initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             transition={{
