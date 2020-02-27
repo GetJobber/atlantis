@@ -1,0 +1,31 @@
+---
+name: FormatDate
+menu: Components
+route: /components/date-formatter
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { CivilDate } from "@std-proposal/temporal";
+import { FormatDate } from ".";
+
+# FormatDate
+
+<ComponentStatus stage="pre" responsive="yes" accessible="yes" />
+
+In Jobber a FormatDate is used to ensure that the date is displayed in the
+expected format. No text styling is applied, this simply formats the date.
+
+## Simple Example
+
+```ts
+import { FormatDate } from "@jobber/components/FormatDate";
+```
+
+<Playground>
+  <FormatDate date={new CivilDate(2020, 2, 26)} />
+</Playground>
+
+## Props
+
+<Props of={FormatDate} />
