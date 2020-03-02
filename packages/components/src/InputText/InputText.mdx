@@ -172,15 +172,12 @@ shouldn't replace server-side validation.
   {() => {
     const [text, setText] = useState("Just some words here.");
     const textRef = React.createRef();
-
     const handleTextChange = newValue => {
       setText(newValue);
     };
-
     const insert = () => {
       textRef.current.insert("🎉");
-    }
-
+    };
     return (
       <Content>
         <InputText value={text} onChange={handleTextChange} ref={textRef} />
@@ -188,9 +185,7 @@ shouldn't replace server-side validation.
         <Button label="Insert Emoji" onClick={insert} />
       </Content>
     );
-
-}}
-
+  }}
 </Playground>
 
 ## Using onValidation

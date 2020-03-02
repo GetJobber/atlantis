@@ -23,7 +23,6 @@ import { FeatureSwitch } from "@jobber/components/FeatureSwitch";
 <Playground>
   {() => {
     const [featureEnabled, setFeatureEnabled] = useState(true);
-
     return (
       <FeatureSwitch
         enabled={featureEnabled}
@@ -38,13 +37,10 @@ import { FeatureSwitch } from "@jobber/components/FeatureSwitch";
         <Text>Extra feature content and information</Text>
       </FeatureSwitch>
     );
-
     function handleSwitch(newValue) {
       setFeatureEnabled(newValue);
     }
-
-}}
-
+  }}
 </Playground>
 
 ## Props
