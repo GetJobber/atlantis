@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.10.3...@jobber/components@1.11.0) (2020-03-02)
+
+
+### Features
+
+* **components:** Add FormatDate component ([#204](https://github.com/GetJobber/atlantis/issues/204)) ([aac019b](https://github.com/GetJobber/atlantis/commit/aac019b88b76d4cff0111826690b98872a10d1a6))
+
+
+
+
+
 ## [1.10.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.10.2...@jobber/components@1.10.3) (2020-02-26)
 
 
