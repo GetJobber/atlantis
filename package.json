@@ -36,6 +36,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
     "@jobber/design": "file:packages/design",
+    "@jobber/docx": "file:packages/docx",
     "@jobber/eslint-config": "file:packages/eslint-config",
     "@jobber/generators": "file:packages/generators",
     "@jobber/stylelint-config": "file:packages/stylelint-config",
