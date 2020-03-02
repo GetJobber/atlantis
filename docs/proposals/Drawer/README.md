@@ -8,7 +8,7 @@ The `<Drawer>` component will allow users to view content that relates to their
 main task. It would appear on the right-hand side of the screen. The component
 would be toggled open and closed by a specified button or link. The component
 would fill the available vertical height of the parent container. It would allow
-the user to still view and interact with the main content. The user could
+the user to still view and interact with the main content. The user could configure the displayed content. The user could
 dismiss it once they are finished.
 
 Some scenarios for a `<Drawer>` include the following:
