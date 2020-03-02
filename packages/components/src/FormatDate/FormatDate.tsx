@@ -12,21 +12,10 @@ export function FormatDate(date: FormatDateProps) {
   return <>{strFormatDate(date.date)}</>;
 }
 
-function strFormatDate(date: CivilDate) {
-  const monthNames = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-
-  return monthNames[date.month - 1] + " " + date.day + ", " + date.year;
+function strFormatDate({ year, month, day }: CivilDate) {
+  return new Date(year, month - 1, day).toLocaleDateString(undefined, {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
 }
