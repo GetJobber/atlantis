@@ -1,0 +1,36 @@
+---
+name: Docs Helpers
+route: /docx
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus, ColorSwatches } from "@jobber/docx";
+
+# Docs Helpers
+
+Helper components for the Atlantis internal docs viewer.
+
+## `ComponentStatus`
+
+<Playground>
+  <ComponentStatus stage="rc" responsive="no" accessible="yes" />
+</Playground>
+
+<Props of={ComponentStatus} />
+
+## `ColorSwatches`
+
+<Playground>
+  <ColorSwatches
+    colors={{
+      "--color-lime": "rgb(153, 193, 70)",
+      "--color-pink": "rgb(179, 96, 150)",
+      "--color-pink--light": "rgb(202, 144, 182)",
+      "--color-pink--lighter": "rgb(225, 191, 213)",
+      "--color-pink--lightest": "rgb(244, 231, 239)",
+      "--color-pink--dark": "rgb(116, 62, 98)"
+    }}
+  />
+</Playground>
+
+<Props of={ColorSwatches} />
