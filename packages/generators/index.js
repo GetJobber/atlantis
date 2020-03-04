@@ -32,6 +32,7 @@ module.exports = function(plop, config) {
       },
     ],
     actions: [
+      answers => Object.assign(answers, { mdx: "mdx" }),
       {
         type: "addMany",
         destination: `{{path}}/{{name}}/`,
