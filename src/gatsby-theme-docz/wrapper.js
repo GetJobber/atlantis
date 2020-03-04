@@ -15,6 +15,11 @@ const Wrapper = ({ children }) => (
     <Helmet>
       <meta charSet="utf-8" />
       <link
+        rel="icon"
+        type="image/png"
+        href="//public/assets/favicon.png"
+      ></link>
+      <link
         type="text/css"
         rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i"
