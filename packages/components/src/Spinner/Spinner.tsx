@@ -2,7 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import styles from "./Spinner.css";
 
-export interface SpinnerProps {
+interface SpinnerProps {
   /**
    * Specifies the size of the spinner
    *
