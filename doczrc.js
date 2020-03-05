@@ -44,6 +44,8 @@ function privateComponentReadmies() {
 // eslint-disable-next-line import/no-default-export
 export default {
   title: "🔱 Atlantis",
+  description:
+    "Atlantis is a design system for Jobber. The primary objective for Atlantis is to provide a system of reusable components to help developers to quickly build beautiful and consistent interfaces for our users.",
   typescript: true,
   port: 3333,
   menu: ["Atlantis", "Patterns", "Components"],
@@ -55,5 +57,10 @@ export default {
   plugins: [projectPlugin()],
   themeConfig: {
     showDarkModeSwitch: false,
+    fonts: {
+      body: '"Source Sans Pro", sans-serif',
+      heading: '"Poppins", sans-serif',
+      monospace: '"Anonymous Pro", monospace',
+    },
   },
 };

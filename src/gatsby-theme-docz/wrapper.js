@@ -40,7 +40,7 @@ const Wrapper = ({ children }) => (
 );
 
 Wrapper.propTypes = {
-  children: PropTypes.children,
+  children: PropTypes.element,
 };
 
 // eslint-disable-next-line import/no-default-export
