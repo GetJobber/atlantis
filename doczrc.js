@@ -26,6 +26,14 @@ const projectPlugin = () =>
         cssRule,
       ];
 
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        "@jobber/components": path.resolve(
+          __dirname,
+          "../packages/components/src",
+        ),
+      };
+
       actions.replaceWebpackConfig(config);
     },
   });

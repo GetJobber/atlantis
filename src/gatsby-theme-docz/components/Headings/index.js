@@ -1,8 +1,7 @@
 /** @jsx jsx */
 import PropTypes from "prop-types";
 import { jsx } from "theme-ui";
-// import { Heading } from "../../../../../packages/components/src/Heading";
-import { Heading } from "@jobber/components/src/Heading";
+import { Heading } from "@jobber/components/Heading";
 
 const margins = {
   1: ["var(--space-larger)", "var(--space-base)"],
