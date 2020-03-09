@@ -6,9 +6,9 @@ import glob from "glob";
 
 const projectPlugin = () =>
   createPlugin({
-    onCreateWebpackConfig: ({ rules, actions, getConfig }) => {
+    onCreateWebpackConfig: ({ stage, rules, actions, loaders, getConfig }) => {
+      // Setup CSS to allow for modules.
       // 😢 https://github.com/gatsbyjs/gatsby/issues/16129
-
       const config = getConfig();
 
       const cssRule = {
@@ -33,6 +33,14 @@ const projectPlugin = () =>
           "../packages/components/src",
         ),
       };
+
+      // time-input-polyfill is incompatible with server side rendering
+      if (stage.includes("html")) {
+        config.module.rules.push({
+          test: /time-input-polyfill/,
+          use: loaders.null(),
+        });
+      }
 
       actions.replaceWebpackConfig(config);
     },

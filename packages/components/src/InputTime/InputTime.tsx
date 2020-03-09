@@ -1,12 +1,13 @@
 import React from "react";
+// eslint-disable-next-line import/no-internal-modules
+import supportsTime from "time-input-polyfill/supportsTime";
+import { InputTimeSafari } from "./InputTimeSafari";
 import {
   civilTimeToHTMLTime,
   htmlTimeToCivilTime,
 } from "./civilTimeConversions";
 import { InputTimeProps } from "./InputTimeProps";
 import { FormField, FormFieldProps } from "../FormField";
-
-const supportsTime = getTimeSupport();
 
 export function InputTime({
   defaultValue,
@@ -28,8 +29,6 @@ export function InputTime({
 
     return <FormField type="time" {...fieldProps} />;
   } else {
-    const InputTimeSafari = require("./InputTimeSafari").InputTimeSafari;
-
     return (
       <InputTimeSafari
         defaultValue={defaultValue}
@@ -39,11 +38,4 @@ export function InputTime({
       />
     );
   }
-}
-
-function getTimeSupport() {
-  return typeof window === `undefined`
-    ? true
-    : // eslint-disable-next-line import/no-internal-modules
-      require("time-input-polyfill/supportsTime");
 }
