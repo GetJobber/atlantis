@@ -78,5 +78,15 @@ export default {
       heading: '"Poppins", sans-serif',
       monospace: '"Anonymous Pro", monospace',
     },
+    fontSizes: [
+      "var(--typography--fontSize-smaller)",
+      "var(--typography--fontSize-small)",
+      "var(--typography--fontSize-base)",
+      "var(--typography--fontSize-large)",
+      "var(--typography--fontSize-larger)",
+      "var(--typography--fontSize-largest)",
+      "var(--typography--fontSize-jumbo)",
+      "var(--typography--fontSize-extravagant)",
+    ],
   },
 };

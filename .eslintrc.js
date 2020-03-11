@@ -23,7 +23,8 @@ module.exports = {
       "error",
       {
         allow: [
-          "@jobber/components/*"
+          "@jobber/components/*",
+          "gatsby-theme-docz/**"
         ]
       }
     ]
