@@ -40,6 +40,10 @@ const projectPlugin = () =>
           test: /time-input-polyfill/,
           use: loaders.null(),
         });
+        config.module.rules.push({
+          test: /@jobber\/components/,
+          use: loaders.null(),
+        });
       }
 
       actions.replaceWebpackConfig(config);

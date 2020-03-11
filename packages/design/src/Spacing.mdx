@@ -18,6 +18,9 @@ export function Example({ of: size }) {
 }
 
 export function Height({ of: size }) {
+  if (typeof window === `undefined`) {
+    return 0;
+  }
   const element = document.createElement("div");
   element.style.height = `var(--space-${size})`;
   document.body.appendChild(element);
