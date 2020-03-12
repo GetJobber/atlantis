@@ -41,7 +41,15 @@ const projectPlugin = () =>
           use: loaders.null(),
         });
         config.module.rules.push({
-          test: /@jobber\/components/,
+          test: /(?:packages|docs)\/.*\.(?:js|jsx|ts|tsx|md|mdx)$/,
+          use: loaders.null(),
+        });
+        config.module.rules.push({
+          test: /CONTRIBUTING.md/,
+          use: loaders.null(),
+        });
+        config.module.rules.push({
+          test: /README.md/,
           use: loaders.null(),
         });
       }

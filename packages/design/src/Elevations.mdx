@@ -9,9 +9,6 @@ route: /elevation
 The following table lists all elements that has a z-index specified on it.
 
 export function Value({ of: type }) {
-  if (typeof window === `undefined`) {
-    return 0;
-  }
   const styles = getComputedStyle(document.documentElement);
   const getValue = styles.getPropertyValue(`--elevation-${type}`);
   return <>{getValue}</>;

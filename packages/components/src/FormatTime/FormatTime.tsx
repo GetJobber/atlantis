@@ -32,14 +32,9 @@ function formatCivilTime(time: CivilTime, use24HourClock?: boolean) {
     time.millisecond,
   );
 
-  return date.toLocaleTimeString(getLocale(), {
+  return date.toLocaleTimeString(navigator.language, {
     hour12: typeof use24HourClock === "boolean" ? !use24HourClock : undefined,
     minute: "2-digit",
     hour: "numeric",
   });
-}
-
-function getLocale() {
-  if (typeof window !== `undefined`) return navigator.language;
-  return undefined;
 }
