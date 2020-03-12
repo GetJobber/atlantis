@@ -33,6 +33,7 @@ export const previewWrapper = {
 export const editor = theme => ({
   ...styles.editor(theme),
   border: () => "none",
+  backgroundColor: "var(--color-grey--lightest)",
 });
 
 export const previewInner = (content, showingCode) => {
@@ -61,5 +62,6 @@ export const buttons = {
 
 export const button = {
   ...styles.button,
+  color: t => t.colors.text,
   borderRadius: "3px",
 };
