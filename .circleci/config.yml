@@ -127,7 +127,7 @@ jobs:
       - *restore_npm_cache
       - *npm_install
       - *generate_base_path
-      - run: npm run build -- --base "/${BASE_PATH}/"
+      - run: npm run docz:build -- --base "/${BASE_PATH}/"
       - store_artifacts:
           path: ~/atlantis/.docz/dist
           destination: docs

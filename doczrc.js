@@ -37,8 +37,12 @@ const projectPlugin = () =>
       // time-input-polyfill is incompatible with server side rendering
       if (stage.includes("html")) {
         config.module.rules.push({
-          test: /time-input-polyfill/,
+          test: /(?:packages|docs)\/.*\.(?:js|jsx|ts|tsx)$/,
           use: loaders.null(),
+        });
+        config.module.rules.push({
+          test: /.*\.(?:md|mdx)$/,
+          use: path.resolve("../src/null-markdown-loader.js"),
         });
       }
 
