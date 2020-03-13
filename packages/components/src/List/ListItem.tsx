@@ -35,7 +35,7 @@ export interface ListItemProps {
    * The ID of the list item. This will be helpful to know the selected list
    * items when a batch action is implemented.
    */
-  readonly id: number;
+  readonly id: number | string;
 
   /**
    * Highlights the list item with the lightest green icon. This communicates
