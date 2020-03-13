@@ -31,7 +31,7 @@ export const logo = {
     fontSize: 4,
     letterSpacing: 0,
     background:
-      "-webkit-linear-gradient(var(--color-yellow--lightest), var(--color-yellow))",
+      "-webkit-linear-gradient(var(--color-yellow--lighter), var(--color-yellow))",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
   },
