@@ -1,5 +1,3 @@
-/* eslint-disable import/no-internal-modules */
-/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/export */
 
 // Re-export base theme styles.
@@ -26,7 +24,6 @@ export const logo = {
   px: MENU_PADDING,
   py: `calc(${MENU_PADDING} / 1.5)`,
   bg: "var(--color-blue--dark)",
-  height: t => console.log(t),
 
   "& a": {
     textTransform: "uppercase",

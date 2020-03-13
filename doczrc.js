@@ -93,7 +93,6 @@ export default {
       "var(--typography--fontSize-extravagant)",
     ],
     colors: {
-      green: "var(--color-green)",
       border: "var(--color-grey--lighter)",
       text: "var(--color-blue--dark)",
       primary: "var(--color-green)",

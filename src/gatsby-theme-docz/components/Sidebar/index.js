@@ -1,5 +1,3 @@
-/* eslint-disable import/no-internal-modules */
-/* eslint-disable import/no-extraneous-dependencies */
 /** @jsx jsx */
 /** @jsxFrag React.Fragment */
 import React, { useEffect, useRef, useState } from "react";
@@ -10,7 +8,6 @@ import { NavLink } from "gatsby-theme-docz/src/components/NavLink";
 import { NavGroup } from "gatsby-theme-docz/src/components/NavGroup";
 import { Logo } from "gatsby-theme-docz/src/components/Logo";
 import { Edit, Github } from "gatsby-theme-docz/src/components/Icons";
-import { Tooltip } from "@jobber/components/Tooltip";
 import * as styles from "./styles";
 
 export const Sidebar = React.forwardRef((props, ref) => {
@@ -79,9 +76,7 @@ export const Sidebar = React.forwardRef((props, ref) => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Tooltip message="See Atlantis on Github">
-                <Github size={15} />
-              </Tooltip>
+              <Github size={15} />
             </a>
           )}
 
@@ -92,9 +87,7 @@ export const Sidebar = React.forwardRef((props, ref) => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Tooltip message="Edit Page">
-                <Edit width={18} />
-              </Tooltip>
+              <Edit width={18} />
             </a>
           )}
         </div>

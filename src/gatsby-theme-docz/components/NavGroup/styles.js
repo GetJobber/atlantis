@@ -1,5 +1,3 @@
-/* eslint-disable import/no-internal-modules */
-/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/export */
 
 // Re-export base theme styles.
