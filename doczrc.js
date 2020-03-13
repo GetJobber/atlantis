@@ -82,8 +82,27 @@ export default {
       heading: '"Poppins", sans-serif',
       monospace: '"Anonymous Pro", monospace',
     },
+    fontSizes: [
+      "var(--typography--fontSize-smaller)",
+      "var(--typography--fontSize-small)",
+      "var(--typography--fontSize-base)",
+      "var(--typography--fontSize-large)",
+      "var(--typography--fontSize-larger)",
+      "var(--typography--fontSize-largest)",
+      "var(--typography--fontSize-jumbo)",
+      "var(--typography--fontSize-extravagant)",
+    ],
     colors: {
       green: "var(--color-green)",
+      border: "var(--color-grey--lighter)",
+      text: "var(--color-blue--dark)",
+      primary: "var(--color-green)",
+      playground: {
+        border: "var(--color-grey--lighter)",
+      },
+      props: {
+        bg: "var(--color-grey--lightest)",
+      },
       sidebar: {
         bg: "var(--color-greyBlue--dark)",
         navGroup: "var(--color-greyBlue--lighter)",
@@ -148,6 +167,13 @@ export default {
         },
         "&.active::before": {
           content: "'>'",
+        },
+      },
+    },
+    prism: {
+      light: {
+        plain: {
+          backgroundColor: "var(--color-grey--lightest)",
         },
       },
     },
