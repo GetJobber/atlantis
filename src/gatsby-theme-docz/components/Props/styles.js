@@ -68,3 +68,8 @@ export const openDescBtn = {
   mt: 0,
   ml: 0,
 };
+
+export const description = {
+  ...styles.description,
+  mx: -2,
+};

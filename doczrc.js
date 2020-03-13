@@ -92,5 +92,23 @@ export default {
       "var(--typography--fontSize-jumbo)",
       "var(--typography--fontSize-extravagant)",
     ],
+    colors: {
+      border: "var(--color-grey--lighter)",
+      text: "var(--color-blue--dark)",
+      primary: "var(--color-green)",
+      playground: {
+        border: "var(--color-grey--lighter)",
+      },
+      props: {
+        bg: "var(--color-grey--lightest)",
+      },
+    },
+    prism: {
+      light: {
+        plain: {
+          backgroundColor: "var(--color-grey--lightest)",
+        },
+      },
+    },
   },
 };
