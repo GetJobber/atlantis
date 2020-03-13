@@ -23,9 +23,9 @@ export const previewWrapper = {
       transform: "translateY(-50%)",
       width: "2px",
       height: "50px",
-      border: t => `solid 2px ${t.colors.background}`,
+      border: "solid 2px transparent",
       borderRadius: "2px",
-      borderColor: "transparent #fff",
+      borderColor: t => `transparent ${t.colors.prism.plain.backgroundColor}`,
     },
   },
 };
