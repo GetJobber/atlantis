@@ -37,8 +37,12 @@ const projectPlugin = () =>
       // time-input-polyfill is incompatible with server side rendering
       if (stage.includes("html")) {
         config.module.rules.push({
-          test: /time-input-polyfill/,
+          test: /(?:packages|docs)\/.*\.(?:js|jsx|ts|tsx)$/,
           use: loaders.null(),
+        });
+        config.module.rules.push({
+          test: /.*\.(?:md|mdx)$/,
+          use: path.resolve("../src/null-markdown-loader.js"),
         });
       }
 
@@ -77,6 +81,34 @@ export default {
       body: '"Source Sans Pro", sans-serif',
       heading: '"Poppins", sans-serif',
       monospace: '"Anonymous Pro", monospace',
+    },
+    fontSizes: [
+      "var(--typography--fontSize-smaller)",
+      "var(--typography--fontSize-small)",
+      "var(--typography--fontSize-base)",
+      "var(--typography--fontSize-large)",
+      "var(--typography--fontSize-larger)",
+      "var(--typography--fontSize-largest)",
+      "var(--typography--fontSize-jumbo)",
+      "var(--typography--fontSize-extravagant)",
+    ],
+    colors: {
+      border: "var(--color-grey--lighter)",
+      text: "var(--color-blue--dark)",
+      primary: "var(--color-green)",
+      playground: {
+        border: "var(--color-grey--lighter)",
+      },
+      props: {
+        bg: "var(--color-grey--lightest)",
+      },
+    },
+    prism: {
+      light: {
+        plain: {
+          backgroundColor: "var(--color-grey--lightest)",
+        },
+      },
     },
   },
 };
