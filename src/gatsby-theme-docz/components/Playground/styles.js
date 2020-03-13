@@ -32,7 +32,7 @@ export const previewWrapper = {
 
 export const editor = theme => ({
   ...styles.editor(theme),
-  border: () => "none",
+  border: "none",
   backgroundColor: "var(--color-grey--lightest)",
 });
 
