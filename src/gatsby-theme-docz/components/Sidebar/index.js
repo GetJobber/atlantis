@@ -87,7 +87,7 @@ export const Sidebar = React.forwardRef((props, ref) => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Edit width={18} />
+              <Edit width={15} />
             </a>
           )}
         </div>
