@@ -140,7 +140,7 @@ export default {
           width: 6,
           height: 6,
           border: "1px solid var(--color-greyBlue--light)",
-          borderRadius: 100,
+          borderRadius: "100%",
         },
         "&.active": {
           color: "var(--color-white)",
