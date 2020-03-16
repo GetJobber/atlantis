@@ -4,12 +4,12 @@ import themeStyles from "gatsby-theme-docz/src/theme/styles";
 const styles = {
   ...themeStyles,
   inlineCode: {
-    color: "rgb(125, 137, 156)",
-    background: "rgb(245, 246, 247)",
+    color: "var(--color-grey--dark)",
+    background: "var(--color-grey--lightest)",
     fontSize: 2,
-    mx: "3px",
+    marginX: "2px",
     borderRadius: "radius",
-    p: "2px 5px",
+    padding: "2px 5px",
   },
 };
 
