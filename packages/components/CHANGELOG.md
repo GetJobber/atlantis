@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.11.0...@jobber/components@1.12.0) (2020-03-16)
+
+
+### Features
+
+* **components:** ListItem can have string as id ([#210](https://github.com/GetJobber/atlantis/issues/210)) ([cee7146](https://github.com/GetJobber/atlantis/commit/cee71461c77d47806729ac07069481adf01abca0))
+
+
+
+
+
 # [1.11.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.10.3...@jobber/components@1.11.0) (2020-03-02)
 
 
