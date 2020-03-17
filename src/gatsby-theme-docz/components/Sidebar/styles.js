@@ -56,23 +56,3 @@ export const topLevelMenuWrapper = theme => ({
 export const topLevelMenuItem = theme => ({
   ...theme.navigation.level1,
 });
-
-export const buttons = {
-  position: "fixed",
-  top: 0,
-  right: 0,
-  display: "flex",
-  p: 3,
-};
-
-export const button = ({ color }) => ({
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "center",
-  mx: 1,
-  width: 42,
-  height: 42,
-  borderRadius: 100,
-  bg: color || "var(--color-green)",
-  color: "var(--color-white)",
-});
