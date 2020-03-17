@@ -1,6 +1,6 @@
 export const buttons = {
   position: "fixed",
-  top: 1,
-  right: 1,
+  top: 2,
+  right: 2,
   zIndex: "999",
 };

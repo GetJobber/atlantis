@@ -1,8 +1,9 @@
 /** @jsx jsx */
+import React from "react";
 import { jsx } from "theme-ui";
 import { useConfig, useCurrentDoc } from "docz";
-import { Edit, Github } from "gatsby-theme-docz/src/components/Icons";
-import * as styles from "./styles";
+import { Github } from "gatsby-theme-docz/src/components/Icons";
+import { Button } from "@jobber/components/Button";
 
 export const HeaderButtons = () => {
   const {
@@ -14,25 +15,16 @@ export const HeaderButtons = () => {
   return (
     <div>
       {repository && (
-        <a
-          href={repository}
-          sx={styles.button({ color: "var(--color-blue--dark)" })}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Github size={15} />
-        </a>
+        <React.Fragment>
+          <Button
+            label={<Github size={18} />}
+            type="secondary"
+            url={repository}
+          />{" "}
+        </React.Fragment>
       )}
-
       {showMarkdownEditButton && edit && doc.link && (
-        <a
-          sx={styles.button}
-          href={doc.link}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Edit width={15} />
-        </a>
+        <Button icon="edit" color="white" label="Edit page" url={doc.link} />
       )}
     </div>
   );

@@ -22,5 +22,5 @@ export const input = {
 
 export const icon = {
   ...styles.icon,
-  mx: 2,
+  margin: "0 0 0 8px",
 };
