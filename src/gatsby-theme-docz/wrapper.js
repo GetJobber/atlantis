@@ -9,7 +9,6 @@ import { Helmet } from "react-helmet-async";
 // eslint-disable-next-line import/no-internal-modules,no-restricted-imports
 import "../../../packages/design/src/foundation.css";
 
-// The doc prop contains some metadata about the page being rendered that you can use.
 const Wrapper = ({ children }) => (
   <>
     <Helmet>
@@ -17,7 +16,7 @@ const Wrapper = ({ children }) => (
       <link
         rel="icon"
         type="image/png"
-        href="//public/assets/favicon.png"
+        href="/public/assets/favicon.png"
       ></link>
       <link
         type="text/css"

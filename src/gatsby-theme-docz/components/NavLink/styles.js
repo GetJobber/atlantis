@@ -15,6 +15,7 @@ export const smallLink = theme => ({
   ...styles.smallLink,
   ...theme.navigation.level3,
 
+  // Adds a small margin below the TOC on component menu items.
   "& + a:not([href*='#'])": {
     mt: 3,
   },

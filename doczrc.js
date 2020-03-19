@@ -2,15 +2,17 @@
 import path from "path";
 import { createPlugin } from "docz-core";
 import glob from "glob";
-// import { WatchIgnorePlugin } from "webpack";
 
 const projectPlugin = () =>
   createPlugin({
     onCreateWebpackConfig: ({ stage, rules, actions, loaders, getConfig }) => {
-      // Setup CSS to allow for modules.
-      // 😢 https://github.com/gatsbyjs/gatsby/issues/16129
       const config = getConfig();
 
+      /**
+       * Gatsby does not like that we use css modules. To fix this we need
+       * to change some of the webpack config around how we handle css.
+       * 😢 More info here: https://github.com/gatsbyjs/gatsby/issues/16129
+       */
       const cssRule = {
         ...rules.cssModules(),
         test: rules.css().test,
@@ -34,7 +36,6 @@ const projectPlugin = () =>
         ),
       };
 
-      // time-input-polyfill is incompatible with server side rendering
       if (stage.includes("html")) {
         config.module.rules.push({
           test: /(?:packages|docs)\/.*\.(?:js|jsx|ts|tsx)$/,
