@@ -2,9 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet-async";
 
-// Note: We are using react-helmet-async here instead of react-helmet
-// https://github.com/nfl/react-helmet/issues/426
-// https://www.docz.site/docs/add-favicon-and-metadata
+/**
+ * Note: We're referencing `react-helmet-async`, and not `react-helmet`. This
+ * is because of this (https://github.com/nfl/react-helmet/issues/426) issue.
+ * `react-helmet-async` is an API-compatible fork.
+ *
+ * https://www.docz.site/docs/add-favicon-and-metadata
+ */
 
 // eslint-disable-next-line import/no-internal-modules,no-restricted-imports
 import "../../../packages/design/src/foundation.css";
