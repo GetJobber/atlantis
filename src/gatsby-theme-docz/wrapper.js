@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { Helmet } from "react-helmet-async";
 
 /**
- * Note: We're referencing `react-helmet-async`, and not `react-helmet`. This
- * is because of this (https://github.com/nfl/react-helmet/issues/426) issue.
+ * Note: As required by Docz, we're referencing `react-helmet-async`, and not
+ * `react-helmet`. This is because of (https://github.com/nfl/react-helmet/issues/426).
  * `react-helmet-async` is an API-compatible fork.
  *
  * https://www.docz.site/docs/add-favicon-and-metadata
