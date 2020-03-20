@@ -29,11 +29,22 @@ meaning and recommended usage.
 
 When contributing a new icon, follow these guidelines:
 
-- Design within a 24px grid
-- Line weight should be 2px
-- Corners should be rounded to a 1px radius
-- When a line is interrupted, use geometric/square terminals 
-- when a line ends organically, use round terminals
+### Size and Weight
+
+- Design within a 20px grid on a 24px artboard
+- Circular icons should have a 20px diameter
+- Lines should have a 2px Weight
+
+### Corners
+
+- Right-angle corners should have a 2px radius
+- Irregular corners should have a 1px radius
+- Interior corners should not have a radius
+
+### Line Terminals
+
+- When a line is interrupted, terminals should be geometric/square
+- when a line ends organically, terminals should be round
 
 ```ts
 import { Icon } from "@jobber/components/Icon";
