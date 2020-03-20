@@ -36,6 +36,7 @@ const projectPlugin = () =>
         ),
       };
 
+      // Situationally disable serverside rendering.
       if (stage.includes("html")) {
         config.module.rules.push({
           test: /(?:packages|docs)\/.*\.(?:js|jsx|ts|tsx)$/,
