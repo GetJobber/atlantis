@@ -51,10 +51,14 @@ const projectPlugin = () =>
   });
 
 /**
+ * Return an array of private components to hide from the user.
+ *
  * Atlantis contains some private components. These are indicated by an
  * empty `.private` file in the component's directory.
+ *
+ * @return {string[]} Private components.
  */
-function privateComponentReadmies() {
+function privateComponentReadmes() {
   // If specified at run time show documentation for privates components.
   if (process.env.PRIVATE_COMPONENTS === "visible") {
     return [];
@@ -90,7 +94,7 @@ export default {
   menu: ["Atlantis", "Patterns", "Components"],
   files: "{README.md,CONTRIBUTING.md,**/*.mdx}",
   ignore: [
-    ...privateComponentReadmies(),
+    ...privateComponentReadmes(),
     "./packages/generators/templates/**/*",
   ],
   plugins: [projectPlugin()],
