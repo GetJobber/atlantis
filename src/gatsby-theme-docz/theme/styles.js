@@ -3,6 +3,10 @@ import themeStyles from "gatsby-theme-docz/src/theme/styles";
 
 const styles = {
   ...themeStyles,
+  Container: {
+    ...themeStyles.Container,
+    maxWidth: 960,
+  },
   inlineCode: {
     color: "var(--color-grey--dark)",
     background: "var(--color-grey--lightest)",
