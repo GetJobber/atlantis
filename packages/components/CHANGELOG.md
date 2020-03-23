@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.12.2...@jobber/components@1.12.3) (2020-03-23)
+
+
+### Bug Fixes
+
+* **components:** Export the InlineLabel colors as a type for use ([#222](https://github.com/GetJobber/atlantis/issues/222)) ([da423f5](https://github.com/GetJobber/atlantis/commit/da423f5af7d64cef70c4f039e2facddf4f31a7c2))
+
+
+
+
+
 ## [1.12.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.12.1...@jobber/components@1.12.2) (2020-03-23)
 
 
