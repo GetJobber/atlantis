@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.12.1...@jobber/components@1.12.2) (2020-03-23)
+
+
+### Bug Fixes
+
+* **components:** fix typo in Heading documentation ([#214](https://github.com/GetJobber/atlantis/issues/214)) ([59a8087](https://github.com/GetJobber/atlantis/commit/59a8087119ab2038ff8473db3761c65e19c16717))
+
+
+
+
+
 ## [1.12.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.12.0...@jobber/components@1.12.1) (2020-03-23)
 
 **Note:** Version bump only for package @jobber/components
