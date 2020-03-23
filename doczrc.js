@@ -1,164 +1,205 @@
 /* eslint-env node */
 import path from "path";
+import { createPlugin } from "docz-core";
 import glob from "glob";
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { css } from "styled-components";
-// eslint-disable-next-line @typescript-eslint/no-var-requires, import/no-extraneous-dependencies
-const { WatchIgnorePlugin } = require("webpack");
 
-const modifyBundlerConfig = config => {
-  config.resolve.alias = Object.assign({}, config.resolve.alias, {
-    "@jobber/components": path.resolve(__dirname, "packages/components/src"),
-    "@jobber/docx": path.resolve(__dirname, "packages/docx/src"),
+const projectPlugin = () =>
+  createPlugin({
+    onCreateWebpackConfig: ({ stage, rules, actions, loaders, getConfig }) => {
+      const config = getConfig();
+
+      /**
+       * Gatsby does not like that we use css modules. To fix this we need
+       * to change some of the webpack config around how we handle css.
+       * 😢 More info here: https://github.com/gatsbyjs/gatsby/issues/16129
+       */
+      const cssRule = {
+        ...rules.cssModules(),
+        test: rules.css().test,
+      };
+
+      config.module.rules = [
+        ...config.module.rules.filter(rule => {
+          const areCssRules =
+            rule.oneOf && rule.oneOf.some(r => r.test.test("style.css"));
+
+          return !areCssRules;
+        }),
+        cssRule,
+      ];
+
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        "@jobber/components": path.resolve(
+          __dirname,
+          "../packages/components/src",
+        ),
+      };
+
+      // Situationally disable serverside rendering.
+      if (stage.includes("html")) {
+        config.module.rules.push({
+          test: /(?:packages|docs)\/.*\.(?:js|jsx|ts|tsx)$/,
+          use: loaders.null(),
+        });
+        config.module.rules.push({
+          test: /.*\.(?:md|mdx)$/,
+          use: path.resolve("../src/null-markdown-loader.js"),
+        });
+      }
+
+      actions.replaceWebpackConfig(config);
+    },
   });
 
-  config.plugins.push(new WatchIgnorePlugin([/css\.d\.ts$/]));
-
-  config.module.rules.push({
-    enforce: "pre",
-    test: /\.css$/,
-    exclude: /node_modules/,
-    loader: require.resolve("typed-css-modules-loader"),
-  });
-
-  config.module.rules.push({
-    test: /\.css$/,
-    use: [
-      require.resolve("style-loader"),
-      {
-        loader: require.resolve("css-loader"),
-        options: {
-          modules: {
-            localIdentName: "[name]__[local]__[hash:base64]",
-          },
-          importLoaders: 1,
-        },
-      },
-      {
-        loader: require.resolve("postcss-loader"),
-        options: {
-          modules: true,
-          plugins: [
-            // eslint-disable-next-line @typescript-eslint/no-var-requires
-            require("postcss-preset-env")({
-              stage: 1,
-              preserve: true,
-              importFrom: [
-                require.resolve("@jobber/design"),
-                require.resolve("@jobber/design/src/responsiveBreakpoints.css"),
-              ],
-            }),
-          ],
-        },
-      },
-    ],
-  });
-
-  return config;
-};
-
-const fonts = {
-  // Used for headings larger than 20px.
-  display: '"Poppins", sans-serif',
-  // Used for code and sometimes numbers in tables.
-  mono: '"Anonymous Pro", monospace',
-  // Used for text and UI (which includes almost anything).
-  ui: '"Source Sans Pro", sans-serif',
-};
-
-const themeConfig = {
-  showPlaygroundEditor: true,
-  fonts,
-  styles: {
-    body: css`
-      font-family: ${fonts.ui};
-      font-size: 18px;
-      line-height: 1.8;
-    `,
-    h1: css`
-      margin: 48px 0 16px;
-      font-family: ${fonts.display};
-      font-size: 48px;
-      line-height: 1.33;
-      font-weight: 800;
-      text-transform: uppercase;
-    `,
-    h2: css`
-      margin: 48px 0 16px;
-      font-family: ${fonts.display};
-      font-size: 24px;
-      line-height: 1.33em;
-      font-weight: 600;
-      text-transform: uppercase;
-    `,
-    h3: css`
-      margin: 32px 0 16px;
-      font-family: ${fonts.display};
-      font-size: 20px;
-      line-height: 1.2em;
-      font-weight: 600;
-    `,
-    h4: css`
-      margin: 0 0 16px;
-      font-family: ${fonts.display};
-      font-size: 18px;
-      line-height: 1.2em;
-      font-weight: 600;
-    `,
-  },
-};
-
-const htmlContext = {
-  head: {
-    links: [
-      {
-        rel: "stylesheet",
-        href:
-          "https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i",
-      },
-      {
-        rel: "stylesheet",
-        href:
-          "https://fonts.googleapis.com/css?family=Anonymous+Pro:400,400i,700,700i",
-      },
-      {
-        rel: "stylesheet",
-        href:
-          "https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i",
-      },
-      {
-        rel: "stylesheet",
-        href: "/public/foundation.css",
-      },
-    ],
-  },
-};
-
-function privateComponentReadmies() {
+/**
+ * Return an array of private components to hide from the user.
+ *
+ * Atlantis contains some private components. These are indicated by an
+ * empty `.private` file in the component's directory.
+ *
+ * @return {string[]} Private components.
+ */
+function privateComponentReadmes() {
+  // If specified at run time show documentation for privates components.
   if (process.env.PRIVATE_COMPONENTS === "visible") {
     return [];
   }
-  return glob.sync("packages/components/src/**/.private").map(file => {
-    const directory = path.dirname(file);
-    const componentName = path.basename(directory);
-    return path.join(directory, `${componentName}.mdx`);
-  });
+
+  // Ensure we're on atlantis root. Gatsby can also execute this file
+  // from within the build directory.
+  const atlantisPath = __dirname.replace(/\/\.docz$/, "");
+
+  return glob
+    .sync(path.join(atlantisPath, "packages/components/src/**/.private"))
+    .map(file => {
+      const directory = path.dirname(file);
+      const componentName = path.basename(directory);
+
+      return (
+        path
+          // Construct the absolute path to ignored component.
+          .join(directory, `${componentName}.mdx`)
+          // Convert to relative path.
+          .slice(atlantisPath.length + 1)
+      );
+    });
 }
 
 // eslint-disable-next-line import/no-default-export
 export default {
   title: "🔱 Atlantis",
+  description:
+    "Atlantis is a design system for Jobber. The primary objective for Atlantis is to provide a system of reusable components to help developers to quickly build beautiful and consistent interfaces for our users.",
   typescript: true,
   port: 3333,
   menu: ["Atlantis", "Patterns", "Components"],
   files: "{README.md,CONTRIBUTING.md,**/*.mdx}",
   ignore: [
-    ...privateComponentReadmies(),
+    ...privateComponentReadmes(),
     "./packages/generators/templates/**/*",
   ],
-  codeSandbox: false,
-  public: "public",
-  themeConfig,
-  htmlContext,
-  modifyBundlerConfig,
+  plugins: [projectPlugin()],
+  themeConfig: {
+    showDarkModeSwitch: false,
+    fonts: {
+      body: '"Source Sans Pro", sans-serif',
+      heading: '"Poppins", sans-serif',
+      monospace: '"Anonymous Pro", monospace',
+    },
+    fontSizes: [
+      "var(--typography--fontSize-smaller)",
+      "var(--typography--fontSize-small)",
+      "var(--typography--fontSize-base)",
+      "var(--typography--fontSize-large)",
+      "var(--typography--fontSize-larger)",
+      "var(--typography--fontSize-largest)",
+      "var(--typography--fontSize-jumbo)",
+      "var(--typography--fontSize-extravagant)",
+    ],
+    colors: {
+      border: "var(--color-grey--lighter)",
+      text: "var(--color-blue--dark)",
+      primary: "var(--color-green)",
+      playground: {
+        border: "var(--color-grey--lighter)",
+      },
+      props: {
+        bg: "var(--color-grey--lightest)",
+      },
+      sidebar: {
+        bg: "var(--color-greyBlue--dark)",
+        navGroup: "var(--color-greyBlue--lighter)",
+        navLink: "var(--color-white)",
+        navLinkActive: "var(--color-white)",
+        tocLink: "var(--color-greyBlue--lighter)",
+        tocLinkActive: "var(--color-white)",
+      },
+    },
+    navigation: {
+      level1: {
+        mb: 3,
+        ml: 0,
+        pl: 0,
+        fontFamily: "fonts.heading",
+        fontSize: 2,
+        fontWeight: 800,
+        textTransform: "uppercase",
+        letterSpacing: "0.02rem",
+        "&::before, &.active::before": {
+          display: "none",
+        },
+      },
+      level2: {
+        position: "relative",
+        pl: 3,
+        ml: 0,
+        fontSize: 2,
+        transition: "background 200ms ease 0s",
+        color: "var(--color-greyBlue--lighter)",
+        "&::before": {
+          content: "''",
+          position: "absolute",
+          top: 2,
+          left: 0,
+          width: 6,
+          height: 6,
+          border: "1px solid var(--color-greyBlue--light)",
+          borderRadius: "100%",
+        },
+        "&.active": {
+          color: "var(--color-white)",
+        },
+        "&:hover::before, &.active::before": {
+          transition: "background 200ms ease 0s",
+          bg: "var(--color-green)",
+          borderColor: "var(--color-green)",
+        },
+      },
+      level3: {
+        position: "relative",
+        ml: 3,
+        pl: 3,
+        fontSize: 2,
+        color: "var(--color-greyBlue--light)",
+        "&::before": {
+          content: "'>'",
+          position: "absolute",
+          fontFamily: "monospace",
+          left: 0,
+          mr: 1,
+        },
+        "&.active::before": {
+          content: "'>'",
+        },
+      },
+    },
+    prism: {
+      light: {
+        plain: {
+          backgroundColor: "var(--color-grey--lightest)",
+        },
+      },
+    },
+  },
 };
