@@ -18,6 +18,10 @@ Write a description about what {{ name }} component is trying to achieve.
 import { {{ name }} } from "@jobber/components/{{ name }}";
 ```
 
+## Design Guidelines
+
+When contributing to the {{ name }} component, follow these guidelines:
+
 <Playground>
   <{{ name }} text="Bob" />
 </Playground>
@@ -42,3 +46,7 @@ Use `loud` to indicate that a component is yelling.
 <Playground>
   <{{ name }} text="Fred" loud={true} />
 </Playground>
+
+## Best Practices 
+
+The {{ name }} component should:
