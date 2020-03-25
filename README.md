@@ -40,7 +40,7 @@ To start the [docz](https://www.docz.site/) development server:
 npm start
 ```
 
-### Generating a New Component
+## Generating a Component
 
 Running the following command will prompt you for a component name and generate
 a starting point consisting of a component, tests, styling, etc to help you get
@@ -49,15 +49,15 @@ started.
 You should name your component in `PascalCase`.
 
 ```sh
-npm run plop
+npm run generate
 ```
 
 #### Example
 
 ```sh
-❯❯❯ npm run plop
+❯❯❯ npm run generate
 
-> atlantis@0.0.1 plop /path/to/atlantis
+> atlantis@0.0.1 generate /path/to/atlantis
 > plop
 
 ? Component Name: ExampleComponent
@@ -69,7 +69,7 @@ npm run plop
  -> /packages/components/src/ExampleComponent/ExampleComponent.tsx
 ```
 
-### Testing
+## Testing
 
 To run tests:
 
@@ -125,18 +125,19 @@ Everyone is a friend of Atlantis and we welcome pull requests. See the
 
 ## Publishing
 
+Atlantis uses [Lerna](https://github.com/lerna/lerna) and will automatically
+automatically publish whenever a pull request is merged.
+
+<details>
+<summary>Manual Release Instructions</summary>
+Follow <a href="https://semver.org">semver</a> when choosing versions.
+<code>npm run release-the-kraken</code>
+</details>
+
 ### Pre-Release
 
 ```sh
 npm run prerelease
-```
-
-### For Realz
-
-Follow [semver](https://semver.org) when choosing versions.
-
-```sh
-npm run release-the-kraken
 ```
 
 ### What has Changed
