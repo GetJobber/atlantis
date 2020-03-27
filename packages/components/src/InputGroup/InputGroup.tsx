@@ -4,7 +4,7 @@ import styles from "./InputGroup.css";
 
 interface InputGroupProps {
   readonly children: ReactNode | ReactNode[];
-  readonly flowDirection: "horizontal" | "vertical";
+  readonly flowDirection?: "horizontal" | "vertical";
 }
 
 export function InputGroup({
