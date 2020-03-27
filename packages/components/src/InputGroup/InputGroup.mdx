@@ -24,11 +24,11 @@ group.
   <InputGroup>
     <InputText placeholder="Street 1" />
     <InputText placeholder="Street 2" />
-    <InputGroup horizontal={true}>
+    <InputGroup flowDirection="horizontal">
       <InputText placeholder="City" />
       <InputText placeholder="Province" />
     </InputGroup>
-    <InputGroup horizontal={true}>
+    <InputGroup flowDirection="horizontal">
       <InputText placeholder="Zip code" />
       <InputText placeholder="Country" />
     </InputGroup>
@@ -36,7 +36,7 @@ group.
 </Playground>
 
 <Playground>
-  <InputGroup horizontal={true}>
+  <InputGroup flowDirection="horizontal">
     <InputTime defaultValue={new CivilTime(8, 0)} />
     <InputTime defaultValue={new CivilTime(17, 0)} />
   </InputGroup>

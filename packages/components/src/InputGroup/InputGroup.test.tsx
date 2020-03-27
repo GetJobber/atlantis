@@ -18,7 +18,7 @@ it("renders a vertical InputGroup", () => {
 
 it("renders a horizontal InputGroup", () => {
   const tree = renderer
-    .create(<InputGroup horizontal={true}>Test content</InputGroup>)
+    .create(<InputGroup flowDirection="horizontal">Test content</InputGroup>)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
