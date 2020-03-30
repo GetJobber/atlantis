@@ -12,7 +12,7 @@
   margin-right: -1px;
 }
 
-/* Border Radius Tweak  */
+/* Border corners are rounded on the outside edges of the group  */
 
 .inputGroup {
   --public-field--top-left-radius: 0;
