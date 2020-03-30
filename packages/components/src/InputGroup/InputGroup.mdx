@@ -24,6 +24,10 @@ The default layout is for fields to flow in a vertical direction, one above the
 next. Use the `flowDirection` prop to specify when you want fields to flow in a
 horizontal direction.
 
+**Warning** - Nested `InputGroup` components need to be of
+`flowDirection="horizontal"` to render properly. If you don't follow this, the
+group will not render and en error will appear in the browser console.
+
 <Playground>
   <InputGroup>
     <InputText placeholder="Street 1" />
