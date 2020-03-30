@@ -3,6 +3,80 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.12.2...@jobber/components@1.12.3) (2020-03-23)
+
+
+### Bug Fixes
+
+* **components:** Export the InlineLabel colors as a type for use ([#222](https://github.com/GetJobber/atlantis/issues/222)) ([da423f5](https://github.com/GetJobber/atlantis/commit/da423f5af7d64cef70c4f039e2facddf4f31a7c2))
+
+
+
+
+
+## [1.12.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.12.1...@jobber/components@1.12.2) (2020-03-23)
+
+
+### Bug Fixes
+
+* **components:** fix typo in Heading documentation ([#214](https://github.com/GetJobber/atlantis/issues/214)) ([59a8087](https://github.com/GetJobber/atlantis/commit/59a8087119ab2038ff8473db3761c65e19c16717))
+
+
+
+
+
+## [1.12.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.12.0...@jobber/components@1.12.1) (2020-03-23)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [1.12.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.11.0...@jobber/components@1.12.0) (2020-03-16)
+
+
+### Features
+
+* **components:** ListItem can have string as id ([#210](https://github.com/GetJobber/atlantis/issues/210)) ([cee7146](https://github.com/GetJobber/atlantis/commit/cee71461c77d47806729ac07069481adf01abca0))
+
+
+
+
+
+# [1.11.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.10.3...@jobber/components@1.11.0) (2020-03-02)
+
+
+### Features
+
+* **components:** Add FormatDate component ([#204](https://github.com/GetJobber/atlantis/issues/204)) ([aac019b](https://github.com/GetJobber/atlantis/commit/aac019b88b76d4cff0111826690b98872a10d1a6))
+
+
+
+
+
+## [1.10.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.10.2...@jobber/components@1.10.3) (2020-02-26)
+
+
+### Bug Fixes
+
+* **components:** replace spring animation in Modal ([#203](https://github.com/GetJobber/atlantis/issues/203)) ([44fa54e](https://github.com/GetJobber/atlantis/commit/44fa54ee3d277a1d8f2ee0bed84723777a189846))
+
+
+
+
+
+## [1.10.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.10.1...@jobber/components@1.10.2) (2020-02-19)
+
+
+### Bug Fixes
+
+* **components:** fix typo in Tabs documentation ([#199](https://github.com/GetJobber/atlantis/issues/199)) ([a3c30b0](https://github.com/GetJobber/atlantis/commit/a3c30b03da62a446fef45b18234c1bea77a38b9b))
+
+
+
+
+
 ## [1.10.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.10.0...@jobber/components@1.10.1) (2020-01-24)
 
 

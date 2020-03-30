@@ -59,14 +59,12 @@ export function Modal({
           <motion.div
             key={styles.modal}
             className={modalClassName}
-            initial={{ scale: 0.8, opacity: 0.8 }}
+            initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.8, opacity: 0 }}
+            exit={{ scale: 0.9, opacity: 0 }}
             transition={{
-              type: "spring",
               duration: 0.2,
-              damping: 20,
-              stiffness: 300,
+              ease: "easeInOut",
             }}
           >
             {title != undefined && (

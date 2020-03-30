@@ -23,11 +23,14 @@ import { Checkbox } from "@jobber/components/Checkbox";
 <Playground>
   {() => {
     const [checked, setChecked] = useState(true);
-
-    return <Checkbox checked={checked} label="Save card for future use" onChange={setChecked} />
-
-}}
-
+    return (
+      <Checkbox
+        checked={checked}
+        label="Save card for future use"
+        onChange={setChecked}
+      />
+    );
+  }}
 </Playground>
 
 ## Props
@@ -41,7 +44,6 @@ import { Checkbox } from "@jobber/components/Checkbox";
 <Playground>
   {() => {
     const [items, setItems] = useState([true, false, false]);
-
     return (
       <>
         <Checkbox
@@ -63,21 +65,17 @@ import { Checkbox } from "@jobber/components/Checkbox";
         </ul>
       </>
     );
-
     function toggleIndex(index) {
-      return (newValue) => {
+      return newValue => {
         const updatedItems = Array.from(items);
-        updatedItems[index] = newValue
+        updatedItems[index] = newValue;
         setItems(updatedItems);
       };
     }
-
     function toggleAll(newValue) {
-      setItems(Array(items.length).fill(newValue))
+      setItems(Array(items.length).fill(newValue));
     }
-
-}}
-
+  }}
 </Playground>
 
 ## Disabled
