@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.12.3...@jobber/components@1.12.4) (2020-03-30)
+
+
+### Bug Fixes
+
+* **components:** Improve tooltip positioning. ([#201](https://github.com/GetJobber/atlantis/issues/201)) ([373ffcb](https://github.com/GetJobber/atlantis/commit/373ffcb23fa8e565b5fb7fdbf09bcd9743c4527a))
+
+
+
+
+
 ## [1.12.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.12.2...@jobber/components@1.12.3) (2020-03-23)
 
 
