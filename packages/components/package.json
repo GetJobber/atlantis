@@ -21,6 +21,7 @@
   ],
   "dependencies": {
     "@jobber/formatters": "^0.0.4",
+    "@popperjs/core": "^2.0.6",
     "@std-proposal/temporal": "0.0.1",
     "@types/lodash": "^4.14.136",
     "@types/uuid": "^3.4.5",
