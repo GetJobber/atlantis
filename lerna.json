@@ -3,10 +3,17 @@
   "packages": ["packages/*"],
   "command": {
     "version": {
-      "conventionalCommits": true
+      "conventionalCommits": true,
+      "message": "chore(release): Publish",
+      "allowBranch": ["master"]
     },
     "publish": {
-      "ignoreChanges": ["package-lock.json", "**/package-lock.json"]
+      "ignoreChanges": [
+        "lerna.json",
+        "package.json",
+        "package-lock.json",
+        "CHANGELOG.md"
+      ]
     }
   }
 }

@@ -9,6 +9,17 @@ _{Describe the design goal of this component. What is the design purpose of this
 component? How do its responsibilities relate to other components? Is there
 anything else that is important to describe?}_
 
+## Accessibility
+
+_{Describe the accessibility concerns for the component. Should it be keyboard
+navigatable? Should it capture input, what should a screen reader see when it's
+focused?}_
+
+## Responsiveness & Mobile
+
+_{How should the component behave on mobile devices or tablets. How does it
+respond to different screen sizes. How does it handle touch only interactions?}_
+
 ## Wireframe
 
 _{Insert a low fidelity wireframe of the components behaviour, enough for
@@ -26,9 +37,3 @@ _{Provide a table in the following format of the component's public API}_
 | name | type | default | description |
 | ---- | ---- | ------- | ----------- |
 | ...  | ...  | ...     | ...         |
-
-## Accessibility
-
-_{Describe the accessibility concerns for the component. Should it be keyboard
-navigatable? Should it capture input, what should a screen reader see when it's
-focused?}_

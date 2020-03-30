@@ -36,21 +36,13 @@ import { Modal } from "@jobber/components/Modal";
           onRequestClose={() => setModalOpen(false)}
         >
           <Content>
-            <Text>
-              It's harder, better, faster, and stronger! 🤖
-            </Text>
+            <Text>It's harder, better, faster, and stronger! 🤖</Text>
           </Content>
         </Modal>
-
-        <Button
-          label="Open Modal"
-          onClick={() => setModalOpen(true)}
-        />
+        <Button label="Open Modal" onClick={() => setModalOpen(true)} />
       </>
     );
-
-}}
-
+  }}
 </Playground>
 
 ## Props
@@ -82,31 +74,26 @@ You have 3 action props you can use
         >
           <Content>
             <Text>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe vero ratione praesentium quisquam non porro ullam maiores iure, sed odio?
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe
+              vero ratione praesentium quisquam non porro ullam maiores iure,
+              sed odio?
             </Text>
           </Content>
         </Modal>
-
-        <Button
-          label="Open Modal"
-          onClick={toggleModal}
-        />
+        <Button label="Open Modal" onClick={toggleModal} />
       </>
     );
-
     function toggleModal() {
       setModalOpen(!modalOpen);
-    };
+    }
     function handlePrimaryAction() {
       alert("✅");
-    };
+    }
     function handleSecondaryAction() {
       setModalOpen(false);
-    };
+    }
     function handleTertiaryAction() {
       alert("❌");
-    };
-
-}}
-
+    }
+  }}
 </Playground>

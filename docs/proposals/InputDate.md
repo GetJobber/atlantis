@@ -6,7 +6,7 @@ The `InputDate` component allows a user to select a date.
 
 ## Wireframe
 
-![](https://d.pr/i/Eiq4KZ.png)
+![mockup](https://d.pr/i/Eiq4KZ.png)
 
 ## Interface
 

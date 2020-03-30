@@ -107,29 +107,20 @@ import { loadingGIF, getGIF } from "./getGIF";
   {() => {
     const [topic, setTopic] = useState();
     const [url, setURL] = useState();
-
     return (
       <Card title="Gif Gift">
         <Content>
-          <InputText
-            value={topic}
-            onChange={setTopic}
-            placeholder="Topic"
-          />
+          <InputText value={topic} onChange={setTopic} placeholder="Topic" />
           <Button label="Search" fullWidth={true} onClick={gifSearch} />
-
           <center>{url && <img src={url} />}</center>
         </Content>
       </Card>
     );
-
     async function gifSearch() {
       setURL(loadingGIF);
       setURL(await getGIF(topic));
     }
-
-}}
-
+  }}
 </Playground>
 
 > **Note:**

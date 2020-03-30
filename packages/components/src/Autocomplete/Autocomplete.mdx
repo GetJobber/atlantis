@@ -25,18 +25,16 @@ import { Autocomplete } from "@jobber/components/Autocomplete";
 ```
 
 <Playground>
-    {() => {
+  {() => {
     const options = [
-        { value: 1, label: "Nostromo" },
-        { value: 2, label: "Rodger Young" },
-        { value: 3, label: "Serenity" },
-        { value: 4, label: "Sleeper Service" },
-        { value: 5, label: "Enterprise" },
-        { value: 6, label: "Enterprise-D" },
-      ];
-
+      { value: 1, label: "Nostromo" },
+      { value: 2, label: "Rodger Young" },
+      { value: 3, label: "Serenity" },
+      { value: 4, label: "Sleeper Service" },
+      { value: 5, label: "Enterprise" },
+      { value: 6, label: "Enterprise-D" }
+    ];
     const [value, setValue] = useState();
-
     return (
       <Autocomplete
         value={value}
@@ -46,18 +44,14 @@ import { Autocomplete } from "@jobber/components/Autocomplete";
         placeholder="Search for something"
       />
     );
-
     function getOptions(text) {
       if (text === "") {
         return options;
       }
-
       const filterRegex = new RegExp(text, "i");
       return options.filter(option => option.label.match(filterRegex));
     }
-
-}}
-
+  }}
 </Playground>
 
 ## Props
@@ -78,44 +72,48 @@ import { Autocomplete } from "@jobber/components/Autocomplete";
 You can supply a value to `Autocomplete` in the form of an active `Option`.
 
 <Playground>
-    {() => {
+  {() => {
     const options = [
-        { value: 1, label: "Nostromo" },
-        { value: 2, label: "Rodger Young" },
-        { value: 3, label: "Serenity" },
-        { value: 4, label: "Sleeper Service" },
-        { value: 5, label: "Enterprise" },
-        { value: 6, label: "Enterprise-D" },
-      ];
-
+      { value: 1, label: "Nostromo" },
+      { value: 2, label: "Rodger Young" },
+      { value: 3, label: "Serenity" },
+      { value: 4, label: "Sleeper Service" },
+      { value: 5, label: "Enterprise" },
+      { value: 6, label: "Enterprise-D" }
+    ];
     const [value, setValue] = useState();
-
     return (
       <>
-      <pre>{JSON.stringify(value, undefined, 2)}</pre>
-      <Autocomplete
-        value={value}
-        initialOptions={[]}
-        onChange={setValue}
-        getOptions={getOptions}
-        placeholder="Search for something"
-      />
-      <Button label="Choose the Enterprise" onClick={() => {setValue(options[4])}} />
-      <Button label="Reset" onClick={() => {setValue()}} />
+        <pre>{JSON.stringify(value, undefined, 2)}</pre>
+        <Autocomplete
+          value={value}
+          initialOptions={[]}
+          onChange={setValue}
+          getOptions={getOptions}
+          placeholder="Search for something"
+        />
+        <Button
+          label="Choose the Enterprise"
+          onClick={() => {
+            setValue(options[4]);
+          }}
+        />
+        <Button
+          label="Reset"
+          onClick={() => {
+            setValue();
+          }}
+        />
       </>
     );
-
     function getOptions(text) {
       if (text === "") {
         return options;
       }
-
       const filterRegex = new RegExp(text, "i");
       return options.filter(option => option.label.match(filterRegex));
     }
-
-}}
-
+  }}
 </Playground>
 
 ## Async Requests for Options
@@ -124,18 +122,16 @@ The `getOptions` method expected to be async so you can do any desired requests
 using either promises or `await` in `getOptions`.
 
 <Playground>
-    {() => {
+  {() => {
     const options = [
-        { value: 1, label: "Nostromo" },
-        { value: 2, label: "Rodger Young" },
-        { value: 3, label: "Serenity" },
-        { value: 4, label: "Sleeper Service" },
-        { value: 5, label: "Enterprise" },
-        { value: 6, label: "Enterprise-D" },
-      ];
-
+      { value: 1, label: "Nostromo" },
+      { value: 2, label: "Rodger Young" },
+      { value: 3, label: "Serenity" },
+      { value: 4, label: "Sleeper Service" },
+      { value: 5, label: "Enterprise" },
+      { value: 6, label: "Enterprise-D" }
+    ];
     const [value, setValue] = useState();
-
     return (
       <Autocomplete
         value={value}
@@ -145,20 +141,16 @@ using either promises or `await` in `getOptions`.
         placeholder="Search for something"
       />
     );
-
     async function getOptions(text) {
       return new Promise(resolve => {
         setTimeout(() => {
           if (text === "") {
             resolve(options);
           }
-
           const filterRegex = new RegExp(text, "i");
           resolve(options.filter(option => option.label.match(filterRegex)));
         }, 300);
       });
     }
-
-}}
-
+  }}
 </Playground>

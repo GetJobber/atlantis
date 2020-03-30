@@ -11,10 +11,17 @@ interface InputSelectProps {
   readonly value?: string;
 }
 
-export function Option({ children, disabled, value }: InputSelectProps) {
+function SelectOption({ children, disabled, value }: InputSelectProps) {
   return (
     <option disabled={disabled} value={value}>
       {children}
     </option>
   );
 }
+
+/**
+ * Whatever mechanism that docz is using to parse out props fails if this
+ * component is called Option internally. We have opened an issue with them
+ * to find out more information.
+ */
+export { SelectOption as Option };

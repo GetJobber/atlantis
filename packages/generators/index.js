@@ -32,6 +32,14 @@ module.exports = function(plop, config) {
       },
     ],
     actions: [
+      /**
+       * Gatsby is insisting on at least opening every file ending in `.mdx`.
+       * This allows us to name the template file {{name}}.{{mdx}} and have
+       * plop rename it to Component.mdx when it runs.
+       *
+       * https://plopjs.com/documentation/#addmany
+       */
+      answers => Object.assign(answers, { mdx: "mdx" }),
       {
         type: "addMany",
         destination: `{{path}}/{{name}}/`,
