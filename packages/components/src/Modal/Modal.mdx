@@ -68,8 +68,8 @@ You have 3 action props you can use
           title="Hold the phone!"
           open={modalOpen}
           primaryAction={{ label: "Submit", onClick: handlePrimaryAction }}
-          secondaryAction={{ label: "Cancel", variation: "cancel", onClick: handleSecondaryAction }}
-          tertiaryAction={{ label: "Delete", variation: "destructive", onClick: handleTertiaryAction }}
+          secondaryAction={{ label: "Cancel", onClick: handleSecondaryAction }}
+          tertiaryAction={{ label: "Delete", onClick: handleTertiaryAction }}
           onRequestClose={toggleModal}
         >
           <Content>
