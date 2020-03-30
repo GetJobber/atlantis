@@ -1,10 +1,3 @@
-/** @jsx jsx */
-import { jsx } from "theme-ui";
-import * as styles from "./styles";
-import { HeaderButtons } from "../HeaderButtons";
+import React from "react";
 
-export const Header = () => (
-  <div sx={styles.buttons}>
-    <HeaderButtons />
-  </div>
-);
+export const Header = () => <React.Fragment />;

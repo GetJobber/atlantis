@@ -8,6 +8,7 @@ import { NavLink } from "gatsby-theme-docz/src/components/NavLink";
 import { NavGroup } from "gatsby-theme-docz/src/components/NavGroup";
 import { Logo } from "gatsby-theme-docz/src/components/Logo";
 import * as styles from "./styles";
+import { HeaderButtons } from "../HeaderButtons";
 
 export const Sidebar = React.forwardRef((props, ref) => {
   const [query, setQuery] = useState("");
@@ -18,22 +19,24 @@ export const Sidebar = React.forwardRef((props, ref) => {
 
   useEffect(() => {
     if (ref.current && currentDocRef.current) {
+      console.log("os", currentDocRef.current.offsetTop);
       ref.current.scrollTo(0, currentDocRef.current.offsetTop);
     }
   }, []);
   return (
     <>
+      <Box onClick={props.onClick} sx={styles.overlay(props)} />
       <Box ref={ref} sx={styles.wrapper(props)} data-testid="sidebar">
-        <div sx={styles.logo}>
+        <Box sx={styles.logo}>
           <Logo />
-        </div>
-        <div sx={styles.search}>
+        </Box>
+        <Box sx={styles.search}>
           <NavSearch
             placeholder="Type to search..."
             value={query}
             onChange={handleChange}
           />
-        </div>
+        </Box>
         {menus &&
           menus.map(menu => {
             if (!menu.route) {
@@ -41,7 +44,7 @@ export const Sidebar = React.forwardRef((props, ref) => {
             }
             if (menu.route === currentDoc.route) {
               return (
-                <div sx={styles.topLevelMenuWrapper} key={menu.id}>
+                <Box sx={styles.topLevelMenuWrapper} key={menu.id}>
                   <NavLink
                     item={menu}
                     ref={currentDocRef}
@@ -49,17 +52,24 @@ export const Sidebar = React.forwardRef((props, ref) => {
                   >
                     {menu.name}
                   </NavLink>
-                </div>
+                </Box>
               );
             }
             return (
-              <div sx={styles.topLevelMenuWrapper} key={menu.id}>
+              <Box sx={styles.topLevelMenuWrapper} key={menu.id}>
                 <NavLink item={menu} sx={styles.topLevelMenuItem}>
                   {menu.name}
                 </NavLink>
-              </div>
+              </Box>
             );
           })}
+      </Box>
+      <Box sx={styles.buttons}>
+        <HeaderButtons
+          open={props.open}
+          closeMenu={props.onClick}
+          openMenu={props.onFocus}
+        />
       </Box>
     </>
   );
