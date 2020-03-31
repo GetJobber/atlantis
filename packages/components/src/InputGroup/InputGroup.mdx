@@ -20,13 +20,29 @@ form fields once submitted make up a group of content (ie. an address, or first
 and last name becoming a full name) they are great candidates for an input
 group.
 
+<Playground>
+  <InputGroup flowDirection="horizontal">
+    <InputTime defaultValue={new CivilTime(8, 0)} />
+    <InputTime defaultValue={new CivilTime(17, 0)} />
+  </InputGroup>
+</Playground>
+
+## InputGroup Properties
+
+<Props of={InputGroup} />
+
+---
+
+## Nested Example
+
 The default layout is for fields to flow in a vertical direction, one above the
 next. Use the `flowDirection` prop to specify when you want fields to flow in a
 horizontal direction.
 
-**Warning** - Nested `InputGroup` components need to be of
-`flowDirection="horizontal"` to render properly. If you don't follow this, the
-group will not render and en error will appear in the browser console.
+> **Note** - Nested `InputGroup` components need to be of
+> `flowDirection="horizontal"` to avoid layout issues caused by nesting. Any
+> non-horizontal nested groups will log an error to the console and not be
+> rendered.
 
 <Playground>
   <InputGroup>
@@ -42,14 +58,3 @@ group will not render and en error will appear in the browser console.
     </InputGroup>
   </InputGroup>
 </Playground>
-
-<Playground>
-  <InputGroup flowDirection="horizontal">
-    <InputTime defaultValue={new CivilTime(8, 0)} />
-    <InputTime defaultValue={new CivilTime(17, 0)} />
-  </InputGroup>
-</Playground>
-
-## InputGroup Properties
-
-<Props of={InputGroup} />

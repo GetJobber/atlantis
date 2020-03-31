@@ -4,6 +4,10 @@ import styles from "./InputGroup.css";
 
 interface InputGroupProps {
   readonly children: ReactElement | ReactElement[];
+  /**
+   * Determine the direction the fields are laid out in.
+   * @default "vertical"
+   */
   readonly flowDirection?: "horizontal" | "vertical";
 }
 
@@ -11,13 +15,13 @@ export function InputGroup({
   children,
   flowDirection = "vertical",
 }: InputGroupProps) {
-  if (checkChildren(children)) return <></>;
+  if (isInvalidGroupNesting(children)) return <></>;
 
   const className = classnames(styles.inputGroup, styles[flowDirection]);
   return <div className={className}>{children}</div>;
 }
 
-function checkChildren(childs: ReactElement | ReactElement[]): boolean {
+function isInvalidGroupNesting(childs: ReactElement | ReactElement[]): boolean {
   return React.Children.toArray(childs).some(child => {
     if (
       child.type === InputGroup &&
