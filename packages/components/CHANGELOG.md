@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.12.4...@jobber/components@1.12.5) (2020-03-31)
+
+
+### Bug Fixes
+
+* **components:** BREAKING CHANGE: redefine ButtonProps ([#159](https://github.com/GetJobber/atlantis/issues/159)) ([198212d](https://github.com/GetJobber/atlantis/commit/198212da0cb69239387245f0a7296f322275aabe))
+
+
+
+
+
 ## [1.12.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.12.3...@jobber/components@1.12.4) (2020-03-30)
 
 
