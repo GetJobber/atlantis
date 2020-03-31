@@ -130,7 +130,7 @@ automatically publish whenever a pull request is merged.
 
 <details>
 <summary>Manual Release Instructions</summary>
-Follow <a href="https://semver.org">semver</a> when choosing versions.
+<p>Follow <a href="https://semver.org" target="_blank">semver</a> when choosing versions.</p>
 <code>npm run release-the-kraken</code>
 </details>
 
