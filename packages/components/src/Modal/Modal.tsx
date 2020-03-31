@@ -147,17 +147,31 @@ function Actions({ primary, secondary, tertiary }: ActionsProps) {
   const shouldShow =
     primary != undefined || secondary != undefined || tertiary != undefined;
 
+  if (secondary != undefined) {
+    secondary = Object.assign(
+      { type: "secondary", variation: "cancel" },
+      secondary,
+    );
+  }
+
+  if (tertiary != undefined) {
+    tertiary = Object.assign(
+      { type: "secondary", variation: "destructive" },
+      tertiary,
+    );
+  }
+
   return (
     <>
       {shouldShow && (
         <div className={styles.actionBar}>
           <div className={styles.rightAction}>
             {primary && <Button {...primary} />}
-            {secondary && <Button variation="cancel" {...secondary} />}
+            {secondary && <Button {...secondary} />}
           </div>
           {tertiary && (
             <div className={styles.leftAction}>
-              <Button variation="destructive" type="secondary" {...tertiary} />
+              <Button {...tertiary} />
             </div>
           )}
         </div>

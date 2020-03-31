@@ -5,7 +5,7 @@ import styles from "./Button.css";
 import { Typography } from "../Typography";
 import { Icon, IconNames } from "../Icon";
 
-export interface ButtonProps {
+interface ButtonFoundationProps {
   readonly ariaControls?: string;
   readonly ariaHaspopup?: boolean;
   readonly ariaExpanded?: boolean;
@@ -22,22 +22,23 @@ export interface ButtonProps {
   onClick?(): void;
 }
 
-interface BaseActionProps extends ButtonProps {
+interface BaseActionProps extends ButtonFoundationProps {
   readonly variation?: "work" | "learning";
   readonly type?: "primary" | "secondary" | "tertiary";
 }
 
-interface DestructiveActionProps extends ButtonProps {
-  readonly variation?: "destructive";
+interface DestructiveActionProps extends ButtonFoundationProps {
+  readonly variation: "destructive";
   readonly type?: "primary" | "secondary";
 }
 
-interface CancelActionProps extends ButtonProps {
-  readonly variation?: "cancel";
+interface CancelActionProps extends ButtonFoundationProps {
+  readonly variation: "cancel";
+  readonly type?: "secondary";
 }
 
-type ButtonPropOptions = XOR<
-  ButtonProps,
+export type ButtonProps = XOR<
+  ButtonFoundationProps,
   XOR<BaseActionProps, XOR<DestructiveActionProps, CancelActionProps>>
 >;
 
@@ -58,7 +59,7 @@ export function Button({
   type = "primary",
   url,
   variation = "work",
-}: ButtonPropOptions) {
+}: ButtonProps) {
   const buttonClassNames = classnames(styles.button, styles[size], {
     [styles.hasIcon]: icon,
     [styles.iconOnRight]: iconOnRight,
