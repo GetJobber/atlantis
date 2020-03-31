@@ -5,17 +5,27 @@ export * from "gatsby-theme-docz/src/components/Sidebar/styles";
 
 // Override what we need to.
 import * as styles from "gatsby-theme-docz/src/components/Sidebar/styles";
+import { media } from "gatsby-theme-docz/src/theme/breakpoints";
 
 const MENU_PADDING = "32px";
 
 export const overlay = ({ open }) => ({
   ...styles.overlay({ open: open }),
+  display: open ? "block" : "none",
   top: 0,
 });
 
 export const wrapper = ({ open }) => ({
   ...styles.wrapper({ open: open }),
   p: MENU_PADDING,
+  borderRight: "none",
+
+  [media.tablet]: {
+    ...styles.wrapper({ open })[media.tablet],
+    top: 0,
+    background: "var(--color-greyBlue--dark)",
+    boxShadow: open ? "0 0 10px rgba(0,0,0, 0.3)" : "none",
+  },
 });
 
 export const logo = {
@@ -56,3 +66,12 @@ export const topLevelMenuWrapper = theme => ({
 export const topLevelMenuItem = theme => ({
   ...theme.navigation.level1,
 });
+
+export const buttons = {
+  position: "fixed",
+  top: 0,
+  right: 0,
+  zIndex: "99",
+  transition: "width 300ms",
+  width: "100%",
+};
