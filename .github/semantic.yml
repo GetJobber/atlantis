@@ -4,9 +4,10 @@ titleOnly: true
 # Valid scopes
 scopes:
   - components
-  - generators
+  - deps
   - design
-  - formatters
   - docx
   - eslint
+  - formatters
+  - generators
   - stylelint
