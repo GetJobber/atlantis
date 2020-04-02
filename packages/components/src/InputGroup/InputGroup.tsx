@@ -28,8 +28,8 @@ function isInvalidGroupNesting(childs: ReactElement | ReactElement[]): boolean {
       child.props.flowDirection != "horizontal"
     ) {
       console.error(
-        "ERROR: InputGroup not rendered: nesting " +
-          "flowDirection = vertical columns not supported.",
+        `ERROR: InputGroup not rendered: nesting 'flowDirection="vertical"' columns not supported.`,
+        `https://atlantis.getjobber.com/components/input-group#nested-example`,
       );
       return true;
     }
