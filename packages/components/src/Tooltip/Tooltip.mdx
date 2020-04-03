@@ -17,6 +17,8 @@ import { Card } from "../Card";
 Tooltips are extra information that briefly explain the function of a UI
 element.
 
+`Tooltip` will apply a tooltip to a single wrapped Element.
+
 ```ts
 import { Tooltip } from "@jobber/components/Tooltip";
 ```
@@ -24,6 +26,9 @@ import { Tooltip } from "@jobber/components/Tooltip";
 <Playground>
   <Tooltip message="'tis a button">
     <Button label="Hover On Me" />
+  </Tooltip>
+  <Tooltip message="'tis also a button">
+    <Button label="Hover On Me Too" />
   </Tooltip>
 </Playground>
 

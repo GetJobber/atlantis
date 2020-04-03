@@ -3,6 +3,22 @@ import classnames from "classnames";
 import styles from "./InlineLabel.css";
 import { Typography } from "../Typography";
 
+export type InlineLabelColors =
+  | "greyBlue"
+  | "red"
+  | "orange"
+  | "green"
+  | "blue"
+  | "yellow"
+  | "lime"
+  | "purple"
+  | "pink"
+  | "teal"
+  | "yellowGreen"
+  | "blueDark"
+  | "lightBlue"
+  | "indigo";
+
 interface InlineLabelProps {
   /**
    * The size of the label
@@ -13,21 +29,7 @@ interface InlineLabelProps {
    * The color of the label
    * @default "greyBlue"
    */
-  color?:
-    | "greyBlue"
-    | "red"
-    | "orange"
-    | "green"
-    | "blue"
-    | "yellow"
-    | "lime"
-    | "purple"
-    | "pink"
-    | "teal"
-    | "yellowGreen"
-    | "blueDark"
-    | "lightBlue"
-    | "indigo";
+  color?: InlineLabelColors;
   children: ReactNode;
 }
 

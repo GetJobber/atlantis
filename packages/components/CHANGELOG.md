@@ -3,6 +3,77 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.12.5...@jobber/components@1.12.6) (2020-03-31)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [1.12.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.12.4...@jobber/components@1.12.5) (2020-03-31)
+
+
+### Bug Fixes
+
+* **components:** BREAKING CHANGE: redefine ButtonProps ([#159](https://github.com/GetJobber/atlantis/issues/159)) ([198212d](https://github.com/GetJobber/atlantis/commit/198212da0cb69239387245f0a7296f322275aabe))
+
+
+
+
+
+## [1.12.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.12.3...@jobber/components@1.12.4) (2020-03-30)
+
+
+### Bug Fixes
+
+* **components:** Improve tooltip positioning. ([#201](https://github.com/GetJobber/atlantis/issues/201)) ([373ffcb](https://github.com/GetJobber/atlantis/commit/373ffcb23fa8e565b5fb7fdbf09bcd9743c4527a))
+
+
+
+
+
+## [1.12.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.12.2...@jobber/components@1.12.3) (2020-03-23)
+
+
+### Bug Fixes
+
+* **components:** Export the InlineLabel colors as a type for use ([#222](https://github.com/GetJobber/atlantis/issues/222)) ([da423f5](https://github.com/GetJobber/atlantis/commit/da423f5af7d64cef70c4f039e2facddf4f31a7c2))
+
+
+
+
+
+## [1.12.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.12.1...@jobber/components@1.12.2) (2020-03-23)
+
+
+### Bug Fixes
+
+* **components:** fix typo in Heading documentation ([#214](https://github.com/GetJobber/atlantis/issues/214)) ([59a8087](https://github.com/GetJobber/atlantis/commit/59a8087119ab2038ff8473db3761c65e19c16717))
+
+
+
+
+
+## [1.12.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.12.0...@jobber/components@1.12.1) (2020-03-23)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [1.12.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.11.0...@jobber/components@1.12.0) (2020-03-16)
+
+
+### Features
+
+* **components:** ListItem can have string as id ([#210](https://github.com/GetJobber/atlantis/issues/210)) ([cee7146](https://github.com/GetJobber/atlantis/commit/cee71461c77d47806729ac07069481adf01abca0))
+
+
+
+
+
 # [1.11.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.10.3...@jobber/components@1.11.0) (2020-03-02)
 
 
