@@ -17,12 +17,15 @@ interface ProgressBarProps {
 export function ProgressBar({ currentStep, totalSteps }: ProgressBarProps) {
   const percentage = ((currentStep - 1) / (totalSteps - 1)) * 100;
   const widthPercent = Math.min(100, Math.max(0, percentage));
-  const className = classnames(styles.container);
-  const contentClassName = classnames(styles.content);
+  const progressBarContainerClassName = classnames(styles.container);
+  const progressBarContentClassName = classnames(styles.content);
 
   return (
-    <div className={className}>
-      <div className={contentClassName} style={{ width: `${widthPercent}%` }} />
+    <div className={progressBarContainerClassName}>
+      <div
+        className={progressBarContentClassName}
+        style={{ width: `${widthPercent}%` }}
+      />
     </div>
   );
 }
