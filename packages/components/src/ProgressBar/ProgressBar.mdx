@@ -35,18 +35,17 @@ import { ProgressBar } from "@jobber/components/ProgressBar";
   {() => {
     const [step, setStep] = useState(2);
     const totalSteps = 4;
-
     return (
       <>
-        <button onClick={() => setStep(Math.max(1, step - 1))}>Step Back</button>
-        <button onClick={() => setStep(Math.min(totalSteps, step + 1))}>Step Forward</button>
-
+        <button onClick={() => setStep(Math.max(1, step - 1))}>
+          Step Back
+        </button>
+        <button onClick={() => setStep(Math.min(totalSteps, step + 1))}>
+          Step Forward
+        </button>
         <ProgressBar currentStep={step} totalSteps={totalSteps} />
-
-        <p>Step: {step} of {totalSteps}</p>
+        Step: <strong>{step}</strong> of <strong>{totalSteps}</strong>
       </>
     );
-
-}}
-
+  }}
 </Playground>
