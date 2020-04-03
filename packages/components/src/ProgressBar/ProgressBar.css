@@ -16,5 +16,5 @@
   height: var(--progress-bar--height);
   border-radius: var(--progress-bar--borderRadius);
   background-color: var(--progress-bar--barColor);
-  transition: width 0.75s ease-out;
+  transition: width var(--timing-slower) ease-out;
 }
