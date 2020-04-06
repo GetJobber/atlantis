@@ -1,0 +1,51 @@
+---
+name: ProgressBar
+menu: Components
+route: /components/progress-bar
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { useState } from "react";
+import { ProgressBar } from ".";
+
+# ProgressBar
+
+<ComponentStatus stage="ready" responsive="yes" accessible="yes" />
+
+A progress bar to track steps along the way, such as a setup wizard.
+
+```ts
+import { ProgressBar } from "@jobber/components/ProgressBar";
+```
+
+<Playground>
+  <ProgressBar currentStep={3} totalSteps={4} />
+</Playground>
+
+## Props
+
+<Props of={ProgressBar} />
+
+---
+
+## Example with State
+
+<Playground>
+  {() => {
+    const [step, setStep] = useState(2);
+    const totalSteps = 4;
+    return (
+      <>
+        <button onClick={() => setStep(Math.max(1, step - 1))}>
+          Step Back
+        </button>
+        <button onClick={() => setStep(Math.min(totalSteps, step + 1))}>
+          Step Forward
+        </button>
+        <ProgressBar currentStep={step} totalSteps={totalSteps} />
+        Step: <strong>{step}</strong> of <strong>{totalSteps}</strong>
+      </>
+    );
+  }}
+</Playground>

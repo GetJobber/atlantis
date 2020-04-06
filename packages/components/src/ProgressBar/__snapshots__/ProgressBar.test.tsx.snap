@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`with props renders correctly 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="content"
+    style={
+      Object {
+        "width": "11.11111111111111%",
+      }
+    }
+  />
+</div>
+`;
