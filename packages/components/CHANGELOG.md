@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.13.0...@jobber/components@1.14.0) (2020-04-06)
+
+
+### Features
+
+* **components:** Add ProgressBar Component ([#206](https://github.com/GetJobber/atlantis/issues/206)) ([32c8fb0](https://github.com/GetJobber/atlantis/commit/32c8fb03fc0b67f2eccfaf3915e6fa036860e4f9))
+
+
+
+
+
 # [1.13.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.12.6...@jobber/components@1.13.0) (2020-04-06)
 
 
