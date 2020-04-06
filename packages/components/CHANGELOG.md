@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.12.6...@jobber/components@1.13.0) (2020-04-06)
+
+
+### Features
+
+* First pass at Input Group ([#119](https://github.com/GetJobber/atlantis/issues/119)) ([d4a49bf](https://github.com/GetJobber/atlantis/commit/d4a49bf0a263270e3e7ba3bfab1990310c5ea2ad))
+
+
+
+
+
 ## [1.12.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.12.5...@jobber/components@1.12.6) (2020-03-31)
 
 **Note:** Version bump only for package @jobber/components
