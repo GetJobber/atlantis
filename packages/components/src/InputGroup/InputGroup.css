@@ -1,0 +1,52 @@
+.vertical > *:not(:last-child) {
+  margin-bottom: -1px !important;
+}
+
+.horizontal {
+  display: flex;
+  align-items: flex-end;
+}
+
+.horizontal > *:not(:last-child) {
+  margin-bottom: auto;
+  margin-right: -1px;
+}
+
+/* Border corners are rounded on the outside edges of the group  */
+
+.inputGroup {
+  --public-field--top-left-radius: 0;
+  --public-field--top-right-radius: 0;
+  --public-field--bottom-left-radius: 0;
+  --public-field--bottom-right-radius: 0;
+}
+
+.vertical > :first-child:not(.horizontal) {
+  --public-field--top-left-radius: var(--radius-base);
+  --public-field--top-right-radius: var(--radius-base);
+}
+
+.vertical > :last-child:not(.horizontal) {
+  --public-field--bottom-left-radius: var(--radius-base);
+  --public-field--bottom-right-radius: var(--radius-base);
+}
+
+/* First Horizontal Input Group */
+
+.horizontal:first-child > :first-child {
+  --public-field--top-left-radius: var(--radius-base);
+}
+
+.horizontal:first-child > :last-child {
+  --public-field--top-right-radius: var(--radius-base);
+}
+
+/* Last Horizontal Input Group */
+
+.horizontal:last-child > :first-child {
+  --public-field--bottom-left-radius: var(--radius-base);
+}
+
+.horizontal:last-child > :last-child {
+  --public-field--bottom-right-radius: var(--radius-base);
+}
