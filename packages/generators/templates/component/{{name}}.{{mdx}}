@@ -22,11 +22,22 @@ import { {{ name }} } from "@jobber/components/{{ name }}";
   <{{ name }} text="Bob" />
 </Playground>
 
+<!--
+  It is not necessary to include Design & Usage Guidlelines. Use this section
+  to answer common questions and considerations about component usage.
+-->
+
+## Design & Usage Guidelines
+
+When contributing to, or consuming the {{ name }} component, consider the following:
+
+- When using the {{ name }} component always consider the volume you would like it to
+  be displayed at.
+- The {{ name }} component should never be used inside another component.
+
 ## Props
 
 <Props of={ {{ name }} } />
-
----
 
 <!--
   It is not necessary to provide an example of each prop. Use usage examples to

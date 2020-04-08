@@ -8,7 +8,7 @@
     "start:withPrivateComponents": "PRIVATE_COMPONENTS=visible docz dev",
     "test": "jest",
     "plop": "echo '🚧 `npm run plop` is now `npm run generate`'",
-    "generate": "plop -- --path='./'",
+    "generate": "plop -- --path='./packages/components/src/'",
     "build": "npm run docz:build",
     "docz:build": "docz build",
     "docz:serve": "docz serve",
