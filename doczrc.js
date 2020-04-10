@@ -94,7 +94,7 @@ export default {
   typescript: true,
   port: 3333,
   menu: ["Atlantis", "Patterns", "Components"],
-  files: "{README.md,CONTRIBUTING.md,**/*.mdx}",
+  files: "{README.md,CONTRIBUTING.md,**/*.mdx,packages/*/CHANGELOG.md}",
   ignore: [
     ...privateComponentReadmes(),
     "./packages/generators/templates/**/*",
