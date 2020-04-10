@@ -1,5 +1,5 @@
 ---
-name: Stylelint-config
+name: Stylelint Config
 menu: Changelog
 ---
 
