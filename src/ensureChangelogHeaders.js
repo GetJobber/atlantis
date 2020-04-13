@@ -12,6 +12,7 @@
 const path = require("path");
 const fs = require("fs");
 const glob = require("glob");
+const startCase = require("lodash/startCase");
 
 glob.sync(path.join("packages/*/CHANGELOG.md")).forEach(file => {
   const changelog = String(fs.readFileSync(file));
@@ -25,18 +26,12 @@ glob.sync(path.join("packages/*/CHANGELOG.md")).forEach(file => {
 
   const header = `
 ---
-name: ${toTitleCase(directoryName)}
+name: ${startCase(directoryName)}
 menu: Changelog
 ---
 
 # ${packageName}: Change Log
-`.trim();
+  `.trim();
 
   fs.writeFileSync(file, changelog.replace("# Change Log", header));
 });
-
-function toTitleCase(str) {
-  return str.replace("-", " ").replace(/\w\S*/g, function(txt) {
-    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-  });
-}
