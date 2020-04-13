@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-// eslint-disable-next-line import/no-internal-modules
 import debounce from "lodash/debounce";
 import styles from "./Autocomplete.css";
 import { Menu } from "./Menu";
