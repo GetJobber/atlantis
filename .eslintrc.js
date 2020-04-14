@@ -24,7 +24,8 @@ module.exports = {
       {
         allow: [
           "@jobber/components/*",
-          "gatsby-theme-docz/**"
+          "gatsby-theme-docz/**",
+          "lodash/*"
         ]
       }
     ]
