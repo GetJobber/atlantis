@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import classnames from "classnames";
 import spacings from "./Spacing.css";
 import styles from "./Content.css";
+import { useResizeObserver } from "../../hooks/useResizeObserver";
 
 interface ContentProps {
   readonly children: ReactNode | ReactNode[];
@@ -14,7 +15,19 @@ interface ContentProps {
 }
 
 export function Content({ children, spacing = "base" }: ContentProps) {
-  const className = classnames(styles.padded, spacings[spacing]);
-
-  return <div className={className}>{children}</div>;
+  const [ref, result] = useResizeObserver();
+  const isWide = result.width > 300;
+  const isSuperWide = result.width > 600;
+  const className = classnames(
+    styles.padded,
+    spacings[spacing],
+    isWide && styles.wide,
+    isSuperWide && styles.superWide,
+  );
+  // ref={ref}
+  return (
+    <div className={className} ref={ref}>
+      {children}
+    </div>
+  );
 }
