@@ -1,9 +1,9 @@
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import ResizeObserver from "resize-observer-polyfill";
 
-export function useResizeObserver(ref: HTMLDivElement) {
+export function useResizeObserver() {
   const [entry, setEntry] = useState<ResizeObserverEntry>();
-  const [node] = useState<HTMLDivElement>(ref);
+  const [node, setNode] = useState() as any;
   const observer = useRef<ResizeObserver>();
   const disconnect = useCallback(() => {
     const { current } = observer;
@@ -37,5 +37,5 @@ export function useResizeObserver(ref: HTMLDivElement) {
     return result;
   }, [entry]);
 
-  return [getContentRect()] as const;
+  return [setNode, getContentRect()] as const;
 }

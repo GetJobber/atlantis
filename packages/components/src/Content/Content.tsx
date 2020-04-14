@@ -1,4 +1,4 @@
-import React, { ReactNode, useRef } from "react";
+import React, { ReactNode } from "react";
 import classnames from "classnames";
 import spacings from "./Spacing.css";
 import styles from "./Content.css";
@@ -15,8 +15,7 @@ interface ContentProps {
 }
 
 export function Content({ children, spacing = "base" }: ContentProps) {
-  const ref = useRef() as any;
-  const [result] = useResizeObserver(ref);
+  const [ref, result] = useResizeObserver();
   const isWide = result.width > 300;
   const isSuperWide = result.width > 600;
   const className = classnames(
@@ -26,8 +25,6 @@ export function Content({ children, spacing = "base" }: ContentProps) {
     isSuperWide && styles.superWide,
   );
 
-  // setNode(ref);
-  // ref={ref}
   return (
     <div className={className} ref={ref}>
       {children}
