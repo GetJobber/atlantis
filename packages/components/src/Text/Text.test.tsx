@@ -10,6 +10,7 @@ it("renders a paragraph", () => {
       </Text>,
     )
     .toJSON();
+  expect(false).toBeTruthy();
   expect(tree).toMatchInlineSnapshot(`
         <p
           className="base regular base greyBlueDark"
