@@ -6,10 +6,10 @@ interface FormatEmailProps {
   /**
    * Email address to format
    */
-  readonly email?: string;
+  readonly email: string;
 }
 
 export function FormatEmail({ email }: FormatEmailProps) {
   const className = classnames(styles.email);
-  return <address className={className}>{email}</address>;
+  return <div className={className}>{email}</div>;
 }

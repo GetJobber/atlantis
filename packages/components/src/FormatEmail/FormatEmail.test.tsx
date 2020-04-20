@@ -11,9 +11,9 @@ it("renders a FormatEmail", () => {
   expect(tree).toMatchSnapshot();
 });
 
-it("renders a FormatEmail in an address tag", () => {
-  const tree = renderer
-    .create(<FormatEmail email="email@address.me" />)
-    .toJSON();
-  expect(tree.type).toBe("address");
-});
+// it("renders a FormatEmail in an address tag", () => {
+//   const tree = renderer
+//     .create(<FormatEmail email="email@address.me" />)
+//     .toJSON();
+//   expect(tree.type).toBe("address");
+// });
