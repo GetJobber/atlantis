@@ -4,6 +4,7 @@ import { cleanup } from "@testing-library/react";
 import { FormatEmail } from ".";
 
 afterEach(cleanup);
+
 it("renders a FormatEmail", () => {
   const tree = renderer
     .create(<FormatEmail email="email@address.me" />)
