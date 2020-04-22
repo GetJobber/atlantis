@@ -8,6 +8,7 @@ interface AvatarProps {
    * @default 'medium'
    */
   readonly size?: "medium" | "large";
+  readonly initials?: string;
 
   /**
    * Styles the text bold and uppercased
@@ -21,8 +22,12 @@ interface AvatarProps {
   readonly text: string;
 }
 
-export function Avatar({ size = "medium" }: AvatarProps) {
+export function Avatar({ size = "medium", initials }: AvatarProps) {
   const className = classnames(styles.avatar, styles[size]);
 
-  return <div className={className}></div>;
+  return (
+    <div className={className}>
+      {initials && <span className={styles.initials}>{initials}</span>}
+    </div>
+  );
 }

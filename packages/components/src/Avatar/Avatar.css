@@ -4,12 +4,22 @@
 }
 
 .avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: var(--avatar-size);
   height: var(--avatar-size);
   border-radius: 50%;
+  color: var(--color-white);
+  font-size: var(--avatar-size);
+  -webkit-font-smoothing: antialiased;
   background-color: var(--avatar-color);
 }
 
 .large {
   --avatar-size: 4.5rem;
+}
+
+.initials {
+  font-size: 0.5em;
 }
