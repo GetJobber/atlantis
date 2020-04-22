@@ -4,6 +4,12 @@ import styles from "./Avatar.css";
 
 interface AvatarProps {
   /**
+   * Size of the avatar
+   * @default 'medium'
+   */
+  readonly size?: "medium" | "large";
+
+  /**
    * Styles the text bold and uppercased
    * @default false
    */
@@ -13,19 +19,10 @@ interface AvatarProps {
    * Text to display.
    */
   readonly text: string;
-
-  /**
-   * Click handler.
-   */
-  onClick?(): void;
 }
 
-export function Avatar({ loud = false, text, onClick }: AvatarProps) {
-  const className = classnames(styles.avatar, { [styles.bold]: loud });
+export function Avatar({ size = "medium" }: AvatarProps) {
+  const className = classnames(styles.avatar, styles[size]);
 
-  return (
-    <div className={className} onClick={onClick}>
-      {text}
-    </div>
-  );
+  return <div className={className}></div>;
 }

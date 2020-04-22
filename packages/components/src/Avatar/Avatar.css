@@ -1,10 +1,15 @@
-.avatar {
-  --message-weight: 400;
-
-  font-weight: var(--message-weight);
+:root {
+  --avatar-size: 2rem;
+  --avatar-color: var(--color-greyBlue);
 }
 
-.bold {
-  --message-weight: 800;
-  transform: uppercase;
+.avatar {
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  border-radius: 50%;
+  background-color: var(--avatar-color);
+}
+
+.large {
+  --avatar-size: 4.5rem;
 }
