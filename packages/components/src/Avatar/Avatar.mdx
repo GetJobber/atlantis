@@ -1,0 +1,55 @@
+---
+name: Avatar
+menu: Components
+route: /components/avatar
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { Avatar } from ".";
+
+# Avatar
+
+<ComponentStatus stage="pre" responsive="no" accessible="no" />
+
+An avatar will be used to display an visual identifier for a user.
+
+```ts
+import { Avatar } from "@jobber/components/Avatar";
+```
+
+<Playground>
+  <Avatar text="Bob" />
+</Playground>
+
+<!--
+  It is not necessary to include Design & Usage Guidlelines. Use this section
+  to answer common questions and considerations about component usage.
+-->
+
+## Design & Usage Guidelines
+
+When contributing to, or consuming the Avatar component, consider the following:
+
+- When using the Avatar component always consider the volume you would like it
+  to be displayed at.
+- The Avatar component should never be used inside another component.
+
+## Props
+
+<Props of={Avatar} />
+
+<!--
+  It is not necessary to provide an example of each prop. Use usage examples to
+  highlight key features of a component or particular considerations.
+
+  See `Button.mdx` for a good example of this.
+-->
+
+## Loud
+
+Use `loud` to indicate that a component is yelling.
+
+<Playground>
+  <Avatar text="Fred" loud={true} />
+</Playground>
