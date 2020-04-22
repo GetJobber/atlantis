@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.14.1...@jobber/components@1.15.0) (2020-04-21)
+
+
+### Features
+
+* **components:** Adds FormatEmail component ([#229](https://github.com/GetJobber/atlantis/issues/229)) ([3f39e86](https://github.com/GetJobber/atlantis/commit/3f39e860bcdb18b1484696a31a971d2d2dad10ae))
+
+
+
+
+
 ## [1.14.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.14.0...@jobber/components@1.14.1) (2020-04-14)
 
 **Note:** Version bump only for package @jobber/components
