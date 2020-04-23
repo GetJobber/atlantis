@@ -1,6 +1,8 @@
 import React, { CSSProperties } from "react";
 import classnames from "classnames";
+import Color from "color";
 import styles from "./Avatar.css";
+import { Icon } from "../Icon";
 
 interface AvatarProps {
   /**
@@ -26,12 +28,6 @@ export function Avatar({
   size = "medium",
   color,
 }: AvatarProps) {
-  const className = classnames(
-    styles.avatar,
-    styles[size],
-    imageUrl && color ? styles.hasBorder : "",
-  );
-
   const style: CSSProperties = {
     backgroundColor: color,
     borderColor: color,
@@ -41,6 +37,12 @@ export function Avatar({
     style.backgroundImage = `url(${imageUrl})`;
   }
 
+  const className = classnames(styles.avatar, {
+    [styles.large]: size === "large",
+    [styles.hasBorder]: imageUrl && color,
+    [styles.isDark]: color && isDark(color),
+  });
+
   return (
     <div
       className={className}
@@ -49,8 +51,25 @@ export function Avatar({
       aria-label={name}
     >
       {initials && !imageUrl ? <Initials initials={initials} /> : ""}
+      {!initials && !imageUrl ? (
+        <Icon name="person" color={color && isDark(color) ? "white" : "blue"} />
+      ) : (
+        ""
+      )}
     </div>
   );
+
+  function isDark(colorToCheck: string) {
+    if (colorToCheck) {
+      try {
+        return Color(deconstructCssCustomProperty(colorToCheck)).isDark();
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    return;
+  }
 }
 
 interface InitialsProps {
@@ -63,4 +82,23 @@ function Initials({ initials }: InitialsProps) {
     initials.length > 2 && styles.smallInitials,
   );
   return <span className={className}>{initials.substr(0, 3)}</span>;
+}
+
+function deconstructCssCustomProperty(color: string) {
+  if (!color) {
+    return;
+  }
+
+  if (!color.toLowerCase().startsWith("var(")) {
+    return color;
+  }
+
+  const value = color
+    .replace("var(", "")
+    .slice(0, -1)
+    .split(" ")
+    .join("");
+  return getComputedStyle(document.documentElement)
+    .getPropertyValue(value)
+    .trim();
 }
