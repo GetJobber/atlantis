@@ -82,7 +82,7 @@
     "stylelint-junit-formatter": "^0.2.1",
     "theme-ui": "^0.3.1",
     "typed-css-modules-loader": "^0.0.17",
-    "typescript": "^3.5.2"
+    "typescript": "^3.8.3"
   },
   "husky": {
     "hooks": {
