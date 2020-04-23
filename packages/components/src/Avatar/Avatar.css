@@ -1,10 +1,10 @@
 :root {
   --avatar-size: 2rem;
-  --avatar-color: var(--color-greyBlue);
+  --avatar-border-size: 2px;
 }
 
 .avatar {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   width: var(--avatar-size);
@@ -13,13 +13,24 @@
   color: var(--color-white);
   font-size: var(--avatar-size);
   -webkit-font-smoothing: antialiased;
-  background-color: var(--avatar-color);
+  background: no-repeat center center;
+  background-color: var(--color-greyBlue);
+  background-size: cover;
 }
 
 .large {
   --avatar-size: 4.5rem;
+  --avatar-border-size: 3px;
 }
 
 .initials {
   font-size: 0.5em;
+  text-transform: uppercase;
+}
+
+.border {
+  width: calc(var(--avatar-size) - (var(--avatar-border-size) * 2));
+  height: calc(var(--avatar-size) - (var(--avatar-border-size) * 2));
+  border-style: solid;
+  border-width: var(--avatar-border-size);
 }
