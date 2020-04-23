@@ -117,7 +117,6 @@ import {
   filters={} // optional
   searchable={true} // optional
 
-  pageSize={50} // optional
   listRender={TableListRenderer} // optional
   listItems={[
     {
