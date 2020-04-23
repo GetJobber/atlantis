@@ -4,6 +4,7 @@ menu: Components
 route: /components/avatar
 ---
 
+import { useState } from "react";
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { Avatar } from ".";
@@ -12,7 +13,7 @@ import { Avatar } from ".";
 
 <ComponentStatus stage="pre" responsive="no" accessible="yes" />
 
-An avatar will be used to display an visual identifier for a user.
+An avatar will be used to display an visual identifier for an individual user.
 
 ```ts
 import { Avatar } from "@jobber/components/Avatar";
@@ -28,34 +29,56 @@ import { Avatar } from "@jobber/components/Avatar";
   />
 </Playground>
 
-<!--
-  It is not necessary to include Design & Usage Guidlelines. Use this section
-  to answer common questions and considerations about component usage.
--->
-
-## Design & Usage Guidelines
-
-When contributing to, or consuming the Avatar component, consider the following:
-
-- When using the Avatar component always consider the volume you would like it
-  to be displayed at.
-- The Avatar component should never be used inside another component.
-
 ## Props
 
 <Props of={Avatar} />
 
-<!--
-  It is not necessary to provide an example of each prop. Use usage examples to
-  highlight key features of a component or particular considerations.
+## Color
 
-  See `Button.mdx` for a good example of this.
--->
+Use `color` to indicate the background and the border color of an avatar
+component.
 
-## Loud
-
-Use `loud` to indicate that a component is yelling.
+> There is currently a deficiency in color when handling color contrast. It is
+> currently recommended not use a light color for the color prop.
 
 <Playground>
-  <Avatar text="Fred" loud={true} />
+  {() => {
+    const [color, setColor] = useState();
+    const style = {
+      display: "inline-block",
+      marginRight: "5px",
+      verticalAlign: "middle"
+    };
+    return (
+      <>
+        <label for="color-picker">Select A Color</label>
+        <br />
+        <input
+          type="color"
+          id="color-picker"
+          onChange={e => setColor(e.target.value)}
+        />
+        <hr />
+        <div style={style}>
+          <Avatar initials="JBLR" color={color} />
+        </div>
+        <div style={style}>
+          <Avatar
+            imageUrl="https://api.adorable.io/avatars/150/jobbler"
+            color={color}
+          />
+        </div>
+        <div style={style}>
+          <Avatar initials="JBLR" size="large" color={color} />
+        </div>
+        <div style={style}>
+          <Avatar
+            imageUrl="https://api.adorable.io/avatars/150/jobbler"
+            size="large"
+            color={color}
+          />
+        </div>
+      </>
+    );
+  }}
 </Playground>
