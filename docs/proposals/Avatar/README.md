@@ -21,13 +21,13 @@ avatars in Jobber, as well as the potential usage of colors within avatars.
 
 ## Props Table
 
-| name     | type   | default  | description                               |
-| -------- | ------ | -------- | ----------------------------------------- |
-| image    | String | -        | The avatar image to be use                |
-| name     | String | -        | A users name to be used for accessibility |
-| initials | String | -        | Initials to show if the image is null     |
-| color    | String | greyBlue | The border color that represents the user |
-| size     | String | small    | Size of the avatar - 'small'              | 'large' |
+| name     | type   | default  | description                                              |
+| -------- | ------ | -------- | -------------------------------------------------------- |
+| image    | String | -        | The avatar image to be use                               |
+| name     | String | -        | A users name to be used for accessibility                |
+| initials | String | -        | Initials to show if the image is null                    |
+| color    | String | greyBlue | The background and border color that represents the user |
+| size     | String | small    | Size of the avatar - 'small'                             | 'large' |
 
 ## Display
 
@@ -51,14 +51,7 @@ cause issues with color contrast.
 
 ## Size
 
-There are 2 options that I can think of for showing size, numeric and string.
-
-- Numeric: `size` prop takes a number and that is the `px` width/height of the
-  avatar
-  - Example: `<Avatar size={32} />`
-  - This would allow more flexebility in usage of the component, but less strict
-    and less consistancy
-- String: `size` prop would take a string that represents the size of the
+- `String`: `size` prop would take a string that represents the size of the
   component
   - Example: `<Avatar size="large" />`
   - This would box us into limited sizes as once the standard XS,S,M,L,XL are
