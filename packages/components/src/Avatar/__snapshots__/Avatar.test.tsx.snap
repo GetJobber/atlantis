@@ -10,7 +10,6 @@ exports[`displays an icon if no image and no initials are set 1`] = `
     }
   }
 >
-  
   <svg
     className="icon base"
     viewBox="0 0 1024 1024"
@@ -43,7 +42,6 @@ exports[`displays initials if no image is set 1`] = `
   >
     JBL
   </span>
-  
 </div>
 `;
 
@@ -59,8 +57,5 @@ exports[`renders a Avatar 1`] = `
       "borderColor": undefined,
     }
   }
->
-  
-  
-</div>
+/>
 `;

@@ -1,7 +1,6 @@
 :root {
   --avatar-size: 2rem;
   --avatar-border-size: 2px;
-  --avatar-svg-size: 50%;
 }
 
 .avatar {
@@ -18,15 +17,9 @@
   background-size: cover;
 }
 
-.avatar svg {
-  width: var(--avatar-svg-size);
-  height: var(--avatar-svg-size);
-}
-
 .large {
   --avatar-size: 4.5rem;
   --avatar-border-size: 4px;
-  --avatar-svg-size: 40%;
 }
 
 .isDark {

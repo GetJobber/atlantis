@@ -1,8 +1,10 @@
 import React, { CSSProperties } from "react";
 import classnames from "classnames";
-import Color from "color";
 import styles from "./Avatar.css";
+import { isDark } from "./utilities";
 import { Icon } from "../Icon";
+
+type AvatarSize = "base" | "large";
 
 interface AvatarProps {
   /**
@@ -18,14 +20,14 @@ interface AvatarProps {
   /**
    * @default 'medium'
    */
-  readonly size?: "medium" | "large";
+  readonly size?: AvatarSize;
 }
 
 export function Avatar({
   imageUrl,
   name,
   initials,
-  size = "medium",
+  size = "base",
   color,
 }: AvatarProps) {
   const style: CSSProperties = {
@@ -40,7 +42,7 @@ export function Avatar({
   const className = classnames(styles.avatar, {
     [styles.large]: size === "large",
     [styles.hasBorder]: imageUrl && color,
-    [styles.isDark]: color && isDark(color),
+    [styles.isDark]: isDark(color),
   });
 
   return (
@@ -50,55 +52,31 @@ export function Avatar({
       role={imageUrl && "img"}
       aria-label={name}
     >
-      {initials && !imageUrl ? <Initials initials={initials} /> : ""}
-      {!initials && !imageUrl ? (
-        <Icon name="person" color={color && isDark(color) ? "white" : "blue"} />
-      ) : (
-        ""
+      {!imageUrl && (
+        <Initials initials={initials} dark={isDark(color)} iconSize={size} />
       )}
     </div>
   );
-
-  function isDark(colorToCheck: string) {
-    if (colorToCheck) {
-      try {
-        return Color(deconstructCssCustomProperty(colorToCheck)).isDark();
-      } catch (err) {
-        console.log(err);
-      }
-    }
-
-    return;
-  }
 }
 
 interface InitialsProps {
-  readonly initials: string;
+  readonly dark?: boolean;
+  readonly iconSize?: AvatarSize;
+  readonly initials?: string;
 }
 
-function Initials({ initials }: InitialsProps) {
-  const className = classnames(
-    styles.initials,
-    initials.length > 2 && styles.smallInitials,
-  );
+function Initials({
+  initials,
+  dark = false,
+  iconSize = "base",
+}: InitialsProps) {
+  if (!initials) {
+    return (
+      <Icon name="person" color={dark ? "white" : "blue"} size={iconSize} />
+    );
+  }
+  const className = classnames(styles.initials, {
+    [styles.smallInitials]: initials.length > 2,
+  });
   return <span className={className}>{initials.substr(0, 3)}</span>;
-}
-
-function deconstructCssCustomProperty(color: string) {
-  if (!color) {
-    return;
-  }
-
-  if (!color.toLowerCase().startsWith("var(")) {
-    return color;
-  }
-
-  const value = color
-    .replace("var(", "")
-    .slice(0, -1)
-    .split(" ")
-    .join("");
-  return getComputedStyle(document.documentElement)
-    .getPropertyValue(value)
-    .trim();
 }
