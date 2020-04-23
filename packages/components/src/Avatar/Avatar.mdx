@@ -10,7 +10,7 @@ import { Avatar } from ".";
 
 # Avatar
 
-<ComponentStatus stage="pre" responsive="no" accessible="no" />
+<ComponentStatus stage="pre" responsive="no" accessible="yes" />
 
 An avatar will be used to display an visual identifier for a user.
 
@@ -19,8 +19,13 @@ import { Avatar } from "@jobber/components/Avatar";
 ```
 
 <Playground>
-  imageUrl="https://picsum.photos/seed/picsum/150/150"
-  <Avatar size="large" initials="JBfsd" color="var(--color-red)" />
+  <Avatar
+    imageUrl="https://api.adorable.io/avatars/150/jobbler"
+    name="The Jobbler"
+    size="large"
+    initials="JBLR"
+    color="var(--color-indigo)"
+  />
 </Playground>
 
 <!--

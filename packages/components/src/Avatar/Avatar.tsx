@@ -4,36 +4,32 @@ import styles from "./Avatar.css";
 
 interface AvatarProps {
   /**
-   * Size of the avatar
+   * A path to the image that will be displayed
+   */
+  readonly imageUrl?: string;
+  /**
+   * A users name to be used for assistive technology
+   */
+  readonly name?: string;
+  readonly initials?: string;
+  readonly color?: string;
+  /**
    * @default 'medium'
    */
   readonly size?: "medium" | "large";
-  readonly initials?: string;
-  readonly color?: string;
-  readonly imageUrl?: string;
-
-  /**
-   * Styles the text bold and uppercased
-   * @protected
-   */
-  readonly loud?: boolean;
-
-  /**
-   * Text to display.
-   */
-  readonly text: string;
 }
 
 export function Avatar({
-  size = "medium",
-  initials,
-  color,
   imageUrl,
+  name,
+  initials,
+  size = "medium",
+  color,
 }: AvatarProps) {
   const className = classnames(
     styles.avatar,
     styles[size],
-    imageUrl && color ? styles.border : "",
+    imageUrl && color ? styles.hasBorder : "",
   );
 
   const style: CSSProperties = {
@@ -46,7 +42,12 @@ export function Avatar({
   }
 
   return (
-    <div className={className} style={style}>
+    <div
+      className={className}
+      style={style}
+      role={imageUrl && "img"}
+      aria-label={name}
+    >
       {initials && !imageUrl ? <Initials initials={initials} /> : ""}
     </div>
   );

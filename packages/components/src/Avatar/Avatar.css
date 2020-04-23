@@ -13,14 +13,13 @@
   color: var(--color-white);
   font-size: var(--avatar-size);
   -webkit-font-smoothing: antialiased;
-  background: no-repeat center center;
-  background-color: var(--color-greyBlue);
+  background: no-repeat center center var(--color-greyBlue);
   background-size: cover;
 }
 
 .large {
   --avatar-size: 4.5rem;
-  --avatar-border-size: 3px;
+  --avatar-border-size: 4px;
 }
 
 .initials {
@@ -32,9 +31,10 @@
   font-size: 0.4375em;
 }
 
-.border {
+.hasBorder {
   width: calc(var(--avatar-size) - (var(--avatar-border-size) * 2));
   height: calc(var(--avatar-size) - (var(--avatar-border-size) * 2));
+  box-shadow: 0 0 0 2px var(--color-white) inset;
   border-style: solid;
   border-width: var(--avatar-border-size);
 }
