@@ -28,6 +28,10 @@
   text-transform: uppercase;
 }
 
+.smallInitials {
+  font-size: 0.4375em;
+}
+
 .border {
   width: calc(var(--avatar-size) - (var(--avatar-border-size) * 2));
   height: calc(var(--avatar-size) - (var(--avatar-border-size) * 2));

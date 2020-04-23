@@ -14,7 +14,7 @@ interface AvatarProps {
 
   /**
    * Styles the text bold and uppercased
-   * @default false
+   * @protected
    */
   readonly loud?: boolean;
 
@@ -47,11 +47,19 @@ export function Avatar({
 
   return (
     <div className={className} style={style}>
-      {initials && !imageUrl ? (
-        <span className={styles.initials}>{initials}</span>
-      ) : (
-        ""
-      )}
+      {initials && !imageUrl ? <Initials initials={initials} /> : ""}
     </div>
   );
+}
+
+interface InitialsProps {
+  readonly initials: string;
+}
+
+function Initials({ initials }: InitialsProps) {
+  const className = classnames(
+    styles.initials,
+    initials.length > 2 && styles.smallInitials,
+  );
+  return <span className={className}>{initials.substr(0, 3)}</span>;
 }
