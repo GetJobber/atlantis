@@ -14,7 +14,7 @@ import { Card } from "../Card";
 
 <ComponentStatus stage="rc" responsive="yes" accessible="yes" />
 
-Tooltips are extra information that briefly explain the function of a UI
+Tooltips provide in-context information that briefly explain the function of a UI
 element.
 
 `Tooltip` will apply a tooltip to a single wrapped Element.
@@ -31,6 +31,19 @@ import { Tooltip } from "@jobber/components/Tooltip";
     <Button label="Hover On Me Too" />
   </Tooltip>
 </Playground>
+
+## Design & Usage Guidelines
+
+When contributing to, or consuming the Tooltip component, consider the following:
+
+### Usage
+- A tooltip should be used to introduce a novel UI element or highlight a change to an existing interface.
+- A tooltip should contain information that is helpful, but not necessary for the user to successfully interact with the page.
+- A tooltip should not be a permanent fixture in the interface - if you need a message that remains in the view, consider putting that content inline. 
+
+### Content
+- Tooltip content should consist of only text and an optional "dismiss" CTA
+- Tooltip text content should not exceed 3 lines
 
 ## Props
 
