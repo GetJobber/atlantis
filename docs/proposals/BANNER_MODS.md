@@ -12,12 +12,12 @@ dismissable. Consideration
 Open Questions:
 
 1. These appear at the top of the layout but aren't visible for long scrolling
-   pages. How do we want to handle that? -- For now, we can implement these
+   pages. How do we want to handle that? For now, we can implement these
    functionally and then move them into place as we address the vertical slice
    layout.
 2. What happens when we have two banners for a placement on a page or for the
    site? Eventually we may need a singleton "manager" for page banners and
-   sitewide banners.? This would include navigation to step through multiple, or
+   sitewide banners. This would include navigation to step through multiple, or
    view a list of the messages. For now, we can develop with that need in mind
    and try to keep that option open.
 
@@ -60,7 +60,7 @@ https://www.figma.com/file/AZFSe2T7FID7d5DP52NTkX/Design-System-Contribution-%5B
 
 The following props will be added to the `<Banner>` component.
 
-| name          | type                                                                | default | description                                                                                                                                                                                                              |
-| ------------- | ------------------------------------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| primaryAction | `primaryAction={{ label: 'Submit', onClick: handlePrimaryAction }}` |         | An action and button message.                                                                                                                                                                                            |
-| placement     | `[ page, site ]`                                                    | "page"  | Determines the presentation style and some options for the banner. A site banner is not dismissable and appears at the top of the site layout. A page banner can be dismissed and appears inline at the top of the page. |
+| name          | type             | default                                                                                         | description                                                                                                                                                                                                              |
+| ------------- | ---------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| primaryAction | Button props     | An action and button message. The button will be styled by default to match the type of banner. |
+| placement     | `[ page, site ]` | "page"                                                                                          | Determines the presentation style and some options for the banner. A site banner is not dismissable and appears at the top of the site layout. A page banner can be dismissed and appears inline at the top of the page. |
