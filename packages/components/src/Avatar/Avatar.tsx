@@ -75,8 +75,10 @@ function Initials({
       <Icon name="person" color={dark ? "white" : "blue"} size={iconSize} />
     );
   }
+
   const className = classnames(styles.initials, {
     [styles.smallInitials]: initials.length > 2,
   });
+
   return <span className={className}>{initials.substr(0, 3)}</span>;
 }

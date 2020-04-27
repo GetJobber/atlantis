@@ -25,9 +25,14 @@ import { Avatar } from "@jobber/components/Avatar";
     name="The Jobbler"
     size="large"
     initials="JBLR"
-    color="var(--color-white)"
+    color="var(--color-indigo)"
   />
 </Playground>
+
+## Design & Usage Guidelines
+
+When contributing to, or consuming the Avatar component consider the
+[Figma Proposal](https://www.figma.com/file/3begaiH9kc4RiBZhkCKwmq/Design-System-Contribution-%5B-User-Component-%5D-%5D?node-id=26%3A2).
 
 ## Props
 
@@ -35,12 +40,19 @@ import { Avatar } from "@jobber/components/Avatar";
 
 ## Color
 
+The concept of `color` with an Avatar is currently not used in Jobber.
+
 Use `color` to indicate the background and the border color of an avatar
 component.
 
+When using `color`, make sure that the color is consistent for a user throughout
+the application. The color that is represented for an avatar should be the same
+color that represents a user in other parts of the application, such as the
+calender.
+
 <Playground>
   {() => {
-    const [color, setColor] = useState();
+    const [color, setColor] = useState("#7db00e");
     const style = {
       display: "inline-block",
       marginRight: "5px",
@@ -53,6 +65,7 @@ component.
         <input
           type="color"
           id="color-picker"
+          value={color}
           onChange={e => setColor(e.target.value)}
         />
         <hr />
