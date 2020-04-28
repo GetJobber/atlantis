@@ -109,7 +109,6 @@ export function FeatureSwitch({
                 transition={{
                   delay: 0.2,
                   type: "spring",
-                  duration: 0.2,
                   damping: 20,
                   stiffness: 300,
                 }}
