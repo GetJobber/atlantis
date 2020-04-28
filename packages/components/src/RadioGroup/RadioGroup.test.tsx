@@ -5,21 +5,51 @@ import { RadioGroup } from ".";
 
 afterEach(cleanup);
 
-it("renders a RadioGroup", () => {
-  const tree = renderer.create(<RadioGroup text="Foo" />).toJSON();
-  expect(tree).toMatchSnapshot();
-});
-
-it("renders a loud RadioGroup", () => {
-  const tree = renderer.create(<RadioGroup text="Foo" loud={true} />).toJSON();
+test("renders a RadioGroup", () => {
+  const tree = renderer
+    .create(
+      <RadioGroup
+        name="Foo"
+        value={() => alert("foo value")}
+        header="foo header"
+        onChange={() => alert("foo!")}
+      >
+        Foo
+      </RadioGroup>,
+    )
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });
 
 test("it should call the handler with the new value", () => {
-  const clickHandler = jest.fn();
-  const text = "Foo";
+  const handleOnChange = jest.fn();
+
   const { getByText } = render(
-    <RadioGroup onClick={clickHandler} text={text} />,
+    <RadioGroup
+      name="dedicatedPhoneNumber"
+      header="some text about the options"
+      onChange={setCompany}
+      value={company}
+    >
+      <RadioOption
+        value="apple"
+        name="dedicatedPhoneNumber"
+        checked={company === "apple"}
+        setSelected={changeEvent => handleOnChange}
+      >
+        {" "}
+        Apple{" "}
+      </RadioOption>
+      <RadioOption
+        value="google"
+        name="dedicatedPhoneNumber"
+        checked={company === "google"}
+        setSelected={changeEvent => handleOnChange}
+      >
+        {" "}
+        Google{" "}
+      </RadioOption>
+    </RadioGroup>,
   );
 
   fireEvent.click(getByText(text));

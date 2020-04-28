@@ -30,33 +30,9 @@ import { RadioGroup } from "@jobber/components/RadioGroup";
         onChange={setCompany}
         value={company}
       >
-        <RadioOption
-          value="apple"
-          name="dedicatedPhoneNumber"
-          checked={company === "apple"}
-          setSelected={changeEvent => setCompany(changeEvent.target.value)}
-        >
-          {" "}
-          Apple{" "}
-        </RadioOption>
-        <RadioOption
-          value="google"
-          name="dedicatedPhoneNumber"
-          checked={company === "google"}
-          setSelected={changeEvent => setCompany(changeEvent.target.value)}
-        >
-          {" "}
-          Google{" "}
-        </RadioOption>
-        <RadioOption
-          value="microsoft"
-          name="dedicatedPhoneNumber"
-          checked={company === "microsoft"}
-          setSelected={changeEvent => setCompany(changeEvent.target.value)}
-        >
-          {" "}
-          Microsoft{" "}
-        </RadioOption>
+        <RadioOption value="apple">Apple</RadioOption>
+        <RadioOption value="google">Google</RadioOption>
+        <RadioOption value="microsoft">Microsoft</RadioOption>
       </RadioGroup>
     );
   }}

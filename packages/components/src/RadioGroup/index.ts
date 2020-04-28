@@ -1,2 +1,2 @@
-export { RadioGroup } from "./RadioGroup";
-export { RadioOption } from "./RadioOption";
+export { RadioGroup, RadioOption } from "./RadioGroup";
+// export { RadioOption } from "./RadioOption";
