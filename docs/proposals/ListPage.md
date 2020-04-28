@@ -11,7 +11,10 @@ experience.
 
 A first step in this is imagining what a common `ListPage` component would look
 like. It would need to have some level of flexibility to allow for use on
-different pages but still provide common "slots" or areas where.
+different pages but still provide common "slots" or areas.
+
+Looking at the interface section we should be able to define the slots with sub
+components such as: `ListSummary`, `ListItemShow` and `CtaContainer`.
 
 ## Accessibility
 
@@ -42,8 +45,8 @@ A decent number of these parts will move into a `DataTable` component after we
 have that RFC complete and some more experience trying this approach in this
 component.
 
-Should we include items as a list prop? We could nest a list view? How to handle
-the sidebar / drawer?
+Renderers below refer to react components that will, given data render a cell,
+row or list. Examples below: `CustomListRenderer`, `CustomCellRenderer`
 
 ### Column Interface
 
@@ -54,8 +57,13 @@ means a section or cell that is common across each row or list item. For example
 ```tsx
 interface ListColumn {
   key: string;
-  // A Renderer such as the CustomCell renderer.
-  // Built in renderers will also be provided.
+  /**
+   * A Renderer to for the cells in this column such as the
+   * `CustomCellRenderer` renderer outlined below.
+   *
+   * Built in renderers such as `TextCell`, `NumberCell` will also be provided
+   * by Atlantis and can be imported for use.
+   */
   renderer?: ReactElement;
   sortable?: boolean | function;
 }
@@ -90,15 +98,15 @@ function TableListRenderer({ listItems, columns }: ListRendererProps) {
 }
 ```
 
-### CustomListCell
+### CustomListCellRenderer
 
 ```tsx
-interface CellProps {
+interface CellRendererProps {
   // We'll have to figure out some typing for this generics will probably help.
   data: unknown;
 }
 
-function CustomCell({ data }: CellProps) {
+function CustomCellRenderer({ data }: CellProps) {
   return data;
 }
 ```
@@ -117,7 +125,9 @@ import {
   filters={} // optional
   searchable={true} // optional
 
-  listRender={TableListRenderer} // optional
+  // Optional
+  // Defines the renderer to layout the list. See `CustomListRenderer` above.
+  listRender={TableListRenderer}
   listItems={[
     {
       name: "joe",
@@ -125,7 +135,8 @@ import {
       …
     }
   ]}
-  columns={Column[]}
+  // Defines the columns and their renderer's described in `ListColumn`.
+  columns={ListColumn[]}
 >
 
   <ListItemShow>
