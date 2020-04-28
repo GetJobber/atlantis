@@ -2,6 +2,21 @@
   "name": "@jobber/hooks",
   "version": "0.0.1",
   "license": "MIT",
-  "main": "dist/index.js",
-  "scripts": {}
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.js",
+  "scripts": {
+    "build": "tsc --project .",
+    "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
+    "prepare": "npm run clean; npm run build"
+  },
+  "files": [
+    "dist/*"
+  ],
+  "devDependencies": {
+    "typescript": "^3.4.5"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "resize-observer-polyfill": "^1.5.1"
+  }
 }
