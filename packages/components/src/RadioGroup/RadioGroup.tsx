@@ -1,31 +1,23 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import classnames from "classnames";
 import styles from "./RadioGroup.css";
 
 interface RadioGroupProps {
-  /**
-   * Styles the text bold and uppercased
-   * @default false
-   */
-  readonly loud?: boolean;
-
-  /**
-   * Text to display.
-   */
-  readonly text: string;
-
-  /**
-   * Click handler.
-   */
-  onClick?(): void;
+  readonly children: ReactNode;
+  value(): void;
+  onChange(): void;
+  name: string;
+  header: string;
 }
 
-export function RadioGroup({ loud = false, text, onClick }: RadioGroupProps) {
-  const className = classnames(styles.radioGroup, { [styles.bold]: loud });
+export function RadioGroup({
+  children,
+  value,
+  onChange,
+  name,
+  header,
+}: RadioGroupProps) {
+  const className = classnames(styles.radioGroup);
 
-  return (
-    <div className={className} onClick={onClick}>
-      {text}
-    </div>
-  );
+  return <div className={className}>{children}</div>;
 }

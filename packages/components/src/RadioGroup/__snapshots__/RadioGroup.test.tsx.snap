@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a RadioGroup 1`] = `
+<div
+  className="radioGroup"
+>
+  Foo
+</div>
+`;
+
+exports[`renders a loud RadioGroup 1`] = `
+<div
+  className="radioGroup bold"
+>
+  Foo
+</div>
+`;

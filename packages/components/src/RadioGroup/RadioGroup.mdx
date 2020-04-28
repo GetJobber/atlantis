@@ -7,6 +7,8 @@ route: /components/radio-group
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { RadioGroup } from ".";
+import { RadioOption } from ".";
+import { useState } from "react";
 
 # Radio Group
 
@@ -19,7 +21,45 @@ import { RadioGroup } from "@jobber/components/RadioGroup";
 ```
 
 <Playground>
-  <RadioGroup text="Bob" />
+  {() => {
+    const [company, setCompany] = useState("apple");
+    return (
+      <RadioGroup
+        name="dedicatedPhoneNumber"
+        header="some text about the options"
+        onChange={setCompany}
+        value={company}
+      >
+        <RadioOption
+          value="apple"
+          name="dedicatedPhoneNumber"
+          checked={company === "apple"}
+          setSelected={changeEvent => setCompany(changeEvent.target.value)}
+        >
+          {" "}
+          Apple{" "}
+        </RadioOption>
+        <RadioOption
+          value="google"
+          name="dedicatedPhoneNumber"
+          checked={company === "google"}
+          setSelected={changeEvent => setCompany(changeEvent.target.value)}
+        >
+          {" "}
+          Google{" "}
+        </RadioOption>
+        <RadioOption
+          value="microsoft"
+          name="dedicatedPhoneNumber"
+          checked={company === "microsoft"}
+          setSelected={changeEvent => setCompany(changeEvent.target.value)}
+        >
+          {" "}
+          Microsoft{" "}
+        </RadioOption>
+      </RadioGroup>
+    );
+  }}
 </Playground>
 
 <!--
