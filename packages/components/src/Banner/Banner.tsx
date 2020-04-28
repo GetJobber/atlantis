@@ -10,6 +10,10 @@ interface BannerProps {
   readonly children: ReactNode;
   readonly type: "notice" | "success" | "warning" | "error";
   readonly primaryAction?: ButtonProps;
+  /**
+   * @default "page"
+   */
+  readonly placement?: "page" | "site";
   onDismiss?(): void;
 }
 
@@ -21,6 +25,7 @@ export function Banner({
   children,
   type,
   primaryAction,
+  placement = "page",
   onDismiss,
 }: BannerProps) {
   const [showFlash, setShowFlash] = useState(true);
@@ -51,13 +56,15 @@ export function Banner({
           <Text>{children}</Text>
           {primaryAction && <Button {...primaryAction} />}
 
-          <button
-            className={styles.closeButton}
-            onClick={handleClose}
-            aria-label="Close"
-          >
-            <Icon name="cross" color={iconColors[type]} />
-          </button>
+          {placement === "page" && (
+            <button
+              className={styles.closeButton}
+              onClick={handleClose}
+              aria-label="Close"
+            >
+              <Icon name="cross" color={iconColors[type]} />
+            </button>
+          )}
         </div>
       )}
     </>
