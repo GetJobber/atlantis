@@ -8,6 +8,3 @@
   --message-weight: 800;
   transform: uppercase;
 }
-.radios > span {
-  white-space: nowrap;
-}
