@@ -1,0 +1,56 @@
+---
+name: RadioGroup
+menu: Components
+route: /components/radio-group
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { RadioGroup } from ".";
+
+# Radio Group
+
+<ComponentStatus stage="pre" responsive="no" accessible="no" />
+
+Write a description about what RadioGroup component is trying to achieve.
+
+```ts
+import { RadioGroup } from "@jobber/components/RadioGroup";
+```
+
+<Playground>
+  <RadioGroup text="Bob" />
+</Playground>
+
+<!--
+  It is not necessary to include Design & Usage Guidlelines. Use this section
+  to answer common questions and considerations about component usage.
+-->
+
+## Design & Usage Guidelines
+
+When contributing to, or consuming the RadioGroup component, consider the
+following:
+
+- When using the RadioGroup component always consider the volume you would like
+  it to be displayed at.
+- The RadioGroup component should never be used inside another component.
+
+## Props
+
+<Props of={RadioGroup} />
+
+<!--
+  It is not necessary to provide an example of each prop. Use usage examples to
+  highlight key features of a component or particular considerations.
+
+  See `Button.mdx` for a good example of this.
+-->
+
+## Loud
+
+Use `loud` to indicate that a component is yelling.
+
+<Playground>
+  <RadioGroup text="Fred" loud={true} />
+</Playground>
