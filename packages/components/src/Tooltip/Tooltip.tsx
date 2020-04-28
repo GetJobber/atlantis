@@ -66,7 +66,6 @@ export function Tooltip({ message, children }: TooltipProps) {
                 exit="startOrStop"
                 transition={{
                   type: "spring",
-                  duration: 0.2,
                   damping: 20,
                   stiffness: 300,
                 }}

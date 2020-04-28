@@ -178,10 +178,7 @@ export const FormField = React.forwardRef(
       value,
       validations,
     }: FormFieldProps,
-    ref:
-      | Ref<HTMLInputElement>
-      | Ref<HTMLTextAreaElement>
-      | Ref<HTMLSelectElement>,
+    ref: Ref<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) => {
     const [hasMiniLabel, setHasMiniLabel] = useState(
       shouldShowMiniLabel(defaultValue, value),

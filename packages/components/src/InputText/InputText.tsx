@@ -36,7 +36,7 @@ function InputTextInternal(
   props: InputTextPropOptions,
   ref: Ref<InputTextRef>,
 ) {
-  const inputRef = createRef<HTMLTextAreaElement>();
+  const inputRef = createRef<HTMLTextAreaElement | HTMLInputElement>();
 
   useImperativeHandle(ref, () => ({
     insert: (text: string) => {
@@ -69,7 +69,10 @@ function InputTextInternal(
 
 export const InputText = forwardRef(InputTextInternal);
 
-function insertAtCursor(input: HTMLTextAreaElement, newText: string) {
+function insertAtCursor(
+  input: HTMLTextAreaElement | HTMLInputElement,
+  newText: string,
+) {
   const start = input.selectionStart || 0;
   const end = input.selectionEnd || 0;
   const text = input.value;
