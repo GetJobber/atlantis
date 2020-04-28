@@ -4,10 +4,12 @@ import styles from "./Banner.css";
 import types from "./notificationTypes.css";
 import { Icon, IconColorNames } from "../Icon";
 import { Text } from "../Text";
+import { Button, ButtonProps } from "../Button";
 
 interface BannerProps {
   readonly children: ReactNode;
   readonly type: "notice" | "success" | "warning" | "error";
+  readonly primaryAction?: ButtonProps;
   onDismiss?(): void;
 }
 
@@ -15,7 +17,12 @@ interface IconColorMap {
   [variation: string]: IconColorNames;
 }
 
-export function Banner({ children, type, onDismiss }: BannerProps) {
+export function Banner({
+  children,
+  type,
+  primaryAction,
+  onDismiss,
+}: BannerProps) {
   const [showFlash, setShowFlash] = useState(true);
 
   const iconColors: IconColorMap = {
@@ -25,12 +32,24 @@ export function Banner({ children, type, onDismiss }: BannerProps) {
     error: "red",
   };
 
+  if (primaryAction != undefined) {
+    primaryAction = Object.assign(
+      {
+        size: "small",
+        type: "tertiary",
+        variation: type === "notice" ? "learning" : "work",
+      },
+      primaryAction,
+    );
+  }
+
   const flashClassNames = classnames(styles.flash, types[type]);
   return (
     <>
       {showFlash && (
         <div className={flashClassNames}>
           <Text>{children}</Text>
+          {primaryAction && <Button {...primaryAction} />}
 
           <button
             className={styles.closeButton}
