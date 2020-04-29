@@ -20,15 +20,7 @@ import { Banner } from "@jobber/components/Banner";
 ```
 
 <Playground>
-  <Banner
-    type="success"
-    primaryAction={{
-      label: "Poke Me",
-      onClick: () => alert("💥 SMASH 💥")
-    }}
-  >
-    You've successfully Hulked out
-  </Banner>
+  <Banner type="success">You've successfully Hulked out</Banner>
 </Playground>
 
 ## Props
@@ -61,4 +53,33 @@ import { Banner } from "@jobber/components/Banner";
 
 <Playground>
   <Banner type="error">Hulk smash has been unsuccessful</Banner>
+</Playground>
+
+## Actions in Banners
+
+If you require an action in a `Banner`, use the `primaryActions` prop. The
+`primaryAction` accepts the same props as the `Button` component.
+
+It is discouraged to use a `<Button />` component when requiring an action
+within a banner.
+
+<Playground>
+  <Banner
+    type="success"
+    primaryAction={{
+      label: "Poke Me",
+      onClick: () => alert("💥💥SMASH💥💥")
+    }}
+  >
+    You wouldn't like me when im angry.
+  </Banner>
+  <Banner
+    type="notice"
+    primaryAction={{
+      label: "Im always angry",
+      onClick: () => alert("😡😡😡")
+    }}
+  >
+    That's my secret Captain
+  </Banner>
 </Playground>
