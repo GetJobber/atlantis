@@ -1,10 +1,40 @@
-.radioGroup {
-  --message-weight: 400;
-
-  font-weight: var(--message-weight);
+.input {
+  /* Hide checkbox on UI but not screen readers and still allow focus state */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+  white-space: nowrap;
 }
 
-.bold {
-  --message-weight: 800;
-  transform: uppercase;
+.label {
+  display: inline-flex;
+  align-items: center;
+}
+
+.input + .label::before {
+  content: "";
+  display: block;
+  width: var(--space-base);
+  height: var(--space-base);
+  box-sizing: border-box;
+  margin: 0 var(--space-small);
+  border: var(--border-thick) solid var(--color-grey--light);
+  border-radius: 100%;
+  background-color: var(--color-white);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.input:checked + .label::before {
+  border-color: var(--color-green--dark);
+  background-color: var(--color-green);
+  transition: all 0.2s;
+}
+
+.radio {
+  display: inline-flex;
+  flex-direction: column;
 }

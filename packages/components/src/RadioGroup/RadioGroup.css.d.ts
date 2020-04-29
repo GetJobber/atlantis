@@ -1,2 +1,3 @@
-export const radioGroup: string;
-export const bold: string;
+export const input: string;
+export const label: string;
+export const radio: string;

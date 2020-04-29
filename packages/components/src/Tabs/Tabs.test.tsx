@@ -9,6 +9,7 @@ let count = 0;
 const omelet = (
   <Tabs>
     <Tab label="Eggs">
+      STufffff
       <p>🍳</p>
       <p>Eggs</p>
     </Tab>

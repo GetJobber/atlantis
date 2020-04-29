@@ -1,15 +1,11 @@
-import React, { ReactElement, ReactNode, useState } from "react";
-import classnames from "classnames";
+import React, { ReactElement, ReactNode } from "react";
 import styles from "./RadioGroup.css";
-import { option } from "../Autocomplete/Autocomplete.css";
-import { selected } from "../Tabs/Tabs.css";
 
 interface RadioGroupProps {
-  readonly children: ReactElement[];
-  value: string;
+  readonly children: ReactElement | ReactElement[];
+  readonly value: string;
   onChange(newValue: string): void;
-  name: string;
-  header: string;
+  readonly name: string;
 }
 
 export function RadioGroup({
@@ -17,15 +13,12 @@ export function RadioGroup({
   value,
   onChange,
   name,
-  header,
 }: RadioGroupProps) {
-  const className = classnames(styles.radioGroup);
-
   return (
-    <>
-      {React.Children.map(children, (option, index) => (
+    <div className={styles.radio}>
+      {React.Children.map(children, option => (
         <InternalRadioOption
-          selected={value === option.props.value}
+          checked={value === option.props.value}
           value={option.props.value}
           name={name}
           onChange={handleChange}
@@ -33,7 +26,7 @@ export function RadioGroup({
           {option.props.children}
         </InternalRadioOption>
       ))}
-    </>
+    </div>
   );
 
   function handleChange(newValue: string) {
@@ -44,33 +37,43 @@ export function RadioGroup({
 }
 
 interface RadioOptionProps {
-  value: string;
-  children: ReactElement[];
+  readonly value: string;
+  readonly children: ReactNode | ReactNode[];
 }
 
-export function RadioOption() {
-  return <></>;
+export function RadioOption({ children }: RadioOptionProps) {
+  return <>{children}</>;
 }
 
 interface InternalRadioOptionProps {
-  value: string;
-  name: string;
-  selected: boolean;
-  children: ReactElement[];
+  readonly value: string;
+  readonly name: string;
+  readonly checked: boolean;
+  readonly children: ReactNode | ReactNode[];
   onChange(newValue: string): void;
 }
 
 function InternalRadioOption({
   value,
   name,
-  selected,
+  checked,
   children,
   onChange,
 }: InternalRadioOptionProps) {
   return (
-    <div onClick={handleChange}>
-      {selected ? "( )" : "(•)"}
-      {children}
+    <div>
+      <input
+        onChange={handleChange}
+        type="radio"
+        name={name}
+        value={value}
+        checked={checked}
+        id={value}
+        className={styles.input}
+      />
+      <label className={styles.label} htmlFor={value}>
+        {children}
+      </label>
     </div>
   );
 
