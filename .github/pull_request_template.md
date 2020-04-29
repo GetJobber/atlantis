@@ -19,10 +19,12 @@
 
   SCOPE should be one of:
     - components
-    - generators
     - design
     - eslint
+    - generators
+    - hooks
     - stylelint
+
 
   If your pull request introduces a breaking change please append `BREAKING CHANGE:` following type / scope.
 
