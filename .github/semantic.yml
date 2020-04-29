@@ -10,4 +10,5 @@ scopes:
   - eslint
   - formatters
   - generators
+  - hooks
   - stylelint
