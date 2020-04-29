@@ -10,14 +10,6 @@ interface BannerProps {
   readonly children: ReactNode;
   readonly type: "notice" | "success" | "warning" | "error";
   readonly primaryAction?: ButtonProps;
-  /**
-   * Determines the presentation style and some options for the banner. A site
-   * banner is not dismissable and appears at the top of the site layout. A
-   * page banner can be dismissed and appears inline at the top of the page.
-   *
-   * @default "page"
-   */
-  readonly placement?: "page" | "site";
   onDismiss?(): void;
 }
 
@@ -29,7 +21,6 @@ export function Banner({
   children,
   type,
   primaryAction,
-  placement = "page",
   onDismiss,
 }: BannerProps) {
   const [showFlash, setShowFlash] = useState(true);
@@ -60,15 +51,13 @@ export function Banner({
           <Text>{children}</Text>
           {primaryAction && <Button {...primaryAction} />}
 
-          {placement === "page" && (
-            <button
-              className={styles.closeButton}
-              onClick={handleClose}
-              aria-label="Close"
-            >
-              <Icon name="cross" color={iconColors[type]} />
-            </button>
-          )}
+          <button
+            className={styles.closeButton}
+            onClick={handleClose}
+            aria-label="Close"
+          >
+            <Icon name="cross" color={iconColors[type]} />
+          </button>
         </div>
       )}
     </>

@@ -78,18 +78,6 @@ exports[`renders a banner with a primary action 1`] = `
 </div>
 `;
 
-exports[`renders a non-dismissable banner 1`] = `
-<div
-  className="flash error"
->
-  <p
-    className="base regular base greyBlueDark"
-  >
-    Bruce
-  </p>
-</div>
-`;
-
 exports[`renders a notice banner 1`] = `
 <div
   className="flash notice"

@@ -92,14 +92,3 @@ test("it should call the onClick when primaryAction is present", () => {
   fireEvent.click(getByText("Hello World"));
   expect(onClick).toHaveBeenCalledTimes(1);
 });
-
-it("renders a non-dismissable banner", () => {
-  const tree = renderer
-    .create(
-      <Banner type="error" placement="site">
-        Bruce
-      </Banner>,
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
-});
