@@ -37,6 +37,10 @@ export function Banner({
       {
         size: "small",
         type: "tertiary",
+        /**
+         * The default cta variation should be a 'work' variation. If the banner
+         * type is set to 'notice' we change the cta variation to 'learning'
+         */
         variation: type === "notice" ? "learning" : "work",
       },
       primaryAction,
