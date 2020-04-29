@@ -8,14 +8,21 @@ type AvatarSize = "base" | "large";
 
 interface AvatarProps {
   /**
-   * A path to the image that will be displayed
+   * A url for the image that will be displayed
    */
   readonly imageUrl?: string;
   /**
    * A users name to be used for assistive technology
    */
   readonly name?: string;
+  /**
+   * The initials that will be displayed if no image is set.\
+   */
   readonly initials?: string;
+  /**
+   * The background and border color that represents the user. This should be
+   * represented as a value that can be read by CSS
+   */
   readonly color?: string;
   /**
    * @default 'medium'
@@ -39,10 +46,11 @@ export function Avatar({
     style.backgroundImage = `url(${imageUrl})`;
   }
 
+  const shouldBeDark = color == undefined || isDark(color);
   const className = classnames(styles.avatar, {
     [styles.large]: size === "large",
     [styles.hasBorder]: imageUrl && color,
-    [styles.isDark]: isDark(color),
+    [styles.isDark]: shouldBeDark,
   });
 
   return (
@@ -53,7 +61,7 @@ export function Avatar({
       aria-label={name}
     >
       {!imageUrl && (
-        <Initials initials={initials} dark={isDark(color)} iconSize={size} />
+        <Initials initials={initials} dark={shouldBeDark} iconSize={size} />
       )}
     </div>
   );

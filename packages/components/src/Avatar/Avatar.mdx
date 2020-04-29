@@ -7,6 +7,7 @@ route: /components/avatar
 import { useState } from "react";
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
+import { Tooltip } from "@jobber/components/Tooltip";
 import { Avatar } from ".";
 
 # Avatar
@@ -30,6 +31,13 @@ import { Avatar } from "@jobber/components/Avatar";
 </Playground>
 
 ## Design & Usage Guidelines
+
+- Avatars are available in 2 sizes:
+  - `base`: Should be used by default.
+  - `large`: Should be used when the avatar is the focal point.
+- If an avatar is displayed without a name label, display a tooltip.
+- Initials and background color should have sufficient color contrast to meet
+  AA.
 
 When contributing to, or consuming the Avatar component consider the
 [Figma Proposal](https://www.figma.com/file/3begaiH9kc4RiBZhkCKwmq/Design-System-Contribution-%5B-User-Component-%5D-%5D?node-id=26%3A2).
@@ -79,7 +87,7 @@ calender.
           />
         </div>
         <div style={style}>
-          <Avatar initials="JBLR" size="large" color={color} />
+          <Avatar size="large" color={color} />
         </div>
         <div style={style}>
           <Avatar
@@ -89,6 +97,21 @@ calender.
           />
         </div>
       </>
+    );
+  }}
+</Playground>
+
+## Usage with Tooltip
+
+If an avatar is displayed without a name label, display a tooltip.
+
+<Playground>
+  {() => {
+    const [name] = useState("The Jobbler");
+    return (
+      <Tooltip message={name}>
+        <Avatar size="large" initials="JBLR" />
+      </Tooltip>
     );
   }}
 </Playground>
