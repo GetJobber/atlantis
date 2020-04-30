@@ -24,11 +24,7 @@ import { RadioGroup } from "@jobber/components/RadioGroup";
   {() => {
     const [company, setCompany] = useState("apple");
     return (
-      <RadioGroup
-        name="dedicatedPhoneNumber"
-        onChange={setCompany}
-        value={company}
-      >
+      <RadioGroup onChange={setCompany} value={company}>
         <RadioOption value="apple">Apple</RadioOption>
         <RadioOption value="google">Google</RadioOption>
         <RadioOption value="microsoft">Microsoft</RadioOption>

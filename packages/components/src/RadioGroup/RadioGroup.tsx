@@ -8,14 +8,14 @@ interface RadioGroupProps {
   /**
    * Defines the default value that will be pre-selected in the radio group.
    */
-  readonly value: string;
+  readonly value: string | number;
 
   /**
-   * The method that takes in the next selected radio button value.
+   * Change handler for the RadioGroup.
    *
    * @param {string} newValue
    */
-  onChange(newValue: string): void;
+  onChange(newValue: string | number): void;
 
   /**
    * The name of the radio group, that links the radio options back up
@@ -55,7 +55,7 @@ export function RadioGroup({
 }
 
 interface RadioOptionProps {
-  readonly value: string;
+  readonly value: string | number;
   readonly children: ReactNode | ReactNode[];
 }
 
@@ -64,11 +64,11 @@ export function RadioOption({ children }: RadioOptionProps) {
 }
 
 interface InternalRadioOptionProps {
-  readonly value: string;
+  readonly value: string | number;
   readonly name: string;
   readonly checked: boolean;
   readonly children: ReactNode | ReactNode[];
-  onChange(newValue: string): void;
+  onChange(newValue: string | number): void;
 }
 
 function InternalRadioOption({
@@ -78,6 +78,7 @@ function InternalRadioOption({
   children,
   onChange,
 }: InternalRadioOptionProps) {
+  const inputId = value.toString();
   return (
     <div>
       <input
@@ -86,10 +87,10 @@ function InternalRadioOption({
         name={name}
         value={value}
         checked={checked}
-        id={value}
+        id={inputId}
         className={styles.input}
       />
-      <label className={styles.label} htmlFor={value}>
+      <label className={styles.label} htmlFor={inputId}>
         {children}
       </label>
     </div>
