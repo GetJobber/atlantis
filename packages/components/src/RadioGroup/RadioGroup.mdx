@@ -1,0 +1,38 @@
+---
+name: RadioGroup
+menu: Components
+route: /components/radio-group
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { RadioGroup } from ".";
+import { RadioOption } from ".";
+import { useState } from "react";
+
+# Radio Group
+
+<ComponentStatus stage="ready" responsive="yes" accessible="yes" />
+
+RadioGroup will allow users to choose from one of a list of provided options.
+
+```ts
+import { RadioGroup } from "@jobber/components/RadioGroup";
+```
+
+<Playground>
+  {() => {
+    const [company, setCompany] = useState("apple");
+    return (
+      <RadioGroup onChange={setCompany} value={company}>
+        <RadioOption value="apple">Apple</RadioOption>
+        <RadioOption value="google">Google</RadioOption>
+        <RadioOption value="microsoft">Microsoft</RadioOption>
+      </RadioGroup>
+    );
+  }}
+</Playground>
+
+## Props
+
+<Props of={RadioGroup} />

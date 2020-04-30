@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a RadioGroup 1`] = `
+<div
+  className="radioGroup"
+>
+  <div>
+    <input
+      checked={false}
+      className="input"
+      id="foo"
+      name="Foo"
+      onChange={[Function]}
+      type="radio"
+      value="foo"
+    />
+    <label
+      className="label"
+      htmlFor="foo"
+    >
+      Foo
+    </label>
+  </div>
+  <div>
+    <input
+      checked={true}
+      className="input"
+      id="bear"
+      name="Foo"
+      onChange={[Function]}
+      type="radio"
+      value="bear"
+    />
+    <label
+      className="label"
+      htmlFor="bear"
+    >
+      Bear
+    </label>
+  </div>
+</div>
+`;
