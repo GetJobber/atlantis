@@ -2,16 +2,41 @@
 
 exports[`renders a RadioGroup 1`] = `
 <div
-  className="radioGroup"
+  className="radio"
 >
-  Foo
-</div>
-`;
-
-exports[`renders a loud RadioGroup 1`] = `
-<div
-  className="radioGroup bold"
->
-  Foo
+  <div>
+    <input
+      checked={false}
+      className="input"
+      id="foo"
+      name="Foo"
+      onChange={[Function]}
+      type="radio"
+      value="foo"
+    />
+    <label
+      className="label"
+      htmlFor="foo"
+    >
+      Foo
+    </label>
+  </div>
+  <div>
+    <input
+      checked={false}
+      className="input"
+      id="bear"
+      name="Foo"
+      onChange={[Function]}
+      type="radio"
+      value="bear"
+    />
+    <label
+      className="label"
+      htmlFor="bear"
+    >
+      Bear
+    </label>
+  </div>
 </div>
 `;
