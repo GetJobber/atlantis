@@ -12,7 +12,7 @@ route: /hooks/use-resize-observer
 import { useResizeObserver } from "@jobber/hooks";
 
 function MyResizeObservedComponent() {
-  const [ref, { width, height }] = useResizeObserver();
+  const [ref, { width, height }] = useResizeObserver()<HTMLDivElement>();
   let message = "This is smol.";
   if (width > 300) message = "This is wide.";
   if (width > 600) message = "This is super wide.";
