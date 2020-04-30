@@ -4,10 +4,10 @@ menu: Components
 route: /components/confirmation-modal
 ---
 
-import { useReducer, useState } from "react";
+import { useRef, useState } from "react";
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
-import { ConfirmationModal, confirmationModalReducer } from ".";
+import { ConfirmationModal } from ".";
 
 # Confirmation Modal
 
@@ -24,7 +24,7 @@ import {
 
 <Playground>
   {() => {
-    const [state, dispatch] = useReducer(confirmationModalReducer, {});
+    const confirmationModalRef = useRef();
     const users = [
       {
         id: 1,
@@ -40,32 +40,15 @@ import {
         {users.map(user => {
           return (
             <button
-              onClick={() =>
-                dispatch({
-                  type: "display",
-                  state: {
-                    title: `Hi ${user.name} your ID is: ${user.id}`
-                  },
-                  onConfirm: () => {
-                    alert(`Api call on ${user.id}`);
-                    // Return a promise
-                  }
-                })
-              }
+              onClick={() => {
+                confirmationModalRef.current.show();
+              }}
             >
               Alert {user.name}
             </button>
           );
         })}
-        <ConfirmationModal
-          state={state}
-          onConfirm={() => {
-            dispatch({ type: "confirm" });
-          }}
-          onCancel={() => {
-            dispatch({ type: "cancel" });
-          }}
-        />
+        <ConfirmationModal ref={confirmationModalRef} />
       </>
     );
   }}

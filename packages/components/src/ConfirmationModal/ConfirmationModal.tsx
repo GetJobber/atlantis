@@ -1,4 +1,5 @@
-import React from "react";
+import React, { forwardRef, useImperativeHandle, useReducer } from "react";
+import { XOR } from "ts-xor";
 import { Text } from "../Text";
 import { Modal } from "../Modal";
 import { Content } from "../Content";
@@ -7,7 +8,7 @@ interface ConfirmationModalState {
   readonly title?: string;
   readonly text?: string;
   readonly open: boolean;
-  confirmedAction(): void;
+  onConfirm(): void;
 }
 
 interface BaseAction {
@@ -21,24 +22,22 @@ interface DisplayAction extends BaseAction {
   onConfirm(): void;
 }
 
-export function confirmationModalReducer(
-  state: ConfirmationModalState = {
-    open: false,
-    confirmedAction: () => undefined,
-  },
-  action: BaseAction | DisplayAction,
+function confirmationModalReducer(
+  state: ConfirmationModalState,
+  action: XOR<BaseAction, DisplayAction>,
 ) {
   switch (action.type) {
     case "display":
       return {
         ...state,
-        ...action.state,
+        title: action.title,
+        text: action.text,
         open: true,
-        confirmedAction: action.confirmed,
+        onConfirm: action.onConfirm,
       };
 
     case "confirm":
-      state.confirmedAction();
+      state.onConfirm();
       return {
         ...state,
         ...action.state,
@@ -60,27 +59,63 @@ export function confirmationModalReducer(
 }
 
 interface ConfirmationModalProps {
-  readonly state: ConfirmationModalState;
+  readonly title?: string;
+  readonly text?: string;
+  readonly open?: boolean;
   readonly confirmLabel?: string;
   readonly cancelLabel?: string;
-  onConfirm(): void;
-  onCancel(): void;
 }
 
-export function ConfirmationModal({
-  state,
-  confirmLabel = "Confirm",
-  cancelLabel = "Cancel",
-  onConfirm,
-  onCancel,
-}: ConfirmationModalProps) {
+export const ConfirmationModal = forwardRef(ConfirmationModalInternal);
+function ConfirmationModalInternal(
+  {
+    title: initialTitle = "",
+    text: initialText = "",
+    open = false,
+    confirmLabel = "Confirm",
+    cancelLabel = "Cancel",
+  }: ConfirmationModalProps,
+  ref: any,
+) {
+  const [state, dispatch] = useReducer(confirmationModalReducer, {
+    title: initialTitle,
+    text: initialText,
+    open: open,
+    confirmedAction: () => undefined,
+  });
+  useImperativeHandle(ref, () => ({
+    show: ({
+      title = "",
+      text = "",
+    }: Pick<ConfirmationModalProps, "title" | "text">) => {
+      dispatch({
+        type: "display",
+        title,
+        text,
+        onConfirm: () => {
+          alert("Bob");
+        },
+      });
+    },
+  }));
+
   return (
     <Modal
       title={state.title}
       open={state.open}
       dismissible={false}
-      primaryAction={{ label: confirmLabel, onClick: onConfirm }}
-      secondaryAction={{ label: cancelLabel, onClick: onCancel }}
+      primaryAction={{
+        label: confirmLabel,
+        onClick: () => {
+          dispatch({ type: "confirm" });
+        },
+      }}
+      secondaryAction={{
+        label: cancelLabel,
+        onClick: () => {
+          dispatch({ type: "cancel" });
+        },
+      }}
     >
       <Content>
         <Text>{state.text}</Text>
