@@ -1,0 +1,114 @@
+---
+name: Avatar
+menu: Components
+route: /components/avatar
+---
+
+import { useState } from "react";
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { Tooltip } from "@jobber/components/Tooltip";
+import { Avatar } from ".";
+
+# Avatar
+
+<ComponentStatus stage="pre" responsive="no" accessible="yes" />
+
+An avatar will be used to display an visual identifier for an individual user.
+
+```ts
+import { Avatar } from "@jobber/components/Avatar";
+```
+
+<Playground>
+  <Avatar
+    imageUrl="https://api.adorable.io/avatars/150/jobbler"
+    name="The Jobbler"
+    size="large"
+    initials="JBLR"
+    color="var(--color-indigo)"
+  />
+</Playground>
+
+## Design & Usage Guidelines
+
+- Avatars are available in 2 sizes:
+  - `base`: Should be used by default.
+  - `large`: Should be used when the avatar is the focal point.
+- If an avatar is displayed without a name label, display a tooltip.
+- Initials and background color should have sufficient color contrast to meet
+  AA.
+
+## Props
+
+<Props of={Avatar} />
+
+## Color
+
+The concept of `color` with an Avatar is currently not used in Jobber.
+
+Use `color` to indicate the background and the border color of an avatar
+component.
+
+When using `color`, make sure that the color is consistent for a user throughout
+the application. The color that is represented for an avatar should be the same
+color that represents a user in other parts of the application, such as the
+calender.
+
+<Playground>
+  {() => {
+    const [color, setColor] = useState("#7db00e");
+    const style = {
+      display: "inline-block",
+      marginRight: "5px",
+      verticalAlign: "middle"
+    };
+    return (
+      <>
+        <label htmlFor="color-picker">Select A Color</label>
+        <br />
+        <input
+          type="color"
+          id="color-picker"
+          value={color}
+          onChange={e => setColor(e.target.value)}
+        />
+        <hr />
+        <div style={style}>
+          <Avatar initials="JBLR" color={color} />
+        </div>
+        <div style={style}>
+          <Avatar
+            imageUrl="https://api.adorable.io/avatars/150/jobbler"
+            color={color}
+          />
+        </div>
+        <div style={style}>
+          <Avatar size="large" color={color} />
+        </div>
+        <div style={style}>
+          <Avatar
+            imageUrl="https://api.adorable.io/avatars/150/jobbler"
+            size="large"
+            color={color}
+          />
+        </div>
+      </>
+    );
+  }}
+</Playground>
+
+## Usage with Tooltip
+
+If an avatar is displayed without a name label, display a tooltip.
+
+<Playground>
+  {() => {
+    const [name] = useState("The Jobbler");
+    return (
+      <Tooltip message={name}>
+        <Avatar size="large" initials="JBLR" />
+      </Tooltip>
+    );
+  }}
+</Playground>

@@ -1,0 +1,44 @@
+:root {
+  --avatar-size: calc(var(--base-unit) * 2);
+  --avatar-border-size: var(--border-base);
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  border-radius: 50%;
+  color: var(--color-blue--dark);
+  font-size: var(--avatar-size);
+  -webkit-font-smoothing: antialiased;
+  background: no-repeat center center var(--color-greyBlue);
+  background-size: cover;
+}
+
+.large {
+  --avatar-size: calc(var(--base-unit) * 4.5);
+  --avatar-border-size: var(--border-thick);
+}
+
+.isDark {
+  color: var(--color-white);
+}
+
+.initials {
+  font-size: calc(var(--avatar-size) / 2);
+  text-transform: uppercase;
+}
+
+.smallInitials {
+  font-size: calc(var(--avatar-size) / 2.25);
+}
+
+.hasBorder {
+  width: calc(var(--avatar-size) - (var(--avatar-border-size) * 2));
+  height: calc(var(--avatar-size) - (var(--avatar-border-size) * 2));
+  box-shadow: 0 0 0 var(--border-thick) var(--color-white) inset;
+  border-style: solid;
+  border-width: var(--avatar-border-size);
+}
