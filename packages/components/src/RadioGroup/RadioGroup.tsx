@@ -1,21 +1,39 @@
 import React, { ReactElement, ReactNode } from "react";
+import uuid from "uuid";
 import styles from "./RadioGroup.css";
 
 interface RadioGroupProps {
   readonly children: ReactElement | ReactElement[];
+
+  /**
+   * Defines the default value that will be pre-selected in the radio group.
+   */
   readonly value: string;
+
+  /**
+   * The method that takes in the next selected radio button value.
+   *
+   * @param {string} newValue
+   */
   onChange(newValue: string): void;
-  readonly name: string;
+
+  /**
+   * The name of the radio group, that links the radio options back up
+   * to the group.
+   *
+   * @default uuid
+   */
+  readonly name?: string;
 }
 
 export function RadioGroup({
   children,
   value,
   onChange,
-  name,
+  name = uuid.v1(),
 }: RadioGroupProps) {
   return (
-    <div className={styles.radio}>
+    <div className={styles.radioGroup}>
       {React.Children.map(children, option => (
         <InternalRadioOption
           checked={value === option.props.value}

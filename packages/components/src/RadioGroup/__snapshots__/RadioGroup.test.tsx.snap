@@ -2,7 +2,7 @@
 
 exports[`renders a RadioGroup 1`] = `
 <div
-  className="radio"
+  className="radioGroup"
 >
   <div>
     <input
@@ -23,7 +23,7 @@ exports[`renders a RadioGroup 1`] = `
   </div>
   <div>
     <input
-      checked={false}
+      checked={true}
       className="input"
       id="bear"
       name="Foo"

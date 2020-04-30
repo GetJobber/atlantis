@@ -34,7 +34,7 @@
   transition: all 0.2s;
 }
 
-.radio {
+.radioGroup {
   display: inline-flex;
   flex-direction: column;
 }

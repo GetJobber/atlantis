@@ -7,9 +7,10 @@ afterEach(cleanup);
 
 test("renders a RadioGroup", () => {
   const handleChange = jest.fn();
+  const currentValue = "bear";
 
   const radioGroup = (
-    <RadioGroup name="Foo" value={"company"} onChange={handleChange}>
+    <RadioGroup name="Foo" value={currentValue} onChange={handleChange}>
       <RadioOption value="foo">Foo</RadioOption>
       <RadioOption value="bear">Bear</RadioOption>
     </RadioGroup>
@@ -22,11 +23,12 @@ test("renders a RadioGroup", () => {
 test("it should call the handler with the new value", () => {
   const labelOne = "Foo1";
   const labelTwo = "Foo2";
+  const currentValue = "bear";
 
   const handleChange = jest.fn();
 
   const { getByText } = render(
-    <RadioGroup name="Foo" value={"company"} onChange={handleChange}>
+    <RadioGroup name="Foo" value={currentValue} onChange={handleChange}>
       <RadioOption value="foo">{labelOne}</RadioOption>
       <RadioOption value="bear">{labelTwo}</RadioOption>
     </RadioGroup>,
