@@ -57,11 +57,9 @@ import { Banner } from "@jobber/components/Banner";
 
 ## Actions in Banners
 
-If you require an action in a `Banner`, use the `primaryActions` prop. The
-`primaryAction` accepts the same props as the `Button` component.
-
 It is discouraged to use a `<Button />` component when requiring an action
-within a banner.
+within a `Banner`. If you require an action, use the `primaryActions` prop. The
+`primaryAction` accepts the same props as the `Button` component.
 
 <Playground>
   <Banner
@@ -71,12 +69,12 @@ within a banner.
       onClick: () => alert("💥💥SMASH💥💥")
     }}
   >
-    You wouldn't like me when im angry.
+    You wouldn't like me when I'm angry.
   </Banner>
   <Banner
     type="notice"
     primaryAction={{
-      label: "Im always angry",
+      label: "I'm always angry",
       onClick: () => alert("😡😡😡")
     }}
   >
