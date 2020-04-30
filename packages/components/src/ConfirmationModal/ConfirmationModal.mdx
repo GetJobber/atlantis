@@ -4,7 +4,7 @@ menu: Components
 route: /components/confirmation-modal
 ---
 
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { ConfirmationModal, confirmationModalReducer } from ".";
@@ -24,15 +24,39 @@ import {
 
 <Playground>
   {() => {
-    const [state, dispatch] = useReducer(confirmationModalReducer, {
-      title: "Do it?",
-      text: "",
-      open: false,
-      meta: {},
-      confirmedAction: undefined
-    });
+    const [state, dispatch] = useReducer(confirmationModalReducer, {});
+    const users = [
+      {
+        id: 1,
+        name: "Bob"
+      },
+      {
+        id: 2,
+        name: "Donald"
+      }
+    ];
     return (
       <>
+        {users.map(user => {
+          return (
+            <button
+              onClick={() =>
+                dispatch({
+                  type: "display",
+                  state: {
+                    title: `Hi ${user.name} your ID is: ${user.id}`
+                  },
+                  onConfirm: () => {
+                    alert(`Api call on ${user.id}`);
+                    // Return a promise
+                  }
+                })
+              }
+            >
+              Alert {user.name}
+            </button>
+          );
+        })}
         <ConfirmationModal
           state={state}
           onConfirm={() => {
@@ -42,20 +66,6 @@ import {
             dispatch({ type: "cancel" });
           }}
         />
-        <button
-          onClick={() => {
-            dispatch({
-              type: "deleteUser",
-              meta: { id: "BOB" },
-              confirmed: () => {
-                alert("API!!!");
-                // Return a promise
-              }
-            });
-          }}
-        >
-          Start
-        </button>
       </>
     );
   }}
@@ -86,8 +96,26 @@ following:
   See `Button.mdx` for a good example of this.
 -->
 
-## Loud
+## With state
 
-Use `loud` to indicate that a component is yelling.
-
-<Playground></Playground>
+<Playground>
+  {() => {
+    const [open, setOpen] = useState(false);
+    return (
+      <>
+        <button onClick={() => setOpen(true)}>Open</button>
+        <ConfirmationModal
+          state={{
+            title: "Using State",
+            open: open
+          }}
+          onConfirm={() => {
+            alert("okay then");
+            setOpen(false);
+          }}
+          onCancel={() => setOpen(false)}
+        />
+      </>
+    );
+  }}
+</Playground>

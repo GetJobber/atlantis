@@ -1,35 +1,58 @@
-import React, { useReducer } from "react";
+import React from "react";
 import { Text } from "../Text";
 import { Modal } from "../Modal";
 import { Content } from "../Content";
 
 interface ConfirmationModalState {
-  readonly title: string;
-  readonly text: string;
+  readonly title?: string;
+  readonly text?: string;
   readonly open: boolean;
-  readonly meta: any;
+  confirmedAction(): void;
+}
+
+interface BaseAction {
+  type: string;
+}
+
+interface DisplayAction extends BaseAction {
+  type: "display";
+  title: string;
+  text: string;
+  onConfirm(): void;
 }
 
 export function confirmationModalReducer(
-  state: ConfirmationModalState,
-  action: any,
+  state: ConfirmationModalState = {
+    open: false,
+    confirmedAction: () => undefined,
+  },
+  action: BaseAction | DisplayAction,
 ) {
   switch (action.type) {
-    case "deleteUser":
+    case "display":
       return {
         ...state,
+        ...action.state,
         open: true,
-        meta: action.meta,
         confirmedAction: action.confirmed,
       };
 
     case "confirm":
-      // Do API Request
       state.confirmedAction();
-      return { ...state, open: false, meta: {}, confirmedAction: undefined };
+      return {
+        ...state,
+        ...action.state,
+        open: false,
+        confirmedAction: undefined,
+      };
 
     case "cancel":
-      return { ...state, open: false, meta: {}, confirmedAction: undefined };
+      return {
+        ...state,
+        ...action.state,
+        open: false,
+        confirmedAction: undefined,
+      };
 
     default:
       throw new Error();
@@ -38,17 +61,8 @@ export function confirmationModalReducer(
 
 interface ConfirmationModalProps {
   readonly state: ConfirmationModalState;
-
-  /**
-   *
-   */
   readonly confirmLabel?: string;
-
-  /**
-   *
-   */
   readonly cancelLabel?: string;
-
   onConfirm(): void;
   onCancel(): void;
 }
