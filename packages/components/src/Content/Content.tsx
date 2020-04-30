@@ -15,7 +15,7 @@ interface ContentProps {
 }
 
 export function Content({ children, spacing = "base" }: ContentProps) {
-  const [ref, result] = useResizeObserver();
+  const [ref, result] = useResizeObserver<HTMLDivElement>();
   const isWide = result.width > 300;
   const isSuperWide = result.width > 600;
 

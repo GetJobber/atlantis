@@ -1,9 +1,15 @@
-import { useCallback, useLayoutEffect, useRef, useState } from "react";
+import {
+  MutableRefObject,
+  useCallback,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import ResizeObserver from "resize-observer-polyfill";
 
-export function useResizeObserver() {
+export function useResizeObserver<T extends Element>() {
   const [entry, setEntry] = useState<ResizeObserverEntry>();
-  const [node, setNode] = useState() as any;
+  const node = useRef() as MutableRefObject<T>;
   const observer = useRef<ResizeObserver>();
   const disconnect = useCallback(() => {
     const { current } = observer;
@@ -12,7 +18,7 @@ export function useResizeObserver() {
 
   const observe = useCallback(() => {
     observer.current = new ResizeObserver(([entrance]) => setEntry(entrance));
-    node && observer.current.observe(node);
+    node.current && observer.current.observe(node.current);
   }, [node]);
 
   useLayoutEffect(() => {
@@ -37,5 +43,5 @@ export function useResizeObserver() {
     return result;
   }, [entry]);
 
-  return [setNode, getContentRect()] as const;
+  return [node, getContentRect()] as const;
 }
