@@ -1,0 +1,93 @@
+---
+name: ConfirmationModal
+menu: Components
+route: /components/confirmation-modal
+---
+
+import { useReducer } from "react";
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { ConfirmationModal, confirmationModalReducer } from ".";
+
+# Confirmation Modal
+
+<ComponentStatus stage="pre" responsive="no" accessible="no" />
+
+Write a description about what ConfirmationModal component is trying to achieve.
+
+```ts
+import {
+  ConfirmationModal,
+  confirmationModalReducer
+} from "@jobber/components/ConfirmationModal";
+```
+
+<Playground>
+  {() => {
+    const [state, dispatch] = useReducer(confirmationModalReducer, {
+      title: "Do it?",
+      text: "",
+      open: false,
+      meta: {},
+      confirmedAction: undefined
+    });
+    return (
+      <>
+        <ConfirmationModal
+          state={state}
+          onConfirm={() => {
+            dispatch({ type: "confirm" });
+          }}
+          onCancel={() => {
+            dispatch({ type: "cancel" });
+          }}
+        />
+        <button
+          onClick={() => {
+            dispatch({
+              type: "deleteUser",
+              meta: { id: "BOB" },
+              confirmed: () => {
+                alert("API!!!");
+                // Return a promise
+              }
+            });
+          }}
+        >
+          Start
+        </button>
+      </>
+    );
+  }}
+</Playground>
+
+<!--
+  It is not necessary to include Design & Usage Guidlelines. Use this section
+  to answer common questions and considerations about component usage.
+-->
+
+## Design & Usage Guidelines
+
+When contributing to, or consuming the ConfirmationModal component, consider the
+following:
+
+- When using the ConfirmationModal component always consider the volume you
+  would like it to be displayed at.
+- The ConfirmationModal component should never be used inside another component.
+
+## Props
+
+<Props of={ConfirmationModal} />
+
+<!--
+  It is not necessary to provide an example of each prop. Use usage examples to
+  highlight key features of a component or particular considerations.
+
+  See `Button.mdx` for a good example of this.
+-->
+
+## Loud
+
+Use `loud` to indicate that a component is yelling.
+
+<Playground></Playground>
