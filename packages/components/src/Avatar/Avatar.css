@@ -1,6 +1,6 @@
 :root {
-  --avatar-size: 2rem;
-  --avatar-border-size: 2px;
+  --avatar-size: calc(var(--base-unit) * 2);
+  --avatar-border-size: var(--border-base);
 }
 
 .avatar {
@@ -18,8 +18,8 @@
 }
 
 .large {
-  --avatar-size: 4.5rem;
-  --avatar-border-size: 4px;
+  --avatar-size: calc(var(--base-unit) * 4.5);
+  --avatar-border-size: var(--border-thick);
 }
 
 .isDark {
@@ -27,18 +27,18 @@
 }
 
 .initials {
-  font-size: 0.5em;
+  font-size: calc(var(--avatar-size) / 2);
   text-transform: uppercase;
 }
 
 .smallInitials {
-  font-size: 0.4375em;
+  font-size: calc(var(--avatar-size) / 2.25);
 }
 
 .hasBorder {
   width: calc(var(--avatar-size) - (var(--avatar-border-size) * 2));
   height: calc(var(--avatar-size) - (var(--avatar-border-size) * 2));
-  box-shadow: 0 0 0 2px var(--color-white) inset;
+  box-shadow: 0 0 0 var(--border-thick) var(--color-white) inset;
   border-style: solid;
   border-width: var(--avatar-border-size);
 }

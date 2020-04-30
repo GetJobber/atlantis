@@ -1,12 +1,12 @@
 import React, { CSSProperties } from "react";
 import classnames from "classnames";
+import { XOR } from "ts-xor";
 import styles from "./Avatar.css";
 import { isDark } from "./utilities";
 import { Icon } from "../Icon";
 
 type AvatarSize = "base" | "large";
-
-interface AvatarProps {
+interface AvatarFoundationProps {
   /**
    * A url for the image that will be displayed
    */
@@ -29,6 +29,16 @@ interface AvatarProps {
    */
   readonly size?: AvatarSize;
 }
+
+interface AvatarWithImageProps extends AvatarFoundationProps {
+  readonly imageUrl: string;
+}
+
+interface AvatarWithInitialsProps extends AvatarFoundationProps {
+  readonly initials: string;
+}
+
+type AvatarProps = XOR<AvatarWithImageProps, AvatarWithInitialsProps>;
 
 export function Avatar({
   imageUrl,
