@@ -14,6 +14,8 @@ interface ConfirmationModalState {
   readonly title?: string;
   readonly text?: string;
   readonly open: boolean;
+  readonly confirmLabel: string;
+  readonly cancelLabel: string;
   onConfirm?(): void;
   onCancel?(): void;
 }
@@ -105,6 +107,8 @@ function ConfirmationModalInternal(
     title,
     text,
     open: false,
+    confirmLabel,
+    cancelLabel,
     onConfirm,
     onCancel,
   });
@@ -132,11 +136,13 @@ function ConfirmationModalInternal(
         ...state,
         title,
         text,
+        confirmLabel,
+        cancelLabel,
         onConfirm,
         onCancel,
       },
     });
-  }, [title, text, onConfirm, onCancel]);
+  }, [title, text, confirmLabel, cancelLabel, onConfirm, onCancel]);
 
   return (
     <Modal
@@ -144,14 +150,14 @@ function ConfirmationModalInternal(
       open={open || state.open}
       dismissible={false}
       primaryAction={{
-        label: confirmLabel,
+        label: state.confirmLabel,
         onClick: () => {
           dispatch({ type: "confirm" });
           onRequestClose && onRequestClose();
         },
       }}
       secondaryAction={{
-        label: cancelLabel,
+        label: state.cancelLabel,
         onClick: () => {
           dispatch({ type: "cancel" });
           onRequestClose && onRequestClose();
