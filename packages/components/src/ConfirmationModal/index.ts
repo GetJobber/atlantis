@@ -1,4 +1,1 @@
-export {
-  ConfirmationModal,
-  confirmationModalReducer,
-} from "./ConfirmationModal";
+export { ConfirmationModal } from "./ConfirmationModal";

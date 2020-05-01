@@ -12,7 +12,7 @@ import { Content } from "../Content";
 
 interface ConfirmationModalState {
   readonly title?: string;
-  readonly text?: string;
+  readonly text: string;
   readonly open: boolean;
   onConfirm?(): void;
   onCancel?(): void;
@@ -78,9 +78,9 @@ export interface ConfirmationModalRef {
 
 interface ConfirmationModalProps {
   readonly title?: string;
-  readonly text?: string;
+  readonly text: string;
   readonly open?: boolean;
-  readonly confirmLabel?: string;
+  readonly confirmLabel: string;
   readonly cancelLabel?: string;
   onConfirm?(): void;
   onCancel?(): void;
@@ -90,39 +90,37 @@ interface ConfirmationModalProps {
 export const ConfirmationModal = forwardRef(ConfirmationModalInternal);
 function ConfirmationModalInternal(
   {
-    title: initialTitle = "",
-    text: initialText = "",
-    open: initialOpen = false,
-    confirmLabel = "Confirm",
+    title,
+    text,
+    open = false,
+    confirmLabel,
     cancelLabel = "Cancel",
-    onConfirm: initialOnConfirm,
-    onCancel: initialOnCancel,
+    onConfirm,
+    onCancel,
     onRequestClose,
   }: ConfirmationModalProps,
   ref: Ref<ConfirmationModalRef>,
 ) {
-  console.log({ ref });
-
   const [state, dispatch] = useReducer(confirmationModalReducer, {
-    title: initialTitle,
-    text: initialText,
+    title,
+    text = "",
     open: false,
-    onConfirm: initialOnConfirm,
-    onCancel: initialOnCancel,
+    onConfirm,
+    onCancel,
   });
   useImperativeHandle(ref, () => ({
     show: ({
-      title,
-      text,
-      onConfirm,
-      onCancel,
+      title: newTitle,
+      text: newText,
+      onConfirm: newOnConfirm,
+      onCancel: newOnCancel,
     }: Omit<DisplayAction, "type">) => {
       dispatch({
         type: "display",
-        title,
-        text,
-        onConfirm,
-        onCancel,
+        title: newTitle,
+        text: newText,
+        onConfirm: newOnConfirm,
+        onCancel: newOnCancel,
       });
     },
   }));
@@ -131,19 +129,19 @@ function ConfirmationModalInternal(
     dispatch({
       type: "reset",
       state: {
-        title: initialTitle,
-        text: initialText,
-        open: false,
-        onConfirm: initialOnConfirm,
-        onCancel: initialOnCancel,
+        ...state,
+        title,
+        text,
+        onConfirm,
+        onCancel,
       },
     });
-  }, [initialTitle, initialText, initialOnConfirm, initialOnCancel]);
+  }, [title, text, onConfirm, onCancel]);
 
   return (
     <Modal
       title={state.title}
-      open={initialOpen || state.open}
+      open={open || state.open}
       dismissible={false}
       primaryAction={{
         label: confirmLabel,
