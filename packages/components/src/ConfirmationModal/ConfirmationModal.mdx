@@ -7,6 +7,7 @@ route: /components/confirmation-modal
 import { useRef, useState } from "react";
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
+import { Button } from "@jobber/components/Button";
 import { ConfirmationModal } from ".";
 
 # Confirmation Modal
@@ -24,31 +25,21 @@ import {
 
 <Playground>
   {() => {
-    const confirmationModalRef = useRef();
-    const users = [
-      {
-        id: 1,
-        name: "Bob"
-      },
-      {
-        id: 2,
-        name: "Donald"
-      }
-    ];
+    const [open, setOpen] = useState(false);
     return (
       <>
-        {users.map(user => {
-          return (
-            <button
-              onClick={() => {
-                confirmationModalRef.current.show();
-              }}
-            >
-              Alert {user.name}
-            </button>
-          );
-        })}
-        <ConfirmationModal ref={confirmationModalRef} />
+        <Button label="Open" onClick={() => setOpen(true)} />
+        <ConfirmationModal
+          state={{
+            title: "Using State",
+            open: open
+          }}
+          onConfirm={() => {
+            alert("okay then");
+            setOpen(false);
+          }}
+          onCancel={() => setOpen(false)}
+        />
       </>
     );
   }}
@@ -79,25 +70,40 @@ following:
   See `Button.mdx` for a good example of this.
 -->
 
-## With state
+## Reuse
 
 <Playground>
   {() => {
-    const [open, setOpen] = useState(false);
+    const confirmationModalRef = useRef();
+    const users = [
+      {
+        id: 1,
+        name: "Bob"
+      },
+      {
+        id: 2,
+        name: "Donald"
+      }
+    ];
     return (
       <>
-        <button onClick={() => setOpen(true)}>Open</button>
-        <ConfirmationModal
-          state={{
-            title: "Using State",
-            open: open
-          }}
-          onConfirm={() => {
-            alert("okay then");
-            setOpen(false);
-          }}
-          onCancel={() => setOpen(false)}
-        />
+        {users.map(user => {
+          return (
+            <Button
+              label={`Confirm ${user.name}`}
+              onClick={() => {
+                confirmationModalRef.current.show({
+                  title: "Should we?",
+                  text: `Hang out with ${user.name}?`,
+                  onConfirm: () => {
+                    alert("✅");
+                  }
+                });
+              }}
+            />
+          );
+        })}
+        <ConfirmationModal ref={confirmationModalRef} />
       </>
     );
   }}

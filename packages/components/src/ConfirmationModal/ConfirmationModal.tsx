@@ -47,6 +47,7 @@ function confirmationModalReducer(
       };
 
     case "cancel":
+      state.onCancel && state.onCancel();
       return {
         ...state,
         open: false,
@@ -63,6 +64,8 @@ interface ConfirmationModalProps {
   readonly open?: boolean;
   readonly confirmLabel?: string;
   readonly cancelLabel?: string;
+  onConfirm?(): void;
+  onCancel?(): void;
 }
 
 export const ConfirmationModal = forwardRef(ConfirmationModalInternal);
@@ -73,6 +76,8 @@ function ConfirmationModalInternal(
     open = false,
     confirmLabel = "Confirm",
     cancelLabel = "Cancel",
+    onConfirm: initialOnConfirm,
+    onCancel: initialOnCancel,
   }: ConfirmationModalProps,
   ref: any,
 ) {
@@ -80,18 +85,22 @@ function ConfirmationModalInternal(
     title: initialTitle,
     text: initialText,
     open: open,
-    onConfirm: undefined,
-    onCancel: undefined,
+    onConfirm: initialOnConfirm,
+    onCancel: initialOnCancel,
   });
   useImperativeHandle(ref, () => ({
-    show: ({ title, text }: Pick<ConfirmationModalProps, "title" | "text">) => {
+    show: ({
+      title,
+      text,
+      onConfirm,
+      onCancel,
+    }: Omit<DisplayAction, "type">) => {
       dispatch({
         type: "display",
         title,
         text,
-        onConfirm: () => {
-          alert("Bob");
-        },
+        onConfirm,
+        onCancel,
       });
     },
   }));
