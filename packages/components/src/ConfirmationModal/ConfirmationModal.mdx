@@ -30,15 +30,13 @@ import {
       <>
         <Button label="Open" onClick={() => setOpen(true)} />
         <ConfirmationModal
-          state={{
-            title: "Using State",
-            open: open
-          }}
+          title="Should we?"
+          text="Do something…"
+          open={open}
           onConfirm={() => {
             alert("okay then");
-            setOpen(false);
           }}
-          onCancel={() => setOpen(false)}
+          onRequestClose={() => setOpen(false)}
         />
       </>
     );
