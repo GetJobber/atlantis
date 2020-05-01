@@ -8,7 +8,8 @@ interface ConfirmationModalState {
   readonly title?: string;
   readonly text?: string;
   readonly open: boolean;
-  onConfirm(): void;
+  onConfirm?(): void;
+  onCancel?(): void;
 }
 
 interface BaseAction {
@@ -17,9 +18,10 @@ interface BaseAction {
 
 interface DisplayAction extends BaseAction {
   type: "display";
-  title: string;
-  text: string;
+  title?: string;
+  text?: string;
   onConfirm(): void;
+  onCancel?(): void;
 }
 
 function confirmationModalReducer(
@@ -34,23 +36,20 @@ function confirmationModalReducer(
         text: action.text,
         open: true,
         onConfirm: action.onConfirm,
+        onCancel: action.onCancel,
       };
 
     case "confirm":
-      state.onConfirm();
+      state.onConfirm && state.onConfirm();
       return {
         ...state,
-        ...action.state,
         open: false,
-        confirmedAction: undefined,
       };
 
     case "cancel":
       return {
         ...state,
-        ...action.state,
         open: false,
-        confirmedAction: undefined,
       };
 
     default:
@@ -81,13 +80,11 @@ function ConfirmationModalInternal(
     title: initialTitle,
     text: initialText,
     open: open,
-    confirmedAction: () => undefined,
+    onConfirm: undefined,
+    onCancel: undefined,
   });
   useImperativeHandle(ref, () => ({
-    show: ({
-      title = "",
-      text = "",
-    }: Pick<ConfirmationModalProps, "title" | "text">) => {
+    show: ({ title, text }: Pick<ConfirmationModalProps, "title" | "text">) => {
       dispatch({
         type: "display",
         title,
