@@ -12,7 +12,7 @@ import { Content } from "../Content";
 
 interface ConfirmationModalState {
   readonly title?: string;
-  readonly text: string;
+  readonly text?: string;
   readonly open: boolean;
   onConfirm?(): void;
   onCancel?(): void;
@@ -103,7 +103,7 @@ function ConfirmationModalInternal(
 ) {
   const [state, dispatch] = useReducer(confirmationModalReducer, {
     title,
-    text = "",
+    text,
     open: false,
     onConfirm,
     onCancel,
