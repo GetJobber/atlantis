@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.17.1...@jobber/components@1.18.0) (2020-05-01)
+
+
+### Features
+
+* **components:** Add primaryAction and placement to Banner ([#244](https://github.com/GetJobber/atlantis/issues/244)) ([b401668](https://github.com/GetJobber/atlantis/commit/b4016688090b6b87c7958966aa818671a7af3235))
+
+
+
+
+
 ## [1.17.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.17.0...@jobber/components@1.17.1) (2020-04-30)
 
 **Note:** Version bump only for package @jobber/components
