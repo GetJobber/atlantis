@@ -1,1 +1,1 @@
-export { ConfirmationModal } from "./ConfirmationModal";
+export { ConfirmationModal, ConfirmationModalRef } from "./ConfirmationModal";
