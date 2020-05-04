@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a simple ConfirmationModal 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="overlay"
+    style={
+      Object {
+        "opacity": 0,
+      }
+    }
+  />
+  <div
+    className="modal"
+    style={
+      Object {
+        "opacity": 0,
+        "transform": "scale(0.9) translateZ(0)",
+      }
+    }
+  >
+    <div
+      className="header"
+      data-testid="modal-header"
+    >
+      <h3
+        className="base extraBold large uppercase"
+      >
+        Should we?
+      </h3>
+    </div>
+    <div
+      className="padded base"
+    >
+      <p
+        className="base regular base greyBlueDark"
+      >
+        Do something…
+      </p>
+    </div>
+    <div
+      className="actionBar"
+    >
+      <div
+        className="rightAction"
+      >
+        <button
+          className="button base work primary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            className="base extraBold small uppercase white"
+          >
+            We Shall
+          </span>
+        </button>
+        <button
+          className="button base cancel secondary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            className="base extraBold small uppercase greyBlue"
+          >
+            Cancel
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
