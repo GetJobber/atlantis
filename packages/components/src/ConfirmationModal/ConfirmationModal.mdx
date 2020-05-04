@@ -61,14 +61,12 @@ following:
 
 <Props of={ConfirmationModal} />
 
-<!--
-  It is not necessary to provide an example of each prop. Use usage examples to
-  highlight key features of a component or particular considerations.
+---
 
-  See `Button.mdx` for a good example of this.
--->
+## Controlled Confirmation Modal
 
-## Reuse
+In some instances, such as a list, you may want to place a single Confirmation
+Modal on a page and then call to open it when required.
 
 <Playground>
   {() => {
@@ -93,6 +91,7 @@ following:
                 confirmationModalRef.current.show({
                   title: "Should we?",
                   text: `Hang out with ${user.name}?`,
+                  confirmLabel: "Hangout",
                   onConfirm: () => {
                     alert("✅");
                   }
