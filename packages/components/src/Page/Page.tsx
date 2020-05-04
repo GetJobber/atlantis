@@ -6,7 +6,7 @@ import { Text } from "../Text";
 import { Content } from "../Content";
 import { Markdown } from "../Markdown";
 
-interface PageProps {
+export interface PageProps {
   readonly children: ReactNode | ReactNode[];
 
   /**
