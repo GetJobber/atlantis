@@ -1,3 +1,8 @@
+/**
+ * Once this PR lands we should be able to un-split these different test files.
+ * https://github.com/GetJobber/atlantis/pull/171/files
+ */
+
 import React, { RefObject, useRef } from "react";
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import { ConfirmationModal, ConfirmationModalRef } from "..";
