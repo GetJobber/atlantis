@@ -1,3 +1,8 @@
+/**
+ * Once this PR lands we should be able to un-split these different test files.
+ * https://github.com/GetJobber/atlantis/pull/171/files
+ */
+
 import React, { ReactPortal } from "react";
 import renderer from "react-test-renderer";
 import ReactDOM from "react-dom";

@@ -170,6 +170,7 @@ function ConfirmationModalInternal(
     <Modal
       title={state.title}
       open={open || state.open}
+      size="small"
       dismissible={false}
       primaryAction={{
         label: state.confirmLabel,

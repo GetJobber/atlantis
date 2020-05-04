@@ -13,7 +13,7 @@ exports[`renders a simple ConfirmationModal 1`] = `
     }
   />
   <div
-    className="modal"
+    className="modal small"
     style={
       Object {
         "opacity": 0,
