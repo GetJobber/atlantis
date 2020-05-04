@@ -14,7 +14,9 @@ import { ConfirmationModal } from ".";
 
 <ComponentStatus stage="pre" responsive="no" accessible="no" />
 
-Write a description about what ConfirmationModal component is trying to achieve.
+A ConfirmationModal allows users to confirm or cancel actions that they are
+preforming. Examples of actions that may need confirmation are navigating off an
+edited page or deleting an object.
 
 ```ts
 import {
@@ -34,10 +36,9 @@ import {
           text="Do something…"
           confirmLabel="Do it"
           open={open}
-          onConfirm={() => {
-            alert("okay then");
-          }}
-          onCancel={() => setOpen(false)}
+          onConfirm={() => alert("✅")}
+          onCancel={() => alert("🙅‍♂️")}
+          onRequestClose={() => setOpen(false)}
         />
       </>
     );
@@ -46,18 +47,23 @@ import {
 
 ## Design & Usage Guidelines
 
-When contributing to, or consuming the ConfirmationModal component, consider the
-following:
+ConfirmationModals should be used to confirm or cancel an action the user is
+preforming.
 
-- When using the ConfirmationModal component always consider the volume you
-  would like it to be displayed at.
-- The ConfirmationModal component should never be used inside another component.
+- Ensure that you are labeling the buttons with appropriate verbs. For example:
+  "Are you sure you want to delete" should have a label of "Delete" which is the
+  action that will be preformed.
+- It's good to identify the Object that is being acted upon. For example: "Are
+  you sure you want to delete the user: Bub"
 
 ## Props
 
 <Props of={ConfirmationModal} />
 
-## Reuse
+## Controlled Confirmation Modal
+
+In some instances, such as a list, you may want to place a single Confirmation
+Modal on a page and then call to open it when required.
 
 <Playground>
   {() => {
@@ -82,9 +88,8 @@ following:
                 confirmationModalRef.current.show({
                   title: "Should we?",
                   text: `Hang out with ${user.name}?`,
-                  onConfirm: () => {
-                    alert("✅");
-                  }
+                  confirmLabel: "Hangout",
+                  onConfirm: () => alert("✅")
                 });
               }}
             />

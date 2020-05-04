@@ -5,7 +5,6 @@ import React, {
   useImperativeHandle,
   useReducer,
 } from "react";
-import { XOR } from "ts-xor";
 import { Text } from "../Text";
 import { Modal } from "../Modal";
 import { Content } from "../Content";
@@ -20,26 +19,28 @@ interface ConfirmationModalState {
   onCancel?(): void;
 }
 
-interface BaseAction {
-  type: string;
+interface ConfirmOrCancelAction {
+  type: "confirm" | "cancel";
 }
 
-interface DisplayAction extends BaseAction {
+interface DisplayAction {
   type: "display";
   title?: string;
-  text?: string;
+  text: string;
+  confirmLabel: string;
+  cancelLabel?: string;
   onConfirm(): void;
   onCancel?(): void;
 }
 
-interface ResetAction extends BaseAction {
+interface ResetAction {
   type: "reset";
   state: ConfirmationModalState;
 }
 
 function confirmationModalReducer(
   state: ConfirmationModalState,
-  action: XOR<BaseAction, XOR<ResetAction, DisplayAction>>,
+  action: ConfirmOrCancelAction | ResetAction | DisplayAction,
 ) {
   switch (action.type) {
     case "display":
@@ -48,6 +49,8 @@ function confirmationModalReducer(
         title: action.title,
         text: action.text,
         open: true,
+        confirmLabel: action.confirmLabel,
+        cancelLabel: action.cancelLabel = "Cancel",
         onConfirm: action.onConfirm,
         onCancel: action.onCancel,
       };
@@ -78,16 +81,31 @@ export interface ConfirmationModalRef {
   show(props: Omit<DisplayAction, "type">): void;
 }
 
-interface ConfirmationModalProps {
+interface BaseConfirmationModalProps {
   readonly title?: string;
-  readonly text: string;
+  readonly text?: string;
   readonly open?: boolean;
-  readonly confirmLabel: string;
+  readonly confirmLabel?: string;
   readonly cancelLabel?: string;
   onConfirm?(): void;
   onCancel?(): void;
   onRequestClose?(): void;
 }
+
+interface SimpleConfirmationModalProps extends BaseConfirmationModalProps {
+  readonly text: string;
+  readonly open: boolean;
+  readonly confirmLabel: string;
+}
+
+interface ComplexConfirmationModalProps extends BaseConfirmationModalProps {
+  readonly ref: Ref<ConfirmationModalRef>;
+  readonly open?: undefined;
+}
+
+type ConfirmationModalProps =
+  | SimpleConfirmationModalProps
+  | ComplexConfirmationModalProps;
 
 export const ConfirmationModal = forwardRef(ConfirmationModalInternal);
 function ConfirmationModalInternal(
@@ -95,7 +113,7 @@ function ConfirmationModalInternal(
     title,
     text,
     open = false,
-    confirmLabel,
+    confirmLabel = "Confirm",
     cancelLabel = "Cancel",
     onConfirm,
     onCancel,
@@ -116,6 +134,8 @@ function ConfirmationModalInternal(
     show: ({
       title: newTitle,
       text: newText,
+      confirmLabel: newConfirmLabel,
+      cancelLabel: newCancelLabel,
       onConfirm: newOnConfirm,
       onCancel: newOnCancel,
     }: Omit<DisplayAction, "type">) => {
@@ -123,6 +143,8 @@ function ConfirmationModalInternal(
         type: "display",
         title: newTitle,
         text: newText,
+        confirmLabel: newConfirmLabel,
+        cancelLabel: newCancelLabel,
         onConfirm: newOnConfirm,
         onCancel: newOnCancel,
       });
@@ -148,6 +170,7 @@ function ConfirmationModalInternal(
     <Modal
       title={state.title}
       open={open || state.open}
+      size="small"
       dismissible={false}
       primaryAction={{
         label: state.confirmLabel,
