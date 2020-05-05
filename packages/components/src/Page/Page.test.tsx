@@ -23,11 +23,15 @@ it("renders a Page", () => {
         <div
           className="padded large"
         >
-          <h1
-            className="base black jumbo uppercase blue"
+          <div
+            className="titleBar"
           >
-            Notifications
-          </h1>
+            <h1
+              className="base black jumbo uppercase blue"
+            >
+              Notifications
+            </h1>
+          </div>
           <p
             className="base regular larger greyBlueDark"
           >

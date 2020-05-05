@@ -15,3 +15,22 @@
 .narrow {
   max-width: calc(var(--base-unit) * 64);
 }
+
+.actionGroup {
+  text-align: right;
+  vertical-align: top;
+}
+
+.actionGroup > :not(:last-child) {
+  margin: 0 var(--space-small) 0 0;
+}
+
+.titleBar {
+  display: flex;
+  border-top: 1px solid red;
+}
+
+.titleBar > * {
+  flex: auto;
+  justify-content: space-between;
+}
