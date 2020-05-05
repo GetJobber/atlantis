@@ -1,0 +1,1 @@
+export { LightBox } from "./LightBox";
