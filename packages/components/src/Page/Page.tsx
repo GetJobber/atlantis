@@ -58,11 +58,11 @@ export function Page({
   width = "standard",
   primaryAction,
   secondaryAction,
-  moreActionsMenu,
+  moreActionsMenu = [],
 }: PageProps) {
   const pageStyles = classnames(styles.page, styles[width]);
 
-  const showMenu = moreActionsMenu && moreActionsMenu.length > 0;
+  const showMenu = moreActionsMenu.length > 0;
   const showActionGroup = showMenu || primaryAction;
 
   return (
