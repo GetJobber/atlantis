@@ -12,7 +12,10 @@ export default {
       declarationDir: "dist",
     }),
     postcss({
-      modules: { generateScopedName: "[hash:base64]" },
+      modules: {
+        generateScopedName: "[hash:base64]",
+        globalModulePaths: [/node_modules/],
+      },
       plugins: [
         require("postcss-import"),
         require("autoprefixer"),
