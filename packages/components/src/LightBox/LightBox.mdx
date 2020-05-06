@@ -25,18 +25,23 @@ import { LightBox } from "@jobber/components/LightBox";
     const [open, isOpen] = useState(false);
     return (
       <>
-        <Button label="Show Me Cats!" onClick={() => isOpen(true)} />
+        <Button label="😈" onClick={() => isOpen(true)} />
         <LightBox
           open={open}
           images={[
             {
-              title: "blerg",
-              url: "https://i.imgur.com/hNUdik3g.jpg",
+              title: "😃",
+              url: "https://i.imgur.com/6Jcfgnp.jpg",
               caption: "blerg again"
             },
             {
-              title: "blerg",
-              url: "https://i.imgur.com/hNUdik3g.jpg",
+              title: "😮",
+              url: "https://i.imgur.com/OsLxYkT.jpg",
+              caption: "blerg again"
+            },
+            {
+              title: "😠",
+              url: "https://i.imgur.com/uigfzs5.jpg",
               caption: "blerg again"
             }
           ]}

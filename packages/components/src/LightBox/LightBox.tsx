@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import "./LightBox.css";
 import ExternalLightBox from "react-image-lightbox";
+
+// Library requires fetching it's CSS.
+// eslint-disable-next-line import/no-internal-modules
+import "react-image-lightbox/style.css";
 
 interface PresentedImage {
   title?: string;
