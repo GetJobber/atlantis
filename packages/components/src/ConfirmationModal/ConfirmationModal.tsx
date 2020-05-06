@@ -11,7 +11,7 @@ import { Content } from "../Content";
 
 interface ConfirmationModalState {
   readonly title?: string;
-  readonly text?: string;
+  readonly message?: string;
   readonly open: boolean;
   readonly confirmLabel: string;
   readonly cancelLabel: string;
@@ -26,7 +26,7 @@ interface ConfirmOrCancelAction {
 interface DisplayAction {
   type: "display";
   title?: string;
-  text: string;
+  message: string;
   confirmLabel: string;
   cancelLabel?: string;
   onConfirm(): void;
@@ -47,10 +47,10 @@ function confirmationModalReducer(
       return {
         ...state,
         title: action.title,
-        text: action.text,
+        message: action.message,
         open: true,
         confirmLabel: action.confirmLabel,
-        cancelLabel: action.cancelLabel = "Cancel",
+        cancelLabel: action.cancelLabel || "Cancel",
         onConfirm: action.onConfirm,
         onCancel: action.onCancel,
       };
@@ -82,18 +82,49 @@ export interface ConfirmationModalRef {
 }
 
 interface BaseConfirmationModalProps {
+  /**
+   * Title for the modal.
+   */
   readonly title?: string;
-  readonly text?: string;
+
+  /**
+   * Text for the body of the modal.
+   */
+  readonly message?: string;
+
+  /**
+   * Controls if the modal is open or not.
+   */
   readonly open?: boolean;
+
+  /**
+   * Label for the confirm button.
+   */
   readonly confirmLabel?: string;
+
+  /**
+   * Label for the cancel button.
+   */
   readonly cancelLabel?: string;
+
+  /**
+   * Called when the confirm button is pressed.
+   */
   onConfirm?(): void;
+
+  /**
+   * Called when the cancel button is pressed.
+   */
   onCancel?(): void;
+
+  /**
+   * Called when the modal should be closed regardless of trigger.
+   */
   onRequestClose?(): void;
 }
 
 interface SimpleConfirmationModalProps extends BaseConfirmationModalProps {
-  readonly text: string;
+  readonly message: string;
   readonly open: boolean;
   readonly confirmLabel: string;
 }
@@ -111,7 +142,7 @@ export const ConfirmationModal = forwardRef(ConfirmationModalInternal);
 function ConfirmationModalInternal(
   {
     title,
-    text,
+    message,
     open = false,
     confirmLabel = "Confirm",
     cancelLabel = "Cancel",
@@ -123,7 +154,7 @@ function ConfirmationModalInternal(
 ) {
   const [state, dispatch] = useReducer(confirmationModalReducer, {
     title,
-    text,
+    message,
     open: false,
     confirmLabel,
     cancelLabel,
@@ -133,7 +164,7 @@ function ConfirmationModalInternal(
   useImperativeHandle(ref, () => ({
     show: ({
       title: newTitle,
-      text: newText,
+      message: newMessage,
       confirmLabel: newConfirmLabel,
       cancelLabel: newCancelLabel,
       onConfirm: newOnConfirm,
@@ -142,7 +173,7 @@ function ConfirmationModalInternal(
       dispatch({
         type: "display",
         title: newTitle,
-        text: newText,
+        message: newMessage,
         confirmLabel: newConfirmLabel,
         cancelLabel: newCancelLabel,
         onConfirm: newOnConfirm,
@@ -157,14 +188,14 @@ function ConfirmationModalInternal(
       state: {
         ...state,
         title,
-        text,
+        message: message,
         confirmLabel,
         cancelLabel,
         onConfirm,
         onCancel,
       },
     });
-  }, [title, text, confirmLabel, cancelLabel, onConfirm, onCancel]);
+  }, [title, message, confirmLabel, cancelLabel, onConfirm, onCancel]);
 
   return (
     <Modal
@@ -188,7 +219,7 @@ function ConfirmationModalInternal(
       }}
     >
       <Content>
-        <Text>{state.text}</Text>
+        <Text>{state.message}</Text>
       </Content>
     </Modal>
   );

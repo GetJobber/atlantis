@@ -15,7 +15,7 @@ import { ConfirmationModal } from ".";
 <ComponentStatus stage="pre" responsive="no" accessible="no" />
 
 A ConfirmationModal allows users to confirm or cancel actions that they are
-preforming. Examples of actions that may need confirmation are navigating off an
+performing. Examples of actions that may need confirmation are navigating off an
 edited page or deleting an object.
 
 ```ts
@@ -33,7 +33,7 @@ import {
         <Button label="Open" onClick={() => setOpen(true)} />
         <ConfirmationModal
           title="Should we?"
-          text="Do something…"
+          message="Do something…"
           confirmLabel="Do it"
           open={open}
           onConfirm={() => alert("✅")}
@@ -48,11 +48,11 @@ import {
 ## Design & Usage Guidelines
 
 ConfirmationModals should be used to confirm or cancel an action the user is
-preforming.
+performing.
 
 - Ensure that you are labeling the buttons with appropriate verbs. For example:
   "Are you sure you want to delete" should have a label of "Delete" which is the
-  action that will be preformed.
+  action that will be performed.
 - It's good to identify the Object that is being acted upon. For example: "Are
   you sure you want to delete the user: Bub"
 
@@ -62,8 +62,15 @@ preforming.
 
 ## Controlled Confirmation Modal
 
-In some instances, such as a list, you may want to place a single Confirmation
-Modal on a page and then call to open it when required.
+In some instances, such as when dealing with a collection of items with common
+actions, you may want to place a single Confirmation Modal on a page and then
+call to open it when required for each action.
+
+We can do this by using the `confirmationModalRef` which exposes a `show` method
+which allows you to present a confirmation modal on demand.
+
+In the example below we have an array of users and then render a button for each
+that presents a confirm modal.
 
 <Playground>
   {() => {
@@ -87,7 +94,7 @@ Modal on a page and then call to open it when required.
               onClick={() => {
                 confirmationModalRef.current.show({
                   title: "Should we?",
-                  text: `Hang out with ${user.name}?`,
+                  message: `Hang out with ${user.name}?`,
                   confirmLabel: "Hangout",
                   onConfirm: () => alert("✅")
                 });

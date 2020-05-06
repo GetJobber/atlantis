@@ -18,7 +18,7 @@ test("simple ConfirmationModal should confirm", () => {
   const { getByText } = render(
     <ConfirmationModal
       title="Should we?"
-      text="Do something…"
+      message="Do something…"
       open={true}
       confirmLabel="We Shall"
       onConfirm={confirmHandler}
@@ -41,7 +41,7 @@ test("simple ConfirmationModal should cancel", () => {
   const { getByText } = render(
     <ConfirmationModal
       title="Should we?"
-      text="Do something…"
+      message="Do something…"
       open={true}
       confirmLabel="We Shall"
       onConfirm={confirmHandler}
@@ -109,7 +109,7 @@ function ControlledConfirm({
         onClick={() =>
           confirmationModalRef.current.show({
             title: "Should we?",
-            text: "Hang out with Bob?",
+            message: "Hang out with Bob?",
             confirmLabel: "Hangout",
             onConfirm: onConfirmMock,
             onCancel: onCancelMock,

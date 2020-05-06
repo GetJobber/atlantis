@@ -23,7 +23,7 @@ it("renders a simple ConfirmationModal", () => {
     .create(
       <ConfirmationModal
         title="Should we?"
-        text="Do something…"
+        message="Do something…"
         open={true}
         confirmLabel="We Shall"
         onConfirm={() => jest.fn()}
