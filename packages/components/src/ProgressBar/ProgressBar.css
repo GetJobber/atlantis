@@ -1,5 +1,6 @@
 :root {
   --progress-bar--borderRadius: 1rem;
+  --progress-bar--height: 1rem;
   --progress-bar--backgroundColor: var(--color-grey--lightest);
   --progress-bar--barColor: var(--color-lime);
 }

@@ -15,8 +15,7 @@ interface ProgressBarProps {
   readonly totalSteps: number;
 
   /**
-   * Changes the size to small, medium or large.
-   * @default medium
+   * Changes the size to small
    */
   readonly size?: keyof typeof sizes;
 }

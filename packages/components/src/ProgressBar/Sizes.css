@@ -1,11 +1,3 @@
 .small {
   --progress-bar--height: 0.5rem;
 }
-
-.medium {
-  --progress-bar--height: 1rem;
-}
-
-.large {
-  --progress-bar--height: 1.5rem;
-}
