@@ -14,7 +14,10 @@ import { LightBox } from ".";
 
 <ComponentStatus stage="pre" responsive="no" accessible="no" />
 
-Write a description about what LightBox component is trying to achieve.
+LightBox is a component designed to display an array of images to the user. A
+user clicks on a control and is shown a carousel style presentation of the
+defined images. This component is a wrapper of the frontend-collective's
+react-image-lightbox third party library.
 
 ```ts
 import { LightBox } from "@jobber/components/LightBox";
@@ -32,17 +35,15 @@ import { LightBox } from "@jobber/components/LightBox";
             {
               title: "😃",
               url: "https://i.imgur.com/6Jcfgnp.jpg",
-              caption: "blerg again"
+              caption: "Happy face"
             },
             {
               title: "😮",
               url: "https://i.imgur.com/OsLxYkT.jpg",
-              caption: "blerg again"
+              caption: "Suprised face"
             },
             {
-              title: "😠",
-              url: "https://i.imgur.com/uigfzs5.jpg",
-              caption: "blerg again"
+              url: "https://i.imgur.com/uigfzs5.jpg"
             }
           ]}
           onRequestClose={() => isOpen(false)}
@@ -52,35 +53,22 @@ import { LightBox } from "@jobber/components/LightBox";
   }}
 </Playground>
 
-<!--
-  It is not necessary to include Design & Usage Guidlelines. Use this section
-  to answer common questions and considerations about component usage.
--->
-
 ## Design & Usage Guidelines
 
 When contributing to, or consuming the LightBox component, consider the
 following:
 
-- When using the LightBox component always consider the volume you would like it
-  to be displayed at.
-- The LightBox component should never be used inside another component.
+- This is a wrapper of a third party library. The underlying library may already
+  include the functionality you are looking to add.
 
 ## Props
 
 <Props of={LightBox} />
 
-<!--
-  It is not necessary to provide an example of each prop. Use usage examples to
-  highlight key features of a component or particular considerations.
+---
 
-  See `Button.mdx` for a good example of this.
--->
+## Images
 
-## Loud
-
-Use `loud` to indicate that a component is yelling.
-
-<Playground>
-  <LightBox text="Fred" loud={true} />
-</Playground>
+Images is an array of objects defining a LightBox image. This object consists of
+`title`, `caption` and `url`. `title` and `caption` are optional, `url` is
+required, for each image.
