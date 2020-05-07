@@ -15,3 +15,13 @@
 .narrow {
   max-width: calc(var(--base-unit) * 64);
 }
+
+.titleBar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.actionGroup > :not(:last-child) {
+  margin: 0;
+  margin-right: var(--space-small);
+}

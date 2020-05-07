@@ -5,8 +5,10 @@ import { Heading } from "../Heading";
 import { Text } from "../Text";
 import { Content } from "../Content";
 import { Markdown } from "../Markdown";
+import { Button, ButtonProps } from "../Button";
+import { Menu, SectionProps } from "../Menu";
 
-interface PageProps {
+export interface PageProps {
   readonly children: ReactNode | ReactNode[];
 
   /**
@@ -32,6 +34,22 @@ interface PageProps {
    * @default standard
    */
   readonly width?: "fill" | "standard" | "narrow";
+
+  /**
+   * Page title primary action button settings.
+   */
+  readonly primaryAction?: ButtonProps;
+
+  /**
+   * Page title secondary action button settings.
+   *   Only shown if there is a primaryAction.
+   */
+  readonly secondaryAction?: ButtonProps;
+
+  /**
+   * Page title Action menu.
+   */
+  readonly moreActionsMenu?: SectionProps[];
 }
 
 export function Page({
@@ -39,14 +57,33 @@ export function Page({
   intro,
   children,
   width = "standard",
+  primaryAction,
+  secondaryAction,
+  moreActionsMenu = [],
 }: PageProps) {
-  const className = classnames(styles.page, styles[width]);
+  const pageStyles = classnames(styles.page, styles[width]);
+
+  const showMenu = moreActionsMenu.length > 0;
+  const showActionGroup = showMenu || primaryAction;
+
+  if (secondaryAction != undefined) {
+    secondaryAction = Object.assign({ type: "secondary" }, secondaryAction);
+  }
 
   return (
-    <div className={className}>
+    <div className={pageStyles}>
       <Content>
         <Content spacing="large">
-          <Heading level={1}>{title}</Heading>
+          <div className={styles.titleBar}>
+            <Heading level={1}>{title}</Heading>
+            {showActionGroup && (
+              <div className={styles.actionGroup}>
+                {primaryAction && <Button {...primaryAction} />}
+                {secondaryAction && <Button {...secondaryAction} />}
+                {showMenu && <Menu items={moreActionsMenu}></Menu>}
+              </div>
+            )}
+          </div>
           <Text variation="intro">
             <Markdown content={intro} basicUsage={true} />
           </Text>

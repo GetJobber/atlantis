@@ -33,3 +33,48 @@ import { Page } from "@jobber/components/Page";
 <Props of={Page} />
 
 ---
+
+## Page with Actions
+
+<Playground>
+  <Page
+    title="Get to work!"
+    intro="This isn't just talk. Get into action with some buttons and menus."
+    primaryAction={{ label: "Send Food", onClick: () => alert("🥨") }}
+    secondaryAction={{ label: "Send Drink", onClick: () => alert("🍹") }}
+    moreActionsMenu={[
+      {
+        actions: [
+          {
+            label: "Edit",
+            icon: "edit",
+            onClick: () => {
+              alert("✏️");
+            }
+          }
+        ]
+      },
+      {
+        header: "Send as...",
+        actions: [
+          {
+            label: "Text Message",
+            icon: "sms",
+            onClick: () => {
+              alert("📱");
+            }
+          },
+          {
+            label: "Email",
+            icon: "email",
+            onClick: () => {
+              alert("📨");
+            }
+          }
+        ]
+      }
+    ]}
+  >
+    <Text>Page content here</Text>
+  </Page>
+</Playground>

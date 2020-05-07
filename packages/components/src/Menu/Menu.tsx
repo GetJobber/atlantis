@@ -23,7 +23,7 @@ interface MenuProps {
   readonly items: SectionProps[];
 }
 
-interface SectionProps {
+export interface SectionProps {
   /**
    * Defines the section header to further explain the group of actions.
    */
