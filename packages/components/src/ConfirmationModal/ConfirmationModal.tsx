@@ -108,17 +108,17 @@ interface BaseConfirmationModalProps {
   readonly cancelLabel?: string;
 
   /**
-   * Called when the confirm button is pressed.
+   * Callback for when the confirm button is pressed.
    */
   onConfirm?(): void;
 
   /**
-   * Called when the cancel button is pressed.
+   * Callback for when the cancel button is pressed.
    */
   onCancel?(): void;
 
   /**
-   * Called when the modal should be closed regardless of trigger.
+   * Callback for whenever a user's action should close the modal.
    */
   onRequestClose?(): void;
 }
@@ -161,6 +161,8 @@ function ConfirmationModalInternal(
     onConfirm,
     onCancel,
   });
+
+  // Expose a `show` method through this component's ref.
   useImperativeHandle(ref, () => ({
     show: ({
       title: newTitle,
