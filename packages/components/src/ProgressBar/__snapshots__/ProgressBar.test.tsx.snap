@@ -1,5 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`with props accepts small size 1`] = `
+<div
+  className="container small"
+>
+  <div
+    className="content"
+    style={
+      Object {
+        "width": "50%",
+      }
+    }
+  />
+</div>
+`;
+
 exports[`with props renders correctly 1`] = `
 <div
   className="container base"
