@@ -15,7 +15,8 @@ interface ProgressBarProps {
   readonly totalSteps: number;
 
   /**
-   * Changes the size to small
+   * Set the size of the progress bar
+   * @default base
    */
   readonly size?: keyof typeof sizes;
 }
@@ -23,13 +24,13 @@ interface ProgressBarProps {
 export function ProgressBar({
   currentStep,
   totalSteps,
-  size,
+  size = "base",
 }: ProgressBarProps) {
   const percentage = ((currentStep - 1) / (totalSteps - 1)) * 100;
   const widthPercent = Math.min(100, Math.max(0, percentage));
   const progressBarContainerClassName = classnames(
     styles.container,
-    size && sizes[size],
+    sizes[size],
   );
   const progressBarContentClassName = classnames(styles.content);
 

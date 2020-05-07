@@ -2,7 +2,7 @@
 
 exports[`with props renders correctly 1`] = `
 <div
-  className="container"
+  className="container base"
 >
   <div
     className="content"
