@@ -9,4 +9,11 @@ describe("with props", () => {
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
+
+  it("accepts small size", () => {
+    const tree = renderer
+      .create(<ProgressBar currentStep={2} totalSteps={3} size={"small"} />)
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 });

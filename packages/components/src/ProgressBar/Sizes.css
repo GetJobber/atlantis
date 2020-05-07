@@ -1,0 +1,7 @@
+.small {
+  --progress-bar--height: var(--space-smaller);
+}
+
+.base {
+  --progress-bar--height: var(--space-base);
+}
