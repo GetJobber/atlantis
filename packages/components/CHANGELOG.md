@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.21.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.20.0...@jobber/components@1.21.0) (2020-05-07)
+
+
+### Features
+
+* **components:** add action buttons to Page component  ([#248](https://github.com/GetJobber/atlantis/issues/248)) ([a69a008](https://github.com/GetJobber/atlantis/commit/a69a0089bd66652a617140d9d5fc312d9060cb07))
+
+
+
+
+
 # [1.20.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.19.0...@jobber/components@1.20.0) (2020-05-07)
 
 
