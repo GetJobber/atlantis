@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.20.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.19.0...@jobber/components@1.20.0) (2020-05-07)
+
+
+### Features
+
+* **components:** ProgressBar can have a size ([#251](https://github.com/GetJobber/atlantis/issues/251)) ([6e5b476](https://github.com/GetJobber/atlantis/commit/6e5b4768a0e35f6c6bb0e46082b36e45ab0f7e41))
+
+
+
+
+
 # [1.19.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.18.2...@jobber/components@1.19.0) (2020-05-07)
 
 
