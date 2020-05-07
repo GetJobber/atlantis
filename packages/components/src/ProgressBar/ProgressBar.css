@@ -1,19 +1,17 @@
 :root {
-  --progress-bar--borderRadius: 1rem;
   --progress-bar--backgroundColor: var(--color-grey--lightest);
   --progress-bar--barColor: var(--color-lime);
 }
 
-.container {
+.container,
+.content {
   width: 100%;
   height: var(--progress-bar--height);
-  border-radius: var(--progress-bar--borderRadius);
+  border-radius: calc(var(--progress-bar--height) / 2);
   background: var(--progress-bar--backgroundColor);
 }
 
 .content {
-  height: var(--progress-bar--height);
-  border-radius: var(--progress-bar--borderRadius);
   background-color: var(--progress-bar--barColor);
   transition: width var(--timing-slower) ease-out;
 }

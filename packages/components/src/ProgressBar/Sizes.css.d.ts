@@ -1,2 +1,2 @@
-export const smaller: string;
+export const small: string;
 export const base: string;
