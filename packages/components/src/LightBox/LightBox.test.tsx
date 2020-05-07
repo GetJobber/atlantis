@@ -1,32 +1,52 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { cleanup, render } from "@testing-library/react";
 import { LightBox } from ".";
 
 afterEach(cleanup);
 
-it.skip("renders a LightBox", () => {
-  const tree = renderer.create(<LightBox text="Foo" />).toJSON();
-  expect(tree).toMatchSnapshot();
+test("Lightbox opens and shows the image", () => {
+  const title = "Dis be a title";
+  const caption = "Dis be a caption 🎉";
+  const handleClose = jest.fn();
+
+  const { queryByText } = render(
+    <LightBox
+      open={true}
+      images={[
+        {
+          title: title,
+          caption: caption,
+          url: "https://i.imgur.com/6Jcfgnp.jpg",
+        },
+      ]}
+      onRequestClose={handleClose}
+    />,
+  );
+
+  expect(queryByText(title)).toBeTruthy();
+  expect(queryByText(caption)).toBeTruthy();
+  // expect(getByRole("img")).not.toBeNull();
 });
 
-it.skip("renders a loud LightBox", () => {
-  const tree = renderer.create(<LightBox text="Foo" loud={true} />).toJSON();
-  expect(tree).toMatchSnapshot();
-});
+test("lightbox doesn't show up", () => {
+  const title = "Dis be a title";
+  const caption = "Dis be a caption 🎉";
+  const handleClose = jest.fn();
 
-test.skip("it should call the handler with the new value", () => {
-  const clickHandler = jest.fn();
-  const text = "Foo";
-  const { getByText } = render(<LightBox onClick={clickHandler} text={text} />);
+  const { queryByText } = render(
+    <LightBox
+      open={false}
+      images={[
+        {
+          title: title,
+          caption: caption,
+          url: "https://i.imgur.com/6Jcfgnp.jpg",
+        },
+      ]}
+      onRequestClose={handleClose}
+    />,
+  );
 
-  fireEvent.click(getByText(text));
-  expect(clickHandler).toHaveBeenCalled();
-
-  // E.g. If you need a change event, rather than a click event:
-  //
-  // fireEvent.change(getByLabelText(placeholder), {
-  //   target: { value: newValue },
-  // });
-  // expect(changeHandler).toHaveBeenCalledWith(newValue);
+  expect(queryByText(title)).toBeNull();
+  expect(queryByText(caption)).toBeNull();
 });
