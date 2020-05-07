@@ -138,8 +138,7 @@ type ConfirmationModalProps =
   | SimpleConfirmationModalProps
   | ComplexConfirmationModalProps;
 
-export const ConfirmationModal = forwardRef(ConfirmationModalInternal);
-function ConfirmationModalInternal(
+export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
   {
     title,
     message,
@@ -225,4 +224,4 @@ function ConfirmationModalInternal(
       </Content>
     </Modal>
   );
-}
+});
