@@ -25,7 +25,6 @@ test("Lightbox opens and shows the image", () => {
 
   expect(queryByText(title)).toBeTruthy();
   expect(queryByText(caption)).toBeTruthy();
-  // expect(getByRole("img")).not.toBeNull();
 });
 
 test("lightbox doesn't show up", () => {
