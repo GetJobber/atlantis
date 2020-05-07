@@ -34,13 +34,13 @@ exports[`When actions are provided renders a Page with action buttons and a menu
             </span>
           </button>
           <button
-            className="button base work primary"
+            className="button base work secondary"
             disabled={false}
             onClick={[Function]}
             type="button"
           >
             <span
-              className="base extraBold small uppercase white"
+              className="base extraBold small uppercase green"
             >
               Send Drink
             </span>

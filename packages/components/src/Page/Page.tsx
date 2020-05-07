@@ -42,6 +42,7 @@ export interface PageProps {
 
   /**
    * Page title secondary action button settings.
+   *   Only shown if there is a primaryAction.
    */
   readonly secondaryAction?: ButtonProps;
 
@@ -64,6 +65,10 @@ export function Page({
 
   const showMenu = moreActionsMenu.length > 0;
   const showActionGroup = showMenu || primaryAction;
+
+  if (secondaryAction != undefined) {
+    secondaryAction = Object.assign({ type: "secondary" }, secondaryAction);
+  }
 
   return (
     <div className={pageStyles}>
