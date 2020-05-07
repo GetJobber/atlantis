@@ -12,6 +12,7 @@
 .label {
   display: inline-flex;
   align-items: center;
+  padding-bottom: 0.5rem;
 }
 
 .input + .label::before {
@@ -37,4 +38,8 @@
 .radioGroup {
   display: inline-flex;
   flex-direction: column;
+}
+/* This to override the styling being applied by playground. */
+.inputWrapper {
+  line-height: normal;
 }

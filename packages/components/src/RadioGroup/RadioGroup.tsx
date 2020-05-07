@@ -80,7 +80,7 @@ function InternalRadioOption({
 }: InternalRadioOptionProps) {
   const inputId = value.toString();
   return (
-    <div>
+    <div className={styles.inputWrapper}>
       <input
         onChange={handleChange}
         type="radio"
