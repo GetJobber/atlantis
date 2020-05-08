@@ -4,7 +4,7 @@
 }
 .wrapper:global(.ril__outer:before) {
   content: "";
-  display: inline-block;
+  display: block;
   width: 100%;
   height: 100%;
   background-color: var(--color-greyBlue);
