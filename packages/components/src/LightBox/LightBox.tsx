@@ -23,16 +23,21 @@ export function LightBox({
   onRequestClose,
 }: LightBoxProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  let nextSrc = undefined;
+  let prevSrc = undefined;
+  if (images.length > 1) {
+    nextSrc = images[(currentImageIndex + 1) % images.length].url;
+    prevSrc =
+      images[(currentImageIndex + images.length - 1) % images.length].url;
+  }
 
   return (
     <>
       {open && (
         <ExternalLightBox
           mainSrc={images[currentImageIndex].url}
-          nextSrc={images[(currentImageIndex + 1) % images.length].url}
-          prevSrc={
-            images[(currentImageIndex + images.length - 1) % images.length].url
-          }
+          nextSrc={nextSrc}
+          prevSrc={prevSrc}
           imageTitle={images[currentImageIndex].title}
           imageCaption={images[currentImageIndex].caption}
           onCloseRequest={onRequestClose}

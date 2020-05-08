@@ -67,59 +67,6 @@ exports[`Images renders an image 1`] = `
         onClick={[Function]}
       >
         <div
-          className="ril-image-next ril__imageNext ril__image ril-not-loaded"
-          style={
-            Object {
-              "transform": "translate3d(1024px,0px,0) scale3d(NaN,NaN,1)",
-            }
-          }
-        >
-          <div
-            className="ril__loadingContainer"
-          >
-            <div
-              className="ril-loading-circle ril__loadingCircle ril__loadingContainer__icon"
-            >
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-            </div>
-          </div>
-        </div>
-        <div
           className="ril-image-current ril__image ril-not-loaded"
           style={
             Object {
@@ -172,72 +119,7 @@ exports[`Images renders an image 1`] = `
             </div>
           </div>
         </div>
-        <div
-          className="ril-image-prev ril__imagePrev ril__image ril-not-loaded"
-          style={
-            Object {
-              "transform": "translate3d(-1024px,0px,0) scale3d(NaN,NaN,1)",
-            }
-          }
-        >
-          <div
-            className="ril__loadingContainer"
-          >
-            <div
-              className="ril-loading-circle ril__loadingCircle ril__loadingContainer__icon"
-            >
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-            </div>
-          </div>
-        </div>
       </div>
-      <button
-        aria-label="Previous image"
-        className="ril-prev-button ril__navButtons ril__navButtonPrev"
-        onClick={[Function]}
-        type="button"
-      />
-      <button
-        aria-label="Next image"
-        className="ril-next-button ril__navButtons ril__navButtonNext"
-        onClick={[Function]}
-        type="button"
-      />
       <div
         className="ril-toolbar ril__toolbar"
       >
