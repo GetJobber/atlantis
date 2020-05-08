@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ExternalLightBox from "react-image-lightbox";
+import styles from "./LightBox.css";
 
 // Library requires fetching its CSS.
 // eslint-disable-next-line import/no-internal-modules
@@ -35,6 +36,7 @@ export function LightBox({
     <>
       {open && (
         <ExternalLightBox
+          wrapperClassName={styles.wrapper}
           mainSrc={images[currentImageIndex].url}
           nextSrc={nextSrc}
           prevSrc={prevSrc}

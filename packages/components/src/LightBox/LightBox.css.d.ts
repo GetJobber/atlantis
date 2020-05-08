@@ -1,1 +1,1 @@
-export const lightBox: string;
+export const wrapper: string;
