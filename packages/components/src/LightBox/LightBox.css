@@ -12,9 +12,9 @@
 }
 
 .wrapper:global(.ril__outer .ril__captionContent) {
-  color: rgb(193, 201, 206);
+  color: var(--color-greyBlue--lighter);
 }
 
 .wrapper:global(.ril__outer .ril__toolbarItem) {
-  color: rgb(193, 201, 206);
+  color: var(--color-greyBlue--lighter);
 }
