@@ -23,8 +23,8 @@ test("Lightbox opens and shows the image", () => {
     />,
   );
 
-  expect(queryByText(title)).toBeTruthy();
-  expect(queryByText(caption)).toBeTruthy();
+  expect(queryByText(title)).toBeInstanceOf(HTMLElement);
+  expect(queryByText(caption)).toBeInstanceOf(HTMLElement);
 });
 
 test("lightbox doesn't show up", () => {

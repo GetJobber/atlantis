@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ExternalLightBox from "react-image-lightbox";
 
-// Library requires fetching it's CSS.
+// Library requires fetching its CSS.
 // eslint-disable-next-line import/no-internal-modules
 import "react-image-lightbox/style.css";
 
