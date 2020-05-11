@@ -50,10 +50,17 @@ test("lightbox doesn't show up", () => {
   expect(queryByText(caption)).toBeNull();
 });
 
-test("lightbox closes when user clicks close", () => {
+test("lightbox closes when user clicks close", done => {
   const title = "Dis be a title";
   const caption = "Dis be a caption 🎉";
-  const handleClose = jest.fn();
+
+  //This expect is called from the close function as the react-image-lightbox
+  //library has an easing animation that occurs before the close function is
+  //called. This avoids an arbitrary setTimeout in our test.
+  const handleClose = jest.fn(() => {
+    expect(handleClose).toHaveBeenCalledTimes(1);
+    done();
+  });
 
   const { getByLabelText } = render(
     <LightBox
@@ -70,5 +77,4 @@ test("lightbox closes when user clicks close", () => {
   );
 
   fireEvent.click(getByLabelText("Close lightbox"));
-  expect(handleClose).toHaveBeenCalledTimes(1);
 });
