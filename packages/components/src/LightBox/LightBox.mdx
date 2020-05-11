@@ -16,8 +16,12 @@ import { LightBox } from ".";
 
 LightBox is a component designed to display an array of images to the user. A
 user clicks on a control and is shown a carousel style presentation of the
-defined images. This component is a wrapper of the frontend-collective's
-react-image-lightbox third party library.
+defined images.
+
+This component is a wrapper of the frontend-collective's react-image-lightbox
+third party library.
+<a href="https://github.com/frontend-collective/react-image-lightbox">React
+Image Lightbox</a>
 
 ```ts
 import { LightBox } from "@jobber/components/LightBox";
@@ -57,6 +61,8 @@ import { LightBox } from "@jobber/components/LightBox";
 
 A lightbox should:
 
+- Be used when viewing an image or collection of images is the user's primary
+  goal. This shouldn't be used for things like in product upgrade prompts.
 - Resemble the industry standard lightbox, using Jobber's font and color
   palette. Novel lightbox functionality will surprise and confuse users.
 
@@ -66,8 +72,24 @@ A lightbox should:
 
 ---
 
+## open
+
+Specify if the Lightbox is open or closed.
+
 ## Images
 
 Images is an array of objects defining a LightBox image. This object consists of
 `title`, `caption` and `url`. `title` and `caption` are optional, `url` is
 required, for each image.
+
+## Image Index
+
+Use this to specify which image in `images` to initialize the lightbox with.
+This is useful when you have a collection of thumbnails as you only need one
+collection of image urls, order doesn't matter.
+
+## onRequestClose
+
+This function must set open to false in order to close the lightbox. Note there
+is a 300ms easing animation on lightbox close that occurs before this function
+is called.

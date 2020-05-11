@@ -15,15 +15,21 @@ interface PresentedImage {
 interface LightBoxProps {
   readonly open: boolean;
   readonly images: PresentedImage[];
+  readonly imageIndex?: number;
   onRequestClose(): void;
 }
 
 export function LightBox({
   open = false,
   images,
+  imageIndex,
   onRequestClose,
 }: LightBoxProps) {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  let initialImageIndex = 0;
+  if (imageIndex) {
+    initialImageIndex = imageIndex;
+  }
+  const [currentImageIndex, setCurrentImageIndex] = useState(initialImageIndex);
   let nextSrc = undefined;
   let prevSrc = undefined;
   if (images.length > 1) {

@@ -78,3 +78,34 @@ test("lightbox closes when user clicks close", done => {
 
   fireEvent.click(getByLabelText("Close lightbox"));
 });
+
+test("Lightbox displays the selected imageIndex", () => {
+  const title = "Dis be a title";
+  const caption = "Dis be a caption 🎉";
+  const titleTwo = "FirstOne";
+  const captionTwo = "This is the one we should find";
+  const handleClose = jest.fn();
+
+  const { queryByText } = render(
+    <LightBox
+      open={true}
+      images={[
+        {
+          title: title,
+          caption: caption,
+          url: "https://i.imgur.com/6Jcfgnp.jpg",
+        },
+        {
+          title: titleTwo,
+          caption: captionTwo,
+          url: "https://i.imgur.com/6Jcfgnp.jpg",
+        },
+      ]}
+      imageIndex={1}
+      onRequestClose={handleClose}
+    />,
+  );
+
+  expect(queryByText(titleTwo)).toBeInstanceOf(HTMLElement);
+  expect(queryByText(title)).toBeNull();
+});
