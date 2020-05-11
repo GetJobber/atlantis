@@ -1,5 +1,5 @@
 import React from "react";
-import { cleanup, render } from "@testing-library/react";
+import { cleanup, fireEvent, render } from "@testing-library/react";
 import { LightBox } from ".";
 
 afterEach(cleanup);
@@ -48,4 +48,27 @@ test("lightbox doesn't show up", () => {
 
   expect(queryByText(title)).toBeNull();
   expect(queryByText(caption)).toBeNull();
+});
+
+test("lightbox closes when user clicks close", () => {
+  const title = "Dis be a title";
+  const caption = "Dis be a caption 🎉";
+  const handleClose = jest.fn();
+
+  const { getByLabelText } = render(
+    <LightBox
+      open={true}
+      images={[
+        {
+          title: title,
+          caption: caption,
+          url: "https://i.imgur.com/6Jcfgnp.jpg",
+        },
+      ]}
+      onRequestClose={handleClose}
+    />,
+  );
+
+  fireEvent.click(getByLabelText("Close lightbox"));
+  expect(handleClose).toHaveBeenCalledTimes(1);
 });
