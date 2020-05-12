@@ -40,6 +40,7 @@ export function LightBox({
         <ExternalLightBox
           wrapperClassName={styles.wrapper}
           mainSrc={images[currentImageIndex].url}
+          enableZoom={false}
           nextSrc={nextSrc}
           prevSrc={prevSrc}
           imageTitle={images[currentImageIndex].title}

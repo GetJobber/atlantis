@@ -143,27 +143,6 @@ exports[`Images renders an image 1`] = `
             className="ril-toolbar__item ril__toolbarItem"
           >
             <button
-              aria-label="Zoom in"
-              className="ril-zoom-in ril__toolbarItemChild ril__builtinButton ril__zoomInButton"
-              disabled={false}
-              onClick={[Function]}
-              type="button"
-            />
-          </li>
-          <li
-            className="ril-toolbar__item ril__toolbarItem"
-          >
-            <button
-              aria-label="Zoom out"
-              className="ril-zoom-out ril__toolbarItemChild ril__builtinButton ril__zoomOutButton ril__builtinButtonDisabled"
-              disabled={true}
-              type="button"
-            />
-          </li>
-          <li
-            className="ril-toolbar__item ril__toolbarItem"
-          >
-            <button
               aria-label="Close lightbox"
               className="ril-close ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__closeButton"
               onClick={[Function]}

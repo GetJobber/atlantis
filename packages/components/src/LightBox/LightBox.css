@@ -2,6 +2,7 @@
   font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   background-color: transparent;
 }
+
 .wrapper:global(.ril__outer:before) {
   content: "";
   display: block;
