@@ -22,14 +22,10 @@ interface LightBoxProps {
 export function LightBox({
   open = false,
   images,
-  imageIndex,
+  imageIndex = 0,
   onRequestClose,
 }: LightBoxProps) {
-  let initialImageIndex = 0;
-  if (imageIndex) {
-    initialImageIndex = imageIndex;
-  }
-  const [currentImageIndex, setCurrentImageIndex] = useState(initialImageIndex);
+  const [currentImageIndex, setCurrentImageIndex] = useState(imageIndex);
   let nextSrc = undefined;
   let prevSrc = undefined;
   if (images.length > 1) {
