@@ -59,37 +59,15 @@ import { LightBox } from "@jobber/components/LightBox";
 
 ## Design & Usage Guidelines
 
-A lightbox should:
+A lightbox's primary goal is to allow users to see a higher resolution view of
+images contained within the page they're viewing. The application of a lightbox
+facilitates smaller thumbnail images to be used in an interface without
+compromising the detail within.
 
-- Be used when viewing an image or collection of images is the user's primary
-  goal. This shouldn't be used for things like in product upgrade prompts.
-- Resemble the industry standard lightbox, using Jobber's font and color
-  palette. Novel lightbox functionality will surprise and confuse users.
+The lightbox should only be used when displaying an image at a greater scale is
+the primary function of opening it. Additional content types would be better
+suited by using a dialogue or alternative method.
 
 ## Props
 
 <Props of={LightBox} />
-
----
-
-## open
-
-Specify if the Lightbox is open or closed.
-
-## Images
-
-Images is an array of objects defining a LightBox image. This object consists of
-`title`, `caption` and `url`. `title` and `caption` are optional, `url` is
-required, for each image.
-
-## Image Index
-
-Use this to specify which image in `images` to initialize the lightbox with.
-This is useful when you have a collection of thumbnails as you only need one
-collection of image urls, order doesn't matter.
-
-## onRequestClose
-
-This function must set open to false in order to close the lightbox. Note there
-is a 300ms easing animation on lightbox close that occurs before this function
-is called.

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ExternalLightBox from "react-image-lightbox";
 import styles from "./LightBox.css";
 
@@ -13,14 +13,32 @@ interface PresentedImage {
 }
 
 interface LightBoxProps {
+  /**
+   * Specify if the Lightbox is open or closed.
+   */
   readonly open: boolean;
+  /**
+   * Images is an array of objects defining a LightBox image. This object consists of
+   * `title`, `caption` and `url`. `title` and `caption` are optional, `url` is
+   * required, for each image.
+   */
   readonly images: PresentedImage[];
+  /**
+   * Use this to specify which image in `images` to initialize the lightbox with.
+   * This is useful when you have a collection of thumbnails as you only need one
+   * collection of image urls, order doesn't matter.
+   */
   readonly imageIndex?: number;
+  /**
+   * This function must set open to false in order to close the lightbox. Note there
+   * is a 300ms easing animation on lightbox close that occurs before this function
+   * is called.
+   */
   onRequestClose(): void;
 }
 
 export function LightBox({
-  open = false,
+  open,
   images,
   imageIndex = 0,
   onRequestClose,
@@ -34,6 +52,10 @@ export function LightBox({
       images[(currentImageIndex + images.length - 1) % images.length].url;
   }
 
+  useEffect(() => {
+    setCurrentImageIndex(imageIndex);
+  }, [imageIndex]);
+
   return (
     <>
       {open && (
@@ -46,16 +68,20 @@ export function LightBox({
           imageTitle={images[currentImageIndex].title}
           imageCaption={images[currentImageIndex].caption}
           onCloseRequest={onRequestClose}
-          onMovePrevRequest={() =>
-            setCurrentImageIndex(
-              (currentImageIndex + images.length - 1) % images.length,
-            )
-          }
-          onMoveNextRequest={() =>
-            setCurrentImageIndex((currentImageIndex + 1) % images.length)
-          }
+          onMovePrevRequest={handleMovePrevious}
+          onMoveNextRequest={handleMoveNext}
         />
       )}
     </>
   );
+
+  function handleMovePrevious() {
+    setCurrentImageIndex(
+      (currentImageIndex + images.length - 1) % images.length,
+    );
+  }
+
+  function handleMoveNext() {
+    setCurrentImageIndex((currentImageIndex + 1) % images.length);
+  }
 }
