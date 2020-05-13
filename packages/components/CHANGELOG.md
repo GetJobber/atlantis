@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.22.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.21.1...@jobber/components@1.22.0) (2020-05-13)
+
+
+### Features
+
+* **components:** LightBox ([#250](https://github.com/GetJobber/atlantis/issues/250)) ([bb9ac0f](https://github.com/GetJobber/atlantis/commit/bb9ac0f78d716789b2becf74b7855cc00df3f842))
+
+
+
+
+
 ## [1.21.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.21.0...@jobber/components@1.21.1) (2020-05-08)
 
 **Note:** Version bump only for package @jobber/components
