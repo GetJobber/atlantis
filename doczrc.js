@@ -16,6 +16,16 @@ const projectPlugin = () =>
       const cssRule = {
         ...rules.cssModules(),
         test: rules.css().test,
+        include: /^((?!node_modules).)*$/,
+      };
+
+      /**
+       * Don't process css from npm packages as modules.
+       */
+      const libCssRule = {
+        ...rules.css(),
+        test: rules.css().test,
+        include: /node_modules/,
       };
 
       config.module.rules = [
@@ -25,6 +35,7 @@ const projectPlugin = () =>
 
           return !areCssRules;
         }),
+        libCssRule,
         cssRule,
       ];
 
