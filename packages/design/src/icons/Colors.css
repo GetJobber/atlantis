@@ -1,0 +1,43 @@
+.white {
+  fill: var(--color-white);
+}
+
+.grey {
+  fill: var(--color-grey);
+}
+
+.greyBlue {
+  fill: var(--color-greyBlue);
+}
+
+.greyBlueDark {
+  fill: var(--color-greyBlue--dark);
+}
+
+.blue {
+  fill: var(--color-blue);
+}
+
+.lightBlue {
+  fill: var(--color-lightBlue);
+}
+
+.green {
+  fill: var(--color-green);
+}
+
+.yellow {
+  fill: var(--color-yellow);
+}
+
+.red {
+  fill: var(--color-red);
+}
+
+.navy {
+  fill: var(--color-navy);
+}
+
+.orange {
+  fill: var(--color-orange);
+}
