@@ -59,12 +59,12 @@ exports[`When actions are provided renders a Page with action buttons and a menu
               type="button"
             >
               <svg
-                className="icon base"
+                className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
                 viewBox="0 0 1024 1024"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  className="green"
+                  className="_1R4_alABGZICCj4KPfBOIa"
                   d="M170.667 512c0-47.13 38.205-85.333 85.333-85.333s85.333 38.204 85.333 85.333c0 47.13-38.205 85.333-85.333 85.333s-85.333-38.204-85.333-85.333zM426.667 512c0-47.13 38.204-85.333 85.333-85.333s85.333 38.204 85.333 85.333c0 47.13-38.204 85.333-85.333 85.333s-85.333-38.204-85.333-85.333zM768 426.667c-47.13 0-85.333 38.204-85.333 85.333s38.204 85.333 85.333 85.333c47.13 0 85.333-38.204 85.333-85.333s-38.204-85.333-85.333-85.333z"
                 />
               </svg>

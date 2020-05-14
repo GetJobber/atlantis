@@ -20,6 +20,7 @@
     "dist/*"
   ],
   "dependencies": {
+    "@jobber/design": "^0.5.2",
     "@jobber/formatters": "^0.0.4",
     "@popperjs/core": "^2.0.6",
     "@std-proposal/temporal": "0.0.1",

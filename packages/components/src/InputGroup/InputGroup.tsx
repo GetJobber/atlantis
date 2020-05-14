@@ -22,7 +22,7 @@ export function InputGroup({
 }
 
 function isInvalidGroupNesting(childs: ReactElement | ReactElement[]): boolean {
-  return React.Children.toArray(childs).some(child => {
+  return (React.Children.toArray(childs) as ReactElement[]).some(child => {
     if (
       child.type === InputGroup &&
       child.props.flowDirection != "horizontal"
