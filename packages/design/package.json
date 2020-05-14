@@ -6,7 +6,9 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist/*"
+    "dist/*",
+    "*.css",
+    "icons/*"
   ],
   "scripts": {
     "build": "npm run build:css && npm run build:css:icons && npm run build:colors && npm run build:cssTypes && npm run build:rollup",
