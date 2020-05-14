@@ -9,7 +9,7 @@ const projectPlugin = () =>
       const config = getConfig();
 
       /**
-       * Generate css types on save.
+       * Generate css types on `.css` file save.
        */
       config.module.rules.push({
         enforce: "pre",
