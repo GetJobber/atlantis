@@ -22,6 +22,7 @@ export default {
           preserve: true,
         }),
       ],
+      sourceMap: true,
     }),
     commonjs({
       ignore: [],
