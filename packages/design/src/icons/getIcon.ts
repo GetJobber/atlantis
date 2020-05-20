@@ -4,6 +4,10 @@ import sizes from "./Sizes.css";
 import colors from "./Colors.css";
 import { iconMap } from "./iconMap";
 
+export const iconClassMap = styles;
+export const sizesClassMap = sizes;
+export const colorsClassMap = colors;
+
 export type IconNames =
   | keyof typeof iconMap.icons
   | "longArrowUp"
@@ -11,19 +15,8 @@ export type IconNames =
   | "remove"
   | "thumbsDown"
   | "truck";
-export type IconColorNames =
-  | "white"
-  | "grey"
-  | "greyBlue"
-  | "greyBlueDark"
-  | "blue"
-  | "lightBlue"
-  | "green"
-  | "yellow"
-  | "red"
-  | "navy"
-  | "orange";
-export type IconSizes = "small" | "base" | "large";
+export type IconColorNames = keyof typeof colorsClassMap;
+export type IconSizes = keyof typeof sizesClassMap;
 interface IconProps {
   /** The icon to show.  */
   readonly name: IconNames;

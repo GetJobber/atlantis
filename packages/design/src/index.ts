@@ -1,1 +1,9 @@
-export { getIcon, IconNames, IconColorNames, IconSizes } from "./icons/getIcon";
+export {
+  getIcon,
+  IconNames,
+  IconColorNames,
+  IconSizes,
+  iconClassMap,
+  sizesClassMap,
+  colorsClassMap,
+} from "./icons/getIcon";
