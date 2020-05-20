@@ -4,9 +4,19 @@ import sizes from "./Sizes.css";
 import colors from "./Colors.css";
 import { iconMap } from "./iconMap";
 
-export const iconClassMap = styles;
-export const sizesClassMap = sizes;
-export const colorsClassMap = colors;
+export const iconClassMap = getInvertedClassMap(styles);
+export const sizesClassMap = getInvertedClassMap(sizes);
+export const colorsClassMap = getInvertedClassMap(colors);
+
+function getInvertedClassMap(classMap: Record<string, string>) {
+  return Object.keys(classMap).reduce(
+    (acc, value) => ({
+      ...acc,
+      [classMap[value]]: value,
+    }),
+    {},
+  );
+}
 
 export type IconNames =
   | keyof typeof iconMap.icons
@@ -15,8 +25,19 @@ export type IconNames =
   | "remove"
   | "thumbsDown"
   | "truck";
-export type IconColorNames = keyof typeof colorsClassMap;
-export type IconSizes = keyof typeof sizesClassMap;
+export type IconColorNames =
+  | "white"
+  | "grey"
+  | "greyBlue"
+  | "greyBlueDark"
+  | "blue"
+  | "lightBlue"
+  | "green"
+  | "yellow"
+  | "red"
+  | "navy"
+  | "orange";
+export type IconSizes = "small" | "base" | "large";
 interface IconProps {
   /** The icon to show.  */
   readonly name: IconNames;
