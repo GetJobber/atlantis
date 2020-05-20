@@ -28,7 +28,7 @@ export function Icon({ name, color, customColor, size = "base" }: IconProps) {
   let icon;
   const { svgClassNames, pathClassNames, paths, viewBox } = getIcon({
     name,
-    color: name === "truck" ? color || "green" : color,
+    color: getIconColor(name, color),
     size,
   });
   if (name === "truck") {
@@ -47,6 +47,13 @@ export function Icon({ name, color, customColor, size = "base" }: IconProps) {
       {icon}
     </svg>
   );
+}
+
+function getIconColor(name: IconNames, color?: IconColorNames) {
+  if (name === "truck") {
+    return color || "green";
+  }
+  return color;
 }
 
 function getTruck(pathClassNames: string, customColor?: string) {
