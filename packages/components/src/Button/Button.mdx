@@ -213,8 +213,9 @@ A way to communicate to the user that a background action is being performed.
   {() => {
     return (
       <Router basename="/components/button">
-        <Button label="Home" to="/" /> <Button label="Office" to="/office" />{" "}
-        <Button label="Dentist" to="/dentist" />
+        <Button label="Home" to="/" url="https://getjobber.com/" />
+        <Button label="Office" to="/office" external />
+        <Button label="Dentist" to="/dentist" disabled />
         <hr />
         <Switch>
           <Route exact path="/">

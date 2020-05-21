@@ -84,11 +84,12 @@ export function Button({
     className: buttonClassNames,
     disabled,
     id,
-    to,
+    ...(!disabled && { to }),
     ...(!disabled && { href: url }),
     ...(!disabled && { onClick: onClick }),
     ...(external && { target: "_blank" }),
-    ...(url === undefined && { type: "button" as "button" }),
+    ...(url === undefined &&
+      to === undefined && { type: "button" as "button" }),
   };
 
   const Tag = getTag();
