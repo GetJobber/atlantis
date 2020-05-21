@@ -30,8 +30,8 @@ related to `Atlantis`. There most common types of issues are:
 
 **_What should be in a proposal?_**
 
-Please use the [proposal template](docs/proposals/TEMPLATE.md) as a guide for
-writing proposals.
+Please use the [proposal template](https://github.com/GetJobber/atlantis/blob/master/docs/proposals/TEMPLATE.md) 
+as a guide for writing proposals.
 
 **_What is the process for submitting a proposal?_**
 
