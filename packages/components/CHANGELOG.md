@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.23.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.22.0...@jobber/components@1.23.0) (2020-05-21)
+
+
+### Features
+
+* **components:** update icons ([#257](https://github.com/GetJobber/atlantis/issues/257)) ([a1e1822](https://github.com/GetJobber/atlantis/commit/a1e1822913c1830ade9e1e21c8a7d52eb42f5606))
+
+
+
+
+
 # [1.22.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.21.1...@jobber/components@1.22.0) (2020-05-13)
 
 
