@@ -6,6 +6,9 @@ route: /components/button
 
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Card } from "@jobber/components/Card";
+import { Content } from "@jobber/components/Content";
 import { Button } from ".";
 
 # Button
@@ -202,4 +205,29 @@ A way to communicate to the user that a background action is being performed.
     loading={true}
   />
   <Button label="Canceling..." variation="cancel" loading={true} />
+</Playground>
+
+## Routing
+
+<Playground>
+  {() => {
+    return (
+      <Router basename="/components/button">
+        <Button label="Home" to="/" /> <Button label="Office" to="/office" />{" "}
+        <Button label="Dentist" to="/dentist" />
+        <hr />
+        <Switch>
+          <Route exact path="/">
+            This is my home.
+          </Route>
+          <Route exact path="/office">
+            Office
+          </Route>
+          <Route exact path="/dentist">
+            Dentist
+          </Route>
+        </Switch>
+      </Router>
+    );
+  }}
 </Playground>

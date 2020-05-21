@@ -1,6 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
+import { Link } from "react-router-dom";
 import styles from "./Button.css";
 import { Typography } from "../Typography";
 import { Icon, IconNames } from "../Icon";
@@ -18,8 +19,15 @@ interface ButtonFoundationProps {
   readonly label: string;
   readonly loading?: boolean;
   readonly size?: "small" | "base" | "large";
-  readonly url?: string;
   onClick?(): void;
+}
+
+interface ButtonLinkProps extends ButtonFoundationProps {
+  readonly url?: string;
+}
+
+interface ButtonRouteProps extends ButtonFoundationProps {
+  readonly to?: string;
 }
 
 interface BaseActionProps extends ButtonFoundationProps {
@@ -40,7 +48,8 @@ interface CancelActionProps extends ButtonFoundationProps {
 export type ButtonProps = XOR<
   ButtonFoundationProps,
   XOR<BaseActionProps, XOR<DestructiveActionProps, CancelActionProps>>
->;
+> &
+  XOR<ButtonLinkProps, ButtonRouteProps>;
 
 export function Button({
   ariaControls,
@@ -58,6 +67,7 @@ export function Button({
   size = "base",
   type = "primary",
   url,
+  to,
   variation = "work",
 }: ButtonProps) {
   const buttonClassNames = classnames(styles.button, styles[size], {
@@ -70,20 +80,22 @@ export function Button({
     [styles.loading]: loading,
   });
 
-  const props = {
+  const tagProps = {
     className: buttonClassNames,
-    disabled: disabled,
-    id: id,
+    disabled,
+    id,
+    to,
     ...(!disabled && { href: url }),
     ...(!disabled && { onClick: onClick }),
     ...(external && { target: "_blank" }),
     ...(url === undefined && { type: "button" as "button" }),
   };
 
-  const Tag = url ? "a" : "button";
+  const Tag = getTag();
+
   return (
     <Tag
-      {...props}
+      {...tagProps}
       aria-controls={ariaControls}
       aria-haspopup={ariaHaspopup}
       aria-expanded={ariaExpanded}
@@ -106,6 +118,12 @@ export function Button({
       </Typography>
     </Tag>
   );
+
+  function getTag() {
+    if (url) return "a";
+    if (to) return Link;
+    return "button";
+  }
 }
 
 function getTypeSizes(size: string) {
