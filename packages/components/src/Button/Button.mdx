@@ -207,25 +207,29 @@ A way to communicate to the user that a background action is being performed.
   <Button label="Canceling..." variation="cancel" loading={true} />
 </Playground>
 
-## Routing
+## Client Side Routing
+
+A `Button` can be used for client side routing as well. When using a Button to
+handle the client side routing, use the `to` prop. Notice when you click below
+that the url will change to the appropriate route.
 
 <Playground>
   {() => {
     return (
       <Router basename="/components/button">
-        <Button label="Home" to="/" url="https://getjobber.com/" />
-        <Button label="Office" to="/office" external />
-        <Button label="Dentist" to="/dentist" disabled />
+        <Button label="Home" to="/" />
+        <Button label="Office" to="/office" />
+        <Button label="Dentist" to="/dentist" />
         <hr />
         <Switch>
           <Route exact path="/">
-            This is my home.
+            This is my home, time to get cozy.
           </Route>
           <Route exact path="/office">
-            Office
+            This is my office, time to get to work.
           </Route>
           <Route exact path="/dentist">
-            Dentist
+            This is the dentist, time to get my teeth fixed.
           </Route>
         </Switch>
       </Router>

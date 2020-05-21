@@ -23,10 +23,16 @@ interface ButtonFoundationProps {
 }
 
 interface ButtonLinkProps extends ButtonFoundationProps {
+  /**
+   * Used to create an 'href' on an anchor tag.
+   */
   readonly url?: string;
 }
 
 interface ButtonRouteProps extends ButtonFoundationProps {
+  /**
+   * Used for client side routing. Only use when inside a routed component.
+   */
   readonly to?: string;
 }
 
