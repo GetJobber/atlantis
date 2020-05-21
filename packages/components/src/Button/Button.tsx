@@ -22,18 +22,18 @@ interface ButtonFoundationProps {
   onClick?(): void;
 }
 
-interface ButtonLinkProps extends ButtonFoundationProps {
+interface ButtonAnchorProps extends ButtonFoundationProps {
   /**
    * Used to create an 'href' on an anchor tag.
    */
   readonly url?: string;
 }
 
-interface ButtonRouteProps extends ButtonFoundationProps {
+interface ButtonLinkProps extends ButtonFoundationProps {
   /**
    * Used for client side routing. Only use when inside a routed component.
    */
-  readonly to: string;
+  readonly to?: string;
 }
 
 interface BaseActionProps extends ButtonFoundationProps {
@@ -55,27 +55,28 @@ export type ButtonProps = XOR<
   BaseActionProps,
   XOR<DestructiveActionProps, CancelActionProps>
 > &
-  XOR<ButtonLinkProps, ButtonRouteProps>;
+  XOR<ButtonLinkProps, ButtonAnchorProps>;
 
-export function Button({
-  ariaControls,
-  ariaHaspopup,
-  ariaExpanded,
-  disabled = false,
-  external,
-  fullWidth,
-  icon,
-  iconOnRight,
-  id,
-  label,
-  loading,
-  onClick,
-  size = "base",
-  type = "primary",
-  url,
-  to,
-  variation = "work",
-}: ButtonProps) {
+export function Button(props: ButtonProps) {
+  const {
+    ariaControls,
+    ariaHaspopup,
+    ariaExpanded,
+    disabled = false,
+    external,
+    fullWidth,
+    icon,
+    iconOnRight,
+    id,
+    loading,
+    onClick,
+    size = "base",
+    type = "primary",
+    url,
+    to,
+    variation = "work",
+  } = props;
+
   const buttonClassNames = classnames(styles.button, styles[size], {
     [styles.hasIcon]: icon,
     [styles.iconOnRight]: iconOnRight,
@@ -90,23 +91,41 @@ export function Button({
     className: buttonClassNames,
     disabled,
     id,
-    ...(to && { to }),
     ...(!disabled && { href: url }),
     ...(!disabled && { onClick: onClick }),
     ...(external && { target: "_blank" }),
     ...(url === undefined &&
       to === undefined && { type: "button" as "button" }),
+    "aria-controls": ariaControls,
+    "aria-haspopup": ariaHaspopup,
+    "aria-expanded": ariaExpanded,
   };
 
-  const Tag = getTag() as "a" | "button";
+  const buttonInternals = <ButtonInternals {...props} />;
 
+  if (to) {
+    return (
+      <Link {...tagProps} to={to}>
+        {buttonInternals}
+      </Link>
+    );
+  }
+
+  const Tag = url ? "a" : "button";
+
+  return <Tag {...tagProps}>{buttonInternals}</Tag>;
+}
+
+function ButtonInternals({
+  label,
+  icon,
+  variation = "work",
+  type = "primary",
+  disabled,
+  size = "base",
+}: ButtonProps) {
   return (
-    <Tag
-      {...tagProps}
-      aria-controls={ariaControls}
-      aria-haspopup={ariaHaspopup}
-      aria-expanded={ariaExpanded}
-    >
+    <>
       {icon && (
         <Icon
           name={icon}
@@ -123,14 +142,8 @@ export function Button({
       >
         {label}
       </Typography>
-    </Tag>
+    </>
   );
-
-  function getTag() {
-    if (url) return "a";
-    if (to) return Link;
-    return "button";
-  }
 }
 
 function getTypeSizes(size: string) {

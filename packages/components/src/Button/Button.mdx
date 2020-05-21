@@ -23,8 +23,6 @@ import { Button } from "@jobber/components/Button";
 <Playground>
   <Button
     label="Submit"
-    ariaHaspopup={true}
-    id="EDDY"
     onClick={() => {
       alert("✅");
     }}
@@ -217,7 +215,7 @@ that the url will change to the appropriate route.
   {() => {
     return (
       <Router basename="/components/button">
-        <Button label="Home" to="/" id="EDDY" />
+        <Button label="Home" to="/" />
         <Button label="Office" to="/office" />
         <Button label="Dentist" to="/dentist" />
         <hr />
