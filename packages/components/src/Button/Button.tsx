@@ -33,7 +33,7 @@ interface ButtonRouteProps extends ButtonFoundationProps {
   /**
    * Used for client side routing. Only use when inside a routed component.
    */
-  readonly to?: string;
+  readonly to: string;
 }
 
 interface BaseActionProps extends ButtonFoundationProps {
@@ -52,8 +52,8 @@ interface CancelActionProps extends ButtonFoundationProps {
 }
 
 export type ButtonProps = XOR<
-  ButtonFoundationProps,
-  XOR<BaseActionProps, XOR<DestructiveActionProps, CancelActionProps>>
+  BaseActionProps,
+  XOR<DestructiveActionProps, CancelActionProps>
 > &
   XOR<ButtonLinkProps, ButtonRouteProps>;
 
@@ -90,7 +90,7 @@ export function Button({
     className: buttonClassNames,
     disabled,
     id,
-    ...(!disabled && { to }),
+    ...(to && { to }),
     ...(!disabled && { href: url }),
     ...(!disabled && { onClick: onClick }),
     ...(external && { target: "_blank" }),
@@ -98,7 +98,7 @@ export function Button({
       to === undefined && { type: "button" as "button" }),
   };
 
-  const Tag = getTag();
+  const Tag = getTag() as "a" | "button";
 
   return (
     <Tag
