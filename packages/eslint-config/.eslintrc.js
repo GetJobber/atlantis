@@ -70,6 +70,7 @@ module.exports = {
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-non-null-assertion": "error",
+    "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
     curly: ["error", "multi-line", "consistent"],
     "prefer-const": "error",
     "dot-notation": "error",
@@ -91,6 +92,7 @@ module.exports = {
     "no-restricted-imports": ["error", { patterns: ["../*"] }],
     radix: "error",
     "use-isnan": "error",
+    "func-style": ["error", "declaration"],
   },
   overrides: [
     {
