@@ -92,7 +92,7 @@ module.exports = {
     "no-restricted-imports": ["error", { patterns: ["../*"] }],
     radix: "error",
     "use-isnan": "error",
-    "func-style": ["error", "declaration"],
+    "func-style": ["error", "declaration", { "allowArrowFunctions": true }],
   },
   overrides: [
     {
