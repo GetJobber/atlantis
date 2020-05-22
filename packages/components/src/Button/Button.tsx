@@ -1,6 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
+import { Link } from "react-router-dom";
 import styles from "./Button.css";
 import { Typography } from "../Typography";
 import { Icon, IconNames } from "../Icon";
@@ -18,8 +19,21 @@ interface ButtonFoundationProps {
   readonly label: string;
   readonly loading?: boolean;
   readonly size?: "small" | "base" | "large";
-  readonly url?: string;
   onClick?(): void;
+}
+
+interface ButtonAnchorProps extends ButtonFoundationProps {
+  /**
+   * Used to create an 'href' on an anchor tag.
+   */
+  readonly url?: string;
+}
+
+interface ButtonLinkProps extends ButtonFoundationProps {
+  /**
+   * Used for client side routing. Only use when inside a routed component.
+   */
+  readonly to?: string;
 }
 
 interface BaseActionProps extends ButtonFoundationProps {
@@ -38,28 +52,31 @@ interface CancelActionProps extends ButtonFoundationProps {
 }
 
 export type ButtonProps = XOR<
-  ButtonFoundationProps,
-  XOR<BaseActionProps, XOR<DestructiveActionProps, CancelActionProps>>
->;
+  BaseActionProps,
+  XOR<DestructiveActionProps, CancelActionProps>
+> &
+  XOR<ButtonLinkProps, ButtonAnchorProps>;
 
-export function Button({
-  ariaControls,
-  ariaHaspopup,
-  ariaExpanded,
-  disabled = false,
-  external,
-  fullWidth,
-  icon,
-  iconOnRight,
-  id,
-  label,
-  loading,
-  onClick,
-  size = "base",
-  type = "primary",
-  url,
-  variation = "work",
-}: ButtonProps) {
+export function Button(props: ButtonProps) {
+  const {
+    ariaControls,
+    ariaHaspopup,
+    ariaExpanded,
+    disabled = false,
+    external,
+    fullWidth,
+    icon,
+    iconOnRight,
+    id,
+    loading,
+    onClick,
+    size = "base",
+    type = "primary",
+    url,
+    to,
+    variation = "work",
+  } = props;
+
   const buttonClassNames = classnames(styles.button, styles[size], {
     [styles.hasIcon]: icon,
     [styles.iconOnRight]: iconOnRight,
@@ -70,24 +87,45 @@ export function Button({
     [styles.loading]: loading,
   });
 
-  const props = {
+  const tagProps = {
     className: buttonClassNames,
-    disabled: disabled,
-    id: id,
+    disabled,
+    id,
     ...(!disabled && { href: url }),
     ...(!disabled && { onClick: onClick }),
     ...(external && { target: "_blank" }),
-    ...(url === undefined && { type: "button" as "button" }),
+    ...(url === undefined &&
+      to === undefined && { type: "button" as "button" }),
+    "aria-controls": ariaControls,
+    "aria-haspopup": ariaHaspopup,
+    "aria-expanded": ariaExpanded,
   };
 
+  const buttonInternals = <ButtonInternals {...props} />;
+
+  if (to) {
+    return (
+      <Link {...tagProps} to={to}>
+        {buttonInternals}
+      </Link>
+    );
+  }
+
   const Tag = url ? "a" : "button";
+
+  return <Tag {...tagProps}>{buttonInternals}</Tag>;
+}
+
+function ButtonInternals({
+  label,
+  icon,
+  variation = "work",
+  type = "primary",
+  disabled,
+  size = "base",
+}: ButtonProps) {
   return (
-    <Tag
-      {...props}
-      aria-controls={ariaControls}
-      aria-haspopup={ariaHaspopup}
-      aria-expanded={ariaExpanded}
-    >
+    <>
       {icon && (
         <Icon
           name={icon}
@@ -104,7 +142,7 @@ export function Button({
       >
         {label}
       </Typography>
-    </Tag>
+    </>
   );
 }
 

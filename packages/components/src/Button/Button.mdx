@@ -6,6 +6,7 @@ route: /components/button
 
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Button } from ".";
 
 # Button
@@ -202,4 +203,34 @@ A way to communicate to the user that a background action is being performed.
     loading={true}
   />
   <Button label="Canceling..." variation="cancel" loading={true} />
+</Playground>
+
+## Client Side Routing
+
+A `Button` can be used for client side routing as well. When using a Button to
+handle the client side routing, use the `to` prop. Notice when you click below
+that the url will change to the appropriate route.
+
+<Playground>
+  {() => {
+    return (
+      <Router basename="/components/button">
+        <Button label="Home" to="/" />
+        <Button label="Office" to="/office" />
+        <Button label="Dentist" to="/dentist" />
+        <hr />
+        <Switch>
+          <Route exact path="/">
+            This is my home, time to get cozy.
+          </Route>
+          <Route exact path="/office">
+            This is my office, time to get to work.
+          </Route>
+          <Route exact path="/dentist">
+            This is the dentist, time to get my teeth fixed.
+          </Route>
+        </Switch>
+      </Router>
+    );
+  }}
 </Playground>
