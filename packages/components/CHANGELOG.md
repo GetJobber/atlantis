@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.24.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.23.0...@jobber/components@1.24.0) (2020-05-22)
+
+
+### Features
+
+* **components:** Add routing Link to Button ([#259](https://github.com/GetJobber/atlantis/issues/259)) ([606e099](https://github.com/GetJobber/atlantis/commit/606e09920bac52108090f134bd9884b92f311c63))
+
+
+
+
+
 # [1.23.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.22.0...@jobber/components@1.23.0) (2020-05-21)
 
 
