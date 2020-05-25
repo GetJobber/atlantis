@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a Chat 1`] = `
+Array [
+  <ul
+    className="chat"
+  >
+    <li>
+      <div
+        className="inContainer"
+      >
+        <div
+          className="inboundChatBubble"
+        >
+          Oh hello jill! How are you?
+        </div>
+      </div>
+      <div
+        className="inContainer"
+      >
+        <p
+          className="base regular base green"
+        >
+          sent
+        </p>
+      </div>
+    </li>
+    <li>
+      <div
+        className="outContainer"
+      >
+        <div
+          className="outboundChatBubble"
+        >
+          Hello bob!
+        </div>
+      </div>
+      <div
+        className="outContainer"
+      >
+        <p
+          className="base regular base green"
+        >
+          sent
+        </p>
+      </div>
+    </li>
+  </ul>,
+  <div>
+    <div
+      className="wrapper"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
+    >
+      <label
+        className="label textareaLabel"
+        htmlFor="123e4567-e89b-12d3-a456-426655440001"
+      >
+        Write a reply...
+      </label>
+      <textarea
+        className="formField"
+        id="123e4567-e89b-12d3-a456-426655440001"
+        name="message"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+      />
+    </div>
+    <button
+      className="button base work primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      <span
+        className="base extraBold small uppercase white"
+      >
+        Send Text Message
+      </span>
+    </button>
+  </div>,
+]
+`;

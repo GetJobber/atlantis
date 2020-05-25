@@ -1,0 +1,41 @@
+.outContainer {
+  display: flex;
+  width: 100%;
+  flex-direction: row-reverse;
+  align-items: flex-end;
+}
+
+.outboundChatBubble {
+  display: inline-block;
+  position: relative;
+  max-width: 50%;
+  margin: 1em;
+  margin-bottom: 2rem;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  color: var(--color-grey--dark);
+  font-size: 1rem;
+  line-height: 1.5rem;
+  background-color: var(--color-grey--lighter);
+}
+
+.inContainer {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.inboundChatBubble {
+  display: inline-block;
+  position: relative;
+  max-width: 50%;
+  margin: 1em;
+  margin-bottom: 2rem;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  color: var(--color-green--dark);
+  font-size: 1rem;
+  line-height: 1.5rem;
+  background-color: var(--color-lime);
+}

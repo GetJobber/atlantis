@@ -1,0 +1,8 @@
+.chat {
+  display: flex;
+  max-height: 20em;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+  flex-direction: column-reverse;
+}

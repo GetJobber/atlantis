@@ -30,7 +30,7 @@ interface AvatarFoundationProps {
   readonly size?: AvatarSize;
 }
 
-interface AvatarWithImageProps extends AvatarFoundationProps {
+export interface AvatarWithImageProps extends AvatarFoundationProps {
   readonly imageUrl: string;
 }
 
