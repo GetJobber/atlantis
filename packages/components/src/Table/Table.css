@@ -4,9 +4,9 @@
   --horizontal-inset: var(--space-base);
   width: 100%;
 
-  border: solid 1px var(--border-color);
+  box-shadow: 0 0 0 1px var(--border-color);
   border-collapse: collapse;
-  border-radius: var(--space-smallest);
+  border-radius: var(--radius-base);
 }
 
 .row:not(:last-child) {

@@ -1,6 +1,5 @@
 .cell {
-  padding: var(--horizontal-inset) calc(var(--horizontal-inset) / 2)
-    var(--horizontal-inset) calc(var(--horizontal-inset) / 2);
+  padding: var(--horizontal-inset) calc(var(--horizontal-inset) / 2);
   text-align: left;
 }
 
