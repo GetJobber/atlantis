@@ -1,4 +1,6 @@
 .cell {
+  padding: var(--horizontal-inset) calc(var(--horizontal-inset) / 2)
+    var(--horizontal-inset) calc(var(--horizontal-inset) / 2);
   text-align: left;
 }
 
@@ -21,6 +23,7 @@
 .cell:first-child {
   padding-left: var(--horizontal-inset);
 }
+
 .cell:last-child {
   padding-right: var(--horizontal-inset);
 }
