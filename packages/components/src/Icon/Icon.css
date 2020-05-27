@@ -40,6 +40,7 @@
   fill: var(--color-request);
 }
 
+.userUnassigned,
 .reminder,
 .trash {
   fill: var(--color-red);
@@ -53,8 +54,7 @@
   fill: var(--color-lightBlue);
 }
 
-.quote,
-.quoteCopy {
+.quote {
   fill: var(--color-quote);
 }
 

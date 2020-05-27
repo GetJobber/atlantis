@@ -148,9 +148,6 @@
 .quickbooks:before {
   content: "\e62e";
 }
-.quoteCopy:before {
-  content: "\e62f";
-}
 .quote:before {
   content: "\e630";
 }
