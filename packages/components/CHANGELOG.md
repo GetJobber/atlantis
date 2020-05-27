@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.25.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.24.2...@jobber/components@1.25.0) (2020-05-27)
+
+
+### Features
+
+* Export AvatarProps from avatar ([#267](https://github.com/GetJobber/atlantis/issues/267)) ([94f0ab2](https://github.com/GetJobber/atlantis/commit/94f0ab23b30f29c7c5039bb8aa08e6648453d502))
+
+
+
+
+
 ## [1.24.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.24.1...@jobber/components@1.24.2) (2020-05-27)
 
 **Note:** Version bump only for package @jobber/components
