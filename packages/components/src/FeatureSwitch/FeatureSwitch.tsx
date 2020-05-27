@@ -70,7 +70,7 @@ interface FeatureSwitchProps {
 export function FeatureSwitch({
   children,
   description,
-  disabled,
+  disabled = false,
   enabled,
   externalLink = false,
   onEdit,
