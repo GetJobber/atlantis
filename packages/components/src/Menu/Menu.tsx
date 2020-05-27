@@ -129,7 +129,7 @@ function SectionHeader({ text }: SectionHeaderProps) {
   );
 }
 
-interface ActionProps {
+export interface ActionProps {
   /**
    * Action label
    */
