@@ -73,6 +73,7 @@ export function Button(props: ButtonProps) {
     ariaControls,
     ariaHaspopup,
     ariaExpanded,
+    ariaLabel,
     disabled = false,
     external,
     fullWidth,
@@ -110,6 +111,7 @@ export function Button(props: ButtonProps) {
     "aria-controls": ariaControls,
     "aria-haspopup": ariaHaspopup,
     "aria-expanded": ariaExpanded,
+    "aria-label": ariaLabel,
   };
 
   const buttonInternals = <ButtonInternals {...props} />;
