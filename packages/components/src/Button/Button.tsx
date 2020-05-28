@@ -7,6 +7,11 @@ import { Typography } from "../Typography";
 import { Icon, IconNames } from "../Icon";
 
 interface ButtonFoundationProps {
+  /**
+   * Used for screen readers. Will override label on screen
+   * reader if present.
+   */
+  readonly ariaLabel?: string;
   readonly ariaControls?: string;
   readonly ariaHaspopup?: boolean;
   readonly ariaExpanded?: boolean;
@@ -16,10 +21,19 @@ interface ButtonFoundationProps {
   readonly icon?: IconNames;
   readonly iconOnRight?: boolean;
   readonly id?: string;
-  readonly label: string;
+  readonly label?: string;
   readonly loading?: boolean;
   readonly size?: "small" | "base" | "large";
   onClick?(): void;
+}
+
+interface ButtonIconProps extends ButtonFoundationProps {
+  readonly icon: IconNames;
+  readonly ariaLabel: string;
+}
+
+interface ButtonLabelProps extends ButtonFoundationProps {
+  readonly label: string;
 }
 
 interface ButtonAnchorProps extends ButtonFoundationProps {
@@ -55,17 +69,20 @@ export type ButtonProps = XOR<
   BaseActionProps,
   XOR<DestructiveActionProps, CancelActionProps>
 > &
-  XOR<ButtonLinkProps, ButtonAnchorProps>;
+  XOR<ButtonLinkProps, ButtonAnchorProps> &
+  XOR<ButtonIconProps, ButtonLabelProps>;
 
 export function Button(props: ButtonProps) {
   const {
     ariaControls,
     ariaHaspopup,
     ariaExpanded,
+    ariaLabel,
     disabled = false,
     external,
     fullWidth,
     icon,
+    label,
     iconOnRight,
     id,
     loading,
@@ -78,7 +95,7 @@ export function Button(props: ButtonProps) {
   } = props;
 
   const buttonClassNames = classnames(styles.button, styles[size], {
-    [styles.hasIcon]: icon,
+    [styles.hasIconAndLabel]: icon && label,
     [styles.iconOnRight]: iconOnRight,
     [styles[variation]]: variation,
     [styles[type]]: type,
@@ -99,6 +116,7 @@ export function Button(props: ButtonProps) {
     "aria-controls": ariaControls,
     "aria-haspopup": ariaHaspopup,
     "aria-expanded": ariaExpanded,
+    "aria-label": ariaLabel,
   };
 
   const buttonInternals = <ButtonInternals {...props} />;

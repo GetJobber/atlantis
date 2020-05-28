@@ -52,7 +52,7 @@ exports[`When actions are provided renders a Page with action buttons and a menu
               aria-controls="123e4567-e89b-12d3-a456-426655440002"
               aria-expanded={false}
               aria-haspopup={true}
-              className="button base hasIcon work secondary"
+              className="button base hasIconAndLabel work secondary"
               disabled={false}
               id="123e4567-e89b-12d3-a456-426655440001"
               onClick={[Function]}
