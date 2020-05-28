@@ -175,8 +175,11 @@ Buttons comes in 2 extra sizes.
 You can use icons inside buttons. They can stand-alone, or appear before, after,
 or on top of the button label. They can also be added before or after the label.
 
+**Note:** If an icon is used in a stand-alone method, an `ariaLabel` must be
+present to describe the button.
+
 <Playground>
-  <Button type="secondary" icon="person" />
+  <Button type="secondary" icon="user" ariaLabel="I'm a person" />
   <Button label="More" type="secondary" icon="more" />
   <Button
     label="Actions"
