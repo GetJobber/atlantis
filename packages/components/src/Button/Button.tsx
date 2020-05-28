@@ -7,6 +7,7 @@ import { Typography } from "../Typography";
 import { Icon, IconNames } from "../Icon";
 
 interface ButtonFoundationProps {
+  readonly ariaLabel?: string;
   readonly ariaControls?: string;
   readonly ariaHaspopup?: boolean;
   readonly ariaExpanded?: boolean;
@@ -16,10 +17,19 @@ interface ButtonFoundationProps {
   readonly icon?: IconNames;
   readonly iconOnRight?: boolean;
   readonly id?: string;
-  readonly label: string;
+  readonly label?: string;
   readonly loading?: boolean;
   readonly size?: "small" | "base" | "large";
   onClick?(): void;
+}
+
+interface ButtonIconProps extends ButtonFoundationProps {
+  readonly icon: IconNames;
+  readonly ariaLabel: string;
+}
+
+interface ButtonLabelProps extends ButtonFoundationProps {
+  readonly label: string;
 }
 
 interface ButtonAnchorProps extends ButtonFoundationProps {
@@ -55,7 +65,8 @@ export type ButtonProps = XOR<
   BaseActionProps,
   XOR<DestructiveActionProps, CancelActionProps>
 > &
-  XOR<ButtonLinkProps, ButtonAnchorProps>;
+  XOR<ButtonLinkProps, ButtonAnchorProps> &
+  XOR<ButtonIconProps, ButtonLabelProps>;
 
 export function Button(props: ButtonProps) {
   const {
