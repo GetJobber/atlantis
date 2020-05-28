@@ -7,6 +7,10 @@ import { Typography } from "../Typography";
 import { Icon, IconNames } from "../Icon";
 
 interface ButtonFoundationProps {
+  /**
+   * Used for screen readers. Will override label on screen
+   * reader if present.
+   */
   readonly ariaLabel?: string;
   readonly ariaControls?: string;
   readonly ariaHaspopup?: boolean;
