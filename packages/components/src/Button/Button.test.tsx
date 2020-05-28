@@ -70,6 +70,13 @@ it("renders a Button with an icon on the right", () => {
   expect(tree).toMatchSnapshot();
 });
 
+it("renders a Button that is just an icon", () => {
+  const tree = renderer
+    .create(<Button icon="user" ariaLabel="Person" />)
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
 it("renders a small Button", () => {
   const tree = renderer.create(<Button label="Add" size="small" />).toJSON();
   expect(tree).toMatchSnapshot();

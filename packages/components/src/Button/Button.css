@@ -139,13 +139,12 @@
   padding: 0 var(--space-base);
 }
 
-.hasIcon {
+/* Icon */
+.hasIconAndLabel {
   padding: 0 var(--space-base);
 }
 
-/* Icon */
-
-.hasIcon > *:first-child {
+.hasIconAndLabel > *:first-child {
   margin-right: var(--space-small);
 }
 

@@ -78,6 +78,7 @@ export function Button(props: ButtonProps) {
     external,
     fullWidth,
     icon,
+    label,
     iconOnRight,
     id,
     loading,
@@ -90,7 +91,7 @@ export function Button(props: ButtonProps) {
   } = props;
 
   const buttonClassNames = classnames(styles.button, styles[size], {
-    [styles.hasIcon]: icon,
+    [styles.hasIconAndLabel]: icon && label,
     [styles.iconOnRight]: iconOnRight,
     [styles[variation]]: variation,
     [styles[type]]: type,
