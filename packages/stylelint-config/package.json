@@ -4,7 +4,7 @@
   "license": "MIT",
   "main": "stylelint.config.js",
   "dependencies": {
-    "prettier": "^1.17.0",
+    "prettier": "^2.0.5",
     "style-search": "^0.1.0",
     "stylelint-color-format": "^0.2.0",
     "stylelint-config-css-modules": "^1.4.0",
