@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.27.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.26.1...@jobber/components@1.27.0) (2020-06-02)
+
+
+### Features
+
+* **components:** Adjust table styling ([#265](https://github.com/GetJobber/atlantis/issues/265)) ([f1d05dc](https://github.com/GetJobber/atlantis/commit/f1d05dc41a0b8961d7ca6dd9d5a5ba13634461a3))
+
+
+
+
+
 ## [1.26.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.26.0...@jobber/components@1.26.1) (2020-05-28)
 
 **Note:** Version bump only for package @jobber/components
