@@ -1,10 +1,12 @@
 .table {
   --border-color: var(--color-grey--lighter);
   --header-border-color: var(--color-blue);
-  --horizontal-inset: 0.5rem;
-
+  --horizontal-inset: var(--space-base);
   width: 100%;
+
+  box-shadow: 0 0 0 var(--border-base) var(--border-color);
   border-collapse: collapse;
+  border-radius: var(--radius-base);
 }
 
 .row:not(:last-child) {
