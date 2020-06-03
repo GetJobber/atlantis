@@ -140,6 +140,11 @@
 }
 
 /* Icon */
+
+.hasIcon {
+  padding: 0 var(--space-small);
+}
+
 .hasIconAndLabel {
   padding: 0 var(--space-base);
 }
