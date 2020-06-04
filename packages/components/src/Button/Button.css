@@ -142,7 +142,8 @@
 /* Icon */
 
 .hasIcon {
-  padding: 0 var(--space-small);
+  width: 2.25rem;
+  padding: 0;
 }
 
 .hasIconAndLabel {
