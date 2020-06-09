@@ -6,6 +6,8 @@ route: /components/description-list
 
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
+import { CivilDate } from "@std-proposal/temporal";
+import { FormatDate } from "@jobber/components/FormatDate";
 import { DescriptionList } from ".";
 
 # Description List
@@ -27,3 +29,16 @@ import { DescriptionList } from "@jobber/components/DescriptionList";
 <Props of={DescriptionList} />
 
 ---
+
+## Passing an Element
+
+You are able to pass a react element in as the second term of the data tuple.
+
+<Playground>
+  <DescriptionList
+    data={[
+      ["Issued", <FormatDate date={new CivilDate(2018, 12, 8)} />],
+      ["Due", <FormatDate date={new CivilDate(2019, 1, 6)} />]
+    ]}
+  />
+</Playground>
