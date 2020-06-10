@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@0.1.0...@jobber/hooks@0.2.0) (2020-06-10)
+
+
+### Features
+
+* **hooks:** Throttle useResizeObserver ([#279](https://github.com/GetJobber/atlantis/issues/279)) ([be475bf](https://github.com/GetJobber/atlantis/commit/be475bff5556424575a40ea17d2c5604c1a4e8bf))
+
+
+
+
+
 # 0.1.0 (2020-05-01)
 
 
