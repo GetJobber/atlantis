@@ -36,3 +36,14 @@ import { useResizeObserver } from "@jobber/hooks";
     );
   }}
 </Playground>
+
+## Typing
+
+When using `useResizeObserver` in a component, you will need to pass it a type
+to represent the `ref`. In the example below, we pass it the type of
+`HTMLDivElement`.
+
+```tsx
+const [ref, { width, height }] = useResizeObserver<HTMLDivElement>();
+return <div ref={ref}>...</div>;
+```
