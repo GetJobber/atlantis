@@ -1,0 +1,38 @@
+---
+name: useResizeObserver
+menu: Hooks
+route: /hooks/use-resize-observer
+---
+
+import { Playground } from "docz";
+import { useState } from "react";
+import { useResizeObserver } from "./useResizeObserver";
+import { Text } from "@jobber/components/Text";
+import { Card } from "@jobber/components/Card";
+import { Content } from "@jobber/components/Content";
+
+# useResizeObserver
+
+`useResizeObserver` is a hook that will allow for responsive styling of
+components based on their size, instead of the browser size.
+
+```tsx
+import { useResizeObserver } from "@jobber/hooks";
+```
+
+<Playground>
+  {() => {
+    const [ref, { width, height }] = useResizeObserver();
+    const title = width > 500 ? "This is big" : "This is small";
+    return (
+      <div ref={ref}>
+        <Card title={title}>
+          <Content>
+            <Text>Width: {width}</Text>
+            <Text>Height: {height}</Text>
+          </Content>
+        </Card>
+      </div>
+    );
+  }}
+</Playground>
