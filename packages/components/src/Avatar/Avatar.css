@@ -9,6 +9,8 @@
   justify-content: center;
   width: var(--avatar-size);
   height: var(--avatar-size);
+  min-width: var(--avatar-size);
+  min-height: var(--avatar-size);
   border-radius: 50%;
   color: var(--color-blue--dark);
   font-size: var(--avatar-size);
