@@ -20,6 +20,13 @@ interface FeatureSwitchProps {
   readonly description: string;
 
   /**
+   * Determines if the switch is disabled
+   *
+   * @default false
+   */
+  readonly disabled?: boolean;
+
+  /**
    * Defines if the feature should be ON or OFF by default.
    *
    * @default false
@@ -63,6 +70,7 @@ interface FeatureSwitchProps {
 export function FeatureSwitch({
   children,
   description,
+  disabled = false,
   enabled,
   externalLink = false,
   onEdit,
@@ -98,6 +106,7 @@ export function FeatureSwitch({
             value={enabled}
             onChange={handleSwitch}
             ariaLabel={description}
+            disabled={disabled}
           />
           <AnimatePresence>
             {hasSaveIndicator && savedIndicator && (
