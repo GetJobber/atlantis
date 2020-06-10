@@ -8,6 +8,18 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.28.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.27.0...@jobber/components@1.28.0) (2020-06-10)
+
+
+### Features
+
+* **components:** Add disabled prop to feature switch ([#262](https://github.com/GetJobber/atlantis/issues/262)) ([8ff0501](https://github.com/GetJobber/atlantis/commit/8ff05015dd3a5c4a896eeef00e14666b248dec6e))
+* **components:** DescriptionList takes Elements. ([#277](https://github.com/GetJobber/atlantis/issues/277)) ([c0d137b](https://github.com/GetJobber/atlantis/commit/c0d137b0a10c1a4fbe577c537be27875dc11edf0))
+
+
+
+
+
 # [1.27.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.26.1...@jobber/components@1.27.0) (2020-06-02)
 
 
