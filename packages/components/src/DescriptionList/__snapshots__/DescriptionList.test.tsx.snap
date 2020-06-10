@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders an object as a list of key value pairs 1`] = `
+<dl
+  className="descriptionList"
+>
+  <div
+    className="termGroup"
+  >
+    <dd
+      className="base regular base blue"
+    >
+      Issued
+    </dd>
+    <dt
+      className="base regular base greyBlue"
+    >
+      2018-12-08
+    </dt>
+  </div>
+  <div
+    className="termGroup"
+  >
+    <dd
+      className="base regular base blue"
+    >
+      Due
+    </dd>
+    <dt
+      className="base regular base greyBlue"
+    >
+      2019-01-06
+    </dt>
+  </div>
+</dl>
+`;
+
+exports[`renders an object as a list of key value pairs with an element 1`] = `
+<dl
+  className="descriptionList"
+>
+  <div
+    className="termGroup"
+  >
+    <dd
+      className="base regular base blue"
+    >
+      Foo
+    </dd>
+    <dt
+      className="base regular base greyBlue"
+    >
+      Foo
+    </dt>
+  </div>
+  <div
+    className="termGroup"
+  >
+    <dd
+      className="base regular base blue"
+    >
+      Bar
+    </dd>
+    <dt
+      className="base regular base greyBlue"
+    >
+      Bar
+    </dt>
+  </div>
+</dl>
+`;
