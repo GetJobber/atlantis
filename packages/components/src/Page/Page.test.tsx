@@ -4,6 +4,15 @@ import renderer from "react-test-renderer";
 import { Page } from ".";
 import { SectionProps } from "../Menu";
 
+jest.mock("@jobber/hooks", () => {
+  return {
+    useResizeObserver: () => [
+      { current: undefined },
+      { width: 1000, height: 100 },
+    ],
+  };
+});
+
 afterEach(cleanup);
 
 it("renders a Page", () => {
@@ -64,6 +73,7 @@ describe("When actions are provided", () => {
         </Page>,
       )
       .toJSON();
+
     expect(tree).toMatchSnapshot();
   });
 
