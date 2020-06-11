@@ -18,6 +18,7 @@
     "build:ts": "tsc --project .",
     "build:cssTypes": "tcm src/icons",
     "build:colors": "node buildColors.js",
+    "build:foundation": "node buildFoundation.js",
     "clean": "rm -rf dist/* icons/* colors.js foundation.css tsconfig.tsbuildinfo",
     "prepare": "npm run clean; npm run build"
   },
@@ -26,12 +27,13 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.2.10",
+    "autoprefixer": "^9.5.1",
     "postcss": "^7.0.16",
+    "postcss-calc": "^7.0.2",
     "postcss-cli": "^6.1.2",
     "postcss-custom-properties": "^8.0.10",
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^6.6.0",
-    "typescript": "^3.8.3",
     "rollup": "^1.11.3",
     "rollup-plugin-commonjs": "^9.3.4",
     "rollup-plugin-multi-input": "^0.2.2",
@@ -39,7 +41,7 @@
     "rollup-plugin-postcss": "^2.0.3",
     "rollup-plugin-typescript": "^1.0.1",
     "rollup-plugin-typescript2": "^0.21.0",
-    "autoprefixer": "^9.5.1",
-    "typed-css-modules": "^0.3.6"
+    "typed-css-modules": "^0.3.6",
+    "typescript": "^3.8.3"
   }
 }
