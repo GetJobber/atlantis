@@ -9,6 +9,7 @@
 
 .menu {
   position: fixed;
+  right: 0;
   z-index: var(--elevation-menu);
   width: 100%;
   padding: var(--space-small);
@@ -33,7 +34,6 @@
 @media only screen and (min-width: rem(640px)), print {
   .menu {
     position: absolute;
-    right: 0;
     z-index: var(--elevation-menu);
     width: calc(var(--base-unit) * 12.5);
     max-height: 300px;
