@@ -147,6 +147,7 @@
 }
 
 .hasIconAndLabel {
+  width: auto;
   padding: 0 var(--space-base);
 }
 
