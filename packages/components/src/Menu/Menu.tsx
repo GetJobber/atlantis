@@ -54,7 +54,14 @@ export function Menu({ activator, items }: MenuProps) {
   }, [visible]);
 
   if (!activator) {
-    activator = <Button label="More Actions" icon="more" type="secondary" />;
+    activator = (
+      <Button
+        fullWidth={true}
+        label="More Actions"
+        icon="more"
+        type="secondary"
+      />
+    );
   }
 
   const menuClasses = classnames(

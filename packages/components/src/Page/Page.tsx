@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import classnames from "classnames";
+import { useResizeObserver } from "@jobber/hooks";
 import styles from "./Page.css";
 import { Heading } from "../Heading";
 import { Text } from "../Text";
@@ -62,25 +63,60 @@ export function Page({
   moreActionsMenu = [],
 }: PageProps) {
   const pageStyles = classnames(styles.page, styles[width]);
+  const [titleBarRef, { width: titleBarWidth }] = useResizeObserver<
+    HTMLDivElement
+  >();
+
+  const titleBarClasses = classnames(styles.titleBar, {
+    [styles.small]: titleBarWidth && titleBarWidth > 265,
+    [styles.medium]: titleBarWidth && titleBarWidth > 500,
+    [styles.large]: titleBarWidth && titleBarWidth > 750,
+  });
 
   const showMenu = moreActionsMenu.length > 0;
   const showActionGroup = showMenu || primaryAction;
 
+  if (primaryAction != undefined) {
+    primaryAction = Object.assign({ fullWidth: true }, primaryAction);
+  }
+
   if (secondaryAction != undefined) {
-    secondaryAction = Object.assign({ type: "secondary" }, secondaryAction);
+    secondaryAction = Object.assign(
+      { type: "secondary", fullWidth: true },
+      secondaryAction,
+    );
+  }
+
+  if (secondaryAction != undefined) {
+    secondaryAction = Object.assign(
+      { type: "secondary", fullWidth: true },
+      secondaryAction,
+    );
   }
 
   return (
     <div className={pageStyles}>
       <Content>
         <Content spacing="large">
-          <div className={styles.titleBar}>
+          <div className={titleBarClasses} ref={titleBarRef}>
             <Heading level={1}>{title}</Heading>
             {showActionGroup && (
               <div className={styles.actionGroup}>
-                {primaryAction && <Button {...primaryAction} />}
-                {secondaryAction && <Button {...secondaryAction} />}
-                {showMenu && <Menu items={moreActionsMenu}></Menu>}
+                {primaryAction && (
+                  <div className={styles.primaryAction}>
+                    <Button {...primaryAction} />
+                  </div>
+                )}
+                {secondaryAction && (
+                  <div className={styles.actionButton}>
+                    <Button {...secondaryAction} />
+                  </div>
+                )}
+                {showMenu && (
+                  <div className={styles.actionButton}>
+                    <Menu items={moreActionsMenu}></Menu>
+                  </div>
+                )}
               </div>
             )}
           </div>
