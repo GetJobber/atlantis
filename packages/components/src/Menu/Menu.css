@@ -44,17 +44,15 @@
     overflow: auto;
     background-color: var(--color-white);
   }
+  .above {
+    bottom: 100%;
+    margin-bottom: var(--space-smallest);
+  }
+  .below {
+    top: 100%;
+    margin-top: var(--space-smallest);
+  }
 }
-
-/* .above {
-  bottom: 100%;
-  margin-bottom: var(--space-smallest);
-}
-
-.below {
-  top: 100%;
-  margin-top: var(--space-smallest);
-} */
 
 .section {
   padding: var(--space-small) 0;
