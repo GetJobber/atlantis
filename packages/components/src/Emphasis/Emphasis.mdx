@@ -12,8 +12,9 @@ import { Text } from "../Text";
 
 <ComponentStatus stage="ready" responsive="yes" accessible="yes" />
 
-Use this component to emphasize a certain content of a Heading or Text
-component. Used to call attention to a text
+Use this component to emphasize certain content of a Heading or Text
+component. There are variations on Emphasis, each with their own use 
+case and meaning.
 
 ```ts
 import { Emphasis } from "@jobber/components/Emphasis";
@@ -25,15 +26,12 @@ import { Emphasis } from "@jobber/components/Emphasis";
   </Text>
 </Playground>
 
-## Props
+## Design & Usage Guidelines
 
-<Props of={Emphasis} />
+### Bold
 
----
-
-## Bold
-
-Used to call attention to a text
+Used to call attention to a piece of text. Bold should indicate
+that its contents have [strong importance, seriousness, or urgency.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/strong)
 
 <Playground>
   <Text>
@@ -42,23 +40,28 @@ Used to call attention to a text
   </Text>
 </Playground>
 
-## Italic
+### Italic
 
-Used to call attention to a text but it's less important than a bold
+Italic emphasis should be used when there is stress emphasis on a word (or words)
+which modifies the meaning of the sentence itself.
 
 <Playground>
-  <Text variation="subdued">
-    <Emphasis variation="italic">Job note linked to related invoice</Emphasis>
+  <Text>
+    Simon’s here to show <Emphasis variation="italic">you</Emphasis> how Jobber works.
   </Text>
 </Playground>
 
-## Highlight
+### Highlight
 
 Used to call attention to a specific value prop on a heading. Highlight should
-only be used on page titles and subtitle.
+only be used on page titles and subtitle, and is similar in meaning to Bold.
 
 <Playground>
   <Heading level={1}>
     Get paid <Emphasis variation="highlight">faster</Emphasis>
   </Heading>
 </Playground>
+
+## Props
+
+<Props of={Emphasis} />
