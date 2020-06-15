@@ -21,27 +21,23 @@ import { Heading } from "@jobber/components/Heading";
   <Heading level={2}>Subtitle</Heading>
 </Playground>
 
-## Props
+## Design & Usage Guidelines
 
-<Props of={Heading} />
-
----
-
-## Heading 1
+### Heading 1
 
 This should explain the main subject of the page. There should only be one on a
-page.
+page. 
 
 <Playground>
   <Heading level={1}>New client</Heading>
 </Playground>
 
-## Heading 2
+### Heading 2
 
 Used to categorize large groups of content. For example, there are two main
-categories when creating a new client. Client details and property details.
+categories when creating a new client: client details and property details.
 
-This heading can be skipped if there's no large groups that need breaking up.
+This heading can be skipped if there are no large groups that need breaking up.
 
 <Playground>
   <Heading level={2}>Client details</Heading>
@@ -50,9 +46,9 @@ This heading can be skipped if there's no large groups that need breaking up.
   ...
 </Playground>
 
-## Heading 3
+### Heading 3
 
-Used to group content and forms on a single topic
+Used to group content and forms on a single topic.
 
 <Playground>
   <Heading level={3}>Contact details</Heading>
@@ -63,10 +59,10 @@ Used to group content and forms on a single topic
   ...
 </Playground>
 
-## Heading 4
+### Heading 4
 
 Used to group contents after a [heading 3](#heading-3) or inside a card
-component
+component.
 
 <Playground>
   <Heading level={4}>Phone numbers</Heading>
@@ -77,10 +73,16 @@ component
   ...
 </Playground>
 
-## Heading 5
+### Heading 5
 
-Used to group contents after a [heading 4](#heading-4)
+Used to group contents after a [heading 4](#heading-4).
 
 <Playground>
   <Heading level={5}>Receives SMS</Heading>
 </Playground>
+
+---
+
+## Props
+
+<Props of={Heading} />
