@@ -11,7 +11,7 @@
     "icons/*"
   ],
   "scripts": {
-    "build": "npm run build:css && npm run build:css:icons && npm run build:colors && npm run build:cssTypes && npm run build:rollup",
+    "build": "npm run build:css && npm run build:css:icons && npm run build:colors && npm run build:cssTypes && npm run build:rollup && npm run build:foundation",
     "build:rollup": "rollup --config",
     "build:css": "postcss src/foundation.css --output foundation.css --use postcss-import",
     "build:css:icons": "postcss src/icons/*.css --dir icons/ --use postcss-import",
