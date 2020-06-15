@@ -3,16 +3,13 @@
 const fs = require("fs");
 const postcss = require("postcss");
 const postcssCustomProperties = require("postcss-custom-properties");
-const calc = require("postcss-calc");
 
-const foundation = fs.readFileSync("foundation.css");
+const foundation = fs.readFileSync("foundation.css", "utf8");
 
 postcss([
   postcssCustomProperties({
-    preserve: false,
     exportTo: ["foundation.js"],
   }),
-  calc(),
 ])
   .process(foundation, { from: undefined })
   .then();
