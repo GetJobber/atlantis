@@ -30,7 +30,6 @@
     "@types/classnames": "^2.2.10",
     "autoprefixer": "^9.5.1",
     "postcss": "^7.0.16",
-    "postcss-calc": "^7.0.2",
     "postcss-cli": "^6.1.2",
     "postcss-custom-properties": "^8.0.10",
     "postcss-import": "^12.0.1",
