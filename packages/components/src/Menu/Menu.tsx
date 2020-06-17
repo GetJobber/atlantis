@@ -7,6 +7,7 @@ import React, {
 } from "react";
 import uuid from "uuid";
 import classnames from "classnames";
+import { AnimatePresence, motion } from "framer-motion";
 import styles from "./Menu.css";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
@@ -71,37 +72,47 @@ export function Menu({ activator, items }: MenuProps) {
   );
 
   return (
-    <div className={styles.wrapper} ref={wrapperRef}>
-      {React.cloneElement(activator, {
-        onClick: toggle(activator.props.onClick),
-        id: buttonID,
-        ariaControls: menuID,
-        ariaExpanded: visible,
-        ariaHaspopup: true,
-      })}
-      {visible && (
-        <>
-          <div className={styles.overlay} onClick={toggle()} />
-          <div
-            className={menuClasses}
-            role="menu"
-            aria-labelledby={buttonID}
-            id={menuID}
-            onClick={hide}
-          >
-            {items.map((item, key: number) => (
-              <div key={key} className={styles.section}>
-                {item.header && <SectionHeader text={item.header} />}
+    <AnimatePresence>
+      <div className={styles.wrapper} ref={wrapperRef}>
+        {React.cloneElement(activator, {
+          onClick: toggle(activator.props.onClick),
+          id: buttonID,
+          ariaControls: menuID,
+          ariaExpanded: visible,
+          ariaHaspopup: true,
+        })}
+        {visible && (
+          <>
+            <div className={styles.overlay} onClick={toggle()} />
+            <motion.div
+              className={menuClasses}
+              role="menu"
+              aria-labelledby={buttonID}
+              id={menuID}
+              onClick={hide}
+              initial="startOrStop"
+              animate="done"
+              exit="startOrStop"
+              transition={{
+                type: "spring",
+                damping: 20,
+                stiffness: 300,
+              }}
+            >
+              {items.map((item, key: number) => (
+                <div key={key} className={styles.section}>
+                  {item.header && <SectionHeader text={item.header} />}
 
-                {item.actions.map(action => (
-                  <Action key={action.label} {...action} />
-                ))}
-              </div>
-            ))}
-          </div>
-        </>
-      )}
-    </div>
+                  {item.actions.map(action => (
+                    <Action key={action.label} {...action} />
+                  ))}
+                </div>
+              ))}
+            </motion.div>
+          </>
+        )}
+      </div>
+    </AnimatePresence>
   );
 
   function toggle(callbackPassthrough?: (event?: MouseEvent) => void) {
