@@ -17,7 +17,7 @@
   background-color: var(--color-white);
 }
 
-@media only screen and (max-width: rem(639px)), print {
+@media only screen and (max-width: 639px), print {
   .menu {
     bottom: 0;
     left: 0;
@@ -25,13 +25,16 @@
     padding-bottom: env(safe-area-inset-bottom);
     border-radius: var(--radius-base) var(--radius-base) 0 0;
     overflow-y: scroll;
-    transform: translateY(100%);
     transition: transform 300ms ease;
     -webkit-overflow-scrolling: touch;
   }
+
+  .menu:last-child {
+    padding-bottom: var(--space-small);
+  }
 }
 
-@media only screen and (min-width: rem(640px)), print {
+@media only screen and (min-width: 640px), print {
   .menu {
     position: absolute;
     z-index: var(--elevation-menu);
@@ -44,10 +47,12 @@
     overflow: auto;
     background-color: var(--color-white);
   }
+
   .above {
     bottom: 100%;
     margin-bottom: var(--space-smallest);
   }
+
   .below {
     top: 100%;
     margin-top: var(--space-smallest);
@@ -103,10 +108,28 @@
   z-index: var(--elevation-menu);
 }
 
-@media only screen and (max-width: rem(639px)), print {
+@media only screen and (max-width: 639px), print {
   .overlay {
-    background-color: rgba(var(--color-greyBlue), 0.8);
-    transition: height 0s 200ms, background-color 200ms linear;
-    will-change: height, background-color;
+    background-color: var(--color-greyBlue);
+    opacity: 0.8;
+    animation: 0.2s ease-in 1 forwards fadeIn; /* I can't get this to work */
+    will-change: opacity;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.8;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.8;
   }
 }
