@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.30.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.29.4...@jobber/components@1.30.0) (2020-06-18)
+
+
+### Features
+
+* **components:** menu CSS updates for mobile responsive behaviour ([#282](https://github.com/GetJobber/atlantis/issues/282)) ([1e07fe1](https://github.com/GetJobber/atlantis/commit/1e07fe1a80d527064d1230e648f7101c2ae79359))
+
+
+
+
+
 ## [1.29.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.29.3...@jobber/components@1.29.4) (2020-06-16)
 
 **Note:** Version bump only for package @jobber/components
