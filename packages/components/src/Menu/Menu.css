@@ -34,14 +34,11 @@
   .menu {
     position: absolute;
     left: auto;
-    z-index: var(--elevation-menu);
     width: calc(var(--base-unit) * 12.5);
     box-shadow: var(--shadow-base);
     padding: var(--space-small);
-    border: var(--border-base) solid var(--color-grey--lighter);
     border-radius: var(--radius-base);
     overflow: auto;
-    background-color: var(--color-white);
   }
 
   .above {
