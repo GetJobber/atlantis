@@ -36,7 +36,6 @@
     left: auto;
     z-index: var(--elevation-menu);
     width: calc(var(--base-unit) * 12.5);
-    max-height: 300px;
     box-shadow: var(--shadow-base);
     padding: var(--space-small);
     border: var(--border-base) solid var(--color-grey--lighter);
