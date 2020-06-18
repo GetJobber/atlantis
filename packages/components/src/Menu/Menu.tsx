@@ -16,13 +16,12 @@ import { Icon, IconNames } from "../Icon";
 const variation = {
   overlayStartStop: { opacity: 0 },
   startOrStop: (position: string) => {
-    const variant = { opacity: 0 };
     let y = 10;
 
     if (position === "below") y *= -1;
     if (window.innerWidth < 640) y = 150;
 
-    return { ...variant, y };
+    return { opacity: 0, y };
   },
   done: { opacity: 1, y: 0 },
 };
