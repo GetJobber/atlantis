@@ -103,8 +103,12 @@
   bottom: 0;
   left: 0;
   z-index: var(--elevation-menu);
-  background-color: var(--color-greyBlue);
-  opacity: 0.8;
+  background-color: rgba(
+    101,
+    120,
+    132,
+    0.8
+  ); /* until we figure out rgba + color vars... */
 }
 
 @media only screen and (min-width: 640px), print {

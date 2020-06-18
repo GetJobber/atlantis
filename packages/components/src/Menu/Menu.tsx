@@ -14,7 +14,7 @@ import { Typography } from "../Typography";
 import { Icon, IconNames } from "../Icon";
 
 const variation = {
-  startOrStop: () => ({ opacity: 0, y: window.innerWidth > 640 ? 10 : 50 }),
+  startOrStop: () => ({ opacity: 0, y: window.innerWidth > 640 ? -10 : 150 }),
   done: { opacity: 1, y: 0 },
 };
 
@@ -88,7 +88,18 @@ export function Menu({ activator, items }: MenuProps) {
       <AnimatePresence>
         {visible && (
           <>
-            <div className={styles.overlay} onClick={toggle()} />
+            <motion.div
+              className={styles.overlay}
+              onClick={toggle()}
+              variants={variation}
+              initial="startOrStop"
+              animate="done"
+              exit="startOrStop"
+              transition={{
+                type: "tween",
+                duration: 0.15,
+              }}
+            />
             <motion.div
               className={menuClasses}
               role="menu"
@@ -101,7 +112,7 @@ export function Menu({ activator, items }: MenuProps) {
               exit="startOrStop"
               transition={{
                 type: "tween",
-                duration: 0.2,
+                duration: 0.25,
               }}
             >
               {items.map((item, key: number) => (
