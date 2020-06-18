@@ -24,9 +24,16 @@
   -webkit-overflow-scrolling: touch;
 }
 
+@media screen and (max-width: 639px), print {
+  .menu:last-child {
+    padding-bottom: var(--space-small);
+  }
+}
+
 @media only screen and (min-width: 640px), print {
   .menu {
     position: absolute;
+    left: auto;
     z-index: var(--elevation-menu);
     width: calc(var(--base-unit) * 12.5);
     max-height: 300px;
