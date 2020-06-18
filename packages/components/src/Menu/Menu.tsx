@@ -14,7 +14,16 @@ import { Typography } from "../Typography";
 import { Icon, IconNames } from "../Icon";
 
 const variation = {
-  startOrStop: () => ({ opacity: 0, y: window.innerWidth > 640 ? -10 : 150 }),
+  overlayStartStop: { opacity: 0 },
+  startOrStop: (position: string) => {
+    const variant = { opacity: 0 };
+    let y = 10;
+
+    if (position === "below") y *= -1;
+    if (window.innerWidth < 640) y = 150;
+
+    return { ...variant, y };
+  },
   done: { opacity: 1, y: 0 },
 };
 
@@ -92,9 +101,9 @@ export function Menu({ activator, items }: MenuProps) {
               className={styles.overlay}
               onClick={toggle()}
               variants={variation}
-              initial="startOrStop"
+              initial="overlayStartStop"
               animate="done"
-              exit="startOrStop"
+              exit="overlayStartStop"
               transition={{
                 type: "tween",
                 duration: 0.15,
@@ -110,6 +119,7 @@ export function Menu({ activator, items }: MenuProps) {
               initial="startOrStop"
               animate="done"
               exit="startOrStop"
+              custom={position}
               transition={{
                 type: "tween",
                 duration: 0.25,
