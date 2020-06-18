@@ -13,6 +13,11 @@ import { Button } from "../Button";
 import { Typography } from "../Typography";
 import { Icon, IconNames } from "../Icon";
 
+const variation = {
+  startOrStop: () => ({ opacity: 0, y: window.innerWidth > 640 ? 10 : 50 }),
+  done: { opacity: 1, y: 0 },
+};
+
 interface MenuProps {
   /**
    * Custom menu activator. If this is not provided a default [… More] will be used.
@@ -72,15 +77,15 @@ export function Menu({ activator, items }: MenuProps) {
   );
 
   return (
-    <AnimatePresence>
-      <div className={styles.wrapper} ref={wrapperRef}>
-        {React.cloneElement(activator, {
-          onClick: toggle(activator.props.onClick),
-          id: buttonID,
-          ariaControls: menuID,
-          ariaExpanded: visible,
-          ariaHaspopup: true,
-        })}
+    <div className={styles.wrapper} ref={wrapperRef}>
+      {React.cloneElement(activator, {
+        onClick: toggle(activator.props.onClick),
+        id: buttonID,
+        ariaControls: menuID,
+        ariaExpanded: visible,
+        ariaHaspopup: true,
+      })}
+      <AnimatePresence>
         {visible && (
           <>
             <div className={styles.overlay} onClick={toggle()} />
@@ -90,13 +95,13 @@ export function Menu({ activator, items }: MenuProps) {
               aria-labelledby={buttonID}
               id={menuID}
               onClick={hide}
+              variants={variation}
               initial="startOrStop"
               animate="done"
               exit="startOrStop"
               transition={{
-                type: "spring",
-                damping: 20,
-                stiffness: 300,
+                type: "tween",
+                duration: 0.2,
               }}
             >
               {items.map((item, key: number) => (
@@ -111,8 +116,8 @@ export function Menu({ activator, items }: MenuProps) {
             </motion.div>
           </>
         )}
-      </div>
-    </AnimatePresence>
+      </AnimatePresence>
+    </div>
   );
 
   function toggle(callbackPassthrough?: (event?: MouseEvent) => void) {

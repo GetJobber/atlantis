@@ -7,4 +7,3 @@ export const sectionHeader: string;
 export const action: string;
 export const icon: string;
 export const overlay: string;
-export const fadeIn: string;

@@ -10,28 +10,18 @@
 .menu {
   position: fixed;
   right: 0;
+  bottom: 0;
+  left: 0;
   z-index: var(--elevation-menu);
   width: 100%;
+  max-height: 72vh;
   padding: var(--space-small);
+  padding-bottom: env(safe-area-inset-bottom);
   border: var(--border-base) solid var(--color-grey--lighter);
+  border-radius: var(--radius-base) var(--radius-base) 0 0;
+  overflow-y: scroll;
   background-color: var(--color-white);
-}
-
-@media only screen and (max-width: 639px), print {
-  .menu {
-    bottom: 0;
-    left: 0;
-    max-height: 72vh;
-    padding-bottom: env(safe-area-inset-bottom);
-    border-radius: var(--radius-base) var(--radius-base) 0 0;
-    overflow-y: scroll;
-    transition: transform 300ms ease;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .menu:last-child {
-    padding-bottom: var(--space-small);
-  }
+  -webkit-overflow-scrolling: touch;
 }
 
 @media only screen and (min-width: 640px), print {
@@ -55,6 +45,7 @@
 
   .below {
     top: 100%;
+    bottom: auto;
     margin-top: var(--space-smallest);
   }
 }
@@ -85,7 +76,6 @@
   border-radius: var(--radius-base);
   background-color: transparent;
   cursor: pointer;
-  transition: all var(--timing-base);
   align-items: center;
 }
 
@@ -106,30 +96,12 @@
   bottom: 0;
   left: 0;
   z-index: var(--elevation-menu);
+  background-color: var(--color-greyBlue);
+  opacity: 0.8;
 }
 
-@media only screen and (max-width: 639px), print {
+@media only screen and (min-width: 640px), print {
   .overlay {
-    background-color: var(--color-greyBlue);
-    opacity: 0.8;
-    animation: 0.2s ease-in 1 forwards fadeIn; /* I can't get this to work */
-    will-change: opacity;
-  }
-}
-
-@-webkit-keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 0.8;
-  }
-}
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 0.8;
+    background-color: transparent;
   }
 }
