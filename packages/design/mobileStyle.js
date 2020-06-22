@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const fs = require("fs");
-const customPropertiesObject = require("./foundation.js");
+// eslint-disable-next-line import/no-internal-modules
+const customPropertiesObject = require("./src/mobile-style/foundation.js");
 
 const customProperties = customPropertiesObject.customProperties;
 const allKeys = Object.keys(customProperties);
@@ -13,7 +14,9 @@ const resolvedCssVars = allKeys.reduce((acc, key) => {
 const jsonContent =
   "export const JobberStyle = " + JSON.stringify(resolvedCssVars, undefined, 2);
 
-fs.writeFile("./foundation.js", jsonContent, "utf8", function(err) {
+fs.writeFile("./src/mobile-style/foundation.ts", jsonContent, "utf8", function(
+  err,
+) {
   if (err) {
     console.log("An error occured while writing JSON Object to File.");
     return console.log(err);

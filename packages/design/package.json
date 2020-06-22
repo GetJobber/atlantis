@@ -12,15 +12,14 @@
     "icons/*"
   ],
   "scripts": {
-    "build": "npm run build:css && npm run build:css:icons && npm run build:colors && npm run build:cssTypes && npm run build:rollup && npm run build:foundation",
+    "build": "npm run build:css && npm run build:css:icons && npm run build:colors && npm run build:cssTypes && npm run build:foundation && npm run build:rollup",
     "build:rollup": "rollup --config",
     "build:css": "postcss src/foundation.css --output foundation.css --use postcss-import",
     "build:css:icons": "postcss src/icons/*.css --dir icons/ --use postcss-import",
     "build:ts": "tsc --project .",
     "build:cssTypes": "tcm src/icons",
     "build:colors": "node buildColors.js",
-    "build:foundation": "node buildFoundation.js && node jobberStyle.js && npm run build:foundationTypes",
-    "build:foundationTypes": "tsc --declaration --emitDeclarationOnly --allowJs foundation.js --outDir .",
+    "build:foundation": "node buildFoundation.js && node mobileStyle.js && rm src/mobile-style/foundation.js",
     "clean": "rm -rf dist/* icons/* colors.js foundation.css tsconfig.tsbuildinfo",
     "prepare": "npm run clean; npm run build"
   },
