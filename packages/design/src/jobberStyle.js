@@ -11,7 +11,7 @@ const resolvedCssVars = allKeys.reduce((acc, key) => {
 }, {});
 
 const jsonContent =
-  "module.exports = " + JSON.stringify(resolvedCssVars, undefined, 2);
+  "export const JobberStyle = " + JSON.stringify(resolvedCssVars, undefined, 2);
 
 fs.writeFile("src/foundation.js", jsonContent, "utf8", function(err) {
   if (err) {
