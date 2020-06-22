@@ -8,7 +8,7 @@ const foundation = fs.readFileSync("foundation.css");
 
 postcss([
   postcssCustomProperties({
-    exportTo: ["src/mobile-style/foundation.js"],
+    exportTo: ["./foundation.js"],
   }),
 ])
   .process(foundation, { from: undefined })

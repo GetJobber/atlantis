@@ -7,5 +7,3 @@ export {
   sizesClassMap,
   colorsClassMap,
 } from "./icons/getIcon";
-
-export { JobberStyle } from "./mobile-style/foundation";
