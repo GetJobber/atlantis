@@ -14,7 +14,7 @@
   "scripts": {
     "build": "npm run build:css && npm run build:css:icons && npm run build:colors && npm run build:cssTypes && npm run build:rollup && npm run build:foundation",
     "build:rollup": "rollup --config",
-    "build:css": "postcss foundation.css --output foundation.css --use postcss-import",
+    "build:css": "postcss src/foundation.css --output foundation.css --use postcss-import",
     "build:css:icons": "postcss src/icons/*.css --dir icons/ --use postcss-import",
     "build:ts": "tsc --project .",
     "build:cssTypes": "tcm src/icons",
@@ -44,5 +44,6 @@
     "rollup-plugin-typescript2": "^0.21.0",
     "typed-css-modules": "^0.3.6",
     "typescript": "^3.8.3"
-  }
+  },
+  "gitHead": "3a96fb4334f4161c97a6cc3793c7c32973476744"
 }
