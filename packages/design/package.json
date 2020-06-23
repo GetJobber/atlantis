@@ -19,8 +19,9 @@
     "build:ts": "tsc --project .",
     "build:cssTypes": "tcm src/icons",
     "build:colors": "node buildColors.js",
+    "build:test": "node jobberStyle.js",
     "build:foundation": "node buildFoundation.js && node jobberStyle.js && npm run build:foundationTypes",
-    "build:foundationTypes": "tsc --declaration --emitDeclarationOnly --allowJs foundation.js --outDir .",
+    "build:foundationTypes": "tsc --declaration --allowJs src/foundation.js --outDir .",
     "clean": "rm -rf dist/* icons/* colors.js foundation.css tsconfig.tsbuildinfo",
     "prepare": "npm run clean; npm run build"
   },
