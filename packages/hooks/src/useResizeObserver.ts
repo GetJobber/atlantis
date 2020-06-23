@@ -1,5 +1,7 @@
 import { useMemo, useState } from "react";
-import useResizeObserverPackage from "use-resize-observer";
+// Importing the polyfilled version of ResizeObserver
+// eslint-disable-next-line import/no-internal-modules
+import useResizeObserverPackage from "use-resize-observer/polyfilled";
 import { throttle } from "lodash";
 
 interface ObservedSize {
