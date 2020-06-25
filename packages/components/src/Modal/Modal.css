@@ -2,11 +2,11 @@
   --modal--width: calc(var(--base-unit) * 37.5);
   --modal--padding: var(--space-base);
   --modal--border-color: var(--color-grey--lighter);
-}
 
-@media (--medium-screens) {
-  :root {
-    --modal--padding: var(--space-base) var(--space-large);
+  @media (--medium-screens) {
+    :root {
+      --modal--padding: var(--space-base) var(--space-large);
+    }
   }
 }
 
