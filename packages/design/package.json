@@ -15,7 +15,7 @@
     "prepare": "npm run clean; npm run build"
   },
   "devDependencies": {
-    "postcss": "^7.0.16",
+    "postcss": "^7.0.32",
     "postcss-cli": "^6.1.2",
     "postcss-custom-properties": "^8.0.10",
     "postcss-import": "^12.0.1",
