@@ -110,7 +110,7 @@ function getCivilTime(date: Date) {
     testMinute,
     testSecond,
   );
-  civilTestDate.withZone("UTC");
+  civilTestDate.withZone("America/Edmonton");
 
   return civilTestDate;
 }
