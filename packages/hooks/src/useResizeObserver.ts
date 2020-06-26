@@ -1,47 +1,24 @@
-import {
-  MutableRefObject,
-  useCallback,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
-import ResizeObserver from "resize-observer-polyfill";
+import { useMemo, useState } from "react";
+// Importing the polyfilled version of ResizeObserver
+// eslint-disable-next-line import/no-internal-modules
+import useResizeObserverPackage from "use-resize-observer/polyfilled";
+import { throttle } from "lodash";
 
-export function useResizeObserver<T extends Element>() {
-  const [entry, setEntry] = useState<ResizeObserverEntry>();
-  const node = useRef() as MutableRefObject<T>;
-  const observer = useRef<ResizeObserver>();
-  const disconnect = useCallback(() => {
-    const { current } = observer;
-    current && current.disconnect();
-  }, []);
+interface ObservedSize {
+  width: number | undefined;
+  height: number | undefined;
+}
 
-  const observe = useCallback(() => {
-    observer.current = new ResizeObserver(([entrance]) => setEntry(entrance));
-    node.current && observer.current.observe(node.current);
-  }, [node]);
+const wait = 100;
 
-  useLayoutEffect(() => {
-    observe();
-    return () => disconnect();
-  }, [disconnect, observe]);
-
-  const getContentRect = useCallback(() => {
-    let width = 0;
-    let height = 0;
-    if (entry && entry.contentRect) {
-      const { contentRect } = entry;
-      width = contentRect && Math.round(contentRect.width);
-      height = contentRect && Math.round(contentRect.height);
-    }
-
-    const result = {
-      width,
-      height,
-    };
-
-    return result;
-  }, [entry]);
-
-  return [node, getContentRect()] as const;
+export function useResizeObserver<T extends HTMLElement>() {
+  const [size, setSize] = useState<ObservedSize>({
+    width: undefined,
+    height: undefined,
+  });
+  const onResize = useMemo(() => throttle(setSize, wait), [wait]);
+  const { ref } = useResizeObserverPackage<T>({
+    onResize,
+  });
+  return [ref, size] as const;
 }

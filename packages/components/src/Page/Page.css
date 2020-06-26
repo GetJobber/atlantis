@@ -16,12 +16,57 @@
   max-width: calc(var(--base-unit) * 64);
 }
 
-.titleBar {
+.titleBar.large {
   display: flex;
   justify-content: space-between;
 }
 
-.actionGroup > :not(:last-child) {
+.actionGroup {
+  margin-top: var(--space-base);
+}
+
+.titleBar.small .actionGroup {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.titleBar.medium .actionGroup {
+  justify-content: flex-start;
+}
+
+.titleBar.large .actionGroup {
+  margin-top: 0;
+}
+
+.primaryAction {
+  flex: 0 0 100%;
+  margin-bottom: var(--space-small);
+}
+
+.actionButton {
+  margin-top: var(--space-small);
+  flex: 1;
+}
+
+.actionButton + .actionButton {
+  margin-left: var(--space-small);
+}
+
+.actionButton > div {
+  width: 100%;
+}
+
+.titleBar.small .actionButton {
+  margin-top: 0;
+}
+
+.titleBar.medium .primaryAction,
+.titleBar.medium .actionButton {
   margin: 0;
-  margin-right: var(--space-small);
+  flex: 0 auto;
+}
+
+.titleBar.medium .actionButton {
+  margin-left: var(--space-small);
 }

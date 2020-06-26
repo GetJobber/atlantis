@@ -8,6 +8,170 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.30.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.30.0...@jobber/components@1.30.1) (2020-06-23)
+
+
+### Bug Fixes
+
+* **hooks:** Uses the polyfilled version of resizeObserver ([#293](https://github.com/GetJobber/atlantis/issues/293)) ([2b3b770](https://github.com/GetJobber/atlantis/commit/2b3b77038168049714cf4d8946deff4b1328bf76))
+
+
+
+
+
+# [1.30.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.29.4...@jobber/components@1.30.0) (2020-06-18)
+
+
+### Features
+
+* **components:** menu CSS updates for mobile responsive behaviour ([#282](https://github.com/GetJobber/atlantis/issues/282)) ([1e07fe1](https://github.com/GetJobber/atlantis/commit/1e07fe1a80d527064d1230e648f7101c2ae79359))
+
+
+
+
+
+## [1.29.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.29.3...@jobber/components@1.29.4) (2020-06-16)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [1.29.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.29.2...@jobber/components@1.29.3) (2020-06-15)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [1.29.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.29.1...@jobber/components@1.29.2) (2020-06-15)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [1.29.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.29.0...@jobber/components@1.29.1) (2020-06-12)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [1.29.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.28.0...@jobber/components@1.29.0) (2020-06-10)
+
+
+### Features
+
+* **hooks:** Throttle useResizeObserver ([#279](https://github.com/GetJobber/atlantis/issues/279)) ([be475bf](https://github.com/GetJobber/atlantis/commit/be475bff5556424575a40ea17d2c5604c1a4e8bf))
+
+
+
+
+
+# [1.28.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.27.0...@jobber/components@1.28.0) (2020-06-10)
+
+
+### Features
+
+* **components:** Add disabled prop to feature switch ([#262](https://github.com/GetJobber/atlantis/issues/262)) ([8ff0501](https://github.com/GetJobber/atlantis/commit/8ff05015dd3a5c4a896eeef00e14666b248dec6e))
+* **components:** DescriptionList takes Elements. ([#277](https://github.com/GetJobber/atlantis/issues/277)) ([c0d137b](https://github.com/GetJobber/atlantis/commit/c0d137b0a10c1a4fbe577c537be27875dc11edf0))
+
+
+
+
+
+# [1.27.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.26.1...@jobber/components@1.27.0) (2020-06-02)
+
+
+### Features
+
+* **components:** Adjust table styling ([#265](https://github.com/GetJobber/atlantis/issues/265)) ([f1d05dc](https://github.com/GetJobber/atlantis/commit/f1d05dc41a0b8961d7ca6dd9d5a5ba13634461a3))
+
+
+
+
+
+## [1.26.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.26.0...@jobber/components@1.26.1) (2020-05-28)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [1.26.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.25.1...@jobber/components@1.26.0) (2020-05-28)
+
+
+### Features
+
+* **components:** Button as Icon only ([#269](https://github.com/GetJobber/atlantis/issues/269)) ([ebf90a2](https://github.com/GetJobber/atlantis/commit/ebf90a209f8077e92cc533ae449f02d1389c3547))
+
+
+
+
+
+## [1.25.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.25.0...@jobber/components@1.25.1) (2020-05-27)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [1.25.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.24.2...@jobber/components@1.25.0) (2020-05-27)
+
+
+### Features
+
+* Export AvatarProps from avatar ([#267](https://github.com/GetJobber/atlantis/issues/267)) ([94f0ab2](https://github.com/GetJobber/atlantis/commit/94f0ab23b30f29c7c5039bb8aa08e6648453d502))
+
+
+
+
+
+## [1.24.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.24.1...@jobber/components@1.24.2) (2020-05-27)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [1.24.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.24.0...@jobber/components@1.24.1) (2020-05-26)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [1.24.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.23.0...@jobber/components@1.24.0) (2020-05-22)
+
+
+### Features
+
+* **components:** Add routing Link to Button ([#259](https://github.com/GetJobber/atlantis/issues/259)) ([606e099](https://github.com/GetJobber/atlantis/commit/606e09920bac52108090f134bd9884b92f311c63))
+
+
+
+
+
+# [1.23.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.22.0...@jobber/components@1.23.0) (2020-05-21)
+
+
+### Features
+
+* **components:** update icons ([#257](https://github.com/GetJobber/atlantis/issues/257)) ([a1e1822](https://github.com/GetJobber/atlantis/commit/a1e1822913c1830ade9e1e21c8a7d52eb42f5606))
+
+
+
+
+
 # [1.22.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.21.1...@jobber/components@1.22.0) (2020-05-13)
 
 

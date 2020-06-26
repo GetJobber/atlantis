@@ -7,10 +7,24 @@ import React, {
 } from "react";
 import uuid from "uuid";
 import classnames from "classnames";
+import { AnimatePresence, motion } from "framer-motion";
 import styles from "./Menu.css";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
 import { Icon, IconNames } from "../Icon";
+
+const variation = {
+  overlayStartStop: { opacity: 0 },
+  startOrStop: (position: string) => {
+    let y = 10;
+
+    if (position === "below") y *= -1;
+    if (window.innerWidth < 640) y = 150;
+
+    return { opacity: 0, y };
+  },
+  done: { opacity: 1, y: 0 },
+};
 
 interface MenuProps {
   /**
@@ -54,7 +68,14 @@ export function Menu({ activator, items }: MenuProps) {
   }, [visible]);
 
   if (!activator) {
-    activator = <Button label="More Actions" icon="more" type="secondary" />;
+    activator = (
+      <Button
+        fullWidth={true}
+        label="More Actions"
+        icon="more"
+        type="secondary"
+      />
+    );
   }
 
   const menuClasses = classnames(
@@ -72,28 +93,50 @@ export function Menu({ activator, items }: MenuProps) {
         ariaExpanded: visible,
         ariaHaspopup: true,
       })}
-      {visible && (
-        <>
-          <div className={styles.overlay} onClick={toggle()} />
-          <div
-            className={menuClasses}
-            role="menu"
-            aria-labelledby={buttonID}
-            id={menuID}
-            onClick={hide}
-          >
-            {items.map((item, key: number) => (
-              <div key={key} className={styles.section}>
-                {item.header && <SectionHeader text={item.header} />}
+      <AnimatePresence>
+        {visible && (
+          <>
+            <motion.div
+              className={styles.overlay}
+              onClick={toggle()}
+              variants={variation}
+              initial="overlayStartStop"
+              animate="done"
+              exit="overlayStartStop"
+              transition={{
+                type: "tween",
+                duration: 0.15,
+              }}
+            />
+            <motion.div
+              className={menuClasses}
+              role="menu"
+              aria-labelledby={buttonID}
+              id={menuID}
+              onClick={hide}
+              variants={variation}
+              initial="startOrStop"
+              animate="done"
+              exit="startOrStop"
+              custom={position}
+              transition={{
+                type: "tween",
+                duration: 0.25,
+              }}
+            >
+              {items.map((item, key: number) => (
+                <div key={key} className={styles.section}>
+                  {item.header && <SectionHeader text={item.header} />}
 
-                {item.actions.map(action => (
-                  <Action key={action.label} {...action} />
-                ))}
-              </div>
-            ))}
-          </div>
-        </>
-      )}
+                  {item.actions.map(action => (
+                    <Action key={action.label} {...action} />
+                  ))}
+                </div>
+              ))}
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   );
 
@@ -129,7 +172,7 @@ function SectionHeader({ text }: SectionHeaderProps) {
   );
 }
 
-interface ActionProps {
+export interface ActionProps {
   /**
    * Action label
    */

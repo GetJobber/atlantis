@@ -45,7 +45,6 @@ export const moveVisits: string;
 export const payment: string;
 export const pdf: string;
 export const quickbooks: string;
-export const quoteCopy: string;
 export const quote: string;
 export const redo: string;
 export const sendInvoice: string;

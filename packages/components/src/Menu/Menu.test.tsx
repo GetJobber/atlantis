@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import { Menu } from ".";
 import { Button } from "../Button";
 
@@ -58,7 +58,7 @@ it("renders a Menu with custom activator", () => {
   expect(tree).toMatchSnapshot();
 });
 
-test("it should open and close the menu", () => {
+test("it should open and close the menu", async () => {
   const header = "Mark as...";
   const actionLabel = "Awaiting Response";
   const clickHandler = jest.fn();
@@ -76,7 +76,10 @@ test("it should open and close the menu", () => {
 
   fireEvent.click(getByRole("menuitem"));
   expect(clickHandler).toHaveBeenCalledTimes(1);
-  expect(queryAllByText(actionLabel).length).toBe(0);
+
+  await waitFor(() => {
+    expect(queryAllByText(actionLabel).length).toBe(0);
+  });
 });
 
 test("it should passthrough an activator's click action", () => {
