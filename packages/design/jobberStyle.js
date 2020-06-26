@@ -4,12 +4,8 @@ const fs = require("fs");
 const customPropertiesObject = require("./foundation.js");
 
 const customProperties = customPropertiesObject.customProperties;
-const allKeys = Object.keys(customProperties);
-const resolvedCssVars = allKeys.reduce((acc, key) => {
-  const newKey = key.replace("--", "");
-  acc[newKey] = jobberStyle(key);
-  return acc;
-}, {});
+
+const resolvedCssVars = getResolvedCSSVars(customProperties);
 
 const jsonContent =
   "export const JobberStyle = " + JSON.stringify(resolvedCssVars, undefined, 2);
@@ -22,18 +18,25 @@ fs.writeFile("./foundation.js", jsonContent, "utf8", function(err) {
   console.log("JSON file has been saved.");
 });
 
+function regexExpressions() {
+  return {
+    cssVars: /var\((.*)\)/,
+    calculations: /calc\((.*)\)/,
+    removeAllNonNumerals: /[^0-9.+\-/*]/gi,
+    extractAllVarGroups: /var\(.*?\)/g,
+  };
+}
+
 function jobberStyle(styling) {
-  const varRegExp = /var\((.*)\)/;
-  const calcRegExp = /calc\((.*)\)/;
-  const removeAllNonNumerals = /[^0-9.+\-/*]/gi;
   const styleValue = customProperties[styling];
-  const varRegexResult = varRegExp.exec(styleValue);
-  const calcRegexResult = calcRegExp.exec(styleValue);
+  const varRegexResult = regexExpressions().cssVars.exec(styleValue);
+  const calcRegexResult = regexExpressions().calculations.exec(styleValue);
   if (calcRegexResult) {
     const finalExpression = handleExpressionsInCalc(calcRegexResult);
     // eslint-disable-next-line no-new-func
     const calculatedValue = new Function(
-      "return " + finalExpression.replace(removeAllNonNumerals, ""),
+      "return " +
+        finalExpression.replace(regexExpressions().removeAllNonNumerals, ""),
     )();
     return isSpacingValue(calculatedValue)
       ? parseFloat(calculatedValue)
@@ -46,14 +49,12 @@ function jobberStyle(styling) {
 }
 
 function handleExpressionsInCalc(calcRegexResult) {
-  const varRegExp = /var\((.*)\)/;
-  const extractAllVarGroups = /var\(.*?\)/g;
   const calcExtract = calcRegexResult[1];
-  const varGroups = calcExtract.match(extractAllVarGroups);
+  const varGroups = calcExtract.match(regexExpressions().extractAllVarGroups);
   let finalExpression = calcExtract;
   varGroups &&
     varGroups.forEach(group => {
-      const cssVariableRegexResult = varRegExp.exec(group);
+      const cssVariableRegexResult = regexExpressions().cssVars.exec(group);
       if (cssVariableRegexResult) {
         finalExpression = resolveCssVarsInExpression({
           group,
@@ -78,4 +79,13 @@ function resolveCssVarsInExpression({
 
 function isSpacingValue(value) {
   return !!String(value).match(/(^\d+(px|%)$)|(^\d+$)/);
+}
+
+function getResolvedCSSVars(cssProperties) {
+  const allKeys = Object.keys(cssProperties);
+  return allKeys.reduce((acc, key) => {
+    const newKey = key.replace("--", "");
+    acc[newKey] = jobberStyle(key);
+    return acc;
+  }, {});
 }
