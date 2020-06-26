@@ -38,7 +38,7 @@ interface AvatarWithInitialsProps extends AvatarFoundationProps {
   readonly initials: string;
 }
 
-type AvatarProps = XOR<AvatarWithImageProps, AvatarWithInitialsProps>;
+export type AvatarProps = XOR<AvatarWithImageProps, AvatarWithInitialsProps>;
 
 export function Avatar({
   imageUrl,

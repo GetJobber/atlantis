@@ -8,27 +8,49 @@
 }
 
 .menu {
-  position: absolute;
+  position: fixed;
   right: 0;
+  bottom: 0;
+  left: 0;
   z-index: var(--elevation-menu);
-  width: calc(var(--base-unit) * 12.5);
-  max-height: 300px;
-  box-shadow: var(--shadow-base);
+  width: 100%;
+  max-height: 72vh;
   padding: var(--space-small);
+  padding-bottom: env(safe-area-inset-bottom);
   border: var(--border-base) solid var(--color-grey--lighter);
-  border-radius: var(--radius-base);
-  overflow: auto;
+  border-radius: var(--radius-base) var(--radius-base) 0 0;
+  overflow-y: scroll;
   background-color: var(--color-white);
+  -webkit-overflow-scrolling: touch;
 }
 
-.above {
-  bottom: 100%;
-  margin-bottom: var(--space-smallest);
+@media screen and (max-width: 639px), print {
+  .menu:last-child {
+    padding-bottom: var(--space-small);
+  }
 }
 
-.below {
-  top: 100%;
-  margin-top: var(--space-smallest);
+@media only screen and (min-width: 640px), print {
+  .menu {
+    position: absolute;
+    left: auto;
+    width: calc(var(--base-unit) * 12.5);
+    box-shadow: var(--shadow-base);
+    padding: var(--space-small);
+    border-radius: var(--radius-base);
+    overflow: auto;
+  }
+
+  .above {
+    bottom: 100%;
+    margin-bottom: var(--space-smallest);
+  }
+
+  .below {
+    top: 100%;
+    bottom: auto;
+    margin-top: var(--space-smallest);
+  }
 }
 
 .section {
@@ -57,7 +79,6 @@
   border-radius: var(--radius-base);
   background-color: transparent;
   cursor: pointer;
-  transition: all var(--timing-base);
   align-items: center;
 }
 
@@ -78,4 +99,16 @@
   bottom: 0;
   left: 0;
   z-index: var(--elevation-menu);
+  background-color: rgba(
+    101,
+    120,
+    132,
+    0.8
+  ); /* until we figure out rgba + color vars... */
+}
+
+@media only screen and (min-width: 640px), print {
+  .overlay {
+    background-color: transparent;
+  }
 }

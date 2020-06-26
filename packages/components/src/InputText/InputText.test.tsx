@@ -133,8 +133,8 @@ test("it should call the handler with the new value", () => {
 
 test("it should handle inserting text", () => {
   const initial = "Got milk?";
-  const result = `YUP${initial}`;
-  const secondResult = `YUPsure${initial}`;
+  const result = `${initial}YUP`;
+  const secondResult = `${initial}YUPsure`;
 
   const textRef = React.createRef<InputTextRef>();
   const changeHandler = jest.fn();

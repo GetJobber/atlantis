@@ -1,0 +1,168 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Images renders an image 1`] = `
+<div
+  className="ReactModal__Overlay ReactModal__Overlay--after-open"
+  onClick={[Function]}
+  onMouseDown={[Function]}
+  style={
+    Object {
+      "backgroundColor": "transparent",
+      "bottom": 0,
+      "left": 0,
+      "position": "fixed",
+      "right": 0,
+      "top": 0,
+      "zIndex": 1000,
+    }
+  }
+>
+  <div
+    aria-label="Lightbox"
+    className="ReactModal__Content ReactModal__Content--after-open"
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    onMouseDown={[Function]}
+    onMouseUp={[Function]}
+    role="dialog"
+    style={
+      Object {
+        "WebkitOverflowScrolling": "touch",
+        "background": "#fff",
+        "backgroundColor": "transparent",
+        "border": "none",
+        "borderRadius": 0,
+        "bottom": 0,
+        "left": 0,
+        "outline": "none",
+        "overflow": "hidden",
+        "padding": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+    tabIndex="-1"
+  >
+    <div
+      className="ril-outer ril__outer ril__outerAnimating wrapper "
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseMove={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      onWheel={[Function]}
+      style={
+        Object {
+          "animationDirection": "reverse",
+          "animationDuration": "300ms",
+          "transition": "opacity 300ms",
+        }
+      }
+      tabIndex="-1"
+    >
+      <div
+        className="ril-inner ril__inner"
+        onClick={[Function]}
+      >
+        <div
+          className="ril-image-current ril__image ril-not-loaded"
+          style={
+            Object {
+              "transform": "translate3d(0px,0px,0) scale3d(NaN,NaN,1)",
+            }
+          }
+        >
+          <div
+            className="ril__loadingContainer"
+          >
+            <div
+              className="ril-loading-circle ril__loadingCircle ril__loadingContainer__icon"
+            >
+              <div
+                className="ril-loading-circle-point ril__loadingCirclePoint"
+              />
+              <div
+                className="ril-loading-circle-point ril__loadingCirclePoint"
+              />
+              <div
+                className="ril-loading-circle-point ril__loadingCirclePoint"
+              />
+              <div
+                className="ril-loading-circle-point ril__loadingCirclePoint"
+              />
+              <div
+                className="ril-loading-circle-point ril__loadingCirclePoint"
+              />
+              <div
+                className="ril-loading-circle-point ril__loadingCirclePoint"
+              />
+              <div
+                className="ril-loading-circle-point ril__loadingCirclePoint"
+              />
+              <div
+                className="ril-loading-circle-point ril__loadingCirclePoint"
+              />
+              <div
+                className="ril-loading-circle-point ril__loadingCirclePoint"
+              />
+              <div
+                className="ril-loading-circle-point ril__loadingCirclePoint"
+              />
+              <div
+                className="ril-loading-circle-point ril__loadingCirclePoint"
+              />
+              <div
+                className="ril-loading-circle-point ril__loadingCirclePoint"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ril-toolbar ril__toolbar"
+      >
+        <ul
+          className="ril-toolbar-left ril__toolbarSide ril__toolbarLeftSide"
+        >
+          <li
+            className="ril-toolbar__item ril__toolbarItem"
+          >
+            <span
+              className="ril-toolbar__item__child ril__toolbarItemChild"
+            >
+              Dis be a title
+            </span>
+          </li>
+        </ul>
+        <ul
+          className="ril-toolbar-right ril__toolbarSide ril__toolbarRightSide"
+        >
+          <li
+            className="ril-toolbar__item ril__toolbarItem"
+          >
+            <button
+              aria-label="Close lightbox"
+              className="ril-close ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__closeButton"
+              onClick={[Function]}
+              type="button"
+            />
+          </li>
+        </ul>
+      </div>
+      <div
+        className="ril-caption ril__caption"
+        onMouseDown={[Function]}
+        onWheel={[Function]}
+      >
+        <div
+          className="ril-caption-content ril__captionContent"
+        >
+          Dis be a caption 🎉
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
