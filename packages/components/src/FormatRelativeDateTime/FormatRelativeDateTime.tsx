@@ -12,8 +12,18 @@ export function FormatRelativeDateTime(
   civilDateTime: FormatRelativeDateTimeProps,
 ) {
   const now = Date.now() / 1000; //seconds
+  console.log("Civil JSON: " + civilDateTime.date.toJSON());
   const inputDate = new Date(civilDateTime.date.toJSON());
+  console.log("inputDate: " + inputDate);
   const delta = now - inputDate.getTime() / 1000; //seconds;
+  console.log(
+    "Now: " +
+      new Date(now * 1000) +
+      ", inputDate: " +
+      inputDate +
+      ", delta: " +
+      delta,
+  );
 
   switch (relativeTimeRange(delta)) {
     case "less than an hour":

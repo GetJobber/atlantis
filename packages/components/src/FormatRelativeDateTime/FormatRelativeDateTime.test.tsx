@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { cleanup } from "@testing-library/react";
-import { CivilDateTime } from "@std-proposal/temporal";
+import { CivilDateTime, Instant, ZonedDateTime } from "@std-proposal/temporal";
 import { FormatRelativeDateTime } from "./FormatRelativeDateTime";
 
 afterEach(cleanup);
@@ -10,15 +10,15 @@ beforeEach(() => {
 });
 
 it("renders x minutes ago when less than an hour ago", () => {
-  const testDate = new Date(Date.now());
-  testDate.setMinutes(testDate.getMinutes() - 5);
+  const testDate = getNowUTC(); //new Date(Date.now());
+  testDate.setMinutes(testDate.getMinutes() - 1);
 
   const civilTestDate = getCivilTime(testDate);
 
   const tree = renderer
     .create(<FormatRelativeDateTime date={civilTestDate} />)
     .toJSON();
-  expect(tree).toMatchInlineSnapshot(`"5 minutes ago"`);
+  expect(tree).toMatchInlineSnapshot(`"59 minutes ago"`);
 });
 
 it("renders 1 minute ago when less than a minute ago", () => {
@@ -35,14 +35,14 @@ it("renders 1 minute ago when less than a minute ago", () => {
 
 it("renders the time when less than a day ago", () => {
   const testDate = new Date(Date.now());
-  testDate.setHours(testDate.getHours() - 5);
+  testDate.setHours(testDate.getHours() - 9);
 
   const civilTestDate = getCivilTime(testDate);
 
   const tree = renderer
     .create(<FormatRelativeDateTime date={civilTestDate} />)
     .toJSON();
-  expect(tree).toMatchInlineSnapshot('"8:58:35 AM"');
+  expect(tree).toMatchInlineSnapshot('"10:58:42 AM"');
 });
 
 it("renders the day when less than 7 days ago", () => {
@@ -94,23 +94,39 @@ it("renders the month day, year when over a year ago", () => {
   expect(tree).toMatchInlineSnapshot('"Jun 25, 2018"');
 });
 
-function getCivilTime(date: Date) {
-  const testYear = date.getFullYear();
-  const testMonth = date.getMonth() + 1;
-  const testDay = date.getDate();
-  const testHour = date.getHours();
-  const testMinute = date.getMinutes();
-  const testSecond = 35; // Want to make sure we don't have flakiness around 0 and 59
+function getNowUTC() {
+  const utcDate = new Date(Date.now());
+  utcDate.setMinutes(-1 * utcDate.getTimezoneOffset());
 
-  const civilTestDate = new CivilDateTime(
-    testYear,
-    testMonth,
-    testDay,
-    testHour,
-    testMinute,
-    testSecond,
-  );
-  civilTestDate.withZone("America/Edmonton");
-
-  return civilTestDate;
+  console.log("offset: " + utcDate.getTimezoneOffset());
+  return utcDate;
 }
+
+function getCivilTime(date: Date) {
+  const instant = Instant.fromEpochMilliseconds(date.getTime());
+  // const zonedDT = ZonedDateTime.fromEpochMilliseconds(date.getTime(), "UTC");
+  const zoneDT = new ZonedDateTime(instant, "UTC");
+
+  return CivilDateTime.fromZonedDateTime(zoneDT);
+}
+// todo[jz] Delete before review
+// function getCivilTimex(date: Date) {
+//   const testYear = date.getFullYear();
+//   const testMonth = date.getMonth() + 1;
+//   const testDay = date.getDate();
+//   const testHour = date.getHours();
+//   const testMinute = date.getMinutes();
+//   const testSecond = 35; // Want to make sure we don't have flakiness around 0 and 59
+
+//   const civilTestDate = new CivilDateTime(
+//     testYear,
+//     testMonth,
+//     testDay,
+//     testHour,
+//     testMinute,
+//     testSecond,
+//   );
+//   civilTestDate.withZone("UTC");
+
+//   return civilTestDate;
+// }
