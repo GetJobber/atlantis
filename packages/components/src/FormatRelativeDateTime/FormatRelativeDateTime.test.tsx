@@ -61,7 +61,6 @@ it("renders the month and date when less than 1 year ago", () => {
   const testDate = new Date(Date.now());
   testDate.setDate(testDate.getDate() - 60);
 
-  console.log("testDate: " + testDate);
   const civilTestDate = getCivilTime(testDate);
 
   const tree = renderer
@@ -111,6 +110,7 @@ function getCivilTime(date: Date) {
     testMinute,
     testSecond,
   );
+  civilTestDate.withZone("UTC");
 
   return civilTestDate;
 }
