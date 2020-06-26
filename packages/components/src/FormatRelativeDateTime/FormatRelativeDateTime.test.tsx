@@ -131,7 +131,6 @@ function getCivilTime(date: Date) {
     testMinute,
     testSecond,
   );
-  civilTestDate.withZone("UTC");
 
   return civilTestDate;
 }
