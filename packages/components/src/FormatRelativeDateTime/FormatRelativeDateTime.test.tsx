@@ -99,22 +99,6 @@ it("renders the month day, year when over a year ago", () => {
   expect(tree).toMatchInlineSnapshot('"Jun 25, 2018"');
 });
 
-// function getNowUTC() {
-//   const utcDate = new Date(Date.now());
-//   utcDate.setMinutes(-1 * utcDate.getTimezoneOffset());
-
-//   console.log("offset: " + utcDate.getTimezoneOffset());
-//   return utcDate;
-// }
-
-// function getCivilTime(date: Date) {
-//   const instant = Instant.fromEpochMilliseconds(date.getTime());
-//   // const zonedDT = ZonedDateTime.fromEpochMilliseconds(date.getTime(), "UTC");
-//   const zoneDT = new ZonedDateTime(instant, "UTC");
-
-//   return CivilDateTime.fromZonedDateTime(zoneDT);
-// }
-// todo[jz] Delete before review
 function getCivilTime(date: Date) {
   const testYear = date.getFullYear();
   const testMonth = date.getMonth() + 1;
