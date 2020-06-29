@@ -43,7 +43,7 @@ export default {
     "Atlantis is a design system for Jobber. The primary objective for Atlantis is to provide a system of reusable components to help developers to quickly build beautiful and consistent interfaces for our users.",
   typescript: true,
   port: 3333,
-  menu: ["Atlantis", "Patterns", "Components"],
+  menu: ["Atlantis", "Patterns", "Components", "Hooks", "Design"],
   files: "{README.md,CONTRIBUTING.md,**/*.mdx,packages/*/CHANGELOG.md}",
   ignore: [
     ...privateComponentReadmes(),
