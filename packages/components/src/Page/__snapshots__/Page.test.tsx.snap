@@ -11,7 +11,7 @@ exports[`When actions are provided renders a Page with action buttons and a menu
       className="padded large"
     >
       <div
-        className="titleBar"
+        className="titleBar small medium large"
       >
         <h1
           className="base black jumbo uppercase blue"
@@ -21,59 +21,71 @@ exports[`When actions are provided renders a Page with action buttons and a menu
         <div
           className="actionGroup"
         >
-          <button
-            className="button base work primary"
-            disabled={false}
-            onClick={[Function]}
-            type="button"
-          >
-            <span
-              className="base extraBold small uppercase white"
-            >
-              Send Food
-            </span>
-          </button>
-          <button
-            className="button base work secondary"
-            disabled={false}
-            onClick={[Function]}
-            type="button"
-          >
-            <span
-              className="base extraBold small uppercase green"
-            >
-              Send Drink
-            </span>
-          </button>
           <div
-            className="wrapper"
+            className="primaryAction"
           >
             <button
-              aria-controls="123e4567-e89b-12d3-a456-426655440002"
-              aria-expanded={false}
-              aria-haspopup={true}
-              className="button base hasIcon work secondary"
+              className="button base work primary fullWidth"
               disabled={false}
-              id="123e4567-e89b-12d3-a456-426655440001"
               onClick={[Function]}
               type="button"
             >
-              <svg
-                className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
-                viewBox="0 0 1024 1024"
-                xmlns="http://www.w3.org/2000/svg"
+              <span
+                className="base extraBold small uppercase white"
               >
-                <path
-                  className="_1R4_alABGZICCj4KPfBOIa"
-                  d="M170.667 512c0-47.13 38.205-85.333 85.333-85.333s85.333 38.204 85.333 85.333c0 47.13-38.205 85.333-85.333 85.333s-85.333-38.204-85.333-85.333zM426.667 512c0-47.13 38.204-85.333 85.333-85.333s85.333 38.204 85.333 85.333c0 47.13-38.204 85.333-85.333 85.333s-85.333-38.204-85.333-85.333zM768 426.667c-47.13 0-85.333 38.204-85.333 85.333s38.204 85.333 85.333 85.333c47.13 0 85.333-38.204 85.333-85.333s-38.204-85.333-85.333-85.333z"
-                />
-              </svg>
+                Send Food
+              </span>
+            </button>
+          </div>
+          <div
+            className="actionButton"
+          >
+            <button
+              className="button base work secondary fullWidth"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
               <span
                 className="base extraBold small uppercase green"
               >
-                More Actions
+                Send Drink
               </span>
             </button>
+          </div>
+          <div
+            className="actionButton"
+          >
+            <div
+              className="wrapper"
+            >
+              <button
+                aria-controls="123e4567-e89b-12d3-a456-426655440002"
+                aria-expanded={false}
+                aria-haspopup={true}
+                className="button base hasIconAndLabel work secondary fullWidth"
+                disabled={false}
+                id="123e4567-e89b-12d3-a456-426655440001"
+                onClick={[Function]}
+                type="button"
+              >
+                <svg
+                  className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+                  viewBox="0 0 1024 1024"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    className="_1R4_alABGZICCj4KPfBOIa"
+                    d="M170.667 512c0-47.13 38.205-85.333 85.333-85.333s85.333 38.204 85.333 85.333c0 47.13-38.205 85.333-85.333 85.333s-85.333-38.204-85.333-85.333zM426.667 512c0-47.13 38.204-85.333 85.333-85.333s85.333 38.204 85.333 85.333c0 47.13-38.204 85.333-85.333 85.333s-85.333-38.204-85.333-85.333zM768 426.667c-47.13 0-85.333 38.204-85.333 85.333s38.204 85.333 85.333 85.333c47.13 0 85.333-38.204 85.333-85.333s-38.204-85.333-85.333-85.333z"
+                  />
+                </svg>
+                <span
+                  className="base extraBold small uppercase green"
+                >
+                  More Actions
+                </span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -103,7 +115,7 @@ exports[`renders a Page 1`] = `
       className="padded large"
     >
       <div
-        className="titleBar"
+        className="titleBar small medium large"
       >
         <h1
           className="base black jumbo uppercase blue"

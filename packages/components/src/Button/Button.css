@@ -116,7 +116,9 @@
 .disabled,
 .disabled:hover {
   border-color: var(--button--color-disabled);
+  user-select: none;
   background-color: var(--button--color-disabled);
+  pointer-events: none;
   cursor: not-allowed;
 }
 
@@ -137,13 +139,12 @@
   padding: 0 var(--space-base);
 }
 
-.hasIcon {
+/* Icon */
+.hasIconAndLabel {
   padding: 0 var(--space-base);
 }
 
-/* Icon */
-
-.hasIcon > *:first-child {
+.hasIconAndLabel > *:first-child {
   margin-right: var(--space-small);
 }
 

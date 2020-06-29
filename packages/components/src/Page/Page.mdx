@@ -7,13 +7,16 @@ route: /components/page
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { Page } from ".";
+import { Content } from "@jobber/components/Content";
 import { Text } from "../Text";
 
 # Page
 
 <ComponentStatus stage="pre" responsive="no" accessible="yes" />
 
-Use to build the title and descriptions part of the page.
+Use Page to build the outermost "main content" container of a view. Page comes
+complete with the ability to add the page title, along with actions and a
+description as needed.
 
 ```ts
 import { Page } from "@jobber/components/Page";
@@ -27,6 +30,12 @@ import { Page } from "@jobber/components/Page";
     <Text>Page content here</Text>
   </Page>
 </Playground>
+
+## Design Usage and Guidelines
+
+Using Page is pretty straightforward - after any navigational elements, Page
+should contain the content the user will be engaging with. If there is any sort
+of footer, it should exist after Page.
 
 ## Props
 
@@ -75,6 +84,8 @@ import { Page } from "@jobber/components/Page";
       }
     ]}
   >
-    <Text>Page content here</Text>
+    <Content>
+      <Text>Page content here</Text>
+    </Content>
   </Page>
 </Playground>

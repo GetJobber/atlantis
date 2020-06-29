@@ -9,6 +9,16 @@ const projectPlugin = () =>
       const config = getConfig();
 
       /**
+       * Generate css types on `.css` file save.
+       */
+      config.module.rules.push({
+        enforce: "pre",
+        test: /\.css$/,
+        exclude: /node_modules/,
+        loader: require.resolve("typed-css-modules-loader"),
+      });
+
+      /**
        * Gatsby does not like that we use css modules. To fix this we need
        * to change some of the webpack config around how we handle css.
        * 😢 More info here: https://github.com/gatsbyjs/gatsby/issues/16129
@@ -16,6 +26,16 @@ const projectPlugin = () =>
       const cssRule = {
         ...rules.cssModules(),
         test: rules.css().test,
+        include: /^((?!node_modules).)*$/,
+      };
+
+      /**
+       * Don't process css from npm packages as modules.
+       */
+      const libCssRule = {
+        ...rules.css(),
+        test: rules.css().test,
+        include: /node_modules/,
       };
 
       config.module.rules = [
@@ -25,6 +45,7 @@ const projectPlugin = () =>
 
           return !areCssRules;
         }),
+        libCssRule,
         cssRule,
       ];
 

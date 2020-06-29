@@ -1,0 +1,246 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a Button 1`] = `
+<button
+  className="button base work primary"
+  disabled={false}
+  type="button"
+>
+  <span
+    className="base extraBold small uppercase white"
+  >
+    Submit
+  </span>
+</button>
+`;
+
+exports[`renders a Button that is just an icon 1`] = `
+<button
+  aria-label="Person"
+  className="button base work primary"
+  disabled={false}
+  type="button"
+>
+  <svg
+    className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+    viewBox="0 0 1024 1024"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      className="_2GsLyQLHv8yNULHeXGdver"
+      d="M682.667 426.667c0-94.257-76.412-170.667-170.667-170.667-94.257 0-170.667 76.41-170.667 170.667 0 94.255 76.41 170.667 170.667 170.667 94.255 0 170.667-76.412 170.667-170.667zM597.333 426.667c0 47.13-38.204 85.333-85.333 85.333s-85.333-38.204-85.333-85.333c0-47.128 38.204-85.333 85.333-85.333s85.333 38.205 85.333 85.333z"
+    />
+    <path
+      className="_2GsLyQLHv8yNULHeXGdver"
+      d="M938.667 512c0 235.639-191.027 426.667-426.667 426.667-235.642 0-426.667-191.027-426.667-426.667 0-235.642 191.025-426.667 426.667-426.667 235.639 0 426.667 191.025 426.667 426.667zM512 853.333c62.694 0 121.438-16.9 171.925-46.396-88.661-79.552-163.217-89.037-220.791-75.337-48.372 11.511-91.229 40.759-125.9 73.66 51.121 30.528 110.894 48.073 174.766 48.073zM443.379 648.589c94.123-22.4 199.795 2.381 309.15 105.596 62.255-61.833 100.804-147.507 100.804-242.185 0-188.513-152.819-341.333-341.333-341.333s-341.333 152.82-341.333 341.333c0 93.649 37.714 178.492 98.783 240.162 43.442-43.328 102.238-86.515 173.929-103.573z"
+    />
+  </svg>
+  <span
+    className="base extraBold small uppercase white"
+  />
+</button>
+`;
+
+exports[`renders a Button with a link and opens in new tab 1`] = `
+<a
+  className="button base work primary"
+  disabled={false}
+  href="💩.com"
+  target="_blank"
+>
+  <span
+    className="base extraBold small uppercase white"
+  >
+    Submit
+  </span>
+</a>
+`;
+
+exports[`renders a Button with a loading state 1`] = `
+<button
+  className="button base work primary loading"
+  disabled={false}
+  type="button"
+>
+  <span
+    className="base extraBold small uppercase white"
+  >
+    Adding
+  </span>
+</button>
+`;
+
+exports[`renders a Button with an icon 1`] = `
+<button
+  className="button base hasIconAndLabel work primary"
+  disabled={false}
+  type="button"
+>
+  <svg
+    className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+    viewBox="0 0 1024 1024"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      className="_2GsLyQLHv8yNULHeXGdver"
+      d="M512 128c-23.565 0-42.667 19.103-42.667 42.667v298.667h-298.667c-23.564 0-42.667 19.102-42.667 42.667s19.103 42.667 42.667 42.667h298.667v298.667c0 23.565 19.102 42.667 42.667 42.667s42.667-19.102 42.667-42.667v-298.667h298.667c23.565 0 42.667-19.102 42.667-42.667s-19.102-42.667-42.667-42.667h-298.667v-298.667c0-23.564-19.102-42.667-42.667-42.667z"
+    />
+  </svg>
+  <span
+    className="base extraBold small uppercase white"
+  >
+    Add
+  </span>
+</button>
+`;
+
+exports[`renders a Button with an icon on the right 1`] = `
+<button
+  className="button base hasIconAndLabel iconOnRight work primary"
+  disabled={false}
+  type="button"
+>
+  <svg
+    className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+    viewBox="0 0 1024 1024"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      className="_2GsLyQLHv8yNULHeXGdver"
+      d="M512 128c-23.565 0-42.667 19.103-42.667 42.667v298.667h-298.667c-23.564 0-42.667 19.102-42.667 42.667s19.103 42.667 42.667 42.667h298.667v298.667c0 23.565 19.102 42.667 42.667 42.667s42.667-19.102 42.667-42.667v-298.667h298.667c23.565 0 42.667-19.102 42.667-42.667s-19.102-42.667-42.667-42.667h-298.667v-298.667c0-23.564-19.102-42.667-42.667-42.667z"
+    />
+  </svg>
+  <span
+    className="base extraBold small uppercase white"
+  >
+    Add
+  </span>
+</button>
+`;
+
+exports[`renders a Link as a Button for routing 1`] = `
+<a
+  className="button base work primary"
+  disabled={false}
+  href="/jobber"
+  onClick={[Function]}
+>
+  <span
+    className="base extraBold small uppercase white"
+  >
+    Adding
+  </span>
+</a>
+`;
+
+exports[`renders a cancel Button 1`] = `
+<button
+  className="button base cancel primary"
+  disabled={false}
+  type="button"
+>
+  <span
+    className="base extraBold small uppercase greyBlue"
+  >
+    Submit
+  </span>
+</button>
+`;
+
+exports[`renders a destructuve Button 1`] = `
+<button
+  className="button base destructive primary"
+  disabled={false}
+  type="button"
+>
+  <span
+    className="base extraBold small uppercase white"
+  >
+    Submit
+  </span>
+</button>
+`;
+
+exports[`renders a disabled Button 1`] = `
+<button
+  className="button base work primary disabled"
+  disabled={true}
+  type="button"
+>
+  <span
+    className="base extraBold small uppercase grey"
+  >
+    Submit
+  </span>
+</button>
+`;
+
+exports[`renders a large Button 1`] = `
+<button
+  className="button large work primary"
+  disabled={false}
+  type="button"
+>
+  <span
+    className="base extraBold base uppercase white"
+  >
+    Add
+  </span>
+</button>
+`;
+
+exports[`renders a learning Button 1`] = `
+<button
+  className="button base learning primary"
+  disabled={false}
+  type="button"
+>
+  <span
+    className="base extraBold small uppercase white"
+  >
+    Submit
+  </span>
+</button>
+`;
+
+exports[`renders a secondary Button 1`] = `
+<button
+  className="button base work secondary"
+  disabled={false}
+  type="button"
+>
+  <span
+    className="base extraBold small uppercase green"
+  >
+    Submit
+  </span>
+</button>
+`;
+
+exports[`renders a small Button 1`] = `
+<button
+  className="button small work primary"
+  disabled={false}
+  type="button"
+>
+  <span
+    className="base extraBold smaller uppercase white"
+  >
+    Add
+  </span>
+</button>
+`;
+
+exports[`renders a tertiary Button 1`] = `
+<button
+  className="button base work tertiary"
+  disabled={false}
+  type="button"
+>
+  <span
+    className="base extraBold small uppercase green"
+  >
+    Submit
+  </span>
+</button>
+`;

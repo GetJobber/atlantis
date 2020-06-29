@@ -36,8 +36,8 @@ import { Table, Header, Footer, Row, Cell } from "@jobber/components/Table";
     <Header>
       <Cell>Ship</Cell>
       <Cell>Class</Cell>
-      <Cell>Cost</Cell>
-      <Cell>Crew</Cell>
+      <Cell align="right">Cost</Cell>
+      <Cell align="right">Crew</Cell>
     </Header>
     <Row>
       <Cell>Nostromo</Cell>
@@ -65,6 +65,24 @@ import { Table, Header, Footer, Row, Cell } from "@jobber/components/Table";
     </Footer>
   </Table>
 </Playground>
+
+## Design & Usage Guidelines
+
+The Table component is a great solution when you need to allow the user to
+compare data across items. It's a tried-and-true means of data visualization
+that can make reports easier to read.
+
+A best practice in Table presentation is to ensure that all columns with
+numerical data (and their headers) round to the same decimal point, and are
+right-aligned. This makes it much easier for the reader to quickly parse large
+distinctions in dollar amounts, inventory counts, and other key business data.
+
+To list more complex collections of information (such as multi-line content like
+a detailed property address), you may want to consider the
+[List](https://atlantis.getjobber.com/components/list) component. If you have a
+small list of information with a 1:1 label-to-data relationship (for example,
+the issued and due dates on an invoice), consider using
+[DescriptionList](https://atlantis.getjobber.com/components/description-list).
 
 ## Props
 

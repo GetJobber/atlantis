@@ -83,27 +83,27 @@ it("renders correctly when invalid", () => {
 });
 
 it("renders the defaultValue when set.", () => {
-  const { getByRole } = render(
+  const { container } = render(
     <Select defaultValue="bar">
       <Option value="foo">Foo</Option>
       <Option value="bar">Bar</Option>
     </Select>,
   );
 
-  const select = getByRole("listbox") as HTMLSelectElement;
+  const select = container.querySelector("select") as HTMLSelectElement;
 
   expect(select.options[select.selectedIndex].value).toBe("bar");
 });
 
 it("renders the value when set.", () => {
-  const { getByRole } = render(
+  const { container } = render(
     <Select value="bar">
       <Option value="foo">Foo</Option>
       <Option value="bar">Bar</Option>
     </Select>,
   );
 
-  const select = getByRole("listbox") as HTMLSelectElement;
+  const select = container.querySelector("select") as HTMLSelectElement;
 
   expect(select.options[select.selectedIndex].value).toBe("bar");
 });
@@ -113,14 +113,16 @@ it("should pass the new value to the onChange handler when the selected option c
 
   const expectedValue = "bar";
 
-  const { getByRole } = render(
+  const { container } = render(
     <Select onChange={changeHandler}>
       <Option value="foo">Foo</Option>
       <Option value="bar">Bar</Option>
     </Select>,
   );
 
-  fireEvent.change(getByRole("listbox"), {
+  const select = container.querySelector("select") as HTMLSelectElement;
+
+  fireEvent.change(select, {
     target: { value: expectedValue },
   });
   expect(changeHandler).toHaveBeenCalledWith(expectedValue);

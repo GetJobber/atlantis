@@ -92,7 +92,7 @@ export function Modal({
 
 function catchKeyboardEvent(key: string, callback: { (): void }) {
   useEffect(() => {
-    const handler = function(event: { key: string }) {
+    const handler = (event: { key: string }) => {
       if (event.key === key) {
         callback();
       }
