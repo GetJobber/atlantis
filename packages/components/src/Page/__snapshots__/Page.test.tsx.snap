@@ -11,7 +11,7 @@ exports[`When actions are provided renders a Page with action buttons and a menu
       className="padded large"
     >
       <div
-        className="titleBar small medium large"
+        className="titleBar"
       >
         <h1
           className="base black jumbo uppercase blue"
@@ -115,7 +115,7 @@ exports[`renders a Page 1`] = `
       className="padded large"
     >
       <div
-        className="titleBar small medium large"
+        className="titleBar"
       >
         <h1
           className="base black jumbo uppercase blue"

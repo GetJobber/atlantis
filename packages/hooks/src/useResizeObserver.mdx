@@ -22,14 +22,16 @@ import { useResizeObserver } from "@jobber/hooks";
 
 <Playground>
   {() => {
-    const [ref, { width, height }] = useResizeObserver();
-    const title = width > 500 ? "This is big" : "This is small";
+    const [
+      ref,
+      { width, exactWidth, exactHeight, height }
+    ] = useResizeObserver();
     return (
       <div ref={ref}>
-        <Card title={title}>
+        <Card title={`I am a ${width} width & a ${height} height`}>
           <Content>
-            <Text>Width: {width}</Text>
-            <Text>Height: {height}</Text>
+            <Text>Exact Width: {exactWidth}</Text>
+            <Text>Exact Height: {exactHeight}</Text>
           </Content>
         </Card>
       </div>

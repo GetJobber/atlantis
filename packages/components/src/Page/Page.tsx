@@ -53,6 +53,13 @@ export interface PageProps {
   readonly moreActionsMenu?: SectionProps[];
 }
 
+const pageSizes = {
+  small: 265,
+  base: 500,
+  large: 750,
+};
+
+// eslint-disable-next-line max-statements
 export function Page({
   title,
   intro,
@@ -65,12 +72,14 @@ export function Page({
   const pageStyles = classnames(styles.page, styles[width]);
   const [titleBarRef, { width: titleBarWidth }] = useResizeObserver<
     HTMLDivElement
-  >();
+  >({ width: pageSizes });
+
+  console.log("TITLEWIDTH", titleBarWidth);
 
   const titleBarClasses = classnames(styles.titleBar, {
-    [styles.small]: titleBarWidth && titleBarWidth > 265,
-    [styles.medium]: titleBarWidth && titleBarWidth > 500,
-    [styles.large]: titleBarWidth && titleBarWidth > 750,
+    [styles.small]: titleBarWidth && titleBarWidth === "small",
+    [styles.medium]: titleBarWidth && titleBarWidth === "base",
+    [styles.large]: titleBarWidth && titleBarWidth === "large",
   });
 
   const showMenu = moreActionsMenu.length > 0;
