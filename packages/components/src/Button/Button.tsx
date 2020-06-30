@@ -2,9 +2,10 @@ import React from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
 import { Link } from "react-router-dom";
+import { IconNames } from "@jobber/design";
 import styles from "./Button.css";
 import { Typography } from "../Typography";
-import { Icon, IconNames } from "../Icon";
+import { Icon } from "../Icon";
 
 interface ButtonFoundationProps {
   /**

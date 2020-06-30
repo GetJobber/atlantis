@@ -5,7 +5,7 @@ Atlantis is a component library designed and maintained by
 
 ---
 
-This package contains the base set of [React](https://reactjs.org/) components
+This package contains the base set of [React components](https://reactjs.org/)
 for Atlantis.
 
 ## Installation

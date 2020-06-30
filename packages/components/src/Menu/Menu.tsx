@@ -8,10 +8,11 @@ import React, {
 import uuid from "uuid";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
+import { IconNames } from "@jobber/design";
 import styles from "./Menu.css";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
-import { Icon, IconNames } from "../Icon";
+import { Icon } from "../Icon";
 
 const variation = {
   overlayStartStop: { opacity: 0 },
