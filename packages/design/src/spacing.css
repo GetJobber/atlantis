@@ -1,5 +1,5 @@
 :root {
-  --base-unit: 16px;
+  --base-unit: 1rem;
 
   --space-minuscule: calc(var(--base-unit) / 16);
   --space-smallest: calc(var(--base-unit) / 8);
