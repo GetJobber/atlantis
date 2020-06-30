@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/GetJobber/atlantis/compare/@jobber/eslint-config@0.6.0...@jobber/eslint-config@0.7.0) (2020-06-30)
+
+
+### Features
+
+* Add resolution patch support for eslint 7 ([#294](https://github.com/GetJobber/atlantis/issues/294)) ([5709438](https://github.com/GetJobber/atlantis/commit/57094387763c13e387c0ed50002e66fb7793ead9))
+
+
+
+
+
 # [0.6.0](https://github.com/GetJobber/atlantis/compare/@jobber/eslint-config@0.5.0...@jobber/eslint-config@0.6.0) (2020-06-26)
 
 
