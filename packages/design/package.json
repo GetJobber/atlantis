@@ -1,24 +1,45 @@
 {
   "name": "@jobber/design",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Design foundation for the Jobber Atlantis Design System",
   "license": "MIT",
-  "main": "foundation.css",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
-    "foundation.css"
+    "dist/*",
+    "*.css",
+    "icons/*"
   ],
   "scripts": {
-    "build": "npm run build:css && npm run build:colors",
+    "build": "npm run build:css && npm run build:css:icons && npm run build:colors && npm run build:cssTypes && npm run build:rollup",
+    "build:rollup": "rollup --config",
     "build:css": "postcss src/foundation.css --output foundation.css --use postcss-import",
+    "build:css:icons": "postcss src/icons/*.css --dir icons/ --use postcss-import",
+    "build:ts": "tsc --project .",
+    "build:cssTypes": "tcm src/icons",
     "build:colors": "node buildColors.js",
-    "clean": "rm -f colors.js foundation.css",
+    "clean": "rm -rf dist/* icons/* colors.js foundation.css tsconfig.tsbuildinfo",
     "prepare": "npm run clean; npm run build"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6"
   },
   "devDependencies": {
     "postcss": "^7.0.32",
+    "@types/classnames": "^2.2.10",
+    "autoprefixer": "^9.5.1",
     "postcss-cli": "^6.1.2",
     "postcss-custom-properties": "^8.0.10",
     "postcss-import": "^12.0.1",
-    "postcss-preset-env": "^6.6.0"
+    "postcss-preset-env": "^6.6.0",
+    "rollup": "^1.11.3",
+    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-multi-input": "^0.2.2",
+    "rollup-plugin-node-resolve": "^4.2.4",
+    "rollup-plugin-postcss": "^2.0.3",
+    "rollup-plugin-typescript": "^1.0.1",
+    "rollup-plugin-typescript2": "^0.21.0",
+    "typed-css-modules": "^0.3.6",
+    "typescript": "^3.8.3"
   }
 }

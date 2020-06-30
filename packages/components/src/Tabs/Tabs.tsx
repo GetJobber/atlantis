@@ -70,7 +70,10 @@ export function Tabs({ children }: TabsProps) {
         </div>
       </div>
       <div className={styles.tabContent}>
-        {React.Children.toArray(children)[activeTab].props.children}
+        {
+          (React.Children.toArray(children) as ReactElement[])[activeTab].props
+            .children
+        }
       </div>
     </div>
   );

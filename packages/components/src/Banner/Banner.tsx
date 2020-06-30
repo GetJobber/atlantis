@@ -1,8 +1,9 @@
 import React, { ReactNode, useState } from "react";
 import classnames from "classnames";
+import { IconColorNames } from "@jobber/design";
 import styles from "./Banner.css";
 import types from "./notificationTypes.css";
-import { Icon, IconColorNames } from "../Icon";
+import { Icon } from "../Icon";
 import { Text } from "../Text";
 import { Button, ButtonProps } from "../Button";
 

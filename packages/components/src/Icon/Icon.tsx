@@ -1,18 +1,5 @@
 import React from "react";
-import classnames from "classnames";
-import styles from "./Icon.css";
-import sizes from "./Sizes.css";
-import colors from "./Colors.css";
-import { iconMap } from "./iconMap";
-
-export type IconNames =
-  | keyof typeof iconMap.icons
-  | "longArrowUp"
-  | "longArrowDown"
-  | "remove"
-  | "truck"
-  | "thumbsDown";
-export type IconColorNames = keyof typeof colors;
+import { IconColorNames, IconNames, IconSizes, getIcon } from "@jobber/design";
 
 interface IconProps {
   /** The icon to show.  */
@@ -22,7 +9,7 @@ interface IconProps {
    * Changes the size to small or large.
    * @default base
    */
-  readonly size?: keyof typeof sizes;
+  readonly size?: IconSizes;
 
   /**
    * Determines the color of the icon. Some icons have a default system colour
@@ -38,35 +25,23 @@ interface IconProps {
 }
 
 export function Icon({ name, color, customColor, size = "base" }: IconProps) {
-  const iconName = mapToCorrectIcon(name);
-
-  const svgClassNames = classnames(styles.icon, sizes[size], {
-    [styles.longArrowUp]: name === "longArrowUp",
-    [styles.longArrowDown]: name === "longArrowDown",
-    [styles.thumbsDown]: name === "thumbsDown",
-  });
-
   let icon;
-
-  if (iconName === "truck") {
-    icon = getTruckWithColor(customColor, color);
+  const { svgClassNames, pathClassNames, paths, viewBox } = getIcon({
+    name,
+    color: getIconColor(name, color),
+    size,
+  });
+  if (name === "truck") {
+    icon = getTruck(pathClassNames, customColor);
   } else {
-    icon =
-      iconMap.icons[iconName] &&
-      iconMap.icons[iconName].map((path: string) => (
-        <path
-          key={path}
-          className={getPathClassNames(name, color)}
-          d={path}
-          fill={customColor}
-        />
-      ));
+    icon = paths.map((path: string) => (
+      <path key={path} className={pathClassNames} d={path} fill={customColor} />
+    ));
   }
-
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox={`0 0 ${iconMap.height} ${iconMap.height}`}
+      viewBox={viewBox}
       className={svgClassNames}
     >
       {icon}
@@ -74,63 +49,16 @@ export function Icon({ name, color, customColor, size = "base" }: IconProps) {
   );
 }
 
-function mapToCorrectIcon(name: IconNames) {
-  switch (name) {
-    case "longArrowUp":
-      return "backArrow";
-    case "longArrowDown":
-      return "backArrow";
-    case "remove":
-      return "cross";
-    case "thumbsDown":
-      return "thumbsUp";
-    default:
-      return name;
+function getIconColor(name: IconNames, color?: IconColorNames) {
+  if (name === "truck") {
+    return color || "green";
   }
-}
-function getPathClassNames(name: string, color?: IconColorNames) {
-  return classnames(color && colors[color], {
-    [styles.person]: name === "person",
-    [styles.clients]: name === "clients",
-    [styles.property]: name === "property",
-    [styles.userUnassigned]: name === "userUnassigned",
-    [styles.job]: name === "job",
-    [styles.jobOnHold]: name === "jobOnHold",
-    [styles.visit]: name === "visit",
-    [styles.moveVisits]: name === "moveVisits",
-    [styles.event]: name === "event",
-    [styles.request]: name === "request",
-    [styles.reminder]: name === "reminder",
-    [styles.trash]: name === "trash",
-    [styles.task]: name === "task",
-    [styles.timer]: name === "timer",
-    [styles.quote]: name === "quote",
-    [styles.invoice]: name === "invoice",
-    [styles.invoiceLater]: name === "invoiceLater",
-    [styles.badInvoice]: name === "badInvoice",
-    [styles.sendInvoice]: name === "sendInvoice",
-    [styles.paidInvoice]: name === "paidInvoice",
-    [styles.payment]: name === "payment",
-    [styles.expense]: name === "expense",
-    [styles.edit]: name === "edit",
-    [styles.archive]: name === "archive",
-    [styles.excel]: name === "excel",
-    [styles.file]: name === "file",
-    [styles.pdf]: name === "pdf",
-    [styles.word]: name === "word",
-    [styles.video]: name === "video",
-  });
+  return color;
 }
 
-function getTruckWithColor(
-  customColor?: string,
-  color: IconColorNames = "green",
-) {
+function getTruck(pathClassNames: string, customColor?: string) {
   return (
-    <g
-      transform="translate(233.000000, 0.000000)"
-      className={getPathClassNames(name, color)}
-    >
+    <g transform="translate(233.000000, 0.000000)" className={pathClassNames}>
       <path
         d="M31.030303,124.121212 C31.030303,106.983796 44.9231903,93.0909091 62.0606061,93.0909091 L93.0909091,93.0909091 L93.0909091,279.272727 L62.0606061,279.272727 C44.9231903,279.272727 31.030303,265.37984 31.030303,248.242424 L31.030303,124.121212 Z M31.030303,744.727273 C31.030303,727.589236 44.9231903,713.69697 62.0606061,713.69697 L93.0909091,713.69697 L93.0909091,899.878788 L62.0606061,899.878788 C44.9231903,899.878788 31.030303,885.986521 31.030303,868.848485 L31.030303,744.727273 Z M62.0606061,961.939394 L496.484848,961.939394 L496.484848,992.969697 C496.484848,1010.10773 482.592582,1024 465.454545,1024 L93.0909091,1024 C75.9534933,1024 62.0606061,1010.10773 62.0606061,992.969697 L62.0606061,961.939394 Z M494.858861,713.715588 L463.834764,714.258618 L467.083636,900.412509 L498.107733,899.869479 C515.242667,899.571588 528.889794,885.437285 528.591903,868.302352 L526.425988,744.199758 C526.128097,727.064824 511.993794,713.417697 494.858861,713.715588 Z M496.484848,93.0909091 L465.454545,93.0909091 L465.454545,279.272727 L496.484848,279.272727 C513.622885,279.272727 527.515152,265.37984 527.515152,248.242424 L527.515152,124.121212 C527.515152,106.983796 513.622885,93.0909091 496.484848,93.0909091 Z"
         id="Shape"
