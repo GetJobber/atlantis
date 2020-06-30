@@ -41,7 +41,7 @@ export const previewInner = (content, showingCode) => {
     ...styles.previewInner(content, showingCode),
     borderRadius: "4px 4px 0 0",
 
-    ":not(:first-child)": {
+    ":not(:first-of-type)": {
       borderTopWidth: 0,
       borderRadius: "0 0 4px 4px",
     },
