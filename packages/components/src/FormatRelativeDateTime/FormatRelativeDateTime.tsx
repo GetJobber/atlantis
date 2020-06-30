@@ -19,13 +19,11 @@ export function FormatRelativeDateTime(
     case "less than an hour":
       return showMinutes(Math.round(delta / 60));
     case "less then a day":
-      return <>{inputDate.toLocaleTimeString()}</>;
+      return inputDate.toLocaleTimeString();
     case "less than a week":
-      return <>{strFormatDate(inputDate, { weekday: "short" })}</>;
+      return strFormatDate(inputDate, { weekday: "short" });
     case "less than a year":
-      return (
-        <>{strFormatDate(inputDate, { month: "short", day: "numeric" })}</>
-      );
+      return strFormatDate(inputDate, { month: "short", day: "numeric" });
     default:
       return (
         <>
@@ -61,8 +59,8 @@ function strFormatDate(date: Date, options: { [key: string]: string }) {
 
 function showMinutes(minutes: number) {
   if (minutes <= 1) {
-    return <>{"1 minute ago"}</>;
+    return "1 minute ago";
   } else {
-    return <>{minutes + " minutes ago"}</>;
+    return minutes + " minutes ago";
   }
 }
