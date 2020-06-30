@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const fs = require("fs");
 // eslint-disable-next-line import/no-internal-modules
-const customPropertiesObject = require("./foundation.js");
+const customPropertiesObject = require("./src/foundation.js");
 
 const regexExpressions = {
   cssVars: /var\((.*)\)/,
@@ -24,6 +24,10 @@ fs.writeFile("./foundation.js", jsonContent, "utf8", function(err) {
   }
   console.log("JSON file has been saved.");
 });
+
+//jobberStyle recursively resolves css vars
+//varRegexResult returns --base-unit from var(--base-unit)
+//calcRegexResult returns var(--base-unit) / 16 from calc(var(--base-unit) / 16)
 
 function jobberStyle(styling) {
   const styleValue = customProperties[styling];
