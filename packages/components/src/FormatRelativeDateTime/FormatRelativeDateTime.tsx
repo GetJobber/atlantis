@@ -60,7 +60,7 @@ function strFormatDate(date: Date, options: { [key: string]: string }) {
 }
 
 function showMinutes(minutes: number) {
-  if (minutes < 1) {
+  if (minutes <= 1) {
     return <>{"1 minute ago"}</>;
   } else {
     return <>{minutes + " minutes ago"}</>;

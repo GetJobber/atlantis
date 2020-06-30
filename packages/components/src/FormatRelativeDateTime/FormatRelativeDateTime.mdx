@@ -6,7 +6,7 @@ route: /components/format-relative-date-time
 
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
-import { CivilDate } from "@std-proposal/temporal";
+import { CivilDateTime } from "@std-proposal/temporal";
 import { FormatRelativeDateTime } from ".";
 
 # FormatRelativeDateTime
@@ -14,10 +14,18 @@ import { FormatRelativeDateTime } from ".";
 <ComponentStatus stage="pre" responsive="yes" accessible="yes" />
 
 A FormatRelateDateTime displays the date and time using relative wording or
-approximate values.
+approximate values. Note. This component only represents current date and dates
+in the past. No future dating.
 
-Rules: If the message was received less than an hour ago the format is x minutes
-ago
+## Simple Example
+
+```ts
+import { FormatRelativeDateTime } from "@jobber/components/FormatRelativeDateTime";
+```
+
+## Rules
+
+If the message was received less than an hour ago the format is x minutes ago
 
 If the message was received today, but more than an hour ago, the format becomes
 the time it was received
@@ -31,14 +39,8 @@ previous, the format is Month Date
 If the message was received exactly one year ago or more than one year ago, the
 format is Month Day, Year
 
-## Simple Example
-
-```ts
-import { FormatRelativeDateTime } from "@jobber/components/FormatRelativeDateTime";
-```
-
 <Playground>
-  <FormatRelativeDateTime date={new CivilDate(2020, 2, 26)} />
+  <FormatRelativeDateTime date={new CivilDateTime(2020, 2, 26, 14, 29, 39)} />
 </Playground>
 
 ## Props
