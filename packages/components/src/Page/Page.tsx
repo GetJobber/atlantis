@@ -69,7 +69,6 @@ export function Page({
     { width: titleBarWidth = defaultSizes.large },
   ] = useResizeObserver<HTMLDivElement>();
 
-  console.log(defaultSizes);
   const titleBarClasses = classnames(styles.titleBar, {
     [styles.small]: titleBarWidth > defaultSizes.smaller,
     [styles.medium]: titleBarWidth > defaultSizes.small,
