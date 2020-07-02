@@ -4,6 +4,14 @@ import { useMemo, useState } from "react";
 import useResizeObserverPackage from "use-resize-observer/polyfilled";
 import { throttle } from "lodash";
 
+export const defaultSizes = {
+  base: 640,
+  small: 500,
+  smaller: 265,
+  large: 750,
+  larger: 1024,
+};
+
 interface ObservedSize {
   width: number | undefined;
   height: number | undefined;
@@ -17,7 +25,7 @@ interface ResizeObserverProps {
 const wait = 100;
 
 export function useResizeObserver<T extends HTMLElement>(
-  { width, height } = {} as ResizeObserverProps,
+  { width = defaultSizes, height = defaultSizes } = {} as ResizeObserverProps,
 ) {
   const [exactSize, setSize] = useState<ObservedSize>({
     width: undefined,
@@ -28,19 +36,12 @@ export function useResizeObserver<T extends HTMLElement>(
     onResize,
   });
 
-  const defaultSizes = {
-    smaller: 265,
-    small: 500,
-    base: 640,
-    large: 750,
-    larger: 1024,
-  };
-
   const exactWidth = exactSize.width;
   const exactHeight = exactSize.height;
+
   const sizes = {
-    width: getSizeKey(width || defaultSizes, exactSize.width),
-    height: getSizeKey(height || defaultSizes, exactSize.height),
+    width: getSize(width, exactSize.width),
+    height: getSize(height, exactSize.height),
     exactWidth,
     exactHeight,
   };
@@ -53,23 +54,24 @@ export function useResizeObserver<T extends HTMLElement>(
  * then the comparable, but less then the next largest number in our
  * object.
  */
-function getSizeKey(sizes: object, comparable: number | undefined) {
+function getSize(
+  sizes: object,
+  comparable: number | undefined,
+): number | undefined {
   if (!comparable || !sizes) {
-    return;
+    return undefined;
   }
 
   /**
    * Sort the values of our object so that we know they are in proper
    * order to be compared by
    */
-  const values = Object.values(sizes)
+  const sortedSizes = Object.values(sizes)
     .sort((a, b) => a - b)
     .reverse();
 
-  const consideredValues = values.filter(value => value <= comparable);
-  const properSize = consideredValues[0] || Object.keys(sizes)[0];
-
-  return Object.keys(sizes).find(
-    key => sizes[key as keyof object] === properSize,
+  return (
+    sortedSizes.find(value => value <= comparable) ||
+    sortedSizes[sortedSizes.length - 1]
   );
 }

@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import classnames from "classnames";
-import { useResizeObserver } from "@jobber/hooks";
+import { defaultSizes, useResizeObserver } from "@jobber/hooks";
 import styles from "./Page.css";
 import { Heading } from "../Heading";
 import { Text } from "../Text";
@@ -53,12 +53,6 @@ export interface PageProps {
   readonly moreActionsMenu?: SectionProps[];
 }
 
-const pageSizes = {
-  small: 265,
-  base: 500,
-  large: 750,
-};
-
 // eslint-disable-next-line max-statements
 export function Page({
   title,
@@ -70,16 +64,16 @@ export function Page({
   moreActionsMenu = [],
 }: PageProps) {
   const pageStyles = classnames(styles.page, styles[width]);
-  const [titleBarRef, { width: titleBarWidth }] = useResizeObserver<
-    HTMLDivElement
-  >({ width: pageSizes });
+  const [
+    titleBarRef,
+    { width: titleBarWidth = defaultSizes.large },
+  ] = useResizeObserver<HTMLDivElement>();
 
-  console.log("TITLEWIDTH", titleBarWidth);
-
+  console.log(defaultSizes);
   const titleBarClasses = classnames(styles.titleBar, {
-    [styles.small]: titleBarWidth && titleBarWidth === "small",
-    [styles.medium]: titleBarWidth && titleBarWidth === "base",
-    [styles.large]: titleBarWidth && titleBarWidth === "large",
+    [styles.small]: titleBarWidth > defaultSizes.smaller,
+    [styles.medium]: titleBarWidth > defaultSizes.small,
+    [styles.large]: titleBarWidth > defaultSizes.large,
   });
 
   const showMenu = moreActionsMenu.length > 0;
