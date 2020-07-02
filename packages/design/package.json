@@ -1,6 +1,6 @@
 {
   "name": "@jobber/design",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Design foundation for the Jobber Atlantis Design System",
   "license": "MIT",
   "main": "dist/index.js",
@@ -31,9 +31,9 @@
     "classnames": "^2.2.6"
   },
   "devDependencies": {
-    "postcss": "^7.0.32",
     "@types/classnames": "^2.2.10",
     "autoprefixer": "^9.5.1",
+    "postcss": "^7.0.32",
     "postcss-cli": "^6.1.2",
     "postcss-custom-properties": "^8.0.10",
     "postcss-import": "^12.0.1",
