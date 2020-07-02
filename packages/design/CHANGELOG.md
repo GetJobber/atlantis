@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.6.1...@jobber/design@0.7.0) (2020-07-02)
+
+
+### Features
+
+* export foundation as a js file with the corresponding types ([#280](https://github.com/GetJobber/atlantis/issues/280)) ([4edc9c8](https://github.com/GetJobber/atlantis/commit/4edc9c8d181cb9e38ecba01cb4c843199b4a3cad))
+
+
+
+
+
 ## [0.6.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.6.0...@jobber/design@0.6.1) (2020-06-30)
 
 **Note:** Version bump only for package @jobber/design
