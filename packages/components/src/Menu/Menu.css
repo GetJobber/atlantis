@@ -9,44 +9,39 @@
 
 .menu {
   position: fixed;
-  right: 0;
   bottom: 0;
   left: 0;
   z-index: var(--elevation-menu);
   width: 100%;
   max-height: 72vh;
   padding: var(--space-small);
-  padding-bottom: env(safe-area-inset-bottom);
-  border: var(--border-base) solid var(--color-grey--lighter);
+  padding-bottom: calc(env(safe-area-inset-bottom) + var(--space-small));
   border-radius: var(--radius-base) var(--radius-base) 0 0;
+  -webkit-overflow-scrolling: touch;
   overflow-y: scroll;
   background-color: var(--color-white);
-  -webkit-overflow-scrolling: touch;
-}
 
-@media screen and (max-width: 639px), print {
-  .menu:last-child {
-    padding-bottom: var(--space-small);
-  }
-}
-
-@media only screen and (min-width: 640px), print {
-  .menu {
+  @media (--medium-screens) {
     position: absolute;
     left: auto;
     width: calc(var(--base-unit) * 12.5);
     box-shadow: var(--shadow-base);
     padding: var(--space-small);
+    border: var(--border-base) solid var(--color-grey--lighter);
     border-radius: var(--radius-base);
     overflow: auto;
   }
+}
 
-  .above {
+.above {
+  @media (--medium-screens) {
     bottom: 100%;
     margin-bottom: var(--space-smallest);
   }
+}
 
-  .below {
+.below {
+  @media (--medium-screens) {
     top: 100%;
     bottom: auto;
     margin-top: var(--space-smallest);
@@ -105,10 +100,8 @@
     132,
     0.8
   ); /* until we figure out rgba + color vars... */
-}
 
-@media only screen and (min-width: 640px), print {
-  .overlay {
+  @media (--medium-screens) {
     background-color: transparent;
   }
 }

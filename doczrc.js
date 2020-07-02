@@ -1,77 +1,6 @@
 /* eslint-env node */
 import path from "path";
-import { createPlugin } from "docz-core";
 import glob from "glob";
-
-const projectPlugin = () =>
-  createPlugin({
-    onCreateWebpackConfig: ({ stage, rules, actions, loaders, getConfig }) => {
-      const config = getConfig();
-
-      /**
-       * Generate css types on `.css` file save.
-       */
-      config.module.rules.push({
-        enforce: "pre",
-        test: /\.css$/,
-        exclude: /node_modules/,
-        loader: require.resolve("typed-css-modules-loader"),
-      });
-
-      /**
-       * Gatsby does not like that we use css modules. To fix this we need
-       * to change some of the webpack config around how we handle css.
-       * 😢 More info here: https://github.com/gatsbyjs/gatsby/issues/16129
-       */
-      const cssRule = {
-        ...rules.cssModules(),
-        test: rules.css().test,
-        include: /^((?!node_modules).)*$/,
-      };
-
-      /**
-       * Don't process css from npm packages as modules.
-       */
-      const libCssRule = {
-        ...rules.css(),
-        test: rules.css().test,
-        include: /node_modules/,
-      };
-
-      config.module.rules = [
-        ...config.module.rules.filter(rule => {
-          const areCssRules =
-            rule.oneOf && rule.oneOf.some(r => r.test.test("style.css"));
-
-          return !areCssRules;
-        }),
-        libCssRule,
-        cssRule,
-      ];
-
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        "@jobber/components": path.resolve(
-          __dirname,
-          "../packages/components/src",
-        ),
-      };
-
-      // Situationally disable serverside rendering.
-      if (stage.includes("html")) {
-        config.module.rules.push({
-          test: /(?:packages|docs)\/.*\.(?:js|jsx|ts|tsx)$/,
-          use: loaders.null(),
-        });
-        config.module.rules.push({
-          test: /.*\.(?:md|mdx)$/,
-          use: path.resolve("../src/null-markdown-loader.js"),
-        });
-      }
-
-      actions.replaceWebpackConfig(config);
-    },
-  });
 
 /**
  * Return an array of private components to hide from the user.
@@ -114,13 +43,12 @@ export default {
     "Atlantis is a design system for Jobber. The primary objective for Atlantis is to provide a system of reusable components to help developers to quickly build beautiful and consistent interfaces for our users.",
   typescript: true,
   port: 3333,
-  menu: ["Atlantis", "Patterns", "Components"],
+  menu: ["Atlantis", "Patterns", "Components", "Hooks", "Design"],
   files: "{README.md,CONTRIBUTING.md,**/*.mdx,packages/*/CHANGELOG.md}",
   ignore: [
     ...privateComponentReadmes(),
     "./packages/generators/templates/**/*",
   ],
-  plugins: [projectPlugin()],
   themeConfig: {
     showDarkModeSwitch: false,
     fonts: {
