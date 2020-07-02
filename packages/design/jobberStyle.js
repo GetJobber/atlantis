@@ -99,7 +99,7 @@ function resolveCssVarsInExpression({
 }
 
 function isSpacingValue(value) {
-  return !!String(value).match(/(^\d+(px|%)$)|(^\d+$)/);
+  return !!String(value).match(/(^\d+(px|%|rem)$)|(^\d+$)/);
 }
 
 function getResolvedCSSVars(cssProperties) {
