@@ -25,13 +25,32 @@ fs.writeFile("./foundation.js", jsonContent, "utf8", function(err) {
   console.log("JSON file has been saved.");
 });
 
-//jobberStyle recursively resolves css vars
-//varRegexResult returns --base-unit from var(--base-unit)
-//calcRegexResult returns var(--base-unit) / 16 from calc(var(--base-unit) / 16)
+/**
+ * Recursively resolve css custom properties.
+ *
+ * eg:
+ * ```
+ * jobberStyle(`
+ *   "--base": "5px",
+ *   "--foo": "calc(var(--base) * 2),
+ * `);
+ * ```
+ * =>
+ * ```
+ * {
+ *   "--base": "5",
+ *   "--foo": "10",
+ * }
+ * ```
+ */
 
 function jobberStyle(styling) {
   const styleValue = customProperties[styling];
+
+  //varRegexResult returns --base-unit from var(--base-unit)
   const varRegexResult = regexExpressions.cssVars.exec(styleValue);
+
+  //calcRegexResult returns var(--base-unit) / 16 from calc(var(--base-unit) / 16)
   const calcRegexResult = regexExpressions.calculations.exec(styleValue);
   if (calcRegexResult) {
     const finalExpression = handleExpressionsInCalc(calcRegexResult);
