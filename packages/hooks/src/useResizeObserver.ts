@@ -18,14 +18,14 @@ interface ObservedSize {
 }
 
 interface ResizeObserverProps {
-  width?: object;
-  height?: object;
+  widths?: object;
+  heights?: object;
 }
 
 const wait = 100;
 
 export function useResizeObserver<T extends HTMLElement>(
-  { width = defaultSizes, height = defaultSizes } = {} as ResizeObserverProps,
+  { widths = defaultSizes, heights = defaultSizes } = {} as ResizeObserverProps,
 ) {
   const [exactSize, setSize] = useState<ObservedSize>({
     width: undefined,
@@ -40,8 +40,8 @@ export function useResizeObserver<T extends HTMLElement>(
   const exactHeight = exactSize.height;
 
   const sizes = {
-    width: getSize(width, exactSize.width),
-    height: getSize(height, exactSize.height),
+    width: getSize(widths, exactSize.width),
+    height: getSize(heights, exactSize.height),
     exactWidth,
     exactHeight,
   };
