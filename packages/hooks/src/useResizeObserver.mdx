@@ -26,15 +26,9 @@ import { useResizeObserver } from "@jobber/hooks";
       ref,
       { width, exactWidth, exactHeight, height }
     ] = useResizeObserver();
-    const currentWidth = Object.keys(defaultSizes).find(
-      key => defaultSizes[key] === width
-    );
-    const currentHeight = Object.keys(defaultSizes).find(
-      key => defaultSizes[key] === height
-    );
     return (
       <div ref={ref}>
-        <Card title={`Width: ${currentWidth} | Height: ${currentHeight}`}>
+        <Card title={`Check out my àçƈéñŦ`} accent={getAccent()}>
           <Content>
             <Text>Width: {width}</Text>
             <Text>Height: {height}</Text>
@@ -44,6 +38,14 @@ import { useResizeObserver } from "@jobber/hooks";
         </Card>
       </div>
     );
+    function getAccent() {
+      if (exactWidth < defaultSizes.smaller) return "red";
+      if (width < defaultSizes.small) return "orange";
+      if (width < defaultSizes.base) return "yellow";
+      if (width < defaultSizes.large) return "green";
+      if (width < defaultSizes.larger) return "lightBlue";
+      return "purple";
+    }
   }}
 </Playground>
 
@@ -90,12 +92,9 @@ want to use `defaultSizes`.
     const [ref, { width, exactWidth }] = useResizeObserver({
       width: customWidths
     });
-    const currentWidth = Object.keys(customWidths).find(
-      key => customWidths[key] === width
-    );
     return (
       <div ref={ref}>
-        <Card title={`Width: ${currentWidth}`} accent={getAccent(currentWidth)}>
+        <Card title={`Width: ${getCurrentWidth()}`} accent={getAccent()}>
           <Content>
             <Text>Width: {width}</Text>
             <Text>Exact Width: {exactWidth}</Text>
@@ -103,10 +102,13 @@ want to use `defaultSizes`.
         </Card>
       </div>
     );
-    function getAccent(size) {
+    function getAccent() {
       if (width < customWidths.medium) return "red";
       if (width < customWidths.large) return "green";
       return "indigo";
+    }
+    function getCurrentWidth() {
+      return Object.keys(customWidths).find(key => customWidths[key] === width);
     }
   }}
 </Playground>
