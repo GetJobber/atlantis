@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import classnames from "classnames";
-import { defaultSizes, useResizeObserver } from "@jobber/hooks";
+import { Breakpoints, useResizeObserver } from "@jobber/hooks";
 import styles from "./Page.css";
 import { Heading } from "../Heading";
 import { Text } from "../Text";
@@ -66,13 +66,13 @@ export function Page({
   const pageStyles = classnames(styles.page, styles[width]);
   const [
     titleBarRef,
-    { width: titleBarWidth = defaultSizes.large },
+    { width: titleBarWidth = Breakpoints.large },
   ] = useResizeObserver<HTMLDivElement>();
 
   const titleBarClasses = classnames(styles.titleBar, {
-    [styles.small]: titleBarWidth > defaultSizes.smaller,
-    [styles.medium]: titleBarWidth > defaultSizes.small,
-    [styles.large]: titleBarWidth > defaultSizes.large,
+    [styles.small]: titleBarWidth > Breakpoints.smaller,
+    [styles.medium]: titleBarWidth > Breakpoints.small,
+    [styles.large]: titleBarWidth > Breakpoints.large,
   });
 
   const showMenu = moreActionsMenu.length > 0;

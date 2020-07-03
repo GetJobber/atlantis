@@ -6,7 +6,7 @@ route: /hooks/use-resize-observer
 
 import { Playground } from "docz";
 import { useState } from "react";
-import { useResizeObserver, defaultSizes } from "./useResizeObserver";
+import { useResizeObserver, Breakpoints } from "./useResizeObserver";
 import { Text } from "@jobber/components/Text";
 import { Card } from "@jobber/components/Card";
 import { Content } from "@jobber/components/Content";
@@ -39,11 +39,11 @@ import { useResizeObserver } from "@jobber/hooks";
       </div>
     );
     function getAccent() {
-      if (exactWidth < defaultSizes.smaller) return "red";
-      if (width < defaultSizes.small) return "orange";
-      if (width < defaultSizes.base) return "yellow";
-      if (width < defaultSizes.large) return "green";
-      if (width < defaultSizes.larger) return "lightBlue";
+      if (exactWidth < Breakpoints.smaller) return "red";
+      if (width < Breakpoints.small) return "orange";
+      if (width < Breakpoints.base) return "yellow";
+      if (width < Breakpoints.large) return "green";
+      if (width < Breakpoints.larger) return "lightBlue";
       return "purple";
     }
   }}
@@ -60,19 +60,19 @@ const [ref, { width, height }] = useResizeObserver<HTMLDivElement>();
 return <div ref={ref}>...</div>;
 ```
 
-## defaultSizes
+## Breakpoints
 
-`useResizeObserver` exports an object of `defaultSizes`. This can be used for
+`useResizeObserver` exports an object of `Breakpoints`. This can be used for
 high level components such as `Page`
 
 ```tsx
-import { defaultSizes } from "@jobber/hooks";
+import { Breakpoints } from "@jobber/hooks";
 ```
 
-### The defaultSizes object:
+### The `Breakpoints` object:
 
 export function Sizes() {
-  return <code>{JSON.stringify(defaultSizes)}</code>;
+  return <code>{JSON.stringify(Breakpoints)}</code>;
 }
 
 <Sizes />
@@ -80,7 +80,7 @@ export function Sizes() {
 ## Custom Sizes
 
 `useResizeObserver` can take a custom `width` or `height` object if you do not
-want to use `defaultSizes`.
+want to use `Breakpoints`.
 
 <Playground>
   {() => {

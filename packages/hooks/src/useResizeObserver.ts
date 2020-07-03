@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import useResizeObserverPackage from "use-resize-observer/polyfilled";
 import { throttle } from "lodash";
 
-export const defaultSizes = {
+export const Breakpoints = {
   base: 640,
   small: 500,
   smaller: 265,
@@ -25,7 +25,7 @@ interface ResizeObserverProps {
 const wait = 100;
 
 export function useResizeObserver<T extends HTMLElement>(
-  { widths = defaultSizes, heights = defaultSizes } = {} as ResizeObserverProps,
+  { widths = Breakpoints, heights = Breakpoints } = {} as ResizeObserverProps,
 ) {
   const [exactSize, setSize] = useState<ObservedSize>({
     width: undefined,
