@@ -24,9 +24,10 @@ interface ResizeObserverProps {
 
 const wait = 100;
 
-export function useResizeObserver<T extends HTMLElement>(
-  { widths = Breakpoints, heights = Breakpoints } = {} as ResizeObserverProps,
-) {
+export function useResizeObserver<T extends HTMLElement>({
+  widths = Breakpoints,
+  heights = Breakpoints,
+}: ResizeObserverProps = {}) {
   const [exactSize, setSize] = useState<ObservedSize>({
     width: undefined,
     height: undefined,
