@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@0.2.1...@jobber/hooks@0.3.0) (2020-07-06)
+
+
+### Features
+
+* **hooks:** useResizeObserver custom sizes ([#298](https://github.com/GetJobber/atlantis/issues/298)) ([f0e500b](https://github.com/GetJobber/atlantis/commit/f0e500bcae02dd16fdf608782a84c73557386334))
+
+
+
+
+
 ## [0.2.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@0.2.0...@jobber/hooks@0.2.1) (2020-06-23)
 
 
