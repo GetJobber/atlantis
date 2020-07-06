@@ -86,7 +86,7 @@ export interface FormFieldProps {
   /**
    * Exclusively for textareas. Specifies the visible height of a textarea.
    */
-  readonly rows?: number;
+  readonly rows?: number | { min: number; max: number };
 
   /**
    * Adjusts the interface to either have small or large spacing.
@@ -150,6 +150,8 @@ export interface FormFieldProps {
    */
   onValidation?(messages: ValidationProps[]): void;
 }
+
+// const [currentRows, setRows] = useState(initializeRows);
 
 export const FormField = React.forwardRef(
   (
@@ -255,6 +257,7 @@ export const FormField = React.forwardRef(
         case "textarea":
           return (
             <textarea
+              // rows={currentRows}
               rows={rows}
               onFocus={handleFocus}
               onBlur={handleBlur}
@@ -288,6 +291,7 @@ export const FormField = React.forwardRef(
       newValue = event.currentTarget.value;
       setHasMiniLabel(newValue.length > 0);
 
+      console.log(newValue);
       if (type === "number" && newValue.length > 0) {
         newValue = parseFloat(newValue);
       }
@@ -343,3 +347,11 @@ function hasErrorMessages(validations?: ValidationProps[]) {
   }
   return false;
 }
+
+// function initializeRows(rows: number | { min: number; max: number }) {
+//   if (rows as number) {
+//     return rows;
+//   } else if (rows as { min: number; max: number }) {
+//     return rows.min;
+//   }
+// }

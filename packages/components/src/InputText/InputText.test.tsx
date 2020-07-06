@@ -73,7 +73,7 @@ it("renders a textarea with 4 rows", () => {
       <InputText
         placeholder="Describe your favourite colour?"
         multiline
-        rows={4}
+        rows={{ min: 2, max: 6 }}
       />,
     )
     .toJSON();
