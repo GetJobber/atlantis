@@ -1,6 +1,6 @@
 import React, { Ref, createRef, forwardRef, useImperativeHandle } from "react";
 import { XOR } from "ts-xor";
-import { FormField, FormFieldProps } from "../FormField";
+import { FormField, FormFieldProps, MultiLineRows } from "../FormField";
 
 /**
  * The following is the same as:
@@ -27,7 +27,7 @@ interface MultilineProps extends BaseProps {
   /**
    * Specifies the visible height of a long answer form field.
    */
-  readonly rows?: number;
+  readonly rows?: MultiLineRows;
 }
 
 type InputTextPropOptions = XOR<BaseProps, MultilineProps>;

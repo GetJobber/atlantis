@@ -6,6 +6,8 @@ import { Icon } from "../Icon";
 import { Text } from "../Text";
 import { InputValidation, ValidationProps } from "../InputValidation";
 
+export type MultiLineRows = number | { min: number; max: number };
+
 export interface FormFieldProps {
   /**
    * Determines the alignment of the text inside the input.
@@ -86,7 +88,7 @@ export interface FormFieldProps {
   /**
    * Exclusively for textareas. Specifies the visible height of a textarea.
    */
-  readonly rows?: number | { min: number; max: number };
+  readonly rows?: MultiLineRows;
 
   /**
    * Adjusts the interface to either have small or large spacing.
@@ -150,8 +152,6 @@ export interface FormFieldProps {
    */
   onValidation?(messages: ValidationProps[]): void;
 }
-
-// const [currentRows, setRows] = useState(initializeRows);
 
 export const FormField = React.forwardRef(
   (
@@ -255,10 +255,22 @@ export const FormField = React.forwardRef(
         case "select":
           return <select {...fieldProps}>{children}</select>;
         case "textarea":
+          // eslint-disable-next-line no-case-declarations
+          const [currentRows, setRows] = useState(getRowCount(rows));
+          const textareaLineHeight = 24;
+          useEffect(() => {
+            const calculateRows = Math.floor(
+              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+              ref!.current.scrollHeight / textareaLineHeight,
+            );
+            console.log(calculateRows);
+            setRows(getRowCount(rows, calculateRows));
+          }, [value, defaultValue]);
+
           return (
             <textarea
               // rows={currentRows}
-              rows={rows}
+              rows={currentRows}
               onFocus={handleFocus}
               onBlur={handleBlur}
               ref={ref as Ref<HTMLTextAreaElement>}
@@ -348,10 +360,15 @@ function hasErrorMessages(validations?: ValidationProps[]) {
   return false;
 }
 
-// function initializeRows(rows: number | { min: number; max: number }) {
-//   if (rows as number) {
-//     return rows;
-//   } else if (rows as { min: number; max: number }) {
-//     return rows.min;
-//   }
-// }
+// TODO: Confurm this default so we don't make a breaking change
+function getRowCount(rows: MultiLineRows = 1, thing?: unknown) {
+  if (typeof rows === "number") {
+    return rows;
+  } else {
+    if (thing) {
+      // calculate
+    }
+
+    return rows.min;
+  }
+}
