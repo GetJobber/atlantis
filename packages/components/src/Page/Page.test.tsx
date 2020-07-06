@@ -10,6 +10,13 @@ jest.mock("@jobber/hooks", () => {
       { current: undefined },
       { width: 1000, height: 100 },
     ],
+    Breakpoints: {
+      base: 640,
+      small: 500,
+      smaller: 265,
+      large: 750,
+      larger: 1024,
+    },
   };
 });
 

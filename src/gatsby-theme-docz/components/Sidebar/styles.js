@@ -57,7 +57,7 @@ export const search = {
 };
 
 export const topLevelMenuWrapper = theme => ({
-  "& a:not(:first-child)": {
+  "& a:not(:first-of-type)": {
     ...theme.navigation.level3,
     ml: 0,
   },

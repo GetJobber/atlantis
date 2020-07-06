@@ -6,6 +6,17 @@ export * from "gatsby-theme-docz/src/components/Playground/styles";
 
 // Override what we need to.
 import * as styles from "gatsby-theme-docz/src/components/Playground/styles";
+import { media } from "gatsby-theme-docz/src/theme/breakpoints";
+
+export const wrapper = {
+  width: "calc(100vw - 300px)",
+  marginLeft: "calc(-50vw + 480px + 120px )",
+
+  [media.desktop]: {
+    width: "100%",
+    marginLeft: 0,
+  },
+};
 
 export const previewWrapper = {
   ...styles.previewWrapper,
@@ -41,7 +52,7 @@ export const previewInner = (content, showingCode) => {
     ...styles.previewInner(content, showingCode),
     borderRadius: "4px 4px 0 0",
 
-    ":not(:first-child)": {
+    ":not(:first-of-type)": {
       borderTopWidth: 0,
       borderRadius: "0 0 4px 4px",
     },

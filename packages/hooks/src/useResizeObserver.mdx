@@ -6,7 +6,7 @@ route: /hooks/use-resize-observer
 
 import { Playground } from "docz";
 import { useState } from "react";
-import { useResizeObserver } from "./useResizeObserver";
+import { useResizeObserver, Breakpoints } from "./useResizeObserver";
 import { Text } from "@jobber/components/Text";
 import { Card } from "@jobber/components/Card";
 import { Content } from "@jobber/components/Content";
@@ -22,18 +22,30 @@ import { useResizeObserver } from "@jobber/hooks";
 
 <Playground>
   {() => {
-    const [ref, { width, height }] = useResizeObserver();
-    const title = width > 500 ? "This is big" : "This is small";
+    const [
+      ref,
+      { width, exactWidth, exactHeight, height }
+    ] = useResizeObserver();
     return (
       <div ref={ref}>
-        <Card title={title}>
+        <Card title={`Check out my àçƈéñŦ`} accent={getAccent()}>
           <Content>
-            <Text>Width: {width}</Text>
-            <Text>Height: {height}</Text>
+            <Text>Width Step: {width}</Text>
+            <Text>Height Step: {height}</Text>
+            <Text>Exact Width: {exactWidth}</Text>
+            <Text>Exact Height: {exactHeight}</Text>
           </Content>
         </Card>
       </div>
     );
+    function getAccent() {
+      if (exactWidth < Breakpoints.smaller) return "red";
+      if (width < Breakpoints.small) return "orange";
+      if (width < Breakpoints.base) return "yellow";
+      if (width < Breakpoints.large) return "green";
+      if (width < Breakpoints.larger) return "lightBlue";
+      return "purple";
+    }
   }}
 </Playground>
 
@@ -47,3 +59,56 @@ to represent the `ref`. In the example below, we pass it the type of
 const [ref, { width, height }] = useResizeObserver<HTMLDivElement>();
 return <div ref={ref}>...</div>;
 ```
+
+## Breakpoints
+
+`useResizeObserver` exports an object of `Breakpoints`. This can be used for
+high level components such as `Page`
+
+```tsx
+import { Breakpoints } from "@jobber/hooks";
+```
+
+### The `Breakpoints` object:
+
+export function Sizes() {
+  return <code>{JSON.stringify(Breakpoints)}</code>;
+}
+
+<Sizes />
+
+## Custom Sizes
+
+`useResizeObserver` can take a custom `widths` or `heights` object if you do not
+want to use `Breakpoints`.
+
+<Playground>
+  {() => {
+    const customWidths = {
+      small: 480,
+      medium: 640,
+      large: 768
+    };
+    const [ref, { width, exactWidth }] = useResizeObserver({
+      widths: customWidths
+    });
+    return (
+      <div ref={ref}>
+        <Card title={`Width: ${getCurrentWidth()}`} accent={getAccent()}>
+          <Content>
+            <Text>Width Step: {width}</Text>
+            <Text>Exact Width: {exactWidth}</Text>
+          </Content>
+        </Card>
+      </div>
+    );
+    function getAccent() {
+      if (width < customWidths.medium) return "red";
+      if (width < customWidths.large) return "green";
+      return "indigo";
+    }
+    function getCurrentWidth() {
+      return Object.keys(customWidths).find(key => customWidths[key] === width);
+    }
+  }}
+</Playground>

@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import classnames from "classnames";
-import { useResizeObserver } from "@jobber/hooks";
+import { Breakpoints, useResizeObserver } from "@jobber/hooks";
 import styles from "./Page.css";
 import { Heading } from "../Heading";
 import { Text } from "../Text";
@@ -53,6 +53,7 @@ export interface PageProps {
   readonly moreActionsMenu?: SectionProps[];
 }
 
+// eslint-disable-next-line max-statements
 export function Page({
   title,
   intro,
@@ -63,14 +64,15 @@ export function Page({
   moreActionsMenu = [],
 }: PageProps) {
   const pageStyles = classnames(styles.page, styles[width]);
-  const [titleBarRef, { width: titleBarWidth }] = useResizeObserver<
-    HTMLDivElement
-  >();
+  const [
+    titleBarRef,
+    { width: titleBarWidth = Breakpoints.large },
+  ] = useResizeObserver<HTMLDivElement>();
 
   const titleBarClasses = classnames(styles.titleBar, {
-    [styles.small]: titleBarWidth && titleBarWidth > 265,
-    [styles.medium]: titleBarWidth && titleBarWidth > 500,
-    [styles.large]: titleBarWidth && titleBarWidth > 750,
+    [styles.small]: titleBarWidth > Breakpoints.smaller,
+    [styles.medium]: titleBarWidth > Breakpoints.small,
+    [styles.large]: titleBarWidth > Breakpoints.large,
   });
 
   const showMenu = moreActionsMenu.length > 0;
