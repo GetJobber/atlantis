@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.33.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.33.1...@jobber/components@1.33.2) (2020-07-07)
+
+
+### Bug Fixes
+
+* **components:** Add fragments to FormatRelativeDateTime ([#302](https://github.com/GetJobber/atlantis/issues/302)) ([bc84e85](https://github.com/GetJobber/atlantis/commit/bc84e8501e09c4b98de1c4168061e1db5a4911ea))
+
+
+
+
+
 ## [1.33.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.33.0...@jobber/components@1.33.1) (2020-07-07)
 
 
