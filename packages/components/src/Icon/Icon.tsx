@@ -1,6 +1,8 @@
 import React from "react";
 import { IconColorNames, IconNames, IconSizes, getIcon } from "@jobber/design";
 
+export { IconColorNames, IconNames } from "@jobber/design";
+
 interface IconProps {
   /** The icon to show.  */
   readonly name: IconNames;
