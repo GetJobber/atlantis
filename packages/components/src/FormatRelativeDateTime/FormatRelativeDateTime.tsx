@@ -17,13 +17,15 @@ export function FormatRelativeDateTime(
 
   switch (relativeTimeRange(delta)) {
     case "less than an hour":
-      return showMinutes(Math.round(delta / 60));
+      return <>{showMinutes(Math.round(delta / 60))}</>;
     case "less then a day":
-      return inputDate.toLocaleTimeString();
+      return <>{inputDate.toLocaleTimeString()}</>;
     case "less than a week":
-      return strFormatDate(inputDate, { weekday: "short" });
+      return <>{strFormatDate(inputDate, { weekday: "short" })}</>;
     case "less than a year":
-      return strFormatDate(inputDate, { month: "short", day: "numeric" });
+      return (
+        <>{strFormatDate(inputDate, { month: "short", day: "numeric" })}</>
+      );
     default:
       return (
         <>
