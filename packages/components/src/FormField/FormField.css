@@ -72,7 +72,6 @@
 
 textarea.formField {
   height: auto;
-  min-height: calc(var(--field--height) * 2);
   resize: vertical;
 }
 
