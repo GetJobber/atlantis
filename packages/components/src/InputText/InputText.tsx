@@ -79,32 +79,29 @@ function InputTextInternal(
 
   function handleChange(newValue: string) {
     props.onChange && props.onChange(newValue);
-    if (inputRef && inputRef.current instanceof HTMLTextAreaElement) {
-      const textareaLineHeight = parseInt(
-        window
-          .getComputedStyle(inputRef.current)
-          .getPropertyValue("line-height"),
-        10,
-      );
-      const textareaScrollHeight = inputRef.current.scrollHeight;
-      const calculateRows = Math.floor(
-        textareaScrollHeight / textareaLineHeight - 2,
-      );
-      console.log("scroll height", textareaScrollHeight);
-      console.log("line height", textareaLineHeight);
-      console.log("calculatedRows", calculateRows);
-      console.log("currentRows", currentRows);
-
-      // if (props.rows.max > calculateRows && calculateRows > props.rows.min) {
-      //   setRows(calculateRows);
-      // }
-
-      if (props.rows.max > calculateRows && calculateRows > currentRows) {
-        setRows(calculateRows);
-      } else if (calculateRows < currentRows && currentRows > props.rows.min) {
-        setRows(calculateRows);
+    if (
+      props.rows &&
+      inputRef &&
+      inputRef.current instanceof HTMLTextAreaElement
+    ) {
+      if (
+        calculateRows() >= props.rows.min &&
+        calculateRows() <= props.rows.max
+      ) {
+        setRows(calculateRows());
       }
     }
+  }
+
+  function calculateRows() {
+    const currentRef = inputRef.current as HTMLTextAreaElement;
+    const textareaLineHeight = parseInt(
+      window.getComputedStyle(currentRef).getPropertyValue("line-height"),
+      10,
+    );
+    const textareaScrollHeight = currentRef.scrollHeight;
+
+    return Math.floor(textareaScrollHeight / textareaLineHeight) - 1;
   }
 
   function insertText(text: string) {
