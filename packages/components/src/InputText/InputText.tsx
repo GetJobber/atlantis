@@ -90,24 +90,23 @@ function InputTextInternal(
       inputRef &&
       inputRef.current instanceof HTMLTextAreaElement
     ) {
+      const currentRef = inputRef.current as HTMLTextAreaElement;
+      const textareaLineHeight = parseInt(
+        window.getComputedStyle(currentRef).getPropertyValue("line-height"),
+        10,
+      );
+      const textareaScrollHeight = currentRef.scrollHeight;
+      const calculatedRows = calculateRows(
+        textareaScrollHeight,
+        textareaLineHeight,
+      );
       if (
-        calculateRows() >= props.rows.min &&
-        calculateRows() <= props.rows.max
+        calculatedRows >= props.rows.min &&
+        calculatedRows <= props.rows.max
       ) {
-        setRows(calculateRows());
+        setRows(calculatedRows);
       }
     }
-  }
-
-  function calculateRows() {
-    const currentRef = inputRef.current as HTMLTextAreaElement;
-    const textareaLineHeight = parseInt(
-      window.getComputedStyle(currentRef).getPropertyValue("line-height"),
-      10,
-    );
-    const textareaScrollHeight = currentRef.scrollHeight;
-
-    return Math.floor(textareaScrollHeight / textareaLineHeight) - 1;
   }
 
   function insertText(text: string) {
@@ -117,6 +116,10 @@ function InputTextInternal(
       props.onChange && props.onChange(input.value);
     }
   }
+}
+
+export function calculateRows(scrollHeight: number, lineHeight: number) {
+  return Math.floor(scrollHeight / lineHeight) - 1;
 }
 
 export const InputText = forwardRef(InputTextInternal);
