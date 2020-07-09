@@ -8,6 +8,11 @@ import React, {
 import { XOR } from "ts-xor";
 import { FormField, FormFieldProps } from "../FormField";
 
+interface MultiRows {
+  min: number;
+  max: number;
+}
+
 /**
  * The following is the same as:
  *   type BaseProps = Omit<FormFieldProps, "type" | "children">;
@@ -33,7 +38,7 @@ interface MultilineProps extends BaseProps {
   /**
    * Specifies the visible height of a long answer form field.
    */
-  readonly rows?: number | { min: number; max: number };
+  readonly rows?: number | MultiRows;
 }
 
 type InputTextPropOptions = XOR<BaseProps, MultilineProps>;
@@ -56,7 +61,7 @@ function InputTextInternal(
     },
   }));
 
-  const [currentRows, setRows] = useState(initializeRows);
+  const [currentRows, setRows] = useState(initializeRows());
 
   return (
     <FormField
@@ -70,7 +75,7 @@ function InputTextInternal(
 
   function initializeRows() {
     if (!props.rows) return;
-    if (props.rows.type === "number" && props.rows > 0) {
+    if (typeof props.rows === "number") {
       return props.rows;
     } else {
       return props.rows.min;
@@ -79,8 +84,9 @@ function InputTextInternal(
 
   function handleChange(newValue: string) {
     props.onChange && props.onChange(newValue);
+    if (!props.rows) return;
     if (
-      props.rows &&
+      typeof props.rows !== "number" &&
       inputRef &&
       inputRef.current instanceof HTMLTextAreaElement
     ) {
