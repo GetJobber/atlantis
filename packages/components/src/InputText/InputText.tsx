@@ -8,7 +8,7 @@ import React, {
 import { XOR } from "ts-xor";
 import { FormField, FormFieldProps } from "../FormField";
 
-interface MultiRows {
+interface RowRange {
   min: number;
   max: number;
 }
@@ -36,9 +36,12 @@ interface MultilineProps extends BaseProps {
   readonly multiline: true;
 
   /**
-   * Specifies the visible height of a long answer form field.
+   * Specifies the visible height of a long answer form field. Can be in the
+   * form of a single number to set a static height, or an associative array
+   * with a min and max keys indicating the minimum number of visible rows, and
+   * the maximum number of visible rows.
    */
-  readonly rows?: number | MultiRows;
+  readonly rows?: number | RowRange;
 }
 
 type InputTextPropOptions = XOR<BaseProps, MultilineProps>;
@@ -74,32 +77,22 @@ function InputTextInternal(
   );
 
   function initializeRows() {
-    if (!props.rows) return;
-    if (typeof props.rows === "number") {
-      return props.rows;
-    } else {
+    if (typeof props.rows === "object") {
       return props.rows.min;
     }
+    return props.rows;
   }
 
   function handleChange(newValue: string) {
     props.onChange && props.onChange(newValue);
-    if (!props.rows) return;
     if (
+      props.rows &&
       typeof props.rows !== "number" &&
       inputRef &&
       inputRef.current instanceof HTMLTextAreaElement
     ) {
-      const currentRef = inputRef.current as HTMLTextAreaElement;
-      const textareaLineHeight = parseInt(
-        window.getComputedStyle(currentRef).getPropertyValue("line-height"),
-        10,
-      );
-      const textareaScrollHeight = currentRef.scrollHeight;
-      const calculatedRows = calculateRows(
-        textareaScrollHeight,
-        textareaLineHeight,
-      );
+      const calculatedRows = getCalculatedRows(inputRef.current);
+
       if (
         calculatedRows >= props.rows.min &&
         calculatedRows <= props.rows.max
@@ -107,6 +100,16 @@ function InputTextInternal(
         setRows(calculatedRows);
       }
     }
+  }
+
+  function getCalculatedRows(currentInputRef: HTMLElement) {
+    const currentRef = currentInputRef as HTMLTextAreaElement;
+    const textareaLineHeight = parseInt(
+      window.getComputedStyle(currentRef).getPropertyValue("line-height"),
+      10,
+    );
+    const textareaScrollHeight = currentRef.scrollHeight;
+    return calculateRows(textareaScrollHeight, textareaLineHeight);
   }
 
   function insertText(text: string) {
