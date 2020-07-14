@@ -188,6 +188,30 @@ shouldn't replace server-side validation.
   }}
 </Playground>
 
+## Focus
+
+<Playground>
+  {() => {
+    const textARef = React.createRef();
+    const textBRef = React.createRef();
+    const focusA = () => {
+      textARef.current.focus();
+    };
+    const focusB = () => {
+      textBRef.current.focus();
+    };
+    return (
+      <Content>
+        <InputText value="Text input A" ref={textARef} />
+        <InputText value="Text input B" ref={textBRef} />
+        <Button label="Focus text input A" onClick={focusA} />
+        <br />
+        <Button label="Focus text input B" onClick={focusB} />
+      </Content>
+    );
+  }}
+</Playground>
+
 ## Using onValidation
 
 If you need to capture the error message and render it outside of the component.
