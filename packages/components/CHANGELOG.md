@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.34.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.33.3...@jobber/components@1.34.0) (2020-07-14)
+
+
+### Features
+
+* **components:** expose focus method in InputText — (Minor) Feature Release ([#310](https://github.com/GetJobber/atlantis/issues/310)) ([4c1c020](https://github.com/GetJobber/atlantis/commit/4c1c020c81ab76aa827102bb10f468dc1e1c364c))
+
+
+
+
+
 ## [1.33.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.33.2...@jobber/components@1.33.3) (2020-07-10)
 
 **Note:** Version bump only for package @jobber/components
