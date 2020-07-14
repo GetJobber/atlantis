@@ -16,6 +16,7 @@ type BaseProps = Pick<
 export interface InputTextRef {
   insert(text: string): void;
   blur(): void;
+  focus(): void;
 }
 
 interface MultilineProps extends BaseProps {
@@ -46,6 +47,12 @@ function InputTextInternal(
       const input = inputRef.current;
       if (input) {
         input.blur();
+      }
+    },
+    focus: () => {
+      const input = inputRef.current;
+      if (input) {
+        input.focus();
       }
     },
   }));
