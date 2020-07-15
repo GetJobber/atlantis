@@ -1,10 +1,4 @@
-import React, {
-  Ref,
-  createRef,
-  forwardRef,
-  useImperativeHandle,
-  useState,
-} from "react";
+import React, { Ref, createRef, forwardRef, useImperativeHandle } from "react";
 import { XOR } from "ts-xor";
 import { FormField, FormFieldProps } from "../FormField";
 
@@ -64,7 +58,7 @@ function InputTextInternal(
     },
   }));
 
-  const [currentRows, setRows] = useState(initializeRows());
+  const lines = typeof props.rows === "object" ? props.rows.min : props.rows;
 
   return (
     <FormField
@@ -72,46 +66,47 @@ function InputTextInternal(
       type={props.multiline ? "textarea" : "text"}
       ref={inputRef}
       onChange={handleChange}
-      rows={currentRows}
+      rows={lines}
     />
   );
 
-  function initializeRows() {
-    if (typeof props.rows === "object") {
-      return props.rows.min;
-    }
-    return props.rows;
-  }
-
   function handleChange(newValue: string) {
     props.onChange && props.onChange(newValue);
-    if (
-      props.rows &&
-      typeof props.rows !== "number" &&
-      inputRef &&
-      inputRef.current instanceof HTMLTextAreaElement
-    ) {
-      const calculatedRows = getCalculatedRows(inputRef.current);
+    if (inputRef && inputRef.current instanceof HTMLTextAreaElement) {
+      resize();
+    }
 
-      if (
-        calculatedRows >= props.rows.min &&
-        calculatedRows <= props.rows.max
-      ) {
-        setRows(calculatedRows);
+    function resize() {
+      if (inputRef.current) {
+        inputRef.current.style.height = "auto";
+        inputRef.current.style.height = textAreaHeight() + "px";
       }
     }
+    function textAreaHeight() {
+      if (
+        typeof props.rows === "object" &&
+        inputRef.current &&
+        typeof getLineHeight() === "number"
+      ) {
+        const maxHeight = props.rows.max * getLineHeight();
+        return Math.min(inputRef.current.scrollHeight, maxHeight);
+      }
+      return undefined;
+    }
+    function getLineHeight() {
+      if (inputRef.current) {
+        const { fontSize, lineHeight } = window.getComputedStyle(
+          inputRef.current,
+        );
+        const lh =
+          lineHeight === "normal"
+            ? parseFloat(fontSize) * 1.2
+            : parseFloat(lineHeight);
+        return lh;
+      }
+      return undefined;
+    }
   }
-
-  function getCalculatedRows(currentInputRef: HTMLElement) {
-    const currentRef = currentInputRef as HTMLTextAreaElement;
-    const textareaLineHeight = parseInt(
-      window.getComputedStyle(currentRef).getPropertyValue("line-height"),
-      10,
-    );
-    const textareaScrollHeight = currentRef.scrollHeight;
-    return calculateRows(textareaScrollHeight, textareaLineHeight);
-  }
-
   function insertText(text: string) {
     const input = inputRef.current;
     if (input) {
@@ -119,10 +114,6 @@ function InputTextInternal(
       props.onChange && props.onChange(input.value);
     }
   }
-}
-
-export function calculateRows(scrollHeight: number, lineHeight: number) {
-  return Math.floor(scrollHeight / lineHeight) - 1;
 }
 
 export const InputText = forwardRef(InputTextInternal);
