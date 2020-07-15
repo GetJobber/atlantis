@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.3](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.7.2...@jobber/design@0.7.3) (2020-07-15)
+
+
+### Bug Fixes
+
+* update icon type defs ([#312](https://github.com/GetJobber/atlantis/issues/312)) ([a571931](https://github.com/GetJobber/atlantis/commit/a571931d143616ba8ddc1b2e271bb7c734a6e307))
+
+
+
+
+
 ## [0.7.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.7.1...@jobber/design@0.7.2) (2020-07-10)
 
 **Note:** Version bump only for package @jobber/design
