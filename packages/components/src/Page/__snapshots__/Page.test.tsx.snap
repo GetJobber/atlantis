@@ -27,7 +27,7 @@ exports[`When actions are provided renders a Page with action buttons and a menu
             <button
               className="button base work primary fullWidth"
               disabled={false}
-              onClick={[Function]}
+              onClick={[MockFunction]}
               type="button"
             >
               <span
@@ -43,7 +43,7 @@ exports[`When actions are provided renders a Page with action buttons and a menu
             <button
               className="button base work secondary fullWidth"
               disabled={false}
-              onClick={[Function]}
+              onClick={[MockFunction]}
               type="button"
             >
               <span

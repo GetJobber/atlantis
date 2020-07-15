@@ -28,7 +28,7 @@ it("renders an Autocomplete", () => {
       <Autocomplete
         value={undefined}
         initialOptions={options}
-        onChange={() => {}}
+        onChange={jest.fn()}
         getOptions={returnOptions([])}
         placeholder="placeholder_name"
       />,
