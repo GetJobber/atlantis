@@ -19,7 +19,14 @@ export function FormatRelativeDateTime(
     case "less than an hour":
       return <>{showMinutes(Math.round(delta / 60))}</>;
     case "less then a day":
-      return <>{inputDate.toLocaleTimeString()}</>;
+      return (
+        <>
+          {inputDate.toLocaleTimeString(undefined, {
+            hour: "numeric",
+            minute: "numeric",
+          })}
+        </>
+      );
     case "less than a week":
       return <>{strFormatDate(inputDate, { weekday: "short" })}</>;
     case "less than a year":

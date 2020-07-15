@@ -41,7 +41,7 @@ it("renders the time when less than a day ago", () => {
 
   const hours = testDate.getHours();
   const minutes = testDate.getMinutes();
-  const expectedStr = hours + ":" + minutes + ":35 AM";
+  const expectedStr = hours + ":" + minutes + " AM";
 
   const tree = renderer
     .create(<FormatRelativeDateTime date={civilTestDate} />)
