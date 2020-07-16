@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import { fireEvent, render } from "@testing-library/react";
 import { InputText } from ".";
-import { InputTextRef, calculateRows } from "./InputText";
+import { InputTextRef } from "./InputText";
 
 it("renders a regular input for text and numbers", () => {
   const tree = renderer
@@ -147,17 +147,4 @@ test("it should handle inserting text", () => {
 
   textRef.current.insert("sure");
   expect(changeHandler).toHaveBeenCalledWith(secondResult);
-});
-
-describe("When calculate rows receives a scroll height and line height", () => {
-  it("calculates the appropriate number of rows to render (1)", () => {
-    const scrollHeight = 44;
-    const lineHeight = 20;
-    expect(calculateRows(scrollHeight, lineHeight)).toBe(1);
-  });
-  it("calculates the appropriate number of rows to render (3)", () => {
-    const scrollHeight = 84;
-    const lineHeight = 20;
-    expect(calculateRows(scrollHeight, lineHeight)).toBe(3);
-  });
 });

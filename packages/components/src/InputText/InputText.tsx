@@ -45,6 +45,7 @@ function InputTextInternal(
   ref: Ref<InputTextRef>,
 ) {
   const inputRef = createRef<HTMLTextAreaElement | HTMLInputElement>();
+  const rowRange = getRowRange();
 
   useImperativeHandle(ref, () => ({
     insert: (text: string) => {
@@ -58,55 +59,55 @@ function InputTextInternal(
     },
   }));
 
-  const lines = typeof props.rows === "object" ? props.rows.min : props.rows;
-
   return (
     <FormField
       {...props}
       type={props.multiline ? "textarea" : "text"}
       ref={inputRef}
       onChange={handleChange}
-      rows={lines}
+      rows={rowRange.min}
     />
   );
 
   function handleChange(newValue: string) {
     props.onChange && props.onChange(newValue);
-    if (inputRef && inputRef.current instanceof HTMLTextAreaElement) {
-      resize();
-    }
 
-    function resize() {
-      if (inputRef.current) {
-        inputRef.current.style.height = "auto";
-        inputRef.current.style.height = textAreaHeight() + "px";
-      }
-    }
-    function textAreaHeight() {
-      if (
-        typeof props.rows === "object" &&
-        inputRef.current &&
-        typeof getLineHeight() === "number"
-      ) {
-        const maxHeight = props.rows.max * getLineHeight();
-        return Math.min(inputRef.current.scrollHeight, maxHeight);
-      }
-      return undefined;
-    }
-    function getLineHeight() {
-      if (inputRef.current) {
-        const { fontSize, lineHeight } = window.getComputedStyle(
-          inputRef.current,
-        );
-        const lh =
-          lineHeight === "normal"
-            ? parseFloat(fontSize) * 1.2
-            : parseFloat(lineHeight);
-        return lh;
-      }
-      return undefined;
+    if (inputRef && inputRef.current instanceof HTMLTextAreaElement) {
+      resize(inputRef.current);
     }
   }
+
+  function getRowRange() {
+    if (props.rows === undefined) {
+      return { min: 3, max: 3 };
+    } else if (typeof props.rows === "object") {
+      return { min: props.rows.min, max: props.rows.max };
+    } else {
+      return { min: props.rows, max: props.rows };
+    }
+  }
+
+  function resize(textArea: HTMLTextAreaElement) {
+    if (rowRange.min === rowRange.max) return;
+
+    textArea.style.height = "auto";
+    textArea.style.height = textAreaHeight(textArea) + "px";
+  }
+
+  function textAreaHeight(textArea: HTMLTextAreaElement) {
+    const maxHeight = rowRange.max * getLineHeight(textArea);
+    return Math.min(textArea.scrollHeight, maxHeight);
+  }
+
+  function getLineHeight(textArea: HTMLTextAreaElement) {
+    const { fontSize, lineHeight } = window.getComputedStyle(textArea);
+    const lh =
+      lineHeight === "normal"
+        ? parseFloat(fontSize) * 1.2
+        : parseFloat(lineHeight);
+    return lh;
+  }
+
   function insertText(text: string) {
     const input = inputRef.current;
     if (input) {
