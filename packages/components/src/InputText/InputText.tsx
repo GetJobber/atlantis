@@ -77,7 +77,7 @@ function InputTextInternal(
     }
   }
 
-  function getRowRange() {
+  function getRowRange(): RowRange {
     if (props.rows === undefined) {
       return { min: 3, max: 3 };
     } else if (typeof props.rows === "object") {
