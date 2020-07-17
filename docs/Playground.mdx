@@ -1,0 +1,50 @@
+---
+name: Playground
+menu: Playground
+route: /
+---
+
+import { useRef, useState } from "react";
+import { Playground, Props } from "docz";
+// import * from "@jobber/components/";
+import { Button } from "@jobber/components/Button";
+import { Card } from "@jobber/components/Card";
+import { Content } from "@jobber/components/Content";
+import { Checkbox } from "@jobber/components/Checkbox";
+import { Banner } from "@jobber/components/Banner";
+
+# Playground
+
+Use All the Components!! Maybe this playground needs a button?
+
+```ts
+<Button label="🤖 beep 🤖" onClick={() => alert("👾 boop 👾")} />
+```
+
+## Coming soon, probably:
+
+- "Quick Add" UI to copy in the component example from another MDX file!
+
+---
+
+<Playground>
+  {() => {
+    const [bannerIsVisible, setBannerIsVisible] = useState(true);
+    return (
+      <Content>
+        {bannerIsVisible && (
+          <Banner type="notice">
+            ☀️ Play nicely with everything in the sandbox. 🏖
+          </Banner>
+        )}
+        <Card>
+          <Checkbox
+            checked={bannerIsVisible}
+            label="Dark Mode?"
+            onChange={setBannerIsVisible}
+          />
+        </Card>
+      </Content>
+    );
+  }}
+</Playground>
