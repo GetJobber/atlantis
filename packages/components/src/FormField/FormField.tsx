@@ -172,7 +172,7 @@ export const FormField = React.forwardRef(
       onValidation,
       placeholder,
       readonly,
-      rows = 3,
+      rows,
       size,
       type = "text",
       value,

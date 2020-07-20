@@ -31,9 +31,9 @@ interface MultilineProps extends BaseProps {
 
   /**
    * Specifies the visible height of a long answer form field. Can be in the
-   * form of a single number to set a static height, or an associative array
-   * with a min and max keys indicating the minimum number of visible rows, and
-   * the maximum number of visible rows.
+   * form of a single number to set a static height, or an object with a min
+   * and max keys indicating the minimum number of visible rows, and the
+   * maximum number of visible rows.
    */
   readonly rows?: number | RowRange;
 }
