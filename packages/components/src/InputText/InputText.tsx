@@ -95,16 +95,27 @@ function InputTextInternal(
   }
 
   function textAreaHeight(textArea: HTMLTextAreaElement) {
-    const maxHeight = rowRange.max * getLineHeight(textArea);
-    return Math.min(textArea.scrollHeight, maxHeight);
-  }
+    const {
+      lineHeight,
+      borderBottomWidth,
+      borderTopWidth,
+      paddingBottom,
+      paddingTop,
+    } = window.getComputedStyle(textArea);
 
-  function getLineHeight(textArea: HTMLTextAreaElement) {
-    const lineHeight = window
-      .getComputedStyle(textArea)
-      .getPropertyValue("line-height");
+    const maxHeight =
+      rowRange.max * parseFloat(lineHeight) +
+      parseFloat(borderTopWidth) +
+      parseFloat(borderBottomWidth) +
+      parseFloat(paddingTop) +
+      parseFloat(paddingBottom);
 
-    return parseInt(lineHeight, 10);
+    const scrollHeight =
+      textArea.scrollHeight +
+      parseFloat(borderTopWidth) +
+      parseFloat(borderBottomWidth);
+
+    return Math.min(scrollHeight, maxHeight);
   }
 
   function insertText(text: string) {
