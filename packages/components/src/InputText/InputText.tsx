@@ -100,12 +100,11 @@ function InputTextInternal(
   }
 
   function getLineHeight(textArea: HTMLTextAreaElement) {
-    const { fontSize, lineHeight } = window.getComputedStyle(textArea);
-    const lh =
-      lineHeight === "normal"
-        ? parseFloat(fontSize) * 1.2
-        : parseFloat(lineHeight);
-    return lh;
+    const lineHeight = window
+      .getComputedStyle(textArea)
+      .getPropertyValue("line-height");
+
+    return parseInt(lineHeight, 10);
   }
 
   function insertText(text: string) {
