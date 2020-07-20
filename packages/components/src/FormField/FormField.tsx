@@ -1,4 +1,3 @@
-/* eslint-disable max-statements */
 import React, { ChangeEvent, ReactNode, Ref, useEffect, useState } from "react";
 import classnames from "classnames";
 import uuid from "uuid";
@@ -160,6 +159,10 @@ export interface FormFieldProps {
 }
 
 export const FormField = React.forwardRef(
+  /**
+   * Max statements is disabled for this component due the event handlers.
+   */
+  // eslint-disable-next-line max-statements
   (
     {
       align,
