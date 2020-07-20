@@ -28,6 +28,7 @@ it("renders an input type number", () => {
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
+        onKeyDown={[Function]}
         type="password"
         value="123"
       />
@@ -66,6 +67,7 @@ it("renders an error", () => {
           onBlur={[Function]}
           onChange={[Function]}
           onFocus={[Function]}
+          onKeyDown={[Function]}
           type="password"
           value="p"
         />

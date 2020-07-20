@@ -7,30 +7,31 @@ afterEach(cleanup);
 it("renders correctly with no props", () => {
   const tree = renderer.create(<FormField />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
-        <div
-          className="wrapper"
-          style={
-            Object {
-              "--formField-maxLength": undefined,
-            }
-          }
-        >
-          <label
-            className="label"
-            htmlFor="123e4567-e89b-12d3-a456-426655440001"
-          >
-             
-          </label>
-          <input
-            className="formField"
-            id="123e4567-e89b-12d3-a456-426655440001"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            type="text"
-          />
-        </div>
-    `);
+    <div
+      className="wrapper"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
+    >
+      <label
+        className="label"
+        htmlFor="123e4567-e89b-12d3-a456-426655440001"
+      >
+         
+      </label>
+      <input
+        className="formField"
+        id="123e4567-e89b-12d3-a456-426655440001"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        type="text"
+      />
+    </div>
+  `);
 });
 
 it("renders correctly with a placeholder", () => {
@@ -58,6 +59,7 @@ it("renders correctly with a placeholder", () => {
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
+        onKeyDown={[Function]}
         type="text"
       />
     </div>
@@ -87,6 +89,7 @@ it("renders correctly as small", () => {
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
+        onKeyDown={[Function]}
         type="text"
       />
     </div>
@@ -116,6 +119,7 @@ it("renders correctly in a readonly state", () => {
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
+        onKeyDown={[Function]}
         readOnly={true}
         type="text"
       />
@@ -147,6 +151,7 @@ it("renders correctly in a disabled state", () => {
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
+        onKeyDown={[Function]}
         type="text"
       />
     </div>
@@ -186,6 +191,7 @@ it("renders a field with error", () => {
           onBlur={[Function]}
           onChange={[Function]}
           onFocus={[Function]}
+          onKeyDown={[Function]}
           type="text"
           value="wrong!"
         />
@@ -255,4 +261,31 @@ test("it should call the validation handler with a fail status when there's an e
   );
 
   expect(validationHandler).toHaveBeenCalledWith("fail", "Nope!");
+});
+
+test("it should handle when the enter key is pressed", () => {
+  const enterHandler = jest.fn();
+  const placeholder = "Milk heals bones";
+
+  const { getByLabelText } = render(
+    <FormField
+      name="Enter the milk house"
+      onEnter={enterHandler}
+      placeholder={placeholder}
+    />,
+  );
+
+  fireEvent.keyDown(getByLabelText(placeholder), {
+    key: "Enter",
+    code: "Enter",
+  });
+
+  expect(enterHandler).toHaveBeenCalledTimes(1);
+
+  fireEvent.keyDown(getByLabelText(placeholder), {
+    key: "Enter",
+    code: "Enter",
+  });
+
+  expect(enterHandler).toHaveBeenCalledTimes(2);
 });

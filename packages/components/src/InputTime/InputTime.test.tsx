@@ -9,31 +9,32 @@ afterEach(cleanup);
 it("renders a InputTime", () => {
   const tree = renderer.create(<InputTime />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
-                <div
-                  className="wrapper"
-                  style={
-                    Object {
-                      "--formField-maxLength": undefined,
-                    }
-                  }
-                >
-                  <label
-                    className="label"
-                    htmlFor="123e4567-e89b-12d3-a456-426655440001"
-                  >
-                     
-                  </label>
-                  <input
-                    className="formField"
-                    id="123e4567-e89b-12d3-a456-426655440001"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onFocus={[Function]}
-                    type="time"
-                    value=""
-                  />
-                </div>
-        `);
+    <div
+      className="wrapper"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
+    >
+      <label
+        className="label"
+        htmlFor="123e4567-e89b-12d3-a456-426655440001"
+      >
+         
+      </label>
+      <input
+        className="formField"
+        id="123e4567-e89b-12d3-a456-426655440001"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        type="time"
+        value=""
+      />
+    </div>
+  `);
 });
 
 it("renders an initial time when given 'defaultValue'", () => {
@@ -41,31 +42,32 @@ it("renders an initial time when given 'defaultValue'", () => {
     .create(<InputTime defaultValue={new CivilTime(11, 23)} />)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-        <div
-          className="wrapper"
-          style={
-            Object {
-              "--formField-maxLength": undefined,
-            }
-          }
-        >
-          <label
-            className="label"
-            htmlFor="123e4567-e89b-12d3-a456-426655440002"
-          >
-             
-          </label>
-          <input
-            className="formField"
-            defaultValue="11:23"
-            id="123e4567-e89b-12d3-a456-426655440002"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            type="time"
-          />
-        </div>
-    `);
+    <div
+      className="wrapper"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
+    >
+      <label
+        className="label"
+        htmlFor="123e4567-e89b-12d3-a456-426655440002"
+      >
+         
+      </label>
+      <input
+        className="formField"
+        defaultValue="11:23"
+        id="123e4567-e89b-12d3-a456-426655440002"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        type="time"
+      />
+    </div>
+  `);
 });
 
 it("renders correctly in a readonly state", () => {
@@ -93,6 +95,7 @@ it("renders correctly in a readonly state", () => {
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
+        onKeyDown={[Function]}
         readOnly={true}
         type="time"
         value="11:23"
@@ -126,6 +129,7 @@ it("adds a error border when invalid", () => {
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
+        onKeyDown={[Function]}
         readOnly={true}
         type="time"
         value="11:23"
@@ -157,6 +161,7 @@ it("should set the value when given 'value' and 'onChange'", () => {
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
+        onKeyDown={[Function]}
         type="time"
         value=""
       />
