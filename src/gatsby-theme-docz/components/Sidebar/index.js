@@ -23,47 +23,51 @@ export const Sidebar = React.forwardRef((props, ref) => {
       ref.current.scrollTo(0, currentDocRef.current.offsetTop);
     }
   }, []);
+
   return (
     <>
       <Box onClick={props.onClick} sx={styles.overlay(props)} />
-      <Box ref={ref} sx={styles.wrapper(props)} data-testid="sidebar">
-        <Box sx={styles.logo}>
-          <Logo />
-        </Box>
-        <Box sx={styles.search}>
-          <NavSearch
-            placeholder="Type to search..."
-            value={query}
-            onChange={handleChange}
-          />
-        </Box>
-        {menus &&
-          menus.map(menu => {
-            if (!menu.route) {
-              return <NavGroup key={menu.id} item={menu} sidebarRef={ref} />;
-            }
-            if (menu.route === currentDoc.route) {
+
+      {currentDoc.fullpage !== true && (
+        <Box ref={ref} sx={styles.wrapper(props)} data-testid="sidebar">
+          <Box sx={styles.logo}>
+            <Logo />
+          </Box>
+          <Box sx={styles.search}>
+            <NavSearch
+              placeholder="Type to search..."
+              value={query}
+              onChange={handleChange}
+            />
+          </Box>
+          {menus &&
+            menus.map(menu => {
+              if (!menu.route) {
+                return <NavGroup key={menu.id} item={menu} sidebarRef={ref} />;
+              }
+              if (menu.route === currentDoc.route) {
+                return (
+                  <Box sx={styles.topLevelMenuWrapper} key={menu.id}>
+                    <NavLink
+                      item={menu}
+                      ref={currentDocRef}
+                      sx={styles.topLevelMenuItem}
+                    >
+                      {menu.name}
+                    </NavLink>
+                  </Box>
+                );
+              }
               return (
                 <Box sx={styles.topLevelMenuWrapper} key={menu.id}>
-                  <NavLink
-                    item={menu}
-                    ref={currentDocRef}
-                    sx={styles.topLevelMenuItem}
-                  >
+                  <NavLink item={menu} sx={styles.topLevelMenuItem}>
                     {menu.name}
                   </NavLink>
                 </Box>
               );
-            }
-            return (
-              <Box sx={styles.topLevelMenuWrapper} key={menu.id}>
-                <NavLink item={menu} sx={styles.topLevelMenuItem}>
-                  {menu.name}
-                </NavLink>
-              </Box>
-            );
-          })}
-      </Box>
+            })}
+        </Box>
+      )}
       <Box sx={styles.buttons}>
         <HeaderButtons
           open={props.open}

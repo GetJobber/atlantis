@@ -13,27 +13,35 @@ export const HeaderButtons = ({ open, openMenu, closeMenu }) => {
   const { repository } = useConfig();
   const { ...doc } = useCurrentDoc();
 
-  return (
-    <DeferRender>
-      <Box sx={styles.buttons}>
-        <Box sx={styles.menu}>
-          <Button
-            label={<Icon color="white" name={open ? "remove" : "menu"} />}
-            type="primary"
-            onClick={() => (open ? closeMenu() : openMenu())}
-          />
+  if (doc.fullpage) {
+    return (
+      <DeferRender>
+        <Button label={<Icon color="white" name="property" />} url="/" />
+      </DeferRender>
+    );
+  } else {
+    return (
+      <DeferRender>
+        <Box sx={styles.buttons}>
+          <Box sx={styles.menu}>
+            <Button
+              label={<Icon color="white" name={open ? "remove" : "menu"} />}
+              type="primary"
+              onClick={() => (open ? closeMenu() : openMenu())}
+            />
+          </Box>
+          <Tooltip message="View 🔱Atlantis on Github">
+            <Button
+              label={<Github size={18} />}
+              type="secondary"
+              url={repository}
+            />
+          </Tooltip>
+          <Button icon="edit" color="white" label="Edit page" url={doc.link} />
         </Box>
-        <Tooltip message="View 🔱Atlantis on Github">
-          <Button
-            label={<Github size={18} />}
-            type="secondary"
-            url={repository}
-          />
-        </Tooltip>
-        <Button icon="edit" color="white" label="Edit page" url={doc.link} />
-      </Box>
-    </DeferRender>
-  );
+      </DeferRender>
+    );
+  }
 };
 
 HeaderButtons.propTypes = {
