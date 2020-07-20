@@ -289,3 +289,45 @@ test("it should handle when the enter key is pressed", () => {
 
   expect(enterHandler).toHaveBeenCalledTimes(2);
 });
+
+test("it should not handle when the shift key and enter key are pressed", () => {
+  const enterHandler = jest.fn();
+  const placeholder = "Milk heals bones";
+
+  const { getByLabelText } = render(
+    <FormField
+      name="Enter the milk house"
+      onEnter={enterHandler}
+      placeholder={placeholder}
+    />,
+  );
+
+  fireEvent.keyDown(getByLabelText(placeholder), {
+    key: "Enter",
+    code: "Enter",
+    shiftKey: true,
+  });
+
+  expect(enterHandler).toHaveBeenCalledTimes(0);
+});
+
+test("it should not handle when the shift key and control key are pressed", () => {
+  const enterHandler = jest.fn();
+  const placeholder = "Milk heals bones";
+
+  const { getByLabelText } = render(
+    <FormField
+      name="Enter the milk house"
+      onEnter={enterHandler}
+      placeholder={placeholder}
+    />,
+  );
+
+  fireEvent.keyDown(getByLabelText(placeholder), {
+    key: "Enter",
+    code: "Enter",
+    ctrlKey: true,
+  });
+
+  expect(enterHandler).toHaveBeenCalledTimes(0);
+});
