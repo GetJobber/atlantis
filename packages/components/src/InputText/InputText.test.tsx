@@ -62,6 +62,7 @@ it("renders a textarea", () => {
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
+        rows={3}
       />
     </div>
   `);

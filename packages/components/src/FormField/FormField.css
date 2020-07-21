@@ -72,7 +72,6 @@
 
 textarea.formField {
   height: auto;
-  min-height: calc(var(--field--height) * 2);
   resize: vertical;
 }
 
@@ -155,7 +154,7 @@ select.formField {
 
 .miniLabel:not(.small) .formField {
   --field--padding-top: calc(var(--space-base) + var(--space-smaller));
-  --field--padding-bottom: var(--space-smaller);
+  --field--padding-bottom: var(--space-small);
 }
 
 .miniLabel .label {
