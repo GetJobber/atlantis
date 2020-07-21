@@ -52,13 +52,27 @@ Use this to allow users to provide short answers.
 
 ## Multiline
 
-Use this to allow users to provide long answers.
+Use this to allow users to provide long answers. The default number of rows is
+three.
 
 <Playground>
   <InputText
     multiline={true}
     placeholder="Describe your age"
     name="describeAge"
+  />
+</Playground>
+
+## Multiline with Minimum and Maximum
+
+This is to allow flexibility in the displayed textarea size as the user types.
+The textarea will start at a specified minimum and grow to a specified maximum.
+
+<Playground>
+  <InputText
+    defaultValue="Rocinante"
+    multiline={true}
+    rows={{ min: 1, max: 4 }}
   />
 </Playground>
 

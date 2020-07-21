@@ -64,6 +64,7 @@ it("renders a textarea", () => {
         onChange={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
+        rows={3}
       />
     </div>
   `);
