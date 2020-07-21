@@ -142,7 +142,7 @@
 /* Icon */
 
 .hasIcon {
-  width: 2.25rem;
+  width: calc(var(--base-unit)*2.25);
   padding: 0;
 }
 
