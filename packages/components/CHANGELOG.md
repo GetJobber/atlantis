@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.35.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.34.3...@jobber/components@1.35.0) (2020-07-22)
+
+
+### Features
+
+* **components:** Adds an onEnter handler for Form Fields ([#321](https://github.com/GetJobber/atlantis/issues/321)) ([730dbe4](https://github.com/GetJobber/atlantis/commit/730dbe45157116a8e9dbd549e76c8c9852fb51eb))
+
+
+
+
+
 ## [1.34.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.34.2...@jobber/components@1.34.3) (2020-07-21)
 
 **Note:** Version bump only for package @jobber/components
