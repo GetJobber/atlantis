@@ -6,23 +6,27 @@ import { FormatTime } from "./FormatTime";
 
 afterEach(cleanup);
 
-it("renders a FormatTime", () => {
-  const tree = renderer
-    .create(<FormatTime time={new CivilTime(11, 30)} />)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`"11:30 AM"`);
-});
+Object.entries({
+  CivilDate: new CivilTime(14, 30),
+  ISO8601DateString: "2019-03-30T00:45Z",
+  Date: new Date("2019-03-30T00:45Z"),
+}).forEach(([inputType, value]) => {
+  it(`renders a FormatTime from ${inputType}`, () => {
+    const tree = renderer.create(<FormatTime time={value} />).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 
-it("renders a FormatTime using 24 hour clock", () => {
-  const tree = renderer
-    .create(<FormatTime time={new CivilTime(14, 30)} use24HourClock={true} />)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`"14:30"`);
-});
+  it(`renders a FormatTime from ${inputType} using 24 hour clock`, () => {
+    const tree = renderer
+      .create(<FormatTime time={value} use24HourClock={true} />)
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 
-it("renders a FormatTime using 12 hour clock", () => {
-  const tree = renderer
-    .create(<FormatTime time={new CivilTime(17, 30)} use24HourClock={false} />)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`"5:30 PM"`);
+  it(`renders a FormatTime from ${inputType} using 12 hour clock`, () => {
+    const tree = renderer
+      .create(<FormatTime time={value} use24HourClock={false} />)
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 });

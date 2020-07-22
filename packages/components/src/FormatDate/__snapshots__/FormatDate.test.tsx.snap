@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a FormatDate from CivilDate 1`] = `"Feb 26, 2020"`;
+
+exports[`renders a FormatDate from Date 1`] = `"Mar 29, 2019"`;
+
+exports[`renders a FormatDate from ISO8601DateString 1`] = `"Mar 29, 2019"`;

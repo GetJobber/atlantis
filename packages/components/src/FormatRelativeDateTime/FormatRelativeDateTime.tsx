@@ -4,16 +4,28 @@ import { CivilDateTime } from "@std-proposal/temporal";
 interface FormatRelativeDateTimeProps {
   /**
    * Date to be displayed.
+   *
+   * A `string` should be an ISO 8601 format date string.
    */
-  readonly date: CivilDateTime;
+  readonly date: CivilDateTime | Date | string;
 }
 
-export function FormatRelativeDateTime(
-  civilDateTime: FormatRelativeDateTimeProps,
-) {
+export function FormatRelativeDateTime({
+  date: inputDate,
+}: FormatRelativeDateTimeProps) {
+  let dateObject: Date;
+
+  if (inputDate instanceof Date) {
+    dateObject = inputDate;
+  } else if (typeof inputDate === "string") {
+    dateObject = new Date(inputDate);
+  } else {
+    dateObject = new Date(inputDate.toJSON());
+  }
+
   const now = Date.now() / 1000; //seconds
-  const inputDate = new Date(civilDateTime.date.toJSON());
-  const delta = now - inputDate.getTime() / 1000; //seconds;
+  const date = dateObject;
+  const delta = now - date.getTime() / 1000; //seconds;
 
   switch (relativeTimeRange(delta)) {
     case "less than an hour":
@@ -21,22 +33,20 @@ export function FormatRelativeDateTime(
     case "less then a day":
       return (
         <>
-          {inputDate.toLocaleTimeString(undefined, {
+          {date.toLocaleTimeString(undefined, {
             hour: "numeric",
             minute: "numeric",
           })}
         </>
       );
     case "less than a week":
-      return <>{strFormatDate(inputDate, { weekday: "short" })}</>;
+      return <>{strFormatDate(date, { weekday: "short" })}</>;
     case "less than a year":
-      return (
-        <>{strFormatDate(inputDate, { month: "short", day: "numeric" })}</>
-      );
+      return <>{strFormatDate(date, { month: "short", day: "numeric" })}</>;
     default:
       return (
         <>
-          {strFormatDate(inputDate, {
+          {strFormatDate(date, {
             month: "short",
             day: "numeric",
             year: "numeric",
