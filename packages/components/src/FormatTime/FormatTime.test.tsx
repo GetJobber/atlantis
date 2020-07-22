@@ -8,8 +8,8 @@ afterEach(cleanup);
 
 Object.entries({
   CivilDate: new CivilTime(14, 30),
-  ISO8601DateString: "2019-03-30T00:45Z",
-  Date: new Date("2019-03-30T00:45Z"),
+  ISO8601DateString: "2019-03-30T14:30",
+  Date: new Date("2019-03-30T14:30"),
 }).forEach(([inputType, value]) => {
   it(`renders a FormatTime from ${inputType}`, () => {
     const tree = renderer.create(<FormatTime time={value} />).toJSON();

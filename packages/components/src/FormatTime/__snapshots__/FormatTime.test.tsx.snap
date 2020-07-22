@@ -6,14 +6,14 @@ exports[`renders a FormatTime from CivilDate using 12 hour clock 1`] = `"2:30 PM
 
 exports[`renders a FormatTime from CivilDate using 24 hour clock 1`] = `"14:30"`;
 
-exports[`renders a FormatTime from Date 1`] = `"6:45 PM"`;
+exports[`renders a FormatTime from Date 1`] = `"2:30 PM"`;
 
-exports[`renders a FormatTime from Date using 12 hour clock 1`] = `"6:45 PM"`;
+exports[`renders a FormatTime from Date using 12 hour clock 1`] = `"2:30 PM"`;
 
-exports[`renders a FormatTime from Date using 24 hour clock 1`] = `"18:45"`;
+exports[`renders a FormatTime from Date using 24 hour clock 1`] = `"14:30"`;
 
-exports[`renders a FormatTime from ISO8601DateString 1`] = `"6:45 PM"`;
+exports[`renders a FormatTime from ISO8601DateString 1`] = `"2:30 PM"`;
 
-exports[`renders a FormatTime from ISO8601DateString using 12 hour clock 1`] = `"6:45 PM"`;
+exports[`renders a FormatTime from ISO8601DateString using 12 hour clock 1`] = `"2:30 PM"`;
 
-exports[`renders a FormatTime from ISO8601DateString using 24 hour clock 1`] = `"18:45"`;
+exports[`renders a FormatTime from ISO8601DateString using 24 hour clock 1`] = `"14:30"`;
