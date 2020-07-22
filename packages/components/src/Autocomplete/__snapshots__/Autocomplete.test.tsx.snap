@@ -24,6 +24,7 @@ exports[`renders an Autocomplete 1`] = `
       onBlur={[Function]}
       onChange={[Function]}
       onFocus={[Function]}
+      onKeyDown={[Function]}
       type="text"
       value=""
     />
