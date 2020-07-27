@@ -15,5 +15,8 @@
   },
   "devDependencies": {
     "lodash": "^4.17.19"
+  },
+  "dependencies": {
+    "react": "^16.13.1"
   }
 }
