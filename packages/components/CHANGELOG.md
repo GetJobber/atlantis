@@ -8,6 +8,22 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.36.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.35.0...@jobber/components@1.36.0) (2020-07-27)
+
+
+### Bug Fixes
+
+* **components:** set min height to auto for textarea ([#323](https://github.com/GetJobber/atlantis/issues/323)) ([194e75a](https://github.com/GetJobber/atlantis/commit/194e75aa2808b9d76ffa0ba0e37e5ee5440c59ee))
+
+
+### Features
+
+* **components:** Time and Date formatters now accept `Date` Objects and ISO Strings ([#322](https://github.com/GetJobber/atlantis/issues/322)) ([0ddd51f](https://github.com/GetJobber/atlantis/commit/0ddd51f2c99b5c0b80b9fa0911d847e96531b733))
+
+
+
+
+
 # [1.35.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.34.3...@jobber/components@1.35.0) (2020-07-22)
 
 
