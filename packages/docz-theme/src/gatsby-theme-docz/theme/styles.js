@@ -10,6 +10,7 @@ export default merge(themeStyles.default, {
     color: "rgb(239, 87, 51)",
   },
   inlineCode: {
-    background: "rgb(239, 87, 51)",
+    background: "blue",
+    color: "white",
   },
 });

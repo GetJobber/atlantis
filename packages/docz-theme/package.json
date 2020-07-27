@@ -1,6 +1,6 @@
 {
   "name": "@jobber/docz-theme",
-  "version": "1.0.0",
+  "version": "1.0.1-pre.375",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,12 +10,10 @@
   "author": "",
   "license": "ISC",
   "peerDependencies": {
-    "docz": "^2.3.1"
+    "docz": "^2.3.1",
+    "gatsby-theme-docz": "^2.3.1"
   },
   "devDependencies": {
     "lodash": "^4.17.19"
-  },
-  "dependencies": {
-    "gatsby-theme-docz": "^2.3.1"
   }
 }
