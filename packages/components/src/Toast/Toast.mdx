@@ -6,6 +6,8 @@ route: /components/toast
 
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
+import { useRef } from "react";
+import { Button } from "@jobber/components/Button";
 import { Toast } from ".";
 
 # Toast
@@ -19,7 +21,22 @@ import { Toast } from "@jobber/components/Toast";
 ```
 
 <Playground>
-  <Toast text="Bob" />
+  {() => {
+    const toastRef = useRef();
+    return (
+      <>
+        <Button
+          label={`Cook Bread`}
+          onClick={() => {
+            toastRef.current.add({
+              message: "Bread done"
+            });
+          }}
+        />
+        <Toast ref={toastRef} />
+      </>
+    );
+  }}
 </Playground>
 
 <!--
