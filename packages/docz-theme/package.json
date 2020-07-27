@@ -8,5 +8,14 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "peerDependencies": {
+    "docz": "^2.3.1"
+  },
+  "devDependencies": {
+    "lodash": "^4.17.19"
+  },
+  "dependencies": {
+    "gatsby-theme-docz": "^2.3.1"
+  }
 }
