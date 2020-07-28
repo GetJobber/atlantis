@@ -6,7 +6,7 @@ route: /components/toast
 
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { Button } from "@jobber/components/Button";
 import { Toast } from ".";
 
@@ -22,20 +22,46 @@ import { Toast } from "@jobber/components/Toast";
 
 <Playground>
   {() => {
-    const [count, setCount] = useState(1);
     const toastRef = useRef();
+    const buttons = [
+      {
+        label: "Bake Bread",
+        onClick: () => {
+          toastRef.current.add({
+            message: `Baked Bread!`,
+            onClose: () => console.log("success"),
+            icon: "person"
+          });
+        }
+      },
+      {
+        label: "Burn Bread",
+        variation: "destructive",
+        onClick: () => {
+          toastRef.current.add({
+            message: `Burnt Bread!`,
+            onClose: () => console.log("destructive"),
+            icon: "person"
+          });
+        }
+      },
+      {
+        label: "Learn to Bake",
+        variation: "learning",
+        onClick: () => {
+          toastRef.current.add({
+            message: `Google a recipe!`,
+            onClose: () => console.log("learned"),
+            icon: "person"
+          });
+        }
+      }
+    ];
     return (
       <>
-        <Button
-          label={`Cook Bread`}
-          onClick={() => {
-            setCount(count + 1);
-            toastRef.current.add({
-              message: `Bread #${count} done`,
-              icon: "person"
-            });
-          }}
-        />
+        {buttons.map(button => (
+          <Button key={button.label} {...button} />
+        ))}
         <Toast ref={toastRef} />
       </>
     );

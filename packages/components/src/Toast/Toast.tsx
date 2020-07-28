@@ -13,6 +13,8 @@ import { Button } from "../Button";
 interface ToastProps {
   message: string;
   icon?: IconNames;
+  id: number;
+  onClose?(): void;
 }
 
 interface ToastRef {
@@ -22,20 +24,44 @@ interface ToastRef {
 export const Toast = forwardRef(ToastInternal);
 
 function ToastInternal(_props: any, ref: Ref<ToastRef>) {
+  const [toastKey, setToastKey] = useState(0);
   const [toasts, setToasts] = useState<ReactNode[]>([]);
 
   useImperativeHandle(ref, () => ({
-    add: ({ message, icon }) => {
+    add: props => {
+      setToastKey(toastKey + 1);
       setToasts([
-        <Slice key="hello" icon={icon} message={message} />,
+        {
+          ...props,
+          id: toastKey,
+        },
         ...toasts,
       ]);
     },
   }));
-  return <>{toasts}</>;
+  return (
+    <>
+      {toasts.map(toast => (
+        <Slice
+          {...toast}
+          key={toast.id}
+          onClose={id => {
+            toast.onClose && toast.onClose();
+            handleClose(id);
+          }}
+        />
+      ))}
+      <pre>{JSON.stringify(toasts, undefined, 2)}</pre>
+    </>
+  );
+
+  function handleClose(id) {
+    const newToasts = toasts.filter(toast => toast.id !== id);
+    setToasts(newToasts);
+  }
 }
 
-function Slice({ message, icon }: ToastProps) {
+function Slice({ message, icon, onClose, id }: ToastProps) {
   const breadClass = classnames(styles.slice);
   return (
     <div className={breadClass}>
@@ -49,7 +75,7 @@ function Slice({ message, icon }: ToastProps) {
         <Button
           icon="remove"
           ariaLabel={"Remove Toast"}
-          onClick={() => alert("remove!")}
+          onClick={() => onClose(id)}
           type="tertiary"
           variation="learning"
         />
