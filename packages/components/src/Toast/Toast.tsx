@@ -2,6 +2,7 @@ import React, {
   ReactNode,
   Ref,
   forwardRef,
+  useEffect,
   useImperativeHandle,
   useState,
 } from "react";
@@ -42,30 +43,16 @@ function ToastInternal(_props: any, ref: Ref<ToastRef>) {
   }));
   return (
     <div className={styles.container}>
-      <AnimatePresence>
-        {toasts.map(toast => (
-          <motion.div
-            key={toast.id}
-            className={styles.toast}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{
-              opacity: 0,
-              scale: 0.8,
-              height: 0,
-              transition: { duration: 0.3 },
-            }}
-          >
-            <Slice
-              {...toast}
-              onClose={id => {
-                toast.onClose && toast.onClose();
-                handleClose(id);
-              }}
-            />
-          </motion.div>
-        ))}
-      </AnimatePresence>
+      {toasts.map(toast => (
+        <Slice
+          {...toast}
+          key={toast.id}
+          onClose={id => {
+            toast.onClose && toast.onClose();
+            handleClose(id);
+          }}
+        />
+      ))}
     </div>
   );
 
@@ -77,23 +64,46 @@ function ToastInternal(_props: any, ref: Ref<ToastRef>) {
 
 function Slice({ message, icon, onClose, id }: ToastProps) {
   const breadClass = classnames(styles.slice);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setVisible(false);
+    }, 5000);
+  }, []);
   return (
-    <div className={breadClass}>
-      {icon && (
-        <div className={styles.icon}>
-          <Icon color="green" name={icon} />
-        </div>
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          className={styles.toast}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{
+            opacity: 0,
+            scale: 0.8,
+            height: 0,
+            transition: { duration: 0.3 },
+          }}
+        >
+          <div className={breadClass}>
+            {icon && (
+              <div className={styles.icon}>
+                <Icon color="green" name={icon} />
+              </div>
+            )}
+            <div className={styles.message}>{message}</div>
+            <div className={styles.button}>
+              <Button
+                icon="remove"
+                ariaLabel={"Remove Toast"}
+                onClick={() => onClose(id)}
+                type="tertiary"
+                variation="learning"
+              />
+            </div>
+          </div>
+        </motion.div>
       )}
-      <div className={styles.message}>{message}</div>
-      <div className={styles.button}>
-        <Button
-          icon="remove"
-          ariaLabel={"Remove Toast"}
-          onClick={() => onClose(id)}
-          type="tertiary"
-          variation="learning"
-        />
-      </div>
-    </div>
+    </AnimatePresence>
   );
 }
