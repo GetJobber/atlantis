@@ -6,7 +6,7 @@ route: /components/toast
 
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@jobber/components/Button";
 import { Toast } from ".";
 
@@ -22,14 +22,17 @@ import { Toast } from "@jobber/components/Toast";
 
 <Playground>
   {() => {
+    const [count, setCount] = useState(1);
     const toastRef = useRef();
     return (
       <>
         <Button
           label={`Cook Bread`}
           onClick={() => {
+            setCount(count + 1);
             toastRef.current.add({
-              message: "Bread done"
+              message: `Bread #${count} done`,
+              icon: "person"
             });
           }}
         />

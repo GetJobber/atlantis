@@ -1,10 +1,23 @@
-.toast {
-  --message-weight: 400;
-
-  font-weight: var(--message-weight);
+.slice {
+  display: flex;
+  align-items: center;
+  box-shadow: var(--shadow-base);
+  padding: var(--space-base);
+  border-radius: var(--radius-base);
 }
 
-.bold {
-  --message-weight: 800;
-  transform: uppercase;
+.slice + .slice {
+  margin-top: var(--space-base);
+}
+
+.icon {
+  margin-right: var(--space-base);
+}
+
+.message {
+  padding-right: var(--space-base);
+}
+
+.button {
+  margin-left: auto;
 }
