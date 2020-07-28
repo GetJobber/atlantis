@@ -1,13 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  bottom: var(--space-large);
+  left: 50%;
+  z-index: 10000;
+  transform: translateX(-50%);
+}
+.toast {
+  overflow: hidden;
+}
+
+.toast + .toast {
+  margin-top: var(--space-base);
+}
+
 .slice {
   display: flex;
   align-items: center;
   box-shadow: var(--shadow-base);
   padding: var(--space-base);
   border-radius: var(--radius-base);
-}
-
-.slice + .slice {
-  margin-top: var(--space-base);
+  background: var(--color-white);
 }
 
 .icon {

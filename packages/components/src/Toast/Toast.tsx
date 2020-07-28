@@ -6,6 +6,7 @@ import React, {
   useState,
 } from "react";
 import classnames from "classnames";
+import { AnimatePresence, motion } from "framer-motion";
 import styles from "./Toast.css";
 import { Icon, IconNames } from "../Icon";
 import { Button } from "../Button";
@@ -40,19 +41,32 @@ function ToastInternal(_props: any, ref: Ref<ToastRef>) {
     },
   }));
   return (
-    <>
-      {toasts.map(toast => (
-        <Slice
-          {...toast}
-          key={toast.id}
-          onClose={id => {
-            toast.onClose && toast.onClose();
-            handleClose(id);
-          }}
-        />
-      ))}
-      <pre>{JSON.stringify(toasts, undefined, 2)}</pre>
-    </>
+    <div className={styles.container}>
+      <AnimatePresence>
+        {toasts.map(toast => (
+          <motion.div
+            key={toast.id}
+            className={styles.toast}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{
+              opacity: 0,
+              scale: 0.8,
+              height: 0,
+              transition: { duration: 0.3 },
+            }}
+          >
+            <Slice
+              {...toast}
+              onClose={id => {
+                toast.onClose && toast.onClose();
+                handleClose(id);
+              }}
+            />
+          </motion.div>
+        ))}
+      </AnimatePresence>
+    </div>
   );
 
   function handleClose(id) {
