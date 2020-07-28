@@ -43,6 +43,7 @@ export function Menu({
         if (option.heading) {
           return (
             <Typography
+              key={option.label}
               element="h6"
               size="small"
               textCase="uppercase"
