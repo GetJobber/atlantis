@@ -67,6 +67,10 @@ export function Menu({
             </div>
             <div className={styles.text}>
               <Text>{option.label}</Text>
+              {option.details !== undefined && <span>{option.details}</span>}
+              {option.description !== undefined && (
+                <div>{option.description}</div>
+              )}
             </div>
           </button>
         );
