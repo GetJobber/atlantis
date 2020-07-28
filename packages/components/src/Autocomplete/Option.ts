@@ -1,6 +1,9 @@
 type OptionValue = string | number;
 
 export interface Option {
-  value: OptionValue;
+  heading?: boolean;
+  value?: OptionValue;
   label: string;
+  description?: string;
+  details?: string;
 }

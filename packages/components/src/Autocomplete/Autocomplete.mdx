@@ -162,44 +162,37 @@ You can specify an array of sections which contains options objects.
 <Playground>
   {() => {
     const options = [
+      { label: "Ships", heading: true },
       {
-        heading: "Ships",
-        options: [
-          {
-            value: 1,
-            label: "Sulaco",
-            description: "They mostly come at night, mostly.",
-            details: "LV-426"
-          },
-          { value: 1, label: "Nostromo", details: "LV-426" },
-          { value: 3, label: "Serenity", description: "I aim to misbehave." },
-          { value: 4, label: "Sleeper Service" },
-          { value: 5, label: "Enterprise" },
-          {
-            value: 6,
-            label: "Enterprise-D",
-            description: "Tea, earl grey, hot.",
-            details: "NCC-1701D"
-          }
-        ]
+        value: 1,
+        label: "Sulaco",
+        description: "They mostly come at night, mostly.",
+        details: "LV-426"
       },
+      { value: 2, label: "Nostromo", details: "LV-426" },
+      { value: 3, label: "Serenity", description: "I aim to misbehave." },
+      { value: 4, label: "Sleeper Service" },
+      { value: 5, label: "Enterprise" },
       {
-        heading: "Planets",
-        options: [
-          { value: 1, label: "Endor" },
-          { value: 2, label: "Vulcan" },
-          { value: 3, label: "Bespin" },
-          { value: 4, label: "Tatooine" },
-          { value: 5, label: "Enterprise" },
-          { value: 6, label: "Ariel" }
-        ]
-      }
+        value: 6,
+        label: "Enterprise-D",
+        description: "Tea, earl grey, hot.",
+        details: "NCC-1701D"
+      },
+      { label: "Planets", heading: true },
+      { value: 1, label: "Endor" },
+      { value: 2, label: "Vulcan" },
+      { value: 3, label: "Bespin" },
+      { value: 4, label: "Tatooine" },
+      { value: 5, label: "Enterprise" },
+      { value: 6, label: "Ariel" }
     ];
     const [value, setValue] = useState();
     return (
       <Autocomplete
         value={value}
-        initialOptions={[]}
+        sections={true}
+        initialOptions={options}
         onChange={setValue}
         getOptions={getOptions}
         placeholder="Search for something"
@@ -210,7 +203,9 @@ You can specify an array of sections which contains options objects.
         return options;
       }
       const filterRegex = new RegExp(text, "i");
-      return options.filter(option => option.label.match(filterRegex));
+      return options.filter(option =>
+        option.heading ? true : option.label.match(filterRegex)
+      );
     }
   }}
 </Playground>

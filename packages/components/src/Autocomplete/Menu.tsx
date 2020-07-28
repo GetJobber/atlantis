@@ -5,6 +5,7 @@ import { Option } from "./Option";
 import styles from "./Autocomplete.css";
 import { Text } from "../Text";
 import { Icon } from "../Icon";
+import { Typography } from "../Typography";
 
 enum IndexChange {
   Previous = -1,
@@ -39,6 +40,19 @@ export function Menu({
         const optionClass = classnames(styles.option, {
           [styles.active]: index === highlightedIndex,
         });
+        if (option.heading) {
+          return (
+            <Typography
+              element="h6"
+              size="small"
+              textCase="uppercase"
+              textColor="greyBlue"
+              fontWeight="bold"
+            >
+              {option.label}
+            </Typography>
+          );
+        }
         return (
           <button
             className={optionClass}
