@@ -32,6 +32,11 @@ interface AutocompleteProps {
   readonly checkmarks?: boolean;
 
   /**
+   * Turn on browser autocomplete for the input.
+   */
+  readonly browserAutocomplete?: "off" | "";
+
+  /**
    * Simplified onChange handler that only provides the new value.
    * @param newValue
    */
@@ -50,6 +55,7 @@ export function Autocomplete({
   value,
   separators = false,
   checkmarks = true,
+  browserAutocomplete = "off",
   onChange,
   getOptions,
   placeholder,
@@ -71,6 +77,7 @@ export function Autocomplete({
   return (
     <div className={styles.autocomplete}>
       <InputText
+        autocomplete={browserAutocomplete}
         value={inputText}
         onChange={handleInputChange}
         placeholder={placeholder}

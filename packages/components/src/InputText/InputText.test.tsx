@@ -24,6 +24,7 @@ it("renders a regular input for text and numbers", () => {
         Favourite colour
       </label>
       <input
+        autoComplete=""
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440001"
         onBlur={[Function]}
