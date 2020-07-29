@@ -121,6 +121,7 @@ export function Menu({
 
     useOnKeyDown("Enter", (event: KeyboardEvent) => {
       if (!visible) return;
+      if (options[highlightedIndex].heading) return;
 
       event.preventDefault();
       onOptionSelect(options[highlightedIndex]);

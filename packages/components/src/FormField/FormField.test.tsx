@@ -22,7 +22,6 @@ it("renders correctly with no props", () => {
          
       </label>
       <input
-        autoComplete=""
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440001"
         onBlur={[Function]}
@@ -55,7 +54,6 @@ it("renders correctly with a placeholder", () => {
         My placeholder
       </label>
       <input
-        autoComplete=""
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440002"
         onBlur={[Function]}
@@ -86,7 +84,6 @@ it("renders correctly as small", () => {
          
       </label>
       <input
-        autoComplete=""
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440003"
         onBlur={[Function]}
@@ -117,7 +114,6 @@ it("renders correctly in a readonly state", () => {
          
       </label>
       <input
-        autoComplete=""
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440004"
         onBlur={[Function]}
@@ -149,7 +145,6 @@ it("renders correctly in a disabled state", () => {
          
       </label>
       <input
-        autoComplete=""
         className="formField"
         disabled={true}
         id="123e4567-e89b-12d3-a456-426655440005"
@@ -191,7 +186,6 @@ it("renders a field with error", () => {
            
         </label>
         <input
-          autoComplete=""
           className="formField"
           id="123e4567-e89b-12d3-a456-426655440006"
           onBlur={[Function]}

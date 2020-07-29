@@ -15,7 +15,7 @@ export interface FormFieldProps {
   /**
    * Determines if browser form autocomplete is enabled.
    */
-  readonly autocomplete?: "off" | "";
+  readonly autocomplete?: string;
 
   /**
    * If you need to pass in a children. For example, `<options>` inside
@@ -171,7 +171,7 @@ export const FormField = React.forwardRef(
   (
     {
       align,
-      autocomplete = "",
+      autocomplete,
       children,
       defaultValue,
       disabled,

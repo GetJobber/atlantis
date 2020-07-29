@@ -24,7 +24,6 @@ it("renders a InputTime", () => {
          
       </label>
       <input
-        autoComplete=""
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440001"
         onBlur={[Function]}
@@ -58,7 +57,6 @@ it("renders an initial time when given 'defaultValue'", () => {
          
       </label>
       <input
-        autoComplete=""
         className="formField"
         defaultValue="11:23"
         id="123e4567-e89b-12d3-a456-426655440002"
@@ -92,7 +90,6 @@ it("renders correctly in a readonly state", () => {
          
       </label>
       <input
-        autoComplete=""
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440003"
         onBlur={[Function]}
@@ -127,7 +124,6 @@ it("adds a error border when invalid", () => {
          
       </label>
       <input
-        autoComplete=""
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440004"
         onBlur={[Function]}
@@ -160,7 +156,6 @@ it("should set the value when given 'value' and 'onChange'", () => {
          
       </label>
       <input
-        autoComplete=""
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440005"
         onBlur={[Function]}

@@ -39,7 +39,7 @@ interface AutocompleteProps {
   /**
    * Turn on browser autocomplete for the input.
    */
-  readonly browserAutocomplete?: "off" | "";
+  readonly browserAutocomplete?: string;
 
   /**
    * Simplified onChange handler that only provides the new value.
@@ -61,7 +61,7 @@ export function Autocomplete({
   separators = false,
   checkmarks = true,
   menuSize = undefined,
-  browserAutocomplete = "off",
+  browserAutocomplete = "autocomplete-off",
   onChange,
   getOptions,
   placeholder,
