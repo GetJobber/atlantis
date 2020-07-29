@@ -42,11 +42,15 @@ exports[`renders an Autocomplete 1`] = `
       <div
         className="text"
       >
-        <p
-          className="base regular base greyBlueDark"
+        <div
+          className="label"
         >
-          option_0
-        </p>
+          <p
+            className="base regular base greyBlueDark"
+          >
+            option_0
+          </p>
+        </div>
       </div>
     </button>
     <button
@@ -59,11 +63,15 @@ exports[`renders an Autocomplete 1`] = `
       <div
         className="text"
       >
-        <p
-          className="base regular base greyBlueDark"
+        <div
+          className="label"
         >
-          option_1
-        </p>
+          <p
+            className="base regular base greyBlueDark"
+          >
+            option_1
+          </p>
+        </div>
       </div>
     </button>
   </div>

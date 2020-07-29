@@ -22,6 +22,16 @@ interface AutocompleteProps {
   readonly placeholder: string;
 
   /**
+   * Turn on separators between result elements.
+   */
+  readonly separators?: boolean;
+
+  /**
+   * Turn off checkmarks on selected result elements.
+   */
+  readonly checkmarks?: boolean;
+
+  /**
    * Simplified onChange handler that only provides the new value.
    * @param newValue
    */
@@ -38,6 +48,8 @@ interface AutocompleteProps {
 export function Autocomplete({
   initialOptions = [],
   value,
+  separators = false,
+  checkmarks = true,
   onChange,
   getOptions,
   placeholder,
@@ -68,6 +80,8 @@ export function Autocomplete({
       <Menu
         visible={menuVisible}
         options={options}
+        separators={separators}
+        checkmarks={checkmarks}
         selectedOption={value}
         onOptionSelect={handleMenuChange}
       />

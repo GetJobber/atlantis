@@ -17,6 +17,10 @@
   background-color: var(--color-white);
 }
 
+.options h5 {
+  border-bottom: 1px solid black;
+}
+
 .options.visible {
   display: block;
 }
@@ -50,9 +54,17 @@
   outline-color: var(--color-outline);
 }
 
+.option.separator:not(:last-child) {
+  border-bottom: 1px solid rgb(225, 225, 225);
+}
+
 .options:hover .option.active:not(:hover) {
   background-color: transparent;
   outline-color: transparent;
+}
+
+.autocomplete .heading:not(:first-child) {
+  padding-top: 0.5em;
 }
 
 .option .icon {
@@ -62,6 +74,21 @@
 }
 
 .option .text {
-  flex: 1 1 auto;
-  align-self: auto;
+  display: inline-flex;
+  flex: 1 100%;
+  flex-wrap: wrap;
+}
+
+.option .label {
+  flex: 2;
+}
+
+.option .description {
+  flex: 1 100%;
+}
+
+.option .details {
+  flex: 1;
+  align-self: flex-end;
+  text-align: right;
 }

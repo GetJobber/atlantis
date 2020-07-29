@@ -191,7 +191,8 @@ You can specify an array of sections which contains options objects.
     return (
       <Autocomplete
         value={value}
-        sections={true}
+        separators={true}
+        checkmarks={false}
         initialOptions={options}
         onChange={setValue}
         getOptions={getOptions}

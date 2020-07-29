@@ -15,6 +15,8 @@ enum IndexChange {
 interface MenuProps {
   readonly visible: boolean;
   readonly options: Option[];
+  readonly separators: boolean;
+  readonly checkmarks: boolean;
   readonly selectedOption?: Option;
   onOptionSelect(chosenOption: Option): void;
 }
@@ -22,6 +24,8 @@ interface MenuProps {
 export function Menu({
   visible,
   options,
+  separators = false,
+  checkmarks = true,
   selectedOption,
   onOptionSelect,
 }: MenuProps) {
@@ -39,19 +43,15 @@ export function Menu({
       {options.map((option, index) => {
         const optionClass = classnames(styles.option, {
           [styles.active]: index === highlightedIndex,
+          [styles.separator]: separators,
         });
         if (option.heading) {
           return (
-            <Typography
-              key={option.label}
-              element="h6"
-              size="small"
-              textCase="uppercase"
-              textColor="greyBlue"
-              fontWeight="bold"
-            >
-              {option.label}
-            </Typography>
+            <div key={option.label} className={styles.heading}>
+              <Typography element="h5" fontWeight="bold">
+                {option.label}
+              </Typography>
+            </div>
           );
         }
         return (
@@ -60,16 +60,26 @@ export function Menu({
             key={option.value}
             onMouseDown={onOptionSelect.bind(undefined, option)}
           >
-            <div className={styles.icon}>
-              {isOptionSelected(option) && (
-                <Icon name="checkmark" size="small" />
-              )}
-            </div>
+            {checkmarks && (
+              <div className={styles.icon}>
+                {isOptionSelected(option) && (
+                  <Icon name="checkmark" size="small" />
+                )}
+              </div>
+            )}
             <div className={styles.text}>
-              <Text>{option.label}</Text>
-              {option.details !== undefined && <span>{option.details}</span>}
+              <div className={styles.label}>
+                <Text>{option.label}</Text>
+              </div>
+              {option.details !== undefined && (
+                <div className={styles.details}>
+                  <Text>{option.details}</Text>
+                </div>
+              )}
               {option.description !== undefined && (
-                <div>{option.description}</div>
+                <div className={styles.description}>
+                  <Typography>{option.description}</Typography>
+                </div>
               )}
             </div>
           </button>
