@@ -22,6 +22,29 @@ const options = [
   },
 ];
 
+const headingOptions = [
+  {
+    label: "first_heading",
+    heading: true,
+  },
+  {
+    value: "0",
+    label: "option_0",
+  },
+  {
+    label: "second_heading",
+    heading: true,
+  },
+  {
+    value: "1",
+    label: "option_1",
+  },
+  {
+    value: "2",
+    label: "option_2",
+  },
+];
+
 it("renders an Autocomplete", () => {
   const tree = renderer
     .create(
@@ -89,4 +112,51 @@ test("it should call the handler when an option is selected", () => {
   );
 
   expect(changeHandler).toHaveBeenCalledWith(options[1]);
+});
+
+test("it should display headers when headers are passed in", () => {
+  const tree = renderer
+    .create(
+      <Autocomplete
+        value={undefined}
+        onChange={() => {}}
+        initialOptions={headingOptions}
+        getOptions={returnOptions([])}
+        placeholder="placeholder_name"
+      />,
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
+test("it should call the handler skipping headings when an option is selected", () => {
+  const changeHandler = jest.fn();
+  const { getByRole } = render(
+    <Autocomplete
+      value={undefined}
+      onChange={changeHandler}
+      initialOptions={headingOptions}
+      getOptions={returnOptions(options)}
+      placeholder="placeholder_name"
+    />,
+  );
+  fireEvent.focus(getByRole("textbox"));
+  fireEvent(
+    getByRole("textbox"),
+    new KeyboardEvent("keydown", {
+      key: "ArrowDown",
+      bubbles: true,
+      cancelable: false,
+    }),
+  );
+  fireEvent(
+    getByRole("textbox"),
+    new KeyboardEvent("keydown", {
+      key: "Enter",
+      bubbles: true,
+      cancelable: false,
+    }),
+  );
+
+  expect(changeHandler).toHaveBeenCalledWith(headingOptions[1]);
 });

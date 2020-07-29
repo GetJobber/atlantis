@@ -1,5 +1,122 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`it should display headers when headers are passed in 1`] = `
+<div
+  className="autocomplete"
+>
+  <div
+    className="wrapper"
+    style={
+      Object {
+        "--formField-maxLength": undefined,
+      }
+    }
+  >
+    <label
+      className="label"
+      htmlFor="123e4567-e89b-12d3-a456-426655440009"
+    >
+      placeholder_name
+    </label>
+    <input
+      className="formField"
+      id="123e4567-e89b-12d3-a456-426655440009"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="options"
+  >
+    <div
+      className="heading"
+    >
+      <h5
+        className="base bold"
+      >
+        first_heading
+      </h5>
+    </div>
+    <button
+      className="option"
+      onMouseDown={[Function]}
+    >
+      <div
+        className="icon"
+      />
+      <div
+        className="text"
+      >
+        <div
+          className="label"
+        >
+          <p
+            className="base regular base greyBlueDark"
+          >
+            option_0
+          </p>
+        </div>
+      </div>
+    </button>
+    <div
+      className="heading"
+    >
+      <h5
+        className="base bold"
+      >
+        second_heading
+      </h5>
+    </div>
+    <button
+      className="option"
+      onMouseDown={[Function]}
+    >
+      <div
+        className="icon"
+      />
+      <div
+        className="text"
+      >
+        <div
+          className="label"
+        >
+          <p
+            className="base regular base greyBlueDark"
+          >
+            option_1
+          </p>
+        </div>
+      </div>
+    </button>
+    <button
+      className="option"
+      onMouseDown={[Function]}
+    >
+      <div
+        className="icon"
+      />
+      <div
+        className="text"
+      >
+        <div
+          className="label"
+        >
+          <p
+            className="base regular base greyBlueDark"
+          >
+            option_2
+          </p>
+        </div>
+      </div>
+    </button>
+  </div>
+</div>
+`;
+
 exports[`renders an Autocomplete 1`] = `
 <div
   className="autocomplete"
