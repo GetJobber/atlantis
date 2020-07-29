@@ -17,6 +17,8 @@
   background-color: var(--color-white);
 }
 
+/*Unfortunately this is how we define our line item picker height in jobber online.
+This is a concession to maintain visual parity.*/
 .options.medium {
   max-height: 300px;
 }
