@@ -83,10 +83,6 @@
   flex: 2;
 }
 
-.option .description {
-  flex: 1 100%;
-}
-
 .option .details {
   flex: 1;
   align-self: flex-end;

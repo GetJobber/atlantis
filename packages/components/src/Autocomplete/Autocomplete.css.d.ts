@@ -8,5 +8,4 @@ export const heading: string;
 export const icon: string;
 export const text: string;
 export const label: string;
-export const description: string;
 export const details: string;

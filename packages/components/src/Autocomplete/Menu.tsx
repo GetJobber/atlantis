@@ -70,15 +70,13 @@ export function Menu({
             <div className={styles.text}>
               <div className={styles.label}>
                 <Text>{option.label}</Text>
+                {option.description !== undefined && (
+                  <Typography>{option.description}</Typography>
+                )}
               </div>
               {option.details !== undefined && (
                 <div className={styles.details}>
                   <Text>{option.details}</Text>
-                </div>
-              )}
-              {option.description !== undefined && (
-                <div className={styles.description}>
-                  <Typography>{option.description}</Typography>
                 </div>
               )}
             </div>
