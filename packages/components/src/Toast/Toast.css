@@ -1,3 +1,7 @@
+:root {
+  --toast-shadow: 0 var(--space-base) var(--space-base) rgba(0, 0, 0, 0.16),
+    0 0 var(--space-small) rgba(0, 0, 0, 0.12);
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -10,6 +14,7 @@
 }
 
 .toast {
+  box-shadow: var(--toast-shadow);
   overflow: hidden;
 }
 
@@ -20,7 +25,6 @@
 .slice {
   display: flex;
   align-items: center;
-  box-shadow: var(--shadow-base);
   padding: var(--space-base);
   border-radius: var(--radius-base);
   background: var(--color-white);

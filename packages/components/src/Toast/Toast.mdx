@@ -47,18 +47,6 @@ import { Toast } from "@jobber/components/Toast";
         }
       },
       {
-        label: "Warning",
-        type: "secondary",
-        variation: "destructive",
-        onClick: () => {
-          toastRef.current.add({
-            message: "Toast with butter",
-            variation: "warning",
-            onClose: () => console.log("⚠️")
-          });
-        }
-      },
-      {
         label: "Error",
         variation: "destructive",
         onClick: () => {

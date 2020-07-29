@@ -14,7 +14,7 @@ import { Button } from "../Button";
 
 interface BaseToastProps {
   readonly message: string;
-  readonly variation?: "success" | "warning" | "error";
+  readonly variation?: "success" | "error";
   readonly id: number;
   onClose?(): void;
 }
@@ -108,17 +108,11 @@ function Slice({
             <div className={styles.message}>{message}</div>
 
             {action && (
-              <div className={styles.action}>
-                <a
-                  href="#"
-                  onClick={e => {
-                    e.preventDefault();
-                    action();
-                  }}
-                >
-                  {actionLabel}
-                </a>
-              </div>
+              <Button
+                label={`${actionLabel}`}
+                onClick={action}
+                type="tertiary"
+              />
             )}
 
             <div className={styles.button}>
@@ -127,7 +121,7 @@ function Slice({
                 ariaLabel={"Remove Toast"}
                 onClick={handleToastClose}
                 type="tertiary"
-                variation="learning"
+                variation="cancel"
               />
             </div>
           </div>
@@ -160,15 +154,13 @@ function Slice({
   }
 
   function getIcon(): Icon | undefined {
-    if (!variation) return undefined;
-
     switch (variation) {
       case "success":
         return { name: "checkmark", color: "green" };
-      case "warning":
-        return { name: "sun", color: "yellow" };
       case "error":
         return { name: "alert", color: "red" };
+      default:
+        return { name: "knot", color: "lightBlue" };
     }
   }
 }
