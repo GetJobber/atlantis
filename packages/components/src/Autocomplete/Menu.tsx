@@ -15,7 +15,7 @@ enum IndexChange {
 interface MenuProps {
   readonly visible: boolean;
   readonly options: Option[];
-  readonly menuSize: string;
+  readonly menuSize: string | undefined;
   readonly separators: boolean;
   readonly checkmarks: boolean;
   readonly selectedOption?: Option;
