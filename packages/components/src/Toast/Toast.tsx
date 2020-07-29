@@ -78,10 +78,9 @@ function Slice({
   const breadClass = classnames(styles.slice);
   const [visible, setVisible] = useState(true);
   const icon = getIcon();
+  let timer: NodeJS.Timeout;
 
-  useEffect(() => {
-    setTimeout(() => handleToastClose(), getTimeout());
-  }, []);
+  useEffect(() => startTimer(), []);
 
   return (
     <AnimatePresence>
@@ -90,6 +89,8 @@ function Slice({
           className={styles.toast}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
+          onHoverStart={() => stopTimer()}
+          onHoverEnd={() => startTimer()}
           exit={{
             opacity: 0,
             scale: 0.8,
@@ -134,6 +135,14 @@ function Slice({
       )}
     </AnimatePresence>
   );
+
+  function startTimer() {
+    timer = setTimeout(() => handleToastClose(), getTimeout());
+  }
+
+  function stopTimer() {
+    clearTimeout(timer);
+  }
 
   function handleToastClose() {
     onClose && onClose();
