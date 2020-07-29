@@ -60,7 +60,7 @@ export function Autocomplete({
   value,
   separators = false,
   checkmarks = true,
-  menuSize = "",
+  menuSize = undefined,
   browserAutocomplete = "off",
   onChange,
   getOptions,
