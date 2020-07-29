@@ -93,18 +93,27 @@ export function Menu({
   function setupKeyListeners() {
     useOnKeyDown("ArrowDown", (event: KeyboardEvent) => {
       if (!visible) return;
-
       event.preventDefault();
+
+      const requestedIndex = options[highlightedIndex + IndexChange.Next];
+      const indexChange =
+        requestedIndex && requestedIndex.heading
+          ? IndexChange.Next + IndexChange.Next
+          : IndexChange.Next;
       setHighlightedIndex(
-        Math.min(options.length - 1, highlightedIndex + IndexChange.Next),
+        Math.min(options.length - 1, highlightedIndex + indexChange),
       );
     });
 
     useOnKeyDown("ArrowUp", (event: KeyboardEvent) => {
       if (!visible) return;
-
       event.preventDefault();
-      setHighlightedIndex(Math.max(0, highlightedIndex + IndexChange.Previous));
+      const requestedIndex = options[highlightedIndex + IndexChange.Previous];
+      const indexChange =
+        requestedIndex && requestedIndex.heading
+          ? IndexChange.Previous + IndexChange.Previous
+          : IndexChange.Previous;
+      setHighlightedIndex(Math.max(0, highlightedIndex + indexChange));
     });
 
     useOnKeyDown("Enter", (event: KeyboardEvent) => {
