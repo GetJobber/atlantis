@@ -8,12 +8,12 @@ import React, {
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import styles from "./Toast.css";
-import { Icon, IconNames } from "../Icon";
+import { Icon, IconColorNames, IconNames } from "../Icon";
 import { Button } from "../Button";
 
 interface ToastProps {
   readonly message: string;
-  readonly icon?: IconNames;
+  readonly variation?: "success" | "warning" | "error";
   readonly id: number;
   onClose?(): void;
 }
@@ -24,6 +24,11 @@ interface SliceProps extends ToastProps {
 
 interface ToastRef {
   add(props: ToastProps): void;
+}
+
+interface Icon {
+  name: IconNames;
+  color: IconColorNames;
 }
 
 export const Toast = forwardRef(ToastInternal);
@@ -59,9 +64,10 @@ function ToastInternal(_props: any, ref: Ref<ToastRef>) {
   );
 }
 
-function Slice({ message, icon, onClose }: SliceProps) {
+function Slice({ message, variation, onClose }: SliceProps) {
   const breadClass = classnames(styles.slice);
   const [visible, setVisible] = useState(true);
+  const icon = getIcon();
 
   useEffect(() => {
     setTimeout(() => handleToastClose(), getTimeout());
@@ -84,7 +90,7 @@ function Slice({ message, icon, onClose }: SliceProps) {
           <div className={breadClass}>
             {icon && (
               <div className={styles.icon}>
-                <Icon color="green" name={icon} />
+                <Icon color={icon.color} name={icon.name} />
               </div>
             )}
             <div className={styles.message}>
@@ -118,5 +124,18 @@ function Slice({ message, icon, onClose }: SliceProps) {
     if (time < min) return min;
     if (time > max) return max;
     return time;
+  }
+
+  function getIcon() {
+    // if (!variation) return undefined;
+
+    switch (variation) {
+      case "success":
+        return { name: "checkmark", color: "green" };
+      case "warning":
+        return { name: "sun", color: "yellow" };
+      case "error":
+        return { name: "alert", color: "red" };
+    }
   }
 }

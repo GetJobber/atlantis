@@ -25,34 +25,45 @@ import { Toast } from "@jobber/components/Toast";
     const toastRef = useRef();
     const buttons = [
       {
-        label: "Bake Bread",
+        label: "No Variation",
+        variation: "cancel",
         onClick: () => {
           toastRef.current.add({
-            message: `Baked Bread!`,
-            onClose: () => console.log("success"),
-            icon: "person"
+            message: "Bland Toast",
+            onClose: () => console.log("🍞")
           });
         }
       },
       {
-        label: "Burn Bread",
+        label: "Success",
+        onClick: () => {
+          toastRef.current.add({
+            message: "Toast with jelly",
+            variation: "success",
+            onClose: () => console.log("✅")
+          });
+        }
+      },
+      {
+        label: "Warning",
+        type: "secondary",
         variation: "destructive",
         onClick: () => {
           toastRef.current.add({
-            message: `Burnt Bread!`,
-            onClose: () => console.log("destructive"),
-            icon: "person"
+            message: "Toast with butter",
+            variation: "warning",
+            onClose: () => console.log("⚠️")
           });
         }
       },
       {
-        label: "Learn to Bake",
-        variation: "learning",
+        label: "Error",
+        variation: "destructive",
         onClick: () => {
           toastRef.current.add({
-            message: `Google a recipe and then let me know how it goes!!`,
-            onClose: () => console.log("learned"),
-            icon: "person"
+            message: "Aww dang, you burnt the toast",
+            variation: "error",
+            onClose: () => console.log("🚨")
           });
         }
       }
@@ -60,7 +71,9 @@ import { Toast } from "@jobber/components/Toast";
     return (
       <>
         {buttons.map(button => (
-          <Button key={button.label} {...button} />
+          <>
+            <Button key={button.label} {...button} />{" "}
+          </>
         ))}
         <Toast ref={toastRef} />
       </>
