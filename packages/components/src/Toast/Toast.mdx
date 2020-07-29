@@ -40,6 +40,8 @@ import { Toast } from "@jobber/components/Toast";
           toastRef.current.add({
             message: "Toast with jelly",
             variation: "success",
+            action: () => alert("✅"),
+            actionLabel: "Yumm",
             onClose: () => console.log("✅")
           });
         }

@@ -7,28 +7,27 @@ import React, {
 } from "react";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
+import { XOR } from "ts-xor";
 import styles from "./Toast.css";
 import { Icon, IconColorNames, IconNames } from "../Icon";
 import { Button } from "../Button";
 
-interface ToastProps {
+interface BaseToastProps {
   readonly message: string;
   readonly variation?: "success" | "warning" | "error";
   readonly id: number;
   onClose?(): void;
 }
 
-interface SliceProps extends ToastProps {
-  onClose(): void;
+interface ActionToastProps extends BaseToastProps {
+  action(): void;
+  actionLabel: string;
 }
+
+type ToastProps = XOR<BaseToastProps, ActionToastProps>;
 
 interface ToastRef {
   add(props: ToastProps): void;
-}
-
-interface Icon {
-  name: IconNames;
-  color: IconColorNames;
 }
 
 export const Toast = forwardRef(ToastInternal);
@@ -64,7 +63,18 @@ function ToastInternal(_props: any, ref: Ref<ToastRef>) {
   );
 }
 
-function Slice({ message, variation, onClose }: SliceProps) {
+interface Icon {
+  name: IconNames;
+  color: IconColorNames;
+}
+
+function Slice({
+  message,
+  variation,
+  onClose,
+  action,
+  actionLabel,
+}: ToastProps) {
   const breadClass = classnames(styles.slice);
   const [visible, setVisible] = useState(true);
   const icon = getIcon();
@@ -93,9 +103,23 @@ function Slice({ message, variation, onClose }: SliceProps) {
                 <Icon color={icon.color} name={icon.name} />
               </div>
             )}
-            <div className={styles.message}>
-              {message} {getTimeout()}
-            </div>
+
+            <div className={styles.message}>{message}</div>
+
+            {action && (
+              <div className={styles.action}>
+                <a
+                  href="#"
+                  onClick={e => {
+                    e.preventDefault();
+                    action();
+                  }}
+                >
+                  {actionLabel}
+                </a>
+              </div>
+            )}
+
             <div className={styles.button}>
               <Button
                 icon="remove"
@@ -126,8 +150,8 @@ function Slice({ message, variation, onClose }: SliceProps) {
     return time;
   }
 
-  function getIcon() {
-    // if (!variation) return undefined;
+  function getIcon(): Icon | undefined {
+    if (!variation) return undefined;
 
     switch (variation) {
       case "success":

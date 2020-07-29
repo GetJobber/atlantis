@@ -8,6 +8,7 @@
   z-index: 10000;
   transform: translateX(-50%);
 }
+
 .toast {
   overflow: hidden;
 }
@@ -35,4 +36,8 @@
 
 .button {
   margin-left: auto;
+}
+
+.action {
+  margin-left: var(--space-small);
 }
