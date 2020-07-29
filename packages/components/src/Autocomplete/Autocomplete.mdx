@@ -115,6 +115,50 @@ bottom right. Both of these are optional per option.
   }}
 </Playground>
 
+## Autocomplete with menu size constraint
+
+You can specify a medium size which limits the menu to 300px.
+
+<Playground>
+  {() => {
+    const options = [
+      { value: 1, label: "Sulaco" },
+      { value: 2, label: "Nostromo" },
+      { value: 3, label: "Serenity" },
+      { value: 4, label: "Sleeper Service" },
+      { value: 5, label: "Enterprise" },
+      { value: 6, label: "Enterprise-D" },
+      { value: 7, label: "Endor" },
+      { value: 8, label: "Vulcan" },
+      { value: 9, label: "Bespin" },
+      { value: 10, label: "Tatooine" },
+      { value: 11, label: "Enterprise" },
+      { value: 12, label: "Ariel" }
+    ];
+    const [value, setValue] = useState();
+    return (
+      <Autocomplete
+        value={value}
+        checkmarks={false}
+        menuSize={"medium"}
+        initialOptions={options}
+        onChange={setValue}
+        getOptions={getOptions}
+        placeholder="Search for something"
+      />
+    );
+    function getOptions(text) {
+      if (text === "") {
+        return options;
+      }
+      const filterRegex = new RegExp(text, "i");
+      return options.filter(option =>
+        option.heading ? true : option.label.match(filterRegex)
+      );
+    }
+  }}
+</Playground>
+
 ## Autocomplete with checkmarks removed
 
 You can remove the checkmarks when an option is selected.

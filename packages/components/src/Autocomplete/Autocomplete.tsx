@@ -19,6 +19,11 @@ interface AutocompleteProps {
   /**
    * Hint text that goes above the value once the form is filled out.
    */
+  readonly menuSize?: "medium";
+
+  /**
+   * Hint text that goes above the value once the form is filled out.
+   */
   readonly placeholder: string;
 
   /**
@@ -55,6 +60,7 @@ export function Autocomplete({
   value,
   separators = false,
   checkmarks = true,
+  menuSize = "",
   browserAutocomplete = "off",
   onChange,
   getOptions,
@@ -87,6 +93,7 @@ export function Autocomplete({
       <Menu
         visible={menuVisible}
         options={options}
+        menuSize={menuSize}
         separators={separators}
         checkmarks={checkmarks}
         selectedOption={value}

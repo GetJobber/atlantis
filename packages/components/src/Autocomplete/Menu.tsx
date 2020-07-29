@@ -15,6 +15,7 @@ enum IndexChange {
 interface MenuProps {
   readonly visible: boolean;
   readonly options: Option[];
+  readonly menuSize: string;
   readonly separators: boolean;
   readonly checkmarks: boolean;
   readonly selectedOption?: Option;
@@ -24,6 +25,7 @@ interface MenuProps {
 export function Menu({
   visible,
   options,
+  menuSize,
   separators = false,
   checkmarks = true,
   selectedOption,
@@ -32,6 +34,7 @@ export function Menu({
   const [highlightedIndex, setHighlightedIndex] = useState(0);
   const optionMenuClass = classnames(styles.options, {
     [styles.visible]: visible,
+    [styles.medium]: menuSize === "medium",
   });
 
   setupKeyListeners();

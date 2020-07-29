@@ -17,6 +17,10 @@
   background-color: var(--color-white);
 }
 
+.options.medium {
+  max-height: 300px;
+}
+
 .options h5 {
   border-bottom: 1px solid black;
 }
