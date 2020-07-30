@@ -20,22 +20,7 @@ interface AutocompleteProps {
   /**
    * Hint text that goes above the value once the form is filled out.
    */
-  readonly menuSize?: "medium";
-
-  /**
-   * Hint adjusts the interface to either have small or large spacing.
-   */
-  readonly inputSize?: FormFieldProps["size"];
-
-  /**
-   * Hint text that goes above the value once the form is filled out.
-   */
   readonly placeholder: string;
-
-  /**
-   * Turn on separators between result elements.
-   */
-  readonly separators?: boolean;
 
   /**
    * Turn off checkmarks on selected result elements.
@@ -43,9 +28,9 @@ interface AutocompleteProps {
   readonly checkmarks?: boolean;
 
   /**
-   * Turn on browser autocomplete for the input.
+   * Hint adjusts the interface to either have small or large spacing.
    */
-  readonly browserAutocomplete?: string;
+  readonly inputSize?: FormFieldProps["size"];
 
   /**
    * Simplified onChange handler that only provides the new value.
@@ -64,11 +49,8 @@ interface AutocompleteProps {
 export function Autocomplete({
   initialOptions = [],
   value,
-  separators = false,
   checkmarks = true,
-  menuSize = undefined,
   inputSize = undefined,
-  browserAutocomplete = "autocomplete-off",
   onChange,
   getOptions,
   placeholder,
@@ -91,7 +73,7 @@ export function Autocomplete({
     <div className={styles.autocomplete}>
       <InputText
         size={inputSize}
-        autocomplete={browserAutocomplete}
+        autocomplete={"autocomplete-off"}
         value={inputText}
         onChange={handleInputChange}
         placeholder={placeholder}
@@ -101,8 +83,6 @@ export function Autocomplete({
       <Menu
         visible={menuVisible}
         options={options}
-        menuSize={menuSize}
-        separators={separators}
         checkmarks={checkmarks}
         selectedOption={value}
         onOptionSelect={handleMenuChange}

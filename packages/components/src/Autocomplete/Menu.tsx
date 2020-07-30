@@ -15,8 +15,6 @@ enum IndexChange {
 interface MenuProps {
   readonly visible: boolean;
   readonly options: Option[];
-  readonly menuSize: string | undefined;
-  readonly separators: boolean;
   readonly checkmarks: boolean;
   readonly selectedOption?: Option;
   onOptionSelect(chosenOption: Option): void;
@@ -25,8 +23,6 @@ interface MenuProps {
 export function Menu({
   visible,
   options,
-  menuSize,
-  separators = false,
   checkmarks = true,
   selectedOption,
   onOptionSelect,
@@ -34,8 +30,12 @@ export function Menu({
   const [highlightedIndex, setHighlightedIndex] = useState(0);
   const optionMenuClass = classnames(styles.options, {
     [styles.visible]: visible,
-    [styles.medium]: menuSize === "medium",
   });
+
+  const detectSeparatorCondition = (option: Option) =>
+    option.description || option.details;
+
+  const addSeparators = options.some(detectSeparatorCondition);
 
   setupKeyListeners();
 
@@ -46,7 +46,7 @@ export function Menu({
       {options.map((option, index) => {
         const optionClass = classnames(styles.option, {
           [styles.active]: index === highlightedIndex,
-          [styles.separator]: separators,
+          [styles.separator]: addSeparators,
         });
         if (option.heading) {
           return (
