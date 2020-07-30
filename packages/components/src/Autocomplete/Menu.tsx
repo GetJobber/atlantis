@@ -74,7 +74,9 @@ export function Menu({
               <div className={styles.label}>
                 <Text>{option.label}</Text>
                 {option.description !== undefined && (
-                  <Typography>{option.description}</Typography>
+                  <Typography textColor="greyBlueDark">
+                    {option.description}
+                  </Typography>
                 )}
               </div>
               {option.details !== undefined && (
