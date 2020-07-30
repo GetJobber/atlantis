@@ -61,7 +61,7 @@ This is a concession to maintain visual parity.*/
 }
 
 .option.separator:not(:last-child) {
-  border-bottom: 1px solid rgb(225, 225, 225);
+  border-bottom: var(--border-base) solid var(--color-grey--lighter);
 }
 
 .options:hover .option.active:not(:hover) {
@@ -70,7 +70,7 @@ This is a concession to maintain visual parity.*/
 }
 
 .autocomplete .heading:not(:first-child) {
-  padding-top: 0.5em;
+  padding-top: var(--space-small);
 }
 
 .option .icon {
