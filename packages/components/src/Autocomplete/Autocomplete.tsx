@@ -4,6 +4,7 @@ import styles from "./Autocomplete.css";
 import { Menu } from "./Menu";
 import { Option } from "./Option";
 import { InputText } from "../InputText";
+import { FormFieldProps } from "../FormField";
 
 interface AutocompleteProps {
   /**
@@ -20,6 +21,11 @@ interface AutocompleteProps {
    * Hint text that goes above the value once the form is filled out.
    */
   readonly menuSize?: "medium";
+
+  /**
+   * Hint adjusts the interface to either have small or large spacing.
+   */
+  readonly inputSize?: FormFieldProps["size"];
 
   /**
    * Hint text that goes above the value once the form is filled out.
@@ -61,6 +67,7 @@ export function Autocomplete({
   separators = false,
   checkmarks = true,
   menuSize = undefined,
+  inputSize = undefined,
   browserAutocomplete = "autocomplete-off",
   onChange,
   getOptions,
@@ -83,6 +90,7 @@ export function Autocomplete({
   return (
     <div className={styles.autocomplete}>
       <InputText
+        size={inputSize}
         autocomplete={browserAutocomplete}
         value={inputText}
         onChange={handleInputChange}
