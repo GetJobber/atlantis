@@ -38,7 +38,7 @@ import { Autocomplete } from "@jobber/components/Autocomplete";
     return (
       <Autocomplete
         value={value}
-        initialOptions={[options]}
+        initialOptions={[]}
         onChange={setValue}
         getOptions={getOptions}
         placeholder="Search for something"
@@ -115,51 +115,6 @@ bottom right. Both of these are optional per option.
   }}
 </Playground>
 
-## Autocomplete with menu size constraint
-
-You can specify a medium size which limits the menu to 300px. By default we show
-everything. When constrained you can scroll through other elements.
-
-<Playground>
-  {() => {
-    const options = [
-      { value: 1, label: "Sulaco" },
-      { value: 2, label: "Nostromo" },
-      { value: 3, label: "Serenity" },
-      { value: 4, label: "Sleeper Service" },
-      { value: 5, label: "Enterprise" },
-      { value: 6, label: "Enterprise-D" },
-      { value: 7, label: "Endor" },
-      { value: 8, label: "Vulcan" },
-      { value: 9, label: "Bespin" },
-      { value: 10, label: "Tatooine" },
-      { value: 11, label: "Enterprise" },
-      { value: 12, label: "Ariel" }
-    ];
-    const [value, setValue] = useState();
-    return (
-      <Autocomplete
-        value={value}
-        checkmarks={false}
-        menuSize={"medium"}
-        initialOptions={options}
-        onChange={setValue}
-        getOptions={getOptions}
-        placeholder="Search for something"
-      />
-    );
-    function getOptions(text) {
-      if (text === "") {
-        return options;
-      }
-      const filterRegex = new RegExp(text, "i");
-      return options.filter(option =>
-        option.heading ? true : option.label.match(filterRegex)
-      );
-    }
-  }}
-</Playground>
-
 ## Autocomplete with checkmarks removed
 
 You can remove the checkmarks when an option is selected.
@@ -199,13 +154,18 @@ You can remove the checkmarks when an option is selected.
 
 ## Autocomplete with option separators
 
-You can apply a separator to each option which appears as a bottom border.
+Separators which appear as a bottom border are applied when at least one option
+has a decription or details field.
 
 <Playground>
   {() => {
     const options = [
-      { value: 1, label: "Sulaco" },
-      { value: 2, label: "Nostromo" },
+      {
+        value: 1,
+        label: "Sulaco",
+        desription: "They mostly come at night, mostly."
+      },
+      { value: 2, label: "Nostromo", details: "LV-426" },
       { value: 3, label: "Serenity" },
       { value: 4, label: "Sleeper Service" },
       { value: 5, label: "Enterprise" },
@@ -215,7 +175,6 @@ You can apply a separator to each option which appears as a bottom border.
     return (
       <Autocomplete
         value={value}
-        separators={true}
         initialOptions={options}
         onChange={setValue}
         getOptions={getOptions}
@@ -317,11 +276,11 @@ separators. It also removes the checkmarks when selecting an item.
     return (
       <Autocomplete
         value={value}
-        separators={true}
         checkmarks={false}
         initialOptions={options}
         onChange={setValue}
         getOptions={getOptions}
+        inputSize={"small"}
         placeholder="Search for something"
       />
     );
