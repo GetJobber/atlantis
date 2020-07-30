@@ -24,7 +24,7 @@ This is a concession to maintain visual parity.*/
 }
 
 .options h5 {
-  border-bottom: 1px solid black;
+  border-bottom: var(--border-base) solid var(--color-blue--dark);
 }
 
 .options.visible {
