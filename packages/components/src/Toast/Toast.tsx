@@ -45,14 +45,13 @@ function ToastInternal(_: any, ref: Ref<ToastRef>) {
   useImperativeHandle(ref, () => ({
     add: props => {
       setToastKey(toastKey + 1);
-      const newToasts = [
+      setToasts([
         {
           ...props,
           id: toastKey,
         },
         ...toasts,
-      ];
-      setToasts(newToasts);
+      ]);
     },
   }));
   return (
