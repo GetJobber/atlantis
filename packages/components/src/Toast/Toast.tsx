@@ -15,7 +15,7 @@ import { Button } from "../Button";
 interface BaseToastProps {
   readonly message: string;
   readonly variation?: "success" | "error";
-  readonly id: number;
+  readonly id?: number;
   onClose?(): void;
 }
 
@@ -26,7 +26,7 @@ interface ActionToastProps extends BaseToastProps {
 
 type ToastProps = XOR<BaseToastProps, ActionToastProps>;
 
-interface ToastRef {
+export interface ToastRef {
   add(props: ToastProps): void;
 }
 
@@ -80,7 +80,9 @@ function Slice({
   const icon = getIcon();
   let timer: NodeJS.Timeout;
 
-  useEffect(() => startTimer(), []);
+  useEffect(() => {
+    startTimer();
+  }, []);
 
   return (
     <AnimatePresence>
@@ -89,8 +91,8 @@ function Slice({
           className={styles.toast}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          onHoverStart={() => stopTimer()}
-          onHoverEnd={() => startTimer()}
+          onMouseEnter={() => stopTimer()}
+          onMouseLeave={() => startTimer()}
           exit={{
             opacity: 0,
             scale: 0.8,
@@ -118,7 +120,7 @@ function Slice({
             <div className={styles.button}>
               <Button
                 icon="remove"
-                ariaLabel={"Remove Toast"}
+                ariaLabel={"Hide Notification"}
                 onClick={handleToastClose}
                 type="tertiary"
                 variation="cancel"

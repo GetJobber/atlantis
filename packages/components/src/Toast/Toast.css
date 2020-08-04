@@ -2,6 +2,7 @@
   --toast-shadow: 0 var(--space-base) var(--space-base) rgba(0, 0, 0, 0.16),
     0 0 var(--space-small) rgba(0, 0, 0, 0.12);
 }
+
 .container {
   display: flex;
   flex-direction: column;

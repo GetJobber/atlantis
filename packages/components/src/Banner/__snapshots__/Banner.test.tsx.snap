@@ -27,6 +27,7 @@ exports[`renders a banner with a primary 'learning' action when the type is 'not
   >
     <svg
       className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+      name="cross"
       viewBox="0 0 1024 1024"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -66,6 +67,7 @@ exports[`renders a banner with a primary action 1`] = `
   >
     <svg
       className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+      name="cross"
       viewBox="0 0 1024 1024"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -94,6 +96,7 @@ exports[`renders a notice banner 1`] = `
   >
     <svg
       className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+      name="cross"
       viewBox="0 0 1024 1024"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -122,6 +125,7 @@ exports[`renders a success banner 1`] = `
   >
     <svg
       className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+      name="cross"
       viewBox="0 0 1024 1024"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -150,6 +154,7 @@ exports[`renders a warning banner 1`] = `
   >
     <svg
       className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+      name="cross"
       viewBox="0 0 1024 1024"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -178,6 +183,7 @@ exports[`renders an error banner 1`] = `
   >
     <svg
       className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+      name="cross"
       viewBox="0 0 1024 1024"
       xmlns="http://www.w3.org/2000/svg"
     >

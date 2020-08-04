@@ -61,9 +61,7 @@ import { Toast } from "@jobber/components/Toast";
     return (
       <>
         {buttons.map(button => (
-          <>
-            <Button key={button.label} {...button} />{" "}
-          </>
+          <Button key={button.label} {...button} />
         ))}
         <Toast ref={toastRef} />
       </>
