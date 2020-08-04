@@ -9,15 +9,18 @@ import { ComponentStatus } from "@jobber/docx";
 import { useRef } from "react";
 import { Button } from "@jobber/components/Button";
 import { Toast } from ".";
+import { Slice } from "./Toast";
 
 # Toast
 
-<ComponentStatus stage="pre" responsive="no" accessible="no" />
+<ComponentStatus stage="ready" responsive="no" accessible="no" />
 
-Write a description about what Toast component is trying to achieve.
+Toasts are short, temporary messages used to inform users that a process was
+performed. They provide visual feedback on the outcome of an action, and require
+minimal user interacction.
 
 ```ts
-import { Toast } from "@jobber/components/Toast";
+import { Toast, ToastRef } from "@jobber/components/Toast";
 ```
 
 <Playground>
@@ -69,34 +72,47 @@ import { Toast } from "@jobber/components/Toast";
   }}
 </Playground>
 
-<!--
-  It is not necessary to include Design & Usage Guidlelines. Use this section
-  to answer common questions and considerations about component usage.
--->
-
 ## Design & Usage Guidelines
 
 When contributing to, or consuming the Toast component, consider the following:
 
-- When using the Toast component always consider the volume you would like it to
-  be displayed at.
-- The Toast component should never be used inside another component.
+- Keep text labels as short as possible. They should be clear and concise, and
+  should not take up more than one line.
+- Use the pattern: noun + verb.
+  - Examples: `Job created`, `Quote approved`, `Client archived`.
+- No need to use "Successfully", should be implicit in the toast.
+- Don't use `Dismiss` or `Cancel` as an action label.
+  - Examples of action labels: `Undo`, `View`, `Refresh`.
+- Only one `<Toast />` should be used per view.
 
-## Props
+## Adding Toasts
 
-<Props of={Toast} />
+Toast exposes an `add` method when using the `ToastRef` that allows you to add
+items into a single `<Toast />` component.
 
-<!--
-  It is not necessary to provide an example of each prop. Use usage examples to
-  highlight key features of a component or particular considerations.
-
-  See `Button.mdx` for a good example of this.
--->
-
-## Loud
-
-Use `loud` to indicate that a component is yelling.
+```ts
+const toastRef = useRef<ToastRef>();
+```
 
 <Playground>
-  <Toast text="Fred" loud={true} />
+  {() => {
+    const toastRef = useRef();
+    return (
+      <>
+        <Button
+          label="Add Toast"
+          onClick={() => {
+            toastRef.current.add({
+              message: "New Toast"
+            });
+          }}
+        />
+        <Toast ref={toastRef} />
+      </>
+    );
+  }}
 </Playground>
+
+## "Add" Method Props
+
+<Props of={Slice} />

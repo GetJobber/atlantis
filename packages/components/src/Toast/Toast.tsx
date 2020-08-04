@@ -13,8 +13,8 @@ import { Icon, IconColorNames, IconNames } from "../Icon";
 import { Button } from "../Button";
 
 interface BaseToastProps {
-  readonly message: string;
   readonly variation?: "success" | "error";
+  readonly message: string;
   readonly id?: number;
   onClose?(): void;
 }
@@ -25,6 +25,7 @@ interface ActionToastProps extends BaseToastProps {
 }
 
 type ToastProps = XOR<BaseToastProps, ActionToastProps>;
+type ToastPropsInternal = Omit<ToastProps, "id">;
 
 export interface ToastRef {
   add(props: ToastProps): void;
@@ -32,7 +33,12 @@ export interface ToastRef {
 
 export const Toast = forwardRef(ToastInternal);
 
-function ToastInternal(_props: any, ref: Ref<ToastRef>) {
+/**
+ * Ignoring no-explicit-any as the ToastInternal takes no props, however
+ * since it is used in a forwardRef, it needs the second param.
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function ToastInternal(_: any, ref: Ref<ToastRef>) {
   const [toastKey, setToastKey] = useState(0);
   const [toasts, setToasts] = useState<ToastProps[]>([]);
 
@@ -68,13 +74,13 @@ interface Icon {
   color: IconColorNames;
 }
 
-function Slice({
+export function Slice({
   message,
   variation,
   onClose,
   action,
   actionLabel,
-}: ToastProps) {
+}: ToastPropsInternal) {
   const breadClass = classnames(styles.slice);
   const [visible, setVisible] = useState(true);
   const icon = getIcon();
