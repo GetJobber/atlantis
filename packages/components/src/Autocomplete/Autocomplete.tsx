@@ -44,6 +44,12 @@ interface AutocompleteProps {
    * @param newInputText
    */
   getOptions(newInputText: string): Option[] | Promise<Option[]>;
+
+  /**
+   * Optional additional blur behaviour (clicking away from the input text or
+   * hitting escape)
+   */
+  onBlur?(): void;
 }
 
 export function Autocomplete({
@@ -54,6 +60,7 @@ export function Autocomplete({
   onChange,
   getOptions,
   placeholder,
+  onBlur,
 }: AutocompleteProps) {
   const [options, setOptions] = useState(initialOptions);
   const [menuVisible, setMenuVisible] = useState(false);
@@ -114,6 +121,9 @@ export function Autocomplete({
     setMenuVisible(false);
     if (value == undefined || value.label !== inputText) {
       onChange(undefined);
+    }
+    if (onBlur) {
+      onBlur();
     }
   }
 
