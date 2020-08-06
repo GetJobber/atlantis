@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import { XOR } from "ts-xor";
 import styles from "./Toast.css";
@@ -37,7 +36,6 @@ export function Toast({
   action,
   actionLabel,
 }: ToastPropsInternal) {
-  const breadClass = classnames(styles.slice);
   const [visible, setVisible] = useState(true);
   const icon = getIcon();
   let timer: NodeJS.Timeout;
@@ -60,7 +58,7 @@ export function Toast({
             transition: { duration: 0.4 },
           }}
         >
-          <div className={breadClass}>
+          <div className={styles.slice}>
             {icon && (
               <div className={styles.icon}>
                 <Icon color={icon.color} name={icon.name} />

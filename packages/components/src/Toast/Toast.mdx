@@ -19,6 +19,10 @@ Toasts are short, temporary messages used to inform users that a process was
 performed. They provide visual feedback on the outcome of an action, and require
 minimal user interacction.
 
+Toast, unlike common React components is not a component that will be added to
+your view. Instead, toast is used by importing and calling the `showToast()`
+function.
+
 ```ts
 import { showToast } from "@jobber/components/Toast";
 ```
@@ -28,57 +32,10 @@ import { showToast } from "@jobber/components/Toast";
     label="show toast"
     onClick={() =>
       showToast({
-        message: "hello world"
+        message: "Toast has been toasted"
       })
     }
   />
-</Playground>
-
-<Playground>
-  {() => {
-    const buttons = [
-      {
-        label: "No Variation",
-        variation: "cancel",
-        onClick: () => {
-          showToast({
-            message: "Bland Toast",
-            onClose: () => console.log("🍞")
-          });
-        }
-      },
-      {
-        label: "Success",
-        onClick: () => {
-          showToast({
-            message: "Toast with jelly",
-            variation: "success",
-            action: () => alert("✅"),
-            actionLabel: "Yumm",
-            onClose: () => console.log("✅")
-          });
-        }
-      },
-      {
-        label: "Error",
-        variation: "destructive",
-        onClick: () => {
-          showToast({
-            message: "Aww dang, you burnt the toast",
-            variation: "error",
-            onClose: () => console.log("🚨")
-          });
-        }
-      }
-    ];
-    return (
-      <>
-        {buttons.map(button => (
-          <Button key={button.label} {...button} />
-        ))}
-      </>
-    );
-  }}
 </Playground>
 
 ## Design & Usage Guidelines
@@ -92,34 +49,66 @@ When contributing to, or consuming the Toast component, consider the following:
 - No need to use "Successfully", should be implicit in the toast.
 - Don't use `Dismiss` or `Cancel` as an action label.
   - Examples of action labels: `Undo`, `View`, `Refresh`.
-- Only one `<Toast />` should be used per view.
 
-## Adding Toasts
+## Props
 
-Toast exposes an `add` method when using the `ToastRef` that allows you to add
-items into a single `<Toast />` component.
+<Props of={Toast} />
 
-```ts
-const toastRef = useRef<ToastRef>();
-```
+## Variations
+
+Toasts have 3 variations, `default`, `success`, and `error`. Each should be used
+appropriatly when using Toast.
 
 <Playground>
   {() => {
     return (
       <>
         <Button
-          label="Add Toast"
-          onClick={() => {
+          label="Deafult Toast"
+          variation="learning"
+          onClick={() =>
             showToast({
-              message: "New Toast"
-            });
-          }}
+              message: "Toast is bland"
+            })
+          }
+        />
+        <Button
+          label="Success Toast"
+          onClick={() =>
+            showToast({
+              message: "Toast is great",
+              variation: "success"
+            })
+          }
+        />
+        <Button
+          label="Error Toast"
+          variation="destructive"
+          onClick={() =>
+            showToast({
+              message: "Toast is burnt",
+              variation: "error"
+            })
+          }
         />
       </>
     );
   }}
 </Playground>
 
-## "Add" Method Props
+## onClose
 
-<Props of={Toast} />
+`onClose` allows a callback when the toast closes. This can be done by clicking
+the close button, or letting the Toast naturally close.
+
+<Playground>
+  <Button
+    label="Tell me a secret"
+    onClick={() =>
+      showToast({
+        message: "I have a secret",
+        onClose: () => console.log("I ate toast for breakfast")
+      })
+    }
+  />
+</Playground>
