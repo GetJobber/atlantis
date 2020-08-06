@@ -9,7 +9,6 @@ interface BaseToastProps {
   readonly variation?: "success" | "error";
   readonly message: string;
   readonly id?: number;
-  onClose?(): void;
 }
 
 interface ActionToastProps extends BaseToastProps {
@@ -32,7 +31,6 @@ interface Icon {
 export function Toast({
   message,
   variation,
-  onClose,
   action,
   actionLabel,
 }: ToastPropsInternal) {
@@ -99,7 +97,6 @@ export function Toast({
   }
 
   function handleToastClose() {
-    onClose && onClose();
     setVisible(false);
   }
 

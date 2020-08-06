@@ -53,17 +53,6 @@ it("renders a error Slice of Toast when the variation: 'error' is set", () => {
   expect(document.querySelector("[name='alert']")).toBeInstanceOf(SVGElement);
 });
 
-it("fires an onClose callback when the close is clicked", () => {
-  const mockClose = jest.fn();
-  const { getByText, getByLabelText } = render(
-    <MockToast mockOnClose={mockClose} />,
-  );
-
-  fireEvent.click(getByText("No Variation"));
-  fireEvent.click(getByLabelText("Hide Notification"));
-  expect(mockClose).toHaveBeenCalledTimes(1);
-});
-
 it("fires an action callback when the action button is clicked", () => {
   const mockAction = jest.fn();
   const { getByText } = render(<MockToast mockAction={mockAction} />);
@@ -118,10 +107,9 @@ it("stops and starts the timer when the item is hover toggled", done => {
  * Mocks out an example of Toast for usage in tests
  */
 interface MockToastProps {
-  mockOnClose?(): void;
   mockAction?(): void;
 }
-const MockToast = ({ mockOnClose, mockAction }: MockToastProps) => {
+const MockToast = ({ mockAction }: MockToastProps) => {
   const buttons = [
     {
       label: "No Variation",
@@ -130,7 +118,6 @@ const MockToast = ({ mockOnClose, mockAction }: MockToastProps) => {
           message: "Bland Toast",
           actionLabel: "Do The Action",
           action: () => mockAction && mockAction(),
-          onClose: () => mockOnClose && mockOnClose(),
         });
       },
     },

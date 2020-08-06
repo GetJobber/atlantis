@@ -95,20 +95,3 @@ appropriatly when using Toast.
     );
   }}
 </Playground>
-
-## onClose
-
-`onClose` allows a callback when the toast closes. This can be done by clicking
-the close button, or letting the Toast naturally close.
-
-<Playground>
-  <Button
-    label="Tell me a secret"
-    onClick={() =>
-      showToast({
-        message: "I have a secret",
-        onClose: () => console.log("I ate toast for breakfast")
-      })
-    }
-  />
-</Playground>

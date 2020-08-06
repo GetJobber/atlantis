@@ -61,13 +61,7 @@ function ToastInternal(_: any, ref: Ref<ToastRef>) {
   return (
     <div className={styles.container}>
       {toasts.map(toast => (
-        <Toast
-          {...toast}
-          key={toast.id}
-          onClose={() => {
-            toast.onClose && toast.onClose();
-          }}
-        />
+        <Toast {...toast} key={toast.id} />
       ))}
     </div>
   );
