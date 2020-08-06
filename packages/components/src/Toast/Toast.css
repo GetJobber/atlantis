@@ -11,6 +11,8 @@
   bottom: var(--space-large);
   left: 50%;
   z-index: 10000;
+  font-family: var(--typography--fontFamily-normal);
+  font-size: var(--typography--fontSize-large);
   transform: translateX(-50%);
 }
 

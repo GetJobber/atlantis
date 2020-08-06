@@ -1,1 +1,1 @@
-export { Toast, ToastRef } from "./Toast";
+export { showToast } from "./Toast";

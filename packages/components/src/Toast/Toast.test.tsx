@@ -1,5 +1,4 @@
-import React, { useRef } from "react";
-import renderer from "react-test-renderer";
+import React from "react";
 import {
   act,
   cleanup,
@@ -7,43 +6,51 @@ import {
   render,
   waitFor,
 } from "@testing-library/react";
-import { Toast, ToastRef } from ".";
-import { Button } from "../Button";
+import { showToast } from ".";
 
 beforeEach(() => jest.useFakeTimers());
 
 afterEach(() => {
   cleanup();
   jest.clearAllTimers();
+  document.body.innerHTML = ``;
 });
 
-it("renders a Toast", () => {
-  const tree = renderer.create(<Toast />).toJSON();
-  expect(tree).toMatchSnapshot();
+it("creates the placeholder div on showToast call", () => {
+  const { getByText } = render(<MockToast />);
+  expect(document.querySelector(`#atlantis-toast-element`)).not.toBeInstanceOf(
+    HTMLDivElement,
+  );
+
+  fireEvent.click(getByText("No Variation"));
+
+  expect(document.querySelector(`#atlantis-toast-element`)).toBeInstanceOf(
+    HTMLDivElement,
+  );
 });
 
 it("renders a Slice of Toast when the 'add' method is called", () => {
-  const { container, getByText } = render(<MockToast />);
+  const { getByText } = render(<MockToast />);
 
   fireEvent.click(getByText("No Variation"));
   expect(getByText("Bland Toast")).toBeInstanceOf(HTMLDivElement);
-  expect(container.querySelector("[name='knot']")).toBeInstanceOf(SVGElement);
+  expect(document.querySelector("[name='knot']")).toBeInstanceOf(SVGElement);
 });
 
 it("renders a successful Slice of Toast when the variation: 'success' is set", () => {
-  const { container, getByText } = render(<MockToast />);
+  const { getByText } = render(<MockToast />);
 
   fireEvent.click(getByText("Success"));
-  expect(container.querySelector("[name='checkmark']")).toBeInstanceOf(
+  expect(document.querySelector("[name='checkmark']")).toBeInstanceOf(
     SVGElement,
   );
 });
 
 it("renders a error Slice of Toast when the variation: 'error' is set", () => {
-  const { container, getByText } = render(<MockToast />);
+  const { getByText } = render(<MockToast />);
 
   fireEvent.click(getByText("Error"));
-  expect(container.querySelector("[name='alert']")).toBeInstanceOf(SVGElement);
+  expect(document.querySelector("[name='alert']")).toBeInstanceOf(SVGElement);
 });
 
 it("fires an onClose callback when the close is clicked", () => {
@@ -115,13 +122,11 @@ interface MockToastProps {
   mockAction?(): void;
 }
 const MockToast = ({ mockOnClose, mockAction }: MockToastProps) => {
-  const toastRef = useRef<ToastRef>();
   const buttons = [
     {
       label: "No Variation",
-      variation: "cancel",
       onClick: () => {
-        toastRef.current.add({
+        showToast({
           message: "Bland Toast",
           actionLabel: "Do The Action",
           action: () => mockAction && mockAction(),
@@ -132,7 +137,7 @@ const MockToast = ({ mockOnClose, mockAction }: MockToastProps) => {
     {
       label: "Success",
       onClick: () => {
-        toastRef.current.add({
+        showToast({
           message:
             "Successful Message that should last the full 5 seconds, it just needs to be 50 charachters long",
           variation: "success",
@@ -142,7 +147,7 @@ const MockToast = ({ mockOnClose, mockAction }: MockToastProps) => {
     {
       label: "Error",
       onClick: () => {
-        toastRef.current.add({
+        showToast({
           message: "Errorful should last inbetween min-max",
           variation: "error",
         });
@@ -151,12 +156,11 @@ const MockToast = ({ mockOnClose, mockAction }: MockToastProps) => {
   ];
   return (
     <>
-      {buttons.map(button => (
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-        // @ts-ignore
-        <Button key={button.label} {...button} />
+      {buttons.map(({ label, onClick }) => (
+        <button key={label} onClick={onClick}>
+          {label}
+        </button>
       ))}
-      <Toast ref={toastRef} />
     </>
   );
 };
