@@ -50,6 +50,11 @@ interface AutocompleteProps {
    * hitting escape)
    */
   onBlur?(): void;
+
+  /**
+   * Optional additional focus behaviour (clicking on the input text)
+   */
+  onFocus?(): void;
 }
 
 export function Autocomplete({
@@ -61,6 +66,7 @@ export function Autocomplete({
   getOptions,
   placeholder,
   onBlur,
+  onFocus,
 }: AutocompleteProps) {
   const [options, setOptions] = useState(initialOptions);
   const [menuVisible, setMenuVisible] = useState(false);
@@ -129,5 +135,8 @@ export function Autocomplete({
 
   function handleInputFocus() {
     setMenuVisible(true);
+    if (onFocus) {
+      onFocus();
+    }
   }
 }
