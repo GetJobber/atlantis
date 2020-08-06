@@ -8,8 +8,8 @@ import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { useRef } from "react";
 import { Button } from "@jobber/components/Button";
-import { Toast, showToast } from ".";
-import { Slice } from "./Toast";
+import { showToast } from ".";
+import { Toast } from "./Toast";
 
 # Toast
 
@@ -20,7 +20,7 @@ performed. They provide visual feedback on the outcome of an action, and require
 minimal user interacction.
 
 ```ts
-import { Toast, ToastRef } from "@jobber/components/Toast";
+import { showToast } from "@jobber/components/Toast";
 ```
 
 <Playground>
@@ -122,4 +122,4 @@ const toastRef = useRef<ToastRef>();
 
 ## "Add" Method Props
 
-<Props of={Slice} />
+<Props of={Toast} />

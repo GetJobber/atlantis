@@ -1,16 +1,7 @@
-import React, {
-  MutableRefObject,
-  Ref,
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from "react";
+import React, { useEffect, useState } from "react";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import { XOR } from "ts-xor";
-import { render } from "react-dom";
 import styles from "./Toast.css";
 import { Icon, IconColorNames, IconNames } from "../Icon";
 import { Button } from "../Button";
@@ -27,50 +18,11 @@ interface ActionToastProps extends BaseToastProps {
   actionLabel: string;
 }
 
-type ToastProps = XOR<BaseToastProps, ActionToastProps>;
+export type ToastProps = XOR<BaseToastProps, ActionToastProps>;
 type ToastPropsInternal = Omit<ToastProps, "id">;
 
-interface ToastRef {
+export interface ToastRef {
   add(props: ToastProps): void;
-}
-
-const Toast = forwardRef(ToastInternal);
-
-/**
- * Ignoring no-explicit-any as the ToastInternal takes no props, however
- * since it is used in a forwardRef, it needs the second param.
- */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function ToastInternal(_: any, ref: Ref<ToastRef>) {
-  const [toastKey, setToastKey] = useState(0);
-  const [toasts, setToasts] = useState<ToastProps[]>([]);
-
-  useImperativeHandle(ref, () => ({
-    add: props => {
-      setToastKey(toastKey + 1);
-      setToasts([
-        {
-          ...props,
-          id: toastKey,
-        },
-        ...toasts,
-      ]);
-    },
-  }));
-
-  return (
-    <div className={styles.container}>
-      {toasts.map(toast => (
-        <Slice
-          {...toast}
-          key={toast.id}
-          onClose={() => {
-            toast.onClose && toast.onClose();
-          }}
-        />
-      ))}
-    </div>
-  );
 }
 
 interface Icon {
@@ -78,7 +30,7 @@ interface Icon {
   color: IconColorNames;
 }
 
-export function Slice({
+export function Toast({
   message,
   variation,
   onClose,
@@ -173,31 +125,4 @@ export function Slice({
         return { name: "knot", color: "lightBlue" };
     }
   }
-}
-
-function ToasterOven(props: ToastProps) {
-  const toastRef = useRef() as MutableRefObject<ToastRef>;
-
-  useEffect(() => {
-    toastRef.current.add(props);
-  });
-
-  return <Toast ref={toastRef} />;
-}
-
-function createDocumentToast(props: ToastProps) {
-  const targetId = "atlantis-toast-element";
-  let target = document.querySelector(`#${targetId}`);
-
-  if (!target) {
-    target = document.createElement("div");
-    target.id = targetId;
-    document.body.appendChild(target);
-  }
-
-  render(<ToasterOven {...props} />, target);
-}
-
-export function showToast(props: ToastProps) {
-  createDocumentToast(props);
 }
