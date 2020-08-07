@@ -8,6 +8,14 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.4](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.7.3...@jobber/design@0.7.4) (2020-08-07)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
 ## [0.7.3](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.7.2...@jobber/design@0.7.3) (2020-07-15)
 
 
