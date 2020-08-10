@@ -56,7 +56,7 @@ When contributing to, or consuming the Toast component, consider the following:
 
 ## Variations
 
-Toasts have 3 variations, `default`, `success`, and `error`. Each should be used
+Toasts have 3 variations, `info`, `success`, and `error`. Each should be used
 appropriatly when using Toast.
 
 <Playground>
@@ -64,11 +64,11 @@ appropriatly when using Toast.
     return (
       <>
         <Button
-          label="Deafult Toast"
+          label="Info Toast"
           variation="learning"
           onClick={() =>
             showToast({
-              message: "Toast is bland"
+              message: "Toast is just crispy bread"
             })
           }
         />

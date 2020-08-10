@@ -36,12 +36,7 @@ function ToasterOven(props: ToastProps) {
   return <ToastContainer ref={toastRef} />;
 }
 
-/**
- * Ignoring no-explicit-any as the ToastInternal takes no props, however
- * since it is used in a forwardRef, it needs the second param.
- */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function ToastInternal(_: any, ref: Ref<ToastRef>) {
+function ToastInternal(_: unknown, ref: Ref<ToastRef>) {
   const [toastKey, setToastKey] = useState(0);
   const [toasts, setToasts] = useState<ToastProps[]>([]);
 

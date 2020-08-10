@@ -33,7 +33,7 @@ it("renders a Slice of Toast when the 'add' method is called", () => {
   const { getByText, getByTestId } = render(<MockToast />);
 
   fireEvent.click(getByText("No Variation"));
-  expect(getByText("Bland Toast")).toBeInstanceOf(HTMLDivElement);
+  expect(getByText("Bland Toast")).toBeInstanceOf(HTMLSpanElement);
   expect(getByTestId("knot")).toBeInstanceOf(SVGElement);
 });
 

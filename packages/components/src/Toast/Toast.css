@@ -1,8 +1,3 @@
-:root {
-  --toast-shadow: 0 var(--space-base) var(--space-base) rgba(0, 0, 0, 0.16),
-    0 0 var(--space-small) rgba(0, 0, 0, 0.12);
-}
-
 .container {
   display: flex;
   flex-direction: column;
@@ -10,14 +5,13 @@
   position: fixed;
   bottom: var(--space-large);
   left: 50%;
-  z-index: 10000;
-  font-family: var(--typography--fontFamily-normal);
+  z-index: var(--elevation-toast);
   font-size: var(--typography--fontSize-large);
   transform: translateX(-50%);
 }
 
 .toast {
-  box-shadow: var(--toast-shadow);
+  box-shadow: var(--shadow-base);
   overflow: hidden;
 }
 
@@ -37,12 +31,8 @@
   margin-right: var(--space-base);
 }
 
-.message {
-  padding-right: var(--space-base);
-}
-
 .button {
-  margin-left: auto;
+  margin-left: var(--space-base);
 }
 
 .action {

@@ -4,9 +4,10 @@ import { XOR } from "ts-xor";
 import styles from "./Toast.css";
 import { Icon, IconColorNames, IconNames } from "../Icon";
 import { Button } from "../Button";
+import { Typography } from "../Typography";
 
 interface BaseToastProps {
-  readonly variation?: "success" | "error";
+  readonly variation: "info" | "success" | "error";
   readonly message: string;
   readonly id?: number;
 }
@@ -30,7 +31,7 @@ interface Icon {
 
 export function Toast({
   message,
-  variation,
+  variation = "info",
   action,
   actionLabel,
 }: ToastPropsInternal) {
@@ -57,13 +58,13 @@ export function Toast({
           }}
         >
           <div className={styles.slice}>
-            {icon && (
-              <div className={styles.icon}>
-                <Icon color={icon.color} name={icon.name} />
-              </div>
-            )}
+            <div className={styles.icon}>
+              <Icon color={icon.color} name={icon.name} />
+            </div>
 
-            <div className={styles.message}>{message}</div>
+            <Typography element="span" size="large">
+              {message}
+            </Typography>
 
             {action && (
               <Button
@@ -110,7 +111,7 @@ export function Toast({
     return time;
   }
 
-  function getIcon(): Icon | undefined {
+  function getIcon(): Icon {
     switch (variation) {
       case "success":
         return { name: "checkmark", color: "green" };
