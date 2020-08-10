@@ -30,27 +30,25 @@ it("creates the placeholder div on showToast call", () => {
 });
 
 it("renders a Slice of Toast when the 'add' method is called", () => {
-  const { getByText } = render(<MockToast />);
+  const { getByText, getByTestId } = render(<MockToast />);
 
   fireEvent.click(getByText("No Variation"));
   expect(getByText("Bland Toast")).toBeInstanceOf(HTMLDivElement);
-  expect(document.querySelector("[name='knot']")).toBeInstanceOf(SVGElement);
+  expect(getByTestId("knot")).toBeInstanceOf(SVGElement);
 });
 
 it("renders a successful Slice of Toast when the variation: 'success' is set", () => {
-  const { getByText } = render(<MockToast />);
+  const { getByText, getByTestId } = render(<MockToast />);
 
   fireEvent.click(getByText("Success"));
-  expect(document.querySelector("[name='checkmark']")).toBeInstanceOf(
-    SVGElement,
-  );
+  expect(getByTestId("checkmark")).toBeInstanceOf(SVGElement);
 });
 
 it("renders a error Slice of Toast when the variation: 'error' is set", () => {
-  const { getByText } = render(<MockToast />);
+  const { getByText, getByTestId } = render(<MockToast />);
 
   fireEvent.click(getByText("Error"));
-  expect(document.querySelector("[name='alert']")).toBeInstanceOf(SVGElement);
+  expect(getByTestId("alert")).toBeInstanceOf(SVGElement);
 });
 
 it("fires an action callback when the action button is clicked", () => {

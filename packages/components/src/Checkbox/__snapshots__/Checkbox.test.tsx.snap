@@ -20,7 +20,7 @@ exports[`renders a Checkbox 1`] = `
     >
       <svg
         className="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
-        name="checkmark"
+        data-testid="checkmark"
         viewBox="0 0 1024 1024"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -62,7 +62,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 1`]
     >
       <svg
         className="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
-        name="minus2"
+        data-testid="minus2"
         viewBox="0 0 1024 1024"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -104,7 +104,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 2`]
     >
       <svg
         className="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
-        name="minus2"
+        data-testid="minus2"
         viewBox="0 0 1024 1024"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -146,7 +146,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
     >
       <svg
         className="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
-        name="checkmark"
+        data-testid="checkmark"
         viewBox="0 0 1024 1024"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -188,7 +188,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
     >
       <svg
         className="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
-        name="checkmark"
+        data-testid="checkmark"
         viewBox="0 0 1024 1024"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -230,7 +230,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
     >
       <svg
         className="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
-        name="minus2"
+        data-testid="minus2"
         viewBox="0 0 1024 1024"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -272,7 +272,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
     >
       <svg
         className="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
-        name="minus2"
+        data-testid="minus2"
         viewBox="0 0 1024 1024"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -314,7 +314,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
     >
       <svg
         className="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
-        name="checkmark"
+        data-testid="checkmark"
         viewBox="0 0 1024 1024"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -356,7 +356,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
     >
       <svg
         className="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
-        name="checkmark"
+        data-testid="checkmark"
         viewBox="0 0 1024 1024"
         xmlns="http://www.w3.org/2000/svg"
       >

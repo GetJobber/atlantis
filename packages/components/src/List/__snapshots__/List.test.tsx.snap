@@ -33,7 +33,7 @@ exports[`renders 1 List item with all the props 1`] = `
           >
             <svg
               className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
-              name="checkmark"
+              data-testid="checkmark"
               viewBox="0 0 1024 1024"
               xmlns="http://www.w3.org/2000/svg"
             >

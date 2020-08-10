@@ -3,7 +3,7 @@
 exports[`renders apple icon 1`] = `
 <svg
   className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
-  name="apple"
+  data-testid="apple"
   viewBox="0 0 1024 1024"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -17,7 +17,7 @@ exports[`renders apple icon 1`] = `
 exports[`renders dashboard icon 1`] = `
 <svg
   className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
-  name="dashboard"
+  data-testid="dashboard"
   viewBox="0 0 1024 1024"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -31,7 +31,7 @@ exports[`renders dashboard icon 1`] = `
 exports[`renders large arrowDown icon 1`] = `
 <svg
   className="ZDlJU6tECg7ouG-b27gya _2SoAwA0A8G1BGDNjtkt-lt"
-  name="arrowDown"
+  data-testid="arrowDown"
   viewBox="0 0 1024 1024"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -45,7 +45,7 @@ exports[`renders large arrowDown icon 1`] = `
 exports[`renders small more icon 1`] = `
 <svg
   className="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
-  name="more"
+  data-testid="more"
   viewBox="0 0 1024 1024"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -59,7 +59,7 @@ exports[`renders small more icon 1`] = `
 exports[`renders star icon with custom color 1`] = `
 <svg
   className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
-  name="star"
+  data-testid="star"
   viewBox="0 0 1024 1024"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -74,7 +74,7 @@ exports[`renders star icon with custom color 1`] = `
 exports[`renders thumbsDown icon 1`] = `
 <svg
   className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC _3F7n5ToMv0htmhmS_dNhjQ"
-  name="thumbsDown"
+  data-testid="thumbsDown"
   viewBox="0 0 1024 1024"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -88,7 +88,7 @@ exports[`renders thumbsDown icon 1`] = `
 exports[`renders truck icon 1`] = `
 <svg
   className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
-  name="truck"
+  data-testid="truck"
   viewBox="0 0 1024 1024"
   xmlns="http://www.w3.org/2000/svg"
 >

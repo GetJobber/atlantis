@@ -45,7 +45,7 @@ export function Icon({ name, color, customColor, size = "base" }: IconProps) {
       xmlns="http://www.w3.org/2000/svg"
       viewBox={viewBox}
       className={svgClassNames}
-      name={name}
+      data-testid={name}
     >
       {icon}
     </svg>
