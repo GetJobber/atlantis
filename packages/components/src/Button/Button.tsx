@@ -63,7 +63,7 @@ interface DestructiveActionProps extends ButtonFoundationProps {
 
 interface CancelActionProps extends ButtonFoundationProps {
   readonly variation: "cancel";
-  readonly type?: "secondary";
+  readonly type?: "secondary" | "tertiary";
 }
 
 export type ButtonProps = XOR<

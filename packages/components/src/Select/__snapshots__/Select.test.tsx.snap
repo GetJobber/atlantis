@@ -38,6 +38,7 @@ exports[`renders a Select with many options 1`] = `
   >
     <svg
       className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+      data-testid="arrowDown"
       viewBox="0 0 1024 1024"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -75,6 +76,7 @@ exports[`renders a Select with no options 1`] = `
   >
     <svg
       className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+      data-testid="arrowDown"
       viewBox="0 0 1024 1024"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -116,6 +118,7 @@ exports[`renders a Select with one option 1`] = `
   >
     <svg
       className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+      data-testid="arrowDown"
       viewBox="0 0 1024 1024"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -157,6 +160,7 @@ exports[`renders correctly as large 1`] = `
   >
     <svg
       className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+      data-testid="arrowDown"
       viewBox="0 0 1024 1024"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -198,6 +202,7 @@ exports[`renders correctly as small 1`] = `
   >
     <svg
       className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+      data-testid="arrowDown"
       viewBox="0 0 1024 1024"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -240,6 +245,7 @@ exports[`renders correctly when disabled 1`] = `
   >
     <svg
       className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+      data-testid="arrowDown"
       viewBox="0 0 1024 1024"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -281,6 +287,7 @@ exports[`renders correctly when invalid 1`] = `
   >
     <svg
       className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+      data-testid="arrowDown"
       viewBox="0 0 1024 1024"
       xmlns="http://www.w3.org/2000/svg"
     >
