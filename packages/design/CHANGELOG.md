@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.7.4...@jobber/design@0.8.0) (2020-08-11)
+
+
+### Features
+
+* **components:** Toast Component ([#326](https://github.com/GetJobber/atlantis/issues/326)) ([4e04a4d](https://github.com/GetJobber/atlantis/commit/4e04a4daa90e6773def51d66387562001806fe9c))
+
+
+
+
+
 ## [0.7.4](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.7.3...@jobber/design@0.7.4) (2020-08-07)
 
 **Note:** Version bump only for package @jobber/design
