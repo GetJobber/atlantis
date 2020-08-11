@@ -5,12 +5,10 @@ module.exports = {
   settings: {
     "import/resolver": {
       alias: {
-        map: [
-          ["@jobber/components", "./packages/components/src"],
-        ],
-        extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
-      },
-    },
+        map: [["@jobber/components", "./packages/components/src"]],
+        extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
+      }
+    }
   },
   rules: {
     /*
@@ -25,9 +23,10 @@ module.exports = {
         allow: [
           "@jobber/components/*",
           "gatsby-theme-docz/**",
-          "lodash/*"
+          "lodash/*",
+          "crypto-js/*"
         ]
       }
     ]
-  },
+  }
 };

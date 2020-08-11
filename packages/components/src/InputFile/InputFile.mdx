@@ -1,0 +1,79 @@
+---
+name: InputFile
+menu: Components
+route: /components/input-file
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { useState } from "react";
+import { InputFile, updateFiles } from ".";
+import { Content } from "@jobber/components/Content";
+
+# Input File
+
+<ComponentStatus stage="pre" responsive="no" accessible="no" />
+
+Write a description about what InputFile component is trying to achieve.
+
+```ts
+import { InputFile, updateFiles } from "@jobber/components/InputFile";
+```
+
+<Playground>
+  {() => {
+    const [files, setFiles] = useState([]);
+    return (
+      <Content>
+        <InputFile
+          multiple={true}
+          onUploadStart={handleUpload}
+          onUploadProgress={handleUpload}
+          onUploadComplete={handleUpload}
+        />
+        <pre>{JSON.stringify(files, undefined, 2)}</pre>
+      </Content>
+    );
+    function handleUpload(file) {
+      setFiles(oldFiles => updateFiles(file, oldFiles));
+    }
+  }}
+</Playground>
+
+<!--
+  It is not necessary to include Design & Usage Guidlelines. Use this section
+  to answer common questions and considerations about component usage.
+-->
+
+## Design & Usage Guidelines
+
+When contributing to, or consuming the InputFile component, consider the
+following:
+
+- When using the InputFile component always consider the volume you would like
+  it to be displayed at.
+- The InputFile component should never be used inside another component.
+
+## Props
+
+<Props of={InputFile} />
+
+<!--
+  It is not necessary to provide an example of each prop. Use usage examples to
+  highlight key features of a component or particular considerations.
+
+  See `Button.mdx` for a good example of this.
+-->
+
+## Loud
+
+Use `loud` to indicate that a component is yelling.
+
+<Playground>
+  <Content>
+    <InputFile />
+    <InputFile multiple={true} />
+    <InputFile allowedTypes="images" />
+    <InputFile allowedTypes="images" multiple={true} />
+  </Content>
+</Playground>
