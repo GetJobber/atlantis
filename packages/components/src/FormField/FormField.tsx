@@ -286,6 +286,10 @@ export const FormField = React.forwardRef(
             />
           );
         default:
+          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          // @ts-ignore
+          // eslint-disable-next-line no-case-declarations
+          const error = errors[name] && errors[name].message;
           return (
             <>
               <input
@@ -306,10 +310,10 @@ export const FormField = React.forwardRef(
                 }}
                 {...fieldProps}
               />
-              {/* // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-                @ts-ignore */}
-              {errors[name] && errors[name].message}
-              {JSON.stringify(formState)}
+              <div>{error}</div>
+              <pre style={{ fontSize: "13px" }}>
+                {JSON.stringify(formState, undefined, 2)}
+              </pre>
             </>
           );
       }

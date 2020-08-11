@@ -30,7 +30,24 @@ it("renders correctly with no props", () => {
         onKeyDown={[Function]}
         type="text"
       />
-      {"dirtyFields":{},"isSubmitted":false,"submitCount":0,"touched":{},"isDirty":false,"isSubmitting":false,"isValid":true}
+      <div />
+      <pre
+        style={
+          Object {
+            "fontSize": "13px",
+          }
+        }
+      >
+        {
+      "dirtyFields": {},
+      "isSubmitted": false,
+      "submitCount": 0,
+      "touched": {},
+      "isDirty": false,
+      "isSubmitting": false,
+      "isValid": true
+    }
+      </pre>
     </div>
   `);
 });
@@ -63,7 +80,24 @@ it("renders correctly with a placeholder", () => {
         onKeyDown={[Function]}
         type="text"
       />
-      {"dirtyFields":{},"isSubmitted":false,"submitCount":0,"touched":{},"isDirty":false,"isSubmitting":false,"isValid":true}
+      <div />
+      <pre
+        style={
+          Object {
+            "fontSize": "13px",
+          }
+        }
+      >
+        {
+      "dirtyFields": {},
+      "isSubmitted": false,
+      "submitCount": 0,
+      "touched": {},
+      "isDirty": false,
+      "isSubmitting": false,
+      "isValid": true
+    }
+      </pre>
     </div>
   `);
 });
@@ -94,7 +128,24 @@ it("renders correctly as small", () => {
         onKeyDown={[Function]}
         type="text"
       />
-      {"dirtyFields":{},"isSubmitted":false,"submitCount":0,"touched":{},"isDirty":false,"isSubmitting":false,"isValid":true}
+      <div />
+      <pre
+        style={
+          Object {
+            "fontSize": "13px",
+          }
+        }
+      >
+        {
+      "dirtyFields": {},
+      "isSubmitted": false,
+      "submitCount": 0,
+      "touched": {},
+      "isDirty": false,
+      "isSubmitting": false,
+      "isValid": true
+    }
+      </pre>
     </div>
   `);
 });
@@ -126,7 +177,24 @@ it("renders correctly in a readonly state", () => {
         readOnly={true}
         type="text"
       />
-      {"dirtyFields":{},"isSubmitted":false,"submitCount":0,"touched":{},"isDirty":false,"isSubmitting":false,"isValid":true}
+      <div />
+      <pre
+        style={
+          Object {
+            "fontSize": "13px",
+          }
+        }
+      >
+        {
+      "dirtyFields": {},
+      "isSubmitted": false,
+      "submitCount": 0,
+      "touched": {},
+      "isDirty": false,
+      "isSubmitting": false,
+      "isValid": true
+    }
+      </pre>
     </div>
   `);
 });
@@ -158,7 +226,24 @@ it("renders correctly in a disabled state", () => {
         onKeyDown={[Function]}
         type="text"
       />
-      {"dirtyFields":{},"isSubmitted":false,"submitCount":0,"touched":{},"isDirty":false,"isSubmitting":false,"isValid":true}
+      <div />
+      <pre
+        style={
+          Object {
+            "fontSize": "13px",
+          }
+        }
+      >
+        {
+      "dirtyFields": {},
+      "isSubmitted": false,
+      "submitCount": 0,
+      "touched": {},
+      "isDirty": false,
+      "isSubmitting": false,
+      "isValid": true
+    }
+      </pre>
     </div>
   `);
 });
@@ -200,7 +285,24 @@ it("renders a field with error", () => {
           type="text"
           value="wrong!"
         />
-        {"dirtyFields":{},"isSubmitted":false,"submitCount":0,"touched":{},"isDirty":false,"isSubmitting":false,"isValid":true}
+        <div />
+        <pre
+          style={
+            Object {
+              "fontSize": "13px",
+            }
+          }
+        >
+          {
+      "dirtyFields": {},
+      "isSubmitted": false,
+      "submitCount": 0,
+      "touched": {},
+      "isDirty": false,
+      "isSubmitting": false,
+      "isValid": true
+    }
+        </pre>
       </div>,
     ]
   `);

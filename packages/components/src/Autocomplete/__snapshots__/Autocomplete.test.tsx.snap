@@ -28,7 +28,24 @@ exports[`renders an Autocomplete 1`] = `
       type="text"
       value=""
     />
-    {"dirtyFields":{},"isSubmitted":false,"submitCount":0,"touched":{},"isDirty":false,"isSubmitting":false,"isValid":true}
+    <div />
+    <pre
+      style={
+        Object {
+          "fontSize": "13px",
+        }
+      }
+    >
+      {
+  "dirtyFields": {},
+  "isSubmitted": false,
+  "submitCount": 0,
+  "touched": {},
+  "isDirty": false,
+  "isSubmitting": false,
+  "isValid": true
+}
+    </pre>
   </div>
   <div
     className="options"

@@ -33,7 +33,24 @@ it("renders a InputTime", () => {
         type="time"
         value=""
       />
-      {"dirtyFields":{},"isSubmitted":false,"submitCount":0,"touched":{},"isDirty":false,"isSubmitting":false,"isValid":true}
+      <div />
+      <pre
+        style={
+          Object {
+            "fontSize": "13px",
+          }
+        }
+      >
+        {
+      "dirtyFields": {},
+      "isSubmitted": false,
+      "submitCount": 0,
+      "touched": {},
+      "isDirty": false,
+      "isSubmitting": false,
+      "isValid": true
+    }
+      </pre>
     </div>
   `);
 });
@@ -67,7 +84,24 @@ it("renders an initial time when given 'defaultValue'", () => {
         onKeyDown={[Function]}
         type="time"
       />
-      {"dirtyFields":{},"isSubmitted":false,"submitCount":0,"touched":{},"isDirty":false,"isSubmitting":false,"isValid":true}
+      <div />
+      <pre
+        style={
+          Object {
+            "fontSize": "13px",
+          }
+        }
+      >
+        {
+      "dirtyFields": {},
+      "isSubmitted": false,
+      "submitCount": 0,
+      "touched": {},
+      "isDirty": false,
+      "isSubmitting": false,
+      "isValid": true
+    }
+      </pre>
     </div>
   `);
 });
@@ -102,7 +136,24 @@ it("renders correctly in a readonly state", () => {
         type="time"
         value="11:23"
       />
-      {"dirtyFields":{},"isSubmitted":false,"submitCount":0,"touched":{},"isDirty":false,"isSubmitting":false,"isValid":true}
+      <div />
+      <pre
+        style={
+          Object {
+            "fontSize": "13px",
+          }
+        }
+      >
+        {
+      "dirtyFields": {},
+      "isSubmitted": false,
+      "submitCount": 0,
+      "touched": {},
+      "isDirty": false,
+      "isSubmitting": false,
+      "isValid": true
+    }
+      </pre>
     </div>
   `);
 });
@@ -137,7 +188,24 @@ it("adds a error border when invalid", () => {
         type="time"
         value="11:23"
       />
-      {"dirtyFields":{},"isSubmitted":false,"submitCount":0,"touched":{},"isDirty":false,"isSubmitting":false,"isValid":true}
+      <div />
+      <pre
+        style={
+          Object {
+            "fontSize": "13px",
+          }
+        }
+      >
+        {
+      "dirtyFields": {},
+      "isSubmitted": false,
+      "submitCount": 0,
+      "touched": {},
+      "isDirty": false,
+      "isSubmitting": false,
+      "isValid": true
+    }
+      </pre>
     </div>
   `);
 });
@@ -169,7 +237,24 @@ it("should set the value when given 'value' and 'onChange'", () => {
         type="time"
         value=""
       />
-      {"dirtyFields":{},"isSubmitted":false,"submitCount":0,"touched":{},"isDirty":false,"isSubmitting":false,"isValid":true}
+      <div />
+      <pre
+        style={
+          Object {
+            "fontSize": "13px",
+          }
+        }
+      >
+        {
+      "dirtyFields": {},
+      "isSubmitted": false,
+      "submitCount": 0,
+      "touched": {},
+      "isDirty": false,
+      "isSubmitting": false,
+      "isValid": true
+    }
+      </pre>
     </div>
   `);
 });

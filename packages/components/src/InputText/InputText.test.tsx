@@ -32,7 +32,24 @@ it("renders a regular input for text and numbers", () => {
         onKeyDown={[Function]}
         type="text"
       />
-      {"dirtyFields":{},"isSubmitted":false,"submitCount":0,"touched":{},"isDirty":false,"isSubmitting":false,"isValid":true}
+      <div />
+      <pre
+        style={
+          Object {
+            "fontSize": "13px",
+          }
+        }
+      >
+        {
+      "dirtyFields": {},
+      "isSubmitted": false,
+      "submitCount": 0,
+      "touched": {},
+      "isDirty": false,
+      "isSubmitting": false,
+      "isValid": true
+    }
+      </pre>
     </div>
   `);
 });
