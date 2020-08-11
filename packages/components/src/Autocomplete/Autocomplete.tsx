@@ -120,6 +120,7 @@ export function Autocomplete({
 
   function handleInputChange(newText: string) {
     updateInput(newText);
+    onChange({ label: newText });
     setMenuVisible(true);
   }
 
