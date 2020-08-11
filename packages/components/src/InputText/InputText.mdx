@@ -23,7 +23,17 @@ import { InputText } from "@jobber/components/InputText";
 ```
 
 <Playground>
-  <InputText defaultValue="Rocinante" placeholder="Ship Name" />
+  <InputText
+    defaultValue="Rocinante"
+    placeholder="Ship Name"
+    name="foo"
+    valid={{
+      minLength: {
+        value: 5,
+        message: "Too Short"
+      }
+    }}
+  />
 </Playground>
 
 ## Props

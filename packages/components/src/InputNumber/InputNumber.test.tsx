@@ -34,6 +34,7 @@ it("renders an input type number", () => {
           type="number"
           value="123"
         />
+        {"dirtyFields":{},"isSubmitted":false,"submitCount":0,"touched":{},"isDirty":false,"isSubmitting":false,"isValid":true}
       </div>,
     ]
   `);
@@ -74,6 +75,7 @@ it("renders an error", () => {
           type="number"
           value="1.1"
         />
+        {"dirtyFields":{},"isSubmitted":false,"submitCount":0,"touched":{},"isDirty":false,"isSubmitting":false,"isValid":true}
       </div>,
     ]
   `);

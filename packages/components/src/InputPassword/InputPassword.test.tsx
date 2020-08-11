@@ -32,6 +32,7 @@ it("renders an input type number", () => {
         type="password"
         value="123"
       />
+      {"dirtyFields":{},"isSubmitted":false,"submitCount":0,"touched":{},"isDirty":false,"isSubmitting":false,"isValid":true}
     </div>
   `);
 });
@@ -71,6 +72,7 @@ it("renders an error", () => {
           type="password"
           value="p"
         />
+        {"dirtyFields":{},"isSubmitted":false,"submitCount":0,"touched":{},"isDirty":false,"isSubmitting":false,"isValid":true}
       </div>,
     ]
   `);

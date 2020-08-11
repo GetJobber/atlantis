@@ -28,6 +28,7 @@ exports[`renders an Autocomplete 1`] = `
       type="text"
       value=""
     />
+    {"dirtyFields":{},"isSubmitted":false,"submitCount":0,"touched":{},"isDirty":false,"isSubmitting":false,"isValid":true}
   </div>
   <div
     className="options"

@@ -1,6 +1,7 @@
 import React, { ChangeEvent, ReactNode, Ref, useEffect, useState } from "react";
 import classnames from "classnames";
 import uuid from "uuid";
+import { useForm, useFormContext } from "react-hook-form";
 import styles from "./FormField.css";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
@@ -156,6 +157,9 @@ export interface FormFieldProps {
    * @param messages
    */
   onValidation?(messages: ValidationProps[]): void;
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  valid?: any;
 }
 
 export const FormField = React.forwardRef(
@@ -189,9 +193,15 @@ export const FormField = React.forwardRef(
       type = "text",
       value,
       validations,
+      valid,
     }: FormFieldProps,
     ref: Ref<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) => {
+    const { register, errors, formState } =
+      useFormContext() != undefined
+        ? useFormContext()
+        : useForm({ mode: "onBlur" });
+
     const [hasMiniLabel, setHasMiniLabel] = useState(
       shouldShowMiniLabel(defaultValue, value),
     );
@@ -277,17 +287,30 @@ export const FormField = React.forwardRef(
           );
         default:
           return (
-            <input
-              type={type}
-              maxLength={maxLength}
-              max={max}
-              min={min}
-              onFocus={handleFocus}
-              onKeyDown={event => handleKeyDown(event)}
-              onBlur={handleBlur}
-              ref={ref as Ref<HTMLInputElement>}
-              {...fieldProps}
-            />
+            <>
+              <input
+                type={type}
+                maxLength={maxLength}
+                max={max}
+                min={min}
+                onFocus={handleFocus}
+                onKeyDown={event => handleKeyDown(event)}
+                onBlur={handleBlur}
+                ref={e => {
+                  if (ref) {
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+                    // @ts-ignore
+                    ref.current = e;
+                  }
+                  register(e, { ...valid });
+                }}
+                {...fieldProps}
+              />
+              {/* // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+                @ts-ignore */}
+              {errors[name] && errors[name].message}
+              {JSON.stringify(formState)}
+            </>
           );
       }
     }
