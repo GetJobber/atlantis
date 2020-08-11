@@ -1,7 +1,7 @@
 ---
 name: InputGroup Autocomplete Test
 menu: Components
-route: /components/test
+route: /components/input-group-test
 ---
 
 import { Playground, Props } from "docz";
@@ -13,14 +13,11 @@ import { InputTime } from "../InputTime";
 import { CivilTime } from "@std-proposal/temporal";
 import { useState } from "react";
 
-# InputGroup
+# InputGroup with Autocomplete
 
-<ComponentStatus stage="rc" responsive="no" accessible="yes" />
-
-Use InputGroup to show a visual relationship between related input fields. If a
-number of form fields, once submitted, make up a group of content (ie. an
-address, or first and last name becoming a full name, start and end times of an
-event) they are great candidates for an InputGroup.
+These are here for testing but I don't think they should ship with the docs. The
+code to support the `Autocomplete` component makes the `InputGroup` examples too
+complicated.
 
 <Playground>
   {() => {
@@ -62,16 +59,7 @@ event) they are great candidates for an InputGroup.
 
 ---
 
-## Nested Example
-
-The default layout is for fields to flow in a vertical direction, one above the
-next. Use the `flowDirection` prop to specify when you want fields to flow in a
-horizontal direction.
-
-> **Note:** Nested `InputGroup` components need to be of
-> `flowDirection="horizontal"` to avoid layout issues caused by nesting. Any
-> non-horizontal nested groups will log an error to the console and not be
-> rendered.
+# Nested InputGroup with Autocomplete
 
 <Playground>
   {() => {
