@@ -13,7 +13,7 @@
   box-shadow: var(--shadow-base);
   box-sizing: border-box;
   margin: 0;
-  padding: var(--space-small);
+  padding: 0;
   border: var(--border-base) solid var(--color-grey--lighter);
   border-radius: var(--radius-base);
   overflow: auto;
@@ -21,7 +21,7 @@
 }
 
 .options h5 {
-  padding-bottom: var(--space-smaller);
+  padding: var(--space-small) 0 var(--space-smaller) var(--space-small);
   border-bottom: var(--border-base) solid var(--color-blue--dark);
 }
 
