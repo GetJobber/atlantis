@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.37.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.37.0...@jobber/components@1.37.1) (2020-08-12)
+
+
+### Bug Fixes
+
+* **components:** make autocomplete work in input groups ([#328](https://github.com/GetJobber/atlantis/issues/328)) ([f5eca48](https://github.com/GetJobber/atlantis/commit/f5eca483f07dfc1971dcd98917546e10b2d3cb3f))
+
+
+
+
+
 # [1.37.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.36.1...@jobber/components@1.37.0) (2020-08-11)
 
 
