@@ -12,13 +12,17 @@ import { Content } from "@jobber/components/Content";
 
 # Input File
 
-<ComponentStatus stage="pre" responsive="no" accessible="no" />
+<ComponentStatus stage="pre" responsive="yes" accessible="yes" />
 
 Write a description about what InputFile component is trying to achieve.
 
 ```ts
 import { InputFile, updateFiles } from "@jobber/components/InputFile";
 ```
+
+export function buildUploadParams(file) {
+  return { url: "https://httpbin.org/post" };
+}
 
 <Playground>
   {() => {
@@ -27,11 +31,18 @@ import { InputFile, updateFiles } from "@jobber/components/InputFile";
       <Content>
         <InputFile
           multiple={true}
+          getUploadParams={buildUploadParams}
           onUploadStart={handleUpload}
           onUploadProgress={handleUpload}
           onUploadComplete={handleUpload}
         />
-        <pre>{JSON.stringify(files, undefined, 2)}</pre>
+        <ul>
+          {files.map(file => (
+            <li key={file.id}>
+              {file.name} – {Math.round(file.progress * 100)}%
+            </li>
+          ))}
+        </ul>
       </Content>
     );
     function handleUpload(file) {
@@ -58,6 +69,11 @@ following:
 
 <Props of={InputFile} />
 
+## getUploadParams
+
+`getUploadParams` is a necessary callback that tells `InputFile` where and how
+to upload files that are passed to it.
+
 <!--
   It is not necessary to provide an example of each prop. Use usage examples to
   highlight key features of a component or particular considerations.
@@ -65,14 +81,12 @@ following:
   See `Button.mdx` for a good example of this.
 -->
 
-## Loud
+## Only Images
 
 Use `loud` to indicate that a component is yelling.
 
 <Playground>
   <Content>
-    <InputFile />
-    <InputFile multiple={true} />
     <InputFile allowedTypes="images" />
     <InputFile allowedTypes="images" multiple={true} />
   </Content>

@@ -1,7 +1,8 @@
 import React, { useCallback } from "react";
 import classnames from "classnames";
 import { DropzoneOptions, useDropzone } from "react-dropzone";
-import sha256 from "crypto-js/sha256";
+import uuid from "uuid";
+import axios from "axios";
 import styles from "./InputFile.css";
 import { Button } from "../Button";
 import { Content } from "../Content";
@@ -38,7 +39,7 @@ interface AtFile {
   /**
    * The url of the file.
    */
-  readonly src: string;
+  readonly src?: string;
 
   /**
    * If the file is an image the url of the thumbnail.
@@ -46,7 +47,9 @@ interface AtFile {
   readonly thumbnailSrc?: string;
 }
 
-const imageTypes = ["image/png"];
+interface UploadParams {
+  readonly url: string;
+}
 
 interface InputFileProps {
   /**
@@ -60,6 +63,12 @@ interface InputFileProps {
    * @default false
    */
   readonly multiple?: boolean;
+
+  /**
+   * A callback that receives a file object and returns the params needed
+   * to upload the file.
+   */
+  getUploadParams(file: File): UploadParams;
 
   /**
    * Upload event handler.
@@ -80,6 +89,7 @@ interface InputFileProps {
 export function InputFile({
   multiple = false,
   allowedTypes = "all",
+  getUploadParams,
   onUploadStart,
   onUploadProgress,
   onUploadComplete,
@@ -111,62 +121,32 @@ export function InputFile({
   );
 
   function handleDrop(acceptedFiles: File[]) {
-    console.log({ acceptedFiles });
     acceptedFiles.forEach(file => {
-      const reader = new FileReader();
-
-      reader.onload = event => {
-        if (
-          event.target &&
-          event.target.result &&
-          typeof event.target.result === "string"
-        ) {
-          simulateFileUpload({
-            id: `${sha256(event.target.result)}`,
-            name: file.name,
-            type: file.type,
-            size: file.size,
-            src: "event.target.result",
-            thumbnailSrc: "event.target.result",
-            progress: 0,
-          });
-        }
-      };
-
-      reader.readAsDataURL(file);
+      uploadFile(file);
     });
   }
 
-  function simulateFileUpload(file: AtFile) {
-    if (!onUploadStart) return;
+  async function uploadFile(file: File) {
+    const atFile = await getAtFile(file);
+    onUploadStart && onUploadStart({ ...atFile });
 
-    const mockFile = { ...file };
+    const uploadParams = await getUploadParams(file);
+    const formData = new FormData();
+    formData.append("file", file);
 
-    onUploadStart(mockFile);
-
-    if (!onUploadProgress) return;
-
-    setTimeout(() => {
-      mockFile.progress = 0.25;
-      onUploadProgress(mockFile);
-    }, 250);
-
-    setTimeout(() => {
-      mockFile.progress = 0.5;
-      onUploadProgress(mockFile);
-    }, 500);
-
-    setTimeout(() => {
-      mockFile.progress = 0.75;
-      onUploadProgress(mockFile);
-    }, 750);
-
-    if (!onUploadComplete) return;
-
-    setTimeout(() => {
-      mockFile.progress = 1;
-      onUploadComplete(mockFile);
-    }, 1000);
+    axios
+      .post(uploadParams.url, formData, {
+        headers: { "X-Requested-With": "XMLHttpRequest" },
+        onUploadProgress: progressEvent =>
+          onUploadProgress &&
+          onUploadProgress({
+            ...atFile,
+            progress: progressEvent.loaded / progressEvent.total,
+          }),
+      })
+      .then(() => {
+        onUploadComplete && onUploadComplete({ ...atFile, progress: 1 });
+      });
   }
 }
 
@@ -186,11 +166,43 @@ function getCopy(multiple: boolean, allowedTypes: string) {
   return { buttonLabel, hintText };
 }
 
+function getAtFile(file: File): Promise<AtFile> {
+  const atFile = {
+    id: uuid(),
+    name: file.name,
+    type: file.type,
+    size: file.size,
+    progress: 0,
+  };
+
+  if (file.type.startsWith("image/")) {
+    const promise = new Promise<AtFile>(resolve => {
+      const reader = new FileReader();
+      reader.onload = event => {
+        if (
+          event.target &&
+          event.target.result &&
+          typeof event.target.result === "string"
+        ) {
+          resolve({
+            ...atFile,
+            src: event.target.result,
+            thumbnailSrc: event.target.result,
+          });
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+
+    return promise;
+  } else {
+    return Promise.resolve(atFile);
+  }
+}
+
 export function updateFiles(updatedFile: AtFile, files: AtFile[]) {
   const newFiles = [...files];
   const index = files.findIndex(file => file.id === updatedFile.id);
-
-  console.log(files.length, index);
 
   if (index !== -1) {
     newFiles[index] = updatedFile;
