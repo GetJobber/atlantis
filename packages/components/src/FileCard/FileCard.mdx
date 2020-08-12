@@ -1,0 +1,56 @@
+---
+name: FileCard
+menu: Components
+route: /components/file-card
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { FileCard } from ".";
+
+# File Card
+
+<ComponentStatus stage="pre" responsive="no" accessible="no" />
+
+Write a description about what FileCard component is trying to achieve.
+
+```ts
+import { FileCard } from "@jobber/components/FileCard";
+```
+
+<Playground>
+  <FileCard text="Bob" />
+</Playground>
+
+<!--
+  It is not necessary to include Design & Usage Guidlelines. Use this section
+  to answer common questions and considerations about component usage.
+-->
+
+## Design & Usage Guidelines
+
+When contributing to, or consuming the FileCard component, consider the
+following:
+
+- When using the FileCard component always consider the volume you would like it
+  to be displayed at.
+- The FileCard component should never be used inside another component.
+
+## Props
+
+<Props of={FileCard} />
+
+<!--
+  It is not necessary to provide an example of each prop. Use usage examples to
+  highlight key features of a component or particular considerations.
+
+  See `Button.mdx` for a good example of this.
+-->
+
+## Loud
+
+Use `loud` to indicate that a component is yelling.
+
+<Playground>
+  <FileCard text="Fred" loud={true} />
+</Playground>

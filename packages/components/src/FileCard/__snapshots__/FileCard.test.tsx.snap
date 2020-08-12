@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a FileCard 1`] = `
+<div
+  className="fileCard"
+>
+  Foo
+</div>
+`;
+
+exports[`renders a loud FileCard 1`] = `
+<div
+  className="fileCard bold"
+>
+  Foo
+</div>
+`;
