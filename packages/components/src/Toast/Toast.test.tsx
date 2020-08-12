@@ -29,19 +29,23 @@ it("creates the placeholder div on showToast call", () => {
   );
 });
 
-it("renders a Slice of Toast when the 'add' method is called", () => {
-  const { getByText, getByTestId } = render(<MockToast />);
-
-  fireEvent.click(getByText("No Variation"));
-  expect(getByText("Bland Toast")).toBeInstanceOf(HTMLSpanElement);
-  expect(getByTestId("knot")).toBeInstanceOf(SVGElement);
-});
-
-it("renders a successful Slice of Toast when the variation: 'success' is set", () => {
+it("renders a Slice of Toast when the 'showToast' method is called", () => {
   const { getByText, getByTestId } = render(<MockToast />);
 
   fireEvent.click(getByText("Success"));
+  expect(
+    getByText(
+      "Successful Message that should last the full 5 seconds, it just needs to be 50 charachters long",
+    ),
+  ).toBeInstanceOf(HTMLSpanElement);
   expect(getByTestId("checkmark")).toBeInstanceOf(SVGElement);
+});
+
+it("renders an info Slice of Toast when the variation: 'info' is set", () => {
+  const { getByText, getByTestId } = render(<MockToast />);
+
+  fireEvent.click(getByText("No Variation"));
+  expect(getByTestId("knot")).toBeInstanceOf(SVGElement);
 });
 
 it("renders a error Slice of Toast when the variation: 'error' is set", () => {
@@ -114,6 +118,7 @@ const MockToast = ({ mockAction }: MockToastProps) => {
       onClick: () => {
         showToast({
           message: "Bland Toast",
+          variation: "info",
           actionLabel: "Do The Action",
           action: () => mockAction && mockAction(),
         });
@@ -125,7 +130,6 @@ const MockToast = ({ mockAction }: MockToastProps) => {
         showToast({
           message:
             "Successful Message that should last the full 5 seconds, it just needs to be 50 charachters long",
-          variation: "success",
         });
       },
     },
