@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 import classnames from "classnames";
 import { DropzoneOptions, useDropzone } from "react-dropzone";
 import axios from "axios";
+import uuid from "uuid";
 import styles from "./InputFile.css";
 import { Button } from "../Button";
 import { Content } from "../Content";
@@ -42,8 +43,21 @@ interface FileUpload {
 }
 
 interface UploadParams {
-  readonly key: string;
+  /**
+   * Url to POST file to.
+   */
   readonly url: string;
+
+  /**
+   * Key to identify file.
+   * If unspecified a `uuid` will be used.
+   */
+  readonly key: string;
+
+  /**
+   * Any extra fields to send with the upload POST.
+   * If unspecified only the file will be included.
+   */
   readonly fields: { [field: string]: string };
 }
 
@@ -123,7 +137,7 @@ export function InputFile({
   }
 
   async function uploadFile(file: File) {
-    const { key, fields, url } = await getUploadParams(file);
+    const { url, key = uuid(), fields = {} } = await getUploadParams(file);
 
     const atFile = getFileUpload(file, key);
     onUploadStart && onUploadStart({ ...atFile });

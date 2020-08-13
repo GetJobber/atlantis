@@ -23,8 +23,12 @@ dropping them into an area on the page or by clicking a button.
 import { InputFile, updateFiles } from "@jobber/components/InputFile";
 ```
 
-export function buildUploadParams(file) {
-  return { key: uuid(), url: "https://httpbin.org/post", fields: {} };
+export function fetchUploadParams(file) {
+  return Promise.resolve({
+    key: uuid(),
+    url: "https://httpbin.org/post",
+    fields: {}
+  });
 }
 
 <Playground>
@@ -34,7 +38,7 @@ export function buildUploadParams(file) {
       <Content>
         <InputFile
           multiple={true}
-          getUploadParams={buildUploadParams}
+          getUploadParams={fetchUploadParams}
           onUploadStart={handleUpload}
           onUploadProgress={handleUpload}
           onUploadComplete={handleUpload}
@@ -78,7 +82,30 @@ following:
 ## getUploadParams
 
 `getUploadParams` is a necessary callback that tells `InputFile` where and how
-to upload files that are passed to it.
+to upload files that are passed to it. It must return an object conforming to
+the `UploadParams` interface. `getUploadParams` can be async, allowing for a
+network request to fetch any extra fields.
+
+```ts
+interface UploadParams {
+  /**
+   * Url to POST file to.
+   */
+  readonly url: string;
+
+  /**
+   * Key to identify file.
+   * If unspecified a random `uuid` will be used.
+   */
+  readonly key?: string;
+
+  /**
+   * Any extra fields to send with the upload POST.
+   * If unspecified only the file will be included.
+   */
+  readonly fields?: { [field: string]: string };
+}
+```
 
 ## Only Allow Images
 
@@ -87,11 +114,11 @@ images. To upload multiple images you can use the `multiple` prop;
 
 <Playground>
   <Content>
-    <InputFile allowedTypes="images" getUploadParams={buildUploadParams} />
+    <InputFile allowedTypes="images" getUploadParams={fetchUploadParams} />
     <InputFile
       allowedTypes="images"
       multiple={true}
-      getUploadParams={buildUploadParams}
+      getUploadParams={fetchUploadParams}
     />
   </Content>
 </Playground>
