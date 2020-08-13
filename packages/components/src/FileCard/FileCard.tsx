@@ -55,6 +55,12 @@ export function FileCard({ file, onDelete }: FileCardProps) {
   const imageBlock = classnames(styles.imageBlock);
   const actionButton = classnames(styles.actionButton);
 
+  const isComplete = file.progress >= 1;
+  const icon = isComplete ? "trash" : "remove";
+  const variation = isComplete ? "destructive" : "cancel";
+
+  const iconType = getIconFromType(file.type);
+
   return (
     <div className={className}>
       <div className={imageBlock}>
@@ -72,7 +78,7 @@ export function FileCard({ file, onDelete }: FileCardProps) {
           </Typography>
         </p>
         <Typography element="p" size="small" textColor="greyBlueDark">
-          {file.size} KB
+          {file.size}KB {iconType}
         </Typography>
       </div>
       {onDelete && (
@@ -80,11 +86,30 @@ export function FileCard({ file, onDelete }: FileCardProps) {
           <Button
             onClick={onDelete}
             type="tertiary"
-            variation="destructive"
-            icon="trash"
+            variation={variation}
+            icon={icon}
           />
         </div>
       )}
     </div>
   );
+
+  function getIconFromType(mimeType: string): string {
+    const lookup = {
+      camera: ["image/gif", "image/jpeg", "image/png"],
+      pdf: ["application/pdf"],
+      video: ["video/mpeg"],
+      excel: ["application/vnd.ms-excel"],
+      file: ["text/plain"],
+    };
+
+    for (const [key, value] of Object.entries(lookup)) {
+      if (value.findIndex(element => element === mimeType) != -1) {
+        return key;
+      }
+    }
+    return "file";
+  }
 }
+
+// getHumanReadableFileSize;
