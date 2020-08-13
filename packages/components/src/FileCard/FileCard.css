@@ -39,9 +39,20 @@
   height: 100%;
   min-width: var(--file-card--height);
   box-sizing: border-box;
-  padding: var(--file-card--base-padding);
+  padding: 0;
   background-color: var(--file-card--header-background-color);
   align-items: center;
+  object-fit: cover;
+}
+.imageBlock.downloading {
+  padding: var(--file-card--base-padding);
+}
+.imageBlock img {
+  width: var(--file-card--height);
+  height: var(--file-card--height);
+}
+.icon {
+  margin: 0 auto;
 }
 
 .actionButton {

@@ -155,7 +155,7 @@
 }
 
 .onlyIcon {
-  padding: 0 var(--space-smaller);
+  padding: var(--space-smaller);
 }
 
 .fullWidth {
