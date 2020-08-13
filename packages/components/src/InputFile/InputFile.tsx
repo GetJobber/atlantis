@@ -52,13 +52,13 @@ interface UploadParams {
    * Key to identify file.
    * If unspecified a `uuid` will be used.
    */
-  readonly key: string;
+  readonly key?: string;
 
   /**
    * Any extra fields to send with the upload POST.
    * If unspecified only the file will be included.
    */
-  readonly fields: { [field: string]: string };
+  readonly fields?: { [field: string]: string };
 }
 
 interface InputFileProps {
@@ -78,7 +78,7 @@ interface InputFileProps {
    * A callback that receives a file object and returns the params needed
    * to upload the file.
    */
-  getUploadParams(file: File): UploadParams;
+  getUploadParams(file: File): UploadParams | Promise<UploadParams>;
 
   /**
    * Upload event handler.
