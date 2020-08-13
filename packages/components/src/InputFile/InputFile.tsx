@@ -174,7 +174,6 @@ function getFileUpload(file: File, key: string): FileUpload {
     size: file.size,
     progress: 0,
     src: getSrc,
-    thumbnailSrc: getSrc,
   };
 
   function getSrc() {
