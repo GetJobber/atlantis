@@ -128,15 +128,15 @@ export function InputFile({
   }
 
   async function uploadFile(file: File) {
-    const atFile = await getFileUpload(file);
+    const atFile = getFileUpload(file);
     onUploadStart && onUploadStart({ ...atFile });
 
     const uploadParams = await getUploadParams(file);
     const formData = new FormData();
-    formData.append("file", file);
     Object.entries(uploadParams.fields).forEach(([field, value]) =>
       formData.append(field, value),
     );
+    formData.append("file", file);
 
     axios
       .post(uploadParams.url, formData, {
