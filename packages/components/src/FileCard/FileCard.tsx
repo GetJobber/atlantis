@@ -2,6 +2,8 @@ import React from "react";
 import classnames from "classnames";
 import styles from "./FileCard.css";
 import { Button } from "../Button";
+import { Typography } from "../Typography";
+import { ProgressBar } from "../ProgressBar";
 
 interface AtFile {
   /**
@@ -40,7 +42,7 @@ interface FileCardProps {
   /**
    * File details object.
    */
-  readonly fileDetails: AtFile;
+  readonly file: AtFile;
 
   /**
    * onDelete callback - this function will be called when the delete action is triggered
@@ -48,15 +50,40 @@ interface FileCardProps {
   onDelete?(): void;
 }
 
-export function FileCard({ fileDetails, onDelete }: FileCardProps) {
+export function FileCard({ file, onDelete }: FileCardProps) {
   const className = classnames(styles.fileCard);
+  const imageBlock = classnames(styles.imageBlock);
+  const actionButton = classnames(styles.actionButton);
 
   return (
     <div className={className}>
-      <p>{JSON.stringify(fileDetails)}</p>
-      <h2>{fileDetails.src}</h2>
+      <div className={imageBlock}>
+        <ProgressBar
+          size="small"
+          currentStep={file.progress * 100}
+          totalSteps={100}
+        />
+        {false && file.thumbnailSrc && <img src={file.thumbnailSrc} />}
+      </div>
+      <div className={classnames(styles.contentBlock)}>
+        <p className={classnames(styles.fileName)}>
+          <Typography element="span" weight="bold">
+            {file.name}
+          </Typography>
+        </p>
+        <Typography element="p" size="small" textColor="greyBlueDark">
+          {file.size} KB
+        </Typography>
+      </div>
       {onDelete && (
-        <Button onClick={onDelete} type="destructive" icon="trash" />
+        <div className={actionButton}>
+          <Button
+            onClick={onDelete}
+            type="tertiary"
+            variation="destructive"
+            icon="trash"
+          />
+        </div>
       )}
     </div>
   );

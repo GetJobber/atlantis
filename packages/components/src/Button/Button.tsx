@@ -97,6 +97,7 @@ export function Button(props: ButtonProps) {
 
   const buttonClassNames = classnames(styles.button, styles[size], {
     [styles.hasIconAndLabel]: icon && label,
+    [styles.onlyIcon]: icon && !label,
     [styles.iconOnRight]: iconOnRight,
     [styles[variation]]: variation,
     [styles[type]]: type,

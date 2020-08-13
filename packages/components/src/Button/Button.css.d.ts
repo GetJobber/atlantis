@@ -12,6 +12,7 @@ export const base: string;
 export const large: string;
 export const hasIconAndLabel: string;
 export const iconOnRight: string;
+export const onlyIcon: string;
 export const fullWidth: string;
 export const loading: string;
 export const animateStripes: string;

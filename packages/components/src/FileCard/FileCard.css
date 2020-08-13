@@ -1,10 +1,50 @@
-.fileCard {
-  --message-weight: 400;
-
-  font-weight: var(--message-weight);
+:root {
+  --file-card--height: calc(var(--space-base) * 3.5);
+  --file-card--background-color: var(--color-white);
+  --file-card--header-background-color: var(--color-greyBlue--lighter);
+  --file-card--content-background-color: var(--color-white);
+  --file-card--border-color: var(--color-grey--lighter);
+  --file-card--accent-color: var(--color-grey);
+  --file-card--base-padding: var(--space-small);
 }
 
-.bold {
-  --message-weight: 800;
-  transform: uppercase;
+.fileCard {
+  display: flex;
+  width: 245px;
+  height: var(--file-card--height);
+  border: var(--border-base) solid var(--file-card--border-color);
+  border-radius: var(--radius-base);
+  overflow: hidden;
+  background-color: var(--file-card--background-color);
+  align-items: center;
+  outline-color: var(--color-outline);
+}
+
+.contentBlock {
+  flex-grow: 1;
+  padding: 0 0 0 var(--file-card--base-padding);
+}
+.contentBlock p {
+  margin: 0;
+}
+.fileName {
+  width: 145px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.imageBlock {
+  display: flex;
+  height: 100%;
+  min-width: var(--file-card--height);
+  box-sizing: border-box;
+  padding: var(--file-card--base-padding);
+  background-color: var(--file-card--header-background-color);
+  align-items: center;
+}
+
+.actionButton {
+  margin: 0;
+  padding: 0;
 }
