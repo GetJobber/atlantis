@@ -2,16 +2,12 @@
 
 exports[`renders a FileCard 1`] = `
 <div
-  className="fileCard"
->
-  Foo
-</div>
+  className="fileCard bold"
+/>
 `;
 
 exports[`renders a loud FileCard 1`] = `
 <div
   className="fileCard bold"
->
-  Foo
-</div>
+/>
 `;

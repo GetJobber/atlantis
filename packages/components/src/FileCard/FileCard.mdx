@@ -19,7 +19,18 @@ import { FileCard } from "@jobber/components/FileCard";
 ```
 
 <Playground>
-  <FileCard text="Bob" />
+  <FileCard
+    fileDetails={{
+      id: "abc",
+      name: "my File",
+      type: "audio/ogg",
+      size: 1024,
+      progress: 0.3,
+      src: "http://www.google.com/logo.png",
+      thumbnailSrc: "http://www.google.com/logo_small.png"
+    }}
+    onDelete={() => alert("🧨BALEETED!💥")}
+  />
 </Playground>
 
 <!--
