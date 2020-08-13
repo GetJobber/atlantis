@@ -1,5 +1,4 @@
-import React from "react";
-import classnames from "classnames";
+import React, { useState } from "react";
 import filesize from "filesize";
 import { IconNames } from "@jobber/design";
 import styles from "./FileCard.css";
@@ -8,11 +7,11 @@ import { Icon } from "../Icon";
 import { Typography } from "../Typography";
 import { ProgressBar } from "../ProgressBar";
 
-interface AtFile {
+interface FileUpload {
   /**
    * File Identifier
    */
-  readonly id: string;
+  readonly key: string;
   /**
    * The name of the file.
    */
@@ -32,20 +31,16 @@ interface AtFile {
    */
   readonly progress: number;
   /**
-   * The url of the file.
+   * The data url of the file.
    */
-  readonly src: string;
-  /**
-   * If the file is an image the url of the thumbnail.
-   */
-  readonly thumbnailSrc?: string;
+  src(): Promise<string>;
 }
 
 interface FileCardProps {
   /**
    * File details object.
    */
-  readonly file: AtFile;
+  readonly file: FileUpload;
 
   /**
    * onDelete callback - this function will be called when the delete action is triggered
@@ -54,44 +49,48 @@ interface FileCardProps {
 }
 
 export function FileCard({ file, onDelete }: FileCardProps) {
-  const className = classnames(styles.fileCard);
-  const imageBlock = classnames(styles.imageBlock);
-  const actionButton = classnames(styles.actionButton);
-
+  const [imageSource, setImageSource] = useState<string>();
   const isComplete = file.progress >= 1;
 
-  const iconName = getIconNameFromType();
+  const iconName = getIconNameFromType(file.type);
   const fileSize = getHumanReadableFileSize(file.size);
 
+  if (!imageSource && file.type.startsWith("image/")) {
+    file.src().then(src => setImageSource(src));
+  }
+
+  const style = imageSource ? { backgroundImage: `url(${imageSource})` } : {};
+
   return (
-    <div className={className}>
-      <div className={imageBlock}>
-        {!isComplete && (
-          <ProgressBar
-            size="small"
-            currentStep={file.progress * 100}
-            totalSteps={100}
-          />
-        )}
-        {isComplete && file.thumbnailSrc && <img src={file.thumbnailSrc} />}
-        {isComplete && !file.thumbnailSrc && (
-          <div className={classnames(styles.icon)}>
+    <div className={styles.fileCard}>
+      <div className={styles.imageBlock} style={style}>
+        {!imageSource && (
+          <div className={styles.icon}>
             <Icon name={iconName} />
           </div>
         )}
+        {!isComplete && (
+          <div className={styles.progress}>
+            <ProgressBar
+              size="small"
+              currentStep={file.progress * 100}
+              totalSteps={100}
+            />
+          </div>
+        )}
       </div>
-      <div className={classnames(styles.contentBlock)}>
-        <p className={classnames(styles.fileName)}>
+      <div className={styles.contentBlock}>
+        <p className={styles.fileName}>
           <Typography element="span" fontWeight="semiBold">
             {file.name}
           </Typography>
         </p>
         <Typography element="p" size="small" textColor="greyBlueDark">
-          {fileSize} {iconName}
+          {fileSize}
         </Typography>
       </div>
       {isComplete && onDelete && (
-        <div className={actionButton}>
+        <div className={styles.actionButton}>
           <Button
             onClick={onDelete}
             type="tertiary"
@@ -107,24 +106,17 @@ export function FileCard({ file, onDelete }: FileCardProps) {
     return filesize(sizeInBytes);
   }
 
-  function getIconNameFromType(): IconNames {
-    // const lookup = {
-    //   "image/gif": IconNames.camera,
-    // };
-    // return lookup[mimeType] || IconNames.file;
-    // const lookup = {
-    //   camera: ["image/gif", "image/jpeg", "image/png"],
-    //   pdf: ["application/pdf"],
-    //   video: ["video/mpeg"],
-    //   excel: ["application/vnd.ms-excel"],
-    //   file: ["text/plain"],
-    // } as const;
+  function getIconNameFromType(mimeType: string): IconNames {
+    if (mimeType.startsWith("image/")) return "camera";
+    if (mimeType.startsWith("video/")) return "video";
 
-    // for (const [key, value] of Object.entries(lookup)) {
-    //   if (value.findIndex((element: string) => element === mimeType) != -1) {
-    //     return IconNames[key] as keyof typeof IconNames;
-    //   }
-    // }
-    return "file";
+    switch (mimeType) {
+      case "application/pdf":
+        return "pdf";
+      case "application/vnd.ms-excel":
+        return "excel";
+      default:
+        return "file";
+    }
   }
 }
