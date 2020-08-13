@@ -1,7 +1,6 @@
 import React, { useCallback } from "react";
 import classnames from "classnames";
 import { DropzoneOptions, useDropzone } from "react-dropzone";
-import uuid from "uuid";
 import axios from "axios";
 import styles from "./InputFile.css";
 import { Button } from "../Button";
@@ -12,7 +11,7 @@ interface FileUpload {
   /**
    * File Identifier
    */
-  readonly id: string;
+  readonly key: string;
 
   /**
    * The name of the file.
@@ -40,14 +39,10 @@ interface FileUpload {
    * The data url of the file.
    */
   src(): Promise<string>;
-
-  /**
-   * The data url of the file.
-   */
-  thumbnailSrc(): Promise<string>;
 }
 
 interface UploadParams {
+  readonly key: string;
   readonly url: string;
   readonly fields: { [field: string]: string };
 }
@@ -128,18 +123,19 @@ export function InputFile({
   }
 
   async function uploadFile(file: File) {
-    const atFile = getFileUpload(file);
+    const { key, fields, url } = await getUploadParams(file);
+
+    const atFile = getFileUpload(file, key);
     onUploadStart && onUploadStart({ ...atFile });
 
-    const uploadParams = await getUploadParams(file);
     const formData = new FormData();
-    Object.entries(uploadParams.fields).forEach(([field, value]) =>
+    Object.entries(fields).forEach(([field, value]) =>
       formData.append(field, value),
     );
     formData.append("file", file);
 
     axios
-      .post(uploadParams.url, formData, {
+      .post(url, formData, {
         headers: { "X-Requested-With": "XMLHttpRequest" },
         onUploadProgress: progressEvent =>
           onUploadProgress &&
@@ -170,9 +166,9 @@ function getCopy(multiple: boolean, allowedTypes: string) {
   return { buttonLabel, hintText };
 }
 
-function getFileUpload(file: File): FileUpload {
+function getFileUpload(file: File, key: string): FileUpload {
   return {
-    id: uuid(),
+    key: key,
     name: file.name,
     type: file.type,
     size: file.size,
@@ -204,7 +200,7 @@ function getFileUpload(file: File): FileUpload {
 
 export function updateFiles(updatedFile: FileUpload, files: FileUpload[]) {
   const newFiles = [...files];
-  const index = files.findIndex(file => file.id === updatedFile.id);
+  const index = files.findIndex(file => file.key === updatedFile.key);
 
   if (index !== -1) {
     newFiles[index] = updatedFile;

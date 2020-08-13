@@ -7,6 +7,7 @@ route: /components/input-file
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { useState } from "react";
+import uuid from "uuid";
 import { InputFile, updateFiles } from ".";
 import { Content } from "@jobber/components/Content";
 import { ProgressBar } from "@jobber/components/ProgressBar";
@@ -23,7 +24,7 @@ import { InputFile, updateFiles } from "@jobber/components/InputFile";
 ```
 
 export function buildUploadParams(file) {
-  return { url: "https://httpbin.org/post", fields: {} };
+  return { key: uuid(), url: "https://httpbin.org/post", fields: {} };
 }
 
 <Playground>
@@ -40,7 +41,7 @@ export function buildUploadParams(file) {
         />
         <ul>
           {files.map(file => (
-            <li key={file.id}>
+            <li key={file.key}>
               {file.name} – {Math.round(file.progress * 100)}%
               <ProgressBar
                 currentStep={Math.round(file.progress * 100)}
