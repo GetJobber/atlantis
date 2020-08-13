@@ -65,7 +65,8 @@ it("properly notifies upload callbacks", async () => {
   const baseMatch = {
     key: "atlantis.png",
     name: "atlantis.png",
-    size: 13,
+    size: expect.any(Number),
+    progress: expect.any(Number),
     src: expect.any(Function),
     type: "image/png",
   };
@@ -75,12 +76,7 @@ it("properly notifies upload callbacks", async () => {
       ...baseMatch,
       progress: 0,
     });
-    expect(handleProgress).toHaveBeenLastCalledWith({
-      ...baseMatch,
-      // Our mock upload data is incomplete so in progress progress will
-      // (expectedly) be NaN
-      progress: NaN,
-    });
+    expect(handleProgress).toHaveBeenLastCalledWith(baseMatch);
     expect(handleComplete).toHaveBeenLastCalledWith({
       ...baseMatch,
       progress: 1,
