@@ -8,7 +8,7 @@ import { Button } from "../Button";
 import { Content } from "../Content";
 import { Typography } from "../Typography";
 
-interface AtFile {
+interface FileUpload {
   /**
    * File Identifier
    */
@@ -37,18 +37,19 @@ interface AtFile {
   readonly progress: number;
 
   /**
-   * The url of the file.
+   * The data url of the file.
    */
-  readonly src?: string;
+  src(): Promise<string>;
 
   /**
-   * If the file is an image the url of the thumbnail.
+   * The data url of the file.
    */
-  readonly thumbnailSrc?: string;
+  thumbnailSrc(): Promise<string>;
 }
 
 interface UploadParams {
   readonly url: string;
+  readonly fields: { [field: string]: string };
 }
 
 interface InputFileProps {
@@ -73,17 +74,17 @@ interface InputFileProps {
   /**
    * Upload event handler.
    */
-  onUploadStart?(file: AtFile): void;
+  onUploadStart?(file: FileUpload): void;
 
   /**
    * Upload event handler.
    */
-  onUploadProgress?(file: AtFile): void;
+  onUploadProgress?(file: FileUpload): void;
 
   /**
    * Upload event handler.
    */
-  onUploadComplete?(file: AtFile): void;
+  onUploadComplete?(file: FileUpload): void;
 }
 
 export function InputFile({
@@ -127,12 +128,15 @@ export function InputFile({
   }
 
   async function uploadFile(file: File) {
-    const atFile = await getAtFile(file);
+    const atFile = await getFileUpload(file);
     onUploadStart && onUploadStart({ ...atFile });
 
     const uploadParams = await getUploadParams(file);
     const formData = new FormData();
     formData.append("file", file);
+    Object.entries(uploadParams.fields).forEach(([field, value]) =>
+      formData.append(field, value),
+    );
 
     axios
       .post(uploadParams.url, formData, {
@@ -166,17 +170,19 @@ function getCopy(multiple: boolean, allowedTypes: string) {
   return { buttonLabel, hintText };
 }
 
-function getAtFile(file: File): Promise<AtFile> {
-  const atFile = {
+function getFileUpload(file: File): FileUpload {
+  return {
     id: uuid(),
     name: file.name,
     type: file.type,
     size: file.size,
     progress: 0,
+    src: getSrc,
+    thumbnailSrc: getSrc,
   };
 
-  if (file.type.startsWith("image/")) {
-    const promise = new Promise<AtFile>(resolve => {
+  function getSrc() {
+    const promise = new Promise<string>((resolve, reject) => {
       const reader = new FileReader();
       reader.onload = event => {
         if (
@@ -184,23 +190,19 @@ function getAtFile(file: File): Promise<AtFile> {
           event.target.result &&
           typeof event.target.result === "string"
         ) {
-          resolve({
-            ...atFile,
-            src: event.target.result,
-            thumbnailSrc: event.target.result,
-          });
+          resolve(event.target.result);
+        } else {
+          reject("Could not generate file data url.");
         }
       };
       reader.readAsDataURL(file);
     });
 
     return promise;
-  } else {
-    return Promise.resolve(atFile);
   }
 }
 
-export function updateFiles(updatedFile: AtFile, files: AtFile[]) {
+export function updateFiles(updatedFile: FileUpload, files: FileUpload[]) {
   const newFiles = [...files];
   const index = files.findIndex(file => file.id === updatedFile.id);
 

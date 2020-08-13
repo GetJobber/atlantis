@@ -21,7 +21,7 @@ import { InputFile, updateFiles } from "@jobber/components/InputFile";
 ```
 
 export function buildUploadParams(file) {
-  return { url: "https://httpbin.org/post" };
+  return { url: "https://httpbin.org/post", fields: {} };
 }
 
 <Playground>
@@ -37,9 +37,9 @@ export function buildUploadParams(file) {
           onUploadComplete={handleUpload}
         />
         <ul>
-          {files.map(file => (
-            <li key={file.id}>
-              {file.name} – {Math.round(file.progress * 100)}%
+          {files.map(async (fileUpload, index) => (
+            <li key={fileUpload.id}>
+              {fileUpload.name} – {Math.round(fileUpload.progress * 100)}%
             </li>
           ))}
         </ul>
