@@ -1,34 +1,28 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { cleanup } from "@testing-library/react";
 import { InputFile } from ".";
 
 afterEach(cleanup);
 
 it("renders a InputFile", () => {
-  const tree = renderer.create(<InputFile text="Foo" />).toJSON();
+  const tree = renderer.create(<InputFile />).toJSON();
   expect(tree).toMatchSnapshot();
 });
 
-it("renders a loud InputFile", () => {
-  const tree = renderer.create(<InputFile text="Foo" loud={true} />).toJSON();
+it("renders an InputFile with multiple uploads", () => {
+  const tree = renderer.create(<InputFile multiple={true} />).toJSON();
   expect(tree).toMatchSnapshot();
 });
 
-test("it should call the handler with the new value", () => {
-  const clickHandler = jest.fn();
-  const text = "Foo";
-  const { getByText } = render(
-    <InputFile onClick={clickHandler} text={text} />,
-  );
+it("renders an InputFile with only images allowed", () => {
+  const tree = renderer.create(<InputFile allowedTypes="images" />).toJSON();
+  expect(tree).toMatchSnapshot();
+});
 
-  fireEvent.click(getByText(text));
-  expect(clickHandler).toHaveBeenCalled();
-
-  // E.g. If you need a change event, rather than a click event:
-  //
-  // fireEvent.change(getByLabelText(placeholder), {
-  //   target: { value: newValue },
-  // });
-  // expect(changeHandler).toHaveBeenCalledWith(newValue);
+it("renders an InputFile with multiple images allowed", () => {
+  const tree = renderer
+    .create(<InputFile allowedTypes="images" multiple={true} />)
+    .toJSON();
+  expect(tree).toMatchSnapshot();
 });
