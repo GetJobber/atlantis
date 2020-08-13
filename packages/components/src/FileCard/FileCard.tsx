@@ -80,11 +80,9 @@ export function FileCard({ file, onDelete }: FileCardProps) {
         )}
       </div>
       <div className={styles.contentBlock}>
-        <p className={styles.fileName}>
-          <Typography element="span" fontWeight="semiBold">
-            {file.name}
-          </Typography>
-        </p>
+        <Typography element="span" fontWeight="semiBold">
+          {file.name}
+        </Typography>
         <Typography element="p" size="small" textColor="greyBlueDark">
           {fileSize}
         </Typography>
