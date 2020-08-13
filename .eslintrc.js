@@ -20,12 +20,7 @@ module.exports = {
     "import/no-internal-modules": [
       "error",
       {
-        allow: [
-          "@jobber/components/*",
-          "gatsby-theme-docz/**",
-          "lodash/*",
-          "crypto-js/*"
-        ]
+        allow: ["@jobber/components/*", "gatsby-theme-docz/**", "lodash/*"]
       }
     ]
   }
