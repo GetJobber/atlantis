@@ -24,11 +24,7 @@ import { InputFile, updateFiles } from "@jobber/components/InputFile";
 ```
 
 export function fetchUploadParams(file) {
-  return Promise.resolve({
-    key: uuid(),
-    url: "https://httpbin.org/post",
-    fields: {}
-  });
+  return Promise.resolve({ url: "https://httpbin.org/post" });
 }
 
 <Playground>
