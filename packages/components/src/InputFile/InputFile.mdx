@@ -9,12 +9,14 @@ import { ComponentStatus } from "@jobber/docx";
 import { useState } from "react";
 import { InputFile, updateFiles } from ".";
 import { Content } from "@jobber/components/Content";
+import { ProgressBar } from "@jobber/components/ProgressBar";
 
 # Input File
 
 <ComponentStatus stage="pre" responsive="yes" accessible="yes" />
 
-Write a description about what InputFile component is trying to achieve.
+`InputFile` allows users to upload a file, or multiple files by dragging and
+dropping them into an area on the page or by clicking a button.
 
 ```ts
 import { InputFile, updateFiles } from "@jobber/components/InputFile";
@@ -37,9 +39,14 @@ export function buildUploadParams(file) {
           onUploadComplete={handleUpload}
         />
         <ul>
-          {files.map(async (fileUpload, index) => (
-            <li key={fileUpload.id}>
-              {fileUpload.name} – {Math.round(fileUpload.progress * 100)}%
+          {files.map(file => (
+            <li key={file.id}>
+              {file.name} – {Math.round(file.progress * 100)}%
+              <ProgressBar
+                currentStep={Math.round(file.progress * 100)}
+                totalSteps={100}
+                size="small"
+              />
             </li>
           ))}
         </ul>
@@ -58,12 +65,10 @@ export function buildUploadParams(file) {
 
 ## Design & Usage Guidelines
 
-When contributing to, or consuming the InputFile component, consider the
+When contributing to, or consuming the `InputFile` component, consider the
 following:
 
-- When using the InputFile component always consider the volume you would like
-  it to be displayed at.
-- The InputFile component should never be used inside another component.
+- Provide feedback once the file(s) have been dropped and uploading begins.
 
 ## Props
 
@@ -74,20 +79,18 @@ following:
 `getUploadParams` is a necessary callback that tells `InputFile` where and how
 to upload files that are passed to it.
 
-<!--
-  It is not necessary to provide an example of each prop. Use usage examples to
-  highlight key features of a component or particular considerations.
+## Only Allow Images
 
-  See `Button.mdx` for a good example of this.
--->
-
-## Only Images
-
-Use `loud` to indicate that a component is yelling.
+Using the `allowedTypes` prop you can choose to allow all files types or only
+images. To upload multiple images you can use the `multiple` prop;
 
 <Playground>
   <Content>
-    <InputFile allowedTypes="images" />
-    <InputFile allowedTypes="images" multiple={true} />
+    <InputFile allowedTypes="images" getUploadParams={buildUploadParams} />
+    <InputFile
+      allowedTypes="images"
+      multiple={true}
+      getUploadParams={buildUploadParams}
+    />
   </Content>
 </Playground>
