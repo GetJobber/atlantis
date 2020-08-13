@@ -21,7 +21,7 @@ import { FileCard } from "@jobber/components/FileCard";
 <Playground>
   <FileCard
     file={{
-      id: "abc",
+      key: "abc",
       name: "myballisbigandroundIamrollingitowntheground.png",
       type: "image/png",
       size: 213402324,
@@ -30,6 +30,16 @@ import { FileCard } from "@jobber/components/FileCard";
         Promise.resolve(
           "https://res-1.cloudinary.com/crunchbase-production/image/upload/c_thumb,h_256,w_256,f_auto,g_faces,z_0.7,q_auto:eco/ywedismk5vf5uqc2nngg"
         )
+    }}
+    onDelete={() => alert("🧨BALEETED!💥")}
+  />
+  <FileCard
+    file={{
+      key: "mosdef",
+      name: "tps_report.png",
+      type: "application/pdf",
+      size: 2134023,
+      progress: 1
     }}
     onDelete={() => alert("🧨BALEETED!💥")}
   />
