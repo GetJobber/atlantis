@@ -49,7 +49,7 @@ exports[`renders a InputFile 1`] = `
 </div>
 `;
 
-exports[`renders a loud InputFile 1`] = `
+exports[`renders an InputFile with multiple images allowed 1`] = `
 <div
   className="dropZone"
   onBlur={[Function]}
@@ -63,6 +63,106 @@ exports[`renders a loud InputFile 1`] = `
   tabIndex={0}
 >
   <input
+    accept="image/*"
+    autoComplete="off"
+    multiple={true}
+    onChange={[Function]}
+    onClick={[Function]}
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+    tabIndex={-1}
+    type="file"
+  />
+  <div
+    className="padded small"
+  >
+    <button
+      className="button small work secondary"
+      disabled={false}
+      type="button"
+    >
+      <span
+        className="base extraBold smaller uppercase green"
+      >
+        Select Images
+      </span>
+    </button>
+    <p
+      className="base regular small greyBlue"
+    >
+      or drag images here to upload
+    </p>
+  </div>
+</div>
+`;
+
+exports[`renders an InputFile with multiple uploads 1`] = `
+<div
+  className="dropZone"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragEnter={[Function]}
+  onDragLeave={[Function]}
+  onDragOver={[Function]}
+  onDrop={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+>
+  <input
+    autoComplete="off"
+    multiple={true}
+    onChange={[Function]}
+    onClick={[Function]}
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+    tabIndex={-1}
+    type="file"
+  />
+  <div
+    className="padded small"
+  >
+    <button
+      className="button small work secondary"
+      disabled={false}
+      type="button"
+    >
+      <span
+        className="base extraBold smaller uppercase green"
+      >
+        Select Files
+      </span>
+    </button>
+    <p
+      className="base regular small greyBlue"
+    >
+      or drag files here to upload
+    </p>
+  </div>
+</div>
+`;
+
+exports[`renders an InputFile with only images allowed 1`] = `
+<div
+  className="dropZone"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragEnter={[Function]}
+  onDragLeave={[Function]}
+  onDragOver={[Function]}
+  onDrop={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+>
+  <input
+    accept="image/*"
     autoComplete="off"
     multiple={false}
     onChange={[Function]}
@@ -86,13 +186,13 @@ exports[`renders a loud InputFile 1`] = `
       <span
         className="base extraBold smaller uppercase green"
       >
-        Select a File
+        Select an Image
       </span>
     </button>
     <p
       className="base regular small greyBlue"
     >
-      or drag a file here to upload
+      or drag an image here to upload
     </p>
   </div>
 </div>
