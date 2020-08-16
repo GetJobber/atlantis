@@ -1,25 +1,28 @@
 ---
-name: FileCard
+name: FormatFile
 menu: Components
-route: /components/file-card
+route: /components/format-file
 ---
 
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
-import { FileCard } from ".";
+import { FormatFile } from ".";
 
 # File Card
 
 <ComponentStatus stage="pre" responsive="no" accessible="no" />
 
-Write a description about what FileCard component is trying to achieve.
+Pass this a logical description of a file (an object) and it will represent a
+file in a number of lifecycle states. A progress indicator can be used to
+display upload status, and a A delete callback function is availble to hook up
+to the delete button.
 
 ```ts
-import { FileCard } from "@jobber/components/FileCard";
+import { FormatFile } from "@jobber/components/FormatFile";
 ```
 
 <Playground>
-  <FileCard
+  <FormatFile
     file={{
       key: "abc",
       name: "myballisbigandroundIamrollingitontheground.png",
@@ -33,7 +36,7 @@ import { FileCard } from "@jobber/components/FileCard";
     }}
     onDelete={() => alert("🧨BALEETED!💥")}
   />
-  <FileCard
+  <FormatFile
     file={{
       key: "mosdef",
       name: "tps_report.png",
@@ -52,16 +55,16 @@ import { FileCard } from "@jobber/components/FileCard";
 
 ## Design & Usage Guidelines
 
-When contributing to, or consuming the FileCard component, consider the
+When contributing to, or consuming the FormatFile component, consider the
 following:
 
-- When using the FileCard component always consider the volume you would like it
-  to be displayed at.
-- The FileCard component should never be used inside another component.
+- When using the FormatFile component always consider the volume you would like
+  it to be displayed at.
+- The FormatFile component should never be used inside another component.
 
 ## Props
 
-<Props of={FileCard} />
+<Props of={FormatFile} />
 
 <!--
   It is not necessary to provide an example of each prop. Use usage examples to

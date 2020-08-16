@@ -8,7 +8,7 @@
   --file-card--base-padding: var(--space-small);
 }
 
-.fileCard {
+.formatFile {
   display: flex;
   height: var(--file-card--height);
   border: var(--border-base) solid var(--file-card--border-color);

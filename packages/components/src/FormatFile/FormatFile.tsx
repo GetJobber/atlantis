@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import filesize from "filesize";
 import { IconNames } from "@jobber/design";
-import styles from "./FileCard.css";
+import styles from "./FormatFile.css";
 import { Button } from "../Button";
 import { Icon } from "../Icon";
 import { Typography } from "../Typography";
@@ -33,10 +33,10 @@ interface FileUpload {
   /**
    * The data url of the file.
    */
-  src(): Promise<string>;
+  src?(): Promise<string>;
 }
 
-interface FileCardProps {
+interface FormatFileProps {
   /**
    * File details object.
    */
@@ -48,21 +48,21 @@ interface FileCardProps {
   onDelete?(): void;
 }
 
-export function FileCard({ file, onDelete }: FileCardProps) {
+export function FormatFile({ file, onDelete }: FormatFileProps) {
   const [imageSource, setImageSource] = useState<string>();
   const isComplete = file.progress >= 1;
 
   const iconName = getIconNameFromType(file.type);
   const fileSize = getHumanReadableFileSize(file.size);
 
-  if (!imageSource && file.type.startsWith("image/")) {
+  if (!imageSource && file.type.startsWith("image/") && file.src) {
     file.src().then(src => setImageSource(src));
   }
 
   const style = imageSource ? { backgroundImage: `url(${imageSource})` } : {};
 
   return (
-    <div className={styles.fileCard}>
+    <div className={styles.formatFile}>
       <div className={styles.imageBlock} style={style}>
         {!imageSource && (
           <div className={styles.icon}>
