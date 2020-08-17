@@ -1,16 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
 import debounce from "lodash/debounce";
+import { XOR } from "ts-xor";
 import styles from "./Autocomplete.css";
 import { Menu } from "./Menu";
-import { Option } from "./Option";
+import { AnyOption, GroupOption, Option } from "./Option";
 import { InputText } from "../InputText";
 import { FormFieldProps } from "../FormField";
+
+type OptionCollection = XOR<Option[], GroupOption[]>;
 
 interface AutocompleteProps {
   /**
    * Initial options to show when user first focuses the Autocomplete
    */
-  readonly initialOptions?: Option[];
+  readonly initialOptions?: OptionCollection;
 
   /**
    * Set Autocomplete value.
@@ -38,7 +41,9 @@ interface AutocompleteProps {
    * is retuned from this method to the user as available options.
    * @param newInputText
    */
-  getOptions(newInputText: string): Option[] | Promise<Option[]>;
+  getOptions(
+    newInputText: string,
+  ): OptionCollection | Promise<OptionCollection>;
 
   /**
    * Optional additional blur behaviour (clicking away from the input text or
@@ -99,10 +104,20 @@ export function Autocomplete({
   async function updateInput(newText: string) {
     setInputText(newText);
     if (newText) {
-      debouncedSetOptions(await getOptions(newText));
+      debouncedSetOptions(mapResultsToOptions(await getOptions(newText)));
     } else {
-      setOptions(initialOptions);
+      setOptions(mapResultsToOptions(initialOptions));
     }
+  }
+
+  function mapResultsToOptions(items: AnyOption[]) {
+    return items.reduce(function(result: AnyOption[], item) {
+      result = result.concat([item]);
+      if (item.options) {
+        result = result.concat(item.options);
+      }
+      return result;
+    }, []);
   }
 
   function handleMenuChange(chosenOption: Option) {

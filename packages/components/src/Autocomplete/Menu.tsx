@@ -46,7 +46,7 @@ export function Menu({
           [styles.active]: index === highlightedIndex,
           [styles.separator]: addSeparators,
         });
-        if (option.heading) {
+        if (isGroup(option)) {
           return (
             <div key={option.label} className={styles.heading}>
               <Typography element="h5" fontWeight="bold">
@@ -98,7 +98,7 @@ export function Menu({
 
       const requestedIndex = options[highlightedIndex + IndexChange.Next];
       const indexChange =
-        requestedIndex && requestedIndex.heading
+        requestedIndex && isGroup(requestedIndex)
           ? IndexChange.Next + IndexChange.Next
           : IndexChange.Next;
       setHighlightedIndex(
@@ -111,7 +111,7 @@ export function Menu({
       event.preventDefault();
       const requestedIndex = options[highlightedIndex + IndexChange.Previous];
       const indexChange =
-        requestedIndex && requestedIndex.heading
+        requestedIndex && isGroup(requestedIndex)
           ? IndexChange.Previous + IndexChange.Previous
           : IndexChange.Previous;
       setHighlightedIndex(Math.max(0, highlightedIndex + indexChange));
@@ -119,7 +119,7 @@ export function Menu({
 
     useOnKeyDown("Enter", (event: KeyboardEvent) => {
       if (!visible) return;
-      if (options[highlightedIndex].heading) return;
+      if (isGroup(options[highlightedIndex])) return;
 
       event.preventDefault();
       onOptionSelect(options[highlightedIndex]);
@@ -141,4 +141,9 @@ function useOnKeyDown(
       handler(event);
     }
   });
+}
+
+function isGroup(option: Option) {
+  if (option.options) return true;
+  return false;
 }

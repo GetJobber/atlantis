@@ -9,6 +9,7 @@ import { ComponentStatus } from "@jobber/docx";
 import { Button } from "../Button";
 import { Autocomplete } from ".";
 import { useState } from "react";
+import cloneDeep from "lodash/cloneDeep";
 
 # Autocomplete
 
@@ -165,6 +166,7 @@ An autocomplete can provide section headings to break up the options.
     const options = [
       {
         label: "Ships",
+        heading: true,
         options: [
           { value: 1, label: "Sulaco" },
           { value: 2, label: "Nostromo" },
@@ -176,22 +178,20 @@ An autocomplete can provide section headings to break up the options.
       },
       {
         label: "Planets",
+        heading: true,
         options: [
           { value: 7, label: "Endor" },
           { value: 8, label: "Vulcan" },
           { value: 9, label: "Bespin" },
           { value: 10, label: "Tatooine" }
         ]
-      },
-      { value: 11, label: "Enterprise" },
-      { value: 12, label: "Ariel" }
+      }
     ];
     const [value, setValue] = useState();
     return (
       <Autocomplete
         value={value}
         separators={true}
-        checkmarks={false}
         initialOptions={options}
         onChange={setValue}
         getOptions={getOptions}
@@ -199,13 +199,22 @@ An autocomplete can provide section headings to break up the options.
       />
     );
     function getOptions(text) {
-      if (text === "") {
-        return options;
-      }
-      const filterRegex = new RegExp(text, "i");
-      return options.filter(option =>
-        option.heading ? true : option.label.match(filterRegex)
-      );
+      const workingOptions = cloneDeep(options);
+      return filterOptions(text, workingOptions);
+    }
+    /**
+     * This is an example of a synchronous filter function.
+     * In reality an api should return this pre-formatted structure.
+     */
+    function filterOptions(text, options = []) {
+      return options.filter(option => {
+        if (option.options) {
+          option.options = filterOptions(text, option.options);
+          return true;
+        }
+        const filterRegex = new RegExp(text, "i");
+        return option.label.match(filterRegex);
+      });
     }
   }}
 </Playground>
@@ -213,41 +222,48 @@ An autocomplete can provide section headings to break up the options.
 ## Autocomplete with section headings, description and extra details
 
 This autocomplete uses section headings, details, descriptions and option
-separators. It also removes the checkmarks when selecting an item.
+separators.
 
 <Playground>
   {() => {
     const options = [
-      { label: "Ships", heading: true },
       {
-        value: 1,
-        label: "Sulaco",
-        description: "They mostly come at night, mostly.",
-        details: "LV-426"
+        label: "Ships",
+        options: [
+          {
+            value: 1,
+            label: "Sulaco",
+            description: "They mostly come at night, mostly.",
+            details: "LV-426"
+          },
+          { value: 2, label: "Nostromo", details: "LV-426" },
+          { value: 3, label: "Serenity", description: "I aim to misbehave." },
+          { value: 4, label: "Sleeper Service" },
+          { value: 5, label: "Enterprise" },
+          {
+            value: 6,
+            label: "Enterprise-D",
+            description: "Tea, earl grey, hot.",
+            details: "NCC-1701D"
+          }
+        ]
       },
-      { value: 2, label: "Nostromo", details: "LV-426" },
-      { value: 3, label: "Serenity", description: "I aim to misbehave." },
-      { value: 4, label: "Sleeper Service" },
-      { value: 5, label: "Enterprise" },
       {
-        value: 6,
-        label: "Enterprise-D",
-        description: "Tea, earl grey, hot.",
-        details: "NCC-1701D"
-      },
-      { label: "Planets", heading: true },
-      { value: 7, label: "Endor" },
-      { value: 8, label: "Vulcan" },
-      { value: 9, label: "Bespin" },
-      { value: 10, label: "Tatooine" },
-      { value: 11, label: "Enterprise" },
-      { value: 12, label: "Ariel" }
+        label: "Planets",
+        options: [
+          { value: 7, label: "Endor" },
+          { value: 8, label: "Vulcan" },
+          { value: 9, label: "Bespin" },
+          { value: 10, label: "Tatooine" },
+          { value: 11, label: "Enterprise" },
+          { value: 12, label: "Ariel" }
+        ]
+      }
     ];
     const [value, setValue] = useState();
     return (
       <Autocomplete
         value={value}
-        checkmarks={false}
         initialOptions={options}
         onChange={setValue}
         getOptions={getOptions}
@@ -256,13 +272,22 @@ separators. It also removes the checkmarks when selecting an item.
       />
     );
     function getOptions(text) {
-      if (text === "") {
-        return options;
-      }
-      const filterRegex = new RegExp(text, "i");
-      return options.filter(option =>
-        option.heading ? true : option.label.match(filterRegex)
-      );
+      const workingOptions = cloneDeep(options);
+      return filterOptions(text, workingOptions);
+    }
+    /**
+     * This is an example of a synchronous filter function.
+     * In reality an api should return this pre-formatted structure.
+     */
+    function filterOptions(text, options = []) {
+      return options.filter(option => {
+        if (option.options) {
+          option.options = filterOptions(text, option.options);
+          return true;
+        }
+        const filterRegex = new RegExp(text, "i");
+        return option.label.match(filterRegex);
+      });
     }
   }}
 </Playground>

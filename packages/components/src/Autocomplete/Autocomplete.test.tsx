@@ -1,11 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { act, cleanup, fireEvent, render } from "@testing-library/react";
-import { Autocomplete, Option } from ".";
+import { AnyOption, Autocomplete } from ".";
 
 afterEach(cleanup);
 
-function returnOptions(options: Option[]) {
+function returnOptions(options: AnyOption[]) {
   return async () => {
     return Promise.resolve(options);
   };
@@ -25,23 +25,25 @@ const options = [
 const headingOptions = [
   {
     label: "first_heading",
-    heading: true,
-  },
-  {
-    value: "0",
-    label: "option_0",
+    options: [
+      {
+        value: "0",
+        label: "option_0",
+      },
+    ],
   },
   {
     label: "second_heading",
-    heading: true,
-  },
-  {
-    value: "1",
-    label: "option_1",
-  },
-  {
-    value: "2",
-    label: "option_2",
+    options: [
+      {
+        value: "1",
+        label: "option_1",
+      },
+      {
+        value: "2",
+        label: "option_2",
+      },
+    ],
   },
 ];
 
@@ -74,7 +76,7 @@ test("it should call the getOptions handler with the new value", async () => {
       placeholder={placeholder}
     />,
   );
-  await act(async () => {
+  await act(() => {
     fireEvent.change(getByLabelText(placeholder), {
       target: { value: newValue },
     });
@@ -158,5 +160,5 @@ test("it should call the handler skipping headings when an option is selected", 
     }),
   );
 
-  expect(changeHandler).toHaveBeenCalledWith(headingOptions[1]);
+  expect(changeHandler).toHaveBeenCalledWith(headingOptions[0].options[0]);
 });
