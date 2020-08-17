@@ -16,6 +16,11 @@ afterEach(() => {
   document.body.innerHTML = ``;
 });
 
+const successMessage =
+  "Successful Message that should last the full 5 seconds, it just needs to be 50 characters long";
+const infoMessage = "Bland Toast";
+const errorMessage = "Errorful should last inbetween min-max";
+
 it("creates the placeholder div on showToast call", () => {
   const { getByText } = render(<MockToast />);
   expect(document.querySelector(`#atlantis-toast-element`)).not.toBeInstanceOf(
@@ -33,11 +38,7 @@ it("renders a Slice of Toast when the 'showToast' method is called", () => {
   const { getByText, getByTestId } = render(<MockToast />);
 
   fireEvent.click(getByText("Success"));
-  expect(
-    getByText(
-      "Successful Message that should last the full 5 seconds, it just needs to be 50 charachters long",
-    ),
-  ).toBeInstanceOf(HTMLSpanElement);
+  expect(getByText(successMessage)).toBeInstanceOf(HTMLSpanElement);
   expect(getByTestId("checkmark")).toBeInstanceOf(SVGElement);
 });
 
@@ -69,7 +70,7 @@ it("sets a timer and clears the Slice after a certain amount of time", done => {
 
   fireEvent.click(getByText("No Variation"));
   expect(setTimeout).toHaveBeenCalled();
-  expect(queryAllByText("Bland Toast").length).toBe(1);
+  expect(queryAllByText(infoMessage).length).toBe(1);
 
   act(() => jest.runAllTimers());
 
@@ -117,7 +118,7 @@ const MockToast = ({ mockAction }: MockToastProps) => {
       label: "No Variation",
       onClick: () => {
         showToast({
-          message: "Bland Toast",
+          message: infoMessage,
           variation: "info",
           actionLabel: "Do The Action",
           action: () => mockAction && mockAction(),
@@ -128,8 +129,7 @@ const MockToast = ({ mockAction }: MockToastProps) => {
       label: "Success",
       onClick: () => {
         showToast({
-          message:
-            "Successful Message that should last the full 5 seconds, it just needs to be 50 charachters long",
+          message: successMessage,
         });
       },
     },
@@ -137,7 +137,7 @@ const MockToast = ({ mockAction }: MockToastProps) => {
       label: "Error",
       onClick: () => {
         showToast({
-          message: "Errorful should last inbetween min-max",
+          message: errorMessage,
           variation: "error",
         });
       },
