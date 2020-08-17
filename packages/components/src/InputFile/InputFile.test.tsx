@@ -46,13 +46,14 @@ it("renders an InputFile with multiple images allowed", () => {
 });
 
 it("properly notifies upload callbacks", async () => {
+  const fetchParams = jest.fn(fetchUploadParams);
   const handleStart = jest.fn();
   const handleProgress = jest.fn();
   const handleComplete = jest.fn();
 
   const { container } = render(
     <InputFile
-      getUploadParams={fetchUploadParams}
+      getUploadParams={fetchParams}
       onUploadStart={handleStart}
       onUploadProgress={handleProgress}
       onUploadComplete={handleComplete}
@@ -72,15 +73,20 @@ it("properly notifies upload callbacks", async () => {
   };
 
   await waitFor(() => {
-    expect(handleStart).toHaveBeenLastCalledWith({
+    expect(fetchParams).toHaveBeenCalledTimes(1);
+
+    expect(handleStart).toHaveBeenCalledWith({
       ...baseMatch,
       progress: 0,
     });
-    expect(handleProgress).toHaveBeenLastCalledWith(baseMatch);
-    expect(handleComplete).toHaveBeenLastCalledWith({
+    expect(handleProgress).toHaveBeenCalledWith(baseMatch);
+    expect(handleComplete).toHaveBeenCalledWith({
       ...baseMatch,
       progress: 1,
     });
+
+    expect(handleStart).toHaveBeenCalledTimes(1);
+    expect(handleComplete).toHaveBeenCalledTimes(1);
   });
 });
 
