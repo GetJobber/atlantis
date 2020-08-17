@@ -141,8 +141,8 @@
 
 /* Icon */
 
-.hasIcon {
-  width: calc(var(--base-unit)*2.25);
+.onlyIcon {
+  width: calc(var(--base-unit) * 2.25);
   padding: 0;
 }
 
