@@ -35,7 +35,7 @@ it("renders a Slice of Toast when the 'showToast' method is called", () => {
   fireEvent.click(getByText("Success"));
   expect(
     getByText(
-      "Successful Message that should last the full 5 seconds, it just needs to be 50 charachters long",
+      "Successful Message that should last the full 5 seconds, it just needs to be 50 characters long",
     ),
   ).toBeInstanceOf(HTMLSpanElement);
   expect(getByTestId("checkmark")).toBeInstanceOf(SVGElement);
