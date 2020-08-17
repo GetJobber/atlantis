@@ -15,7 +15,6 @@ enum IndexChange {
 interface MenuProps {
   readonly visible: boolean;
   readonly options: Option[];
-  readonly checkmarks: boolean;
   readonly selectedOption?: Option;
   onOptionSelect(chosenOption: Option): void;
 }
@@ -23,7 +22,6 @@ interface MenuProps {
 export function Menu({
   visible,
   options,
-  checkmarks = true,
   selectedOption,
   onOptionSelect,
 }: MenuProps) {
@@ -63,13 +61,11 @@ export function Menu({
             key={option.value}
             onMouseDown={onOptionSelect.bind(undefined, option)}
           >
-            {checkmarks && (
-              <div className={styles.icon}>
-                {isOptionSelected(option) && (
-                  <Icon name="checkmark" size="small" />
-                )}
-              </div>
-            )}
+            <div className={styles.icon}>
+              {isOptionSelected(option) && (
+                <Icon name="checkmark" size="small" />
+              )}
+            </div>
             <div className={styles.text}>
               <div className={styles.label}>
                 <Text>{option.label}</Text>

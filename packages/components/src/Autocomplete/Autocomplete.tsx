@@ -23,11 +23,6 @@ interface AutocompleteProps {
   readonly placeholder: string;
 
   /**
-   * Turn off checkmarks on selected result elements.
-   */
-  readonly checkmarks?: boolean;
-
-  /**
    * Hint adjusts the interface to either have small or large spacing.
    */
   readonly inputSize?: FormFieldProps["size"];
@@ -60,7 +55,6 @@ interface AutocompleteProps {
 export function Autocomplete({
   initialOptions = [],
   value,
-  checkmarks = true,
   inputSize = undefined,
   onChange,
   getOptions,
@@ -96,7 +90,6 @@ export function Autocomplete({
       <Menu
         visible={menuVisible}
         options={options}
-        checkmarks={checkmarks}
         selectedOption={value}
         onOptionSelect={handleMenuChange}
       />
