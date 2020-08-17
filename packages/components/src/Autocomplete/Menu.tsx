@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import classnames from "classnames";
 import useEventListener from "@use-it/event-listener";
-import { Option } from "./Option";
+import { AnyOption, Option } from "./Option";
 import styles from "./Autocomplete.css";
 import { Text } from "../Text";
 import { Icon } from "../Icon";
@@ -143,7 +143,7 @@ function useOnKeyDown(
   });
 }
 
-function isGroup(option: Option) {
+function isGroup(option: AnyOption) {
   if (option.options) return true;
   return false;
 }
