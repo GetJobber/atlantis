@@ -140,7 +140,14 @@
 }
 
 /* Icon */
+
+.onlyIcon {
+  width: calc(var(--base-unit) * 2.25);
+  padding: 0;
+}
+
 .hasIconAndLabel {
+  width: auto;
   padding: 0 var(--space-base);
 }
 

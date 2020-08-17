@@ -10,6 +10,7 @@ export const disabled: string;
 export const small: string;
 export const base: string;
 export const large: string;
+export const hasIcon: string;
 export const hasIconAndLabel: string;
 export const iconOnRight: string;
 export const fullWidth: string;
