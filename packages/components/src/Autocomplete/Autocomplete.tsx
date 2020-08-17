@@ -26,9 +26,9 @@ interface AutocompleteProps {
   readonly placeholder: string;
 
   /**
-   * Hint adjusts the interface to either have small or large spacing.
+   * Adjusts the input text box to either have small or large height.
    */
-  readonly inputSize?: FormFieldProps["size"];
+  readonly size?: FormFieldProps["size"];
 
   /**
    * Simplified onChange handler that only provides the new value.
@@ -60,7 +60,7 @@ interface AutocompleteProps {
 export function Autocomplete({
   initialOptions = [],
   value,
-  inputSize = undefined,
+  size = undefined,
   onChange,
   getOptions,
   placeholder,
@@ -84,7 +84,7 @@ export function Autocomplete({
   return (
     <div className={styles.autocomplete}>
       <InputText
-        size={inputSize}
+        size={size}
         autocomplete={"autocomplete-off"}
         value={inputText}
         onChange={handleInputChange}
