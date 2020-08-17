@@ -46,7 +46,7 @@
   left: 0;
   padding: var(--file-card--base-padding);
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .contentBlock {
@@ -60,6 +60,6 @@
   margin: 0;
 }
 
-.actionButton {
+.actionBlock {
   padding: 0 var(--file-card--base-padding) 0 0;
 }

@@ -88,10 +88,11 @@ export function FormatFile({ file, onDelete }: FormatFileProps) {
         </Typography>
       </div>
       {isComplete && onDelete && (
-        <div className={styles.actionButton}>
+        <div className={styles.actionBlock}>
           <Button
             onClick={onDelete}
             type="tertiary"
+            variation="destructive"
             icon="trash"
             ariaLabel="Delete"
           />

@@ -58,7 +58,7 @@ interface BaseActionProps extends ButtonFoundationProps {
 
 interface DestructiveActionProps extends ButtonFoundationProps {
   readonly variation: "destructive";
-  readonly type?: "primary" | "secondary";
+  readonly type?: "primary" | "secondary" | "tertiary";
 }
 
 interface CancelActionProps extends ButtonFoundationProps {
