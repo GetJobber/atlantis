@@ -139,8 +139,8 @@ export function InputFile({
   async function uploadFile(file: File) {
     const { url, key = uuid(), fields = {} } = await getUploadParams(file);
 
-    const atFile = getFileUpload(file, key);
-    onUploadStart && onUploadStart({ ...atFile });
+    const fileUpload = getFileUpload(file, key);
+    onUploadStart && onUploadStart({ ...fileUpload });
 
     const formData = new FormData();
     Object.entries(fields).forEach(([field, value]) =>
@@ -154,12 +154,12 @@ export function InputFile({
         onUploadProgress: progressEvent =>
           onUploadProgress &&
           onUploadProgress({
-            ...atFile,
+            ...fileUpload,
             progress: progressEvent.loaded / progressEvent.total,
           }),
       })
       .then(() => {
-        onUploadComplete && onUploadComplete({ ...atFile, progress: 1 });
+        onUploadComplete && onUploadComplete({ ...fileUpload, progress: 1 });
       });
   }
 }
