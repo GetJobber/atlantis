@@ -17,7 +17,7 @@ exports[`renders a Button 1`] = `
 exports[`renders a Button that is just an icon 1`] = `
 <button
   aria-label="Person"
-  className="button base onlyIcon work primary"
+  className="button base work primary"
   disabled={false}
   type="button"
 >

@@ -2,39 +2,11 @@ import React, { useState } from "react";
 import filesize from "filesize";
 import { IconNames } from "@jobber/design";
 import styles from "./FormatFile.css";
+import { FileUpload } from "./FileUpload";
 import { Button } from "../Button";
 import { Icon } from "../Icon";
 import { Typography } from "../Typography";
 import { ProgressBar } from "../ProgressBar";
-
-interface FileUpload {
-  /**
-   * File Identifier
-   */
-  readonly key: string;
-  /**
-   * The name of the file.
-   */
-  readonly name: string;
-  /**
-   * The [MIME](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types) type of the file
-   */
-  readonly type: string;
-  /**
-   * The size of the file in bytes.
-   */
-  readonly size: number;
-  /**
-   * The progress of a file upload between 0 and 1.
-   * - `0` represents Upload just started.
-   * - `1` represents a complete upload.
-   */
-  readonly progress: number;
-  /**
-   * The data url of the file.
-   */
-  src?(): Promise<string>;
-}
 
 interface FormatFileProps {
   /**
@@ -100,22 +72,22 @@ export function FormatFile({ file, onDelete }: FormatFileProps) {
       )}
     </div>
   );
+}
 
-  function getHumanReadableFileSize(sizeInBytes: number): string {
-    return filesize(sizeInBytes);
-  }
+function getHumanReadableFileSize(sizeInBytes: number): string {
+  return filesize(sizeInBytes);
+}
 
-  function getIconNameFromType(mimeType: string): IconNames {
-    if (mimeType.startsWith("image/")) return "camera";
-    if (mimeType.startsWith("video/")) return "video";
+function getIconNameFromType(mimeType: string): IconNames {
+  if (mimeType.startsWith("image/")) return "camera";
+  if (mimeType.startsWith("video/")) return "video";
 
-    switch (mimeType) {
-      case "application/pdf":
-        return "pdf";
-      case "application/vnd.ms-excel":
-        return "excel";
-      default:
-        return "file";
-    }
+  switch (mimeType) {
+    case "application/pdf":
+      return "pdf";
+    case "application/vnd.ms-excel":
+      return "excel";
+    default:
+      return "file";
   }
 }

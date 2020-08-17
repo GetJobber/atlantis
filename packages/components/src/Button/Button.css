@@ -154,10 +154,6 @@
   order: 1;
 }
 
-.onlyIcon {
-  padding: var(--space-smaller);
-}
-
 .fullWidth {
   width: 100%;
 }

@@ -35,10 +35,7 @@ import { FormatFile } from "@jobber/components/FormatFile";
         type: "image/png",
         size: 213402324,
         progress: 0.3,
-        src: () =>
-          Promise.resolve(
-            "https://res-1.cloudinary.com/crunchbase-production/image/upload/c_thumb,h_256,w_256,f_auto,g_faces,z_0.7,q_auto:eco/ywedismk5vf5uqc2nngg"
-          )
+        src: () => Promise.resolve("https://source.unsplash.com/250x250")
       }}
       onDelete={() => alert("🧨BALEETED!💥")}
     />
