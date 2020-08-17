@@ -211,6 +211,13 @@ function getFileUpload(file: File, key: string): FileUpload {
   }
 }
 
+/**
+ * Upsert a given `FileUpload` into an array of `FileUpload`s.
+ * `key` is used to uniquely identify files.
+ *
+ * @param updatedFile File that was updated.
+ * @param files Existing array of FileUploads.
+ */
 export function updateFiles(updatedFile: FileUpload, files: FileUpload[]) {
   const newFiles = [...files];
   const index = files.findIndex(file => file.key === updatedFile.key);
