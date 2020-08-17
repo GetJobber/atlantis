@@ -38,7 +38,7 @@ interface FileUpload {
 
 interface FormatFileProps {
   /**
-   * File details object.
+   * File upload details object. (See FileUpload type.)
    */
   readonly file: FileUpload;
 
