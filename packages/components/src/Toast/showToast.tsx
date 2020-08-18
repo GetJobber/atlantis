@@ -22,6 +22,7 @@ function createDocumentToast(props: ToastProps) {
   if (!target) {
     target = document.createElement("div");
     target.id = targetId;
+    target.classList.add(styles.wrapper);
     document.body.appendChild(target);
   }
 
