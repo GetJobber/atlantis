@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.37.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.37.1...@jobber/components@1.37.2) (2020-08-18)
+
+
+### Bug Fixes
+
+* **components:** update button padding on icon button ([#274](https://github.com/GetJobber/atlantis/issues/274)) ([1975cab](https://github.com/GetJobber/atlantis/commit/1975cabc38e1ecc72362298851d416e2f2ed9750))
+
+
+
+
+
 ## [1.37.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.37.0...@jobber/components@1.37.1) (2020-08-12)
 
 
