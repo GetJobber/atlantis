@@ -16,6 +16,11 @@ afterEach(() => {
   document.body.innerHTML = ``;
 });
 
+const successMessage =
+  "Successful Message that should last the full 5 seconds, it just needs to be 50 characters long";
+const infoMessage = "Bland Toast";
+const errorMessage = "Errorful should last inbetween min-max";
+
 it("creates the placeholder div on showToast call", () => {
   const { getByText } = render(<MockToast />);
   expect(document.querySelector(`#atlantis-toast-element`)).not.toBeInstanceOf(
@@ -29,19 +34,19 @@ it("creates the placeholder div on showToast call", () => {
   );
 });
 
-it("renders a Slice of Toast when the 'add' method is called", () => {
-  const { getByText, getByTestId } = render(<MockToast />);
-
-  fireEvent.click(getByText("No Variation"));
-  expect(getByText("Bland Toast")).toBeInstanceOf(HTMLSpanElement);
-  expect(getByTestId("knot")).toBeInstanceOf(SVGElement);
-});
-
-it("renders a successful Slice of Toast when the variation: 'success' is set", () => {
+it("renders a Slice of Toast when the 'showToast' method is called", () => {
   const { getByText, getByTestId } = render(<MockToast />);
 
   fireEvent.click(getByText("Success"));
+  expect(getByText(successMessage)).toBeInstanceOf(HTMLSpanElement);
   expect(getByTestId("checkmark")).toBeInstanceOf(SVGElement);
+});
+
+it("renders an info Slice of Toast when the variation: 'info' is set", () => {
+  const { getByText, getByTestId } = render(<MockToast />);
+
+  fireEvent.click(getByText("No Variation"));
+  expect(getByTestId("knot")).toBeInstanceOf(SVGElement);
 });
 
 it("renders a error Slice of Toast when the variation: 'error' is set", () => {
@@ -65,7 +70,7 @@ it("sets a timer and clears the Slice after a certain amount of time", done => {
 
   fireEvent.click(getByText("No Variation"));
   expect(setTimeout).toHaveBeenCalled();
-  expect(queryAllByText("Bland Toast").length).toBe(1);
+  expect(queryAllByText(infoMessage).length).toBe(1);
 
   act(() => jest.runAllTimers());
 
@@ -113,7 +118,8 @@ const MockToast = ({ mockAction }: MockToastProps) => {
       label: "No Variation",
       onClick: () => {
         showToast({
-          message: "Bland Toast",
+          message: infoMessage,
+          variation: "info",
           actionLabel: "Do The Action",
           action: () => mockAction && mockAction(),
         });
@@ -123,9 +129,7 @@ const MockToast = ({ mockAction }: MockToastProps) => {
       label: "Success",
       onClick: () => {
         showToast({
-          message:
-            "Successful Message that should last the full 5 seconds, it just needs to be 50 charachters long",
-          variation: "success",
+          message: successMessage,
         });
       },
     },
@@ -133,7 +137,7 @@ const MockToast = ({ mockAction }: MockToastProps) => {
       label: "Error",
       onClick: () => {
         showToast({
-          message: "Errorful should last inbetween min-max",
+          message: errorMessage,
           variation: "error",
         });
       },

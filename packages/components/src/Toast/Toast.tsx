@@ -7,7 +7,7 @@ import { Button } from "../Button";
 import { Typography } from "../Typography";
 
 interface BaseToastProps {
-  readonly variation: "info" | "success" | "error";
+  readonly variation?: "info" | "success" | "error";
   readonly message: string;
   readonly id?: number;
 }
@@ -31,7 +31,7 @@ interface Icon {
 
 export function Toast({
   message,
-  variation = "info",
+  variation = "success",
   action,
   actionLabel,
 }: ToastPropsInternal) {
