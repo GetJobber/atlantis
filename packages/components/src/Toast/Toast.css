@@ -1,3 +1,8 @@
+.wrapper {
+  position: relative;
+  z-index: var(--elevation-toast);
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -6,6 +11,7 @@
   bottom: var(--space-large);
   left: 50%;
   z-index: var(--elevation-toast);
+  color: var(--color-greyBlue--dark);
   font-size: var(--typography--fontSize-large);
   transform: translateX(-50%);
 }
@@ -22,7 +28,7 @@
 .slice {
   display: flex;
   align-items: center;
-  padding: var(--space-base);
+  padding: calc(var(--space-small) / 1.25) var(--space-base);
   border-radius: var(--radius-base);
   background: var(--color-white);
 }
