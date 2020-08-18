@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.37.2...@jobber/components@1.38.0) (2020-08-18)
+
+
+### Features
+
+* **components:** modify autocomplete to show section headings, descriptions and details ([#324](https://github.com/GetJobber/atlantis/issues/324)) ([f64d1ab](https://github.com/GetJobber/atlantis/commit/f64d1ab7af2097801c490955af9f2ae9d265a652))
+
+
+
+
+
 ## [1.37.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.37.1...@jobber/components@1.37.2) (2020-08-18)
 
 
