@@ -52,9 +52,7 @@ export function FormatFile({ file, onDelete }: FormatFileProps) {
         )}
       </div>
       <div className={styles.contentBlock}>
-        <Typography element="span" fontWeight="semiBold">
-          {file.name}
-        </Typography>
+        <Typography element="span">{file.name}</Typography>
         <Typography element="p" size="small" textColor="greyBlueDark">
           {fileSize}
         </Typography>
