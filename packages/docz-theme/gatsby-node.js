@@ -1,4 +1,4 @@
 /* eslint-env node */
 exports.createPages = () => {
-  console.log("Theme from @jobber/docz!!!!!!!!");
+  console.log("WORKING FROM THEME/DOCZ - REMOVE AFTER");
 };
