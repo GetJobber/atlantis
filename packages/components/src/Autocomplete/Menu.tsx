@@ -33,11 +33,15 @@ export function Menu({
   const detectSeparatorCondition = (option: Option) =>
     option.description || option.details;
 
+  const detectGroups = (option: AnyOption) => option.options;
+
   const addSeparators = options.some(detectSeparatorCondition);
+
+  const initialHighlight = options.some(detectGroups) ? 1 : 0;
 
   setupKeyListeners();
 
-  useEffect(() => setHighlightedIndex(0), [options]);
+  useEffect(() => setHighlightedIndex(initialHighlight), [options]);
 
   return (
     <div className={optionMenuClass}>

@@ -160,5 +160,5 @@ test("it should call the handler skipping headings when an option is selected", 
     }),
   );
 
-  expect(changeHandler).toHaveBeenCalledWith(headingOptions[0].options[0]);
+  expect(changeHandler).toHaveBeenCalledWith(headingOptions[1].options[0]);
 });
