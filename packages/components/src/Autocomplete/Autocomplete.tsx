@@ -27,6 +27,8 @@ interface AutocompleteProps {
 
   /**
    * Allow the autocomplete to use values not from the drop down menu.
+   *
+   * @default true
    */
   readonly allowFreeForm?: boolean;
 
