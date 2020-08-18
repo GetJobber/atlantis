@@ -6,6 +6,7 @@ exports[`renders a FormatFile 1`] = `
 >
   <div
     className="imageBlock"
+    data-testid="imageBlock"
     style={Object {}}
   >
     <div
@@ -32,7 +33,7 @@ exports[`renders a FormatFile 1`] = `
     className="contentBlock"
   >
     <span
-      className="base semiBold"
+      className="base regular"
     >
       Funky Corn
     </span>
@@ -40,63 +41,6 @@ exports[`renders a FormatFile 1`] = `
       className="base regular small greyBlueDark"
     >
       1 KB
-    </p>
-  </div>
-</div>
-`;
-
-exports[`renders an image FormatFile file a src 1`] = `
-<div
-  className="formatFile"
->
-  <div
-    className="imageBlock"
-    style={Object {}}
-  >
-    <div
-      className="icon"
-    >
-      <svg
-        className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
-        data-testid="camera"
-        viewBox="0 0 1024 1024"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          className=""
-          d="M367.703 170.667c-32.322 0-61.87 18.261-76.325 47.171l-19.081 38.162h-101.631c-47.128 0-85.333 38.205-85.333 85.333v426.667c0 47.13 38.205 85.333 85.333 85.333h682.667c47.13 0 85.333-38.204 85.333-85.333v-426.667c0-47.128-38.204-85.333-85.333-85.333h-101.632l-19.081-38.162c-14.455-28.91-44.002-47.171-76.322-47.171h-288.596zM325.036 341.333l42.667-85.333h288.596l42.667 85.333h154.368v426.667h-682.667v-426.667h154.369zM682.667 554.667c0-94.255-76.412-170.667-170.667-170.667-94.257 0-170.667 76.412-170.667 170.667s76.41 170.667 170.667 170.667c94.255 0 170.667-76.412 170.667-170.667zM597.333 554.667c0 47.13-38.204 85.333-85.333 85.333s-85.333-38.204-85.333-85.333c0-47.13 38.204-85.333 85.333-85.333s85.333 38.204 85.333 85.333z"
-        />
-      </svg>
-    </div>
-    <div
-      className="progress"
-    >
-      <div
-        className="container small"
-      >
-        <div
-          className="content"
-          style={
-            Object {
-              "width": "9.090909090909092%",
-            }
-          }
-        />
-      </div>
-    </div>
-  </div>
-  <div
-    className="contentBlock"
-  >
-    <span
-      className="base semiBold"
-    >
-      Onion
-    </span>
-    <p
-      className="base regular small greyBlueDark"
-    >
-      100.03 KB
     </p>
   </div>
 </div>

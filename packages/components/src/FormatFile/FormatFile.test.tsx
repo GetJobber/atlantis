@@ -1,6 +1,6 @@
 import React from "react";
-import renderer, { act } from "react-test-renderer";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import renderer from "react-test-renderer";
+import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import { FormatFile } from ".";
 
 afterEach(cleanup);
@@ -17,20 +17,27 @@ it("renders a FormatFile", () => {
   expect(tree).toMatchSnapshot();
 });
 
-it("renders an image FormatFile file a src", () => {
+it("renders an image when provided as src", done => {
+  const url = "not_actually_a_url";
   const testFile = {
     key: "234",
     name: "Onion",
     type: "image/png",
     size: 102432,
     progress: 0.1,
-    src: () => Promise.resolve("not_actually_a_url"),
+    src: () => Promise.resolve(url),
   };
-  const tree = renderer.create(<FormatFile file={testFile} />).toJSON();
-  expect(tree).toMatchSnapshot();
+
+  const { queryByTestId } = render(<FormatFile file={testFile} />);
+  const imageBlockDiv = queryByTestId("imageBlock");
+
+  waitFor(() => {
+    expect(imageBlockDiv).toHaveStyle(`background-image: url(${url})`);
+    done();
+  });
 });
 
-test("it should call the delete handler", () => {
+it("it should call the delete handler", () => {
   const testFile = {
     key: "234",
     name: "TPS Reports",
@@ -43,9 +50,7 @@ test("it should call the delete handler", () => {
     <FormatFile onDelete={deleteHandler} file={testFile} />,
   );
 
-  act(() => {
-    fireEvent.click(getByLabelText("Delete"));
-  });
+  fireEvent.click(getByLabelText("Delete"));
 
   expect(deleteHandler).toHaveBeenCalled();
 });

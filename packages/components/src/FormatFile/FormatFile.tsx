@@ -35,7 +35,7 @@ export function FormatFile({ file, onDelete }: FormatFileProps) {
 
   return (
     <div className={styles.formatFile}>
-      <div className={styles.imageBlock} style={style}>
+      <div className={styles.imageBlock} style={style} data-testid="imageBlock">
         {!imageSource && (
           <div className={styles.icon}>
             <Icon name={iconName} />
