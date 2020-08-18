@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.38.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.38.0...@jobber/components@1.38.1) (2020-08-18)
+
+
+### Bug Fixes
+
+* **components:** Make Toast variation optional ([#331](https://github.com/GetJobber/atlantis/issues/331)) ([5538746](https://github.com/GetJobber/atlantis/commit/55387464de4da6336eb3b9bd65cb71b90fd514ee))
+
+
+
+
+
 # [1.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.37.2...@jobber/components@1.38.0) (2020-08-18)
 
 
