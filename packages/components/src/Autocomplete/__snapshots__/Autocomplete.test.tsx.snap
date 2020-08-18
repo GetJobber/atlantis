@@ -37,7 +37,7 @@ exports[`it should display headers when headers are passed in 1`] = `
       className="heading"
     >
       <h5
-        className="base bold"
+        className="base bold base blue"
       >
         first_heading
       </h5>
@@ -46,7 +46,7 @@ exports[`it should display headers when headers are passed in 1`] = `
       className="heading"
     >
       <h5
-        className="base bold"
+        className="base bold base blue"
       >
         second_heading
       </h5>

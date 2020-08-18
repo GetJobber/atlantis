@@ -46,13 +46,13 @@ interface AutocompleteProps {
   ): OptionCollection | Promise<OptionCollection>;
 
   /**
-   * Optional additional blur behaviour (clicking away from the input text or
+   * Blur behaviour (clicking away from the input text or
    * hitting escape)
    */
   onBlur?(): void;
 
   /**
-   * Optional additional focus behaviour (clicking on the input text)
+   * Focus behaviour (clicking on the input text)
    */
   onFocus?(): void;
 }

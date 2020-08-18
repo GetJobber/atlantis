@@ -5,7 +5,7 @@ import { AnyOption, Option } from "./Option";
 import styles from "./Autocomplete.css";
 import { Text } from "../Text";
 import { Icon } from "../Icon";
-import { Typography } from "../Typography";
+import { Heading } from "../Heading";
 
 enum IndexChange {
   Previous = -1,
@@ -49,9 +49,7 @@ export function Menu({
         if (isGroup(option)) {
           return (
             <div key={option.label} className={styles.heading}>
-              <Typography element="h5" fontWeight="bold">
-                {option.label}
-              </Typography>
+              <Heading level={5}>{option.label}</Heading>
             </div>
           );
         }
@@ -70,9 +68,7 @@ export function Menu({
               <div className={styles.label}>
                 <Text>{option.label}</Text>
                 {option.description !== undefined && (
-                  <Typography textColor="greyBlueDark">
-                    {option.description}
-                  </Typography>
+                  <Text>{option.description}</Text>
                 )}
               </div>
               {option.details !== undefined && (
@@ -93,28 +89,19 @@ export function Menu({
 
   function setupKeyListeners() {
     useOnKeyDown("ArrowDown", (event: KeyboardEvent) => {
-      if (!visible) return;
-      event.preventDefault();
-
-      const requestedIndex = options[highlightedIndex + IndexChange.Next];
-      const indexChange =
-        requestedIndex && isGroup(requestedIndex)
-          ? IndexChange.Next + IndexChange.Next
-          : IndexChange.Next;
-      setHighlightedIndex(
-        Math.min(options.length - 1, highlightedIndex + indexChange),
-      );
+      const indexChange = arrowKeyPress(event, IndexChange.Next);
+      if (indexChange) {
+        setHighlightedIndex(
+          Math.min(options.length - 1, highlightedIndex + indexChange),
+        );
+      }
     });
 
     useOnKeyDown("ArrowUp", (event: KeyboardEvent) => {
-      if (!visible) return;
-      event.preventDefault();
-      const requestedIndex = options[highlightedIndex + IndexChange.Previous];
-      const indexChange =
-        requestedIndex && isGroup(requestedIndex)
-          ? IndexChange.Previous + IndexChange.Previous
-          : IndexChange.Previous;
-      setHighlightedIndex(Math.max(0, highlightedIndex + indexChange));
+      const indexChange = arrowKeyPress(event, IndexChange.Previous);
+      if (indexChange) {
+        setHighlightedIndex(Math.max(0, highlightedIndex + indexChange));
+      }
     });
 
     useOnKeyDown("Enter", (event: KeyboardEvent) => {
@@ -124,6 +111,15 @@ export function Menu({
       event.preventDefault();
       onOptionSelect(options[highlightedIndex]);
     });
+  }
+
+  function arrowKeyPress(event: KeyboardEvent, direction: number) {
+    if (!visible) return;
+    event.preventDefault();
+    const requestedIndex = options[highlightedIndex + direction];
+    return requestedIndex && isGroup(requestedIndex)
+      ? direction + direction
+      : direction;
   }
 }
 
