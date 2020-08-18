@@ -26,6 +26,11 @@ interface AutocompleteProps {
   readonly placeholder: string;
 
   /**
+   * Allow the autocomplete to use values not from the drop down menu.
+   */
+  readonly allowFreeForm?: boolean;
+
+  /**
    * Adjusts the input text box to either have small or large height.
    */
   readonly size?: FormFieldProps["size"];
@@ -60,6 +65,7 @@ interface AutocompleteProps {
 export function Autocomplete({
   initialOptions = [],
   value,
+  allowFreeForm = true,
   size = undefined,
   onChange,
   getOptions,
@@ -85,7 +91,6 @@ export function Autocomplete({
     <div className={styles.autocomplete}>
       <InputText
         size={size}
-        autocomplete={"autocomplete-off"}
         value={inputText}
         onChange={handleInputChange}
         placeholder={placeholder}
@@ -104,20 +109,10 @@ export function Autocomplete({
   async function updateInput(newText: string) {
     setInputText(newText);
     if (newText) {
-      debouncedSetOptions(mapResultsToOptions(await getOptions(newText)));
+      debouncedSetOptions(mapToOptions(await getOptions(newText)));
     } else {
-      setOptions(mapResultsToOptions(initialOptions));
+      setOptions(mapToOptions(initialOptions));
     }
-  }
-
-  function mapResultsToOptions(items: AnyOption[]) {
-    return items.reduce(function(result: AnyOption[], item) {
-      result = result.concat([item]);
-      if (item.options) {
-        result = result.concat(item.options);
-      }
-      return result;
-    }, []);
   }
 
   function handleMenuChange(chosenOption: Option) {
@@ -128,7 +123,9 @@ export function Autocomplete({
 
   function handleInputChange(newText: string) {
     updateInput(newText);
-    onChange({ label: newText });
+    if (allowFreeForm) {
+      onChange({ label: newText });
+    }
     setMenuVisible(true);
   }
 
@@ -148,4 +145,14 @@ export function Autocomplete({
       onFocus();
     }
   }
+}
+
+function mapToOptions(items: AnyOption[]) {
+  return items.reduce(function(result: AnyOption[], item) {
+    result = result.concat([item]);
+    if (item.options) {
+      result = result.concat(item.options);
+    }
+    return result;
+  }, []);
 }
