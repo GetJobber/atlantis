@@ -1,1 +1,1 @@
-export { InputFile, updateFiles } from "./InputFile";
+export { InputFile, updateFiles, FileUpload } from "./InputFile";

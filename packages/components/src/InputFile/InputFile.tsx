@@ -8,7 +8,7 @@ import { Button } from "../Button";
 import { Content } from "../Content";
 import { Typography } from "../Typography";
 
-interface FileUpload {
+export interface FileUpload {
   /**
    * File Identifier
    */
