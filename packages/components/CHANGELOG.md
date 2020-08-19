@@ -8,6 +8,80 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.39.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.38.3...@jobber/components@1.39.0) (2020-08-19)
+
+
+### Features
+
+* **components:** new FormatFile component ([#332](https://github.com/GetJobber/atlantis/issues/332)) ([0efbd30](https://github.com/GetJobber/atlantis/commit/0efbd305d8a1acbdf62e177597894557763aed7c))
+
+
+
+
+
+## [1.38.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.38.2...@jobber/components@1.38.3) (2020-08-19)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [1.38.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.38.1...@jobber/components@1.38.2) (2020-08-18)
+
+
+### Bug Fixes
+
+* **components:** Style fixes for Toast ([#333](https://github.com/GetJobber/atlantis/issues/333)) ([855a090](https://github.com/GetJobber/atlantis/commit/855a0909ba6cc039347f563a0394a225e60adf84))
+
+
+
+
+
+## [1.38.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.38.0...@jobber/components@1.38.1) (2020-08-18)
+
+
+### Bug Fixes
+
+* **components:** Make Toast variation optional ([#331](https://github.com/GetJobber/atlantis/issues/331)) ([5538746](https://github.com/GetJobber/atlantis/commit/55387464de4da6336eb3b9bd65cb71b90fd514ee))
+
+
+
+
+
+# [1.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.37.2...@jobber/components@1.38.0) (2020-08-18)
+
+
+### Features
+
+* **components:** modify autocomplete to show section headings, descriptions and details ([#324](https://github.com/GetJobber/atlantis/issues/324)) ([f64d1ab](https://github.com/GetJobber/atlantis/commit/f64d1ab7af2097801c490955af9f2ae9d265a652))
+
+
+
+
+
+## [1.37.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.37.1...@jobber/components@1.37.2) (2020-08-18)
+
+
+### Bug Fixes
+
+* **components:** update button padding on icon button ([#274](https://github.com/GetJobber/atlantis/issues/274)) ([1975cab](https://github.com/GetJobber/atlantis/commit/1975cabc38e1ecc72362298851d416e2f2ed9750))
+
+
+
+
+
+## [1.37.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.37.0...@jobber/components@1.37.1) (2020-08-12)
+
+
+### Bug Fixes
+
+* **components:** make autocomplete work in input groups ([#328](https://github.com/GetJobber/atlantis/issues/328)) ([f5eca48](https://github.com/GetJobber/atlantis/commit/f5eca483f07dfc1971dcd98917546e10b2d3cb3f))
+
+
+
+
+
 # [1.37.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.36.1...@jobber/components@1.37.0) (2020-08-11)
 
 

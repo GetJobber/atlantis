@@ -58,7 +58,7 @@ interface BaseActionProps extends ButtonFoundationProps {
 
 interface DestructiveActionProps extends ButtonFoundationProps {
   readonly variation: "destructive";
-  readonly type?: "primary" | "secondary";
+  readonly type?: "primary" | "secondary" | "tertiary";
 }
 
 interface CancelActionProps extends ButtonFoundationProps {
@@ -96,6 +96,7 @@ export function Button(props: ButtonProps) {
   } = props;
 
   const buttonClassNames = classnames(styles.button, styles[size], {
+    [styles.onlyIcon]: icon && !label,
     [styles.hasIconAndLabel]: icon && label,
     [styles.iconOnRight]: iconOnRight,
     [styles[variation]]: variation,
