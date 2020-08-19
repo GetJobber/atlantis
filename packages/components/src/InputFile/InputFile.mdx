@@ -10,6 +10,7 @@ import { useState } from "react";
 import uuid from "uuid";
 import { InputFile, updateFiles } from ".";
 import { Content } from "@jobber/components/Content";
+import { FormatFile } from "@jobber/components/FormatFile";
 import { ProgressBar } from "@jobber/components/ProgressBar";
 
 # Input File
@@ -37,18 +38,9 @@ import { InputFile, updateFiles } from "@jobber/components/InputFile";
           onUploadProgress={handleUpload}
           onUploadComplete={handleUpload}
         />
-        <ul>
-          {files.map(file => (
-            <li key={file.key}>
-              {file.name} – {Math.round(file.progress * 100)}%
-              <ProgressBar
-                currentStep={Math.round(file.progress * 100)}
-                totalSteps={100}
-                size="small"
-              />
-            </li>
-          ))}
-        </ul>
+        {files.map(file => (
+          <FormatFile file={file} />
+        ))}
       </Content>
     );
     function handleUpload(file) {
