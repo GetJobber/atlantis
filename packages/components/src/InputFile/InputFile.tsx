@@ -69,35 +69,39 @@ interface InputFileProps {
   readonly allowedTypes?: "all" | "images";
 
   /**
-   * Allow for multiple files.
+   * Allow for multiple files to be selected for upload.
+   *
    * @default false
    */
-  readonly multiple?: boolean;
+  readonly allowMultiple?: boolean;
 
   /**
-   * A callback that receives a file object and returns the params needed
+   * A callback that receives a file object and returns a `UploadParams` needed
    * to upload the file.
+   *
+   * More info is available at:
+   * https://atlantis.getjobber.com/components/input-file#getuploadparams
    */
   getUploadParams(file: File): UploadParams | Promise<UploadParams>;
 
   /**
-   * Upload event handler.
+   * Upload event handler. Triggered on upload start.
    */
   onUploadStart?(file: FileUpload): void;
 
   /**
-   * Upload event handler.
+   * Upload event handler. Triggered as upload progresses.
    */
   onUploadProgress?(file: FileUpload): void;
 
   /**
-   * Upload event handler.
+   * Upload event handler. Triggered on upload completion.
    */
   onUploadComplete?(file: FileUpload): void;
 }
 
 export function InputFile({
-  multiple = false,
+  allowMultiple = false,
   allowedTypes = "all",
   getUploadParams,
   onUploadStart,
@@ -105,13 +109,13 @@ export function InputFile({
   onUploadComplete,
 }: InputFileProps) {
   const options: DropzoneOptions = {
-    multiple,
+    multiple: allowMultiple,
     onDrop: useCallback(handleDrop, []),
   };
   if (allowedTypes === "images") options.accept = "image/*";
   const { getRootProps, getInputProps, isDragActive } = useDropzone(options);
 
-  const { buttonLabel, hintText } = getCopy(multiple, allowedTypes);
+  const { buttonLabel, hintText } = getLabels(allowMultiple, allowedTypes);
   const dropZone = classnames(styles.dropZone, {
     [styles.active]: isDragActive,
   });
@@ -164,7 +168,7 @@ export function InputFile({
   }
 }
 
-function getCopy(multiple: boolean, allowedTypes: string) {
+function getLabels(multiple: boolean, allowedTypes: string) {
   let buttonLabel = multiple ? "Select Files" : "Select a File";
   let hintText = multiple
     ? "or drag files here to upload"
@@ -215,8 +219,9 @@ function getFileUpload(file: File, key: string): FileUpload {
  * Upsert a given `FileUpload` into an array of `FileUpload`s.
  * `key` is used to uniquely identify files.
  *
- * @param updatedFile File that was updated.
+ * @param updatedFile FileUpload File that was updated.
  * @param files Existing array of FileUploads.
+ * @returns FileUpload[] updated set of files.
  */
 export function updateFiles(updatedFile: FileUpload, files: FileUpload[]) {
   const newFiles = [...files];

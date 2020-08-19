@@ -14,7 +14,7 @@ import { ProgressBar } from "@jobber/components/ProgressBar";
 
 # Input File
 
-<ComponentStatus stage="pre" responsive="yes" accessible="yes" />
+<ComponentStatus stage="rc" responsive="yes" accessible="yes" />
 
 `InputFile` allows users to upload a file, or multiple files by dragging and
 dropping them into an area on the page or by clicking a button.
@@ -23,18 +23,16 @@ dropping them into an area on the page or by clicking a button.
 import { InputFile, updateFiles } from "@jobber/components/InputFile";
 ```
 
-export function fetchUploadParams() {
-  return Promise.resolve({ url: "https://httpbin.org/post" });
-}
-
 <Playground>
   {() => {
     const [files, setFiles] = useState([]);
     return (
       <Content>
         <InputFile
-          multiple={true}
-          getUploadParams={fetchUploadParams}
+          allowMultiple={true}
+          getUploadParams={() =>
+            Promise.resolve({ url: "https://httpbin.org/post" })
+          }
           onUploadStart={handleUpload}
           onUploadProgress={handleUpload}
           onUploadComplete={handleUpload}
@@ -58,11 +56,6 @@ export function fetchUploadParams() {
     }
   }}
 </Playground>
-
-<!--
-  It is not necessary to include Design & Usage Guidlelines. Use this section
-  to answer common questions and considerations about component usage.
--->
 
 ## Design & Usage Guidelines
 
@@ -103,17 +96,38 @@ interface UploadParams {
 }
 ```
 
+## updateFiles Helper
+
+`InputFile` also exports a `updateFiles` method. This method allows for easily
+updating an array of `FileUpload`s based on their `key` as uploads progress.
+
+```ts
+/**
+ * Upsert a given `FileUpload` into an array of `FileUpload`s.
+ * `key` is used to uniquely identify files.
+ *
+ * @param updatedFile FileUpload File that was updated.
+ * @param files Existing array of FileUploads.
+ * @returns FileUpload[] updated set of files.
+ */
+export function updateFiles(updatedFile: FileUpload, files: FileUpload[]);
+```
+
 ## Only Allow Images
 
 Using the `allowedTypes` prop you can choose to allow all files types or only
 images. To upload multiple images you can use the `multiple` prop;
+
+export function fetchUploadParams() {
+  return Promise.resolve({ url: "https://httpbin.org/post" });
+}
 
 <Playground>
   <Content>
     <InputFile allowedTypes="images" getUploadParams={fetchUploadParams} />
     <InputFile
       allowedTypes="images"
-      multiple={true}
+      allowMultiple={true}
       getUploadParams={fetchUploadParams}
     />
   </Content>

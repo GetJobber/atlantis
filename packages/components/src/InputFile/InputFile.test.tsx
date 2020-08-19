@@ -18,7 +18,9 @@ it("renders a InputFile", () => {
 
 it("renders an InputFile with multiple uploads", () => {
   const tree = renderer
-    .create(<InputFile multiple={true} getUploadParams={fetchUploadParams} />)
+    .create(
+      <InputFile allowMultiple={true} getUploadParams={fetchUploadParams} />,
+    )
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
@@ -37,7 +39,7 @@ it("renders an InputFile with multiple images allowed", () => {
     .create(
       <InputFile
         allowedTypes="images"
-        multiple={true}
+        allowMultiple={true}
         getUploadParams={fetchUploadParams}
       />,
     )
