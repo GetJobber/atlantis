@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.39.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.38.3...@jobber/components@1.39.0) (2020-08-19)
+
+
+### Features
+
+* **components:** new FormatFile component ([#332](https://github.com/GetJobber/atlantis/issues/332)) ([0efbd30](https://github.com/GetJobber/atlantis/commit/0efbd305d8a1acbdf62e177597894557763aed7c))
+
+
+
+
+
 ## [1.38.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.38.2...@jobber/components@1.38.3) (2020-08-19)
 
 **Note:** Version bump only for package @jobber/components
