@@ -5,12 +5,10 @@ module.exports = {
   settings: {
     "import/resolver": {
       alias: {
-        map: [
-          ["@jobber/components", "./packages/components/src"],
-        ],
-        extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
-      },
-    },
+        map: [["@jobber/components", "./packages/components/src"]],
+        extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
+      }
+    }
   },
   rules: {
     /*
@@ -22,12 +20,8 @@ module.exports = {
     "import/no-internal-modules": [
       "error",
       {
-        allow: [
-          "@jobber/components/*",
-          "gatsby-theme-docz/**",
-          "lodash/*"
-        ]
+        allow: ["@jobber/components/*", "gatsby-theme-docz/**", "lodash/*"]
       }
     ]
-  },
+  }
 };

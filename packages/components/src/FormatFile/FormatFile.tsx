@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import filesize from "filesize";
 import { IconNames } from "@jobber/design";
 import styles from "./FormatFile.css";
-import { FileUpload } from "./FileUpload";
 import { Button } from "../Button";
 import { Icon } from "../Icon";
 import { Typography } from "../Typography";
 import { ProgressBar } from "../ProgressBar";
+import { FileUpload } from "../InputFile";
 
 interface FormatFileProps {
   /**
