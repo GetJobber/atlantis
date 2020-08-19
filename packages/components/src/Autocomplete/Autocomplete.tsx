@@ -92,6 +92,7 @@ export function Autocomplete({
   return (
     <div className={styles.autocomplete}>
       <InputText
+        autocomplete={false}
         size={size}
         value={inputText}
         onChange={handleInputChange}
