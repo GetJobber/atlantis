@@ -113,12 +113,12 @@ export function Toast({
 
   function getIcon(): Icon {
     switch (variation) {
-      case "success":
-        return { name: "checkmark", color: "green" };
+      case "info":
+        return { name: "knot", color: "lightBlue" };
       case "error":
         return { name: "alert", color: "red" };
       default:
-        return { name: "knot", color: "lightBlue" };
+        return { name: "checkmark", color: "green" };
     }
   }
 }
