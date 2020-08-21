@@ -7,6 +7,9 @@ export default merge(themeStyles, {
   colors: {
     ...modes.jobber,
   },
+  fonts: {
+    heading: "var(--typography--fontFamily-display)",
+  },
   fontSizes: [
     "var(--typography--fontSize-smaller)",
     "var(--typography--fontSize-small)",

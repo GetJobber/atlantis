@@ -14,6 +14,19 @@ export default merge(themeStyles, {
       color: "greenDark",
     },
   },
+  ul: {
+    p: 0,
+    pl: 5,
+  },
+  inlineCode: {
+    display: "inline-block",
+    p: 0,
+    py: 2,
+    px: 3,
+    bg: "greyLightest",
+    fontSize: "85%",
+    borderRadius: "square",
+  },
   blockquote: {
     my: 5,
     py: 4,
