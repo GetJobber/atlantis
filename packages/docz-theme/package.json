@@ -9,9 +9,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "peerDependencies": {
-  },
   "dependencies": {
+    "@jobber/components": "^1.40.2",
+    "@jobber/design": "^0.8.0",
     "docz": "^2.3.1",
     "gatsby-theme-docz": "^2.3.1",
     "lodash": "^4.17.20",

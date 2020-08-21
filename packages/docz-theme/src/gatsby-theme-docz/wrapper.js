@@ -3,6 +3,8 @@ import t from "prop-types";
 import { Helmet } from "react-helmet";
 import { useConfig, useCurrentDoc } from "docz";
 
+import "@jobber/design/foundation.css";
+
 const Wrapper = ({ children }) => {
   const {
     themeConfig: { favicon },

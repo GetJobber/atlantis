@@ -24,6 +24,7 @@ module.exports = {
       {
         allow: [
           "@jobber/components/*",
+          "@jobber/design/*",
           "gatsby-theme-docz/**",
           "lodash/*"
         ]
