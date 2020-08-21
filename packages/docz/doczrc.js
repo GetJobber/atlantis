@@ -1,7 +1,11 @@
 // eslint-disable-next-line import/no-default-export
 export default {
-  title: "Atlantus",
+  title: "🔱 Atlantis",
   typescript: true,
-  files: ["./README.md", "../../docs/README.md"],
+  files: ["./docs/**/*.{md,mdx}", "../../docs/README.md"],
   ignore: ["../../docs/proposals/**/*.*"],
+  themeConfig: {
+    // Custom Config
+    favicon: "public/assets/favicon.png",
+  },
 };

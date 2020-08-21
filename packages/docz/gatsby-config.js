@@ -14,6 +14,7 @@ module.exports = {
           "gatsby-theme-docz": "../node_modules/gatsby-theme-docz",
           "@emotion/core": "../node_modules/@emotion/core",
           "@mdx-js/react": "../node_modules/@mdx-js/react",
+          docz: "../node_modules/docz",
         },
       },
     },
