@@ -98,7 +98,6 @@
     "ie >= 11"
   ],
   "dependencies": {
-    "@std-proposal/temporal": "0.0.1",
-    "gatsby-theme-docz": "^2.3.1"
+    "@std-proposal/temporal": "0.0.1"
   }
 }
