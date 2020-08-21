@@ -8,6 +8,11 @@ export default merge(themeStyles, {
   },
   a: {
     color: "green",
+
+    ":hover": {
+      textDecoration: "none",
+      color: "greenDark",
+    },
   },
   blockquote: {
     my: 5,
