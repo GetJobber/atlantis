@@ -8,6 +8,7 @@ export default merge(themeStyles, {
     ...modes.jobber,
   },
   fonts: {
+    monospace: "monospace",
     heading: "var(--typography--fontFamily-display)",
   },
   fontSizes: [

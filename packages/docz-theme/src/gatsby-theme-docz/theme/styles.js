@@ -32,6 +32,6 @@ export default merge(themeStyles, {
     py: 4,
     px: 5,
     borderRadius: "square",
-    borderLeft: t => `var(--space-small) solid ${t.colors.blockquote.border}`,
+    borderLeft: t => `var(--border-thick) solid ${t.colors.blockquote.border}`,
   },
 });
