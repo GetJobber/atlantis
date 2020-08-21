@@ -2,6 +2,6 @@
 export default {
   title: "Atlantus",
   typescript: true,
-  files: ["../../docs/**/*.{md,mdx}"],
+  files: ["./README.md", "../../docs/README.md"],
   ignore: ["../../docs/proposals/**/*.*"],
 };

@@ -4,13 +4,9 @@ import { merge } from "lodash/fp";
 // eslint-disable-next-line import/no-default-export
 export default merge(themeStyles.default, {
   Container: {
-    maxWidth: 300,
+    maxWidth: 960,
   },
   a: {
-    color: "rgb(239, 87, 51)",
-  },
-  inlineCode: {
-    background: "blue",
-    color: "white",
+    color: "green",
   },
 });
