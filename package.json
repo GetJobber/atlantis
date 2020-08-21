@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "prestart": "cd packages/components && npm run build:cssTypes",
-    "start": "cd packages/docz && npm start",
+    "start": "npm start",
+    "start:new": "cd packages/docz && npm start",
     "start:withPrivateComponents": "PRIVATE_COMPONENTS=visible docz dev",
     "test": "jest",
     "plop": "echo '🚧 `npm run plop` is now `npm run generate`'",
