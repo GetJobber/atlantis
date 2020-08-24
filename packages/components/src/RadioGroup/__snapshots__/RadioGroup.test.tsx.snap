@@ -8,7 +8,7 @@ exports[`renders a RadioGroup 1`] = `
     <input
       checked={false}
       className="input"
-      id="foo"
+      id="foo_123e4567-e89b-12d3-a456-426655440001"
       name="Foo"
       onChange={[Function]}
       type="radio"
@@ -16,7 +16,7 @@ exports[`renders a RadioGroup 1`] = `
     />
     <label
       className="label"
-      htmlFor="foo"
+      htmlFor="foo_123e4567-e89b-12d3-a456-426655440001"
     >
       Foo
     </label>
@@ -25,7 +25,7 @@ exports[`renders a RadioGroup 1`] = `
     <input
       checked={true}
       className="input"
-      id="bear"
+      id="bear_123e4567-e89b-12d3-a456-426655440002"
       name="Foo"
       onChange={[Function]}
       type="radio"
@@ -33,7 +33,7 @@ exports[`renders a RadioGroup 1`] = `
     />
     <label
       className="label"
-      htmlFor="bear"
+      htmlFor="bear_123e4567-e89b-12d3-a456-426655440002"
     >
       Bear
     </label>
