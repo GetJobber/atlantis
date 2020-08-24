@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.41.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.40.3...@jobber/components@1.41.0) (2020-08-24)
+
+
+### Features
+
+* **components:** Disable RadioOption component ([#344](https://github.com/GetJobber/atlantis/issues/344)) ([b6b38d8](https://github.com/GetJobber/atlantis/commit/b6b38d8d023c28635d1423af1d60b406491012be))
+
+
+
+
+
 ## [1.40.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.40.2...@jobber/components@1.40.3) (2020-08-24)
 
 **Note:** Version bump only for package @jobber/components
