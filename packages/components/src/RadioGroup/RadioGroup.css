@@ -1,12 +1,12 @@
+.radioGroup {
+  display: inline-flex;
+  flex-direction: column;
+}
+
 .input {
   /* Hide checkbox on UI but not screen readers and still allow focus state */
   position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  clip-path: inset(100%);
-  white-space: nowrap;
+  left: -999em;
 }
 
 .label {
@@ -28,13 +28,20 @@
   transition: all 0.2s;
 }
 
+.input:focus + .label:before {
+  box-shadow: 0 0 1px 0.125rem var(--color-outline);
+}
+
 .input:checked + .label::before {
   border-color: var(--color-green--dark);
   background-color: var(--color-green);
-  transition: all 0.2s;
 }
 
-.radioGroup {
-  display: inline-flex;
-  flex-direction: column;
+.input[disabled] + .label {
+  color: var(--color-blue--lighter);
+}
+
+.input[disabled] + .label::before {
+  border-color: var(--color-grey--light);
+  background-color: var(--color-grey--lighter);
 }
