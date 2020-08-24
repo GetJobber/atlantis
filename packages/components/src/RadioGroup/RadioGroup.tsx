@@ -57,6 +57,7 @@ export function RadioGroup({
 
 interface RadioOptionProps {
   readonly value: string | number;
+  readonly disabled?: boolean;
   readonly children: ReactNode | ReactNode[];
 }
 

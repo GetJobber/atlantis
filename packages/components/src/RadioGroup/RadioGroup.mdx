@@ -14,7 +14,8 @@ import { useState } from "react";
 
 <ComponentStatus stage="ready" responsive="yes" accessible="yes" />
 
-RadioGroup will allow users to choose from one of a list of provided options.
+RadioGroup will allow users to choose a single selection from one of a list of
+provided options.
 
 ```ts
 import { RadioGroup } from "@jobber/components/RadioGroup";
@@ -33,6 +34,30 @@ import { RadioGroup } from "@jobber/components/RadioGroup";
   }}
 </Playground>
 
-## Props
+## RadioGroup Props
 
 <Props of={RadioGroup} />
+
+## RadioOption Props
+
+<Props of={RadioOption} />
+
+## Disabled Options
+
+`RadioOptions` can be disabled by passing in the disabled prop. Disabling an
+option will prevent a user from being able to select the option.
+
+<Playground>
+  {() => {
+    const [company, setCompany] = useState("apple");
+    return (
+      <RadioGroup onChange={setCompany} value={company}>
+        <RadioOption value="apple">Apple</RadioOption>
+        <RadioOption value="google">Google</RadioOption>
+        <RadioOption value="microsoft" disabled={true}>
+          Microsoft
+        </RadioOption>
+      </RadioGroup>
+    );
+  }}
+</Playground>
