@@ -38,6 +38,18 @@ test("it should call the handler with the new value", () => {
   expect(handleChange).toHaveBeenCalled();
 });
 
+test("it should be able to disable options", () => {
+  const handleChange = jest.fn();
+  const { container } = render(
+    <RadioGroup name="Foo" value="foo" onChange={handleChange}>
+      <RadioOption value="foo"></RadioOption>
+      <RadioOption value="bear" disabled={true}></RadioOption>
+    </RadioGroup>,
+  );
+
+  expect(container.querySelector(`[value="bear"]`)).toBeDisabled();
+});
+
 test("it should have unique ids on all radio options", () => {
   const { container, getAllByLabelText } = render(<MockRadioGroup />);
   const labels = getAllByLabelText("Two");

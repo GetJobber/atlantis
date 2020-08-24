@@ -6,15 +6,17 @@ route: /components/radio-group
 
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
-import { RadioGroup } from ".";
-import { RadioOption } from ".";
+import { RadioGroup, RadioOption } from ".";
+import { Content } from "@jobber/components/Content";
+import { Checkbox } from "@jobber/components/Checkbox";
 import { useState } from "react";
 
 # Radio Group
 
 <ComponentStatus stage="ready" responsive="yes" accessible="yes" />
 
-RadioGroup will allow users to choose from one of a list of provided options.
+RadioGroup will allow users to choose a single selection from one of a list of
+provided options.
 
 ```ts
 import { RadioGroup } from "@jobber/components/RadioGroup";
@@ -33,6 +35,43 @@ import { RadioGroup } from "@jobber/components/RadioGroup";
   }}
 </Playground>
 
-## Props
+## RadioGroup Props
 
 <Props of={RadioGroup} />
+
+## RadioOption Props
+
+<Props of={RadioOption} />
+
+## Disabled Options
+
+`RadioOptions` can be disabled by passing in the disabled prop. Disabling an
+option will prevent a user from being able to select the option.
+
+<Playground>
+  {() => {
+    const [company, setCompany] = useState("apple");
+    const [checked, setChecked] = useState(true);
+    return (
+      <Content>
+        <Content spacing="large">
+          <RadioGroup onChange={setCompany} value={company}>
+            <RadioOption value="apple">Apple</RadioOption>
+            <RadioOption value="google">Google</RadioOption>
+            <RadioOption value="microsoft" disabled={!checked}>
+              Microsoft
+            </RadioOption>
+            <RadioOption value="amazon" disabled={true}>
+              Amazon
+            </RadioOption>
+          </RadioGroup>
+        </Content>
+        <Checkbox
+          checked={checked}
+          label="Allow Microsoft"
+          onChange={setChecked}
+        />
+      </Content>
+    );
+  }}
+</Playground>

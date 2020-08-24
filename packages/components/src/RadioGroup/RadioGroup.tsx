@@ -39,6 +39,7 @@ export function RadioGroup({
           checked={value === option.props.value}
           value={option.props.value}
           name={name}
+          disabled={option.props.disabled}
           onChange={handleChange}
         >
           {option.props.children}
@@ -56,6 +57,7 @@ export function RadioGroup({
 
 interface RadioOptionProps {
   readonly value: string | number;
+  readonly disabled?: boolean;
   readonly children: ReactNode | ReactNode[];
 }
 
@@ -66,6 +68,7 @@ export function RadioOption({ children }: RadioOptionProps) {
 interface InternalRadioOptionProps {
   readonly value: string | number;
   readonly name: string;
+  readonly disabled: boolean;
   readonly checked: boolean;
   readonly children: ReactNode | ReactNode[];
   onChange(newValue: string | number): void;
@@ -74,6 +77,7 @@ interface InternalRadioOptionProps {
 function InternalRadioOption({
   value,
   name,
+  disabled,
   checked,
   children,
   onChange,
@@ -86,6 +90,7 @@ function InternalRadioOption({
         type="radio"
         name={name}
         value={value}
+        disabled={disabled}
         checked={checked}
         id={inputId}
         className={styles.input}
