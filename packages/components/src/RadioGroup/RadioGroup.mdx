@@ -6,8 +6,9 @@ route: /components/radio-group
 
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
-import { RadioGroup } from ".";
-import { RadioOption } from ".";
+import { RadioGroup, RadioOption } from ".";
+import { Content } from "@jobber/components/Content";
+import { Checkbox } from "@jobber/components/Checkbox";
 import { useState } from "react";
 
 # Radio Group
@@ -50,14 +51,27 @@ option will prevent a user from being able to select the option.
 <Playground>
   {() => {
     const [company, setCompany] = useState("apple");
+    const [checked, setChecked] = useState(true);
     return (
-      <RadioGroup onChange={setCompany} value={company}>
-        <RadioOption value="apple">Apple</RadioOption>
-        <RadioOption value="google">Google</RadioOption>
-        <RadioOption value="microsoft" disabled={true}>
-          Microsoft
-        </RadioOption>
-      </RadioGroup>
+      <Content>
+        <Content spacing="large">
+          <RadioGroup onChange={setCompany} value={company}>
+            <RadioOption value="apple">Apple</RadioOption>
+            <RadioOption value="google">Google</RadioOption>
+            <RadioOption value="microsoft" disabled={!checked}>
+              Microsoft
+            </RadioOption>
+            <RadioOption value="amazon" disabled={true}>
+              Amazon
+            </RadioOption>
+          </RadioGroup>
+        </Content>
+        <Checkbox
+          checked={checked}
+          label="Allow Microsoft"
+          onChange={setChecked}
+        />
+      </Content>
     );
   }}
 </Playground>

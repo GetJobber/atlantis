@@ -6,7 +6,7 @@
 .input {
   /* Hide checkbox on UI but not screen readers and still allow focus state */
   position: absolute;
-  left: -999em;
+  left: -999vw;
 }
 
 .label {
