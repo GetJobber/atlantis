@@ -78,7 +78,7 @@ function InternalRadioOption({
   children,
   onChange,
 }: InternalRadioOptionProps) {
-  const inputId = value.toString();
+  const inputId = `${value.toString()}_${uuid()}`;
   return (
     <div>
       <input
