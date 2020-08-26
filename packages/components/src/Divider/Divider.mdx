@@ -6,6 +6,8 @@ route: /components/divider
 
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
+import { Content } from "@jobber/components/Content";
+import { Text } from "@jobber/components/Text";
 import { Divider } from ".";
 
 # Divider
@@ -19,8 +21,17 @@ import { Divider } from "@jobber/components/Divider";
 ```
 
 <Playground>
-  <Divider />
+  <Content>
+    <Content>Some amazing content</Content>
+    <Divider />
+    <Content>Even more amazing content</Content>
+  </Content>
 </Playground>
+
+## Design & Usage Guidelines
+
+The `Divider` component comes with no spacing around it. This means that it
+should be used within a [`Content`](/components/content) component.
 
 ## Props
 

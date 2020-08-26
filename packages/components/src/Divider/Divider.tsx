@@ -5,6 +5,8 @@ import styles from "./Divider.css";
 interface DividerProps {
   /**
    * Width of the divider
+   *
+   * @default "base"
    */
   readonly size?: "base" | "large";
 }
