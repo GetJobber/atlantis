@@ -4,7 +4,7 @@ import styles from "./Divider.css";
 
 interface DividerProps {
   /**
-   * Width of the divider
+   * The weight of the divider.
    *
    * @default "base"
    */
