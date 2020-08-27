@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.42.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.41.0...@jobber/components@1.42.0) (2020-08-27)
+
+
+### Features
+
+* **components:** Divider component ([#345](https://github.com/GetJobber/atlantis/issues/345)) ([9807543](https://github.com/GetJobber/atlantis/commit/9807543398f4d10ad944a3a796f346cdc02305fe))
+
+
+
+
+
 # [1.41.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.40.3...@jobber/components@1.41.0) (2020-08-24)
 
 
