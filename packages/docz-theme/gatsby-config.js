@@ -1,6 +1,15 @@
 /* eslint-env node */
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require("path");
+
 module.exports = {
   plugins: [
+    {
+      resolve: "gatsby-plugin-root-import",
+      options: {
+        "@jobber/docz-theme": path.join(__dirname, "src/components"),
+      },
+    },
     {
       resolve: "gatsby-plugin-compile-es6-packages",
       options: {

@@ -7,6 +7,7 @@ module.exports = {
       alias: {
         map: [
           ["@jobber/components", "./packages/components/src"],
+          ["@jobber/docz-theme", "./packages/docz-theme/src/components"],
         ],
         extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
       },
@@ -25,6 +26,7 @@ module.exports = {
         allow: [
           "@jobber/components/*",
           "@jobber/design/*",
+          "@jobber/docz-theme/*",
           "gatsby-theme-docz/**",
           "lodash/*"
         ]

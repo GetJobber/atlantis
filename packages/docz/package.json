@@ -4,6 +4,10 @@
   "private": true,
   "description": "",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GetJobber/atlantis.git"
+  },
   "scripts": {
     "start": "rm -rf .docz && docz dev"
   },

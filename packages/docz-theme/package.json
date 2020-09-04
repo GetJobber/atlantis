@@ -15,6 +15,7 @@
     "@jobber/design": "^0.8.0",
     "docz": "^2.3.1",
     "gatsby-plugin-compile-es6-packages": "^2.1.0",
+    "gatsby-plugin-root-import": "^2.0.5",
     "gatsby-theme-docz": "^2.3.1",
     "lodash": "^4.17.20",
     "prop-types": "^15.7.2",
