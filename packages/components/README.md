@@ -1,3 +1,9 @@
+---
+name: Components
+menu: Packages
+route: /components
+---
+
 # 🔱 Jobber Atlantis Components
 
 Atlantis is a component library designed and maintained by

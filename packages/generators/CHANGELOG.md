@@ -1,5 +1,6 @@
 ---
 name: Generators
+route: generators
 menu: Changelog
 ---
 

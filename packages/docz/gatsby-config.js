@@ -15,6 +15,8 @@ module.exports = {
           "@emotion/core": "../node_modules/@emotion/core",
           "@mdx-js/react": "../node_modules/@mdx-js/react",
           docz: "../node_modules/docz",
+          react: "../node_modules/react",
+          "@jobber/components": "../../components/src",
         },
       },
     },
