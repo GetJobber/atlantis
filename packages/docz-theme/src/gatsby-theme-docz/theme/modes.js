@@ -8,6 +8,13 @@ export const jobber = merge(modes.light, {
     border: colors.greyLight,
     color: colors.blueDark,
   },
+  sidebar: {
+    bg: colors.greyBlueDark,
+    navGroup: colors.greyBlueLight,
+    navLinkActive: colors.white,
+    tocLink: colors.greyBlueLight,
+    tocLinkActive: colors.white,
+  },
 });
 
 export * from "gatsby-theme-docz/src/theme/modes";

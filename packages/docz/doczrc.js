@@ -37,12 +37,12 @@ export default {
    */
   files: [
     "../../docs/**/*.{md,mdx}",
-    // "./docs/**/*.{md,mdx}",
-    // "../components/src/**/*.{md,mdx}",
-    // "../hooks/src/**/*.{md,mdx}",
-    // "../design/src/**/*.{md,mdx}",
+    "./docs/**/*.{md,mdx}",
+    "../components/src/**/*.{md,mdx}",
+    "../hooks/src/**/*.{md,mdx}",
+    "../design/src/**/*.{md,mdx}",
     // "../docx/README.mdx", // <-- We should move this to @jobber/docz-theme
-    // ...packages.map(pckg => `../${pckg}/CHANGELOG.{md,mdx}`),
+    ...packages.map(pckg => `../${pckg}/CHANGELOG.{md,mdx}`),
     ...packages.map(pckg => `../${pckg}/README.{md,mdx}`),
   ],
   ignore: [
