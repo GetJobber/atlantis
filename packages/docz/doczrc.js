@@ -13,18 +13,28 @@ const packages = [
   "stylelint-config",
 ];
 
-// eslint-disable-next-line import/no-default-export
 export default {
   title: "🔱 Atlantis",
+  description:
+    "Atlantis is a design system for Jobber. The primary objective for Atlantis is to provide a system of reusable components to help developers to quickly build beautiful and consistent interfaces for our users.",
   typescript: true,
   port: 3333,
   menu: ["Atlantis", "Patterns", "Components", "Hooks", "Design"],
-  docgenConfig: {
-    searchPath: "../components/src",
+  themeConfig: {
+    /**
+     * Custom config that is available in @jobber/docz-theme,
+     * will be documented in docz
+     */
+    favicon: "public/assets/favicon.png",
   },
-  filterComponents: files => {
-    return files.filter(filepath => /\/[A-Z]\w*\.(ts|tsx)$/.test(filepath));
-  },
+  docgenConfig: { searchPath: "../components/src" },
+  filterComponents: files =>
+    files.filter(filepath => /\/[A-Z]\w*\.(ts|tsx)$/.test(filepath)),
+  /**
+   * Since our docz package is a child of `packages`, including all files
+   * in packages causes docz to freeze. We need to be more specific about
+   * which files we are including.
+   */
   files: [
     "../../docs/**/*.{md,mdx}",
     "./docs/**/*.{md,mdx}",
@@ -41,19 +51,6 @@ export default {
     "../generators/templates/**/*.{md,mdx}",
     ...privateComponentReadmes(),
   ],
-  // themeConfig: {
-  //   // Custom Config
-  //   favicon: "public/assets/favicon.png",
-  // },
-  // src: ["../../components/"],
-  // files: [
-  //   "./docs/**/*.{md,mdx}",
-  //
-  //   "../components/src/Banner/Banner.mdx",
-  // ],
-  // docgenConfig: {
-  //   searchPath: "../components/src/",
-  // },
 };
 
 function privateComponentReadmes() {
@@ -62,8 +59,10 @@ function privateComponentReadmes() {
     return [];
   }
 
-  // Ensure we're on atlantis root. Gatsby can also execute this file
-  // from within the build directory.
+  /**
+   * Ensure we're on atlantis root. Gatsby can also execute this file
+   * from within the build directory.
+   */
   const atlantis = __dirname.replace(/\/\.docz$/, "");
   const components = path.join(atlantis, `../../packages/components/src`);
 
