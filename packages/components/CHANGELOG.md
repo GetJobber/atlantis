@@ -8,6 +8,202 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.42.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.41.0...@jobber/components@1.42.0) (2020-08-27)
+
+
+### Features
+
+* **components:** Divider component ([#345](https://github.com/GetJobber/atlantis/issues/345)) ([9807543](https://github.com/GetJobber/atlantis/commit/9807543398f4d10ad944a3a796f346cdc02305fe))
+
+
+
+
+
+# [1.41.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.40.3...@jobber/components@1.41.0) (2020-08-24)
+
+
+### Features
+
+* **components:** Disable RadioOption component ([#344](https://github.com/GetJobber/atlantis/issues/344)) ([b6b38d8](https://github.com/GetJobber/atlantis/commit/b6b38d8d023c28635d1423af1d60b406491012be))
+
+
+
+
+
+## [1.40.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.40.2...@jobber/components@1.40.3) (2020-08-24)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [1.40.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.40.1...@jobber/components@1.40.2) (2020-08-20)
+
+
+### Bug Fixes
+
+* **components:** Toast show the right icon ([#341](https://github.com/GetJobber/atlantis/issues/341)) ([48889d9](https://github.com/GetJobber/atlantis/commit/48889d9c448990739e681c0a483347078625dd7b))
+
+
+
+
+
+## [1.40.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.40.0...@jobber/components@1.40.1) (2020-08-19)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [1.40.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.39.0...@jobber/components@1.40.0) (2020-08-19)
+
+
+### Features
+
+* **components:** InputFile ([#330](https://github.com/GetJobber/atlantis/issues/330)) ([19e3e30](https://github.com/GetJobber/atlantis/commit/19e3e30de00990584313ddfa70174b3964787544))
+
+
+
+
+
+# [1.39.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.38.3...@jobber/components@1.39.0) (2020-08-19)
+
+
+### Features
+
+* **components:** new FormatFile component ([#332](https://github.com/GetJobber/atlantis/issues/332)) ([0efbd30](https://github.com/GetJobber/atlantis/commit/0efbd305d8a1acbdf62e177597894557763aed7c))
+
+
+
+
+
+## [1.38.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.38.2...@jobber/components@1.38.3) (2020-08-19)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [1.38.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.38.1...@jobber/components@1.38.2) (2020-08-18)
+
+
+### Bug Fixes
+
+* **components:** Style fixes for Toast ([#333](https://github.com/GetJobber/atlantis/issues/333)) ([855a090](https://github.com/GetJobber/atlantis/commit/855a0909ba6cc039347f563a0394a225e60adf84))
+
+
+
+
+
+## [1.38.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.38.0...@jobber/components@1.38.1) (2020-08-18)
+
+
+### Bug Fixes
+
+* **components:** Make Toast variation optional ([#331](https://github.com/GetJobber/atlantis/issues/331)) ([5538746](https://github.com/GetJobber/atlantis/commit/55387464de4da6336eb3b9bd65cb71b90fd514ee))
+
+
+
+
+
+# [1.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.37.2...@jobber/components@1.38.0) (2020-08-18)
+
+
+### Features
+
+* **components:** modify autocomplete to show section headings, descriptions and details ([#324](https://github.com/GetJobber/atlantis/issues/324)) ([f64d1ab](https://github.com/GetJobber/atlantis/commit/f64d1ab7af2097801c490955af9f2ae9d265a652))
+
+
+
+
+
+## [1.37.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.37.1...@jobber/components@1.37.2) (2020-08-18)
+
+
+### Bug Fixes
+
+* **components:** update button padding on icon button ([#274](https://github.com/GetJobber/atlantis/issues/274)) ([1975cab](https://github.com/GetJobber/atlantis/commit/1975cabc38e1ecc72362298851d416e2f2ed9750))
+
+
+
+
+
+## [1.37.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.37.0...@jobber/components@1.37.1) (2020-08-12)
+
+
+### Bug Fixes
+
+* **components:** make autocomplete work in input groups ([#328](https://github.com/GetJobber/atlantis/issues/328)) ([f5eca48](https://github.com/GetJobber/atlantis/commit/f5eca483f07dfc1971dcd98917546e10b2d3cb3f))
+
+
+
+
+
+# [1.37.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.36.1...@jobber/components@1.37.0) (2020-08-11)
+
+
+### Features
+
+* **components:** Toast Component ([#326](https://github.com/GetJobber/atlantis/issues/326)) ([4e04a4d](https://github.com/GetJobber/atlantis/commit/4e04a4daa90e6773def51d66387562001806fe9c))
+
+
+
+
+
+## [1.36.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.36.0...@jobber/components@1.36.1) (2020-08-07)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [1.36.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.35.0...@jobber/components@1.36.0) (2020-07-27)
+
+
+### Bug Fixes
+
+* **components:** set min height to auto for textarea ([#323](https://github.com/GetJobber/atlantis/issues/323)) ([194e75a](https://github.com/GetJobber/atlantis/commit/194e75aa2808b9d76ffa0ba0e37e5ee5440c59ee))
+
+
+### Features
+
+* **components:** Time and Date formatters now accept `Date` Objects and ISO Strings ([#322](https://github.com/GetJobber/atlantis/issues/322)) ([0ddd51f](https://github.com/GetJobber/atlantis/commit/0ddd51f2c99b5c0b80b9fa0911d847e96531b733))
+
+
+
+
+
+# [1.35.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.34.3...@jobber/components@1.35.0) (2020-07-22)
+
+
+### Features
+
+* **components:** Adds an onEnter handler for Form Fields ([#321](https://github.com/GetJobber/atlantis/issues/321)) ([730dbe4](https://github.com/GetJobber/atlantis/commit/730dbe45157116a8e9dbd549e76c8c9852fb51eb))
+
+
+
+
+
+## [1.34.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.34.2...@jobber/components@1.34.3) (2020-07-21)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [1.34.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.34.1...@jobber/components@1.34.2) (2020-07-20)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 ## [1.34.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.34.0...@jobber/components@1.34.1) (2020-07-15)
 
 **Note:** Version bump only for package @jobber/components

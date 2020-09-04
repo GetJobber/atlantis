@@ -9,30 +9,31 @@ it("renders a regular input for text and numbers", () => {
     .create(<InputText placeholder="Favourite colour" />)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-        <div
-          className="wrapper"
-          style={
-            Object {
-              "--formField-maxLength": undefined,
-            }
-          }
-        >
-          <label
-            className="label"
-            htmlFor="123e4567-e89b-12d3-a456-426655440001"
-          >
-            Favourite colour
-          </label>
-          <input
-            className="formField"
-            id="123e4567-e89b-12d3-a456-426655440001"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            type="text"
-          />
-        </div>
-    `);
+    <div
+      className="wrapper"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
+    >
+      <label
+        className="label"
+        htmlFor="123e4567-e89b-12d3-a456-426655440001"
+      >
+        Favourite colour
+      </label>
+      <input
+        className="formField"
+        id="123e4567-e89b-12d3-a456-426655440001"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        type="text"
+      />
+    </div>
+  `);
 });
 
 it("renders a textarea", () => {
@@ -62,6 +63,8 @@ it("renders a textarea", () => {
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
+        onKeyDown={[Function]}
+        rows={3}
       />
     </div>
   `);
@@ -98,6 +101,7 @@ it("renders a textarea with 4 rows", () => {
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
+        onKeyDown={[Function]}
         rows={4}
       />
     </div>

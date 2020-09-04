@@ -13,6 +13,11 @@ export interface FormFieldProps {
   readonly align?: "center" | "right";
 
   /**
+   * Determines if browser form autocomplete is enabled.
+   */
+  readonly autocomplete?: boolean;
+
+  /**
    * If you need to pass in a children. For example, `<options>` inside
    * `<select>`.
    */
@@ -124,6 +129,13 @@ export interface FormFieldProps {
   onChange?(newValue: string | number): void;
 
   /**
+   * A callback to handle "Enter" keypress. This will only run
+   * if Enter is the only key. Will not run if Shift or Control
+   * are being held.
+   */
+  onEnter?(event: React.KeyboardEvent): void;
+
+  /**
    * Focus callback.
    */
   onFocus?(): void;
@@ -152,9 +164,14 @@ export interface FormFieldProps {
 }
 
 export const FormField = React.forwardRef(
+  /**
+   * Max statements is disabled for this component due the event handlers.
+   */
+  // eslint-disable-next-line max-statements
   (
     {
       align,
+      autocomplete = true,
       children,
       defaultValue,
       disabled,
@@ -168,6 +185,7 @@ export const FormField = React.forwardRef(
       onFocus,
       onBlur,
       onChange,
+      onEnter,
       onValidate,
       onValidation,
       placeholder,
@@ -189,6 +207,8 @@ export const FormField = React.forwardRef(
       handleValidation();
       setHasMiniLabel(shouldShowMiniLabel(defaultValue, value));
     }, [value]);
+
+    const autocompleteValue = autocomplete ? undefined : "autocomplete-off";
 
     const wrapperClassNames = classnames(
       styles.wrapper,
@@ -257,6 +277,7 @@ export const FormField = React.forwardRef(
             <textarea
               rows={rows}
               onFocus={handleFocus}
+              onKeyDown={event => handleKeyDown(event)}
               onBlur={handleBlur}
               ref={ref as Ref<HTMLTextAreaElement>}
               {...fieldProps}
@@ -265,11 +286,13 @@ export const FormField = React.forwardRef(
         default:
           return (
             <input
+              autoComplete={autocompleteValue}
               type={type}
               maxLength={maxLength}
               max={max}
               min={min}
               onFocus={handleFocus}
+              onKeyDown={event => handleKeyDown(event)}
               onBlur={handleBlur}
               ref={ref as Ref<HTMLInputElement>}
               {...fieldProps}
@@ -307,6 +330,19 @@ export const FormField = React.forwardRef(
 
     function handleBlur() {
       onBlur && onBlur();
+    }
+
+    function handleKeyDown(
+      event:
+        | React.KeyboardEvent<HTMLInputElement>
+        | React.KeyboardEvent<HTMLTextAreaElement>,
+    ) {
+      if (!onEnter) return;
+      if (event.key !== "Enter") return;
+      if (event.shiftKey || event.ctrlKey) return;
+
+      event.preventDefault();
+      onEnter && onEnter(event);
     }
 
     function handleValidation() {

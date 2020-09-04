@@ -1,5 +1,60 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`it should display headers when headers are passed in 1`] = `
+<div
+  className="autocomplete"
+>
+  <div
+    className="wrapper"
+    style={
+      Object {
+        "--formField-maxLength": undefined,
+      }
+    }
+  >
+    <label
+      className="label"
+      htmlFor="123e4567-e89b-12d3-a456-426655440012"
+    >
+      placeholder_name
+    </label>
+    <input
+      autoComplete="autocomplete-off"
+      className="formField"
+      id="123e4567-e89b-12d3-a456-426655440012"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="options"
+  >
+    <div
+      className="heading"
+    >
+      <h5
+        className="base bold base blue"
+      >
+        first_heading
+      </h5>
+    </div>
+    <div
+      className="heading"
+    >
+      <h5
+        className="base bold base blue"
+      >
+        second_heading
+      </h5>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`renders an Autocomplete 1`] = `
 <div
   className="autocomplete"
@@ -19,11 +74,13 @@ exports[`renders an Autocomplete 1`] = `
       placeholder_name
     </label>
     <input
+      autoComplete="autocomplete-off"
       className="formField"
       id="123e4567-e89b-12d3-a456-426655440001"
       onBlur={[Function]}
       onChange={[Function]}
       onFocus={[Function]}
+      onKeyDown={[Function]}
       type="text"
       value=""
     />
@@ -41,11 +98,15 @@ exports[`renders an Autocomplete 1`] = `
       <div
         className="text"
       >
-        <p
-          className="base regular base greyBlueDark"
+        <div
+          className="label"
         >
-          option_0
-        </p>
+          <p
+            className="base regular base greyBlueDark"
+          >
+            option_0
+          </p>
+        </div>
       </div>
     </button>
     <button
@@ -58,11 +119,15 @@ exports[`renders an Autocomplete 1`] = `
       <div
         className="text"
       >
-        <p
-          className="base regular base greyBlueDark"
+        <div
+          className="label"
         >
-          option_1
-        </p>
+          <p
+            className="base regular base greyBlueDark"
+          >
+            option_1
+          </p>
+        </div>
       </div>
     </button>
   </div>
