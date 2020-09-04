@@ -1,18 +1,40 @@
 ---
-name: Jobber Docz Theme
+name: Docs Helpers
 route: /jobber-docz-theme
 ---
 
-# @Jobber/Docz-Theme
+# Docs Helpers
 
 `@jobber/docz-theme` is a custom theme for [docz](https://docz.site). It comes
-width a few extra options that are available in your `doczrc.js`.
+with a few helper configuration options and components to help modify your
+theme.
 
 ## Favicon
 
-Adds a favicon to your docz theme
+Adds a favicon to your docz theme.
 
 ```ts
 // doczrc.js
-favicon: 'some/path/to/your/favicon'.
+module.exports = {
+  ...,
+  themeConfig: {
+    favicon: 'path/to/your/favicon',
+  }
+}
+```
+
+## Sidebar Width
+
+Allows you to change the width of the sidebar.
+
+Adds a favicon to your docz theme.
+
+```ts
+// doczrc.js
+module.exports = {
+  ...,
+  themeConfig: {
+    sidebarWidth: 500,
+  }
+}
 ```
