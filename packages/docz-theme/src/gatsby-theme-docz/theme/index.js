@@ -22,7 +22,7 @@ export default merge(themeStyles, {
     "var(--typography--fontSize-extravagant)",
   ],
   space: [
-    "var(--space-minuscule)",
+    0,
     "var(--space-smallest)",
     "var(--space-smaller)",
     "var(--space-small)",
