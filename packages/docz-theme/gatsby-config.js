@@ -19,6 +19,7 @@ module.exports = {
           "gatsby-theme-docz",
           "@jobber/components",
           "@jobber/design",
+          "@jobber/docz-theme",
         ],
       },
     },
