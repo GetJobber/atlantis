@@ -72,7 +72,7 @@ export function Menu({
               <div className={styles.label}>
                 <Text>{option.label}</Text>
                 {option.description !== undefined && (
-                  <Text>{option.description}</Text>
+                  <Text variation="subdued">{option.description}</Text>
                 )}
               </div>
               {option.details !== undefined && (
