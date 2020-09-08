@@ -12,8 +12,7 @@ import { Banner } from ".";
 
 <ComponentStatus stage="ready" responsive="yes" accessible="yes" />
 
-Banners provide feedback and information about user actions and app operations.
-They're positioned at the top of the screen or near the content they reference.
+Banners provide information about important changes, persistent conditions, and system errors. They're positioned at the top of the screen or near the content they reference, and are persistent until dismissed or the issue is resolved.
 
 ```ts
 import { Banner } from "@jobber/components/Banner";
@@ -81,3 +80,8 @@ within a `Banner`. If you require an action, use the `primaryActions` prop. The
     That's my secret Captain
   </Banner>
 </Playground>
+
+
+## Related components
+
+* To provide low priority, temporary feedback on the outcome of a user action, use [Toast](toast) instead.
