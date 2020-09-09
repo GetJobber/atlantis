@@ -1,12 +1,13 @@
 import React, { ChangeEvent, ReactNode, Ref, useEffect, useState } from "react";
 import classnames from "classnames";
 import uuid from "uuid";
-import { useForm, useFormContext } from "react-hook-form";
+import { XOR } from "ts-xor";
+import { ValidationRules, useForm, useFormContext } from "react-hook-form";
 import styles from "./FormField.css";
 import { Icon } from "../Icon";
 import { InputValidation } from "../InputValidation";
 
-export interface FormFieldProps {
+interface BaseFormFieldProps {
   /**
    * Determines the alignment of the text inside the input.
    */
@@ -103,15 +104,6 @@ export interface FormFieldProps {
     | "select";
 
   /**
-   * **EXPERIMENTAL** This feature is still under development.
-   *
-   * Show a success, error, warn, and info message above the field. This also
-   * highlights the the field red if and error message shows up.
-   */
-  // TODO: Make this type from react-hook-forms
-  readonly validations?: any;
-
-  /**
    * Set the component to the given value.
    */
   readonly value?: string | number;
@@ -138,15 +130,10 @@ export interface FormFieldProps {
    * Blur callback.
    */
   onBlur?(): void;
+}
 
-  /**
-   * **DEPRECATED** Use `onValidation` prop instead.
-   *
-   * Callback to get the the status and message when validating a field
-   * @param status
-   * @param message
-   */
-  onValidate?(status: "pass" | "fail", message: string): void;
+interface FormFieldValidationProps extends BaseFormFieldProps {
+  readonly name: string;
 
   /**
    * **EXPERIMENTAL** This feature is still under development.
@@ -154,12 +141,19 @@ export interface FormFieldProps {
    * Callback to get the the status and message when validating a field
    * @param messages
    */
-  onValidation?(messages: ValidationProps[]): void;
+  // onValidation?(messages: ValidationProps[]): void;
 
-  // TODO: Move this to the validation prop
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  valid?: any;
+  /**
+   * **EXPERIMENTAL** This feature is still under development.
+   *
+   * Show a success, error, warn, and info message above the field. This also
+   * highlights the the field red if and error message shows up.
+   */
+  // TODO: Make this type from react-hook-forms
+  readonly validations: ValidationRules;
 }
+
+export type FormFieldProps = XOR<BaseFormFieldProps, FormFieldValidationProps>;
 
 export const FormField = React.forwardRef(
   /**
@@ -183,8 +177,7 @@ export const FormField = React.forwardRef(
       onBlur,
       onChange,
       onEnter,
-      onValidate,
-      onValidation,
+      // onValidation,
       placeholder,
       readonly,
       rows,
@@ -192,8 +185,6 @@ export const FormField = React.forwardRef(
       type = "text",
       value,
       validations,
-      // TODO: Move valid to validation prop
-      valid,
     }: FormFieldProps,
     ref: Ref<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) => {
@@ -209,6 +200,7 @@ export const FormField = React.forwardRef(
         ? useFormContext()
         : useForm({ mode: "onBlur" });
 
+    const error = name && errors[name] && errors[name].message;
     console.log("errors", errors);
 
     const [hasMiniLabel, setHasMiniLabel] = useState(
@@ -233,7 +225,7 @@ export const FormField = React.forwardRef(
       {
         [styles.miniLabel]:
           (hasMiniLabel || type === "time" || type === "select") && placeholder,
-        [styles.invalid]: invalid || hasErrorMessages(validations),
+        [styles.invalid]: invalid || error,
       },
     );
 
@@ -243,8 +235,6 @@ export const FormField = React.forwardRef(
       styles.label,
       type === "textarea" && styles.textareaLabel,
     );
-
-    const error = errors[name] && errors[name].message;
 
     return (
       <>
@@ -307,12 +297,11 @@ export const FormField = React.forwardRef(
                 onBlur={handleBlur}
                 ref={e => {
                   if (ref) {
-                    // TODO: Type This
                     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
                     // @ts-ignore
                     ref.current = e;
                   }
-                  register(e, { ...valid });
+                  register(e, { ...validations });
                 }}
                 {...fieldProps}
               />
@@ -366,12 +355,11 @@ export const FormField = React.forwardRef(
     }
 
     function handleValidation() {
-      const status = error ? "fail" : "pass";
-      const message = error || "";
-      onValidate && onValidate(status, message);
-
-      const validationMessages = validations ? validations : [];
-      onValidation && onValidation(validationMessages);
+      // const status = error ? "fail" : "pass";
+      // const message = error || "";
+      // onValidate && onValidate(status, message);
+      // const validationMessages = validations ? validations : [];
+      // onValidation && onValidation(validationMessages);
     }
   },
 );
@@ -386,16 +374,4 @@ function shouldShowMiniLabel(
   } else {
     return activeValue != undefined;
   }
-}
-
-function hasErrorMessages(validations?: ValidationProps[]) {
-  if (validations) {
-    return validations.some(validation => {
-      return (
-        (validation.shouldShow || validation.shouldShow === undefined) &&
-        validation.status === "error"
-      );
-    });
-  }
-  return false;
 }

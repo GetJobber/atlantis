@@ -88,21 +88,21 @@ test("it should call the handler with a number value", () => {
   expect(changeHandler).toHaveBeenCalledWith(newValue);
 });
 
-test("it should call the validation with a success status", () => {
-  const validationHandler = jest.fn();
+// test("it should call the validation with a success status", () => {
+//   const validationHandler = jest.fn();
 
-  render(
-    <InputNumber
-      value={100}
-      min={99}
-      max={100}
-      onValidate={validationHandler}
-      placeholder="Count to 100"
-    />,
-  );
+//   render(
+//     <InputNumber
+//       value={100}
+//       min={99}
+//       max={100}
+//       onValidate={validationHandler}
+//       placeholder="Count to 100"
+//     />,
+//   );
 
-  expect(validationHandler).toHaveBeenCalledWith("pass", "");
-});
+//   expect(validationHandler).toHaveBeenCalledWith("pass", "");
+// });
 
 // test("it should call the validation with a range error", () => {
 //   const validationHandler = jest.fn();
