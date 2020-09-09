@@ -4,8 +4,7 @@ import uuid from "uuid";
 import { useForm, useFormContext } from "react-hook-form";
 import styles from "./FormField.css";
 import { Icon } from "../Icon";
-import { Text } from "../Text";
-import { InputValidation, ValidationProps } from "../InputValidation";
+import { InputValidation } from "../InputValidation";
 
 export interface FormFieldProps {
   /**
@@ -35,13 +34,6 @@ export interface FormFieldProps {
    * Disable the input
    */
   readonly disabled?: boolean;
-
-  /**
-   * **DEPRECATED** Use `validations` prop instead.
-   *
-   * Show an error message and highlight the the field red.
-   */
-  readonly errorMessage?: string;
 
   /**
    * Adjusts the form field to go inline with a content. This also silences the
@@ -116,7 +108,8 @@ export interface FormFieldProps {
    * Show a success, error, warn, and info message above the field. This also
    * highlights the the field red if and error message shows up.
    */
-  readonly validations?: ValidationProps[];
+  // TODO: Make this type from react-hook-forms
+  readonly validations?: any;
 
   /**
    * Set the component to the given value.
@@ -180,7 +173,6 @@ export const FormField = React.forwardRef(
       children,
       defaultValue,
       disabled,
-      errorMessage,
       inline,
       invalid,
       max,
@@ -205,22 +197,19 @@ export const FormField = React.forwardRef(
     }: FormFieldProps,
     ref: Ref<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) => {
-    const { register, formState } =
+    const {
+      register,
+      /**
+       * We currently only use `errors` from formState, but there are lots of
+       * other values that come with it. https://react-hook-form.com/api#formState
+       */
+      formState: { errors },
+    } =
       useFormContext() != undefined
         ? useFormContext()
         : useForm({ mode: "onBlur" });
 
-    // TODO: Clean this up if we don't need it. But document it so we know.
-    const {
-      isDirty,
-      dirtyFields,
-      isSubmitted,
-      submitCount,
-      touched,
-      isSubmitting,
-      isValid,
-      errors,
-    } = formState;
+    console.log("errors", errors);
 
     const [hasMiniLabel, setHasMiniLabel] = useState(
       shouldShowMiniLabel(defaultValue, value),
@@ -244,8 +233,7 @@ export const FormField = React.forwardRef(
       {
         [styles.miniLabel]:
           (hasMiniLabel || type === "time" || type === "select") && placeholder,
-        [styles.invalid]:
-          invalid || errorMessage || hasErrorMessages(validations),
+        [styles.invalid]: invalid || hasErrorMessages(validations),
       },
     );
 
@@ -256,13 +244,11 @@ export const FormField = React.forwardRef(
       type === "textarea" && styles.textareaLabel,
     );
 
+    const error = errors[name] && errors[name].message;
+
     return (
       <>
-        {errorMessage && !inline && (
-          <Text variation="error">{errorMessage}</Text>
-        )}
-
-        {validations && !inline && <InputValidation messages={validations} />}
+        {error && !inline && <InputValidation message={error} />}
 
         <Wrapper
           className={wrapperClassNames}
@@ -308,11 +294,6 @@ export const FormField = React.forwardRef(
             />
           );
         default:
-          // TODO: Type this
-          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-          // @ts-ignore
-          // eslint-disable-next-line no-case-declarations
-          const error = errors[name] && errors[name].message;
           return (
             <>
               <input
@@ -335,18 +316,6 @@ export const FormField = React.forwardRef(
                 }}
                 {...fieldProps}
               />
-              {/* TODO: Move this to proper place */}
-              {error}
-              <pre style={{ fontSize: "13px" }}>
-                isDirty: {isDirty ? "yes" : "no"},<br />
-                dirtyFields: {JSON.stringify(dirtyFields, undefined, 2)},<br />
-                isSubmitted: {isSubmitted ? "yes" : "no"},<br />
-                submitCount: {submitCount ? "yes" : "no"},<br />
-                touched: {touched ? "yes" : "no"},<br />
-                isSubmitting: {isSubmitting ? "yes" : "no"},<br />
-                isValid: {isValid ? "yes" : "no"},<br />
-                {/* errors: {JSON.stringify(errors, undefined, 2)} */}
-              </pre>
             </>
           );
       }
@@ -397,8 +366,8 @@ export const FormField = React.forwardRef(
     }
 
     function handleValidation() {
-      const status = errorMessage ? "fail" : "pass";
-      const message = errorMessage || "";
+      const status = error ? "fail" : "pass";
+      const message = error || "";
       onValidate && onValidate(status, message);
 
       const validationMessages = validations ? validations : [];

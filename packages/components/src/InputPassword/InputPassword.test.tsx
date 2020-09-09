@@ -32,42 +32,6 @@ it("renders an input type number", () => {
         type="password"
         value="123"
       />
-      <pre
-        style={
-          Object {
-            "fontSize": "13px",
-          }
-        }
-      >
-        isDirty: 
-        no
-        ,
-        <br />
-        dirtyFields: 
-        {}
-        ,
-        <br />
-        isSubmitted: 
-        no
-        ,
-        <br />
-        submitCount: 
-        no
-        ,
-        <br />
-        touched: 
-        yes
-        ,
-        <br />
-        isSubmitting: 
-        no
-        ,
-        <br />
-        isValid: 
-        yes
-        ,
-        <br />
-      </pre>
     </div>
   `);
 });
@@ -77,74 +41,31 @@ it("renders an error", () => {
     .create(<InputPassword value="p" errorMessage="Not long enough" />)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-    Array [
-      <p
-        className="base regular base red"
-      >
-        Not long enough
-      </p>,
-      <div
-        className="wrapper invalid"
-        style={
-          Object {
-            "--formField-maxLength": undefined,
-          }
+    <div
+      className="wrapper"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
         }
+      }
+    >
+      <label
+        className="label"
+        htmlFor="123e4567-e89b-12d3-a456-426655440002"
       >
-        <label
-          className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440002"
-        >
-           
-        </label>
-        <input
-          className="formField"
-          id="123e4567-e89b-12d3-a456-426655440002"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          type="password"
-          value="p"
-        />
-        <pre
-          style={
-            Object {
-              "fontSize": "13px",
-            }
-          }
-        >
-          isDirty: 
-          no
-          ,
-          <br />
-          dirtyFields: 
-          {}
-          ,
-          <br />
-          isSubmitted: 
-          no
-          ,
-          <br />
-          submitCount: 
-          no
-          ,
-          <br />
-          touched: 
-          yes
-          ,
-          <br />
-          isSubmitting: 
-          no
-          ,
-          <br />
-          isValid: 
-          yes
-          ,
-          <br />
-        </pre>
-      </div>,
-    ]
+         
+      </label>
+      <input
+        className="formField"
+        id="123e4567-e89b-12d3-a456-426655440002"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        type="password"
+        value="p"
+      />
+    </div>
   `);
 });
 

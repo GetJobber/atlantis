@@ -28,9 +28,17 @@ import { InputText } from "@jobber/components/InputText";
     placeholder="Ship Name"
     name="foo"
     valid={{
+      pattern: {
+        value: /Jeff+/g,
+        message: "Ship name must be Jeff"
+      },
       minLength: {
         value: 5,
-        message: "Too Short"
+        message: "Ship name isn't long enough"
+      },
+      required: {
+        value: true,
+        message: "Ship must have a name"
       }
     }}
   />
