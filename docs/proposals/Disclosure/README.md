@@ -23,18 +23,13 @@ someone to start building it}_
 
 ## Interface
 
-<Disclosure title="Advanced Options"
-
->   <Content>
-
+<Disclosure title="Advanced Options">  
+  <Content>
     Example content here
-
   </Content>
 </Disclosure>
 
 ## Props Table
-
-_{Provide a table in the following format of the component's public API}_
 
 | name        | type    | default   | description                                                                              |
 | ----------- | ------- | --------- | ---------------------------------------------------------------------------------------- |
