@@ -40,7 +40,7 @@ as a guide for writing proposals.
 2. Copy the proposal template and place it
    under `docs/proposals/<component_name>/README.md`
 3. Fill out the proposal template
-4. Submit a PR for the propsoal
+4. Submit a PR for the proposal
 5. Gather feedback and iterate on proposal
 6. Once approved a maintainer will land the proposal in `master` and they'll
    create an `Issue` ticket to implement the proposal.
