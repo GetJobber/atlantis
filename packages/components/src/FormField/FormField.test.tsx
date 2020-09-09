@@ -30,6 +30,42 @@ it("renders correctly with no props", () => {
         onKeyDown={[Function]}
         type="text"
       />
+      <pre
+        style={
+          Object {
+            "fontSize": "13px",
+          }
+        }
+      >
+        isDirty: 
+        no
+        ,
+        <br />
+        dirtyFields: 
+        {}
+        ,
+        <br />
+        isSubmitted: 
+        no
+        ,
+        <br />
+        submitCount: 
+        no
+        ,
+        <br />
+        touched: 
+        yes
+        ,
+        <br />
+        isSubmitting: 
+        no
+        ,
+        <br />
+        isValid: 
+        yes
+        ,
+        <br />
+      </pre>
     </div>
   `);
 });
@@ -62,6 +98,42 @@ it("renders correctly with a placeholder", () => {
         onKeyDown={[Function]}
         type="text"
       />
+      <pre
+        style={
+          Object {
+            "fontSize": "13px",
+          }
+        }
+      >
+        isDirty: 
+        no
+        ,
+        <br />
+        dirtyFields: 
+        {}
+        ,
+        <br />
+        isSubmitted: 
+        no
+        ,
+        <br />
+        submitCount: 
+        no
+        ,
+        <br />
+        touched: 
+        yes
+        ,
+        <br />
+        isSubmitting: 
+        no
+        ,
+        <br />
+        isValid: 
+        yes
+        ,
+        <br />
+      </pre>
     </div>
   `);
 });
@@ -92,6 +164,42 @@ it("renders correctly as small", () => {
         onKeyDown={[Function]}
         type="text"
       />
+      <pre
+        style={
+          Object {
+            "fontSize": "13px",
+          }
+        }
+      >
+        isDirty: 
+        no
+        ,
+        <br />
+        dirtyFields: 
+        {}
+        ,
+        <br />
+        isSubmitted: 
+        no
+        ,
+        <br />
+        submitCount: 
+        no
+        ,
+        <br />
+        touched: 
+        yes
+        ,
+        <br />
+        isSubmitting: 
+        no
+        ,
+        <br />
+        isValid: 
+        yes
+        ,
+        <br />
+      </pre>
     </div>
   `);
 });
@@ -123,6 +231,42 @@ it("renders correctly in a readonly state", () => {
         readOnly={true}
         type="text"
       />
+      <pre
+        style={
+          Object {
+            "fontSize": "13px",
+          }
+        }
+      >
+        isDirty: 
+        no
+        ,
+        <br />
+        dirtyFields: 
+        {}
+        ,
+        <br />
+        isSubmitted: 
+        no
+        ,
+        <br />
+        submitCount: 
+        no
+        ,
+        <br />
+        touched: 
+        yes
+        ,
+        <br />
+        isSubmitting: 
+        no
+        ,
+        <br />
+        isValid: 
+        yes
+        ,
+        <br />
+      </pre>
     </div>
   `);
 });
@@ -154,6 +298,42 @@ it("renders correctly in a disabled state", () => {
         onKeyDown={[Function]}
         type="text"
       />
+      <pre
+        style={
+          Object {
+            "fontSize": "13px",
+          }
+        }
+      >
+        isDirty: 
+        no
+        ,
+        <br />
+        dirtyFields: 
+        {}
+        ,
+        <br />
+        isSubmitted: 
+        no
+        ,
+        <br />
+        submitCount: 
+        no
+        ,
+        <br />
+        touched: 
+        yes
+        ,
+        <br />
+        isSubmitting: 
+        no
+        ,
+        <br />
+        isValid: 
+        yes
+        ,
+        <br />
+      </pre>
     </div>
   `);
 });
@@ -195,6 +375,42 @@ it("renders a field with error", () => {
           type="text"
           value="wrong!"
         />
+        <pre
+          style={
+            Object {
+              "fontSize": "13px",
+            }
+          }
+        >
+          isDirty: 
+          no
+          ,
+          <br />
+          dirtyFields: 
+          {}
+          ,
+          <br />
+          isSubmitted: 
+          no
+          ,
+          <br />
+          submitCount: 
+          no
+          ,
+          <br />
+          touched: 
+          yes
+          ,
+          <br />
+          isSubmitting: 
+          no
+          ,
+          <br />
+          isValid: 
+          yes
+          ,
+          <br />
+        </pre>
       </div>,
     ]
   `);

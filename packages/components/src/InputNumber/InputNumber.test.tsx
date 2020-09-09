@@ -34,6 +34,42 @@ it("renders an input type number", () => {
           type="number"
           value="123"
         />
+        <pre
+          style={
+            Object {
+              "fontSize": "13px",
+            }
+          }
+        >
+          isDirty: 
+          no
+          ,
+          <br />
+          dirtyFields: 
+          {}
+          ,
+          <br />
+          isSubmitted: 
+          no
+          ,
+          <br />
+          submitCount: 
+          no
+          ,
+          <br />
+          touched: 
+          yes
+          ,
+          <br />
+          isSubmitting: 
+          no
+          ,
+          <br />
+          isValid: 
+          yes
+          ,
+          <br />
+        </pre>
       </div>,
     ]
   `);
@@ -74,6 +110,42 @@ it("renders an error", () => {
           type="number"
           value="1.1"
         />
+        <pre
+          style={
+            Object {
+              "fontSize": "13px",
+            }
+          }
+        >
+          isDirty: 
+          no
+          ,
+          <br />
+          dirtyFields: 
+          {}
+          ,
+          <br />
+          isSubmitted: 
+          no
+          ,
+          <br />
+          submitCount: 
+          no
+          ,
+          <br />
+          touched: 
+          yes
+          ,
+          <br />
+          isSubmitting: 
+          no
+          ,
+          <br />
+          isValid: 
+          yes
+          ,
+          <br />
+        </pre>
       </div>,
     ]
   `);

@@ -1,6 +1,7 @@
 import React, { ChangeEvent, ReactNode, Ref, useEffect, useState } from "react";
 import classnames from "classnames";
 import uuid from "uuid";
+import { useForm, useFormContext } from "react-hook-form";
 import styles from "./FormField.css";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
@@ -161,6 +162,9 @@ export interface FormFieldProps {
    * @param messages
    */
   onValidation?(messages: ValidationProps[]): void;
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  valid?: any;
 }
 
 export const FormField = React.forwardRef(
@@ -195,9 +199,28 @@ export const FormField = React.forwardRef(
       type = "text",
       value,
       validations,
+      valid,
     }: FormFieldProps,
     ref: Ref<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) => {
+    const { register, formState: formState } =
+      useFormContext() != undefined
+        ? useFormContext()
+        : useForm({ mode: "onBlur" });
+
+    const {
+      isDirty,
+      dirtyFields,
+      isSubmitted,
+      submitCount,
+      touched,
+      isSubmitting,
+      isValid,
+      errors,
+    } = formState;
+
+    console.log(errors);
+
     const [hasMiniLabel, setHasMiniLabel] = useState(
       shouldShowMiniLabel(defaultValue, value),
     );
@@ -284,19 +307,43 @@ export const FormField = React.forwardRef(
             />
           );
         default:
+          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+          // @ts-ignore
+          // eslint-disable-next-line no-case-declarations
+          const error = errors[name] && errors[name].message;
           return (
-            <input
-              autoComplete={autocompleteValue}
-              type={type}
-              maxLength={maxLength}
-              max={max}
-              min={min}
-              onFocus={handleFocus}
-              onKeyDown={event => handleKeyDown(event)}
-              onBlur={handleBlur}
-              ref={ref as Ref<HTMLInputElement>}
-              {...fieldProps}
-            />
+            <>
+              <input
+                autoComplete={autocompleteValue}
+                type={type}
+                maxLength={maxLength}
+                max={max}
+                min={min}
+                onFocus={handleFocus}
+                onKeyDown={event => handleKeyDown(event)}
+                onBlur={handleBlur}
+                ref={e => {
+                  if (ref) {
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+                    // @ts-ignore
+                    ref.current = e;
+                  }
+                  register(e, { ...valid });
+                }}
+                {...fieldProps}
+              />
+              {error}
+              <pre style={{ fontSize: "13px" }}>
+                isDirty: {isDirty ? "yes" : "no"},<br />
+                dirtyFields: {JSON.stringify(dirtyFields, undefined, 2)},<br />
+                isSubmitted: {isSubmitted ? "yes" : "no"},<br />
+                submitCount: {submitCount ? "yes" : "no"},<br />
+                touched: {touched ? "yes" : "no"},<br />
+                isSubmitting: {isSubmitting ? "yes" : "no"},<br />
+                isValid: {isValid ? "yes" : "no"},<br />
+                {/* errors: {JSON.stringify(errors, undefined, 2)} */}
+              </pre>
+            </>
           );
       }
     }

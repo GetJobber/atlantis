@@ -32,6 +32,42 @@ it("renders a regular input for text and numbers", () => {
         onKeyDown={[Function]}
         type="text"
       />
+      <pre
+        style={
+          Object {
+            "fontSize": "13px",
+          }
+        }
+      >
+        isDirty: 
+        no
+        ,
+        <br />
+        dirtyFields: 
+        {}
+        ,
+        <br />
+        isSubmitted: 
+        no
+        ,
+        <br />
+        submitCount: 
+        no
+        ,
+        <br />
+        touched: 
+        yes
+        ,
+        <br />
+        isSubmitting: 
+        no
+        ,
+        <br />
+        isValid: 
+        yes
+        ,
+        <br />
+      </pre>
     </div>
   `);
 });

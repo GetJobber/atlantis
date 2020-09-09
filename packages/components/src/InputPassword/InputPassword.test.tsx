@@ -32,6 +32,42 @@ it("renders an input type number", () => {
         type="password"
         value="123"
       />
+      <pre
+        style={
+          Object {
+            "fontSize": "13px",
+          }
+        }
+      >
+        isDirty: 
+        no
+        ,
+        <br />
+        dirtyFields: 
+        {}
+        ,
+        <br />
+        isSubmitted: 
+        no
+        ,
+        <br />
+        submitCount: 
+        no
+        ,
+        <br />
+        touched: 
+        yes
+        ,
+        <br />
+        isSubmitting: 
+        no
+        ,
+        <br />
+        isValid: 
+        yes
+        ,
+        <br />
+      </pre>
     </div>
   `);
 });
@@ -71,6 +107,42 @@ it("renders an error", () => {
           type="password"
           value="p"
         />
+        <pre
+          style={
+            Object {
+              "fontSize": "13px",
+            }
+          }
+        >
+          isDirty: 
+          no
+          ,
+          <br />
+          dirtyFields: 
+          {}
+          ,
+          <br />
+          isSubmitted: 
+          no
+          ,
+          <br />
+          submitCount: 
+          no
+          ,
+          <br />
+          touched: 
+          yes
+          ,
+          <br />
+          isSubmitting: 
+          no
+          ,
+          <br />
+          isValid: 
+          yes
+          ,
+          <br />
+        </pre>
       </div>,
     ]
   `);

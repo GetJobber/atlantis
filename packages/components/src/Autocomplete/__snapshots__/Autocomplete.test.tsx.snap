@@ -29,6 +29,42 @@ exports[`it should display headers when headers are passed in 1`] = `
       type="text"
       value=""
     />
+    <pre
+      style={
+        Object {
+          "fontSize": "13px",
+        }
+      }
+    >
+      isDirty: 
+      no
+      ,
+      <br />
+      dirtyFields: 
+      {}
+      ,
+      <br />
+      isSubmitted: 
+      no
+      ,
+      <br />
+      submitCount: 
+      no
+      ,
+      <br />
+      touched: 
+      yes
+      ,
+      <br />
+      isSubmitting: 
+      no
+      ,
+      <br />
+      isValid: 
+      yes
+      ,
+      <br />
+    </pre>
   </div>
   <div
     className="options"
@@ -84,6 +120,42 @@ exports[`renders an Autocomplete 1`] = `
       type="text"
       value=""
     />
+    <pre
+      style={
+        Object {
+          "fontSize": "13px",
+        }
+      }
+    >
+      isDirty: 
+      no
+      ,
+      <br />
+      dirtyFields: 
+      {}
+      ,
+      <br />
+      isSubmitted: 
+      no
+      ,
+      <br />
+      submitCount: 
+      no
+      ,
+      <br />
+      touched: 
+      yes
+      ,
+      <br />
+      isSubmitting: 
+      no
+      ,
+      <br />
+      isValid: 
+      yes
+      ,
+      <br />
+    </pre>
   </div>
   <div
     className="options"
