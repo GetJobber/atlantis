@@ -163,6 +163,7 @@ export interface FormFieldProps {
    */
   onValidation?(messages: ValidationProps[]): void;
 
+  // TODO: Move this to the validation prop
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   valid?: any;
 }
@@ -199,15 +200,17 @@ export const FormField = React.forwardRef(
       type = "text",
       value,
       validations,
+      // TODO: Move valid to validation prop
       valid,
     }: FormFieldProps,
     ref: Ref<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) => {
-    const { register, formState: formState } =
+    const { register, formState } =
       useFormContext() != undefined
         ? useFormContext()
         : useForm({ mode: "onBlur" });
 
+    // TODO: Clean this up if we don't need it. But document it so we know.
     const {
       isDirty,
       dirtyFields,
@@ -218,8 +221,6 @@ export const FormField = React.forwardRef(
       isValid,
       errors,
     } = formState;
-
-    console.log(errors);
 
     const [hasMiniLabel, setHasMiniLabel] = useState(
       shouldShowMiniLabel(defaultValue, value),
@@ -307,6 +308,7 @@ export const FormField = React.forwardRef(
             />
           );
         default:
+          // TODO: Type this
           // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
           // @ts-ignore
           // eslint-disable-next-line no-case-declarations
@@ -324,6 +326,7 @@ export const FormField = React.forwardRef(
                 onBlur={handleBlur}
                 ref={e => {
                   if (ref) {
+                    // TODO: Type This
                     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
                     // @ts-ignore
                     ref.current = e;
@@ -332,6 +335,7 @@ export const FormField = React.forwardRef(
                 }}
                 {...fieldProps}
               />
+              {/* TODO: Move this to proper place */}
               {error}
               <pre style={{ fontSize: "13px" }}>
                 isDirty: {isDirty ? "yes" : "no"},<br />
