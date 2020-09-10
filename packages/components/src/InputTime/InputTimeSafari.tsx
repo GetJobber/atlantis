@@ -61,7 +61,7 @@ export function InputTimeSafari({
     }
   }, [value, defaultValue]);
 
-  return <FormField ref={inputTime} type="time" {...params} />;
+  return <FormField inputRef={inputTime} type="time" {...params} />;
 
   function handleChange(newValue: string) {
     onChange && onChange(htmlTimeToCivilTime(newValue));
