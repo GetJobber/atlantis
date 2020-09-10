@@ -1,13 +1,12 @@
 import React, { ChangeEvent, ReactNode, Ref, useEffect, useState } from "react";
 import classnames from "classnames";
 import uuid from "uuid";
-import { XOR } from "ts-xor";
 import { ValidationRules, useForm, useFormContext } from "react-hook-form";
 import styles from "./FormField.css";
 import { Icon } from "../Icon";
 import { InputValidation } from "../InputValidation";
 
-interface BaseFormFieldProps {
+export interface FormFieldProps {
   /**
    * Determines the alignment of the text inside the input.
    */
@@ -130,10 +129,6 @@ interface BaseFormFieldProps {
    * Blur callback.
    */
   onBlur?(): void;
-}
-
-interface FormFieldValidationProps extends BaseFormFieldProps {
-  readonly name: string;
 
   /**
    * Callback to get the the status and message when validating a field
@@ -145,10 +140,8 @@ interface FormFieldValidationProps extends BaseFormFieldProps {
    * Show an error message above the field. This also
    * highlights the the field red if an error message shows up.
    */
-  readonly validations: ValidationRules;
+  readonly validations?: ValidationRules;
 }
-
-export type FormFieldProps = XOR<BaseFormFieldProps, FormFieldValidationProps>;
 
 export const FormField = React.forwardRef(
   /**

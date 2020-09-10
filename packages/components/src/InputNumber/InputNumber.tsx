@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { FormField, FormFieldProps } from "../FormField";
 
 /**
@@ -13,43 +13,42 @@ interface InputNumberProps
     Exclude<keyof FormFieldProps, "type" | "children" | "rows">
   > {
   value?: number;
+  name: string;
 }
 
 export function InputNumber(props: InputNumberProps) {
-  const [overLimitMessage, setOverLimitMessage] = useState(
-    getOverLimitMessage(props.value),
-  );
-
   return (
     <FormField
-      type="number"
       {...props}
+      type="number"
       onChange={handleChange}
-      errorMessage={props.errorMessage || overLimitMessage}
+      validations={{
+        ...props.validations,
+        validate: getOverLimitMessage,
+      }}
     />
   );
 
   function handleChange(newValue: number) {
-    setOverLimitMessage(getOverLimitMessage(newValue));
     props.onChange && props.onChange(newValue);
   }
 
-  function getOverLimitMessage(value: InputNumberProps["value"]): string {
-    let message = "";
-
+  function getOverLimitMessage(
+    value: InputNumberProps["value"],
+  ): string | true {
     const isOverMax = props.max != undefined && value && value > props.max;
     const isUnderMin = props.min != undefined && value && value < props.min;
 
     if (isOverMax || isUnderMin || (value && value.toString() === "")) {
       if (props.min != undefined && props.max === undefined) {
-        message = `Enter a number that is greater than or equal to ${props.min}`;
+        return `Enter a number that is greater than or equal to ${props.min}`;
       } else if (props.max != undefined && props.min === undefined) {
-        message = `Enter a number that is less than or equal to ${props.max}`;
+        return `Enter a number that is less than or equal to ${props.max}`;
       } else if (props.min != undefined && props.max != undefined) {
-        message = `Enter a number between ${props.min} and ${props.max}`;
+        return `Enter a number between ${props.min} and ${props.max}`;
       }
     }
 
-    return message;
+    return true;
   }
 }
