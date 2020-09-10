@@ -139,7 +139,7 @@ interface FormFieldValidationProps extends BaseFormFieldProps {
    * Callback to get the the status and message when validating a field
    * @param messages
    */
-  onValidation?(messages: string | undefined): void;
+  onValidation?(message: string | undefined): void;
 
   /**
    * Show an error message above the field. This also
