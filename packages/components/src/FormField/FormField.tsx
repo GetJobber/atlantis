@@ -136,20 +136,15 @@ interface FormFieldValidationProps extends BaseFormFieldProps {
   readonly name: string;
 
   /**
-   * **EXPERIMENTAL** This feature is still under development.
-   *
    * Callback to get the the status and message when validating a field
    * @param messages
    */
-  // onValidation?(messages: ValidationProps[]): void;
+  onValidation?(messages: string | undefined): void;
 
   /**
-   * **EXPERIMENTAL** This feature is still under development.
-   *
-   * Show a success, error, warn, and info message above the field. This also
-   * highlights the the field red if and error message shows up.
+   * Show an error message above the field. This also
+   * highlights the the field red if an error message shows up.
    */
-  // TODO: Make this type from react-hook-forms
   readonly validations: ValidationRules;
 }
 
@@ -177,7 +172,7 @@ export const FormField = React.forwardRef(
       onBlur,
       onChange,
       onEnter,
-      // onValidation,
+      onValidation,
       placeholder,
       readonly,
       rows,
@@ -200,18 +195,17 @@ export const FormField = React.forwardRef(
         ? useFormContext()
         : useForm({ mode: "onBlur" });
 
-    const error = name && errors[name] && errors[name].message;
-    console.log("errors", errors);
-
     const [hasMiniLabel, setHasMiniLabel] = useState(
       shouldShowMiniLabel(defaultValue, value),
     );
-    const identifier = uuid.v1();
 
-    useEffect(() => {
-      handleValidation();
-      setHasMiniLabel(shouldShowMiniLabel(defaultValue, value));
-    }, [value]);
+    const identifier = uuid.v1();
+    const error = name && errors[name] && errors[name].message;
+
+    useEffect(() => setHasMiniLabel(shouldShowMiniLabel(defaultValue, value)), [
+      value,
+    ]);
+    useEffect(() => handleValidation(), [error]);
 
     const autocompleteValue = autocomplete ? undefined : "autocomplete-off";
 
@@ -355,11 +349,7 @@ export const FormField = React.forwardRef(
     }
 
     function handleValidation() {
-      // const status = error ? "fail" : "pass";
-      // const message = error || "";
-      // onValidate && onValidate(status, message);
-      // const validationMessages = validations ? validations : [];
-      // onValidation && onValidation(validationMessages);
+      onValidation && onValidation(error);
     }
   },
 );

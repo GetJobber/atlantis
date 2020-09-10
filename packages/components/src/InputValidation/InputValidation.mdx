@@ -26,19 +26,27 @@ import { InputValidation } from "@jobber/components/InputValidation";
   {() => {
     const [value, setValue] = useState("Juan");
     const [validationMessages, setValidationMessages] = useState(undefined);
+    console.log("message", validationMessages);
     return (
       <>
-        <InputValidation messages={validationMessages} />
+        <InputValidation message={validationMessages} />
         <Text>
           My name is
           <InputText
-            validations={[
-              {
-                shouldShow: value !== "Jeff",
-                message: "Have you considered a better name, like Jeff?",
-                status: "error"
+            validations={{
+              pattern: {
+                value: /Jeff+/g,
+                message: "Ship name must be Jeff"
+              },
+              minLength: {
+                value: 5,
+                message: "Ship name isn't long enough"
+              },
+              required: {
+                value: true,
+                message: "Ship must have a name"
               }
-            ]}
+            }}
             onValidation={setValidationMessages}
             name="myName"
             value={value}
