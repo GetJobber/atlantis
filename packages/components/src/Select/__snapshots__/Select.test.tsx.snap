@@ -18,6 +18,7 @@ exports[`renders a Select with many options 1`] = `
   <select
     className="formField"
     id="123e4567-e89b-12d3-a456-426655440003"
+    name="generatedName--123e4567-e89b-12d3-a456-426655440003"
     onChange={[Function]}
   >
     <option>
@@ -69,6 +70,7 @@ exports[`renders a Select with no options 1`] = `
   <select
     className="formField"
     id="123e4567-e89b-12d3-a456-426655440001"
+    name="generatedName--123e4567-e89b-12d3-a456-426655440001"
     onChange={[Function]}
   />
   <span
@@ -107,6 +109,7 @@ exports[`renders a Select with one option 1`] = `
   <select
     className="formField"
     id="123e4567-e89b-12d3-a456-426655440002"
+    name="generatedName--123e4567-e89b-12d3-a456-426655440002"
     onChange={[Function]}
   >
     <option>
@@ -149,6 +152,7 @@ exports[`renders correctly as large 1`] = `
   <select
     className="formField"
     id="123e4567-e89b-12d3-a456-426655440005"
+    name="generatedName--123e4567-e89b-12d3-a456-426655440005"
     onChange={[Function]}
   >
     <option>
@@ -191,6 +195,7 @@ exports[`renders correctly as small 1`] = `
   <select
     className="formField"
     id="123e4567-e89b-12d3-a456-426655440004"
+    name="generatedName--123e4567-e89b-12d3-a456-426655440004"
     onChange={[Function]}
   >
     <option>
@@ -234,6 +239,7 @@ exports[`renders correctly when disabled 1`] = `
     className="formField"
     disabled={true}
     id="123e4567-e89b-12d3-a456-426655440006"
+    name="generatedName--123e4567-e89b-12d3-a456-426655440006"
     onChange={[Function]}
   >
     <option>
@@ -276,6 +282,7 @@ exports[`renders correctly when invalid 1`] = `
   <select
     className="formField"
     id="123e4567-e89b-12d3-a456-426655440007"
+    name="generatedName--123e4567-e89b-12d3-a456-426655440007"
     onChange={[Function]}
   >
     <option>

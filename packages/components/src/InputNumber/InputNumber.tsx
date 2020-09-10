@@ -13,7 +13,6 @@ interface InputNumberProps
     Exclude<keyof FormFieldProps, "type" | "children" | "rows">
   > {
   value?: number;
-  name: string;
 }
 
 export function InputNumber(props: InputNumberProps) {

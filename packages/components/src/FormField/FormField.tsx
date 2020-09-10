@@ -199,8 +199,9 @@ export function FormField({
   const [hasMiniLabel, setHasMiniLabel] = useState(
     shouldShowMiniLabel(defaultValue, value),
   );
+  const [identifier] = useState(uuid.v1());
+  name = name || `generatedName--${identifier}`;
 
-  const identifier = uuid.v1();
   const error = name && errors[name] && errors[name].message;
 
   useEffect(() => setHasMiniLabel(shouldShowMiniLabel(defaultValue, value)), [

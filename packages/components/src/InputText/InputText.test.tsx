@@ -26,6 +26,7 @@ it("renders a regular input for text and numbers", () => {
       <input
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440001"
+        name="generatedName--123e4567-e89b-12d3-a456-426655440001"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -60,6 +61,7 @@ it("renders a textarea", () => {
       <textarea
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440002"
+        name="generatedName--123e4567-e89b-12d3-a456-426655440002"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -98,6 +100,7 @@ it("renders a textarea with 4 rows", () => {
       <textarea
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440003"
+        name="generatedName--123e4567-e89b-12d3-a456-426655440003"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
