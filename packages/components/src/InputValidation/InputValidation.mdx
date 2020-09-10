@@ -24,9 +24,7 @@ import { InputValidation } from "@jobber/components/InputValidation";
 
 <Playground>
   {() => {
-    const [value, setValue] = useState("Juan");
     const [validationMessages, setValidationMessages] = useState(undefined);
-    console.log("message", validationMessages);
     return (
       <>
         <InputValidation message={validationMessages} />
@@ -35,24 +33,14 @@ import { InputValidation } from "@jobber/components/InputValidation";
           <InputText
             validations={{
               pattern: {
-                value: /Jeff+/g,
-                message: "Ship name must be Jeff"
-              },
-              minLength: {
-                value: 5,
-                message: "Ship name isn't long enough"
-              },
-              required: {
-                value: true,
-                message: "Ship must have a name"
+                value: /Jeff/g,
+                message: "Have you considered a better name, like Jeff?"
               }
             }}
             onValidation={setValidationMessages}
             name="myName"
-            value={value}
             size="small"
             inline={true}
-            onChange={setValue}
             align="center"
             maxLength={4}
           />
