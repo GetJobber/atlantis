@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import { FormField } from ".";
 
 afterEach(cleanup);
@@ -164,11 +164,7 @@ it("renders correctly in a disabled state", () => {
 });
 
 it("renders a field with error", () => {
-  const tree = renderer
-    .create(
-      <FormField value="wrong!" errorMessage="Enter a value that is correct" />,
-    )
-    .toJSON();
+  const tree = renderer.create(<FormField value="wrong!" />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
       className="wrapper"
@@ -233,34 +229,48 @@ test("it should call the handler with the new value", () => {
   expect(changeHandler).toHaveBeenCalledWith(newerValue);
 });
 
-// test("it should call the validation handler when typing a new value", () => {
-//   const validationHandler = jest.fn();
+test("it should call the validation handler when typing a new value", () => {
+  const validationHandler = jest.fn();
 
-//   render(
-//     <FormField
-//       name="Got milk?"
-//       onValidate={validationHandler}
-//       placeholder="I hold places."
-//     />
-//   );
+  render(
+    <FormField
+      name="Got milk?"
+      onValidation={validationHandler}
+      placeholder="I hold places."
+    />,
+  );
 
-//   expect(validationHandler).toHaveBeenCalledWith("pass", "");
-// });
+  expect(validationHandler).toHaveBeenCalled();
+  expect(validationHandler).toHaveBeenCalledWith(undefined);
+});
 
-// test("it should call the validation handler with a fail status when there's an error", () => {
-//   const validationHandler = jest.fn();
+test("it should call the validation handler with a message when there is an error", async () => {
+  const validationHandler = jest.fn();
+  const validate = val => (val !== "Bob" ? "message" : "");
 
-//   render(
-//     <FormField
-//       name="Got milk?"
-//       onValidate={validationHandler}
-//       placeholder="I hold places"
-//       errorMessage="Nope!"
-//     />
-//   );
+  const { getByLabelText } = render(
+    <FormField
+      type="text"
+      name="Got milk?"
+      onValidation={validationHandler}
+      placeholder="I hold places"
+      value="test"
+      validations={{
+        validate,
+      }}
+    />,
+  );
 
-//   expect(validationHandler).toHaveBeenCalledWith("fail", "Nope!");
-// });
+  const input = getByLabelText("I hold places");
+  input.focus();
+  fireEvent.change(input, { target: { value: "Bob" } });
+  input.blur();
+
+  expect(validationHandler).toHaveBeenCalled();
+  await waitFor(() => {
+    expect(validationHandler).toHaveBeenCalledWith("message");
+  });
+});
 
 test("it should handle when the enter key is pressed", () => {
   const enterHandler = jest.fn();
