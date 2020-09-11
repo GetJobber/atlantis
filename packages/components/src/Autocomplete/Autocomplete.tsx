@@ -62,6 +62,11 @@ interface AutocompleteProps {
    * Focus behaviour (clicking on the input text)
    */
   onFocus?(): void;
+
+  /**
+   * Enter keypress behaviour (pressing enter while focusing the autocomplete input field)
+   */
+  onEnter?(): void;
 }
 
 export function Autocomplete({
@@ -74,6 +79,7 @@ export function Autocomplete({
   placeholder,
   onBlur,
   onFocus,
+  onEnter,
 }: AutocompleteProps) {
   const [options, setOptions] = useState(initialOptions);
   const [menuVisible, setMenuVisible] = useState(false);
@@ -99,6 +105,7 @@ export function Autocomplete({
         placeholder={placeholder}
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
+        onEnter={handleEnter}
       />
       <Menu
         visible={menuVisible}
@@ -146,6 +153,12 @@ export function Autocomplete({
     setMenuVisible(true);
     if (onFocus) {
       onFocus();
+    }
+  }
+
+  function handleEnter() {
+    if (onEnter) {
+      onEnter();
     }
   }
 }

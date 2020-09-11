@@ -110,6 +110,9 @@ export function Menu({
 
     useOnKeyDown("Enter", (event: KeyboardEvent) => {
       if (!visible) return;
+      if (options.length <= 0) {
+        return;
+      }
       if (isGroup(options[highlightedIndex])) return;
 
       event.preventDefault();
