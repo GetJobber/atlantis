@@ -69,6 +69,7 @@ interface AutocompleteProps {
   onEnter?(): void;
 }
 
+// eslint-disable-next-line max-statements
 export function Autocomplete({
   initialOptions = [],
   value,
@@ -84,6 +85,7 @@ export function Autocomplete({
   const [options, setOptions] = useState(initialOptions);
   const [menuVisible, setMenuVisible] = useState(false);
   const [inputText, setInputText] = useState((value && value.label) || "");
+  const [isHighlightingOption, setIsHighlightingOption] = useState(false);
 
   const debouncedSetOptions = useRef(debounce(setOptions, 150)).current;
 
@@ -112,6 +114,7 @@ export function Autocomplete({
         options={options}
         selectedOption={value}
         onOptionSelect={handleMenuChange}
+        setIsHighlightingOption={setIsHighlightingOption}
       />
     </div>
   );
@@ -157,7 +160,7 @@ export function Autocomplete({
   }
 
   function handleEnter() {
-    if (onEnter) {
+    if (onEnter && !isHighlightingOption) {
       onEnter();
     }
   }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, useEffect, useState } from "react";
 import classnames from "classnames";
 import useEventListener from "@use-it/event-listener";
 import { AnyOption, Option } from "./Option";
@@ -17,18 +17,22 @@ interface MenuProps {
   readonly options: Option[];
   readonly selectedOption?: Option;
   onOptionSelect(chosenOption: Option): void;
+  setIsHighlightingOption: Dispatch<React.SetStateAction<boolean>>;
 }
 
+// eslint-disable-next-line max-statements
 export function Menu({
   visible,
   options,
   selectedOption,
   onOptionSelect,
+  setIsHighlightingOption,
 }: MenuProps) {
   const [highlightedIndex, setHighlightedIndex] = useState(0);
   const optionMenuClass = classnames(styles.options, {
     [styles.visible]: visible,
   });
+  setIsHighlightingOption(isCurrentlyHighlighting());
 
   const detectSeparatorCondition = (option: Option) =>
     option.description || option.details;
@@ -127,6 +131,11 @@ export function Menu({
     return requestedIndex && isGroup(requestedIndex)
       ? direction + direction
       : direction;
+  }
+
+  function isCurrentlyHighlighting() {
+    if (visible && options.length > 0 && options[highlightedIndex]) return true;
+    return false;
   }
 }
 
