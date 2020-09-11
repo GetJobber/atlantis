@@ -194,7 +194,7 @@ export function FormField({
   } =
     useFormContext() != undefined
       ? useFormContext()
-      : useForm({ mode: "onBlur" });
+      : useForm({ mode: "onTouched" });
 
   const [hasMiniLabel, setHasMiniLabel] = useState(
     shouldShowMiniLabel(defaultValue, value),

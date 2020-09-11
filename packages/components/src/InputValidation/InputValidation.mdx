@@ -32,8 +32,12 @@ import { InputValidation } from "@jobber/components/InputValidation";
           My name is
           <InputText
             validations={{
+              required: {
+                value: true,
+                message: "Please tell me your name"
+              },
               pattern: {
-                value: /Jeff/g,
+                value: /Jeff/,
                 message: "Have you considered a better name, like Jeff?"
               }
             }}
