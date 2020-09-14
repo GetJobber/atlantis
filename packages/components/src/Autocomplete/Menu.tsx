@@ -50,10 +50,8 @@ export function Menu({
     <div
       className={optionMenuClass}
       style={{ scrollBehavior: "smooth" }}
-      ref={ref => {
-        const newMenuDiv = ref as HTMLDivElement;
-        menuDiv.current = newMenuDiv;
-        return menuDiv.current;
+      ref={element => {
+        setRef(element, menuDiv);
       }}
     >
       {options.map((option, index) => {
@@ -76,10 +74,8 @@ export function Menu({
           >
             <div
               className={styles.icon}
-              ref={ref => {
-                const newMenuRef = ref as HTMLDivElement;
-                menuItemRefs.current[index] = newMenuRef;
-                return menuItemRefs.current[index];
+              ref={element => {
+                setRef(element, undefined, menuItemRefs, index);
               }}
             >
               {isOptionSelected(option) && (
@@ -104,6 +100,24 @@ export function Menu({
       })}
     </div>
   );
+
+  function setRef(
+    element: HTMLDivElement | null,
+    ref: React.MutableRefObject<HTMLDivElement | undefined> | undefined,
+    refArray?: React.MutableRefObject<HTMLDivElement[]>,
+    index?: number,
+  ) {
+    const newElement = element as HTMLDivElement;
+    if (index && refArray) {
+      refArray.current[index] = newElement;
+      return refArray.current[index];
+    } else if (ref) {
+      ref.current = newElement;
+      return ref.current;
+    } else {
+      return undefined;
+    }
+  }
 
   function isOptionSelected(option: Option) {
     return selectedOption && selectedOption.value === option.value;
