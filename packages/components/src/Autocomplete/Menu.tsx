@@ -49,6 +49,7 @@ export function Menu({
   return (
     <div
       className={optionMenuClass}
+      style={{ scrollBehavior: "smooth" }}
       ref={ref => {
         if (!menuDiv.current) {
           const stuff = ref as HTMLDivElement;

@@ -32,6 +32,11 @@ exports[`it should display headers when headers are passed in 1`] = `
   </div>
   <div
     className="options"
+    style={
+      Object {
+        "scrollBehavior": "smooth",
+      }
+    }
   >
     <div
       className="heading"
@@ -87,6 +92,11 @@ exports[`renders an Autocomplete 1`] = `
   </div>
   <div
     className="options"
+    style={
+      Object {
+        "scrollBehavior": "smooth",
+      }
+    }
   >
     <button
       className="option active"
