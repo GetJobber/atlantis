@@ -1,7 +1,6 @@
 import React, {
   ChangeEvent,
   ReactNode,
-  Ref,
   RefObject,
   useEffect,
   useState,
@@ -141,7 +140,7 @@ export interface FormFieldProps {
    * Callback to get the the status and message when validating a field
    * @param messages
    */
-  onValidation?(message: string | undefined): void;
+  onValidation?(message: string): void;
 
   /**
    * Show an error message above the field. This also
@@ -234,8 +233,6 @@ export function FormField({
 
   return (
     <>
-      {error && !inline && <InputValidation message={error} />}
-
       <Wrapper
         className={wrapperClassNames}
         style={{ ["--formField-maxLength" as string]: maxLength || max }}
@@ -250,6 +247,7 @@ export function FormField({
           </span>
         )}
       </Wrapper>
+      {error && !inline && <InputValidation message={error} />}
     </>
   );
 
@@ -275,7 +273,10 @@ export function FormField({
             onFocus={handleFocus}
             onKeyDown={event => handleKeyDown(event)}
             onBlur={handleBlur}
-            ref={inputRef as Ref<HTMLTextAreaElement>}
+            ref={e => {
+              if (inputRef) inputRef.current = e;
+              register(e, { ...validations });
+            }}
             {...fieldProps}
           />
         );
@@ -292,11 +293,7 @@ export function FormField({
               onKeyDown={event => handleKeyDown(event)}
               onBlur={handleBlur}
               ref={e => {
-                if (inputRef) {
-                  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-                  // @ts-ignore
-                  inputRef.current = e;
-                }
+                if (inputRef) inputRef.current = e;
                 register(e, { ...validations });
               }}
               {...fieldProps}

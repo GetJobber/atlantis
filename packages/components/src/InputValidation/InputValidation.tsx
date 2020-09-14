@@ -2,6 +2,7 @@ import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import styles from "./InputValidation.css";
 import { Text } from "../Text";
+import { Icon } from "../Icon";
 
 interface InputValidationProps {
   /**
@@ -31,7 +32,10 @@ export function InputValidation({ message }: InputValidationProps) {
                 exit="slideOut"
                 transition={{ duration: 0.2 }}
               >
-                <Text variation="error">{msg}</Text>
+                <div className={styles.message}>
+                  <Icon name="alert" color="red" />
+                  <Text variation="error">{msg}</Text>
+                </div>
               </motion.div>
             ))}
           </AnimatePresence>
