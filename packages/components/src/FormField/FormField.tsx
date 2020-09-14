@@ -274,6 +274,12 @@ export function FormField({
             onKeyDown={event => handleKeyDown(event)}
             onBlur={handleBlur}
             ref={e => {
+              /**
+               * @typescript-eslint/ban-ts-ignore is ignored as `.current` is readonly
+               * but we need to overwrite that for this case
+               */
+              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+              // @ts-ignore
               if (inputRef) inputRef.current = e;
               register(e, { ...validations });
             }}
@@ -293,6 +299,12 @@ export function FormField({
               onKeyDown={event => handleKeyDown(event)}
               onBlur={handleBlur}
               ref={e => {
+                /**
+                 * @typescript-eslint/ban-ts-ignore is ignored as `.current` is readonly
+                 * but we need to overwrite that for this case
+                 */
+                // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+                // @ts-ignore
                 if (inputRef) inputRef.current = e;
                 register(e, { ...validations });
               }}
