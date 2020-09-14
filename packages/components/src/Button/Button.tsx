@@ -2,6 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
 import { Link } from "react-router-dom";
+import { useFormContext } from "react-hook-form";
 import { IconNames } from "@jobber/design";
 import styles from "./Button.css";
 import { Typography } from "../Typography";
@@ -106,6 +107,8 @@ export function Button(props: ButtonProps) {
     [styles.loading]: loading,
   });
 
+  const buttonType = useFormContext() == undefined ? "button" : "submit";
+
   const tagProps = {
     className: buttonClassNames,
     disabled,
@@ -113,8 +116,7 @@ export function Button(props: ButtonProps) {
     ...(!disabled && { href: url }),
     ...(!disabled && { onClick: onClick }),
     ...(external && { target: "_blank" }),
-    ...(url === undefined &&
-      to === undefined && { type: "button" as "button" }),
+    ...(url === undefined && to === undefined && { type: buttonType }),
     "aria-controls": ariaControls,
     "aria-haspopup": ariaHaspopup,
     "aria-expanded": ariaExpanded,

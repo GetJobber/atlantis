@@ -3,6 +3,7 @@ import renderer from "react-test-renderer";
 import { fireEvent, render } from "@testing-library/react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { Button } from ".";
+import { Form } from "../Form";
 
 it("renders a Button", () => {
   const tree = renderer.create(<Button label="Submit" />).toJSON();
@@ -123,6 +124,22 @@ it("renders a Link as a Button for routing", () => {
     )
     .toJSON();
   expect(tree).toMatchSnapshot();
+});
+
+it("renders button type='button' if not in a form", () => {
+  const { container } = render(<Button label="hello" />);
+  const button = container.querySelector("button[type='button']");
+  expect(button).toBeInstanceOf(HTMLButtonElement);
+});
+
+it("renders button type='submit' if in a form", () => {
+  const { container } = render(
+    <Form>
+      <Button label="hello" />
+    </Form>,
+  );
+  const button = container.querySelector("button[type='submit']");
+  expect(button).toBeInstanceOf(HTMLButtonElement);
 });
 
 it("routes when buttons are clicked", () => {
