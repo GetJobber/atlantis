@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classnames from "classnames";
 import useEventListener from "@use-it/event-listener";
 import { AnyOption, Option } from "./Option";
@@ -19,6 +19,7 @@ interface MenuProps {
   onOptionSelect(chosenOption: Option): void;
 }
 
+// eslint-disable-next-line max-statements
 export function Menu({
   visible,
   options,
@@ -29,6 +30,8 @@ export function Menu({
   const optionMenuClass = classnames(styles.options, {
     [styles.visible]: visible,
   });
+  const menuItemRefs = useRef<HTMLDivElement[]>([]);
+  const menuDiv = useRef<HTMLDivElement>();
 
   const detectSeparatorCondition = (option: Option) =>
     option.description || option.details;
@@ -44,7 +47,16 @@ export function Menu({
   useEffect(() => setHighlightedIndex(initialHighlight), [options]);
 
   return (
-    <div className={optionMenuClass}>
+    <div
+      className={optionMenuClass}
+      ref={ref => {
+        if (!menuDiv.current) {
+          const stuff = ref as HTMLDivElement;
+          menuDiv.current = stuff;
+        }
+        return menuDiv.current;
+      }}
+    >
       {options.map((option, index) => {
         const optionClass = classnames(styles.option, {
           [styles.active]: index === highlightedIndex,
@@ -63,7 +75,16 @@ export function Menu({
             key={option.value}
             onMouseDown={onOptionSelect.bind(undefined, option)}
           >
-            <div className={styles.icon}>
+            <div
+              className={styles.icon}
+              ref={ref => {
+                if (!menuItemRefs.current[index]) {
+                  const newMenuRef = ref as HTMLDivElement;
+                  menuItemRefs.current[index] = newMenuRef;
+                }
+                return menuItemRefs.current[index];
+              }}
+            >
               {isOptionSelected(option) && (
                 <Icon name="checkmark" size="small" />
               )}
@@ -99,14 +120,52 @@ export function Menu({
           Math.min(options.length - 1, highlightedIndex + indexChange),
         );
       }
+      if (menuDiv.current && menuItemRefs.current[highlightedIndex]) {
+        scrollDownIfTooLow(
+          menuDiv.current,
+          menuItemRefs.current[highlightedIndex],
+        );
+      }
     });
+
+    function scrollDownIfTooLow(
+      menuDivElement: HTMLDivElement,
+      itemDivElement: HTMLDivElement,
+    ) {
+      const tempDiv = itemDivElement.parentElement as HTMLDivElement;
+      const itemHeight = tempDiv.getBoundingClientRect().height;
+      const itemTrueBottom =
+        tempDiv.getBoundingClientRect().bottom + itemHeight;
+      if (itemTrueBottom > menuDivElement.getBoundingClientRect().bottom) {
+        menuDivElement.scrollTop += itemHeight;
+      }
+    }
 
     useOnKeyDown("ArrowUp", (event: KeyboardEvent) => {
       const indexChange = arrowKeyPress(event, IndexChange.Previous);
       if (indexChange) {
         setHighlightedIndex(Math.max(0, highlightedIndex + indexChange));
       }
+      if (menuDiv.current && menuItemRefs.current[highlightedIndex]) {
+        scrollUpIfTooHigh(
+          menuDiv.current,
+          menuItemRefs.current[highlightedIndex],
+        );
+      }
     });
+
+    function scrollUpIfTooHigh(
+      menuDivElement: HTMLDivElement,
+      itemDivElement: HTMLDivElement,
+    ) {
+      const tempDiv = itemDivElement.parentElement as HTMLDivElement;
+      const menuTop = menuDivElement.getBoundingClientRect().top;
+      const itemTop = tempDiv.getBoundingClientRect().top;
+      const itemHeight = tempDiv.getBoundingClientRect().height;
+      if (itemTop - itemHeight < menuTop) {
+        menuDivElement.scrollTop -= itemHeight;
+      }
+    }
 
     useOnKeyDown("Enter", (event: KeyboardEvent) => {
       if (!visible) return;
