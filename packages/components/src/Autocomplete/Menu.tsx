@@ -49,7 +49,6 @@ export function Menu({
   return (
     <div
       className={optionMenuClass}
-      style={{ scrollBehavior: "smooth" }}
       ref={element => {
         setRef(element, menuDiv);
       }}
