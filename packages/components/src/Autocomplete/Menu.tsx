@@ -51,10 +51,8 @@ export function Menu({
       className={optionMenuClass}
       style={{ scrollBehavior: "smooth" }}
       ref={ref => {
-        if (!menuDiv.current) {
-          const stuff = ref as HTMLDivElement;
-          menuDiv.current = stuff;
-        }
+        const newMenuDiv = ref as HTMLDivElement;
+        menuDiv.current = newMenuDiv;
         return menuDiv.current;
       }}
     >
@@ -79,10 +77,8 @@ export function Menu({
             <div
               className={styles.icon}
               ref={ref => {
-                if (!menuItemRefs.current[index]) {
-                  const newMenuRef = ref as HTMLDivElement;
-                  menuItemRefs.current[index] = newMenuRef;
-                }
+                const newMenuRef = ref as HTMLDivElement;
+                menuItemRefs.current[index] = newMenuRef;
                 return menuItemRefs.current[index];
               }}
             >
