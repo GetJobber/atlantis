@@ -1,0 +1,41 @@
+---
+name: Form
+menu: Components
+route: /components/form
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { Form } from ".";
+import { InputText } from "@jobber/components/InputText";
+import { Button } from "@jobber/components/Button";
+
+# Form
+
+<ComponentStatus stage="pre" responsive="no" accessible="no" />
+
+Write a description about what Form component is trying to achieve.
+
+```ts
+import { Form } from "@jobber/components/Form";
+```
+
+<Playground>
+  <Form onSubmit={() => alert("submitted")}>
+    <InputText
+      placeholder="First Name"
+      name="firstName"
+      validations={{
+        required: {
+          value: true,
+          message: "Tell us your name"
+        },
+        minLength: {
+          value: 3,
+          message: "That name is too short"
+        }
+      }}
+    />
+    <button type="submit">Submit Form</button>
+  </Form>
+</Playground>
