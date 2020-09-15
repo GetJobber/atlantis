@@ -116,17 +116,16 @@ export function Menu({
       direction: "up" | "down",
     ) {
       const itemDiv = menuDivElement.querySelector(
-        `button.${classnames(styles.option)}:nth-child(${highlightedIndex +
-          1})`,
+        `button.${styles.option}:nth-child(${highlightedIndex + 1})`,
       ) as HTMLButtonElement;
-      if (!itemDiv) {
-        return;
-      }
+      if (!itemDiv) return;
       const menuTop = menuDivElement.getBoundingClientRect().top;
-      const itemTop = itemDiv.getBoundingClientRect().top;
-      const itemHeight = itemDiv.getBoundingClientRect().height;
-      const itemTrueBottom =
-        itemDiv.getBoundingClientRect().bottom + itemHeight;
+      const {
+        top: itemTop,
+        height: itemHeight,
+        bottom: itemBottom,
+      } = itemDiv.getBoundingClientRect();
+      const itemTrueBottom = itemBottom + itemHeight;
       const menuBottom = menuDivElement.getBoundingClientRect().bottom;
       if (direction == "up" && itemTop - itemHeight < menuTop) {
         menuDivElement.scrollTop -= itemHeight;
