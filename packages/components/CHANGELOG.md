@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.43.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.42.3...@jobber/components@1.43.0) (2020-09-15)
+
+
+### Features
+
+* **components:** modify autocomplete to scroll list up and down ([#355](https://github.com/GetJobber/atlantis/issues/355)) ([be3de2f](https://github.com/GetJobber/atlantis/commit/be3de2f2e3dacb8fd24d46e898a7c4d8bc530e4e))
+
+
+
+
+
 ## [1.42.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.42.2...@jobber/components@1.42.3) (2020-09-15)
 
 **Note:** Version bump only for package @jobber/components
