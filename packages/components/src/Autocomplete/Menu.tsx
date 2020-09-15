@@ -29,7 +29,7 @@ export function Menu({
   const optionMenuClass = classnames(styles.options, {
     [styles.visible]: visible,
   });
-  const menuDiv = useRef<HTMLDivElement>();
+  const menuDiv = useRef() as React.MutableRefObject<HTMLDivElement>;
 
   const detectSeparatorCondition = (option: Option) =>
     option.description || option.details;
@@ -45,12 +45,7 @@ export function Menu({
   useEffect(() => setHighlightedIndex(initialHighlight), [options]);
 
   return (
-    <div
-      className={optionMenuClass}
-      ref={element => {
-        menuDiv.current = element as HTMLDivElement;
-      }}
-    >
+    <div className={optionMenuClass} ref={menuDiv}>
       {options.map((option, index) => {
         const optionClass = classnames(styles.option, {
           [styles.active]: index === highlightedIndex,
