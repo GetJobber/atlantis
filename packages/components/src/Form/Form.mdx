@@ -6,6 +6,7 @@ route: /components/form
 
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
+import { useRef, useState } from "react";
 import { Form } from ".";
 import { InputText } from "@jobber/components/InputText";
 import { Button } from "@jobber/components/Button";
@@ -21,21 +22,28 @@ import { Form } from "@jobber/components/Form";
 ```
 
 <Playground>
-  <Form onSubmit={() => alert("submitted")}>
-    <InputText
-      placeholder="First Name"
-      name="firstName"
-      validations={{
-        required: {
-          value: true,
-          message: "Tell us your name"
-        },
-        minLength: {
-          value: 3,
-          message: "That name is too short"
-        }
-      }}
-    />
-    <Button label="Submit Form" />
-  </Form>
+  {() => {
+    const formRef = useRef({ isDirty: false });
+    const [formState, setFormState] = useState();
+    return (
+      <Form onSubmit={() => alert("submitted")} onStateChange={setFormState}>
+        <InputText
+          placeholder="First Name"
+          name="firstName"
+          validations={{
+            required: {
+              value: true,
+              message: "Tell us your name"
+            },
+            minLength: {
+              value: 3,
+              message: "That name is too short"
+            }
+          }}
+        />
+        <Button label="Submit Form" />
+        Dirty: {JSON.stringify(formState.isDirty)}.
+      </Form>
+    );
+  }}
 </Playground>
