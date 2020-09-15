@@ -120,10 +120,10 @@ export function Menu({
       menuDivElement: HTMLDivElement,
       direction: "up" | "down",
     ) {
-      const itemDiv = menuDivElement.querySelectorAll(
+      const itemDiv = menuDivElement.querySelector(
         `button.${classnames(styles.option)}:nth-child(${highlightedIndex +
           1})`,
-      )[0] as HTMLButtonElement;
+      ) as HTMLButtonElement;
       if (!itemDiv) {
         return;
       }
