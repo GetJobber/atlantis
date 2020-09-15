@@ -118,19 +118,20 @@ export function Menu({
 
     function scrollMenuIfItemNotInView(
       menuDivElement: HTMLDivElement,
-      direction: string,
+      direction: "up" | "down",
     ) {
-      const tempDiv = menuDivElement.getElementsByClassName(
-        classnames(styles.option),
-      )[highlightedIndex] as HTMLButtonElement;
-      if (!tempDiv) {
+      const itemDiv = menuDivElement.querySelectorAll(
+        `button.${classnames(styles.option)}:nth-child(${highlightedIndex +
+          1})`,
+      )[0] as HTMLButtonElement;
+      if (!itemDiv) {
         return;
       }
       const menuTop = menuDivElement.getBoundingClientRect().top;
-      const itemTop = tempDiv.getBoundingClientRect().top;
-      const itemHeight = tempDiv.getBoundingClientRect().height;
+      const itemTop = itemDiv.getBoundingClientRect().top;
+      const itemHeight = itemDiv.getBoundingClientRect().height;
       const itemTrueBottom =
-        tempDiv.getBoundingClientRect().bottom + itemHeight;
+        itemDiv.getBoundingClientRect().bottom + itemHeight;
       const menuBottom = menuDivElement.getBoundingClientRect().bottom;
       if (direction == "up" && itemTop - itemHeight < menuTop) {
         menuDivElement.scrollTop -= itemHeight;
