@@ -5,4 +5,10 @@
 .message {
   display: flex;
   align-items: center;
+  padding: var(--space-smaller);
+  padding-left: 0;
+}
+
+.message > svg {
+  margin-right: var(--space-smaller);
 }
