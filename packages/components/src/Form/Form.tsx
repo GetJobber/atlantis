@@ -14,12 +14,15 @@ interface FormProps {
 
 export function Form({ onSubmit, children, onStateChange }: FormProps) {
   const methods = useForm({ mode: "onTouched" });
-  const { handleSubmit, formState } = methods;
-  const { isDirty, isValid } = formState;
+  const {
+    handleSubmit,
+    formState: { isDirty, isValid },
+  } = methods;
 
-  useEffect(() => {
-    onStateChange && onStateChange({ isDirty, isValid });
-  }, [isDirty, isValid]);
+  useEffect(() => onStateChange && onStateChange({ isDirty, isValid }), [
+    isDirty,
+    isValid,
+  ]);
 
   return (
     <FormProvider {...methods}>
@@ -27,7 +30,7 @@ export function Form({ onSubmit, children, onStateChange }: FormProps) {
     </FormProvider>
   );
 
-  async function submitHandler() {
+  function submitHandler() {
     onSubmit && onSubmit();
   }
 }
