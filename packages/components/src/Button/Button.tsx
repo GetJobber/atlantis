@@ -8,6 +8,8 @@ import styles from "./Button.css";
 import { Typography } from "../Typography";
 import { Icon } from "../Icon";
 
+type ButtonType = "button" | "submit";
+
 interface ButtonFoundationProps {
   /**
    * Used for screen readers. Will override label on screen
@@ -107,7 +109,8 @@ export function Button(props: ButtonProps) {
     [styles.loading]: loading,
   });
 
-  const buttonType = useFormContext() == undefined ? "button" : "submit";
+  const buttonType: ButtonType =
+    useFormContext() == undefined ? "button" : "submit";
 
   const tagProps = {
     className: buttonClassNames,
