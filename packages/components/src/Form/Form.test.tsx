@@ -45,13 +45,48 @@ test("renders an error message when field is invalid", async done => {
   });
 });
 
+test("fires onStateChage when component renders", async done => {
+  const stateChangeHandler = jest.fn();
+  render(<MockForm onSubmit={jest.fn()} onStateChange={stateChangeHandler} />);
+
+  waitFor(() => {
+    expect(stateChangeHandler).toHaveBeenCalled();
+    expect(stateChangeHandler).toHaveBeenCalledWith({
+      isDirty: false,
+      isValid: true,
+    });
+    done();
+  });
+});
+
+test("onStateChage updates state when form is valid", async done => {
+  const stateChangeHandler = jest.fn();
+  const { getByLabelText } = render(
+    <MockForm onSubmit={jest.fn()} onStateChange={stateChangeHandler} />,
+  );
+
+  const input = getByLabelText("test form");
+  input.focus();
+  fireEvent.change(input, { target: { value: "Bo" } });
+  input.blur();
+
+  waitFor(() => {
+    expect(stateChangeHandler).toHaveBeenCalledWith({
+      isDirty: true,
+      isValid: false,
+    });
+    done();
+  });
+});
+
 interface MockFormProps {
   onSubmit(): void;
+  onStateChange?(): void;
 }
 
-function MockForm({ onSubmit }: MockFormProps) {
+function MockForm({ onSubmit, onStateChange }: MockFormProps) {
   return (
-    <Form onSubmit={onSubmit}>
+    <Form onSubmit={onSubmit} onStateChange={onStateChange}>
       <InputText
         placeholder="test form"
         name="test"
@@ -59,6 +94,10 @@ function MockForm({ onSubmit }: MockFormProps) {
           required: {
             value: true,
             message: "validation error",
+          },
+          minLength: {
+            value: 3,
+            message: "short.",
           },
         }}
       />
