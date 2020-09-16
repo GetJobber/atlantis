@@ -1,5 +1,6 @@
 import React, {
   ChangeEvent,
+  MutableRefObject,
   ReactNode,
   RefObject,
   useEffect,
@@ -138,7 +139,7 @@ export interface FormFieldProps {
 
   /**
    * Callback to get the the status and message when validating a field
-   * @param messages
+   * @param message
    */
   onValidation?(message: string): void;
 
@@ -273,15 +274,13 @@ export function FormField({
             onFocus={handleFocus}
             onKeyDown={event => handleKeyDown(event)}
             onBlur={handleBlur}
-            ref={e => {
-              /**
-               * @typescript-eslint/ban-ts-ignore is ignored as `.current` is readonly
-               * but we need to overwrite that for this case
-               */
-              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-              // @ts-ignore
-              if (inputRef) inputRef.current = e;
-              register(e, { ...validations });
+            ref={element => {
+              if (inputRef && element) {
+                (inputRef as MutableRefObject<
+                  HTMLTextAreaElement
+                >).current = element;
+              }
+              register(element, { ...validations });
             }}
             {...fieldProps}
           />
@@ -298,15 +297,13 @@ export function FormField({
               onFocus={handleFocus}
               onKeyDown={event => handleKeyDown(event)}
               onBlur={handleBlur}
-              ref={e => {
-                /**
-                 * @typescript-eslint/ban-ts-ignore is ignored as `.current` is readonly
-                 * but we need to overwrite that for this case
-                 */
-                // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-                // @ts-ignore
-                if (inputRef) inputRef.current = e;
-                register(e, { ...validations });
+              ref={element => {
+                if (inputRef && element) {
+                  (inputRef as MutableRefObject<
+                    HTMLInputElement
+                  >).current = element;
+                }
+                register(element, { ...validations });
               }}
               {...fieldProps}
             />

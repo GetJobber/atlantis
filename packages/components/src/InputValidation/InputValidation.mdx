@@ -5,11 +5,11 @@ route: /components/input-validation
 ---
 
 import { Playground, Props } from "docz";
-import { ComponentStatus } from "@jobber/docx";
-import { InputValidation } from ".";
-import { Text } from "../Text";
-import { InputText } from "../InputText";
 import { useState } from "react";
+import { ComponentStatus } from "@jobber/docx";
+import { Text } from "@jobber/components/Text";
+import { InputText } from "@jobber/components/InputText";
+import { InputValidation } from ".";
 
 # Input Validation
 
@@ -27,7 +27,7 @@ import { InputValidation } from "@jobber/components/InputValidation";
     const [validationMessages, setValidationMessages] = useState(undefined);
     return (
       <>
-        <InputValidation message={validationMessages} />
+        {validationMessages && <InputValidation message={validationMessages} />}
         <Text>
           My name is
           <InputText
