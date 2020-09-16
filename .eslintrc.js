@@ -6,7 +6,7 @@ module.exports = {
     "import/resolver": {
       alias: {
         map: [
-          ["@jobber/components", "./packages/components/src"]
+          ["@jobber/components", "./packages/components/src"],
           ["@jobber/hooks", "./packages/hooks"]
         ],
         extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
