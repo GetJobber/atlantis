@@ -139,7 +139,7 @@ export interface FormFieldProps {
 
   /**
    * Callback to get the the status and message when validating a field
-   * @param messages
+   * @param message
    */
   onValidation?(message: string): void;
 
