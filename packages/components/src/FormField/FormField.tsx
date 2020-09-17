@@ -139,7 +139,7 @@ export interface FormFieldProps {
 
   /**
    * Callback to get the the status and message when validating a field
-   * @param messages
+   * @param message
    */
   onValidation?(message: string): void;
 
@@ -233,7 +233,7 @@ export function FormField({
   );
 
   return (
-    <>
+    <div>
       <Wrapper
         className={wrapperClassNames}
         style={{ ["--formField-maxLength" as string]: maxLength || max }}
@@ -249,7 +249,7 @@ export function FormField({
         )}
       </Wrapper>
       {error && !inline && <InputValidation message={error} />}
-    </>
+    </div>
   );
 
   function fieldElement() {
