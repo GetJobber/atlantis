@@ -10,7 +10,6 @@ import { Form } from "@jobber/components/Form";
 import { InputText } from "@jobber/components/InputText";
 import { Content } from "@jobber/components/Content";
 import { Button } from "@jobber/components/Button";
-import { Divider } from "@jobber/components/Divider";
 
 # UseFormState
 
@@ -58,11 +57,11 @@ import { useFormState } from "@jobber/hooks";
             />
             <Button
               label="Submit Form"
+              submit={true}
               disabled={!formState.isDirty || !formState.isValid}
             />
           </Content>
         </Form>
-        <Divider />
         <pre>{JSON.stringify(formState, null, 2)}</pre>
       </>
     );

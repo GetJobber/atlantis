@@ -2,7 +2,6 @@ import React from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
 import { Link } from "react-router-dom";
-import { useFormContext } from "react-hook-form";
 import { IconNames } from "@jobber/design";
 import styles from "./Button.css";
 import { Typography } from "../Typography";
@@ -69,11 +68,19 @@ interface CancelActionProps extends ButtonFoundationProps {
   readonly type?: "secondary" | "tertiary";
 }
 
+interface SubmitButtonProps
+  extends Omit<ButtonFoundationProps, "external" | "onClick"> {
+  /**
+   * Allows the button to submit a form
+   */
+  submit: boolean;
+}
+
 export type ButtonProps = XOR<
   BaseActionProps,
   XOR<DestructiveActionProps, CancelActionProps>
 > &
-  XOR<ButtonLinkProps, ButtonAnchorProps> &
+  XOR<SubmitButtonProps, XOR<ButtonLinkProps, ButtonAnchorProps>> &
   XOR<ButtonIconProps, ButtonLabelProps>;
 
 export function Button(props: ButtonProps) {
@@ -96,6 +103,7 @@ export function Button(props: ButtonProps) {
     url,
     to,
     variation = "work",
+    submit,
   } = props;
 
   const buttonClassNames = classnames(styles.button, styles[size], {
@@ -109,8 +117,7 @@ export function Button(props: ButtonProps) {
     [styles.loading]: loading,
   });
 
-  const buttonType: ButtonType =
-    useFormContext() == undefined ? "button" : "submit";
+  const buttonType: ButtonType = submit ? "submit" : "button";
 
   const tagProps = {
     className: buttonClassNames,
