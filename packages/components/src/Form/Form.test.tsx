@@ -5,7 +5,7 @@ import { InputText } from "../InputText";
 
 afterEach(cleanup);
 
-test("calls the submit handler if the form is valid", async done => {
+test("calls the submit handler if the form is valid", async () => {
   const submitHandler = jest.fn();
   const { getByText, getByLabelText } = render(
     <MockForm onSubmit={submitHandler} />,
@@ -15,51 +15,43 @@ test("calls the submit handler if the form is valid", async done => {
   fireEvent.change(input, { target: { value: "hello" } });
   fireEvent.click(getByText("submit"));
 
-  waitFor(() => {
-    expect(submitHandler).toHaveBeenCalledTimes(1);
-    done();
-  });
+  await waitFor(() => expect(submitHandler).toHaveBeenCalledTimes(1));
 });
 
-test("does not call the submit handler if the form is invalid", async done => {
+test("does not call the submit handler if the form is invalid", async () => {
   const submitHandler = jest.fn();
   const { getByText } = render(<MockForm onSubmit={submitHandler} />);
 
   fireEvent.click(getByText("submit"));
 
-  waitFor(() => {
-    expect(submitHandler).not.toHaveBeenCalled();
-    done();
-  });
+  await waitFor(() => expect(submitHandler).not.toHaveBeenCalled());
 });
 
-test("renders an error message when field is invalid", async done => {
+test("renders an error message when field is invalid", async () => {
   const submitHandler = jest.fn();
   const { getByText } = render(<MockForm onSubmit={submitHandler} />);
 
   fireEvent.click(getByText("submit"));
 
-  waitFor(() => {
-    expect(getByText("validation error")).toBeInstanceOf(HTMLParagraphElement);
-    done();
-  });
+  await waitFor(() =>
+    expect(getByText("validation error")).toBeInstanceOf(HTMLParagraphElement),
+  );
 });
 
-test("fires onStateChage when component renders", async done => {
+test("fires onStateChage when component renders", async () => {
   const stateChangeHandler = jest.fn();
   render(<MockForm onSubmit={jest.fn()} onStateChange={stateChangeHandler} />);
 
-  waitFor(() => {
+  await waitFor(() => {
     expect(stateChangeHandler).toHaveBeenCalled();
     expect(stateChangeHandler).toHaveBeenCalledWith({
       isDirty: false,
       isValid: true,
     });
-    done();
   });
 });
 
-test("onStateChage updates state when form is valid", async done => {
+test("onStateChage updates state when form is valid", async () => {
   const stateChangeHandler = jest.fn();
   const { getByLabelText } = render(
     <MockForm onSubmit={jest.fn()} onStateChange={stateChangeHandler} />,
@@ -70,12 +62,11 @@ test("onStateChage updates state when form is valid", async done => {
   fireEvent.change(input, { target: { value: "Bo" } });
   input.blur();
 
-  waitFor(() => {
+  await waitFor(() => {
     expect(stateChangeHandler).toHaveBeenCalledWith({
       isDirty: true,
       isValid: false,
     });
-    done();
   });
 });
 
