@@ -125,7 +125,7 @@ it("renders a Link as a Button for routing", () => {
   expect(tree).toMatchSnapshot();
 });
 
-it("renders button type='button' if not in a form", () => {
+it("renders button type='button' by default", () => {
   const { container } = render(<Button label="hello" />);
   const button = container.querySelector("button[type='button']");
   expect(button).toBeInstanceOf(HTMLButtonElement);

@@ -7,7 +7,10 @@ route: /components/button
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Button } from ".";
+import { Form } from "@jobber/components/Form";
+import { InputNumber } from "@jobber/components/InputNumber";
+import { Content } from "@jobber/components/Content";
+import { Button } from "@jobber/components/Button";
 
 # Button
 
@@ -237,4 +240,22 @@ that the url will change to the appropriate route.
       </Router>
     );
   }}
+</Playground>
+
+## Form Submit
+
+Passing the `submit` prop will allow a `Button` to submit a
+[Form](/components/form). Since submitting a form is a specific action, only
+`variation="work"` and `type="primary"` are allowed.
+
+Since this type of `Button` will only be used to submit a form, it does not make
+sense to allow the `external`, `onClick`, `to`, or `url` props.
+
+<Playground>
+  <Form onSubmit={() => alert("Wow, what a number")}>
+    <Content>
+      <InputNumber placeholder="Pick a number" />
+      <Button label="Submit" submit={true} />
+    </Content>
+  </Form>
 </Playground>
