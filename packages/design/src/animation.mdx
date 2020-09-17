@@ -5,9 +5,11 @@ route: /animation
 ---
 
 # Animation
+
 ## Patterns
 
 Animations in Jobber fall under categories based on their purpose:
+
 
 ###Reveal
 
@@ -39,8 +41,27 @@ Use judgement when determining the appropriate durations for animations. This wi
 | `--duration-slowest`          | 500ms | page transitions
 
 ## Easing
-| Name        | Value                  | Examples of use              |
-| :--------------- | :--------------------- | :--------------------- |
-| `--ease-in` | cubic-bezier(0.4, 0, 1, 0.9, 0)    | for exiting elements that don’t fade out
-| `--ease-out`   | cubic-bezier (0, 0, 0.4, 1)    | entering elements
-| `--ease-both`            | cubic-bezier(0.5, 0, 0.4, 1)   | for elements that move from point to point
+
+Animations are linear by default, but this lends and uncanny robotic feeling to the motion of an element. Easing creates a more natural, pleasing transition between animation states to mimic the acceleration and deceleration of objects in the real world.
+
+###Ease in
+
+Starts slow and speeds up. Use for exiting elements that don’t fade out. 
+
+###Ease out
+
+Starts fast and slows down. Use for entering elements. For example, opening a toast, modal, or menu.
+
+###Ease both
+
+Combines features of ease in and out curves. Use for moving from point to point, or for when the element disappears from the screen, but the user can return to the previous place at any time. For example, opening and closing a side drawer, side nav, or accordion.
+
+###Linear
+
+Use for color and opacity changes (things that don’t move).
+
+| Name        | Value                  
+| :--------------- | :--------------------- 
+| `--ease-in` | cubic-bezier(0.4, 0, 1, 0.9, 0)
+| `--ease-out`   | cubic-bezier (0, 0, 0.4, 1)    
+| `--ease-both`            | cubic-bezier(0.5, 0, 0.4, 1)   
