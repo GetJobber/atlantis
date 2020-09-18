@@ -28,3 +28,8 @@ export const sidebarLink = {
     mb: 2,
   },
 };
+
+export const search = {
+  position: "sticky",
+  top: 0,
+};
