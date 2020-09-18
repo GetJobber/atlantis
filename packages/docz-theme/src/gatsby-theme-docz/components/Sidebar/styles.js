@@ -10,6 +10,13 @@ export const overlay = props => ({
 export const wrapper = props => ({
   ...styles.wrapper(props),
   p: 0,
+
+  "-ms-overflow-style": "none",
+  scrollbarWidth: "none",
+
+  "&::-webkit-scrollbar": {
+    display: "none",
+  },
 });
 
 export const linkWrapper = { px: 6 };

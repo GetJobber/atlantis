@@ -27,7 +27,6 @@ export function Navigation({ query, sidebarRef }) {
             </Box>
           );
         })}
-      <hr />
     </Box>
   );
 }
