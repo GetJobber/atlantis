@@ -1,11 +1,18 @@
 import themeStyles from "gatsby-theme-docz/src/theme/index";
 import { merge } from "lodash/fp";
-import * as modes from "./modes";
 
 // eslint-disable-next-line import/no-default-export
 export default merge(themeStyles, {
-  colors: {
-    ...modes.jobber,
+  prism: {
+    light: {
+      plain: {
+        backgroundColor: "var(--color-grey--lightest)",
+        borderRadius: "var(--radius-base)",
+        fontFamily: "monospace",
+        paddingLeft: "var(--space-small)",
+        paddingRight: "var(--space-small)",
+      },
+    },
   },
   fonts: {
     monospace: "monospace",
