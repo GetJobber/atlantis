@@ -1,0 +1,16 @@
+:root {
+  --border-color: var(--color-blue--lightest);
+  --border-active-color: var(--color-outline);
+}
+
+.dropZone {
+  padding: var(--space-base);
+  border: var(--border-color) dashed var(--border-thick);
+  border-radius: var(--radius-larger);
+  text-align: center;
+}
+
+.dropZone.active {
+  border-color: var(--border-active-color);
+  background-color: var(--color-yellow--lightest);
+}

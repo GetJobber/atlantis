@@ -13,6 +13,11 @@ export interface FormFieldProps {
   readonly align?: "center" | "right";
 
   /**
+   * Determines if browser form autocomplete is enabled.
+   */
+  readonly autocomplete?: boolean;
+
+  /**
    * If you need to pass in a children. For example, `<options>` inside
    * `<select>`.
    */
@@ -166,6 +171,7 @@ export const FormField = React.forwardRef(
   (
     {
       align,
+      autocomplete = true,
       children,
       defaultValue,
       disabled,
@@ -201,6 +207,8 @@ export const FormField = React.forwardRef(
       handleValidation();
       setHasMiniLabel(shouldShowMiniLabel(defaultValue, value));
     }, [value]);
+
+    const autocompleteValue = autocomplete ? undefined : "autocomplete-off";
 
     const wrapperClassNames = classnames(
       styles.wrapper,
@@ -278,6 +286,7 @@ export const FormField = React.forwardRef(
         default:
           return (
             <input
+              autoComplete={autocompleteValue}
               type={type}
               maxLength={maxLength}
               max={max}
