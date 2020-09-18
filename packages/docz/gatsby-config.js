@@ -17,6 +17,7 @@ module.exports = {
           docz: "../node_modules/docz",
           react: "../node_modules/react",
           "@jobber/components": "../../components/src",
+          "@jobber/docz-theme": "../../docz-theme/src",
         },
       },
     },

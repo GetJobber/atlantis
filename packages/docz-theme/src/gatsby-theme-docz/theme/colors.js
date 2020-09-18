@@ -5,6 +5,7 @@ export const greyLight = "var(--color-grey--light)";
 
 export const greyBlueDark = "var(--color-greyBlue--dark)";
 export const greyBlueLight = "var(--color-greyBlue--light)";
+export const greyBlueLighter = "var(--color-greyBlue--lighter)";
 
 export const blueDark = "var(--color-blue--dark)";
 

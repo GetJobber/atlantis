@@ -10,9 +10,10 @@ export const jobber = merge(modes.light, {
   },
   sidebar: {
     bg: colors.greyBlueDark,
-    navGroup: colors.greyBlueLight,
-    navLinkActive: colors.white,
-    tocLink: colors.greyBlueLight,
+    navGroup: colors.greyBlueLighter,
+    navLink: colors.greyBlueLighter,
+    navLinkActive: colors.green,
+    tocLink: colors.greyBlueLighter,
     tocLinkActive: colors.white,
   },
 });

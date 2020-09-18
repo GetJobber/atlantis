@@ -1,17 +1,16 @@
 /** @jsx jsx */
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Layout as BaseLayout, Main, jsx } from "theme-ui";
 import { Global } from "@emotion/core";
 import t from "prop-types";
 import global from "gatsby-theme-docz/src/theme/global";
 import { Sidebar } from "gatsby-theme-docz/src/components/Sidebar";
 import { MainContainer } from "gatsby-theme-docz/src/components/MainContainer";
-import { CTAS } from "@jobber/docz-theme/CTAS";
+import { CTAS } from "@jobber/docz-theme/components/CTAS";
 import * as styles from "./styles";
 
 export const Layout = ({ children }) => {
   const [open, setOpen] = useState(false);
-  const nav = useRef();
 
   return (
     <BaseLayout>
@@ -19,7 +18,6 @@ export const Layout = ({ children }) => {
       <Main sx={styles.main}>
         <CTAS />
         <Sidebar
-          ref={nav}
           open={open}
           onFocus={() => setOpen(true)}
           onBlur={() => setOpen(false)}

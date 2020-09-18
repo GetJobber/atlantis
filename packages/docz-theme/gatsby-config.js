@@ -7,7 +7,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-root-import",
       options: {
-        "@jobber/docz-theme": path.join(__dirname, "src/components"),
+        "@jobber/docz-theme": path.join(__dirname, "src"),
       },
     },
     {
