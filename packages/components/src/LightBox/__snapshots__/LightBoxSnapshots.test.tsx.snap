@@ -45,7 +45,7 @@ exports[`Images renders an image 1`] = `
     tabIndex="-1"
   >
     <div
-      className="ril-outer ril__outer ril__outerAnimating wrapper "
+      className="ril-outer ril__outer ril__outerAnimating wrapper  "
       onKeyDown={[Function]}
       onKeyUp={[Function]}
       onMouseDown={[Function]}

@@ -30,6 +30,10 @@ interface LightBoxProps {
    */
   readonly imageIndex?: number;
   /**
+   * Insert class to the component.
+   */
+  readonly className?: string;
+  /**
    * This function must set open to false in order to close the lightbox. Note there
    * is a 300ms easing animation on lightbox close that occurs before this function
    * is called.
@@ -41,6 +45,7 @@ export function LightBox({
   open,
   images,
   imageIndex = 0,
+  className = "",
   onRequestClose,
 }: LightBoxProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(imageIndex);
@@ -60,7 +65,7 @@ export function LightBox({
     <>
       {open && (
         <ExternalLightBox
-          wrapperClassName={styles.wrapper}
+          wrapperClassName={`${styles.wrapper} ${className}`}
           mainSrc={images[currentImageIndex].url}
           enableZoom={false}
           nextSrc={nextSrc}
