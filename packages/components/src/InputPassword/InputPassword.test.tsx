@@ -8,31 +8,33 @@ afterEach(cleanup);
 it("renders an input type number", () => {
   const tree = renderer.create(<InputPassword value="123" />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
+    <div>
+      <div
+        className="wrapper"
+        style={
+          Object {
+            "--formField-maxLength": undefined,
+          }
         }
-      }
-    >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440001"
       >
-         
-      </label>
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440001"
-        name="generatedName--123e4567-e89b-12d3-a456-426655440001"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        type="password"
-        value="123"
-      />
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440001"
+        >
+           
+        </label>
+        <input
+          className="formField"
+          id="123e4567-e89b-12d3-a456-426655440001"
+          name="generatedName--123e4567-e89b-12d3-a456-426655440001"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          type="password"
+          value="123"
+        />
+      </div>
     </div>
   `);
 });
@@ -42,31 +44,33 @@ it("renders an error", () => {
     .create(<InputPassword value="p" errorMessage="Not long enough" />)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
+    <div>
+      <div
+        className="wrapper"
+        style={
+          Object {
+            "--formField-maxLength": undefined,
+          }
         }
-      }
-    >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440002"
       >
-         
-      </label>
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440002"
-        name="generatedName--123e4567-e89b-12d3-a456-426655440002"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        type="password"
-        value="p"
-      />
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440002"
+        >
+           
+        </label>
+        <input
+          className="formField"
+          id="123e4567-e89b-12d3-a456-426655440002"
+          name="generatedName--123e4567-e89b-12d3-a456-426655440002"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          type="password"
+          value="p"
+        />
+      </div>
     </div>
   `);
 });
