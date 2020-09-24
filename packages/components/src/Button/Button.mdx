@@ -7,7 +7,10 @@ route: /components/button
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Button } from ".";
+import { Form } from "@jobber/components/Form";
+import { InputNumber } from "@jobber/components/InputNumber";
+import { Content } from "@jobber/components/Content";
+import { Button } from "@jobber/components/Button";
 
 # Button
 
@@ -22,7 +25,7 @@ import { Button } from "@jobber/components/Button";
 
 <Playground>
   <Button
-    label="Submit"
+    label="Do the thing"
     onClick={() => {
       alert("✅");
     }}
@@ -47,7 +50,7 @@ In, or the main action in a dialog. There should be one Primary action per view,
 at most.
 
 <Playground>
-  <Button label="Submit" />
+  <Button label="Do the thing" />
 </Playground>
 
 ### Secondary
@@ -58,7 +61,7 @@ A secondary button should be used when...
   action
 
 <Playground>
-  <Button label="Submit" type="secondary" />
+  <Button label="Do the thing" type="secondary" />
 </Playground>
 
 ### Tertiary
@@ -67,7 +70,7 @@ A tertiary button should be used to complete actions within the view such as
 editing, revealing details, or navigating within the view.
 
 <Playground>
-  <Button label="Submit" type="tertiary" />
+  <Button label="Do the thing" type="tertiary" />
 </Playground>
 
 ## Learning Actions
@@ -151,7 +154,7 @@ Buttons can be disabled for a number of reasons, users may need to do an action
 first or they may not be ready to use that button.
 
 <Playground>
-  <Button label="Submit" disabled />
+  <Button label="Do the thing" disabled />
 </Playground>
 
 ## Sizes
@@ -161,13 +164,13 @@ Buttons comes in 2 extra sizes.
 ### Small
 
 <Playground>
-  <Button label="Submit" size="small" />
+  <Button label="Do the thing" size="small" />
 </Playground>
 
 ### Large
 
 <Playground>
-  <Button label="Submit" size="large" />
+  <Button label="Do the thing" size="large" />
 </Playground>
 
 ## Icons
@@ -237,4 +240,22 @@ that the url will change to the appropriate route.
       </Router>
     );
   }}
+</Playground>
+
+## Form Submit
+
+Passing the `submit` prop will allow a `Button` to submit a
+[Form](/components/form). Since submitting a form is a specific action, only
+`variation="work"` and `type="primary"` are allowed.
+
+Since this type of `Button` will only be used to submit a form, it does not make
+sense to allow the `external`, `onClick`, `to`, or `url` props.
+
+<Playground>
+  <Form onSubmit={() => alert("Wow, what a number")}>
+    <Content>
+      <InputNumber placeholder="Pick a number" />
+      <Button label="Submit" submit={true} />
+    </Content>
+  </Form>
 </Playground>

@@ -4,43 +4,7 @@ import { InputValidation } from ".";
 
 it("renders the input validation messages", () => {
   const tree = renderer
-    .create(
-      <InputValidation
-        messages={[
-          {
-            message: "I'm a success message",
-            status: "success",
-          },
-          {
-            message: "I'm an error message",
-            status: "error",
-          },
-          {
-            message: "I'm a warning message",
-            status: "warn",
-          },
-          {
-            message: "I'm an info message",
-            status: "info",
-          },
-          {
-            shouldShow: true,
-            message: "I'm shown",
-            status: "success",
-          },
-          {
-            shouldShow: false,
-            message: "I ain't",
-            status: "error",
-          },
-          {
-            shouldShow: true,
-            message: "A am too!",
-            status: "warn",
-          },
-        ]}
-      />,
-    )
+    .create(<InputValidation message="I am an error" />)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
@@ -49,92 +13,21 @@ it("renders the input validation messages", () => {
       <div
         style={
           Object {
-            "height": "100%",
-            "opacity": 1,
-            "transform": "none",
+            "height": "0px",
+            "opacity": 0,
+            "transform": "translateY(5%) translateZ(0)",
           }
         }
       >
-        <p
-          className="base regular base green"
+        <div
+          className="message"
         >
-          I'm a success message
-        </p>
-      </div>
-      <div
-        style={
-          Object {
-            "height": "100%",
-            "opacity": 1,
-            "transform": "none",
-          }
-        }
-      >
-        <p
-          className="base regular base red"
-        >
-          I'm an error message
-        </p>
-      </div>
-      <div
-        style={
-          Object {
-            "height": "100%",
-            "opacity": 1,
-            "transform": "none",
-          }
-        }
-      >
-        <p
-          className="base regular base yellowDark"
-        >
-          I'm a warning message
-        </p>
-      </div>
-      <div
-        style={
-          Object {
-            "height": "100%",
-            "opacity": 1,
-            "transform": "none",
-          }
-        }
-      >
-        <p
-          className="base regular base lightBlue"
-        >
-          I'm an info message
-        </p>
-      </div>
-      <div
-        style={
-          Object {
-            "height": "100%",
-            "opacity": 1,
-            "transform": "none",
-          }
-        }
-      >
-        <p
-          className="base regular base green"
-        >
-          I'm shown
-        </p>
-      </div>
-      <div
-        style={
-          Object {
-            "height": "100%",
-            "opacity": 1,
-            "transform": "none",
-          }
-        }
-      >
-        <p
-          className="base regular base yellowDark"
-        >
-          A am too!
-        </p>
+          <p
+            className="base regular base red"
+          >
+            I am an error
+          </p>
+        </div>
       </div>
     </div>
   `);
