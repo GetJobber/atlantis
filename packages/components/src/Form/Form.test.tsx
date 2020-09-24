@@ -1,7 +1,9 @@
 import React from "react";
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
+import { useFormState } from "@jobber/hooks";
 import { Form } from ".";
 import { InputText } from "../InputText";
+import { Text } from "../Text";
 
 afterEach(cleanup);
 
@@ -70,6 +72,42 @@ test("onStateChage updates state when form is valid", async () => {
   });
 });
 
+test("initializes useFormState with proper state", async () => {
+  const { getByText } = render(<MockFormWithState />);
+  await waitFor(() => {
+    expect(getByText("Dirty: false")).not.toBeNull();
+    expect(getByText("Valid: false")).not.toBeNull();
+  });
+});
+
+test("updates state with useFormState to proper state", async () => {
+  const { getByText, getByLabelText } = render(<MockFormWithState />);
+
+  await waitFor(() => {
+    expect(getByText("Dirty: false")).not.toBeNull();
+    expect(getByText("Valid: false")).not.toBeNull();
+  });
+
+  const input = getByLabelText("gimme a name");
+  fireEvent.change(input, { target: { value: "Bob" } });
+  input.focus();
+  input.blur();
+
+  await waitFor(() => {
+    expect(getByText("Dirty: true")).not.toBeNull();
+    expect(getByText("Valid: false")).not.toBeNull();
+  });
+
+  fireEvent.change(input, { target: { value: "Bobbert" } });
+  input.focus();
+  input.blur();
+
+  await waitFor(() => {
+    expect(getByText("Dirty: true")).not.toBeNull();
+    expect(getByText("Valid: true")).not.toBeNull();
+  });
+});
+
 interface MockFormProps {
   onSubmit(): void;
   onStateChange?(): void;
@@ -93,6 +131,26 @@ function MockForm({ onSubmit, onStateChange }: MockFormProps) {
         }}
       />
       <button type="submit">submit</button>
+    </Form>
+  );
+}
+
+function MockFormWithState() {
+  const [formState, setFormState] = useFormState();
+
+  return (
+    <Form onStateChange={setFormState}>
+      <InputText
+        placeholder="gimme a name"
+        validations={{
+          minLength: {
+            value: 5,
+            message: "to short",
+          },
+        }}
+      />
+      <Text>Dirty: {formState.isDirty ? "true" : "false"}</Text>
+      <Text>Valid: {formState.isValid ? "true" : "false"}</Text>
     </Form>
   );
 }

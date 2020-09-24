@@ -6,5 +6,5 @@ export function useFormState() {
     isValid: true,
   });
 
-  return [formState, setFormState];
+  return [formState, setFormState] as const;
 }
