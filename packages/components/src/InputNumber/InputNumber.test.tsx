@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import { InputNumber } from ".";
 
 afterEach(cleanup);
@@ -8,8 +8,7 @@ afterEach(cleanup);
 it("renders an input type number", () => {
   const tree = renderer.create(<InputNumber value="123" />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
-    Array [
-      "",
+    <div>
       <div
         className="wrapper"
         style={
@@ -27,6 +26,7 @@ it("renders an input type number", () => {
         <input
           className="formField"
           id="123e4567-e89b-12d3-a456-426655440001"
+          name="generatedName--123e4567-e89b-12d3-a456-426655440001"
           onBlur={[Function]}
           onChange={[Function]}
           onFocus={[Function]}
@@ -34,8 +34,8 @@ it("renders an input type number", () => {
           type="number"
           value="123"
         />
-      </div>,
-    ]
+      </div>
+    </div>
   `);
 });
 
@@ -44,14 +44,9 @@ it("renders an error", () => {
     .create(<InputNumber value="1.1" errorMessage="Not a whole number" />)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-    Array [
-      <p
-        className="base regular base red"
-      >
-        Not a whole number
-      </p>,
+    <div>
       <div
-        className="wrapper invalid"
+        className="wrapper"
         style={
           Object {
             "--formField-maxLength": undefined,
@@ -67,6 +62,7 @@ it("renders an error", () => {
         <input
           className="formField"
           id="123e4567-e89b-12d3-a456-426655440002"
+          name="generatedName--123e4567-e89b-12d3-a456-426655440002"
           onBlur={[Function]}
           onChange={[Function]}
           onFocus={[Function]}
@@ -74,8 +70,8 @@ it("renders an error", () => {
           type="number"
           value="1.1"
         />
-      </div>,
-    ]
+      </div>
+    </div>
   `);
 });
 
@@ -98,7 +94,7 @@ test("it should call the handler with a number value", () => {
   expect(changeHandler).toHaveBeenCalledWith(newValue);
 });
 
-test("it should call the validation with a success status", () => {
+test("it should call the validation with undefined as a success", () => {
   const validationHandler = jest.fn();
 
   render(
@@ -106,65 +102,139 @@ test("it should call the validation with a success status", () => {
       value={100}
       min={99}
       max={100}
-      onValidate={validationHandler}
+      onValidation={validationHandler}
       placeholder="Count to 100"
     />,
   );
 
-  expect(validationHandler).toHaveBeenCalledWith("pass", "");
+  expect(validationHandler).toHaveBeenCalledWith(undefined);
 });
 
-test("it should call the validation with a range error", () => {
+test("it should call the validation with a range error", async () => {
   const validationHandler = jest.fn();
 
-  render(
+  const { getByLabelText } = render(
     <InputNumber
       value={101}
       min={99}
       max={100}
-      onValidate={validationHandler}
+      onValidation={validationHandler}
       placeholder="Count to 100"
     />,
   );
 
-  expect(validationHandler).toHaveBeenCalledWith(
-    "fail",
-    "Enter a number between 99 and 100",
-  );
+  const input = getByLabelText("Count to 100");
+  input.focus();
+  input.blur();
+
+  await waitFor(() => {
+    expect(validationHandler).toHaveBeenCalledWith(
+      "Enter a number between 99 and 100",
+    );
+  });
 });
 
-test("it should call the validation with a max length error", () => {
+test("it should call the validation with a max length error", async () => {
   const validationHandler = jest.fn();
 
-  render(
+  const { getByLabelText } = render(
     <InputNumber
       value={101}
       max={100}
-      onValidate={validationHandler}
+      onValidation={validationHandler}
       placeholder="Count to 100"
     />,
   );
 
-  expect(validationHandler).toHaveBeenCalledWith(
-    "fail",
-    "Enter a number that is less than or equal to 100",
-  );
+  const input = getByLabelText("Count to 100");
+  input.focus();
+  input.blur();
+
+  await waitFor(() => {
+    expect(validationHandler).toHaveBeenCalledWith(
+      "Enter a number that is less than or equal to 100",
+    );
+  });
 });
 
-test("it should call the validation with a min length error", () => {
+test("it should call the validation with a min length error", async () => {
   const validationHandler = jest.fn();
 
-  render(
+  const { getByLabelText } = render(
     <InputNumber
       value={98}
       min={99}
-      onValidate={validationHandler}
+      onValidation={validationHandler}
       placeholder="Count to 100"
     />,
   );
 
-  expect(validationHandler).toHaveBeenCalledWith(
-    "fail",
-    "Enter a number that is greater than or equal to 99",
+  const input = getByLabelText("Count to 100");
+  input.focus();
+  input.blur();
+
+  await waitFor(() => {
+    expect(validationHandler).toHaveBeenCalledWith(
+      "Enter a number that is greater than or equal to 99",
+    );
+  });
+});
+
+test("validation passes if number is correct", async () => {
+  const validationHandler = jest.fn();
+
+  const { getByLabelText } = render(
+    <InputNumber
+      value={98}
+      min={99}
+      onValidation={validationHandler}
+      placeholder="Count to 100"
+    />,
   );
+
+  const input = getByLabelText("Count to 100");
+  input.focus();
+  input.blur();
+
+  await waitFor(() => {
+    expect(validationHandler).toHaveBeenCalledWith(
+      "Enter a number that is greater than or equal to 99",
+    );
+  });
+
+  fireEvent.change(input, { target: { value: 101 } });
+  input.focus();
+  input.blur();
+
+  await waitFor(() => {
+    expect(validationHandler).toHaveBeenCalledWith(undefined);
+  });
+});
+
+test("allows custom validation", async () => {
+  const validationHandler = jest.fn();
+
+  const { getByLabelText } = render(
+    <InputNumber
+      value={12}
+      min={10}
+      onValidation={validationHandler}
+      placeholder="Count to 10"
+      validations={{
+        maxLength: {
+          value: 1,
+          message: "only one number",
+        },
+      }}
+    />,
+  );
+
+  const input = getByLabelText("Count to 10");
+
+  input.focus();
+  input.blur();
+
+  await waitFor(() => {
+    expect(validationHandler).toHaveBeenCalledWith("only one number");
+  });
 });

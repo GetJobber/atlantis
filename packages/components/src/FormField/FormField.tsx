@@ -1,10 +1,17 @@
-import React, { ChangeEvent, ReactNode, Ref, useEffect, useState } from "react";
+import React, {
+  ChangeEvent,
+  MutableRefObject,
+  ReactNode,
+  RefObject,
+  useEffect,
+  useState,
+} from "react";
 import classnames from "classnames";
 import uuid from "uuid";
+import { ValidationRules, useForm, useFormContext } from "react-hook-form";
 import styles from "./FormField.css";
 import { Icon } from "../Icon";
-import { Text } from "../Text";
-import { InputValidation, ValidationProps } from "../InputValidation";
+import { InputValidation } from "../InputValidation";
 
 export interface FormFieldProps {
   /**
@@ -34,13 +41,6 @@ export interface FormFieldProps {
    * Disable the input
    */
   readonly disabled?: boolean;
-
-  /**
-   * **DEPRECATED** Use `validations` prop instead.
-   *
-   * Show an error message and highlight the the field red.
-   */
-  readonly errorMessage?: string;
 
   /**
    * Adjusts the form field to go inline with a content. This also silences the
@@ -110,14 +110,6 @@ export interface FormFieldProps {
     | "select";
 
   /**
-   * **EXPERIMENTAL** This feature is still under development.
-   *
-   * Show a success, error, warn, and info message above the field. This also
-   * highlights the the field red if and error message shows up.
-   */
-  readonly validations?: ValidationProps[];
-
-  /**
    * Set the component to the given value.
    */
   readonly value?: string | number;
@@ -146,145 +138,156 @@ export interface FormFieldProps {
   onBlur?(): void;
 
   /**
-   * **DEPRECATED** Use `onValidation` prop instead.
-   *
    * Callback to get the the status and message when validating a field
-   * @param status
    * @param message
    */
-  onValidate?(status: "pass" | "fail", message: string): void;
+  onValidation?(message: string): void;
 
   /**
-   * **EXPERIMENTAL** This feature is still under development.
-   *
-   * Callback to get the the status and message when validating a field
-   * @param messages
+   * Show an error message above the field. This also
+   * highlights the the field red if an error message shows up.
    */
-  onValidation?(messages: ValidationProps[]): void;
+  readonly validations?: ValidationRules;
+
+  inputRef?: RefObject<
+    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+  >;
 }
 
-export const FormField = React.forwardRef(
-  /**
-   * Max statements is disabled for this component due the event handlers.
-   */
-  // eslint-disable-next-line max-statements
-  (
+/**
+ * Max statements is disabled for this component due the event handlers.
+ */
+// eslint-disable-next-line max-statements
+export function FormField({
+  align,
+  autocomplete = true,
+  children,
+  defaultValue,
+  disabled,
+  inline,
+  invalid,
+  max,
+  maxLength,
+  min,
+  name,
+  onFocus,
+  onBlur,
+  onChange,
+  onEnter,
+  onValidation,
+  placeholder,
+  readonly,
+  rows,
+  size,
+  type = "text",
+  value,
+  validations,
+  inputRef,
+}: FormFieldProps) {
+  const {
+    register,
+    /**
+     * We currently only use `errors` from formState, but there are lots of
+     * other values that come with it. https://react-hook-form.com/api#formState
+     */
+    formState: { errors },
+  } =
+    useFormContext() != undefined
+      ? useFormContext()
+      : useForm({ mode: "onTouched" });
+
+  const [hasMiniLabel, setHasMiniLabel] = useState(
+    shouldShowMiniLabel(defaultValue, value),
+  );
+  const [identifier] = useState(uuid.v1());
+  name = name || `generatedName--${identifier}`;
+
+  const error = name && errors[name] && errors[name].message;
+
+  useEffect(() => setHasMiniLabel(shouldShowMiniLabel(defaultValue, value)), [
+    value,
+  ]);
+  useEffect(() => handleValidation(), [error]);
+
+  const autocompleteValue = autocomplete ? undefined : "autocomplete-off";
+
+  const wrapperClassNames = classnames(
+    styles.wrapper,
+    inline && styles.inline,
+    size && styles[size],
+    align && styles[align],
+    disabled && styles.disabled,
+    maxLength && styles.maxLength,
     {
-      align,
-      autocomplete = true,
-      children,
-      defaultValue,
-      disabled,
-      errorMessage,
-      inline,
-      invalid,
-      max,
-      maxLength,
-      min,
-      name,
-      onFocus,
-      onBlur,
-      onChange,
-      onEnter,
-      onValidate,
-      onValidation,
-      placeholder,
-      readonly,
-      rows,
-      size,
-      type = "text",
-      value,
-      validations,
-    }: FormFieldProps,
-    ref: Ref<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
-  ) => {
-    const [hasMiniLabel, setHasMiniLabel] = useState(
-      shouldShowMiniLabel(defaultValue, value),
-    );
-    const identifier = uuid.v1();
+      [styles.miniLabel]:
+        (hasMiniLabel || type === "time" || type === "select") && placeholder,
+      [styles.invalid]: invalid || error,
+    },
+  );
 
-    useEffect(() => {
-      handleValidation();
-      setHasMiniLabel(shouldShowMiniLabel(defaultValue, value));
-    }, [value]);
+  const Wrapper = inline ? "span" : "div";
 
-    const autocompleteValue = autocomplete ? undefined : "autocomplete-off";
+  const labelClassNames = classnames(
+    styles.label,
+    type === "textarea" && styles.textareaLabel,
+  );
 
-    const wrapperClassNames = classnames(
-      styles.wrapper,
-      inline && styles.inline,
-      size && styles[size],
-      align && styles[align],
-      disabled && styles.disabled,
-      maxLength && styles.maxLength,
-      {
-        [styles.miniLabel]:
-          (hasMiniLabel || type === "time" || type === "select") && placeholder,
-        [styles.invalid]:
-          invalid || errorMessage || hasErrorMessages(validations),
-      },
-    );
-
-    const Wrapper = inline ? "span" : "div";
-
-    const labelClassNames = classnames(
-      styles.label,
-      type === "textarea" && styles.textareaLabel,
-    );
-
-    return (
-      <>
-        {errorMessage && !inline && (
-          <Text variation="error">{errorMessage}</Text>
+  return (
+    <div>
+      <Wrapper
+        className={wrapperClassNames}
+        style={{ ["--formField-maxLength" as string]: maxLength || max }}
+      >
+        <label className={labelClassNames} htmlFor={identifier}>
+          {placeholder || " "}
+        </label>
+        {fieldElement()}
+        {type === "select" && (
+          <span className={styles.icon}>
+            <Icon name="arrowDown" />
+          </span>
         )}
+      </Wrapper>
+      {error && !inline && <InputValidation message={error} />}
+    </div>
+  );
 
-        {validations && !inline && <InputValidation messages={validations} />}
+  function fieldElement() {
+    const fieldProps = {
+      id: identifier,
+      className: styles.formField,
+      name: name,
+      disabled: disabled,
+      readOnly: readonly,
+      onChange: handleChange,
+      value: value,
+      ...(defaultValue && { defaultValue: defaultValue }),
+    };
 
-        <Wrapper
-          className={wrapperClassNames}
-          style={{ ["--formField-maxLength" as string]: maxLength || max }}
-        >
-          <label className={labelClassNames} htmlFor={identifier}>
-            {placeholder || " "}
-          </label>
-          {fieldElement()}
-          {type === "select" && (
-            <span className={styles.icon}>
-              <Icon name="arrowDown" />
-            </span>
-          )}
-        </Wrapper>
-      </>
-    );
-
-    function fieldElement() {
-      const fieldProps = {
-        id: identifier,
-        className: styles.formField,
-        name: name,
-        disabled: disabled,
-        readOnly: readonly,
-        onChange: handleChange,
-        value: value,
-        ...(defaultValue && { defaultValue: defaultValue }),
-      };
-
-      switch (type) {
-        case "select":
-          return <select {...fieldProps}>{children}</select>;
-        case "textarea":
-          return (
-            <textarea
-              rows={rows}
-              onFocus={handleFocus}
-              onKeyDown={event => handleKeyDown(event)}
-              onBlur={handleBlur}
-              ref={ref as Ref<HTMLTextAreaElement>}
-              {...fieldProps}
-            />
-          );
-        default:
-          return (
+    switch (type) {
+      case "select":
+        return <select {...fieldProps}>{children}</select>;
+      case "textarea":
+        return (
+          <textarea
+            rows={rows}
+            onFocus={handleFocus}
+            onKeyDown={event => handleKeyDown(event)}
+            onBlur={handleBlur}
+            ref={element => {
+              if (inputRef && element) {
+                (inputRef as MutableRefObject<
+                  HTMLTextAreaElement
+                >).current = element;
+              }
+              register(element, { ...validations });
+            }}
+            {...fieldProps}
+          />
+        );
+      default:
+        return (
+          <>
             <input
               autoComplete={autocompleteValue}
               type={type}
@@ -294,67 +297,69 @@ export const FormField = React.forwardRef(
               onFocus={handleFocus}
               onKeyDown={event => handleKeyDown(event)}
               onBlur={handleBlur}
-              ref={ref as Ref<HTMLInputElement>}
+              ref={element => {
+                if (inputRef && element) {
+                  (inputRef as MutableRefObject<
+                    HTMLInputElement
+                  >).current = element;
+                }
+                register(element, { ...validations });
+              }}
               {...fieldProps}
             />
-          );
-      }
+          </>
+        );
     }
+  }
 
-    function handleChange(
-      event:
-        | ChangeEvent<HTMLInputElement>
-        | ChangeEvent<HTMLTextAreaElement>
-        | ChangeEvent<HTMLSelectElement>,
-    ) {
-      let newValue: string | number;
-      newValue = event.currentTarget.value;
-      setHasMiniLabel(newValue.length > 0);
+  function handleChange(
+    event:
+      | ChangeEvent<HTMLInputElement>
+      | ChangeEvent<HTMLTextAreaElement>
+      | ChangeEvent<HTMLSelectElement>,
+  ) {
+    let newValue: string | number;
+    newValue = event.currentTarget.value;
+    setHasMiniLabel(newValue.length > 0);
 
-      if (type === "number" && newValue.length > 0) {
-        newValue = parseFloat(newValue);
-      }
-      onChange && onChange(newValue);
+    if (type === "number" && newValue.length > 0) {
+      newValue = parseFloat(newValue);
     }
+    onChange && onChange(newValue);
+  }
 
-    function handleFocus(
-      event:
-        | React.FocusEvent<HTMLInputElement>
-        | React.FocusEvent<HTMLTextAreaElement>,
-    ) {
-      const target = event.currentTarget;
-      setTimeout(() => readonly && target.select());
+  function handleFocus(
+    event:
+      | React.FocusEvent<HTMLInputElement>
+      | React.FocusEvent<HTMLTextAreaElement>,
+  ) {
+    const target = event.currentTarget;
+    setTimeout(() => readonly && target.select());
 
-      onFocus && onFocus();
-    }
+    onFocus && onFocus();
+  }
 
-    function handleBlur() {
-      onBlur && onBlur();
-    }
+  function handleBlur() {
+    onBlur && onBlur();
+  }
 
-    function handleKeyDown(
-      event:
-        | React.KeyboardEvent<HTMLInputElement>
-        | React.KeyboardEvent<HTMLTextAreaElement>,
-    ) {
-      if (!onEnter) return;
-      if (event.key !== "Enter") return;
-      if (event.shiftKey || event.ctrlKey) return;
+  function handleKeyDown(
+    event:
+      | React.KeyboardEvent<HTMLInputElement>
+      | React.KeyboardEvent<HTMLTextAreaElement>,
+  ) {
+    if (!onEnter) return;
+    if (event.key !== "Enter") return;
+    if (event.shiftKey || event.ctrlKey) return;
 
-      event.preventDefault();
-      onEnter && onEnter(event);
-    }
+    event.preventDefault();
+    onEnter && onEnter(event);
+  }
 
-    function handleValidation() {
-      const status = errorMessage ? "fail" : "pass";
-      const message = errorMessage || "";
-      onValidate && onValidate(status, message);
-
-      const validationMessages = validations ? validations : [];
-      onValidation && onValidation(validationMessages);
-    }
-  },
-);
+  function handleValidation() {
+    onValidation && onValidation(error);
+  }
+}
 
 function shouldShowMiniLabel(
   defaultValue: string | number | undefined,
@@ -366,16 +371,4 @@ function shouldShowMiniLabel(
   } else {
     return activeValue != undefined;
   }
-}
-
-function hasErrorMessages(validations?: ValidationProps[]) {
-  if (validations) {
-    return validations.some(validation => {
-      return (
-        (validation.shouldShow || validation.shouldShow === undefined) &&
-        validation.status === "error"
-      );
-    });
-  }
-  return false;
 }

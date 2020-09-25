@@ -125,6 +125,18 @@ it("renders a Link as a Button for routing", () => {
   expect(tree).toMatchSnapshot();
 });
 
+it("renders button type='button' by default", () => {
+  const { container } = render(<Button label="hello" />);
+  const button = container.querySelector("button[type='button']");
+  expect(button).toBeInstanceOf(HTMLButtonElement);
+});
+
+it("renders button type='submit'", () => {
+  const { container } = render(<Button label="hello" submit={true} />);
+  const button = container.querySelector("button[type='submit']");
+  expect(button).toBeInstanceOf(HTMLButtonElement);
+});
+
 it("routes when buttons are clicked", () => {
   const { queryByText } = render(
     <Router>

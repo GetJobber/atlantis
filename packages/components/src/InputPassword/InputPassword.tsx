@@ -20,14 +20,7 @@ interface InputPasswordProps
 }
 
 export function InputPassword(props: InputPasswordProps) {
-  return (
-    <FormField
-      type="password"
-      {...props}
-      onChange={handleChange}
-      errorMessage={props.errorMessage}
-    />
-  );
+  return <FormField {...props} type="password" onChange={handleChange} />;
 
   function handleChange(newValue: string) {
     props.onChange && props.onChange(newValue);

@@ -30,8 +30,6 @@ import { InputText } from "@jobber/components/InputText";
 
 <Props of={InputText} />
 
----
-
 ## Controlled
 
 Use this to allow users to provide short answers.
@@ -83,34 +81,27 @@ shouldn't replace server-side validation.
 
 <Playground>
   {() => {
-    const [age, setAge] = useState("");
     return (
       <InputText
-        value={age}
-        onChange={handleChange}
         name="age"
         placeholder="What's your age"
-        validations={[
-          {
-            shouldShow: age.length > 2 && age.length < 10 && isNaN(age),
-            message: "Now that's a word, keep going!",
-            status: "success"
+        validations={{
+          required: {
+            value: true,
+            message: "You have to tell us your age"
           },
-          {
-            shouldShow: age.length >= 10,
-            message: "You sure you're that old?",
-            status: "warn"
-          },
-          {
-            shouldShow: age.length > 0 && !isNaN(age),
-            message: "Type your age in words",
-            status: "error"
-          }
-        ]}
+          validate: validations
+        }}
       />
     );
-    function handleChange(newAge) {
-      setAge(newAge);
+    function validations(val) {
+      if (val.length > 0 && !isNaN(val)) {
+        return "Type your age in words please.";
+      }
+      if (val.length >= 10) {
+        return "That seems too old.";
+      }
+      return true;
     }
   }}
 </Playground>
