@@ -42,7 +42,7 @@ interface AutocompleteProps {
    *
    * @default 300
    */
-  readonly debounceRate?: number;
+  readonly debounce?: number;
 
   /**
    * Simplified onChange handler that only provides the new value.
@@ -76,7 +76,7 @@ export function Autocomplete({
   value,
   allowFreeForm = true,
   size = undefined,
-  debounceRate = 300,
+  debounce: debounceRate = 300,
   onChange,
   getOptions,
   placeholder,
