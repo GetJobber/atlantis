@@ -233,23 +233,21 @@ export function FormField({
   );
 
   return (
-    <div>
-      <Wrapper
-        className={wrapperClassNames}
-        style={{ ["--formField-maxLength" as string]: maxLength || max }}
-      >
-        <label className={labelClassNames} htmlFor={identifier}>
-          {placeholder || " "}
-        </label>
-        {fieldElement()}
-        {type === "select" && (
-          <span className={styles.icon}>
-            <Icon name="arrowDown" />
-          </span>
-        )}
-      </Wrapper>
+    <Wrapper
+      className={wrapperClassNames}
+      style={{ ["--formField-maxLength" as string]: maxLength || max }}
+    >
+      <label className={labelClassNames} htmlFor={identifier}>
+        {placeholder || " "}
+      </label>
+      {fieldElement()}
+      {type === "select" && (
+        <span className={styles.icon}>
+          <Icon name="arrowDown" />
+        </span>
+      )}
       {error && !inline && <InputValidation message={error} />}
-    </div>
+    </Wrapper>
   );
 
   function fieldElement() {
