@@ -108,6 +108,16 @@ test("updates state with useFormState to proper state", async () => {
   });
 });
 
+test("wraps the form in a form tag when the onSubmit is set", () => {
+  const { getByTestId } = render(<Form onSubmit={jest.fn()}>Foo</Form>);
+  expect(getByTestId("atlantis-form")).toBeInstanceOf(HTMLFormElement);
+});
+
+test("wraps the form in a div tag when the onSubmit is not set", () => {
+  const { getByTestId } = render(<Form>Foo</Form>);
+  expect(getByTestId("atlantis-form")).toBeInstanceOf(HTMLDivElement);
+});
+
 interface MockFormProps {
   onSubmit(): void;
   onStateChange?(): void;

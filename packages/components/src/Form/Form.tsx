@@ -24,9 +24,22 @@ export function Form({ onSubmit, children, onStateChange }: FormProps) {
     isValid,
   ]);
 
+  /**
+   * If an onSubmit is not passed into a form, it will only be used
+   * for validation. For that, we do not need to wrap it in a <form>
+   * tag. This allows the <Form> component to be used in legacy code.
+   */
+  const Wrapper = onSubmit ? "form" : "div";
+
+  const formProps = {
+    onSubmit: onSubmit && handleSubmit(submitHandler),
+  };
+
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(submitHandler)}>{children}</form>
+      <Wrapper {...formProps} data-testid="atlantis-form">
+        {children}
+      </Wrapper>
     </FormProvider>
   );
 
