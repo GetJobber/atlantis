@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.0.1...@jobber/components@2.0.2) (2020-09-28)
+
+
+### Bug Fixes
+
+* **components:** Fixes the inline input ([#363](https://github.com/GetJobber/atlantis/issues/363)) ([d288199](https://github.com/GetJobber/atlantis/commit/d288199263c27edeeb12ec8bfc239801e3e60d34))
+
+
+
+
+
 ## [2.0.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.0.0...@jobber/components@2.0.1) (2020-09-25)
 
 **Note:** Version bump only for package @jobber/components
