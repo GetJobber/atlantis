@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.0.2...@jobber/components@2.0.3) (2020-09-29)
+
+
+### Bug Fixes
+
+* **components:** allow the form to not be a form but be a div instead ([#364](https://github.com/GetJobber/atlantis/issues/364)) ([b829a12](https://github.com/GetJobber/atlantis/commit/b829a12df98567cfcfd2269f8941e10c754b04ed))
+
+
+
+
+
 ## [2.0.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.0.1...@jobber/components@2.0.2) (2020-09-28)
 
 
