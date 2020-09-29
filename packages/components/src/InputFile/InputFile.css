@@ -3,6 +3,11 @@
   --border-active-color: var(--color-outline);
 }
 
+.dropZoneBase {
+  font-size: 0;
+  line-height: 0;
+}
+
 .dropZone {
   padding: var(--space-base);
   border: var(--border-color) dashed var(--border-thick);
@@ -13,4 +18,8 @@
 .dropZone.active {
   border-color: var(--border-active-color);
   background-color: var(--color-yellow--lightest);
+}
+
+.input {
+  margin: 0;
 }

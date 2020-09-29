@@ -42,7 +42,7 @@ export interface FileUpload {
   src(): Promise<string>;
 }
 
-interface UploadParams {
+export interface UploadParams {
   /**
    * Url to POST file to.
    */
@@ -62,6 +62,12 @@ interface UploadParams {
 }
 
 interface InputFileProps {
+  /**
+   * Display variation.
+   * @default "dropzone"
+   */
+  readonly variation?: "dropzone" | "button";
+
   /**
    * Allowed File types.
    * @default "all"
@@ -101,6 +107,7 @@ interface InputFileProps {
 }
 
 export function InputFile({
+  variation = "dropzone",
   allowMultiple = false,
   allowedTypes = "all",
   getUploadParams,
@@ -116,23 +123,39 @@ export function InputFile({
   const { getRootProps, getInputProps, isDragActive } = useDropzone(options);
 
   const { buttonLabel, hintText } = getLabels(allowMultiple, allowedTypes);
-  const dropZone = classnames(styles.dropZone, {
+  const dropZone = classnames(styles.dropZoneBase, {
+    [styles.dropZone]: variation === "dropzone",
     [styles.active]: isDragActive,
   });
 
   return (
-    <>
-      <div className={dropZone} {...getRootProps()}>
-        <input {...getInputProps()} />
-        <Content spacing="small">
-          <Button label={buttonLabel} size="small" type="secondary" />
-          <Typography size="small" textColor="greyBlue">
-            {hintText}
-          </Typography>
-        </Content>
-      </div>
-    </>
+    <div className={dropZone} {...getRootProps()}>
+      <Variation />
+      <input className={styles.input} {...getInputProps()} />
+    </div>
   );
+
+  function Variation() {
+    if (variation === "button") {
+      return (
+        <Button
+          label={buttonLabel}
+          size="small"
+          type="secondary"
+          fullWidth={true}
+        />
+      );
+    }
+
+    return (
+      <Content spacing="small">
+        <Button label={buttonLabel} size="small" type="secondary" />
+        <Typography size="small" textColor="greyBlue">
+          {hintText}
+        </Typography>
+      </Content>
+    );
+  }
 
   function handleDrop(acceptedFiles: File[]) {
     acceptedFiles.forEach(file => {
