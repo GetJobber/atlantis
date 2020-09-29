@@ -2,4 +2,5 @@
   --radius-base: var(--space-smallest);
   --radius-large: var(--space-smaller);
   --radius-larger: var(--space-small);
+  --radius-circle: 100%;
 }
