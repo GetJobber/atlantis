@@ -129,7 +129,7 @@ export function InputFile({
   });
 
   return (
-    <div className={dropZone} {...getRootProps()}>
+    <div {...getRootProps({ className: dropZone })}>
       <Variation />
       <input className={styles.input} {...getInputProps()} />
     </div>

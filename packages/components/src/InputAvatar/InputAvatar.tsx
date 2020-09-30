@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren, useEffect, useState } from "react";
 import styles from "./InputAvatar.css";
 import { Avatar } from "../Avatar";
 import { FileUpload, InputFile, UploadParams } from "../InputFile";
@@ -42,23 +42,44 @@ interface InputAvatarProps {
 }
 
 export function InputAvatar({ getUploadParams }: InputAvatarProps) {
+  const [fileKey, setFileKey] = useState<string>();
+  const [image, setImage] = useState<string>();
+  const [progress, setProgress] = useState(1);
+
   return (
     <div className={styles.inputAvatar}>
       <div className={styles.preview}>
-        <Avatar size="large" initials="" />
-        <Overlay>
-          <Centered>
-            <ProgressBar size="small" currentStep={50} totalSteps={100} />
-          </Centered>
-        </Overlay>
+        <Avatar size="large" initials="" imageUrl={image} />
+        {progress < 1 && (
+          <Overlay>
+            <Centered>
+              <ProgressBar
+                size="small"
+                currentStep={progress + 100}
+                totalSteps={100}
+              />
+            </Centered>
+          </Overlay>
+        )}
       </div>
       <InputFile
         variation="button"
         allowedTypes="images"
         getUploadParams={getUploadParams}
+        onUploadStart={handleUpload}
+        onUploadProgress={handleUpload}
+        onUploadComplete={handleUpload}
       />
     </div>
   );
+
+  async function handleUpload(newFile: FileUpload) {
+    if (fileKey !== newFile.key) {
+      setFileKey(newFile.key);
+      setImage(await newFile.src());
+    }
+    setProgress(newFile.progress);
+  }
 }
 
 function Overlay({ children }: PropsWithChildren<{}>) {
