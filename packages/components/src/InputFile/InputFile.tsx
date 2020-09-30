@@ -130,32 +130,27 @@ export function InputFile({
 
   return (
     <div {...getRootProps({ className: dropZone })}>
-      <Variation />
-      <input className={styles.input} {...getInputProps()} />
-    </div>
-  );
+      <input {...getInputProps({ className: styles.input })} />
 
-  function Variation() {
-    if (variation === "button") {
-      return (
+      {variation === "dropzone" && (
+        <Content spacing="small">
+          <Button label={buttonLabel} size="small" type="secondary" />
+          <Typography size="small" textColor="greyBlue">
+            {hintText}
+          </Typography>
+        </Content>
+      )}
+
+      {variation === "button" && (
         <Button
           label={buttonLabel}
           size="small"
           type="secondary"
           fullWidth={true}
         />
-      );
-    }
-
-    return (
-      <Content spacing="small">
-        <Button label={buttonLabel} size="small" type="secondary" />
-        <Typography size="small" textColor="greyBlue">
-          {hintText}
-        </Typography>
-      </Content>
-    );
-  }
+      )}
+    </div>
+  );
 
   function handleDrop(acceptedFiles: File[]) {
     acceptedFiles.forEach(file => {

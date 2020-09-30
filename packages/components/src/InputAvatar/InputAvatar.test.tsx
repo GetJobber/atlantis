@@ -1,34 +1,53 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import { InputAvatar } from ".";
 
 afterEach(cleanup);
 
+const testFile = new File(["🔱 Atlantis"], "atlantis.png", {
+  type: "image/png",
+});
+
+function fetchUploadParams(file: File) {
+  return Promise.resolve({
+    key: file.name,
+    url: "https://httpbin.org/post",
+    fields: { secret: "🤫" },
+  });
+}
+
 it("renders a InputAvatar", () => {
-  const tree = renderer.create(<InputAvatar text="Foo" />).toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(
+    <InputAvatar
+      getUploadParams={fetchUploadParams}
+      imageUrl="https://api.adorable.io/avatars/150/jobbler"
+    />,
+  );
+  expect(container).toMatchSnapshot();
 });
 
-it("renders a loud InputAvatar", () => {
-  const tree = renderer.create(<InputAvatar text="Foo" loud={true} />).toJSON();
-  expect(tree).toMatchSnapshot();
-});
-
-test("it should call the handler with the new value", () => {
-  const clickHandler = jest.fn();
-  const text = "Foo";
-  const { getByText } = render(
-    <InputAvatar onClick={clickHandler} text={text} />,
+it("should call the handler with the new value", async () => {
+  const changeHandler = jest.fn();
+  const { container } = render(
+    <InputAvatar
+      getUploadParams={fetchUploadParams}
+      onChange={changeHandler}
+    />,
   );
 
-  fireEvent.click(getByText(text));
-  expect(clickHandler).toHaveBeenCalled();
+  const input = container.querySelector("input[type=file]");
 
-  // E.g. If you need a change event, rather than a click event:
-  //
-  // fireEvent.change(getByLabelText(placeholder), {
-  //   target: { value: newValue },
-  // });
-  // expect(changeHandler).toHaveBeenCalledWith(newValue);
+  fireEvent.change(input, { target: { files: [testFile] } });
+
+  await waitFor(() => {
+    expect(changeHandler).toHaveBeenCalledTimes(1);
+    expect(changeHandler).toHaveBeenCalledWith({
+      key: "atlantis.png",
+      name: "atlantis.png",
+      size: expect.any(Number),
+      progress: expect.any(Number),
+      src: expect.any(Function),
+      type: "image/png",
+    });
+  });
 });

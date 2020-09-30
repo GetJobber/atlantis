@@ -3,9 +3,12 @@
   align-items: center;
 }
 
+.inputAvatar > *:not(:last-child) {
+  margin-right: var(--space-small);
+}
+
 .preview {
   position: relative;
-  margin-right: var(--space-base);
 }
 
 .centered {

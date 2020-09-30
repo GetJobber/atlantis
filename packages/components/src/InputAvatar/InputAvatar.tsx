@@ -1,21 +1,11 @@
-import React, { PropsWithChildren, useEffect, useState } from "react";
+import React, { PropsWithChildren, useState } from "react";
 import styles from "./InputAvatar.css";
-import { Avatar } from "../Avatar";
+import { Avatar, AvatarProps } from "../Avatar";
 import { FileUpload, InputFile, UploadParams } from "../InputFile";
 import { ProgressBar } from "../ProgressBar";
+import { Button } from "../Button";
 
-interface InputAvatarProps {
-  /**
-   * Styles the text bold and uppercased
-   * @default false
-   */
-  readonly loud?: boolean;
-
-  /**
-   * Text to display.
-   */
-  readonly text: string;
-
+interface InputAvatarProps extends Omit<AvatarProps, "size"> {
   /**
    * A callback that receives a file object and returns a `UploadParams` needed
    * to upload the file.
@@ -26,36 +16,29 @@ interface InputAvatarProps {
   getUploadParams(file: File): UploadParams | Promise<UploadParams>;
 
   /**
-   * Upload event handler. Triggered on upload start.
+   * Triggered when an image is changed.
    */
-  onUploadStart?(file: FileUpload): void;
-
-  /**
-   * Upload event handler. Triggered as upload progresses.
-   */
-  onUploadProgress?(file: FileUpload): void;
-
-  /**
-   * Upload event handler. Triggered on upload completion.
-   */
-  onUploadComplete?(file: FileUpload): void;
+  onChange?(file?: FileUpload): void;
 }
 
-export function InputAvatar({ getUploadParams }: InputAvatarProps) {
+export function InputAvatar({
+  getUploadParams,
+  onChange,
+  ...avatarProps
+}: InputAvatarProps) {
   const [fileKey, setFileKey] = useState<string>();
-  const [image, setImage] = useState<string>();
   const [progress, setProgress] = useState(1);
 
   return (
     <div className={styles.inputAvatar}>
       <div className={styles.preview}>
-        <Avatar size="large" initials="" imageUrl={image} />
+        <Avatar size="large" {...(avatarProps as AvatarProps)} />
         {progress < 1 && (
           <Overlay>
             <Centered>
               <ProgressBar
                 size="small"
-                currentStep={progress + 100}
+                currentStep={progress * 100}
                 totalSteps={100}
               />
             </Centered>
@@ -66,19 +49,38 @@ export function InputAvatar({ getUploadParams }: InputAvatarProps) {
         variation="button"
         allowedTypes="images"
         getUploadParams={getUploadParams}
-        onUploadStart={handleUpload}
+        onUploadStart={handleChange}
         onUploadProgress={handleUpload}
         onUploadComplete={handleUpload}
       />
+      {avatarProps.imageUrl != undefined && progress === 1 && (
+        <Button
+          label="Remove"
+          size="small"
+          type="secondary"
+          variation="destructive"
+          onClick={clearAvatar}
+        />
+      )}
     </div>
   );
+
+  function handleChange(newFile: FileUpload) {
+    onChange && onChange(newFile);
+    handleUpload(newFile);
+  }
 
   async function handleUpload(newFile: FileUpload) {
     if (fileKey !== newFile.key) {
       setFileKey(newFile.key);
-      setImage(await newFile.src());
     }
     setProgress(newFile.progress);
+  }
+
+  function clearAvatar() {
+    onChange && onChange(undefined);
+    setFileKey(undefined);
+    setProgress(1);
   }
 }
 

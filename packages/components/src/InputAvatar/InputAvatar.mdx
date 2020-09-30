@@ -11,9 +11,10 @@ import { InputAvatar } from ".";
 
 # Input Avatar
 
-<ComponentStatus stage="pre" responsive="no" accessible="no" />
+<ComponentStatus stage="pre" responsive="yes" accessible="yes" />
 
-Write a description about what InputAvatar component is trying to achieve.
+**Experimental:** InputAvatar component allows you to display an avatar with
+options input a new one or remove it.
 
 ```ts
 import { InputAvatar } from "@jobber/components/InputAvatar";
@@ -21,19 +22,25 @@ import { InputAvatar } from "@jobber/components/InputAvatar";
 
 <Playground>
   {() => {
-    const [files, setFiles] = useState([]);
+    const [avatarUrl, setAvatarUrl] = useState(
+      "https://api.adorable.io/avatars/150/jobbler"
+    );
     return (
       <InputAvatar
+        imageUrl={avatarUrl}
+        name="The Jobbler"
         getUploadParams={() =>
           Promise.resolve({ url: "https://httpbin.org/post" })
         }
-        onUploadStart={handleUpload}
-        onUploadProgress={handleUpload}
-        onUploadComplete={handleUpload}
+        onChange={handleChange}
       />
     );
-    function handleUpload(file) {
-      setFiles(oldFiles => updateFiles(file, oldFiles));
+    async function handleChange(newAvatar) {
+      if (newAvatar) {
+        setAvatarUrl(await newAvatar.src());
+      } else {
+        setAvatarUrl(undefined);
+      }
     }
   }}
 </Playground>
@@ -45,12 +52,7 @@ import { InputAvatar } from "@jobber/components/InputAvatar";
 
 ## Design & Usage Guidelines
 
-When contributing to, or consuming the InputAvatar component, consider the
-following:
-
-- When using the InputAvatar component always consider the volume you would like
-  it to be displayed at.
-- The InputAvatar component should never be used inside another component.
+An InputAvatar should be used to allow users to change their Avatar.
 
 ## Props
 
@@ -63,10 +65,8 @@ following:
   See `Button.mdx` for a good example of this.
 -->
 
-## Loud
+## getUploadParams
 
-Use `loud` to indicate that a component is yelling.
-
-<Playground>
-  <InputAvatar text="Fred" loud={true} />
-</Playground>
+`InputAvatar` requires a `getUploadParams` telling it where and how to upload
+the avatar. You can read
+[more about `getUploadParams` in the `InputFile` Component](input-file#getuploadparams).

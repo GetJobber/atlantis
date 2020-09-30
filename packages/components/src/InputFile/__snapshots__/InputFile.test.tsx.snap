@@ -2,7 +2,7 @@
 
 exports[`renders a InputFile 1`] = `
 <div
-  className="dropZone"
+  className="dropZoneBase dropZone"
   onBlur={[Function]}
   onClick={[Function]}
   onDragEnter={[Function]}
@@ -15,6 +15,7 @@ exports[`renders a InputFile 1`] = `
 >
   <input
     autoComplete="off"
+    className="input"
     multiple={false}
     onChange={[Function]}
     onClick={[Function]}
@@ -51,7 +52,7 @@ exports[`renders a InputFile 1`] = `
 
 exports[`renders an InputFile with multiple images allowed 1`] = `
 <div
-  className="dropZone"
+  className="dropZoneBase dropZone"
   onBlur={[Function]}
   onClick={[Function]}
   onDragEnter={[Function]}
@@ -65,6 +66,7 @@ exports[`renders an InputFile with multiple images allowed 1`] = `
   <input
     accept="image/*"
     autoComplete="off"
+    className="input"
     multiple={true}
     onChange={[Function]}
     onClick={[Function]}
@@ -101,7 +103,7 @@ exports[`renders an InputFile with multiple images allowed 1`] = `
 
 exports[`renders an InputFile with multiple uploads 1`] = `
 <div
-  className="dropZone"
+  className="dropZoneBase dropZone"
   onBlur={[Function]}
   onClick={[Function]}
   onDragEnter={[Function]}
@@ -114,6 +116,7 @@ exports[`renders an InputFile with multiple uploads 1`] = `
 >
   <input
     autoComplete="off"
+    className="input"
     multiple={true}
     onChange={[Function]}
     onClick={[Function]}
@@ -150,7 +153,7 @@ exports[`renders an InputFile with multiple uploads 1`] = `
 
 exports[`renders an InputFile with only images allowed 1`] = `
 <div
-  className="dropZone"
+  className="dropZoneBase dropZone"
   onBlur={[Function]}
   onClick={[Function]}
   onDragEnter={[Function]}
@@ -164,6 +167,7 @@ exports[`renders an InputFile with only images allowed 1`] = `
   <input
     accept="image/*"
     autoComplete="off"
+    className="input"
     multiple={false}
     onChange={[Function]}
     onClick={[Function]}
