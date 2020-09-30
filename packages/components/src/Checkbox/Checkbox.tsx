@@ -98,9 +98,11 @@ export function Checkbox({
           </span>
         )}
       </label>
-      <div className={styles.description}>
-        <Text variation="subdued">{description}</Text>
-      </div>
+      {description && (
+        <div className={styles.description}>
+          <Text variation="subdued">{description}</Text>
+        </div>
+      )}
     </div>
   );
 
