@@ -19,29 +19,6 @@
   align-items: center;
 }
 
-/* .preview::before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  border-radius: var(--radius-circle);
-  mix-blend-mode: multiply;
-  background-color: var(--color-blue--dark);
-  opacity: 0.3;
-}
-
-.overlay {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  padding: var(--space-small);
-  transform: translateY(-50%);
-} */
-
 .overlay {
   position: absolute;
   top: 0;
