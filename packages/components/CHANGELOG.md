@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.0.3...@jobber/components@2.1.0) (2020-10-01)
+
+
+### Features
+
+* **components:** InputAvatar & Expand variation options for InputFile ([#366](https://github.com/GetJobber/atlantis/issues/366)) ([7b07059](https://github.com/GetJobber/atlantis/commit/7b07059170487368e0c04bc0674c71c51a0f676e))
+
+
+
+
+
 ## [2.0.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.0.2...@jobber/components@2.0.3) (2020-09-29)
 
 
