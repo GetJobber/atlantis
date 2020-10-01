@@ -8,7 +8,6 @@ exports[`renders a InputFile 1`] = `
   >
     <input
       autocomplete="off"
-      class="input"
       style="display: none;"
       tabindex="-1"
       type="file"
@@ -45,7 +44,6 @@ exports[`renders an InputFile with multiple images allowed 1`] = `
     <input
       accept="image/*"
       autocomplete="off"
-      class="input"
       multiple=""
       style="display: none;"
       tabindex="-1"
@@ -82,7 +80,6 @@ exports[`renders an InputFile with multiple uploads 1`] = `
   >
     <input
       autocomplete="off"
-      class="input"
       multiple=""
       style="display: none;"
       tabindex="-1"
@@ -120,7 +117,6 @@ exports[`renders an InputFile with only images allowed 1`] = `
     <input
       accept="image/*"
       autocomplete="off"
-      class="input"
       style="display: none;"
       tabindex="-1"
       type="file"
@@ -156,7 +152,6 @@ exports[`renders an InputFile with proper variations 1`] = `
   >
     <input
       autocomplete="off"
-      class="input"
       style="display: none;"
       tabindex="-1"
       type="file"
@@ -187,7 +182,6 @@ exports[`renders an InputFile with proper variations 1`] = `
   >
     <input
       autocomplete="off"
-      class="input"
       style="display: none;"
       tabindex="-1"
       type="file"
@@ -213,7 +207,6 @@ exports[`renders an InputFile with proper variations 1`] = `
   >
     <input
       autocomplete="off"
-      class="input"
       style="display: none;"
       tabindex="-1"
       type="file"
@@ -235,7 +228,6 @@ exports[`renders an InputFile with proper variations 1`] = `
   >
     <input
       autocomplete="off"
-      class="input"
       style="display: none;"
       tabindex="-1"
       type="file"

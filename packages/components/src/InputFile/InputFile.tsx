@@ -148,7 +148,7 @@ export function InputFile({
 
   return (
     <div {...getRootProps({ className: dropZone })}>
-      <input {...getInputProps({ className: styles.input })} />
+      <input {...getInputProps()} />
 
       {variation === "dropzone" && (
         <Content spacing="small">

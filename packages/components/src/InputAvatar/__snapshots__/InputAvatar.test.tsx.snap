@@ -35,7 +35,6 @@ exports[`renders 1`] = `
       <input
         accept="image/*"
         autocomplete="off"
-        class="input"
         style="display: none;"
         tabindex="-1"
         type="file"
@@ -76,7 +75,6 @@ exports[`renders with a provided image 1`] = `
       <input
         accept="image/*"
         autocomplete="off"
-        class="input"
         style="display: none;"
         tabindex="-1"
         type="file"
