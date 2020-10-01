@@ -6,6 +6,8 @@
 .dropZoneBase {
   font-size: 0;
   line-height: 0;
+  user-select: none;
+  cursor: pointer;
 }
 
 .dropZone {

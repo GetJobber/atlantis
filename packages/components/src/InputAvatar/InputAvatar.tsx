@@ -26,7 +26,6 @@ export function InputAvatar({
   onChange,
   ...avatarProps
 }: InputAvatarProps) {
-  const [fileKey, setFileKey] = useState<string>();
   const [progress, setProgress] = useState(1);
 
   return (
@@ -47,6 +46,8 @@ export function InputAvatar({
       </div>
       <InputFile
         variation="button"
+        buttonLabel={avatarProps.imageUrl ? "Change Image" : undefined}
+        size="small"
         allowedTypes="images"
         getUploadParams={getUploadParams}
         onUploadStart={handleChange}
@@ -71,15 +72,11 @@ export function InputAvatar({
   }
 
   async function handleUpload(newFile: FileUpload) {
-    if (fileKey !== newFile.key) {
-      setFileKey(newFile.key);
-    }
     setProgress(newFile.progress);
   }
 
   function clearAvatar() {
     onChange && onChange(undefined);
-    setFileKey(undefined);
     setProgress(1);
   }
 }

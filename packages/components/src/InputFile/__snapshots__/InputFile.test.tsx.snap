@@ -1,203 +1,255 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders a InputFile 1`] = `
-<div
-  className="dropZoneBase dropZone"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragEnter={[Function]}
-  onDragLeave={[Function]}
-  onDragOver={[Function]}
-  onDrop={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  tabIndex={0}
->
-  <input
-    autoComplete="off"
-    className="input"
-    multiple={false}
-    onChange={[Function]}
-    onClick={[Function]}
-    style={
-      Object {
-        "display": "none",
-      }
-    }
-    tabIndex={-1}
-    type="file"
-  />
+<div>
   <div
-    className="padded small"
+    class="dropZoneBase dropZone"
+    tabindex="0"
   >
-    <button
-      className="button small work secondary"
-      disabled={false}
-      type="button"
+    <input
+      autocomplete="off"
+      class="input"
+      style="display: none;"
+      tabindex="-1"
+      type="file"
+    />
+    <div
+      class="padded small"
     >
-      <span
-        className="base extraBold smaller uppercase green"
+      <button
+        class="button small work secondary"
+        type="button"
       >
-        Select a File
-      </span>
-    </button>
-    <p
-      className="base regular small greyBlue"
-    >
-      or drag a file here to upload
-    </p>
+        <span
+          class="base extraBold smaller uppercase green"
+        >
+          Upload File
+        </span>
+      </button>
+      <p
+        class="base regular small greyBlue"
+      >
+        or drag a file here to upload
+      </p>
+    </div>
   </div>
 </div>
 `;
 
 exports[`renders an InputFile with multiple images allowed 1`] = `
-<div
-  className="dropZoneBase dropZone"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragEnter={[Function]}
-  onDragLeave={[Function]}
-  onDragOver={[Function]}
-  onDrop={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  tabIndex={0}
->
-  <input
-    accept="image/*"
-    autoComplete="off"
-    className="input"
-    multiple={true}
-    onChange={[Function]}
-    onClick={[Function]}
-    style={
-      Object {
-        "display": "none",
-      }
-    }
-    tabIndex={-1}
-    type="file"
-  />
+<div>
   <div
-    className="padded small"
+    class="dropZoneBase dropZone"
+    tabindex="0"
   >
-    <button
-      className="button small work secondary"
-      disabled={false}
-      type="button"
+    <input
+      accept="image/*"
+      autocomplete="off"
+      class="input"
+      multiple=""
+      style="display: none;"
+      tabindex="-1"
+      type="file"
+    />
+    <div
+      class="padded small"
     >
-      <span
-        className="base extraBold smaller uppercase green"
+      <button
+        class="button small work secondary"
+        type="button"
       >
-        Select Images
-      </span>
-    </button>
-    <p
-      className="base regular small greyBlue"
-    >
-      or drag images here to upload
-    </p>
+        <span
+          class="base extraBold smaller uppercase green"
+        >
+          Upload Images
+        </span>
+      </button>
+      <p
+        class="base regular small greyBlue"
+      >
+        or drag images here to upload
+      </p>
+    </div>
   </div>
 </div>
 `;
 
 exports[`renders an InputFile with multiple uploads 1`] = `
-<div
-  className="dropZoneBase dropZone"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragEnter={[Function]}
-  onDragLeave={[Function]}
-  onDragOver={[Function]}
-  onDrop={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  tabIndex={0}
->
-  <input
-    autoComplete="off"
-    className="input"
-    multiple={true}
-    onChange={[Function]}
-    onClick={[Function]}
-    style={
-      Object {
-        "display": "none",
-      }
-    }
-    tabIndex={-1}
-    type="file"
-  />
+<div>
   <div
-    className="padded small"
+    class="dropZoneBase dropZone"
+    tabindex="0"
   >
-    <button
-      className="button small work secondary"
-      disabled={false}
-      type="button"
+    <input
+      autocomplete="off"
+      class="input"
+      multiple=""
+      style="display: none;"
+      tabindex="-1"
+      type="file"
+    />
+    <div
+      class="padded small"
     >
-      <span
-        className="base extraBold smaller uppercase green"
+      <button
+        class="button small work secondary"
+        type="button"
       >
-        Select Files
-      </span>
-    </button>
-    <p
-      className="base regular small greyBlue"
-    >
-      or drag files here to upload
-    </p>
+        <span
+          class="base extraBold smaller uppercase green"
+        >
+          Upload Files
+        </span>
+      </button>
+      <p
+        class="base regular small greyBlue"
+      >
+        or drag files here to upload
+      </p>
+    </div>
   </div>
 </div>
 `;
 
 exports[`renders an InputFile with only images allowed 1`] = `
-<div
-  className="dropZoneBase dropZone"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragEnter={[Function]}
-  onDragLeave={[Function]}
-  onDragOver={[Function]}
-  onDrop={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  tabIndex={0}
->
-  <input
-    accept="image/*"
-    autoComplete="off"
-    className="input"
-    multiple={false}
-    onChange={[Function]}
-    onClick={[Function]}
-    style={
-      Object {
-        "display": "none",
-      }
-    }
-    tabIndex={-1}
-    type="file"
-  />
+<div>
   <div
-    className="padded small"
+    class="dropZoneBase dropZone"
+    tabindex="0"
   >
+    <input
+      accept="image/*"
+      autocomplete="off"
+      class="input"
+      style="display: none;"
+      tabindex="-1"
+      type="file"
+    />
+    <div
+      class="padded small"
+    >
+      <button
+        class="button small work secondary"
+        type="button"
+      >
+        <span
+          class="base extraBold smaller uppercase green"
+        >
+          Upload Image
+        </span>
+      </button>
+      <p
+        class="base regular small greyBlue"
+      >
+        or drag an image here to upload
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders an InputFile with proper variations 1`] = `
+<div>
+  <div
+    class="dropZoneBase dropZone"
+    tabindex="0"
+  >
+    <input
+      autocomplete="off"
+      class="input"
+      style="display: none;"
+      tabindex="-1"
+      type="file"
+    />
+    <div
+      class="padded small"
+    >
+      <button
+        class="button small work secondary"
+        type="button"
+      >
+        <span
+          class="base extraBold smaller uppercase green"
+        >
+          Upload File
+        </span>
+      </button>
+      <p
+        class="base regular small greyBlue"
+      >
+        or drag a file here to upload
+      </p>
+    </div>
+  </div>
+  <div
+    class="dropZoneBase dropZone"
+    tabindex="0"
+  >
+    <input
+      autocomplete="off"
+      class="input"
+      style="display: none;"
+      tabindex="-1"
+      type="file"
+    />
+    <div
+      class="padded small"
+    >
+      <button
+        class="button small work secondary"
+        type="button"
+      >
+        <span
+          class="base extraBold smaller uppercase green"
+        >
+          Upload File
+        </span>
+      </button>
+    </div>
+  </div>
+  <div
+    class="dropZoneBase"
+    tabindex="0"
+  >
+    <input
+      autocomplete="off"
+      class="input"
+      style="display: none;"
+      tabindex="-1"
+      type="file"
+    />
     <button
-      className="button small work secondary"
-      disabled={false}
+      class="button base work secondary fullWidth"
       type="button"
     >
       <span
-        className="base extraBold smaller uppercase green"
+        class="base extraBold small uppercase green"
       >
-        Select an Image
+        Upload File
       </span>
     </button>
-    <p
-      className="base regular small greyBlue"
+  </div>
+  <div
+    class="dropZoneBase"
+    tabindex="0"
+  >
+    <input
+      autocomplete="off"
+      class="input"
+      style="display: none;"
+      tabindex="-1"
+      type="file"
+    />
+    <button
+      class="button small work secondary fullWidth"
+      type="button"
     >
-      or drag an image here to upload
-    </p>
+      <span
+        class="base extraBold smaller uppercase green"
+      >
+        Upload File
+      </span>
+    </button>
   </div>
 </div>
 `;

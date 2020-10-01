@@ -33,7 +33,7 @@ exports[`renders a InputAvatar 1`] = `
         <span
           class="base extraBold smaller uppercase green"
         >
-          Select an Image
+          Change Image
         </span>
       </button>
     </div>

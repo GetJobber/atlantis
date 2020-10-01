@@ -69,6 +69,18 @@ interface InputFileProps {
   readonly variation?: "dropzone" | "button";
 
   /**
+   * Size of the InputFile
+   * @default "base"
+   */
+  readonly size?: "small" | "base";
+
+  /**
+   * Label for the InputFile's button.
+   * @default Automatic
+   */
+  readonly buttonLabel?: string;
+
+  /**
    * Allowed File types.
    * @default "all"
    */
@@ -108,6 +120,8 @@ interface InputFileProps {
 
 export function InputFile({
   variation = "dropzone",
+  size = "base",
+  buttonLabel: providedButtonLabel,
   allowMultiple = false,
   allowedTypes = "all",
   getUploadParams,
@@ -122,7 +136,11 @@ export function InputFile({
   if (allowedTypes === "images") options.accept = "image/*";
   const { getRootProps, getInputProps, isDragActive } = useDropzone(options);
 
-  const { buttonLabel, hintText } = getLabels(allowMultiple, allowedTypes);
+  const { buttonLabel, hintText } = getLabels(
+    providedButtonLabel,
+    allowMultiple,
+    allowedTypes,
+  );
   const dropZone = classnames(styles.dropZoneBase, {
     [styles.dropZone]: variation === "dropzone",
     [styles.active]: isDragActive,
@@ -135,16 +153,18 @@ export function InputFile({
       {variation === "dropzone" && (
         <Content spacing="small">
           <Button label={buttonLabel} size="small" type="secondary" />
-          <Typography size="small" textColor="greyBlue">
-            {hintText}
-          </Typography>
+          {size === "base" && (
+            <Typography size="small" textColor="greyBlue">
+              {hintText}
+            </Typography>
+          )}
         </Content>
       )}
 
       {variation === "button" && (
         <Button
           label={buttonLabel}
-          size="small"
+          size={size}
           type="secondary"
           fullWidth={true}
         />
@@ -186,18 +206,24 @@ export function InputFile({
   }
 }
 
-function getLabels(multiple: boolean, allowedTypes: string) {
-  let buttonLabel = multiple ? "Select Files" : "Select a File";
+function getLabels(
+  providedButtonLabel: string | undefined,
+  multiple: boolean,
+  allowedTypes: string,
+) {
+  let buttonLabel = multiple ? "Upload Files" : "Upload File";
   let hintText = multiple
     ? "or drag files here to upload"
     : "or drag a file here to upload";
 
   if (allowedTypes === "images") {
-    buttonLabel = multiple ? "Select Images" : "Select an Image";
+    buttonLabel = multiple ? "Upload Images" : "Upload Image";
     hintText = multiple
       ? "or drag images here to upload"
       : "or drag an image here to upload";
   }
+
+  if (providedButtonLabel) buttonLabel = providedButtonLabel;
 
   return { buttonLabel, hintText };
 }
