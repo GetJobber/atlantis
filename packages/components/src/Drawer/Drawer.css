@@ -1,0 +1,43 @@
+:root {
+  --drawer--background-color: var(--color-white);
+  --drawer--header-background-color: var(--color-grey--lightest);
+  --drawer--border-color: var(--color-grey--lighter);
+  --drawer--base-padding: var(--space-base);
+}
+.drawer {
+  display: flex;
+  z-index: var(--elevation-modal);
+  width: 100%;
+  height: 100%;
+  border-left: 1px solid var(--drawer--border-color);
+  overflow-y: auto;
+  background-color: var(--drawer--background-color);
+  transform: translateX(240px);
+  transition: all 300ms ease;
+  flex-direction: column;
+}
+
+.drawerWrap {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: auto;
+  width: 240px;
+  height: 100%;
+  overflow: hidden;
+}
+
+.open {
+  transform: translateX(0);
+}
+
+.header {
+  display: flex;
+  padding: var(--drawer--base-padding);
+  background-color: var(--drawer--header-background-color);
+  justify-content: space-between;
+}
+
+.content {
+  padding: var(--drawer--base-padding);
+}

@@ -1,0 +1,47 @@
+---
+name: Drawer
+menu: Components
+route: /components/drawer
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { Content } from "@jobber/components/Content";
+import { Text } from "@jobber/components/Text";
+import { Button } from "@jobber/components/Button";
+import { Drawer } from ".";
+
+# Drawer
+
+<ComponentStatus stage="pre" responsive="no" accessible="no" />
+
+Drawer is a UI element meant to divide to areas of content.
+
+```ts
+import { Drawer } from "@jobber/components/Drawer";
+```
+
+<Playground>
+  <Content>
+    <Drawer activator={<Button label="Show Drawer" />} title="A drawer">
+      <Content>Some amazing content</Content>
+    </Drawer>
+    <Content>This is the main body content.</Content>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+  </Content>
+</Playground>
+
+## Design & Usage Guidelines
+
+The `Drawer` component comes with no spacing around it. This means that it
+should be used within a [`Content`](/components/content) component.
+
+## Props
+
+<Props of={Drawer} />
