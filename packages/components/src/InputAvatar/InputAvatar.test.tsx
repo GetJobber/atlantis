@@ -18,6 +18,13 @@ function fetchUploadParams(file: File) {
 
 it("renders a InputAvatar", () => {
   const { container } = render(
+    <InputAvatar getUploadParams={fetchUploadParams} />,
+  );
+  expect(container).toMatchSnapshot();
+});
+
+it("renders a InputAvatar with an provided image", () => {
+  const { container } = render(
     <InputAvatar
       getUploadParams={fetchUploadParams}
       imageUrl="https://api.adorable.io/avatars/150/jobbler"
