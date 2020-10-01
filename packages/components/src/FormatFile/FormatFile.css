@@ -34,6 +34,7 @@
   object-fit: cover;
   flex-shrink: 0;
 }
+
 .imageBlock::before {
   content: "";
   display: block;
@@ -50,6 +51,7 @@
 .icon {
   margin: 0 auto;
 }
+
 .progress {
   display: flex;
   position: absolute;

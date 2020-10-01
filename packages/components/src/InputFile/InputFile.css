@@ -21,7 +21,3 @@
   border-color: var(--border-active-color);
   background-color: var(--color-yellow--lightest);
 }
-
-.input {
-  margin: 0;
-}
