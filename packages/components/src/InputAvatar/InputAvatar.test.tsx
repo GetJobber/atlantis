@@ -16,14 +16,14 @@ function fetchUploadParams(file: File) {
   });
 }
 
-it("renders a InputAvatar", () => {
+it("renders", () => {
   const { container } = render(
     <InputAvatar getUploadParams={fetchUploadParams} />,
   );
   expect(container).toMatchSnapshot();
 });
 
-it("renders a InputAvatar with an provided image", () => {
+it("renders with a provided image", () => {
   const { container } = render(
     <InputAvatar
       getUploadParams={fetchUploadParams}
@@ -33,7 +33,7 @@ it("renders a InputAvatar with an provided image", () => {
   expect(container).toMatchSnapshot();
 });
 
-it("should call the handler with the new value", async () => {
+it("should allow an image to be uploaded", async () => {
   const changeHandler = jest.fn();
   const { container } = render(
     <InputAvatar
@@ -56,5 +56,23 @@ it("should call the handler with the new value", async () => {
       src: expect.any(Function),
       type: "image/png",
     });
+  });
+});
+
+it("should allow for avatar removal", async () => {
+  const changeHandler = jest.fn();
+  const { getByText } = render(
+    <InputAvatar
+      getUploadParams={fetchUploadParams}
+      onChange={changeHandler}
+      imageUrl="https://api.adorable.io/avatars/150/jobbler"
+    />,
+  );
+
+  fireEvent.click(getByText("Remove"));
+
+  await waitFor(() => {
+    expect(changeHandler).toHaveBeenCalledTimes(1);
+    expect(changeHandler).toHaveBeenCalledWith(undefined);
   });
 });

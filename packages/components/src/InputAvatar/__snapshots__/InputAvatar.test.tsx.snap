@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders a InputAvatar 1`] = `
+exports[`renders 1`] = `
 <div>
   <div
     class="inputAvatar"
@@ -55,7 +55,7 @@ exports[`renders a InputAvatar 1`] = `
 </div>
 `;
 
-exports[`renders a InputAvatar with an provided image 1`] = `
+exports[`renders with a provided image 1`] = `
 <div>
   <div
     class="inputAvatar"
