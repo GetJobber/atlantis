@@ -17,9 +17,9 @@ import * as styles from "./styles";
 
 const getResizableProps = (width, setWidth) => ({
   minWidth: 260,
-  maxWidth: "100%",
-  size: { width: width, height: "auto" },
-  style: { margin: "0 auto" },
+  maxWidth: "100vw - 100px",
+  size: { width: 800, height: "auto" },
+  style: { margin: "0 20px 0 0" },
   enable: { right: true },
   onResizeStop: (e, direction, ref) => setWidth(ref.style.width),
 });
@@ -29,7 +29,13 @@ const transformCode = code => {
   return `<React.Fragment>${code}</React.Fragment>`;
 };
 
-export const Playground = ({ code, scope, language, useScoping = false }) => {
+export const Playground = ({
+  code,
+  scope,
+  language,
+  isFullWidth = false,
+  useScoping = false,
+}) => {
   const {
     themeConfig: {
       showPlaygroundEditor,
@@ -44,7 +50,7 @@ export const Playground = ({ code, scope, language, useScoping = false }) => {
   const [previewHeight, setPreviewHeight] = useState();
   const [editorHeight, setEditorHeight] = useState();
   const [showingCode, setShowingCode] = useState(showPlaygroundEditor);
-  const [width, setWidth] = useState(896);
+  const [width, setWidth] = useState(400);
   const theme = usePrismTheme();
   const resizableProps = getResizableProps(width, setWidth);
 
@@ -61,7 +67,7 @@ export const Playground = ({ code, scope, language, useScoping = false }) => {
   );
 
   return (
-    <Box sx={styles.wrapper}>
+    <Box sx={styles.wrapper(isFullWidth)}>
       <Resizable {...resizableProps} data-testid="playground">
         <LiveProvider
           code={code}

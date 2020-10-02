@@ -8,14 +8,15 @@ export * from "gatsby-theme-docz/src/components/Playground/styles";
 import * as styles from "gatsby-theme-docz/src/components/Playground/styles";
 import { media } from "gatsby-theme-docz/src/theme/breakpoints";
 
-export const wrapper = {
-  width: "calc(100vw - 300px)",
-  marginLeft: "calc(-50vw + 480px + 120px )",
+export const wrapper = isFullWidth => {
+  return {
+    width: isFullWidth ? "100vw - 100px" : "901px",
 
-  [media.desktop]: {
-    width: "100%",
-    marginLeft: 0,
-  },
+    [media.desktop]: {
+      width: "100%",
+      marginLeft: 0,
+    },
+  };
 };
 
 export const previewWrapper = {
@@ -44,6 +45,7 @@ export const previewWrapper = {
 export const editor = theme => ({
   ...styles.editor(theme),
   border: "none",
+
   backgroundColor: "var(--color-grey--lightest)",
 });
 

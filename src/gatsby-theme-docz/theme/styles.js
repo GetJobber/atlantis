@@ -5,7 +5,7 @@ const styles = {
   ...themeStyles,
   Container: {
     ...themeStyles.Container,
-    maxWidth: 960,
+    maxWidth: "100vw",
   },
   inlineCode: {
     color: "var(--color-grey--dark)",
