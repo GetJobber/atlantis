@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.1.0...@jobber/components@2.1.1) (2020-10-02)
+
+
+### Bug Fixes
+
+* **components:** Remove input name if no validation is set ([#373](https://github.com/GetJobber/atlantis/issues/373)) ([98523fb](https://github.com/GetJobber/atlantis/commit/98523fb75a60351498ed46d56b34e3042b6dcea6))
+
+
+
+
+
 # [2.1.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.0.3...@jobber/components@2.1.0) (2020-10-01)
 
 
