@@ -200,7 +200,7 @@ export function FormField({
     shouldShowMiniLabel(defaultValue, value),
   );
   const [identifier] = useState(uuid.v1());
-  name = name || `generatedName--${identifier}`;
+  name = !name && validations ? `generatedName--${identifier}` : name;
 
   const error = name && errors[name] && errors[name].message;
 
@@ -278,7 +278,9 @@ export function FormField({
                   HTMLTextAreaElement
                 >).current = element;
               }
-              register(element, { ...validations });
+              if (name) {
+                register(element, { ...validations });
+              }
             }}
             {...fieldProps}
           />
@@ -301,7 +303,9 @@ export function FormField({
                     HTMLInputElement
                   >).current = element;
                 }
-                register(element, { ...validations });
+                if (name) {
+                  register(element, { ...validations });
+                }
               }}
               {...fieldProps}
             />
