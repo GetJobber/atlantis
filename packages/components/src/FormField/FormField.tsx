@@ -200,7 +200,10 @@ export function FormField({
     shouldShowMiniLabel(defaultValue, value),
   );
   const [identifier] = useState(uuid.v1());
-  name = !name && validations ? `generatedName--${identifier}` : name;
+
+  if (!name && validations) {
+    name = `generatedName--${identifier}`;
+  }
 
   const error = name && errors[name] && errors[name].message;
 
