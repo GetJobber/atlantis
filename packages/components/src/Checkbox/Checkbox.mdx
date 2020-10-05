@@ -27,7 +27,6 @@ import { Checkbox } from "@jobber/components/Checkbox";
         checked={checked}
         label="Save card for future use"
         onChange={setChecked}
-        description="If you save your card now, you'll never need to save it again."
       />
     );
   }}
@@ -88,6 +87,18 @@ discrete options, such as “fixed price” and “per visit” invoicing option
       setItems(Array(items.length).fill(newValue));
     }
   }}
+</Playground>
+
+## With a description
+
+If there is more information needed for a `Checkbox`, use the `description` prop
+instead of a longer `label`
+
+<Playground>
+  <Checkbox
+    label="Save card for future use"
+    description="If you save your card now, you'll never need to save it again."
+  />
 </Playground>
 
 ## Disabled

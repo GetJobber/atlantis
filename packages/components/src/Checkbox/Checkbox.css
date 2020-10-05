@@ -76,6 +76,10 @@
 }
 
 .description {
-  margin-top: var(--space-smallest);
+  margin-top: var(--space-smaller);
   margin-left: var(--space-large);
+}
+
+.description > p {
+  font-size: var(--typography--fontSize-small);
 }
