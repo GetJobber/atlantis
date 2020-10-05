@@ -1,12 +1,20 @@
+.checkbox {
+  display: inline-block;
+}
+
 .wrapper {
-  display: inline-flex;
+  display: flex;
+  align-items: center;
   user-select: none;
+  cursor: pointer;
+}
+
+.disabled {
+  cursor: not-allowed;
 }
 
 .checkHolder {
-  display: inline-flex;
   position: relative;
-  align-items: center;
 }
 
 .input {
@@ -21,14 +29,13 @@
 }
 
 .checkBox {
-  display: inline-flex;
+  display: flex;
   width: var(--space-base);
   height: var(--space-base);
   box-sizing: border-box;
   border: var(--border-thick) solid var(--color-green);
   border-radius: var(--radius-base);
   background-color: var(--color-white);
-  cursor: pointer;
   transition: all 200ms;
   justify-content: center;
   align-items: center;
@@ -37,7 +44,6 @@
 .disabled .checkBox {
   border-color: var(--color-grey--light);
   background-color: var(--color-grey--lightest);
-  cursor: not-allowed;
 }
 
 .disabled .checkBox > * {
@@ -66,6 +72,14 @@
 }
 
 .label {
-  display: inline-block;
   margin: 0 var(--space-small);
+}
+
+.description {
+  margin-top: var(--space-smaller);
+  margin-left: var(--space-large);
+}
+
+.description > p {
+  font-size: var(--typography--fontSize-small);
 }
