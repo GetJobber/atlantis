@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.1.4...@jobber/components@2.2.0) (2020-10-05)
+
+
+### Features
+
+* **components:** Add description to Checkbox ([#365](https://github.com/GetJobber/atlantis/issues/365)) ([c1e54eb](https://github.com/GetJobber/atlantis/commit/c1e54eb3fd7277e6fad544ae15e60e8e62c0f6cb))
+
+
+
+
+
 ## [2.1.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.1.3...@jobber/components@2.1.4) (2020-10-05)
 
 **Note:** Version bump only for package @jobber/components
