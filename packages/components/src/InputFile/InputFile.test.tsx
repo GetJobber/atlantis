@@ -1,5 +1,4 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import { InputFile } from ".";
 
@@ -10,41 +9,60 @@ const testFile = new File(["🔱 Atlantis"], "atlantis.png", {
 });
 
 it("renders a InputFile", () => {
-  const tree = renderer
-    .create(<InputFile getUploadParams={fetchUploadParams} />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(
+    <InputFile getUploadParams={fetchUploadParams} />,
+  );
+
+  expect(container).toMatchSnapshot();
 });
 
 it("renders an InputFile with multiple uploads", () => {
-  const tree = renderer
-    .create(
-      <InputFile allowMultiple={true} getUploadParams={fetchUploadParams} />,
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(
+    <InputFile allowMultiple={true} getUploadParams={fetchUploadParams} />,
+  );
+  expect(container).toMatchSnapshot();
 });
 
 it("renders an InputFile with only images allowed", () => {
-  const tree = renderer
-    .create(
-      <InputFile allowedTypes="images" getUploadParams={fetchUploadParams} />,
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(
+    <InputFile allowedTypes="images" getUploadParams={fetchUploadParams} />,
+  );
+  expect(container).toMatchSnapshot();
 });
 
 it("renders an InputFile with multiple images allowed", () => {
-  const tree = renderer
-    .create(
+  const { container } = render(
+    <InputFile
+      allowedTypes="images"
+      allowMultiple={true}
+      getUploadParams={fetchUploadParams}
+    />,
+  );
+  expect(container).toMatchSnapshot();
+});
+
+it("renders an InputFile with proper variations", () => {
+  const { container } = render(
+    <>
+      <InputFile getUploadParams={fetchUploadParams} />
+      <InputFile size="small" getUploadParams={fetchUploadParams} />
+      <InputFile variation="button" getUploadParams={fetchUploadParams} />
       <InputFile
-        allowedTypes="images"
-        allowMultiple={true}
+        variation="button"
+        size="small"
         getUploadParams={fetchUploadParams}
-      />,
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+      />
+    </>,
+  );
+  expect(container).toMatchSnapshot();
+});
+
+it("supports custom button label", () => {
+  const buttonLabel = "Custom Label";
+  const { getByText } = render(
+    <InputFile buttonLabel={buttonLabel} getUploadParams={fetchUploadParams} />,
+  );
+  expect(getByText(buttonLabel)).toBeInstanceOf(HTMLElement);
 });
 
 it("properly notifies upload callbacks", async () => {

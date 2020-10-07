@@ -7,6 +7,8 @@ import styles from "./Button.css";
 import { Typography } from "../Typography";
 import { Icon } from "../Icon";
 
+type ButtonType = "button" | "submit";
+
 interface ButtonFoundationProps {
   /**
    * Used for screen readers. Will override label on screen
@@ -66,11 +68,26 @@ interface CancelActionProps extends ButtonFoundationProps {
   readonly type?: "secondary" | "tertiary";
 }
 
+interface SubmitActionProps
+  extends Omit<ButtonFoundationProps, "external" | "onClick"> {
+  readonly variation?: "work";
+  readonly type?: "primary";
+  readonly submit: boolean;
+}
+
+interface SubmitButtonProps
+  extends Omit<ButtonFoundationProps, "external" | "onClick"> {
+  /**
+   * Allows the button to submit a form
+   */
+  submit: boolean;
+}
+
 export type ButtonProps = XOR<
   BaseActionProps,
-  XOR<DestructiveActionProps, CancelActionProps>
+  XOR<DestructiveActionProps, XOR<CancelActionProps, SubmitActionProps>>
 > &
-  XOR<ButtonLinkProps, ButtonAnchorProps> &
+  XOR<SubmitButtonProps, XOR<ButtonLinkProps, ButtonAnchorProps>> &
   XOR<ButtonIconProps, ButtonLabelProps>;
 
 export function Button(props: ButtonProps) {
@@ -93,6 +110,7 @@ export function Button(props: ButtonProps) {
     url,
     to,
     variation = "work",
+    submit,
   } = props;
 
   const buttonClassNames = classnames(styles.button, styles[size], {
@@ -106,6 +124,8 @@ export function Button(props: ButtonProps) {
     [styles.loading]: loading,
   });
 
+  const buttonType: ButtonType = submit ? "submit" : "button";
+
   const tagProps = {
     className: buttonClassNames,
     disabled,
@@ -113,8 +133,7 @@ export function Button(props: ButtonProps) {
     ...(!disabled && { href: url }),
     ...(!disabled && { onClick: onClick }),
     ...(external && { target: "_blank" }),
-    ...(url === undefined &&
-      to === undefined && { type: "button" as "button" }),
+    ...(url === undefined && to === undefined && { type: buttonType }),
     "aria-controls": ariaControls,
     "aria-haspopup": ariaHaspopup,
     "aria-expanded": ariaExpanded,
