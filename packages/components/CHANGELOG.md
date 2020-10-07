@@ -8,6 +8,7 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<<<<<<< HEAD
 # [2.2.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.1.4...@jobber/components@2.2.0) (2020-10-05)
 
 
@@ -82,6 +83,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 * **components:** Fixes the inline input ([#363](https://github.com/GetJobber/atlantis/issues/363)) ([d288199](https://github.com/GetJobber/atlantis/commit/d288199263c27edeeb12ec8bfc239801e3e60d34))
+=======
+## [1.43.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.43.1...@jobber/components@1.43.2) (2020-09-25)
+
+* Add a debounce prop to `Autocomplete`
+>>>>>>> c4dc7ccb8a3e6a4a9105bdda9d71074fb5e13ff8
 
 
 
