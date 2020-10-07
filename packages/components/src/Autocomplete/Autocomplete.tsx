@@ -38,6 +38,13 @@ interface AutocompleteProps {
   readonly size?: FormFieldProps["size"];
 
   /**
+   * Debounce in milliseconds for getOptions
+   *
+   * @default 300
+   */
+  readonly debounce?: number;
+
+  /**
    * Simplified onChange handler that only provides the new value.
    * @param newValue
    */
@@ -69,6 +76,7 @@ export function Autocomplete({
   value,
   allowFreeForm = true,
   size = undefined,
+  debounce: debounceRate = 300,
   onChange,
   getOptions,
   placeholder,
@@ -79,7 +87,8 @@ export function Autocomplete({
   const [menuVisible, setMenuVisible] = useState(false);
   const [inputText, setInputText] = useState((value && value.label) || "");
 
-  const debouncedSetOptions = useRef(debounce(setOptions, 150)).current;
+  const debouncedSetOptions = useRef(debounce(setOptions, debounceRate))
+    .current;
 
   useEffect(() => {
     if (value) {

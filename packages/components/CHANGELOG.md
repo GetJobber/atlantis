@@ -82,6 +82,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 * **components:** Fixes the inline input ([#363](https://github.com/GetJobber/atlantis/issues/363)) ([d288199](https://github.com/GetJobber/atlantis/commit/d288199263c27edeeb12ec8bfc239801e3e60d34))
+## [1.43.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.43.1...@jobber/components@1.43.2) (2020-09-25)
+
+* Add a debounce prop to `Autocomplete`
 
 
 
