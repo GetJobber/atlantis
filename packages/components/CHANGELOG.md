@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.2.0...@jobber/components@2.3.0) (2020-10-07)
+
+
+### Features
+
+* **components:** Adjust Autocomplete debounce rate ([#362](https://github.com/GetJobber/atlantis/issues/362)) ([0738723](https://github.com/GetJobber/atlantis/commit/07387239d6e2dd883442ad0d588046c8ad240a6b))
+
+
+
+
+
 # [2.2.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.1.4...@jobber/components@2.2.0) (2020-10-05)
 
 
