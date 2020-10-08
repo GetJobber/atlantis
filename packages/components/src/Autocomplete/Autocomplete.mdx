@@ -46,16 +46,12 @@ import { Autocomplete } from "@jobber/components/Autocomplete";
       />
     );
     function getOptions(text) {
-      alert('hello')
-
       if (text === "") {
         return options;
       }
-
       const filterRegex = new RegExp(text, "i");
       return options.filter(option => option.label.match(filterRegex));
     }
-
 }}
 
 </Playground>

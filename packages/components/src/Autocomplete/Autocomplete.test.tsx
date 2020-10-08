@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { act, cleanup, fireEvent, render } from "@testing-library/react";
+import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import { AnyOption, Autocomplete } from ".";
 
 afterEach(cleanup);
@@ -76,12 +76,12 @@ test("it should call the getOptions handler with the new value", async () => {
       placeholder={placeholder}
     />,
   );
-  await act(() => {
+  await waitFor(() => {
     fireEvent.change(getByLabelText(placeholder), {
       target: { value: newValue },
     });
+    expect(changeOptionsHandler).toHaveBeenCalledWith(newValue);
   });
-  expect(changeOptionsHandler).toHaveBeenCalledWith(newValue);
 });
 
 test("it should call the handler when an option is selected", () => {
