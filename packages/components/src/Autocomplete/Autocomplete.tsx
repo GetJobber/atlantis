@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import debounce from "lodash/debounce";
 import { XOR } from "ts-xor";
 import styles from "./Autocomplete.css";
@@ -71,6 +71,11 @@ interface AutocompleteProps {
   onFocus?(): void;
 }
 
+/**
+ * Max statements disabled here to make room for the
+ * debounce functions.
+ */
+// eslint-disable-next-line max-statements
 export function Autocomplete({
   initialOptions = [],
   value,
@@ -87,8 +92,12 @@ export function Autocomplete({
   const [menuVisible, setMenuVisible] = useState(false);
   const [inputText, setInputText] = useState((value && value.label) || "");
 
-  const debouncedSetOptions = useRef(debounce(setOptions, debounceRate))
-    .current;
+  const delayedSearch = debounce(updateSearch, debounceRate);
+
+  useEffect(() => {
+    delayedSearch();
+    return delayedSearch.cancel;
+  }, [inputText]);
 
   useEffect(() => {
     if (value) {
@@ -118,13 +127,16 @@ export function Autocomplete({
     </div>
   );
 
-  async function updateInput(newText: string) {
+  function updateInput(newText: string) {
     setInputText(newText);
-    if (newText) {
-      debouncedSetOptions(mapToOptions(await getOptions(newText)));
-    } else {
+    if (newText === "") {
       setOptions(mapToOptions(initialOptions));
     }
+  }
+
+  async function updateSearch() {
+    const opts = await getOptions(inputText);
+    setOptions(mapToOptions(opts));
   }
 
   function handleMenuChange(chosenOption: Option) {
