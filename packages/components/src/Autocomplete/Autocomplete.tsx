@@ -129,7 +129,7 @@ export function Autocomplete({
 
   function updateInput(newText: string) {
     setInputText(newText);
-    if (!newText) {
+    if (newText === "") {
       setOptions(mapToOptions(initialOptions));
     }
   }
