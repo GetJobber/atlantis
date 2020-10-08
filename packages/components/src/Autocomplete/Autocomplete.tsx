@@ -71,6 +71,10 @@ interface AutocompleteProps {
   onFocus?(): void;
 }
 
+/**
+ * Max statements disabled here to make room for the
+ * debounce functions.
+ */
 // eslint-disable-next-line max-statements
 export function Autocomplete({
   initialOptions = [],
