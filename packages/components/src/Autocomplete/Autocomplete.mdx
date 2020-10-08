@@ -46,13 +46,18 @@ import { Autocomplete } from "@jobber/components/Autocomplete";
       />
     );
     function getOptions(text) {
+      alert('hello')
+
       if (text === "") {
         return options;
       }
+
       const filterRegex = new RegExp(text, "i");
       return options.filter(option => option.label.match(filterRegex));
     }
-  }}
+
+}}
+
 </Playground>
 
 ## Props
@@ -338,6 +343,7 @@ using either promises or `await` in `getOptions`.
 </Playground>
 
 ## Related components
-* If you want to present a list of predefined options without text input, use a [Select](select)
-instead. 
-* If no suggests are required for the text input, use [InputText](input-text).
+
+- If you want to present a list of predefined options without text input, use a
+  [Select](select) instead.
+- If no suggests are required for the text input, use [InputText](input-text).

@@ -87,7 +87,7 @@ export function Autocomplete({
   const [menuVisible, setMenuVisible] = useState(false);
   const [inputText, setInputText] = useState((value && value.label) || "");
 
-  const debouncedSetOptions = useRef(debounce(setOptions, debounceRate))
+  const debouncedGetOptions = useRef(debounce(getOptions, debounceRate))
     .current;
 
   useEffect(() => {
@@ -121,7 +121,7 @@ export function Autocomplete({
   async function updateInput(newText: string) {
     setInputText(newText);
     if (newText) {
-      debouncedSetOptions(mapToOptions(await getOptions(newText)));
+      setOptions(mapToOptions(debouncedGetOptions(newText)));
     } else {
       setOptions(mapToOptions(initialOptions));
     }
