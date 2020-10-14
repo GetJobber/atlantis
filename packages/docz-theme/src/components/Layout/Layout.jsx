@@ -4,8 +4,8 @@ import { Layout as BaseLayout, Main, jsx } from "theme-ui";
 import { Global } from "@emotion/core";
 import t from "prop-types";
 import global from "gatsby-theme-docz/src/theme/global";
-import { Sidebar } from "gatsby-theme-docz/src/components/Sidebar";
 import { MainContainer } from "gatsby-theme-docz/src/components/MainContainer";
+import { Sidebar } from "@jobber/docz-theme/components/Sidebar";
 import { CTAS } from "@jobber/docz-theme/components/CTAS";
 import * as styles from "./styles";
 

@@ -9,3 +9,5 @@ route: /docz-theme
 ## Installing
 
 `npm install hooks @jobber/docz-theme`
+
+- Document Logo
