@@ -1,5 +1,5 @@
 /* eslint-disable import/export  */
-import * as navigation from "@jobber/docz-theme/gatsby-theme-docz/theme/navigation";
+import * as navigation from "@jobber/docz-theme/theme/navigation";
 
 export * from "gatsby-theme-docz/src/components/NavGroup/styles";
 
@@ -14,11 +14,11 @@ export const sublink = {
 };
 
 export const title = {
-  ...navigation.levelOne,
+  ...navigation.heading,
 };
 
 export const link = {
-  ...navigation.levelTwo,
+  ...navigation.bullet,
 
   "+ div": {
     pl: 4,

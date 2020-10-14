@@ -1,8 +1,4 @@
-import themeStyles from "gatsby-theme-docz/src/theme/styles";
-import { merge } from "lodash/fp";
-
-// eslint-disable-next-line import/no-default-export
-export default merge(themeStyles, {
+export const styles = {
   Container: {
     maxWidth: 960,
   },
@@ -34,4 +30,4 @@ export default merge(themeStyles, {
     borderRadius: "square",
     borderLeft: t => `var(--border-thick) solid ${t.colors.blockquote.border}`,
   },
-});
+};

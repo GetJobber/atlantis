@@ -1,5 +1,5 @@
 /* eslint-disable import/export  */
-import * as navigation from "@jobber/docz-theme/gatsby-theme-docz/theme/navigation";
+import * as navigation from "@jobber/docz-theme/theme/navigation";
 
 export const headings = {
   mt: 2,
@@ -7,5 +7,5 @@ export const headings = {
 };
 
 export const smallLink = {
-  ...navigation.levelThree,
+  ...navigation.arrow,
 };

@@ -1,5 +1,5 @@
 import * as styles from "gatsby-theme-docz/src/components/Sidebar/styles";
-import * as navigation from "@jobber/docz-theme/gatsby-theme-docz/theme/navigation";
+import * as navigation from "@jobber/docz-theme/theme/navigation";
 
 export const global = styles.global;
 
@@ -22,7 +22,7 @@ export const wrapper = props => ({
 export const linkWrapper = { px: 6 };
 
 export const sidebarLink = {
-  ...navigation.levelOne,
+  ...navigation.heading,
 
   "&.active": {
     mb: 2,

@@ -1,4 +1,4 @@
-export const levelOne = {
+export const heading = {
   fontSize: 2,
   color: "sidebar.navGroup",
   cursor: "pointer",
@@ -11,7 +11,7 @@ export const levelOne = {
   textDecoration: "none",
 };
 
-export const levelTwo = {
+export const bullet = {
   display: "flex",
   alignItems: "center",
   py: 1,
@@ -47,7 +47,7 @@ export const levelTwo = {
   },
 };
 
-export const levelThree = {
+export const arrow = {
   fontSize: 2,
   color: "sidebar.tocLink",
   textDecoration: "none",

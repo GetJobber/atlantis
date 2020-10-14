@@ -1,8 +1,13 @@
 import { fontSizes, fonts } from "./fonts";
+import * as colors from "./colors";
+import * as navigation from "./navigation";
+import { styles } from "./styles";
 
 export default {
+  colors: colors.default,
   fonts,
   fontSizes,
+  navigation,
 
   prism: {
     light: {
@@ -31,4 +36,5 @@ export default {
     radius: "var(--radius-large)",
     rounded: "var(--radius-larger)",
   },
+  styles,
 };
