@@ -1,3 +1,3 @@
-import { Wrapper } from "@jobber/docz-theme/layout/Wrapper";
+import { Wrapper } from "@jobber/docz-theme/components/Wrapper";
 
 export default Wrapper;
