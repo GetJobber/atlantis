@@ -1,7 +1,6 @@
 import theme from "@jobber/docz-theme/theme/index";
 
-export const wrapper = { p: 5 };
-export const menu = { my: 3 };
+export const wrapper = { px: 5, py: 4 };
 
 export const mainLink = (variation = "heading") => {
   return {

@@ -8,22 +8,27 @@ import * as styles from "./styles";
 
 export function Navigation({ query, sidebarRef }) {
   const menus = useMenus({ query });
+  console.log("menus", menus);
 
   return (
     <Box sx={styles.wrapper}>
       {menus.map(menu => {
-        if (!menu.menu) {
+        if (Array.isArray(menu.menu)) {
           return (
-            <NavigationLink
+            <NavigationGroup
               key={menu.id}
               item={menu}
-              variation="heading"
               sidebarRef={sidebarRef}
             />
           );
         }
         return (
-          <NavigationGroup key={menu.id} item={menu} sidebarRef={sidebarRef} />
+          <NavigationLink
+            key={menu.id}
+            item={menu}
+            variation="heading"
+            sidebarRef={sidebarRef}
+          />
         );
       })}
     </Box>
