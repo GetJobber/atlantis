@@ -36,7 +36,10 @@ module.exports = {
   },
   overrides: [
     {
-      files: ["**/doczrc.js"],
+      files: [
+        "**/doczrc.js",
+      "./packages/docz-theme/src/theme/index.js"
+      ],
       rules: {
         "import/no-default-export": "off",
       },
