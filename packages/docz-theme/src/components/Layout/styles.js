@@ -2,8 +2,7 @@ import { media } from "gatsby-theme-docz/src/theme/breakpoints";
 
 export const main = {
   boxSizing: "border-box",
-  display: "grid",
-  gridTemplateColumns: t => `${t.sidebarWidth || 300}px 1fr`,
+  display: "flex",
   minHeight: "100vh",
 
   [media.tablet]: {
@@ -13,4 +12,8 @@ export const main = {
   "*, *::before, *::after": {
     boxSizing: "inherit",
   },
+};
+
+export const content = {
+  flex: "1",
 };
