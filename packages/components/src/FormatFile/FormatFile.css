@@ -34,9 +34,24 @@
   object-fit: cover;
   flex-shrink: 0;
 }
+
+.imageBlock::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color-blue--dark);
+  opacity: 0.3;
+  mix-blend-mode: multiply;
+}
+
 .icon {
   margin: 0 auto;
 }
+
 .progress {
   display: flex;
   position: absolute;
@@ -46,7 +61,6 @@
   left: 0;
   padding: var(--file-card--base-padding);
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .contentBlock {
