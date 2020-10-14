@@ -1,21 +1,30 @@
 export const heading = {
   fontSize: 2,
-  color: "sidebar.navGroup",
+  color: "greyBlueLighter",
   cursor: "pointer",
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  py: 2,
   textTransform: "uppercase",
   fontWeight: "bold",
   textDecoration: "none",
+  transition: "color 200ms",
+  my: 4,
+
+  "&:hover": {
+    color: "white",
+  },
+
+  "&.active": {
+    color: "white",
+  },
 };
 
 export const bullet = {
   display: "flex",
   alignItems: "center",
-  py: 1,
-  color: "sidebar.navLink",
+  my: 3,
+  color: "greyBlueLight",
   fontSize: 2,
   textDecoration: "none",
 
@@ -24,35 +33,44 @@ export const bullet = {
     display: "inline-block",
     width: 7,
     height: 7,
-    border: t => `2px solid ${t.colors.sidebar.navLink}`,
+    border: t => `2px solid ${t.colors.greyBlueLight}`,
     borderRadius: "rounded",
     verticalAlign: "middle",
     mr: 3,
     transition: "background 200ms, border 200ms",
   },
 
+  "&:hover": {
+    color: "green",
+  },
+
   "&:hover::before": {
-    borderColor: "sidebar.navLinkActive",
-    bg: "sidebar.navLinkActive",
+    borderColor: "green",
+    bg: "green",
   },
 
   "&.active": {
-    color: "sidebar.navLinkActive",
+    color: "green",
     mb: 2,
   },
 
   "&.active::before": {
-    borderColor: "sidebar.navLinkActive",
-    bg: "sidebar.navLinkActive",
+    borderColor: "green",
+    bg: "green",
   },
 };
 
 export const arrow = {
   fontSize: 2,
-  color: "sidebar.tocLink",
+  color: "greyBlueLight",
   textDecoration: "none",
   py: 2,
   display: "flex",
+  transition: "color 200ms",
+
+  "&:hover": {
+    color: "white",
+  },
 
   "&::before": {
     content: "'›'",
@@ -63,6 +81,6 @@ export const arrow = {
   },
 
   "&.active": {
-    color: "sidebar.tocLinkActive",
+    color: "white",
   },
 };
