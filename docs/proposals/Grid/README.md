@@ -1,6 +1,6 @@
 # Component Name
 
-The `<Grid>` component will organize child elements into a Flexbox row.
+The `<Grid>` component will organize child elements into various grid layouts.
 
 ## Design Patterns
 
@@ -19,15 +19,10 @@ I can't think of any accessibility considerations at this time.
 There's a future opportunity to change the number of rows for different
 breakpoints.
 
-## Wireframe
-
-_{Insert a low fidelity wireframe of the components behaviour, enough for
-someone to start building it}_
-
 ## Interface
 
 ```
-<Grid columns-on-small>
+<Grid template={Templates.twoColumns}>
   <Content>First Column</Content>
   <Content>Second Column</Content>
 </Grid>
@@ -37,6 +32,16 @@ someone to start building it}_
 
 _{Provide a table in the following format of the component's public API}_
 
-| name | type | default | description |
-| ---- | ---- | ------- | ----------- |
-| ...  | ...  | ...     | ...         |
+| name     | type             | default | description |
+| -------- | ---------------- | ------- | ----------- |
+| template | Templates object | fit     | ...         |
+
+The templates object would contain strings for `grid-template-columns` CSS
+properties.
+
+```
+{
+  "fit": "repeat(auto-fill, minmax(200px, 1fr))",
+  "twoColumn": "repeat(2, 1fr)"
+}
+```
