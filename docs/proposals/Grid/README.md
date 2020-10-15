@@ -32,16 +32,16 @@ breakpoints.
 
 _{Provide a table in the following format of the component's public API}_
 
-| name     | type             | default | description                      |
-| -------- | ---------------- | ------- | -------------------------------- |
-| template | Templates object | fit     | The column template for the grid |
+| name     | type             | default       | description                      |
+| -------- | ---------------- | ------------- | -------------------------------- |
+| template | Templates object | Templates.fit | The column template for the grid |
 
 The templates object would contain strings for `grid-template-columns` CSS
 properties.
 
 ```
 {
-  "fit": "repeat(auto-fill, minmax(200px, 1fr))",
+  "fit": "repeat(auto-fit, minmax(0px, 1fr))",
   "twoColumn": "repeat(2, 1fr)"
 }
 ```
