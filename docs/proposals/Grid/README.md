@@ -17,7 +17,7 @@ I can't think of any accessibility considerations at this time.
 ## Responsiveness & Mobile
 
 There's a future opportunity to change the number of rows for different
-breakpoints.
+breakpoints. I don't see a need to add it for the first iteration.
 
 ## Interface
 
@@ -29,8 +29,6 @@ breakpoints.
 ```
 
 ## Props Table
-
-_{Provide a table in the following format of the component's public API}_
 
 | name     | type             | default       | description                      |
 | -------- | ---------------- | ------------- | -------------------------------- |
