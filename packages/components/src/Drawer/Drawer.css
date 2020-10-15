@@ -11,11 +11,13 @@
   display: -ms-flexbox;
   display: flex;
   position: fixed;
-  top: 40px;
+  top: 0;
   right: 0;
   bottom: 0;
+  left: 100%;
   z-index: var(--elevation-modal);
   box-sizing: border-box;
+  transition: left 200ms;
 
   @media only screen and (min-width: 64rem), print {
     position: relative;
@@ -25,36 +27,14 @@
 }
 
 .frame {
-  width: 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  padding: 0 0 0 4px;
-  border-left: 1px solid var(--drawer--border-color);
-  overflow-x: hidden;
+  width: 100%;
+  border: var(--border-base) solid var(--drawer--border-color);
   background-color: var(--drawer--background-color);
-  transition: padding 200ms, width 200ms;
-
-  @media only screen and (min-width: 64rem), print {
-    box-shadow: none;
-  }
 }
 
-.open .frame {
-  width: 280px; /* 1 */
-  padding: 0 16px;
+.open {
+  left: 0;
   overflow-y: auto;
-
-  @media only screen and (min-width: 40rem) {
-    width: 320px;
-  }
-}
-
-.header,
-.content {
-  width: 248px;
-
-  @media only screen and (min-width: 40rem) {
-    width: 288px;
-  }
 }
 
 .header {
@@ -62,27 +42,17 @@
   padding: var(--drawer--base-padding);
   background-color: var(--drawer--header-background-color);
   justify-content: space-between;
+  align-items: center;
+}
+
+.closeButton {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  appearance: none;
 }
 
 .content {
   padding: var(--drawer--base-padding);
-}
-
-.overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 2;
-  background-color: rgba(var(--color-white), 0.7);
-}
-
-.open ~ .drawer-overlay {
-  display: block;
-
-  @media only screen and (min-width: 64rem) {
-    display: none;
-  }
 }

@@ -2,6 +2,7 @@ import React, { ReactElement, ReactNode, useState } from "react";
 import classnames from "classnames";
 import styles from "./Drawer.css";
 import { Typography } from "../Typography";
+import { Icon } from "../Icon";
 
 interface DrawerProps {
   readonly activator: ReactElement;
@@ -35,13 +36,18 @@ export function Drawer({ activator, title, children }: DrawerProps) {
               {title}
             </Typography>
             <div>
-              <button onClick={handleDrawerClose}>Close</button>
+              <button
+                className={styles.closeButton}
+                onClick={handleDrawerClose}
+                aria-label="Close modal"
+              >
+                <Icon name="cross" />
+              </button>
             </div>
           </div>
           <div className={styles.content}>{children}</div>
         </div>
       </div>
-      <div className={styles.overlay}></div>
     </>
   );
 
