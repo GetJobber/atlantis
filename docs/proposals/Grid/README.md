@@ -32,9 +32,9 @@ breakpoints.
 
 _{Provide a table in the following format of the component's public API}_
 
-| name     | type             | default | description |
-| -------- | ---------------- | ------- | ----------- |
-| template | Templates object | fit     | ...         |
+| name     | type             | default | description                      |
+| -------- | ---------------- | ------- | -------------------------------- |
+| template | Templates object | fit     | The column template for the grid |
 
 The templates object would contain strings for `grid-template-columns` CSS
 properties.
