@@ -8,6 +8,93 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.3.1...@jobber/components@2.3.2) (2020-10-08)
+
+
+### Bug Fixes
+
+* **components:** Autocomplete debounce for getOptions ([#375](https://github.com/GetJobber/atlantis/issues/375)) ([cb667f9](https://github.com/GetJobber/atlantis/commit/cb667f9996e83931c88bc1c447b85a93d8971620))
+
+
+
+
+
+## [2.3.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.3.0...@jobber/components@2.3.1) (2020-10-07)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.3.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.2.0...@jobber/components@2.3.0) (2020-10-07)
+
+
+### Features
+
+* **components:** Adjust Autocomplete debounce rate ([#362](https://github.com/GetJobber/atlantis/issues/362)) ([0738723](https://github.com/GetJobber/atlantis/commit/07387239d6e2dd883442ad0d588046c8ad240a6b))
+
+
+
+
+
+# [2.2.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.1.4...@jobber/components@2.2.0) (2020-10-05)
+
+
+### Features
+
+* **components:** Add description to Checkbox ([#365](https://github.com/GetJobber/atlantis/issues/365)) ([c1e54eb](https://github.com/GetJobber/atlantis/commit/c1e54eb3fd7277e6fad544ae15e60e8e62c0f6cb))
+
+
+
+
+
+## [2.1.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.1.3...@jobber/components@2.1.4) (2020-10-05)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.1.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.1.2...@jobber/components@2.1.3) (2020-10-05)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.1.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.1.1...@jobber/components@2.1.2) (2020-10-05)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.1.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.1.0...@jobber/components@2.1.1) (2020-10-02)
+
+
+### Bug Fixes
+
+* **components:** Remove input name if no validation is set ([#373](https://github.com/GetJobber/atlantis/issues/373)) ([98523fb](https://github.com/GetJobber/atlantis/commit/98523fb75a60351498ed46d56b34e3042b6dcea6))
+
+
+
+
+
+# [2.1.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.0.3...@jobber/components@2.1.0) (2020-10-01)
+
+
+### Features
+
+* **components:** InputAvatar & Expand variation options for InputFile ([#366](https://github.com/GetJobber/atlantis/issues/366)) ([7b07059](https://github.com/GetJobber/atlantis/commit/7b07059170487368e0c04bc0674c71c51a0f676e))
+
+
+
+
+
 ## [2.0.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.0.2...@jobber/components@2.0.3) (2020-09-29)
 
 
@@ -25,6 +112,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 * **components:** Fixes the inline input ([#363](https://github.com/GetJobber/atlantis/issues/363)) ([d288199](https://github.com/GetJobber/atlantis/commit/d288199263c27edeeb12ec8bfc239801e3e60d34))
+## [1.43.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@1.43.1...@jobber/components@1.43.2) (2020-09-25)
+
+* Add a debounce prop to `Autocomplete`
 
 
 

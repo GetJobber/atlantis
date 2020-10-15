@@ -1,0 +1,42 @@
+.inputAvatar {
+  display: flex;
+  align-items: center;
+}
+
+.inputAvatar > *:not(:last-child) {
+  margin-right: var(--space-small);
+}
+
+.preview {
+  position: relative;
+}
+
+.centered {
+  display: flex;
+  position: relative;
+  height: 100%;
+  margin: 0 var(--space-small);
+  align-items: center;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.overlay::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: var(--radius-circle);
+  background-color: var(--color-blue--dark);
+  opacity: 0.3;
+  mix-blend-mode: multiply;
+}
