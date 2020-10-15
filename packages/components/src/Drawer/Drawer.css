@@ -4,31 +4,57 @@
   --drawer--border-color: var(--color-grey--lighter);
   --drawer--base-padding: var(--space-base);
 }
+
 .drawer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
-  z-index: var(--elevation-modal);
-  width: 100%;
-  height: 100%;
-  border-left: 1px solid var(--drawer--border-color);
-  overflow-y: auto;
-  background-color: var(--drawer--background-color);
-  transform: translateX(240px);
-  transition: all 300ms ease;
-  flex-direction: column;
-}
-
-.drawerWrap {
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 40px;
   right: 0;
-  left: auto;
-  width: 240px;
-  height: 100%;
-  overflow: hidden;
+  bottom: 0;
+  z-index: var(--elevation-modal);
+  box-sizing: border-box;
+
+  @media only screen and (min-width: 64rem), print {
+    position: relative;
+    top: auto;
+    z-index: auto;
+  }
 }
 
-.open {
-  transform: translateX(0);
+.frame {
+  width: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  padding: 0 0 0 4px;
+  border-left: 1px solid var(--drawer--border-color);
+  overflow-x: hidden;
+  background-color: var(--drawer--background-color);
+  transition: padding 200ms, width 200ms;
+
+  @media only screen and (min-width: 64rem), print {
+    box-shadow: none;
+  }
+}
+
+.open .frame {
+  width: 280px; /* 1 */
+  padding: 0 16px;
+  overflow-y: auto;
+
+  @media only screen and (min-width: 40rem) {
+    width: 320px;
+  }
+}
+
+.header,
+.content {
+  width: 248px;
+
+  @media only screen and (min-width: 40rem) {
+    width: 288px;
+  }
 }
 
 .header {
@@ -40,4 +66,23 @@
 
 .content {
   padding: var(--drawer--base-padding);
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  background-color: rgba(var(--color-white), 0.7);
+}
+
+.open ~ .drawer-overlay {
+  display: block;
+
+  @media only screen and (min-width: 64rem) {
+    display: none;
+  }
 }

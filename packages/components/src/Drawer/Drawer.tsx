@@ -23,8 +23,8 @@ export function Drawer({ activator, title, children }: DrawerProps) {
       {React.cloneElement(activator, {
         onClick: handleDrawerOpen,
       })}
-      <div className={styles.drawerWrap}>
-        <div className={drawerClassNames}>
+      <div className={drawerClassNames}>
+        <div className={styles.frame}>
           <div className={styles.header}>
             <Typography
               element="h3"
@@ -41,6 +41,7 @@ export function Drawer({ activator, title, children }: DrawerProps) {
           <div className={styles.content}>{children}</div>
         </div>
       </div>
+      <div className={styles.overlay}></div>
     </>
   );
 
