@@ -38,8 +38,10 @@ The templates object would contain strings for `grid-template-columns` CSS
 properties.
 
 ```
-{
+export const Templates = {
   "fit": "repeat(auto-fit, minmax(0px, 1fr))",
-  "twoColumn": "repeat(2, 1fr)"
+  "twoColumn": "repeat(2, 1fr)",
+  "threeColumn": "repeat(3, 1fr)",
+  ...
 }
 ```
