@@ -5,10 +5,7 @@ The `<Grid>` component will organize child elements into various grid layouts.
 ## Design Patterns
 
 The purpose of this component is to introduce a basic layout tool into Atlantis.
-Developers needed add extra CSS to their React components to add columns. Here's
-an example in Jobber Online:
-
-`app/javascript/anchor/accountSettings/components/CurrentPlanDetails/CurrentPlanDetails.module.css`
+Developers needed add extra CSS to their React components to add columns.
 
 ## Accessibility
 
