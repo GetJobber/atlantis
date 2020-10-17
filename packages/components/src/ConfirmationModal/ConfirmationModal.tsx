@@ -5,9 +5,9 @@ import React, {
   useImperativeHandle,
   useReducer,
 } from "react";
-import { Text } from "../Text";
 import { Modal } from "../Modal";
 import { Content } from "../Content";
+import { Markdown } from "../Markdown";
 
 interface ConfirmationModalState {
   readonly title?: string;
@@ -88,7 +88,7 @@ interface BaseConfirmationModalProps {
   readonly title?: string;
 
   /**
-   * Text for the body of the modal.
+   * Text or rich text content for the body of the modal.
    */
   readonly message?: string;
 
@@ -219,9 +219,11 @@ export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
         },
       }}
     >
-      <Content>
-        <Text>{state.message}</Text>
-      </Content>
+      {message && (
+        <Content>
+          <Markdown content={state.message || ""} />
+        </Content>
+      )}
     </Modal>
   );
 });
