@@ -6,9 +6,6 @@
 }
 
 .drawer {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   position: fixed;
   top: 0;
@@ -16,25 +13,40 @@
   bottom: 0;
   left: 100%;
   z-index: var(--elevation-modal);
-  box-sizing: border-box;
-  transition: left 200ms;
+  overflow: hidden;
+  transition: left 200ms, width 200ms;
 
-  @media only screen and (min-width: 64rem), print {
+  @media (--medium-screens), print {
     position: relative;
-    top: auto;
+    left: auto;
     z-index: auto;
+    width: 0;
   }
 }
 
 .frame {
+  display: flex;
+  position: relative;
   width: 100%;
+  height: 100%;
+  box-sizing: border-box;
   border: var(--border-base) solid var(--drawer--border-color);
   background-color: var(--drawer--background-color);
+  flex-direction: column;
 }
 
 .open {
   left: 0;
-  overflow-y: auto;
+
+  @media (--medium-screens) {
+    width: 420px;
+  }
+}
+
+.open .frame {
+  @media (--medium-screens) {
+    left: 0;
+  }
 }
 
 .header {
@@ -53,6 +65,13 @@
   appearance: none;
 }
 
+.contentWrap {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+  overflow-y: auto;
+}
 .content {
   padding: var(--drawer--base-padding);
 }

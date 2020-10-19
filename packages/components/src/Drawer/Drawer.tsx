@@ -1,11 +1,10 @@
-import React, { ReactElement, ReactNode, useState } from "react";
+import React, { ReactNode, useState } from "react";
 import classnames from "classnames";
 import styles from "./Drawer.css";
 import { Typography } from "../Typography";
 import { Icon } from "../Icon";
 
 interface DrawerProps {
-  readonly activator: ReactElement;
   readonly children: ReactNode | ReactNode[];
   readonly title: string;
 
@@ -16,14 +15,11 @@ interface DrawerProps {
    */
 }
 
-export function Drawer({ activator, title, children }: DrawerProps) {
+export function Drawer({ title, children }: DrawerProps) {
   const [open, setOpen] = useState(true);
   const drawerClassNames = classnames(styles.drawer, open && styles.open);
   return (
     <>
-      {React.cloneElement(activator, {
-        onClick: handleDrawerOpen,
-      })}
       <div className={drawerClassNames}>
         <div className={styles.frame}>
           <div className={styles.header}>
@@ -45,7 +41,9 @@ export function Drawer({ activator, title, children }: DrawerProps) {
               </button>
             </div>
           </div>
-          <div className={styles.content}>{children}</div>
+          <div className={styles.contentWrap}>
+            <div className={styles.content}>{children}</div>
+          </div>
         </div>
       </div>
     </>
@@ -53,9 +51,5 @@ export function Drawer({ activator, title, children }: DrawerProps) {
 
   function handleDrawerClose() {
     setOpen(false);
-  }
-
-  function handleDrawerOpen() {
-    setOpen(true);
   }
 }

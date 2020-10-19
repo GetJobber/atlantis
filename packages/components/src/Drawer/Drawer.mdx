@@ -8,6 +8,7 @@ import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
+import { Heading } from "@jobber/components/Heading";
 import { Button } from "@jobber/components/Button";
 import { Drawer } from ".";
 
@@ -23,19 +24,20 @@ import { Drawer } from "@jobber/components/Drawer";
 ```
 
 <Playground>
-  <Content>
-    <Drawer activator={<Button label="Show Drawer" />} title="A drawer">
-      <Content>Some amazing content</Content>
+  <div style={{
+    display: 'grid',
+    'grid-template-columns': '[main] auto [sidebar] minmax(min-content, max-content)',
+    'grid-gap': '16px',
+    'height': '600px'
+  }}>
+    <Content>
+      <Heading level={2}>Lorem ipsum</Heading>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus neque ante, tincidunt sit amet suscipit quis, condimentum id tortor. Cras purus urna, pretium sit amet iaculis nec, eleifend quis ipsum. Fusce id nisi vitae lectus ullamcorper tincidunt. Suspendisse porttitor felis mauris, id pellentesque massa mollis non. Pellentesque luctus quis lacus nec elementum. Suspendisse eu tempor velit, eu efficitur nisl. Cras faucibus risus non orci facilisis porta. Sed malesuada ex eget ligula tincidunt efficitur sed nec urna. Curabitur consectetur, sem ultricies hendrerit fringilla, nulla quam luctus metus, id rhoncus lorem ex a tortor. Morbi mattis sed magna sit amet tempus. Mauris ac nunc ut massa efficitur scelerisque ac et ex. Duis egestas porttitor auctor. Pellentesque lobortis turpis commodo leo ultrices, ac tincidunt sapien egestas. Phasellus finibus, ante eu condimentum facilisis, tellus urna accumsan augue, eu auctor orci purus id turpis. Sed at augue ut justo dapibus malesuada. </Content>
+    <Drawer title="A drawer">
+      <Content>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus neque ante, tincidunt sit amet suscipit quis, condimentum id tortor. Cras purus urna, pretium sit amet iaculis nec, eleifend quis ipsum. Fusce id nisi vitae lectus ullamcorper tincidunt. Suspendisse porttitor felis mauris, id pellentesque massa mollis non. Pellentesque luctus quis lacus nec elementum. Suspendisse eu tempor velit, eu efficitur nisl. Cras faucibus risus non orci facilisis porta. Sed malesuada ex eget ligula tincidunt efficitur sed nec urna. Curabitur consectetur, sem ultricies hendrerit fringilla, nulla quam luctus metus, id rhoncus lorem ex a tortor. Morbi mattis sed magna sit amet tempus. Mauris ac nunc ut massa efficitur scelerisque ac et ex. Duis egestas porttitor auctor. Pellentesque lobortis turpis commodo leo ultrices, ac tincidunt sapien egestas. Phasellus finibus, ante eu condimentum facilisis, tellus urna accumsan augue, eu auctor orci purus id turpis. Sed at augue ut justo dapibus malesuada. </Content>
     </Drawer>
-    <Content>This is the main body content.</Content>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-  </Content>
+
+  </div>
 </Playground>
 
 ## Design & Usage Guidelines

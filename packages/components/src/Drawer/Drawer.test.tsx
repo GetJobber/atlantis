@@ -7,11 +7,7 @@ afterEach(cleanup);
 
 it("renders a Drawer", () => {
   const tree = renderer
-    .create(
-      <Drawer activator={<div>Show Drawer</div>} title="Drawer">
-        Drawer content
-      </Drawer>,
-    )
+    .create(<Drawer title="Drawer">Drawer content</Drawer>)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
