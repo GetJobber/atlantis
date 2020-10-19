@@ -1,6 +1,7 @@
 export const styles = {
   Container: {
-    maxWidth: 960,
+    maxWidth: 900,
+    bg: "transparent",
   },
   a: {
     color: "green",

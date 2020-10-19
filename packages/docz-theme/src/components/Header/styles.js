@@ -1,5 +1,4 @@
 export const wrapper = {
-  bg: "greyLightest",
   position: "sticky",
   zIndex: 10,
   top: 0,

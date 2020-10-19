@@ -1,7 +1,7 @@
 import { fontSizes, fonts } from "./fonts";
+import { styles } from "./styles";
 import colors from "./colors";
 import * as navigation from "./navigation";
-import { styles } from "./styles";
 
 export default {
   colors,
