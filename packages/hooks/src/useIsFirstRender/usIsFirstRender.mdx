@@ -1,0 +1,32 @@
+---
+name: useIsFirstRender
+menu: Hooks
+route: /hooks/use-is-first-render
+---
+
+import { Playground } from "docz";
+import { useIsFirstRender } from "@jobber/hooks";
+
+# useIsFirstRender
+
+`useIsFirstRender` is a simple hook that will help to determine whether it is
+the first render of a component or not.
+
+```tsx
+import { useIsFirstRender } from "@jobber/hooks";
+```
+
+<Playground>
+  {() => {
+    const isFirstRender = useIsFirstRender();
+    consoleOnRender();
+    return <div>👀 What does the console say?</div>;
+    function consoleOnRender() {
+      if (isFirstRender) {
+        console.log(`1️⃣ Components first render.`);
+      } else {
+        console.log(`Another day, another render.`);
+      }
+    }
+  }}
+</Playground>
