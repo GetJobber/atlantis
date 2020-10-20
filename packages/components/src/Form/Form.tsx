@@ -1,5 +1,15 @@
-import React, { ReactNode, useEffect } from "react";
+import React, {
+  ReactNode,
+  Ref,
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+} from "react";
 import { FormProvider, useForm } from "react-hook-form";
+
+export interface FormRef {
+  validate(props: Array<string>): void;
+}
 
 interface FormProps {
   readonly children: ReactNode;
@@ -12,9 +22,13 @@ interface FormProps {
   onStateChange?(formState: { isDirty: boolean; isValid: boolean }): void;
 }
 
-export function Form({ onSubmit, children, onStateChange }: FormProps) {
+export const Form = forwardRef(function InternalForm(
+  { onSubmit, children, onStateChange }: FormProps,
+  ref: Ref<FormRef>,
+) {
   const methods = useForm({ mode: "onTouched" });
   const {
+    trigger,
     handleSubmit,
     formState: { isDirty, isValid },
   } = methods;
@@ -23,6 +37,18 @@ export function Form({ onSubmit, children, onStateChange }: FormProps) {
     isDirty,
     isValid,
   ]);
+
+  useImperativeHandle(ref, () => ({
+    validate: async props => {
+      const valid = await trigger(props);
+
+      if (valid) {
+        submitHandler();
+      } else {
+        trigger(props);
+      }
+    },
+  }));
 
   /**
    * If an onSubmit is not passed into a form, it will only be used
@@ -46,4 +72,4 @@ export function Form({ onSubmit, children, onStateChange }: FormProps) {
   function submitHandler() {
     onSubmit && onSubmit();
   }
-}
+});
