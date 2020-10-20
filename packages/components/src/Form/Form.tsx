@@ -8,7 +8,7 @@ import React, {
 import { FormProvider, useForm } from "react-hook-form";
 
 export interface FormRef {
-  validate(props: Array<string>): void;
+  validate(props?: Array<string> | undefined): void;
 }
 
 interface FormProps {
