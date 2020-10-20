@@ -135,11 +135,11 @@ export function Autocomplete({
   }
 
   async function updateSearch() {
-    const opts: AnyOption[] = await getOptions(inputText);
-    const filteredOpts = opts.filter((o: AnyOption) =>
-      "options" in o && o.options ? o.options.length > 0 : true,
+    const updatedOptions: AnyOption[] = await getOptions(inputText);
+    const filteredOptions = updatedOptions.filter((option: AnyOption) =>
+      "options" in option && option.options ? option.options.length > 0 : true,
     );
-    setOptions(mapToOptions(filteredOpts));
+    setOptions(mapToOptions(filteredOptions));
   }
 
   function handleMenuChange(chosenOption: Option) {
