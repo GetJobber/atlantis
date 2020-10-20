@@ -42,12 +42,7 @@ export function Modal({
     document.createElement("div"),
   );
 
-  useEffect(() => {
-    if (open && modalContainer.current) {
-      modalContainer.current.focus();
-    }
-  });
-
+  setFocusOnModalOpen(open, modalContainer);
   catchKeyboardEvent("Escape", open, onRequestClose);
 
   const template = (
@@ -97,6 +92,17 @@ export function Modal({
   return ReactDOM.createPortal(template, document.body);
 }
 
+function setFocusOnModalOpen(
+  isModalOpen: boolean,
+  elementRef: RefObject<HTMLDivElement>,
+) {
+  useEffect(() => {
+    if (isModalOpen && elementRef.current) {
+      elementRef.current.focus();
+    }
+  });
+}
+
 function catchKeyboardEvent(
   key: string,
   isModalOpen: boolean,
@@ -114,7 +120,7 @@ function catchKeyboardEvent(
     return () => {
       window.removeEventListener("keydown", handler);
     };
-  }, []);
+  });
 }
 
 interface HeaderProps {
