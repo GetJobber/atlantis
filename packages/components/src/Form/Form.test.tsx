@@ -118,7 +118,7 @@ test("wraps the form in a div tag when the onSubmit is not set", () => {
   expect(getByTestId("atlantis-form")).toBeInstanceOf(HTMLDivElement);
 });
 
-test("validate method can be used to successfully submit the form", async () => {
+test("submit method can be used to successfully submit the form", async () => {
   const submitHandler = jest.fn();
   const { getByText, getByLabelText } = render(
     <MockFormValidate onSubmit={submitHandler} />,
@@ -133,7 +133,7 @@ test("validate method can be used to successfully submit the form", async () => 
   });
 });
 
-test("validate method can be used to trigger validation from outside the form", async () => {
+test("submit method can be used to trigger validation from outside the form", async () => {
   const submitHandler = jest.fn();
   const { getByText } = render(<MockFormValidate onSubmit={submitHandler} />);
 
@@ -166,7 +166,7 @@ function MockFormValidate({ onSubmit }: MockFormValidateProps) {
           }}
         />
       </Form>
-      <button onClick={() => formRef.current.validate()}>submit</button>
+      <button onClick={() => formRef.current.submit()}>submit</button>
     </>
   );
 }

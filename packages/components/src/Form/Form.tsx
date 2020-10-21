@@ -8,7 +8,7 @@ import React, {
 import { FormProvider, useForm } from "react-hook-form";
 
 export interface FormRef {
-  validate(props?: Array<string> | undefined): void;
+  submit(): void;
 }
 
 interface FormProps {
@@ -39,13 +39,19 @@ export const Form = forwardRef(function InternalForm(
   ]);
 
   useImperativeHandle(ref, () => ({
-    validate: async props => {
-      const valid = await trigger(props);
+    /**
+     * The `trigger()` method can also accept an array
+     * of fields to validate. We may at some point want
+     * to consider adding a `validate()` method to the
+     * `Form` component.
+     */
+    submit: async () => {
+      const valid = await trigger();
 
       if (valid) {
         submitHandler();
       } else {
-        trigger(props);
+        trigger();
       }
     },
   }));
