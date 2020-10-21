@@ -81,6 +81,15 @@ export interface ConfirmationModalRef {
   show(props: Omit<DisplayAction, "type">): void;
 }
 
+interface KeyboardEventCompareratorOption {
+  readonly key: string;
+  readonly shiftKey?: boolean;
+  readonly ctrlKey?: boolean;
+  readonly altKey?: boolean;
+  readonly metaKey?: boolean;
+  [propName: string]: string | boolean | undefined;
+}
+
 interface BaseConfirmationModalProps {
   /**
    * Title for the modal.
@@ -198,6 +207,32 @@ export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
     });
   }, [title, message, confirmLabel, cancelLabel, onConfirm, onCancel]);
 
+  const handleConfirm = () => {
+    dispatch({ type: "confirm" });
+    onRequestClose && onRequestClose();
+  };
+
+  const handleCancel = () => {
+    dispatch({ type: "cancel" });
+    onRequestClose && onRequestClose();
+  };
+
+  useEffect(() => {
+    const confirmShortcut = createKeyDownHandler("Enter", handleConfirm);
+    const cancelShortcut = createKeyDownHandler(
+      ["Escape", { metaKey: true, key: "." }],
+      handleCancel,
+    );
+    if (open || state.open) {
+      window.addEventListener("keydown", confirmShortcut);
+      window.addEventListener("keydown", cancelShortcut);
+    }
+    return () => {
+      window.removeEventListener("keydown", confirmShortcut);
+      window.removeEventListener("keydown", cancelShortcut);
+    };
+  }, [open || state.open]);
+
   return (
     <Modal
       title={state.title}
@@ -206,17 +241,11 @@ export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
       dismissible={false}
       primaryAction={{
         label: state.confirmLabel,
-        onClick: () => {
-          dispatch({ type: "confirm" });
-          onRequestClose && onRequestClose();
-        },
+        onClick: handleConfirm,
       }}
       secondaryAction={{
         label: state.cancelLabel,
-        onClick: () => {
-          dispatch({ type: "cancel" });
-          onRequestClose && onRequestClose();
-        },
+        onClick: handleCancel,
       }}
     >
       <Content>
@@ -225,3 +254,42 @@ export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
     </Modal>
   );
 });
+
+function createKeyDownHandler(
+  option:
+    | Array<
+        KeyboardEventCompareratorOption | KeyboardEventCompareratorOption["key"]
+      >
+    | KeyboardEventCompareratorOption
+    | KeyboardEventCompareratorOption["key"],
+  callback: () => void,
+) {
+  const handler: (event: globalThis.KeyboardEvent) => void = (
+    event: globalThis.KeyboardEvent,
+  ) => {
+    const keyboardEvent = (event as unknown) as KeyboardEventCompareratorOption;
+    if (typeof option === "string" && keyboardEvent.key === option) {
+      return callback();
+    }
+    if (
+      Array.isArray(option) &&
+      option.some(item => {
+        if (typeof item === "string") return keyboardEvent.key === item;
+        return Object.keys(item).every(
+          index => keyboardEvent[index] === item[index],
+        );
+      })
+    ) {
+      return callback();
+    }
+    if (
+      !Array.isArray(option) &&
+      typeof option !== "string" &&
+      Object.keys(option).every(index => keyboardEvent[index] === option[index])
+    ) {
+      return callback();
+    }
+  };
+
+  return handler;
+}
