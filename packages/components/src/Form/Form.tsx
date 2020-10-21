@@ -1,5 +1,15 @@
-import React, { ReactNode, useEffect } from "react";
+import React, {
+  ReactNode,
+  Ref,
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+} from "react";
 import { FormProvider, useForm } from "react-hook-form";
+
+export interface FormRef {
+  submit(): void;
+}
 
 interface FormProps {
   readonly children: ReactNode;
@@ -12,9 +22,13 @@ interface FormProps {
   onStateChange?(formState: { isDirty: boolean; isValid: boolean }): void;
 }
 
-export function Form({ onSubmit, children, onStateChange }: FormProps) {
+export const Form = forwardRef(function InternalForm(
+  { onSubmit, children, onStateChange }: FormProps,
+  ref: Ref<FormRef>,
+) {
   const methods = useForm({ mode: "onTouched" });
   const {
+    trigger,
     handleSubmit,
     formState: { isDirty, isValid },
   } = methods;
@@ -23,6 +37,24 @@ export function Form({ onSubmit, children, onStateChange }: FormProps) {
     isDirty,
     isValid,
   ]);
+
+  useImperativeHandle(ref, () => ({
+    /**
+     * The `trigger()` method can also accept an array
+     * of fields to validate. We may at some point want
+     * to consider adding a `validate()` method to the
+     * `Form` component.
+     */
+    submit: async () => {
+      const valid = await trigger();
+
+      if (valid) {
+        submitHandler();
+      } else {
+        trigger();
+      }
+    },
+  }));
 
   /**
    * If an onSubmit is not passed into a form, it will only be used
@@ -46,4 +78,4 @@ export function Form({ onSubmit, children, onStateChange }: FormProps) {
   function submitHandler() {
     onSubmit && onSubmit();
   }
-}
+});
