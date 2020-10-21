@@ -45,11 +45,7 @@ export const Form = forwardRef(function InternalForm(
       if (valid) {
         submitHandler();
       } else {
-        if (props) {
-          trigger(props);
-        } else {
-          trigger();
-        }
+        trigger(props);
       }
     },
   }));
