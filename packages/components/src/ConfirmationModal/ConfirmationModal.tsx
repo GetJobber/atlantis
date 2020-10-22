@@ -5,6 +5,7 @@ import React, {
   useImperativeHandle,
   useReducer,
 } from "react";
+import { XOR } from "ts-xor";
 import { Text } from "../Text";
 import { Modal } from "../Modal";
 import { Content } from "../Content";
@@ -89,9 +90,10 @@ interface VerboseKeyComparerator {
   readonly ctrlKey?: boolean;
   readonly altKey?: boolean;
   readonly metaKey?: boolean;
+  readonly [index: string]: boolean | string | undefined;
 }
 
-type KeyComparerator = XOR< VerboseKeyComparerator, SimpleKeyComparerator>
+type KeyComparerator = XOR<VerboseKeyComparerator, SimpleKeyComparerator>;
 
 interface BaseConfirmationModalProps {
   /**
@@ -259,19 +261,19 @@ export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
 });
 
 function createKeyDownHandler(
-  keys: KeyComparerator[] | KeyComparerator
+  keys: KeyComparerator[] | KeyComparerator,
   callback: () => void,
 ) {
   const handler: (event: globalThis.KeyboardEvent) => void = (
     event: globalThis.KeyboardEvent,
   ) => {
-    const keyboardEvent = (event as unknown) as KeyboardEventCompareratorOption;
-    if (typeof option === "string" && keyboardEvent.key === option) {
+    const keyboardEvent = (event as unknown) as VerboseKeyComparerator;
+    if (typeof keys === "string" && keyboardEvent.key === keys) {
       return callback();
     }
     if (
-      Array.isArray(option) &&
-      option.some(item => {
+      Array.isArray(keys) &&
+      keys.some(item => {
         if (typeof item === "string") return keyboardEvent.key === item;
         return Object.keys(item).every(
           index => keyboardEvent[index] === item[index],
@@ -281,9 +283,9 @@ function createKeyDownHandler(
       return callback();
     }
     if (
-      !Array.isArray(option) &&
-      typeof option !== "string" &&
-      Object.keys(option).every(index => keyboardEvent[index] === option[index])
+      !Array.isArray(keys) &&
+      typeof keys !== "string" &&
+      Object.keys(keys).every(index => keyboardEvent[index] === keys[index])
     ) {
       return callback();
     }
