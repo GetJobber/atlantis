@@ -81,14 +81,17 @@ export interface ConfirmationModalRef {
   show(props: Omit<DisplayAction, "type">): void;
 }
 
-interface KeyboardEventCompareratorOption {
-  readonly key: string;
+type SimpleKeyComparerator = string;
+
+interface VerboseKeyComparerator {
+  readonly key: SimpleKeyComparerator;
   readonly shiftKey?: boolean;
   readonly ctrlKey?: boolean;
   readonly altKey?: boolean;
   readonly metaKey?: boolean;
-  [propName: string]: string | boolean | undefined;
 }
+
+type KeyComparerator = XOR< VerboseKeyComparerator, SimpleKeyComparerator>
 
 interface BaseConfirmationModalProps {
   /**
