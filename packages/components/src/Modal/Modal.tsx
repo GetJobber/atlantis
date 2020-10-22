@@ -4,7 +4,6 @@ import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import styles from "./Modal.css";
 import sizes from "./Sizes.css";
-import { Icon } from "../Icon";
 import { Typography } from "../Typography";
 import { Button, ButtonProps } from "../Button";
 
@@ -125,13 +124,13 @@ function Header({ title, dismissible, onRequestClose }: HeaderProps) {
       </Typography>
 
       {dismissible && (
-        <button
-          className={styles.closeButton}
+        <Button
+          icon="remove"
           onClick={onRequestClose}
-          aria-label="Close modal"
-        >
-          <Icon name="cross" />
-        </button>
+          ariaLabel="Close modal"
+          type="tertiary"
+          variation="cancel"
+        />
       )}
     </div>
   );
