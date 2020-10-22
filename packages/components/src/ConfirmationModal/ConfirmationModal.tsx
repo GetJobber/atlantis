@@ -259,12 +259,7 @@ export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
 });
 
 function createKeyDownHandler(
-  option:
-    | Array<
-        KeyboardEventCompareratorOption | KeyboardEventCompareratorOption["key"]
-      >
-    | KeyboardEventCompareratorOption
-    | KeyboardEventCompareratorOption["key"],
+  keys: KeyComparerator[] | KeyComparerator
   callback: () => void,
 ) {
   const handler: (event: globalThis.KeyboardEvent) => void = (
