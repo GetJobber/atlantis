@@ -8,7 +8,7 @@ import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { useState } from "react";
 
-import { Drawer } from ".";
+import { Drawer, DrawerGrid } from ".";
 import { Content } from "@jobber/components/Content";
 import { Button } from "@jobber/components/Button";
 import { Text } from "../Text";
@@ -33,9 +33,15 @@ import { Page } from "@jobber/components/Page";
         title="Notifications"
         intro=""
       >
-      <Drawer title="me drawer" open={modalOpen}></Drawer>
-      <Button onClick={() => setModalOpen(!modalOpen)} label="Toggle Drawer"></Button>
+      <DrawerGrid>
+        <Content>
+          <Button onClick={() => setModalOpen(!modalOpen)} label="Toggle Drawer"></Button>
+        </Content>
+        <Drawer title="me drawer" open={modalOpen}></Drawer>
+      </DrawerGrid>
+
       <Text>Page content here</Text>
+
   </Page>)
   }}
 
