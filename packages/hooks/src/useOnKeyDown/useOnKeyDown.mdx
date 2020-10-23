@@ -26,7 +26,7 @@ import { useOnKeyDown } from "@jobber/hooks";
     const letterText2 = "Space Enter and Shift + Escape will show here";
     const [ text, setText ] = useState(letterText);
     const [ textTwo, setTextTwo ] = useState(letterText2);
-    useOnKeyDown(() => setText("Deleted. Press Shift + z for undo."), "Delete");
+    useOnKeyDown(() => setText("Deleted. Press Control + z for undo."), "Delete");
     useOnKeyDown(() => setText(letterText), {key: "z", ctrlKey: true});
     useOnKeyDown((e) => {
         if(e.shiftKey) setTextTwo("You pressed Shift and "+e.key);
