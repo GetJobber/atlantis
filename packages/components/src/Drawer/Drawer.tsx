@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode } from "react";
 import classnames from "classnames";
 import styles from "./Drawer.css";
 import { Typography } from "../Typography";
@@ -7,6 +7,8 @@ import { Icon } from "../Icon";
 interface DrawerProps {
   readonly children: ReactNode | ReactNode[];
   readonly title: string;
+  readonly open?: boolean;
+  onRequestClose?(): void;
 
   /**
    * Initial open value of the drawer. Only use this when you need to
@@ -15,8 +17,12 @@ interface DrawerProps {
    */
 }
 
-export function Drawer({ title, children }: DrawerProps) {
-  const [open, setOpen] = useState(true);
+export function Drawer({
+  title,
+  children,
+  open = true,
+  onRequestClose,
+}: DrawerProps) {
   const drawerClassNames = classnames(styles.drawer, open && styles.open);
   return (
     <>
@@ -34,7 +40,7 @@ export function Drawer({ title, children }: DrawerProps) {
             <div>
               <button
                 className={styles.closeButton}
-                onClick={handleDrawerClose}
+                onClick={onRequestClose}
                 aria-label="Close modal"
               >
                 <Icon name="cross" />
@@ -48,8 +54,4 @@ export function Drawer({ title, children }: DrawerProps) {
       </div>
     </>
   );
-
-  function handleDrawerClose() {
-    setOpen(false);
-  }
 }

@@ -14,7 +14,6 @@
   left: 100%;
   z-index: var(--elevation-modal);
   overflow: hidden;
-  transition: left 200ms, width 200ms;
 
   @media (--medium-screens), print {
     position: relative;
