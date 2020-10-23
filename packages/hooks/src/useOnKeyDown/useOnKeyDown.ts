@@ -1,7 +1,7 @@
 import useEventListener from "@use-it/event-listener";
 import { XOR } from "ts-xor";
 
-type SimpleKeyComparerator = string;
+type SimpleKeyComparerator = globalThis.KeyboardEvent["key"];
 
 interface VerboseKeyComparerator {
   readonly key: SimpleKeyComparerator;
@@ -15,15 +15,15 @@ interface VerboseKeyComparerator {
 type KeyComparerator = XOR<VerboseKeyComparerator, SimpleKeyComparerator>;
 
 export function useOnKeyDown(
+  callback: (event: globalThis.KeyboardEvent) => void,
   keys: KeyComparerator[] | KeyComparerator,
-  callback: () => void,
 ) {
   const handler: (event: globalThis.KeyboardEvent) => void = (
     event: globalThis.KeyboardEvent,
   ) => {
     const keyboardEvent = (event as unknown) as VerboseKeyComparerator;
     if (typeof keys === "string" && keyboardEvent.key === keys) {
-      return callback();
+      callback(event);
     }
     if (
       Array.isArray(keys) &&
@@ -34,14 +34,14 @@ export function useOnKeyDown(
         );
       })
     ) {
-      return callback();
+      callback(event);
     }
     if (
       !Array.isArray(keys) &&
       typeof keys !== "string" &&
       Object.keys(keys).every(index => keyboardEvent[index] === keys[index])
     ) {
-      return callback();
+      callback(event);
     }
   };
 
