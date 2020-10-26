@@ -38,17 +38,15 @@ export function Modal({
   onRequestClose,
 }: ModalProps) {
   const modalClassName = classnames(styles.modal, size && sizes[size]);
-  // const modalContainer: RefObject<HTMLDivElement> = useRef(
-  //   document.createElement("div"),
-  // );
 
-  // setFocusOnModalOpen(open, modalContainer);
-  catchKeyboardEvent("Escape", open, onRequestClose);
+  if (open && onRequestClose) {
+    catchKeyboardEvent("Escape", onRequestClose);
+  }
 
   const template = (
     <AnimatePresence>
       {open && (
-        <div className={styles.container} tabIndex={0}>
+        <div className={styles.container}>
           <motion.div
             key={styles.overlay}
             className={styles.overlay}
@@ -92,25 +90,10 @@ export function Modal({
   return ReactDOM.createPortal(template, document.body);
 }
 
-// function setFocusOnModalOpen(
-//   isModalOpen: boolean,
-//   elementRef: RefObject<HTMLDivElement>,
-// ) {
-//   useEffect(() => {
-//     if (isModalOpen && elementRef.current) {
-//       elementRef.current.focus();
-//     }
-//   });
-// }
-
-function catchKeyboardEvent(
-  key: string,
-  isModalOpen: boolean,
-  callback?: { (): void },
-) {
+function catchKeyboardEvent(key: string, callback: { (): void }) {
   useEffect(() => {
     const handler = (event: { key: string }) => {
-      if (isModalOpen && callback && event.key === key) {
+      if (event.key === key) {
         callback();
       }
     };
@@ -120,7 +103,7 @@ function catchKeyboardEvent(
     return () => {
       window.removeEventListener("keydown", handler);
     };
-  });
+  }, []);
 }
 
 interface HeaderProps {
