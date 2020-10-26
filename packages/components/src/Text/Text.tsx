@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import { Typography, TypographyOptions } from "../Typography";
 
 interface TextProps {
+  numberOfLines?: number;
   readonly variation?:
     | "default"
     | "subdued"
@@ -17,7 +18,11 @@ export interface VariationMap {
   [variation: string]: TypographyOptions;
 }
 
-export function Text({ variation = "default", children }: TextProps) {
+export function Text({
+  variation = "default",
+  children,
+  numberOfLines,
+}: TextProps) {
   const variationMap: VariationMap = {
     default: { textColor: "greyBlueDark", size: "base" },
     subdued: { textColor: "greyBlue", size: "base" },
@@ -28,5 +33,10 @@ export function Text({ variation = "default", children }: TextProps) {
     info: { textColor: "lightBlue", size: "base" },
   };
 
-  return <Typography {...variationMap[variation]}>{children}</Typography>;
+  const selectedVariation = variationMap[variation];
+  if (numberOfLines) {
+    selectedVariation.numberOfLines = numberOfLines;
+  }
+
+  return <Typography {...selectedVariation}>{children}</Typography>;
 }

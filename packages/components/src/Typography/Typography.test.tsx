@@ -18,6 +18,7 @@ it("renders an H1 title", () => {
   expect(tree).toMatchInlineSnapshot(`
     <h1
       className="base black jumbo uppercase"
+      style={Object {}}
     >
       Page title
     </h1>
@@ -40,6 +41,7 @@ it("renders an H2 title", () => {
   expect(tree).toMatchInlineSnapshot(`
     <h2
       className="base black largest uppercase"
+      style={Object {}}
     >
       Subtitle
     </h2>
@@ -57,6 +59,7 @@ it("renders an H3 title", () => {
   expect(tree).toMatchInlineSnapshot(`
     <h3
       className="base bold larger"
+      style={Object {}}
     >
       Content Group
     </h3>
@@ -74,6 +77,7 @@ it("renders an H4 title", () => {
   expect(tree).toMatchInlineSnapshot(`
     <h4
       className="base bold large"
+      style={Object {}}
     >
       Section
     </h4>
@@ -91,6 +95,7 @@ it("renders an H5 title", () => {
   expect(tree).toMatchInlineSnapshot(`
     <h5
       className="base bold base"
+      style={Object {}}
     >
       Subsection
     </h5>
@@ -113,6 +118,7 @@ it("renders an H6 title", () => {
   expect(tree).toMatchInlineSnapshot(`
     <h6
       className="base bold small uppercase"
+      style={Object {}}
     >
       Overline
     </h6>
@@ -132,6 +138,7 @@ it("renders a paragraph", () => {
   expect(tree).toMatchInlineSnapshot(`
     <p
       className="base regular"
+      style={Object {}}
     >
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat quae architecto accusamus cumque voluptate aspernatur repellendus natus, quo veniam illum.
     </p>
@@ -145,6 +152,7 @@ it("renders a span", () => {
   expect(tree).toMatchInlineSnapshot(`
     <span
       className="base regular"
+      style={Object {}}
     >
       SHOUT!
     </span>
@@ -158,6 +166,7 @@ it("renders an uppercased span", () => {
   expect(tree).toMatchInlineSnapshot(`
     <p
       className="base regular uppercase"
+      style={Object {}}
     >
       uppercase
     </p>
@@ -171,6 +180,7 @@ it("renders a lowercased text", () => {
   expect(tree).toMatchInlineSnapshot(`
     <p
       className="base regular lowercase"
+      style={Object {}}
     >
       LOWERCASE
     </p>
@@ -186,6 +196,7 @@ it("renders a capitalized text", () => {
   expect(tree).toMatchInlineSnapshot(`
     <p
       className="base regular capitalize"
+      style={Object {}}
     >
       wElL tHiS iS hArD tO tYpE
     </p>
