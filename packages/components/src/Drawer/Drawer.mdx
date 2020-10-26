@@ -14,12 +14,12 @@ import { Button } from "@jobber/components/Button";
 import { Text } from "../Text";
 import { Page } from "../Page";
 
-#Drawer
+# Drawer
 
-<ComponentStatus stage="pre" responsive="no" accessible="yes" />
+<ComponentStatus stage="pre" responsive="yes" accessible="no" />
 
-Drawer is a UI element meant to store content in a sidebar with a visibility
-toggle.
+Drawers are temporary sidebars that allow users to view supplemantary content.
+Users can interact with the main content while the drawer is visible.
 
 ```ts
 import { Page } from "@jobber/components/Page";
@@ -46,3 +46,7 @@ import { Page } from "@jobber/components/Page";
   }}
 
 </Playground>
+
+## Props
+
+<Props of={Drawer} />
