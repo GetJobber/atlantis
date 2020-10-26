@@ -1,7 +1,7 @@
-import React from "react";
+import React, { MutableRefObject, useRef } from "react";
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import { useFormState } from "@jobber/hooks";
-import { Form } from ".";
+import { Form, FormRef } from ".";
 import { InputText } from "../InputText";
 import { Text } from "../Text";
 
@@ -117,6 +117,59 @@ test("wraps the form in a div tag when the onSubmit is not set", () => {
   const { getByTestId } = render(<Form>Foo</Form>);
   expect(getByTestId("atlantis-form")).toBeInstanceOf(HTMLDivElement);
 });
+
+test("submit method can be used to successfully submit the form", async () => {
+  const submitHandler = jest.fn();
+  const { getByText, getByLabelText } = render(
+    <MockFormValidate onSubmit={submitHandler} />,
+  );
+
+  const input = getByLabelText("test form");
+  fireEvent.change(input, { target: { value: "Bo" } });
+  fireEvent.click(getByText("submit"));
+
+  waitFor(() => {
+    expect(submitHandler).toHaveBeenCalledTimes(1);
+  });
+});
+
+test("submit method can be used to trigger validation from outside the form", async () => {
+  const submitHandler = jest.fn();
+  const { getByText } = render(<MockFormValidate onSubmit={submitHandler} />);
+
+  fireEvent.click(getByText("submit"));
+
+  waitFor(() => {
+    expect(getByText("validation error")).not.toBeNull();
+    expect(getByText("validation error")).toBeInstanceOf(HTMLDivElement);
+  });
+});
+
+interface MockFormValidateProps {
+  onSubmit(): void;
+  onStateChange?(): void;
+}
+
+function MockFormValidate({ onSubmit }: MockFormValidateProps) {
+  const formRef = useRef() as MutableRefObject<FormRef>;
+  return (
+    <>
+      <Form onSubmit={onSubmit} ref={formRef}>
+        <InputText
+          placeholder="test form"
+          name="test"
+          validations={{
+            required: {
+              value: true,
+              message: "validation error",
+            },
+          }}
+        />
+      </Form>
+      <button onClick={() => formRef.current.submit()}>submit</button>
+    </>
+  );
+}
 
 interface MockFormProps {
   onSubmit(): void;

@@ -52,7 +52,7 @@ interface AutocompleteProps {
 
   /**
    * Called as the user types in the input. The autocomplete will display what
-   * is retuned from this method to the user as available options.
+   * is returned from this method to the user as available options.
    * @param newInputText
    */
   getOptions(
@@ -135,8 +135,11 @@ export function Autocomplete({
   }
 
   async function updateSearch() {
-    const opts = await getOptions(inputText);
-    setOptions(mapToOptions(opts));
+    const updatedOptions: AnyOption[] = await getOptions(inputText);
+    const filteredOptions = updatedOptions.filter((option: AnyOption) =>
+      "options" in option && option.options ? option.options.length > 0 : true,
+    );
+    setOptions(mapToOptions(filteredOptions));
   }
 
   function handleMenuChange(chosenOption: Option) {

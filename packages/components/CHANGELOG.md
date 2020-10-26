@@ -8,6 +8,18 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.3.2...@jobber/components@2.4.0) (2020-10-21)
+
+
+### Features
+
+* **components:** Add `validate` function to Form ([#393](https://github.com/GetJobber/atlantis/issues/393)) ([b6a47e2](https://github.com/GetJobber/atlantis/commit/b6a47e29ccfd2f96c3c62b8cf9ccfce96cc314db))
+* **components:** Autocomplete now filters out headers with no options ([#390](https://github.com/GetJobber/atlantis/issues/390)) ([e430fad](https://github.com/GetJobber/atlantis/commit/e430fad8efcd30984abbb8688311575569dcec94))
+
+
+
+
+
 ## [2.3.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.3.1...@jobber/components@2.3.2) (2020-10-08)
 
 
