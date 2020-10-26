@@ -146,6 +146,18 @@
   padding: 0;
 }
 
+.onlyIcon.small {
+  width: calc(var(--space-small) * 3);
+}
+
+.onlyIcon.base {
+  width: calc(var(--space-base) * 2.25);
+}
+
+.onlyIcon.base {
+  width: calc(var(--space-large) * 2.25);
+}
+
 .hasIconAndLabel {
   width: auto;
 }
@@ -206,4 +218,4 @@
   100% {
     background-position: var(--space-larger) var(--space-larger);
   }
-}
+}
