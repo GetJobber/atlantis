@@ -155,7 +155,7 @@
 }
 
 .onlyIcon.large {
-  width: calc(var(--space-large) * 2.25);
+  width: calc(var(--space-large) * 2);
 }
 
 .hasIconAndLabel {
