@@ -24,6 +24,7 @@ it("renders the input validation messages", () => {
         >
           <p
             className="base regular base red"
+            style={Object {}}
           >
             I am an error
           </p>

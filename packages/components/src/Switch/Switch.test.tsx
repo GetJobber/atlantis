@@ -26,6 +26,7 @@ it("renders a Switch", () => {
           >
             <span
               className="base bold small uppercase white"
+              style={Object {}}
             >
               On
             </span>
@@ -38,6 +39,7 @@ it("renders a Switch", () => {
           >
             <span
               className="base bold small uppercase greyBlue"
+              style={Object {}}
             >
               Off
             </span>
@@ -74,6 +76,7 @@ it("renders a Switch that is turned ON", () => {
           >
             <span
               className="base bold small uppercase white"
+              style={Object {}}
             >
               On
             </span>
@@ -86,6 +89,7 @@ it("renders a Switch that is turned ON", () => {
           >
             <span
               className="base bold small uppercase greyBlue"
+              style={Object {}}
             >
               Off
             </span>
@@ -123,6 +127,7 @@ it("renders a disabled Switch", () => {
           >
             <span
               className="base bold small uppercase grey"
+              style={Object {}}
             >
               On
             </span>
@@ -135,6 +140,7 @@ it("renders a disabled Switch", () => {
           >
             <span
               className="base bold small uppercase grey"
+              style={Object {}}
             >
               Off
             </span>

@@ -10,6 +10,7 @@ it("renders correctly", () => {
     >
       <span
         className="base regular small uppercase"
+        style={Object {}}
       >
         My Label
       </span>

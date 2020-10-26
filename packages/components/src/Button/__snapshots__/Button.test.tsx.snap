@@ -8,6 +8,7 @@ exports[`renders a Button 1`] = `
 >
   <span
     className="base extraBold small uppercase white"
+    style={Object {}}
   >
     Submit
   </span>
@@ -38,6 +39,7 @@ exports[`renders a Button that is just an icon 1`] = `
   </svg>
   <span
     className="base extraBold small uppercase white"
+    style={Object {}}
   />
 </button>
 `;
@@ -51,6 +53,7 @@ exports[`renders a Button with a link and opens in new tab 1`] = `
 >
   <span
     className="base extraBold small uppercase white"
+    style={Object {}}
   >
     Submit
   </span>
@@ -65,6 +68,7 @@ exports[`renders a Button with a loading state 1`] = `
 >
   <span
     className="base extraBold small uppercase white"
+    style={Object {}}
   >
     Adding
   </span>
@@ -90,6 +94,7 @@ exports[`renders a Button with an icon 1`] = `
   </svg>
   <span
     className="base extraBold small uppercase white"
+    style={Object {}}
   >
     Add
   </span>
@@ -115,6 +120,7 @@ exports[`renders a Button with an icon on the right 1`] = `
   </svg>
   <span
     className="base extraBold small uppercase white"
+    style={Object {}}
   >
     Add
   </span>
@@ -130,6 +136,7 @@ exports[`renders a Link as a Button for routing 1`] = `
 >
   <span
     className="base extraBold small uppercase white"
+    style={Object {}}
   >
     Adding
   </span>
@@ -144,6 +151,7 @@ exports[`renders a cancel Button 1`] = `
 >
   <span
     className="base extraBold small uppercase greyBlue"
+    style={Object {}}
   >
     Submit
   </span>
@@ -158,6 +166,7 @@ exports[`renders a destructuve Button 1`] = `
 >
   <span
     className="base extraBold small uppercase white"
+    style={Object {}}
   >
     Submit
   </span>
@@ -172,6 +181,7 @@ exports[`renders a disabled Button 1`] = `
 >
   <span
     className="base extraBold small uppercase grey"
+    style={Object {}}
   >
     Submit
   </span>
@@ -186,6 +196,7 @@ exports[`renders a large Button 1`] = `
 >
   <span
     className="base extraBold base uppercase white"
+    style={Object {}}
   >
     Add
   </span>
@@ -200,6 +211,7 @@ exports[`renders a learning Button 1`] = `
 >
   <span
     className="base extraBold small uppercase white"
+    style={Object {}}
   >
     Submit
   </span>
@@ -214,6 +226,7 @@ exports[`renders a secondary Button 1`] = `
 >
   <span
     className="base extraBold small uppercase green"
+    style={Object {}}
   >
     Submit
   </span>
@@ -228,6 +241,7 @@ exports[`renders a small Button 1`] = `
 >
   <span
     className="base extraBold smaller uppercase white"
+    style={Object {}}
   >
     Add
   </span>
@@ -242,6 +256,7 @@ exports[`renders a tertiary Button 1`] = `
 >
   <span
     className="base extraBold small uppercase green"
+    style={Object {}}
   >
     Submit
   </span>

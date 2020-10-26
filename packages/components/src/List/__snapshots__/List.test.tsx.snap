@@ -12,6 +12,7 @@ exports[`renders 1 List item with all the props 1`] = `
     >
       <h4
         className="base bold large"
+        style={Object {}}
       >
         Notification
       </h4>
@@ -48,11 +49,13 @@ exports[`renders 1 List item with all the props 1`] = `
           >
             <h5
               className="base bold base blue"
+              style={Object {}}
             >
               Jordan Yeo completed a visit
             </h5>
             <p
               className="base regular base greyBlueDark"
+              style={Object {}}
             >
               <span
                 className="truncate"
@@ -62,6 +65,7 @@ exports[`renders 1 List item with all the props 1`] = `
             </p>
             <p
               className="base regular base greyBlueDark"
+              style={Object {}}
             >
               <span
                 className="truncate"
@@ -71,9 +75,11 @@ exports[`renders 1 List item with all the props 1`] = `
             </p>
             <p
               className="base regular base greyBlue"
+              style={Object {}}
             >
               <span
                 className="base regular small italic"
+                style={Object {}}
               >
                 Sep 24, 2019
               </span>
@@ -84,9 +90,11 @@ exports[`renders 1 List item with all the props 1`] = `
           >
             <p
               className="base regular base greyBlueDark"
+              style={Object {}}
             >
               <b
                 className="base bold"
+                style={Object {}}
               >
                 $30.00
               </b>
@@ -118,6 +126,7 @@ exports[`should render a button list item 1`] = `
       >
         <p
           className="base regular base greyBlueDark"
+          style={Object {}}
         >
           <span
             className="truncate"
@@ -148,6 +157,7 @@ exports[`should render a link with url list item 1`] = `
       >
         <p
           className="base regular base greyBlueDark"
+          style={Object {}}
         >
           <span
             className="truncate"
@@ -179,6 +189,7 @@ exports[`should render an a tag with url and on click list item 1`] = `
       >
         <p
           className="base regular base greyBlueDark"
+          style={Object {}}
         >
           <span
             className="truncate"

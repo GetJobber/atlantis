@@ -27,6 +27,7 @@ exports[`renders a Menu 1`] = `
     </svg>
     <span
       className="base extraBold small uppercase green"
+      style={Object {}}
     >
       More Actions
     </span>
@@ -50,6 +51,7 @@ exports[`renders a Menu with custom activator 1`] = `
   >
     <span
       className="base extraBold small uppercase white"
+      style={Object {}}
     >
       Menu
     </span>

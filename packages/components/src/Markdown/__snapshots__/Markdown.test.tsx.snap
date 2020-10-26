@@ -6,9 +6,11 @@ exports[`renders Bold Component 1`] = `
 >
   <p
     className="base regular base greyBlueDark"
+    style={Object {}}
   >
     <b
       className="base bold"
+      style={Object {}}
     >
       Bold Foo
     </b>
@@ -22,9 +24,11 @@ exports[`renders Italicized Component 1`] = `
 >
   <p
     className="base regular base greyBlueDark"
+    style={Object {}}
   >
     <em
       className="base regular italic"
+      style={Object {}}
     >
       Italicized Foo
     </em>
@@ -38,6 +42,7 @@ exports[`renders Level 1 Heading Component 1`] = `
 >
   <h1
     className="base black jumbo uppercase blue"
+    style={Object {}}
   >
     Heading 1
   </h1>
@@ -50,6 +55,7 @@ exports[`renders Level 2 Heading Component 1`] = `
 >
   <h2
     className="base black largest uppercase blue"
+    style={Object {}}
   >
     Heading 2
   </h2>
@@ -62,6 +68,7 @@ exports[`renders Level 3 Heading Component 1`] = `
 >
   <h3
     className="base bold larger blue"
+    style={Object {}}
   >
     Heading 3
   </h3>
@@ -74,6 +81,7 @@ exports[`renders Level 4 Heading Component 1`] = `
 >
   <h4
     className="base bold large blue"
+    style={Object {}}
   >
     Heading 4
   </h4>
@@ -86,6 +94,7 @@ exports[`renders Level 5 Heading Component 1`] = `
 >
   <h5
     className="base bold base blue"
+    style={Object {}}
   >
     Heading 5
   </h5>
@@ -108,6 +117,7 @@ exports[`renders Text Component 1`] = `
 >
   <p
     className="base regular base greyBlueDark"
+    style={Object {}}
   >
     Paragraph
   </p>
@@ -120,21 +130,25 @@ exports[`renders a combination of Markdown components 1`] = `
 >
   <h1
     className="base black jumbo uppercase blue"
+    style={Object {}}
   >
     This is a paragraph.
   </h1>
   <p
     className="base regular base greyBlueDark"
+    style={Object {}}
   >
       The paragraph has some 
     <b
       className="base bold"
+      style={Object {}}
     >
       bold text
     </b>
      and some 
     <em
       className="base regular italic"
+      style={Object {}}
     >
       italicized text
     </em>
@@ -142,6 +156,7 @@ exports[`renders a combination of Markdown components 1`] = `
   </p>
   <p
     className="base regular base greyBlueDark"
+    style={Object {}}
   >
       This is the end of this paragraph.
   </p>
@@ -154,12 +169,14 @@ Array [
   "  This should just be pure string with ",
   <b
     className="base bold"
+    style={Object {}}
   >
     bold text
   </b>,
   " and some ",
   <em
     className="base regular italic"
+    style={Object {}}
   >
     italicized text
   </em>,

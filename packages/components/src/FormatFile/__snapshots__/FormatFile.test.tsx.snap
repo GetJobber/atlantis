@@ -34,11 +34,13 @@ exports[`renders a FormatFile 1`] = `
   >
     <span
       className="base regular"
+      style={Object {}}
     >
       Funky Corn
     </span>
     <p
       className="base regular small greyBlueDark"
+      style={Object {}}
     >
       1 KB
     </p>
