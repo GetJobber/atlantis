@@ -3,6 +3,10 @@
   "name": "atlantis",
   "version": "0.0.1",
   "license": "MIT",
+  "engines": {
+    "node": "^10.0.0",
+    "npm": "^6.0.0"
+  },
   "scripts": {
     "prestart": "cd packages/components && npm run build:cssTypes",
     "start": "docz dev",
