@@ -32,6 +32,8 @@ references:
         - npm-cache-v1
 
   npm_install: &npm_install
+    pre:
+      npm install -g npm@6.x.x
     run:
       name: Install Dependencies
       command: npm ci
