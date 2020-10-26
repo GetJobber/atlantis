@@ -1,4 +1,4 @@
-import React, { ReactNode, RefObject, useEffect, useRef } from "react";
+import React, { ReactNode, useEffect } from "react";
 import ReactDOM from "react-dom";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
@@ -38,17 +38,17 @@ export function Modal({
   onRequestClose,
 }: ModalProps) {
   const modalClassName = classnames(styles.modal, size && sizes[size]);
-  const modalContainer: RefObject<HTMLDivElement> = useRef(
-    document.createElement("div"),
-  );
+  // const modalContainer: RefObject<HTMLDivElement> = useRef(
+  //   document.createElement("div"),
+  // );
 
-  setFocusOnModalOpen(open, modalContainer);
+  // setFocusOnModalOpen(open, modalContainer);
   catchKeyboardEvent("Escape", open, onRequestClose);
 
   const template = (
     <AnimatePresence>
       {open && (
-        <div ref={modalContainer} className={styles.container} tabIndex={0}>
+        <div className={styles.container} tabIndex={0}>
           <motion.div
             key={styles.overlay}
             className={styles.overlay}
@@ -92,16 +92,16 @@ export function Modal({
   return ReactDOM.createPortal(template, document.body);
 }
 
-function setFocusOnModalOpen(
-  isModalOpen: boolean,
-  elementRef: RefObject<HTMLDivElement>,
-) {
-  useEffect(() => {
-    if (isModalOpen && elementRef.current) {
-      elementRef.current.focus();
-    }
-  });
-}
+// function setFocusOnModalOpen(
+//   isModalOpen: boolean,
+//   elementRef: RefObject<HTMLDivElement>,
+// ) {
+//   useEffect(() => {
+//     if (isModalOpen && elementRef.current) {
+//       elementRef.current.focus();
+//     }
+//   });
+// }
 
 function catchKeyboardEvent(
   key: string,
