@@ -38,7 +38,6 @@ exports[`it should display headers when headers are passed in 1`] = `
     >
       <h5
         className="base bold base blue"
-        style={Object {}}
       >
         first_heading
       </h5>
@@ -48,7 +47,6 @@ exports[`it should display headers when headers are passed in 1`] = `
     >
       <h5
         className="base bold base blue"
-        style={Object {}}
       >
         second_heading
       </h5>
@@ -105,7 +103,6 @@ exports[`renders an Autocomplete 1`] = `
         >
           <p
             className="base regular base greyBlueDark"
-            style={Object {}}
           >
             option_0
           </p>
@@ -127,7 +124,6 @@ exports[`renders an Autocomplete 1`] = `
         >
           <p
             className="base regular base greyBlueDark"
-            style={Object {}}
           >
             option_1
           </p>

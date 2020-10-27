@@ -39,7 +39,6 @@ exports[`renders a Checkbox 1`] = `
     >
       <p
         className="base regular base greyBlueDark"
-        style={Object {}}
       >
         Send me spam?
       </p>
@@ -86,7 +85,6 @@ exports[`renders a disabled Checkbox 1`] = `
     >
       <p
         className="base regular base greyBlue"
-        style={Object {}}
       >
         Dont click me
       </p>
@@ -133,7 +131,6 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 1`]
     >
       <p
         className="base regular base greyBlueDark"
-        style={Object {}}
       >
         Foo
       </p>
@@ -180,7 +177,6 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 2`]
     >
       <p
         className="base regular base greyBlueDark"
-        style={Object {}}
       >
         Foo
       </p>
@@ -227,7 +223,6 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
     >
       <p
         className="base regular base greyBlueDark"
-        style={Object {}}
       >
         Foo
       </p>
@@ -274,7 +269,6 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
     >
       <p
         className="base regular base greyBlueDark"
-        style={Object {}}
       >
         Foo
       </p>
@@ -321,7 +315,6 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
     >
       <p
         className="base regular base greyBlueDark"
-        style={Object {}}
       >
         Foo
       </p>
@@ -368,7 +361,6 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
     >
       <p
         className="base regular base greyBlueDark"
-        style={Object {}}
       >
         Foo
       </p>
@@ -415,7 +407,6 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
     >
       <p
         className="base regular base greyBlueDark"
-        style={Object {}}
       >
         Foo
       </p>
@@ -462,7 +453,6 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
     >
       <p
         className="base regular base greyBlueDark"
-        style={Object {}}
       >
         Foo
       </p>

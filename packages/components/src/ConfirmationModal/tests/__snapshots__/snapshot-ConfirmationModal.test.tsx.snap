@@ -28,7 +28,6 @@ exports[`renders a simple ConfirmationModal 1`] = `
     >
       <h3
         className="base extraBold large uppercase"
-        style={Object {}}
       >
         Should we?
       </h3>
@@ -38,7 +37,6 @@ exports[`renders a simple ConfirmationModal 1`] = `
     >
       <p
         className="base regular base greyBlueDark"
-        style={Object {}}
       >
         Do something…
       </p>
@@ -57,7 +55,6 @@ exports[`renders a simple ConfirmationModal 1`] = `
         >
           <span
             className="base extraBold small uppercase white"
-            style={Object {}}
           >
             We Shall
           </span>
@@ -70,7 +67,6 @@ exports[`renders a simple ConfirmationModal 1`] = `
         >
           <span
             className="base extraBold small uppercase greyBlue"
-            style={Object {}}
           >
             Cancel
           </span>

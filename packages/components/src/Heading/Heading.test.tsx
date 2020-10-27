@@ -9,7 +9,6 @@ it("renders a Heading 1", () => {
   expect(tree).toMatchInlineSnapshot(`
     <h1
       className="base black jumbo uppercase blue"
-      style={Object {}}
     >
       Dis be a Heading 1
     </h1>
@@ -23,7 +22,6 @@ it("renders a Heading 2", () => {
   expect(tree).toMatchInlineSnapshot(`
     <h2
       className="base black largest uppercase blue"
-      style={Object {}}
     >
       Dis be a Heading 2
     </h2>
@@ -37,7 +35,6 @@ it("renders a Heading 3", () => {
   expect(tree).toMatchInlineSnapshot(`
     <h3
       className="base bold larger blue"
-      style={Object {}}
     >
       Dis be a Heading 3
     </h3>
@@ -51,7 +48,6 @@ it("renders a Heading 4", () => {
   expect(tree).toMatchInlineSnapshot(`
     <h4
       className="base bold large blue"
-      style={Object {}}
     >
       Dis be a Heading 4
     </h4>
@@ -65,7 +61,6 @@ it("renders a Heading 5", () => {
   expect(tree).toMatchInlineSnapshot(`
     <h5
       className="base bold base blue"
-      style={Object {}}
     >
       Dis be a Heading 5
     </h5>

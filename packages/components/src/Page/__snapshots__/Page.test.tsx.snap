@@ -15,7 +15,6 @@ exports[`When actions are provided renders a Page with action buttons and a menu
       >
         <h1
           className="base black jumbo uppercase blue"
-          style={Object {}}
         >
           Notifications
         </h1>
@@ -33,7 +32,6 @@ exports[`When actions are provided renders a Page with action buttons and a menu
             >
               <span
                 className="base extraBold small uppercase white"
-                style={Object {}}
               >
                 Send Food
               </span>
@@ -50,7 +48,6 @@ exports[`When actions are provided renders a Page with action buttons and a menu
             >
               <span
                 className="base extraBold small uppercase green"
-                style={Object {}}
               >
                 Send Drink
               </span>
@@ -85,7 +82,6 @@ exports[`When actions are provided renders a Page with action buttons and a menu
                 </svg>
                 <span
                   className="base extraBold small uppercase green"
-                  style={Object {}}
                 >
                   More Actions
                 </span>
@@ -96,7 +92,6 @@ exports[`When actions are provided renders a Page with action buttons and a menu
       </div>
       <p
         className="base regular larger greyBlueDark"
-        style={Object {}}
       >
         Improve job completion rates.
       </p>
@@ -125,14 +120,12 @@ exports[`renders a Page 1`] = `
       >
         <h1
           className="base black jumbo uppercase blue"
-          style={Object {}}
         >
           Notifications
         </h1>
       </div>
       <p
         className="base regular larger greyBlueDark"
-        style={Object {}}
       >
         Improve job completion rates, stop chasing payments, and boost your customer service by automatically communicating with your clients at key points before, during, and after a job. Read more about Notifications by visiting our 
         <a

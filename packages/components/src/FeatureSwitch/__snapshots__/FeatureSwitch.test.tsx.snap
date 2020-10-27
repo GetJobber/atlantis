@@ -15,13 +15,11 @@ exports[`renders a full FeatureSwitch 1`] = `
       >
         <h4
           className="base bold large blue"
-          style={Object {}}
         >
           Quote follow-up
         </h4>
         <p
           className="base regular base greyBlueDark"
-          style={Object {}}
         >
           Send a 
           <a
@@ -33,14 +31,12 @@ exports[`renders a full FeatureSwitch 1`] = `
            to your 
           <em
             className="base regular italic"
-            style={Object {}}
           >
             client
           </em>
            following up on an 
           <b
             className="base bold"
-            style={Object {}}
           >
             outstanding quote
           </b>
@@ -68,7 +64,6 @@ exports[`renders a full FeatureSwitch 1`] = `
           >
             <span
               className="base bold small uppercase white"
-              style={Object {}}
             >
               On
             </span>
@@ -81,7 +76,6 @@ exports[`renders a full FeatureSwitch 1`] = `
           >
             <span
               className="base bold small uppercase greyBlue"
-              style={Object {}}
             >
               Off
             </span>
@@ -113,7 +107,6 @@ exports[`renders a full FeatureSwitch 1`] = `
       >
         <span
           className="base extraBold small uppercase green"
-          style={Object {}}
         >
           Edit
         </span>
@@ -138,7 +131,6 @@ exports[`renders a subdued FeatureSwitch content 1`] = `
       >
         <p
           className="base regular base greyBlueDark"
-          style={Object {}}
         >
           Send a notification to your client following up on an outstanding quote.
         </p>
@@ -164,7 +156,6 @@ exports[`renders a subdued FeatureSwitch content 1`] = `
           >
             <span
               className="base bold small uppercase white"
-              style={Object {}}
             >
               On
             </span>
@@ -177,7 +168,6 @@ exports[`renders a subdued FeatureSwitch content 1`] = `
           >
             <span
               className="base bold small uppercase greyBlue"
-              style={Object {}}
             >
               Off
             </span>

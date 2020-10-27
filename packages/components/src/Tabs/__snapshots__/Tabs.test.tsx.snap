@@ -18,7 +18,6 @@ exports[`renders Tabs 1`] = `
       >
         <span
           className="base regular base green"
-          style={Object {}}
         >
           Eggs
         </span>
@@ -31,7 +30,6 @@ exports[`renders Tabs 1`] = `
       >
         <span
           className="base regular base"
-          style={Object {}}
         >
           Cheese
         </span>

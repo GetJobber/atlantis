@@ -13,7 +13,6 @@ it("renders a paragraph", () => {
   expect(tree).toMatchInlineSnapshot(`
     <p
       className="base regular base greyBlueDark"
-      style={Object {}}
     >
       Ask the information you need upfront from clients and new leads
     </p>
@@ -27,7 +26,6 @@ it("renders a subdued text", () => {
   expect(tree).toMatchInlineSnapshot(`
     <p
       className="base regular base greyBlue"
-      style={Object {}}
     >
       Job note linked to related invoice
     </p>
@@ -41,7 +39,6 @@ it("renders a success text", () => {
   expect(tree).toMatchInlineSnapshot(`
     <p
       className="base regular base green"
-      style={Object {}}
     >
       Invoice sent
     </p>
@@ -55,7 +52,6 @@ it("renders a error text", () => {
   expect(tree).toMatchInlineSnapshot(`
     <p
       className="base regular base red"
-      style={Object {}}
     >
       Name is required
     </p>
@@ -71,7 +67,6 @@ it("renders a warning text", () => {
   expect(tree).toMatchInlineSnapshot(`
     <p
       className="base regular"
-      style={Object {}}
     >
       Your message is over 160 characters
     </p>
@@ -89,7 +84,6 @@ it("renders a info text", () => {
   expect(tree).toMatchInlineSnapshot(`
     <p
       className="base regular base lightBlue"
-      style={Object {}}
     >
       Drag to rearrange the order that fields show up in Jobber
     </p>
@@ -108,7 +102,6 @@ it("renders an intro text", () => {
   expect(tree).toMatchInlineSnapshot(`
     <p
       className="base regular larger greyBlueDark"
-      style={Object {}}
     >
       Attract new customers by asking happy clients for a Facebook recommendation
     </p>

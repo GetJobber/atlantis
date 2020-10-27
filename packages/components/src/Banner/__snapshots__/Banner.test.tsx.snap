@@ -6,7 +6,6 @@ exports[`renders a banner with a primary 'learning' action when the type is 'not
 >
   <p
     className="base regular base greyBlueDark"
-    style={Object {}}
   >
     Bruce
   </p>
@@ -17,7 +16,6 @@ exports[`renders a banner with a primary 'learning' action when the type is 'not
   >
     <span
       className="base extraBold smaller uppercase lightBlue"
-      style={Object {}}
     >
       smash me
     </span>
@@ -48,7 +46,6 @@ exports[`renders a banner with a primary action 1`] = `
 >
   <p
     className="base regular base greyBlueDark"
-    style={Object {}}
   >
     Bruce
   </p>
@@ -59,7 +56,6 @@ exports[`renders a banner with a primary action 1`] = `
   >
     <span
       className="base extraBold smaller uppercase green"
-      style={Object {}}
     >
       smash me
     </span>
@@ -90,7 +86,6 @@ exports[`renders a notice banner 1`] = `
 >
   <p
     className="base regular base greyBlueDark"
-    style={Object {}}
   >
     Notice me
   </p>
@@ -120,7 +115,6 @@ exports[`renders a success banner 1`] = `
 >
   <p
     className="base regular base greyBlueDark"
-    style={Object {}}
   >
     Success
   </p>
@@ -150,7 +144,6 @@ exports[`renders a warning banner 1`] = `
 >
   <p
     className="base regular base greyBlueDark"
-    style={Object {}}
   >
     Warn
   </p>
@@ -180,7 +173,6 @@ exports[`renders an error banner 1`] = `
 >
   <p
     className="base regular base greyBlueDark"
-    style={Object {}}
   >
     Fail
   </p>
