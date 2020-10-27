@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.4.2...@jobber/components@2.5.0) (2020-10-27)
+
+
+### Features
+
+* **components:** update FormatDate design docs ([#399](https://github.com/GetJobber/atlantis/issues/399)) ([d9b04aa](https://github.com/GetJobber/atlantis/commit/d9b04aa0c23ba378dfa6ce54c8d8b3af48d8b751))
+
+
+
+
+
 ## [2.4.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.4.1...@jobber/components@2.4.2) (2020-10-27)
 
 
