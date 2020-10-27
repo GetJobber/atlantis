@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.4.1...@jobber/components@2.4.2) (2020-10-27)
+
+
+### Bug Fixes
+
+* **components:** Updating DescriptionList details text color ([#400](https://github.com/GetJobber/atlantis/issues/400)) ([e279d3f](https://github.com/GetJobber/atlantis/commit/e279d3f838d25a5cd54ec0c6eb87551fb923cec9)), closes [#398](https://github.com/GetJobber/atlantis/issues/398)
+
+
+
+
+
 ## [2.4.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.4.0...@jobber/components@2.4.1) (2020-10-27)
 
 
