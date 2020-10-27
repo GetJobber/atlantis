@@ -8,6 +8,29 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.4.1...@jobber/components@2.4.2) (2020-10-27)
+
+
+### Bug Fixes
+
+* **components:** Updating DescriptionList details text color ([#400](https://github.com/GetJobber/atlantis/issues/400)) ([e279d3f](https://github.com/GetJobber/atlantis/commit/e279d3f838d25a5cd54ec0c6eb87551fb923cec9)), closes [#398](https://github.com/GetJobber/atlantis/issues/398)
+
+
+
+
+
+## [2.4.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.4.0...@jobber/components@2.4.1) (2020-10-27)
+
+
+### Bug Fixes
+
+* **components:** Make modal focus when opened ([#391](https://github.com/GetJobber/atlantis/issues/391)) ([1c4e170](https://github.com/GetJobber/atlantis/commit/1c4e1704cbd1ec3610909050fef2c5d00da7d9e5))
+* **components:** update button padding on has icon and label button ([#388](https://github.com/GetJobber/atlantis/issues/388)) ([8467d4e](https://github.com/GetJobber/atlantis/commit/8467d4e9f7c05b8cc29da0a88a7e2cfc8051a468))
+
+
+
+
+
 # [2.4.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.3.2...@jobber/components@2.4.0) (2020-10-21)
 
 
