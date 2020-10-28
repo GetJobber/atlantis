@@ -28,9 +28,7 @@ export function Drawer({
     <>
       <div className={drawerClassNames}>
         <div className={styles.drawer}>
-          {title != undefined && (
-            <Header title={title} onRequestClose={onRequestClose} />
-          )}
+          <Header title={title} onRequestClose={onRequestClose} />
           <div className={styles.contentScroll}>
             <div className={styles.content}>{children}</div>
           </div>
