@@ -23,35 +23,47 @@ export function Drawer({
   open = true,
   onRequestClose,
 }: DrawerProps) {
-  const drawerClassNames = classnames(styles.drawer, open && styles.open);
+  const drawerClassNames = classnames(styles.container, open && styles.open);
   return (
     <>
       <div className={drawerClassNames}>
-        <div className={styles.frame}>
-          <div className={styles.header}>
-            <Typography
-              element="h3"
-              size="large"
-              textCase="uppercase"
-              fontWeight="extraBold"
-            >
-              {title}
-            </Typography>
-            <div>
-              <button
-                className={styles.closeButton}
-                onClick={onRequestClose}
-                aria-label="Close modal"
-              >
-                <Icon name="cross" />
-              </button>
-            </div>
-          </div>
+        <div className={styles.drawer}>
+          {title != undefined && (
+            <Header title={title} onRequestClose={onRequestClose} />
+          )}
           <div className={styles.contentWrap}>
             <div className={styles.content}>{children}</div>
           </div>
         </div>
       </div>
     </>
+  );
+}
+
+interface HeaderProps {
+  title: string;
+  onRequestClose?(): void;
+}
+
+function Header({ title, onRequestClose }: HeaderProps) {
+  return (
+    <div className={styles.header} data-testid="drawer-header">
+      <Typography
+        element="h3"
+        size="large"
+        textCase="uppercase"
+        fontWeight="extraBold"
+      >
+        {title}
+      </Typography>
+
+      <button
+        className={styles.closeButton}
+        onClick={onRequestClose}
+        aria-label="Close drawer"
+      >
+        <Icon name="cross" />
+      </button>
+    </div>
   );
 }
