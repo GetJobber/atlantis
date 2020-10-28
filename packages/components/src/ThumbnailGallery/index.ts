@@ -1,0 +1,1 @@
+export { ThumbnailGallery } from "./ThumbnailGallery";

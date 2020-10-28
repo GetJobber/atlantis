@@ -1,0 +1,60 @@
+---
+name: ThumbnailGallery
+menu: Components
+route: /components/thumbnail-gallery
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { ThumbnailGallery } from ".";
+
+# Thumbnail Gallery
+
+<ComponentStatus stage="pre" responsive="no" accessible="no" />
+
+A component that shows list of attachments as a Thumbnail and opens the images
+in a LightBox on click.
+
+```ts
+import { ThumbnailGallery } from "@jobber/components/ThumbnailGallery";
+```
+
+<Playground>
+  <ThumbnailGallery
+    attachments={[
+      {
+        name: "puppy1",
+        type: "image/jpeg",
+        size: 12345,
+        url:
+          "https://p7.hiclipart.com/preview/318/270/427/shar-pei-puppy-boxer-french-bulldog-puppy-thumbnail.jpg"
+      },
+      {
+        name: "puppy2",
+        type: "image/png",
+        size: 12345,
+        url:
+          "https://w7.pngwing.com/pngs/826/627/png-transparent-cute-dog-animal-biological-puppy-thumbnail.png"
+      },
+      {
+        name: "puppy3",
+        type: "image/png",
+        size: 12345,
+        url:
+          "https://p0.pikrepo.com/preview/321/691/shallow-focus-photography-of-tan-and-black-puppy-thumbnail.jpg"
+      },
+      {
+        name: "puppy4",
+        type: "image/jpeg",
+        size: 12345,
+        url:
+          "https://p0.pikrepo.com/preview/321/691/shallow-focus-photography-of-tan-and-black-puppy-thumbnail.jpg"
+      }
+    ]}
+  />
+</Playground>
+
+<!--
+  It is not necessary to include Design & Usage Guidlelines. Use this section
+  to answer common questions and considerations about component usage.
+-->
