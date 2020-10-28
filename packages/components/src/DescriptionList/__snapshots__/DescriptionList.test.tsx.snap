@@ -13,7 +13,7 @@ exports[`renders an object as a list of key value pairs 1`] = `
       Issued
     </dd>
     <dt
-      className="base regular base greyBlue"
+      className="base regular base greyBlueDark"
     >
       2018-12-08
     </dt>
@@ -27,7 +27,7 @@ exports[`renders an object as a list of key value pairs 1`] = `
       Due
     </dd>
     <dt
-      className="base regular base greyBlue"
+      className="base regular base greyBlueDark"
     >
       2019-01-06
     </dt>
@@ -48,7 +48,7 @@ exports[`renders an object as a list of key value pairs with an element 1`] = `
       Foo
     </dd>
     <dt
-      className="base regular base greyBlue"
+      className="base regular base greyBlueDark"
     >
       Foo
     </dt>
@@ -62,7 +62,7 @@ exports[`renders an object as a list of key value pairs with an element 1`] = `
       Bar
     </dd>
     <dt
-      className="base regular base greyBlue"
+      className="base regular base greyBlueDark"
     >
       Bar
     </dt>

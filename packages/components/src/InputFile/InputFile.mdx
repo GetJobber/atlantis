@@ -10,6 +10,7 @@ import { useState } from "react";
 import uuid from "uuid";
 import { InputFile, updateFiles } from ".";
 import { Content } from "@jobber/components/Content";
+import { Heading } from "@jobber/components/Heading";
 import { FormatFile } from "@jobber/components/FormatFile";
 import { ProgressBar } from "@jobber/components/ProgressBar";
 
@@ -120,6 +121,27 @@ export function fetchUploadParams() {
     <InputFile
       allowedTypes="images"
       allowMultiple={true}
+      getUploadParams={fetchUploadParams}
+    />
+  </Content>
+</Playground>
+
+## Variations & Size
+
+InputFile supports two variations (`dropzone` & `button`) each with two sizes
+(`small` & `base`). Both variations of InputFile allow for drag and drop however
+if you have the space `dropzone` is preferred to better indicate this.
+
+<Playground>
+  <Content>
+    <Heading level={2}>Dropzone</Heading>
+    <InputFile getUploadParams={fetchUploadParams} />
+    <InputFile size="small" getUploadParams={fetchUploadParams} />
+    <Heading level={2}>Button</Heading>
+    <InputFile variation="button" getUploadParams={fetchUploadParams} />
+    <InputFile
+      variation="button"
+      size="small"
       getUploadParams={fetchUploadParams}
     />
   </Content>

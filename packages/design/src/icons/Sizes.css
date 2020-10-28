@@ -1,6 +1,6 @@
 .small {
-  width: calc(var(--base-unit) * 0.875);
-  height: calc(var(--base-unit) * 0.875);
+  width: var(--base-unit);
+  height: var(--base-unit);
 }
 
 .base {

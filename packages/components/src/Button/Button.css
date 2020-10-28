@@ -146,9 +146,20 @@
   padding: 0;
 }
 
+.onlyIcon.small {
+  width: calc(var(--space-small) * 3);
+}
+
+.onlyIcon.base {
+  width: calc(var(--space-base) * 2.25);
+}
+
+.onlyIcon.large {
+  width: calc(var(--space-large) * 2);
+}
+
 .hasIconAndLabel {
   width: auto;
-  padding: 0 var(--space-base);
 }
 
 .hasIconAndLabel > *:first-child {

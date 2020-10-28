@@ -33,7 +33,15 @@
 }
 
 .accent {
+  border-top-width: 0;
+}
+
+.accent::before {
+  content: " ";
+  display: block;
+  margin: 0 calc(-1 * var(--border-base));
   border-top: 0.5rem solid var(--card--accent-color);
+  border-radius: var(--radius-base) var(--radius-base) 0 0;
 }
 
 .clickable {
