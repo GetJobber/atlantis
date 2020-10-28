@@ -38,7 +38,6 @@ Internally ThumbnailGallery would look like this along with some style details
 {attachemnts && attachments.map(attachment => {
     return (<FormatFile file={{
                 name: attachment.name
-                src:attachment.url
                 type:"image/png"
                 size: 213402324,
                 src: () => Promise.resolve("https://url-to-that-image")
