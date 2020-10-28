@@ -18,9 +18,14 @@ interface FormatFileProps {
    * onDelete callback - this function will be called when the delete action is triggered
    */
   onDelete?(): void;
+  showMetaData?: boolean;
 }
 
-export function FormatFile({ file, onDelete }: FormatFileProps) {
+export function FormatFile({
+  file,
+  onDelete,
+  showMetaData = true,
+}: FormatFileProps) {
   const [imageSource, setImageSource] = useState<string>();
   const isComplete = file.progress >= 1;
 
@@ -51,12 +56,14 @@ export function FormatFile({ file, onDelete }: FormatFileProps) {
           </div>
         )}
       </div>
-      <div className={styles.contentBlock}>
-        <Typography element="span">{file.name}</Typography>
-        <Typography element="p" size="small" textColor="greyBlueDark">
-          {fileSize}
-        </Typography>
-      </div>
+      {showMetaData && (
+        <div className={styles.contentBlock}>
+          <Typography element="span">{file.name}</Typography>
+          <Typography element="p" size="small" textColor="greyBlueDark">
+            {fileSize}
+          </Typography>
+        </div>
+      )}
       {isComplete && onDelete && (
         <div className={styles.actionBlock}>
           <Button
