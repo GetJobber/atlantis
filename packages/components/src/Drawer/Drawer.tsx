@@ -31,7 +31,7 @@ export function Drawer({
           {title != undefined && (
             <Header title={title} onRequestClose={onRequestClose} />
           )}
-          <div className={styles.contentWrap}>
+          <div className={styles.contentScroll}>
             <div className={styles.content}>{children}</div>
           </div>
         </div>

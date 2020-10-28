@@ -5,25 +5,24 @@
   --drawer--base-padding: var(--space-base);
 }
 
-.drawer {
-  display: flex;
+.container {
+  display: none;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
-  left: 100%;
+  left: 0;
   z-index: var(--elevation-modal);
   overflow: hidden;
 
   @media (--medium-screens), print {
     position: relative;
-    left: auto;
     z-index: auto;
-    width: 0;
+    width: 420px;
   }
 }
 
-.frame {
+.drawer {
   display: flex;
   position: relative;
   width: 100%;
@@ -35,17 +34,7 @@
 }
 
 .open {
-  left: 0;
-
-  @media (--medium-screens) {
-    width: 420px;
-  }
-}
-
-.open .frame {
-  @media (--medium-screens) {
-    left: 0;
-  }
+  display: flex;
 }
 
 .header {
@@ -64,7 +53,7 @@
   appearance: none;
 }
 
-.contentWrap {
+.contentScroll {
   display: flex;
   width: 100%;
   height: 100%;
