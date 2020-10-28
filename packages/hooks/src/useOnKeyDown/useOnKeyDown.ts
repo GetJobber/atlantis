@@ -18,7 +18,7 @@ export function useOnKeyDown(
   callback: (event: globalThis.KeyboardEvent) => void,
   keys: KeyComparerator[] | KeyComparerator,
 ) {
-  const handler: (event: globalThis.KeyboardEvent) => void = (
+function handler(event: globalThis.KeyboardEvent) {
     event: globalThis.KeyboardEvent,
   ) => {
     const keyboardEvent = (event as unknown) as VerboseKeyComparerator;
