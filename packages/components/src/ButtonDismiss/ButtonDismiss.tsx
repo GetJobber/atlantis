@@ -3,7 +3,7 @@ import styles from "./ButtonDismiss.css";
 import { Button } from "../Button";
 
 interface ButtonDismissProps {
-  onClick(): Function;
+  onClick?(): void;
   ariaLabel: string;
 }
 
