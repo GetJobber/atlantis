@@ -1,7 +1,9 @@
 .thumbnail {
   display: inline-block;
-  min-width: 3rem !important;
   margin-right: 0.5rem;
-  padding-bottom: 0.5rem;
-  padding-left: 0 !important;
+}
+
+.thumbnailContainer {
+  max-height: calc(var(--file-card--height) * 2.1);
+  overflow: hidden;
 }

@@ -38,7 +38,7 @@ interface ThumbnailGalleryProps {
 
 export function ThumbnailGallery({ attachments }: ThumbnailGalleryProps) {
   return (
-    <div>
+    <div className={styles.thumbnailContainer}>
       {attachments &&
         attachments.map((attachment, index) => {
           return (
