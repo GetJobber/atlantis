@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./ThumbnailGallery.css";
 import { FormatFile } from "../FormatFile";
+import { LightBox } from "../LightBox";
 
 interface Attachment {
   /**
@@ -37,12 +38,19 @@ interface ThumbnailGalleryProps {
 }
 
 export function ThumbnailGallery({ attachments }: ThumbnailGalleryProps) {
+  const [open, setOpen] = useState(false);
+  const [imageIndex, setImageIndex] = useState(0);
+
   return (
     <div className={styles.thumbnailContainer}>
       {attachments &&
         attachments.map((attachment, index) => {
           return (
-            <div key={`attachment-${index}`} className={styles.thumbnail}>
+            <div
+              key={`attachment-${index}`}
+              className={styles.thumbnail}
+              onClick={() => openLightBoxAt(index)}
+            >
               <FormatFile
                 file={{
                   key: `attachment-${index}`,
@@ -57,6 +65,29 @@ export function ThumbnailGallery({ attachments }: ThumbnailGalleryProps) {
             </div>
           );
         })}
+
+      <LightBox
+        open={open}
+        imageIndex={imageIndex}
+        images={getImagesForLightBox(attachments)}
+        onRequestClose={() => closeLightBox()}
+      />
     </div>
   );
+
+  function openLightBoxAt(index: number) {
+    setImageIndex(index);
+    setOpen(true);
+  }
+
+  function closeLightBox() {
+    setOpen(false);
+    setImageIndex(0);
+  }
+}
+
+function getImagesForLightBox(attachments: [Attachment]) {
+  return attachments.map(attachment => {
+    return { title: attachment.name, url: attachment.url };
+  });
 }

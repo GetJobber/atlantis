@@ -6,6 +6,7 @@ exports[`renders a ThumbnailGallery 1`] = `
 >
   <div
     className="thumbnail"
+    onClick={[Function]}
   >
     <div
       className="formatFile"
