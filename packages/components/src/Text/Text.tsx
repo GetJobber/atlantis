@@ -33,10 +33,10 @@ export function Text({
     info: { textColor: "lightBlue", size: "base" },
   };
 
-  const selectedVariation = variationMap[variation];
-  if (numberOfLines) {
-    selectedVariation.numberOfLines = numberOfLines;
-  }
+  const selectedVariation = {
+    ...variationMap[variation],
+    numberOfLines: numberOfLines || undefined,
+  };
 
   return <Typography {...selectedVariation}>{children}</Typography>;
 }
