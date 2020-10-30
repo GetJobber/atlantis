@@ -1,0 +1,75 @@
+---
+name: useStatelessReducer
+menu: Hooks
+route: /hooks/use-stateless-reducer
+---
+
+import { Playground } from "docz";
+import { useState } from "react";
+import { useStatelessReducer } from "@jobber/hooks";
+import { Form } from "@jobber/components/Form";
+import { Switch } from "@jobber/components/Switch";
+import { Content } from "@jobber/components/Content";
+
+# useStatelessReducer
+
+`useStatelessReducer` is similar to React's internal `useReducer` only does not
+manage internal state so can use with a controlled component. Other than that it
+does not manage state it works the same as `useReducer`.
+
+```tsx
+import { useStatelessReducer } from "@jobber/hooks";
+```
+
+<Playground>
+  {() => {
+    const [state, setState] = useState({ magic: false, moreMagic: false });
+    return (
+      <Content>
+        <Settings value={state} onChange={setState} />
+        <pre>{JSON.stringify(state, undefined, 2)}</pre>
+      </Content>
+    );
+    /** ----- Stateless Sub-Component ----- **/
+    function Settings({ value: settingValues, onChange }) {
+      const dispatch = useStatelessReducer(
+        settingsReducer,
+        settingValues,
+        onChange
+      );
+      return (
+        <>
+          <Switch
+            value={settingValues.magic}
+            onChange={handleChange("magic")}
+          />{" "}
+          — Magic
+          <br />
+          <Switch
+            value={settingValues.moreMagic}
+            onChange={handleChange("moreMagic")}
+          />{" "}
+          — More Magic
+        </>
+      );
+      function handleChange(field) {
+        return (newValue) =>
+          dispatch({
+            type: "update",
+            field: field,
+            value: newValue,
+          });
+      }
+    }
+    /** ----- Reducer ----- **/
+    function settingsReducer(settingValues, action) {
+      switch (action.type) {
+        case "update": {
+          return { ...settingValues, [action.field]: action.value };
+        }
+        default:
+          throw new Error();
+      }
+    }
+  }}
+</Playground>;
