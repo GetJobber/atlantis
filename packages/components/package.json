@@ -10,10 +10,12 @@
     "build:cssTypes": "tcm src",
     "convertIcoMoon": "scripts/convertIcoMoon.ts",
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
-    "prepublishOnly": "ts-node --project ../../tsconfig.bin.json scripts/entryPoints.ts",
-    "yabba": "ts-node --project ../../tsconfig.bin.json scripts/writeComponentIndex.ts",
+    "writeEntryPoints": "ts-node --project ../../tsconfig.bin.json scripts/entryPoints.ts",
+    "writeEntryPoints:clean": "ts-node --project ../../tsconfig.bin.json scripts/entryPoints.ts clean",
+    "prepublishOnly": "npm run writeEntryPoints; npm run writeComponentPlayground",
+    "writeComponentPlayground": "ts-node --project ../../tsconfig.bin.json scripts/writeComponentPlayground.ts",
     "prepare": "npm run clean; npm run build",
-    "postpublish": "ts-node --project ../../tsconfig.bin.json scripts/entryPoints.ts clean"
+    "postpublish": "npm run writeEntryPoints:clean"
   },
   "files": [
     "*.js",

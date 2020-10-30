@@ -40,31 +40,33 @@ ${list}
 
 # Playground
 
-Use All the Components!! Maybe this playground needs a button?
+## Welcome to the Playground
 
+Here you can use All the components in the same Playground!
 
-## Coming soon, probably:
-
-- "Quick Add" UI to copy in the component example from another MDX file!
-
----
-
-<Playground>
+<Playground isFullWidth="true">
   {() => {
-    const [bannerIsVisible, setBannerIsVisible] = useState(true);
+    const [nightIsGood, setNightIsGood] = useState(false);
     return (
       <Content>
-        {bannerIsVisible && (
+        {!nightIsGood && (
           <Banner type="notice">
-            ☀️ Play nicely with everything in the sandbox. 🏖
+            ☀️ Play nicely with everyone in the sandbox. 🏖
           </Banner>
         )}
+        {nightIsGood && (
+          <Banner type="error">🌚 Code bugs can really suck. 🧛🏻‍♂️</Banner>
+        )}
         <Card>
-          <Checkbox
-            checked={bannerIsVisible}
-            label="Dark Mode?"
-            onChange={setBannerIsVisible}
-          />
+          <Content>
+            <Heading>But Tell Me Really</Heading>
+            <Text>The white around here is a little bright, right? 🤔</Text>
+            <Checkbox
+              checked={nightIsGood}
+              label="Dark Mode Engage"
+              onChange={setNightIsGood}
+            />
+          </Content>
         </Card>
       </Content>
     );
