@@ -1,1 +1,1 @@
-export { useResizeObserver } from "./useResizeObserver";
+export { useResizeObserver, Breakpoints } from "./useResizeObserver";
