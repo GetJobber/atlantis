@@ -1,8 +1,8 @@
 # Component Name
 
-The `ThumbnailGallery` component will accept a list of attachments for images
-and display them as thumbnails. This would also have an option to show the
-images in a LightBox component on click of those images.
+The `Gallery` component will accept a list of attachments for images and display
+them as thumbnails. This would also have an option to show the images in a
+LightBox component on click of those images.
 
 ## Accessibility
 
@@ -21,7 +21,7 @@ count of images left to show.
 ## Interface
 
 ```
-<ThumbnailGallery
+<Gallery
     attachments={[{
             name: "filename.png",
             url: "https://url-to-that-image"
@@ -32,7 +32,7 @@ count of images left to show.
 />
 ```
 
-Internally ThumbnailGallery would look like this along with some style details
+Internally Gallery would look like this along with some style details
 
 ```
 {attachemnts && attachments.map(attachment => {
