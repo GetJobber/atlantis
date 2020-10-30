@@ -28,7 +28,6 @@ count of images left to show.
             type: "image/png"
             size: 12345
 `   }]}
-    openGalleryOnClick=true|false
 />
 ```
 
@@ -48,10 +47,9 @@ Internally Gallery would look like this along with some style details
 
 ## Props Table
 
-| name               | type    | default | description                                                                     |
-| ------------------ | ------- | ------- | ------------------------------------------------------------------------------- |
-| attachments        | Array   | -       | Accepts a list of details about the images                                      |
-| openGalleryOnClick | Boolean | true    | A flag to determine if images should be shown in a LightBox or not when clicked |
+| name        | type  | default | description                                |
+| ----------- | ----- | ------- | ------------------------------------------ |
+| attachments | Array | -       | Accepts a list of details about the images |
 
 ## Future possible props
 
