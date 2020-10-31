@@ -9,6 +9,8 @@
   --button--color-destructive--hover: var(--color-red--dark);
 
   --button--color-cancel: var(--color-greyBlue);
+  --button--color-cancel--hover: var(--color-grey--lightest);
+
   --button--bg-color-cancel: var(--color-white);
   --button--color-disabled: var(--color-grey--lighter);
   --button--color-secondary: var(--color-white);
@@ -49,7 +51,9 @@ a.button:focus {
 }
 
 .work:hover,
-a.work:hover {
+a.work:hover,
+.work:focus,
+a.work:focus {
   border-color: var(--button--color-work--hover);
   background-color: var(--button--color-work--hover);
 }
@@ -60,7 +64,9 @@ a.work:hover {
 }
 
 .learning:hover,
-a.learning:hover {
+a.learning:hover,
+.learning:focus,
+a.learning:focus {
   border-color: var(--button--color-learning--hover);
   background-color: var(--button--color-learning--hover);
 }
@@ -87,6 +93,7 @@ a.learning:hover {
 .cancel:hover,
 a.cancel:focus,
 a.cancel:hover {
+  background-color: var(--button--color-cancel--hover);
   filter: brightness(80%);
 }
 
