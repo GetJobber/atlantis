@@ -33,8 +33,9 @@ interface LightBoxProps {
    * This function must set open to false in order to close the lightbox. Note there
    * is a 300ms easing animation on lightbox close that occurs before this function
    * is called.
+   * This function receives the last image position viewed in the LightBox as an argument.
    */
-  onRequestClose(): void;
+  onRequestClose(lastPosition: number): void;
 }
 
 export function LightBox({
@@ -67,7 +68,7 @@ export function LightBox({
           prevSrc={prevSrc}
           imageTitle={images[currentImageIndex].title}
           imageCaption={images[currentImageIndex].caption}
-          onCloseRequest={onRequestClose}
+          onCloseRequest={() => onRequestClose(currentImageIndex)}
           onMovePrevRequest={handleMovePrevious}
           onMoveNextRequest={handleMoveNext}
         />

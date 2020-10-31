@@ -70,3 +70,42 @@ suited by using a dialogue or alternative method.
 ## Props
 
 <Props of={LightBox} />
+
+### onRequestClose
+
+This function receives the index of the last image the user viewed before
+closing the LightBox component. This might we useful if we need to build some
+analytics on top of this component.
+
+<Playground>
+  {() => {
+    const [open, isOpen] = useState(false);
+    return (
+      <>
+        <Button label="😈 Click me!" onClick={() => isOpen(true)} />
+        <LightBox
+          open={open}
+          images={[
+            {
+              title: "😃 Happy Face",
+              url: "https://i.imgur.com/6Jcfgnp.jpg",
+              caption: "This is a happy face"
+            },
+            {
+              title: "😮",
+              url: "https://i.imgur.com/OsLxYkT.jpg",
+              caption: "Suprised face"
+            },
+            {
+              url: "https://i.imgur.com/uigfzs5.jpg"
+            }
+          ]}
+          onRequestClose={lastIndex => {
+            console.log("The user was saw this image last - ", lastIndex);
+            isOpen(false);
+          }}
+        />
+      </>
+    );
+  }}
+</Playground>
