@@ -35,7 +35,8 @@
   justify-content: center;
 }
 
-.button:focus {
+.button:focus,
+a.button:focus {
   outline-color: var(--color-outline);
 }
 
@@ -47,7 +48,8 @@
   background-color: var(--button--color-work);
 }
 
-.work:hover {
+.work:hover,
+a.work:hover {
   border-color: var(--button--color-work--hover);
   background-color: var(--button--color-work--hover);
 }
@@ -57,7 +59,8 @@
   background-color: var(--button--color-learning);
 }
 
-.learning:hover {
+.learning:hover,
+a.learning:hover {
   border-color: var(--button--color-learning--hover);
   background-color: var(--button--color-learning--hover);
 }
@@ -67,12 +70,13 @@
   background-color: var(--button--color-destructive);
 }
 
-.destructive:hover {
+.destructive:hover,
+a.learning:hover {
   border-color: var(--button--color-destructive--hover);
   background-color: var(--button--color-destructive--hover);
 }
 
-/* Cancel is special because, by defualt, it's styled as a secondary button */
+/* Cancel is special because, by default, it's styled as a secondary button */
 
 .cancel {
   border-color: var(--button--color-cancel);
@@ -80,7 +84,9 @@
 }
 
 .cancel:focus,
-.cancel:hover {
+.cancel:hover,
+a.cancel:focus,
+a.cancel:hover {
   filter: brightness(80%);
 }
 
@@ -95,7 +101,9 @@
 }
 
 .secondary:hover,
-.secondary:focus {
+.secondary:focus,
+a.secondary:hover,
+a.secondary:focus {
   background-color: var(--button--color-secondary);
   filter: brightness(80%);
 }
@@ -106,7 +114,9 @@
 }
 
 .tertiary:hover,
-.tertiary:focus {
+.tertiary:focus,
+a.tertiary:hover,
+a.tertiary:focus {
   border-color: transparent;
   background-color: var(--color-grey--lightest);
 }
