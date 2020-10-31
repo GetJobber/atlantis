@@ -77,7 +77,9 @@ a.learning:focus {
 }
 
 .destructive:hover,
-a.learning:hover {
+a.destructive:hover,
+.destructive:focus,
+a.destructive:focus {
   border-color: var(--button--color-destructive--hover);
   background-color: var(--button--color-destructive--hover);
 }
