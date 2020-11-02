@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.6.0...@jobber/components@2.7.0) (2020-11-02)
+
+
+### Features
+
+* **components:** Add DataDump Component ([#408](https://github.com/GetJobber/atlantis/issues/408)) ([caa2a97](https://github.com/GetJobber/atlantis/commit/caa2a9786d83d9c5cb4414984aaba65f8f06599b))
+
+
+
+
+
 # [2.6.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.5.2...@jobber/components@2.6.0) (2020-11-02)
 
 
