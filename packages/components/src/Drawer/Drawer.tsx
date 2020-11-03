@@ -7,6 +7,9 @@ import { Icon } from "../Icon";
 interface DrawerProps {
   readonly children: ReactNode | ReactNode[];
   readonly title: string;
+  /**
+   * @default true
+   */
   readonly open?: boolean;
   onRequestClose?(): void;
 
