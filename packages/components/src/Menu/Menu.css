@@ -48,6 +48,20 @@
   }
 }
 
+.left {
+  @media (--medium-screens) {
+    right: 0;
+    left: auto;
+  }
+}
+
+.right {
+  @media (--medium-screens) {
+    right: auto;
+    left: 0;
+  }
+}
+
 .section {
   padding: var(--space-small) 0;
   border-bottom: var(--border-base) dotted var(--color-grey);
