@@ -38,7 +38,6 @@ render() {
   return (
     <AccountBanner
       headline="You are at your plan's user limit"
-      subline="We have plans that can help you grow"
       variation="warning"
       dismissable={true}
       ctaUrl="https://getjobber.com/plans"
@@ -49,9 +48,9 @@ render() {
 
 ## Props Table
 
-_{Provide a table in the following format of the component's public API}_
-
-| name     | type   | default | description                                                            |
-| -------- | ------ | ------- | ---------------------------------------------------------------------- |
-| headline | String | -       | Primary bolded text to be displayed                                    |
-| subline  | String | -       | Secondary unbolded text to be displayed underneath of the primary text |
+| name        | type    | default | description                                                                                                  |
+| ----------- | ------- | ------- | ------------------------------------------------------------------------------------------------------------ |
+| headline    | String  | -       | Primary bolded text to be displayed                                                                          |
+| variation   | String  | -       | Sets the background of the banner to reflect the type of information being shown                             |
+| dismissable | Boolean | -       | Whether or not an x button appears on the banner that allows the user to make the banner disappear           |
+| ctaUrl      | String  | ""      | The url for which a cta on the banner will send you. If this prop is not set, the cta button will not appear |
