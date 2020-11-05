@@ -24,7 +24,7 @@ tab-navigatable and have aria labels.
 ## Responsiveness & Mobile
 
 No special behaviour should be needed on mobile devices or smaller screen sizes.
-No special touch behaviours should be needed.\_
+No special touch behaviours should be needed.
 
 ## Wireframe
 
