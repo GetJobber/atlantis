@@ -28,18 +28,31 @@ No special touch behaviours should be needed.\_
 
 ## Wireframe
 
-_{Insert a low fidelity wireframe of the components behaviour, enough for
-someone to start building it}_
+![AccountBannerWireframe](https://user-images.githubusercontent.com/34727471/98292935-c2cad800-1f6a-11eb-94b8-8b51690949b7.png)
+![AccountBannerVariations](https://user-images.githubusercontent.com/34727471/98292947-c6f6f580-1f6a-11eb-82ff-4b59321daab6.png)
 
 ## Interface
 
-_{Provide an example of what the component looks like in code. How would you use
-it from another react component? This should consist primarily of code blocks}_
+```tsx
+render() {
+  return (
+    <AccountBanner
+      headline="You are at your plan's user limit"
+      subline="We have plans that can help you grow"
+      variation="warning"
+      dismissable={true}
+      ctaUrl="https://getjobber.com/plans"
+    />
+  );
+}
+```
 
 ## Props Table
 
 _{Provide a table in the following format of the component's public API}_
 
-| name | type | default | description |
-| ---- | ---- | ------- | ----------- |
-| ...  | ...  | ...     | ...         |
+| name                           | type   | default | description                             |
+| ------------------------------ | ------ | ------- | --------------------------------------- |
+| headline                       | String | -       | Primary bolded text to be displayed     |
+| subline                        | String | -       | Secondary unbolded text to be displayed |
+| underneath of the primary text |
