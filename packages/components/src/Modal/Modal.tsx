@@ -42,7 +42,12 @@ export function Modal({
     document.createElement("div"),
   );
 
-  setFocusOnModalOpen(open, modalContainer);
+  useEffect(() => {
+    if (modalContainer.current) {
+      modalContainer.current.focus();
+    }
+  }, [open]);
+
   catchKeyboardEvent("Escape", open, onRequestClose);
 
   const template = (
@@ -90,17 +95,6 @@ export function Modal({
   );
 
   return ReactDOM.createPortal(template, document.body);
-}
-
-function setFocusOnModalOpen(
-  isModalOpen: boolean,
-  elementRef: RefObject<HTMLDivElement>,
-) {
-  useEffect(() => {
-    if (isModalOpen && elementRef.current) {
-      elementRef.current.focus();
-    }
-  });
 }
 
 function catchKeyboardEvent(
