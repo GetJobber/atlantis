@@ -51,8 +51,7 @@ render() {
 
 _{Provide a table in the following format of the component's public API}_
 
-| name                           | type   | default | description                             |
-| ------------------------------ | ------ | ------- | --------------------------------------- |
-| headline                       | String | -       | Primary bolded text to be displayed     |
-| subline                        | String | -       | Secondary unbolded text to be displayed |
-| underneath of the primary text |
+| name     | type   | default | description                                                            |
+| -------- | ------ | ------- | ---------------------------------------------------------------------- |
+| headline | String | -       | Primary bolded text to be displayed                                    |
+| subline  | String | -       | Secondary unbolded text to be displayed underneath of the primary text |
