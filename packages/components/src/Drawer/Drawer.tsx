@@ -11,7 +11,7 @@ interface DrawerProps {
    * @default true
    */
   readonly open?: boolean;
-  onRequestClose?(): void;
+  onRequestClose(): void;
 
   /**
    * Initial open value of the drawer. Only use this when you need to
