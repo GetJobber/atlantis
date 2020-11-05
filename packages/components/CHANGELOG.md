@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.7.2...@jobber/components@2.7.3) (2020-11-05)
+
+
+### Bug Fixes
+
+* **components:** Menu properly positions on right side of screen. ([#414](https://github.com/GetJobber/atlantis/issues/414)) ([4ba4981](https://github.com/GetJobber/atlantis/commit/4ba4981c90c998ff20fa63971b9721fdf54c54ab))
+
+
+
+
+
 ## [2.7.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.7.1...@jobber/components@2.7.2) (2020-11-05)
 
 
