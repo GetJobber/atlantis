@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.7.0...@jobber/components@2.7.1) (2020-11-05)
+
+
+### Bug Fixes
+
+* **components:** Changing modal close button to use <Button> component ([#395](https://github.com/GetJobber/atlantis/issues/395)) ([85f1657](https://github.com/GetJobber/atlantis/commit/85f1657c1026a9a345ccd441b46a716e2353601d))
+
+
+
+
+
 # [2.7.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.6.0...@jobber/components@2.7.0) (2020-11-02)
 
 
