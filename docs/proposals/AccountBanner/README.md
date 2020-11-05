@@ -1,4 +1,4 @@
-# Component Name
+# Account Banner
 
 The `<Account Banner />` component will be used to display messages that relate
 to a user's account, and will appear at the top of the screen.
