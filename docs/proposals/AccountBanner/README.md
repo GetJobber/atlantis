@@ -11,11 +11,6 @@ banners display information related to an object on the page or an action the
 user has taken on a previous page, the account banner will be consistently
 displayed at the highest level of the page.
 
-This is also related to the Object Banner proposal, as with both the Account
-Banner and Object banner, we can lock down the implementation of banners in
-Jobber; at the time of writing this proposal, there are currently 7 different
-individual banner components accomplishing the same task.
-
 ## Accessibility
 
 For accessibility, the [x] button and the cta button, if they exist, should be
