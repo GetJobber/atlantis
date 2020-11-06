@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.7.3...@jobber/components@2.8.0) (2020-11-06)
+
+
+### Features
+
+* **components:** Make switch & description optional on FeatureSwitch ([#402](https://github.com/GetJobber/atlantis/issues/402)) ([971f35d](https://github.com/GetJobber/atlantis/commit/971f35d4d3ef84a011dbae5544e2866adda6ea4e))
+
+
+
+
+
 ## [2.7.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.7.2...@jobber/components@2.7.3) (2020-11-05)
 
 
