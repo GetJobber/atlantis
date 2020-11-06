@@ -29,7 +29,7 @@ export function Drawer({
   const drawerClassNames = classnames(styles.container, open && styles.open);
   return (
     <>
-      <div className={drawerClassNames}>
+      <div className={drawerClassNames} data-testid="drawer-container">
         <div className={styles.drawer}>
           <Header title={title} onRequestClose={onRequestClose} />
           <div className={styles.contentScroll}>
