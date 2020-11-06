@@ -1,5 +1,65 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`it should not show description if absent 1`] = `
+<div
+  className="padded base"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="content"
+    >
+      <div
+        className="padded base"
+      />
+    </div>
+  </div>
+  <div
+    className="container"
+  >
+    <div
+      className="featureContent content"
+    >
+      Dis dem content yo
+    </div>
+  </div>
+</div>
+`;
+
+exports[`it should not show switch if onSwitch is absent 1`] = `
+<div
+  className="padded base"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="content"
+    >
+      <div
+        className="padded base"
+      >
+        <p
+          className="base regular base greyBlueDark"
+        >
+          Send a notification to your client following up on an outstanding quote.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div
+    className="container"
+  >
+    <div
+      className="featureContent content"
+    >
+      Dis dem content yo
+    </div>
+  </div>
+</div>
+`;
+
 exports[`renders a full FeatureSwitch 1`] = `
 <div
   className="padded base"
