@@ -8,6 +8,39 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.7.2...@jobber/components@2.7.3) (2020-11-05)
+
+
+### Bug Fixes
+
+* **components:** Menu properly positions on right side of screen. ([#414](https://github.com/GetJobber/atlantis/issues/414)) ([4ba4981](https://github.com/GetJobber/atlantis/commit/4ba4981c90c998ff20fa63971b9721fdf54c54ab))
+
+
+
+
+
+## [2.7.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.7.1...@jobber/components@2.7.2) (2020-11-05)
+
+
+### Bug Fixes
+
+* **components:** Only focus the modal once when it opens ([#412](https://github.com/GetJobber/atlantis/issues/412)) ([8e6b22f](https://github.com/GetJobber/atlantis/commit/8e6b22fc97bf65c7d958b152d5b13593cea787b6))
+
+
+
+
+
+## [2.7.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.7.0...@jobber/components@2.7.1) (2020-11-05)
+
+
+### Bug Fixes
+
+* **components:** Changing modal close button to use `<Button>` component ([#395](https://github.com/GetJobber/atlantis/issues/395)) ([85f1657](https://github.com/GetJobber/atlantis/commit/85f1657c1026a9a345ccd441b46a716e2353601d))
+
+
+
+
+
 # [2.7.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.6.0...@jobber/components@2.7.0) (2020-11-02)
 
 
