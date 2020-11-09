@@ -30,28 +30,6 @@ exports[`it should display headers when headers are passed in 1`] = `
       value=""
     />
   </div>
-  <div
-    className="options"
-  >
-    <div
-      className="heading"
-    >
-      <h5
-        className="base bold base blue"
-      >
-        first_heading
-      </h5>
-    </div>
-    <div
-      className="heading"
-    >
-      <h5
-        className="base bold base blue"
-      >
-        second_heading
-      </h5>
-    </div>
-  </div>
 </div>
 `;
 
@@ -84,52 +62,6 @@ exports[`renders an Autocomplete 1`] = `
       type="text"
       value=""
     />
-  </div>
-  <div
-    className="options"
-  >
-    <button
-      className="option active"
-      onMouseDown={[Function]}
-    >
-      <div
-        className="icon"
-      />
-      <div
-        className="text"
-      >
-        <div
-          className="label"
-        >
-          <p
-            className="base regular base greyBlueDark"
-          >
-            option_0
-          </p>
-        </div>
-      </div>
-    </button>
-    <button
-      className="option"
-      onMouseDown={[Function]}
-    >
-      <div
-        className="icon"
-      />
-      <div
-        className="text"
-      >
-        <div
-          className="label"
-        >
-          <p
-            className="base regular base greyBlueDark"
-          >
-            option_1
-          </p>
-        </div>
-      </div>
-    </button>
   </div>
 </div>
 `;

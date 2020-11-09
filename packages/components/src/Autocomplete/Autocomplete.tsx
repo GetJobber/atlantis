@@ -118,12 +118,14 @@ export function Autocomplete({
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
       />
-      <Menu
-        visible={menuVisible}
-        options={options}
-        selectedOption={value}
-        onOptionSelect={handleMenuChange}
-      />
+      {menuVisible && (
+        <Menu
+          visible={true}
+          options={options}
+          selectedOption={value}
+          onOptionSelect={handleMenuChange}
+        />
+      )}
     </div>
   );
 
@@ -159,11 +161,10 @@ export function Autocomplete({
   function handleInputBlur() {
     setMenuVisible(false);
     if (value == undefined || value.label !== inputText) {
+      setInputText("");
       onChange(undefined);
     }
-    if (onBlur) {
-      onBlur();
-    }
+    onBlur && onBlur();
   }
 
   function handleInputFocus() {
