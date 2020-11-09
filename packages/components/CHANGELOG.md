@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.8.0...@jobber/components@2.9.0) (2020-11-09)
+
+
+### Features
+
+* **components:** Drawer component ([#367](https://github.com/GetJobber/atlantis/issues/367)) ([b27ccab](https://github.com/GetJobber/atlantis/commit/b27ccab0083391fd4c2b1d7ea98a1e867d104ab7))
+
+
+
+
+
 # [2.8.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.7.3...@jobber/components@2.8.0) (2020-11-06)
 
 
