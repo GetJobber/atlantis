@@ -33,12 +33,14 @@ it("renders with a provided image", () => {
   expect(container).toMatchSnapshot();
 });
 
-it("should allow an image to be uploaded", async () => {
+it("properly notifies upload callbacks", async () => {
   const changeHandler = jest.fn();
+  const completionHandler = jest.fn();
   const { container } = render(
     <InputAvatar
       getUploadParams={fetchUploadParams}
       onChange={changeHandler}
+      onUploadComplete={completionHandler}
     />,
   );
 
@@ -53,6 +55,16 @@ it("should allow an image to be uploaded", async () => {
       name: "atlantis.png",
       size: expect.any(Number),
       progress: expect.any(Number),
+      src: expect.any(Function),
+      type: "image/png",
+    });
+
+    expect(completionHandler).toHaveBeenCalledTimes(1);
+    expect(completionHandler).toHaveBeenCalledWith({
+      key: "atlantis.png",
+      name: "atlantis.png",
+      size: expect.any(Number),
+      progress: 1,
       src: expect.any(Function),
       type: "image/png",
     });
