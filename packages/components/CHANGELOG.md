@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.9.0...@jobber/components@2.9.1) (2020-11-10)
+
+
+### Bug Fixes
+
+* **components:** Autocomplete sets input val to blank if no matches ([#415](https://github.com/GetJobber/atlantis/issues/415)) ([4a0d544](https://github.com/GetJobber/atlantis/commit/4a0d5448c87ff1177ffc3bfaf7edd700743efee8))
+
+
+
+
+
 # [2.9.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.8.0...@jobber/components@2.9.0) (2020-11-09)
 
 
