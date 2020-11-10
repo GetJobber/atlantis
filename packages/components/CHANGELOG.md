@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.9.1...@jobber/components@2.10.0) (2020-11-10)
+
+
+### Features
+
+* **components:** Add `onUploadComplete` to `InputAvatar` ([#416](https://github.com/GetJobber/atlantis/issues/416)) ([b6960f5](https://github.com/GetJobber/atlantis/commit/b6960f5330ed9c6cf0cc634fed7a7f5c2d8ffbe8))
+
+
+
+
+
 ## [2.9.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.9.0...@jobber/components@2.9.1) (2020-11-10)
 
 
