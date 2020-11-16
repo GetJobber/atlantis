@@ -271,3 +271,18 @@ it("sets the input value to blank if allowFreeForm is false and not matched", as
     expect(input.value).toBe("");
   });
 });
+
+it("renders correctly when invalid", () => {
+  const tree = renderer
+    .create(
+      <Autocomplete
+        value={undefined}
+        onChange={() => {}}
+        getOptions={returnOptions([])}
+        placeholder="placeholder_name"
+        invalid
+      />,
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
