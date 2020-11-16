@@ -65,3 +65,36 @@ exports[`renders an Autocomplete 1`] = `
   </div>
 </div>
 `;
+
+exports[`renders correctly when invalid 1`] = `
+<div
+  className="autocomplete"
+>
+  <div
+    className="wrapper invalid"
+    style={
+      Object {
+        "--formField-maxLength": undefined,
+      }
+    }
+  >
+    <label
+      className="label"
+      htmlFor="123e4567-e89b-12d3-a456-426655440043"
+    >
+      placeholder_name
+    </label>
+    <input
+      autoComplete="autocomplete-off"
+      className="formField"
+      id="123e4567-e89b-12d3-a456-426655440043"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      type="text"
+      value=""
+    />
+  </div>
+</div>
+`;
