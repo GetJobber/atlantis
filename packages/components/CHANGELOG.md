@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.10.0...@jobber/components@2.11.0) (2020-11-16)
+
+
+### Features
+
+* **components:** Add `invalid` to `Autocomplete` ([#417](https://github.com/GetJobber/atlantis/issues/417)) ([266b145](https://github.com/GetJobber/atlantis/commit/266b145ef92114445ebdb4c482de766445df77b8))
+
+
+
+
+
 # [2.10.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.9.1...@jobber/components@2.10.0) (2020-11-10)
 
 
