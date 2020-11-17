@@ -33,9 +33,6 @@
 
 .titleBar.large .actionGroup {
   justify-content: flex-start;
-}
-
-.titleBar.large .actionGroup {
   margin-top: 0;
 }
 
