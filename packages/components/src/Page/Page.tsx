@@ -122,7 +122,7 @@ export function Page({
               </div>
             )}
           </div>
-          <Text variation="intro">
+          <Text size="large">
             <Markdown content={intro} basicUsage={true} />
           </Text>
         </Content>
