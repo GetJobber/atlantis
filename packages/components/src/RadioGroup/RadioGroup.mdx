@@ -9,6 +9,8 @@ import { ComponentStatus } from "@jobber/docx";
 import { RadioGroup, RadioOption } from ".";
 import { Content } from "@jobber/components/Content";
 import { Checkbox } from "@jobber/components/Checkbox";
+import { Divider } from "@jobber/components/Divider";
+import { Icon } from "@jobber/components/Icon";
 import { useState } from "react";
 
 # Radio Group
@@ -27,9 +29,9 @@ import { RadioGroup } from "@jobber/components/RadioGroup";
     const [company, setCompany] = useState("apple");
     return (
       <RadioGroup onChange={setCompany} value={company}>
-        <RadioOption value="apple">Apple</RadioOption>
-        <RadioOption value="google">Google</RadioOption>
-        <RadioOption value="microsoft">Microsoft</RadioOption>
+        <RadioOption value="apple" label="Apple" />
+        <RadioOption value="google" label="Google" />
+        <RadioOption value="microsoft" label="Microsoft" />
       </RadioGroup>
     );
   }}
@@ -53,25 +55,76 @@ option will prevent a user from being able to select the option.
     const [company, setCompany] = useState("apple");
     const [checked, setChecked] = useState(true);
     return (
-      <Content>
-        <Content spacing="large">
-          <RadioGroup onChange={setCompany} value={company}>
-            <RadioOption value="apple">Apple</RadioOption>
-            <RadioOption value="google">Google</RadioOption>
-            <RadioOption value="microsoft" disabled={!checked}>
-              Microsoft
-            </RadioOption>
-            <RadioOption value="amazon" disabled={true}>
-              Amazon
-            </RadioOption>
-          </RadioGroup>
-        </Content>
+      <Content spacing="large">
+        <RadioGroup onChange={setCompany} value={company}>
+          <RadioOption value="apple" label="Apple" />
+          <RadioOption value="google" label="Google" />
+          <RadioOption value="amazon" label="Amazon" disabled={true} />
+          <RadioOption
+            value="microsoft"
+            label="Microsoft"
+            disabled={!checked}
+          />
+        </RadioGroup>
+        <Divider />
         <Checkbox
           checked={checked}
           label="Allow Microsoft"
           onChange={setChecked}
         />
       </Content>
+    );
+  }}
+</Playground>
+
+## Description
+
+A `description` can be used to further describe the label of the `RadioOption`.
+
+<Playground>
+  {() => {
+    const [company, setCompany] = useState("apple");
+    return (
+      <RadioGroup onChange={setCompany} value={company}>
+        <RadioOption
+          value="apple"
+          label="Apple"
+          description="A delicious fruit that fends off doctors"
+        />
+        <RadioOption
+          value="amazon"
+          label="Amazon"
+          description="The worlds largest rainforest"
+        />
+        <RadioOption
+          value="google"
+          label="Google"
+          description="A search engine"
+        />
+      </RadioGroup>
+    );
+  }}
+</Playground>
+
+## Render RadioOption with Children
+
+If the `RadioGroup` is being used to select something other then text, you can
+render the `RadioOptions` with `children`.
+
+**Note:** When using `children`, `label` and `description` are not allowed.
+
+<Playground>
+  {() => {
+    const [company, setPhoto] = useState("job");
+    const icons = ["job", "quote", "request", "timer", "expense"];
+    return (
+      <RadioGroup onChange={setPhoto} value={company}>
+        {icons.map(icon => (
+          <RadioOption value={icon}>
+            <Icon name={icon} />
+          </RadioOption>
+        ))}
+      </RadioGroup>
     );
   }}
 </Playground>
