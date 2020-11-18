@@ -63,12 +63,28 @@ De-emphasize a piece of text that is less important to the user
 
 ## Sizes
 
-### Intro
-
 `Text` can be used with different sizes.
 
-Typically `large` is to be used as an intro text that gives more information
-about the page title and can only be used right after a page title.
+### Base
+
+`Base` is the default size and is optimized for the widest range of uses,
+including:
+
+- Long paragraphs of text content
+- Descriptions of subsequent UI elements
+- Labels on UI elements such as checkboxes and radio buttons
+- Freeform user-generated content
+
+<Playground>
+  <Text size="base">
+    Stay organized when creating estimates, work orders, and billing documents.
+  </Text>
+</Playground>
+
+### Large
+
+Typically `large` is to be used as an introductory paragraph that gives
+important information about a page, and requires greater prominence.
 
 <Playground>
   <Text size="large">
@@ -76,7 +92,9 @@ about the page title and can only be used right after a page title.
   </Text>
 </Playground>
 
-The `small` size is intended to be used as small, helper content on things like
+### Small
+
+The `small` size is intended to be used as helper content on things like
 checkboxes, radio buttons, inputs or any other UI elements that need help
 provided.
 
