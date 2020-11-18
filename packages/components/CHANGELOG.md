@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.11.0...@jobber/components@2.12.0) (2020-11-18)
+
+
+### Features
+
+* **components:** Add size prop to Text ([#419](https://github.com/GetJobber/atlantis/issues/419)) ([6177e28](https://github.com/GetJobber/atlantis/commit/6177e2874f5527a099337a3d926e31fa6e6159bd))
+
+
+
+
+
 # [2.11.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.10.0...@jobber/components@2.11.0) (2020-11-16)
 
 
