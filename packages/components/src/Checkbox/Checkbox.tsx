@@ -100,7 +100,9 @@ export function Checkbox({
       </label>
       {description && (
         <div className={styles.description}>
-          <Text variation="subdued">{description}</Text>
+          <Text variation="subdued" size="small">
+            {description}
+          </Text>
         </div>
       )}
     </div>
