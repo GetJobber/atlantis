@@ -48,6 +48,6 @@
 }
 
 .description {
-  margin-bottom: var(--space-smallest);
+  margin-bottom: var(--space-small);
   padding-left: var(--space-large);
 }
