@@ -38,10 +38,9 @@ export function RadioGroup({
       {React.Children.map(children, option => (
         <InternalRadioOption
           checked={value === option.props.value}
-          value={option.props.value}
           name={name}
-          disabled={option.props.disabled}
           onChange={handleChange}
+          {...option.props}
         >
           {option.props.children}
         </InternalRadioOption>

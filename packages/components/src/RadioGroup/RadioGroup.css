@@ -12,6 +12,7 @@
 .label {
   display: inline-flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .input + .label::before {
@@ -20,12 +21,11 @@
   width: var(--space-base);
   height: var(--space-base);
   box-sizing: border-box;
-  margin: 0 var(--space-small);
+  margin: 0 var(--space-small) 0 0;
   border: var(--border-thick) solid var(--color-grey--light);
   border-radius: 100%;
   background-color: var(--color-white);
-  cursor: pointer;
-  transition: all 0.2s;
+  transition: all var(--timing-base);
 }
 
 .input:focus + .label:before {
@@ -39,9 +39,15 @@
 
 .input[disabled] + .label {
   color: var(--color-blue--lighter);
+  cursor: not-allowed;
 }
 
 .input[disabled] + .label::before {
   border-color: var(--color-grey--light);
   background-color: var(--color-grey--lighter);
+}
+
+.description {
+  margin-bottom: var(--space-smallest);
+  padding-left: var(--space-large);
 }
