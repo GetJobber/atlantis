@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.13.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.12.0...@jobber/components@2.13.0) (2020-11-19)
+
+
+### Features
+
+* **components:** Add label and description to RadioOption ([#420](https://github.com/GetJobber/atlantis/issues/420)) ([d74f38f](https://github.com/GetJobber/atlantis/commit/d74f38fdf237cab7ec8c1db8b2b951b1499c6a51))
+
+
+
+
+
 # [2.12.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.11.0...@jobber/components@2.12.0) (2020-11-18)
 
 
