@@ -111,7 +111,8 @@ A `description` can be used to further describe the label of the `RadioOption`.
 If the `RadioGroup` is being used to select something other then text, you can
 render the `RadioOptions` with `children`.
 
-**Note:** When using `children`, `label` and `description` are not allowed.
+**Note:** When using `children`, `label` and `description` are not allowed due
+to the face that they would collide with the `children` prop.
 
 <Playground>
   {() => {

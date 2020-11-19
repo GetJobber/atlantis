@@ -22,6 +22,10 @@ type RadioOptionProps = XOR<
   PropsWithChildren<BaseRadioOptions>
 >;
 
+/**
+ * For rendering props only. To make updates to
+ * the real RadioOption, look at InternalRadioOption
+ */
 export function RadioOption({ children }: PropsWithChildren<RadioOptionProps>) {
   return <>{children}</>;
 }

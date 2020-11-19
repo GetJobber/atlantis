@@ -96,7 +96,7 @@ function MockRadioGroup({ onChange }: MockProps) {
         <RadioOption value="one" label="One" />
         <RadioOption value="two" label="Two" />
       </RadioGroup>
-      <RadioGroup onChange={handleSecondValue} value={valueTwo}>
+      <RadioGroup onChange={handleSecondChange} value={valueTwo}>
         <RadioOption value="one" label="One" />
         <RadioOption value="two" label="Two" />
       </RadioGroup>
@@ -108,7 +108,7 @@ function MockRadioGroup({ onChange }: MockProps) {
     onChange && onChange(val);
   }
 
-  function handleSecondValue(val: string) {
+  function handleSecondChange(val: string) {
     setValueTwo(val);
     onChange && onChange(val);
   }
