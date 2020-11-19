@@ -10,9 +10,12 @@ interface BaseRadioOptions {
 }
 
 interface RadioOptionsWithDescription extends BaseRadioOptions {
+  /**
+   * The label to appear beside the radio button.
+   */
   label: string;
   /**
-   * Further description of the label
+   * Further description of the label.
    */
   description?: string;
 }
