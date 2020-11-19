@@ -76,6 +76,6 @@
 }
 
 .description {
-  margin-top: var(--space-smaller);
-  margin-left: var(--space-large);
+  margin-bottom: var(--space-small);
+  padding-left: var(--space-large);
 }
