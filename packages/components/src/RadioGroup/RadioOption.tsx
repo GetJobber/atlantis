@@ -71,7 +71,7 @@ export function InternalRadioOption({
         checked={checked}
         id={inputId}
         className={styles.input}
-        aria-describedby={`${inputId}_description`}
+        aria-describedby={description ? `${inputId}_description` : undefined}
       />
       <label className={styles.label} htmlFor={inputId}>
         {label ? label : children}

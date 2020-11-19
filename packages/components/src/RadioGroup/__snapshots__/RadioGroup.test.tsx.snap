@@ -7,7 +7,6 @@ exports[`renders a RadioGroup 1`] = `
   >
     <div>
       <input
-        aria-describedby="one_123e4567-e89b-12d3-a456-426655440002_description"
         checked=""
         class="input"
         id="one_123e4567-e89b-12d3-a456-426655440002"
@@ -24,7 +23,6 @@ exports[`renders a RadioGroup 1`] = `
     </div>
     <div>
       <input
-        aria-describedby="two_123e4567-e89b-12d3-a456-426655440003_description"
         class="input"
         id="two_123e4567-e89b-12d3-a456-426655440003"
         name="123e4567-e89b-12d3-a456-426655440001"
@@ -44,7 +42,6 @@ exports[`renders a RadioGroup 1`] = `
   >
     <div>
       <input
-        aria-describedby="one_123e4567-e89b-12d3-a456-426655440005_description"
         checked=""
         class="input"
         id="one_123e4567-e89b-12d3-a456-426655440005"
@@ -61,7 +58,6 @@ exports[`renders a RadioGroup 1`] = `
     </div>
     <div>
       <input
-        aria-describedby="two_123e4567-e89b-12d3-a456-426655440006_description"
         class="input"
         id="two_123e4567-e89b-12d3-a456-426655440006"
         name="123e4567-e89b-12d3-a456-426655440004"
