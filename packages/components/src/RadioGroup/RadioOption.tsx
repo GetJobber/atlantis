@@ -64,12 +64,13 @@ export function InternalRadioOption({
         checked={checked}
         id={inputId}
         className={styles.input}
+        aria-describedby={`${inputId}_description`}
       />
       <label className={styles.label} htmlFor={inputId}>
         {label ? label : children}
       </label>
       {description && (
-        <div className={styles.description}>
+        <div className={styles.description} id={`${inputId}_description`}>
           <Text variation="subdued" size="small">
             {description}
           </Text>
