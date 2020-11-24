@@ -18,22 +18,26 @@
 
 .titleBar.large {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.titleBar.large h1 {
+  flex: 1;
 }
 
 .actionGroup {
   margin-top: var(--space-base);
 }
 
-.titleBar.small .actionGroup {
+.titleBar .actionGroup {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
 .titleBar.large .actionGroup {
-  justify-content: flex-start;
-  flex-shrink: 0;
+  justify-content: flex-end;
+  flex: 1 0 auto;
   flex-wrap: nowrap;
   margin-top: 0;
 }

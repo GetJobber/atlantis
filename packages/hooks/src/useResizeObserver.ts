@@ -5,9 +5,9 @@ import useResizeObserverPackage from "use-resize-observer/polyfilled";
 import { throttle } from "lodash";
 
 export const Breakpoints = {
-  base: 640,
-  small: 500,
   smaller: 265,
+  small: 500,
+  base: 640,
   large: 750,
   larger: 1024,
 };
