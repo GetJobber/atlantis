@@ -71,7 +71,8 @@ export function Page({
 
   const titleBarClasses = classnames(styles.titleBar, {
     [styles.small]: titleBarWidth > Breakpoints.smaller,
-    [styles.large]: titleBarWidth > Breakpoints.small,
+    [styles.medium]: titleBarWidth > Breakpoints.small,
+    [styles.large]: titleBarWidth > Breakpoints.large,
   });
 
   const showMenu = moreActionsMenu.length > 0;

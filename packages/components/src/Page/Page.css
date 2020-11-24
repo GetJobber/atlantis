@@ -31,7 +31,7 @@
   justify-content: space-between;
 }
 
-.titleBar.large .actionGroup {
+.titleBar.medium .actionGroup {
   justify-content: flex-start;
   flex-shrink: 0;
   flex-wrap: nowrap;
@@ -56,13 +56,13 @@
   margin-top: 0;
 }
 
-.titleBar.large .primaryAction,
-.titleBar.large .actionButton {
+.titleBar.medium .primaryAction,
+.titleBar.medium .actionButton {
   margin: 0;
   flex: 0 auto;
 }
 
-.titleBar.large .actionButton {
+.titleBar.medium .actionButton {
   margin-left: var(--space-small);
 }
 
