@@ -5,6 +5,6 @@ export const narrow: string;
 export const titleBar: string;
 export const large: string;
 export const actionGroup: string;
+export const small: string;
 export const primaryAction: string;
 export const actionButton: string;
-export const small: string;
