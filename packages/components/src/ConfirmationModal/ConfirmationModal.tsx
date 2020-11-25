@@ -219,11 +219,7 @@ export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
         },
       }}
     >
-      {state.message && (
-        <Content>
-          <Markdown content={state.message} />
-        </Content>
-      )}
+      <Content>{state.message && <Markdown content={state.message} />}</Content>
     </Modal>
   );
 });
