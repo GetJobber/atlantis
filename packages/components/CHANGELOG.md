@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.14.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.13.2...@jobber/components@2.14.0) (2020-11-25)
+
+
+### Features
+
+* **components:** Add markdown to ConfirmationModal ([#424](https://github.com/GetJobber/atlantis/issues/424)) ([b0b817d](https://github.com/GetJobber/atlantis/commit/b0b817df9ab613e3394cb421213f2e5bdf1b793a))
+
+
+
+
+
 ## [2.13.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.13.1...@jobber/components@2.13.2) (2020-11-25)
 
 **Note:** Version bump only for package @jobber/components
