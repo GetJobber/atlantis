@@ -60,6 +60,8 @@
   flex-direction: row;
   overflow-y: auto;
 }
+
 .content {
+  width: 100%;
   padding: var(--drawer--base-padding);
 }
