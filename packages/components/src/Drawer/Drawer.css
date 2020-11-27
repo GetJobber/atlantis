@@ -18,6 +18,10 @@
   @media (--medium-screens), print {
     position: relative;
     z-index: auto;
+    width: 280px;
+  }
+
+  @media (--wide-screens) {
     width: 420px;
   }
 }
