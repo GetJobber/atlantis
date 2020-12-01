@@ -15,7 +15,7 @@
   z-index: 1;
   width: 100%;
   height: 100%;
-  border: solid 1px var(--border-color);
+  border: solid var(--border-base) var(--border-color);
   border-radius: var(--radius-base);
 }
 
@@ -25,15 +25,15 @@
 }
 
 .row:not(:last-child) {
-  border-bottom: solid 1px var(--border-color);
+  border-bottom: solid var(--border-base) var(--border-color);
 }
 
 .header .row {
-  border-bottom: solid 1px var(--header-border-color);
+  border-bottom: solid var(--border-base) var(--header-border-color);
   font-weight: bold;
   text-transform: uppercase;
 }
 
 .footer .row {
-  border-top: solid var(--space-smaller) var(--border-color);
+  border-top: solid var(--border-thicker) var(--border-color);
 }
