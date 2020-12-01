@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.15.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.14.1...@jobber/components@2.15.0) (2020-12-01)
+
+
+### Features
+
+* **components:** Reduce width of drawer for medium breakpoint ([#426](https://github.com/GetJobber/atlantis/issues/426)) ([b9268d5](https://github.com/GetJobber/atlantis/commit/b9268d59d638617e45f472fa5ca72d2699c2f27c))
+
+
+
+
+
 ## [2.14.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.14.0...@jobber/components@2.14.1) (2020-11-26)
 
 **Note:** Version bump only for package @jobber/components
