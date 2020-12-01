@@ -1,4 +1,5 @@
 :root {
+  --drawer-width: calc(var(--space-base) * 17.5);
   --drawer--background-color: var(--color-white);
   --drawer--header-background-color: var(--color-grey--lightest);
   --drawer--border-color: var(--color-grey--lighter);
@@ -18,7 +19,11 @@
   @media (--medium-screens), print {
     position: relative;
     z-index: auto;
-    width: 420px;
+    width: var(--drawer-width);
+  }
+
+  @media (--wide-screens) {
+    --drawer-width: calc(var(--space-base) * 26.25);
   }
 }
 

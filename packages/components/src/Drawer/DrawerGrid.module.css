@@ -1,7 +1,8 @@
 .drawerGrid {
   display: grid;
   width: 100%;
-  grid-template-columns: [main] auto [sidebar] minmax(min-content, max-content);
-  column-gap: var(--space-base);
-  align-items: stretch;
+  height: 100%;
+  overflow: hidden;
+  grid-template-columns: minmax(0, 1fr) minmax(min-content, max-content);
+  grid-template-rows: 1fr;
 }
