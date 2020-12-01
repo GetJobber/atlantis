@@ -24,6 +24,7 @@ it("renders correctly with no props", () => {
       <input
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440001"
+        inputMode="text"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -56,6 +57,7 @@ it("renders correctly with a placeholder", () => {
       <input
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440002"
+        inputMode="text"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -86,6 +88,7 @@ it("renders correctly as small", () => {
       <input
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440003"
+        inputMode="text"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -116,6 +119,7 @@ it("renders correctly in a readonly state", () => {
       <input
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440004"
+        inputMode="text"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -148,6 +152,7 @@ it("renders correctly in a disabled state", () => {
         className="formField"
         disabled={true}
         id="123e4567-e89b-12d3-a456-426655440005"
+        inputMode="text"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -178,6 +183,7 @@ it("renders a field with error", () => {
       <input
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440006"
+        inputMode="text"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}

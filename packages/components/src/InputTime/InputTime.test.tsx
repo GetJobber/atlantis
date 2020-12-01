@@ -26,6 +26,7 @@ it("renders a InputTime", () => {
       <input
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440001"
+        inputMode="text"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -60,6 +61,7 @@ it("renders an initial time when given 'defaultValue'", () => {
         className="formField"
         defaultValue="11:23"
         id="123e4567-e89b-12d3-a456-426655440002"
+        inputMode="text"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -92,6 +94,7 @@ it("renders correctly in a readonly state", () => {
       <input
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440003"
+        inputMode="text"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -126,6 +129,7 @@ it("adds a error border when invalid", () => {
       <input
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440004"
+        inputMode="text"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -158,6 +162,7 @@ it("should set the value when given 'value' and 'onChange'", () => {
       <input
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440005"
+        inputMode="text"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
