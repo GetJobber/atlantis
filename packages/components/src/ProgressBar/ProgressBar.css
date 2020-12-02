@@ -6,19 +6,27 @@
 
 progress[value] {
   width: 100%;
-  /* Reset the default appearance */
   border: none;
-  -webkit-appearance: none;
   appearance: none;
 }
 
+progress[value],
 progress[value]::-webkit-progress-bar {
   box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.05);
   border-radius: calc(var(--progress-bar--height) / 2);
+}
+
+progress[value]::-webkit-progress-bar {
   background-color: var(--progress-bar--backgroundColor);
 }
 
 progress[value]::-webkit-progress-value {
+  border-radius: calc(var(--progress-bar--height) / 2);
+  background-color: var(--progress-bar--barColor);
+  transition: all var(--timing-slow) ease-out;
+}
+
+progress[value]::-moz-progress-bar {
   border-radius: calc(var(--progress-bar--height) / 2);
   background-color: var(--progress-bar--barColor);
   transition: all var(--timing-slow) ease-out;
