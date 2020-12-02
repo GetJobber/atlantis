@@ -18,16 +18,13 @@ export function useOnKeyDown(
   callback: (event: KeyboardEvent) => void,
   keys: KeyComparator[] | KeyComparator,
 ) {
-  // Pending: https://github.com/donavon/use-event-listener/pull/12
-  // The types in useEventListener mistakenly require a SyntheticEvent for the passed generic.
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-  //@ts-ignore
-  useEventListener<KeyboardEvent>("keydown", handler);
+  useEventListener("keydown", handler);
 
   function handler(event: KeyboardEvent) {
     const keyboardEvent = (event as unknown) as VerboseKeyComparator;
     if (typeof keys === "string" && keyboardEvent.key === keys) {
       callback(event);
+      return;
     }
 
     if (
@@ -40,6 +37,7 @@ export function useOnKeyDown(
       })
     ) {
       callback(event);
+      return;
     }
 
     if (
@@ -48,6 +46,7 @@ export function useOnKeyDown(
       Object.keys(keys).every(index => keyboardEvent[index] === keys[index])
     ) {
       callback(event);
+      return;
     }
   }
 }
