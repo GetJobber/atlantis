@@ -1,17 +1,25 @@
 :root {
   --progress-bar--backgroundColor: var(--color-grey--lightest);
-  --progress-bar--barColor: var(--color-lime);
+  --progress-bar--barColor: var(--color-green);
+  --progress-bar--height: var(--space-base);
 }
 
-.container,
-.content {
+progress[value] {
   width: 100%;
-  height: var(--progress-bar--height);
-  border-radius: calc(var(--progress-bar--height) / 2);
-  background: var(--progress-bar--backgroundColor);
+  /* Reset the default appearance */
+  border: none;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
-.content {
+progress[value]::-webkit-progress-bar {
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: calc(var(--progress-bar--height) / 2);
+  background-color: var(--progress-bar--backgroundColor);
+}
+
+progress[value]::-webkit-progress-value {
+  border-radius: calc(var(--progress-bar--height) / 2);
   background-color: var(--progress-bar--barColor);
-  transition: width var(--timing-slower) ease-out;
+  transition: all var(--timing-slow) ease-out;
 }
