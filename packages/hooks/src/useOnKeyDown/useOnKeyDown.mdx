@@ -29,7 +29,7 @@ You can specify a list of key's to watch with the event handler.
 
 <Playground>
   {() => {
-    const initialListText = "Press shift or enter";
+    const initialListText = "";
     const [listText, setListText] = useState(initialListText);
     useOnKeyDown(
       e => {
@@ -40,6 +40,7 @@ You can specify a list of key's to watch with the event handler.
     return (
       <Card title="Shift or Enter Example">
         <Content>
+          Press shift or enter.
           <pre>{listText}</pre>
         </Content>
       </Card>

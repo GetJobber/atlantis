@@ -29,6 +29,7 @@ export function useOnKeyDown(
     if (typeof keys === "string" && keyboardEvent.key === keys) {
       callback(event);
     }
+
     if (
       Array.isArray(keys) &&
       keys.some(item => {
@@ -40,6 +41,7 @@ export function useOnKeyDown(
     ) {
       callback(event);
     }
+
     if (
       !Array.isArray(keys) &&
       typeof keys !== "string" &&
