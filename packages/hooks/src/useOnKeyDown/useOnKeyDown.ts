@@ -1,10 +1,10 @@
 import useEventListener from "@use-it/event-listener";
 import { XOR } from "ts-xor";
 
-type SimpleKeyComparerator = globalThis.KeyboardEvent["key"];
+type SimpleKeyComparator = globalThis.KeyboardEvent["key"];
 
-interface VerboseKeyComparerator {
-  readonly key: SimpleKeyComparerator;
+interface VerboseKeyComparator {
+  readonly key: SimpleKeyComparator;
   readonly shiftKey?: boolean;
   readonly ctrlKey?: boolean;
   readonly altKey?: boolean;
@@ -12,16 +12,20 @@ interface VerboseKeyComparerator {
   readonly [index: string]: boolean | string | undefined;
 }
 
-type KeyComparerator = XOR<VerboseKeyComparerator, SimpleKeyComparerator>;
+type KeyComparator = XOR<VerboseKeyComparator, SimpleKeyComparator>;
 
 export function useOnKeyDown(
   callback: (event: globalThis.KeyboardEvent) => void,
-  keys: KeyComparerator[] | KeyComparerator,
+  keys: KeyComparator[] | KeyComparator,
 ) {
-function handler(event: globalThis.KeyboardEvent) {
-    event: globalThis.KeyboardEvent,
-  ) => {
-    const keyboardEvent = (event as unknown) as VerboseKeyComparerator;
+  // Pending: https://github.com/donavon/use-event-listener/pull/12
+  // The types in useEventListener mistakenly require a SyntheticEvent for the passed generic.
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  //@ts-ignore
+  useEventListener<KeyboardEvent>("keydown", handler);
+
+  function handler(event: globalThis.KeyboardEvent) {
+    const keyboardEvent = (event as unknown) as VerboseKeyComparator;
     if (typeof keys === "string" && keyboardEvent.key === keys) {
       callback(event);
     }
@@ -43,11 +47,5 @@ function handler(event: globalThis.KeyboardEvent) {
     ) {
       callback(event);
     }
-  };
-
-  // Pending: https://github.com/donavon/use-event-listener/pull/12
-  // The types in useEventListener mistakenly require a SyntheticEvent for the passed generic.
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-  //@ts-ignore
-  useEventListener<KeyboardEvent>("keydown", handler);
+  }
 }

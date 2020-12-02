@@ -8,29 +8,68 @@ import { Playground } from "docz";
 import { useState } from "react";
 import { useOnKeyDown } from "./useOnKeyDown";
 import { Text } from "@jobber/components/Text";
+import { Card } from "@jobber/components/Card";
+import { Content } from "@jobber/components/Content";
 
 # UseOnKeyDown
 
-`useOnKeyDown` is a simple hook adding the keydown event handler when the component is mounted and removing when unmounted.
+`useOnKeyDown` is a simple hook that adds the keydown event handler when the
+component is mounted and removing when unmounted.
 
-`useOnKeyDown` should **only** be used when making keyboard shortcut in a component.
+`useOnKeyDown` should **only** be used when building keyboard shortcut in a
+component.
 
 ```tsx
 import { useOnKeyDown } from "@jobber/hooks";
 ```
 
+## With a list of Keys
+
+You can specify a list of key's to watch with the event handler.
 
 <Playground>
-  {()=>{
-    const letterText = "Delete me by pressing Delete key on your keyboard.";
-    const letterText2 = "Space Enter and Shift + Escape will show here";
-    const [ text, setText ] = useState(letterText);
-    const [ textTwo, setTextTwo ] = useState(letterText2);
-    useOnKeyDown(() => setText("Deleted. Press Control + z for undo."), "Delete");
-    useOnKeyDown(() => setText(letterText), {key: "z", ctrlKey: true});
-    useOnKeyDown((e) => {
-        if(e.shiftKey) setTextTwo("You pressed Shift and "+e.key);
-        else setTextTwo("You pressed '"+e.key+"'");
-    }, [" ", "Enter", {key: "Escape", shiftKey: true} ]);
-    return (<Text>{text}<pre />{textTwo}</Text>);}}
+  {() => {
+    const initialListText = "Press shift or enter";
+    const [listText, setListText] = useState(initialListText);
+    useOnKeyDown(
+      e => {
+        setListText("You pressed '" + e.key + "'");
+      },
+      ["Shift", "Enter"]
+    );
+    return (
+      <Card title="Shift or Enter Example">
+        <Content>
+          <pre>{listText}</pre>
+        </Content>
+      </Card>
+    );
+  }}
+</Playground>
+
+## With a Key modifier
+
+A key can have a modifier. In this case we show how to implement a ctrl+z
+workflow.
+
+<Playground>
+  {() => {
+    const initialModifierText = "Press escape to clear this text";
+    const [modifierText, setModifierText] = useState(initialModifierText);
+    useOnKeyDown(
+      () => setModifierText("Removed. Press Control + z to undo."),
+      "Escape"
+    );
+    useOnKeyDown(() => setModifierText(initialModifierText), {
+      key: "z",
+      ctrlKey: true
+    });
+    return (
+      <Card title="Escape and Ctrl-z Example">
+        <Content>
+          <pre>{modifierText}</pre>
+        </Content>
+      </Card>
+    );
+  }}
 </Playground>
