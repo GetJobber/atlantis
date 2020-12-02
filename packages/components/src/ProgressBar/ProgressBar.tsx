@@ -30,7 +30,7 @@ export function ProgressBar({
 
   return (
     <progress max={totalSteps} value={currentStep}>
-      Step {currentStep} of {totalSteps}
+      {currentStep} of {totalSteps}
     </progress>
   );
 }
