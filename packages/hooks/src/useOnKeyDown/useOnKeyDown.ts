@@ -1,7 +1,7 @@
 import useEventListener from "@use-it/event-listener";
 import { XOR } from "ts-xor";
 
-type SimpleKeyComparator = globalThis.KeyboardEvent["key"];
+type SimpleKeyComparator = KeyboardEvent["key"];
 
 interface VerboseKeyComparator {
   readonly key: SimpleKeyComparator;
@@ -15,7 +15,7 @@ interface VerboseKeyComparator {
 type KeyComparator = XOR<VerboseKeyComparator, SimpleKeyComparator>;
 
 export function useOnKeyDown(
-  callback: (event: globalThis.KeyboardEvent) => void,
+  callback: (event: KeyboardEvent) => void,
   keys: KeyComparator[] | KeyComparator,
 ) {
   // Pending: https://github.com/donavon/use-event-listener/pull/12
@@ -24,7 +24,7 @@ export function useOnKeyDown(
   //@ts-ignore
   useEventListener<KeyboardEvent>("keydown", handler);
 
-  function handler(event: globalThis.KeyboardEvent) {
+  function handler(event: KeyboardEvent) {
     const keyboardEvent = (event as unknown) as VerboseKeyComparator;
     if (typeof keys === "string" && keyboardEvent.key === keys) {
       callback(event);
