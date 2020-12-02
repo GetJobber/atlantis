@@ -26,7 +26,6 @@ it("renders a regular input for text and numbers", () => {
       <input
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440001"
-        inputMode="text"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -104,39 +103,6 @@ it("renders a textarea with 4 rows", () => {
         onFocus={[Function]}
         onKeyDown={[Function]}
         rows={4}
-      />
-    </div>
-  `);
-});
-
-it("renders a regular input with numeric keyboard specified", () => {
-  const tree = renderer
-    .create(<InputText placeholder="Favourite number" keyboard={"numeric"} />)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
-    >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440004"
-      >
-        Favourite number
-      </label>
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440004"
-        inputMode="numeric"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        type="text"
       />
     </div>
   `);
