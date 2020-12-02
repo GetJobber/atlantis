@@ -29,6 +29,17 @@ it("renders a warning banner", () => {
   expect(tree).toMatchSnapshot();
 });
 
+it("renders without close button", () => {
+  const tree = renderer
+    .create(
+      <Banner type="warning" dismissible={false}>
+        Warn
+      </Banner>,
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
 test("it should call the handler with a number value", () => {
   const changeHandler = jest.fn();
 

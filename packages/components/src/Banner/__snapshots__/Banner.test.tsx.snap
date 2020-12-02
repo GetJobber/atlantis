@@ -195,3 +195,15 @@ exports[`renders an error banner 1`] = `
   </button>
 </div>
 `;
+
+exports[`renders without close button 1`] = `
+<div
+  className="flash warning"
+>
+  <p
+    className="base regular base greyBlueDark"
+  >
+    Warn
+  </p>
+</div>
+`;
