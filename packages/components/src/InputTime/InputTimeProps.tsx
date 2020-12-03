@@ -11,7 +11,13 @@ type BaseProps = Pick<
   FormFieldProps,
   Exclude<
     keyof FormFieldProps,
-    "type" | "children" | "rows" | "defaultValue" | "value" | "onChange"
+    | "type"
+    | "children"
+    | "rows"
+    | "defaultValue"
+    | "value"
+    | "onChange"
+    | "keyboard"
   >
 >;
 
