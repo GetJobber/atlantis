@@ -268,7 +268,7 @@ export function FormField({
       readOnly: readonly,
       onChange: handleChange,
       value: value,
-      ...(keyboard && { inputMode: keyboard }),
+      inputMode: keyboard,
       ...(defaultValue && { defaultValue: defaultValue }),
     };
 
