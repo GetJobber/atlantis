@@ -1,5 +1,5 @@
 :root {
-  --border-base: var(--space-minuscule);
+  --border-base: var(--space-miniscule);
   --border-thick: var(--space-smallest);
   --border-thicker: var(--space-smaller);
 }

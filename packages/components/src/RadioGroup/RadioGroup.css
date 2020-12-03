@@ -22,7 +22,7 @@
   height: var(--space-base);
   box-sizing: border-box;
   margin: 0 var(--space-small) 0 0;
-  border: var(--border-thick) solid var(--color-grey--light);
+  border: var(--border-thick) solid var(--color-green);
   border-radius: 100%;
   background-color: var(--color-white);
   transition: all var(--timing-base);
@@ -33,7 +33,9 @@
 }
 
 .input:checked + .label::before {
+  box-shadow: 0px 0px 0px var(--space-miniscule) var(--color-green--dark);
   border-color: var(--color-green--dark);
+  border-width: var(--border-thicker);
   background-color: var(--color-green);
 }
 
@@ -43,8 +45,12 @@
 }
 
 .input[disabled] + .label::before {
-  border-color: var(--color-grey--light);
+  border-color: var(--color-disabled);
   background-color: var(--color-grey--lighter);
+}
+
+.input[disabled]:checked + .label::before {
+  box-shadow: 0px 0px 0px var(--space-miniscule) var(--color-disabled);
 }
 
 .description {

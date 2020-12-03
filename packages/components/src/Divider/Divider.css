@@ -1,5 +1,5 @@
 .divider {
-  height: var(--space-minuscule);
+  height: var(--space-miniscule);
   margin: 0;
   border: none;
   border-bottom: var(--border-base) solid var(--color-grey--lighter);
