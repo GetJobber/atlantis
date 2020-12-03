@@ -11,12 +11,12 @@ it("renders a paragraph", () => {
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-        <p
-          className="base regular base greyBlueDark"
-        >
-          Ask the information you need upfront from clients and new leads
-        </p>
-    `);
+    <p
+      className="base regular base blue"
+    >
+      Ask the information you need upfront from clients and new leads
+    </p>
+  `);
 });
 
 it("renders a subdued text", () => {
@@ -50,12 +50,12 @@ it("renders a error text", () => {
     .create(<Text variation="error">Name is required</Text>)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-        <p
-          className="base regular base red"
-        >
-          Name is required
-        </p>
-    `);
+    <p
+      className="base regular base error"
+    >
+      Name is required
+    </p>
+  `);
 });
 
 it("renders a warning text", () => {
@@ -99,7 +99,7 @@ it("renders a large text", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <p
-      className="base regular large greyBlueDark"
+      className="base regular large blue"
     >
       Attract new customers by asking happy clients for a Facebook recommendation
     </p>
@@ -112,7 +112,7 @@ it("renders a small text", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <p
-      className="base regular small greyBlueDark"
+      className="base regular small blue"
     >
       Teeny tiny text
     </p>

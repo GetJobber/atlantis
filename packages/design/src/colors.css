@@ -9,6 +9,7 @@
 
   --color-outline: var(--color-yellow--light);
   --color-error: var(--color-red);
+  --color-destructive: var(--color-red);
   --color-disabled: var(--color-grey);
 
   --color-accent: rgb(160, 215, 43);

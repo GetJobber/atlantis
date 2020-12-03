@@ -5,7 +5,7 @@ exports[`renders a banner with a primary 'learning' action when the type is 'not
   className="flash notice"
 >
   <p
-    className="base regular base greyBlueDark"
+    className="base regular base blue"
   >
     Bruce
   </p>
@@ -45,7 +45,7 @@ exports[`renders a banner with a primary action 1`] = `
   className="flash success"
 >
   <p
-    className="base regular base greyBlueDark"
+    className="base regular base blue"
   >
     Bruce
   </p>
@@ -85,7 +85,7 @@ exports[`renders a notice banner 1`] = `
   className="flash notice"
 >
   <p
-    className="base regular base greyBlueDark"
+    className="base regular base blue"
   >
     Notice me
   </p>
@@ -114,7 +114,7 @@ exports[`renders a success banner 1`] = `
   className="flash success"
 >
   <p
-    className="base regular base greyBlueDark"
+    className="base regular base blue"
   >
     Success
   </p>
@@ -143,7 +143,7 @@ exports[`renders a warning banner 1`] = `
   className="flash warning"
 >
   <p
-    className="base regular base greyBlueDark"
+    className="base regular base blue"
   >
     Warn
   </p>
@@ -172,7 +172,7 @@ exports[`renders an error banner 1`] = `
   className="flash error"
 >
   <p
-    className="base regular base greyBlueDark"
+    className="base regular base blue"
   >
     Fail
   </p>

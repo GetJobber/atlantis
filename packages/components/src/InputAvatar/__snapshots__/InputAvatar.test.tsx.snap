@@ -95,7 +95,7 @@ exports[`renders with a provided image 1`] = `
       type="button"
     >
       <span
-        class="base extraBold smaller uppercase red"
+        class="base extraBold smaller uppercase error"
       >
         Remove
       </span>

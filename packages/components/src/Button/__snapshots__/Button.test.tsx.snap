@@ -171,7 +171,7 @@ exports[`renders a disabled Button 1`] = `
   type="button"
 >
   <span
-    className="base extraBold small uppercase grey"
+    className="base extraBold small uppercase disabled"
   >
     Submit
   </span>

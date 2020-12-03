@@ -75,7 +75,7 @@ interface LabelProps {
 function Label({ as, disabled }: LabelProps) {
   const getTextColor = () => {
     if (disabled) {
-      return "grey";
+      return "disabled";
     } else if (as === "On") {
       return "white";
     }

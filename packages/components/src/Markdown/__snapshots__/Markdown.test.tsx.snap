@@ -5,7 +5,7 @@ exports[`renders Bold Component 1`] = `
   className="padded base"
 >
   <p
-    className="base regular base greyBlueDark"
+    className="base regular base blue"
   >
     <b
       className="base bold"
@@ -21,7 +21,7 @@ exports[`renders Italicized Component 1`] = `
   className="padded base"
 >
   <p
-    className="base regular base greyBlueDark"
+    className="base regular base blue"
   >
     <em
       className="base regular italic"
@@ -107,7 +107,7 @@ exports[`renders Text Component 1`] = `
   className="padded base"
 >
   <p
-    className="base regular base greyBlueDark"
+    className="base regular base blue"
   >
     Paragraph
   </p>
@@ -124,7 +124,7 @@ exports[`renders a combination of Markdown components 1`] = `
     This is a paragraph.
   </h1>
   <p
-    className="base regular base greyBlueDark"
+    className="base regular base blue"
   >
       The paragraph has some 
     <b
@@ -141,7 +141,7 @@ exports[`renders a combination of Markdown components 1`] = `
     .
   </p>
   <p
-    className="base regular base greyBlueDark"
+    className="base regular base blue"
   >
       This is the end of this paragraph.
   </p>

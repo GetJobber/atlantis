@@ -26,6 +26,8 @@ export type IconNames =
   | "thumbsDown"
   | "truck";
 export type IconColorNames =
+  | "error"
+  | "disabled"
   | "white"
   | "grey"
   | "greyBlue"

@@ -23,7 +23,7 @@ it("renders the input validation messages", () => {
           className="message"
         >
           <p
-            className="base regular base red"
+            className="base regular base error"
           >
             I am an error
           </p>

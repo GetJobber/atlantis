@@ -52,7 +52,7 @@ exports[`renders 1 List item with all the props 1`] = `
               Jordan Yeo completed a visit
             </h5>
             <p
-              className="base regular base greyBlueDark"
+              className="base regular base blue"
             >
               <span
                 className="truncate"
@@ -61,7 +61,7 @@ exports[`renders 1 List item with all the props 1`] = `
               </span>
             </p>
             <p
-              className="base regular base greyBlueDark"
+              className="base regular base blue"
             >
               <span
                 className="truncate"
@@ -83,7 +83,7 @@ exports[`renders 1 List item with all the props 1`] = `
             className="amount"
           >
             <p
-              className="base regular base greyBlueDark"
+              className="base regular base blue"
             >
               <b
                 className="base bold"
@@ -117,7 +117,7 @@ exports[`should render a button list item 1`] = `
         className="info"
       >
         <p
-          className="base regular base greyBlueDark"
+          className="base regular base blue"
         >
           <span
             className="truncate"
@@ -147,7 +147,7 @@ exports[`should render a link with url list item 1`] = `
         className="info"
       >
         <p
-          className="base regular base greyBlueDark"
+          className="base regular base blue"
         >
           <span
             className="truncate"
@@ -178,7 +178,7 @@ exports[`should render an a tag with url and on click list item 1`] = `
         className="info"
       >
         <p
-          className="base regular base greyBlueDark"
+          className="base regular base blue"
         >
           <span
             className="truncate"

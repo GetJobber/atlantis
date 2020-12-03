@@ -122,7 +122,7 @@ it("renders a disabled Switch", () => {
             className="label"
           >
             <span
-              className="base bold small uppercase grey"
+              className="base bold small uppercase disabled"
             >
               On
             </span>
@@ -134,7 +134,7 @@ it("renders a disabled Switch", () => {
             className="label"
           >
             <span
-              className="base bold small uppercase grey"
+              className="base bold small uppercase disabled"
             >
               Off
             </span>

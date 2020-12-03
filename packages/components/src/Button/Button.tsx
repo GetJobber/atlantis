@@ -202,14 +202,14 @@ function getColor(variation: string, type: string, disabled?: boolean) {
   }
 
   if (disabled) {
-    return "grey";
+    return "disabled";
   }
 
   switch (variation) {
     case "learning":
       return "lightBlue";
     case "destructive":
-      return "red";
+      return "error";
     case "cancel":
       return "greyBlue";
     default:

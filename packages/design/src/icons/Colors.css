@@ -6,6 +6,10 @@
   fill: var(--color-grey);
 }
 
+.disabled {
+  fill: var(--color-disabled);
+}
+
 .greyBlue {
   fill: var(--color-greyBlue);
 }
@@ -32,6 +36,10 @@
 
 .red {
   fill: var(--color-red);
+}
+
+.error {
+  fill: var(--color-error);
 }
 
 .navy {
