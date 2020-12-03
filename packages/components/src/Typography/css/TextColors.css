@@ -2,8 +2,8 @@
   color: var(--color-blue);
 }
 
-.grey {
-  color: var(--color-grey);
+.disabled {
+  color: var(--color-disabled);
 }
 
 .greyBlueDark {
@@ -18,8 +18,8 @@
   color: var(--color-green);
 }
 
-.red {
-  color: var(--color-red);
+.error {
+  color: var(--color-error);
 }
 
 .yellow {

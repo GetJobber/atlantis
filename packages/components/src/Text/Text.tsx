@@ -8,7 +8,8 @@ interface TextProps {
     | "success"
     | "error"
     | "warn"
-    | "info";
+    | "info"
+    | "disabled";
 
   readonly size?: "small" | "base" | "large";
 }
@@ -21,12 +22,13 @@ export function Text({
   children,
 }: PropsWithChildren<TextProps>) {
   const textColors = {
-    default: "greyBlueDark",
+    default: "blue",
     subdued: "greyBlue",
     success: "green",
-    error: "red",
+    error: "error",
     warn: "yellowDark",
     info: "lightBlue",
+    disabled: "disabled",
   };
 
   return (

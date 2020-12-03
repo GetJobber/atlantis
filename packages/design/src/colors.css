@@ -4,8 +4,14 @@
   --color-job: var(--color-yellowGreen);
   --color-invoice: var(--color-purple);
 
+  --color-text--primary: var(--color-blue);
+  --color-text--secondary: var(--color-greyBlue);
+
   --color-outline: var(--color-yellow--light);
   --color-error: var(--color-red);
+  --color-disabled: var(--color-grey);
+
+  --color-accent: rgb(160, 215, 43);
 
   --color-blue: rgb(1, 41, 57);
   --color-blue--light: rgb(77, 105, 116);

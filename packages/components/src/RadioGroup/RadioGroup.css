@@ -38,7 +38,7 @@
 }
 
 .input[disabled] + .label {
-  color: var(--color-blue--lighter);
+  color: var(--color-disabled);
   cursor: not-allowed;
 }
 

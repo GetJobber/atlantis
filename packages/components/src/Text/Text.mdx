@@ -5,6 +5,7 @@ menu: Components
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { Text } from ".";
+import { Checkbox } from "../Checkbox";
 
 # Text
 
@@ -45,6 +46,14 @@ De-emphasize a piece of text that is less important to the user
 
 <Playground>
   <Text variation="subdued">Job note linked to related invoice</Text>
+</Playground>
+
+### Disabled
+
+Use when `Text` is part of a component that is disabled
+
+<Playground>
+  <Checkbox label="View in side menu" disabled />
 </Playground>
 
 ### Feedback message
