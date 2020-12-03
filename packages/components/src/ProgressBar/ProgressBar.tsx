@@ -26,11 +26,16 @@ export function ProgressBar({
   totalSteps,
   size = "base",
 }: ProgressBarProps) {
-  const progressBarContentClassName = classnames(styles.content);
+  const percentage = (currentStep / totalSteps) * 100;
+  const progressBarClassName = classnames(styles.ProgressBar, sizes[size]);
 
   return (
-    <progress max={totalSteps} value={currentStep}>
-      {currentStep} of {totalSteps}
+    <progress
+      className={progressBarClassName}
+      max={totalSteps}
+      value={currentStep}
+    >
+      {percentage}%
     </progress>
   );
 }
