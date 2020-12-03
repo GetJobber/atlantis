@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.16.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.15.1...@jobber/components@2.16.0) (2020-12-03)
+
+
+### Features
+
+* **components:** adds `keyboard` prop to InputText ([#429](https://github.com/GetJobber/atlantis/issues/429)) ([f0915b2](https://github.com/GetJobber/atlantis/commit/f0915b295a1dde03db69e834fcdaeddc7c9d3de4))
+
+
+
+
+
 ## [2.15.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.15.0...@jobber/components@2.15.1) (2020-12-03)
 
 
