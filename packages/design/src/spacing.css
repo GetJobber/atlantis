@@ -2,6 +2,7 @@
   --base-unit: 16px;
 
   --space-miniscule: calc(var(--base-unit) / 16);
+  --space-minuscule: var(--space-miniscule);
   --space-smallest: calc(var(--base-unit) / 8);
   --space-smaller: calc(var(--base-unit) / 4);
   --space-small: calc(var(--base-unit) / 2);
