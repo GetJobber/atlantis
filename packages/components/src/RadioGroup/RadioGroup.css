@@ -45,8 +45,7 @@
 }
 
 .input[disabled] + .label::before {
-  border-color: var(--color-disabled);
-  background-color: var(--color-grey--lighter);
+  border-color: var(--color-grey--lighter);
 }
 
 .input[disabled]:checked + .label::before {

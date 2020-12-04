@@ -42,8 +42,7 @@
 }
 
 .disabled .checkBox {
-  border-color: var(--color-disabled);
-  background-color: var(--color-grey--lighter);
+  border-color: var(--color-grey--lighter);
 }
 
 .disabled .checkBox > * {
