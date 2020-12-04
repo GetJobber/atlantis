@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.17.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.16.0...@jobber/components@2.17.0) (2020-12-04)
+
+
+### Features
+
+* **components:** Add dismissible prop to banner ([#431](https://github.com/GetJobber/atlantis/issues/431)) ([db411cc](https://github.com/GetJobber/atlantis/commit/db411cc4e7b335455e15a9c88bf36350752ae6e7))
+
+
+
+
+
 # [2.16.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.15.1...@jobber/components@2.16.0) (2020-12-03)
 
 
