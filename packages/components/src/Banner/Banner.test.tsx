@@ -30,14 +30,21 @@ it("renders a warning banner", () => {
 });
 
 it("renders without close button", () => {
-  const tree = renderer
-    .create(
-      <Banner type="warning" dismissible={false}>
-        Warn
-      </Banner>,
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { queryByLabelText } = render(
+    <Banner type="warning" dismissible={false}>
+      Foo
+    </Banner>,
+  );
+  expect(queryByLabelText("Close")).toBeNull();
+});
+
+it("renders with close button", () => {
+  const { queryByLabelText } = render(
+    <Banner type="warning" dismissible={true}>
+      Foo
+    </Banner>,
+  );
+  expect(queryByLabelText("Close")).toBeTruthy();
 });
 
 test("it should call the handler with a number value", () => {
