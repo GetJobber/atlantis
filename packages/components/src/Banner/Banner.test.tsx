@@ -29,6 +29,17 @@ it("renders a warning banner", () => {
   expect(tree).toMatchSnapshot();
 });
 
+it("renders centered text", () => {
+  const tree = renderer
+    .create(
+      <Banner type="warning" align="center">
+        Center
+      </Banner>,
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
 it("renders without close button", () => {
   const { queryByLabelText } = render(
     <Banner type="warning" dismissible={false}>

@@ -19,6 +19,10 @@ interface BannerProps {
    * @default true
    */
   readonly dismissible?: boolean;
+  /**
+   * @default "left"
+   */
+  readonly align?: "left" | "center";
   onDismiss?(): void;
 }
 
@@ -31,6 +35,7 @@ export function Banner({
   type,
   primaryAction,
   dismissible = true,
+  align = "left",
   onDismiss,
 }: BannerProps) {
   const [showFlash, setShowFlash] = useState(true);
@@ -53,7 +58,8 @@ export function Banner({
     );
   }
 
-  const flashClassNames = classnames(styles.flash, types[type]);
+  const textAlignment = align == "center" ? styles.centerText : "";
+  const flashClassNames = classnames(styles.flash, types[type], textAlignment);
   return (
     <>
       {showFlash && (
