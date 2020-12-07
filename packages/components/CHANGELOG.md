@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.18.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.17.1...@jobber/components@2.18.0) (2020-12-07)
+
+
+### Features
+
+* **components:** add inputNumberRef to inputNumber ([#428](https://github.com/GetJobber/atlantis/issues/428)) ([cb1db93](https://github.com/GetJobber/atlantis/commit/cb1db93ecc19b58552a8b764bc9065db56925799))
+
+
+
+
+
 ## [2.17.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.17.0...@jobber/components@2.17.1) (2020-12-04)
 
 **Note:** Version bump only for package @jobber/components
