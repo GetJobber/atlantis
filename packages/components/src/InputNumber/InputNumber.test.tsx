@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
-import { InputNumber } from ".";
+import { InputNumber, InputNumberRef } from ".";
 
 afterEach(cleanup);
 
@@ -233,4 +233,27 @@ test("allows custom validation", async () => {
   await waitFor(() => {
     expect(validationHandler).toHaveBeenCalledWith("only one number");
   });
+});
+
+test("it should handle focus", () => {
+  const inputRef = React.createRef<InputNumberRef>();
+  const placeholder = "Number";
+
+  const { getByLabelText } = render(
+    <InputNumber placeholder={placeholder} ref={inputRef} />,
+  );
+
+  inputRef.current.focus();
+  expect(document.activeElement).toBe(getByLabelText(placeholder));
+});
+
+test("it should handle blur", () => {
+  const inputRef = React.createRef<InputNumberRef>();
+  const blurHandler = jest.fn();
+
+  render(<InputNumber ref={inputRef} onBlur={blurHandler} />);
+
+  inputRef.current.focus();
+  inputRef.current.blur();
+  expect(blurHandler).toHaveBeenCalledTimes(1);
 });
