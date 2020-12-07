@@ -247,3 +247,14 @@ test("it should handle focus", () => {
   inputRef.current.focus();
   expect(document.activeElement).toBe(getByLabelText(placeholder));
 });
+
+test("it should handle blur", () => {
+  const inputRef = React.createRef<InputNumberRef>();
+  const blurHandler = jest.fn();
+
+  render(<InputNumber ref={inputRef} onBlur={blurHandler} />);
+
+  inputRef.current.focus();
+  inputRef.current.blur();
+  expect(blurHandler).toHaveBeenCalledTimes(1);
+});
