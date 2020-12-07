@@ -236,9 +236,8 @@ test("allows custom validation", async () => {
 });
 
 test("it should handle focus", () => {
-  const placeholder = "Number";
-
   const inputRef = React.createRef<InputNumberRef>();
+  const placeholder = "Number";
 
   const { getByLabelText } = render(
     <InputNumber placeholder={placeholder} ref={inputRef} />,
