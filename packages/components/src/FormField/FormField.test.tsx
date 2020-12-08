@@ -355,3 +355,13 @@ test("it should generate a name if validations are set", () => {
   const name = input.getAttribute("name");
   expect(name).toContain("generatedName--");
 });
+
+test("it should set the inputMode when the keyboard prop is set", () => {
+  const keyboardMode = "numeric";
+  const { getByLabelText } = render(
+    <FormField placeholder="foo" keyboard={keyboardMode} />,
+  );
+  const input = getByLabelText("foo");
+  const name = input.getAttribute("inputMode");
+  expect(name).toContain(keyboardMode);
+});

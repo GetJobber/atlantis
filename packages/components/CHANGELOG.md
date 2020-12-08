@@ -8,6 +8,47 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.18.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.17.1...@jobber/components@2.18.0) (2020-12-07)
+
+
+### Features
+
+* **components:** add inputNumberRef to inputNumber ([#428](https://github.com/GetJobber/atlantis/issues/428)) ([cb1db93](https://github.com/GetJobber/atlantis/commit/cb1db93ecc19b58552a8b764bc9065db56925799))
+
+
+
+
+
+## [2.17.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.17.0...@jobber/components@2.17.1) (2020-12-04)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.17.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.16.0...@jobber/components@2.17.0) (2020-12-04)
+
+
+### Features
+
+* **components:** Add dismissible prop to banner ([#431](https://github.com/GetJobber/atlantis/issues/431)) ([db411cc](https://github.com/GetJobber/atlantis/commit/db411cc4e7b335455e15a9c88bf36350752ae6e7))
+
+
+
+
+
+# [2.16.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.15.1...@jobber/components@2.16.0) (2020-12-03)
+
+
+### Features
+
+* **components:** adds `keyboard` prop to InputText ([#429](https://github.com/GetJobber/atlantis/issues/429)) ([f0915b2](https://github.com/GetJobber/atlantis/commit/f0915b295a1dde03db69e834fcdaeddc7c9d3de4))
+
+
+
+
+
 ## [2.15.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.15.0...@jobber/components@2.15.1) (2020-12-03)
 
 

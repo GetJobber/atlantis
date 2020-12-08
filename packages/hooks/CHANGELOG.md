@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.0.0...@jobber/hooks@1.1.0) (2020-12-04)
+
+
+### Features
+
+* **hooks:** Add useOnKeyDown hook ([#432](https://github.com/GetJobber/atlantis/issues/432)) ([6a30a2e](https://github.com/GetJobber/atlantis/commit/6a30a2e8ad8ea3540eaab99597b2b5298facc575))
+
+
+
+
+
 # [1.0.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@0.3.0...@jobber/hooks@1.0.0) (2020-09-24)
 
 
