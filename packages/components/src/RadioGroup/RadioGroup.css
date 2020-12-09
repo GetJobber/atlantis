@@ -22,7 +22,7 @@
   height: var(--space-base);
   box-sizing: border-box;
   margin: 0 var(--space-small) 0 0;
-  border: var(--border-thick) solid var(--color-grey--light);
+  border: var(--border-thick) solid var(--color-green);
   border-radius: 100%;
   background-color: var(--color-white);
   transition: all var(--timing-base);
@@ -33,18 +33,19 @@
 }
 
 .input:checked + .label::before {
+  box-shadow: 0px 0px 0px var(--space-minuscule) var(--color-green--dark);
   border-color: var(--color-green--dark);
+  border-width: var(--border-thicker);
   background-color: var(--color-green);
 }
 
 .input[disabled] + .label {
-  color: var(--color-blue--lighter);
+  color: var(--color-grey);
   cursor: not-allowed;
 }
 
 .input[disabled] + .label::before {
-  border-color: var(--color-grey--light);
-  background-color: var(--color-grey--lighter);
+  border-color: var(--color-grey--lighter);
 }
 
 .description {

@@ -34,6 +34,6 @@ it from another react component? This should consist primarily of code blocks}_
 
 _{Provide a table in the following format of the component's public API}_
 
-| name | type | default | description |
-| ---- | ---- | ------- | ----------- |
-| ...  | ...  | ...     | ...         |
+| name | type | required? | default | description |
+| ---- | ---- | --------- | ------- | ----------- |
+| ...  | ...  | ...       | ...     | ...         |

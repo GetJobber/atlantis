@@ -15,6 +15,10 @@ interface BannerProps {
    * 'type' is set to 'notice' we change the cta variation to 'learning'
    */
   readonly primaryAction?: ButtonProps;
+  /**
+   * @default true
+   */
+  readonly dismissible?: boolean;
   onDismiss?(): void;
 }
 
@@ -26,6 +30,7 @@ export function Banner({
   children,
   type,
   primaryAction,
+  dismissible = true,
   onDismiss,
 }: BannerProps) {
   const [showFlash, setShowFlash] = useState(true);
@@ -56,13 +61,15 @@ export function Banner({
           <Text>{children}</Text>
           {primaryAction && <Button {...primaryAction} />}
 
-          <button
-            className={styles.closeButton}
-            onClick={handleClose}
-            aria-label="Close"
-          >
-            <Icon name="cross" color={iconColors[type]} />
-          </button>
+          {dismissible && (
+            <button
+              className={styles.closeButton}
+              onClick={handleClose}
+              aria-label="Close"
+            >
+              <Icon name="cross" color={iconColors[type]} />
+            </button>
+          )}
         </div>
       )}
     </>

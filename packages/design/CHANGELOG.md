@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.9.1...@jobber/design@0.9.2) (2020-12-03)
+
+
+### Bug Fixes
+
+* **components:** Change `Table` borders from box-shadow to pseudo element ([#427](https://github.com/GetJobber/atlantis/issues/427)) ([7648514](https://github.com/GetJobber/atlantis/commit/76485149e583a0711f3592881035df550aef3393))
+
+
+
+
+
 ## [0.9.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.9.0...@jobber/design@0.9.1) (2020-10-07)
 
 **Note:** Version bump only for package @jobber/design

@@ -12,7 +12,14 @@ interface InputPasswordProps
     FormFieldProps,
     Exclude<
       keyof FormFieldProps,
-      "type" | "children" | "rows" | "min" | "max" | "maxLength" | "readonly"
+      | "type"
+      | "children"
+      | "rows"
+      | "min"
+      | "max"
+      | "maxLength"
+      | "readonly"
+      | "keyboard"
     >
   > {
   value?: string;

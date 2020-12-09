@@ -9,7 +9,7 @@ import { FormField, FormFieldProps } from "../FormField";
  */
 type SelectProps = Pick<
   FormFieldProps,
-  Exclude<keyof FormFieldProps, "type" | "rows">
+  Exclude<keyof FormFieldProps, "type" | "rows" | "keyboard">
 >;
 
 export function Select(props: SelectProps) {

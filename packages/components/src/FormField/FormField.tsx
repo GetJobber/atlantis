@@ -110,6 +110,11 @@ export interface FormFieldProps {
     | "select";
 
   /**
+   * Determines what kind of keyboard appears on mobile web.
+   */
+  readonly keyboard?: "numeric";
+
+  /**
    * Set the component to the given value.
    */
   readonly value?: string | number;
@@ -180,6 +185,7 @@ export function FormField({
   rows,
   size,
   type = "text",
+  keyboard,
   value,
   validations,
   inputRef,
@@ -262,6 +268,7 @@ export function FormField({
       readOnly: readonly,
       onChange: handleChange,
       value: value,
+      inputMode: keyboard,
       ...(defaultValue && { defaultValue: defaultValue }),
     };
 
