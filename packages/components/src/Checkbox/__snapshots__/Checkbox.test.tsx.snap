@@ -84,7 +84,7 @@ exports[`renders a disabled Checkbox 1`] = `
       className="label"
     >
       <p
-        className="base regular base greyBlue"
+        className="base regular base greyBlueDark"
       >
         Dont click me
       </p>
