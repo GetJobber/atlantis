@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.19.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.18.2...@jobber/components@2.19.0) (2020-12-10)
+
+
+### Features
+
+* **components:** adjust line-height on largest font sizes and add h6 ([#438](https://github.com/GetJobber/atlantis/issues/438)) ([21728e3](https://github.com/GetJobber/atlantis/commit/21728e3dc657ff4f705685d9a382b215b67f3c11))
+
+
+
+
+
 ## [2.18.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.18.1...@jobber/components@2.18.2) (2020-12-09)
 
 
