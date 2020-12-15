@@ -48,7 +48,17 @@
   border-color: var(--color-grey--lighter);
 }
 
+.input[disabled]:checked + .label::before {
+  box-shadow: 0px 0px 0px var(--space-minuscule) var(--color-grey);
+  border-color: var(--color-grey);
+  background-color: var(--color-grey--lighter);
+}
+
 .description {
   margin-bottom: var(--space-small);
   padding-left: var(--space-large);
+}
+
+.input[disabled] + .label + .description > p {
+  color: var(--color-grey);
 }
