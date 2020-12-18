@@ -3,6 +3,7 @@
 exports[`renders a banner with a primary 'learning' action when the type is 'notice' 1`] = `
 <div
   className="flash notice"
+  role="status"
 >
   <p
     className="base regular base greyBlueDark"
@@ -43,6 +44,7 @@ exports[`renders a banner with a primary 'learning' action when the type is 'not
 exports[`renders a banner with a primary action 1`] = `
 <div
   className="flash success"
+  role="status"
 >
   <p
     className="base regular base greyBlueDark"
@@ -83,6 +85,7 @@ exports[`renders a banner with a primary action 1`] = `
 exports[`renders a notice banner 1`] = `
 <div
   className="flash notice"
+  role="status"
 >
   <p
     className="base regular base greyBlueDark"
@@ -112,6 +115,7 @@ exports[`renders a notice banner 1`] = `
 exports[`renders a success banner 1`] = `
 <div
   className="flash success"
+  role="status"
 >
   <p
     className="base regular base greyBlueDark"
@@ -141,6 +145,7 @@ exports[`renders a success banner 1`] = `
 exports[`renders a warning banner 1`] = `
 <div
   className="flash warning"
+  role="status"
 >
   <p
     className="base regular base greyBlueDark"
@@ -170,6 +175,7 @@ exports[`renders a warning banner 1`] = `
 exports[`renders an error banner 1`] = `
 <div
   className="flash error"
+  role="status"
 >
   <p
     className="base regular base greyBlueDark"

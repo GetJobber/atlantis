@@ -57,7 +57,7 @@ export function Banner({
   return (
     <>
       {showFlash && (
-        <div className={flashClassNames}>
+        <div className={flashClassNames} role="status">
           <Text>{children}</Text>
           {primaryAction && <Button {...primaryAction} />}
 
