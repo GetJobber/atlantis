@@ -4,11 +4,8 @@
 
 .flash {
   display: flex;
-  margin-bottom: var(--space-base);
+  box-shadow: var(--shadow-base);
   padding: var(--flash--inset);
-  border-top: var(--border-thick) solid var(--color-grey--light);
-  border-bottom-right-radius: var(--space-smaller);
-  border-bottom-left-radius: var(--space-smaller);
   color: var(--color-black);
   background-color: var(--color-grey--lightest);
   align-items: center;
@@ -30,6 +27,12 @@
   flex: 0;
 }
 
+.closeButton:hover {
+  background: rgba(0, 0, 0, 0.025);
+}
+
 .closeButton:focus {
+  box-shadow: 0 0 1px 0.125rem var(--color-outline);
   outline: none;
+  background: rgba(0, 0, 0, 0.05);
 }
