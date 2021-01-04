@@ -7,6 +7,7 @@
   --color-action: var(--color-green);
   --color-destructive: var(--color-red);
   --color-disabled: var(--color-grey);
+  --color-disabled--secondary: var(--color-grey--lighter);
   --color-outline: var(--color-yellow--light);
   --color-error: var(--color-red);
 
