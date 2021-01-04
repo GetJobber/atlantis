@@ -11,7 +11,7 @@
   --color-outline: var(--color-yellow--light);
   --color-error: var(--color-red);
 
-  --color-text--primary: var(--color-greyBlue--dark);
+  --color-text: var(--color-greyBlue--dark);
   --color-text--secondary: var(--color-greyBlue);
 
   --color-brand: var(--color-green);
