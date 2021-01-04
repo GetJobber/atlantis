@@ -8,17 +8,28 @@
   padding: var(--flash--inset);
   color: var(--color-black);
   background-color: var(--color-grey--lightest);
-  align-items: center;
+  align-items: start;
 }
 
-.flash > *:first-child {
+.bannerContent {
+  display: flex;
   flex: 1 1 auto;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.dismissWrapper {
+  display: flex;
+  position: relative;
+  height: var(--space-large);
+  padding-left: var(--flash--inset);
+  align-self: stretch;
 }
 
 .closeButton {
-  width: var(--space-larger);
-  margin-top: calc(var(--space-smallest) - var(--flash--inset));
-  margin-right: calc(var(--space-smallest) - var(--flash--inset));
+  position: absolute;
+  top: calc(var(--flash--inset) * -1);
+  right: calc(var(--flash--inset) * -1);
   padding: var(--space-smallest);
   border: none;
   background-color: transparent;

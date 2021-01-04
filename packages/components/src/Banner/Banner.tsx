@@ -58,17 +58,20 @@ export function Banner({
     <>
       {showFlash && (
         <div className={flashClassNames} role="status">
-          <Text>{children}</Text>
-          {primaryAction && <Button {...primaryAction} />}
-
+          <div className={styles.bannerContent}>
+            <Text>{children}</Text>
+            {primaryAction && <Button {...primaryAction} />}
+          </div>
           {dismissible && (
-            <button
-              className={styles.closeButton}
-              onClick={handleClose}
-              aria-label="Close"
-            >
-              <Icon name="cross" color={iconColors[type]} />
-            </button>
+            <div className={styles.dismissWrapper}>
+              <button
+                className={styles.closeButton}
+                onClick={handleClose}
+                aria-label="Close"
+              >
+                <Icon name="cross" color={iconColors[type]} />
+              </button>
+            </div>
           )}
         </div>
       )}
