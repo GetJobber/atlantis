@@ -71,7 +71,6 @@ export function Banner({
   });
   return (
     <>
-      {bannerWidth}
       {showFlash && (
         <div className={flashClassNames} ref={bannerRef} role="status">
           <div className={styles.bannerContent}>
