@@ -1,14 +1,19 @@
 :root {
   --flash--inset: var(--space-base);
+  --flash--inset--small: var(--space-small);
 }
 
 .flash {
   display: flex;
   box-shadow: var(--shadow-base);
-  padding: var(--flash--inset);
+  padding: var(--flash--inset--small) var(--flash--inset);
   color: var(--color-black);
   background-color: var(--color-grey--lightest);
   align-items: start;
+}
+
+.flash.medium {
+  padding: var(--flash--inset);
 }
 
 .bannerContent {
@@ -16,6 +21,29 @@
   flex: 1 1 auto;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+.bannerContent > * {
+  margin-top: var(--flash--inset--small);
+  margin-bottom: var(--flash--inset--small);
+}
+
+.bannerContent > *:first-child {
+  margin-right: var(--space-base);
+}
+
+.medium .bannerContent {
+  flex-wrap: nowrap;
+}
+
+.medium .bannerContent > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.bannerAction {
+  display: flex;
+  flex: 0 0 auto;
 }
 
 .dismissWrapper {
@@ -28,7 +56,7 @@
 
 .closeButton {
   position: absolute;
-  top: calc(var(--flash--inset) * -1);
+  top: calc(var(--flash--inset--small) * -1);
   right: calc(var(--flash--inset) * -1);
   padding: var(--space-smallest);
   border: none;
@@ -36,6 +64,10 @@
   cursor: pointer;
   appearance: none;
   flex: 0;
+}
+
+.medium .closeButton {
+  top: calc(var(--flash--inset) * -1);
 }
 
 .closeButton:hover {

@@ -1,6 +1,7 @@
 import React, { ReactNode, useState } from "react";
 import classnames from "classnames";
 import { IconColorNames } from "@jobber/design";
+import { useResizeObserver } from "@jobber/hooks";
 import styles from "./Banner.css";
 import types from "./notificationTypes.css";
 import { Icon } from "../Icon";
@@ -35,6 +36,18 @@ export function Banner({
 }: BannerProps) {
   const [showFlash, setShowFlash] = useState(true);
 
+  const customWidths = {
+    small: 320,
+    medium: 480,
+  };
+
+  const [
+    bannerRef,
+    { width: bannerWidth = customWidths.small },
+  ] = useResizeObserver<HTMLDivElement>({
+    widths: customWidths,
+  });
+
   const iconColors: IconColorMap = {
     notice: "lightBlue",
     success: "green",
@@ -53,14 +66,21 @@ export function Banner({
     );
   }
 
-  const flashClassNames = classnames(styles.flash, types[type]);
+  const flashClassNames = classnames(styles.flash, types[type], {
+    [styles.medium]: bannerWidth >= customWidths.medium,
+  });
   return (
     <>
+      {bannerWidth}
       {showFlash && (
-        <div className={flashClassNames} role="status">
+        <div className={flashClassNames} ref={bannerRef} role="status">
           <div className={styles.bannerContent}>
             <Text>{children}</Text>
-            {primaryAction && <Button {...primaryAction} />}
+            {primaryAction && (
+              <div className={styles.bannerAction}>
+                <Button {...primaryAction} />
+              </div>
+            )}
           </div>
           {dismissible && (
             <div className={styles.dismissWrapper}>
