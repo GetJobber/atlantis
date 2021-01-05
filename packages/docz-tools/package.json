@@ -10,7 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "react": "^17.0.1",
-    "theme-ui": "^0.3.5"
+    "@emotion/react": "^11.1.4"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "theme-ui": "0.3.5"
   }
 }

@@ -26,5 +26,13 @@ module.exports = {
         allow: ["@jobber/components/*", "gatsby-theme-docz/**", "lodash/*"]
       }
     ]
-  }
+  },
+  overrides: [
+    {
+      files: ['./packages/docz-tools/src/gatsby-theme-docz/theme/index.ts'],
+      rules: {
+        "import/no-default-export": "off",
+      }
+    }
+  ]
 };
