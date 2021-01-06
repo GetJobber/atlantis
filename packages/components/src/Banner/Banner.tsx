@@ -36,16 +36,16 @@ export function Banner({
 }: BannerProps) {
   const [showFlash, setShowFlash] = useState(true);
 
-  const customWidths = {
+  const bannerWidths = {
     small: 320,
     medium: 480,
   };
 
   const [
     bannerRef,
-    { width: bannerWidth = customWidths.small },
+    { width: bannerWidth = bannerWidths.small },
   ] = useResizeObserver<HTMLDivElement>({
-    widths: customWidths,
+    widths: bannerWidths,
   });
 
   const iconColors: IconColorMap = {
@@ -67,13 +67,18 @@ export function Banner({
   }
 
   const flashClassNames = classnames(styles.flash, types[type], {
-    [styles.medium]: bannerWidth >= customWidths.medium,
+    [styles.medium]: bannerWidth >= bannerWidths.medium,
   });
+
+  const contentClassNames = classnames(styles.bannerContent, {
+    [styles.dismissibleSpacing]: dismissible,
+  });
+
   return (
     <>
       {showFlash && (
         <div className={flashClassNames} ref={bannerRef} role="status">
-          <div className={styles.bannerContent}>
+          <div className={contentClassNames}>
             <Text>{children}</Text>
             {primaryAction && (
               <div className={styles.bannerAction}>
@@ -82,15 +87,13 @@ export function Banner({
             )}
           </div>
           {dismissible && (
-            <div className={styles.dismissWrapper}>
-              <button
-                className={styles.closeButton}
-                onClick={handleClose}
-                aria-label="Close"
-              >
-                <Icon name="cross" color={iconColors[type]} />
-              </button>
-            </div>
+            <button
+              className={styles.closeButton}
+              onClick={handleClose}
+              aria-label="Close"
+            >
+              <Icon name="cross" color={iconColors[type]} />
+            </button>
           )}
         </div>
       )}

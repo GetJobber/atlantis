@@ -5,11 +5,12 @@
 
 .flash {
   display: flex;
+  position: relative;
   box-shadow: var(--shadow-base);
   padding: var(--flash--inset--small) var(--flash--inset);
   color: var(--color-black);
   background-color: var(--color-grey--lightest);
-  align-items: start;
+  align-items: flex-start;
 }
 
 .flash.medium {
@@ -21,6 +22,10 @@
   flex: 1 1 auto;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+.dismissibleSpacing {
+  padding-right: var(--flash--inset);
 }
 
 .bannerContent > * {
@@ -46,18 +51,10 @@
   flex: 0 0 auto;
 }
 
-.dismissWrapper {
-  display: flex;
-  position: relative;
-  height: var(--space-large);
-  padding-left: var(--flash--inset);
-  align-self: stretch;
-}
-
 .closeButton {
   position: absolute;
-  top: calc(var(--flash--inset--small) * -1);
-  right: calc(var(--flash--inset) * -1);
+  top: 0;
+  right: 0;
   padding: var(--space-smallest);
   border: none;
   background-color: transparent;
@@ -66,9 +63,9 @@
   flex: 0;
 }
 
-.medium .closeButton {
-  top: calc(var(--flash--inset) * -1);
-}
+/* .medium .closeButton {
+  top: var(--flash--inset);
+} */
 
 .closeButton:hover {
   background: rgba(0, 0, 0, 0.025);
