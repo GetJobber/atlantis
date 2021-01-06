@@ -33,6 +33,19 @@ module.exports = {
       rules: {
         "import/no-default-export": "off",
       }
+    },
+    {
+      files: ['./packages/docz-tools/**/*'],
+      settings: {
+        "import/resolver": {
+          alias: {
+            map: [
+              ["~theme", "./packages/docz-tools/src/gatsby-theme-docz/theme"],
+            ],
+            extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
+          }
+        }
+      },
     }
   ]
 };

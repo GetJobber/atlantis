@@ -12,7 +12,6 @@ export const h1 = {
   ...headings,
   mt: "var(--space-larger)",
   mb: "var(--space-base)",
-  outline: t => console.log("t", t),
 };
 
 export const h2 = {
