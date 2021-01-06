@@ -4,8 +4,8 @@
   --color-job: var(--color-yellowGreen);
   --color-invoice: var(--color-purple);
 
-  --color-action: var(--color-green);
-  --color-action--learning: var(--color-lightBlue);
+  --color-interactive: var(--color-green);
+  --color-learning: var(--color-lightBlue);
   --color-destructive: var(--color-red);
   --color-disabled: var(--color-grey);
   --color-disabled--secondary: var(--color-grey--lighter);
