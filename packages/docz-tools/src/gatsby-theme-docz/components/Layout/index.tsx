@@ -5,6 +5,10 @@ import { Global } from "@emotion/react";
 import * as styles from "./styles";
 import { global } from "../../theme/global";
 
+// eslint-disable-next-line import/no-relative-parent-imports
+// eslint-disable-next-line import/no-internal-modules
+import "@jobber/design/foundation.css";
+
 export function Layout({ children }) {
   return (
     <Fragment>

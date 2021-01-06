@@ -10,8 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@emotion/react": "^11.1.4"
+    "@emotion/react": "^11.1.4",
+    "@jobber/components": "^2.20.0",
+    "@jobber/design": "^0.9.2",
+    "deepmerge": "^4.2.2"
   },
+  "devDependencies": {},
   "peerDependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
