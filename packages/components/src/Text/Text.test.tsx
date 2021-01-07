@@ -60,13 +60,11 @@ it("renders a error text", () => {
 
 it("renders a warning text", () => {
   const tree = renderer
-    .create(
-      <Text variation="warning">Your message is over 160 characters</Text>,
-    )
+    .create(<Text variation="warn">Your message is over 160 characters</Text>)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <p
-      className="base regular"
+      className="base regular base yellowDark"
     >
       Your message is over 160 characters
     </p>
@@ -90,20 +88,34 @@ it("renders a info text", () => {
   `);
 });
 
-it("renders an intro text", () => {
+it("renders a large text", () => {
   const tree = renderer
     .create(
-      <Text variation="intro">
+      <Text size="large">
         Attract new customers by asking happy clients for a Facebook
         recommendation
       </Text>,
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
+
     <p
-      className="base regular larger greyBlueDark"
+      className="base regular large greyBlueDark"
     >
       Attract new customers by asking happy clients for a Facebook recommendation
+    </p>
+  `);
+});
+
+it("renders a small text", () => {
+  const tree = renderer
+    .create(<Text size="small">Teeny tiny text</Text>)
+    .toJSON();
+  expect(tree).toMatchInlineSnapshot(`
+    <p
+      className="base regular small greyBlueDark"
+    >
+      Teeny tiny text
     </p>
   `);
 });

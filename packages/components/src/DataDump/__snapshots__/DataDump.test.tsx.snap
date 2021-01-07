@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`dumps some data with a label 1`] = `
+<div
+  className="card accent yellow"
+>
+  <div
+    className="padded base"
+  >
+    <details
+      open={false}
+    >
+      <summary>
+        <b
+          className="base bold"
+        >
+          💩
+        </b>
+      </summary>
+      <pre>
+        {
+  "Foo": "bar"
+}
+      </pre>
+    </details>
+  </div>
+</div>
+`;
+
+exports[`renders a DataDump 1`] = `
+<div
+  className="card accent yellow"
+>
+  <div
+    className="padded base"
+  >
+    <details
+      open={false}
+    >
+      <summary>
+        <b
+          className="base bold"
+        >
+          Raw Data
+        </b>
+      </summary>
+      <pre>
+        {
+  "Foo": "bar"
+}
+      </pre>
+    </details>
+  </div>
+</div>
+`;

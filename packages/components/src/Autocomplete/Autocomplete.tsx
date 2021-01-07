@@ -38,6 +38,11 @@ interface AutocompleteProps {
   readonly size?: FormFieldProps["size"];
 
   /**
+   * Highlights the field red to indicate an error.
+   */
+  readonly invalid?: FormFieldProps["invalid"];
+
+  /**
    * Debounce in milliseconds for getOptions
    *
    * @default 300
@@ -81,6 +86,7 @@ export function Autocomplete({
   value,
   allowFreeForm = true,
   size = undefined,
+  invalid,
   debounce: debounceRate = 300,
   onChange,
   getOptions,
@@ -112,18 +118,21 @@ export function Autocomplete({
       <InputText
         autocomplete={false}
         size={size}
+        invalid={invalid}
         value={inputText}
         onChange={handleInputChange}
         placeholder={placeholder}
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
       />
-      <Menu
-        visible={menuVisible}
-        options={options}
-        selectedOption={value}
-        onOptionSelect={handleMenuChange}
-      />
+      {menuVisible && (
+        <Menu
+          visible={true}
+          options={options}
+          selectedOption={value}
+          onOptionSelect={handleMenuChange}
+        />
+      )}
     </div>
   );
 
@@ -159,11 +168,10 @@ export function Autocomplete({
   function handleInputBlur() {
     setMenuVisible(false);
     if (value == undefined || value.label !== inputText) {
+      setInputText("");
       onChange(undefined);
     }
-    if (onBlur) {
-      onBlur();
-    }
+    onBlur && onBlur();
   }
 
   function handleInputFocus() {

@@ -33,7 +33,7 @@ import {
         <Button label="Open" onClick={() => setOpen(true)} />
         <ConfirmationModal
           title="Should we?"
-          message="Do something…"
+          message={`Let's do **something**!`}
           confirmLabel="Do it"
           open={open}
           onConfirm={() => alert("✅")}
@@ -94,7 +94,7 @@ that presents a confirm modal.
               onClick={() => {
                 confirmationModalRef.current.show({
                   title: "Should we?",
-                  message: `Hang out with ${user.name}?`,
+                  message: `Hang out with **${user.name}**?`,
                   confirmLabel: "Hangout",
                   onConfirm: () => alert("✅")
                 });

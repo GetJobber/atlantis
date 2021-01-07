@@ -2,23 +2,34 @@
   --border-color: var(--color-grey--lighter);
   --header-border-color: var(--color-blue);
   --horizontal-inset: var(--space-base);
+  position: relative;
   width: 100%;
-
-  box-shadow: 0 0 0 var(--border-base) var(--border-color);
   border-collapse: collapse;
+}
+
+.table::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border: solid var(--border-base) var(--border-color);
   border-radius: var(--radius-base);
+  pointer-events: none;
 }
 
 .row:not(:last-child) {
-  border-bottom: solid 1px var(--border-color);
+  border-bottom: solid var(--border-base) var(--border-color);
 }
 
 .header .row {
-  border-bottom: solid 1px var(--header-border-color);
+  border-bottom: solid var(--border-base) var(--header-border-color);
   font-weight: bold;
   text-transform: uppercase;
 }
 
 .footer .row {
-  border-top: solid 4px var(--border-color);
+  border-top: solid var(--border-thicker) var(--border-color);
 }

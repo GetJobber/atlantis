@@ -30,28 +30,6 @@ exports[`it should display headers when headers are passed in 1`] = `
       value=""
     />
   </div>
-  <div
-    className="options"
-  >
-    <div
-      className="heading"
-    >
-      <h5
-        className="base bold base blue"
-      >
-        first_heading
-      </h5>
-    </div>
-    <div
-      className="heading"
-    >
-      <h5
-        className="base bold base blue"
-      >
-        second_heading
-      </h5>
-    </div>
-  </div>
 </div>
 `;
 
@@ -85,51 +63,38 @@ exports[`renders an Autocomplete 1`] = `
       value=""
     />
   </div>
+</div>
+`;
+
+exports[`renders correctly when invalid 1`] = `
+<div
+  className="autocomplete"
+>
   <div
-    className="options"
+    className="wrapper invalid"
+    style={
+      Object {
+        "--formField-maxLength": undefined,
+      }
+    }
   >
-    <button
-      className="option active"
-      onMouseDown={[Function]}
+    <label
+      className="label"
+      htmlFor="123e4567-e89b-12d3-a456-426655440043"
     >
-      <div
-        className="icon"
-      />
-      <div
-        className="text"
-      >
-        <div
-          className="label"
-        >
-          <p
-            className="base regular base greyBlueDark"
-          >
-            option_0
-          </p>
-        </div>
-      </div>
-    </button>
-    <button
-      className="option"
-      onMouseDown={[Function]}
-    >
-      <div
-        className="icon"
-      />
-      <div
-        className="text"
-      >
-        <div
-          className="label"
-        >
-          <p
-            className="base regular base greyBlueDark"
-          >
-            option_1
-          </p>
-        </div>
-      </div>
-    </button>
+      placeholder_name
+    </label>
+    <input
+      autoComplete="autocomplete-off"
+      className="formField"
+      id="123e4567-e89b-12d3-a456-426655440043"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      type="text"
+      value=""
+    />
   </div>
 </div>
 `;

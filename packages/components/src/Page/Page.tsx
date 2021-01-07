@@ -72,7 +72,7 @@ export function Page({
   const titleBarClasses = classnames(styles.titleBar, {
     [styles.small]: titleBarWidth > Breakpoints.smaller,
     [styles.medium]: titleBarWidth > Breakpoints.small,
-    [styles.large]: titleBarWidth > Breakpoints.large,
+    [styles.large]: titleBarWidth > Breakpoints.base,
   });
 
   const showMenu = moreActionsMenu.length > 0;
@@ -122,7 +122,7 @@ export function Page({
               </div>
             )}
           </div>
-          <Text variation="intro">
+          <Text size="large">
             <Markdown content={intro} basicUsage={true} />
           </Text>
         </Content>

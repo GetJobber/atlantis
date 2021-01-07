@@ -9,6 +9,8 @@ import { ComponentStatus } from "@jobber/docx";
 import { InputNumber } from ".";
 import { Text } from "../Text";
 import { useState } from "react";
+import { Button } from "../Button";
+import { Content } from "../Content";
 
 # InputNumber
 
@@ -124,6 +126,28 @@ no value to the user by offering an incrementer.
     />
     days
   </Text>
+</Playground>
+
+## Focus & Blur
+
+<Playground>
+  {() => {
+    const inputNumberRef = React.createRef();
+    const focusInput = () => {
+      inputNumberRef.current.focus();
+    };
+    const blurInput = () => {
+      inputNumberRef.current.blur();
+    };
+    return (
+      <Content>
+        <InputNumber value={5} ref={inputNumberRef} />
+        <Button label="Focus input" onClick={focusInput} />
+        <br />
+        <Button label="Blur input" onClick={blurInput} />
+      </Content>
+    );
+  }}
 </Playground>
 
 ## Using onValidation

@@ -1,0 +1,72 @@
+:root {
+  --drawer-width: calc(var(--space-base) * 17.5);
+  --drawer--background-color: var(--color-white);
+  --drawer--header-background-color: var(--color-grey--lightest);
+  --drawer--border-color: var(--color-grey--lighter);
+  --drawer--base-padding: var(--space-base);
+}
+
+.container {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: var(--elevation-modal);
+  overflow: hidden;
+
+  @media (--medium-screens), print {
+    position: relative;
+    z-index: auto;
+    width: var(--drawer-width);
+  }
+
+  @media (--wide-screens) {
+    --drawer-width: calc(var(--space-base) * 26.25);
+  }
+}
+
+.drawer {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border: var(--border-base) solid var(--drawer--border-color);
+  background-color: var(--drawer--background-color);
+  flex-direction: column;
+}
+
+.open {
+  display: flex;
+}
+
+.header {
+  display: flex;
+  padding: var(--drawer--base-padding);
+  background-color: var(--drawer--header-background-color);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.closeButton {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  appearance: none;
+}
+
+.contentScroll {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+  overflow-y: auto;
+}
+
+.content {
+  width: 100%;
+  padding: var(--drawer--base-padding);
+}
