@@ -14,7 +14,16 @@ export default {
     root: {
       fontFamily: "body",
       fontSize: "large",
-      lineHeight: "base",
+      lineHeight: "large",
+    },
+    a: {
+      color: "green",
+      textDecoration: "none",
+      transition: "color 300ms",
+
+      "&:hover": {
+        color: "greenDark",
+      },
     },
     blockquote: {
       bg: "greyLightest",
@@ -23,7 +32,7 @@ export default {
       py: "base",
       pl: "large",
       borderLeft: "var(--border-thicker) solid",
-      borderColor: "greyBlueLightest",
+      borderColor: "greyBlueLighter",
       borderRadius: "base",
       lineHeight: "large",
       fontStyle: "italic",
