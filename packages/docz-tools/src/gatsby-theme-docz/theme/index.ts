@@ -25,6 +25,13 @@ export default {
         color: "greenDark",
       },
     },
+    ul: {
+      pl: "large",
+      my: "base",
+    },
+    li: {
+      my: "smaller",
+    },
     blockquote: {
       bg: "greyLightest",
       my: "large",
