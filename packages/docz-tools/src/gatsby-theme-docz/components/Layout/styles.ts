@@ -2,11 +2,12 @@ export const layout = {
   display: "flex",
 };
 
-export const sidebar = {
-  flex: "0 0 300px",
-  width: 300,
+export const sidebar = (width?: number) => ({
+  flex: `0 0 ${width || 300}`,
+  maxWidth: width || 300,
+  width: width || 300,
   bg: "greyBlueDark",
-};
+});
 
 export const content = {
   py: "larger",
