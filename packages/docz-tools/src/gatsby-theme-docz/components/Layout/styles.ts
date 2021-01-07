@@ -15,6 +15,6 @@ export const content = {
 };
 
 export const container = {
-  maxWidth: 960,
+  maxWidth: 800,
   mx: "auto",
 };
