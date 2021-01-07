@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.20.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.19.1...@jobber/components@2.20.0) (2021-01-06)
+
+
+### Features
+
+* **components:** convert `progressBar` to semantic HTML and count step 1 ([#430](https://github.com/GetJobber/atlantis/issues/430)) ([01eb04e](https://github.com/GetJobber/atlantis/commit/01eb04e150d148b73b101cc8f499f585ef4a726a))
+
+
+
+
+
 ## [2.19.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.19.0...@jobber/components@2.19.1) (2020-12-15)
 
 **Note:** Version bump only for package @jobber/components
