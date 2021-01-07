@@ -13,3 +13,8 @@ export const fontSizes = {
   jumbo: "var(--typography--fontSize-jumbo)",
   extravagant: "var(--typography--fontSize-extravagant)",
 };
+
+export const lineHeights = {
+  base: "var(--typography--lineHeight-base)",
+  large: "var(--typography--lineHeight-large)",
+};
