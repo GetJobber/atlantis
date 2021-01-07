@@ -63,10 +63,6 @@
   flex: 0;
 }
 
-/* .medium .closeButton {
-  top: var(--flash--inset);
-} */
-
 .closeButton:hover {
   background: rgba(0, 0, 0, 0.025);
 }
