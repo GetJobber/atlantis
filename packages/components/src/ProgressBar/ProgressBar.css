@@ -8,6 +8,7 @@ progress.ProgressBar[value] {
   width: 100%;
   height: var(--progress-bar--height);
   border: none;
+  vertical-align: initial;
   appearance: none;
 }
 
