@@ -98,7 +98,6 @@ it("renders a large text", () => {
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-
     <p
       className="base regular large greyBlueDark"
     >
