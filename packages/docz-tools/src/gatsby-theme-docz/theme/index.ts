@@ -18,6 +18,9 @@ export default {
   lineHeights,
   space,
   radii,
-  prism,
+  prism: {
+    default: prism,
+    light: prism,
+  },
   styles,
 };
