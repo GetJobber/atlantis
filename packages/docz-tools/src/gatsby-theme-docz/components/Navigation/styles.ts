@@ -1,5 +1,7 @@
 export const navigation = {
-  p: "large",
+  pt: "base",
+  pb: "largest",
+  px: "large",
 };
 
 export const item = {

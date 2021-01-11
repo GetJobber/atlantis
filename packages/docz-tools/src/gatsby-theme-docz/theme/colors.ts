@@ -3,6 +3,7 @@ export const green = "var(--color-green)";
 export const greenDark = "var(--color-green--dark)";
 
 /** Blue */
+export const blue = "var(--color-blue)";
 export const blueDark = "var(--color-blue--dark)";
 
 /** Grey Blue */

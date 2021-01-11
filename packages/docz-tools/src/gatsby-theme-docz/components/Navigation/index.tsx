@@ -5,8 +5,12 @@ import { NavLink } from "./NavLink";
 import { NavGroup } from "./NavGroup";
 import * as styles from "./styles";
 
-export function Navigation() {
-  const menus = useMenus();
+interface NavigationProps {
+  readonly query?: string;
+}
+
+export function Navigation({ query }: NavigationProps) {
+  const menus = useMenus({ query });
 
   return (
     <Box sx={styles.navigation}>
