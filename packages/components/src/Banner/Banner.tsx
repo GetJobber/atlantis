@@ -1,6 +1,7 @@
 import React, { ReactNode, useState } from "react";
 import classnames from "classnames";
 import { IconColorNames } from "@jobber/design";
+import { useResizeObserver } from "@jobber/hooks";
 import styles from "./Banner.css";
 import types from "./notificationTypes.css";
 import { Icon } from "../Icon";
@@ -35,6 +36,18 @@ export function Banner({
 }: BannerProps) {
   const [showFlash, setShowFlash] = useState(true);
 
+  const bannerWidths = {
+    small: 320,
+    medium: 480,
+  };
+
+  const [
+    bannerRef,
+    { width: bannerWidth = bannerWidths.small },
+  ] = useResizeObserver<HTMLDivElement>({
+    widths: bannerWidths,
+  });
+
   const iconColors: IconColorMap = {
     notice: "lightBlue",
     success: "green",
@@ -53,14 +66,26 @@ export function Banner({
     );
   }
 
-  const flashClassNames = classnames(styles.flash, types[type]);
+  const flashClassNames = classnames(styles.flash, types[type], {
+    [styles.medium]: bannerWidth >= bannerWidths.medium,
+  });
+
+  const contentClassNames = classnames(styles.bannerContent, {
+    [styles.dismissibleSpacing]: dismissible,
+  });
+
   return (
     <>
       {showFlash && (
-        <div className={flashClassNames}>
-          <Text>{children}</Text>
-          {primaryAction && <Button {...primaryAction} />}
-
+        <div className={flashClassNames} ref={bannerRef} role="status">
+          <div className={contentClassNames}>
+            <Text>{children}</Text>
+            {primaryAction && (
+              <div className={styles.bannerAction}>
+                <Button {...primaryAction} />
+              </div>
+            )}
+          </div>
           {dismissible && (
             <button
               className={styles.closeButton}
