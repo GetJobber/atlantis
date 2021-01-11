@@ -16,9 +16,11 @@ export function Navigation({ query }: NavigationProps) {
     <Box sx={styles.navigation}>
       {menus &&
         menus.map(menu => {
+          const isNavGroup = menu.menu && typeof menu.menu !== "string";
+
           return (
             <Box key={menu.id} sx={styles.item}>
-              {menu.menu ? <NavGroup item={menu} /> : <NavLink item={menu} />}
+              {isNavGroup ? <NavGroup item={menu} /> : <NavLink item={menu} />}
             </Box>
           );
         })}
