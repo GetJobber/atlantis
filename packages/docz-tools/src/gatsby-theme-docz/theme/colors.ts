@@ -2,6 +2,9 @@
 export const green = "var(--color-green)";
 export const greenDark = "var(--color-green--dark)";
 
+/** Blue */
+export const blueDark = "var(--color-blue--dark)";
+
 /** Grey Blue */
 export const greyBlue = "var(--color-greyBlue)";
 export const greyBlueLight = "var(--color-greyBlue--light)";
@@ -29,6 +32,10 @@ export const teal = "var(--color-teal)";
 
 /** Purple */
 export const purpleDark = "var(--color-purple--dark)";
+
+/** Yellow */
+export const yellow = "var(--color-yellow)";
+export const yellowLigher = "var(--color-yellow--lighter)";
 
 /** Playground */
 export const playground = {

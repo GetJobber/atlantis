@@ -1,6 +1,6 @@
 export const fonts = {
   body: `'Source Sans Pro', sans-serif`,
-  heading: "Georgia, serif",
+  heading: `'Poppins', sans-serif`,
   monospace: "Menlo, monospace",
 };
 
