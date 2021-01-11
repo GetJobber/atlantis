@@ -17,10 +17,12 @@ export default {
   files: [
     "./docs/**/*.{md,mdx}",
     ...packages.map(pckg => `./packages/${pckg}/src/**/*.{md,mdx}`),
-    ...packages.map(pckg => `./packages/${pckg}/README.md`),
+    ...packages.map(pckg => `./packages/${pckg}/README.{md,mdx}`),
     ...packages.map(pckg => `./packages/${pckg}/CHANGELOG.md`),
   ],
   ignore: [
+    "./docs/CHARTER.md",
+    "./docs/README.md",
     "./docs/proposals/**/*",
     "./packages/generators/templates/**/*",
     "./packages/**/dist/**/*",
@@ -40,6 +42,7 @@ function getPackagesToDocument() {
     "formatters",
     "generators",
     "hooks",
+    "docx",
     "stylelint-config",
   ];
 }

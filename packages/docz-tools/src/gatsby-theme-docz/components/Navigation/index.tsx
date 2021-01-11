@@ -26,13 +26,9 @@ interface LevelOneLinkProps {
   readonly item: MenuItem;
 }
 function LevelOneLink({ item }: LevelOneLinkProps) {
-  if (item.route) {
-    return (
-      <Link sx={styles.levelOneLink} to={item.route as string}>
-        {item.name}
-      </Link>
-    );
-  }
-
-  return <Box>Foo</Box>;
+  return (
+    <Link sx={styles.levelOneLink} to={item.route || "/"}>
+      {item.name}
+    </Link>
+  );
 }

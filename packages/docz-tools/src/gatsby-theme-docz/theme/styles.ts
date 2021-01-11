@@ -13,12 +13,19 @@ export const styles = {
       color: "greenDark",
     },
   },
+  ol: {
+    pl: "large",
+    my: "base",
+  },
   ul: {
     pl: "large",
     my: "base",
   },
   li: {
-    my: "smaller",
+    my: "small",
+  },
+  strong: {
+    fontWeight: "bold",
   },
   blockquote: {
     bg: "greyLightest",
