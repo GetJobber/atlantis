@@ -1,6 +1,6 @@
 ---
 name: Contributing
-route: /CONTRIBUTING.md
+route: /contributing
 ---
 
 # Contributing

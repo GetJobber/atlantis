@@ -4,14 +4,16 @@ export const greenDark = "var(--color-green--dark)";
 
 /** Grey Blue */
 export const greyBlue = "var(--color-greyBlue)";
-export const greyBlueDark = "var(--color-greyBlue--dark)";
+export const greyBlueLight = "var(--color-greyBlue--light)";
 export const greyBlueLighter = "var(--color-greyBlue--lighter)";
 export const greyBlueLightest = "var(--color-greyBlue--lightest)";
+export const greyBlueDark = "var(--color-greyBlue--dark)";
 
 /** Light Blue */
 export const lightBlue = "var(--color-lightBlue)";
 
 /** Grey */
+export const white = "var(--color-white)";
 export const grey = "var(--color-grey)";
 export const greyLighter = "var(--color-grey--lighter)";
 export const greyLightest = "var(--color-grey--lightest)";

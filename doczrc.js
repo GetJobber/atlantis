@@ -22,7 +22,6 @@ export default {
   ],
   ignore: [
     "./docs/CHARTER.md",
-    "./docs/README.md",
     "./docs/proposals/**/*",
     "./packages/generators/templates/**/*",
     "./packages/**/dist/**/*",

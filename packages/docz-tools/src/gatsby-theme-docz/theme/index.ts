@@ -17,6 +17,7 @@ export default {
   fontSizes,
   lineHeights,
   space,
+  sizes: space,
   radii,
   prism: {
     default: prism,
