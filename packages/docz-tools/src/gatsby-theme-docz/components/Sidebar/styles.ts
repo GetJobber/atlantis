@@ -1,11 +1,16 @@
-export const sidebar = (width: number) =>
-  ({
-    bg: "greyBlueDark",
-    height: "100vh",
-    position: "fixed",
-    top: 0,
-    width: width || 300,
-  } as const);
+export const sidebar = (width: number) => ({
+  bg: "greyBlueDark",
+  height: "100vh",
+  position: "fixed",
+  top: 0,
+  width: width || 300,
+  overflowY: "scroll",
+  scrollBehavior: "smooth",
+
+  "&::-webkit-scrollbar": {
+    display: "none",
+  },
+});
 
 export const search = {
   position: "relative",
