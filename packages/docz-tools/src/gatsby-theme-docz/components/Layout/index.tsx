@@ -6,6 +6,7 @@ import { useConfig } from "docz";
 import * as styles from "./styles";
 import { global } from "~theme/global";
 import { Sidebar } from "../Sidebar";
+import { Actions } from "../Actions";
 
 // eslint-disable-next-line import/no-internal-modules
 import "@jobber/design/foundation.css";
@@ -22,6 +23,7 @@ export function Layout({ children }: PropsWithChildren<{}>) {
         <Box sx={styles.sidebar(sideBarWidth)}>
           <Sidebar />
         </Box>
+        <Actions />
         <Box sx={styles.content}>
           <Box sx={styles.container}>{children}</Box>
         </Box>
