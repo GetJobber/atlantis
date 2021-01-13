@@ -52,6 +52,7 @@ export const styles = {
     borderColor: "greyLighter",
   },
   inlineCode: {
+    display: "inline-block",
     borderRadius: "base",
     fontSize: "small",
     fontFamily: "monospace",
@@ -59,6 +60,7 @@ export const styles = {
     color: "greyBlueDark",
     py: "smaller",
     px: "small",
+    mb: "smallest",
     border: "1px solid",
     borderColor: "greyLighter",
   },

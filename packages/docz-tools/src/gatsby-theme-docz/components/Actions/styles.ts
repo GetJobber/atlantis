@@ -3,5 +3,5 @@ export const actions = {
   top: "large",
   right: "large",
   display: "flex",
-  gap: "base",
+  gap: "small",
 };

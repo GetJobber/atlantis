@@ -51,15 +51,17 @@ export const Prop = ({ propName, prop, getPropType }: PropProps) => {
           )}
         </Box>
         <Box sx={styles.typeValue}>{getPropType(prop)}</Box>
-        <Box sx={styles.toggle}>
-          <Button
-            icon={open ? "arrowUp" : "arrowDown"}
-            ariaLabel="Toggle prop description"
-            onClick={toggleDescription}
-            type="tertiary"
-            size="small"
-          />
-        </Box>
+        {description && (
+          <Box sx={styles.toggle}>
+            <Button
+              icon={open ? "arrowUp" : "arrowDown"}
+              ariaLabel="Toggle prop description"
+              onClick={toggleDescription}
+              type="tertiary"
+              size="small"
+            />
+          </Box>
+        )}
       </Box>
       {description && open && <Box sx={styles.description}>{description}</Box>}
     </Fragment>

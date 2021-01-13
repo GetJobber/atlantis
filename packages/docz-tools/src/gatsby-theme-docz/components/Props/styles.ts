@@ -40,6 +40,7 @@ export const required = {
 
 export const defaultValue = {
   color: "greyBlue",
+  mt: "smallest",
 };
 
 export const typeValue = {
