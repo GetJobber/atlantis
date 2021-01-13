@@ -37,7 +37,8 @@ interface LightBoxProps {
    * This function must set open to false in order to close the lightbox. Note there
    * is a 300ms easing animation on lightbox close that occurs before this function
    * is called.
-   * This function receives the last image position viewed in the LightBox as an argument.
+   * This function receives an object as an argument with the key `lastPosition`
+   * that has the index of the image the user was on when LightBox was closed.
    */
   onRequestClose(options: RequestCloseOptions): void;
 }
