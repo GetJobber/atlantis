@@ -19,10 +19,16 @@ interface InputAvatarProps extends Omit<AvatarProps, "size"> {
    * Triggered when an image is changed.
    */
   onChange?(file?: FileUpload): void;
+
+  /**
+   * Triggered when an image upload has completed.
+   */
+  onUploadComplete?(file?: FileUpload): void;
 }
 
 export function InputAvatar({
   getUploadParams,
+  onUploadComplete,
   onChange,
   ...avatarProps
 }: InputAvatarProps) {
@@ -52,7 +58,7 @@ export function InputAvatar({
         getUploadParams={getUploadParams}
         onUploadStart={handleChange}
         onUploadProgress={handleUpload}
-        onUploadComplete={handleUpload}
+        onUploadComplete={handleUploadComplete}
       />
       {avatarProps.imageUrl != undefined && progress === 1 && (
         <Button
@@ -68,6 +74,11 @@ export function InputAvatar({
 
   function handleChange(newFile: FileUpload) {
     onChange && onChange(newFile);
+    handleUpload(newFile);
+  }
+
+  function handleUploadComplete(newFile: FileUpload) {
+    onUploadComplete && onUploadComplete(newFile);
     handleUpload(newFile);
   }
 

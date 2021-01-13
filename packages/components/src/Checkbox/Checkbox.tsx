@@ -94,13 +94,15 @@ export function Checkbox({
 
         {label != undefined && (
           <span className={styles.label}>
-            <Text variation={disabled ? "subdued" : undefined}>{label}</Text>
+            <Text>{label}</Text>
           </span>
         )}
       </label>
       {description && (
         <div className={styles.description}>
-          <Text variation="subdued">{description}</Text>
+          <Text variation="subdued" size="small">
+            {description}
+          </Text>
         </div>
       )}
     </div>

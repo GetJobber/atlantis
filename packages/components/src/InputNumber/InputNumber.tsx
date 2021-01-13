@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Ref, createRef, forwardRef, useImperativeHandle } from "react";
 import { FormField, FormFieldProps } from "../FormField";
 
 /**
@@ -10,16 +10,42 @@ import { FormField, FormFieldProps } from "../FormField";
 interface InputNumberProps
   extends Pick<
     FormFieldProps,
-    Exclude<keyof FormFieldProps, "type" | "children" | "rows">
+    Exclude<keyof FormFieldProps, "type" | "children" | "rows" | "keyboard">
   > {
   value?: number;
 }
 
-export function InputNumber(props: InputNumberProps) {
+export interface InputNumberRef {
+  blur(): void;
+  focus(): void;
+}
+
+function InputNumberInternal(
+  props: InputNumberProps,
+  ref: Ref<InputNumberRef>,
+) {
+  const inputRef = createRef<HTMLTextAreaElement | HTMLInputElement>();
+
+  useImperativeHandle(ref, () => ({
+    blur: () => {
+      const input = inputRef.current;
+      if (input) {
+        input.blur();
+      }
+    },
+    focus: () => {
+      const input = inputRef.current;
+      if (input) {
+        input.focus();
+      }
+    },
+  }));
+
   return (
     <FormField
       {...props}
       type="number"
+      inputRef={inputRef}
       onChange={handleChange}
       validations={{
         ...props.validations,
@@ -51,3 +77,5 @@ export function InputNumber(props: InputNumberProps) {
     return true;
   }
 }
+
+export const InputNumber = forwardRef(InputNumberInternal);

@@ -42,8 +42,11 @@
 }
 
 .disabled .checkBox {
-  border-color: var(--color-grey--light);
-  background-color: var(--color-grey--lightest);
+  border-color: var(--color-grey--lighter);
+}
+
+.disabled p {
+  color: var(--color-grey);
 }
 
 .disabled .checkBox > * {
@@ -57,7 +60,7 @@
 }
 
 .input:focus + .checkBox {
-  box-shadow: 0 0 4px 1px var(--color-outline);
+  box-shadow: var(--shadow-focus);
 }
 
 .disabled .input.indeterminate + .checkBox,
@@ -76,10 +79,6 @@
 }
 
 .description {
-  margin-top: var(--space-smaller);
-  margin-left: var(--space-large);
-}
-
-.description > p {
-  font-size: var(--typography--fontSize-small);
+  margin-bottom: var(--space-small);
+  padding-left: var(--space-large);
 }

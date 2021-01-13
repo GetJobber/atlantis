@@ -4,9 +4,9 @@ import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import styles from "./Modal.css";
 import sizes from "./Sizes.css";
-import { Icon } from "../Icon";
 import { Typography } from "../Typography";
 import { Button, ButtonProps } from "../Button";
+import { ButtonDismiss } from "../ButtonDismiss";
 
 interface ModalProps {
   /**
@@ -42,7 +42,12 @@ export function Modal({
     document.createElement("div"),
   );
 
-  setFocusOnModalOpen(open, modalContainer);
+  useEffect(() => {
+    if (modalContainer.current) {
+      modalContainer.current.focus();
+    }
+  }, [open]);
+
   catchKeyboardEvent("Escape", open, onRequestClose);
 
   const template = (
@@ -92,17 +97,6 @@ export function Modal({
   return ReactDOM.createPortal(template, document.body);
 }
 
-function setFocusOnModalOpen(
-  isModalOpen: boolean,
-  elementRef: RefObject<HTMLDivElement>,
-) {
-  useEffect(() => {
-    if (isModalOpen && elementRef.current) {
-      elementRef.current.focus();
-    }
-  });
-}
-
 function catchKeyboardEvent(
   key: string,
   isModalOpen: boolean,
@@ -142,13 +136,7 @@ function Header({ title, dismissible, onRequestClose }: HeaderProps) {
       </Typography>
 
       {dismissible && (
-        <button
-          className={styles.closeButton}
-          onClick={onRequestClose}
-          aria-label="Close modal"
-        >
-          <Icon name="cross" />
-        </button>
+        <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />
       )}
     </div>
   );

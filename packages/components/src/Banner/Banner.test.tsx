@@ -29,6 +29,24 @@ it("renders a warning banner", () => {
   expect(tree).toMatchSnapshot();
 });
 
+it("renders without close button", () => {
+  const { queryByLabelText } = render(
+    <Banner type="warning" dismissible={false}>
+      Foo
+    </Banner>,
+  );
+  expect(queryByLabelText("Close")).toBeNull();
+});
+
+it("renders with close button", () => {
+  const { queryByLabelText } = render(
+    <Banner type="warning" dismissible={true}>
+      Foo
+    </Banner>,
+  );
+  expect(queryByLabelText("Close")).toBeTruthy();
+});
+
 test("it should call the handler with a number value", () => {
   const changeHandler = jest.fn();
 

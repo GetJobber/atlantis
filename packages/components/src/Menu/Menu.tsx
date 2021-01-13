@@ -27,6 +27,11 @@ const variation = {
   done: { opacity: 1, y: 0 },
 };
 
+interface Position {
+  vertical: "above" | "below";
+  horizontal: "left" | "right";
+}
+
 interface MenuProps {
   /**
    * Custom menu activator. If this is not provided a default [… More] will be used.
@@ -52,7 +57,10 @@ export interface SectionProps {
 
 export function Menu({ activator, items }: MenuProps) {
   const [visible, setVisible] = useState(false);
-  const [position, setPosition] = useState<"above" | "below">("below");
+  const [position, setPosition] = useState<Position>({
+    vertical: "below",
+    horizontal: "right",
+  });
   const wrapperRef = createRef<HTMLDivElement>();
   const buttonID = uuid();
   const menuID = uuid();
@@ -60,11 +68,21 @@ export function Menu({ activator, items }: MenuProps) {
   useLayoutEffect(() => {
     if (wrapperRef.current) {
       const bounds = wrapperRef.current.getBoundingClientRect();
+      const newPosition = { ...position };
+
       if (bounds.top <= window.innerHeight / 2) {
-        setPosition("below");
+        newPosition.vertical = "below";
       } else {
-        setPosition("above");
+        newPosition.vertical = "above";
       }
+
+      if (bounds.left <= window.innerWidth / 2) {
+        newPosition.horizontal = "right";
+      } else {
+        newPosition.horizontal = "left";
+      }
+
+      setPosition(newPosition);
     }
   }, [visible]);
 
@@ -81,8 +99,10 @@ export function Menu({ activator, items }: MenuProps) {
 
   const menuClasses = classnames(
     styles.menu,
-    position === "above" && styles.above,
-    position === "below" && styles.below,
+    position.vertical === "above" && styles.above,
+    position.vertical === "below" && styles.below,
+    position.horizontal === "left" && styles.left,
+    position.horizontal === "right" && styles.right,
   );
 
   return (
