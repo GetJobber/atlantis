@@ -74,8 +74,8 @@ suited by using a dialogue or alternative method.
 ### onRequestClose
 
 This function receives the index of the last image the user viewed before
-closing the LightBox component. This might we useful if we need to build some
-analytics on top of this component.
+closing the LightBox component with the key lastPosition. This might we useful
+if we need to build some analytics on top of this component.
 
 <Playground>
   {() => {
@@ -100,8 +100,11 @@ analytics on top of this component.
               url: "https://i.imgur.com/uigfzs5.jpg"
             }
           ]}
-          onRequestClose={lastIndex => {
-            console.log("The user was saw this image last - ", lastIndex);
+          onRequestClose={options => {
+            console.log(
+              "The user was saw this image last - ",
+              options.lastPosition
+            );
             isOpen(false);
           }}
         />
