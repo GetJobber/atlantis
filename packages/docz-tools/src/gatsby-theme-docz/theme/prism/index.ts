@@ -75,7 +75,7 @@ export const prism = {
     {
       types: ["tag", "selector", "keyword"],
       style: {
-        color: colors.purpleDark,
+        color: colors.indigo,
       },
     },
   ],

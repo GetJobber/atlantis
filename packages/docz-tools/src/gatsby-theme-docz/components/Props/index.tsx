@@ -6,6 +6,7 @@ import { Prop as DoczProp } from "docz/dist/components/Props";
 import { Fragment, useState } from "react";
 import { Emphasis } from "@jobber/components/Emphasis";
 import { Button } from "@jobber/components/Button";
+import { Tooltip } from "@jobber/components/Tooltip";
 import * as styles from "./styles";
 
 export function Props({ props, getPropType }: PropsComponentProps) {
@@ -42,7 +43,11 @@ export const Prop = ({ propName, prop, getPropType }: PropProps) => {
         <Box sx={styles.propName}>
           <Box>
             {propName}
-            {required && <Box sx={styles.required}>*</Box>}
+            {required && (
+              <Tooltip message="Required">
+                <Box sx={styles.required}>*</Box>
+              </Tooltip>
+            )}
           </Box>
           {defaultValue && (
             <Box sx={styles.defaultValue}>

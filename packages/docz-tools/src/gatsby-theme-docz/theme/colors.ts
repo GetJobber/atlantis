@@ -34,6 +34,9 @@ export const teal = "var(--color-teal)";
 /** Purple */
 export const purpleDark = "var(--color-purple--dark)";
 
+/** Indigo */
+export const indigo = "var(--color-indigo)";
+
 /** Yellow */
 export const yellow = "var(--color-yellow)";
 export const yellowLigher = "var(--color-yellow--lighter)";

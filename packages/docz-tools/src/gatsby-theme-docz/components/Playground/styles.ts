@@ -1,3 +1,43 @@
+import { space } from "~theme/space";
+/**
+ * This variable is imported into the styles for `Layout` as a hacky way
+ * to style the  playground wrapper without having to shadow the entire
+ * playground component.
+ */
+export const playground = {
+  "[data-testid='playground']": {
+    bg: "white",
+    position: "relative",
+
+    /**
+     * Draggable handle on the Playground
+     */
+    "> div:last-of-type": {
+      "> div": {
+        right: "0 !important",
+        transform: "translateX(calc(100% + 1px))",
+        width: `${space.small} !important`,
+        bg: "greyLighter",
+        borderRadius: "base",
+
+        "&::after": {
+          content: `""`,
+          display: "block",
+          position: "absolute",
+          top: "50%",
+          right: "50%",
+          transform: "translate(50%, -50%)",
+          height: "extravagant",
+          width: "smallest",
+          borderLeft: "1px solid",
+          borderRight: "1px solid",
+          borderColor: "white",
+        },
+      },
+    },
+  },
+};
+
 export const previewWrapper = {
   position: "relative",
 };
@@ -9,6 +49,10 @@ export const editor = () => ({
   bg: "greyLightest",
   borderBottomLeftRadius: "base",
   borderBottomRightRadius: "base",
+
+  textarea: {
+    outline: "none",
+  },
 });
 
 export const error = {
