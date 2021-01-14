@@ -7,9 +7,9 @@ export const layout = {
 };
 
 export const sidebar = (width?: number) => ({
-  flex: `0 0 ${width || 300}`,
-  maxWidth: width || 300,
-  width: width || 300,
+  flex: `0 0 ${width}`,
+  maxWidth: width,
+  width: width,
 });
 
 export const content = {

@@ -12,6 +12,7 @@ export default {
   showDarkModeSwitch: false,
   showMarkdownEditButton: true,
   useScopingInPlayground: false,
+  sideBarWidth: 275,
   colors,
   fonts,
   fontSizes,

@@ -3,7 +3,7 @@ export const sidebar = (width: number) => ({
   height: "100vh",
   position: "fixed",
   top: 0,
-  width: width || 275,
+  width: width,
   overflowY: "scroll",
   scrollBehavior: "smooth",
 
