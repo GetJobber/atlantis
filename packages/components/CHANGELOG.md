@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.21.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.20.4...@jobber/components@2.21.0) (2021-01-14)
+
+
+### Features
+
+* **components:** add lastIndex argument to onRequestClose function prop of LightBox  ([#410](https://github.com/GetJobber/atlantis/issues/410)) ([fda480c](https://github.com/GetJobber/atlantis/commit/fda480c4699ed8b58157906518759d68408b70b8))
+
+
+
+
+
 ## [2.20.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.20.3...@jobber/components@2.20.4) (2021-01-12)
 
 **Note:** Version bump only for package @jobber/components
