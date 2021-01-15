@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.22.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.21.0...@jobber/components@2.22.0) (2021-01-15)
+
+
+### Features
+
+* **components:** add iOS autocomplete support for OTPs to form fields ([#452](https://github.com/GetJobber/atlantis/issues/452)) ([c4a158b](https://github.com/GetJobber/atlantis/commit/c4a158babe97e84e39094e4a04f115db5110be75))
+
+
+
+
+
 # [2.21.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.20.4...@jobber/components@2.21.0) (2021-01-14)
 
 
