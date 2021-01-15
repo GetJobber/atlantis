@@ -218,7 +218,7 @@ export function FormField({
   ]);
   useEffect(() => handleValidation(), [error]);
 
-  const autocompleteValue = autocomplete ? undefined : "autocomplete-off";
+  const autocompleteValue = setAutocomplete(autocomplete);
 
   const wrapperClassNames = classnames(
     styles.wrapper,
@@ -322,6 +322,11 @@ export function FormField({
           </>
         );
     }
+  }
+
+  function setAutocomplete(autocompleteSetting: boolean | string) {
+    if (autocompleteSetting === "one-time-code") return "one-time-code";
+    return autocompleteSetting ? undefined : "autocomplete-off";
   }
 
   function handleChange(
