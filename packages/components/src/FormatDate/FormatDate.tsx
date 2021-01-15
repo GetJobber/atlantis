@@ -3,17 +3,29 @@ import { CivilDate } from "@std-proposal/temporal";
 
 interface FormatDateProps {
   /**
-   * Date to be displayed.
+   * Date to be formatted.
+   *
+   * A `string` should be an ISO 8601 format date string.
    */
-  readonly date: CivilDate;
+  readonly date: CivilDate | Date | string;
 }
 
-export function FormatDate(date: FormatDateProps) {
-  return <>{strFormatDate(date.date)}</>;
+export function FormatDate({ date: inputDate }: FormatDateProps) {
+  let dateObject: Date;
+
+  if (inputDate instanceof Date) {
+    dateObject = inputDate;
+  } else if (typeof inputDate === "string") {
+    dateObject = new Date(inputDate);
+  } else {
+    dateObject = new Date(inputDate.year, inputDate.month - 1, inputDate.day);
+  }
+
+  return <>{strFormatDate(dateObject)}</>;
 }
 
-function strFormatDate({ year, month, day }: CivilDate) {
-  return new Date(year, month - 1, day).toLocaleDateString(undefined, {
+function strFormatDate(date: Date) {
+  return date.toLocaleDateString(undefined, {
     year: "numeric",
     month: "short",
     day: "numeric",

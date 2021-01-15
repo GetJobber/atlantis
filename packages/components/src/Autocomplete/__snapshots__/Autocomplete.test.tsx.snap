@@ -1,5 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`it should display headers when headers are passed in 1`] = `
+<div
+  className="autocomplete"
+>
+  <div
+    className="wrapper"
+    style={
+      Object {
+        "--formField-maxLength": undefined,
+      }
+    }
+  >
+    <label
+      className="label"
+      htmlFor="123e4567-e89b-12d3-a456-426655440014"
+    >
+      placeholder_name
+    </label>
+    <input
+      autoComplete="autocomplete-off"
+      className="formField"
+      id="123e4567-e89b-12d3-a456-426655440014"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      type="text"
+      value=""
+    />
+  </div>
+</div>
+`;
+
 exports[`renders an Autocomplete 1`] = `
 <div
   className="autocomplete"
@@ -19,52 +52,49 @@ exports[`renders an Autocomplete 1`] = `
       placeholder_name
     </label>
     <input
+      autoComplete="autocomplete-off"
       className="formField"
       id="123e4567-e89b-12d3-a456-426655440001"
       onBlur={[Function]}
       onChange={[Function]}
       onFocus={[Function]}
+      onKeyDown={[Function]}
       type="text"
       value=""
     />
   </div>
+</div>
+`;
+
+exports[`renders correctly when invalid 1`] = `
+<div
+  className="autocomplete"
+>
   <div
-    className="options"
+    className="wrapper invalid"
+    style={
+      Object {
+        "--formField-maxLength": undefined,
+      }
+    }
   >
-    <button
-      className="option active"
-      onMouseDown={[Function]}
+    <label
+      className="label"
+      htmlFor="123e4567-e89b-12d3-a456-426655440043"
     >
-      <div
-        className="icon"
-      />
-      <div
-        className="text"
-      >
-        <p
-          className="base regular base greyBlueDark"
-        >
-          option_0
-        </p>
-      </div>
-    </button>
-    <button
-      className="option"
-      onMouseDown={[Function]}
-    >
-      <div
-        className="icon"
-      />
-      <div
-        className="text"
-      >
-        <p
-          className="base regular base greyBlueDark"
-        >
-          option_1
-        </p>
-      </div>
-    </button>
+      placeholder_name
+    </label>
+    <input
+      autoComplete="autocomplete-off"
+      className="formField"
+      id="123e4567-e89b-12d3-a456-426655440043"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      type="text"
+      value=""
+    />
   </div>
 </div>
 `;

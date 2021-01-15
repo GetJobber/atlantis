@@ -1,17 +1,18 @@
+.radioGroup {
+  display: inline-flex;
+  flex-direction: column;
+}
+
 .input {
   /* Hide checkbox on UI but not screen readers and still allow focus state */
   position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  clip-path: inset(100%);
-  white-space: nowrap;
+  left: -999vw;
 }
 
 .label {
   display: inline-flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .input + .label::before {
@@ -20,21 +21,49 @@
   width: var(--space-base);
   height: var(--space-base);
   box-sizing: border-box;
-  margin: 0 var(--space-small);
-  border: var(--border-thick) solid var(--color-grey--light);
+  margin: 0 var(--space-small) 0 0;
+  border: var(--border-thick) solid var(--color-green);
   border-radius: 100%;
   background-color: var(--color-white);
-  cursor: pointer;
-  transition: all 0.2s;
+  transition: all var(--timing-base);
+}
+
+.input:focus + .label:before {
+  box-shadow: var(--shadow-focus);
+}
+
+.input:focus:checked + .label:before {
+  box-shadow: 0px 0px 0px var(--space-minuscule) var(--color-green--dark),
+    var(--shadow-focus);
 }
 
 .input:checked + .label::before {
+  box-shadow: 0px 0px 0px var(--space-minuscule) var(--color-green--dark);
   border-color: var(--color-green--dark);
+  border-width: var(--border-thicker);
   background-color: var(--color-green);
-  transition: all 0.2s;
 }
 
-.radioGroup {
-  display: inline-flex;
-  flex-direction: column;
+.input[disabled] + .label {
+  color: var(--color-grey);
+  cursor: not-allowed;
+}
+
+.input[disabled] + .label::before {
+  border-color: var(--color-grey--lighter);
+}
+
+.input[disabled]:checked + .label::before {
+  box-shadow: 0px 0px 0px var(--space-minuscule) var(--color-grey);
+  border-color: var(--color-grey);
+  background-color: var(--color-grey--lighter);
+}
+
+.description {
+  margin-bottom: var(--space-small);
+  padding-left: var(--space-large);
+}
+
+.input[disabled] + .label + .description > p {
+  color: var(--color-grey);
 }

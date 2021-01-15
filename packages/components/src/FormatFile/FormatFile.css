@@ -1,0 +1,79 @@
+:root {
+  --file-card--height: calc(var(--space-base) * 3.5);
+  --file-card--background-color: var(--color-white);
+  --file-card--header-background-color: var(--color-greyBlue--lighter);
+  --file-card--content-background-color: var(--color-white);
+  --file-card--border-color: var(--color-grey--lighter);
+  --file-card--accent-color: var(--color-grey);
+  --file-card--base-padding: var(--space-small);
+}
+
+.formatFile {
+  display: flex;
+  height: var(--file-card--height);
+  border: var(--border-base) solid var(--file-card--border-color);
+  border-radius: var(--radius-base);
+  overflow: hidden;
+  background-color: var(--file-card--background-color);
+  align-items: center;
+  outline-color: var(--color-outline);
+}
+
+.imageBlock {
+  display: flex;
+  position: relative;
+  width: var(--file-card--height);
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0;
+  background-color: var(--file-card--header-background-color);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  align-items: center;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.imageBlock::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color-blue--dark);
+  opacity: 0.3;
+  mix-blend-mode: multiply;
+}
+
+.icon {
+  margin: 0 auto;
+}
+
+.progress {
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: var(--file-card--base-padding);
+  align-items: center;
+}
+
+.contentBlock {
+  flex-grow: 1;
+  padding: 0 var(--file-card--base-padding);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.contentBlock p {
+  margin: 0;
+}
+
+.actionBlock {
+  padding: 0 var(--file-card--base-padding) 0 0;
+}

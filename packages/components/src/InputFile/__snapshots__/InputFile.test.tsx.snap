@@ -1,0 +1,247 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a InputFile 1`] = `
+<div>
+  <div
+    class="dropZoneBase dropZone"
+    tabindex="0"
+  >
+    <input
+      autocomplete="off"
+      style="display: none;"
+      tabindex="-1"
+      type="file"
+    />
+    <div
+      class="padded small"
+    >
+      <button
+        class="button small work secondary"
+        type="button"
+      >
+        <span
+          class="base extraBold smaller uppercase green"
+        >
+          Upload File
+        </span>
+      </button>
+      <p
+        class="base regular small greyBlue"
+      >
+        or drag a file here to upload
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders an InputFile with multiple images allowed 1`] = `
+<div>
+  <div
+    class="dropZoneBase dropZone"
+    tabindex="0"
+  >
+    <input
+      accept="image/*"
+      autocomplete="off"
+      multiple=""
+      style="display: none;"
+      tabindex="-1"
+      type="file"
+    />
+    <div
+      class="padded small"
+    >
+      <button
+        class="button small work secondary"
+        type="button"
+      >
+        <span
+          class="base extraBold smaller uppercase green"
+        >
+          Upload Images
+        </span>
+      </button>
+      <p
+        class="base regular small greyBlue"
+      >
+        or drag images here to upload
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders an InputFile with multiple uploads 1`] = `
+<div>
+  <div
+    class="dropZoneBase dropZone"
+    tabindex="0"
+  >
+    <input
+      autocomplete="off"
+      multiple=""
+      style="display: none;"
+      tabindex="-1"
+      type="file"
+    />
+    <div
+      class="padded small"
+    >
+      <button
+        class="button small work secondary"
+        type="button"
+      >
+        <span
+          class="base extraBold smaller uppercase green"
+        >
+          Upload Files
+        </span>
+      </button>
+      <p
+        class="base regular small greyBlue"
+      >
+        or drag files here to upload
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders an InputFile with only images allowed 1`] = `
+<div>
+  <div
+    class="dropZoneBase dropZone"
+    tabindex="0"
+  >
+    <input
+      accept="image/*"
+      autocomplete="off"
+      style="display: none;"
+      tabindex="-1"
+      type="file"
+    />
+    <div
+      class="padded small"
+    >
+      <button
+        class="button small work secondary"
+        type="button"
+      >
+        <span
+          class="base extraBold smaller uppercase green"
+        >
+          Upload Image
+        </span>
+      </button>
+      <p
+        class="base regular small greyBlue"
+      >
+        or drag an image here to upload
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders an InputFile with proper variations 1`] = `
+<div>
+  <div
+    class="dropZoneBase dropZone"
+    tabindex="0"
+  >
+    <input
+      autocomplete="off"
+      style="display: none;"
+      tabindex="-1"
+      type="file"
+    />
+    <div
+      class="padded small"
+    >
+      <button
+        class="button small work secondary"
+        type="button"
+      >
+        <span
+          class="base extraBold smaller uppercase green"
+        >
+          Upload File
+        </span>
+      </button>
+      <p
+        class="base regular small greyBlue"
+      >
+        or drag a file here to upload
+      </p>
+    </div>
+  </div>
+  <div
+    class="dropZoneBase dropZone"
+    tabindex="0"
+  >
+    <input
+      autocomplete="off"
+      style="display: none;"
+      tabindex="-1"
+      type="file"
+    />
+    <div
+      class="padded small"
+    >
+      <button
+        class="button small work secondary"
+        type="button"
+      >
+        <span
+          class="base extraBold smaller uppercase green"
+        >
+          Upload File
+        </span>
+      </button>
+    </div>
+  </div>
+  <div
+    class="dropZoneBase"
+    tabindex="0"
+  >
+    <input
+      autocomplete="off"
+      style="display: none;"
+      tabindex="-1"
+      type="file"
+    />
+    <button
+      class="button base work secondary fullWidth"
+      type="button"
+    >
+      <span
+        class="base extraBold small uppercase green"
+      >
+        Upload File
+      </span>
+    </button>
+  </div>
+  <div
+    class="dropZoneBase"
+    tabindex="0"
+  >
+    <input
+      autocomplete="off"
+      style="display: none;"
+      tabindex="-1"
+      type="file"
+    />
+    <button
+      class="button small work secondary fullWidth"
+      type="button"
+    >
+      <span
+        class="base extraBold smaller uppercase green"
+      >
+        Upload File
+      </span>
+    </button>
+  </div>
+</div>
+`;

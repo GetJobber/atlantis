@@ -1,32 +1,37 @@
-import React, { ReactNode } from "react";
+import React, { PropsWithChildren } from "react";
 import { Typography, TypographyOptions } from "../Typography";
 
 interface TextProps {
   readonly variation?:
     | "default"
     | "subdued"
-    | "intro"
     | "success"
     | "error"
     | "warn"
     | "info";
-  readonly children: ReactNode;
+
+  readonly size?: "small" | "base" | "large";
 }
 
-export interface VariationMap {
-  [variation: string]: TypographyOptions;
-}
+type TextColor = Extract<TypographyOptions, "textColor">;
 
-export function Text({ variation = "default", children }: TextProps) {
-  const variationMap: VariationMap = {
-    default: { textColor: "greyBlueDark", size: "base" },
-    subdued: { textColor: "greyBlue", size: "base" },
-    intro: { textColor: "greyBlueDark", size: "larger" },
-    success: { textColor: "green", size: "base" },
-    error: { textColor: "red", size: "base" },
-    warn: { textColor: "yellowDark", size: "base" },
-    info: { textColor: "lightBlue", size: "base" },
+export function Text({
+  variation = "default",
+  size = "base",
+  children,
+}: PropsWithChildren<TextProps>) {
+  const textColors = {
+    default: "greyBlueDark",
+    subdued: "greyBlue",
+    success: "green",
+    error: "red",
+    warn: "yellowDark",
+    info: "lightBlue",
   };
 
-  return <Typography {...variationMap[variation]}>{children}</Typography>;
+  return (
+    <Typography textColor={textColors[variation] as TextColor} size={size}>
+      {children}
+    </Typography>
+  );
 }

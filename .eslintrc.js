@@ -7,10 +7,11 @@ module.exports = {
       alias: {
         map: [
           ["@jobber/components", "./packages/components/src"],
+          ["@jobber/hooks", "./packages/hooks"]
         ],
-        extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
-      },
-    },
+        extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
+      }
+    }
   },
   rules: {
     /*
@@ -22,12 +23,8 @@ module.exports = {
     "import/no-internal-modules": [
       "error",
       {
-        allow: [
-          "@jobber/components/*",
-          "gatsby-theme-docz/**",
-          "lodash/*"
-        ]
+        allow: ["@jobber/components/*", "gatsby-theme-docz/**", "lodash/*"]
       }
     ]
-  },
+  }
 };

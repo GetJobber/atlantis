@@ -89,7 +89,27 @@ discrete options, such as “fixed price” and “per visit” invoicing option
   }}
 </Playground>
 
+## With a description
+
+If there is more information needed for a `Checkbox`, use the `description` prop
+instead of a longer `label`.
+
+<Playground>
+  <Checkbox
+    label="Save card for future use"
+    description="If you save your card now, you'll never need to save it again."
+  />
+</Playground>
+
 ## Disabled
+
+A disabled checkbox cannot be operated by the user. Your primary goal should be
+to avoid disabled states in an interface, but some cases may require that an
+element be disabled.
+
+If presenting a disabled "checked" checkbox to the user, provide a clear
+description for the user on how to enable the checkbox to avoid creating a sense
+that the user has lost control of the interface.
 
 <Playground>
   <Checkbox
@@ -98,3 +118,9 @@ discrete options, such as “fixed price” and “per visit” invoicing option
     label="Subscribe on marketing emails"
   />
 </Playground>
+
+## Related components
+
+- To let people turn a setting on or off instantly, use a [Switch](switch).
+- To present a set of options where people can only make a single choice, use a
+  [Radio Group](radio-group).

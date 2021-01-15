@@ -9,6 +9,8 @@
   --button--color-destructive--hover: var(--color-red--dark);
 
   --button--color-cancel: var(--color-greyBlue);
+  --button--color-cancel--hover: var(--color-grey--lightest);
+
   --button--bg-color-cancel: var(--color-white);
   --button--color-disabled: var(--color-grey--lighter);
   --button--color-secondary: var(--color-white);
@@ -35,7 +37,8 @@
   justify-content: center;
 }
 
-.button:focus {
+.button:focus,
+a.button:focus {
   outline-color: var(--color-outline);
 }
 
@@ -47,7 +50,10 @@
   background-color: var(--button--color-work);
 }
 
-.work:hover {
+.work:hover,
+a.work:hover,
+.work:focus,
+a.work:focus {
   border-color: var(--button--color-work--hover);
   background-color: var(--button--color-work--hover);
 }
@@ -57,7 +63,10 @@
   background-color: var(--button--color-learning);
 }
 
-.learning:hover {
+.learning:hover,
+a.learning:hover,
+.learning:focus,
+a.learning:focus {
   border-color: var(--button--color-learning--hover);
   background-color: var(--button--color-learning--hover);
 }
@@ -67,12 +76,15 @@
   background-color: var(--button--color-destructive);
 }
 
-.destructive:hover {
+.destructive:hover,
+a.destructive:hover,
+.destructive:focus,
+a.destructive:focus {
   border-color: var(--button--color-destructive--hover);
   background-color: var(--button--color-destructive--hover);
 }
 
-/* Cancel is special because, by defualt, it's styled as a secondary button */
+/* Cancel is special because, by default, it's styled as a secondary button */
 
 .cancel {
   border-color: var(--button--color-cancel);
@@ -80,7 +92,10 @@
 }
 
 .cancel:focus,
-.cancel:hover {
+.cancel:hover,
+a.cancel:focus,
+a.cancel:hover {
+  background-color: var(--button--color-cancel--hover);
   filter: brightness(80%);
 }
 
@@ -95,7 +110,9 @@
 }
 
 .secondary:hover,
-.secondary:focus {
+.secondary:focus,
+a.secondary:hover,
+a.secondary:focus {
   background-color: var(--button--color-secondary);
   filter: brightness(80%);
 }
@@ -106,7 +123,9 @@
 }
 
 .tertiary:hover,
-.tertiary:focus {
+.tertiary:focus,
+a.tertiary:hover,
+a.tertiary:focus {
   border-color: transparent;
   background-color: var(--color-grey--lightest);
 }
@@ -140,8 +159,26 @@
 }
 
 /* Icon */
+
+.onlyIcon {
+  width: calc(var(--base-unit) * 2.25);
+  padding: 0;
+}
+
+.onlyIcon.small {
+  width: calc(var(--space-small) * 3);
+}
+
+.onlyIcon.base {
+  width: calc(var(--space-base) * 2.25);
+}
+
+.onlyIcon.large {
+  width: calc(var(--space-large) * 2);
+}
+
 .hasIconAndLabel {
-  padding: 0 var(--space-base);
+  width: auto;
 }
 
 .hasIconAndLabel > *:first-child {
