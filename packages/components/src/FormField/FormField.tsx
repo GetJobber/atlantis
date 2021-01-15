@@ -21,6 +21,8 @@ export interface FormFieldProps {
 
   /**
    * Determines if browser form autocomplete is enabled.
+   * Note that "one-time-code" is experimental and should not be used without
+   * consultation.
    */
   readonly autocomplete?: boolean | "one-time-code";
 
