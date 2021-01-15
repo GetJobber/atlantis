@@ -22,7 +22,7 @@ export interface FormFieldProps {
   /**
    * Determines if browser form autocomplete is enabled.
    */
-  readonly autocomplete?: boolean;
+  readonly autocomplete?: boolean | "one-time-code";
 
   /**
    * If you need to pass in a children. For example, `<options>` inside
