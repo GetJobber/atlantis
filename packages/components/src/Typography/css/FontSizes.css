@@ -20,7 +20,7 @@
 
 .large {
   font-size: var(--typography--fontSize-large);
-  line-height: var(--typography--lineHeight-tightest);
+  line-height: var(--typography--lineHeight-large);
 }
 
 .base {
