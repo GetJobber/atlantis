@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { Box, jsx } from "theme-ui";
-import { Fragment, useState } from "react";
+import { Fragment, RefObject, useState } from "react";
 import { MenuItem, useCurrentDoc } from "docz";
 // eslint-disable-next-line import/no-internal-modules
 import { Heading } from "docz/dist/state";
@@ -10,9 +10,10 @@ import { LevelThreeLink } from "./LevelThreeLink";
 
 interface LinkGroupProps {
   readonly item: MenuItem;
+  readonly sidebarRef: RefObject<HTMLDivElement>;
 }
 
-export function NavGroup({ item }: LinkGroupProps) {
+export function NavGroup({ item, sidebarRef }: LinkGroupProps) {
   const doc = useCurrentDoc();
   const [open, setOpen] = useState(item.name === doc.menu);
 
@@ -28,6 +29,7 @@ export function NavGroup({ item }: LinkGroupProps) {
               return (
                 <Box sx={{ my: "base" }} key={menu.id}>
                   <LevelTwoLink
+                    sidebarRef={sidebarRef}
                     title={menu.name}
                     url={menu.route}
                     active={isActive}

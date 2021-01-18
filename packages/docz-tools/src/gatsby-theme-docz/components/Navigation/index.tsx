@@ -1,15 +1,17 @@
 /** @jsx jsx */
 import { Box, jsx } from "theme-ui";
 import { useMenus } from "docz";
+import { RefObject } from "react";
 import { NavLink } from "./NavLink";
 import { NavGroup } from "./NavGroup";
 import * as styles from "./styles";
 
 interface NavigationProps {
   readonly query?: string;
+  readonly sidebarRef: RefObject<HTMLDivElement>;
 }
 
-export function Navigation({ query }: NavigationProps) {
+export function Navigation({ query, sidebarRef }: NavigationProps) {
   const menus = useMenus({ query });
 
   return (
@@ -20,7 +22,11 @@ export function Navigation({ query }: NavigationProps) {
 
           return (
             <Box key={menu.id} sx={styles.item}>
-              {isNavGroup ? <NavGroup item={menu} /> : <NavLink item={menu} />}
+              {isNavGroup ? (
+                <NavGroup item={menu} sidebarRef={sidebarRef} />
+              ) : (
+                <NavLink item={menu} />
+              )}
             </Box>
           );
         })}

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { Box, jsx } from "theme-ui";
-import { FormEvent, useState } from "react";
+import { FormEvent, createRef, useState } from "react";
 import { useConfig } from "docz";
 import { Icon } from "@jobber/components/Icon";
 import * as styles from "./styles";
@@ -12,9 +12,10 @@ export function Sidebar() {
   const {
     themeConfig: { sideBarWidth },
   } = useConfig();
+  const sidebarRef = createRef<HTMLDivElement>();
 
   return (
-    <Box sx={styles.sidebar(sideBarWidth)}>
+    <Box sx={styles.sidebar(sideBarWidth)} ref={sidebarRef}>
       <Logo />
       <Box sx={styles.search}>
         <Icon name="search" color="greyBlue" />
@@ -26,7 +27,7 @@ export function Sidebar() {
           placeholder="Type to search"
         />
       </Box>
-      <Navigation query={query} />
+      <Navigation query={query} sidebarRef={sidebarRef} />
     </Box>
   );
 

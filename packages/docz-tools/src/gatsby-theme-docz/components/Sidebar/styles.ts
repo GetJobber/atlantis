@@ -1,16 +1,16 @@
-export const sidebar = (width: number) => ({
-  bg: "greyBlueDark",
-  height: "100vh",
-  position: "fixed",
-  top: 0,
-  width: width,
-  overflowY: "scroll",
-  scrollBehavior: "smooth",
+export const sidebar = (width: number) =>
+  ({
+    bg: "greyBlueDark",
+    height: "100vh",
+    position: "fixed",
+    top: 0,
+    width: width,
+    overflowY: "scroll",
 
-  "&::-webkit-scrollbar": {
-    display: "none",
-  },
-});
+    "&::-webkit-scrollbar": {
+      display: "none",
+    },
+  } as const);
 
 export const search = {
   position: "relative",
@@ -23,7 +23,7 @@ export const search = {
     transform: "translateY(-50%)",
     left: "small",
   },
-};
+} as const;
 
 export const input = {
   boxSizing: "border-box",
@@ -44,4 +44,4 @@ export const input = {
   "&:focus": {
     boxShadow: (t: any) => `0 0 3px ${t.colors.greyBlueLightest}`,
   },
-};
+} as const;
