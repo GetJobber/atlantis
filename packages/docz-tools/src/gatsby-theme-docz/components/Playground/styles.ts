@@ -1,13 +1,18 @@
 import { space } from "~theme/space";
-/**
- * This variable is imported into the styles for `Layout` as a hacky way
- * to style the  playground wrapper without having to shadow the entire
- * playground component.
- */
+
 export const playground = {
+  position: "relative",
+  left: `50%`,
+  right: `50%`,
+  width: `calc(100vw - 15px - var(--space-large) - var(--space-large) - 275px)`,
+  marginLeft: `calc(-50vw + 7px + var(--space-large) + 138px)`,
+  my: "larger",
+
   "[data-testid='playground']": {
     bg: "white",
     position: "relative",
+    mx: "auto !important",
+    width: "900px",
 
     /**
      * Draggable handle on the Playground
@@ -36,13 +41,13 @@ export const playground = {
       },
     },
   },
-};
+} as const;
 
 export const previewWrapper = {
   position: "relative",
-};
+} as const;
 
-export const editor = () => ({
+export const editor = {
   border: "1px solid",
   borderColor: "greyLighter",
   p: "small",
@@ -53,7 +58,7 @@ export const editor = () => ({
   textarea: {
     outline: "none",
   },
-});
+};
 
 export const error = {
   bg: "red",
@@ -63,7 +68,7 @@ export const error = {
   color: "white",
   fontSize: "small",
   whiteSpace: "pre-wrap",
-};
+} as const;
 
 export const preview = {
   p: "large",
@@ -83,10 +88,3 @@ export const button = {
   border: "1px solid",
   borderColor: "greyLighter",
 };
-
-/**
- * These must be left in as `gatsby-theme-docz` expects
- * these functionsto exist.
- */
-export const wrapper = () => ({});
-export const wrapperBorder = () => ({});
