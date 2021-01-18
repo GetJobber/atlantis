@@ -4,4 +4,5 @@ export const actions = {
   right: "large",
   display: "flex",
   gap: "small",
+  zIndex: 99999,
 };
