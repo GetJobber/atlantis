@@ -56,9 +56,15 @@ function privateComponentReadmes() {
   const atlantis = __dirname.replace(/\/\.docz$/, "");
   const components = path.join(atlantis, "packages", "components", "src");
 
-  return glob.sync(path.join(components, "/**/.private")).map(file => {
-    const directory = path.dirname(file);
-    const component = path.basename(directory);
-    return path.join(directory, `${component}.mdx`).slice(atlantis.length + 1);
-  });
+  const privates = glob
+    .sync(path.join(components, "/**/.private"))
+    .map(file => {
+      const directory = path.dirname(file);
+      const component = path.basename(directory);
+      return path
+        .join(directory, `${component}.mdx`)
+        .slice(atlantis.length + 1);
+    });
+
+  return privates.map(p => `./${p}`);
 }
