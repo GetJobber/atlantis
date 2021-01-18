@@ -95,7 +95,7 @@ exports.onCreateWebpackConfig = ({
     config.module.rules.push({
       test: /.*\.(?:md|mdx)$/,
       // eslint-disable-next-line import/no-internal-modules
-      use: require("@jobber/docz-tools/null-markdown-loader"),
+      use: path.resolve("../null-markdown-loader.js"),
     });
   }
 
