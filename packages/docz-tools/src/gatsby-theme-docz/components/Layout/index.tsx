@@ -13,7 +13,7 @@ import "@jobber/design/foundation.css";
 
 export function Layout({ children }: PropsWithChildren<{}>) {
   const {
-    themeConfig: { sideBarWidth },
+    themeConfig: { sideBarWidth, containerWidth },
   } = useConfig();
 
   return (
@@ -25,7 +25,7 @@ export function Layout({ children }: PropsWithChildren<{}>) {
         </Box>
         <Actions />
         <Box sx={styles.content}>
-          <Box sx={styles.container}>{children}</Box>
+          <Box sx={styles.container(containerWidth)}>{children}</Box>
         </Box>
       </Box>
     </Fragment>

@@ -1,6 +1,3 @@
-// eslint-disable-next-line import/no-internal-modules
-import { playground } from "../Playground/styles";
-
 export const layout = {
   display: "flex",
   minHeight: "100vh",
@@ -16,11 +13,10 @@ export const content = {
   py: "larger",
   px: "large",
   flex: "1",
-
-  ...playground,
 };
 
-export const container = {
-  maxWidth: 800,
+export const container = (width?: number) => ({
+  width: "100%",
+  maxWidth: width,
   mx: "auto",
-};
+});
