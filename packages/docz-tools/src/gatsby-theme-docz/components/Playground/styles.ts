@@ -1,47 +1,55 @@
 import { space } from "~theme/space";
 
-export const playground = {
-  position: "relative",
-  left: `50%`,
-  right: `50%`,
-  width: `calc(100vw - 15px - var(--space-large) - var(--space-large) - 275px)`,
-  marginLeft: `calc(-50vw + 7px + var(--space-large) + 138px)`,
-  my: "larger",
+export const playground = (containerWidth: number, sideBarWidth: number) => {
+  const { large } = space;
+  const scrollBarWidth = 16;
+  const width = `calc(100vw - ${scrollBarWidth}px - ${large} - ${large} - ${sideBarWidth}px)`;
+  const marginLeft = `calc(-50vw + ${scrollBarWidth /
+    2}px + ${large} + ${sideBarWidth / 2}px)`;
 
-  "[data-testid='playground']": {
-    bg: "white",
+  return {
     position: "relative",
-    mx: "auto !important",
-    width: "900px",
+    left: `50%`,
+    right: `50%`,
+    my: "larger",
+    width,
+    marginLeft,
 
-    /**
-     * Draggable handle on the Playground
-     */
-    "> div:last-of-type": {
-      "> div": {
-        right: "0 !important",
-        transform: "translateX(calc(100% + 1px))",
-        width: `${space.small} !important`,
-        bg: "greyLighter",
-        borderRadius: "base",
+    "[data-testid='playground']": {
+      bg: "white",
+      position: "relative",
+      mx: "auto !important",
+      width: "900px",
 
-        "&::after": {
-          content: `""`,
-          display: "block",
-          position: "absolute",
-          top: "50%",
-          right: "50%",
-          transform: "translate(50%, -50%)",
-          height: "extravagant",
-          width: "smallest",
-          borderLeft: "1px solid",
-          borderRight: "1px solid",
-          borderColor: "white",
+      /**
+       * Draggable handle on the Playground
+       */
+      "> div:last-of-type": {
+        "> div": {
+          right: "0 !important",
+          transform: "translateX(calc(100% + 1px))",
+          width: `${space.small} !important`,
+          bg: "greyLighter",
+          borderRadius: "base",
+
+          "&::after": {
+            content: `""`,
+            display: "block",
+            position: "absolute",
+            top: "50%",
+            right: "50%",
+            transform: "translate(50%, -50%)",
+            height: "extravagant",
+            width: "smallest",
+            borderLeft: "1px solid",
+            borderRight: "1px solid",
+            borderColor: "white",
+          },
         },
       },
     },
-  },
-} as const;
+  } as const;
+};
 
 export const previewWrapper = {
   position: "relative",

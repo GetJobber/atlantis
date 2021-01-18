@@ -21,7 +21,12 @@ interface PlaygroundProps {
 
 export function Playground({ code, scope, language }: PlaygroundProps) {
   const {
-    themeConfig: { showLiveError, showLivePreview, containerWidth },
+    themeConfig: {
+      showLiveError,
+      showLivePreview,
+      containerWidth,
+      sideBarWidth,
+    },
   } = useConfig();
 
   // Makes sure scope is only given on mount to avoid infinite re-render on hot reloads
@@ -31,7 +36,7 @@ export function Playground({ code, scope, language }: PlaygroundProps) {
   const resizableProps = getResizableProps();
 
   return (
-    <Box sx={styles.playground}>
+    <Box sx={styles.playground(containerWidth, sideBarWidth)}>
       <Resizable {...resizableProps} data-testid="playground">
         <LiveProvider
           code={code}

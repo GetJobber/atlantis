@@ -43,6 +43,7 @@ function getPackagesToDocument() {
     "hooks",
     "docx",
     "stylelint-config",
+    "docz-tools",
   ];
 }
 
