@@ -5,6 +5,8 @@ import { Code } from "gatsby-theme-docz/src/components/Code";
 // @ts-expect-error
 import { Pre } from "gatsby-theme-docz/src/components/Pre";
 import { Divider } from "@jobber/components/Divider";
+import { Cell, Header, Table } from "@jobber/components/Table";
+import { Tr } from "./Tr";
 import * as headings from "./Headings";
 import { Layout } from "./Layout";
 import { Props } from "./Props";
@@ -19,4 +21,9 @@ export default {
   code: Code,
   pre: Pre,
   hr: Divider,
+  table: Table,
+  thead: Header,
+  th: Cell,
+  tr: Tr,
+  td: Cell,
 };
