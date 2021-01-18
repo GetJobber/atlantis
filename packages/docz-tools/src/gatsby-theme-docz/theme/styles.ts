@@ -33,6 +33,7 @@ export const styles = {
     mx: 0,
     py: "base",
     pl: "large",
+    pr: "base",
     borderLeft: "var(--border-thicker) solid",
     borderColor: "greyBlueLighter",
     borderRadius: "base",

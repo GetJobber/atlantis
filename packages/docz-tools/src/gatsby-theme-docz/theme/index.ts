@@ -13,6 +13,7 @@ export default {
   showMarkdownEditButton: true,
   useScopingInPlayground: false,
   sideBarWidth: 275,
+  containerWidth: 768,
   colors,
   fonts,
   fontSizes,
