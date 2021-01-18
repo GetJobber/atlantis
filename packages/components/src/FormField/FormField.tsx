@@ -21,8 +21,10 @@ export interface FormFieldProps {
 
   /**
    * Determines if browser form autocomplete is enabled.
+   * Note that "one-time-code" is experimental and should not be used without
+   * consultation.
    */
-  readonly autocomplete?: boolean;
+  readonly autocomplete?: boolean | "one-time-code";
 
   /**
    * If you need to pass in a children. For example, `<options>` inside
@@ -218,7 +220,7 @@ export function FormField({
   ]);
   useEffect(() => handleValidation(), [error]);
 
-  const autocompleteValue = autocomplete ? undefined : "autocomplete-off";
+  const autocompleteValue = setAutocomplete(autocomplete);
 
   const wrapperClassNames = classnames(
     styles.wrapper,
@@ -322,6 +324,11 @@ export function FormField({
           </>
         );
     }
+  }
+
+  function setAutocomplete(autocompleteSetting: boolean | string) {
+    if (autocompleteSetting === "one-time-code") return "one-time-code";
+    return autocompleteSetting ? undefined : "autocomplete-off";
   }
 
   function handleChange(

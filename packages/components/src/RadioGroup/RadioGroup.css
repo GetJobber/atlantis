@@ -29,7 +29,12 @@
 }
 
 .input:focus + .label:before {
-  box-shadow: 0 0 1px 0.125rem var(--color-outline);
+  box-shadow: var(--shadow-focus);
+}
+
+.input:focus:checked + .label:before {
+  box-shadow: 0px 0px 0px var(--space-minuscule) var(--color-green--dark),
+    var(--shadow-focus);
 }
 
 .input:checked + .label::before {
