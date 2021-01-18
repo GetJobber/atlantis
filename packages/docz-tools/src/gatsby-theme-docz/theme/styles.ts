@@ -3,6 +3,7 @@ export const styles = {
     fontFamily: "body",
     fontSize: "large",
     lineHeight: "large",
+    color: "blueDark",
   },
   a: {
     color: "green",
