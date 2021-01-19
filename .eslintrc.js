@@ -30,8 +30,8 @@ module.exports = {
   overrides: [
     {
       files: [
-        './packages/docz-tools/src/gatsby-theme-docz/theme/index.*',
-        './packages/docz-tools/src/gatsby-theme-docz/components/index.*'
+        './packages/docz-tools/src/gatsby-theme-docz/theme/index.ts',
+        './packages/docz-tools/src/gatsby-theme-docz/components/index.ts'
       ],
       rules: {
         "import/no-default-export": "off",

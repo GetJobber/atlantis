@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { Box, jsx } from "theme-ui";
 import { Link } from "docz";
-import { Icon } from "@jobber/components/Icon";
 import { XOR } from "ts-xor";
+import { Icon } from "@jobber/components/Icon";
 import { levelOneLink } from "./styles";
 
 interface LevelOneLinkBaseProps {
