@@ -5,13 +5,14 @@ The `InputEmail` component helps a user enter a valid email address.
 ## Design Patterns
 
 - Built-in validation provides the user with feedback on whether their input is
-  a well formed email address.
-- Validation follows the Altantis patterns for consistency.
-- The component will follow the approach that
-  <a href="atlantis.getjobber.com/components/input-number">InputNumber</a>
-  takes, to gain consistency and support for:
-  - exposing a ref that allows for `blur()` and `focus()`;
+  a well formed email address. There will be default placeholder content and
+  validation messages provided that the user can override.
+- The component validation will follow the Altantis patterns for consistency.
+- The component will be modeled after
+  [InputNumber](https://atlantis.getjobber.com/components/input-number) to gain
+  consistency and support for:
   - wrapping `FormField` and passing its props and validations through to it;
+  - exposing a ref that allows for `blur()` and `focus()`;
   - supporting controlled and uncontrolled uses, size setting, and inline
     presentation modes.
 
@@ -23,8 +24,8 @@ The `InputEmail` component helps a user enter a valid email address.
   screen reader announces error).
 - We will look to meet the following guidelines with one or possibly both of the
   following:
-  - https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA21.html
-  - https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA19.html
+  - [Using Aria-Invalid to Indicate An Error Field](https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA21.html)
+  - [Using ARIA role=alert or Live Regions to Identify Errors](https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA19.html)
 
 ## Responsiveness & Mobile
 
@@ -34,9 +35,23 @@ The `InputEmail` component helps a user enter a valid email address.
 
 ## Wireframe
 
-1. An input, with nothing touched yet (defaults).
-2. An input with an invalid email address in it.
-3. An input, with a valid email address in it.
+### Blank
+
+An input, with nothing touched yet (defaults):
+
+![Blank Input](./inputemail_blank.png)
+
+### Error, Invalid email
+
+An input with an invalid email address in it.
+
+![Error, Invalid Input](./inputemail_error.png)
+
+### Valid email
+
+An input, with a valid email address in it.
+
+![Valid Input](./inputemail_valid.png)
 
 ## Interface
 
@@ -53,6 +68,33 @@ import { InputEmail } "@jobber/components/InputEmail";
     );
   }
 </Playground>
+```
+
+### Essentially it will be this:
+
+```tsx
+() => {
+  return (
+    <>
+      <Text>
+        <InputText
+          placeholder="Email address"
+          validations={{
+            required: {
+              value: true,
+              message: "Please tell me your name"
+            },
+            pattern: {
+              value: /\A((?:(?:(?:[a-zA-Z0-9\-+_][.\-+_'&]?)*)[a-zA-Z0-9\-+_]))@((?:(?:(?:[a-zA-Z0-9][.\-_]?){0,62})[a-zA-Z0-9])+)\.([a-zA-Z0-9]{2,})\z/,
+              message: "That does not look like an email address"
+            }
+          }}
+          name="myName"
+        />
+      </Text>
+    </>
+  );
+};
 ```
 
 ## Props Table
