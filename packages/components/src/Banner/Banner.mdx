@@ -7,6 +7,7 @@ route: /components/banner
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { Banner } from ".";
+import { Content } from "@jobber/components/Content";
 
 # Banner
 
@@ -63,25 +64,27 @@ within a `Banner`. If you require an action, use the `primaryActions` prop. The
 `primaryAction` accepts the same props as the `Button` component.
 
 <Playground>
-  <Banner
-    type="success"
-    primaryAction={{
-      label: "Poke Me",
-      onClick: () => alert("💥💥SMASH💥💥")
-    }}
-    dismissible={false}
-  >
-    You wouldn't like me when I'm angry.
-  </Banner>
-  <Banner
-    type="notice"
-    primaryAction={{
-      label: "I'm always angry",
-      onClick: () => alert("😡😡😡")
-    }}
-  >
-    That's my secret Captain
-  </Banner>
+  <Content>
+    <Banner
+      type="success"
+      primaryAction={{
+        label: "Poke Me",
+        onClick: () => alert("💥💥SMASH💥💥")
+      }}
+      dismissible={false}
+    >
+      You wouldn't like me when I'm angry.
+    </Banner>
+    <Banner
+      type="notice"
+      primaryAction={{
+        label: "I'm always angry",
+        onClick: () => alert("😡😡😡")
+      }}
+    >
+      That's my secret Captain
+    </Banner>
+  </Content>
 </Playground>
 
 ## Related components

@@ -8,6 +8,76 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.22.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.22.1...@jobber/components@2.22.2) (2021-01-19)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.22.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.22.0...@jobber/components@2.22.1) (2021-01-18)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.22.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.21.0...@jobber/components@2.22.0) (2021-01-15)
+
+
+### Features
+
+* **components:** add iOS autocomplete support for OTPs to form fields ([#452](https://github.com/GetJobber/atlantis/issues/452)) ([c4a158b](https://github.com/GetJobber/atlantis/commit/c4a158babe97e84e39094e4a04f115db5110be75))
+
+
+
+
+
+# [2.21.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.20.4...@jobber/components@2.21.0) (2021-01-14)
+
+
+### Features
+
+* **components:** add lastIndex argument to onRequestClose function prop of LightBox  ([#410](https://github.com/GetJobber/atlantis/issues/410)) ([fda480c](https://github.com/GetJobber/atlantis/commit/fda480c4699ed8b58157906518759d68408b70b8))
+
+
+
+
+
+## [2.20.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.20.3...@jobber/components@2.20.4) (2021-01-12)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.20.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.20.2...@jobber/components@2.20.3) (2021-01-11)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.20.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.20.1...@jobber/components@2.20.2) (2021-01-08)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.20.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.20.0...@jobber/components@2.20.1) (2021-01-08)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 # [2.20.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.19.1...@jobber/components@2.20.0) (2021-01-06)
 
 

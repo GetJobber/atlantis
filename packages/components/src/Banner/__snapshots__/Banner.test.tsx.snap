@@ -3,23 +3,32 @@
 exports[`renders a banner with a primary 'learning' action when the type is 'notice' 1`] = `
 <div
   className="flash notice"
+  role="status"
 >
-  <p
-    className="base regular base greyBlueDark"
+  <div
+    className="bannerContent dismissibleSpacing"
   >
-    Bruce
-  </p>
-  <button
-    className="button small learning tertiary"
-    disabled={false}
-    type="button"
-  >
-    <span
-      className="base extraBold smaller uppercase lightBlue"
+    <p
+      className="base regular base greyBlueDark"
     >
-      smash me
-    </span>
-  </button>
+      Bruce
+    </p>
+    <div
+      className="bannerAction"
+    >
+      <button
+        className="button small learning tertiary"
+        disabled={false}
+        type="button"
+      >
+        <span
+          className="base extraBold smaller uppercase lightBlue"
+        >
+          smash me
+        </span>
+      </button>
+    </div>
+  </div>
   <button
     aria-label="Close"
     className="closeButton"
@@ -43,23 +52,32 @@ exports[`renders a banner with a primary 'learning' action when the type is 'not
 exports[`renders a banner with a primary action 1`] = `
 <div
   className="flash success"
+  role="status"
 >
-  <p
-    className="base regular base greyBlueDark"
+  <div
+    className="bannerContent dismissibleSpacing"
   >
-    Bruce
-  </p>
-  <button
-    className="button small work tertiary"
-    disabled={false}
-    type="button"
-  >
-    <span
-      className="base extraBold smaller uppercase green"
+    <p
+      className="base regular base greyBlueDark"
     >
-      smash me
-    </span>
-  </button>
+      Bruce
+    </p>
+    <div
+      className="bannerAction"
+    >
+      <button
+        className="button small work tertiary"
+        disabled={false}
+        type="button"
+      >
+        <span
+          className="base extraBold smaller uppercase green"
+        >
+          smash me
+        </span>
+      </button>
+    </div>
+  </div>
   <button
     aria-label="Close"
     className="closeButton"
@@ -83,12 +101,17 @@ exports[`renders a banner with a primary action 1`] = `
 exports[`renders a notice banner 1`] = `
 <div
   className="flash notice"
+  role="status"
 >
-  <p
-    className="base regular base greyBlueDark"
+  <div
+    className="bannerContent dismissibleSpacing"
   >
-    Notice me
-  </p>
+    <p
+      className="base regular base greyBlueDark"
+    >
+      Notice me
+    </p>
+  </div>
   <button
     aria-label="Close"
     className="closeButton"
@@ -112,12 +135,17 @@ exports[`renders a notice banner 1`] = `
 exports[`renders a success banner 1`] = `
 <div
   className="flash success"
+  role="status"
 >
-  <p
-    className="base regular base greyBlueDark"
+  <div
+    className="bannerContent dismissibleSpacing"
   >
-    Success
-  </p>
+    <p
+      className="base regular base greyBlueDark"
+    >
+      Success
+    </p>
+  </div>
   <button
     aria-label="Close"
     className="closeButton"
@@ -141,12 +169,17 @@ exports[`renders a success banner 1`] = `
 exports[`renders a warning banner 1`] = `
 <div
   className="flash warning"
+  role="status"
 >
-  <p
-    className="base regular base greyBlueDark"
+  <div
+    className="bannerContent dismissibleSpacing"
   >
-    Warn
-  </p>
+    <p
+      className="base regular base greyBlueDark"
+    >
+      Warn
+    </p>
+  </div>
   <button
     aria-label="Close"
     className="closeButton"
@@ -170,12 +203,17 @@ exports[`renders a warning banner 1`] = `
 exports[`renders an error banner 1`] = `
 <div
   className="flash error"
+  role="status"
 >
-  <p
-    className="base regular base greyBlueDark"
+  <div
+    className="bannerContent dismissibleSpacing"
   >
-    Fail
-  </p>
+    <p
+      className="base regular base greyBlueDark"
+    >
+      Fail
+    </p>
+  </div>
   <button
     aria-label="Close"
     className="closeButton"
