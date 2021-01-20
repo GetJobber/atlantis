@@ -1,18 +1,34 @@
 # Component Name
 
-The `Gallery` component will accept a list of attachments for images and display
-them as thumbnails. This would also have an option to show the images in a
-LightBox component on click of those images.
+The `Gallery` component will accept an array of files and display them as
+thumbnails for images, other file types will instead display a generic icon
+corresponding to the file type. This would also have an option to show the
+images in a LightBox component on click of those images.
 
 ## Accessibility
 
-Assistive technology should be able to see the images and know the image name
-based on the `name` property of each attachment.
+We will support navigation through the items with tab and shift-tab. Since we
+cannot guarantee the `name` value passed in will be readable or useful, instead
+the alt value should reference the total number of files in the gallery and
+which file the user is currently focused on.
+
+eg. `alt=[1 of 4] attached files`
+
+Since the non-images will not be an actual thumbnail, rather some markup, we can
+use the `role=img` and `alt=...` attributes
+
+Triggering the onclick equivalent action should also be accessible via "space"
+and "return".
 
 ## Responsiveness & Mobile
 
 This component show maximum number of images possible in a line and show the
 count of images left to show.
+
+We are not currently looking to make this support a full page width version. Our
+usages as of now are limted to a static size of about 56px per thumbnail, and
+the spacing designs are for that. Allowing options for adjusting the size could
+be a future iteration.
 
 ## Wireframe
 
