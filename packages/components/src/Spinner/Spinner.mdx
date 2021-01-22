@@ -1,0 +1,53 @@
+---
+name: Spinner
+menu: Components
+route: /components/spinner
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { Spinner } from ".";
+import { Text } from "../Text";
+
+# Spinner
+
+<ComponentStatus stage="pre" responsive="no" accessible="yes" />
+
+Spinners are used to visualize an undetermined load time for a section of a page
+and prevent double clicking of a UI element by overlaying it while its action is
+processing.
+
+The default spinner should be used to indicate loading of a view
+
+```ts
+import { Spinner } from "@jobber/components/Spinner";
+```
+
+<Playground>
+  <Spinner />
+</Playground>
+
+## Props
+
+<Props of={Spinner} />
+
+---
+
+## Small
+
+The `small` spinner should be used on individual element of an interface (ie.
+button or card contents) or when inline with content
+
+<Playground>
+  <Spinner size="small" />
+</Playground>
+
+## Inline
+
+Use `inline` to render the spinner inline with content.
+
+<Playground>
+  <Text>
+    Uploading... <Spinner size="small" inline={true} />
+  </Text>
+</Playground>
