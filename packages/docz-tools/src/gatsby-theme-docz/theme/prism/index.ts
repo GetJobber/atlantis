@@ -1,6 +1,6 @@
 import { fontSizes, fonts } from "../typography";
 import { radii } from "../radii";
-import * as colors from "../colors";
+import { colors } from "../colors";
 
 export const prism = {
   plain: {

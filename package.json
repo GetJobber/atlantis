@@ -85,7 +85,6 @@
     "style-loader": "^0.23.1",
     "stylelint": "^11.1.1",
     "stylelint-junit-formatter": "^0.2.1",
-    "theme-ui": "^0.3.1",
     "typed-css-modules-loader": "^0.0.17",
     "typescript": "^3.8.3"
   },

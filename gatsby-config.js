@@ -1,5 +1,12 @@
 /* eslint-env node */
 module.exports = {
-  flags: { PRESERVE_WEBPACK_CACHE: true, FAST_REFRESH: true },
-  plugins: ["@jobber/docz-tools"],
+  plugins: [
+    "@jobber/docz-tools",
+    {
+      resolve: "gatsby-plugin-compile-es6-packages",
+      options: {
+        modules: ["@jobber/docz-tools"],
+      },
+    },
+  ],
 };

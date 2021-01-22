@@ -1,47 +1,49 @@
-/** Green */
-export const green = "var(--color-green)";
-export const greenDark = "var(--color-green--dark)";
+export const colors = {
+  // Greens
+  green: "var(--color-green)",
+  greenDark: "var(--color-green--dark)",
 
-/** Blue */
-export const blue = "var(--color-blue)";
-export const blueDark = "var(--color-blue--dark)";
+  // Blue
+  blue: "var(--color-blue)",
+  blueDark: "var(--color-blue--dark)",
 
-/** Grey Blue */
-export const greyBlue = "var(--color-greyBlue)";
-export const greyBlueLight = "var(--color-greyBlue--light)";
-export const greyBlueLighter = "var(--color-greyBlue--lighter)";
-export const greyBlueLightest = "var(--color-greyBlue--lightest)";
-export const greyBlueDark = "var(--color-greyBlue--dark)";
+  // Grey Blue
+  greyBlue: "var(--color-greyBlue)",
+  greyBlueLight: "var(--color-greyBlue--light)",
+  greyBlueLighter: "var(--color-greyBlue--lighter)",
+  greyBlueLightest: "var(--color-greyBlue--lightest)",
+  greyBlueDark: "var(--color-greyBlue--dark)",
 
-/** Light Blue */
-export const lightBlue = "var(--color-lightBlue)";
+  // Light Blue
+  lightBlue: "var(--color-lightBlue)",
 
-/** Grey */
-export const white = "var(--color-white)";
-export const grey = "var(--color-grey)";
-export const greyLighter = "var(--color-grey--lighter)";
-export const greyLightest = "var(--color-grey--lightest)";
+  // Grey
+  white: "var(--color-white)",
+  grey: "var(--color-grey)",
+  greyLighter: "var(--color-grey--lighter)",
+  greyLightest: "var(--color-grey--lightest)",
 
-/** Red */
-export const red = "var(--color-red)";
+  // Red
+  red: "var(--color-red)",
 
-/** Pink */
-export const pink = "var(--color-pink)";
+  // Pink
+  pink: "var(--color-pink)",
 
-/** Teal */
-export const teal = "var(--color-teal)";
+  // Teal
+  teal: "var(--color-teal)",
 
-/** Purple */
-export const purpleDark = "var(--color-purple--dark)";
+  // Purple
+  purpleDark: "var(--color-purple--dark)",
 
-/** Indigo */
-export const indigo = "var(--color-indigo)";
+  // Indigo
+  indigo: "var(--color-indigo)",
 
-/** Yellow */
-export const yellow = "var(--color-yellow)";
-export const yellowLigher = "var(--color-yellow--lighter)";
+  // Yellow
+  yellow: "var(--color-yellow)",
+  yellowLigher: "var(--color-yellow--lighter)",
 
-/** Playground */
-export const playground = {
-  border: greyLighter,
+  // Playground
+  playground: {
+    border: "var(--color-grey--lighter)",
+  },
 };

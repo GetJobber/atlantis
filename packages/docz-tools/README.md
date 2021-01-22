@@ -23,12 +23,16 @@ Next, add the theme to a `gatsby-config.js` file at the root of your project.
 ```
 // gatsby-config.js
 module.exports = {
-  ...,
   plugins: [
-    ...,
-    `@jobber/docz-tools`
-  ]
-}
+    "@jobber/docz-tools",
+    {
+      resolve: "gatsby-plugin-compile-es6-packages",
+      options: {
+        modules: ["@jobber/docz-tools"],
+      },
+    },
+  ],
+};
 ```
 
 ## Config

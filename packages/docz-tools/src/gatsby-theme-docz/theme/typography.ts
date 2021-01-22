@@ -1,7 +1,7 @@
 export const fonts = {
   body: `'Source Sans Pro', sans-serif`,
   heading: `'Poppins', sans-serif`,
-  monospace: "Menlo, monospace",
+  monospace: "monospace",
 };
 
 export const fontSizes = {

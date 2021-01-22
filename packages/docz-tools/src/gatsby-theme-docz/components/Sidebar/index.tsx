@@ -6,6 +6,7 @@ import { Icon } from "@jobber/components/Icon";
 import * as styles from "./styles";
 import { Navigation } from "../Navigation";
 import { Logo } from "../Logo";
+import { DeferRender } from "../DeferRender";
 
 export function Sidebar() {
   const [query, setQuery] = useState("");
@@ -18,7 +19,9 @@ export function Sidebar() {
     <Box sx={styles.sidebar(sideBarWidth)} ref={sidebarRef}>
       <Logo />
       <Box sx={styles.search}>
-        <Icon name="search" color="greyBlue" />
+        <DeferRender>
+          <Icon name="search" color="greyBlue" />
+        </DeferRender>
         <input
           sx={styles.input}
           type="text"

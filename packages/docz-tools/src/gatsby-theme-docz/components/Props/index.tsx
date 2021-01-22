@@ -8,6 +8,7 @@ import { Emphasis } from "@jobber/components/Emphasis";
 import { Button } from "@jobber/components/Button";
 import { Tooltip } from "@jobber/components/Tooltip";
 import * as styles from "./styles";
+import { DeferRender } from "../DeferRender";
 
 export function Props({ props, getPropType }: PropsComponentProps) {
   const entries = Object.entries(props);
@@ -44,9 +45,11 @@ export const Prop = ({ propName, prop, getPropType }: PropProps) => {
           <Box>
             {propName}
             {required && (
-              <Tooltip message="Required">
-                <Box sx={styles.required}>*</Box>
-              </Tooltip>
+              <DeferRender>
+                <Tooltip message="Required">
+                  <Box sx={styles.required}>*</Box>
+                </Tooltip>
+              </DeferRender>
             )}
           </Box>
           {defaultValue && (

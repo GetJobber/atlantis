@@ -1,4 +1,4 @@
-import * as colors from "./colors";
+import { colors } from "./colors";
 import { space } from "./space";
 import { fontSizes, fonts, lineHeights } from "./typography";
 import { radii } from "./radii";

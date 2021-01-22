@@ -4,6 +4,7 @@ import { useConfig, useCurrentDoc } from "docz";
 import { Button } from "@jobber/components/Button";
 import { Tooltip } from "@jobber/components/Tooltip";
 import * as styles from "./styles";
+import { DeferRender } from "../DeferRender";
 
 export function Actions() {
   const doc = useCurrentDoc();
@@ -13,21 +14,23 @@ export function Actions() {
   return (
     <Box sx={styles.actions}>
       {repository && (
-        <Tooltip message={githubLabel}>
-          <Button
-            /**
-             *  Disabling ts for this line as we don't have a Github icon in
-             * Jobber icons. This is bad. Do not copy this pattern.
-             */
-            // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-            // @ts-ignore
-            label={<Github />}
-            url={doc.link}
-            external
-            type="secondary"
-            ariaLabel={githubLabel}
-          />
-        </Tooltip>
+        <DeferRender>
+          <Tooltip message={githubLabel}>
+            <Button
+              /**
+               *  Disabling ts for this line as we don't have a Github icon in
+               * Jobber icons. This is bad. Do not copy this pattern.
+               */
+              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+              // @ts-ignore
+              label={<Github />}
+              url={doc.link}
+              external
+              type="secondary"
+              ariaLabel={githubLabel}
+            />
+          </Tooltip>
+        </DeferRender>
       )}
       <Button url={doc.link} external label="Edit Page" icon="edit" />
     </Box>
