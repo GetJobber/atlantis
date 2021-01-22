@@ -4,10 +4,6 @@ const path = require("path");
 
 const isAtlantis = __dirname.includes("atlantis/packages");
 
-console.log("==================");
-console.log(isAtlantis);
-console.log("============");
-
 exports.onCreateWebpackConfig = ({
   stage,
   rules,
@@ -61,11 +57,6 @@ exports.onCreateWebpackConfig = ({
     config.module.rules.push({
       test: /(?:packages|docs)\/.*\.(?:js|jsx|ts|tsx)$/,
       use: loaders.null(),
-    });
-    config.module.rules.push({
-      test: /.*\.(?:md|mdx)$/,
-      // eslint-disable-next-line import/no-internal-modules
-      use: path.resolve("../null-markdown-loader.js"),
     });
   }
 
