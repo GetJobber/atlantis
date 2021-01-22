@@ -2,6 +2,12 @@
 /* eslint-env node */
 const path = require("path");
 
+const isAtlantis = __dirname.includes("atlantis/packages");
+
+console.log("==================");
+console.log(isAtlantis);
+console.log("============");
+
 exports.onCreateWebpackConfig = ({
   stage,
   rules,
@@ -42,11 +48,13 @@ exports.onCreateWebpackConfig = ({
     cssRule,
   ];
 
-  config.resolve.alias = {
-    ...config.resolve.alias,
-    "@jobber/components": path.resolve(__dirname, "../components/src"),
-    "@jobber/hooks": path.resolve(__dirname, "../hooks"),
-  };
+  if (isAtlantis) {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "@jobber/components": path.resolve(__dirname, "../components/src"),
+      "@jobber/hooks": path.resolve(__dirname, "../hooks"),
+    };
+  }
 
   // Situationally disable serverside rendering.
   if (stage.includes("html")) {
