@@ -3,6 +3,7 @@
 const path = require("path");
 
 const isAtlantis = __dirname.includes("atlantis/packages");
+const isNetlify = __dirname.includes("repo/packages");
 
 exports.onCreateWebpackConfig = ({
   stage,
@@ -44,7 +45,7 @@ exports.onCreateWebpackConfig = ({
     cssRule,
   ];
 
-  if (isAtlantis) {
+  if (isAtlantis || isNetlify) {
     config.resolve.alias = {
       ...config.resolve.alias,
       "@jobber/components": path.resolve(__dirname, "../components/src"),
