@@ -1,10 +1,4 @@
 export const styles = {
-  root: {
-    fontFamily: "body",
-    fontSize: "large",
-    lineHeight: "large",
-    color: "blueDark",
-  },
   a: {
     color: "green",
     textDecoration: "none",
