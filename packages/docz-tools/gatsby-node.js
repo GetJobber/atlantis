@@ -1,10 +1,4 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-env node */
-const path = require("path");
-
-const isAtlantis = __dirname.includes("atlantis/packages");
-const isNetlify = __dirname.includes("repo/packages");
-
 exports.onCreateWebpackConfig = ({
   stage,
   rules,
@@ -44,14 +38,6 @@ exports.onCreateWebpackConfig = ({
     libCssRule,
     cssRule,
   ];
-
-  if (isAtlantis || isNetlify) {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      "@jobber/components": path.resolve(__dirname, "../components/src"),
-      "@jobber/hooks": path.resolve(__dirname, "../hooks"),
-    };
-  }
 
   // Situationally disable serverside rendering.
   if (stage.includes("html")) {
