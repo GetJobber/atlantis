@@ -1,4 +1,9 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-env node */
+const path = require("path");
+
+const { JOBBER_ALIAS } = process.env;
+
 exports.onCreateWebpackConfig = ({
   stage,
   rules,
@@ -38,6 +43,14 @@ exports.onCreateWebpackConfig = ({
     libCssRule,
     cssRule,
   ];
+
+  if (JOBBER_ALIAS) {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "@jobber/components": path.resolve(__dirname, "../components/src"),
+      "@jobber/hooks": path.resolve(__dirname, "../hooks"),
+    };
+  }
 
   // Situationally disable serverside rendering.
   if (stage.includes("html")) {

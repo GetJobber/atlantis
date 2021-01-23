@@ -50,11 +50,5 @@ exports.onCreateWebpackConfig = ({ actions, stage, getConfig }) => {
     });
   }
 
-  config.resolve.alias = {
-    ...config.resolve.alias,
-    "@jobber/components": path.resolve(__dirname, "./packages/components/src"),
-    "@jobber/hooks": path.resolve(__dirname, "./packages/hooks"),
-  };
-
   actions.replaceWebpackConfig(config);
 };
