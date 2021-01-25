@@ -1,7 +1,7 @@
 ---
 name: Formatters
 menu: Packages
-route: /formatters
+route: /packages/formatters
 ---
 
 # 🔱 Formatters

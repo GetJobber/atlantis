@@ -1,7 +1,7 @@
 ---
 name: Components
 menu: Packages
-route: /components
+route: /packages/components
 ---
 
 # 🔱 Jobber Atlantis Components

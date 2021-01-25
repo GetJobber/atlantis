@@ -1,7 +1,7 @@
 ---
 name: Stylelint config
 menu: Packages
-route: /stylelint-config
+route: /packages/stylelint-config
 ---
 
 # Stylelint Config
