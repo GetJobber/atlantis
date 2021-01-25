@@ -8,6 +8,7 @@ import { Content } from "../Content";
 import { Markdown } from "../Markdown";
 import { Button, ButtonProps } from "../Button";
 import { Menu, SectionProps } from "../Menu";
+import { Emphasis } from "../Emphasis";
 
 export interface PageProps {
   readonly children: ReactNode | ReactNode[];
@@ -22,6 +23,11 @@ export interface PageProps {
    * Title of the page.
    */
   readonly title: string;
+
+  /**
+   * Subheader of the page.
+   */
+  readonly subheader: string;
 
   /**
    * Determines the width of the page.
@@ -57,6 +63,7 @@ export interface PageProps {
 export function Page({
   title,
   intro,
+  subheader,
   children,
   width = "standard",
   primaryAction,
@@ -101,7 +108,16 @@ export function Page({
       <Content>
         <Content spacing="large">
           <div className={titleBarClasses} ref={titleBarRef}>
-            <Heading level={1}>{title}</Heading>
+            <div>
+              <Heading level={1}>{title}</Heading>
+              <div className={styles.subheader}>
+                <Text size="large" variation="subdued">
+                  <Emphasis variation="bold">
+                    <Markdown content={subheader} basicUsage={true} />
+                  </Emphasis>
+                </Text>
+              </div>
+            </div>
             {showActionGroup && (
               <div className={styles.actionGroup}>
                 {primaryAction && (

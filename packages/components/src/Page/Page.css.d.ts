@@ -3,6 +3,7 @@ export const fill: string;
 export const standard: string;
 export const narrow: string;
 export const titleBar: string;
+export const subheader: string;
 export const actionGroup: string;
 export const large: string;
 export const medium: string;
