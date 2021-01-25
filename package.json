@@ -23,7 +23,7 @@
     "release-the-kraken": "npm ci && lerna publish",
     "prerelease": "lerna publish --canary --dist-tag next --preid pre",
     "ci:release": "lerna publish --yes",
-    "version": "node src/ensureChangelogHeaders.js"
+    "version": "node ensureChangelogHeaders.js"
   },
   "repository": {
     "type": "git",
