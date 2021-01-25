@@ -20,7 +20,7 @@ exports[`When actions are provided renders a Page with action buttons and a menu
             Notifications
           </h1>
           <div
-            className="subheader"
+            className="subtitle"
           >
             <p
               className="base regular large greyBlue"
@@ -138,7 +138,7 @@ exports[`renders a Page 1`] = `
             Notifications
           </h1>
           <div
-            className="subheader"
+            className="subtitle"
           >
             <p
               className="base regular large greyBlue"

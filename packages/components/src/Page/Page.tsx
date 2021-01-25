@@ -25,9 +25,9 @@ export interface PageProps {
   readonly title: string;
 
   /**
-   * Subheader of the page.
+   * Subtitle of the page.
    */
-  readonly subheader: string;
+  readonly subtitle: string;
 
   /**
    * Determines the width of the page.
@@ -63,7 +63,7 @@ export interface PageProps {
 export function Page({
   title,
   intro,
-  subheader,
+  subtitle,
   children,
   width = "standard",
   primaryAction,
@@ -110,10 +110,10 @@ export function Page({
           <div className={titleBarClasses} ref={titleBarRef}>
             <div>
               <Heading level={1}>{title}</Heading>
-              <div className={styles.subheader}>
+              <div className={styles.subtitle}>
                 <Text size="large" variation="subdued">
                   <Emphasis variation="bold">
-                    <Markdown content={subheader} basicUsage={true} />
+                    <Markdown content={subtitle} basicUsage={true} />
                   </Emphasis>
                 </Text>
               </div>
