@@ -21,10 +21,6 @@
   margin-bottom: var(--space-base);
 }
 
-.titleBar .subheader {
-  margin-bottom: var(--space-base);
-}
-
 .titleBar > .actionGroup {
   flex: 1 0 auto;
 }
@@ -63,6 +59,10 @@
 
 .actionButton > div {
   width: 100%;
+}
+
+.titleBar.small .subtitle {
+  margin-bottom: var(--space-base);
 }
 
 .titleBar.small .actionButton {
