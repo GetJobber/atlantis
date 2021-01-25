@@ -1,4 +1,5 @@
 export const colors = {
+  background: "var(--color-white)",
   // Greens
   green: "var(--color-green)",
   greenDark: "var(--color-green--dark)",

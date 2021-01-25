@@ -5,5 +5,5 @@ body {
   font-family: var(--typography--fontFamily-normal);
   font-size: var(--typography--fontSize-base);
   line-height: var(--typography--lineHeight-large);
-  background-color: var(--color-grey--lightest);
+  background-color: var(--color-white);
 }
