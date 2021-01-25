@@ -61,10 +61,6 @@
   width: 100%;
 }
 
-.titleBar.small .subtitle {
-  margin-bottom: var(--space-base);
-}
-
 .titleBar.small .actionButton {
   margin-top: 0;
 }
@@ -81,4 +77,17 @@
 
 .titleBar.small .actionButton + .actionButton {
   margin-left: var(--space-small);
+}
+
+.titleBar .subtitle {
+  margin-bottom: 0;
+}
+
+.titleBar.small .subtitle {
+  margin-bottom: var(--space-base);
+}
+
+.titleBar.medium .subtitle,
+.titleBar.large .subtitle {
+  margin-bottom: var(--space-large);
 }
