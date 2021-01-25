@@ -110,13 +110,15 @@ export function Page({
           <div className={titleBarClasses} ref={titleBarRef}>
             <div>
               <Heading level={1}>{title}</Heading>
-              <div className={styles.subtitle}>
-                <Text size="large" variation="subdued">
-                  <Emphasis variation="bold">
-                    <Markdown content={subtitle} basicUsage={true} />
-                  </Emphasis>
-                </Text>
-              </div>
+              {subtitle && (
+                <div className={styles.subtitle}>
+                  <Text size="large" variation="subdued">
+                    <Emphasis variation="bold">
+                      <Markdown content={subtitle} basicUsage={true} />
+                    </Emphasis>
+                  </Text>
+                </div>
+              )}
             </div>
             {showActionGroup && (
               <div className={styles.actionGroup}>

@@ -19,17 +19,6 @@ exports[`When actions are provided renders a Page with action buttons and a menu
           >
             Notifications
           </h1>
-          <div
-            className="subtitle"
-          >
-            <p
-              className="base regular large greyBlue"
-            >
-              <b
-                className="base bold"
-              />
-            </p>
-          </div>
         </div>
         <div
           className="actionGroup"
@@ -137,17 +126,6 @@ exports[`renders a Page 1`] = `
           >
             Notifications
           </h1>
-          <div
-            className="subtitle"
-          >
-            <p
-              className="base regular large greyBlue"
-            >
-              <b
-                className="base bold"
-              />
-            </p>
-          </div>
         </div>
       </div>
       <p
