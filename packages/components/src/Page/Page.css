@@ -80,14 +80,5 @@
 }
 
 .titleBar .subtitle {
-  margin-bottom: 0;
-}
-
-.titleBar.small .subtitle {
   margin-bottom: var(--space-base);
-}
-
-.titleBar.medium .subtitle,
-.titleBar.large .subtitle {
-  margin-bottom: var(--space-large);
 }
