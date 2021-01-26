@@ -17,7 +17,7 @@ export interface PageProps {
    * Content of the page. This supports basic markdown node types such as
    * `_italic_`, `**bold**`, and `[link name](url)`
    */
-  readonly intro: string;
+  readonly intro?: string;
 
   /**
    * Title of the page.
