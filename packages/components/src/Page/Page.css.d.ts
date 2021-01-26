@@ -9,3 +9,4 @@ export const medium: string;
 export const small: string;
 export const primaryAction: string;
 export const actionButton: string;
+export const subtitle: string;

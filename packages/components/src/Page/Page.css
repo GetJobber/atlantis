@@ -78,3 +78,7 @@
 .titleBar.small .actionButton + .actionButton {
   margin-left: var(--space-small);
 }
+
+.titleBar .subtitle {
+  margin-bottom: var(--space-base);
+}
