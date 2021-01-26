@@ -27,7 +27,7 @@ export interface PageProps {
   /**
    * Subtitle of the page.
    */
-  readonly subtitle: string;
+  readonly subtitle?: string;
 
   /**
    * Determines the width of the page.
