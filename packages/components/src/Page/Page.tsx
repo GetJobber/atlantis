@@ -17,7 +17,7 @@ export interface PageProps {
    * Content of the page. This supports basic markdown node types such as
    * `_italic_`, `**bold**`, and `[link name](url)`
    */
-  readonly intro: string;
+  readonly intro?: string;
 
   /**
    * Title of the page.
@@ -27,7 +27,7 @@ export interface PageProps {
   /**
    * Subtitle of the page.
    */
-  readonly subtitle: string;
+  readonly subtitle?: string;
 
   /**
    * Determines the width of the page.
@@ -140,9 +140,11 @@ export function Page({
               </div>
             )}
           </div>
-          <Text size="large">
-            <Markdown content={intro} basicUsage={true} />
-          </Text>
+          {intro && (
+            <Text size="large">
+              <Markdown content={intro} basicUsage={true} />
+            </Text>
+          )}
         </Content>
         <Content>{children}</Content>
       </Content>
