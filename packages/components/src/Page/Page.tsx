@@ -106,7 +106,7 @@ export function Page({
   return (
     <div className={pageStyles}>
       <Content>
-        <Content spacing="large">
+        <Content>
           <div className={titleBarClasses} ref={titleBarRef}>
             <div>
               <Heading level={1}>{title}</Heading>
