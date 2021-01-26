@@ -140,9 +140,11 @@ export function Page({
               </div>
             )}
           </div>
-          <Text size="large">
-            <Markdown content={intro} basicUsage={true} />
-          </Text>
+          {intro && (
+            <Text size="large">
+              <Markdown content={intro} basicUsage={true} />
+            </Text>
+          )}
         </Content>
         <Content>{children}</Content>
       </Content>
