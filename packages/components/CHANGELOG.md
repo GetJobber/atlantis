@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.23.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.22.2...@jobber/components@2.23.0) (2021-01-26)
+
+
+### Features
+
+* **components:** Add subtitle to Page component ([#457](https://github.com/GetJobber/atlantis/issues/457)) ([1c6d11f](https://github.com/GetJobber/atlantis/commit/1c6d11fd520e0f08b0cb752837cbbb33aef5ec35))
+
+
+
+
+
 ## [2.22.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.22.1...@jobber/components@2.22.2) (2021-01-19)
 
 **Note:** Version bump only for package @jobber/components
