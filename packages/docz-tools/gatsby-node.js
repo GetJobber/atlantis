@@ -2,7 +2,7 @@
 /* eslint-env node */
 const path = require("path");
 
-const { JOBBER_ALIAS } = process.env;
+const { USE_ATLANTIS_ALIASES } = process.env;
 
 exports.onCreateWebpackConfig = ({
   stage,
@@ -44,7 +44,7 @@ exports.onCreateWebpackConfig = ({
     cssRule,
   ];
 
-  if (JOBBER_ALIAS) {
+  if (USE_ATLANTIS_ALIASES) {
     config.resolve.alias = {
       ...config.resolve.alias,
       "@jobber/components": path.resolve(__dirname, "../components/src"),

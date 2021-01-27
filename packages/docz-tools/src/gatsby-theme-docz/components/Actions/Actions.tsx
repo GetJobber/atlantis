@@ -1,9 +1,8 @@
-/** @jsx jsx */
-import { Box, jsx } from "theme-ui";
+import React from "react";
 import { useConfig, useCurrentDoc } from "docz";
 import { Button } from "@jobber/components/Button";
 import { Tooltip } from "@jobber/components/Tooltip";
-import * as styles from "./styles";
+import styles from "./Actions.css";
 import { DeferRender } from "../DeferRender";
 
 export function Actions() {
@@ -12,7 +11,7 @@ export function Actions() {
 
   const githubLabel = `View ${title} on Github`;
   return (
-    <Box sx={styles.actions}>
+    <div className={styles.actions}>
       {repository && (
         <DeferRender>
           <Tooltip message={githubLabel}>
@@ -33,7 +32,7 @@ export function Actions() {
         </DeferRender>
       )}
       <Button url={doc.link} external label="Edit Page" icon="edit" />
-    </Box>
+    </div>
   );
 }
 
@@ -43,7 +42,7 @@ function Github() {
       height="24"
       viewBox="-1163 1657.697 56.693 56.693"
       xmlns="http://www.w3.org/2000/svg"
-      sx={{ fill: "green" }}
+      style={{ fill: "var(--color-green)" }}
     >
       <path
         clipRule="evenodd"

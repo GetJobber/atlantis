@@ -1,0 +1,12 @@
+:root {
+  --elevation-actions: 9999;
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-small);
+  position: fixed;
+  top: var(--space-large);
+  right: var(--space-large);
+  z-index: var(--elevation-actions);
+}

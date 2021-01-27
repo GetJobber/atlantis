@@ -29,6 +29,7 @@ glob.sync(path.join("packages/*/CHANGELOG.md")).forEach(file => {
 name: ${startCase(directoryName)}
 menu: Changelog
 ---
+
 # ${packageName}: Change Log
   `.trim();
 

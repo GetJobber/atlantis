@@ -1,10 +1,8 @@
 /** @jsx jsx */
 import { Box, jsx } from "theme-ui";
 import { Fragment, PropsWithChildren } from "react";
-import { Global } from "@emotion/react";
 import { useConfig } from "docz";
 import * as styles from "./styles";
-import { global } from "~theme/global";
 import { Sidebar } from "../Sidebar";
 import { Actions } from "../Actions";
 
@@ -18,7 +16,6 @@ export function Layout({ children }: PropsWithChildren<{}>) {
 
   return (
     <Fragment>
-      <Global styles={global} />
       <Box sx={styles.layout}>
         <Box sx={styles.sidebar(sideBarWidth)}>
           <Sidebar />

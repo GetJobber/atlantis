@@ -27,8 +27,13 @@ module.exports = {
       }
     ]
   },
+  
   overrides: [
     {
+      /**
+       * Disabling default exports for a few files as docz requires
+       * some files to have default exports.
+       */
       files: [
         './packages/docz-tools/src/gatsby-theme-docz/theme/index.ts',
         './packages/docz-tools/src/gatsby-theme-docz/components/index.ts'
@@ -38,6 +43,10 @@ module.exports = {
       }
     },
     {
+      /**
+       * Adds an alias that is only available in the docz-tools
+       * package. We do not want this available anywhere else.
+       */
       files: ['./packages/docz-tools/**/*'],
       settings: {
         "import/resolver": {
@@ -52,3 +61,28 @@ module.exports = {
     }
   ]
 };
+
+const overrides = [
+  {
+    files: [
+      './packages/docz-tools/src/gatsby-theme-docz/theme/index.ts',
+      './packages/docz-tools/src/gatsby-theme-docz/components/index.ts'
+    ],
+    rules: {
+      "import/no-default-export": "off",
+    }
+  },
+  {
+    files: ['./packages/docz-tools/**/*'],
+    settings: {
+      "import/resolver": {
+        alias: {
+          map: [
+            ["~theme", "./packages/docz-tools/src/gatsby-theme-docz/theme"],
+          ],
+          extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
+        }
+      }
+    },
+  }
+]
