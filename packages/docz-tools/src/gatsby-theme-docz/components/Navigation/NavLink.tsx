@@ -19,13 +19,13 @@ export function NavLink({ item }: NavLinkProps) {
     <Fragment>
       <LevelOneLink title={item.name} url={item.route} active={isActive} />
       {isActive && (
-        <Box sx={{ mb: "larger", ml: "-8px" }}>
+        <Box sx={{ marginBottom: "larger", marginLeft: "-8px" }}>
           {item.headings &&
             item.headings
               .filter(({ depth }: Heading) => depth === 2)
               .map(({ value, slug }: Heading) => {
                 return (
-                  <Box sx={{ my: "base" }} key={slug}>
+                  <Box sx={{ marginY: "base" }} key={slug}>
                     <LevelThreeLink title={value} slug={slug} />
                   </Box>
                 );

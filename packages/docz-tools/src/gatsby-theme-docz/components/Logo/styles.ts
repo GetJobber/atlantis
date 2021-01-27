@@ -1,7 +1,7 @@
 export const logo = {
   display: "block",
   bg: "blueDark",
-  p: "large",
+  padding: "large",
   textDecoration: "none",
 };
 
@@ -13,10 +13,10 @@ export const text = {
   fontFamily: "heading",
   letterSpacing: "0.05em",
   fontSize: "larger",
-  p: 0,
+  padding: 0,
 };
 
 export const image = {
   maxHeight: "largest",
-  p: 0,
+  padding: 0,
 };

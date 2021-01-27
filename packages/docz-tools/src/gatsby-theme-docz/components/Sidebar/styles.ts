@@ -14,8 +14,8 @@ export const sidebar = (width: number) =>
 
 export const search = {
   position: "relative",
-  mt: "large",
-  mx: "base",
+  marginTop: "large",
+  marginX: "base",
 
   svg: {
     position: "absolute",
@@ -34,7 +34,7 @@ export const input = {
   outline: "none",
   transition: "box-shadow 300ms",
   borderRadius: "base",
-  py: "small",
+  paddingY: "small",
   pr: "base",
   pl: "38px",
   fontSize: "base",

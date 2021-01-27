@@ -1,6 +1,6 @@
 const headings = {
-  mt: "var(--space-base)",
-  mb: "var(--space-small)",
+  marginTop: "var(--space-base)",
+  marginBottom: "var(--space-small)",
 
   a: {
     color: "inherit",
@@ -10,14 +10,14 @@ const headings = {
 
 export const h1 = {
   ...headings,
-  mt: "var(--space-larger)",
-  mb: "var(--space-base)",
+  marginTop: "var(--space-larger)",
+  marginBottom: "var(--space-base)",
 };
 
 export const h2 = {
   ...headings,
-  mt: "var(--space-large)",
-  mb: "var(--space-base)",
+  marginTop: "var(--space-large)",
+  marginBottom: "var(--space-base)",
 };
 
 export const h3 = {

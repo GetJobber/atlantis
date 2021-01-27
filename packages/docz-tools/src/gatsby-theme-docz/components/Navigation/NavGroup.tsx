@@ -21,13 +21,13 @@ export function NavGroup({ item, sidebarRef }: LinkGroupProps) {
     <Fragment>
       <LevelOneLink title={item.name} onClick={handleClick} open={open} />
       {open && (
-        <Box sx={{ mb: "larger" }}>
+        <Box sx={{ marginBottom: "larger" }}>
           {item.menu &&
             item.menu.map((menu: MenuItem) => {
               const isActive = doc.route === menu.route;
 
               return (
-                <Box sx={{ my: "base" }} key={menu.id}>
+                <Box sx={{ marginY: "base" }} key={menu.id}>
                   <LevelTwoLink
                     sidebarRef={sidebarRef}
                     title={menu.name}
@@ -35,13 +35,16 @@ export function NavGroup({ item, sidebarRef }: LinkGroupProps) {
                     active={isActive}
                   />
                   {isActive && (
-                    <Box sx={{ my: "base" }}>
+                    <Box sx={{ marginY: "base" }}>
                       {menu.headings &&
                         menu.headings
                           .filter(({ depth }: Heading) => depth === 2)
                           .map(({ value, slug }: Heading) => {
                             return (
-                              <Box sx={{ my: "small", pl: "small" }} key={slug}>
+                              <Box
+                                sx={{ marginY: "small", pl: "small" }}
+                                key={slug}
+                              >
                                 <LevelThreeLink title={value} slug={slug} />
                               </Box>
                             );

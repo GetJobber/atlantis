@@ -1,11 +1,11 @@
 export const navigation = {
-  pt: "base",
-  pb: "largest",
-  px: "large",
+  paddingTop: "base",
+  paddingBottom: "largest",
+  paddingX: "large",
 };
 
 export const item = {
-  my: "base",
+  marginY: "base",
 };
 
 export const levelOneLink = (active?: boolean) =>
@@ -42,7 +42,7 @@ export const levelTwoLink = (active: boolean) =>
       width: "small",
       height: "small",
       borderRadius: "circle",
-      mr: "small",
+      marginRight: "small",
       transition: "box-shadow 300ms",
       bg: active ? "green" : undefined,
       boxShadow: active

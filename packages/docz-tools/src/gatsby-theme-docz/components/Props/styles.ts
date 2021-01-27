@@ -3,13 +3,13 @@ export const container = {
   border: "1px solid",
   borderColor: "greyLighter",
   borderRadius: "base",
-  mb: "large",
+  marginBottom: "large",
 };
 
 export const prop = {
   display: "flex",
-  py: "base",
-  px: "base",
+  paddingY: "base",
+  paddingX: "base",
   borderTop: "1px solid",
   borderColor: "greyLighter",
 
@@ -27,20 +27,20 @@ export const propName = {
   fontSize: "small",
   fontWeight: "bold",
   color: "greyBlueDark",
-  mr: "base",
+  marginRight: "base",
 };
 
 export const required = {
   position: "relative",
   display: "inline-block",
   color: "red",
-  ml: "smallest",
+  marginLeft: "smallest",
   top: "-5px",
 };
 
 export const defaultValue = {
   color: "greyBlue",
-  mt: "smallest",
+  marginTop: "smallest",
 };
 
 export const typeValue = {
@@ -56,18 +56,18 @@ export const typeValue = {
 export const toggle = {
   display: "flex",
   alignItems: "center",
-  ml: "base",
+  marginLeft: "base",
 };
 
 export const description = {
   bg: "white",
-  p: "base",
+  padding: "base",
   borderTop: "1px solid",
   borderColor: "greyLighter",
   color: "greyBlue",
   fontSize: "base",
 
   "> p": {
-    m: 0,
+    margin: 0,
   },
 };

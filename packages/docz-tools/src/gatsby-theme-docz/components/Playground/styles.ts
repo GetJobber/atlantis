@@ -11,14 +11,14 @@ export const playground = (containerWidth: number, sideBarWidth: number) => {
     position: "relative",
     left: `50%`,
     right: `50%`,
-    my: "larger",
+    marginY: "larger",
     width,
     marginLeft,
 
     "[data-testid='playground']": {
       bg: "white",
       position: "relative",
-      mx: "auto !important",
+      marginX: "auto !important",
       width: "900px",
 
       /**
@@ -58,7 +58,7 @@ export const previewWrapper = {
 export const editor = {
   border: "1px solid",
   borderColor: "greyLighter",
-  p: "small",
+  padding: "small",
   bg: "greyLightest",
   borderBottomLeftRadius: "base",
   borderBottomRightRadius: "base",
@@ -70,8 +70,8 @@ export const editor = {
 
 export const error = {
   bg: "red",
-  my: "smallest",
-  p: "large",
+  marginY: "smallest",
+  padding: "large",
   borderRadius: "base",
   color: "white",
   fontSize: "small",
@@ -79,20 +79,10 @@ export const error = {
 } as const;
 
 export const preview = {
-  p: "large",
+  padding: "large",
   border: "1px solid",
   borderColor: "greyLighter",
   borderBottom: "none",
   borderTopLeftRadius: "base",
   borderTopRightRadius: "base",
 };
-
-// export const buttons = {
-//   display: "none",
-// };
-
-// export const button = {
-//   bg: "white",
-//   border: "1px solid",
-//   borderColor: "greyLighter",
-// };
