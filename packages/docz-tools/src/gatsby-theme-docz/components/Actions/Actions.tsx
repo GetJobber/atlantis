@@ -1,8 +1,9 @@
-import React from "react";
+/** @jsx jsx */
+import { Box, jsx } from "theme-ui";
 import { useConfig, useCurrentDoc } from "docz";
 import { Button } from "@jobber/components/Button";
 import { Tooltip } from "@jobber/components/Tooltip";
-import styles from "./Actions.css";
+import * as styles from "./styles";
 import { DeferRender } from "../DeferRender";
 
 export function Actions() {
@@ -11,7 +12,7 @@ export function Actions() {
 
   const githubLabel = `View ${title} on Github`;
   return (
-    <div className={styles.actions}>
+    <Box sx={styles.actions}>
       {repository && (
         <DeferRender>
           <Tooltip message={githubLabel}>
@@ -32,7 +33,7 @@ export function Actions() {
         </DeferRender>
       )}
       <Button url={doc.link} external label="Edit Page" icon="edit" />
-    </div>
+    </Box>
   );
 }
 

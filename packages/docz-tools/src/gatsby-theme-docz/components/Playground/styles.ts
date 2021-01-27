@@ -51,6 +51,23 @@ export const playground = (containerWidth: number, sideBarWidth: number) => {
   } as const;
 };
 
+export const previewWrapper = {
+  position: "relative",
+} as const;
+
+export const editor = {
+  border: "1px solid",
+  borderColor: "greyLighter",
+  p: "small",
+  bg: "greyLightest",
+  borderBottomLeftRadius: "base",
+  borderBottomRightRadius: "base",
+
+  textarea: {
+    outline: "none",
+  },
+};
+
 export const error = {
   bg: "red",
   my: "smallest",
@@ -60,6 +77,15 @@ export const error = {
   fontSize: "small",
   whiteSpace: "pre-wrap",
 } as const;
+
+export const preview = {
+  p: "large",
+  border: "1px solid",
+  borderColor: "greyLighter",
+  borderBottom: "none",
+  borderTopLeftRadius: "base",
+  borderTopRightRadius: "base",
+};
 
 // export const buttons = {
 //   display: "none",

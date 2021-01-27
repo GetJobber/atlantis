@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+/** @jsx jsx */
+import { Box, jsx } from "theme-ui";
+import { useState } from "react";
 import { useConfig } from "docz";
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live";
 import { Resizable } from "re-resizable";
 // @ts-expect-error
 import { usePrismTheme } from "gatsby-theme-docz/src/utils/theme";
-import classNames from "./Playground.css";
+import * as styles from "./styles";
 
 interface PlaygroundProps {
   readonly code: string;
@@ -28,15 +30,8 @@ export function Playground({ code, scope, language }: PlaygroundProps) {
   const [width, setWidth] = useState(containerWidth);
   const resizableProps = getResizableProps();
 
-  const scrollBarWidth = 16;
-  const style = {
-    width: `calc(100vw - ${scrollBarWidth}px - var(--space-large) - var(--space-large) - ${sideBarWidth}px)`,
-    marginLeft: `calc(-50vw + ${scrollBarWidth /
-      2}px + var(--space-large) + ${sideBarWidth / 2}px)`,
-  };
-
   return (
-    <div className={classNames.playground} style={style}>
+    <Box sx={styles.playground(containerWidth, sideBarWidth)}>
       <Resizable {...resizableProps} data-testid="playground">
         <LiveProvider
           code={code}
@@ -45,18 +40,18 @@ export function Playground({ code, scope, language }: PlaygroundProps) {
           language={language}
           theme={theme}
         >
-          <div>
-            <LivePreview className={classNames.preview} />
-          </div>
+          <Box>
+            <LivePreview sx={styles.preview} />
+          </Box>
 
-          <div className={classNames.editor}>
+          <Box sx={styles.editor}>
             <LiveEditor data-testid="live-editor" />
-          </div>
+          </Box>
 
-          {showLiveError && <LiveError className={classNames.error} />}
+          {showLiveError && <LiveError sx={styles.error} />}
         </LiveProvider>
       </Resizable>
-    </div>
+    </Box>
   );
 
   function getResizableProps() {

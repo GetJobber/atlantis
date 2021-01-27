@@ -9,7 +9,7 @@ export const prism = {
     backgroundColor: colors.greyLightest,
     borderRadius: radii.base,
     lineHeight: "1.6",
-    fontSize: fontSizes.small,
+    fontSize: fontSizes.base,
   },
   styles: [
     {

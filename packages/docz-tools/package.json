@@ -1,6 +1,6 @@
 {
   "name": "@jobber/docz-tools",
-  "version": "1.0.1-pre.592+131d234",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -16,12 +16,6 @@
     "deepmerge": "^4.2.2",
     "ts-xor": "^1.0.8"
   },
-  "devDependencies": {
-    "autoprefixer": "^9.8.4",
-    "postcss-import": "^12.0.1",
-    "postcss-preset-env": "^6.7.0",
-    "typed-css-modules-loader": "0.0.17"
-  },
   "peerDependencies": {
     "docz": "*",
     "gatsby-theme-docz": "*",
@@ -30,7 +24,5 @@
     "react-dom": "*",
     "react-live": "*",
     "theme-ui": "*"
-  },
-  "gitHead": "131d23436fe16b8ffffe943a895ac5fec4c2f372"
-  
+  }
 }
