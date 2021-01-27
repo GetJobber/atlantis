@@ -68,8 +68,9 @@ export function Typography({
 
   let truncateLines: CSSProperties | undefined;
   if (shouldTruncateText) {
-    truncateLines = {};
-    truncateLines.WebkitLineClamp = numberOfLines;
+    truncateLines = {
+      WebkitLineClamp: numberOfLines,
+    };
   }
 
   return (

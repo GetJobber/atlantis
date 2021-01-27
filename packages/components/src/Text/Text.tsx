@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from "react";
 import { Typography, TypographyOptions } from "../Typography";
 
 interface TextProps {
-  maxLines?: "single" | "small" | "medium" | "large" | "larger";
+  maxLines?: "single" | "small" | "base" | "large" | "larger" | "unlimited";
 
   readonly variation?:
     | "default"
@@ -21,7 +21,7 @@ export function Text({
   variation = "default",
   size = "base",
   children,
-  maxLines,
+  maxLines = "unlimited",
 }: PropsWithChildren<TextProps>) {
   const textColors = {
     default: "greyBlueDark",
@@ -35,20 +35,17 @@ export function Text({
   const maxLineToNumber = {
     single: 1,
     small: 2,
-    medium: 4,
+    base: 4,
     large: 8,
     larger: 16,
+    unlimited: undefined,
   };
-
-  let numberOfLines;
-
-  if (maxLines !== undefined) numberOfLines = maxLineToNumber[maxLines];
 
   return (
     <Typography
       textColor={textColors[variation] as TextColor}
       size={size}
-      numberOfLines={numberOfLines}
+      numberOfLines={maxLineToNumber[maxLines]}
     >
       {children}
     </Typography>
