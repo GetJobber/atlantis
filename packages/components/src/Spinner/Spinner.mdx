@@ -7,17 +7,11 @@ route: /components/spinner
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { Spinner } from ".";
-import { Text } from "../Text";
+import { Text } from "@jobber/components/Text";
 
 # Spinner
 
-<ComponentStatus stage="pre" responsive="no" accessible="yes" />
-
-Spinners are used to visualize an undetermined load time for a section of a page
-and prevent double clicking of a UI element by overlaying it while its action is
-processing.
-
-The default spinner should be used to indicate loading of a view
+<ComponentStatus stage="ready" responsive="yes" accessible="yes" />
 
 ```ts
 import { Spinner } from "@jobber/components/Spinner";
@@ -26,6 +20,11 @@ import { Spinner } from "@jobber/components/Spinner";
 <Playground>
   <Spinner />
 </Playground>
+
+## Design & Usage Guidelines
+
+Use Spinner to indicate loading of content where the actual amount of loading
+time or progress is unknown.
 
 ## Props
 
@@ -51,3 +50,9 @@ Use `inline` to render the spinner inline with content.
     Uploading... <Spinner size="small" inline={true} />
   </Text>
 </Playground>
+
+## Related Components
+
+If the amount of progress or loading time is known, use
+[ProgressBar](https://atlantis.getjobber.com/components/progress-bar) to give
+the user better context around the process.
