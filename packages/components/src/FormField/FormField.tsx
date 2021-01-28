@@ -125,7 +125,7 @@ export interface FormFieldProps {
   /**
    * Show a spinner to indicate loading
    */
-  showSpinner?: boolean;
+  loading?: boolean;
 
   /**
    * Simplified onChange handler that only provides the new value.
@@ -188,7 +188,7 @@ export function FormField({
   onChange,
   onEnter,
   onValidation,
-  showSpinner,
+  loading,
   placeholder,
   readonly,
   rows,
@@ -259,7 +259,7 @@ export function FormField({
         {placeholder || " "}
       </label>
       {fieldElement()}
-      {type === "text" && showSpinner && (
+      {type === "text" && loading && (
         <span className={styles.icon}>
           <Spinner size="small" />
         </span>
