@@ -3,6 +3,7 @@
 const path = require("path");
 
 const { USE_ATLANTIS_ALIASES } = process.env;
+const useAtlantisAliases = USE_ATLANTIS_ALIASES == "true";
 
 exports.onCreateWebpackConfig = ({
   stage,
@@ -44,7 +45,7 @@ exports.onCreateWebpackConfig = ({
     cssRule,
   ];
 
-  if (USE_ATLANTIS_ALIASES) {
+  if (useAtlantisAliases) {
     config.resolve.alias = {
       ...config.resolve.alias,
       "@jobber/components": path.resolve(__dirname, "../components/src"),
