@@ -1,5 +1,5 @@
 /* eslint-disable import/no-internal-modules */
-import React, { ReactNode } from "react";
+import React, { CSSProperties, ReactNode } from "react";
 import classnames from "classnames";
 import styles from "./css/Typography.css";
 import fontSizes from "./css/FontSizes.css";
@@ -7,6 +7,7 @@ import fontWeights from "./css/FontWeights.css";
 import textCases from "./css/TextCases.css";
 import textColors from "./css/TextColors.css";
 import emphasis from "./css/Emphasis.css";
+import truncate from "./css/Truncate.css";
 
 interface TypographyProps {
   readonly id?: string;
@@ -39,6 +40,7 @@ interface TypographyProps {
   readonly textColor?: keyof typeof textColors;
   readonly emphasisType?: keyof typeof emphasis;
   readonly children: ReactNode;
+  numberOfLines?: number;
 }
 export type TypographyOptions = Omit<TypographyProps, "children">;
 
@@ -51,7 +53,9 @@ export function Typography({
   textCase,
   textColor,
   emphasisType,
+  numberOfLines,
 }: TypographyProps) {
+  const shouldTruncateText = numberOfLines && numberOfLines > 0;
   const className = classnames(
     styles.base,
     fontWeights[fontWeight],
@@ -59,10 +63,18 @@ export function Typography({
     textCase && textCases[textCase],
     textColor && textColors[textColor],
     emphasisType && emphasis[emphasisType],
+    shouldTruncateText && truncate.textTruncate,
   );
 
+  let truncateLines: CSSProperties | undefined;
+  if (shouldTruncateText) {
+    truncateLines = {
+      WebkitLineClamp: numberOfLines,
+    };
+  }
+
   return (
-    <Tag id={id} className={className}>
+    <Tag id={id} className={className} style={truncateLines}>
       {children}
     </Tag>
   );
