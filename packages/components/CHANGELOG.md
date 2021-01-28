@@ -8,6 +8,18 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.25.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.22.3...@jobber/components@2.25.0) (2021-01-28)
+
+
+### Features
+
+* **components:** Add numberOfLines prop to Text component ([#401](https://github.com/GetJobber/atlantis/issues/401)) ([8011b59](https://github.com/GetJobber/atlantis/commit/8011b594f01faecb830e386a0dfd0434ff82bf6c))
+* **components:** Spinner Component ([#456](https://github.com/GetJobber/atlantis/issues/456)) ([2ea8365](https://github.com/GetJobber/atlantis/commit/2ea8365276067ac7b0e42bc94d33a3e2a8a8b909))
+
+
+
+
+
 ## [2.22.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.23.0...@jobber/components@2.22.3) (2021-01-26)
 
 
