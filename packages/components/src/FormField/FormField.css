@@ -201,7 +201,7 @@ select.formField {
   );
 }
 
-.icon {
+.postfix {
   position: absolute;
   top: 50%;
   right: var(--field--padding-right);

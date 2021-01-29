@@ -260,12 +260,12 @@ export function FormField({
       </label>
       {fieldElement()}
       {type === "text" && loading && (
-        <span className={styles.icon}>
+        <span className={styles.postfix}>
           <Spinner size="small" />
         </span>
       )}
       {type === "select" && (
-        <span className={styles.icon}>
+        <span className={styles.postfix}>
           <Icon name="arrowDown" />
         </span>
       )}

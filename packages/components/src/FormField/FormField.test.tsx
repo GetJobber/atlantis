@@ -371,9 +371,8 @@ test("it should render the spinner when loading is true", () => {
     <FormField placeholder="foo" type="text" loading={true} />,
   );
   const spinner = getByLabelText("loading");
-  const classNames = spinner.getAttribute("class");
 
-  expect(classNames).toContain("spinner small");
+  expect(spinner).toBeInstanceOf(HTMLElement);
 });
 
 it("it should set the autocomplete value with one-time-code", () => {
