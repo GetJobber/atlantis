@@ -22,7 +22,7 @@ import { Banner } from "@jobber/components/Banner";
 ```
 
 <Playground>
-  <Banner type="success">You've successfully Hulked out</Banner>
+  <Banner type="notice">Your visits are being scheduled</Banner>
 </Playground>
 
 ## Props
@@ -33,28 +33,80 @@ import { Banner } from "@jobber/components/Banner";
 
 ## Notice message
 
+**Use notice banners to provide information about new functionality, background
+operations, or general non-blocking advice.**
+
+Notices should get to the point and inform the user about why the functionality
+or change is important if context is not provided elsewhere.
+
 <Playground>
   <Banner type="notice">
-    Getting angry would result in a great amount of smashing
+    Your import is in progress. Feel free to leave this page while it continues.
   </Banner>
 </Playground>
 
 ## Success message
 
+**Use [toasts](toast) as the default for success messages. Success banners are
+appropriate when success feedback had a call to action or is delayed.**
+
 <Playground>
-  <Banner type="success">You've successfully Hulked out</Banner>
+  <Banner
+    type="success"
+    primaryAction={{
+      label: "View clients",
+      onClick: () => alert("🎉 Woo hoo")
+    }}
+    dismissible={false}
+  >
+    Your client import is complete
+  </Banner>
 </Playground>
 
 ## Warning message
 
+**Use warning banners when something requires when an action could have unseen
+consequences or additional action has to be taken.**
+
+Warning messages should be one to two short sentences which clearly describe the
+possibly unknown impact a user’s changes or actions will have. They should not
+begin with "Warning:" and should not be used as a way to block or redirect a
+workflow.
+
 <Playground>
-  <Banner type="warning">Smashing would result in a log of rubble</Banner>
+  <Banner type="warning">
+    Editing this schedule will replace all incomplete visits with the updated
+    information for this job
+  </Banner>
 </Playground>
 
 ## Error message
 
+**Use error banners when something requires immediate attention and blocks the
+user.**
+
+Errors should explain what happened, and summarize how many issues need to be
+addressed in a concise manner. Detailed information about each error is the role
+of the [input validation](input-validation) component.
+
 <Playground>
-  <Banner type="error">Hulk smash has been unsuccessful</Banner>
+  <Banner type="error">
+    Client cannot be saved. 1 change needs to be made:
+    <ul>
+      <li>Email address</li>
+    </ul>
+  </Banner>
+</Playground>
+
+<br />
+
+System errors should avoid technical or intimidating language, and provide ways
+to resolve or troubleshoot the issue if possible.
+
+<Playground>
+  <Banner type="error">
+    Something went wrong. Please try again in a few minutes.
+  </Banner>
 </Playground>
 
 ## Actions in Banners
@@ -66,23 +118,23 @@ within a `Banner`. If you require an action, use the `primaryActions` prop. The
 <Playground>
   <Content>
     <Banner
-      type="success"
+      type="notice"
       primaryAction={{
-        label: "Poke Me",
+        label: "View Plans",
         onClick: () => alert("💥💥SMASH💥💥")
       }}
       dismissible={false}
     >
-      You wouldn't like me when I'm angry.
+      Your trial has been extended!
     </Banner>
     <Banner
-      type="notice"
+      type="error"
       primaryAction={{
-        label: "I'm always angry",
+        label: "Refresh",
         onClick: () => alert("😡😡😡")
       }}
     >
-      That's my secret Captain
+      Network is unavailable. Please check your internet connection.
     </Banner>
   </Content>
 </Playground>
