@@ -3,7 +3,7 @@
 const path = require("path");
 
 const { USE_ATLANTIS_ALIASES } = process.env;
-const useAtlantisAliases = USE_ATLANTIS_ALIASES == "true";
+const useAtlantisAliases = USE_ATLANTIS_ALIASES === "true";
 
 exports.onCreateWebpackConfig = ({
   stage,
