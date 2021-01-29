@@ -12,6 +12,7 @@ import { ValidationRules, useForm, useFormContext } from "react-hook-form";
 import styles from "./FormField.css";
 import { Icon } from "../Icon";
 import { InputValidation } from "../InputValidation";
+import { Spinner } from "../Spinner";
 
 export interface FormFieldProps {
   /**
@@ -122,6 +123,11 @@ export interface FormFieldProps {
   readonly value?: string | number;
 
   /**
+   * Show a spinner to indicate loading
+   */
+  loading?: boolean;
+
+  /**
    * Simplified onChange handler that only provides the new value.
    * @param newValue
    */
@@ -182,6 +188,7 @@ export function FormField({
   onChange,
   onEnter,
   onValidation,
+  loading,
   placeholder,
   readonly,
   rows,
@@ -252,8 +259,13 @@ export function FormField({
         {placeholder || " "}
       </label>
       {fieldElement()}
+      {type === "text" && loading && (
+        <span className={styles.postfix}>
+          <Spinner size="small" />
+        </span>
+      )}
       {type === "select" && (
-        <span className={styles.icon}>
+        <span className={styles.postfix}>
           <Icon name="arrowDown" />
         </span>
       )}
