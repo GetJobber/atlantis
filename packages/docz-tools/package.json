@@ -1,0 +1,28 @@
+{
+  "name": "@jobber/docz-tools",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@emotion/react": "^11.1.4",
+    "@jobber/components": "^2.22.1",
+    "@jobber/design": "^0.9.3",
+    "deepmerge": "^4.2.2",
+    "ts-xor": "^1.0.8"
+  },
+  "peerDependencies": {
+    "docz": "*",
+    "gatsby-theme-docz": "*",
+    "re-resizable": "*",
+    "react": "*",
+    "react-dom": "*",
+    "react-live": "*",
+    "theme-ui": "*"
+  }
+}
