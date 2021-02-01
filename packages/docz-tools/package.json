@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@emotion/react": "^11.1.4",
-    "@jobber/components": "^2.22.1",
+    "@jobber/components": "latest",
     "@jobber/design": "^0.9.3",
     "deepmerge": "^4.2.2",
     "ts-xor": "^1.0.8"
