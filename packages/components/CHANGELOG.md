@@ -8,6 +8,22 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.26.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.25.0...@jobber/components@2.26.0) (2021-02-01)
+
+
+### Bug Fixes
+
+* **components:** spinner loading css type ([#462](https://github.com/GetJobber/atlantis/issues/462)) ([1d32015](https://github.com/GetJobber/atlantis/commit/1d3201555a762bdff07685bcad2b58728bd74d30))
+
+
+### Features
+
+* **components:** spinner loading state on input text ([#460](https://github.com/GetJobber/atlantis/issues/460)) ([98bc020](https://github.com/GetJobber/atlantis/commit/98bc0205f108a86a522cc05e7314331edf9a36ca))
+
+
+
+
+
 # [2.25.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.22.3...@jobber/components@2.25.0) (2021-01-28)
 
 
