@@ -20,7 +20,7 @@ glob.sync(path.join("packages/*/CHANGELOG.md")).forEach(file => {
 
   const directoryPath = path.dirname(file);
   const directoryName = path.basename(directoryPath);
-  const packageName = require(`../${directoryPath}/package.json`).name;
+  const packageName = require(`./${directoryPath}/package.json`).name;
 
   console.log(`Fixing header on: ${file}`);
 
