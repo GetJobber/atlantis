@@ -67,7 +67,7 @@ it("fires an action callback when the action button is clicked", () => {
   expect(mockAction).toHaveBeenCalledTimes(1);
 });
 
-it("sets a timer and clears the Slice after a certain amount of time", done => {
+it("sets a timer and clears the Slice after a certain amount of time", async () => {
   const { getByText, queryAllByText } = render(<MockToast />);
 
   fireEvent.click(getByText("No Variation"));
@@ -76,18 +76,18 @@ it("sets a timer and clears the Slice after a certain amount of time", done => {
 
   act(() => jest.runAllTimers());
 
-  waitFor(() => {
+  await waitFor(() => {
     expect(queryAllByText("Bland Toast").length).not.toBe(1);
     expect(queryAllByText("Bland Toast").length).toBe(0);
-    done();
   });
 });
 
-it("stops and starts the timer when the item is hover toggled", done => {
+it("stops and starts the timer when the item is hover toggled", async () => {
   const { getByText, queryAllByText } = render(<MockToast />);
 
   fireEvent.click(getByText("No Variation"));
   expect(setTimeout).toHaveBeenCalled();
+
   expect(queryAllByText("Bland Toast").length).toBe(1);
 
   fireEvent.mouseEnter(getByText("Bland Toast"));
@@ -101,10 +101,9 @@ it("stops and starts the timer when the item is hover toggled", done => {
 
   act(() => jest.advanceTimersByTime(10000));
 
-  waitFor(() => {
+  await waitFor(() => {
     expect(queryAllByText("Bland Toast").length).not.toBe(1);
     expect(queryAllByText("Bland Toast").length).toBe(0);
-    done();
   });
 });
 

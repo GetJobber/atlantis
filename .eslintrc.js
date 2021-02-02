@@ -60,6 +60,21 @@ module.exports = {
           }
         }
       }
+    },
+    {
+      /**
+       * Table imports a few sub components from a sub directory.
+       * This will allow that to import without errors
+       */
+      files: ["./packages/components/src/Table/**/*"],
+      rules: {
+        "import/no-internal-modules": [
+          "error",
+          {
+            allow: ["Cells/*"]
+          }
+        ]
+      }
     }
   ]
 };
