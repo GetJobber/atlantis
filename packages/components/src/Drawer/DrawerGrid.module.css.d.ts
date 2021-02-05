@@ -1,1 +1,4 @@
-export const drawerGrid: string;
+declare const styles: {
+  readonly drawerGrid: string;
+};
+export = styles;

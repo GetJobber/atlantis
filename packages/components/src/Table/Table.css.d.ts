@@ -1,4 +1,7 @@
-export const table: string;
-export const row: string;
-export const header: string;
-export const footer: string;
+declare const styles: {
+  readonly table: string;
+  readonly row: string;
+  readonly header: string;
+  readonly footer: string;
+};
+export = styles;

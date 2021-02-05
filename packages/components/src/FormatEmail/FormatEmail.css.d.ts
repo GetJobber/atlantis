@@ -1,1 +1,4 @@
-export const email: string;
+declare const styles: {
+  readonly email: string;
+};
+export = styles;

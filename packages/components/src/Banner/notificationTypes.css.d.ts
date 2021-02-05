@@ -1,4 +1,7 @@
-export const notice: string;
-export const success: string;
-export const warning: string;
-export const error: string;
+declare const styles: {
+  readonly notice: string;
+  readonly success: string;
+  readonly warning: string;
+  readonly error: string;
+};
+export = styles;

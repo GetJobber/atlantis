@@ -1,11 +1,14 @@
-export const wrapper: string;
-export const menu: string;
-export const above: string;
-export const below: string;
-export const left: string;
-export const right: string;
-export const section: string;
-export const sectionHeader: string;
-export const action: string;
-export const icon: string;
-export const overlay: string;
+declare const styles: {
+  readonly wrapper: string;
+  readonly menu: string;
+  readonly above: string;
+  readonly below: string;
+  readonly left: string;
+  readonly right: string;
+  readonly section: string;
+  readonly sectionHeader: string;
+  readonly action: string;
+  readonly icon: string;
+  readonly overlay: string;
+};
+export = styles;

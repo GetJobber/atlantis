@@ -1,4 +1,7 @@
-export const regular: string;
-export const bold: string;
-export const extraBold: string;
-export const black: string;
+declare const styles: {
+  readonly regular: string;
+  readonly bold: string;
+  readonly extraBold: string;
+  readonly black: string;
+};
+export = styles;

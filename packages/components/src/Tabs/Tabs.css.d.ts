@@ -1,8 +1,11 @@
-export const tabs: string;
-export const overflow: string;
-export const overflowRight: string;
-export const overflowLeft: string;
-export const tabRow: string;
-export const tab: string;
-export const selected: string;
-export const tabContent: string;
+declare const styles: {
+  readonly tabs: string;
+  readonly overflow: string;
+  readonly overflowRight: string;
+  readonly overflowLeft: string;
+  readonly tabRow: string;
+  readonly tab: string;
+  readonly selected: string;
+  readonly tabContent: string;
+};
+export = styles;

@@ -1,4 +1,7 @@
-export const radioGroup: string;
-export const input: string;
-export const label: string;
-export const description: string;
+declare const styles: {
+  readonly radioGroup: string;
+  readonly input: string;
+  readonly label: string;
+  readonly description: string;
+};
+export = styles;

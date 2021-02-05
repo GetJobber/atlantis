@@ -1,3 +1,6 @@
-export const list: string;
-export const item: string;
-export const section: string;
+declare const styles: {
+  readonly list: string;
+  readonly item: string;
+  readonly section: string;
+};
+export = styles;

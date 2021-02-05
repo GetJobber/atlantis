@@ -1,7 +1,10 @@
-export const wrapper: string;
-export const select: string;
-export const small: string;
-export const large: string;
-export const icon: string;
-export const disabled: string;
-export const invalid: string;
+declare const styles: {
+  readonly wrapper: string;
+  readonly select: string;
+  readonly small: string;
+  readonly large: string;
+  readonly icon: string;
+  readonly disabled: string;
+  readonly invalid: string;
+};
+export = styles;

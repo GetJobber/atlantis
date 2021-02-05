@@ -1,6 +1,9 @@
-export const container: string;
-export const content: string;
-export const action: string;
-export const savedIndicator: string;
-export const featureContent: string;
-export const enabled: string;
+declare const styles: {
+  readonly container: string;
+  readonly content: string;
+  readonly action: string;
+  readonly savedIndicator: string;
+  readonly featureContent: string;
+  readonly enabled: string;
+};
+export = styles;

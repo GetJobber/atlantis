@@ -1,1 +1,4 @@
-export const closeButtonWrapper: string;
+declare const styles: {
+  readonly closeButtonWrapper: string;
+};
+export = styles;

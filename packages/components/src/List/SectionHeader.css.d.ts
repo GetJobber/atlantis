@@ -1,8 +1,11 @@
-export const sectionHeader: string;
-export const greyBlue: string;
-export const green: string;
-export const blue: string;
-export const archived: string;
-export const orange: string;
-export const red: string;
-export const teal: string;
+declare const styles: {
+  readonly sectionHeader: string;
+  readonly greyBlue: string;
+  readonly green: string;
+  readonly blue: string;
+  readonly archived: string;
+  readonly orange: string;
+  readonly red: string;
+  readonly teal: string;
+};
+export = styles;

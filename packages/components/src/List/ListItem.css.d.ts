@@ -1,7 +1,10 @@
-export const action: string;
-export const hoverable: string;
-export const icon: string;
-export const info: string;
-export const amount: string;
-export const isActive: string;
-export const truncate: string;
+declare const styles: {
+  readonly action: string;
+  readonly hoverable: string;
+  readonly icon: string;
+  readonly info: string;
+  readonly amount: string;
+  readonly isActive: string;
+  readonly truncate: string;
+};
+export = styles;

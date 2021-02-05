@@ -1,6 +1,9 @@
-export const track: string;
-export const isChecked: string;
-export const toggle: string;
-export const label: string;
-export const pip: string;
-export const disabled: string;
+declare const styles: {
+  readonly track: string;
+  readonly isChecked: string;
+  readonly toggle: string;
+  readonly label: string;
+  readonly pip: string;
+  readonly disabled: string;
+};
+export = styles;

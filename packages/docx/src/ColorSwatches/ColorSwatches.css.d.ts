@@ -1,2 +1,5 @@
-export const groupTitle: string;
-export const swatchGroup: string;
+declare const styles: {
+  readonly groupTitle: string;
+  readonly swatchGroup: string;
+};
+export = styles;

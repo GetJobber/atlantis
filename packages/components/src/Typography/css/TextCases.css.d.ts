@@ -1,3 +1,6 @@
-export const uppercase: string;
-export const lowercase: string;
-export const capitalize: string;
+declare const styles: {
+  readonly uppercase: string;
+  readonly lowercase: string;
+  readonly capitalize: string;
+};
+export = styles;
