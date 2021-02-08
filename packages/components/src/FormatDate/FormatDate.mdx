@@ -1,13 +1,14 @@
----
-name: FormatDate
-menu: Components
-route: /components/date-formatter
+## import {Text} from "../Text";
+
+name: FormatDate menu: Components route: /components/date-formatter
+
 ---
 
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { CivilDate } from "@std-proposal/temporal";
-import { FormatDate } from ".";
+import { FormatDate, strFormatDate } from ".";
+import { Text } from "../Text";
 
 # FormatDate
 
@@ -26,6 +27,16 @@ import { FormatDate } from "@jobber/components/FormatDate";
   <FormatDate date={new CivilDate(2020, 2, 26)} />
 </Playground>
 
+## Getting a string version
+
+```ts
+import { strFormatDate } from "@jobber/components/FormatDate";
+```
+
+<Playground>
+  <Text>{strFormatDate(new Date())}</Text>
+</Playground>
+
 ## Design & Usage Guidelines
 
 Use FormatDate to ensure that a date is represented as expected.
@@ -37,6 +48,8 @@ component.
 If the formatted date is intended to be part of a heading, wrap FormatDate in a
 [Heading](https://atlantis.getjobber.com/packages-components-src-heading-heading)
 component.
+
+If you require a string instead of a component use strFormatDate.
 
 ## Props
 
