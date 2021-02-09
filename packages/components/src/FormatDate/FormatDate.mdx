@@ -1,12 +1,9 @@
 ---
-name: FormatDate
-menu: Components
-route: /components/date-formatter
----import { Playground, Props } from "docz";
-import { ComponentStatus } from "@jobber/docx";
-import { CivilDate } from "@std-proposal/temporal";
-import { FormatDate, strFormatDate } from ".";
-import { Text } from "../Text";
+
+name: FormatDate menu: Components route: /components/date-formatter ---import {
+Playground, Props } from "docz"; import { ComponentStatus } from "@jobber/docx";
+import { CivilDate } from "@std-proposal/temporal"; import { FormatDate,
+strFormatDate } from "."; import { Text } from "../Text";
 
 # FormatDate
 
@@ -26,6 +23,9 @@ import { FormatDate } from "@jobber/components/FormatDate";
 </Playground>
 
 ## Getting a string version
+
+Use strFormateDate if you need your formatted date as a string so it can be
+passed as an attribute that doesn't allow for a component.
 
 ```ts
 import { strFormatDate } from "@jobber/components/FormatDate";
