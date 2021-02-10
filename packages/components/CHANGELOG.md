@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.26.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.26.2...@jobber/components@2.26.3) (2021-02-10)
+
+
+### Bug Fixes
+
+* **components:** exports date formatting as a string ([#466](https://github.com/GetJobber/atlantis/issues/466)) [JOB-28183] ([74e57b5](https://github.com/GetJobber/atlantis/commit/74e57b51bad809a21677d4d6e62cb211162c503a))
+
+
+
+
+
 ## [2.26.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.26.1...@jobber/components@2.26.2) (2021-02-01)
 
 **Note:** Version bump only for package @jobber/components
