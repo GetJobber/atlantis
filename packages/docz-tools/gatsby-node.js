@@ -5,13 +5,7 @@ const path = require("path");
 const { USE_ATLANTIS_ALIASES } = process.env;
 const useAtlantisAliases = USE_ATLANTIS_ALIASES === "true";
 
-exports.onCreateWebpackConfig = ({
-  stage,
-  rules,
-  actions,
-  loaders,
-  getConfig,
-}) => {
+exports.onCreateWebpackConfig = ({ rules, actions, getConfig }) => {
   const config = getConfig();
 
   /**
@@ -51,14 +45,6 @@ exports.onCreateWebpackConfig = ({
       "@jobber/components": path.resolve(__dirname, "../components/src"),
       "@jobber/hooks": path.resolve(__dirname, "../hooks"),
     };
-  }
-
-  // Situationally disable serverside rendering.
-  if (stage.includes("html")) {
-    config.module.rules.push({
-      test: /(?:packages|docs)\/.*\.(?:js|jsx|ts|tsx)$/,
-      use: loaders.null(),
-    });
   }
 
   actions.replaceWebpackConfig(config);
