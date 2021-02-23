@@ -2,7 +2,7 @@
 /* eslint-env node */
 const path = require("path");
 
-exports.onCreateWebpackConfig = ({ actions, stage, getConfig }) => {
+exports.onCreateWebpackConfig = ({ loaders, actions, stage, getConfig }) => {
   const config = getConfig();
 
   /**
@@ -43,7 +43,13 @@ exports.onCreateWebpackConfig = ({ actions, stage, getConfig }) => {
     ],
   });
 
+  // Situationally disable serverside rendering.
   if (stage.includes("html")) {
+    config.module.rules.push({
+      test: /(?:packages|docs)\/.*\.(?:js|jsx|ts|tsx)$/,
+      use: loaders.null(),
+    });
+
     config.module.rules.push({
       test: /.*\.(?:md|mdx)$/,
       use: path.resolve("../null-markdown-loader.js"),
