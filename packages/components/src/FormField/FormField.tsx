@@ -232,6 +232,7 @@ export function FormField({
   const wrapperClassNames = classnames(
     styles.wrapper,
     inline && styles.inline,
+    inline && type === "textarea" && styles.inlineTextArea,
     size && styles[size],
     align && styles[align],
     disabled && styles.disabled,
