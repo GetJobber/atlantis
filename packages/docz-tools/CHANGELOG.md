@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.1.0...@jobber/docz-tools@1.2.0) (2021-02-25)
+
+
+### Features
+
+* allows images to be rendered through a component ([#475](https://github.com/GetJobber/atlantis/issues/475)) ([295e4da](https://github.com/GetJobber/atlantis/commit/295e4da79c41604f335374074cc863c4238a26aa))
+
+
+
+
+
 # [1.1.0](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.0.3...@jobber/docz-tools@1.1.0) (2021-02-23)
 
 
