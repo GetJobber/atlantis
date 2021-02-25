@@ -6,6 +6,7 @@ import { Code } from "gatsby-theme-docz/src/components/Code";
 import { Pre } from "gatsby-theme-docz/src/components/Pre";
 import { Divider } from "@jobber/components/Divider";
 import { Cell, Header, Table } from "@jobber/components/Table";
+import { Image } from "./Image";
 import { Tr } from "./Tr";
 import * as headings from "./Headings";
 import { Layout } from "./Layout";
@@ -26,4 +27,5 @@ export default {
   th: Cell,
   tr: Tr,
   td: Cell,
+  img: Image,
 };
