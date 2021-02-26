@@ -2,7 +2,6 @@ export const wrapper: string;
 export const formField: string;
 export const label: string;
 export const inline: string;
-export const inlineTextArea: string;
 export const small: string;
 export const large: string;
 export const center: string;

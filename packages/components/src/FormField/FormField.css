@@ -99,16 +99,11 @@ select.formField {
 .inline {
   display: inline-block;
   width: auto;
-  vertical-align: baseline;
 }
 
 .inline > input,
 .inline > select {
   display: inline-block;
-}
-
-.inline.inlineTextArea {
-  vertical-align: middle;
 }
 
 /* Sizes */
