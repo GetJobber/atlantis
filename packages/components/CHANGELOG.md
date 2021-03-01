@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.26.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.26.4...@jobber/components@2.26.5) (2021-03-01)
+
+
+### Bug Fixes
+
+* **components:** Refix the vertical alignment firefix on Firefox for FormFields ([#474](https://github.com/GetJobber/atlantis/issues/474)) ([42fb7cf](https://github.com/GetJobber/atlantis/commit/42fb7cf131ead5f7055342df7595d8445c6f941d))
+
+
+
+
+
 ## [2.26.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.26.3...@jobber/components@2.26.4) (2021-02-12)
 
 **Note:** Version bump only for package @jobber/components
