@@ -5,12 +5,12 @@ route: /components/input-text
 ---
 
 import { Playground, Props } from "docz";
-import { ComponentStatus } from "@jobber/docx";
-import { InputText } from ".";
 import { useState } from "react";
-import { Button } from "../Button";
-import { Content } from "../Content";
-import { Text } from "../Text";
+import { ComponentStatus } from "@jobber/docx";
+import { InputText } from "@jobber/components/InputText";
+import { Button } from "@jobber/components/Button";
+import { Content } from "@jobber/components/Content";
+import { Text } from "@jobber/components/Text";
 
 # Input Text
 
@@ -78,6 +78,21 @@ The textarea will start at a specified minimum and grow to a specified maximum.
 
 You can add your own custom validation messages on a field. However, this
 shouldn't replace server-side validation.
+
+🔱 Atlantis utilizes [React Hook Forms](https://react-hook-form.com/) to handle
+`input` and `form` validation. This means that the
+[React Hook Forms validation options](https://react-hook-form.com/api#register)
+are available out of the box.
+
+This includes, but is not limited to:
+
+- `required` - A Boolean which, if true, indicates that the input must have a
+  value.
+- `maxLength` - The maximum length of the value to accept for this input.
+- `minLength` - The minimum length of the value to accept for this input.
+- `pattern` - The regex pattern for the input.
+- `validate` - You can pass a callback function as the argument to validate, or
+  you can pass an object of callback functions to validate all of them.
 
 <Playground>
   {() => {
