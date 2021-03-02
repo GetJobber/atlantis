@@ -76,7 +76,7 @@ The [Autocomplete component](/components/autocomplete) also works inside the
       { value: 3, label: "Serenity" },
       { value: 4, label: "Sleeper Service" },
       { value: 5, label: "Enterprise" },
-      { value: 6, label: "Enterprise-D" }
+      { value: 6, label: "Enterprise-D" },
     ];
     const [value, setValue] = useState();
     return (
@@ -104,7 +104,7 @@ The [Autocomplete component](/components/autocomplete) also works inside the
         return options;
       }
       const filterRegex = new RegExp(text, "i");
-      return options.filter(option => option.label.match(filterRegex));
+      return options.filter((option) => option.label.match(filterRegex));
     }
   }}
 </Playground>

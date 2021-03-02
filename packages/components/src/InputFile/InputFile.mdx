@@ -39,13 +39,13 @@ import { InputFile, updateFiles } from "@jobber/components/InputFile";
           onUploadProgress={handleUpload}
           onUploadComplete={handleUpload}
         />
-        {files.map(file => (
+        {files.map((file) => (
           <FormatFile file={file} />
         ))}
       </Content>
     );
     function handleUpload(file) {
-      setFiles(oldFiles => updateFiles(file, oldFiles));
+      setFiles((oldFiles) => updateFiles(file, oldFiles));
     }
   }}
 </Playground>
