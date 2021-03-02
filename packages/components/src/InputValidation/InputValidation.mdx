@@ -18,44 +18,19 @@ import { InputValidation } from ".";
 `InputValidation` allows you to show the validation messages separate from a
 particular input component.
 
+For more details about `validation` using `Input` components, see the
+[InputText](/components/input-text/#validation-message) documentation.
+
 ```ts
 import { InputValidation } from "@jobber/components/InputValidation";
 ```
 
 <Playground>
   {() => {
-    const [validationMessages, setValidationMessages] = useState(undefined);
-    return (
-      <>
-        {validationMessages && <InputValidation message={validationMessages} />}
-        <Text>
-          My name is
-          <InputText
-            validations={{
-              required: {
-                value: true,
-                message: "Please tell me your name"
-              },
-              pattern: {
-                value: /Jeff/,
-                message: "Have you considered a better name, like Jeff?"
-              }
-            }}
-            onValidation={setValidationMessages}
-            name="myName"
-            size="small"
-            inline={true}
-            align="center"
-            maxLength={4}
-          />
-        </Text>
-      </>
-    );
+    return <div>Foo</div>;
   }}
 </Playground>
 
 ## Props
 
 <Props of={InputValidation} />
-
----
