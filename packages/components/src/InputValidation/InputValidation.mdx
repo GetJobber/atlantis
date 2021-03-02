@@ -28,7 +28,32 @@ import { InputValidation } from "@jobber/components/InputValidation";
 <Playground>
   {() => {
     const [validationMessages, setValidationMessages] = useState(undefined);
-    return <div>Foo</div>;
+    return (
+      <div>
+        {validationMessages && <InputValidation message={validationMessages} />}
+        <Text>
+          My name is
+          <InputText
+            validations={{
+              required: {
+                value: true,
+                message: "Please tell me your name"
+              },
+              pattern: {
+                value: /Jeff/,
+                message: "Have you considered a better name, like Jeff?"
+              }
+            }}
+            onValidation={setValidationMessages}
+            name="myName"
+            size="small"
+            inline={true}
+            align="center"
+            maxLength={4}
+          />
+        </Text>
+      </div>
+    );
   }}
 </Playground>
 
