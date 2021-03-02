@@ -42,7 +42,7 @@ function ToastInternal(_: unknown, ref: Ref<ToastRef>) {
   const [toasts, setToasts] = useState<ToastProps[]>([]);
 
   useImperativeHandle(ref, () => ({
-    add: props => {
+    add: (props) => {
       setToastKey(toastKey + 1);
       setToasts([
         {
@@ -56,7 +56,7 @@ function ToastInternal(_: unknown, ref: Ref<ToastRef>) {
 
   return (
     <div className={styles.container}>
-      {toasts.map(toast => (
+      {toasts.map((toast) => (
         <Toast {...toast} key={toast.id} />
       ))}
     </div>

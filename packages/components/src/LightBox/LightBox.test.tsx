@@ -50,7 +50,7 @@ test("lightbox doesn't show up", () => {
   expect(queryByText(caption)).toBeNull();
 });
 
-test("lightbox closes when user clicks close", done => {
+test("lightbox closes when user clicks close", (done) => {
   const title = "Dis be a title";
   const caption = "Dis be a caption 🎉";
 

@@ -67,7 +67,7 @@ it("fires an action callback when the action button is clicked", () => {
   expect(mockAction).toHaveBeenCalledTimes(1);
 });
 
-it("sets a timer and clears the Slice after a certain amount of time", done => {
+it("sets a timer and clears the Slice after a certain amount of time", (done) => {
   const { getByText, queryAllByText } = render(<MockToast />);
 
   fireEvent.click(getByText("No Variation"));
@@ -83,7 +83,7 @@ it("sets a timer and clears the Slice after a certain amount of time", done => {
   });
 });
 
-it("stops and starts the timer when the item is hover toggled", done => {
+it("stops and starts the timer when the item is hover toggled", (done) => {
   const { getByText, queryAllByText } = render(<MockToast />);
 
   fireEvent.click(getByText("No Variation"));

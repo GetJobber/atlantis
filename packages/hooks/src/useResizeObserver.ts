@@ -72,7 +72,7 @@ function getSize(
     .reverse();
 
   return (
-    sortedSizes.find(value => value <= comparable) ||
+    sortedSizes.find((value) => value <= comparable) ||
     sortedSizes[sortedSizes.length - 1]
   );
 }

@@ -28,7 +28,7 @@ export function FormatFile({ file, onDelete }: FormatFileProps) {
   const fileSize = getHumanReadableFileSize(file.size);
 
   if (!imageSource && file.type.startsWith("image/") && file.src) {
-    file.src().then(src => setImageSource(src));
+    file.src().then((src) => setImageSource(src));
   }
 
   const style = imageSource ? { backgroundImage: `url(${imageSource})` } : {};

@@ -173,7 +173,7 @@ export function InputFile({
   );
 
   function handleDrop(acceptedFiles: File[]) {
-    acceptedFiles.forEach(file => {
+    acceptedFiles.forEach((file) => {
       uploadFile(file);
     });
   }
@@ -193,7 +193,7 @@ export function InputFile({
     axios
       .post(url, formData, {
         headers: { "X-Requested-With": "XMLHttpRequest" },
-        onUploadProgress: progressEvent =>
+        onUploadProgress: (progressEvent) =>
           onUploadProgress &&
           onUploadProgress({
             ...fileUpload,
@@ -241,7 +241,7 @@ function getFileUpload(file: File, key: string): FileUpload {
   function getSrc() {
     const promise = new Promise<string>((resolve, reject) => {
       const reader = new FileReader();
-      reader.onload = event => {
+      reader.onload = (event) => {
         if (
           event.target &&
           event.target.result &&
@@ -269,7 +269,7 @@ function getFileUpload(file: File, key: string): FileUpload {
  */
 export function updateFiles(updatedFile: FileUpload, files: FileUpload[]) {
   const newFiles = [...files];
-  const index = files.findIndex(file => file.key === updatedFile.key);
+  const index = files.findIndex((file) => file.key === updatedFile.key);
 
   if (index !== -1) {
     newFiles[index] = updatedFile;

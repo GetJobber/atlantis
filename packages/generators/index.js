@@ -3,7 +3,7 @@
 
 const { PathPrompt } = require("inquirer-path");
 
-module.exports = function(plop, config) {
+module.exports = function (plop, config) {
   const { basePath, templateGlob } = Object.assign(
     {
       basePath: "packages/components/src",
@@ -39,7 +39,7 @@ module.exports = function(plop, config) {
        *
        * https://plopjs.com/documentation/#addmany
        */
-      answers => Object.assign(answers, { mdx: "mdx" }),
+      (answers) => Object.assign(answers, { mdx: "mdx" }),
       {
         type: "addMany",
         destination: `{{path}}/{{name}}/`,

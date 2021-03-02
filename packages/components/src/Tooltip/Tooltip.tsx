@@ -152,7 +152,7 @@ export function Tooltip({ message, children }: TooltipProps) {
             },
             {
               name: "applyStyles",
-              fn: data => {
+              fn: (data) => {
                 setTooltipStyles(data.state.styles.popper);
                 setArrowStyles(data.state.styles.arrow);
                 if (data.state.placement === "top") {

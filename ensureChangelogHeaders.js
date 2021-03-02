@@ -14,7 +14,7 @@ const fs = require("fs");
 const glob = require("glob");
 const startCase = require("lodash/startCase");
 
-glob.sync(path.join("packages/*/CHANGELOG.md")).forEach(file => {
+glob.sync(path.join("packages/*/CHANGELOG.md")).forEach((file) => {
   const changelog = String(fs.readFileSync(file));
   if (changelog.startsWith("---")) return;
 

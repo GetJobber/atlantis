@@ -17,7 +17,7 @@ export function Navigation({ query, sidebarRef }: NavigationProps) {
   return (
     <Box sx={styles.navigation}>
       {menus &&
-        menus.map(menu => {
+        menus.map((menu) => {
           const isNavGroup = menu.menu && typeof menu.menu !== "string";
 
           return (
