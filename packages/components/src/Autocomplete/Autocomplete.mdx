@@ -110,7 +110,7 @@ bottom right. Both of these are optional per option.
         return options;
       }
       const filterRegex = new RegExp(text, "i");
-      return options.filter((option) =>
+      return options.filter(option =>
         option.heading ? true : option.label.match(filterRegex)
       );
     }
@@ -165,7 +165,7 @@ An autocomplete can provide section headings to break up the options.
      * In reality an api should return this pre-formatted structure.
      */
     function filterOptions(text, options = []) {
-      return options.filter((option) => {
+      return options.filter(option => {
         if (option.options) {
           option.options = filterOptions(text, option.options);
           return true;
@@ -238,7 +238,7 @@ separators.
      * In reality an api should return this pre-formatted structure.
      */
     function filterOptions(text, options = []) {
-      return options.filter((option) => {
+      return options.filter(option => {
         if (option.options) {
           option.options = filterOptions(text, option.options);
           return true;
@@ -294,7 +294,7 @@ You can supply a value to `Autocomplete` in the form of an active `Option`.
         return options;
       }
       const filterRegex = new RegExp(text, "i");
-      return options.filter((option) => option.label.match(filterRegex));
+      return options.filter(option => option.label.match(filterRegex));
     }
   }}
 </Playground>
@@ -325,13 +325,13 @@ using either promises or `await` in `getOptions`.
       />
     );
     async function getOptions(text) {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         setTimeout(() => {
           if (text === "") {
             resolve(options);
           }
           const filterRegex = new RegExp(text, "i");
-          resolve(options.filter((option) => option.label.match(filterRegex)));
+          resolve(options.filter(option => option.label.match(filterRegex)));
         }, 300);
       });
     }

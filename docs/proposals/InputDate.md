@@ -29,7 +29,7 @@ import { InputTime } "@jobber/components/InputTime";
     const resetDate = () => {
       setDate(new CivilTime(3, 52));
     };
-    const handleChange = (newTime) => {
+    const handleChange = newTime => {
       setTime(newTime);
     };
     return (

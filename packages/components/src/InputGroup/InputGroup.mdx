@@ -104,7 +104,7 @@ The [Autocomplete component](/components/autocomplete) also works inside the
         return options;
       }
       const filterRegex = new RegExp(text, "i");
-      return options.filter((option) => option.label.match(filterRegex));
+      return options.filter(option => option.label.match(filterRegex));
     }
   }}
 </Playground>

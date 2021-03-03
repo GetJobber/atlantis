@@ -177,7 +177,7 @@ shouldn't replace server-side validation.
   {() => {
     const [text, setText] = useState("Just some words here.");
     const textRef = React.createRef();
-    const handleTextChange = (newValue) => {
+    const handleTextChange = newValue => {
       setText(newValue);
     };
     const insert = () => {

@@ -101,7 +101,7 @@ analytics).
               url: "https://i.imgur.com/uigfzs5.jpg",
             },
           ]}
-          onRequestClose={(options) => {
+          onRequestClose={options => {
             console.log(
               "The user was saw this image last - ",
               options.lastPosition

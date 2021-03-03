@@ -108,9 +108,7 @@ want to use `Breakpoints`.
       return "indigo";
     }
     function getCurrentWidth() {
-      return Object.keys(customWidths).find(
-        (key) => customWidths[key] === width
-      );
+      return Object.keys(customWidths).find(key => customWidths[key] === width);
     }
   }}
 </Playground>

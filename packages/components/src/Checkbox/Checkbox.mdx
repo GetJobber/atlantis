@@ -77,7 +77,7 @@ discrete options, such as “fixed price” and “per visit” invoicing option
       </>
     );
     function toggleIndex(index) {
-      return (newValue) => {
+      return newValue => {
         const updatedItems = Array.from(items);
         updatedItems[index] = newValue;
         setItems(updatedItems);

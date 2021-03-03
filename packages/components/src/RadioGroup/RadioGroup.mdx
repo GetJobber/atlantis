@@ -134,7 +134,7 @@ text, an `aria-label` should be provided.
         <Content>
           <Text>Select a user</Text>
           <RadioGroup onChange={setPhoto} value={company}>
-            {users.map((user) => (
+            {users.map(user => (
               <RadioOption value={user.name}>
                 <Avatar initials={user.initials} name={user.name} />
               </RadioOption>
