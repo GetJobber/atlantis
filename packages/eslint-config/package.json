@@ -1,6 +1,6 @@
 {
   "name": "@jobber/eslint-config",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "main": ".eslintrc.js",
   "license": "MIT",
   "files": [
