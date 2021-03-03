@@ -5,7 +5,7 @@ import { LightBox } from ".";
 
 describe("Images", () => {
   beforeAll(() => {
-    ReactDOM.createPortal = jest.fn((element) => {
+    ReactDOM.createPortal = jest.fn(element => {
       return element as ReactPortal;
     });
   });

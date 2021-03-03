@@ -16,7 +16,7 @@ interface ListProps {
 }
 
 export function List({ items }: ListProps) {
-  const isSectioned = items.some((item) => item.section);
+  const isSectioned = items.some(item => item.section);
   if (isSectioned) {
     return <SectionedList items={items} />;
   } else {
@@ -27,7 +27,7 @@ export function List({ items }: ListProps) {
 function DisplayList({ items }: ListProps) {
   return (
     <ul className={styles.list}>
-      {items.map((item) => (
+      {items.map(item => (
         <li key={item.id} className={styles.item}>
           <ListItem {...item} />
         </li>
@@ -37,14 +37,12 @@ function DisplayList({ items }: ListProps) {
 }
 
 function SectionedList({ items }: ListProps) {
-  const sectionedItems = groupBy(items, (item) =>
-    get(item, "section", "Other"),
-  );
+  const sectionedItems = groupBy(items, item => get(item, "section", "Other"));
   const sectionHeaderClassNames = classnames(sectionStyles.sectionHeader);
 
   return (
     <ul className={styles.list}>
-      {Object.keys(sectionedItems).map((sectionName) => (
+      {Object.keys(sectionedItems).map(sectionName => (
         <li key={sectionName} className={styles.section}>
           <div className={sectionHeaderClassNames}>
             <Typography element="h4" fontWeight="bold" size="large">
@@ -53,7 +51,7 @@ function SectionedList({ items }: ListProps) {
           </div>
 
           <ul className={styles.list}>
-            {sectionedItems[sectionName].map((item) => (
+            {sectionedItems[sectionName].map(item => (
               <li key={item.id} className={styles.item}>
                 <ListItem {...item} />
               </li>

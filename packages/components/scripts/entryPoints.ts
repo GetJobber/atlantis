@@ -22,13 +22,13 @@ if (process.argv[2] === "clean") {
 }
 
 async function build() {
-  (await getEntryPoints()).forEach(async (entryPoint) => {
+  (await getEntryPoints()).forEach(async entryPoint => {
     writeFileSync(entryPoint.file, entryPoint.content);
   });
 }
 
 async function clean() {
-  (await getEntryPoints()).forEach((entryPoint) => {
+  (await getEntryPoints()).forEach(entryPoint => {
     unlinkSync(entryPoint.file);
   });
 }

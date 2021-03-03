@@ -22,7 +22,7 @@ export function InputValidation({ message }: InputValidationProps) {
       {messages && messages.length > 0 && (
         <div className={styles.hasValidationMessage}>
           <AnimatePresence>
-            {messages.map((msg) => (
+            {messages.map(msg => (
               <motion.div
                 key={`validation-${msg}`}
                 variants={variants}

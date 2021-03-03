@@ -29,9 +29,9 @@ exports.onCreateWebpackConfig = ({ rules, actions, getConfig }) => {
   };
 
   config.module.rules = [
-    ...config.module.rules.filter((rule) => {
+    ...config.module.rules.filter(rule => {
       const areCssRules =
-        rule.oneOf && rule.oneOf.some((r) => r.test.test("style.css"));
+        rule.oneOf && rule.oneOf.some(r => r.test.test("style.css"));
 
       return !areCssRules;
     }),

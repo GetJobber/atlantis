@@ -74,7 +74,7 @@ function handleExpressionsInCalc(calcRegexResult) {
   const varGroups = calcExtract.match(regexExpressions.extractAllVarGroups);
   let finalExpression = calcExtract;
   varGroups &&
-    varGroups.forEach((group) => {
+    varGroups.forEach(group => {
       const cssVariableRegexResult = regexExpressions.cssVars.exec(group);
       if (cssVariableRegexResult) {
         finalExpression = resolveCssVarsInExpression({

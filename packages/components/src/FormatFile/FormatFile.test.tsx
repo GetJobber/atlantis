@@ -17,7 +17,7 @@ it("renders a FormatFile", () => {
   expect(tree).toMatchSnapshot();
 });
 
-it("renders an image when provided as src", (done) => {
+it("renders an image when provided as src", done => {
   const url = "not_actually_a_url";
   const testFile = {
     key: "234",

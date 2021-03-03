@@ -29,10 +29,10 @@ export function useOnKeyDown(
 
     if (
       Array.isArray(keys) &&
-      keys.some((item) => {
+      keys.some(item => {
         if (typeof item === "string") return keyboardEvent.key === item;
         return Object.keys(item).every(
-          (index) => keyboardEvent[index] === item[index],
+          index => keyboardEvent[index] === item[index],
         );
       })
     ) {
@@ -43,7 +43,7 @@ export function useOnKeyDown(
     if (
       !Array.isArray(keys) &&
       typeof keys !== "string" &&
-      Object.keys(keys).every((index) => keyboardEvent[index] === keys[index])
+      Object.keys(keys).every(index => keyboardEvent[index] === keys[index])
     ) {
       callback(event);
       return;

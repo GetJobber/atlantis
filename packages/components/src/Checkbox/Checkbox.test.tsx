@@ -32,7 +32,7 @@ it("renders each variation of checked, defaultChecked and indeterminate", () => 
     { defaultChecked: false, indeterminate: false },
   ];
 
-  variations.forEach((variation) => {
+  variations.forEach(variation => {
     expect(
       renderer.create(<Checkbox label="Foo" {...variation} />).toJSON(),
     ).toMatchSnapshot();

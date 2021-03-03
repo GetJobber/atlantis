@@ -294,9 +294,9 @@ export function FormField({
           <textarea
             rows={rows}
             onFocus={handleFocus}
-            onKeyDown={(event) => handleKeyDown(event)}
+            onKeyDown={event => handleKeyDown(event)}
             onBlur={handleBlur}
-            ref={(element) => {
+            ref={element => {
               if (inputRef && element) {
                 (inputRef as MutableRefObject<HTMLTextAreaElement>).current = element;
               }
@@ -317,9 +317,9 @@ export function FormField({
               max={max}
               min={min}
               onFocus={handleFocus}
-              onKeyDown={(event) => handleKeyDown(event)}
+              onKeyDown={event => handleKeyDown(event)}
               onBlur={handleBlur}
-              ref={(element) => {
+              ref={element => {
                 if (inputRef && element) {
                   (inputRef as MutableRefObject<HTMLInputElement>).current = element;
                 }

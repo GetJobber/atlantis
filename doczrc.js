@@ -16,9 +16,9 @@ export default {
   menu: ["Atlantis", "Patterns", "Components", "Hooks", "Design"],
   files: [
     "./docs/**/*.{md,mdx}",
-    ...packages.map((pckg) => `./packages/${pckg}/src/**/*.{md,mdx}`),
-    ...packages.map((pckg) => `./packages/${pckg}/README.{md,mdx}`),
-    ...packages.map((pckg) => `./packages/${pckg}/CHANGELOG.md`),
+    ...packages.map(pckg => `./packages/${pckg}/src/**/*.{md,mdx}`),
+    ...packages.map(pckg => `./packages/${pckg}/README.{md,mdx}`),
+    ...packages.map(pckg => `./packages/${pckg}/CHANGELOG.md`),
   ],
   ignore: [
     "./docs/CHARTER.md",
@@ -58,7 +58,7 @@ function privateComponentReadmes() {
 
   const privates = glob
     .sync(path.join(components, "/**/.private"))
-    .map((file) => {
+    .map(file => {
       const directory = path.dirname(file);
       const component = path.basename(directory);
       return path
@@ -66,5 +66,5 @@ function privateComponentReadmes() {
         .slice(atlantis.length + 1);
     });
 
-  return privates.map((p) => `./${p}`);
+  return privates.map(p => `./${p}`);
 }

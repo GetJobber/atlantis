@@ -9,7 +9,7 @@ import ReactDOM from "react-dom";
 import { ConfirmationModal } from "..";
 
 beforeEach(() => {
-  ReactDOM.createPortal = jest.fn((element) => {
+  ReactDOM.createPortal = jest.fn(element => {
     return element as ReactPortal;
   });
 });

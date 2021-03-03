@@ -149,7 +149,7 @@ export function Menu({ activator, items }: MenuProps) {
                 <div key={key} className={styles.section}>
                   {item.header && <SectionHeader text={item.header} />}
 
-                  {item.actions.map((action) => (
+                  {item.actions.map(action => (
                     <Action key={action.label} {...action} />
                   ))}
                 </div>

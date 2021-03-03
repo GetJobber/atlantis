@@ -5,7 +5,7 @@ import { Modal } from ".";
 
 describe("Button Variations", () => {
   beforeAll(() => {
-    ReactDOM.createPortal = jest.fn((element) => {
+    ReactDOM.createPortal = jest.fn(element => {
       return element as ReactPortal;
     });
   });
