@@ -50,7 +50,7 @@ function Header({ title, onRequestClose }: HeaderProps) {
   return (
     <div className={styles.header} data-testid="drawer-header">
       <Typography
-        element="h3"
+        element="h4"
         size="large"
         textCase="uppercase"
         fontWeight="extraBold"
