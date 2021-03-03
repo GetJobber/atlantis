@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { Box, jsx } from "theme-ui";
+import { Fragment, RefObject } from "react";
 import { useMenus } from "docz";
-import { RefObject } from "react";
 import { NavLink } from "./NavLink";
 import { NavGroup } from "./NavGroup";
 import * as styles from "./styles";
@@ -13,12 +13,17 @@ interface NavigationProps {
 
 export function Navigation({ query, sidebarRef }: NavigationProps) {
   const menus = useMenus({ query });
+  console.log({ menus });
 
   return (
     <Box sx={styles.navigation}>
       {menus &&
         menus.map(menu => {
           const isNavGroup = menu.menu && typeof menu.menu !== "string";
+
+          if (menu.hidden) {
+            return <Fragment></Fragment>;
+          }
 
           return (
             <Box key={menu.id} sx={styles.item}>
