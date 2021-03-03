@@ -37,12 +37,12 @@ import { InputValidation } from "@jobber/components/InputValidation";
             validations={{
               required: {
                 value: true,
-                message: "Please tell me your name"
+                message: "Please tell me your name",
               },
               pattern: {
                 value: /Jeff/,
-                message: "Have you considered a better name, like Jeff?"
-              }
+                message: "Have you considered a better name, like Jeff?",
+              },
             }}
             onValidation={setValidationMessages}
             name="myName"

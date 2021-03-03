@@ -17,7 +17,7 @@ const resolvedCssVars = getResolvedCSSVars(customProperties);
 const jsonContent =
   "export const JobberStyle = " + JSON.stringify(resolvedCssVars, undefined, 2);
 
-fs.writeFile("./foundation.js", jsonContent, "utf8", function(err) {
+fs.writeFile("./foundation.js", jsonContent, "utf8", function (err) {
   if (err) {
     console.log("An error occured while writing JSON object to File.");
     return console.log(err);

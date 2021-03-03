@@ -26,13 +26,10 @@ function convertIcoMoonData(path: string) {
     }[];
   }
 
-  const iconMapping = icoMoonData.icons.reduce(
-    (mapping, icon) => {
-      mapping[icon.properties.name] = icon.icon.paths;
-      return mapping;
-    },
-    {} as IconMapping,
-  );
+  const iconMapping = icoMoonData.icons.reduce((mapping, icon) => {
+    mapping[icon.properties.name] = icon.icon.paths;
+    return mapping;
+  }, {} as IconMapping);
 
   const iconHeight = icoMoonData.height;
 
