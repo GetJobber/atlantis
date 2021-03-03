@@ -24,7 +24,7 @@ import { useResizeObserver } from "@jobber/hooks";
   {() => {
     const [
       ref,
-      { width, exactWidth, exactHeight, height }
+      { width, exactWidth, exactHeight, height },
     ] = useResizeObserver();
     return (
       <div ref={ref}>
@@ -87,10 +87,10 @@ want to use `Breakpoints`.
     const customWidths = {
       small: 480,
       medium: 640,
-      large: 768
+      large: 768,
     };
     const [ref, { width, exactWidth }] = useResizeObserver({
-      widths: customWidths
+      widths: customWidths,
     });
     return (
       <div ref={ref}>

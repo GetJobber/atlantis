@@ -7,7 +7,7 @@
  * want a JS comment.
  */
 
-module.exports = function() {
+module.exports = function () {
   this.cacheable();
   return "";
 };

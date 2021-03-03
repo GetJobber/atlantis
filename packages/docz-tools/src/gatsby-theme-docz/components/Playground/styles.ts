@@ -4,8 +4,9 @@ export const playground = (containerWidth: number, sideBarWidth: number) => {
   const { large } = space;
   const scrollBarWidth = 16;
   const width = `calc(100vw - ${scrollBarWidth}px - ${large} - ${large} - ${sideBarWidth}px)`;
-  const marginLeft = `calc(-50vw + ${scrollBarWidth /
-    2}px + ${large} + ${sideBarWidth / 2}px)`;
+  const marginLeft = `calc(-50vw + ${scrollBarWidth / 2}px + ${large} + ${
+    sideBarWidth / 2
+  }px)`;
 
   return {
     position: "relative",

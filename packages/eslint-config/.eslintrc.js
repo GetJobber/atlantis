@@ -55,7 +55,7 @@ module.exports = {
     "react/no-danger": "error",
     "prettier/prettier": [
       "error",
-      { trailingComma: "all" },
+      { trailingComma: "all", arrowParens: "avoid" },
       { usePrettierrc: false },
     ],
     "@typescript-eslint/consistent-type-assertions": [
@@ -92,7 +92,7 @@ module.exports = {
     "no-restricted-imports": ["error", { patterns: ["../*"] }],
     radix: "error",
     "use-isnan": "error",
-    "func-style": ["error", "declaration", { "allowArrowFunctions": true }],
+    "func-style": ["error", "declaration", { allowArrowFunctions: true }],
   },
   overrides: [
     {
