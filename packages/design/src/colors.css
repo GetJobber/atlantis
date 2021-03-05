@@ -1,23 +1,40 @@
 :root {
+  /* Jobber Workflow Colors */
   --color-request: var(--color-indigo);
   --color-quote: var(--color-pink);
   --color-job: var(--color-yellowGreen);
   --color-invoice: var(--color-purple);
+  --color-payments: var(--color-orange);
 
+  --color-client: var(--color-teal);
+
+  /* Jobber Semantic Layer */
   --color-interactive: var(--color-green);
   --color-learning: var(--color-lightBlue);
   --color-destructive: var(--color-red);
+  --color-cancel: var(--color-greyBlue);
+
   --color-disabled: var(--color-grey);
   --color-disabled--secondary: var(--color-grey--lighter);
+
   --color-outline: var(--color-yellow--light);
   --color-error: var(--color-red);
 
+  --color-heading: var(--color-blue);
   --color-text: var(--color-greyBlue--dark);
   --color-text--secondary: var(--color-greyBlue);
+
+  --color-surface: var(--color-white);
+  --color-surface--background: var(--color-grey--lightest);
+  --color-surface--success: var(--color-green--lighter);
+  --color-surface--error: var(--color-red--lighter);
+  --color-surface--warning: var(--color-yellow--lighter);
+  --color-surface--notice: var(--color-lightBlue--lightest);
 
   --color-brand: var(--color-green);
   --color-brand--highlight: rgb(160, 215, 42);
 
+  /* Jobber Base Pallet */
   --color-blue: rgb(1, 41, 57);
   --color-blue--light: rgb(77, 105, 116);
   --color-blue--lighter: rgb(153, 169, 176);
