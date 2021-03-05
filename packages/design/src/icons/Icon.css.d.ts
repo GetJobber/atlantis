@@ -4,6 +4,7 @@ export const longArrowDown: string;
 export const thumbsDown: string;
 export const person: string;
 export const clients: string;
+export const company: string;
 export const property: string;
 export const job: string;
 export const jobOnHold: string;

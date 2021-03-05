@@ -8,16 +8,18 @@ exports[`When actions are provided renders a Page with action buttons and a menu
     className="padded base"
   >
     <div
-      className="padded large"
+      className="padded base"
     >
       <div
         className="titleBar small medium large"
       >
-        <h1
-          className="base black jumbo uppercase blue"
-        >
-          Notifications
-        </h1>
+        <div>
+          <h1
+            className="base black jumbo uppercase blue"
+          >
+            Notifications
+          </h1>
+        </div>
         <div
           className="actionGroup"
         >
@@ -113,16 +115,18 @@ exports[`renders a Page 1`] = `
     className="padded base"
   >
     <div
-      className="padded large"
+      className="padded base"
     >
       <div
         className="titleBar small medium large"
       >
-        <h1
-          className="base black jumbo uppercase blue"
-        >
-          Notifications
-        </h1>
+        <div>
+          <h1
+            className="base black jumbo uppercase blue"
+          >
+            Notifications
+          </h1>
+        </div>
       </div>
       <p
         className="base regular large greyBlueDark"

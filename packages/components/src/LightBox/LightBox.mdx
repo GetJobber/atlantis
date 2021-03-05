@@ -38,16 +38,16 @@ import { LightBox } from "@jobber/components/LightBox";
             {
               title: "😃 Happy Face",
               url: "https://i.imgur.com/6Jcfgnp.jpg",
-              caption: "This is a happy face"
+              caption: "This is a happy face",
             },
             {
               title: "😮",
               url: "https://i.imgur.com/OsLxYkT.jpg",
-              caption: "Suprised face"
+              caption: "Suprised face",
             },
             {
-              url: "https://i.imgur.com/uigfzs5.jpg"
-            }
+              url: "https://i.imgur.com/uigfzs5.jpg",
+            },
           ]}
           onRequestClose={() => isOpen(false)}
         />
@@ -70,3 +70,46 @@ suited by using a dialogue or alternative method.
 ## Props
 
 <Props of={LightBox} />
+
+### onRequestClose
+
+This function receives the index of the last image the user viewed before
+closing the LightBox component with the key lastPosition. This might we useful
+if we want to return information about the final state when closed (e.g. for
+analytics).
+
+<Playground>
+  {() => {
+    const [open, isOpen] = useState(false);
+    return (
+      <>
+        <Button label="😈 Click me!" onClick={() => isOpen(true)} />
+        <LightBox
+          open={open}
+          images={[
+            {
+              title: "😃 Happy Face",
+              url: "https://i.imgur.com/6Jcfgnp.jpg",
+              caption: "This is a happy face",
+            },
+            {
+              title: "😮",
+              url: "https://i.imgur.com/OsLxYkT.jpg",
+              caption: "Suprised face",
+            },
+            {
+              url: "https://i.imgur.com/uigfzs5.jpg",
+            },
+          ]}
+          onRequestClose={options => {
+            console.log(
+              "The user was saw this image last - ",
+              options.lastPosition
+            );
+            isOpen(false);
+          }}
+        />
+      </>
+    );
+  }}
+</Playground>

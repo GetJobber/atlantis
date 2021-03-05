@@ -1,7 +1,7 @@
 ---
 name: Design
 menu: Packages
-route: /design
+route: /packages/design
 ---
 
 # Foundation
@@ -48,7 +48,7 @@ import { getIcon } from "@jobber/design";
 const { svgClassNames, paths, viewBox } = getIcon({
   name: "dashboard",
   color: "green",
-  size: "large"
+  size: "large",
 });
 ```
 
@@ -56,7 +56,7 @@ You can also get the type definitions for `IconNames`, `IconColorNames`, and
 `IconSizes` from `@jobber/design`
 
 ```tsx
-import type { IconNames, IconColorNames, IconSizes } from "@jobber/design"
+import type { IconNames, IconColorNames, IconSizes } from "@jobber/design";
 ```
 
 If you need the actual css files for icons, you can import them from
@@ -78,8 +78,8 @@ Inject `@jobber/foundation` into your css with `postcss`
 module.exports = {
   plugins: [
     require("postcss-preset-env")({
-      importFrom: ["@jobber/design"]
-    })
-  ]
+      importFrom: ["@jobber/design"],
+    }),
+  ],
 };
 ```

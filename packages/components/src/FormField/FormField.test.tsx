@@ -365,3 +365,30 @@ test("it should set the inputMode when the keyboard prop is set", () => {
   const name = input.getAttribute("inputMode");
   expect(name).toContain(keyboardMode);
 });
+
+test("it should render the spinner when loading is true", () => {
+  const { getByLabelText } = render(
+    <FormField placeholder="foo" type="text" loading={true} />,
+  );
+  const spinner = getByLabelText("loading");
+
+  expect(spinner).toBeInstanceOf(HTMLElement);
+});
+
+it("it should set the autocomplete value with one-time-code", () => {
+  const { getByLabelText } = render(
+    <FormField placeholder="foo" autocomplete={"one-time-code"} />,
+  );
+  const input = getByLabelText("foo");
+  const autocomplete = input.getAttribute("autocomplete");
+  expect(autocomplete).toContain("one-time-code");
+});
+
+it("it should set the autocomplete value to off", () => {
+  const { getByLabelText } = render(
+    <FormField placeholder="foo" autocomplete={false} />,
+  );
+  const input = getByLabelText("foo");
+  const autocomplete = input.getAttribute("autocomplete");
+  expect(autocomplete).toContain("autocomplete-off");
+});

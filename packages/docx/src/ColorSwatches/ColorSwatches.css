@@ -1,14 +1,14 @@
 .groupTitle {
   position: relative;
-  margin: 30px 0 20px;
-  font-family: "Poppins", sans-serif;
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1.4em;
-  letter-spacing: -0.02em;
+  margin: var(--space-largest) 0 var(--space-base);
+  color: var(--color-blue);
+  font-family: var(--typography--fontFamily-display);
+  font-size: var(--typography--fontSize-larger);
+  font-weight: 800;
+  line-height: var(--typography--lineHeight-tight);
   text-transform: uppercase;
 }
 
 .swatchGroup {
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-base);
 }

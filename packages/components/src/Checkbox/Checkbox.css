@@ -60,7 +60,7 @@
 }
 
 .input:focus + .checkBox {
-  box-shadow: 0 0 4px 1px var(--color-outline);
+  box-shadow: var(--shadow-focus);
 }
 
 .disabled .input.indeterminate + .checkBox,

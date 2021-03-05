@@ -12,6 +12,7 @@ import { ValidationRules, useForm, useFormContext } from "react-hook-form";
 import styles from "./FormField.css";
 import { Icon } from "../Icon";
 import { InputValidation } from "../InputValidation";
+import { Spinner } from "../Spinner";
 
 export interface FormFieldProps {
   /**
@@ -21,8 +22,10 @@ export interface FormFieldProps {
 
   /**
    * Determines if browser form autocomplete is enabled.
+   * Note that "one-time-code" is experimental and should not be used without
+   * consultation.
    */
-  readonly autocomplete?: boolean;
+  readonly autocomplete?: boolean | "one-time-code";
 
   /**
    * If you need to pass in a children. For example, `<options>` inside
@@ -120,6 +123,11 @@ export interface FormFieldProps {
   readonly value?: string | number;
 
   /**
+   * Show a spinner to indicate loading
+   */
+  loading?: boolean;
+
+  /**
    * Simplified onChange handler that only provides the new value.
    * @param newValue
    */
@@ -180,6 +188,7 @@ export function FormField({
   onChange,
   onEnter,
   onValidation,
+  loading,
   placeholder,
   readonly,
   rows,
@@ -218,7 +227,7 @@ export function FormField({
   ]);
   useEffect(() => handleValidation(), [error]);
 
-  const autocompleteValue = autocomplete ? undefined : "autocomplete-off";
+  const autocompleteValue = setAutocomplete(autocomplete);
 
   const wrapperClassNames = classnames(
     styles.wrapper,
@@ -250,8 +259,13 @@ export function FormField({
         {placeholder || " "}
       </label>
       {fieldElement()}
+      {type === "text" && loading && (
+        <span className={styles.postfix}>
+          <Spinner size="small" />
+        </span>
+      )}
       {type === "select" && (
-        <span className={styles.icon}>
+        <span className={styles.postfix}>
           <Icon name="arrowDown" />
         </span>
       )}
@@ -284,9 +298,7 @@ export function FormField({
             onBlur={handleBlur}
             ref={element => {
               if (inputRef && element) {
-                (inputRef as MutableRefObject<
-                  HTMLTextAreaElement
-                >).current = element;
+                (inputRef as MutableRefObject<HTMLTextAreaElement>).current = element;
               }
               if (name) {
                 register(element, { ...validations });
@@ -309,9 +321,7 @@ export function FormField({
               onBlur={handleBlur}
               ref={element => {
                 if (inputRef && element) {
-                  (inputRef as MutableRefObject<
-                    HTMLInputElement
-                  >).current = element;
+                  (inputRef as MutableRefObject<HTMLInputElement>).current = element;
                 }
                 if (name) {
                   register(element, { ...validations });
@@ -322,6 +332,11 @@ export function FormField({
           </>
         );
     }
+  }
+
+  function setAutocomplete(autocompleteSetting: boolean | string) {
+    if (autocompleteSetting === "one-time-code") return "one-time-code";
+    return autocompleteSetting ? undefined : "autocomplete-off";
   }
 
   function handleChange(

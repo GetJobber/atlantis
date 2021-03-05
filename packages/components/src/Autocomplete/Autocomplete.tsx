@@ -183,7 +183,7 @@ export function Autocomplete({
 }
 
 function mapToOptions(items: AnyOption[]) {
-  return items.reduce(function(result: AnyOption[], item) {
+  return items.reduce(function (result: AnyOption[], item) {
     result = result.concat([item]);
     if (item.options) {
       result = result.concat(item.options);

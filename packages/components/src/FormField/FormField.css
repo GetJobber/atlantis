@@ -99,7 +99,11 @@ select.formField {
 .inline {
   display: inline-block;
   width: auto;
-  vertical-align: -moz-middle-with-baseline;
+}
+
+.inline > input,
+.inline > select {
+  display: inline-block;
 }
 
 /* Sizes */
@@ -201,7 +205,7 @@ select.formField {
   );
 }
 
-.icon {
+.postfix {
   position: absolute;
   top: 50%;
   right: var(--field--padding-right);

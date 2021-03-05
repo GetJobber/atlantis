@@ -3,7 +3,7 @@
 
 const { PathPrompt } = require("inquirer-path");
 
-module.exports = function(plop, config) {
+module.exports = function (plop, config) {
   const { basePath, templateGlob } = Object.assign(
     {
       basePath: "packages/components/src",

@@ -1,0 +1,37 @@
+.spinner {
+  width: var(--space-larger);
+  height: var(--space-larger);
+  box-shadow: 0px 0px 4px 2px rgba(1, 41, 57, 0.4);
+  border: solid var(--color-blue--light);
+  border-top-color: var(--color-white);
+  border-width: calc(var(--space-small) * 0.75);
+  border-radius: var(--radius-circle);
+  background-color: var(--color-blue--lightest);
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-name: animation-spin;
+  animation-timing-function: linear;
+  will-change: transform;
+}
+
+@keyframes animation-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+.small {
+  width: var(--space-base);
+  height: var(--space-base);
+  border-width: var(--space-smaller);
+}
+
+.inline {
+  display: inline-block;
+  margin-top: calc(var(--space-smaller) * -1);
+  vertical-align: middle;
+}

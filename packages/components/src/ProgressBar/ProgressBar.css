@@ -1,17 +1,35 @@
 :root {
   --progress-bar--backgroundColor: var(--color-grey--lightest);
-  --progress-bar--barColor: var(--color-lime);
+  --progress-bar--barColor: var(--color-green);
+  --progress-bar--height: var(--space-base);
 }
 
-.container,
-.content {
+progress.ProgressBar[value] {
   width: 100%;
   height: var(--progress-bar--height);
-  border-radius: calc(var(--progress-bar--height) / 2);
-  background: var(--progress-bar--backgroundColor);
+  border: none;
+  vertical-align: initial;
+  appearance: none;
 }
 
-.content {
+progress.ProgressBar[value],
+progress.ProgressBar[value]::-webkit-progress-bar {
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: calc(var(--progress-bar--height) / 2);
+}
+
+progress.ProgressBar[value]::-webkit-progress-bar {
+  background-color: var(--progress-bar--backgroundColor);
+}
+
+progress.ProgressBar[value]::-webkit-progress-value {
+  border-radius: calc(var(--progress-bar--height) / 2);
   background-color: var(--progress-bar--barColor);
-  transition: width var(--timing-slower) ease-out;
+  transition: all var(--timing-slow) ease-out;
+}
+
+progress.ProgressBar[value]::-moz-progress-bar {
+  border-radius: calc(var(--progress-bar--height) / 2);
+  background-color: var(--progress-bar--barColor);
+  transition: all var(--timing-slow) ease-out;
 }

@@ -88,9 +88,9 @@ shouldn't replace server-side validation.
         validations={{
           required: {
             value: true,
-            message: "You have to tell us your age"
+            message: "You have to tell us your age",
           },
-          validate: validations
+          validate: validations,
         }}
       />
     );
@@ -225,6 +225,19 @@ Determine what default keyboard appears on mobile web.
   <InputText
     placeholder="Describe your age"
     name="describeAge"
+    keyboard="numeric"
+  />
+</Playground>
+
+## Loading
+
+Add a loading state to content.
+
+<Playground>
+  <InputText
+    placeholder="Checking phone number"
+    name="phoneNumber"
+    loading={true}
     keyboard="numeric"
   />
 </Playground>

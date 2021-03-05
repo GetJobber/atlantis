@@ -12,11 +12,11 @@ import { Text } from "../Text";
 
 # Page
 
-<ComponentStatus stage="pre" responsive="yes" accessible="yes" />
+<ComponentStatus stage="ready" responsive="yes" accessible="yes" />
 
 Use Page to build the outermost "main content" container of a view. Page comes
-complete with the ability to add the page title, along with actions and a
-description as needed.
+complete with the ability to add the page title, along with actions, subtitle,
+and a description as needed.
 
 ```ts
 import { Page } from "@jobber/components/Page";
@@ -59,9 +59,9 @@ of footer, it should exist after Page.
             icon: "edit",
             onClick: () => {
               alert("✏️");
-            }
-          }
-        ]
+            },
+          },
+        ],
       },
       {
         header: "Send as...",
@@ -71,21 +71,37 @@ of footer, it should exist after Page.
             icon: "sms",
             onClick: () => {
               alert("📱");
-            }
+            },
           },
           {
             label: "Email",
             icon: "email",
             onClick: () => {
               alert("📨");
-            }
-          }
-        ]
-      }
+            },
+          },
+        ],
+      },
     ]}
   >
     <Content>
       <Text>Page content here</Text>
     </Content>
+  </Page>
+</Playground>
+
+---
+
+## Page with Subtitle
+
+Use a subtitle when you need to supplement a page title.
+
+<Playground>
+  <Page
+    title="Notifications"
+    subtitle="Notify me of all the work"
+    intro="Improve job completion rates, stop chasing payments, and boost your customer service by automatically communicating with your clients at key points before, during, and after a job. Read more about Notifications by visiting our [Help Center](https://help.getjobber.com/hc/en-us/articles/115009737128)."
+  >
+    <Text>Page content here</Text>
   </Page>
 </Playground>

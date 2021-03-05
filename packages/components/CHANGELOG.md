@@ -8,6 +8,202 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.27.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.27.0...@jobber/components@2.27.1) (2021-03-05)
+
+
+### Bug Fixes
+
+* **components:** allow button to remain its' own height when Banner content gets long ([#458](https://github.com/GetJobber/atlantis/issues/458)) ([9b1e44f](https://github.com/GetJobber/atlantis/commit/9b1e44f20aa0e90196394064c645103b0e38c89b))
+
+
+
+
+
+# [2.27.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.26.6...@jobber/components@2.27.0) (2021-03-05)
+
+
+### Features
+
+* **design:** Add presentation icon ([#481](https://github.com/GetJobber/atlantis/issues/481)) ([e15b53d](https://github.com/GetJobber/atlantis/commit/e15b53d724dcd236f20f109bfc1e8e95c08966f4))
+
+
+
+
+
+## [2.26.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.26.5...@jobber/components@2.26.6) (2021-03-03)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.26.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.26.4...@jobber/components@2.26.5) (2021-03-01)
+
+
+### Bug Fixes
+
+* **components:** Refix the vertical alignment firefix on Firefox for FormFields ([#474](https://github.com/GetJobber/atlantis/issues/474)) ([42fb7cf](https://github.com/GetJobber/atlantis/commit/42fb7cf131ead5f7055342df7595d8445c6f941d))
+
+
+
+
+
+## [2.26.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.26.3...@jobber/components@2.26.4) (2021-02-12)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.26.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.26.2...@jobber/components@2.26.3) (2021-02-10)
+
+
+### Bug Fixes
+
+* **components:** exports date formatting as a string ([#466](https://github.com/GetJobber/atlantis/issues/466)) [JOB-28183] ([74e57b5](https://github.com/GetJobber/atlantis/commit/74e57b51bad809a21677d4d6e62cb211162c503a))
+
+
+
+
+
+## [2.26.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.26.1...@jobber/components@2.26.2) (2021-02-01)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.26.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.26.0...@jobber/components@2.26.1) (2021-02-01)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.26.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.25.0...@jobber/components@2.26.0) (2021-02-01)
+
+
+### Bug Fixes
+
+* **components:** spinner loading css type ([#462](https://github.com/GetJobber/atlantis/issues/462)) ([1d32015](https://github.com/GetJobber/atlantis/commit/1d3201555a762bdff07685bcad2b58728bd74d30))
+
+
+### Features
+
+* **components:** spinner loading state on input text ([#460](https://github.com/GetJobber/atlantis/issues/460)) ([98bc020](https://github.com/GetJobber/atlantis/commit/98bc0205f108a86a522cc05e7314331edf9a36ca))
+
+
+
+
+
+# [2.25.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.22.3...@jobber/components@2.25.0) (2021-01-28)
+
+
+### Features
+
+* **components:** Add numberOfLines prop to Text component ([#401](https://github.com/GetJobber/atlantis/issues/401)) ([8011b59](https://github.com/GetJobber/atlantis/commit/8011b594f01faecb830e386a0dfd0434ff82bf6c))
+* **components:** Spinner Component ([#456](https://github.com/GetJobber/atlantis/issues/456)) ([2ea8365](https://github.com/GetJobber/atlantis/commit/2ea8365276067ac7b0e42bc94d33a3e2a8a8b909))
+
+
+
+
+
+## [2.22.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.23.0...@jobber/components@2.22.3) (2021-01-26)
+
+
+### Bug Fixes
+
+* **components:** Make page subtitle and intro optional ([#459](https://github.com/GetJobber/atlantis/issues/459)) ([0d269b8](https://github.com/GetJobber/atlantis/commit/0d269b8d449622f5c5c3d1536deeea8c8de23efa))
+
+
+
+
+
+## [2.22.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.22.1...@jobber/components@2.22.2) (2021-01-19)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.22.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.22.0...@jobber/components@2.22.1) (2021-01-18)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.22.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.21.0...@jobber/components@2.22.0) (2021-01-15)
+
+
+### Features
+
+* **components:** add iOS autocomplete support for OTPs to form fields ([#452](https://github.com/GetJobber/atlantis/issues/452)) ([c4a158b](https://github.com/GetJobber/atlantis/commit/c4a158babe97e84e39094e4a04f115db5110be75))
+
+
+
+
+
+# [2.21.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.20.4...@jobber/components@2.21.0) (2021-01-14)
+
+
+### Features
+
+* **components:** add lastIndex argument to onRequestClose function prop of LightBox  ([#410](https://github.com/GetJobber/atlantis/issues/410)) ([fda480c](https://github.com/GetJobber/atlantis/commit/fda480c4699ed8b58157906518759d68408b70b8))
+
+
+
+
+
+## [2.20.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.20.3...@jobber/components@2.20.4) (2021-01-12)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.20.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.20.2...@jobber/components@2.20.3) (2021-01-11)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.20.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.20.1...@jobber/components@2.20.2) (2021-01-08)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.20.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.20.0...@jobber/components@2.20.1) (2021-01-08)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.20.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.19.1...@jobber/components@2.20.0) (2021-01-06)
+
+
+### Features
+
+* **components:** convert `progressBar` to semantic HTML and count step 1 ([#430](https://github.com/GetJobber/atlantis/issues/430)) ([01eb04e](https://github.com/GetJobber/atlantis/commit/01eb04e150d148b73b101cc8f499f585ef4a726a))
+
+
+
+
+
 ## [2.19.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.19.0...@jobber/components@2.19.1) (2020-12-15)
 
 **Note:** Version bump only for package @jobber/components
