@@ -13,7 +13,6 @@ interface NavigationProps {
 
 export function Navigation({ query, sidebarRef }: NavigationProps) {
   const menus = useMenus({ query });
-  console.log({ menus });
 
   return (
     <Box sx={styles.navigation}>

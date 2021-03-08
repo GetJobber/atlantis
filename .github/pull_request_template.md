@@ -4,6 +4,8 @@
 
   <TYPE>(<optional SCOPE>): <conditionally BREAKING CHANGE:> <description>
 
+  For help creating your pull request, you can [use this tool](https://atlantis.getjobber.com/pull-request-name-generator)
+
   eg.
     fix(SCOPE): stop graphite breaking when too much pressure applied — Patch Release
     feat(SCOPE): add 'graphiteWidth' option — (Minor) Feature Release

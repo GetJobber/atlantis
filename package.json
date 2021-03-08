@@ -100,6 +100,7 @@
     "ie >= 11"
   ],
   "dependencies": {
-    "@std-proposal/temporal": "0.0.1"
+    "@std-proposal/temporal": "0.0.1",
+    "copy-text-to-clipboard": "^3.0.1"
   }
 }

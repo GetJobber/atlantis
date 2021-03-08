@@ -4,62 +4,8 @@ route: /pull-request-name-generator
 hidden: true
 ---
 
-import { useState } from "react";
-import { Select, Option } from "@jobber/components/Select";
-import { Text } from "@jobber/components/Text";
-import { Card } from "@jobber/components/Card";
-import { Content } from "@jobber/components/Content";
-import { Divider } from "@jobber/components/Divider";
-import { Emphasis } from "@jobber/components/Emphasis";
-import { InputText } from "@jobber/components/InputText";
+import { PullRequestTitleGenerator } from "./PullRequestTitleGenerator";
 
 # Pull Request Name Generator
 
-export function PRNameGenerator() {
-  const [type, setType] = useState("fix");
-  const [scope, setScope] = useState();
-  const [description, setDescription] = useState();
-  const [jira, setJira] = useState();
-  return (
-    <Card title="Tell us about your PR">
-      <Content spacing="large">
-        <Text>
-          I want to{" "}
-          <Select inline value={type} onChange={val => setType(val)}>
-            <Option value="fix">fix something that's broken</Option>
-            <Option value="feat">add some new functionality</Option>
-            <Option value="docs">write documentation</Option>
-            <Option value="build">improvements to the build system</Option>
-            <Option value="chore">do something else important</Option>
-          </Select>{" "}
-          in our{" "}
-          <Select inline value={type} onChange={val => setScope(val)}>
-            <Option value="components">component library</Option>
-            <Option value="hooks">hooks library</Option>
-            <Option value="design">design foundation system</Option>
-            <Option value="docz-tools">internal docz tools</Option>
-            <Option value="eslint-config">eslint config</Option>
-            <Option value="stylelint-config">stylelint config</Option>
-          </Select>
-        </Text>
-        <Text>
-          <Emphasis variation="bold">Description</Emphasis>
-        </Text>
-        <InputText multiline rows={2} onChange={val => setDescription(val)} />
-        <Text>
-          <Emphasis variation="bold">JIRA ticket ID</Emphasis>
-        </Text>
-        <InputText onChange={val => setJira(val)} />
-        <Divider />
-        <Text size="large">
-          <Emphasis variation="bold">
-            {type}
-            {scope && `(${scope})`}: {description} {jira && `[${jira}]`}
-          </Emphasis>
-        </Text>
-      </Content>
-    </Card>
-  );
-}
-
-<PRNameGenerator />
+<PullRequestTitleGenerator />
