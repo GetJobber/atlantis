@@ -8,6 +8,44 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.27.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.27.1...@jobber/components@2.27.2) (2021-03-08)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.27.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.27.0...@jobber/components@2.27.1) (2021-03-05)
+
+
+### Bug Fixes
+
+* **components:** allow button to remain its' own height when Banner content gets long ([#458](https://github.com/GetJobber/atlantis/issues/458)) ([9b1e44f](https://github.com/GetJobber/atlantis/commit/9b1e44f20aa0e90196394064c645103b0e38c89b))
+
+
+
+
+
+# [2.27.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.26.6...@jobber/components@2.27.0) (2021-03-05)
+
+
+### Features
+
+* **design:** Add presentation icon ([#481](https://github.com/GetJobber/atlantis/issues/481)) ([e15b53d](https://github.com/GetJobber/atlantis/commit/e15b53d724dcd236f20f109bfc1e8e95c08966f4))
+
+
+
+
+
+## [2.26.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.26.5...@jobber/components@2.26.6) (2021-03-03)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 ## [2.26.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.26.4...@jobber/components@2.26.5) (2021-03-01)
 
 

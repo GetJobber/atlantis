@@ -40,12 +40,12 @@ import { Form } from "@jobber/components/Form";
             validations={{
               required: {
                 value: true,
-                message: "Tell us your name"
+                message: "Tell us your name",
               },
               minLength: {
                 value: 3,
-                message: "Your name is to short."
-              }
+                message: "Your name is to short.",
+              },
             }}
           />
           <InputText
@@ -54,8 +54,8 @@ import { Form } from "@jobber/components/Form";
             validations={{
               required: {
                 value: true,
-                message: "Tell us your last name."
-              }
+                message: "Tell us your last name.",
+              },
             }}
           />
           <Button
@@ -91,12 +91,12 @@ practice to use the [`useFormState`](/hooks/useFormState) hook with the
             validations={{
               required: {
                 value: true,
-                message: "Tell us your name"
+                message: "Tell us your name",
               },
               minLength: {
                 value: 3,
-                message: "Your name is to short."
-              }
+                message: "Your name is to short.",
+              },
             }}
           />
         </Form>
@@ -124,8 +124,8 @@ Submission of a `Form` can be done outside of the `Form` itself by using the
               validations={{
                 required: {
                   value: true,
-                  message: "Tell us your name"
-                }
+                  message: "Tell us your name",
+                },
               }}
             />
             <InputText
@@ -134,8 +134,8 @@ Submission of a `Form` can be done outside of the `Form` itself by using the
               validations={{
                 required: {
                   value: true,
-                  message: "Tell us your last name."
-                }
+                  message: "Tell us your last name.",
+                },
               }}
             />
           </Content>

@@ -298,9 +298,7 @@ export function FormField({
             onBlur={handleBlur}
             ref={element => {
               if (inputRef && element) {
-                (inputRef as MutableRefObject<
-                  HTMLTextAreaElement
-                >).current = element;
+                (inputRef as MutableRefObject<HTMLTextAreaElement>).current = element;
               }
               if (name) {
                 register(element, { ...validations });
@@ -323,9 +321,7 @@ export function FormField({
               onBlur={handleBlur}
               ref={element => {
                 if (inputRef && element) {
-                  (inputRef as MutableRefObject<
-                    HTMLInputElement
-                  >).current = element;
+                  (inputRef as MutableRefObject<HTMLInputElement>).current = element;
                 }
                 if (name) {
                   register(element, { ...validations });

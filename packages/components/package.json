@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "2.26.5",
+  "version": "2.27.2",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -8,7 +8,6 @@
     "build": "npm run build:cssTypes && npm run build:rollup",
     "build:rollup": "rollup --config",
     "build:cssTypes": "tcm src",
-    "convertIcoMoon": "scripts/convertIcoMoon.ts",
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
     "prepublishOnly": "ts-node --project ../../tsconfig.bin.json scripts/entryPoints.ts",
     "prepare": "npm run clean; npm run build",
@@ -20,9 +19,9 @@
     "dist/*"
   ],
   "dependencies": {
-    "@jobber/design": "^0.9.5",
+    "@jobber/design": "^0.10.0",
     "@jobber/formatters": "^0.1.0",
-    "@jobber/hooks": "^1.1.1",
+    "@jobber/hooks": "^1.1.2",
     "@popperjs/core": "^2.0.6",
     "@std-proposal/temporal": "0.0.1",
     "@types/color": "^3.0.1",

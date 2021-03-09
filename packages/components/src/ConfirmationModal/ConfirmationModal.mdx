@@ -21,7 +21,7 @@ edited page or deleting an object.
 ```ts
 import {
   ConfirmationModal,
-  confirmationModalReducer
+  confirmationModalReducer,
 } from "@jobber/components/ConfirmationModal";
 ```
 
@@ -78,12 +78,12 @@ that presents a confirm modal.
     const users = [
       {
         id: 1,
-        name: "Bob"
+        name: "Bob",
       },
       {
         id: 2,
-        name: "Donald"
-      }
+        name: "Donald",
+      },
     ];
     return (
       <>
@@ -96,7 +96,7 @@ that presents a confirm modal.
                   title: "Should we?",
                   message: `Hang out with **${user.name}**?`,
                   confirmLabel: "Hangout",
-                  onConfirm: () => alert("✅")
+                  onConfirm: () => alert("✅"),
                 });
               }}
             />

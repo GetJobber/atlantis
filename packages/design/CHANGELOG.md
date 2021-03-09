@@ -8,6 +8,25 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.9.6...@jobber/design@0.10.0) (2021-03-05)
+
+
+### Features
+
+* **design:** Add presentation icon ([#481](https://github.com/GetJobber/atlantis/issues/481)) ([e15b53d](https://github.com/GetJobber/atlantis/commit/e15b53d724dcd236f20f109bfc1e8e95c08966f4))
+
+
+
+
+
+## [0.9.6](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.9.5...@jobber/design@0.9.6) (2021-03-03)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
 ## [0.9.5](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.9.4...@jobber/design@0.9.5) (2021-02-12)
 
 
