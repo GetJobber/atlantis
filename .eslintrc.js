@@ -2,7 +2,7 @@ require("@jobber/eslint-config/patch-eslint-plugin-resolution.js");
 
 const packageAliases = [
   ["@jobber/components", "./packages/components/src"],
-  ["@jobber/hooks", "./packages/hooks"]
+  ["@jobber/hooks", "./packages/hooks"],
 ];
 
 module.exports = {
@@ -11,9 +11,9 @@ module.exports = {
     "import/resolver": {
       alias: {
         map: packageAliases,
-        extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
-      }
-    }
+        extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
+      },
+    },
   },
   rules: {
     /*
@@ -25,9 +25,9 @@ module.exports = {
     "import/no-internal-modules": [
       "error",
       {
-        allow: ["@jobber/components/*", "gatsby-theme-docz/**", "lodash/*"]
-      }
-    ]
+        allow: ["@jobber/components/*", "gatsby-theme-docz/**", "lodash/*"],
+      },
+    ],
   },
   overrides: [
     {
@@ -36,12 +36,13 @@ module.exports = {
        * some files to have default exports.
        */
       files: [
+        "./packages/docz-tools/src/gatsby-theme-docz/wrapper.tsx",
         "./packages/docz-tools/src/gatsby-theme-docz/theme/index.ts",
-        "./packages/docz-tools/src/gatsby-theme-docz/components/index.ts"
+        "./packages/docz-tools/src/gatsby-theme-docz/components/index.ts",
       ],
       rules: {
-        "import/no-default-export": "off"
-      }
+        "import/no-default-export": "off",
+      },
     },
     {
       /**
@@ -54,12 +55,12 @@ module.exports = {
           alias: {
             map: [
               ...packageAliases,
-              ["~theme", "./packages/docz-tools/src/gatsby-theme-docz/theme"]
+              ["~theme", "./packages/docz-tools/src/gatsby-theme-docz/theme"],
             ],
-            extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
-          }
-        }
-      }
-    }
-  ]
+            extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
+          },
+        },
+      },
+    },
+  ],
 };

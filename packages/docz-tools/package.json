@@ -14,6 +14,7 @@
     "@jobber/components": "^2.27.2",
     "@jobber/design": "^0.10.0",
     "deepmerge": "^4.2.2",
+    "react-helmet": "^6.1.0",
     "ts-xor": "^1.0.8"
   },
   "peerDependencies": {
@@ -24,5 +25,8 @@
     "react-dom": "*",
     "react-live": "*",
     "theme-ui": "*"
+  },
+  "devDependencies": {
+    "@types/react-helmet": "^6.1.0"
   }
 }
