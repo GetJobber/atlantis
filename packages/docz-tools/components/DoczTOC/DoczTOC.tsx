@@ -8,7 +8,7 @@ import { Card } from "@jobber/components/Card";
 import { Content } from "@jobber/components/Content";
 import * as styles from "./styles";
 
-interface TableOfContentsProps {
+interface DoczTOC {
   readonly maxDepth?: 1 | 2 | 3 | 4 | 5 | 6;
   /**
    * An array of items to exclude.
@@ -17,11 +17,11 @@ interface TableOfContentsProps {
   readonly title?: string;
 }
 
-export function TableOfContents({
+export function DoczTOC({
   exclude,
   maxDepth = 6,
   title = "Table of contents",
-}: TableOfContentsProps) {
+}: DoczTOC) {
   const { headings } = useCurrentDoc();
 
   return (

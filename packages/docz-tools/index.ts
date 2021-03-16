@@ -3,4 +3,4 @@
  * This file can also be used to export components for the theme.
  */
 
-export { TableOfContents } from "./components/TableOfContents";
+export { DoczTOC } from "./components/DoczTOC";
