@@ -96,6 +96,7 @@ function getPathClassNames(name: string, color?: IconColorNames) {
   return classnames(color && colors[color], {
     [styles.person]: name === "person",
     [styles.clients]: name === "clients",
+    [styles.company]: name === "company",
     [styles.property]: name === "property",
     [styles.userUnassigned]: name === "userUnassigned",
     [styles.job]: name === "job",

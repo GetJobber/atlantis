@@ -8,6 +8,37 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.9.6...@jobber/design@0.10.0) (2021-03-05)
+
+
+### Features
+
+* **design:** Add presentation icon ([#481](https://github.com/GetJobber/atlantis/issues/481)) ([e15b53d](https://github.com/GetJobber/atlantis/commit/e15b53d724dcd236f20f109bfc1e8e95c08966f4))
+
+
+
+
+
+## [0.9.6](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.9.5...@jobber/design@0.9.6) (2021-03-03)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.9.5](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.9.4...@jobber/design@0.9.5) (2021-02-12)
+
+
+### Bug Fixes
+
+* **design:** add in CSS types missing from last build ([#472](https://github.com/GetJobber/atlantis/issues/472)) ([7ce2df4](https://github.com/GetJobber/atlantis/commit/7ce2df49e517b6cd66bca5e74bd30214c4e2d2a7))
+* **design:** Make company icon colour default to teal ([#470](https://github.com/GetJobber/atlantis/issues/470)) ([0f324f0](https://github.com/GetJobber/atlantis/commit/0f324f072ddc97069b50cb31f5556744704ab993))
+
+
+
+
+
 ## [0.9.4](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.9.3...@jobber/design@0.9.4) (2021-02-01)
 
 **Note:** Version bump only for package @jobber/design

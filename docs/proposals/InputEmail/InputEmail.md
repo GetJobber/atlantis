@@ -82,12 +82,12 @@ import { InputEmail } "@jobber/components/InputEmail";
           validations={{
             required: {
               value: true,
-              message: "Please tell me your name"
+              message: "Please tell me your name",
             },
             pattern: {
               value: /\A((?:(?:(?:[a-zA-Z0-9\-+_][.\-+_'&]?)*)[a-zA-Z0-9\-+_]))@((?:(?:(?:[a-zA-Z0-9][.\-_]?){0,62})[a-zA-Z0-9])+)\.([a-zA-Z0-9]{2,})\z/,
-              message: "That does not look like an email address"
-            }
+              message: "That does not look like an email address",
+            },
           }}
           name="myName"
         />

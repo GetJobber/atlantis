@@ -99,3 +99,13 @@ The process for contributing code is fairly simple.
 
    _This helps us ensure that we can change our internal style without breaking
    API changes._
+
+## Opening a Pull Request
+
+Atlantis uses Conventional Commits to track versions. Pull request titles should
+follow the following format.
+
+`<TYPE>(<optional SCOPE>): <conditionally BREAKING CHANGE:> <description>`
+
+Want help with your pull request title? We have a
+[tool to help](/pull-request-name-generator)

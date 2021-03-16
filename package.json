@@ -23,7 +23,8 @@
     "release-the-kraken": "npm ci && lerna publish",
     "prerelease": "lerna publish --canary --dist-tag next --preid pre",
     "ci:release": "lerna publish --yes",
-    "version": "node ensureChangelogHeaders.js"
+    "version": "node ensureChangelogHeaders.js",
+    "convertIcoMoon": "scripts/convertIcoMoon.ts"
   },
   "repository": {
     "type": "git",
@@ -75,7 +76,7 @@
     "postcss-import": "^12.0.1",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.7.0",
-    "prettier": "^1.18.2",
+    "prettier": "^2.2.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",

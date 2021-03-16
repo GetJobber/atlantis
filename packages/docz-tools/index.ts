@@ -4,3 +4,4 @@
  */
 
 export { DoczTOC } from "./components/DoczTOC";
+export { PullRequestGenerator } from "./src/gatsby-theme-docz/components/PullRequestGenerator";

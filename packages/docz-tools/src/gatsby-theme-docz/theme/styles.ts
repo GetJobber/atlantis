@@ -50,14 +50,10 @@ export const styles = {
   inlineCode: {
     display: "inline-block",
     borderRadius: "base",
-    fontSize: "small",
+    fontSize: "base",
     fontFamily: "monospace",
     bg: "greyLightest",
     color: "greyBlueDark",
-    paddingY: "smaller",
-    paddingX: "small",
-    marginBottom: "smallest",
-    border: "1px solid",
-    borderColor: "greyLighter",
+    paddingX: "smaller",
   },
 };
