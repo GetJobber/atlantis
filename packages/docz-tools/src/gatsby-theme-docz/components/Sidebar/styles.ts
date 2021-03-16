@@ -1,8 +1,8 @@
-export const sidebar = (width: number) =>
+export const sidebar = (width: number, isFixedHeight: boolean) =>
   ({
     bg: "greyBlueDark",
-    height: "100vh",
-    position: "fixed",
+    height: isFixedHeight ? "100vh" : "100%",
+    position: isFixedHeight ? "fixed" : "relative",
     top: 0,
     width: width,
     overflowY: "scroll",
