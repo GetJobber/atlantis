@@ -17,6 +17,7 @@
     "ts-xor": "^1.0.8"
   },
   "peerDependencies": {
+    "copy-text-to-clipboard": "*",
     "docz": "*",
     "gatsby-theme-docz": "*",
     "re-resizable": "*",
