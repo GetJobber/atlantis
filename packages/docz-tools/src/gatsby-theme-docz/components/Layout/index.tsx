@@ -11,7 +11,7 @@ import "@jobber/design/foundation.css";
 
 export function Layout({ children }: PropsWithChildren<{}>) {
   const {
-    themeConfig: { sideBarWidth, containerWidth, hideActions },
+    themeConfig: { sideBarWidth, containerWidth, hasActions },
   } = useConfig();
 
   return (
@@ -20,7 +20,7 @@ export function Layout({ children }: PropsWithChildren<{}>) {
         <Box sx={styles.sidebar(sideBarWidth)}>
           <Sidebar />
         </Box>
-        {!hideActions && <Actions />}
+        {hasActions && <Actions />}
         <Box sx={styles.content}>
           <Box sx={styles.container(containerWidth)}>{children}</Box>
         </Box>

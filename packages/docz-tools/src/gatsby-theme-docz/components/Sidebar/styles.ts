@@ -1,13 +1,9 @@
-export const sidebar = (width: number, isFixedHeight: boolean) =>
+export const sidebar = (width: number, sidebarOffset: boolean) =>
   ({
     bg: "greyBlueDark",
-    height:
-      isFixedHeight || typeof isFixedHeight === undefined ? "100vh" : "100%",
-    position:
-      isFixedHeight || typeof isFixedHeight === undefined
-        ? "fixed"
-        : "relative",
-    top: 0,
+    height: `calc(100vh - ${sidebarOffset}px)`,
+    position: "fixed",
+    top: sidebarOffset,
     width: width,
     overflowY: "scroll",
 

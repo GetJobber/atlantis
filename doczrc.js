@@ -31,6 +31,10 @@ export default {
     "./public",
     ...privateComponents,
   ],
+  themeConfig: {
+    hasActions: true,
+    hasLogo: true,
+  },
 };
 
 function getPackagesToDocument() {
