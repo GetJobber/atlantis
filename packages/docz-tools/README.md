@@ -87,3 +87,22 @@ export default {
   }
 }
 ```
+
+## Frontmatter
+
+The `@jobber/docz-tools` allows for some custom front matter to be added to your
+`mdx` files.
+
+### showDirectoryLink
+
+Adding `showDirectoryLink` will add a new link to the directory where the `mdx`
+file is located on Github.
+
+_`showDirectoryLink` must be set to a boolen of `true`._
+
+```
+---
+name: Component Name
+showDirectoryLink: true
+---
+```
