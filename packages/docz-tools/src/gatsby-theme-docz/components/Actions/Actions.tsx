@@ -24,7 +24,7 @@ export function Actions() {
               // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
               // @ts-ignore
               label={<Github />}
-              url={doc.link}
+              url={repository}
               external
               type="secondary"
               ariaLabel={githubLabel}
@@ -32,7 +32,9 @@ export function Actions() {
           </Tooltip>
         </DeferRender>
       )}
-      <Button url={doc.link} external label="Edit Page" icon="edit" />
+      {doc.link && (
+        <Button url={doc.link} external label="Edit Page" icon="edit" />
+      )}
     </Box>
   );
 }
