@@ -11,7 +11,7 @@ import { DeferRender } from "../DeferRender";
 export function Sidebar() {
   const [query, setQuery] = useState("");
   const {
-    themeConfig: { sideBarWidth, hasLogo, sidebarOffset = 0 },
+    themeConfig: { sideBarWidth, hasLogo = true, sidebarOffset = 0 },
   } = useConfig();
   const sidebarRef = createRef<HTMLDivElement>();
 

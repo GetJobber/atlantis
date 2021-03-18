@@ -11,7 +11,7 @@ import "@jobber/design/foundation.css";
 
 export function Layout({ children }: PropsWithChildren<{}>) {
   const {
-    themeConfig: { sideBarWidth, containerWidth, hasActions },
+    themeConfig: { sideBarWidth, containerWidth, hasActions = true },
   } = useConfig();
 
   return (
