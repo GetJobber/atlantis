@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
-import { Fragment } from "react";
 import { useCurrentDoc } from "docz";
 // eslint-disable-next-line import/no-internal-modules
 import { Heading } from "docz/dist/state";
@@ -28,17 +27,15 @@ export function DoczTOC({
     <Card title={title}>
       <Content>
         <ul sx={styles.list}>
-          {headings.map((heading: Heading) => {
-            const shouldExcludeItem =
-              heading.depth > maxDepth ||
-              (exclude && exclude.includes(heading.value)) ||
-              (exclude && exclude.includes(heading.slug));
-
-            if (shouldExcludeItem) {
-              return <Fragment></Fragment>;
-            }
-
-            return (
+          {headings
+            .filter((heading: Heading) => {
+              return !(
+                (maxDepth && heading.depth > maxDepth) ||
+                (exclude && exclude.includes(heading.value)) ||
+                (exclude && exclude.includes(heading.slug))
+              );
+            })
+            .map((heading: Heading) => (
               <li
                 key={heading.slug}
                 sx={styles.item(`l${heading.depth}` as styles.LevelType)}
@@ -47,8 +44,7 @@ export function DoczTOC({
                   {heading.value}
                 </a>
               </li>
-            );
-          })}
+            ))}
         </ul>
       </Content>
     </Card>
