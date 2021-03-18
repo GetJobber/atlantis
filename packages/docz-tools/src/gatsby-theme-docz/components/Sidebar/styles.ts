@@ -1,4 +1,4 @@
-export const sidebar = (width: number, sidebarOffset: boolean) =>
+export const sidebar = (width: number, sidebarOffset: number) =>
   ({
     bg: "greyBlueDark",
     height: `calc(100vh - ${sidebarOffset}px)`,
