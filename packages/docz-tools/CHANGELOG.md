@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.2.7...@jobber/docz-tools@1.3.0) (2021-03-18)
+
+
+### Features
+
+* **docz-tools:** added theme configuration options for hiding actions, logo and fixed sidebar  ([#487](https://github.com/GetJobber/atlantis/issues/487)) ([6029e38](https://github.com/GetJobber/atlantis/commit/6029e38295bde737df1f4cd369027a96534b36d9))
+
+
+
+
+
 ## [1.2.7](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.2.6...@jobber/docz-tools@1.2.7) (2021-03-16)
 
 **Note:** Version bump only for package @jobber/docz-tools
