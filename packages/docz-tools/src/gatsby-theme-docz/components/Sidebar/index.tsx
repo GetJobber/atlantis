@@ -11,13 +11,13 @@ import { DeferRender } from "../DeferRender";
 export function Sidebar() {
   const [query, setQuery] = useState("");
   const {
-    themeConfig: { sideBarWidth, hasLogo = true, sidebarOffset = 0 },
+    themeConfig: { sideBarWidth, sidebarOffset = 0 },
   } = useConfig();
   const sidebarRef = createRef<HTMLDivElement>();
 
   return (
     <Box sx={styles.sidebar(sideBarWidth, sidebarOffset)} ref={sidebarRef}>
-      {hasLogo && <Logo />}
+      <Logo />
       <Box sx={styles.search}>
         <DeferRender>
           <Icon name="search" color="greyBlue" />
