@@ -10,6 +10,10 @@ export function Actions() {
   const doc = useCurrentDoc();
   const { title, repository } = useConfig();
 
+  const directoryLink = doc.link
+    .substring(0, doc.link.lastIndexOf("/"))
+    .replace("/edit/", "/tree/");
+
   const githubLabel = `View ${title} on Github`;
   return (
     <Box sx={styles.actions}>
@@ -26,12 +30,21 @@ export function Actions() {
               label={<Github />}
               url={repository}
               external
-              type="secondary"
+              type="tertiary"
               ariaLabel={githubLabel}
             />
           </Tooltip>
         </DeferRender>
       )}
+
+      {doc.showDirectoryLink && (
+        <DeferRender>
+          <Tooltip message={`View ${doc.name} directory on Github`}>
+            <Button url={directoryLink} icon="embed" external type="tertiary" />
+          </Tooltip>
+        </DeferRender>
+      )}
+
       {doc.link && (
         <Button url={doc.link} external label="Edit Page" icon="edit" />
       )}
