@@ -72,6 +72,23 @@ export default {
 }
 ```
 
+### Sidebar Offset
+
+The sidebar offset can be adjusted if you have a wrapping component at the top,
+such as a primary navigation bar. By default, it is `0` and represents
+`pixels / px`
+
+```
+// doczrc.js
+export default {
+  ...,
+  themeConfig: {
+    ...,
+    sidebarOffset: 100
+  }
+}
+```
+
 ### Container Width
 
 The container width can be adjusted. This will adjust the width that the content
@@ -85,5 +102,34 @@ export default {
     ...,
     containerWidth: 768
   }
+}
+```
+
+### Hide / Show Actions
+
+The actions in the top right can be hidden if required by adjusting `hasActions`
+to false. By default it is `true`
+
+```
+// doczrc.js
+export default {
+  ...,
+  themeConfig: {
+    ...,
+    hasActions: false
+  }
+}
+```
+
+### Hide / Show Logo
+
+The logo within the sidebar can be hidden if required by providing an
+`undefined` value to `title`.
+
+```
+// doczrc.js
+export default {
+  ...,
+  title: undefined
 }
 ```
