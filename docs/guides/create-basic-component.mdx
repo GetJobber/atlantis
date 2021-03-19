@@ -4,6 +4,19 @@ menu: Guides
 route: /guides/how-to-create-a-basic-react-component
 ---
 
+```SnacksRenderer
+import React from "react";
+import { View, Button } from "react-native";
+
+export default function App() {
+  return (
+    <View style={{marginVertical: 50}}>
+      <Button title="Click Me" onPress={() => alert("Change This")} />
+    </View>
+  )
+}
+```
+
 # Create your own component
 
 So, you want to create a react component in Atlantis but, you don't know where

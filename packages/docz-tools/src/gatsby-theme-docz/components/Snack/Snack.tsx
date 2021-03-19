@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 
 interface SnackProps {
-  readonly snack: string;
+  readonly code: string;
+  readonly meta: string;
 }
 
-export function Snack({ snack }: SnackProps) {
+declare const window: any;
+
+export function Snack({ code }: SnackProps) {
   const styles = {
     overflow: "hidden",
     border: "1px solid var(--color-grey--lighter)",
@@ -14,13 +17,17 @@ export function Snack({ snack }: SnackProps) {
     margin: "var(--space-large) 0",
   };
 
+  useLayoutEffect(() => {
+    if (window.ExpoSnack) {
+      window.ExpoSnack.initialize();
+    }
+  });
+
   return (
     <div
-      data-snack-id={snack}
-      data-snack-platform="android"
-      data-snack-preview="true"
-      data-snack-theme="light"
       style={styles}
+      data-snack-name="Atlantis Eats Snacks"
+      data-snack-code={code}
     />
   );
 }
