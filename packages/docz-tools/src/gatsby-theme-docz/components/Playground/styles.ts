@@ -1,6 +1,6 @@
 import { space } from "~theme/space";
 
-export const playground = (containerWidth: number, sideBarWidth: number) => {
+export const playground = (sideBarWidth: number) => {
   const { large } = space;
   const scrollBarWidth = 16;
   const width = `calc(100vw - ${scrollBarWidth}px - ${large} - ${large} - ${sideBarWidth}px)`;

@@ -21,17 +21,18 @@ interface PlaygroundProps {
 
 export function Playground({ code, scope, language }: PlaygroundProps) {
   const {
-    themeConfig: { showLiveError, containerWidth, sideBarWidth },
+    themeConfig: { showLiveError, sideBarWidth },
   } = useConfig();
 
   // Makes sure scope is only given on mount to avoid infinite re-render on hot reloads
   const [scopeOnMount] = useState(scope);
   const theme = usePrismTheme();
-  const [width, setWidth] = useState(containerWidth);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [width, setWidth] = useState();
   const resizableProps = getResizableProps();
 
   return (
-    <Box sx={styles.playground(containerWidth, sideBarWidth)}>
+    <Box sx={styles.playground(sideBarWidth)}>
       <Resizable {...resizableProps} data-testid="playground">
         <LiveProvider
           code={code}
@@ -58,7 +59,7 @@ export function Playground({ code, scope, language }: PlaygroundProps) {
     return {
       minWidth: 260,
       maxWidth: "100%",
-      size: { width: width, height: "auto" },
+      size: { width: 976, height: "auto" },
       style: { margin: "0 auto" },
       enable: { right: true },
       onResizeStop: (e: Event, direction: string, ref: any) =>

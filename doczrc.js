@@ -13,7 +13,7 @@ export default {
   typescript: true,
   port: 3333,
   host: "0.0.0.0",
-  menu: ["Atlantis", "Patterns", "Components", "Hooks", "Design"],
+  menu: ["🔱 Atlantis", "Patterns", "Components", "Hooks", "Design"],
   files: [
     "./docs/**/*.{md,mdx}",
     ...packages.map(pckg => `./packages/${pckg}/src/**/*.{md,mdx}`),

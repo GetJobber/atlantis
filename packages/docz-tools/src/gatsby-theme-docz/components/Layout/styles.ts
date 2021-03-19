@@ -10,13 +10,7 @@ export const sidebar = (width?: number) => ({
 });
 
 export const content = {
-  paddingY: "larger",
+  paddingY: "largest",
   paddingX: "large",
   flex: "1",
 };
-
-export const container = (width?: number) => ({
-  width: "100%",
-  maxWidth: width,
-  marginX: "auto",
-});

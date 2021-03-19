@@ -89,26 +89,9 @@ export default {
 }
 ```
 
-### Container Width
+### showActions
 
-The container width can be adjusted. This will adjust the width that the content
-of the documention is displayed at.
-
-```
-// doczrc.js
-export default {
-  ...,
-  themeConfig: {
-    ...,
-    containerWidth: 768
-  }
-}
-```
-
-### Hide / Show Actions
-
-The actions in the top right can be hidden if required by adjusting `hasActions`
-to false. By default it is `true`
+The page actions can be hidden if required by adjusting `showActions` to false.
 
 ```
 // doczrc.js
@@ -116,7 +99,7 @@ export default {
   ...,
   themeConfig: {
     ...,
-    hasActions: false
+    showActions: false
   }
 }
 ```
@@ -132,4 +115,23 @@ export default {
   ...,
   title: undefined
 }
+```
+
+## Frontmatter
+
+The `@jobber/docz-tools` allows for some custom front matter to be added to your
+`mdx` files.
+
+### showDirectoryLink
+
+Adding `showDirectoryLink` will add a new link to the directory where the `mdx`
+file is located on Github.
+
+_`showDirectoryLink` must be set to a boolen of `true`._
+
+```
+---
+name: Component Name
+showDirectoryLink: true
+---
 ```
