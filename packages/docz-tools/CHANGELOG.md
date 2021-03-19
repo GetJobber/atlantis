@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.3.0...@jobber/docz-tools@1.4.0) (2021-03-19)
+
+
+### Features
+
+* **docz-tools:** DoczTOC component ([#471](https://github.com/GetJobber/atlantis/issues/471)) ([76d02a1](https://github.com/GetJobber/atlantis/commit/76d02a16547c5124f0ed638c9c256a2b0da97ddd))
+
+
+
+
+
 # [1.3.0](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.2.7...@jobber/docz-tools@1.3.0) (2021-03-18)
 
 
