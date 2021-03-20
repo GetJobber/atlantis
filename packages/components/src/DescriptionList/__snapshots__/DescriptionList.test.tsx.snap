@@ -7,30 +7,30 @@ exports[`renders an object as a list of key value pairs 1`] = `
   <div
     className="termGroup"
   >
-    <dd
+    <dt
       className="base regular base blue"
     >
       Issued
-    </dd>
-    <dt
+    </dt>
+    <dd
       className="base regular base greyBlueDark"
     >
       2018-12-08
-    </dt>
+    </dd>
   </div>
   <div
     className="termGroup"
   >
-    <dd
+    <dt
       className="base regular base blue"
     >
       Due
-    </dd>
-    <dt
+    </dt>
+    <dd
       className="base regular base greyBlueDark"
     >
       2019-01-06
-    </dt>
+    </dd>
   </div>
 </dl>
 `;
@@ -42,30 +42,30 @@ exports[`renders an object as a list of key value pairs with an element 1`] = `
   <div
     className="termGroup"
   >
-    <dd
+    <dt
       className="base regular base blue"
     >
       Foo
-    </dd>
-    <dt
+    </dt>
+    <dd
       className="base regular base greyBlueDark"
     >
       Foo
-    </dt>
+    </dd>
   </div>
   <div
     className="termGroup"
   >
-    <dd
+    <dt
       className="base regular base blue"
     >
       Bar
-    </dd>
-    <dt
+    </dt>
+    <dd
       className="base regular base greyBlueDark"
     >
       Bar
-    </dt>
+    </dd>
   </div>
 </dl>
 `;
