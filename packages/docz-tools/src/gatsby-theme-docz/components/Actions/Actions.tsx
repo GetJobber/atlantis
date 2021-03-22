@@ -30,7 +30,7 @@ export function Actions() {
               label={<Github />}
               url={repository}
               external
-              type="tertiary"
+              type="secondary"
               ariaLabel={githubLabel}
             />
           </Tooltip>
@@ -39,8 +39,14 @@ export function Actions() {
 
       {doc.showDirectoryLink && (
         <DeferRender>
-          <Tooltip message={`View ${doc.name} directory on Github`}>
-            <Button url={directoryLink} icon="embed" external type="tertiary" />
+          <Tooltip message={`View ${doc.name} on Github`}>
+            <Button
+              url={directoryLink}
+              icon="embed"
+              external
+              type="secondary"
+              ariaLabel={`View ${doc.name} directory on Github`}
+            />
           </Tooltip>
         </DeferRender>
       )}
