@@ -10,6 +10,10 @@ export function Actions() {
   const doc = useCurrentDoc();
   const { title, repository } = useConfig();
 
+  const directoryLink = doc.link
+    .substring(0, doc.link.lastIndexOf("/"))
+    .replace("/edit/", "/tree/");
+
   const githubLabel = `View ${title} on Github`;
   return (
     <Box sx={styles.actions}>
@@ -24,7 +28,7 @@ export function Actions() {
               // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
               // @ts-ignore
               label={<Github />}
-              url={doc.link}
+              url={repository}
               external
               type="secondary"
               ariaLabel={githubLabel}
@@ -32,7 +36,24 @@ export function Actions() {
           </Tooltip>
         </DeferRender>
       )}
-      <Button url={doc.link} external label="Edit Page" icon="edit" />
+
+      {doc.showDirectoryLink && (
+        <DeferRender>
+          <Tooltip message={`View ${doc.name} on Github`}>
+            <Button
+              url={directoryLink}
+              icon="embed"
+              external
+              type="secondary"
+              ariaLabel={`View ${doc.name} directory on Github`}
+            />
+          </Tooltip>
+        </DeferRender>
+      )}
+
+      {doc.link && (
+        <Button url={doc.link} external label="Edit Page" icon="edit" />
+      )}
     </Box>
   );
 }
