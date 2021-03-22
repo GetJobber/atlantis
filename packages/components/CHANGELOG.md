@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.27.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.27.3...@jobber/components@2.27.4) (2021-03-22)
+
+
+### Bug Fixes
+
+* **docz-tools:** fixes the broken github link ([#488](https://github.com/GetJobber/atlantis/issues/488)) ([65bdf42](https://github.com/GetJobber/atlantis/commit/65bdf42725144aea40b41209a5ef43e311d1ff67))
+
+
+
+
+
 ## [2.27.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.27.2...@jobber/components@2.27.3) (2021-03-16)
 
 **Note:** Version bump only for package @jobber/components
