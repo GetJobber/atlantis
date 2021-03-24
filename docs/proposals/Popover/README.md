@@ -39,6 +39,12 @@ option based on responsive information.
 const AttachPdfToQuote = (props { checked: boolean}) => {
 	const checkboxRef = useRef()
 	const dontTellMeAnyMore = () => { ... }
+    const [toggled, setToggled] = useState(true)
+
+    const onDismiss = () => {
+        setToggled(false)
+        dontTellMeAnymore()
+    }
 
 	return (
 		<>
@@ -50,80 +56,46 @@ const AttachPdfToQuote = (props { checked: boolean}) => {
 			</Checkbox>
 
 			<Popover
-				dismissable={false} // Rendering my custom dissmiss button
 				attachTo={checkboxRef}
-				arrow={"top-left"}
-				onDismiss={dontTellMeAnyMore}
+                open={toggled}
+				onRequestClose={onDismiss}
 			>
-				{renderProps => (
-					{/* Propover contents */}
-					<Card>
-						<strong>
-							Attachments are excluded by default now!
-						</strong>
-						<button onClick={renderProps.dissmiss}>
-							Okay!
-						</button>
-					</Card>
-				)}
+                <Card>
+                    <strong>
+                        Attachments are excluded by default now!
+                    </strong>
+                    <button onClick={onDismiss}>
+                        Okay!
+                    </button>
+                </Card>
 			</Popover>
 		</>
 	)
 }
 ```
 
-```tsx
-// OutOfTheBox.tsx
-import { Popover } from '...'}
-
-const OutOfTheBox = () => {
-    return (
-        <PopoverBase
-            attachTo={<button>No scrubs</button>}
-            activateOn={'focus'}
-        >
-            <marquee>Party like it's 1999</marquee>
-        <PopoverBase>
-    )
-}
-
-```
-
 ## Props Table
 
 ### Popover
 
-| name        | type                                                                           | required? | default   | description                                                                                                                                                                                      |
-| ----------- | ------------------------------------------------------------------------------ | --------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| attachTo    | `HTMLElement \| React.Ref<HTMLElement \| null> \| React.ReactNode `            | ✓         |           | Element the popover will attach to and point at.                                                                                                                                                 |
-| activateOn  | `"click" \| "focus"`                                                           |           | `"click"` | When `attachTo` is React node it it will be cloned and the popover will be toggled _on click_ by default.                                                                                        |
-| dismissable | `boolean`                                                                      |           | `true`    | Whether or not the popover is dismissable.                                                                                                                                                       |
-| toggled     | `boolean`                                                                      |           |           | Control popover viability rather than letting the component take care of it.                                                                                                                     |
-| children    | `React.ReactNode \| (renderProps: { dismiss: () => void }) => React.ReactNode` | ✓         |           | Pop-over content. A render function may also be provided and will provide you with a callback to dismiss the popover and potentially other stateful information or access to popper related APIs |
-| arrow       | `PopperJS.Placement`                                                           |           | `"auto"`  |
-| onDismiss   | `() => void`                                                                   |           |           | Callback executed when the user wants to close/dismiss the popover                                                                                                                               |
+| name           | type                                            | required? | default   | description                                                                                               |
+| -------------- | ----------------------------------------------- | --------- | --------- | --------------------------------------------------------------------------------------------------------- |
+| attachTo       | `HTMLElement \| React.Ref<HTMLElement \| null>` | ✓         |           | Element the popover will attach to and point at.                                                          |
+| activateOn     | `"click" \| "focus"`                            |           | `"click"` | When `attachTo` is React node it it will be cloned and the popover will be toggled _on click_ by default. |
+| dismissable    | `boolean`                                       |           | `true`    | Whether or not the popover is dismissable.                                                                |
+| open           | `boolean`                                       |           | `false`   | Control popover viability.                                                                                |
+| children       | `React.ReactNode`                               | ✓         |           | Pop-over content.                                                                                         |
+| onRequestClose | `() => void`                                    |           |           | Callback executed when the user wants to close/dismiss the popover                                        |
 
 ```ts
 type propsPopover = {
+    attachTo: HTMLElement | React.Ref<HTMLElement | null>;
     dismissable?: boolean;
-
-    toggled?: boolean;
-
-    children:
-        React.ReactNode |
-        (props: { dismiss: () => void }) => React.ReactNode;
-
-    arrow?: Placement;
-
-    onDismiss?: () => void;
-} & (
-    { attachTo: HTMLElement | React.Ref<HTMLElement | null>; } |
-    { attachTo: React.ReactNode; activateOn?: "click" | "focus" }
-)
+    open?: boolean;
+    children: React.ReactNode |
+    onRequestClose?: () => void;
+}
 ```
-
-> !Important: When providing a React node to be cloned for `props.attachTo` the
-> element must be able to provide a reference to the DOM.
 
 ### Resources
 
