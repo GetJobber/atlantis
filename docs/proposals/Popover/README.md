@@ -37,8 +37,8 @@ option based on responsive information.
 // Using render props to display a dismiss button inside the popover
 ...
 const AttachPdfToQuote = (props { checked: boolean}) => {
-	const checkboxRef = useRef()
-	const dontTellMeAnyMore = () => { ... }
+  const checkboxRef = useRef()
+  const dontTellMeAnyMore = () => { ... }
     const [toggled, setToggled] = useState(true)
 
     const onDismiss = () => {
@@ -46,20 +46,20 @@ const AttachPdfToQuote = (props { checked: boolean}) => {
         dontTellMeAnymore()
     }
 
-	return (
-		<>
-			<Checkbox
-				checked={props.checked}
-				ref={checkboxRef} checked
-			>
-				Attach quote as PDF
-			</Checkbox>
+  return (
+    <>
+      <Checkbox
+        checked={props.checked}
+        ref={checkboxRef} checked
+      >
+        Attach quote as PDF
+      </Checkbox>
 
-			<Popover
-				attachTo={checkboxRef}
+      <Popover
+        attachTo={checkboxRef}
                 open={toggled}
-				onRequestClose={onDismiss}
-			>
+        onRequestClose={onDismiss}
+      >
                 <Card>
                     <strong>
                         Attachments are excluded by default now!
@@ -68,9 +68,9 @@ const AttachPdfToQuote = (props { checked: boolean}) => {
                         Okay!
                     </button>
                 </Card>
-			</Popover>
-		</>
-	)
+      </Popover>
+    </>
+  )
 }
 ```
 
