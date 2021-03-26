@@ -61,6 +61,7 @@ export function Tabs({ children }: TabsProps) {
         <div className={styles.tabRow} ref={tabRow}>
           {React.Children.map(children, (tab, index) => (
             <InternalTab
+              disabled={tab.props.disabled}
               label={tab.props.label}
               selected={activeTab === index}
               activateTab={activateTab(index)}
@@ -82,6 +83,7 @@ export function Tabs({ children }: TabsProps) {
 interface TabProps {
   readonly label: string;
   readonly children: ReactNode | ReactNode[];
+  disabled?: boolean;
   onClick?(): void;
 }
 
@@ -90,6 +92,7 @@ export function Tab({ label }: TabProps) {
 }
 
 interface InternalTabProps {
+  disabled?: boolean;
   readonly label: string;
   readonly selected: boolean;
   activateTab(): void;
@@ -97,6 +100,7 @@ interface InternalTabProps {
 }
 
 export function InternalTab({
+  disabled,
   label,
   selected,
   activateTab,
@@ -104,14 +108,19 @@ export function InternalTab({
     return;
   },
 }: InternalTabProps) {
-  const className = classnames(styles.tab, { [styles.selected]: selected });
+  const className = disabled
+    ? classnames(styles.tab, styles.disabled)
+    : classnames(styles.tab, { [styles.selected]: selected });
   const color = selected ? "green" : undefined;
   return (
     <button
       type="button"
       role="tab"
       className={className}
+      disabled={disabled}
       onClick={() => {
+        if (disabled) return;
+
         activateTab();
         onClick();
       }}

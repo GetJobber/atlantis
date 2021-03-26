@@ -61,6 +61,17 @@
   background-color: var(--color-yellow--lightest);
 }
 
+.tab.disabled {
+  border-color: var(--button--color-disabled);
+  background-color: var(--button--color-disabled);
+  cursor: not-allowed;
+}
+
+.tab.disabled:hover,
+.tab.disabled:focus {
+  user-select: none;
+}
+
 .selected {
   border-top-color: var(--tab--border-color--selected);
   border-bottom-color: var(--color-white);
