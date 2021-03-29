@@ -1,0 +1,86 @@
+---
+name: Popover
+menu: Components
+route: /components/popover
+showDirectoryLink: true
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { Content } from "../Content";
+import { Heading } from "../Heading";
+import { Button } from "../Button";
+import { Checkbox } from "../Checkbox";
+import { useState, useRef } from "react";
+import { Popover } from ".";
+
+# Popover
+
+<ComponentStatus stage="pre" responsive="no" accessible="no" />
+
+Write a description about what Popover component is trying to achieve.
+
+```ts
+import { Popover } from "@jobber/components/Popover";
+```
+
+<Playground>
+  {() => {
+    const checkboxRef = useRef();
+    const [toggled, setToggled] = useState(true);
+    return (
+      <>
+        <Checkbox
+          defaultChecked={true}
+          label="Subscribe on marketing emails"
+          ref={checkboxRef}
+        />
+        <Popover
+          attachTo={checkboxRef}
+          open={toggled}
+          onRequestClose={() => setToggled(!toggled)}
+        >
+          <Content>
+            <Heading level={4}>
+              Attachments are excluded by default now!
+            </Heading>
+            <Button label="undo the thing" onClick={() => setToggled(false)} />
+          </Content>
+        </Popover>
+      </>
+    );
+  }}
+</Playground>
+
+<!--
+  It is not necessary to include Design & Usage Guidlelines. Use this section
+  to answer common questions and considerations about component usage.
+-->
+
+## Design & Usage Guidelines
+
+When contributing to, or consuming the Popover component, consider the
+following:
+
+- When using the Popover component always consider the volume you would like it
+  to be displayed at.
+- The Popover component should never be used inside another component.
+
+## Props
+
+<Props of={Popover} />
+
+<!--
+  It is not necessary to provide an example of each prop. Use usage examples to
+  highlight key features of a component or particular considerations.
+
+  See `Button.mdx` for a good example of this.
+-->
+
+## Loud
+
+Use `loud` to indicate that a component is yelling.
+
+<Playground>
+
+</Playground>
