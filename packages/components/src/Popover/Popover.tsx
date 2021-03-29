@@ -1,9 +1,11 @@
 /* eslint-disable no-null/no-null */
-import React, { useState } from "react";
+import { Placement } from "@popperjs/core";
+import React, { CSSProperties, useState } from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { usePopper } from "react-popper";
 import classnames from "classnames";
-import styles from "./Popover.css";
+import classes from "./Popover.css";
+import { Typography } from "../Typography";
 import { ButtonDismiss } from "../ButtonDismiss";
 
 // import classnames from "classnames";
@@ -16,24 +18,38 @@ interface PopoverProps {
   readonly attachTo: Element | React.RefObject<Element | null>;
 
   /**
-   * Whether or not the popover is dismissable.
+   * Pop-over content.
+   */
+  readonly children: React.ReactNode;
+
+  /**
+   * Whether or not the popover is dismissable via the header close button.
    */
   readonly dismissible?: boolean;
 
+  /**
+   * Offset modifier lets you displace a popper element from its reference element.
+   */
+  readonly offset?: [number | null | undefined, number | null | undefined];
   /**
    * Control popover viability.
    */
   readonly open?: boolean;
 
   /**
-   * Pop-over content.
-   */
-  readonly children: React.ReactNode;
-
-  /**
    * Callback executed when the user wants to close/dismiss the popover
    */
   readonly onRequestClose?: () => void;
+
+  /**
+   * Describes the preferred placement of the popper.
+   */
+  readonly placement?: Placement;
+
+  /**
+   * The title of the popover
+   */
+  readonly title: string;
 }
 
 export function Popover({
@@ -41,7 +57,10 @@ export function Popover({
   children,
   dismissible,
   attachTo,
+  offset,
   open,
+  placement,
+  title,
 }: PopoverProps) {
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
   const [arrowElement, setArrowElement] = useState<HTMLElement | null>(null);
@@ -49,25 +68,56 @@ export function Popover({
     attachTo instanceof Element ? attachTo : attachTo.current,
     popperElement,
     {
-      modifiers: [{ name: "arrow", options: { element: arrowElement } }],
+      modifiers: [
+        {
+          name: "arrow",
+          options: { element: arrowElement, padding: 10 },
+        },
+        {
+          name: "offset",
+          options: {
+            offset: offset,
+          },
+        },
+      ],
+      placement: placement || "auto",
     },
   );
 
-  const popperClassName = classnames(styles.tooltip, popperStyles.popper);
-  const arrowClassName = classnames(styles.arrow, popperStyles.arrow);
+  const popperClassName = classnames(classes.popover);
+  const arrowClassName = classnames(classes.arrow);
+  const headerClassName = classnames(classes.header);
+
+  const somethingstyle: CSSProperties = popperStyles.popper as any;
+  const arrowStyle: CSSProperties = popperStyles.arrow as any;
 
   return (
     open && (
       <div
         ref={setPopperElement}
+        style={somethingstyle}
         className={popperClassName}
         {...attributes.popper}
       >
         {dismissible && (
-          <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />
+          <div className={headerClassName}>
+            <Typography
+              element="h3"
+              size="large"
+              textCase="uppercase"
+              fontWeight="extraBold"
+            >
+              {title}
+            </Typography>
+            <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />
+          </div>
         )}
         {children}
-        <div ref={setArrowElement} className={arrowClassName} />
+        <div
+          ref={setArrowElement}
+          className={arrowClassName}
+          style={arrowStyle}
+        />
       </div>
     )
   );

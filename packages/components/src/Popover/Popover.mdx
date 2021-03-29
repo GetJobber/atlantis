@@ -27,24 +27,35 @@ import { Popover } from "@jobber/components/Popover";
 <Playground>
   {() => {
     const checkboxRef = useRef();
-    const [toggled, setToggled] = useState(true);
+    const [showPopover, setShowPopover] = useState(true);
+    const [subscribed, setSubscribed] = useState(false);
+    const onChangeSubscribed = () => {
+      setShowPopover(false);
+      setSubscribed(!subscribed)
+    };
     return (
       <>
         <Checkbox
           defaultChecked={true}
           label="Subscribe on marketing emails"
           ref={checkboxRef}
+          checked={subscribed}
+          onChange={onChangeSubscribed}
         />
+        <div>
+          <Button label="Restart Scenario" onClick={() => setShowPopover(true)} />
+        </div>
         <Popover
           attachTo={checkboxRef}
-          open={toggled}
-          onRequestClose={() => setToggled(!toggled)}
+          open={showPopover}
+          dismissible={true}
+          placement="right"
+          title="Show popover on load!"
+          offset={[0, 5]}
+          onRequestClose={() => setShowPopover(false)}
         >
           <Content>
-            <Heading level={4}>
-              Attachments are excluded by default now!
-            </Heading>
-            <Button label="undo the thing" onClick={() => setToggled(false)} />
+            <Button label="Disappear forever" onClick={() => setShowPopover(false)} />
           </Content>
         </Popover>
       </>
@@ -76,11 +87,3 @@ following:
 
   See `Button.mdx` for a good example of this.
 -->
-
-## Loud
-
-Use `loud` to indicate that a component is yelling.
-
-<Playground>
-
-</Playground>
