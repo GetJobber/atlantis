@@ -1,6 +1,6 @@
 /* eslint-disable no-null/no-null */
 import { Placement } from "@popperjs/core";
-import React, { CSSProperties, useState } from "react";
+import React, { useState } from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { usePopper } from "react-popper";
 import classnames from "classnames";
@@ -35,9 +35,10 @@ interface PopoverProps {
   readonly onRequestClose?: () => void;
 
   /**
-   * Describes the preferred placement of the popper.
+   * Describes the preferred placement of the popper.  The first element in the placement array will be taken
+   * as the preferred location with the rest of the array as fallback.
    */
-  readonly placement: [Placement];
+  readonly placement?: Placement | [Placement, ...Placement[]];
 
   /**
    * The title of the popover
@@ -51,34 +52,19 @@ export function Popover({
   dismissible,
   attachTo,
   open,
-  placement,
+  placement = ["auto"],
   title,
 }: PopoverProps) {
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
   const [arrowElement, setArrowElement] = useState<HTMLElement | null>(null);
-  const [initialPlacement, ...fallbackPlacements] = placement;
+  const [initialPlacement, ...fallbackPlacements] = Array.isArray(placement)
+    ? placement
+    : [placement];
   const { styles: popperStyles, attributes } = usePopper(
     attachTo instanceof Element ? attachTo : attachTo.current,
     popperElement,
     {
-      modifiers: [
-        {
-          name: "arrow",
-          options: { element: arrowElement, padding: 10 },
-        },
-        {
-          name: "offset",
-          options: {
-            offset: [0, 5],
-          },
-        },
-        {
-          name: "flip",
-          options: {
-            fallbackPlacements: fallbackPlacements,
-          },
-        },
-      ],
+      modifiers: buildModifiers(arrowElement, fallbackPlacements),
       placement: initialPlacement,
     },
   );
@@ -86,15 +72,13 @@ export function Popover({
   const popperClassName = classnames(classes.popover);
   const arrowClassName = classnames(classes.arrow);
   const headerClassName = classnames(classes.header);
-
-  const somethingstyle: CSSProperties = popperStyles.popper as any;
-  const arrowStyle: CSSProperties = popperStyles.arrow as any;
+  const dismissButton = classnames(classes.dismissButton);
 
   return (
     open && (
       <div
         ref={setPopperElement}
-        style={somethingstyle}
+        style={popperStyles.popper}
         className={popperClassName}
         {...attributes.popper}
       >
@@ -108,16 +92,43 @@ export function Popover({
             >
               {title}
             </Typography>
-            <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />
+            <div className={dismissButton}>
+              <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />
+            </div>
           </div>
         )}
         {children}
         <div
           ref={setArrowElement}
           className={arrowClassName}
-          style={arrowStyle}
+          style={popperStyles.arrow}
         />
       </div>
     )
   );
+}
+
+function buildModifiers(
+  arrowElement: HTMLElement | null,
+  fallbackPlacements: Placement[],
+) {
+  const modifiers = [
+    {
+      name: "arrow",
+      options: { element: arrowElement, padding: 10 },
+    },
+    {
+      name: "offset",
+      options: {
+        offset: [0, 5],
+      },
+    },
+    {
+      name: "flip",
+      options: {
+        fallbackPlacements: fallbackPlacements,
+      },
+    },
+  ];
+  return modifiers;
 }
