@@ -31,7 +31,7 @@ import { Popover } from "@jobber/components/Popover";
     const [subscribed, setSubscribed] = useState(false);
     const onChangeSubscribed = () => {
       setShowPopover(false);
-      setSubscribed(!subscribed)
+      setSubscribed(!subscribed);
     };
     return (
       <>
@@ -43,19 +43,25 @@ import { Popover } from "@jobber/components/Popover";
           onChange={onChangeSubscribed}
         />
         <div>
-          <Button label="Restart Scenario" onClick={() => setShowPopover(true)} />
+          <Button
+            label="Restart Scenario"
+            onClick={() => setShowPopover(true)}
+          />
         </div>
         <Popover
           attachTo={checkboxRef}
           open={showPopover}
           dismissible={true}
-          placement="right"
+          placement={["right", "top"]}
           title="Show popover on load!"
           offset={[0, 5]}
           onRequestClose={() => setShowPopover(false)}
         >
           <Content>
-            <Button label="Disappear forever" onClick={() => setShowPopover(false)} />
+            <Button
+              label="Disappear forever"
+              onClick={() => setShowPopover(false)}
+            />
           </Content>
         </Popover>
       </>
@@ -76,6 +82,9 @@ following:
 - When using the Popover component always consider the volume you would like it
   to be displayed at.
 - The Popover component should never be used inside another component.
+
+Reference Documentation on the popper plugin
+https://popper.js.org/react-popper/v2/
 
 ## Props
 

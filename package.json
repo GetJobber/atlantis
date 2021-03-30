@@ -101,8 +101,6 @@
     "ie >= 11"
   ],
   "dependencies": {
-    "@popperjs/core": "^2.9.1",
-    "@std-proposal/temporal": "0.0.1",
-    "react-popper": "^2.2.5"
+    "@std-proposal/temporal": "0.0.1"
   }
 }

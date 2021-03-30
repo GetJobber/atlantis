@@ -8,9 +8,6 @@ import classes from "./Popover.css";
 import { Typography } from "../Typography";
 import { ButtonDismiss } from "../ButtonDismiss";
 
-// import classnames from "classnames";
-// import styles from "./Popover.css";
-
 interface PopoverProps {
   /**
    * Element the popover will attach to and point at.
@@ -28,10 +25,6 @@ interface PopoverProps {
   readonly dismissible?: boolean;
 
   /**
-   * Offset modifier lets you displace a popper element from its reference element.
-   */
-  readonly offset?: [number | null | undefined, number | null | undefined];
-  /**
    * Control popover viability.
    */
   readonly open?: boolean;
@@ -44,7 +37,7 @@ interface PopoverProps {
   /**
    * Describes the preferred placement of the popper.
    */
-  readonly placement?: Placement;
+  readonly placement: [Placement];
 
   /**
    * The title of the popover
@@ -57,13 +50,13 @@ export function Popover({
   children,
   dismissible,
   attachTo,
-  offset,
   open,
   placement,
   title,
 }: PopoverProps) {
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
   const [arrowElement, setArrowElement] = useState<HTMLElement | null>(null);
+  const [initialPlacement, ...fallbackPlacements] = placement;
   const { styles: popperStyles, attributes } = usePopper(
     attachTo instanceof Element ? attachTo : attachTo.current,
     popperElement,
@@ -76,11 +69,17 @@ export function Popover({
         {
           name: "offset",
           options: {
-            offset: offset,
+            offset: [0, 5],
+          },
+        },
+        {
+          name: "flip",
+          options: {
+            fallbackPlacements: fallbackPlacements,
           },
         },
       ],
-      placement: placement || "auto",
+      placement: initialPlacement,
     },
   );
 
