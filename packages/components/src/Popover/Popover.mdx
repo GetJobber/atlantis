@@ -35,13 +35,14 @@ import { Popover } from "@jobber/components/Popover";
     };
     return (
       <>
-        <Checkbox
-          defaultChecked={true}
-          label="Subscribe on marketing emails"
-          ref={checkboxRef}
-          checked={subscribed}
-          onChange={onChangeSubscribed}
-        />
+        <span ref={checkboxRef}>
+          <Checkbox
+            defaultChecked={true}
+            label="Subscribe on marketing emails"
+            checked={subscribed}
+            onChange={onChangeSubscribed}
+          />
+        </span>
         <div>
           <Button
             label="Restart Scenario"
@@ -52,7 +53,7 @@ import { Popover } from "@jobber/components/Popover";
           attachTo={checkboxRef}
           open={showPopover}
           dismissible={true}
-          placement="right"
+          preferredPlacement="right"
           title="Show popover on load!"
           onRequestClose={() => setShowPopover(false)}
         >
@@ -95,3 +96,105 @@ https://popper.js.org/react-popper/v2/
 
   See `Button.mdx` for a good example of this.
 -->
+
+## preferredPlacement options
+
+You have 5 preferredPlacement options you can use
+
+- `right`
+- `top`
+- `bottom`
+- `auto`
+- `left`
+
+<Playground>
+  {() => {
+    const checkboxRef = useRef();
+    const [showPopover, setShowPopover] = useState(true);
+    const [subscribed, setSubscribed] = useState(false);
+    const onChangeSubscribed = () => {
+      setShowPopover(false);
+      setSubscribed(!subscribed);
+    };
+    return (
+      <>
+        <span ref={checkboxRef}>
+          <Checkbox
+            defaultChecked={true}
+            label="Subscribe on marketing emails"
+            checked={subscribed}
+            onChange={onChangeSubscribed}
+          />
+        </span>
+        <div>
+          <Button
+            label="Restart Scenario"
+            onClick={() => setShowPopover(true)}
+          />
+        </div>
+        <Popover
+          attachTo={checkboxRef}
+          open={showPopover}
+          dismissible={true}
+          preferredPlacement="top"
+          title="Show popover on load!"
+          onRequestClose={() => setShowPopover(false)}
+        >
+          <Content>
+            <Button
+              label="Disappear forever"
+              onClick={() => setShowPopover(false)}
+            />
+          </Content>
+        </Popover>
+      </>
+    );
+  }}
+</Playground>
+
+## Dismissible is false
+
+<Playground>
+  {() => {
+    const checkboxRef = useRef();
+    const [showPopover, setShowPopover] = useState(true);
+    const [subscribed, setSubscribed] = useState(false);
+    const onChangeSubscribed = () => {
+      setShowPopover(false);
+      setSubscribed(!subscribed);
+    };
+    return (
+      <>
+        <span ref={checkboxRef}>
+          <Checkbox
+            defaultChecked={true}
+            label="Subscribe on marketing emails"
+            checked={subscribed}
+            onChange={onChangeSubscribed}
+          />
+        </span>
+        <div>
+          <Button
+            label="Restart Scenario"
+            onClick={() => setShowPopover(true)}
+          />
+        </div>
+        <Popover
+          attachTo={checkboxRef}
+          open={showPopover}
+          dismissible={false}
+          preferredPlacement="right"
+          title="Show popover on load!"
+          onRequestClose={() => setShowPopover(false)}
+        >
+          <Content>
+            <Button
+              label="Disappear forever"
+              onClick={() => setShowPopover(false)}
+            />
+          </Content>
+        </Popover>
+      </>
+    );
+  }}
+</Playground>
