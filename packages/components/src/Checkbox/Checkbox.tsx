@@ -52,69 +52,64 @@ interface CheckboxProps {
   onChange?(newValue: boolean): void;
 }
 
-export const Checkbox = React.forwardRef<HTMLDivElement, CheckboxProps>(
-  (
-    {
-      checked,
-      defaultChecked,
-      disabled,
-      label,
-      name,
-      value,
-      indeterminate = false,
-      description,
-      onChange,
-    },
-    ref,
-  ) => {
-    const wrapperClassName = classnames(
-      styles.wrapper,
-      disabled && styles.disabled,
-    );
-    const inputClassName = classnames(styles.input, {
-      [styles.indeterminate]: indeterminate,
-    });
-    const iconName = indeterminate ? "minus2" : "checkmark";
+export function Checkbox({
+  checked,
+  defaultChecked,
+  disabled,
+  label,
+  name,
+  value,
+  indeterminate = false,
+  description,
+  onChange,
+}: CheckboxProps) {
+  const wrapperClassName = classnames(
+    styles.wrapper,
+    disabled && styles.disabled,
+  );
+  const inputClassName = classnames(styles.input, {
+    [styles.indeterminate]: indeterminate,
+  });
+  const iconName = indeterminate ? "minus2" : "checkmark";
 
-    return (
-      <div className={styles.checkbox} ref={ref}>
-        <label className={wrapperClassName}>
-          <span className={styles.checkHolder}>
-            <input
-              type="checkbox"
-              checked={checked}
-              defaultChecked={defaultChecked}
-              className={inputClassName}
-              aria-label={label}
-              onChange={handleChange}
-              value={value}
-              name={name}
-              disabled={disabled}
-            />
-            <span className={styles.checkBox}>
-              <Icon name={iconName} size="small" color="white" />
-            </span>
+  return (
+    <div className={styles.checkbox}>
+      <label className={wrapperClassName}>
+        <span className={styles.checkHolder}>
+          <input
+            type="checkbox"
+            checked={checked}
+            defaultChecked={defaultChecked}
+            className={inputClassName}
+            aria-label={label}
+            onChange={handleChange}
+            value={value}
+            name={name}
+            disabled={disabled}
+          />
+          <span className={styles.checkBox}>
+            <Icon name={iconName} size="small" color="white" />
           </span>
+        </span>
 
-          {label != undefined && (
-            <span className={styles.label}>
-              <Text>{label}</Text>
-            </span>
-          )}
-        </label>
-        {description && (
-          <div className={styles.description}>
-            <Text variation="subdued" size="small">
-              {description}
-            </Text>
-          </div>
+        {label != undefined && (
+          <span className={styles.label}>
+            <Text>{label}</Text>
+          </span>
         )}
-      </div>
-    );
+      </label>
+      {description && (
+        <div className={styles.description}>
+          <Text variation="subdued" size="small">
+            {description}
+          </Text>
+        </div>
+      )}
+    </div>
+  );
 
-    function handleChange(event: ChangeEvent<HTMLInputElement>) {
-      const newChecked = event.currentTarget.checked;
-      onChange && onChange(newChecked);
-    }
-  },
-);
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    const newChecked = event.currentTarget.checked;
+    onChange && onChange(newChecked);
+  }
+}
