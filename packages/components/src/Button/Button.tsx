@@ -90,10 +90,7 @@ export type ButtonProps = XOR<
   XOR<SubmitButtonProps, XOR<ButtonLinkProps, ButtonAnchorProps>> &
   XOR<ButtonIconProps, ButtonLabelProps>;
 
-export const Button = React.forwardRef<
-  HTMLAnchorElement | HTMLButtonElement,
-  ButtonProps
->((props, ref: React.Ref<any>) => {
+export function Button(props: ButtonProps) {
   const {
     ariaControls,
     ariaHaspopup,
@@ -115,6 +112,7 @@ export const Button = React.forwardRef<
     variation = "work",
     submit,
   } = props;
+
   const buttonClassNames = classnames(styles.button, styles[size], {
     [styles.onlyIcon]: icon && !label,
     [styles.hasIconAndLabel]: icon && label,
@@ -146,7 +144,7 @@ export const Button = React.forwardRef<
 
   if (to) {
     return (
-      <Link {...tagProps} ref={ref} to={to}>
+      <Link {...tagProps} to={to}>
         {buttonInternals}
       </Link>
     );
@@ -154,12 +152,8 @@ export const Button = React.forwardRef<
 
   const Tag = url ? "a" : "button";
 
-  return (
-    <Tag ref={ref} {...tagProps}>
-      {buttonInternals}
-    </Tag>
-  );
-});
+  return <Tag {...tagProps}>{buttonInternals}</Tag>;
+}
 
 function ButtonInternals({
   label,
