@@ -8,7 +8,7 @@ import classes from "./Popover.css";
 import { Typography } from "../Typography";
 import { ButtonDismiss } from "../ButtonDismiss";
 
-interface PopoverProps {
+export interface PopoverProps {
   /**
    * Element the popover will attach to and point at.
    */
@@ -38,7 +38,7 @@ interface PopoverProps {
    * Describes the preferred placement of the popper.  The first element in the placement array will be taken
    * as the preferred location with the rest of the array as fallback.
    */
-  readonly placement?: Placement | [Placement, ...Placement[]];
+  readonly preferredPlacement?: "top" | "bottom" | "left" | "right" | "auto";
 
   /**
    * The title of the popover
@@ -52,20 +52,17 @@ export function Popover({
   dismissible,
   attachTo,
   open,
-  placement = ["auto"],
+  preferredPlacement = "auto",
   title,
 }: PopoverProps) {
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
   const [arrowElement, setArrowElement] = useState<HTMLElement | null>(null);
-  const [initialPlacement, ...fallbackPlacements] = Array.isArray(placement)
-    ? placement
-    : [placement];
   const { styles: popperStyles, attributes } = usePopper(
     attachTo instanceof Element ? attachTo : attachTo.current,
     popperElement,
     {
-      modifiers: buildModifiers(arrowElement, fallbackPlacements),
-      placement: initialPlacement,
+      modifiers: buildModifiers(arrowElement),
+      placement: preferredPlacement,
     },
   );
 
@@ -77,26 +74,27 @@ export function Popover({
   return (
     open && (
       <div
+        data-testid="popover"
         ref={setPopperElement}
         style={popperStyles.popper}
         className={popperClassName}
         {...attributes.popper}
       >
-        {dismissible && (
-          <div className={headerClassName}>
-            <Typography
-              element="h3"
-              size="large"
-              textCase="uppercase"
-              fontWeight="extraBold"
-            >
-              {title}
-            </Typography>
-            <div className={dismissButton}>
+        <div className={headerClassName}>
+          <Typography
+            element="h3"
+            size="large"
+            textCase="uppercase"
+            fontWeight="extraBold"
+          >
+            {title}
+          </Typography>
+          {dismissible && (
+            <div className={dismissButton} data-testid="popover-dismiss">
               <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />
             </div>
-          </div>
-        )}
+          )}
+        </div>
         {children}
         <div
           ref={setArrowElement}
@@ -108,10 +106,7 @@ export function Popover({
   );
 }
 
-function buildModifiers(
-  arrowElement: HTMLElement | null,
-  fallbackPlacements: Placement[],
-) {
+function buildModifiers(arrowElement: HTMLElement | null) {
   const modifiers = [
     {
       name: "arrow",
@@ -126,7 +121,7 @@ function buildModifiers(
     {
       name: "flip",
       options: {
-        fallbackPlacements: fallbackPlacements,
+        fallbackPlacements: ["auto"],
       },
     },
   ];
