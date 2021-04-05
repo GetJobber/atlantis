@@ -79,12 +79,24 @@ import { Popover } from "@jobber/components/Popover";
 When contributing to, or consuming the Popover component, consider the
 following:
 
-- When using the Popover component always consider the volume you would like it
-  to be displayed at.
-- The Popover component should never be used inside another component.
+### Usage
 
-Reference Documentation on the popper plugin
-https://popper.js.org/react-popper/v2/
+- A popover should be used to introduce a novel UI element or highlight a change
+  to an existing interface.
+- A popover should contain information that is helpful, but not necessary for
+  the user to successfully interact with the page.
+- Once a popover has been shown, it should not show up again once the user has
+  interacted with it.
+
+### Content
+
+- Popover text content should not exceed 3 lines and can consist of an optional
+  "dismiss" CTA
+
+### Reference Docs
+
+- Documentation on the popper plugin that was used to build the popover
+  component https://popper.js.org/react-popper/v2/
 
 ## Props
 
