@@ -1,6 +1,5 @@
 /* eslint-disable no-null/no-null */
 import React, { useState } from "react";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { usePopper } from "react-popper";
 import classnames from "classnames";
 import classes from "./Popover.css";
