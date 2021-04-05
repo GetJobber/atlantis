@@ -1,0 +1,54 @@
+---
+name: Dividing Content
+menu: Design
+route: /borders-and-dividers
+---
+
+# Borders and Dividers
+
+You may find that a visual indicator is helpful to segment elements in an
+interface. We have elements to help you do so in a consistent way across
+platforms: borders and dividers.
+
+## Borders
+
+To add a border to an element, use the border variables in the component's
+styling to ensure consistent border thickness throughout Jobber.
+
+export function Example({ of: size }) {
+  const style = {
+    width: "100%",
+    height: "var(--space-miniscule)",
+    borderBottomStyle: "solid",
+    borderBottomWidth: `var(--border-${size})`,
+    borderBottomColor: "var(--color-grey--lighter)",
+  };
+  return <div style={style} />;
+}
+
+| Width              | Visual                   |
+| :----------------- | :----------------------- |
+| `--border-base`    | <Example of="base" />    |
+| `--border-thick`   | <Example of="thick" />   |
+| `--border-thicker` | <Example of="thicker" /> |
+
+The `base` border width should be used for most use cases. Examples where you
+may want to consider thicker borders are when the border conveys an opening or
+closing of already-divided sections, such as a
+[`Table` footer](https://atlantis.getjobber.com/components/table)
+
+### Border Colors
+
+Borders should use `var(--color-grey--lighter)` for most use cases.
+[`List` sections](https://atlantis.getjobber.com/components/list#sectioned-list-items),
+[`Table` headers](https://atlantis.getjobber.com/components/table) and other
+scenarios where other bordered content is being further subsectioned should use
+`var(--color-blue)`.
+
+For accessibility reasons, ensure that color usage is not the only way to
+[convey meaning](https://webaim.org/articles/contrast/#sc141) in an interface.
+
+## Dividers
+
+The [`Divider`](https://atlantis.getjobber.com/components/divider) will help you
+do so without writing additional styling.
