@@ -54,7 +54,6 @@ import { Popover } from "@jobber/components/Popover";
           open={showPopover}
           dismissible={true}
           preferredPlacement="right"
-          title="Show popover on load!"
           onRequestClose={() => setShowPopover(false)}
         >
           <Content>Some amazing content</Content>
@@ -150,7 +149,6 @@ You have 5 preferredPlacement options you can use
           open={showPopover}
           dismissible={true}
           preferredPlacement="top"
-          title="Show popover on load!"
           onRequestClose={() => setShowPopover(false)}
         >
           <Content>Some amazing content</Content>
@@ -198,9 +196,9 @@ You have 5 preferredPlacement options you can use
           open={showPopover}
           dismissible={false}
           preferredPlacement="right"
-          title="Show popover on load!"
           onRequestClose={() => setShowPopover(false)}
         >
+          <Content>Some more amazing content</Content>
           <Content>
             <Button
               label="Disappear forever"

@@ -12,7 +12,6 @@ import { PopoverProps } from "./Popover";
 afterEach(cleanup);
 
 let rendered: RenderResult;
-const title = "Test Title";
 const content = "Test Content";
 
 const PopoverTestComponent = (props: PopoverProps) => {
@@ -27,14 +26,13 @@ const PopoverTestComponent = (props: PopoverProps) => {
   );
 };
 
-it("should render a Popover with a title, content, and dismiss button", async () => {
+it("should render a Popover with the content and dismiss button", async () => {
   const handleClose = jest.fn();
 
   await act(async () => {
     rendered = render(
       <PopoverTestComponent
         attachTo={undefined}
-        title={title}
         open={true}
         onRequestClose={handleClose}
       >
@@ -45,7 +43,6 @@ it("should render a Popover with a title, content, and dismiss button", async ()
 
   const { queryByText, queryByTestId, container } = rendered;
 
-  expect(queryByText(title)).toBeTruthy();
   expect(queryByText(content)).toBeTruthy();
   expect(queryByTestId("popover")).not.toBeNull();
 
@@ -58,7 +55,6 @@ it("shouldn't render a dismiss button if dismissible is false", async () => {
     rendered = render(
       <PopoverTestComponent
         attachTo={undefined}
-        title={title}
         open={true}
         dismissible={false}
       >
@@ -75,7 +71,7 @@ it("shouldn't render a dismiss button if dismissible is false", async () => {
 it("shouldn't render a popover when open is false", async () => {
   await act(async () => {
     rendered = render(
-      <PopoverTestComponent attachTo={undefined} title={title} open={false}>
+      <PopoverTestComponent attachTo={undefined} open={false}>
         {content}
       </PopoverTestComponent>,
     );

@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { usePopper } from "react-popper";
 import classnames from "classnames";
 import classes from "./Popover.css";
-import { Typography } from "../Typography";
 import { ButtonDismiss } from "../ButtonDismiss";
 
 export interface PopoverProps {
@@ -37,11 +36,6 @@ export interface PopoverProps {
    * as the preferred location with the rest of the array as fallback.
    */
   readonly preferredPlacement?: "top" | "bottom" | "left" | "right" | "auto";
-
-  /**
-   * The title of the popover
-   */
-  readonly title: string;
 }
 
 export function Popover({
@@ -51,7 +45,6 @@ export function Popover({
   attachTo,
   open,
   preferredPlacement = "auto",
-  title,
 }: PopoverProps) {
   const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
   const [arrowElement, setArrowElement] = useState<HTMLElement | null>(null);
@@ -66,7 +59,6 @@ export function Popover({
 
   const popperClassName = classnames(classes.popover);
   const arrowClassName = classnames(classes.arrow);
-  const headerClassName = classnames(classes.header);
   const dismissButton = classnames(classes.dismissButton);
 
   return (
@@ -78,21 +70,11 @@ export function Popover({
         className={popperClassName}
         {...attributes.popper}
       >
-        <div className={headerClassName}>
-          <Typography
-            element="h3"
-            size="large"
-            textCase="uppercase"
-            fontWeight="extraBold"
-          >
-            {title}
-          </Typography>
-          {dismissible && (
-            <div className={dismissButton} data-testid="popover-dismiss">
-              <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />
-            </div>
-          )}
-        </div>
+        {dismissible && (
+          <div className={dismissButton} data-testid="popover-dismiss">
+            <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />
+          </div>
+        )}
         {children}
         <div
           ref={setArrowElement}
