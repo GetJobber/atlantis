@@ -44,10 +44,6 @@
   background: inherit;
 }
 
-.arrow {
-  visibility: hidden;
-}
-
 .arrow::before {
   content: "";
   visibility: visible;
