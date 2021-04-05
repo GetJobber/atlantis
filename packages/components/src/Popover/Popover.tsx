@@ -1,5 +1,4 @@
 /* eslint-disable no-null/no-null */
-import { Placement } from "@popperjs/core";
 import React, { useState } from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { usePopper } from "react-popper";
@@ -49,7 +48,7 @@ export interface PopoverProps {
 export function Popover({
   onRequestClose,
   children,
-  dismissible,
+  dismissible = true,
   attachTo,
   open,
   preferredPlacement = "auto",
