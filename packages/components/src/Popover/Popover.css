@@ -2,7 +2,7 @@
   --card--background-color: var(--color-white);
   --card--base-padding: var(--space-base);
   --popover--padding: var(--space-base);
-  --popover--width: calc(var(--base-unit) * 37.5);
+  --popover--width: calc(var(--base-unit) * 21.875);
   --dismiss--button-padding: calc(var(--base-unit) / 4);
 }
 
@@ -23,25 +23,13 @@
 
 .popover {
   z-index: 1;
-  width: 350px;
+  width: 100%;
   max-width: var(--popover--width);
-  border: 1px solid rgb(203, 203, 203);
-  border-radius: 2px;
-  color: rgb(51, 51, 51);
-  font-size: 13px;
-  font-weight: bold;
-  line-height: 1.5em;
-  text-align: left;
-  background: rgb(250, 250, 250);
-  filter: drop-shadow(0px 0px 6px rgba(181, 181, 181, 0.4));
-}
-.popover > .background {
-  height: 100px;
-  background-image: url("https://images.pexels.com/photos/1563356/pexels-photo-1563356.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
-}
-.popover > p {
-  margin: 0;
-  padding: 8px;
+  border: 1px solid var(--color-grey--light);
+  border-radius: var(--radius-base);
+  font-size: var(--base-unit);
+  line-height: normal;
+  background: var(--color-white);
 }
 
 .popover > * {
@@ -51,8 +39,8 @@
 .arrow,
 .arrow::before {
   position: absolute;
-  width: 15px;
-  height: 15px;
+  width: var(--base-unit);
+  height: var(--base-unit);
   background: inherit;
 }
 
@@ -63,7 +51,7 @@
 .arrow::before {
   content: "";
   visibility: visible;
-  border: 1px solid rgb(203, 203, 203);
+  border: 1px solid var(--color-grey--light);
   transform: rotate(45deg);
   transform-origin: center;
   clip-path: polygon(-4px -4px, 15px 0, 0 15px);
