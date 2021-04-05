@@ -19,6 +19,17 @@ import { {{ name }} } from "@jobber/components/{{ name }}";
   <{{ name }} text="Bob" />
 </Playground>
 
+## Props
+
+<Props of={ {{ name }} } />
+
+<!--
+  It is not necessary to provide an example of each prop. Use usage examples to
+  highlight key features of a component or particular considerations.
+
+  See `Button.mdx` for a good example of this.
+-->
+
 ## Usage Guidelines
 
 The <{{name}}> will... {Add a brief description of the component}
@@ -82,17 +93,6 @@ The <{{name}}> will... {Add a brief description of the component}
 <!--
   Provide an example of what the component looks like in code. How would you use it from another
   React component? This should consist primarily of code blocks
--->
-
-## Props
-
-<Props of={ {{ name }} } />
-
-<!--
-  It is not necessary to provide an example of each prop. Use usage examples to
-  highlight key features of a component or particular considerations.
-
-  See `Button.mdx` for a good example of this.
 -->
 
 ## Notes
