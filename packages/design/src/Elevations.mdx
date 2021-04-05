@@ -4,8 +4,6 @@ menu: Design
 route: /elevation
 ---
 
-import { Banner } from "../components/Banner";
-
 # Elevation
 
 > Elevation is the relative distance between two surfaces along the z-axis.
@@ -15,11 +13,9 @@ In Atlantis, our web components use elevation to specify position on the z-axis,
 with shadows separately responsible for conveying that depth. Our mobile
 components combine these two concepts in keeping with Android and iOS patterns.
 
-<Banner type="notice">
-  Our web implementation was built first and didn't consider these shared
-  concerns at the time but we may reconcile web and mobile concepts in the
-  future.
-</Banner>
+> Our web implementation was built first and didn't consider these shared
+> concerns at the time but we may reconcile web and mobile concepts in the
+> future.
 
 Generally speaking, the "higher" an element sits in the z-axis, the broader its'
 shadow should spread, to reflect diffusion in the distance between the element
