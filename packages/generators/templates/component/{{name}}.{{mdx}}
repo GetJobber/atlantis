@@ -21,7 +21,7 @@ import { {{ name }} } from "@jobber/components/{{ name }}";
 
 ## Usage Guidelines
 
-The <{{name}}> component will... {Add a brief description of the component}
+The <{{name}}> will... {Add a brief description of the component}
 
 <!--
   What is the design purpose of this component? How do its responsibilities
@@ -39,9 +39,9 @@ The <{{name}}> component will... {Add a brief description of the component}
   What type of content does this component present (documents, text, images, other components)?
   What is the recommended, or expected, amount of content? What is the components’ behaviour when
   the provided content diverges from what is expected (image aspect ratio, amount of text, video
-  vs audio, filesize)? Are there any important references to the Product Vocabulary that should
-  be made regarding this component? What happens when content is unavailable or unreliable (poor
-  connection, empty states, flaky GPS data?)
+  vs audio, filesize)? Are there any important references to the [Product Vocabulary](https://atlantis.getjobber.com/guides/product-vocabulary)
+  that should be made regarding this component? What happens when content is unavailable or unreliable
+  (poor connection, empty states, flaky GPS data?)
 -->
 
 ## Accessibility
@@ -55,16 +55,18 @@ The <{{name}}> component will... {Add a brief description of the component}
 
 <!--
   How should the component behave on an iPhone 8? An iPad? A 1920x1080 monitor? How does the
-  component appear when the component itself is less than 375px wide? Less than 640px wide? Less than 1200px wide? Greater than 1200px? Does it change when the device DPI is higher
+  component appear when the component itself is less than 375px wide? Less than 640px wide?
+  Less than 1200px wide? Greater than 1200px? Does it change when the device DPI is higher
   or lower?
 -->
 
 ## Mockup
 
 <!--
-  Insert a Figma mockup from the Design System Contribution template that conveys the visual
-  design of the component, with variants and state accounted for. Consider progressive enhancement;
-  might this rely on newer browser features that aren’t widely supported yet?
+  Insert a Figma mockup from the [Design System Contribution template](https://www.figma.com/file/3BXCXXD9glMtj8RAHjXiQC/Design-System-Contribution-TEMPLATE?node-id=26%3A2)
+  that conveys the visual design of the component, with variants and state accounted for.
+  Consider progressive enhancement; might this rely on newer browser features that aren’t
+  widely supported yet?
 -->
 
 ## Interface
