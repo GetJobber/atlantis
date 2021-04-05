@@ -1,7 +1,7 @@
 ---
 name: Dividing Content
 menu: Design
-route: /borders-and-dividers
+route: /borders
 ---
 
 # Borders and Dividers
@@ -12,8 +12,14 @@ platforms: borders and dividers.
 
 ## Borders
 
-To add a border to an element, use the border variables in the component's
+### Border Widths
+
+To add a border to an element, use the border-width variables in the component's
 styling to ensure consistent border thickness throughout Jobber.
+
+Border style should be `solid` unless a specific use case calls for some other
+format, such as indicating a dropzone on the
+[`InputFile` component](https://atlantis.getjobber.com/components/input-file).
 
 export function Example({ of: size }) {
   const style = {
@@ -32,10 +38,12 @@ export function Example({ of: size }) {
 | `--border-thick`   | <Example of="thick" />   |
 | `--border-thicker` | <Example of="thicker" /> |
 
-The `base` border width should be used for most use cases. Examples where you
-may want to consider thicker borders are when the border conveys an opening or
+The `base` border width should be used for most use cases (see
+[`Card`](https://atlantis.getjobber.com/components/card) and
+[`List` items](https://atlantis.getjobber.com/components/list) for in-context
+examples). You may want to consider thicker borders when the border conveys a
 closing of already-divided sections, such as a
-[`Table` footer](https://atlantis.getjobber.com/components/table)
+[`Table` footer](https://atlantis.getjobber.com/components/table).
 
 ### Border Colors
 
@@ -50,5 +58,7 @@ For accessibility reasons, ensure that color usage is not the only way to
 
 ## Dividers
 
-The [`Divider`](https://atlantis.getjobber.com/components/divider) will help you
-do so without writing additional styling.
+The [`Divider` component](https://atlantis.getjobber.com/components/divider)
+will help you segment sections of content without writing additional styling.
+This component will render a horizontal rule that takes up the full available
+width.
