@@ -19,6 +19,14 @@ import { {{ name }} } from "@jobber/components/{{ name }}";
   <{{ name }} text="Bob" />
 </Playground>
 
+<!--
+  INTERFACE:
+  Provide an example of what the component looks like in code. How would you use
+  it from another React component? This should consist primarily of code blocks.
+  This section can be deleted once the component is built, when the Playground
+  will demonstrate this at a higher fidelity.
+-->
+
 ## Props
 
 <Props of={ {{ name }} } />
@@ -86,13 +94,6 @@ The <{{name}}> will... {Add a brief description of the component}
   that conveys the visual design of the component, with variants and state accounted for.
   Consider progressive enhancement; might this rely on newer browser features that aren’t
   widely supported yet?
--->
-
-## Interface
-
-<!--
-  Provide an example of what the component looks like in code. How would you use it from another
-  React component? This should consist primarily of code blocks
 -->
 
 ## Notes
