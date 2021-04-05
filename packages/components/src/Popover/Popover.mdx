@@ -26,7 +26,7 @@ import { Popover } from "@jobber/components/Popover";
 
 <Playground>
   {() => {
-    const checkboxRef = useRef();
+    const divRef = useRef();
     const [showPopover, setShowPopover] = useState(true);
     const [subscribed, setSubscribed] = useState(false);
     const onChangeSubscribed = () => {
@@ -35,7 +35,7 @@ import { Popover } from "@jobber/components/Popover";
     };
     return (
       <>
-        <span ref={checkboxRef}>
+        <span ref={divRef}>
           <Checkbox
             defaultChecked={true}
             label="Subscribe on marketing emails"
@@ -50,7 +50,7 @@ import { Popover } from "@jobber/components/Popover";
           />
         </div>
         <Popover
-          attachTo={checkboxRef}
+          attachTo={divRef}
           open={showPopover}
           dismissible={true}
           preferredPlacement="right"
@@ -121,7 +121,7 @@ You have 5 preferredPlacement options you can use
 
 <Playground>
   {() => {
-    const checkboxRef = useRef();
+    const divRef = useRef();
     const [showPopover, setShowPopover] = useState(true);
     const [subscribed, setSubscribed] = useState(false);
     const onChangeSubscribed = () => {
@@ -130,7 +130,7 @@ You have 5 preferredPlacement options you can use
     };
     return (
       <>
-        <span ref={checkboxRef}>
+        <span ref={divRef}>
           <Checkbox
             defaultChecked={true}
             label="Subscribe on marketing emails"
@@ -145,7 +145,7 @@ You have 5 preferredPlacement options you can use
           />
         </div>
         <Popover
-          attachTo={checkboxRef}
+          attachTo={divRef}
           open={showPopover}
           dismissible={true}
           preferredPlacement="top"
@@ -168,7 +168,7 @@ You have 5 preferredPlacement options you can use
 
 <Playground>
   {() => {
-    const checkboxRef = useRef();
+    const divRef = useRef();
     const [showPopover, setShowPopover] = useState(true);
     const [subscribed, setSubscribed] = useState(false);
     const onChangeSubscribed = () => {
@@ -177,7 +177,7 @@ You have 5 preferredPlacement options you can use
     };
     return (
       <>
-        <span ref={checkboxRef}>
+        <span ref={divRef}>
           <Checkbox
             defaultChecked={true}
             label="Subscribe on marketing emails"
@@ -192,7 +192,7 @@ You have 5 preferredPlacement options you can use
           />
         </div>
         <Popover
-          attachTo={checkboxRef}
+          attachTo={divRef}
           open={showPopover}
           dismissible={false}
           preferredPlacement="right"

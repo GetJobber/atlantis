@@ -1,7 +1,6 @@
 /* eslint-disable no-null/no-null */
 import React, { useState } from "react";
 import { usePopper } from "react-popper";
-import classnames from "classnames";
 import classes from "./Popover.css";
 import { ButtonDismiss } from "../ButtonDismiss";
 
@@ -24,7 +23,7 @@ export interface PopoverProps {
   /**
    * Control popover viability.
    */
-  readonly open?: boolean;
+  readonly open: boolean;
 
   /**
    * Callback executed when the user wants to close/dismiss the popover
@@ -34,6 +33,7 @@ export interface PopoverProps {
   /**
    * Describes the preferred placement of the popper.  The first element in the placement array will be taken
    * as the preferred location with the rest of the array as fallback.
+   * @default 'auto'
    */
   readonly preferredPlacement?: "top" | "bottom" | "left" | "right" | "auto";
 }
@@ -57,28 +57,23 @@ export function Popover({
     },
   );
 
-  const popperClassName = classnames(classes.popover);
-  const arrowClassName = classnames(classes.arrow);
-  const dismissButton = classnames(classes.dismissButton);
-
   return (
     open && (
       <div
-        data-testid="popover"
         ref={setPopperElement}
         style={popperStyles.popper}
-        className={popperClassName}
+        className={classes.popover}
         {...attributes.popper}
       >
         {dismissible && (
-          <div className={dismissButton} data-testid="popover-dismiss">
+          <div className={classes.dismissButton} data-testid="popover-dismiss">
             <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />
           </div>
         )}
         {children}
         <div
           ref={setArrowElement}
-          className={arrowClassName}
+          className={classes.arrow}
           style={popperStyles.arrow}
         />
       </div>
