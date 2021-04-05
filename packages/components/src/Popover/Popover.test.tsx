@@ -5,7 +5,6 @@ import {
   cleanup,
   fireEvent,
   render,
-  waitFor,
 } from "@testing-library/react";
 import { Popover } from ".";
 import { PopoverProps } from "./Popover";
@@ -44,10 +43,10 @@ it("should render a Popover with a title, content, and dismiss button", async ()
     );
   });
 
-  const { getByText, queryByTestId, container } = rendered;
+  const { queryByText, queryByTestId, container } = rendered;
 
-  expect(getByText(title)).toBeTruthy();
-  expect(getByText(content)).toBeTruthy();
+  expect(queryByText(title)).toBeTruthy();
+  expect(queryByText(content)).toBeTruthy();
   expect(queryByTestId("popover")).not.toBeNull();
 
   fireEvent.click(container.querySelector("[aria-label='Close modal']"));
@@ -85,22 +84,4 @@ it("shouldn't render a popover when open is false", async () => {
   const { queryByTestId } = rendered;
 
   expect(queryByTestId("popover")).toBeNull();
-});
-
-it("shouldn't render a popover if open is false", async () => {
-  const { container } = render(
-    <PopoverTestComponent
-      attachTo={undefined}
-      title="Test Popover"
-      open={false}
-    >
-      Test Content
-    </PopoverTestComponent>,
-  );
-
-  const popover = container.querySelector("popover");
-
-  await waitFor(() => {
-    expect(popover).toBeNull();
-  });
 });
