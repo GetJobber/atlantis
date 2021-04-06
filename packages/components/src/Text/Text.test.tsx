@@ -11,12 +11,12 @@ it("renders a paragraph", () => {
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-        <p
-          className="base regular base greyBlueDark"
-        >
-          Ask the information you need upfront from clients and new leads
-        </p>
-    `);
+    <p
+      className="base regular base greyBlueDark"
+    >
+      Ask the information you need upfront from clients and new leads
+    </p>
+  `);
 });
 
 it("renders a subdued text", () => {
@@ -24,12 +24,12 @@ it("renders a subdued text", () => {
     .create(<Text variation="subdued">Job note linked to related invoice</Text>)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-        <p
-          className="base regular base greyBlue"
-        >
-          Job note linked to related invoice
-        </p>
-    `);
+    <p
+      className="base regular base greyBlue"
+    >
+      Job note linked to related invoice
+    </p>
+  `);
 });
 
 it("renders a success text", () => {
@@ -37,12 +37,12 @@ it("renders a success text", () => {
     .create(<Text variation="success">Invoice sent</Text>)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-        <p
-          className="base regular base green"
-        >
-          Invoice sent
-        </p>
-    `);
+    <p
+      className="base regular base green"
+    >
+      Invoice sent
+    </p>
+  `);
 });
 
 it("renders a error text", () => {
@@ -50,23 +50,21 @@ it("renders a error text", () => {
     .create(<Text variation="error">Name is required</Text>)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-        <p
-          className="base regular base red"
-        >
-          Name is required
-        </p>
-    `);
+    <p
+      className="base regular base red"
+    >
+      Name is required
+    </p>
+  `);
 });
 
 it("renders a warning text", () => {
   const tree = renderer
-    .create(
-      <Text variation="warning">Your message is over 160 characters</Text>,
-    )
+    .create(<Text variation="warn">Your message is over 160 characters</Text>)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <p
-      className="base regular"
+      className="base regular base yellowDark"
     >
       Your message is over 160 characters
     </p>
@@ -82,28 +80,41 @@ it("renders a info text", () => {
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-        <p
-          className="base regular base lightBlue"
-        >
-          Drag to rearrange the order that fields show up in Jobber
-        </p>
-    `);
+    <p
+      className="base regular base lightBlue"
+    >
+      Drag to rearrange the order that fields show up in Jobber
+    </p>
+  `);
 });
 
-it("renders an intro text", () => {
+it("renders a large text", () => {
   const tree = renderer
     .create(
-      <Text variation="intro">
+      <Text size="large">
         Attract new customers by asking happy clients for a Facebook
         recommendation
       </Text>,
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-        <p
-          className="base regular larger greyBlueDark"
-        >
-          Attract new customers by asking happy clients for a Facebook recommendation
-        </p>
-    `);
+    <p
+      className="base regular large greyBlueDark"
+    >
+      Attract new customers by asking happy clients for a Facebook recommendation
+    </p>
+  `);
+});
+
+it("renders a small text", () => {
+  const tree = renderer
+    .create(<Text size="small">Teeny tiny text</Text>)
+    .toJSON();
+  expect(tree).toMatchInlineSnapshot(`
+    <p
+      className="base regular small greyBlueDark"
+    >
+      Teeny tiny text
+    </p>
+  `);
 });

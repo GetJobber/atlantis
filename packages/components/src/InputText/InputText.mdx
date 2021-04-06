@@ -2,15 +2,16 @@
 name: InputText
 menu: Components
 route: /components/input-text
+showDirectoryLink: true
 ---
 
 import { Playground, Props } from "docz";
-import { ComponentStatus } from "@jobber/docx";
-import { InputText } from ".";
 import { useState } from "react";
-import { Button } from "../Button";
-import { Content } from "../Content";
-import { Text } from "../Text";
+import { ComponentStatus } from "@jobber/docx";
+import { InputText } from "@jobber/components/InputText";
+import { Button } from "@jobber/components/Button";
+import { Content } from "@jobber/components/Content";
+import { Text } from "@jobber/components/Text";
 
 # Input Text
 
@@ -29,8 +30,6 @@ import { InputText } from "@jobber/components/InputText";
 ## Props
 
 <Props of={InputText} />
-
----
 
 ## Controlled
 
@@ -81,36 +80,44 @@ The textarea will start at a specified minimum and grow to a specified maximum.
 You can add your own custom validation messages on a field. However, this
 shouldn't replace server-side validation.
 
+🔱 Atlantis utilizes [React Hook Forms](https://react-hook-form.com/) to handle
+`input` and `form` validation. This means that the
+[React Hook Forms validation options](https://react-hook-form.com/api#register)
+are available out of the box.
+
+This includes, but is not limited to:
+
+- `required` - A Boolean which, if true, indicates that the input must have a
+  value.
+- `maxLength` - The maximum length of the value to accept for this input.
+- `minLength` - The minimum length of the value to accept for this input.
+- `pattern` - The regex pattern for the input.
+- `validate` - You can pass a callback function as the argument to validate, or
+  you can pass an object of callback functions to validate all of them.
+
 <Playground>
   {() => {
-    const [age, setAge] = useState("");
     return (
       <InputText
-        value={age}
-        onChange={handleChange}
         name="age"
         placeholder="What's your age"
-        validations={[
-          {
-            shouldShow: age.length > 2 && age.length < 10 && isNaN(age),
-            message: "Now that's a word, keep going!",
-            status: "success"
+        validations={{
+          required: {
+            value: true,
+            message: "You have to tell us your age",
           },
-          {
-            shouldShow: age.length >= 10,
-            message: "You sure you're that old?",
-            status: "warn"
-          },
-          {
-            shouldShow: age.length > 0 && !isNaN(age),
-            message: "Type your age in words",
-            status: "error"
-          }
-        ]}
+          validate: validations,
+        }}
       />
     );
-    function handleChange(newAge) {
-      setAge(newAge);
+    function validations(val) {
+      if (val.length > 0 && !isNaN(val)) {
+        return "Type your age in words please.";
+      }
+      if (val.length >= 10) {
+        return "That seems too old.";
+      }
+      return true;
     }
   }}
 </Playground>
@@ -224,6 +231,31 @@ shouldn't replace server-side validation.
       </Content>
     );
   }}
+</Playground>
+
+## Keyboard
+
+Determine what default keyboard appears on mobile web.
+
+<Playground>
+  <InputText
+    placeholder="Describe your age"
+    name="describeAge"
+    keyboard="numeric"
+  />
+</Playground>
+
+## Loading
+
+Add a loading state to content.
+
+<Playground>
+  <InputText
+    placeholder="Checking phone number"
+    name="phoneNumber"
+    loading={true}
+    keyboard="numeric"
+  />
 </Playground>
 
 ## Using onValidation

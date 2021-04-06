@@ -2,6 +2,7 @@
 name: Autocomplete
 menu: Components
 route: /components/autocomplete
+showDirectoryLink: true
 ---
 
 import { Playground, Props } from "docz";
@@ -52,7 +53,8 @@ import { Autocomplete } from "@jobber/components/Autocomplete";
       const filterRegex = new RegExp(text, "i");
       return options.filter(option => option.label.match(filterRegex));
     }
-  }}
+}}
+
 </Playground>
 
 ## Props
@@ -81,7 +83,7 @@ bottom right. Both of these are optional per option.
         value: 1,
         label: "Sulaco",
         description: "They mostly come at night, mostly.",
-        details: "LV-426"
+        details: "LV-426",
       },
       { value: 2, label: "Nostromo", details: "LV-426" },
       { value: 3, label: "Serenity", description: "I aim to misbehave." },
@@ -91,8 +93,8 @@ bottom right. Both of these are optional per option.
         value: 6,
         label: "Enterprise-D",
         description: "Tea, earl grey, hot.",
-        details: "NCC-1701D"
-      }
+        details: "NCC-1701D",
+      },
     ];
     const [value, setValue] = useState();
     return (
@@ -131,8 +133,8 @@ An autocomplete can provide section headings to break up the options.
           { value: 3, label: "Serenity" },
           { value: 4, label: "Sleeper Service" },
           { value: 5, label: "Enterprise" },
-          { value: 6, label: "Enterprise-D" }
-        ]
+          { value: 6, label: "Enterprise-D" },
+        ],
       },
       {
         label: "Planets",
@@ -140,9 +142,9 @@ An autocomplete can provide section headings to break up the options.
           { value: 7, label: "Endor" },
           { value: 8, label: "Vulcan" },
           { value: 9, label: "Bespin" },
-          { value: 10, label: "Tatooine" }
-        ]
-      }
+          { value: 10, label: "Tatooine" },
+        ],
+      },
     ];
     const [value, setValue] = useState();
     return (
@@ -191,7 +193,7 @@ separators.
             value: 1,
             label: "Sulaco",
             description: "They mostly come at night, mostly.",
-            details: "LV-426"
+            details: "LV-426",
           },
           { value: 2, label: "Nostromo", details: "LV-426" },
           { value: 3, label: "Serenity", description: "I aim to misbehave." },
@@ -201,9 +203,9 @@ separators.
             value: 6,
             label: "Enterprise-D",
             description: "Tea, earl grey, hot.",
-            details: "NCC-1701D"
-          }
-        ]
+            details: "NCC-1701D",
+          },
+        ],
       },
       {
         label: "Planets",
@@ -213,9 +215,9 @@ separators.
           { value: 9, label: "Bespin" },
           { value: 10, label: "Tatooine" },
           { value: 11, label: "Enterprise" },
-          { value: 12, label: "Ariel" }
-        ]
-      }
+          { value: 12, label: "Ariel" },
+        ],
+      },
     ];
     const [value, setValue] = useState();
     return (
@@ -261,7 +263,7 @@ You can supply a value to `Autocomplete` in the form of an active `Option`.
       { value: 3, label: "Serenity" },
       { value: 4, label: "Sleeper Service" },
       { value: 5, label: "Enterprise" },
-      { value: 6, label: "Enterprise-D" }
+      { value: 6, label: "Enterprise-D" },
     ];
     const [value, setValue] = useState();
     return (
@@ -311,7 +313,7 @@ using either promises or `await` in `getOptions`.
       { value: 3, label: "Serenity" },
       { value: 4, label: "Sleeper Service" },
       { value: 5, label: "Enterprise" },
-      { value: 6, label: "Enterprise-D" }
+      { value: 6, label: "Enterprise-D" },
     ];
     const [value, setValue] = useState();
     return (
@@ -338,6 +340,8 @@ using either promises or `await` in `getOptions`.
 </Playground>
 
 ## Related components
-* If you want to present a list of predefined options without text input, use a [Select](select)
-instead. 
-* If no suggests are required for the text input, use [InputText](input-text).
+
+- If you want to present a list of predefined options without text input, use a
+  [Select](select) instead.
+- If autocompleted results are not required for the text input, use
+  [InputText](input-text) instead.

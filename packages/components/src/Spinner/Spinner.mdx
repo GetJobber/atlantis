@@ -1,0 +1,59 @@
+---
+name: Spinner
+menu: Components
+route: /components/spinner
+showDirectoryLink: true
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { Spinner } from ".";
+import { Text } from "@jobber/components/Text";
+
+# Spinner
+
+<ComponentStatus stage="ready" responsive="yes" accessible="yes" />
+
+```ts
+import { Spinner } from "@jobber/components/Spinner";
+```
+
+<Playground>
+  <Spinner />
+</Playground>
+
+## Design & Usage Guidelines
+
+Use Spinner to indicate loading of content where the actual amount of loading
+time or progress is unknown.
+
+## Props
+
+<Props of={Spinner} />
+
+---
+
+## Small
+
+The `small` spinner should be used on individual element of an interface (ie.
+button or card contents) or when inline with content
+
+<Playground>
+  <Spinner size="small" />
+</Playground>
+
+## Inline
+
+Use `inline` to render the spinner inline with content.
+
+<Playground>
+  <Text>
+    Uploading... <Spinner size="small" inline={true} />
+  </Text>
+</Playground>
+
+## Related Components
+
+If the amount of progress or loading time is known, use
+[ProgressBar](https://atlantis.getjobber.com/components/progress-bar) to give
+the user better context around the process.

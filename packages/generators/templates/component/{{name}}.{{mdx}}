@@ -2,6 +2,7 @@
 name: {{ pascalCase name }}
 menu: Components
 route: /components/{{ dashCase name }}
+showDirectoryLink: true
 ---
 
 import { Playground, Props } from "docz";

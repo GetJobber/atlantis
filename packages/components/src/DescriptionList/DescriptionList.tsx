@@ -19,7 +19,7 @@ export function DescriptionList({ data }: DescriptionListProps) {
             {term}
           </Typography>
 
-          <Typography element="dt" textColor="greyBlue" size="base">
+          <Typography element="dt" textColor="greyBlueDark" size="base">
             {description}
           </Typography>
         </div>

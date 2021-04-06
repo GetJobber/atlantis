@@ -1,5 +1,6 @@
-import React, { ReactElement, ReactNode } from "react";
+import React, { ReactElement } from "react";
 import uuid from "uuid";
+import { InternalRadioOption } from "./RadioOption";
 import styles from "./RadioGroup.css";
 
 interface RadioGroupProps {
@@ -37,10 +38,9 @@ export function RadioGroup({
       {React.Children.map(children, option => (
         <InternalRadioOption
           checked={value === option.props.value}
-          value={option.props.value}
           name={name}
-          disabled={option.props.disabled}
           onChange={handleChange}
+          {...option.props}
         >
           {option.props.children}
         </InternalRadioOption>
@@ -52,56 +52,5 @@ export function RadioGroup({
     if (newValue !== value) {
       onChange(newValue);
     }
-  }
-}
-
-interface RadioOptionProps {
-  readonly value: string | number;
-  readonly disabled?: boolean;
-  readonly children: ReactNode | ReactNode[];
-}
-
-export function RadioOption({ children }: RadioOptionProps) {
-  return <>{children}</>;
-}
-
-interface InternalRadioOptionProps {
-  readonly value: string | number;
-  readonly name: string;
-  readonly disabled: boolean;
-  readonly checked: boolean;
-  readonly children: ReactNode | ReactNode[];
-  onChange(newValue: string | number): void;
-}
-
-function InternalRadioOption({
-  value,
-  name,
-  disabled,
-  checked,
-  children,
-  onChange,
-}: InternalRadioOptionProps) {
-  const inputId = `${value.toString()}_${uuid()}`;
-  return (
-    <div>
-      <input
-        onChange={handleChange}
-        type="radio"
-        name={name}
-        value={value}
-        disabled={disabled}
-        checked={checked}
-        id={inputId}
-        className={styles.input}
-      />
-      <label className={styles.label} htmlFor={inputId}>
-        {children}
-      </label>
-    </div>
-  );
-
-  function handleChange() {
-    onChange(value);
   }
 }

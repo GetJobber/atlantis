@@ -70,7 +70,7 @@ function InputTextInternal(
     <FormField
       {...props}
       type={props.multiline ? "textarea" : "text"}
-      ref={inputRef}
+      inputRef={inputRef}
       onChange={handleChange}
       rows={rowRange.min}
     />

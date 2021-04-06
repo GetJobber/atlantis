@@ -2,6 +2,7 @@
 name: Toast
 menu: Components
 route: /components/toast
+showDirectoryLink: true
 ---
 
 import { Playground, Props } from "docz";
@@ -32,7 +33,7 @@ import { showToast } from "@jobber/components/Toast";
     label="show toast"
     onClick={() =>
       showToast({
-        message: "Toast has been toasted"
+        message: "Toast has been toasted",
       })
     }
   />
@@ -69,7 +70,7 @@ appropriatly when using Toast.
           onClick={() =>
             showToast({
               message: "Toast is just crispy bread",
-              variation: "info"
+              variation: "info",
             })
           }
         />
@@ -78,7 +79,7 @@ appropriatly when using Toast.
           onClick={() =>
             showToast({
               message: "Toast is great",
-              variation: "success"
+              variation: "success",
             })
           }
         />
@@ -88,7 +89,7 @@ appropriatly when using Toast.
           onClick={() =>
             showToast({
               message: "Toast is burnt",
-              variation: "error"
+              variation: "error",
             })
           }
         />

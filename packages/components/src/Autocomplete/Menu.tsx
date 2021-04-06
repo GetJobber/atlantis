@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classnames from "classnames";
 import useEventListener from "@use-it/event-listener";
 import { AnyOption, Option } from "./Option";
@@ -29,6 +29,7 @@ export function Menu({
   const optionMenuClass = classnames(styles.options, {
     [styles.visible]: visible,
   });
+  const menuDiv = useRef() as React.MutableRefObject<HTMLDivElement>;
 
   const detectSeparatorCondition = (option: Option) =>
     option.description || option.details;
@@ -44,7 +45,7 @@ export function Menu({
   useEffect(() => setHighlightedIndex(initialHighlight), [options]);
 
   return (
-    <div className={optionMenuClass}>
+    <div className={optionMenuClass} ref={menuDiv}>
       {options.map((option, index) => {
         const optionClass = classnames(styles.option, {
           [styles.active]: index === highlightedIndex,
@@ -64,7 +65,7 @@ export function Menu({
             onMouseDown={onOptionSelect.bind(undefined, option)}
           >
             <div className={styles.icon}>
-              {isOptionSelected(option) && (
+              {isOptionSelected(selectedOption, option) && (
                 <Icon name="checkmark" size="small" />
               )}
             </div>
@@ -87,10 +88,6 @@ export function Menu({
     </div>
   );
 
-  function isOptionSelected(option: Option) {
-    return selectedOption && selectedOption.value === option.value;
-  }
-
   function setupKeyListeners() {
     useOnKeyDown("ArrowDown", (event: KeyboardEvent) => {
       const indexChange = arrowKeyPress(event, IndexChange.Next);
@@ -99,6 +96,9 @@ export function Menu({
           Math.min(options.length - 1, highlightedIndex + indexChange),
         );
       }
+      if (menuDiv.current) {
+        scrollMenuIfItemNotInView(menuDiv.current, "down");
+      }
     });
 
     useOnKeyDown("ArrowUp", (event: KeyboardEvent) => {
@@ -106,7 +106,33 @@ export function Menu({
       if (indexChange) {
         setHighlightedIndex(Math.max(0, highlightedIndex + indexChange));
       }
+      if (menuDiv.current) {
+        scrollMenuIfItemNotInView(menuDiv.current, "up");
+      }
     });
+
+    function scrollMenuIfItemNotInView(
+      menuDivElement: HTMLDivElement,
+      direction: "up" | "down",
+    ) {
+      const itemDiv = menuDivElement.querySelector(
+        `button.${styles.option}:nth-child(${highlightedIndex + 1})`,
+      ) as HTMLButtonElement;
+      if (!itemDiv) return;
+      const menuTop = menuDivElement.getBoundingClientRect().top;
+      const {
+        top: itemTop,
+        height: itemHeight,
+        bottom: itemBottom,
+      } = itemDiv.getBoundingClientRect();
+      const itemTrueBottom = itemBottom + itemHeight;
+      const menuBottom = menuDivElement.getBoundingClientRect().bottom;
+      if (direction == "up" && itemTop - itemHeight < menuTop) {
+        menuDivElement.scrollTop -= itemHeight;
+      } else if (direction == "down" && itemTrueBottom > menuBottom) {
+        menuDivElement.scrollTop += itemHeight;
+      }
+    }
 
     useOnKeyDown("Enter", (event: KeyboardEvent) => {
       if (!visible) return;
@@ -125,6 +151,10 @@ export function Menu({
       ? direction + direction
       : direction;
   }
+}
+
+function isOptionSelected(selectedOption: Option | undefined, option: Option) {
+  return selectedOption && selectedOption.value === option.value;
 }
 
 // Split this out into a hooks package.

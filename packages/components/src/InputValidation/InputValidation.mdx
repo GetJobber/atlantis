@@ -2,14 +2,15 @@
 name: InputValidation
 menu: Components
 route: /components/input-validation
+showDirectoryLink: true
 ---
 
 import { Playground, Props } from "docz";
-import { ComponentStatus } from "@jobber/docx";
-import { InputValidation } from ".";
-import { Text } from "../Text";
-import { InputText } from "../InputText";
 import { useState } from "react";
+import { ComponentStatus } from "@jobber/docx";
+import { Text } from "@jobber/components/Text";
+import { InputText } from "@jobber/components/InputText";
+import { InputValidation } from ".";
 
 # Input Validation
 
@@ -18,38 +19,41 @@ import { useState } from "react";
 `InputValidation` allows you to show the validation messages separate from a
 particular input component.
 
+For more information about `validations` using any of the `Input` components,
+see the [InputText](/components/input-text/#validation-message) documentation.
+
 ```ts
 import { InputValidation } from "@jobber/components/InputValidation";
 ```
 
 <Playground>
   {() => {
-    const [value, setValue] = useState("Juan");
     const [validationMessages, setValidationMessages] = useState(undefined);
     return (
-      <>
-        <InputValidation messages={validationMessages} />
+      <div>
+        {validationMessages && <InputValidation message={validationMessages} />}
         <Text>
           My name is
           <InputText
-            validations={[
-              {
-                shouldShow: value !== "Jeff",
+            validations={{
+              required: {
+                value: true,
+                message: "Please tell me your name",
+              },
+              pattern: {
+                value: /Jeff/,
                 message: "Have you considered a better name, like Jeff?",
-                status: "error"
-              }
-            ]}
+              },
+            }}
             onValidation={setValidationMessages}
             name="myName"
-            value={value}
             size="small"
             inline={true}
-            onChange={setValue}
             align="center"
             maxLength={4}
           />
         </Text>
-      </>
+      </div>
     );
   }}
 </Playground>
@@ -57,5 +61,3 @@ import { InputValidation } from "@jobber/components/InputValidation";
 ## Props
 
 <Props of={InputValidation} />
-
----

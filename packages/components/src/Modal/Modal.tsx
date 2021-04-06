@@ -1,12 +1,12 @@
-import React, { ReactNode, useEffect } from "react";
+import React, { ReactNode, RefObject, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import styles from "./Modal.css";
 import sizes from "./Sizes.css";
-import { Icon } from "../Icon";
 import { Typography } from "../Typography";
 import { Button, ButtonProps } from "../Button";
+import { ButtonDismiss } from "../ButtonDismiss";
 
 interface ModalProps {
   /**
@@ -38,15 +38,22 @@ export function Modal({
   onRequestClose,
 }: ModalProps) {
   const modalClassName = classnames(styles.modal, size && sizes[size]);
+  const modalContainer: RefObject<HTMLDivElement> = useRef(
+    document.createElement("div"),
+  );
 
-  if (open && onRequestClose) {
-    catchKeyboardEvent("Escape", onRequestClose);
-  }
+  useEffect(() => {
+    if (modalContainer.current) {
+      modalContainer.current.focus();
+    }
+  }, [open]);
+
+  catchKeyboardEvent("Escape", open, onRequestClose);
 
   const template = (
     <AnimatePresence>
       {open && (
-        <div className={styles.container}>
+        <div ref={modalContainer} className={styles.container} tabIndex={0}>
           <motion.div
             key={styles.overlay}
             className={styles.overlay}
@@ -90,10 +97,14 @@ export function Modal({
   return ReactDOM.createPortal(template, document.body);
 }
 
-function catchKeyboardEvent(key: string, callback: { (): void }) {
+function catchKeyboardEvent(
+  key: string,
+  isModalOpen: boolean,
+  callback?: { (): void },
+) {
   useEffect(() => {
     const handler = (event: { key: string }) => {
-      if (event.key === key) {
+      if (isModalOpen && callback && event.key === key) {
         callback();
       }
     };
@@ -103,7 +114,7 @@ function catchKeyboardEvent(key: string, callback: { (): void }) {
     return () => {
       window.removeEventListener("keydown", handler);
     };
-  }, []);
+  });
 }
 
 interface HeaderProps {
@@ -125,13 +136,7 @@ function Header({ title, dismissible, onRequestClose }: HeaderProps) {
       </Typography>
 
       {dismissible && (
-        <button
-          className={styles.closeButton}
-          onClick={onRequestClose}
-          aria-label="Close modal"
-        >
-          <Icon name="cross" />
-        </button>
+        <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />
       )}
     </div>
   );

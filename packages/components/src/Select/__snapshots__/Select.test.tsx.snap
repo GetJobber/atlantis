@@ -34,7 +34,7 @@ exports[`renders a Select with many options 1`] = `
     </option>
   </select>
   <span
-    className="icon"
+    className="postfix"
   >
     <svg
       className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
@@ -72,7 +72,7 @@ exports[`renders a Select with no options 1`] = `
     onChange={[Function]}
   />
   <span
-    className="icon"
+    className="postfix"
   >
     <svg
       className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
@@ -114,7 +114,7 @@ exports[`renders a Select with one option 1`] = `
     </option>
   </select>
   <span
-    className="icon"
+    className="postfix"
   >
     <svg
       className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
@@ -156,7 +156,7 @@ exports[`renders correctly as large 1`] = `
     </option>
   </select>
   <span
-    className="icon"
+    className="postfix"
   >
     <svg
       className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
@@ -198,7 +198,7 @@ exports[`renders correctly as small 1`] = `
     </option>
   </select>
   <span
-    className="icon"
+    className="postfix"
   >
     <svg
       className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
@@ -241,7 +241,7 @@ exports[`renders correctly when disabled 1`] = `
     </option>
   </select>
   <span
-    className="icon"
+    className="postfix"
   >
     <svg
       className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
@@ -283,7 +283,7 @@ exports[`renders correctly when invalid 1`] = `
     </option>
   </select>
   <span
-    className="icon"
+    className="postfix"
   >
     <svg
       className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"

@@ -42,6 +42,27 @@ it("renders a subdued FeatureSwitch content", () => {
   expect(tree).toMatchSnapshot();
 });
 
+test("it should not show description if absent", () => {
+  const tree = renderer
+    .create(<FeatureSwitch enabled={false}>Dis dem content yo</FeatureSwitch>)
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
+test("it should not show switch if onSwitch is absent", () => {
+  const tree = renderer
+    .create(
+      <FeatureSwitch
+        enabled={false}
+        description="Send a notification to your client following up on an outstanding quote."
+      >
+        Dis dem content yo
+      </FeatureSwitch>,
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
 test("it should call the switch handler with the new value", () => {
   const switchHandler = jest.fn();
   const content = "Send a thing?";

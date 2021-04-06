@@ -8,6 +8,25 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.2](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.4.1...@jobber/generators@0.4.2) (2021-03-22)
+
+
+### Bug Fixes
+
+* **docz-tools:** fixes the broken github link ([#488](https://github.com/GetJobber/atlantis/issues/488)) ([65bdf42](https://github.com/GetJobber/atlantis/commit/65bdf42725144aea40b41209a5ef43e311d1ff67))
+
+
+
+
+
+## [0.4.1](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.4.0...@jobber/generators@0.4.1) (2021-03-03)
+
+**Note:** Version bump only for package @jobber/generators
+
+
+
+
+
 # [0.4.0](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.1.0...@jobber/generators@0.4.0) (2020-04-08)
 
 

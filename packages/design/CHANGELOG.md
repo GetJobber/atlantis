@@ -8,6 +8,91 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.9.6...@jobber/design@0.10.0) (2021-03-05)
+
+
+### Features
+
+* **design:** Add presentation icon ([#481](https://github.com/GetJobber/atlantis/issues/481)) ([e15b53d](https://github.com/GetJobber/atlantis/commit/e15b53d724dcd236f20f109bfc1e8e95c08966f4))
+
+
+
+
+
+## [0.9.6](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.9.5...@jobber/design@0.9.6) (2021-03-03)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.9.5](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.9.4...@jobber/design@0.9.5) (2021-02-12)
+
+
+### Bug Fixes
+
+* **design:** add in CSS types missing from last build ([#472](https://github.com/GetJobber/atlantis/issues/472)) ([7ce2df4](https://github.com/GetJobber/atlantis/commit/7ce2df49e517b6cd66bca5e74bd30214c4e2d2a7))
+* **design:** Make company icon colour default to teal ([#470](https://github.com/GetJobber/atlantis/issues/470)) ([0f324f0](https://github.com/GetJobber/atlantis/commit/0f324f072ddc97069b50cb31f5556744704ab993))
+
+
+
+
+
+## [0.9.4](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.9.3...@jobber/design@0.9.4) (2021-02-01)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.9.3](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.9.2...@jobber/design@0.9.3) (2021-01-11)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.9.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.9.1...@jobber/design@0.9.2) (2020-12-03)
+
+
+### Bug Fixes
+
+* **components:** Change `Table` borders from box-shadow to pseudo element ([#427](https://github.com/GetJobber/atlantis/issues/427)) ([7648514](https://github.com/GetJobber/atlantis/commit/76485149e583a0711f3592881035df550aef3393))
+
+
+
+
+
+## [0.9.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.9.0...@jobber/design@0.9.1) (2020-10-07)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+# [0.9.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.8.1...@jobber/design@0.9.0) (2020-10-01)
+
+
+### Features
+
+* **components:** InputAvatar & Expand variation options for InputFile ([#366](https://github.com/GetJobber/atlantis/issues/366)) ([7b07059](https://github.com/GetJobber/atlantis/commit/7b07059170487368e0c04bc0674c71c51a0f676e))
+
+
+
+
+
+## [0.8.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.8.0...@jobber/design@0.8.1) (2020-09-17)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
 # [0.8.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.7.4...@jobber/design@0.8.0) (2020-08-11)
 
 
