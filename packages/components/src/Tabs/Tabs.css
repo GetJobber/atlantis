@@ -1,5 +1,5 @@
 :root {
-  --tab--border-color: var(--color-grey--lighter);
+  --tab--border-color: var(--color-border);
   --tab--border-color--selected: var(--color-green);
   --tab--height: calc(var(--space-larger) + var(--space-small));
   --tab--inset: var(--space-base);

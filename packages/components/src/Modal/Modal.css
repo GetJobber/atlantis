@@ -1,7 +1,7 @@
 :root {
   --modal--width: calc(var(--base-unit) * 37.5);
   --modal--padding: var(--space-base);
-  --modal--border-color: var(--color-grey--lighter);
+  --modal--border-color: var(--color-border);
 }
 
 @media (--medium-screens) {

@@ -2,7 +2,7 @@
   --drawer-width: calc(var(--space-base) * 17.5);
   --drawer--background-color: var(--color-white);
   --drawer--header-background-color: var(--color-grey--lightest);
-  --drawer--border-color: var(--color-grey--lighter);
+  --drawer--border-color: var(--color-border);
   --drawer--base-padding: var(--space-base);
 }
 
