@@ -10,6 +10,10 @@ users may care about, should they choose to learn more about it.
 - used for lightweight editing, such as selecting a value for a setting
 - used for information that is lower priority or don’t need to see all the time
 - not be used for other critical information that requires immediate action
+- not to be confused with an
+  [accordion](https://adrianroselli.com/2020/05/disclosure-widgets.html#:~:text=An%20accordion%20is%20more%20than,reader%20users%20of%20the%20relationship.),
+  which in theory _can_ be composed of multiple units of `<Disclosure>`
+  components in addition to few other states
 
 ## Content Guidelines
 
@@ -46,7 +50,7 @@ users may care about, should they choose to learn more about it.
 
 ## Mockup
 
-![](https://gist.github.com/kingstonfung/b882aa211f4213b1ac89bd515dc48a50/raw/369ab6deeabea99d5ad3a96b74bce64cb721cda5/image.png)
+!["Disclosure Mockup"](https://gist.github.com/kingstonfung/b882aa211f4213b1ac89bd515dc48a50/raw/369ab6deeabea99d5ad3a96b74bce64cb721cda5/image.png)
 
 ## Interface
 
