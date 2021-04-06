@@ -1,4 +1,3 @@
-/* eslint-disable no-null/no-null */
 import React, { useState } from "react";
 import { usePopper } from "react-popper";
 import classes from "./Popover.css";
@@ -46,8 +45,8 @@ export function Popover({
   open,
   preferredPlacement = "auto",
 }: PopoverProps) {
-  const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
-  const [arrowElement, setArrowElement] = useState<HTMLElement | null>(null);
+  const [popperElement, setPopperElement] = useState<HTMLElement | null>();
+  const [arrowElement, setArrowElement] = useState<HTMLElement | null>();
   const { styles: popperStyles, attributes } = usePopper(
     attachTo instanceof Element ? attachTo : attachTo.current,
     popperElement,
@@ -66,7 +65,7 @@ export function Popover({
         {...attributes.popper}
       >
         {dismissible && (
-          <div className={classes.dismissButton} data-testid="popover-dismiss">
+          <div className={classes.dismissButton}>
             <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />
           </div>
         )}
@@ -81,7 +80,7 @@ export function Popover({
   );
 }
 
-function buildModifiers(arrowElement: HTMLElement | null) {
+function buildModifiers(arrowElement: HTMLElement | undefined | null) {
   const modifiers = [
     {
       name: "arrow",

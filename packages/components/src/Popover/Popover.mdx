@@ -27,12 +27,7 @@ import { Popover } from "@jobber/components/Popover";
 <Playground>
   {() => {
     const divRef = useRef();
-    const [showPopover, setShowPopover] = useState(true);
-    const [subscribed, setSubscribed] = useState(false);
-    const onChangeSubscribed = () => {
-      setShowPopover(false);
-      setSubscribed(!subscribed);
-    };
+    const [showPopover, setShowPopover] = useState(false);
     return (
       <>
         <span ref={divRef}>
@@ -49,12 +44,6 @@ import { Popover } from "@jobber/components/Popover";
           onRequestClose={() => setShowPopover(false)}
         >
           <Content>Here is your first popover</Content>
-          <Content>
-            <Button
-              label="Close popover"
-              onClick={() => setShowPopover(false)}
-            />
-          </Content>
         </Popover>
       </>
     );
@@ -115,45 +104,64 @@ You have 5 preferredPlacement options you can use
 
 <Playground>
   {() => {
-    const divRef = useRef();
-    const [showPopover, setShowPopover] = useState(false);
-    const [subscribed, setSubscribed] = useState(false);
-    const onChangeSubscribed = () => {
-      setShowPopover(false);
-      setSubscribed(!subscribed);
+    const topRef = useRef();
+    const leftRef = useRef();
+    const rightRef = useRef();
+    const bottomRef = useRef();
+    const [showPopover, setShowPopover] = useState(true);
+    const styles = {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-start",
+      width: "200px",
     };
     return (
-      <>
-        <span ref={divRef}>
-          <Checkbox
-            defaultChecked={true}
-            label="Subscribe on marketing emails"
-            checked={subscribed}
-            onChange={onChangeSubscribed}
-          />
+      <div style={styles}>
+        <span ref={topRef}>
+          <Button label="Top Reference" />
         </span>
-        <div>
-          <Button
-            label="Restart Scenario"
-            onClick={() => setShowPopover(true)}
-          />
-        </div>
         <Popover
-          attachTo={divRef}
+          attachTo={topRef}
           open={showPopover}
           dismissible={true}
           preferredPlacement="top"
-          onRequestClose={() => setShowPopover(false)}
         >
-          <Content>Some amazing content</Content>
-          <Content>
-            <Button
-              label="Disappear forever"
-              onClick={() => setShowPopover(false)}
-            />
-          </Content>
+          <Content>Top Popover</Content>
         </Popover>
-      </>
+        <span ref={leftRef}>
+          <Button label="Left Reference" />
+        </span>
+        <Popover
+          attachTo={leftRef}
+          open={showPopover}
+          dismissible={true}
+          preferredPlacement="left"
+        >
+          <Content>Left Popover</Content>
+        </Popover>
+        <span ref={rightRef}>
+          <Button label="Right Reference" />
+        </span>
+        <Popover
+          attachTo={rightRef}
+          open={showPopover}
+          dismissible={true}
+          preferredPlacement="right"
+        >
+          <Content>Right Popover</Content>
+        </Popover>
+        <span ref={bottomRef}>
+          <Button label="Bottom Reference" />
+        </span>
+        <Popover
+          attachTo={bottomRef}
+          open={showPopover}
+          dismissible={true}
+          preferredPlacement="bottom"
+        >
+          <Content>Bottom Popover</Content>
+        </Popover>
+      </div>
     );
   }}
 </Playground>
@@ -164,27 +172,14 @@ You have 5 preferredPlacement options you can use
   {() => {
     const divRef = useRef();
     const [showPopover, setShowPopover] = useState(true);
-    const [subscribed, setSubscribed] = useState(false);
-    const onChangeSubscribed = () => {
-      setShowPopover(false);
-      setSubscribed(!subscribed);
-    };
     return (
       <>
         <span ref={divRef}>
           <Checkbox
             defaultChecked={true}
             label="Subscribe on marketing emails"
-            checked={subscribed}
-            onChange={onChangeSubscribed}
           />
         </span>
-        <div>
-          <Button
-            label="Restart Scenario"
-            onClick={() => setShowPopover(true)}
-          />
-        </div>
         <Popover
           attachTo={divRef}
           open={showPopover}
@@ -192,13 +187,7 @@ You have 5 preferredPlacement options you can use
           preferredPlacement="right"
           onRequestClose={() => setShowPopover(false)}
         >
-          <Content>Some more amazing content</Content>
-          <Content>
-            <Button
-              label="Disappear forever"
-              onClick={() => setShowPopover(false)}
-            />
-          </Content>
+          <Content>Undismissible content</Content>
         </Popover>
       </>
     );

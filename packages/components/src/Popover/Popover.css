@@ -36,6 +36,10 @@
   --public-content--padding: var(--card--base-padding);
 }
 
+.arrow {
+  visibility: hidden;
+}
+
 .arrow,
 .arrow::before {
   position: absolute;
@@ -50,7 +54,7 @@
   border: var(--border-base) solid var(--color-grey--light);
   transform: rotate(45deg);
   transform-origin: center;
-  clip-path: polygon(-4px -4px, 15px 0, 0 15px);
+  clip-path: polygon(-4px -4px, 15.3px 0, 0 15.3px);
 }
 
 .popover[data-popper-placement^="top"] > .arrow {

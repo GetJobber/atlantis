@@ -14,7 +14,7 @@ afterEach(cleanup);
 let rendered: RenderResult;
 const content = "Test Content";
 
-const PopoverTestComponent = (props: PopoverProps) => {
+const PopoverTestComponent = (props: Omit<PopoverProps, "attachTo">) => {
   const divRef = useRef();
   return (
     <>
@@ -31,48 +31,38 @@ it("should render a Popover with the content and dismiss button", async () => {
 
   await act(async () => {
     rendered = render(
-      <PopoverTestComponent
-        attachTo={undefined}
-        open={true}
-        onRequestClose={handleClose}
-      >
+      <PopoverTestComponent open={true} onRequestClose={handleClose}>
         {content}
       </PopoverTestComponent>,
     );
   });
 
-  const { queryByText, container } = rendered;
+  const { queryByText, queryByLabelText } = rendered;
 
   expect(queryByText(content)).toBeInstanceOf(HTMLElement);
 
-  fireEvent.click(container.querySelector("[aria-label='Close modal']"));
+  fireEvent.click(queryByLabelText("Close modal"));
   expect(handleClose).toHaveBeenCalledTimes(1);
 });
 
 it("shouldn't render a dismiss button if dismissible is false", async () => {
   await act(async () => {
     rendered = render(
-      <PopoverTestComponent
-        attachTo={undefined}
-        open={true}
-        dismissible={false}
-      >
+      <PopoverTestComponent open={true} dismissible={false}>
         {content}
       </PopoverTestComponent>,
     );
   });
 
-  const { queryByTestId } = rendered;
+  const { queryByLabelText } = rendered;
 
-  expect(queryByTestId("popover-dismiss")).toBeNull();
+  expect(queryByLabelText("Close modal")).toBeNull();
 });
 
 it("shouldn't render a popover when open is false", async () => {
   await act(async () => {
     rendered = render(
-      <PopoverTestComponent attachTo={undefined} open={false}>
-        {content}
-      </PopoverTestComponent>,
+      <PopoverTestComponent open={false}>{content}</PopoverTestComponent>,
     );
   });
 
