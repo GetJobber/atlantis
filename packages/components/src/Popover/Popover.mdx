@@ -36,19 +36,11 @@ import { Popover } from "@jobber/components/Popover";
     return (
       <>
         <span ref={divRef}>
-          <Checkbox
-            defaultChecked={true}
-            label="Subscribe on marketing emails"
-            checked={subscribed}
-            onChange={onChangeSubscribed}
+          <Button
+            label="Toggle Popover"
+            onClick={() => setShowPopover(!showPopover)}
           />
         </span>
-        <div>
-          <Button
-            label="Restart Scenario"
-            onClick={() => setShowPopover(true)}
-          />
-        </div>
         <Popover
           attachTo={divRef}
           open={showPopover}
@@ -56,10 +48,10 @@ import { Popover } from "@jobber/components/Popover";
           preferredPlacement="right"
           onRequestClose={() => setShowPopover(false)}
         >
-          <Content>Some amazing content</Content>
+          <Content>Here is your first popover</Content>
           <Content>
             <Button
-              label="Disappear forever"
+              label="Close popover"
               onClick={() => setShowPopover(false)}
             />
           </Content>
@@ -87,6 +79,8 @@ following:
   the user to successfully interact with the page.
 - Once a popover has been shown, it should not show up again once the user has
   interacted with it.
+- **You must use a `useRef` hook to create a reference point for the popover to
+  latch to.**
 
 ### Content
 
@@ -122,7 +116,7 @@ You have 5 preferredPlacement options you can use
 <Playground>
   {() => {
     const divRef = useRef();
-    const [showPopover, setShowPopover] = useState(true);
+    const [showPopover, setShowPopover] = useState(false);
     const [subscribed, setSubscribed] = useState(false);
     const onChangeSubscribed = () => {
       setShowPopover(false);

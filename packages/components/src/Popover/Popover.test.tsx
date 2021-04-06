@@ -43,7 +43,7 @@ it("should render a Popover with the content and dismiss button", async () => {
 
   const { queryByText, container } = rendered;
 
-  expect(queryByText(content)).toBeTruthy();
+  expect(queryByText(content)).toBeInstanceOf(HTMLElement);
 
   fireEvent.click(container.querySelector("[aria-label='Close modal']"));
   expect(handleClose).toHaveBeenCalledTimes(1);
