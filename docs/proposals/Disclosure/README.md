@@ -33,7 +33,7 @@ users may care about, should they choose to learn more about it.
 - Because this is similar to `<details>` HTML element, we can use the
   [`"group"` ARIA role](https://w3c.github.io/aria/#group) to form a collection
   of related items that are recognizable by assistive technologies
-- As of writing, there are no equalvant component found in React Native's
+- As of writing, there is no equivalent component found in React Native's
   [Core Component](https://reactnative.dev/docs/components-and-apis) library
 
 ## Responsiveness
@@ -46,8 +46,7 @@ users may care about, should they choose to learn more about it.
 
 ## Mockup
 
-_{Insert a low fidelity wireframe of the components behaviour, enough for
-someone to start building it}_
+![](https://gist.github.com/kingstonfung/b882aa211f4213b1ac89bd515dc48a50/raw/369ab6deeabea99d5ad3a96b74bce64cb721cda5/image.png)
 
 ## Interface
 
@@ -73,7 +72,7 @@ someone to start building it}_
   subscribers
 - This component should be stackable with some/minimal modifications, so that it
   can form a `<Accordion>` component for the future
-- The content must not be interactable when this component is collapsed, those
+- The content must not be interactive when this component is collapsed, those
   content should also ignore any pointer events when it is hidden away
 
 ## Similar components in other design systems
