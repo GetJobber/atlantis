@@ -56,7 +56,7 @@ proposal, please see [Write a proposal](#write-a-proposal).
 
 The process for implementing a proposal is the same as the process for
 [contributing code](#contributing-code) of any kind, but make sure to delete the
-`propsoal` doc as part of the implementation Pull Request.
+`proposal` doc as part of the implementation Pull Request.
 
 ## Contributing Code
 
