@@ -8,6 +8,18 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.27.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.27.4...@jobber/components@2.27.5) (2021-04-06)
+
+
+### Bug Fixes
+
+* **components:** flip order of terms and descriptions ([#490](https://github.com/GetJobber/atlantis/issues/490)) ([f8d8dca](https://github.com/GetJobber/atlantis/commit/f8d8dca7e1a2a3f1312ab8d380493d4d8612a23e))
+* **components:** make divider a non-semantic element ([#491](https://github.com/GetJobber/atlantis/issues/491)) ([0ffcced](https://github.com/GetJobber/atlantis/commit/0ffcced593b09f3cf14ac866c601822e69fd76f9))
+
+
+
+
+
 ## [2.27.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.27.3...@jobber/components@2.27.4) (2021-03-22)
 
 
