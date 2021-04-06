@@ -6,6 +6,28 @@ route: /elevation
 
 # Elevation
 
+> Elevation is the relative distance between two surfaces along the z-axis.
+> –[Material Design](https://material.io/design/environment/elevation.html)
+
+In Atlantis, our web components use elevation to specify position on the z-axis,
+with shadows separately responsible for conveying that depth. Our mobile
+components combine these two concepts in keeping with Android and iOS patterns.
+
+> Our web implementation was built first and didn't consider these shared
+> concerns at the time but we may reconcile web and mobile concepts in the
+> future.
+
+Generally speaking, the "higher" an element sits in the z-axis, the broader its'
+shadow should spread, to reflect diffusion in the distance between the element
+and the ground. As an element gets nearer to the ground, or "lower", the
+shadow's spread should reduce and the shadow may appear darker.
+
+We also include a _slight_ y-axis offset of elevation shadows to imply that the
+light source is coming from an angle slightly over the head of a user looking
+directly into the screen.
+
+## Web
+
 The following table lists all elements that has a z-index specified on it.
 
 export function Value({ of: type }) {
@@ -20,3 +42,29 @@ export function Value({ of: type }) {
 | Menu             | <Value of="menu" />    |
 | Modal            | <Value of="modal" />   |
 | Tooltip          | <Value of="tooltip" /> |
+
+## Mobile
+
+For mobile designs, the concept of elevation applies to both shadows and
+hierarchy of the element along the z-index. Currently we have 3 defined levels
+of elevation:
+
+### Low
+
+A low element may have a slight elevation, but is not necessarily something that
+will glide across the surface. A card that holds interactive controls within
+itself, but that does not have any interactions itself, may be useful to
+indicate as "low".
+
+### Base
+
+This shadow should be used for most instances of shadows, as it conveys an
+elevation that is noticeable but not aggressively close to the user. An element
+with a base elevation is likely interactive, and this level can indicate and
+invite the use of gesture controls.
+
+### High
+
+High elements should be elements that float overtop the entire interface, likely
+with a fixed position. The "high" elevation indicates that the element has
+broken the plane of the view.
