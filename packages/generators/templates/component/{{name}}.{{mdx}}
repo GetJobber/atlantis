@@ -6,7 +6,6 @@ showDirectoryLink: true
 ---
 
 import { Playground, Props } from "docz";
-import { ComponentStatus } from "@jobber/docx";
 import { {{name}} } from ".";
 
 # {{ titleCase name }}
@@ -20,7 +19,8 @@ import { {{ name }} } from "@jobber/components/{{ name }}";
 </Playground>
 
 <!--
-  INTERFACE:
+  INTERFACE: This is for the proposal stage of the component
+
   Provide an example of what the component looks like in code. How would you use
   it from another React component? This should consist primarily of code blocks.
   This section can be deleted once the component is built, when the Playground
