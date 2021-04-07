@@ -170,31 +170,3 @@ You have 5 preferredPlacement options you can use
     );
   }}
 </Playground>
-
-## Dismissible is false
-
-<Playground>
-  {() => {
-    const divRef = useRef();
-    const [showPopover, setShowPopover] = useState(true);
-    return (
-      <>
-        <span ref={divRef}>
-          <Checkbox
-            defaultChecked={true}
-            label="Subscribe on marketing emails"
-          />
-        </span>
-        <Popover
-          attachTo={divRef}
-          open={showPopover}
-          dismissible={false}
-          preferredPlacement="right"
-          onRequestClose={() => setShowPopover(false)}
-        >
-          <Content>Undismissible content</Content>
-        </Popover>
-      </>
-    );
-  }}
-</Playground>

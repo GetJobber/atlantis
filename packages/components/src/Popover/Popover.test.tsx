@@ -41,7 +41,7 @@ it("should render a Popover with the content and dismiss button", async () => {
 
   expect(queryByText(content)).toBeInstanceOf(HTMLElement);
 
-  fireEvent.click(queryByLabelText("Close modal"));
+  fireEvent.click(queryByLabelText("Close dialog"));
   expect(handleClose).toHaveBeenCalledTimes(1);
 });
 

@@ -54,13 +54,14 @@ export function Popover({
   return (
     open && (
       <div
+        role="dialog"
         ref={setPopperElement}
         style={popperStyles.popper}
         className={classes.popover}
         {...attributes.popper}
       >
         <div className={classes.dismissButton}>
-          <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />
+          <ButtonDismiss onClick={onRequestClose} ariaLabel="Close dialog" />
         </div>
         {children}
         <div
