@@ -40,7 +40,7 @@ import { {{ name }} } from "@jobber/components/{{ name }}";
 
 ## Usage Guidelines
 
-The <{{name}}> will... {Add a brief description of the component}
+The `<{{name}}>` will... _Add a brief description of the component_
 
 <!--
   What is the design purpose of this component? How do its responsibilities
