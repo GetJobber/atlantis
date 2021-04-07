@@ -15,16 +15,16 @@
 }
 
 .dismissButton {
-  position: absolute;
-  top: 0;
-  right: 0;
+  float: right;
   padding: var(--dismiss--button-padding);
+  text-align: right;
 }
 
 .popover {
-  z-index: 1;
+  z-index: var(--elevation-base);
   width: 100%;
   max-width: var(--popover--width);
+  box-shadow: var(--shadow-base);
   border: var(--border-base) solid var(--color-grey--light);
   border-radius: var(--radius-base);
   font-size: var(--base-unit);

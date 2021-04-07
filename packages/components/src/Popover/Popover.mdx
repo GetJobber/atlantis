@@ -62,14 +62,19 @@ following:
 
 ### Usage
 
-- A popover should be used to introduce a novel UI element or highlight a change
-  to an existing interface.
-- A popover should contain information that is helpful, but not necessary for
-  the user to successfully interact with the page.
-- Once a popover has been shown, it should not show up again once the user has
-  interacted with it.
-- **You must use a `useRef` hook to create a reference point for the popover to
-  latch to.**
+The popover component displays floating informative and actionable content in
+relation to a target. The popover can contain content, media, or other
+components.
+
+Some scenarios for popover include the following:
+
+- Show available related actions
+- First time experience
+- To call out product features or changes
+
+There are also some outstanding questions:
+
+- Can our current tooltips can be a real tooltip?
 
 ### Content
 

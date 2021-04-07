@@ -5,7 +5,8 @@ import { ButtonDismiss } from "../ButtonDismiss";
 
 export interface PopoverProps {
   /**
-   * Element the popover will attach to and point at.
+   * Element the popover will attach to and point at. A `useRef` must be attached to an html element
+   * and passed as an attachTo prop in order for the popover to function properly
    */
   readonly attachTo: Element | React.RefObject<Element | null>;
 
@@ -13,11 +14,6 @@ export interface PopoverProps {
    * Pop-over content.
    */
   readonly children: React.ReactNode;
-
-  /**
-   * Whether or not the popover is dismissable via the header close button.
-   */
-  readonly dismissible?: boolean;
 
   /**
    * Control popover viability.
@@ -40,7 +36,6 @@ export interface PopoverProps {
 export function Popover({
   onRequestClose,
   children,
-  dismissible = true,
   attachTo,
   open,
   preferredPlacement = "auto",
@@ -64,11 +59,9 @@ export function Popover({
         className={classes.popover}
         {...attributes.popper}
       >
-        {dismissible && (
-          <div className={classes.dismissButton}>
-            <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />
-          </div>
-        )}
+        <div className={classes.dismissButton}>
+          <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />
+        </div>
         {children}
         <div
           ref={setArrowElement}

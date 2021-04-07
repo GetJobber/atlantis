@@ -45,20 +45,6 @@ it("should render a Popover with the content and dismiss button", async () => {
   expect(handleClose).toHaveBeenCalledTimes(1);
 });
 
-it("shouldn't render a dismiss button if dismissible is false", async () => {
-  await act(async () => {
-    rendered = render(
-      <PopoverTestComponent open={true} dismissible={false}>
-        {content}
-      </PopoverTestComponent>,
-    );
-  });
-
-  const { queryByLabelText } = rendered;
-
-  expect(queryByLabelText("Close modal")).toBeNull();
-});
-
 it("shouldn't render a popover when open is false", async () => {
   await act(async () => {
     rendered = render(
