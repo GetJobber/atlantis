@@ -14,7 +14,6 @@ export function Sidebar() {
     themeConfig: { sideBarWidth, sidebarOffset = 0, hasLogo = true },
   } = useConfig();
   const sidebarRef = createRef<HTMLDivElement>();
-  console.log(hasLogo);
 
   return (
     <Box sx={styles.sidebar(sideBarWidth, sidebarOffset)} ref={sidebarRef}>
