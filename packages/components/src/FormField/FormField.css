@@ -3,7 +3,7 @@
   --field--textAlign: left;
   --field--placeholder-color: var(--color-greyBlue--light);
   --field--border-width: var(--border-base);
-  --field--border-color: var(--color-grey--lighter);
+  --field--border-color: var(--color-border);
   --field--background-color: var(--color-white);
 
   --field--padding-top: calc(var(--space-base) - var(--space-smallest));

@@ -2,7 +2,7 @@
   --card--background-color: var(--color-white);
   --card--header-background-color: var(--color-grey--lightest);
   --card--content-background-color: var(--color-white);
-  --card--border-color: var(--color-grey--lighter);
+  --card--border-color: var(--color-border);
   --card--accent-color: var(--color-grey);
   --card--base-padding: var(--space-base);
 }

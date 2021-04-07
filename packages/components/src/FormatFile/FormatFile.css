@@ -3,7 +3,7 @@
   --file-card--background-color: var(--color-white);
   --file-card--header-background-color: var(--color-greyBlue--lighter);
   --file-card--content-background-color: var(--color-white);
-  --file-card--border-color: var(--color-grey--lighter);
+  --file-card--border-color: var(--color-border);
   --file-card--accent-color: var(--color-grey);
   --file-card--base-padding: var(--space-small);
 }
