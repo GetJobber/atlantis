@@ -12,10 +12,6 @@ users may care about, should they choose to learn more about it.
 - for progressive disclosure of elements that aren't essential for the user to
   view all at once
 - not be used for other critical information that requires immediate action
-- not to be confused with an
-  [accordion](https://adrianroselli.com/2020/05/disclosure-widgets.html#:~:text=An%20accordion%20is%20more%20than,reader%20users%20of%20the%20relationship.),
-  which in theory _can_ be composed of multiple units of `<Disclosure>`
-  components in addition to few other states
 
   ### How it might behave:
 
