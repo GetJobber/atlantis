@@ -9,36 +9,53 @@ users may care about, should they choose to learn more about it.
   distractions
 - used for lightweight editing, such as selecting a value for a setting
 - used for information that is lower priority or don’t need to see all the time
+- for progressive disclosure of elements that aren't essential for the user to
+  view all at once
 - not be used for other critical information that requires immediate action
 - not to be confused with an
   [accordion](https://adrianroselli.com/2020/05/disclosure-widgets.html#:~:text=An%20accordion%20is%20more%20than,reader%20users%20of%20the%20relationship.),
   which in theory _can_ be composed of multiple units of `<Disclosure>`
   components in addition to few other states
 
+  ### How it might behave:
+
+  - both title bar and arrow are clickable
+    - an interactive title bar that has relevant info about its hidden content
+    - arrow indicating the next direction if clicked
+  - panel is closed on default
+  - a prop that controls the revealing / hiding state
+    - when “showing”, it will roll down and reveal the inner contents
+    - when “hiding”, it will roll back up to hide the contents
+      - at hidden state, content should have no height and not
+        clickable/interactable
+      - title has a `<summary>` of its content
+
 ## Content Guidelines
 
-- A title that should be informative and label the type of content grouped in
-  the body content in it
-- Content should be actionable and clear
-- A `<Content>` component is recommended to properly encapsulate the details
+- **Title** should be informative and label the type of content grouped in the
+  body content in it
+  - use `<Heading level={4}>` component
+- **Content** should be actionable and clear. May contain:
+  - good ol’ plain text
+  - accepts any React component as a child
+  - except: `<Page>`, `<Table>`
 
 ## Accessibility
 
-- Headings are permitted in
-  [`<summary>` elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/summary)
-  to provide in-page navigational assistance
 - Users should be able to use their keyboard and toggle the component's
   open/close state
-- Since the component is presented with a title and arrow icon, users should
-  still be able to use and navigate the content with ease
-- In HTML, there is a
-  [`<details>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details)
-  that serves very similar purpose
-- Because this is similar to `<details>` HTML element, we can use the
-  [`"group"` ARIA role](https://w3c.github.io/aria/#group) to form a collection
-  of related items that are recognizable by assistive technologies
-- As of writing, there is no equivalent component found in React Native's
-  [Core Component](https://reactnative.dev/docs/components-and-apis) library
+- Headings are permitted in `<summary>` elements to provide in-page navigational
+  assistance
+- Include `aria-expanded` attribute on the trigger to communicate to assistive
+  technology
+- Include `aria-controls` attribute ties on the trigger to the content it
+  controls using the `id` of the collapsible container
+- The trigger contains a downward-pointing-arrow to hint that it can be
+  expanded. when the disclosure item is in expanded state, this is rotated 180
+  degrees to point upwards
+- The icon will be given an `aria-hidden=”true”` attribute to hide it from
+  assistive technologies, as well as `focusable=”false”` to address an
+  inconsistency in IE and older versions of Edge
 
 ## Responsiveness
 
@@ -50,7 +67,7 @@ users may care about, should they choose to learn more about it.
 
 ## Mockup
 
-!["Disclosure Mockup"](https://gist.github.com/kingstonfung/b882aa211f4213b1ac89bd515dc48a50/raw/369ab6deeabea99d5ad3a96b74bce64cb721cda5/image.png)
+!["Disclosure Mockup"](https://gist.githubusercontent.com/kingstonfung/b882aa211f4213b1ac89bd515dc48a50/raw/efef596279fa0070d26b67cd364e533ca3d572bd/image2.png)
 
 ## Interface
 
@@ -71,13 +88,17 @@ users may care about, should they choose to learn more about it.
 
 ## Notes
 
-- `onchange` event for tracking when opens; we may want to consider this in the
-  future so the component can broadcast its changes to other interested
-  subscribers
-- This component should be stackable with some/minimal modifications, so that it
-  can form a `<Accordion>` component for the future
-- The content must not be interactive when this component is collapsed, those
-  content should also ignore any pointer events when it is hidden away
+**Trade-offs, considerations, and things we want to remember**
+
+- `onchange` event for tracking when opens
+- how it’ll behave and look when it’s stacking
+- `<Heading>` on the title is open for other variations in the future
+
+**Places in Jobber’s codebase something similar exists (don’t include in
+Atlantis docs, but helpful to make note of here)**
+
+- https://github.com/GetJobber/sg-1/tree/master/components/shared/accordion
+- https://github.com/GetJobber/jobber-mobile/tree/master/src/components/CollapsableItem
 
 ## Similar components in other design systems
 
