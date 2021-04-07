@@ -63,7 +63,7 @@ users may care about, should they choose to learn more about it.
 
 ## Mockup
 
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FNSFGqkxgycP8JbEwmaDW8d%2FDesign-System-Contribution-Disclosure%3Fnode-id%3D362%253A1659" allowfullscreen></iframe>
+!["Disclosure Mockup"](https://gist.githubusercontent.com/kingstonfung/b882aa211f4213b1ac89bd515dc48a50/raw/efef596279fa0070d26b67cd364e533ca3d572bd/image2.png)
 
 ## Interface
 
