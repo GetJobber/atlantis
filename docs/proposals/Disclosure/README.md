@@ -87,14 +87,13 @@ users may care about, should they choose to learn more about it.
 **Trade-offs, considerations, and things we want to remember**
 
 - `onchange` event for tracking when opens
-- how it’ll behave and look when it’s stacking
-- `<Heading>` on the title is open for other variations in the future
-
-**Places in Jobber’s codebase something similar exists (don’t include in
-Atlantis docs, but helpful to make note of here)**
-
-- https://github.com/GetJobber/sg-1/tree/master/components/shared/accordion
-- https://github.com/GetJobber/jobber-mobile/tree/master/src/components/CollapsableItem
+- While this is roughly based on a legacy Jobber implementation of an accordion,
+  we haven't fleshed out exactly how Disclosure will behave and look if used in
+  an accordion fashion
+- Assumption: `<Heading level=4>` should solve most use cases for this
+  component. We did consider the possibility of opening this up to other levels
+  (3, maybe?) but for a simpler end-user experience are not making the heading
+  level configurable from the component API at this time.
 
 ## Similar components in other design systems
 
