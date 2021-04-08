@@ -7,8 +7,8 @@ users may care about, should they choose to learn more about it.
 
 - use when you want to reduce feelings of being overwhelmed and to reduce
   distractions
-- used for lightweight editing, such as selecting a value for a setting
 - used for information that is lower priority or don’t need to see all the time
+- can be used to hide optional settings and controls
 - for progressive disclosure of elements that aren't essential for the user to
   view all at once
 - not be used for other critical information that requires immediate action
@@ -68,9 +68,7 @@ users may care about, should they choose to learn more about it.
 ## Interface
 
 ```jsx
-<Disclosure title="Advanced Options">
-  <Content>Example content here</Content>
-</Disclosure>
+<Disclosure title="Advanced Options">Example content here</Disclosure>
 ```
 
 ## Props Table
