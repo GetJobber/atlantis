@@ -39,6 +39,7 @@ import { Autocomplete } from "@jobber/components/Autocomplete";
     const [value, setValue] = useState();
     return (
       <Autocomplete
+        name="Search Input"
         value={value}
         initialOptions={[]}
         onChange={setValue}
@@ -99,6 +100,7 @@ bottom right. Both of these are optional per option.
     const [value, setValue] = useState();
     return (
       <Autocomplete
+        name="Search Input"
         value={value}
         initialOptions={options}
         onChange={setValue}
@@ -149,6 +151,7 @@ An autocomplete can provide section headings to break up the options.
     const [value, setValue] = useState();
     return (
       <Autocomplete
+        name="Search Input"
         value={value}
         separators={true}
         initialOptions={options}
@@ -222,6 +225,7 @@ separators.
     const [value, setValue] = useState();
     return (
       <Autocomplete
+        name="Search Input"
         value={value}
         initialOptions={options}
         onChange={setValue}
@@ -270,6 +274,7 @@ You can supply a value to `Autocomplete` in the form of an active `Option`.
       <>
         <pre>{JSON.stringify(value, undefined, 2)}</pre>
         <Autocomplete
+          name="Search Input"
           value={value}
           initialOptions={[]}
           onChange={setValue}
@@ -318,6 +323,7 @@ using either promises or `await` in `getOptions`.
     const [value, setValue] = useState();
     return (
       <Autocomplete
+        name="Search Input"
         value={value}
         initialOptions={[]}
         onChange={setValue}

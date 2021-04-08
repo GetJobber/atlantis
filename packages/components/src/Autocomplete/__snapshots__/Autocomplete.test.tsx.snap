@@ -22,12 +22,12 @@ exports[`it should display headers when headers are passed in 1`] = `
       autoComplete="autocomplete-off"
       className="formField"
       id="123e4567-e89b-12d3-a456-426655440014"
+      name="placeholder_name"
       onBlur={[Function]}
       onChange={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       type="text"
-      value=""
     />
   </div>
 </div>
@@ -55,12 +55,12 @@ exports[`renders an Autocomplete 1`] = `
       autoComplete="autocomplete-off"
       className="formField"
       id="123e4567-e89b-12d3-a456-426655440001"
+      name="placeholder_name"
       onBlur={[Function]}
       onChange={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       type="text"
-      value=""
     />
   </div>
 </div>

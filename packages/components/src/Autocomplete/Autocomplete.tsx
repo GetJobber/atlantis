@@ -16,6 +16,11 @@ interface AutocompleteProps {
   readonly initialOptions?: OptionCollection;
 
   /**
+   * Name of the input
+   */
+  readonly name: string;
+
+  /**
    * Set Autocomplete value.
    */
   readonly value: Option | undefined;
@@ -84,6 +89,7 @@ interface AutocompleteProps {
 export function Autocomplete({
   initialOptions = [],
   value,
+  name,
   allowFreeForm = true,
   size = undefined,
   invalid,
@@ -120,6 +126,7 @@ export function Autocomplete({
         size={size}
         invalid={invalid}
         value={inputText}
+        name={name}
         onChange={handleInputChange}
         placeholder={placeholder}
         onFocus={handleInputFocus}

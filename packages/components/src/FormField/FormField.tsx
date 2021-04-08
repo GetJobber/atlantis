@@ -201,6 +201,8 @@ export function FormField({
 }: FormFieldProps) {
   const {
     register,
+    setValue,
+    watch,
     /**
      * We currently only use `errors` from formState, but there are lots of
      * other values that come with it. https://react-hook-form.com/api#formState
@@ -285,10 +287,31 @@ export function FormField({
       disabled: disabled,
       readOnly: readonly,
       onChange: handleChange,
-      value: value,
+      value:
+        typeof name !== "undefined" && typeof value !== "undefined"
+          ? watch(name)
+          : undefined,
       inputMode: keyboard,
-      ...(defaultValue && { defaultValue: defaultValue }),
+      ...(defaultValue
+        ? { defaultValue: defaultValue }
+        : value && { defaultValue: value?.toString() }),
     };
+
+    useEffect(() => {
+      /**
+       * The value is being watched to prevent unescessary renders when using controlled components.
+       * See here (https://react-hook-form.com/advanced-usage#ControlledmixedwithUncontrolledComponents) to view examples using 'Custom Register'.
+       *
+       * When not using watch, a render is skipped, causing the first input to not register.
+       */
+      if (
+        typeof value !== "undefined" &&
+        typeof name !== "undefined" &&
+        value !== watch(name)
+      ) {
+        setValue(name, value.toString());
+      }
+    }, [value]);
 
     switch (type) {
       case "select":
