@@ -131,7 +131,8 @@ false. By default it is `true`
 export default {
   ...,
   themeConfig: {
-  hasLogo: false
+    ...,
+    hasLogo: false
   }
 }
 ```
