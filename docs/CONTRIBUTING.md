@@ -13,52 +13,58 @@ There are several ways you can make meaningful contributions to `Atlantis`.
 
 #### Bugfix
 
-If a component’s layout is broken, fails a WCAG standard, or blows up when used
-as intended, there’s no need to discuss fixing it - put up a PR!
+If a component’s layout is broken, fails a WCAG standard, or otherwise is not
+working as intended, there’s no need to discuss fixing it - put up a PR! Even if
+the fix you put up isn't the way we end up solving it, recording the bug and an
+attempted solution is really valuable.
+
+> Example: The action button on a Banner is growing to match the height of the
+> Banner's text content, causing the button to stretch in ways a button should
+> not stretch.
 
 #### Feature enhancement
 
 If a component does almost the thing you need, or looks almost right for your
-use case, but you need to extend it a bit to get it to work just right, talk to
-at least one other designer. The outcome of this talk should be alignment on the
-change so that you can implement with confidence. You might want to raise your
-idea to the larger design team.
+use case, but you need to extend it a bit to get it to work just right, reach
+out to the Atlantis team or
+[file an issue](https://github.com/GetJobber/atlantis/issues/new). We'll discuss
+it to get alignment on the change so that you can implement with confidence.
 
-> For example, say we didn’t have a “Warning” Banner, but we already had a
-> “Success”, “Error”, and “Notice”. This adds another “type”, extending the
-> existing concept of “type”. Another example would be changing the unchecked
-> state on checkbox to have a green border. No change to functionality, but has
-> visual system impacts worth broaching with larger design team.
+> Example: We already have a “Success”, “Error”, and “Notice” Banner, but want
+> to add a "Warning" Banner. This adds another “type” of Banner, extending the
+> existing concept of “type”.
 
 #### Feature addition
 
-If a component is missing a type of functionality, book a chat with the Atlantis
-team. When we talk about it, we can determine if it’s complex enough to merit a
-more defined set of requirements via a proposal, or if your team should proceed
-directly with implementation.
+If a component is missing a type of functionality, reach out to the Atlantis
+team or [file an issue](https://github.com/GetJobber/atlantis/issues/new). When
+we discuss it, we can determine if it’s complex enough to merit a more defined
+set of requirements via a proposal, or if you should proceed directly with
+implementation.
 
-> For example, say a Banner was not dismissible and you needed it to be. This
-> adds a new concept to Banner so we’ll want to talk about how to implement this
-> in a relatively generic way, compare it to how other dismissible components
-> behave, and make sure we’re aligned on what “dismissing” actually means (is it
-> a permanent removal, temporarily hiding, etc).
+> Example: Banner is not dismissible but we think it might need to be. This adds
+> a new concept to Banner so we’ll want to talk about how to implement this in a
+> relatively generic way, compare it to how other dismissible components behave,
+> and make sure we’re aligned on what “dismissing” actually means (is it a
+> permanent removal, temporarily hiding, etc).
 
 #### New component or pattern
 
-If a new component (or something bigger) is needed, book a chat with the
-Atlantis team. When we talk about it, we can determine if it’s complex enough to
-merit a more defined set of requirements first, or if your team should proceed
-directly with implementation. For new components, we’ll likely ask that you put
-forward a proposal to ensure alignment on the component’s purpose,
-functionality, behaviour requirements, accessibility, and interface before you
-invest too much time writing code.
+If a new component (or something bigger) is needed, reach out to the Atlantis
+team or [file an issue](https://github.com/GetJobber/atlantis/issues/new). When
+we discuss it, we can determine if it’s complex enough to merit a more defined
+set of requirements first, or if your team should proceed directly with
+implementation. For new components, we’ll likely ask that you put forward a
+proposal to ensure alignment on the component’s purpose, functionality,
+behaviour requirements, accessibility, and interface before you invest too much
+time writing code.
 
-> For example, if we didn’t have a Banner, we would want to review a proposal of
+> Example: We don't have a Banner, but we think we need one. We should align on
 > what role a Banner fulfills, how it’s related but different from Toast, what
 > types of information a Banner should convey, and what its role is from an
 > accessibility perspective.
 
-### Submit an Issue
+### Submit an issue
 
 Submitting an issue is the simplest way you can contribute to `Atlantis`.
 
@@ -94,9 +100,7 @@ this way, we're describing the intended behaviour and functionality of the
 component, as well as how it fits within the Atlantis system, to determine
 requirements before we build.
 
-The documentation requirements are captured in our
-[documention template](https://github.com/GetJobber/atlantis/blob/master/packages/generators/templates/component/%7B%7Bname%7D%7D.%7B%7Bmdx%7D%7D)
-and cover the following topics:
+The documentation requirements cover the following topics:
 
 - Usage guidelines
 - Interface and Props (properties)
@@ -106,15 +110,21 @@ and cover the following topics:
 - Mockups
 - Notes (additional context)
 
+To create the template for a component proposal, run the command
+`npm run generate` in the Atlantis repository. This command will provide you
+with the documentation template, as well as the files you'll need to build the
+component once your proposal is approved.
+
 #### What is the process for submitting a proposal?
 
 1. Reach out to the Atlantis team to align on the need for a contribution
-   - This can be coordinated via Slack or a Github issue
+   - This can be coordinated via Slack (at Jobber) or a
+     [Github issue](https://github.com/GetJobber/atlantis/issues/new)
 2. Create a branch named `<component_name>-proposal`
 3. Create a directory and required files for the component using
    `npm run generate`
-4. Fill out the documentation - this should always involve a designer and
-   engineer collaborating
+4. Fill out the documentation - whenever possible, a designer and engineer
+   should collaborate on this
 5. Submit a PR for the proposal
 6. Gather feedback and iterate on proposal
 7. Once approved a maintainer will land the proposal in `master` and you can
@@ -152,9 +162,9 @@ Want help with your pull request title? We have a
 ### Documentation first
 
 We believe that starting with solid documentation that describes the problem a
-component is trying to solve will lead to better written, and more generic
+component is trying to solve will lead to better-written and more re-usable
 components. This helps contributors to the system limit work-in-progress and
-increase confidence in what we're delivering.
+increase confidence in delivery.
 
 ### Encapsulation is important
 
