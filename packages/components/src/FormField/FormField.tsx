@@ -367,7 +367,6 @@ export function FormField({
       | ChangeEvent<HTMLTextAreaElement>
       | ChangeEvent<HTMLSelectElement>,
   ) {
-    console.log("on change event", event);
     let newValue: string | number;
     newValue = event.currentTarget.value;
     setHasMiniLabel(newValue.length > 0);
