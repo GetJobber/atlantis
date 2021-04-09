@@ -1,0 +1,174 @@
+---
+name: Popover
+menu: Components
+route: /components/popover
+showDirectoryLink: true
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { Content } from "../Content";
+import { Heading } from "../Heading";
+import { Button } from "../Button";
+import { Checkbox } from "../Checkbox";
+import { useState, useRef } from "react";
+import { Popover } from ".";
+
+# Popover
+
+<ComponentStatus stage="pre" responsive="no" accessible="no" />
+
+Write a description about what Popover component is trying to achieve.
+
+```ts
+import { Popover } from "@jobber/components/Popover";
+```
+
+<Playground>
+  {() => {
+    const divRef = useRef();
+    const [showPopover, setShowPopover] = useState(false);
+    return (
+      <>
+        <span ref={divRef}>
+          <Button
+            label="Toggle Popover"
+            onClick={() => setShowPopover(!showPopover)}
+          />
+        </span>
+        <Popover
+          attachTo={divRef}
+          open={showPopover}
+          dismissible={true}
+          preferredPlacement="right"
+          onRequestClose={() => setShowPopover(false)}
+        >
+          <Content>Here is your first popover</Content>
+        </Popover>
+      </>
+    );
+  }}
+</Playground>
+
+<!--
+  It is not necessary to include Design & Usage Guidlelines. Use this section
+  to answer common questions and considerations about component usage.
+-->
+
+## Design & Usage Guidelines
+
+When contributing to, or consuming the Popover component, consider the
+following:
+
+### Usage
+
+The popover component displays floating informative and actionable content in
+relation to a target. The popover can contain content, media, or other
+components.
+
+Some scenarios for popover include the following:
+
+- Show available related actions
+- First time experience
+- To call out product features or changes
+
+There are also some outstanding questions:
+
+- Can our current tooltips can be a real tooltip?
+
+### Content
+
+- Popover text content should not exceed 3 lines and can consist of an optional
+  "dismiss" CTA
+
+### Reference Docs
+
+- Documentation on the popper plugin that was used to build the popover
+  component https://popper.js.org/react-popper/v2/
+
+## Props
+
+<Props of={Popover} />
+
+<!--
+  It is not necessary to provide an example of each prop. Use usage examples to
+  highlight key features of a component or particular considerations.
+
+  See `Button.mdx` for a good example of this.
+-->
+
+## preferredPlacement options
+
+You have 5 preferredPlacement options you can use
+
+- `right`
+- `top`
+- `bottom`
+- `auto`
+- `left`
+
+<Playground>
+  {() => {
+    const topRef = useRef();
+    const leftRef = useRef();
+    const rightRef = useRef();
+    const bottomRef = useRef();
+    const [showPopover, setShowPopover] = useState(true);
+    return (
+      <div>
+        <Content>
+          <span ref={topRef}>
+            <Button label="Top Reference" />
+          </span>
+        </Content>
+        <Popover
+          attachTo={topRef}
+          open={showPopover}
+          dismissible={true}
+          preferredPlacement="top"
+        >
+          <Content>Top Popover</Content>
+        </Popover>
+        <Content>
+          <span ref={leftRef}>
+            <Button label="Left Reference" />
+          </span>
+        </Content>
+        <Popover
+          attachTo={leftRef}
+          open={showPopover}
+          dismissible={true}
+          preferredPlacement="left"
+        >
+          <Content>Left Popover</Content>
+        </Popover>
+        <Content>
+          <span ref={rightRef}>
+            <Button label="Right Reference" />
+          </span>
+        </Content>
+        <Popover
+          attachTo={rightRef}
+          open={showPopover}
+          dismissible={true}
+          preferredPlacement="right"
+        >
+          <Content>Right Popover</Content>
+        </Popover>
+        <Content>
+          <span ref={bottomRef}>
+            <Button label="Bottom Reference" />
+          </span>
+        </Content>
+        <Popover
+          attachTo={bottomRef}
+          open={showPopover}
+          dismissible={true}
+          preferredPlacement="bottom"
+        >
+          <Content>Bottom Popover</Content>
+        </Popover>
+      </div>
+    );
+  }}
+</Playground>
