@@ -288,7 +288,8 @@ export function FormField({
       disabled: disabled,
       readOnly: readonly,
       onChange: handleChange,
-      value: isControlled && name ? watch(name, value) : undefined,
+      value:
+        isControlled && name ? watch(name, defaultValue || value) : undefined,
       inputMode: keyboard,
       ...(defaultValue && { defaultValue: defaultValue }),
     };
