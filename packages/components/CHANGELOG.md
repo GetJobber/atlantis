@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.28.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.27.8...@jobber/components@2.28.0) (2021-04-09)
+
+
+### Features
+
+* **components:** Add new popover component ([#494](https://github.com/GetJobber/atlantis/issues/494)) ([f0febe4](https://github.com/GetJobber/atlantis/commit/f0febe4787787c1dd2b823eaf3f02747058cdebf))
+
+
+
+
+
 ## [2.27.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.27.7...@jobber/components@2.27.8) (2021-04-08)
 
 **Note:** Version bump only for package @jobber/components

@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "2.27.8",
+  "version": "2.28.0",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -39,8 +39,8 @@
     "react-hook-form": "^6.7.2",
     "react-image-lightbox": "^5.1.1",
     "react-markdown": "^4.1.0",
-    "react-router-dom": "^5.2.0",
     "react-popper": "^2.2.5",
+    "react-router-dom": "^5.2.0",
     "time-input-polyfill": "^1.0.7",
     "ts-xor": "^1.0.8",
     "uuid": "^3.3.2"
