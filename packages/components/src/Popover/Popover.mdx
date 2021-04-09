@@ -114,17 +114,13 @@ You have 5 preferredPlacement options you can use
     const rightRef = useRef();
     const bottomRef = useRef();
     const [showPopover, setShowPopover] = useState(true);
-    const styles = {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "flex-start",
-      width: "200px",
-    };
     return (
-      <div style={styles}>
-        <span ref={topRef}>
-          <Button label="Top Reference" />
-        </span>
+      <div>
+        <Content>
+          <span ref={topRef}>
+            <Button label="Top Reference" />
+          </span>
+        </Content>
         <Popover
           attachTo={topRef}
           open={showPopover}
@@ -133,9 +129,11 @@ You have 5 preferredPlacement options you can use
         >
           <Content>Top Popover</Content>
         </Popover>
-        <span ref={leftRef}>
-          <Button label="Left Reference" />
-        </span>
+        <Content>
+          <span ref={leftRef}>
+            <Button label="Left Reference" />
+          </span>
+        </Content>
         <Popover
           attachTo={leftRef}
           open={showPopover}
@@ -144,9 +142,11 @@ You have 5 preferredPlacement options you can use
         >
           <Content>Left Popover</Content>
         </Popover>
-        <span ref={rightRef}>
-          <Button label="Right Reference" />
-        </span>
+        <Content>
+          <span ref={rightRef}>
+            <Button label="Right Reference" />
+          </span>
+        </Content>
         <Popover
           attachTo={rightRef}
           open={showPopover}
@@ -155,9 +155,11 @@ You have 5 preferredPlacement options you can use
         >
           <Content>Right Popover</Content>
         </Popover>
-        <span ref={bottomRef}>
-          <Button label="Bottom Reference" />
-        </span>
+        <Content>
+          <span ref={bottomRef}>
+            <Button label="Bottom Reference" />
+          </span>
+        </Content>
         <Popover
           attachTo={bottomRef}
           open={showPopover}

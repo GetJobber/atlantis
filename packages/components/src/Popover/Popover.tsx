@@ -26,8 +26,7 @@ export interface PopoverProps {
   readonly onRequestClose?: () => void;
 
   /**
-   * Describes the preferred placement of the popper.  The first element in the placement array will be taken
-   * as the preferred location with the rest of the array as fallback.
+   * Describes the preferred placement of the popper.
    * @default 'auto'
    */
   readonly preferredPlacement?: "top" | "bottom" | "left" | "right" | "auto";
@@ -83,7 +82,7 @@ function buildModifiers(arrowElement: HTMLElement | undefined | null) {
     {
       name: "offset",
       options: {
-        offset: [0, 5],
+        offset: [0, 10],
       },
     },
     {
