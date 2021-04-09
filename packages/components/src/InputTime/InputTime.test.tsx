@@ -26,11 +26,13 @@ it("renders a InputTime", () => {
       <input
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440001"
+        name="generatedName--123e4567-e89b-12d3-a456-426655440001"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
         type="time"
+        value=""
       />
     </div>
   `);
@@ -51,14 +53,14 @@ it("renders an initial time when given 'defaultValue'", () => {
     >
       <label
         className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440002"
+        htmlFor="123e4567-e89b-12d3-a456-426655440003"
       >
          
       </label>
       <input
         className="formField"
         defaultValue="11:23"
-        id="123e4567-e89b-12d3-a456-426655440002"
+        id="123e4567-e89b-12d3-a456-426655440003"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -84,20 +86,21 @@ it("renders correctly in a readonly state", () => {
     >
       <label
         className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440003"
+        htmlFor="123e4567-e89b-12d3-a456-426655440004"
       >
          
       </label>
       <input
         className="formField"
-        defaultValue="11:23"
-        id="123e4567-e89b-12d3-a456-426655440003"
+        id="123e4567-e89b-12d3-a456-426655440004"
+        name="generatedName--123e4567-e89b-12d3-a456-426655440004"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
         readOnly={true}
         type="time"
+        value="11:23"
       />
     </div>
   `);
@@ -118,20 +121,21 @@ it("adds a error border when invalid", () => {
     >
       <label
         className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440004"
+        htmlFor="123e4567-e89b-12d3-a456-426655440006"
       >
          
       </label>
       <input
         className="formField"
-        defaultValue="11:23"
-        id="123e4567-e89b-12d3-a456-426655440004"
+        id="123e4567-e89b-12d3-a456-426655440006"
+        name="generatedName--123e4567-e89b-12d3-a456-426655440006"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
         readOnly={true}
         type="time"
+        value="11:23"
       />
     </div>
   `);
@@ -150,18 +154,20 @@ it("should set the value when given 'value' and 'onChange'", () => {
     >
       <label
         className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440005"
+        htmlFor="123e4567-e89b-12d3-a456-426655440008"
       >
          
       </label>
       <input
         className="formField"
-        id="123e4567-e89b-12d3-a456-426655440005"
+        id="123e4567-e89b-12d3-a456-426655440008"
+        name="generatedName--123e4567-e89b-12d3-a456-426655440008"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
         type="time"
+        value=""
       />
     </div>
   `);

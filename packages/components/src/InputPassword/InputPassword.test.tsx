@@ -24,13 +24,14 @@ it("renders an input type number", () => {
       </label>
       <input
         className="formField"
-        defaultValue="123"
         id="123e4567-e89b-12d3-a456-426655440001"
+        name="generatedName--123e4567-e89b-12d3-a456-426655440001"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
         type="password"
+        value="123"
       />
     </div>
   `);
@@ -51,19 +52,20 @@ it("renders an error", () => {
     >
       <label
         className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440002"
+        htmlFor="123e4567-e89b-12d3-a456-426655440003"
       >
          
       </label>
       <input
         className="formField"
-        defaultValue="p"
-        id="123e4567-e89b-12d3-a456-426655440002"
+        id="123e4567-e89b-12d3-a456-426655440003"
+        name="generatedName--123e4567-e89b-12d3-a456-426655440003"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
         type="password"
+        value="p"
       />
     </div>
   `);

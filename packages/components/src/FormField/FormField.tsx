@@ -217,8 +217,9 @@ export function FormField({
     shouldShowMiniLabel(defaultValue, value),
   );
   const [identifier] = useState(uuid.v1());
+  const isControlled = value !== undefined;
 
-  if (!name && validations) {
+  if (!name && (validations || isControlled)) {
     name = `generatedName--${identifier}`;
   }
 
@@ -287,14 +288,9 @@ export function FormField({
       disabled: disabled,
       readOnly: readonly,
       onChange: handleChange,
-      value:
-        typeof name !== "undefined" && typeof value !== "undefined"
-          ? watch(name)
-          : undefined,
+      value: isControlled && name ? watch(name, value) : undefined,
       inputMode: keyboard,
-      ...(defaultValue
-        ? { defaultValue: defaultValue }
-        : value && { defaultValue: value?.toString() }),
+      ...(defaultValue && { defaultValue: defaultValue }),
     };
 
     useEffect(() => {
@@ -304,14 +300,13 @@ export function FormField({
        *
        * When not using watch, a render is skipped, causing the first input to not register.
        */
-      if (
-        typeof value !== "undefined" &&
-        typeof name !== "undefined" &&
-        value !== watch(name)
-      ) {
-        setValue(name, value.toString());
+
+      if (value !== undefined && name !== undefined) {
+        if (isControlled) {
+          setValue(name, value.toString());
+        }
       }
-    }, [value]);
+    }, [name, value]);
 
     switch (type) {
       case "select":
@@ -372,6 +367,7 @@ export function FormField({
       | ChangeEvent<HTMLTextAreaElement>
       | ChangeEvent<HTMLSelectElement>,
   ) {
+    console.log("on change event", event);
     let newValue: string | number;
     newValue = event.currentTarget.value;
     setHasMiniLabel(newValue.length > 0);

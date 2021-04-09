@@ -51,7 +51,6 @@ it("renders an Autocomplete", () => {
   const tree = renderer
     .create(
       <Autocomplete
-        name="placeholder_name"
         value={undefined}
         initialOptions={options}
         onChange={() => {}}
@@ -71,7 +70,6 @@ test("it should call the getOptions handler with the new value", async () => {
   const newValue = "new search value";
   const { getByLabelText } = render(
     <Autocomplete
-      name="placeholder_name"
       value={undefined}
       onChange={changeHandler}
       getOptions={changeOptionsHandler}
@@ -90,7 +88,6 @@ test("it should call the handler when an option is selected", () => {
   const changeHandler = jest.fn();
   const { getByText, getByRole } = render(
     <Autocomplete
-      name="placeholder_name"
       value={undefined}
       onChange={changeHandler}
       initialOptions={options}
@@ -123,7 +120,6 @@ test("it should display headers when headers are passed in", () => {
   const tree = renderer
     .create(
       <Autocomplete
-        name="placeholder_name"
         value={undefined}
         onChange={() => {}}
         initialOptions={headingOptions}
@@ -139,7 +135,6 @@ test("it should call the handler skipping headings when an option is selected", 
   const changeHandler = jest.fn();
   const { getByRole } = render(
     <Autocomplete
-      name="placeholder_name"
       value={undefined}
       onChange={changeHandler}
       initialOptions={headingOptions}
@@ -172,7 +167,6 @@ it("should remove the menu when blurred", async () => {
   const changeHandler = jest.fn();
   const { getByRole, getByText, queryByText } = render(
     <Autocomplete
-      name="placeholder_name"
       value={undefined}
       onChange={changeHandler}
       initialOptions={options}
@@ -200,7 +194,6 @@ it("should call onBlur callback when blurred", async () => {
   const blurHandler = jest.fn();
   const { getByRole } = render(
     <Autocomplete
-      name="placeholder_name"
       value={undefined}
       onChange={jest.fn()}
       initialOptions={options}
@@ -223,7 +216,6 @@ it("should call onChange with undefined if allowFreeForm is false and not matche
   const changeHandler = jest.fn();
   const { getByRole } = render(
     <Autocomplete
-      name="placeholder_name"
       value={undefined}
       onChange={changeHandler}
       initialOptions={options}
@@ -254,7 +246,6 @@ it("sets the input value to blank if allowFreeForm is false and not matched", as
   const changeHandler = jest.fn();
   const { getByRole } = render(
     <Autocomplete
-      name="placeholder_name"
       value={undefined}
       onChange={changeHandler}
       initialOptions={options}

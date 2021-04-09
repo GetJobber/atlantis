@@ -24,7 +24,6 @@ it("renders an input type number", () => {
       </label>
       <input
         className="formField"
-        defaultValue="123"
         id="123e4567-e89b-12d3-a456-426655440001"
         name="generatedName--123e4567-e89b-12d3-a456-426655440001"
         onBlur={[Function]}
@@ -32,6 +31,7 @@ it("renders an input type number", () => {
         onFocus={[Function]}
         onKeyDown={[Function]}
         type="number"
+        value="123"
       />
     </div>
   `);
@@ -58,7 +58,6 @@ it("renders an error", () => {
       </label>
       <input
         className="formField"
-        defaultValue="1.1"
         id="123e4567-e89b-12d3-a456-426655440003"
         name="generatedName--123e4567-e89b-12d3-a456-426655440003"
         onBlur={[Function]}
@@ -66,6 +65,7 @@ it("renders an error", () => {
         onFocus={[Function]}
         onKeyDown={[Function]}
         type="number"
+        value="1.1"
       />
     </div>
   `);
