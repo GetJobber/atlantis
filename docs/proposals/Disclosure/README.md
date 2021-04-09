@@ -84,7 +84,9 @@ users may care about, should they choose to learn more about it.
 
 **Trade-offs, considerations, and things we want to remember**
 
-- `onchange` event for tracking when opens
+- We may, in the future, setup an `onchange` handler that receives
+  expanded/collapsed events. For example so other parts of a page, SPA or not,
+  can subscribe to this and react accordingly.
 - While this is roughly based on a legacy Jobber implementation of an accordion,
   we haven't fleshed out exactly how Disclosure will behave and look if used in
   an accordion fashion
