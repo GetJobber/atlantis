@@ -25,7 +25,7 @@
   width: 100%;
   max-width: var(--popover--width);
   box-shadow: var(--shadow-base);
-  border: var(--border-base) solid var(--color-grey--light);
+  border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
   font-size: var(--base-unit);
   line-height: normal;
