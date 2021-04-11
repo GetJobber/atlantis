@@ -20,6 +20,7 @@ it("renders the input validation messages", () => {
         }
       >
         <div
+          aria-live="assertive"
           className="message"
         >
           <p
