@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a InlineEdit 1`] = `
+<div
+  className="inlineEdit"
+>
+  Foo
+</div>
+`;
+
+exports[`renders a loud InlineEdit 1`] = `
+<div
+  className="inlineEdit bold"
+>
+  Foo
+</div>
+`;
