@@ -48,6 +48,7 @@ export function Disclosure({
   const summaryClassName = classnames(styles.summary);
   const detailsClassName = classnames(styles.details);
   const contentClassName = classnames(styles.content);
+  const summaryWrapClassName = classnames(styles.summaryWrap);
   const arrowIconWrapperClassName = classnames(styles.arrowIconWrapper, {
     [styles.flippedVertical]: isOpen,
   });
@@ -55,12 +56,14 @@ export function Disclosure({
   return (
     <details open={isOpen} onClick={onToggle} className={detailsClassName}>
       <summary className={summaryClassName}>
-        <Heading level={4}>
-          <summary>{title}</summary>
-        </Heading>
-        <span className={arrowIconWrapperClassName}>
-          <Icon size="large" name="arrowDown" color="green" />
-        </span>
+        <div className={summaryWrapClassName}>
+          <Heading level={4}>
+            <summary>{title}</summary>
+          </Heading>
+          <span className={arrowIconWrapperClassName}>
+            <Icon size="large" name="arrowDown" color="green" />
+          </span>
+        </div>
       </summary>
       <span className={contentClassName}>
         <Content>{children}</Content>

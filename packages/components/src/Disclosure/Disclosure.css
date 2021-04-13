@@ -1,6 +1,7 @@
 .arrowIconWrapper {
   transform-origin: 50% 50% 0;
   transition: transform var(--timing-base);
+  flex-basis: 0;
 }
 
 .flippedVertical {
@@ -8,7 +9,6 @@
 }
 
 .summary {
-  display: flex;
   border: none;
   list-style: none;
   cursor: pointer;
@@ -32,12 +32,16 @@
   outline: none;
 }
 
-.summary h4 {
-  flex: 1;
-}
-
 .summary * {
   pointer-events: none;
+}
+
+.summaryWrap {
+  display: flex;
+}
+
+.summaryWrap h4 {
+  flex: 1 0 auto;
 }
 
 .content {
