@@ -77,7 +77,7 @@ understand the change, use a `learning`
 
 <Playground>
   {() => {
-    const divRef = useRef();
+    const newFeatureButton = useRef();
     const [showPopover, setShowPopover] = useState(false);
     return (
       <>
@@ -95,14 +95,15 @@ understand the change, use a `learning`
         >
           <Content>
             <Heading>New feature!</Heading>
-            <Text>You can now press a button that you couldn't before.</Text>
-            <div style="display:flex;align-items:flex-end;">
-              <Button
-                label="Got it"
-                variation="learning"
-                onClick={() => setShowPopover(!showPopover)}
-              />
-            </div>
+            <Text>
+              You can now press a button that you couldn't before. This is
+              important!
+            </Text>
+            <Button
+              label="Got it"
+              variation="learning"
+              onClick={() => setShowPopover(!showPopover)}
+            />
           </Content>
         </Popover>
       </>
