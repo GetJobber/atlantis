@@ -37,11 +37,12 @@
 }
 
 .summaryWrap {
+  align-items: baseline;
   display: flex;
 }
 
 .summaryWrap h4 {
-  flex: 1 0 auto;
+  flex: 1 0 0;
 }
 
 .content {
