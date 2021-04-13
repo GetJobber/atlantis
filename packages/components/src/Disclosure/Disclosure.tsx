@@ -5,7 +5,7 @@ import { Content } from "../Content";
 import { Heading } from "../Heading";
 import { Icon } from "../Icon";
 
-interface DisclosureProps {
+export interface DisclosureProps {
   /**
    * Child content that is manged by this component.
    */
