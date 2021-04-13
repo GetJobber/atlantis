@@ -9,6 +9,7 @@ import { Playground, Props } from "docz";
 import { Content } from "../Content";
 import { Heading } from "../Heading";
 import { Text } from "../Text";
+import { Banner } from "../Banner";
 import { Button } from "../Button";
 import { Checkbox } from "../Checkbox";
 import { useState, useRef } from "react";
@@ -58,12 +59,6 @@ import { Popover } from "@jobber/components/Popover";
 
 Some scenarios for Popover include the following:
 
-### Functional
-
-Reveal a list of available actions to the user. For example, if the user clicks
-on an element and there are four potential actions they might take, Popover is a
-great way to present those actions.
-
 ### Informational
 
 Introducing the user to a new experience, whether their first time using a
@@ -111,7 +106,23 @@ understand the change, use a `learning`
   }}
 </Playground>
 
+### Functional
+
+Reveal a list of available actions to the user. For example, if the user clicks
+on an element and there are four potential actions they might take, Popover is a
+great way to present those actions. If you're looking to provide a menu of
+actions that comes complete with a trigger button,
+[Menu](https://atlantis.getjobber.com/components/menu) has that bundle ready to
+go.
+
+<Banner type="warning" dismissible={false}>
+  A "functional" Popover hasn't been implemented in a componentized fashion yet.
+</Banner>
+
 ### Related Components
+
+To add a menu button that presents multiple actions to the user, use
+[Menu](https://atlantis.getjobber.com/components/menu).
 
 To add a hint about a UI element's function in a permanent fashion (ie revealing
 a Button's label on hover), use
@@ -222,6 +233,9 @@ You have 5 `preferredPlacement` options you can use:
 
 ## Notes
 
+- There is no componentized way to pass in actions for a "functional" Popover
+  yet, but we have a good idea of what that would look like. We believe there
+  may be some opportunity to share elements of Popover with Menu and vice-versa.
 - There is no built-in focus management in Popover, as the specific
   implementation should drive those considerations
 - Popover uses a plugin called [Popper](https://popper.js.org/react-popper/v2/)
