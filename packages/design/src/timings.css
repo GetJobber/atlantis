@@ -1,7 +1,7 @@
 :root {
   --timing-quick: 100ms;
   --timing-base: 200ms;
-  --timing-slow: 500ms;
-  --timing-slower: 1s;
-  --timing-slowest: 2s;
+  --timing-slow: 300ms;
+  --timing-slower: 400ms;
+  --timing-slowest: 500ms;
 }
