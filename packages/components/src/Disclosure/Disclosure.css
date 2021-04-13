@@ -1,0 +1,64 @@
+/*
+Re: (.arrowIconWrapper > svg > path)
+This ensure we are spinning just the svg graphic and not the
+conter, which result in an odd square rendering glitch when
+displaying the background color together.
+*/
+.arrowIconWrapper > svg > path {
+  transform-origin: 50% 50% 0;
+  transition: transform var(--timing-base);
+}
+
+.flippedVertical > svg > path {
+  transform: rotate(180deg);
+}
+
+.summary {
+  display: flex;
+  border: none;
+  list-style: none;
+  cursor: pointer;
+  outline-color: none;
+}
+
+.summary:hover {
+  background: var(--color-yellow--lightest);
+}
+
+.summary:focus,
+.summary:active {
+  border: none;
+  outline-color: var(--color-yellow);
+}
+
+.summary h4 {
+  flex: 1;
+}
+
+.summary::-webkit-details-marker {
+  display: none;
+}
+
+.summary * {
+  pointer-events: none;
+}
+
+.content {
+  display: block;
+}
+
+.details[open] > .content {
+  -webkit-animation: openAnimation var(--timing-base);
+  animation: openAnimation var(--timing-base);
+}
+
+@keyframes openAnimation {
+  from {
+    margin-top: -20px;
+    opacity: 0;
+  }
+  to {
+    margin-top: 0px;
+    opacity: 1;
+  }
+}
