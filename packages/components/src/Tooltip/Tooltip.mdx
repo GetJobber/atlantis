@@ -15,7 +15,7 @@ import { Card } from "../Card";
 
 <ComponentStatus stage="rc" responsive="yes" accessible="no" />
 
-Tooltips provide in-context information that briefly explain the function of a
+`Tooltip` provides in-context information that briefly explain the function of a
 UI element.
 
 `Tooltip` will apply a tooltip to a single wrapped Element.
@@ -35,28 +35,36 @@ import { Tooltip } from "@jobber/components/Tooltip";
 
 ## Design & Usage Guidelines
 
-When contributing to, or consuming the Tooltip component, consider the
+When contributing to, or consuming the `Tooltip` component, consider the
 following:
 
 ### Usage
 
-- A tooltip should be used to introduce a novel UI element or highlight a change
-  to an existing interface.
-- A tooltip should contain information that is helpful, but not necessary for
-  the user to successfully interact with the page.
+- A `Tooltip` can provide the user with additional context about an element of the
+  UI. For example, a `Button` with only an icon might benefit from a `Tooltip` to help
+  clarify the action the `Button` will perform.
+- The information in a `Tooltip` should not be necessary for the user to successfully 
+  complete a task. It should provide a "tip" to use the "tools" in the UI.
+- `Tooltip` should _not_ be used to introduce a new element to an interface, or contain
+  actions or other content. Use [Popover](https://atlantis.getjobber.com/components/popover) instead.
 
 ### Content
 
-- Tooltip content should consist of only text and an optional "dismiss" CTA
-- Tooltip text content should not exceed 3 lines
+- `Tooltip` content should consist of only text
+- `Tooltip` text content should not exceed 3 lines
+
+### Related Components
+
+- To introduce a novel change to the interface, highlight new functionality, or offer
+  a temporary, dismissible "attached" element to part of the UI, use [Popover](https://atlantis.getjobber.com/components/popover).
 
 ## Deficiencies
 
 ### Accessibility
 
 - Hover content should show when the target element is focused. In order to make
-  tooltip content available to those users who don't use a mouse (keyboard only,
-  mobile, etc.) the Tooltip component should show its content when the child
+  `Tooltip` content available to those users who don't use a mouse (keyboard only,
+  mobile, etc.) the `Tooltip` component should show its content when the child
   element has focus. More info:
   [WCAG 2.1 Content on Hover or Focus](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)
 
