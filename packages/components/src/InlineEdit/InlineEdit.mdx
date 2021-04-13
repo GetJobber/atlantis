@@ -27,6 +27,8 @@ import { InlineEdit } from "@jobber/components/InlineEdit";
   will demonstrate this at a higher fidelity.
 -->
 
+[coming soon]
+
 ## Props
 
 <Props of={InlineEdit} />
@@ -38,9 +40,9 @@ import { InlineEdit } from "@jobber/components/InlineEdit";
   See `Button.mdx` for a good example of this.
 -->
 
-## Usage Guidelines
+[coming soon]
 
-The `<InlineEdit>` will... _Add a brief description of the component_
+## Usage Guidelines
 
 <!--
   What is the design purpose of this component? How do its responsibilities
@@ -51,6 +53,34 @@ The `<InlineEdit>` will... _Add a brief description of the component_
   to initiate, complete, and reverse actions.” vs “Buttons are rectangular elements
   that have a green background and white text”).
 -->
+
+The `<InlineEdit>` will be used to switch between displaying a value and displaying the component to update or change the value. The user can interact with a single data point in a **read** state that transforms into an input field for **edit** state, with an associated **save** and **cancel** action to update that one piece of data. 
+
+InlineEdit will be used for modifying a single piece of data/information that could be presented as content on its own or may have a default setting. It will have two states a **read** and an **edit** state. The **read** state will show as clearly editable data field with an 'edit’ icon next to data. The **show** state will have a small input and a way to ‘cancel’ any changes made to the data.
+
+Scenarios where InlineEdit should not be used include the following:
+- Should not be used inside of a modal 
+- Should not be used to replace **forms** as a primary means of data entry (e.g. first time create) 
+- Should not be used with an Input Group 
+- Should not be used in cases where there are multiple settings changes (2+ fields)
+
+## Other Considerations
+
+InlineEdit will move us closer towards allowing our customers to be able to edit and save from one place and not have to switch between page views to edit information (single page application). It is important to consider how this component will work with existing and future edit and save patterns the future. As part of this work, we explored existing and future edit patterns that will need to be considered as part of implementation of this component.
+
+### Existing Patterns
+
+**Create Pattern:** InlineEdit will not be used in a **create new** context. We will continue to use our current Form component and single layout page view for first time create. This applies to client, properties and objects.
+
+**Modal Edit:** We will continue using Modal editing for global settings (information that will change across the product such as client and property information) and/or if the information to be edited has a more complex interface than can be shown on a preview state (e.g. notification templates and business hours)
+
+### New InlineEdit Patterns
+**Default InlineEdit:** This proposal is for the smallest iteration of InlineEdit which includes a default setting. This will be used for small, single input data changes that have a default setting built in and allows quick changes in a view state.
+
+**Multiline InlineEdit:** A Multiline InlineEdit will be used for input changes that do not require defaults and generally require more than a single data change. It will be used for InputText only. If a **read** state is required then it will read ‘None’. This can be used in external and internal facing notes.
+
+**Bulk InlineEdit:** Bulk InlineEdit will be used for groups of 2+ related inputs that can be changed at once and do not affect global settings (information that has been created on the client or propoerty and exists in mulitple locations). This component should only be used if the **read** and **edit** view are similar in size and layout, do not take up more space between the two views and/or if the information has already been specified in a global form setting (e.g. custom fields on objects, line items)
+
 
 ## Content Guidelines
 
@@ -63,12 +93,30 @@ The `<InlineEdit>` will... _Add a brief description of the component_
   (poor connection, empty states, flaky GPS data?)
 -->
 
+The InlineEdit component will be used to present content to a user that has small, single input default settings. It can be used with the following components InputText, InputTime, InputSelect, InputNumber. It is recommended that data be kept to a single numerical character or text (e.g. there should never be a sentence inside of an InlineEdit component for InputText)
+
+If content is not required, or is empty, use a sensible placeholder value. The default value if none is provided or required can be “None”
+ 
+
 ## Accessibility
 
 <!--
   Describe the accessibility concerns for the component. How does it handle touch vs cursor vs
   keyboard events? Should it capture input? What should a screen reader see when it's focuse?
 -->
+
+For the Inline Edit **read** state:
+- User should be able to tab into the InputEdit and the field should then focus
+- The second tab key should take the user out of the InputEdit field and onto the next focusable element on the page
+- Pressing the ENTER key on the InputEdit component converts the component into the ‘Edit’ state
+
+For the Inline Edit **edit** state
+- User should be able to tab between the Input field and the action buttons (save and cancel)
+- Arrow navigation also takes the user between the Input field and the action buttons
+- Pressing the ENTER key in the **edit** state will save the data entered
+- Pressing the Escape key exits the **edit** state, places the user back in the **read** state and keeps them on the InlineEdit component
+
+AriaLabels must be present for the **save** and **cancel** buttons
 
 ## Responsiveness
 
@@ -79,13 +127,21 @@ The `<InlineEdit>` will... _Add a brief description of the component_
   or lower?
 -->
 
+Any copy that follows the InlineEdit component should be pushed to the right when the InlineEdit component goes into **edit** state. For small screen sizes, the text should truncate to a second line and the component should always remain inline.
+
+![image](https://user-images.githubusercontent.com/49729186/114600801-ffa1a600-9c51-11eb-8a59-de34d1165536.png)
+
+If the input is on the far right side of it's container while in **read** state, the controls should re-flow beneath the input on **edit** state to avoid a jarring reflow.
+
+![image](https://user-images.githubusercontent.com/49729186/114600825-05978700-9c52-11eb-8e0b-f0329beecf3d.png)
+
 ## Mockup
 
 <iframe
   style="border: 1px solid rgba(0, 0, 0, 0.1);"
   width="800"
   height="450"
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F3BXCXXD9glMtj8RAHjXiQC%2FDesign-System-Contribution-TEMPLATE%3Fnode-id%3D332%253A5526"
+  src="https://www.figma.com/file/nStDVM7Uir50rrDz5T9CLp/Design-System-Contribution-Inline-Edit?node-id=26%3A2"
   allowfullscreen
 ></iframe>
 
@@ -96,11 +152,20 @@ The `<InlineEdit>` will... _Add a brief description of the component_
   widely supported yet?
 -->
 
-## Notes
+[Figma Proposal](https://www.figma.com/file/nStDVM7Uir50rrDz5T9CLp/Design-System-Contribution-Inline-Edit?node-id=26%3A2)
 
+## Notes
 <!--
   What decisions worth remembering have gone into this component? Did we consider any potentially valuable
   functionality that we’re not implementing right now for scope purposes? Are there any design decisions
   that might need explaining beyond the usage guidelines? This will help consumers understand this component
   more fully.
 -->
+See usage guidelines
+
+## Other Design Libraries
+
+- [Atlassian InlineEdit](https://atlassian.design/patterns/inline-edit)
+- [Anvil InlineEdit](https://anvil.servicetitan.com/components/inline-edit/)
+
+
