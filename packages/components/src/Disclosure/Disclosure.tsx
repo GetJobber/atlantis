@@ -19,7 +19,7 @@ interface DisclosureProps {
   /**
    * Control if the disclosure component is open or closed.
    */
-  readonly open: boolean;
+  readonly open?: boolean;
 
   /**
    * This sets the default open state of the disclosure.
@@ -27,7 +27,7 @@ interface DisclosureProps {
    * For use when the component is being used as an Uncontrolled Component.
    * @default false
    */
-  readonly defaultOpen: boolean;
+  readonly defaultOpen?: boolean;
 
   /**
    * This function would toggle the open state.
@@ -62,7 +62,9 @@ export function Disclosure({
           <Icon size="large" name="arrowDown" color="green" />
         </span>
       </summary>
-      <span className={contentClassName}>{children}</span>
+      <span className={contentClassName}>
+        <Content>{children}</Content>
+      </span>
     </details>
   );
 
@@ -72,7 +74,7 @@ export function Disclosure({
     setOpen(!isOpen);
 
     if (onRequestToggle) {
-      onRequestToggle(isOpen);
+      onRequestToggle(!isOpen);
     }
   }
 }

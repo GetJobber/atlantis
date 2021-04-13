@@ -21,6 +21,10 @@ displaying the background color together.
   outline-color: none;
 }
 
+.summary::-webkit-details-marker {
+  display: none;
+}
+
 .summary:hover {
   background: var(--color-yellow--lightest);
 }
@@ -33,10 +37,6 @@ displaying the background color together.
 
 .summary h4 {
   flex: 1;
-}
-
-.summary::-webkit-details-marker {
-  display: none;
 }
 
 .summary * {
