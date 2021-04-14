@@ -6,15 +6,12 @@ showDirectoryLink: true
 ---
 
 import { Playground, Props } from "docz";
-import { ComponentStatus } from "@jobber/docx";
 import { useRef } from "react";
 import { Button } from "@jobber/components/Button";
 import { showToast } from ".";
 import { Toast } from "./Toast";
 
 # Toast
-
-<ComponentStatus stage="ready" responsive="no" accessible="no" />
 
 Toasts are short, temporary messages used to inform users that a process was
 performed. They provide visual feedback on the outcome of an action, and require
@@ -39,7 +36,13 @@ import { showToast } from "@jobber/components/Toast";
   />
 </Playground>
 
-## Design & Usage Guidelines
+## Props
+
+<Props of={Toast} />
+
+---
+
+## Usage Guidelines
 
 When contributing to, or consuming the Toast component, consider the following:
 
@@ -51,14 +54,11 @@ When contributing to, or consuming the Toast component, consider the following:
 - Don't use `Dismiss` or `Cancel` as an action label.
   - Examples of action labels: `Undo`, `View`, `Refresh`.
 
-## Props
-
-<Props of={Toast} />
-
-## Variations
+### Variations
 
 Toasts have 3 variations, `info`, `success`, and `error`. Each should be used
-appropriatly when using Toast.
+appropriatly when using Toast. For most errors, consider using
+[Banner](https://atlantis.getjobber.com/components/banner).
 
 <Playground>
   {() => {
@@ -97,3 +97,8 @@ appropriatly when using Toast.
     );
   }}
 </Playground>
+
+## Related components
+
+- To provide more lasting user feedback, use
+  [Banner](https://atlantis.getjobber.com/components/banner)

@@ -3,14 +3,11 @@ menu: Components
 ---
 
 import { Playground, Props } from "docz";
-import { ComponentStatus } from "@jobber/docx";
 import { Emphasis } from ".";
 import { Heading } from "../Heading";
 import { Text } from "../Text";
 
 # Emphasis
-
-<ComponentStatus stage="ready" responsive="yes" accessible="yes" />
 
 Use this component to emphasize certain content of a Heading or Text component.
 There are variations on Emphasis, each with their own use case and meaning.
@@ -25,7 +22,7 @@ import { Emphasis } from "@jobber/components/Emphasis";
   </Text>
 </Playground>
 
-## Design & Usage Guidelines
+## Usage Guidelines
 
 ### Bold
 
@@ -66,3 +63,9 @@ only be used on page titles and subtitle, and is similar in meaning to Bold.
 ## Props
 
 <Props of={Emphasis} />
+
+## Related components
+
+- Emphasis only works with
+  [Text](https://atlantis.getjobber.com/packages-components-src-text-text) and
+  [Heading](https://atlantis.getjobber.com/packages-components-src-heading-heading)

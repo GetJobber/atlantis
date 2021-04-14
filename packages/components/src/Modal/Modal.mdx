@@ -6,9 +6,7 @@ showDirectoryLink: true
 ---
 
 import { Playground, Props } from "docz";
-import { ComponentStatus } from "@jobber/docx";
 import { useState } from "react";
-import { Modal } from ".";
 import { Button } from "@jobber/components/Button";
 import { Content } from "@jobber/components/Content";
 import { InputText } from "@jobber/components/InputText";
@@ -16,11 +14,10 @@ import { Text } from "@jobber/components/Text";
 
 # Modal
 
-<ComponentStatus stage="ready" responsive="yes" accessible="yes" />
-
 Modals are overlays that allow users to view, edit, or show informations that
-doesn't require a page to be built. It also prevent users from interacting with
-the rest of the application until a specific action is taken.
+doesn't require a page to be built. It also places the user in a _mode_ of
+interaction where the rest of the application is unavailable until the Modal
+action is completed or canceled, hence the name Modal.
 
 ```ts
 import { Modal } from "@jobber/components/Modal";

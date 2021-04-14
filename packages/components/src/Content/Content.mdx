@@ -6,7 +6,6 @@ showDirectoryLink: true
 ---
 
 import { Playground, Props } from "docz";
-import { ComponentStatus } from "@jobber/docx";
 import { Content } from ".";
 import { Text } from "../Text";
 import { Heading } from "../Heading";
@@ -16,8 +15,6 @@ import { Tabs, Tab } from "../Tabs";
 import { Card } from "../Card";
 
 # Content
-
-<ComponentStatus stage="ready" responsive="yes" accessible="yes" />
 
 Content is a container component which provides its' child elements with
 consistent vertical spacing and padding.
@@ -52,16 +49,16 @@ import { Content } from "@jobber/components/Content";
   </Content>
 </Playground>
 
-## Design Usage & Guidelines
-
-Content should be used whenever you have a container with mixed content that
-requires consistent spacing between the elements.
-
 ## Props
 
 <Props of={Content} />
 
 ---
+
+## Usage Guidelines
+
+Content should be used whenever you have a container with mixed content that
+requires consistent spacing between the elements.
 
 ## Usage
 

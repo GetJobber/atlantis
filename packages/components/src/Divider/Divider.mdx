@@ -6,16 +6,13 @@ showDirectoryLink: true
 ---
 
 import { Playground, Props } from "docz";
-import { ComponentStatus } from "@jobber/docx";
 import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
 import { Divider } from ".";
 
 # Divider
 
-<ComponentStatus stage="ready" responsive="yes" accessible="no" />
-
-Divider is a UI element meant to divide to areas of content.
+Divider is a UI element meant to divide two areas of content.
 
 ```ts
 import { Divider } from "@jobber/components/Divider";
@@ -29,11 +26,25 @@ import { Divider } from "@jobber/components/Divider";
   </Content>
 </Playground>
 
-## Design & Usage Guidelines
+## Props
+
+<Props of={Divider} />
+
+---
+
+## Usage Guidelines
 
 The `Divider` component comes with no spacing around it. This means that it
 should be used within a [`Content`](/components/content) component.
 
-## Props
+## Accessibility
 
-<Props of={Divider} />
+`Divider` uses an `hr` element internally, but as its' decorative use in
+dividing UI differs from the semantic intent of breaking up paragraphs, it is
+rendered with a `role="none"` to avoid overwhelming screen-reader users with
+un-helpful noise.
+
+## Related components
+
+Our design foundations include guidance on
+[borders](https://atlantis.getjobber.com/borders).
