@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import { Disclosure } from ".";
 
 afterEach(cleanup);
@@ -49,14 +49,18 @@ it("should not attempt to call the handler when it is not set", () => {
   expect(toggleHandler).not.toHaveBeenCalled();
 });
 
-it("should call the handler when toggling the Disclosure component", () => {
+it("should call the handler when toggling the Disclosure component", async () => {
   const toggleHandler = jest.fn();
-  const { getByText } = render(
+  render(
     <Disclosure onRequestToggle={toggleHandler} {...sampleProps}>
       <span>Cotton candy tootsie roll lemon drops tiramisu cake tart.</span>
     </Disclosure>,
   );
 
-  fireEvent.click(getByText(sampleProps.title));
-  expect(toggleHandler).toHaveBeenNthCalledWith(1, true);
+  const summaryElement = document.querySelector("summary");
+  fireEvent.click(summaryElement);
+
+  await waitFor(() => {
+    expect(toggleHandler).toHaveBeenNthCalledWith(1, true);
+  });
 });

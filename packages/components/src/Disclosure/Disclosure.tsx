@@ -54,12 +54,10 @@ export function Disclosure({
   });
 
   return (
-    <details open={isOpen} onClick={onToggle} className={detailsClassName}>
+    <details open={isOpen} onToggle={onToggle} className={detailsClassName}>
       <summary className={summaryClassName}>
         <div className={summaryWrapClassName}>
-          <Heading level={4}>
-            <summary>{title}</summary>
-          </Heading>
+          <Heading level={4}>{title}</Heading>
           <span className={arrowIconWrapperClassName}>
             <Icon size="large" name="arrowDown" color="green" />
           </span>
@@ -71,7 +69,7 @@ export function Disclosure({
     </details>
   );
 
-  function onToggle(event: React.MouseEvent<HTMLElement>) {
+  function onToggle(event: React.MouseEvent<HTMLDetailsElement>) {
     event.preventDefault();
 
     setOpen(!isOpen);

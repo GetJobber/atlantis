@@ -3,7 +3,7 @@
 exports[`renders a Disclosure 1`] = `
 <details
   className="details"
-  onClick={[Function]}
+  onToggle={[Function]}
   open={false}
 >
   <summary
@@ -15,9 +15,7 @@ exports[`renders a Disclosure 1`] = `
       <h4
         className="base bold large blue"
       >
-        <summary>
-          Example Disclosure Title
-        </summary>
+        Example Disclosure Title
       </h4>
       <span
         className="arrowIconWrapper"
@@ -53,7 +51,7 @@ exports[`renders a Disclosure 1`] = `
 exports[`renders a Disclosure that is opened by default 1`] = `
 <details
   className="details"
-  onClick={[Function]}
+  onToggle={[Function]}
   open={true}
 >
   <summary
@@ -65,9 +63,7 @@ exports[`renders a Disclosure that is opened by default 1`] = `
       <h4
         className="base bold large blue"
       >
-        <summary>
-          Example Disclosure Title
-        </summary>
+        Example Disclosure Title
       </h4>
       <span
         className="arrowIconWrapper flippedVertical"
