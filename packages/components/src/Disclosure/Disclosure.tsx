@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import classnames from "classnames";
 import styles from "./Disclosure.css";
 import { Heading } from "../Heading";
@@ -32,7 +32,7 @@ export interface DisclosureProps {
    * This function would toggle the open state.
    * For use when the component is being used as a Controlled Component.
    */
-  onRequestToggle?(isOpen: boolean): void;
+  requestOpen?(shouldOpen: boolean): void;
 }
 
 export function Disclosure({
@@ -40,39 +40,45 @@ export function Disclosure({
   title,
   open,
   defaultOpen = false,
-  onRequestToggle,
+  requestOpen,
 }: DisclosureProps) {
-  const [isOpen, setOpen] = useState(open || defaultOpen);
+  const [isOpen, setOpen] = useState(open ?? defaultOpen);
+  const [isMounted, setMount] = useState(false);
 
-  const summaryClassName = classnames(styles.summary);
-  const detailsClassName = classnames(styles.details);
-  const contentClassName = classnames(styles.content);
-  const summaryWrapClassName = classnames(styles.summaryWrap);
+  useEffect(() => {
+    setMount(true);
+  }, []);
+
   const arrowIconWrapperClassName = classnames(styles.arrowIconWrapper, {
     [styles.flippedVertical]: isOpen,
   });
 
   return (
-    <details open={isOpen} onToggle={onToggle} className={detailsClassName}>
-      <summary className={summaryClassName}>
-        <div className={summaryWrapClassName}>
+    <details open={isOpen} onToggle={onToggle} className={styles.details}>
+      <summary className={styles.summary}>
+        <div className={styles.summaryWrap}>
           <Heading level={4}>{title}</Heading>
           <span className={arrowIconWrapperClassName}>
             <Icon size="large" name="arrowDown" color="green" />
           </span>
         </div>
       </summary>
-      <span className={contentClassName}>{children}</span>
+      <span className={styles.content}>{children}</span>
     </details>
   );
 
   function onToggle(event: React.MouseEvent<HTMLDetailsElement>) {
     event.preventDefault();
+    const { open: currentToggleState } = event.target as HTMLDetailsElement;
+
+    if (!isMounted || currentToggleState === isOpen) {
+      return;
+    }
 
     setOpen(!isOpen);
 
-    if (onRequestToggle) {
-      onRequestToggle(!isOpen);
+    if (requestOpen) {
+      requestOpen(!isOpen);
     }
   }
 }

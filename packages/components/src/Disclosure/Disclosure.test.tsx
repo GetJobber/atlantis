@@ -21,20 +21,26 @@ it("renders a Disclosure", () => {
   expect(tree).toMatchSnapshot();
 });
 
-it("renders a Disclosure that is opened by default", () => {
-  const newProps = {
-    ...sampleProps,
-    defaultOpen: true,
-  };
+it("renders a Disclosure which should be closed by default", () => {
+  const { queryByRole } = render(
+    <Disclosure title="I am Disclosure">
+      <span>Bacon ipsum dolor amet leberkas picanha landjaeger ham.</span>
+    </Disclosure>,
+  );
 
-  const tree = renderer
-    .create(
-      <Disclosure {...newProps}>
-        <section>Cotton candy brownie pie powder cotton candy soufflé.</section>
-      </Disclosure>,
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const detailsElement = queryByRole("group");
+  expect(detailsElement.getAttribute("open")).toBeNull();
+});
+
+it("renders a Disclosure that is opened if `defaultOpen` is set", () => {
+  const { queryByRole } = render(
+    <Disclosure defaultOpen title="I am Disclosure">
+      <span>Cotton candy tootsie roll lemon drops tiramisu cake tart.</span>
+    </Disclosure>,
+  );
+
+  const detailsElement = queryByRole("group");
+  expect(detailsElement.getAttribute("open")).not.toBeNull();
 });
 
 it("should not attempt to call the handler when it is not set", () => {
@@ -51,13 +57,13 @@ it("should not attempt to call the handler when it is not set", () => {
 
 it("should call the handler when toggling the Disclosure component", async () => {
   const toggleHandler = jest.fn();
-  render(
-    <Disclosure onRequestToggle={toggleHandler} {...sampleProps}>
+  const { queryByText } = render(
+    <Disclosure requestOpen={toggleHandler} {...sampleProps}>
       <span>Cotton candy tootsie roll lemon drops tiramisu cake tart.</span>
     </Disclosure>,
   );
 
-  const summaryElement = document.querySelector("summary");
+  const summaryElement = queryByText(sampleProps.title);
   fireEvent.click(summaryElement);
 
   await waitFor(() => {
