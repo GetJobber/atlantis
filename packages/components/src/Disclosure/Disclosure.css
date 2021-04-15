@@ -47,6 +47,7 @@
 
 .content {
   display: block;
+  padding: var(--space-small) 0;
 }
 
 .details[open] > .content {

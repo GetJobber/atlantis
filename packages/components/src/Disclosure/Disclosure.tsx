@@ -1,7 +1,6 @@
 import React, { ReactNode, useState } from "react";
 import classnames from "classnames";
 import styles from "./Disclosure.css";
-import { Content } from "../Content";
 import { Heading } from "../Heading";
 import { Icon } from "../Icon";
 
@@ -63,9 +62,7 @@ export function Disclosure({
           </span>
         </div>
       </summary>
-      <span className={contentClassName}>
-        <Content>{children}</Content>
-      </span>
+      <span className={contentClassName}>{children}</span>
     </details>
   );
 

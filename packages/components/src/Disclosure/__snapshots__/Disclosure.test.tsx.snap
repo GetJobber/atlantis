@@ -37,13 +37,9 @@ exports[`renders a Disclosure 1`] = `
   <span
     className="content"
   >
-    <div
-      className="padded base"
-    >
-      <p>
-        Wafer topping soufflé bear claw cake chocolate toffee.
-      </p>
-    </div>
+    <p>
+      Wafer topping soufflé bear claw cake chocolate toffee.
+    </p>
   </span>
 </details>
 `;
@@ -85,13 +81,9 @@ exports[`renders a Disclosure that is opened by default 1`] = `
   <span
     className="content"
   >
-    <div
-      className="padded base"
-    >
-      <section>
-        Cotton candy brownie pie powder cotton candy soufflé.
-      </section>
-    </div>
+    <section>
+      Cotton candy brownie pie powder cotton candy soufflé.
+    </section>
   </span>
 </details>
 `;
