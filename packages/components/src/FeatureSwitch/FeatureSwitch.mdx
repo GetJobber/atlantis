@@ -6,11 +6,14 @@ showDirectoryLink: true
 ---
 
 import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
 import { FeatureSwitch } from ".";
 import { Text } from "../Text";
 import { useState } from "react";
 
 # Feature Switch
+
+<ComponentStatus stage="ready" responsive="yes" accessible="yes" />
 
 Use the Feature Switch to give users control over a settings-level feature. The
 Feature Switch should tell the user what the feature is, allow them to turn it
@@ -44,12 +47,6 @@ import { FeatureSwitch } from "@jobber/components/FeatureSwitch";
   }}
 </Playground>
 
-## Props
-
-<Props of={FeatureSwitch} />
-
----
-
 ## Design Usage and Guidelines
 
 The Feature Switch is intended to be used in Settings for features that apply to
@@ -61,6 +58,12 @@ sent.
 If the user is making a per-use-case on/off decision, such as enabling automatic
 payments for a single invoice, use the
 [Switch](https://atlantis.getjobber.com/components/switch) component.
+
+## Props
+
+<Props of={FeatureSwitch} />
+
+---
 
 ## Simplified
 

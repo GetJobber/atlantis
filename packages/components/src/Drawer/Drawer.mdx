@@ -6,6 +6,7 @@ showDirectoryLink: true
 ---
 
 import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
 import { useState } from "react";
 
 import { Drawer, DrawerGrid } from ".";
@@ -16,7 +17,9 @@ import { Page } from "../Page";
 
 # Drawer
 
-Drawers are temporary sidebars that allow users to view supplementary content.
+<ComponentStatus stage="pre" responsive="yes" accessible="no" />
+
+Drawers are temporary sidebars that allow users to view supplemantary content.
 Users can interact with the main content while the drawer is visible.
 
 ```ts
@@ -57,10 +60,3 @@ import { Page } from "@jobber/components/Page";
 
 A `DrawerGrid` wraps the content and the drawer component. It allows the content
 to fill the available space when a user toggles the drawer.
-
-## Related components
-
-- For an experience where the user should not be able to interact with the rest
-  of the view, use [Modal](https://atlantis.getjobber.com/components/modal).
-- For content that is grouped but does not need to have its' visibility toggles,
-  use [Card](https://atlantis.getjobber.com/components/card).

@@ -6,16 +6,16 @@ showDirectoryLink: true
 ---
 
 import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
 import { useState } from "react";
-import { Banner } from "@jobber/components/Banner";
 import { InputAvatar } from ".";
 
 # Input Avatar
 
-<Banner type="warning" dismissible={false}>
-  **Experimental:** InputAvatar component allows you to display an avatar with
-  options input a new one or remove it.
-</Banner>
+<ComponentStatus stage="pre" responsive="yes" accessible="yes" />
+
+**Experimental:** InputAvatar component allows you to display an avatar with
+options input a new one or remove it.
 
 ```ts
 import { InputAvatar } from "@jobber/components/InputAvatar";

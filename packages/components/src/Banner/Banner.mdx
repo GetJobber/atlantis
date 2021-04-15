@@ -12,8 +12,11 @@ import { Content } from "@jobber/components/Content";
 
 # Banner
 
+<ComponentStatus stage="ready" responsive="yes" accessible="yes" />
+
 Banners provide information about important changes, persistent conditions, and
-system errors.
+system errors. They're positioned at the top of the screen or near the content
+they reference, and are persistent until dismissed or the issue is resolved.
 
 ```ts
 import { Banner } from "@jobber/components/Banner";
@@ -29,13 +32,7 @@ import { Banner } from "@jobber/components/Banner";
 
 ---
 
-## Usage Guidelines
-
-Banners are a useful means of providing feedback from the system to the user.
-They should be positioned at the top of the screen or near the content they
-reference, and should be persistent until dismissed or the issue is resolved.
-
-### Notice message
+## Notice message
 
 Use notice banners to provide information about:
 
@@ -54,13 +51,13 @@ or change is important if context is not provided elsewhere.
   </Banner>
 </Playground>
 
-### Success message
+## Success message
 
 Success banners are appropriate when:
 
 <ul>
   <li>success feedback had a call to action</li>
-  <li>success feeback is reliant on a pageload or otherwise delayed</li>
+  <li>success feeback is delayed</li>
 </ul>
 
 Otherwise, use [toasts](toast) as the default for success messages.
@@ -78,7 +75,7 @@ Otherwise, use [toasts](toast) as the default for success messages.
   </Banner>
 </Playground>
 
-### Warning message
+## Warning message
 
 Use warning banners when:
 
@@ -99,7 +96,7 @@ workflow.
   </Banner>
 </Playground>
 
-### Error message
+## Error message
 
 Use error banners when:
 
@@ -135,7 +132,7 @@ to resolve or troubleshoot the issue if possible.
   </Banner>
 </Playground>
 
-### Actions in Banners
+## Actions in Banners
 
 It is discouraged to use a `<Button />` component when requiring an action
 within a `Banner`. If you require an action, use the `primaryActions` prop. The
@@ -168,6 +165,4 @@ within a `Banner`. If you require an action, use the `primaryActions` prop. The
 ## Related components
 
 - To provide low priority, temporary feedback on the outcome of a user action,
-  use [Toast](toast) instead
-- To provide more feedback for specific field errors, use
-  [InputValidation](https://atlantis.getjobber.com/components/input-validation)
+  use [Toast](toast) instead.
