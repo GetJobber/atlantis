@@ -123,14 +123,17 @@ export default {
 
 ### Hide / Show Logo
 
-The logo within the sidebar can be hidden if required by providing an
-`undefined` value to `title`.
+The logo within the sidebar can be hidden if required by adjusting `hasLogo` to
+false. By default it is `true`
 
 ```
 // doczrc.js
 export default {
   ...,
-  title: undefined
+  themeConfig: {
+    ...,
+    hasLogo: false
+  }
 }
 ```
 
