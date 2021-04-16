@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.8](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.4.7...@jobber/docz-tools@1.4.8) (2021-04-16)
+
+
+### Bug Fixes
+
+* **docz-tools:** change configuration option for hiding logo to resolve undefined page titles  ([#503](https://github.com/GetJobber/atlantis/issues/503)) ([0372f97](https://github.com/GetJobber/atlantis/commit/0372f973dd5b5d25de2ded5667b652d95b6a58b8))
+
+
+
+
+
 ## [1.4.7](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.4.6...@jobber/docz-tools@1.4.7) (2021-04-13)
 
 **Note:** Version bump only for package @jobber/docz-tools
