@@ -15,6 +15,8 @@
   --button--color-disabled: var(--color-grey--lighter);
   --button--color-secondary: var(--color-white);
   --button--color-tertiary: var(--color-white);
+
+  --button--duration-loading: 2s;
 }
 
 .button {
@@ -210,7 +212,7 @@ a.tertiary:focus {
   background-size: var(--space-larger) var(--space-larger);
   pointer-events: none;
   cursor: not-allowed;
-  animation-duration: var(--timing-slowest);
+  animation-duration: var(--button--duration-loading);
   animation-iteration-count: infinite;
   animation-name: animateStripes;
   animation-timing-function: linear;
