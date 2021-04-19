@@ -76,7 +76,7 @@ export function ComponentStatus({
   };
 
   return (
-    <div>
+    <div style={{ display: "none" }}>
       <StatusShield {...stageData} />
       <StatusShield {...responsiveData} />
       <StatusShield {...accessibleData} />
