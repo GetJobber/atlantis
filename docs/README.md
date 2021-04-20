@@ -21,7 +21,7 @@ developers to quickly build beautiful and consistent interfaces for our users.
 
 ## Development
 
-##### Prerequisites
+### Prerequisites
 
 - `node@10` or higher
 - `npm@6` or higher
@@ -39,6 +39,28 @@ To start the [docz](https://www.docz.site/) development server:
 ```sh
 npm start
 ```
+
+### Installing packages
+
+Atlantis are installed and updated using [npm](https://www.npmjs.com/). This following list
+has installation links for each package:
+
+#### Design system
+
+These are the core packages you'll need to build with Atlantis:
+
+- [Components](https://atlantis.getjobber.com/packages/components#installation)
+- [Design foundations](https://atlantis.getjobber.com/packages/design#installation)
+- [Hooks](https://atlantis.getjobber.com/packages/hooks#installing)
+
+#### Tooling and configuration
+
+If you're looking to build documentation and tooling using Atlantis' development standards,
+these packages will be useful:
+
+- [Docz tools](https://atlantis.getjobber.com/packages/docz-tools#usage)
+- [EsLint configuration](https://atlantis.getjobber.com/packages/eslint-config)
+- [StyleLint configuration](https://atlantis.getjobber.com/packages/stylelint-config#installing)
 
 ## Generating a Component
 
