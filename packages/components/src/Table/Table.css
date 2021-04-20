@@ -1,6 +1,6 @@
 .table {
-  --border-color: var(--color-grey--lighter);
-  --header-border-color: var(--color-blue);
+  --border-color: var(--color-border);
+  --header-border-color: var(--color-border--section);
   --horizontal-inset: var(--space-base);
   position: relative;
   width: 100%;

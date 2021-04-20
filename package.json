@@ -23,7 +23,8 @@
     "release-the-kraken": "npm ci && lerna publish",
     "prerelease": "lerna publish --canary --dist-tag next --preid pre",
     "ci:release": "lerna publish --yes",
-    "version": "node ensureChangelogHeaders.js"
+    "version": "node ensureChangelogHeaders.js",
+    "convertIcoMoon": "scripts/convertIcoMoon.ts"
   },
   "repository": {
     "type": "git",

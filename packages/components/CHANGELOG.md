@@ -8,6 +8,107 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.28.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.28.2...@jobber/components@2.28.3) (2021-04-20)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.28.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.28.1...@jobber/components@2.28.2) (2021-04-19)
+
+
+### Bug Fixes
+
+* **design:** Update timing variables and docs ([#509](https://github.com/GetJobber/atlantis/issues/509)) ([e012fd2](https://github.com/GetJobber/atlantis/commit/e012fd2a2659a22a0709a0c25ea378a3bc2b0ebb))
+
+
+
+
+
+## [2.28.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.28.0...@jobber/components@2.28.1) (2021-04-13)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.28.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.27.8...@jobber/components@2.28.0) (2021-04-09)
+
+
+### Features
+
+* **components:** Add new popover component ([#494](https://github.com/GetJobber/atlantis/issues/494)) ([f0febe4](https://github.com/GetJobber/atlantis/commit/f0febe4787787c1dd2b823eaf3f02747058cdebf))
+
+
+
+
+
+## [2.27.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.27.7...@jobber/components@2.27.8) (2021-04-08)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.27.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.27.6...@jobber/components@2.27.7) (2021-04-07)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.27.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.27.5...@jobber/components@2.27.6) (2021-04-06)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.27.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.27.4...@jobber/components@2.27.5) (2021-04-06)
+
+
+### Bug Fixes
+
+* **components:** flip order of terms and descriptions ([#490](https://github.com/GetJobber/atlantis/issues/490)) ([f8d8dca](https://github.com/GetJobber/atlantis/commit/f8d8dca7e1a2a3f1312ab8d380493d4d8612a23e))
+* **components:** make divider a non-semantic element ([#491](https://github.com/GetJobber/atlantis/issues/491)) ([0ffcced](https://github.com/GetJobber/atlantis/commit/0ffcced593b09f3cf14ac866c601822e69fd76f9))
+
+
+
+
+
+## [2.27.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.27.3...@jobber/components@2.27.4) (2021-03-22)
+
+
+### Bug Fixes
+
+* **docz-tools:** fixes the broken github link ([#488](https://github.com/GetJobber/atlantis/issues/488)) ([65bdf42](https://github.com/GetJobber/atlantis/commit/65bdf42725144aea40b41209a5ef43e311d1ff67))
+
+
+
+
+
+## [2.27.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.27.2...@jobber/components@2.27.3) (2021-03-16)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.27.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.27.1...@jobber/components@2.27.2) (2021-03-08)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 ## [2.27.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.27.0...@jobber/components@2.27.1) (2021-03-05)
 
 

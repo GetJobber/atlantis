@@ -8,6 +8,138 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.10](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.4.9...@jobber/docz-tools@1.4.10) (2021-04-20)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.4.9](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.4.8...@jobber/docz-tools@1.4.9) (2021-04-19)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.4.8](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.4.7...@jobber/docz-tools@1.4.8) (2021-04-16)
+
+
+### Bug Fixes
+
+* **docz-tools:** change configuration option for hiding logo to resolve undefined page titles  ([#503](https://github.com/GetJobber/atlantis/issues/503)) ([0372f97](https://github.com/GetJobber/atlantis/commit/0372f973dd5b5d25de2ded5667b652d95b6a58b8))
+
+
+
+
+
+## [1.4.7](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.4.6...@jobber/docz-tools@1.4.7) (2021-04-13)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.4.6](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.4.5...@jobber/docz-tools@1.4.6) (2021-04-09)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.4.5](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.4.4...@jobber/docz-tools@1.4.5) (2021-04-08)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.4.4](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.4.3...@jobber/docz-tools@1.4.4) (2021-04-07)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.4.3](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.4.2...@jobber/docz-tools@1.4.3) (2021-04-06)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.4.2](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.4.1...@jobber/docz-tools@1.4.2) (2021-04-06)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.4.1](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.4.0...@jobber/docz-tools@1.4.1) (2021-03-22)
+
+
+### Bug Fixes
+
+* **docz-tools:** fixes the broken github link ([#488](https://github.com/GetJobber/atlantis/issues/488)) ([65bdf42](https://github.com/GetJobber/atlantis/commit/65bdf42725144aea40b41209a5ef43e311d1ff67))
+
+
+
+
+
+# [1.4.0](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.3.0...@jobber/docz-tools@1.4.0) (2021-03-19)
+
+
+### Features
+
+* **docz-tools:** DoczTOC component ([#471](https://github.com/GetJobber/atlantis/issues/471)) ([76d02a1](https://github.com/GetJobber/atlantis/commit/76d02a16547c5124f0ed638c9c256a2b0da97ddd))
+
+
+
+
+
+# [1.3.0](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.2.7...@jobber/docz-tools@1.3.0) (2021-03-18)
+
+
+### Features
+
+* **docz-tools:** added theme configuration options for hiding actions, logo and fixed sidebar  ([#487](https://github.com/GetJobber/atlantis/issues/487)) ([6029e38](https://github.com/GetJobber/atlantis/commit/6029e38295bde737df1f4cd369027a96534b36d9))
+
+
+
+
+
+## [1.2.7](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.2.6...@jobber/docz-tools@1.2.7) (2021-03-16)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.2.6](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.2.5...@jobber/docz-tools@1.2.6) (2021-03-16)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.2.5](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.2.4...@jobber/docz-tools@1.2.5) (2021-03-08)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
 ## [1.2.4](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.2.3...@jobber/docz-tools@1.2.4) (2021-03-05)
 
 

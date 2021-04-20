@@ -1,8 +1,8 @@
 {
   "name": "@jobber/docz-tools",
-  "version": "1.2.4",
+  "version": "1.4.10",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,12 +11,13 @@
   "license": "ISC",
   "dependencies": {
     "@emotion/react": "^11.1.4",
-    "@jobber/components": "^2.27.1",
-    "@jobber/design": "^0.10.0",
+    "@jobber/components": "^2.28.3",
+    "@jobber/design": "^0.10.3",
     "deepmerge": "^4.2.2",
     "ts-xor": "^1.0.8"
   },
   "peerDependencies": {
+    "copy-text-to-clipboard": "*",
     "docz": "*",
     "gatsby-theme-docz": "*",
     "re-resizable": "*",

@@ -16,5 +16,5 @@ export function Divider({ size = "base" }: DividerProps) {
     [styles.large]: size === "large",
   });
 
-  return <hr className={className} />;
+  return <hr className={className} role="none" />;
 }

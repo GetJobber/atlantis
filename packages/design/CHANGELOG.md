@@ -8,6 +8,33 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.3](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.10.2...@jobber/design@0.10.3) (2021-04-19)
+
+
+### Bug Fixes
+
+* **design:** Update timing variables and docs ([#509](https://github.com/GetJobber/atlantis/issues/509)) ([e012fd2](https://github.com/GetJobber/atlantis/commit/e012fd2a2659a22a0709a0c25ea378a3bc2b0ebb))
+
+
+
+
+
+## [0.10.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.10.1...@jobber/design@0.10.2) (2021-04-07)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.10.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.10.0...@jobber/design@0.10.1) (2021-04-06)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
 # [0.10.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.9.6...@jobber/design@0.10.0) (2021-03-05)
 
 

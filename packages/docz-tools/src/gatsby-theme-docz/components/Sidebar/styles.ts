@@ -1,9 +1,9 @@
-export const sidebar = (width: number) =>
+export const sidebar = (width: number, sidebarOffset: number) =>
   ({
     bg: "greyBlueDark",
-    height: "100vh",
+    height: `calc(100vh - ${sidebarOffset}px)`,
     position: "fixed",
-    top: 0,
+    top: sidebarOffset,
     width: width,
     overflowY: "scroll",
 
