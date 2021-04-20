@@ -12,7 +12,7 @@
   width: 100%;
   border: var(--border-base) solid var(--card--border-color);
   border-radius: var(--radius-base);
-  outline-color: var(--color-outline);
+  outline-color: var(--color-focus);
   background-color: var(--card--background-color);
 }
 

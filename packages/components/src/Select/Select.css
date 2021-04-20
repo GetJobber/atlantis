@@ -76,7 +76,7 @@
 
 .select:focus {
   box-shadow: none;
-  border-color: var(--color-outline);
+  border-color: var(--color-focus);
   outline: none;
 }
 

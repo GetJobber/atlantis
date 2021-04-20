@@ -6,9 +6,24 @@ route: /colors
 
 # Colors
 
-Colors for the Jobber Atlantis Design System.
+Color can provide a visual cue for users to navigate and understand an
+interface.
+
+By defining and adding meaning to color use, can can build simpler, more
+consistent interfaces and a more accessible product for all.
+
+Atlantis is built with a semantic layer overtop of a base pallet; use the
+semantic color values whenever possible to ensure you are using colors for their
+intended purpose.
+
+<Banner type="warning" dismissible={false}>
+  Color should never be the single means of conveying information in an
+  interface. Use labels, iconography, or hints for assistive technology
+  alongside color to ensure your content can be understood by everyone.
+</Banner>
 
 import { ColorSwatches } from "@jobber/docx";
 import colors from "../colors";
+import { Banner } from "@jobber/components/Banner";
 
 <ColorSwatches colors={colors.customProperties} />

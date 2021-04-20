@@ -14,14 +14,6 @@
   --card--accent-color: var(--color-invoice);
 }
 
-.outlineColor {
-  --card--accent-color: var(--color-outline);
-}
-
-.errorColor {
-  --card--accent-color: var(--color-error);
-}
-
 .blue {
   --card--accent-color: var(--color-blue);
 }

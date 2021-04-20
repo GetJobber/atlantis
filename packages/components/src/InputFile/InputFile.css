@@ -1,6 +1,6 @@
 :root {
   --border-color: var(--color-border);
-  --border-active-color: var(--color-outline);
+  --border-active-color: var(--color-focus);
 }
 
 .dropZoneBase {

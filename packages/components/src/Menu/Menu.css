@@ -94,7 +94,7 @@
 .action:hover,
 .action:focus {
   background-color: var(--color-yellow--lightest);
-  outline-color: var(--color-outline);
+  outline-color: var(--color-focus);
 }
 
 .icon {
