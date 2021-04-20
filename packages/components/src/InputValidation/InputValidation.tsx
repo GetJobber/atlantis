@@ -31,7 +31,12 @@ export function InputValidation({ message }: InputValidationProps) {
                 exit="slideOut"
                 transition={{ duration: 0.2 }}
               >
-                <div className={styles.message} aria-live="assertive">
+                <div
+                  className={styles.message}
+                  aria-live="assertive"
+                  role="alert"
+                  tabIndex={0}
+                >
                   <Text variation="error">{msg}</Text>
                 </div>
               </motion.div>
