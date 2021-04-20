@@ -6,9 +6,10 @@ showDirectoryLink: true
 ---
 
 import { Playground, Props } from "docz";
-import { ComponentStatus } from "@jobber/docx";
 import { Content } from "../Content";
 import { Heading } from "../Heading";
+import { Text } from "../Text";
+import { Banner } from "../Banner";
 import { Button } from "../Button";
 import { Checkbox } from "../Checkbox";
 import { useState, useRef } from "react";
@@ -16,9 +17,9 @@ import { Popover } from ".";
 
 # Popover
 
-<ComponentStatus stage="pre" responsive="no" accessible="no" />
-
-Write a description about what Popover component is trying to achieve.
+A Popover displays floating informative and actionable content positioned in
+relation to a target. The Popover can contain content, media, or other
+components.
 
 ```ts
 import { Popover } from "@jobber/components/Popover";
@@ -43,63 +44,120 @@ import { Popover } from "@jobber/components/Popover";
           preferredPlacement="right"
           onRequestClose={() => setShowPopover(false)}
         >
-          <Content>Here is your first popover</Content>
+          <Content>Here is your first Popover</Content>
         </Popover>
       </>
     );
   }}
 </Playground>
 
-<!--
-  It is not necessary to include Design & Usage Guidlelines. Use this section
-  to answer common questions and considerations about component usage.
--->
-
-## Design & Usage Guidelines
-
-When contributing to, or consuming the Popover component, consider the
-following:
-
-### Usage
-
-The popover component displays floating informative and actionable content in
-relation to a target. The popover can contain content, media, or other
-components.
-
-Some scenarios for popover include the following:
-
-- Show available related actions
-- First time experience
-- To call out product features or changes
-
-There are also some outstanding questions:
-
-- Can our current tooltips can be a real tooltip?
-
-### Content
-
-- Popover text content should not exceed 3 lines and can consist of an optional
-  "dismiss" CTA
-
-### Reference Docs
-
-- Documentation on the popper plugin that was used to build the popover
-  component https://popper.js.org/react-popper/v2/
-
 ## Props
 
 <Props of={Popover} />
 
-<!--
-  It is not necessary to provide an example of each prop. Use usage examples to
-  highlight key features of a component or particular considerations.
+## Usage Guidelines
 
-  See `Button.mdx` for a good example of this.
--->
+Some scenarios for Popover include the following:
+
+### Informational
+
+Introducing the user to a new experience, whether their first time using a
+product or to introduce a new or updated functionality in an existing
+experience, Popover can be an excellent choice to highlight a specific piece of
+the experience.
+
+If there is an "acknowledgement" CTA for the user to confirm that they
+understand the change, use a `learning`
+[Button](https://atlantis.getjobber.com/components/button).
+
+<Playground>
+  {() => {
+    const newFeatureButton = useRef();
+    const [showPopover, setShowPopover] = useState(false);
+    return (
+      <>
+        <span ref={newFeatureButton}>
+          <Button
+            label="New Feature"
+            onClick={() => setShowPopover(!showPopover)}
+          />
+        </span>
+        <Popover
+          attachTo={newFeatureButton}
+          open={showPopover}
+          preferredPlacement="right"
+          onRequestClose={() => setShowPopover(false)}
+        >
+          <Content>
+            <Heading>New feature!</Heading>
+            <Text>
+              You can now press a button that you couldn't before. This is
+              important!
+            </Text>
+            <Button
+              label="Got it"
+              variation="learning"
+              onClick={() => setShowPopover(!showPopover)}
+            />
+          </Content>
+        </Popover>
+      </>
+    );
+  }}
+</Playground>
+
+### Functional
+
+Reveal a list of available actions to the user. For example, if the user clicks
+on an element and there are four potential actions they might take, Popover is a
+great way to present those actions. If you're looking to provide a menu of
+actions that comes complete with a trigger button,
+[Menu](https://atlantis.getjobber.com/components/menu) has that bundle ready to
+go.
+
+<Banner type="warning" dismissible={false}>
+  A "functional" Popover hasn't been implemented in a componentized fashion yet.
+</Banner>
+
+### Related Components
+
+To add a menu button that presents multiple actions to the user, use
+[Menu](https://atlantis.getjobber.com/components/menu).
+
+To add a hint about a UI element's function in a permanent fashion (ie revealing
+a Button's label on hover), use
+[Tooltip](https://atlantis.getjobber.com/components/tooltip).
+
+To add an inline informational element that the user can dismiss, consider if
+[Banner](https://atlantis.getjobber.com/components/banner) is the right fit for
+your use case.
+
+## Content Guidelines
+
+- Popover text content should be concise and clear. Try not to go over three
+  lines so the user can get back to what they were doing!
+- In "informational" usage, Popper may have a CTA that allows the user to
+  "acknowledge" and dismiss the Popover; this does not replace the need for the
+  dismiss button
+
+## Accessibility
+
+Popover has a role of `dialog` as it is an element that the user will be "in
+dialogue" with, whether selecting an action, confirming acknowledgement, or
+dismissing the Popover.
+
+Depending on your use case, you may need to add focus management to your usage
+of Popover; for example, if selecting a Button opens a Popover, you will want to
+then set focus to the Popover, and if the user dismisses the Popover, return
+focus to the button that opened the Popover.
+
+If your element is effectively acting as an inline DOM element that the user
+would otherwise encounter when traversing the page, this focus management may
+not be necessary.
 
 ## preferredPlacement options
 
-You have 5 preferredPlacement options you can use
+You have 5 `preferredPlacement` options you can use:
 
 - `right`
 - `top`
@@ -172,3 +230,13 @@ You have 5 preferredPlacement options you can use
     );
   }}
 </Playground>
+
+## Notes
+
+- There is no componentized way to pass in actions for a "functional" Popover
+  yet, but we have a good idea of what that would look like. We believe there
+  may be some opportunity to share elements of Popover with Menu and vice-versa.
+- There is no built-in focus management in Popover, as the specific
+  implementation should drive those considerations
+- Popover uses a plugin called [Popper](https://popper.js.org/react-popper/v2/)
+  to power its' positioning

@@ -5,28 +5,28 @@ import { ButtonDismiss } from "../ButtonDismiss";
 
 export interface PopoverProps {
   /**
-   * Element the popover will attach to and point at. A `useRef` must be attached to an html element
-   * and passed as an attachTo prop in order for the popover to function properly
+   * Element the Popover will attach to and point at. A `useRef` must be attached to an html element
+   * and passed as an attachTo prop in order for the Popover to function properly
    */
   readonly attachTo: Element | React.RefObject<Element | null>;
 
   /**
-   * Pop-over content.
+   * Popover content.
    */
   readonly children: React.ReactNode;
 
   /**
-   * Control popover viability.
+   * Control Popover visibility.
    */
   readonly open: boolean;
 
   /**
-   * Callback executed when the user wants to close/dismiss the popover
+   * Callback executed when the user wants to close/dismiss the Popover
    */
   readonly onRequestClose?: () => void;
 
   /**
-   * Describes the preferred placement of the popper.
+   * Describes the preferred placement of the Popover.
    * @default 'auto'
    */
   readonly preferredPlacement?: "top" | "bottom" | "left" | "right" | "auto";
