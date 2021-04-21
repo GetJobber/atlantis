@@ -1,0 +1,105 @@
+---
+name: Disclosure
+menu: Components
+route: /components/disclosure
+showDirectoryLink: true
+---
+
+import { Playground, Props } from "docz";
+import { Content } from "@jobber/components/Content";
+import { Text } from "@jobber/components/Text";
+import { Disclosure } from ".";
+
+# Disclosure
+
+```ts
+import { Disclosure } from "@jobber/components/Disclosure";
+```
+
+<Playground>
+  <Disclosure title="Open to see more content organa palpatine lobot jawa kamino.">
+    <Content>
+      <Text>
+        Lucas ipsum dolor sit amet darth sebulba solo vader yoda bothan wedge
+        kenobi dantooine hutt.
+      </Text>
+      <Text>
+        Moff qui-gonn darth leia solo hutt gonk darth. Skywalker tatooine
+        dagobah thrawn.
+      </Text>
+    </Content>
+  </Disclosure>
+</Playground>
+
+## Props
+
+<Props of={Disclosure} />
+
+## Usage Guidelines
+
+The `<Disclosure>` will reveal and hide additional information that our users
+may care about, should they choose to learn more about it.
+
+## Content Guidelines
+
+- **Title** should be informative and label the type of content grouped in the
+  body content in it
+  - uses `<Heading level={4}>` component
+- **Content** should be actionable and clear. May contain:
+  - good ol’ plain text
+  - accepts any React component as a child
+  - except: `<Page>`, `<Table>`
+
+## Accessibility
+
+- Users should be able to use their keyboard and toggle the component's
+  open/close state
+- Headings are permitted in `<summary>` elements to provide in-page navigational
+  assistance
+- Include aria-expanded attribute on the trigger to communicate to assistive
+  technology
+- Include aria-controls attribute ties on the trigger to the content it controls
+  using the id of the collapsible container
+- The trigger contains a downward-pointing-arrow to hint that it can be
+  expanded. when the disclosure item is in expanded state, this is rotated 180
+  degrees to point upwards
+- The icon will be given an `aria-hidden="true"` attribute to hide it from
+  assistive technologies, as well as `focusable="false"` to address an
+  inconsistency in IE and older versions of Edge
+
+## Responsiveness
+
+- This component should handle both click and touch, as well as keyboard inputs
+- This component should fill the width of its container
+- If the component is less than `375px` wide, the title will wrap and should not
+  be truncated
+- Text increases/decreases when user zooms in/out
+
+## Notes
+
+### Trade-offs, considerations, and things we want to remember
+
+- We may, in the future, setup an onchange handler that receives
+  expanded/collapsed events. For example so other parts of a page, SPA or not,
+  can subscribe to this and react accordingly.
+- While this is roughly based on a legacy Jobber implementation of an accordion,
+  we haven't fleshed out exactly how Disclosure will behave and look if used in
+  an accordion fashion
+- **Assumption**: `<Heading level=4>` should solve most use cases for this
+  component. We did consider the possibility of opening this up to other levels
+  but for a simpler end-user experience are not making the heading level
+  configurable from the component API at this time.
+
+### Similar components in other design systems
+
+https://reakit.io/docs/disclosure/
+
+https://reach.tech/disclosure/
+
+https://chakra-ui.com/usedisclosure
+
+https://github.com/accessible-ui/disclosure
+
+https://developer.apple.com/design/human-interface-guidelines/macos/buttons/disclosure-controls/
+
+https://polaris.shopify.com/components/behavior/collapsible
