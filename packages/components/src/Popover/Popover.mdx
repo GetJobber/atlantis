@@ -40,7 +40,6 @@ import { Popover } from "@jobber/components/Popover";
         <Popover
           attachTo={divRef}
           open={showPopover}
-          dismissible={true}
           preferredPlacement="right"
           onRequestClose={() => setShowPopover(false)}
         >
@@ -179,12 +178,7 @@ You have 5 `preferredPlacement` options you can use:
             <Button label="Top Reference" />
           </span>
         </Content>
-        <Popover
-          attachTo={topRef}
-          open={showPopover}
-          dismissible={true}
-          preferredPlacement="top"
-        >
+        <Popover attachTo={topRef} open={showPopover} preferredPlacement="top">
           <Content>Top Popover</Content>
         </Popover>
         <Content>
@@ -195,7 +189,6 @@ You have 5 `preferredPlacement` options you can use:
         <Popover
           attachTo={leftRef}
           open={showPopover}
-          dismissible={true}
           preferredPlacement="left"
         >
           <Content>Left Popover</Content>
@@ -208,7 +201,6 @@ You have 5 `preferredPlacement` options you can use:
         <Popover
           attachTo={rightRef}
           open={showPopover}
-          dismissible={true}
           preferredPlacement="right"
         >
           <Content>Right Popover</Content>
@@ -221,7 +213,6 @@ You have 5 `preferredPlacement` options you can use:
         <Popover
           attachTo={bottomRef}
           open={showPopover}
-          dismissible={true}
           preferredPlacement="bottom"
         >
           <Content>Bottom Popover</Content>
