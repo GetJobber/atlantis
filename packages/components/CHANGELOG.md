@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.29.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.28.4...@jobber/components@2.29.0) (2021-04-21)
+
+
+### Features
+
+* **components:** Add new Disclosure component ([#508](https://github.com/GetJobber/atlantis/issues/508)) ([edfaee4](https://github.com/GetJobber/atlantis/commit/edfaee49fcb263be0737fc9f4e8f784aaaa71624))
+
+
+
+
+
 ## [2.28.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.28.3...@jobber/components@2.28.4) (2021-04-21)
 
 
