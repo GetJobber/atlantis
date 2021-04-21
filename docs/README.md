@@ -49,18 +49,18 @@ has installation links for each package:
 
 These are the core packages you'll need to build with Atlantis:
 
-- [Components](https://atlantis.getjobber.com/packages/components#installation)
-- [Design foundations](https://atlantis.getjobber.com/packages/design#installation)
-- [Hooks](https://atlantis.getjobber.com/packages/hooks#installing)
+- [Components](/packages/components)
+- [Design foundations](/packages/design)
+- [Hooks](/packages/hooks)
 
 #### Tooling and configuration
 
 If you're looking to build documentation and tooling using Atlantis' development standards,
 these packages will be useful:
 
-- [Docz tools](https://atlantis.getjobber.com/packages/docz-tools#usage)
-- [EsLint configuration](https://atlantis.getjobber.com/packages/eslint-config)
-- [StyleLint configuration](https://atlantis.getjobber.com/packages/stylelint-config#installing)
+- [Docz tools](/packages/docz-tools)
+- [EsLint configuration](/packages/eslint-config)
+- [StyleLint configuration](/packages/stylelint-config)
 
 ## Generating a Component
 
