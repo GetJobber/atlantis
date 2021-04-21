@@ -4,7 +4,7 @@ import styles from "./Disclosure.css";
 import { Heading } from "../Heading";
 import { Icon } from "../Icon";
 
-export interface DisclosureProps {
+interface DisclosureProps {
   /**
    * Child content that is manged by this component.
    */
