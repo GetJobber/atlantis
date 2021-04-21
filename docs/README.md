@@ -42,7 +42,7 @@ npm start
 
 ### Installing packages
 
-Atlantis are installed and updated using [npm](https://www.npmjs.com/). This following list
+Atlantis packages are installed and updated using [npm](https://www.npmjs.com/). This following list
 has installation links for each package:
 
 #### Design system
