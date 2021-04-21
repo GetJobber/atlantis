@@ -58,7 +58,7 @@ it("should not attempt to call the handler when it is not set", () => {
 it("should call the handler when toggling the Disclosure component", async () => {
   const toggleHandler = jest.fn();
   const { queryByText } = render(
-    <Disclosure requestOpen={toggleHandler} {...sampleProps}>
+    <Disclosure onRequestToggle={toggleHandler} {...sampleProps}>
       <span>Cotton candy tootsie roll lemon drops tiramisu cake tart.</span>
     </Disclosure>,
   );

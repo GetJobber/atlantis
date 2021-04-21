@@ -32,7 +32,7 @@ export interface DisclosureProps {
    * This function would toggle the open state.
    * For use when the component is being used as a Controlled Component.
    */
-  requestOpen?(shouldOpen: boolean): void;
+  onRequestToggle?(shouldOpen: boolean): void;
 }
 
 export function Disclosure({
@@ -40,7 +40,7 @@ export function Disclosure({
   title,
   open,
   defaultOpen = false,
-  requestOpen,
+  onRequestToggle,
 }: DisclosureProps) {
   const [isOpen, setOpen] = useState(open ?? defaultOpen);
   const [isMounted, setMount] = useState(false);
@@ -77,8 +77,8 @@ export function Disclosure({
 
     setOpen(!isOpen);
 
-    if (requestOpen) {
-      requestOpen(!isOpen);
+    if (onRequestToggle) {
+      onRequestToggle(!isOpen);
     }
   }
 }
