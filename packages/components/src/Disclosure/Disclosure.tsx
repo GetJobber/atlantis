@@ -16,33 +16,20 @@ interface DisclosureProps {
   readonly title: string;
 
   /**
-   * Control if the disclosure component is open or closed.
-   */
-  readonly open?: boolean;
-
-  /**
    * This sets the default open state of the disclosure.
    * By default the disclosure is closed.
    * For use when the component is being used as an Uncontrolled Component.
    * @default false
    */
   readonly defaultOpen?: boolean;
-
-  /**
-   * This function would toggle the open state.
-   * For use when the component is being used as a Controlled Component.
-   */
-  onRequestToggle?(shouldOpen: boolean): void;
 }
 
 export function Disclosure({
   children,
   title,
-  open,
   defaultOpen = false,
-  onRequestToggle,
 }: DisclosureProps) {
-  const [isOpen, setOpen] = useState(open ?? defaultOpen);
+  const [isOpen, setOpen] = useState(defaultOpen);
   const [isMounted, setMount] = useState(false);
 
   useEffect(() => {
@@ -75,10 +62,6 @@ export function Disclosure({
       return;
     }
 
-    setOpen(!isOpen);
-
-    if (onRequestToggle) {
-      onRequestToggle(!isOpen);
-    }
+    setOpen(!currentToggleState);
   }
 }
