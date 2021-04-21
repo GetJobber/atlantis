@@ -1,5 +1,4 @@
 import React, { ReactNode, useEffect, useState } from "react";
-import classnames from "classnames";
 import styles from "./Disclosure.css";
 import { Heading } from "../Heading";
 import { Icon } from "../Icon";
@@ -36,16 +35,12 @@ export function Disclosure({
     setMount(true);
   }, []);
 
-  const arrowIconWrapperClassName = classnames(styles.arrowIconWrapper, {
-    [styles.flippedVertical]: isOpen,
-  });
-
   return (
     <details open={isOpen} onToggle={onToggle} className={styles.details}>
       <summary className={styles.summary}>
         <div className={styles.summaryWrap}>
           <Heading level={4}>{title}</Heading>
-          <span className={arrowIconWrapperClassName}>
+          <span className={styles.arrowIconWrapper}>
             <Icon size="large" name="arrowDown" color="green" />
           </span>
         </div>

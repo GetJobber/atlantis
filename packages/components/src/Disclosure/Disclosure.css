@@ -4,7 +4,7 @@
   flex-basis: 0;
 }
 
-.flippedVertical {
+.details[open] .arrowIconWrapper {
   transform: rotateX(180deg);
 }
 
