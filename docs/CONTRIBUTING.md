@@ -157,6 +157,10 @@ follow the following format.
 Want help with your pull request title? We have a
 [tool to help](/pull-request-name-generator).
 
+##### Requesting review
+
+To request a review from Atlantis maintainers, use [Github's review tool](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/requesting-a-pull-request-review) and request from review from `GetJobber/McWeb`.
+
 ## Guiding Principles
 
 ### Documentation first
