@@ -1,5 +1,5 @@
 .arrowIconWrapper {
-  transform-origin: 50% 50% 0;
+  transform-origin: 50% 47.5% 0;
   transition: transform var(--timing-quick);
   flex-basis: 0;
 }
