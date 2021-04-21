@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.28.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.28.3...@jobber/components@2.28.4) (2021-04-21)
+
+
+### Bug Fixes
+
+* **components:** Allow input validation to be read by assistive tech ([#506](https://github.com/GetJobber/atlantis/issues/506)) ([22c6022](https://github.com/GetJobber/atlantis/commit/22c6022e3a4c26a9cc7407a9105062f7b9dfe818))
+
+
+
+
+
 ## [2.28.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.28.2...@jobber/components@2.28.3) (2021-04-20)
 
 **Note:** Version bump only for package @jobber/components
