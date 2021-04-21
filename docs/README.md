@@ -136,7 +136,7 @@ The primary packages in here are:
   - `docx/`
     - Any components internal to the documention viewer itself.
 
-When installing dependancies be sure to install them relative to the appropriate
+When installing dependencies be sure to install them relative to the appropriate
 sub package. For example if you want to use package `foo` in a component you
 would run `npm install foo` from within the `components` directory.
 
