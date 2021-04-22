@@ -21,7 +21,7 @@ developers to quickly build beautiful and consistent interfaces for our users.
 
 ## Development
 
-##### Prerequisites
+### Prerequisites
 
 - `node@10` or higher
 - `npm@6` or higher
@@ -39,6 +39,28 @@ To start the [docz](https://www.docz.site/) development server:
 ```sh
 npm start
 ```
+
+### Installing packages
+
+Atlantis packages are installed and updated using [npm](https://www.npmjs.com/). This following list
+has installation links for each package:
+
+#### Design system
+
+These are the core packages you'll need to build with Atlantis:
+
+- [Components](/packages/components)
+- [Design foundations](/packages/design)
+- [Hooks](/packages/hooks)
+
+#### Tooling and configuration
+
+If you're looking to build documentation and tooling using Atlantis' development standards,
+these packages will be useful:
+
+- [Docz tools](/packages/docz-tools)
+- [EsLint configuration](/packages/eslint-config)
+- [StyleLint configuration](/packages/stylelint-config)
 
 ## Generating a Component
 
@@ -114,7 +136,7 @@ The primary packages in here are:
   - `docx/`
     - Any components internal to the documention viewer itself.
 
-When installing dependancies be sure to install them relative to the appropriate
+When installing dependencies be sure to install them relative to the appropriate
 sub package. For example if you want to use package `foo` in a component you
 would run `npm install foo` from within the `components` directory.
 
