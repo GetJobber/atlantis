@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.29.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.29.0...@jobber/components@2.29.1) (2021-04-22)
+
+
+### Bug Fixes
+
+* **components:** use CSS only to determine whether to open arrow ([#514](https://github.com/GetJobber/atlantis/issues/514)) ([72c6d6f](https://github.com/GetJobber/atlantis/commit/72c6d6f3490da3840bdc101965d20d6371ada042))
+
+
+
+
+
 # [2.29.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.28.4...@jobber/components@2.29.0) (2021-04-21)
 
 
