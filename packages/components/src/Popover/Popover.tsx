@@ -51,25 +51,27 @@ export function Popover({
   );
 
   return (
-    open && (
-      <div
-        role="dialog"
-        ref={setPopperElement}
-        style={popperStyles.popper}
-        className={classes.popover}
-        {...attributes.popper}
-      >
-        <div className={classes.dismissButton}>
-          <ButtonDismiss onClick={onRequestClose} ariaLabel="Close dialog" />
-        </div>
-        {children}
+    <>
+      {open && (
         <div
-          ref={setArrowElement}
-          className={classes.arrow}
-          style={popperStyles.arrow}
-        />
-      </div>
-    )
+          role="dialog"
+          ref={setPopperElement}
+          style={popperStyles.popper}
+          className={classes.popover}
+          {...attributes.popper}
+        >
+          <div className={classes.dismissButton}>
+            <ButtonDismiss onClick={onRequestClose} ariaLabel="Close dialog" />
+          </div>
+          {children}
+          <div
+            ref={setArrowElement}
+            className={classes.arrow}
+            style={popperStyles.arrow}
+          />
+        </div>
+      )}
+    </>
   );
 }
 
