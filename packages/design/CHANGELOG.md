@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.10.3...@jobber/design@0.11.0) (2021-04-23)
+
+
+### Features
+
+* **design:** introduce semantic colors to Atlantis foundation [JOB-28065] ([#444](https://github.com/GetJobber/atlantis/issues/444)) ([aeb4f0b](https://github.com/GetJobber/atlantis/commit/aeb4f0bf9f96680287076a1cbf0f69e0bb6bd122))
+
+
+
+
+
 ## [0.10.3](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.10.2...@jobber/design@0.10.3) (2021-04-19)
 
 
