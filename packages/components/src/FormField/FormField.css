@@ -28,7 +28,7 @@
 }
 
 .wrapper:focus-within {
-  --field--border-color: var(--color-outline);
+  --field--border-color: var(--color-focus);
   --field--wrapper-elevation: var(--elevation-base);
 }
 

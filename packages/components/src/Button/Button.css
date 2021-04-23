@@ -41,7 +41,7 @@
 
 .button:focus,
 a.button:focus {
-  outline-color: var(--color-outline);
+  outline-color: var(--color-focus);
 }
 
 /* Variation */

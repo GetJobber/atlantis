@@ -42,7 +42,7 @@
   margin: auto;
   border: var(--border-base) solid var(--modal--border-color);
   border-radius: var(--radius-base);
-  outline-color: var(--color-outline);
+  outline-color: var(--color-focus);
   background-color: var(--color-white);
 }
 

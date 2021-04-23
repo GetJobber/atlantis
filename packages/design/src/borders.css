@@ -2,6 +2,4 @@
   --border-base: var(--space-minuscule);
   --border-thick: var(--space-smallest);
   --border-thicker: var(--space-smaller);
-  --color-border: var(--color-grey--lighter);
-  --color-border--section: var(--color-blue);
 }

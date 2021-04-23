@@ -12,7 +12,8 @@
     the .js generates, so this should be a stable way of
     tagging this swatch. */
 
-.color[style*="background-color: rgb(255, 255, 255);"] {
+.color[style*="background-color: rgb(255, 255, 255);"],
+.color[style="background-color: var(--color-white);"] {
   box-shadow: var(--shadow-base); /* 1 */
 }
 

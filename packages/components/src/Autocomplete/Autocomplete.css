@@ -57,7 +57,7 @@
 .option:focus,
 .option.active {
   background-color: var(--color-yellow--lightest);
-  outline-color: var(--color-outline);
+  outline-color: var(--color-focus);
 }
 
 .option.separator:not(:last-child) {

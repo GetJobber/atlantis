@@ -16,7 +16,7 @@
   overflow: hidden;
   background-color: var(--file-card--background-color);
   align-items: center;
-  outline-color: var(--color-outline);
+  outline-color: var(--color-focus);
 }
 
 .imageBlock {
