@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.30.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.30.1...@jobber/components@2.30.2) (2021-04-26)
+
+
+### Bug Fixes
+
+* **components:** Fix the css for Select with miniLabel ([#516](https://github.com/GetJobber/atlantis/issues/516)) ([ca6c5cc](https://github.com/GetJobber/atlantis/commit/ca6c5cce2a2a3300a0f180cc54717293c662491a))
+
+
+
+
+
 ## [2.30.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.30.0...@jobber/components@2.30.1) (2021-04-26)
 
 **Note:** Version bump only for package @jobber/components
