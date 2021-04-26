@@ -162,7 +162,7 @@ select.formField {
 
 /* Mini Label */
 
-.miniLabel .select {
+.miniLabel:not(.small) .select {
   padding-top: var(--space-small);
 }
 
