@@ -303,7 +303,7 @@ export function FormField({
        */
 
       if (value !== undefined && name !== undefined) {
-        if (isControlled) {
+        if (isControlled && watch(name) !== value) {
           setValue(name, value.toString());
         }
       }
