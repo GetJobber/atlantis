@@ -16,7 +16,7 @@ exports[`renders a Select with many options 1`] = `
      
   </label>
   <select
-    className="formField"
+    className="formField select"
     id="123e4567-e89b-12d3-a456-426655440003"
     onChange={[Function]}
   >
@@ -67,7 +67,7 @@ exports[`renders a Select with no options 1`] = `
      
   </label>
   <select
-    className="formField"
+    className="formField select"
     id="123e4567-e89b-12d3-a456-426655440001"
     onChange={[Function]}
   />
@@ -105,7 +105,7 @@ exports[`renders a Select with one option 1`] = `
      
   </label>
   <select
-    className="formField"
+    className="formField select"
     id="123e4567-e89b-12d3-a456-426655440002"
     onChange={[Function]}
   >
@@ -147,7 +147,7 @@ exports[`renders correctly as large 1`] = `
      
   </label>
   <select
-    className="formField"
+    className="formField select"
     id="123e4567-e89b-12d3-a456-426655440005"
     onChange={[Function]}
   >
@@ -189,7 +189,7 @@ exports[`renders correctly as small 1`] = `
      
   </label>
   <select
-    className="formField"
+    className="formField select"
     id="123e4567-e89b-12d3-a456-426655440004"
     onChange={[Function]}
   >
@@ -231,7 +231,7 @@ exports[`renders correctly when disabled 1`] = `
      
   </label>
   <select
-    className="formField"
+    className="formField select"
     disabled={true}
     id="123e4567-e89b-12d3-a456-426655440006"
     onChange={[Function]}
@@ -274,7 +274,7 @@ exports[`renders correctly when invalid 1`] = `
      
   </label>
   <select
-    className="formField"
+    className="formField select"
     id="123e4567-e89b-12d3-a456-426655440007"
     onChange={[Function]}
   >

@@ -1,6 +1,7 @@
 export const wrapper: string;
 export const formField: string;
 export const label: string;
+export const select: string;
 export const inline: string;
 export const small: string;
 export const large: string;
