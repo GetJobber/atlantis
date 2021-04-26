@@ -274,9 +274,13 @@ export function FormField({
   );
 
   function fieldElement() {
+    const fieldClasses = classnames(styles.formField, {
+      [styles.select]: type === "select",
+    });
+
     const fieldProps = {
       id: identifier,
-      className: styles.formField,
+      className: fieldClasses,
       name: name,
       disabled: disabled,
       readOnly: readonly,

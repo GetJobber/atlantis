@@ -76,6 +76,11 @@ textarea.formField {
   resize: vertical;
 }
 
+.select {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 select.formField {
   padding-right: calc(var(--field--padding-right) + var(--space-large));
 }
