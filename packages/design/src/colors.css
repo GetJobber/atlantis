@@ -17,24 +17,24 @@
   /* Status Colours */
 
   --color-critical: var(--color-red);
-  --color-critical--light: var(--color-red--lightest);
-  --color-critical--dark: var(--color-red--dark);
+  --color-critical--surface: var(--color-red--lightest);
+  --color-critical--onSurface: var(--color-red--dark);
 
   --color-warning: var(--color-yellow);
-  --color-warning--light: var(--color-yellow--lightest);
-  --color-warning--dark: var(--color-yellow--dark);
+  --color-warning--surface: var(--color-yellow--lightest);
+  --color-warning--onSurface: var(--color-yellow--dark);
 
   --color-success: var(--color-green);
-  --color-success--light: var(--color-green--lightest);
-  --color-success--dark: var(--color-green--dark);
+  --color-success--surface: var(--color-green--lightest);
+  --color-success--onSurface: var(--color-green--dark);
 
   --color-informative: var(--color-lightBlue);
-  --color-informative--light: var(--color-lightBlue--lightest);
-  --color-informative--dark: var(--color-lightBlue--dark);
+  --color-informative--surface: var(--color-lightBlue--lightest);
+  --color-informative--onSurface: var(--color-lightBlue--dark);
 
   --color-inactive: var(--color-blue--light);
-  --color-inactive--light: var(--color-blue--lightest);
-  --color-inactive--dark: var(--color-blue--dark);
+  --color-inactive--surface: var(--color-blue--lightest);
+  --color-inactive--onSurface: var(--color-blue--dark);
 
   /* Typography */
   --color-heading: var(--color-blue);
@@ -46,10 +46,6 @@
   --color-surface--hover: var(--color-yellow--lightest);
   --color-surface--background: var(--color-grey--lightest);
   --color-surface--reverse: var(--color-greyBlue--dark);
-  --color-surface--success: var(--color-green--lighter);
-  --color-surface--error: var(--color-red--lighter);
-  --color-surface--warning: var(--color-yellow--lighter);
-  --color-surface--notice: var(--color-lightBlue--lightest);
 
   --color-border: var(--color-grey--lighter);
   --color-border--section: var(--color-blue);
