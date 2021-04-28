@@ -112,3 +112,24 @@ want to use `Breakpoints`.
     }
   }}
 </Playground>
+
+## Testing with Jest
+
+Use `jest.mock` to set your desired window attributes.
+```tsx
+  jest.mock("@jobber/hooks", () => {
+  return {
+    useResizeObserver: () => [
+      { current: undefined },
+      { width: 1000, height: 100 },
+    ],
+    Breakpoints: {
+      base: 640,
+      small: 500,
+      smaller: 265,
+      large: 750,
+      larger: 1024,
+    },
+  };
+});
+```
