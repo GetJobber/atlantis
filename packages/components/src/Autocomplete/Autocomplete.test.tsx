@@ -272,17 +272,18 @@ it("sets the input value to blank if allowFreeForm is false and not matched", as
   });
 });
 
-it("renders correctly when invalid", () => {
-  const tree = renderer
-    .create(
-      <Autocomplete
-        value={undefined}
-        onChange={() => {}}
-        getOptions={returnOptions([])}
-        placeholder="placeholder_name"
-        invalid
-      />,
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+it("passes the invalid prop to the InputText", () => {
+  const { container } = render(
+    <Autocomplete
+      value={undefined}
+      onChange={jest.fn()}
+      getOptions={returnOptions([])}
+      placeholder="placeholder_name"
+      invalid
+    />,
+  );
+
+  const invalid = container.querySelector(".invalid");
+
+  expect(invalid).toBeInstanceOf(HTMLDivElement);
 });
