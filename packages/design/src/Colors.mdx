@@ -24,4 +24,137 @@ ensure you are using colors for their intended purpose.
   alongside color to ensure your content can be understood by everyone.
 </Banner>
 
+## Usage Guidelines
+
+### Typography
+
+Typographic elements in Jobber should use consistent colors to ensure
+readability.
+
+#### Heading
+
+Headings have a bold, high-contrast color to cement their hierarchy.
+
+#### Text
+
+A slightly softer color is used for body text for greater readability.
+
+##### Text--Supporting
+
+Text that is relevant but less important can be lower-contrast to suggest its’
+reduced importance.
+
+### Interactive
+
+Use these colors in buttons and form controls to communicate the presence and
+meaning of interaction.
+
+#### Interactive
+
+The default color used for interactive elements.
+
+#### Destructive
+
+Use to signfify that an interaction will destroy something in the users’ account
+or workflow.
+
+#### Cancel
+
+Use to signify that an interaction will cancel or exit a workflow
+
+#### Disabled
+
+Use to signify that an interactive element is disabled.
+
+##### Disabled--Secondary
+
+Use when a disabled element needs more than one color to be readable in a
+disabled state; for example, a button's background and label colors must be
+different.
+
+#### Focus
+
+Use to indicate that an element has been focused.
+
+### Status
+
+Use these colors in labels, icons, filters, alerts, and other elements where
+color can add meaning to the state of the system or an item in the system.
+
+All status colors have a main color, a surface color, and an on-surface color.
+The on-surface color should be used for an element when it sits inside of an
+element with the status' surface color to maintain a cohesive tone and ensure
+sufficient color contrast.
+
+#### Critical
+
+Action required; user must see this status to be unblocked.
+
+#### Warning
+
+Action _may_ be required as a consequence of current state.
+
+#### Success
+
+No action required; an action has completed successfully.
+
+#### Informative
+
+No action required; but helpful to know about.
+
+#### Inactive
+
+No action required; not part of an active workflow.
+
+### Surfaces
+
+Surfaces are the background-colors of almost every element in Jobber.
+
+#### Surface
+
+Most elements in Jobber have a light surface to indicate their nearness to the
+user; if clickable, they have a hover color.
+
+#### Surface--Background
+
+A slightly darker surface gives a receded appearance relative to main surfaces.
+
+#### Surface--Reverse
+
+When a strong constrast is needed with the rest of the application, a reversed
+surface can be used.
+
+### Borders
+
+Defining the edges of elements on the same elevation plane, border colors are
+the subtle maintainers of layout structure.
+
+#### Border
+
+Most of our borders should use this color for subtle definition.
+
+#### Border--Section
+
+Use where other bordered content is being further sectioned, such as table
+headers or list sections.
+
+### Brand
+
+Use these colors to represent the Jobber brand visual language.
+
+#### Brand
+
+The primary color associated with our brand, from website to ads to product; AKA
+“Jobber Green”.
+
+#### Brand--Highlight
+
+Use to highlight an element in a way that aligns with our website. Use with
+caution, it’s _bright!_
+
+<br />
+<br />
+
+## Swatches
+
 <ColorSwatches colors={colors.customProperties} />
