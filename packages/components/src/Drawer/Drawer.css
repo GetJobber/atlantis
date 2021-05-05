@@ -1,8 +1,5 @@
 :root {
   --drawer-width: calc(var(--space-base) * 17.5);
-  --drawer--background-color: var(--color-white);
-  --drawer--header-background-color: var(--color-grey--lightest);
-  --drawer--border-color: var(--color-border);
   --drawer--base-padding: var(--space-base);
 }
 
@@ -33,8 +30,8 @@
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  border: var(--border-base) solid var(--drawer--border-color);
-  background-color: var(--drawer--background-color);
+  border: var(--border-base) solid var(--color-border);
+  background-color: var(--color-surface);
   flex-direction: column;
 }
 
@@ -45,7 +42,7 @@
 .header {
   display: flex;
   padding: var(--drawer--base-padding);
-  background-color: var(--drawer--header-background-color);
+  background-color: var(--color-surface--background);
   justify-content: space-between;
   align-items: center;
 }
