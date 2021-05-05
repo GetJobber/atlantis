@@ -24,12 +24,12 @@ export function Text({
   maxLines = "unlimited",
 }: PropsWithChildren<TextProps>) {
   const textColors = {
-    default: "greyBlueDark",
-    subdued: "greyBlue",
-    success: "green",
-    error: "red",
-    warn: "yellowDark",
-    info: "lightBlue",
+    default: "text",
+    subdued: "textSecondary",
+    success: "success",
+    error: "critical",
+    warn: "warning",
+    info: "informative",
   };
 
   const maxLineToNumber = {
