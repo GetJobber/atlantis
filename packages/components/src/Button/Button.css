@@ -1,21 +1,5 @@
 :root {
-  --button--color-work: var(--color-green);
-  --button--color-work--hover: var(--color-green--dark);
-
-  --button--color-learning: var(--color-lightBlue);
-  --button--color-learning--hover: var(--color-lightBlue--dark);
-
-  --button--color-destructive: var(--color-red);
-  --button--color-destructive--hover: var(--color-red--dark);
-
-  --button--color-cancel: var(--color-greyBlue);
-  --button--color-cancel--hover: var(--color-grey--lightest);
-
-  --button--bg-color-cancel: var(--color-white);
-  --button--color-disabled: var(--color-grey--lighter);
-  --button--color-secondary: var(--color-white);
-  --button--color-tertiary: var(--color-white);
-
+  --button--color-surface--hover: var(--color-surface--background);
   --button--duration-loading: 2s;
 }
 
@@ -39,6 +23,22 @@
   justify-content: center;
 }
 
+.buttonLabel {
+  color: inherit;
+  font-family: var(--typography--fontFamily-display);
+  font-size: var(--typography--fontSize-small);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.small .buttonLabel {
+  font-size: var(--typography--fontSize-smaller);
+}
+
+.large .buttonLabel {
+  font-size: var(--typography--fontSize-base);
+}
+
 .button:focus,
 a.button:focus {
   outline-color: var(--color-focus);
@@ -47,81 +47,97 @@ a.button:focus {
 /* Variation */
 
 .work {
-  border-color: var(--button--color-work);
-  color: var(--button--color-work);
-  background-color: var(--button--color-work);
+  border-color: var(--color-interactive);
+  color: var(--color-interactive);
+  background-color: var(--color-interactive);
 }
 
 .work:hover,
 a.work:hover,
 .work:focus,
 a.work:focus {
-  border-color: var(--button--color-work--hover);
-  background-color: var(--button--color-work--hover);
+  border-color: var(--color-interactive--hover);
+  color: var(--color-interactive--hover);
+  background-color: var(--color-interactive--hover);
 }
 
 .learning {
-  border-color: var(--button--color-learning);
-  background-color: var(--button--color-learning);
+  border-color: var(--color-informative);
+  color: var(--color-informative);
+  background-color: var(--color-informative);
 }
 
 .learning:hover,
 a.learning:hover,
 .learning:focus,
 a.learning:focus {
-  border-color: var(--button--color-learning--hover);
-  background-color: var(--button--color-learning--hover);
+  border-color: var(--color-informative--onSurface);
+  color: var(--color-informative--onSurface);
+  background-color: var(--color-informative--onSurface);
 }
 
 .destructive {
-  border-color: var(--button--color-destructive);
-  background-color: var(--button--color-destructive);
+  border-color: var(--color-destructive);
+  color: var(--color-destructive);
+  background-color: var(--color-destructive);
 }
 
 .destructive:hover,
 a.destructive:hover,
 .destructive:focus,
 a.destructive:focus {
-  border-color: var(--button--color-destructive--hover);
-  background-color: var(--button--color-destructive--hover);
+  border-color: var(--color-destructive--hover);
+  color: var(--color-destructive--hover);
+  background-color: var(--color-destructive--hover);
 }
 
 /* Cancel is special because, by default, it's styled as a secondary button */
 
 .cancel {
-  border-color: var(--button--color-cancel);
-  background-color: var(--button--bg-color-cancel);
+  border-color: var(--color-cancel);
+  color: var(--color-cancel);
+  background-color: var(--color-surface);
 }
 
 .cancel:focus,
 .cancel:hover,
 a.cancel:focus,
 a.cancel:hover {
-  background-color: var(--button--color-cancel--hover);
-  filter: brightness(80%);
+  border-color: var(--color-cancel--hover);
+  color: var(--color-cancel--hover);
+  background-color: var(--button--color-surface--hover);
 }
 
 /* Type */
 
-.primary {
-  color: var(--color-white);
+.primary,
+.primary:not(.cancel):hover,
+.primary:not(.cancel):focus {
+  color: var(--color-surface);
+}
+
+.primary.cancel {
+  color: var(--color-cancel);
+}
+
+.primary.disabled {
+  color: var(--color-disabled);
 }
 
 .secondary {
-  background-color: var(--button--color-secondary);
+  background-color: var(--color-surface);
 }
 
 .secondary:hover,
 .secondary:focus,
 a.secondary:hover,
 a.secondary:focus {
-  background-color: var(--button--color-secondary);
-  filter: brightness(80%);
+  background-color: var(--button--color-surface--hover);
 }
 
 .tertiary {
-  border-color: var(--button--color-tertiary);
-  background-color: var(--button--color-tertiary);
+  border-color: var(--color-surface);
+  background-color: var(--color-surface);
 }
 
 .tertiary:hover,
@@ -136,9 +152,10 @@ a.tertiary:focus {
 
 .disabled,
 .disabled:hover {
-  border-color: var(--button--color-disabled);
+  border-color: var(--color-disabled--secondary);
+  color: var(--color-disabled);
   user-select: none;
-  background-color: var(--button--color-disabled);
+  background-color: var(--color-disabled--secondary);
   pointer-events: none;
   cursor: not-allowed;
 }
@@ -161,6 +178,52 @@ a.tertiary:focus {
 }
 
 /* Icon */
+
+.button svg path {
+  transition: fill var(--timing-base);
+}
+
+.work svg path {
+  fill: var(--color-interactive);
+}
+
+.destructive svg path {
+  fill: var(--color-destructive);
+}
+
+.learning svg path {
+  fill: var(--color-informative);
+}
+
+.cancel svg path {
+  fill: var(--color-cancel);
+}
+
+.work:hover svg path,
+.work:focus svg path {
+  fill: var(--color-interactive--hover);
+}
+
+.destructive:hover svg path,
+.destructive:focus svg path {
+  fill: var(--color-destructive--hover);
+}
+
+.learning:hover svg path,
+.learning:focus svg path {
+  fill: var(--color-informative--onSurface);
+}
+
+.cancel:hover svg path,
+.cancel:focus svg path {
+  fill: var(--color-cancel--hover);
+}
+
+.primary:not(.cancel) svg path,
+.primary:not(.cancel):hover svg path,
+.primary:not(.cancel):focus svg path {
+  fill: var(--button--color-surface--hover);
+}
 
 .onlyIcon {
   width: calc(var(--base-unit) * 2.25);

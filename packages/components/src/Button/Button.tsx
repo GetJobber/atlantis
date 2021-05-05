@@ -155,64 +155,11 @@ export function Button(props: ButtonProps) {
   return <Tag {...tagProps}>{buttonInternals}</Tag>;
 }
 
-function ButtonInternals({
-  label,
-  icon,
-  variation = "work",
-  type = "primary",
-  disabled,
-  size = "base",
-}: ButtonProps) {
+function ButtonInternals({ label, icon, size = "base" }: ButtonProps) {
   return (
     <>
-      {icon && (
-        <Icon
-          name={icon}
-          size={size}
-          color={getColor(variation, type, disabled)}
-        />
-      )}
-      <Typography
-        element="span"
-        textCase="uppercase"
-        fontWeight="extraBold"
-        size={getTypeSizes(size)}
-        textColor={getColor(variation, type, disabled)}
-      >
-        {label}
-      </Typography>
+      {icon && <Icon name={icon} size={size} />}
+      <span className={styles.buttonLabel}>{label}</span>
     </>
   );
-}
-
-function getTypeSizes(size: string) {
-  switch (size) {
-    case "small":
-      return "smaller";
-    case "large":
-      return "base";
-    default:
-      return "small";
-  }
-}
-
-function getColor(variation: string, type: string, disabled?: boolean) {
-  if (type === "primary" && variation !== "cancel" && !disabled) {
-    return "white";
-  }
-
-  if (disabled) {
-    return "grey";
-  }
-
-  switch (variation) {
-    case "learning":
-      return "lightBlue";
-    case "destructive":
-      return "red";
-    case "cancel":
-      return "greyBlue";
-    default:
-      return "green";
-  }
 }
