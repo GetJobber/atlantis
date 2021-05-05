@@ -33,20 +33,20 @@
   width: var(--space-base);
   height: var(--space-base);
   box-sizing: border-box;
-  border: var(--border-thick) solid var(--color-green);
+  border: var(--border-thick) solid var(--color-interactive);
   border-radius: var(--radius-base);
-  background-color: var(--color-white);
+  background-color: var(--color-surface);
   transition: all 200ms;
   justify-content: center;
   align-items: center;
 }
 
 .disabled .checkBox {
-  border-color: var(--color-grey--lighter);
+  border-color: var(--color-disabled--secondary);
 }
 
 .disabled p {
-  color: var(--color-grey);
+  color: var(--color-disabled);
 }
 
 .disabled .checkBox > * {
@@ -55,8 +55,8 @@
 
 .input.indeterminate + .checkBox,
 .input:checked + .checkBox {
-  border-color: var(--color-green);
-  background-color: var(--color-green);
+  border-color: var(--color-interactive);
+  background-color: var(--color-interactive);
 }
 
 .input:focus + .checkBox {
@@ -65,8 +65,8 @@
 
 .disabled .input.indeterminate + .checkBox,
 .disabled .input:checked + .checkBox {
-  border-color: var(--color-grey--lighter);
-  background-color: var(--color-grey--lighter);
+  border-color: var(--color-disabled--secondary);
+  background-color: var(--color-disabled--secondary);
 }
 
 .disabled .input.indeterminate + .checkBox > *,
