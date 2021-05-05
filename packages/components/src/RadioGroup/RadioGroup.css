@@ -22,9 +22,9 @@
   height: var(--space-base);
   box-sizing: border-box;
   margin: 0 var(--space-small) 0 0;
-  border: var(--border-thick) solid var(--color-green);
+  border: var(--border-thick) solid var(--color-interactive);
   border-radius: 100%;
-  background-color: var(--color-white);
+  background-color: var(--color-surface);
   transition: all var(--timing-base);
 }
 
@@ -33,30 +33,30 @@
 }
 
 .input:focus:checked + .label:before {
-  box-shadow: 0px 0px 0px var(--space-minuscule) var(--color-green--dark),
+  box-shadow: 0px 0px 0px var(--space-minuscule) var(--color-interactive--hover),
     var(--shadow-focus);
 }
 
 .input:checked + .label::before {
-  box-shadow: 0px 0px 0px var(--space-minuscule) var(--color-green--dark);
-  border-color: var(--color-green--dark);
+  box-shadow: 0px 0px 0px var(--space-minuscule) var(--color-interactive--hover);
+  border-color: var(--color-interactive--hover);
   border-width: var(--border-thicker);
-  background-color: var(--color-green);
+  background-color: var(--color-interactive);
 }
 
 .input[disabled] + .label {
-  color: var(--color-grey);
+  color: var(--color-disabled);
   cursor: not-allowed;
 }
 
 .input[disabled] + .label::before {
-  border-color: var(--color-grey--lighter);
+  border-color: var(--color-disabled--secondary);
 }
 
 .input[disabled]:checked + .label::before {
-  box-shadow: 0px 0px 0px var(--space-minuscule) var(--color-grey);
+  box-shadow: 0px 0px 0px var(--space-minuscule) var(--color-disabled);
   border-color: var(--color-grey);
-  background-color: var(--color-grey--lighter);
+  background-color: var(--color-disabled--secondary);
 }
 
 .description {
@@ -65,5 +65,5 @@
 }
 
 .input[disabled] + .label + .description > p {
-  color: var(--color-grey);
+  color: var(--color-disabled);
 }
