@@ -26,7 +26,7 @@ it("renders the input validation messages", () => {
           tabIndex={0}
         >
           <p
-            className="base regular base red"
+            className="base regular base critical"
           >
             I am an error
           </p>

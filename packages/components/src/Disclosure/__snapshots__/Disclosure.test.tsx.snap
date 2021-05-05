@@ -13,7 +13,7 @@ exports[`renders a Disclosure 1`] = `
       className="summaryWrap"
     >
       <h4
-        className="base bold large blue"
+        className="base bold large heading"
       >
         Example Disclosure Title
       </h4>
