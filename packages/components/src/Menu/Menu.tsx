@@ -223,7 +223,7 @@ function Action({ label, icon, onClick }: ActionProps) {
           <Icon name={icon} />
         </span>
       )}
-      <Typography element="span" size="base" textColor="greyBlue">
+      <Typography element="span" size="base" textColor="greyBlueDark">
         {label}
       </Typography>
     </button>
