@@ -222,7 +222,7 @@ a.tertiary:focus {
 .primary:not(.cancel) svg path,
 .primary:not(.cancel):hover svg path,
 .primary:not(.cancel):focus svg path {
-  fill: var(--button--color-surface--hover);
+  fill: var(--color-surface);
 }
 
 .onlyIcon {
