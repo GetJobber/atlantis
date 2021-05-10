@@ -23,7 +23,7 @@
 
 .summary:hover,
 .summary:focus {
-  background: var(--color-yellow--lightest);
+  background: var(--color-surface--hover);
 }
 
 .summary:focus,

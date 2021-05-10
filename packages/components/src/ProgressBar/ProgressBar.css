@@ -1,6 +1,4 @@
 :root {
-  --progress-bar--backgroundColor: var(--color-grey--lightest);
-  --progress-bar--barColor: var(--color-green);
   --progress-bar--height: var(--space-base);
 }
 
@@ -19,17 +17,17 @@ progress.ProgressBar[value]::-webkit-progress-bar {
 }
 
 progress.ProgressBar[value]::-webkit-progress-bar {
-  background-color: var(--progress-bar--backgroundColor);
+  background-color: var(--color-surface--background);
 }
 
 progress.ProgressBar[value]::-webkit-progress-value {
   border-radius: calc(var(--progress-bar--height) / 2);
-  background-color: var(--progress-bar--barColor);
+  background-color: var(--color-interactive);
   transition: all var(--timing-slow) ease-out;
 }
 
 progress.ProgressBar[value]::-moz-progress-bar {
   border-radius: calc(var(--progress-bar--height) / 2);
-  background-color: var(--progress-bar--barColor);
+  background-color: var(--color-interactive);
   transition: all var(--timing-slow) ease-out;
 }

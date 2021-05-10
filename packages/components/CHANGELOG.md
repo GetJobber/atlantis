@@ -8,6 +8,42 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.33.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.32.0...@jobber/components@2.33.0) (2021-05-10)
+
+
+### Features
+
+* **components:** Use semantic colors in typographic components ([#527](https://github.com/GetJobber/atlantis/issues/527)) ([d9604be](https://github.com/GetJobber/atlantis/commit/d9604be0ca3a00b0ab26308c17cd46fcfbc98640))
+
+
+
+
+
+# [2.32.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.31.0...@jobber/components@2.32.0) (2021-05-10)
+
+
+### Features
+
+* **components:** update remaining Atlantis components to use semantics ([#529](https://github.com/GetJobber/atlantis/issues/529)) ([b5b3a99](https://github.com/GetJobber/atlantis/commit/b5b3a9915be92c47fd9d7ffe2e1169af6cbbb181))
+* **components:** use semantic colors in Switch ([#523](https://github.com/GetJobber/atlantis/issues/523)) ([0feefd8](https://github.com/GetJobber/atlantis/commit/0feefd8f41a37e64e57ca2e42f7522ba4f3c783e))
+
+
+
+
+
+# [2.31.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.30.5...@jobber/components@2.31.0) (2021-05-10)
+
+
+### Features
+
+* **components:** Use semantic colors in card, modal and drawer ([#526](https://github.com/GetJobber/atlantis/issues/526)) ([6726c67](https://github.com/GetJobber/atlantis/commit/6726c679778e7dd05af96369484a6ace0201ad9a))
+* **components:** use semantic colors in Checkbox ([#524](https://github.com/GetJobber/atlantis/issues/524)) ([0e65cfd](https://github.com/GetJobber/atlantis/commit/0e65cfddbdd1035326f73fa358357927c5d9b1cc))
+* **components:** use semantic colors in Radio ([#525](https://github.com/GetJobber/atlantis/issues/525)) ([b7d5649](https://github.com/GetJobber/atlantis/commit/b7d56496a0d2a49ad40aa246c6cd9383e8683b39))
+
+
+
+
+
 ## [2.30.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.30.4...@jobber/components@2.30.5) (2021-05-04)
 
 **Note:** Version bump only for package @jobber/components
