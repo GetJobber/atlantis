@@ -8,6 +8,18 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.32.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.31.0...@jobber/components@2.32.0) (2021-05-10)
+
+
+### Features
+
+* **components:** update remaining Atlantis components to use semantics ([#529](https://github.com/GetJobber/atlantis/issues/529)) ([b5b3a99](https://github.com/GetJobber/atlantis/commit/b5b3a9915be92c47fd9d7ffe2e1169af6cbbb181))
+* **components:** use semantic colors in Switch ([#523](https://github.com/GetJobber/atlantis/issues/523)) ([0feefd8](https://github.com/GetJobber/atlantis/commit/0feefd8f41a37e64e57ca2e42f7522ba4f3c783e))
+
+
+
+
+
 # [2.31.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.30.5...@jobber/components@2.31.0) (2021-05-10)
 
 
