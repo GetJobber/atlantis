@@ -5,6 +5,12 @@
   cursor: pointer;
 }
 
+.dropZoneBase:focus,
+.dropZoneBase:focus-within {
+  border-color: var(--color-focus);
+  outline: none;
+}
+
 .dropZone {
   padding: var(--space-base);
   border: var(--color-border) dashed var(--border-thick);
@@ -13,6 +19,6 @@
 }
 
 .dropZone.active {
-  border-color: var(--color--focus);
+  border-color: var(--color-focus);
   background-color: var(--color-surface--hover);
 }

@@ -147,7 +147,10 @@ export function InputFile({
   });
 
   return (
-    <div {...getRootProps({ className: dropZone })}>
+    <div
+      {...getRootProps({ className: dropZone })}
+      tabIndex={variation === "button" ? -1 : 0}
+    >
       <input {...getInputProps()} />
 
       {variation === "dropzone" && (

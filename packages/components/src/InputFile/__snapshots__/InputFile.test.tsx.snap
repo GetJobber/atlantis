@@ -203,7 +203,7 @@ exports[`renders an InputFile with proper variations 1`] = `
   </div>
   <div
     class="dropZoneBase"
-    tabindex="0"
+    tabindex="-1"
   >
     <input
       autocomplete="off"
@@ -224,7 +224,7 @@ exports[`renders an InputFile with proper variations 1`] = `
   </div>
   <div
     class="dropZoneBase"
-    tabindex="0"
+    tabindex="-1"
   >
     <input
       autocomplete="off"
