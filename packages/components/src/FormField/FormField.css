@@ -4,7 +4,7 @@
   --field--placeholder-color: var(--color-greyBlue--light);
   --field--border-width: var(--border-base);
   --field--border-color: var(--color-border);
-  --field--background-color: var(--color-white);
+  --field--background-color: var(--color-surface);
 
   --field--padding-top: calc(var(--space-base) - var(--space-smallest));
   --field--padding-bottom: calc(var(--space-base) - var(--space-smallest));
@@ -148,14 +148,14 @@ select.formField {
 
 .invalid,
 .invalid .formField:focus {
-  --field--border-color: var(--color-red);
+  --field--border-color: var(--color-critical);
   --field--wrapper-elevation: var(--elevation-base);
 }
 
 .disabled {
-  --field--placeholder-color: var(--color-grey);
-  --field--background-color: var(--color-grey--lightest);
-  --field--border-color: var(--color-grey--lighter);
+  --field--placeholder-color: var(--color-disabled);
+  --field--background-color: var(--color-surface--background);
+  --field--border-color: var(--color-disabled--secondary);
 
   opacity: 0.6;
 }
@@ -180,7 +180,7 @@ select.formField {
   z-index: var(--elevation-base);
 
   height: auto;
-  color: var(--color-greyBlue);
+  color: var(--color-text--secondary);
   font-size: calc(var(--base-unit) * 0.875);
 }
 
@@ -200,7 +200,7 @@ select.formField {
 }
 
 .miniLabel.textareaLabel .label {
-  background-color: var(--color-white);
+  background-color: var(--color-surface);
 }
 
 /**
@@ -218,7 +218,7 @@ select.formField {
   position: absolute;
   top: 50%;
   right: var(--field--padding-right);
-  color: var(--color-greyBlue);
+  color: var(--color-text--secondary);
   pointer-events: none;
   transform: translateY(-50%);
 }

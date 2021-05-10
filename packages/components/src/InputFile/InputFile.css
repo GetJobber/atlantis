@@ -1,8 +1,3 @@
-:root {
-  --border-color: var(--color-border);
-  --border-active-color: var(--color-focus);
-}
-
 .dropZoneBase {
   font-size: 0;
   line-height: 0;
@@ -10,14 +5,20 @@
   cursor: pointer;
 }
 
+.dropZoneBase:focus,
+.dropZoneBase:focus-within {
+  border-color: var(--color-focus);
+  outline: none;
+}
+
 .dropZone {
   padding: var(--space-base);
-  border: var(--border-color) dashed var(--border-thick);
+  border: var(--color-border) dashed var(--border-thick);
   border-radius: var(--radius-larger);
   text-align: center;
 }
 
 .dropZone.active {
-  border-color: var(--border-active-color);
-  background-color: var(--color-yellow--lightest);
+  border-color: var(--color-focus);
+  background-color: var(--color-surface--hover);
 }
