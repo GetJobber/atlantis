@@ -9,8 +9,8 @@
   font-weight: inherit;
   background-image: linear-gradient(
     to left,
-    var(--color-green--lighter),
-    var(--color-green--lighter)
+    var(--color-brand--highlight),
+    var(--color-brand--highlight)
   );
   background-position: left 75%;
   background-repeat: repeat-x;
