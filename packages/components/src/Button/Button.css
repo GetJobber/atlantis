@@ -40,7 +40,9 @@
 }
 
 .button:focus,
-a.button:focus {
+a.button:focus,
+.button:active,
+a.button:active {
   box-shadow: var(--shadow-focus);
   outline: none;
 }
