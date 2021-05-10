@@ -41,7 +41,8 @@
 
 .button:focus,
 a.button:focus {
-  outline-color: var(--color-focus);
+  box-shadow: var(--shadow-focus);
+  outline: none;
 }
 
 /* Variation */
