@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.33.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.32.0...@jobber/components@2.33.0) (2021-05-10)
+
+
+### Features
+
+* **components:** Use semantic colors in typographic components ([#527](https://github.com/GetJobber/atlantis/issues/527)) ([d9604be](https://github.com/GetJobber/atlantis/commit/d9604be0ca3a00b0ab26308c17cd46fcfbc98640))
+
+
+
+
+
 # [2.32.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.31.0...@jobber/components@2.32.0) (2021-05-10)
 
 
