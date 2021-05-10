@@ -61,7 +61,7 @@
 }
 
 .option.separator:not(:last-child) {
-  border-bottom: var(--border-base) solid var(--color-color-border);
+  border-bottom: var(--border-base) solid var(--color-border);
 }
 
 .options:hover .option.active:not(:hover) {
