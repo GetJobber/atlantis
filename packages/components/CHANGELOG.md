@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.34.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.33.0...@jobber/components@2.34.0) (2021-05-10)
+
+
+### Features
+
+* **components:** use semantic colors in FormField and Inputs ([#528](https://github.com/GetJobber/atlantis/issues/528)) ([8f7c2b1](https://github.com/GetJobber/atlantis/commit/8f7c2b1092c5a4c34465785733542ae14d2418b5))
+
+
+
+
+
 # [2.33.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.32.0...@jobber/components@2.33.0) (2021-05-10)
 
 
