@@ -15,16 +15,16 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  border: var(--border-base) solid var(--color-grey--lighter);
+  border: var(--border-base) solid var(--color-color-border);
   border-radius: var(--radius-base);
   overflow: auto;
   scroll-behavior: smooth;
-  background-color: var(--color-white);
+  background-color: var(--color-surface);
 }
 
 .options h5 {
   padding: var(--space-small) 0 var(--space-smaller) var(--space-small);
-  border-bottom: var(--border-base) solid var(--color-blue--dark);
+  border-bottom: var(--border-base) solid var(--color-border--section);
 }
 
 .options.visible {
@@ -56,12 +56,12 @@
 .option:hover,
 .option:focus,
 .option.active {
-  background-color: var(--color-yellow--lightest);
+  background-color: var(--color-surface--hover);
   outline-color: var(--color-focus);
 }
 
 .option.separator:not(:last-child) {
-  border-bottom: var(--border-base) solid var(--color-grey--lighter);
+  border-bottom: var(--border-base) solid var(--color-border);
 }
 
 .options:hover .option.active:not(:hover) {

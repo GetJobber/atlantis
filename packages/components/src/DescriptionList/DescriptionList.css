@@ -1,7 +1,3 @@
-:root {
-  --descriptionList--divider-color: var(--color-grey--lighter);
-}
-
 .descriptionList {
   margin: 0;
 }
@@ -10,7 +6,7 @@
   display: flex;
   flex-wrap: wrap;
   padding: var(--space-small) 0;
-  border-bottom: var(--border-base) solid var(--descriptionList--divider-color);
+  border-bottom: var(--border-base) solid var(--color-border);
 }
 
 .termGroup:first-child {

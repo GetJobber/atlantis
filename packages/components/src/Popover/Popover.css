@@ -1,5 +1,4 @@
 :root {
-  --card--background-color: var(--color-white);
   --card--base-padding: var(--space-base);
   --popover--padding: var(--space-base);
   --popover--width: calc(var(--base-unit) * 21.875);
@@ -29,7 +28,7 @@
   border-radius: var(--radius-base);
   font-size: var(--base-unit);
   line-height: normal;
-  background: var(--color-white);
+  background: var(--color-surface);
 }
 
 .popover > * {
@@ -51,7 +50,7 @@
 .arrow::before {
   content: "";
   visibility: visible;
-  border: var(--border-base) solid var(--color-grey--light);
+  border: var(--border-base) solid var(--color-border);
   transform: rotate(45deg);
   transform-origin: center;
   clip-path: polygon(-4px -4px, 15.3px 0, 0 15.3px);
