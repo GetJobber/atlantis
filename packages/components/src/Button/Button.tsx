@@ -4,7 +4,6 @@ import { XOR } from "ts-xor";
 import { Link } from "react-router-dom";
 import { IconNames } from "@jobber/design";
 import styles from "./Button.css";
-import { Typography } from "../Typography";
 import { Icon } from "../Icon";
 
 type ButtonType = "button" | "submit";

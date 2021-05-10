@@ -8,7 +8,7 @@
   min-height: calc(var(--base-unit) * 2.25);
   box-sizing: border-box;
   margin: 0;
-  border: 1px solid transparent;
+  border: var(--border-base) solid transparent;
   border-radius: var(--radius-base);
   color: transparent;
   -webkit-font-smoothing: antialiased;
