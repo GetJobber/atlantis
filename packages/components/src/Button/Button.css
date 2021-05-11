@@ -56,6 +56,11 @@ a.button:active {
 
 /* Variation */
 
+.work {
+  --button--color-variation: var(--color-interactive);
+  --button--color-variation--hover: var(--color-interactive--hover);
+}
+
 .learning {
   --button--color-variation: var(--color-informative);
   --button--color-variation--hover: var(--color-informative--onSurface);
@@ -86,6 +91,10 @@ a.button:active {
 .primary:not(.cancel):hover,
 .primary:not(.cancel):focus {
   background-color: var(--button--color-variation--hover);
+}
+
+.secondary {
+  border-color: var(--button--color-variation);
 }
 
 .tertiary {
