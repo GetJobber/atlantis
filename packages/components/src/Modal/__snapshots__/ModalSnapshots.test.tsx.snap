@@ -52,7 +52,7 @@ exports[`Button Variations modal shows with primary learning button 1`] = `
             />
           </svg>
           <span
-            className="buttonLabel"
+            className="base extraBold small uppercase"
           />
         </button>
       </div>
@@ -70,7 +70,7 @@ exports[`Button Variations modal shows with primary learning button 1`] = `
           type="button"
         >
           <span
-            className="buttonLabel"
+            className="base extraBold small uppercase"
           >
             I Would Like to Know More
           </span>
@@ -81,7 +81,7 @@ exports[`Button Variations modal shows with primary learning button 1`] = `
           type="button"
         >
           <span
-            className="buttonLabel"
+            className="base extraBold small uppercase"
           >
             Nevermind
           </span>
