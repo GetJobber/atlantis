@@ -1,5 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap");
 
+html {
+  box-sizing: border-box;
+}
+
+html *,
+html *::before,
+html *::after {
+  box-sizing: inherit;
+}
+
 body {
   margin: 0;
   color: var(--color-greyBlue--dark);
