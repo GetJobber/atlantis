@@ -142,6 +142,20 @@ a.button.disabled:hover {
 
 /* Icon */
 
+.button.onlyIcon > svg path,
+.button.hasIconAndLabel > svg path {
+  fill: inherit;
+}
+
+.button.onlyIcon:hover > svg path,
+.button.hasIconAndLabel:hover > svg path,
+.button.onlyIcon:focus > svg path,
+.button.hasIconAndLabel:focus > svg path,
+.button.onlyIcon:active > svg path,
+.button.hasIconAndLabel:active > svg path {
+  fill: inherit;
+}
+
 .onlyIcon {
   width: calc(var(--base-unit) * 2.25);
   padding: 0;
