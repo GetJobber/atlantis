@@ -1,3 +1,4 @@
+import { media } from "gatsby-theme-docz/src/theme/breakpoints";
 import { space } from "~theme/space";
 
 export const playground = (containerWidth: number, sideBarWidth: number) => {
@@ -15,6 +16,11 @@ export const playground = (containerWidth: number, sideBarWidth: number) => {
     marginY: "larger",
     width,
     marginLeft,
+    [media.desktop]: {
+      position: "static",
+      width: "100%",
+      marginLeft: 0,
+    },
 
     "[data-testid='playground']": {
       bg: "white",
@@ -32,6 +38,9 @@ export const playground = (containerWidth: number, sideBarWidth: number) => {
           width: `${space.small} !important`,
           bg: "greyLighter",
           borderRadius: "base",
+          [media.desktop]: {
+            display: "none",
+          },
 
           "&::after": {
             content: `""`,
