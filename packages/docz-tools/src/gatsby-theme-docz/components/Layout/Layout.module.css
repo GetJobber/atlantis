@@ -3,7 +3,13 @@
   min-height: 100vh;
 }
 
+.sidebar {
+  flex: 0 0 auto;
+  min-height: 100vh;
+}
+
 .content {
+  padding: var(--space-larger) 0 var(--space-extravagant);
   flex: 1;
 }
 
