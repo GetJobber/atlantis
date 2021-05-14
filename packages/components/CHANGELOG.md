@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.35.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.35.0...@jobber/components@2.35.1) (2021-05-14)
+
+
+### Bug Fixes
+
+* **components:** add greater specificity to fill inheritance for icon buttons ([#546](https://github.com/GetJobber/atlantis/issues/546)) ([82a8527](https://github.com/GetJobber/atlantis/commit/82a85274709afc396d6f68c6b4802e1429ab358b))
+
+
+
+
+
 # [2.35.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.34.0...@jobber/components@2.35.0) (2021-05-12)
 
 
