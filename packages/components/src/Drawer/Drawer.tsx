@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import classnames from "classnames";
 import styles from "./Drawer.css";
 import { Typography } from "../Typography";
-import { Icon } from "../Icon";
+import { ButtonDismiss } from "../ButtonDismiss";
 
 interface DrawerProps {
   readonly children: ReactNode | ReactNode[];
@@ -29,14 +29,14 @@ export function Drawer({
   const drawerClassNames = classnames(styles.container, open && styles.open);
   return (
     <>
-      <div className={drawerClassNames} data-testid="drawer-container">
+      <aside className={drawerClassNames} data-testid="drawer-container">
         <div className={styles.drawer}>
           <Header title={title} onRequestClose={onRequestClose} />
           <div className={styles.contentScroll}>
             <div className={styles.content}>{children}</div>
           </div>
         </div>
-      </div>
+      </aside>
     </>
   );
 }
@@ -58,13 +58,7 @@ function Header({ title, onRequestClose }: HeaderProps) {
         {title}
       </Typography>
 
-      <button
-        className={styles.closeButton}
-        onClick={onRequestClose}
-        aria-label="Close drawer"
-      >
-        <Icon name="cross" />
-      </button>
+      <ButtonDismiss onClick={onRequestClose} ariaLabel="Close drawer" />
     </div>
   );
 }

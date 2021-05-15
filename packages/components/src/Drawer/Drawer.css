@@ -47,14 +47,6 @@
   align-items: center;
 }
 
-.closeButton {
-  padding: 0;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  appearance: none;
-}
-
 .contentScroll {
   display: flex;
   width: 100%;
