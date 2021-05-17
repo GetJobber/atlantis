@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.4.28...@jobber/docz-tools@1.5.0) (2021-05-17)
+
+
+### Features
+
+* **docz-tools:** Makes Atlantis theme responsive. ([#547](https://github.com/GetJobber/atlantis/issues/547)) ([663270d](https://github.com/GetJobber/atlantis/commit/663270dab54d779f53d9cc385831af7b856aad5f))
+
+
+
+
+
 ## [1.4.28](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.4.27...@jobber/docz-tools@1.4.28) (2021-05-14)
 
 **Note:** Version bump only for package @jobber/docz-tools
