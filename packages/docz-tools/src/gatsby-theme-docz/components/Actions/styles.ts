@@ -3,7 +3,7 @@ export const actions = {
   position: "fixed",
   top: "large",
   right: "large",
-  zIndex: 9999,
+  zIndex: 999,
 
   "> *": {
     marginLeft: "small",
