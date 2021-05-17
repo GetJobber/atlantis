@@ -26,7 +26,11 @@ export function Layout({ children }: PropsWithChildren<unknown>) {
     <>
       <div className={styles.layout}>
         <div className={styles.menu} style={menuStyle}>
-          <Button icon={open ? "remove" : "menu"} onClick={handleClick} />
+          <Button
+            icon={open ? "remove" : "menu"}
+            onClick={toggleMenu}
+            type="tertiary"
+          />
         </div>
         <div className={styles.sidebar} style={sidebarStyles}>
           <Sidebar />
@@ -49,13 +53,14 @@ export function Layout({ children }: PropsWithChildren<unknown>) {
             exit={{ opacity: 0 }}
             transition={{ ease: "easeInOut", duration: 0.2 }}
             className={styles.overlay}
+            onClick={toggleMenu}
           />
         )}
       </AnimatePresence>
     </>
   );
 
-  function handleClick() {
+  function toggleMenu() {
     setOpen(!open);
   }
 }
