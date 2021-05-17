@@ -184,7 +184,6 @@ it("renders a field with error", () => {
         onFocus={[Function]}
         onKeyDown={[Function]}
         type="text"
-        value="wrong!"
       />
     </div>
   `);
@@ -241,7 +240,7 @@ test("it should call the validation handler when typing a new value", () => {
 
 test("it should call the validation handler with a message when there is an error", async () => {
   const validationHandler = jest.fn();
-  const validate = val => (val !== "Bob" ? "message" : "");
+  const validate = val => (val == "Bob" ? "message" : "");
 
   const { getByLabelText } = render(
     <FormField
@@ -249,7 +248,6 @@ test("it should call the validation handler with a message when there is an erro
       name="Got milk?"
       onValidation={validationHandler}
       placeholder="I hold places"
-      value="test"
       validations={{
         validate,
       }}
