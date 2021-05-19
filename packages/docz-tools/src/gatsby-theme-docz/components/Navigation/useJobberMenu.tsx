@@ -18,7 +18,7 @@ export interface Group {
 
 export function useJobberMenu(query?: string) {
   const doczMenus = useMenus({ query }) ?? [];
-  const maxMenuDepth = 3;
+  const maxMenuDepth = 2;
 
   const menuEntries = doczMenus
     .reduce((entries, item) => {

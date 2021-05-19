@@ -1,6 +1,6 @@
-import React, { RefObject, useState } from "react";
 import classNames from "classnames";
-import { Link } from "docz";
+import React, { RefObject, useState } from "react";
+import { Link, useCurrentDoc } from "docz";
 import { Icon } from "@jobber/components/Icon";
 import { Group, PageOrGroup, useJobberMenu } from "./useJobberMenu";
 import * as styles from "./Navigation.module.css";
@@ -13,17 +13,12 @@ interface NavigationProps {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function Navigation({ query, sidebarRef }: NavigationProps) {
   const items = useJobberMenu(query);
-  console.log(items);
 
   if (!items) {
     return <></>;
   }
 
-  return (
-    <div>
-      <List items={items} />
-    </div>
-  );
+  return <List items={items} />;
 }
 
 interface ListProps {
@@ -32,20 +27,22 @@ interface ListProps {
 }
 
 function List({ items, level = 1 }: ListProps) {
+  const listClass = classNames(
+    styles.list,
+    /**
+     * We are ignoring the error here so that we can allow
+     * for arbitrary level classes within the CSS. Note: if
+     * the classname (example: `level12345`) is not found, an error
+     * does not occur and the class name is omitted.
+     */
+    // @ts-expect-error
+    styles[`level${level}`],
+  );
+
   return (
-    <ul className={styles.list}>
+    <ul className={listClass}>
       {items.map(item => {
-        const itemClass = classNames(
-          styles.item,
-          /**
-           * We are ignoring the error here so that we can allow
-           * for arbitrary level classes within the CSS. Note: if
-           * the classname (example: `level12345`) is not found, an error
-           * does not occur and the class name is omitted.
-           */
-          // @ts-expect-error
-          styles[`level${level}`],
-        );
+        const itemClass = classNames(styles.item);
         const pageLabel = classNames(styles.label, styles.pageLabel);
 
         return (
@@ -53,7 +50,11 @@ function List({ items, level = 1 }: ListProps) {
             {item.type === "group" ? (
               <NavigationGroup item={item} level={level} />
             ) : (
-              <Link to={item.item.route} className={pageLabel}>
+              <Link
+                to={item.item.route}
+                className={pageLabel}
+                activeClassName={styles.active}
+              >
                 {item.name}
               </Link>
             )}
@@ -70,15 +71,18 @@ interface NavigationGroupProps {
 }
 
 function NavigationGroup({ item, level }: NavigationGroupProps) {
-  const [open, setOpen] = useState(level === 1 ? false : true);
-  const buttonLabel = classNames(styles.label, styles.groupLabel);
+  const doc = useCurrentDoc();
+  const [open, setOpen] = useState(getInitialOpen);
+  const buttonLabel = classNames(styles.label, styles.groupLabel, {
+    [styles.active]: open,
+  });
 
   return (
     <>
       <button onClick={handleClick} className={buttonLabel}>
         {item.name}
         {level === 1 && (
-          <Icon name={open ? "arrowUp" : "arrowDown"} color="lightBlue" />
+          <Icon name={open ? "arrowUp" : "arrowDown"} color="greyBlue" />
         )}
       </button>
       {open && <List items={item.items} level={level + 1} />}
@@ -89,5 +93,17 @@ function NavigationGroup({ item, level }: NavigationGroupProps) {
     if (level === 1) {
       setOpen(!open);
     }
+  }
+
+  function getInitialOpen() {
+    if (doc.menu.startsWith(item.name)) {
+      return true;
+    }
+
+    if (level !== 1) {
+      return true;
+    }
+
+    return false;
   }
 }
