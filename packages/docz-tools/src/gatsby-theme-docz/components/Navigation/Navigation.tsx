@@ -1,5 +1,5 @@
 import React, { RefObject, useState } from "react";
-// import classNames from "classnames";
+import classNames from "classnames";
 import { Link } from "docz";
 import { Icon } from "@jobber/components/Icon";
 import { Group, PageOrGroup, useJobberMenu } from "./useJobberMenu";
@@ -28,18 +28,32 @@ export function Navigation({ query, sidebarRef }: NavigationProps) {
 
 interface ListProps {
   items: PageOrGroup[];
+  level?: number;
 }
 
-function List({ items }: ListProps) {
+function List({ items, level = 1 }: ListProps) {
   return (
     <ul className={styles.list}>
       {items.map(item => {
+        const itemClass = classNames(
+          styles.item,
+          /**
+           * We are ignoring the error here so that we can allow
+           * for arbitrary level classes within the CSS. Note: if
+           * the classname (example: `level12345`) is not found, an error
+           * does not occur and the class name is omitted.
+           */
+          // @ts-expect-error
+          styles[`level${level}`],
+        );
+        const pageLabel = classNames(styles.label, styles.pageLabel);
+
         return (
-          <li key={item.id} className={styles.item}>
+          <li key={item.id} className={itemClass}>
             {item.type === "group" ? (
-              <NavigationGroup item={item} />
+              <NavigationGroup item={item} level={level} />
             ) : (
-              <Link to={item.item.route} className={styles.label}>
+              <Link to={item.item.route} className={pageLabel}>
                 {item.name}
               </Link>
             )}
@@ -52,49 +66,28 @@ function List({ items }: ListProps) {
 
 interface NavigationGroupProps {
   readonly item: Group;
-  readonly level?: number;
+  readonly level: number;
 }
 
-function NavigationGroup({ item, level = 1 }: NavigationGroupProps) {
-  const [open, setOpen] = useState(false);
+function NavigationGroup({ item, level }: NavigationGroupProps) {
+  const [open, setOpen] = useState(level === 1 ? false : true);
+  const buttonLabel = classNames(styles.label, styles.groupLabel);
 
   return (
     <>
-      <button
-        onClick={handleClick}
-        className={level === 1 ? styles.label : styles.groupLabel}
-      >
+      <button onClick={handleClick} className={buttonLabel}>
         {item.name}
         {level === 1 && (
           <Icon name={open ? "arrowUp" : "arrowDown"} color="lightBlue" />
         )}
       </button>
-      {open && (
-        <ul>
-          {item.items.map(menuItem => {
-            // const itemClass = classNames({
-            //   [styles.group]: menuItem.type === "group",
-            //   [styles.page]: menuItem.type === "page",
-            // });
-
-            return (
-              <li key={menuItem.id}>
-                {menuItem.type === "page" ? (
-                  <Link to={menuItem.item.route} className={styles.pageLink}>
-                    {menuItem.name}
-                  </Link>
-                ) : (
-                  <NavigationGroup item={menuItem} level={level + 1} />
-                )}
-              </li>
-            );
-          })}
-        </ul>
-      )}
+      {open && <List items={item.items} level={level + 1} />}
     </>
   );
 
   function handleClick() {
-    setOpen(!open);
+    if (level === 1) {
+      setOpen(!open);
+    }
   }
 }

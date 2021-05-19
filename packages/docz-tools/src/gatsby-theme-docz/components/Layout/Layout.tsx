@@ -1,5 +1,5 @@
 import React, { PropsWithChildren, useState } from "react";
-import { useConfig } from "docz";
+import { useConfig, useCurrentDoc } from "docz";
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@jobber/components/Button";
 // eslint-disable-next-line import/no-relative-parent-imports
@@ -14,6 +14,7 @@ export function Layout({ children }: PropsWithChildren<unknown>) {
   const {
     themeConfig: { sideBarWidth, containerWidth, hasActions = true },
   } = useConfig();
+  const { headings } = useCurrentDoc();
 
   const sidebarStyles = {
     maxWidth: sideBarWidth,
@@ -41,6 +42,7 @@ export function Layout({ children }: PropsWithChildren<unknown>) {
             className={styles.container}
             style={{ maxWidth: containerWidth }}
           >
+            <pre>{JSON.stringify(headings, undefined, 2)}</pre>
             {children}
           </div>
         </div>

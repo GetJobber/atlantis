@@ -1,4 +1,27 @@
-.list,
+.list {
+  list-style: none;
+}
+
+.label {
+  color: pink;
+  background: none;
+  appearance: none;
+}
+
+.level2 .label {
+  color: red;
+}
+
+.level2 .groupLabel {
+  color: green;
+}
+
+.level2 .pageLabel {
+  color: skyblue;
+}
+/* .page {} */
+
+/* .list,
 .list ul {
   margin: 0;
   padding: var(--space-base);
