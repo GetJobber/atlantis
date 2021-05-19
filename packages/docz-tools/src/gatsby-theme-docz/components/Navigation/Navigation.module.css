@@ -1,0 +1,79 @@
+.list,
+.list ul {
+  margin: 0;
+  padding: var(--space-base);
+  color: var(--color-red);
+  list-style: none;
+}
+
+.item {
+  margin: var(--space-base) 0;
+}
+
+.label {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--color-greyBlue--light);
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: none;
+  appearance: none;
+}
+
+.pageLink {
+  color: var(--color-greyBlue--light);
+  text-decoration: none;
+}
+
+.groupLabel {
+  text-decoration: underline;
+  appearance: none;
+}
+
+/* .list a,
+.list button {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  color: var(--color-blue--lightest);
+  font-family: "Poppins", sans-serif;
+  font-size: var(--typography--fontSize-base);
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  background: none;
+  appearance: none;
+} */
+
+/* .group {
+  color: green;
+}
+
+.page {
+  color: green;
+}
+
+.group .group {
+  color: yellow;
+}
+
+.group .page {
+  color: yellowgreen;
+}
+
+.group .page a {
+  color: palevioletred;
+}
+
+.group .group .page {
+  color: red;
+}
+
+.group .group .page a {
+  color: papayawhip;
+} */
