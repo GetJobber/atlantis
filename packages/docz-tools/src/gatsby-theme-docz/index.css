@@ -2,6 +2,7 @@
 
 html {
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 html *,
@@ -11,7 +12,9 @@ html *::after {
 }
 
 body {
+  position: relative;
   margin: 0;
+  overflow-x: hidden;
   color: var(--color-greyBlue--dark);
   font-family: var(--typography--fontFamily-normal);
   font-size: var(--typography--fontSize-large);
