@@ -53,7 +53,9 @@ export function TableOfContents() {
               .filter(heading => heading.depth === 2)
               .map(heading => (
                 <li key={heading.slug}>
-                  <Link to={`#${heading.slug}`}>{heading.value}</Link>
+                  <Link to={`#${heading.slug}`} onClick={closeToggle}>
+                    {heading.value}
+                  </Link>
                 </li>
               ))}
           </ul>
@@ -76,5 +78,9 @@ export function TableOfContents() {
 
   function toggleOpen() {
     setOpen(!open);
+  }
+
+  function closeToggle() {
+    setOpen(false);
   }
 }
