@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { RefObject, useState } from "react";
+import React, { RefObject, createRef, useEffect, useState } from "react";
 import { Link, useCurrentDoc } from "docz";
 import { Icon } from "@jobber/components/Icon";
 import { Group, PageOrGroup, useJobberMenu } from "./useJobberMenu";
@@ -10,7 +10,6 @@ interface NavigationProps {
   readonly sidebarRef: RefObject<HTMLDivElement>;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function Navigation({ query, sidebarRef }: NavigationProps) {
   const items = useJobberMenu(query);
 
@@ -18,15 +17,21 @@ export function Navigation({ query, sidebarRef }: NavigationProps) {
     return <></>;
   }
 
-  return <List items={items} />;
+  return (
+    <div ref={sidebarRef}>
+      <List items={items} sidebarRef={sidebarRef} />
+    </div>
+  );
 }
 
 interface ListProps {
   items: PageOrGroup[];
   level?: number;
+  readonly sidebarRef: RefObject<HTMLDivElement>;
 }
 
-function List({ items, level = 1 }: ListProps) {
+function List({ items, level = 1, sidebarRef }: ListProps) {
+  const doc = useCurrentDoc();
   const listClass = classNames(
     styles.list,
     /**
@@ -44,19 +49,37 @@ function List({ items, level = 1 }: ListProps) {
       {items.map(item => {
         const itemClass = classNames(styles.item);
         const pageLabel = classNames(styles.label, styles.pageLabel);
+        const linkRef = createRef<HTMLDivElement>();
+
+        useEffect(() => {
+          if (
+            item.type === "page" &&
+            sidebarRef?.current &&
+            linkRef?.current &&
+            item.item.route === doc.route
+          ) {
+            sidebarRef.current.scrollTo(0, linkRef.current.offsetTop);
+          }
+        }, []);
 
         return (
           <li key={item.id} className={itemClass}>
             {item.type === "group" ? (
-              <NavigationGroup item={item} level={level} />
+              <NavigationGroup
+                item={item}
+                level={level}
+                sidebarRef={sidebarRef}
+              />
             ) : (
-              <Link
-                to={item.item.route}
-                className={pageLabel}
-                activeClassName={styles.active}
-              >
-                {item.name}
-              </Link>
+              <div ref={linkRef}>
+                <Link
+                  to={item.item.route}
+                  className={pageLabel}
+                  activeClassName={styles.active}
+                >
+                  {item.name}
+                </Link>
+              </div>
             )}
           </li>
         );
@@ -68,9 +91,10 @@ function List({ items, level = 1 }: ListProps) {
 interface NavigationGroupProps {
   readonly item: Group;
   readonly level: number;
+  readonly sidebarRef: RefObject<HTMLDivElement>;
 }
 
-function NavigationGroup({ item, level }: NavigationGroupProps) {
+function NavigationGroup({ item, level, sidebarRef }: NavigationGroupProps) {
   const doc = useCurrentDoc();
   const [open, setOpen] = useState(getInitialOpen);
   const buttonLabel = classNames(styles.label, styles.groupLabel, {
@@ -85,7 +109,9 @@ function NavigationGroup({ item, level }: NavigationGroupProps) {
           <Icon name={open ? "arrowUp" : "arrowDown"} color="greyBlue" />
         )}
       </button>
-      {open && <List items={item.items} level={level + 1} />}
+      {open && (
+        <List items={item.items} level={level + 1} sidebarRef={sidebarRef} />
+      )}
     </>
   );
 
