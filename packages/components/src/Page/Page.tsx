@@ -10,14 +10,8 @@ import { Button, ButtonProps } from "../Button";
 import { Menu, SectionProps } from "../Menu";
 import { Emphasis } from "../Emphasis";
 
-export interface PageProps {
+interface BasePageProps {
   readonly children: ReactNode | ReactNode[];
-
-  /**
-   * Content of the page. This supports basic markdown node types such as
-   * `_italic_`, `**bold**`, and `[link name](url)`
-   */
-  readonly intro?: string;
 
   /**
    * Title of the page.
@@ -58,6 +52,18 @@ export interface PageProps {
    */
   readonly moreActionsMenu?: SectionProps[];
 }
+
+interface PagePropsWithIntro extends BasePageProps {
+  readonly intro: string;
+  readonly externalIntroLinks?: boolean;
+}
+
+interface PagePropsNoIntro extends BasePageProps {
+  readonly intro: undefined;
+  readonly externalIntroLinks: never;
+}
+
+export type PageProps = PagePropsWithIntro | PagePropsNoIntro;
 
 // eslint-disable-next-line max-statements
 export function Page({
