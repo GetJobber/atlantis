@@ -1,13 +1,25 @@
+:root {
+  --table-of-contents-width: 300px;
+}
+
 .toggle {
   position: fixed;
   top: var(--space-large);
+  right: 0;
+  z-index: var(--sidebar-z-index);
   margin-right: var(--space-large);
   transition: right 300ms;
 
-  @media (--wide-screens) {
+  @media (min-width: 1300px) {
     display: none;
   }
 }
+
+.toggle.open {
+  right: var(--table-of-contents-width);
+  z-index: calc(var(--sidebar-z-index) + 2);
+}
+
 .toggle > * {
   position: sticky;
 }
@@ -15,30 +27,38 @@
 .tableOfContents {
   position: absolute;
   top: 0;
-
-  z-index: 9999;
+  right: calc(var(--table-of-contents-width) * -1);
+  z-index: calc(var(--sidebar-z-index) + 2);
+  width: var(--table-of-contents-width);
+  max-width: var(--table-of-contents-width);
   min-height: 100vh;
   overflow-x: hidden;
   transition: right 300ms;
   flex: 0 0 auto;
 
-  @media (--wide-screens) {
+  @media (min-width: 1300px) {
     position: static;
   }
 }
 
-.tableOfContentsInner {
+.tableOfContents.open {
+  right: 0;
+}
+
+.inner {
   position: fixed;
+  width: var(--table-of-contents-width);
   height: 100vh;
+  max-width: var(--table-of-contents-width);
   box-sizing: border-box;
   padding: 0 var(--space-base);
 
   overflow-y: scroll;
-  background: white;
+  background: var(--color-surface);
   flex-direction: column;
 }
 
-.tableOfContentsHeader {
+.header {
   position: sticky;
   top: 0;
   padding-bottom: var(--space-base);
@@ -64,12 +84,12 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 8888;
+  z-index: calc(var(--sidebar-z-index) + 1);
   width: 100%;
   height: 100vh;
   background: var(--color-overlay);
 
-  @media (--wide-screens) {
+  @media (min-width: 1300px) {
     display: none;
   }
 }

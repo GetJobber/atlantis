@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useConfig, useCurrentDoc } from "docz";
 import { AnimatePresence, motion } from "framer-motion";
+import classNames from "classnames";
 import { Heading } from "@jobber/components/Heading";
 import { Button } from "@jobber/components/Button";
 import * as styles from "./TableOfContents.module.css";
@@ -15,36 +16,28 @@ interface DoczHeading {
 export function TableOfContents() {
   const [open, setOpen] = useState(false);
   const { headings } = useCurrentDoc() as { headings: DoczHeading[] };
-
   const {
-    themeConfig: { sideBarWidth, hasActions = true },
+    themeConfig: { hasActions = true },
   } = useConfig();
-
-  const tocStyles = {
-    maxWidth: sideBarWidth,
-    width: sideBarWidth,
-    right: open ? 0 : -sideBarWidth,
-  };
-  const toggleStyle = {
-    right: open ? sideBarWidth : 0,
-    zIndex: open ? 9998 : 8887,
-  };
+  const toggleClass = classNames(styles.toggle, {
+    [styles.open]: open,
+  });
+  const tocClass = classNames(styles.tableOfContents, {
+    [styles.open]: open,
+  });
 
   return (
     <>
-      <div className={styles.toggle} style={toggleStyle}>
+      <div className={toggleClass}>
         <Button
           icon={open ? "remove" : "more"}
           onClick={toggleOpen}
-          type="tertiary"
+          type="primary"
         />
       </div>
-      <div className={styles.tableOfContents} style={tocStyles}>
-        <div
-          className={styles.tableOfContentsInner}
-          style={{ width: sideBarWidth }}
-        >
-          <div className={styles.tableOfContentsHeader}>
+      <div className={tocClass}>
+        <div className={styles.inner}>
+          <div className={styles.header}>
             {hasActions && <Actions />}
             <Heading level={6}>Contents</Heading>
           </div>

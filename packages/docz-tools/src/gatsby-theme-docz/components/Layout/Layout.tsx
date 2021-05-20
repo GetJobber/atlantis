@@ -1,4 +1,5 @@
 import React, { PropsWithChildren, useState } from "react";
+import classNames from "classnames";
 import { useConfig } from "docz";
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@jobber/components/Button";
@@ -14,6 +15,9 @@ export function Layout({ children }: PropsWithChildren<unknown>) {
   const {
     themeConfig: { sideBarWidth, containerWidth },
   } = useConfig();
+  const menuClass = classNames(styles.menu, {
+    [styles.open]: navigationOpen,
+  });
 
   const sidebarStyles = {
     maxWidth: sideBarWidth,
@@ -22,13 +26,12 @@ export function Layout({ children }: PropsWithChildren<unknown>) {
   };
   const menuStyle = {
     left: navigationOpen ? sideBarWidth : 0,
-    zIndex: navigationOpen ? 9998 : 8887,
   };
 
   return (
     <>
       <div className={styles.layout}>
-        <div className={styles.menu} style={menuStyle}>
+        <div className={menuClass} style={menuStyle}>
           <Button
             icon={navigationOpen ? "remove" : "menu"}
             onClick={toggleMenu}
