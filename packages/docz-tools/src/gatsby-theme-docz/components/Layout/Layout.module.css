@@ -9,7 +9,6 @@
 .menu {
   position: fixed;
   top: var(--space-large);
-  z-index: 9999;
   margin-left: var(--space-large);
   transition: left 300ms;
 
