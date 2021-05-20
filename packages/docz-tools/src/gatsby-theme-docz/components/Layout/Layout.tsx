@@ -1,34 +1,33 @@
 import React, { PropsWithChildren, useState } from "react";
-import { useConfig, useCurrentDoc } from "docz";
+import { useConfig } from "docz";
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@jobber/components/Button";
 // eslint-disable-next-line import/no-relative-parent-imports
 // eslint-disable-next-line import/no-internal-modules
 import "@jobber/design/foundation.css";
 import * as styles from "./Layout.module.css";
+import { TableOfContents } from "./TableOfContents";
 import { Sidebar } from "../Sidebar";
-import { Actions } from "../Actions";
 
 export function Layout({ children }: PropsWithChildren<unknown>) {
-  const [open, setOpen] = useState(false);
+  const [navigationOpen, setNavigationOpen] = useState(false);
   const {
-    themeConfig: { sideBarWidth, containerWidth, hasActions = true },
+    themeConfig: { sideBarWidth, containerWidth },
   } = useConfig();
-  const { headings } = useCurrentDoc();
 
   const sidebarStyles = {
     maxWidth: sideBarWidth,
     width: sideBarWidth,
-    left: open ? 0 : -sideBarWidth,
+    left: navigationOpen ? 0 : -sideBarWidth,
   };
-  const menuStyle = { left: open ? sideBarWidth : 0 };
+  const menuStyle = { left: navigationOpen ? sideBarWidth : 0 };
 
   return (
     <>
       <div className={styles.layout}>
         <div className={styles.menu} style={menuStyle}>
           <Button
-            icon={open ? "remove" : "menu"}
+            icon={navigationOpen ? "remove" : "menu"}
             onClick={toggleMenu}
             type="tertiary"
           />
@@ -36,19 +35,18 @@ export function Layout({ children }: PropsWithChildren<unknown>) {
         <div className={styles.sidebar} style={sidebarStyles}>
           <Sidebar />
         </div>
-        {hasActions && <Actions />}
         <div className={styles.content}>
           <div
             className={styles.container}
             style={{ maxWidth: containerWidth }}
           >
-            <pre>{JSON.stringify(headings, undefined, 2)}</pre>
             {children}
           </div>
         </div>
+        <TableOfContents />
       </div>
       <AnimatePresence>
-        {open && (
+        {navigationOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.9 }}
@@ -63,6 +61,6 @@ export function Layout({ children }: PropsWithChildren<unknown>) {
   );
 
   function toggleMenu() {
-    setOpen(!open);
+    setNavigationOpen(!navigationOpen);
   }
 }
