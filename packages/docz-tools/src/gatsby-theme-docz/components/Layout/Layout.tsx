@@ -20,7 +20,10 @@ export function Layout({ children }: PropsWithChildren<unknown>) {
     width: sideBarWidth,
     left: navigationOpen ? 0 : -sideBarWidth,
   };
-  const menuStyle = { left: navigationOpen ? sideBarWidth : 0 };
+  const menuStyle = {
+    left: navigationOpen ? sideBarWidth : 0,
+    zIndex: navigationOpen ? 9998 : 8887,
+  };
 
   return (
     <>

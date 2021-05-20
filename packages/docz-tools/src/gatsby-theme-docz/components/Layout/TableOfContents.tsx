@@ -27,6 +27,7 @@ export function TableOfContents() {
   };
   const toggleStyle = {
     right: open ? sideBarWidth : 0,
+    zIndex: open ? 9998 : 8887,
   };
 
   return (

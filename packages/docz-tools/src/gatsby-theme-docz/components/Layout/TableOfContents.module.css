@@ -1,7 +1,6 @@
 .toggle {
   position: fixed;
   top: var(--space-large);
-  z-index: 9998;
   margin-right: var(--space-large);
   transition: right 300ms;
 
@@ -19,6 +18,7 @@
 
   z-index: 9999;
   min-height: 100vh;
+  overflow-x: hidden;
   transition: right 300ms;
   flex: 0 0 auto;
 
