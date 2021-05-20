@@ -14,7 +14,6 @@
     display: none;
   }
 }
-
 .toggle.open {
   right: var(--table-of-contents-width);
   z-index: calc(var(--sidebar-z-index) + 2);
