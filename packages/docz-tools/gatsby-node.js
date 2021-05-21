@@ -26,7 +26,7 @@ exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
               preserve: true,
               importFrom: [
                 require.resolve(
-                  path.join(__dirname, "@jobber/design/foundation.css"),
+                  path.join(__dirname, "../design/foundation.css"),
                 ),
               ],
             }),
