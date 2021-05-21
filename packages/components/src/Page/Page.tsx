@@ -90,6 +90,7 @@ export type PageProps = PagePropsWithIntro | PagePropsNoIntro;
 export function Page({
   title,
   intro,
+  externalIntroLinks,
   subtitle,
   children,
   width = "standard",
@@ -169,7 +170,11 @@ export function Page({
           </div>
           {intro && (
             <Text size="large">
-              <Markdown content={intro} basicUsage={true} />
+              <Markdown
+                content={intro}
+                basicUsage={true}
+                externalLink={externalIntroLinks}
+              />
             </Text>
           )}
         </Content>
