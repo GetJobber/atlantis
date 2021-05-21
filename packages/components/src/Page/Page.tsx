@@ -75,8 +75,8 @@ interface PagePropsWithIntro extends BasePageProps {
 interface PagePropsNoIntro extends BasePageProps {
   // No descriptions are necessary here, since they are already covered
   // inside of the PagePropsWithIntro interface.
-  readonly intro: undefined;
-  readonly externalIntroLinks: never;
+  readonly intro?: undefined;
+  readonly externalIntroLinks?: never;
 }
 
 /**
