@@ -77,7 +77,7 @@ function List({ items, level = 1, sidebarRef }: ListProps) {
                   className={pageLabel}
                   activeClassName={styles.active}
                 >
-                  {item.name}
+                  {item.name.replace(/^\(\d+\)/, "").trim()}
                 </Link>
               </div>
             )}
@@ -104,7 +104,7 @@ function NavigationGroup({ item, level, sidebarRef }: NavigationGroupProps) {
   return (
     <>
       <button onClick={handleClick} className={buttonLabel}>
-        {item.name}
+        {item.name.replace(/^\(\d+\)/, "").trim()}
         {level === 1 && (
           <Icon name={open ? "arrowUp" : "arrowDown"} color="greyBlue" />
         )}

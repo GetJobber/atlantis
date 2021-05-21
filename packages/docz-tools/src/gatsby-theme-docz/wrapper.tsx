@@ -8,14 +8,14 @@ const Wrapper = ({ children }: PropsWithChildren<unknown>) => {
   const isHomePage = route === "/";
   const hasName = name !== "";
   const showName = hasName && !isHomePage;
-
+  console.log("fiiii");
   return (
     <>
       <Helmet>
         <meta charSet="utf-8" />
         {showName ? (
           <title>
-            {name} | {title}
+            {name.replace(/^\(\d+\)/, "").trim()} | {title}
           </title>
         ) : (
           <title>{title}</title>
