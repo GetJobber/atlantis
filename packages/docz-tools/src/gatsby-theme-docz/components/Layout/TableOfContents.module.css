@@ -58,6 +58,10 @@
   flex-direction: column;
 }
 
+.inner::-webkit-scrollbar {
+  display: none;
+}
+
 .header {
   position: sticky;
   top: 0;

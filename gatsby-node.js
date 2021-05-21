@@ -29,12 +29,6 @@ exports.onCreateWebpackConfig = ({ loaders, actions, stage, getConfig }) => {
                 require.resolve(
                   path.join(__dirname, "../packages/design/foundation.css"),
                 ),
-                require.resolve(
-                  path.join(
-                    __dirname,
-                    "../packages/design/src/responsiveBreakpoints.css",
-                  ),
-                ),
               ],
             }),
           ],
