@@ -54,15 +54,36 @@ interface BasePageProps {
 }
 
 interface PagePropsWithIntro extends BasePageProps {
+  /**
+   * Content of the page. This supports basic markdown node types
+   * such as `_italic_`, `**bold**`, and `[link name](url)`.
+   *
+   * The `externalIntroLinks` prop can only be used if the
+   * `intro` prop is specified.
+   */
   readonly intro: string;
+
+  /**
+   * Causes any markdown links in the `intro` prop to open in a new
+   * tab, i.e. with `target="_blank"`.
+   *
+   * Defaults to `false`.
+   */
   readonly externalIntroLinks?: boolean;
 }
 
 interface PagePropsNoIntro extends BasePageProps {
+  // No descriptions are necessary here, since they are already covered
+  // inside of the PagePropsWithIntro interface.
   readonly intro: undefined;
   readonly externalIntroLinks: never;
 }
 
+/**
+ * We have a discriminated union here to ensure usage
+ * of externalIntroLinks is only valid if intro is
+ * also specified.
+ */
 export type PageProps = PagePropsWithIntro | PagePropsNoIntro;
 
 // eslint-disable-next-line max-statements
