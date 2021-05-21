@@ -38,7 +38,7 @@ module.exports = {
       files: [
         "./packages/docz-tools/src/gatsby-theme-docz/theme/index.ts",
         "./packages/docz-tools/src/gatsby-theme-docz/components/index.ts",
-        "./packages/docz-tools/src/gatsby-theme-docz/wrapper.tsx"
+        "./packages/docz-tools/src/wrapper.tsx"
       ],
       rules: {
         "import/no-default-export": "off"
