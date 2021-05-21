@@ -8,7 +8,7 @@ const Wrapper = ({ children }: PropsWithChildren<unknown>) => {
   const isHomePage = route === "/";
   const hasName = name !== "";
   const showName = hasName && !isHomePage;
-  console.log("fiiii");
+
   return (
     <>
       <Helmet>
