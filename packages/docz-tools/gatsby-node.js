@@ -5,39 +5,36 @@ const path = require("path");
 const { USE_ATLANTIS_ALIASES } = process.env;
 const useAtlantisAliases = USE_ATLANTIS_ALIASES === "true";
 
-exports.onCreateWebpackConfig = ({ rules, actions, getConfig }) => {
+exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
   const config = getConfig();
 
   /**
-   * Gatsby does not like that we use css modules. To fix this we need
-   * to change some of the webpack config around how we handle css.
-   * 😢 More info here: https://github.com/gatsbyjs/gatsby/issues/16129
+   * Generate css types on `.css` file save,
+   * as well as handle PostCss
    */
-  const cssRule = {
-    ...rules.cssModules(),
-    test: rules.css().test,
-    include: /^((?!node_modules).)*$/,
-  };
-
-  /**
-   * Don't process css from npm packages as modules.
-   */
-  const libCssRule = {
-    ...rules.css(),
-    test: rules.css().test,
-    include: /node_modules/,
-  };
-
-  config.module.rules = [
-    ...config.module.rules.filter(rule => {
-      const areCssRules =
-        rule.oneOf && rule.oneOf.some(r => r.test.test("style.css"));
-
-      return !areCssRules;
-    }),
-    libCssRule,
-    cssRule,
-  ];
+  config.module.rules.push({
+    enforce: "pre",
+    test: /\.css$/,
+    use: [
+      {
+        loader: "postcss-loader",
+        options: {
+          ident: "postcss",
+          plugins: () => [
+            require("postcss-preset-env")({
+              stage: 1,
+              preserve: true,
+              importFrom: [
+                require.resolve(
+                  path.join(__dirname, "@jobber/design/foundation.css"),
+                ),
+              ],
+            }),
+          ],
+        },
+      },
+    ],
+  });
 
   if (useAtlantisAliases) {
     config.resolve.alias = {
