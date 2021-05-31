@@ -31,7 +31,6 @@ interface ListProps {
 }
 
 function List({ items, level = 1, sidebarRef }: ListProps) {
-  const doc = useCurrentDoc();
   const listClass = classNames(
     styles.list,
     /**
@@ -46,44 +45,9 @@ function List({ items, level = 1, sidebarRef }: ListProps) {
 
   return (
     <ul className={listClass}>
-      {items.map(item => {
-        const itemClass = classNames(styles.item);
-        const pageLabel = classNames(styles.label, styles.pageLabel);
-        const linkRef = createRef<HTMLDivElement>();
-
-        useEffect(() => {
-          if (
-            item.type === "page" &&
-            sidebarRef?.current &&
-            linkRef?.current &&
-            item.item.route === doc.route
-          ) {
-            sidebarRef.current.scrollTo(0, linkRef.current.offsetTop);
-          }
-        }, []);
-
-        return (
-          <li key={item.id} className={itemClass}>
-            {item.type === "group" ? (
-              <NavigationGroup
-                item={item}
-                level={level}
-                sidebarRef={sidebarRef}
-              />
-            ) : (
-              <div ref={linkRef}>
-                <Link
-                  to={item.item.route}
-                  className={pageLabel}
-                  activeClassName={styles.active}
-                >
-                  {item.name.replace(/^\(\d+\)/, "").trim()}
-                </Link>
-              </div>
-            )}
-          </li>
-        );
-      })}
+      {items.map(item => (
+        <Item key={item.id} item={item} sidebarRef={sidebarRef} level={level} />
+      ))}
     </ul>
   );
 }
@@ -132,4 +96,46 @@ function NavigationGroup({ item, level, sidebarRef }: NavigationGroupProps) {
 
     return false;
   }
+}
+
+interface ItemProps {
+  readonly item: PageOrGroup;
+  readonly level: number;
+  readonly sidebarRef: RefObject<HTMLDivElement>;
+}
+
+function Item({ item, level, sidebarRef }: ItemProps) {
+  const currentDoc = useCurrentDoc();
+  const itemClass = classNames(styles.item);
+  const pageLabel = classNames(styles.label, styles.pageLabel);
+  const linkRef = createRef<HTMLDivElement>();
+
+  useEffect(() => {
+    if (
+      item.type === "page" &&
+      sidebarRef?.current &&
+      linkRef?.current &&
+      item.item.route === currentDoc.route
+    ) {
+      sidebarRef.current.scrollTo(0, linkRef.current.offsetTop);
+    }
+  }, []);
+
+  return (
+    <li key={item.id} className={itemClass}>
+      {item.type === "group" ? (
+        <NavigationGroup item={item} level={level} sidebarRef={sidebarRef} />
+      ) : (
+        <div>
+          <Link
+            to={item.item.route}
+            className={pageLabel}
+            activeClassName={styles.active}
+          >
+            {item.name.replace(/^\(\d+\)/, "").trim()}
+          </Link>
+        </div>
+      )}
+    </li>
+  );
 }
