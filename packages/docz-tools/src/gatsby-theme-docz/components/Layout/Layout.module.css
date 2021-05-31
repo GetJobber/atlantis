@@ -9,7 +9,7 @@
 .menu {
   position: fixed;
   top: var(--space-large);
-  z-index: 9999;
+  z-index: var(--sidebar-z-index);
   margin-left: var(--space-large);
   transition: left 300ms;
 
@@ -18,11 +18,15 @@
   }
 }
 
+.menu.open {
+  z-index: calc(var(--sidebar-z-index) + 2);
+}
+
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 8888;
+  z-index: calc(var(--sidebar-z-index) + 1);
   width: 100%;
   height: 100vh;
   background: var(--color-overlay);
@@ -34,7 +38,7 @@
 
 .sidebar {
   position: absolute;
-  z-index: 9999;
+  z-index: calc(var(--sidebar-z-index) + 2);
   flex: 0 0 auto;
   min-height: 100vh;
   transition: left 300ms;
