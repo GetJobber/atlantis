@@ -12,6 +12,7 @@ interface NavigationProps {
 
 export function Navigation({ query, sidebarRef }: NavigationProps) {
   const items = useJobberMenu(query);
+  const hasQuery = query != undefined && query !== "";
 
   if (!items) {
     return <></>;
@@ -19,7 +20,7 @@ export function Navigation({ query, sidebarRef }: NavigationProps) {
 
   return (
     <div ref={sidebarRef}>
-      <List items={items} sidebarRef={sidebarRef} />
+      <List items={items} initialOpen={hasQuery} sidebarRef={sidebarRef} />
     </div>
   );
 }
@@ -27,11 +28,11 @@ export function Navigation({ query, sidebarRef }: NavigationProps) {
 interface ListProps {
   items: PageOrGroup[];
   level?: number;
+  readonly initialOpen: boolean;
   readonly sidebarRef: RefObject<HTMLDivElement>;
 }
 
-function List({ items, level = 1, sidebarRef }: ListProps) {
-  const doc = useCurrentDoc();
+function List({ items, level = 1, initialOpen, sidebarRef }: ListProps) {
   const listClass = classNames(
     styles.list,
     /**
@@ -46,44 +47,15 @@ function List({ items, level = 1, sidebarRef }: ListProps) {
 
   return (
     <ul className={listClass}>
-      {items.map(item => {
-        const itemClass = classNames(styles.item);
-        const pageLabel = classNames(styles.label, styles.pageLabel);
-        const linkRef = createRef<HTMLDivElement>();
-
-        useEffect(() => {
-          if (
-            item.type === "page" &&
-            sidebarRef?.current &&
-            linkRef?.current &&
-            item.item.route === doc.route
-          ) {
-            sidebarRef.current.scrollTo(0, linkRef.current.offsetTop);
-          }
-        }, []);
-
-        return (
-          <li key={item.id} className={itemClass}>
-            {item.type === "group" ? (
-              <NavigationGroup
-                item={item}
-                level={level}
-                sidebarRef={sidebarRef}
-              />
-            ) : (
-              <div ref={linkRef}>
-                <Link
-                  to={item.item.route}
-                  className={pageLabel}
-                  activeClassName={styles.active}
-                >
-                  {item.name.replace(/^\(\d+\)/, "").trim()}
-                </Link>
-              </div>
-            )}
-          </li>
-        );
-      })}
+      {items.map(item => (
+        <Item
+          key={item.id}
+          initialOpen={initialOpen}
+          item={item}
+          sidebarRef={sidebarRef}
+          level={level}
+        />
+      ))}
     </ul>
   );
 }
@@ -91,15 +63,23 @@ function List({ items, level = 1, sidebarRef }: ListProps) {
 interface NavigationGroupProps {
   readonly item: Group;
   readonly level: number;
+  readonly initialOpen: boolean;
   readonly sidebarRef: RefObject<HTMLDivElement>;
 }
 
-function NavigationGroup({ item, level, sidebarRef }: NavigationGroupProps) {
+function NavigationGroup({
+  item,
+  level,
+  initialOpen,
+  sidebarRef,
+}: NavigationGroupProps) {
   const doc = useCurrentDoc();
   const [open, setOpen] = useState(getInitialOpen);
   const buttonLabel = classNames(styles.label, styles.groupLabel, {
     [styles.active]: open,
   });
+
+  useEffect(() => setOpen(getInitialOpen()), [initialOpen]);
 
   return (
     <>
@@ -110,7 +90,12 @@ function NavigationGroup({ item, level, sidebarRef }: NavigationGroupProps) {
         )}
       </button>
       {open && (
-        <List items={item.items} level={level + 1} sidebarRef={sidebarRef} />
+        <List
+          items={item.items}
+          level={level + 1}
+          sidebarRef={sidebarRef}
+          initialOpen={initialOpen}
+        />
       )}
     </>
   );
@@ -122,6 +107,10 @@ function NavigationGroup({ item, level, sidebarRef }: NavigationGroupProps) {
   }
 
   function getInitialOpen() {
+    if (initialOpen) {
+      return true;
+    }
+
     if (doc.menu.startsWith(item.name)) {
       return true;
     }
@@ -132,4 +121,52 @@ function NavigationGroup({ item, level, sidebarRef }: NavigationGroupProps) {
 
     return false;
   }
+}
+
+interface ItemProps {
+  readonly item: PageOrGroup;
+  readonly level: number;
+  readonly initialOpen: boolean;
+  readonly sidebarRef: RefObject<HTMLDivElement>;
+}
+
+function Item({ item, level, initialOpen, sidebarRef }: ItemProps) {
+  const currentDoc = useCurrentDoc();
+  const itemClass = classNames(styles.item);
+  const pageLabel = classNames(styles.label, styles.pageLabel);
+  const linkRef = createRef<HTMLDivElement>();
+
+  useEffect(() => {
+    if (
+      item.type === "page" &&
+      sidebarRef?.current &&
+      linkRef?.current &&
+      item.item.route === currentDoc.route
+    ) {
+      sidebarRef.current.scrollTo(0, linkRef.current.offsetTop);
+    }
+  }, []);
+
+  return (
+    <li key={item.id} className={itemClass}>
+      {item.type === "group" ? (
+        <NavigationGroup
+          item={item}
+          level={level}
+          sidebarRef={sidebarRef}
+          initialOpen={initialOpen}
+        />
+      ) : (
+        <div>
+          <Link
+            to={item.item.route}
+            className={pageLabel}
+            activeClassName={styles.active}
+          >
+            {item.name.replace(/^\(\d+\)/, "").trim()}
+          </Link>
+        </div>
+      )}
+    </li>
+  );
 }
