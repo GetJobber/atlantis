@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.1.3...@jobber/hooks@1.2.0) (2021-05-31)
+
+
+### Features
+
+* Allow Multi Level Menu in Docz ([#549](https://github.com/GetJobber/atlantis/issues/549)) ([5d966b6](https://github.com/GetJobber/atlantis/commit/5d966b6ee7b6e70f0122890a324f9b0ad4d556e7))
+
+
+
+
+
 ## [1.1.3](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.1.2...@jobber/hooks@1.1.3) (2021-04-28)
 
 **Note:** Version bump only for package @jobber/hooks

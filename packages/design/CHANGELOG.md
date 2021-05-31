@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.12.0...@jobber/design@0.13.0) (2021-05-31)
+
+
+### Features
+
+* Allow Multi Level Menu in Docz ([#549](https://github.com/GetJobber/atlantis/issues/549)) ([5d966b6](https://github.com/GetJobber/atlantis/commit/5d966b6ee7b6e70f0122890a324f9b0ad4d556e7))
+
+
+
+
+
 # [0.12.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.11.1...@jobber/design@0.12.0) (2021-05-17)
 
 
