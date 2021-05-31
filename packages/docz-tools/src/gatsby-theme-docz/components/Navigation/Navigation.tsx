@@ -14,8 +14,6 @@ export function Navigation({ query, sidebarRef }: NavigationProps) {
   const items = useJobberMenu(query);
   const hasQuery = query != undefined && query !== "";
 
-  console.log({ items, query, hasQuery });
-
   if (!items) {
     return <></>;
   }
