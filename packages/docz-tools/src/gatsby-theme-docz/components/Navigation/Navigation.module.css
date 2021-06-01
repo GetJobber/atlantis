@@ -58,7 +58,6 @@
 .level2 .pageLabel {
   display: block;
   padding: var(--space-smaller) 0;
-  color: var(--color-greyBlue--light);
   font-size: calc(var(--base-unit) * 0.875);
   text-transform: none;
 }
