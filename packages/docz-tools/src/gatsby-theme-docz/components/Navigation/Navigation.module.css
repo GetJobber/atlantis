@@ -58,7 +58,8 @@
 .level2 .pageLabel {
   display: block;
   padding: var(--space-smaller) 0;
-  font-size: calc(var(--base-unit) * 0.875);
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: normal;
   text-transform: none;
 }
 
@@ -67,7 +68,7 @@
   display: inline-block;
   width: var(--space-small);
   height: var(--space-small);
-  margin-right: var(--space-small);
+  margin-right: var(--space-base);
   border: var(--border-base) solid var(--color-greyBlue--light);
   border-radius: var(--radius-circle);
   background: none;
