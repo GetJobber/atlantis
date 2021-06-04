@@ -53,14 +53,14 @@ it("renders an initial time when given 'defaultValue'", () => {
     >
       <label
         className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440003"
+        htmlFor="123e4567-e89b-12d3-a456-426655440002"
       >
          
       </label>
       <input
         className="formField"
         defaultValue="11:23"
-        id="123e4567-e89b-12d3-a456-426655440003"
+        id="123e4567-e89b-12d3-a456-426655440002"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -72,6 +72,41 @@ it("renders an initial time when given 'defaultValue'", () => {
 });
 
 it("renders correctly in a readonly state", () => {
+  const tree = renderer
+    .create(<InputTime value={new CivilTime(11, 23)} readonly={true} />)
+    .toJSON();
+  expect(tree).toMatchInlineSnapshot(`
+    <div
+      className="wrapper"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
+    >
+      <label
+        className="label"
+        htmlFor="123e4567-e89b-12d3-a456-426655440003"
+      >
+         
+      </label>
+      <input
+        className="formField"
+        id="123e4567-e89b-12d3-a456-426655440003"
+        name="generatedName--123e4567-e89b-12d3-a456-426655440003"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        readOnly={true}
+        type="time"
+        value="11:23"
+      />
+    </div>
+  `);
+});
+
+it("adds a error border when invalid", () => {
   const tree = renderer
     .create(<InputTime value={new CivilTime(11, 23)} readonly={true} />)
     .toJSON();
@@ -106,41 +141,6 @@ it("renders correctly in a readonly state", () => {
   `);
 });
 
-it("adds a error border when invalid", () => {
-  const tree = renderer
-    .create(<InputTime value={new CivilTime(11, 23)} readonly={true} />)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
-    >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440006"
-      >
-         
-      </label>
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440006"
-        name="generatedName--123e4567-e89b-12d3-a456-426655440006"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        readOnly={true}
-        type="time"
-        value="11:23"
-      />
-    </div>
-  `);
-});
-
 it("should set the value when given 'value' and 'onChange'", () => {
   const tree = renderer.create(<InputTime invalid />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
@@ -154,14 +154,14 @@ it("should set the value when given 'value' and 'onChange'", () => {
     >
       <label
         className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440008"
+        htmlFor="123e4567-e89b-12d3-a456-426655440005"
       >
          
       </label>
       <input
         className="formField"
-        id="123e4567-e89b-12d3-a456-426655440008"
-        name="generatedName--123e4567-e89b-12d3-a456-426655440008"
+        id="123e4567-e89b-12d3-a456-426655440005"
+        name="generatedName--123e4567-e89b-12d3-a456-426655440005"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
