@@ -31,7 +31,7 @@
 
 .button * {
   color: inherit;
-  fill: inherit;
+  fill: inherit !important; /* required to over-ride very specific fill from <Icon> */
 }
 
 .button:hover,

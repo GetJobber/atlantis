@@ -1,11 +1,9 @@
 export const actions = {
   display: "flex",
-  position: "fixed",
-  top: "large",
-  right: "large",
-  zIndex: 9999,
+  paddingTop: "var(--space-base)",
+  paddingBottom: "var(--space-extravagant)",
 
   "> *": {
-    marginLeft: "small",
+    marginRight: "small",
   },
 } as const;

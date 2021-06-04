@@ -8,6 +8,47 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.6.0...@jobber/docz-tools@1.6.1) (2021-05-31)
+
+
+### Bug Fixes
+
+* **docz-tools:** Fixes the broken search ([#556](https://github.com/GetJobber/atlantis/issues/556)) ([8a54c02](https://github.com/GetJobber/atlantis/commit/8a54c021f373a18ab14468a8849b9be334a4dc2b))
+
+
+
+
+
+# [1.6.0](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.5.0...@jobber/docz-tools@1.6.0) (2021-05-31)
+
+
+### Features
+
+* Allow Multi Level Menu in Docz ([#549](https://github.com/GetJobber/atlantis/issues/549)) ([5d966b6](https://github.com/GetJobber/atlantis/commit/5d966b6ee7b6e70f0122890a324f9b0ad4d556e7))
+
+
+
+
+
+# [1.5.0](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.4.28...@jobber/docz-tools@1.5.0) (2021-05-17)
+
+
+### Features
+
+* **docz-tools:** Makes Atlantis theme responsive. ([#547](https://github.com/GetJobber/atlantis/issues/547)) ([663270d](https://github.com/GetJobber/atlantis/commit/663270dab54d779f53d9cc385831af7b856aad5f))
+
+
+
+
+
+## [1.4.28](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.4.27...@jobber/docz-tools@1.4.28) (2021-05-14)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
 ## [1.4.27](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.4.26...@jobber/docz-tools@1.4.27) (2021-05-12)
 
 **Note:** Version bump only for package @jobber/docz-tools
