@@ -312,11 +312,6 @@ export function FormField({
         name !== undefined
       ) {
         if (isControlled) {
-          console.log("setting value in useEffect, ", {
-            value,
-            controlledValue,
-            name,
-          });
           setValue(name, value.toString());
         }
       }
