@@ -184,6 +184,7 @@ it("renders a field with error", () => {
         onFocus={[Function]}
         onKeyDown={[Function]}
         type="text"
+        value="wrong!"
       />
     </div>
   `);

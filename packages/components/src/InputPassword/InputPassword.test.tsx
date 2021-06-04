@@ -31,6 +31,7 @@ it("renders an input type number", () => {
         onFocus={[Function]}
         onKeyDown={[Function]}
         type="password"
+        value="123"
       />
     </div>
   `);
@@ -64,6 +65,7 @@ it("renders an error", () => {
         onFocus={[Function]}
         onKeyDown={[Function]}
         type="password"
+        value="p"
       />
     </div>
   `);

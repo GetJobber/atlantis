@@ -32,6 +32,7 @@ it("renders a InputTime", () => {
         onFocus={[Function]}
         onKeyDown={[Function]}
         type="time"
+        value=""
       />
     </div>
   `);
@@ -99,6 +100,7 @@ it("renders correctly in a readonly state", () => {
         onKeyDown={[Function]}
         readOnly={true}
         type="time"
+        value="11:23"
       />
     </div>
   `);
@@ -133,6 +135,7 @@ it("adds a error border when invalid", () => {
         onKeyDown={[Function]}
         readOnly={true}
         type="time"
+        value="11:23"
       />
     </div>
   `);
@@ -164,6 +167,7 @@ it("should set the value when given 'value' and 'onChange'", () => {
         onFocus={[Function]}
         onKeyDown={[Function]}
         type="time"
+        value=""
       />
     </div>
   `);
