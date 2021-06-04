@@ -24,21 +24,8 @@ interface PageFoundationProps {
    */
   readonly subtitle?: string;
 
-  /**
-   * Content of the page. This supports basic markdown node types
-   * such as `_italic_`, `**bold**`, and `[link name](url)`.
-   *
-   * The `externalIntroLinks` prop can only be used if the
-   * `intro` prop is specified.
-   */
   readonly intro?: string;
 
-  /**
-   * Causes any markdown links in the `intro` prop to open in a new
-   * tab, i.e. with `target="_blank"`.
-   *
-   * Defaults to `false`.
-   */
   readonly externalIntroLinks?: boolean;
 
   /**
@@ -72,7 +59,20 @@ interface PageFoundationProps {
 }
 
 interface PagePropsWithIntro extends PageFoundationProps {
+  /**
+   * Content of the page. This supports basic markdown node types
+   * such as `_italic_`, `**bold**`, and `[link name](url)`.
+   */
   readonly intro: string;
+
+  /**
+   * Causes any markdown links in the `intro` prop to open in a new
+   * tab, i.e. with `target="_blank"`.
+   *
+   * Can only be used if `intro` prop is also specified.
+   *
+   * Defaults to `false`.
+   */
   readonly externalIntroLinks?: boolean;
 }
 
