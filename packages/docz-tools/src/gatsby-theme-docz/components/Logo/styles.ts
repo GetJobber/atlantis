@@ -6,12 +6,9 @@ export const logo = {
 };
 
 export const text = {
-  background: `-webkit-linear-gradient(var(--color-yellow--lighter),var(--color-yellow))`,
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-  textTransform: "uppercase",
+  WebkitTextFillColor: "white",
   fontFamily: "heading",
-  letterSpacing: "0.05em",
+  letterSpacing: "0.0125em",
   fontSize: "larger",
   padding: 0,
 };
