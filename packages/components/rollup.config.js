@@ -23,10 +23,7 @@ export default {
         require("postcss-preset-env")({
           stage: 1,
           preserve: true,
-          importFrom: [
-            require.resolve("@jobber/design"),
-            require.resolve("@jobber/design/src/responsiveBreakpoints.css"),
-          ],
+          importFrom: [require.resolve("@jobber/design")],
         }),
       ],
     }),

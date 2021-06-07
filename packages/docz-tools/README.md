@@ -155,3 +155,43 @@ name: Component Name
 showDirectoryLink: true
 ---
 ```
+
+## Prioritizing items in the navigation
+
+`@jobber/docz-tools` will allow you to prioritize items within the sidebar
+navigation by adding a `(0x)` prefix to the `name` or `menu` item in the
+frontmatter.
+
+In the following example, we will prioritize the `Switch` item over the `Button`
+item in the menu.
+
+```md
+## <!-- Button.mdx -->
+
+name: Button menu: Components/Actions
+
+---
+
+## <!-- Switch.mdx -->
+
+name: (01) Switch menu: Components/Actions
+
+---
+```
+
+The same can be done for menus. In the example below, we are prioritizing the
+`Layout` menu before the `Actions` menu.
+
+```md
+## <!-- Button.mdx -->
+
+name: Button menu: Components/Actions
+
+---
+
+## <!-- Banner.mdx -->
+
+name: Banner menu: Components/(01) Layout
+
+---
+```
