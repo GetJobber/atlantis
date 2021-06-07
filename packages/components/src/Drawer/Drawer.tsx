@@ -29,7 +29,11 @@ export function Drawer({
   const drawerClassNames = classnames(styles.container, open && styles.open);
   return (
     <>
-      <aside className={drawerClassNames} data-testid="drawer-container">
+      <aside
+        className={drawerClassNames}
+        data-testid="drawer-container"
+        aria-label={title}
+      >
         <div className={styles.drawer}>
           <Header title={title} onRequestClose={onRequestClose} />
           <div className={styles.contentScroll}>
