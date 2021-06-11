@@ -70,6 +70,7 @@ export function Typography({
   if (shouldTruncateText) {
     truncateLines = {
       WebkitLineClamp: numberOfLines,
+      WebkitBoxOrient: "vertical",
     };
   }
 
