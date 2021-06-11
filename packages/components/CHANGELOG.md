@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.37.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.36.1...@jobber/components@2.37.0) (2021-06-11)
+
+
+### Features
+
+* **components:** use aside and ButtonDismiss on Drawer component ([#548](https://github.com/GetJobber/atlantis/issues/548)) ([32eed1e](https://github.com/GetJobber/atlantis/commit/32eed1e2eb3303be64424f292178e4a8c85d5214))
+
+
+
+
+
 ## [2.36.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.36.0...@jobber/components@2.36.1) (2021-06-07)
 
 **Note:** Version bump only for package @jobber/components
