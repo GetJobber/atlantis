@@ -5,7 +5,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.js",
   "scripts": {
-    "build": "tsc --project .",
+    "build": "",
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
     "prepare": "npm run clean; npm run build"
   },
@@ -13,10 +13,14 @@
     "dist/*"
   ],
   "devDependencies": {
-    "@testing-library/react-hooks": "^3.2.1",
-    "react-test-renderer": "^16.9.0",
+    "@apollo/react-testing": "^4.0.0",
     "@testing-library/react": "^10.2.1",
-    "typescript": "^3.8.3"
+    "@testing-library/react-hooks": "^3.2.1",
+    "@types/uuid": "^3.4.5",
+    "graphql-tag": "^2.10.3",
+    "react-test-renderer": "^16.9.0",
+    "typescript": "^3.8.3",
+    "uuid": "^3.3.2"
   },
   "dependencies": {
     "@use-it/event-listener": "^0.1.6",
