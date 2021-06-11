@@ -24,6 +24,7 @@
     "use-resize-observer": "^6.1.0"
   },
   "peerDependencies": {
+    "@apollo/client": "^3.3.16",
     "react": "^16.8.6"
   }
 }

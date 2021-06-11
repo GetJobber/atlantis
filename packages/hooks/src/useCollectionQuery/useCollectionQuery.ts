@@ -1,21 +1,22 @@
 import {
   ApolloError,
+  DocumentNode,
   QueryHookOptions,
   SubscribeToMoreOptions,
   useQuery,
 } from "@apollo/client";
 import { cloneDeep } from "lodash";
 import { useCallback, useEffect, useState } from "react";
-import { Rollbar } from "utilities/errors/Rollbar";
 import { Node, uniqueNodes } from "./uniqueNodes";
 import { Edge, createEdge, uniqueEdges } from "./uniqueEdges";
 import { useIsMounted } from "../useIsMounted";
+import { Configuration } from "../configure";
 
 interface UseCollectionQueryArguments<TQuery, TSubscription> {
   /**
    * The graphQL query that fetches the collection
    */
-  query: unknown;
+  query: DocumentNode;
 
   /**
    * A list of options for us to pass into the apollo `useQuery` hook
@@ -75,7 +76,7 @@ interface Collection {
 
 interface CollectionQueryResult<TQuery> {
   data: TQuery | undefined;
-  error: unknown | undefined;
+  error: ApolloError | undefined;
   loadingRefresh: boolean;
   loadingNextPage: boolean;
   loadingInitialContent: boolean;
@@ -112,13 +113,7 @@ export function useCollectionQuery<TQuery, TSubscription = undefined>({
   const isMounted = useIsMounted();
   const [loadingRefresh, setLoadingRefresh] = useState<boolean>(false);
   const [loadingNextPage, setLoadingNextPage] = useState<boolean>(false);
-  const [loadingInitialContent, setLoadingInitialContent] = useState<boolean>(
-    loading,
-  );
-
-  useEffect(() => {
-    setLoadingInitialContent(loading && !loadingRefresh && !loadingNextPage);
-  }, [loading, loadingRefresh, loadingNextPage]);
+  const loadingInitialContent = loading && !loadingRefresh && !loadingNextPage;
 
   const refresh = useCallback(() => {
     if (loadingInitialContent || loadingRefresh) {
@@ -126,10 +121,8 @@ export function useCollectionQuery<TQuery, TSubscription = undefined>({
     }
 
     setLoadingRefresh(true);
-    // tslint:disable-next-line:no-floating-promises
     refetch()
-      // tslint:disable-next-line:no-unsafe-any
-      .catch(err => errorNotifier("Refetch Error", err))
+      .catch(err => Configuration.errorNotifier("Refetch Error", err))
       .finally(() => {
         if (isMounted.current) {
           setLoadingRefresh(false);
@@ -155,7 +148,7 @@ export function useCollectionQuery<TQuery, TSubscription = undefined>({
     }
 
     setLoadingNextPage(true);
-    // tslint:disable-next-line:no-floating-promises
+
     fetchMore({
       variables: {
         cursor: pageInfo.endCursor,
@@ -164,7 +157,7 @@ export function useCollectionQuery<TQuery, TSubscription = undefined>({
         fetchMoreUpdateQueryHandler(prev, fetchMoreResult, getCollectionByPath),
     })
       // tslint:disable-next-line:no-unsafe-any
-      .catch(err => Rollbar.EXECUTE("FetchMore Error", err))
+      .catch(err => Configuration.errorNotifier("FetchMore Error", err))
       .finally(() => {
         if (isMounted.current) {
           setLoadingNextPage(false);
@@ -197,7 +190,8 @@ export function useCollectionQuery<TQuery, TSubscription = undefined>({
             subscriptionData?.data,
             subscription.getNodeByPath,
           ),
-        onError: err => Rollbar.EXECUTE("Subscribe to More Error", err),
+        onError: err =>
+          Configuration.errorNotifier("Subscribe to More Error", err),
       });
     },
     // Disabling this linter so we can force this only run once. If we didn't
@@ -313,11 +307,14 @@ export function isAlreadyUpdated(outputCollection: Collection, newNode: Node) {
       return edge.node.id === newNode.id;
     });
   }
+
   if (outputCollection.nodes) {
     return outputCollection.nodes.some(node => {
       return node.id === newNode.id;
     });
   }
+
+  return false;
 }
 
 function getUpdatedEdges(
@@ -340,14 +337,4 @@ function getUpdatedNodes(
     ? [...prevNodes, ...nextNodes]
     : [...nextNodes, ...prevNodes];
   return uniqueNodes(newNodes);
-}
-
-let errorNotifier = (message: string, error: unknown) => {
-  console.error(message, error);
-};
-
-export function setErrorNotifier(
-  notifier: (message: string, error: unknown) => void,
-) {
-  errorNotifier = notifier;
 }
