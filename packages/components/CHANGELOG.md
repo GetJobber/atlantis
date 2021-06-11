@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.37.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.37.0...@jobber/components@2.37.1) (2021-06-11)
+
+
+### Bug Fixes
+
+* **components:** added css style so that webkit line clamp is always respected ([#563](https://github.com/GetJobber/atlantis/issues/563)) ([6be2cae](https://github.com/GetJobber/atlantis/commit/6be2caec84ec955ddf662ece1632c98770bfeea6))
+
+
+
+
+
 # [2.37.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.36.1...@jobber/components@2.37.0) (2021-06-11)
 
 
