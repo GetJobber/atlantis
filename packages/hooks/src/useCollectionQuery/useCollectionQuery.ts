@@ -4,20 +4,18 @@ import {
   SubscribeToMoreOptions,
   useQuery,
 } from "@apollo/client";
-import { DocumentNode } from "graphql";
 import { cloneDeep } from "lodash";
 import { useCallback, useEffect, useState } from "react";
-import { PageInfo, Scalars } from "utilities/API/graphql";
 import { Rollbar } from "utilities/errors/Rollbar";
-import { useIsMounted } from "packages/hooks/src/useIsMounted";
 import { Node, uniqueNodes } from "./uniqueNodes";
 import { Edge, createEdge, uniqueEdges } from "./uniqueEdges";
+import { useIsMounted } from "../useIsMounted";
 
 interface UseCollectionQueryArguments<TQuery, TSubscription> {
   /**
    * The graphQL query that fetches the collection
    */
-  query: DocumentNode;
+  query: unknown;
 
   /**
    * A list of options for us to pass into the apollo `useQuery` hook
@@ -66,14 +64,18 @@ interface ListSubscription<TSubscription> {
 interface Collection {
   edges?: Edge[];
   nodes?: Node[];
-  pageInfo: Pick<PageInfo, "endCursor" | "hasNextPage">;
-  totalCount: Scalars["Int"];
+  pageInfo: {
+    endCursor?: string | undefined;
+    hasNextPage: boolean;
+    [otherProperties: string]: unknown;
+  };
+  totalCount: number;
   [otherProperties: string]: unknown;
 }
 
 interface CollectionQueryResult<TQuery> {
   data: TQuery | undefined;
-  error: ApolloError | undefined;
+  error: unknown | undefined;
   loadingRefresh: boolean;
   loadingNextPage: boolean;
   loadingInitialContent: boolean;
@@ -127,7 +129,7 @@ export function useCollectionQuery<TQuery, TSubscription = undefined>({
     // tslint:disable-next-line:no-floating-promises
     refetch()
       // tslint:disable-next-line:no-unsafe-any
-      .catch(err => Rollbar.EXECUTE("Refetch Error", err))
+      .catch(err => errorNotifier("Refetch Error", err))
       .finally(() => {
         if (isMounted.current) {
           setLoadingRefresh(false);
@@ -338,4 +340,14 @@ function getUpdatedNodes(
     ? [...prevNodes, ...nextNodes]
     : [...nextNodes, ...prevNodes];
   return uniqueNodes(newNodes);
+}
+
+let errorNotifier = (message: string, error: unknown) => {
+  console.error(message, error);
+};
+
+export function setErrorNotifier(
+  notifier: (message: string, error: unknown) => void,
+) {
+  errorNotifier = notifier;
 }
