@@ -296,19 +296,22 @@ function subscribeToMoreHandler<TQuery, TSubscription>(
 }
 
 export function isAlreadyUpdated(outputCollection: Collection, newNode: Node) {
+  let edgesAlreadyUpdated = true;
+  let nodesAlreadyUpdated = true;
+
   if (outputCollection.edges) {
-    return outputCollection.edges.some(edge => {
+    edgesAlreadyUpdated = outputCollection.edges.some(edge => {
       return edge.node.id === newNode.id;
     });
   }
 
   if (outputCollection.nodes) {
-    return outputCollection.nodes.some(node => {
+    nodesAlreadyUpdated = outputCollection.nodes.some(node => {
       return node.id === newNode.id;
     });
   }
 
-  return false;
+  return edgesAlreadyUpdated && nodesAlreadyUpdated;
 }
 
 function getUpdatedEdges(
