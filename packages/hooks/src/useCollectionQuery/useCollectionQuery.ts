@@ -101,14 +101,8 @@ export function useCollectionQuery<TQuery, TSubscription = undefined>({
   TQuery,
   TSubscription
 >): CollectionQueryResult<TQuery> {
-  const {
-    data,
-    loading,
-    refetch,
-    error,
-    fetchMore,
-    subscribeToMore,
-  } = useQuery<TQuery>(query, queryOptions);
+  const { data, loading, refetch, error, fetchMore, subscribeToMore } =
+    useQuery<TQuery>(query, queryOptions);
 
   const isMounted = useIsMounted();
   const [loadingRefresh, setLoadingRefresh] = useState<boolean>(false);
