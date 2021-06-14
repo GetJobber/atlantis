@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.37.2...@jobber/components@2.38.0) (2021-06-14)
+
+
+### Features
+
+* **components:** Include responsive breakpoints in Rollup ([78d494f](https://github.com/GetJobber/atlantis/commit/78d494fe0ec40165dfd2afea9340c9f7005eb4a7))
+
+
+
+
+
 ## [2.37.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.37.1...@jobber/components@2.37.2) (2021-06-14)
 
 
