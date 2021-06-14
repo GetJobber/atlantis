@@ -8,6 +8,39 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.37.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.37.1...@jobber/components@2.37.2) (2021-06-14)
+
+
+### Bug Fixes
+
+* **components:** resolve render issues when using controlled component inside form component  ([#504](https://github.com/GetJobber/atlantis/issues/504)) ([ec9b792](https://github.com/GetJobber/atlantis/commit/ec9b792ec8392b91f05c68e9dd6676bf5863943b))
+
+
+
+
+
+## [2.37.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.37.0...@jobber/components@2.37.1) (2021-06-11)
+
+
+### Bug Fixes
+
+* **components:** added css style so that webkit line clamp is always respected ([#563](https://github.com/GetJobber/atlantis/issues/563)) ([6be2cae](https://github.com/GetJobber/atlantis/commit/6be2caec84ec955ddf662ece1632c98770bfeea6))
+
+
+
+
+
+# [2.37.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.36.1...@jobber/components@2.37.0) (2021-06-11)
+
+
+### Features
+
+* **components:** use aside and ButtonDismiss on Drawer component ([#548](https://github.com/GetJobber/atlantis/issues/548)) ([32eed1e](https://github.com/GetJobber/atlantis/commit/32eed1e2eb3303be64424f292178e4a8c85d5214))
+
+
+
+
+
 ## [2.36.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.36.0...@jobber/components@2.36.1) (2021-06-07)
 
 **Note:** Version bump only for package @jobber/components
