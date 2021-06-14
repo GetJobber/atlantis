@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.37.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.37.1...@jobber/components@2.37.2) (2021-06-14)
+
+
+### Bug Fixes
+
+* **components:** resolve render issues when using controlled component inside form component  ([#504](https://github.com/GetJobber/atlantis/issues/504)) ([ec9b792](https://github.com/GetJobber/atlantis/commit/ec9b792ec8392b91f05c68e9dd6676bf5863943b))
+
+
+
+
+
 ## [2.37.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.37.0...@jobber/components@2.37.1) (2021-06-11)
 
 
