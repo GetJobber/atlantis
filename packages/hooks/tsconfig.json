@@ -1,7 +1,8 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "module": "commonjs",
+    "typeRoots": ["./node_modules/@types"],
+    "jsx": "react",
     "declaration": true,
     "rootDir": "src",
     "outDir": "dist"

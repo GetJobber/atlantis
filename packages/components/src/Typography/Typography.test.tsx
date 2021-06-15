@@ -205,6 +205,7 @@ it("should add textTruncate class when numberOfLines property is passed", () => 
       className="base regular textTruncate"
       style={
         Object {
+          "WebkitBoxOrient": "vertical",
           "WebkitLineClamp": 3,
         }
       }

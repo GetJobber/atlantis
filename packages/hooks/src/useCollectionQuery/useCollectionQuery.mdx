@@ -9,14 +9,28 @@ import { List } from "@jobber/components/List";
 import { Card } from "@jobber/components/Card";
 import { Button } from "@jobber/components/Button";
 import { Spinner } from "@jobber/components/Spinner";
+import { useCollectionQuery } from "@jobber/hooks";
 
 # UseCollectionQuery
 
 `useCollectionQuery` is a generalized hook that that fetches a collection of
 data. For use with any lists populated by graphQL collections.
 
+```tsx
+import { useCollectionQuery } from "@jobber/hooks";
+```
+
 <Playground>
   {() => {
+    const styles = {
+      spinners: {
+        display: "flex",
+      },
+      loadingIndicator: {
+        flex: 1,
+        padding: 20,
+      },
+    };
     const moreItems = () => {
       [
         {
@@ -38,14 +52,17 @@ data. For use with any lists populated by graphQL collections.
     };
     return (
       <>
-        <div>
-          <div>
+        <div style={styles.spinners}>
+          <div style={styles.loadingIndicator}>
+            <h4>Initial Loading Indicator</h4>
             <Spinner />
           </div>
-          <div>
+          <div style={styles.loadingIndicator}>
+            <h4>Refreshing Indicator</h4>
             <Spinner />
           </div>
-          <div>
+          <div style={styles.loadingIndicator}>
+            <h4>Fetching More Indicator</h4>
             <Spinner />
           </div>
         </div>
@@ -92,8 +109,18 @@ data. For use with any lists populated by graphQL collections.
           />
         </div>
         <div>
-          <Button label={"Fetch More"} />
-          <Button label={"Reload"} />
+          <Button
+            label={"Fetch More"}
+            onClick={() => {
+              alert("hi");
+            }}
+          />
+          <Button
+            label={"Reload"}
+            onClick={() => {
+              alert("hi");
+            }}
+          />
         </div>
       </>
     );

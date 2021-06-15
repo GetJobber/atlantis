@@ -8,7 +8,12 @@ import React, {
 } from "react";
 import classnames from "classnames";
 import uuid from "uuid";
-import { ValidationRules, useForm, useFormContext } from "react-hook-form";
+import {
+  ValidationRules,
+  useForm,
+  useFormContext,
+  useWatch,
+} from "react-hook-form";
 import styles from "./FormField.css";
 import { Icon } from "../Icon";
 import { InputValidation } from "../InputValidation";
@@ -201,30 +206,33 @@ export function FormField({
 }: FormFieldProps) {
   const {
     register,
+    setValue,
+    control,
     /**
      * We currently only use `errors` from formState, but there are lots of
      * other values that come with it. https://react-hook-form.com/api#formState
      */
     formState: { errors },
-  } =
-    useFormContext() != undefined
-      ? useFormContext()
-      : useForm({ mode: "onTouched" });
+  } = useFormContext() != undefined
+    ? useFormContext()
+    : useForm({ mode: "onTouched" });
 
   const [hasMiniLabel, setHasMiniLabel] = useState(
     shouldShowMiniLabel(defaultValue, value),
   );
   const [identifier] = useState(uuid.v1());
+  const isControlled = value !== undefined;
 
-  if (!name && validations) {
+  if (!name && (validations || isControlled)) {
     name = `generatedName--${identifier}`;
   }
 
   const error = name && errors[name] && errors[name].message;
 
-  useEffect(() => setHasMiniLabel(shouldShowMiniLabel(defaultValue, value)), [
-    value,
-  ]);
+  useEffect(
+    () => setHasMiniLabel(shouldShowMiniLabel(defaultValue, value)),
+    [value],
+  );
   useEffect(() => handleValidation(), [error]);
 
   const autocompleteValue = setAutocomplete(autocomplete);
@@ -278,6 +286,13 @@ export function FormField({
       [styles.select]: type === "select",
     });
 
+    // const controlledValue = watch(name || "", );
+    const controlledValue = useWatch({
+      control,
+      name: name || "",
+      defaultValue: defaultValue || value?.toString() || "",
+    });
+
     const fieldProps = {
       id: identifier,
       className: fieldClasses,
@@ -285,14 +300,30 @@ export function FormField({
       disabled: disabled,
       readOnly: readonly,
       onChange: handleChange,
-      value: value,
+      value: isControlled && name ? controlledValue : undefined,
       inputMode: keyboard,
       ...(defaultValue && { defaultValue: defaultValue }),
     };
 
+    useEffect(() => {
+      if (
+        value !== undefined &&
+        value !== controlledValue &&
+        name !== undefined
+      ) {
+        if (isControlled) {
+          setValue(name, value.toString());
+        }
+      }
+    }, [value]);
+
     switch (type) {
       case "select":
-        return <select {...fieldProps}>{children}</select>;
+        return (
+          <select {...fieldProps} value={value}>
+            {children}
+          </select>
+        );
       case "textarea":
         return (
           <textarea
@@ -302,7 +333,8 @@ export function FormField({
             onBlur={handleBlur}
             ref={element => {
               if (inputRef && element) {
-                (inputRef as MutableRefObject<HTMLTextAreaElement>).current = element;
+                (inputRef as MutableRefObject<HTMLTextAreaElement>).current =
+                  element;
               }
               if (name) {
                 register(element, { ...validations });
@@ -325,7 +357,8 @@ export function FormField({
               onBlur={handleBlur}
               ref={element => {
                 if (inputRef && element) {
-                  (inputRef as MutableRefObject<HTMLInputElement>).current = element;
+                  (inputRef as MutableRefObject<HTMLInputElement>).current =
+                    element;
                 }
                 if (name) {
                   register(element, { ...validations });
@@ -355,6 +388,9 @@ export function FormField({
 
     if (type === "number" && newValue.length > 0) {
       newValue = parseFloat(newValue);
+    }
+    if (isControlled && name && value) {
+      setValue(name, value);
     }
     onChange && onChange(newValue);
   }
