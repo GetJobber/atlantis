@@ -36,6 +36,7 @@
   },
   "homepage": "https://github.com/GetJobber/atlantis#readme",
   "devDependencies": {
+    "@apollo/client": "^3.3.16",
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",

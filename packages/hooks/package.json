@@ -13,17 +13,30 @@
     "dist/*"
   ],
   "devDependencies": {
+    "@apollo/client": "^3.3.16",
+    "@apollo/react-testing": "^4.0.0",
     "@testing-library/react": "^10.2.1",
-    "typescript": "^3.8.3"
+    "@testing-library/react-hooks": "^3.2.1",
+    "@types/jest": "^26.0.23",
+    "@types/lodash": "^4.14.136",
+    "@types/react": "^16.9.43",
+    "@types/react-dom": "^16.9.2",
+    "@types/uuid": "^3.4.5",
+    "graphql": "^14.6.0",
+    "graphql-tag": "^2.10.3",
+    "react-test-renderer": "^16.9.0",
+    "typescript": "^3.8.3",
+    "uuid": "^3.3.2"
   },
   "dependencies": {
     "@use-it/event-listener": "^0.1.6",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "resize-observer-polyfill": "^1.5.1",
     "ts-xor": "^1.0.8",
     "use-resize-observer": "^6.1.0"
   },
   "peerDependencies": {
+    "@apollo/client": "^3.3.16",
     "react": "^16.8.6"
   }
 }
