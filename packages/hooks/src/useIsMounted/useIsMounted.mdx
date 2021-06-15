@@ -11,7 +11,10 @@ import { useIsMounted } from "@jobber/hooks";
 
 # UseIsMounted
 
-`useIsMounted` is
+`useIsMounted` is a generalized hook that upon initial loading triggers a
+`useLayoutEffect` that sets the isMounted to true right after the component is
+mounted. When the component unmounts, it calls the cleanup function that sets
+`isMounted` to false. This `useLayoutEffect` hook will only be run once.
 
 ```tsx
 import { useIsMounted } from "@jobber/hooks";
