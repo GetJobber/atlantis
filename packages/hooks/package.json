@@ -24,8 +24,6 @@
     "@types/uuid": "^3.4.5",
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.3",
-    "react": "^16.8.6",
-    "react-dom": "^16.9.0",
     "react-test-renderer": "^16.9.0",
     "typescript": "^3.8.3",
     "uuid": "^3.3.2"
