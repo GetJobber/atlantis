@@ -5,11 +5,20 @@ route: /hooks/use-collection-query
 ---
 
 import { Playground } from "docz";
+import {
+  ApolloClient,
+  InMemoryCache,
+  useQuery,
+  ApolloProvider,
+} from "@apollo/client";
+import { useEffect, useState } from "react";
 import { List } from "@jobber/components/List";
 import { Card } from "@jobber/components/Card";
 import { Button } from "@jobber/components/Button";
 import { Spinner } from "@jobber/components/Spinner";
 import { useCollectionQuery } from "@jobber/hooks";
+import { ListQueryType, client } from "./mdxUtils";
+import gql from "graphql-tag";
 
 # UseCollectionQuery
 
@@ -22,6 +31,45 @@ import { useCollectionQuery } from "@jobber/hooks";
 
 <Playground>
   {() => {
+    console.log("i got in here");
+    const [items, setItems] = useState([]);
+    const LIST_QUERY = gql`
+      query ListQuery($cursor: String) {
+        allPlanets(first: 4, after: $cursor) {
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
+          edges {
+            node {
+              name
+            }
+            cursor
+          }
+          totalCount
+        }
+      }
+    `;
+    const {
+      data,
+      error,
+      refresh,
+      nextPage,
+      loadingRefresh,
+      loadingNextPage,
+      loadingInitialContent,
+    } = useCollectionQuery({
+      query: LIST_QUERY,
+      queryOptions: {
+        fetchPolicy: "network-only",
+        nextFetchPolicy: "network-only",
+        client: client,
+      },
+      getCollectionByPath(items) {
+        return items;
+      },
+    });
+    console.log("data", data);
     const styles = {
       spinners: {
         display: "flex",
@@ -31,82 +79,24 @@ import { useCollectionQuery } from "@jobber/hooks";
         padding: 20,
       },
     };
-    const moreItems = () => {
-      [
-        {
-          id: 5,
-          icon: "wallet",
-          iconColor: "orange",
-          content: "Payment for Invoice #39",
-          value: "-$300.00",
-          caption: "Sep 25, 2019",
-        },
-        {
-          id: 6,
-          icon: "paidInvoice",
-          content: "Invoice #39",
-          value: "$300.00",
-          caption: "Sep 24, 2019",
-        },
-      ];
-    };
     return (
       <>
         <div style={styles.spinners}>
           <div style={styles.loadingIndicator}>
             <h4>Initial Loading Indicator</h4>
-            <Spinner />
+            {loadingInitialContent && <Spinner />}
           </div>
           <div style={styles.loadingIndicator}>
             <h4>Refreshing Indicator</h4>
-            <Spinner />
+            {loadingRefresh && <Spinner />}
           </div>
           <div style={styles.loadingIndicator}>
             <h4>Fetching More Indicator</h4>
-            <Spinner />
+            {loadingNextPage && <Spinner />}
           </div>
         </div>
         <div>
-          <List
-            onFetchMore={moreItems}
-            items={[
-              {
-                id: 1,
-                icon: "wallet",
-                iconColor: "orange",
-                content: "Payment for Invoice #39",
-                value: "-$300.00",
-                caption: "Sep 25, 2019",
-                onClick: () => alert("TODO: Implement onClick"),
-              },
-              {
-                id: 2,
-                icon: "paidInvoice",
-                content: "Invoice #39",
-                value: "$300.00",
-                caption: "Sep 24, 2019",
-                onClick: () => alert("TODO: Implement onClick"),
-              },
-              {
-                id: 3,
-                icon: "wallet",
-                iconColor: "orange",
-                content: "Payment for Invoice #40",
-                value: "-$300.00",
-                caption: "Sep 25, 2019",
-                onClick: () => alert("TODO: Implement onClick"),
-              },
-              {
-                id: 4,
-                icon: "wallet",
-                iconColor: "orange",
-                content: "Payment for Invoice #39",
-                value: "-$300.00",
-                caption: "Sep 25, 2019",
-                onClick: () => alert("TODO: Implement onClick"),
-              },
-            ]}
-          />
+          <List items={items || []} />
         </div>
         <div>
           <Button
@@ -118,7 +108,7 @@ import { useCollectionQuery } from "@jobber/hooks";
           <Button
             label={"Reload"}
             onClick={() => {
-              alert("hi");
+              refresh();
             }}
           />
         </div>

@@ -5,6 +5,7 @@ route: /hooks/use-is-mounted
 ---
 
 import { Playground } from "docz";
+import { useEffect, useState } from "react";
 import { Card } from "@jobber/components/Card";
 import { Button } from "@jobber/components/Button";
 import { useIsMounted } from "@jobber/hooks";
@@ -12,7 +13,7 @@ import { useIsMounted } from "@jobber/hooks";
 # UseIsMounted
 
 `useIsMounted` is a generalized hook that upon initial loading triggers a
-`useLayoutEffect` that sets the isMounted to true right after the component is
+`useLayoutEffect` that sets the `isMounted` to true right after the component is
 mounted. When the component unmounts, it calls the cleanup function that sets
 `isMounted` to false. This `useLayoutEffect` hook will only be run once.
 
@@ -22,13 +23,22 @@ import { useIsMounted } from "@jobber/hooks";
 
 <Playground>
   {() => {
-    return (
-      <Button
-        label={"Mount Component"}
-        onClick={() => {
-          alert("this will mount something");
-        }}
-      />
-    );
+    const isMounted = useIsMounted();
+    const [triggerUnmount, setTriggerUnmount] = setState(false);
+    useEffect(() => {
+      alert("I am mounted!");
+    }, [isMounted]);
+    if (triggerUnmount) {
+      return <></>;
+    } else {
+      return (
+        <Button
+          label={"Unmount Component"}
+          onClick={() => {
+            setTriggerUnmount(true);
+          }}
+        />
+      );
+    }
   }}
 </Playground>
