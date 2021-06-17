@@ -50,6 +50,17 @@ When contributing to, or consuming the Toast component, consider the following:
 - No need to use "Successfully", should be implicit in the toast.
 - Don't use `Dismiss` or `Cancel` as an action label.
   - Examples of action labels: `Undo`, `View`, `Refresh`.
+  
+### Errors
+  
+Only use Toast for errors if there is some other mechanism alerting the user of the problem (such as [InputValidation](input-validation))
+so that they can recover from the error.
+
+In most cases, use [Banner](banner) so the user can appropriately assess and recover from the error.
+  
+## Related Components
+  
+For more persistent feedback, or for feedback that has a longer reading length or CTA, use [Banner.](banner)
 
 ## Props
 
