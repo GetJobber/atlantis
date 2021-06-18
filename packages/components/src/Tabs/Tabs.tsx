@@ -58,23 +58,25 @@ export function Tabs({ children }: TabsProps) {
   return (
     <div className={styles.tabs}>
       <div className={overflowClassNames}>
-        <div className={styles.tabRow} ref={tabRow}>
-          {React.Children.map(children, (tab, index) => (
-            <InternalTab
-              label={tab.props.label}
-              selected={activeTab === index}
-              activateTab={activateTab(index)}
-              onClick={tab.props.onClick}
-            />
-          ))}
-        </div>
+        <ul role="tablist" className={styles.tabRow} ref={tabRow}>
+          <li role="presentation">
+            {React.Children.map(children, (tab, index) => (
+              <InternalTab
+                label={tab.props.label}
+                selected={activeTab === index}
+                activateTab={activateTab(index)}
+                onClick={tab.props.onClick}
+              />
+            ))}
+          </li>
+        </ul>
       </div>
-      <div className={styles.tabContent}>
+      <section role="tabpanel" className={styles.tabContent}>
         {
           (React.Children.toArray(children) as ReactElement[])[activeTab].props
             .children
         }
-      </div>
+      </section>
     </div>
   );
 }
@@ -105,11 +107,12 @@ export function InternalTab({
   },
 }: InternalTabProps) {
   const className = classnames(styles.tab, { [styles.selected]: selected });
-  const color = selected ? "green" : undefined;
+  const color = selected ? "green" : "heading";
   return (
     <button
       type="button"
       role="tab"
+      id={label}
       className={className}
       onClick={() => {
         activateTab();

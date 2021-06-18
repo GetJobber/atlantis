@@ -40,6 +40,14 @@
   -webkit-overflow-scrolling: touch;
 }
 
+ul.tabRow {
+  padding-inline-start: 0;
+}
+
+.tabRow li {
+  list-style: none;
+}
+
 .tab {
   flex: 0 0 auto;
   height: var(--tab--height);
@@ -49,7 +57,7 @@
   border: solid var(--border-base) var(--color-border);
   border-left-width: 0;
   outline: none;
-  background: transparent;
+  background: var(--color-surface--background);
   cursor: pointer;
   transition: all var(--timing-base);
 }
@@ -59,9 +67,14 @@
   background-color: var(--color-surface--hover);
 }
 
+.tab:focus span {
+  box-shadow: var(--shadow-focus);
+}
+
 .selected {
   border-top-color: var(--color-interactive);
   border-bottom-color: var(--color-surface);
+  background-color: var(--color-surface);
 }
 
 .selected:focus {

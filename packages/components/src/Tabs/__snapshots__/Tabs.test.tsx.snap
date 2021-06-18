@@ -7,37 +7,45 @@ exports[`renders Tabs 1`] = `
   <div
     className="overflow"
   >
-    <div
+    <ul
       className="tabRow"
+      role="tablist"
     >
-      <button
-        className="tab selected"
-        onClick={[Function]}
-        role="tab"
-        type="button"
+      <li
+        role="presentation"
       >
-        <span
-          className="base regular base green"
+        <button
+          className="tab selected"
+          id="Eggs"
+          onClick={[Function]}
+          role="tab"
+          type="button"
         >
-          Eggs
-        </span>
-      </button>
-      <button
-        className="tab"
-        onClick={[Function]}
-        role="tab"
-        type="button"
-      >
-        <span
-          className="base regular base"
+          <span
+            className="base regular base green"
+          >
+            Eggs
+          </span>
+        </button>
+        <button
+          className="tab"
+          id="Cheese"
+          onClick={[Function]}
+          role="tab"
+          type="button"
         >
-          Cheese
-        </span>
-      </button>
-    </div>
+          <span
+            className="base regular base heading"
+          >
+            Cheese
+          </span>
+        </button>
+      </li>
+    </ul>
   </div>
-  <div
+  <section
     className="tabContent"
+    role="tabpanel"
   >
     <p>
       🍳
@@ -45,6 +53,6 @@ exports[`renders Tabs 1`] = `
     <p>
       Eggs
     </p>
-  </div>
+  </section>
 </div>
 `;
