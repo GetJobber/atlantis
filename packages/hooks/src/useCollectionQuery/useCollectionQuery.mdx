@@ -37,27 +37,27 @@ data. For use with any lists populated by graphQL collections.
 import { useCollectionQuery } from "@jobber/hooks";
 
 const {
-    data,
-    error,
-    refresh,
-    nextPage,
-    loadingRefresh,
-    loadingNextPage,
-    loadingInitialContent,
-    } = useCollectionQuery<ListQueryType, SubscriptionType>({
-        query: LIST_QUERY,
-        queryOptions: {
-            fetchPolicy: "network-only",
-        },
-        getCollectionByPath(items) {
-            return items.path.toCollection;
-        },
-        subscription: {
-            document: SUBSCRIPTION_QUERY,
-            getNodeByPath(items) {
-                return items.path.toNode
-            },
-    });
+  data,
+  error,
+  refresh,
+  nextPage,
+  loadingRefresh,
+  loadingNextPage,
+  loadingInitialContent,
+} = useCollectionQuery<ListQueryType, SubscriptionType>({
+  query: LIST_QUERY,
+  queryOptions: {
+    fetchPolicy: "network-only",
+  },
+  getCollectionByPath(items) {
+    return items.path.to.collection;
+  },
+  subscription: {
+    document: SUBSCRIPTION_QUERY,
+    getNodeByPath(items) {
+      return items.path.to.node;
+    },
+});
 ```
 
 <Playground>

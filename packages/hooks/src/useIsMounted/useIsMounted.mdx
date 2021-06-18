@@ -23,26 +23,44 @@ import { useIsMounted } from "@jobber/hooks";
 
 <Playground>
   {() => {
-    const isMounted = useIsMounted();
-    const [triggerUnmount, setTriggerUnmount] = React.useState(false);
-    useEffect(() => {
-      setTimeout(() => {
-        alert("Hello");
-      }, 3000);
-      alert("I am mounted!");
-    }, [isMounted]);
-    if (triggerUnmount) {
-      return <></>;
-    } else {
-      return (
+    function AlertMountedComponent() {
+      const isMounted = useIsMounted();
+      useEffect(() => {
+        if (isMounted.current) {
+          setTimeout(() => {
+            alert("AlertMountedComponent mounted!");
+          }, 1000);
+        }
+        return function unmount() {
+          setTimeout(() => {
+            alert("AlertMountedComponent unmounted!");
+          }, 1000);
+        };
+      }, []);
+      return <h4>I am the AlertMountedComponent</h4>;
+    }
+    const [shouldMount, setShouldMount] = useState(true);
+    let component = <></>;
+    if (shouldMount) {
+      component = <AlertMountedComponent />;
+    }
+    return (
+      <>
+        {component}
         <Button
           label={"Unmount Component"}
           onClick={() => {
-            setTriggerUnmount(true);
+            setShouldMount(false);
           }}
         />
-      );
-    }
+        <Button
+          label={"Remount Component"}
+          onClick={() => {
+            setShouldMount(true);
+          }}
+        />
+      </>
+    );
   }}
 </Playground>
 
