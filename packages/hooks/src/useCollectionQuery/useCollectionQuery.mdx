@@ -4,7 +4,7 @@ menu: Hooks
 route: /hooks/use-collection-query
 ---
 
-import { Playground } from "docz";
+import { Playground, Props } from "docz";
 import {
   ApolloClient,
   InMemoryCache,
@@ -16,9 +16,17 @@ import { List } from "@jobber/components/List";
 import { Card } from "@jobber/components/Card";
 import { Button } from "@jobber/components/Button";
 import { Spinner } from "@jobber/components/Spinner";
+import { Divider } from "@jobber/components/Divider";
 import { useCollectionQuery } from "@jobber/hooks";
-import { ListQueryType, client } from "./mdxUtils";
-import gql from "graphql-tag";
+import {
+  ListQueryType,
+  apolloClient,
+  LIST_QUERY,
+  mapDataToListItem,
+  styles,
+  propsList,
+  subscriptionPropsList,
+} from "./mdxUtils";
 
 # UseCollectionQuery
 
@@ -31,25 +39,6 @@ import { useCollectionQuery } from "@jobber/hooks";
 
 <Playground>
   {() => {
-    console.log("i got in here");
-    const [items, setItems] = useState([]);
-    const LIST_QUERY = gql`
-      query ListQuery($cursor: String) {
-        allPlanets(first: 4, after: $cursor) {
-          pageInfo {
-            hasNextPage
-            endCursor
-          }
-          edges {
-            node {
-              name
-            }
-            cursor
-          }
-          totalCount
-        }
-      }
-    `;
     const {
       data,
       error,
@@ -63,22 +52,13 @@ import { useCollectionQuery } from "@jobber/hooks";
       queryOptions: {
         fetchPolicy: "network-only",
         nextFetchPolicy: "network-only",
-        client: client,
+        client: apolloClient,
       },
       getCollectionByPath(items) {
-        return items;
+        return items.allPlanets;
       },
     });
-    console.log("data", data);
-    const styles = {
-      spinners: {
-        display: "flex",
-      },
-      loadingIndicator: {
-        flex: 1,
-        padding: 20,
-      },
-    };
+    const items = mapDataToListItem(data) || [];
     return (
       <>
         <div style={styles.spinners}>
@@ -95,20 +75,27 @@ import { useCollectionQuery } from "@jobber/hooks";
             {loadingNextPage && <Spinner />}
           </div>
         </div>
+        <Divider />
         <div>
-          <List items={items || []} />
+          {items && (
+            <>
+              <h4>Star Wars Planets</h4>
+              <List items={items} />
+            </>
+          )}
         </div>
-        <div>
-          <Button
-            label={"Fetch More"}
-            onClick={() => {
-              alert("hi");
-            }}
-          />
+        <Divider />
+        <div style={styles.actions}>
           <Button
             label={"Reload"}
             onClick={() => {
               refresh();
+            }}
+          />
+          <Button
+            label={"Fetch More"}
+            onClick={() => {
+              nextPage();
             }}
           />
         </div>
@@ -116,3 +103,21 @@ import { useCollectionQuery } from "@jobber/hooks";
     );
   }}
 </Playground>
+
+## Props
+
+<Playground>
+  {() => {
+    return <List items={propsList} />;
+  }}
+</Playground>
+
+## Subscription props
+
+<Playground>
+  {() => {
+    return <List items={subscriptionPropsList} />;
+  }}
+</Playground>
+
+---
