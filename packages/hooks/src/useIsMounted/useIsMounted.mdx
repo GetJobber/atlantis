@@ -5,6 +5,7 @@ route: /hooks/use-is-mounted
 ---
 
 import { Playground } from "docz";
+import { useEffect, useState } from "react";
 import { Card } from "@jobber/components/Card";
 import { Button } from "@jobber/components/Button";
 import { useIsMounted } from "@jobber/hooks";
@@ -25,6 +26,9 @@ import { useIsMounted } from "@jobber/hooks";
     const isMounted = useIsMounted();
     const [triggerUnmount, setTriggerUnmount] = React.useState(false);
     useEffect(() => {
+      setTimeout(() => {
+        alert("Hello");
+      }, 3000);
       alert("I am mounted!");
     }, [isMounted]);
     if (triggerUnmount) {
@@ -41,3 +45,5 @@ import { useIsMounted } from "@jobber/hooks";
     }
   }}
 </Playground>
+
+---
