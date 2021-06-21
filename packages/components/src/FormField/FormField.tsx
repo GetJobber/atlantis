@@ -222,9 +222,16 @@ export function FormField(props: FormFieldProps) {
     shouldShowMiniLabel(defaultValue, value),
   );
 
+  useEffect(() => {
+    if (value != undefined) {
+      setValue(controlledName, value);
+      setHasMiniLabel(String(value ?? "").length > 0);
+    }
+  }, [value]);
+
   useImperativeHandle(actionsRef, () => ({
-    setValue: val => {
-      setValue(controlledName, val);
+    setValue: newValue => {
+      setValue(controlledName, newValue);
     },
   }));
 

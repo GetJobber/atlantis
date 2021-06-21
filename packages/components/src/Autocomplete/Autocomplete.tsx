@@ -96,7 +96,7 @@ export function Autocomplete({
 }: AutocompleteProps) {
   const [options, setOptions] = useState(initialOptions);
   const [menuVisible, setMenuVisible] = useState(false);
-  const [inputText, setInputText] = useState((value && value.label) || "");
+  const [inputText, setInputText] = useState(value?.label ?? "");
 
   const delayedSearch = debounce(updateSearch, debounceRate);
 
@@ -106,11 +106,7 @@ export function Autocomplete({
   }, [inputText]);
 
   useEffect(() => {
-    if (value) {
-      updateInput(value.label);
-    } else {
-      updateInput("");
-    }
+    updateInput(value?.label ?? "");
   }, [value]);
 
   return (
