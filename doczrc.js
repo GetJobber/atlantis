@@ -29,6 +29,7 @@ export default {
     "./docz",
     "./github",
     "./public",
+    "**/__mocks__",
     ...privateComponents,
   ],
 };

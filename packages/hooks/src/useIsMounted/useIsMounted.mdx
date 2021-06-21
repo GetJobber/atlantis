@@ -1,0 +1,67 @@
+---
+name: useIsMounted
+menu: Hooks
+route: /hooks/use-is-mounted
+---
+
+import { Playground } from "docz";
+import { useEffect, useState } from "react";
+import { Card } from "@jobber/components/Card";
+import { Button } from "@jobber/components/Button";
+import { useIsMounted } from "@jobber/hooks";
+
+# UseIsMounted
+
+`useIsMounted` is a generalized hook that upon initial loading triggers a
+`useLayoutEffect` that sets the `isMounted` to true right after the component is
+mounted. When the component unmounts, it calls the cleanup function that sets
+`isMounted` to false. This `useLayoutEffect` hook will only be run once.
+
+```tsx
+import { useIsMounted } from "@jobber/hooks";
+```
+
+<Playground>
+  {() => {
+    function AlertMountedComponent() {
+      const isMounted = useIsMounted();
+      useEffect(() => {
+        if (isMounted.current) {
+          setTimeout(() => {
+            alert("AlertMountedComponent mounted!");
+          }, 1000);
+        }
+        return function unmount() {
+          setTimeout(() => {
+            alert("AlertMountedComponent unmounted!");
+          }, 1000);
+        };
+      }, []);
+      return <h4>I am the AlertMountedComponent</h4>;
+    }
+    const [shouldMount, setShouldMount] = useState(true);
+    let component = <></>;
+    if (shouldMount) {
+      component = <AlertMountedComponent />;
+    }
+    return (
+      <>
+        {component}
+        <Button
+          label={"Unmount Component"}
+          onClick={() => {
+            setShouldMount(false);
+          }}
+        />
+        <Button
+          label={"Remount Component"}
+          onClick={() => {
+            setShouldMount(true);
+          }}
+        />
+      </>
+    );
+  }}
+</Playground>
+
+---
