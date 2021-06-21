@@ -55,7 +55,6 @@ export function mapDataToListItem(
   data: ListQueryType,
 ): Array<ListItems> | undefined {
   if (data !== undefined) {
-    console.log(data);
     const items = data.allPlanets?.edges.map(edge => {
       return {
         id: edge.node.id,
