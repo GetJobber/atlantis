@@ -57,7 +57,7 @@ ul.tabRow {
   border: solid var(--border-base) var(--color-border);
   border-left-width: 0;
   outline: none;
-  background: var(--color-surface--background);
+  background: var(--color-surface);
   cursor: pointer;
   transition: all var(--timing-base);
 }
@@ -74,7 +74,6 @@ ul.tabRow {
 .selected {
   border-top-color: var(--color-interactive);
   border-bottom-color: var(--color-surface);
-  background-color: var(--color-surface);
 }
 
 .selected:focus {
