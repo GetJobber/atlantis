@@ -1,6 +1,6 @@
 import React, { Ref, createRef, forwardRef, useImperativeHandle } from "react";
 import { XOR } from "ts-xor";
-import { FormField, FormFieldProps } from "../FormField";
+import { FieldActionsRef, FormField, FormFieldProps } from "../FormField";
 
 interface RowRange {
   min: number;
@@ -46,6 +46,8 @@ function InputTextInternal(
   ref: Ref<InputTextRef>,
 ) {
   const inputRef = createRef<HTMLTextAreaElement | HTMLInputElement>();
+  const actionsRef = createRef<FieldActionsRef>();
+
   const rowRange = getRowRange();
 
   useImperativeHandle(ref, () => ({
@@ -71,6 +73,7 @@ function InputTextInternal(
       {...props}
       type={props.multiline ? "textarea" : "text"}
       inputRef={inputRef}
+      actionsRef={actionsRef}
       onChange={handleChange}
       rows={rowRange.min}
     />
@@ -129,7 +132,10 @@ function InputTextInternal(
     const input = inputRef.current;
     if (input) {
       insertAtCursor(input, text);
-      props.onChange && props.onChange(input.value);
+
+      const newValue = input.value;
+      actionsRef.current?.setValue(newValue);
+      props.onChange && props.onChange(newValue);
     }
   }
 }

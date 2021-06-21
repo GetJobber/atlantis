@@ -1,10 +1,10 @@
 import React, {
   ChangeEvent,
   MutableRefObject,
-  PropsWithChildren,
   ReactNode,
   RefObject,
   useEffect,
+  useImperativeHandle,
   useState,
 } from "react";
 import classnames from "classnames";
@@ -12,12 +12,11 @@ import uuid from "uuid";
 import {
   Controller,
   ValidationRules,
-  useController,
   useForm,
   useFormContext,
 } from "react-hook-form";
 import styles from "./FormField.css";
-import { Icon } from "../Icon";
+// import { Icon } from "../Icon";
 import { InputValidation } from "../InputValidation";
 import { Spinner } from "../Spinner";
 
@@ -28,6 +27,10 @@ type FormFieldTypes =
   | "time"
   | "textarea"
   | "select";
+
+export interface FieldActionsRef {
+  setValue(value: string | number): void;
+}
 
 export interface FormFieldProps {
   /**
@@ -174,6 +177,8 @@ export interface FormFieldProps {
   inputRef?: RefObject<
     HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
   >;
+
+  actionsRef?: RefObject<FieldActionsRef>;
 }
 
 export function FormField(props: FormFieldProps) {
@@ -191,6 +196,7 @@ export function FormField(props: FormFieldProps) {
     rows,
     readonly,
     inline,
+    actionsRef,
     onChange,
     onEnter,
     onFocus,
@@ -198,7 +204,7 @@ export function FormField(props: FormFieldProps) {
     onValidation,
   } = props;
 
-  const { control, errors } =
+  const { control, errors, setValue } =
     useFormContext() != undefined
       ? useFormContext()
       : useForm({ mode: "onTouched" });
@@ -216,9 +222,15 @@ export function FormField(props: FormFieldProps) {
     shouldShowMiniLabel(defaultValue, value),
   );
 
+  useImperativeHandle(actionsRef, () => ({
+    setValue: val => {
+      setValue(controlledName, val);
+    },
+  }));
+
   const error = errors[controlledName] && errors[controlledName].message;
   useEffect(() => handleValidation(), [error]);
-  console.log("FormField render");
+
   return (
     <Controller
       control={control}

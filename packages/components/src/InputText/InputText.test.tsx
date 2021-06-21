@@ -31,6 +31,7 @@ it("renders a regular input for text and numbers", () => {
         onFocus={[Function]}
         onKeyDown={[Function]}
         type="text"
+        value=""
       />
     </div>
   `);
@@ -53,18 +54,19 @@ it("renders a textarea", () => {
     >
       <label
         className="label textareaLabel"
-        htmlFor="123e4567-e89b-12d3-a456-426655440002"
+        htmlFor="123e4567-e89b-12d3-a456-426655440003"
       >
         Describe your favourite colour?
       </label>
       <textarea
         className="formField"
-        id="123e4567-e89b-12d3-a456-426655440002"
+        id="123e4567-e89b-12d3-a456-426655440003"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
         rows={3}
+        value=""
       />
     </div>
   `);
@@ -91,18 +93,19 @@ it("renders a textarea with 4 rows", () => {
     >
       <label
         className="label textareaLabel"
-        htmlFor="123e4567-e89b-12d3-a456-426655440003"
+        htmlFor="123e4567-e89b-12d3-a456-426655440005"
       >
         Describe your favourite colour?
       </label>
       <textarea
         className="formField"
-        id="123e4567-e89b-12d3-a456-426655440003"
+        id="123e4567-e89b-12d3-a456-426655440005"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
         rows={4}
+        value=""
       />
     </div>
   `);
@@ -135,7 +138,7 @@ test("it should call the handler with the new value", () => {
   expect(changeHandler).toHaveBeenCalledWith(newerValue);
 });
 
-test("it should handle inserting text", () => {
+test("it should handle inserting text", async () => {
   const initial = "Got milk?";
   const result = `${initial}YUP`;
   const secondResult = `${initial}YUPsure`;
