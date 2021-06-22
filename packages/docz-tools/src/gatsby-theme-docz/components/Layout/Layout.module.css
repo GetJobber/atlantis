@@ -58,3 +58,31 @@
   margin: 0 auto;
   padding: 0 var(--space-large);
 }
+
+.skipNav {
+  position: absolute;
+  top: calc(-1 * var(--space-large));
+  left: var(--space-small);
+  z-index: 3;
+  width: calc(100% - var(--space-base));
+  padding: var(--space-base) 0;
+  border-radius: var(--radius-base);
+  text-align: center;
+  background: var(--color-surface);
+  opacity: 0;
+  transition: all 0.2s ease;
+
+  @media (--wide-screens) {
+    box-shadow: var(--shadow-focus);
+  }
+}
+
+.skipNav:focus-within {
+  top: var(--space-small);
+  opacity: 1;
+}
+
+.skipNav a:visited,
+.skipNav a:focus {
+  color: var(--color-interactive);
+}
