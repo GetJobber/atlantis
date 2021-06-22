@@ -138,7 +138,7 @@ test("it should call the handler with the new value", () => {
   expect(changeHandler).toHaveBeenCalledWith(newerValue);
 });
 
-test("it should handle inserting text", async () => {
+test("it should handle inserting text", () => {
   const initial = "Got milk?";
   const result = `${initial}YUP`;
   const secondResult = `${initial}YUPsure`;
