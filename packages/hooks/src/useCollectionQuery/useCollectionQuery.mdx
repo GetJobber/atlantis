@@ -4,4 +4,140 @@ menu: Hooks
 route: /hooks/use-collection-query
 ---
 
-# ToDo
+import { Playground } from "docz";
+import { List } from "@jobber/components/List";
+import { Button } from "@jobber/components/Button";
+import { Spinner } from "@jobber/components/Spinner";
+import { Divider } from "@jobber/components/Divider";
+import { useCollectionQuery } from "@jobber/hooks";
+import {
+  apolloClient,
+  LIST_QUERY,
+  mapDataToListItem,
+  styles,
+  propsList,
+  subscriptionPropsList,
+} from "./mdxUtils";
+
+# UseCollectionQuery
+
+`useCollectionQuery` is a generalized hook that that fetches a collection of
+data. For use with any lists populated by graphQL collections.
+
+```tsx
+import { useCollectionQuery } from "@jobber/hooks";
+
+const {
+  data,
+  error,
+  refresh,
+  nextPage,
+  loadingRefresh,
+  loadingNextPage,
+  loadingInitialContent,
+} = useCollectionQuery<ListQueryType, SubscriptionType>({
+  query: LIST_QUERY,
+  queryOptions: {
+    fetchPolicy: "network-only",
+    nextFetchPolicy: "cache-first",
+  },
+  getCollectionByPath(items) {
+    return items.path.to.collection;
+  },
+  subscription: {
+    // subscriptions are optional
+    document: SUBSCRIPTION_QUERY,
+    getNodeByPath(items) {
+      return items.path.to.node;
+    },
+});
+```
+
+<Playground>
+  {() => {
+    const {
+      data,
+      error,
+      refresh,
+      nextPage,
+      loadingRefresh,
+      loadingNextPage,
+      loadingInitialContent,
+    } = useCollectionQuery({
+      // useCollectionQuery should be called with the query type, and
+      // optionally, the subscription type. The playground errors with
+      // typing included, so typing has been removed in this example.
+      // Please see the first example for appropriate typing.
+      query: LIST_QUERY,
+      queryOptions: {
+        fetchPolicy: "network-only",
+        nextFetchPolicy: "cache-first",
+        client: apolloClient,
+      },
+      getCollectionByPath(items) {
+        return items.allPlanets;
+      },
+    });
+    const items = mapDataToListItem(data) || [];
+    return (
+      <>
+        <div style={styles.spinners}>
+          <div style={styles.loadingIndicator}>
+            <h4>Initial Loading Indicator</h4>
+            {loadingInitialContent && <Spinner />}
+          </div>
+          <div style={styles.loadingIndicator}>
+            <h4>Refreshing Indicator</h4>
+            {loadingRefresh && <Spinner />}
+          </div>
+          <div style={styles.loadingIndicator}>
+            <h4>Fetching More Indicator</h4>
+            {loadingNextPage && <Spinner />}
+          </div>
+        </div>
+        <Divider />
+        <div>
+          {items && (
+            <>
+              <h4>Star Wars Planets</h4>
+              <List items={items} />
+            </>
+          )}
+        </div>
+        <Divider />
+        <div style={styles.actions}>
+          <Button
+            label={"Reload"}
+            onClick={() => {
+              refresh();
+            }}
+          />
+          <Button
+            label={"Fetch More"}
+            onClick={() => {
+              nextPage();
+            }}
+          />
+        </div>
+      </>
+    );
+  }}
+</Playground>
+
+## Props
+
+<Playground>
+  {() => {
+    return <List items={propsList} />;
+  }}
+</Playground>
+
+## Subscription props
+
+<Playground>
+  {() => {
+    return <List items={subscriptionPropsList} />;
+  }}
+</Playground>
+
+---
