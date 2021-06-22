@@ -58,7 +58,8 @@ export function mapDataToListItem(
     const items = data.allPlanets?.edges.map(edge => {
       return {
         id: edge.node.id,
-        icon: "starburst",
+        icon: "starFill",
+        iconColor: "green",
         content: edge.node.name,
       };
     });
@@ -107,7 +108,7 @@ export const propsList = [
   },
   {
     id: 3,
-    title: "subscription",
+    title: "subscription (optional)",
     caption:
       "A list of subscription options if \
       you want to create a GraphQL subscription to listen for more content.",

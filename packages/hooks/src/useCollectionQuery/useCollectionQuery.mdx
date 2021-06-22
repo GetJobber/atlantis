@@ -4,22 +4,13 @@ menu: Hooks
 route: /hooks/use-collection-query
 ---
 
-import { Playground, Props } from "docz";
-import {
-  ApolloClient,
-  InMemoryCache,
-  useQuery,
-  ApolloProvider,
-} from "@apollo/client";
-import { useEffect, useState } from "react";
+import { Playground } from "docz";
 import { List } from "@jobber/components/List";
-import { Card } from "@jobber/components/Card";
 import { Button } from "@jobber/components/Button";
 import { Spinner } from "@jobber/components/Spinner";
 import { Divider } from "@jobber/components/Divider";
 import { useCollectionQuery } from "@jobber/hooks";
 import {
-  ListQueryType,
   apolloClient,
   LIST_QUERY,
   mapDataToListItem,
@@ -48,11 +39,13 @@ const {
   query: LIST_QUERY,
   queryOptions: {
     fetchPolicy: "network-only",
+    nextFetchPolicy: "cache-first",
   },
   getCollectionByPath(items) {
     return items.path.to.collection;
   },
   subscription: {
+    // subscriptions are optional
     document: SUBSCRIPTION_QUERY,
     getNodeByPath(items) {
       return items.path.to.node;
@@ -71,10 +64,15 @@ const {
       loadingNextPage,
       loadingInitialContent,
     } = useCollectionQuery({
+      // useCollectionQuery should be called with the query type, and
+      // optionally, the subscription type. The playground errors with
+      // typing included, so typing has been removed in this example.
+      // Please see the first example for appropriate typing.
       query: LIST_QUERY,
       queryOptions: {
         fetchPolicy: "network-only",
         client: apolloClient,
+        nextFetchPolicy: "cache-first",
       },
       getCollectionByPath(items) {
         return items.allPlanets;
