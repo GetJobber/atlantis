@@ -1,0 +1,25 @@
+.loadingWrapper {
+  position: relative;
+  padding: var(--space-base) 0;
+}
+
+.innerLoadingWrapper {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(101, 120, 132, 0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+.innerLoadingWrapper > div {
+  opacity: 1;
+}
+
+.bar {
+  width: 100%;
+  margin: 0 var(--space-base);
+}
