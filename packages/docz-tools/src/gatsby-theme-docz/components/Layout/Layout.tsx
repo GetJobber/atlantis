@@ -39,11 +39,13 @@ export function Layout({ children }: PropsWithChildren<unknown>) {
           />
         </div>
         <div className={styles.sidebar} style={sidebarStyles}>
-          <div className={styles.skipNav}>
-            <a href="#mainContent" onClick={toggleMenu}>
-              Skip to Content
-            </a>
-          </div>
+          <a
+            href="#mainContent"
+            className={styles.skipNav}
+            onClick={toggleMenu}
+          >
+            Skip to content
+          </a>
           <Sidebar />
         </div>
         <div id="mainContent" className={styles.content}>
