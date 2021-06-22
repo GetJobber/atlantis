@@ -23,7 +23,7 @@ export function FormField(props: FormFieldProps) {
   const {
     autocomplete = true,
     loading,
-    type,
+    type = "text",
     validations,
     disabled,
     value,

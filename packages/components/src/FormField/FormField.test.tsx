@@ -26,6 +26,7 @@ it("renders correctly with no props", () => {
         onChange={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
+        type="text"
         value=""
       />
     </div>
@@ -58,6 +59,7 @@ it("renders correctly with a placeholder", () => {
         onChange={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
+        type="text"
         value=""
       />
     </div>
@@ -86,6 +88,7 @@ it("renders correctly as small", () => {
         onChange={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
+        type="text"
         value=""
       />
     </div>
@@ -115,6 +118,7 @@ it("renders correctly in a readonly state", () => {
         onFocus={[Function]}
         onKeyDown={[Function]}
         readOnly={true}
+        type="text"
         value=""
       />
     </div>
@@ -144,6 +148,7 @@ it("renders correctly in a disabled state", () => {
         onChange={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
+        type="text"
         value=""
       />
     </div>
@@ -172,6 +177,7 @@ it("renders a field with error", () => {
         onChange={[Function]}
         onFocus={[Function]}
         onKeyDown={[Function]}
+        type="text"
         value="wrong!"
       />
     </div>
