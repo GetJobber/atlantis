@@ -71,8 +71,8 @@ const {
       query: LIST_QUERY,
       queryOptions: {
         fetchPolicy: "network-only",
-        client: apolloClient,
         nextFetchPolicy: "cache-first",
+        client: apolloClient,
       },
       getCollectionByPath(items) {
         return items.allPlanets;
