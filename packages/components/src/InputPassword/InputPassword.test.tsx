@@ -49,11 +49,11 @@ it("renders an error", () => {
     >
       <label
         className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440003"
+        htmlFor="123e4567-e89b-12d3-a456-426655440002"
       />
       <input
         className="formField"
-        id="123e4567-e89b-12d3-a456-426655440003"
+        id="123e4567-e89b-12d3-a456-426655440002"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
