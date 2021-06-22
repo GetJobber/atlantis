@@ -13,9 +13,13 @@ import { useIsMounted } from "@jobber/hooks";
 # UseIsMounted
 
 `useIsMounted` is a generalized hook that upon initial loading triggers a
-`useLayoutEffect` that sets the `isMounted` to true right after the component is
-mounted. When the component unmounts, it calls the cleanup function that sets
-`isMounted` to false. This `useLayoutEffect` hook will only be run once.
+`useLayoutEffect` that sets the `isMounted.current` to true when the component
+mounts. When the component unmounts, `useLayoutEffect` calls a cleanup function
+that sets `isMounted.current` to false.
+
+`useIsMounted` should be used on asyncronous calls to ensure the component is
+mounted before manipulating state on that component. Manipulating state on
+unmounted components can cause errors and memory leaks.
 
 ```tsx
 import { useIsMounted } from "@jobber/hooks";
@@ -26,20 +30,18 @@ import { useIsMounted } from "@jobber/hooks";
     function AlertMountedComponent() {
       const isMounted = useIsMounted();
       useEffect(() => {
-        if (isMounted.current) {
-          setTimeout(() => {
-            alert("AlertMountedComponent mounted!");
-          }, 1000);
-        }
-        return function unmount() {
-          setTimeout(() => {
-            alert("AlertMountedComponent unmounted!");
-          }, 1000);
-        };
+        setTimeout(() => {
+          if (isMounted.current) {
+            // only set state if the component is still mounted
+            console.log("The component is mounted");
+          } else {
+            console.log("The component is not mounted");
+          }
+        }, 10000);
       }, []);
       return <h4>I am the AlertMountedComponent</h4>;
     }
-    const [shouldMount, setShouldMount] = useState(true);
+    const [shouldMount, setShouldMount] = useState(false);
     let component = <></>;
     if (shouldMount) {
       component = <AlertMountedComponent />;
@@ -48,15 +50,15 @@ import { useIsMounted } from "@jobber/hooks";
       <>
         {component}
         <Button
-          label={"Unmount Component"}
+          label={"Mount Component"}
           onClick={() => {
-            setShouldMount(false);
+            setShouldMount(true);
           }}
         />
         <Button
-          label={"Remount Component"}
+          label={"Unmount Component"}
           onClick={() => {
-            setShouldMount(true);
+            setShouldMount(false);
           }}
         />
       </>
