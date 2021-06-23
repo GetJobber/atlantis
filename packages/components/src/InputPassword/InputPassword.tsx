@@ -20,6 +20,7 @@ interface InputPasswordProps
       | "maxLength"
       | "readonly"
       | "keyboard"
+      | "actionsRef"
     >
   > {
   value?: string;

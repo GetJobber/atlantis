@@ -15,7 +15,10 @@ interface RowRange {
  */
 type BaseProps = Pick<
   FormFieldProps,
-  Exclude<keyof FormFieldProps, "type" | "children" | "rows" | "min" | "max">
+  Exclude<
+    keyof FormFieldProps,
+    "type" | "children" | "rows" | "min" | "max" | "actionsRef"
+  >
 >;
 
 export interface InputTextRef {

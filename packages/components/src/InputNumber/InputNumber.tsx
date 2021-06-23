@@ -10,7 +10,10 @@ import { FormField, FormFieldProps } from "../FormField";
 interface InputNumberProps
   extends Pick<
     FormFieldProps,
-    Exclude<keyof FormFieldProps, "type" | "children" | "rows" | "keyboard">
+    Exclude<
+      keyof FormFieldProps,
+      "type" | "children" | "rows" | "keyboard" | "actionsRef"
+    >
   > {
   value?: number;
 }
