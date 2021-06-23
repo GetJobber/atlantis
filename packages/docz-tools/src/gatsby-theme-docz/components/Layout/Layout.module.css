@@ -73,6 +73,7 @@
   transition: all 0.2s ease;
 
   @media (--wide-screens) {
+    width: calc(100% - var(--table-of-contents-width) - var(--space-base));
     box-shadow: var(--shadow-focus);
   }
 }
