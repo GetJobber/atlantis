@@ -72,7 +72,7 @@
   opacity: 0;
   transition: all 0.2s ease;
 
-  @media (--wide-screens) {
+  @media (min-width: 1300px) {
     width: calc(100% - var(--table-of-contents-width) - var(--space-base));
     box-shadow: var(--shadow-focus);
   }
