@@ -156,7 +156,6 @@ export function useCollectionQuery<TQuery, TSubscription = undefined>({
       updateQuery: (prev, { fetchMoreResult }) =>
         fetchMoreUpdateQueryHandler(prev, fetchMoreResult, getCollectionByPath),
     })
-      // tslint:disable-next-line:no-unsafe-any
       .catch(err => Configuration.errorNotifier("FetchMore Error", err))
       .finally(() => {
         if (isMounted.current) {
