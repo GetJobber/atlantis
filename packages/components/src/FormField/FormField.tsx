@@ -45,7 +45,7 @@ export function FormField(props: FormFieldProps) {
     onValidation,
   } = props;
 
-  const { control, errors, setValue } =
+  const { control, errors, setValue, watch } =
     useFormContext() != undefined
       ? useFormContext()
       : useForm({ mode: "onTouched" });
@@ -70,7 +70,7 @@ export function FormField(props: FormFieldProps) {
       setValue(controlledName, value);
       setHasMiniLabel(String(value).length > 0);
     }
-  }, [value]);
+  }, [value, watch(controlledName)]);
 
   useImperativeHandle(actionsRef, () => ({
     setValue: newValue => {
