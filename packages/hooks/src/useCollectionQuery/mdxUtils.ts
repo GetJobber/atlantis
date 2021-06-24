@@ -1,5 +1,4 @@
-import { ApolloClient, InMemoryCache } from "@apollo/client";
-import gql from "graphql-tag";
+import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
 export interface ListQueryType {
   allPlanets: {

@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const LIST_QUERY = gql`
   query ConversationMessages($cursor: string) {
