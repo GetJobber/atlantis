@@ -131,7 +131,7 @@ export const subscriptionPropsList = [
     title: "options",
     caption:
       " A list of variables to pass into the apollo `subscribeToMore` function.",
-    value: "Pick<SubscribeToMoreOptions<TSubscription>",
+    value: "SubscribeToMoreOptions<TSubscription>",
   },
   {
     id: 2,
