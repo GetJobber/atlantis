@@ -9,6 +9,7 @@ import { List } from "@jobber/components/List";
 import { Button } from "@jobber/components/Button";
 import { Spinner } from "@jobber/components/Spinner";
 import { Divider } from "@jobber/components/Divider";
+import { Heading } from "@jobber/components/Heading";
 import { useCollectionQuery } from "@jobber/hooks";
 import {
   apolloClient,
@@ -99,7 +100,7 @@ const {
         <div>
           {items && (
             <>
-              <h4>Star Wars Planets</h4>
+              <Heading level={3}>Star Wars Planets</Heading>
               <List items={items} />
             </>
           )}
