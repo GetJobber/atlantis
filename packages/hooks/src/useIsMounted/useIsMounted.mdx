@@ -11,11 +11,6 @@ import { useIsMounted } from "@jobber/hooks";
 
 # UseIsMounted
 
-`useIsMounted` is a generalized hook that upon initial loading triggers a
-`useLayoutEffect` that sets the `isMounted.current` to true when the component
-mounts. When the component unmounts, `useLayoutEffect` calls a cleanup function
-that sets `isMounted.current` to false.
-
 `useIsMounted` should be used on asyncronous calls to ensure the component is
 mounted before manipulating state on that component. Manipulating state on
 unmounted components can cause errors and memory leaks.
