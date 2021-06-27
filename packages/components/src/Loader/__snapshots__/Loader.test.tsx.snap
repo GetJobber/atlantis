@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a Loader 1`] = `
+<div
+  className="loader overlay"
+>
+  Loading
+  <div>
+    <div
+      aria-busy={true}
+      aria-label="loading"
+      className="spinner"
+      role="alert"
+    />
+  </div>
+</div>
+`;

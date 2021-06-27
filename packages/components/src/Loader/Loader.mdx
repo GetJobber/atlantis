@@ -1,85 +1,123 @@
 ---
-name: LoadingWrapper
+name: Loader
 menu: Components
-route: /components/loading-wrapper
+route: /components/loader
 showDirectoryLink: true
 ---
 
 import { Playground, Props } from "docz";
-import { LoadingWrapper } from ".";
 import { useState } from "react";
 import { Button } from "../Button";
+import { Loader } from ".";
+import { Card } from "../Card";
+import { Text } from "../Text";
+import { Content } from "../Content";
 
-# Loading Wrapper
+# Loader
 
 ```ts
-import { LoadingWrapper } from "@jobber/components/LoadingWrapper";
+import { Loader } from "@jobber/components/Loader";
 ```
 
 <Playground>
-  {() => {
-    const [isLoading, setIsLoading] = useState(false);
-    return (
-      <>
-        <LoadingWrapper variant="spinner" isLoading={isLoading}>
-          <p>Loading Content Here</p>
-        </LoadingWrapper>
-        <Button
-          label="Change Loading State"
-          onClick={() => setIsLoading(!isLoading)}
-        />
-      </>
-    );
-  }}
+  <Loader loading>
+    <Card title="Loading Content">
+      <Content>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </Text>
+      </Content>
+    </Card>
+  </Loader>
 </Playground>
-
-<!--
-  INTERFACE: This is for the proposal stage of the component
-
-  Provide an example of what the component looks like in code. How would you use
-  it from another React component? This should consist primarily of code blocks.
-  This section can be deleted once the component is built, when the Playground
-  will demonstrate this at a higher fidelity.
--->
 
 ## Props
 
-<Props of={LoadingWrapper} />
+<Props of={Loader} />
 
-<!--
-  It is not necessary to provide an example of each prop. Use usage examples to
-  highlight key features of a component or particular considerations.
+## Usage
 
-  See `Button.mdx` for a good example of this.
--->
-
-### Progress Bar Variant
+### Loading
 
 <Playground>
   {() => {
     const [isLoading, setIsLoading] = useState(false);
-    const [progress, setProgress] = useState(0);
     return (
       <>
-        <LoadingWrapper variant="bar" isLoading={isLoading} progress={progress}>
-          <p>Loading Content Here</p>
-        </LoadingWrapper>
-        <Button
-          label="Change Loading State"
-          onClick={() => setIsLoading(!isLoading)}
-        />
-        <Button
-          label="Increment Progress"
-          onClick={() => setProgress(progress + 25)}
-        />
+        <button onClick={() => setIsLoading(!isLoading)}>Toggle Loading</button>
+        <Loader loading={isLoading}>
+          <Card title="Loading Content">
+            <Content>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </Text>
+            </Content>
+          </Card>
+        </Loader>
       </>
     );
   }}
 </Playground>
 
+### Inline
+
+<Playground>
+  <Loader loading inline>
+    <Card title="Loading Content">
+      <Content>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </Text>
+      </Content>
+    </Card>
+  </Loader>
+</Playground>
+
+### Determinate
+
+<Playground>
+  {() => {
+    const [isLoading, setIsLoading] = useState(false);
+    const [currentValue, setCurrentValue] = useState(0);
+    return (
+      <>
+        <button onClick={() => setIsLoading(!isLoading)}>Toggle Loading</button>
+        <button
+          onClick={() => setCurrentValue(Math.min(currentValue + 10, 100))}
+        >
+          Increase Loading Progress
+        </button>
+        <button onClick={() => setCurrentValue(Math.max(currentValue - 10, 0))}>
+          Decrease Loading Progress
+        </button>
+        <Loader
+          determinate
+          loading={isLoading}
+          currentValue={currentValue}
+          maxValue={100}
+        >
+          <Card title="Loading Content">
+            <Content>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </Text>
+            </Content>
+          </Card>
+        </Loader>
+      </>
+    );
+  }}
+</Playground>
+
+<!--
 ## Usage Guidelines
 
-The `<LoadingWrapper>` will... _Add a brief description of the component_
+The `<Loader>` will provide funcitonality to display loading hints to the user when underlying components are loading.
+-->
 
 <!--
   What is the design purpose of this component? How do its responsibilities
@@ -91,7 +129,9 @@ The `<LoadingWrapper>` will... _Add a brief description of the component_
   that have a green background and white text”).
 -->
 
+<!--
 ## Content Guidelines
+-->
 
 <!--
   What type of content does this component present (documents, text, images, other components)?
@@ -102,14 +142,18 @@ The `<LoadingWrapper>` will... _Add a brief description of the component_
   (poor connection, empty states, flaky GPS data?)
 -->
 
+<!--
 ## Accessibility
+-->
 
 <!--
   Describe the accessibility concerns for the component. How does it handle touch vs cursor vs
   keyboard events? Should it capture input? What should a screen reader see when it's focuse?
 -->
 
+<!--
 ## Responsiveness
+-->
 
 <!--
   How should the component behave on an iPhone 8? An iPad? A 1920x1080 monitor? How does the
@@ -118,6 +162,7 @@ The `<LoadingWrapper>` will... _Add a brief description of the component_
   or lower?
 -->
 
+<!--
 ## Mockup
 
 <iframe
@@ -127,6 +172,7 @@ The `<LoadingWrapper>` will... _Add a brief description of the component_
   src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F3BXCXXD9glMtj8RAHjXiQC%2FDesign-System-Contribution-TEMPLATE%3Fnode-id%3D332%253A5526"
   allowfullscreen
 ></iframe>
+-->
 
 <!--
   Insert a Figma mockup from the [Design System Contribution template](https://www.figma.com/file/3BXCXXD9glMtj8RAHjXiQC/Design-System-Contribution-TEMPLATE?node-id=26%3A2)
@@ -135,7 +181,9 @@ The `<LoadingWrapper>` will... _Add a brief description of the component_
   widely supported yet?
 -->
 
+<!--
 ## Notes
+-->
 
 <!--
   What decisions worth remembering have gone into this component? Did we consider any potentially valuable
