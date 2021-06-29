@@ -8,16 +8,14 @@ import { Playground } from "docz";
 import { List } from "@jobber/components/List";
 import { Button } from "@jobber/components/Button";
 import { Spinner } from "@jobber/components/Spinner";
-import { Divider } from "@jobber/components/Divider";
-import { Heading } from "@jobber/components/Heading";
+import { InlineLabel } from "@jobber/components/InlineLabel";
 import { useCollectionQuery } from "@jobber/hooks";
 import {
   apolloClient,
   LIST_QUERY,
-  mapDataToListItem,
-  styles,
   propsList,
   subscriptionPropsList,
+  getLoadingState,
   returnValues,
 } from "./mdxUtils";
 
@@ -80,47 +78,40 @@ const {
         return items.allPlanets;
       },
     });
-    const items = mapDataToListItem(data) || [];
+    const { loadingStatus, loading } = getLoadingState(
+      loadingInitialContent,
+      loadingRefresh,
+      loadingNextPage
+    );
+    let items = [];
+    if (data) {
+      items = data.allPlanets.edges.map(edge => {
+        return {
+          section: "Star Wars Planets",
+          id: edge.node.id,
+          icon: "starFill",
+          iconColor: "green",
+          content: edge.node.name,
+        };
+      });
+    }
     return (
       <>
-        <div style={styles.spinners}>
-          <div style={styles.loadingIndicator}>
-            <h4>Initial Loading Indicator</h4>
-            {loadingInitialContent && <Spinner />}
-          </div>
-          <div style={styles.loadingIndicator}>
-            <h4>Refreshing Indicator</h4>
-            {loadingRefresh && <Spinner />}
-          </div>
-          <div style={styles.loadingIndicator}>
-            <h4>Fetching More Indicator</h4>
-            {loadingNextPage && <Spinner />}
-          </div>
-        </div>
-        <Divider />
-        <div>
-          {items && (
-            <>
-              <Heading level={3}>Star Wars Planets</Heading>
-              <List items={items} />
-            </>
-          )}
-        </div>
-        <Divider />
-        <div style={styles.actions}>
-          <Button
-            label={"Reload"}
-            onClick={() => {
-              refresh();
-            }}
-          />
-          <Button
-            label={"Fetch More"}
-            onClick={() => {
-              nextPage();
-            }}
-          />
-        </div>
+        <InlineLabel size="large">{loadingStatus}</InlineLabel>
+        {loading && <Spinner size="small" inline={true} />}
+        <List items={items} />
+        <Button
+          label={"Refresh"}
+          onClick={() => {
+            refresh();
+          }}
+        />
+        <Button
+          label={"Fetch More"}
+          onClick={() => {
+            nextPage();
+          }}
+        />
       </>
     );
   }}
