@@ -50,35 +50,39 @@ interface ListItems {
   content?: string;
 }
 
-export function mapDataToListItem(
-  data: ListQueryType,
-): Array<ListItems> | undefined {
-  if (data !== undefined) {
-    const items = data.allPlanets?.edges.map(edge => {
-      return {
-        id: edge.node.id,
-        icon: "starFill",
-        iconColor: "green",
-        content: edge.node.name,
-      };
-    });
-    return items;
-  }
-  return undefined;
+interface LoadingState {
+  loadingStatus: string;
+  loading: boolean;
 }
 
-export const styles = {
-  spinners: {
-    display: "flex",
-  },
-  loadingIndicator: {
-    flex: 1,
-    paddingBottom: 100,
-  },
-  actions: {
-    paddingTop: 20,
-  },
-};
+export function getLoadingState(
+  loadingInitialContent: boolean,
+  loadingRefresh: boolean,
+  loadingNextPage: boolean,
+): LoadingState {
+  if (loadingInitialContent) {
+    return {
+      loading: true,
+      loadingStatus: "Initial Loading",
+    };
+  }
+  if (loadingRefresh) {
+    return {
+      loading: true,
+      loadingStatus: "Refreshing",
+    };
+  }
+  if (loadingNextPage) {
+    return {
+      loading: true,
+      loadingStatus: "Fetching More",
+    };
+  }
+  return {
+    loading: false,
+    loadingStatus: "Loaded",
+  };
+}
 
 export const propsList = [
   {
@@ -143,5 +147,51 @@ export const subscriptionPropsList = [
       getCollectionByPath<TQuery>(...).edges.node and \
       getCollectionByPath<TQuery>(...).nodes",
     value: "GetNodeByPath<TSubscription>",
+  },
+];
+
+export const returnValues = [
+  {
+    id: 0,
+    title: "data",
+    caption: "The payload returned from the query",
+    value: "ListQueryType | undefined",
+  },
+  {
+    id: 1,
+    title: "error",
+    caption: "Any errors returned from the query",
+    value: "ApolloError | undefined",
+  },
+  {
+    id: 2,
+    title: "refresh",
+    caption: "A funtion that enables you to re-execute the query",
+    value: "() => void",
+  },
+  {
+    id: 3,
+    title: "nextPage",
+    caption:
+      "A funtion that helps you fetch the next set of results for a paginated list",
+    value: "() => void",
+  },
+  {
+    id: 4,
+    title: "loadingRefresh",
+    caption: "An indicator that a refresh is in progress",
+    value: "boolean",
+  },
+  {
+    id: 5,
+    title: "loadingNextPage",
+    caption: "An indicator that a fetch more is in progress",
+    value: "boolean",
+  },
+  {
+    id: 6,
+    title: "loadingInitialContent",
+    caption: "An indicator that the initial content is being fetched",
+    value: "boolean",
   },
 ];
