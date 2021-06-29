@@ -145,3 +145,49 @@ export const subscriptionPropsList = [
     value: "GetNodeByPath<TSubscription>",
   },
 ];
+
+export const returnValues = [
+  {
+    id: 0,
+    title: "data",
+    caption: "The payload returned from the query",
+    value: "ListQueryType | undefined",
+  },
+  {
+    id: 1,
+    title: "error",
+    caption: "Any errors returned from the query",
+    value: "ApolloError | undefined",
+  },
+  {
+    id: 2,
+    title: "refresh",
+    caption: "A funtion that enables you to re-execute the query",
+    value: "() => void",
+  },
+  {
+    id: 3,
+    title: "nextPage",
+    caption:
+      "A funtion that helps you fetch the next set of results for a paginated list",
+    value: "() => void",
+  },
+  {
+    id: 4,
+    title: "loadingRefresh",
+    caption: "An indicator that a refresh is in progress",
+    value: "boolean",
+  },
+  {
+    id: 5,
+    title: "loadingNextPage",
+    caption: "An indicator that a fetch more is in progress",
+    value: "boolean",
+  },
+  {
+    id: 6,
+    title: "loadingInitialContent",
+    caption: "An indicator that the initial content is being fetched",
+    value: "boolean",
+  },
+];
