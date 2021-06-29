@@ -7,10 +7,10 @@ import {
 } from "@apollo/client";
 import { cloneDeep } from "lodash";
 import { useCallback, useEffect, useState } from "react";
+import { config } from "@jobber/formatters";
 import { Node, uniqueNodes } from "./uniqueNodes";
 import { Edge, createEdge, uniqueEdges } from "./uniqueEdges";
 import { useIsMounted } from "../useIsMounted";
-import { Configuration } from "../configure";
 
 interface UseCollectionQueryArguments<TQuery, TSubscription> {
   /**
@@ -122,7 +122,7 @@ export function useCollectionQuery<TQuery, TSubscription = undefined>({
 
     setLoadingRefresh(true);
     refetch()
-      .catch(err => Configuration.errorNotifier("Refetch Error", err))
+      .catch(err => config.errorNotifier("Refetch Error", err))
       .finally(() => {
         if (isMounted.current) {
           setLoadingRefresh(false);
@@ -156,7 +156,7 @@ export function useCollectionQuery<TQuery, TSubscription = undefined>({
       updateQuery: (prev, { fetchMoreResult }) =>
         fetchMoreUpdateQueryHandler(prev, fetchMoreResult, getCollectionByPath),
     })
-      .catch(err => Configuration.errorNotifier("FetchMore Error", err))
+      .catch(err => config.errorNotifier("FetchMore Error", err))
       .finally(() => {
         if (isMounted.current) {
           setLoadingNextPage(false);
@@ -189,8 +189,7 @@ export function useCollectionQuery<TQuery, TSubscription = undefined>({
             subscriptionData?.data,
             subscription.getNodeByPath,
           ),
-        onError: err =>
-          Configuration.errorNotifier("Subscribe to More Error", err),
+        onError: err => config.errorNotifier("Subscribe to More Error", err),
       });
     },
     // Disabling this linter so we can force this only run once. If we didn't
