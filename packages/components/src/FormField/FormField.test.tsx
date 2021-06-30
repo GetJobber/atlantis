@@ -18,9 +18,7 @@ it("renders correctly with no props", () => {
       <label
         className="label"
         htmlFor="123e4567-e89b-12d3-a456-426655440001"
-      >
-         
-      </label>
+      />
       <input
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440001"
@@ -29,6 +27,7 @@ it("renders correctly with no props", () => {
         onFocus={[Function]}
         onKeyDown={[Function]}
         type="text"
+        value=""
       />
     </div>
   `);
@@ -61,6 +60,7 @@ it("renders correctly with a placeholder", () => {
         onFocus={[Function]}
         onKeyDown={[Function]}
         type="text"
+        value=""
       />
     </div>
   `);
@@ -80,9 +80,7 @@ it("renders correctly as small", () => {
       <label
         className="label"
         htmlFor="123e4567-e89b-12d3-a456-426655440003"
-      >
-         
-      </label>
+      />
       <input
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440003"
@@ -91,6 +89,7 @@ it("renders correctly as small", () => {
         onFocus={[Function]}
         onKeyDown={[Function]}
         type="text"
+        value=""
       />
     </div>
   `);
@@ -110,9 +109,7 @@ it("renders correctly in a readonly state", () => {
       <label
         className="label"
         htmlFor="123e4567-e89b-12d3-a456-426655440004"
-      >
-         
-      </label>
+      />
       <input
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440004"
@@ -122,6 +119,7 @@ it("renders correctly in a readonly state", () => {
         onKeyDown={[Function]}
         readOnly={true}
         type="text"
+        value=""
       />
     </div>
   `);
@@ -141,9 +139,7 @@ it("renders correctly in a disabled state", () => {
       <label
         className="label"
         htmlFor="123e4567-e89b-12d3-a456-426655440005"
-      >
-         
-      </label>
+      />
       <input
         className="formField"
         disabled={true}
@@ -153,6 +149,7 @@ it("renders correctly in a disabled state", () => {
         onFocus={[Function]}
         onKeyDown={[Function]}
         type="text"
+        value=""
       />
     </div>
   `);
@@ -172,13 +169,10 @@ it("renders a field with error", () => {
       <label
         className="label"
         htmlFor="123e4567-e89b-12d3-a456-426655440006"
-      >
-         
-      </label>
+      />
       <input
         className="formField"
         id="123e4567-e89b-12d3-a456-426655440006"
-        name="generatedName--123e4567-e89b-12d3-a456-426655440006"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -241,7 +235,7 @@ test("it should call the validation handler when typing a new value", () => {
 
 test("it should call the validation handler with a message when there is an error", async () => {
   const validationHandler = jest.fn();
-  const validate = val => (val == "Bob" ? "message" : "");
+  const validate = val => (val == "Bob" ? "message" : "foo");
 
   const { getByLabelText } = render(
     <FormField
@@ -255,12 +249,12 @@ test("it should call the validation handler with a message when there is an erro
     />,
   );
 
-  const input = getByLabelText("I hold places");
-  input.focus();
-  fireEvent.change(input, { target: { value: "Bob" } });
-  input.blur();
+  getByLabelText("I hold places").focus();
+  fireEvent.change(getByLabelText("I hold places"), {
+    target: { value: "Bob" },
+  });
+  getByLabelText("I hold places").blur();
 
-  expect(validationHandler).toHaveBeenCalled();
   await waitFor(() => {
     expect(validationHandler).toHaveBeenCalledWith("message");
   });

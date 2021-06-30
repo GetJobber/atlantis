@@ -31,6 +31,7 @@ it("renders a regular input for text and numbers", () => {
         onFocus={[Function]}
         onKeyDown={[Function]}
         type="text"
+        value=""
       />
     </div>
   `);
@@ -65,6 +66,7 @@ it("renders a textarea", () => {
         onFocus={[Function]}
         onKeyDown={[Function]}
         rows={3}
+        value=""
       />
     </div>
   `);
@@ -103,6 +105,7 @@ it("renders a textarea with 4 rows", () => {
         onFocus={[Function]}
         onKeyDown={[Function]}
         rows={4}
+        value=""
       />
     </div>
   `);
