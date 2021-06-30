@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@use-it/event-listener": "^0.1.6",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "resize-observer-polyfill": "^1.5.1",
     "ts-xor": "^1.0.8",
     "use-resize-observer": "^6.1.0"
