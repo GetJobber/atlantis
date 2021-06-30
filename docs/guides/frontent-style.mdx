@@ -1,0 +1,173 @@
+## @@ -0,0 +1,176 @@
+
+name: Frontend Styleguide menu: Guides route: /guides/frontend-style
+
+---
+
+import { Playground } from "docz";
+
+# Frontend Styleguide
+
+## Purpose
+
+Our goal with Typescript and React code is to automate a much style guidance as
+we can. To that end this guide serves to document conventions that we can't or
+haven't yet been able to automate. Automation is always preferred to adding a
+guidance here.
+
+## Typescript
+
+### Linter Exceptions
+
+While we should strive to conform to our set linter rules if for some reason you
+are unable to you should turn them off for the single like where the exception
+is required.
+
+You should also leave a comment immediately above the exception explaining why
+it is necessary.
+
+**Good**
+
+```ts
+// Pending: https://github.com/donavon/use-event-listener/pull/12
+// The types in useEventListener mistakenly require a SyntheticEvent for the passed generic.
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+//@ts-ignore
+useEventListener<KeyboardEvent>("keydown", (event: KeyboardEvent) => {
+```
+
+```ts
+// Library requires fetching its CSS.
+// eslint-disable-next-line import/no-internal-modules
+import "react-image-lightbox/style.css";
+```
+
+**Bad**
+
+Missing rationale for disabling rule.
+
+```ts
+// eslint-disable-next-line max-statements
+function MyBigComponent() {
+```
+
+```ts
+const { given, expect: expectation, serverRates } = assertion;
+// eslint-disable-next-line jest/valid-describe
+describe(`given ${given}`, () => {
+```
+
+Missing rationale and disabling rules for a whole file.
+
+```ts
+/* eslint-disable @typescript-eslint/camelcase */
+/* eslint-disable max-statements */
+import React, { ReactText, useState } from "react";
+```
+
+### Chooseing Libraries
+
+### `function` vs arrow function
+
+In an effort to make our Typescript code a bit more accessible we are preferring
+the `function` keyword to define named functions.
+
+**Good**
+
+```ts
+function MyComponent() {
+  // ...
+}
+```
+
+```ts
+[1, 2, 3].map(num => num * 2);
+```
+
+**Bad**
+
+```ts
+const MyComponent = () => {
+  // ...
+};
+```
+
+### Interface Declaration
+
+**Good**
+
+```ts
+interface MyInterface {
+  foo: number;
+  bar: string;
+}
+```
+
+**Bad**
+
+```ts
+type MyInterface = {
+  foo: number;
+  bar: string;
+};
+```
+
+<!--
+## React
+-->
+
+## Testing
+
+### `toBeNull`
+
+**Good**
+
+```ts
+
+```
+
+**Bad**
+
+```ts
+
+```
+
+### `it` vs `test`
+
+**Good**
+
+```ts
+
+```
+
+**Bad**
+
+```ts
+
+```
+
+### Snapshots
+
+**Good**
+
+```ts
+
+```
+
+**Bad**
+
+```ts
+
+```
+
+<!--
+## Mobile Specific
+-->
+
+<!--
+## Web Specific
+-->
+
+<!--
+### CSS
+-->
