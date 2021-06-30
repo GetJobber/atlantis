@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.39.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.38.3...@jobber/components@2.39.0) (2021-06-30)
+
+
+### Features
+
+* **components:** Refactor FormField ([#578](https://github.com/GetJobber/atlantis/issues/578)) ([cc5a709](https://github.com/GetJobber/atlantis/commit/cc5a7091f920909385ab8682f41ba7d2ff338bcd))
+
+
+
+
+
 ## [2.38.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.38.2...@jobber/components@2.38.3) (2021-06-28)
 
 **Note:** Version bump only for package @jobber/components
