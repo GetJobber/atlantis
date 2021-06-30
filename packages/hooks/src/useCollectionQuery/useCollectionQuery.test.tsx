@@ -13,7 +13,7 @@ import {
   subscriptionQueryMock,
   wait,
   wrapper,
-} from "./__test_utils__";
+} from "./test-utilities";
 
 beforeEach(() => {
   setListQueryMockHasNextPage(true);
