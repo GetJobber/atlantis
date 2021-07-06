@@ -10,23 +10,23 @@ import { Playground } from "docz";
 
 ## Purpose
 
-Our goal with Typescript and React code is to automate a much style guidance as
-we can. To that end this guide serves to document conventions that we can't or
-haven't yet been able to automate. Automation is always preferred to adding a
+Our goal with Typescript and React code is to automate as much style guidance as
+we can. To that end this guide serves to document conventions that we can't (or
+haven't yet been able to) automate. Automation is always preferred to adding a
 guidance here.
 
 ## Typescript
 
 ### Linter Exceptions
 
-While we should strive to conform to our set linter rules if for some reason you
-are unable to you should turn them off for the single like where the exception
-is required.
+While we should strive to conform to our set linter rules, if for some reason
+you are unable to you should turn them off for the single line where the
+exception is required.
 
 You should also leave a comment immediately above the exception explaining why
 it is necessary.
 
-**Good**
+#### ✅ Do
 
 ```ts
 // Pending: https://github.com/donavon/use-event-listener/pull/12
@@ -42,7 +42,7 @@ useEventListener<KeyboardEvent>("keydown", (event: KeyboardEvent) => {
 import "react-image-lightbox/style.css";
 ```
 
-**Bad**
+#### ❌ Don't
 
 Missing rationale for disabling rule.
 
@@ -72,7 +72,7 @@ import React, { ReactText, useState } from "react";
 In an effort to make our Typescript code a bit more accessible we are preferring
 the `function` keyword to define named functions.
 
-**Good**
+#### ✅ Do
 
 ```ts
 function MyComponent() {
@@ -84,7 +84,7 @@ function MyComponent() {
 [1, 2, 3].map(num => num * 2);
 ```
 
-**Bad**
+#### ❌ Don't
 
 ```ts
 const MyComponent = () => {
@@ -94,7 +94,7 @@ const MyComponent = () => {
 
 ### Interface Declaration
 
-**Good**
+#### ✅ Do
 
 ```ts
 interface MyInterface {
@@ -103,7 +103,7 @@ interface MyInterface {
 }
 ```
 
-**Bad**
+#### ❌ Don't
 
 ```ts
 type MyInterface = {
@@ -120,13 +120,13 @@ type MyInterface = {
 
 ### `toBeNull`
 
-**Good**
+#### ✅ Do
 
 ```ts
 
 ```
 
-**Bad**
+#### ❌ Don't
 
 ```ts
 
@@ -134,13 +134,13 @@ type MyInterface = {
 
 ### `it` vs `test`
 
-**Good**
+#### ✅ Do
 
 ```ts
 
 ```
 
-**Bad**
+#### ❌ Don't
 
 ```ts
 
@@ -148,13 +148,13 @@ type MyInterface = {
 
 ### Snapshots
 
-**Good**
+#### ✅ Do
 
 ```ts
 
 ```
 
-**Bad**
+#### ❌ Don't
 
 ```ts
 
