@@ -45,6 +45,26 @@ function useCollectionQueryHookWithSubscription() {
   });
 }
 
+function useCollectionQueryHookWithSubscriptionAndSearch(searchTerm: string) {
+  return useCollectionQuery<ListQueryType, SubscriptionQueryType>({
+    query: LIST_QUERY,
+    queryOptions: {
+      variables: {
+        searchTerm: searchTerm,
+      },
+    },
+    getCollectionByPath(data) {
+      return data?.conversation?.smsMessages;
+    },
+    subscription: {
+      document: SUBSCRIPTION_QUERY,
+      getNodeByPath(conversationData) {
+        return conversationData?.conversationMessage?.smsMessage;
+      },
+    },
+  });
+}
+
 describe("when useCollectionQuery is first called", () => {
   describe("when nextPage is called while it's still loading initial content", () => {
     it("should not trigger a the next page to be fetched", async () => {
@@ -319,7 +339,7 @@ describe("#subscribeToMore", () => {
     });
   });
 
-  describe("when hook receives upate from item already in collection", () => {
+  describe("when hook receives update from item already in collection", () => {
     it("it should return the existing collection", async () => {
       const { result, waitForNextUpdate } = renderHook(
         () => useCollectionQueryHookWithSubscription(),
@@ -337,6 +357,32 @@ describe("#subscribeToMore", () => {
       // Wait for subscription
       await act(() => wait(200));
 
+      expect(
+        result?.current?.data?.conversation?.smsMessages?.edges?.length,
+      ).toBe(1);
+    });
+  });
+
+  describe("when hook receives `update` but is currently searching a collection", () => {
+    it("should return the existing collection without adding the subscribed content", async () => {
+      const searchTerm = "FooBar";
+      const { result, waitForNextUpdate } = renderHook(
+        () => useCollectionQueryHookWithSubscriptionAndSearch(searchTerm),
+        {
+          wrapper: wrapper([
+            buildListRequestMock("1", searchTerm),
+            buildSubscriptionRequestMock("1"),
+          ]),
+        },
+      );
+
+      // Wait for initial load
+      await act(waitForNextUpdate);
+
+      // Wait for subscription
+      await act(() => wait(200));
+
+      console.log(result?.current);
       expect(
         result?.current?.data?.conversation?.smsMessages?.edges?.length,
       ).toBe(1);

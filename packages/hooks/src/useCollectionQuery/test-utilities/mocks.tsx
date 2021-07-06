@@ -69,10 +69,14 @@ export const subscriptionQueryMock = jest.fn(id => {
   };
 });
 
-export function buildListRequestMock(id?: string | undefined) {
+export function buildListRequestMock(
+  id?: string | undefined,
+  searchTerm?: string | undefined,
+) {
   return {
     request: {
       query: LIST_QUERY,
+      variables: { searchTerm: searchTerm },
     },
     result: () => listQueryResponseMock(id),
   };

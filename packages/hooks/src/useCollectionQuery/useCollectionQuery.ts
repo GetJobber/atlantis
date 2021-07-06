@@ -114,6 +114,7 @@ export function useCollectionQuery<TQuery, TSubscription = undefined>({
   const [loadingRefresh, setLoadingRefresh] = useState<boolean>(false);
   const [loadingNextPage, setLoadingNextPage] = useState<boolean>(false);
   const loadingInitialContent = loading && !loadingRefresh && !loadingNextPage;
+  const isSearching = !!queryOptions?.variables?.searchTerm;
 
   const refresh = useCallback(() => {
     if (loadingInitialContent || loadingRefresh) {
@@ -184,6 +185,7 @@ export function useCollectionQuery<TQuery, TSubscription = undefined>({
         document: subscription.document,
         updateQuery: (prev, { subscriptionData }) =>
           subscribeToMoreHandler(
+            isSearching,
             prev,
             getCollectionByPath,
             subscriptionData?.data,
@@ -195,7 +197,7 @@ export function useCollectionQuery<TQuery, TSubscription = undefined>({
     // Disabling this linter so we can force this only run once. If we didn't
     // do this we would need to ensure subscription, subscribeToMore, and getNodeByPath
     // all use useCallback.
-    [],
+    [queryOptions?.variables?.searchTerm],
   );
 
   return {
@@ -261,6 +263,7 @@ function fetchMoreUpdateQueryHandler<TQuery>(
 }
 
 function subscribeToMoreHandler<TQuery, TSubscription>(
+  isSearching: boolean,
   prev: TQuery,
   getCollectionByPath: GetCollectionByPathFunction<TQuery>,
   subscriptionData: TSubscription | undefined,
@@ -272,7 +275,7 @@ function subscribeToMoreHandler<TQuery, TSubscription>(
 
   if (outputCollection == undefined || node == undefined) return output;
 
-  if (isAlreadyUpdated(outputCollection, node)) {
+  if (isAlreadyUpdated(outputCollection, node) || isSearching) {
     return prev;
   }
 
