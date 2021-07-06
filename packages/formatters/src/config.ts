@@ -1,8 +1,11 @@
 import { CurrencyType } from "./CurrencyType";
 import { global } from "./global";
 
+export type ErrorNotifierFunction = (message: string, error: unknown) => void;
+
 interface AtlantisConfig {
   readonly defaultCurrency?: CurrencyType;
+  readonly errorNotifier?: ErrorNotifierFunction;
 }
 
 interface AtlantisEnv {
@@ -17,6 +20,7 @@ declare global {
 
 interface Configuration {
   readonly defaultCurrency: CurrencyType;
+  readonly errorNotifier: ErrorNotifierFunction;
 }
 
 const configOverrides =
@@ -24,5 +28,8 @@ const configOverrides =
 
 export const config: Configuration = Object.freeze({
   defaultCurrency: "USD",
+  errorNotifier(message: string, error: unknown) {
+    console.error(message, error);
+  },
   ...configOverrides,
 });
