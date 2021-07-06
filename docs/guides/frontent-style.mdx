@@ -116,7 +116,6 @@ type MyInterface = {
 
 <!--
 ## React
--->
 
 ## Testing
 
@@ -162,19 +161,16 @@ type MyInterface = {
 
 ```
 
-<!--
 ## Mobile Specific
--->
 
-<!--
 ## Web Specific
 -->
 
-### CSS
+## CSS
 
 Wherever possible use Atlantis `design` tokens.
 
-#### Units
+### Units
 
 For size units, use the appropriate [Spacing](/spacing) variables. Do not use
 rems, ems, or hard-coded pixel values, as Atlantis is built using variables to
@@ -182,7 +178,9 @@ allow for consistent re-flow as the browser scales.
 
 If you require a size that is larger than the Spacing variables, or falls
 somewhere in between, use the CSS `calc` function with Atlantis spacing values
-in a custom property in your file to avoid magic numbers. For example:
+in a custom property in your file to avoid magic numbers.
+
+#### ✅ Do
 
 ```css
 :root {
@@ -191,5 +189,13 @@ in a custom property in your file to avoid magic numbers. For example:
 
 .container {
   width: var(--drawer-width);
+}
+```
+
+#### ❌ Don't
+
+```css
+.container {
+  width: 280px;
 }
 ```
