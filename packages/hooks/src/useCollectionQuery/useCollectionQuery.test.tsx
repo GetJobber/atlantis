@@ -382,7 +382,6 @@ describe("#subscribeToMore", () => {
       // Wait for subscription
       await act(() => wait(200));
 
-      console.log(result?.current);
       expect(
         result?.current?.data?.conversation?.smsMessages?.edges?.length,
       ).toBe(1);
