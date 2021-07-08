@@ -1,9 +1,9 @@
 import { gql } from "@apollo/client";
 
 export const LIST_QUERY = gql`
-  query ConversationMessages($cursor: string) {
+  query ConversationMessages($cursor: string, $searchTerm: string) {
     conversation(id: "MQ==") {
-      smsMessages(first: 1, after: $cursor) {
+      smsMessages(first: 1, after: $cursor, searchTerm: $searchTerm) {
         edges {
           node {
             __typename
