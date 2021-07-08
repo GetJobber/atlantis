@@ -24,30 +24,31 @@ directly into the screen.
 
 ### Low
 
+<Example of="low" />
+
 A low element may have a slight elevation, but is not necessarily something that
 will glide across the surface. A card that holds interactive controls within
 itself, but that does not have any interactions itself, may be useful to
 indicate as "low".
 
-<Example of="low" />
-
 ### Base
-
-This shadow should be used for most instances of shadows, as it conveys an
-elevation that is noticeable but not aggressively close to the user. An element
-with a base elevation is likely interactive, and this level can indicate and
-invite the use of gesture controls in a mobile app.
 
 <Example of="base" />
 
+This shadow should be used for most instances of shadows to convey that an
+element is floating overtop related elements, such as in
+[Menu](/components/menu) or [Popover](/components/popover). An element with a
+base elevation is likely interactive, and this level can indicate and invite the
+use of gesture controls in a mobile app.
+
 ### High
 
-High elements should be elements that float overtop the entire interface, likely
-with a fixed position. The "high" elevation indicates that the element has
-broken the plane of the view. A good example for web would be
-[Toast](/components/toast).
-
 <Example of="high" />
+
+High elements should be elements that float overtop the entire interface,
+typically with a fixed position. The "high" elevation indicates that the element
+has broken the plane of the view. A good example for web would be
+[Toast](/components/toast).
 
 ## Web
 
@@ -59,7 +60,11 @@ export function Value({ of: type }) {
 
 ### Z-index elevation
 
-The following table lists all elements that have a z-index specified.
+The following table lists Atlantis components that have a z-index specified.
+
+These values can be referenced when you are building a view so that you can
+ensure the elements you are using do not unintentionally overlap, if you end up
+using z-index on non-Atlantis components.
 
 | Component        | Value                  |
 | :--------------- | :--------------------- |
@@ -71,7 +76,7 @@ The following table lists all elements that have a z-index specified.
 
 export function Example({ of: shadow }) {
   const style = {
-    width: "var(--space-largest)",
+    width: "100%",
     height: "var(--space-largest)",
     backgroundColor: "var(--color-white)",
     boxShadow: `var(--shadow-${shadow})`,
