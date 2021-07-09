@@ -33,16 +33,35 @@ readability.
 
 #### Heading
 
+<div
+  style="width:100%;
+  height:var(--space-extravagant);
+  background-color:var(--color-heading)"
+></div>
+
 Headings have a bold, high-contrast color to cement their hierarchy.
 
 #### Text
 
+<div
+  style="width:100%;
+  height:var(--space-extravagant);
+  background-color:var(--color-text)"
+></div>
+
 A slightly softer color is used for body text for greater readability.
 
-##### Text--Supporting
+##### Text--Secondary
+
+<div
+  style="width:100%;
+  height:var(--space-extravagant);
+  background-color:var(--color-text--secondary)"
+></div>
 
 Text that is relevant but less important can be lower-contrast to suggest its’
-reduced importance.
+reduced importance. This color should only be used when there is more important
+text content already present.
 
 ### Interactive
 
@@ -51,22 +70,52 @@ meaning of interaction.
 
 #### Interactive
 
+<div
+  style="width:100%;
+  height:var(--space-extravagant);
+  background-color:var(--color-interactive)"
+></div>
+
 The default color used for interactive elements.
 
 #### Destructive
+
+<div
+  style="width:100%;
+  height:var(--space-extravagant);
+  background-color:var(--color-destructive)"
+></div>
 
 Use to signfify that an interaction will destroy something in the users’ account
 or workflow.
 
 #### Cancel
 
+<div
+  style="width:100%;
+  height:var(--space-extravagant);
+  background-color:var(--color-cancel)"
+></div>
+
 Use to signify that an interaction will cancel or exit a workflow
 
 #### Disabled
 
+<div
+  style="width:100%;
+  height:var(--space-extravagant);
+  background-color:var(--color-disabled)"
+></div>
+
 Use to signify that an interactive element is disabled.
 
 ##### Disabled--Secondary
+
+<div
+  style="width:100%;
+  height:var(--space-extravagant);
+  background-color:var(--color-disabled--secondary)"
+></div>
 
 Use when a disabled element needs more than one color to be readable in a
 disabled state; for example, a button's background and label colors must be
@@ -74,7 +123,15 @@ different.
 
 #### Focus
 
-Use to indicate that an element has been focused.
+<div
+  style="width:100%;
+  height:var(--space-extravagant);
+  background-color:var(--color-surface);
+  box-shadow:var(--shadow-focus);"
+></div>
+
+Use to indicate that an element has been focused (ideally using the
+`--shadow-focus` property).
 
 ### Status
 
@@ -88,52 +145,238 @@ sufficient color contrast.
 
 #### Critical
 
+<div
+  style="width:100%;
+  height:var(--space-extravagant);
+  display:flex;"
+>
+  <div
+    style="flex: 1;
+    height:var(--space-extravagant);
+    background-color:var(--color-critical)"
+  ></div>
+  <div
+    style="flex: 1;
+    height:var(--space-extravagant);
+    background-color:var(--color-critical--surface)"
+  ></div>
+  <div
+    style="flex: 1;
+    height:var(--space-extravagant);
+    background-color:var(--color-critical--onSurface)"
+  ></div>
+</div>
+
 Action required; user must see this status to be unblocked.
 
 #### Warning
+
+<div
+  style="width:100%;
+  height:var(--space-extravagant);
+  display:flex;"
+>
+  <div
+    style="flex: 1;
+    height:var(--space-extravagant);
+    background-color:var(--color-warning)"
+  ></div>
+  <div
+    style="flex: 1;
+    height:var(--space-extravagant);
+    background-color:var(--color-warning--surface)"
+  ></div>
+  <div
+    style="flex: 1;
+    height:var(--space-extravagant);
+    background-color:var(--color-warning--onSurface)"
+  ></div>
+</div>
 
 Action _may_ be required as a consequence of current state.
 
 #### Success
 
+<div
+  style="width:100%;
+  height:var(--space-extravagant);
+  display:flex;"
+>
+  <div
+    style="flex: 1;
+    height:var(--space-extravagant);
+    background-color:var(--color-success)"
+  ></div>
+  <div
+    style="flex: 1;
+    height:var(--space-extravagant);
+    background-color:var(--color-success--surface)"
+  ></div>
+  <div
+    style="flex: 1;
+    height:var(--space-extravagant);
+    background-color:var(--color-success--onSurface)"
+  ></div>
+</div>
+
 No action required; an action has completed successfully.
 
 #### Informative
+
+<div
+  style="width:100%;
+  height:var(--space-extravagant);
+  display:flex;"
+>
+  <div
+    style="flex: 1;
+    height:var(--space-extravagant);
+    background-color:var(--color-informative)"
+  ></div>
+  <div
+    style="flex: 1;
+    height:var(--space-extravagant);
+    background-color:var(--color-informative--surface)"
+  ></div>
+  <div
+    style="flex: 1;
+    height:var(--space-extravagant);
+    background-color:var(--color-informative--onSurface)"
+  ></div>
+</div>
 
 No action required; but helpful to know about.
 
 #### Inactive
 
+<div
+  style="width:100%;
+  height:var(--space-extravagant);
+  display:flex;"
+>
+  <div
+    style="flex: 1;
+    height:var(--space-extravagant);
+    background-color:var(--color-inactive)"
+  ></div>
+  <div
+    style="flex: 1;
+    height:var(--space-extravagant);
+    background-color:var(--color-inactive--surface)"
+  ></div>
+  <div
+    style="flex: 1;
+    height:var(--space-extravagant);
+    background-color:var(--color-inactive--onSurface)"
+  ></div>
+</div>
+
 No action required; not part of an active workflow.
 
 ### Surfaces
 
-Surfaces are the background-colors of almost every element in Jobber.
+Surfaces are the background-colors of almost every element in Jobber. Overlays
+act as supplementary surfaces that mask areas of the interface to adjust visual
+focus.
 
 #### Surface
 
+<div
+  style="width:100%;
+  height:var(--space-extravagant);
+  display:flex;
+  box-shadow: var(--shadow-base)"
+>
+  <div
+    style="flex: 1;
+    height:var(--space-extravagant);
+    background-color:var(--color-surface)"
+  ></div>
+  <div
+    style="flex: 1;
+    height:var(--space-extravagant);
+    background-color:var(--color-surface--hover)"
+  ></div>
+  <div
+    style="flex: 1;
+    height:var(--space-extravagant);
+    background-color:var(--color-surface--active)"
+  ></div>
+</div>
+
 Most elements in Jobber have a light surface to indicate their nearness to the
-user; if clickable, they have a hover color.
+user; if interactive, they have a hover color and an active color to indicate
+state.
 
 #### Surface--Background
+
+<div
+  style="width:100%;
+  height:var(--space-extravagant);
+  background-color:var(--color-surface--background);"
+></div>
 
 A slightly darker surface gives a receded appearance relative to main surfaces.
 
 #### Surface--Reverse
 
+<div
+  style="width:100%;
+  height:var(--space-extravagant);
+  background-color:var(--color-surface--reverse);"
+></div>
+
 When a strong constrast is needed with the rest of the application, a reversed
 surface can be used.
+
+#### Overlay
+
+<div
+  style="width:100%;
+  height:var(--space-extravagant);
+  background-color:var(--color-overlay);"
+></div>
+
+Use to mask an area of the interface to promote focus to a foreground action,
+such as a [Modal](/components/modal)’s appearance.
+
+#### Overlay--Dimmed
+
+<div
+  style="width:100%;
+  height:var(--space-extravagant);
+  background-color:var(--color-overlay--dimmed);
+  box-shadow: var(--shadow-base);"
+></div>
+
+A transparent version of [Surface](#surface), this masks an area of the
+interface to indicate inactivity (i.e. waiting for updates)
 
 ### Borders
 
 Defining the edges of elements on the same elevation plane, border colors are
-the subtle maintainers of layout structure.
+the subtle maintainers of layout structure. Learn more about borders in our
+[Borders guide.](/borders)
 
 #### Border
+
+<div
+  style="width:100%;
+  height:var(--space-extravagant);
+  background-color:var(--color-surface);
+  border: var(--border-base) solid var(--color-border)"
+></div>
 
 Most of our borders should use this color for subtle definition.
 
 #### Border--Section
+
+<div
+  style="width:100%;
+  height:var(--space-extravagant);
+  background-color:var(--color-surface);
+  border: var(--border-base) solid var(--color-border--section)"
+></div>
 
 Use where other bordered content is being further sectioned, such as table
 headers or list sections.
@@ -144,10 +387,22 @@ Use these colors to represent the Jobber brand visual language.
 
 #### Brand
 
+<div
+  style="width:100%;
+  height:var(--space-extravagant);
+  background-color:var(--color-brand);"
+></div>
+
 The primary color associated with our brand, from website to ads to product; AKA
 “Jobber Green”.
 
 #### Brand--Highlight
+
+<div
+  style="width:100%;
+  height:var(--space-extravagant);
+  background-color:var(--color-brand--highlight);"
+></div>
 
 Use to highlight an element in a way that aligns with our website. Use with
 caution, it’s _bright!_
