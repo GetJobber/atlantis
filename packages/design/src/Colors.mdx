@@ -6,7 +6,6 @@ route: /colors
 
 import { ColorSwatches } from "@jobber/docx";
 import colors from "../colors";
-import { Banner } from "@jobber/components/Banner";
 
 # Colors
 
@@ -15,14 +14,15 @@ interface.
 
 Atlantis is built with a
 [semantic layer](https://dev.to/ynab/a-semantic-color-system-the-theory-hk7)
-overtop of a base palette. Use the semantic color values whenever possible to
-ensure you are using colors for their intended purpose.
+overtop of a base palette. Use the semantic color values defined in the usage
+guidelines whenever possible to ensure you are using colors for their intended
+purpose.
 
-<Banner type="warning" dismissible={false}>
-  Color should never be the single means of conveying information in an
-  interface. Use labels, iconography, or hints for assistive technology
-  alongside color to ensure your content can be understood by everyone.
-</Banner>
+## Accessibility
+
+Color should never be the single means of conveying information in an interface.
+Use labels, iconography, or hints for assistive technology alongside color to
+ensure your content can be understood by everyone.
 
 ## Usage Guidelines
 
