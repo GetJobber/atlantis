@@ -86,7 +86,7 @@ The default color used for interactive elements.
   background-color:var(--color-destructive)"
 ></div>
 
-Use to signfify that an interaction will destroy something in the users’ account
+Use to signify that an interaction will destroy something in the users’ account
 or workflow.
 
 #### Cancel
@@ -326,7 +326,7 @@ A slightly darker surface gives a receded appearance relative to main surfaces.
   background-color:var(--color-surface--reverse);"
 ></div>
 
-When a strong constrast is needed with the rest of the application, a reversed
+When a strong contrast is needed with the rest of the application, a reversed
 surface can be used.
 
 #### Overlay
@@ -338,7 +338,8 @@ surface can be used.
 ></div>
 
 Use to mask an area of the interface to promote focus to a foreground action,
-such as a [Modal](/components/modal)’s appearance.
+such as a [Modal](/components/modal)’s appearance. Overlay includes built-in
+opacity values.
 
 #### Overlay--Dimmed
 
@@ -350,7 +351,8 @@ such as a [Modal](/components/modal)’s appearance.
 ></div>
 
 A transparent version of [Surface](#surface), this masks an area of the nterface
-to indicate inactivity (i.e. waiting for updates)
+to indicate inactivity (i.e. waiting for updates). Overlay--Dimmed includes
+built-in opacity values.
 
 ### Borders
 
@@ -367,7 +369,7 @@ the subtle maintainers of layout structure. Learn more about borders in our
   border: var(--border-base) solid var(--color-border)"
 ></div>
 
-Most of our borders should use this color for subtle definition.
+Most borders should use `--color-border` for subtle definition.
 
 #### Border--Section
 
@@ -378,8 +380,8 @@ Most of our borders should use this color for subtle definition.
   border: var(--border-base) solid var(--color-border--section)"
 ></div>
 
-Use where other bordered content is being further sectioned, such as table
-headers or list sections.
+Use `--color-border--section` where other bordered content is being further
+sectioned, such as table headers or list sections.
 
 ### Brand
 
