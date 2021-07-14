@@ -1,6 +1,6 @@
 {
   "name": "@jobber/hooks",
-  "version": "1.2.0",
+  "version": "1.4.0",
   "license": "MIT",
   "main": "./dist/index.js",
   "types": "./dist/index.d.js",
@@ -13,8 +13,19 @@
     "dist/*"
   ],
   "devDependencies": {
+    "@apollo/client": "^3.3.16",
+    "@apollo/react-testing": "^4.0.0",
+    "@jobber/formatters": "^0.2.0",
     "@testing-library/react": "^10.2.1",
-    "typescript": "^3.8.3"
+    "@testing-library/react-hooks": "^7.0.0",
+    "@types/jest": "^26.0.23",
+    "@types/lodash": "4.14.136",
+    "@types/react": "16.14.2",
+    "@types/react-dom": "16.9.10",
+    "@types/uuid": "^3.4.5",
+    "graphql": "^14.6.0",
+    "typescript": "^3.8.3",
+    "uuid": "^3.3.2"
   },
   "dependencies": {
     "@use-it/event-listener": "^0.1.6",
@@ -24,6 +35,7 @@
     "use-resize-observer": "^6.1.0"
   },
   "peerDependencies": {
+    "@apollo/client": "^3.3.16",
     "react": "^16.8.6"
   }
 }

@@ -58,3 +58,36 @@
   margin: 0 auto;
   padding: 0 var(--space-large);
 }
+
+.skipNav {
+  position: absolute;
+  top: calc(-1 * var(--space-large));
+  left: var(--space-small);
+  z-index: 3;
+  width: calc(100% - var(--space-base));
+  padding: var(--space-base) 0;
+  border-radius: var(--radius-base);
+  text-align: center;
+  background: var(--color-surface);
+  opacity: 0;
+  transition: all 0.2s ease;
+
+  @media (min-width: 1300px) {
+    width: calc(100% - var(--table-of-contents-width) - var(--space-base));
+    box-shadow: var(--shadow-focus);
+  }
+}
+
+.skipNav:focus-within {
+  top: var(--space-small);
+  opacity: 1;
+}
+
+a.skipNav:hover {
+  background: var(--color-surface--hover);
+}
+
+a.skipNav:visited,
+a.skipNav:focus {
+  color: var(--color-interactive);
+}

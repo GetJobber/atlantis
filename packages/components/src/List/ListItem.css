@@ -48,7 +48,7 @@
 /* States */
 
 .isActive {
-  background-color: var(--color-green--lightest);
+  background-color: var(--color-surface--active);
 }
 
 /* TODO: Move truncate in typography */

@@ -8,6 +8,52 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.39.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.39.1...@jobber/components@2.39.2) (2021-07-08)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.39.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.39.0...@jobber/components@2.39.1) (2021-07-06)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.39.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.38.3...@jobber/components@2.39.0) (2021-06-30)
+
+
+### Features
+
+* **components:** Refactor FormField ([#578](https://github.com/GetJobber/atlantis/issues/578)) ([cc5a709](https://github.com/GetJobber/atlantis/commit/cc5a7091f920909385ab8682f41ba7d2ff338bcd))
+
+
+
+
+
+## [2.38.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.38.2...@jobber/components@2.38.3) (2021-06-28)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.38.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.38.1...@jobber/components@2.38.2) (2021-06-23)
+
+
+### Bug Fixes
+
+* **components:** Add role to radiogroup ([#577](https://github.com/GetJobber/atlantis/issues/577)) ([43e898c](https://github.com/GetJobber/atlantis/commit/43e898ce39614eae68cb728a62b25fc3cec20815))
+
+
+
+
+
 ## [2.38.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.38.0...@jobber/components@2.38.1) (2021-06-17)
 
 **Note:** Version bump only for package @jobber/components

@@ -8,6 +8,28 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.3.0...@jobber/hooks@1.4.0) (2021-07-08)
+
+
+### Features
+
+* **hooks:** Update useCollectionQuery to handle search terms [32867] ([#589](https://github.com/GetJobber/atlantis/issues/589)) ([99687c9](https://github.com/GetJobber/atlantis/commit/99687c9ae4cc04280e3aa38267a9de629caf5dbe))
+
+
+
+
+
+# [1.3.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.2.0...@jobber/hooks@1.3.0) (2021-07-06)
+
+
+### Features
+
+* **hooks:** add useCollectionQuery and useIsMounted [JOB-32207] ([#561](https://github.com/GetJobber/atlantis/issues/561)) ([8efccf8](https://github.com/GetJobber/atlantis/commit/8efccf8398f6e1d9278248ca4ec40327d11f9782)), closes [#562](https://github.com/GetJobber/atlantis/issues/562) [#575](https://github.com/GetJobber/atlantis/issues/575) [#565](https://github.com/GetJobber/atlantis/issues/565)
+
+
+
+
+
 # [1.2.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.1.3...@jobber/hooks@1.2.0) (2021-05-31)
 
 

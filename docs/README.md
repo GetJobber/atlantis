@@ -40,12 +40,30 @@ To start the [docz](https://www.docz.site/) development server:
 npm start
 ```
 
-### Installing packages
+### Monorepo Notes
 
-Atlantis packages are installed and updated using [npm](https://www.npmjs.com/). This following list
-has installation links for each package:
+#### Installing Dependencies
 
-#### Design system
+When installing dependencies, unless they are required for the documentation
+viewer, they should be within the package you are working within.
+
+#### Cross Linking
+
+If you are making a change in one package that will be needed in another you
+will need to make the needed change and run a `npm run lerna:bootstrap` before
+using it. The bootstrap will recompile and link the changes across the project.
+
+It's also worth noting that within Atlantis in order for one package to depend
+on another all that is required is for it to be listed in the appropriate
+`package.json` file. Lerna will automatically take care of managing the versions
+for you.
+
+## Installing packages
+
+Atlantis packages are installed and updated using [npm](https://www.npmjs.com/).
+This following list has installation links for each package:
+
+### Design system
 
 These are the core packages you'll need to build with Atlantis:
 
@@ -53,10 +71,10 @@ These are the core packages you'll need to build with Atlantis:
 - [Design foundations](/packages/design)
 - [Hooks](/packages/hooks)
 
-#### Tooling and configuration
+### Tooling and configuration
 
-If you're looking to build documentation and tooling using Atlantis' development standards,
-these packages will be useful:
+If you're looking to build documentation and tooling using Atlantis' development
+standards, these packages will be useful:
 
 - [Docz tools](/packages/docz-tools)
 - [EsLint configuration](/packages/eslint-config)
