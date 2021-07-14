@@ -1,11 +1,11 @@
 .loader {
-  --overlay-background: rgba(203, 203, 203, 0.6);
   position: relative;
   padding: var(--space-base);
 }
 
 .determinate > div:last-child {
   padding: 0 var(--space-larger);
+  background-color: var(--color-overlay) !important;
 }
 
 .overlay > div:last-child {
@@ -15,7 +15,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--overlay-background);
+  background-color: var(--color-overlay--dimmed);
   justify-content: center;
   align-items: center;
 }

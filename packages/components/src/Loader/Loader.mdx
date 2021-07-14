@@ -15,6 +15,12 @@ import { Content } from "../Content";
 
 # Loader
 
+The `Loader` component will provide the user with feedback that a portion of the
+interface is fetching new data or content. It will keep the user informed of
+system status as well as help the user avoid mistakes by preventing the user
+from interacting with this area of the interface until the new data or content
+is ready.
+
 ```ts
 import { Loader } from "@jobber/components/Loader";
 ```
@@ -36,7 +42,7 @@ import { Loader } from "@jobber/components/Loader";
 
 <Props of={Loader} />
 
-## Usage
+## Design & Usage Guidelines
 
 ### Loading
 
@@ -83,16 +89,21 @@ import { Loader } from "@jobber/components/Loader";
     const [isLoading, setIsLoading] = useState(false);
     const [currentValue, setCurrentValue] = useState(0);
     return (
-      <>
-        <button onClick={() => setIsLoading(!isLoading)}>Toggle Loading</button>
-        <button
+      <Content>
+        <Button
+          label="Toggle Loading"
+          onClick={() => setIsLoading(!isLoading)}
+        />
+        <Button
+          label="Increase Loading Progress"
+          disabled={!isLoading}
           onClick={() => setCurrentValue(Math.min(currentValue + 10, 100))}
-        >
-          Increase Loading Progress
-        </button>
-        <button onClick={() => setCurrentValue(Math.max(currentValue - 10, 0))}>
-          Decrease Loading Progress
-        </button>
+        />
+        <Button
+          label="Decrease Loading Progress"
+          disabled={!isLoading}
+          onClick={() => setCurrentValue(Math.max(currentValue - 10, 0))}
+        />
         <Loader
           determinate
           loading={isLoading}
@@ -108,7 +119,7 @@ import { Loader } from "@jobber/components/Loader";
             </Content>
           </Card>
         </Loader>
-      </>
+      </Content>
     );
   }}
 </Playground>

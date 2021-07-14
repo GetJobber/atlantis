@@ -1,5 +1,6 @@
-import React, { ReactNode } from "react";
+import React, { PropsWithChildren, RefObject } from "react";
 import classnames from "classnames";
+import { Breakpoints, useResizeObserver } from "@jobber/hooks/";
 import styles from "./Loader.css";
 import { LoaderIndicator } from "./LoaderIndicator";
 
@@ -23,11 +24,6 @@ interface BaseLoaderProps {
    * @default false
    */
   loading: boolean;
-
-  /**
-   * The content to be wrapped with loading element
-   */
-  children: ReactNode | ReactNode[];
 }
 
 interface IndeterminateLoaderProps extends BaseLoaderProps {
@@ -38,19 +34,19 @@ interface DeterminateLoaderProps extends BaseLoaderProps {
   determinate: true;
 
   /**
-   * Loading progress
+   * The determinate loading progress
    * @default 0
    */
   currentValue: number;
 
   /**
-   * The value when loading is completed
+   * The determinate loading value when loading is completed
    * @default 100
    */
   maxValue?: number;
 }
 
-export function Loader(props: LoaderProps) {
+export function Loader(props: PropsWithChildren<LoaderProps>) {
   const {
     inline = false,
     determinate = false,
@@ -62,23 +58,30 @@ export function Loader(props: LoaderProps) {
     currentValue = props.currentValue || 0;
     maxValue = props.maxValue || 100;
   }
+
+  const [ref, { width = 0 }] = useResizeObserver();
   const classname = classnames(styles.loader, {
     [styles.overlay]: !inline,
     [styles.determinate]: determinate,
   });
 
-  return loading ? (
-    <div className={classname}>
-      {children}
-      <div>
-        <LoaderIndicator
-          determinate={determinate}
-          currentValue={currentValue}
-          maxValue={maxValue}
-        />
-      </div>
+  return (
+    <div ref={ref as RefObject<HTMLDivElement>}>
+      {loading ? (
+        <div aria-busy="true" aria-live="polite" className={classname}>
+          {children}
+          <div>
+            <LoaderIndicator
+              determinate={determinate}
+              currentValue={currentValue}
+              maxValue={maxValue}
+              size={width <= Breakpoints.base ? "small" : "base"}
+            />
+          </div>
+        </div>
+      ) : (
+        <>{children}</>
+      )}
     </div>
-  ) : (
-    <>{children}</>
   );
 }
