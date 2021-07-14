@@ -12,6 +12,7 @@ import { Loader } from ".";
 import { Card } from "../Card";
 import { Text } from "../Text";
 import { Content } from "../Content";
+import { Checkbox } from "../Checkbox";
 
 # Loader
 
@@ -90,17 +91,22 @@ import { Loader } from "@jobber/components/Loader";
     const [currentValue, setCurrentValue] = useState(0);
     return (
       <Content>
-        <Button
-          label="Toggle Loading"
-          onClick={() => setIsLoading(!isLoading)}
+        <Checkbox
+          label="Loading"
+          checked={isLoading}
+          onChange={setIsLoading}
         />
         <Button
           label="Increase Loading Progress"
+          size="small"
+          icon="add"
           disabled={!isLoading}
           onClick={() => setCurrentValue(Math.min(currentValue + 10, 100))}
         />
         <Button
           label="Decrease Loading Progress"
+          size="small"
+          icon="minus2"
           disabled={!isLoading}
           onClick={() => setCurrentValue(Math.max(currentValue - 10, 0))}
         />
