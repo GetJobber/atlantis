@@ -44,6 +44,7 @@
   /* Surfaces and Borders */
   --color-surface: var(--color-white);
   --color-surface--hover: var(--color-yellow--lightest);
+  --color-surface--active: var(--color-green--lightest);
   --color-surface--background: var(--color-grey--lightest);
   --color-surface--reverse: var(--color-greyBlue--dark);
 
@@ -51,6 +52,7 @@
   --color-border--section: var(--color-blue);
 
   --color-overlay: rgba(var(--color--greyBlue--rgb), 0.8);
+  --color-overlay--dimmed: rgba(var(--color--white--rgb), 0.6);
 
   /* Brand */
   --color-brand: var(--color-green);
@@ -163,5 +165,6 @@
   --color-indigo--lightest: rgb(230, 233, 247);
   --color-indigo--dark: rgb(55, 69, 132);
 
-  --color-white: rgb(255, 255, 255);
+  --color-white--rgb: 255, 255, 255;
+  --color-white: rgba(var(--color-white--rgb));
 }
