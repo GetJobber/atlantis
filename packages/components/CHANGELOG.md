@@ -8,6 +8,18 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.40.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.39.3...@jobber/components@2.40.0) (2021-07-15)
+
+
+### Features
+
+* **design:** add active surface and dimmed overlay colors ([#590](https://github.com/GetJobber/atlantis/issues/590)) ([37a4acf](https://github.com/GetJobber/atlantis/commit/37a4acf12d751d2345b24378f7f3f881af0fc6c3))
+* **design:** introduce web shadow variations, document and add to Toast ([#588](https://github.com/GetJobber/atlantis/issues/588)) ([5b359c0](https://github.com/GetJobber/atlantis/commit/5b359c09bc1dc3db01cdf0687e99375c1cd54e4d))
+
+
+
+
+
 ## [2.39.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.39.2...@jobber/components@2.39.3) (2021-07-15)
 
 **Note:** Version bump only for package @jobber/components

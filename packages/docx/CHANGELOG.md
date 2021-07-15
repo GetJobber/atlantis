@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/GetJobber/atlantis/compare/@jobber/docx@0.1.0...@jobber/docx@0.2.0) (2021-07-15)
+
+
+### Features
+
+* **design:** add active surface and dimmed overlay colors ([#590](https://github.com/GetJobber/atlantis/issues/590)) ([37a4acf](https://github.com/GetJobber/atlantis/commit/37a4acf12d751d2345b24378f7f3f881af0fc6c3))
+
+
+
+
+
 # [0.1.0](https://github.com/GetJobber/atlantis/compare/@jobber/docx@0.0.5...@jobber/docx@0.1.0) (2021-04-23)
 
 
