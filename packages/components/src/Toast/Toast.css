@@ -21,7 +21,7 @@
 }
 
 .toast {
-  box-shadow: var(--shadow-base);
+  box-shadow: var(--shadow-high);
   overflow: hidden;
   pointer-events: all;
 }

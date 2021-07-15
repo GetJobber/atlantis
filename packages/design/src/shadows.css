@@ -1,5 +1,13 @@
 :root {
-  --shadow-base: 0px 1px 4px 0px rgba(0, 0, 0, 0.0980392),
-    0px 4px 12px 0px rgba(0, 0, 0, 0.0470588);
-  --shadow-focus: 0px 0px 4px 2px var(--color-focus);
+  --shadow-low: 0px var(--space-minuscule) var(--space-smallest)
+      rgba(0, 0, 0, 0.25),
+    0px 0px var(--space-smallest) rgba(0, 0, 0, 0.1);
+  --shadow-base: 0px var(--space-minuscule) var(--space-smaller) 0px
+      rgba(0, 0, 0, 0.1),
+    0px var(--space-smaller) 12px 0px rgba(0, 0, 0, 0.05);
+  --shadow-high: 0px var(--space-base) var(--space-base) 0px
+      rgba(0, 0, 0, 0.075),
+    0px 0px var(--space-small) 0px rgba(0, 0, 0, 0.05);
+  --shadow-focus: 0px 0px var(--space-smaller) var(--space-smallest)
+    var(--color-focus);
 }
