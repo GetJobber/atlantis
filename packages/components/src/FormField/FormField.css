@@ -222,3 +222,39 @@ select.formField {
   pointer-events: none;
   transform: translateY(-50%);
 }
+
+.prefixText {
+  position: absolute;
+  top: 50%;
+  left: var(--field--padding-left);
+  color: var(--color-text--secondary);
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.prefixIcon {
+  position: relative;
+  top: 50%;
+  right: var(--field--padding-left);
+  color: var(--color-text--secondary);
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.postfixText {
+  position: absolute;
+  top: 50%;
+  left: var(--field--padding-right);
+  color: var(--color-text--secondary);
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.postfixIcon {
+  position: relative;
+  top: 50%;
+  right: var(--field--padding-right);
+  color: var(--color-text--secondary);
+  pointer-events: none;
+  transform: translateY(-50%);
+}

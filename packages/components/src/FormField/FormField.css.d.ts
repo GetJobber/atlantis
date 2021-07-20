@@ -13,3 +13,7 @@ export const miniLabel: string;
 export const textareaLabel: string;
 export const maxLength: string;
 export const postfix: string;
+export const prefixText: string;
+export const prefixIcon: string;
+export const postfixText: string;
+export const postfixIcon: string;

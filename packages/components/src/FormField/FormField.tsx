@@ -18,6 +18,7 @@ import { FormSpinner } from "./FormSpinner";
 import { Icon } from "../Icon";
 import { InputValidation } from "../InputValidation";
 
+// eslint-disable-next-line max-statements
 export function FormField(props: FormFieldProps) {
   const {
     actionsRef,
@@ -43,6 +44,10 @@ export function FormField(props: FormFieldProps) {
     onFocus,
     onBlur,
     onValidation,
+    prefixIcon,
+    prefixText,
+    postfixText,
+    postfixIcon,
   } = props;
 
   const { control, errors, setValue, watch } =
@@ -89,6 +94,7 @@ export function FormField(props: FormFieldProps) {
         name={controlledName}
         rules={{ ...validations }}
         defaultValue={value ?? defaultValue ?? ""}
+        // eslint-disable-next-line max-statements
         render={({
           onChange: onControllerChange,
           onBlur: onControllerBlur,
@@ -117,6 +123,52 @@ export function FormField(props: FormFieldProps) {
             onKeyDown: handleKeyDown,
           };
 
+          function getPrefixIcon(icon: any) {
+            if (icon) {
+              return <span className={styles.prefixIcon}>{icon}</span>;
+            }
+            return;
+          }
+
+          function getPrefixText(text: any) {
+            if (text) {
+              return <span className={styles.prefixText}>{text}</span>;
+            }
+            return;
+          }
+
+          function getPostfixIcon(icon: any) {
+            if (icon) {
+              return <span className={styles.postfixIcon}>{icon}</span>;
+            }
+            return;
+          }
+
+          function getPostfixText(text: any) {
+            if (text) {
+              return <span className={styles.postfixText}>{text}</span>;
+            }
+            return;
+          }
+
+          function prefix() {
+            return (
+              <>
+                {getPrefixIcon(prefixIcon)}
+                {getPrefixText(prefixText)}
+              </>
+            );
+          }
+
+          function postfix() {
+            return (
+              <>
+                {getPostfixText(postfixText)}
+                {getPostfixIcon(postfixIcon)}
+              </>
+            );
+          }
+
           return renderField();
 
           function renderField() {
@@ -141,6 +193,7 @@ export function FormField(props: FormFieldProps) {
               default:
                 return (
                   <>
+                    {prefix()}
                     <input
                       {...textFieldProps}
                       autoComplete={setAutocomplete(autocomplete)}
@@ -151,6 +204,7 @@ export function FormField(props: FormFieldProps) {
                       ref={inputRef as MutableRefObject<HTMLInputElement>}
                     />
                     {loading && <FormSpinner />}
+                    {postfix()}
                   </>
                 );
             }

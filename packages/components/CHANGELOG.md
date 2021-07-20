@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.40.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.40.1...@jobber/components@2.40.2) (2021-07-20)
+
+
+### Bug Fixes
+
+* Null Reference variable for form-field component [JOB-33267] ([#594](https://github.com/GetJobber/atlantis/issues/594)) ([6cbc91a](https://github.com/GetJobber/atlantis/commit/6cbc91a9af3a381d1c48c66e378b546e007d8283))
+
+
+
+
+
 ## [2.40.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.40.0...@jobber/components@2.40.1) (2021-07-16)
 
 **Note:** Version bump only for package @jobber/components
