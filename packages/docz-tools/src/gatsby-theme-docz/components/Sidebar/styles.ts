@@ -1,6 +1,6 @@
 export const sidebar = (width: number, sidebarOffset: number) =>
   ({
-    bg: "greyBlueDark",
+    bg: "blue",
     height: `calc(100vh - ${sidebarOffset}px)`,
     position: "fixed",
     top: sidebarOffset,
@@ -30,7 +30,7 @@ export const input = {
   appearance: "none",
   border: 0,
   width: "100%",
-  bg: "blue",
+  bg: "greyBlueLightest",
   outline: "none",
   transition: "box-shadow 300ms",
   borderRadius: "base",
@@ -39,9 +39,9 @@ export const input = {
   pl: "38px",
   fontSize: "base",
   fontFamily: "body",
-  color: "white",
+  color: "blue",
 
   "&:focus": {
-    boxShadow: (t: any) => `0 0 3px ${t.colors.greyBlueLightest}`,
+    boxShadow: (t: any) => `0 0 4px ${t.colors.blueDark}`,
   },
 } as const;

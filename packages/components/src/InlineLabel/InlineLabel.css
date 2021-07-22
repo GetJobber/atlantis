@@ -76,7 +76,7 @@
 }
 
 .blueDark {
-  color: var(--color-white);
+  color: var(--color-text--reverse);
   background-color: var(--color-blue--light);
 }
 
