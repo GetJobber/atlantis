@@ -25,7 +25,6 @@ import { Page } from "@jobber/components/Page";
 
 <Playground>
   <Page
-    breadcrumb="Settings"
     title="Notifications"
     intro="Improve job completion rates, stop chasing payments, and boost your customer service by automatically communicating with your clients at key points before, during, and after a job. Read more about Notifications by visiting our [Help Center](https://help.getjobber.com/hc/en-us/articles/115009737128)."
   >
@@ -39,12 +38,6 @@ Using Page is pretty straightforward - after any navigational elements, Page
 should contain the content the user will be engaging with. If there is any sort
 of footer, it should exist after Page.
 
-The breadcrumb jumps up one level in the application's directory hierarchy, so
-the label should reflect the destination.
-
-- **Do:** use the breadcrumb's destination page title as the breadcrumb label
-- **Don't:** use "Back" or "Back to {destination}" as the breadcrumb label.
-
 ## Props
 
 <Props of={Page} />
@@ -55,7 +48,6 @@ the label should reflect the destination.
 
 <Playground>
   <Page
-    breadcrumb="Settings"
     title="Notification Settings"
     intro="This isn't just talk. Get into action with some buttons and menus."
     primaryAction={{ label: "Send Food Alert", onClick: () => alert("🥨") }}
@@ -107,7 +99,6 @@ Use a subtitle when you need to supplement a page title.
 
 <Playground>
   <Page
-    breadcrumb="Settings"
     title="Notifications"
     subtitle="Notify me of all the work"
     intro="Improve job completion rates, stop chasing payments, and boost your customer service by automatically communicating with your clients at key points before, during, and after a job. Read more about Notifications by visiting our [Help Center](https://help.getjobber.com/hc/en-us/articles/115009737128)."
