@@ -25,7 +25,7 @@
 }
 
 .isDark {
-  color: var(--color-text--reverse);
+  color: var(--color-white);
 }
 
 .initials {

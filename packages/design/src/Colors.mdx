@@ -39,8 +39,6 @@ readability.
   background-color:var(--color-heading)"
 ></div>
 
-`--color-heading`
-
 Headings have a bold, high-contrast color to cement their hierarchy.
 
 #### Text
@@ -48,57 +46,24 @@ Headings have a bold, high-contrast color to cement their hierarchy.
 <div
   style="width:100%;
   height:var(--space-extravagant);
-  display:flex;"
->
-  <div
-    style="flex: 1;
-    height:var(--space-extravagant);
-    background-color:var(--color-text)"
-  ></div>
-  <div
-    style="flex: 1;
-    height:var(--space-extravagant);
-    background-color:var(--color-text--secondary)"
-  ></div>
-</div>
-
-`--color-text` | `--color-text--secondary`
+  background-color:var(--color-text)"
+></div>
 
 A slightly softer color is used for body text for greater readability.
 
-Text that is relevant but less important ("secondary") can be lower-contrast to
-suggest its’ reduced importance. This color should only be used when there is
-more important text content already present.
-
-##### Text--Reverse
+##### Text--Secondary
 
 <div
   style="width:100%;
   height:var(--space-extravagant);
-  display:flex;
-  box-shadow:var(--shadow-base);"
->
-  <div
-    style="flex: 1;
-    height:var(--space-extravagant);
-    background-color:var(--color-text--reverse)"
-  ></div>
-  <div
-    style="flex: 1;
-    height:var(--space-extravagant);
-    background-color:var(--color-text--reverse--secondary)"
-  ></div>
-</div>
+  background-color:var(--color-text--secondary)"
+></div>
 
-`--color-text--reverse` | `--color-text--reverse--secondary`
+Text that is relevant but less important can be lower-contrast to suggest its’
+reduced importance. This color should only be used when there is more important
+text content already present.
 
-When used against a [reversed surface](#surface--reverse), reversed text should
-be used to maintain readability.
-
-Reverse text also has a secondary value following the same rules outlined for
-standard secondary text.
-
-### Interactions
+### Interactive
 
 Use these colors in buttons and form controls to communicate the presence and
 meaning of interaction. In cases such as [Buttons](/components/button) where the
@@ -113,21 +78,8 @@ currently tied our interactive color to our brand color._
 <div
   style="width:100%;
   height:var(--space-extravagant);
-  display:flex;"
->
-  <div
-    style="width:100%;
-    height:var(--space-extravagant);
-    background-color:var(--color-interactive)"
-  ></div>
-  <div
-    style="width:100%;
-    height:var(--space-extravagant);
-    background-color:var(--color-interactive--hover)"
-  ></div>
-</div>
-
-`--color-interactive` | `--color-interactive--hover`
+  background-color:var(--color-interactive)"
+></div>
 
 The default color used for interactive elements.
 
@@ -136,21 +88,8 @@ The default color used for interactive elements.
 <div
   style="width:100%;
   height:var(--space-extravagant);
-  display:flex;"
->
-  <div
-    style="width:100%;
-    height:var(--space-extravagant);
-    background-color:var(--color-destructive)"
-  ></div>
-  <div
-    style="width:100%;
-    height:var(--space-extravagant);
-    background-color:var(--color-destructive--hover)"
-  ></div>
-</div>
-
-`--color-destructive` | `--color-destructive--hover`
+  background-color:var(--color-destructive)"
+></div>
 
 Use to signify that an interaction will destroy something in the users’ account
 or workflow.
@@ -160,49 +99,31 @@ or workflow.
 <div
   style="width:100%;
   height:var(--space-extravagant);
-  display:flex;"
->
-  <div
-    style="width:100%;
-    height:var(--space-extravagant);
-    background-color:var(--color-cancel)"
-  ></div>
-  <div
-    style="width:100%;
-    height:var(--space-extravagant);
-    background-color:var(--color-cancel--hover)"
-  ></div>
-</div>
+  background-color:var(--color-cancel)"
+></div>
 
-`--color-cancel` | `--color-cancel--hover`
-
-Use to signify that an interaction will cancel or exit a workflow.
+Use to signify that an interaction will cancel or exit a workflow
 
 #### Disabled
 
 <div
   style="width:100%;
   height:var(--space-extravagant);
-  display:flex;"
->
-  <div
-    style="width:100%;
-    height:var(--space-extravagant);
-    background-color:var(--color-disabled)"
-  ></div>
-  <div
-    style="width:100%;
-    height:var(--space-extravagant);
-    background-color:var(--color-disabled--secondary)"
-  ></div>
-</div>
-
-`--color-disabled` | `--color-disabled--secondary`
+  background-color:var(--color-disabled)"
+></div>
 
 Use to signify that an interactive element is disabled.
 
-Use `secondary` when a disabled element needs more than one color to be readable
-in a disabled state; for example, a button's background and label colors must be
+##### Disabled--Secondary
+
+<div
+  style="width:100%;
+  height:var(--space-extravagant);
+  background-color:var(--color-disabled--secondary)"
+></div>
+
+Use when a disabled element needs more than one color to be readable in a
+disabled state; for example, a button's background and label colors must be
 different.
 
 #### Focus
@@ -213,8 +134,6 @@ different.
   background-color:var(--color-surface);
   box-shadow:var(--shadow-focus);"
 ></div>
-
-`--color-focus`
 
 Use to indicate that an element has been focused (ideally using the
 `--shadow-focus` property).
@@ -253,8 +172,6 @@ sufficient color contrast.
   ></div>
 </div>
 
-`--color-critical` | `--color-critical--surface` | `--color-critical--onSurface`
-
 Action required; user must see this status to be unblocked.
 
 #### Warning
@@ -280,8 +197,6 @@ Action required; user must see this status to be unblocked.
     background-color:var(--color-warning--onSurface)"
   ></div>
 </div>
-
-`--color-warning` | `--color-warning--surface` | `--color-warning--onSurface`
 
 Action _may_ be required as a consequence of current state.
 
@@ -309,8 +224,6 @@ Action _may_ be required as a consequence of current state.
   ></div>
 </div>
 
-`--color-success` | `--color-success--surface` | `--color-success--onSurface`
-
 No action required; an action has completed successfully.
 
 #### Informative
@@ -337,9 +250,6 @@ No action required; an action has completed successfully.
   ></div>
 </div>
 
-`--color-informative` | `--color-informative--surface` |
-`--color-informative--onSurface`
-
 No action required; but helpful to know about.
 
 #### Inactive
@@ -365,8 +275,6 @@ No action required; but helpful to know about.
     background-color:var(--color-inactive--onSurface)"
   ></div>
 </div>
-
-`--color-inactive` | `--color-inactive--surface` | `--color-inactive--onSurface`
 
 No action required; not part of an active workflow.
 
@@ -401,8 +309,6 @@ focus.
   ></div>
 </div>
 
-`--color-surface` | `--color-surface--hover` | `--color-surface--active`
-
 Most elements in Jobber have a light surface to indicate their nearness to the
 user; if interactive, they have a hover color and an active color to indicate
 state.
@@ -415,8 +321,6 @@ state.
   background-color:var(--color-surface--background);"
 ></div>
 
-`--color-surface--background`
-
 A slightly darker surface gives a receded appearance relative to main surfaces.
 
 #### Surface--Reverse
@@ -427,10 +331,8 @@ A slightly darker surface gives a receded appearance relative to main surfaces.
   background-color:var(--color-surface--reverse);"
 ></div>
 
-`--color-surface--reverse`
-
-Use a reversed surface when a strong contrast is needed with the rest of the
-application.
+When a strong contrast is needed with the rest of the application, a reversed
+surface can be used.
 
 #### Overlay
 
@@ -439,8 +341,6 @@ application.
   height:var(--space-extravagant);
   background-color:var(--color-overlay);"
 ></div>
-
-`--color-overlay`
 
 Use to mask an area of the interface to promote focus to a foreground action,
 such as a [Modal](/components/modal)’s appearance. Overlay includes built-in
@@ -455,11 +355,9 @@ opacity values.
   box-shadow: var(--shadow-base);"
 ></div>
 
-`--color-overlay--dimmed`
-
-A transparent version of [Surface](#surface), this masks an area of the
-interface to indicate inactivity (i.e. waiting for updates). Overlay--Dimmed
-includes built-in opacity values.
+A transparent version of [Surface](#surface), this masks an area of the nterface
+to indicate inactivity (i.e. waiting for updates). Overlay--Dimmed includes
+built-in opacity values.
 
 ### Borders
 
@@ -476,8 +374,6 @@ the subtle maintainers of layout structure. Learn more about borders in our
   border: var(--border-base) solid var(--color-border)"
 ></div>
 
-`--color-border`
-
 Most borders should use `--color-border` for subtle definition.
 
 #### Border--Section
@@ -488,8 +384,6 @@ Most borders should use `--color-border` for subtle definition.
   background-color:var(--color-surface);
   border: var(--border-base) solid var(--color-border--section)"
 ></div>
-
-`--color-border--section`
 
 Use `--color-border--section` where other bordered content is being further
 sectioned, such as table headers or list sections.
@@ -506,8 +400,6 @@ Use these colors to represent the Jobber brand visual language.
   background-color:var(--color-brand);"
 ></div>
 
-`--color-brand`
-
 The primary color associated with our brand, from website to ads to product; AKA
 “Jobber Green”.
 
@@ -518,8 +410,6 @@ The primary color associated with our brand, from website to ads to product; AKA
   height:var(--space-extravagant);
   background-color:var(--color-brand--highlight);"
 ></div>
-
-`--color-brand--highlight`
 
 Use to highlight an element in a way that aligns with our website. Use with
 caution, it’s _bright!_
