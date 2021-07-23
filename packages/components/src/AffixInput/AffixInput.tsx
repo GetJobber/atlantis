@@ -63,7 +63,7 @@ interface AffixInputProps {
    */
   onFocus?(): void;
 
-  formFieldProps: FormFieldProps;
+  formFieldProps: FormFieldPropadss;
 }
 
 export function AffixInput({
