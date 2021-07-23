@@ -20,6 +20,12 @@ export interface PageProps {
   readonly intro?: string;
 
   /**
+   * Label for the "back" button when Page is nested.
+   * The breadcrumb button follows a relative URL to jump up one level.
+   */
+  readonly breadcrumb?: string;
+
+  /**
    * Title of the page.
    */
   readonly title: string;
@@ -61,6 +67,7 @@ export interface PageProps {
 
 // eslint-disable-next-line max-statements
 export function Page({
+  breadcrumb,
   title,
   intro,
   subtitle,
@@ -107,6 +114,15 @@ export function Page({
     <div className={pageStyles}>
       <Content>
         <Content>
+          {breadcrumb && (
+            <Button
+              icon="backArrow"
+              url="../"
+              label={breadcrumb}
+              type="tertiary"
+              size="small"
+            ></Button>
+          )}
           <div className={titleBarClasses} ref={titleBarRef}>
             <div>
               <Heading level={1}>{title}</Heading>
