@@ -13,7 +13,7 @@
   width: 100%;
   padding: 0;
   border: none;
-  color: var(--color-greyBlue--lighter);
+  color: var(--color-text--reverse--secondary);
   font-family: "Poppins", sans-serif;
   font-size: var(--base-unit);
   font-weight: 700;
