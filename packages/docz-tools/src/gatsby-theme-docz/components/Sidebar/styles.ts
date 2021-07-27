@@ -15,7 +15,7 @@ export const sidebar = (width: number, sidebarOffset: number) =>
 export const search = {
   position: "relative",
   marginTop: "large",
-  marginX: "base",
+  marginX: "large",
 
   svg: {
     position: "absolute",
