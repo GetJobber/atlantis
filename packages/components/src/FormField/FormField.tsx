@@ -133,22 +133,22 @@ export function FormField(props: FormFieldProps) {
               case "textarea":
                 return (
                   <textarea
+                    {...textFieldProps}
                     rows={rows}
                     ref={inputRef as MutableRefObject<HTMLTextAreaElement>}
-                    {...textFieldProps}
                   />
                 );
               default:
                 return (
                   <>
                     <input
+                      {...textFieldProps}
                       autoComplete={setAutocomplete(autocomplete)}
                       type={type}
                       maxLength={maxLength}
                       max={max}
                       min={min}
                       ref={inputRef as MutableRefObject<HTMLInputElement>}
-                      {...textFieldProps}
                     />
                     {loading && <FormSpinner />}
                   </>
