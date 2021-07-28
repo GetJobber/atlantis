@@ -1,17 +1,55 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders a Loader 1`] = `
-<div
-  className="loader overlay"
->
-  Loading
-  <div>
-    <div
-      aria-busy={true}
-      aria-label="loading"
-      className="spinner"
-      role="alert"
-    />
+exports[`<Loader /> when loading when determinate renders a Loader 1`] = `
+<div>
+  <div
+    aria-busy="true"
+    aria-live="polite"
+    className="loader overlay determinate"
+  >
+    Loading
+    <div>
+      <progress
+        className="ProgressBar small"
+        max={100}
+        value={0}
+      >
+        0
+        %
+      </progress>
+    </div>
   </div>
+</div>
+`;
+
+exports[`<Loader /> when loading when not determinate renders a Loader 1`] = `
+<div>
+  <div
+    aria-busy="true"
+    aria-live="polite"
+    className="loader overlay"
+  >
+    Loading
+    <div>
+      <div
+        aria-busy={true}
+        aria-label="loading"
+        className="spinner small"
+        role="alert"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Loader /> when not loading when determinate renders a Loader 1`] = `
+<div>
+  Loading
+</div>
+`;
+
+exports[`<Loader /> when not loading when not determinate renders a Loader 1`] = `
+<div>
+  Loading
 </div>
 `;
