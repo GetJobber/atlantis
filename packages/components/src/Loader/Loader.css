@@ -1,14 +1,12 @@
 .loader {
   position: relative;
-  padding: var(--space-base);
 }
 
-.determinate > div:last-child {
-  padding: 0 var(--space-larger);
+.determinate > .loadingIndicator {
   background-color: var(--color-overlay) !important;
 }
 
-.overlay > div:last-child {
+.overlay > .loadingIndicator {
   display: flex;
   position: absolute;
   top: 0;

@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./LoaderIndicator.css";
 import { Spinner } from "../Spinner";
 import { ProgressBar } from "../ProgressBar";
 
@@ -16,7 +17,13 @@ export function LoaderIndicator({
   size,
 }: LoaderIndicatorProps) {
   return determinate ? (
-    <ProgressBar currentStep={currentValue} totalSteps={maxValue} size={size} />
+    <div className={styles.determinate}>
+      <ProgressBar
+        currentStep={currentValue}
+        totalSteps={maxValue}
+        size={size}
+      />
+    </div>
   ) : (
     <Spinner size={size} />
   );

@@ -8,15 +8,21 @@ exports[`<Loader /> when loading when determinate renders a Loader 1`] = `
     className="loader overlay determinate"
   >
     Loading
-    <div>
-      <progress
-        className="ProgressBar small"
-        max={100}
-        value={0}
+    <div
+      className="loadingIndicator"
+    >
+      <div
+        className="determinate"
       >
-        0
-        %
-      </progress>
+        <progress
+          className="ProgressBar small"
+          max={100}
+          value={0}
+        >
+          0
+          %
+        </progress>
+      </div>
     </div>
   </div>
 </div>
@@ -30,7 +36,9 @@ exports[`<Loader /> when loading when not determinate renders a Loader 1`] = `
     className="loader overlay"
   >
     Loading
-    <div>
+    <div
+      className="loadingIndicator"
+    >
       <div
         aria-busy={true}
         aria-label="loading"

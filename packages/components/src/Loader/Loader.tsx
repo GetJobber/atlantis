@@ -70,7 +70,7 @@ export function Loader(props: PropsWithChildren<LoaderProps>) {
       {loading ? (
         <div aria-busy="true" aria-live="polite" className={classname}>
           {children}
-          <div>
+          <div className={styles.loadingIndicator}>
             <LoaderIndicator
               determinate={determinate}
               currentValue={currentValue}
