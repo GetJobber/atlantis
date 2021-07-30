@@ -15,7 +15,7 @@ import { FormFieldProps } from "./FormFieldTypes";
 import { FormLabel } from "./FormLabel";
 import { FieldWrapper } from "./FieldWrapper";
 import { FormSpinner } from "./FormSpinner";
-import { Icon } from "../Icon";
+import { Icon, IconNames } from "../Icon";
 import { InputValidation } from "../InputValidation";
 
 // eslint-disable-next-line max-statements
@@ -48,6 +48,7 @@ export function FormField(props: FormFieldProps) {
     prefixText,
     postfixText,
     postfixIcon,
+    size,
   } = props;
 
   const { control, errors, setValue, watch } =
@@ -101,9 +102,43 @@ export function FormField(props: FormFieldProps) {
           name: controllerName,
           ...rest
         }) => {
-          const fieldClasses = classnames(styles.formField, {
-            [styles.select]: type === "select",
-          });
+          const fieldClasses = classnames(
+            styles.formField,
+            { [styles.select]: type === "select" },
+            {
+              [styles.smallPrefix]:
+                size == "small" && !prefixIcon != !prefixText,
+            },
+            {
+              [styles.smallDoublePrefix]:
+                size == "small" && prefixIcon && prefixText,
+            },
+
+            {
+              [styles.largePrefix]:
+                size == "large" && !prefixIcon != !prefixText,
+            },
+            {
+              [styles.largeDoublePrefix]:
+                size == "large" && prefixIcon && prefixText,
+            },
+            {
+              [styles.smallPostfix]:
+                size == "small" && !postfixIcon != !postfixText,
+            },
+            {
+              [styles.smallDoublePostfix]:
+                size == "small" && !postfixIcon != !postfixText,
+            },
+            {
+              [styles.largePostfix]:
+                size == "small" && !postfixIcon != !postfixText,
+            },
+            {
+              [styles.largePostfix]:
+                size == "small" && !postfixIcon != !postfixText,
+            },
+          );
 
           const fieldProps = {
             ...rest,
@@ -123,28 +158,36 @@ export function FormField(props: FormFieldProps) {
             onKeyDown: handleKeyDown,
           };
 
-          function getPrefixIcon(icon: any) {
+          function getPrefixIcon(icon: IconNames) {
             if (icon) {
-              return <span className={styles.prefixIcon}>{icon}</span>;
+              return (
+                <span className={styles.prefixIcon}>
+                  <Icon size="base" name={icon}></Icon>
+                </span>
+              );
             }
             return;
           }
 
-          function getPrefixText(text: any) {
+          function getPrefixText(text: string | number) {
             if (text) {
               return <span className={styles.prefixText}>{text}</span>;
             }
             return;
           }
 
-          function getPostfixIcon(icon: any) {
+          function getPostfixIcon(icon: IconNames) {
             if (icon) {
-              return <span className={styles.postfixIcon}>{icon}</span>;
+              return (
+                <span className={styles.postfixIcon}>
+                  <Icon size="base" name={icon}></Icon>
+                </span>
+              );
             }
             return;
           }
 
-          function getPostfixText(text: any) {
+          function getPostfixText(text: string | number) {
             if (text) {
               return <span className={styles.postfixText}>{text}</span>;
             }
@@ -154,8 +197,8 @@ export function FormField(props: FormFieldProps) {
           function prefix() {
             return (
               <>
-                {getPrefixIcon(prefixIcon)}
-                {getPrefixText(prefixText)}
+                {prefixIcon && getPrefixIcon(prefixIcon)}
+                {prefixText && getPrefixText(prefixText)}
               </>
             );
           }
@@ -163,8 +206,8 @@ export function FormField(props: FormFieldProps) {
           function postfix() {
             return (
               <>
-                {getPostfixText(postfixText)}
-                {getPostfixIcon(postfixIcon)}
+                {postfixText && getPostfixText(postfixText)}
+                {postfixIcon && getPostfixIcon(postfixIcon)}
               </>
             );
           }

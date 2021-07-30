@@ -109,6 +109,8 @@ select.formField {
 .inline > input,
 .inline > select {
   display: inline-block;
+  /* Calculate padding dynamically - if there exists prefix, postfix or both*/
+  padding: 0 1rem;
 }
 
 /* Sizes */
@@ -134,8 +136,39 @@ select.formField {
   --field--padding-bottom: var(--space-base);
 }
 
-/* Alignment */
+.smallPrefix {
+  padding-left: calc(var(--space-base) - var(--space-smaller));
+}
 
+.smallDoublePrefix {
+  padding-left: calc(2 * (var(--space-base) - var(--space-smaller)));
+}
+
+.largePrefix {
+  padding-left: var(--space-large);
+}
+
+.largeDoublePrefix {
+  padding-left: calc(2 * var(--space-large));
+}
+
+.smallPostfix {
+  padding-right: calc(var(--space-base) - var(--space-smaller));
+}
+
+.smallDoublePostfix {
+  padding-right: calc(2 * (var(--space-base) - var(--space-smaller)));
+}
+
+.largePostfix {
+  padding-right: var(--space-large);
+}
+
+.largeDoublePostfix {
+  padding-right: calc(2 * var(--space-large));
+}
+
+/* Alignment */
 .center {
   --field--textAlign: center;
 }
@@ -223,6 +256,15 @@ select.formField {
   transform: translateY(-50%);
 }
 
+.postfixText {
+  position: absolute;
+  top: 50%;
+  right: var(--field--padding-right);
+  color: var(--color-text--secondary);
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
 .prefixText {
   position: absolute;
   top: 50%;
@@ -233,27 +275,9 @@ select.formField {
 }
 
 .prefixIcon {
-  position: relative;
-  top: 50%;
-  right: var(--field--padding-left);
-  color: var(--color-text--secondary);
-  pointer-events: none;
-  transform: translateY(-50%);
-}
-
-.postfixText {
   position: absolute;
   top: 50%;
-  left: var(--field--padding-right);
-  color: var(--color-text--secondary);
-  pointer-events: none;
-  transform: translateY(-50%);
-}
-
-.postfixIcon {
-  position: relative;
-  top: 50%;
-  right: var(--field--padding-right);
+  left: var(--field--padding-left);
   color: var(--color-text--secondary);
   pointer-events: none;
   transform: translateY(-50%);
