@@ -19,11 +19,11 @@ it("renders a InputTime", () => {
     >
       <label
         className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440001"
+        htmlFor="generatedName--123e4567-e89b-12d3-a456-426655440001"
       />
       <input
         className="formField"
-        id="123e4567-e89b-12d3-a456-426655440001"
+        id="generatedName--123e4567-e89b-12d3-a456-426655440001"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -50,11 +50,11 @@ it("renders an initial time when given 'defaultValue'", () => {
     >
       <label
         className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440004"
+        htmlFor="generatedName--123e4567-e89b-12d3-a456-426655440002"
       />
       <input
         className="formField"
-        id="123e4567-e89b-12d3-a456-426655440004"
+        id="generatedName--123e4567-e89b-12d3-a456-426655440002"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -81,11 +81,11 @@ it("renders correctly in a readonly state", () => {
     >
       <label
         className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440005"
+        htmlFor="generatedName--123e4567-e89b-12d3-a456-426655440003"
       />
       <input
         className="formField"
-        id="123e4567-e89b-12d3-a456-426655440005"
+        id="generatedName--123e4567-e89b-12d3-a456-426655440003"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -113,11 +113,11 @@ it("adds a error border when invalid", () => {
     >
       <label
         className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440008"
+        htmlFor="generatedName--123e4567-e89b-12d3-a456-426655440004"
       />
       <input
         className="formField"
-        id="123e4567-e89b-12d3-a456-426655440008"
+        id="generatedName--123e4567-e89b-12d3-a456-426655440004"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -143,11 +143,11 @@ it("should set the value when given 'value' and 'onChange'", () => {
     >
       <label
         className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440011"
+        htmlFor="generatedName--123e4567-e89b-12d3-a456-426655440005"
       />
       <input
         className="formField"
-        id="123e4567-e89b-12d3-a456-426655440011"
+        id="generatedName--123e4567-e89b-12d3-a456-426655440005"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}

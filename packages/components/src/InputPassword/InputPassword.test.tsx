@@ -18,11 +18,11 @@ it("renders an input type number", () => {
     >
       <label
         className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440001"
+        htmlFor="generatedName--123e4567-e89b-12d3-a456-426655440001"
       />
       <input
         className="formField"
-        id="123e4567-e89b-12d3-a456-426655440001"
+        id="generatedName--123e4567-e89b-12d3-a456-426655440001"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
@@ -35,9 +35,7 @@ it("renders an input type number", () => {
 });
 
 it("renders an error", () => {
-  const tree = renderer
-    .create(<InputPassword value="p" errorMessage="Not long enough" />)
-    .toJSON();
+  const tree = renderer.create(<InputPassword value="p" />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
       className="wrapper"
@@ -49,11 +47,11 @@ it("renders an error", () => {
     >
       <label
         className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440004"
+        htmlFor="generatedName--123e4567-e89b-12d3-a456-426655440002"
       />
       <input
         className="formField"
-        id="123e4567-e89b-12d3-a456-426655440004"
+        id="generatedName--123e4567-e89b-12d3-a456-426655440002"
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}

@@ -48,7 +48,7 @@ test("fires onStateChage when component renders", async () => {
     expect(stateChangeHandler).toHaveBeenCalled();
     expect(stateChangeHandler).toHaveBeenCalledWith({
       isDirty: false,
-      isValid: true,
+      isValid: false,
     });
   });
 });
