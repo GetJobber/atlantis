@@ -136,38 +136,6 @@ select.formField {
   --field--padding-bottom: var(--space-base);
 }
 
-.smallPrefix {
-  padding-left: calc(var(--space-base) - var(--space-smaller));
-}
-
-.smallDoublePrefix {
-  padding-left: calc(2 * (var(--space-base) - var(--space-smaller)));
-}
-
-.largePrefix {
-  padding-left: var(--space-large);
-}
-
-.largeDoublePrefix {
-  padding-left: calc(2 * var(--space-large));
-}
-
-.smallPostfix {
-  padding-right: calc(var(--space-base) - var(--space-smaller));
-}
-
-.smallDoublePostfix {
-  padding-right: calc(2 * (var(--space-base) - var(--space-smaller)));
-}
-
-.largePostfix {
-  padding-right: var(--space-large);
-}
-
-.largeDoublePostfix {
-  padding-right: calc(2 * var(--space-large));
-}
-
 /* Alignment */
 .center {
   --field--textAlign: center;
@@ -247,38 +215,81 @@ select.formField {
   );
 }
 
+/* for select */
 .postfix {
   position: absolute;
   top: 50%;
-  right: var(--field--padding-right);
+  left: var(--field--padding-left);
+  padding: 0;
   color: var(--color-text--secondary);
   pointer-events: none;
   transform: translateY(-50%);
 }
 
-.postfixText {
-  position: absolute;
-  top: 50%;
-  right: var(--field--padding-right);
-  color: var(--color-text--secondary);
-  pointer-events: none;
-  transform: translateY(-50%);
-}
-
-.prefixText {
+.prefixes {
   position: absolute;
   top: 50%;
   left: var(--field--padding-left);
+  padding: 0;
   color: var(--color-text--secondary);
   pointer-events: none;
   transform: translateY(-50%);
 }
 
-.prefixIcon {
+.postfixes {
   position: absolute;
   top: 50%;
-  left: var(--field--padding-left);
+  right: var(--field--padding-right);
+  padding: 0;
   color: var(--color-text--secondary);
   pointer-events: none;
   transform: translateY(-50%);
+}
+
+.prefixText,
+.prefixIcon,
+.postfixText,
+.postfixIcon {
+  position: relative;
+  padding: var(--space-small);
+}
+
+.smallPrefix {
+  padding-left: calc(var(--space-base));
+}
+
+.smallDoublePrefix {
+  padding-left: 2rem;
+}
+
+.largePrefix {
+  padding-left: var(--space-large);
+}
+
+.largeDoublePrefix {
+  padding-left: calc(2 * var(--space-large));
+}
+
+.smallPostfix {
+  padding-right: calc(var(--space-base) - var(--space-smaller));
+}
+
+.smallDoublePostfix {
+  padding-right: calc(2 * (var(--space-base) - var(--space-smaller)));
+}
+
+.largePostfix {
+  padding-right: var(--space-large);
+}
+
+.largeDoublePostfix {
+  padding-right: calc(2 * var(--space-large));
+}
+
+.prefixes span:first-child {
+  padding-left: 0;
+}
+
+.postfixes span:last-child {
+  padding-right: 0;
 }

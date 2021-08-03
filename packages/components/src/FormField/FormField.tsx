@@ -48,7 +48,6 @@ export function FormField(props: FormFieldProps) {
     prefixText,
     postfixText,
     postfixIcon,
-    size,
   } = props;
 
   const { control, errors, setValue, watch } =
@@ -106,37 +105,17 @@ export function FormField(props: FormFieldProps) {
             styles.formField,
             { [styles.select]: type === "select" },
             {
-              [styles.smallPrefix]:
-                size == "small" && !prefixIcon != !prefixText,
+              [styles.smallPrefix]: !prefixIcon != !prefixText,
             },
             {
-              [styles.smallDoublePrefix]:
-                size == "small" && prefixIcon && prefixText,
+              [styles.smallDoublePrefix]: prefixIcon && prefixText,
             },
 
             {
-              [styles.largePrefix]:
-                size == "large" && !prefixIcon != !prefixText,
+              [styles.smallPostfix]: !postfixIcon != !postfixText,
             },
             {
-              [styles.largeDoublePrefix]:
-                size == "large" && prefixIcon && prefixText,
-            },
-            {
-              [styles.smallPostfix]:
-                size == "small" && !postfixIcon != !postfixText,
-            },
-            {
-              [styles.smallDoublePostfix]:
-                size == "small" && !postfixIcon != !postfixText,
-            },
-            {
-              [styles.largePostfix]:
-                size == "small" && !postfixIcon != !postfixText,
-            },
-            {
-              [styles.largePostfix]:
-                size == "small" && !postfixIcon != !postfixText,
+              [styles.smallDoublePostfix]: !postfixIcon != !postfixText,
             },
           );
 
@@ -196,19 +175,19 @@ export function FormField(props: FormFieldProps) {
 
           function prefix() {
             return (
-              <>
+              <div className={styles.prefixes}>
                 {prefixIcon && getPrefixIcon(prefixIcon)}
                 {prefixText && getPrefixText(prefixText)}
-              </>
+              </div>
             );
           }
 
           function postfix() {
             return (
-              <>
+              <div className={styles.postfixes}>
                 {postfixText && getPostfixText(postfixText)}
                 {postfixIcon && getPostfixIcon(postfixIcon)}
-              </>
+              </div>
             );
           }
 
@@ -236,7 +215,7 @@ export function FormField(props: FormFieldProps) {
               default:
                 return (
                   <>
-                    {prefix()}
+                    {prefixIcon || prefixText ? prefix() : false}
                     <input
                       {...textFieldProps}
                       autoComplete={setAutocomplete(autocomplete)}
@@ -247,7 +226,7 @@ export function FormField(props: FormFieldProps) {
                       ref={inputRef as MutableRefObject<HTMLInputElement>}
                     />
                     {loading && <FormSpinner />}
-                    {postfix()}
+                    {postfixIcon || postfixText ? postfix() : false}
                   </>
                 );
             }
