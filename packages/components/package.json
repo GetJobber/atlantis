@@ -36,7 +36,7 @@
     "framer-motion": "^1.10.3",
     "lodash": "^4.17.20",
     "react-dropzone": "^11.0.2",
-    "react-hook-form": "^6.7.2",
+    "react-hook-form": "^7.12.1",
     "react-image-lightbox": "^5.1.1",
     "react-markdown": "^4.1.0",
     "react-popper": "^2.2.5",
