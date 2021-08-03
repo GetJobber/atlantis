@@ -30,7 +30,8 @@ export const Form = forwardRef(function InternalForm(
   const {
     trigger,
     handleSubmit,
-    formState: { isDirty, isValid },
+    setFocus,
+    formState: { isDirty, isValid, errors },
   } = methods;
 
   useEffect(() => onStateChange && onStateChange({ isDirty, isValid }), [
@@ -52,6 +53,9 @@ export const Form = forwardRef(function InternalForm(
         submitHandler();
       } else {
         trigger();
+
+        const firstError = Object.keys(errors)[0];
+        setFocus(firstError);
       }
     },
   }));
