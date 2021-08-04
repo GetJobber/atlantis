@@ -55,7 +55,15 @@ the label should reflect the destination.
 
 <Playground>
   <Page
-    breadcrumb="Settings"
+    breadcrumbs={[
+      { label: "Settings", url: "../" },
+      {
+        label: "Profile",
+        onClick: () => {
+          window.alert("You have an awesome profile! 🔥");
+        },
+      },
+    ]}
     title="Notification Settings"
     intro="This isn't just talk. Get into action with some buttons and menus."
     primaryAction={{ label: "Send Food Alert", onClick: () => alert("🥨") }}
@@ -107,7 +115,7 @@ Use a subtitle when you need to supplement a page title.
 
 <Playground>
   <Page
-    breadcrumb="Settings"
+    breadcrumbs={[{ label: "Settings", url: "../" }]}
     title="Notifications"
     subtitle="Notify me of all the work"
     intro="Improve job completion rates, stop chasing payments, and boost your customer service by automatically communicating with your clients at key points before, during, and after a job. Read more about Notifications by visiting our [Help Center](https://help.getjobber.com/hc/en-us/articles/115009737128)."

@@ -9,6 +9,7 @@ import { Markdown } from "../Markdown";
 import { Button, ButtonProps } from "../Button";
 import { Menu, SectionProps } from "../Menu";
 import { Emphasis } from "../Emphasis";
+import { Breadcrumb, IBreadcrumb } from "../Breadcrumb";
 
 export interface PageProps {
   readonly children: ReactNode | ReactNode[];
@@ -23,7 +24,7 @@ export interface PageProps {
    * Label for the "back" button when Page is nested.
    * The breadcrumb button follows a relative URL to jump up one level.
    */
-  readonly breadcrumb?: string;
+  readonly breadcrumbs?: IBreadcrumb[];
 
   /**
    * Title of the page.
@@ -67,7 +68,7 @@ export interface PageProps {
 
 // eslint-disable-next-line max-statements
 export function Page({
-  breadcrumb,
+  breadcrumbs,
   title,
   intro,
   subtitle,
@@ -78,10 +79,8 @@ export function Page({
   moreActionsMenu = [],
 }: PageProps) {
   const pageStyles = classnames(styles.page, styles[width]);
-  const [
-    titleBarRef,
-    { width: titleBarWidth = Breakpoints.large },
-  ] = useResizeObserver<HTMLDivElement>();
+  const [titleBarRef, { width: titleBarWidth = Breakpoints.large }] =
+    useResizeObserver<HTMLDivElement>();
 
   const titleBarClasses = classnames(styles.titleBar, {
     [styles.small]: titleBarWidth > Breakpoints.smaller,
@@ -114,15 +113,7 @@ export function Page({
     <div className={pageStyles}>
       <Content>
         <Content>
-          {breadcrumb && (
-            <Button
-              icon="backArrow"
-              url="../"
-              label={breadcrumb}
-              type="tertiary"
-              size="small"
-            ></Button>
-          )}
+          {breadcrumbs && <Breadcrumb breadcrumbs={breadcrumbs} />}
           <div className={titleBarClasses} ref={titleBarRef}>
             <div>
               <Heading level={1}>{title}</Heading>
