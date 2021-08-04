@@ -34,7 +34,7 @@ export function useFormController<T>({
     name: fieldName,
     control,
     rules: validations,
-    defaultValue: value || "",
+    defaultValue: value ?? "",
   });
 
   return { error: errors[fieldName], field };
