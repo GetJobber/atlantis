@@ -16,7 +16,6 @@ exports[`renders a Select with many options 1`] = `
   <select
     className="formField select"
     id="generatedName--123e4567-e89b-12d3-a456-426655440003"
-    onBlur={[Function]}
     onChange={[Function]}
     value=""
   >
@@ -67,7 +66,6 @@ exports[`renders a Select with no options 1`] = `
   <select
     className="formField select"
     id="generatedName--123e4567-e89b-12d3-a456-426655440001"
-    onBlur={[Function]}
     onChange={[Function]}
     value=""
   />
@@ -105,7 +103,6 @@ exports[`renders a Select with one option 1`] = `
   <select
     className="formField select"
     id="generatedName--123e4567-e89b-12d3-a456-426655440002"
-    onBlur={[Function]}
     onChange={[Function]}
     value=""
   >
@@ -147,7 +144,6 @@ exports[`renders correctly as large 1`] = `
   <select
     className="formField select"
     id="generatedName--123e4567-e89b-12d3-a456-426655440005"
-    onBlur={[Function]}
     onChange={[Function]}
     value=""
   >
@@ -189,7 +185,6 @@ exports[`renders correctly as small 1`] = `
   <select
     className="formField select"
     id="generatedName--123e4567-e89b-12d3-a456-426655440004"
-    onBlur={[Function]}
     onChange={[Function]}
     value=""
   >
@@ -232,7 +227,6 @@ exports[`renders correctly when disabled 1`] = `
     className="formField select"
     disabled={true}
     id="generatedName--123e4567-e89b-12d3-a456-426655440006"
-    onBlur={[Function]}
     onChange={[Function]}
     value=""
   >
@@ -274,7 +268,6 @@ exports[`renders correctly when invalid 1`] = `
   <select
     className="formField select"
     id="generatedName--123e4567-e89b-12d3-a456-426655440007"
-    onBlur={[Function]}
     onChange={[Function]}
     value=""
   >

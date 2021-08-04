@@ -65,7 +65,6 @@ export function FormField(props: PropsWithChildren<FormFieldProps>) {
   });
 
   const fieldProps = {
-    ...field,
     className: fieldClasses,
     disabled: disabled,
     id: field.name,
@@ -77,6 +76,7 @@ export function FormField(props: PropsWithChildren<FormFieldProps>) {
   };
 
   const textFieldProps = {
+    ...field,
     ...fieldProps,
     onBlur: handleBlur,
     onFocus: handleFocus,
