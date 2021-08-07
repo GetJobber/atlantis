@@ -1,5 +1,6 @@
 import { ReactNode, RefObject } from "react";
 import { ValidationRules } from "react-hook-form";
+import { IconNames } from "@jobber/design";
 
 export type FormFieldTypes =
   | "text"
@@ -114,6 +115,26 @@ export interface FormFieldProps {
    * Set the component to the given value.
    */
   readonly value?: string | number;
+
+  /**
+   * Set the component prefix to the given prefix text.
+   */
+  readonly prefixText?: string | number;
+
+  /**
+   * Set the component prefix icon to the given icon name.
+   */
+  readonly prefixIcon?: IconNames;
+
+  /**
+   * Set the component prefix to the given prefix text.
+   */
+  readonly postfixText?: string | number;
+
+  /**
+   * Set the component to the given value.
+   */
+  readonly postfixIcon?: IconNames;
 
   /**
    * Show a spinner to indicate loading

@@ -18,6 +18,12 @@
   --public-field--top-right-radius: var(--radius-base);
   --public-field--bottom-left-radius: var(--radius-base);
   --public-field--bottom-right-radius: var(--radius-base);
+
+  --icon-box-width: calc(2 * var(--base-unit));
+  --icon-box-height: calc(2 * var(--base-unit));
+
+  --affix-input-padding-right: var(--field--padding-right);
+  --affix-input-padding-left: var(--field--padding-left);
 }
 
 .wrapper {
@@ -221,4 +227,65 @@ select.formField {
   color: var(--color-text--secondary);
   pointer-events: none;
   transform: translateY(-50%);
+}
+
+.prefixes {
+  position: absolute;
+  top: 50%;
+  left: var(--field--padding-left);
+  padding: 0;
+  color: var(--color-text--secondary);
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.postfixes {
+  position: absolute;
+  top: 50%;
+  right: var(--field--padding-right);
+  padding: 0;
+  color: var(--color-text--secondary);
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.prefixText,
+.prefixIcon,
+.postfixText,
+.postfixIcon {
+  position: relative;
+  padding: var(--space-small);
+}
+
+.prefixes span:first-child {
+  padding-left: 0;
+}
+
+.postfixes span:last-child {
+  padding-right: 0;
+}
+
+.withPrefix {
+  --affix-input-padding-left: calc(var(--icon-box-width) + var(--space-base));
+}
+
+.withDoublePrefix {
+  --affix-input-padding-left: calc(
+    2 * var(--icon-box-width) + var(--space-base)
+  );
+}
+
+.withPostfix {
+  --affix-input-padding-right: calc(var(--icon-box-width) + var(--space-base));
+}
+
+.withDoublePostfix {
+  --affix-input-padding-right: calc(
+    2 * (var(--icon-box-width)) + var(--space-base)
+  );
+}
+
+.affix {
+  padding: var(--field--padding-top) var(--affix-input-padding-right)
+    var(--field--padding-bottom) var(--affix-input-padding-left);
 }
