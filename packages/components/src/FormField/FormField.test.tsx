@@ -20,7 +20,7 @@ it("renders correctly with no props", () => {
         htmlFor="123e4567-e89b-12d3-a456-426655440001"
       />
       <input
-        className="formField"
+        className="formField affix"
         id="123e4567-e89b-12d3-a456-426655440001"
         onBlur={[Function]}
         onChange={[Function]}
@@ -53,7 +53,7 @@ it("renders correctly with a placeholder", () => {
         My placeholder
       </label>
       <input
-        className="formField"
+        className="formField affix"
         id="123e4567-e89b-12d3-a456-426655440002"
         onBlur={[Function]}
         onChange={[Function]}
@@ -82,7 +82,7 @@ it("renders correctly as small", () => {
         htmlFor="123e4567-e89b-12d3-a456-426655440003"
       />
       <input
-        className="formField"
+        className="formField affix"
         id="123e4567-e89b-12d3-a456-426655440003"
         onBlur={[Function]}
         onChange={[Function]}
@@ -111,7 +111,7 @@ it("renders correctly in a readonly state", () => {
         htmlFor="123e4567-e89b-12d3-a456-426655440004"
       />
       <input
-        className="formField"
+        className="formField affix"
         id="123e4567-e89b-12d3-a456-426655440004"
         onBlur={[Function]}
         onChange={[Function]}
@@ -141,7 +141,7 @@ it("renders correctly in a disabled state", () => {
         htmlFor="123e4567-e89b-12d3-a456-426655440005"
       />
       <input
-        className="formField"
+        className="formField affix"
         disabled={true}
         id="123e4567-e89b-12d3-a456-426655440005"
         onBlur={[Function]}
@@ -171,7 +171,7 @@ it("renders a field with error", () => {
         htmlFor="123e4567-e89b-12d3-a456-426655440006"
       />
       <input
-        className="formField"
+        className="formField affix"
         id="123e4567-e89b-12d3-a456-426655440006"
         onBlur={[Function]}
         onChange={[Function]}

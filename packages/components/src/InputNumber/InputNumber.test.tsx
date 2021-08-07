@@ -21,7 +21,7 @@ it("renders an input type number", () => {
         htmlFor="123e4567-e89b-12d3-a456-426655440001"
       />
       <input
-        className="formField"
+        className="formField affix"
         id="123e4567-e89b-12d3-a456-426655440001"
         name="generatedName--123e4567-e89b-12d3-a456-426655440001"
         onBlur={[Function]}

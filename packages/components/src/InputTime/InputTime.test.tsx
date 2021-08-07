@@ -22,7 +22,7 @@ it("renders a InputTime", () => {
         htmlFor="123e4567-e89b-12d3-a456-426655440001"
       />
       <input
-        className="formField"
+        className="formField affix"
         id="123e4567-e89b-12d3-a456-426655440001"
         onBlur={[Function]}
         onChange={[Function]}
@@ -53,7 +53,7 @@ it("renders an initial time when given 'defaultValue'", () => {
         htmlFor="123e4567-e89b-12d3-a456-426655440004"
       />
       <input
-        className="formField"
+        className="formField affix"
         id="123e4567-e89b-12d3-a456-426655440004"
         onBlur={[Function]}
         onChange={[Function]}
@@ -84,7 +84,7 @@ it("renders correctly in a readonly state", () => {
         htmlFor="123e4567-e89b-12d3-a456-426655440005"
       />
       <input
-        className="formField"
+        className="formField affix"
         id="123e4567-e89b-12d3-a456-426655440005"
         onBlur={[Function]}
         onChange={[Function]}
@@ -116,7 +116,7 @@ it("adds a error border when invalid", () => {
         htmlFor="123e4567-e89b-12d3-a456-426655440008"
       />
       <input
-        className="formField"
+        className="formField affix"
         id="123e4567-e89b-12d3-a456-426655440008"
         onBlur={[Function]}
         onChange={[Function]}
@@ -146,7 +146,7 @@ it("should set the value when given 'value' and 'onChange'", () => {
         htmlFor="123e4567-e89b-12d3-a456-426655440011"
       />
       <input
-        className="formField"
+        className="formField affix"
         id="123e4567-e89b-12d3-a456-426655440011"
         onBlur={[Function]}
         onChange={[Function]}

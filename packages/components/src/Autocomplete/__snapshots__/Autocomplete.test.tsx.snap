@@ -20,7 +20,7 @@ exports[`it should display headers when headers are passed in 1`] = `
     </label>
     <input
       autoComplete="autocomplete-off"
-      className="formField"
+      className="formField affix"
       id="123e4567-e89b-12d3-a456-426655440018"
       onBlur={[Function]}
       onChange={[Function]}
@@ -53,7 +53,7 @@ exports[`renders an Autocomplete 1`] = `
     </label>
     <input
       autoComplete="autocomplete-off"
-      className="formField"
+      className="formField affix"
       id="123e4567-e89b-12d3-a456-426655440001"
       onBlur={[Function]}
       onChange={[Function]}

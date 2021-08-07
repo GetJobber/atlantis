@@ -14,7 +14,7 @@ exports[`renders a Select with many options 1`] = `
     htmlFor="123e4567-e89b-12d3-a456-426655440003"
   />
   <select
-    className="formField select"
+    className="formField affix select"
     id="123e4567-e89b-12d3-a456-426655440003"
     onChange={[Function]}
     value=""
@@ -64,7 +64,7 @@ exports[`renders a Select with no options 1`] = `
     htmlFor="123e4567-e89b-12d3-a456-426655440001"
   />
   <select
-    className="formField select"
+    className="formField affix select"
     id="123e4567-e89b-12d3-a456-426655440001"
     onChange={[Function]}
     value=""
@@ -101,7 +101,7 @@ exports[`renders a Select with one option 1`] = `
     htmlFor="123e4567-e89b-12d3-a456-426655440002"
   />
   <select
-    className="formField select"
+    className="formField affix select"
     id="123e4567-e89b-12d3-a456-426655440002"
     onChange={[Function]}
     value=""
@@ -142,7 +142,7 @@ exports[`renders correctly as large 1`] = `
     htmlFor="123e4567-e89b-12d3-a456-426655440005"
   />
   <select
-    className="formField select"
+    className="formField affix select"
     id="123e4567-e89b-12d3-a456-426655440005"
     onChange={[Function]}
     value=""
@@ -183,7 +183,7 @@ exports[`renders correctly as small 1`] = `
     htmlFor="123e4567-e89b-12d3-a456-426655440004"
   />
   <select
-    className="formField select"
+    className="formField affix select"
     id="123e4567-e89b-12d3-a456-426655440004"
     onChange={[Function]}
     value=""
@@ -224,7 +224,7 @@ exports[`renders correctly when disabled 1`] = `
     htmlFor="123e4567-e89b-12d3-a456-426655440006"
   />
   <select
-    className="formField select"
+    className="formField affix select"
     disabled={true}
     id="123e4567-e89b-12d3-a456-426655440006"
     onChange={[Function]}
@@ -266,7 +266,7 @@ exports[`renders correctly when invalid 1`] = `
     htmlFor="123e4567-e89b-12d3-a456-426655440007"
   />
   <select
-    className="formField select"
+    className="formField affix select"
     id="123e4567-e89b-12d3-a456-426655440007"
     onChange={[Function]}
     value=""

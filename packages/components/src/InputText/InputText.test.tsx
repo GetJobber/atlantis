@@ -24,7 +24,7 @@ it("renders a regular input for text and numbers", () => {
         Favourite colour
       </label>
       <input
-        className="formField"
+        className="formField affix"
         id="123e4567-e89b-12d3-a456-426655440001"
         onBlur={[Function]}
         onChange={[Function]}
@@ -59,7 +59,7 @@ it("renders a textarea", () => {
         Describe your favourite colour?
       </label>
       <textarea
-        className="formField"
+        className="formField affix"
         id="123e4567-e89b-12d3-a456-426655440002"
         onBlur={[Function]}
         onChange={[Function]}
@@ -98,7 +98,7 @@ it("renders a textarea with 4 rows", () => {
         Describe your favourite colour?
       </label>
       <textarea
-        className="formField"
+        className="formField affix"
         id="123e4567-e89b-12d3-a456-426655440003"
         onBlur={[Function]}
         onChange={[Function]}
