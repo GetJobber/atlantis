@@ -15,7 +15,8 @@ import { FormFieldProps } from "./FormFieldTypes";
 import { FormLabel } from "./FormLabel";
 import { FieldWrapper } from "./FieldWrapper";
 import { FormSpinner } from "./FormSpinner";
-import { Icon, IconNames } from "../Icon";
+import { Affix } from "./Affix";
+import { Icon } from "../Icon";
 import { InputValidation } from "../InputValidation";
 
 export function FormField(props: FormFieldProps) {
@@ -43,7 +44,6 @@ export function FormField(props: FormFieldProps) {
     onFocus,
     onBlur,
     onValidation,
-    size,
     prefixIcon,
     prefixText,
     postfixText,
@@ -137,59 +137,6 @@ export function FormField(props: FormFieldProps) {
             onFocus: handleFocus,
             onKeyDown: handleKeyDown,
           };
-          function getPrefixIcon(icon: IconNames) {
-            if (icon) {
-              return (
-                <span className={styles.prefixIcon}>
-                  <Icon size={size} name={icon}></Icon>
-                </span>
-              );
-            }
-            return;
-          }
-
-          function getPrefixText(text: string | number) {
-            if (text) {
-              return <span className={styles.prefixText}>{text}</span>;
-            }
-            return;
-          }
-
-          function getPostfixIcon(icon: IconNames) {
-            if (icon) {
-              return (
-                <span className={styles.postfixIcon}>
-                  <Icon size={size} name={icon}></Icon>
-                </span>
-              );
-            }
-            return;
-          }
-
-          function getPostfixText(text: string | number) {
-            if (text) {
-              return <span className={styles.postfixText}>{text}</span>;
-            }
-            return;
-          }
-
-          function prefix() {
-            return (
-              <div className={styles.prefixes}>
-                {prefixIcon && getPrefixIcon(prefixIcon)}
-                {prefixText && getPrefixText(prefixText)}
-              </div>
-            );
-          }
-
-          function postfix() {
-            return (
-              <div className={styles.postfixes}>
-                {postfixText && getPostfixText(postfixText)}
-                {postfixIcon && getPostfixIcon(postfixIcon)}
-              </div>
-            );
-          }
 
           return renderField();
 
@@ -215,7 +162,7 @@ export function FormField(props: FormFieldProps) {
               default:
                 return (
                   <>
-                    {prefixIcon || prefixText ? prefix() : false}
+                    <Affix {...props} />
                     <input
                       {...textFieldProps}
                       autoComplete={setAutocomplete(autocomplete)}
@@ -226,7 +173,7 @@ export function FormField(props: FormFieldProps) {
                       ref={inputRef as MutableRefObject<HTMLInputElement>}
                     />
                     {loading && <FormSpinner />}
-                    {postfixIcon || postfixText ? postfix() : false}
+                    <Affix {...props} />
                   </>
                 );
             }
