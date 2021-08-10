@@ -42,12 +42,14 @@ describe("<Loader />", () => {
       });
 
       it("indicates the loading progress", () => {
-        const { getByRole } = render(
+        const { container } = render(
           <Loader loading determinate currentValue={50}>
             Loading
           </Loader>,
         );
-        const element = getByRole("progressbar") as HTMLProgressElement;
+        const element = container.querySelector(
+          "progress",
+        ) as HTMLProgressElement;
         expect(element.value).toBe(50);
       });
     });

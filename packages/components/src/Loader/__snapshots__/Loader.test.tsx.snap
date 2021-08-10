@@ -4,6 +4,7 @@ exports[`<Loader /> when loading when determinate renders a Loader 1`] = `
 <div>
   <div
     aria-busy="true"
+    aria-hidden="true"
     aria-live="polite"
     className="loader overlay determinate"
   >
@@ -32,6 +33,7 @@ exports[`<Loader /> when loading when not determinate renders a Loader 1`] = `
 <div>
   <div
     aria-busy="true"
+    aria-hidden="true"
     aria-live="polite"
     className="loader overlay"
   >

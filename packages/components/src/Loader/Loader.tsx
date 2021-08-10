@@ -68,7 +68,12 @@ export function Loader(props: PropsWithChildren<LoaderProps>) {
   return (
     <div ref={ref as RefObject<HTMLDivElement>}>
       {loading ? (
-        <div aria-busy="true" aria-live="polite" className={classname}>
+        <div
+          aria-busy="true"
+          aria-live="polite"
+          aria-hidden="true"
+          className={classname}
+        >
           {children}
           <div className={styles.loadingIndicator}>
             <LoaderIndicator
