@@ -7,7 +7,8 @@ export type FormFieldTypes =
   | "number"
   | "time"
   | "textarea"
-  | "select";
+  | "select"
+  | "email";
 
 export interface FieldActionsRef {
   setValue(value: string | number): void;
