@@ -20,6 +20,8 @@ type InputEmailProps = Pick<
   >
 >;
 
+export const validationMessage = "Please enter a valid email";
+
 export function InputEmail(props: InputEmailProps) {
   const { validations } = props;
 
@@ -42,7 +44,7 @@ export function InputEmail(props: InputEmailProps) {
     }
 
     if (!value.match(emailRegex)) {
-      return "Please enter a valid email";
+      return validationMessage;
     }
 
     return true;

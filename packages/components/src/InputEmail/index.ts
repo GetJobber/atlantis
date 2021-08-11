@@ -1,1 +1,1 @@
-export { InputEmail } from "./InputEmail";
+export { InputEmail, validationMessage } from "./InputEmail";
