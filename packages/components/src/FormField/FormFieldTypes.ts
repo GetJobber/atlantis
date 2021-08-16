@@ -9,6 +9,12 @@ export type FormFieldTypes =
   | "textarea"
   | "select";
 
+export type AutocompleteTypes =
+  | "one-time-code"
+  | "address-line1"
+  | "address-line2"
+  | "cc-name";
+
 export interface FieldActionsRef {
   setValue(value: string | number): void;
 }
@@ -24,7 +30,7 @@ export interface FormFieldProps {
    * Note that "one-time-code" is experimental and should not be used without
    * consultation.
    */
-  readonly autocomplete?: boolean | "one-time-code";
+  readonly autocomplete?: boolean | AutocompleteTypes;
 
   /**
    * If you need to pass in a children. For example, `<options>` inside

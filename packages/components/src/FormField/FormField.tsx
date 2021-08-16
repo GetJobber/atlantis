@@ -11,7 +11,7 @@ import classnames from "classnames";
 import uuid from "uuid";
 import { Controller, useForm, useFormContext } from "react-hook-form";
 import styles from "./FormField.css";
-import { FormFieldProps } from "./FormFieldTypes";
+import { AutocompleteTypes, FormFieldProps } from "./FormFieldTypes";
 import { FormLabel } from "./FormLabel";
 import { FieldWrapper } from "./FieldWrapper";
 import { FormSpinner } from "./FormSpinner";
@@ -198,12 +198,16 @@ export function FormField(props: FormFieldProps) {
             onControllerBlur();
           }
 
-          function setAutocomplete(autocompleteSetting: boolean | string) {
-            if (autocompleteSetting === "one-time-code") {
-              return "one-time-code";
+          function setAutocomplete(
+            autocompleteSetting: boolean | AutocompleteTypes,
+          ) {
+            if (autocompleteSetting === true) {
+              return undefined;
+            } else if (autocompleteSetting === false) {
+              return "autocomplete-off";
             }
 
-            return autocompleteSetting ? undefined : "autocomplete-off";
+            return autocompleteSetting;
           }
         }}
       />
