@@ -13,6 +13,7 @@ export type AutocompleteTypes =
   | "one-time-code"
   | "address-line1"
   | "address-line2"
+  | "postal-code"
   | "cc-name";
 
 export interface FieldActionsRef {
