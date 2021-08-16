@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.4.0...@jobber/hooks@1.4.1) (2021-08-06)
+
+
+### Bug Fixes
+
+* **hooks:** fix refetch after fetchMore ([#579](https://github.com/GetJobber/atlantis/issues/579)) ([6caa77b](https://github.com/GetJobber/atlantis/commit/6caa77ba0795a266c277c03b1905ad17525fd975))
+
+
+
+
+
 # [1.4.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.3.0...@jobber/hooks@1.4.0) (2021-07-08)
 
 

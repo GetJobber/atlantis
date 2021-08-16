@@ -8,6 +8,36 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.41.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.40.5...@jobber/components@2.41.0) (2021-08-10)
+
+
+### Features
+
+* **components:** Add compose icon ([#604](https://github.com/GetJobber/atlantis/issues/604)) ([1913cf5](https://github.com/GetJobber/atlantis/commit/1913cf5c66a40483f21c2f5919187a67c3cc140d))
+
+
+
+
+
+## [2.40.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.40.4...@jobber/components@2.40.5) (2021-08-09)
+
+
+### Bug Fixes
+
+* **components:** Focus the first error on Form submission ([#603](https://github.com/GetJobber/atlantis/issues/603)) ([7414b65](https://github.com/GetJobber/atlantis/commit/7414b6553da0ff03df61113c0940dcfca8e4cdf7))
+
+
+
+
+
+## [2.40.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.40.3...@jobber/components@2.40.4) (2021-08-06)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 ## [2.40.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.40.2...@jobber/components@2.40.3) (2021-07-29)
 
 **Note:** Version bump only for package @jobber/components

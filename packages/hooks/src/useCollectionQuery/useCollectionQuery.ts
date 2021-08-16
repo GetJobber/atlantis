@@ -122,7 +122,15 @@ export function useCollectionQuery<TQuery, TSubscription = undefined>({
     }
 
     setLoadingRefresh(true);
-    refetch()
+
+    fetchMore({
+      // a workaround fix for the error described in this post
+      // https://github.com/apollographql/apollo-client/issues/7491#issuecomment-767985363
+      // These changes can be reverted once we can update to version 3.4
+      // (the current release candidate)
+      variables: {},
+      updateQuery: (prev, { fetchMoreResult }) => fetchMoreResult || prev,
+    })
       .catch(err => config.errorNotifier("Refetch Error", err))
       .finally(() => {
         if (isMounted.current) {
