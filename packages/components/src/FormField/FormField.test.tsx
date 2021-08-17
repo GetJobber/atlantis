@@ -378,6 +378,24 @@ it("it should set the autocomplete value with one-time-code", () => {
   expect(autocomplete).toContain("one-time-code");
 });
 
+it("it should set the autocomplete value with address-line1", () => {
+  const { getByLabelText } = render(
+    <FormField placeholder="foo" autocomplete={"address-line1"} />,
+  );
+  const input = getByLabelText("foo");
+  const autocomplete = input.getAttribute("autocomplete");
+  expect(autocomplete).toContain("address-line1");
+});
+
+it("it should set the autocomplete value with address-line2", () => {
+  const { getByLabelText } = render(
+    <FormField placeholder="foo" autocomplete={"address-line2"} />,
+  );
+  const input = getByLabelText("foo");
+  const autocomplete = input.getAttribute("autocomplete");
+  expect(autocomplete).toContain("address-line2");
+});
+
 it("it should set the autocomplete value to off", () => {
   const { getByLabelText } = render(
     <FormField placeholder="foo" autocomplete={false} />,
