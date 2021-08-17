@@ -161,6 +161,10 @@ The `<Loader>` will provide funcitonality to display loading hints to the user w
 
 <!--
 ## Accessibility
+
+The Loading component uses the `aria-busy=”true” aria-live=”polite”` HTML attributes to convey to assistive technology that the region is loading.
+
+Assistive technology, keyboards, and mouse cursors should not be able to interact with the content inside of Loading while it is awaiting new data/content. This is achieved using `aria-hidden=”true”` on the wrapper element to remove child elements from the accessibility tree while loading. Screen-readers should only receive the information that the area is “busy” as outlined above, while the dimmed interface and loading indicators signify the same status visually.
 -->
 
 <!--
