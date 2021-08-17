@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.42.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.41.0...@jobber/components@2.42.0) (2021-08-17)
+
+
+### Features
+
+* **components:** Add more values to autocomplete on InputText ([#611](https://github.com/GetJobber/atlantis/issues/611)) ([60e6b2a](https://github.com/GetJobber/atlantis/commit/60e6b2a00eca260f869f8249a2603e02e7c81af0))
+
+
+
+
+
 # [2.41.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.40.5...@jobber/components@2.41.0) (2021-08-10)
 
 
