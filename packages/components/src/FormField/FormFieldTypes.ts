@@ -12,9 +12,7 @@ export type FormFieldTypes =
 export type AutocompleteTypes =
   | "one-time-code"
   | "address-line1"
-  | "address-line2"
-  | "postal-code"
-  | "cc-name";
+  | "address-line2";
 
 export interface FieldActionsRef {
   setValue(value: string | number): void;
@@ -29,7 +27,8 @@ export interface FormFieldProps {
   /**
    * Determines if browser form autocomplete is enabled.
    * Note that "one-time-code" is experimental and should not be used without
-   * consultation.
+   * consultation. "address-line1" and "address-line2" are
+   * used for billing address information.
    */
   readonly autocomplete?: boolean | AutocompleteTypes;
 

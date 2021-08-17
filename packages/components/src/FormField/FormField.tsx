@@ -11,7 +11,7 @@ import classnames from "classnames";
 import uuid from "uuid";
 import { Controller, useForm, useFormContext } from "react-hook-form";
 import styles from "./FormField.css";
-import { AutocompleteTypes, FormFieldProps } from "./FormFieldTypes";
+import { FormFieldProps } from "./FormFieldTypes";
 import { FormLabel } from "./FormLabel";
 import { FieldWrapper } from "./FieldWrapper";
 import { FormSpinner } from "./FormSpinner";
@@ -199,7 +199,7 @@ export function FormField(props: FormFieldProps) {
           }
 
           function setAutocomplete(
-            autocompleteSetting: boolean | AutocompleteTypes,
+            autocompleteSetting: boolean | FormFieldProps["autocomplete"],
           ) {
             if (autocompleteSetting === true) {
               return undefined;
