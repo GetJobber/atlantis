@@ -8,10 +8,8 @@ import React, {
   useImperativeHandle,
   useState,
 } from "react";
-import classnames from "classnames";
 import uuid from "uuid";
 import { Controller, useForm, useFormContext } from "react-hook-form";
-import styles from "./FormField.css";
 import { FormFieldProps } from "./FormFieldTypes";
 import { Icon } from "../Icon";
 
@@ -83,14 +81,9 @@ export function FormField(props: FormFieldProps) {
         name: controllerName,
         ...rest
       }) => {
-        const fieldClasses = classnames(styles.formField, {
-          [styles.select]: type === "select",
-        });
-
         const fieldProps = {
           ...rest,
           id: identifier,
-          className: fieldClasses,
           name: (props.validations || props.name) && controllerName,
           disabled: disabled,
           readOnly: readonly,
@@ -113,7 +106,7 @@ export function FormField(props: FormFieldProps) {
               return (
                 <>
                   <select {...fieldProps}>{children}</select>
-                  <span className={styles.postfix}>
+                  <span>
                     <Icon name="arrowDown" />
                   </span>
                 </>
