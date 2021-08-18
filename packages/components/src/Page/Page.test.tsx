@@ -141,3 +141,52 @@ describe("When moreActions are provided", () => {
     expect(handleMenuAction).toHaveBeenCalledTimes(1);
   });
 });
+
+describe("When intro is provided with links", () => {
+  it("opens intro links in same tab if externalIntrolinks is not provided", () => {
+    const { getByRole } = render(
+      <Page
+        title="The Weakest Link"
+        intro="Where does this link open? [click me, I dare you](https://example.com/)"
+      >
+        Sup
+      </Page>,
+    );
+
+    const renderedLink = getByRole("link");
+    expect(renderedLink.textContent).toBe("click me, I dare you");
+    expect(renderedLink.getAttribute("target")).toBeNull();
+  });
+
+  it("opens intro links in same tab if externalIntrolinks is false", () => {
+    const { getByRole } = render(
+      <Page
+        title="The Weakest Link"
+        intro="Where does this link open? [click me, I dare you](https://example.com/)"
+        externalIntroLinks={false}
+      >
+        Sup
+      </Page>,
+    );
+
+    const renderedLink = getByRole("link");
+    expect(renderedLink.textContent).toBe("click me, I dare you");
+    expect(renderedLink.getAttribute("target")).toBeNull();
+  });
+
+  it("opens intro links in a new tab if externalIntrolinks is true", () => {
+    const { getByRole } = render(
+      <Page
+        title="The Weakest Link"
+        intro="Where does this link open? [click me, I dare you](https://example.com/)"
+        externalIntroLinks={true}
+      >
+        Sup
+      </Page>,
+    );
+
+    const renderedLink = getByRole("link");
+    expect(renderedLink.textContent).toBe("click me, I dare you");
+    expect(renderedLink.getAttribute("target")).toBe("_blank");
+  });
+});

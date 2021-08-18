@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import classnames from "classnames";
+import { XOR } from "ts-xor";
 import { Breakpoints, useResizeObserver } from "@jobber/hooks";
 import styles from "./Page.css";
 import { Heading } from "../Heading";
@@ -10,14 +11,8 @@ import { Button, ButtonProps } from "../Button";
 import { Menu, SectionProps } from "../Menu";
 import { Emphasis } from "../Emphasis";
 
-export interface PageProps {
+interface PageFoundationProps {
   readonly children: ReactNode | ReactNode[];
-
-  /**
-   * Content of the page. This supports basic markdown node types such as
-   * `_italic_`, `**bold**`, and `[link name](url)`
-   */
-  readonly intro?: string;
 
   /**
    * Title of the page.
@@ -28,6 +23,10 @@ export interface PageProps {
    * Subtitle of the page.
    */
   readonly subtitle?: string;
+
+  readonly intro?: string;
+
+  readonly externalIntroLinks?: boolean;
 
   /**
    * Determines the width of the page.
@@ -59,10 +58,35 @@ export interface PageProps {
   readonly moreActionsMenu?: SectionProps[];
 }
 
+interface PagePropsWithIntro extends PageFoundationProps {
+  /**
+   * Content of the page. This supports basic markdown node types
+   * such as `_italic_`, `**bold**`, and `[link name](url)`.
+   */
+  readonly intro: string;
+
+  /**
+   * Causes any markdown links in the `intro` prop to open in a new
+   * tab, i.e. with `target="_blank"`.
+   *
+   * Can only be used if `intro` prop is also specified.
+   *
+   * Defaults to `false`.
+   */
+  readonly externalIntroLinks?: boolean;
+}
+
+interface PagePropsNoIntro extends PageFoundationProps {
+  readonly intro?: undefined;
+  readonly externalIntroLinks?: never;
+}
+export type PageProps = XOR<PagePropsWithIntro, PagePropsNoIntro>;
+
 // eslint-disable-next-line max-statements
 export function Page({
   title,
   intro,
+  externalIntroLinks,
   subtitle,
   children,
   width = "standard",
@@ -142,7 +166,11 @@ export function Page({
           </div>
           {intro && (
             <Text size="large">
-              <Markdown content={intro} basicUsage={true} />
+              <Markdown
+                content={intro}
+                basicUsage={true}
+                externalLink={externalIntroLinks}
+              />
             </Text>
           )}
         </Content>
