@@ -3,6 +3,7 @@ import React, {
   FocusEvent,
   KeyboardEvent,
   MutableRefObject,
+  PropsWithChildren,
   useEffect,
   useImperativeHandle,
   useState,
@@ -12,11 +13,7 @@ import uuid from "uuid";
 import { Controller, useForm, useFormContext } from "react-hook-form";
 import styles from "./FormField.css";
 import { FormFieldProps } from "./FormFieldTypes";
-import { FormLabel } from "./FormLabel";
-import { FieldWrapper } from "./FieldWrapper";
-import { FormSpinner } from "./FormSpinner";
 import { Icon } from "../Icon";
-import { InputValidation } from "../InputValidation";
 
 export function FormField(props: FormFieldProps) {
   const {
@@ -25,10 +22,8 @@ export function FormField(props: FormFieldProps) {
     children,
     defaultValue,
     disabled,
-    inline,
     inputRef,
     keyboard,
-    loading,
     max,
     maxLength,
     min,
@@ -61,14 +56,9 @@ export function FormField(props: FormFieldProps) {
     name ? name : `generatedName--${identifier}`,
   );
 
-  const [hasMiniLabel, setHasMiniLabel] = useState(
-    shouldShowMiniLabel(defaultValue, value),
-  );
-
   useEffect(() => {
     if (value != undefined) {
       setValue(controlledName, value);
-      setHasMiniLabel(String(value).length > 0);
     }
   }, [value, watch(controlledName)]);
 
@@ -82,137 +72,119 @@ export function FormField(props: FormFieldProps) {
   useEffect(() => handleValidation(), [error]);
 
   return (
-    <FieldWrapper {...props} error={error} hasMiniLabel={hasMiniLabel}>
-      <FormLabel {...props} identifier={identifier} />
-      <Controller
-        control={control}
-        name={controlledName}
-        rules={{ ...validations }}
-        defaultValue={value ?? defaultValue ?? ""}
-        render={({
-          onChange: onControllerChange,
-          onBlur: onControllerBlur,
-          name: controllerName,
-          ...rest
-        }) => {
-          const fieldClasses = classnames(styles.formField, {
-            [styles.select]: type === "select",
-          });
+    <Controller
+      control={control}
+      name={controlledName}
+      rules={{ ...validations }}
+      defaultValue={value ?? defaultValue ?? ""}
+      render={({
+        onChange: onControllerChange,
+        onBlur: onControllerBlur,
+        name: controllerName,
+        ...rest
+      }) => {
+        const fieldClasses = classnames(styles.formField, {
+          [styles.select]: type === "select",
+        });
 
-          const fieldProps = {
-            ...rest,
-            id: identifier,
-            className: fieldClasses,
-            name: (props.validations || props.name) && controllerName,
-            disabled: disabled,
-            readOnly: readonly,
-            inputMode: keyboard,
-            onChange: handleChange,
-          };
+        const fieldProps = {
+          ...rest,
+          id: identifier,
+          className: fieldClasses,
+          name: (props.validations || props.name) && controllerName,
+          disabled: disabled,
+          readOnly: readonly,
+          inputMode: keyboard,
+          onChange: handleChange,
+        };
 
-          const textFieldProps = {
-            ...fieldProps,
-            onBlur: handleBlur,
-            onFocus: handleFocus,
-            onKeyDown: handleKeyDown,
-          };
+        const textFieldProps = {
+          ...fieldProps,
+          onBlur: handleBlur,
+          onFocus: handleFocus,
+          onKeyDown: handleKeyDown,
+        };
 
-          return renderField();
+        return <NewFieldWrapper {...props}>{renderField()}</NewFieldWrapper>;
 
-          function renderField() {
-            switch (type) {
-              case "select":
-                return (
-                  <>
-                    <select {...fieldProps}>{children}</select>
-                    <span className={styles.postfix}>
-                      <Icon name="arrowDown" />
-                    </span>
-                  </>
-                );
-              case "textarea":
-                return (
-                  <textarea
+        function renderField() {
+          switch (type) {
+            case "select":
+              return (
+                <>
+                  <select {...fieldProps}>{children}</select>
+                  <span className={styles.postfix}>
+                    <Icon name="arrowDown" />
+                  </span>
+                </>
+              );
+            case "textarea":
+              return (
+                <textarea
+                  {...textFieldProps}
+                  rows={rows}
+                  ref={inputRef as MutableRefObject<HTMLTextAreaElement>}
+                />
+              );
+            default:
+              return (
+                <>
+                  <input
                     {...textFieldProps}
-                    rows={rows}
-                    ref={inputRef as MutableRefObject<HTMLTextAreaElement>}
+                    autoComplete={setAutocomplete(autocomplete)}
+                    type={type}
+                    maxLength={maxLength}
+                    max={max}
+                    min={min}
+                    ref={inputRef as MutableRefObject<HTMLInputElement>}
                   />
-                );
-              default:
-                return (
-                  <>
-                    <input
-                      {...textFieldProps}
-                      autoComplete={setAutocomplete(autocomplete)}
-                      type={type}
-                      maxLength={maxLength}
-                      max={max}
-                      min={min}
-                      ref={inputRef as MutableRefObject<HTMLInputElement>}
-                    />
-                    {loading && <FormSpinner />}
-                  </>
-                );
-            }
+                </>
+              );
+          }
+        }
+
+        function handleChange(
+          event: ChangeEvent<
+            HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+          >,
+        ) {
+          let newValue: string | number;
+          newValue = event.currentTarget.value;
+
+          if (type === "number" && newValue.length > 0) {
+            newValue = parseFloat(newValue);
           }
 
-          function handleChange(
-            event: ChangeEvent<
-              HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-            >,
-          ) {
-            let newValue: string | number;
-            newValue = event.currentTarget.value;
+          onChange && onChange(newValue);
+          onControllerChange(event);
+        }
 
-            if (type === "number" && newValue.length > 0) {
-              newValue = parseFloat(newValue);
-            }
+        function handleKeyDown(
+          event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>,
+        ) {
+          if (!onEnter) return;
+          if (event.key !== "Enter") return;
+          if (event.shiftKey || event.ctrlKey) return;
 
-            setHasMiniLabel(String(newValue).length > 0);
-            onChange && onChange(newValue);
-            onControllerChange(event);
-          }
+          event.preventDefault();
+          onEnter && onEnter(event);
+        }
 
-          function handleKeyDown(
-            event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>,
-          ) {
-            if (!onEnter) return;
-            if (event.key !== "Enter") return;
-            if (event.shiftKey || event.ctrlKey) return;
+        function handleFocus(
+          event: FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+        ) {
+          const target = event.currentTarget;
+          setTimeout(() => readonly && target.select());
 
-            event.preventDefault();
-            onEnter && onEnter(event);
-          }
+          onFocus && onFocus();
+        }
 
-          function handleFocus(
-            event: FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
-          ) {
-            const target = event.currentTarget;
-            setTimeout(() => readonly && target.select());
-
-            onFocus && onFocus();
-          }
-
-          function handleBlur() {
-            onBlur && onBlur();
-            onControllerBlur();
-          }
-
-          function setAutocomplete(
-            autocompleteSetting: boolean | FormFieldProps["autocomplete"],
-          ) {
-            if (autocompleteSetting === true) {
-              return undefined;
-            } else if (autocompleteSetting === false) {
-              return "autocomplete-off";
-            }
-
-            return autocompleteSetting;
-          }
-        }}
-      />
-      {error && !inline && <InputValidation message={error} />}
-    </FieldWrapper>
+        function handleBlur() {
+          onBlur && onBlur();
+          onControllerBlur();
+        }
+      }}
+    />
   );
 
   function handleValidation() {
@@ -220,14 +192,29 @@ export function FormField(props: FormFieldProps) {
   }
 }
 
-function shouldShowMiniLabel(
-  defaultValue: string | number | undefined,
-  value: string | number | undefined,
+function setAutocomplete(
+  autocompleteSetting: boolean | FormFieldProps["autocomplete"],
 ) {
-  const activeValue = defaultValue || value;
-  if (typeof activeValue === "string") {
-    return activeValue.length > 0;
-  } else {
-    return activeValue != undefined;
+  if (autocompleteSetting === true) {
+    return undefined;
+  } else if (autocompleteSetting === false) {
+    return "autocomplete-off";
   }
+
+  return autocompleteSetting;
+}
+
+function NewFieldWrapper(props: PropsWithChildren<FormFieldProps>) {
+  const { children, prefix, suffix } = props;
+  return (
+    <div>
+      {prefix?.icon && <div>Icon</div>}
+      <div>
+        {prefix?.label && <div>Prefix</div>}
+        {children}
+        {suffix?.label && <div>Suffix</div>}
+      </div>
+      {suffix?.icon && <div>Icon</div>}
+    </div>
+  );
 }
