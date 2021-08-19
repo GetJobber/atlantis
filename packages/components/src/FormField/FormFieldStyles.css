@@ -12,6 +12,8 @@
 
   --field--placeholder-color: var(--color-greyBlue--light);
 
+  --field-base-elevation: var(--elevation-base);
+
   /* TODO: Document these, they are weird */
   --public-field--top-left-radius: var(--radius-base);
   --public-field--top-right-radius: var(--radius-base);
@@ -111,6 +113,8 @@
  * Input
  **/
 .input {
+  position: relative;
+  z-index: var(--field-base-elevation);
   width: 100%;
   padding-top: var(--field--padding-top);
   padding-bottom: var(--field--padding-bottom);
@@ -142,10 +146,6 @@
 .small .input {
   --field--padding-top: var(--space-small);
   --field--padding-bottom: var(--space-small);
-}
-
-.hasPostfix .input {
-  padding-right: 0;
 }
 
 /**
@@ -188,11 +188,18 @@
   top: var(--space-small);
 }
 
+.select .input {
+  padding-top: var(--space-small);
+  padding-bottom: 0;
+}
+
 /**
  * Postfix
  **/
 .postfix {
-  display: flex;
-  align-items: center;
-  padding: 0 var(--space-small);
+  position: absolute;
+  top: 50%;
+  right: var(--space-base);
+  z-index: calc(var(--field-base-elevation) - 1);
+  transform: translateY(-50%);
 }

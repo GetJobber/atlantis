@@ -116,7 +116,7 @@ export function FormField(props: FormFieldProps) {
               return (
                 <>
                   <select {...fieldProps}>{children}</select>
-                  <span>
+                  <span className={styles.postfix}>
                     <Icon name="arrowDown" />
                   </span>
                 </>
@@ -226,7 +226,6 @@ function NewFieldWrapper(props: PropsWithChildren<NewFieldWrapperProps>) {
     type,
     disabled,
     inline,
-    loading,
   } = props;
 
   const wrapperClasses = classNames(
@@ -234,13 +233,14 @@ function NewFieldWrapper(props: PropsWithChildren<NewFieldWrapperProps>) {
     size && styles[size],
     align && styles[align],
     {
-      [styles.miniLabel]: placeholder && value !== "",
+      [styles.miniLabel]:
+        (placeholder && value !== "") || (placeholder && type === "select"),
       [styles.textarea]: type === "textarea",
       [styles.invalid]: invalid ?? error,
       [styles.disabled]: disabled,
       [styles.inline]: inline,
       [styles.maxLength]: maxLength,
-      [styles.hasPostfix]: loading,
+      [styles.select]: type === "select",
     },
   );
 

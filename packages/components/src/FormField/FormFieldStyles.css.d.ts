@@ -11,6 +11,6 @@ export const maxLength: string;
 export const inputWrapper: string;
 export const input: string;
 export const miniLabel: string;
-export const hasPostfix: string;
 export const label: string;
+export const select: string;
 export const postfix: string;
