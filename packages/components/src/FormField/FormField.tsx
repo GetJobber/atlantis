@@ -10,8 +10,12 @@ import React, {
 } from "react";
 import uuid from "uuid";
 import { Controller, useForm, useFormContext } from "react-hook-form";
+import classNames from "classnames";
 import { FormFieldProps } from "./FormFieldTypes";
+import styles from "./FormFieldStyles.css";
 import { Icon } from "../Icon";
+import { InputValidation } from "../InputValidation";
+import { Spinner } from "../Spinner";
 
 export function FormField(props: FormFieldProps) {
   const {
@@ -28,6 +32,7 @@ export function FormField(props: FormFieldProps) {
     name,
     readonly,
     rows,
+    loading,
     type = "text",
     validations,
     value,
@@ -84,6 +89,7 @@ export function FormField(props: FormFieldProps) {
         const fieldProps = {
           ...rest,
           id: identifier,
+          className: styles.input,
           name: (props.validations || props.name) && controllerName,
           disabled: disabled,
           readOnly: readonly,
@@ -98,7 +104,11 @@ export function FormField(props: FormFieldProps) {
           onKeyDown: handleKeyDown,
         };
 
-        return <NewFieldWrapper {...props}>{renderField()}</NewFieldWrapper>;
+        return (
+          <NewFieldWrapper {...props} value={rest.value} error={error}>
+            {renderField()}
+          </NewFieldWrapper>
+        );
 
         function renderField() {
           switch (type) {
@@ -131,6 +141,7 @@ export function FormField(props: FormFieldProps) {
                     min={min}
                     ref={inputRef as MutableRefObject<HTMLInputElement>}
                   />
+                  {loading && <FormSpinner />}
                 </>
               );
           }
@@ -158,7 +169,6 @@ export function FormField(props: FormFieldProps) {
           if (!onEnter) return;
           if (event.key !== "Enter") return;
           if (event.shiftKey || event.ctrlKey) return;
-
           event.preventDefault();
           onEnter && onEnter(event);
         }
@@ -168,7 +178,6 @@ export function FormField(props: FormFieldProps) {
         ) {
           const target = event.currentTarget;
           setTimeout(() => readonly && target.select());
-
           onFocus && onFocus();
         }
 
@@ -197,17 +206,69 @@ function setAutocomplete(
   return autocompleteSetting;
 }
 
-function NewFieldWrapper(props: PropsWithChildren<FormFieldProps>) {
-  const { children, prefix, suffix } = props;
+interface NewFieldWrapperProps extends FormFieldProps {
+  error: string;
+}
+
+function NewFieldWrapper(props: PropsWithChildren<NewFieldWrapperProps>) {
+  const {
+    align,
+    placeholder,
+    value,
+    children,
+    invalid,
+    error,
+    size,
+    prefix,
+    suffix,
+    max,
+    maxLength,
+    type,
+    disabled,
+    inline,
+    loading,
+  } = props;
+
+  const wrapperClasses = classNames(
+    styles.wrapper,
+    size && styles[size],
+    align && styles[align],
+    {
+      [styles.miniLabel]: placeholder && value !== "",
+      [styles.textarea]: type === "textarea",
+      [styles.invalid]: invalid ?? error,
+      [styles.disabled]: disabled,
+      [styles.inline]: inline,
+      [styles.maxLength]: maxLength,
+      [styles.hasPostfix]: loading,
+    },
+  );
+
+  const wrapperInlineStyle = {
+    ["--formField-maxLength" as string]: maxLength || max,
+  };
+
   return (
-    <div>
-      {prefix?.icon && <div>Icon</div>}
-      <div>
-        {prefix?.label && <div>Prefix</div>}
-        {children}
-        {suffix?.label && <div>Suffix</div>}
+    <>
+      <div className={wrapperClasses} style={wrapperInlineStyle}>
+        {prefix?.icon && <div>Icon</div>}
+        <div className={styles.inputWrapper}>
+          {prefix?.label && <div>Prefix</div>}
+          <label className={styles.label}>{placeholder}</label>
+          {children}
+          {suffix?.label && <div>Suffix</div>}
+        </div>
+        {suffix?.icon && <div>Icon</div>}
       </div>
-      {suffix?.icon && <div>Icon</div>}
+      {error && !inline && <InputValidation message={error} />}
+    </>
+  );
+}
+
+function FormSpinner() {
+  return (
+    <div className={styles.postfix}>
+      <Spinner size="small" />
     </div>
   );
 }
