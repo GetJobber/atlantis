@@ -105,7 +105,12 @@ export function FormField(props: FormFieldProps) {
         };
 
         return (
-          <NewFieldWrapper {...props} value={rest.value} error={error}>
+          <NewFieldWrapper
+            {...props}
+            value={rest.value}
+            error={error}
+            identifier={identifier}
+          >
             {renderField()}
           </NewFieldWrapper>
         );
@@ -208,6 +213,7 @@ function setAutocomplete(
 
 interface NewFieldWrapperProps extends FormFieldProps {
   error: string;
+  identifier: string;
 }
 
 function NewFieldWrapper(props: PropsWithChildren<NewFieldWrapperProps>) {
@@ -226,6 +232,7 @@ function NewFieldWrapper(props: PropsWithChildren<NewFieldWrapperProps>) {
     type,
     disabled,
     inline,
+    identifier,
   } = props;
 
   const wrapperClasses = classNames(
@@ -254,7 +261,9 @@ function NewFieldWrapper(props: PropsWithChildren<NewFieldWrapperProps>) {
         {prefix?.icon && <div>Icon</div>}
         <div className={styles.inputWrapper}>
           {prefix?.label && <div>Prefix</div>}
-          <label className={styles.label}>{placeholder}</label>
+          <label className={styles.label} htmlFor={identifier}>
+            {placeholder}
+          </label>
           {children}
           {suffix?.label && <div>Suffix</div>}
         </div>
