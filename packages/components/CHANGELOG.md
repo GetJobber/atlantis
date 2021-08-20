@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.43.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.42.0...@jobber/components@2.43.0) (2021-08-20)
+
+
+### Features
+
+* **components:** Adds the InputEmail component ([#610](https://github.com/GetJobber/atlantis/issues/610)) ([40c13ae](https://github.com/GetJobber/atlantis/commit/40c13ae3dea347fec8667725fce1533612be2340))
+
+
+
+
+
 # [2.42.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.41.0...@jobber/components@2.42.0) (2021-08-17)
 
 
