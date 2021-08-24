@@ -9,12 +9,12 @@
   background-color: var(--color-blue--lightest);
   animation-duration: 1s;
   animation-iteration-count: infinite;
-  animation-name: animation-spin;
+  animation-name: animationSpin;
   animation-timing-function: linear;
   will-change: transform;
 }
 
-@keyframes animation-spin {
+@keyframes animationSpin {
   0% {
     transform: rotate(0deg);
   }
