@@ -3,19 +3,16 @@ import React, {
   FocusEvent,
   KeyboardEvent,
   MutableRefObject,
-  PropsWithChildren,
   useEffect,
   useImperativeHandle,
   useState,
 } from "react";
 import uuid from "uuid";
 import { Controller, useForm, useFormContext } from "react-hook-form";
-import classNames from "classnames";
 import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormFieldStyles.css";
-import { Icon } from "../Icon";
-import { InputValidation } from "../InputValidation";
-import { Spinner } from "../Spinner";
+import { FormFieldWrapper } from "./FormFieldWrapper";
+import { FormFieldPostFix } from "./FormFieldPostFix";
 
 export function FormField(props: FormFieldProps) {
   const {
@@ -90,7 +87,7 @@ export function FormField(props: FormFieldProps) {
           ...rest,
           id: identifier,
           className: styles.input,
-          name: (props.validations || props.name) && controllerName,
+          name: (validations || name) && controllerName,
           disabled: disabled,
           readOnly: readonly,
           inputMode: keyboard,
@@ -105,14 +102,14 @@ export function FormField(props: FormFieldProps) {
         };
 
         return (
-          <NewFieldWrapper
+          <FormFieldWrapper
             {...props}
             value={rest.value}
             error={error}
             identifier={identifier}
           >
             {renderField()}
-          </NewFieldWrapper>
+          </FormFieldWrapper>
         );
 
         function renderField() {
@@ -121,9 +118,7 @@ export function FormField(props: FormFieldProps) {
               return (
                 <>
                   <select {...fieldProps}>{children}</select>
-                  <span className={styles.postfix}>
-                    <Icon name="arrowDown" />
-                  </span>
+                  <FormFieldPostFix variation="select" />
                 </>
               );
             case "textarea":
@@ -146,7 +141,7 @@ export function FormField(props: FormFieldProps) {
                     min={min}
                     ref={inputRef as MutableRefObject<HTMLInputElement>}
                   />
-                  {loading && <FormSpinner />}
+                  {loading && <FormFieldPostFix variation="spinner" />}
                 </>
               );
           }
@@ -209,75 +204,4 @@ function setAutocomplete(
   }
 
   return autocompleteSetting;
-}
-
-interface NewFieldWrapperProps extends FormFieldProps {
-  error: string;
-  identifier: string;
-}
-
-function NewFieldWrapper(props: PropsWithChildren<NewFieldWrapperProps>) {
-  const {
-    align,
-    placeholder,
-    value,
-    children,
-    invalid,
-    error,
-    size,
-    prefix,
-    suffix,
-    max,
-    maxLength,
-    type,
-    disabled,
-    inline,
-    identifier,
-  } = props;
-
-  const wrapperClasses = classNames(
-    styles.wrapper,
-    size && styles[size],
-    align && styles[align],
-    {
-      [styles.miniLabel]:
-        (placeholder && value !== "") || (placeholder && type === "select"),
-      [styles.textarea]: type === "textarea",
-      [styles.invalid]: invalid ?? error,
-      [styles.disabled]: disabled,
-      [styles.inline]: inline,
-      [styles.maxLength]: maxLength,
-      [styles.select]: type === "select",
-    },
-  );
-
-  const wrapperInlineStyle = {
-    ["--formField-maxLength" as string]: maxLength || max,
-  };
-
-  return (
-    <>
-      <div className={wrapperClasses} style={wrapperInlineStyle}>
-        {prefix?.icon && <div>Icon</div>}
-        <div className={styles.inputWrapper}>
-          {prefix?.label && <div>Prefix</div>}
-          <label className={styles.label} htmlFor={identifier}>
-            {placeholder}
-          </label>
-          {children}
-          {suffix?.label && <div>Suffix</div>}
-        </div>
-        {suffix?.icon && <div>Icon</div>}
-      </div>
-      {error && !inline && <InputValidation message={error} />}
-    </>
-  );
-}
-
-function FormSpinner() {
-  return (
-    <div className={styles.postfix}>
-      <Spinner size="small" />
-    </div>
-  );
 }
