@@ -24,7 +24,12 @@ import { InputText } from "@jobber/components/InputText";
 ```
 
 <Playground>
-  <InputText defaultValue="Rocinante" placeholder="Ship Name" />
+  <InputText
+    defaultValue="Rocinante"
+    placeholder="Ship Name"
+    prefix={{ label: "Hello", icon: "gift" }}
+    suffix={{ icon: "job", label: "Goodbye", onClick: () => alert("Hello") }}
+  />
 </Playground>
 
 ## Props
@@ -162,7 +167,13 @@ This includes, but is not limited to:
 ### Small
 
 <Playground>
-  <InputText name="smallField" size="small" placeholder="Duration" />
+  <InputText
+    name="smallField"
+    size="small"
+    placeholder="Duration"
+    prefix={{ label: "Hello", icon: "gift" }}
+    suffix={{ icon: "job", label: "Goodbye", onClick: () => alert("Hello") }}
+  />
 </Playground>
 
 ### Large

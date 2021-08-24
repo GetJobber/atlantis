@@ -428,3 +428,32 @@ it("it should set the autocomplete value to off", () => {
   const autocomplete = input.getAttribute("autocomplete");
   expect(autocomplete).toContain("autocomplete-off");
 });
+
+describe("when the formfield has a prefix", () => {
+  it("shows an icon", () => {
+    const { getByTestId } = render(<FormField prefix={{ icon: "home" }} />);
+
+    expect(getByTestId("home")).toBeInstanceOf(SVGElement);
+  });
+});
+
+describe("when the formfield has a suffix", () => {
+  it("shows an icon", () => {
+    const { getByTestId } = render(<FormField suffix={{ icon: "home" }} />);
+
+    expect(getByTestId("home")).toBeInstanceOf(SVGElement);
+  });
+
+  it("calls the onClick when set", () => {
+    const clickHandler = jest.fn();
+    const { getByTestId } = render(
+      <FormField suffix={{ icon: "home", onClick: clickHandler }} />,
+    );
+
+    const icon = getByTestId("home");
+    fireEvent.click(icon);
+
+    expect(clickHandler).toHaveBeenCalled();
+    expect(clickHandler).toHaveBeenCalledTimes(1);
+  });
+});

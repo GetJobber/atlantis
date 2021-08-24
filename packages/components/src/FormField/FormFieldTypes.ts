@@ -20,12 +20,12 @@ export interface FieldActionsRef {
   setValue(value: string | number): void;
 }
 
-interface Affix {
+export interface Affix {
   readonly label?: string;
   readonly icon?: IconNames;
 }
 
-interface Suffix extends Affix {
+export interface Suffix extends Affix {
   readonly icon: IconNames;
   onClick?(): void;
 }

@@ -14,3 +14,5 @@ export const input: string;
 export const select: string;
 export const label: string;
 export const postfix: string;
+export const affixIcon: string;
+export const suffix: string;
