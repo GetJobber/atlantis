@@ -10,7 +10,7 @@ import React, {
 import uuid from "uuid";
 import { Controller, useForm, useFormContext } from "react-hook-form";
 import { FormFieldProps } from "./FormFieldTypes";
-import styles from "./FormFieldStyles.css";
+import styles from "./FormField.css";
 import { FormFieldWrapper } from "./FormFieldWrapper";
 import { FormFieldPostFix } from "./FormFieldPostFix";
 

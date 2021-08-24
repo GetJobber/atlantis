@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from "react";
 import classnames from "classnames";
 import { FormFieldProps } from "./FormFieldTypes";
-import styles from "./FormFieldStyles.css";
+import styles from "./FormField.css";
 import { InputValidation } from "../InputValidation";
 
 interface FormFieldWrapperProps extends FormFieldProps {

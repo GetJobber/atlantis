@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./FormFieldStyles.css";
+import styles from "./FormField.css";
 import { Icon } from "../Icon";
 import { Spinner } from "../Spinner";
 
