@@ -1,4 +1,5 @@
 export const wrapper: string;
+export const miniLabel: string;
 export const textarea: string;
 export const invalid: string;
 export const disabled: string;
@@ -10,7 +11,6 @@ export const right: string;
 export const maxLength: string;
 export const inputWrapper: string;
 export const input: string;
-export const miniLabel: string;
 export const select: string;
 export const label: string;
 export const postfix: string;

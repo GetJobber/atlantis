@@ -1,21 +1,8 @@
 :root {
-  --field--color: var(--color-blue);
-  --field--height: var(--space-largest);
-  --field--textAlign: left;
-
-  --field--padding-top: calc(var(--space-base) - var(--space-smallest));
-  --field--padding-bottom: calc(var(--space-base) - var(--space-smallest));
-  --field--padding-left: var(--space-base);
-  --field--padding-right: var(--space-base);
-
-  --field--border-color: var(--color-border);
-  --field--background-color: var(--color-surface);
-
-  --field--placeholder-color: var(--color-greyBlue--light);
-
-  --field-base-elevation: var(--elevation-base);
-
-  /* TODO: Document these, they are weird */
+  /**
+   * These `--public-field` properties are used in other components such 
+   * as InputGroup, therefore they must stay on :root
+   **/
   --public-field--top-left-radius: var(--radius-base);
   --public-field--top-right-radius: var(--radius-base);
   --public-field--bottom-left-radius: var(--radius-base);
@@ -26,6 +13,22 @@
  * Wrapper
  **/
 .wrapper {
+  --field--placeholder-color: var(--color-greyBlue--light);
+  --field--textAlign: left;
+
+  --field--height: var(--space-largest);
+
+  --field--padding-top: calc(var(--space-base) - var(--space-smallest));
+  --field--padding-bottom: calc(var(--space-base) - var(--space-smallest));
+  --field--padding-left: var(--space-base);
+  --field--padding-right: var(--space-base);
+
+  --field--border-color: var(--color-border);
+  --field--background-color: var(--color-surface);
+  --field-base-elevation: var(--elevation-base);
+
+  --field--miniLabel-offset: 50%;
+
   display: flex;
   width: 100%;
   height: var(--field--height);
@@ -35,7 +38,7 @@
   border-bottom-right-radius: var(--public-field--bottom-right-radius);
   border-bottom-left-radius: var(--public-field--bottom-left-radius);
   border-top-left-radius: var(--public-field--top-left-radius);
-  color: var(--field--color);
+  color: var(--color-blue);
   font-size: var(--base-unit);
   background-color: var(--field--background-color);
 }
@@ -46,6 +49,11 @@
 
 .wrapper:focus-within {
   --field--border-color: var(--color-focus);
+}
+
+.miniLabel {
+  --field--miniLabel-offset: var(--space-smallest);
+  --field--placeholder-color: var(--color-text--secondary);
 }
 
 .wrapper.textarea {
@@ -152,12 +160,12 @@
 }
 
 .select:not(.small) .input {
-  padding-top: 0;
-  padding-bottom: 0;
+  --field--padding-top: 0;
+  --field--padding-bottom: 0;
 }
 
 .miniLabel.select:not(.small) .input {
-  padding-top: var(--space-small);
+  --field--padding-top: var(--space-small);
 }
 
 /**
@@ -165,7 +173,7 @@
  **/
 .label {
   position: absolute;
-  top: 50%;
+  top: var(--field--miniLabel-offset);
   padding-left: var(--field--padding-left);
   color: var(--field--placeholder-color);
   line-height: calc(var(--base-unit) * 1.25);
@@ -177,8 +185,6 @@
 }
 
 .miniLabel .label {
-  top: var(--space-smallest);
-  color: var(--color-text--secondary);
   font-size: calc(var(--base-unit) * 0.875);
   transform: translateY(0);
 }
