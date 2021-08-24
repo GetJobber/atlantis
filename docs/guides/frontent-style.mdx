@@ -71,6 +71,29 @@ import React, { ReactText, useState } from "react";
 
 ---
 
+### Using XOR for conditional properties
+
+We prefer `XOR` rather than `union` types. With a `union` we are saying it can be `typeA`, `typeB`, or a combination of both. With `XOR` we are saying it will be _either_ `typeA` _or_ `typeB` but _never_ a combination of both.
+
+An example of this:
+
+```
+  interface BaseComponentNameProps {
+    ...;
+    determinate?: boolean;
+  }
+
+  interface DeterminateComponentNameProps extends BaseComponentNameProps {
+    determinate: boolean;
+    currentValue: number;
+    maxValue?: number;
+  }
+
+  type ComponentProps = XOR<BaseComponentNameProps, DeterminateComponentNameProps>;
+```
+
+---
+
 ### `function` vs arrow function
 
 In an effort to make our Typescript code a bit more accessible we are preferring
