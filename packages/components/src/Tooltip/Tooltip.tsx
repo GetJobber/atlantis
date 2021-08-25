@@ -102,6 +102,16 @@ export function Tooltip({ message, children }: TooltipProps) {
       setShow(false);
     };
 
+    const injectAttributes = () => {
+      if (shadowRef.current && shadowRef.current.nextElementSibling) {
+        const activator = shadowRef.current.nextElementSibling;
+        // Manually inject "aria-description" and "tabindex" to let the screen readers read the tooltip message.
+        // This is to avoid having to add those attribute as a prop on every component we have.
+        activator.setAttribute("aria-description", message);
+        activator.setAttribute("tabindex", "0"); // enable focus
+      }
+    };
+
     const addListeners = () => {
       if (shadowRef.current && shadowRef.current.nextElementSibling) {
         const activator = shadowRef.current.nextElementSibling;
@@ -109,11 +119,6 @@ export function Tooltip({ message, children }: TooltipProps) {
         activator.addEventListener("mouseleave", hideTooltip);
         activator.addEventListener("focus", showTooltip);
         activator.addEventListener("blur", hideTooltip);
-
-        // Manually inject "aria-description" and "tabindex" to let the screen readers read the tooltip message.
-        // This is to avoid having to add those attribute as a prop on every component we have.
-        activator.setAttribute("aria-description", message);
-        activator.setAttribute("tabindex", "0"); // enable focus
       }
     };
 
@@ -131,6 +136,7 @@ export function Tooltip({ message, children }: TooltipProps) {
       const popper = setupPopper();
       setPopperInstance(popper);
       setShow(false);
+      injectAttributes();
       addListeners();
 
       return () => {
