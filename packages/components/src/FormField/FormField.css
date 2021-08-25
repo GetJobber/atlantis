@@ -176,6 +176,7 @@
 .label {
   position: absolute;
   top: var(--field--placeholder-offset);
+  z-index: calc(var(--field-base-elevation) + 1);
   width: 100%;
   padding-left: var(--field--padding-left);
   padding-right: var(--field--padding-right);
@@ -185,12 +186,12 @@
   text-align: var(--field--textAlign);
   text-overflow: ellipsis;
   white-space: nowrap;
-  pointer-events: none;
   transform: translateY(var(--field--placeholder-transform));
   transition: all var(--timing-quick);
 }
 
 .miniLabel .label {
+  z-index: calc(var(--field-base-elevation) - 1);
   font-size: calc(var(--base-unit) * 0.875);
 }
 
@@ -227,9 +228,24 @@
  **/
 .affixIcon {
   align-self: center;
-  padding: 0 0 0 var(--space-small);
+  padding: 0 0 0 var(--space-base);
 }
 
-.affixIcon.suffix {
+/* .affixIcon.suffix {
   padding: 0 var(--space-small) 0 0;
+} */
+
+.affixLabel {
+  flex: 0 0 auto;
+  align-self: center;
+  transition: all var(--timing-quick);
+}
+
+.miniLabel .affixLabel {
+  padding-top: calc(var(--field--padding-top) - 2px);
+}
+
+.affixSuffix {
+  margin-left: -8px;
+  padding-right: var(--field--padding-right);
 }

@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren, RefObject, useRef } from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
 import { Affix, FormFieldProps, Suffix } from "./FormFieldTypes";
@@ -49,17 +49,32 @@ export function FormFieldWrapper({
     ["--formField-maxLength" as string]: maxLength || max,
   };
 
+  const prefixRef = useRef() as RefObject<HTMLDivElement>;
+  const suffixRef = useRef() as RefObject<HTMLDivElement>;
+
+  // const [labelStyle, setLabelStyle] = useState(getAffixPaddding);
+
+  // useEffect(() => {
+  //   setLabelStyle(getAffixPaddding);
+  // }, [value]);
+
   return (
     <>
       <div className={wrapperClasses} style={wrapperInlineStyle}>
         {prefix?.icon && <AffixIcon {...prefix} size={size} />}
         <div className={styles.inputWrapper}>
-          {/* {prefix?.label && <div>Prefix</div>} */}
-          <label className={styles.label} htmlFor={identifier}>
+          {prefix?.label && <AffixLabel {...prefix} labelRef={prefixRef} />}
+          <label
+            className={styles.label}
+            htmlFor={identifier}
+            // style={labelStyle}
+          >
             {placeholder}
           </label>
           {children}
-          {/* {suffix?.label && <div>Suffix</div>} */}
+          {suffix?.label && (
+            <AffixLabel {...suffix} labelRef={suffixRef} variation="suffix" />
+          )}
         </div>
         {suffix?.icon && (
           <AffixIcon {...suffix} variation="suffix" size={size} />
@@ -68,8 +83,34 @@ export function FormFieldWrapper({
       {error && !inline && <InputValidation message={error} />}
     </>
   );
+
+  // function getAffixPaddding() {
+  //   if(!prefix, po)
+  //   return value !== ""
+  //     ? { paddingLeft: 0, paddingRight: 0 }
+  //     : {
+  //         paddingLeft: prefixRef?.current?.offsetWidth,
+  //         paddingRight: suffixRef?.current?.offsetWidth,
+  //       };
+  // }
 }
 
+interface AffixLabelProps extends Affix {
+  labelRef: RefObject<HTMLDivElement>;
+  variation?: "prefix" | "suffix";
+}
+
+function AffixLabel({ label, variation, labelRef }: AffixLabelProps) {
+  const affixLabelClass = classnames(styles.affixLabel, {
+    [styles.affixSuffix]: variation === "suffix",
+  });
+
+  return (
+    <div ref={labelRef} className={affixLabelClass}>
+      {label}
+    </div>
+  );
+}
 interface AffixIconProps extends Pick<FormFieldProps, "size"> {
   readonly variation?: "prefix" | "suffix";
 }
@@ -81,7 +122,7 @@ function AffixIcon({
   size,
 }: AffixIconProps & XOR<Affix, Suffix>) {
   const affixIconClass = classnames(styles.affixIcon, {
-    [styles.suffix]: variation === "suffix",
+    [styles.affixSuffix]: variation === "suffix",
   });
 
   const iconSize = size === "small" ? "small" : "base";
@@ -95,7 +136,7 @@ function AffixIcon({
           ariaLabel="Input action"
           icon={icon}
           onClick={onClick}
-          type="tertiary"
+          type="secondary"
           size={iconSize}
         />
       ) : (
