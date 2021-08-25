@@ -13,8 +13,8 @@ test("tooltip shouldn't show up", () => {
       <div>{content}</div>
     </Tooltip>,
   );
-  expect(queryByText(message)).toBeNull();
-  expect(getByText(content)).toBeTruthy();
+  expect(queryByText(message)).not.toBeVisible();
+  expect(getByText(content)).toBeInTheDocument();
 });
 
 test("tooltip should show up on hover", () => {
@@ -31,6 +31,6 @@ test("tooltip should show up on hover", () => {
   act(() => {
     getByTestId(contentID).dispatchEvent(new MouseEvent("mouseenter"));
   });
-  expect(getByText(message)).toBeTruthy();
-  expect(getByText(content)).toBeTruthy();
+  expect(getByText(message)).toBeInTheDocument();
+  expect(getByText(content)).toBeInTheDocument();
 });

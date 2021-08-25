@@ -51,13 +51,13 @@ export function Tooltip({ message, children }: TooltipProps) {
       <span className={styles.shadowActivator} ref={shadowRef} />
       {children}
       <TooltipPortal>
-        <AnimatePresence>
-          <div
-            className={toolTipClassNames}
-            style={tooltipStyles}
-            ref={tooltipRef}
-            role="tooltip"
-          >
+        <div
+          className={toolTipClassNames}
+          style={tooltipStyles}
+          ref={tooltipRef}
+          role="tooltip"
+        >
+          <AnimatePresence>
             {show && (
               <motion.div
                 className={styles.tooltip}
@@ -79,8 +79,8 @@ export function Tooltip({ message, children }: TooltipProps) {
                 ></div>
               </motion.div>
             )}
-          </div>
-        </AnimatePresence>
+          </AnimatePresence>
+        </div>
       </TooltipPortal>
     </>
   );
