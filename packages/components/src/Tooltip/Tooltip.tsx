@@ -105,8 +105,10 @@ export function Tooltip({ message, children }: TooltipProps) {
     const injectAttributes = () => {
       if (shadowRef.current && shadowRef.current.nextElementSibling) {
         const activator = shadowRef.current.nextElementSibling;
-        // Manually inject "aria-description" and "tabindex" to let the screen readers read the tooltip message.
-        // This is to avoid having to add those attribute as a prop on every component we have.
+        // Manually inject "aria-description" and "tabindex" to let the screen
+        // readers read the tooltip message.
+        // This is to avoid having to add those attribute as a prop on every
+        // component we have.
         activator.setAttribute("aria-description", message);
         activator.setAttribute("tabindex", "0"); // enable focus
       }
