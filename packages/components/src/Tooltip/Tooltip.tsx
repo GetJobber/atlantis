@@ -38,7 +38,7 @@ export function Tooltip({ message, children }: TooltipProps) {
   const arrowRef = createRef<HTMLDivElement>();
   const shadowRef = createRef<HTMLSpanElement>();
 
-  showOnHover();
+  initializeListeners();
 
   const toolTipClassNames = classnames(
     styles.tooltipWrapper,
@@ -56,6 +56,7 @@ export function Tooltip({ message, children }: TooltipProps) {
             className={toolTipClassNames}
             style={tooltipStyles}
             ref={tooltipRef}
+            role="tooltip"
           >
             {show && (
               <motion.div
@@ -84,7 +85,7 @@ export function Tooltip({ message, children }: TooltipProps) {
     </>
   );
 
-  function showOnHover() {
+  function initializeListeners() {
     const [popperInstance, setPopperInstance] = useState<
       PopperInstance | undefined
     >(undefined);
@@ -93,33 +94,43 @@ export function Tooltip({ message, children }: TooltipProps) {
       if (popperInstance) popperInstance.update();
     }, [show]);
 
-    useLayoutEffect(() => {
-      const popper = setupPopper();
-      setPopperInstance(popper);
+    const showTooltip = () => {
+      setShow(true);
+    };
+
+    const hideTooltip = () => {
       setShow(false);
+    };
 
-      const showTooltip = () => {
-        setShow(true);
-      };
-
-      const hideTooltip = () => {
-        setShow(false);
-      };
-
+    const addListeners = () => {
       if (shadowRef.current && shadowRef.current.nextElementSibling) {
         const activator = shadowRef.current.nextElementSibling;
         activator.addEventListener("mouseenter", showTooltip);
         activator.addEventListener("mouseleave", hideTooltip);
+        activator.addEventListener("focus", showTooltip);
+        activator.addEventListener("blur", hideTooltip);
       }
+    };
+
+    const removeListeners = () => {
+      if (shadowRef.current && shadowRef.current.nextElementSibling) {
+        const activator = shadowRef.current.nextElementSibling;
+        activator.removeEventListener("mouseenter", showTooltip);
+        activator.removeEventListener("mouseleave", hideTooltip);
+        activator.removeEventListener("focus", showTooltip);
+        activator.removeEventListener("blur", hideTooltip);
+      }
+    };
+
+    useLayoutEffect(() => {
+      const popper = setupPopper();
+      setPopperInstance(popper);
+      setShow(false);
+      addListeners();
 
       return () => {
         if (popper) popper.destroy();
-
-        if (shadowRef.current && shadowRef.current.nextElementSibling) {
-          const activator = shadowRef.current.nextElementSibling;
-          activator.removeEventListener("mouseenter", showTooltip);
-          activator.removeEventListener("mouseleave", hideTooltip);
-        }
+        removeListeners();
       };
     }, []);
   }
