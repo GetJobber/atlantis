@@ -14,6 +14,9 @@
  **/
 .wrapper {
   --field--placeholder-color: var(--color-greyBlue--light);
+  --field--placeholder-offset: 50%;
+  --field--placeholder-transform: -50%;
+
   --field--textAlign: left;
 
   --field--height: var(--space-largest);
@@ -26,8 +29,6 @@
   --field--border-color: var(--color-border);
   --field--background-color: var(--color-surface);
   --field-base-elevation: var(--elevation-base);
-
-  --field--miniLabel-offset: 50%;
 
   display: flex;
   width: 100%;
@@ -52,8 +53,9 @@
 }
 
 .miniLabel {
-  --field--miniLabel-offset: var(--space-smallest);
   --field--placeholder-color: var(--color-text--secondary);
+  --field--placeholder-offset: var(--space-smallest);
+  --field--placeholder-transform: 0;
 }
 
 .wrapper.textarea {
@@ -173,20 +175,22 @@
  **/
 .label {
   position: absolute;
-  top: var(--field--miniLabel-offset);
+  top: var(--field--placeholder-offset);
+  width: 100%;
   padding-left: var(--field--padding-left);
+  padding-right: var(--field--padding-right);
   color: var(--field--placeholder-color);
   line-height: calc(var(--base-unit) * 1.25);
+  text-align: var(--field--textAlign);
   text-overflow: ellipsis;
   white-space: nowrap;
   pointer-events: none;
-  transform: translateY(-50%);
+  transform: translateY(var(--field--placeholder-transform));
   transition: all var(--timing-quick);
 }
 
 .miniLabel .label {
   font-size: calc(var(--base-unit) * 0.875);
-  transform: translateY(0);
 }
 
 .textarea .label {
@@ -223,7 +227,6 @@
 .affixIcon {
   align-self: center;
   padding: 0 0 0 var(--space-small);
-  /* background: red; */
 }
 
 .affixIcon.suffix {
