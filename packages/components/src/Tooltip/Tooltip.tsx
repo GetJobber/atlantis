@@ -109,6 +109,10 @@ export function Tooltip({ message, children }: TooltipProps) {
         activator.addEventListener("mouseleave", hideTooltip);
         activator.addEventListener("focus", showTooltip);
         activator.addEventListener("blur", hideTooltip);
+
+        // Manually inject aria-description to let the screen readers read the tooltip message.
+        // This is to avoid having to add "aria-description" prop on every component we have.
+        activator.setAttribute("aria-description", message);
       }
     };
 
