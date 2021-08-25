@@ -110,9 +110,10 @@ export function Tooltip({ message, children }: TooltipProps) {
         activator.addEventListener("focus", showTooltip);
         activator.addEventListener("blur", hideTooltip);
 
-        // Manually inject aria-description to let the screen readers read the tooltip message.
-        // This is to avoid having to add "aria-description" prop on every component we have.
+        // Manually inject "aria-description" and "tabindex" to let the screen readers read the tooltip message.
+        // This is to avoid having to add those attribute as a prop on every component we have.
         activator.setAttribute("aria-description", message);
+        activator.setAttribute("tabindex", "0"); // enable focus
       }
     };
 
