@@ -254,6 +254,8 @@
   padding: 0 0 0 var(--space-base);
   flex: 0 0 auto;
   align-self: center;
+  user-select: none;
+  pointer-events: none;
   transition: all var(--timing-quick);
 }
 

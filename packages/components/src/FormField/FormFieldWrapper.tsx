@@ -1,4 +1,10 @@
-import React, { PropsWithChildren, RefObject, useRef } from "react";
+import React, {
+  PropsWithChildren,
+  RefObject,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
 import { Affix, FormFieldProps, Suffix } from "./FormFieldTypes";
@@ -10,6 +16,11 @@ import { Button } from "../Button";
 interface FormFieldWrapperProps extends FormFieldProps {
   error: string;
   identifier: string;
+}
+
+interface LabelPadding {
+  paddingLeft: number | string | undefined;
+  paddingRight: number | string | undefined;
 }
 
 export function FormFieldWrapper({
@@ -52,25 +63,30 @@ export function FormFieldWrapper({
   const prefixRef = useRef() as RefObject<HTMLDivElement>;
   const suffixRef = useRef() as RefObject<HTMLDivElement>;
 
-  // const [labelStyle, setLabelStyle] = useState(getAffixPaddding);
+  const [labelStyle, setLabelStyle] = useState<LabelPadding>({
+    paddingLeft: undefined,
+    paddingRight: undefined,
+  });
 
-  // useEffect(() => {
-  //   setLabelStyle(getAffixPaddding);
-  // }, [value]);
+  useEffect(() => {
+    setLabelStyle(getAffixPaddding);
+  }, [value]);
 
   return (
     <>
       <div className={wrapperClasses} style={wrapperInlineStyle}>
         {prefix?.icon && <AffixIcon {...prefix} size={size} />}
         <div className={styles.inputWrapper}>
-          {prefix?.label && <AffixLabel {...prefix} labelRef={prefixRef} />}
           <label
             className={styles.label}
             htmlFor={identifier}
-            // style={labelStyle}
+            style={
+              prefixRef?.current || suffixRef?.current ? labelStyle : undefined
+            }
           >
             {placeholder}
           </label>
+          {prefix?.label && <AffixLabel {...prefix} labelRef={prefixRef} />}
           {children}
           {suffix?.label && (
             <AffixLabel {...suffix} labelRef={suffixRef} variation="suffix" />
@@ -84,15 +100,30 @@ export function FormFieldWrapper({
     </>
   );
 
-  // function getAffixPaddding() {
-  //   if(!prefix, po)
-  //   return value !== ""
-  //     ? { paddingLeft: 0, paddingRight: 0 }
-  //     : {
-  //         paddingLeft: prefixRef?.current?.offsetWidth,
-  //         paddingRight: suffixRef?.current?.offsetWidth,
-  //       };
-  // }
+  function getAffixPaddding() {
+    const newPadding: LabelPadding = {
+      paddingLeft: undefined,
+      paddingRight: undefined,
+    };
+
+    if (prefixRef?.current) {
+      const { offsetWidth } = prefixRef?.current;
+      newPadding.paddingLeft =
+        value !== ""
+          ? undefined
+          : `calc(${offsetWidth}px + var(--space-small))`;
+    }
+
+    if (suffixRef?.current) {
+      const { offsetWidth } = suffixRef?.current;
+      newPadding.paddingRight =
+        value !== ""
+          ? undefined
+          : `calc(${offsetWidth}px + var(--space-small))`;
+    }
+
+    return newPadding;
+  }
 }
 
 interface AffixLabelProps extends Affix {
