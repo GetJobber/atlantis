@@ -2,11 +2,7 @@
   position: relative;
 }
 
-.determinate > .loadingIndicator {
-  background-color: var(--color-overlay) !important;
-}
-
-.overlay > .loadingIndicator {
+.overlay .loadingIndicator {
   display: flex;
   position: absolute;
   top: 0;
@@ -16,4 +12,8 @@
   background-color: var(--color-overlay--dimmed);
   justify-content: center;
   align-items: center;
+}
+
+.determinate .loadingIndicator {
+  background-color: var(--color-overlay);
 }
