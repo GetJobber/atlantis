@@ -18,7 +18,7 @@ export function Tabs({ children }: TabsProps) {
   const [activeTab, setActiveTab] = useState(0);
   const [overflowRight, setOverflowRight] = useState(false);
   const [overflowLeft, setOverflowLeft] = useState(false);
-  const tabRow = useRef() as MutableRefObject<HTMLDivElement>;
+  const tabRow = useRef() as MutableRefObject<HTMLUListElement>;
 
   const overflowClassNames = classnames(styles.overflow, {
     [styles.overflowRight]: overflowRight,
@@ -30,6 +30,10 @@ export function Tabs({ children }: TabsProps) {
       setActiveTab(index);
     };
   };
+
+  const activeTabProps = (React.Children.toArray(children) as ReactElement[])[
+    activeTab
+  ].props;
 
   const handleOverflowing = () => {
     if (tabRow.current) {
@@ -71,11 +75,12 @@ export function Tabs({ children }: TabsProps) {
           </li>
         </ul>
       </div>
-      <section role="tabpanel" className={styles.tabContent}>
-        {
-          (React.Children.toArray(children) as ReactElement[])[activeTab].props
-            .children
-        }
+      <section
+        role="tabpanel"
+        className={styles.tabContent}
+        aria-label={activeTabProps.label}
+      >
+        {activeTabProps.children}
       </section>
     </div>
   );
