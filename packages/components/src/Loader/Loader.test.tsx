@@ -119,13 +119,19 @@ describe("<Loader />", () => {
       });
 
       it("doesn't indicates the loading progress", () => {
-        const { container } = render(
-          <Loader loading={false} determinate currentValue={50}>
+        const { container, rerender } = render(
+          <Loader loading={true} determinate currentValue={50}>
             Loading
           </Loader>,
         );
         const element = container.querySelector("progress");
-        expect(element).toBeNull();
+        expect(element).toBeInTheDocument();
+        rerender(
+          <Loader loading={false} determinate currentValue={50}>
+            Loading
+          </Loader>,
+        );
+        expect(element).not.toBeInTheDocument();
       });
     });
 
