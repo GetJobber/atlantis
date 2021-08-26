@@ -91,11 +91,7 @@ import { Loader } from "@jobber/components/Loader";
     const [currentValue, setCurrentValue] = useState(0);
     return (
       <Content>
-        <Checkbox
-          label="Loading"
-          checked={isLoading}
-          onChange={setIsLoading}
-        />
+        <Checkbox label="Loading" checked={isLoading} onChange={setIsLoading} />
         <Button
           label="Increase Loading Progress"
           size="small"
@@ -129,86 +125,3 @@ import { Loader } from "@jobber/components/Loader";
     );
   }}
 </Playground>
-
-<!--
-## Usage Guidelines
-
-The `<Loader>` will provide funcitonality to display loading hints to the user when underlying components are loading.
--->
-
-<!--
-  What is the design purpose of this component? How do its responsibilities
-  relate to other components? What should this component not be used for? What
-  are some related components in Atlantis? Try to describe this component not
-  in terms of what it looks like or what elements make it up, but what function
-  it performs or how it enables a user to perform tasks (e.g. “Buttons allow users
-  to initiate, complete, and reverse actions.” vs “Buttons are rectangular elements
-  that have a green background and white text”).
--->
-
-<!--
-## Content Guidelines
--->
-
-<!--
-  What type of content does this component present (documents, text, images, other components)?
-  What is the recommended, or expected, amount of content? What is the components’ behaviour when
-  the provided content diverges from what is expected (image aspect ratio, amount of text, video
-  vs audio, filesize)? Are there any important references to the [Product Vocabulary](https://atlantis.getjobber.com/guides/product-vocabulary)
-  that should be made regarding this component? What happens when content is unavailable or unreliable
-  (poor connection, empty states, flaky GPS data?)
--->
-
-<!--
-## Accessibility
-
-The Loading component uses the `aria-busy=”true” aria-live=”polite”` HTML attributes to convey to assistive technology that the region is loading.
-
-Assistive technology, keyboards, and mouse cursors should not be able to interact with the content inside of Loading while it is awaiting new data/content. This is achieved using `aria-hidden=”true”` on the wrapper element to remove child elements from the accessibility tree while loading. Screen-readers should only receive the information that the area is “busy” as outlined above, while the dimmed interface and loading indicators signify the same status visually.
--->
-
-<!--
-  Describe the accessibility concerns for the component. How does it handle touch vs cursor vs
-  keyboard events? Should it capture input? What should a screen reader see when it's focuse?
--->
-
-<!--
-## Responsiveness
--->
-
-<!--
-  How should the component behave on an iPhone 8? An iPad? A 1920x1080 monitor? How does the
-  component appear when the component itself is less than 375px wide? Less than 640px wide?
-  Less than 1200px wide? Greater than 1200px? Does it change when the device DPI is higher
-  or lower?
--->
-
-<!--
-## Mockup
-
-<iframe
-  style="border: 1px solid rgba(0, 0, 0, 0.1);"
-  width="800"
-  height="450"
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F3BXCXXD9glMtj8RAHjXiQC%2FDesign-System-Contribution-TEMPLATE%3Fnode-id%3D332%253A5526"
-  allowfullscreen
-></iframe>
--->
-
-<!--
-  Insert a Figma mockup from the [Design System Contribution template](https://www.figma.com/file/3BXCXXD9glMtj8RAHjXiQC/Design-System-Contribution-TEMPLATE?node-id=26%3A2)
-  that conveys the visual design of the component, with variants and state accounted for.
-  Consider progressive enhancement; might this rely on newer browser features that aren’t
-  widely supported yet?
--->
-
-<!--
-## Notes
--->
-
-<!--
-  What decisions worth remembering have gone into this component? Did we consider any potentially valuable
-  functionality that we’re not implementing right now for scope purposes? Are there any design decisions
-  that might need explaining beyond the usage guidelines? This will help consumers understand this component
-  more fully.
--->
