@@ -144,7 +144,7 @@ export interface FormFieldProps {
   readonly prefix?: Affix;
 
   /**
-   * Adds a prefix label and icon with an optional action to the field
+   * Adds a suffix label and icon with an optional action to the field
    */
   readonly suffix?: XOR<Affix, Suffix>;
 
