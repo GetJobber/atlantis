@@ -1,5 +1,4 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import { cleanup, render } from "@testing-library/react";
 import { Loader } from ".";
 
@@ -9,14 +8,12 @@ describe("<Loader />", () => {
   describe("when loading", () => {
     describe("when determinate", () => {
       it("renders a Loader", () => {
-        const tree = renderer
-          .create(
-            <Loader loading determinate currentValue={0}>
-              Loading
-            </Loader>,
-          )
-          .toJSON();
-        expect(tree).toMatchSnapshot();
+        const { container } = render(
+          <Loader loading determinate currentValue={0}>
+            Loading
+          </Loader>,
+        );
+        expect(container).toMatchSnapshot();
       });
 
       it("indicates to assistive technology that content is changing", () => {
@@ -56,14 +53,12 @@ describe("<Loader />", () => {
 
     describe("when not determinate", () => {
       it("renders a Loader", () => {
-        const tree = renderer
-          .create(
-            <Loader loading determinate={false}>
-              Loading
-            </Loader>,
-          )
-          .toJSON();
-        expect(tree).toMatchSnapshot();
+        const { container } = render(
+          <Loader loading determinate={false}>
+            Loading
+          </Loader>,
+        );
+        expect(container).toMatchSnapshot();
       });
 
       it("renders children within the Loader", () => {
@@ -93,14 +88,12 @@ describe("<Loader />", () => {
   describe("when not loading", () => {
     describe("when determinate", () => {
       it("renders a Loader", () => {
-        const tree = renderer
-          .create(
-            <Loader loading={false} determinate currentValue={0}>
-              Loading
-            </Loader>,
-          )
-          .toJSON();
-        expect(tree).toMatchSnapshot();
+        const { container } = render(
+          <Loader loading={false} determinate currentValue={0}>
+            Loading
+          </Loader>,
+        );
+        expect(container).toMatchSnapshot();
       });
 
       it("no indication to assistive tech that content is changing", () => {
@@ -138,14 +131,12 @@ describe("<Loader />", () => {
 
     describe("when not determinate", () => {
       it("renders a Loader", () => {
-        const tree = renderer
-          .create(
-            <Loader loading={false} determinate={false}>
-              Loading
-            </Loader>,
-          )
-          .toJSON();
-        expect(tree).toMatchSnapshot();
+        const { container } = render(
+          <Loader loading={false} determinate={false}>
+            Loading
+          </Loader>,
+        );
+        expect(container).toMatchSnapshot();
       });
 
       it("renders children", () => {

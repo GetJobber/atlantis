@@ -2,27 +2,29 @@
 
 exports[`<Loader /> when loading when determinate renders a Loader 1`] = `
 <div>
-  <div
-    aria-busy="true"
-    aria-hidden="true"
-    aria-live="polite"
-    className="loader overlay determinate"
-  >
-    Loading
+  <div>
     <div
-      className="loadingIndicator"
+      aria-busy="true"
+      aria-hidden="true"
+      aria-live="polite"
+      class="loader overlay determinate"
     >
+      Loading
       <div
-        className="determinate"
+        class="loadingIndicator"
       >
-        <progress
-          className="ProgressBar small"
-          max={100}
-          value={0}
+        <div
+          class="determinate"
         >
-          0
-          %
-        </progress>
+          <progress
+            class="ProgressBar small"
+            max="100"
+            value="0"
+          >
+            0
+            %
+          </progress>
+        </div>
       </div>
     </div>
   </div>
@@ -31,22 +33,24 @@ exports[`<Loader /> when loading when determinate renders a Loader 1`] = `
 
 exports[`<Loader /> when loading when not determinate renders a Loader 1`] = `
 <div>
-  <div
-    aria-busy="true"
-    aria-hidden="true"
-    aria-live="polite"
-    className="loader overlay"
-  >
-    Loading
+  <div>
     <div
-      className="loadingIndicator"
+      aria-busy="true"
+      aria-hidden="true"
+      aria-live="polite"
+      class="loader overlay"
     >
+      Loading
       <div
-        aria-busy={true}
-        aria-label="loading"
-        className="spinner small"
-        role="alert"
-      />
+        class="loadingIndicator"
+      >
+        <div
+          aria-busy="true"
+          aria-label="loading"
+          class="spinner small"
+          role="alert"
+        />
+      </div>
     </div>
   </div>
 </div>
