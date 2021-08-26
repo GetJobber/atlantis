@@ -25,25 +25,31 @@ import { InputText } from "@jobber/components/InputText";
 
 <Playground>
   <InputText placeholder="Ship Name" defaultValue="Rocinante" />
+
   <InputText
     placeholder="Ship Name"
-    defaultValue="Rocinante"
-    suffix={{ icon: "job", onClick: () => alert("Hello") }}
-  />
-  <InputText
-    placeholder="Ship Name"
-    defaultValue="Rocinante"
+    defaultValue="A really really really long value so that we can see if the padding for the suffix is correct. We can only tell with a really long value"
     suffix={{ label: "Goodbye" }}
   />
   <InputText
     placeholder="Ship Name"
-    defaultValue="Rocinante"
-    suffix={{ icon: "gift" }}
+    defaultValue="A really really really long value so that we can see if the padding for the suffix is correct. We can only tell with a really long value"
+    suffix={{ icon: "job", label: "Goodbye" }}
   />
   <InputText
     placeholder="Ship Name"
-    defaultValue="Rocinante"
-    suffix={{ icon: "job", label: "Goodbye" }}
+    defaultValue="A really really really long value so that we can see if the padding for the suffix is correct. We can only tell with a really long value"
+    suffix={{ icon: "job", label: "Goodbye", onClick: () => alert("Hello") }}
+  />
+  <InputText
+    placeholder="Ship Name"
+    defaultValue="A really really really long value so that we can see if the padding for the suffix is correct. We can only tell with a really long value"
+    suffix={{ icon: "job", onClick: () => alert("Hello") }}
+  />
+  <InputText
+    placeholder="Ship Name"
+    defaultValue="A really really really long value so that we can see if the padding for the suffix is correct. We can only tell with a really long value"
+    suffix={{ icon: "gift" }}
   />
   <InputText
     placeholder="Ship Name"

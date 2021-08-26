@@ -226,26 +226,41 @@
 /**
  * Affix Icon
  **/
-.affixIcon {
-  align-self: center;
-  padding: 0 0 0 var(--space-base);
+.suffix {
+  margin-left: calc(var(--space-base) / 2 * -1);
 }
 
-/* .affixIcon.suffix {
+.prefix {
+  margin-right: calc(var(--space-base) / 2 * -1);
+}
+
+.affixIcon {
+  position: relative;
+  z-index: calc(var(--field-base-elevation) + 2);
+  align-self: center;
+  padding: 0 var(--space-smaller) 0 var(--space-base);
+}
+
+.affixIcon.suffix {
+  padding: 0 var(--space-base) 0 0;
+}
+
+.affixIcon.hasAction {
+  margin-left: calc(var(--space-large) / 2 * -1);
   padding: 0 var(--space-small) 0 0;
-} */
+}
 
 .affixLabel {
+  padding: 0 0 0 var(--space-base);
   flex: 0 0 auto;
   align-self: center;
   transition: all var(--timing-quick);
 }
 
-.miniLabel .affixLabel {
-  padding-top: calc(var(--field--padding-top) - 2px);
+.affixLabel.suffix {
+  padding: 0 var(--space-base) 0 0;
 }
 
-.affixSuffix {
-  margin-left: -8px;
-  padding-right: var(--field--padding-right);
+.miniLabel .affixLabel {
+  padding-top: calc(var(--field--padding-top) - 2px);
 }

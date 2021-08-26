@@ -100,10 +100,12 @@ interface AffixLabelProps extends Affix {
   variation?: "prefix" | "suffix";
 }
 
-function AffixLabel({ label, variation, labelRef }: AffixLabelProps) {
-  const affixLabelClass = classnames(styles.affixLabel, {
-    [styles.affixSuffix]: variation === "suffix",
-  });
+function AffixLabel({
+  label,
+  variation = "prefix",
+  labelRef,
+}: AffixLabelProps) {
+  const affixLabelClass = classnames(styles.affixLabel, styles[variation]);
 
   return (
     <div ref={labelRef} className={affixLabelClass}>
@@ -118,11 +120,11 @@ interface AffixIconProps extends Pick<FormFieldProps, "size"> {
 function AffixIcon({
   icon,
   onClick,
-  variation,
+  variation = "prefix",
   size,
 }: AffixIconProps & XOR<Affix, Suffix>) {
-  const affixIconClass = classnames(styles.affixIcon, {
-    [styles.affixSuffix]: variation === "suffix",
+  const affixIconClass = classnames(styles.affixIcon, styles[variation], {
+    [styles.hasAction]: onClick,
   });
 
   const iconSize = size === "small" ? "small" : "base";
@@ -136,11 +138,11 @@ function AffixIcon({
           ariaLabel="Input action"
           icon={icon}
           onClick={onClick}
-          type="secondary"
+          type="tertiary"
           size={iconSize}
         />
       ) : (
-        <Icon name={icon} size={iconSize} />
+        <Icon name={icon} size={iconSize} color="greyBlue" />
       )}
     </div>
   );
