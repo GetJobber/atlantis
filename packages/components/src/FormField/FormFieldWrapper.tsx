@@ -6,12 +6,10 @@ import React, {
   useState,
 } from "react";
 import classnames from "classnames";
-import { XOR } from "ts-xor";
-import { Affix, FormFieldProps, Suffix } from "./FormFieldTypes";
+import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.css";
+import { AffixIcon, AffixLabel } from "./FormFieldAffix";
 import { InputValidation } from "../InputValidation";
-import { Icon } from "../Icon";
-import { Button } from "../Button";
 
 interface FormFieldWrapperProps extends FormFieldProps {
   error: string;
@@ -124,57 +122,4 @@ export function FormFieldWrapper({
 
     return newPadding;
   }
-}
-
-interface AffixLabelProps extends Affix {
-  labelRef: RefObject<HTMLDivElement>;
-  variation?: "prefix" | "suffix";
-}
-
-function AffixLabel({
-  label,
-  variation = "prefix",
-  labelRef,
-}: AffixLabelProps) {
-  const affixLabelClass = classnames(styles.affixLabel, styles[variation]);
-
-  return (
-    <div ref={labelRef} className={affixLabelClass}>
-      {label}
-    </div>
-  );
-}
-interface AffixIconProps extends Pick<FormFieldProps, "size"> {
-  readonly variation?: "prefix" | "suffix";
-}
-
-function AffixIcon({
-  icon,
-  onClick,
-  variation = "prefix",
-  size,
-}: AffixIconProps & XOR<Affix, Suffix>) {
-  const affixIconClass = classnames(styles.affixIcon, styles[variation], {
-    [styles.hasAction]: onClick,
-  });
-
-  const iconSize = size === "small" ? "small" : "base";
-
-  if (!icon) return <></>;
-
-  return (
-    <div className={affixIconClass}>
-      {onClick ? (
-        <Button
-          ariaLabel="Input action"
-          icon={icon}
-          onClick={onClick}
-          type="tertiary"
-          size={iconSize}
-        />
-      ) : (
-        <Icon name={icon} size={iconSize} color="greyBlue" />
-      )}
-    </div>
-  );
 }
