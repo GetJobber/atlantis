@@ -14,7 +14,9 @@ test("calls the submit handler if the form is valid", async () => {
   );
 
   const input = getByLabelText("test form");
+  const inputTwo = getByLabelText("test input");
   fireEvent.change(input, { target: { value: "hello" } });
+  fireEvent.change(inputTwo, { target: { value: "hello" } });
   fireEvent.click(getByText("submit"));
 
   await waitFor(() => expect(submitHandler).toHaveBeenCalledTimes(1));
@@ -128,7 +130,7 @@ test("submit method can be used to successfully submit the form", async () => {
   fireEvent.change(input, { target: { value: "Bo" } });
   fireEvent.click(getByText("submit"));
 
-  waitFor(() => {
+  await waitFor(() => {
     expect(submitHandler).toHaveBeenCalledTimes(1);
   });
 });
@@ -139,9 +141,30 @@ test("submit method can be used to trigger validation from outside the form", as
 
   fireEvent.click(getByText("submit"));
 
-  waitFor(() => {
+  await waitFor(() => {
     expect(getByText("validation error")).not.toBeNull();
-    expect(getByText("validation error")).toBeInstanceOf(HTMLDivElement);
+    expect(getByText("validation error")).toBeInstanceOf(HTMLParagraphElement);
+  });
+});
+
+it("should focus on the first errored field", async () => {
+  const { getByLabelText, getByText } = render(
+    <MockForm onSubmit={jest.fn()} />,
+  );
+
+  const input = getByLabelText("test form");
+  const inputTwo = getByLabelText("test input");
+  fireEvent.click(getByText("submit"));
+
+  await waitFor(() => {
+    expect(input).toHaveFocus();
+  });
+
+  fireEvent.change(input, { target: { value: "hello" } });
+  fireEvent.click(getByText("submit"));
+
+  await waitFor(() => {
+    expect(inputTwo).toHaveFocus();
   });
 });
 
@@ -190,6 +213,20 @@ function MockForm({ onSubmit, onStateChange }: MockFormProps) {
           minLength: {
             value: 3,
             message: "short.",
+          },
+        }}
+      />
+      <InputText
+        placeholder="test input"
+        name="testInput"
+        validations={{
+          required: {
+            value: true,
+            message: "validation error when required",
+          },
+          minLength: {
+            value: 3,
+            message: "two short.",
           },
         }}
       />
