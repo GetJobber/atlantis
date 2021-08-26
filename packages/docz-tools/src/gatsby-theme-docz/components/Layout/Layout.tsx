@@ -39,9 +39,16 @@ export function Layout({ children }: PropsWithChildren<unknown>) {
           />
         </div>
         <div className={styles.sidebar} style={sidebarStyles}>
+          <a
+            href="#mainContent"
+            className={styles.skipNav}
+            onClick={toggleMenu}
+          >
+            Skip to content
+          </a>
           <Sidebar />
         </div>
-        <div className={styles.content}>
+        <div id="mainContent" className={styles.content}>
           <div
             className={styles.container}
             style={{ maxWidth: containerWidth }}

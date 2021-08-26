@@ -8,6 +8,67 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.15.1...@jobber/design@0.15.2) (2021-08-24)
+
+
+### Bug Fixes
+
+* **design:** Fixed parsing of colors to support rgb and rgba ([#616](https://github.com/GetJobber/atlantis/issues/616)) ([a783dd2](https://github.com/GetJobber/atlantis/commit/a783dd235bebeee98e08953b7b3cf3e82cbe4c70))
+
+
+
+
+
+## [0.15.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.15.0...@jobber/design@0.15.1) (2021-08-24)
+
+
+### Bug Fixes
+
+* **design:** fix the colors until a good fix is available ([#615](https://github.com/GetJobber/atlantis/issues/615)) ([59cc327](https://github.com/GetJobber/atlantis/commit/59cc3273ecd3c3b008d3eb1a4d52cb52eafe6323))
+
+
+
+
+
+# [0.15.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.14.2...@jobber/design@0.15.0) (2021-08-10)
+
+
+### Features
+
+* **components:** Add compose icon ([#604](https://github.com/GetJobber/atlantis/issues/604)) ([1913cf5](https://github.com/GetJobber/atlantis/commit/1913cf5c66a40483f21c2f5919187a67c3cc140d))
+
+
+
+
+
+## [0.14.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.14.1...@jobber/design@0.14.2) (2021-07-29)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.14.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.14.0...@jobber/design@0.14.1) (2021-07-16)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+# [0.14.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.13.1...@jobber/design@0.14.0) (2021-07-15)
+
+
+### Features
+
+* **design:** add active surface and dimmed overlay colors ([#590](https://github.com/GetJobber/atlantis/issues/590)) ([37a4acf](https://github.com/GetJobber/atlantis/commit/37a4acf12d751d2345b24378f7f3f881af0fc6c3))
+* **design:** introduce web shadow variations, document and add to Toast ([#588](https://github.com/GetJobber/atlantis/issues/588)) ([5b359c0](https://github.com/GetJobber/atlantis/commit/5b359c09bc1dc3db01cdf0687e99375c1cd54e4d))
+
+
+
+
+
 ## [0.13.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.13.0...@jobber/design@0.13.1) (2021-06-07)
 
 **Note:** Version bump only for package @jobber/design

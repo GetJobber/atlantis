@@ -44,13 +44,15 @@
   /* Surfaces and Borders */
   --color-surface: var(--color-white);
   --color-surface--hover: var(--color-yellow--lightest);
+  --color-surface--active: var(--color-green--lightest);
   --color-surface--background: var(--color-grey--lightest);
   --color-surface--reverse: var(--color-greyBlue--dark);
 
   --color-border: var(--color-grey--lighter);
   --color-border--section: var(--color-blue);
 
-  --color-overlay: rgba(var(--color--greyBlue--rgb), 0.8);
+  --color-overlay: rgba(var(--color-greyBlue--rgb), 0.8);
+  --color-overlay--dimmed: rgba(var(--color-white--rgb), 0.6);
 
   /* Brand */
   --color-brand: var(--color-green);
@@ -108,8 +110,8 @@
   --color-grey--lightest: rgb(244, 244, 244);
   --color-grey--dark: rgb(118, 118, 118);
 
-  --color--greyBlue--rgb: 101, 120, 132;
-  --color-greyBlue: rgb(var(--color--greyBlue--rgb));
+  --color-greyBlue--rgb: 101, 120, 132;
+  --color-greyBlue: rgb(var(--color-greyBlue--rgb));
   --color-greyBlue--light: rgb(147, 161, 169);
   --color-greyBlue--lighter: rgb(193, 201, 206);
   --color-greyBlue--lightest: rgb(232, 235, 237);
@@ -163,5 +165,6 @@
   --color-indigo--lightest: rgb(230, 233, 247);
   --color-indigo--dark: rgb(55, 69, 132);
 
-  --color-white: rgb(255, 255, 255);
+  --color-white--rgb: 255, 255, 255;
+  --color-white: rgba(var(--color-white--rgb));
 }

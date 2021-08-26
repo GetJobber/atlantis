@@ -18,6 +18,7 @@ type BaseProps = Pick<
     | "value"
     | "onChange"
     | "keyboard"
+    | "actionsRef"
   >
 >;
 

@@ -13,7 +13,8 @@
     tagging this swatch. */
 
 .color[style*="background-color: rgb(255, 255, 255);"],
-.color[style="background-color: var(--color-white);"] {
+.color[style*="background-color: var(--color-white);"],
+.color[style*="background-color: var(--color-white-rgb);"] {
   box-shadow: var(--shadow-base); /* 1 */
 }
 
