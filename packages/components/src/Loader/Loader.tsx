@@ -1,10 +1,9 @@
 import React, { PropsWithChildren, RefObject } from "react";
 import classnames from "classnames";
+import { XOR } from "ts-xor";
 import { Breakpoints, useResizeObserver } from "@jobber/hooks/";
 import styles from "./Loader.css";
 import { LoaderIndicator } from "./LoaderIndicator";
-
-type LoaderProps = IndeterminateLoaderProps | DeterminateLoaderProps;
 
 interface BaseLoaderProps {
   /**
@@ -26,10 +25,6 @@ interface BaseLoaderProps {
   loading: boolean;
 }
 
-interface IndeterminateLoaderProps extends BaseLoaderProps {
-  determinate: false;
-}
-
 interface DeterminateLoaderProps extends BaseLoaderProps {
   determinate: true;
 
@@ -45,6 +40,8 @@ interface DeterminateLoaderProps extends BaseLoaderProps {
    */
   maxValue?: number;
 }
+
+type LoaderProps = XOR<BaseLoaderProps, DeterminateLoaderProps>;
 
 export function Loader(props: PropsWithChildren<LoaderProps>) {
   const { loading = false, children } = props;
