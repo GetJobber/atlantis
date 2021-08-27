@@ -14,9 +14,6 @@ it("renders a simple card", () => {
   expect(tree).toMatchInlineSnapshot(`
     <div
       className="card accent purple"
-      onKeyUp={[Function]}
-      role="button"
-      tabIndex={0}
     >
       <p>
         This is the card content.
@@ -36,9 +33,6 @@ it("renders a card", () => {
   expect(tree).toMatchInlineSnapshot(`
     <div
       className="card accent green"
-      onKeyUp={[Function]}
-      role="button"
-      tabIndex={0}
     >
       <div
         className="header"

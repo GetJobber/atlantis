@@ -1,8 +1,10 @@
-import React, { ReactNode, createRef } from "react";
+import React, { ReactNode } from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
 import styles from "./Card.css";
 import colors from "./colors.css";
+import { Cardlink } from "./CardLink";
+import { CardClickable } from "./CardClickable";
 import { Typography } from "../Typography";
 
 interface CardProps {
@@ -36,7 +38,6 @@ export function Card({
   title,
   url,
 }: CardPropOptions) {
-  const cardRef = createRef<HTMLDivElement>();
   const className = classnames(
     styles.card,
     accent && styles.accent,
@@ -44,61 +45,35 @@ export function Card({
     accent && colors[accent],
   );
 
-  const cardCntent = (
+  const cardContent = (
     <>
-      {title && <Title title={title} />}
+      {title && (
+        <div className={styles.header}>
+          <Typography
+            element="h3"
+            size="large"
+            textCase="uppercase"
+            fontWeight="extraBold"
+          >
+            {title}
+          </Typography>
+        </div>
+      )}
       {children}
     </>
   );
 
   if (url) {
     return (
-      <a className={className} href={url}>
-        {cardCntent}
-      </a>
+      <Cardlink className={className} url={url}>
+        {cardContent}
+      </Cardlink>
     );
   } else {
     return (
-      <div
-        className={className}
-        ref={cardRef}
-        onClick={onClick}
-        onKeyUp={handleKeyup}
-        role="button"
-        tabIndex={0}
-      >
-        {cardCntent}
-      </div>
+      <CardClickable className={className} onClick={onClick}>
+        {cardContent}
+      </CardClickable>
     );
   }
-
-  function handleKeyup(event: React.KeyboardEvent<HTMLDivElement>) {
-    if (event.key === "Enter" || event.key === " ") {
-      cardRef.current?.click();
-    }
-  }
-}
-
-interface TitleProps {
-  /**
-   * The title for the card.
-   */
-  readonly title: string;
-}
-
-function Title({ title }: TitleProps) {
-  const className = classnames(styles.header);
-
-  return (
-    <div className={className}>
-      <Typography
-        element="h3"
-        size="large"
-        textCase="uppercase"
-        fontWeight="extraBold"
-      >
-        {title}
-      </Typography>
-    </div>
-  );
 }
