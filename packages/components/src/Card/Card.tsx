@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, createRef } from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
 import styles from "./Card.css";
@@ -36,6 +36,7 @@ export function Card({
   title,
   url,
 }: CardPropOptions) {
+  const cardRef = createRef<HTMLDivElement>();
   const className = classnames(
     styles.card,
     accent && styles.accent,
@@ -43,33 +44,39 @@ export function Card({
     accent && colors[accent],
   );
 
-  interface InternalProps {
-    className: string;
-    href?: string;
-    role?: "button";
-    tabIndex?: 0;
-    onClick?(event: React.MouseEvent<HTMLElement>): void;
-  }
-
-  const Tag = url ? "a" : "div";
-  const props: InternalProps = { className };
-
-  if (url) {
-    props.href = url;
-  }
-
-  if (onClick) {
-    props.onClick = onClick;
-    props.role = "button";
-    props.tabIndex = 0;
-  }
-
-  return (
-    <Tag {...props}>
+  const cardCntent = (
+    <>
       {title && <Title title={title} />}
       {children}
-    </Tag>
+    </>
   );
+
+  if (url) {
+    return (
+      <a className={className} href={url}>
+        {cardCntent}
+      </a>
+    );
+  } else {
+    return (
+      <div
+        className={className}
+        ref={cardRef}
+        onClick={onClick}
+        onKeyUp={handleKeyup}
+        role="button"
+        tabIndex={0}
+      >
+        {cardCntent}
+      </div>
+    );
+  }
+
+  function handleKeyup(event: React.KeyboardEvent<HTMLDivElement>) {
+    if (event.key === "Enter" || event.key === " ") {
+      cardRef.current?.click();
+    }
+  }
 }
 
 interface TitleProps {

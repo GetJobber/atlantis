@@ -12,14 +12,17 @@ it("renders a simple card", () => {
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-                            <div
-                              className="card accent purple"
-                            >
-                              <p>
-                                This is the card content.
-                              </p>
-                            </div>
-              `);
+    <div
+      className="card accent purple"
+      onKeyUp={[Function]}
+      role="button"
+      tabIndex={0}
+    >
+      <p>
+        This is the card content.
+      </p>
+    </div>
+  `);
 });
 
 it("renders a card", () => {
@@ -33,6 +36,9 @@ it("renders a card", () => {
   expect(tree).toMatchInlineSnapshot(`
     <div
       className="card accent green"
+      onKeyUp={[Function]}
+      role="button"
+      tabIndex={0}
     >
       <div
         className="header"
@@ -79,17 +85,18 @@ it("renders a clickable card", () => {
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-                <div
-                  className="card accent clickable green"
-                  onClick={[Function]}
-                  role="button"
-                  tabIndex={0}
-                >
-                  <p>
-                    This is a clickable card.
-                  </p>
-                </div>
-        `);
+    <div
+      className="card accent clickable green"
+      onClick={[Function]}
+      onKeyUp={[Function]}
+      role="button"
+      tabIndex={0}
+    >
+      <p>
+        This is a clickable card.
+      </p>
+    </div>
+  `);
 });
 
 test("it should should be clickable if it's clickable", () => {
