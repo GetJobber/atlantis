@@ -1,10 +1,10 @@
 import React from "react";
-import { act, cleanup, render } from "@testing-library/react";
+import { act, cleanup, render, screen, waitFor } from "@testing-library/react";
 import { Tooltip } from ".";
 
 afterEach(cleanup);
 
-test("tooltip shouldn't show up", () => {
+test("tooltip shouldn't show up", async () => {
   const message = "Imma not tip the tool";
   const content = "Don't show my tooltip";
 
@@ -13,7 +13,10 @@ test("tooltip shouldn't show up", () => {
       <div>{content}</div>
     </Tooltip>,
   );
-  expect(queryByText(message)).not.toBeVisible();
+
+  await waitFor(() => {
+    expect(queryByText(message)).not.toBeInTheDocument();
+  });
   expect(getByText(content)).toBeInTheDocument();
 });
 
@@ -33,4 +36,41 @@ test("tooltip should show up on hover", () => {
   });
   expect(getByText(message)).toBeInTheDocument();
   expect(getByText(content)).toBeInTheDocument();
+});
+
+test("tooltip should show up on focus", () => {
+  const message = "Tipping the tool on hover";
+  const content = "Hover on me";
+  const contentID = "hover-on-me";
+
+  render(
+    <Tooltip message={message}>
+      <div data-testid={contentID}>{content}</div>
+    </Tooltip>,
+  );
+
+  act(() => {
+    screen.getByTestId(contentID).dispatchEvent(new Event("focus"));
+  });
+  expect(screen.getByText(message)).toBeInTheDocument();
+});
+
+test("tooltip should disappear on blur", async () => {
+  const message = "Tipping the tool on hover";
+  const content = "Hover on me";
+  const contentID = "hover-on-me";
+
+  render(
+    <Tooltip message={message}>
+      <div data-testid={contentID}>{content}</div>
+    </Tooltip>,
+  );
+
+  act(() => {
+    screen.getByTestId(contentID).dispatchEvent(new Event("blur"));
+  });
+
+  await waitFor(() => {
+    expect(screen.queryByText(message)).not.toBeInTheDocument();
+  });
 });
