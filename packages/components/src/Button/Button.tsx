@@ -55,17 +55,17 @@ interface ButtonLinkProps extends ButtonFoundationProps {
 
 interface BaseActionProps extends ButtonFoundationProps {
   readonly variation?: "work" | "learning";
-  readonly type?: "primary" | "secondary" | "tertiary";
+  readonly type?: "primary" | "secondary" | "tertiary" | "subtle";
 }
 
 interface DestructiveActionProps extends ButtonFoundationProps {
   readonly variation: "destructive";
-  readonly type?: "primary" | "secondary" | "tertiary";
+  readonly type?: "primary" | "secondary" | "tertiary" | "subtle";
 }
 
 interface CancelActionProps extends ButtonFoundationProps {
   readonly variation: "cancel";
-  readonly type?: "secondary" | "tertiary";
+  readonly type?: "secondary" | "tertiary" | "subtle";
 }
 
 interface SubmitActionProps

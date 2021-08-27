@@ -3,6 +3,7 @@ export const work: string;
 export const learning: string;
 export const destructive: string;
 export const cancel: string;
+export const subtle: string;
 export const primary: string;
 export const secondary: string;
 export const tertiary: string;
