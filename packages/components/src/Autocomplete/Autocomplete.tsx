@@ -9,23 +9,11 @@ import { FormFieldProps } from "../FormField";
 
 type OptionCollection = XOR<Option[], GroupOption[]>;
 
-/*
-  align?: "center" | "right";
-  defaultValue?: string;
-  disabled?: boolean;
-  invalid?: boolean;
-  inline?: boolean;
-  loading?: boolean;
-  name?: string;
-  onChange?(newValue: string | number): void;
-  onValidation?(message: string): void;
-  placeholder?: string;
-  size?: "small" | "large";
-  value?: string | number;
-*/
+type AutocompleteBase = Pick<
+  FormFieldProps | "placeholder" | "size" | "invalid" | "onBlur"
+>;
 
-interface AutocompleteProps
-  extends Pick<FormFieldProps | "placeholder" | "size" | "invalid" | "onBlur"> {
+interface Autocomplete extends AutocompleteBase {
   /**
    * Initial options to show when user first focuses the Autocomplete
    */
