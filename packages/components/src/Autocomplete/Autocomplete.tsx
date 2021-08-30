@@ -11,7 +11,7 @@ type OptionCollection = XOR<Option[], GroupOption[]>;
 
 type AutocompleteBaseProps = Pick<
   FormFieldProps,
-  "placeholder" | "size" | "invalid" | "onBlur"
+  "placeholder" | "size" | "invalid" | "onBlur" | "onFocus"
 >;
 
 interface AutocompleteProps extends AutocompleteBaseProps {
