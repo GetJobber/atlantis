@@ -3,7 +3,6 @@ import classnames from "classnames";
 import { XOR } from "ts-xor";
 import styles from "./Card.css";
 import colors from "./colors.css";
-import { Cardlink } from "./CardLink";
 import { CardClickable } from "./CardClickable";
 import { Typography } from "../Typography";
 
@@ -63,17 +62,19 @@ export function Card({
     </>
   );
 
-  if (url) {
-    return (
-      <Cardlink className={className} url={url}>
-        {cardContent}
-      </Cardlink>
-    );
-  } else {
+  if (onClick) {
     return (
       <CardClickable className={className} onClick={onClick}>
         {cardContent}
       </CardClickable>
     );
+  } else if (url) {
+    return (
+      <a className={className} href={url}>
+        {cardContent}
+      </a>
+    );
+  } else {
+    return <div className={className}>{cardContent}</div>;
   }
 }
