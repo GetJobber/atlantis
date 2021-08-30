@@ -1,5 +1,5 @@
 import React from "react";
-import { act, cleanup, render, screen, waitFor } from "@testing-library/react";
+import { act, cleanup, render, waitFor } from "@testing-library/react";
 import { Tooltip } from ".";
 
 afterEach(cleanup);
@@ -43,16 +43,16 @@ test("tooltip should show up on focus", () => {
   const content = "Hover on me";
   const contentID = "hover-on-me";
 
-  render(
+  const { getByTestId, getByText } = render(
     <Tooltip message={message}>
       <div data-testid={contentID}>{content}</div>
     </Tooltip>,
   );
 
   act(() => {
-    screen.getByTestId(contentID).dispatchEvent(new Event("focus"));
+    getByTestId(contentID).dispatchEvent(new Event("focus"));
   });
-  expect(screen.getByText(message)).toBeInTheDocument();
+  expect(getByText(message)).toBeInTheDocument();
 });
 
 test("tooltip should disappear on blur", async () => {
@@ -60,17 +60,18 @@ test("tooltip should disappear on blur", async () => {
   const content = "Hover on me";
   const contentID = "hover-on-me";
 
-  render(
+  const { getByTestId, queryByText } = render(
     <Tooltip message={message}>
       <div data-testid={contentID}>{content}</div>
     </Tooltip>,
   );
 
   act(() => {
-    screen.getByTestId(contentID).dispatchEvent(new Event("blur"));
+    getByTestId(contentID).dispatchEvent(new Event("focus"));
+    getByTestId(contentID).dispatchEvent(new Event("blur"));
   });
 
   await waitFor(() => {
-    expect(screen.queryByText(message)).not.toBeInTheDocument();
+    expect(queryByText(message)).not.toBeInTheDocument();
   });
 });
