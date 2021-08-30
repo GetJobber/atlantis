@@ -9,12 +9,12 @@ import { FormFieldProps } from "../FormField";
 
 type OptionCollection = XOR<Option[], GroupOption[]>;
 
-type AutocompleteBase = Pick<
+type AutocompleteBaseProps = Pick<
   FormFieldProps,
   "placeholder" | "size" | "invalid" | "onBlur"
 >;
 
-interface Autocomplete extends AutocompleteBase {
+interface AutocompleteProps extends AutocompleteBaseProps {
   /**
    * Initial options to show when user first focuses the Autocomplete
    */
