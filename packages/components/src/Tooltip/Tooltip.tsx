@@ -103,7 +103,7 @@ export function Tooltip({ message, children }: TooltipProps) {
     };
 
     const injectAttributes = () => {
-      if (shadowRef.current && shadowRef.current.nextElementSibling) {
+      if (shadowRef?.current?.nextElementSibling) {
         const activator = shadowRef.current.nextElementSibling;
         // Manually inject "aria-description" and "tabindex" to let the screen
         // readers read the tooltip message.
@@ -115,7 +115,7 @@ export function Tooltip({ message, children }: TooltipProps) {
     };
 
     const addListeners = () => {
-      if (shadowRef.current && shadowRef.current.nextElementSibling) {
+      if (shadowRef?.current?.nextElementSibling) {
         const activator = shadowRef.current.nextElementSibling;
         activator.addEventListener("mouseenter", showTooltip);
         activator.addEventListener("mouseleave", hideTooltip);
@@ -125,7 +125,7 @@ export function Tooltip({ message, children }: TooltipProps) {
     };
 
     const removeListeners = () => {
-      if (shadowRef.current && shadowRef.current.nextElementSibling) {
+      if (shadowRef?.current?.nextElementSibling) {
         const activator = shadowRef.current.nextElementSibling;
         activator.removeEventListener("mouseenter", showTooltip);
         activator.removeEventListener("mouseleave", hideTooltip);
