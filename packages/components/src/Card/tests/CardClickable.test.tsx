@@ -1,6 +1,6 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
-import { CardClickable } from "./CardClickable";
+import { CardClickable } from "../CardClickable";
 
 test("it should trigger the click event after enter press", () => {
   const clickHandler = jest.fn();
