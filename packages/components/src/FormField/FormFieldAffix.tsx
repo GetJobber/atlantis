@@ -31,6 +31,7 @@ interface AffixIconProps extends Pick<FormFieldProps, "size"> {
 export function AffixIcon({
   icon,
   onClick,
+  ariaLabel,
   variation = "prefix",
   size,
 }: AffixIconProps & XOR<Affix, Suffix>) {
@@ -46,7 +47,11 @@ export function AffixIcon({
     <div className={affixIconClass}>
       {onClick ? (
         <Button
-          ariaLabel="Input action"
+          /**
+           * We can cast the ariaLabel here as a `Suffix`
+           * requires an ariaLabel if there is an action
+           */
+          ariaLabel={ariaLabel as string}
           icon={icon}
           onClick={onClick}
           type="tertiary"
