@@ -39,9 +39,9 @@ test("tooltip should show up on hover", () => {
 });
 
 test("tooltip should show up on focus", () => {
-  const message = "Tipping the tool on hover";
-  const content = "Hover on me";
-  const contentID = "hover-on-me";
+  const message = "Tipping the tool on focus";
+  const content = "Focus on me";
+  const contentID = "focus-on-me";
 
   const { getByTestId, getByText } = render(
     <Tooltip message={message}>
@@ -56,9 +56,9 @@ test("tooltip should show up on focus", () => {
 });
 
 test("tooltip should disappear on blur", async () => {
-  const message = "Tipping the tool on hover";
-  const content = "Hover on me";
-  const contentID = "hover-on-me";
+  const message = "Untipping the tool on blur";
+  const content = "Blur on me";
+  const contentID = "blur-on-me";
 
   const { getByTestId, queryByText } = render(
     <Tooltip message={message}>
@@ -74,4 +74,19 @@ test("tooltip should disappear on blur", async () => {
   await waitFor(() => {
     expect(queryByText(message)).not.toBeInTheDocument();
   });
+});
+
+test("tooltip should have aria-description and tabindex", () => {
+  const message = "Screen readers read me out loud!";
+  const content = "Browsers focus on me";
+  const contentID = "focus-on-me";
+
+  const { getByTestId } = render(
+    <Tooltip message={message}>
+      <div data-testid={contentID}>{content}</div>
+    </Tooltip>,
+  );
+
+  expect(getByTestId(contentID)).toHaveAttribute("aria-description", message);
+  expect(getByTestId(contentID)).toHaveAttribute("tabindex", "0");
 });
