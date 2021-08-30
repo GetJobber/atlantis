@@ -1,18 +1,42 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import { cleanup, fireEvent, render } from "@testing-library/react";
 import { InlineLabel } from ".";
 
-it("renders correctly", () => {
-  const tree = renderer.create(<InlineLabel>My Label</InlineLabel>).toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <span
-      className="inlineLabel base greyBlue"
-    >
-      <span
-        className="base regular small uppercase"
+afterEach(cleanup);
+
+describe("Basic InlineLabel", () => {
+  it("renders correctly", () => {
+    const { container } = render(<InlineLabel>My Label</InlineLabel>);
+    expect(container).toMatchSnapshot();
+  });
+});
+
+describe("Dismissable InlineLabel", () => {
+  it("renders correctly", () => {
+    const { container } = render(
+      <InlineLabel
+        dismissable
+        dismissAriaLabel="Remove Label"
+        onDismiss={jest.fn()}
       >
         My Label
-      </span>
-    </span>
-  `);
+      </InlineLabel>,
+    );
+    expect(container).toMatchSnapshot();
+  });
+
+  it("triggers onDismiss", () => {
+    const onDismissFn = jest.fn();
+    const { getByLabelText } = render(
+      <InlineLabel
+        dismissable
+        dismissAriaLabel="Remove Label"
+        onDismiss={onDismissFn}
+      >
+        My Label
+      </InlineLabel>,
+    );
+    fireEvent.click(getByLabelText("Remove Label"));
+    expect(onDismissFn).toHaveBeenCalledTimes(1);
+  });
 });
