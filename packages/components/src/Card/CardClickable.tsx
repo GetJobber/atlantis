@@ -42,6 +42,7 @@ export function CardClickable({
   }
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
+    // Prevent page scroll when hitting spacebar while focused on a card
     if (event.key === SPACEBAR_KEY) {
       event.preventDefault();
     }
