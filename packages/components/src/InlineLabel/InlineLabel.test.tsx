@@ -14,11 +14,7 @@ describe("Basic InlineLabel", () => {
 describe("Dismissable InlineLabel", () => {
   it("renders correctly", () => {
     const { container } = render(
-      <InlineLabel
-        dismissable
-        dismissAriaLabel="Remove Label"
-        onDismiss={jest.fn()}
-      >
+      <InlineLabel dismissAriaLabel="Remove Label" onDismiss={jest.fn()}>
         My Label
       </InlineLabel>,
     );
@@ -28,11 +24,7 @@ describe("Dismissable InlineLabel", () => {
   it("triggers onDismiss", () => {
     const onDismissFn = jest.fn();
     const { getByLabelText } = render(
-      <InlineLabel
-        dismissable
-        dismissAriaLabel="Remove Label"
-        onDismiss={onDismissFn}
-      >
+      <InlineLabel dismissAriaLabel="Remove Label" onDismiss={onDismissFn}>
         My Label
       </InlineLabel>,
     );

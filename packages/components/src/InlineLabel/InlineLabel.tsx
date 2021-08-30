@@ -36,7 +36,6 @@ interface BaseInlineLabelProps {
 }
 
 interface DismissableInlineLabelProps extends BaseInlineLabelProps {
-  dismissable: boolean;
   dismissAriaLabel: string;
   onDismiss(): void;
 }
@@ -51,11 +50,11 @@ export function InlineLabel({
   size = "base",
   color = "greyBlue",
   children,
-  dismissable = false,
   dismissAriaLabel,
   onDismiss,
 }: InlineLabelProps) {
   const className = classnames(styles.inlineLabel, styles[size], styles[color]);
+  const dismissable = onDismiss != undefined;
 
   const sizeMapper: SizeMapProps = {
     base: "small",
