@@ -81,6 +81,7 @@ it("renders a clickable card", () => {
   expect(tree).toMatchInlineSnapshot(`
     <div
       className="card accent clickable green"
+      data-testid="clickable-card"
       onClick={[Function]}
       onKeyUp={[Function]}
       role="button"

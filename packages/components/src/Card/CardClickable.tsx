@@ -20,6 +20,7 @@ export function CardClickable({
   return (
     <div
       ref={cardRef}
+      data-testid="clickable-card"
       className={className}
       onClick={onClick}
       onKeyUp={handleKeyup}
