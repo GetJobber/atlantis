@@ -82,5 +82,6 @@
     "last 1 version",
     "> 1%",
     "IE 10"
-  ]
+  ],
+  "gitHead": "ee3e90747b442a88ba044f0aed015b4c5582981d"
 }

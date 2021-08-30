@@ -5,7 +5,7 @@ import styles from "./Autocomplete.css";
 import { Menu } from "./Menu";
 import { AnyOption, GroupOption, Option } from "./Option";
 import { InputText } from "../InputText";
-import { FormFieldProps } from "../FormField";
+import { BaseFormFieldProps } from "../FormField";
 
 type OptionCollection = XOR<Option[], GroupOption[]>;
 
@@ -35,12 +35,12 @@ interface AutocompleteProps {
   /**
    * Adjusts the input text box to either have small or large height.
    */
-  readonly size?: FormFieldProps["size"];
+  readonly size?: BaseFormFieldProps["size"];
 
   /**
    * Highlights the field red to indicate an error.
    */
-  readonly invalid?: FormFieldProps["invalid"];
+  readonly invalid?: BaseFormFieldProps["invalid"];
 
   /**
    * Debounce in milliseconds for getOptions
