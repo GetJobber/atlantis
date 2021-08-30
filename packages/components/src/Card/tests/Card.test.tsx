@@ -83,6 +83,7 @@ it("renders a clickable card", () => {
       className="card accent clickable green"
       data-testid="clickable-card"
       onClick={[Function]}
+      onKeyDown={[Function]}
       onKeyUp={[Function]}
       role="button"
       tabIndex={0}
