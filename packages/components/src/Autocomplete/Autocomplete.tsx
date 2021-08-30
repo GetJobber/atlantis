@@ -10,7 +10,8 @@ import { FormFieldProps } from "../FormField";
 type OptionCollection = XOR<Option[], GroupOption[]>;
 
 type AutocompleteBase = Pick<
-  FormFieldProps | "placeholder" | "size" | "invalid" | "onBlur"
+  FormFieldProps,
+  "placeholder" | "size" | "invalid" | "onBlur"
 >;
 
 interface Autocomplete extends AutocompleteBase {
