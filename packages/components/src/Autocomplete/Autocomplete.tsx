@@ -5,11 +5,27 @@ import styles from "./Autocomplete.css";
 import { Menu } from "./Menu";
 import { AnyOption, GroupOption, Option } from "./Option";
 import { InputText } from "../InputText";
-import { BaseFormFieldProps } from "../FormField";
+import { FormFieldProps } from "../FormField";
 
 type OptionCollection = XOR<Option[], GroupOption[]>;
 
-interface AutocompleteProps {
+/*
+  align?: "center" | "right";
+  defaultValue?: string;
+  disabled?: boolean;
+  invalid?: boolean;
+  inline?: boolean;
+  loading?: boolean;
+  name?: string;
+  onChange?(newValue: string | number): void;
+  onValidation?(message: string): void;
+  placeholder?: string;
+  size?: "small" | "large";
+  value?: string | number;
+*/
+
+interface AutocompleteProps
+  extends Pick<FormFieldProps | "placeholder" | "size" | "invalid" | "onBlur"> {
   /**
    * Initial options to show when user first focuses the Autocomplete
    */
@@ -21,26 +37,11 @@ interface AutocompleteProps {
   readonly value: Option | undefined;
 
   /**
-   * Hint text that goes above the value once the form is filled out.
-   */
-  readonly placeholder: string;
-
-  /**
    * Allow the autocomplete to use values not from the drop down menu.
    *
    * @default true
    */
   readonly allowFreeForm?: boolean;
-
-  /**
-   * Adjusts the input text box to either have small or large height.
-   */
-  readonly size?: BaseFormFieldProps["size"];
-
-  /**
-   * Highlights the field red to indicate an error.
-   */
-  readonly invalid?: BaseFormFieldProps["invalid"];
 
   /**
    * Debounce in milliseconds for getOptions
@@ -65,15 +66,9 @@ interface AutocompleteProps {
   ): OptionCollection | Promise<OptionCollection>;
 
   /**
-   * Blur behaviour (clicking away from the input text or
-   * hitting escape)
+   * Hint text that goes above the value once the form is filled out.
    */
-  onBlur?(): void;
-
-  /**
-   * Focus behaviour (clicking on the input text)
-   */
-  onFocus?(): void;
+  readonly placeholder: string;
 }
 
 /**
