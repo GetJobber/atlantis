@@ -263,6 +263,6 @@
   padding: 0 var(--space-base) 0 0;
 }
 
-.miniLabel .affixLabel {
+.miniLabel:not(.small) .affixLabel {
   padding-top: calc(var(--field--padding-top) - 2px);
 }
