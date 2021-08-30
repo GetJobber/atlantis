@@ -238,20 +238,23 @@
   position: relative;
   z-index: calc(var(--field-base-elevation) + 2);
   align-self: center;
-  padding: 0 var(--space-smaller) 0 var(--space-base);
+  padding: 0 var(--space-smallest) 0
+    calc(var(--space-smallest) + var(--space-small));
 }
 
 .affixIcon.suffix {
-  padding: 0 var(--space-base) 0 0;
+  padding: 0 calc(var(--space-smaller) + var(--space-small)) 0
+    var(--space-smallest);
 }
 
 .affixIcon.hasAction {
   margin-left: calc(var(--space-large) / 2 * -1);
-  padding: 0 var(--space-small) 0 0;
+  padding: 0 calc(var(--space-smaller) + var(--space-smallest)) 0 0;
 }
 
 .affixLabel {
-  padding: 0 0 0 var(--space-base);
+  margin: 0 calc(var(--space-base) * -1) 0 0;
+  padding: 0 var(--space-smaller) 0 var(--space-base);
   flex: 0 0 auto;
   align-self: center;
   user-select: none;
@@ -260,7 +263,8 @@
 }
 
 .affixLabel.suffix {
-  padding: 0 var(--space-base) 0 0;
+  margin: 0 0 0 calc(var(--space-base) * -1);
+  padding: 0 var(--space-base) 0 var(--space-smaller);
 }
 
 .miniLabel:not(.small) .affixLabel {
