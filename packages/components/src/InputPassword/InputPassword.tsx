@@ -1,28 +1,12 @@
 import React from "react";
-import { FormField, FormFieldProps } from "../FormField";
+import { BaseFormFieldProps, FormField, FormFieldProps } from "../FormField";
 
-/**
- * The following is the same as:
- *   type BaseProps = Omit<FormFieldProps, "type" | "children">;
- * Unfortunately Docz doesn't currently support Omit so it has been reduced to
- * its component parts.
- */
 interface InputPasswordProps
-  extends Pick<
-    FormFieldProps,
-    Exclude<
-      keyof FormFieldProps,
-      | "type"
-      | "children"
-      | "rows"
-      | "min"
-      | "max"
-      | "maxLength"
-      | "readonly"
-      | "keyboard"
-      | "actionsRef"
-    >
-  > {
+  extends BaseFormFieldProps,
+    Pick<
+      FormFieldProps,
+      "autocomplete" | "onEnter" | "onFocus" | "onBlur" | "inputRef"
+    > {
   value?: string;
   onChange?(newValue: string): void;
 }

@@ -1,5 +1,5 @@
 import { CivilTime } from "@std-proposal/temporal";
-import { FormFieldProps } from "../FormField";
+import { BaseFormFieldProps, FormFieldProps } from "../FormField";
 
 /**
  * The following is the same as:
@@ -7,20 +7,22 @@ import { FormFieldProps } from "../FormField";
  * Unfortunately Docz doesn't currently support Omit so it has been reduced to
  * its component parts.
  */
-type BaseProps = Pick<
-  FormFieldProps,
-  Exclude<
-    keyof FormFieldProps,
-    | "type"
-    | "children"
-    | "rows"
-    | "defaultValue"
-    | "value"
-    | "onChange"
-    | "keyboard"
-    | "actionsRef"
-  >
->;
+
+interface BaseProps
+  extends BaseFormFieldProps,
+    Pick<
+      FormFieldProps,
+      | "maxLength"
+      | "readonly"
+      | "autocomplete"
+      | "max"
+      | "min"
+      | "onEnter"
+      | "onFocus"
+      | "onBlur"
+      | "inputRef"
+      | "validations"
+    > {}
 
 export interface InputTimeProps extends BaseProps {
   /**

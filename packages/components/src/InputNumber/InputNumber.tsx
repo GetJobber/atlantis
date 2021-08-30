@@ -1,20 +1,23 @@
 import React, { Ref, createRef, forwardRef, useImperativeHandle } from "react";
-import { FormField, FormFieldProps } from "../FormField";
+import { BaseFormFieldProps, FormField, FormFieldProps } from "../FormField";
 
-/**
- * The following is the same as:
- *   type BaseProps = Omit<FormFieldProps, "type" | "children">;
- * Unfortunately Docz doesn't currently support Omit so it has been reduced to
- * its component parts.
- */
 interface InputNumberProps
-  extends Pick<
-    FormFieldProps,
-    Exclude<
-      keyof FormFieldProps,
-      "type" | "children" | "rows" | "keyboard" | "actionsRef"
-    >
-  > {
+  extends BaseFormFieldProps,
+    Pick<
+      FormFieldProps,
+      | "maxLength"
+      | "autocomplete"
+      | "max"
+      | "min"
+      | "onEnter"
+      | "onFocus"
+      | "onBlur"
+      | "inputRef"
+      | "ref"
+      | "key"
+      | "validations"
+      | "readonly"
+    > {
   value?: number;
 }
 

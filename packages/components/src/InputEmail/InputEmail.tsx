@@ -1,24 +1,9 @@
 import React from "react";
-import { FormField, FormFieldProps } from "../FormField";
+import { BaseFormFieldProps, FormField, FormFieldProps } from "../FormField";
 
-type InputEmailProps = Pick<
-  FormFieldProps,
-  Exclude<
-    keyof FormFieldProps,
-    | "children"
-    | "autocomplete"
-    | "max"
-    | "min"
-    | "rows"
-    | "type"
-    | "keyboard"
-    | "onEnter"
-    | "onBlur"
-    | "inputRef"
-    | "actionsRef"
-    | "onFocus"
-  >
->;
+interface InputEmailProps
+  extends BaseFormFieldProps,
+    Pick<FormFieldProps, "maxLength" | "readonly"> {}
 
 export const validationMessage = "Please enter a valid email";
 
@@ -37,7 +22,8 @@ export function InputEmail(props: InputEmailProps) {
   );
 
   function checkForValidEmail(value: string) {
-    const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const emailRegex =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     if (!value) {
       return true;
