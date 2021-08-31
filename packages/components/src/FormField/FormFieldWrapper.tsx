@@ -106,12 +106,16 @@ export function FormFieldWrapper({
 
     if (prefixRef?.current) {
       const { offsetWidth } = prefixRef?.current;
-      newPadding.paddingLeft = value !== "" ? undefined : offsetWidth;
+      newPadding.paddingLeft = value !== "" ? undefined : offset(offsetWidth);
     }
 
     if (suffixRef?.current) {
       const { offsetWidth } = suffixRef?.current;
-      newPadding.paddingRight = value !== "" ? undefined : offsetWidth;
+      newPadding.paddingRight = value !== "" ? undefined : offset(offsetWidth);
+    }
+
+    function offset(width: number) {
+      return `calc(${width}px + var(--space-smallest)`;
     }
 
     return newPadding;

@@ -161,7 +161,7 @@
   --field--padding-bottom: var(--space-small);
 }
 
-.select:not(.small) .input {
+.select .input {
   --field--padding-top: 0;
   --field--padding-bottom: 0;
 }
@@ -224,47 +224,43 @@
 }
 
 /**
- * Affix Icon
+ * Affix
  **/
-.suffix {
-  margin-left: calc(var(--space-base) / 2 * -1);
-}
-
-.prefix {
-  margin-right: calc(var(--space-base) / 2 * -1);
-}
 
 .affixIcon {
-  position: relative;
-  z-index: calc(var(--field-base-elevation) + 2);
-  align-self: center;
-  padding: 0 var(--space-smallest) 0
-    calc(var(--space-smallest) + var(--space-small));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 calc(var(--field--padding-left) * -1) 0 0;
+  /* 
+   * disabling property-no-unknown here as this is a real property
+   * that stylelint just doesn't know about. We may be able to remove
+   * this when we update our stylelint to not care about IE11.
+   */
+  /* stylelint-disable-next-line property-no-unknown */
+  aspect-ratio: 1/1;
 }
 
 .affixIcon.suffix {
-  padding: 0 calc(var(--space-smaller) + var(--space-small)) 0
-    var(--space-smallest);
+  margin: 0 0 0 calc(var(--field--padding-right) * -1);
 }
 
 .affixIcon.hasAction {
-  margin-left: calc(var(--space-large) / 2 * -1);
-  padding: 0 calc(var(--space-smaller) + var(--space-smallest)) 0 0;
+  position: relative;
+  z-index: calc(var(--field-base-elevation) + 2);
 }
 
 .affixLabel {
-  margin: 0 calc(var(--space-base) * -1) 0 0;
-  padding: 0 var(--space-smaller) 0 var(--space-base);
+  display: flex;
+  align-items: center;
   flex: 0 0 auto;
-  align-self: center;
-  user-select: none;
-  pointer-events: none;
-  transition: all var(--timing-quick);
+  margin: 0 calc((var(--field--padding-left) - var(--space-smallest)) * -1) 0 0;
+  padding: 0 0 0 var(--field--padding-left);
 }
 
 .affixLabel.suffix {
-  margin: 0 0 0 calc(var(--space-base) * -1);
-  padding: 0 var(--space-base) 0 var(--space-smaller);
+  margin: 0 0 0 calc((var(--field--padding-left) - var(--space-smallest)) * -1);
+  padding: 0 var(--field--padding-left) 0 0;
 }
 
 .miniLabel:not(.small) .affixLabel {
