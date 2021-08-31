@@ -1,4 +1,4 @@
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import classnames from "classnames";
 import styles from "./{{name}}.css";
 
@@ -17,7 +17,7 @@ interface {{name}}Props {
   /**
    * Click handler.
    */
-  onClick?(): void;
+  onClick?(event: React.MouseEvent<HTMLElement>): void;
 }
 
 export function {{name}}({ loud = false, text, onClick }: {{name}}Props) {

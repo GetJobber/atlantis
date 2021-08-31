@@ -27,7 +27,7 @@ interface ButtonFoundationProps {
   readonly label?: string;
   readonly loading?: boolean;
   readonly size?: "small" | "base" | "large";
-  onClick?(): void;
+  onClick?(event: React.MouseEvent<HTMLElement>): void;
 }
 
 interface ButtonIconProps extends ButtonFoundationProps {
