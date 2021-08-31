@@ -17,7 +17,7 @@ interface {{name}}Props {
   /**
    * Click handler.
    */
-  onClick?(): void;
+  onClick?(event: React.MouseEvent<HTMLElement>): void;
 }
 
 export function {{name}}({ loud = false, text, onClick }: {{name}}Props) {
