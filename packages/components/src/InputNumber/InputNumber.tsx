@@ -13,8 +13,6 @@ interface InputNumberProps
       | "onFocus"
       | "onBlur"
       | "inputRef"
-      | "ref"
-      | "key"
       | "validations"
       | "readonly"
     > {

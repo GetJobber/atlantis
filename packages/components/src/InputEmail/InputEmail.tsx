@@ -3,7 +3,7 @@ import { BaseFormFieldProps, FormField, FormFieldProps } from "../FormField";
 
 interface InputEmailProps
   extends BaseFormFieldProps,
-    Pick<FormFieldProps, "maxLength" | "readonly"> {}
+    Pick<FormFieldProps, "maxLength" | "readonly" | "validations"> {}
 
 export const validationMessage = "Please enter a valid email";
 

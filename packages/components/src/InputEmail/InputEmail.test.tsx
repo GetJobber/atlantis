@@ -1,5 +1,11 @@
 import React from "react";
-import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
+import {
+  act,
+  cleanup,
+  fireEvent,
+  render,
+  waitFor,
+} from "@testing-library/react";
 import { InputEmail, validationMessage } from ".";
 
 afterEach(cleanup);
@@ -12,7 +18,9 @@ it("shows an error message for an invalid email", async () => {
   const input = getByLabelText("Foo");
 
   input.focus();
-  fireEvent.change(input, { target: { value: "not an email" } });
+  act(() => {
+    fireEvent.change(input, { target: { value: "not an email" } });
+  });
   input.blur();
 
   await waitFor(() => {
@@ -28,7 +36,9 @@ it("clears the error message when the email is valid", async () => {
   const input = getByLabelText("Foo");
 
   input.focus();
-  fireEvent.change(input, { target: { value: "not an email" } });
+  act(() => {
+    fireEvent.change(input, { target: { value: "not an email" } });
+  });
   input.blur();
 
   await waitFor(() => {
@@ -36,7 +46,9 @@ it("clears the error message when the email is valid", async () => {
   });
 
   await waitFor(() => {
-    fireEvent.change(input, { target: { value: "email@email.com" } });
+    act(() => {
+      fireEvent.change(input, { target: { value: "email@email.com" } });
+    });
   });
 
   await waitFor(() => {
@@ -52,7 +64,9 @@ it("Doesn't show validation when you're first typing", async () => {
   const input = getByLabelText("Foo");
 
   input.focus();
-  fireEvent.change(input, { target: { value: "not an email" } });
+  act(() => {
+    fireEvent.change(input, { target: { value: "not an email" } });
+  });
 
   await waitFor(() => {
     expect(queryByText(validationMessage)).toBeNull();
