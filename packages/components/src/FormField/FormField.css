@@ -232,13 +232,20 @@
   align-items: center;
   justify-content: center;
   margin: 0 calc(var(--field--padding-left) * -1) 0 0;
-  /* 
-   * disabling property-no-unknown here as this is a real property
-   * that stylelint just doesn't know about. We may be able to remove
-   * this when we update our stylelint to not care about IE11.
-   */
-  /* stylelint-disable-next-line property-no-unknown */
-  aspect-ratio: 1/1;
+  padding: 0 var(--field--padding-right) 0 var(--field--padding-left);
+}
+
+@supports (aspect-ratio: 1/1) {
+  .affixIcon {
+    /* 
+     * disabling property-no-unknown here as this is a real property
+     * that stylelint just doesn't know about. We may be able to remove
+     * this when we update our stylelint to not care about IE11.
+     */
+    /* stylelint-disable-next-line property-no-unknown */
+    aspect-ratio: 1/1;
+    padding: 0;
+  }
 }
 
 .affixIcon.suffix {
