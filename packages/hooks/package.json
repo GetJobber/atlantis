@@ -1,6 +1,6 @@
 {
   "name": "@jobber/hooks",
-  "version": "1.4.1",
+  "version": "1.5.1",
   "license": "MIT",
   "main": "./dist/index.js",
   "types": "./dist/index.d.js",
@@ -23,6 +23,7 @@
     "@types/react": "16.14.2",
     "@types/react-dom": "16.9.10",
     "@types/uuid": "^3.4.5",
+    "@types/zxcvbn": "^4.4.1",
     "graphql": "^14.6.0",
     "typescript": "^3.8.3",
     "uuid": "^3.3.2"
@@ -32,7 +33,8 @@
     "lodash": "^4.17.20",
     "resize-observer-polyfill": "^1.5.1",
     "ts-xor": "^1.0.8",
-    "use-resize-observer": "^6.1.0"
+    "use-resize-observer": "^6.1.0",
+    "zxcvbn": "^4.4.2"
   },
   "peerDependencies": {
     "@apollo/client": "^3.3.16",

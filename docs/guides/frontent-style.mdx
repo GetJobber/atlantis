@@ -15,6 +15,42 @@ we can. To that end this guide serves to document conventions that we can't (or
 haven't yet been able to) automate. Automation is always preferred to adding a
 guidance here.
 
+---
+
+## Property naming conventions
+
+Consider common terminology across components and design foundations when naming
+properties. As Atlantis is a system, end users should expect similar-behaving
+properties to have similar names across the system. For example...
+
+### Base vs "Default" or "Medium" for setting the default option in a range
+
+We use `base` as our default whenever possible when a property has a set range
+of outcomes. This can be seen in..
+
+- the `size` properties of [Button](/components/Button),
+  [Avatar](/components/avatar), [InputText](/components/input-text),
+  [Text](/packages-components-src-text-text),
+  [ProgressBar](/components/progress-bar), [Spinner](/components/spinner), etc;
+- `maxLines` of [Text](/packages-components-src-text-text)
+- values of [Shadow](/elevation), [Spacing](/space),
+  [Border Radius](/border-radius) design tokens
+
+This allows us to set an expectation of the base (or most common) use case when
+a prop is in action.
+
+---
+
+### Open and closed states
+
+If a component has `open` and `closed` states, use a boolean property named
+`open`.
+
+This can be seen in [Modal](/components/modal), [Drawer](/components/drawer),
+and [Popover](/components/popover).
+
+---
+
 ## Typescript
 
 ### Linter Exceptions
@@ -68,6 +104,54 @@ import React, { ReactText, useState } from "react";
 <!--
 ### Choosing Libraries
 -->
+
+---
+
+### Use XOR over Unions for conditional properties
+
+When creating props that will change from required to optional, we prefer to use
+[XOR](https://www.npmjs.com/package/ts-xor) over
+[Unions](https://www.typescriptlang.org/docs/handbook/unions-and-intersections.html).
+This allows us to be more secure with our `interface` by saying a type will
+either be `TypeA` or `TypeB` but never a combination of both.
+
+```tsx
+import { XOR } from "ts-xor";
+
+interface BaseComponentProps {
+  readonly label?: string;
+  readonly icon?: IconNames;
+}
+
+interface ComponentWithActionProps extends BaseComponentProps {
+  readonly icon: IconNames;
+  onClick?(): void;
+}
+
+type ComponentProps = XOR<BaseComponentProps, ComponentWithActionProps>;
+```
+
+In the example above, our `BaseComponentProps` tells us that the `label` and the
+`icon` are both optional properties. In `ComponentWithActionProps` we tell
+typscript that we are extending the `BaseComponentProps`, but the `icon` is now
+a required property, and we have added an additional `onClick` property. The
+result will look something like:
+
+```tsx
+✅
+<Component label="Atlantis" icon="gift" />
+✅
+<Component label="Atlantis" icon="gift" onClick={() => alert('Hello 👋')} />
+✅
+<Component icon="gift" onClick={() => alert('Hello 👋')} />
+❌
+<Component label="Atlantis" onClick={() => alert('Hello 👋')} />
+```
+
+The last example will cause a typescript error because we have now said that if
+an `onClick` is used, then the component must be using the
+`ComponentWithActionProps`. Since that is the case, the `icon` property is now
+required.
 
 ---
 

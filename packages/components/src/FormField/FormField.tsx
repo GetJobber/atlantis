@@ -198,12 +198,16 @@ export function FormField(props: FormFieldProps) {
             onControllerBlur();
           }
 
-          function setAutocomplete(autocompleteSetting: boolean | string) {
-            if (autocompleteSetting === "one-time-code") {
-              return "one-time-code";
+          function setAutocomplete(
+            autocompleteSetting: boolean | FormFieldProps["autocomplete"],
+          ) {
+            if (autocompleteSetting === true) {
+              return undefined;
+            } else if (autocompleteSetting === false) {
+              return "autocomplete-off";
             }
 
-            return autocompleteSetting ? undefined : "autocomplete-off";
+            return autocompleteSetting;
           }
         }}
       />

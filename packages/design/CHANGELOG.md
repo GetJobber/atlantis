@@ -8,6 +8,28 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.15.1...@jobber/design@0.15.2) (2021-08-24)
+
+
+### Bug Fixes
+
+* **design:** Fixed parsing of colors to support rgb and rgba ([#616](https://github.com/GetJobber/atlantis/issues/616)) ([a783dd2](https://github.com/GetJobber/atlantis/commit/a783dd235bebeee98e08953b7b3cf3e82cbe4c70))
+
+
+
+
+
+## [0.15.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.15.0...@jobber/design@0.15.1) (2021-08-24)
+
+
+### Bug Fixes
+
+* **design:** fix the colors until a good fix is available ([#615](https://github.com/GetJobber/atlantis/issues/615)) ([59cc327](https://github.com/GetJobber/atlantis/commit/59cc3273ecd3c3b008d3eb1a4d52cb52eafe6323))
+
+
+
+
+
 # [0.15.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.14.2...@jobber/design@0.15.0) (2021-08-10)
 
 
