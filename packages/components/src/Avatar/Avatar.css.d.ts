@@ -1,4 +1,5 @@
 export const avatar: string;
+export const small: string;
 export const large: string;
 export const isDark: string;
 export const initials: string;

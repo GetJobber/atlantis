@@ -19,6 +19,10 @@
   background-size: cover;
 }
 
+.small {
+  --avatar-size: calc(var(--base-unit) * 1.5);
+}
+
 .large {
   --avatar-size: calc(var(--base-unit) * 4.5);
   --avatar-border-size: var(--border-thick);

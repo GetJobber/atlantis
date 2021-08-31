@@ -1,0 +1,42 @@
+---
+name: Chip
+menu: Components
+route: /components/chip
+showDirectoryLink: true
+---
+
+import { Playground, Props } from "docz";
+import { Chip } from ".";
+
+# Chip
+
+```ts
+import { Chip } from "@jobber/components/Chip";
+```
+
+<Playground>
+  <Chip
+    label="Darth Vader"
+    dismissAction={{
+      ariaLabel: "Remove",
+      onDismiss: () => alert("Luke, I am your father"),
+    }}
+  />
+</Playground>
+
+## Props
+
+<Props of={Chip} />
+
+## With an avatar
+
+<Playground>
+  <Chip
+    avatar={{ name: "Yoda", imageUrl: "https://bit.ly/38rd3Em" }}
+    label="Yoda"
+    dismissAction={{
+      ariaLabel: "Remove",
+      onDismiss: () => alert("🪐 May the Force Be With You"),
+    }}
+  />
+</Playground>

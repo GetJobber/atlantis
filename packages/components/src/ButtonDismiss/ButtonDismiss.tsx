@@ -5,9 +5,14 @@ import { Button } from "../Button";
 interface ButtonDismissProps {
   onClick?(): void;
   ariaLabel: string;
+  size?: "small" | "base";
 }
 
-export function ButtonDismiss({ onClick, ariaLabel }: ButtonDismissProps) {
+export function ButtonDismiss({
+  onClick,
+  ariaLabel,
+  size = "base",
+}: ButtonDismissProps) {
   return (
     <div className={styles.closeButtonWrapper}>
       <Button
@@ -16,6 +21,7 @@ export function ButtonDismiss({ onClick, ariaLabel }: ButtonDismissProps) {
         onClick={onClick}
         type="tertiary"
         variation="cancel"
+        size={size == "small" ? "small" : "base"}
       />
     </div>
   );
