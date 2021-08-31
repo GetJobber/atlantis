@@ -21,7 +21,7 @@ export function ButtonDismiss({
         onClick={onClick}
         type="tertiary"
         variation="cancel"
-        size={size == "small" ? "small" : "base"}
+        size={size}
       />
     </div>
   );
