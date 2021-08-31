@@ -1,30 +1,49 @@
 import React from "react";
+import classnames from "classnames";
 import styles from "./Chip.css";
-import { Avatar, AvatarProps } from "../Avatar";
+import { ChipProps } from "./ChipProps";
+import { Avatar } from "./Avatar";
+import { DismissAction } from "./DismissAction";
+import { Icon } from "./Icon";
 import { Text } from "../Text";
-import { ButtonDismiss } from "../ButtonDismiss";
 
-interface DismissibleAction {
-  ariaLabel: string;
-  onDismiss(): void;
+export function Chip(props: ChipProps) {
+  const { onClick, label, selected = false, disabled = false } = props;
+  const isButton = onClick != undefined && !disabled && !selected;
+  const chipClassNames = classnames(styles.chip, {
+    [styles.selected]: selected,
+    [styles.button]: isButton,
+    [styles.disabled]: disabled,
+  });
+  const Wrapper = isButton ? "span" : "span";
+  return (
+    <Wrapper
+      className={chipClassNames}
+      onClick={handleOnClick}
+      {...(isButton && { "aria-label": label, onClick: handleOnClick })}
+    >
+      <InternalChip {...props} />
+    </Wrapper>
+  );
+
+  function handleOnClick(event: React.MouseEvent<HTMLElement>) {
+    isButton && onClick && onClick(event);
+  }
 }
 
-interface ChipProps {
-  label: string;
-  avatar?: Exclude<AvatarProps, "size">;
-  dismissAction: DismissibleAction;
-}
-
-export function Chip({
+function InternalChip({
   label,
   avatar,
-  dismissAction: { ariaLabel, onDismiss },
+  dismissAction,
+  disabled,
+  icon,
 }: ChipProps) {
   return (
-    <span className={styles.chip}>
+    <>
+      {icon && <Icon name={icon} />}
       {avatar && <Avatar {...avatar} size="small" />}
       <Text>{label}</Text>
-      <ButtonDismiss ariaLabel={ariaLabel} onClick={onDismiss} size="small" />
-    </span>
+      {dismissAction && !disabled && <DismissAction {...dismissAction} />}
+    </>
   );
 }

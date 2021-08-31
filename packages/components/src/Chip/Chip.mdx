@@ -17,9 +17,10 @@ import { Chip } from "@jobber/components/Chip";
 <Playground>
   <Chip
     label="Darth Vader"
+    onClick={() => alert("hi")}
     dismissAction={{
       ariaLabel: "Remove",
-      onDismiss: () => alert("Luke, I am your father"),
+      onRequestDismiss: () => alert("Luke, I am your father"),
     }}
   />
 </Playground>
@@ -34,9 +35,55 @@ import { Chip } from "@jobber/components/Chip";
   <Chip
     avatar={{ name: "Yoda", imageUrl: "https://bit.ly/38rd3Em" }}
     label="Yoda"
+    onClick={() => alert("hi")}
     dismissAction={{
       ariaLabel: "Remove",
-      onDismiss: () => alert("🪐 May the Force Be With You"),
+      onRequestDismiss: () => alert("🪐 May the Force Be With You"),
+    }}
+  />
+</Playground>
+
+## With an icon
+
+<Playground>
+  <Chip
+    icon="checkmark"
+    label="Yoda"
+    onClick={() => alert("hi")}
+    dismissAction={{
+      ariaLabel: "Remove",
+      onRequestDismiss: () => alert("🪐 May the Force Be With You"),
+    }}
+  />
+</Playground>
+
+## Selected
+
+<Playground>
+  <Chip
+    avatar={{ name: "Yoda", imageUrl: "https://bit.ly/38rd3Em" }}
+    label="Yoda"
+    selected
+    onClick={() => alert("hi")}
+    dismissAction={{
+      ariaLabel: "Remove",
+      onRequestDismiss: () => alert("🪐 May the Force Be With You"),
+    }}
+  />
+</Playground>
+
+## Disabled
+
+<Playground>
+  <Chip
+    avatar={{ name: "Yoda", imageUrl: "https://bit.ly/38rd3Em" }}
+    label="Yoda"
+    selected
+    disabled
+    onClick={() => alert("hi")}
+    dismissAction={{
+      ariaLabel: "Remove",
+      onRequestDismiss: () => alert("🪐 May the Force Be With You"),
     }}
   />
 </Playground>
