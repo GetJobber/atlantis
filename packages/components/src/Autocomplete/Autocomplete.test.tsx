@@ -121,7 +121,7 @@ test("it should display headers when headers are passed in", () => {
     .create(
       <Autocomplete
         value={undefined}
-        onChange={jest.fn}
+        onChange={jest.fn()}
         initialOptions={headingOptions}
         getOptions={returnOptions([])}
         placeholder="placeholder_name"
