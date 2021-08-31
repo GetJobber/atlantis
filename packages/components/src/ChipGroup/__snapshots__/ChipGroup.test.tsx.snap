@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders an empty Chip Group 1`] = `
+<div>
+  <span
+    style="display: flex; gap: var(--space-base);"
+  />
+</div>
+`;
