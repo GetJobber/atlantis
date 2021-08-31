@@ -16,7 +16,9 @@ export function AffixLabel({
   variation = "prefix",
   labelRef,
 }: AffixLabelProps) {
-  const affixLabelClass = classnames(styles.affixLabel, styles[variation]);
+  const affixLabelClass = classnames(styles.affixLabel, {
+    [styles.suffix]: variation === "suffix",
+  });
 
   return (
     <div ref={labelRef} className={affixLabelClass}>
@@ -35,7 +37,8 @@ export function AffixIcon({
   variation = "prefix",
   size,
 }: AffixIconProps & XOR<Affix, Suffix>) {
-  const affixIconClass = classnames(styles.affixIcon, styles[variation], {
+  const affixIconClass = classnames(styles.affixIcon, {
+    [styles.suffix]: variation === "suffix",
     [styles.hasAction]: onClick,
   });
 
