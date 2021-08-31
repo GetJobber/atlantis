@@ -34,6 +34,5 @@
   },
   "devDependencies": {
     "@types/react-helmet": "^6.1.1"
-  },
-  "gitHead": "3b5bd7b2b73220548efc557d6319b20da2f93162"
+  }
 }
