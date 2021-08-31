@@ -73,7 +73,7 @@ it("renders a link card", () => {
 it("renders a clickable card", () => {
   const tree = renderer
     .create(
-      <Card accent="green" onClick={() => {}}>
+      <Card accent="green" onClick={jest.fn}>
         <p>This is a clickable card.</p>
       </Card>,
     )

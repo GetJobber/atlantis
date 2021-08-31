@@ -53,7 +53,7 @@ it("renders an Autocomplete", () => {
       <Autocomplete
         value={undefined}
         initialOptions={options}
-        onChange={() => {}}
+        onChange={jest.fn}
         getOptions={returnOptions([])}
         placeholder="placeholder_name"
       />,
@@ -121,7 +121,7 @@ test("it should display headers when headers are passed in", () => {
     .create(
       <Autocomplete
         value={undefined}
-        onChange={() => {}}
+        onChange={jest.fn}
         initialOptions={headingOptions}
         getOptions={returnOptions([])}
         placeholder="placeholder_name"
