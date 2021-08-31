@@ -7,8 +7,8 @@
   --chip-padding--vertical: var(--space-smallest);
   --chip-padding--horizontal: var(--space-small);
   --chip-padding: var(--chip-padding--vertical) var(--chip-padding--horizontal);
-  --chip-shadow: var(--shadow-base);
-  --chip-shadow-hover: var(--shadow-high);
+  --chip-shadow: var(--shadow-low);
+  --chip-shadow-hover: var(--shadow-base);
 
   display: flex;
   max-width: fit-content;
@@ -22,7 +22,7 @@
 
 .chip:hover {
   box-shadow: var(--chip-shadow-hover);
-  transition: all var(--timing-slow) ease-in-out;
+  transition: all var(--timing-base) ease-in-out;
 }
 
 .chip p {

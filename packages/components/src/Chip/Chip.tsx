@@ -22,7 +22,7 @@ export function Chip({
 }: ChipProps) {
   return (
     <span className={styles.chip}>
-      <div>{avatar && <Avatar {...avatar} size="small" />}</div>
+      {avatar && <Avatar {...avatar} size="small" />}
       <Text>{label}</Text>
       <ButtonDismiss ariaLabel={ariaLabel} onClick={onDismiss} size="small" />
     </span>
