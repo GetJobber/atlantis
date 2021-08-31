@@ -6,6 +6,7 @@ showDirectoryLink: true
 ---
 
 import { Playground, Props } from "docz";
+import { useState } from "react";
 import { Chip } from ".";
 
 # Chip
@@ -60,16 +61,23 @@ import { Chip } from "@jobber/components/Chip";
 ## Selected
 
 <Playground>
-  <Chip
-    avatar={{ name: "Yoda", imageUrl: "https://bit.ly/38rd3Em" }}
-    label="Yoda"
-    selected
-    onClick={() => alert("hi")}
-    dismissAction={{
-      ariaLabel: "Remove",
-      onRequestDismiss: () => alert("🪐 May the Force Be With You"),
-    }}
-  />
+  {() => {
+    const [selected, setSelected] = useState(false);
+    return (
+      <Chip
+        avatar={{ name: "Yoda", imageUrl: "https://bit.ly/38rd3Em" }}
+        label="Yoda"
+        selected={selected}
+        onClick={() => setSelected(true)}
+        {...(selected && {
+          dismissAction: {
+            ariaLabel: "Remove",
+            onRequestDismiss: () => setSelected(false),
+          },
+        })}
+      />
+    );
+  }}
 </Playground>
 
 ## Disabled
