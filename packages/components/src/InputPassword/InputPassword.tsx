@@ -5,7 +5,12 @@ interface InputPasswordProps
   extends BaseFormFieldProps,
     Pick<
       FormFieldProps,
-      "autocomplete" | "onEnter" | "onFocus" | "onBlur" | "inputRef"
+      | "autocomplete"
+      | "onEnter"
+      | "onFocus"
+      | "onBlur"
+      | "inputRef"
+      | "validations"
     > {
   value?: string;
   onChange?(newValue: string): void;
