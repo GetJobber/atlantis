@@ -9,8 +9,15 @@
 }
 
 .swatch {
+  position: relative;
   height: var(--space-extravagant);
   margin-bottom: var(--space-small);
+}
+
+.button {
+  position: absolute;
+  top: var(--space-smaller);
+  right: var(--space-smaller);
 }
 
 .pre {
@@ -18,6 +25,6 @@
   margin: 0 0 var(--space-smaller);
   padding: var(--space-smallest) var(--space-small);
   border-radius: var(--radius-base);
-  font-size: var(--typography--fontSize-base);
+  font-size: var(--typography--fontSize-small);
   background: var(--color-surface--background);
 }

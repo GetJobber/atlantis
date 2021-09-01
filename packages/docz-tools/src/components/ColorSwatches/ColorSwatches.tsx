@@ -11,7 +11,7 @@ interface ColorSwatchesProps {
 export function ColorSwatches({ colors }: ColorSwatchesProps) {
   return (
     <div className={styles.colorbar}>
-      {colors.map(color => (
+      {colors.map((color: string) => (
         <Color key={color} color={color} />
       ))}
     </div>
@@ -23,19 +23,26 @@ interface ColorProps {
 }
 
 function Color({ color }: ColorProps) {
+  const colorsWithBorders = [
+    "--color-overlay--dimmed",
+    "--color-surface",
+    "--color-text--reverse",
+  ];
   const style = {
     backgroundColor: `var(${color})`,
+    border: colorsWithBorders.includes(color)
+      ? "1px solid var(--color-border)"
+      : undefined,
   };
+
   return (
     <div className={styles.color}>
-      <div key={color} style={style} className={styles.swatch} />
+      <div key={color} style={style} className={styles.swatch}>
+        <div className={styles.button}>
+          <Button size="small" icon="copy" onClick={handleClick} />
+        </div>
+      </div>
       <pre className={styles.pre}>{color}</pre>
-      <Button
-        size="small"
-        label="Copy to clipboard"
-        type="tertiary"
-        onClick={handleClick}
-      />
     </div>
   );
 

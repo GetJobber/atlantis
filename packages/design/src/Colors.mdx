@@ -5,6 +5,8 @@ route: /colors
 ---
 
 import { ColorSwatches } from "@jobber/docx";
+import { ColorSwatches as Swatch } from "@jobber/docz-tools";
+
 import colors from "../colors";
 
 # Colors
@@ -33,36 +35,13 @@ readability.
 
 #### Heading
 
-<div
-  style="width:100%;
-  height:var(--space-extravagant);
-  background-color:var(--color-heading)"
-></div>
-
-`--color-heading`
+<Swatch colors={[`--color-heading`]} />
 
 Headings have a bold, high-contrast color to cement their hierarchy.
 
 #### Text
 
-<div
-  style="width:100%;
-  height:var(--space-extravagant);
-  display:flex;"
->
-  <div
-    style="flex: 1;
-    height:var(--space-extravagant);
-    background-color:var(--color-text)"
-  ></div>
-  <div
-    style="flex: 1;
-    height:var(--space-extravagant);
-    background-color:var(--color-text--secondary)"
-  ></div>
-</div>
-
-`--color-text` | `--color-text--secondary`
+<Swatch colors={[`--color-text`, "--color-text--secondary"]} />
 
 A slightly softer color is used for body text for greater readability.
 
@@ -72,25 +51,9 @@ more important text content already present.
 
 ##### Text--Reverse
 
-<div
-  style="width:100%;
-  height:var(--space-extravagant);
-  display:flex;
-  box-shadow:var(--shadow-base);"
->
-  <div
-    style="flex: 1;
-    height:var(--space-extravagant);
-    background-color:var(--color-text--reverse)"
-  ></div>
-  <div
-    style="flex: 1;
-    height:var(--space-extravagant);
-    background-color:var(--color-text--reverse--secondary)"
-  ></div>
-</div>
-
-`--color-text--reverse` | `--color-text--reverse--secondary`
+<Swatch
+  colors={[`--color-text--reverse`, "--color-text--reverse--secondary"]}
+/>
 
 When used against a [reversed surface](#surface--reverse), reversed text should
 be used to maintain readability.
@@ -110,94 +73,26 @@ currently tied our interactive color to our brand color._
 
 #### Interactive
 
-<div
-  style="width:100%;
-  height:var(--space-extravagant);
-  display:flex;"
->
-  <div
-    style="width:100%;
-    height:var(--space-extravagant);
-    background-color:var(--color-interactive)"
-  ></div>
-  <div
-    style="width:100%;
-    height:var(--space-extravagant);
-    background-color:var(--color-interactive--hover)"
-  ></div>
-</div>
-
-`--color-interactive` | `--color-interactive--hover`
+<Swatch colors={[`--color-interactive`, "--color-interactive--hover"]} />
 
 The default color used for interactive elements.
 
 #### Destructive
 
-<div
-  style="width:100%;
-  height:var(--space-extravagant);
-  display:flex;"
->
-  <div
-    style="width:100%;
-    height:var(--space-extravagant);
-    background-color:var(--color-destructive)"
-  ></div>
-  <div
-    style="width:100%;
-    height:var(--space-extravagant);
-    background-color:var(--color-destructive--hover)"
-  ></div>
-</div>
-
-`--color-destructive` | `--color-destructive--hover`
+<Swatch colors={[`--color-destructive`, "--color-destructive--hover"]} />
 
 Use to signify that an interaction will destroy something in the users’ account
 or workflow.
 
 #### Cancel
 
-<div
-  style="width:100%;
-  height:var(--space-extravagant);
-  display:flex;"
->
-  <div
-    style="width:100%;
-    height:var(--space-extravagant);
-    background-color:var(--color-cancel)"
-  ></div>
-  <div
-    style="width:100%;
-    height:var(--space-extravagant);
-    background-color:var(--color-cancel--hover)"
-  ></div>
-</div>
-
-`--color-cancel` | `--color-cancel--hover`
+<Swatch colors={[`--color-cancel`, "--color-cancel--hover"]} />
 
 Use to signify that an interaction will cancel or exit a workflow.
 
 #### Disabled
 
-<div
-  style="width:100%;
-  height:var(--space-extravagant);
-  display:flex;"
->
-  <div
-    style="width:100%;
-    height:var(--space-extravagant);
-    background-color:var(--color-disabled)"
-  ></div>
-  <div
-    style="width:100%;
-    height:var(--space-extravagant);
-    background-color:var(--color-disabled--secondary)"
-  ></div>
-</div>
-
-`--color-disabled` | `--color-disabled--secondary`
+<Swatch colors={[`--color-disabled`, "--color-disabled--secondary"]} />
 
 Use to signify that an interactive element is disabled.
 
@@ -231,142 +126,61 @@ sufficient color contrast.
 
 #### Critical
 
-<div
-  style="width:100%;
-  height:var(--space-extravagant);
-  display:flex;"
->
-  <div
-    style="flex: 1;
-    height:var(--space-extravagant);
-    background-color:var(--color-critical)"
-  ></div>
-  <div
-    style="flex: 1;
-    height:var(--space-extravagant);
-    background-color:var(--color-critical--surface)"
-  ></div>
-  <div
-    style="flex: 1;
-    height:var(--space-extravagant);
-    background-color:var(--color-critical--onSurface)"
-  ></div>
-</div>
-
-`--color-critical` | `--color-critical--surface` | `--color-critical--onSurface`
+<Swatch
+  colors={[
+    "--color-critical",
+    "--color-critical--surface",
+    "--color-critical--onSurface",
+  ]}
+/>
 
 Action required; user must see this status to be unblocked.
 
 #### Warning
 
-<div
-  style="width:100%;
-  height:var(--space-extravagant);
-  display:flex;"
->
-  <div
-    style="flex: 1;
-    height:var(--space-extravagant);
-    background-color:var(--color-warning)"
-  ></div>
-  <div
-    style="flex: 1;
-    height:var(--space-extravagant);
-    background-color:var(--color-warning--surface)"
-  ></div>
-  <div
-    style="flex: 1;
-    height:var(--space-extravagant);
-    background-color:var(--color-warning--onSurface)"
-  ></div>
-</div>
-
-`--color-warning` | `--color-warning--surface` | `--color-warning--onSurface`
+<Swatch
+  colors={[
+    "--color-warning",
+    "--color-warning--surface",
+    "--color-warning--onSurface",
+  ]}
+/>
 
 Action _may_ be required as a consequence of current state.
 
 #### Success
 
-<div
-  style="width:100%;
-  height:var(--space-extravagant);
-  display:flex;"
->
-  <div
-    style="flex: 1;
-    height:var(--space-extravagant);
-    background-color:var(--color-success)"
-  ></div>
-  <div
-    style="flex: 1;
-    height:var(--space-extravagant);
-    background-color:var(--color-success--surface)"
-  ></div>
-  <div
-    style="flex: 1;
-    height:var(--space-extravagant);
-    background-color:var(--color-success--onSurface)"
-  ></div>
-</div>
-
-`--color-success` | `--color-success--surface` | `--color-success--onSurface`
+<Swatch
+  colors={[
+    "--color-success",
+    "--color-success--surface",
+    "--color-success--onSurface",
+  ]}
+/>
 
 No action required; an action has completed successfully.
 
 #### Informative
 
-<div
-  style="width:100%;
-  height:var(--space-extravagant);
-  display:flex;"
->
-  <div
-    style="flex: 1;
-    height:var(--space-extravagant);
-    background-color:var(--color-informative)"
-  ></div>
-  <div
-    style="flex: 1;
-    height:var(--space-extravagant);
-    background-color:var(--color-informative--surface)"
-  ></div>
-  <div
-    style="flex: 1;
-    height:var(--space-extravagant);
-    background-color:var(--color-informative--onSurface)"
-  ></div>
-</div>
-
-`--color-informative` | `--color-informative--surface` |
-`--color-informative--onSurface`
+<Swatch
+  colors={[
+    "--color-informative",
+    "--color-informative--surface",
+    "--color-informative--onSurface",
+  ]}
+/>
 
 No action required; but helpful to know about.
 
 #### Inactive
 
-<div
-  style="width:100%;
-  height:var(--space-extravagant);
-  display:flex;"
->
-  <div
-    style="flex: 1;
-    height:var(--space-extravagant);
-    background-color:var(--color-inactive)"
-  ></div>
-  <div
-    style="flex: 1;
-    height:var(--space-extravagant);
-    background-color:var(--color-inactive--surface)"
-  ></div>
-  <div
-    style="flex: 1;
-    height:var(--space-extravagant);
-    background-color:var(--color-inactive--onSurface)"
-  ></div>
-</div>
-
-`--color-inactive` | `--color-inactive--surface` | `--color-inactive--onSurface`
+<Swatch
+  colors={[
+    "--color-inactive",
+    "--color-inactive--surface",
+    "--color-inactive--onSurface",
+  ]}
+/>
 
 No action required; not part of an active workflow.
 
@@ -378,30 +192,13 @@ focus.
 
 #### Surface
 
-<div
-  style="width:100%;
-  height:var(--space-extravagant);
-  display:flex;
-  box-shadow: var(--shadow-base)"
->
-  <div
-    style="flex: 1;
-    height:var(--space-extravagant);
-    background-color:var(--color-surface)"
-  ></div>
-  <div
-    style="flex: 1;
-    height:var(--space-extravagant);
-    background-color:var(--color-surface--hover)"
-  ></div>
-  <div
-    style="flex: 1;
-    height:var(--space-extravagant);
-    background-color:var(--color-surface--active)"
-  ></div>
-</div>
-
-`--color-surface` | `--color-surface--hover` | `--color-surface--active`
+<Swatch
+  colors={[
+    "--color-surface",
+    "--color-surface--hover",
+    "--color-surface--active",
+  ]}
+/>
 
 Most elements in Jobber have a light surface to indicate their nearness to the
 user; if interactive, they have a hover color and an active color to indicate
@@ -409,38 +206,20 @@ state.
 
 #### Surface--Background
 
-<div
-  style="width:100%;
-  height:var(--space-extravagant);
-  background-color:var(--color-surface--background);"
-></div>
-
-`--color-surface--background`
+<Swatch colors={["--color-surface--background"]} />
 
 A slightly darker surface gives a receded appearance relative to main surfaces.
 
 #### Surface--Reverse
 
-<div
-  style="width:100%;
-  height:var(--space-extravagant);
-  background-color:var(--color-surface--reverse);"
-></div>
-
-`--color-surface--reverse`
+<Swatch colors={["--color-surface--reverse"]} />
 
 Use a reversed surface when a strong contrast is needed with the rest of the
 application.
 
 #### Overlay
 
-<div
-  style="width:100%;
-  height:var(--space-extravagant);
-  background-color:var(--color-overlay);"
-></div>
-
-`--color-overlay`
+<Swatch colors={["--color-overlay"]} />
 
 Use to mask an area of the interface to promote focus to a foreground action,
 such as a [Modal](/components/modal)’s appearance. Overlay includes built-in
@@ -448,14 +227,7 @@ opacity values.
 
 #### Overlay--Dimmed
 
-<div
-  style="width:100%;
-  height:var(--space-extravagant);
-  background-color:var(--color-overlay--dimmed);
-  box-shadow: var(--shadow-base);"
-></div>
-
-`--color-overlay--dimmed`
+<Swatch colors={["--color-overlay--dimmed"]} />
 
 A transparent version of [Surface](#surface), this masks an area of the
 interface to indicate inactivity (i.e. waiting for updates). Overlay--Dimmed
@@ -500,26 +272,14 @@ Use these colors to represent the Jobber brand visual language.
 
 #### Brand
 
-<div
-  style="width:100%;
-  height:var(--space-extravagant);
-  background-color:var(--color-brand);"
-></div>
-
-`--color-brand`
+<Swatch colors={["--color-brand"]} />
 
 The primary color associated with our brand, from website to ads to product; AKA
 “Jobber Green”.
 
 #### Brand--Highlight
 
-<div
-  style="width:100%;
-  height:var(--space-extravagant);
-  background-color:var(--color-brand--highlight);"
-></div>
-
-`--color-brand--highlight`
+<Swatch colors={["--color-brand--highlight"]} />
 
 Use to highlight an element in a way that aligns with our website. Use with
 caution, it’s _bright!_
