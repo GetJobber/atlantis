@@ -8,15 +8,13 @@ interface BaseChipProps {
   label: string;
   onClick?(event: React.MouseEvent<HTMLElement>): void;
   avatar?: Avatar;
-  icon?: Icon;
+  icon?: IconNames;
   selected?: boolean;
   disabled?: boolean;
   dismissAction?: DismissibleAction;
 }
 
 export type Avatar = Exclude<AvatarProps, "size">;
-
-export type Icon = IconNames;
 
 export interface DismissibleAction {
   ariaLabel: string;

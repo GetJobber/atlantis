@@ -4,7 +4,7 @@ import styles from "./Chip.css";
 import { ChipProps } from "./ChipProps";
 import { Avatar } from "./Avatar";
 import { DismissAction } from "./DismissAction";
-import { Icon } from "./Icon";
+import { Icon } from "../Icon";
 import { Text } from "../Text";
 
 export function Chip(props: ChipProps) {
@@ -33,6 +33,7 @@ export function Chip(props: ChipProps) {
 
 function InternalChip({
   label,
+  selected,
   avatar,
   dismissAction,
   disabled,
@@ -40,7 +41,7 @@ function InternalChip({
 }: ChipProps) {
   return (
     <>
-      {icon && <Icon name={icon} />}
+      {icon && <Icon name={icon} {...(selected && { color: "white" })} />}
       {avatar && <Avatar {...avatar} size="small" />}
       <Text>{label}</Text>
       {dismissAction && !disabled && <DismissAction {...dismissAction} />}
