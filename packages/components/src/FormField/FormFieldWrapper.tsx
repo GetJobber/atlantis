@@ -99,19 +99,20 @@ export function FormFieldWrapper({
   );
 
   function getAffixPaddding() {
+    const hasValue = value !== "";
     const newPadding: LabelPadding = {
       paddingLeft: undefined,
       paddingRight: undefined,
     };
 
-    if (prefixRef?.current) {
+    if (prefixRef?.current && !hasValue) {
       const { offsetWidth } = prefixRef?.current;
-      newPadding.paddingLeft = value !== "" ? undefined : offset(offsetWidth);
+      newPadding.paddingLeft = offset(offsetWidth);
     }
 
-    if (suffixRef?.current) {
+    if (suffixRef?.current && !hasValue) {
       const { offsetWidth } = suffixRef?.current;
-      newPadding.paddingRight = value !== "" ? undefined : offset(offsetWidth);
+      newPadding.paddingRight = offset(offsetWidth);
     }
 
     function offset(width: number) {

@@ -1,6 +1,6 @@
 :root {
   /**
-   * These `--public-field` properties are used in other components such 
+   * These `--public-field` properties are used in other components such
    * as InputGroup, therefore they must stay on :root
    **/
   --public-field--top-left-radius: var(--radius-base);
@@ -9,7 +9,7 @@
   --public-field--bottom-right-radius: var(--radius-base);
 }
 
-/** 
+/**
  * Wrapper
  **/
 .wrapper {
@@ -28,7 +28,11 @@
 
   --field--border-color: var(--color-border);
   --field--background-color: var(--color-surface);
-  --field-base-elevation: var(--elevation-base);
+
+  --field--base-elevation: var(--elevation-base);
+  --field--label-elevation: calc(var(--field--base-elevation) + 1);
+  --field--postfix-elevation: calc(var(--field--base-elevation) - 1);
+  --field--postfix-action-elevation: calc(var(--field--base-elevation) + 2);
 
   display: flex;
   width: 100%;
@@ -53,6 +57,7 @@
 }
 
 .miniLabel {
+  --field--label-elevation: calc(var(--field--base-elevation) - 1);
   --field--placeholder-color: var(--color-text--secondary);
   --field--placeholder-offset: var(--space-smallest);
   --field--placeholder-transform: 0;
@@ -117,8 +122,8 @@
  **/
 .inputWrapper {
   display: flex;
-  position: relative;
   flex: 1;
+  position: relative;
 }
 
 /**
@@ -126,7 +131,7 @@
  **/
 .input {
   position: relative;
-  z-index: var(--field-base-elevation);
+  z-index: var(--field--base-elevation);
   width: 100%;
   padding-top: var(--field--padding-top);
   padding-bottom: var(--field--padding-bottom);
@@ -176,7 +181,7 @@
 .label {
   position: absolute;
   top: var(--field--placeholder-offset);
-  z-index: calc(var(--field-base-elevation) + 1);
+  z-index: var(--field--label-elevation);
   width: 100%;
   padding-left: var(--field--padding-left);
   padding-right: var(--field--padding-right);
@@ -191,7 +196,6 @@
 }
 
 .miniLabel .label {
-  z-index: calc(var(--field-base-elevation) - 1);
   font-size: calc(var(--base-unit) * 0.875);
 }
 
@@ -219,7 +223,7 @@
   position: absolute;
   top: 50%;
   right: var(--space-base);
-  z-index: calc(var(--field-base-elevation) - 1);
+  z-index: var(--field--postfix-elevation);
   transform: translateY(-50%);
 }
 
@@ -237,7 +241,7 @@
 
 @supports (aspect-ratio: 1/1) {
   .affixIcon {
-    /* 
+    /*
      * disabling property-no-unknown here as this is a real property
      * that stylelint just doesn't know about. We may be able to remove
      * this when we update our stylelint to not care about IE11.
@@ -254,7 +258,7 @@
 
 .affixIcon.hasAction {
   position: relative;
-  z-index: calc(var(--field-base-elevation) + 2);
+  z-index: var(--field--postfix-action-elevation);
 }
 
 .affixLabel {
