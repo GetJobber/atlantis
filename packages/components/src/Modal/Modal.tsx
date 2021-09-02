@@ -2,6 +2,7 @@ import React, { ReactNode, RefObject, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
+import { useOnKeyDown } from "@jobber/hooks";
 import styles from "./Modal.css";
 import sizes from "./Sizes.css";
 import { Typography } from "../Typography";
@@ -41,11 +42,8 @@ export function Modal({
   // TODO: figure out how to declare without the as
   const modalRef = useFocusTrap<HTMLDivElement>() as RefObject<HTMLDivElement>;
 
-  useEffect(() => {
-    modalRef.current?.focus();
-  }, [open]);
-
-  catchKeyboardEvent("Escape", open, onRequestClose);
+  useEffect(() => modalRef.current?.focus(), [open]);
+  useOnKeyDown(handleRequestClose, "Escape");
 
   const template = (
     <AnimatePresence>
@@ -92,6 +90,12 @@ export function Modal({
   );
 
   return ReactDOM.createPortal(template, document.body);
+
+  function handleRequestClose() {
+    if (open && onRequestClose) {
+      onRequestClose();
+    }
+  }
 }
 
 function useFocusTrap<T extends HTMLElement>() {
@@ -137,26 +141,6 @@ function useFocusTrap<T extends HTMLElement>() {
   });
 
   return ref;
-}
-
-function catchKeyboardEvent(
-  key: string,
-  isModalOpen: boolean,
-  callback?: { (): void },
-) {
-  useEffect(() => {
-    const handler = (event: { key: string }) => {
-      if (isModalOpen && callback && event.key === key) {
-        callback();
-      }
-    };
-
-    window.addEventListener("keydown", handler);
-
-    return () => {
-      window.removeEventListener("keydown", handler);
-    };
-  });
 }
 
 interface HeaderProps {
