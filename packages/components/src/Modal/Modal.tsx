@@ -117,7 +117,7 @@ function useFocusTrap<T extends HTMLElement>() {
     const elements = ref.current.querySelectorAll<HTMLElement>(
       focusables.join(", "),
     );
-    const firstElement = elements[0];
+    const firstElement = ref.current;
     const lastElement = elements[elements.length - 1];
 
     if (event.shiftKey) {
