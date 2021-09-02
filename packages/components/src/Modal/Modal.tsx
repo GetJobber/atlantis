@@ -38,14 +38,11 @@ export function Modal({
   onRequestClose,
 }: ModalProps) {
   const modalClassName = classnames(styles.modal, size && sizes[size]);
-  const modalContainer: RefObject<HTMLDivElement> = useRef(
-    document.createElement("div"),
-  );
+  // TODO: figure out how to declare without the as
+  const modalRef = useFocusTrap<HTMLDivElement>() as RefObject<HTMLDivElement>;
 
   useEffect(() => {
-    if (modalContainer.current) {
-      modalContainer.current.focus();
-    }
+    modalRef.current?.focus();
   }, [open]);
 
   catchKeyboardEvent("Escape", open, onRequestClose);
@@ -53,7 +50,7 @@ export function Modal({
   const template = (
     <AnimatePresence>
       {open && (
-        <div ref={modalContainer} className={styles.container} tabIndex={0}>
+        <div ref={modalRef} className={styles.container} tabIndex={0}>
           <motion.div
             key={styles.overlay}
             className={styles.overlay}
@@ -95,6 +92,51 @@ export function Modal({
   );
 
   return ReactDOM.createPortal(template, document.body);
+}
+
+function useFocusTrap<T extends HTMLElement>() {
+  const ref = useRef<T>();
+  const focusables = [
+    "button",
+    "[href]",
+    "input",
+    "select",
+    "textarea",
+    '[tabindex]:not([tabindex="-1"])',
+  ];
+
+  function handleKeyDown(event: KeyboardEvent) {
+    if (!ref.current || event.key !== "Tab") {
+      return;
+    }
+
+    const elements = ref.current.querySelectorAll<HTMLElement>(
+      focusables.join(", "),
+    );
+    const firstElement = elements[0];
+    const lastElement = elements[elements.length - 1];
+
+    if (event.shiftKey) {
+      if (document.activeElement === firstElement) {
+        lastElement.focus();
+        event.preventDefault();
+      }
+    } else {
+      if (document.activeElement === lastElement) {
+        firstElement.focus();
+        event.preventDefault();
+      }
+    }
+  }
+
+  useEffect(() => {
+    ref.current?.addEventListener("keydown", handleKeyDown);
+    return () => {
+      ref.current?.removeEventListener("keydown", handleKeyDown);
+    };
+  });
+
+  return ref;
 }
 
 function catchKeyboardEvent(
