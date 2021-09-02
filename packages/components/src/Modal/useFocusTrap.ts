@@ -1,7 +1,11 @@
 import { useEffect, useRef } from "react";
 
 export function useFocusTrap<T extends HTMLElement>() {
-  const ref = useRef<T>();
+  // There's an ongoing issue with useRef return type clashing with an element's
+  // ref prop type. TLDR: Use null because useRef doesn't expect undefined.
+  // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/35572#issuecomment-498242139
+  // eslint-disable-next-line no-null/no-null
+  const ref = useRef<T>(null);
   const focusables = [
     "button",
     "[href]",

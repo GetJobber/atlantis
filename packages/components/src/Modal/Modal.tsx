@@ -1,4 +1,4 @@
-import React, { ReactNode, RefObject, useEffect } from "react";
+import React, { ReactNode, useEffect } from "react";
 import ReactDOM from "react-dom";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
@@ -40,8 +40,7 @@ export function Modal({
   onRequestClose,
 }: ModalProps) {
   const modalClassName = classnames(styles.modal, size && sizes[size]);
-  // TODO: figure out how to declare without the as
-  const modalRef = useFocusTrap<HTMLDivElement>() as RefObject<HTMLDivElement>;
+  const modalRef = useFocusTrap<HTMLDivElement>();
 
   useEffect(() => modalRef.current?.focus(), [open]);
   useOnKeyDown(handleRequestClose, "Escape");
