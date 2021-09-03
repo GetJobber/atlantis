@@ -31,8 +31,32 @@ it("should focus on the last focusable element", () => {
   expect(getByTestId(lastFocusableChild)).toHaveFocus();
 });
 
-function TestComponent() {
-  const testRef = useFocusTrap<HTMLDivElement>(true);
+it("should not trap the tabbing and focus on the first child node", () => {
+  const { getByTestId } = render(<TestComponent trap={false} />);
+  userEvent.tab();
+  expect(getByTestId(targetId).previousElementSibling).toHaveFocus();
+});
+
+it("should have the proper aria-hidden on body and ref target when active trapping focus", () => {
+  const { getByTestId } = render(<TestComponent />);
+  expect(document.body.hasAttribute("aria-hidden")).toBeTruthy();
+  expect(document.body.getAttribute("aria-hidden")).toBe("true");
+  expect(getByTestId(targetId).hasAttribute("aria-hidden")).toBeTruthy();
+  expect(getByTestId(targetId).getAttribute("aria-hidden")).toBe("false");
+});
+
+it("should NOT have the aria-hidden on the body and ref target when not actively trapping focus", () => {
+  const { getByTestId } = render(<TestComponent trap={false} />);
+  expect(document.body.hasAttribute("aria-hidden")).toBeFalsy();
+  expect(getByTestId(targetId).hasAttribute("aria-hidden")).toBeFalsy();
+});
+
+interface TestComponentProps {
+  readonly trap?: boolean;
+}
+
+function TestComponent({ trap = true }: TestComponentProps) {
+  const testRef = useFocusTrap<HTMLDivElement>(trap);
 
   return (
     <>
