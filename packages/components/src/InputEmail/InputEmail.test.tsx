@@ -18,9 +18,7 @@ it("shows an error message for an invalid email", async () => {
   const input = getByLabelText("Foo");
 
   input.focus();
-  act(() => {
-    fireEvent.change(input, { target: { value: "not an email" } });
-  });
+  fireEvent.change(input, { target: { value: "not an email" } });
   input.blur();
 
   await waitFor(() => {
@@ -36,9 +34,7 @@ it("clears the error message when the email is valid", async () => {
   const input = getByLabelText("Foo");
 
   input.focus();
-  act(() => {
-    fireEvent.change(input, { target: { value: "not an email" } });
-  });
+  fireEvent.change(input, { target: { value: "not an email" } });
   input.blur();
 
   await waitFor(() => {
@@ -46,9 +42,7 @@ it("clears the error message when the email is valid", async () => {
   });
 
   await waitFor(() => {
-    act(() => {
-      fireEvent.change(input, { target: { value: "email@email.com" } });
-    });
+    fireEvent.change(input, { target: { value: "email@email.com" } });
   });
 
   await waitFor(() => {
