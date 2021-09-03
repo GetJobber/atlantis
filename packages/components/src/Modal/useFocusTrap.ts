@@ -48,7 +48,7 @@ export function useFocusTrap<T extends HTMLElement>(active: boolean) {
       ref.current?.removeAttribute("aria-hidden");
       ref.current?.removeEventListener("keydown", handleKeyDown);
     };
-  });
+  }, [active]);
 
   return ref;
 }
