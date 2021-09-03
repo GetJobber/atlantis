@@ -26,6 +26,8 @@ import {
 } from "@jobber/components/ConfirmationModal";
 ```
 
+Confirmation Modal
+
 <Playground>
   {() => {
     const [open, setOpen] = useState(false);
@@ -104,6 +106,38 @@ that presents a confirm modal.
           );
         })}
         <ConfirmationModal ref={confirmationModalRef} />
+      </>
+    );
+  }}
+</Playground>
+
+## Destructive
+
+If the user is confirming an action that is will destroy, delete, or remove
+something, use a destructive ConfirmationModal to visually reinforce the
+potential consequences.
+
+<Playground>
+  {() => {
+    const [open, setOpen] = useState(false);
+    return (
+      <>
+        <Button
+          label="Delete Bob"
+          variation="destructive"
+          type="secondary"
+          onClick={() => setOpen(true)}
+        />
+        <ConfirmationModal
+          title="Delete Bob?"
+          message={`Deleting Bob will remove their data from your account for good.`}
+          confirmLabel="Delete Bob"
+          open={open}
+          onConfirm={() => alert("Bob has been deleted")}
+          onCancel={() => alert("Bob will not be deleted")}
+          onRequestClose={() => setOpen(false)}
+          variation="destructive"
+        />
       </>
     );
   }}

@@ -27,7 +27,9 @@ interface ButtonFoundationProps {
   readonly label?: string;
   readonly loading?: boolean;
   readonly size?: "small" | "base" | "large";
-  onClick?(): void;
+  onClick?(
+    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
+  ): void;
 }
 
 interface ButtonIconProps extends ButtonFoundationProps {
@@ -54,11 +56,11 @@ interface ButtonLinkProps extends ButtonFoundationProps {
 }
 
 interface BaseActionProps extends ButtonFoundationProps {
-  readonly variation?: "work" | "learning";
+  readonly variation?: "work" | "learning" | "subtle" | "destructive";
   readonly type?: "primary" | "secondary" | "tertiary";
 }
 
-interface DestructiveActionProps extends ButtonFoundationProps {
+export interface DestructiveActionProps extends ButtonFoundationProps {
   readonly variation: "destructive";
   readonly type?: "primary" | "secondary" | "tertiary";
 }
@@ -70,7 +72,6 @@ interface CancelActionProps extends ButtonFoundationProps {
 
 interface SubmitActionProps
   extends Omit<ButtonFoundationProps, "external" | "onClick"> {
-  readonly variation?: "work";
   readonly type?: "primary";
   readonly submit: boolean;
 }
