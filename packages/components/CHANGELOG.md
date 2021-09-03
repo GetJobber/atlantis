@@ -8,6 +8,25 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.44.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.43.6...@jobber/components@2.44.0) (2021-09-02)
+
+
+### Features
+
+* **components:** Add prefix/suffix to FormField ([#613](https://github.com/GetJobber/atlantis/issues/613)) ([f1e1e5e](https://github.com/GetJobber/atlantis/commit/f1e1e5e94c2230e8663d4caa9e7a70bb9f85d12e))
+
+
+
+
+
+## [2.43.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.43.5...@jobber/components@2.43.6) (2021-09-01)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 ## [2.43.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.43.4...@jobber/components@2.43.5) (2021-08-31)
 
 **Note:** Version bump only for package @jobber/components

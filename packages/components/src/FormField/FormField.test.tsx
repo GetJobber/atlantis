@@ -15,20 +15,24 @@ it("renders correctly with no props", () => {
         }
       }
     >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440001"
-      />
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440001"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        type="text"
-        value=""
-      />
+      <div
+        className="inputWrapper"
+      >
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440001"
+        />
+        <input
+          className="input"
+          id="123e4567-e89b-12d3-a456-426655440001"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
     </div>
   `);
 });
@@ -46,22 +50,26 @@ it("renders correctly with a placeholder", () => {
         }
       }
     >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440002"
+      <div
+        className="inputWrapper"
       >
-        My placeholder
-      </label>
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440002"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        type="text"
-        value=""
-      />
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440002"
+        >
+          My placeholder
+        </label>
+        <input
+          className="input"
+          id="123e4567-e89b-12d3-a456-426655440002"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
     </div>
   `);
 });
@@ -77,20 +85,24 @@ it("renders correctly as small", () => {
         }
       }
     >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440003"
-      />
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440003"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        type="text"
-        value=""
-      />
+      <div
+        className="inputWrapper"
+      >
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440003"
+        />
+        <input
+          className="input"
+          id="123e4567-e89b-12d3-a456-426655440003"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
     </div>
   `);
 });
@@ -106,21 +118,25 @@ it("renders correctly in a readonly state", () => {
         }
       }
     >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440004"
-      />
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440004"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        readOnly={true}
-        type="text"
-        value=""
-      />
+      <div
+        className="inputWrapper"
+      >
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440004"
+        />
+        <input
+          className="input"
+          id="123e4567-e89b-12d3-a456-426655440004"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          readOnly={true}
+          type="text"
+          value=""
+        />
+      </div>
     </div>
   `);
 });
@@ -136,21 +152,25 @@ it("renders correctly in a disabled state", () => {
         }
       }
     >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440005"
-      />
-      <input
-        className="formField"
-        disabled={true}
-        id="123e4567-e89b-12d3-a456-426655440005"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        type="text"
-        value=""
-      />
+      <div
+        className="inputWrapper"
+      >
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440005"
+        />
+        <input
+          className="input"
+          disabled={true}
+          id="123e4567-e89b-12d3-a456-426655440005"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
     </div>
   `);
 });
@@ -166,20 +186,24 @@ it("renders a field with error", () => {
         }
       }
     >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440006"
-      />
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440006"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        type="text"
-        value="wrong!"
-      />
+      <div
+        className="inputWrapper"
+      >
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440006"
+        />
+        <input
+          className="input"
+          id="123e4567-e89b-12d3-a456-426655440006"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          type="text"
+          value="wrong!"
+        />
+      </div>
     </div>
   `);
 });
@@ -403,4 +427,35 @@ it("it should set the autocomplete value to off", () => {
   const input = getByLabelText("foo");
   const autocomplete = input.getAttribute("autocomplete");
   expect(autocomplete).toContain("autocomplete-off");
+});
+
+describe("when the formfield has a prefix", () => {
+  it("shows an icon", () => {
+    const { getByTestId } = render(<FormField prefix={{ icon: "home" }} />);
+
+    expect(getByTestId("home")).toBeInstanceOf(SVGElement);
+  });
+});
+
+describe("when the formfield has a suffix", () => {
+  it("shows an icon", () => {
+    const { getByTestId } = render(<FormField suffix={{ icon: "home" }} />);
+
+    expect(getByTestId("home")).toBeInstanceOf(SVGElement);
+  });
+
+  it("calls the onClick when set", () => {
+    const clickHandler = jest.fn();
+    const { getByTestId } = render(
+      <FormField
+        suffix={{ arialLabel: "Go home", icon: "home", onClick: clickHandler }}
+      />,
+    );
+
+    const icon = getByTestId("home");
+    fireEvent.click(icon);
+
+    expect(clickHandler).toHaveBeenCalled();
+    expect(clickHandler).toHaveBeenCalledTimes(1);
+  });
 });

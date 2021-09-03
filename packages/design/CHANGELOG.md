@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.15.2...@jobber/design@0.16.0) (2021-09-01)
+
+
+### Features
+
+* **design:** Update surface reverse color ([#628](https://github.com/GetJobber/atlantis/issues/628)) ([5461d79](https://github.com/GetJobber/atlantis/commit/5461d79a08d4e6fd42d1cf7d5adde901ab238ea6))
+
+
+
+
+
 ## [0.15.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.15.1...@jobber/design@0.15.2) (2021-08-24)
 
 

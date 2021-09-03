@@ -1,5 +1,7 @@
 import { ReactNode, RefObject } from "react";
 import { ValidationRules } from "react-hook-form";
+import { XOR } from "ts-xor";
+import { IconNames } from "../Icon";
 
 export type FormFieldTypes =
   | "text"
@@ -17,6 +19,21 @@ export type AutocompleteTypes =
 
 export interface FieldActionsRef {
   setValue(value: string | number): void;
+}
+
+export interface Affix {
+  readonly label?: string;
+  readonly icon?: IconNames;
+}
+
+interface BaseSuffix extends Affix {
+  readonly icon: IconNames;
+  onClick?(): void;
+}
+
+export interface Suffix extends BaseSuffix {
+  onClick(): void;
+  readonly ariaLabel: string;
 }
 
 export interface FormFieldProps {
@@ -126,6 +143,16 @@ export interface FormFieldProps {
    * Show a spinner to indicate loading
    */
   loading?: boolean;
+
+  /**
+   * Adds a prefix label and icon to the field
+   */
+  readonly prefix?: Affix;
+
+  /**
+   * Adds a suffix label and icon with an optional action to the field
+   */
+  readonly suffix?: XOR<Affix, Suffix>;
 
   /**
    * Simplified onChange handler that only provides the new value.
