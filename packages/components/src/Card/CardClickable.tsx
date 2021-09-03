@@ -1,4 +1,4 @@
-import React, { ReactNode, createRef } from "react";
+import React, { ReactNode, useRef } from "react";
 
 interface ClickableCardProps {
   onClick(event: React.MouseEvent<HTMLElement>): void;
@@ -18,7 +18,7 @@ export function CardClickable({
   onClick,
   children,
 }: ClickableCardProps) {
-  const cardRef = createRef<HTMLDivElement>();
+  const cardRef = useRef() as React.MutableRefObject<HTMLDivElement>;
 
   return (
     <div
@@ -35,15 +35,20 @@ export function CardClickable({
     </div>
   );
 
+  function isCardFocused() {
+    return document.activeElement === cardRef.current;
+  }
+
   function handleKeyup(event: React.KeyboardEvent<HTMLDivElement>) {
-    if (event.key === ENTER_KEY || event.key === SPACEBAR_KEY) {
+    const shouldClick = event.key === ENTER_KEY || event.key === SPACEBAR_KEY;
+    if (shouldClick && isCardFocused()) {
       cardRef.current?.click();
     }
   }
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
     // Prevent page scroll when hitting spacebar while focused on a card
-    if (event.key === SPACEBAR_KEY) {
+    if (event.key === SPACEBAR_KEY && isCardFocused()) {
       event.preventDefault();
     }
   }
