@@ -12,23 +12,6 @@ interface RowRange {
   max: number;
 }
 
-// type BaseProps = Pick<
-//   FormFieldProps,
-//   | "multiline"
-//   | "rows"
-//   | "maxLength"
-//   | "readonly"
-//   | "autocomplete"
-//   | "keyboard"
-//   | "onEnter"
-//   | "onFocus"
-//   | "onBlur"
-//   | "inputRef"
-//   | "validations"
-//   | "ref"
-//   | "key"
-// >;
-
 interface BaseProps
   extends BaseFormFieldProps,
     Pick<
