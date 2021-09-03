@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  act,
-  cleanup,
-  fireEvent,
-  render,
-  waitFor,
-} from "@testing-library/react";
+import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import { InputEmail, validationMessage } from ".";
 
 afterEach(cleanup);
@@ -58,9 +52,7 @@ it("Doesn't show validation when you're first typing", async () => {
   const input = getByLabelText("Foo");
 
   input.focus();
-  act(() => {
-    fireEvent.change(input, { target: { value: "not an email" } });
-  });
+  fireEvent.change(input, { target: { value: "not an email" } });
 
   await waitFor(() => {
     expect(queryByText(validationMessage)).toBeNull();
