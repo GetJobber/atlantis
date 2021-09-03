@@ -40,6 +40,7 @@ export function useFocusTrap<T extends HTMLElement>() {
   }
 
   useEffect(() => {
+    ref.current?.focus();
     ref.current?.addEventListener("keydown", handleKeyDown);
     return () => {
       ref.current?.removeEventListener("keydown", handleKeyDown);

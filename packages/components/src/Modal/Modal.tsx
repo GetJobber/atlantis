@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from "react";
+import React, { ReactNode } from "react";
 import ReactDOM from "react-dom";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
@@ -41,8 +41,6 @@ export function Modal({
 }: ModalProps) {
   const modalClassName = classnames(styles.modal, size && sizes[size]);
   const modalRef = useFocusTrap<HTMLDivElement>();
-
-  useEffect(() => modalRef.current?.focus(), [open]);
   useOnKeyDown(handleRequestClose, "Escape");
 
   const template = (
