@@ -6,23 +6,21 @@ type BaseProps = Omit<
   "onChange" | "value" | "defaultValue"
 >;
 
-interface BaseInputTimeProps
-  extends BaseProps,
-    Pick<
-      FormFieldProps,
-      | "maxLength"
-      | "readonly"
-      | "autocomplete"
-      | "max"
-      | "min"
-      | "onEnter"
-      | "onFocus"
-      | "onBlur"
-      | "inputRef"
-      | "validations"
-    > {}
+type PickedProps = Pick<
+  FormFieldProps,
+  | "maxLength"
+  | "readonly"
+  | "autocomplete"
+  | "max"
+  | "min"
+  | "onEnter"
+  | "onFocus"
+  | "onBlur"
+  | "inputRef"
+  | "validations"
+>;
 
-export interface InputTimeProps extends BaseInputTimeProps {
+export interface InputTimeProps extends BaseProps, PickedProps {
   /**
    * Intial value of the input. Only use this when you need to prepopulate the
    * field with a data that is not controlled by the components state. If a
