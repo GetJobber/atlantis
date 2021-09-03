@@ -1,26 +1,33 @@
 import { CivilTime } from "@std-proposal/temporal";
-import { BaseFormFieldProps, FormFieldProps } from "../FormField";
+import { CommonFormFieldProps, FormFieldProps } from "../FormField";
 
-type BaseProps = Omit<
-  BaseFormFieldProps,
-  "onChange" | "value" | "defaultValue"
->;
-
-type PickedProps = Pick<
-  FormFieldProps,
-  | "maxLength"
-  | "readonly"
-  | "autocomplete"
-  | "max"
-  | "min"
-  | "onEnter"
-  | "onFocus"
-  | "onBlur"
-  | "inputRef"
-  | "validations"
->;
-
-export interface InputTimeProps extends BaseProps, PickedProps {
+export interface InputTimeProps
+  extends Pick<
+      CommonFormFieldProps,
+      | "align"
+      | "defaultValue"
+      | "disabled"
+      | "invalid"
+      | "inline"
+      | "loading"
+      | "name"
+      | "onValidation"
+      | "placeholder"
+      | "size"
+    >,
+    Pick<
+      FormFieldProps,
+      | "maxLength"
+      | "readonly"
+      | "autocomplete"
+      | "max"
+      | "min"
+      | "onEnter"
+      | "onFocus"
+      | "onBlur"
+      | "inputRef"
+      | "validations"
+    > {
   /**
    * Intial value of the input. Only use this when you need to prepopulate the
    * field with a data that is not controlled by the components state. If a

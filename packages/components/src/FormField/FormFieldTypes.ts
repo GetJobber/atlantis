@@ -37,7 +37,12 @@ export interface Suffix extends BaseSuffix {
   readonly ariaLabel: string;
 }
 
-export interface BaseFormFieldProps {
+/*
+ * The following interface supplies common
+ * props used in multiple components or extended in other
+ * interfaces.
+ */
+export interface CommonFormFieldProps {
   /**
    * Determines the alignment of the text inside the input.
    */
@@ -106,7 +111,7 @@ export interface BaseFormFieldProps {
   readonly value?: string | number | CivilTime;
 }
 
-export interface FormFieldProps extends BaseFormFieldProps {
+export interface FormFieldProps extends CommonFormFieldProps {
   actionsRef?: RefObject<FieldActionsRef>;
 
   /**

@@ -1,8 +1,8 @@
 import React, { Ref, createRef, forwardRef, useImperativeHandle } from "react";
-import { BaseFormFieldProps, FormField, FormFieldProps } from "../FormField";
+import { CommonFormFieldProps, FormField, FormFieldProps } from "../FormField";
 
 interface InputNumberProps
-  extends BaseFormFieldProps,
+  extends CommonFormFieldProps,
     Pick<
       FormFieldProps,
       | "maxLength"

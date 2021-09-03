@@ -1,7 +1,7 @@
 import React, { Ref, createRef, forwardRef, useImperativeHandle } from "react";
 import { XOR } from "ts-xor";
 import {
-  BaseFormFieldProps,
+  CommonFormFieldProps,
   FieldActionsRef,
   FormField,
   FormFieldProps,
@@ -13,7 +13,7 @@ interface RowRange {
 }
 
 interface BaseProps
-  extends BaseFormFieldProps,
+  extends CommonFormFieldProps,
     Pick<
       FormFieldProps,
       | "maxLength"
