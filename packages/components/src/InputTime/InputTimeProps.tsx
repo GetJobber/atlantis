@@ -1,8 +1,13 @@
 import { CivilTime } from "@std-proposal/temporal";
 import { BaseFormFieldProps, FormFieldProps } from "../FormField";
 
-interface BaseProps
-  extends BaseFormFieldProps,
+type BaseProps = Omit<
+  BaseFormFieldProps,
+  "onChange" | "value" | "defaultValue"
+>;
+
+interface BaseInputTimeProps
+  extends BaseProps,
     Pick<
       FormFieldProps,
       | "maxLength"
@@ -17,7 +22,7 @@ interface BaseProps
       | "validations"
     > {}
 
-export interface InputTimeProps extends BaseProps {
+export interface InputTimeProps extends BaseInputTimeProps {
   /**
    * Intial value of the input. Only use this when you need to prepopulate the
    * field with a data that is not controlled by the components state. If a
