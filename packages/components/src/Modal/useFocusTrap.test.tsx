@@ -32,7 +32,8 @@ it("should focus on the last focusable element", () => {
 });
 
 function TestComponent() {
-  const testRef = useFocusTrap<HTMLDivElement>();
+  const testRef = useFocusTrap<HTMLDivElement>(true);
+
   return (
     <>
       <input type="number" />

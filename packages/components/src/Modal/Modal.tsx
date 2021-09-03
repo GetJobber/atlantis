@@ -40,7 +40,7 @@ export function Modal({
   onRequestClose,
 }: ModalProps) {
   const modalClassName = classnames(styles.modal, size && sizes[size]);
-  const modalRef = useFocusTrap<HTMLDivElement>();
+  const modalRef = useFocusTrap<HTMLDivElement>(open);
   useOnKeyDown(handleRequestClose, "Escape");
 
   const template = (

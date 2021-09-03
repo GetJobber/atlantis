@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-export function useFocusTrap<T extends HTMLElement>() {
+export function useFocusTrap<T extends HTMLElement>(active: boolean) {
   // There's an ongoing issue with useRef return type clashing with an element's
   // ref prop type. TLDR: Use null because useRef doesn't expect undefined.
   // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/35572#issuecomment-498242139
@@ -16,7 +16,7 @@ export function useFocusTrap<T extends HTMLElement>() {
   ];
 
   function handleKeyDown(event: KeyboardEvent) {
-    if (!ref.current || event.key !== "Tab") {
+    if (!(active && ref.current) || event.key !== "Tab") {
       return;
     }
 
@@ -40,9 +40,16 @@ export function useFocusTrap<T extends HTMLElement>() {
   }
 
   useEffect(() => {
-    ref.current?.focus();
-    ref.current?.addEventListener("keydown", handleKeyDown);
+    if (active) {
+      document.body.setAttribute("aria-hidden", "true");
+      ref.current?.setAttribute("aria-hidden", "false");
+      ref.current?.focus();
+      ref.current?.addEventListener("keydown", handleKeyDown);
+    }
+
     return () => {
+      document.body.removeAttribute("aria-hidden");
+      ref.current?.removeAttribute("aria-hidden");
       ref.current?.removeEventListener("keydown", handleKeyDown);
     };
   });
