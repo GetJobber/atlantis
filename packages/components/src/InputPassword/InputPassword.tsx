@@ -1,8 +1,8 @@
 import React from "react";
-import { BaseFormFieldProps, FormField, FormFieldProps } from "../FormField";
+import { CommonFormFieldProps, FormField, FormFieldProps } from "../FormField";
 
 interface InputPasswordProps
-  extends BaseFormFieldProps,
+  extends CommonFormFieldProps,
     Pick<
       FormFieldProps,
       | "autocomplete"
