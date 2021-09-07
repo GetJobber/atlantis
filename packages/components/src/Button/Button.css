@@ -111,6 +111,7 @@ a.tertiary:focus {
 
 .subtle {
   border-color: transparent;
+  background-color: transparent;
 }
 
 .subtle:hover,
