@@ -1,18 +1,11 @@
 :root {
-  --button--color-work: var(--color-green);
-  --button--color-work--hover: var(--color-green--dark);
+  --button--color-variation: var(--color-interactive);
+  --button--color-variation--hover: var(--color-interactive--hover);
+  --button--color-surface: var(--color-surface);
+  --button--color-surface--hover: var(--color-surface--background);
+  --button--color-primaryLabel: var(--color-white);
 
-  --button--color-learning: var(--color-lightBlue);
-  --button--color-learning--hover: var(--color-lightBlue--dark);
-
-  --button--color-destructive: var(--color-red);
-  --button--color-destructive--hover: var(--color-red--dark);
-
-  --button--color-cancel: var(--color-greyBlue);
-  --button--bg-color-cancel: var(--color-white);
-  --button--color-disabled: var(--color-grey--lighter);
-  --button--color-secondary: var(--color-white);
-  --button--color-tertiary: var(--color-white);
+  --button--duration-loading: 2s;
 }
 
 .button {
@@ -20,14 +13,15 @@
   min-height: calc(var(--base-unit) * 2.25);
   box-sizing: border-box;
   margin: 0;
-  border: 1px solid transparent;
+  border: var(--border-base) solid var(--button--color-variation);
   border-radius: var(--radius-base);
-  color: transparent;
+  color: var(--button--color-variation);
+  fill: var(--button--color-variation);
   -webkit-font-smoothing: antialiased;
   text-align: center;
   text-decoration: none;
   vertical-align: middle;
-  background-color: transparent;
+  background-color: var(--button--color-surface);
   cursor: pointer;
   transition: all var(--timing-base);
   appearance: none;
@@ -35,89 +29,96 @@
   justify-content: center;
 }
 
-.button:focus {
-  outline-color: var(--color-outline);
+.button * {
+  color: inherit;
+  fill: inherit !important; /* required to over-ride very specific fill from <Icon> */
+}
+
+.button:hover,
+a.button:hover,
+.button:focus,
+a.button:focus,
+.button:active,
+a.button:active {
+  border-color: var(--button--color-variation--hover);
+  color: var(--button--color-variation--hover);
+  fill: var(--button--color-variation--hover);
+  background-color: var(--button--color-surface--hover);
+}
+
+.button:focus,
+a.button:focus,
+.button:active,
+a.button:active {
+  box-shadow: var(--shadow-focus);
+  outline: none;
 }
 
 /* Variation */
 
 .work {
-  border-color: var(--button--color-work);
-  color: var(--button--color-work);
-  background-color: var(--button--color-work);
-}
-
-.work:hover {
-  border-color: var(--button--color-work--hover);
-  background-color: var(--button--color-work--hover);
+  --button--color-variation: var(--color-interactive);
+  --button--color-variation--hover: var(--color-interactive--hover);
 }
 
 .learning {
-  border-color: var(--button--color-learning);
-  background-color: var(--button--color-learning);
-}
-
-.learning:hover {
-  border-color: var(--button--color-learning--hover);
-  background-color: var(--button--color-learning--hover);
+  --button--color-variation: var(--color-informative);
+  --button--color-variation--hover: var(--color-informative--onSurface);
 }
 
 .destructive {
-  border-color: var(--button--color-destructive);
-  background-color: var(--button--color-destructive);
+  --button--color-variation: var(--color-destructive);
+  --button--color-variation--hover: var(--color-destructive--hover);
 }
 
-.destructive:hover {
-  border-color: var(--button--color-destructive--hover);
-  background-color: var(--button--color-destructive--hover);
-}
-
-/* Cancel is special because, by defualt, it's styled as a secondary button */
+/* Cancel is special because, by default, it's styled as a secondary button */
 
 .cancel {
-  border-color: var(--button--color-cancel);
-  background-color: var(--button--bg-color-cancel);
-}
-
-.cancel:focus,
-.cancel:hover {
-  filter: brightness(80%);
+  --button--color-variation: var(--color-cancel);
+  --button--color-variation--hover: var(--color-cancel--hover);
 }
 
 /* Type */
 
-.primary {
-  color: var(--color-white);
+.primary:not(.cancel),
+.primary:not(.cancel):hover,
+.primary:not(.cancel):focus {
+  color: var(--button--color-primaryLabel);
+  background-color: var(--button--color-variation);
+  fill: var(--button--color-primaryLabel);
+}
+
+.primary:not(.cancel):hover,
+.primary:not(.cancel):focus {
+  background-color: var(--button--color-variation--hover);
 }
 
 .secondary {
-  background-color: var(--button--color-secondary);
-}
-
-.secondary:hover,
-.secondary:focus {
-  background-color: var(--button--color-secondary);
-  filter: brightness(80%);
+  border-color: var(--button--color-variation);
 }
 
 .tertiary {
-  border-color: var(--button--color-tertiary);
-  background-color: var(--button--color-tertiary);
+  border-color: transparent;
 }
 
 .tertiary:hover,
-.tertiary:focus {
+.tertiary:focus,
+a.tertiary:hover,
+a.tertiary:focus {
   border-color: transparent;
-  background-color: var(--color-grey--lightest);
 }
 
 /* Disabled */
 
-.disabled,
-.disabled:hover {
-  border-color: var(--button--color-disabled);
+.button.disabled,
+a.button.disabled,
+.button.disabled:hover,
+a.button.disabled:hover {
+  border-color: var(--color-disabled--secondary);
+  color: var(--color-disabled);
   user-select: none;
-  background-color: var(--button--color-disabled);
+  background-color: var(--color-disabled--secondary);
+  fill: var(--color-disabled);
   pointer-events: none;
   cursor: not-allowed;
 }
@@ -140,8 +141,26 @@
 }
 
 /* Icon */
+
+.onlyIcon {
+  width: calc(var(--base-unit) * 2.25);
+  padding: 0;
+}
+
+.onlyIcon.small {
+  width: calc(var(--space-small) * 3);
+}
+
+.onlyIcon.base {
+  width: calc(var(--space-base) * 2.25);
+}
+
+.onlyIcon.large {
+  width: calc(var(--space-large) * 2);
+}
+
 .hasIconAndLabel {
-  padding: 0 var(--space-base);
+  width: auto;
 }
 
 .hasIconAndLabel > *:first-child {
@@ -173,7 +192,7 @@
   background-size: var(--space-larger) var(--space-larger);
   pointer-events: none;
   cursor: not-allowed;
-  animation-duration: var(--timing-slowest);
+  animation-duration: var(--button--duration-loading);
   animation-iteration-count: infinite;
   animation-name: animateStripes;
   animation-timing-function: linear;

@@ -18,6 +18,7 @@
 
 .person,
 .clients,
+.company,
 .property {
   fill: var(--color-teal);
 }
@@ -59,17 +60,14 @@
 }
 
 .invoice,
-.invoiceLater {
+.invoiceLater,
+.sendInvoice,
+.paidInvoice {
   fill: var(--color-invoice);
 }
 
 .badInvoice {
   fill: var(--color-red);
-}
-
-.sendInvoice,
-.paidInvoice {
-  fill: var(--color-green);
 }
 
 .payment,

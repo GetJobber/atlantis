@@ -1,0 +1,82 @@
+:root {
+  --card--base-padding: var(--space-base);
+  --popover--padding: var(--space-base);
+  --popover--width: calc(var(--base-unit) * 21.875);
+  --dismiss--button-padding: calc(var(--base-unit) / 4);
+}
+
+.header {
+  display: flex;
+  position: "relative";
+  padding: var(--popover--padding);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dismissButton {
+  float: right;
+  padding: var(--dismiss--button-padding);
+  text-align: right;
+}
+
+.popover {
+  z-index: var(--elevation-base);
+  width: 100%;
+  max-width: var(--popover--width);
+  box-shadow: var(--shadow-base);
+  border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-base);
+  font-size: var(--base-unit);
+  line-height: normal;
+  background: var(--color-surface);
+}
+
+.popover > * {
+  --public-content--padding: var(--card--base-padding);
+}
+
+.arrow {
+  visibility: hidden;
+}
+
+.arrow,
+.arrow::before {
+  position: absolute;
+  width: var(--base-unit);
+  height: var(--base-unit);
+  background: inherit;
+}
+
+.arrow::before {
+  content: "";
+  visibility: visible;
+  border: var(--border-base) solid var(--color-border);
+  transform: rotate(45deg);
+  transform-origin: center;
+  clip-path: polygon(-4px -4px, 15.3px 0, 0 15.3px);
+}
+
+.popover[data-popper-placement^="top"] > .arrow {
+  bottom: -5px;
+}
+.popover[data-popper-placement^="top"] > .arrow::before {
+  transform: rotate(-135deg);
+}
+
+.popover[data-popper-placement^="bottom"] > .arrow {
+  top: -7px;
+}
+
+.popover[data-popper-placement^="left"] > .arrow {
+  right: -5px;
+}
+.popover[data-popper-placement^="left"] > .arrow::before {
+  transform: rotate(135deg);
+}
+
+.popover[data-popper-placement^="right"] > .arrow {
+  left: -7px;
+}
+.popover[data-popper-placement^="right"] > .arrow::before {
+  transform: rotate(-45deg);
+}

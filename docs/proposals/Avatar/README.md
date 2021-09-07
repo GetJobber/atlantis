@@ -22,7 +22,7 @@ avatars in Jobber, as well as the potential usage of colors within avatars.
 ## Props Table
 
 | name     | type   | default  | description                                              |
-| -------- | ------ | -------- | -------------------------------------------------------- |
+| -------- | ------ | -------- | -------------------------------------------------------- | ------- |
 | image    | String | -        | The avatar image to be use                               |
 | name     | String | -        | A users name to be used for accessibility                |
 | initials | String | -        | Initials to show if the image is null                    |

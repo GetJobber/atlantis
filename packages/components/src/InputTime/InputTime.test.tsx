@@ -9,31 +9,34 @@ afterEach(cleanup);
 it("renders a InputTime", () => {
   const tree = renderer.create(<InputTime />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
-                <div
-                  className="wrapper"
-                  style={
-                    Object {
-                      "--formField-maxLength": undefined,
-                    }
-                  }
-                >
-                  <label
-                    className="label"
-                    htmlFor="123e4567-e89b-12d3-a456-426655440001"
-                  >
-                     
-                  </label>
-                  <input
-                    className="formField"
-                    id="123e4567-e89b-12d3-a456-426655440001"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onFocus={[Function]}
-                    type="time"
-                    value=""
-                  />
-                </div>
-        `);
+    <div
+      className="wrapper"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
+    >
+      <div
+        className="inputWrapper"
+      >
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440001"
+        />
+        <input
+          className="input"
+          id="123e4567-e89b-12d3-a456-426655440001"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          type="time"
+          value=""
+        />
+      </div>
+    </div>
+  `);
 });
 
 it("renders an initial time when given 'defaultValue'", () => {
@@ -41,31 +44,34 @@ it("renders an initial time when given 'defaultValue'", () => {
     .create(<InputTime defaultValue={new CivilTime(11, 23)} />)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-        <div
-          className="wrapper"
-          style={
-            Object {
-              "--formField-maxLength": undefined,
-            }
-          }
-        >
-          <label
-            className="label"
-            htmlFor="123e4567-e89b-12d3-a456-426655440002"
-          >
-             
-          </label>
-          <input
-            className="formField"
-            defaultValue="11:23"
-            id="123e4567-e89b-12d3-a456-426655440002"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            type="time"
-          />
-        </div>
-    `);
+    <div
+      className="wrapper"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
+    >
+      <div
+        className="inputWrapper"
+      >
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440004"
+        />
+        <input
+          className="input"
+          id="123e4567-e89b-12d3-a456-426655440004"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          type="time"
+          value="11:23"
+        />
+      </div>
+    </div>
+  `);
 });
 
 it("renders correctly in a readonly state", () => {
@@ -81,22 +87,25 @@ it("renders correctly in a readonly state", () => {
         }
       }
     >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440003"
+      <div
+        className="inputWrapper"
       >
-         
-      </label>
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440003"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        readOnly={true}
-        type="time"
-        value="11:23"
-      />
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440005"
+        />
+        <input
+          className="input"
+          id="123e4567-e89b-12d3-a456-426655440005"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          readOnly={true}
+          type="time"
+          value="11:23"
+        />
+      </div>
     </div>
   `);
 });
@@ -114,22 +123,25 @@ it("adds a error border when invalid", () => {
         }
       }
     >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440004"
+      <div
+        className="inputWrapper"
       >
-         
-      </label>
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440004"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        readOnly={true}
-        type="time"
-        value="11:23"
-      />
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440008"
+        />
+        <input
+          className="input"
+          id="123e4567-e89b-12d3-a456-426655440008"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          readOnly={true}
+          type="time"
+          value="11:23"
+        />
+      </div>
     </div>
   `);
 });
@@ -145,21 +157,24 @@ it("should set the value when given 'value' and 'onChange'", () => {
         }
       }
     >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440005"
+      <div
+        className="inputWrapper"
       >
-         
-      </label>
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440005"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        type="time"
-        value=""
-      />
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440011"
+        />
+        <input
+          className="input"
+          id="123e4567-e89b-12d3-a456-426655440011"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          type="time"
+          value=""
+        />
+      </div>
     </div>
   `);
 });

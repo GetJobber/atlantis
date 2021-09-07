@@ -1,36 +1,40 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import { FormField } from ".";
 
 afterEach(cleanup);
 it("renders correctly with no props", () => {
   const tree = renderer.create(<FormField />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
-        <div
-          className="wrapper"
-          style={
-            Object {
-              "--formField-maxLength": undefined,
-            }
-          }
-        >
-          <label
-            className="label"
-            htmlFor="123e4567-e89b-12d3-a456-426655440001"
-          >
-             
-          </label>
-          <input
-            className="formField"
-            id="123e4567-e89b-12d3-a456-426655440001"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            type="text"
-          />
-        </div>
-    `);
+    <div
+      className="wrapper"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
+    >
+      <div
+        className="inputWrapper"
+      >
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440001"
+        />
+        <input
+          className="input"
+          id="123e4567-e89b-12d3-a456-426655440001"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+  `);
 });
 
 it("renders correctly with a placeholder", () => {
@@ -46,20 +50,26 @@ it("renders correctly with a placeholder", () => {
         }
       }
     >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440002"
+      <div
+        className="inputWrapper"
       >
-        My placeholder
-      </label>
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440002"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        type="text"
-      />
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440002"
+        >
+          My placeholder
+        </label>
+        <input
+          className="input"
+          id="123e4567-e89b-12d3-a456-426655440002"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
     </div>
   `);
 });
@@ -75,20 +85,24 @@ it("renders correctly as small", () => {
         }
       }
     >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440003"
+      <div
+        className="inputWrapper"
       >
-         
-      </label>
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440003"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        type="text"
-      />
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440003"
+        />
+        <input
+          className="input"
+          id="123e4567-e89b-12d3-a456-426655440003"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
     </div>
   `);
 });
@@ -104,21 +118,25 @@ it("renders correctly in a readonly state", () => {
         }
       }
     >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440004"
+      <div
+        className="inputWrapper"
       >
-         
-      </label>
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440004"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        readOnly={true}
-        type="text"
-      />
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440004"
+        />
+        <input
+          className="input"
+          id="123e4567-e89b-12d3-a456-426655440004"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          readOnly={true}
+          type="text"
+          value=""
+        />
+      </div>
     </div>
   `);
 });
@@ -134,63 +152,59 @@ it("renders correctly in a disabled state", () => {
         }
       }
     >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440005"
+      <div
+        className="inputWrapper"
       >
-         
-      </label>
-      <input
-        className="formField"
-        disabled={true}
-        id="123e4567-e89b-12d3-a456-426655440005"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        type="text"
-      />
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440005"
+        />
+        <input
+          className="input"
+          disabled={true}
+          id="123e4567-e89b-12d3-a456-426655440005"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
     </div>
   `);
 });
 
 it("renders a field with error", () => {
-  const tree = renderer
-    .create(
-      <FormField value="wrong!" errorMessage="Enter a value that is correct" />,
-    )
-    .toJSON();
+  const tree = renderer.create(<FormField value="wrong!" />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
-    Array [
-      <p
-        className="base regular base red"
-      >
-        Enter a value that is correct
-      </p>,
-      <div
-        className="wrapper invalid"
-        style={
-          Object {
-            "--formField-maxLength": undefined,
-          }
+    <div
+      className="wrapper"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
         }
+      }
+    >
+      <div
+        className="inputWrapper"
       >
         <label
           className="label"
           htmlFor="123e4567-e89b-12d3-a456-426655440006"
-        >
-           
-        </label>
+        />
         <input
-          className="formField"
+          className="input"
           id="123e4567-e89b-12d3-a456-426655440006"
           onBlur={[Function]}
           onChange={[Function]}
           onFocus={[Function]}
+          onKeyDown={[Function]}
           type="text"
           value="wrong!"
         />
-      </div>,
-    ]
+      </div>
+    </div>
   `);
 });
 
@@ -234,25 +248,214 @@ test("it should call the validation handler when typing a new value", () => {
   render(
     <FormField
       name="Got milk?"
-      onValidate={validationHandler}
+      onValidation={validationHandler}
       placeholder="I hold places."
     />,
   );
 
-  expect(validationHandler).toHaveBeenCalledWith("pass", "");
+  expect(validationHandler).toHaveBeenCalled();
+  expect(validationHandler).toHaveBeenCalledWith(undefined);
 });
 
-test("it should call the validation handler with a fail status when there's an error", () => {
+test("it should call the validation handler with a message when there is an error", async () => {
   const validationHandler = jest.fn();
+  const validate = val => (val == "Bob" ? "message" : "foo");
 
-  render(
+  const { getByLabelText } = render(
     <FormField
+      type="text"
       name="Got milk?"
-      onValidate={validationHandler}
+      onValidation={validationHandler}
       placeholder="I hold places"
-      errorMessage="Nope!"
+      validations={{
+        validate,
+      }}
     />,
   );
 
-  expect(validationHandler).toHaveBeenCalledWith("fail", "Nope!");
+  getByLabelText("I hold places").focus();
+  fireEvent.change(getByLabelText("I hold places"), {
+    target: { value: "Bob" },
+  });
+  getByLabelText("I hold places").blur();
+
+  await waitFor(() => {
+    expect(validationHandler).toHaveBeenCalledWith("message");
+  });
+});
+
+test("it should handle when the enter key is pressed", () => {
+  const enterHandler = jest.fn();
+  const placeholder = "Milk heals bones";
+
+  const { getByLabelText } = render(
+    <FormField
+      name="Enter the milk house"
+      onEnter={enterHandler}
+      placeholder={placeholder}
+    />,
+  );
+
+  fireEvent.keyDown(getByLabelText(placeholder), {
+    key: "Enter",
+    code: "Enter",
+  });
+
+  expect(enterHandler).toHaveBeenCalledTimes(1);
+
+  fireEvent.keyDown(getByLabelText(placeholder), {
+    key: "Enter",
+    code: "Enter",
+  });
+
+  expect(enterHandler).toHaveBeenCalledTimes(2);
+});
+
+test("it should not handle when the shift key and enter key are pressed", () => {
+  const enterHandler = jest.fn();
+  const placeholder = "Milk heals bones";
+
+  const { getByLabelText } = render(
+    <FormField
+      name="Enter the milk house"
+      onEnter={enterHandler}
+      placeholder={placeholder}
+    />,
+  );
+
+  fireEvent.keyDown(getByLabelText(placeholder), {
+    key: "Enter",
+    code: "Enter",
+    shiftKey: true,
+  });
+
+  expect(enterHandler).toHaveBeenCalledTimes(0);
+});
+
+test("it should not handle when the shift key and control key are pressed", () => {
+  const enterHandler = jest.fn();
+  const placeholder = "Milk heals bones";
+
+  const { getByLabelText } = render(
+    <FormField
+      name="Enter the milk house"
+      onEnter={enterHandler}
+      placeholder={placeholder}
+    />,
+  );
+
+  fireEvent.keyDown(getByLabelText(placeholder), {
+    key: "Enter",
+    code: "Enter",
+    ctrlKey: true,
+  });
+
+  expect(enterHandler).toHaveBeenCalledTimes(0);
+});
+
+test("it should not have a name by default", () => {
+  const { getByLabelText } = render(<FormField placeholder="foo" />);
+  expect(getByLabelText("foo")).not.toHaveAttribute("name");
+});
+
+test("it should use the name prop when set", () => {
+  const { getByLabelText } = render(
+    <FormField placeholder="foo" name="dillan" />,
+  );
+  expect(getByLabelText("foo")).toHaveAttribute("name", "dillan");
+});
+
+test("it should generate a name if validations are set", () => {
+  const { getByLabelText } = render(
+    <FormField placeholder="foo" validations={{ required: true }} />,
+  );
+  const input = getByLabelText("foo");
+  const name = input.getAttribute("name");
+  expect(name).toContain("generatedName--");
+});
+
+test("it should set the inputMode when the keyboard prop is set", () => {
+  const keyboardMode = "numeric";
+  const { getByLabelText } = render(
+    <FormField placeholder="foo" keyboard={keyboardMode} />,
+  );
+  const input = getByLabelText("foo");
+  const name = input.getAttribute("inputMode");
+  expect(name).toContain(keyboardMode);
+});
+
+test("it should render the spinner when loading is true", () => {
+  const { getByLabelText } = render(
+    <FormField placeholder="foo" type="text" loading={true} />,
+  );
+  const spinner = getByLabelText("loading");
+
+  expect(spinner).toBeInstanceOf(HTMLElement);
+});
+
+it("it should set the autocomplete value with one-time-code", () => {
+  const { getByLabelText } = render(
+    <FormField placeholder="foo" autocomplete={"one-time-code"} />,
+  );
+  const input = getByLabelText("foo");
+  const autocomplete = input.getAttribute("autocomplete");
+  expect(autocomplete).toContain("one-time-code");
+});
+
+it("it should set the autocomplete value with address-line1", () => {
+  const { getByLabelText } = render(
+    <FormField placeholder="foo" autocomplete={"address-line1"} />,
+  );
+  const input = getByLabelText("foo");
+  const autocomplete = input.getAttribute("autocomplete");
+  expect(autocomplete).toContain("address-line1");
+});
+
+it("it should set the autocomplete value with address-line2", () => {
+  const { getByLabelText } = render(
+    <FormField placeholder="foo" autocomplete={"address-line2"} />,
+  );
+  const input = getByLabelText("foo");
+  const autocomplete = input.getAttribute("autocomplete");
+  expect(autocomplete).toContain("address-line2");
+});
+
+it("it should set the autocomplete value to off", () => {
+  const { getByLabelText } = render(
+    <FormField placeholder="foo" autocomplete={false} />,
+  );
+  const input = getByLabelText("foo");
+  const autocomplete = input.getAttribute("autocomplete");
+  expect(autocomplete).toContain("autocomplete-off");
+});
+
+describe("when the formfield has a prefix", () => {
+  it("shows an icon", () => {
+    const { getByTestId } = render(<FormField prefix={{ icon: "home" }} />);
+
+    expect(getByTestId("home")).toBeInstanceOf(SVGElement);
+  });
+});
+
+describe("when the formfield has a suffix", () => {
+  it("shows an icon", () => {
+    const { getByTestId } = render(<FormField suffix={{ icon: "home" }} />);
+
+    expect(getByTestId("home")).toBeInstanceOf(SVGElement);
+  });
+
+  it("calls the onClick when set", () => {
+    const clickHandler = jest.fn();
+    const { getByTestId } = render(
+      <FormField
+        suffix={{ arialLabel: "Go home", icon: "home", onClick: clickHandler }}
+      />,
+    );
+
+    const icon = getByTestId("home");
+    fireEvent.click(icon);
+
+    expect(clickHandler).toHaveBeenCalled();
+    expect(clickHandler).toHaveBeenCalledTimes(1);
+  });
 });

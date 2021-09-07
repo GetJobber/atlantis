@@ -2,16 +2,17 @@
 name: Modal
 menu: Components
 route: /components/modal
+showDirectoryLink: true
 ---
 
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { useState } from "react";
 import { Modal } from ".";
-import { Button } from "../Button";
-import { Text } from "../Text";
-import { Content } from "../Content";
-import { Tabs, Tab } from "../Tabs";
+import { Button } from "@jobber/components/Button";
+import { Content } from "@jobber/components/Content";
+import { InputText } from "@jobber/components/InputText";
+import { Text } from "@jobber/components/Text";
 
 # Modal
 
@@ -62,6 +63,7 @@ You have 3 action props you can use
 <Playground>
   {() => {
     const [modalOpen, setModalOpen] = useState(false);
+    const [value, setValue] = useState("");
     return (
       <>
         <Modal
@@ -78,6 +80,8 @@ You have 3 action props you can use
               vero ratione praesentium quisquam non porro ullam maiores iure,
               sed odio?
             </Text>
+            {value && <Text>{value}</Text>}
+            <InputText value={value} onChange={setValue} />
           </Content>
         </Modal>
         <Button label="Open Modal" onClick={toggleModal} />

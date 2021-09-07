@@ -1,8 +1,4 @@
 :root {
-  --card--background-color: var(--color-white);
-  --card--header-background-color: var(--color-grey--lightest);
-  --card--content-background-color: var(--color-white);
-  --card--border-color: var(--color-grey--lighter);
   --card--accent-color: var(--color-grey);
   --card--base-padding: var(--space-base);
 }
@@ -10,10 +6,10 @@
 .card {
   display: block;
   width: 100%;
-  border: var(--border-base) solid var(--card--border-color);
+  border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
-  outline-color: var(--color-outline);
-  background-color: var(--card--background-color);
+  outline-color: var(--color-focus);
+  background-color: var(--color-surface);
 }
 
 /* Adjust `Content` components public padding to match the cards */
@@ -33,11 +29,19 @@
 }
 
 .accent {
+  border-top-width: 0;
+}
+
+.accent::before {
+  content: " ";
+  display: block;
+  margin: 0 calc(-1 * var(--border-base));
   border-top: 0.5rem solid var(--card--accent-color);
+  border-radius: var(--radius-base) var(--radius-base) 0 0;
 }
 
 .clickable {
-  --card--border-color: transparent;
+  --color-border: transparent;
 
   box-shadow: var(--shadow-base);
   color: inherit;
@@ -48,10 +52,10 @@
 
 .clickable:hover,
 .clickable:focus {
-  background-color: var(--color-yellow--lightest);
+  background-color: var(--color-surface--hover);
 }
 
 .header {
   padding: var(--card--base-padding);
-  background-color: var(--card--header-background-color);
+  background-color: var(--color-surface--background);
 }

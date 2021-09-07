@@ -2,12 +2,16 @@
 name: Button
 menu: Components
 route: /components/button
+showDirectoryLink: true
 ---
 
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Button } from ".";
+import { Form } from "@jobber/components/Form";
+import { InputNumber } from "@jobber/components/InputNumber";
+import { Content } from "@jobber/components/Content";
+import { Button } from "@jobber/components/Button";
 
 # Button
 
@@ -22,7 +26,7 @@ import { Button } from "@jobber/components/Button";
 
 <Playground>
   <Button
-    label="Submit"
+    label="Do the thing"
     onClick={() => {
       alert("✅");
     }}
@@ -35,22 +39,29 @@ import { Button } from "@jobber/components/Button";
 
 ---
 
-## Work actions
+## Design & Usage Guidelines
+
+The right button to use depends on:
+
+- the type of action your user is attempting to complete
+- the hierarchy of the interface the button lives in
+
+### Work actions
 
 Use Work Actions buttons to enable user interactions in the goal of completing
 work in Jobber.
 
-### Primary
+#### Primary
 
 The most important action in a view. Examples include the Save Job button, Log
 In, or the main action in a dialog. There should be one Primary action per view,
 at most.
 
 <Playground>
-  <Button label="Submit" />
+  <Button label="Do the thing" />
 </Playground>
 
-### Secondary
+#### Secondary
 
 A secondary button should be used when...
 
@@ -58,24 +69,24 @@ A secondary button should be used when...
   action
 
 <Playground>
-  <Button label="Submit" type="secondary" />
+  <Button label="Do the thing" type="secondary" />
 </Playground>
 
-### Tertiary
+#### Tertiary
 
 A tertiary button should be used to complete actions within the view such as
 editing, revealing details, or navigating within the view.
 
 <Playground>
-  <Button label="Submit" type="tertiary" />
+  <Button label="Do the thing" type="tertiary" />
 </Playground>
 
-## Learning Actions
+### Learning Actions
 
 Use the Learning Actions buttons to enable user interactions in the goal of
 learning about Jobber, whether for marketing or coaching purposes.
 
-### Primary, Secondary, Tertiary
+#### Primary, Secondary, Tertiary
 
 The usage pattern for Learning Actions should follow the same logic as Work
 Actions for all three levels.
@@ -109,20 +120,20 @@ Actions for all three levels.
   />
 </Playground>
 
-## Destructive Actions
+### Destructive Actions
 
 Destructive actions remove something from Jobber.
 
-### Primary
+#### Primary
 
 A Primary destructive action will permanently destroy an object carrying
 signficant data, such as a job, quote, or client. This destructive action should
 be contained in a confirmation dialog triggered by clicking a Secondary
 destructive button.
 
-### Secondary
+#### Secondary or Tertiary
 
-A Secondary destructive action will either...
+A Secondary or tertiary destructive action will either...
 
 - destroy an item on an object that can be quickly restored, such as a line item
   on a job
@@ -136,7 +147,7 @@ A Secondary destructive action will either...
   <Button label="Delete" variation="destructive" type="secondary" />
 </Playground>
 
-## Cancel Actions
+### Cancel Actions
 
 Cancel actions allow the user to opt out of completing an action they have
 triggered, whether that action is Work, Learning, or Destructive.
@@ -151,7 +162,7 @@ Buttons can be disabled for a number of reasons, users may need to do an action
 first or they may not be ready to use that button.
 
 <Playground>
-  <Button label="Submit" disabled />
+  <Button label="Do the thing" disabled />
 </Playground>
 
 ## Sizes
@@ -161,13 +172,13 @@ Buttons comes in 2 extra sizes.
 ### Small
 
 <Playground>
-  <Button label="Submit" size="small" />
+  <Button label="Do the thing" size="small" />
 </Playground>
 
 ### Large
 
 <Playground>
-  <Button label="Submit" size="large" />
+  <Button label="Do the thing" size="large" />
 </Playground>
 
 ## Icons
@@ -237,4 +248,22 @@ that the url will change to the appropriate route.
       </Router>
     );
   }}
+</Playground>
+
+## Form Submit
+
+Passing the `submit` prop will allow a `Button` to submit a
+[Form](/components/form). Since submitting a form is a specific action, only
+`variation="work"` and `type="primary"` are allowed.
+
+Since this type of `Button` will only be used to submit a form, it does not make
+sense to allow the `external`, `onClick`, `to`, or `url` props.
+
+<Playground>
+  <Form onSubmit={() => alert("Wow, what a number")}>
+    <Content>
+      <InputNumber placeholder="Pick a number" />
+      <Button label="Submit" submit={true} />
+    </Content>
+  </Form>
 </Playground>

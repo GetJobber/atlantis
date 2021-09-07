@@ -121,3 +121,16 @@ function ControlledConfirm({
     </>
   );
 }
+
+test("message should handle markdown", () => {
+  const { getByText } = render(
+    <ConfirmationModal
+      title="Should we?"
+      message={`# hello`}
+      open={true}
+      confirmLabel=""
+    />,
+  );
+
+  expect(getByText("hello")).toBeInstanceOf(HTMLHeadingElement);
+});

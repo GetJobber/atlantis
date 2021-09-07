@@ -33,6 +33,7 @@ exports[`renders 1 List item with all the props 1`] = `
           >
             <svg
               className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+              data-testid="checkmark"
               viewBox="0 0 1024 1024"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -46,12 +47,12 @@ exports[`renders 1 List item with all the props 1`] = `
             className="info"
           >
             <h5
-              className="base bold base blue"
+              className="base bold base heading"
             >
               Jordan Yeo completed a visit
             </h5>
             <p
-              className="base regular base greyBlueDark"
+              className="base regular base text"
             >
               <span
                 className="truncate"
@@ -60,7 +61,7 @@ exports[`renders 1 List item with all the props 1`] = `
               </span>
             </p>
             <p
-              className="base regular base greyBlueDark"
+              className="base regular base text"
             >
               <span
                 className="truncate"
@@ -69,7 +70,7 @@ exports[`renders 1 List item with all the props 1`] = `
               </span>
             </p>
             <p
-              className="base regular base greyBlue"
+              className="base regular base textSecondary"
             >
               <span
                 className="base regular small italic"
@@ -82,7 +83,7 @@ exports[`renders 1 List item with all the props 1`] = `
             className="amount"
           >
             <p
-              className="base regular base greyBlueDark"
+              className="base regular base text"
             >
               <b
                 className="base bold"
@@ -116,7 +117,7 @@ exports[`should render a button list item 1`] = `
         className="info"
       >
         <p
-          className="base regular base greyBlueDark"
+          className="base regular base text"
         >
           <span
             className="truncate"
@@ -146,7 +147,7 @@ exports[`should render a link with url list item 1`] = `
         className="info"
       >
         <p
-          className="base regular base greyBlueDark"
+          className="base regular base text"
         >
           <span
             className="truncate"
@@ -177,7 +178,7 @@ exports[`should render an a tag with url and on click list item 1`] = `
         className="info"
       >
         <p
-          className="base regular base greyBlueDark"
+          className="base regular base text"
         >
           <span
             className="truncate"

@@ -16,13 +16,20 @@
   max-width: calc(var(--base-unit) * 64);
 }
 
-.titleBar.large {
-  display: flex;
-  justify-content: space-between;
+.titleBar h1 {
+  flex: 0 1 auto;
+  margin-bottom: var(--space-base);
 }
 
-.actionGroup {
-  margin-top: var(--space-base);
+.titleBar > .actionGroup {
+  flex: 1 0 auto;
+}
+
+.titleBar.large,
+.titleBar.medium {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .titleBar.small .actionGroup {
@@ -31,12 +38,13 @@
   justify-content: space-between;
 }
 
-.titleBar.medium .actionGroup {
-  justify-content: flex-start;
+.titleBar.medium .actionGroup,
+.titleBar.large .actionGroup {
+  flex-wrap: nowrap;
 }
 
-.titleBar.large .actionGroup {
-  margin-top: 0;
+.titleBar.medium .actionGroup {
+  justify-content: flex-end;
 }
 
 .primaryAction {
@@ -69,4 +77,8 @@
 
 .titleBar.small .actionButton + .actionButton {
   margin-left: var(--space-small);
+}
+
+.titleBar .subtitle {
+  margin-bottom: var(--space-base);
 }

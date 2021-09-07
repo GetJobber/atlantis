@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a Divider 1`] = `
+<hr
+  className="divider"
+  role="none"
+/>
+`;
+
+exports[`renders a large Divider 1`] = `
+<hr
+  className="divider large"
+  role="none"
+/>
+`;

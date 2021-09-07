@@ -6,7 +6,7 @@
   height: var(--space-largest);
   margin-bottom: var(--space-base);
   border-radius: var(--radius-base);
-  background-color: var(--color-white);
+  background-color: var(--color-surface);
 }
 
 .select {
@@ -15,7 +15,7 @@
   height: inherit;
   padding-left: var(--inset);
   padding-right: var(--inset);
-  border: var(--border-base) solid var(--color-grey--lighter);
+  border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
   color: var(--color-blue);
   font-size: 14px;
@@ -66,7 +66,7 @@
 }
 
 .select:disabled {
-  background-color: var(--color-grey--lightest);
+  background-color: var(--color-surface--background);
   opacity: 0.6;
 }
 
@@ -76,7 +76,7 @@
 
 .select:focus {
   box-shadow: none;
-  border-color: var(--color-outline);
+  border-color: var(--color-focus);
   outline: none;
 }
 
@@ -92,5 +92,5 @@
 /* Invalid State */
 
 .invalid .select {
-  border-color: var(--color-red);
+  border-color: var(--color-critical);
 }

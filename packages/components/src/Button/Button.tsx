@@ -4,8 +4,10 @@ import { XOR } from "ts-xor";
 import { Link } from "react-router-dom";
 import { IconNames } from "@jobber/design";
 import styles from "./Button.css";
-import { Typography } from "../Typography";
 import { Icon } from "../Icon";
+import { Typography } from "../Typography";
+
+type ButtonType = "button" | "submit";
 
 interface ButtonFoundationProps {
   /**
@@ -25,7 +27,9 @@ interface ButtonFoundationProps {
   readonly label?: string;
   readonly loading?: boolean;
   readonly size?: "small" | "base" | "large";
-  onClick?(): void;
+  onClick?(
+    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
+  ): void;
 }
 
 interface ButtonIconProps extends ButtonFoundationProps {
@@ -58,19 +62,34 @@ interface BaseActionProps extends ButtonFoundationProps {
 
 interface DestructiveActionProps extends ButtonFoundationProps {
   readonly variation: "destructive";
-  readonly type?: "primary" | "secondary";
+  readonly type?: "primary" | "secondary" | "tertiary";
 }
 
 interface CancelActionProps extends ButtonFoundationProps {
   readonly variation: "cancel";
-  readonly type?: "secondary";
+  readonly type?: "secondary" | "tertiary";
+}
+
+interface SubmitActionProps
+  extends Omit<ButtonFoundationProps, "external" | "onClick"> {
+  readonly variation?: "work";
+  readonly type?: "primary";
+  readonly submit: boolean;
+}
+
+interface SubmitButtonProps
+  extends Omit<ButtonFoundationProps, "external" | "onClick"> {
+  /**
+   * Allows the button to submit a form
+   */
+  submit: boolean;
 }
 
 export type ButtonProps = XOR<
   BaseActionProps,
-  XOR<DestructiveActionProps, CancelActionProps>
+  XOR<DestructiveActionProps, XOR<CancelActionProps, SubmitActionProps>>
 > &
-  XOR<ButtonLinkProps, ButtonAnchorProps> &
+  XOR<SubmitButtonProps, XOR<ButtonLinkProps, ButtonAnchorProps>> &
   XOR<ButtonIconProps, ButtonLabelProps>;
 
 export function Button(props: ButtonProps) {
@@ -93,9 +112,11 @@ export function Button(props: ButtonProps) {
     url,
     to,
     variation = "work",
+    submit,
   } = props;
 
   const buttonClassNames = classnames(styles.button, styles[size], {
+    [styles.onlyIcon]: icon && !label,
     [styles.hasIconAndLabel]: icon && label,
     [styles.iconOnRight]: iconOnRight,
     [styles[variation]]: variation,
@@ -105,6 +126,8 @@ export function Button(props: ButtonProps) {
     [styles.loading]: loading,
   });
 
+  const buttonType: ButtonType = submit ? "submit" : "button";
+
   const tagProps = {
     className: buttonClassNames,
     disabled,
@@ -112,8 +135,7 @@ export function Button(props: ButtonProps) {
     ...(!disabled && { href: url }),
     ...(!disabled && { onClick: onClick }),
     ...(external && { target: "_blank" }),
-    ...(url === undefined &&
-      to === undefined && { type: "button" as "button" }),
+    ...(url === undefined && to === undefined && { type: buttonType }),
     "aria-controls": ariaControls,
     "aria-haspopup": ariaHaspopup,
     "aria-expanded": ariaExpanded,
@@ -135,29 +157,15 @@ export function Button(props: ButtonProps) {
   return <Tag {...tagProps}>{buttonInternals}</Tag>;
 }
 
-function ButtonInternals({
-  label,
-  icon,
-  variation = "work",
-  type = "primary",
-  disabled,
-  size = "base",
-}: ButtonProps) {
+function ButtonInternals({ label, icon, size = "base" }: ButtonProps) {
   return (
     <>
-      {icon && (
-        <Icon
-          name={icon}
-          size={size}
-          color={getColor(variation, type, disabled)}
-        />
-      )}
+      {icon && <Icon name={icon} size={size} />}
       <Typography
         element="span"
         textCase="uppercase"
         fontWeight="extraBold"
         size={getTypeSizes(size)}
-        textColor={getColor(variation, type, disabled)}
       >
         {label}
       </Typography>
@@ -173,26 +181,5 @@ function getTypeSizes(size: string) {
       return "base";
     default:
       return "small";
-  }
-}
-
-function getColor(variation: string, type: string, disabled?: boolean) {
-  if (type === "primary" && variation !== "cancel" && !disabled) {
-    return "white";
-  }
-
-  if (disabled) {
-    return "grey";
-  }
-
-  switch (variation) {
-    case "learning":
-      return "lightBlue";
-    case "destructive":
-      return "red";
-    case "cancel":
-      return "greyBlue";
-    default:
-      return "green";
   }
 }

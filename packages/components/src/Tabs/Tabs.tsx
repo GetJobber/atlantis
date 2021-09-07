@@ -82,7 +82,7 @@ export function Tabs({ children }: TabsProps) {
 interface TabProps {
   readonly label: string;
   readonly children: ReactNode | ReactNode[];
-  onClick?(): void;
+  onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export function Tab({ label }: TabProps) {
@@ -93,7 +93,7 @@ interface InternalTabProps {
   readonly label: string;
   readonly selected: boolean;
   activateTab(): void;
-  onClick?(): void;
+  onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export function InternalTab({
@@ -111,9 +111,9 @@ export function InternalTab({
       type="button"
       role="tab"
       className={className}
-      onClick={() => {
+      onClick={event => {
         activateTab();
-        onClick();
+        onClick(event);
       }}
     >
       <Typography element="span" size="base" textColor={color}>

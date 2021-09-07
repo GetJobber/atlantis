@@ -191,3 +191,26 @@ it("renders a capitalized text", () => {
     </p>
   `);
 });
+
+it("should add textTruncate class when numberOfLines property is passed", () => {
+  const tree = renderer
+    .create(
+      <Typography numberOfLines={3}>
+        Pretend this is a multiline text
+      </Typography>,
+    )
+    .toJSON();
+  expect(tree).toMatchInlineSnapshot(`
+    <p
+      className="base regular textTruncate"
+      style={
+        Object {
+          "WebkitBoxOrient": "vertical",
+          "WebkitLineClamp": 3,
+        }
+      }
+    >
+      Pretend this is a multiline text
+    </p>
+  `);
+});

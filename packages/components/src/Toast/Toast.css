@@ -1,0 +1,51 @@
+.wrapper {
+  position: relative;
+  z-index: var(--elevation-toast);
+}
+
+.container {
+  display: flex;
+  position: fixed;
+  right: 0;
+  bottom: var(--space-large);
+  left: 0;
+  z-index: var(--elevation-toast);
+  width: 100%;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 var(--space-large);
+  color: var(--color-text);
+  font-size: var(--typography--fontSize-large);
+  pointer-events: none;
+}
+
+.toast {
+  box-shadow: var(--shadow-high);
+  overflow: hidden;
+  pointer-events: all;
+}
+
+.toast + .toast {
+  margin-top: var(--space-base);
+}
+
+.slice {
+  display: flex;
+  align-items: center;
+  padding: calc(var(--space-small) / 1.25) var(--space-base);
+  border-radius: var(--radius-base);
+  background: var(--color-surface);
+}
+
+.icon {
+  margin-right: var(--space-base);
+}
+
+.button {
+  margin-left: var(--space-base);
+}
+
+.action {
+  margin-left: var(--space-small);
+}

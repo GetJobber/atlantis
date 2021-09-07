@@ -12,6 +12,13 @@ it("renders a Checkbox", () => {
   expect(tree).toMatchSnapshot();
 });
 
+it("renders a disabled Checkbox", () => {
+  const tree = renderer
+    .create(<Checkbox label="Dont click me" disabled={true} />)
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
 it("renders each variation of checked, defaultChecked and indeterminate", () => {
   const variations = [
     { checked: true, indeterminate: true },
@@ -54,4 +61,10 @@ describe("Clicking the checkbox it should call the handler", () => {
     fireEvent.click(getByLabelText("foo"));
     expect(clickHandler).toHaveBeenCalledWith(false);
   });
+});
+
+test("should render a description when set", () => {
+  const { getByText } = render(<Checkbox description="Checkers" />);
+  const description = getByText("Checkers");
+  expect(description).toBeInstanceOf(HTMLParagraphElement);
 });

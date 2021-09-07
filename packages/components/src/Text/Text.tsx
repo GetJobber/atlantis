@@ -1,32 +1,53 @@
-import React, { ReactNode } from "react";
+import React, { PropsWithChildren } from "react";
 import { Typography, TypographyOptions } from "../Typography";
 
 interface TextProps {
+  maxLines?: "single" | "small" | "base" | "large" | "larger" | "unlimited";
+
   readonly variation?:
     | "default"
     | "subdued"
-    | "intro"
     | "success"
     | "error"
     | "warn"
     | "info";
-  readonly children: ReactNode;
+
+  readonly size?: "small" | "base" | "large";
 }
 
-export interface VariationMap {
-  [variation: string]: TypographyOptions;
-}
+type TextColor = Extract<TypographyOptions, "textColor">;
 
-export function Text({ variation = "default", children }: TextProps) {
-  const variationMap: VariationMap = {
-    default: { textColor: "greyBlueDark", size: "base" },
-    subdued: { textColor: "greyBlue", size: "base" },
-    intro: { textColor: "greyBlueDark", size: "larger" },
-    success: { textColor: "green", size: "base" },
-    error: { textColor: "red", size: "base" },
-    warn: { textColor: "yellowDark", size: "base" },
-    info: { textColor: "lightBlue", size: "base" },
+export function Text({
+  variation = "default",
+  size = "base",
+  children,
+  maxLines = "unlimited",
+}: PropsWithChildren<TextProps>) {
+  const textColors = {
+    default: "text",
+    subdued: "textSecondary",
+    success: "success",
+    error: "critical",
+    warn: "warning",
+    info: "informative",
   };
 
-  return <Typography {...variationMap[variation]}>{children}</Typography>;
+  const maxLineToNumber = {
+    single: 1,
+    small: 2,
+    base: 4,
+    large: 8,
+    larger: 16,
+    unlimited: undefined,
+  };
+
+  return (
+    <Typography
+      textColor={textColors[variation] as TextColor}
+      size={size}
+      numberOfLines={maxLineToNumber[maxLines]}
+    >
+      {children}
+    </Typography>
+  );
 }

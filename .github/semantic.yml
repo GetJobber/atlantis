@@ -12,3 +12,4 @@ scopes:
   - generators
   - hooks
   - stylelint
+  - docz-tools

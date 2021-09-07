@@ -1,0 +1,1 @@
+export { InputAvatar } from "./InputAvatar";
