@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { fireEvent, render } from "@testing-library/react";
-import { useActivatorFocusOnClose } from ".";
+import { useRefocusOnActivator } from ".";
 
 const activatorId = "activator";
 const closerId = "closer";
@@ -18,7 +18,7 @@ it("return the focus on the activator", () => {
 
 function TestComponent() {
   const [open, setOpen] = useState(false);
-  useActivatorFocusOnClose(true);
+  useRefocusOnActivator(true);
 
   return (
     <>

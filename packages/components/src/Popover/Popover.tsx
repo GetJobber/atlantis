@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { usePopper } from "react-popper";
-import { useActivatorFocusOnClose } from "@jobber/hooks";
+import { useRefocusOnActivator } from "@jobber/hooks";
 import classes from "./Popover.css";
 import { ButtonDismiss } from "../ButtonDismiss";
 
@@ -50,7 +50,7 @@ export function Popover({
       placement: preferredPlacement,
     },
   );
-  useActivatorFocusOnClose(open);
+  useRefocusOnActivator(open);
 
   return (
     <>

@@ -1,7 +1,7 @@
 ---
-name: useActivatorFocusOnClose
+name: useRefocusOnActivator
 menu: Hooks
-route: /hooks/use-activator-focus-on-close
+route: /hooks/use-refocus-on-activator
 ---
 
 import { Playground } from "docz";
@@ -9,21 +9,21 @@ import { useState } from "react";
 import { Button } from "@jobber/components/Button";
 import { Content } from "@jobber/components/Content";
 import { Card } from "@jobber/components/Card";
-import { useActivatorFocusOnClose } from "@jobber/hooks";
+import { useRefocusOnActivator } from "@jobber/hooks";
 
-# useActivatorFocusOnClose
+# useRefocusOnActivator
 
 Improves the keyboard accessibility on modals and/or popovers since the HTML
 element focus returns to the one that opens it.
 
 ```tsx
-import { useActivatorFocusOnClose } from "@jobber/hooks";
+import { useRefocusOnActivator } from "@jobber/hooks";
 ```
 
 <Playground>
   {() => {
     const [open, setOpen] = useState(false);
-    useActivatorFocusOnClose(open);
+    useRefocusOnActivator(open);
     return (
       <Content>
         <Button label="Click me" onClick={() => setOpen(true)} />

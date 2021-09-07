@@ -8,7 +8,7 @@ let activator: Element | null | undefined;
  *
  * @param active - Determines if it should focus or not
  */
-export function useActivatorFocusOnClose(active: boolean) {
+export function useRefocusOnActivator(active: boolean) {
   useEffect(() => {
     return () => {
       if (!activator) {

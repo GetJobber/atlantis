@@ -4,4 +4,4 @@ export * from "./useOnKeyDown";
 export * from "./useCollectionQuery";
 export * from "./useIsMounted";
 export * from "./usePasswordStrength";
-export * from "./useActivatorFocusOnClose";
+export * from "./useRefocusOnActivator";

@@ -2,7 +2,7 @@ import React, { ReactNode, RefObject, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
-import { useActivatorFocusOnClose } from "@jobber/hooks";
+import { useRefocusOnActivator } from "@jobber/hooks";
 import styles from "./Modal.css";
 import sizes from "./Sizes.css";
 import { Typography } from "../Typography";
@@ -50,7 +50,7 @@ export function Modal({
   }, [open]);
 
   catchKeyboardEvent("Escape", open, onRequestClose);
-  useActivatorFocusOnClose(open);
+  useRefocusOnActivator(open);
 
   const template = (
     <AnimatePresence>
