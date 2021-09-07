@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.45.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.44.0...@jobber/components@2.45.0) (2021-09-03)
+
+
+### Features
+
+* **components:** Add `event` argument to onClick events ([#631](https://github.com/GetJobber/atlantis/issues/631)) ([961e0dc](https://github.com/GetJobber/atlantis/commit/961e0dccaabfdc68b4248c043f40beb054cb1543))
+
+
+
+
+
 # [2.44.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.43.6...@jobber/components@2.44.0) (2021-09-02)
 
 
