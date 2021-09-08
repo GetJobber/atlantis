@@ -63,7 +63,7 @@ async function checkPackagesAgainstNpm() {
 
         if (versions.includes(version)) {
           console.log(
-            chalk.green(`${name}@${version} is currently in npm registry`),
+            chalk.green(`✅ ${name}@${version} is currently in npm registry`),
           );
         } else {
           console.log(
@@ -77,9 +77,10 @@ async function checkPackagesAgainstNpm() {
       .catch(error => {
         if (error.response.data.message) {
           console.log(chalk.red(error.response.data.message));
-          throw new Error();
+          process.exit(1);
         } else {
-          throw new Error(error.response.data.message);
+          console.log(chalk.red("Something went wrong"));
+          process.exit(1);
         }
       });
   }
@@ -108,15 +109,20 @@ async function checkForPreReleases() {
          * either "N.N.N" or "^N.N.N".
          **/
         if (!/^\^?\d+.\d+.\d+$/.test(allDependencies[dependency])) {
-          throw new Error(
-            `There seems to be a non-official release version of a Jobber npm package: ${package}@${packages[package]}`,
+          console.log(
+            chalk.red(
+              `There seems to be a non-official release version of a Jobber npm package: ${package}@${packages[package]}`,
+            ),
           );
+          process.exit(1);
         }
       }
     }
   }
 
-  console.log(chalk.green("No pre-release versions found in @jobber packages"));
+  console.log(
+    chalk.green("✅ No pre-release versions found in @jobber packages"),
+  );
 }
 
 async function preventManualReleases() {
