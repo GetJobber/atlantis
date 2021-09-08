@@ -79,13 +79,14 @@ The textarea will start at a specified minimum and grow to a specified maximum.
 
 <Playground>
   <InputText
-    defaultValue="Rocinante"
-    placeholder="Ship name"
-    prefix={{ label: "🚢", icon: "star" }}
+    defaultValue="1,000,000"
+    placeholder="Invoice Total"
+    prefix={{ label: "$", icon: "invoice" }}
     suffix={{
-      label: "Uh Oh!",
-      icon: "alert",
-      onClick: () => alert("You sunk my battleship!"),
+      label: "💰💰💰",
+      icon: "paidInvoice",
+      ariaLabel: "Tell me i'm rich",
+      onClick: () => alert("You're rich!"),
     }}
   />
 </Playground>

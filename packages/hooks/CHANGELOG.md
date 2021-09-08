@@ -8,6 +8,25 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.5.0...@jobber/hooks@1.5.1) (2021-08-31)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+# [1.5.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.4.1...@jobber/hooks@1.5.0) (2021-08-27)
+
+
+### Features
+
+* **hooks:** Implement hook to calculate password strength  ([#622](https://github.com/GetJobber/atlantis/issues/622)) ([dec531b](https://github.com/GetJobber/atlantis/commit/dec531b36e1e12500d6fa1484b779a0d61fe1286))
+
+
+
+
+
 ## [1.4.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.4.0...@jobber/hooks@1.4.1) (2021-08-06)
 
 

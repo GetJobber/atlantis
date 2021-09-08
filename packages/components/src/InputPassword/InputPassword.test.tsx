@@ -12,9 +12,9 @@ describe("<InputPassword />", () => {
 
   it("renders a show/hide password button", () => {
     const { getByLabelText } = render(
-      <InputPassword value="123" hasVisibilityToggle />,
+      <InputPassword value="123" hasVisibility />,
     );
-    expect(getByLabelText("Input action")).toBeInTheDocument();
+    expect(getByLabelText("Show password")).toBeInTheDocument();
   });
 
   it("should call the handler with a value", () => {
@@ -36,21 +36,27 @@ describe("<InputPassword />", () => {
     expect(changeHandler).toHaveBeenCalledWith(newValue);
   });
 
-  describe("hasVisibilityToggle", () => {
+  describe("hasVisibility", () => {
     it("should toggle visible on click", async () => {
       const { getByLabelText, container } = render(
-        <InputPassword value="password" hasVisibilityToggle />,
+        <InputPassword value="password" hasVisibility />,
       );
-      // initially should display password input
       expect(
         container.querySelector("input[type='password']"),
       ).toBeInTheDocument();
 
-      // clicking on visibility toggle, should see password
-      fireEvent.click(getByLabelText("Input action"));
+      fireEvent.click(getByLabelText("Show password"));
       expect(container.querySelector("input[type='text']")).toBeInTheDocument();
       expect(
         container.querySelector("input[type='password']"),
+      ).not.toBeInTheDocument();
+
+      fireEvent.click(getByLabelText("Hide password"));
+      expect(
+        container.querySelector("input[type='password']"),
+      ).toBeInTheDocument();
+      expect(
+        container.querySelector("input[type='text']"),
       ).not.toBeInTheDocument();
     });
   });

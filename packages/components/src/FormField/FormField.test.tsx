@@ -447,7 +447,9 @@ describe("when the formfield has a suffix", () => {
   it("calls the onClick when set", () => {
     const clickHandler = jest.fn();
     const { getByTestId } = render(
-      <FormField suffix={{ icon: "home", onClick: clickHandler }} />,
+      <FormField
+        suffix={{ arialLabel: "Go home", icon: "home", onClick: clickHandler }}
+      />,
     );
 
     const icon = getByTestId("home");

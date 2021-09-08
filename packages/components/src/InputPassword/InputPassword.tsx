@@ -29,17 +29,18 @@ interface InputPasswordProps
    * Display toggle to change the visibility of the password input
    * @default false
    */
-  hasVisibilityToggle?: boolean;
+  hasVisibility?: boolean;
 }
 
 export function InputPassword(props: InputPasswordProps) {
-  const { hasVisibilityToggle = false } = props;
+  const { hasVisibility = false } = props;
   const [visible, setVisibility] = useState(false);
   return (
     <FormField
       {...props}
-      {...(hasVisibilityToggle && {
+      {...(hasVisibility && {
         suffix: {
+          ariaLabel: visible ? "Hide password" : "Show password",
           icon: visible ? "eye" : "eyeCrossed",
           onClick: () => setVisibility(!visible),
         },

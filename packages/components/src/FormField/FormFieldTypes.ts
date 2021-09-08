@@ -9,7 +9,8 @@ export type FormFieldTypes =
   | "number"
   | "time"
   | "textarea"
-  | "select";
+  | "select"
+  | "email";
 
 export type AutocompleteTypes =
   | "one-time-code"
@@ -25,9 +26,14 @@ export interface Affix {
   readonly icon?: IconNames;
 }
 
-export interface Suffix extends Affix {
+interface BaseSuffix extends Affix {
   readonly icon: IconNames;
   onClick?(): void;
+}
+
+export interface Suffix extends BaseSuffix {
+  onClick(): void;
+  readonly ariaLabel: string;
 }
 
 export interface FormFieldProps {
