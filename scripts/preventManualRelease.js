@@ -71,7 +71,7 @@ async function checkPackagesAgainstNpm() {
               `${name}@${version} was not found in the npm registry. Please check that you have not committed a new version to your branch`,
             ),
           );
-          throw new Error();
+          process.exit(1);
         }
       })
       .catch(error => {
