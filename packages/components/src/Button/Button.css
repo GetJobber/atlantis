@@ -81,31 +81,62 @@ a.button:active {
 
 /* Type */
 
-.primary:not(.cancel),
-.primary:not(.cancel):hover,
-.primary:not(.cancel):focus {
+.primary:not(.cancel, .subtle),
+.primary:not(.cancel, .subtle):hover,
+.primary:not(.cancel, .subtle):focus {
   color: var(--button--color-primaryLabel);
   background-color: var(--button--color-variation);
   fill: var(--button--color-primaryLabel);
 }
 
-.primary:not(.cancel):hover,
-.primary:not(.cancel):focus {
+.primary:not(.cancel, .subtle):hover,
+.primary:not(.cancel, .subtle):focus {
   background-color: var(--button--color-variation--hover);
 }
 
-.secondary {
+.cancel.primary,
+.subtle.primary {
+  color: var(--button--color-variation);
+  fill: var(--button--color-variation);
+  background-color: var(--button--color-surface);
+}
+
+.secondary,
+.subtle.primary {
   border-color: var(--button--color-variation);
 }
 
-.tertiary {
+.cancel.primary:hover,
+.cancel.primary:focus,
+.subtle.primary:hover,
+.subtle.primary:focus {
+  color: var(--button--color-variation--hover);
+  background-color: var(--button--color-surface--hover);
+  fill: var(--button--color-variation--hover);
+}
+
+.subtle.secondary {
+  background-color: var(--button--color-surface);
+}
+
+.tertiary,
+.subtle.secondary {
   border-color: transparent;
+}
+
+.subtle.secondary:hover,
+.subtle.secondary:focus {
+  background-color: var(--button--color-surface--hover);
 }
 
 .tertiary:hover,
 .tertiary:focus,
 a.tertiary:hover,
-a.tertiary:focus {
+a.tertiary:focus,
+.subtle.secondary:hover,
+.subtle.secondary:focus,
+a.subtle.secondary:hover,
+a.subtle.secondary:focus {
   border-color: transparent;
 }
 
@@ -114,10 +145,10 @@ a.tertiary:focus {
   background-color: transparent;
 }
 
-.subtle:hover,
-.subtle:focus,
-a.subtle:hover,
-a.subtle:focus {
+.subtle.tertiary:hover,
+.subtle.tertiary:focus,
+a.subtle.tertiary:hover,
+a.subtle.tertiary:focus {
   border-color: transparent;
   color: var(--color-interactive--subtle--hover);
   fill: var(--color-interactive--subtle--hover);
@@ -213,7 +244,7 @@ a.button.disabled:hover {
   animation-timing-function: linear;
 }
 
-.primary.loading:not(.cancel) {
+.primary.loading:not(.cancel, .subtle) {
   background-image: linear-gradient(
     135deg,
     rgba(255, 255, 255, 25%) 0%,
