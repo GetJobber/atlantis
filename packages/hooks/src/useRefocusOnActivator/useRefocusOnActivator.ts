@@ -10,20 +10,16 @@ let activator: Element | null | undefined;
  */
 export function useRefocusOnActivator(active: boolean) {
   useEffect(() => {
-    return () => {
-      if (!activator) {
-        activator = document.activeElement;
-      }
-
-      if (active) {
-        // Wait for other DOM changes before focusing on the activator
-        setTimeout(() => {
-          if (activator instanceof HTMLElement) {
-            activator.focus();
-          }
-          activator = undefined;
-        }, 0);
-      }
-    };
+    if (active && !activator) {
+      activator = document.activeElement;
+    } else {
+      // Wait for other DOM changes before focusing on the activator
+      setTimeout(() => {
+        if (activator instanceof HTMLElement) {
+          activator.focus();
+        }
+        activator = undefined;
+      }, 0);
+    }
   }, [active]);
 }

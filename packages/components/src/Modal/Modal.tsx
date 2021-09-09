@@ -42,6 +42,7 @@ export function Modal({
   const modalContainer: RefObject<HTMLDivElement> = useRef(
     document.createElement("div"),
   );
+  useRefocusOnActivator(open);
 
   useEffect(() => {
     if (modalContainer.current) {
@@ -50,7 +51,6 @@ export function Modal({
   }, [open]);
 
   catchKeyboardEvent("Escape", open, onRequestClose);
-  useRefocusOnActivator(open);
 
   const template = (
     <AnimatePresence>
