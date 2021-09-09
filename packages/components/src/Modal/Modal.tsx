@@ -44,9 +44,11 @@ export function Modal({
   );
   useRefocusOnActivator(open);
 
+  document.body.addEventListener("blur", () => console.log("bloop"));
+
   useEffect(() => {
-    if (modalContainer.current) {
-      modalContainer.current.focus();
+    if (open) {
+      modalContainer.current?.focus();
     }
   }, [open]);
 

@@ -16,13 +16,10 @@ export function useRefocusOnActivator(active: boolean) {
 
     return () => {
       if (active) {
-        // Wait for other DOM changes before focusing on the activator
-        setTimeout(() => {
-          if (activator instanceof HTMLElement) {
-            activator.focus();
-          }
-          activator = undefined;
-        }, 0);
+        if (activator instanceof HTMLElement) {
+          activator.focus();
+        }
+        activator = undefined;
       }
     };
   }, [active]);
