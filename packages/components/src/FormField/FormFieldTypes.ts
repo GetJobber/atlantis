@@ -87,7 +87,7 @@ export interface CommonFormFieldProps {
    * Simplified onChange handler that only provides the new value.
    * @param newValue
    */
-  onChange?(newValue: string | number | CivilTime): void;
+  onChange?(newValue: string | number | boolean | CivilTime): void;
 
   /**
    * Callback to get the the status and message when validating a field
