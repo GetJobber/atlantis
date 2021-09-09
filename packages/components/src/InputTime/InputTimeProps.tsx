@@ -5,7 +5,6 @@ export interface InputTimeProps
   extends Pick<
       CommonFormFieldProps,
       | "align"
-      | "defaultValue"
       | "disabled"
       | "invalid"
       | "inline"

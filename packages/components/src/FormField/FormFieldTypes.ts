@@ -1,7 +1,6 @@
 import { ReactNode, RefObject } from "react";
 import { ValidationRules } from "react-hook-form";
 import { XOR } from "ts-xor";
-import { CivilTime } from "@std-proposal/temporal";
 import { IconNames } from "../Icon";
 
 export type FormFieldTypes =
@@ -53,7 +52,7 @@ export interface CommonFormFieldProps {
    * the field with a data that is not controlled by the components state. If a
    * state is controlling the value, use the `value` prop instead.
    */
-  readonly defaultValue?: string | CivilTime;
+  readonly defaultValue?: string;
 
   /**
    * Disable the input
@@ -87,7 +86,7 @@ export interface CommonFormFieldProps {
    * Simplified onChange handler that only provides the new value.
    * @param newValue
    */
-  onChange?(newValue: string | number | boolean | CivilTime): void;
+  onChange?(newValue: string | number | boolean): void;
 
   /**
    * Callback to get the the status and message when validating a field
@@ -108,7 +107,7 @@ export interface CommonFormFieldProps {
   /**
    * Set the component to the given value.
    */
-  readonly value?: string | number | CivilTime;
+  readonly value?: string | number;
 }
 
 export interface FormFieldProps extends CommonFormFieldProps {
