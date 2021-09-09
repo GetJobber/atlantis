@@ -56,7 +56,7 @@ interface ButtonLinkProps extends ButtonFoundationProps {
 }
 
 interface BaseActionProps extends ButtonFoundationProps {
-  readonly variation?: "work" | "learning";
+  readonly variation?: "work" | "learning" | "subtle";
   readonly type?: "primary" | "secondary" | "tertiary";
 }
 
