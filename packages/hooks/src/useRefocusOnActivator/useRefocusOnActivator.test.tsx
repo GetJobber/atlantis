@@ -3,11 +3,10 @@ import { fireEvent, render } from "@testing-library/react";
 import { useRefocusOnActivator } from ".";
 
 function waitForNextTick(callback: () => void) {
-  // Need to wait for the DOM to finish it's thing
   // https://github.com/testing-library/jest-dom/issues/53
   // Based on this finding [https://github.com/testing-library/jest-dom/issues/53#issuecomment-421671377]
   // and [https://stackoverflow.com/a/11299876] the focus always goes back to
-  // the < body > before focusing on the correct element. In turn, there's a
+  // the <body> before focusing on the correct element. In turn, there's a
   // delay and you have to wait for a tick to get the right element.
   setTimeout(callback, 20);
 }
