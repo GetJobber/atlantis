@@ -156,6 +156,9 @@ A Secondary or tertiary destructive action will either...
 </Playground>
 
 ### Subtle Actions
+  
+> Subtle actions replace a previous concept of "cancel" actions which has been
+> deprecated.
 
 Use a subtle button when you want the visual appearance to be more, well...
 _subtle._ This variation of button uses subdued color, allowing it to sit
@@ -163,9 +166,14 @@ comfortably alongside more prominent content.
 
 Think of icon actions in a navigation bar, buttons to dismiss a modal, or opting
 out of completing an action they have triggered.
-
-> Subtle actions replace a previous concept of "cancel" actions which has been
-> deprecated.
+  
+#### Primary, Secondary, and Tertiary
+  
+A key distinction between subtle buttons and the other variations is that the 
+primary/secondary/tertiary scale is styled differently, but conceptual hierarchy 
+is the same. Notably, the tertiary subtle button has a transparent background,
+allowing it to be _extra_ subtle when placed overtop `surface--background` elements
+such as a Modal header.
 
 <Playground>
   <Content>
