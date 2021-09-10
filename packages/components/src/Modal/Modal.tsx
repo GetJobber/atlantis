@@ -2,6 +2,7 @@ import React, { ReactNode, RefObject, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
+import { useRefocusOnActivator } from "@jobber/hooks";
 import styles from "./Modal.css";
 import sizes from "./Sizes.css";
 import { Typography } from "../Typography";
@@ -41,10 +42,10 @@ export function Modal({
   const modalContainer: RefObject<HTMLDivElement> = useRef(
     document.createElement("div"),
   );
-
+  useRefocusOnActivator(open);
   useEffect(() => {
-    if (modalContainer.current) {
-      modalContainer.current.focus();
+    if (open) {
+      modalContainer.current?.focus();
     }
   }, [open]);
 
