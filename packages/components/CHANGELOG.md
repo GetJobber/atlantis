@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.46.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.46.1...@jobber/components@2.46.2) (2021-09-10)
+
+
+### Bug Fixes
+
+* **components:** Create a hook to focus back on modal and popover activator ([#638](https://github.com/GetJobber/atlantis/issues/638)) ([4d55a2f](https://github.com/GetJobber/atlantis/commit/4d55a2fda04ddb406770e655bdecfc41cdbb2f8b))
+
+
+
+
+
 ## [2.46.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.46.0...@jobber/components@2.46.1) (2021-09-10)
 
 **Note:** Version bump only for package @jobber/components
