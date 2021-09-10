@@ -77,11 +77,10 @@ async function checkPackagesAgainstNpm() {
       .catch(error => {
         if (error.response.data.message) {
           console.log(chalk.red(error.response.data.message));
-          process.exit(1);
         } else {
           console.log(chalk.red("Something went wrong"));
-          process.exit(1);
         }
+        process.exit(1);
       });
   }
 }
