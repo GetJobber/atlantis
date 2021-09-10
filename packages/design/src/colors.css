@@ -8,6 +8,8 @@
   --color-destructive--hover: var(--color-red--dark);
   --color-cancel: var(--color-greyBlue);
   --color-cancel--hover: var(--color-greyBlue--dark);
+  --color-interactive--subtle: var(--color-greyBlue);
+  --color-interactive--subtle--hover: var(--color-greyBlue--dark);
 
   --color-disabled: var(--color-grey);
   --color-disabled--secondary: var(--color-grey--lighter);

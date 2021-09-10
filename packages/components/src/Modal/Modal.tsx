@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import ReactDOM from "react-dom";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
-import { useOnKeyDown } from "@jobber/hooks";
+import { useOnKeyDown, useRefocusOnActivator } from "@jobber/hooks";
 import styles from "./Modal.css";
 import sizes from "./Sizes.css";
 import { useFocusTrap } from "./useFocusTrap";
@@ -40,6 +40,7 @@ export function Modal({
   onRequestClose,
 }: ModalProps) {
   const modalClassName = classnames(styles.modal, size && sizes[size]);
+  useRefocusOnActivator(open);
   const modalRef = useFocusTrap<HTMLDivElement>(open);
   useOnKeyDown(handleRequestClose, "Escape");
 
