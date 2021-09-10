@@ -81,16 +81,16 @@ a.button:active {
 
 /* Type */
 
-.primary:not(.cancel, .subtle),
-.primary:not(.cancel, .subtle):hover,
-.primary:not(.cancel, .subtle):focus {
+.primary:not(.cancel, .subtle, .disabled),
+.primary:not(.cancel, .subtle, .disabled):hover,
+.primary:not(.cancel, .subtle, .disabled):focus {
   color: var(--button--color-primaryLabel);
   background-color: var(--button--color-variation);
   fill: var(--button--color-primaryLabel);
 }
 
-.primary:not(.cancel, .subtle):hover,
-.primary:not(.cancel, .subtle):focus {
+.primary:not(.cancel, .subtle, .disabled):hover,
+.primary:not(.cancel, .subtle, .disabled):focus {
   background-color: var(--button--color-variation--hover);
 }
 
