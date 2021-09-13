@@ -8,6 +8,8 @@
   --color-destructive--hover: var(--color-red--dark);
   --color-cancel: var(--color-greyBlue);
   --color-cancel--hover: var(--color-greyBlue--dark);
+  --color-interactive--subtle: var(--color-greyBlue);
+  --color-interactive--subtle--hover: var(--color-greyBlue--dark);
 
   --color-disabled: var(--color-grey);
   --color-disabled--secondary: var(--color-grey--lighter);
@@ -40,13 +42,15 @@
   --color-heading: var(--color-blue);
   --color-text: var(--color-greyBlue--dark);
   --color-text--secondary: var(--color-greyBlue);
+  --color-text--reverse: var(--color-white);
+  --color-text--reverse--secondary: var(--color-greyBlue--lighter);
 
   /* Surfaces and Borders */
   --color-surface: var(--color-white);
   --color-surface--hover: var(--color-yellow--lightest);
   --color-surface--active: var(--color-green--lightest);
   --color-surface--background: var(--color-grey--lightest);
-  --color-surface--reverse: var(--color-greyBlue--dark);
+  --color-surface--reverse: var(--color-blue);
 
   --color-border: var(--color-grey--lighter);
   --color-border--section: var(--color-blue);

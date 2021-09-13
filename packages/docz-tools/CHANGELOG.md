@@ -8,6 +8,97 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.9](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.7.8...@jobber/docz-tools@1.7.9) (2021-09-13)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.7.8](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.7.7...@jobber/docz-tools@1.7.8) (2021-09-13)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.7.7](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.7.6...@jobber/docz-tools@1.7.7) (2021-09-10)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.7.6](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.7.5...@jobber/docz-tools@1.7.6) (2021-09-10)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.7.5](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.7.4...@jobber/docz-tools@1.7.5) (2021-09-10)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.7.4](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.7.3...@jobber/docz-tools@1.7.4) (2021-09-10)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.7.3](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.7.2...@jobber/docz-tools@1.7.3) (2021-09-09)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.7.2](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.7.1...@jobber/docz-tools@1.7.2) (2021-09-03)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.7.1](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.7.0...@jobber/docz-tools@1.7.1) (2021-09-02)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+# [1.7.0](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.6.30...@jobber/docz-tools@1.7.0) (2021-09-01)
+
+
+### Features
+
+* **design:** Update surface reverse color ([#628](https://github.com/GetJobber/atlantis/issues/628)) ([5461d79](https://github.com/GetJobber/atlantis/commit/5461d79a08d4e6fd42d1cf7d5adde901ab238ea6))
+
+
+
+
+
+## [1.6.30](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.6.29...@jobber/docz-tools@1.6.30) (2021-08-31)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
 ## [1.6.29](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.6.28...@jobber/docz-tools@1.6.29) (2021-08-27)
 
 **Note:** Version bump only for package @jobber/docz-tools

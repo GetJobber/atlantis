@@ -16,20 +16,24 @@ it("renders an input type number", () => {
         }
       }
     >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440001"
-      />
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440001"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        type="password"
-        value="123"
-      />
+      <div
+        className="inputWrapper"
+      >
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440001"
+        />
+        <input
+          className="input"
+          id="123e4567-e89b-12d3-a456-426655440001"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          type="password"
+          value="123"
+        />
+      </div>
     </div>
   `);
 });
@@ -47,20 +51,24 @@ it("renders an error", () => {
         }
       }
     >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440004"
-      />
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440004"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        type="password"
-        value="p"
-      />
+      <div
+        className="inputWrapper"
+      >
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440004"
+        />
+        <input
+          className="input"
+          id="123e4567-e89b-12d3-a456-426655440004"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          type="password"
+          value="p"
+        />
+      </div>
     </div>
   `);
 });
