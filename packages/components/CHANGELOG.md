@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.46.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.46.6...@jobber/components@2.46.7) (2021-09-13)
+
+
+### Bug Fixes
+
+* **components:** Remove aria-hidden prop from Modal ([#648](https://github.com/GetJobber/atlantis/issues/648)) ([a7b43fe](https://github.com/GetJobber/atlantis/commit/a7b43fe6c1713313bba13bedda2af938ca44037c))
+
+
+
+
+
 ## [2.46.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.46.5...@jobber/components@2.46.6) (2021-09-13)
 
 **Note:** Version bump only for package @jobber/components
