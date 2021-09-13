@@ -37,15 +37,11 @@ export function useFocusTrap<T extends HTMLElement>(active: boolean) {
 
   useEffect(() => {
     if (active) {
-      document.body.setAttribute("aria-hidden", "true");
-      ref.current?.setAttribute("aria-hidden", "false");
       ref.current?.focus();
       ref.current?.addEventListener("keydown", handleKeyDown);
     }
 
     return () => {
-      document.body.removeAttribute("aria-hidden");
-      ref.current?.removeAttribute("aria-hidden");
       ref.current?.removeEventListener("keydown", handleKeyDown);
     };
   }, [active]);
