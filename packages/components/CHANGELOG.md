@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.46.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.46.4...@jobber/components@2.46.5) (2021-09-13)
+
+
+### Bug Fixes
+
+* **components:** Trap focus on the open modal [JOB-26477] ([#634](https://github.com/GetJobber/atlantis/issues/634)) ([73b76fd](https://github.com/GetJobber/atlantis/commit/73b76fd6f847378736b0e9a10b29f0a3ac24e487))
+
+
+
+
+
 ## [2.46.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.46.3...@jobber/components@2.46.4) (2021-09-10)
 
 **Note:** Version bump only for package @jobber/components
