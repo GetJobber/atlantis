@@ -70,7 +70,7 @@ jobs:
           -u $GH_USER:$GH_TOKEN \
           --header 'Content-Type: application/json' \
           --data-raw '{
-          "body": "This would be the data to add"
+            "body": "This would be the data to add"
           }'
 
 
