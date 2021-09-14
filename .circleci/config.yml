@@ -57,6 +57,8 @@ jobs:
           command: |
             echo "No PR found to update"
             echo $CIRCLE_PROJECT_USERNAME
+            echo $GH_USER
+            echo $GH_TOKEN
 
   checkout_code:
     <<: *container_config
