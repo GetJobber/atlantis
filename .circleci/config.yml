@@ -55,10 +55,22 @@ jobs:
       - run:
           name: Post Stats to GitHub PR
           command: |
-            echo "No PR found to update"
-            echo $CIRCLE_PROJECT_USERNAME
-            echo $GH_USER
-            echo $GH_TOKEN
+            sudo apt-get install jq
+            pr_response=$(curl --location --request GET "https://api.github.com/repos/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/pulls?head=$CIRCLE_PROJECT_USERNAME:$CIRCLE_BRANCH&state=open" \
+            -u $GH_USER:$GH_TOKEN)
+
+            if [ $(echo $pr_response | jq length) -eq 0 ]; then
+              echo "No PR found to update"
+            else
+              pr_comment_url=$(echo $pr_response | jq -r ".[]._links.comments.href")
+            fi
+
+            curl --location --request POST "$pr_comment_url" \
+            -u $GH_USER:$GH_TOKEN \
+            --header 'Content-Type: application/json' \
+            --data-raw '{
+              "body": "This would be the data to add"
+            }'
 
   checkout_code:
     <<: *container_config
