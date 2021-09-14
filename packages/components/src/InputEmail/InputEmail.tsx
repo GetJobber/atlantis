@@ -1,24 +1,8 @@
 import React from "react";
-import { FormField, FormFieldProps } from "../FormField";
+import { CommonFormFieldProps, FormField, FormFieldProps } from "../FormField";
 
-type InputEmailProps = Pick<
-  FormFieldProps,
-  Exclude<
-    keyof FormFieldProps,
-    | "children"
-    | "autocomplete"
-    | "max"
-    | "min"
-    | "rows"
-    | "type"
-    | "keyboard"
-    | "onEnter"
-    | "onBlur"
-    | "inputRef"
-    | "actionsRef"
-    | "onFocus"
-  >
->;
+type InputEmailProps = CommonFormFieldProps &
+  Pick<FormFieldProps, "maxLength" | "readonly" | "validations">;
 
 export const validationMessage = "Please enter a valid email";
 

@@ -36,11 +36,82 @@ export interface Suffix extends BaseSuffix {
   readonly ariaLabel: string;
 }
 
-export interface FormFieldProps {
+/*
+ * The following interface supplies common
+ * props used in multiple components or extended in other
+ * interfaces.
+ */
+export interface CommonFormFieldProps {
   /**
    * Determines the alignment of the text inside the input.
    */
   readonly align?: "center" | "right";
+
+  /**
+   * Initial value of the input. Only use this when you need to pre-populate
+   * the field with a data that is not controlled by the components state. If a
+   * state is controlling the value, use the `value` prop instead.
+   */
+  readonly defaultValue?: string;
+
+  /**
+   * Disable the input
+   */
+  readonly disabled?: boolean;
+
+  /**
+   * Highlights the field red to indicate an error.
+   */
+  readonly invalid?: boolean;
+
+  /**
+   * Adjusts the form field to go inline with a content. This also silences the
+   * given `validations` prop. You'd have to used the `onValidate` prop to
+   * capture the message and render it somewhere else using the
+   * `InputValidation` component.
+   */
+  readonly inline?: boolean;
+
+  /**
+   * Show a spinner to indicate loading
+   */
+  loading?: boolean;
+
+  /**
+   * Name of the input.
+   */
+  readonly name?: string;
+
+  /**
+   * Simplified onChange handler that only provides the new value.
+   * @param newValue
+   */
+  onChange?(newValue: string | number | boolean): void;
+
+  /**
+   * Callback to get the the status and message when validating a field
+   * @param message
+   */
+  onValidation?(message: string): void;
+
+  /**
+   * Hint text that goes above the value once the form is filled out.
+   */
+  readonly placeholder?: string;
+
+  /**
+   * Adjusts the interface to either have small or large spacing.
+   */
+  readonly size?: "small" | "large";
+
+  /**
+   * Set the component to the given value.
+   */
+  readonly value?: string | number;
+}
+
+export interface FormFieldProps extends CommonFormFieldProps {
+  actionsRef?: RefObject<FieldActionsRef>;
 
   /**
    * Determines if browser form autocomplete is enabled.
@@ -56,30 +127,14 @@ export interface FormFieldProps {
    */
   readonly children?: ReactNode;
 
-  /**
-   * Initial value of the input. Only use this when you need to pre-populate
-   * the field with a data that is not controlled by the components state. If a
-   * state is controlling the value, use the `value` prop instead.
-   */
-  readonly defaultValue?: string;
+  inputRef?: RefObject<
+    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+  >;
 
   /**
-   * Disable the input
+   * Determines what kind of keyboard appears on mobile web.
    */
-  readonly disabled?: boolean;
-
-  /**
-   * Adjusts the form field to go inline with a content. This also silences the
-   * given `validations` prop. You'd have to used the `onValidate` prop to
-   * capture the message and render it somewhere else using the
-   * `InputValidation` component.
-   */
-  readonly inline?: boolean;
-
-  /**
-   * Highlights the field red to indicate an error.
-   */
-  readonly invalid?: boolean;
+  readonly keyboard?: "numeric";
 
   /**
    * Specifies the maximum numerical or date value that a user can type
@@ -95,56 +150,6 @@ export interface FormFieldProps {
   readonly maxLength?: number;
 
   /**
-   * Specifies the minimum numerical or date value that a user can type
-   */
-  readonly min?: number;
-
-  /**
-   * Name of the input.
-   */
-  readonly name?: string;
-
-  /**
-   * Hint text that goes above the value once the form is filled out.
-   */
-  readonly placeholder?: string;
-
-  /**
-   * Prevents users from editing the value.
-   */
-  readonly readonly?: boolean;
-
-  /**
-   * Exclusively for textareas. Specifies the visible height of a textarea.
-   */
-  readonly rows?: number;
-
-  /**
-   * Adjusts the interface to either have small or large spacing.
-   */
-  readonly size?: "small" | "large";
-
-  /**
-   * Determines what kind of form field should the component give you.
-   */
-  readonly type?: FormFieldTypes;
-
-  /**
-   * Determines what kind of keyboard appears on mobile web.
-   */
-  readonly keyboard?: "numeric";
-
-  /**
-   * Set the component to the given value.
-   */
-  readonly value?: string | number;
-
-  /**
-   * Show a spinner to indicate loading
-   */
-  loading?: boolean;
-
-  /**
    * Adds a prefix label and icon to the field
    */
   readonly prefix?: Affix;
@@ -157,8 +162,9 @@ export interface FormFieldProps {
   /**
    * Simplified onChange handler that only provides the new value.
    * @param newValue
+   * Specifies the minimum numerical or date value that a user can type
    */
-  onChange?(newValue: string | number): void;
+  readonly min?: number;
 
   /**
    * A callback to handle "Enter" keypress. This will only run
@@ -178,20 +184,23 @@ export interface FormFieldProps {
   onBlur?(): void;
 
   /**
-   * Callback to get the the status and message when validating a field
-   * @param message
+   * Exclusively for textareas. Specifies the visible height of a textarea.
    */
-  onValidation?(message: string): void;
+  readonly rows?: number;
+
+  /**
+   * Prevents users from editing the value.
+   */
+  readonly readonly?: boolean;
+
+  /**
+   * Determines what kind of form field should the component give you.
+   */
+  readonly type?: FormFieldTypes;
 
   /**
    * Show an error message above the field. This also
    * highlights the the field red if an error message shows up.
    */
   readonly validations?: ValidationRules;
-
-  inputRef?: RefObject<
-    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-  >;
-
-  actionsRef?: RefObject<FieldActionsRef>;
 }

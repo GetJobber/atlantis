@@ -1,9 +1,11 @@
-import React, { ReactNode, RefObject, useEffect, useRef } from "react";
+import React, { ReactNode } from "react";
 import ReactDOM from "react-dom";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
+import { useOnKeyDown, useRefocusOnActivator } from "@jobber/hooks";
 import styles from "./Modal.css";
 import sizes from "./Sizes.css";
+import { useFocusTrap } from "./useFocusTrap";
 import { Typography } from "../Typography";
 import { Button, ButtonProps } from "../Button";
 import { ButtonDismiss } from "../ButtonDismiss";
@@ -38,22 +40,14 @@ export function Modal({
   onRequestClose,
 }: ModalProps) {
   const modalClassName = classnames(styles.modal, size && sizes[size]);
-  const modalContainer: RefObject<HTMLDivElement> = useRef(
-    document.createElement("div"),
-  );
-
-  useEffect(() => {
-    if (modalContainer.current) {
-      modalContainer.current.focus();
-    }
-  }, [open]);
-
-  catchKeyboardEvent("Escape", open, onRequestClose);
+  useRefocusOnActivator(open);
+  const modalRef = useFocusTrap<HTMLDivElement>(open);
+  useOnKeyDown(handleRequestClose, "Escape");
 
   const template = (
     <AnimatePresence>
       {open && (
-        <div ref={modalContainer} className={styles.container} tabIndex={0}>
+        <div ref={modalRef} className={styles.container} tabIndex={0}>
           <motion.div
             key={styles.overlay}
             className={styles.overlay}
@@ -95,26 +89,12 @@ export function Modal({
   );
 
   return ReactDOM.createPortal(template, document.body);
-}
 
-function catchKeyboardEvent(
-  key: string,
-  isModalOpen: boolean,
-  callback?: { (): void },
-) {
-  useEffect(() => {
-    const handler = (event: { key: string }) => {
-      if (isModalOpen && callback && event.key === key) {
-        callback();
-      }
-    };
-
-    window.addEventListener("keydown", handler);
-
-    return () => {
-      window.removeEventListener("keydown", handler);
-    };
-  });
+  function handleRequestClose() {
+    if (open && onRequestClose) {
+      onRequestClose();
+    }
+  }
 }
 
 interface HeaderProps {
