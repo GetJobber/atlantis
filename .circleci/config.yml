@@ -55,13 +55,7 @@ jobs:
       - run:
           name: Post Stats to GitHub PR
           command: |
-            sudo apt-get install jq
-
-            if [ $(echo $pr_response | jq length) -eq 0 ]; then
-              echo "No PR found to update"
-            else
-              pr_comment_url=$(echo $pr_response | jq -r ".[]._links.comments.href")
-            fi
+            echo "No PR found to update"
 
   checkout_code:
     <<: *container_config
