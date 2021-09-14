@@ -25,7 +25,8 @@
     "ci:release": "lerna publish --yes",
     "version": "node ensureChangelogHeaders.js",
     "convertIcoMoon": "scripts/convertIcoMoon.ts",
-    "preventManualRelease": "node scripts/preventManualRelease.js"
+    "preventManualRelease": "node scripts/preventManualRelease.js",
+    "comment": "node scripts/commentOnPullRequest.js"
   },
   "repository": {
     "type": "git",
@@ -49,6 +50,7 @@
     "@jobber/eslint-config": "file:packages/eslint-config",
     "@jobber/generators": "file:packages/generators",
     "@jobber/stylelint-config": "file:packages/stylelint-config",
+    "@octokit/core": "^3.5.1",
     "@reach/router": "^1.3.3",
     "@testing-library/jest-dom": "^5.10.1",
     "@testing-library/react": "^10.2.1",
