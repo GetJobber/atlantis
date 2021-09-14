@@ -92,4 +92,14 @@ async function getCommits() {
   console.log(commits);
 }
 
-getCommits();
+// getCommits();
+
+const { spawnSync } = require("child_process");
+
+function doit() {
+  const cmd = `npm run prerelease`;
+  const updatedPackages = spawnSync(cmd, { stdio: "inherit", shell: true }); // there i want get list of successfully published packages.
+  console.log(updatedPackages.output);
+}
+
+doit();
