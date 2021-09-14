@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.46.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.46.7...@jobber/components@2.46.8) (2021-09-14)
+
+
+### Bug Fixes
+
+* **components:** improve Tabs accessibility ([#576](https://github.com/GetJobber/atlantis/issues/576)) ([4400bb1](https://github.com/GetJobber/atlantis/commit/4400bb136dba9c295d885e8d76632287fffefa59))
+
+
+
+
+
 ## [2.46.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.46.6...@jobber/components@2.46.7) (2021-09-13)
 
 
