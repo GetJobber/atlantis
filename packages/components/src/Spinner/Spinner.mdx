@@ -5,14 +5,14 @@ route: /components/spinner
 showDirectoryLink: true
 ---
 
+import { useState } from "react";
 import { Playground, Props } from "docz";
-import { ComponentStatus } from "@jobber/docx";
 import { Spinner } from ".";
+import { Card } from "@jobber/components/Card";
+import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
 
 # Spinner
-
-<ComponentStatus stage="ready" responsive="yes" accessible="yes" />
 
 ```ts
 import { Spinner } from "@jobber/components/Spinner";
@@ -30,8 +30,47 @@ import { Spinner } from "@jobber/components/Spinner";
 
 ## Design & Usage Guidelines
 
-Use Spinner to indicate loading of content where the actual amount of loading
-time or progress is unknown.
+Use Spinner to indicate the loading of content when the progress is of unknown
+length.
+
+### Children
+
+The Spinner component can accept content as children.
+
+<Playground>
+  <Spinner>
+    <Card title="Lorem Ipsum">
+      <Content>
+        <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
+      </Content>
+    </Card>
+  </Spinner>
+</Playground>
+
+### Loading
+
+The Spinner component can optionally toggle loading, which is particularly
+useful when also using `children`.
+
+<Playground>
+  {() => {
+    const [loading, setLoading] = useState(false);
+    return (
+      <>
+        <button onClick={() => setLoading(!loading)}>Click me</button>
+        <Spinner loading={loading}>
+          <Card title="Lorem Ipsum">
+            <Content>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              </Text>
+            </Content>
+          </Card>
+        </Spinner>
+      </>
+    );
+  }}
+</Playground>
 
 ### Small
 
@@ -44,8 +83,8 @@ button or card contents) or when inline with content
 
 ### Inline
 
-Use `inline` to render the spinner inline with content, such as when it has a leading
-piece of text content that adds context to what loading is happening.
+Use `inline` to render the spinner inline with content, such as when it has a
+leading piece of text content that adds context to what loading is happening.
 
 <Playground>
   <Text>
@@ -55,15 +94,20 @@ piece of text content that adds context to what loading is happening.
 
 ## Accessibility
 
-The `Spinner` should announce itself to users of assistive technology such as screenreaders.
+The `Spinner` should announce itself to users of assistive technology such as
+screenreaders.
 
 The following built-in properties help `Spinner` convey its' role effectively:
 
-- `role="alert"` allows the `Spinner` to be announced as an alert feedback element
-- `aria-busy={true}` informs the user that the view is busy, setting the expectation that they cannot interact for the time being
-- `aria-label="loading"` reads out "Loading" to assistive tech, adding context as to _why_ the view is busy
+- `role="alert"` allows the `Spinner` to be announced as an alert feedback
+  element
+- `aria-busy={true}` informs the user that the view is busy, setting the
+  expectation that they cannot interact for the time being
+- `aria-label="loading"` reads out "Loading" to assistive tech, adding context
+  as to _why_ the view is busy
+- `aria-hidden={true}` hides the loading content if used within the Spinner
 
-___
+---
 
 ## Related Components
 

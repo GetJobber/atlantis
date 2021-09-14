@@ -1,34 +1,45 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import classnames from "classnames";
 import styles from "./Spinner.css";
+import { BaseSpinner, BaseSpinnerProps } from "./BaseSpinner";
 
-interface SpinnerProps {
+interface SpinnerProps extends BaseSpinnerProps {
   /**
    * Specifies the size of the spinner
    *
-   * @default "base"
+   * @default true
    */
-  readonly size?: "small" | "base";
+  readonly loading?: boolean;
 
   /**
-   * Spinner becomes an inline element when true,
-   * otherwise it is a block element
+   * The content to wrap with the loading spinner
    */
-  readonly inline?: boolean;
+  readonly children?: ReactNode | ReactNode[];
 }
 
-export function Spinner({ size = "base", inline }: SpinnerProps) {
-  const spinnerStyles = classnames(styles.spinner, {
-    [styles.small]: size === "small",
+export function Spinner({
+  loading = true,
+  size,
+  inline,
+  children,
+}: SpinnerProps) {
+  const wrapper = classnames(styles.wrapper, {
     [styles.inline]: inline,
   });
+  const overlay = classnames({
+    [styles.overlay]: !inline,
+  });
 
-  return (
-    <div
-      className={spinnerStyles}
-      role="alert"
-      aria-busy={true}
-      aria-label="loading"
-    />
+  return loading ? (
+    <div className={wrapper}>
+      <div aria-hidden="true" aria-busy="true" aria-live="polite">
+        {children}
+      </div>
+      <div className={overlay}>
+        <BaseSpinner inline={inline} size={size} />
+      </div>
+    </div>
+  ) : (
+    <>{children}</>
   );
 }
