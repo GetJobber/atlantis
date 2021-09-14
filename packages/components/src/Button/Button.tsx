@@ -144,6 +144,8 @@ export function Button(props: ButtonProps) {
 
   const buttonInternals = <ButtonInternals {...props} />;
 
+  console.log("foo");
+
   if (to) {
     return (
       <Link {...tagProps} to={to}>
