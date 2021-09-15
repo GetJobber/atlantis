@@ -81,7 +81,8 @@ jobs:
       - *npm_install
       - run:
           name: Comment on PR
-          command: npm run githubComment
+          command: |
+            echo $CIRCLE_BRANCH
 
   check_for_manual_release:
     <<: *container_config
