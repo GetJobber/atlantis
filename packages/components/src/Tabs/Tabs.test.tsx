@@ -1,5 +1,4 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import { Tab, Tabs } from ".";
 
@@ -19,8 +18,26 @@ const omelet = (
 );
 
 it("renders Tabs", () => {
-  const tree = renderer.create(omelet).toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(omelet);
+  expect(container).toMatchSnapshot();
+});
+
+describe("default tab", () => {
+  it("should render default tab with an integer", () => {
+    const { queryByText } = render(
+      <Tabs defaultTab={1}>
+        <Tab label="Eggs">
+          <p>🍳</p>
+          <p>Eggs</p>
+        </Tab>
+        <Tab label="Cheese" onClick={() => count++}>
+          <p>🧀</p>
+        </Tab>
+      </Tabs>,
+    );
+    expect(queryByText("🍳")).toBeFalsy();
+    expect(queryByText("🧀")).toBeTruthy();
+  });
 });
 
 test("it should switch tabs", () => {

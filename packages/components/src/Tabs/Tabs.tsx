@@ -3,6 +3,7 @@ import React, {
   ReactElement,
   ReactNode,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from "react";
@@ -12,10 +13,23 @@ import { Typography } from "../Typography";
 
 interface TabsProps {
   readonly children: ReactElement | ReactElement[];
+
+  /**
+   * The default selected tab
+   */
+  readonly defaultTab?: number | "first" | "last";
 }
 
-export function Tabs({ children }: TabsProps) {
-  const [activeTab, setActiveTab] = useState(0);
+export function Tabs({ children, defaultTab }: TabsProps) {
+  const defaultTabIndex = useMemo(() => {
+    const tabCount = React.Children.count(children);
+    if (defaultTab == "first" || defaultTab == undefined) return 0;
+    if (defaultTab == "last") return tabCount - 1;
+
+    return Math.min(tabCount - 1, defaultTab);
+  }, [children, defaultTab]);
+
+  const [activeTab, setActiveTab] = useState(defaultTabIndex);
   const [overflowRight, setOverflowRight] = useState(false);
   const [overflowLeft, setOverflowLeft] = useState(false);
   const tabRow = useRef() as MutableRefObject<HTMLUListElement>;

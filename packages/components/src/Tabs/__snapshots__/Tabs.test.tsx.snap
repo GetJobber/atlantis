@@ -1,59 +1,59 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders Tabs 1`] = `
-<div
-  className="tabs"
->
+<div>
   <div
-    className="overflow"
+    class="tabs"
   >
-    <ul
-      className="tabRow"
-      role="tablist"
+    <div
+      class="overflow"
     >
-      <li
-        role="presentation"
+      <ul
+        class="tabRow"
+        role="tablist"
       >
-        <button
-          className="tab selected"
-          id="Eggs"
-          onClick={[Function]}
-          role="tab"
-          type="button"
+        <li
+          role="presentation"
         >
-          <span
-            className="base regular base green"
+          <button
+            class="tab selected"
+            id="Eggs"
+            role="tab"
+            type="button"
           >
-            Eggs
-          </span>
-        </button>
-        <button
-          className="tab"
-          id="Cheese"
-          onClick={[Function]}
-          role="tab"
-          type="button"
-        >
-          <span
-            className="base regular base heading"
+            <span
+              class="base regular base green"
+            >
+              Eggs
+            </span>
+          </button>
+          <button
+            class="tab"
+            id="Cheese"
+            role="tab"
+            type="button"
           >
-            Cheese
-          </span>
-        </button>
-      </li>
-    </ul>
+            <span
+              class="base regular base heading"
+            >
+              Cheese
+            </span>
+          </button>
+        </li>
+      </ul>
+    </div>
+    <section
+      aria-label="Eggs"
+      class="tabContent"
+      role="tabpanel"
+    >
+      <p>
+        🍳
+      </p>
+      <p>
+        Eggs
+      </p>
+    </section>
   </div>
-  <section
-    aria-label="Eggs"
-    className="tabContent"
-    role="tabpanel"
-  >
-    <p>
-      🍳
-    </p>
-    <p>
-      Eggs
-    </p>
-  </section>
 </div>
 `;
