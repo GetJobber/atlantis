@@ -8,6 +8,131 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.46.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.46.7...@jobber/components@2.46.8) (2021-09-14)
+
+
+### Bug Fixes
+
+* **components:** improve Tabs accessibility ([#576](https://github.com/GetJobber/atlantis/issues/576)) ([4400bb1](https://github.com/GetJobber/atlantis/commit/4400bb136dba9c295d885e8d76632287fffefa59))
+
+
+
+
+
+## [2.46.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.46.6...@jobber/components@2.46.7) (2021-09-13)
+
+
+### Bug Fixes
+
+* **components:** Remove aria-hidden prop from Modal ([#648](https://github.com/GetJobber/atlantis/issues/648)) ([a7b43fe](https://github.com/GetJobber/atlantis/commit/a7b43fe6c1713313bba13bedda2af938ca44037c))
+
+
+
+
+
+## [2.46.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.46.5...@jobber/components@2.46.6) (2021-09-13)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.46.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.46.4...@jobber/components@2.46.5) (2021-09-13)
+
+
+### Bug Fixes
+
+* **components:** Trap focus on the open modal [JOB-26477] ([#634](https://github.com/GetJobber/atlantis/issues/634)) ([73b76fd](https://github.com/GetJobber/atlantis/commit/73b76fd6f847378736b0e9a10b29f0a3ac24e487))
+
+
+
+
+
+## [2.46.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.46.3...@jobber/components@2.46.4) (2021-09-10)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.46.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.46.2...@jobber/components@2.46.3) (2021-09-10)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.46.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.46.1...@jobber/components@2.46.2) (2021-09-10)
+
+
+### Bug Fixes
+
+* **components:** Create a hook to focus back on modal and popover activator ([#638](https://github.com/GetJobber/atlantis/issues/638)) ([4d55a2f](https://github.com/GetJobber/atlantis/commit/4d55a2fda04ddb406770e655bdecfc41cdbb2f8b))
+
+
+
+
+
+## [2.46.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.46.0...@jobber/components@2.46.1) (2021-09-10)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.46.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.45.0...@jobber/components@2.46.0) (2021-09-09)
+
+
+### Features
+
+* **components:** add subtle button [JOB-34785] ([#624](https://github.com/GetJobber/atlantis/issues/624)) ([aa66745](https://github.com/GetJobber/atlantis/commit/aa66745b80f6f3e4e569e518a3027f1b4dd8a26a))
+
+
+
+
+
+# [2.45.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.44.0...@jobber/components@2.45.0) (2021-09-03)
+
+
+### Features
+
+* **components:** Add `event` argument to onClick events ([#631](https://github.com/GetJobber/atlantis/issues/631)) ([961e0dc](https://github.com/GetJobber/atlantis/commit/961e0dccaabfdc68b4248c043f40beb054cb1543))
+
+
+
+
+
+# [2.44.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.43.6...@jobber/components@2.44.0) (2021-09-02)
+
+
+### Features
+
+* **components:** Add prefix/suffix to FormField ([#613](https://github.com/GetJobber/atlantis/issues/613)) ([f1e1e5e](https://github.com/GetJobber/atlantis/commit/f1e1e5e94c2230e8663d4caa9e7a70bb9f85d12e))
+
+
+
+
+
+## [2.43.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.43.5...@jobber/components@2.43.6) (2021-09-01)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.43.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.43.4...@jobber/components@2.43.5) (2021-08-31)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 ## [2.43.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.43.3...@jobber/components@2.43.4) (2021-08-27)
 
 **Note:** Version bump only for package @jobber/components
