@@ -1,10 +1,10 @@
 import React from "react";
-import { act, cleanup, render, waitFor } from "@testing-library/react";
+import { cleanup, render, waitFor } from "@testing-library/react";
 import { Tooltip } from ".";
 
 afterEach(cleanup);
 
-test("tooltip shouldn't show up", async () => {
+it("shouldn't show the tooltip", async () => {
   const message = "Imma not tip the tool";
   const content = "Don't show my tooltip";
 
@@ -20,7 +20,7 @@ test("tooltip shouldn't show up", async () => {
   expect(getByText(content)).toBeInTheDocument();
 });
 
-test("tooltip should show up on hover", () => {
+it("should show up on hover", async () => {
   const message = "Tipping the tool on hover";
   const content = "Hover on me";
   const contentID = "hover-on-me";
@@ -31,14 +31,14 @@ test("tooltip should show up on hover", () => {
     </Tooltip>,
   );
 
-  act(() => {
+  await waitFor(() => {
     getByTestId(contentID).dispatchEvent(new MouseEvent("mouseenter"));
   });
   expect(getByText(message)).toBeInTheDocument();
   expect(getByText(content)).toBeInTheDocument();
 });
 
-test("tooltip should show up on focus", () => {
+it("should show the tooltip up on focus", async () => {
   const message = "Tipping the tool on focus";
   const content = "Focus on me";
   const contentID = "focus-on-me";
@@ -49,13 +49,13 @@ test("tooltip should show up on focus", () => {
     </Tooltip>,
   );
 
-  act(() => {
+  await waitFor(() => {
     getByTestId(contentID).dispatchEvent(new Event("focus"));
   });
   expect(getByText(message)).toBeInTheDocument();
 });
 
-test("tooltip should disappear on blur", async () => {
+it("should disappear on blur", async () => {
   const message = "Untipping the tool on blur";
   const content = "Blur on me";
   const contentID = "blur-on-me";
@@ -66,7 +66,7 @@ test("tooltip should disappear on blur", async () => {
     </Tooltip>,
   );
 
-  act(() => {
+  await waitFor(() => {
     getByTestId(contentID).dispatchEvent(new Event("focus"));
     getByTestId(contentID).dispatchEvent(new Event("blur"));
   });
@@ -76,7 +76,7 @@ test("tooltip should disappear on blur", async () => {
   });
 });
 
-test("tooltip should have aria-description and tabindex", () => {
+it("should have aria-description and tabindex", () => {
   const message = "Screen readers read me out loud!";
   const content = "Browsers focus on me";
   const contentID = "focus-on-me";
