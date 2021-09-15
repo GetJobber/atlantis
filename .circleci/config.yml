@@ -80,8 +80,8 @@ jobs:
       - *restore_npm_cache
       - *npm_install
       - run:
-        name: Comment on PR
-        command: npm run githubComment
+          name: Comment on PR
+          command: npm run githubComment
 
   check_for_manual_release:
     <<: *container_config
