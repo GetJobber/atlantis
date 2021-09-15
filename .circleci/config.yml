@@ -75,14 +75,10 @@ jobs:
   comment_on_pr:
     <<: *container_config
     steps:
-      - *restore_repo
-      - *sum_lockfiles
-      - *restore_npm_cache
-      - *npm_install
       - run:
           name: Comment on PR
           command: |
-            echo $CIRCLE_BRANCH
+            echo $CIRCLE_PR_NUMBER
 
   check_for_manual_release:
     <<: *container_config
