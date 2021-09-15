@@ -5,7 +5,7 @@ exports[`renders Bold Component 1`] = `
   className="padded base"
 >
   <p
-    className="base regular base greyBlueDark"
+    className="base regular base text"
   >
     <b
       className="base bold"
@@ -21,7 +21,7 @@ exports[`renders Italicized Component 1`] = `
   className="padded base"
 >
   <p
-    className="base regular base greyBlueDark"
+    className="base regular base text"
   >
     <em
       className="base regular italic"
@@ -37,7 +37,7 @@ exports[`renders Level 1 Heading Component 1`] = `
   className="padded base"
 >
   <h1
-    className="base black jumbo uppercase blue"
+    className="base black jumbo uppercase heading"
   >
     Heading 1
   </h1>
@@ -49,7 +49,7 @@ exports[`renders Level 2 Heading Component 1`] = `
   className="padded base"
 >
   <h2
-    className="base black largest uppercase blue"
+    className="base black largest uppercase heading"
   >
     Heading 2
   </h2>
@@ -61,7 +61,7 @@ exports[`renders Level 3 Heading Component 1`] = `
   className="padded base"
 >
   <h3
-    className="base bold larger blue"
+    className="base bold larger heading"
   >
     Heading 3
   </h3>
@@ -73,7 +73,7 @@ exports[`renders Level 4 Heading Component 1`] = `
   className="padded base"
 >
   <h4
-    className="base bold large blue"
+    className="base bold large heading"
   >
     Heading 4
   </h4>
@@ -85,7 +85,7 @@ exports[`renders Level 5 Heading Component 1`] = `
   className="padded base"
 >
   <h5
-    className="base bold base blue"
+    className="base bold base heading"
   >
     Heading 5
   </h5>
@@ -107,7 +107,7 @@ exports[`renders Text Component 1`] = `
   className="padded base"
 >
   <p
-    className="base regular base greyBlueDark"
+    className="base regular base text"
   >
     Paragraph
   </p>
@@ -119,12 +119,12 @@ exports[`renders a combination of Markdown components 1`] = `
   className="padded base"
 >
   <h1
-    className="base black jumbo uppercase blue"
+    className="base black jumbo uppercase heading"
   >
     This is a paragraph.
   </h1>
   <p
-    className="base regular base greyBlueDark"
+    className="base regular base text"
   >
       The paragraph has some 
     <b
@@ -141,7 +141,7 @@ exports[`renders a combination of Markdown components 1`] = `
     .
   </p>
   <p
-    className="base regular base greyBlueDark"
+    className="base regular base text"
   >
       This is the end of this paragraph.
   </p>

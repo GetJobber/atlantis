@@ -1,3 +1,19 @@
 .hasValidationMessage {
-  margin-bottom: var(--space-smaller);
+  margin-top: var(--space-smaller);
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  padding: var(--space-smaller);
+  padding-left: 0;
+}
+
+.message > svg {
+  margin-right: var(--space-smaller);
+}
+
+.message:focus {
+  box-shadow: var(--shadow-focus);
+  outline: none;
 }

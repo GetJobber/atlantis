@@ -5,7 +5,7 @@
 }
 
 .item:not(:last-child) {
-  border-bottom: var(--border-base) solid var(--color-grey--lighter);
+  border-bottom: var(--border-base) solid var(--color-border);
 }
 
 .section {

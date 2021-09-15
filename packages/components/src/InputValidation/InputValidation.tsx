@@ -3,34 +3,15 @@ import { AnimatePresence, motion } from "framer-motion";
 import styles from "./InputValidation.css";
 import { Text } from "../Text";
 
-type ValidationStatus = "success" | "error" | "warn" | "info";
-
-export interface ValidationProps {
-  /**
-   * Defines the status of the validation message. This also determines how the
-   * message is styled in the UI.
-   */
-  status: ValidationStatus;
-
-  /**
-   * The message that gets shown to the user.
-   */
-  message: string;
-
-  /**
-   * Determines if the `message` shows up for the user.
-   */
-  shouldShow?: boolean;
-}
-
 interface InputValidationProps {
   /**
-   * Array of validation messages
+   * Validation message to be displayed
    */
-  messages: ValidationProps[];
+  message: string;
 }
 
-export function InputValidation({ messages }: InputValidationProps) {
+export function InputValidation({ message }: InputValidationProps) {
+  const messages = [message];
   const variants = {
     slideOut: { y: "5%", height: 0, opacity: 0 },
     slideIn: { y: 0, height: "100%", opacity: 1 },
@@ -40,23 +21,27 @@ export function InputValidation({ messages }: InputValidationProps) {
     <>
       {messages && messages.length > 0 && (
         <div className={styles.hasValidationMessage}>
-          {messages.map(
-            ({ status, message, shouldShow = true }: ValidationProps) => (
-              <AnimatePresence initial={false} key={`${status}-${message}`}>
-                {shouldShow && (
-                  <motion.div
-                    variants={variants}
-                    initial="slideOut"
-                    animate="slideIn"
-                    exit="slideOut"
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Text variation={status}>{message}</Text>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            ),
-          )}
+          <AnimatePresence>
+            {messages.map(msg => (
+              <motion.div
+                key={`validation-${msg}`}
+                variants={variants}
+                initial="slideOut"
+                animate="slideIn"
+                exit="slideOut"
+                transition={{ duration: 0.2 }}
+              >
+                <div
+                  className={styles.message}
+                  aria-live="assertive"
+                  role="alert"
+                  tabIndex={0}
+                >
+                  <Text variation="error">{msg}</Text>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
       )}
     </>

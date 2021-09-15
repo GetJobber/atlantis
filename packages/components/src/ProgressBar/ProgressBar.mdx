@@ -2,6 +2,7 @@
 name: ProgressBar
 menu: Components
 route: /components/progress-bar
+showDirectoryLink: true
 ---
 
 import { Playground, Props } from "docz";
@@ -55,7 +56,7 @@ An example where you might be better served using a spinner:
     const totalSteps = 4;
     return (
       <>
-        <button onClick={() => setStep(Math.max(1, step - 1))}>
+        <button onClick={() => setStep(Math.max(0, step - 1))}>
           Step Back
         </button>
         <button onClick={() => setStep(Math.min(totalSteps, step + 1))}>

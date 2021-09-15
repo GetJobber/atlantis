@@ -1,0 +1,10 @@
+.divider {
+  height: var(--space-minuscule);
+  margin: 0;
+  border: none;
+  border-bottom: var(--border-base) solid var(--color-border);
+}
+
+.large {
+  border-bottom-width: var(--border-large);
+}

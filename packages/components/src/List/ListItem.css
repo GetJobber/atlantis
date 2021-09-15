@@ -23,7 +23,7 @@
 .hoverable:hover,
 .hoverable:focus {
   outline: none;
-  background-color: var(--color-yellow--lightest);
+  background-color: var(--color-surface--hover);
 }
 
 .icon {
@@ -48,7 +48,7 @@
 /* States */
 
 .isActive {
-  background-color: var(--color-green--lightest);
+  background-color: var(--color-surface--active);
 }
 
 /* TODO: Move truncate in typography */

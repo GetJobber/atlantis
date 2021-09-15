@@ -14,11 +14,17 @@ it("renders x minutes ago when less than an hour ago", () => {
   testDate.setMinutes(testDate.getMinutes() - 5);
 
   const civilTestDate = getCivilTime(testDate);
+  const isoTestDate = getISOString(testDate);
 
-  const tree = renderer
-    .create(<FormatRelativeDateTime date={civilTestDate} />)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`"5 minutes ago"`);
+  expect(
+    renderer.create(<FormatRelativeDateTime date={civilTestDate} />).toJSON(),
+  ).toMatchInlineSnapshot(`"5 minutes ago"`);
+  expect(
+    renderer.create(<FormatRelativeDateTime date={isoTestDate} />).toJSON(),
+  ).toMatchInlineSnapshot(`"5 minutes ago"`);
+  expect(
+    renderer.create(<FormatRelativeDateTime date={testDate} />).toJSON(),
+  ).toMatchInlineSnapshot(`"5 minutes ago"`);
 });
 
 it("renders 1 minute ago when less than a minute ago", () => {
@@ -26,28 +32,39 @@ it("renders 1 minute ago when less than a minute ago", () => {
   testDate.setSeconds(testDate.getSeconds() - 25);
 
   const civilTestDate = getCivilTime(testDate);
+  const isoTestDate = getISOString(testDate);
 
-  const tree = renderer
-    .create(<FormatRelativeDateTime date={civilTestDate} />)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`"1 minute ago"`);
+  expect(
+    renderer.create(<FormatRelativeDateTime date={civilTestDate} />).toJSON(),
+  ).toMatchInlineSnapshot(`"1 minute ago"`);
+  expect(
+    renderer.create(<FormatRelativeDateTime date={isoTestDate} />).toJSON(),
+  ).toMatchInlineSnapshot(`"1 minute ago"`);
+  expect(
+    renderer.create(<FormatRelativeDateTime date={testDate} />).toJSON(),
+  ).toMatchInlineSnapshot(`"1 minute ago"`);
 });
 
 it("renders the time when less than a day ago", () => {
   const testDate = new Date(Date.now());
   testDate.setHours(testDate.getHours() - 9);
 
-  const civilTestDate = getCivilTime(testDate);
-
   const hours = testDate.getHours();
   const minutes = testDate.getMinutes();
-  const expectedStr = hours + ":" + minutes + ":35 AM";
+  const expectedStr = hours + ":" + minutes + " AM";
 
-  const tree = renderer
-    .create(<FormatRelativeDateTime date={civilTestDate} />)
-    .toJSON();
+  const civilTestDate = getCivilTime(testDate);
+  const isoTestDate = getISOString(testDate);
 
-  expect(tree).toEqual(expectedStr);
+  expect(
+    renderer.create(<FormatRelativeDateTime date={civilTestDate} />).toJSON(),
+  ).toEqual(expectedStr);
+  expect(
+    renderer.create(<FormatRelativeDateTime date={isoTestDate} />).toJSON(),
+  ).toEqual(expectedStr);
+  expect(
+    renderer.create(<FormatRelativeDateTime date={testDate} />).toJSON(),
+  ).toEqual(expectedStr);
 });
 
 it("renders the day when less than 7 days ago", () => {
@@ -55,11 +72,17 @@ it("renders the day when less than 7 days ago", () => {
   testDate.setDate(testDate.getDate() - 3);
 
   const civilTestDate = getCivilTime(testDate);
+  const isoTestDate = getISOString(testDate);
 
-  const tree = renderer
-    .create(<FormatRelativeDateTime date={civilTestDate} />)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot('"Mon"');
+  expect(
+    renderer.create(<FormatRelativeDateTime date={civilTestDate} />).toJSON(),
+  ).toMatchInlineSnapshot('"Mon"');
+  expect(
+    renderer.create(<FormatRelativeDateTime date={isoTestDate} />).toJSON(),
+  ).toMatchInlineSnapshot('"Mon"');
+  expect(
+    renderer.create(<FormatRelativeDateTime date={testDate} />).toJSON(),
+  ).toMatchInlineSnapshot('"Mon"');
 });
 
 it("renders the month and date when less than 1 year ago", () => {
@@ -67,11 +90,17 @@ it("renders the month and date when less than 1 year ago", () => {
   testDate.setDate(testDate.getDate() - 60);
 
   const civilTestDate = getCivilTime(testDate);
+  const isoTestDate = getISOString(testDate);
 
-  const tree = renderer
-    .create(<FormatRelativeDateTime date={civilTestDate} />)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot('"Apr 26"');
+  expect(
+    renderer.create(<FormatRelativeDateTime date={civilTestDate} />).toJSON(),
+  ).toMatchInlineSnapshot('"Apr 26"');
+  expect(
+    renderer.create(<FormatRelativeDateTime date={isoTestDate} />).toJSON(),
+  ).toMatchInlineSnapshot('"Apr 26"');
+  expect(
+    renderer.create(<FormatRelativeDateTime date={testDate} />).toJSON(),
+  ).toMatchInlineSnapshot('"Apr 26"');
 });
 
 it("renders the month and date when yesterday's date 1 year previous (border case)", () => {
@@ -80,11 +109,17 @@ it("renders the month and date when yesterday's date 1 year previous (border cas
   testDate.setDate(testDate.getDate() + 2); //The +2 vs. +1 is a fudge for leap year
 
   const civilTestDate = getCivilTime(testDate);
+  const isoTestDate = getISOString(testDate);
 
-  const tree = renderer
-    .create(<FormatRelativeDateTime date={civilTestDate} />)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot('"Jun 27"');
+  expect(
+    renderer.create(<FormatRelativeDateTime date={civilTestDate} />).toJSON(),
+  ).toMatchInlineSnapshot('"Jun 27"');
+  expect(
+    renderer.create(<FormatRelativeDateTime date={isoTestDate} />).toJSON(),
+  ).toMatchInlineSnapshot('"Jun 27"');
+  expect(
+    renderer.create(<FormatRelativeDateTime date={testDate} />).toJSON(),
+  ).toMatchInlineSnapshot('"Jun 27"');
 });
 
 it("renders the month day, year when over a year ago", () => {
@@ -92,12 +127,22 @@ it("renders the month day, year when over a year ago", () => {
   testDate.setFullYear(testDate.getFullYear() - 2);
 
   const civilTestDate = getCivilTime(testDate);
+  const isoTestDate = getISOString(testDate);
 
-  const tree = renderer
-    .create(<FormatRelativeDateTime date={civilTestDate} />)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot('"Jun 25, 2018"');
+  expect(
+    renderer.create(<FormatRelativeDateTime date={civilTestDate} />).toJSON(),
+  ).toMatchInlineSnapshot('"Jun 25, 2018"');
+  expect(
+    renderer.create(<FormatRelativeDateTime date={isoTestDate} />).toJSON(),
+  ).toMatchInlineSnapshot('"Jun 25, 2018"');
+  expect(
+    renderer.create(<FormatRelativeDateTime date={testDate} />).toJSON(),
+  ).toMatchInlineSnapshot('"Jun 25, 2018"');
 });
+
+function getISOString(date: Date) {
+  return date.toISOString();
+}
 
 function getCivilTime(date: Date) {
   const testYear = date.getFullYear();

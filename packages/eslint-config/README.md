@@ -1,3 +1,9 @@
+---
+name: Eslint Config
+menu: Packages
+route: /packages/eslint-config
+---
+
 # ESLint Config _aka Dip Lint_
 
 ## Installing
@@ -12,6 +18,6 @@ require("@jobber/eslint-config/patch-eslint-plugin-resolution.js");
 module.exports = {
   extends: ["@jobber/eslint-config"],
   settings: {},
-  rules: {}
+  rules: {},
 };
 ```

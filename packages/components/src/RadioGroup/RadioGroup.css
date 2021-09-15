@@ -1,17 +1,18 @@
+.radioGroup {
+  display: inline-flex;
+  flex-direction: column;
+}
+
 .input {
   /* Hide checkbox on UI but not screen readers and still allow focus state */
   position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  clip-path: inset(100%);
-  white-space: nowrap;
+  left: -999vw;
 }
 
 .label {
   display: inline-flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .input + .label::before {
@@ -20,21 +21,49 @@
   width: var(--space-base);
   height: var(--space-base);
   box-sizing: border-box;
-  margin: 0 var(--space-small);
-  border: var(--border-thick) solid var(--color-grey--light);
+  margin: 0 var(--space-small) 0 0;
+  border: var(--border-thick) solid var(--color-interactive);
   border-radius: 100%;
-  background-color: var(--color-white);
-  cursor: pointer;
-  transition: all 0.2s;
+  background-color: var(--color-surface);
+  transition: all var(--timing-base);
+}
+
+.input:focus + .label:before {
+  box-shadow: var(--shadow-focus);
+}
+
+.input:focus:checked + .label:before {
+  box-shadow: 0px 0px 0px var(--space-minuscule) var(--color-interactive--hover),
+    var(--shadow-focus);
 }
 
 .input:checked + .label::before {
-  border-color: var(--color-green--dark);
-  background-color: var(--color-green);
-  transition: all 0.2s;
+  box-shadow: 0px 0px 0px var(--space-minuscule) var(--color-interactive--hover);
+  border-color: var(--color-interactive--hover);
+  border-width: var(--border-thicker);
+  background-color: var(--color-interactive);
 }
 
-.radioGroup {
-  display: inline-flex;
-  flex-direction: column;
+.input[disabled] + .label {
+  color: var(--color-disabled);
+  cursor: not-allowed;
+}
+
+.input[disabled] + .label::before {
+  border-color: var(--color-disabled--secondary);
+}
+
+.input[disabled]:checked + .label::before {
+  box-shadow: 0px 0px 0px var(--space-minuscule) var(--color-disabled);
+  border-color: var(--color-grey);
+  background-color: var(--color-disabled--secondary);
+}
+
+.description {
+  margin-bottom: var(--space-small);
+  padding-left: var(--space-large);
+}
+
+.input[disabled] + .label + .description > p {
+  color: var(--color-disabled);
 }

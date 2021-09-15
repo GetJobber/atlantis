@@ -1,6 +1,6 @@
 ---
 name: Docs Helpers
-route: /docx
+route: /packages/docx
 ---
 
 import { Playground, Props } from "docz";
@@ -16,6 +16,8 @@ Helper components for the Atlantis internal docs viewer.
   <ComponentStatus stage="rc" responsive="no" accessible="yes" />
 </Playground>
 
+### Props
+
 <Props of={ComponentStatus} />
 
 ## `ColorSwatches`
@@ -28,9 +30,11 @@ Helper components for the Atlantis internal docs viewer.
       "--color-pink--light": "rgb(202, 144, 182)",
       "--color-pink--lighter": "rgb(225, 191, 213)",
       "--color-pink--lightest": "rgb(244, 231, 239)",
-      "--color-pink--dark": "rgb(116, 62, 98)"
+      "--color-pink--dark": "rgb(116, 62, 98)",
     }}
   />
 </Playground>
+
+### Props
 
 <Props of={ColorSwatches} />

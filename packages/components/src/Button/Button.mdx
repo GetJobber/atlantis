@@ -2,12 +2,16 @@
 name: Button
 menu: Components
 route: /components/button
+showDirectoryLink: true
 ---
 
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Button } from ".";
+import { Form } from "@jobber/components/Form";
+import { InputNumber } from "@jobber/components/InputNumber";
+import { Content } from "@jobber/components/Content";
+import { Button } from "@jobber/components/Button";
 
 # Button
 
@@ -22,7 +26,7 @@ import { Button } from "@jobber/components/Button";
 
 <Playground>
   <Button
-    label="Submit"
+    label="Do the thing"
     onClick={() => {
       alert("✅");
     }}
@@ -35,22 +39,29 @@ import { Button } from "@jobber/components/Button";
 
 ---
 
-## Work actions
+## Design & Usage Guidelines
+
+The right button to use depends on:
+
+- the type of action your user is attempting to complete
+- the hierarchy of the interface the button lives in
+
+### Work actions
 
 Use Work Actions buttons to enable user interactions in the goal of completing
 work in Jobber.
 
-### Primary
+#### Primary
 
 The most important action in a view. Examples include the Save Job button, Log
 In, or the main action in a dialog. There should be one Primary action per view,
 at most.
 
 <Playground>
-  <Button label="Submit" />
+  <Button label="Do the thing" />
 </Playground>
 
-### Secondary
+#### Secondary
 
 A secondary button should be used when...
 
@@ -58,116 +69,167 @@ A secondary button should be used when...
   action
 
 <Playground>
-  <Button label="Submit" type="secondary" />
+  <Button label="Do the thing" type="secondary" />
 </Playground>
 
-### Tertiary
+#### Tertiary
 
 A tertiary button should be used to complete actions within the view such as
 editing, revealing details, or navigating within the view.
 
 <Playground>
-  <Button label="Submit" type="tertiary" />
+  <Button label="Do the thing" type="tertiary" />
 </Playground>
 
-## Learning Actions
+### Learning Actions
 
 Use the Learning Actions buttons to enable user interactions in the goal of
 learning about Jobber, whether for marketing or coaching purposes.
 
-### Primary, Secondary, Tertiary
+#### Primary, Secondary, Tertiary
 
 The usage pattern for Learning Actions should follow the same logic as Work
 Actions for all three levels.
 
 <Playground>
-  <Button
-    label="Learn More"
-    variation="learning"
-    url="//getjobber.com"
-    external={true}
-  />
+  <Content>
+    <Content>
+      <Button
+        label="Learn More"
+        variation="learning"
+        url="//getjobber.com"
+        external={true}
+      />
+    </Content>
+    <Content>
+      <Button
+        label="Learn More"
+        variation="learning"
+        type="secondary"
+        url="//getjobber.com"
+        external={true}
+      />
+    </Content>
+    <Content>
+      <Button
+        label="Learn More"
+        variation="learning"
+        type="tertiary"
+        url="//getjobber.com"
+        external={true}
+      />
+    </Content>
+  </Content>
 </Playground>
 
-<Playground>
-  <Button
-    label="Learn More"
-    variation="learning"
-    type="secondary"
-    url="//getjobber.com"
-    external={true}
-  />
-</Playground>
-
-<Playground>
-  <Button
-    label="Learn More"
-    variation="learning"
-    type="tertiary"
-    url="//getjobber.com"
-    external={true}
-  />
-</Playground>
-
-## Destructive Actions
+### Destructive Actions
 
 Destructive actions remove something from Jobber.
 
-### Primary
+#### Primary
 
 A Primary destructive action will permanently destroy an object carrying
 signficant data, such as a job, quote, or client. This destructive action should
-be contained in a confirmation dialog triggered by clicking a Secondary
-destructive button.
+be contained in a [ConfirmationModal](/components/confirmation-modal) triggered
+by clicking a secondary or tertiary destructive button.
 
-### Secondary
+#### Secondary or Tertiary
 
-A Secondary destructive action will either...
+A Secondary or tertiary destructive action will either...
 
 - destroy an item on an object that can be quickly restored, such as a line item
   on a job
 - trigger a dialog to confirm a Primary destructive action
 
 <Playground>
-  <Button label="Delete" variation="destructive" />
+  <Content>
+    <Content>
+      <Button label="Delete" variation="destructive" />
+    </Content>
+    <Content>
+      <Button label="Delete" variation="destructive" type="secondary" />
+    </Content>
+    <Content>
+      <Button label="Delete" variation="destructive" type="tertiary" />
+    </Content>
+  </Content>
 </Playground>
 
+### Subtle Actions
+  
+> Subtle actions replace a previous concept of "cancel" actions which has been
+> deprecated.
+
+Use a subtle button when you want the visual appearance to be more, well...
+_subtle._ This variation of button uses subdued color, allowing it to sit
+comfortably alongside more prominent content.
+
+Think of icon actions in a navigation bar, buttons to dismiss a modal, or opting
+out of completing an action they have triggered.
+  
+#### Primary, Secondary, and Tertiary
+  
+A key distinction between subtle buttons and the other variations is that the 
+primary/secondary/tertiary scale is styled differently, but conceptual hierarchy 
+is the same. Notably, the tertiary subtle button has a transparent background,
+allowing it to be _extra_ subtle when placed overtop `surface--background` elements
+such as a Modal header.
+
 <Playground>
-  <Button label="Delete" variation="destructive" type="secondary" />
-</Playground>
-
-## Cancel Actions
-
-Cancel actions allow the user to opt out of completing an action they have
-triggered, whether that action is Work, Learning, or Destructive.
-
-<Playground>
-  <Button label="Cancel" variation="cancel" />
+  <Content>
+    <Content>
+      <Content>
+        <Button label="Cancel" type="primary" variation="subtle" />
+      </Content>
+      <Content>
+        <Button label="Cancel" type="secondary" variation="subtle" />
+      </Content>
+      <Content>
+        <Button label="Cancel" type="tertiary" variation="subtle" />
+      </Content>
+    </Content>
+    <div style={{ backgroundColor:"var(--color-surface--background)", padding:"var(--space-base)" }}>
+      <Button variation="subtle" type="tertiary" icon="search" aria-label="search" />
+      <Button variation="subtle" type="tertiary" icon="cog" aria-label="settings" />
+      <Button variation="subtle" type="tertiary" icon="help" aria-label="help" />
+      <Button variation="subtle" type="tertiary" icon="more" aria-label="more" />
+    </div>
+  </Content>
 </Playground>
 
 ## Disabled
 
-Buttons can be disabled for a number of reasons, users may need to do an action
-first or they may not be ready to use that button.
+As a best practice, do not design with disabled button states. This has negative
+impacts on accessibility as well as an increase in complexity for users to
+understand why the interface is disabled and how to resolve it.
+
+With that said, if you _can't_ design a flow without a disabled state, this is
+how you disable a button.
 
 <Playground>
-  <Button label="Submit" disabled />
+  <Button label="Do the thing" disabled />
 </Playground>
 
 ## Sizes
 
-Buttons comes in 2 extra sizes.
+Buttons comes in three sizes. `Base` is the default and should be used for
+almost every use case.
 
-### Small
-
-<Playground>
-  <Button label="Submit" size="small" />
-</Playground>
-
-### Large
+Only use `large` for extremely spacious interfaces such as a login form, and
+`small` when the interface has extremely tight size constraints.
 
 <Playground>
-  <Button label="Submit" size="large" />
+  <Content>
+    <Content>
+      <Button label="Small" size="small" />
+    </Content>
+    <Content>
+      <Button label="Base" />
+    </Content>
+    <Content>
+      <Button label="Large" size="large" />
+    </Content>
+  </Content>
 </Playground>
 
 ## Icons
@@ -206,7 +268,7 @@ A way to communicate to the user that a background action is being performed.
     variation="learning"
     loading={true}
   />
-  <Button label="Canceling..." variation="cancel" loading={true} />
+  <Button label="Canceling..." variation="subtle" loading={true} />
 </Playground>
 
 ## Client Side Routing
@@ -237,4 +299,22 @@ that the url will change to the appropriate route.
       </Router>
     );
   }}
+</Playground>
+
+## Form Submit
+
+Passing the `submit` prop will allow a `Button` to submit a
+[Form](/components/form). Since submitting a form is a specific action, only
+`variation="work"` and `type="primary"` are allowed.
+
+Since this type of `Button` will only be used to submit a form, it does not make
+sense to allow the `external`, `onClick`, `to`, or `url` props.
+
+<Playground>
+  <Form onSubmit={() => alert("Wow, what a number")}>
+    <Content>
+      <InputNumber placeholder="Pick a number" />
+      <Button label="Submit" submit={true} />
+    </Content>
+  </Form>
 </Playground>

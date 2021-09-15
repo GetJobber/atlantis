@@ -2,6 +2,7 @@
 name: ConfirmationModal
 menu: Components
 route: /components/confirmation-modal
+showDirectoryLink: true
 ---
 
 import { useRef, useState } from "react";
@@ -21,7 +22,7 @@ edited page or deleting an object.
 ```ts
 import {
   ConfirmationModal,
-  confirmationModalReducer
+  confirmationModalReducer,
 } from "@jobber/components/ConfirmationModal";
 ```
 
@@ -33,7 +34,7 @@ import {
         <Button label="Open" onClick={() => setOpen(true)} />
         <ConfirmationModal
           title="Should we?"
-          message="Do something…"
+          message={`Let's do **something**!`}
           confirmLabel="Do it"
           open={open}
           onConfirm={() => alert("✅")}
@@ -78,12 +79,12 @@ that presents a confirm modal.
     const users = [
       {
         id: 1,
-        name: "Bob"
+        name: "Bob",
       },
       {
         id: 2,
-        name: "Donald"
-      }
+        name: "Donald",
+      },
     ];
     return (
       <>
@@ -94,9 +95,9 @@ that presents a confirm modal.
               onClick={() => {
                 confirmationModalRef.current.show({
                   title: "Should we?",
-                  message: `Hang out with ${user.name}?`,
+                  message: `Hang out with **${user.name}**?`,
                   confirmLabel: "Hangout",
-                  onConfirm: () => alert("✅")
+                  onConfirm: () => alert("✅"),
                 });
               }}
             />
@@ -107,3 +108,10 @@ that presents a confirm modal.
     );
   }}
 </Playground>
+
+## Related components
+
+- To present non-blocking, contextual, text-only content, use a
+  [Tooltip](tooltip).
+- To simply present information for users to view, edit, or for a temporary
+  change of context, use a regular [Modal](modal).

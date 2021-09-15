@@ -44,6 +44,11 @@ interface CheckboxProps {
    */
   readonly value?: string;
 
+  /**
+   * Further description of the label
+   */
+  readonly description?: string;
+
   onChange?(newValue: boolean): void;
 }
 
@@ -55,6 +60,7 @@ export function Checkbox({
   name,
   value,
   indeterminate = false,
+  description,
   onChange,
 }: CheckboxProps) {
   const wrapperClassName = classnames(
@@ -67,30 +73,39 @@ export function Checkbox({
   const iconName = indeterminate ? "minus2" : "checkmark";
 
   return (
-    <label className={wrapperClassName}>
-      <span className={styles.checkHolder}>
-        <input
-          type="checkbox"
-          checked={checked}
-          defaultChecked={defaultChecked}
-          className={inputClassName}
-          aria-label={label}
-          onChange={handleChange}
-          value={value}
-          name={name}
-          disabled={disabled}
-        />
-        <span className={styles.checkBox}>
-          <Icon name={iconName} size="small" color="white" />
+    <div className={styles.checkbox}>
+      <label className={wrapperClassName}>
+        <span className={styles.checkHolder}>
+          <input
+            type="checkbox"
+            checked={checked}
+            defaultChecked={defaultChecked}
+            className={inputClassName}
+            aria-label={label}
+            onChange={handleChange}
+            value={value}
+            name={name}
+            disabled={disabled}
+          />
+          <span className={styles.checkBox}>
+            <Icon name={iconName} size="small" color="white" />
+          </span>
         </span>
-      </span>
 
-      {label != undefined && (
-        <span className={styles.label}>
-          <Text variation={disabled ? "subdued" : undefined}>{label}</Text>
-        </span>
+        {label != undefined && (
+          <span className={styles.label}>
+            <Text>{label}</Text>
+          </span>
+        )}
+      </label>
+      {description && (
+        <div className={styles.description}>
+          <Text variation="subdued" size="small">
+            {description}
+          </Text>
+        </div>
       )}
-    </label>
+    </div>
   );
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {

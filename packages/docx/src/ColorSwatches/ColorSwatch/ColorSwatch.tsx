@@ -16,7 +16,6 @@ export function ColorSwatch({ name, value }: ColorSwatchProps) {
         }}
       />
       <div className={styles.name}>{name}</div>
-      <div className={styles.value}>{value}</div>
     </div>
   );
 }

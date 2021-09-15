@@ -1,42 +1,78 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders a RadioGroup 1`] = `
-<div
-  className="radioGroup"
->
-  <div>
-    <input
-      checked={false}
-      className="input"
-      id="foo"
-      name="Foo"
-      onChange={[Function]}
-      type="radio"
-      value="foo"
-    />
-    <label
-      className="label"
-      htmlFor="foo"
-    >
-      Foo
-    </label>
+<div>
+  <div
+    class="radioGroup"
+    role="radiogroup"
+  >
+    <div>
+      <input
+        checked=""
+        class="input"
+        id="one_123e4567-e89b-12d3-a456-426655440002"
+        name="123e4567-e89b-12d3-a456-426655440001"
+        type="radio"
+        value="one"
+      />
+      <label
+        class="label"
+        for="one_123e4567-e89b-12d3-a456-426655440002"
+      >
+        One
+      </label>
+    </div>
+    <div>
+      <input
+        class="input"
+        id="two_123e4567-e89b-12d3-a456-426655440003"
+        name="123e4567-e89b-12d3-a456-426655440001"
+        type="radio"
+        value="two"
+      />
+      <label
+        class="label"
+        for="two_123e4567-e89b-12d3-a456-426655440003"
+      >
+        Two
+      </label>
+    </div>
   </div>
-  <div>
-    <input
-      checked={true}
-      className="input"
-      id="bear"
-      name="Foo"
-      onChange={[Function]}
-      type="radio"
-      value="bear"
-    />
-    <label
-      className="label"
-      htmlFor="bear"
-    >
-      Bear
-    </label>
+  <div
+    class="radioGroup"
+    role="radiogroup"
+  >
+    <div>
+      <input
+        checked=""
+        class="input"
+        id="one_123e4567-e89b-12d3-a456-426655440005"
+        name="123e4567-e89b-12d3-a456-426655440004"
+        type="radio"
+        value="one"
+      />
+      <label
+        class="label"
+        for="one_123e4567-e89b-12d3-a456-426655440005"
+      >
+        One
+      </label>
+    </div>
+    <div>
+      <input
+        class="input"
+        id="two_123e4567-e89b-12d3-a456-426655440006"
+        name="123e4567-e89b-12d3-a456-426655440004"
+        type="radio"
+        value="two"
+      />
+      <label
+        class="label"
+        for="two_123e4567-e89b-12d3-a456-426655440006"
+      >
+        Two
+      </label>
+    </div>
   </div>
 </div>
 `;

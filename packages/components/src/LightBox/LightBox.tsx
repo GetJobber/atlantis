@@ -12,6 +12,10 @@ interface PresentedImage {
   url: string;
 }
 
+interface RequestCloseOptions {
+  lastPosition: number;
+}
+
 interface LightBoxProps {
   /**
    * Specify if the Lightbox is open or closed.
@@ -33,8 +37,10 @@ interface LightBoxProps {
    * This function must set open to false in order to close the lightbox. Note there
    * is a 300ms easing animation on lightbox close that occurs before this function
    * is called.
+   * This function receives an object as an argument with the key `lastPosition`
+   * that has the index of the image the user was on when LightBox was closed.
    */
-  onRequestClose(): void;
+  onRequestClose(options: RequestCloseOptions): void;
 }
 
 export function LightBox({
@@ -67,7 +73,9 @@ export function LightBox({
           prevSrc={prevSrc}
           imageTitle={images[currentImageIndex].title}
           imageCaption={images[currentImageIndex].caption}
-          onCloseRequest={onRequestClose}
+          onCloseRequest={() =>
+            onRequestClose({ lastPosition: currentImageIndex })
+          }
           onMovePrevRequest={handleMovePrevious}
           onMoveNextRequest={handleMoveNext}
         />

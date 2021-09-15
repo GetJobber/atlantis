@@ -19,7 +19,7 @@
   border-radius: var(--radius-base) var(--radius-base) 0 0;
   -webkit-overflow-scrolling: touch;
   overflow-y: scroll;
-  background-color: var(--color-white);
+  background-color: var(--color-surface);
 
   @media (--medium-screens) {
     position: absolute;
@@ -27,7 +27,7 @@
     width: calc(var(--base-unit) * 12.5);
     box-shadow: var(--shadow-base);
     padding: var(--space-small);
-    border: var(--border-base) solid var(--color-grey--lighter);
+    border: var(--border-base) solid var(--color-border);
     border-radius: var(--radius-base);
     overflow: auto;
   }
@@ -48,9 +48,23 @@
   }
 }
 
+.left {
+  @media (--medium-screens) {
+    right: 0;
+    left: auto;
+  }
+}
+
+.right {
+  @media (--medium-screens) {
+    right: auto;
+    left: 0;
+  }
+}
+
 .section {
   padding: var(--space-small) 0;
-  border-bottom: var(--border-base) dotted var(--color-grey);
+  border-bottom: var(--border-base) dotted var(--color-border);
 }
 
 .section:first-of-type {
@@ -79,8 +93,8 @@
 
 .action:hover,
 .action:focus {
-  background-color: var(--color-yellow--lightest);
-  outline-color: var(--color-outline);
+  background-color: var(--color-surface--hover);
+  outline-color: var(--color-focus);
 }
 
 .icon {

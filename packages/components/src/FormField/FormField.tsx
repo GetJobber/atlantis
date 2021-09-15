@@ -1,345 +1,207 @@
-import React, { ChangeEvent, ReactNode, Ref, useEffect, useState } from "react";
-import classnames from "classnames";
+import React, {
+  ChangeEvent,
+  FocusEvent,
+  KeyboardEvent,
+  MutableRefObject,
+  useEffect,
+  useImperativeHandle,
+  useState,
+} from "react";
 import uuid from "uuid";
+import { Controller, useForm, useFormContext } from "react-hook-form";
+import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.css";
-import { Icon } from "../Icon";
-import { Text } from "../Text";
-import { InputValidation, ValidationProps } from "../InputValidation";
+import { FormFieldWrapper } from "./FormFieldWrapper";
+import { FormFieldPostFix } from "./FormFieldPostFix";
 
-export interface FormFieldProps {
-  /**
-   * Determines the alignment of the text inside the input.
-   */
-  readonly align?: "center" | "right";
+export function FormField(props: FormFieldProps) {
+  const {
+    actionsRef,
+    autocomplete = true,
+    children,
+    defaultValue,
+    disabled,
+    inputRef,
+    keyboard,
+    max,
+    maxLength,
+    min,
+    name,
+    readonly,
+    rows,
+    loading,
+    type = "text",
+    validations,
+    value,
+    onChange,
+    onEnter,
+    onFocus,
+    onBlur,
+    onValidation,
+  } = props;
 
-  /**
-   * If you need to pass in a children. For example, `<options>` inside
-   * `<select>`.
-   */
-  readonly children?: ReactNode;
+  const { control, errors, setValue, watch } =
+    useFormContext() != undefined
+      ? useFormContext()
+      : useForm({ mode: "onTouched" });
 
-  /**
-   * Initial value of the input. Only use this when you need to pre-populate
-   * the field with a data that is not controlled by the components state. If a
-   * state is controlling the value, use the `value` prop instead.
-   */
-  readonly defaultValue?: string;
-
-  /**
-   * Disable the input
-   */
-  readonly disabled?: boolean;
-
-  /**
-   * **DEPRECATED** Use `validations` prop instead.
-   *
-   * Show an error message and highlight the the field red.
-   */
-  readonly errorMessage?: string;
-
-  /**
-   * Adjusts the form field to go inline with a content. This also silences the
-   * given `validations` prop. You'd have to used the `onValidate` prop to
-   * capture the message and render it somewhere else using the
-   * `InputValidation` component.
-   */
-  readonly inline?: boolean;
+  const [identifier] = useState(uuid.v1());
 
   /**
-   * Highlights the field red to indicate an error.
+   * Generate a name if one is not supplied, this is the name
+   * that will be used for react-hook-form and not neccessarily
+   * attached to the DOM
    */
-  readonly invalid?: boolean;
+  const [controlledName] = useState(
+    name ? name : `generatedName--${identifier}`,
+  );
 
-  /**
-   * Specifies the maximum numerical or date value that a user can type
-   */
-  readonly max?: number;
+  useEffect(() => {
+    if (value != undefined) {
+      setValue(controlledName, value);
+    }
+  }, [value, watch(controlledName)]);
 
-  /**
-   * Maximum character length for an input. This also changes the width to
-   * roughly the same size as the max length. This is to communicate that the
-   * user that on certain cases, they can only type a limited amount of
-   * characters.
-   */
-  readonly maxLength?: number;
+  useImperativeHandle(actionsRef, () => ({
+    setValue: newValue => {
+      setValue(controlledName, newValue);
+    },
+  }));
 
-  /**
-   * Specifies the minimum numerical or date value that a user can type
-   */
-  readonly min?: number;
+  const error = errors[controlledName] && errors[controlledName].message;
+  useEffect(() => handleValidation(), [error]);
 
-  /**
-   * Name of the input.
-   */
-  readonly name?: string;
+  return (
+    <Controller
+      control={control}
+      name={controlledName}
+      rules={{ ...validations }}
+      defaultValue={value ?? defaultValue ?? ""}
+      render={({
+        onChange: onControllerChange,
+        onBlur: onControllerBlur,
+        name: controllerName,
+        ...rest
+      }) => {
+        const fieldProps = {
+          ...rest,
+          id: identifier,
+          className: styles.input,
+          name: (validations || name) && controllerName,
+          disabled: disabled,
+          readOnly: readonly,
+          inputMode: keyboard,
+          onChange: handleChange,
+        };
 
-  /**
-   * Hint text that goes above the value once the form is filled out.
-   */
-  readonly placeholder?: string;
+        const textFieldProps = {
+          ...fieldProps,
+          onBlur: handleBlur,
+          onFocus: handleFocus,
+          onKeyDown: handleKeyDown,
+        };
 
-  /**
-   * Prevents users from editing the value.
-   */
-  readonly readonly?: boolean;
+        return (
+          <FormFieldWrapper
+            {...props}
+            value={rest.value}
+            error={error}
+            identifier={identifier}
+          >
+            {renderField()}
+          </FormFieldWrapper>
+        );
 
-  /**
-   * Exclusively for textareas. Specifies the visible height of a textarea.
-   */
-  readonly rows?: number;
+        function renderField() {
+          switch (type) {
+            case "select":
+              return (
+                <>
+                  <select {...fieldProps}>{children}</select>
+                  <FormFieldPostFix variation="select" />
+                </>
+              );
+            case "textarea":
+              return (
+                <textarea
+                  {...textFieldProps}
+                  rows={rows}
+                  ref={inputRef as MutableRefObject<HTMLTextAreaElement>}
+                />
+              );
+            default:
+              return (
+                <>
+                  <input
+                    {...textFieldProps}
+                    autoComplete={setAutocomplete(autocomplete)}
+                    type={type}
+                    maxLength={maxLength}
+                    max={max}
+                    min={min}
+                    ref={inputRef as MutableRefObject<HTMLInputElement>}
+                  />
+                  {loading && <FormFieldPostFix variation="spinner" />}
+                </>
+              );
+          }
+        }
 
-  /**
-   * Adjusts the interface to either have small or large spacing.
-   */
-  readonly size?: "small" | "large";
+        function handleChange(
+          event: ChangeEvent<
+            HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+          >,
+        ) {
+          let newValue: string | number;
+          newValue = event.currentTarget.value;
 
-  /**
-   * Determines what kind of form field should the component give you.
-   */
-  readonly type?:
-    | "text"
-    | "password"
-    | "number"
-    | "time"
-    | "textarea"
-    | "select";
+          if (type === "number" && newValue.length > 0) {
+            newValue = parseFloat(newValue);
+          }
 
-  /**
-   * **EXPERIMENTAL** This feature is still under development.
-   *
-   * Show a success, error, warn, and info message above the field. This also
-   * highlights the the field red if and error message shows up.
-   */
-  readonly validations?: ValidationProps[];
+          onChange && onChange(newValue);
+          onControllerChange(event);
+        }
 
-  /**
-   * Set the component to the given value.
-   */
-  readonly value?: string | number;
+        function handleKeyDown(
+          event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>,
+        ) {
+          if (!onEnter) return;
+          if (event.key !== "Enter") return;
+          if (event.shiftKey || event.ctrlKey) return;
+          event.preventDefault();
+          onEnter && onEnter(event);
+        }
 
-  /**
-   * Simplified onChange handler that only provides the new value.
-   * @param newValue
-   */
-  onChange?(newValue: string | number): void;
+        function handleFocus(
+          event: FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+        ) {
+          const target = event.currentTarget;
+          setTimeout(() => readonly && target.select());
+          onFocus && onFocus();
+        }
 
-  /**
-   * Focus callback.
-   */
-  onFocus?(): void;
+        function handleBlur() {
+          onBlur && onBlur();
+          onControllerBlur();
+        }
+      }}
+    />
+  );
 
-  /**
-   * Blur callback.
-   */
-  onBlur?(): void;
-
-  /**
-   * **DEPRECATED** Use `onValidation` prop instead.
-   *
-   * Callback to get the the status and message when validating a field
-   * @param status
-   * @param message
-   */
-  onValidate?(status: "pass" | "fail", message: string): void;
-
-  /**
-   * **EXPERIMENTAL** This feature is still under development.
-   *
-   * Callback to get the the status and message when validating a field
-   * @param messages
-   */
-  onValidation?(messages: ValidationProps[]): void;
+  function handleValidation() {
+    onValidation && onValidation(error);
+  }
 }
 
-export const FormField = React.forwardRef(
-  (
-    {
-      align,
-      children,
-      defaultValue,
-      disabled,
-      errorMessage,
-      inline,
-      invalid,
-      max,
-      maxLength,
-      min,
-      name,
-      onFocus,
-      onBlur,
-      onChange,
-      onValidate,
-      onValidation,
-      placeholder,
-      readonly,
-      rows,
-      size,
-      type = "text",
-      value,
-      validations,
-    }: FormFieldProps,
-    ref: Ref<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
-  ) => {
-    const [hasMiniLabel, setHasMiniLabel] = useState(
-      shouldShowMiniLabel(defaultValue, value),
-    );
-    const identifier = uuid.v1();
-
-    useEffect(() => {
-      handleValidation();
-      setHasMiniLabel(shouldShowMiniLabel(defaultValue, value));
-    }, [value]);
-
-    const wrapperClassNames = classnames(
-      styles.wrapper,
-      inline && styles.inline,
-      size && styles[size],
-      align && styles[align],
-      disabled && styles.disabled,
-      maxLength && styles.maxLength,
-      {
-        [styles.miniLabel]:
-          (hasMiniLabel || type === "time" || type === "select") && placeholder,
-        [styles.invalid]:
-          invalid || errorMessage || hasErrorMessages(validations),
-      },
-    );
-
-    const Wrapper = inline ? "span" : "div";
-
-    const labelClassNames = classnames(
-      styles.label,
-      type === "textarea" && styles.textareaLabel,
-    );
-
-    return (
-      <>
-        {errorMessage && !inline && (
-          <Text variation="error">{errorMessage}</Text>
-        )}
-
-        {validations && !inline && <InputValidation messages={validations} />}
-
-        <Wrapper
-          className={wrapperClassNames}
-          style={{ ["--formField-maxLength" as string]: maxLength || max }}
-        >
-          <label className={labelClassNames} htmlFor={identifier}>
-            {placeholder || " "}
-          </label>
-          {fieldElement()}
-          {type === "select" && (
-            <span className={styles.icon}>
-              <Icon name="arrowDown" />
-            </span>
-          )}
-        </Wrapper>
-      </>
-    );
-
-    function fieldElement() {
-      const fieldProps = {
-        id: identifier,
-        className: styles.formField,
-        name: name,
-        disabled: disabled,
-        readOnly: readonly,
-        onChange: handleChange,
-        value: value,
-        ...(defaultValue && { defaultValue: defaultValue }),
-      };
-
-      switch (type) {
-        case "select":
-          return <select {...fieldProps}>{children}</select>;
-        case "textarea":
-          return (
-            <textarea
-              rows={rows}
-              onFocus={handleFocus}
-              onBlur={handleBlur}
-              ref={ref as Ref<HTMLTextAreaElement>}
-              {...fieldProps}
-            />
-          );
-        default:
-          return (
-            <input
-              type={type}
-              maxLength={maxLength}
-              max={max}
-              min={min}
-              onFocus={handleFocus}
-              onBlur={handleBlur}
-              ref={ref as Ref<HTMLInputElement>}
-              {...fieldProps}
-            />
-          );
-      }
-    }
-
-    function handleChange(
-      event:
-        | ChangeEvent<HTMLInputElement>
-        | ChangeEvent<HTMLTextAreaElement>
-        | ChangeEvent<HTMLSelectElement>,
-    ) {
-      let newValue: string | number;
-      newValue = event.currentTarget.value;
-      setHasMiniLabel(newValue.length > 0);
-
-      if (type === "number" && newValue.length > 0) {
-        newValue = parseFloat(newValue);
-      }
-      onChange && onChange(newValue);
-    }
-
-    function handleFocus(
-      event:
-        | React.FocusEvent<HTMLInputElement>
-        | React.FocusEvent<HTMLTextAreaElement>,
-    ) {
-      const target = event.currentTarget;
-      setTimeout(() => readonly && target.select());
-
-      onFocus && onFocus();
-    }
-
-    function handleBlur() {
-      onBlur && onBlur();
-    }
-
-    function handleValidation() {
-      const status = errorMessage ? "fail" : "pass";
-      const message = errorMessage || "";
-      onValidate && onValidate(status, message);
-
-      const validationMessages = validations ? validations : [];
-      onValidation && onValidation(validationMessages);
-    }
-  },
-);
-
-function shouldShowMiniLabel(
-  defaultValue: string | number | undefined,
-  value: string | number | undefined,
+function setAutocomplete(
+  autocompleteSetting: boolean | FormFieldProps["autocomplete"],
 ) {
-  const activeValue = defaultValue || value;
-  if (typeof activeValue === "string") {
-    return activeValue.length > 0;
-  } else {
-    return activeValue != undefined;
+  if (autocompleteSetting === true) {
+    return undefined;
+  } else if (autocompleteSetting === false) {
+    return "autocomplete-off";
   }
-}
 
-function hasErrorMessages(validations?: ValidationProps[]) {
-  if (validations) {
-    return validations.some(validation => {
-      return (
-        (validation.shouldShow || validation.shouldShow === undefined) &&
-        validation.status === "error"
-      );
-    });
-  }
-  return false;
+  return autocompleteSetting;
 }

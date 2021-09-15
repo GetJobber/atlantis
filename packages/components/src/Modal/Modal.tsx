@@ -1,12 +1,14 @@
-import React, { ReactNode, useEffect } from "react";
+import React, { ReactNode } from "react";
 import ReactDOM from "react-dom";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
+import { useOnKeyDown, useRefocusOnActivator } from "@jobber/hooks";
 import styles from "./Modal.css";
 import sizes from "./Sizes.css";
-import { Icon } from "../Icon";
+import { useFocusTrap } from "./useFocusTrap";
 import { Typography } from "../Typography";
 import { Button, ButtonProps } from "../Button";
+import { ButtonDismiss } from "../ButtonDismiss";
 
 interface ModalProps {
   /**
@@ -38,15 +40,14 @@ export function Modal({
   onRequestClose,
 }: ModalProps) {
   const modalClassName = classnames(styles.modal, size && sizes[size]);
-
-  if (open && onRequestClose) {
-    catchKeyboardEvent("Escape", onRequestClose);
-  }
+  useRefocusOnActivator(open);
+  const modalRef = useFocusTrap<HTMLDivElement>(open);
+  useOnKeyDown(handleRequestClose, "Escape");
 
   const template = (
     <AnimatePresence>
       {open && (
-        <div className={styles.container}>
+        <div ref={modalRef} className={styles.container} tabIndex={0}>
           <motion.div
             key={styles.overlay}
             className={styles.overlay}
@@ -88,22 +89,12 @@ export function Modal({
   );
 
   return ReactDOM.createPortal(template, document.body);
-}
 
-function catchKeyboardEvent(key: string, callback: { (): void }) {
-  useEffect(() => {
-    const handler = (event: { key: string }) => {
-      if (event.key === key) {
-        callback();
-      }
-    };
-
-    window.addEventListener("keydown", handler);
-
-    return () => {
-      window.removeEventListener("keydown", handler);
-    };
-  }, []);
+  function handleRequestClose() {
+    if (open && onRequestClose) {
+      onRequestClose();
+    }
+  }
 }
 
 interface HeaderProps {
@@ -125,13 +116,7 @@ function Header({ title, dismissible, onRequestClose }: HeaderProps) {
       </Typography>
 
       {dismissible && (
-        <button
-          className={styles.closeButton}
-          onClick={onRequestClose}
-          aria-label="Close modal"
-        >
-          <Icon name="cross" />
-        </button>
+        <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />
       )}
     </div>
   );

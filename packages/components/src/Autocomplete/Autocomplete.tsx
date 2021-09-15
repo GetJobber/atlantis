@@ -1,15 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import debounce from "lodash/debounce";
+import { XOR } from "ts-xor";
 import styles from "./Autocomplete.css";
 import { Menu } from "./Menu";
-import { Option } from "./Option";
+import { AnyOption, GroupOption, Option } from "./Option";
 import { InputText } from "../InputText";
+import { FormFieldProps } from "../FormField";
 
-interface AutocompleteProps {
+type OptionCollection = XOR<Option[], GroupOption[]>;
+
+interface AutocompleteProps
+  extends Pick<FormFieldProps, "size" | "onBlur" | "onFocus" | "invalid"> {
   /**
    * Initial options to show when user first focuses the Autocomplete
    */
-  readonly initialOptions?: Option[];
+  readonly initialOptions?: OptionCollection;
 
   /**
    * Set Autocomplete value.
@@ -17,9 +22,18 @@ interface AutocompleteProps {
   readonly value: Option | undefined;
 
   /**
-   * Hint text that goes above the value once the form is filled out.
+   * Allow the autocomplete to use values not from the drop down menu.
+   *
+   * @default true
    */
-  readonly placeholder: string;
+  readonly allowFreeForm?: boolean;
+
+  /**
+   * Debounce in milliseconds for getOptions
+   *
+   * @default 300
+   */
+  readonly debounce?: number;
 
   /**
    * Simplified onChange handler that only provides the new value.
@@ -29,58 +43,88 @@ interface AutocompleteProps {
 
   /**
    * Called as the user types in the input. The autocomplete will display what
-   * is retuned from this method to the user as available options.
+   * is returned from this method to the user as available options.
    * @param newInputText
    */
-  getOptions(newInputText: string): Option[] | Promise<Option[]>;
+  getOptions(
+    newInputText: string,
+  ): OptionCollection | Promise<OptionCollection>;
+
+  /**
+   * Hint text that goes above the value once the form is filled out.
+   */
+  readonly placeholder: string;
 }
 
+/**
+ * Max statements disabled here to make room for the
+ * debounce functions.
+ */
+// eslint-disable-next-line max-statements
 export function Autocomplete({
   initialOptions = [],
   value,
+  allowFreeForm = true,
+  size = undefined,
+  invalid,
+  debounce: debounceRate = 300,
   onChange,
   getOptions,
   placeholder,
+  onBlur,
+  onFocus,
 }: AutocompleteProps) {
   const [options, setOptions] = useState(initialOptions);
   const [menuVisible, setMenuVisible] = useState(false);
-  const [inputText, setInputText] = useState((value && value.label) || "");
+  const [inputText, setInputText] = useState(value?.label ?? "");
 
-  const debouncedSetOptions = useRef(debounce(setOptions, 150)).current;
+  const delayedSearch = debounce(updateSearch, debounceRate);
 
   useEffect(() => {
-    if (value) {
-      updateInput(value.label);
-    } else {
-      updateInput("");
-    }
+    delayedSearch();
+    return delayedSearch.cancel;
+  }, [inputText]);
+
+  useEffect(() => {
+    updateInput(value?.label ?? "");
   }, [value]);
 
   return (
     <div className={styles.autocomplete}>
       <InputText
+        autocomplete={false}
+        size={size}
+        invalid={invalid}
         value={inputText}
         onChange={handleInputChange}
         placeholder={placeholder}
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
       />
-      <Menu
-        visible={menuVisible}
-        options={options}
-        selectedOption={value}
-        onOptionSelect={handleMenuChange}
-      />
+      {menuVisible && (
+        <Menu
+          visible={true}
+          options={options}
+          selectedOption={value}
+          onOptionSelect={handleMenuChange}
+        />
+      )}
     </div>
   );
 
-  async function updateInput(newText: string) {
+  function updateInput(newText: string) {
     setInputText(newText);
-    if (newText) {
-      debouncedSetOptions(await getOptions(newText));
-    } else {
-      setOptions(initialOptions);
+    if (newText === "") {
+      setOptions(mapToOptions(initialOptions));
     }
+  }
+
+  async function updateSearch() {
+    const updatedOptions: AnyOption[] = await getOptions(inputText);
+    const filteredOptions = updatedOptions.filter((option: AnyOption) =>
+      "options" in option && option.options ? option.options.length > 0 : true,
+    );
+    setOptions(mapToOptions(filteredOptions));
   }
 
   function handleMenuChange(chosenOption: Option) {
@@ -91,17 +135,35 @@ export function Autocomplete({
 
   function handleInputChange(newText: string) {
     updateInput(newText);
+    if (allowFreeForm) {
+      onChange({ label: newText });
+    }
     setMenuVisible(true);
   }
 
   function handleInputBlur() {
     setMenuVisible(false);
     if (value == undefined || value.label !== inputText) {
+      setInputText("");
       onChange(undefined);
     }
+    onBlur && onBlur();
   }
 
   function handleInputFocus() {
     setMenuVisible(true);
+    if (onFocus) {
+      onFocus();
+    }
   }
+}
+
+function mapToOptions(items: AnyOption[]) {
+  return items.reduce(function (result: AnyOption[], item) {
+    result = result.concat([item]);
+    if (item.options) {
+      result = result.concat(item.options);
+    }
+    return result;
+  }, []);
 }

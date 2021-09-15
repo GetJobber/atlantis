@@ -1,3 +1,9 @@
+---
+name: Stylelint config
+menu: Packages
+route: /packages/stylelint-config
+---
+
 # Stylelint Config
 
 ## Installing

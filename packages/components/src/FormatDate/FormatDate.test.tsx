@@ -6,9 +6,13 @@ import { FormatDate } from "./FormatDate";
 
 afterEach(cleanup);
 
-it("renders a FormatDate", () => {
-  const tree = renderer
-    .create(<FormatDate date={new CivilDate(2020, 2, 26)} />)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`"Feb 26, 2020"`);
+Object.entries({
+  CivilDate: new CivilDate(2020, 2, 26),
+  ISO8601DateString: "2019-03-30T00:45",
+  Date: new Date("2019-03-30T00:45"),
+}).forEach(([inputType, value]) => {
+  it(`renders a FormatDate from ${inputType}`, () => {
+    const tree = renderer.create(<FormatDate date={value} />).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 });

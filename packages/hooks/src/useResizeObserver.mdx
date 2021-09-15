@@ -24,7 +24,7 @@ import { useResizeObserver } from "@jobber/hooks";
   {() => {
     const [
       ref,
-      { width, exactWidth, exactHeight, height }
+      { width, exactWidth, exactHeight, height },
     ] = useResizeObserver();
     return (
       <div ref={ref}>
@@ -87,10 +87,10 @@ want to use `Breakpoints`.
     const customWidths = {
       small: 480,
       medium: 640,
-      large: 768
+      large: 768,
     };
     const [ref, { width, exactWidth }] = useResizeObserver({
-      widths: customWidths
+      widths: customWidths,
     });
     return (
       <div ref={ref}>
@@ -112,3 +112,25 @@ want to use `Breakpoints`.
     }
   }}
 </Playground>
+
+## Testing with Jest
+
+Use `jest.mock` to set your desired window attributes.
+
+```tsx
+jest.mock("@jobber/hooks", () => {
+  return {
+    useResizeObserver: () => [
+      { current: undefined },
+      { width: 1000, height: 100 },
+    ],
+    Breakpoints: {
+      base: 640,
+      small: 500,
+      smaller: 265,
+      large: 750,
+      larger: 1024,
+    },
+  };
+});
+```

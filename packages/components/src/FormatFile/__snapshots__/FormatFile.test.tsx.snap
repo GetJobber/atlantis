@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a FormatFile 1`] = `
+<div
+  className="formatFile"
+>
+  <div
+    className="imageBlock"
+    data-testid="imageBlock"
+    style={Object {}}
+  >
+    <div
+      className="icon"
+    >
+      <svg
+        className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+        data-testid="file"
+        viewBox="0 0 1024 1024"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          className="_85ejNuTlTLFcweKBgeZMK"
+          d="M597.333 384c0-23.564-19.102-42.667-42.667-42.667h-128c-23.564 0-42.667 19.103-42.667 42.667v256c0 23.565 19.103 42.667 42.667 42.667s42.667-19.102 42.667-42.667v-64h85.333c23.565 0 42.667-19.102 42.667-42.667s-19.102-42.667-42.667-42.667h-85.333v-64h85.333c23.565 0 42.667-19.103 42.667-42.667z"
+        />
+        <path
+          className="_85ejNuTlTLFcweKBgeZMK"
+          d="M256 85.333c-47.128 0-85.333 38.205-85.333 85.333v682.667c0 47.13 38.205 85.333 85.333 85.333h512c47.13 0 85.333-38.204 85.333-85.333v-536.994c0-22.632-8.99-44.337-24.994-60.34l-145.673-145.673c-16.004-16.003-37.709-24.994-60.339-24.994h-366.327zM256 853.333v-682.667h366.327l145.673 145.673v536.994h-512z"
+        />
+      </svg>
+    </div>
+  </div>
+  <div
+    className="contentBlock"
+  >
+    <span
+      className="base regular"
+    >
+      Funky Corn
+    </span>
+    <p
+      className="base regular small greyBlueDark"
+    >
+      1 KB
+    </p>
+  </div>
+</div>
+`;
