@@ -58,7 +58,7 @@ jobs:
             published_packages=$(git tag --points-at HEAD | sed -rn 's/@([^@]*)$/ \1/p')
             while read -r module_name version; do
               echo "Do something with ${module_name}@${version}."
-            done <<< "${published_packages}"
+            done << "${published_packages}" >>
 
   checkout_code:
     <<: *container_config
