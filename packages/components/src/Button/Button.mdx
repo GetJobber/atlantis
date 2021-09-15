@@ -156,7 +156,7 @@ A Secondary or tertiary destructive action will either...
 </Playground>
 
 ### Subtle Actions
-  
+
 > Subtle actions replace a previous concept of "cancel" actions which has been
 > deprecated.
 
@@ -166,14 +166,14 @@ comfortably alongside more prominent content.
 
 Think of icon actions in a navigation bar, buttons to dismiss a modal, or opting
 out of completing an action they have triggered.
-  
+
 #### Primary, Secondary, and Tertiary
-  
-A key distinction between subtle buttons and the other variations is that the 
-primary/secondary/tertiary scale is styled differently, but conceptual hierarchy 
+
+A key distinction between subtle buttons and the other variations is that the
+primary/secondary/tertiary scale is styled differently, but conceptual hierarchy
 is the same. Notably, the tertiary subtle button has a transparent background,
-allowing it to be _extra_ subtle when placed overtop `surface--background` elements
-such as a Modal header.
+allowing it to be _extra_ subtle when placed overtop `surface--background`
+elements such as a Modal header.
 
 <Playground>
   <Content>
@@ -182,17 +182,42 @@ such as a Modal header.
         <Button label="Cancel" type="primary" variation="subtle" />
       </Content>
       <Content>
-        <Button label="Cancel" type="secondary" variation="subtle" />
+        <Button label="Dismiss" type="secondary" variation="subtle" />
       </Content>
       <Content>
-        <Button label="Cancel" type="tertiary" variation="subtle" />
+        <Button label="Maybe Later" type="tertiary" variation="subtle" />
       </Content>
     </Content>
-    <div style={{ backgroundColor:"var(--color-surface--background)", padding:"var(--space-base)" }}>
-      <Button variation="subtle" type="tertiary" icon="search" aria-label="search" />
-      <Button variation="subtle" type="tertiary" icon="cog" aria-label="settings" />
-      <Button variation="subtle" type="tertiary" icon="help" aria-label="help" />
-      <Button variation="subtle" type="tertiary" icon="more" aria-label="more" />
+    <div
+      style={{
+        backgroundColor: "var(--color-surface--background)",
+        padding: "var(--space-base)",
+      }}
+    >
+      <Button
+        variation="subtle"
+        type="tertiary"
+        icon="search"
+        aria-label="search"
+      />
+      <Button
+        variation="subtle"
+        type="tertiary"
+        icon="cog"
+        aria-label="settings"
+      />
+      <Button
+        variation="subtle"
+        type="tertiary"
+        icon="help"
+        aria-label="help"
+      />
+      <Button
+        variation="subtle"
+        type="tertiary"
+        icon="more"
+        aria-label="more"
+      />
     </div>
   </Content>
 </Playground>

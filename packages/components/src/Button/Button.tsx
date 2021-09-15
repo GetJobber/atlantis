@@ -65,11 +65,6 @@ interface DestructiveActionProps extends ButtonFoundationProps {
   readonly type?: "primary" | "secondary" | "tertiary";
 }
 
-interface CancelActionProps extends ButtonFoundationProps {
-  readonly variation: "cancel";
-  readonly type?: "secondary" | "tertiary";
-}
-
 interface SubmitActionProps
   extends Omit<ButtonFoundationProps, "external" | "onClick"> {
   readonly variation?: "work";
@@ -87,7 +82,7 @@ interface SubmitButtonProps
 
 export type ButtonProps = XOR<
   BaseActionProps,
-  XOR<DestructiveActionProps, XOR<CancelActionProps, SubmitActionProps>>
+  XOR<DestructiveActionProps, SubmitActionProps>
 > &
   XOR<SubmitButtonProps, XOR<ButtonLinkProps, ButtonAnchorProps>> &
   XOR<ButtonIconProps, ButtonLabelProps>;
