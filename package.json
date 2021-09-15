@@ -25,7 +25,8 @@
     "ci:release": "lerna publish --yes",
     "version": "node ensureChangelogHeaders.js",
     "convertIcoMoon": "scripts/convertIcoMoon.ts",
-    "preventManualRelease": "node scripts/preventManualRelease.js"
+    "preventManualRelease": "node scripts/preventManualRelease.js",
+    "githubComment": "node scripts/githubComment.js"
   },
   "repository": {
     "type": "git",
