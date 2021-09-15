@@ -144,7 +144,7 @@ export function Button(props: ButtonProps) {
 
   const buttonInternals = <ButtonInternals {...props} />;
 
-  console.log("ffasoo");
+  console.log("hello");
 
   if (to) {
     return (
