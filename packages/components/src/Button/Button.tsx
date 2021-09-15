@@ -157,6 +157,8 @@ export function Button(props: ButtonProps) {
   return <Tag {...tagProps}>{buttonInternals}</Tag>;
 }
 
+console.log("button");
+
 function ButtonInternals({ label, icon, size = "base" }: ButtonProps) {
   return (
     <>
