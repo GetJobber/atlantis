@@ -38,9 +38,9 @@ function hasLernaPublished() {
 
   for (const package of packages) {
     const { name, version } = require(package);
-    publishedPackages.push(`${name}@${version}`);
     if (!/^\^?\d+.\d+.\d+$/.test(version)) {
       result = true;
+      publishedPackages.push(`${name}@${version}`);
     }
   }
 
