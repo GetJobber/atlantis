@@ -1,5 +1,6 @@
 import React from "react";
 import { cleanup, render, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { Tooltip } from ".";
 
 afterEach(cleanup);
@@ -31,9 +32,7 @@ it("should show up on hover", async () => {
     </Tooltip>,
   );
 
-  await waitFor(() => {
-    getByTestId(contentID).dispatchEvent(new MouseEvent("mouseenter"));
-  });
+  userEvent.hover(getByTestId(contentID));
   expect(getByText(message)).toBeInTheDocument();
   expect(getByText(content)).toBeInTheDocument();
 });
@@ -49,9 +48,7 @@ it("should show the tooltip up on focus", async () => {
     </Tooltip>,
   );
 
-  await waitFor(() => {
-    getByTestId(contentID).dispatchEvent(new Event("focus"));
-  });
+  userEvent.hover(getByTestId(contentID));
   expect(getByText(message)).toBeInTheDocument();
 });
 
@@ -66,10 +63,8 @@ it("should disappear on blur", async () => {
     </Tooltip>,
   );
 
-  await waitFor(() => {
-    getByTestId(contentID).dispatchEvent(new Event("focus"));
-    getByTestId(contentID).dispatchEvent(new Event("blur"));
-  });
+  userEvent.hover(getByTestId(contentID));
+  userEvent.unhover(getByTestId(contentID));
 
   await waitFor(() => {
     expect(queryByText(message)).not.toBeInTheDocument();
