@@ -23,6 +23,8 @@
     "release-the-kraken": "npm ci && lerna publish",
     "prerelease": "lerna publish --canary --dist-tag next --preid pre",
     "ci:release": "lerna publish --yes",
+    "ci:prerelease": "lerna publish --canary --dist-tag canary --preid pull --no-git-reset --yes",
+    "postci:prerelease": "node scripts/githubComment.js",
     "version": "node ensureChangelogHeaders.js",
     "convertIcoMoon": "scripts/convertIcoMoon.ts",
     "preventManualRelease": "node scripts/preventManualRelease.js"
@@ -49,6 +51,7 @@
     "@jobber/eslint-config": "file:packages/eslint-config",
     "@jobber/generators": "file:packages/generators",
     "@jobber/stylelint-config": "file:packages/stylelint-config",
+    "@octokit/core": "^3.5.1",
     "@reach/router": "^1.3.3",
     "@testing-library/jest-dom": "^5.10.1",
     "@testing-library/react": "^10.2.1",

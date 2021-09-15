@@ -72,6 +72,25 @@ jobs:
           paths:
             - ~/.npm
 
+  pre_release:
+    <<: *container_config
+    steps:
+      - *restore_repo
+      - *sum_lockfiles
+      - *restore_npm_cache
+      - *npm_install
+      - run:
+          name: Authenticate with npm
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/atlantis/.npmrc
+      - run:
+          name: Prerelease Packages
+          command: |
+            if git log --max-count=1 --pretty=%s | grep -q "chore(release): Publish"; then
+              echo "Skipping run on release commit."
+            else
+              npm run ci:prerelease
+            fi
+
   check_for_manual_release:
     <<: *container_config
     steps:
@@ -191,6 +210,9 @@ workflows:
       - check_for_manual_release:
           requires:
             - install_dependencies
+      - pre_release:
+          requires:
+            - check_for_manual_release
       - lint_javascript:
           requires:
             - check_for_manual_release
