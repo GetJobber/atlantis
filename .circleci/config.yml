@@ -78,7 +78,9 @@ jobs:
       - run:
           name: Comment on PR
           command: |
+            echo $CIRCLE_PULL_REQUEST
             echo $CIRCLE_PR_NUMBER
+            echo $CI_PULL_REQUEST
 
   check_for_manual_release:
     <<: *container_config
