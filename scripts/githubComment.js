@@ -1,4 +1,5 @@
 /* eslint-env node */
+/* eslint-disable @typescript-eslint/camelcase */
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { Octokit } = require("@octokit/core");
 // const { getAllPublicPackages } = require("./getPackages");
@@ -6,75 +7,84 @@ const { Octokit } = require("@octokit/core");
 /**
  * Destructure some variables off of our environment for use later on.
  */
-const { GIT_TOKEN, CIRCLE_PROJECT_USERNAME, CIRCLE_PROJECT_REPONAME } =
-  process.env;
+const {
+  GIT_TOKEN,
+  CIRCLE_PROJECT_USERNAME,
+  CIRCLE_PROJECT_REPONAME,
+  CIRCLE_PULL_REQUEST,
+  GH_USER,
+} = process.env;
 
 /**
  * Create a new instance of Octokit to comment on Pull Requests
  */
 const octokit = new Octokit({ auth: GIT_TOKEN });
+const issue_number = CIRCLE_PULL_REQUEST.substring(
+  CIRCLE_PULL_REQUEST.lastIndexOf("/") + 1,
+);
 
-async function comment() {
+const initialComment = `
+This is a comment from Circle CI.
+`;
+
+const updatedComment = `
+This is an updated comment from Circle CI
+`;
+
+async function commentOnPr() {
+  /**
+   * Get all of the comments from our current branch.
+   */
   const comments = await octokit.request(
     "GET /repos/{owner}/{repo}/issues/{issue_number}/comments",
     {
       owner: CIRCLE_PROJECT_USERNAME,
       repo: CIRCLE_PROJECT_REPONAME,
-      // eslint-disable-next-line @typescript-eslint/camelcase
-      issue_number: 654,
+      issue_number,
     },
   );
 
-  const commentToUpdate = comments.data.find(
+  /**
+   * Find if we have added a comment that contains some specific text.
+   * This text should be kept in all comments so we have a unique way
+   * to find the specific comment.
+   */
+  const comment = comments.data.find(
     message =>
-      message.user.login === "eddysims" &&
-      message.body.includes("comment added from node"),
+      message.user.login === GH_USER &&
+      message.body.includes("comment from Circle CI."),
   );
 
-  if (commentToUpdate) {
-    const body = `
-    This is a new updated comment added from node.
-    `;
+  if (comment) {
+    /**
+     * If we find a comment, we should update it with the new versions
+     * that have been published
+     */
+    const { id } = comment;
+
     await octokit
       .request("PATCH /repos/{owner}/{repo}/issues/comments/{comment_id}", {
-        owner: "GetJobber",
-        repo: "atlantis",
-        // eslint-disable-next-line @typescript-eslint/camelcase
-        issue_number: 654,
-        comment_id: commentToUpdate.id,
-        body,
+        owner: CIRCLE_PROJECT_USERNAME,
+        repo: CIRCLE_PROJECT_REPONAME,
+        issue_number,
+        comment_id: id,
+        body: updatedComment,
       })
       .then(response => console.log(response));
   } else {
-    const body = `
-    This is a comment added from node.
-    `;
+    /**
+     * If there is no comment, we add an initial comment to the PR.
+     */
     await octokit.request(
       "POST /repos/{owner}/{repo}/issues/{issue_number}/comments",
       {
-        owner: "GetJobber",
-        repo: "atlantis",
-        // eslint-disable-next-line @typescript-eslint/camelcase
-        issue_number: 654,
-        body,
+        owner: CIRCLE_PROJECT_USERNAME,
+        repo: CIRCLE_PROJECT_REPONAME,
+        issue_number,
+        body: initialComment,
       },
     );
   }
-
-  // const body = `
-  // This is a comment added from node.
-  // `;
-
-  // const response = await octokit.request(
-  //   "POST /repos/{owner}/{repo}/issues/{issue_number}/comments",
-  //   {
-  //     owner: "GetJobber",
-  //     repo: "atlantis",
-  //     // eslint-disable-next-line @typescript-eslint/camelcase
-  //     issue_number: 654,
-  //     body,
-  //   },
-  // );
 }
 
-comment();
+commentOnPr();
