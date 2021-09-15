@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/camelcase */
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { Octokit } = require("@octokit/core");
-// const { getAllPublicPackages } = require("./getPackages");
+const { getAllPublicPackages } = require("./getPackages");
 
 /**
  * Destructure some variables off of our environment for use later on.
@@ -25,13 +25,58 @@ const issue_number = CIRCLE_PULL_REQUEST.substring(
 
 const initialComment = `
 This is a comment from Circle CI.
+
+## Packages
+${listPublishedPackages()}
 `;
 
 const updatedComment = `
 This is an updated comment from Circle CI
+
+## Packages
+${listPublishedPackages()}
 `;
 
+function hasLernaPublished() {
+  const packages = getAllPublicPackages();
+  const publishedPackages = [];
+  let result = false;
+
+  for (const package of packages) {
+    const { name, version } = require(package);
+    publishedPackages.push(`${name}@${version}`);
+    if (!/^\^?\d+.\d+.\d+$/.test(version)) {
+      result = true;
+    }
+  }
+
+  return {
+    result,
+    publishedPackages,
+  };
+}
+
+function listPublishedPackages() {
+  const { publishedPackages } = hasLernaPublished();
+  let result = ``;
+
+  publishedPackages.forEach(package => {
+    result += `
+${package}
+`;
+  });
+
+  return result;
+}
+
 async function commentOnPr() {
+  /**
+   * If lerna did not publish, do not comment
+   */
+  if (hasLernaPublished().result === true) {
+    return;
+  }
+
   /**
    * Get all of the comments from our current branch.
    */
