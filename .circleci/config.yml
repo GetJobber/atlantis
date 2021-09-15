@@ -72,7 +72,7 @@ jobs:
           paths:
             - ~/.npm
 
-  comment_on_pr:
+  pre_release:
     <<: *container_config
     steps:
       - *restore_repo
@@ -80,9 +80,16 @@ jobs:
       - *restore_npm_cache
       - *npm_install
       - run:
-          name: Comment on PR
+          name: Authenticate with npm
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/atlantis/.npmrc
+      - run:
+          name: Prerelease Packages
           command: |
-              npm run githubComment
+            if git log --max-count=1 --pretty=%s | grep -q "chore(release): Publish"; then
+              echo "Skipping run on release commit."
+            else
+              npm run ci:prerelease
+            fi
 
   check_for_manual_release:
     <<: *container_config
@@ -200,12 +207,12 @@ workflows:
       - install_dependencies:
           requires:
             - checkout_code
-      - comment_on_pr:
-          requires:
-            - checkout_code
       - check_for_manual_release:
           requires:
             - install_dependencies
+      - pre_release:
+          requires:
+            - check_for_manual_release
       - lint_javascript:
           requires:
             - check_for_manual_release

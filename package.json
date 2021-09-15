@@ -23,10 +23,11 @@
     "release-the-kraken": "npm ci && lerna publish",
     "prerelease": "lerna publish --canary --dist-tag next --preid pre",
     "ci:release": "lerna publish --yes",
+    "ci:prerelease": "lerna publish --canary --dist-tag canary --preid pull --no-git-reset",
+    "postci:prerelease": "node scripts/githubComment.js",
     "version": "node ensureChangelogHeaders.js",
     "convertIcoMoon": "scripts/convertIcoMoon.ts",
-    "preventManualRelease": "node scripts/preventManualRelease.js",
-    "githubComment": "node scripts/githubComment.js"
+    "preventManualRelease": "node scripts/preventManualRelease.js"
   },
   "repository": {
     "type": "git",
