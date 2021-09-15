@@ -23,17 +23,11 @@ const issue_number = CIRCLE_PULL_REQUEST.substring(
   CIRCLE_PULL_REQUEST.lastIndexOf("/") + 1,
 );
 
-const initialComment = `
-This is a comment from Circle CI.
+const uniqueString = `:package:  Your prerelease packages are ready`;
+const githubComment = `
+${uniqueString}
 
-## Packages
-${listPublishedPackages()}
-`;
-
-const updatedComment = `
-This is an updated comment from Circle CI
-
-## Packages
+### Prereleased packages
 ${listPublishedPackages()}
 `;
 
@@ -62,7 +56,7 @@ function listPublishedPackages() {
 
   publishedPackages.forEach(package => {
     result += `
-${package}
+\`${package}\`
 `;
   });
 
@@ -73,7 +67,7 @@ async function commentOnPr() {
   /**
    * If lerna did not publish, do not comment
    */
-  if (hasLernaPublished().result === true) {
+  if (!hasLernaPublished().result === true) {
     return;
   }
 
@@ -96,8 +90,7 @@ async function commentOnPr() {
    */
   const comment = comments.data.find(
     message =>
-      message.user.login === GH_USER &&
-      message.body.includes("comment from Circle CI."),
+      message.user.login === GH_USER && message.body.includes(uniqueString),
   );
 
   if (comment) {
@@ -113,7 +106,7 @@ async function commentOnPr() {
         repo: CIRCLE_PROJECT_REPONAME,
         issue_number,
         comment_id: id,
-        body: updatedComment,
+        body: githubComment,
       })
       .then(response => console.log(response));
   } else {
@@ -126,7 +119,7 @@ async function commentOnPr() {
         owner: CIRCLE_PROJECT_USERNAME,
         repo: CIRCLE_PROJECT_REPONAME,
         issue_number,
-        body: initialComment,
+        body: githubComment,
       },
     );
   }
