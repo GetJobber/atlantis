@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { ReactNode, useState } from "react";
 import styles from "./Disclosure.css";
 import { Heading } from "../Heading";
 import { Icon } from "../Icon";
@@ -28,15 +28,10 @@ export function Disclosure({
   title,
   defaultOpen = false,
 }: DisclosureProps) {
-  const [isOpen, setOpen] = useState(defaultOpen);
-  const [isMounted, setMount] = useState(false);
-
-  useEffect(() => {
-    setMount(true);
-  }, []);
+  const [isOpen] = useState(defaultOpen);
 
   return (
-    <details open={isOpen} onToggle={onToggle} className={styles.details}>
+    <details open={isOpen} className={styles.details}>
       <summary className={styles.summary}>
         <div className={styles.summaryWrap}>
           <Heading level={4}>{title}</Heading>
@@ -48,15 +43,4 @@ export function Disclosure({
       <span className={styles.content}>{children}</span>
     </details>
   );
-
-  function onToggle(event: React.MouseEvent<HTMLDetailsElement>) {
-    event.preventDefault();
-    const { open: currentToggleState } = event.target as HTMLDetailsElement;
-
-    if (!isMounted || currentToggleState === isOpen) {
-      return;
-    }
-
-    setOpen(!currentToggleState);
-  }
 }
