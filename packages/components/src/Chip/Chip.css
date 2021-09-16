@@ -2,9 +2,9 @@
   /* variables */
   --chip-border-size: var(--space-minuscule);
   --chip-border-radius: var(--space-small);
-  --chip-border-color: var(--color-border--section);
+  --chip-border-color: var(--color-grey--lighter);
   --chip-border-color--disabled: var(--color-disabled);
-  --chip-text-color: var(--color-blue);
+  --chip-text-color: var(--color-greyBlue--light);
   --chip-text-color--selected: var(--color-white);
   --chip-text-color--disabled: var(--color-disabled--secondary);
   --chip-item-spacing: var(--space-small);
@@ -25,11 +25,11 @@
   /* base chip */
   display: flex;
   max-width: fit-content;
-  box-shadow: var(--chip-shadow);
+  /*box-shadow: var(--chip-shadow);*/
   padding: var(--chip-padding);
   border: var(--chip-border-size) solid var(--chip-border-color);
   border-radius: var(--chip-border-radius);
-  background-color: var(--chip-surface-color);
+  background-color: var(--color-white);
   transition: var(--chip-transitions);
   align-items: center;
   gap: var(--chip-item-spacing);
@@ -37,7 +37,7 @@
 
 .chip p {
   color: var(--chip-text-color);
-  font-weight: 700;
+  /*font-weight: 700;*/
   user-select: none;
 }
 
