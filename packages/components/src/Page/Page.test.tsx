@@ -44,12 +44,12 @@ describe("When actions are provided", () => {
           {
             label: "Text Message",
             icon: "sms",
-            onClick: () => {},
+            onClick: jest.fn(),
           },
           {
             label: "Email",
             icon: "email",
-            onClick: () => {},
+            onClick: jest.fn(),
           },
         ],
       },
@@ -58,7 +58,7 @@ describe("When actions are provided", () => {
           {
             label: "Edit",
             icon: "edit",
-            onClick: () => {},
+            onClick: jest.fn(),
           },
         ],
       },
@@ -69,10 +69,10 @@ describe("When actions are provided", () => {
         <Page
           title="Notifications"
           intro="Improve job completion rates."
-          primaryAction={{ label: "Send Food", onClick: () => {} }}
+          primaryAction={{ label: "Send Food", onClick: jest.fn() }}
           secondaryAction={{
             label: "Send Drink",
-            onClick: () => {},
+            onClick: jest.fn(),
           }}
           moreActionsMenu={sampleActionMenu}
         >

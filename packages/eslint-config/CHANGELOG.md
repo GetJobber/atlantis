@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/GetJobber/atlantis/compare/@jobber/eslint-config@0.8.0...@jobber/eslint-config@0.8.1) (2021-09-15)
+
+
+### Bug Fixes
+
+* **eslint:** Use [@typescript-eslint](https://github.com/typescript-eslint) extension rule for no-unused-expressions ([#306](https://github.com/GetJobber/atlantis/issues/306)) ([719bf42](https://github.com/GetJobber/atlantis/commit/719bf422bfd3b514526fb3eb6487b30b8b0810d3))
+
+
+
+
+
 # [0.8.0](https://github.com/GetJobber/atlantis/compare/@jobber/eslint-config@0.7.2...@jobber/eslint-config@0.8.0) (2021-06-30)
 
 
