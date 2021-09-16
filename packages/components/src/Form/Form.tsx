@@ -34,10 +34,10 @@ export const Form = forwardRef(function InternalForm(
     formState: { isDirty, isValid },
   } = methods;
 
-  useEffect(() => onStateChange && onStateChange({ isDirty, isValid }), [
-    isDirty,
-    isValid,
-  ]);
+  useEffect(
+    () => onStateChange && onStateChange({ isDirty, isValid }),
+    [isDirty, isValid],
+  );
 
   useImperativeHandle(ref, () => ({
     /**
