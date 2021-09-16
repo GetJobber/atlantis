@@ -21,7 +21,7 @@ export function useOnKeyDown(
   useEventListener("keydown", handler);
 
   function handler(event: KeyboardEvent) {
-    const keyboardEvent = (event as unknown) as VerboseKeyComparator;
+    const keyboardEvent = event as unknown as VerboseKeyComparator;
     if (typeof keys === "string" && keyboardEvent.key === keys) {
       callback(event);
       return;
