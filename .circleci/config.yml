@@ -72,23 +72,6 @@ jobs:
           paths:
             - ~/.npm
 
-  check_for_manual_release:
-    <<: *container_config
-    steps:
-      - *restore_repo
-      - *sum_lockfiles
-      - *restore_npm_cache
-      - *npm_install
-      - run:
-          name: Check for manual releases
-          command: |
-            set -e
-            if git log --max-count=1 --pretty=%s | grep -q "chore(release): Publish"; then
-              echo "Skipping run on release commit."
-            else
-              npm run preventManualRelease
-            fi
-
   lint_javascript:
     <<: *container_config
     steps:
@@ -188,21 +171,18 @@ workflows:
       - install_dependencies:
           requires:
             - checkout_code
-      - check_for_manual_release:
-          requires:
-            - install_dependencies
       - lint_javascript:
           requires:
-            - check_for_manual_release
+            - install_dependencies
       - lint_css:
           requires:
-            - check_for_manual_release
+            - install_dependencies
       - test:
           requires:
-            - check_for_manual_release
+            - install_dependencies
       - build_docs:
           requires:
-            - check_for_manual_release
+            - install_dependencies
       - release:
           filters:
             branches:
