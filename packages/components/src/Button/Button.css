@@ -10,7 +10,7 @@
 
 .button {
   display: inline-flex;
-  min-height: calc(var(--base-unit) * 2.25);
+  min-height: calc(var(--base-unit) * 3);
   box-sizing: border-box;
   margin: 0;
   border: var(--border-base) solid var(--button--color-variation);
