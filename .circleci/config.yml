@@ -15,9 +15,9 @@ references:
   restore_repo: &restore_repo
     restore_cache:
       keys:
-        - v1-repo-{{ .Branch }}-{{ .Revision }}
-        - v1-repo-{{ .Branch }}
-        - v1-repo
+        - v2-repo-{{ .Branch }}-{{ .Revision }}
+        - v2-repo-{{ .Branch }}
+        - v2-repo
 
   sum_lockfiles: &sum_lockfiles
     run:
@@ -28,8 +28,8 @@ references:
     restore_cache:
       name: Restore npm cache
       keys:
-        - npm-cache-v3-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
-        - npm-cache-v3
+        - npm-cache-v4-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
+        - npm-cache-v4
 
   npm_install: &npm_install
     run:
@@ -55,7 +55,7 @@ jobs:
       - *restore_repo
       - checkout
       - save_cache:
-          key: v1-repo-{{ .Branch }}-{{ .Revision }}
+          key: v2-repo-{{ .Branch }}-{{ .Revision }}
           paths:
             - .
 
@@ -68,7 +68,7 @@ jobs:
       - *npm_install
       - save_cache:
           name: Save npm cache
-          key: npm-cache-v3-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
+          key: npm-cache-v4-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
           paths:
             - ~/.npm
 
