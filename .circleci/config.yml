@@ -15,9 +15,9 @@ references:
   restore_repo: &restore_repo
     restore_cache:
       keys:
-        - v1-repo-{{ .Branch }}-{{ .Revision }}
-        - v1-repo-{{ .Branch }}
-        - v1-repo
+        - v2-repo-{{ .Branch }}-{{ .Revision }}
+        - v2-repo-{{ .Branch }}
+        - v2-repo
 
   sum_lockfiles: &sum_lockfiles
     run:
@@ -28,8 +28,8 @@ references:
     restore_cache:
       name: Restore npm cache
       keys:
-        - npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
-        - npm-cache-v1
+        - npm-cache-v2-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
+        - npm-cache-v2
 
   npm_install: &npm_install
     run:
