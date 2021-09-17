@@ -15,9 +15,9 @@ references:
   restore_repo: &restore_repo
     restore_cache:
       keys:
-        - v2-repo-{{ .Branch }}-{{ .Revision }}
-        - v2-repo-{{ .Branch }}
-        - v2-repo
+        - v1-repo-{{ .Branch }}-{{ .Revision }}
+        - v1-repo-{{ .Branch }}
+        - v1-repo
 
   sum_lockfiles: &sum_lockfiles
     run:
