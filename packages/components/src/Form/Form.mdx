@@ -2,10 +2,11 @@
 name: Form
 menu: Components
 route: /components/form
+showDirectoryLink: true
 ---
 
 import { Playground, Props } from "docz";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { ComponentStatus } from "@jobber/docx";
 import { useFormState } from "@jobber/hooks";
 import { Form } from "@jobber/components/Form";
@@ -21,6 +22,9 @@ import { Button } from "@jobber/components/Button";
 The `Form` component is a wrapper component that handles the submission and
 validation of forms.
 
+For more information about `validations` using any of the `Input` components,
+see the [InputText](/components/input-text/#validation-message) documentation.
+
 ```ts
 import { Form } from "@jobber/components/Form";
 ```
@@ -28,6 +32,7 @@ import { Form } from "@jobber/components/Form";
 <Playground>
   {() => {
     const [{ isDirty, isValid }, setFormState] = useFormState();
+    const [first, setFirst] = useState("");
     return (
       <Form
         onSubmit={() => alert("Submitted 🎉🎉🎉")}
@@ -37,15 +42,17 @@ import { Form } from "@jobber/components/Form";
           <InputText
             placeholder="First Name"
             name="firstName"
+            value={first}
+            onChange={setFirst}
             validations={{
               required: {
                 value: true,
-                message: "Tell us your name"
+                message: "Tell us your name",
               },
               minLength: {
                 value: 3,
-                message: "Your name is to short."
-              }
+                message: "Your name is to short.",
+              },
             }}
           />
           <InputText
@@ -54,8 +61,8 @@ import { Form } from "@jobber/components/Form";
             validations={{
               required: {
                 value: true,
-                message: "Tell us your last name."
-              }
+                message: "Tell us your last name.",
+              },
             }}
           />
           <Button
@@ -91,12 +98,12 @@ practice to use the [`useFormState`](/hooks/useFormState) hook with the
             validations={{
               required: {
                 value: true,
-                message: "Tell us your name"
+                message: "Tell us your name",
               },
               minLength: {
                 value: 3,
-                message: "Your name is to short."
-              }
+                message: "Your name is to short.",
+              },
             }}
           />
         </Form>
@@ -124,8 +131,8 @@ Submission of a `Form` can be done outside of the `Form` itself by using the
               validations={{
                 required: {
                   value: true,
-                  message: "Tell us your name"
-                }
+                  message: "Tell us your name",
+                },
               }}
             />
             <InputText
@@ -134,8 +141,8 @@ Submission of a `Form` can be done outside of the `Form` itself by using the
               validations={{
                 required: {
                   value: true,
-                  message: "Tell us your last name."
-                }
+                  message: "Tell us your last name.",
+                },
               }}
             />
           </Content>

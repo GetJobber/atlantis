@@ -3,7 +3,7 @@
   --file-card--background-color: var(--color-white);
   --file-card--header-background-color: var(--color-greyBlue--lighter);
   --file-card--content-background-color: var(--color-white);
-  --file-card--border-color: var(--color-grey--lighter);
+  --file-card--border-color: var(--color-border);
   --file-card--accent-color: var(--color-grey);
   --file-card--base-padding: var(--space-small);
 }
@@ -16,7 +16,7 @@
   overflow: hidden;
   background-color: var(--file-card--background-color);
   align-items: center;
-  outline-color: var(--color-outline);
+  outline-color: var(--color-focus);
 }
 
 .imageBlock {

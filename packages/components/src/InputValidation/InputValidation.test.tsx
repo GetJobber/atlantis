@@ -20,10 +20,13 @@ it("renders the input validation messages", () => {
         }
       >
         <div
+          aria-live="assertive"
           className="message"
+          role="alert"
+          tabIndex={0}
         >
           <p
-            className="base regular base red"
+            className="base regular base critical"
           >
             I am an error
           </p>

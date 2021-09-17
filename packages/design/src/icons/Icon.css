@@ -18,6 +18,7 @@
 
 .person,
 .clients,
+.company,
 .property {
   fill: var(--color-teal);
 }

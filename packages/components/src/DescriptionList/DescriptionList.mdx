@@ -2,6 +2,7 @@
 name: DescriptionList
 menu: Components
 route: /components/description-list
+showDirectoryLink: true
 ---
 
 import { Playground, Props } from "docz";
@@ -21,7 +22,12 @@ import { DescriptionList } from "@jobber/components/DescriptionList";
 ```
 
 <Playground>
-  <DescriptionList data={[["Issued", "2018-12-08"], ["Due", "2019-01-06"]]} />
+  <DescriptionList
+    data={[
+      ["Issued", "2018-12-08"],
+      ["Due", "2019-01-06"],
+    ]}
+  />
 </Playground>
 
 ## Props
@@ -44,14 +50,14 @@ You are able to pass a react element in as the second term of the data tuple.
   <DescriptionList
     data={[
       ["Issued", <FormatDate date={new CivilDate(2018, 12, 8)} />],
-      ["Due", <FormatDate date={new CivilDate(2019, 1, 6)} />]
+      ["Due", <FormatDate date={new CivilDate(2019, 1, 6)} />],
     ]}
   />
 </Playground>
 
 ## Related components
 
-* To list more complex collections of related information, consider using a
-[List](https://atlantis.getjobber.com/components/list).
-* To display structured data for comparison, consider using a
-[Table](https://atlantis.getjobber.com/components/table).
+- To list more complex collections of related information, consider using a
+  [List](https://atlantis.getjobber.com/components/list).
+- To display structured data for comparison, consider using a
+  [Table](https://atlantis.getjobber.com/components/table).

@@ -2,6 +2,7 @@
 name: InputNumber
 menu: Components
 route: /components/input-number
+showDirectoryLink: true
 ---
 
 import { Playground, Props } from "docz";
@@ -9,6 +10,8 @@ import { ComponentStatus } from "@jobber/docx";
 import { InputNumber } from ".";
 import { Text } from "../Text";
 import { useState } from "react";
+import { Button } from "../Button";
+import { Content } from "../Content";
 
 # InputNumber
 
@@ -82,6 +85,9 @@ no value to the user by offering an incrementer.
 
 ### Invalid
 
+For more information about available `validations`, see the
+[InputText](/components/input-text/#validation-message) docs.
+
 <Playground>
   <InputNumber
     placeholder="Give a whole number"
@@ -126,7 +132,32 @@ no value to the user by offering an incrementer.
   </Text>
 </Playground>
 
+## Focus & Blur
+
+<Playground>
+  {() => {
+    const inputNumberRef = React.createRef();
+    const focusInput = () => {
+      inputNumberRef.current.focus();
+    };
+    const blurInput = () => {
+      inputNumberRef.current.blur();
+    };
+    return (
+      <Content>
+        <InputNumber value={5} ref={inputNumberRef} />
+        <Button label="Focus input" onClick={focusInput} />
+        <br />
+        <Button label="Blur input" onClick={blurInput} />
+      </Content>
+    );
+  }}
+</Playground>
+
 ## Using onValidation
 
 If you need to capture the error message and render it outside of the component.
 Read the [InputValidation](/components/input-validation) documentation.
+
+For more details about `validation` using `Input` components, see the
+[InputText](/components/input-text/#validation-message) documentation.

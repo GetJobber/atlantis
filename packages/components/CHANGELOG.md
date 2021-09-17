@@ -8,6 +8,1149 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.46.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.46.8...@jobber/components@2.46.9) (2021-09-15)
+
+
+### Bug Fixes
+
+* **eslint:** Use [@typescript-eslint](https://github.com/typescript-eslint) extension rule for no-unused-expressions ([#306](https://github.com/GetJobber/atlantis/issues/306)) ([719bf42](https://github.com/GetJobber/atlantis/commit/719bf422bfd3b514526fb3eb6487b30b8b0810d3))
+
+
+
+
+
+## [2.46.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.46.7...@jobber/components@2.46.8) (2021-09-14)
+
+
+### Bug Fixes
+
+* **components:** improve Tabs accessibility ([#576](https://github.com/GetJobber/atlantis/issues/576)) ([4400bb1](https://github.com/GetJobber/atlantis/commit/4400bb136dba9c295d885e8d76632287fffefa59))
+
+
+
+
+
+## [2.46.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.46.6...@jobber/components@2.46.7) (2021-09-13)
+
+
+### Bug Fixes
+
+* **components:** Remove aria-hidden prop from Modal ([#648](https://github.com/GetJobber/atlantis/issues/648)) ([a7b43fe](https://github.com/GetJobber/atlantis/commit/a7b43fe6c1713313bba13bedda2af938ca44037c))
+
+
+
+
+
+## [2.46.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.46.5...@jobber/components@2.46.6) (2021-09-13)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.46.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.46.4...@jobber/components@2.46.5) (2021-09-13)
+
+
+### Bug Fixes
+
+* **components:** Trap focus on the open modal [JOB-26477] ([#634](https://github.com/GetJobber/atlantis/issues/634)) ([73b76fd](https://github.com/GetJobber/atlantis/commit/73b76fd6f847378736b0e9a10b29f0a3ac24e487))
+
+
+
+
+
+## [2.46.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.46.3...@jobber/components@2.46.4) (2021-09-10)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.46.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.46.2...@jobber/components@2.46.3) (2021-09-10)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.46.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.46.1...@jobber/components@2.46.2) (2021-09-10)
+
+
+### Bug Fixes
+
+* **components:** Create a hook to focus back on modal and popover activator ([#638](https://github.com/GetJobber/atlantis/issues/638)) ([4d55a2f](https://github.com/GetJobber/atlantis/commit/4d55a2fda04ddb406770e655bdecfc41cdbb2f8b))
+
+
+
+
+
+## [2.46.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.46.0...@jobber/components@2.46.1) (2021-09-10)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.46.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.45.0...@jobber/components@2.46.0) (2021-09-09)
+
+
+### Features
+
+* **components:** add subtle button [JOB-34785] ([#624](https://github.com/GetJobber/atlantis/issues/624)) ([aa66745](https://github.com/GetJobber/atlantis/commit/aa66745b80f6f3e4e569e518a3027f1b4dd8a26a))
+
+
+
+
+
+# [2.45.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.44.0...@jobber/components@2.45.0) (2021-09-03)
+
+
+### Features
+
+* **components:** Add `event` argument to onClick events ([#631](https://github.com/GetJobber/atlantis/issues/631)) ([961e0dc](https://github.com/GetJobber/atlantis/commit/961e0dccaabfdc68b4248c043f40beb054cb1543))
+
+
+
+
+
+# [2.44.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.43.6...@jobber/components@2.44.0) (2021-09-02)
+
+
+### Features
+
+* **components:** Add prefix/suffix to FormField ([#613](https://github.com/GetJobber/atlantis/issues/613)) ([f1e1e5e](https://github.com/GetJobber/atlantis/commit/f1e1e5e94c2230e8663d4caa9e7a70bb9f85d12e))
+
+
+
+
+
+## [2.43.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.43.5...@jobber/components@2.43.6) (2021-09-01)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.43.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.43.4...@jobber/components@2.43.5) (2021-08-31)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.43.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.43.3...@jobber/components@2.43.4) (2021-08-27)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.43.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.43.2...@jobber/components@2.43.3) (2021-08-25)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.43.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.43.1...@jobber/components@2.43.2) (2021-08-24)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.43.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.43.0...@jobber/components@2.43.1) (2021-08-24)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.43.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.42.0...@jobber/components@2.43.0) (2021-08-20)
+
+
+### Features
+
+* **components:** Adds the InputEmail component ([#610](https://github.com/GetJobber/atlantis/issues/610)) ([40c13ae](https://github.com/GetJobber/atlantis/commit/40c13ae3dea347fec8667725fce1533612be2340))
+
+
+
+
+
+# [2.42.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.41.0...@jobber/components@2.42.0) (2021-08-17)
+
+
+### Features
+
+* **components:** Add more values to autocomplete on InputText ([#611](https://github.com/GetJobber/atlantis/issues/611)) ([60e6b2a](https://github.com/GetJobber/atlantis/commit/60e6b2a00eca260f869f8249a2603e02e7c81af0))
+
+
+
+
+
+# [2.41.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.40.5...@jobber/components@2.41.0) (2021-08-10)
+
+
+### Features
+
+* **components:** Add compose icon ([#604](https://github.com/GetJobber/atlantis/issues/604)) ([1913cf5](https://github.com/GetJobber/atlantis/commit/1913cf5c66a40483f21c2f5919187a67c3cc140d))
+
+
+
+
+
+## [2.40.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.40.4...@jobber/components@2.40.5) (2021-08-09)
+
+
+### Bug Fixes
+
+* **components:** Focus the first error on Form submission ([#603](https://github.com/GetJobber/atlantis/issues/603)) ([7414b65](https://github.com/GetJobber/atlantis/commit/7414b6553da0ff03df61113c0940dcfca8e4cdf7))
+
+
+
+
+
+## [2.40.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.40.3...@jobber/components@2.40.4) (2021-08-06)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.40.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.40.2...@jobber/components@2.40.3) (2021-07-29)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.40.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.40.1...@jobber/components@2.40.2) (2021-07-20)
+
+
+### Bug Fixes
+
+* Null Reference variable for form-field component [JOB-33267] ([#594](https://github.com/GetJobber/atlantis/issues/594)) ([6cbc91a](https://github.com/GetJobber/atlantis/commit/6cbc91a9af3a381d1c48c66e378b546e007d8283))
+
+
+
+
+
+## [2.40.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.40.0...@jobber/components@2.40.1) (2021-07-16)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.40.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.39.3...@jobber/components@2.40.0) (2021-07-15)
+
+
+### Features
+
+* **design:** add active surface and dimmed overlay colors ([#590](https://github.com/GetJobber/atlantis/issues/590)) ([37a4acf](https://github.com/GetJobber/atlantis/commit/37a4acf12d751d2345b24378f7f3f881af0fc6c3))
+* **design:** introduce web shadow variations, document and add to Toast ([#588](https://github.com/GetJobber/atlantis/issues/588)) ([5b359c0](https://github.com/GetJobber/atlantis/commit/5b359c09bc1dc3db01cdf0687e99375c1cd54e4d))
+
+
+
+
+
+## [2.39.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.39.2...@jobber/components@2.39.3) (2021-07-15)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.39.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.39.1...@jobber/components@2.39.2) (2021-07-08)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.39.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.39.0...@jobber/components@2.39.1) (2021-07-06)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.39.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.38.3...@jobber/components@2.39.0) (2021-06-30)
+
+
+### Features
+
+* **components:** Refactor FormField ([#578](https://github.com/GetJobber/atlantis/issues/578)) ([cc5a709](https://github.com/GetJobber/atlantis/commit/cc5a7091f920909385ab8682f41ba7d2ff338bcd))
+
+
+
+
+
+## [2.38.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.38.2...@jobber/components@2.38.3) (2021-06-28)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.38.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.38.1...@jobber/components@2.38.2) (2021-06-23)
+
+
+### Bug Fixes
+
+* **components:** Add role to radiogroup ([#577](https://github.com/GetJobber/atlantis/issues/577)) ([43e898c](https://github.com/GetJobber/atlantis/commit/43e898ce39614eae68cb728a62b25fc3cec20815))
+
+
+
+
+
+## [2.38.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.38.0...@jobber/components@2.38.1) (2021-06-17)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.37.2...@jobber/components@2.38.0) (2021-06-14)
+
+
+### Features
+
+* **components:** Include responsive breakpoints in Rollup ([78d494f](https://github.com/GetJobber/atlantis/commit/78d494fe0ec40165dfd2afea9340c9f7005eb4a7))
+
+
+
+
+
+## [2.37.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.37.1...@jobber/components@2.37.2) (2021-06-14)
+
+
+### Bug Fixes
+
+* **components:** resolve render issues when using controlled component inside form component  ([#504](https://github.com/GetJobber/atlantis/issues/504)) ([ec9b792](https://github.com/GetJobber/atlantis/commit/ec9b792ec8392b91f05c68e9dd6676bf5863943b))
+
+
+
+
+
+## [2.37.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.37.0...@jobber/components@2.37.1) (2021-06-11)
+
+
+### Bug Fixes
+
+* **components:** added css style so that webkit line clamp is always respected ([#563](https://github.com/GetJobber/atlantis/issues/563)) ([6be2cae](https://github.com/GetJobber/atlantis/commit/6be2caec84ec955ddf662ece1632c98770bfeea6))
+
+
+
+
+
+# [2.37.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.36.1...@jobber/components@2.37.0) (2021-06-11)
+
+
+### Features
+
+* **components:** use aside and ButtonDismiss on Drawer component ([#548](https://github.com/GetJobber/atlantis/issues/548)) ([32eed1e](https://github.com/GetJobber/atlantis/commit/32eed1e2eb3303be64424f292178e4a8c85d5214))
+
+
+
+
+
+## [2.36.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.36.0...@jobber/components@2.36.1) (2021-06-07)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.36.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.35.2...@jobber/components@2.36.0) (2021-05-31)
+
+
+### Features
+
+* Allow Multi Level Menu in Docz ([#549](https://github.com/GetJobber/atlantis/issues/549)) ([5d966b6](https://github.com/GetJobber/atlantis/commit/5d966b6ee7b6e70f0122890a324f9b0ad4d556e7))
+
+
+
+
+
+## [2.35.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.35.1...@jobber/components@2.35.2) (2021-05-17)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.35.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.35.0...@jobber/components@2.35.1) (2021-05-14)
+
+
+### Bug Fixes
+
+* **components:** add greater specificity to fill inheritance for icon buttons ([#546](https://github.com/GetJobber/atlantis/issues/546)) ([82a8527](https://github.com/GetJobber/atlantis/commit/82a85274709afc396d6f68c6b4802e1429ab358b))
+
+
+
+
+
+# [2.35.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.34.0...@jobber/components@2.35.0) (2021-05-12)
+
+
+### Features
+
+* **components:** use semantic colors in Button ([#522](https://github.com/GetJobber/atlantis/issues/522)) ([4849814](https://github.com/GetJobber/atlantis/commit/484981421f2e10e064f2f396210265aab31ab24e))
+
+
+
+
+
+# [2.34.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.33.0...@jobber/components@2.34.0) (2021-05-10)
+
+
+### Features
+
+* **components:** use semantic colors in FormField and Inputs ([#528](https://github.com/GetJobber/atlantis/issues/528)) ([8f7c2b1](https://github.com/GetJobber/atlantis/commit/8f7c2b1092c5a4c34465785733542ae14d2418b5))
+
+
+
+
+
+# [2.33.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.32.0...@jobber/components@2.33.0) (2021-05-10)
+
+
+### Features
+
+* **components:** Use semantic colors in typographic components ([#527](https://github.com/GetJobber/atlantis/issues/527)) ([d9604be](https://github.com/GetJobber/atlantis/commit/d9604be0ca3a00b0ab26308c17cd46fcfbc98640))
+
+
+
+
+
+# [2.32.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.31.0...@jobber/components@2.32.0) (2021-05-10)
+
+
+### Features
+
+* **components:** update remaining Atlantis components to use semantics ([#529](https://github.com/GetJobber/atlantis/issues/529)) ([b5b3a99](https://github.com/GetJobber/atlantis/commit/b5b3a9915be92c47fd9d7ffe2e1169af6cbbb181))
+* **components:** use semantic colors in Switch ([#523](https://github.com/GetJobber/atlantis/issues/523)) ([0feefd8](https://github.com/GetJobber/atlantis/commit/0feefd8f41a37e64e57ca2e42f7522ba4f3c783e))
+
+
+
+
+
+# [2.31.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.30.5...@jobber/components@2.31.0) (2021-05-10)
+
+
+### Features
+
+* **components:** Use semantic colors in card, modal and drawer ([#526](https://github.com/GetJobber/atlantis/issues/526)) ([6726c67](https://github.com/GetJobber/atlantis/commit/6726c679778e7dd05af96369484a6ace0201ad9a))
+* **components:** use semantic colors in Checkbox ([#524](https://github.com/GetJobber/atlantis/issues/524)) ([0e65cfd](https://github.com/GetJobber/atlantis/commit/0e65cfddbdd1035326f73fa358357927c5d9b1cc))
+* **components:** use semantic colors in Radio ([#525](https://github.com/GetJobber/atlantis/issues/525)) ([b7d5649](https://github.com/GetJobber/atlantis/commit/b7d56496a0d2a49ad40aa246c6cd9383e8683b39))
+
+
+
+
+
+## [2.30.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.30.4...@jobber/components@2.30.5) (2021-05-04)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.30.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.30.3...@jobber/components@2.30.4) (2021-05-03)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.30.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.30.2...@jobber/components@2.30.3) (2021-04-28)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.30.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.30.1...@jobber/components@2.30.2) (2021-04-26)
+
+
+### Bug Fixes
+
+* **components:** Fix the css for Select with miniLabel ([#516](https://github.com/GetJobber/atlantis/issues/516)) ([ca6c5cc](https://github.com/GetJobber/atlantis/commit/ca6c5cce2a2a3300a0f180cc54717293c662491a))
+
+
+
+
+
+## [2.30.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.30.0...@jobber/components@2.30.1) (2021-04-26)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.30.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.29.4...@jobber/components@2.30.0) (2021-04-23)
+
+
+### Features
+
+* **design:** introduce semantic colors to Atlantis foundation [JOB-28065] ([#444](https://github.com/GetJobber/atlantis/issues/444)) ([aeb4f0b](https://github.com/GetJobber/atlantis/commit/aeb4f0bf9f96680287076a1cbf0f69e0bb6bd122))
+
+
+
+
+
+## [2.29.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.29.3...@jobber/components@2.29.4) (2021-04-23)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.29.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.29.2...@jobber/components@2.29.3) (2021-04-23)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.29.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.29.1...@jobber/components@2.29.2) (2021-04-22)
+
+
+### Bug Fixes
+
+* **components:** update Popover return type and examples ([#513](https://github.com/GetJobber/atlantis/issues/513)) ([1259023](https://github.com/GetJobber/atlantis/commit/1259023daf4900c0d776d5f148956444a1c61637))
+
+
+
+
+
+## [2.29.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.29.0...@jobber/components@2.29.1) (2021-04-22)
+
+
+### Bug Fixes
+
+* **components:** use CSS only to determine whether to open arrow ([#514](https://github.com/GetJobber/atlantis/issues/514)) ([72c6d6f](https://github.com/GetJobber/atlantis/commit/72c6d6f3490da3840bdc101965d20d6371ada042))
+
+
+
+
+
+# [2.29.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.28.4...@jobber/components@2.29.0) (2021-04-21)
+
+
+### Features
+
+* **components:** Add new Disclosure component ([#508](https://github.com/GetJobber/atlantis/issues/508)) ([edfaee4](https://github.com/GetJobber/atlantis/commit/edfaee49fcb263be0737fc9f4e8f784aaaa71624))
+
+
+
+
+
+## [2.28.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.28.3...@jobber/components@2.28.4) (2021-04-21)
+
+
+### Bug Fixes
+
+* **components:** Allow input validation to be read by assistive tech ([#506](https://github.com/GetJobber/atlantis/issues/506)) ([22c6022](https://github.com/GetJobber/atlantis/commit/22c6022e3a4c26a9cc7407a9105062f7b9dfe818))
+
+
+
+
+
+## [2.28.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.28.2...@jobber/components@2.28.3) (2021-04-20)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.28.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.28.1...@jobber/components@2.28.2) (2021-04-19)
+
+
+### Bug Fixes
+
+* **design:** Update timing variables and docs ([#509](https://github.com/GetJobber/atlantis/issues/509)) ([e012fd2](https://github.com/GetJobber/atlantis/commit/e012fd2a2659a22a0709a0c25ea378a3bc2b0ebb))
+
+
+
+
+
+## [2.28.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.28.0...@jobber/components@2.28.1) (2021-04-13)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.28.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.27.8...@jobber/components@2.28.0) (2021-04-09)
+
+
+### Features
+
+* **components:** Add new popover component ([#494](https://github.com/GetJobber/atlantis/issues/494)) ([f0febe4](https://github.com/GetJobber/atlantis/commit/f0febe4787787c1dd2b823eaf3f02747058cdebf))
+
+
+
+
+
+## [2.27.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.27.7...@jobber/components@2.27.8) (2021-04-08)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.27.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.27.6...@jobber/components@2.27.7) (2021-04-07)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.27.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.27.5...@jobber/components@2.27.6) (2021-04-06)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.27.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.27.4...@jobber/components@2.27.5) (2021-04-06)
+
+
+### Bug Fixes
+
+* **components:** flip order of terms and descriptions ([#490](https://github.com/GetJobber/atlantis/issues/490)) ([f8d8dca](https://github.com/GetJobber/atlantis/commit/f8d8dca7e1a2a3f1312ab8d380493d4d8612a23e))
+* **components:** make divider a non-semantic element ([#491](https://github.com/GetJobber/atlantis/issues/491)) ([0ffcced](https://github.com/GetJobber/atlantis/commit/0ffcced593b09f3cf14ac866c601822e69fd76f9))
+
+
+
+
+
+## [2.27.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.27.3...@jobber/components@2.27.4) (2021-03-22)
+
+
+### Bug Fixes
+
+* **docz-tools:** fixes the broken github link ([#488](https://github.com/GetJobber/atlantis/issues/488)) ([65bdf42](https://github.com/GetJobber/atlantis/commit/65bdf42725144aea40b41209a5ef43e311d1ff67))
+
+
+
+
+
+## [2.27.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.27.2...@jobber/components@2.27.3) (2021-03-16)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.27.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.27.1...@jobber/components@2.27.2) (2021-03-08)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.27.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.27.0...@jobber/components@2.27.1) (2021-03-05)
+
+
+### Bug Fixes
+
+* **components:** allow button to remain its' own height when Banner content gets long ([#458](https://github.com/GetJobber/atlantis/issues/458)) ([9b1e44f](https://github.com/GetJobber/atlantis/commit/9b1e44f20aa0e90196394064c645103b0e38c89b))
+
+
+
+
+
+# [2.27.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.26.6...@jobber/components@2.27.0) (2021-03-05)
+
+
+### Features
+
+* **design:** Add presentation icon ([#481](https://github.com/GetJobber/atlantis/issues/481)) ([e15b53d](https://github.com/GetJobber/atlantis/commit/e15b53d724dcd236f20f109bfc1e8e95c08966f4))
+
+
+
+
+
+## [2.26.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.26.5...@jobber/components@2.26.6) (2021-03-03)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.26.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.26.4...@jobber/components@2.26.5) (2021-03-01)
+
+
+### Bug Fixes
+
+* **components:** Refix the vertical alignment firefix on Firefox for FormFields ([#474](https://github.com/GetJobber/atlantis/issues/474)) ([42fb7cf](https://github.com/GetJobber/atlantis/commit/42fb7cf131ead5f7055342df7595d8445c6f941d))
+
+
+
+
+
+## [2.26.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.26.3...@jobber/components@2.26.4) (2021-02-12)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.26.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.26.2...@jobber/components@2.26.3) (2021-02-10)
+
+
+### Bug Fixes
+
+* **components:** exports date formatting as a string ([#466](https://github.com/GetJobber/atlantis/issues/466)) [JOB-28183] ([74e57b5](https://github.com/GetJobber/atlantis/commit/74e57b51bad809a21677d4d6e62cb211162c503a))
+
+
+
+
+
+## [2.26.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.26.1...@jobber/components@2.26.2) (2021-02-01)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.26.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.26.0...@jobber/components@2.26.1) (2021-02-01)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.26.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.25.0...@jobber/components@2.26.0) (2021-02-01)
+
+
+### Bug Fixes
+
+* **components:** spinner loading css type ([#462](https://github.com/GetJobber/atlantis/issues/462)) ([1d32015](https://github.com/GetJobber/atlantis/commit/1d3201555a762bdff07685bcad2b58728bd74d30))
+
+
+### Features
+
+* **components:** spinner loading state on input text ([#460](https://github.com/GetJobber/atlantis/issues/460)) ([98bc020](https://github.com/GetJobber/atlantis/commit/98bc0205f108a86a522cc05e7314331edf9a36ca))
+
+
+
+
+
+# [2.25.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.22.3...@jobber/components@2.25.0) (2021-01-28)
+
+
+### Features
+
+* **components:** Add numberOfLines prop to Text component ([#401](https://github.com/GetJobber/atlantis/issues/401)) ([8011b59](https://github.com/GetJobber/atlantis/commit/8011b594f01faecb830e386a0dfd0434ff82bf6c))
+* **components:** Spinner Component ([#456](https://github.com/GetJobber/atlantis/issues/456)) ([2ea8365](https://github.com/GetJobber/atlantis/commit/2ea8365276067ac7b0e42bc94d33a3e2a8a8b909))
+
+
+
+
+
+## [2.22.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.23.0...@jobber/components@2.22.3) (2021-01-26)
+
+
+### Bug Fixes
+
+* **components:** Make page subtitle and intro optional ([#459](https://github.com/GetJobber/atlantis/issues/459)) ([0d269b8](https://github.com/GetJobber/atlantis/commit/0d269b8d449622f5c5c3d1536deeea8c8de23efa))
+
+
+
+
+
+## [2.22.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.22.1...@jobber/components@2.22.2) (2021-01-19)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.22.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.22.0...@jobber/components@2.22.1) (2021-01-18)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.22.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.21.0...@jobber/components@2.22.0) (2021-01-15)
+
+
+### Features
+
+* **components:** add iOS autocomplete support for OTPs to form fields ([#452](https://github.com/GetJobber/atlantis/issues/452)) ([c4a158b](https://github.com/GetJobber/atlantis/commit/c4a158babe97e84e39094e4a04f115db5110be75))
+
+
+
+
+
+# [2.21.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.20.4...@jobber/components@2.21.0) (2021-01-14)
+
+
+### Features
+
+* **components:** add lastIndex argument to onRequestClose function prop of LightBox  ([#410](https://github.com/GetJobber/atlantis/issues/410)) ([fda480c](https://github.com/GetJobber/atlantis/commit/fda480c4699ed8b58157906518759d68408b70b8))
+
+
+
+
+
+## [2.20.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.20.3...@jobber/components@2.20.4) (2021-01-12)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.20.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.20.2...@jobber/components@2.20.3) (2021-01-11)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.20.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.20.1...@jobber/components@2.20.2) (2021-01-08)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.20.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.20.0...@jobber/components@2.20.1) (2021-01-08)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.20.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.19.1...@jobber/components@2.20.0) (2021-01-06)
+
+
+### Features
+
+* **components:** convert `progressBar` to semantic HTML and count step 1 ([#430](https://github.com/GetJobber/atlantis/issues/430)) ([01eb04e](https://github.com/GetJobber/atlantis/commit/01eb04e150d148b73b101cc8f499f585ef4a726a))
+
+
+
+
+
+## [2.19.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.19.0...@jobber/components@2.19.1) (2020-12-15)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.19.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.18.2...@jobber/components@2.19.0) (2020-12-10)
+
+
+### Features
+
+* **components:** adjust line-height on largest font sizes and add h6 ([#438](https://github.com/GetJobber/atlantis/issues/438)) ([21728e3](https://github.com/GetJobber/atlantis/commit/21728e3dc657ff4f705685d9a382b215b67f3c11))
+
+
+
+
+
+## [2.18.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.18.1...@jobber/components@2.18.2) (2020-12-09)
+
+
+### Bug Fixes
+
+* **components:** match colors on radio and checkbox labels and inputs ([#437](https://github.com/GetJobber/atlantis/issues/437)) ([9ae3c11](https://github.com/GetJobber/atlantis/commit/9ae3c1141dd4da4e0aba52110f8e068f8a0f8b83))
+
+
+
+
+
+## [2.18.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.18.0...@jobber/components@2.18.1) (2020-12-09)
+
+
+### Bug Fixes
+
+* **components:** Fix the positioning of the Table ([#436](https://github.com/GetJobber/atlantis/issues/436)) ([9133021](https://github.com/GetJobber/atlantis/commit/9133021573388ff914243545aeb4dbec8df30892))
+
+
+
+
+
+# [2.18.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.17.1...@jobber/components@2.18.0) (2020-12-07)
+
+
+### Features
+
+* **components:** add inputNumberRef to inputNumber ([#428](https://github.com/GetJobber/atlantis/issues/428)) ([cb1db93](https://github.com/GetJobber/atlantis/commit/cb1db93ecc19b58552a8b764bc9065db56925799))
+
+
+
+
+
+## [2.17.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.17.0...@jobber/components@2.17.1) (2020-12-04)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.17.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.16.0...@jobber/components@2.17.0) (2020-12-04)
+
+
+### Features
+
+* **components:** Add dismissible prop to banner ([#431](https://github.com/GetJobber/atlantis/issues/431)) ([db411cc](https://github.com/GetJobber/atlantis/commit/db411cc4e7b335455e15a9c88bf36350752ae6e7))
+
+
+
+
+
+# [2.16.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.15.1...@jobber/components@2.16.0) (2020-12-03)
+
+
+### Features
+
+* **components:** adds `keyboard` prop to InputText ([#429](https://github.com/GetJobber/atlantis/issues/429)) ([f0915b2](https://github.com/GetJobber/atlantis/commit/f0915b295a1dde03db69e834fcdaeddc7c9d3de4))
+
+
+
+
+
+## [2.15.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.15.0...@jobber/components@2.15.1) (2020-12-03)
+
+
+### Bug Fixes
+
+* **components:** Change `Table` borders from box-shadow to pseudo element ([#427](https://github.com/GetJobber/atlantis/issues/427)) ([7648514](https://github.com/GetJobber/atlantis/commit/76485149e583a0711f3592881035df550aef3393))
+
+
+
+
+
+# [2.15.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.14.1...@jobber/components@2.15.0) (2020-12-01)
+
+
+### Features
+
+* **components:** Reduce width of drawer for medium breakpoint ([#426](https://github.com/GetJobber/atlantis/issues/426)) ([b9268d5](https://github.com/GetJobber/atlantis/commit/b9268d59d638617e45f472fa5ca72d2699c2f27c))
+
+
+
+
+
+## [2.14.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.14.0...@jobber/components@2.14.1) (2020-11-26)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.14.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.13.2...@jobber/components@2.14.0) (2020-11-25)
+
+
+### Features
+
+* **components:** Add markdown to ConfirmationModal ([#424](https://github.com/GetJobber/atlantis/issues/424)) ([b0b817d](https://github.com/GetJobber/atlantis/commit/b0b817df9ab613e3394cb421213f2e5bdf1b793a))
+
+
+
+
+
+## [2.13.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.13.1...@jobber/components@2.13.2) (2020-11-25)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.13.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.13.0...@jobber/components@2.13.1) (2020-11-25)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.13.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.12.0...@jobber/components@2.13.0) (2020-11-19)
+
+
+### Features
+
+* **components:** Add label and description to RadioOption ([#420](https://github.com/GetJobber/atlantis/issues/420)) ([d74f38f](https://github.com/GetJobber/atlantis/commit/d74f38fdf237cab7ec8c1db8b2b951b1499c6a51))
+
+
+
+
+
+# [2.12.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.11.0...@jobber/components@2.12.0) (2020-11-18)
+
+
+### Features
+
+* **components:** Add size prop to Text ([#419](https://github.com/GetJobber/atlantis/issues/419)) ([6177e28](https://github.com/GetJobber/atlantis/commit/6177e2874f5527a099337a3d926e31fa6e6159bd))
+
+
+
+
+
+# [2.11.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.10.0...@jobber/components@2.11.0) (2020-11-16)
+
+
+### Features
+
+* **components:** Add `invalid` to `Autocomplete` ([#417](https://github.com/GetJobber/atlantis/issues/417)) ([266b145](https://github.com/GetJobber/atlantis/commit/266b145ef92114445ebdb4c482de766445df77b8))
+
+
+
+
+
+# [2.10.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.9.1...@jobber/components@2.10.0) (2020-11-10)
+
+
+### Features
+
+* **components:** Add `onUploadComplete` to `InputAvatar` ([#416](https://github.com/GetJobber/atlantis/issues/416)) ([b6960f5](https://github.com/GetJobber/atlantis/commit/b6960f5330ed9c6cf0cc634fed7a7f5c2d8ffbe8))
+
+
+
+
+
+## [2.9.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.9.0...@jobber/components@2.9.1) (2020-11-10)
+
+
+### Bug Fixes
+
+* **components:** Autocomplete sets input val to blank if no matches ([#415](https://github.com/GetJobber/atlantis/issues/415)) ([4a0d544](https://github.com/GetJobber/atlantis/commit/4a0d5448c87ff1177ffc3bfaf7edd700743efee8))
+
+
+
+
+
+# [2.9.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.8.0...@jobber/components@2.9.0) (2020-11-09)
+
+
+### Features
+
+* **components:** Drawer component ([#367](https://github.com/GetJobber/atlantis/issues/367)) ([b27ccab](https://github.com/GetJobber/atlantis/commit/b27ccab0083391fd4c2b1d7ea98a1e867d104ab7))
+
+
+
+
+
+# [2.8.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.7.3...@jobber/components@2.8.0) (2020-11-06)
+
+
+### Features
+
+* **components:** Make switch & description optional on FeatureSwitch ([#402](https://github.com/GetJobber/atlantis/issues/402)) ([971f35d](https://github.com/GetJobber/atlantis/commit/971f35d4d3ef84a011dbae5544e2866adda6ea4e))
+
+
+
+
+
+## [2.7.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.7.2...@jobber/components@2.7.3) (2020-11-05)
+
+
+### Bug Fixes
+
+* **components:** Menu properly positions on right side of screen. ([#414](https://github.com/GetJobber/atlantis/issues/414)) ([4ba4981](https://github.com/GetJobber/atlantis/commit/4ba4981c90c998ff20fa63971b9721fdf54c54ab))
+
+
+
+
+
+## [2.7.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.7.1...@jobber/components@2.7.2) (2020-11-05)
+
+
+### Bug Fixes
+
+* **components:** Only focus the modal once when it opens ([#412](https://github.com/GetJobber/atlantis/issues/412)) ([8e6b22f](https://github.com/GetJobber/atlantis/commit/8e6b22fc97bf65c7d958b152d5b13593cea787b6))
+
+
+
+
+
+## [2.7.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.7.0...@jobber/components@2.7.1) (2020-11-05)
+
+
+### Bug Fixes
+
+* **components:** Changing modal close button to use `<Button>` component ([#395](https://github.com/GetJobber/atlantis/issues/395)) ([85f1657](https://github.com/GetJobber/atlantis/commit/85f1657c1026a9a345ccd441b46a716e2353601d))
+
+
+
+
+
+# [2.7.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.6.0...@jobber/components@2.7.0) (2020-11-02)
+
+
+### Features
+
+* **components:** Add DataDump Component ([#408](https://github.com/GetJobber/atlantis/issues/408)) ([caa2a97](https://github.com/GetJobber/atlantis/commit/caa2a9786d83d9c5cb4414984aaba65f8f06599b))
+
+
+
+
+
+# [2.6.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.5.2...@jobber/components@2.6.0) (2020-11-02)
+
+
+### Features
+
+* **components:** guard against external anchor element styling ([#411](https://github.com/GetJobber/atlantis/issues/411)) ([e57feae](https://github.com/GetJobber/atlantis/commit/e57feaed8c80ca554c41a980fc2d1c56aeb5175d))
+
+
+
+
+
 ## [2.5.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.5.1...@jobber/components@2.5.2) (2020-10-29)
 
 **Note:** Version bump only for package @jobber/components

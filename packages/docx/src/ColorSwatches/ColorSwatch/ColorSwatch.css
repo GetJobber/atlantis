@@ -1,23 +1,37 @@
 .swatch {
   display: inline-block;
-  width: calc(100% / 4 - 0.5rem);
-  margin: 0.25rem;
+  width: 25%;
+  margin: var(--space-small) 0 var(--space-smaller);
+}
+
+/*  1. There are no borders around the swatches, so this
+    identifies any swatches that are white and gives
+    them a box-shadow so they can be viewed as a swatch
+    against a white background. The swatches are all
+    given their background color via a style tag that
+    the .js generates, so this should be a stable way of
+    tagging this swatch. */
+
+.color[style*="background-color: rgb(255, 255, 255);"],
+.color[style*="background-color: var(--color-white);"],
+.color[style*="background-color: var(--color-white-rgb);"] {
+  box-shadow: var(--shadow-base); /* 1 */
 }
 
 .swatch:first-child {
-  width: calc(100% - 0.5rem);
+  width: 100%;
+  margin-top: var(--space-smaller);
 }
 
 .color {
-  height: 60px;
-  border: solid 1px var(--color-grey--light);
-  border-radius: 0.25rem;
+  height: var(--space-extravagant);
+  margin-bottom: var(--space-smaller);
 }
 
 .name,
 .value {
   width: 100%;
+  color: var(--color-greyBlue--dark);
   font-family: monospace;
-  font-size: 10px;
-  text-align: center;
+  font-size: var(--typography--fontSize-smaller);
 }

@@ -24,7 +24,7 @@ export function FormatDate({ date: inputDate }: FormatDateProps) {
   return <>{strFormatDate(dateObject)}</>;
 }
 
-function strFormatDate(date: Date) {
+export function strFormatDate(date: Date) {
   return date.toLocaleDateString(undefined, {
     year: "numeric",
     month: "short",

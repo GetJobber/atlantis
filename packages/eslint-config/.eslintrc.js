@@ -55,7 +55,7 @@ module.exports = {
     "react/no-danger": "error",
     "prettier/prettier": [
       "error",
-      { trailingComma: "all" },
+      { trailingComma: "all", arrowParens: "avoid" },
       { usePrettierrc: false },
     ],
     "@typescript-eslint/consistent-type-assertions": [
@@ -68,9 +68,12 @@ module.exports = {
     "@typescript-eslint/no-extraneous-class": "error",
     "@typescript-eslint/no-use-before-define": ["error", { functions: false }],
     "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-unused-expressions": ["error", { allowShortCircuit: true }],
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-non-null-assertion": "error",
     "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
+    "@typescript-eslint/no-unused-expressions": ["error", { allowShortCircuit: true }],
+    "@typescript-eslint/no-empty-function": "error",
     curly: ["error", "multi-line", "consistent"],
     "prefer-const": "error",
     "dot-notation": "error",
@@ -86,13 +89,13 @@ module.exports = {
     "no-template-curly-in-string": "error",
     "no-return-await": "error",
     "no-throw-literal": "error",
-    "no-unused-expressions": ["error", { allowShortCircuit: true }],
+    "no-unused-expressions": "off",
     "no-use-before-define": ["error", { functions: false, classes: false }],
     "no-octal-escape": "error",
     "no-restricted-imports": ["error", { patterns: ["../*"] }],
     radix: "error",
     "use-isnan": "error",
-    "func-style": ["error", "declaration", { "allowArrowFunctions": true }],
+    "func-style": ["error", "declaration", { allowArrowFunctions: true }],
   },
   overrides: [
     {

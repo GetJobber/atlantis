@@ -53,7 +53,7 @@ it("renders an Autocomplete", () => {
       <Autocomplete
         value={undefined}
         initialOptions={options}
-        onChange={() => {}}
+        onChange={jest.fn()}
         getOptions={returnOptions([])}
         placeholder="placeholder_name"
       />,
@@ -121,7 +121,7 @@ test("it should display headers when headers are passed in", () => {
     .create(
       <Autocomplete
         value={undefined}
-        onChange={() => {}}
+        onChange={jest.fn()}
         initialOptions={headingOptions}
         getOptions={returnOptions([])}
         placeholder="placeholder_name"
@@ -161,4 +161,129 @@ test("it should call the handler skipping headings when an option is selected", 
   );
 
   expect(changeHandler).toHaveBeenCalledWith(headingOptions[1].options[0]);
+});
+
+it("should remove the menu when blurred", async () => {
+  const changeHandler = jest.fn();
+  const { getByRole, getByText, queryByText } = render(
+    <Autocomplete
+      value={undefined}
+      onChange={changeHandler}
+      initialOptions={options}
+      getOptions={returnOptions(options)}
+      placeholder="placeholder_name"
+    />,
+  );
+
+  const input = getByRole("textbox");
+
+  input.focus();
+
+  await waitFor(() => {
+    expect(getByText("option_0")).toBeInstanceOf(HTMLParagraphElement);
+  });
+
+  input.blur();
+
+  await waitFor(() => {
+    expect(queryByText("option_0")).toBeNull();
+  });
+});
+
+it("should call onBlur callback when blurred", async () => {
+  const blurHandler = jest.fn();
+  const { getByRole } = render(
+    <Autocomplete
+      value={undefined}
+      onChange={jest.fn()}
+      initialOptions={options}
+      getOptions={returnOptions(options)}
+      placeholder="placeholder_name"
+      onBlur={blurHandler}
+    />,
+  );
+
+  const input = getByRole("textbox");
+  input.focus();
+  input.blur();
+
+  await waitFor(() => {
+    expect(blurHandler).toHaveBeenCalledTimes(1);
+  });
+});
+
+it("should call onChange with undefined if allowFreeForm is false and not matched", async () => {
+  const changeHandler = jest.fn();
+  const { getByRole } = render(
+    <Autocomplete
+      value={undefined}
+      onChange={changeHandler}
+      initialOptions={options}
+      getOptions={returnOptions(options)}
+      placeholder="placeholder_name"
+      allowFreeForm={false}
+    />,
+  );
+
+  const input = getByRole("textbox");
+
+  input.focus();
+
+  fireEvent.input(input, {
+    target: {
+      value: "opt",
+    },
+  });
+
+  input.blur();
+
+  await waitFor(() => {
+    expect(changeHandler).toHaveBeenCalledWith(undefined);
+  });
+});
+
+it("sets the input value to blank if allowFreeForm is false and not matched", async () => {
+  const changeHandler = jest.fn();
+  const { getByRole } = render(
+    <Autocomplete
+      value={undefined}
+      onChange={changeHandler}
+      initialOptions={options}
+      getOptions={returnOptions(options)}
+      placeholder="placeholder_name"
+      allowFreeForm={false}
+    />,
+  );
+
+  const input = getByRole("textbox") as HTMLInputElement;
+
+  input.focus();
+
+  fireEvent.input(input, {
+    target: {
+      value: "opt",
+    },
+  });
+
+  input.blur();
+
+  await waitFor(() => {
+    expect(input.value).toBe("");
+  });
+});
+
+it("passes the invalid prop to the InputText", () => {
+  const { container } = render(
+    <Autocomplete
+      value={undefined}
+      onChange={jest.fn()}
+      getOptions={returnOptions([])}
+      placeholder="placeholder_name"
+      invalid
+    />,
+  );
+
+  const invalid = container.querySelector(".invalid");
+
+  expect(invalid).toBeInstanceOf(HTMLDivElement);
 });

@@ -1,6 +1,4 @@
 :root {
-  --tab--border-color: var(--color-grey--lighter);
-  --tab--border-color--selected: var(--color-green);
   --tab--height: calc(var(--space-larger) + var(--space-small));
   --tab--inset: var(--space-base);
   --public-tab--inset: var(--tab--inset);
@@ -13,7 +11,7 @@
 
 .overflow {
   position: relative;
-  border-bottom: solid var(--border-base) var(--tab--border-color);
+  border-bottom: solid var(--border-base) var(--color-border);
 }
 
 .overflowRight:after,
@@ -42,28 +40,40 @@
   -webkit-overflow-scrolling: touch;
 }
 
+ul.tabRow {
+  padding-inline-start: 0;
+}
+
+.tabRow li {
+  list-style: none;
+}
+
 .tab {
   flex: 0 0 auto;
   height: var(--tab--height);
   margin: 0;
   padding-left: var(--public-tab--inset);
   padding-right: var(--public-tab--inset);
-  border: solid var(--border-base) var(--tab--border-color);
+  border: solid var(--border-base) var(--color-border);
   border-left-width: 0;
   outline: none;
-  background: transparent;
+  background: var(--color-surface);
   cursor: pointer;
   transition: all var(--timing-base);
 }
 
 .tab:hover,
 .tab:focus {
-  background-color: var(--color-yellow--lightest);
+  background-color: var(--color-surface--hover);
+}
+
+.tab:focus span {
+  box-shadow: var(--shadow-focus);
 }
 
 .selected {
-  border-top-color: var(--tab--border-color--selected);
-  border-bottom-color: var(--color-white);
+  border-top-color: var(--color-interactive);
+  border-bottom-color: var(--color-surface);
 }
 
 .selected:focus {

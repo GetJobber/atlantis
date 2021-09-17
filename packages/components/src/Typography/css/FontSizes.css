@@ -1,15 +1,16 @@
 .extravagant {
   font-size: var(--typography--fontSize-extravagant);
+  line-height: var(--typography--lineHeight-miniscule);
 }
 
 .jumbo {
   font-size: var(--typography--fontSize-jumbo);
-  line-height: var(--typography--lineHeight-large);
+  line-height: var(--typography--lineHeight-miniscule);
 }
 
 .largest {
   font-size: var(--typography--fontSize-largest);
-  line-height: var(--typography--lineHeight-large);
+  line-height: var(--typography--lineHeight-tightest);
 }
 
 .larger {
@@ -19,7 +20,7 @@
 
 .large {
   font-size: var(--typography--fontSize-large);
-  line-height: var(--typography--lineHeight-tightest);
+  line-height: var(--typography--lineHeight-large);
 }
 
 .base {

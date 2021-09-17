@@ -2,15 +2,16 @@
 name: InputText
 menu: Components
 route: /components/input-text
+showDirectoryLink: true
 ---
 
 import { Playground, Props } from "docz";
-import { ComponentStatus } from "@jobber/docx";
-import { InputText } from ".";
 import { useState } from "react";
-import { Button } from "../Button";
-import { Content } from "../Content";
-import { Text } from "../Text";
+import { ComponentStatus } from "@jobber/docx";
+import { InputText } from "@jobber/components/InputText";
+import { Button } from "@jobber/components/Button";
+import { Content } from "@jobber/components/Content";
+import { Text } from "@jobber/components/Text";
 
 # Input Text
 
@@ -74,10 +75,41 @@ The textarea will start at a specified minimum and grow to a specified maximum.
   />
 </Playground>
 
+## Prefix/Suffix
+
+<Playground>
+  <InputText
+    defaultValue="1,000,000"
+    placeholder="Invoice Total"
+    prefix={{ label: "$", icon: "invoice" }}
+    suffix={{
+      label: "💰💰💰",
+      icon: "paidInvoice",
+      ariaLabel: "Tell me i'm rich",
+      onClick: () => alert("You're rich!"),
+    }}
+  />
+</Playground>
+
 ## Validation message
 
 You can add your own custom validation messages on a field. However, this
 shouldn't replace server-side validation.
+
+🔱 Atlantis utilizes [React Hook Forms](https://react-hook-form.com/) to handle
+`input` and `form` validation. This means that the
+[React Hook Forms validation options](https://react-hook-form.com/api#register)
+are available out of the box.
+
+This includes, but is not limited to:
+
+- `required` - A Boolean which, if true, indicates that the input must have a
+  value.
+- `maxLength` - The maximum length of the value to accept for this input.
+- `minLength` - The minimum length of the value to accept for this input.
+- `pattern` - The regex pattern for the input.
+- `validate` - You can pass a callback function as the argument to validate, or
+  you can pass an object of callback functions to validate all of them.
 
 <Playground>
   {() => {
@@ -88,9 +120,9 @@ shouldn't replace server-side validation.
         validations={{
           required: {
             value: true,
-            message: "You have to tell us your age"
+            message: "You have to tell us your age",
           },
-          validate: validations
+          validate: validations,
         }}
       />
     );
@@ -215,6 +247,31 @@ shouldn't replace server-side validation.
       </Content>
     );
   }}
+</Playground>
+
+## Keyboard
+
+Determine what default keyboard appears on mobile web.
+
+<Playground>
+  <InputText
+    placeholder="Describe your age"
+    name="describeAge"
+    keyboard="numeric"
+  />
+</Playground>
+
+## Loading
+
+Add a loading state to content.
+
+<Playground>
+  <InputText
+    placeholder="Checking phone number"
+    name="phoneNumber"
+    loading={true}
+    keyboard="numeric"
+  />
 </Playground>
 
 ## Using onValidation

@@ -8,6 +8,7 @@ import { Content } from "../Content";
 import { Markdown } from "../Markdown";
 import { Button, ButtonProps } from "../Button";
 import { Menu, SectionProps } from "../Menu";
+import { Emphasis } from "../Emphasis";
 
 export interface PageProps {
   readonly children: ReactNode | ReactNode[];
@@ -16,12 +17,17 @@ export interface PageProps {
    * Content of the page. This supports basic markdown node types such as
    * `_italic_`, `**bold**`, and `[link name](url)`
    */
-  readonly intro: string;
+  readonly intro?: string;
 
   /**
    * Title of the page.
    */
   readonly title: string;
+
+  /**
+   * Subtitle of the page.
+   */
+  readonly subtitle?: string;
 
   /**
    * Determines the width of the page.
@@ -57,6 +63,7 @@ export interface PageProps {
 export function Page({
   title,
   intro,
+  subtitle,
   children,
   width = "standard",
   primaryAction,
@@ -64,15 +71,13 @@ export function Page({
   moreActionsMenu = [],
 }: PageProps) {
   const pageStyles = classnames(styles.page, styles[width]);
-  const [
-    titleBarRef,
-    { width: titleBarWidth = Breakpoints.large },
-  ] = useResizeObserver<HTMLDivElement>();
+  const [titleBarRef, { width: titleBarWidth = Breakpoints.large }] =
+    useResizeObserver<HTMLDivElement>();
 
   const titleBarClasses = classnames(styles.titleBar, {
     [styles.small]: titleBarWidth > Breakpoints.smaller,
     [styles.medium]: titleBarWidth > Breakpoints.small,
-    [styles.large]: titleBarWidth > Breakpoints.large,
+    [styles.large]: titleBarWidth > Breakpoints.base,
   });
 
   const showMenu = moreActionsMenu.length > 0;
@@ -99,9 +104,20 @@ export function Page({
   return (
     <div className={pageStyles}>
       <Content>
-        <Content spacing="large">
+        <Content>
           <div className={titleBarClasses} ref={titleBarRef}>
-            <Heading level={1}>{title}</Heading>
+            <div>
+              <Heading level={1}>{title}</Heading>
+              {subtitle && (
+                <div className={styles.subtitle}>
+                  <Text size="large" variation="subdued">
+                    <Emphasis variation="bold">
+                      <Markdown content={subtitle} basicUsage={true} />
+                    </Emphasis>
+                  </Text>
+                </div>
+              )}
+            </div>
             {showActionGroup && (
               <div className={styles.actionGroup}>
                 {primaryAction && (
@@ -122,9 +138,11 @@ export function Page({
               </div>
             )}
           </div>
-          <Text variation="intro">
-            <Markdown content={intro} basicUsage={true} />
-          </Text>
+          {intro && (
+            <Text size="large">
+              <Markdown content={intro} basicUsage={true} />
+            </Text>
+          )}
         </Content>
         <Content>{children}</Content>
       </Content>

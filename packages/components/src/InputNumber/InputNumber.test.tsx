@@ -1,12 +1,12 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
-import { InputNumber } from ".";
+import { InputNumber, InputNumberRef } from ".";
 
 afterEach(cleanup);
 
 it("renders an input type number", () => {
-  const tree = renderer.create(<InputNumber value="123" />).toJSON();
+  const tree = renderer.create(<InputNumber value={123} />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
       className="wrapper"
@@ -16,57 +16,25 @@ it("renders an input type number", () => {
         }
       }
     >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440001"
+      <div
+        className="inputWrapper"
       >
-         
-      </label>
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440001"
-        name="generatedName--123e4567-e89b-12d3-a456-426655440001"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        type="number"
-        value="123"
-      />
-    </div>
-  `);
-});
-
-it("renders an error", () => {
-  const tree = renderer
-    .create(<InputNumber value="1.1" errorMessage="Not a whole number" />)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
-    >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440002"
-      >
-         
-      </label>
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440002"
-        name="generatedName--123e4567-e89b-12d3-a456-426655440002"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        type="number"
-        value="1.1"
-      />
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440001"
+        />
+        <input
+          className="input"
+          id="123e4567-e89b-12d3-a456-426655440001"
+          name="generatedName--123e4567-e89b-12d3-a456-426655440001"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          type="number"
+          value={123}
+        />
+      </div>
     </div>
   `);
 });
@@ -217,7 +185,7 @@ test("allows custom validation", async () => {
       onValidation={validationHandler}
       placeholder="Count to 10"
       validations={{
-        maxLength: {
+        max: {
           value: 1,
           message: "only one number",
         },
@@ -233,4 +201,27 @@ test("allows custom validation", async () => {
   await waitFor(() => {
     expect(validationHandler).toHaveBeenCalledWith("only one number");
   });
+});
+
+test("it should handle focus", () => {
+  const inputRef = React.createRef<InputNumberRef>();
+  const placeholder = "Number";
+
+  const { getByLabelText } = render(
+    <InputNumber placeholder={placeholder} ref={inputRef} />,
+  );
+
+  inputRef.current.focus();
+  expect(document.activeElement).toBe(getByLabelText(placeholder));
+});
+
+test("it should handle blur", () => {
+  const inputRef = React.createRef<InputNumberRef>();
+  const blurHandler = jest.fn();
+
+  render(<InputNumber ref={inputRef} onBlur={blurHandler} />);
+
+  inputRef.current.focus();
+  inputRef.current.blur();
+  expect(blurHandler).toHaveBeenCalledTimes(1);
 });

@@ -38,7 +38,7 @@ exports[`renders a Checkbox 1`] = `
       className="label"
     >
       <p
-        className="base regular base greyBlueDark"
+        className="base regular base text"
       >
         Send me spam?
       </p>
@@ -84,7 +84,7 @@ exports[`renders a disabled Checkbox 1`] = `
       className="label"
     >
       <p
-        className="base regular base greyBlue"
+        className="base regular base text"
       >
         Dont click me
       </p>
@@ -130,7 +130,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 1`]
       className="label"
     >
       <p
-        className="base regular base greyBlueDark"
+        className="base regular base text"
       >
         Foo
       </p>
@@ -176,7 +176,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 2`]
       className="label"
     >
       <p
-        className="base regular base greyBlueDark"
+        className="base regular base text"
       >
         Foo
       </p>
@@ -222,7 +222,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
       className="label"
     >
       <p
-        className="base regular base greyBlueDark"
+        className="base regular base text"
       >
         Foo
       </p>
@@ -268,7 +268,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
       className="label"
     >
       <p
-        className="base regular base greyBlueDark"
+        className="base regular base text"
       >
         Foo
       </p>
@@ -314,7 +314,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
       className="label"
     >
       <p
-        className="base regular base greyBlueDark"
+        className="base regular base text"
       >
         Foo
       </p>
@@ -360,7 +360,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
       className="label"
     >
       <p
-        className="base regular base greyBlueDark"
+        className="base regular base text"
       >
         Foo
       </p>
@@ -406,7 +406,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
       className="label"
     >
       <p
-        className="base regular base greyBlueDark"
+        className="base regular base text"
       >
         Foo
       </p>
@@ -452,7 +452,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
       className="label"
     >
       <p
-        className="base regular base greyBlueDark"
+        className="base regular base text"
       >
         Foo
       </p>

@@ -12,44 +12,26 @@ exports[`it should display headers when headers are passed in 1`] = `
       }
     }
   >
-    <label
-      className="label"
-      htmlFor="123e4567-e89b-12d3-a456-426655440014"
-    >
-      placeholder_name
-    </label>
-    <input
-      autoComplete="autocomplete-off"
-      className="formField"
-      id="123e4567-e89b-12d3-a456-426655440014"
-      onBlur={[Function]}
-      onChange={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      type="text"
-      value=""
-    />
-  </div>
-  <div
-    className="options"
-  >
     <div
-      className="heading"
+      className="inputWrapper"
     >
-      <h5
-        className="base bold base blue"
+      <label
+        className="label"
+        htmlFor="123e4567-e89b-12d3-a456-426655440018"
       >
-        first_heading
-      </h5>
-    </div>
-    <div
-      className="heading"
-    >
-      <h5
-        className="base bold base blue"
-      >
-        second_heading
-      </h5>
+        placeholder_name
+      </label>
+      <input
+        autoComplete="autocomplete-off"
+        className="input"
+        id="123e4567-e89b-12d3-a456-426655440018"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        type="text"
+        value=""
+      />
     </div>
   </div>
 </div>
@@ -67,69 +49,27 @@ exports[`renders an Autocomplete 1`] = `
       }
     }
   >
-    <label
-      className="label"
-      htmlFor="123e4567-e89b-12d3-a456-426655440001"
+    <div
+      className="inputWrapper"
     >
-      placeholder_name
-    </label>
-    <input
-      autoComplete="autocomplete-off"
-      className="formField"
-      id="123e4567-e89b-12d3-a456-426655440001"
-      onBlur={[Function]}
-      onChange={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      type="text"
-      value=""
-    />
-  </div>
-  <div
-    className="options"
-  >
-    <button
-      className="option active"
-      onMouseDown={[Function]}
-    >
-      <div
-        className="icon"
-      />
-      <div
-        className="text"
+      <label
+        className="label"
+        htmlFor="123e4567-e89b-12d3-a456-426655440001"
       >
-        <div
-          className="label"
-        >
-          <p
-            className="base regular base greyBlueDark"
-          >
-            option_0
-          </p>
-        </div>
-      </div>
-    </button>
-    <button
-      className="option"
-      onMouseDown={[Function]}
-    >
-      <div
-        className="icon"
+        placeholder_name
+      </label>
+      <input
+        autoComplete="autocomplete-off"
+        className="input"
+        id="123e4567-e89b-12d3-a456-426655440001"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        type="text"
+        value=""
       />
-      <div
-        className="text"
-      >
-        <div
-          className="label"
-        >
-          <p
-            className="base regular base greyBlueDark"
-          >
-            option_1
-          </p>
-        </div>
-      </div>
-    </button>
+    </div>
   </div>
 </div>
 `;

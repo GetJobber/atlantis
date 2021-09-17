@@ -1,27 +1,61 @@
 :root {
   --flash--inset: var(--space-base);
+  --flash--inset--small: var(--space-small);
 }
 
 .flash {
   display: flex;
-  margin-bottom: var(--space-base);
-  padding: var(--flash--inset);
-  border-top: var(--border-thick) solid var(--color-grey--light);
-  border-bottom-right-radius: var(--space-smaller);
-  border-bottom-left-radius: var(--space-smaller);
+  position: relative;
+  box-shadow: var(--shadow-base);
+  padding: var(--flash--inset--small) var(--flash--inset);
   color: var(--color-black);
   background-color: var(--color-grey--lightest);
-  align-items: center;
+  align-items: flex-start;
 }
 
-.flash > *:first-child {
+.flash.medium {
+  padding: var(--flash--inset);
+}
+
+.bannerContent {
+  display: flex;
   flex: 1 1 auto;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.dismissibleSpacing {
+  padding-right: var(--flash--inset);
+}
+
+.bannerContent > * {
+  margin-top: var(--flash--inset--small);
+  margin-bottom: var(--flash--inset--small);
+}
+
+.bannerContent > *:first-child {
+  margin-right: var(--space-base);
+}
+
+.medium .bannerContent {
+  flex-wrap: nowrap;
+}
+
+.medium .bannerContent > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.bannerAction {
+  display: flex;
+  flex: 0 0 auto;
 }
 
 .closeButton {
-  width: var(--space-larger);
-  margin-top: calc(var(--space-smallest) - var(--flash--inset));
-  margin-right: calc(var(--space-smallest) - var(--flash--inset));
+  position: absolute;
+  top: 0;
+  right: 0;
   padding: var(--space-smallest);
   border: none;
   background-color: transparent;
@@ -30,6 +64,12 @@
   flex: 0;
 }
 
+.closeButton:hover {
+  background: rgba(0, 0, 0, 0.025);
+}
+
 .closeButton:focus {
+  box-shadow: var(--shadow-focus);
   outline: none;
+  background: rgba(0, 0, 0, 0.05);
 }

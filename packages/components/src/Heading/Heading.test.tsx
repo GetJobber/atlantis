@@ -8,7 +8,7 @@ it("renders a Heading 1", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <h1
-      className="base black jumbo uppercase blue"
+      className="base black jumbo uppercase heading"
     >
       Dis be a Heading 1
     </h1>
@@ -21,7 +21,7 @@ it("renders a Heading 2", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <h2
-      className="base black largest uppercase blue"
+      className="base black largest uppercase heading"
     >
       Dis be a Heading 2
     </h2>
@@ -34,7 +34,7 @@ it("renders a Heading 3", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <h3
-      className="base bold larger blue"
+      className="base bold larger heading"
     >
       Dis be a Heading 3
     </h3>
@@ -47,7 +47,7 @@ it("renders a Heading 4", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <h4
-      className="base bold large blue"
+      className="base bold large heading"
     >
       Dis be a Heading 4
     </h4>
@@ -60,7 +60,7 @@ it("renders a Heading 5", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <h5
-      className="base bold base blue"
+      className="base bold base heading"
     >
       Dis be a Heading 5
     </h5>

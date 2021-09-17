@@ -1,12 +1,14 @@
-import React, { ReactNode, RefObject, useEffect, useRef } from "react";
+import React, { ReactNode } from "react";
 import ReactDOM from "react-dom";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
+import { useOnKeyDown, useRefocusOnActivator } from "@jobber/hooks";
 import styles from "./Modal.css";
 import sizes from "./Sizes.css";
-import { Icon } from "../Icon";
+import { useFocusTrap } from "./useFocusTrap";
 import { Typography } from "../Typography";
 import { Button, ButtonProps } from "../Button";
+import { ButtonDismiss } from "../ButtonDismiss";
 
 interface ModalProps {
   /**
@@ -38,17 +40,14 @@ export function Modal({
   onRequestClose,
 }: ModalProps) {
   const modalClassName = classnames(styles.modal, size && sizes[size]);
-  const modalContainer: RefObject<HTMLDivElement> = useRef(
-    document.createElement("div"),
-  );
-
-  setFocusOnModalOpen(open, modalContainer);
-  catchKeyboardEvent("Escape", open, onRequestClose);
+  useRefocusOnActivator(open);
+  const modalRef = useFocusTrap<HTMLDivElement>(open);
+  useOnKeyDown(handleRequestClose, "Escape");
 
   const template = (
     <AnimatePresence>
       {open && (
-        <div ref={modalContainer} className={styles.container} tabIndex={0}>
+        <div ref={modalRef} className={styles.container} tabIndex={0}>
           <motion.div
             key={styles.overlay}
             className={styles.overlay}
@@ -90,37 +89,12 @@ export function Modal({
   );
 
   return ReactDOM.createPortal(template, document.body);
-}
 
-function setFocusOnModalOpen(
-  isModalOpen: boolean,
-  elementRef: RefObject<HTMLDivElement>,
-) {
-  useEffect(() => {
-    if (isModalOpen && elementRef.current) {
-      elementRef.current.focus();
+  function handleRequestClose() {
+    if (open && onRequestClose) {
+      onRequestClose();
     }
-  });
-}
-
-function catchKeyboardEvent(
-  key: string,
-  isModalOpen: boolean,
-  callback?: { (): void },
-) {
-  useEffect(() => {
-    const handler = (event: { key: string }) => {
-      if (isModalOpen && callback && event.key === key) {
-        callback();
-      }
-    };
-
-    window.addEventListener("keydown", handler);
-
-    return () => {
-      window.removeEventListener("keydown", handler);
-    };
-  });
+  }
 }
 
 interface HeaderProps {
@@ -142,13 +116,7 @@ function Header({ title, dismissible, onRequestClose }: HeaderProps) {
       </Typography>
 
       {dismissible && (
-        <button
-          className={styles.closeButton}
-          onClick={onRequestClose}
-          aria-label="Close modal"
-        >
-          <Icon name="cross" />
-        </button>
+        <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />
       )}
     </div>
   );

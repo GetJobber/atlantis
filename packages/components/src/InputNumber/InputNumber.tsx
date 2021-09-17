@@ -1,25 +1,55 @@
-import React from "react";
-import { FormField, FormFieldProps } from "../FormField";
+import React, { Ref, createRef, forwardRef, useImperativeHandle } from "react";
+import { CommonFormFieldProps, FormField, FormFieldProps } from "../FormField";
 
-/**
- * The following is the same as:
- *   type BaseProps = Omit<FormFieldProps, "type" | "children">;
- * Unfortunately Docz doesn't currently support Omit so it has been reduced to
- * its component parts.
- */
 interface InputNumberProps
-  extends Pick<
-    FormFieldProps,
-    Exclude<keyof FormFieldProps, "type" | "children" | "rows">
-  > {
+  extends CommonFormFieldProps,
+    Pick<
+      FormFieldProps,
+      | "maxLength"
+      | "autocomplete"
+      | "max"
+      | "min"
+      | "onEnter"
+      | "onFocus"
+      | "onBlur"
+      | "inputRef"
+      | "validations"
+      | "readonly"
+    > {
   value?: number;
 }
 
-export function InputNumber(props: InputNumberProps) {
+export interface InputNumberRef {
+  blur(): void;
+  focus(): void;
+}
+
+function InputNumberInternal(
+  props: InputNumberProps,
+  ref: Ref<InputNumberRef>,
+) {
+  const inputRef = createRef<HTMLTextAreaElement | HTMLInputElement>();
+
+  useImperativeHandle(ref, () => ({
+    blur: () => {
+      const input = inputRef.current;
+      if (input) {
+        input.blur();
+      }
+    },
+    focus: () => {
+      const input = inputRef.current;
+      if (input) {
+        input.focus();
+      }
+    },
+  }));
+
   return (
     <FormField
       {...props}
       type="number"
+      inputRef={inputRef}
       onChange={handleChange}
       validations={{
         ...props.validations,
@@ -51,3 +81,5 @@ export function InputNumber(props: InputNumberProps) {
     return true;
   }
 }
+
+export const InputNumber = forwardRef(InputNumberInternal);

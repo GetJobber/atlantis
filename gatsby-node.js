@@ -3,10 +3,10 @@
 const path = require("path");
 
 exports.onCreateWebpackConfig = ({
-  stage,
+  loaders,
   rules,
   actions,
-  loaders,
+  stage,
   getConfig,
 }) => {
   const config = getConfig();
@@ -34,12 +34,6 @@ exports.onCreateWebpackConfig = ({
               importFrom: [
                 require.resolve(
                   path.join(__dirname, "../packages/design/foundation.css"),
-                ),
-                require.resolve(
-                  path.join(
-                    __dirname,
-                    "../packages/design/src/responsiveBreakpoints.css",
-                  ),
                 ),
               ],
             }),
@@ -80,21 +74,16 @@ exports.onCreateWebpackConfig = ({
     cssRule,
   ];
 
-  config.resolve.alias = {
-    ...config.resolve.alias,
-    "@jobber/components": path.resolve(__dirname, "../packages/components/src"),
-    "@jobber/hooks": path.resolve(__dirname, "../packages/hooks"),
-  };
-
   // Situationally disable serverside rendering.
   if (stage.includes("html")) {
     config.module.rules.push({
       test: /(?:packages|docs)\/.*\.(?:js|jsx|ts|tsx)$/,
       use: loaders.null(),
     });
+
     config.module.rules.push({
       test: /.*\.(?:md|mdx)$/,
-      use: path.resolve("../src/null-markdown-loader.js"),
+      use: path.resolve("../null-markdown-loader.js"),
     });
   }
 

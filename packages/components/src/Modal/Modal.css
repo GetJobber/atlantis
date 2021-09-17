@@ -1,7 +1,6 @@
 :root {
   --modal--width: calc(var(--base-unit) * 37.5);
   --modal--padding: var(--space-base);
-  --modal--border-color: var(--color-grey--lighter);
 }
 
 @media (--medium-screens) {
@@ -40,10 +39,10 @@
   width: 100%;
   max-width: var(--modal--width);
   margin: auto;
-  border: var(--border-base) solid var(--modal--border-color);
+  border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
-  outline-color: var(--color-outline);
-  background-color: var(--color-white);
+  outline-color: var(--color-focus);
+  background-color: var(--color-surface);
 }
 
 /* Adjust `Content` components public padding to match the modal */
@@ -63,7 +62,7 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--modal--padding);
-  background-color: var(--color-grey--lightest);
+  background-color: var(--color-surface--background);
 }
 
 .closeButton {

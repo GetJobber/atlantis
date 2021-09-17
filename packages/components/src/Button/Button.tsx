@@ -4,8 +4,8 @@ import { XOR } from "ts-xor";
 import { Link } from "react-router-dom";
 import { IconNames } from "@jobber/design";
 import styles from "./Button.css";
-import { Typography } from "../Typography";
 import { Icon } from "../Icon";
+import { Typography } from "../Typography";
 
 type ButtonType = "button" | "submit";
 
@@ -27,7 +27,9 @@ interface ButtonFoundationProps {
   readonly label?: string;
   readonly loading?: boolean;
   readonly size?: "small" | "base" | "large";
-  onClick?(): void;
+  onClick?(
+    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
+  ): void;
 }
 
 interface ButtonIconProps extends ButtonFoundationProps {
@@ -54,7 +56,7 @@ interface ButtonLinkProps extends ButtonFoundationProps {
 }
 
 interface BaseActionProps extends ButtonFoundationProps {
-  readonly variation?: "work" | "learning";
+  readonly variation?: "work" | "learning" | "subtle";
   readonly type?: "primary" | "secondary" | "tertiary";
 }
 
@@ -155,29 +157,15 @@ export function Button(props: ButtonProps) {
   return <Tag {...tagProps}>{buttonInternals}</Tag>;
 }
 
-function ButtonInternals({
-  label,
-  icon,
-  variation = "work",
-  type = "primary",
-  disabled,
-  size = "base",
-}: ButtonProps) {
+function ButtonInternals({ label, icon, size = "base" }: ButtonProps) {
   return (
     <>
-      {icon && (
-        <Icon
-          name={icon}
-          size={size}
-          color={getColor(variation, type, disabled)}
-        />
-      )}
+      {icon && <Icon name={icon} size={size} />}
       <Typography
         element="span"
         textCase="uppercase"
         fontWeight="extraBold"
         size={getTypeSizes(size)}
-        textColor={getColor(variation, type, disabled)}
       >
         {label}
       </Typography>
@@ -193,26 +181,5 @@ function getTypeSizes(size: string) {
       return "base";
     default:
       return "small";
-  }
-}
-
-function getColor(variation: string, type: string, disabled?: boolean) {
-  if (type === "primary" && variation !== "cancel" && !disabled) {
-    return "white";
-  }
-
-  if (disabled) {
-    return "grey";
-  }
-
-  switch (variation) {
-    case "learning":
-      return "lightBlue";
-    case "destructive":
-      return "red";
-    case "cancel":
-      return "greyBlue";
-    default:
-      return "green";
   }
 }

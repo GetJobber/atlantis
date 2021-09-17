@@ -30,7 +30,7 @@ exports[`renders 1`] = `
     </div>
     <div
       class="dropZoneBase"
-      tabindex="0"
+      tabindex="-1"
     >
       <input
         accept="image/*"
@@ -44,7 +44,7 @@ exports[`renders 1`] = `
         type="button"
       >
         <span
-          class="base extraBold smaller uppercase green"
+          class="base extraBold smaller uppercase"
         >
           Upload Image
         </span>
@@ -70,7 +70,7 @@ exports[`renders with a provided image 1`] = `
     </div>
     <div
       class="dropZoneBase"
-      tabindex="0"
+      tabindex="-1"
     >
       <input
         accept="image/*"
@@ -84,7 +84,7 @@ exports[`renders with a provided image 1`] = `
         type="button"
       >
         <span
-          class="base extraBold smaller uppercase green"
+          class="base extraBold smaller uppercase"
         >
           Change Image
         </span>
@@ -95,7 +95,7 @@ exports[`renders with a provided image 1`] = `
       type="button"
     >
       <span
-        class="base extraBold smaller uppercase red"
+        class="base extraBold smaller uppercase"
       >
         Remove
       </span>

@@ -37,3 +37,31 @@
 .white {
   color: var(--color-white);
 }
+
+.heading {
+  color: var(--color-heading);
+}
+
+.text {
+  color: var(--color-text);
+}
+
+.textSecondary {
+  color: var(--color-text--secondary);
+}
+
+.critical {
+  color: var(--color-critical--onSurface);
+}
+
+.warning {
+  color: var(--color-warning--onSurface);
+}
+
+.informative {
+  color: var(--color-informative--onSurface);
+}
+
+.success {
+  color: var(--color-success--onSurface);
+}

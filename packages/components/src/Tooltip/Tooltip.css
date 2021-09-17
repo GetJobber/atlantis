@@ -1,5 +1,4 @@
 :root {
-  --tooltip--border-color: var(--color-lightBlue);
   --tooltip--arrow-size: var(--space-small);
   --tooltip--offset: calc(-1 * calc(var(--space-smaller) + 1px));
 }
@@ -19,9 +18,9 @@
   position: relative;
   max-width: calc(var(--base-unit) * 15);
   padding: var(--space-small);
-  border: var(--border-base) solid var(--tooltip--border-color);
+  border: var(--border-base) solid var(--color-informative);
   border-radius: var(--radius-base);
-  background-color: var(--color-lightBlue--lightest);
+  background-color: var(--color-informative--surface);
 }
 
 .tooltip .arrow,
@@ -35,7 +34,7 @@
   content: "";
   display: block;
   position: absolute;
-  border: var(--border-base) solid var(--tooltip--border-color);
+  border: var(--border-base) solid var(--color-informative);
   transform: rotate(45deg);
 }
 

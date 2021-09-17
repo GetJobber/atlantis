@@ -18,7 +18,7 @@ export function Tabs({ children }: TabsProps) {
   const [activeTab, setActiveTab] = useState(0);
   const [overflowRight, setOverflowRight] = useState(false);
   const [overflowLeft, setOverflowLeft] = useState(false);
-  const tabRow = useRef() as MutableRefObject<HTMLDivElement>;
+  const tabRow = useRef() as MutableRefObject<HTMLUListElement>;
 
   const overflowClassNames = classnames(styles.overflow, {
     [styles.overflowRight]: overflowRight,
@@ -30,6 +30,10 @@ export function Tabs({ children }: TabsProps) {
       setActiveTab(index);
     };
   };
+
+  const activeTabProps = (React.Children.toArray(children) as ReactElement[])[
+    activeTab
+  ].props;
 
   const handleOverflowing = () => {
     if (tabRow.current) {
@@ -58,23 +62,26 @@ export function Tabs({ children }: TabsProps) {
   return (
     <div className={styles.tabs}>
       <div className={overflowClassNames}>
-        <div className={styles.tabRow} ref={tabRow}>
-          {React.Children.map(children, (tab, index) => (
-            <InternalTab
-              label={tab.props.label}
-              selected={activeTab === index}
-              activateTab={activateTab(index)}
-              onClick={tab.props.onClick}
-            />
-          ))}
-        </div>
+        <ul role="tablist" className={styles.tabRow} ref={tabRow}>
+          <li role="presentation">
+            {React.Children.map(children, (tab, index) => (
+              <InternalTab
+                label={tab.props.label}
+                selected={activeTab === index}
+                activateTab={activateTab(index)}
+                onClick={tab.props.onClick}
+              />
+            ))}
+          </li>
+        </ul>
       </div>
-      <div className={styles.tabContent}>
-        {
-          (React.Children.toArray(children) as ReactElement[])[activeTab].props
-            .children
-        }
-      </div>
+      <section
+        role="tabpanel"
+        className={styles.tabContent}
+        aria-label={activeTabProps.label}
+      >
+        {activeTabProps.children}
+      </section>
     </div>
   );
 }
@@ -82,7 +89,7 @@ export function Tabs({ children }: TabsProps) {
 interface TabProps {
   readonly label: string;
   readonly children: ReactNode | ReactNode[];
-  onClick?(): void;
+  onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export function Tab({ label }: TabProps) {
@@ -93,7 +100,7 @@ interface InternalTabProps {
   readonly label: string;
   readonly selected: boolean;
   activateTab(): void;
-  onClick?(): void;
+  onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export function InternalTab({
@@ -105,15 +112,16 @@ export function InternalTab({
   },
 }: InternalTabProps) {
   const className = classnames(styles.tab, { [styles.selected]: selected });
-  const color = selected ? "green" : undefined;
+  const color = selected ? "green" : "heading";
   return (
     <button
       type="button"
       role="tab"
+      id={label}
       className={className}
-      onClick={() => {
+      onClick={event => {
         activateTab();
-        onClick();
+        onClick(event);
       }}
     >
       <Typography element="span" size="base" textColor={color}>

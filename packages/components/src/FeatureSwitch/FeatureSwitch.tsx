@@ -17,7 +17,7 @@ interface FeatureSwitchProps {
    * Feature description. This supports basic markdown node types such as
    * `_italic_`, `**bold**`, and `[link name](url)`
    */
-  readonly description: string;
+  readonly description?: string;
 
   /**
    * Determines if the switch is disabled
@@ -92,44 +92,48 @@ export function FeatureSwitch({
         <div className={styles.content}>
           <Content>
             {title && <Heading level={4}>{title}</Heading>}
-            <Text>
-              <Markdown
-                content={description}
-                basicUsage={true}
-                externalLink={externalLink}
-              />
-            </Text>
+            {description && (
+              <Text>
+                <Markdown
+                  content={description}
+                  basicUsage={true}
+                  externalLink={externalLink}
+                />
+              </Text>
+            )}
           </Content>
         </div>
-        <div className={styles.action}>
-          <Switch
-            value={enabled}
-            onChange={handleSwitch}
-            ariaLabel={description}
-            disabled={disabled}
-          />
-          <AnimatePresence>
-            {hasSaveIndicator && savedIndicator && (
-              <motion.div
-                className={styles.savedIndicator}
-                initial={{ y: -4, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -4, opacity: 0 }}
-                transition={{
-                  delay: 0.2,
-                  type: "spring",
-                  damping: 20,
-                  stiffness: 300,
-                }}
-                onAnimationComplete={handleAnimationComplete}
-              >
-                <Text variation="success">
-                  <Emphasis variation="italic">Saved</Emphasis>
-                </Text>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+        {onSwitch && (
+          <div className={styles.action}>
+            <Switch
+              value={enabled}
+              onChange={onSwitch}
+              ariaLabel={description}
+              disabled={disabled}
+            />
+            <AnimatePresence>
+              {hasSaveIndicator && savedIndicator && (
+                <motion.div
+                  className={styles.savedIndicator}
+                  initial={{ y: -4, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -4, opacity: 0 }}
+                  transition={{
+                    delay: 0.2,
+                    type: "spring",
+                    damping: 20,
+                    stiffness: 300,
+                  }}
+                  onAnimationComplete={handleAnimationComplete}
+                >
+                  <Text variation="success">
+                    <Emphasis variation="italic">Saved</Emphasis>
+                  </Text>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        )}
       </div>
 
       {(children || onEdit) && (
@@ -146,10 +150,6 @@ export function FeatureSwitch({
       )}
     </Content>
   );
-
-  function handleSwitch(newValue: boolean) {
-    onSwitch && onSwitch(newValue);
-  }
 
   function shouldShowSavedIndicator() {
     // Check if the component is mounted

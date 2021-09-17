@@ -5,7 +5,7 @@ interface HeadingProps {
   /**
    * @default 5
    */
-  readonly level: 1 | 2 | 3 | 4 | 5;
+  readonly level: 1 | 2 | 3 | 4 | 5 | 6;
   readonly children: ReactNode;
 }
 
@@ -20,32 +20,39 @@ export function Heading({ level = 5, children }: HeadingProps) {
       size: "jumbo",
       textCase: "uppercase",
       fontWeight: "black",
-      textColor: "blue",
+      textColor: "heading",
     },
     2: {
       element: "h2",
       size: "largest",
       textCase: "uppercase",
       fontWeight: "black",
-      textColor: "blue",
+      textColor: "heading",
     },
     3: {
       element: "h3",
       size: "larger",
       fontWeight: "bold",
-      textColor: "blue",
+      textColor: "heading",
     },
     4: {
       element: "h4",
       size: "large",
       fontWeight: "bold",
-      textColor: "blue",
+      textColor: "heading",
     },
     5: {
       element: "h5",
       size: "base",
       fontWeight: "bold",
-      textColor: "blue",
+      textColor: "heading",
+    },
+    6: {
+      element: "h6",
+      size: "small",
+      textCase: "uppercase",
+      fontWeight: "bold",
+      textColor: "heading",
     },
   };
 

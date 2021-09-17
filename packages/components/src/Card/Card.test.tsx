@@ -73,23 +73,23 @@ it("renders a link card", () => {
 it("renders a clickable card", () => {
   const tree = renderer
     .create(
-      <Card accent="green" onClick={() => {}}>
+      <Card accent="green" onClick={jest.fn()}>
         <p>This is a clickable card.</p>
       </Card>,
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-                <div
-                  className="card accent clickable green"
-                  onClick={[Function]}
-                  role="button"
-                  tabIndex={0}
-                >
-                  <p>
-                    This is a clickable card.
-                  </p>
-                </div>
-        `);
+    <div
+      className="card accent clickable green"
+      onClick={[MockFunction]}
+      role="button"
+      tabIndex={0}
+    >
+      <p>
+        This is a clickable card.
+      </p>
+    </div>
+  `);
 });
 
 test("it should should be clickable if it's clickable", () => {

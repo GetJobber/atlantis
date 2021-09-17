@@ -6,6 +6,8 @@ const customPropertiesObject = require("./src/foundation.js");
 const regexExpressions = {
   cssVars: /var\((.*)\)/,
   calculations: /calc\((.*)\)/,
+  rgbVars: /rgb\(var\((.*)\)\)/,
+  rgbaVars: /rgba\(var\((.*)\),?(.*)\)/,
   removeAllNonNumerals: /[^0-9.+\-/*]/gi,
   extractAllVarGroups: /var\(.*?\)/g,
 };
@@ -17,7 +19,7 @@ const resolvedCssVars = getResolvedCSSVars(customProperties);
 const jsonContent =
   "export const JobberStyle = " + JSON.stringify(resolvedCssVars, undefined, 2);
 
-fs.writeFile("./foundation.js", jsonContent, "utf8", function(err) {
+fs.writeFile("./foundation.js", jsonContent, "utf8", function (err) {
   if (err) {
     console.log("An error occured while writing JSON object to File.");
     return console.log(err);
@@ -49,24 +51,46 @@ function jobberStyle(styling) {
 
   //varRegexResult returns --base-unit from var(--base-unit)
   const varRegexResult = regexExpressions.cssVars.exec(styleValue);
+  //rgbVarRegexResult returns --base-unit from rgb(var(--base-unit))
+  const rgbVarRegexResult = regexExpressions.rgbVars.exec(styleValue);
+  //rgbaVarRegexResult returns --base-unit and alpha (if exists) from rgba(var(--base-unit), alpha)
+  const rgbaVarRegexResult = regexExpressions.rgbaVars.exec(styleValue);
 
   //calcRegexResult returns var(--base-unit) / 16 from calc(var(--base-unit) / 16)
   const calcRegexResult = regexExpressions.calculations.exec(styleValue);
   if (calcRegexResult) {
-    const finalExpression = handleExpressionsInCalc(calcRegexResult);
-    // eslint-disable-next-line no-new-func
-    const calculatedValue = new Function(
-      "return " +
-        finalExpression.replace(regexExpressions.removeAllNonNumerals, ""),
-    )();
-    return isSpacingValue(calculatedValue)
-      ? parseFloat(calculatedValue)
-      : calculatedValue;
+    return handleCalc(calcRegexResult);
+  } else if (rgbVarRegexResult) {
+    return jobberStyle(rgbVarRegexResult[1]);
+  } else if (rgbaVarRegexResult) {
+    return handleRbga(rgbaVarRegexResult);
   } else if (varRegexResult) {
     return jobberStyle(varRegexResult[1]);
   } else {
     return isSpacingValue(styleValue) ? parseFloat(styleValue) : styleValue;
   }
+}
+
+function handleCalc(calcRegexResult) {
+  const finalExpression = handleExpressionsInCalc(calcRegexResult);
+  // eslint-disable-next-line no-new-func
+  const calculatedValue = new Function(
+    "return " +
+      finalExpression.replace(regexExpressions.removeAllNonNumerals, ""),
+  )();
+  return isSpacingValue(calculatedValue)
+    ? parseFloat(calculatedValue)
+    : calculatedValue;
+}
+
+function handleRbga(rgbaVarRegexResult) {
+  let resolved = "rgba(" + jobberStyle(rgbaVarRegexResult[1]);
+  if (rgbaVarRegexResult[2]) {
+    resolved += "," + rgbaVarRegexResult[2];
+  }
+  resolved += ")";
+
+  return resolved;
 }
 
 function handleExpressionsInCalc(calcRegexResult) {

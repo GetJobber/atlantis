@@ -9,7 +9,8 @@ import { FormFieldProps } from "../FormField";
 
 type OptionCollection = XOR<Option[], GroupOption[]>;
 
-interface AutocompleteProps {
+interface AutocompleteProps
+  extends Pick<FormFieldProps, "size" | "onBlur" | "onFocus" | "invalid"> {
   /**
    * Initial options to show when user first focuses the Autocomplete
    */
@@ -21,21 +22,11 @@ interface AutocompleteProps {
   readonly value: Option | undefined;
 
   /**
-   * Hint text that goes above the value once the form is filled out.
-   */
-  readonly placeholder: string;
-
-  /**
    * Allow the autocomplete to use values not from the drop down menu.
    *
    * @default true
    */
   readonly allowFreeForm?: boolean;
-
-  /**
-   * Adjusts the input text box to either have small or large height.
-   */
-  readonly size?: FormFieldProps["size"];
 
   /**
    * Debounce in milliseconds for getOptions
@@ -60,15 +51,9 @@ interface AutocompleteProps {
   ): OptionCollection | Promise<OptionCollection>;
 
   /**
-   * Blur behaviour (clicking away from the input text or
-   * hitting escape)
+   * Hint text that goes above the value once the form is filled out.
    */
-  onBlur?(): void;
-
-  /**
-   * Focus behaviour (clicking on the input text)
-   */
-  onFocus?(): void;
+  readonly placeholder: string;
 }
 
 /**
@@ -81,6 +66,7 @@ export function Autocomplete({
   value,
   allowFreeForm = true,
   size = undefined,
+  invalid,
   debounce: debounceRate = 300,
   onChange,
   getOptions,
@@ -90,7 +76,7 @@ export function Autocomplete({
 }: AutocompleteProps) {
   const [options, setOptions] = useState(initialOptions);
   const [menuVisible, setMenuVisible] = useState(false);
-  const [inputText, setInputText] = useState((value && value.label) || "");
+  const [inputText, setInputText] = useState(value?.label ?? "");
 
   const delayedSearch = debounce(updateSearch, debounceRate);
 
@@ -100,11 +86,7 @@ export function Autocomplete({
   }, [inputText]);
 
   useEffect(() => {
-    if (value) {
-      updateInput(value.label);
-    } else {
-      updateInput("");
-    }
+    updateInput(value?.label ?? "");
   }, [value]);
 
   return (
@@ -112,18 +94,21 @@ export function Autocomplete({
       <InputText
         autocomplete={false}
         size={size}
+        invalid={invalid}
         value={inputText}
         onChange={handleInputChange}
         placeholder={placeholder}
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
       />
-      <Menu
-        visible={menuVisible}
-        options={options}
-        selectedOption={value}
-        onOptionSelect={handleMenuChange}
-      />
+      {menuVisible && (
+        <Menu
+          visible={true}
+          options={options}
+          selectedOption={value}
+          onOptionSelect={handleMenuChange}
+        />
+      )}
     </div>
   );
 
@@ -159,11 +144,10 @@ export function Autocomplete({
   function handleInputBlur() {
     setMenuVisible(false);
     if (value == undefined || value.label !== inputText) {
+      setInputText("");
       onChange(undefined);
     }
-    if (onBlur) {
-      onBlur();
-    }
+    onBlur && onBlur();
   }
 
   function handleInputFocus() {
@@ -175,7 +159,7 @@ export function Autocomplete({
 }
 
 function mapToOptions(items: AnyOption[]) {
-  return items.reduce(function(result: AnyOption[], item) {
+  return items.reduce(function (result: AnyOption[], item) {
     result = result.concat([item]);
     if (item.options) {
       result = result.concat(item.options);
