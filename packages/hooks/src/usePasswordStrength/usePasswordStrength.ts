@@ -7,10 +7,10 @@ export function usePasswordStrength(password: string, dictionary?: string[]) {
     score,
     feedback: { warning, suggestions },
     crack_times_display: { offline_fast_hashing_1e10_per_second: timeToCrack },
-  } = useMemo(() => calculateStrength(password, dictionary), [
-    password,
-    dictionary,
-  ]);
+  } = useMemo(
+    () => calculateStrength(password, dictionary),
+    [password, dictionary],
+  );
   return {
     guesses,
     score,
