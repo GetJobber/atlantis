@@ -1,0 +1,8 @@
+:root {
+  --typography--lineHeight-large: 1.34;
+  --typography--lineHeight-base: 1.25;
+  --typography--lineHeight-tight: 1.2;
+  --typography--lineHeight-tighter: 1.143;
+  --typography--lineHeight-tightest: 1.12;
+  --typography--lineHeight-miniscule: 1.08;
+}
