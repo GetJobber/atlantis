@@ -25,7 +25,7 @@ interface LinkCardProps extends CardProps {
 }
 
 interface ClickableCardProps extends CardProps {
-  onClick(event: React.MouseEvent<HTMLElement>): void;
+  onClick(event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>): void;
 }
 
 type CardPropOptions = XOR<CardProps, XOR<LinkCardProps, ClickableCardProps>>;

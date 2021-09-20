@@ -8,6 +8,55 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.5.3...@jobber/hooks@1.6.0) (2021-09-20)
+
+
+### Features
+
+* **eslint:** Update prettier to latest version ([#667](https://github.com/GetJobber/atlantis/issues/667)) ([84e5895](https://github.com/GetJobber/atlantis/commit/84e589542c642b27acd2997af7200b86ba197b7e))
+
+
+
+
+
+## [1.5.3](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.5.2...@jobber/hooks@1.5.3) (2021-09-10)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+## [1.5.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.5.1...@jobber/hooks@1.5.2) (2021-09-10)
+
+
+### Bug Fixes
+
+* **components:** Create a hook to focus back on modal and popover activator ([#638](https://github.com/GetJobber/atlantis/issues/638)) ([4d55a2f](https://github.com/GetJobber/atlantis/commit/4d55a2fda04ddb406770e655bdecfc41cdbb2f8b))
+
+
+
+
+
+## [1.5.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.5.0...@jobber/hooks@1.5.1) (2021-08-31)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+# [1.5.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.4.1...@jobber/hooks@1.5.0) (2021-08-27)
+
+
+### Features
+
+* **hooks:** Implement hook to calculate password strength  ([#622](https://github.com/GetJobber/atlantis/issues/622)) ([dec531b](https://github.com/GetJobber/atlantis/commit/dec531b36e1e12500d6fa1484b779a0d61fe1286))
+
+
+
+
+
 ## [1.4.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.4.0...@jobber/hooks@1.4.1) (2021-08-06)
 
 

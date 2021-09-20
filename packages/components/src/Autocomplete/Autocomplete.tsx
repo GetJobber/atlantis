@@ -9,7 +9,8 @@ import { FormFieldProps } from "../FormField";
 
 type OptionCollection = XOR<Option[], GroupOption[]>;
 
-interface AutocompleteProps {
+interface AutocompleteProps
+  extends Pick<FormFieldProps, "size" | "onBlur" | "onFocus" | "invalid"> {
   /**
    * Initial options to show when user first focuses the Autocomplete
    */
@@ -21,26 +22,11 @@ interface AutocompleteProps {
   readonly value: Option | undefined;
 
   /**
-   * Hint text that goes above the value once the form is filled out.
-   */
-  readonly placeholder: string;
-
-  /**
    * Allow the autocomplete to use values not from the drop down menu.
    *
    * @default true
    */
   readonly allowFreeForm?: boolean;
-
-  /**
-   * Adjusts the input text box to either have small or large height.
-   */
-  readonly size?: FormFieldProps["size"];
-
-  /**
-   * Highlights the field red to indicate an error.
-   */
-  readonly invalid?: FormFieldProps["invalid"];
 
   /**
    * Debounce in milliseconds for getOptions
@@ -65,15 +51,9 @@ interface AutocompleteProps {
   ): OptionCollection | Promise<OptionCollection>;
 
   /**
-   * Blur behaviour (clicking away from the input text or
-   * hitting escape)
+   * Hint text that goes above the value once the form is filled out.
    */
-  onBlur?(): void;
-
-  /**
-   * Focus behaviour (clicking on the input text)
-   */
-  onFocus?(): void;
+  readonly placeholder: string;
 }
 
 /**
