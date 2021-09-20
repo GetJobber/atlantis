@@ -1,6 +1,5 @@
 .chip {
   display: inline-flex;
-  box-shadow: var(--shadow-base);
   box-sizing: border-box;
   padding: var(--space-small);
   border: var(--border-base) solid var(--color-border);
@@ -11,11 +10,12 @@
 }
 
 .clickable {
+  box-shadow: var(--shadow-base);
   cursor: pointer;
 }
 
-.clickable:hover,
-.chip:focus {
+.chip:focus,
+.clickable:hover {
   background-color: var(--color-surface--hover);
 }
 
@@ -23,7 +23,7 @@
   box-shadow: var(--shadow-focus);
 }
 
-.selected {
+.chip.active {
   border-color: var(--color-surface--reverse);
   background-color: var(--color-surface--reverse);
 }

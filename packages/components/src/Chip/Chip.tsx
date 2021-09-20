@@ -1,24 +1,15 @@
 import React from "react";
 import classnames from "classnames";
 import styles from "./Chip.css";
-import { Typography } from "../Typography";
+import { ChipLabel } from "./ChipLabel";
+import { ChipProps } from "./ChipProps";
 
-interface ChipProps {
-  /**
-   * Label of the chip
-   */
-  readonly label: string;
-
-  /**
-   * Callback when the chip itself gets clicked.
-   */
-  onClick?(event: React.MouseEvent<HTMLDivElement>): void;
-}
-
-export function Chip({ label, onClick }: ChipProps) {
+export function Chip({ label, active = false, onClick }: ChipProps) {
   const className = classnames(styles.chip, {
     [styles.clickable]: onClick,
+    [styles.active]: active,
   });
+
   const props = {
     className: className,
     tabindex: 0,
@@ -30,9 +21,7 @@ export function Chip({ label, onClick }: ChipProps) {
 
   return (
     <div {...props}>
-      <Typography element="span" size="base" textColor="textSecondary">
-        {label}
-      </Typography>
+      <ChipLabel label={label} active={active} />
     </div>
   );
 }
