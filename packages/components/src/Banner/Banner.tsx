@@ -42,9 +42,7 @@ export function Banner({
   };
 
   const [bannerRef, { width: bannerWidth = bannerWidths.small }] =
-    useResizeObserver<HTMLDivElement>({
-      widths: bannerWidths,
-    });
+    useResizeObserver<HTMLDivElement>({ widths: bannerWidths });
 
   const iconColors: IconColorMap = {
     notice: "lightBlue",

@@ -105,6 +105,7 @@
     "ie >= 11"
   ],
   "dependencies": {
-    "@std-proposal/temporal": "0.0.1"
+    "@std-proposal/temporal": "0.0.1",
+    "ts-xor": "^1.0.8"
   }
 }
