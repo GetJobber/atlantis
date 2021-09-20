@@ -9,6 +9,8 @@ import { Heading } from "@jobber/components/Heading";
 import { Text } from "@jobber/components/Text";
 import { Emphasis } from "@jobber/components/Emphasis";
 import { Content } from "@jobber/components/Content";
+import { Button } from "@jobber/components/Button";
+import { Checkbox } from "@jobber/components/Checkbox";
 
 # Typography
 
@@ -50,11 +52,32 @@ all of Jobber's platforms. It has a heft that makes it especially well-suited
 for high-level headings, and its' association with our brand makes it effective
 for labeling our [Buttons](/components/button).
 
+<Playground>
+  <Content>
+    <Heading level={2}>Poppins is used for bold statements</Heading>
+    <Button label="And punchy labels"></Button>
+  </Content>
+</Playground>
+
 ### Base
 
 [Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+Pro) is our most
 broadly-used typeface. It is used for body copy, most headings, data display,
 form inputs, labels, and more!
+
+<Playground>
+  <Content>
+    <Heading level={3}>Source Sans Pro is for less prominent headings</Heading>
+    <Text>
+      You can also use it for longer, more readable statements in paragraphs,
+      descriptive text, in lists, and more.
+    </Text>
+    <Checkbox
+      checked
+      label="Source Sans Pro can label inputs nicely"
+    ></Checkbox>
+  </Content>
+</Playground>
 
 ## Font sizes
 
