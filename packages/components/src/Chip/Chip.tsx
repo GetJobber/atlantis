@@ -31,8 +31,9 @@ export function Chip({
   disabled = false,
   onClick,
 }: ChipProps) {
+  const isClickable = onClick && !disabled;
   const className = classnames(styles.chip, {
-    [styles.clickable]: onClick,
+    [styles.clickable]: isClickable,
     [styles.active]: active,
     [styles.disabled]: disabled,
   });
@@ -40,10 +41,11 @@ export function Chip({
   const props = {
     className: className,
     tabindex: 0,
-    ...(onClick && {
+    ...(isClickable && {
       onClick: onClick,
       role: "button",
     }),
+    "aria-disabled": disabled,
   };
 
   return (
