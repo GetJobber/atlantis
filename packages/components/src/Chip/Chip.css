@@ -4,6 +4,7 @@
   padding: var(--space-small);
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-larger);
+  color: var(--color-text--secondary);
   background-color: var(--color-surface);
   transition: all var(--timing-base) ease-in-out;
   align-items: center;
@@ -25,11 +26,15 @@
 
 .chip.active {
   border-color: var(--color-surface--reverse);
+  color: var(--color-text--reverse);
   background-color: var(--color-surface--reverse);
 }
 
+/* TODO: Confirm that there's no active + disabled styling */
+
 .disabled {
   border-color: var(--color-disabled);
+  color: var(--color-disabled);
   background-color: var(--color-disabled--secondary);
 }
 

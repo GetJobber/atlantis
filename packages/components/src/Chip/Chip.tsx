@@ -1,13 +1,40 @@
 import React from "react";
 import classnames from "classnames";
 import styles from "./Chip.css";
-import { ChipLabel } from "./ChipLabel";
-import { ChipProps } from "./ChipProps";
+import { Typography } from "../Typography";
 
-export function Chip({ label, active = false, onClick }: ChipProps) {
+interface ChipProps {
+  /**
+   * Label of the chip
+   */
+  readonly label: string;
+
+  /**
+   * Changes the style of the chip to look different than the default
+   */
+  readonly active?: boolean;
+
+  /**
+   * Makes the chip look and feels uninteractable
+   */
+  readonly disabled?: boolean;
+
+  /**
+   * Callback when the chip itself gets clicked.
+   */
+  onClick?(event: React.MouseEvent<HTMLDivElement>): void;
+}
+
+export function Chip({
+  label,
+  active = false,
+  disabled = false,
+  onClick,
+}: ChipProps) {
   const className = classnames(styles.chip, {
     [styles.clickable]: onClick,
     [styles.active]: active,
+    [styles.disabled]: disabled,
   });
 
   const props = {
@@ -21,7 +48,9 @@ export function Chip({ label, active = false, onClick }: ChipProps) {
 
   return (
     <div {...props}>
-      <ChipLabel label={label} active={active} />
+      <Typography element="span" size="base">
+        {label}
+      </Typography>
     </div>
   );
 }
