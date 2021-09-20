@@ -7,6 +7,7 @@ showDirectoryLink: true
 
 import { Playground, Props } from "docz";
 import { Chip } from ".";
+import { Content } from "@jobber/components/Content";
 
 # Chip
 
@@ -15,7 +16,14 @@ import { Chip } from "@jobber/components/Chip";
 ```
 
 <Playground>
-  <Chip text="Bob" />
+  <Content>
+    <Content>
+      <Chip label="Custom" />
+    </Content>
+    <Content>
+      <Chip label="Darryl Tec" />
+    </Content>
+  </Content>
 </Playground>
 
 <!--
