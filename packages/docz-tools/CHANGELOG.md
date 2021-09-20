@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.7.12...@jobber/docz-tools@1.8.0) (2021-09-20)
+
+
+### Features
+
+* **eslint:** Update prettier to latest version ([#667](https://github.com/GetJobber/atlantis/issues/667)) ([84e5895](https://github.com/GetJobber/atlantis/commit/84e589542c642b27acd2997af7200b86ba197b7e))
+
+
+
+
+
 ## [1.7.12](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.7.11...@jobber/docz-tools@1.7.12) (2021-09-15)
 
 **Note:** Version bump only for package @jobber/docz-tools
