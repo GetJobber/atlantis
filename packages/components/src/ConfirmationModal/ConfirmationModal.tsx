@@ -5,6 +5,7 @@ import React, {
   useImperativeHandle,
   useReducer,
 } from "react";
+import { useOnKeyDown } from "@jobber/hooks";
 import { Modal } from "../Modal";
 import { Content } from "../Content";
 import { Markdown } from "../Markdown";
@@ -198,6 +199,8 @@ export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
     });
   }, [title, message, confirmLabel, cancelLabel, onConfirm, onCancel]);
 
+  useOnKeyDown(handleKeyboardShortcut, ["Escape", "Enter"]);
+
   return (
     <Modal
       title={state.title}
@@ -206,20 +209,45 @@ export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
       dismissible={false}
       primaryAction={{
         label: state.confirmLabel,
-        onClick: () => {
-          dispatch({ type: "confirm" });
-          onRequestClose && onRequestClose();
-        },
+        onClick: handleAction("confirm"),
       }}
       secondaryAction={{
         label: state.cancelLabel,
-        onClick: () => {
-          dispatch({ type: "cancel" });
-          onRequestClose && onRequestClose();
-        },
+        onClick: handleAction("cancel"),
       }}
     >
       <Content>{state.message && <Markdown content={state.message} />}</Content>
     </Modal>
   );
+
+  function handleAction(type: "confirm" | "cancel") {
+    return () => {
+      dispatch({ type });
+      onRequestClose && onRequestClose();
+    };
+  }
+
+  // eslint-disable-next-line max-statements
+  function handleKeyboardShortcut(event: KeyboardEvent) {
+    const { metaKey, ctrlKey, key, target } = event;
+    if (!open) return;
+
+    const shouldTriggerShortcut =
+      target instanceof HTMLButtonElement ? metaKey || ctrlKey : true;
+
+    if (!shouldTriggerShortcut) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    switch (key) {
+      case "Enter": {
+        handleAction("confirm")();
+        break;
+      }
+      case "Escape": {
+        handleAction("cancel")();
+        break;
+      }
+    }
+  }
 });
