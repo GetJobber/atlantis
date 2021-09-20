@@ -72,6 +72,8 @@ module.exports = {
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-non-null-assertion": "error",
     "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
+    "@typescript-eslint/no-unused-expressions": ["error", { allowShortCircuit: true }],
+    "@typescript-eslint/no-empty-function": "error",
     curly: ["error", "multi-line", "consistent"],
     "prefer-const": "error",
     "dot-notation": "error",

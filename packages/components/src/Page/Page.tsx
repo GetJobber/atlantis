@@ -71,10 +71,8 @@ export function Page({
   moreActionsMenu = [],
 }: PageProps) {
   const pageStyles = classnames(styles.page, styles[width]);
-  const [
-    titleBarRef,
-    { width: titleBarWidth = Breakpoints.large },
-  ] = useResizeObserver<HTMLDivElement>();
+  const [titleBarRef, { width: titleBarWidth = Breakpoints.large }] =
+    useResizeObserver<HTMLDivElement>();
 
   const titleBarClasses = classnames(styles.titleBar, {
     [styles.small]: titleBarWidth > Breakpoints.smaller,

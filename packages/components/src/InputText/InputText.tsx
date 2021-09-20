@@ -1,25 +1,34 @@
 import React, { Ref, createRef, forwardRef, useImperativeHandle } from "react";
 import { XOR } from "ts-xor";
-import { FieldActionsRef, FormField, FormFieldProps } from "../FormField";
+import {
+  CommonFormFieldProps,
+  FieldActionsRef,
+  FormField,
+  FormFieldProps,
+} from "../FormField";
 
 interface RowRange {
   min: number;
   max: number;
 }
 
-/**
- * The following is the same as:
- *   type BaseProps = Omit<FormFieldProps, "type" | "children">;
- * Unfortunately Docz doesn't currently support Omit so it has been reduced to
- * its component parts.
- */
-type BaseProps = Pick<
-  FormFieldProps,
-  Exclude<
-    keyof FormFieldProps,
-    "type" | "children" | "rows" | "min" | "max" | "actionsRef"
-  >
->;
+interface BaseProps
+  extends CommonFormFieldProps,
+    Pick<
+      FormFieldProps,
+      | "maxLength"
+      | "readonly"
+      | "autocomplete"
+      | "keyboard"
+      | "onEnter"
+      | "onFocus"
+      | "onBlur"
+      | "onChange"
+      | "inputRef"
+      | "validations"
+    > {
+  multiline?: boolean;
+}
 
 export interface InputTextRef {
   insert(text: string): void;

@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.4.3...@jobber/generators@0.5.0) (2021-09-03)
+
+
+### Features
+
+* **components:** Add `event` argument to onClick events ([#631](https://github.com/GetJobber/atlantis/issues/631)) ([961e0dc](https://github.com/GetJobber/atlantis/commit/961e0dccaabfdc68b4248c043f40beb054cb1543))
+
+
+
+
+
 ## [0.4.3](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.4.2...@jobber/generators@0.4.3) (2021-04-07)
 
 **Note:** Version bump only for package @jobber/generators

@@ -207,7 +207,7 @@ export interface ActionProps {
   /**
    * Callback when an action gets clicked
    */
-  onClick?(): void;
+  onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 function Action({ label, icon, onClick }: ActionProps) {
