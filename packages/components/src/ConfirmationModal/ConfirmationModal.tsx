@@ -227,7 +227,6 @@ export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
     };
   }
 
-  // eslint-disable-next-line max-statements
   function handleKeyboardShortcut(event: KeyboardEvent) {
     const { metaKey, ctrlKey, key, target } = event;
     if (!open) return;
