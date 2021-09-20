@@ -4,9 +4,11 @@ menu: Design
 route: /typography
 ---
 
+import { Playground } from "docz";
 import { Heading } from "@jobber/components/Heading";
 import { Text } from "@jobber/components/Text";
 import { Emphasis } from "@jobber/components/Emphasis";
+import { Content } from "@jobber/components/Content";
 
 # Typography
 
@@ -20,15 +22,17 @@ The Atlantis typography system is based on the core components of
 [Text](/packages-components-src-text-text).
 
 <Playground>
-  <Heading>
-    A <Emphasis variation="highlight">prominent</Emphasis> heading
-  </Heading>
-  <Text>
-    A longer body of text that's better suited for readabilty at smaller sizes.
-    Typically a paragraph should be displayed in a typeface that has a moderate
-    weight, and is <Emphasis variation="italic">relatively</Emphasis> free of
-    flourish.
-  </Text>
+  <Content>
+    <Heading level={1}>
+      A <Emphasis variation="highlight">prominent</Emphasis> heading
+    </Heading>
+    <Text>
+      A longer body of text that's better suited for readabilty at smaller
+      sizes. Typically a paragraph should be displayed in a typeface that has a
+      moderate weight, and is <Emphasis variation="italic">relatively</Emphasis>{" "}
+      free of flourish.
+    </Text>
+  </Content>
 </Playground>
 
 Heading and Text are extended by the ability to add
