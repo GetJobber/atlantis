@@ -46,16 +46,8 @@
   color: var(--color-text);
 }
 
-.textReverse {
-  color: var(--color-text--reverse);
-}
-
 .textSecondary {
   color: var(--color-text--secondary);
-}
-
-.textSecondaryReverse {
-  color: var(--color-text--reverse--secondary);
 }
 
 .critical {
