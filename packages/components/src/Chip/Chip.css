@@ -1,72 +1,45 @@
 .chip {
-  /* variables */
-  --chip-border-size: var(--space-minuscule);
-  --chip-border-radius: var(--space-small);
-  --chip-border-color: var(--color-grey--lighter);
-  --chip-border-color--disabled: var(--color-disabled);
-  --chip-text-color: var(--color-greyBlue--light);
-  --chip-text-color--selected: var(--color-white);
-  --chip-text-color--disabled: var(--color-disabled--secondary);
-  --chip-item-spacing: var(--space-small);
-  --chip-padding--vertical: var(--space-smallest);
-  --chip-padding--horizontal: var(--space-small);
-  --chip-surface-color: var(--color-surface--background);
-  --chip-surface-color--hover: var(--color-surface--hover);
-  --chip-surface-color--selected: var(--color-surface--reverse);
-  --chip-surface-color--disabled: var(--color-disabled);
-  --chip-dismissible-surface-color--selected: var(--color-white);
-  --chip-dismissible-surface-color--selected-hover: var(--color-grey);
-  --chip-padding: var(--chip-padding--vertical) var(--chip-padding--horizontal);
-  --chip-shadow: var(--shadow-low);
-  --chip-shadow--hover: var(--shadow-base);
-  --chip-shadow--focus: var(--shadow-focus);
-  --chip-transitions: all var(--timing-base) ease-in-out;
-
   /* base chip */
   display: flex;
   max-width: fit-content;
-  /*box-shadow: var(--chip-shadow);*/
-  padding: var(--chip-padding);
-  border: var(--chip-border-size) solid var(--chip-border-color);
-  border-radius: var(--chip-border-radius);
-  background-color: var(--color-white);
-  transition: var(--chip-transitions);
+  box-shadow: var(--shadow-base);
+  padding: var(--space-smaller) var(--space-small);
+  border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-base);
+  background-color: var(--color-surface);
+  transition: all var(--timing-base) ease-in-out;
   align-items: center;
-  gap: var(--chip-item-spacing);
-}
-
-.chip p {
-  color: var(--chip-text-color);
-  /*font-weight: 700;*/
-  user-select: none;
-}
-
-/* button chip */
-
-.button {
+  gap: var(--space-small);
   cursor: pointer;
 }
 
-.button:hover {
-  --chip-shadow: var(--chip-shadow--hover);
-  --chip-surface-color: var(--chip-surface-color--hover);
+.chip:hover,
+.chip:focus {
+  background-color: var(--color-surface--hover);
 }
 
-.button:focus {
-  --chip-shadow: var(--chip-shadow--focus);
+.chip:focus {
+  box-shadow: var(--shadow-focus);
 }
 
 /* selected chip */
 
-.selected {
-  --chip-surface-color: var(--chip-surface-color--selected);
-  --chip-text-color: var(--chip-text-color--selected);
+.chip.selected {
+  background-color: var(--color-surface--reverse);
+  border-color: var(--color-surface--reverse);
+}
+
+.chip.selected p {
+  color: var(--color-text--reverse);
 }
 
 /* disabled chip */
 
 .disabled {
-  --chip-surface-color: var(--chip-surface-color--disabled);
-  --chip-text-color: var(--chip-text-color--disabled);
-  --chip-border-color: var(--chip-border-color--disabled);
+  background-color: var(--color-disabled--secondary);
+  border-color: var(--color-disabled);
+}
+
+.disabled p {
+  color: var(--color-disabled);
 }

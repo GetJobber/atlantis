@@ -12,18 +12,17 @@ export function Chip(props: ChipProps) {
   const isButton = onClick != undefined && !disabled && !selected;
   const chipClassNames = classnames(styles.chip, {
     [styles.selected]: selected,
-    [styles.button]: isButton,
     [styles.disabled]: disabled,
   });
-  const Wrapper = isButton ? "span" : "span";
+
   return (
-    <Wrapper
+    <button
       className={chipClassNames}
       onClick={handleOnClick}
-      {...(isButton && { "aria-label": label, onClick: handleOnClick })}
+      aria-label={label}
     >
       <InternalChip {...props} />
-    </Wrapper>
+    </button>
   );
 
   function handleOnClick(event: React.MouseEvent<HTMLElement>) {
@@ -41,9 +40,10 @@ function InternalChip({
 }: ChipProps) {
   return (
     <>
-      {icon && <Icon name={icon} {...(selected && { color: "white" })} />}
       {avatar && <Avatar {...avatar} size="small" />}
-      <Text>{label}</Text>
+      {icon && <Icon name={icon} {...(selected && { color: "white" })} />}
+      <Text variation="subdued">{label}</Text>
+      {selected && <Icon name="checkmark" color="white" />}
       {dismissAction && !disabled && <DismissAction {...dismissAction} />}
     </>
   );
