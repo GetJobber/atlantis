@@ -7,10 +7,10 @@
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
   background-color: var(--color-surface);
+  cursor: pointer;
   transition: all var(--timing-base) ease-in-out;
   align-items: center;
   gap: var(--space-small);
-  cursor: pointer;
 }
 
 .chip:hover,
@@ -25,8 +25,8 @@
 /* selected chip */
 
 .chip.selected {
-  background-color: var(--color-surface--reverse);
   border-color: var(--color-surface--reverse);
+  background-color: var(--color-surface--reverse);
 }
 
 .chip.selected p {
@@ -36,8 +36,8 @@
 /* disabled chip */
 
 .disabled {
-  background-color: var(--color-disabled--secondary);
   border-color: var(--color-disabled);
+  background-color: var(--color-disabled--secondary);
 }
 
 .disabled p {
