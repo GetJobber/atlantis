@@ -21,7 +21,10 @@ import { Chip } from "@jobber/components/Chip";
       <Chip label="Custom" />
     </Content>
     <Content>
-      <Chip label="Darryl Tec" />
+      <Chip label="Active" active={true} />
+    </Content>
+    <Content>
+      <Chip label="Darryl Tec" onClick={e => alert("🍪")} />
     </Content>
   </Content>
 </Playground>
