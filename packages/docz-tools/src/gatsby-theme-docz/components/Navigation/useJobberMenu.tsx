@@ -24,10 +24,10 @@ export function useJobberMenu(query?: string) {
     .reduce((entries, item) => {
       if (item.menu && typeof item.menu !== "string") {
         item.menu.forEach(menuItem =>
-          entries.push((menuItem as unknown) as Entry),
+          entries.push(menuItem as unknown as Entry),
         );
       } else {
-        entries.push((item as unknown) as Entry);
+        entries.push(item as unknown as Entry);
       }
       return entries;
     }, [] as Entry[])
