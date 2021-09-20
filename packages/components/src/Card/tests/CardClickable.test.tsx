@@ -36,7 +36,7 @@ it("should trigger the click event only after spacebar press", () => {
   expect(clickHandler).toHaveBeenCalledTimes(1);
 });
 
-it("should not trigger the click eventon eneter press when the card is not focused", () => {
+it("should not trigger the click event on enter press when the card is not focused", () => {
   const clickHandler = jest.fn();
 
   const { getByTestId } = render(
