@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.47.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.47.0...@jobber/components@2.47.1) (2021-09-20)
+
+
+### Bug Fixes
+
+* **components:** Show tooltip on focus and let the screen readers announce the message [JOB-26479] ([#620](https://github.com/GetJobber/atlantis/issues/620)) ([dd03613](https://github.com/GetJobber/atlantis/commit/dd036137f563f073b938a3cd948dcf6ca33b0c7f))
+
+
+
+
+
 # [2.47.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.46.9...@jobber/components@2.47.0) (2021-09-20)
 
 
