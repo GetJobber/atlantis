@@ -1,1 +1,77 @@
-# For Chris to fill out
+---
+name: Typography
+menu: Design
+route: /typography
+---
+
+import { Heading } from "@jobber/components/Heading";
+import { Text } from "@jobber/components/Text";
+import { Emphasis } from "@jobber/components/Emphasis";
+
+# Typography
+
+When a designer is talking about "type", it's unlikely they're asking about the
+latest Typescript linting rules! Typography is a core aspect of any user
+interface, and we've built a system that should make it simple for our
+interfaces to be built with consistent, considered typographic elements.
+
+The Atlantis typography system is based on the core components of
+[Heading](/packages-components-src-heading-heading) and
+[Text](/packages-components-src-text-text).
+
+<Playground>
+  <Heading>
+    A <Emphasis variation="highlight">prominent</Emphasis> heading
+  </Heading>
+  <Text>
+    A longer body of text that's better suited for readabilty at smaller sizes.
+    Typically a paragraph should be displayed in a typeface that has a moderate
+    weight, and is <Emphasis variation="italic">relatively</Emphasis> free of
+    flourish.
+  </Text>
+</Playground>
+
+Heading and Text are extended by the ability to add
+[Emphasis](/packages-components-src-emphasis-emphasis) to these components as
+needed.
+
+There are some foundational elements that make up these components:
+
+## Font families
+
+### Display
+
+[Poppins](https://fonts.google.com/specimen/Poppins) is our display face across
+all of Jobber's platforms. It has a heft that makes it especially well-suited
+for high-level headings, and its' association with our brand makes it effective
+for labeling our [Buttons](/components/button).
+
+### Base
+
+[Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+Pro) is our most
+broadly-used typeface. It is used for body copy, most headings, data display,
+form inputs, labels, and more!
+
+## Font sizes
+
+Our base font-size is based on our [Spacing](/space) scale for a consistent
+sizing rhythm across Jobber. At its' default zoom level, the equivalent is
+`16px`. While this is higher than in some systems where `14` may be more common,
+Source Sans Pro is optically a bit smaller, particularly at the x-height, so we
+start with `16` and work our way up and down from there.
+
+## Line height
+
+Line height, or
+[leading](https://www.shillingtoneducation.com/blog/leading-typography/), is the
+space between subsequent lines of type.
+
+Our base line-height of `1.25` is optimized for reading multiple lines of
+`Text`. From the base, we have options for tighter or larger line-heights that
+will vary as you move up and down the size scale.
+
+As our `Headings` get larger, we reduce our line-height as...
+
+- the user is unlikely to be reading multiple lines of a level 1 `Heading`
+- the larger font-sizes of Poppins at that scale are easier to read and do not
+  require as much line-to-line distinction
