@@ -17,7 +17,7 @@ export function ButtonDismiss({ onClick, ariaLabel }: ButtonDismissProps) {
         icon="remove"
         onClick={onClick}
         type="tertiary"
-        variation="cancel"
+        variation="subtle"
       />
     </div>
   );

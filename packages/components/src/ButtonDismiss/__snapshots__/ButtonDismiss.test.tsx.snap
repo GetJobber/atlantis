@@ -6,7 +6,7 @@ exports[`renders a ButtonDismiss 1`] = `
 >
   <button
     aria-label="Close"
-    className="button base onlyIcon cancel tertiary"
+    className="button base onlyIcon subtle tertiary"
     disabled={false}
     type="button"
   >

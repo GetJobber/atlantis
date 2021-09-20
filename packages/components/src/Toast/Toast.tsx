@@ -80,7 +80,7 @@ export function Toast({
                 ariaLabel={"Hide Notification"}
                 onClick={handleToastClose}
                 type="tertiary"
-                variation="cancel"
+                variation="subtle"
               />
             </div>
           </div>

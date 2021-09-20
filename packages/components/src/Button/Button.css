@@ -71,9 +71,8 @@ a.button:active {
   --button--color-variation--hover: var(--color-destructive--hover);
 }
 
-/* Cancel is special because, by default, it's styled as a secondary button */
+/* Subtle is special because, by default, it's styled as a secondary button */
 
-.cancel,
 .subtle {
   --button--color-variation: var(--color-interactive--subtle);
   --button--color-variation--hover: var(--color-interactive--subtle--hover);
@@ -81,20 +80,19 @@ a.button:active {
 
 /* Type */
 
-.primary:not(.cancel, .subtle, .disabled),
-.primary:not(.cancel, .subtle, .disabled):hover,
-.primary:not(.cancel, .subtle, .disabled):focus {
+.primary:not(.subtle, .disabled),
+.primary:not(.subtle, .disabled):hover,
+.primary:not(.subtle, .disabled):focus {
   color: var(--button--color-primaryLabel);
   background-color: var(--button--color-variation);
   fill: var(--button--color-primaryLabel);
 }
 
-.primary:not(.cancel, .subtle, .disabled):hover,
-.primary:not(.cancel, .subtle, .disabled):focus {
+.primary:not(.subtle, .disabled):hover,
+.primary:not(.subtle, .disabled):focus {
   background-color: var(--button--color-variation--hover);
 }
 
-.cancel.primary,
 .subtle.primary {
   color: var(--button--color-variation);
   fill: var(--button--color-variation);
@@ -106,8 +104,6 @@ a.button:active {
   border-color: var(--button--color-variation);
 }
 
-.cancel.primary:hover,
-.cancel.primary:focus,
 .subtle.primary:hover,
 .subtle.primary:focus {
   color: var(--button--color-variation--hover);
@@ -140,7 +136,7 @@ a.subtle.secondary:focus {
   border-color: transparent;
 }
 
-.subtle {
+.subtle.tertiary {
   border-color: transparent;
   background-color: transparent;
 }
@@ -244,7 +240,7 @@ a.button.disabled:hover {
   animation-timing-function: linear;
 }
 
-.primary.loading:not(.cancel, .subtle) {
+.primary.loading:not(.subtle) {
   background-image: linear-gradient(
     135deg,
     rgba(255, 255, 255, 25%) 0%,

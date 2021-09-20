@@ -2,7 +2,6 @@ export const button: string;
 export const work: string;
 export const learning: string;
 export const destructive: string;
-export const cancel: string;
 export const subtle: string;
 export const primary: string;
 export const disabled: string;

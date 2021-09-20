@@ -134,7 +134,7 @@ function Actions({ primary, secondary, tertiary }: ActionsProps) {
 
   if (secondary != undefined) {
     secondary = Object.assign(
-      { type: "secondary", variation: "cancel" },
+      { type: "primary", variation: "subtle" },
       secondary,
     );
   }

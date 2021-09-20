@@ -36,7 +36,7 @@ exports[`Button Variations modal shows with primary learning button 1`] = `
       >
         <button
           aria-label="Close modal"
-          className="button base onlyIcon cancel tertiary"
+          className="button base onlyIcon subtle tertiary"
           disabled={false}
           type="button"
         >
@@ -76,7 +76,7 @@ exports[`Button Variations modal shows with primary learning button 1`] = `
           </span>
         </button>
         <button
-          className="button base cancel secondary"
+          className="button base subtle primary"
           disabled={false}
           type="button"
         >
