@@ -32,7 +32,7 @@
 
 /* TODO: Confirm that there's no active + disabled styling */
 
-.disabled {
+.chip.disabled {
   border-color: var(--color-disabled);
   color: var(--color-disabled);
   background-color: var(--color-disabled--secondary);
