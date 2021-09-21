@@ -6,7 +6,7 @@ showDirectoryLink: true
 ---
 
 import { Playground, Props } from "docz";
-import { Chip } from ".";
+import { Chip, ChipAvatar } from ".";
 import { Content } from "@jobber/components/Content";
 
 # Chip
@@ -29,6 +29,13 @@ import { Chip } from "@jobber/components/Chip";
     <Content>
       <Chip label="Darryl Tec" onClick={e => alert("🍪")} />
     </Content>
+    <Content>
+      <Chip
+        avatar={<ChipAvatar initials="DT" />}
+        label="Darryl Tec"
+        onClick={e => alert("🍪")}
+      />
+    </Content>
   </Content>
 </Playground>
 
@@ -43,14 +50,18 @@ import { Chip } from "@jobber/components/Chip";
 
 ## Props
 
+### Chip
+
 <Props of={Chip} />
 
+### ChipAvatar
+
+<Props of={ChipAvatar} />
 <!--
   It is not necessary to provide an example of each prop. Use usage examples to
   highlight key features of a component or particular considerations.
 
-  See `Button.mdx` for a good example of this.
--->
+See `Button.mdx` for a good example of this. -->
 
 ## Usage Guidelines
 
