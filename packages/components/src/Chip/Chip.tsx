@@ -4,6 +4,7 @@ import { XOR } from "ts-xor";
 import styles from "./Chip.css";
 import { ChipAvatar, ChipAvatarProps } from "./ChipAvatar";
 import { ChipIcon, ChipIconProps } from "./ChipIcon";
+import { useAssert } from "./useAssert";
 import { Typography } from "../Typography";
 
 interface ChipBaseProps {
@@ -29,10 +30,28 @@ interface ChipBaseProps {
 }
 
 interface ChipWithAvatarProps extends ChipBaseProps {
+  /**
+   * Adds a small avatar on the left side of the label.
+   * **Note: You can only add either an avatar or icon but not both.**
+   *
+   * **Example**
+   * ```
+   * <Chip avatar={<ChipAvatar initials="JBBR" />} />
+   * ```
+   */
   readonly avatar?: ReactElement<ChipAvatarProps>;
 }
 
 interface ChipWithIconProps extends ChipBaseProps {
+  /**
+   * Adds an icon on the left side of the label.
+   * **Note: You can only add either an avatar or icon but not both.**
+   *
+   * **Example**
+   * ```
+   * <Chip avatar={<ChipIcon name="quote" />} />
+   * ```
+   */
   readonly icon?: ReactElement<ChipIconProps>;
 }
 
@@ -46,13 +65,7 @@ export function Chip({
   disabled = false,
   onClick,
 }: ChipProps) {
-  if (avatar && avatar.type !== ChipAvatar) {
-    throw new Error("`avatar` prop only accepts `<ChipAvatar />` component");
-  }
-  if (icon && icon.type !== ChipIcon) {
-    throw new Error("`icon` prop only accepts `<ChipIconProps />` component");
-  }
-
+  assertProps();
   const isClickable = onClick && !disabled;
   const className = classnames(styles.chip, {
     [styles.clickable]: isClickable,
@@ -80,4 +93,15 @@ export function Chip({
       </Typography>
     </div>
   );
+
+  function assertProps() {
+    useAssert(
+      !!avatar && avatar.type !== ChipAvatar,
+      "`avatar` prop only accepts `<ChipAvatar />` component",
+    );
+    useAssert(
+      !!icon && icon.type !== ChipIcon,
+      "`icon` prop only accepts `<ChipIconProps />` component",
+    );
+  }
 }
