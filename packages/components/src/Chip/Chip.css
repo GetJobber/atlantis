@@ -1,6 +1,7 @@
 .chip {
   display: inline-grid;
   grid-template-columns: max-content;
+  align-items: center;
   gap: var(--space-small);
   box-sizing: border-box;
   padding: var(--space-small);
@@ -9,7 +10,6 @@
   color: var(--color-text--secondary);
   background-color: var(--color-surface);
   transition: all var(--timing-base) ease-in-out;
-  align-items: center;
 }
 
 .hasPrefix {

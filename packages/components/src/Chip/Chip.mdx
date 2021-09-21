@@ -6,7 +6,7 @@ showDirectoryLink: true
 ---
 
 import { Playground, Props } from "docz";
-import { Chip, ChipAvatar } from ".";
+import { Chip, ChipAvatar, ChipIcon } from ".";
 import { Content } from "@jobber/components/Content";
 
 # Chip
@@ -36,6 +36,13 @@ import { Chip } from "@jobber/components/Chip";
         onClick={e => alert("🍪")}
       />
     </Content>
+    <Content>
+      <Chip
+        icon={<ChipIcon name="quote" />}
+        label="Darryl Tec"
+        onClick={e => alert("🍪")}
+      />
+    </Content>
   </Content>
 </Playground>
 
@@ -57,6 +64,11 @@ import { Chip } from "@jobber/components/Chip";
 ### ChipAvatar
 
 <Props of={ChipAvatar} />
+
+### ChipIcon
+
+<Props of={ChipIcon} />
+
 <!--
   It is not necessary to provide an example of each prop. Use usage examples to
   highlight key features of a component or particular considerations.
