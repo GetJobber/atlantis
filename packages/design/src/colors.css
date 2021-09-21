@@ -170,5 +170,5 @@
   --color-indigo--dark: rgb(55, 69, 132);
 
   --color-white--rgb: 255, 255, 255;
-  --color-white: rgba(var(--color-white--rgb));
+  --color-white: rgb(var(--color-white--rgb));
 }
