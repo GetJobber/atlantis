@@ -1,5 +1,7 @@
 .chip {
-  display: inline-flex;
+  display: inline-grid;
+  grid-template-columns: max-content;
+  gap: var(--space-small);
   box-sizing: border-box;
   padding: var(--space-small);
   border: var(--border-base) solid var(--color-border);
@@ -8,6 +10,11 @@
   background-color: var(--color-surface);
   transition: all var(--timing-base) ease-in-out;
   align-items: center;
+}
+
+.hasPrefix {
+  grid-template-columns: min-content max-content;
+  padding: calc(var(--space-smaller) + var(--space-smallest)) var(--space-small);
 }
 
 .clickable {
