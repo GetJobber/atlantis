@@ -1,0 +1,47 @@
+---
+name: Countdown
+menu: Components
+route: /components/countdown
+showDirectoryLink: true
+---
+
+import { Playground, Props } from "docz";
+import { Countdown } from ".";
+import { useMemo } from "react";
+
+# Countdown
+
+```ts
+import { Countdown } from "@jobber/components/Countdown";
+```
+
+<Playground>
+  {() => {
+    const inFiveMinutes = useMemo(
+      () => new Date(new Date().getTime() + 5 * 60000),
+      []
+    );
+    return <Countdown date={inFiveMinutes} />;
+  }}
+</Playground>
+
+## Props
+
+<Props of={Countdown} />
+
+## On Complete
+
+<Playground>
+  {() => {
+    const inTenSeconds = useMemo(
+      () => new Date(new Date().getTime() + 10 * 1000),
+      []
+    );
+    return (
+      <Countdown
+        date={inTenSeconds}
+        onComplete={() => alert("Completed Timer!")}
+      />
+    );
+  }}
+</Playground>
