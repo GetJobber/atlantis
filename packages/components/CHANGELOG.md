@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.48.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.47.1...@jobber/components@2.48.0) (2021-09-21)
+
+
+### Features
+
+* **components:** Add destructive option for ConfirmationModal ([#633](https://github.com/GetJobber/atlantis/issues/633)) ([7a11d7a](https://github.com/GetJobber/atlantis/commit/7a11d7a391b2410abfbac49edb8a11cfc4a6c102))
+
+
+
+
+
 ## [2.47.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.47.0...@jobber/components@2.47.1) (2021-09-20)
 
 
