@@ -245,3 +245,43 @@ test("message should handle markdown", () => {
 
   expect(getByText("hello")).toBeInstanceOf(HTMLHeadingElement);
 });
+
+test("should have work type button by default", () => {
+  const { getByText } = render(
+    <ConfirmationModal
+      title="Should we?"
+      message="Do something…"
+      open={true}
+      confirmLabel="okay"
+    />,
+  );
+  expect(getByText("okay").parentElement).toHaveClass("work");
+});
+
+test("destructive type should have destructive confirmation button", () => {
+  const { getByText } = render(
+    <ConfirmationModal
+      title="Should we?"
+      message="Do something…"
+      open={true}
+      confirmLabel="Pull the plug"
+      variation="destructive"
+    />,
+  );
+
+  expect(getByText("Pull the plug").parentElement).toHaveClass("destructive");
+});
+
+test("Work should have work styled confirmation button", () => {
+  const { getByText } = render(
+    <ConfirmationModal
+      title="Should we?"
+      message="Do something…"
+      open={true}
+      confirmLabel="Ok"
+      variation="work"
+    />,
+  );
+
+  expect(getByText("Ok").parentElement).toHaveClass("work");
+});

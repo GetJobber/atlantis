@@ -8,6 +8,14 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.6.0...@jobber/hooks@1.6.1) (2021-09-21)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
 # [1.6.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.5.3...@jobber/hooks@1.6.0) (2021-09-20)
 
 

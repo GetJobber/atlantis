@@ -23,7 +23,6 @@ interface ConfirmationModalState {
 interface ConfirmOrCancelAction {
   type: "confirm" | "cancel";
 }
-
 interface DisplayAction {
   type: "display";
   title?: string;
@@ -109,6 +108,11 @@ interface BaseConfirmationModalProps {
   readonly cancelLabel?: string;
 
   /**
+   * Type (Work or destructive) for confirm button.
+   */
+  readonly variation?: "work" | "destructive";
+
+  /**
    * Callback for when the confirm button is pressed.
    */
   onConfirm?(): void;
@@ -149,6 +153,7 @@ export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
     onConfirm,
     onCancel,
     onRequestClose,
+    variation = "work",
   }: ConfirmationModalProps,
   ref: Ref<ConfirmationModalRef>,
 ) {
@@ -210,6 +215,7 @@ export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
       primaryAction={{
         label: state.confirmLabel,
         onClick: handleAction("confirm"),
+        variation: variation === "destructive" ? "destructive" : "work",
       }}
       secondaryAction={{
         label: state.cancelLabel,

@@ -24,6 +24,10 @@
   --avatar-border-size: var(--border-thick);
 }
 
+.small {
+  --avatar-size: calc(var(--base-unit) * 1.5);
+}
+
 .isDark {
   color: var(--color-white);
 }
