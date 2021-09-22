@@ -37,14 +37,14 @@
   background-color: var(--color-surface--reverse);
 }
 
-/* TODO: Confirm that there's no active + disabled styling */
-
 .chip.disabled {
-  border-color: var(--color-disabled);
+  border-color: var(--color-disabled--secondary);
   color: var(--color-disabled);
   background-color: var(--color-disabled--secondary);
 }
 
-.disabled p {
-  color: var(--color-disabled);
+.active.disabled {
+  border-color: var(--color-disabled);
+  color: var(--color-white);
+  background-color: var(--color-disabled);
 }
