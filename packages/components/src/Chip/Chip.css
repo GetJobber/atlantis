@@ -37,6 +37,7 @@
 
 .chip:focus,
 .clickable:hover {
+  outline: none;
   background-color: var(--color-surface--hover);
 }
 
