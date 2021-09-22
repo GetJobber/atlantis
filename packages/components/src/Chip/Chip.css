@@ -38,6 +38,12 @@
   background-color: var(--color-surface--reverse);
 }
 
+.chip.invalid {
+  border-color: var(--color-critical--onSurface);
+  color: var(--color-critical--onSurface);
+  background-color: var(--color-critical--surface);
+}
+
 .chip.disabled {
   border-color: var(--color-disabled--secondary);
   color: var(--color-disabled);
@@ -50,8 +56,6 @@
   background-color: var(--color-disabled);
 }
 
-.chip.invalid {
-  border-color: var(--color-critical--onSurface);
-  color: var(--color-critical--onSurface);
-  background-color: var(--color-critical--surface);
+.invalid.disabled {
+  border-color: var(--color-critical);
 }

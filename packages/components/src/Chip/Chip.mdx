@@ -33,20 +33,27 @@ import { Chip } from "@jobber/components/Chip";
     <div>
       <Chip
         prefix={<ChipIcon name="quote" />}
-        label="Quote"
+        label="Active"
         active={true}
         onClick={e => alert("🍪")}
       />{" "}
       <Chip
         prefix={<ChipIcon name="quote" />}
-        label="Quote"
+        label="Active + disabled"
         active={true}
         disabled
         onClick={e => alert("🍪")}
       />{" "}
       <Chip
         prefix={<ChipIcon name="quote" />}
-        label="Quote"
+        label="Active + error"
+        active={true}
+        invalid
+        onClick={e => alert("🍪")}
+      />{" "}
+      <Chip
+        prefix={<ChipIcon name="quote" />}
+        label="Active + disabled + error"
         active={true}
         disabled
         invalid
@@ -56,18 +63,24 @@ import { Chip } from "@jobber/components/Chip";
     <div>
       <Chip
         prefix={<ChipIcon name="quote" />}
-        label="Quote"
+        label="Normal"
         onClick={e => alert("🍪")}
       />{" "}
       <Chip
         prefix={<ChipIcon name="quote" />}
-        label="Quote"
+        label="Normal + disabled"
         disabled
         onClick={e => alert("🍪")}
       />{" "}
       <Chip
         prefix={<ChipIcon name="quote" />}
-        label="Quote"
+        label="Normal + error"
+        invalid
+        onClick={e => alert("🍪")}
+      />{" "}
+      <Chip
+        prefix={<ChipIcon name="quote" />}
+        label="Normal + disabled + error"
         disabled
         invalid
         onClick={e => alert("🍪")}

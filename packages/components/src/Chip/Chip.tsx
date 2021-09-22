@@ -100,8 +100,8 @@ export function Chip({
     if (component.isPrefixIcon) {
       let color: IconColorNames | undefined;
       active && (color = "white");
+      invalid && !disabled && (color = "criticalOnSurface");
       disabled && !active && (color = "disabled");
-      invalid && (color = "criticalOnSurface");
 
       return React.cloneElement(prefix as ReactElement<ChipIconProps>, {
         color: color,
