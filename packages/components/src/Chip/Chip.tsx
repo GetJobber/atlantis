@@ -40,6 +40,11 @@ interface ChipProps {
   readonly prefix?: ReactElement<ChipAvatarProps> | ReactElement<ChipIconProps>;
 
   /**
+   * Adds a component on the right side of the label.
+   */
+  readonly suffix?: ReactElement<ChipIconProps>;
+
+  /**
    * Callback when the chip itself gets clicked.
    */
   onClick?(event: React.MouseEvent<HTMLDivElement>): void;
@@ -51,12 +56,17 @@ export function Chip({
   disabled = false,
   invalid = false,
   prefix,
+  suffix,
   onClick,
 }: ChipProps) {
   const component = computedProps();
   useAssert(
     !!prefix && !(component.isPrefixAvatar || component.isPrefixIcon),
     `Prefix prop only accepts "<ChipAvatar />" or "<ChipIcon />" component. You have "${prefix?.type}"`,
+  );
+  useAssert(
+    !!suffix && !component.isSuffixIcon,
+    `Prefix prop only accepts "<ChipIcon />" component. You have "${suffix?.type}"`,
   );
 
   const className = classnames(styles.chip, {
@@ -65,6 +75,7 @@ export function Chip({
     [styles.disabled]: disabled,
     [styles.invalid]: invalid,
     [styles.hasPrefix]: prefix,
+    [styles.hasSuffix]: suffix,
   });
 
   return (
@@ -78,6 +89,7 @@ export function Chip({
       <Typography element="span" size="base">
         {label}
       </Typography>
+      {renderSuffix()}
     </div>
   );
 
@@ -92,22 +104,31 @@ export function Chip({
     return {
       isPrefixAvatar: prefix?.type === ChipAvatar || false,
       isPrefixIcon: prefix?.type === ChipIcon || false,
+      isSuffixIcon: suffix?.type === ChipIcon || false,
       isClickable: onClick && !disabled,
     };
   }
 
   function renderPrefix() {
     if (component.isPrefixIcon) {
-      let color: IconColorNames | undefined;
-      active && (color = "white");
-      invalid && !disabled && (color = "criticalOnSurface");
-      disabled && !active && (color = "disabled");
-
-      return React.cloneElement(prefix as ReactElement<ChipIconProps>, {
-        color: color,
-      });
+      return recolorChipIcon(prefix as ReactElement<ChipIconProps>);
     }
-
     return prefix;
+  }
+
+  function renderSuffix() {
+    if (component.isSuffixIcon) {
+      return recolorChipIcon(suffix as ReactElement<ChipIconProps>);
+    }
+    return suffix;
+  }
+
+  function recolorChipIcon(icon: ReactElement<ChipIconProps>) {
+    let color: IconColorNames | undefined;
+    active && (color = "white");
+    invalid && !disabled && (color = "criticalOnSurface");
+    disabled && !active && (color = "disabled");
+
+    return React.cloneElement(icon, { color: color });
   }
 }

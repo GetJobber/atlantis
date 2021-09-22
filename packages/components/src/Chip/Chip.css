@@ -13,9 +13,21 @@
   gap: var(--space-small);
 }
 
+.hasPrefix,
+.hasSuffix {
+  padding: calc(var(--space-smaller) + var(--space-smallest)) var(--space-small);
+}
+
 .hasPrefix {
   grid-template-columns: min-content max-content;
-  padding: calc(var(--space-smaller) + var(--space-smallest)) var(--space-small);
+}
+
+.hasSuffix {
+  grid-template-columns: max-content min-content;
+}
+
+.hasPrefix.hasSuffix {
+  grid-template-columns: min-content max-content min-content;
 }
 
 .clickable {
