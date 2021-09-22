@@ -19,6 +19,11 @@
   background-size: cover;
 }
 
+.avatar:focus {
+  box-shadow: var(--shadow-focus);
+  outline: none;
+}
+
 .large {
   --avatar-size: calc(var(--base-unit) * 4.5);
   --avatar-border-size: var(--border-thick);
