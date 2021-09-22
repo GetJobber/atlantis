@@ -72,3 +72,15 @@
 .invalid.disabled {
   border-color: var(--color-critical);
 }
+
+/**
+ * Override icon default colors.
+ *
+ * NOTE: This is a workaround since some icons have default colors that we don't
+ * want to override until the component color prop overrides it.
+ * DO NOT COPY!
+ */
+
+.icon > svg {
+  fill: var(--color-text--secondary);
+}
