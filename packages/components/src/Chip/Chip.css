@@ -30,18 +30,21 @@
   grid-template-columns: min-content max-content min-content;
 }
 
+.chip:focus {
+  outline: none;
+}
+
 .clickable {
   box-shadow: var(--shadow-base);
   cursor: pointer;
 }
 
-.chip:focus,
+.clickable:focus,
 .clickable:hover {
-  outline: none;
   background-color: var(--color-surface--hover);
 }
 
-.chip:focus {
+.clickable:focus {
   box-shadow: var(--shadow-focus);
 }
 
