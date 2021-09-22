@@ -6,8 +6,10 @@ showDirectoryLink: true
 ---
 
 import { Playground, Props } from "docz";
-import { Chip, ChipAvatar, ChipIcon } from ".";
+import { useState } from "react";
+import { Chip, ChipAvatar, ChipIcon, ChipChoice } from ".";
 import { Content } from "@jobber/components/Content";
+import { Text } from "@jobber/components/Text";
 
 # Chip
 
@@ -19,77 +21,34 @@ import { Chip } from "@jobber/components/Chip";
 ```
 
 <Playground>
-  <Content>
-    <div>
-      <Chip label="Normal" />{" "}
-      <Chip
-        prefix={<ChipAvatar initials="DT" />}
-        label="Clickable"
-        onClick={e => alert("🍪")}
-      />{" "}
-      <Chip
-        prefix={<ChipIcon name="calendar" />}
-        label="Icon"
-        onClick={e => alert("🍪")}
-      />
-    </div>
-    <div>
-      <Chip
-        prefix={<ChipIcon name="quote" />}
-        label="Active"
-        active={true}
-        onClick={e => alert("🍪")}
-      />{" "}
-      <Chip
-        prefix={<ChipIcon name="quote" />}
-        label="Active + disabled"
-        active={true}
-        disabled
-        onClick={e => alert("🍪")}
-      />{" "}
-      <Chip
-        prefix={<ChipIcon name="quote" />}
-        label="Active + error"
-        active={true}
-        invalid
-        onClick={e => alert("🍪")}
-      />{" "}
-      <Chip
-        prefix={<ChipIcon name="quote" />}
-        label="Active + disabled + error"
-        active={true}
-        disabled
-        invalid
-        onClick={e => alert("🍪")}
-      />
-    </div>
-    <div>
-      <Chip
-        prefix={<ChipIcon name="quote" />}
-        label="Normal"
-        onClick={e => alert("🍪")}
-      />{" "}
-      <Chip
-        prefix={<ChipIcon name="quote" />}
-        label="Normal + disabled"
-        disabled
-        onClick={e => alert("🍪")}
-      />{" "}
-      <Chip
-        prefix={<ChipIcon name="quote" />}
-        label="Normal + error"
-        invalid
-        onClick={e => alert("🍪")}
-      />{" "}
-      <Chip
-        prefix={<ChipIcon name="quote" />}
-        label="Normal + disabled + error"
-        disabled
-        invalid
-        onClick={e => alert("🍪")}
-      />
-    </div>
-  </Content>
+  {() => {
+    const [selected, setSelected] = useState("");
+    return (
+      <Content>
+        <Text>
+          You are <u>{selected ? selected : "_______"}</u>
+        </Text>
+        <ChipChoice selected={selected} onChange={setSelected}>
+          <Chip
+            prefix={<ChipAvatar initials="AZ" />}
+            label="Amazing"
+            value="Amazing"
+          />
+          <Chip
+            prefix={<ChipIcon name="quote" />}
+            label="Wonderful"
+            value="Wonderful"
+          />
+          <Chip
+            prefix={<ChipIcon name="starFill" />}
+            label="Brilliant"
+            value="Brilliant"
+          />
+          <Chip label="Magnificent" value="Magnificent" />
+        </ChipChoice>
+      </Content>
+    );
+  }}
 </Playground>
 
 ## Props
