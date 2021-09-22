@@ -11,6 +11,9 @@ import { Content } from "@jobber/components/Content";
 
 # Chip
 
+Chips are a flexible component that can be used for selection of items from a
+group while preserving vertical space in the interface.
+
 ```ts
 import { Chip } from "@jobber/components/Chip";
 ```
@@ -89,98 +92,95 @@ import { Chip } from "@jobber/components/Chip";
   </Content>
 </Playground>
 
-<!--
-  INTERFACE: This is for the proposal stage of the component
-
-  Provide an example of what the component looks like in code. How would you use
-  it from another React component? This should consist primarily of code blocks.
-  This section can be deleted once the component is built, when the Playground
-  will demonstrate this at a higher fidelity.
--->
-
 ## Props
 
 ### Chip
 
 <Props of={Chip} />
 
-### ChipAvatar
-
-<Props of={ChipAvatar} />
-
-### ChipIcon
-
-<Props of={ChipIcon} />
-
-<!--
-  It is not necessary to provide an example of each prop. Use usage examples to
-  highlight key features of a component or particular considerations.
-
-See `Button.mdx` for a good example of this. -->
-
 ## Usage Guidelines
 
-The `<Chip>` will... _Add a brief description of the component_
+The `<Chip>` will allow users to make selections in scenarios where vertical
+space is at a premium. It has three high-level usages: single-select,
+multi-select, and add/dismiss selection.
 
-<!--
-  What is the design purpose of this component? How do its responsibilities
-  relate to other components? What should this component not be used for? What
-  are some related components in Atlantis? Try to describe this component not
-  in terms of what it looks like or what elements make it up, but what function
-  it performs or how it enables a user to perform tasks (e.g. “Buttons allow users
-  to initiate, complete, and reverse actions.” vs “Buttons are rectangular elements
-  that have a green background and white text”).
--->
+### Single-select
+
+If you need the user to make a selection of a single item from amongst several
+items, and those items all have short (1–2 word) labels, a single-select
+ChipGroup will allow the user to choose one of those items.
+
+This preserves vertical space while allowing the user to clearly identify which
+item they have selected.
+
+Unlike [Radio](/components/radio-group), the selected single-select Chip can be
+de-selected by the user, leaving all selections blank.
+
+### Multi-select
+
+If you need the user to make a selection of one _or more_ items from amongst
+several items, and those items all have short (1–2 word) labels, a multi-select
+ChipGroup will allow the user to choose as many items from the group as they
+wish.
+
+This preserves vertical space while allowing the user to clearly identify which
+items they have selected. To signify to the user that multiple selections are
+possible, a checkmark icon is present to reinforce the conceptual similarity to
+a [Checkbox](/components/checkbox).
+
+Similar to Checkbox, a selected multi-select Chip can be de-selected by the
+user, leaving all selections blank.
+
+### Add/dismiss selection
+
+If the user needs to add or remove multiple items to or from a group to indicate
+their selections, the dismissible Chip allows them to remove previous
+selections. Use this option when the full list of possible selections is too
+great to reasonably display in one ChipGroup. For example, "all of my phone
+contacts" is likely to be signficantly greater than would comfortably fit in one
+group, and would be overwhelming for the user to interpret.
+
+The mechanism to present the user with their options should be handled by the
+implementation of the feature, but could use autocomplete functionality to help
+the user narrow down their selections.
 
 ## Content Guidelines
 
-<!--
-  What type of content does this component present (documents, text, images, other components)?
-  What is the recommended, or expected, amount of content? What is the components’ behaviour when
-  the provided content diverges from what is expected (image aspect ratio, amount of text, video
-  vs audio, filesize)? Are there any important references to the [Product Vocabulary](https://atlantis.getjobber.com/guides/product-vocabulary)
-  that should be made regarding this component? What happens when content is unavailable or unreliable
-  (poor connection, empty states, flaky GPS data?)
--->
+Chip labels should be 1–2 words at most. If any of the options in the group may
+have longer labels, consider Checkbox or Radio as necessary for your selection
+type.
 
 ## Accessibility
 
-<!--
-  Describe the accessibility concerns for the component. How does it handle touch vs cursor vs
-  keyboard events? Should it capture input? What should a screen reader see when it's focuse?
--->
+ChipGroup should convey to the user whether it is a "checkbox" or "radio"
+element based on single or multi-select. The Chips in this group have the
+appropriate roles and keyboard operation to allow the user to interact as though
+they are dealing with a checkbox or radio button.
+
+If ChipGroup is set for add/dimiss selections, the dismiss button will notify
+the user that they will "dismiss {label name}" upon press.
 
 ## Responsiveness
 
-<!--
-  How should the component behave on an iPhone 8? An iPad? A 1920x1080 monitor? How does the
-  component appear when the component itself is less than 375px wide? Less than 640px wide?
-  Less than 1200px wide? Greater than 1200px? Does it change when the device DPI is higher
-  or lower?
--->
+The ChipGroup itself will take up as much space as its' container allows, and
+the Chips will flow left-to-right. Chips may re-flow into new rows, or scroll
+out of view in a single row, depending on your use case.
 
-## Mockup
+## Related Components
 
-<iframe
-  style="border: 1px solid rgba(0, 0, 0, 0.1);"
-  width="800"
-  height="450"
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F3BXCXXD9glMtj8RAHjXiQC%2FDesign-System-Contribution-TEMPLATE%3Fnode-id%3D332%253A5526"
-  allowfullscreen
-></iframe>
-
-<!--
-  Insert a Figma mockup from the [Design System Contribution template](https://www.figma.com/file/3BXCXXD9glMtj8RAHjXiQC/Design-System-Contribution-TEMPLATE?node-id=26%3A2)
-  that conveys the visual design of the component, with variants and state accounted for.
-  Consider progressive enhancement; might this rely on newer browser features that aren’t
-  widely supported yet?
--->
+- [Radio](/components/radio-group) should be used to allow the user to select
+  "one-of-many" items (single-select) and the labels for the items are longer
+  than 1 or 2 words.
+- [Checkbox](/components/checkbox) should be used to allow the user to select
+  "one-or-more-of-many" items (multi-select) and the labels for the items are
+  longer than 1 or 2 words.
+- [InlineLabel](/components/inline-label) should be used when you just need a
+  rectangular element that displays the status of another element.
 
 ## Notes
 
-<!--
-  What decisions worth remembering have gone into this component? Did we consider any potentially valuable
-  functionality that we’re not implementing right now for scope purposes? Are there any design decisions
-  that might need explaining beyond the usage guidelines? This will help consumers understand this component
-  more fully.
--->
+There was some consideration to bring the ability to "accent" Chips with certain
+colors for parity with Jobber's mobile platform, but we will not be implementing
+this for the web components as of this first iteration of our web Chip. The
+mobile use-case is very specific to a filtering use case that we as of now do
+not anticipate will be required for web.
