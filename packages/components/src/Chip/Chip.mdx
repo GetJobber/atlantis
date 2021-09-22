@@ -17,32 +17,62 @@ import { Chip } from "@jobber/components/Chip";
 
 <Playground>
   <Content>
-    <Content>
-      <Chip label="Custom" />
-    </Content>
-    <Content>
-      <Chip label="Active" active={true} />
-    </Content>
-    <Content>
-      <Chip label="Active" disabled={true} />
-    </Content>
-    <Content>
-      <Chip label="Darryl Tec" onClick={e => alert("🍪")} />
-    </Content>
-    <Content>
+    <div>
+      <Chip label="Normal" />{" "}
       <Chip
         prefix={<ChipAvatar initials="DT" />}
-        label="Darryl Tec"
+        label="Clickable"
         onClick={e => alert("🍪")}
-      />
-    </Content>
-    <Content>
+      />{" "}
       <Chip
         prefix={<ChipIcon name="quote" />}
-        label="Darryl Tec"
+        label="Icon"
         onClick={e => alert("🍪")}
       />
-    </Content>
+    </div>
+    <div>
+      <Chip
+        prefix={<ChipIcon name="quote" />}
+        label="Quote"
+        active={true}
+        onClick={e => alert("🍪")}
+      />{" "}
+      <Chip
+        prefix={<ChipIcon name="quote" />}
+        label="Quote"
+        active={true}
+        disabled
+        onClick={e => alert("🍪")}
+      />{" "}
+      <Chip
+        prefix={<ChipIcon name="quote" />}
+        label="Quote"
+        active={true}
+        disabled
+        invalid
+        onClick={e => alert("🍪")}
+      />
+    </div>
+    <div>
+      <Chip
+        prefix={<ChipIcon name="quote" />}
+        label="Quote"
+        onClick={e => alert("🍪")}
+      />{" "}
+      <Chip
+        prefix={<ChipIcon name="quote" />}
+        label="Quote"
+        disabled
+        onClick={e => alert("🍪")}
+      />{" "}
+      <Chip
+        prefix={<ChipIcon name="quote" />}
+        label="Quote"
+        disabled
+        invalid
+        onClick={e => alert("🍪")}
+      />
+    </div>
   </Content>
 </Playground>
 
