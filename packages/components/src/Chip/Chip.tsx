@@ -1,13 +1,12 @@
 import React, { ReactElement } from "react";
 import classnames from "classnames";
-import { XOR } from "ts-xor";
 import styles from "./Chip.css";
 import { ChipAvatar, ChipAvatarProps } from "./ChipAvatar";
 import { ChipIcon, ChipIconProps } from "./ChipIcon";
 import { useAssert } from "./useAssert";
 import { Typography } from "../Typography";
 
-interface ChipBaseProps {
+interface ChipProps {
   /**
    * Label of the chip.
    */
@@ -24,84 +23,77 @@ interface ChipBaseProps {
   readonly disabled?: boolean;
 
   /**
+   * Adds an avatar or icon on the left side of the label.
+   *
+   * **Example**
+   *```jsx
+   * <Chip prefix={<ChipAvatar initials="JBR" />} />
+   * <Chip prefix={<ChipIcon name="quote" />} />
+   * ```
+   */
+  readonly prefix?: ReactElement<ChipAvatarProps> | ReactElement<ChipIconProps>;
+
+  /**
    * Callback when the chip itself gets clicked.
    */
   onClick?(event: React.MouseEvent<HTMLDivElement>): void;
 }
 
-interface ChipWithAvatarProps extends ChipBaseProps {
-  /**
-   * Adds a small avatar on the left side of the label.
-   * **Note: You can only add either an avatar or icon but not both.**
-   *
-   * **Example**
-   * ```
-   * <Chip avatar={<ChipAvatar initials="JBBR" />} />
-   * ```
-   */
-  readonly avatar?: ReactElement<ChipAvatarProps>;
-}
-
-interface ChipWithIconProps extends ChipBaseProps {
-  /**
-   * Adds an icon on the left side of the label.
-   * **Note: You can only add either an avatar or icon but not both.**
-   *
-   * **Example**
-   * ```
-   * <Chip avatar={<ChipIcon name="quote" />} />
-   * ```
-   */
-  readonly icon?: ReactElement<ChipIconProps>;
-}
-
-type ChipProps = XOR<ChipWithAvatarProps, ChipWithIconProps>;
-
 export function Chip({
-  avatar,
-  icon,
   label,
   active = false,
   disabled = false,
+  prefix,
   onClick,
 }: ChipProps) {
-  assertProps();
-  const isClickable = onClick && !disabled;
+  const component = computedProps();
+  useAssert(
+    !!prefix && !(component.isPrefixAvatar || component.isPrefixIcon),
+    `Prefix prop only accepts "<ChipAvatar />" or "<ChipIcon />" component. You have "${prefix?.type}"`,
+  );
+
   const className = classnames(styles.chip, {
-    [styles.clickable]: isClickable,
+    [styles.clickable]: component.isClickable,
     [styles.active]: active,
     [styles.disabled]: disabled,
-    [styles.hasPrefix]: avatar || icon,
+    [styles.hasPrefix]: prefix,
   });
 
-  const props = {
-    className: className,
-    tabindex: 0,
-    ...(isClickable && {
-      onClick: onClick,
-      role: "button",
-    }),
-    "aria-disabled": disabled,
-  };
-
   return (
-    <div {...props}>
-      {icon && active ? React.cloneElement(icon, { color: "white" }) : icon}
-      {avatar}
+    <div
+      className={className}
+      tabIndex={0}
+      aria-disabled={disabled}
+      {...clickableProps()}
+    >
+      {renderPrefix()}
       <Typography element="span" size="base">
         {label}
       </Typography>
     </div>
   );
 
-  function assertProps() {
-    useAssert(
-      !!avatar && avatar.type !== ChipAvatar,
-      "`avatar` prop only accepts `<ChipAvatar />` component",
-    );
-    useAssert(
-      !!icon && icon.type !== ChipIcon,
-      "`icon` prop only accepts `<ChipIconProps />` component",
-    );
+  function clickableProps() {
+    if (component.isClickable) {
+      return { onClick: onClick, role: "button" };
+    }
+    return;
+  }
+
+  function computedProps() {
+    return {
+      isPrefixAvatar: prefix?.type === ChipAvatar,
+      isPrefixIcon: prefix?.type === ChipIcon,
+      isClickable: onClick && !disabled,
+    };
+  }
+
+  function renderPrefix() {
+    if (active && component.isPrefixIcon) {
+      return React.cloneElement(prefix as ReactElement<ChipIconProps>, {
+        color: "white",
+      });
+    }
+    return prefix;
   }
 }
