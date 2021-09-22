@@ -1,15 +1,16 @@
 .chip {
   display: inline-grid;
-  grid-template-columns: max-content;
-  align-items: center;
-  gap: var(--space-small);
   box-sizing: border-box;
   padding: var(--space-small);
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-larger);
   color: var(--color-text--secondary);
+  vertical-align: middle;
   background-color: var(--color-surface);
   transition: all var(--timing-base) ease-in-out;
+  grid-template-columns: max-content;
+  align-items: center;
+  gap: var(--space-small);
 }
 
 .hasPrefix {
@@ -47,4 +48,10 @@
   border-color: var(--color-disabled);
   color: var(--color-white);
   background-color: var(--color-disabled);
+}
+
+.chip.invalid {
+  border-color: var(--color-critical--onSurface);
+  color: var(--color-critical--onSurface);
+  background-color: var(--color-critical--surface);
 }

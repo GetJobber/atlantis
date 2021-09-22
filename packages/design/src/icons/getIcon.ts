@@ -36,7 +36,9 @@ export type IconColorNames =
   | "yellow"
   | "red"
   | "navy"
-  | "orange";
+  | "orange"
+  | "disabled"
+  | "criticalOnSurface";
 export type IconSizes = "small" | "base" | "large";
 interface IconProps {
   /** The icon to show.  */

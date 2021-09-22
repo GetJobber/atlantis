@@ -1,5 +1,6 @@
 import React, { ReactElement } from "react";
 import classnames from "classnames";
+import { IconColorNames } from "@jobber/design";
 import styles from "./Chip.css";
 import { ChipAvatar, ChipAvatarProps } from "./ChipAvatar";
 import { ChipIcon, ChipIconProps } from "./ChipIcon";
@@ -23,6 +24,11 @@ interface ChipProps {
   readonly disabled?: boolean;
 
   /**
+   * Highlights the chip red.
+   */
+  readonly invalid?: boolean;
+
+  /**
    * Adds an avatar or icon on the left side of the label.
    *
    * **Example**
@@ -43,6 +49,7 @@ export function Chip({
   label,
   active = false,
   disabled = false,
+  invalid = false,
   prefix,
   onClick,
 }: ChipProps) {
@@ -56,6 +63,7 @@ export function Chip({
     [styles.clickable]: component.isClickable,
     [styles.active]: active,
     [styles.disabled]: disabled,
+    [styles.invalid]: invalid,
     [styles.hasPrefix]: prefix,
   });
 
@@ -82,18 +90,24 @@ export function Chip({
 
   function computedProps() {
     return {
-      isPrefixAvatar: prefix?.type === ChipAvatar,
-      isPrefixIcon: prefix?.type === ChipIcon,
+      isPrefixAvatar: prefix?.type === ChipAvatar || false,
+      isPrefixIcon: prefix?.type === ChipIcon || false,
       isClickable: onClick && !disabled,
     };
   }
 
   function renderPrefix() {
-    if (active && component.isPrefixIcon) {
+    if (component.isPrefixIcon) {
+      let color: IconColorNames | undefined;
+      active && (color = "white");
+      disabled && !active && (color = "disabled");
+      invalid && (color = "criticalOnSurface");
+
       return React.cloneElement(prefix as ReactElement<ChipIconProps>, {
-        color: "white",
+        color: color,
       });
     }
+
     return prefix;
   }
 }
