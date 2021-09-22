@@ -1,0 +1,5 @@
+.wrapper {
+  display: flex;
+  gap: var(--space-small);
+  flex-wrap: wrap;
+}
