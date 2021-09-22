@@ -11,6 +11,8 @@ import { Emphasis } from "@jobber/components/Emphasis";
 import { Content } from "@jobber/components/Content";
 import { Button } from "@jobber/components/Button";
 import { Checkbox } from "@jobber/components/Checkbox";
+import { InputText } from "@jobber/components/InputText";
+import { Table, Header, Row, Cell } from "@jobber/components/Table";
 
 # Typography
 
@@ -66,16 +68,39 @@ broadly-used typeface. It is used for body copy, most headings, data display,
 form inputs, labels, and more!
 
 <Playground>
-  <Content>
+  <Content spacing="large">
     <Heading level={3}>Source Sans Pro is for less prominent headings</Heading>
     <Text>
       You can also use it for longer, more readable statements in paragraphs,
-      descriptive text, in lists, and more.
+      descriptive text, in lists, and more. If you've been paying careful
+      attention, you might have noticed that Atlantis even uses Source Sans Pro
+      for presenting documentation!
     </Text>
     <Checkbox
       checked
       label="Source Sans Pro can label inputs nicely"
     ></Checkbox>
+    <InputText
+      defaultValue="It's great for input values too"
+      placeholder="Source Sans Pro for labels"
+    />
+    <Table>
+      <Header>
+        <Cell>Source</Cell>
+        <Cell>Sans</Cell>
+        <Cell align="right">Pro</Cell>
+      </Header>
+      <Row>
+        <Cell>Data point</Cell>
+        <Cell>More data</Cell>
+        <Cell align="right">$280</Cell>
+      </Row>
+      <Row>
+        <Cell>Another data point</Cell>
+        <Cell>Additional values</Cell>
+        <Cell align="right">$200</Cell>
+      </Row>
+    </Table>
   </Content>
 </Playground>
 
@@ -91,7 +116,9 @@ start with `16` and work our way up and down from there.
 
 Line height, or
 [leading](https://www.shillingtoneducation.com/blog/leading-typography/), is the
-space between subsequent lines of type.
+space between subsequent lines of type. Our `Heading` and `Text` components
+handle their line-heights internally, so you don't need to worry specific
+implementation values as long as you're working with those components.
 
 Our base line-height of `1.25` is optimized for reading multiple lines of
 `Text`. From the base, we have options for tighter or larger line-heights that
