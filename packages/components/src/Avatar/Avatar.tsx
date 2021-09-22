@@ -25,7 +25,10 @@ interface AvatarFoundationProps {
    */
   readonly color?: string;
   /**
-   * @default 'base'
+   * Change the size of the avatar
+   * @property "large" - Make avatar to be the focal point
+   * @property "small" - For higher-density/compact places or components
+   * @default "base"
    */
   readonly size?: AvatarSize;
 }
