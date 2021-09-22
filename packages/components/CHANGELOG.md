@@ -8,6 +8,25 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.49.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.48.1...@jobber/components@2.49.0) (2021-09-22)
+
+
+### Features
+
+* **components:** Add small size to avatar ([#673](https://github.com/GetJobber/atlantis/issues/673)) ([e018389](https://github.com/GetJobber/atlantis/commit/e0183893629b508a397c8a41cb0aed08121db314))
+
+
+
+
+
+## [2.48.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.48.0...@jobber/components@2.48.1) (2021-09-21)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 # [2.48.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.47.1...@jobber/components@2.48.0) (2021-09-21)
 
 
