@@ -129,6 +129,10 @@ export function Chip({
     invalid && !disabled && (color = "criticalOnSurface");
     disabled && !active && (color = "disabled");
 
-    return React.cloneElement(icon, { color: color });
+    return (
+      <div className={styles.icon}>
+        {React.cloneElement(icon, { color: color })}
+      </div>
+    );
   }
 }
