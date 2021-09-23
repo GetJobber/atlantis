@@ -1,2 +1,6 @@
-export const hasValidationMessage: string;
-export const message: string;
+declare const styles: {
+  readonly "hasValidationMessage": string;
+  readonly "message": string;
+};
+export = styles;
+

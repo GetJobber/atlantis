@@ -1,11 +1,15 @@
-export const white: string;
-export const grey: string;
-export const greyBlue: string;
-export const greyBlueDark: string;
-export const blue: string;
-export const lightBlue: string;
-export const green: string;
-export const yellow: string;
-export const red: string;
-export const navy: string;
-export const orange: string;
+declare const styles: {
+  readonly "white": string;
+  readonly "grey": string;
+  readonly "greyBlue": string;
+  readonly "greyBlueDark": string;
+  readonly "blue": string;
+  readonly "lightBlue": string;
+  readonly "green": string;
+  readonly "yellow": string;
+  readonly "red": string;
+  readonly "navy": string;
+  readonly "orange": string;
+};
+export = styles;
+

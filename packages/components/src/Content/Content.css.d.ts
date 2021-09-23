@@ -1,1 +1,5 @@
-export const padded: string;
+declare const styles: {
+  readonly "padded": string;
+};
+export = styles;
+

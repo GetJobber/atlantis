@@ -1,5 +1,9 @@
-export const colorbar: string;
-export const color: string;
-export const swatch: string;
-export const button: string;
-export const pre: string;
+declare const styles: {
+  readonly "colorbar": string;
+  readonly "color": string;
+  readonly "swatch": string;
+  readonly "button": string;
+  readonly "pre": string;
+};
+export = styles;
+

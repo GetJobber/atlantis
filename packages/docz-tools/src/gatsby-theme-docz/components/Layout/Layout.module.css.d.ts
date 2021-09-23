@@ -1,8 +1,12 @@
-export const layout: string;
-export const menu: string;
-export const open: string;
-export const overlay: string;
-export const sidebar: string;
-export const content: string;
-export const container: string;
-export const skipNav: string;
+declare const styles: {
+  readonly "layout": string;
+  readonly "menu": string;
+  readonly "open": string;
+  readonly "overlay": string;
+  readonly "sidebar": string;
+  readonly "content": string;
+  readonly "container": string;
+  readonly "skipNav": string;
+};
+export = styles;
+

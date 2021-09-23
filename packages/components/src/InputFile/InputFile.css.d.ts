@@ -1,3 +1,7 @@
-export const dropZoneBase: string;
-export const dropZone: string;
-export const active: string;
+declare const styles: {
+  readonly "dropZoneBase": string;
+  readonly "dropZone": string;
+  readonly "active": string;
+};
+export = styles;
+

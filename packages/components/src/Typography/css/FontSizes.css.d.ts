@@ -1,8 +1,12 @@
-export const extravagant: string;
-export const jumbo: string;
-export const largest: string;
-export const larger: string;
-export const large: string;
-export const base: string;
-export const small: string;
-export const smaller: string;
+declare const styles: {
+  readonly "extravagant": string;
+  readonly "jumbo": string;
+  readonly "largest": string;
+  readonly "larger": string;
+  readonly "large": string;
+  readonly "base": string;
+  readonly "small": string;
+  readonly "smaller": string;
+};
+export = styles;
+

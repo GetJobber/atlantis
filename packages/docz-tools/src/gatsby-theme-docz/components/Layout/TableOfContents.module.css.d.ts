@@ -1,6 +1,10 @@
-export const toggle: string;
-export const open: string;
-export const tableOfContents: string;
-export const inner: string;
-export const header: string;
-export const overlay: string;
+declare const styles: {
+  readonly "toggle": string;
+  readonly "open": string;
+  readonly "tableOfContents": string;
+  readonly "inner": string;
+  readonly "header": string;
+  readonly "overlay": string;
+};
+export = styles;
+

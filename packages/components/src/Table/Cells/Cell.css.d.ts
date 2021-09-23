@@ -1,5 +1,9 @@
-export const cell: string;
-export const left: string;
-export const center: string;
-export const right: string;
-export const numeric: string;
+declare const styles: {
+  readonly "cell": string;
+  readonly "left": string;
+  readonly "center": string;
+  readonly "right": string;
+  readonly "numeric": string;
+};
+export = styles;
+

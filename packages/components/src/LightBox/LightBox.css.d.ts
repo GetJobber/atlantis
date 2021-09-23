@@ -1,1 +1,5 @@
-export const wrapper: string;
+declare const styles: {
+  readonly "wrapper": string;
+};
+export = styles;
+

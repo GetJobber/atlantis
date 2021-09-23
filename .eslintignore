@@ -4,3 +4,5 @@ dist
 packages/design/colors.js
 packages/design/icons
 packages/generators/templates
+
+**/*/*.css.d.ts

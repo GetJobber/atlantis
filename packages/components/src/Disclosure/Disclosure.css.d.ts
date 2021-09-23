@@ -1,6 +1,10 @@
-export const arrowIconWrapper: string;
-export const details: string;
-export const summary: string;
-export const summaryWrap: string;
-export const content: string;
-export const openAnimation: string;
+declare const styles: {
+  readonly "arrowIconWrapper": string;
+  readonly "details": string;
+  readonly "summary": string;
+  readonly "summaryWrap": string;
+  readonly "content": string;
+  readonly "openAnimation": string;
+};
+export = styles;
+

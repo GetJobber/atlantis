@@ -1,1 +1,5 @@
-export const ProgressBar: string;
+declare const styles: {
+  readonly "ProgressBar": string;
+};
+export = styles;
+

@@ -1,3 +1,7 @@
-export const small: string;
-export const base: string;
-export const large: string;
+declare const styles: {
+  readonly "small": string;
+  readonly "base": string;
+  readonly "large": string;
+};
+export = styles;
+

@@ -1,12 +1,16 @@
-export const page: string;
-export const fill: string;
-export const standard: string;
-export const narrow: string;
-export const titleBar: string;
-export const actionGroup: string;
-export const large: string;
-export const medium: string;
-export const small: string;
-export const primaryAction: string;
-export const actionButton: string;
-export const subtitle: string;
+declare const styles: {
+  readonly "page": string;
+  readonly "fill": string;
+  readonly "standard": string;
+  readonly "narrow": string;
+  readonly "titleBar": string;
+  readonly "actionGroup": string;
+  readonly "large": string;
+  readonly "medium": string;
+  readonly "small": string;
+  readonly "primaryAction": string;
+  readonly "actionButton": string;
+  readonly "subtitle": string;
+};
+export = styles;
+

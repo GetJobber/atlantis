@@ -1,2 +1,6 @@
-export const descriptionList: string;
-export const termGroup: string;
+declare const styles: {
+  readonly "descriptionList": string;
+  readonly "termGroup": string;
+};
+export = styles;
+
