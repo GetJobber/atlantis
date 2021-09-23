@@ -6,13 +6,14 @@ import { ChipIcon } from "./ChipIcon";
 
 type InternalChipChoiceMultipleProps = Pick<
   ChipChoiceMultipleProps,
-  "selected" | "onChange" | "children"
+  "selected" | "onChange" | "children" | "onClickChip"
 >;
 
 export function InternalChipChoiceMultiple({
   children,
   selected,
   onChange,
+  onClickChip,
 }: InternalChipChoiceMultipleProps) {
   return (
     <div className={styles.wrapper}>
@@ -25,7 +26,7 @@ export function InternalChipChoiceMultiple({
             suffix={checkmarkIcon(isChipActive)}
             warnOnLongLabels={true}
             onClick={event => {
-              child.props.onClick && child.props.onClick(event);
+              onClickChip && onClickChip(event, child.props.value);
               handleClick(child.props.value);
             }}
           />

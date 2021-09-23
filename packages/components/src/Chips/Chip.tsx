@@ -3,10 +3,7 @@ import { InternalChipProps } from "./InternalChip";
 import { useAssert } from "./useAssert";
 
 export interface ChipProps
-  extends Pick<
-    InternalChipProps,
-    "label" | "prefix" | "disabled" | "invalid" | "onClick"
-  > {
+  extends Pick<InternalChipProps, "label" | "prefix" | "disabled" | "invalid"> {
   /**
    * The value that gets returned on the `<Chips>`'s onChange callback.
    */

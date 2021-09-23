@@ -5,13 +5,14 @@ import { ChipChoiceProps } from "./ChipsTypes";
 
 type InternalChipChoiceProps = Pick<
   ChipChoiceProps,
-  "selected" | "onChange" | "children"
+  "selected" | "onChange" | "children" | "onClickChip"
 >;
 
 export function InternalChipChoice({
   children,
   selected,
   onChange,
+  onClickChip,
 }: InternalChipChoiceProps) {
   return (
     <div className={styles.wrapper}>
@@ -21,7 +22,7 @@ export function InternalChipChoice({
           active={child.props.value === selected}
           warnOnLongLabels={true}
           onClick={event => {
-            child.props.onClick && child.props.onClick(event);
+            onClickChip && onClickChip(event, child.props.value);
             handleClick(child.props.value);
           }}
         />
