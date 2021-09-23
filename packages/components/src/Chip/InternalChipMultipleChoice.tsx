@@ -4,16 +4,16 @@ import { InternalChip } from "./InternalChip";
 import { ChipChoiceMultipleProps } from "./ChipsTypes";
 import { ChipIcon } from "./ChipIcon";
 
-type InternalChipChoiceMultipleProps<T> = Pick<
-  ChipChoiceMultipleProps<T>,
+type InternalChipChoiceMultipleProps = Pick<
+  ChipChoiceMultipleProps,
   "selected" | "onChange" | "children"
 >;
 
-export function InternalChipChoiceMultiple<T>({
+export function InternalChipChoiceMultiple({
   children,
   selected,
   onChange,
-}: InternalChipChoiceMultipleProps<T>) {
+}: InternalChipChoiceMultipleProps) {
   return (
     <div className={styles.wrapper}>
       {React.Children.map(children, child => {
@@ -31,7 +31,7 @@ export function InternalChipChoiceMultiple<T>({
     </div>
   );
 
-  function handleClick(value: T) {
+  function handleClick(value: string | number) {
     const shouldDeselect = selected.includes(value);
     const newValue = shouldDeselect
       ? selected.filter(val => val !== value)

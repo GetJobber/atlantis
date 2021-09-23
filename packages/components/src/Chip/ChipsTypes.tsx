@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { ChipProps } from "./Chip";
 
-interface ChipFoundationProps<T> {
+interface ChipFoundationProps {
   /**
    * Change the interaction on the chip.
    */
@@ -13,21 +13,21 @@ interface ChipFoundationProps<T> {
    * The type of the value depends on what you pass in as the selected chips or
    * the value of the chip child.
    */
-  readonly selected: T | Array<T>;
-  readonly children: ReactElement<ChipProps<T>>[];
-  onChange(value?: T | Array<T>): void;
+  readonly selected: string | Array<string | number> | number;
+  readonly children: ReactElement<ChipProps>[];
+  onChange(value?: string | Array<string | number> | number): void;
 }
 
-export interface ChipChoiceProps<T> extends ChipFoundationProps<T> {
+export interface ChipChoiceProps extends ChipFoundationProps {
   readonly type?: "singleselect";
-  readonly selected: T;
-  onChange(value?: T): void;
+  readonly selected: string | number;
+  onChange(value?: string | number): void;
 }
 
-export interface ChipChoiceMultipleProps<T> extends ChipFoundationProps<T> {
+export interface ChipChoiceMultipleProps extends ChipFoundationProps {
   readonly type: "multiselect";
-  readonly selected: Array<T>;
-  onChange(value: Array<T>): void;
+  readonly selected: Array<string | number>;
+  onChange(value: Array<string | number>): void;
 }
 
-export type ChipsProps<T> = ChipChoiceProps<T> | ChipChoiceMultipleProps<T>;
+export type ChipsProps = ChipChoiceProps | ChipChoiceMultipleProps;

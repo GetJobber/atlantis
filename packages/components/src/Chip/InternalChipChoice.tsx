@@ -3,16 +3,16 @@ import styles from "./InternalChipChoice.css";
 import { InternalChip } from "./InternalChip";
 import { ChipChoiceProps } from "./ChipsTypes";
 
-type InternalChipChoiceProps<T> = Pick<
-  ChipChoiceProps<T>,
+type InternalChipChoiceProps = Pick<
+  ChipChoiceProps,
   "selected" | "onChange" | "children"
 >;
 
-export function InternalChipChoice<T>({
+export function InternalChipChoice({
   children,
   selected,
   onChange,
-}: InternalChipChoiceProps<T>) {
+}: InternalChipChoiceProps) {
   return (
     <div className={styles.wrapper}>
       {React.Children.map(children, child => (
@@ -26,7 +26,7 @@ export function InternalChipChoice<T>({
     </div>
   );
 
-  function handleClick(value?: T) {
+  function handleClick(value?: string | number) {
     const newValue = value !== selected ? value : undefined;
     onChange(newValue);
   }
