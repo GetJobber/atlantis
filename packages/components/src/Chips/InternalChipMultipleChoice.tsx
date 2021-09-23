@@ -22,9 +22,12 @@ export function InternalChipChoiceMultiple({
           <InternalChip
             {...child.props}
             active={isChipActive}
-            onClick={() => handleClick(child.props.value)}
             suffix={checkmarkIcon(isChipActive)}
             warnOnLongLabels={true}
+            onClick={event => {
+              child.props.onClick && child.props.onClick(event);
+              handleClick(child.props.value);
+            }}
           />
         );
       })}

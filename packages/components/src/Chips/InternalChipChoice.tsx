@@ -19,8 +19,11 @@ export function InternalChipChoice({
         <InternalChip
           {...child.props}
           active={child.props.value === selected}
-          onClick={() => handleClick(child.props.value)}
           warnOnLongLabels={true}
+          onClick={event => {
+            child.props.onClick && child.props.onClick(event);
+            handleClick(child.props.value);
+          }}
         />
       ))}
     </div>
