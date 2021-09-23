@@ -20,6 +20,7 @@ export function InternalChipChoice<T>({
           {...child.props}
           active={child.props.value === selected}
           onClick={() => handleClick(child.props.value)}
+          warnOnLongLabels={true}
         />
       ))}
     </div>

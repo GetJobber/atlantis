@@ -24,6 +24,7 @@ export function InternalChipChoiceMultiple<T>({
             active={isChipActive}
             onClick={() => handleClick(child.props.value)}
             suffix={checkmarkIcon(isChipActive)}
+            warnOnLongLabels={true}
           />
         );
       })}

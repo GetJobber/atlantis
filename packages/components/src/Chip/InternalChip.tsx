@@ -14,6 +14,11 @@ export interface InternalChipProps {
   readonly label: string;
 
   /**
+   * Throws a console warning when the chip label goes over 24 characters.
+   */
+  readonly warnOnLongLabels?: boolean;
+
+  /**
    * Changes the style of the chip to look different than the default.
    */
   readonly active?: boolean;
@@ -57,17 +62,11 @@ export function InternalChip({
   invalid = false,
   prefix,
   suffix,
+  warnOnLongLabels = false,
   onClick,
 }: InternalChipProps) {
   const component = computedProps();
-  useAssert(
-    !!prefix && !(component.isPrefixAvatar || component.isPrefixIcon),
-    `Prefix prop only accepts "<ChipAvatar />" or "<ChipIcon />" component. You have "${prefix?.type}"`,
-  );
-  useAssert(
-    !!suffix && !component.isSuffixIcon,
-    `Prefix prop only accepts "<ChipIcon />" component. You have "${suffix?.type}"`,
-  );
+  assertProps();
 
   const className = classnames(styles.chip, {
     [styles.clickable]: component.isClickable,
@@ -133,6 +132,22 @@ export function InternalChip({
       <div className={styles.icon}>
         {React.cloneElement(icon, { color: color })}
       </div>
+    );
+  }
+
+  function assertProps() {
+    useAssert(
+      !!prefix && !(component.isPrefixAvatar || component.isPrefixIcon),
+      `Prefix prop only accepts "<ChipAvatar />" or "<ChipIcon />" component. You have "${prefix?.type}".`,
+    );
+    useAssert(
+      !!suffix && !component.isSuffixIcon,
+      `Prefix prop only accepts "<ChipIcon />" component. You have "${suffix?.type}".`,
+    );
+    useAssert(
+      warnOnLongLabels && label.length > 24,
+      `"${label}" label is too long for a Chip; you might be better off using Checkbox or Radio. ${label.length}/24 characters.`,
+      { warn: true },
     );
   }
 }
