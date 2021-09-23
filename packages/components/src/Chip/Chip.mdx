@@ -7,7 +7,7 @@ showDirectoryLink: true
 
 import { Playground, Props } from "docz";
 import { useState } from "react";
-import { Chip, ChipAvatar, ChipIcon, ChipChoice } from ".";
+import { Chip, ChipAvatar, ChipIcon, Chips } from ".";
 import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
 
@@ -28,7 +28,7 @@ import { Chip } from "@jobber/components/Chip";
         <Text>
           You are <u>{selected ? selected : "_______"}</u>
         </Text>
-        <ChipChoice selected={selected} onChange={setSelected}>
+        <Chips selected={selected} onChange={setSelected}>
           <Chip
             prefix={<ChipAvatar initials="AZ" />}
             label="Amazing"
@@ -45,7 +45,7 @@ import { Chip } from "@jobber/components/Chip";
             value="Brilliant"
           />
           <Chip label="Magnificent" value="Magnificent" />
-        </ChipChoice>
+        </Chips>
       </Content>
     );
   }}
