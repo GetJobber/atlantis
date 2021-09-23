@@ -2,15 +2,6 @@
   --typography--fontFamily-normal: "Source Sans Pro", Helvetica, Arial,
     sans-serif;
   --typography--fontFamily-display: "Poppins", Helvetica, Arial, sans-serif;
-
-  --typography--fontSize-extravagant: calc(var(--base-unit) * 3); /* 48 */
-  --typography--fontSize-jumbo: calc(var(--base-unit) * 2.25); /* 36 */
-  --typography--fontSize-largest: calc(var(--base-unit) * 1.5); /* 24 */
-  --typography--fontSize-larger: calc(var(--base-unit) * 1.25); /* 20 */
-  --typography--fontSize-large: calc(var(--base-unit) * 1.125); /* 18 */
-  --typography--fontSize-base: calc(var(--base-unit) * 1); /* 16 */
-  --typography--fontSize-small: calc(var(--base-unit) * 0.875); /* 14 */
-  --typography--fontSize-smaller: calc(var(--base-unit) * 0.75); /* 12 */
 }
 
 @media (--handhelds) {
