@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import styles from "./ChipChoice.css";
+import styles from "./InternalChipChoice.css";
 import { InternalChip, InternalChipProps } from "./InternalChip";
 
 interface ChipSelectionProps {
@@ -8,7 +8,7 @@ interface ChipSelectionProps {
   onChange(value: string): void;
 }
 
-export function ChipChoice({
+export function InternalChipChoice({
   children,
   selected,
   onChange,

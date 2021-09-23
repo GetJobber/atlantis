@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { ChipChoice } from "./ChipChoice";
+import { InternalChipChoice } from "./InternalChipChoice";
 
 interface ChipsProps {
   readonly type: "choice" | "multiple" | "dismissible";
@@ -9,5 +9,5 @@ interface ChipsProps {
 }
 
 export function Chips(props: ChipsProps) {
-  return <ChipChoice {...props} />;
+  return <InternalChipChoice {...props} />;
 }
