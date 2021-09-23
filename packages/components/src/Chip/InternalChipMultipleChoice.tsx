@@ -3,23 +3,23 @@ import styles from "./InternalChipChoice.css";
 import { InternalChip } from "./InternalChip";
 import { ChipProps } from "./Chip";
 
-interface ChipSelectionProps {
+interface InternalChipChoiceMultipleProps {
   readonly children: ReactElement<ChipProps>[];
-  readonly selected: string;
-  onChange(value: string): void;
+  readonly selected: string[];
+  onChange(value: string[]): void;
 }
 
-export function InternalChipChoice({
+export function InternalChipChoiceMultiple({
   children,
   selected,
   onChange,
-}: ChipSelectionProps) {
+}: InternalChipChoiceMultipleProps) {
   return (
     <div className={styles.wrapper}>
       {React.Children.map(children, child => (
         <InternalChip
           {...child.props}
-          active={child.props.value === selected}
+          active={selected.includes(child.props.value)}
           onClick={() => handleClick(child.props.value)}
         />
       ))}
@@ -27,7 +27,10 @@ export function InternalChipChoice({
   );
 
   function handleClick(value: string) {
-    const newValue = value !== selected ? value : "";
+    const isDeselect = selected.includes(value);
+    const newValue = isDeselect
+      ? selected.filter(val => val !== value)
+      : [...selected, value];
     onChange(newValue);
   }
 }
