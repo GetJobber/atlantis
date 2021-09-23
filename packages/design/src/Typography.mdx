@@ -112,20 +112,17 @@ sizing rhythm across Jobber. At its' default zoom level, the equivalent is
 Source Sans Pro is optically a bit smaller, particularly at the x-height, so we
 start with `16` and work our way up and down from there.
 
-## Line height
+## Line-height
 
-Line height, or
+Line-height, or
 [leading](https://www.shillingtoneducation.com/blog/leading-typography/), is the
-space between subsequent lines of type. Our `Heading` and `Text` components
-handle their line-heights internally, so you don't need to worry specific
-implementation values as long as you're working with those components.
+space between subsequent lines of type. The line-heights in the `Heading` and
+`Text` components are optimized for each variation's unique combination of
+font-size, weight, and family, so you don't need to adjust their line-height
+manually when you use them.
 
-Our base line-height of `1.25` is optimized for reading multiple lines of
-`Text`. From the base, we have options for tighter or larger line-heights that
-will vary as you move up and down the size scale.
-
-As our `Headings` get larger, we reduce our line-height as...
-
-- the user is unlikely to be reading multiple lines of a level 1 `Heading`
-- the larger font-sizes of Poppins at that scale are easier to read and do not
-  require as much line-to-line distinction
+At smaller sizes, a more generous line-height relative to the font-size allows
+the user to more easily parse multiple lines of small text. As font-size
+increases into "display" sizes such as a level 1 `Heading`, the ratio of
+line-height to font-size decreases as the larger font-size is more readable and
+requires less line-to-line breathing room.
