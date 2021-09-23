@@ -1,8 +1,8 @@
 import React from "react";
-import { ChipIcon } from ".";
 import styles from "./InternalChipChoice.css";
 import { InternalChip } from "./InternalChip";
 import { ChipChoiceMultipleProps } from "./ChipsTypes";
+import { ChipIcon } from "./ChipIcon";
 
 type InternalChipChoiceMultipleProps<T> = Pick<
   ChipChoiceMultipleProps<T>,
