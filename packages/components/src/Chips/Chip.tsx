@@ -4,6 +4,9 @@ import { useAssert } from "./useAssert";
 
 export interface ChipProps
   extends Pick<InternalChipProps, "label" | "prefix" | "disabled" | "invalid"> {
+  /**
+   * The value that gets returned on the `<Chips>`'s onChange callback.
+   */
   readonly value: string | number;
 }
 

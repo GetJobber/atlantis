@@ -10,6 +10,9 @@ import { useState } from "react";
 import { Chip, ChipAvatar, ChipIcon, Chips } from ".";
 import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
+import { Disclosure } from "@jobber/components/Disclosure";
+import { Heading } from "@jobber/components/Heading";
+import { Card } from "@jobber/components/Card";
 
 # Chips
 
@@ -20,7 +23,20 @@ group while preserving vertical space in the interface.
 import { Chip, ChipAvatar, ChipIcon, Chips } from "../Chips";
 ```
 
-## Single
+## Usage Guidelines
+
+The `<Chip>` will allow users to make selections in scenarios where vertical
+space is at a premium. It has three high-level usages: single-select,
+multi-select, and add/dismiss selection.
+
+### Single-select
+
+If you need the user to make a selection of a single item from amongst several
+items, and those items all have short (1–2 word) labels, a single-select
+ChipGroup will allow the user to choose one of those items.
+
+This preserves vertical space while allowing the user to clearly identify which
+item they have selected.
 
 <Playground>
   {() => {
@@ -53,7 +69,23 @@ import { Chip, ChipAvatar, ChipIcon, Chips } from "../Chips";
   }}
 </Playground>
 
-## Multiple
+Unlike [Radio](/components/radio-group), the selected single-select Chip can be
+de-selected by the user, leaving all selections blank.
+
+### Multi-select
+
+If you need the user to make a selection of one _or more_ items from amongst
+several items, and those items all have short (1–2 word) labels, a multi-select
+ChipGroup will allow the user to choose as many items from the group as they
+wish.
+
+This preserves vertical space while allowing the user to clearly identify which
+items they have selected. To signify to the user that multiple selections are
+possible, a checkmark icon is present to reinforce the conceptual similarity to
+a [Checkbox](/components/checkbox).
+
+Similar to Checkbox, a selected multi-select Chip can be de-selected by the
+user, leaving all selections blank.
 
 <Playground>
   {() => {
@@ -86,50 +118,9 @@ import { Chip, ChipAvatar, ChipIcon, Chips } from "../Chips";
   }}
 </Playground>
 
-## Props
+<!-- TODO: Uncomment once dismissible is implemented -->
 
-### Chips
-
-<Props of={Chips} />
-
-### Chips
-
-<Props of={Chip} />
-
-## Usage Guidelines
-
-The `<Chip>` will allow users to make selections in scenarios where vertical
-space is at a premium. It has three high-level usages: single-select,
-multi-select, and add/dismiss selection.
-
-### Single-select
-
-If you need the user to make a selection of a single item from amongst several
-items, and those items all have short (1–2 word) labels, a single-select
-ChipGroup will allow the user to choose one of those items.
-
-This preserves vertical space while allowing the user to clearly identify which
-item they have selected.
-
-Unlike [Radio](/components/radio-group), the selected single-select Chip can be
-de-selected by the user, leaving all selections blank.
-
-### Multi-select
-
-If you need the user to make a selection of one _or more_ items from amongst
-several items, and those items all have short (1–2 word) labels, a multi-select
-ChipGroup will allow the user to choose as many items from the group as they
-wish.
-
-This preserves vertical space while allowing the user to clearly identify which
-items they have selected. To signify to the user that multiple selections are
-possible, a checkmark icon is present to reinforce the conceptual similarity to
-a [Checkbox](/components/checkbox).
-
-Similar to Checkbox, a selected multi-select Chip can be de-selected by the
-user, leaving all selections blank.
-
-### Add/dismiss selection
+<!-- ### Add/dismiss selection
 
 If the user needs to add or remove multiple items to or from a group to indicate
 their selections, the dismissible Chip allows them to remove previous
@@ -140,7 +131,30 @@ group, and would be overwhelming for the user to interpret.
 
 The mechanism to present the user with their options should be handled by the
 implementation of the feature, but could use autocomplete functionality to help
-the user narrow down their selections.
+the user narrow down their selections. -->
+
+## Props
+
+### `<Chips>`
+
+<Props of={Chips} />
+
+### `<Chip>`
+
+<Props of={Chip} />
+
+<Card>
+  <Content>
+    <Disclosure title="ChipAvatar and ChipIcon props">
+      <Content>
+        <Heading level={5}>ChipAvatar</Heading>
+        <Props of={ChipAvatar} />
+        <Heading level={5}>ChipIcon</Heading>
+        <Props of={ChipIcon} />
+      </Content>
+    </Disclosure>
+  </Content>
+</Card>
 
 ## Content Guidelines
 
