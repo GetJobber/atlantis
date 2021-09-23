@@ -42,10 +42,154 @@
   fill: var(--color-orange);
 }
 
-.criticalOnSurface {
-  fill: var(--color-critical--onSurface);
+.interactive {
+  fill: var(--color-interactive);
+}
+
+.interactiveHover {
+  fill: var(--color-interactive--hover);
+}
+
+.destructive {
+  fill: var(--color-destructive);
+}
+
+.destructiveHover {
+  fill: var(--color-destructive--hover);
+}
+
+.cancel {
+  fill: var(--color-cancel);
+}
+
+.cancelHover {
+  fill: var(--color-cancel--hover);
+}
+
+.interactiveSubtle {
+  fill: var(--color-interactive--subtle);
+}
+
+.interactiveSubtleHover {
+  fill: var(--color-interactive--subtle--hover);
 }
 
 .disabled {
   fill: var(--color-disabled);
+}
+
+.disabledSecondary {
+  fill: var(--color-disabled--secondary);
+}
+
+.focus {
+  fill: var(--color-focus);
+}
+
+.critical {
+  fill: var(--color-critical);
+}
+
+.criticalSurface {
+  fill: var(--color-critical--surface);
+}
+
+.criticalOnSurface {
+  fill: var(--color-critical--onSurface);
+}
+
+.warning {
+  fill: var(--color-warning);
+}
+
+.warningSurface {
+  fill: var(--color-warning--surface);
+}
+
+.warningOnSurface {
+  fill: var(--color-warning--onSurface);
+}
+
+.success {
+  fill: var(--color-success);
+}
+
+.successSurface {
+  fill: var(--color-success--surface);
+}
+
+.successOnSurface {
+  fill: var(--color-success--onSurface);
+}
+
+.informative {
+  fill: var(--color-informative);
+}
+
+.informativeSurface {
+  fill: var(--color-informative--surface);
+}
+
+.informativeOnSurface {
+  fill: var(--color-informative--onSurface);
+}
+
+.inactive {
+  fill: var(--color-inactive);
+}
+
+.inactiveSurface {
+  fill: var(--color-inactive--surface);
+}
+
+.inactiveOnSurface {
+  fill: var(--color-inactive--onSurface);
+}
+
+.heading {
+  fill: var(--color-heading);
+}
+
+.text {
+  fill: var(--color-text);
+}
+
+.textSecondary {
+  fill: var(--color-text--secondary);
+}
+
+.textReverse {
+  fill: var(--color-text--reverse);
+}
+
+.textReverseSecondary {
+  fill: var(--color-text--reverse--secondary);
+}
+
+.surface {
+  fill: var(--color-surface);
+}
+
+.surfaceHover {
+  fill: var(--color-surface--hover);
+}
+
+.surfaceActive {
+  fill: var(--color-surface--active);
+}
+
+.surfaceBackground {
+  fill: var(--color-surface--background);
+}
+
+.surfaceReverse {
+  fill: var(--color-surface--reverse);
+}
+
+.brand {
+  fill: var(--color-brand);
+}
+
+.brandHighlight {
+  fill: var(--color-brand--highlight);
 }
