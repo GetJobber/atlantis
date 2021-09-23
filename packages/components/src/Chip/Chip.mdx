@@ -22,13 +22,13 @@ import { Chip } from "@jobber/components/Chip";
 
 <Playground>
   {() => {
-    const [selected, setSelected] = useState("");
+    const [selected, setSelected] = useState([]);
     return (
       <Content>
         <Text>
           You are <u>{selected ? selected : "_______"}</u>
         </Text>
-        <Chips selected={selected} onChange={setSelected}>
+        <Chips type="multiple" selected={selected} onChange={setSelected}>
           <Chip
             prefix={<ChipAvatar initials="AZ" />}
             label="Amazing"

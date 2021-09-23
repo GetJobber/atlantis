@@ -1,4 +1,5 @@
 import React from "react";
+import { ChipIcon } from ".";
 import styles from "./InternalChipChoice.css";
 import { InternalChip } from "./InternalChip";
 import { ChipChoiceMultipleProps } from "./ChipsTypes";
@@ -15,21 +16,30 @@ export function InternalChipChoiceMultiple<T>({
 }: InternalChipChoiceMultipleProps<T>) {
   return (
     <div className={styles.wrapper}>
-      {React.Children.map(children, child => (
-        <InternalChip
-          {...child.props}
-          active={selected.includes(child.props.value)}
-          onClick={() => handleClick(child.props.value)}
-        />
-      ))}
+      {React.Children.map(children, child => {
+        const isChipActive = selected.includes(child.props.value);
+        return (
+          <InternalChip
+            {...child.props}
+            active={isChipActive}
+            onClick={() => handleClick(child.props.value)}
+            suffix={checkmarkIcon(isChipActive)}
+          />
+        );
+      })}
     </div>
   );
 
   function handleClick(value: T) {
-    const isDeselect = selected.includes(value);
-    const newValue = isDeselect
+    const shouldDeselect = selected.includes(value);
+    const newValue = shouldDeselect
       ? selected.filter(val => val !== value)
       : [...selected, value];
     onChange(newValue);
+  }
+
+  function checkmarkIcon(show: boolean) {
+    if (!show) return;
+    return <ChipIcon name="checkmark" />;
   }
 }
