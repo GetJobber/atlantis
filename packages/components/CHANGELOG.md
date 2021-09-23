@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.50.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.50.0...@jobber/components@2.50.1) (2021-09-23)
+
+
+### Bug Fixes
+
+* Support semantic colors on icon ([#679](https://github.com/GetJobber/atlantis/issues/679)) ([4653b7d](https://github.com/GetJobber/atlantis/commit/4653b7ddf8d9d68eca8c46704bfe82c097c731d1)), closes [#678](https://github.com/GetJobber/atlantis/issues/678)
+
+
+
+
+
 # [2.50.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.49.1...@jobber/components@2.50.0) (2021-09-23)
 
 
