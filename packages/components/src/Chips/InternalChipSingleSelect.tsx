@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./InternalChipChoice.css";
+import styles from "./InternalChip.css";
 import { InternalChip } from "./InternalChip";
 import { ChipChoiceProps } from "./ChipsTypes";
 
@@ -8,7 +8,7 @@ type InternalChipChoiceProps = Pick<
   "selected" | "onChange" | "children" | "onClickChip"
 >;
 
-export function InternalChipChoice({
+export function InternalChipSingleSelect({
   children,
   selected,
   onChange,

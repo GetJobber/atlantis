@@ -1,3 +1,4 @@
+export const wrapper: string;
 export const chip: string;
 export const hasPrefix: string;
 export const hasSuffix: string;

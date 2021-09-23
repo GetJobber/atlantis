@@ -1,3 +1,15 @@
+/**
+ * Used in the wrapping chips component:
+ * - InternalChipSingleSelect
+ * - InternalChipMultiSelect
+ */
+
+.wrapper {
+  display: flex;
+  gap: var(--space-small);
+  flex-wrap: wrap;
+}
+
 .chip {
   display: inline-grid;
   box-sizing: border-box;

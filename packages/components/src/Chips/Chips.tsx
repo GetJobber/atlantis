@@ -1,12 +1,12 @@
 import React from "react";
 import { ChipsProps } from "./ChipsTypes";
-import { InternalChipChoice } from "./InternalChipChoice";
-import { InternalChipChoiceMultiple } from "./InternalChipMultipleChoice";
+import { InternalChipSingleSelect } from "./InternalChipSingleSelect";
+import { InternalChipMultiSelect } from "./InternalChipMultiSelect";
 
 export function Chips(props: ChipsProps) {
   if (props.type === "multiselect") {
-    return <InternalChipChoiceMultiple {...props} />;
+    return <InternalChipMultiSelect {...props} />;
   }
 
-  return <InternalChipChoice {...props} />;
+  return <InternalChipSingleSelect {...props} />;
 }

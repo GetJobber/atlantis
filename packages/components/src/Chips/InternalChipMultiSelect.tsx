@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./InternalChipChoice.css";
+import styles from "./InternalChip.css";
 import { InternalChip } from "./InternalChip";
 import { ChipChoiceMultipleProps } from "./ChipsTypes";
 import { ChipIcon } from "./ChipIcon";
@@ -9,7 +9,7 @@ type InternalChipChoiceMultipleProps = Pick<
   "selected" | "onChange" | "children" | "onClickChip"
 >;
 
-export function InternalChipChoiceMultiple({
+export function InternalChipMultiSelect({
   children,
   selected,
   onChange,
