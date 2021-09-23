@@ -4,7 +4,7 @@ import { InternalChipChoice } from "./InternalChipChoice";
 import { InternalChipChoiceMultiple } from "./InternalChipMultipleChoice";
 
 export function Chips<T>(props: ChipsProps<T>) {
-  if (props.type === "multiple") {
+  if (props.type === "multiselect") {
     return <InternalChipChoiceMultiple {...props} />;
   }
 

@@ -17,7 +17,7 @@ Chips are a flexible component that can be used for selection of items from a
 group while preserving vertical space in the interface.
 
 ```ts
-import { Chip } from "@jobber/components/Chip";
+import { Chip, ChipAvatar, ChipIcon, Chips } from "../Chip";
 ```
 
 ## Single
@@ -63,7 +63,7 @@ import { Chip } from "@jobber/components/Chip";
         <Text>
           You are <u>{selected.length ? selected.join(" ") : "_______"}</u>
         </Text>
-        <Chips type="multiple" selected={selected} onChange={setSelected}>
+        <Chips type="multiselect" selected={selected} onChange={setSelected}>
           <Chip
             prefix={<ChipAvatar initials="AZ" />}
             label="Amazing"
@@ -88,7 +88,11 @@ import { Chip } from "@jobber/components/Chip";
 
 ## Props
 
-### Chip
+### Chips
+
+<Props of={Chips} />
+
+### Chips
 
 <Props of={Chip} />
 
