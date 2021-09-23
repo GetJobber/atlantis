@@ -20,13 +20,48 @@ group while preserving vertical space in the interface.
 import { Chip } from "@jobber/components/Chip";
 ```
 
+## Single
+
+<Playground>
+  {() => {
+    const [selected, setSelected] = useState();
+    return (
+      <Content>
+        <Text>
+          You are <u>{selected ? selected : "_______"}</u>
+        </Text>
+        <Chips selected={selected} onChange={setSelected}>
+          <Chip
+            prefix={<ChipAvatar initials="AZ" />}
+            label="Amazing"
+            value="Amazing"
+          />
+          <Chip
+            prefix={<ChipIcon name="quote" />}
+            label="Wonderful"
+            value="Wonderful"
+          />
+          <Chip
+            prefix={<ChipIcon name="starFill" />}
+            label="Brilliant"
+            value="Brilliant"
+          />
+          <Chip label="Magnificent" value="Magnificent" />
+        </Chips>
+      </Content>
+    );
+  }}
+</Playground>
+
+## Multiple
+
 <Playground>
   {() => {
     const [selected, setSelected] = useState([]);
     return (
       <Content>
         <Text>
-          You are <u>{selected ? selected : "_______"}</u>
+          You are <u>{selected.length ? selected.join(" ") : "_______"}</u>
         </Text>
         <Chips type="multiple" selected={selected} onChange={setSelected}>
           <Chip
