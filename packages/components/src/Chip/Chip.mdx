@@ -1,0 +1,180 @@
+---
+name: Chip
+menu: Components
+route: /components/chip
+showDirectoryLink: true
+---
+
+import { Playground, Props } from "docz";
+import { useState } from "react";
+import { Chip, ChipAvatar, ChipIcon, Chips } from ".";
+import { Content } from "@jobber/components/Content";
+import { Text } from "@jobber/components/Text";
+
+# Chip
+
+Chips are a flexible component that can be used for selection of items from a
+group while preserving vertical space in the interface.
+
+```ts
+import { Chip } from "@jobber/components/Chip";
+```
+
+## Single
+
+<Playground>
+  {() => {
+    const [selected, setSelected] = useState();
+    return (
+      <Content>
+        <Text>
+          You are <u>{selected ? selected : "_______"}</u>
+        </Text>
+        <Chips selected={selected} onChange={setSelected}>
+          <Chip
+            prefix={<ChipAvatar initials="AZ" />}
+            label="Amazing"
+            value="Amazing"
+          />
+          <Chip
+            prefix={<ChipIcon name="quote" />}
+            label="Wonderful"
+            value="Wonderful"
+          />
+          <Chip
+            prefix={<ChipIcon name="starFill" />}
+            label="Brilliant"
+            value="Brilliant"
+          />
+          <Chip label="Magnificent" value="Magnificent" />
+        </Chips>
+      </Content>
+    );
+  }}
+</Playground>
+
+## Multiple
+
+<Playground>
+  {() => {
+    const [selected, setSelected] = useState([]);
+    return (
+      <Content>
+        <Text>
+          You are <u>{selected.length ? selected.join(" ") : "_______"}</u>
+        </Text>
+        <Chips type="multiple" selected={selected} onChange={setSelected}>
+          <Chip
+            prefix={<ChipAvatar initials="AZ" />}
+            label="Amazing"
+            value="Amazing"
+          />
+          <Chip
+            prefix={<ChipIcon name="quote" />}
+            label="Wonderful"
+            value="Wonderful"
+          />
+          <Chip
+            prefix={<ChipIcon name="starFill" />}
+            label="Brilliant"
+            value="Brilliant"
+          />
+          <Chip label="Magnificent" value="Magnificent" />
+        </Chips>
+      </Content>
+    );
+  }}
+</Playground>
+
+## Props
+
+### Chip
+
+<Props of={Chip} />
+
+## Usage Guidelines
+
+The `<Chip>` will allow users to make selections in scenarios where vertical
+space is at a premium. It has three high-level usages: single-select,
+multi-select, and add/dismiss selection.
+
+### Single-select
+
+If you need the user to make a selection of a single item from amongst several
+items, and those items all have short (1–2 word) labels, a single-select
+ChipGroup will allow the user to choose one of those items.
+
+This preserves vertical space while allowing the user to clearly identify which
+item they have selected.
+
+Unlike [Radio](/components/radio-group), the selected single-select Chip can be
+de-selected by the user, leaving all selections blank.
+
+### Multi-select
+
+If you need the user to make a selection of one _or more_ items from amongst
+several items, and those items all have short (1–2 word) labels, a multi-select
+ChipGroup will allow the user to choose as many items from the group as they
+wish.
+
+This preserves vertical space while allowing the user to clearly identify which
+items they have selected. To signify to the user that multiple selections are
+possible, a checkmark icon is present to reinforce the conceptual similarity to
+a [Checkbox](/components/checkbox).
+
+Similar to Checkbox, a selected multi-select Chip can be de-selected by the
+user, leaving all selections blank.
+
+### Add/dismiss selection
+
+If the user needs to add or remove multiple items to or from a group to indicate
+their selections, the dismissible Chip allows them to remove previous
+selections. Use this option when the full list of possible selections is too
+great to reasonably display in one ChipGroup. For example, "all of my phone
+contacts" is likely to be signficantly greater than would comfortably fit in one
+group, and would be overwhelming for the user to interpret.
+
+The mechanism to present the user with their options should be handled by the
+implementation of the feature, but could use autocomplete functionality to help
+the user narrow down their selections.
+
+## Content Guidelines
+
+Chip labels should be 1–2 words at most. If any of the options in the group may
+have longer labels, consider Checkbox or Radio as necessary for your selection
+type.
+
+## Accessibility
+
+ChipGroup should convey to the user whether it is a "checkbox" or "radio"
+element based on single or multi-select. The Chips in this group have the
+appropriate roles and keyboard operation to allow the user to interact as though
+they are dealing with a checkbox or radio button.
+
+If ChipGroup is set for add/dimiss selections, the dismiss button will notify
+the user that they will "dismiss {label name}" upon press.
+
+## Responsiveness
+
+The ChipGroup itself will take up as much space as its' container allows, and
+the Chips will flow left-to-right. Chips may re-flow into new rows, or scroll
+out of view in a single row, depending on your use case.
+
+## Related Components
+
+- [Radio](/components/radio-group) should be used to allow the user to select
+  "one-of-many" items (single-select) and the labels for the items are longer
+  than 1 or 2 words.
+- [Checkbox](/components/checkbox) should be used to allow the user to select
+  "one-or-more-of-many" items (multi-select) and the labels for the items are
+  longer than 1 or 2 words.
+- [InlineLabel](/components/inline-label) should be used when you just need a
+  rectangular element that displays the status of another element.
+
+## Notes
+
+There was some consideration to bring the ability to "accent" Chips with certain
+colors for parity with Jobber's mobile platform, but we will not be implementing
+this for the web components as of this first iteration of our web Chip. The
+mobile use-case is very specific to a filtering use case that we as of now do
+not anticipate will be required for web.

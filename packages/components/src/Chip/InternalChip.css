@@ -1,0 +1,90 @@
+.chip {
+  display: inline-grid;
+  box-sizing: border-box;
+  padding: var(--space-small);
+  border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-larger);
+  color: var(--color-text--secondary);
+  vertical-align: middle;
+  background-color: var(--color-surface);
+  transition: var(--timing-base) ease-in-out;
+  transition-property: background-color, box-shadow, color;
+  grid-template-columns: max-content;
+  align-items: center;
+  gap: var(--space-small);
+}
+
+.hasPrefix,
+.hasSuffix {
+  padding: calc(var(--space-smaller) + var(--space-smallest)) var(--space-small);
+}
+
+.hasPrefix {
+  grid-template-columns: min-content max-content;
+}
+
+.hasSuffix {
+  grid-template-columns: max-content min-content;
+}
+
+.hasPrefix.hasSuffix {
+  grid-template-columns: min-content max-content min-content;
+}
+
+.chip:focus {
+  outline: none;
+}
+
+.clickable {
+  box-shadow: var(--shadow-base);
+  cursor: pointer;
+}
+
+.clickable:focus,
+.clickable:hover {
+  background-color: var(--color-surface--hover);
+}
+
+.clickable:focus {
+  box-shadow: var(--shadow-focus);
+}
+
+.chip.active {
+  border-color: var(--color-surface--reverse);
+  color: var(--color-text--reverse);
+  background-color: var(--color-surface--reverse);
+}
+
+.chip.invalid {
+  border-color: var(--color-critical--onSurface);
+  color: var(--color-critical--onSurface);
+  background-color: var(--color-critical--surface);
+}
+
+.chip.disabled {
+  border-color: var(--color-disabled--secondary);
+  color: var(--color-disabled);
+  background-color: var(--color-disabled--secondary);
+}
+
+.active.disabled {
+  border-color: var(--color-disabled);
+  color: var(--color-white);
+  background-color: var(--color-disabled);
+}
+
+.invalid.disabled {
+  border-color: var(--color-critical);
+}
+
+/**
+ * Override icon default colors.
+ *
+ * NOTE: This is a workaround since some icons have default colors that we don't
+ * want to override until the component color prop overrides it.
+ * DO NOT COPY!
+ */
+
+.icon > svg {
+  fill: var(--color-text--secondary);
+}

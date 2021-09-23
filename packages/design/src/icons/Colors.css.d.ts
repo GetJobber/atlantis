@@ -9,3 +9,5 @@ export const yellow: string;
 export const red: string;
 export const navy: string;
 export const orange: string;
+export const criticalOnSurface: string;
+export const disabled: string;

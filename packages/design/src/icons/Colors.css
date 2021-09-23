@@ -41,3 +41,11 @@
 .orange {
   fill: var(--color-orange);
 }
+
+.criticalOnSurface {
+  fill: var(--color-critical--onSurface);
+}
+
+.disabled {
+  fill: var(--color-disabled);
+}
