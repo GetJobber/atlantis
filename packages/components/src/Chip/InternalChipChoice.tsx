@@ -1,19 +1,18 @@
-import React, { ReactElement } from "react";
+import React from "react";
 import styles from "./InternalChipChoice.css";
 import { InternalChip } from "./InternalChip";
-import { ChipProps } from "./Chip";
+import { ChipChoiceProps } from "./ChipsTypes";
 
-interface ChipSelectionProps {
-  readonly children: ReactElement<ChipProps>[];
-  readonly selected: string;
-  onChange(value: string): void;
-}
+type InternalChipChoiceProps<T> = Pick<
+  ChipChoiceProps<T>,
+  "selected" | "onChange" | "children"
+>;
 
-export function InternalChipChoice({
+export function InternalChipChoice<T>({
   children,
   selected,
   onChange,
-}: ChipSelectionProps) {
+}: InternalChipChoiceProps<T>) {
   return (
     <div className={styles.wrapper}>
       {React.Children.map(children, child => (
@@ -26,8 +25,8 @@ export function InternalChipChoice({
     </div>
   );
 
-  function handleClick(value: string) {
-    const newValue = value !== selected ? value : "";
+  function handleClick(value?: T) {
+    const newValue = value !== selected ? value : undefined;
     onChange(newValue);
   }
 }
