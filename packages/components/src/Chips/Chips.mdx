@@ -7,7 +7,6 @@ showDirectoryLink: true
 
 import { Playground, Props } from "docz";
 import { useState } from "react";
-import { Chip, ChipAvatar, ChipIcon, Chips } from ".";
 import { Chip, ChipAvatar, ChipIcon, Chips, ChipDismissible } from ".";
 import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
@@ -213,6 +212,8 @@ import { ChipDismissible, ChipAvatar, ChipIcon } from "../Chips";
   <ChipDismissible
     prefix={<ChipAvatar initials="MB" />}
     label="Mercedes-Benz"
+    onClick={() => alert("chip")}
+    onRequestRemove={() => alert("remove")}
   />{" "}
   <ChipDismissible
     prefix={<ChipIcon name="engine" color="yellow" />}

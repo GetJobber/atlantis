@@ -5,6 +5,7 @@ import styles from "./InternalChip.css";
 import { ChipAvatar, ChipAvatarProps } from "./ChipAvatar";
 import { ChipIcon, ChipIconProps } from "./ChipIcon";
 import { useAssert } from "./useAssert";
+import { InternalChipButton } from "./InternalChipButton";
 import { Typography } from "../Typography";
 
 export interface InternalChipProps {
@@ -132,6 +133,7 @@ export function InternalChip({
       isPrefixAvatar: prefix?.type === ChipAvatar || false,
       isPrefixIcon: prefix?.type === ChipIcon || false,
       isSuffixIcon: suffix?.type === ChipIcon || false,
+      isSuffixButton: suffix?.type === InternalChipButton || false,
       isClickable: onClick && !disabled,
       isTypeButton: type === "button",
       isTypeInput: type === "radio" || type === "checkbox",
@@ -171,7 +173,7 @@ export function InternalChip({
       `Prefix prop only accepts "<ChipAvatar />" or "<ChipIcon />" component. You have "${prefix?.type}".`,
     );
     useAssert(
-      !!suffix && !component.isSuffixIcon,
+      !!suffix && !(component.isSuffixIcon || component.isSuffixButton),
       `Prefix prop only accepts "<ChipIcon />" component. You have "${suffix?.type}".`,
     );
     useAssert(
