@@ -4,19 +4,23 @@ import React, {
   SyntheticEvent,
   useRef,
 } from "react";
+import { IconNames } from "@jobber/design";
 import styles from "./InternalChip.css";
-import { ChipIcon, ChipIconProps } from "./ChipIcon";
+import { ChipIcon } from "./ChipIcon";
 
-interface ChipButtonProps extends Pick<ChipIconProps, "name"> {
+interface ChipButtonProps {
+  readonly icon: IconNames;
   readonly invalid?: boolean;
   readonly disabled?: boolean;
+  readonly label: string;
   onClick(event: SyntheticEvent<HTMLDivElement>): void;
 }
 
 export function InternalChipButton({
-  name: icon,
+  icon,
   invalid,
   disabled,
+  label,
   onClick,
 }: ChipButtonProps) {
   const buttonRef = useRef() as MutableRefObject<HTMLDivElement>;
@@ -26,6 +30,7 @@ export function InternalChipButton({
       ref={buttonRef}
       className={styles.button}
       tabIndex={0}
+      aria-label={`Remove ${label}`}
       onKeyPress={handleKeyDown}
       onClick={handleClick}
     >

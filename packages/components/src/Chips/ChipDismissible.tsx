@@ -28,7 +28,8 @@ export function ChipDismissible({
       type="button"
       suffix={
         <InternalChipButton
-          name="remove"
+          icon="remove"
+          label={label}
           invalid={invalid}
           disabled={disabled}
           onClick={onRequestRemove}
