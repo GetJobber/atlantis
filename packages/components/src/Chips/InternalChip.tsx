@@ -97,6 +97,7 @@ export function InternalChip({
   return (
     <Tag
       className={className}
+      data-testid="chip-wrapper"
       {...(component.isTypeButton && {
         onClick: onClick,
         disabled: disabled,
@@ -112,6 +113,7 @@ export function InternalChip({
           onClick={onClick}
           onChange={() => {}} // No op. onClick handles the change to allow deselecting.
           disabled={disabled}
+          data-testid="chip-input"
         />
       )}
       {renderPrefix()}
@@ -122,7 +124,7 @@ export function InternalChip({
 
   function chipTag() {
     if (component.isTypeButton) {
-      if (component.isClickable) return "button";
+      if (onClick) return "button";
       return "div";
     }
     return "label";
