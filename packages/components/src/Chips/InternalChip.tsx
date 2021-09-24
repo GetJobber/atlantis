@@ -43,7 +43,7 @@ export interface InternalChipProps {
   /**
    * Determines wether to semantically act like a checkbox or a radio.
    */
-  readonly type: "checkbox" | "radio";
+  readonly type: "checkbox" | "radio" | "button";
 
   /**
    * Adds an avatar or icon on the left side of the label.
@@ -91,25 +91,41 @@ export function InternalChip({
     [styles.hasSuffix]: suffix,
   });
 
-  // TODO: Allow deselect of radio
+  const Tag = chipTag();
+
   return (
-    <label className={className}>
-      <input
-        type={type}
-        checked={active}
-        className={styles.input}
-        name={name}
-        onClick={onClick}
-        onChange={() => {
-          /* no op */
-        }}
-        disabled={disabled}
-      />
+    <Tag
+      className={className}
+      {...(component.isTypeButton && {
+        onClick: onClick,
+        disabled: disabled,
+        tabIndex: 0,
+      })}
+    >
+      {component.isTypeInput && (
+        <input
+          type={type}
+          checked={active}
+          className={styles.input}
+          name={name}
+          onClick={onClick}
+          onChange={() => {}} // No op. onClick handles the change to allow deselecting.
+          disabled={disabled}
+        />
+      )}
       {renderPrefix()}
       <Typography size="base">{label}</Typography>
       {renderSuffix()}
-    </label>
+    </Tag>
   );
+
+  function chipTag() {
+    if (component.isTypeButton) {
+      if (component.isClickable) return "button";
+      return "div";
+    }
+    return "label";
+  }
 
   function computedProps() {
     return {
@@ -117,6 +133,8 @@ export function InternalChip({
       isPrefixIcon: prefix?.type === ChipIcon || false,
       isSuffixIcon: suffix?.type === ChipIcon || false,
       isClickable: onClick && !disabled,
+      isTypeButton: type === "button",
+      isTypeInput: type === "radio" || type === "checkbox",
     };
   }
 
