@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./ButtonDismiss.css";
 import { Button } from "../Button";
 
 interface ButtonDismissProps {
@@ -11,14 +10,12 @@ interface ButtonDismissProps {
 
 export function ButtonDismiss({ onClick, ariaLabel }: ButtonDismissProps) {
   return (
-    <div className={styles.closeButtonWrapper}>
-      <Button
-        ariaLabel={ariaLabel}
-        icon="remove"
-        onClick={onClick}
-        type="tertiary"
-        variation="subtle"
-      />
-    </div>
+    <Button
+      ariaLabel={ariaLabel}
+      icon="remove"
+      onClick={onClick}
+      type="tertiary"
+      variation="subtle"
+    />
   );
 }
