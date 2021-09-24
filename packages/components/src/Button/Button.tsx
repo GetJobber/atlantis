@@ -56,7 +56,7 @@ interface ButtonLinkProps extends ButtonFoundationProps {
 }
 
 interface BaseActionProps extends ButtonFoundationProps {
-  readonly variation?: "work" | "learning" | "subtle";
+  readonly variation?: "work" | "learning" | "subtle" | "destructive";
   readonly type?: "primary" | "secondary" | "tertiary";
 }
 
@@ -67,7 +67,6 @@ interface DestructiveActionProps extends ButtonFoundationProps {
 
 interface SubmitActionProps
   extends Omit<ButtonFoundationProps, "external" | "onClick"> {
-  readonly variation?: "work";
   readonly type?: "primary";
   readonly submit: boolean;
 }

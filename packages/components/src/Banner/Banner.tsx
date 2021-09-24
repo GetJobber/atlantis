@@ -41,12 +41,10 @@ export function Banner({
     medium: 480,
   };
 
-  const [
-    bannerRef,
-    { width: bannerWidth = bannerWidths.small },
-  ] = useResizeObserver<HTMLDivElement>({
-    widths: bannerWidths,
-  });
+  const [bannerRef, { width: bannerWidth = bannerWidths.small }] =
+    useResizeObserver<HTMLDivElement>({
+      widths: bannerWidths,
+    });
 
   const iconColors: IconColorMap = {
     notice: "lightBlue",
