@@ -5,7 +5,7 @@ import styles from "./InternalChip.css";
 import { ChipAvatar, ChipAvatarProps } from "./ChipAvatar";
 import { ChipIcon, ChipIconProps } from "./ChipIcon";
 import { useAssert } from "./useAssert";
-import { InternalChipButton } from "./InternalChipButton";
+import { ChipButtonProps, InternalChipButton } from "./InternalChipButton";
 import { Typography } from "../Typography";
 
 export interface InternalChipProps {
@@ -42,7 +42,7 @@ export interface InternalChipProps {
   readonly invalid?: boolean;
 
   /**
-   * Determines wether to semantically act like a checkbox or a radio.
+   * Determines whether to semantically act like a checkbox, radio, or button.
    */
   readonly type: "checkbox" | "radio" | "button";
 
@@ -55,12 +55,12 @@ export interface InternalChipProps {
    * <Chip prefix={<ChipIcon name="quote" />} />
    * ```
    */
-  readonly prefix?: ReactElement<ChipAvatarProps> | ReactElement<ChipIconProps>;
+  readonly prefix?: ReactElement<ChipAvatarProps | ChipIconProps>;
 
   /**
    * Adds a component on the right side of the label.
    */
-  readonly suffix?: ReactElement<ChipIconProps>;
+  readonly suffix?: ReactElement<ChipIconProps | ChipButtonProps>;
 
   /**
    * Callback when the chip itself gets clicked.

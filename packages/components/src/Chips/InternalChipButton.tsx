@@ -8,7 +8,7 @@ import { IconNames } from "@jobber/design";
 import styles from "./InternalChip.css";
 import { ChipIcon } from "./ChipIcon";
 
-interface ChipButtonProps {
+export interface ChipButtonProps {
   readonly icon: IconNames;
   readonly invalid?: boolean;
   readonly disabled?: boolean;
