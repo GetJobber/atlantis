@@ -7,4 +7,5 @@ export const active: string;
 export const invalid: string;
 export const disabled: string;
 export const input: string;
+export const button: string;
 export const icon: string;

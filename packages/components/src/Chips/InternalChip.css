@@ -101,6 +101,22 @@
   white-space: nowrap;
 }
 
+.button {
+  border-radius: var(--radius-base);
+  cursor: pointer;
+  transition: background-color 200ms ease;
+}
+
+.button:hover {
+  background-color: var(--color-surface--hover);
+}
+
+.button:focus,
+.clickable .button:hover {
+  box-shadow: var(--shadow-focus);
+  outline: none;
+}
+
 /**
  * Override icon default colors.
  *
