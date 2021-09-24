@@ -8,3 +8,4 @@ declare const styles: {
   readonly "hasBorder": string;
 };
 export = styles;
+
