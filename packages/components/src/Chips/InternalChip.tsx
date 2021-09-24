@@ -162,7 +162,7 @@ export function InternalChip({
 
     return (
       <div className={styles.icon}>
-        {React.cloneElement(icon, { color: color })}
+        {React.cloneElement(icon, { ...(color && { color: color }) })}
       </div>
     );
   }
