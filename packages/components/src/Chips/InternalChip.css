@@ -12,6 +12,7 @@
 
 .chip {
   display: inline-grid;
+  position: relative;
   box-sizing: border-box;
   padding: var(--space-small);
   border: var(--border-base) solid var(--color-border);
@@ -43,7 +44,7 @@
   grid-template-columns: min-content max-content min-content;
 }
 
-.chip:focus {
+.chip:focus-within {
   outline: none;
 }
 
@@ -52,12 +53,12 @@
   cursor: pointer;
 }
 
-.clickable:focus,
+.clickable:focus-within,
 .clickable:hover {
   background-color: var(--color-surface--hover);
 }
 
-.clickable:focus {
+.clickable:focus-within {
   box-shadow: var(--shadow-focus);
 }
 
@@ -87,6 +88,17 @@
 
 .invalid.disabled {
   border-color: var(--color-critical);
+}
+
+.input {
+  /* Hide checkbox on UI but not screen readers and still allow focus state */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+  white-space: nowrap;
 }
 
 /**

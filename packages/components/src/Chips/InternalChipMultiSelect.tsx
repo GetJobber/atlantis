@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "./InternalChip.css";
 import { InternalChip } from "./InternalChip";
-import { ChipChoiceMultipleProps } from "./ChipsTypes";
+import { ChipMultiSelectProps } from "./ChipsTypes";
 import { ChipIcon } from "./ChipIcon";
 
 type InternalChipChoiceMultipleProps = Pick<
-  ChipChoiceMultipleProps,
+  ChipMultiSelectProps,
   "selected" | "onChange" | "children" | "onClickChip"
 >;
 
@@ -22,11 +22,12 @@ export function InternalChipMultiSelect({
         return (
           <InternalChip
             {...child.props}
+            type="checkbox"
             active={isChipActive}
             suffix={checkmarkIcon(isChipActive)}
             warnOnLongLabels={true}
             onClick={event => {
-              onClickChip && onClickChip(event, child.props.value);
+              onClickChip?.(event, child.props.value);
               handleClick(child.props.value);
             }}
           />

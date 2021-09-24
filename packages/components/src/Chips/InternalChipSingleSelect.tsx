@@ -1,16 +1,18 @@
 import React from "react";
+import uuid from "uuid";
 import styles from "./InternalChip.css";
 import { InternalChip } from "./InternalChip";
-import { ChipChoiceProps } from "./ChipsTypes";
+import { ChipSingleSelectProps } from "./ChipsTypes";
 
 type InternalChipChoiceProps = Pick<
-  ChipChoiceProps,
-  "selected" | "onChange" | "children" | "onClickChip"
+  ChipSingleSelectProps,
+  "selected" | "onChange" | "children" | "onClickChip" | "name"
 >;
 
 export function InternalChipSingleSelect({
   children,
   selected,
+  name = uuid.v1(),
   onChange,
   onClickChip,
 }: InternalChipChoiceProps) {
@@ -19,10 +21,12 @@ export function InternalChipSingleSelect({
       {React.Children.map(children, child => (
         <InternalChip
           {...child.props}
+          type="radio"
+          name={name}
           active={child.props.value === selected}
           warnOnLongLabels={true}
           onClick={event => {
-            onClickChip && onClickChip(event, child.props.value);
+            onClickChip?.(event, child.props.value);
             handleClick(child.props.value);
           }}
         />

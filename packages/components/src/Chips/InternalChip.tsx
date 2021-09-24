@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, SyntheticEvent } from "react";
 import classnames from "classnames";
 import { IconColorNames } from "@jobber/design";
 import styles from "./InternalChip.css";
@@ -12,6 +12,13 @@ export interface InternalChipProps {
    * Label of the chip.
    */
   readonly label: string;
+
+  /**
+   * The HTML input's name.
+   *
+   * @link https://www.w3schools.com/tags/att_input_name.asp
+   */
+  readonly name?: string;
 
   /**
    * Throws a console warning when the chip label goes over 24 characters.
@@ -34,6 +41,11 @@ export interface InternalChipProps {
   readonly invalid?: boolean;
 
   /**
+   * Determines wether to semantically act like a checkbox or a radio.
+   */
+  readonly type: "checkbox" | "radio";
+
+  /**
    * Adds an avatar or icon on the left side of the label.
    *
    * **Example**
@@ -52,7 +64,7 @@ export interface InternalChipProps {
   /**
    * Callback when the chip itself gets clicked.
    */
-  onClick?(event: React.MouseEvent<HTMLDivElement>): void;
+  onClick?(event: SyntheticEvent): void;
 }
 
 export function InternalChip({
@@ -63,6 +75,8 @@ export function InternalChip({
   prefix,
   suffix,
   warnOnLongLabels = false,
+  name,
+  type,
   onClick,
 }: InternalChipProps) {
   const component = computedProps();
@@ -77,27 +91,25 @@ export function InternalChip({
     [styles.hasSuffix]: suffix,
   });
 
+  // TODO: Allow deselect of radio
   return (
-    <div
-      className={className}
-      tabIndex={0}
-      aria-disabled={disabled}
-      {...clickableProps()}
-    >
+    <label className={className}>
+      <input
+        type={type}
+        checked={active}
+        className={styles.input}
+        name={name}
+        onClick={onClick}
+        onChange={() => {
+          /* no op */
+        }}
+        disabled={disabled}
+      />
       {renderPrefix()}
-      <Typography element="span" size="base">
-        {label}
-      </Typography>
+      <Typography size="base">{label}</Typography>
       {renderSuffix()}
-    </div>
+    </label>
   );
-
-  function clickableProps() {
-    if (component.isClickable) {
-      return { onClick: onClick, role: "button" };
-    }
-    return;
-  }
 
   function computedProps() {
     return {
