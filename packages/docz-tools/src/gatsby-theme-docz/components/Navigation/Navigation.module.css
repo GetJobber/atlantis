@@ -30,7 +30,7 @@
 
 .label:hover,
 .active {
-  color: var(--color-text-reverse);
+  color: var(--color-text--reverse);
 }
 
 /**
@@ -81,7 +81,7 @@
 
 .level2 .pageLabel.active,
 .level2 .pageLabel:hover {
-  color: var(--color-text-reverse);
+  color: var(--color-text--reverse);
 }
 
 .level2 .pageLabel.active::before {
