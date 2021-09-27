@@ -90,7 +90,11 @@ export function InternalChip({
       })}
     >
       {renderPrefix()}
-      <Typography size="base">{label}</Typography>
+      <Typography numberOfLines={1} size="base">
+        <div className={styles.truncate}>
+          <span>{label}</span>
+        </div>
+      </Typography>
       {renderSuffix()}
     </Tag>
   );

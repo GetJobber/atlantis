@@ -13,11 +13,13 @@
 .chip {
   display: inline-grid;
   position: relative;
+  max-width: 100%;
   box-sizing: border-box;
   padding: var(--space-small);
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-larger);
   color: var(--color-text--secondary);
+  text-align: left;
   vertical-align: middle;
   background-color: var(--color-surface);
   transition: var(--timing-base) ease-in-out;
@@ -33,21 +35,22 @@
 }
 
 .hasPrefix {
-  grid-template-columns: min-content max-content;
+  grid-template-columns: min-content 1fr;
 }
 
 .hasSuffix {
-  grid-template-columns: max-content min-content;
+  grid-template-columns: 1fr min-content;
 }
 
 .hasPrefix.hasSuffix {
-  grid-template-columns: min-content max-content min-content;
+  grid-template-columns: min-content 1fr min-content;
 }
 
 .clickable,
 .input ~ .chip {
   box-shadow: var(--shadow-base);
   cursor: pointer;
+  appearance: none;
 }
 
 /**
@@ -138,6 +141,18 @@
 .clickable .button:hover {
   box-shadow: var(--shadow-focus);
   outline: none;
+}
+
+/**
+ * Truncate
+ */
+
+.truncate {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /**
