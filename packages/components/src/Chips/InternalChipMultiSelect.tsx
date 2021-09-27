@@ -16,11 +16,11 @@ export function InternalChipMultiSelect({
   onClickChip,
 }: InternalChipChoiceMultipleProps) {
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} data-testid="multiselect-chips">
       {React.Children.map(children, child => {
         const isChipActive = selected.includes(child.props.value);
         return (
-          <label>
+          <label data-testid={child.props.label}>
             <input
               type="checkbox"
               checked={isChipActive}
