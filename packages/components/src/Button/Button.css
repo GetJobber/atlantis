@@ -73,39 +73,85 @@ a.button:active {
 
 /* Cancel is special because, by default, it's styled as a secondary button */
 
-.cancel {
-  --button--color-variation: var(--color-cancel);
-  --button--color-variation--hover: var(--color-cancel--hover);
+.cancel,
+.subtle {
+  --button--color-variation: var(--color-interactive--subtle);
+  --button--color-variation--hover: var(--color-interactive--subtle--hover);
 }
 
 /* Type */
 
-.primary:not(.cancel),
-.primary:not(.cancel):hover,
-.primary:not(.cancel):focus {
+.primary:not(.cancel, .subtle, .disabled),
+.primary:not(.cancel, .subtle, .disabled):hover,
+.primary:not(.cancel, .subtle, .disabled):focus {
   color: var(--button--color-primaryLabel);
   background-color: var(--button--color-variation);
   fill: var(--button--color-primaryLabel);
 }
 
-.primary:not(.cancel):hover,
-.primary:not(.cancel):focus {
+.primary:not(.cancel, .subtle, .disabled):hover,
+.primary:not(.cancel, .subtle, .disabled):focus {
   background-color: var(--button--color-variation--hover);
 }
 
-.secondary {
+.cancel.primary,
+.subtle.primary {
+  color: var(--button--color-variation);
+  fill: var(--button--color-variation);
+  background-color: var(--button--color-surface);
+}
+
+.secondary,
+.subtle.primary {
   border-color: var(--button--color-variation);
 }
 
-.tertiary {
+.cancel.primary:hover,
+.cancel.primary:focus,
+.subtle.primary:hover,
+.subtle.primary:focus {
+  color: var(--button--color-variation--hover);
+  background-color: var(--button--color-surface--hover);
+  fill: var(--button--color-variation--hover);
+}
+
+.subtle.secondary {
+  background-color: var(--button--color-surface);
+}
+
+.tertiary,
+.subtle.secondary {
   border-color: transparent;
+}
+
+.subtle.secondary:hover,
+.subtle.secondary:focus {
+  background-color: var(--button--color-surface--hover);
 }
 
 .tertiary:hover,
 .tertiary:focus,
 a.tertiary:hover,
-a.tertiary:focus {
+a.tertiary:focus,
+.subtle.secondary:hover,
+.subtle.secondary:focus,
+a.subtle.secondary:hover,
+a.subtle.secondary:focus {
   border-color: transparent;
+}
+
+.subtle {
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.subtle.tertiary:hover,
+.subtle.tertiary:focus,
+a.subtle.tertiary:hover,
+a.subtle.tertiary:focus {
+  border-color: transparent;
+  color: var(--color-interactive--subtle--hover);
+  fill: var(--color-interactive--subtle--hover);
 }
 
 /* Disabled */
@@ -198,7 +244,7 @@ a.button.disabled:hover {
   animation-timing-function: linear;
 }
 
-.primary.loading:not(.cancel) {
+.primary.loading:not(.cancel, .subtle) {
   background-image: linear-gradient(
     135deg,
     rgba(255, 255, 255, 25%) 0%,

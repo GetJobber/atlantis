@@ -38,7 +38,7 @@ export function Tooltip({ message, children }: TooltipProps) {
   const arrowRef = createRef<HTMLDivElement>();
   const shadowRef = createRef<HTMLSpanElement>();
 
-  showOnHover();
+  initializeListeners();
 
   const toolTipClassNames = classnames(
     styles.tooltipWrapper,
@@ -51,12 +51,13 @@ export function Tooltip({ message, children }: TooltipProps) {
       <span className={styles.shadowActivator} ref={shadowRef} />
       {children}
       <TooltipPortal>
-        <AnimatePresence>
-          <div
-            className={toolTipClassNames}
-            style={tooltipStyles}
-            ref={tooltipRef}
-          >
+        <div
+          className={toolTipClassNames}
+          style={tooltipStyles}
+          ref={tooltipRef}
+          role="tooltip"
+        >
+          <AnimatePresence>
             {show && (
               <motion.div
                 className={styles.tooltip}
@@ -78,13 +79,13 @@ export function Tooltip({ message, children }: TooltipProps) {
                 ></div>
               </motion.div>
             )}
-          </div>
-        </AnimatePresence>
+          </AnimatePresence>
+        </div>
       </TooltipPortal>
     </>
   );
 
-  function showOnHover() {
+  function initializeListeners() {
     const [popperInstance, setPopperInstance] = useState<
       PopperInstance | undefined
     >(undefined);
@@ -93,33 +94,56 @@ export function Tooltip({ message, children }: TooltipProps) {
       if (popperInstance) popperInstance.update();
     }, [show]);
 
+    const showTooltip = () => {
+      setShow(true);
+    };
+
+    const hideTooltip = () => {
+      setShow(false);
+    };
+
+    const injectAttributes = () => {
+      if (shadowRef?.current?.nextElementSibling) {
+        const activator = shadowRef.current.nextElementSibling;
+        // Manually inject "aria-description" and "tabindex" to let the screen
+        // readers read the tooltip message.
+        // This is to avoid having to add those attribute as a prop on every
+        // component we have.
+        activator.setAttribute("aria-description", message);
+        activator.setAttribute("tabindex", "0"); // enable focus
+      }
+    };
+
+    const addListeners = () => {
+      if (shadowRef?.current?.nextElementSibling) {
+        const activator = shadowRef.current.nextElementSibling;
+        activator.addEventListener("mouseenter", showTooltip);
+        activator.addEventListener("mouseleave", hideTooltip);
+        activator.addEventListener("focus", showTooltip);
+        activator.addEventListener("blur", hideTooltip);
+      }
+    };
+
+    const removeListeners = () => {
+      if (shadowRef?.current?.nextElementSibling) {
+        const activator = shadowRef.current.nextElementSibling;
+        activator.removeEventListener("mouseenter", showTooltip);
+        activator.removeEventListener("mouseleave", hideTooltip);
+        activator.removeEventListener("focus", showTooltip);
+        activator.removeEventListener("blur", hideTooltip);
+      }
+    };
+
     useLayoutEffect(() => {
       const popper = setupPopper();
       setPopperInstance(popper);
       setShow(false);
-
-      const showTooltip = () => {
-        setShow(true);
-      };
-
-      const hideTooltip = () => {
-        setShow(false);
-      };
-
-      if (shadowRef.current && shadowRef.current.nextElementSibling) {
-        const activator = shadowRef.current.nextElementSibling;
-        activator.addEventListener("mouseenter", showTooltip);
-        activator.addEventListener("mouseleave", hideTooltip);
-      }
+      injectAttributes();
+      addListeners();
 
       return () => {
         if (popper) popper.destroy();
-
-        if (shadowRef.current && shadowRef.current.nextElementSibling) {
-          const activator = shadowRef.current.nextElementSibling;
-          activator.removeEventListener("mouseenter", showTooltip);
-          activator.removeEventListener("mouseleave", hideTooltip);
-        }
+        removeListeners();
       };
     }, []);
   }

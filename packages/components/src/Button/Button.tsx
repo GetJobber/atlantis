@@ -56,15 +56,9 @@ interface ButtonLinkProps extends ButtonFoundationProps {
 }
 
 interface BaseActionProps extends ButtonFoundationProps {
-  readonly variation?: "work" | "learning";
+  readonly variation?: "work" | "learning" | "subtle" | "destructive";
   readonly type?: "primary" | "secondary" | "tertiary";
 }
-
-interface DestructiveActionProps extends ButtonFoundationProps {
-  readonly variation: "destructive";
-  readonly type?: "primary" | "secondary" | "tertiary";
-}
-
 interface CancelActionProps extends ButtonFoundationProps {
   readonly variation: "cancel";
   readonly type?: "secondary" | "tertiary";
@@ -72,7 +66,6 @@ interface CancelActionProps extends ButtonFoundationProps {
 
 interface SubmitActionProps
   extends Omit<ButtonFoundationProps, "external" | "onClick"> {
-  readonly variation?: "work";
   readonly type?: "primary";
   readonly submit: boolean;
 }
@@ -87,7 +80,7 @@ interface SubmitButtonProps
 
 export type ButtonProps = XOR<
   BaseActionProps,
-  XOR<DestructiveActionProps, XOR<CancelActionProps, SubmitActionProps>>
+  XOR<CancelActionProps, SubmitActionProps>
 > &
   XOR<SubmitButtonProps, XOR<ButtonLinkProps, ButtonAnchorProps>> &
   XOR<ButtonIconProps, ButtonLabelProps>;
