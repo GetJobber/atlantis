@@ -218,8 +218,9 @@ import { ChipDismissible, ChipAvatar, ChipIcon } from "../Chips";
   <ChipDismissible
     prefix={<ChipIcon name="engine" color="yellow" />}
     label="Check engine light"
+    onRequestRemove={() => alert("remove")}
   />{" "}
-  <ChipDismissible label="Black" />
+  <ChipDismissible label="Black" onRequestRemove={() => alert("remove")} />
 </Playground>
 
 #### Props
