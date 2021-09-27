@@ -25,18 +25,7 @@ export type IconNames =
   | "remove"
   | "thumbsDown"
   | "truck";
-export type IconColorNames =
-  | "white"
-  | "grey"
-  | "greyBlue"
-  | "greyBlueDark"
-  | "blue"
-  | "lightBlue"
-  | "green"
-  | "yellow"
-  | "red"
-  | "navy"
-  | "orange";
+export type IconColorNames = keyof typeof colors;
 export type IconSizes = "small" | "base" | "large";
 interface IconProps {
   /** The icon to show.  */

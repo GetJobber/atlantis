@@ -11,12 +11,17 @@
   height: var(--avatar-size);
   min-width: var(--avatar-size);
   min-height: var(--avatar-size);
-  border-radius: 50%;
-  color: var(--color-blue--dark);
+  border-radius: var(--radius-circle);
+  color: var(--color-heading);
   font-size: var(--avatar-size);
   -webkit-font-smoothing: antialiased;
   background: no-repeat center center var(--color-greyBlue);
   background-size: cover;
+}
+
+.avatar:focus {
+  box-shadow: var(--shadow-focus);
+  outline: none;
 }
 
 .large {
@@ -24,8 +29,12 @@
   --avatar-border-size: var(--border-thick);
 }
 
+.small {
+  --avatar-size: calc(var(--base-unit) * 1.5);
+}
+
 .isDark {
-  color: var(--color-white);
+  color: var(--color-text--reverse);
 }
 
 .initials {

@@ -8,6 +8,31 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.17.1...@jobber/design@0.17.2) (2021-09-27)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.17.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.17.0...@jobber/design@0.17.1) (2021-09-23)
+
+
+### Bug Fixes
+
+* **components:** Use the correct path for the iconMap.ts file in the script ([#305](https://github.com/GetJobber/atlantis/issues/305)) ([046993e](https://github.com/GetJobber/atlantis/commit/046993e4fddb454f51708b9f85cb373107b9dcae))
+* Support semantic colors on icon ([#679](https://github.com/GetJobber/atlantis/issues/679)) ([4653b7d](https://github.com/GetJobber/atlantis/commit/4653b7ddf8d9d68eca8c46704bfe82c097c731d1)), closes [#678](https://github.com/GetJobber/atlantis/issues/678)
+
+
+### Reverts
+
+* Revert "fix(components): Use the correct path for the iconMap.ts file in the script (#305)" (#653) ([6ed682d](https://github.com/GetJobber/atlantis/commit/6ed682d528713f2c881829b6a31f3af874602aa2)), closes [#305](https://github.com/GetJobber/atlantis/issues/305) [#653](https://github.com/GetJobber/atlantis/issues/653)
+
+
+
+
+
 # [0.17.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.16.0...@jobber/design@0.17.0) (2021-09-09)
 
 

@@ -8,6 +8,96 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.50.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.50.1...@jobber/components@2.50.2) (2021-09-27)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.50.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.50.0...@jobber/components@2.50.1) (2021-09-23)
+
+
+### Bug Fixes
+
+* Support semantic colors on icon ([#679](https://github.com/GetJobber/atlantis/issues/679)) ([4653b7d](https://github.com/GetJobber/atlantis/commit/4653b7ddf8d9d68eca8c46704bfe82c097c731d1)), closes [#678](https://github.com/GetJobber/atlantis/issues/678)
+
+
+
+
+
+# [2.50.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.49.1...@jobber/components@2.50.0) (2021-09-23)
+
+
+### Features
+
+* **components:** Added keyboard shortcut to confirmation modal  ([#669](https://github.com/GetJobber/atlantis/issues/669)) ([f93456f](https://github.com/GetJobber/atlantis/commit/f93456fcf0bd08472e194282d059572ee1583fc3))
+
+
+
+
+
+## [2.49.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.49.0...@jobber/components@2.49.1) (2021-09-22)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.49.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.48.1...@jobber/components@2.49.0) (2021-09-22)
+
+
+### Features
+
+* **components:** Add small size to avatar ([#673](https://github.com/GetJobber/atlantis/issues/673)) ([e018389](https://github.com/GetJobber/atlantis/commit/e0183893629b508a397c8a41cb0aed08121db314))
+
+
+
+
+
+## [2.48.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.48.0...@jobber/components@2.48.1) (2021-09-21)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.48.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.47.1...@jobber/components@2.48.0) (2021-09-21)
+
+
+### Features
+
+* **components:** Add destructive option for ConfirmationModal ([#633](https://github.com/GetJobber/atlantis/issues/633)) ([7a11d7a](https://github.com/GetJobber/atlantis/commit/7a11d7a391b2410abfbac49edb8a11cfc4a6c102))
+
+
+
+
+
+## [2.47.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.47.0...@jobber/components@2.47.1) (2021-09-20)
+
+
+### Bug Fixes
+
+* **components:** Show tooltip on focus and let the screen readers announce the message [JOB-26479] ([#620](https://github.com/GetJobber/atlantis/issues/620)) ([dd03613](https://github.com/GetJobber/atlantis/commit/dd036137f563f073b938a3cd948dcf6ca33b0c7f))
+
+
+
+
+
+# [2.47.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.46.9...@jobber/components@2.47.0) (2021-09-20)
+
+
+### Features
+
+* **eslint:** Update prettier to latest version ([#667](https://github.com/GetJobber/atlantis/issues/667)) ([84e5895](https://github.com/GetJobber/atlantis/commit/84e589542c642b27acd2997af7200b86ba197b7e))
+
+
+
+
+
 ## [2.46.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.46.8...@jobber/components@2.46.9) (2021-09-15)
 
 
