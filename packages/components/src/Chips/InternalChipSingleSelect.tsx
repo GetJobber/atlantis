@@ -30,7 +30,6 @@ export function InternalChipSingleSelect({
             disabled={child.props.disabled}
             data-testid="chip-input"
           />
-
           <InternalChip
             {...child.props}
             active={child.props.value === selected}

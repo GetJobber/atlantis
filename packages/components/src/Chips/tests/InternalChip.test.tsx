@@ -24,42 +24,77 @@ it("should fire the callback when it's clicked", () => {
 });
 
 describe("Chip icon colors depending on state", () => {
-  function mockChip(type: "invalid" | "disabled" | "active") {
+  it("should be red when it's invalid", () => {
+    expect(mockChip({ invalid: true })).toHaveStyle({
+      fill: "var(--color-critical--onSurface)",
+    });
+  });
+
+  it("should be red when it's invalid and active", () => {
+    expect(mockChip({ invalid: true, active: true })).toHaveStyle({
+      fill: "var(--color-critical--onSurface)",
+    });
+  });
+
+  it("should be grey when it's disabled", () => {
+    expect(mockChip({ disabled: true })).toHaveStyle({
+      fill: "var(--color-disabled)",
+    });
+  });
+
+  it("should be grey when it's disabled and invalid", () => {
+    expect(mockChip({ disabled: true, invalid: true })).toHaveStyle({
+      fill: "var(--color-disabled)",
+    });
+  });
+
+  it("should be white when it's active", () => {
+    expect(mockChip({ active: true })).toHaveStyle({
+      fill: "var(--color-white)",
+    });
+  });
+
+  interface MockChipProps {
+    readonly invalid?: boolean;
+    readonly disabled?: boolean;
+    readonly active?: boolean;
+  }
+
+  function mockChip({
+    invalid = false,
+    disabled = false,
+    active = false,
+  }: MockChipProps) {
     render(
       <InternalChip
-        invalid={type === "invalid"}
-        disabled={type === "disabled"}
-        active={type === "active"}
+        invalid={invalid}
+        disabled={disabled}
+        active={active}
         prefix={<ChipIcon name="checkbox" />}
         label="Yo!"
       />,
     );
     return screen.getByTestId("checkbox").querySelector("path");
   }
-
-  it("should be red when it's invalid", () => {
-    expect(mockChip("invalid")).toHaveStyle({
-      fill: "var(--color-critical--onSurface)",
-    });
-  });
-
-  it("should be grey when it's disabled", () => {
-    expect(mockChip("disabled")).toHaveStyle({
-      fill: "var(--color-disabled)",
-    });
-  });
-
-  it("should be white when it's active", () => {
-    expect(mockChip("active")).toHaveStyle({ fill: "var(--color-white)" });
-  });
 });
 
-describe("When the chip is disabled and invalid", () => {
+// TODO: Figure out why this is always passing
+
+describe.skip("When the chip is disabled and invalid", () => {
   it("should still look disabled but have a border of red", () => {
     render(<InternalChip disabled invalid label="Yo!" />);
     expect(screen.getByTestId("chip-wrapper")).toHaveStyle({
       borderColor: "var(--color-critical)",
       backgroundColor: "var(--color-disabled--secondary)",
     });
+  });
+});
+
+describe.skip("When the chip is disabled and active", () => {
+  it("should be a darker chip but still grey", async () => {
+    render(<InternalChip disabled active label="Yo!" />);
+    expect(screen.getByTestId("chip-wrapper")).toHaveStyle(`
+        background-color: var(--color-disabled);
+      `);
   });
 });

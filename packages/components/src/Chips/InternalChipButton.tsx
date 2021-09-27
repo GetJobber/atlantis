@@ -30,12 +30,13 @@ export function InternalChipButton({
       ref={buttonRef}
       className={styles.button}
       tabIndex={0}
-      aria-label={`Remove ${label}`}
-      role="button"
       onKeyUp={handleKeyDown}
       onClick={handleClick}
-      data-testid="remove-chip-button"
+      role="button"
+      aria-label={`Remove ${label}`}
       aria-hidden={true}
+      aria-disabled={disabled}
+      data-testid="remove-chip-button"
     >
       <ChipIcon name={icon} color={getColor()} />
     </div>
@@ -51,8 +52,8 @@ export function InternalChipButton({
   }
 
   function getColor() {
-    if (invalid) return "criticalOnSurface";
     if (disabled) return "disabled";
+    if (invalid) return "criticalOnSurface";
     return "greyBlue";
   }
 
