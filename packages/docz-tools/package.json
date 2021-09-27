@@ -16,7 +16,7 @@
     "classnames": "^2.3.1",
     "deepmerge": "^4.2.2",
     "framer-motion": "^1.11.1",
-    "postcss": "^7.0.17",
+    "postcss": "^7.0.36",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.7.0",
     "react-helmet": "^6.1.0",
