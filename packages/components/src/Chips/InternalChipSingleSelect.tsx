@@ -17,9 +17,9 @@ export function InternalChipSingleSelect({
   onClickChip,
 }: InternalChipChoiceProps) {
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} data-testid="singleselect-chips">
       {React.Children.map(children, child => (
-        <label>
+        <label data-testid={child.props.label}>
           <input
             type="radio"
             checked={child.props.value === selected}
