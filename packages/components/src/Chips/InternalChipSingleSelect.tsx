@@ -1,4 +1,4 @@
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import uuid from "uuid";
 import styles from "./InternalChip.css";
 import { InternalChip } from "./InternalChip";
@@ -19,23 +19,33 @@ export function InternalChipSingleSelect({
   return (
     <div className={styles.wrapper}>
       {React.Children.map(children, child => (
-        <InternalChip
-          {...child.props}
-          type="radio"
-          name={name}
-          active={child.props.value === selected}
-          warnOnLongLabels={true}
-          onClick={event => {
-            onClickChip?.(event, child.props.value);
-            handleClick(child.props.value);
-          }}
-        />
+        <label>
+          <input
+            type="radio"
+            checked={child.props.value === selected}
+            className={styles.input}
+            name={name}
+            onClick={handleClick(child.props.value)}
+            onChange={() => {}} // No op. onClick handles the change to allow deselecting.
+            disabled={child.props.disabled}
+            data-testid="chip-input"
+          />
+
+          <InternalChip
+            {...child.props}
+            active={child.props.value === selected}
+            warnOnLongLabels={true}
+          />
+        </label>
       ))}
     </div>
   );
 
   function handleClick(value?: string | number) {
-    const newValue = value !== selected ? value : undefined;
-    onChange(newValue);
+    return (event: SyntheticEvent<HTMLInputElement>) => {
+      onClickChip?.(event, value);
+      const newValue = value !== selected ? value : undefined;
+      onChange(newValue);
+    };
   }
 }

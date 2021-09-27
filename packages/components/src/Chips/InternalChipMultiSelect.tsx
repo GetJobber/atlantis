@@ -1,4 +1,4 @@
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import styles from "./InternalChip.css";
 import { InternalChip } from "./InternalChip";
 import { ChipMultiSelectProps } from "./ChipsTypes";
@@ -20,28 +20,37 @@ export function InternalChipMultiSelect({
       {React.Children.map(children, child => {
         const isChipActive = selected.includes(child.props.value);
         return (
-          <InternalChip
-            {...child.props}
-            type="checkbox"
-            active={isChipActive}
-            suffix={checkmarkIcon(isChipActive)}
-            warnOnLongLabels={true}
-            onClick={event => {
-              onClickChip?.(event, child.props.value);
-              handleClick(child.props.value);
-            }}
-          />
+          <label>
+            <input
+              type="checkbox"
+              checked={isChipActive}
+              className={styles.input}
+              onClick={handleClick(child.props.value)}
+              onChange={() => {}} // No op. onClick handles the change to allow deselecting.
+              disabled={child.props.disabled}
+              data-testid="chip-input"
+            />
+            <InternalChip
+              {...child.props}
+              active={isChipActive}
+              suffix={checkmarkIcon(isChipActive)}
+              warnOnLongLabels={true}
+              // onClick={handleClick(child.props.value)}
+            />
+          </label>
         );
       })}
     </div>
   );
-
   function handleClick(value: string | number) {
-    const shouldDeselect = selected.includes(value);
-    const newValue = shouldDeselect
-      ? selected.filter(val => val !== value)
-      : [...selected, value];
-    onChange(newValue);
+    return (event: SyntheticEvent<HTMLInputElement>) => {
+      onClickChip?.(event, value);
+      const shouldDeselect = selected.includes(value);
+      const newValue = shouldDeselect
+        ? selected.filter(val => val !== value)
+        : [...selected, value];
+      onChange(newValue);
+    };
   }
 
   function checkmarkIcon(show: boolean) {

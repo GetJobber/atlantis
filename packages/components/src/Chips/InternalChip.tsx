@@ -15,13 +15,6 @@ export interface InternalChipProps {
   readonly label: string;
 
   /**
-   * The HTML input's name.
-   *
-   * @link https://www.w3schools.com/tags/att_input_name.asp
-   */
-  readonly name?: string;
-
-  /**
    * Throws a console warning when the chip label goes over 24 characters.
    */
   readonly warnOnLongLabels?: boolean;
@@ -40,11 +33,6 @@ export interface InternalChipProps {
    * Highlights the chip red.
    */
   readonly invalid?: boolean;
-
-  /**
-   * Determines whether to semantically act like a checkbox, radio, or button.
-   */
-  readonly type: "checkbox" | "radio" | "button";
 
   /**
    * Adds an avatar or icon on the left side of the label.
@@ -76,8 +64,6 @@ export function InternalChip({
   prefix,
   suffix,
   warnOnLongLabels = false,
-  name,
-  type,
   onClick,
 }: InternalChipProps) {
   const component = computedProps();
@@ -92,43 +78,22 @@ export function InternalChip({
     [styles.hasSuffix]: suffix,
   });
 
-  const Tag = chipTag();
+  const Tag = onClick ? "button" : "div";
 
   return (
     <Tag
       className={className}
       data-testid="chip-wrapper"
-      {...(component.isTypeButton && {
+      {...(component.isClickable && {
         onClick: onClick,
         disabled: disabled,
-        tabIndex: 0,
       })}
     >
-      {component.isTypeInput && (
-        <input
-          type={type}
-          checked={active}
-          className={styles.input}
-          name={name}
-          onClick={onClick}
-          onChange={() => {}} // No op. onClick handles the change to allow deselecting.
-          disabled={disabled}
-          data-testid="chip-input"
-        />
-      )}
       {renderPrefix()}
       <Typography size="base">{label}</Typography>
       {renderSuffix()}
     </Tag>
   );
-
-  function chipTag() {
-    if (component.isTypeButton) {
-      if (onClick) return "button";
-      return "div";
-    }
-    return "label";
-  }
 
   function computedProps() {
     return {
@@ -137,8 +102,6 @@ export function InternalChip({
       isSuffixIcon: suffix?.type === ChipIcon || false,
       isSuffixButton: suffix?.type === InternalChipButton || false,
       isClickable: onClick && !disabled,
-      isTypeButton: type === "button",
-      isTypeInput: type === "radio" || type === "checkbox",
     };
   }
 

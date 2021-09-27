@@ -31,10 +31,11 @@ export function InternalChipButton({
       className={styles.button}
       tabIndex={0}
       aria-label={`Remove ${label}`}
-      aria-role="button"
+      role="button"
       onKeyUp={handleKeyDown}
       onClick={handleClick}
       data-testid="remove-chip-button"
+      aria-hidden={true}
     >
       <ChipIcon name={icon} color={getColor()} />
     </div>
