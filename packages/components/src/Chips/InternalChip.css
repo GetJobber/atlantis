@@ -123,6 +123,7 @@
  */
 
 .button {
+  display: flex;
   border-radius: var(--radius-base);
   cursor: pointer;
   transition: background-color 200ms ease;
@@ -149,4 +150,8 @@
 
 .icon > svg {
   fill: var(--color-text--secondary);
+}
+
+.icon {
+  display: flex;
 }
