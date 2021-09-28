@@ -26,7 +26,9 @@ export function InternalChipSingleSelect({
             className={styles.input}
             name={name}
             onClick={handleClick(child.props.value)}
-            onChange={() => {}} // No op. onClick handles the change to allow deselecting.
+            onChange={() => {
+              /* No op. onClick handles the change to allow deselecting. */
+            }}
             disabled={child.props.disabled}
             data-testid="chip-input"
           />
