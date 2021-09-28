@@ -1,4 +1,4 @@
-import React, { ReactElement, SyntheticEvent } from "react";
+import React, { ReactElement, SyntheticEvent, useState } from "react";
 import classnames from "classnames";
 import { IconColorNames } from "@jobber/design";
 import styles from "./InternalChip.css";
@@ -7,6 +7,7 @@ import { ChipIcon, ChipIconProps } from "./ChipIcon";
 import { useAssert } from "./useAssert";
 import { ChipButtonProps, InternalChipButton } from "./InternalChipButton";
 import { Typography } from "../Typography";
+import { Tooltip } from "../Tooltip";
 
 export interface InternalChipProps {
   /**
@@ -66,40 +67,44 @@ export function InternalChip({
   warnOnLongLabels = false,
   onClick,
 }: InternalChipProps) {
-  const component = computedProps();
   assertProps();
-
-  const className = classnames(styles.chip, {
-    [styles.clickable]: component.isClickable,
-    [styles.active]: active,
-    [styles.disabled]: disabled,
-    [styles.invalid]: invalid,
-    [styles.hasPrefix]: prefix,
-    [styles.hasSuffix]: suffix,
-  });
-
+  const [truncateRef, setTruncateRef] = useState<HTMLElement | null>();
   const Tag = onClick ? "button" : "div";
-
-  return (
+  const chip = (
     <Tag
-      className={className}
+      className={classnames(styles.chip, {
+        [styles.clickable]: computed().isClickable,
+        [styles.active]: active,
+        [styles.disabled]: disabled,
+        [styles.invalid]: invalid,
+        [styles.hasPrefix]: prefix,
+        [styles.hasSuffix]: suffix,
+      })}
       data-testid="chip-wrapper"
-      {...(component.isClickable && {
+      {...(computed().isClickable && {
         onClick: onClick,
         disabled: disabled,
       })}
     >
       {renderPrefix()}
       <Typography numberOfLines={1} size="base">
-        <div className={styles.truncate}>
-          <span>{label}</span>
-        </div>
+        <span className={styles.truncate}>
+          <span ref={setTruncateRef}>{label}</span>
+        </span>
       </Typography>
       {renderSuffix()}
     </Tag>
   );
 
-  function computedProps() {
+  return isTruncated() ? <Tooltip message={label}>{chip}</Tooltip> : chip;
+
+  function isTruncated() {
+    const truncateParentWidth = truncateRef?.parentElement?.offsetWidth || 0;
+    const truncateChildWidth = truncateRef?.offsetWidth || 0;
+    return truncateParentWidth < truncateChildWidth;
+  }
+
+  function computed() {
     return {
       isPrefixAvatar: prefix?.type === ChipAvatar || false,
       isPrefixIcon: prefix?.type === ChipIcon || false,
@@ -110,14 +115,14 @@ export function InternalChip({
   }
 
   function renderPrefix() {
-    if (component.isPrefixIcon) {
+    if (computed().isPrefixIcon) {
       return recolorChipIcon(prefix as ReactElement<ChipIconProps>);
     }
     return prefix;
   }
 
   function renderSuffix() {
-    if (component.isSuffixIcon) {
+    if (computed().isSuffixIcon) {
       return recolorChipIcon(suffix as ReactElement<ChipIconProps>);
     }
     return suffix;
@@ -138,11 +143,11 @@ export function InternalChip({
 
   function assertProps() {
     useAssert(
-      !!prefix && !(component.isPrefixAvatar || component.isPrefixIcon),
+      !!prefix && !(computed().isPrefixAvatar || computed().isPrefixIcon),
       `Prefix prop only accepts "<ChipAvatar />" or "<ChipIcon />" component. You have "${prefix?.type}".`,
     );
     useAssert(
-      !!suffix && !(component.isSuffixIcon || component.isSuffixButton),
+      !!suffix && !(computed().isSuffixIcon || computed().isSuffixButton),
       `Prefix prop only accepts "<ChipIcon />" component. You have "${suffix?.type}".`,
     );
     useAssert(
