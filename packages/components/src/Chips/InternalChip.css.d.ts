@@ -1,12 +1,16 @@
-export const wrapper: string;
-export const chip: string;
-export const hasPrefix: string;
-export const hasSuffix: string;
-export const clickable: string;
-export const input: string;
-export const active: string;
-export const invalid: string;
-export const disabled: string;
-export const button: string;
-export const truncate: string;
-export const icon: string;
+declare const styles: {
+  readonly "wrapper": string;
+  readonly "chip": string;
+  readonly "hasPrefix": string;
+  readonly "hasSuffix": string;
+  readonly "clickable": string;
+  readonly "input": string;
+  readonly "active": string;
+  readonly "invalid": string;
+  readonly "disabled": string;
+  readonly "button": string;
+  readonly "truncate": string;
+  readonly "icon": string;
+};
+export = styles;
+
