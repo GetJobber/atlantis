@@ -136,6 +136,29 @@ which they can also remove once added.
 
  -->
 
+### Dismissible Chip
+
+A standalone chip that gives you an action to remove it from a list.
+
+```ts
+import { ChipDismissible, ChipAvatar, ChipIcon } from "../Chips";
+```
+
+<Playground>
+  <ChipDismissible
+    prefix={<ChipAvatar initials="MB" />}
+    label="Mercedes-Benz"
+    onClick={() => alert("chip")}
+    onRequestRemove={() => alert("remove")}
+  />{" "}
+  <ChipDismissible
+    prefix={<ChipIcon name="engine" color="yellow" />}
+    label="Check engine light"
+    onRequestRemove={() => alert("remove")}
+  />{" "}
+  <ChipDismissible label="Black" onRequestRemove={() => alert("remove")} />
+</Playground>
+
 ## Props
 
 ### `<Chips>`
@@ -145,6 +168,10 @@ which they can also remove once added.
 ### `<Chip>`
 
 <Props of={Chip} />
+
+### `<ChipDismissible>`
+
+<Props of={ChipDismissible} />
 
 <Card>
   <Content>
@@ -199,30 +226,3 @@ colors for parity with Jobber's mobile platform, but we will not be implementing
 this for the web components as of this first iteration of our web Chip. The
 mobile use-case is very specific to a filtering use case that we as of now do
 not anticipate will be required for web.
-
-### Dismissible Chip
-
-A standalone chip that gives you an action to remove it from a list.
-
-```ts
-import { ChipDismissible, ChipAvatar, ChipIcon } from "../Chips";
-```
-
-<Playground>
-  <ChipDismissible
-    prefix={<ChipAvatar initials="MB" />}
-    label="Mercedes-Benz"
-    onClick={() => alert("chip")}
-    onRequestRemove={() => alert("remove")}
-  />{" "}
-  <ChipDismissible
-    prefix={<ChipIcon name="engine" color="yellow" />}
-    label="Check engine light"
-    onRequestRemove={() => alert("remove")}
-  />{" "}
-  <ChipDismissible label="Black" onRequestRemove={() => alert("remove")} />
-</Playground>
-
-#### Props
-
-<Props of={ChipDismissible} />
