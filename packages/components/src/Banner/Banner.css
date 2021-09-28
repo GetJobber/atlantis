@@ -73,3 +73,23 @@
   outline: none;
   background: rgba(0, 0, 0, 0.05);
 }
+
+.pagination {
+  display: flex;
+  align-items: center;
+}
+
+.message {
+  display: inline;
+}
+.page {
+  display: inline;
+}
+
+.prev {
+  cursor: pointer;
+}
+
+.next {
+  cursor: pointer;
+}

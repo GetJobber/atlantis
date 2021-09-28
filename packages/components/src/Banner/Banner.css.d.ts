@@ -5,6 +5,11 @@ declare const styles: {
   readonly "dismissibleSpacing": string;
   readonly "bannerAction": string;
   readonly "closeButton": string;
+  readonly "pagination": string;
+  readonly "message": string;
+  readonly "page": string;
+  readonly "prev": string;
+  readonly "next": string;
 };
 export = styles;
 

@@ -24,7 +24,18 @@ import { Banner } from "@jobber/components/Banner";
 ```
 
 <Playground>
-  <Banner type="notice">Your visits are being scheduled</Banner>
+  <Banner
+    type="notice"
+    multiple="true"
+    messages={[
+      "First of a kind",
+      "Second to none",
+      "Third times a charm",
+      "Gang of four",
+    ]}
+  >
+    Your visits are being scheduled
+  </Banner>
 </Playground>
 
 ## Props
