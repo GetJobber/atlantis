@@ -9,7 +9,6 @@ declare const styles: {
   readonly "invalid": string;
   readonly "disabled": string;
   readonly "button": string;
-  readonly "truncate": string;
   readonly "icon": string;
 };
 export = styles;

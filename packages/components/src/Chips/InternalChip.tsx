@@ -88,9 +88,7 @@ export function InternalChip({
     >
       {renderPrefix()}
       <Typography numberOfLines={1} size="base">
-        <span className={styles.truncate}>
-          <span ref={setTruncateRef}>{label}</span>
-        </span>
+        <span ref={setTruncateRef}>{label}</span>
       </Typography>
       {renderSuffix()}
     </Tag>
@@ -99,9 +97,9 @@ export function InternalChip({
   return isTruncated() ? <Tooltip message={label}>{chip}</Tooltip> : chip;
 
   function isTruncated() {
-    const truncateParentWidth = truncateRef?.parentElement?.offsetWidth || 0;
-    const truncateChildWidth = truncateRef?.offsetWidth || 0;
-    return truncateParentWidth < truncateChildWidth;
+    const truncateParentHeight = truncateRef?.parentElement?.offsetHeight || 0;
+    const truncateChildHeight = truncateRef?.offsetHeight || 0;
+    return truncateParentHeight < truncateChildHeight;
   }
 
   function computed() {

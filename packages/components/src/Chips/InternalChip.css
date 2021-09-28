@@ -144,18 +144,6 @@
 }
 
 /**
- * Truncate
- */
-
-.truncate {
-  display: block;
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-/**
  * Override icon default colors.
  *
  * NOTE: This is a workaround since some icons have default colors that we don't
