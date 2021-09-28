@@ -9,7 +9,7 @@
   font-style: normal;
   font-weight: inherit;
   background-image: url(https://getjobber.com/wp-content/uploads/jobber-assets/underline.6f5c72e0.svg);
-  background-position: center 80%;
+  background-position: center 90%;
   background-repeat: no-repeat;
-  background-size: 100% 8px;
+  background-size: 100% var(--space-small);
 }
