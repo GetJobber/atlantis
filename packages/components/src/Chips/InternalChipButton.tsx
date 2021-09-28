@@ -30,7 +30,8 @@ export function InternalChipButton({
       ref={buttonRef}
       className={styles.button}
       tabIndex={0}
-      onKeyUp={handleKeyDown}
+      onKeyUp={handleKeyUp}
+      onKeyDown={handleKeyDown}
       onClick={handleClick}
       role="button"
       aria-label={`Remove ${label}`}
@@ -42,12 +43,20 @@ export function InternalChipButton({
     </div>
   );
 
-  function handleKeyDown(event: KeyboardEvent) {
+  function handleKeyUp(event: KeyboardEvent) {
     if (
       document.activeElement === buttonRef.current &&
       (event.key === " " || event.key === "Enter")
     ) {
+      event.stopPropagation();
       buttonRef.current.click();
+    }
+  }
+
+  function handleKeyDown(event: KeyboardEvent) {
+    if (document.activeElement === buttonRef.current && event.key === " ") {
+      // Don't scroll down
+      event.preventDefault();
     }
   }
 

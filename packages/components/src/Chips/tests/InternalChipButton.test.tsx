@@ -22,7 +22,7 @@ describe("Interaction", () => {
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
-  it("should ne focusable", () => {
+  it("should be focusable", () => {
     target.focus();
     expect(target).toHaveFocus();
   });
