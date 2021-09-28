@@ -4,18 +4,18 @@ import styles from "./InternalChip.css";
 import { InternalChip } from "./InternalChip";
 import { ChipSingleSelectProps } from "./ChipsTypes";
 
-type InternalChipChoiceProps = Pick<
-  ChipSingleSelectProps,
+type InternalChipChoiceProps<T> = Pick<
+  ChipSingleSelectProps<T>,
   "selected" | "onChange" | "children" | "onClickChip" | "name"
 >;
 
-export function InternalChipSingleSelect({
+export function InternalChipSingleSelect<T>({
   children,
   selected,
   name = uuid.v1(),
   onChange,
   onClickChip,
-}: InternalChipChoiceProps) {
+}: InternalChipChoiceProps<T>) {
   return (
     <div className={styles.wrapper} data-testid="singleselect-chips">
       {React.Children.map(children, child => (
@@ -42,7 +42,7 @@ export function InternalChipSingleSelect({
     </div>
   );
 
-  function handleClick(value?: string | number) {
+  function handleClick(value?: T) {
     return (event: React.MouseEvent<HTMLInputElement>) => {
       onClickChip?.(event, value);
       const newValue = value !== selected ? value : undefined;

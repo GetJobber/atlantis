@@ -1,8 +1,9 @@
 import { ReactElement } from "react";
+import { XOR } from "ts-xor";
 import { ChipProps } from "./Chip";
 
-interface ChipFoundationProps {
-  readonly children: ReactElement<ChipProps>[];
+interface ChipFoundationProps<T> {
+  readonly children: ReactElement<ChipProps<T>>[];
 
   /**
    * Change the interaction on the chip.
@@ -15,7 +16,7 @@ interface ChipFoundationProps {
    * The type of the value depends on what you pass in as the selected chips or
    * the value of the chip child.
    */
-  readonly selected: string | number | Array<string | number>;
+  readonly selected: T | T[];
 
   /**
    * Callback whenever a chip is clicked. This returns a new value of
@@ -23,7 +24,7 @@ interface ChipFoundationProps {
    *
    * @param value
    */
-  onChange(value?: string | number | Array<string | number>): void;
+  onChange(value?: T | T[]): void;
 
   /**
    * Callback when a specific chip is clicked
@@ -33,14 +34,14 @@ interface ChipFoundationProps {
    */
   onClickChip?(
     event: React.MouseEvent<HTMLElement>,
-    clickedChipValue?: string | number,
+    clickedChipValue?: T,
   ): void;
 }
 
-export interface ChipSingleSelectProps extends ChipFoundationProps {
+export interface ChipSingleSelectProps<T> extends ChipFoundationProps<T> {
   readonly type?: "singleselect";
-  readonly selected: string | number;
-  onChange(value?: string | number): void;
+  readonly selected: T;
+  onChange(value?: T): void;
 
   /**
    * The Chip's radio input name.
@@ -50,10 +51,13 @@ export interface ChipSingleSelectProps extends ChipFoundationProps {
   readonly name?: string;
 }
 
-export interface ChipMultiSelectProps extends ChipFoundationProps {
+export interface ChipMultiSelectProps<T> extends ChipFoundationProps<T> {
   readonly type: "multiselect";
-  readonly selected: Array<string | number>;
-  onChange(value: Array<string | number>): void;
+  readonly selected: T[];
+  onChange(value: T[]): void;
 }
 
-export type ChipsProps = ChipSingleSelectProps | ChipMultiSelectProps;
+export type ChipsProps<T> = XOR<
+  ChipSingleSelectProps<T>,
+  ChipMultiSelectProps<T>
+>;
