@@ -8,7 +8,7 @@ interface ChipFoundationProps {
   /**
    * Change the interaction on the chip.
    */
-  readonly type?: "singleselect" | "multiselect";
+  readonly type?: "singleselect" | "multiselect" | "dismissible";
 
   /**
    * Determines which chip gets highlighted.
