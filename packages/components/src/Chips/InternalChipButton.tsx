@@ -1,7 +1,7 @@
 import React, { KeyboardEvent, MutableRefObject, useRef } from "react";
 import { IconNames } from "@jobber/design";
 import styles from "./InternalChip.css";
-import { ChipIcon } from "./ChipIcon";
+import { Icon } from "../Icon";
 
 export interface ChipButtonProps {
   readonly icon: IconNames;
@@ -34,7 +34,7 @@ export function InternalChipButton({
       aria-disabled={disabled}
       data-testid="remove-chip-button"
     >
-      <ChipIcon name={icon} color={getColor()} />
+      <Icon name={icon} color={getColor()} />
     </div>
   );
 

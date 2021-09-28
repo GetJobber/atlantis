@@ -1,5 +1,6 @@
 import React from "react";
-import { InternalChip, InternalChipProps } from "./InternalChip";
+import { InternalChipProps } from "./ChipTypes";
+import { InternalChip } from "./InternalChip";
 import { InternalChipButton } from "./InternalChipButton";
 
 interface ChipDismissibleProps

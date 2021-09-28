@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./InternalChip.css";
 import { InternalChip } from "./InternalChip";
 import { ChipMultiSelectProps } from "./ChipsTypes";
-import { ChipIcon } from "./ChipIcon";
+import { Icon } from "../Icon";
 
 type InternalChipChoiceMultipleProps = Pick<
   ChipMultiSelectProps,
@@ -56,6 +56,6 @@ export function InternalChipMultiSelect({
 
   function checkmarkIcon(show: boolean) {
     if (!show) return;
-    return <ChipIcon name="checkmark" />;
+    return <Icon name="checkmark" />;
   }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { InternalChipProps } from "./InternalChip";
+import { InternalChipProps } from "./ChipTypes";
 import { useAssert } from "./useAssert";
 
 export interface ChipProps

@@ -7,12 +7,13 @@ showDirectoryLink: true
 
 import { Playground, Props } from "docz";
 import { useState } from "react";
-import { Chip, ChipAvatar, ChipIcon, Chips, ChipDismissible } from ".";
+import { Chip, Chips, ChipDismissible } from ".";
+import { Avatar } from "@jobber/components/Avatar";
 import { Content } from "@jobber/components/Content";
-import { Text } from "@jobber/components/Text";
 import { Disclosure } from "@jobber/components/Disclosure";
 import { Heading } from "@jobber/components/Heading";
-import { Card } from "@jobber/components/Card";
+import { Icon } from "@jobber/components/Icon";
+import { Text } from "@jobber/components/Text";
 
 # Chips
 
@@ -20,7 +21,7 @@ Chips are a flexible component that can be used for selection of items from a
 group while preserving vertical space in the interface.
 
 ```ts
-import { Chip, ChipAvatar, ChipIcon, Chips } from "../Chips";
+import { Chip, Chips } from "../Chips";
 ```
 
 ## Usage Guidelines
@@ -51,17 +52,17 @@ de-selected by the user, leaving all selections blank.
         </Text>
         <Chips selected={selected} onChange={setSelected}>
           <Chip
-            prefix={<ChipAvatar initials="AZ" />}
+            prefix={<Avatar initials="AZ" />}
             label="Amazing"
             value="Amazing"
           />
           <Chip
-            prefix={<ChipIcon name="video" />}
+            prefix={<Icon name="video" />}
             label="Wonderful"
             value="Wonderful"
           />
           <Chip
-            prefix={<ChipIcon name="starFill" />}
+            prefix={<Icon name="starFill" />}
             label="Brilliant"
             value="Brilliant"
           />
@@ -97,17 +98,17 @@ user, leaving all selections blank.
         </Text>
         <Chips type="multiselect" selected={selected} onChange={setSelected}>
           <Chip
-            prefix={<ChipAvatar initials="AZ" />}
+            prefix={<Avatar initials="AZ" />}
             label="Amazing"
             value="Amazing"
           />
           <Chip
-            prefix={<ChipIcon name="video" />}
+            prefix={<Icon name="video" />}
             label="Wonderful"
             value="Wonderful"
           />
           <Chip
-            prefix={<ChipIcon name="starFill" />}
+            prefix={<Icon name="starFill" />}
             label="Brilliant"
             value="Brilliant"
           />
@@ -141,18 +142,18 @@ which they can also remove once added.
 A standalone chip that gives you an action to remove it from a list.
 
 ```ts
-import { ChipDismissible, ChipAvatar, ChipIcon } from "../Chips";
+import { ChipDismissible } from "../Chips";
 ```
 
 <Playground>
   <ChipDismissible
-    prefix={<ChipAvatar initials="MB" />}
+    prefix={<Avatar initials="MB" />}
     label="Mercedes-Benz"
     onClick={() => alert("chip")}
     onRequestRemove={() => alert("remove")}
   />{" "}
   <ChipDismissible
-    prefix={<ChipIcon name="engine" color="yellow" />}
+    prefix={<Icon name="engine" color="yellow" />}
     label="Check engine light"
     onRequestRemove={() => alert("remove")}
   />{" "}
@@ -169,20 +170,11 @@ import { ChipDismissible, ChipAvatar, ChipIcon } from "../Chips";
 
 <Props of={Chip} />
 
-<Card>
+<Disclosure title="ChipDismissible props">
   <Content>
-    <Disclosure title="ChipDismissible, ChipAvatar, and ChipIcon props">
-      <Content>
-        <Heading level={5}>ChipDismissible</Heading>
-        <Props of={ChipDismissible} />
-        <Heading level={5}>ChipAvatar</Heading>
-        <Props of={ChipAvatar} />
-        <Heading level={5}>ChipIcon</Heading>
-        <Props of={ChipIcon} />
-      </Content>
-    </Disclosure>
+    <Props of={ChipDismissible} />
   </Content>
-</Card>
+</Disclosure>
 
 ## Content Guidelines
 

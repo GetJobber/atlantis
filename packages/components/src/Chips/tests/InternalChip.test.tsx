@@ -2,7 +2,7 @@ import React from "react";
 import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { InternalChip } from "../InternalChip";
-import { ChipIcon } from "..";
+import { Icon } from "../../Icon";
 
 afterEach(cleanup);
 
@@ -70,7 +70,7 @@ describe("Chip icon colors depending on state", () => {
         invalid={invalid}
         disabled={disabled}
         active={active}
-        prefix={<ChipIcon name="checkbox" />}
+        prefix={<Icon name="checkbox" />}
         label="Yo!"
       />,
     );
