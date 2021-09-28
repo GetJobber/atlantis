@@ -1,4 +1,4 @@
-import React, { SyntheticEvent } from "react";
+import React from "react";
 import styles from "./InternalChip.css";
 import { InternalChip } from "./InternalChip";
 import { ChipMultiSelectProps } from "./ChipsTypes";
@@ -44,7 +44,7 @@ export function InternalChipMultiSelect({
     </div>
   );
   function handleClick(value: string | number) {
-    return (event: SyntheticEvent<HTMLInputElement>) => {
+    return (event: React.MouseEvent<HTMLInputElement>) => {
       onClickChip?.(event, value);
       const shouldDeselect = selected.includes(value);
       const newValue = shouldDeselect

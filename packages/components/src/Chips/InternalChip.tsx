@@ -1,4 +1,4 @@
-import React, { ReactElement, SyntheticEvent, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import classnames from "classnames";
 import { IconColorNames } from "@jobber/design";
 import styles from "./InternalChip.css";
@@ -54,7 +54,7 @@ export interface InternalChipProps {
   /**
    * Callback when the chip itself gets clicked.
    */
-  onClick?(event: SyntheticEvent): void;
+  onClick?(event: React.MouseEvent<HTMLElement>): void;
 }
 
 export function InternalChip({
