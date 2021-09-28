@@ -1,11 +1,5 @@
-import React, {
-  ReactElement,
-  SyntheticEvent,
-  useLayoutEffect,
-  useState,
-} from "react";
+import React, { ReactElement, SyntheticEvent, useState } from "react";
 import classnames from "classnames";
-import { debounce } from "lodash";
 import { IconColorNames } from "@jobber/design";
 import styles from "./InternalChip.css";
 import { ChipAvatar, ChipAvatarProps } from "./ChipAvatar";
@@ -74,7 +68,7 @@ export function InternalChip({
   onClick,
 }: InternalChipProps) {
   assertProps();
-  const [truncateRef, setTruncateRef] = useState<HTMLSpanElement | null>();
+  const [truncateRef, setTruncateRef] = useState<HTMLElement | null>();
   const Tag = onClick ? "button" : "div";
   const chip = (
     <Tag
@@ -100,24 +94,13 @@ export function InternalChip({
     </Tag>
   );
 
-  const [truncate, setTruncate] = useState(false);
-  useLayoutEffect(() => {
-    const parentEl = truncateRef?.parentElement;
-    if (!parentEl) return;
+  return isTruncated() ? <Tooltip message={label}>{chip}</Tooltip> : chip;
 
-    const resizeObserver = new ResizeObserver(
-      debounce(() => {
-        const truncateParentHeight = parentEl.offsetHeight;
-        const truncateChildHeight = truncateRef?.offsetHeight || 0;
-        setTruncate(truncateParentHeight < truncateChildHeight);
-      }, 200),
-    );
-
-    resizeObserver.observe(parentEl);
-    return () => resizeObserver.unobserve(parentEl);
-  }, [truncateRef]);
-
-  return truncate ? <Tooltip message={label}>{chip}</Tooltip> : chip;
+  function isTruncated() {
+    const truncateParentHeight = truncateRef?.parentElement?.offsetHeight || 0;
+    const truncateChildHeight = truncateRef?.offsetHeight || 0;
+    return truncateParentHeight < truncateChildHeight;
+  }
 
   function computed() {
     return {

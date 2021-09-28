@@ -1,11 +1,8 @@
 import React from "react";
 import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { MockResizeObserver } from "./mockResizeObserver";
 import { InternalChipMultiSelect } from "../InternalChipMultiSelect";
 import { Chip } from "..";
-
-window.ResizeObserver = MockResizeObserver;
 
 let handleChange: jest.Mock;
 let handleClickChip: jest.Mock;
