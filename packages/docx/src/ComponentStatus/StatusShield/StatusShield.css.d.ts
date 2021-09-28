@@ -1,1 +1,5 @@
-export const statusShield: string;
+declare const styles: {
+  readonly "statusShield": string;
+};
+export = styles;
+

@@ -1,1 +1,5 @@
-export const base: string;
+declare const styles: {
+  readonly "base": string;
+};
+export = styles;
+
