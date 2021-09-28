@@ -1,9 +1,8 @@
 import { ReactElement } from "react";
-import { XOR } from "ts-xor";
 import { ChipProps } from "./Chip";
 
-interface ChipFoundationProps<T> {
-  readonly children: ReactElement<ChipProps<T>>[];
+interface ChipFoundationProps {
+  readonly children: ReactElement<ChipProps>[];
 
   /**
    * Change the interaction on the chip.
@@ -16,7 +15,7 @@ interface ChipFoundationProps<T> {
    * The type of the value depends on what you pass in as the selected chips or
    * the value of the chip child.
    */
-  readonly selected: T | T[];
+  readonly selected: string | number | Array<string | number>;
 
   /**
    * Callback whenever a chip is clicked. This returns a new value of
@@ -24,7 +23,7 @@ interface ChipFoundationProps<T> {
    *
    * @param value
    */
-  onChange(value?: T | T[]): void;
+  onChange(value?: string | number | Array<string | number>): void;
 
   /**
    * Callback when a specific chip is clicked
@@ -34,14 +33,14 @@ interface ChipFoundationProps<T> {
    */
   onClickChip?(
     event: React.MouseEvent<HTMLElement>,
-    clickedChipValue?: T,
+    clickedChipValue?: string | number,
   ): void;
 }
 
-export interface ChipSingleSelectProps<T> extends ChipFoundationProps<T> {
+export interface ChipSingleSelectProps extends ChipFoundationProps {
   readonly type?: "singleselect";
-  readonly selected: T;
-  onChange(value?: T): void;
+  readonly selected: string | number;
+  onChange(value?: string | number): void;
 
   /**
    * The Chip's radio input name.
@@ -51,13 +50,10 @@ export interface ChipSingleSelectProps<T> extends ChipFoundationProps<T> {
   readonly name?: string;
 }
 
-export interface ChipMultiSelectProps<T> extends ChipFoundationProps<T> {
+export interface ChipMultiSelectProps extends ChipFoundationProps {
   readonly type: "multiselect";
-  readonly selected: T[];
-  onChange(value: T[]): void;
+  readonly selected: Array<string | number>;
+  onChange(value: Array<string | number>): void;
 }
 
-export type ChipsProps<T> = XOR<
-  ChipSingleSelectProps<T>,
-  ChipMultiSelectProps<T>
->;
+export type ChipsProps = ChipSingleSelectProps | ChipMultiSelectProps;
