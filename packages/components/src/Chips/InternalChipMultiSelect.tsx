@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./InternalChip.css";
 import { InternalChip } from "./InternalChip";
 import { ChipMultiSelectProps } from "./ChipsTypes";
+import { useAssert } from "./useAssert";
 import { Icon } from "../Icon";
 
 type InternalChipChoiceMultipleProps = Pick<
@@ -15,6 +16,8 @@ export function InternalChipMultiSelect({
   onChange,
   onClickChip,
 }: InternalChipChoiceMultipleProps) {
+  assertSelectedAndValueType();
+
   return (
     <div className={styles.wrapper} data-testid="multiselect-chips">
       {React.Children.map(children, child => {
@@ -71,5 +74,17 @@ export function InternalChipMultiSelect({
   function checkmarkIcon(show: boolean) {
     if (!show) return;
     return <Icon name="checkmark" />;
+  }
+
+  function assertSelectedAndValueType() {
+    const chipOptionsValues = children.map(child => child.props.value);
+    const type = typeof selected[0];
+    const isMatching = !chipOptionsValues.every(val => typeof val === type);
+
+    useAssert(
+      selected.length > 0 && isMatching,
+      `Atleast one of the <Chip /> value prop doesn't match the type of the <Chips> selected prop type of ${type}`,
+      { warn: true },
+    );
   }
 }
