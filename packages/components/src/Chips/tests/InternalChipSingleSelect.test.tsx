@@ -7,7 +7,7 @@ import { InternalChipSingleSelect } from "../InternalChipSingleSelect";
 let handleChange: jest.Mock;
 let handleClickChip: jest.Mock;
 const chips = ["Amazing", "Fabulous", "Magical"];
-const selectedChips = "Amazing";
+const selectedChip = "Amazing";
 
 beforeEach(() => {
   handleChange = jest.fn(value => value);
@@ -15,7 +15,7 @@ beforeEach(() => {
 
   render(
     <InternalChipSingleSelect
-      selected={selectedChips}
+      selected={selectedChip}
       onChange={handleChange}
       onClickChip={handleClickChip}
     >
@@ -45,7 +45,7 @@ describe("onChange", () => {
   });
 
   it("should trigger the onChange deselecting a chip", () => {
-    userEvent.click(screen.getByTestId(selectedChips));
+    userEvent.click(screen.getByTestId(selectedChip));
     expect(handleChange).toHaveBeenCalledTimes(1);
     expect(handleChange).toHaveReturnedWith(undefined);
   });

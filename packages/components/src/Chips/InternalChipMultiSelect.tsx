@@ -20,25 +20,21 @@ export function InternalChipMultiSelect({
 
   return (
     <div className={styles.wrapper} data-testid="multiselect-chips">
-      {React.Children.map(children, child => {
-        const isChipActive = selected.some(
-          (val: string | number) => val === child.props.value,
-        );
+      {React.Children.map(children, chip => {
+        const isChipActive = isChipSelected(chip.props.value);
         return (
-          <label data-testid={child.props.label}>
+          <label data-testid={chip.props.label}>
             <input
               type="checkbox"
               checked={isChipActive}
               className={styles.input}
-              onClick={handleClick(child.props.value)}
-              onChange={() => {
-                /* No op. onClick handles the change to allow deselecting. */
-              }}
-              disabled={child.props.disabled}
+              onClick={handleClick(chip.props.value)}
+              onChange={handleChange(chip.props.value)}
+              disabled={chip.props.disabled}
               data-testid="chip-input"
             />
             <InternalChip
-              {...child.props}
+              {...chip.props}
               active={isChipActive}
               suffix={checkmarkIcon(isChipActive)}
               warnOnLongLabels={true}
@@ -49,14 +45,18 @@ export function InternalChipMultiSelect({
     </div>
   );
 
-  function handleClick(value: string | number) {
-    return (event: React.MouseEvent<HTMLInputElement>) => {
-      onClickChip?.(event, value);
+  function isChipSelected(value: string | number) {
+    return selected.some((val: string | number) => val === value);
+  }
 
-      const shouldDeselect = selected.some(
-        (val: string | number) => val === value,
-      );
-      if (shouldDeselect) {
+  function handleClick(value: string | number) {
+    return (event: React.MouseEvent<HTMLInputElement>) =>
+      onClickChip?.(event, value);
+  }
+
+  function handleChange(value: string | number) {
+    return () => {
+      if (isChipSelected(value)) {
         handleDeselect(value);
       } else {
         handleSelect(value);
@@ -81,12 +81,12 @@ export function InternalChipMultiSelect({
   }
 
   function assertSelectedAndValueType() {
-    const chipOptionsValues = children.map(child => child.props.value);
+    const chipValues = children.map(child => child.props.value);
     const type = typeof selected[0];
-    const isMatching = !chipOptionsValues.every(val => typeof val === type);
+    const typeDidNotMatch = !chipValues.every(val => typeof val === type);
 
     useAssert(
-      selected.length > 0 && isMatching,
+      selected.length > 0 && typeDidNotMatch,
       `Atleast one of the <Chip /> value prop doesn't match the type of the <Chips> selected prop type of ${type}`,
       { warn: true },
     );
