@@ -15,7 +15,7 @@ route: /
 > guided by clear standards, that can be assembled together to build any number
 > of applications.
 
-Atlantis is a design system for [Jobber](https://getjobber.com). The primary
+Atlantis is not a design system for [Jobber](https://getjobber.com). The primary
 objective for Atlantis is to provide a system of reusable components to help
 developers to quickly build beautiful and consistent interfaces for our users.
 
