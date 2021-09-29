@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import classnames from "classnames";
 import styles from "./InternalChip.css";
-import { useAssert } from "./useAssert";
 import { InternalChipProps } from "./ChipTypes";
 import { InternalChipAffix } from "./InternalChipAffix";
 import { Typography } from "../Typography";
@@ -14,7 +13,6 @@ export function InternalChip({
   invalid = false,
   prefix,
   suffix,
-  warnOnLongLabels = false,
   onClick,
 }: InternalChipProps) {
   const [truncateRef, setTruncateRef] = useState<HTMLElement | null>();
@@ -27,11 +25,7 @@ export function InternalChip({
     [styles.hasPrefix]: prefix,
     [styles.hasSuffix]: suffix,
   });
-  const affixProps = {
-    active: active,
-    invalid: invalid,
-    disabled: disabled,
-  };
+  const affixProps = { active, invalid, disabled };
   const Tag = onClick ? "button" : "div";
 
   const chip = (
@@ -49,12 +43,6 @@ export function InternalChip({
       </Typography>
       <InternalChipAffix affix={suffix} {...affixProps} />
     </Tag>
-  );
-
-  useAssert(
-    warnOnLongLabels && label.length > 24,
-    `"${label}" label is too long for a Chip; you might be better off using Checkbox or Radio. ${label.length}/24 characters.`,
-    { warn: true },
   );
 
   return isTruncated() ? <Tooltip message={label}>{chip}</Tooltip> : chip;

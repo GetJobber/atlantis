@@ -10,11 +10,6 @@ export interface InternalChipProps {
   readonly label: string;
 
   /**
-   * Throws a console warning when the chip label goes over 24 characters.
-   */
-  readonly warnOnLongLabels?: boolean;
-
-  /**
    * Changes the style of the chip to look different than the default.
    */
   readonly active?: boolean;

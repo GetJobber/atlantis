@@ -33,7 +33,6 @@ export function InternalChipMultiSelect({
               {...chip.props}
               active={isChipActive}
               suffix={checkmarkIcon(isChipActive)}
-              warnOnLongLabels={true}
             />
           </label>
         );

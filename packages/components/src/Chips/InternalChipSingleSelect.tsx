@@ -34,7 +34,6 @@ export function InternalChipSingleSelect({
           <InternalChip
             {...child.props}
             active={child.props.value === selected}
-            warnOnLongLabels={true}
           />
         </label>
       ))}
