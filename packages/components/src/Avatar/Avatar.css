@@ -11,8 +11,8 @@
   height: var(--avatar-size);
   min-width: var(--avatar-size);
   min-height: var(--avatar-size);
-  border-radius: 50%;
-  color: var(--color-blue--dark);
+  border-radius: var(--radius-circle);
+  color: var(--color-heading);
   font-size: var(--avatar-size);
   -webkit-font-smoothing: antialiased;
   background: no-repeat center center var(--color-greyBlue);
@@ -34,7 +34,7 @@
 }
 
 .isDark {
-  color: var(--color-white);
+  color: var(--color-text--reverse);
 }
 
 .initials {

@@ -8,6 +8,30 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.1](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.9.0...@jobber/docz-tools@1.9.1) (2021-09-27)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+# [1.9.0](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.8.7...@jobber/docz-tools@1.9.0) (2021-09-27)
+
+
+### Bug Fixes
+
+* **docz-tools:** adjust skipnav offset in hidden state ([#685](https://github.com/GetJobber/atlantis/issues/685)) ([1982c08](https://github.com/GetJobber/atlantis/commit/1982c082e3e46f018f6560bf43a4e816bddd269e))
+
+
+### Features
+
+* **docz-tools:** update sidenav to match Jobber appearance ([#683](https://github.com/GetJobber/atlantis/issues/683)) ([8fd552d](https://github.com/GetJobber/atlantis/commit/8fd552d1a153cab507f5b782419aaeed01d3f39f))
+
+
+
+
+
 ## [1.8.7](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.8.6...@jobber/docz-tools@1.8.7) (2021-09-23)
 
 **Note:** Version bump only for package @jobber/docz-tools

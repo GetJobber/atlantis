@@ -1,11 +1,15 @@
-export const autocomplete: string;
-export const options: string;
-export const visible: string;
-export const option: string;
-export const active: string;
-export const separator: string;
-export const heading: string;
-export const icon: string;
-export const text: string;
-export const label: string;
-export const details: string;
+declare const styles: {
+  readonly "autocomplete": string;
+  readonly "options": string;
+  readonly "visible": string;
+  readonly "option": string;
+  readonly "active": string;
+  readonly "separator": string;
+  readonly "heading": string;
+  readonly "icon": string;
+  readonly "text": string;
+  readonly "label": string;
+  readonly "details": string;
+};
+export = styles;
+

@@ -8,9 +8,11 @@ import { Icon } from "../Icon";
 import { Text } from "../Text";
 import { Button, ButtonProps } from "../Button";
 
+export type BannerType = "notice" | "success" | "warning" | "error";
+
 interface BannerProps {
   readonly children: ReactNode;
-  readonly type: "notice" | "success" | "warning" | "error";
+  readonly type: BannerType;
   /**
    * The default cta variation should be a 'work' variation. If the banner
    * 'type' is set to 'notice' we change the cta variation to 'learning'
