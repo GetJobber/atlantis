@@ -28,7 +28,6 @@ export function InternalChipMultiSelect({
               onClick={handleClick(chip.props.value)}
               onChange={handleChange(chip.props.value)}
               disabled={chip.props.disabled}
-              data-testid="chip-input"
             />
             <InternalChip
               {...chip.props}
