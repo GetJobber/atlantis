@@ -47,7 +47,7 @@ describe("onChange", () => {
   it("should trigger the onChange deselecting a chip", () => {
     userEvent.click(screen.getByTestId(selectedChip));
     expect(handleChange).toHaveBeenCalledTimes(1);
-    expect(handleChange).toHaveReturnedWith(undefined);
+    expect(handleChange).toHaveReturnedWith("");
   });
 });
 

@@ -42,10 +42,10 @@ export function InternalChipSingleSelect({
     </div>
   );
 
-  function handleClick(value?: string | number) {
+  function handleClick(value: string) {
     return (event: React.MouseEvent<HTMLInputElement>) => {
       onClickChip?.(event, value);
-      const newValue = value !== selected ? value : undefined;
+      const newValue = value !== selected ? value : "";
       onChange(newValue);
     };
   }

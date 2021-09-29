@@ -16,7 +16,7 @@ interface ChipFoundationProps {
    * The type of the value depends on what you pass in as the selected chips or
    * the value of the chip child.
    */
-  readonly selected: string | number | string[] | number[];
+  readonly selected?: string | string[];
 
   /**
    * Callback whenever a chip is clicked. This returns a new value of
@@ -24,7 +24,7 @@ interface ChipFoundationProps {
    *
    * @param value
    */
-  onChange(value?: string | number | string[] | number[]): void;
+  onChange(value?: string | string[]): void;
 
   /**
    * Callback when a specific chip is clicked
@@ -34,14 +34,14 @@ interface ChipFoundationProps {
    */
   onClickChip?(
     event: React.MouseEvent<HTMLElement>,
-    clickedChipValue?: string | number,
+    clickedChipValue?: string,
   ): void;
 }
 
 export interface ChipSingleSelectProps extends ChipFoundationProps {
   readonly type?: "singleselect";
-  readonly selected: string | number;
-  onChange(value?: string | number): void;
+  readonly selected: string;
+  onChange(value: string): void;
 
   /**
    * The Chip's radio input name.
@@ -51,21 +51,10 @@ export interface ChipSingleSelectProps extends ChipFoundationProps {
   readonly name?: string;
 }
 
-interface ChipMultiSelectStringProps extends ChipFoundationProps {
+export interface ChipMultiSelectProps extends ChipFoundationProps {
   readonly type: "multiselect";
   readonly selected: string[];
   onChange(value: string[]): void;
 }
-
-interface ChipMultiSelectNumberProps extends ChipFoundationProps {
-  readonly type: "multiselect";
-  readonly selected: number[];
-  onChange(value: number[]): void;
-}
-
-export type ChipMultiSelectProps = XOR<
-  ChipMultiSelectStringProps,
-  ChipMultiSelectNumberProps
->;
 
 export type ChipsProps = XOR<ChipSingleSelectProps, ChipMultiSelectProps>;

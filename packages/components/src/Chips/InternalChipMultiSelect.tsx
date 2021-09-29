@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./InternalChip.css";
 import { InternalChip } from "./InternalChip";
 import { ChipMultiSelectProps } from "./ChipsTypes";
-import { useAssert } from "./useAssert";
 import { Icon } from "../Icon";
 
 type InternalChipChoiceMultipleProps = Pick<
@@ -16,8 +15,6 @@ export function InternalChipMultiSelect({
   onChange,
   onClickChip,
 }: InternalChipChoiceMultipleProps) {
-  assertSelectedAndValueType();
-
   return (
     <div className={styles.wrapper} data-testid="multiselect-chips">
       {React.Children.map(children, chip => {
@@ -45,16 +42,16 @@ export function InternalChipMultiSelect({
     </div>
   );
 
-  function isChipSelected(value: string | number) {
-    return selected.some((val: string | number) => val === value);
+  function isChipSelected(value: string) {
+    return selected.includes(value);
   }
 
-  function handleClick(value: string | number) {
+  function handleClick(value: string) {
     return (event: React.MouseEvent<HTMLInputElement>) =>
       onClickChip?.(event, value);
   }
 
-  function handleChange(value: string | number) {
+  function handleChange(value: string) {
     return () => {
       if (isChipSelected(value)) {
         handleDeselect(value);
@@ -64,31 +61,19 @@ export function InternalChipMultiSelect({
     };
   }
 
-  function handleSelect<T extends string | number>(value: T) {
-    const newVal = [...selected, value] as T[];
-    (onChange as (value: T[]) => void)(newVal);
+  function handleSelect(value: string) {
+    const newVal = [...selected, value];
+    onChange(newVal);
   }
 
-  function handleDeselect<T extends string | number>(value: T) {
-    const values = selected as T[];
+  function handleDeselect(value: string) {
+    const values = selected;
     const newVal = values.filter(val => val !== value);
-    (onChange as (value: T[]) => void)(newVal);
+    onChange(newVal);
   }
 
   function checkmarkIcon(show: boolean) {
     if (!show) return;
     return <Icon name="checkmark" />;
-  }
-
-  function assertSelectedAndValueType() {
-    const chipValues = children.map(child => child.props.value);
-    const type = typeof selected[0];
-    const typeDidNotMatch = !chipValues.every(val => typeof val === type);
-
-    useAssert(
-      selected.length > 0 && typeDidNotMatch,
-      `Atleast one of the <Chip /> value prop doesn't match the type of the <Chips> selected prop type of ${type}`,
-      { warn: true },
-    );
   }
 }

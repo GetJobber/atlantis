@@ -7,7 +7,7 @@ export interface ChipProps
   /**
    * The value that gets returned on the `<Chips>`'s onChange callback.
    */
-  readonly value: string | number;
+  readonly value: string;
 }
 
 // Only need the component to pass in the data as a react children
