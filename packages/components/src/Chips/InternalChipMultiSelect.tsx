@@ -21,7 +21,9 @@ export function InternalChipMultiSelect({
   return (
     <div className={styles.wrapper} data-testid="multiselect-chips">
       {React.Children.map(children, child => {
-        const isChipActive = selected.some(val => val === child.props.value);
+        const isChipActive = selected.some(
+          (val: string | number) => val === child.props.value,
+        );
         return (
           <label data-testid={child.props.label}>
             <input
@@ -51,7 +53,9 @@ export function InternalChipMultiSelect({
     return (event: React.MouseEvent<HTMLInputElement>) => {
       onClickChip?.(event, value);
 
-      const shouldDeselect = selected.some(val => val === value);
+      const shouldDeselect = selected.some(
+        (val: string | number) => val === value,
+      );
       if (shouldDeselect) {
         handleDeselect(value);
       } else {
