@@ -33,8 +33,8 @@ multi-select, and add/dismiss selection.
 ### Single-select
 
 If you need the user to make a selection of a single item from amongst several
-items, and those items all have short (1–2 word) labels, a single-select
-ChipGroup will allow the user to choose one of those items.
+items, and those items all have short (1–2 word) labels, a single-select Chips
+will allow the user to choose one of those items.
 
 This preserves vertical space while allowing the user to clearly identify which
 item they have selected.
@@ -77,8 +77,7 @@ de-selected by the user, leaving all selections blank.
 
 If you need the user to make a selection of one _or more_ items from amongst
 several items, and those items all have short (1–2 word) labels, a multi-select
-ChipGroup will allow the user to choose as many items from the group as they
-wish.
+Chips will allow the user to choose as many items from the group as they wish.
 
 This preserves vertical space while allowing the user to clearly identify which
 items they have selected. To signify to the user that multiple selections are
@@ -127,8 +126,8 @@ When the user will be selecting one or more items by inputting their own Chip
 options with, use the dismissible Chip.
 
 The dismissible Chip allows them to remove previous
-selections from the ChipGroup. Use this option when the full list of possible
-selections is too great to reasonably display in one ChipGroup. For example,
+selections from the Chips. Use this option when the full list of possible
+selections is too great to reasonably display in one group of Chip. For example,
 "all of my phone contacts" would be far too many Chip options to present in one
 group, and would be overwhelming for the user to interpret.
 
@@ -162,19 +161,17 @@ import { ChipDismissible } from "../Chips";
 
 ## Props
 
-### `<Chips>`
+## Props of Chips
 
 <Props of={Chips} />
 
-### `<Chip>`
+## Props of Chip
 
 <Props of={Chip} />
 
-<Disclosure title="ChipDismissible props">
-  <Content>
-    <Props of={ChipDismissible} />
-  </Content>
-</Disclosure>
+## Props of ChipDismissible
+
+<Props of={ChipDismissible} />
 
 ## Content Guidelines
 
@@ -184,19 +181,19 @@ type.
 
 ## Accessibility
 
-ChipGroup should convey to the user whether it is a "checkbox" or "radio"
-element based on single or multi-select. The Chips in this group have the
-appropriate roles and keyboard operation to allow the user to interact as though
-they are dealing with a checkbox or radio button.
+Chips should convey to the user whether it is a "checkbox" or "radio" element
+based on single or multi-select. The Chips in this group have the appropriate
+roles and keyboard operation to allow the user to interact as though they are
+dealing with a checkbox or radio button.
 
-If ChipGroup is set for add/dimiss selections, the dismiss button will notify
-the user that they will "dismiss {label name}" upon press.
+If Chips is set for add/dimiss selections, the dismiss button will notify the
+user that they will "dismiss {label name}" upon press.
 
 ## Responsiveness
 
-The ChipGroup itself will take up as much space as its' container allows, and
-the Chips will flow left-to-right. Chips may re-flow into new rows, or scroll
-out of view in a single row, depending on your use case.
+The Chips itself will take up as much space as its' container allows, and the
+Chips will flow left-to-right. Chips may re-flow into new rows, or scroll out of
+view in a single row, depending on your use case.
 
 ## Related Components
 
