@@ -18,7 +18,7 @@ export function InternalChipMultiSelect({
   return (
     <div className={styles.wrapper} data-testid="multiselect-chips">
       {React.Children.map(children, child => {
-        const isChipActive = selected.includes(child.props.value);
+        const isChipActive = selected.some(val => val === child.props.value);
         return (
           <label data-testid={child.props.label}>
             <input
@@ -43,15 +43,29 @@ export function InternalChipMultiSelect({
       })}
     </div>
   );
+
   function handleClick(value: string | number) {
     return (event: React.MouseEvent<HTMLInputElement>) => {
       onClickChip?.(event, value);
-      const shouldDeselect = selected.includes(value);
-      const newValue = shouldDeselect
-        ? selected.filter(val => val !== value)
-        : [...selected, value];
-      onChange(newValue);
+
+      const shouldDeselect = selected.some(val => val === value);
+      if (shouldDeselect) {
+        handleDeselect(value);
+      } else {
+        handleSelect(value);
+      }
     };
+  }
+
+  function handleSelect<T extends string | number>(value: T) {
+    const newVal = [...selected, value] as T[];
+    (onChange as (value: T[]) => void)(newVal);
+  }
+
+  function handleDeselect<T extends string | number>(value: T) {
+    const values = selected as T[];
+    const newVal = values.filter(val => val !== value);
+    (onChange as (value: T[]) => void)(newVal);
   }
 
   function checkmarkIcon(show: boolean) {
