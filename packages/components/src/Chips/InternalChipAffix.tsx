@@ -4,7 +4,7 @@ import styles from "./InternalChip.css";
 import { InternalChipProps } from "./ChipTypes";
 import { useAssert } from "./useAssert";
 import { Avatar, AvatarProps } from "../Avatar";
-import { Icon, IconColorNames, IconProps } from "../Icon";
+import { Icon, IconProps } from "../Icon";
 
 interface InternalChipAffixProps
   extends Pick<InternalChipProps, "active" | "invalid" | "disabled"> {
@@ -17,7 +17,6 @@ export function InternalChipAffix({
   invalid,
   disabled,
 }: InternalChipAffixProps) {
-  const component = computed();
   assertProps();
   if (affix?.type === Avatar) {
     return <Avatar {...(affix.props as AvatarProps)} size="small" />;
@@ -34,10 +33,7 @@ export function InternalChipAffix({
   return <></>;
 
   function renderChipIcon(icon: ReactElement<IconProps>) {
-    let color: IconColorNames | undefined;
-    active && (color = "white");
-    invalid && !disabled && (color = "criticalOnSurface");
-    disabled && !active && (color = "disabled");
+    const color = getIconColor();
 
     return (
       <div className={styles.icon}>
@@ -49,18 +45,20 @@ export function InternalChipAffix({
     );
   }
 
-  function computed() {
-    return {
-      isAvatar: affix?.type === Avatar || false,
-      isIcon: affix?.type === Icon || false,
-      isChipButton: affix?.type === InternalChipButton || false,
-    };
+  function getIconColor() {
+    if (disabled && !active) return "disabled";
+    if (invalid && !disabled) return "criticalOnSurface";
+    if (active) return "white";
+    return;
   }
 
   function assertProps() {
+    const isAvatar = affix?.type === Avatar || false;
+    const isIcon = affix?.type === Icon || false;
+    const isChipButton = affix?.type === InternalChipButton || false;
+
     useAssert(
-      !!affix &&
-        !(component.isAvatar || component.isIcon || component.isChipButton),
+      !!affix && !(isAvatar || isIcon || isChipButton),
       `Prefix prop only accepts "<Avatar />" or "<Icon />" component. You have "${affix?.type}".`,
     );
   }
