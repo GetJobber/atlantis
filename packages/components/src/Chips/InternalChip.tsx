@@ -38,7 +38,7 @@ export function InternalChip({
       data-testid="chip-wrapper"
     >
       <InternalChipAffix affix={prefix} {...affixProps} />
-      <Typography numberOfLines={1} size="base">
+      <Typography element="span" numberOfLines={1} size="base">
         <span ref={setTruncateRef}>{label}</span>
       </Typography>
       <InternalChipAffix affix={suffix} {...affixProps} />
