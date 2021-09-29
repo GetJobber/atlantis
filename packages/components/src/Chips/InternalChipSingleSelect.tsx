@@ -43,7 +43,7 @@ export function InternalChipSingleSelect({
   function handleClick(value: string) {
     return (event: MouseEvent<HTMLInputElement>) => {
       onClickChip?.(event, value);
-      const newValue = value !== selected ? value : "";
+      const newValue = value !== selected ? value : undefined;
       onChange(newValue);
     };
   }

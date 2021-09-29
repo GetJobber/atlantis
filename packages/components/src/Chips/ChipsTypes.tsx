@@ -40,8 +40,8 @@ interface ChipFoundationProps {
 
 export interface ChipSingleSelectProps extends ChipFoundationProps {
   readonly type?: "singleselect";
-  readonly selected: string;
-  onChange(value: string): void;
+  readonly selected?: string;
+  onChange(value?: string): void;
 
   /**
    * The Chip's radio input name.
