@@ -152,7 +152,7 @@
  */
 
 .icon > svg {
-  fill: var(--color-text--secondary);
+  fill: var(--color-interactive--subtle);
 }
 
 .icon {
