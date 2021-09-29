@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEvent } from "react";
 import uuid from "uuid";
 import styles from "./InternalChip.css";
 import { InternalChip } from "./InternalChip";
@@ -42,7 +42,7 @@ export function InternalChipSingleSelect({
   );
 
   function handleClick(value: string) {
-    return (event: React.MouseEvent<HTMLInputElement>) => {
+    return (event: MouseEvent<HTMLInputElement>) => {
       onClickChip?.(event, value);
       const newValue = value !== selected ? value : "";
       onChange(newValue);

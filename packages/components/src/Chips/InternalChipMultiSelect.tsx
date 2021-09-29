@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEvent } from "react";
 import styles from "./InternalChip.css";
 import { InternalChip } from "./InternalChip";
 import { ChipMultiSelectProps } from "./ChipsTypes";
@@ -46,8 +46,7 @@ export function InternalChipMultiSelect({
   }
 
   function handleClick(value: string) {
-    return (event: React.MouseEvent<HTMLInputElement>) =>
-      onClickChip?.(event, value);
+    return (event: MouseEvent<HTMLInputElement>) => onClickChip?.(event, value);
   }
 
   function handleChange(value: string) {

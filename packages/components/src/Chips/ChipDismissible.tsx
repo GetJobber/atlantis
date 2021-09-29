@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEvent } from "react";
 import { InternalChipProps } from "./ChipTypes";
 import { InternalChip } from "./InternalChip";
 import { InternalChipButton } from "./InternalChipButton";
@@ -8,7 +8,7 @@ interface ChipDismissibleProps
     InternalChipProps,
     "label" | "disabled" | "invalid" | "prefix" | "onClick"
   > {
-  onRequestRemove(event: React.MouseEvent<HTMLDivElement>): void;
+  onRequestRemove(event: MouseEvent<HTMLDivElement>): void;
 }
 
 export function ChipDismissible({

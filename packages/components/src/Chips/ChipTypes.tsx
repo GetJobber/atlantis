@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { MouseEvent, ReactElement } from "react";
 import { ChipButtonProps } from "./InternalChipButton";
 import { AvatarProps } from "../Avatar";
 import { IconProps } from "../Icon";
@@ -50,5 +50,7 @@ export interface InternalChipProps {
   /**
    * Callback when the chip itself gets clicked.
    */
-  onClick?(event: React.MouseEvent<HTMLElement>): void;
+  onClick?(
+    event: MouseEvent<HTMLDivElement | HTMLInputElement | HTMLButtonElement>,
+  ): void;
 }

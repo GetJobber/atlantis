@@ -1,4 +1,9 @@
-import React, { KeyboardEvent, MutableRefObject, useRef } from "react";
+import React, {
+  KeyboardEvent,
+  MouseEvent,
+  MutableRefObject,
+  useRef,
+} from "react";
 import { IconNames } from "@jobber/design";
 import styles from "./InternalChip.css";
 import { Icon } from "../Icon";
@@ -8,7 +13,7 @@ export interface ChipButtonProps {
   readonly invalid?: boolean;
   readonly disabled?: boolean;
   readonly label: string;
-  onClick(event: React.MouseEvent<HTMLDivElement>): void;
+  onClick(event: MouseEvent<HTMLDivElement>): void;
 }
 
 export function InternalChipButton({
@@ -61,7 +66,7 @@ export function InternalChipButton({
     return "greyBlue";
   }
 
-  function handleClick(event: React.MouseEvent<HTMLDivElement>) {
+  function handleClick(event: MouseEvent<HTMLDivElement>) {
     event.stopPropagation();
     onClick?.(event);
   }

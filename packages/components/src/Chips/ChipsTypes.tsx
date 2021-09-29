@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { MouseEvent, ReactElement } from "react";
 import { XOR } from "ts-xor";
 import { ChipProps } from "./Chip";
 
@@ -33,7 +33,7 @@ interface ChipFoundationProps {
    * @param clickedChipValue - The value of the chip that was clicked
    */
   onClickChip?(
-    event: React.MouseEvent<HTMLElement>,
+    event: MouseEvent<HTMLDivElement | HTMLInputElement | HTMLButtonElement>,
     clickedChipValue?: string,
   ): void;
 }
