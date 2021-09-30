@@ -65,17 +65,6 @@ export function InternalChipDismissible({
     return [{ actions: options }];
   }
 
-  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
-    if (event.key === "Tab" || event.key === "Enter") {
-      event.preventDefault();
-      handleCustomAdd(searchValue);
-    }
-  }
-
-  function handleSearchChange(event: ChangeEvent<HTMLInputElement>) {
-    setSearchValue(event.currentTarget.value);
-  }
-
   function handleChipRemove(value: string) {
     return () => onChange(selected.filter(val => val !== value));
   }
@@ -88,6 +77,25 @@ export function InternalChipDismissible({
   function handleCustomAdd(value: string) {
     setSearchValue("");
     onCustomAdd(value);
+  }
+
+  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (
+      event.key === "Backspace" &&
+      selected.length &&
+      searchValue.length === 0
+    ) {
+      handleChipRemove(selected[selected.length - 1])();
+    }
+
+    if ((event.key === "Tab" || event.key === "Enter") && searchValue.length) {
+      event.preventDefault();
+      handleCustomAdd(searchValue);
+    }
+  }
+
+  function handleSearchChange(event: ChangeEvent<HTMLInputElement>) {
+    setSearchValue(event.currentTarget.value);
   }
 
   function handleChipClick(value: string) {
