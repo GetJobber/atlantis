@@ -17,7 +17,7 @@ beforeEach(() => {
     <InternalChipMultiSelect
       selected={selectedChips}
       onChange={handleChange}
-      onClickChip={handleClickChip}
+      onClick={handleClickChip}
     >
       {chips.map(chip => (
         <Chip key={chip} label={chip} value={chip} />

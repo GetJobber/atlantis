@@ -12,9 +12,6 @@ interface ChipFoundationProps {
 
   /**
    * Determines which chip gets highlighted.
-   *
-   * The type of the value depends on what you pass in as the selected chips or
-   * the value of the chip child.
    */
   readonly selected?: string | string[];
 
@@ -32,7 +29,7 @@ interface ChipFoundationProps {
    * @param event
    * @param clickedChipValue - The value of the chip that was clicked
    */
-  onClickChip?(
+  onClick?(
     event: MouseEvent<HTMLDivElement | HTMLInputElement | HTMLButtonElement>,
     clickedChipValue?: string,
   ): void;

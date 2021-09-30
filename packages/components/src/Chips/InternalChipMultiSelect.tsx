@@ -6,14 +6,14 @@ import { Icon } from "../Icon";
 
 type InternalChipChoiceMultipleProps = Pick<
   ChipMultiSelectProps,
-  "selected" | "onChange" | "children" | "onClickChip"
+  "selected" | "onChange" | "children" | "onClick"
 >;
 
 export function InternalChipMultiSelect({
   children,
   selected,
   onChange,
-  onClickChip,
+  onClick,
 }: InternalChipChoiceMultipleProps) {
   return (
     <div className={styles.wrapper} data-testid="multiselect-chips">
@@ -45,7 +45,7 @@ export function InternalChipMultiSelect({
   }
 
   function handleClick(value: string) {
-    return (event: MouseEvent<HTMLInputElement>) => onClickChip?.(event, value);
+    return (event: MouseEvent<HTMLInputElement>) => onClick?.(event, value);
   }
 
   function handleChange(value: string) {
@@ -70,6 +70,11 @@ export function InternalChipMultiSelect({
   }
 
   function checkmarkIcon(show: boolean) {
+    // Ideally, we should be returning a fragment `<></>` when a function
+    // returns a component / element. However, this one needs to return nothing
+    // to prevent it from randomly rendering a suffix.
+    //
+    // DO NOT COPY!
     if (!show) return;
     return <Icon name="checkmark" />;
   }

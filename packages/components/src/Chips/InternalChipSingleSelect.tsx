@@ -6,7 +6,7 @@ import { ChipSingleSelectProps } from "./ChipsTypes";
 
 type InternalChipChoiceProps = Pick<
   ChipSingleSelectProps,
-  "selected" | "onChange" | "children" | "onClickChip" | "name"
+  "selected" | "onChange" | "children" | "onClick" | "name"
 >;
 
 export function InternalChipSingleSelect({
@@ -14,7 +14,7 @@ export function InternalChipSingleSelect({
   selected,
   name = uuid.v1(),
   onChange,
-  onClickChip,
+  onClick,
 }: InternalChipChoiceProps) {
   return (
     <div className={styles.wrapper} data-testid="singleselect-chips">
@@ -42,7 +42,7 @@ export function InternalChipSingleSelect({
 
   function handleClick(value: string) {
     return (event: MouseEvent<HTMLInputElement>) => {
-      onClickChip?.(event, value);
+      onClick?.(event, value);
       const newValue = value !== selected ? value : undefined;
       onChange(newValue);
     };
