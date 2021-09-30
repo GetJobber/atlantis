@@ -54,4 +54,14 @@ export interface ChipMultiSelectProps extends ChipFoundationProps {
   onChange(value: string[]): void;
 }
 
-export type ChipsProps = XOR<ChipSingleSelectProps, ChipMultiSelectProps>;
+export interface ChipDismissibleProps extends ChipFoundationProps {
+  readonly type: "dismissible";
+  readonly selected: string[];
+  onChange(value: string[]): void;
+  onCustomAdd(value: string): void;
+}
+
+export type ChipsProps = XOR<
+  ChipSingleSelectProps,
+  XOR<ChipMultiSelectProps, ChipDismissibleProps>
+>;
