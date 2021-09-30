@@ -51,7 +51,7 @@ describe("onChange", () => {
   });
 });
 
-describe("onClickChip", () => {
+describe("onClick", () => {
   it("should trigger the chip onClick", () => {
     const target = chips[2];
     userEvent.click(screen.getByLabelText(target));
