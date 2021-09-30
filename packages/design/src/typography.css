@@ -1,0 +1,4 @@
+:root {
+  --typography--letterSpacing-base: 0;
+  --typography--letterSpacing-loose: calc(var(--base-unit) / 40);
+}

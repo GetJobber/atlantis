@@ -1,4 +1,8 @@
-export const swatch: string;
-export const color: string;
-export const name: string;
-export const value: string;
+declare const styles: {
+  readonly "swatch": string;
+  readonly "color": string;
+  readonly "name": string;
+  readonly "value": string;
+};
+export = styles;
+

@@ -1,6 +1,6 @@
 {
   "name": "@jobber/design",
-  "version": "0.17.0",
+  "version": "0.18.0",
   "description": "Design foundation for the Jobber Atlantis Design System",
   "license": "MIT",
   "main": "dist/index.js",
@@ -33,7 +33,7 @@
   "devDependencies": {
     "@types/classnames": "^2.2.10",
     "autoprefixer": "^9.5.1",
-    "postcss": "^7.0.32",
+    "postcss": "^7.0.36",
     "postcss-cli": "^6.1.2",
     "postcss-custom-properties": "^8.0.10",
     "postcss-import": "^12.0.1",
@@ -45,7 +45,7 @@
     "rollup-plugin-postcss": "^2.0.3",
     "rollup-plugin-typescript": "^1.0.1",
     "rollup-plugin-typescript2": "^0.21.0",
-    "typed-css-modules": "^0.3.6",
+    "typed-css-modules": "^0.7.0",
     "typescript": "^3.8.3"
   }
 }

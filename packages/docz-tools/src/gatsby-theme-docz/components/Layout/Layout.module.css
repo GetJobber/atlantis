@@ -61,7 +61,7 @@
 
 .skipNav {
   position: absolute;
-  top: calc(-1 * var(--space-large));
+  top: calc(-1 * var(--space-extravagant));
   left: var(--space-small);
   z-index: 3;
   width: calc(100% - var(--space-base));

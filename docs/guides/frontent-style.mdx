@@ -19,28 +19,35 @@ guidance here.
 
 ## Property naming conventions
 
-Consider common terminology across components and design foundations when naming properties.
-As Atlantis is a system, end users should expect similar-behaving properties to have similar 
-names across the system. For example...
+Consider common terminology across components and design foundations when naming
+properties. As Atlantis is a system, end users should expect similar-behaving
+properties to have similar names across the system. For example...
 
 ### Base vs "Default" or "Medium" for setting the default option in a range
 
-We use `base` as our default whenever possible when a property has a set range of outcomes. This can be seen in.. 
+We use `base` as our default whenever possible when a property has a set range
+of outcomes. This can be seen in..
 
-  - the `size` properties of [Button](/components/Button), [Avatar](/components/avatar), [InputText](/components/input-text), [Text](/packages-components-src-text-text), [ProgressBar](/components/progress-bar), [Spinner](/components/spinner), etc;
-  - `maxLines` of [Text](/packages-components-src-text-text)
-  - values of [Shadow](/elevation), [Spacing](/space), [Border Radius](/border-radius) design tokens
+- the `size` properties of [Button](/components/Button),
+  [Avatar](/components/avatar), [InputText](/components/input-text),
+  [Text](/packages-components-src-text-text),
+  [ProgressBar](/components/progress-bar), [Spinner](/components/spinner), etc;
+- `maxLines` of [Text](/packages-components-src-text-text)
+- values of [Shadow](/elevation), [Spacing](/space),
+  [Border Radius](/border-radius) design tokens
 
-This allows us to set an expectation of the base (or most common) use case when a prop is
-in action.
+This allows us to set an expectation of the base (or most common) use case when
+a prop is in action.
 
 ---
 
 ### Open and closed states
 
-If a component has `open` and `closed` states, use a boolean property named `open`.
+If a component has `open` and `closed` states, use a boolean property named
+`open`.
 
-This can be seen in [Modal](/components/modal), [Drawer](/components/drawer), and [Popover](/components/popover).
+This can be seen in [Modal](/components/modal), [Drawer](/components/drawer),
+and [Popover](/components/popover).
 
 ---
 
