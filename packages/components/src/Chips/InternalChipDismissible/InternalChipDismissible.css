@@ -3,4 +3,12 @@
   gap: var(--space-small);
   flex-wrap: wrap;
   align-items: center;
+  /* padding: var(--space-smaller) var(--space-base);
+  border-radius: var(--radius-base);
+  border: var(--border-base) solid var(--color-border);
+  box-sizing: border-box; */
 }
+
+/* .wrapper:focus-within {
+  border-color: var(--color-focus);
+} */
