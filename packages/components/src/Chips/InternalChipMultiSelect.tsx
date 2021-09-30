@@ -20,7 +20,7 @@ export function InternalChipMultiSelect({
       {React.Children.map(children, chip => {
         const isChipActive = isChipSelected(chip.props.value);
         return (
-          <label data-testid={chip.props.label}>
+          <label>
             <input
               type="checkbox"
               checked={isChipActive}

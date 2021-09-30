@@ -39,13 +39,13 @@ it("should have a label and a checkbox", () => {
 describe("onChange", () => {
   it("should trigger the onChange selecting a chip", () => {
     const target = chips[1];
-    userEvent.click(screen.getByTestId(target));
+    userEvent.click(screen.getByLabelText(target));
     expect(handleChange).toHaveBeenCalledTimes(1);
     expect(handleChange).toHaveReturnedWith(target);
   });
 
   it("should trigger the onChange deselecting a chip", () => {
-    userEvent.click(screen.getByTestId(selectedChip));
+    userEvent.click(screen.getByLabelText(selectedChip));
     expect(handleChange).toHaveBeenCalledTimes(1);
     expect(handleChange).toHaveReturnedWith(undefined);
   });
@@ -54,7 +54,7 @@ describe("onChange", () => {
 describe("onClickChip", () => {
   it("should trigger the chip onClick", () => {
     const target = chips[2];
-    userEvent.click(screen.getByTestId(target));
+    userEvent.click(screen.getByLabelText(target));
     expect(handleClickChip).toHaveBeenCalledTimes(1);
     expect(handleClickChip).toHaveReturnedWith(target);
   });
