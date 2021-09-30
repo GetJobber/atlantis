@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.17.2...@jobber/design@0.18.0) (2021-09-30)
+
+
+### Features
+
+* **design:** add Typography letter spacing to @jobber/design [JOB-29564] ([#668](https://github.com/GetJobber/atlantis/issues/668)) ([d1dc3b4](https://github.com/GetJobber/atlantis/commit/d1dc3b4b5d475a619139f399c2d0b98899dae559))
+
+
+
+
+
 ## [0.17.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.17.1...@jobber/design@0.17.2) (2021-09-27)
 
 **Note:** Version bump only for package @jobber/design

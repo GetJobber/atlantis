@@ -8,6 +8,14 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.51.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.51.0...@jobber/components@2.51.1) (2021-09-30)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 # [2.51.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.50.2...@jobber/components@2.51.0) (2021-09-27)
 
 
