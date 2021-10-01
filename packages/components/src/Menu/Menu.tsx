@@ -151,10 +151,10 @@ export function Menu({ activator, items }: MenuProps) {
                 <div key={key} className={styles.section}>
                   {item.header && <SectionHeader text={item.header} />}
 
-                  {item.actions.map(action => (
+                  {item.actions.map((action, index) => (
                     <Action
                       key={action.label}
-                      shouldFocus={key === 0}
+                      shouldFocus={key === 0 && index === 0}
                       {...action}
                     />
                   ))}
@@ -169,8 +169,6 @@ export function Menu({ activator, items }: MenuProps) {
 
   function toggle(callbackPassthrough?: (event?: MouseEvent) => void) {
     return (event: MouseEvent) => {
-      console.log("Hello");
-
       setVisible(!visible);
       callbackPassthrough && callbackPassthrough(event);
     };

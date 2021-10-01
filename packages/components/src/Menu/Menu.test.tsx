@@ -1,6 +1,12 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
+import {
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "@testing-library/react";
 import { Menu } from ".";
 import { Button } from "../Button";
 
@@ -95,4 +101,31 @@ test("it should passthrough an activator's click action", () => {
 
   fireEvent.click(getByRole("button"));
   expect(clickHandler).toHaveBeenCalledTimes(1);
+});
+
+test("it should focus first action item from the menu when clicked", () => {
+  const { getByRole } = render(
+    <Menu
+      activator={<Button label="Menu" />}
+      items={[
+        {
+          header: "Send as...",
+          actions: [
+            {
+              label: "Text Message",
+              icon: "sms",
+            },
+            {
+              label: "Email",
+              icon: "email",
+            },
+          ],
+        },
+      ]}
+    />,
+  );
+
+  fireEvent.click(getByRole("button"));
+  const firstMenuItem = screen.getAllByRole("menuitem")[0];
+  expect(firstMenuItem).toHaveFocus();
 });
