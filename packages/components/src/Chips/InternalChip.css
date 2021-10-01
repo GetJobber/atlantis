@@ -1,0 +1,160 @@
+/**
+ * Used in the wrapping chips component:
+ * - InternalChipSingleSelect
+ * - InternalChipMultiSelect
+ */
+
+.wrapper {
+  display: flex;
+  gap: var(--space-small);
+  flex-wrap: wrap;
+}
+
+.chip {
+  display: inline-grid;
+  position: relative;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: var(--space-small);
+  border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-larger);
+  color: var(--color-text--secondary);
+  text-align: left;
+  vertical-align: middle;
+  background-color: var(--color-surface);
+  transition: var(--timing-base) ease-in-out;
+  transition-property: background-color, box-shadow, color;
+  grid-template-columns: max-content;
+  align-items: center;
+  gap: var(--space-small);
+}
+
+.hasPrefix,
+.hasSuffix {
+  padding: calc(var(--space-smaller) + var(--space-smallest)) var(--space-small);
+}
+
+.hasPrefix {
+  grid-template-columns: min-content 1fr;
+}
+
+.hasSuffix {
+  grid-template-columns: 1fr min-content;
+}
+
+.hasPrefix.hasSuffix {
+  grid-template-columns: min-content 1fr min-content;
+}
+
+.clickable,
+.input ~ .chip {
+  box-shadow: var(--shadow-base);
+  cursor: pointer;
+  appearance: none;
+}
+
+/**
+ * Interaction
+ */
+
+.chip:focus,
+.input:focus ~ .chip {
+  outline: none;
+}
+
+.clickable:focus,
+.input:focus ~ .chip {
+  box-shadow: var(--shadow-focus);
+}
+
+.clickable:hover,
+.clickable:focus,
+.input:focus ~ .chip:not(.active) {
+  background-color: var(--color-surface--hover);
+}
+
+/**
+ * States
+ */
+
+.chip.active {
+  border-color: var(--color-surface--reverse);
+  color: var(--color-text--reverse);
+  background-color: var(--color-surface--reverse);
+}
+
+.chip.invalid {
+  border-color: var(--color-critical--onSurface);
+  color: var(--color-critical--onSurface);
+  background-color: var(--color-critical--surface);
+}
+
+.chip.disabled {
+  border-color: var(--color-disabled--secondary);
+  color: var(--color-disabled);
+  background-color: var(--color-disabled--secondary);
+}
+
+.active.disabled {
+  border-color: var(--color-disabled);
+  color: var(--color-white);
+  background-color: var(--color-disabled);
+}
+
+.invalid.disabled {
+  border-color: var(--color-critical);
+}
+
+/**
+ * Input checkbox/radio
+ *
+ * Hide checkbox on UI but not screen readers and still allow focus state
+ */
+
+.input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+  white-space: nowrap;
+}
+
+/**
+ * Button
+ */
+
+.button {
+  display: flex;
+  border-radius: var(--radius-base);
+  cursor: pointer;
+  transition: background-color 200ms ease;
+}
+
+.button:hover,
+.button:focus {
+  background-color: var(--color-surface--hover);
+}
+
+.button:focus,
+.clickable .button:hover {
+  box-shadow: var(--shadow-focus);
+  outline: none;
+}
+
+/**
+ * Override icon default colors.
+ *
+ * NOTE: This is a workaround since some icons have default colors that we don't
+ * want to override until the component color prop overrides it.
+ * DO NOT COPY!
+ */
+
+.icon > svg {
+  fill: var(--color-interactive--subtle);
+}
+
+.icon {
+  display: flex;
+}
