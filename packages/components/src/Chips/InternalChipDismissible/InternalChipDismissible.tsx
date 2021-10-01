@@ -1,8 +1,10 @@
-import React, { ChangeEvent, MouseEvent, useState } from "react";
+import React, { MouseEvent, useState } from "react";
+import { sortBy } from "lodash";
 import styles from "./InternalChipDismissible.css";
+import { InternalChipDismissibleInput } from "./InternalChipDismissibleInput";
 import { ChipDismissible } from "..";
 import { ChipDismissibleProps } from "../ChipsTypes";
-import { Menu } from "../../Menu";
+import { Button } from "../../Button";
 
 export function InternalChipDismissible({
   children,
@@ -11,14 +13,21 @@ export function InternalChipDismissible({
   onClick,
   onCustomAdd,
 }: ChipDismissibleProps) {
-  const [searchValue, setSearchValue] = useState("");
-  const visibleChipOptions = children
-    .map(chip => chip.props)
-    .filter(chip => selected.includes(chip.value));
+  const [inputVisible, setInputVisible] = useState(false);
+  const chipOptions = children.map(chip => chip.props);
+  const visibleChipOptions = chipOptions.filter(chip =>
+    selected.includes(chip.value),
+  );
+  const sortedVisibleChipOptions = sortBy(visibleChipOptions, chip =>
+    selected.indexOf(chip.value),
+  );
+  const availableChipOptions = chipOptions.filter(
+    chip => !selected.includes(chip.value),
+  );
 
   return (
     <div className={styles.wrapper} data-testid="multiselect-chips">
-      {visibleChipOptions.map(chip => {
+      {sortedVisibleChipOptions.map(chip => {
         return (
           <ChipDismissible
             key={chip.value}
@@ -29,40 +38,30 @@ export function InternalChipDismissible({
         );
       })}
 
-      <Menu
-        activator={
-          <input
-            type="text"
-            value={searchValue}
-            onChange={handleSearchChange}
-            onKeyDown={handleKeyDown}
-          />
-        }
-        items={availableOptions()}
-      />
+      {inputVisible ? (
+        <InternalChipDismissibleInput
+          options={availableChipOptions}
+          onOptionSelect={handleChipAdd}
+          onCustomOptionAdd={handleCustomAdd}
+          onEmptyBackspace={handleEmptyBackspace}
+          onBlur={value => {
+            !value && setInputVisible(false);
+          }}
+        />
+      ) : (
+        <Button
+          icon="add"
+          type="secondary"
+          size="small"
+          ariaLabel="Add" // FIXME
+          onClick={() => setInputVisible(true)}
+        />
+      )}
     </div>
   );
 
-  function availableOptions() {
-    const selectableOptions = children
-      .map(chip => chip.props)
-      .filter(chip => {
-        return (
-          !selected.includes(chip.value) &&
-          chip.label.toLowerCase().match(searchValue.toLowerCase())
-        );
-      });
-    const options = selectableOptions.map(chip => ({
-      label: chip.label,
-      onClick: () => handleChipAdd(chip.value),
-    }));
-
-    searchValue &&
-      options.push({
-        label: searchValue,
-        onClick: () => handleCustomAdd(searchValue),
-      });
-    return [{ actions: options }];
+  function handleEmptyBackspace() {
+    handleChipRemove(selected[selected.length - 1])();
   }
 
   function handleChipRemove(value: string) {
@@ -70,32 +69,11 @@ export function InternalChipDismissible({
   }
 
   function handleChipAdd(value: string) {
-    setSearchValue("");
     onChange([...selected, value]);
   }
 
   function handleCustomAdd(value: string) {
-    setSearchValue("");
     onCustomAdd(value);
-  }
-
-  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
-    if (
-      event.key === "Backspace" &&
-      selected.length &&
-      searchValue.length === 0
-    ) {
-      handleChipRemove(selected[selected.length - 1])();
-    }
-
-    if ((event.key === "Tab" || event.key === "Enter") && searchValue.length) {
-      event.preventDefault();
-      handleCustomAdd(searchValue);
-    }
-  }
-
-  function handleSearchChange(event: ChangeEvent<HTMLInputElement>) {
-    setSearchValue(event.currentTarget.value);
   }
 
   function handleChipClick(value: string) {
