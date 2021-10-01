@@ -2,7 +2,9 @@ import React, {
   MouseEvent,
   ReactElement,
   createRef,
+  useEffect,
   useLayoutEffect,
+  useRef,
   useState,
 } from "react";
 import uuid from "uuid";
@@ -150,7 +152,11 @@ export function Menu({ activator, items }: MenuProps) {
                   {item.header && <SectionHeader text={item.header} />}
 
                   {item.actions.map(action => (
-                    <Action key={action.label} {...action} />
+                    <Action
+                      key={action.label}
+                      shouldFocus={key === 0}
+                      {...action}
+                    />
                   ))}
                 </div>
               ))}
@@ -163,6 +169,8 @@ export function Menu({ activator, items }: MenuProps) {
 
   function toggle(callbackPassthrough?: (event?: MouseEvent) => void) {
     return (event: MouseEvent) => {
+      console.log("Hello");
+
       setVisible(!visible);
       callbackPassthrough && callbackPassthrough(event);
     };
@@ -208,15 +216,30 @@ export interface ActionProps {
    * Callback when an action gets clicked
    */
   onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
+
+  /**
+   * Focuses explicitly if set to true
+   */
+  shouldFocus?: boolean;
 }
 
-function Action({ label, icon, onClick }: ActionProps) {
+function Action({ label, icon, onClick, shouldFocus = false }: ActionProps) {
+  // eslint-disable-next-line no-null/no-null
+  const actionButtonRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    if (actionButtonRef.current && shouldFocus) {
+      actionButtonRef.current.focus();
+    }
+  }, [shouldFocus]);
+
   return (
     <button
       role="menuitem"
       className={styles.action}
       key={label}
       onClick={onClick}
+      ref={actionButtonRef}
     >
       {icon && (
         <span className={styles.icon}>
