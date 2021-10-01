@@ -9,6 +9,8 @@ import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
+import { Heading } from "@jobber/components/Heading";
+import { Card } from "@jobber/components/Card";
 import { Divider } from ".";
 
 # Divider
@@ -37,3 +39,44 @@ should be used within a [`Content`](/components/content) component.
 ## Props
 
 <Props of={Divider} />
+
+## Usage
+
+### Size
+
+<Playground>
+  <Content>
+    <Content>Some amazing content</Content>
+    <Divider size="large" />
+    <Content>Even more amazing content</Content>
+  </Content>
+</Playground>
+
+### Vertical
+
+<Playground>
+  <Content>
+    <Heading level={4}>Types of Bananas</Heading>
+    <div style={{ display: "flex", gap: "var(--space-base)" }}>
+      <Card title="Burro">
+        <Content>
+          <Text>
+            Squatty and slightly square at the edges, these bananas are slightly
+            tangy and lemony. When ripe, the fruit is soft and the skin is
+            yellow with black spots. Also called Horse, Hog, or Orinoco bananas.
+          </Text>
+        </Content>
+      </Card>
+      <Divider vertical size="large" />
+      <Card title="Cavendish">
+        <Content>
+          <Text>
+            This is the familiar yellow banana sold in United States’
+            supermarkets. There are also other sizes of Cavendish, including
+            Dwarf and Giant, though they are difficult to find.
+          </Text>
+        </Content>
+      </Card>
+    </div>
+  </Content>
+</Playground>

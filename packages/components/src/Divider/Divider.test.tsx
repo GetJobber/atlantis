@@ -1,16 +1,38 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import { cleanup } from "@testing-library/react";
+import { cleanup, render } from "@testing-library/react";
 import { Divider } from ".";
 
 afterEach(cleanup);
 
-it("renders a Divider", () => {
-  const tree = renderer.create(<Divider />).toJSON();
-  expect(tree).toMatchSnapshot();
-});
+describe("Divider", () => {
+  it("should render", () => {
+    const { container } = render(<Divider />);
+    expect(container).toMatchSnapshot();
+  });
 
-it("renders a large Divider", () => {
-  const tree = renderer.create(<Divider size="large" />).toJSON();
-  expect(tree).toMatchSnapshot();
+  it("should render element as hr", () => {
+    const { queryByRole } = render(<Divider />);
+    expect(queryByRole("none").tagName).toBe("HR");
+  });
+
+  describe("when large", () => {
+    it("renders", () => {
+      const { container } = render(<Divider size="large" />);
+      expect(container).toMatchSnapshot();
+    });
+
+    describe("when also vertical", () => {
+      it("renders", () => {
+        const { container } = render(<Divider vertical size="large" />);
+        expect(container).toMatchSnapshot();
+      });
+    });
+  });
+
+  describe("when vertical", () => {
+    it("should render as div", () => {
+      const { queryByRole } = render(<Divider vertical />);
+      expect(queryByRole("none").tagName).toBe("DIV");
+    });
+  });
 });

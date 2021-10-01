@@ -8,3 +8,14 @@
 .large {
   border-bottom-width: var(--border-large);
 }
+
+.vertical {
+  width: var(--space-minuscule);
+  height: auto;
+  border-bottom: none;
+  border-right: var(--border-base) solid var(--color-border);
+}
+
+.vertical.large {
+  border-right-width: var(--border-large);
+}
