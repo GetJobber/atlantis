@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.52.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.51.1...@jobber/components@2.52.0) (2021-10-01)
+
+
+### Features
+
+* **components:** Add chips (single/multiple/standalone dismissible) component [JOB-35714] ([#678](https://github.com/GetJobber/atlantis/issues/678)) ([f537a2a](https://github.com/GetJobber/atlantis/commit/f537a2a55b6d167a819a321185dc17ad19b69616))
+
+
+
+
+
 ## [2.51.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.51.0...@jobber/components@2.51.1) (2021-09-30)
 
 **Note:** Version bump only for package @jobber/components
