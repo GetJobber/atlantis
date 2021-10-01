@@ -9,6 +9,7 @@ import uuid from "uuid";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import { IconNames } from "@jobber/design";
+import { useOnKeyDown } from "@jobber/hooks";
 import styles from "./Menu.css";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
@@ -55,6 +56,7 @@ export interface SectionProps {
   actions: ActionProps[];
 }
 
+// eslint-disable-next-line max-statements
 export function Menu({ activator, items }: MenuProps) {
   const [visible, setVisible] = useState(false);
   const [position, setPosition] = useState<Position>({
@@ -65,6 +67,7 @@ export function Menu({ activator, items }: MenuProps) {
   const buttonID = uuid();
   const menuID = uuid();
 
+  useOnKeyDown(handleKeyboardShortcut, ["Escape"]);
   useLayoutEffect(() => {
     if (wrapperRef.current) {
       const bounds = wrapperRef.current.getBoundingClientRect();
@@ -170,6 +173,20 @@ export function Menu({ activator, items }: MenuProps) {
 
   function hide() {
     setVisible(false);
+  }
+
+  function handleKeyboardShortcut(event: KeyboardEvent) {
+    const { key } = event;
+    if (!visible) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    switch (key) {
+      case "Escape": {
+        hide();
+        break;
+      }
+    }
   }
 }
 
