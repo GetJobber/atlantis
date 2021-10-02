@@ -6,7 +6,7 @@ import { ButtonDismiss } from "../ButtonDismiss";
 
 interface DrawerProps {
   readonly children: ReactNode | ReactNode[];
-  readonly title: string;
+  readonly title?: string;
   /**
    * @default true
    */
@@ -46,22 +46,26 @@ export function Drawer({
 }
 
 interface HeaderProps {
-  title: string;
+  title?: string;
   onRequestClose?(): void;
 }
 
 function Header({ title, onRequestClose }: HeaderProps) {
+  const classname = classnames(styles.header, {
+    [styles.headerWithoutTitle]: !title,
+  });
   return (
-    <div className={styles.header} data-testid="drawer-header">
-      <Typography
-        element="h3"
-        size="large"
-        textCase="uppercase"
-        fontWeight="extraBold"
-      >
-        {title}
-      </Typography>
-
+    <div className={classname} data-testid="drawer-header">
+      {title && (
+        <Typography
+          element="h3"
+          size="large"
+          textCase="uppercase"
+          fontWeight="extraBold"
+        >
+          {title}
+        </Typography>
+      )}
       <ButtonDismiss onClick={onRequestClose} ariaLabel="Close drawer" />
     </div>
   );

@@ -47,6 +47,10 @@
   align-items: center;
 }
 
+.headerWithoutTitle {
+  justify-content: flex-end;
+}
+
 .contentScroll {
   display: flex;
   width: 100%;
@@ -57,5 +61,4 @@
 
 .content {
   width: 100%;
-  padding: var(--drawer--base-padding);
 }

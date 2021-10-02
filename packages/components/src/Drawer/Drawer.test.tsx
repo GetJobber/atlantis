@@ -4,45 +4,57 @@ import { Drawer } from ".";
 
 afterEach(cleanup);
 
-test("drawer shows the children and a close button", () => {
-  const title = "Drawer title";
-  const content = "Drawer content";
-  const handleClose = jest.fn();
-
-  const { getByLabelText, getByText, queryByTestId } = render(
-    <Drawer title={title} open={true} onRequestClose={handleClose}>
-      {content}
-    </Drawer>,
-  );
-
-  expect(queryByTestId("drawer-header")).not.toBeNull();
-  expect(getByText(title)).toBeTruthy();
-  expect(getByLabelText("Close drawer")).toBeTruthy();
-  expect(getByText(content)).toBeTruthy();
-});
-
-it("doesn't render a closed drawer", () => {
-  const handleClose = jest.fn();
-
-  const { queryByTestId } = render(
-    <Drawer title="Drawer" open={false} onRequestClose={handleClose}>
-      Drawer content
-    </Drawer>,
-  );
-  expect(
-    queryByTestId("drawer-container").classList.contains("open"),
-  ).toBeFalsy();
-});
-
-test("drawer fires onRequestClose when selecting the close button", () => {
-  const handleClose = jest.fn();
-
-  const { getByLabelText } = render(
-    <Drawer title="Drawer" onRequestClose={handleClose}>
-      Drawer content
-    </Drawer>,
-  );
-
-  fireEvent.click(getByLabelText("Close drawer"));
-  expect(handleClose).toHaveBeenCalledTimes(1);
+describe("Drawer", () => {
+  describe("when open", () => {
+    it("should render children and close button", () => {
+      const content = "Drawer Content";
+      const { container, getByText } = render(
+        <Drawer open onRequestClose={jest.fn}>
+          {content}
+        </Drawer>,
+      );
+      expect(getByText(content)).toBeInTheDocument();
+      expect(container).toMatchSnapshot();
+    });
+    describe("with title", () => {
+      it("should also render title", () => {
+        const title = "Drawer Title";
+        const content = "Drawer Content";
+        const { container, getByText } = render(
+          <Drawer title={title} open onRequestClose={jest.fn}>
+            {content}
+          </Drawer>,
+        );
+        expect(getByText(content)).toBeInTheDocument();
+        expect(getByText(title)).toBeInTheDocument();
+        expect(container).toMatchSnapshot();
+      });
+    });
+    describe("when clicking on dismiss button", () => {
+      it("should trigger request close", () => {
+        const onRequestCloseFn = jest.fn();
+        const { getByLabelText } = render(
+          <Drawer open onRequestClose={onRequestCloseFn}>
+            {"Drawer Content"}
+          </Drawer>,
+        );
+        fireEvent.click(getByLabelText("Close drawer"));
+        expect(onRequestCloseFn).toHaveBeenCalledTimes(1);
+      });
+    });
+  });
+  describe("when closed", () => {
+    it("shouldnt render the children", () => {
+      const content = "Drawer Content";
+      const { container, debug, getByTestId } = render(
+        <Drawer open={false} onRequestClose={jest.fn}>
+          {content}
+        </Drawer>,
+      );
+      debug(container);
+      expect(
+        getByTestId("drawer-container").classList.contains("open"),
+      ).toBeFalsy();
+    });
+  });
 });
