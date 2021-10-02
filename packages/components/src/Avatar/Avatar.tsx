@@ -31,6 +31,12 @@ interface AvatarFoundationProps {
    * @default "base"
    */
   readonly size?: AvatarSize;
+
+  /**
+   * The action to perform when the avatar is clicked on.
+   * Also supports keyboard shortcuts.
+   */
+  onClick?(): void;
 }
 
 interface AvatarWithImageProps extends AvatarFoundationProps {
@@ -49,6 +55,7 @@ export function Avatar({
   initials,
   size = "base",
   color,
+  onClick,
 }: AvatarProps) {
   const style: CSSProperties = {
     backgroundColor: color,
@@ -59,23 +66,27 @@ export function Avatar({
     style.backgroundImage = `url(${imageUrl})`;
   }
 
+  const clickable = onClick != undefined;
   const shouldBeDark = color == undefined || isDark(color);
   const className = classnames(styles.avatar, size !== "base" && styles[size], {
     [styles.hasBorder]: imageUrl && color,
     [styles.isDark]: shouldBeDark,
+    [styles.clickable]: clickable,
   });
+  const Tag = clickable ? "button" : "div";
 
   return (
-    <div
+    <Tag
       className={className}
       style={style}
       role={imageUrl && "img"}
       aria-label={name}
+      onClick={onClick}
     >
       {!imageUrl && (
         <Initials initials={initials} dark={shouldBeDark} iconSize={size} />
       )}
-    </div>
+    </Tag>
   );
 }
 

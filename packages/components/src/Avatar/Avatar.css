@@ -5,18 +5,20 @@
 
 .avatar {
   display: flex;
-  align-items: center;
-  justify-content: center;
   width: var(--avatar-size);
   height: var(--avatar-size);
   min-width: var(--avatar-size);
   min-height: var(--avatar-size);
+  box-shadow: var(--shadow-base);
+  border-color: transparent;
   border-radius: var(--radius-circle);
   color: var(--color-heading);
   font-size: var(--avatar-size);
   -webkit-font-smoothing: antialiased;
   background: no-repeat center center var(--color-greyBlue);
   background-size: cover;
+  align-items: center;
+  justify-content: center;
 }
 
 .avatar:focus {
@@ -52,4 +54,13 @@
   box-shadow: 0 0 0 var(--border-thick) var(--color-white) inset;
   border-style: solid;
   border-width: var(--avatar-border-size);
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:focus {
+  box-shadow: var(--shadow-focus);
+  outline: none;
 }

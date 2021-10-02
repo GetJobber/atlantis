@@ -1,11 +1,8 @@
-declare const styles: {
-  readonly "avatar": string;
-  readonly "large": string;
-  readonly "small": string;
-  readonly "isDark": string;
-  readonly "initials": string;
-  readonly "smallInitials": string;
-  readonly "hasBorder": string;
-};
-export = styles;
-
+export const avatar: string;
+export const large: string;
+export const small: string;
+export const isDark: string;
+export const initials: string;
+export const smallInitials: string;
+export const hasBorder: string;
+export const clickable: string;
