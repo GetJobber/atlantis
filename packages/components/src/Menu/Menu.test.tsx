@@ -103,7 +103,7 @@ test("it should passthrough an activator's click action", () => {
   expect(clickHandler).toHaveBeenCalledTimes(1);
 });
 
-test("it should focus first action item from the menu when clicked", () => {
+it("should focus first action item from the menu when activated", () => {
   const { getByRole } = render(
     <Menu
       activator={<Button label="Menu" />}

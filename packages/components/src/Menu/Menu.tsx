@@ -1,6 +1,7 @@
 import React, {
   MouseEvent,
   ReactElement,
+  RefObject,
   createRef,
   useEffect,
   useLayoutEffect,
@@ -54,7 +55,7 @@ export interface SectionProps {
   /**
    * List of actions.
    */
-  actions: ActionProps[];
+  actions: Omit<ActionProps, "shouldFocus">[];
 }
 
 export function Menu({ activator, items }: MenuProps) {
@@ -216,14 +217,14 @@ export interface ActionProps {
   onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
 
   /**
-   * Focuses explicitly if set to true
+   * Focus on the action when rendered
    */
   shouldFocus?: boolean;
 }
 
 function Action({ label, icon, onClick, shouldFocus = false }: ActionProps) {
   // eslint-disable-next-line no-null/no-null
-  const actionButtonRef = useRef<HTMLButtonElement | null>(null);
+  const actionButtonRef = useRef() as RefObject<HTMLButtonElement>;
 
   useEffect(() => {
     if (actionButtonRef.current && shouldFocus) {
