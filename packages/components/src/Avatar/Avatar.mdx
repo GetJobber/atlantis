@@ -115,6 +115,22 @@ If an avatar is displayed without a name label, display a tooltip.
   }}
 </Playground>
 
+## Usage with onClick
+
+<Playground>
+  {() => {
+    return (
+      <Avatar
+        size="large"
+        initials="JBLR"
+        onClick={() => {
+          alert("Hey! You clicked me 😡");
+        }}
+      />
+    );
+  }}
+</Playground>
+
 ##### Avatar image credit
 
 [Gabrielle Henderson on Unplash](https://unsplash.com/photos/noSpEJztSMc)
