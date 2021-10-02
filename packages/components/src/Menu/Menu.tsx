@@ -223,7 +223,6 @@ export interface ActionProps {
 }
 
 function Action({ label, icon, onClick, shouldFocus = false }: ActionProps) {
-  // eslint-disable-next-line no-null/no-null
   const actionButtonRef = useRef() as RefObject<HTMLButtonElement>;
 
   useEffect(() => {
