@@ -46,7 +46,7 @@ export function Drawer({
 }
 
 interface HeaderProps {
-  title?: string;
+  title: string;
   onRequestClose?(): void;
 }
 
