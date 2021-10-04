@@ -2,18 +2,18 @@
 
 exports[`Divider should render 1`] = `
 <div>
-  <hr
-    class="divider"
-    role="none"
+  <div
+    class="divider horizontal"
+    role="none presentation"
   />
 </div>
 `;
 
 exports[`Divider when large renders 1`] = `
 <div>
-  <hr
-    class="divider large"
-    role="none"
+  <div
+    class="divider large horizontal"
+    role="none presentation"
   />
 </div>
 `;
@@ -22,7 +22,7 @@ exports[`Divider when large when also vertical renders 1`] = `
 <div>
   <div
     class="divider large vertical"
-    role="none"
+    role="none presentation"
   />
 </div>
 `;

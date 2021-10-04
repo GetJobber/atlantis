@@ -1,21 +1,22 @@
 .divider {
-  height: var(--space-minuscule);
+  --divider-width: var(--border-base);
+  --divider-color: var(--color-border);
   margin: 0;
+  padding: 0;
   border: none;
-  border-bottom: var(--border-base) solid var(--color-border);
 }
 
 .large {
-  border-bottom-width: var(--border-large);
+  --divider-width: var(--border-thick);
+}
+
+.horizontal {
+  height: var(--space-minuscule);
+  border-bottom: var(--divider-width) solid var(--divider-color);
 }
 
 .vertical {
-  width: var(--space-minuscule);
+  width: var(--space-miniscule);
   height: auto;
-  border-bottom: none;
-  border-right: var(--border-base) solid var(--color-border);
-}
-
-.vertical.large {
-  border-right-width: var(--border-large);
+  border-right: var(--divider-width) solid var(--divider-color);
 }

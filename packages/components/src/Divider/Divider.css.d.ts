@@ -1,3 +1,8 @@
-export const divider: string;
-export const large: string;
-export const vertical: string;
+declare const styles: {
+  readonly "divider": string;
+  readonly "large": string;
+  readonly "horizontal": string;
+  readonly "vertical": string;
+};
+export = styles;
+
