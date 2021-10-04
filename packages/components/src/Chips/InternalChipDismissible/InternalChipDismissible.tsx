@@ -1,10 +1,9 @@
-import React, { MouseEvent, useState } from "react";
+import React, { MouseEvent } from "react";
 import { sortBy } from "lodash";
 import styles from "./InternalChipDismissible.css";
 import { InternalChipDismissibleInput } from "./InternalChipDismissibleInput";
 import { ChipDismissible } from "..";
 import { ChipDismissibleProps } from "../ChipsTypes";
-import { Button } from "../../Button";
 
 export function InternalChipDismissible({
   children,
@@ -13,7 +12,6 @@ export function InternalChipDismissible({
   onClick,
   onCustomAdd,
 }: ChipDismissibleProps) {
-  const [inputVisible, setInputVisible] = useState(false);
   const chipOptions = children.map(chip => chip.props);
   const visibleChipOptions = chipOptions.filter(chip =>
     selected.includes(chip.value),
@@ -27,36 +25,21 @@ export function InternalChipDismissible({
 
   return (
     <div className={styles.wrapper} data-testid="multiselect-chips">
-      {sortedVisibleChipOptions.map(chip => {
-        return (
-          <ChipDismissible
-            key={chip.value}
-            {...chip}
-            onClick={handleChipClick(chip.value)}
-            onRequestRemove={handleChipRemove(chip.value)}
-          />
-        );
-      })}
+      {sortedVisibleChipOptions.map(chip => (
+        <ChipDismissible
+          key={chip.value}
+          {...chip}
+          onClick={handleChipClick(chip.value)}
+          onRequestRemove={handleChipRemove(chip.value)}
+        />
+      ))}
 
-      {inputVisible ? (
-        <InternalChipDismissibleInput
-          options={availableChipOptions}
-          onOptionSelect={handleChipAdd}
-          onCustomOptionAdd={handleCustomAdd}
-          onEmptyBackspace={handleEmptyBackspace}
-          onBlur={value => {
-            !value && setInputVisible(false);
-          }}
-        />
-      ) : (
-        <Button
-          icon="add"
-          type="secondary"
-          size="small"
-          ariaLabel="Add" // FIXME
-          onClick={() => setInputVisible(true)}
-        />
-      )}
+      <InternalChipDismissibleInput
+        options={availableChipOptions}
+        onOptionSelect={handleChipAdd}
+        onCustomOptionAdd={handleCustomAdd}
+        onEmptyBackspace={handleEmptyBackspace}
+      />
     </div>
   );
 
