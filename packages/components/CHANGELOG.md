@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.53.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.52.0...@jobber/components@2.53.0) (2021-10-04)
+
+
+### Features
+
+* **components:** Autofocus on first Menu item ([#706](https://github.com/GetJobber/atlantis/issues/706)) ([09fd482](https://github.com/GetJobber/atlantis/commit/09fd4826d2f20938b616d666ba4e149b732ff4b9))
+
+
+
+
+
 # [2.52.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.51.1...@jobber/components@2.52.0) (2021-10-01)
 
 
