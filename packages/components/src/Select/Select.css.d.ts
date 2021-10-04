@@ -8,3 +8,4 @@ declare const styles: {
   readonly "invalid": string;
 };
 export = styles;
+

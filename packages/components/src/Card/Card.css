@@ -6,6 +6,7 @@
 .card {
   display: block;
   width: 100%;
+  height: fit-content;
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
   outline-color: var(--color-focus);

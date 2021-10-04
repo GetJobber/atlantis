@@ -15,7 +15,20 @@ import { Gallery } from "@jobber/components/Gallery";
 ```
 
 <Playground>
-  <Gallery text="Bob" />
+  <Gallery
+    files={[
+      {
+        name: "Kitty with Money",
+        type: "image/jpeg",
+        src: "https://i.imgur.com/AD3MbBi.jpeg",
+      },
+      {
+        name: "What is Jobber?",
+        type: "video/mp4",
+        src: "https://youtu.be/4f4VzmXmGmQ",
+      },
+    ]}
+  />
 </Playground>
 
 <!--
