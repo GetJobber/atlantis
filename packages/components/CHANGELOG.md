@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.53.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.53.1...@jobber/components@2.53.2) (2021-10-04)
+
+
+### Bug Fixes
+
+* **components:** Make onclick card operable by keyboard [JOB-30838] ([#625](https://github.com/GetJobber/atlantis/issues/625)) ([e9b43c6](https://github.com/GetJobber/atlantis/commit/e9b43c6551e52c71bd3e90d548906bf06160e664))
+
+
+
+
+
 ## [2.53.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.53.0...@jobber/components@2.53.1) (2021-10-04)
 
 
