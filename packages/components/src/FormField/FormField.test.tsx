@@ -50,6 +50,15 @@ describe("FormField", () => {
     });
   });
 
+  describe("with a description", () => {
+    const label = "This is a hint!";
+
+    it("renders", () => {
+      const { getByText } = render(<FormField description={label} />);
+      expect(getByText(label)).toBeInTheDocument();
+    });
+  });
+
   describe("with a controlled value", () => {
     it("should set the value", () => {
       const value = "Look, some words!";
