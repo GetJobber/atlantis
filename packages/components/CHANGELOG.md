@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.53.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.53.0...@jobber/components@2.53.1) (2021-10-04)
+
+
+### Bug Fixes
+
+* **components:** Add a more distinct aria-label to Banner ([#703](https://github.com/GetJobber/atlantis/issues/703)) ([0dda2a1](https://github.com/GetJobber/atlantis/commit/0dda2a1fa5c5febac912ff4c049f38372f586eec)), closes [#695](https://github.com/GetJobber/atlantis/issues/695)
+
+
+
+
+
 # [2.53.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.52.0...@jobber/components@2.53.0) (2021-10-04)
 
 
