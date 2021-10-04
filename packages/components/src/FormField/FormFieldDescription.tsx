@@ -2,8 +2,9 @@ import React from "react";
 import { Text } from "../Text";
 
 interface FormFieldDescriptionProps {
-  description: string;
+  readonly description: string;
 }
+
 export function FormFieldDescription({
   description,
 }: FormFieldDescriptionProps) {
