@@ -16,20 +16,7 @@ describe("Drawer", () => {
       expect(getByText(content)).toBeInTheDocument();
       expect(container).toMatchSnapshot();
     });
-    describe("with title", () => {
-      it("should also render title", () => {
-        const title = "Drawer Title";
-        const content = "Drawer Content";
-        const { container, getByText } = render(
-          <Drawer title={title} open onRequestClose={jest.fn}>
-            {content}
-          </Drawer>,
-        );
-        expect(getByText(content)).toBeInTheDocument();
-        expect(getByText(title)).toBeInTheDocument();
-        expect(container).toMatchSnapshot();
-      });
-    });
+
     describe("when clicking on dismiss button", () => {
       it("should trigger request close", () => {
         const onRequestCloseFn = jest.fn();
@@ -43,6 +30,7 @@ describe("Drawer", () => {
       });
     });
   });
+
   describe("when closed", () => {
     it("shouldnt render the children", () => {
       const content = "Drawer Content";
