@@ -18,7 +18,9 @@ it("renders a loud GalleryCard", () => {
 test("it should call the handler with the new value", () => {
   const clickHandler = jest.fn();
   const text = "Foo";
-  const { getByText } = render(<GalleryCard onClick={clickHandler} text={text} />);
+  const { getByText } = render(
+    <GalleryCard onClick={clickHandler} text={text} />,
+  );
 
   fireEvent.click(getByText(text));
   expect(clickHandler).toHaveBeenCalled();
