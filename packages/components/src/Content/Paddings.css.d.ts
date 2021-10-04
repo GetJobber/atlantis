@@ -5,3 +5,4 @@ declare const styles: {
   readonly "none": string;
 };
 export = styles;
+
