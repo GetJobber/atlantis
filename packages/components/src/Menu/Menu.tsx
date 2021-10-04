@@ -1,8 +1,11 @@
 import React, {
   MouseEvent,
   ReactElement,
+  RefObject,
   createRef,
+  useEffect,
   useLayoutEffect,
+  useRef,
   useState,
 } from "react";
 import uuid from "uuid";
@@ -53,7 +56,7 @@ export interface SectionProps {
   /**
    * List of actions.
    */
-  actions: ActionProps[];
+  actions: Omit<ActionProps, "shouldFocus">[];
 }
 
 // eslint-disable-next-line max-statements
@@ -152,8 +155,12 @@ export function Menu({ activator, items }: MenuProps) {
                 <div key={key} className={styles.section}>
                   {item.header && <SectionHeader text={item.header} />}
 
-                  {item.actions.map(action => (
-                    <Action key={action.label} {...action} />
+                  {item.actions.map((action, index) => (
+                    <Action
+                      key={action.label}
+                      shouldFocus={key === 0 && index === 0}
+                      {...action}
+                    />
                   ))}
                 </div>
               ))}
@@ -225,15 +232,29 @@ export interface ActionProps {
    * Callback when an action gets clicked
    */
   onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
+
+  /**
+   * Focus on the action when rendered
+   */
+  shouldFocus?: boolean;
 }
 
-function Action({ label, icon, onClick }: ActionProps) {
+function Action({ label, icon, onClick, shouldFocus = false }: ActionProps) {
+  const actionButtonRef = useRef() as RefObject<HTMLButtonElement>;
+
+  useEffect(() => {
+    if (actionButtonRef.current && shouldFocus) {
+      actionButtonRef.current.focus();
+    }
+  }, [shouldFocus]);
+
   return (
     <button
       role="menuitem"
       className={styles.action}
       key={label}
       onClick={onClick}
+      ref={actionButtonRef}
     >
       {icon && (
         <span className={styles.icon}>

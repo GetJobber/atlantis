@@ -8,6 +8,50 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.53.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.53.1...@jobber/components@2.53.2) (2021-10-04)
+
+
+### Bug Fixes
+
+* **components:** Make onclick card operable by keyboard [JOB-30838] ([#625](https://github.com/GetJobber/atlantis/issues/625)) ([e9b43c6](https://github.com/GetJobber/atlantis/commit/e9b43c6551e52c71bd3e90d548906bf06160e664))
+
+
+
+
+
+## [2.53.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.53.0...@jobber/components@2.53.1) (2021-10-04)
+
+
+### Bug Fixes
+
+* **components:** Add a more distinct aria-label to Banner ([#703](https://github.com/GetJobber/atlantis/issues/703)) ([0dda2a1](https://github.com/GetJobber/atlantis/commit/0dda2a1fa5c5febac912ff4c049f38372f586eec)), closes [#695](https://github.com/GetJobber/atlantis/issues/695)
+
+
+
+
+
+# [2.53.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.52.0...@jobber/components@2.53.0) (2021-10-04)
+
+
+### Features
+
+* **components:** Autofocus on first Menu item ([#706](https://github.com/GetJobber/atlantis/issues/706)) ([09fd482](https://github.com/GetJobber/atlantis/commit/09fd4826d2f20938b616d666ba4e149b732ff4b9))
+
+
+
+
+
+# [2.52.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.51.1...@jobber/components@2.52.0) (2021-10-01)
+
+
+### Features
+
+* **components:** Add chips (single/multiple/standalone dismissible) component [JOB-35714] ([#678](https://github.com/GetJobber/atlantis/issues/678)) ([f537a2a](https://github.com/GetJobber/atlantis/commit/f537a2a55b6d167a819a321185dc17ad19b69616))
+
+
+
+
+
 ## [2.51.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.51.0...@jobber/components@2.51.1) (2021-09-30)
 
 **Note:** Version bump only for package @jobber/components

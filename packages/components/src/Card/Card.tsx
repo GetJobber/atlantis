@@ -3,6 +3,7 @@ import classnames from "classnames";
 import { XOR } from "ts-xor";
 import styles from "./Card.css";
 import colors from "./colors.css";
+import { CardClickable } from "./CardClickable";
 import { Typography } from "../Typography";
 
 interface CardProps {
@@ -43,55 +44,37 @@ export function Card({
     accent && colors[accent],
   );
 
-  interface InternalProps {
-    className: string;
-    href?: string;
-    role?: "button";
-    tabIndex?: 0;
-    onClick?(event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>): void;
-  }
-
-  const Tag = url ? "a" : "div";
-  const props: InternalProps = { className };
-
-  if (url) {
-    props.href = url;
-  }
+  const cardContent = (
+    <>
+      {title && (
+        <div className={styles.header}>
+          <Typography
+            element="h3"
+            size="large"
+            textCase="uppercase"
+            fontWeight="extraBold"
+          >
+            {title}
+          </Typography>
+        </div>
+      )}
+      {children}
+    </>
+  );
 
   if (onClick) {
-    props.onClick = onClick;
-    props.role = "button";
-    props.tabIndex = 0;
+    return (
+      <CardClickable className={className} onClick={onClick}>
+        {cardContent}
+      </CardClickable>
+    );
+  } else if (url) {
+    return (
+      <a className={className} href={url}>
+        {cardContent}
+      </a>
+    );
+  } else {
+    return <div className={className}>{cardContent}</div>;
   }
-
-  return (
-    <Tag {...props}>
-      {title && <Title title={title} />}
-      {children}
-    </Tag>
-  );
-}
-
-interface TitleProps {
-  /**
-   * The title for the card.
-   */
-  readonly title: string;
-}
-
-function Title({ title }: TitleProps) {
-  const className = classnames(styles.header);
-
-  return (
-    <div className={className}>
-      <Typography
-        element="h3"
-        size="large"
-        textCase="uppercase"
-        fontWeight="extraBold"
-      >
-        {title}
-      </Typography>
-    </div>
-  );
 }
