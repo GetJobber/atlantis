@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { fireEvent, render } from "@testing-library/react";
-import { Card } from ".";
+import { Card } from "..";
 
 it("renders a simple card", () => {
   const tree = renderer
@@ -12,14 +12,14 @@ it("renders a simple card", () => {
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-                            <div
-                              className="card accent purple"
-                            >
-                              <p>
-                                This is the card content.
-                              </p>
-                            </div>
-              `);
+    <div
+      className="card accent purple"
+    >
+      <p>
+        This is the card content.
+      </p>
+    </div>
+  `);
 });
 
 it("renders a card", () => {
@@ -81,7 +81,10 @@ it("renders a clickable card", () => {
   expect(tree).toMatchInlineSnapshot(`
     <div
       className="card accent clickable green"
+      data-testid="clickable-card"
       onClick={[MockFunction]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
       role="button"
       tabIndex={0}
     >
