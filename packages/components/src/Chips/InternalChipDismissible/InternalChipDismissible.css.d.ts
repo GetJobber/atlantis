@@ -3,6 +3,7 @@ declare const styles: {
   readonly "input": string;
   readonly "menu": string;
   readonly "menuOption": string;
+  readonly "activeOption": string;
 };
 export = styles;
 

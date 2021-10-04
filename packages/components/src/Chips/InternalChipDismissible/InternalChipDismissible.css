@@ -10,10 +10,12 @@
   align-items: center;
 }
 
-.wrapper:focus-within {
+/* TODO: Evaluate the focus state */
+
+/* .wrapper:focus-within {
   padding: var(--space-smaller);
   border-color: var(--color-focus);
-}
+} */
 
 .input {
   flex: 1;
@@ -64,7 +66,8 @@
 }
 
 .menuOption:focus,
-.menuOption:hover {
+.menuOption:hover,
+.activeOption {
   outline: none;
   background-color: var(--color-surface--hover);
 }

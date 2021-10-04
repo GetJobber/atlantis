@@ -1,57 +1,84 @@
-import React, { ChangeEvent, KeyboardEvent, useRef, useState } from "react";
+import React from "react";
 import { debounce } from "lodash";
+import classNames from "classnames";
 import styles from "./InternalChipDismissible.css";
-import { ChipProps } from "../Chip";
+import {
+  KeyDownCallBacks,
+  useDismissibleChipKeydown,
+} from "./useDismissibleChipKeydown";
+import { useDismissibleChipInput } from "./useDismissibleChipInput";
+import { ChipDismissibleInputProps } from "./InternalChipDismissibleTypes";
 import { Text } from "../../Text";
-
-interface ChipDismissibleInputProps {
-  readonly options: ChipProps[];
-  onEmptyBackspace(): void;
-  onBlur(value: string): void;
-  onCustomOptionAdd(value: string): void;
-  onOptionSelect(value: string): void;
-}
+import { Button } from "../../Button";
 
 export function InternalChipDismissibleInput({
   options,
   onEmptyBackspace,
-  onBlur,
   onCustomOptionAdd,
   onOptionSelect,
 }: ChipDismissibleInputProps) {
-  const [searchValue, setSearchValue] = useState("");
-  const [shouldCancelBlur, setShouldCancelBlur] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  // eslint-disable-next-line no-null/no-null
-  const inputRef = useRef<HTMLInputElement>(null);
-  const filteredOptions = options.filter(option =>
-    option.label.toLowerCase().match(searchValue.toLowerCase()),
-  );
+  const {
+    activeOption,
+    activeIndex,
+    allOptions,
+    inputRef,
+    menuId,
+    menuOpen,
+    searchValue,
+    handleBlur,
+    handleOpenMenu,
+    handleReset,
+    handleSearchChange,
+    handleCancelBlur,
+    handleEnableBlur,
+    setActiveIndex,
+  } = useDismissibleChipInput(options);
+
+  if (!menuOpen) {
+    return (
+      <Button
+        icon="add"
+        type="secondary"
+        size="small"
+        ariaLabel="Add" // FIXME
+        onClick={handleOpenMenu}
+      />
+    );
+  }
 
   return (
     <>
       <input
         ref={inputRef}
+        role="combobox"
+        aria-autocomplete="list"
+        aria-owns={menuId}
+        aria-expanded={menuOpen}
+        aria-activedescendant={`${menuId}-${activeIndex}`}
         className={styles.input}
         type="text"
         value={searchValue}
         onChange={handleSearchChange}
-        onKeyDown={handleKeyDown}
+        onKeyDown={handleKeyDown()}
         onBlur={debounce(handleBlur, 200)}
-        onFocus={() => setMenuOpen(true)}
+        onFocus={handleOpenMenu}
         autoFocus={true}
       />
 
-      {menuOpen && filteredOptions.length > 0 && (
-        <div className={styles.menu}>
-          {filteredOptions.map(option => {
+      {allOptions.length > 0 && (
+        <div className={styles.menu} role="listbox" id={menuId}>
+          {allOptions.map((option, i) => {
             return (
               <button
                 key={option.value}
-                className={styles.menuOption}
-                onClick={handleOptionClick(option.value)}
-                onMouseDown={() => setShouldCancelBlur(true)}
-                onMouseUp={() => setShouldCancelBlur(false)}
+                role="option"
+                id={`${menuId}-${i}`}
+                className={classNames(styles.menuOption, {
+                  [styles.activeOption]: activeIndex === i,
+                })}
+                onClick={() => handleSelectOption(option)}
+                onMouseDown={handleCancelBlur}
+                onMouseUp={handleEnableBlur}
               >
                 {option.prefix}
                 <Text>{option.label}</Text>
@@ -63,34 +90,33 @@ export function InternalChipDismissibleInput({
     </>
   );
 
-  function handleBlur() {
-    if (shouldCancelBlur) return;
-    setSearchValue("");
-    setMenuOpen(false);
-    onBlur(searchValue);
+  function handleSelectOption(selected: typeof activeOption) {
+    const setValue = selected.custom ? onCustomOptionAdd : onOptionSelect;
+    setValue(selected.value);
+    handleReset();
+    inputRef.current?.focus();
   }
 
-  function handleOptionClick(value: string) {
-    return () => {
-      inputRef.current?.focus();
-      onOptionSelect(value);
+  function handleKeyDown() {
+    const callbacks: KeyDownCallBacks = {
+      Enter: () => handleSelectOption(activeOption),
+      Tab: () => handleSelectOption(activeOption),
+      ArrowDown: () => {
+        const newIndex =
+          activeIndex < allOptions.length - 1 ? activeIndex + 1 : 0;
+        setActiveIndex(newIndex);
+      },
+      ArrowUp: () => {
+        const newIndex =
+          activeIndex > 0 ? activeIndex - 1 : allOptions.length - 1;
+        setActiveIndex(newIndex);
+      },
     };
-  }
 
-  function handleSearchChange(event: ChangeEvent<HTMLInputElement>) {
-    setSearchValue(event.currentTarget.value);
-  }
-
-  function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
-    if (event.shiftKey) return;
-    if (event.key === "Backspace" && searchValue.length === 0) {
-      return onEmptyBackspace();
+    if (searchValue.length === 0) {
+      callbacks.Backspace = () => onEmptyBackspace();
     }
 
-    if (searchValue.length && ["Tab", "Enter", ","].includes(event.key)) {
-      event.preventDefault();
-      setSearchValue("");
-      onCustomOptionAdd(searchValue);
-    }
+    return useDismissibleChipKeydown(callbacks);
   }
 }
