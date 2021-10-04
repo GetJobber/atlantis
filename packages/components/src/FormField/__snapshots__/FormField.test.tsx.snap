@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormField when disabled renders 1`] = `
+<div>
+  <div
+    class="wrapper disabled"
+  >
+    <div
+      class="inputWrapper"
+    >
+      <label
+        class="label"
+        for="123e4567-e89b-12d3-a456-426655440006"
+      />
+      <input
+        class="input"
+        disabled=""
+        id="123e4567-e89b-12d3-a456-426655440006"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormField when readonly renders 1`] = `
+<div>
+  <div
+    class="wrapper"
+  >
+    <div
+      class="inputWrapper"
+    >
+      <label
+        class="label"
+        for="123e4567-e89b-12d3-a456-426655440005"
+      />
+      <input
+        class="input"
+        id="123e4567-e89b-12d3-a456-426655440005"
+        readonly=""
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormField when small renders 1`] = `
+<div>
+  <div
+    class="wrapper small"
+  >
+    <div
+      class="inputWrapper"
+    >
+      <label
+        class="label"
+        for="123e4567-e89b-12d3-a456-426655440004"
+      />
+      <input
+        class="input"
+        id="123e4567-e89b-12d3-a456-426655440004"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormField with a placeholder renders 1`] = `
+<div>
+  <div
+    class="wrapper"
+  >
+    <div
+      class="inputWrapper"
+    >
+      <label
+        class="label"
+        for="123e4567-e89b-12d3-a456-426655440002"
+      >
+        A placeholder
+      </label>
+      <input
+        class="input"
+        id="123e4567-e89b-12d3-a456-426655440002"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FormField with no props renders 1`] = `
+<div>
+  <div
+    class="wrapper"
+  >
+    <div
+      class="inputWrapper"
+    >
+      <label
+        class="label"
+        for="123e4567-e89b-12d3-a456-426655440001"
+      />
+      <input
+        class="input"
+        id="123e4567-e89b-12d3-a456-426655440001"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;
