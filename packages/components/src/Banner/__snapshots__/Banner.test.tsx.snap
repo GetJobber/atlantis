@@ -30,7 +30,7 @@ exports[`renders a banner with a primary 'learning' action when the type is 'not
     </div>
   </div>
   <button
-    aria-label="Close"
+    aria-label="Close this notification"
     className="closeButton"
     onClick={[Function]}
   >
@@ -79,7 +79,7 @@ exports[`renders a banner with a primary action 1`] = `
     </div>
   </div>
   <button
-    aria-label="Close"
+    aria-label="Close this notification"
     className="closeButton"
     onClick={[Function]}
   >
@@ -113,7 +113,7 @@ exports[`renders a notice banner 1`] = `
     </p>
   </div>
   <button
-    aria-label="Close"
+    aria-label="Close this notification"
     className="closeButton"
     onClick={[Function]}
   >
@@ -147,7 +147,7 @@ exports[`renders a success banner 1`] = `
     </p>
   </div>
   <button
-    aria-label="Close"
+    aria-label="Close this notification"
     className="closeButton"
     onClick={[Function]}
   >
@@ -181,7 +181,7 @@ exports[`renders a warning banner 1`] = `
     </p>
   </div>
   <button
-    aria-label="Close"
+    aria-label="Close this notification"
     className="closeButton"
     onClick={[Function]}
   >
@@ -215,7 +215,7 @@ exports[`renders an error banner 1`] = `
     </p>
   </div>
   <button
-    aria-label="Close"
+    aria-label="Close this notification"
     className="closeButton"
     onClick={[Function]}
   >

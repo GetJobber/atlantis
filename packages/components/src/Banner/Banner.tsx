@@ -90,7 +90,7 @@ export function Banner({
             <button
               className={styles.closeButton}
               onClick={handleClose}
-              aria-label="Close"
+              aria-label="Close this notification"
             >
               <Icon name="cross" color={iconColors[type]} />
             </button>

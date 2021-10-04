@@ -35,7 +35,7 @@ it("renders without close button", () => {
       Foo
     </Banner>,
   );
-  expect(queryByLabelText("Close")).toBeNull();
+  expect(queryByLabelText("Close this notification")).toBeNull();
 });
 
 it("renders with close button", () => {
@@ -44,7 +44,7 @@ it("renders with close button", () => {
       Foo
     </Banner>,
   );
-  expect(queryByLabelText("Close")).toBeTruthy();
+  expect(queryByLabelText("Close this notification")).toBeTruthy();
 });
 
 test("it should call the handler with a number value", () => {
@@ -56,7 +56,7 @@ test("it should call the handler with a number value", () => {
     </Banner>,
   );
 
-  fireEvent.click(getByLabelText("Close"));
+  fireEvent.click(getByLabelText("Close this notification"));
   expect(changeHandler).toHaveBeenCalledTimes(1);
 });
 
