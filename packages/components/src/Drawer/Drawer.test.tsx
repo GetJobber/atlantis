@@ -9,7 +9,7 @@ describe("Drawer", () => {
     it("should render children and close button", () => {
       const content = "Drawer Content";
       const { container, getByText } = render(
-        <Drawer open onRequestClose={jest.fn}>
+        <Drawer title="A drawer with content" open onRequestClose={jest.fn}>
           {content}
         </Drawer>,
       );
@@ -34,7 +34,7 @@ describe("Drawer", () => {
       it("should trigger request close", () => {
         const onRequestCloseFn = jest.fn();
         const { getByLabelText } = render(
-          <Drawer open onRequestClose={onRequestCloseFn}>
+          <Drawer title="My drawer" open onRequestClose={onRequestCloseFn}>
             {"Drawer Content"}
           </Drawer>,
         );
@@ -47,7 +47,7 @@ describe("Drawer", () => {
     it("shouldnt render the children", () => {
       const content = "Drawer Content";
       const { container, debug, getByTestId } = render(
-        <Drawer open={false} onRequestClose={jest.fn}>
+        <Drawer title="A closed drawer" open={false} onRequestClose={jest.fn}>
           {content}
         </Drawer>,
       );

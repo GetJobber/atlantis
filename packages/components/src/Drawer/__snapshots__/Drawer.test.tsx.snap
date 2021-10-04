@@ -3,6 +3,7 @@
 exports[`Drawer when open should render children and close button 1`] = `
 <div>
   <aside
+    aria-label="A drawer with content"
     class="container open"
     data-testid="drawer-container"
   >
@@ -10,9 +11,14 @@ exports[`Drawer when open should render children and close button 1`] = `
       class="drawer"
     >
       <div
-        class="header headerWithoutTitle"
+        class="header"
         data-testid="drawer-header"
       >
+        <h3
+          class="base extraBold large uppercase"
+        >
+          A drawer with content
+        </h3>
         <div
           class="closeButtonWrapper"
         >

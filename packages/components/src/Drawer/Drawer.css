@@ -47,10 +47,6 @@
   align-items: center;
 }
 
-.headerWithoutTitle {
-  justify-content: flex-end;
-}
-
 .contentScroll {
   display: flex;
   width: 100%;
