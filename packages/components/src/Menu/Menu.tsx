@@ -188,12 +188,7 @@ export function Menu({ activator, items }: MenuProps) {
 
     event.preventDefault();
     event.stopPropagation();
-    switch (key) {
-      case "Escape": {
-        hide();
-        break;
-      }
-    }
+    key === "Escape" && hide();
   }
 }
 
