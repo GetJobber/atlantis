@@ -104,7 +104,6 @@ describe("Menu", () => {
       fireEvent.keyDown(container, {
         key: "Escape",
         code: "Escape",
-        ctrlKey: true,
       });
       await waitFor(() => {
         expect(queryByRole("menuitem")).not.toBeInTheDocument();
