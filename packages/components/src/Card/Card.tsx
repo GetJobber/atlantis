@@ -74,9 +74,8 @@ export function Card({
     return (
       <a
         className={className}
-        target={external ? "_blank" : "_self"}
-        rel={external ? "noopener noreferrer" : "tag"}
         href={url}
+        {...(external && { target: "_blank", rel: "noopener noreferrer" })}
       >
         {cardContent}
       </a>
