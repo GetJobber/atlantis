@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { Card } from "..";
 
 it("renders a simple card", () => {
@@ -119,4 +119,13 @@ it("renders an external link card", () => {
     )
     .toJSON();
   expect(tree).toMatchSnapshot();
+});
+
+it("renders an external link card wit target attribute", () => {
+  render(
+    <Card url="https://frend.space" external={true}>
+      <p>This is a link card.</p>
+    </Card>,
+  );
+  expect(screen.getByRole("link")).toHaveAttribute("target", "_blank");
 });
