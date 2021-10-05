@@ -5,18 +5,21 @@ import { Drawer } from ".";
 afterEach(cleanup);
 
 describe("Drawer", () => {
-  describe("when open", () => {
-    it("should render children and close button", () => {
-      const content = "Drawer Content";
-      const { container, getByText } = render(
-        <Drawer title="A drawer with content" open onRequestClose={jest.fn}>
-          {content}
-        </Drawer>,
-      );
-      expect(getByText(content)).toBeInTheDocument();
-      expect(container).toMatchSnapshot();
-    });
+  it("should render the drawer", () => {
+    const title = "A drawer with content";
+    const content = "Drawer Content";
+    const { getByText, getByTestId, getByLabelText } = render(
+      <Drawer title={title} open onRequestClose={jest.fn}>
+        {content}
+      </Drawer>,
+    );
+    expect(getByTestId("drawer-header")).toBeInTheDocument();
+    expect(getByText(title)).toBeInTheDocument();
+    expect(getByLabelText("Close drawer")).toBeInTheDocument();
+    expect(getByText(content)).toBeInTheDocument();
+  });
 
+  describe("when open", () => {
     describe("when clicking on dismiss button", () => {
       it("should trigger request close", () => {
         const onRequestCloseFn = jest.fn();
