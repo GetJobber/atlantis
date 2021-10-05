@@ -22,6 +22,7 @@ interface CardProps {
 
 interface LinkCardProps extends CardProps {
   url: string;
+  external: boolean;
 }
 
 interface ClickableCardProps extends CardProps {
@@ -36,6 +37,7 @@ export function Card({
   onClick,
   title,
   url,
+  external,
 }: CardPropOptions) {
   const className = classnames(
     styles.card,
@@ -44,6 +46,9 @@ export function Card({
     accent && colors[accent],
   );
 
+  const tagProps = {
+    ...(external && { target: "_blank" }),
+  };
   const cardContent = (
     <>
       {title && (
@@ -70,7 +75,7 @@ export function Card({
     );
   } else if (url) {
     return (
-      <a className={className} href={url}>
+      <a className={className} {...tagProps} href={url}>
         {cardContent}
       </a>
     );
