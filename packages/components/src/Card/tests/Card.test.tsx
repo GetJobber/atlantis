@@ -121,7 +121,7 @@ it("renders an external link card", () => {
   expect(tree).toMatchSnapshot();
 });
 
-it("renders an external link card wit target attribute", () => {
+it("renders an external link card with target attribute", () => {
   render(
     <Card url="https://frend.space" external={true}>
       <p>This is a link card.</p>
