@@ -1,0 +1,51 @@
+---
+name: useAssert
+menu: Hooks
+route: /hooks/use-assert
+---
+
+import { Playground } from "docz";
+import { useState } from "react";
+import { Button } from "@jobber/components/Button";
+import { useAssert } from "@jobber/hooks";
+
+# useAssert
+
+Disrupt the render of a component when a conditional is not met. This is helpful
+when you want to limit something that typescript can't do.
+
+```tsx
+import { useAssert } from "@jobber/hooks";
+```
+
+<Playground>
+  {() => {
+    const [shouldAssert, setShouldAssert] = useState(false);
+    useAssert(shouldAssert, "This is an error message");
+    return (
+      <Button label="Trigger error" onClick={() => setShouldAssert(true)} />
+    );
+  }}
+</Playground>
+
+### Return a warning
+
+If you still want to assert but doesn't want to disrupt the rendering, you can
+pass in a `warn: true` param. This will throw a warning on your browser console.
+
+<Playground>
+  {() => {
+    const [shouldAssert, setShouldAssert] = useState(false);
+    useAssert(shouldAssert, "This is an console warning message", {
+      warn: true,
+    });
+    return (
+      <Button
+        label="Trigger console warning"
+        onClick={() => setShouldAssert(true)}
+      />
+    );
+  }}
+</Playground>
+
+---
