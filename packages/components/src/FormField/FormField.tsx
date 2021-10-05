@@ -20,6 +20,7 @@ export function FormField(props: FormFieldProps) {
     autocomplete = true,
     children,
     defaultValue,
+    description,
     disabled,
     inputRef,
     keyboard,
@@ -46,7 +47,7 @@ export function FormField(props: FormFieldProps) {
       : useForm({ mode: "onTouched" });
 
   const [identifier] = useState(uuid.v1());
-
+  const [descriptionUUID] = useState(`descriptionUUID--${uuid.v1()}`);
   /**
    * Generate a name if one is not supplied, this is the name
    * that will be used for react-hook-form and not neccessarily
@@ -92,6 +93,7 @@ export function FormField(props: FormFieldProps) {
           readOnly: readonly,
           inputMode: keyboard,
           onChange: handleChange,
+          ...(description && { "aria-describedby": descriptionUUID }),
         };
 
         const textFieldProps = {
@@ -107,6 +109,7 @@ export function FormField(props: FormFieldProps) {
             value={rest.value}
             error={error}
             identifier={identifier}
+            descriptionUUID={descriptionUUID}
           >
             {renderField()}
           </FormFieldWrapper>

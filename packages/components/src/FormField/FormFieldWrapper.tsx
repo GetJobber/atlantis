@@ -15,6 +15,7 @@ import { InputValidation } from "../InputValidation";
 interface FormFieldWrapperProps extends FormFieldProps {
   error: string;
   identifier: string;
+  descriptionUUID: string;
 }
 
 interface LabelPadding {
@@ -25,6 +26,7 @@ interface LabelPadding {
 export function FormFieldWrapper({
   align,
   description,
+  descriptionUUID,
   placeholder,
   value,
   children,
@@ -96,7 +98,9 @@ export function FormFieldWrapper({
           <AffixIcon {...suffix} variation="suffix" size={size} />
         )}
       </div>
-      {description && <FormFieldDescription description={description} />}
+      {description && (
+        <FormFieldDescription id={descriptionUUID} description={description} />
+      )}
       {error && !inline && <InputValidation message={error} />}
     </>
   );

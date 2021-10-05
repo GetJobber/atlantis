@@ -57,6 +57,11 @@ describe("FormField", () => {
       const { getByText } = render(<FormField description={label} />);
       expect(getByText(label)).toBeInTheDocument();
     });
+
+    it("should have assistive descriptor `aria-describedby`", () => {
+      const { getByRole } = render(<FormField description={label} />);
+      expect(getByRole("textbox")).toHaveAttribute("aria-describedby");
+    });
   });
 
   describe("with a controlled value", () => {
