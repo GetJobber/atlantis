@@ -46,9 +46,6 @@ export function Card({
     accent && colors[accent],
   );
 
-  const tagProps = {
-    ...(external && { target: "_blank" }),
-  };
   const cardContent = (
     <>
       {title && (
@@ -75,7 +72,12 @@ export function Card({
     );
   } else if (url) {
     return (
-      <a className={className} {...tagProps} href={url}>
+      <a
+        className={className}
+        target={external ? "_blank" : "_self"}
+        rel={external ? "noopener noreferrer" : "tag"}
+        href={url}
+      >
         {cardContent}
       </a>
     );

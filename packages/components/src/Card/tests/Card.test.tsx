@@ -62,6 +62,8 @@ it("renders a link card", () => {
                     <a
                       className="card accent clickable green"
                       href="https://frend.space"
+                      rel="tag"
+                      target="_self"
                     >
                       <p>
                         This is a link card.
@@ -110,22 +112,24 @@ test("it should should be clickable if it's clickable", () => {
   expect(clickHandler).toHaveBeenCalledTimes(1);
 });
 
-it("renders an external link card", () => {
-  const tree = renderer
-    .create(
-      <Card url="https://frend.space" external={true}>
-        <p>This is a link card.</p>
-      </Card>,
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
-});
-
-it("renders an external link card with target attribute", () => {
-  render(
+it("renders an external link card without target attribute", () => {
+  const { getByRole } = render(
     <Card url="https://frend.space" external={true}>
       <p>This is a link card.</p>
     </Card>,
   );
-  expect(screen.getByRole("link")).toHaveAttribute("target", "_blank");
+
+  expect(getByRole("link")).toHaveAttribute("target", "_blank");
+  expect(getByRole("link")).toHaveAttribute("rel", "noopener noreferrer");
+});
+
+it("renders an external link card with target attribute", () => {
+  const { getByRole } = render(
+    <Card url="https://frend.space" external={false}>
+      <p>This is a link card.</p>
+    </Card>,
+  );
+
+  expect(getByRole("link")).toHaveAttribute("target", "_self");
+  expect(getByRole("link")).toHaveAttribute("rel", "tag");
 });
