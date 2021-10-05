@@ -109,3 +109,14 @@ test("it should should be clickable if it's clickable", () => {
 
   expect(clickHandler).toHaveBeenCalledTimes(1);
 });
+
+it("renders an external link card", () => {
+  const tree = renderer
+    .create(
+      <Card url="https://frend.space" external={true}>
+        <p>This is a link card.</p>
+      </Card>,
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
