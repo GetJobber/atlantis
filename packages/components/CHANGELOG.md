@@ -8,6 +8,22 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.54.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.53.2...@jobber/components@2.54.0) (2021-10-05)
+
+
+### Bug Fixes
+
+* **components:** Card no longer overrides border color variable ([#718](https://github.com/GetJobber/atlantis/issues/718)) ([72f6bcf](https://github.com/GetJobber/atlantis/commit/72f6bcf18670c61c248b1ab2d98409846e7413bc))
+
+
+### Features
+
+* **components:** add ability to specify external url on card ([#719](https://github.com/GetJobber/atlantis/issues/719)) ([c919994](https://github.com/GetJobber/atlantis/commit/c9199945c6a1e3270239e8c770b85afc1c5e3885))
+
+
+
+
+
 ## [2.53.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.53.1...@jobber/components@2.53.2) (2021-10-04)
 
 
