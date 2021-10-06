@@ -28,7 +28,12 @@ test("it should not call the handler if the value does not change", () => {
 test("it should be able to disable options", () => {
   const handleChange = jest.fn();
   const { container } = render(
-    <RadioGroup name="Foo" value="foo" onChange={handleChange}>
+    <RadioGroup
+      name="Foo"
+      value="foo"
+      onChange={handleChange}
+      label="Test Label"
+    >
       <RadioOption value="foo"></RadioOption>
       <RadioOption value="bear" disabled={true}></RadioOption>
     </RadioGroup>,
@@ -55,7 +60,7 @@ test("it should have unique ids on all radio options", () => {
 
 test("it should render an option from `label` prop", () => {
   const { getByText } = render(
-    <RadioGroup value="" onChange={jest.fn()}>
+    <RadioGroup value="" onChange={jest.fn()} label="Test Label">
       <RadioOption value="foo" label="Radio" />
     </RadioGroup>,
   );
@@ -65,7 +70,7 @@ test("it should render an option from `label` prop", () => {
 
 test("it should render an option from `children` prop", () => {
   const { getByText } = render(
-    <RadioGroup value="" onChange={jest.fn()}>
+    <RadioGroup value="" onChange={jest.fn()} label="Test Label">
       <RadioOption value="foo">Radio</RadioOption>
     </RadioGroup>,
   );
@@ -75,12 +80,22 @@ test("it should render an option from `children` prop", () => {
 
 test("it should render a description", () => {
   const { getByText } = render(
-    <RadioGroup value="" onChange={jest.fn()}>
+    <RadioGroup value="" onChange={jest.fn()} label="Test Label">
       <RadioOption value="foo" description="A sound box" label="Radio" />
     </RadioGroup>,
   );
 
   expect(getByText("A sound box")).toBeInstanceOf(HTMLParagraphElement);
+});
+
+test("it should render a span", () => {
+  const { getByText } = render(
+    <RadioGroup value="" onChange={jest.fn()} label="Test Label">
+      <RadioOption value="foo" description="A sound box" label="Radio" />
+    </RadioGroup>,
+  );
+
+  expect(getByText("Test Label")).toBeInstanceOf(HTMLSpanElement);
 });
 
 interface MockProps {
@@ -92,11 +107,19 @@ function MockRadioGroup({ onChange }: MockProps) {
   const [valueTwo, setValueTwo] = useState("one");
   return (
     <>
-      <RadioGroup onChange={handleFirstChange} value={value}>
+      <RadioGroup
+        onChange={handleFirstChange}
+        value={value}
+        label="Test Label 1"
+      >
         <RadioOption value="one" label="One" />
         <RadioOption value="two" label="Two" />
       </RadioGroup>
-      <RadioGroup onChange={handleSecondChange} value={valueTwo}>
+      <RadioGroup
+        onChange={handleSecondChange}
+        value={valueTwo}
+        label="Test Label 2"
+      >
         <RadioOption value="one" label="One" />
         <RadioOption value="two" label="Two" />
       </RadioGroup>

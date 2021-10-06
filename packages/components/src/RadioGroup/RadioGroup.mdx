@@ -30,7 +30,7 @@ import { RadioGroup } from "@jobber/components/RadioGroup";
   {() => {
     const [company, setCompany] = useState("apple");
     return (
-      <RadioGroup onChange={setCompany} value={company}>
+      <RadioGroup onChange={setCompany} value={company} label="Companies">
         <RadioOption value="apple" label="Apple" />
         <RadioOption value="google" label="Google" />
         <RadioOption value="microsoft" label="Microsoft" />
@@ -58,7 +58,7 @@ option will prevent a user from being able to select the option.
     const [checked, setChecked] = useState(true);
     return (
       <Content spacing="large">
-        <RadioGroup onChange={setCompany} value={company}>
+        <RadioGroup onChange={setCompany} value={company} label="Companies">
           <RadioOption value="apple" label="Apple" />
           <RadioOption value="google" label="Google" />
           <RadioOption value="amazon" label="Amazon" disabled={true} />
@@ -87,7 +87,7 @@ A `description` can be used to further describe the label of the `RadioOption`.
   {() => {
     const [company, setCompany] = useState("apple");
     return (
-      <RadioGroup onChange={setCompany} value={company}>
+      <RadioGroup onChange={setCompany} value={company} label="Companies">
         <RadioOption
           value="apple"
           label="Apple"
@@ -134,7 +134,7 @@ text, an `aria-label` should be provided.
       <>
         <Content>
           <Text>Select a user</Text>
-          <RadioGroup onChange={setPhoto} value={company}>
+          <RadioGroup onChange={setPhoto} value={company} label="Users">
             {users.map(user => (
               <RadioOption value={user.name}>
                 <Avatar initials={user.initials} name={user.name} />

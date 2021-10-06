@@ -19,6 +19,11 @@ interface RadioGroupProps {
   onChange(newValue: string | number): void;
 
   /**
+   * Defines the label that describes the radio group.
+   */
+  readonly label: string;
+
+  /**
    * The name of the radio group, that links the radio options back up
    * to the group.
    *
@@ -30,22 +35,34 @@ interface RadioGroupProps {
 export function RadioGroup({
   children,
   value,
+  label,
   onChange,
   name = uuid.v1(),
 }: RadioGroupProps) {
+  const labelId = `${name}_label`;
+
   return (
-    <div role="radiogroup" className={styles.radioGroup}>
-      {React.Children.map(children, option => (
-        <InternalRadioOption
-          checked={value === option.props.value}
-          name={name}
-          onChange={handleChange}
-          {...option.props}
-        >
-          {option.props.children}
-        </InternalRadioOption>
-      ))}
-    </div>
+    <>
+      <span id={labelId} className={styles.groupLabel}>
+        {label}
+      </span>
+      <div
+        role="radiogroup"
+        aria-labelledby={labelId}
+        className={styles.radioGroup}
+      >
+        {React.Children.map(children, option => (
+          <InternalRadioOption
+            checked={value === option.props.value}
+            name={name}
+            onChange={handleChange}
+            {...option.props}
+          >
+            {option.props.children}
+          </InternalRadioOption>
+        ))}
+      </div>
+    </>
   );
 
   function handleChange(newValue: string) {
