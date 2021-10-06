@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.55.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.54.1...@jobber/components@2.55.0) (2021-10-06)
+
+
+### Features
+
+* **components:** Add keyboard shortcut to close menu on Escape ([#704](https://github.com/GetJobber/atlantis/issues/704)) ([2cd7b2c](https://github.com/GetJobber/atlantis/commit/2cd7b2cad3e38fd379751972583c6ae481cd7596))
+
+
+
+
+
 ## [2.54.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.54.0...@jobber/components@2.54.1) (2021-10-06)
 
 **Note:** Version bump only for package @jobber/components
