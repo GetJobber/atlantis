@@ -6,10 +6,12 @@ import { SectionProps } from "../Menu";
 
 jest.mock("@jobber/hooks", () => {
   return {
+    ...(jest.requireActual("@jobber/hooks") as {}),
     useResizeObserver: () => [
       { current: undefined },
       { width: 1000, height: 100 },
     ],
+
     Breakpoints: {
       base: 640,
       small: 500,
