@@ -3,10 +3,6 @@
   flex-direction: column;
 }
 
-.groupLabel {
-  display: none;
-}
-
 .input {
   /* Hide checkbox on UI but not screen readers and still allow focus state */
   position: absolute;

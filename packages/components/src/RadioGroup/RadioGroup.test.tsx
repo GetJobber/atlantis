@@ -60,7 +60,7 @@ test("it should have unique ids on all radio options", () => {
 
 test("it should render an option from `label` prop", () => {
   const { getByText } = render(
-    <RadioGroup value="" onChange={jest.fn()} label="Test Label">
+    <RadioGroup value="" onChange={jest.fn()} ariaLabel="Test Label">
       <RadioOption value="foo" label="Radio" />
     </RadioGroup>,
   );
@@ -70,7 +70,7 @@ test("it should render an option from `label` prop", () => {
 
 test("it should render an option from `children` prop", () => {
   const { getByText } = render(
-    <RadioGroup value="" onChange={jest.fn()} label="Test Label">
+    <RadioGroup value="" onChange={jest.fn()} ariaLabel="Test Label">
       <RadioOption value="foo">Radio</RadioOption>
     </RadioGroup>,
   );
@@ -80,22 +80,12 @@ test("it should render an option from `children` prop", () => {
 
 test("it should render a description", () => {
   const { getByText } = render(
-    <RadioGroup value="" onChange={jest.fn()} label="Test Label">
+    <RadioGroup value="" onChange={jest.fn()} ariaLabel="Test Label">
       <RadioOption value="foo" description="A sound box" label="Radio" />
     </RadioGroup>,
   );
 
   expect(getByText("A sound box")).toBeInstanceOf(HTMLParagraphElement);
-});
-
-test("it should render a span", () => {
-  const { getByText } = render(
-    <RadioGroup value="" onChange={jest.fn()} label="Test Label">
-      <RadioOption value="foo" description="A sound box" label="Radio" />
-    </RadioGroup>,
-  );
-
-  expect(getByText("Test Label")).toBeInstanceOf(HTMLSpanElement);
 });
 
 interface MockProps {
@@ -110,7 +100,7 @@ function MockRadioGroup({ onChange }: MockProps) {
       <RadioGroup
         onChange={handleFirstChange}
         value={value}
-        label="Test Label 1"
+        ariaLabel="Test Label 1"
       >
         <RadioOption value="one" label="One" />
         <RadioOption value="two" label="Two" />
@@ -118,7 +108,7 @@ function MockRadioGroup({ onChange }: MockProps) {
       <RadioGroup
         onChange={handleSecondChange}
         value={valueTwo}
-        label="Test Label 2"
+        ariaLabel="Test Label 2"
       >
         <RadioOption value="one" label="One" />
         <RadioOption value="two" label="Two" />

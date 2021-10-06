@@ -2,14 +2,8 @@
 
 exports[`renders a RadioGroup 1`] = `
 <div>
-  <span
-    class="groupLabel"
-    id="123e4567-e89b-12d3-a456-426655440001_label"
-  >
-    Test Label 1
-  </span>
   <div
-    aria-labelledby="123e4567-e89b-12d3-a456-426655440001_label"
+    aria-label="Test Label 1"
     class="radioGroup"
     role="radiogroup"
   >
@@ -45,14 +39,8 @@ exports[`renders a RadioGroup 1`] = `
       </label>
     </div>
   </div>
-  <span
-    class="groupLabel"
-    id="123e4567-e89b-12d3-a456-426655440004_label"
-  >
-    Test Label 2
-  </span>
   <div
-    aria-labelledby="123e4567-e89b-12d3-a456-426655440004_label"
+    aria-label="Test Label 2"
     class="radioGroup"
     role="radiogroup"
   >
