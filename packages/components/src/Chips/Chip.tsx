@@ -1,6 +1,6 @@
 import React from "react";
+import { useAssert } from "@jobber/hooks";
 import { InternalChipProps } from "./ChipTypes";
-import { useAssert } from "./useAssert";
 
 export interface ChipProps
   extends Pick<InternalChipProps, "label" | "prefix" | "disabled" | "invalid"> {
