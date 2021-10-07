@@ -11,6 +11,7 @@ import styles from "./FormField.css";
 import { AffixIcon, AffixLabel } from "./FormFieldAffix";
 import { FormFieldDescription } from "./FormFieldDescription";
 import { InputValidation } from "../InputValidation";
+import { Content } from "../Content";
 
 interface FormFieldWrapperProps extends FormFieldProps {
   error: string;
@@ -75,7 +76,7 @@ export function FormFieldWrapper({
   }, [value]);
 
   return (
-    <>
+    <Content spacing="small">
       <div className={wrapperClasses} style={wrapperInlineStyle}>
         {prefix?.icon && <AffixIcon {...prefix} size={size} />}
         <div className={styles.inputWrapper}>
@@ -98,11 +99,16 @@ export function FormFieldWrapper({
           <AffixIcon {...suffix} variation="suffix" size={size} />
         )}
       </div>
-      {description && (
-        <FormFieldDescription id={descriptionUUID} description={description} />
-      )}
-      {error && !inline && <InputValidation message={error} />}
-    </>
+      <div>
+        {description && (
+          <FormFieldDescription
+            id={descriptionUUID}
+            description={description}
+          />
+        )}
+        {error && !inline && <InputValidation message={error} />}
+      </div>
+    </Content>
   );
 
   function getAffixPaddding() {
