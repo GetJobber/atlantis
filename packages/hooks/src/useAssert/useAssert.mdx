@@ -11,12 +11,15 @@ import { useAssert } from "@jobber/hooks";
 
 # useAssert
 
-During development, disrupt the render of a component when a conditional is met.
-This is helpful when you want to limit something that typescript can't do.
-
 ```tsx
 import { useAssert } from "@jobber/hooks";
 ```
+
+## Error
+
+During development, disrupt the render of a component when a conditional is met.
+This is helpful when you want to limit something that typescript can't do...
+yet.
 
 ```tsx
 const child: ReactElement = <Avatar initials="JBR" />;
@@ -24,10 +27,10 @@ const child: ReactElement = <Avatar initials="JBR" />;
 useAssert(child.type !== Icon, "You can only pass in an <Icon /> child");
 ```
 
-### Return a warning
+## Warn
 
-If you still want to assert but doesn't want to disrupt the rendering, you can
-pass in a `warn: true` param. This will throw a warning on your browser console.
+If you still want to assert but doesn't want to disrupt the render, you can pass
+in a `warn: true` param. This will throw a warning on your browser console.
 
 ```tsx
 const url: string = "http://getjobber.com";
