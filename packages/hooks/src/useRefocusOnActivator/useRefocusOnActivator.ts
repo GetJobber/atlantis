@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 /**
  * Brings back the focus to the element that opened an overlaid element once
- * said overlaid element is dismissed.
+ * said overlaid element is dismissed or removed.
  *
  * @param active - Determines if it should focus or not
  */
