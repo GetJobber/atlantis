@@ -9,31 +9,36 @@ it("renders an input type number", () => {
   const tree = renderer.create(<InputPassword value="123" />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="wrapper"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
+      className="padded small"
     >
       <div
-        className="inputWrapper"
+        className="wrapper"
+        style={
+          Object {
+            "--formField-maxLength": undefined,
+          }
+        }
       >
-        <label
-          className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440001"
-        />
-        <input
-          className="input"
-          id="123e4567-e89b-12d3-a456-426655440001"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          type="password"
-          value="123"
-        />
+        <div
+          className="inputWrapper"
+        >
+          <label
+            className="label"
+            htmlFor="123e4567-e89b-12d3-a456-426655440001"
+          />
+          <input
+            className="input"
+            id="123e4567-e89b-12d3-a456-426655440001"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            type="password"
+            value="123"
+          />
+        </div>
       </div>
+      <div />
     </div>
   `);
 });
@@ -44,31 +49,36 @@ it("renders an error", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="wrapper"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
+      className="padded small"
     >
       <div
-        className="inputWrapper"
+        className="wrapper"
+        style={
+          Object {
+            "--formField-maxLength": undefined,
+          }
+        }
       >
-        <label
-          className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440007"
-        />
-        <input
-          className="input"
-          id="123e4567-e89b-12d3-a456-426655440007"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          type="password"
-          value="p"
-        />
+        <div
+          className="inputWrapper"
+        >
+          <label
+            className="label"
+            htmlFor="123e4567-e89b-12d3-a456-426655440007"
+          />
+          <input
+            className="input"
+            id="123e4567-e89b-12d3-a456-426655440007"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            type="password"
+            value="p"
+          />
+        </div>
       </div>
+      <div />
     </div>
   `);
 });

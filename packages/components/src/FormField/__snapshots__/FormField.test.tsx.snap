@@ -3,23 +3,28 @@
 exports[`FormField when disabled renders 1`] = `
 <div>
   <div
-    class="wrapper disabled"
+    class="padded small"
   >
     <div
-      class="inputWrapper"
+      class="wrapper disabled"
     >
-      <label
-        class="label"
-        for="123e4567-e89b-12d3-a456-426655440011"
-      />
-      <input
-        class="input"
-        disabled=""
-        id="123e4567-e89b-12d3-a456-426655440011"
-        type="text"
-        value=""
-      />
+      <div
+        class="inputWrapper"
+      >
+        <label
+          class="label"
+          for="123e4567-e89b-12d3-a456-426655440011"
+        />
+        <input
+          class="input"
+          disabled=""
+          id="123e4567-e89b-12d3-a456-426655440011"
+          type="text"
+          value=""
+        />
+      </div>
     </div>
+    <div />
   </div>
 </div>
 `;
@@ -27,23 +32,28 @@ exports[`FormField when disabled renders 1`] = `
 exports[`FormField when readonly renders 1`] = `
 <div>
   <div
-    class="wrapper"
+    class="padded small"
   >
     <div
-      class="inputWrapper"
+      class="wrapper"
     >
-      <label
-        class="label"
-        for="123e4567-e89b-12d3-a456-426655440009"
-      />
-      <input
-        class="input"
-        id="123e4567-e89b-12d3-a456-426655440009"
-        readonly=""
-        type="text"
-        value=""
-      />
+      <div
+        class="inputWrapper"
+      >
+        <label
+          class="label"
+          for="123e4567-e89b-12d3-a456-426655440009"
+        />
+        <input
+          class="input"
+          id="123e4567-e89b-12d3-a456-426655440009"
+          readonly=""
+          type="text"
+          value=""
+        />
+      </div>
     </div>
+    <div />
   </div>
 </div>
 `;
@@ -51,22 +61,27 @@ exports[`FormField when readonly renders 1`] = `
 exports[`FormField when small renders 1`] = `
 <div>
   <div
-    class="wrapper small"
+    class="padded small"
   >
     <div
-      class="inputWrapper"
+      class="wrapper small"
     >
-      <label
-        class="label"
-        for="123e4567-e89b-12d3-a456-426655440007"
-      />
-      <input
-        class="input"
-        id="123e4567-e89b-12d3-a456-426655440007"
-        type="text"
-        value=""
-      />
+      <div
+        class="inputWrapper"
+      >
+        <label
+          class="label"
+          for="123e4567-e89b-12d3-a456-426655440007"
+        />
+        <input
+          class="input"
+          id="123e4567-e89b-12d3-a456-426655440007"
+          type="text"
+          value=""
+        />
+      </div>
     </div>
+    <div />
   </div>
 </div>
 `;
@@ -74,24 +89,29 @@ exports[`FormField when small renders 1`] = `
 exports[`FormField with a placeholder renders 1`] = `
 <div>
   <div
-    class="wrapper"
+    class="padded small"
   >
     <div
-      class="inputWrapper"
+      class="wrapper"
     >
-      <label
-        class="label"
-        for="123e4567-e89b-12d3-a456-426655440003"
+      <div
+        class="inputWrapper"
       >
-        A placeholder
-      </label>
-      <input
-        class="input"
-        id="123e4567-e89b-12d3-a456-426655440003"
-        type="text"
-        value=""
-      />
+        <label
+          class="label"
+          for="123e4567-e89b-12d3-a456-426655440003"
+        >
+          A placeholder
+        </label>
+        <input
+          class="input"
+          id="123e4567-e89b-12d3-a456-426655440003"
+          type="text"
+          value=""
+        />
+      </div>
     </div>
+    <div />
   </div>
 </div>
 `;
@@ -99,22 +119,27 @@ exports[`FormField with a placeholder renders 1`] = `
 exports[`FormField with no props renders 1`] = `
 <div>
   <div
-    class="wrapper"
+    class="padded small"
   >
     <div
-      class="inputWrapper"
+      class="wrapper"
     >
-      <label
-        class="label"
-        for="123e4567-e89b-12d3-a456-426655440001"
-      />
-      <input
-        class="input"
-        id="123e4567-e89b-12d3-a456-426655440001"
-        type="text"
-        value=""
-      />
+      <div
+        class="inputWrapper"
+      >
+        <label
+          class="label"
+          for="123e4567-e89b-12d3-a456-426655440001"
+        />
+        <input
+          class="input"
+          id="123e4567-e89b-12d3-a456-426655440001"
+          type="text"
+          value=""
+        />
+      </div>
     </div>
+    <div />
   </div>
 </div>
 `;
