@@ -32,7 +32,7 @@ test("it should be able to disable options", () => {
       name="Foo"
       value="foo"
       onChange={handleChange}
-      label="Test Label"
+      ariaLabel="Test Label"
     >
       <RadioOption value="foo"></RadioOption>
       <RadioOption value="bear" disabled={true}></RadioOption>
