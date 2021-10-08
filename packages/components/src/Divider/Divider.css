@@ -1,10 +1,22 @@
 .divider {
-  height: var(--space-minuscule);
+  --divider-width: var(--border-base);
+  --divider-color: var(--color-border);
   margin: 0;
+  padding: 0;
   border: none;
-  border-bottom: var(--border-base) solid var(--color-border);
 }
 
 .large {
-  border-bottom-width: var(--border-large);
+  --divider-width: var(--border-thick);
+}
+
+.horizontal {
+  height: var(--space-minuscule);
+  border-bottom: var(--divider-width) solid var(--divider-color);
+}
+
+.vertical {
+  width: var(--space-miniscule);
+  height: auto;
+  border-right: var(--divider-width) solid var(--divider-color);
 }
