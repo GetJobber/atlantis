@@ -8,6 +8,117 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.56.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.55.1...@jobber/components@2.56.0) (2021-10-08)
+
+
+### Bug Fixes
+
+* **components:** Make card `external` prop optional and `false` by default ([#727](https://github.com/GetJobber/atlantis/issues/727)) ([74b7ac8](https://github.com/GetJobber/atlantis/commit/74b7ac8a1d7e0539c4abcc962692fbcff97e81bd))
+
+
+### Features
+
+* **components:** Add vertical option for Divider and update Divider documentation ([#707](https://github.com/GetJobber/atlantis/issues/707)) ([cfcb505](https://github.com/GetJobber/atlantis/commit/cfcb505e8df6e40791390a2b12e755db4c539fb3))
+
+
+
+
+
+## [2.55.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.55.0...@jobber/components@2.55.1) (2021-10-07)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.55.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.54.1...@jobber/components@2.55.0) (2021-10-06)
+
+
+### Features
+
+* **components:** Add keyboard shortcut to close menu on Escape ([#704](https://github.com/GetJobber/atlantis/issues/704)) ([2cd7b2c](https://github.com/GetJobber/atlantis/commit/2cd7b2cad3e38fd379751972583c6ae481cd7596))
+
+
+
+
+
+## [2.54.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.54.0...@jobber/components@2.54.1) (2021-10-06)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.54.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.53.2...@jobber/components@2.54.0) (2021-10-05)
+
+
+### Bug Fixes
+
+* **components:** Card no longer overrides border color variable ([#718](https://github.com/GetJobber/atlantis/issues/718)) ([72f6bcf](https://github.com/GetJobber/atlantis/commit/72f6bcf18670c61c248b1ab2d98409846e7413bc))
+
+
+### Features
+
+* **components:** add ability to specify external url on card ([#719](https://github.com/GetJobber/atlantis/issues/719)) ([c919994](https://github.com/GetJobber/atlantis/commit/c9199945c6a1e3270239e8c770b85afc1c5e3885))
+
+
+
+
+
+## [2.53.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.53.1...@jobber/components@2.53.2) (2021-10-04)
+
+
+### Bug Fixes
+
+* **components:** Make onclick card operable by keyboard [JOB-30838] ([#625](https://github.com/GetJobber/atlantis/issues/625)) ([e9b43c6](https://github.com/GetJobber/atlantis/commit/e9b43c6551e52c71bd3e90d548906bf06160e664))
+
+
+
+
+
+## [2.53.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.53.0...@jobber/components@2.53.1) (2021-10-04)
+
+
+### Bug Fixes
+
+* **components:** Add a more distinct aria-label to Banner ([#703](https://github.com/GetJobber/atlantis/issues/703)) ([0dda2a1](https://github.com/GetJobber/atlantis/commit/0dda2a1fa5c5febac912ff4c049f38372f586eec)), closes [#695](https://github.com/GetJobber/atlantis/issues/695)
+
+
+
+
+
+# [2.53.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.52.0...@jobber/components@2.53.0) (2021-10-04)
+
+
+### Features
+
+* **components:** Autofocus on first Menu item ([#706](https://github.com/GetJobber/atlantis/issues/706)) ([09fd482](https://github.com/GetJobber/atlantis/commit/09fd4826d2f20938b616d666ba4e149b732ff4b9))
+
+
+
+
+
+# [2.52.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.51.1...@jobber/components@2.52.0) (2021-10-01)
+
+
+### Features
+
+* **components:** Add chips (single/multiple/standalone dismissible) component [JOB-35714] ([#678](https://github.com/GetJobber/atlantis/issues/678)) ([f537a2a](https://github.com/GetJobber/atlantis/commit/f537a2a55b6d167a819a321185dc17ad19b69616))
+
+
+
+
+
+## [2.51.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.51.0...@jobber/components@2.51.1) (2021-09-30)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 # [2.51.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.50.2...@jobber/components@2.51.0) (2021-09-27)
 
 

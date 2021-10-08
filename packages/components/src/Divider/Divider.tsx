@@ -9,12 +9,23 @@ interface DividerProps {
    * @default "base"
    */
   readonly size?: "base" | "large";
+  /**
+   * The direction of the divider
+   *
+   * @default "horizontal"
+   */
+  readonly direction?: "horizontal" | "vertical";
 }
 
-export function Divider({ size = "base" }: DividerProps) {
+export function Divider({
+  size = "base",
+  direction = "horizontal",
+}: DividerProps) {
   const className = classnames(styles.divider, {
     [styles.large]: size === "large",
+    [styles.horizontal]: direction == "horizontal",
+    [styles.vertical]: direction == "vertical",
   });
 
-  return <hr className={className} role="none" />;
+  return <div className={className} role="none presentation" />;
 }
