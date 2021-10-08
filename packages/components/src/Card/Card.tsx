@@ -21,8 +21,15 @@ interface CardProps {
 }
 
 interface LinkCardProps extends CardProps {
+  /**
+   * URL that the card would navigate to once clicked.
+   */
   url: string;
-  external: boolean;
+
+  /**
+   * Makes the URL open in new tab on click.
+   */
+  external?: boolean;
 }
 
 interface ClickableCardProps extends CardProps {
@@ -37,7 +44,7 @@ export function Card({
   onClick,
   title,
   url,
-  external,
+  external = false,
 }: CardPropOptions) {
   const className = classnames(
     styles.card,
