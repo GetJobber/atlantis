@@ -22,7 +22,7 @@ interface CardProps {
 
 interface LinkCardProps extends CardProps {
   url: string;
-  external: boolean;
+  external?: boolean;
 }
 
 interface ClickableCardProps extends CardProps {
@@ -37,7 +37,7 @@ export function Card({
   onClick,
   title,
   url,
-  external,
+  external = false,
 }: CardPropOptions) {
   const className = classnames(
     styles.card,
