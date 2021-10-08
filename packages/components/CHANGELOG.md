@@ -8,6 +8,22 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.56.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.55.1...@jobber/components@2.56.0) (2021-10-08)
+
+
+### Bug Fixes
+
+* **components:** Make card `external` prop optional and `false` by default ([#727](https://github.com/GetJobber/atlantis/issues/727)) ([74b7ac8](https://github.com/GetJobber/atlantis/commit/74b7ac8a1d7e0539c4abcc962692fbcff97e81bd))
+
+
+### Features
+
+* **components:** Add vertical option for Divider and update Divider documentation ([#707](https://github.com/GetJobber/atlantis/issues/707)) ([cfcb505](https://github.com/GetJobber/atlantis/commit/cfcb505e8df6e40791390a2b12e755db4c539fb3))
+
+
+
+
+
 ## [2.55.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.55.0...@jobber/components@2.55.1) (2021-10-07)
 
 **Note:** Version bump only for package @jobber/components
