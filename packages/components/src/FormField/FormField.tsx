@@ -23,6 +23,7 @@ export function FormField(props: FormFieldProps) {
     description,
     disabled,
     inputRef,
+    inline,
     keyboard,
     max,
     maxLength,
@@ -93,7 +94,8 @@ export function FormField(props: FormFieldProps) {
           readOnly: readonly,
           inputMode: keyboard,
           onChange: handleChange,
-          ...(description && { "aria-describedby": descriptionUUID }),
+          ...(description &&
+            !inline && { "aria-describedby": descriptionUUID }),
         };
 
         const textFieldProps = {

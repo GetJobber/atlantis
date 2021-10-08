@@ -62,6 +62,20 @@ describe("FormField", () => {
       const { getByRole } = render(<FormField description={label} />);
       expect(getByRole("textbox")).toHaveAttribute("aria-describedby");
     });
+
+    describe("and inline", () => {
+      it("shouldn't display description", () => {
+        const { queryByText } = render(
+          <FormField description={label} inline />,
+        );
+        expect(queryByText(label)).not.toBeInTheDocument();
+      });
+
+      it("shouldn't have assistive descriptor `aria-describedby`", () => {
+        const { getByRole } = render(<FormField description={label} inline />);
+        expect(getByRole("textbox")).not.toHaveAttribute("aria-describedby");
+      });
+    });
   });
 
   describe("with a controlled value", () => {
