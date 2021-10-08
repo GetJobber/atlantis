@@ -21,7 +21,14 @@ interface CardProps {
 }
 
 interface LinkCardProps extends CardProps {
+  /**
+   * URL that the card would navigate to once clicked.
+   */
   url: string;
+
+  /**
+   * Makes the URL open in new tab on click.
+   */
   external?: boolean;
 }
 
