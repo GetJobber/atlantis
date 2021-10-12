@@ -37,12 +37,11 @@ describe("Drawer", () => {
   describe("when closed", () => {
     it("shouldnt render the children", () => {
       const content = "Drawer Content";
-      const { container, debug, getByTestId } = render(
+      const { getByTestId } = render(
         <Drawer title="A closed drawer" open={false} onRequestClose={jest.fn}>
           {content}
         </Drawer>,
       );
-      debug(container);
       expect(
         getByTestId("drawer-container").classList.contains("open"),
       ).toBeFalsy();
