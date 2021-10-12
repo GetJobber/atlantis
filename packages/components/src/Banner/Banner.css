@@ -26,6 +26,7 @@
 }
 
 .dismissibleSpacing {
+  padding-top: var(--space-smaller);
   padding-right: var(--flash--inset);
 }
 
@@ -53,9 +54,6 @@
 }
 
 .closeButton {
-  position: absolute;
-  top: 0;
-  right: 0;
   padding: var(--space-smallest);
   border: none;
   background-color: transparent;
