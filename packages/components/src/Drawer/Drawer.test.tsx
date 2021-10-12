@@ -35,7 +35,7 @@ describe("Drawer", () => {
   });
 
   describe("when closed", () => {
-    it("shouldnt render the children", () => {
+    it("should hide the drawer", () => {
       const content = "Drawer Content";
       const { getByTestId } = render(
         <Drawer title="A closed drawer" open={false} onRequestClose={jest.fn}>
