@@ -1,14 +1,23 @@
 import React, { useMemo } from "react";
 import { CivilDate } from "@std-proposal/temporal";
-import InternalCountdown, { CountdownRenderProps } from "react-countdown";
+import ReactCountdown, { CountdownRenderProps } from "react-countdown";
 import { Text } from "../Text";
+
+type GranularityOptions = "dhms" | "dhm" | "dh" | "d";
 
 interface CountdownProps {
   readonly date: CivilDate | Date | number | string;
+  readonly showUnits?: boolean;
+  readonly granularity?: GranularityOptions;
   onComplete?(): void;
 }
 
-export function Countdown({ date: inputDate, onComplete }: CountdownProps) {
+export function Countdown({
+  date: inputDate,
+  onComplete,
+  showUnits,
+  granularity = "dhms",
+}: CountdownProps) {
   const date = useMemo(
     () =>
       inputDate instanceof Date
@@ -20,17 +29,54 @@ export function Countdown({ date: inputDate, onComplete }: CountdownProps) {
   );
 
   return (
-    <InternalCountdown
+    <ReactCountdown
       date={date}
       zeroPadTime={2}
-      daysInHours
-      renderer={RenderedCountdown}
+      renderer={(props: CountdownRenderProps) => (
+        <RenderedCountdown
+          {...props}
+          granularity={granularity}
+          showUnits={showUnits}
+        />
+      )}
       onComplete={onComplete}
     />
   );
 }
 
-function RenderedCountdown({ formatted }: CountdownRenderProps) {
-  const { hours, minutes, seconds } = formatted;
-  return <Text>{`${hours}:${minutes}:${seconds}`}</Text>;
+interface RenderedCountdownProps extends CountdownRenderProps {
+  granularity?: GranularityOptions;
+  showUnits?: boolean;
+}
+
+function RenderedCountdown({
+  formatted,
+  granularity = "dhms",
+  showUnits,
+}: RenderedCountdownProps) {
+  const { days, hours, minutes, seconds } = formatted;
+
+  return <Text>{buildTime()}</Text>;
+
+  function buildTime() {
+    let time = days;
+
+    if (showUnits) {
+      time += " dd";
+    }
+
+    if (granularity.includes("h")) {
+      time += ` : ${hours}${showUnits && " hh"}`;
+
+      if (granularity.includes("m")) {
+        time += ` : ${minutes}${showUnits && " mm"}`;
+
+        if (granularity.includes("s")) {
+          time += ` : ${seconds}${showUnits && " ss"}`;
+        }
+      }
+    }
+
+    return time;
+  }
 }

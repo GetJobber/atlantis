@@ -18,10 +18,12 @@ import { Countdown } from "@jobber/components/Countdown";
 <Playground>
   {() => {
     const inFiveMinutes = useMemo(
-      () => new Date(new Date().getTime() + 5 * 60000),
+      () => new Date(new Date().getTime() + 25 * 3600 * 1000),
       []
     );
-    return <Countdown date={inFiveMinutes} />;
+    return (
+      <Countdown date={inFiveMinutes} granularity={"dhms"} showUnits={true} />
+    );
   }}
 </Playground>
 
@@ -40,6 +42,8 @@ import { Countdown } from "@jobber/components/Countdown";
     return (
       <Countdown
         date={inTenSeconds}
+        granularity={"hdms"}
+        showUnits={true}
         onComplete={() => alert("Completed Timer!")}
       />
     );
