@@ -7,14 +7,10 @@
   display: flex;
   position: relative;
   box-shadow: var(--shadow-base);
-  padding: var(--flash--inset--small) var(--flash--inset);
+  padding: var(--flash--inset);
   color: var(--color-black);
   background-color: var(--color-grey--lightest);
   align-items: flex-start;
-}
-
-.flash.medium {
-  padding: var(--flash--inset);
 }
 
 .bannerContent {
@@ -26,7 +22,7 @@
 }
 
 .dismissibleSpacing {
-  padding-top: var(--space-smaller);
+  padding-top: var(--space-smallest);
   padding-right: var(--flash--inset);
 }
 
@@ -36,7 +32,12 @@
 }
 
 .bannerContent > *:first-child {
+  margin-top: 0;
   margin-right: var(--space-base);
+}
+
+.bannerContent > *:last-child {
+  margin-bottom: 0;
 }
 
 .medium .bannerContent {
