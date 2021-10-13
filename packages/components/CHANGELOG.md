@@ -8,6 +8,23 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.57.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.56.0...@jobber/components@2.57.0) (2021-10-13)
+
+
+### Bug Fixes
+
+* update CSS types order ([#732](https://github.com/GetJobber/atlantis/issues/732)) ([aa4c94b](https://github.com/GetJobber/atlantis/commit/aa4c94bfc89859bb0919567206447e3129b5fe2c))
+
+
+### Features
+
+* **components:** Add visibility toggle for InputPassword ([#621](https://github.com/GetJobber/atlantis/issues/621)) ([ef7a851](https://github.com/GetJobber/atlantis/commit/ef7a8519c798cb951f206a2c64d9b9c0b63279a5))
+* **components:** update banner close position ([#731](https://github.com/GetJobber/atlantis/issues/731)) ([819f6c7](https://github.com/GetJobber/atlantis/commit/819f6c7f4e86b92160a2309f22c05a59474120b7))
+
+
+
+
+
 # [2.56.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.55.1...@jobber/components@2.56.0) (2021-10-08)
 
 
