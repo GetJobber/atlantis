@@ -125,8 +125,9 @@ jobs:
       - *npm_install
       - run:
           name: "Run tests with jest"
-          command:
+          command: |
             npm test -- --runInBand --no-cache --coverage --reporters=jest-junit
+            circleci tests glob echo "$(ls ./packages/components/src)"
           environment:
             JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
       - store_test_results:
@@ -135,6 +136,7 @@ jobs:
           path: reports/junit
       - store_artifacts:
           path: coverage
+  parallelism: 200
 
   build_docs:
     <<: *container_config
