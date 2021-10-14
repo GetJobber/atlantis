@@ -1,85 +1,72 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import { Option, Select } from ".";
 
 afterEach(cleanup);
 
 it("renders a Select with no options", () => {
-  const tree = renderer.create(<Select />).toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(<Select />);
+  expect(container).toMatchSnapshot();
 });
 
 // It seems dumb to test this, but the children type is
 // ReactNode | ReactNode[] and it complains that ReactNode[] needs more than one
 // element if you try to use just that as the type.
 it("renders a Select with one option", () => {
-  const tree = renderer
-    .create(
-      <Select>
-        <Option>Foo</Option>
-      </Select>,
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(
+    <Select>
+      <Option>Foo</Option>
+    </Select>,
+  );
+  expect(container).toMatchSnapshot();
 });
 
 it("renders a Select with many options", () => {
-  const tree = renderer
-    .create(
-      <Select>
-        <Option>Foo</Option>
-        <Option>Bar</Option>
-        <Option>Baz</Option>
-        <Option>Quux</Option>
-      </Select>,
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(
+    <Select>
+      <Option>Foo</Option>
+      <Option>Bar</Option>
+      <Option>Baz</Option>
+      <Option>Quux</Option>
+    </Select>,
+  );
+  expect(container).toMatchSnapshot();
 });
 
 it("renders correctly as small", () => {
-  const tree = renderer
-    .create(
-      <Select size="small">
-        <Option>Foo</Option>
-      </Select>,
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(
+    <Select size="small">
+      <Option>Foo</Option>
+    </Select>,
+  );
+  expect(container).toMatchSnapshot();
 });
 
 it("renders correctly as large", () => {
-  const tree = renderer
-    .create(
-      <Select size="large">
-        <Option>Foo</Option>
-      </Select>,
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(
+    <Select size="large">
+      <Option>Foo</Option>
+    </Select>,
+  );
+  expect(container).toMatchSnapshot();
 });
 
 it("renders correctly when disabled", () => {
-  const tree = renderer
-    .create(
-      <Select disabled>
-        <Option>Foo</Option>
-      </Select>,
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(
+    <Select disabled>
+      <Option>Foo</Option>
+    </Select>,
+  );
+  expect(container).toMatchSnapshot();
 });
 
 it("renders correctly when invalid", () => {
-  const tree = renderer
-    .create(
-      <Select invalid>
-        <Option>Foo</Option>
-      </Select>,
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(
+    <Select invalid>
+      <Option>Foo</Option>
+    </Select>,
+  );
+  expect(container).toMatchSnapshot();
 });
 
 it("renders the defaultValue when set.", () => {
