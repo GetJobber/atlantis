@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.58.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.57.0...@jobber/components@2.58.0) (2021-10-14)
+
+
+### Features
+
+* **components:** add disabled color variation to text ([#733](https://github.com/GetJobber/atlantis/issues/733)) ([862ae93](https://github.com/GetJobber/atlantis/commit/862ae93c52d2cb7809cb027210f6303f6689a54a))
+
+
+
+
+
 # [2.57.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.56.0...@jobber/components@2.57.0) (2021-10-13)
 
 
