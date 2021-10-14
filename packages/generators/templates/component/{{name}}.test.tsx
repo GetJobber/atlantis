@@ -1,13 +1,12 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import { {{name}} } from ".";
 
 afterEach(cleanup);
 
 it("renders a {{name}}", () => {
-  const tree = renderer.create(<{{name}} text="Foo" />).toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(<{{name}} text="Foo" />);
+  expect(container).toMatchSnapshot();
 });
 
 it("renders a loud {{name}}", () => {
