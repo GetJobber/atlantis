@@ -1,143 +1,207 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import { cleanup } from "@testing-library/react";
+import { cleanup, render } from "@testing-library/react";
 import { CivilDateTime } from "@std-proposal/temporal";
 import { FormatRelativeDateTime } from "./FormatRelativeDateTime";
 
 afterEach(cleanup);
+
 beforeEach(() => {
   Date.now = jest.fn(() => 1593115122000);
 });
 
-it("renders x minutes ago when less than an hour ago", () => {
-  const testDate = new Date(Date.now());
-  testDate.setMinutes(testDate.getMinutes() - 5);
+let testDate;
+let result;
+let civilTestDate;
+let isoTestDate;
 
-  const civilTestDate = getCivilTime(testDate);
-  const isoTestDate = getISOString(testDate);
+describe("renders x minutes ago when less than an hour ago", () => {
+  beforeEach(() => {
+    testDate = new Date(Date.now());
+    testDate.setMinutes(testDate.getMinutes() - 5);
+    civilTestDate = getCivilTime(testDate);
+    isoTestDate = getISOString(testDate);
+    result = "5 minutes ago";
+  });
 
-  expect(
-    renderer.create(<FormatRelativeDateTime date={civilTestDate} />).toJSON(),
-  ).toMatchInlineSnapshot(`"5 minutes ago"`);
-  expect(
-    renderer.create(<FormatRelativeDateTime date={isoTestDate} />).toJSON(),
-  ).toMatchInlineSnapshot(`"5 minutes ago"`);
-  expect(
-    renderer.create(<FormatRelativeDateTime date={testDate} />).toJSON(),
-  ).toMatchInlineSnapshot(`"5 minutes ago"`);
+  it("handles regular date", () => {
+    const { getByText } = render(<FormatRelativeDateTime date={testDate} />);
+    expect(getByText(result)).toBeInstanceOf(HTMLDivElement);
+  });
+
+  it("handles CivilTime", () => {
+    const { getByText } = render(
+      <FormatRelativeDateTime date={civilTestDate} />,
+    );
+    expect(getByText(result)).toBeInstanceOf(HTMLDivElement);
+  });
+
+  it("handles ISOString", () => {
+    const { getByText } = render(<FormatRelativeDateTime date={isoTestDate} />);
+    expect(getByText(result)).toBeInstanceOf(HTMLDivElement);
+  });
 });
 
-it("renders 1 minute ago when less than a minute ago", () => {
-  const testDate = new Date(Date.now());
-  testDate.setSeconds(testDate.getSeconds() - 25);
+describe("renders 1 minute ago when less than a minute ago", () => {
+  beforeEach(() => {
+    testDate = new Date(Date.now());
+    testDate.setSeconds(testDate.getSeconds() - 25);
+    civilTestDate = getCivilTime(testDate);
+    isoTestDate = getISOString(testDate);
+    result = "1 minute ago";
+  });
 
-  const civilTestDate = getCivilTime(testDate);
-  const isoTestDate = getISOString(testDate);
+  it("handles regular date", () => {
+    const { getByText } = render(<FormatRelativeDateTime date={testDate} />);
+    expect(getByText(result)).toBeInstanceOf(HTMLDivElement);
+  });
 
-  expect(
-    renderer.create(<FormatRelativeDateTime date={civilTestDate} />).toJSON(),
-  ).toMatchInlineSnapshot(`"1 minute ago"`);
-  expect(
-    renderer.create(<FormatRelativeDateTime date={isoTestDate} />).toJSON(),
-  ).toMatchInlineSnapshot(`"1 minute ago"`);
-  expect(
-    renderer.create(<FormatRelativeDateTime date={testDate} />).toJSON(),
-  ).toMatchInlineSnapshot(`"1 minute ago"`);
+  it("handles CivilTime", () => {
+    const { getByText } = render(
+      <FormatRelativeDateTime date={civilTestDate} />,
+    );
+    expect(getByText(result)).toBeInstanceOf(HTMLDivElement);
+  });
+
+  it("handles ISOString", () => {
+    const { getByText } = render(<FormatRelativeDateTime date={isoTestDate} />);
+    expect(getByText(result)).toBeInstanceOf(HTMLDivElement);
+  });
 });
 
-it("renders the time when less than a day ago", () => {
-  const testDate = new Date(Date.now());
-  testDate.setHours(testDate.getHours() - 9);
+describe("renders the time when less than a day ago", () => {
+  beforeEach(() => {
+    testDate = new Date(Date.now());
+    testDate.setHours(testDate.getHours() - 9);
+    civilTestDate = getCivilTime(testDate);
+    isoTestDate = getISOString(testDate);
+    result = "4:58 AM";
+  });
 
-  const hours = testDate.getHours();
-  const minutes = testDate.getMinutes();
-  const expectedStr = hours + ":" + minutes + " AM";
+  it("handles regular date", () => {
+    const { getByText } = render(<FormatRelativeDateTime date={testDate} />);
+    expect(getByText(result)).toBeInstanceOf(HTMLDivElement);
+  });
 
-  const civilTestDate = getCivilTime(testDate);
-  const isoTestDate = getISOString(testDate);
+  it("handles CivilTime", () => {
+    const { getByText } = render(
+      <FormatRelativeDateTime date={civilTestDate} />,
+    );
+    expect(getByText(result)).toBeInstanceOf(HTMLDivElement);
+  });
 
-  expect(
-    renderer.create(<FormatRelativeDateTime date={civilTestDate} />).toJSON(),
-  ).toEqual(expectedStr);
-  expect(
-    renderer.create(<FormatRelativeDateTime date={isoTestDate} />).toJSON(),
-  ).toEqual(expectedStr);
-  expect(
-    renderer.create(<FormatRelativeDateTime date={testDate} />).toJSON(),
-  ).toEqual(expectedStr);
+  it("handles ISOString", () => {
+    const { getByText } = render(<FormatRelativeDateTime date={isoTestDate} />);
+    expect(getByText(result)).toBeInstanceOf(HTMLDivElement);
+  });
 });
 
-it("renders the day when less than 7 days ago", () => {
-  const testDate = new Date(Date.now());
-  testDate.setDate(testDate.getDate() - 3);
+describe("renders the day when less than 7 days ago", () => {
+  beforeEach(() => {
+    testDate = new Date(Date.now());
+    testDate.setDate(testDate.getDate() - 3);
+    civilTestDate = getCivilTime(testDate);
+    isoTestDate = getISOString(testDate);
+    result = "Mon";
+  });
 
-  const civilTestDate = getCivilTime(testDate);
-  const isoTestDate = getISOString(testDate);
+  it("handles regular date", () => {
+    const { getByText } = render(<FormatRelativeDateTime date={testDate} />);
+    expect(getByText(result)).toBeInstanceOf(HTMLDivElement);
+  });
 
-  expect(
-    renderer.create(<FormatRelativeDateTime date={civilTestDate} />).toJSON(),
-  ).toMatchInlineSnapshot('"Mon"');
-  expect(
-    renderer.create(<FormatRelativeDateTime date={isoTestDate} />).toJSON(),
-  ).toMatchInlineSnapshot('"Mon"');
-  expect(
-    renderer.create(<FormatRelativeDateTime date={testDate} />).toJSON(),
-  ).toMatchInlineSnapshot('"Mon"');
+  it("handles CivilTime", () => {
+    const { getByText } = render(
+      <FormatRelativeDateTime date={civilTestDate} />,
+    );
+    expect(getByText(result)).toBeInstanceOf(HTMLDivElement);
+  });
+
+  it("handles ISOString", () => {
+    const { getByText } = render(<FormatRelativeDateTime date={isoTestDate} />);
+    expect(getByText(result)).toBeInstanceOf(HTMLDivElement);
+  });
 });
 
-it("renders the month and date when less than 1 year ago", () => {
-  const testDate = new Date(Date.now());
-  testDate.setDate(testDate.getDate() - 60);
+describe("renders the month and date when less than 1 year ago", () => {
+  beforeEach(() => {
+    testDate = new Date(Date.now());
+    testDate.setDate(testDate.getDate() - 60);
+    civilTestDate = getCivilTime(testDate);
+    isoTestDate = getISOString(testDate);
+    result = "Apr 26";
+  });
 
-  const civilTestDate = getCivilTime(testDate);
-  const isoTestDate = getISOString(testDate);
+  it("handles regular date", () => {
+    const { getByText } = render(<FormatRelativeDateTime date={testDate} />);
+    expect(getByText(result)).toBeInstanceOf(HTMLDivElement);
+  });
 
-  expect(
-    renderer.create(<FormatRelativeDateTime date={civilTestDate} />).toJSON(),
-  ).toMatchInlineSnapshot('"Apr 26"');
-  expect(
-    renderer.create(<FormatRelativeDateTime date={isoTestDate} />).toJSON(),
-  ).toMatchInlineSnapshot('"Apr 26"');
-  expect(
-    renderer.create(<FormatRelativeDateTime date={testDate} />).toJSON(),
-  ).toMatchInlineSnapshot('"Apr 26"');
+  it("handles CivilTime", () => {
+    const { getByText } = render(
+      <FormatRelativeDateTime date={civilTestDate} />,
+    );
+    expect(getByText(result)).toBeInstanceOf(HTMLDivElement);
+  });
+
+  it("handles ISOString", () => {
+    const { getByText } = render(<FormatRelativeDateTime date={isoTestDate} />);
+    expect(getByText(result)).toBeInstanceOf(HTMLDivElement);
+  });
 });
 
-it("renders the month and date when yesterday's date 1 year previous (border case)", () => {
-  const testDate = new Date(Date.now());
-  testDate.setFullYear(testDate.getFullYear() - 1);
-  testDate.setDate(testDate.getDate() + 2); //The +2 vs. +1 is a fudge for leap year
+describe("renders the month and date when yesterday's date 1 year previous (border case)", () => {
+  beforeEach(() => {
+    testDate = new Date(Date.now());
+    testDate.setFullYear(testDate.getFullYear() - 1);
+    testDate.setDate(testDate.getDate() + 2); //The +2 vs. +1 is a fudge for leap year
+    civilTestDate = getCivilTime(testDate);
+    isoTestDate = getISOString(testDate);
+    result = "Jun 27";
+  });
 
-  const civilTestDate = getCivilTime(testDate);
-  const isoTestDate = getISOString(testDate);
+  it("handles regular date", () => {
+    const { getByText } = render(<FormatRelativeDateTime date={testDate} />);
+    expect(getByText(result)).toBeInstanceOf(HTMLDivElement);
+  });
 
-  expect(
-    renderer.create(<FormatRelativeDateTime date={civilTestDate} />).toJSON(),
-  ).toMatchInlineSnapshot('"Jun 27"');
-  expect(
-    renderer.create(<FormatRelativeDateTime date={isoTestDate} />).toJSON(),
-  ).toMatchInlineSnapshot('"Jun 27"');
-  expect(
-    renderer.create(<FormatRelativeDateTime date={testDate} />).toJSON(),
-  ).toMatchInlineSnapshot('"Jun 27"');
+  it("handles CivilTime", () => {
+    const { getByText } = render(
+      <FormatRelativeDateTime date={civilTestDate} />,
+    );
+    expect(getByText(result)).toBeInstanceOf(HTMLDivElement);
+  });
+
+  it("handles ISOString", () => {
+    const { getByText } = render(<FormatRelativeDateTime date={isoTestDate} />);
+    expect(getByText(result)).toBeInstanceOf(HTMLDivElement);
+  });
 });
 
-it("renders the month day, year when over a year ago", () => {
-  const testDate = new Date(Date.now());
-  testDate.setFullYear(testDate.getFullYear() - 2);
+describe("renders the month day, year when over a year ago", () => {
+  beforeEach(() => {
+    testDate = new Date(Date.now());
+    testDate.setFullYear(testDate.getFullYear() - 2);
+    civilTestDate = getCivilTime(testDate);
+    isoTestDate = getISOString(testDate);
+    result = "Jun 25, 2018";
+  });
 
-  const civilTestDate = getCivilTime(testDate);
-  const isoTestDate = getISOString(testDate);
+  it("handles regular date", () => {
+    const { getByText } = render(<FormatRelativeDateTime date={testDate} />);
+    expect(getByText(result)).toBeInstanceOf(HTMLDivElement);
+  });
 
-  expect(
-    renderer.create(<FormatRelativeDateTime date={civilTestDate} />).toJSON(),
-  ).toMatchInlineSnapshot('"Jun 25, 2018"');
-  expect(
-    renderer.create(<FormatRelativeDateTime date={isoTestDate} />).toJSON(),
-  ).toMatchInlineSnapshot('"Jun 25, 2018"');
-  expect(
-    renderer.create(<FormatRelativeDateTime date={testDate} />).toJSON(),
-  ).toMatchInlineSnapshot('"Jun 25, 2018"');
+  it("handles CivilTime", () => {
+    const { getByText } = render(
+      <FormatRelativeDateTime date={civilTestDate} />,
+    );
+    expect(getByText(result)).toBeInstanceOf(HTMLDivElement);
+  });
+
+  it("handles ISOString", () => {
+    const { getByText } = render(<FormatRelativeDateTime date={isoTestDate} />);
+    expect(getByText(result)).toBeInstanceOf(HTMLDivElement);
+  });
 });
 
 function getISOString(date: Date) {
@@ -152,7 +216,7 @@ function getCivilTime(date: Date) {
   const testMinute = date.getMinutes();
   const testSecond = 35; // Want to make sure we don't have flakiness around 0 and 59
 
-  const civilTestDate = new CivilDateTime(
+  const civilTesterDate = new CivilDateTime(
     testYear,
     testMonth,
     testDay,
@@ -161,5 +225,5 @@ function getCivilTime(date: Date) {
     testSecond,
   );
 
-  return civilTestDate;
+  return civilTesterDate;
 }

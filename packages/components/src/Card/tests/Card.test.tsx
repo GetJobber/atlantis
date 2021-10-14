@@ -1,96 +1,92 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import { fireEvent, render } from "@testing-library/react";
 import { Card } from "..";
 
 it("renders a simple card", () => {
-  const tree = renderer
-    .create(
-      <Card accent="purple">
-        <p>This is the card content.</p>
-      </Card>,
-    )
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="card accent purple"
-    >
-      <p>
-        This is the card content.
-      </p>
+  const { container } = render(
+    <Card accent="purple">
+      <p>This is the card content.</p>
+    </Card>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <div
+        class="card accent purple"
+      >
+        <p>
+          This is the card content.
+        </p>
+      </div>
     </div>
   `);
 });
 
 it("renders a card", () => {
-  const tree = renderer
-    .create(
-      <Card accent="green" title="The Undiscovered Country">
-        <p>This is the card content.</p>
-      </Card>,
-    )
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="card accent green"
-    >
+  const { container } = render(
+    <Card accent="green" title="The Undiscovered Country">
+      <p>This is the card content.</p>
+    </Card>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
       <div
-        className="header"
+        class="card accent green"
       >
-        <h3
-          className="base extraBold large uppercase"
+        <div
+          class="header"
         >
-          The Undiscovered Country
-        </h3>
+          <h3
+            class="base extraBold large uppercase"
+          >
+            The Undiscovered Country
+          </h3>
+        </div>
+        <p>
+          This is the card content.
+        </p>
       </div>
-      <p>
-        This is the card content.
-      </p>
     </div>
   `);
 });
 
 it("renders a link card", () => {
-  const tree = renderer
-    .create(
-      <Card accent="green" url="https://frend.space">
-        <p>This is a link card.</p>
-      </Card>,
-    )
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-                    <a
-                      className="card accent clickable green"
-                      href="https://frend.space"
-                    >
-                      <p>
-                        This is a link card.
-                      </p>
-                    </a>
-          `);
+  const { container } = render(
+    <Card accent="green" url="https://frend.space">
+      <p>This is a link card.</p>
+    </Card>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <a
+        class="card accent clickable green"
+        href="https://frend.space"
+      >
+        <p>
+          This is a link card.
+        </p>
+      </a>
+    </div>
+  `);
 });
 
 it("renders a clickable card", () => {
-  const tree = renderer
-    .create(
-      <Card accent="green" onClick={jest.fn()}>
-        <p>This is a clickable card.</p>
-      </Card>,
-    )
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="card accent clickable green"
-      data-testid="clickable-card"
-      onClick={[MockFunction]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      role="button"
-      tabIndex={0}
-    >
-      <p>
-        This is a clickable card.
-      </p>
+  const { container } = render(
+    <Card accent="green" onClick={jest.fn()}>
+      <p>This is a clickable card.</p>
+    </Card>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <div
+        class="card accent clickable green"
+        data-testid="clickable-card"
+        role="button"
+        tabindex="0"
+      >
+        <p>
+          This is a clickable card.
+        </p>
+      </div>
     </div>
   `);
 });

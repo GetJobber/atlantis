@@ -1,9 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders a FormatEmail 1`] = `
-<address
-  className="email"
->
-  email@address.me
-</address>
+<div>
+  <address
+    class="email"
+  >
+    email@address.me
+  </address>
+</div>
 `;

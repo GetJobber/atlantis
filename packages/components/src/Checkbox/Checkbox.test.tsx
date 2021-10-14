@@ -1,22 +1,21 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import { Checkbox } from ".";
 
 afterEach(cleanup);
 
 it("renders a Checkbox", () => {
-  const tree = renderer
-    .create(<Checkbox label="Send me spam?" name="send_me_span" value="spam" />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(
+    <Checkbox label="Send me spam?" name="send_me_span" value="spam" />,
+  );
+  expect(container).toMatchSnapshot();
 });
 
 it("renders a disabled Checkbox", () => {
-  const tree = renderer
-    .create(<Checkbox label="Dont click me" disabled={true} />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(
+    <Checkbox label="Dont click me" disabled={true} />,
+  );
+  expect(container).toMatchSnapshot();
 });
 
 it("renders each variation of checked, defaultChecked and indeterminate", () => {
@@ -33,9 +32,8 @@ it("renders each variation of checked, defaultChecked and indeterminate", () => 
   ];
 
   variations.forEach(variation => {
-    expect(
-      renderer.create(<Checkbox label="Foo" {...variation} />).toJSON(),
-    ).toMatchSnapshot();
+    const { container } = render(<Checkbox label="Foo" {...variation} />);
+    expect(container).toMatchSnapshot();
   });
 });
 

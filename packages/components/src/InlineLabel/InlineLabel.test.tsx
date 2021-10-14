@@ -1,18 +1,20 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import { render } from "@testing-library/react";
 import { InlineLabel } from ".";
 
 it("renders correctly", () => {
-  const tree = renderer.create(<InlineLabel>My Label</InlineLabel>).toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <span
-      className="inlineLabel base greyBlue"
-    >
+  const { container } = render(<InlineLabel>My Label</InlineLabel>);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
       <span
-        className="base regular small uppercase"
+        class="inlineLabel base greyBlue"
       >
-        My Label
+        <span
+          class="base regular small uppercase"
+        >
+          My Label
+        </span>
       </span>
-    </span>
+    </div>
   `);
 });

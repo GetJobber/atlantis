@@ -1,23 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`with props accepts small size 1`] = `
-<progress
-  className="ProgressBar small"
-  max={3}
-  value={2}
->
-  66.66666666666666
-  %
-</progress>
+<div>
+  <progress
+    class="ProgressBar small"
+    max="3"
+    value="2"
+  >
+    66.66666666666666
+    %
+  </progress>
+</div>
 `;
 
 exports[`with props renders correctly 1`] = `
-<progress
-  className="ProgressBar base"
-  max={10}
-  value={2}
->
-  20
-  %
-</progress>
+<div>
+  <progress
+    class="ProgressBar base"
+    max="10"
+    value="2"
+  >
+    20
+    %
+  </progress>
+</div>
 `;

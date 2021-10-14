@@ -1,5 +1,4 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import { FormatFile } from ".";
 
@@ -13,8 +12,8 @@ it("renders a FormatFile", () => {
     size: 1024,
     progress: 1,
   };
-  const tree = renderer.create(<FormatFile file={testFile} />).toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(<FormatFile file={testFile} />);
+  expect(container).toMatchSnapshot();
 });
 
 it("renders an image when provided as src", done => {

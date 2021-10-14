@@ -10,8 +10,8 @@ it("renders a {{name}}", () => {
 });
 
 it("renders a loud {{name}}", () => {
-  const tree = renderer.create(<{{name}} text="Foo" loud={true} />).toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(<{{name}} text="Foo" loud={true} />);
+  expect(container).toMatchSnapshot();
 });
 
 test("it should call the handler with the new value", () => {

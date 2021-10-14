@@ -1,146 +1,148 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders a table 1`] = `
-<table
-  className="table"
->
-  <thead
-    className="header"
+<div>
+  <table
+    class="table"
   >
+    <thead
+      class="header"
+    >
+      <tr
+        class="row"
+      >
+        <td
+          class="cell left"
+        >
+          Ship
+        </td>
+        <td
+          class="cell left"
+        >
+          Class
+        </td>
+        <td
+          class="cell left"
+        >
+          Cost
+        </td>
+        <td
+          class="cell left"
+        >
+          Crew
+        </td>
+      </tr>
+    </thead>
     <tr
-      className="row"
+      class="row"
     >
       <td
-        className="cell left"
+        class="cell left"
       >
-        Ship
+        Nostromo
       </td>
       <td
-        className="cell left"
+        class="cell left"
       >
-        Class
+        Towing Vehicle
       </td>
       <td
-        className="cell left"
-      >
-        Cost
-      </td>
-      <td
-        className="cell left"
-      >
-        Crew
-      </td>
-    </tr>
-  </thead>
-  <tr
-    className="row"
-  >
-    <td
-      className="cell left"
-    >
-      Nostromo
-    </td>
-    <td
-      className="cell left"
-    >
-      Towing Vehicle
-    </td>
-    <td
-      className="cell right"
-    >
-      <span
-        className="numeric"
-      >
-        $42,000,000.00
-      </span>
-    </td>
-    <td
-      className="cell right"
-    >
-      <span
-        className="numeric"
-      >
-        7
-      </span>
-    </td>
-  </tr>
-  <tr
-    className="row"
-  >
-    <td
-      className="cell left"
-    >
-      Rodger Young
-    </td>
-    <td
-      className="cell left"
-    >
-      Corvette Transport
-    </td>
-    <td
-      className="cell left"
-    />
-    <td
-      className="cell right"
-    >
-      <span
-        className="numeric"
-      >
-        200
-      </span>
-    </td>
-  </tr>
-  <tr
-    className="row"
-  >
-    <td
-      className="cell left"
-    >
-      USS Enterprise
-    </td>
-    <td
-      className="cell left"
-    >
-      Constitution
-    </td>
-    <td
-      className="cell left"
-    />
-    <td
-      className="cell right"
-    >
-      <span
-        className="numeric"
-      >
-        205
-      </span>
-    </td>
-  </tr>
-  <tfoot
-    className="footer"
-  >
-    <tr
-      className="row"
-    >
-      <td
-        className="cell left"
-      />
-      <td
-        className="cell left"
-      />
-      <td
-        className="cell left"
-      />
-      <td
-        className="cell right"
+        class="cell right"
       >
         <span
-          className="numeric"
+          class="numeric"
         >
-          412
+          $42,000,000.00
+        </span>
+      </td>
+      <td
+        class="cell right"
+      >
+        <span
+          class="numeric"
+        >
+          7
         </span>
       </td>
     </tr>
-  </tfoot>
-</table>
+    <tr
+      class="row"
+    >
+      <td
+        class="cell left"
+      >
+        Rodger Young
+      </td>
+      <td
+        class="cell left"
+      >
+        Corvette Transport
+      </td>
+      <td
+        class="cell left"
+      />
+      <td
+        class="cell right"
+      >
+        <span
+          class="numeric"
+        >
+          200
+        </span>
+      </td>
+    </tr>
+    <tr
+      class="row"
+    >
+      <td
+        class="cell left"
+      >
+        USS Enterprise
+      </td>
+      <td
+        class="cell left"
+      >
+        Constitution
+      </td>
+      <td
+        class="cell left"
+      />
+      <td
+        class="cell right"
+      >
+        <span
+          class="numeric"
+        >
+          205
+        </span>
+      </td>
+    </tr>
+    <tfoot
+      class="footer"
+    >
+      <tr
+        class="row"
+      >
+        <td
+          class="cell left"
+        />
+        <td
+          class="cell left"
+        />
+        <td
+          class="cell left"
+        />
+        <td
+          class="cell right"
+        >
+          <span
+            class="numeric"
+          >
+            412
+          </span>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
 `;

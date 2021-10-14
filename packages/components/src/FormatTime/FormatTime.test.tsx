@@ -1,6 +1,5 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import { cleanup } from "@testing-library/react";
+import { cleanup, render } from "@testing-library/react";
 import { CivilTime } from "@std-proposal/temporal";
 import { FormatTime } from "./FormatTime";
 
@@ -12,21 +11,21 @@ Object.entries({
   Date: new Date("2019-03-30T14:30"),
 }).forEach(([inputType, value]) => {
   it(`renders a FormatTime from ${inputType}`, () => {
-    const tree = renderer.create(<FormatTime time={value} />).toJSON();
-    expect(tree).toMatchSnapshot();
+    const { container } = render(<FormatTime time={value} />);
+    expect(container).toMatchSnapshot();
   });
 
   it(`renders a FormatTime from ${inputType} using 24 hour clock`, () => {
-    const tree = renderer
-      .create(<FormatTime time={value} use24HourClock={true} />)
-      .toJSON();
-    expect(tree).toMatchSnapshot();
+    const { container } = render(
+      <FormatTime time={value} use24HourClock={true} />,
+    );
+    expect(container).toMatchSnapshot();
   });
 
   it(`renders a FormatTime from ${inputType} using 12 hour clock`, () => {
-    const tree = renderer
-      .create(<FormatTime time={value} use24HourClock={false} />)
-      .toJSON();
-    expect(tree).toMatchSnapshot();
+    const { container } = render(
+      <FormatTime time={value} use24HourClock={false} />,
+    );
+    expect(container).toMatchSnapshot();
   });
 });

@@ -1,5 +1,4 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import { CivilTime } from "@std-proposal/temporal";
 import { InputTime } from ".";
@@ -7,173 +6,138 @@ import { InputTime } from ".";
 afterEach(cleanup);
 
 it("renders a InputTime", () => {
-  const tree = renderer.create(<InputTime />).toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
-    >
+  const { container } = render(<InputTime />);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
       <div
-        className="inputWrapper"
+        class="wrapper"
       >
-        <label
-          className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440001"
-        />
-        <input
-          className="input"
-          id="123e4567-e89b-12d3-a456-426655440001"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          type="time"
-          value=""
-        />
+        <div
+          class="inputWrapper"
+        >
+          <label
+            class="label"
+            for="123e4567-e89b-12d3-a456-426655440001"
+          />
+          <input
+            class="input"
+            id="123e4567-e89b-12d3-a456-426655440001"
+            type="time"
+            value=""
+          />
+        </div>
       </div>
     </div>
   `);
 });
 
 it("renders an initial time when given 'defaultValue'", () => {
-  const tree = renderer
-    .create(<InputTime defaultValue={new CivilTime(11, 23)} />)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
-    >
+  const { container } = render(
+    <InputTime defaultValue={new CivilTime(11, 23)} />,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
       <div
-        className="inputWrapper"
+        class="wrapper"
       >
-        <label
-          className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440004"
-        />
-        <input
-          className="input"
-          id="123e4567-e89b-12d3-a456-426655440004"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          type="time"
-          value="11:23"
-        />
+        <div
+          class="inputWrapper"
+        >
+          <label
+            class="label"
+            for="123e4567-e89b-12d3-a456-426655440004"
+          />
+          <input
+            class="input"
+            id="123e4567-e89b-12d3-a456-426655440004"
+            type="time"
+            value="11:23"
+          />
+        </div>
       </div>
     </div>
   `);
 });
 
 it("renders correctly in a readonly state", () => {
-  const tree = renderer
-    .create(<InputTime value={new CivilTime(11, 23)} readonly={true} />)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
-    >
+  const { container } = render(
+    <InputTime value={new CivilTime(11, 23)} readonly={true} />,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
       <div
-        className="inputWrapper"
+        class="wrapper"
       >
-        <label
-          className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440005"
-        />
-        <input
-          className="input"
-          id="123e4567-e89b-12d3-a456-426655440005"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          readOnly={true}
-          type="time"
-          value="11:23"
-        />
+        <div
+          class="inputWrapper"
+        >
+          <label
+            class="label"
+            for="123e4567-e89b-12d3-a456-426655440005"
+          />
+          <input
+            class="input"
+            id="123e4567-e89b-12d3-a456-426655440005"
+            readonly=""
+            type="time"
+            value="11:23"
+          />
+        </div>
       </div>
     </div>
   `);
 });
 
 it("adds a error border when invalid", () => {
-  const tree = renderer
-    .create(<InputTime value={new CivilTime(11, 23)} readonly={true} />)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
-    >
+  const { container } = render(
+    <InputTime value={new CivilTime(11, 23)} readonly={true} />,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
       <div
-        className="inputWrapper"
+        class="wrapper"
       >
-        <label
-          className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440008"
-        />
-        <input
-          className="input"
-          id="123e4567-e89b-12d3-a456-426655440008"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          readOnly={true}
-          type="time"
-          value="11:23"
-        />
+        <div
+          class="inputWrapper"
+        >
+          <label
+            class="label"
+            for="123e4567-e89b-12d3-a456-426655440008"
+          />
+          <input
+            class="input"
+            id="123e4567-e89b-12d3-a456-426655440008"
+            readonly=""
+            type="time"
+            value="11:23"
+          />
+        </div>
       </div>
     </div>
   `);
 });
 
 it("should set the value when given 'value' and 'onChange'", () => {
-  const tree = renderer.create(<InputTime invalid />).toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper invalid"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
-    >
+  const { container } = render(<InputTime invalid />);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
       <div
-        className="inputWrapper"
+        class="wrapper invalid"
       >
-        <label
-          className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440011"
-        />
-        <input
-          className="input"
-          id="123e4567-e89b-12d3-a456-426655440011"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          type="time"
-          value=""
-        />
+        <div
+          class="inputWrapper"
+        >
+          <label
+            class="label"
+            for="123e4567-e89b-12d3-a456-426655440011"
+          />
+          <input
+            class="input"
+            id="123e4567-e89b-12d3-a456-426655440011"
+            type="time"
+            value=""
+          />
+        </div>
       </div>
     </div>
   `);

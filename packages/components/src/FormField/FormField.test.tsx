@@ -1,208 +1,163 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import { FormField } from ".";
 
 afterEach(cleanup);
 it("renders correctly with no props", () => {
-  const tree = renderer.create(<FormField />).toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
-    >
+  const { container } = render(<FormField />);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
       <div
-        className="inputWrapper"
+        class="wrapper"
       >
-        <label
-          className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440001"
-        />
-        <input
-          className="input"
-          id="123e4567-e89b-12d3-a456-426655440001"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          type="text"
-          value=""
-        />
+        <div
+          class="inputWrapper"
+        >
+          <label
+            class="label"
+            for="123e4567-e89b-12d3-a456-426655440001"
+          />
+          <input
+            class="input"
+            id="123e4567-e89b-12d3-a456-426655440001"
+            type="text"
+            value=""
+          />
+        </div>
       </div>
     </div>
   `);
 });
 
 it("renders correctly with a placeholder", () => {
-  const tree = renderer
-    .create(<FormField placeholder="My placeholder" />)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
-    >
+  const { container } = render(<FormField placeholder="My placeholder" />);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
       <div
-        className="inputWrapper"
+        class="wrapper"
       >
-        <label
-          className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440002"
+        <div
+          class="inputWrapper"
         >
-          My placeholder
-        </label>
-        <input
-          className="input"
-          id="123e4567-e89b-12d3-a456-426655440002"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          type="text"
-          value=""
-        />
+          <label
+            class="label"
+            for="123e4567-e89b-12d3-a456-426655440002"
+          >
+            My placeholder
+          </label>
+          <input
+            class="input"
+            id="123e4567-e89b-12d3-a456-426655440002"
+            type="text"
+            value=""
+          />
+        </div>
       </div>
     </div>
   `);
 });
 
 it("renders correctly as small", () => {
-  const tree = renderer.create(<FormField size="small" />).toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper small"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
-    >
+  const { container } = render(<FormField size="small" />);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
       <div
-        className="inputWrapper"
+        class="wrapper small"
       >
-        <label
-          className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440003"
-        />
-        <input
-          className="input"
-          id="123e4567-e89b-12d3-a456-426655440003"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          type="text"
-          value=""
-        />
+        <div
+          class="inputWrapper"
+        >
+          <label
+            class="label"
+            for="123e4567-e89b-12d3-a456-426655440003"
+          />
+          <input
+            class="input"
+            id="123e4567-e89b-12d3-a456-426655440003"
+            type="text"
+            value=""
+          />
+        </div>
       </div>
     </div>
   `);
 });
 
 it("renders correctly in a readonly state", () => {
-  const tree = renderer.create(<FormField readonly={true} />).toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
-    >
+  const { container } = render(<FormField readonly={true} />);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
       <div
-        className="inputWrapper"
+        class="wrapper"
       >
-        <label
-          className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440004"
-        />
-        <input
-          className="input"
-          id="123e4567-e89b-12d3-a456-426655440004"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          readOnly={true}
-          type="text"
-          value=""
-        />
+        <div
+          class="inputWrapper"
+        >
+          <label
+            class="label"
+            for="123e4567-e89b-12d3-a456-426655440004"
+          />
+          <input
+            class="input"
+            id="123e4567-e89b-12d3-a456-426655440004"
+            readonly=""
+            type="text"
+            value=""
+          />
+        </div>
       </div>
     </div>
   `);
 });
 
 it("renders correctly in a disabled state", () => {
-  const tree = renderer.create(<FormField disabled={true} />).toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper disabled"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
-    >
+  const { container } = render(<FormField disabled={true} />);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
       <div
-        className="inputWrapper"
+        class="wrapper disabled"
       >
-        <label
-          className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440005"
-        />
-        <input
-          className="input"
-          disabled={true}
-          id="123e4567-e89b-12d3-a456-426655440005"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          type="text"
-          value=""
-        />
+        <div
+          class="inputWrapper"
+        >
+          <label
+            class="label"
+            for="123e4567-e89b-12d3-a456-426655440005"
+          />
+          <input
+            class="input"
+            disabled=""
+            id="123e4567-e89b-12d3-a456-426655440005"
+            type="text"
+            value=""
+          />
+        </div>
       </div>
     </div>
   `);
 });
 
 it("renders a field with error", () => {
-  const tree = renderer.create(<FormField value="wrong!" />).toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
-    >
+  const { container } = render(<FormField value="wrong!" />);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
       <div
-        className="inputWrapper"
+        class="wrapper"
       >
-        <label
-          className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440006"
-        />
-        <input
-          className="input"
-          id="123e4567-e89b-12d3-a456-426655440006"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          type="text"
-          value="wrong!"
-        />
+        <div
+          class="inputWrapper"
+        >
+          <label
+            class="label"
+            for="123e4567-e89b-12d3-a456-426655440006"
+          />
+          <input
+            class="input"
+            id="123e4567-e89b-12d3-a456-426655440006"
+            type="text"
+            value="wrong!"
+          />
+        </div>
       </div>
     </div>
   `);
