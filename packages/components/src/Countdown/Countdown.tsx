@@ -2,16 +2,36 @@ import React, { useMemo } from "react";
 import { CivilDate } from "@std-proposal/temporal";
 import ReactCountdown, { CountdownRenderProps } from "react-countdown";
 
+/**
+ * Options for deciding how much information is shown to the user
+ * days, hours, minutes, seconds
+ */
 type GranularityOptions = "dhms" | "hms" | "ms" | "s" | "dhm" | "dh" | "d";
 
-/**
- * Civil Time of time to be displayed.
- * In the case of `date` a `string` should be in ISO 8601 format
- */
 interface CountdownProps {
+  /**
+   * The date that is being counted down to
+   * Civil Time of time is to be displayed.
+   * In the case of `date` a `string` should be in ISO 8601 format
+   */
   readonly date: CivilDate | Date | number | string;
+
+  /**
+   * Whether or not to present the unit of time to the user, or just the raw numbers.
+   */
   readonly showUnits?: boolean;
+
+  /**
+   * Defines the time format presented
+   * (e.g., dhms will show days, hours, minutes, and seconds)
+   *
+   * @default 'dhms'
+   */
   readonly granularity?: GranularityOptions;
+
+  /**
+   * Callback when the countdown is done
+   */
   onComplete?(): void;
 }
 
