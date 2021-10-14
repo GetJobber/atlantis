@@ -7,7 +7,12 @@ showDirectoryLink: true
 
 import { Playground, Props } from "docz";
 import { Countdown } from ".";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+import { Heading } from "@jobber/components/Heading";
+import { Content } from "@jobber/components/Content";
+import { Emphasis } from "@jobber/components/Emphasis";
+import { Text } from "@jobber/components/Text";
+import { Button } from "@jobber/components/Button";
 
 # Countdown
 
@@ -17,12 +22,12 @@ import { Countdown } from "@jobber/components/Countdown";
 
 <Playground>
   {() => {
-    const inFiveMinutes = useMemo(
+    const inADayOrSo = useMemo(
       () => new Date(new Date().getTime() + 25 * 3600 * 1000),
       []
     );
     return (
-      <Countdown date={inFiveMinutes} granularity={"dhms"} showUnits={true} />
+      <Countdown date={inADayOrSo} granularity={"dhms"} showUnits={true} />
     );
   }}
 </Playground>
@@ -35,17 +40,68 @@ import { Countdown } from "@jobber/components/Countdown";
 
 <Playground>
   {() => {
-    const inTenSeconds = useMemo(
+    const [start, setStart] = useState(false);
+    let inTenSeconds = useMemo(
       () => new Date(new Date().getTime() + 10 * 1000),
+      [start]
+    );
+    return (
+      <>
+        <Button label={"Start Timer"} onClick={() => setStart(true)} />
+        <div />
+        <Heading variation={"highlight"}>
+          {start ? (
+            <Countdown
+              date={inTenSeconds}
+              granularity={"s"}
+              showUnits={true}
+              onComplete={() => alert("Completed Timer!")}
+            />
+          ) : (
+            ""
+          )}
+        </Heading>
+      </>
+    );
+  }}
+</Playground>
+
+## Wrapping a Countdown
+
+<Playground>
+  {() => {
+    const inTenHours = useMemo(
+      () => new Date(new Date().getTime() + 36000 * 1000),
       []
     );
     return (
-      <Countdown
-        date={inTenSeconds}
-        granularity={"hdms"}
-        showUnits={true}
-        onComplete={() => alert("Completed Timer!")}
-      />
+      <Content>
+        <Text>
+          <Countdown
+            date={inTenHours}
+            granularity={"ms"}
+            showUnits={true}
+            onComplete={() => alert("Completed Timer!")}
+          />
+        </Text>
+        <Countdown
+          date={inTenHours}
+          granularity={"ms"}
+          showUnits={true}
+          onComplete={() => alert("Completed Timer!")}
+        />
+        <div />
+        <Heading level={1}>
+          <Emphasis variation="highlight">
+            <Countdown
+              date={Date.now() + 100000}
+              granularity={"s"}
+              showUnits={true}
+              onComplete={() => alert("Completed Timer!")}
+            />
+          </Emphasis>
+        </Heading>
+      </Content>
     );
   }}
 </Playground>

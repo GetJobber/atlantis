@@ -15,10 +15,10 @@ it(`Shows units`, () => {
     />,
   );
 
-  expect(container.innerHTML.includes("dd")).toBeTruthy();
-  expect(container.innerHTML.includes("hh")).toBeTruthy();
-  expect(container.innerHTML.includes("mm")).toBeTruthy();
-  expect(container.innerHTML.includes("ss")).toBeTruthy();
+  expect(container.innerHTML.includes("days")).toBeTruthy();
+  expect(container.innerHTML.includes("hours")).toBeTruthy();
+  expect(container.innerHTML.includes("minutes")).toBeTruthy();
+  expect(container.innerHTML.includes("seconds")).toBeTruthy();
 });
 
 it(`Should have the right units show up when they're supposed to`, () => {
@@ -30,11 +30,11 @@ it(`Should have the right units show up when they're supposed to`, () => {
     />,
   );
 
-  const string = container.querySelector("p").innerHTML;
-  expect(string.includes("dd")).toBeTruthy();
-  expect(string.includes("hh")).toBeFalsy();
-  expect(string.includes("mm")).toBeFalsy();
-  expect(string.includes("ss")).toBeFalsy();
+  const string = container.innerHTML;
+  expect(string.includes("days")).toBeTruthy();
+  expect(string.includes("hours")).toBeFalsy();
+  expect(string.includes("minutes")).toBeFalsy();
+  expect(string.includes("seconds")).toBeFalsy();
 });
 
 it(`Should fire onComplete once the time is up!`, () => {
