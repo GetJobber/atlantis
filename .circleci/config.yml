@@ -200,7 +200,6 @@ workflows:
       - test:
           requires:
             - check_for_manual_release
-          parallelism: 200
       - build_docs:
           requires:
             - check_for_manual_release
