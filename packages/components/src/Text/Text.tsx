@@ -10,7 +10,8 @@ interface TextProps {
     | "success"
     | "error"
     | "warn"
-    | "info";
+    | "info"
+    | "disabled";
 
   readonly size?: "small" | "base" | "large";
 }
@@ -30,6 +31,7 @@ export function Text({
     error: "critical",
     warn: "warning",
     info: "informative",
+    disabled: "disabled",
   };
 
   const maxLineToNumber = {
