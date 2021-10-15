@@ -126,7 +126,7 @@ jobs:
       - run:
           name: "Run tests with jest"
           command: |
-            npm test -- --runInBand --no-cache --coverage --reporters=jest-junit
+            npm test -- --no-cache --coverage --reporters=jest-junit
           environment:
             JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
       - store_test_results:
