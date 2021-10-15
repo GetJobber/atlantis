@@ -32,4 +32,7 @@
   margin: 0;
   padding: 0;
   font-family: var(--typography--fontFamily-normal);
+  /* Wrap really long words or URL's */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
