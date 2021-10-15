@@ -118,6 +118,7 @@ jobs:
 
   test:
     <<: *container_config
+    parallelism: 20
     steps:
       - *restore_repo
       - *sum_lockfiles
@@ -126,8 +127,8 @@ jobs:
       - run:
           name: "Run tests with jest"
           command: |
-            npm test -- --runInBand --no-cache --coverage --reporters=jest-junit
-          parallel: true
+            TESTS=$(circleci tests ${ls,./packages/components/src/*/*.test.tsx} | circleci tests split)
+            npm test $TESTS -- --no-cache --coverage --reporters=jest-junit
           environment:
             JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
       - store_test_results:
@@ -136,6 +137,7 @@ jobs:
           path: reports/junit
       - store_artifacts:
           path: coverage
+
 
   build_docs:
     <<: *container_config
