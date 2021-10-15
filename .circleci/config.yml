@@ -127,7 +127,6 @@ jobs:
           name: "Run tests with jest"
           command: |
             npm test -- --runInBand --no-cache --coverage --reporters=jest-junit
-            circleci tests glob echo "$(ls ./packages/components/src)" | xargs -n 1 echo
           environment:
             JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
       - store_test_results:
