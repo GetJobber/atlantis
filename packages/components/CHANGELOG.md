@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.58.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.58.0...@jobber/components@2.58.1) (2021-10-15)
+
+
+### Bug Fixes
+
+* **components:** don't show tooltip when it's not truncated [JOB-36864] ([#738](https://github.com/GetJobber/atlantis/issues/738)) ([98d1167](https://github.com/GetJobber/atlantis/commit/98d1167e8368c64f6196f360e0d1104f4750098d))
+
+
+
+
+
 # [2.58.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.57.0...@jobber/components@2.58.0) (2021-10-14)
 
 
