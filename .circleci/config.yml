@@ -127,6 +127,7 @@ jobs:
           name: "Run tests with jest"
           command: |
             npm test -- --runInBand --no-cache --coverage --reporters=jest-junit
+          parallel: true
           environment:
             JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
       - store_test_results:
@@ -135,7 +136,6 @@ jobs:
           path: reports/junit
       - store_artifacts:
           path: coverage
-    parallelism: 200
 
   build_docs:
     <<: *container_config
