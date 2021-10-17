@@ -5,6 +5,7 @@ import { Typography } from "../Typography";
 import { ButtonDismiss } from "../ButtonDismiss";
 
 interface DrawerProps {
+  readonly id?: string;
   readonly children: ReactNode | ReactNode[];
   readonly title: string;
   /**
@@ -25,6 +26,7 @@ export function Drawer({
   children,
   open = true,
   onRequestClose,
+  id,
 }: DrawerProps) {
   const drawerClassNames = classnames(styles.container, open && styles.open);
   return (
@@ -33,6 +35,8 @@ export function Drawer({
         className={drawerClassNames}
         data-testid="drawer-container"
         aria-label={title}
+        aria-visible={open}
+        id={id}
       >
         <div className={styles.drawer}>
           <Header title={title} onRequestClose={onRequestClose} />
@@ -62,7 +66,10 @@ function Header({ title, onRequestClose }: HeaderProps) {
         {title}
       </Typography>
 
-      <ButtonDismiss onClick={onRequestClose} ariaLabel="Close drawer" />
+      <ButtonDismiss
+        onClick={onRequestClose}
+        ariaLabel={`Close ${title || "drawer"}`}
+      />
     </div>
   );
 }

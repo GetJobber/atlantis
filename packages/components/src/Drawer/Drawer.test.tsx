@@ -17,7 +17,7 @@ test("drawer shows the children and a close button", () => {
 
   expect(queryByTestId("drawer-header")).not.toBeNull();
   expect(getByText(title)).toBeTruthy();
-  expect(getByLabelText("Close drawer")).toBeTruthy();
+  expect(getByLabelText("Close Drawer title")).toBeTruthy();
   expect(getByText(content)).toBeTruthy();
 });
 
@@ -43,6 +43,6 @@ test("drawer fires onRequestClose when selecting the close button", () => {
     </Drawer>,
   );
 
-  fireEvent.click(getByLabelText("Close drawer"));
+  fireEvent.click(getByLabelText("Close Drawer"));
   expect(handleClose).toHaveBeenCalledTimes(1);
 });
