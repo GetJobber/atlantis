@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.58.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.58.1...@jobber/components@2.58.2) (2021-10-18)
+
+
+### Bug Fixes
+
+* **components:** Prevent centering the label for time inputs ([#736](https://github.com/GetJobber/atlantis/issues/736)) ([cca1af2](https://github.com/GetJobber/atlantis/commit/cca1af283e6344a63ee5fc311bf55e76ac40df79))
+
+
+
+
+
 ## [2.58.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.58.0...@jobber/components@2.58.1) (2021-10-15)
 
 
