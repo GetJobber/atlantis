@@ -77,7 +77,11 @@ export function Banner({
   return (
     <>
       {showFlash && (
-        <div className={flashClassNames} ref={bannerRef} role="status">
+        <div
+          className={flashClassNames}
+          ref={bannerRef}
+          role={type === "error" ? "alert" : "status"}
+        >
           <div className={contentClassNames}>
             <Text>{children}</Text>
             {primaryAction && (

@@ -12,9 +12,9 @@ it("renders a success banner", () => {
   expect(tree).toMatchSnapshot();
 });
 
-it("renders an error banner", () => {
-  const tree = renderer.create(<Banner type="error">Fail</Banner>).toJSON();
-  expect(tree).toMatchSnapshot();
+it("adds an error class to error banners", () => {
+  const { getByRole } = render(<Banner type="error">Fail</Banner>);
+  expect(getByRole("alert").classList).toContain("error");
 });
 
 it("renders a notice banner", () => {
@@ -109,4 +109,14 @@ test("it should call the onClick when primaryAction is present", () => {
 
   fireEvent.click(getByText("Hello World"));
   expect(onClick).toHaveBeenCalledTimes(1);
+});
+
+it("adds a role of status by default", () => {
+  const { getByRole } = render(<Banner type="notice">Bruce</Banner>);
+  expect(getByRole("status")).toBeInstanceOf(HTMLDivElement);
+});
+
+it("adds a role of error for error banners", () => {
+  const { getByRole } = render(<Banner type="error">Bruce</Banner>);
+  expect(getByRole("alert")).toBeInstanceOf(HTMLDivElement);
 });
