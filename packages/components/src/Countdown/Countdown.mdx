@@ -111,19 +111,8 @@ treatment for your use case.
     return (
       <Content>
         <Text>
-          <Countdown
-            date={inTenHours}
-            granularity={"ms"}
-            showUnits={true}
-            onComplete={() => alert("Completed Timer!")}
-          />
+          <Countdown date={inTenHours} granularity={"ms"} showUnits={true} />
         </Text>
-        <Countdown
-          date={inTenHours}
-          granularity={"ms"}
-          showUnits={true}
-          onComplete={() => alert("Completed Timer!")}
-        />
         <div />
         <Heading level={1}>
           <Emphasis variation="highlight">
