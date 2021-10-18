@@ -44,7 +44,9 @@ export function FormFieldWrapper({
     align && styles[align],
     {
       [styles.miniLabel]:
-        (placeholder && value !== "") || (placeholder && type === "select"),
+        (placeholder && value !== "") ||
+        (placeholder && type === "select") ||
+        (placeholder && type === "time"),
       [styles.textarea]: type === "textarea",
       [styles.invalid]: invalid ?? error,
       [styles.disabled]: disabled,

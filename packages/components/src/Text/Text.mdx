@@ -6,6 +6,7 @@ import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { Text } from ".";
 import { Content } from "../Content/";
+import { Checkbox } from "../Checkbox/";
 
 # Text
 
@@ -34,7 +35,7 @@ import { Text } from "@jobber/components/Text";
 
 ### Default
 
-Use this as the body text
+Use this as the body text.
 
 <Playground>
   <Text>Ask the information you need upfront from clients and new leads</Text>
@@ -42,7 +43,7 @@ Use this as the body text
 
 ### Subdued
 
-De-emphasize a piece of text that is less important to the user
+De-emphasize a piece of text that is less important to the user.
 
 <Playground>
   <Text variation="subdued">Job note linked to related invoice</Text>
@@ -60,6 +61,32 @@ De-emphasize a piece of text that is less important to the user
   <Text variation="info">
     Drag to rearrange the order that fields show up in Jobber
   </Text>
+</Playground>
+
+### Disabled
+
+Use when the text is part of a disabled section of the interface.
+
+Do not use `disabled` text to explain why an element is disabled. That text
+should be default text with full intended contrast so that the user can clearly
+identify why an element is disabled.
+
+<Playground>
+  <Content>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--space-small)",
+      }}
+    >
+      <Checkbox disabled checked={false} />
+      <Text variation="disabled">A checkbox option</Text>
+    </div>
+    <Text>
+      You must enable your other settings before you can select this option.
+    </Text>
+  </Content>
 </Playground>
 
 ## maxLines

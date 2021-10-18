@@ -8,6 +8,67 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.59.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.58.2...@jobber/components@2.59.0) (2021-10-18)
+
+
+### Features
+
+* **components:** expose onMouseOver in the Button component [JOB-34213] ([#739](https://github.com/GetJobber/atlantis/issues/739)) ([4bc4bd1](https://github.com/GetJobber/atlantis/commit/4bc4bd12d255902b3bf863e358e5f2cf8fdebe37))
+
+
+
+
+
+## [2.58.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.58.1...@jobber/components@2.58.2) (2021-10-18)
+
+
+### Bug Fixes
+
+* **components:** Prevent centering the label for time inputs ([#736](https://github.com/GetJobber/atlantis/issues/736)) ([cca1af2](https://github.com/GetJobber/atlantis/commit/cca1af283e6344a63ee5fc311bf55e76ac40df79))
+
+
+
+
+
+## [2.58.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.58.0...@jobber/components@2.58.1) (2021-10-15)
+
+
+### Bug Fixes
+
+* **components:** don't show tooltip when it's not truncated [JOB-36864] ([#738](https://github.com/GetJobber/atlantis/issues/738)) ([98d1167](https://github.com/GetJobber/atlantis/commit/98d1167e8368c64f6196f360e0d1104f4750098d))
+
+
+
+
+
+# [2.58.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.57.0...@jobber/components@2.58.0) (2021-10-14)
+
+
+### Features
+
+* **components:** add disabled color variation to text ([#733](https://github.com/GetJobber/atlantis/issues/733)) ([862ae93](https://github.com/GetJobber/atlantis/commit/862ae93c52d2cb7809cb027210f6303f6689a54a))
+
+
+
+
+
+# [2.57.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.56.0...@jobber/components@2.57.0) (2021-10-13)
+
+
+### Bug Fixes
+
+* update CSS types order ([#732](https://github.com/GetJobber/atlantis/issues/732)) ([aa4c94b](https://github.com/GetJobber/atlantis/commit/aa4c94bfc89859bb0919567206447e3129b5fe2c))
+
+
+### Features
+
+* **components:** Add visibility toggle for InputPassword ([#621](https://github.com/GetJobber/atlantis/issues/621)) ([ef7a851](https://github.com/GetJobber/atlantis/commit/ef7a8519c798cb951f206a2c64d9b9c0b63279a5))
+* **components:** update banner close position ([#731](https://github.com/GetJobber/atlantis/issues/731)) ([819f6c7](https://github.com/GetJobber/atlantis/commit/819f6c7f4e86b92160a2309f22c05a59474120b7))
+
+
+
+
+
 # [2.56.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.55.1...@jobber/components@2.56.0) (2021-10-08)
 
 

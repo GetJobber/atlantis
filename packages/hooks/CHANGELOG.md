@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.7.2...@jobber/hooks@1.8.0) (2021-10-13)
+
+
+### Features
+
+* **components:** Add visibility toggle for InputPassword ([#621](https://github.com/GetJobber/atlantis/issues/621)) ([ef7a851](https://github.com/GetJobber/atlantis/commit/ef7a8519c798cb951f206a2c64d9b9c0b63279a5))
+
+
+
+
+
 ## [1.7.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.7.1...@jobber/hooks@1.7.2) (2021-10-07)
 
 **Note:** Version bump only for package @jobber/hooks
