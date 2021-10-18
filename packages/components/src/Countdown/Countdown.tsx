@@ -86,25 +86,25 @@ function RenderedCountdown({
     const totalSeconds = 60 * totalMinutes + Number(seconds);
 
     const times: TimesType = {
-      d: { mod: days, total: days, unit: "days" },
-      h: { mod: hours, total: totalHours, unit: "hours" },
-      m: { mod: minutes, total: totalMinutes, unit: "minutes" },
-      s: { mod: seconds, total: totalSeconds, unit: "seconds" },
+      d: { modDuration: days, totalDuration: days, unit: "days" },
+      h: { modDuration: hours, totalDuration: totalHours, unit: "hours" },
+      m: { modDuration: minutes, totalDuration: totalMinutes, unit: "minutes" },
+      s: { modDuration: seconds, totalDuration: totalSeconds, unit: "seconds" },
     };
 
-    return builder(times, granularity, showUnits);
+    return timeFormatter(times, granularity, showUnits);
   }
 }
 
 interface TimeType {
-  mod: string | number;
-  total: string | number;
+  modDuration: string | number;
+  totalDuration: string | number;
   unit: string;
 }
 
 type TimesType = Record<string, TimeType>;
 
-function builder(
+function timeFormatter(
   times: TimesType,
   granularity: GranularityOptions,
   showUnits?: boolean,
@@ -112,11 +112,11 @@ function builder(
   let substr = "";
   granularity.split("").forEach((unit, i) => {
     if (i == 0) {
-      substr += `${times[unit].total}${
+      substr += `${times[unit].totalDuration}${
         showUnits ? ` ${times[unit].unit}` : ""
       }`;
     } else {
-      substr += ` : ${times[unit].mod}${
+      substr += ` : ${times[unit].modDuration}${
         showUnits ? ` ${times[unit].unit}` : ""
       }`;
     }

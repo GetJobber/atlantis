@@ -16,13 +16,13 @@ import { Button } from "@jobber/components/Button";
 
 # Countdown
 
-```ts
-import { Countdown } from "@jobber/components/Countdown";
-```
-
 Countdown is used to ensure that a "countdown" to a specified end time is
 displayed in a consistent format. No text styling is applied to Countdown; it is
 only concerned with the text content that will be presented.
+
+```ts
+import { Countdown } from "@jobber/components/Countdown";
+```
 
 <Playground>
   {() => {
@@ -66,6 +66,9 @@ context to interpret appropriately without labeled units when making the
 decision on whether to show or hide the units.
 
 ## On Complete
+
+`onComplete` is a callback that will fire once the countdown to the specified
+time has been completed.
 
 <Playground>
   {() => {
