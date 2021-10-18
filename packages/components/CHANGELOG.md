@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.59.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.58.2...@jobber/components@2.59.0) (2021-10-18)
+
+
+### Features
+
+* **components:** expose onMouseOver in the Button component [JOB-34213] ([#739](https://github.com/GetJobber/atlantis/issues/739)) ([4bc4bd1](https://github.com/GetJobber/atlantis/commit/4bc4bd12d255902b3bf863e358e5f2cf8fdebe37))
+
+
+
+
+
 ## [2.58.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.58.1...@jobber/components@2.58.2) (2021-10-18)
 
 
