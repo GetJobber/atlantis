@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.59.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.59.0...@jobber/components@2.59.1) (2021-10-19)
+
+
+### Bug Fixes
+
+* **components:** Add alert role to Banner ([#741](https://github.com/GetJobber/atlantis/issues/741)) ([cfe08bf](https://github.com/GetJobber/atlantis/commit/cfe08bf73abdcfaee9374c8c7a990ad0c5efa896))
+
+
+
+
+
 # [2.59.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.58.2...@jobber/components@2.59.0) (2021-10-18)
 
 
