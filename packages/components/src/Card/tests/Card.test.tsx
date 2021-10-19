@@ -109,3 +109,14 @@ test("it should should be clickable if it's clickable", () => {
 
   expect(clickHandler).toHaveBeenCalledTimes(1);
 });
+
+it("renders an external link card without target attribute", () => {
+  const { getByRole } = render(
+    <Card url="https://frend.space" external={true}>
+      <p>This is a link card.</p>
+    </Card>,
+  );
+
+  expect(getByRole("link")).toHaveAttribute("target", "_blank");
+  expect(getByRole("link")).toHaveAttribute("rel", "noopener noreferrer");
+});
