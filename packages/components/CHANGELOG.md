@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.60.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.59.1...@jobber/components@2.60.0) (2021-10-19)
+
+
+### Features
+
+* **components:** Add countdown timer ([#730](https://github.com/GetJobber/atlantis/issues/730)) ([1975e8a](https://github.com/GetJobber/atlantis/commit/1975e8a4caacdbd83e4a54c93eee02600a1a34eb))
+
+
+
+
+
 ## [2.59.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.59.0...@jobber/components@2.59.1) (2021-10-19)
 
 
