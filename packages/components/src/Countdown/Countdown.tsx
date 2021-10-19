@@ -86,10 +86,10 @@ function RenderedCountdown({
     const totalSeconds = 60 * totalMinutes + Number(seconds);
 
     const times: TimesType = {
-      d: { modDuration: days, totalDuration: days, unit: "days" },
-      h: { modDuration: hours, totalDuration: totalHours, unit: "hours" },
-      m: { modDuration: minutes, totalDuration: totalMinutes, unit: "minutes" },
-      s: { modDuration: seconds, totalDuration: totalSeconds, unit: "seconds" },
+      d: { total: days, remainder: days, unit: "days" },
+      h: { total: totalHours, remainder: hours, unit: "hours" },
+      m: { total: totalMinutes, remainder: minutes, unit: "minutes" },
+      s: { total: totalSeconds, remainder: seconds, unit: "seconds" },
     };
 
     return timeFormatter(times, granularity, showUnits);
@@ -97,8 +97,27 @@ function RenderedCountdown({
 }
 
 interface TimeType {
-  modDuration: string | number;
-  totalDuration: string | number;
+  /**
+   * The total amount of that unit (assuming there is no parent unit)
+   *
+   * Example:
+   *   25 hours (instead of 1 day and 1 hour)
+   */
+  total: string | number;
+
+  /**
+   * The remaining time left over up until the next full parent unit
+   *
+   * Cases/examples:
+   *   hours: max = 23, anything over would revert back to 0
+   *   minutes or seconds: max = 59, anything over would revert back to 0
+   */
+  remainder: string | number;
+
+  /**
+   * The unit of time
+   * (i.e., days, hours, minutes, seconds)
+   */
   unit: string;
 }
 
@@ -112,11 +131,11 @@ function timeFormatter(
   let substr = "";
   granularity.split("").forEach((unit, i) => {
     if (i == 0) {
-      substr += `${times[unit].totalDuration}${
+      substr += `${times[unit].total}${
         showUnits ? ` ${times[unit].unit}` : ""
       }`;
     } else {
-      substr += ` : ${times[unit].modDuration}${
+      substr += ` : ${times[unit].remainder}${
         showUnits ? ` ${times[unit].unit}` : ""
       }`;
     }
