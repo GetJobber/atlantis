@@ -12,7 +12,7 @@ it("renders a paragraph", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <p
-      className="base regular base start text"
+      className="base regular base left text"
     >
       Ask the information you need upfront from clients and new leads
     </p>
@@ -25,7 +25,7 @@ it("renders a subdued text", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <p
-      className="base regular base start textSecondary"
+      className="base regular base left textSecondary"
     >
       Job note linked to related invoice
     </p>
@@ -38,7 +38,7 @@ it("renders a success text", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <p
-      className="base regular base start success"
+      className="base regular base left success"
     >
       Invoice sent
     </p>
@@ -51,7 +51,7 @@ it("renders a error text", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <p
-      className="base regular base start critical"
+      className="base regular base left critical"
     >
       Name is required
     </p>
@@ -64,7 +64,7 @@ it("renders a warning text", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <p
-      className="base regular base start warning"
+      className="base regular base left warning"
     >
       Your message is over 160 characters
     </p>
@@ -81,7 +81,7 @@ it("renders a info text", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <p
-      className="base regular base start informative"
+      className="base regular base left informative"
     >
       Drag to rearrange the order that fields show up in Jobber
     </p>
@@ -99,7 +99,7 @@ it("renders a large text", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <p
-      className="base regular large start text"
+      className="base regular large left text"
     >
       Attract new customers by asking happy clients for a Facebook recommendation
     </p>
@@ -112,7 +112,7 @@ it("renders a small text", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <p
-      className="base regular small start text"
+      className="base regular small left text"
     >
       Teeny tiny text
     </p>
@@ -120,12 +120,14 @@ it("renders a small text", () => {
 });
 
 it("renders a end-aligned text", () => {
-  const tree = renderer.create(<Text align="end">End align me</Text>).toJSON();
+  const tree = renderer
+    .create(<Text align="right">right align me</Text>)
+    .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <p
-      className="base regular base end text"
+      className="base regular base right text"
     >
-      End align me
+      right align me
     </p>
   `);
 });
@@ -145,13 +147,13 @@ it("renders a center-aligned text", () => {
 
 it("renders a start-aligned text", () => {
   const tree = renderer
-    .create(<Text align="start">Start align me</Text>)
+    .create(<Text align="left">left align me</Text>)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <p
-      className="base regular base start text"
+      className="base regular base left text"
     >
-      Start align me
+      left align me
     </p>
   `);
 });

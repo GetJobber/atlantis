@@ -93,7 +93,7 @@ exports[`When actions are provided renders a Page with action buttons and a menu
         </div>
       </div>
       <p
-        className="base regular large start text"
+        className="base regular large left text"
       >
         Improve job completion rates.
       </p>
@@ -129,7 +129,7 @@ exports[`renders a Page 1`] = `
         </div>
       </div>
       <p
-        className="base regular large start text"
+        className="base regular large left text"
       >
         Improve job completion rates, stop chasing payments, and boost your customer service by automatically communicating with your clients at key points before, during, and after a job. Read more about Notifications by visiting our 
         <a

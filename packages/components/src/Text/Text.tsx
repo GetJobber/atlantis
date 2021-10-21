@@ -13,7 +13,7 @@ interface TextProps {
     | "info"
     | "disabled";
 
-  readonly align?: "start" | "center" | "end";
+  readonly align?: "left" | "center" | "right";
 
   readonly size?: "small" | "base" | "large";
 }
@@ -23,7 +23,7 @@ type TextColor = Extract<TypographyOptions, "textColor">;
 export function Text({
   variation = "default",
   size = "base",
-  align = "start",
+  align = "left",
   children,
   maxLines = "unlimited",
 }: PropsWithChildren<TextProps>) {

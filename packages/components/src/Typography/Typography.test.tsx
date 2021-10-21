@@ -217,13 +217,13 @@ it("should add textTruncate class when numberOfLines property is passed", () => 
 
 it("renders a end-aligned text", () => {
   const tree = renderer
-    .create(<Typography align="end">End align me</Typography>)
+    .create(<Typography align="right">right align me</Typography>)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <p
-      className="base regular end"
+      className="base regular right"
     >
-      End align me
+      right align me
     </p>
   `);
 });
@@ -243,13 +243,13 @@ it("renders a center-aligned text", () => {
 
 it("renders a start-aligned text", () => {
   const tree = renderer
-    .create(<Typography align="start">Start align me</Typography>)
+    .create(<Typography align="left">left align me</Typography>)
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <p
-      className="base regular start"
+      className="base regular left"
     >
-      Start align me
+      left align me
     </p>
   `);
 });
