@@ -42,9 +42,9 @@ interface TypographyProps {
   readonly emphasisType?: keyof typeof emphasis;
   readonly align?: keyof typeof alignment;
   /**
-   * Sets the alignment to start, center, or end.
-   * In LTR scripts this equates to left, center, or right.
-   * @default "start"
+   * Sets the alignment to left, center, or right.
+   * CSS values used internally support RTL.
+   * @default "left"
    */
   readonly children: ReactNode;
   numberOfLines?: number;
