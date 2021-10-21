@@ -1,7 +1,7 @@
 declare const styles: {
-  readonly "left": string;
+  readonly "start": string;
   readonly "center": string;
-  readonly "right": string;
+  readonly "end": string;
 };
 export = styles;
 

@@ -1,4 +1,4 @@
-.left {
+.start {
   text-align: start;
 }
 
@@ -6,6 +6,6 @@
   text-align: center;
 }
 
-.right {
+.end {
   text-align: end;
 }

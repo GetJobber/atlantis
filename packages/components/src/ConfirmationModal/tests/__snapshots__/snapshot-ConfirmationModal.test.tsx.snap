@@ -39,7 +39,7 @@ exports[`renders a simple ConfirmationModal 1`] = `
         className="padded base"
       >
         <p
-          className="base regular base left text"
+          className="base regular base start text"
         >
           Do something…
         </p>
