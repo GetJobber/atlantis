@@ -89,6 +89,23 @@ identify why an element is disabled.
   </Content>
 </Playground>
 
+## Alignment
+
+For text alignment, we use `start` and `end` instead of `left` and `right`. This
+allows us to support
+[bi-directionality](https://material.io/design/usability/bidirectionality.html#mirroring-layout)
+when needed.
+
+<Playground>
+  <Text align="start">
+    Start aligns text to the left in Latin and other LTR scripts
+  </Text>
+  <Text align="center">Center is always in... the center</Text>
+  <Text align="end">
+    End aligns text to the right in Latin and other LTR scripts
+  </Text>
+</Playground>
+
 ## maxLines
 
 Used to truncate large text with `...` based on line wrapping, such that the

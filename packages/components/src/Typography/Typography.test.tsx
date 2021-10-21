@@ -214,3 +214,42 @@ it("should add textTruncate class when numberOfLines property is passed", () => 
     </p>
   `);
 });
+
+it("renders a end-aligned text", () => {
+  const tree = renderer
+    .create(<Typography align="end">End align me</Typography>)
+    .toJSON();
+  expect(tree).toMatchInlineSnapshot(`
+    <p
+      className="base regular end"
+    >
+      End align me
+    </p>
+  `);
+});
+
+it("renders a center-aligned text", () => {
+  const tree = renderer
+    .create(<Typography align="center">Center align me</Typography>)
+    .toJSON();
+  expect(tree).toMatchInlineSnapshot(`
+    <p
+      className="base regular center"
+    >
+      Center align me
+    </p>
+  `);
+});
+
+it("renders a start-aligned text", () => {
+  const tree = renderer
+    .create(<Typography align="start">Start align me</Typography>)
+    .toJSON();
+  expect(tree).toMatchInlineSnapshot(`
+    <p
+      className="base regular start"
+    >
+      Start align me
+    </p>
+  `);
+});
