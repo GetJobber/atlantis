@@ -68,11 +68,13 @@ export function Typography({
     styles.base,
     fontWeights[fontWeight],
     size && fontSizes[size],
-    align && alignment[align],
     textCase && textCases[textCase],
     textColor && textColors[textColor],
     emphasisType && emphasis[emphasisType],
     shouldTruncateText && truncate.textTruncate,
+    {
+      ...(align && { [alignment[align]]: align !== `start` }),
+    },
   );
 
   let truncateLines: CSSProperties | undefined;

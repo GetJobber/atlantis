@@ -240,16 +240,3 @@ it("renders a center-aligned text", () => {
     </p>
   `);
 });
-
-it("renders a start-aligned text", () => {
-  const tree = renderer
-    .create(<Typography align="start">Start align me</Typography>)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <p
-      className="base regular start"
-    >
-      Start align me
-    </p>
-  `);
-});

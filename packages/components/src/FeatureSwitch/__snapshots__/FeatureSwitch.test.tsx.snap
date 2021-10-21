@@ -41,7 +41,7 @@ exports[`it should not show switch if onSwitch is absent 1`] = `
         className="padded base"
       >
         <p
-          className="base regular base start text"
+          className="base regular base text"
         >
           Send a notification to your client following up on an outstanding quote.
         </p>
@@ -79,7 +79,7 @@ exports[`renders a full FeatureSwitch 1`] = `
           Quote follow-up
         </h4>
         <p
-          className="base regular base start text"
+          className="base regular base text"
         >
           Send a 
           <a
@@ -190,7 +190,7 @@ exports[`renders a subdued FeatureSwitch content 1`] = `
         className="padded base"
       >
         <p
-          className="base regular base start text"
+          className="base regular base text"
         >
           Send a notification to your client following up on an outstanding quote.
         </p>
