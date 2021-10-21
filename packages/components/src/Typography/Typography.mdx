@@ -46,15 +46,13 @@ import { Typography } from "@jobber/components/Typography";
 
 ## Alignment
 
-For text alignment, we use `left` and `right`, but the CSS values use `start`
-and `end` internally. This allows us to support
-[bi-directionality](https://material.io/design/usability/bidirectionality.html#mirroring-layout)
-when needed.
+Uses start and end instead of left and right to allow for resiliency in both LTR
+and RTL applications.
 
 <Playground>
-  <Typography align="left">Left</Typography>
+  <Typography align="start">Start</Typography>
   <Typography align="center">Center</Typography>
-  <Typography align="right">Right</Typography>
+  <Typography align="end">End</Typography>
 </Playground>
 
 ## Text case
