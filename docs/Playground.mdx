@@ -1,0 +1,245 @@
+---
+name: Playground
+route: /playground
+showDirectoryLink: true
+---
+
+import { useState } from "react";
+import { Playground, Props } from "docz";
+import { Autocomplete } from "@jobber/components/Autocomplete";
+import { Avatar } from "@jobber/components/Avatar";
+import { Banner } from "@jobber/components/Banner";
+import { Button } from "@jobber/components/Button";
+import { Card } from "@jobber/components/Card";
+import { Checkbox } from "@jobber/components/Checkbox";
+import { Chips } from "@jobber/components/Chips";
+import { ConfirmationModal } from "@jobber/components/ConfirmationModal";
+import { Content } from "@jobber/components/Content";
+import { Countdown } from "@jobber/components/Countdown";
+import { DataDump } from "@jobber/components/DataDump";
+import { DescriptionList } from "@jobber/components/DescriptionList";
+import { Disclosure } from "@jobber/components/Disclosure";
+import { Divider } from "@jobber/components/Divider";
+import { Drawer } from "@jobber/components/Drawer";
+import { Emphasis } from "@jobber/components/Emphasis";
+import { FeatureSwitch } from "@jobber/components/FeatureSwitch";
+import { Form } from "@jobber/components/Form";
+import { FormatDate } from "@jobber/components/FormatDate";
+import { FormatEmail } from "@jobber/components/FormatEmail";
+import { FormatFile } from "@jobber/components/FormatFile";
+import { FormatRelativeDateTime } from "@jobber/components/FormatRelativeDateTime";
+import { FormatTime } from "@jobber/components/FormatTime";
+import { Heading } from "@jobber/components/Heading";
+import { Icon } from "@jobber/components/Icon";
+import { InlineLabel } from "@jobber/components/InlineLabel";
+import { InputAvatar } from "@jobber/components/InputAvatar";
+import { InputEmail } from "@jobber/components/InputEmail";
+import { InputFile } from "@jobber/components/InputFile";
+import { InputGroup } from "@jobber/components/InputGroup";
+import { InputNumber } from "@jobber/components/InputNumber";
+import { InputPassword } from "@jobber/components/InputPassword";
+import { InputText } from "@jobber/components/InputText";
+import { InputTime } from "@jobber/components/InputTime";
+import { InputValidation } from "@jobber/components/InputValidation";
+import { LightBox } from "@jobber/components/Lightbox";
+import { List } from "@jobber/components/List";
+import { Markdown } from "@jobber/components/Markdown";
+import { Menu } from "@jobber/components/Menu";
+import { Modal } from "@jobber/components/Modal";
+import { Page } from "@jobber/components/Page";
+import { Popover } from "@jobber/components/Popover";
+import { ProgressBar } from "@jobber/components/ProgressBar";
+import { RadioGroup } from "@jobber/components/RadioGroup";
+import { Select } from "@jobber/components/Select";
+import { Spinner } from "@jobber/components/Spinner";
+import { Switch } from "@jobber/components/Switch";
+import { Table } from "@jobber/components/Table";
+import { Tabs, Tab } from "@jobber/components/Tabs";
+import { Text } from "@jobber/components/Text";
+import { Toast } from "@jobber/components/Toast";
+import { Tooltip } from "@jobber/components/Tooltip";
+
+<Playground>
+  <Page
+    title="Component playground"
+    subtitle="A place for exploration"
+    intro="The component playground is a space where you can combine any Atlantis components to rapidly prototype interfaces and layouts."
+  >
+    <Content spacing="large">
+      <Content spacing="small">
+        <Banner type="notice" dismissible>
+          You can use any component found in Atlantis here
+        </Banner>
+        <Banner type="warning" dismissible>
+          The options are endless – proceed with caution
+        </Banner>
+      </Content>
+      <Content>
+        <ProgressBar currentStep={1} totalSteps={3} />
+        <Heading level={2}>Food</Heading>
+        <Text>Today we're going to organize some content about food.</Text>
+        <Card title="Bananas">
+          <Content>
+            <Heading level={4}>Burro</Heading>
+            <Text>
+              Squatty and slightly square at the edges, these bananas are
+              slightly tangy and lemony. When ripe, the fruit is soft and the
+              skin is yellow with black spots. Also called Horse, Hog, or
+              Orinoco bananas.
+            </Text>
+            <Heading level={4}>Cavendish</Heading>
+            <Text>
+              This is the familiar yellow banana sold in United States’
+              supermarkets. There are also other sizes of Cavendish, including
+              Dwarf and Giant, though they are difficult to find.
+            </Text>
+          </Content>
+        </Card>
+        <Card title="Snacks">
+          <Tabs>
+            <Tab label="Eggs">
+              <Text>
+                🍳 Some eggs are laid by female animals of many different
+                species, including birds, reptiles, amphibians, mammals, and
+                fish, and have been eaten by humans for thousands of years.
+              </Text>
+            </Tab>
+            <Tab label="Cheese">
+              <Text>
+                🧀 Cheese is a dairy product derived from milk that is produced
+                in a wide range of flavors, textures, and forms by coagulation
+                of the milk protein casein.
+              </Text>
+            </Tab>
+            <Tab label="Berries">
+              <Text>
+                🍓 A berry is a small, pulpy, and often edible fruit. Typically,
+                berries are juicy, rounded, brightly colored, sweet, sour or
+                tart, and do not have a stone or pit.
+              </Text>
+            </Tab>
+          </Tabs>
+        </Card>
+        <Card title="Deli meats">
+          <List
+            items={[
+              {
+                id: 1,
+                icon: "alert",
+                iconColor: "orange",
+                content: "Prosciutto",
+                value: "$3.99",
+                caption: "A salted pork",
+                onClick: () => alert("Yum"),
+              },
+              {
+                id: 2,
+                icon: "reminder",
+                content: "Pastrami",
+                value: "$2.29",
+                caption: "A smoked beef",
+                onClick: () => alert("Also yum"),
+              },
+              {
+                id: 3,
+                icon: "paidInvoice",
+                content: "Black Forest Ham",
+                value: "$1.89",
+                caption: "An earnest cut of ham",
+                onClick: () => alert("Also yum"),
+              },
+            ]}
+          />
+        </Card>
+      </Content>
+      <Divider />
+      <Content>
+        <ProgressBar currentStep={2} totalSteps={3} />
+        <Heading level={2}>Vehicles</Heading>
+        <Text>Now we're going to organize some content about cars.</Text>
+        <Card title="Let's define cars">
+          <Content>
+            <Text>
+              A car (or automobile) is a wheeled motor vehicle used for
+              transportation. Most definitions of cars say that they run
+              primarily on roads, seat one-to-eight people, have four wheels and
+              mainly transport people rather than goods.
+            </Text>
+          </Content>
+        </Card>
+        <Card title="Notable cars">
+          <Content spacing="small">
+            <Disclosure title="Lightning McQueen">
+              <Content>
+                <Text>
+                  Lightning McQueen is a red racecar noted for starring in a
+                  movie called Cars.
+                </Text>
+              </Content>
+            </Disclosure>
+            <Disclosure title="Ford">
+              <Content>
+                <Text>
+                  The Ford is a car noted for starring in a movie called Ford vs
+                  Ferrari.
+                </Text>
+              </Content>
+            </Disclosure>
+            <Disclosure title="Ferrari">
+              <Content>
+                <Text>
+                  The Ferrari is a car noted for starring in a movie called Ford
+                  vs Ferrari.
+                </Text>
+              </Content>
+            </Disclosure>
+          </Content>
+        </Card>
+        <Menu
+          activator={<Button type="secondary" fullWidth label="Car Menu" />}
+          items={[
+            {
+              actions: [
+                {
+                  label: "Get going",
+                  icon: "visit",
+                  onClick: () => {
+                    alert("Zooooom");
+                  },
+                },
+              ],
+            },
+            {
+              header: "You can also...",
+              actions: [
+                {
+                  label: "Check engine",
+                  icon: "engine",
+                  onClick: () => {
+                    alert("Uh oh");
+                  },
+                },
+                {
+                  label: "Stop",
+                  icon: "alert",
+                  onClick: () => {
+                    alert("Skrtttt");
+                  },
+                },
+              ],
+            },
+          ]}
+        />
+      </Content>
+      <Divider />
+      <Content>
+        <ProgressBar currentStep={3} totalSteps={3} />
+        <Heading level={2}>That's it for now!</Heading>
+        <Text>
+          But using this playground, you can do whatever you want to explore how
+          components fit together and interact with eachother.
+        </Text>
+      </Content>
+    </Content>
+  </Page>
+</Playground>
