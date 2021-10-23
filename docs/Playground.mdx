@@ -60,186 +60,236 @@ import { Toast } from "@jobber/components/Toast";
 import { Tooltip } from "@jobber/components/Tooltip";
 
 <Playground>
-  <Page
-    title="Component playground"
-    subtitle="A place for exploration"
-    intro="The component playground is a space where you can combine any Atlantis components to rapidly prototype interfaces and layouts."
-  >
-    <Content spacing="large">
-      <Content spacing="small">
-        <Banner type="notice" dismissible>
-          You can use any component found in Atlantis here
-        </Banner>
-        <Banner type="warning" dismissible>
-          The options are endless – proceed with caution
-        </Banner>
-      </Content>
-      <Content>
-        <ProgressBar currentStep={1} totalSteps={3} />
-        <Heading level={2}>Food</Heading>
-        <Text>Today we're going to organize some content about food.</Text>
-        <Card title="Bananas">
-          <Content>
-            <Heading level={4}>Burro</Heading>
-            <Text>
-              Squatty and slightly square at the edges, these bananas are
-              slightly tangy and lemony. When ripe, the fruit is soft and the
-              skin is yellow with black spots. Also called Horse, Hog, or
-              Orinoco bananas.
-            </Text>
-            <Heading level={4}>Cavendish</Heading>
-            <Text>
-              This is the familiar yellow banana sold in United States’
-              supermarkets. There are also other sizes of Cavendish, including
-              Dwarf and Giant, though they are difficult to find.
-            </Text>
+  {() => {
+    const [modalOpen, setModalOpen] = useState(false);
+    return (
+      <>
+        <Page
+          title="Component playground"
+          subtitle="A place for exploration"
+          intro="The component playground is a space where you can combine any Atlantis components to rapidly prototype interfaces and layouts."
+        >
+          <Content spacing="large">
+            <Content spacing="small">
+              <Banner type="notice" dismissible>
+                You can use any component found in Atlantis here
+              </Banner>
+              <Banner type="warning" dismissible>
+                The options are endless – proceed with caution
+              </Banner>
+            </Content>
+            <Content>
+              <ProgressBar currentStep={1} totalSteps={3} />
+              <Heading level={2}>Food</Heading>
+              <Text>
+                Today we're going to organize some content about food.
+              </Text>
+              <Card title="Bananas">
+                <Content>
+                  <Heading level={4}>Burro</Heading>
+                  <Text>
+                    Squatty and slightly square at the edges, these bananas are
+                    slightly tangy and lemony. When ripe, the fruit is soft and
+                    the skin is yellow with black spots. Also called Horse, Hog,
+                    or Orinoco bananas.
+                  </Text>
+                  <Heading level={4}>Cavendish</Heading>
+                  <Text>
+                    This is the familiar yellow banana sold in United States’
+                    supermarkets. There are also other sizes of Cavendish,
+                    including Dwarf and Giant, though they are difficult to
+                    find.
+                  </Text>
+                </Content>
+              </Card>
+              <Card title="Snacks">
+                <Tabs>
+                  <Tab label="Eggs">
+                    <Text>
+                      🍳 Some eggs are laid by female animals of many different
+                      species, including birds, reptiles, amphibians, mammals,
+                      and fish, and have been eaten by humans for thousands of
+                      years.
+                    </Text>
+                  </Tab>
+                  <Tab label="Cheese">
+                    <Text>
+                      🧀 Cheese is a dairy product derived from milk that is
+                      produced in a wide range of flavors, textures, and forms
+                      by coagulation of the milk protein casein.
+                    </Text>
+                  </Tab>
+                  <Tab label="Berries">
+                    <Text>
+                      🍓 A berry is a small, pulpy, and often edible fruit.
+                      Typically, berries are juicy, rounded, brightly colored,
+                      sweet, sour or tart, and do not have a stone or pit.
+                    </Text>
+                  </Tab>
+                </Tabs>
+              </Card>
+              <Card title="Deli meats">
+                <List
+                  items={[
+                    {
+                      id: 1,
+                      icon: "alert",
+                      iconColor: "orange",
+                      content: "Prosciutto",
+                      value: "$3.99",
+                      caption: "A salted pork",
+                      onClick: () => alert("Yum"),
+                    },
+                    {
+                      id: 2,
+                      icon: "reminder",
+                      content: "Pastrami",
+                      value: "$2.29",
+                      caption: "A smoked beef",
+                      onClick: () => alert("Also yum"),
+                    },
+                    {
+                      id: 3,
+                      icon: "paidInvoice",
+                      content: "Black Forest Ham",
+                      value: "$1.89",
+                      caption: "An earnest cut of ham",
+                      onClick: () => alert("Also yum"),
+                    },
+                  ]}
+                />
+              </Card>
+            </Content>
+            <Divider />
+            <Content>
+              <ProgressBar currentStep={2} totalSteps={3} />
+              <Heading level={2}>Vehicles</Heading>
+              <Text>Now we're going to organize some content about cars.</Text>
+              <Card title="Let's define cars">
+                <Content>
+                  <Text>
+                    A car (or automobile) is a wheeled motor vehicle used for
+                    transportation. Most definitions of cars say that they run
+                    primarily on roads, seat one-to-eight people, have four
+                    wheels and mainly transport people rather than goods.
+                  </Text>
+                </Content>
+              </Card>
+              <Card title="Notable cars">
+                <Content spacing="small">
+                  <Disclosure title="Lightning McQueen">
+                    <Content>
+                      <Text>
+                        Lightning McQueen is a red racecar noted for starring in
+                        a movie called Cars.
+                      </Text>
+                    </Content>
+                  </Disclosure>
+                  <Disclosure title="Ford">
+                    <Content>
+                      <Text>
+                        The Ford is a car noted for starring in a movie called
+                        Ford vs Ferrari.
+                      </Text>
+                    </Content>
+                  </Disclosure>
+                  <Disclosure title="Ferrari">
+                    <Content>
+                      <Text>
+                        The Ferrari is a car noted for starring in a movie
+                        called Ford vs Ferrari.
+                      </Text>
+                    </Content>
+                  </Disclosure>
+                </Content>
+              </Card>
+              <Menu
+                activator={
+                  <Button type="secondary" fullWidth label="Car Menu" />
+                }
+                items={[
+                  {
+                    actions: [
+                      {
+                        label: "Get going",
+                        icon: "visit",
+                        onClick: () => {
+                          alert("Zooooom");
+                        },
+                      },
+                    ],
+                  },
+                  {
+                    header: "You can also...",
+                    actions: [
+                      {
+                        label: "Check engine",
+                        icon: "engine",
+                        onClick: () => {
+                          alert("Uh oh");
+                        },
+                      },
+                      {
+                        label: "Stop",
+                        icon: "alert",
+                        onClick: () => {
+                          alert("Skrtttt");
+                        },
+                      },
+                    ],
+                  },
+                ]}
+              />
+              <Button
+                type="tertiary"
+                label="More cars"
+                onClick={() => setModalOpen(true)}
+              />
+            </Content>
+            <Divider />
+            <Content>
+              <ProgressBar currentStep={3} totalSteps={3} />
+              <Heading level={2}>That's it for now!</Heading>
+              <Text>
+                But using this playground, you can do whatever you want to
+                explore how components fit together and interact with eachother.
+              </Text>
+            </Content>
           </Content>
-        </Card>
-        <Card title="Snacks">
-          <Tabs>
-            <Tab label="Eggs">
-              <Text>
-                🍳 Some eggs are laid by female animals of many different
-                species, including birds, reptiles, amphibians, mammals, and
-                fish, and have been eaten by humans for thousands of years.
-              </Text>
-            </Tab>
-            <Tab label="Cheese">
-              <Text>
-                🧀 Cheese is a dairy product derived from milk that is produced
-                in a wide range of flavors, textures, and forms by coagulation
-                of the milk protein casein.
-              </Text>
-            </Tab>
-            <Tab label="Berries">
-              <Text>
-                🍓 A berry is a small, pulpy, and often edible fruit. Typically,
-                berries are juicy, rounded, brightly colored, sweet, sour or
-                tart, and do not have a stone or pit.
-              </Text>
-            </Tab>
-          </Tabs>
-        </Card>
-        <Card title="Deli meats">
+        </Page>
+        <Modal
+          title="Cars in a modal"
+          open={modalOpen}
+          onRequestClose={() => setModalOpen(false)}
+        >
           <List
             items={[
               {
                 id: 1,
                 icon: "alert",
                 iconColor: "orange",
-                content: "Prosciutto",
-                value: "$3.99",
-                caption: "A salted pork",
-                onClick: () => alert("Yum"),
+                content: "Fast car",
+                value: "$50000",
+                caption: "Very fast!",
               },
               {
                 id: 2,
                 icon: "reminder",
-                content: "Pastrami",
-                value: "$2.29",
-                caption: "A smoked beef",
-                onClick: () => alert("Also yum"),
+                content: "Supercar",
+                value: "$300000",
+                caption: "You really do not need this one",
               },
               {
                 id: 3,
-                icon: "paidInvoice",
-                content: "Black Forest Ham",
-                value: "$1.89",
-                caption: "An earnest cut of ham",
-                onClick: () => alert("Also yum"),
+                icon: "visit",
+                content: "Slow car",
+                value: "$10000",
+                caption: "Gets you from point A to point B",
               },
             ]}
           />
-        </Card>
-      </Content>
-      <Divider />
-      <Content>
-        <ProgressBar currentStep={2} totalSteps={3} />
-        <Heading level={2}>Vehicles</Heading>
-        <Text>Now we're going to organize some content about cars.</Text>
-        <Card title="Let's define cars">
-          <Content>
-            <Text>
-              A car (or automobile) is a wheeled motor vehicle used for
-              transportation. Most definitions of cars say that they run
-              primarily on roads, seat one-to-eight people, have four wheels and
-              mainly transport people rather than goods.
-            </Text>
-          </Content>
-        </Card>
-        <Card title="Notable cars">
-          <Content spacing="small">
-            <Disclosure title="Lightning McQueen">
-              <Content>
-                <Text>
-                  Lightning McQueen is a red racecar noted for starring in a
-                  movie called Cars.
-                </Text>
-              </Content>
-            </Disclosure>
-            <Disclosure title="Ford">
-              <Content>
-                <Text>
-                  The Ford is a car noted for starring in a movie called Ford vs
-                  Ferrari.
-                </Text>
-              </Content>
-            </Disclosure>
-            <Disclosure title="Ferrari">
-              <Content>
-                <Text>
-                  The Ferrari is a car noted for starring in a movie called Ford
-                  vs Ferrari.
-                </Text>
-              </Content>
-            </Disclosure>
-          </Content>
-        </Card>
-        <Menu
-          activator={<Button type="secondary" fullWidth label="Car Menu" />}
-          items={[
-            {
-              actions: [
-                {
-                  label: "Get going",
-                  icon: "visit",
-                  onClick: () => {
-                    alert("Zooooom");
-                  },
-                },
-              ],
-            },
-            {
-              header: "You can also...",
-              actions: [
-                {
-                  label: "Check engine",
-                  icon: "engine",
-                  onClick: () => {
-                    alert("Uh oh");
-                  },
-                },
-                {
-                  label: "Stop",
-                  icon: "alert",
-                  onClick: () => {
-                    alert("Skrtttt");
-                  },
-                },
-              ],
-            },
-          ]}
-        />
-      </Content>
-      <Divider />
-      <Content>
-        <ProgressBar currentStep={3} totalSteps={3} />
-        <Heading level={2}>That's it for now!</Heading>
-        <Text>
-          But using this playground, you can do whatever you want to explore how
-          components fit together and interact with eachother.
-        </Text>
-      </Content>
-    </Content>
-  </Page>
+        </Modal>
+      </>
+    );
+  }}
 </Playground>
