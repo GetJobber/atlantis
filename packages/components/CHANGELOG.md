@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.61.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.60.2...@jobber/components@2.61.0) (2021-10-25)
+
+
+### Features
+
+* **components:** add alignment to Text and Typography ([#744](https://github.com/GetJobber/atlantis/issues/744)) ([d33a4ec](https://github.com/GetJobber/atlantis/commit/d33a4ecc1a278de45ce202ae9f0fd44c11678009))
+
+
+
+
+
 ## [2.60.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.60.1...@jobber/components@2.60.2) (2021-10-25)
 
 **Note:** Version bump only for package @jobber/components
