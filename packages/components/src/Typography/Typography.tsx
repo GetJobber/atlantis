@@ -44,7 +44,7 @@ interface TypographyProps {
    * Sets the alignment to start, center, or end.
    * In LTR scripts this equates to left, center, or right.
    * @default "start"
-  */
+   */
   readonly align?: keyof typeof alignment;
   readonly children: ReactNode;
   numberOfLines?: number;
