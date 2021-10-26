@@ -114,6 +114,28 @@ test("it shouldn't call the handler on click when disabled", () => {
   expect(clickHandler).toHaveBeenCalledTimes(0);
 });
 
+test("it should call the handler on mouse down", () => {
+  const label = "Click Me";
+  const mouseDownHandler = jest.fn();
+  const { getByText } = render(
+    <Button label={label} onMouseDown={mouseDownHandler} />,
+  );
+
+  fireEvent.mouseDown(getByText(label));
+  expect(mouseDownHandler).toHaveBeenCalledTimes(1);
+});
+
+test("it shouldn't call the handler on mouse down when disabled", () => {
+  const label = "I'm disabled";
+  const mouseDownHandler = jest.fn();
+  const { getByText } = render(
+    <Button label={label} disabled={true} onMouseDown={mouseDownHandler} />,
+  );
+
+  fireEvent.mouseDown(getByText(label));
+  expect(mouseDownHandler).toHaveBeenCalledTimes(0);
+});
+
 it("renders a Link as a Button for routing", () => {
   const tree = renderer
     .create(

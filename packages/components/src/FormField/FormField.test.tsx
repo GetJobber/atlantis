@@ -15,21 +15,24 @@ it("renders correctly with no props", () => {
         }
       }
     >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440001"
+      <div
+        className="inputWrapper"
       >
-         
-      </label>
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440001"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        type="text"
-      />
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440001"
+        />
+        <input
+          className="input"
+          id="123e4567-e89b-12d3-a456-426655440001"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
     </div>
   `);
 });
@@ -47,21 +50,26 @@ it("renders correctly with a placeholder", () => {
         }
       }
     >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440002"
+      <div
+        className="inputWrapper"
       >
-        My placeholder
-      </label>
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440002"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        type="text"
-      />
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440002"
+        >
+          My placeholder
+        </label>
+        <input
+          className="input"
+          id="123e4567-e89b-12d3-a456-426655440002"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
     </div>
   `);
 });
@@ -77,21 +85,24 @@ it("renders correctly as small", () => {
         }
       }
     >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440003"
+      <div
+        className="inputWrapper"
       >
-         
-      </label>
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440003"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        type="text"
-      />
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440003"
+        />
+        <input
+          className="input"
+          id="123e4567-e89b-12d3-a456-426655440003"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
     </div>
   `);
 });
@@ -107,22 +118,25 @@ it("renders correctly in a readonly state", () => {
         }
       }
     >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440004"
+      <div
+        className="inputWrapper"
       >
-         
-      </label>
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440004"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        readOnly={true}
-        type="text"
-      />
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440004"
+        />
+        <input
+          className="input"
+          id="123e4567-e89b-12d3-a456-426655440004"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          readOnly={true}
+          type="text"
+          value=""
+        />
+      </div>
     </div>
   `);
 });
@@ -138,22 +152,25 @@ it("renders correctly in a disabled state", () => {
         }
       }
     >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440005"
+      <div
+        className="inputWrapper"
       >
-         
-      </label>
-      <input
-        className="formField"
-        disabled={true}
-        id="123e4567-e89b-12d3-a456-426655440005"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        type="text"
-      />
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440005"
+        />
+        <input
+          className="input"
+          disabled={true}
+          id="123e4567-e89b-12d3-a456-426655440005"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
     </div>
   `);
 });
@@ -169,22 +186,24 @@ it("renders a field with error", () => {
         }
       }
     >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440006"
+      <div
+        className="inputWrapper"
       >
-         
-      </label>
-      <input
-        className="formField"
-        id="123e4567-e89b-12d3-a456-426655440006"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        type="text"
-        value="wrong!"
-      />
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440006"
+        />
+        <input
+          className="input"
+          id="123e4567-e89b-12d3-a456-426655440006"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          type="text"
+          value="wrong!"
+        />
+      </div>
     </div>
   `);
 });
@@ -240,7 +259,7 @@ test("it should call the validation handler when typing a new value", () => {
 
 test("it should call the validation handler with a message when there is an error", async () => {
   const validationHandler = jest.fn();
-  const validate = val => (val !== "Bob" ? "message" : "");
+  const validate = val => (val == "Bob" ? "message" : "foo");
 
   const { getByLabelText } = render(
     <FormField
@@ -248,19 +267,18 @@ test("it should call the validation handler with a message when there is an erro
       name="Got milk?"
       onValidation={validationHandler}
       placeholder="I hold places"
-      value="test"
       validations={{
         validate,
       }}
     />,
   );
 
-  const input = getByLabelText("I hold places");
-  input.focus();
-  fireEvent.change(input, { target: { value: "Bob" } });
-  input.blur();
+  getByLabelText("I hold places").focus();
+  fireEvent.change(getByLabelText("I hold places"), {
+    target: { value: "Bob" },
+  });
+  getByLabelText("I hold places").blur();
 
-  expect(validationHandler).toHaveBeenCalled();
   await waitFor(() => {
     expect(validationHandler).toHaveBeenCalledWith("message");
   });
@@ -384,6 +402,24 @@ it("it should set the autocomplete value with one-time-code", () => {
   expect(autocomplete).toContain("one-time-code");
 });
 
+it("it should set the autocomplete value with address-line1", () => {
+  const { getByLabelText } = render(
+    <FormField placeholder="foo" autocomplete={"address-line1"} />,
+  );
+  const input = getByLabelText("foo");
+  const autocomplete = input.getAttribute("autocomplete");
+  expect(autocomplete).toContain("address-line1");
+});
+
+it("it should set the autocomplete value with address-line2", () => {
+  const { getByLabelText } = render(
+    <FormField placeholder="foo" autocomplete={"address-line2"} />,
+  );
+  const input = getByLabelText("foo");
+  const autocomplete = input.getAttribute("autocomplete");
+  expect(autocomplete).toContain("address-line2");
+});
+
 it("it should set the autocomplete value to off", () => {
   const { getByLabelText } = render(
     <FormField placeholder="foo" autocomplete={false} />,
@@ -391,4 +427,35 @@ it("it should set the autocomplete value to off", () => {
   const input = getByLabelText("foo");
   const autocomplete = input.getAttribute("autocomplete");
   expect(autocomplete).toContain("autocomplete-off");
+});
+
+describe("when the formfield has a prefix", () => {
+  it("shows an icon", () => {
+    const { getByTestId } = render(<FormField prefix={{ icon: "home" }} />);
+
+    expect(getByTestId("home")).toBeInstanceOf(SVGElement);
+  });
+});
+
+describe("when the formfield has a suffix", () => {
+  it("shows an icon", () => {
+    const { getByTestId } = render(<FormField suffix={{ icon: "home" }} />);
+
+    expect(getByTestId("home")).toBeInstanceOf(SVGElement);
+  });
+
+  it("calls the onClick when set", () => {
+    const clickHandler = jest.fn();
+    const { getByTestId } = render(
+      <FormField
+        suffix={{ arialLabel: "Go home", icon: "home", onClick: clickHandler }}
+      />,
+    );
+
+    const icon = getByTestId("home");
+    fireEvent.click(icon);
+
+    expect(clickHandler).toHaveBeenCalled();
+    expect(clickHandler).toHaveBeenCalledTimes(1);
+  });
 });

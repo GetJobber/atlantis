@@ -155,11 +155,13 @@ follow the following format.
 `<TYPE>(<optional SCOPE>): <conditionally BREAKING CHANGE:> <description>`
 
 Want help with your pull request title? We have a
-[tool to help](/pull-request-name-generator).
+[tool to help](https://atlantis.getjobber.com/pull-request-name-generator).
 
 ##### Requesting review
 
-To request a review from Atlantis maintainers, use [Github's review tool](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/requesting-a-pull-request-review) and request from review from `GetJobber/McWeb`.
+To request a review from Atlantis maintainers, use
+[Github's review tool](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/requesting-a-pull-request-review)
+and request from review from `GetJobber/McWeb`.
 
 ## Guiding Principles
 

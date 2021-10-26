@@ -1,15 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders a Divider 1`] = `
-<hr
-  className="divider"
-  role="none"
-/>
+exports[`Divider should render 1`] = `
+<div>
+  <div
+    class="divider horizontal"
+    role="none presentation"
+  />
+</div>
 `;
 
-exports[`renders a large Divider 1`] = `
-<hr
-  className="divider large"
-  role="none"
-/>
+exports[`Divider when large renders 1`] = `
+<div>
+  <div
+    class="divider large horizontal"
+    role="none presentation"
+  />
+</div>
+`;
+
+exports[`Divider when large when also vertical renders 1`] = `
+<div>
+  <div
+    class="divider large vertical"
+    role="none presentation"
+  />
+</div>
 `;

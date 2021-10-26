@@ -8,6 +8,134 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.7.2...@jobber/hooks@1.8.0) (2021-10-13)
+
+
+### Features
+
+* **components:** Add visibility toggle for InputPassword ([#621](https://github.com/GetJobber/atlantis/issues/621)) ([ef7a851](https://github.com/GetJobber/atlantis/commit/ef7a8519c798cb951f206a2c64d9b9c0b63279a5))
+
+
+
+
+
+## [1.7.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.7.1...@jobber/hooks@1.7.2) (2021-10-07)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+## [1.7.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.7.0...@jobber/hooks@1.7.1) (2021-09-27)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+# [1.7.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.6.1...@jobber/hooks@1.7.0) (2021-09-23)
+
+
+### Features
+
+* **components:** Added keyboard shortcut to confirmation modal  ([#669](https://github.com/GetJobber/atlantis/issues/669)) ([f93456f](https://github.com/GetJobber/atlantis/commit/f93456fcf0bd08472e194282d059572ee1583fc3))
+
+
+
+
+
+## [1.6.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.6.0...@jobber/hooks@1.6.1) (2021-09-21)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+# [1.6.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.5.3...@jobber/hooks@1.6.0) (2021-09-20)
+
+
+### Features
+
+* **eslint:** Update prettier to latest version ([#667](https://github.com/GetJobber/atlantis/issues/667)) ([84e5895](https://github.com/GetJobber/atlantis/commit/84e589542c642b27acd2997af7200b86ba197b7e))
+
+
+
+
+
+## [1.5.3](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.5.2...@jobber/hooks@1.5.3) (2021-09-10)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+## [1.5.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.5.1...@jobber/hooks@1.5.2) (2021-09-10)
+
+
+### Bug Fixes
+
+* **components:** Create a hook to focus back on modal and popover activator ([#638](https://github.com/GetJobber/atlantis/issues/638)) ([4d55a2f](https://github.com/GetJobber/atlantis/commit/4d55a2fda04ddb406770e655bdecfc41cdbb2f8b))
+
+
+
+
+
+## [1.5.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.5.0...@jobber/hooks@1.5.1) (2021-08-31)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+# [1.5.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.4.1...@jobber/hooks@1.5.0) (2021-08-27)
+
+
+### Features
+
+* **hooks:** Implement hook to calculate password strength  ([#622](https://github.com/GetJobber/atlantis/issues/622)) ([dec531b](https://github.com/GetJobber/atlantis/commit/dec531b36e1e12500d6fa1484b779a0d61fe1286))
+
+
+
+
+
+## [1.4.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.4.0...@jobber/hooks@1.4.1) (2021-08-06)
+
+
+### Bug Fixes
+
+* **hooks:** fix refetch after fetchMore ([#579](https://github.com/GetJobber/atlantis/issues/579)) ([6caa77b](https://github.com/GetJobber/atlantis/commit/6caa77ba0795a266c277c03b1905ad17525fd975))
+
+
+
+
+
+# [1.4.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.3.0...@jobber/hooks@1.4.0) (2021-07-08)
+
+
+### Features
+
+* **hooks:** Update useCollectionQuery to handle search terms [32867] ([#589](https://github.com/GetJobber/atlantis/issues/589)) ([99687c9](https://github.com/GetJobber/atlantis/commit/99687c9ae4cc04280e3aa38267a9de629caf5dbe))
+
+
+
+
+
+# [1.3.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.2.0...@jobber/hooks@1.3.0) (2021-07-06)
+
+
+### Features
+
+* **hooks:** add useCollectionQuery and useIsMounted [JOB-32207] ([#561](https://github.com/GetJobber/atlantis/issues/561)) ([8efccf8](https://github.com/GetJobber/atlantis/commit/8efccf8398f6e1d9278248ca4ec40327d11f9782)), closes [#562](https://github.com/GetJobber/atlantis/issues/562) [#575](https://github.com/GetJobber/atlantis/issues/575) [#565](https://github.com/GetJobber/atlantis/issues/565)
+
+
+
+
+
 # [1.2.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.1.3...@jobber/hooks@1.2.0) (2021-05-31)
 
 

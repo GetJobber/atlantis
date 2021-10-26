@@ -34,7 +34,7 @@ export function RadioGroup({
   name = uuid.v1(),
 }: RadioGroupProps) {
   return (
-    <div className={styles.radioGroup}>
+    <div role="radiogroup" className={styles.radioGroup}>
       {React.Children.map(children, option => (
         <InternalRadioOption
           checked={value === option.props.value}

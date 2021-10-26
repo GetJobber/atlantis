@@ -12,9 +12,9 @@ it("renders a success banner", () => {
   expect(tree).toMatchSnapshot();
 });
 
-it("renders an error banner", () => {
-  const tree = renderer.create(<Banner type="error">Fail</Banner>).toJSON();
-  expect(tree).toMatchSnapshot();
+it("adds an error class to error banners", () => {
+  const { getByRole } = render(<Banner type="error">Fail</Banner>);
+  expect(getByRole("alert").classList).toContain("error");
 });
 
 it("renders a notice banner", () => {
@@ -35,7 +35,7 @@ it("renders without close button", () => {
       Foo
     </Banner>,
   );
-  expect(queryByLabelText("Close")).toBeNull();
+  expect(queryByLabelText("Close this notification")).toBeNull();
 });
 
 it("renders with close button", () => {
@@ -44,7 +44,7 @@ it("renders with close button", () => {
       Foo
     </Banner>,
   );
-  expect(queryByLabelText("Close")).toBeTruthy();
+  expect(queryByLabelText("Close this notification")).toBeTruthy();
 });
 
 test("it should call the handler with a number value", () => {
@@ -56,7 +56,7 @@ test("it should call the handler with a number value", () => {
     </Banner>,
   );
 
-  fireEvent.click(getByLabelText("Close"));
+  fireEvent.click(getByLabelText("Close this notification"));
   expect(changeHandler).toHaveBeenCalledTimes(1);
 });
 
@@ -109,4 +109,14 @@ test("it should call the onClick when primaryAction is present", () => {
 
   fireEvent.click(getByText("Hello World"));
   expect(onClick).toHaveBeenCalledTimes(1);
+});
+
+it("adds a role of status by default", () => {
+  const { getByRole } = render(<Banner type="notice">Bruce</Banner>);
+  expect(getByRole("status")).toBeInstanceOf(HTMLDivElement);
+});
+
+it("adds a role of error for error banners", () => {
+  const { getByRole } = render(<Banner type="error">Bruce</Banner>);
+  expect(getByRole("alert")).toBeInstanceOf(HTMLDivElement);
 });

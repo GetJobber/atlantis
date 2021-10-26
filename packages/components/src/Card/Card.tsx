@@ -3,6 +3,7 @@ import classnames from "classnames";
 import { XOR } from "ts-xor";
 import styles from "./Card.css";
 import colors from "./colors.css";
+import { CardClickable } from "./CardClickable";
 import { Typography } from "../Typography";
 
 interface CardProps {
@@ -20,11 +21,19 @@ interface CardProps {
 }
 
 interface LinkCardProps extends CardProps {
+  /**
+   * URL that the card would navigate to once clicked.
+   */
   url: string;
+
+  /**
+   * Makes the URL open in new tab on click.
+   */
+  external?: boolean;
 }
 
 interface ClickableCardProps extends CardProps {
-  onClick(event: React.MouseEvent<HTMLElement>): void;
+  onClick(event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>): void;
 }
 
 type CardPropOptions = XOR<CardProps, XOR<LinkCardProps, ClickableCardProps>>;
@@ -35,6 +44,7 @@ export function Card({
   onClick,
   title,
   url,
+  external = false,
 }: CardPropOptions) {
   const className = classnames(
     styles.card,
@@ -43,55 +53,41 @@ export function Card({
     accent && colors[accent],
   );
 
-  interface InternalProps {
-    className: string;
-    href?: string;
-    role?: "button";
-    tabIndex?: 0;
-    onClick?(event: React.MouseEvent<HTMLElement>): void;
-  }
-
-  const Tag = url ? "a" : "div";
-  const props: InternalProps = { className };
-
-  if (url) {
-    props.href = url;
-  }
+  const cardContent = (
+    <>
+      {title && (
+        <div className={styles.header}>
+          <Typography
+            element="h3"
+            size="large"
+            textCase="uppercase"
+            fontWeight="extraBold"
+          >
+            {title}
+          </Typography>
+        </div>
+      )}
+      {children}
+    </>
+  );
 
   if (onClick) {
-    props.onClick = onClick;
-    props.role = "button";
-    props.tabIndex = 0;
-  }
-
-  return (
-    <Tag {...props}>
-      {title && <Title title={title} />}
-      {children}
-    </Tag>
-  );
-}
-
-interface TitleProps {
-  /**
-   * The title for the card.
-   */
-  readonly title: string;
-}
-
-function Title({ title }: TitleProps) {
-  const className = classnames(styles.header);
-
-  return (
-    <div className={className}>
-      <Typography
-        element="h3"
-        size="large"
-        textCase="uppercase"
-        fontWeight="extraBold"
+    return (
+      <CardClickable className={className} onClick={onClick}>
+        {cardContent}
+      </CardClickable>
+    );
+  } else if (url) {
+    return (
+      <a
+        className={className}
+        href={url}
+        {...(external && { target: "_blank", rel: "noopener noreferrer" })}
       >
-        {title}
-      </Typography>
-    </div>
-  );
+        {cardContent}
+      </a>
+    );
+  } else {
+    return <div className={className}>{cardContent}</div>;
+  }
 }

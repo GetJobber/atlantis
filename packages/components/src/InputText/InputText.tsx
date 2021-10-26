@@ -1,22 +1,34 @@
 import React, { Ref, createRef, forwardRef, useImperativeHandle } from "react";
 import { XOR } from "ts-xor";
-import { FormField, FormFieldProps } from "../FormField";
+import {
+  CommonFormFieldProps,
+  FieldActionsRef,
+  FormField,
+  FormFieldProps,
+} from "../FormField";
 
 interface RowRange {
   min: number;
   max: number;
 }
 
-/**
- * The following is the same as:
- *   type BaseProps = Omit<FormFieldProps, "type" | "children">;
- * Unfortunately Docz doesn't currently support Omit so it has been reduced to
- * its component parts.
- */
-type BaseProps = Pick<
-  FormFieldProps,
-  Exclude<keyof FormFieldProps, "type" | "children" | "rows" | "min" | "max">
->;
+interface BaseProps
+  extends CommonFormFieldProps,
+    Pick<
+      FormFieldProps,
+      | "maxLength"
+      | "readonly"
+      | "autocomplete"
+      | "keyboard"
+      | "onEnter"
+      | "onFocus"
+      | "onBlur"
+      | "onChange"
+      | "inputRef"
+      | "validations"
+    > {
+  multiline?: boolean;
+}
 
 export interface InputTextRef {
   insert(text: string): void;
@@ -46,6 +58,8 @@ function InputTextInternal(
   ref: Ref<InputTextRef>,
 ) {
   const inputRef = createRef<HTMLTextAreaElement | HTMLInputElement>();
+  const actionsRef = createRef<FieldActionsRef>();
+
   const rowRange = getRowRange();
 
   useImperativeHandle(ref, () => ({
@@ -71,6 +85,7 @@ function InputTextInternal(
       {...props}
       type={props.multiline ? "textarea" : "text"}
       inputRef={inputRef}
+      actionsRef={actionsRef}
       onChange={handleChange}
       rows={rowRange.min}
     />
@@ -129,7 +144,10 @@ function InputTextInternal(
     const input = inputRef.current;
     if (input) {
       insertAtCursor(input, text);
-      props.onChange && props.onChange(input.value);
+
+      const newValue = input.value;
+      actionsRef.current?.setValue(newValue);
+      props.onChange && props.onChange(newValue);
     }
   }
 }

@@ -9,6 +9,7 @@ import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { Banner } from ".";
 import { Content } from "@jobber/components/Content";
+import { Icon } from "@jobber/components/Icon";
 
 # Banner
 
@@ -30,7 +31,14 @@ import { Banner } from "@jobber/components/Banner";
 
 <Props of={Banner} />
 
----
+## Types of Banner
+
+BannerType could be any of the followings
+
+- `notice` [<Icon name="link" />](#notice-message)
+- `success` [<Icon name="link" />](#success-message)
+- `warning`[<Icon name="link" />](#warning-message)
+- `error` [<Icon name="link" />](#error-message)
 
 ## Notice message
 
@@ -161,6 +169,15 @@ within a `Banner`. If you require an action, use the `primaryActions` prop. The
     </Banner>
   </Content>
 </Playground>
+
+## Content Guidelines
+
+Content in banner should:
+
+- Be concise and kept to only 1 to 2 sentences where possible
+- Avoid exceeding 200 characters
+- Follow the [product vocabulary](/content/product-vocabulary) where applicable
+- In the case of warning or error banners, explain how to resolve the issue
 
 ## Related components
 

@@ -21,7 +21,7 @@ performed. They provide visual feedback on the outcome of an action, and require
 minimal user interacction.
 
 Toast, unlike common React components is not a component that will be added to
-your view. Instead, toast is used by importing and calling the `showToast()`
+your view. Instead, Toast is used by importing and calling the `showToast()`
 function.
 
 ```ts
@@ -41,15 +41,30 @@ import { showToast } from "@jobber/components/Toast";
 
 ## Design & Usage Guidelines
 
-When contributing to, or consuming the Toast component, consider the following:
+When contributing to or consuming the Toast component, consider the following:
 
 - Keep text labels as short as possible. They should be clear and concise, and
   should not take up more than one line.
 - Use the pattern: noun + verb.
-  - Examples: `Job created`, `Quote approved`, `Client archived`.
+  - Examples: `Job saved`, `Quote approved`, `Client archived`.
 - No need to use "Successfully", should be implicit in the toast.
 - Don't use `Dismiss` or `Cancel` as an action label.
   - Examples of action labels: `Undo`, `View`, `Refresh`.
+
+### Errors
+
+Only use Toast for errors if there is some other mechanism alerting the user of
+the problem (such as [InputValidation](input-validation)) so that they can
+recover from the error.
+
+In most cases, use [Banner](banner) so the user can appropriately assess and
+recover from the error.
+
+## Related Components
+
+For more persistent feedback (such as displaying errors), communicating a
+background process that is ongoing, or for feedback that has a longer reading
+length or CTA, use [Banner.](banner)
 
 ## Props
 
@@ -58,7 +73,9 @@ When contributing to, or consuming the Toast component, consider the following:
 ## Variations
 
 Toasts have 3 variations, `info`, `success`, and `error`. Each should be used
-appropriatly when using Toast.
+appropriately when using Toast.
+
+The primary use case for Toast is success messages.
 
 <Playground>
   {() => {
@@ -69,7 +86,7 @@ appropriatly when using Toast.
           variation="learning"
           onClick={() =>
             showToast({
-              message: "Toast is just crispy bread",
+              message: "Toast is crispy bread",
               variation: "info",
             })
           }
@@ -78,7 +95,7 @@ appropriatly when using Toast.
           label="Success Toast"
           onClick={() =>
             showToast({
-              message: "Toast is great",
+              message: "Toast is ready",
               variation: "success",
             })
           }

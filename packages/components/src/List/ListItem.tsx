@@ -68,7 +68,9 @@ export interface ListItemProps {
   /**
    * Callback when a list item gets clicked.
    */
-  onClick?(): void;
+  onClick?(
+    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
+  ): void;
 }
 
 export function ListItem({

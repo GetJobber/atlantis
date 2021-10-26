@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { fireEvent, render } from "@testing-library/react";
-import { Card } from ".";
+import { Card } from "..";
 
 it("renders a simple card", () => {
   const tree = renderer
@@ -12,14 +12,14 @@ it("renders a simple card", () => {
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-                            <div
-                              className="card accent purple"
-                            >
-                              <p>
-                                This is the card content.
-                              </p>
-                            </div>
-              `);
+    <div
+      className="card accent purple"
+    >
+      <p>
+        This is the card content.
+      </p>
+    </div>
+  `);
 });
 
 it("renders a card", () => {
@@ -73,23 +73,26 @@ it("renders a link card", () => {
 it("renders a clickable card", () => {
   const tree = renderer
     .create(
-      <Card accent="green" onClick={() => {}}>
+      <Card accent="green" onClick={jest.fn()}>
         <p>This is a clickable card.</p>
       </Card>,
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-                <div
-                  className="card accent clickable green"
-                  onClick={[Function]}
-                  role="button"
-                  tabIndex={0}
-                >
-                  <p>
-                    This is a clickable card.
-                  </p>
-                </div>
-        `);
+    <div
+      className="card accent clickable green"
+      data-testid="clickable-card"
+      onClick={[MockFunction]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      role="button"
+      tabIndex={0}
+    >
+      <p>
+        This is a clickable card.
+      </p>
+    </div>
+  `);
 });
 
 test("it should should be clickable if it's clickable", () => {
@@ -105,4 +108,15 @@ test("it should should be clickable if it's clickable", () => {
   fireEvent.click(getByText(text));
 
   expect(clickHandler).toHaveBeenCalledTimes(1);
+});
+
+it("renders an external link card without target attribute", () => {
+  const { getByRole } = render(
+    <Card url="https://frend.space" external={true}>
+      <p>This is a link card.</p>
+    </Card>,
+  );
+
+  expect(getByRole("link")).toHaveAttribute("target", "_blank");
+  expect(getByRole("link")).toHaveAttribute("rel", "noopener noreferrer");
 });

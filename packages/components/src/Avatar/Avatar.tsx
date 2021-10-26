@@ -5,7 +5,7 @@ import styles from "./Avatar.css";
 import { isDark } from "./utilities";
 import { Icon } from "../Icon";
 
-type AvatarSize = "base" | "large";
+type AvatarSize = "base" | "large" | "small";
 interface AvatarFoundationProps {
   /**
    * A url for the image that will be displayed
@@ -25,7 +25,10 @@ interface AvatarFoundationProps {
    */
   readonly color?: string;
   /**
-   * @default 'medium'
+   * Change the size of the avatar
+   * @property "large" - Make avatar to be the focal point
+   * @property "small" - For higher-density/compact places or components
+   * @default "base"
    */
   readonly size?: AvatarSize;
 }
@@ -57,8 +60,7 @@ export function Avatar({
   }
 
   const shouldBeDark = color == undefined || isDark(color);
-  const className = classnames(styles.avatar, {
-    [styles.large]: size === "large",
+  const className = classnames(styles.avatar, size !== "base" && styles[size], {
     [styles.hasBorder]: imageUrl && color,
     [styles.isDark]: shouldBeDark,
   });

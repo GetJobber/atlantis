@@ -8,9 +8,11 @@ import { Icon } from "../Icon";
 import { Text } from "../Text";
 import { Button, ButtonProps } from "../Button";
 
+export type BannerType = "notice" | "success" | "warning" | "error";
+
 interface BannerProps {
   readonly children: ReactNode;
-  readonly type: "notice" | "success" | "warning" | "error";
+  readonly type: BannerType;
   /**
    * The default cta variation should be a 'work' variation. If the banner
    * 'type' is set to 'notice' we change the cta variation to 'learning'
@@ -41,12 +43,10 @@ export function Banner({
     medium: 480,
   };
 
-  const [
-    bannerRef,
-    { width: bannerWidth = bannerWidths.small },
-  ] = useResizeObserver<HTMLDivElement>({
-    widths: bannerWidths,
-  });
+  const [bannerRef, { width: bannerWidth = bannerWidths.small }] =
+    useResizeObserver<HTMLDivElement>({
+      widths: bannerWidths,
+    });
 
   const iconColors: IconColorMap = {
     notice: "lightBlue",
@@ -77,7 +77,11 @@ export function Banner({
   return (
     <>
       {showFlash && (
-        <div className={flashClassNames} ref={bannerRef} role="status">
+        <div
+          className={flashClassNames}
+          ref={bannerRef}
+          role={type === "error" ? "alert" : "status"}
+        >
           <div className={contentClassNames}>
             <Text>{children}</Text>
             {primaryAction && (
@@ -90,7 +94,7 @@ export function Banner({
             <button
               className={styles.closeButton}
               onClick={handleClose}
-              aria-label="Close"
+              aria-label="Close this notification"
             >
               <Icon name="cross" color={iconColors[type]} />
             </button>

@@ -27,7 +27,12 @@ interface ButtonFoundationProps {
   readonly label?: string;
   readonly loading?: boolean;
   readonly size?: "small" | "base" | "large";
-  onClick?(): void;
+  onClick?(
+    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
+  ): void;
+  onMouseDown?(
+    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
+  ): void;
 }
 
 interface ButtonIconProps extends ButtonFoundationProps {
@@ -54,15 +59,9 @@ interface ButtonLinkProps extends ButtonFoundationProps {
 }
 
 interface BaseActionProps extends ButtonFoundationProps {
-  readonly variation?: "work" | "learning";
+  readonly variation?: "work" | "learning" | "subtle" | "destructive";
   readonly type?: "primary" | "secondary" | "tertiary";
 }
-
-interface DestructiveActionProps extends ButtonFoundationProps {
-  readonly variation: "destructive";
-  readonly type?: "primary" | "secondary" | "tertiary";
-}
-
 interface CancelActionProps extends ButtonFoundationProps {
   readonly variation: "cancel";
   readonly type?: "secondary" | "tertiary";
@@ -70,7 +69,6 @@ interface CancelActionProps extends ButtonFoundationProps {
 
 interface SubmitActionProps
   extends Omit<ButtonFoundationProps, "external" | "onClick"> {
-  readonly variation?: "work";
   readonly type?: "primary";
   readonly submit: boolean;
 }
@@ -85,7 +83,7 @@ interface SubmitButtonProps
 
 export type ButtonProps = XOR<
   BaseActionProps,
-  XOR<DestructiveActionProps, XOR<CancelActionProps, SubmitActionProps>>
+  XOR<CancelActionProps, SubmitActionProps>
 > &
   XOR<SubmitButtonProps, XOR<ButtonLinkProps, ButtonAnchorProps>> &
   XOR<ButtonIconProps, ButtonLabelProps>;
@@ -105,6 +103,7 @@ export function Button(props: ButtonProps) {
     id,
     loading,
     onClick,
+    onMouseDown,
     size = "base",
     type = "primary",
     url,
@@ -132,6 +131,7 @@ export function Button(props: ButtonProps) {
     id,
     ...(!disabled && { href: url }),
     ...(!disabled && { onClick: onClick }),
+    ...(!disabled && { onMouseDown: onMouseDown }),
     ...(external && { target: "_blank" }),
     ...(url === undefined && to === undefined && { type: buttonType }),
     "aria-controls": ariaControls,

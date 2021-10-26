@@ -56,6 +56,117 @@ test("simple ConfirmationModal should cancel", () => {
   expect(requestCloseHandler).toHaveBeenCalled();
 });
 
+describe("using keyboard shortcuts", () => {
+  describe("while focused on actions", () => {
+    it("should perform the shortcut if ctrl or meta key is also pressed", () => {
+      const confirmHandler = jest.fn();
+      const cancelHandler = jest.fn();
+      const requestCloseHandler = jest.fn();
+
+      const { getByText } = render(
+        <ConfirmationModal
+          title="Should we?"
+          message="Do something…"
+          open={true}
+          confirmLabel="We Shall"
+          onConfirm={confirmHandler}
+          onCancel={cancelHandler}
+          onRequestClose={requestCloseHandler}
+        />,
+      );
+
+      fireEvent.keyDown(getByText("Cancel").closest("button"), {
+        key: "Enter",
+        code: "Enter",
+        ctrlKey: true,
+      });
+
+      expect(confirmHandler).toHaveBeenCalled();
+      expect(cancelHandler).not.toHaveBeenCalled();
+      expect(requestCloseHandler).toHaveBeenCalled();
+    });
+
+    it("should not perform the shortcut if lacking ctrl or meta key", () => {
+      const confirmHandler = jest.fn();
+
+      const { getByText } = render(
+        <ConfirmationModal
+          title="Should we?"
+          message="nope!"
+          open={true}
+          confirmLabel="We Shan't"
+          onConfirm={confirmHandler}
+          onCancel={jest.fn()}
+          onRequestClose={jest.fn()}
+        />,
+      );
+
+      fireEvent.keyDown(getByText("Cancel").closest("button"), {
+        key: "Enter",
+        code: "Enter",
+      });
+
+      expect(confirmHandler).not.toHaveBeenCalled();
+    });
+  });
+
+  it("should cancel", () => {
+    const confirmHandler = jest.fn();
+    const cancelHandler = jest.fn();
+    const requestCloseHandler = jest.fn();
+
+    const { container } = render(
+      <ConfirmationModal
+        title="Should we?"
+        message="Do something…"
+        open={true}
+        confirmLabel="We Shall"
+        onConfirm={confirmHandler}
+        onCancel={cancelHandler}
+        onRequestClose={requestCloseHandler}
+      />,
+    );
+
+    fireEvent.keyDown(container, {
+      key: "Escape",
+      code: "Escape",
+      ctrlKey: true,
+    });
+
+    expect(confirmHandler).not.toHaveBeenCalled();
+    expect(cancelHandler).toHaveBeenCalled();
+    expect(requestCloseHandler).toHaveBeenCalled();
+  });
+
+  it("should confirm", () => {
+    const confirmHandler = jest.fn();
+    const cancelHandler = jest.fn();
+    const requestCloseHandler = jest.fn();
+
+    const { container } = render(
+      <ConfirmationModal
+        title="Should we?"
+        message="Do something…"
+        open={true}
+        confirmLabel="We Shall"
+        onConfirm={confirmHandler}
+        onCancel={cancelHandler}
+        onRequestClose={requestCloseHandler}
+      />,
+    );
+
+    fireEvent.keyDown(container, {
+      key: "Enter",
+      code: "Enter",
+      ctrlKey: true,
+    });
+
+    expect(cancelHandler).not.toHaveBeenCalled();
+    expect(confirmHandler).toHaveBeenCalled();
+    expect(requestCloseHandler).toHaveBeenCalled();
+  });
+});
+
 test("controlled ConfirmationModal should confirm", () => {
   const onConfirmHandler = jest.fn();
   const onCancelHandler = jest.fn();
@@ -133,4 +244,44 @@ test("message should handle markdown", () => {
   );
 
   expect(getByText("hello")).toBeInstanceOf(HTMLHeadingElement);
+});
+
+test("should have work type button by default", () => {
+  const { getByText } = render(
+    <ConfirmationModal
+      title="Should we?"
+      message="Do something…"
+      open={true}
+      confirmLabel="okay"
+    />,
+  );
+  expect(getByText("okay").parentElement).toHaveClass("work");
+});
+
+test("destructive type should have destructive confirmation button", () => {
+  const { getByText } = render(
+    <ConfirmationModal
+      title="Should we?"
+      message="Do something…"
+      open={true}
+      confirmLabel="Pull the plug"
+      variation="destructive"
+    />,
+  );
+
+  expect(getByText("Pull the plug").parentElement).toHaveClass("destructive");
+});
+
+test("Work should have work styled confirmation button", () => {
+  const { getByText } = render(
+    <ConfirmationModal
+      title="Should we?"
+      message="Do something…"
+      open={true}
+      confirmLabel="Ok"
+      variation="work"
+    />,
+  );
+
+  expect(getByText("Ok").parentElement).toHaveClass("work");
 });

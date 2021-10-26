@@ -118,3 +118,27 @@ it("renders a small text", () => {
     </p>
   `);
 });
+
+it("renders a end-aligned text", () => {
+  const tree = renderer.create(<Text align="end">End align me</Text>).toJSON();
+  expect(tree).toMatchInlineSnapshot(`
+    <p
+      className="base regular base text end"
+    >
+      End align me
+    </p>
+  `);
+});
+
+it("renders a center-aligned text", () => {
+  const tree = renderer
+    .create(<Text align="center">Center align me</Text>)
+    .toJSON();
+  expect(tree).toMatchInlineSnapshot(`
+    <p
+      className="base regular base text center"
+    >
+      Center align me
+    </p>
+  `);
+});

@@ -76,7 +76,7 @@ export default {
 
 The sidebar offset can be adjusted if you have a wrapping component at the top,
 such as a primary navigation bar. By default, it is `0` and represents
-`pixels / px`
+`pixels / px`.
 
 ```
 // doczrc.js
@@ -108,7 +108,7 @@ export default {
 ### Hide / Show Actions
 
 The actions in the top right can be hidden if required by adjusting `hasActions`
-to false. By default it is `true`
+to false. By default it is `true`.
 
 ```
 // doczrc.js
@@ -124,7 +124,7 @@ export default {
 ### Hide / Show Logo
 
 The logo within the sidebar can be hidden if required by adjusting `hasLogo` to
-false. By default it is `true`
+false. By default it is `true`.
 
 ```
 // doczrc.js
@@ -158,7 +158,7 @@ showDirectoryLink: true
 
 ## Prioritizing items in the navigation
 
-`@jobber/docz-tools` will allow you to prioritize items within the sidebar
+`@jobber/docz-tools` allows you to prioritize items within the sidebar
 navigation by adding a `(0x)` prefix to the `name` or `menu` item in the
 frontmatter.
 

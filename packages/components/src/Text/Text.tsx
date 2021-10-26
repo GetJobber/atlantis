@@ -10,7 +10,10 @@ interface TextProps {
     | "success"
     | "error"
     | "warn"
-    | "info";
+    | "info"
+    | "disabled";
+
+  readonly align?: "start" | "center" | "end";
 
   readonly size?: "small" | "base" | "large";
 }
@@ -20,6 +23,7 @@ type TextColor = Extract<TypographyOptions, "textColor">;
 export function Text({
   variation = "default",
   size = "base",
+  align = "start",
   children,
   maxLines = "unlimited",
 }: PropsWithChildren<TextProps>) {
@@ -30,6 +34,7 @@ export function Text({
     error: "critical",
     warn: "warning",
     info: "informative",
+    disabled: "disabled",
   };
 
   const maxLineToNumber = {
@@ -46,6 +51,7 @@ export function Text({
       textColor={textColors[variation] as TextColor}
       size={size}
       numberOfLines={maxLineToNumber[maxLines]}
+      align={align}
     >
       {children}
     </Typography>

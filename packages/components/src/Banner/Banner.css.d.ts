@@ -1,6 +1,10 @@
-export const flash: string;
-export const medium: string;
-export const bannerContent: string;
-export const dismissibleSpacing: string;
-export const bannerAction: string;
-export const closeButton: string;
+declare const styles: {
+  readonly "flash": string;
+  readonly "bannerContent": string;
+  readonly "dismissibleSpacing": string;
+  readonly "medium": string;
+  readonly "bannerAction": string;
+  readonly "closeButton": string;
+};
+export = styles;
+

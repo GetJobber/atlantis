@@ -8,6 +8,144 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.18.0...@jobber/design@0.19.0) (2021-10-25)
+
+
+### Features
+
+* **design:** Adds a body style to design package ([#745](https://github.com/GetJobber/atlantis/issues/745)) ([375a459](https://github.com/GetJobber/atlantis/commit/375a4594b2805dbaf7f9955afba62826bbed31e2))
+
+
+
+
+
+# [0.18.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.17.2...@jobber/design@0.18.0) (2021-09-30)
+
+
+### Features
+
+* **design:** add Typography letter spacing to @jobber/design [JOB-29564] ([#668](https://github.com/GetJobber/atlantis/issues/668)) ([d1dc3b4](https://github.com/GetJobber/atlantis/commit/d1dc3b4b5d475a619139f399c2d0b98899dae559))
+
+
+
+
+
+## [0.17.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.17.1...@jobber/design@0.17.2) (2021-09-27)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.17.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.17.0...@jobber/design@0.17.1) (2021-09-23)
+
+
+### Bug Fixes
+
+* **components:** Use the correct path for the iconMap.ts file in the script ([#305](https://github.com/GetJobber/atlantis/issues/305)) ([046993e](https://github.com/GetJobber/atlantis/commit/046993e4fddb454f51708b9f85cb373107b9dcae))
+* Support semantic colors on icon ([#679](https://github.com/GetJobber/atlantis/issues/679)) ([4653b7d](https://github.com/GetJobber/atlantis/commit/4653b7ddf8d9d68eca8c46704bfe82c097c731d1)), closes [#678](https://github.com/GetJobber/atlantis/issues/678)
+
+
+### Reverts
+
+* Revert "fix(components): Use the correct path for the iconMap.ts file in the script (#305)" (#653) ([6ed682d](https://github.com/GetJobber/atlantis/commit/6ed682d528713f2c881829b6a31f3af874602aa2)), closes [#305](https://github.com/GetJobber/atlantis/issues/305) [#653](https://github.com/GetJobber/atlantis/issues/653)
+
+
+
+
+
+# [0.17.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.16.0...@jobber/design@0.17.0) (2021-09-09)
+
+
+### Features
+
+* **components:** add subtle button [JOB-34785] ([#624](https://github.com/GetJobber/atlantis/issues/624)) ([aa66745](https://github.com/GetJobber/atlantis/commit/aa66745b80f6f3e4e569e518a3027f1b4dd8a26a))
+
+
+
+
+
+# [0.16.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.15.2...@jobber/design@0.16.0) (2021-09-01)
+
+
+### Features
+
+* **design:** Update surface reverse color ([#628](https://github.com/GetJobber/atlantis/issues/628)) ([5461d79](https://github.com/GetJobber/atlantis/commit/5461d79a08d4e6fd42d1cf7d5adde901ab238ea6))
+
+
+
+
+
+## [0.15.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.15.1...@jobber/design@0.15.2) (2021-08-24)
+
+
+### Bug Fixes
+
+* **design:** Fixed parsing of colors to support rgb and rgba ([#616](https://github.com/GetJobber/atlantis/issues/616)) ([a783dd2](https://github.com/GetJobber/atlantis/commit/a783dd235bebeee98e08953b7b3cf3e82cbe4c70))
+
+
+
+
+
+## [0.15.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.15.0...@jobber/design@0.15.1) (2021-08-24)
+
+
+### Bug Fixes
+
+* **design:** fix the colors until a good fix is available ([#615](https://github.com/GetJobber/atlantis/issues/615)) ([59cc327](https://github.com/GetJobber/atlantis/commit/59cc3273ecd3c3b008d3eb1a4d52cb52eafe6323))
+
+
+
+
+
+# [0.15.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.14.2...@jobber/design@0.15.0) (2021-08-10)
+
+
+### Features
+
+* **components:** Add compose icon ([#604](https://github.com/GetJobber/atlantis/issues/604)) ([1913cf5](https://github.com/GetJobber/atlantis/commit/1913cf5c66a40483f21c2f5919187a67c3cc140d))
+
+
+
+
+
+## [0.14.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.14.1...@jobber/design@0.14.2) (2021-07-29)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.14.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.14.0...@jobber/design@0.14.1) (2021-07-16)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+# [0.14.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.13.1...@jobber/design@0.14.0) (2021-07-15)
+
+
+### Features
+
+* **design:** add active surface and dimmed overlay colors ([#590](https://github.com/GetJobber/atlantis/issues/590)) ([37a4acf](https://github.com/GetJobber/atlantis/commit/37a4acf12d751d2345b24378f7f3f881af0fc6c3))
+* **design:** introduce web shadow variations, document and add to Toast ([#588](https://github.com/GetJobber/atlantis/issues/588)) ([5b359c0](https://github.com/GetJobber/atlantis/commit/5b359c09bc1dc3db01cdf0687e99375c1cd54e4d))
+
+
+
+
+
+## [0.13.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.13.0...@jobber/design@0.13.1) (2021-06-07)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
 # [0.13.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.12.0...@jobber/design@0.13.0) (2021-05-31)
 
 

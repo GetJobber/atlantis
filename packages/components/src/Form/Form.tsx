@@ -5,7 +5,7 @@ import React, {
   useEffect,
   useImperativeHandle,
 } from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import { ErrorOption, FormProvider, useForm } from "react-hook-form";
 
 export interface FormRef {
   submit(): void;
@@ -28,15 +28,16 @@ export const Form = forwardRef(function InternalForm(
 ) {
   const methods = useForm({ mode: "onTouched" });
   const {
+    errors,
     trigger,
     handleSubmit,
     formState: { isDirty, isValid },
   } = methods;
 
-  useEffect(() => onStateChange && onStateChange({ isDirty, isValid }), [
-    isDirty,
-    isValid,
-  ]);
+  useEffect(
+    () => onStateChange && onStateChange({ isDirty, isValid }),
+    [isDirty, isValid],
+  );
 
   useImperativeHandle(ref, () => ({
     /**
@@ -52,6 +53,7 @@ export const Form = forwardRef(function InternalForm(
         submitHandler();
       } else {
         trigger();
+        errorHandler(errors);
       }
     },
   }));
@@ -64,7 +66,7 @@ export const Form = forwardRef(function InternalForm(
   const Wrapper = onSubmit ? "form" : "div";
 
   const formProps = {
-    onSubmit: onSubmit && handleSubmit(submitHandler),
+    onSubmit: onSubmit && handleSubmit(submitHandler, errorHandler),
   };
 
   return (
@@ -77,5 +79,16 @@ export const Form = forwardRef(function InternalForm(
 
   function submitHandler() {
     onSubmit && onSubmit();
+  }
+
+  function errorHandler(errs: ErrorOption) {
+    const firstErrName = Object.keys(errs)[0];
+    const element = document.querySelector(
+      `[name="${firstErrName}"]`,
+    ) as HTMLElement;
+
+    if (typeof element != undefined) {
+      element?.focus();
+    }
   }
 });

@@ -8,6 +8,7 @@ import textCases from "./css/TextCases.css";
 import textColors from "./css/TextColors.css";
 import emphasis from "./css/Emphasis.css";
 import truncate from "./css/Truncate.css";
+import alignment from "./css/TextAlignment.css";
 
 interface TypographyProps {
   readonly id?: string;
@@ -39,6 +40,12 @@ interface TypographyProps {
   readonly textCase?: keyof typeof textCases;
   readonly textColor?: keyof typeof textColors;
   readonly emphasisType?: keyof typeof emphasis;
+  /**
+   * Sets the alignment to start, center, or end.
+   * In LTR scripts this equates to left, center, or right.
+   * @default "start"
+   */
+  readonly align?: keyof typeof alignment;
   readonly children: ReactNode;
   numberOfLines?: number;
 }
@@ -49,6 +56,7 @@ export function Typography({
   children,
   element: Tag = "p",
   size,
+  align,
   fontWeight = "regular",
   textCase,
   textColor,
@@ -64,12 +72,16 @@ export function Typography({
     textColor && textColors[textColor],
     emphasisType && emphasis[emphasisType],
     shouldTruncateText && truncate.textTruncate,
+    {
+      ...(align && { [alignment[align]]: align !== `start` }),
+    },
   );
 
   let truncateLines: CSSProperties | undefined;
   if (shouldTruncateText) {
     truncateLines = {
       WebkitLineClamp: numberOfLines,
+      WebkitBoxOrient: "vertical",
     };
   }
 
