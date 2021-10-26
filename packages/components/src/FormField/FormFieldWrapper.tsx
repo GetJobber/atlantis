@@ -81,7 +81,7 @@ export function FormFieldWrapper({
   const Tag = inline ? Fragment : Content;
 
   return (
-    <Tag spacing="small">
+    <Tag {...(inline && { spacing: "small" })}>
       <div className={wrapperClasses} style={wrapperInlineStyle}>
         {prefix?.icon && <AffixIcon {...prefix} size={size} />}
         <div className={styles.inputWrapper}>

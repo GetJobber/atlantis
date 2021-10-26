@@ -10,7 +10,7 @@ it("renders a InputTime", () => {
   const tree = renderer.create(<InputTime />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="padded small"
+      className="padded base"
     >
       <div
         className="wrapper"
@@ -50,7 +50,7 @@ it("renders an initial time when given 'defaultValue'", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="padded small"
+      className="padded base"
     >
       <div
         className="wrapper"
@@ -90,7 +90,7 @@ it("renders correctly in a readonly state", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="padded small"
+      className="padded base"
     >
       <div
         className="wrapper"
@@ -131,7 +131,7 @@ it("adds a error border when invalid", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="padded small"
+      className="padded base"
     >
       <div
         className="wrapper"
@@ -170,7 +170,7 @@ it("should set the value when given 'value' and 'onChange'", () => {
   const tree = renderer.create(<InputTime invalid />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="padded small"
+      className="padded base"
     >
       <div
         className="wrapper invalid"

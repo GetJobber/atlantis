@@ -10,7 +10,7 @@ it("renders a regular input for text and numbers", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="padded small"
+      className="padded base"
     >
       <div
         className="wrapper"
@@ -54,7 +54,7 @@ it("renders a textarea", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="padded small"
+      className="padded base"
     >
       <div
         className="wrapper textarea"
@@ -102,7 +102,7 @@ it("renders a textarea with 4 rows", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="padded small"
+      className="padded base"
     >
       <div
         className="wrapper textarea"

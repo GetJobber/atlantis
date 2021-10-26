@@ -2,7 +2,7 @@
 
 exports[`renders a Select with many options 1`] = `
 <div
-  className="padded small"
+  className="padded base"
 >
   <div
     className="wrapper select"
@@ -61,7 +61,7 @@ exports[`renders a Select with many options 1`] = `
 
 exports[`renders a Select with no options 1`] = `
 <div
-  className="padded small"
+  className="padded base"
 >
   <div
     className="wrapper select"
@@ -107,7 +107,7 @@ exports[`renders a Select with no options 1`] = `
 
 exports[`renders a Select with one option 1`] = `
 <div
-  className="padded small"
+  className="padded base"
 >
   <div
     className="wrapper select"
@@ -157,7 +157,7 @@ exports[`renders a Select with one option 1`] = `
 
 exports[`renders correctly as large 1`] = `
 <div
-  className="padded small"
+  className="padded base"
 >
   <div
     className="wrapper large select"
@@ -207,7 +207,7 @@ exports[`renders correctly as large 1`] = `
 
 exports[`renders correctly as small 1`] = `
 <div
-  className="padded small"
+  className="padded base"
 >
   <div
     className="wrapper small select"
@@ -257,7 +257,7 @@ exports[`renders correctly as small 1`] = `
 
 exports[`renders correctly when disabled 1`] = `
 <div
-  className="padded small"
+  className="padded base"
 >
   <div
     className="wrapper disabled select"
@@ -308,7 +308,7 @@ exports[`renders correctly when disabled 1`] = `
 
 exports[`renders correctly when invalid 1`] = `
 <div
-  className="padded small"
+  className="padded base"
 >
   <div
     className="wrapper invalid select"

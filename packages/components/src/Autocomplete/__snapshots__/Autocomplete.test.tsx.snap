@@ -5,7 +5,7 @@ exports[`it should display headers when headers are passed in 1`] = `
   className="autocomplete"
 >
   <div
-    className="padded small"
+    className="padded base"
   >
     <div
       className="wrapper"
@@ -47,7 +47,7 @@ exports[`renders an Autocomplete 1`] = `
   className="autocomplete"
 >
   <div
-    className="padded small"
+    className="padded base"
   >
     <div
       className="wrapper"
