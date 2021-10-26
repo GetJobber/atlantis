@@ -17,7 +17,7 @@ import { Content } from "../Content";
 interface FormFieldWrapperProps extends FormFieldProps {
   error: string;
   identifier: string;
-  descriptionUUID: string;
+  descriptionIdentifier: string;
 }
 
 interface LabelPadding {
@@ -28,7 +28,7 @@ interface LabelPadding {
 export function FormFieldWrapper({
   align,
   description,
-  descriptionUUID,
+  descriptionIdentifier,
   placeholder,
   value,
   children,
@@ -107,7 +107,7 @@ export function FormFieldWrapper({
       <div>
         {description && !inline && (
           <FormFieldDescription
-            id={descriptionUUID}
+            id={descriptionIdentifier}
             description={description}
           />
         )}
