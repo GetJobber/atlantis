@@ -32,8 +32,8 @@ describe("FormField", () => {
 
   describe("when readonly", () => {
     it("renders", () => {
-      const { container } = render(<FormField readonly />);
-      expect(container).toMatchSnapshot();
+      const { getByRole } = render(<FormField readonly />);
+      expect(getByRole("textbox")).toHaveAttribute("readonly");
     });
   });
 
