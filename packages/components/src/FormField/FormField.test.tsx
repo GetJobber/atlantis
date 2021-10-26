@@ -290,8 +290,7 @@ describe("FormField", () => {
           <FormField placeholder="foo" autocomplete={"one-time-code"} />,
         );
         const input = getByLabelText("foo");
-        const autocomplete = input.getAttribute("autocomplete");
-        expect(autocomplete).toContain("one-time-code");
+        expect(input).toHaveAttribute("autocomplete", "one-time-code");
       });
     });
     describe("when address-line1", () => {
@@ -300,8 +299,7 @@ describe("FormField", () => {
           <FormField placeholder="foo" autocomplete={"address-line1"} />,
         );
         const input = getByLabelText("foo");
-        const autocomplete = input.getAttribute("autocomplete");
-        expect(autocomplete).toContain("address-line1");
+        expect(input).toHaveAttribute("autocomplete", "address-line1");
       });
     });
     describe("when address-line2", () => {
@@ -310,8 +308,7 @@ describe("FormField", () => {
           <FormField placeholder="foo" autocomplete={"address-line2"} />,
         );
         const input = getByLabelText("foo");
-        const autocomplete = input.getAttribute("autocomplete");
-        expect(autocomplete).toContain("address-line2");
+        expect(input).toHaveAttribute("autocomplete", "address-line2");
       });
     });
 
@@ -321,8 +318,7 @@ describe("FormField", () => {
           <FormField placeholder="foo" autocomplete={false} />,
         );
         const input = getByLabelText("foo");
-        const autocomplete = input.getAttribute("autocomplete");
-        expect(autocomplete).toContain("autocomplete-off");
+        expect(input).toHaveAttribute("autocomplete", "autocomplete-off");
       });
     });
   });
