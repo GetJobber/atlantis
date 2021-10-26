@@ -354,7 +354,6 @@ describe("FormField", () => {
         const icon = getByTestId("home");
         fireEvent.click(icon);
 
-        expect(clickHandler).toHaveBeenCalled();
         expect(clickHandler).toHaveBeenCalledTimes(1);
       });
     });
