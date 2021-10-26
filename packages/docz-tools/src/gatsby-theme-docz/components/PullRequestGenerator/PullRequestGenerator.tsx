@@ -7,6 +7,7 @@ import { Option, Select } from "@jobber/components/Select";
 import { InputText } from "@jobber/components/InputText";
 import { Heading } from "@jobber/components/Heading";
 import { Banner } from "@jobber/components/Banner";
+import { Divider } from "@jobber/components/Divider";
 import { showToast } from "@jobber/components/Toast";
 
 export function PullRequestGenerator() {
@@ -22,27 +23,18 @@ export function PullRequestGenerator() {
     <Content>
       <Card title="Tell us about your pull request">
         <Content spacing="large">
-          <Text>
-            I want to{" "}
-            <Select
-              inline
-              size="small"
-              value={type}
-              onChange={(val: string) => setType(val)}
-            >
+          <Content spacing="small">
+            <Text>I want to...</Text>
+            <Select value={type} onChange={(val: string) => setType(val)}>
               <Option value="fix">fix something that&apos;s broken</Option>
               <Option value="feat">add some new functionality</Option>
               <Option value="docs">write documentation</Option>
               <Option value="build">improve the build system</Option>
               <Option value="chore">do something else important</Option>
-            </Select>{" "}
-            in our{" "}
-            <Select
-              inline
-              size="small"
-              value={type}
-              onChange={(val: string) => setScope(val)}
-            >
+            </Select>
+            <Text>in our...</Text>
+            <Select value={type} onChange={(val: string) => setScope(val)}>
+              <Option value="---">---</Option>
               <Option value="components">component library</Option>
               <Option value="hooks">hooks library</Option>
               <Option value="design">design foundation system</Option>
@@ -50,12 +42,12 @@ export function PullRequestGenerator() {
               <Option value="eslint-config">eslint config</Option>
               <Option value="stylelint-config">stylelint config</Option>
             </Select>
-          </Text>
+          </Content>
+          <Divider />
           <Content>
             <InputText
               placeholder="Description"
               multiline
-              size="small"
               rows={2}
               onChange={(val: string) => setDescription(val)}
             />

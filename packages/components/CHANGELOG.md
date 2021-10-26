@@ -8,6 +8,208 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.61.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.60.2...@jobber/components@2.61.0) (2021-10-25)
+
+
+### Features
+
+* **components:** add alignment to Text and Typography ([#744](https://github.com/GetJobber/atlantis/issues/744)) ([d33a4ec](https://github.com/GetJobber/atlantis/commit/d33a4ecc1a278de45ce202ae9f0fd44c11678009))
+
+
+
+
+
+## [2.60.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.60.1...@jobber/components@2.60.2) (2021-10-25)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.60.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.60.0...@jobber/components@2.60.1) (2021-10-21)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.60.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.59.1...@jobber/components@2.60.0) (2021-10-19)
+
+
+### Features
+
+* **components:** Add countdown timer ([#730](https://github.com/GetJobber/atlantis/issues/730)) ([1975e8a](https://github.com/GetJobber/atlantis/commit/1975e8a4caacdbd83e4a54c93eee02600a1a34eb))
+
+
+
+
+
+## [2.59.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.59.0...@jobber/components@2.59.1) (2021-10-19)
+
+
+### Bug Fixes
+
+* **components:** Add alert role to Banner ([#741](https://github.com/GetJobber/atlantis/issues/741)) ([cfe08bf](https://github.com/GetJobber/atlantis/commit/cfe08bf73abdcfaee9374c8c7a990ad0c5efa896))
+
+
+
+
+
+# [2.59.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.58.2...@jobber/components@2.59.0) (2021-10-18)
+
+
+### Features
+
+* **components:** expose onMouseOver in the Button component [JOB-34213] ([#739](https://github.com/GetJobber/atlantis/issues/739)) ([4bc4bd1](https://github.com/GetJobber/atlantis/commit/4bc4bd12d255902b3bf863e358e5f2cf8fdebe37))
+
+
+
+
+
+## [2.58.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.58.1...@jobber/components@2.58.2) (2021-10-18)
+
+
+### Bug Fixes
+
+* **components:** Prevent centering the label for time inputs ([#736](https://github.com/GetJobber/atlantis/issues/736)) ([cca1af2](https://github.com/GetJobber/atlantis/commit/cca1af283e6344a63ee5fc311bf55e76ac40df79))
+
+
+
+
+
+## [2.58.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.58.0...@jobber/components@2.58.1) (2021-10-15)
+
+
+### Bug Fixes
+
+* **components:** don't show tooltip when it's not truncated [JOB-36864] ([#738](https://github.com/GetJobber/atlantis/issues/738)) ([98d1167](https://github.com/GetJobber/atlantis/commit/98d1167e8368c64f6196f360e0d1104f4750098d))
+
+
+
+
+
+# [2.58.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.57.0...@jobber/components@2.58.0) (2021-10-14)
+
+
+### Features
+
+* **components:** add disabled color variation to text ([#733](https://github.com/GetJobber/atlantis/issues/733)) ([862ae93](https://github.com/GetJobber/atlantis/commit/862ae93c52d2cb7809cb027210f6303f6689a54a))
+
+
+
+
+
+# [2.57.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.56.0...@jobber/components@2.57.0) (2021-10-13)
+
+
+### Bug Fixes
+
+* update CSS types order ([#732](https://github.com/GetJobber/atlantis/issues/732)) ([aa4c94b](https://github.com/GetJobber/atlantis/commit/aa4c94bfc89859bb0919567206447e3129b5fe2c))
+
+
+### Features
+
+* **components:** Add visibility toggle for InputPassword ([#621](https://github.com/GetJobber/atlantis/issues/621)) ([ef7a851](https://github.com/GetJobber/atlantis/commit/ef7a8519c798cb951f206a2c64d9b9c0b63279a5))
+* **components:** update banner close position ([#731](https://github.com/GetJobber/atlantis/issues/731)) ([819f6c7](https://github.com/GetJobber/atlantis/commit/819f6c7f4e86b92160a2309f22c05a59474120b7))
+
+
+
+
+
+# [2.56.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.55.1...@jobber/components@2.56.0) (2021-10-08)
+
+
+### Bug Fixes
+
+* **components:** Make card `external` prop optional and `false` by default ([#727](https://github.com/GetJobber/atlantis/issues/727)) ([74b7ac8](https://github.com/GetJobber/atlantis/commit/74b7ac8a1d7e0539c4abcc962692fbcff97e81bd))
+
+
+### Features
+
+* **components:** Add vertical option for Divider and update Divider documentation ([#707](https://github.com/GetJobber/atlantis/issues/707)) ([cfcb505](https://github.com/GetJobber/atlantis/commit/cfcb505e8df6e40791390a2b12e755db4c539fb3))
+
+
+
+
+
+## [2.55.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.55.0...@jobber/components@2.55.1) (2021-10-07)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.55.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.54.1...@jobber/components@2.55.0) (2021-10-06)
+
+
+### Features
+
+* **components:** Add keyboard shortcut to close menu on Escape ([#704](https://github.com/GetJobber/atlantis/issues/704)) ([2cd7b2c](https://github.com/GetJobber/atlantis/commit/2cd7b2cad3e38fd379751972583c6ae481cd7596))
+
+
+
+
+
+## [2.54.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.54.0...@jobber/components@2.54.1) (2021-10-06)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.54.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.53.2...@jobber/components@2.54.0) (2021-10-05)
+
+
+### Bug Fixes
+
+* **components:** Card no longer overrides border color variable ([#718](https://github.com/GetJobber/atlantis/issues/718)) ([72f6bcf](https://github.com/GetJobber/atlantis/commit/72f6bcf18670c61c248b1ab2d98409846e7413bc))
+
+
+### Features
+
+* **components:** add ability to specify external url on card ([#719](https://github.com/GetJobber/atlantis/issues/719)) ([c919994](https://github.com/GetJobber/atlantis/commit/c9199945c6a1e3270239e8c770b85afc1c5e3885))
+
+
+
+
+
+## [2.53.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.53.1...@jobber/components@2.53.2) (2021-10-04)
+
+
+### Bug Fixes
+
+* **components:** Make onclick card operable by keyboard [JOB-30838] ([#625](https://github.com/GetJobber/atlantis/issues/625)) ([e9b43c6](https://github.com/GetJobber/atlantis/commit/e9b43c6551e52c71bd3e90d548906bf06160e664))
+
+
+
+
+
+## [2.53.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.53.0...@jobber/components@2.53.1) (2021-10-04)
+
+
+### Bug Fixes
+
+* **components:** Add a more distinct aria-label to Banner ([#703](https://github.com/GetJobber/atlantis/issues/703)) ([0dda2a1](https://github.com/GetJobber/atlantis/commit/0dda2a1fa5c5febac912ff4c049f38372f586eec)), closes [#695](https://github.com/GetJobber/atlantis/issues/695)
+
+
+
+
+
+# [2.53.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.52.0...@jobber/components@2.53.0) (2021-10-04)
+
+
+### Features
+
+* **components:** Autofocus on first Menu item ([#706](https://github.com/GetJobber/atlantis/issues/706)) ([09fd482](https://github.com/GetJobber/atlantis/commit/09fd4826d2f20938b616d666ba4e149b732ff4b9))
+
+
+
+
+
 # [2.52.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.51.1...@jobber/components@2.52.0) (2021-10-01)
 
 

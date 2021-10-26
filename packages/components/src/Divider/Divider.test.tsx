@@ -1,16 +1,28 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import { cleanup } from "@testing-library/react";
+import { cleanup, render } from "@testing-library/react";
 import { Divider } from ".";
 
 afterEach(cleanup);
 
-it("renders a Divider", () => {
-  const tree = renderer.create(<Divider />).toJSON();
-  expect(tree).toMatchSnapshot();
-});
+describe("Divider", () => {
+  it("should render", () => {
+    const { container } = render(<Divider />);
+    expect(container).toMatchSnapshot();
+  });
 
-it("renders a large Divider", () => {
-  const tree = renderer.create(<Divider size="large" />).toJSON();
-  expect(tree).toMatchSnapshot();
+  describe("when large", () => {
+    it("renders", () => {
+      const { container } = render(<Divider size="large" />);
+      expect(container).toMatchSnapshot();
+    });
+
+    describe("when also vertical", () => {
+      it("renders", () => {
+        const { container } = render(
+          <Divider direction="vertical" size="large" />,
+        );
+        expect(container).toMatchSnapshot();
+      });
+    });
+  });
 });

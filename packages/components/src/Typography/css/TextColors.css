@@ -65,3 +65,7 @@
 .success {
   color: var(--color-success--onSurface);
 }
+
+.disabled {
+  color: var(--color-disabled);
+}

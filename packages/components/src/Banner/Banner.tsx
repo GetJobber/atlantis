@@ -77,7 +77,11 @@ export function Banner({
   return (
     <>
       {showFlash && (
-        <div className={flashClassNames} ref={bannerRef} role="status">
+        <div
+          className={flashClassNames}
+          ref={bannerRef}
+          role={type === "error" ? "alert" : "status"}
+        >
           <div className={contentClassNames}>
             <Text>{children}</Text>
             {primaryAction && (
@@ -90,7 +94,7 @@ export function Banner({
             <button
               className={styles.closeButton}
               onClick={handleClose}
-              aria-label="Close"
+              aria-label="Close this notification"
             >
               <Icon name="cross" color={iconColors[type]} />
             </button>

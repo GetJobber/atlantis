@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { fireEvent, render } from "@testing-library/react";
-import { Card } from ".";
+import { Card } from "..";
 
 it("renders a simple card", () => {
   const tree = renderer
@@ -12,14 +12,14 @@ it("renders a simple card", () => {
     )
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
-                            <div
-                              className="card accent purple"
-                            >
-                              <p>
-                                This is the card content.
-                              </p>
-                            </div>
-              `);
+    <div
+      className="card accent purple"
+    >
+      <p>
+        This is the card content.
+      </p>
+    </div>
+  `);
 });
 
 it("renders a card", () => {
@@ -81,7 +81,10 @@ it("renders a clickable card", () => {
   expect(tree).toMatchInlineSnapshot(`
     <div
       className="card accent clickable green"
+      data-testid="clickable-card"
       onClick={[MockFunction]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
       role="button"
       tabIndex={0}
     >
@@ -105,4 +108,15 @@ test("it should should be clickable if it's clickable", () => {
   fireEvent.click(getByText(text));
 
   expect(clickHandler).toHaveBeenCalledTimes(1);
+});
+
+it("renders an external link card without target attribute", () => {
+  const { getByRole } = render(
+    <Card url="https://frend.space" external={true}>
+      <p>This is a link card.</p>
+    </Card>,
+  );
+
+  expect(getByRole("link")).toHaveAttribute("target", "_blank");
+  expect(getByRole("link")).toHaveAttribute("rel", "noopener noreferrer");
 });

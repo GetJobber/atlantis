@@ -4,10 +4,11 @@
 }
 
 .card {
+  --card--border-color: var(--color-border);
   display: block;
   width: 100%;
   height: fit-content;
-  border: var(--border-base) solid var(--color-border);
+  border: var(--border-base) solid var(--card--border-color);
   border-radius: var(--radius-base);
   outline-color: var(--color-focus);
   background-color: var(--color-surface);
@@ -42,8 +43,7 @@
 }
 
 .clickable {
-  --color-border: transparent;
-
+  --card--border-color: transparent;
   box-shadow: var(--shadow-base);
   color: inherit;
   text-decoration: inherit;
