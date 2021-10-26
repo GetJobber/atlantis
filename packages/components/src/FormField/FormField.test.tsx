@@ -279,7 +279,7 @@ describe("FormField", () => {
       );
       const spinner = getByLabelText("loading");
 
-      expect(spinner).toBeInstanceOf(HTMLElement);
+      expect(spinner).toBeInTheDocument();
     });
   });
 
