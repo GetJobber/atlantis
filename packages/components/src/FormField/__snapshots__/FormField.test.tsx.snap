@@ -13,12 +13,12 @@ exports[`FormField when disabled renders 1`] = `
       >
         <label
           class="label"
-          for="123e4567-e89b-12d3-a456-426655440011"
+          for="123e4567-e89b-12d3-a456-426655440009"
         />
         <input
           class="input"
           disabled=""
-          id="123e4567-e89b-12d3-a456-426655440011"
+          id="123e4567-e89b-12d3-a456-426655440009"
           type="text"
           value=""
         />
@@ -42,11 +42,11 @@ exports[`FormField when readonly renders 1`] = `
       >
         <label
           class="label"
-          for="123e4567-e89b-12d3-a456-426655440009"
+          for="123e4567-e89b-12d3-a456-426655440007"
         />
         <input
           class="input"
-          id="123e4567-e89b-12d3-a456-426655440009"
+          id="123e4567-e89b-12d3-a456-426655440007"
           readonly=""
           type="text"
           value=""
@@ -71,41 +71,11 @@ exports[`FormField when small renders 1`] = `
       >
         <label
           class="label"
-          for="123e4567-e89b-12d3-a456-426655440007"
+          for="123e4567-e89b-12d3-a456-426655440005"
         />
         <input
           class="input"
-          id="123e4567-e89b-12d3-a456-426655440007"
-          type="text"
-          value=""
-        />
-      </div>
-    </div>
-    <div />
-  </div>
-</div>
-`;
-
-exports[`FormField with a placeholder renders 1`] = `
-<div>
-  <div
-    class="padded base"
-  >
-    <div
-      class="wrapper"
-    >
-      <div
-        class="inputWrapper"
-      >
-        <label
-          class="label"
-          for="123e4567-e89b-12d3-a456-426655440003"
-        >
-          A placeholder
-        </label>
-        <input
-          class="input"
-          id="123e4567-e89b-12d3-a456-426655440003"
+          id="123e4567-e89b-12d3-a456-426655440005"
           type="text"
           value=""
         />

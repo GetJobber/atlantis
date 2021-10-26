@@ -15,11 +15,6 @@ describe("FormField", () => {
 
   describe("with a placeholder", () => {
     it("renders", () => {
-      const { container } = render(<FormField placeholder="A placeholder" />);
-      expect(container).toMatchSnapshot();
-    });
-
-    it("renders as a label", () => {
       const placeholder = "The best placeholder!";
       const { getByLabelText } = render(
         <FormField placeholder={placeholder} />,
