@@ -39,8 +39,8 @@ describe("FormField", () => {
 
   describe("when disabled", () => {
     it("renders", () => {
-      const { container } = render(<FormField disabled />);
-      expect(container).toMatchSnapshot();
+      const { getByRole } = render(<FormField disabled />);
+      expect(getByRole("textbox")).toHaveAttribute("disabled");
     });
   });
 
