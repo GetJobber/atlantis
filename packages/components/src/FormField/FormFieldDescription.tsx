@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./FormField.css";
 import { Text } from "../Text";
 
 interface FormFieldDescriptionProps {
@@ -11,7 +12,7 @@ export function FormFieldDescription({
   description,
 }: FormFieldDescriptionProps) {
   return (
-    <div id={id}>
+    <div id={id} className={styles.description}>
       <Text variation="subdued">{description}</Text>
     </div>
   );

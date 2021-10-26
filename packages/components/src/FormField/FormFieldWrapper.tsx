@@ -1,5 +1,4 @@
 import React, {
-  Fragment,
   PropsWithChildren,
   RefObject,
   useEffect,
@@ -12,7 +11,6 @@ import styles from "./FormField.css";
 import { AffixIcon, AffixLabel } from "./FormFieldAffix";
 import { FormFieldDescription } from "./FormFieldDescription";
 import { InputValidation } from "../InputValidation";
-import { Content } from "../Content";
 
 interface FormFieldWrapperProps extends FormFieldProps {
   error: string;
@@ -78,10 +76,8 @@ export function FormFieldWrapper({
     setLabelStyle(getAffixPaddding);
   }, [value]);
 
-  const Tag = inline ? Fragment : Content;
-
   return (
-    <Tag {...(inline && { spacing: "small" })}>
+    <>
       <div className={wrapperClasses} style={wrapperInlineStyle}>
         {prefix?.icon && <AffixIcon {...prefix} size={size} />}
         <div className={styles.inputWrapper}>
@@ -104,16 +100,14 @@ export function FormFieldWrapper({
           <AffixIcon {...suffix} variation="suffix" size={size} />
         )}
       </div>
-      <div>
-        {description && !inline && (
-          <FormFieldDescription
-            id={descriptionIdentifier}
-            description={description}
-          />
-        )}
-        {error && !inline && <InputValidation message={error} />}
-      </div>
-    </Tag>
+      {description && !inline && (
+        <FormFieldDescription
+          id={descriptionIdentifier}
+          description={description}
+        />
+      )}
+      {error && !inline && <InputValidation message={error} />}
+    </>
   );
 
   function getAffixPaddding() {
