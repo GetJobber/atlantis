@@ -24,10 +24,6 @@ interface PageFoundationProps {
    */
   readonly subtitle?: string;
 
-  readonly intro?: string;
-
-  readonly externalIntroLinks?: boolean;
-
   /**
    * Determines the width of the page.
    *
@@ -58,7 +54,7 @@ interface PageFoundationProps {
   readonly moreActionsMenu?: SectionProps[];
 }
 
-interface PagePropsWithIntro extends PageFoundationProps {
+interface PageWithIntroProps extends PageFoundationProps {
   /**
    * Content of the page. This supports basic markdown node types
    * such as `_italic_`, `**bold**`, and `[link name](url)`.
@@ -76,11 +72,7 @@ interface PagePropsWithIntro extends PageFoundationProps {
   readonly externalIntroLinks?: boolean;
 }
 
-interface PagePropsNoIntro extends PageFoundationProps {
-  readonly intro?: undefined;
-  readonly externalIntroLinks?: never;
-}
-export type PageProps = XOR<PagePropsWithIntro, PagePropsNoIntro>;
+export type PageProps = XOR<PageFoundationProps, PageWithIntroProps>;
 
 // eslint-disable-next-line max-statements
 export function Page({
