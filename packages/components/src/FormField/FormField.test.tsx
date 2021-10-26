@@ -1,5 +1,4 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import { FormField } from ".";
 
@@ -369,38 +368,4 @@ describe("FormField", () => {
       });
     });
   });
-});
-
-// @TODO: validate that this actually produces an error and is an expected test
-it.skip("renders a field with error", () => {
-  const tree = renderer.create(<FormField value="wrong!" />).toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
-    >
-      <div
-        className="inputWrapper"
-      >
-        <label
-          className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440006"
-        />
-        <input
-          className="input"
-          id="123e4567-e89b-12d3-a456-426655440006"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          type="text"
-          value="wrong!"
-        />
-      </div>
-    </div>
-  `);
 });
