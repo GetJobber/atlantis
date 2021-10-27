@@ -51,27 +51,29 @@ export function Tabs({ children, onChange }: TabsProps) {
   });
 
   return (
-    <HeadlessTab.Group as="div" className={styles.tabs} onChange={onChange}>
-      <div className={overflowClassNames}>
-        <HeadlessTab.List className={styles.tabRow} ref={tabRow}>
+    <HeadlessTab.Group onChange={onChange}>
+      <div className={styles.tabs}>
+        <div className={overflowClassNames}>
+          <HeadlessTab.List className={styles.tabRow} ref={tabRow}>
+            {React.Children.map(children, tab => (
+              <HeadlessTab
+                className={({ selected }) =>
+                  classnames(styles.tab, { [styles.selected]: selected })
+                }
+              >
+                {({ selected }) => (
+                  <InternalTab label={tab.props.label} selected={selected} />
+                )}
+              </HeadlessTab>
+            ))}
+          </HeadlessTab.List>
+        </div>
+        <HeadlessTab.Panels className={styles.tabContent}>
           {React.Children.map(children, tab => (
-            <HeadlessTab
-              className={({ selected }) =>
-                classnames(styles.tab, { [styles.selected]: selected })
-              }
-            >
-              {({ selected }) => (
-                <InternalTab label={tab.props.label} selected={selected} />
-              )}
-            </HeadlessTab>
+            <HeadlessTab.Panel>{tab.props.children}</HeadlessTab.Panel>
           ))}
-        </HeadlessTab.List>
+        </HeadlessTab.Panels>
       </div>
-      <HeadlessTab.Panels className={styles.tabContent}>
-        {React.Children.map(children, tab => (
-          <HeadlessTab.Panel>{tab.props.children}</HeadlessTab.Panel>
-        ))}
-      </HeadlessTab.Panels>
     </HeadlessTab.Group>
   );
 }
