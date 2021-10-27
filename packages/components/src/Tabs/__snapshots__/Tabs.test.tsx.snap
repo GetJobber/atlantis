@@ -23,11 +23,11 @@ exports[`renders Tabs 1`] = `
         tabIndex={-1}
         type="button"
       >
-        <span
+        <p
           className="base regular base heading"
         >
           Eggs
-        </span>
+        </p>
       </button>
       <button
         aria-selected={false}
@@ -40,11 +40,11 @@ exports[`renders Tabs 1`] = `
         tabIndex={-1}
         type="button"
       >
-        <span
+        <p
           className="base regular base heading"
         >
           Cheese
-        </span>
+        </p>
       </button>
     </div>
   </div>
