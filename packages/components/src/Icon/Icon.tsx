@@ -47,6 +47,7 @@ export function Icon({ name, color, customColor, size = "base" }: IconProps) {
       className={svgClassNames}
       data-testid={name}
     >
+      <title>{name}</title>
       {icon}
     </svg>
   );

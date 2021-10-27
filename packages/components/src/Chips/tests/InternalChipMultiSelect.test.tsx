@@ -50,8 +50,9 @@ describe("onChange", () => {
     expect(handleChange).toHaveReturnedWith([...selectedChips, target]);
   });
 
+  // eslint-disable-next-line max-statements
   it("should trigger the onChange deselecting a chip", () => {
-    userEvent.click(screen.getByLabelText(selectedChips[0]));
+    userEvent.click(screen.getByLabelText(selectedChips[0], { exact: false }));
     expect(handleChange).toHaveBeenCalledTimes(1);
     expect(handleChange).toHaveReturnedWith([]);
   });
