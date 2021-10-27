@@ -8,6 +8,88 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.62.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.61.0...@jobber/components@2.62.0) (2021-10-27)
+
+
+### Features
+
+* **components:** Add ability to open Page intro links in a new tab  ([#550](https://github.com/GetJobber/atlantis/issues/550)) ([f423dc6](https://github.com/GetJobber/atlantis/commit/f423dc6649f1584c4aee7515d570eecc3857a52e))
+
+
+
+
+
+# [2.61.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.60.2...@jobber/components@2.61.0) (2021-10-25)
+
+
+### Features
+
+* **components:** add alignment to Text and Typography ([#744](https://github.com/GetJobber/atlantis/issues/744)) ([d33a4ec](https://github.com/GetJobber/atlantis/commit/d33a4ecc1a278de45ce202ae9f0fd44c11678009))
+
+
+
+
+
+## [2.60.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.60.1...@jobber/components@2.60.2) (2021-10-25)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.60.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.60.0...@jobber/components@2.60.1) (2021-10-21)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.60.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.59.1...@jobber/components@2.60.0) (2021-10-19)
+
+
+### Features
+
+* **components:** Add countdown timer ([#730](https://github.com/GetJobber/atlantis/issues/730)) ([1975e8a](https://github.com/GetJobber/atlantis/commit/1975e8a4caacdbd83e4a54c93eee02600a1a34eb))
+
+
+
+
+
+## [2.59.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.59.0...@jobber/components@2.59.1) (2021-10-19)
+
+
+### Bug Fixes
+
+* **components:** Add alert role to Banner ([#741](https://github.com/GetJobber/atlantis/issues/741)) ([cfe08bf](https://github.com/GetJobber/atlantis/commit/cfe08bf73abdcfaee9374c8c7a990ad0c5efa896))
+
+
+
+
+
+# [2.59.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.58.2...@jobber/components@2.59.0) (2021-10-18)
+
+
+### Features
+
+* **components:** expose onMouseOver in the Button component [JOB-34213] ([#739](https://github.com/GetJobber/atlantis/issues/739)) ([4bc4bd1](https://github.com/GetJobber/atlantis/commit/4bc4bd12d255902b3bf863e358e5f2cf8fdebe37))
+
+
+
+
+
+## [2.58.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.58.1...@jobber/components@2.58.2) (2021-10-18)
+
+
+### Bug Fixes
+
+* **components:** Prevent centering the label for time inputs ([#736](https://github.com/GetJobber/atlantis/issues/736)) ([cca1af2](https://github.com/GetJobber/atlantis/commit/cca1af283e6344a63ee5fc311bf55e76ac40df79))
+
+
+
+
+
 ## [2.58.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.58.0...@jobber/components@2.58.1) (2021-10-15)
 
 

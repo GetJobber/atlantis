@@ -8,6 +8,78 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.23](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.9.22...@jobber/docz-tools@1.9.23) (2021-10-27)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.9.22](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.9.21...@jobber/docz-tools@1.9.22) (2021-10-25)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.9.21](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.9.20...@jobber/docz-tools@1.9.21) (2021-10-25)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.9.20](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.9.19...@jobber/docz-tools@1.9.20) (2021-10-25)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.9.19](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.9.18...@jobber/docz-tools@1.9.19) (2021-10-21)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.9.18](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.9.17...@jobber/docz-tools@1.9.18) (2021-10-19)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.9.17](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.9.16...@jobber/docz-tools@1.9.17) (2021-10-19)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.9.16](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.9.15...@jobber/docz-tools@1.9.16) (2021-10-18)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.9.15](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.9.14...@jobber/docz-tools@1.9.15) (2021-10-18)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
 ## [1.9.14](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.9.13...@jobber/docz-tools@1.9.14) (2021-10-15)
 
 **Note:** Version bump only for package @jobber/docz-tools

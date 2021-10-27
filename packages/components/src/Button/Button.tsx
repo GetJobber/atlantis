@@ -30,6 +30,9 @@ interface ButtonFoundationProps {
   onClick?(
     event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
   ): void;
+  onMouseDown?(
+    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
+  ): void;
 }
 
 interface ButtonIconProps extends ButtonFoundationProps {
@@ -100,6 +103,7 @@ export function Button(props: ButtonProps) {
     id,
     loading,
     onClick,
+    onMouseDown,
     size = "base",
     type = "primary",
     url,
@@ -127,6 +131,7 @@ export function Button(props: ButtonProps) {
     id,
     ...(!disabled && { href: url }),
     ...(!disabled && { onClick: onClick }),
+    ...(!disabled && { onMouseDown: onMouseDown }),
     ...(external && { target: "_blank" }),
     ...(url === undefined && to === undefined && { type: buttonType }),
     "aria-controls": ariaControls,
