@@ -7,53 +7,49 @@ exports[`renders Tabs 1`] = `
   <div
     className="overflow"
   >
-    <ul
+    <div
+      aria-orientation="horizontal"
       className="tabRow"
       role="tablist"
     >
-      <li
-        role="presentation"
+      <button
+        aria-selected={false}
+        className="tab"
+        id="headlessui-tabs-tab-1"
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        role="tab"
+        tabIndex={-1}
+        type="button"
       >
-        <button
-          className="tab selected"
-          id="Eggs"
-          onClick={[Function]}
-          role="tab"
-          type="button"
+        <span
+          className="base regular base heading"
         >
-          <span
-            className="base regular base green"
-          >
-            Eggs
-          </span>
-        </button>
-        <button
-          className="tab"
-          id="Cheese"
-          onClick={[Function]}
-          role="tab"
-          type="button"
+          Eggs
+        </span>
+      </button>
+      <button
+        aria-selected={false}
+        className="tab"
+        id="headlessui-tabs-tab-2"
+        onClick={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        role="tab"
+        tabIndex={-1}
+        type="button"
+      >
+        <span
+          className="base regular base heading"
         >
-          <span
-            className="base regular base heading"
-          >
-            Cheese
-          </span>
-        </button>
-      </li>
-    </ul>
+          Cheese
+        </span>
+      </button>
+    </div>
   </div>
-  <section
-    aria-label="Eggs"
+  <div
     className="tabContent"
-    role="tabpanel"
-  >
-    <p>
-      🍳
-    </p>
-    <p>
-      Eggs
-    </p>
-  </section>
+  />
 </div>
 `;
