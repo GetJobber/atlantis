@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.62.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.61.0...@jobber/components@2.62.0) (2021-10-27)
+
+
+### Features
+
+* **components:** Add ability to open Page intro links in a new tab  ([#550](https://github.com/GetJobber/atlantis/issues/550)) ([f423dc6](https://github.com/GetJobber/atlantis/commit/f423dc6649f1584c4aee7515d570eecc3857a52e))
+
+
+
+
+
 # [2.61.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.60.2...@jobber/components@2.61.0) (2021-10-25)
 
 
