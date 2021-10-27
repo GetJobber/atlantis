@@ -13,9 +13,10 @@ import { Typography } from "../Typography";
 
 interface TabsProps {
   readonly children: ReactElement | ReactElement[];
+  onChange?(index: number): void;
 }
 
-export function Tabs({ children }: TabsProps) {
+export function Tabs({ children, onChange }: TabsProps) {
   const [overflowRight, setOverflowRight] = useState(false);
   const [overflowLeft, setOverflowLeft] = useState(false);
   const tabRow = useRef() as MutableRefObject<HTMLDivElement>;
@@ -50,7 +51,7 @@ export function Tabs({ children }: TabsProps) {
   });
 
   return (
-    <HeadlessTab.Group as="div" className={styles.tabs}>
+    <HeadlessTab.Group as="div" className={styles.tabs} onChange={onChange}>
       <div className={overflowClassNames}>
         <HeadlessTab.List className={styles.tabRow} ref={tabRow}>
           {React.Children.map(children, tab => (
@@ -78,7 +79,6 @@ export function Tabs({ children }: TabsProps) {
 interface TabProps {
   readonly label: string;
   readonly children: ReactNode | ReactNode[];
-  onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 export function Tab({ label }: TabProps) {
@@ -93,7 +93,7 @@ interface InternalTabProps {
 export function InternalTab({ label, selected }: InternalTabProps) {
   const color = selected ? "green" : "heading";
   return (
-    <Typography element="span" size="base" textColor={color}>
+    <Typography size="base" textColor={color}>
       {label}
     </Typography>
   );
