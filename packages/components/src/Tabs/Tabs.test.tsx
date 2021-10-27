@@ -5,14 +5,14 @@ import { Tab, Tabs } from ".";
 
 afterEach(cleanup);
 
-let count = 0;
+const handler = jest.fn();
 const omelet = (
-  <Tabs>
+  <Tabs onChange={handler}>
     <Tab label="Eggs">
       <p>🍳</p>
       <p>Eggs</p>
     </Tab>
-    <Tab label="Cheese" onClick={() => count++}>
+    <Tab label="Cheese">
       <p>🧀</p>
     </Tab>
   </Tabs>
@@ -40,10 +40,9 @@ test("it should switch tabs", () => {
 
 test("it should handle tab onClick", () => {
   const { getByText } = render(omelet);
-  count = 0;
 
   fireEvent.click(getByText("Cheese"));
-  expect(count).toBe(1);
-  fireEvent.click(getByText("Cheese"));
-  expect(count).toBe(2);
+  expect(handler).toHaveBeenCalledWith(1);
+  fireEvent.click(getByText("Eggs"));
+  expect(handler).toHaveBeenCalledWith(0);
 });
