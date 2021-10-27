@@ -49,7 +49,7 @@ function List({ items, level = 1, initialOpen, sidebarRef }: ListProps) {
     <ul className={listClass}>
       {items.map(item => (
         <Item
-          key={item.id}
+          key={`${item.id} - ${items.length}`}
           initialOpen={initialOpen}
           item={item}
           sidebarRef={sidebarRef}
