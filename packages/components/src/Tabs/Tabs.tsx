@@ -7,6 +7,7 @@ import React, {
   useState,
 } from "react";
 import classnames from "classnames";
+import { Tab as HeadlessTab } from "@headlessui/react";
 import styles from "./Tabs.css";
 import { Typography } from "../Typography";
 
@@ -15,25 +16,14 @@ interface TabsProps {
 }
 
 export function Tabs({ children }: TabsProps) {
-  const [activeTab, setActiveTab] = useState(0);
   const [overflowRight, setOverflowRight] = useState(false);
   const [overflowLeft, setOverflowLeft] = useState(false);
-  const tabRow = useRef() as MutableRefObject<HTMLUListElement>;
+  const tabRow = useRef() as MutableRefObject<HTMLDivElement>;
 
   const overflowClassNames = classnames(styles.overflow, {
     [styles.overflowRight]: overflowRight,
     [styles.overflowLeft]: overflowLeft,
   });
-
-  const activateTab = (index: number) => {
-    return () => {
-      setActiveTab(index);
-    };
-  };
-
-  const activeTabProps = (React.Children.toArray(children) as ReactElement[])[
-    activeTab
-  ].props;
 
   const handleOverflowing = () => {
     if (tabRow.current) {
@@ -60,29 +50,28 @@ export function Tabs({ children }: TabsProps) {
   });
 
   return (
-    <div className={styles.tabs}>
+    <HeadlessTab.Group as="div" className={styles.tabs}>
       <div className={overflowClassNames}>
-        <ul role="tablist" className={styles.tabRow} ref={tabRow}>
-          <li role="presentation">
-            {React.Children.map(children, (tab, index) => (
-              <InternalTab
-                label={tab.props.label}
-                selected={activeTab === index}
-                activateTab={activateTab(index)}
-                onClick={tab.props.onClick}
-              />
-            ))}
-          </li>
-        </ul>
+        <HeadlessTab.List className={styles.tabRow} ref={tabRow}>
+          {React.Children.map(children, tab => (
+            <HeadlessTab
+              className={({ selected }) =>
+                classnames(styles.tab, { [styles.selected]: selected })
+              }
+            >
+              {({ selected }) => (
+                <InternalTab label={tab.props.label} selected={selected} />
+              )}
+            </HeadlessTab>
+          ))}
+        </HeadlessTab.List>
       </div>
-      <section
-        role="tabpanel"
-        className={styles.tabContent}
-        aria-label={activeTabProps.label}
-      >
-        {activeTabProps.children}
-      </section>
-    </div>
+      <HeadlessTab.Panels className={styles.tabContent}>
+        {React.Children.map(children, tab => (
+          <HeadlessTab.Panel>{tab.props.children}</HeadlessTab.Panel>
+        ))}
+      </HeadlessTab.Panels>
+    </HeadlessTab.Group>
   );
 }
 
@@ -99,34 +88,13 @@ export function Tab({ label }: TabProps) {
 interface InternalTabProps {
   readonly label: string;
   readonly selected: boolean;
-  activateTab(): void;
-  onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
 }
 
-export function InternalTab({
-  label,
-  selected,
-  activateTab,
-  onClick = () => {
-    return;
-  },
-}: InternalTabProps) {
-  const className = classnames(styles.tab, { [styles.selected]: selected });
+export function InternalTab({ label, selected }: InternalTabProps) {
   const color = selected ? "green" : "heading";
   return (
-    <button
-      type="button"
-      role="tab"
-      id={label}
-      className={className}
-      onClick={event => {
-        activateTab();
-        onClick(event);
-      }}
-    >
-      <Typography element="span" size="base" textColor={color}>
-        {label}
-      </Typography>
-    </button>
+    <Typography element="span" size="base" textColor={color}>
+      {label}
+    </Typography>
   );
 }

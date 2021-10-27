@@ -19,6 +19,7 @@
     "dist/*"
   ],
   "dependencies": {
+    "@headlessui/react": "^1.4.1",
     "@jobber/design": "^0.19.0",
     "@jobber/formatters": "^0.2.0",
     "@jobber/hooks": "^1.8.0",
