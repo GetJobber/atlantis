@@ -61,7 +61,6 @@ function Header({ title, onRequestClose }: HeaderProps) {
       >
         {title}
       </Typography>
-
       <ButtonDismiss onClick={onRequestClose} ariaLabel="Close drawer" />
     </div>
   );
