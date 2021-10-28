@@ -6,7 +6,7 @@ import styles from "./LightBox.css";
 // eslint-disable-next-line import/no-internal-modules
 import "react-image-lightbox/style.css";
 
-interface PresentedImage {
+export interface PresentedImage {
   title?: string;
   caption?: string;
   url: string;
