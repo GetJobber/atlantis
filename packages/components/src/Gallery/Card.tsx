@@ -55,7 +55,7 @@ export function FileCard({ file: { name, src }, size, icon }: FileCardProps) {
       <div className={card}>
         <AtlantisCard url={src} external>
           <div className={styles.column}>
-            <Icon size={size} name={icon} />
+            <Icon size={size == "extraLarge" ? "large" : size} name={icon} />
             <div>
               <Divider />
               <div style={{ overflow: "hidden", textOverflow: "ellipsis" }}>

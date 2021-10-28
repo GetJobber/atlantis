@@ -1,6 +1,6 @@
 import { IconNames } from "../Icon";
 
-export type Sizes = "small" | "base" | "large";
+export type Sizes = "small" | "base" | "large" | "extraLarge";
 
 export type FileIconsNames = Extract<
   IconNames,
@@ -12,7 +12,7 @@ export interface GalleryProps {
    * The size of the Gallery and it's files
    * @default "base"
    */
-  size?: "small" | "base" | "large";
+  size?: Sizes;
   files: File[];
 }
 

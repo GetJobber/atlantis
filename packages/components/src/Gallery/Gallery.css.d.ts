@@ -6,6 +6,7 @@ declare const styles: {
   readonly "small": string;
   readonly "base": string;
   readonly "large": string;
+  readonly "extraLarge": string;
   readonly "centered": string;
   readonly "column": string;
 };

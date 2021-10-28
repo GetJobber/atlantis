@@ -5,7 +5,7 @@ import { GalleryProps } from "./GalleryTypes";
 import { useFiles } from "./useFiles";
 import { LightBox } from "../LightBox";
 
-export function Gallery({ files, size = "large" }: GalleryProps) {
+export function Gallery({ files, size = "base" }: GalleryProps) {
   const { items, images } = useFiles(files);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);

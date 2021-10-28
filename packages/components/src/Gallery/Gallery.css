@@ -28,7 +28,7 @@
 }
 
 .small {
-  --gallery-card--size: var(--space-larger);
+  --gallery-card--size: var(--space-large);
 }
 
 .base {
@@ -37,6 +37,10 @@
 
 .large {
   --gallery-card--size: var(--space-extravagant);
+}
+
+.extraLarge {
+  --gallery-card--size: calc(var(--space-extravagant) * 4);
 }
 
 .centered {
