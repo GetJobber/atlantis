@@ -8,6 +8,18 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.63.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.62.0...@jobber/components@2.63.0) (2021-10-28)
+
+
+### Features
+
+* **components:** BREAKING CHANGE: RadioGroup - Added aria-label attribute ([#723](https://github.com/GetJobber/atlantis/issues/723)) ([f966242](https://github.com/GetJobber/atlantis/commit/f966242fa990c4e2e0b158cffb5ea84862675b2e))
+* **components:** Remove drawer content padding ([#709](https://github.com/GetJobber/atlantis/issues/709)) ([8dca67b](https://github.com/GetJobber/atlantis/commit/8dca67be000fde9334f86fd55b3ac76b24c27678))
+
+
+
+
+
 # [2.62.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.61.0...@jobber/components@2.62.0) (2021-10-27)
 
 
