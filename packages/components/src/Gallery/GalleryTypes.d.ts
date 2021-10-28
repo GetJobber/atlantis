@@ -1,9 +1,20 @@
 import { IconNames } from "../Icon";
 
+export type Sizes = "small" | "base" | "large";
+
 export type FileIconsNames = Extract<
   IconNames,
   "file" | "excel" | "pdf" | "video" | "word"
 >;
+
+export interface GalleryProps {
+  /**
+   * The size of the Gallery and it's files
+   * @default "base"
+   */
+  size?: "small" | "base" | "large";
+  files: File[];
+}
 
 export interface File {
   /**
@@ -19,5 +30,9 @@ export interface File {
   /**
    * The data url of the file.
    */
-  src: string;
+  readonly src: string;
+}
+
+interface GalleryItem extends File {
+  icon?: FileIconsNames;
 }
