@@ -1,1 +1,0 @@
-export { GalleryCard } from "./GalleryCard";

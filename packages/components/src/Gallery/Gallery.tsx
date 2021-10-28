@@ -1,88 +1,59 @@
 import React, { useState } from "react";
-import classnames from "classnames";
 import styles from "./Gallery.css";
-import { GalleryCard } from "./GalleryCard";
-import { File, FileIconsNames } from "./GalleryTypes";
-import { ExtraCard } from "./ExtraCard";
+import { Card } from "./Card";
+import { GalleryProps } from "./GalleryTypes";
+import { useFiles } from "./useFiles";
 import { LightBox } from "../LightBox";
 
-interface GalleryProps {
-  /**
-   * The size of the Gallery and it's files
-   * @default "base"
-   */
-  size?: "small" | "base" | "large";
-  files: File[];
-}
-
-export function Gallery({ files }: GalleryProps) {
+export function Gallery({ files, size = "large" }: GalleryProps) {
+  const { items, images } = useFiles(files);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
 
   return (
     <>
-      <div
-        style={{ display: "flex", flexWrap: "wrap", gap: "var(--space-base)" }}
-      >
-        {files.map(file => {
-          const { name, src } = file;
-          const icon = fileIcon(file);
+      <div className={styles.gallery}>
+        {items.map(item => {
+          function handlePreviewableCardClick() {
+            return () => {
+              handleLightboxOpen(
+                images.findIndex(image => image.url == item.src),
+              );
+            };
+          }
           return (
-            <GalleryCard
-              key={name}
-              name={name}
-              src={src}
-              {...(icon ? { icon } : { onClick: handleLightboxOpen })}
+            <Card
+              key={item.name}
+              file={item}
+              size={size}
+              {...(item.icon
+                ? { icon: item.icon }
+                : { onClick: handlePreviewableCardClick() })}
             />
           );
         })}
-        <div style={{ maxWidth: "fit-content" }}>
-          <ExtraCard number={5} />
-        </div>
+        <Card
+          extra={1}
+          size={size}
+          onClick={() => {
+            handleLightboxOpen(0);
+          }}
+        />
       </div>
       <LightBox
         open={lightboxOpen}
-        images={files
-          .filter(isImage)
-          .map(image => ({ title: image.name, url: image.src }))}
+        images={images}
+        imageIndex={lightboxIndex}
         onRequestClose={handleLightboxClose}
       />
     </>
   );
 
-  function handleLightboxOpen() {
+  function handleLightboxOpen(index: number) {
+    setLightboxIndex(index);
     setLightboxOpen(true);
   }
   function handleLightboxClose() {
     setLightboxOpen(false);
-  }
-
-  function isImage(file: File) {
-    // eslint-disable-next-line no-null/no-null
-    return file.type.match(/^image\/.*$/) !== null;
-  }
-
-  function isVideo(file: File) {
-    // eslint-disable-next-line no-null/no-null
-    return file.type.match(/^video\/.*$/) !== null;
-  }
-
-  function fileIcon(file: File): FileIconsNames | undefined {
-    if (isImage(file)) return undefined;
-    if (isVideo(file)) return "video";
-
-    switch (file.type) {
-      case "application/pdf": {
-        return "pdf";
-      }
-      case "application/msword": {
-        return "word";
-      }
-      case "application/vnd.ms-excel": {
-        return "excel";
-      }
-      default: {
-        return "file";
-      }
-    }
   }
 }
