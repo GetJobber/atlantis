@@ -277,7 +277,3 @@
 .miniLabel:not(.small) .affixLabel {
   padding-top: calc(var(--field--padding-top) - 2px);
 }
-
-.description {
-  margin-top: var(--space-smaller);
-}
