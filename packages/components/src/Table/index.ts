@@ -5,3 +5,4 @@ export { CellNumeric } from "./Cells/CellNumeric";
 export { CellCurrency } from "./Cells/CellCurrency";
 export { Header } from "./Header";
 export { Footer } from "./Footer";
+export { Body } from "./Body";
