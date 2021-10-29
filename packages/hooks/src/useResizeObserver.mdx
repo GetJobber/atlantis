@@ -22,10 +22,8 @@ import { useResizeObserver } from "@jobber/hooks";
 
 <Playground>
   {() => {
-    const [
-      ref,
-      { width, exactWidth, exactHeight, height },
-    ] = useResizeObserver();
+    const [ref, { width, exactWidth, exactHeight, height }] =
+      useResizeObserver();
     return (
       <div ref={ref}>
         <Card title={`Check out my àçƈéñŦ`} accent={getAccent()}>

@@ -9,11 +9,13 @@ import classnames from "classnames";
 import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.css";
 import { AffixIcon, AffixLabel } from "./FormFieldAffix";
+import { FormFieldDescription } from "./FormFieldDescription";
 import { InputValidation } from "../InputValidation";
 
 interface FormFieldWrapperProps extends FormFieldProps {
   error: string;
   identifier: string;
+  descriptionIdentifier: string;
 }
 
 interface LabelPadding {
@@ -23,6 +25,8 @@ interface LabelPadding {
 
 export function FormFieldWrapper({
   align,
+  description,
+  descriptionIdentifier,
   placeholder,
   value,
   children,
@@ -96,6 +100,12 @@ export function FormFieldWrapper({
           <AffixIcon {...suffix} variation="suffix" size={size} />
         )}
       </div>
+      {description && !inline && (
+        <FormFieldDescription
+          id={descriptionIdentifier}
+          description={description}
+        />
+      )}
       {error && !inline && <InputValidation message={error} />}
     </>
   );
