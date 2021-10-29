@@ -1,0 +1,156 @@
+---
+name: InputCurrency
+menu: Components
+route: /components/input-currency
+showDirectoryLink: true
+---
+
+import { Playground, Props } from "docz";
+import { useState } from "react";
+import { ComponentStatus } from "@jobber/docx";
+import { InputCurrency } from ".";
+
+# Input Currency
+
+<ComponentStatus stage="pre" responsive="yes" accessible="yes" />
+
+```ts
+import { InputCurrency } from "@jobber/components/InputCurrency";
+```
+
+<Playground>
+  <InputCurrency placeholder="Unit Price" />
+</Playground>
+
+## Props
+
+<Props of={InputCurrency} />
+
+## Usage Guidelines
+
+InputCurrency is best suited for input data where the values are numeric in
+nature, but where providing incremental modification is not desired. The primary
+example are fields for manipulating currency amounts, where the values should be
+numbers and we likely want to round them to a value, but incrementing the value
+by the smallest step isn't useful.
+
+For normal numeric data, using [InputNumber](input-number) may be preferable.
+
+## Accessibility
+
+_Should follow the same rules as the other FormField wrappers (e.g.
+[InputText](input-text), [InputNumber](input-number))_
+
+## Responsiveness
+
+_Should follow the same rules as the other FormField wrappers (e.g.
+[InputText](input-text), [InputNumber](input-number))_
+
+## Mockup
+
+<!--
+<iframe
+  style="border: 1px solid rgba(0, 0, 0, 0.1);"
+  width="800"
+  height="450"
+  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F3BXCXXD9glMtj8RAHjXiQC%2FDesign-System-Contribution-TEMPLATE%3Fnode-id%3D332%253A5526"
+  allowfullscreen>
+</iframe>
+
+
+  Insert a Figma mockup from the [Design System Contribution template](https://www.figma.com/file/3BXCXXD9glMtj8RAHjXiQC/Design-System-Contribution-TEMPLATE?node-id=26%3A2)
+  that conveys the visual design of the component, with variants and state accounted for.
+  Consider progressive enhancement; might this rely on newer browser features that aren’t
+  widely supported yet?
+-->
+
+## Notes
+
+### `InputCurrency` vs `InputText` or `InputNumber`
+
+We wanted a component that, from an outside perspective, dealt only with numeric
+values – like how `InputNumber` accepts numeric `value` as a prop – but didn't
+use `<input type="number">` because the spinner buttons aren't appopriate for
+this use-case. This could've been written as a wrapper around `InputText`, but
+then it's a wrapper around a wrapper (for `FormField`) and we had at least three
+spots where this behaviour was necessary and felt that sharing this
+functionality would be better than multiple teams writing their own
+implementation of a wrapper around `InputText`.
+
+### i18n Concerns
+
+The current implementation of `InputCurrency` makes a number of assumptions that
+really only apply for sure to locales similar to NA English. For example, it
+defaults to 2 decimal places, and the only allowed/recognized decimal separator
+is `.`. Some currencies don't (typically?) do fractional values, and some
+languages/regions use the `,` as the decimal separator (i.e. "€1.234,56"). We
+did not solve for this, but it should be considered before widespread use of
+this component.
+
+### Saved Cursor position
+
+We encountered strange behaviour with the input filtering on this component. In
+short, when we were using `FormField` with a controlled value, if the user typed
+in a character/value that we wanted to ignore and therefore never update the
+value prop, the user's text cursor would jump to the end of the input. For
+example, if the user started with a value like "12.34" and tried to change it to
+"*5,6*12.34", when the user typed "," the cursor would jump to the end midway
+through and the value would be entered as "*5*12.34*6*".
+
+## Examples
+
+### Controlled
+
+<Playground>
+  {() => {
+    const [price, setPrice] = useState(3.5);
+    return (
+      <>
+        <InputCurrency
+          value={price}
+          onChange={setPrice}
+          name="price"
+          placeholder="Unit Price"
+        />
+        <dl>
+          <dt>My Value Is</dt>
+          <dd>{price}</dd>
+          <dt>My Type Is</dt>
+          <dd>{typeof price}</dd>
+        </dl>
+      </>
+    );
+  }}
+</Playground>
+
+### Explict Decimal places
+
+#### Setting a Minimum
+
+<Playground>
+  {() => {
+    return (
+      <InputCurrency
+        value={3.5}
+        name="price"
+        placeholder="Unit Price"
+        decimalPlaces={3}
+      />
+    );
+  }}
+</Playground>
+
+#### Setting a Maximum
+
+<Playground>
+  {() => {
+    return (
+      <InputCurrency
+        value={3.5555555555555}
+        name="price"
+        placeholder="Unit Price"
+        maximumDecimalPlaces={3}
+      />
+    );
+  }}
+</Playground>
