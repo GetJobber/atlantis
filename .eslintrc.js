@@ -61,6 +61,12 @@ module.exports = {
           }
         }
       }
+    },
+    {
+      files: ["./packages/components/src/Markdown/components/*"],
+      rules: {
+        "@typescript-eslint/no-unused-vars": "off"
+      }
     }
   ]
 };
