@@ -93,11 +93,15 @@ export function FormFieldWrapper({
           {prefix?.label && <AffixLabel {...prefix} labelRef={prefixRef} />}
           {children}
           {suffix?.label && (
-            <AffixLabel {...suffix} labelRef={suffixRef} variation="suffix" />
+            <AffixLabel
+              {...suffix}
+              labelRef={suffixRef}
+              affixVariation="suffix"
+            />
           )}
         </div>
         {suffix?.icon && (
-          <AffixIcon {...suffix} variation="suffix" size={size} />
+          <AffixIcon {...suffix} affixVariation="suffix" size={size} />
         )}
       </div>
       {description && !inline && (

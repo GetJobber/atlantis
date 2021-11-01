@@ -91,6 +91,38 @@ The textarea will start at a specified minimum and grow to a specified maximum.
   />
 </Playground>
 
+<Playground>
+  <Content>
+    <InputText
+      placeholder="Destructive"
+      suffix={{
+        icon: "trash",
+        variation: "destructive",
+        ariaLabel: "Delete me!",
+        onClick: () => alert("I've been deleted!"),
+      }}
+    />
+    <InputText
+      placeholder="Some field"
+      suffix={{
+        icon: "redo",
+        variation: "subtle",
+        ariaLabel: "Restart",
+        onClick: () => alert("Restarted!"),
+      }}
+    />
+    <InputText
+      placeholder="Some field"
+      suffix={{
+        icon: "help",
+        variation: "learning",
+        ariaLabel: "What does this mean?",
+        onClick: () => alert("You tell me!"),
+      }}
+    />
+  </Content>
+</Playground>
+
 ## Validation message
 
 You can add your own custom validation messages on a field. However, this

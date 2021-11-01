@@ -8,12 +8,12 @@ import { Icon } from "../Icon";
 
 interface AffixLabelProps extends Affix {
   labelRef: RefObject<HTMLDivElement>;
-  variation?: "prefix" | "suffix";
+  affixVariation?: "prefix" | "suffix";
 }
 
 export function AffixLabel({
   label,
-  variation = "prefix",
+  affixVariation: variation = "prefix",
   labelRef,
 }: AffixLabelProps) {
   const affixLabelClass = classnames(styles.affixLabel, {
@@ -27,24 +27,27 @@ export function AffixLabel({
   );
 }
 interface AffixIconProps extends Pick<FormFieldProps, "size"> {
-  readonly variation?: "prefix" | "suffix";
+  readonly affixVariation?: "prefix" | "suffix";
 }
 
 export function AffixIcon({
   icon,
   onClick,
   ariaLabel,
-  variation = "prefix",
+  affixVariation = "prefix",
+  variation,
   size,
 }: AffixIconProps & XOR<Affix, Suffix>) {
   const affixIconClass = classnames(styles.affixIcon, {
-    [styles.suffix]: variation === "suffix",
+    [styles.suffix]: affixVariation === "suffix",
     [styles.hasAction]: onClick,
   });
 
   const iconSize = size === "small" ? "small" : "base";
 
   if (!icon) return <></>;
+
+  console.log(variation);
 
   return (
     <div className={affixIconClass}>
@@ -58,6 +61,7 @@ export function AffixIcon({
           icon={icon}
           onClick={onClick}
           type="tertiary"
+          variation={variation}
           size={iconSize}
         />
       ) : (

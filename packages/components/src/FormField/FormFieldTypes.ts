@@ -33,6 +33,7 @@ interface BaseSuffix extends Affix {
 
 export interface Suffix extends BaseSuffix {
   onClick(): void;
+  readonly variation?: "learning" | "subtle" | "destructive";
   readonly ariaLabel: string;
 }
 
