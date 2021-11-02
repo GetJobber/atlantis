@@ -1,0 +1,45 @@
+---
+name: useFocusTrap
+menu: Hooks
+route: /hooks/use-focus-trap
+---
+
+import { Playground } from "docz";
+import { useState } from "react";
+import { useFocusTrap } from "./useFocusTrap";
+import { Text } from "@jobber/components/Text";
+import { Card } from "@jobber/components/Card";
+import { Content } from "@jobber/components/Content";
+
+# useFocusTrap
+
+`useFocusTrap` is a simple hook that traps the focus within the target element.
+
+```tsx
+import { useFocusTrap } from "@jobber/hooks";
+```
+
+<Playground>
+  {() => {
+    const [trap, setTrap] = useState(false);
+    const targetRef = useFocusTrap(trap);
+    return (
+      <>
+        Focus Trap: {trap}
+        <input type="number" />
+        <div ref={targetRef} tabIndex={0}>
+          <button>Click me</button>
+          <a href="#">I am a link</a>
+          <input type="text" />
+          <select>
+            <option value="A"></option>
+          </select>
+          <textarea></textarea>
+          <span tabIndex={0}>I should be focussable</span>
+          <span tabIndex={-1}>I am not focussable</span>
+        </div>
+        <input type="calendar" />
+      </>
+    );
+  }}
+</Playground>
