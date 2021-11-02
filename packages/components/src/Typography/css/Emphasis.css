@@ -4,12 +4,12 @@
 
 .highlight {
   display: inline;
-  padding: var(--space-smaller);
   margin: 0 calc(-1 * var(--space-smaller));
+  padding: var(--space-smaller);
   font-family: var(--typography--fontFamily-display);
   font-style: normal;
   font-weight: inherit;
-  background-image: url(https://getjobber.com/wp-content/uploads/jobber-assets/underline.6f5c72e0.svg);
+  background-image: url(../../Emphasis/EmphasisBrushstroke.svg);
   background-position: center 90%;
   background-repeat: no-repeat;
   background-size: 100% var(--space-small);

@@ -1,2 +1,5 @@
-export const divider: string;
-export const large: string;
+declare const styles: {
+  readonly divider: string;
+  readonly large: string;
+};
+export = styles;

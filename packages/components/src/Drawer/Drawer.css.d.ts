@@ -1,6 +1,9 @@
-export const container: string;
-export const drawer: string;
-export const open: string;
-export const header: string;
-export const contentScroll: string;
-export const content: string;
+declare const styles: {
+  readonly container: string;
+  readonly drawer: string;
+  readonly open: string;
+  readonly header: string;
+  readonly contentScroll: string;
+  readonly content: string;
+};
+export = styles;
