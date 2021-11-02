@@ -4,7 +4,8 @@
 
 .highlight {
   display: inline;
-  padding-bottom: var(--space-smaller);
+  padding: var(--space-smaller);
+  margin: 0 calc(-1 * var(--space-smaller));
   font-family: var(--typography--fontFamily-display);
   font-style: normal;
   font-weight: inherit;
