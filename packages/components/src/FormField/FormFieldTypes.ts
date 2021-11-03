@@ -55,6 +55,11 @@ export interface CommonFormFieldProps {
   readonly defaultValue?: string;
 
   /**
+   * Further description of the input, can be used for a hint.
+   */
+  readonly description?: string;
+
+  /**
    * Disable the input
    */
   readonly disabled?: boolean;

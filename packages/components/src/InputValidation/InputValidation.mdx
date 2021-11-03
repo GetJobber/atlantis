@@ -31,7 +31,6 @@ import { InputValidation } from "@jobber/components/InputValidation";
     const [validationMessages, setValidationMessages] = useState(undefined);
     return (
       <div>
-        {validationMessages && <InputValidation message={validationMessages} />}
         <Text>
           My name is
           <InputText
@@ -49,10 +48,10 @@ import { InputValidation } from "@jobber/components/InputValidation";
             name="myName"
             size="small"
             inline={true}
-            align="center"
             maxLength={4}
           />
         </Text>
+        {validationMessages && <InputValidation message={validationMessages} />}
       </div>
     );
   }}

@@ -61,13 +61,13 @@ it("renders a textarea", () => {
       >
         <label
           className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440002"
+          htmlFor="123e4567-e89b-12d3-a456-426655440003"
         >
           Describe your favourite colour?
         </label>
         <textarea
           className="input"
-          id="123e4567-e89b-12d3-a456-426655440002"
+          id="123e4567-e89b-12d3-a456-426655440003"
           onBlur={[Function]}
           onChange={[Function]}
           onFocus={[Function]}
@@ -104,13 +104,13 @@ it("renders a textarea with 4 rows", () => {
       >
         <label
           className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440003"
+          htmlFor="123e4567-e89b-12d3-a456-426655440005"
         >
           Describe your favourite colour?
         </label>
         <textarea
           className="input"
-          id="123e4567-e89b-12d3-a456-426655440003"
+          id="123e4567-e89b-12d3-a456-426655440005"
           onBlur={[Function]}
           onChange={[Function]}
           onFocus={[Function]}

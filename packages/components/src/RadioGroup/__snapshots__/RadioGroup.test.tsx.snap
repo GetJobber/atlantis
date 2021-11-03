@@ -3,6 +3,7 @@
 exports[`renders a RadioGroup 1`] = `
 <div>
   <div
+    aria-label="Test Label 1"
     class="radioGroup"
     role="radiogroup"
   >
@@ -39,6 +40,7 @@ exports[`renders a RadioGroup 1`] = `
     </div>
   </div>
   <div
+    aria-label="Test Label 2"
     class="radioGroup"
     role="radiogroup"
   >

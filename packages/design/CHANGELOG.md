@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.18.0...@jobber/design@0.19.0) (2021-10-25)
+
+
+### Features
+
+* **design:** Adds a body style to design package ([#745](https://github.com/GetJobber/atlantis/issues/745)) ([375a459](https://github.com/GetJobber/atlantis/commit/375a4594b2805dbaf7f9955afba62826bbed31e2))
+
+
+
+
+
 # [0.18.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.17.2...@jobber/design@0.18.0) (2021-09-30)
 
 

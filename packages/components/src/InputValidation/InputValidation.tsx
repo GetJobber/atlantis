@@ -20,29 +20,27 @@ export function InputValidation({ message }: InputValidationProps) {
   return (
     <>
       {messages && messages.length > 0 && (
-        <div className={styles.hasValidationMessage}>
-          <AnimatePresence>
-            {messages.map(msg => (
-              <motion.div
-                key={`validation-${msg}`}
-                variants={variants}
-                initial="slideOut"
-                animate="slideIn"
-                exit="slideOut"
-                transition={{ duration: 0.2 }}
+        <AnimatePresence>
+          {messages.map(msg => (
+            <motion.div
+              key={`validation-${msg}`}
+              variants={variants}
+              initial="slideOut"
+              animate="slideIn"
+              exit="slideOut"
+              transition={{ duration: 0.2 }}
+            >
+              <div
+                className={styles.message}
+                aria-live="assertive"
+                role="alert"
+                tabIndex={0}
               >
-                <div
-                  className={styles.message}
-                  aria-live="assertive"
-                  role="alert"
-                  tabIndex={0}
-                >
-                  <Text variation="error">{msg}</Text>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
+                <Text variation="error">{msg}</Text>
+              </div>
+            </motion.div>
+          ))}
+        </AnimatePresence>
       )}
     </>
   );
