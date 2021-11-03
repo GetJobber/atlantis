@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.65.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.64.1...@jobber/components@2.65.0) (2021-11-03)
+
+
+### Features
+
+* **components:** add Body component to Table components ([#763](https://github.com/GetJobber/atlantis/issues/763)) ([3602739](https://github.com/GetJobber/atlantis/commit/36027390f9ab9728bf7b792735f2da9b3e7fa0ef))
+
+
+
+
+
 ## [2.64.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.64.0...@jobber/components@2.64.1) (2021-11-01)
 
 **Note:** Version bump only for package @jobber/components
