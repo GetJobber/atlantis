@@ -32,90 +32,92 @@ exports[`renders a table 1`] = `
       </td>
     </tr>
   </thead>
-  <tr
-    className="row"
-  >
-    <td
-      className="cell left"
+  <tbody>
+    <tr
+      className="row"
     >
-      Nostromo
-    </td>
-    <td
-      className="cell left"
-    >
-      Towing Vehicle
-    </td>
-    <td
-      className="cell right"
-    >
-      <span
-        className="numeric"
+      <td
+        className="cell left"
       >
-        $42,000,000.00
-      </span>
-    </td>
-    <td
-      className="cell right"
-    >
-      <span
-        className="numeric"
+        Nostromo
+      </td>
+      <td
+        className="cell left"
       >
-        7
-      </span>
-    </td>
-  </tr>
-  <tr
-    className="row"
-  >
-    <td
-      className="cell left"
-    >
-      Rodger Young
-    </td>
-    <td
-      className="cell left"
-    >
-      Corvette Transport
-    </td>
-    <td
-      className="cell left"
-    />
-    <td
-      className="cell right"
-    >
-      <span
-        className="numeric"
+        Towing Vehicle
+      </td>
+      <td
+        className="cell right"
       >
-        200
-      </span>
-    </td>
-  </tr>
-  <tr
-    className="row"
-  >
-    <td
-      className="cell left"
-    >
-      USS Enterprise
-    </td>
-    <td
-      className="cell left"
-    >
-      Constitution
-    </td>
-    <td
-      className="cell left"
-    />
-    <td
-      className="cell right"
-    >
-      <span
-        className="numeric"
+        <span
+          className="numeric"
+        >
+          $42,000,000.00
+        </span>
+      </td>
+      <td
+        className="cell right"
       >
-        205
-      </span>
-    </td>
-  </tr>
+        <span
+          className="numeric"
+        >
+          7
+        </span>
+      </td>
+    </tr>
+    <tr
+      className="row"
+    >
+      <td
+        className="cell left"
+      >
+        Rodger Young
+      </td>
+      <td
+        className="cell left"
+      >
+        Corvette Transport
+      </td>
+      <td
+        className="cell left"
+      />
+      <td
+        className="cell right"
+      >
+        <span
+          className="numeric"
+        >
+          200
+        </span>
+      </td>
+    </tr>
+    <tr
+      className="row"
+    >
+      <td
+        className="cell left"
+      >
+        USS Enterprise
+      </td>
+      <td
+        className="cell left"
+      >
+        Constitution
+      </td>
+      <td
+        className="cell left"
+      />
+      <td
+        className="cell right"
+      >
+        <span
+          className="numeric"
+        >
+          205
+        </span>
+      </td>
+    </tr>
+  </tbody>
   <tfoot
     className="footer"
   >
