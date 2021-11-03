@@ -62,6 +62,7 @@ export interface SectionProps {
 // eslint-disable-next-line max-statements
 export function Menu({ activator, items }: MenuProps) {
   const [visible, setVisible] = useState(false);
+  const fullWidth = activator?.props?.fullWidth || false;
   const [position, setPosition] = useState<Position>({
     vertical: "below",
     horizontal: "right",
@@ -90,7 +91,7 @@ export function Menu({ activator, items }: MenuProps) {
 
       setPosition(newPosition);
     }
-  }, [visible]);
+  }, [visible, fullWidth]);
 
   if (!activator) {
     activator = (
@@ -111,8 +112,12 @@ export function Menu({ activator, items }: MenuProps) {
     position.horizontal === "right" && styles.right,
   );
 
+  const wrapperClasses = classnames(styles.wrapper, {
+    [styles.fullWidth]: fullWidth,
+  });
+
   return (
-    <div className={styles.wrapper} ref={wrapperRef}>
+    <div className={wrapperClasses} ref={wrapperRef}>
       {React.cloneElement(activator, {
         onClick: toggle(activator.props.onClick),
         id: buttonID,
