@@ -118,12 +118,12 @@ jobs:
 
   test:
     <<: *container_config
-    parallelism: 20
     steps:
       - *restore_repo
       - *sum_lockfiles
       - *restore_npm_cache
       - *npm_install
+      parallelism: 20
       - run:
           name: "Run tests with jest"
           command: |
