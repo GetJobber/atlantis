@@ -127,7 +127,7 @@ jobs:
       - run:
           name: "Run tests with jest"
           command: |
-            TESTS=$(circleci tests ${ls,./packages/components/src/*/*.test.tsx} | circleci tests split)
+            TESTS=$(circleci tests $(ls ./packages/components/src/*/*.test.tsx) | circleci tests split)
             npm test $TESTS -- --no-cache --coverage --reporters=jest-junit
           environment:
             JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
