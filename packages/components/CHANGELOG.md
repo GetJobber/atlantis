@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.65.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.65.0...@jobber/components@2.65.1) (2021-11-04)
+
+
+### Bug Fixes
+
+* **accessibility:** adding aria-controls and aria-hidden markup ([#740](https://github.com/GetJobber/atlantis/issues/740)) ([c3ec4bb](https://github.com/GetJobber/atlantis/commit/c3ec4bb2d7676a62f8d64df17344d29d06982621))
+
+
+
+
+
 # [2.65.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.64.1...@jobber/components@2.65.0) (2021-11-03)
 
 
