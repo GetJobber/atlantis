@@ -15,7 +15,7 @@ describe("Drawer", () => {
     );
     expect(getByTestId("drawer-header")).toBeInTheDocument();
     expect(getByText(title)).toBeInTheDocument();
-    expect(getByLabelText("Close drawer")).toBeInTheDocument();
+    expect(getByLabelText(`Close ${title}`)).toBeInTheDocument();
     expect(getByText(content)).toBeInTheDocument();
   });
 
@@ -28,7 +28,7 @@ describe("Drawer", () => {
             {"Drawer Content"}
           </Drawer>,
         );
-        fireEvent.click(getByLabelText("Close drawer"));
+        fireEvent.click(getByLabelText("Close My drawer"));
         expect(onRequestCloseFn).toHaveBeenCalledTimes(1);
       });
     });
