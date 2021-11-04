@@ -123,8 +123,8 @@ jobs:
       - *sum_lockfiles
       - *restore_npm_cache
       - *npm_install
-      parallelism: 20
       - run:
+          parallelism: 4
           name: "Run tests with jest"
           command: |
             TESTS=$(circleci tests $(ls ./packages/components/src/*/*.test.tsx) | circleci tests split)
