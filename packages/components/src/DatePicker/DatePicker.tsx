@@ -1,31 +1,64 @@
-import React from "react";
-import classnames from "classnames";
+import React, { ReactElement, useState } from "react";
+import ReactDatePicker from "react-datepicker";
+import { XOR } from "ts-xor";
 import styles from "./DatePicker.css";
+import { strFormatDate } from "../FormatDate";
+import { Button } from "../Button";
 
-interface DatePickerProps {
-  /**
-   * Styles the text bold and uppercased
-   * @default false
-   */
-  readonly loud?: boolean;
+/**
+ * Disabling no-internal-modules here because we need
+ * to reach into the package to get the css file.
+ */
+// eslint-disable-next-line import/no-internal-modules
+import "react-datepicker/dist/react-datepicker.css";
 
-  /**
-   * Text to display.
-   */
-  readonly text: string;
-
-  /**
-   * Click handler.
-   */
-  onClick?(event: React.MouseEvent<HTMLDivElement>): void;
+export interface DatePickerReturnedDates {
+  readonly formatted: string;
+  readonly raw: Date;
 }
 
-export function DatePicker({ loud = false, text, onClick }: DatePickerProps) {
-  const className = classnames(styles.datePicker, { [styles.bold]: loud });
+interface BaseDatePickerProps {
+  /**
+   * Change handler that will return the date selected.
+   */
+  onChange(val: DatePickerReturnedDates): void;
+}
+
+interface DatePickerModalProps extends BaseDatePickerProps {
+  /**
+   * Use a custom activator to trigger the DatePicker
+   */
+  readonly activator?: ReactElement;
+}
+
+interface DatePickerInlineProps extends BaseDatePickerProps {
+  readonly inline?: boolean;
+}
+
+type DatePickerProps = XOR<DatePickerModalProps, DatePickerInlineProps>;
+
+export function DatePicker({ onChange, activator, inline }: DatePickerProps) {
+  const [startDate, setStartDate] = useState(new Date());
 
   return (
-    <div className={className} onClick={onClick}>
-      {text}
-    </div>
+    <ReactDatePicker
+      showPopperArrow={false}
+      selected={startDate}
+      className={styles.datePicker}
+      inline={inline}
+      onChange={handleChange}
+      customInput={
+        activator ? (
+          activator
+        ) : (
+          <Button icon="calendar" ariaLabel="Open Datepicker" />
+        )
+      }
+    />
   );
+
+  function handleChange(val: Date) {
+    setStartDate(val);
+    onChange && onChange({ formatted: strFormatDate(val), raw: val });
+  }
 }
