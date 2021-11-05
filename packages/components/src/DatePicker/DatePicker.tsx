@@ -1,9 +1,12 @@
 import React, { ReactElement, useState } from "react";
-import ReactDatePicker from "react-datepicker";
+import ReactDatePicker, {
+  ReactDatePickerCustomHeaderProps,
+} from "react-datepicker";
 import { XOR } from "ts-xor";
 import styles from "./DatePicker.css";
 import { strFormatDate } from "../FormatDate";
 import { Button } from "../Button";
+import { Heading } from "../Heading";
 
 /**
  * Disabling no-internal-modules here because we need
@@ -42,9 +45,9 @@ export function DatePicker({ onChange, activator, inline }: DatePickerProps) {
 
   return (
     <ReactDatePicker
+      calendarClassName={styles.datePicker}
       showPopperArrow={false}
       selected={startDate}
-      className={styles.datePicker}
       inline={inline}
       onChange={handleChange}
       customInput={
@@ -54,6 +57,7 @@ export function DatePicker({ onChange, activator, inline }: DatePickerProps) {
           <Button icon="calendar" ariaLabel="Open Datepicker" />
         )
       }
+      renderCustomHeader={props => <DatePickerCustomHeader {...props} />}
     />
   );
 
@@ -61,4 +65,41 @@ export function DatePicker({ onChange, activator, inline }: DatePickerProps) {
     setStartDate(val);
     onChange && onChange({ formatted: strFormatDate(val), raw: val });
   }
+}
+
+function DatePickerCustomHeader({
+  monthDate,
+  decreaseMonth,
+  increaseMonth,
+  prevMonthButtonDisabled,
+  nextMonthButtonDisabled,
+}: ReactDatePickerCustomHeaderProps) {
+  return (
+    <div className={styles.header}>
+      <Button
+        onClick={decreaseMonth}
+        disabled={prevMonthButtonDisabled}
+        icon="arrowLeft"
+        ariaLabel="Previous Month"
+        variation="subtle"
+        type="tertiary"
+      />
+
+      <Heading level={3}>
+        {monthDate.toLocaleString("en-US", {
+          month: "short",
+          year: "numeric",
+        })}
+      </Heading>
+
+      <Button
+        onClick={increaseMonth}
+        disabled={nextMonthButtonDisabled}
+        icon="arrowRight"
+        ariaLabel="Next Month"
+        variation="subtle"
+        type="tertiary"
+      />
+    </div>
+  );
 }

@@ -26,7 +26,7 @@ import { DatePicker } from "@jobber/components/DatePicker";
     return (
       <Content>
         <DatePicker onChange={val => setDate(val)} />
-        {date && <DataDump initialOpen data={date} />}
+        {date && <DataDump defaultOpen data={date} />}
       </Content>
     );
   }}
@@ -50,7 +50,7 @@ pass a `React` component as the `activator`.
           onChange={val => setDate(val)}
           activator={<Button label="My fancy activator" variation="learning" />}
         />
-        {date && <DataDump initialOpen data={date} />}
+        {date && <DataDump defaultOpen data={date} />}
       </Content>
     );
   }}
@@ -64,7 +64,7 @@ pass a `React` component as the `activator`.
     return (
       <Content>
         <DatePicker onChange={val => setDate(val)} inline={true} />
-        {date && <DataDump initialOpen data={date} />}
+        {date && <DataDump defaultOpen data={date} />}
       </Content>
     );
   }}

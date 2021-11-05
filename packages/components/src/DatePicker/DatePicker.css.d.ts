@@ -1,6 +1,6 @@
 declare const styles: {
   readonly "datePicker": string;
-  readonly "bold": string;
+  readonly "header": string;
 };
 export = styles;
 
