@@ -50,6 +50,7 @@ export function DatePicker({ onChange, activator, inline }: DatePickerProps) {
       selected={startDate}
       inline={inline}
       onChange={handleChange}
+      formatWeekDay={date => date.substr(0, 3)}
       customInput={
         activator ? (
           activator

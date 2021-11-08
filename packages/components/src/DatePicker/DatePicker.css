@@ -43,6 +43,17 @@
   background: var(--color-interactive);
 }
 
+.datePicker :global(.react-datepicker__day-names) {
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
+}
+
+.datePicker :global(.react-datepicker__day-name) {
+  width: auto;
+  flex: 1;
+}
+
 .datePicker :global(.react-datepicker__day):hover,
 .datePicker :global(.react-datepicker__day):focus {
   border-radius: var(--radius-base);
