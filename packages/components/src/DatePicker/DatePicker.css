@@ -1,6 +1,9 @@
-.datePicker {
-  border-color: var(--color-border) !important;
-  border-radius: var(--radius-base) !important;
+.datePicker:global(.react-datepicker) {
+  --datepicker-cell-size: calc(var(--space-base) * 2.375);
+
+  border-color: var(--color-border);
+  border-radius: var(--radius-base);
+  font-family: var(--typography--fontFamily-normal);
 }
 
 .datePicker :global(.react-datepicker__header) {
@@ -12,4 +15,47 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.datePicker :global(.react-datepicker__day) {
+  display: inline-flex;
+  width: var(--datepicker-cell-size);
+  height: var(--datepicker-cell-size);
+  margin: 0;
+  color: var(--color-text);
+  font-size: var(--typography--fontSize-base);
+  line-height: inherit;
+  background: var(--color-surface);
+  align-items: center;
+  justify-content: center;
+}
+
+.datePicker :global(.react-datepicker__day--outside-month) {
+  background: var(--color-surface--background);
+}
+
+.datePicker :global(.react-datepicker__month) {
+  margin: 0;
+}
+
+.datePicker :global(.react-datepicker__day--selected) {
+  color: var(--color-text--reverse);
+  background: var(--color-interactive);
+}
+
+.datePicker :global(.react-datepicker__day):hover,
+.datePicker :global(.react-datepicker__day):focus {
+  border-radius: var(--radius-base);
+  background: var(--color-surface--hover);
+}
+
+.datePicker :global(.react-datepicker__day):focus {
+  position: relative;
+  box-shadow: var(--shadow-focus);
+  outline: none;
+}
+
+.datePicker :global(.react-datepicker__day--selected):hover,
+.datePicker :global(.react-datepicker__day--selected):focus {
+  background: var(--color-interactive--hover);
 }
