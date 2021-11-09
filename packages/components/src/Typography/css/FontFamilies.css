@@ -1,0 +1,7 @@
+.normal {
+  font-family: var(--typography--fontFamily-normal);
+}
+
+.display {
+  font-family: var(--typography--fontFamily-display);
+}

@@ -7,7 +7,8 @@
 }
 
 .datePicker :global(.react-datepicker__header) {
-  padding-top: 0;
+  padding: 0;
+  border-bottom: var(--border-base) solid var(--color-border);
   background: var(--color-surface);
 }
 
@@ -22,7 +23,8 @@
   width: var(--datepicker-cell-size);
   height: var(--datepicker-cell-size);
   margin: 0;
-  color: var(--color-text);
+  border-radius: var(--radius-base);
+  color: var(--color-heading);
   font-size: var(--typography--fontSize-base);
   line-height: inherit;
   background: var(--color-surface);
@@ -31,6 +33,8 @@
 }
 
 .datePicker :global(.react-datepicker__day--outside-month) {
+  border-radius: 0;
+  color: var(--color-text);
   background: var(--color-surface--background);
 }
 
@@ -46,6 +50,9 @@
 .datePicker :global(.react-datepicker__day-names) {
   display: flex;
   justify-content: space-between;
+  margin: 0;
+  padding: var(--space-smallest) 0 0;
+  color: var(--color-text);
   text-transform: uppercase;
 }
 
@@ -56,7 +63,6 @@
 
 .datePicker :global(.react-datepicker__day):hover,
 .datePicker :global(.react-datepicker__day):focus {
-  border-radius: var(--radius-base);
   background: var(--color-surface--hover);
 }
 
@@ -69,4 +75,9 @@
 .datePicker :global(.react-datepicker__day--selected):hover,
 .datePicker :global(.react-datepicker__day--selected):focus {
   background: var(--color-interactive--hover);
+}
+
+.month {
+  margin-top: var(--space-minuscule);
+  color: var(--color-heading);
 }

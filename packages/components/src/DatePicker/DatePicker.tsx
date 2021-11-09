@@ -6,14 +6,13 @@ import { XOR } from "ts-xor";
 import styles from "./DatePicker.css";
 import { strFormatDate } from "../FormatDate";
 import { Button } from "../Button";
-import { Heading } from "../Heading";
-
 /**
  * Disabling no-internal-modules here because we need
  * to reach into the package to get the css file.
  */
 // eslint-disable-next-line import/no-internal-modules
 import "react-datepicker/dist/react-datepicker.css";
+import { Typography } from "../Typography";
 
 export interface DatePickerReturnedDates {
   readonly formatted: string;
@@ -82,23 +81,30 @@ function DatePickerCustomHeader({
         disabled={prevMonthButtonDisabled}
         icon="arrowLeft"
         ariaLabel="Previous Month"
-        variation="subtle"
+        variation="work"
         type="tertiary"
       />
 
-      <Heading level={3}>
-        {monthDate.toLocaleString("en-US", {
-          month: "short",
-          year: "numeric",
-        })}
-      </Heading>
+      <div className={styles.month}>
+        <Typography
+          element="span"
+          fontFamily="display"
+          size="large"
+          textCase="uppercase"
+        >
+          {monthDate.toLocaleString("en-US", {
+            month: "long",
+            year: "numeric",
+          })}
+        </Typography>
+      </div>
 
       <Button
         onClick={increaseMonth}
         disabled={nextMonthButtonDisabled}
         icon="arrowRight"
         ariaLabel="Next Month"
-        variation="subtle"
+        variation="work"
         type="tertiary"
       />
     </div>
