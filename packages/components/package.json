@@ -6,6 +6,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "patch": "npx patch-package",
+    "prebuild": "npm run patch",
     "build": "npm run build:cssTypes && npm run build:rollup",
     "build:rollup": "rollup --config",
     "build:cssTypes": "tcm src",
