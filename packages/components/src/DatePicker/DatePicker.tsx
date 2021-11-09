@@ -2,16 +2,16 @@ import React, { ReactElement, useState } from "react";
 import ReactDatePicker, {
   ReactDatePickerCustomHeaderProps,
 } from "react-datepicker";
-import { XOR } from "ts-xor";
-import styles from "./DatePicker.css";
-import { strFormatDate } from "../FormatDate";
-import { Button } from "../Button";
 /**
  * Disabling no-internal-modules here because we need
  * to reach into the package to get the css file.
  */
 // eslint-disable-next-line import/no-internal-modules
 import "react-datepicker/dist/react-datepicker.css";
+import { XOR } from "ts-xor";
+import styles from "./DatePicker.css";
+import { strFormatDate } from "../FormatDate";
+import { Button } from "../Button";
 import { Typography } from "../Typography";
 
 export interface DatePickerReturnedDates {

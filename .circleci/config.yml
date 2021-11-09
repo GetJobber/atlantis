@@ -28,8 +28,8 @@ references:
     restore_cache:
       name: Restore npm cache
       keys:
-        - npm-cache-v2-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
-        - npm-cache-v2
+        - npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
+        - npm-cache-v1
 
   npm_install: &npm_install
     run:
@@ -68,7 +68,7 @@ jobs:
       - *npm_install
       - save_cache:
           name: Save npm cache
-          key: npm-cache-v2-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
+          key: npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
           paths:
             - ~/.npm
 
