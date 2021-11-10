@@ -40,13 +40,7 @@ it("returns the dates from onChange", async () => {
   const date = getByText("15");
   fireEvent.click(date);
 
-  /**
-   * This gets the first result from the `changeHandler` mock
-   * now that it has been called
-   */
-  const [[changeHandlerResult]] = changeHandler.mock.calls;
-
-  expect(changeHandlerResult).toMatchObject({
+  expect(changeHandler).toHaveBeenCalledWith({
     raw: expect.any(Date),
     formatted: "Apr 15, 2021",
   });

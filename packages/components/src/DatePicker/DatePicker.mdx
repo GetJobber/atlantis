@@ -66,7 +66,9 @@ volume of UI elements to process at once.
     const [date, setDate] = useState();
     return (
       <Content>
-        <DatePicker onChange={val => setDate(val)} inline={true} />
+        <div>
+          <DatePicker inline onChange={val => setDate(val)} />
+        </div>
         {date && <DataDump defaultOpen data={date} />}
       </Content>
     );
