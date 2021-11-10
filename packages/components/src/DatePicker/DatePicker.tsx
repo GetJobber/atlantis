@@ -67,6 +67,7 @@ export function DatePicker({ onChange, activator, inline }: DatePickerProps) {
           )
         }
         renderCustomHeader={props => <DatePickerCustomHeader {...props} />}
+        onCalendarOpen={focusSelectedDate}
       />
     </div>
   );
@@ -74,5 +75,17 @@ export function DatePicker({ onChange, activator, inline }: DatePickerProps) {
   function handleChange(val: Date) {
     setStartDate(val);
     onChange && onChange({ formatted: strFormatDate(val), raw: val });
+  }
+
+  function focusSelectedDate() {
+    const selectedDateClass = ".react-datepicker__day--selected";
+
+    const selectedDate = document.querySelector(
+      selectedDateClass,
+    ) as HTMLDivElement;
+
+    if (selectedDate) {
+      selectedDate.focus();
+    }
   }
 }
