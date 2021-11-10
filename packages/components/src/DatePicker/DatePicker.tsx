@@ -58,7 +58,12 @@ export function DatePicker({ onChange, activator, inline }: DatePickerProps) {
           activator ? (
             activator
           ) : (
-            <Button icon="calendar" ariaLabel="Open Datepicker" />
+            <Button
+              variation="work"
+              type="tertiary"
+              icon="calendar"
+              ariaLabel="Open Datepicker"
+            />
           )
         }
         renderCustomHeader={props => <DatePickerCustomHeader {...props} />}

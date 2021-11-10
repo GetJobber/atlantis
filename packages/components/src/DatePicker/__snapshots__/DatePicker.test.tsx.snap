@@ -11,7 +11,7 @@ exports[`renders only a button by default 1`] = `
       >
         <button
           aria-label="Open Datepicker"
-          class="button base onlyIcon work primary"
+          class="button base onlyIcon work tertiary"
           type="button"
         >
           <svg
