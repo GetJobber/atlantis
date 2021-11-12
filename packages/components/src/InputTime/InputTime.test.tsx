@@ -57,11 +57,11 @@ it("renders an initial time when given 'defaultValue'", () => {
       >
         <label
           className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440004"
+          htmlFor="123e4567-e89b-12d3-a456-426655440007"
         />
         <input
           className="input"
-          id="123e4567-e89b-12d3-a456-426655440004"
+          id="123e4567-e89b-12d3-a456-426655440007"
           onBlur={[Function]}
           onChange={[Function]}
           onFocus={[Function]}
@@ -92,11 +92,11 @@ it("renders correctly in a readonly state", () => {
       >
         <label
           className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440005"
+          htmlFor="123e4567-e89b-12d3-a456-426655440009"
         />
         <input
           className="input"
-          id="123e4567-e89b-12d3-a456-426655440005"
+          id="123e4567-e89b-12d3-a456-426655440009"
           onBlur={[Function]}
           onChange={[Function]}
           onFocus={[Function]}
@@ -128,11 +128,11 @@ it("adds a error border when invalid", () => {
       >
         <label
           className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440008"
+          htmlFor="123e4567-e89b-12d3-a456-426655440015"
         />
         <input
           className="input"
-          id="123e4567-e89b-12d3-a456-426655440008"
+          id="123e4567-e89b-12d3-a456-426655440015"
           onBlur={[Function]}
           onChange={[Function]}
           onFocus={[Function]}
@@ -162,11 +162,11 @@ it("should set the value when given 'value' and 'onChange'", () => {
       >
         <label
           className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440011"
+          htmlFor="123e4567-e89b-12d3-a456-426655440021"
         />
         <input
           className="input"
-          id="123e4567-e89b-12d3-a456-426655440011"
+          id="123e4567-e89b-12d3-a456-426655440021"
           onBlur={[Function]}
           onChange={[Function]}
           onFocus={[Function]}

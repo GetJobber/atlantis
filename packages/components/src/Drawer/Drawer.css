@@ -57,5 +57,14 @@
 
 .content {
   width: 100%;
-  padding: var(--drawer--base-padding);
+}
+
+/* Adjust `Content` components public padding to match the cards */
+.content > * {
+  --public-content--padding: var(--drawer--base-padding);
+}
+
+/* Remove the nested `Content` components public padding */
+.content > * > * {
+  --public-content--padding: 0;
 }

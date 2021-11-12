@@ -165,7 +165,7 @@ Everyone is a friend of Atlantis and we welcome pull requests. See the
 
 ## Publishing
 
-Atlantis uses [Lerna](https://github.com/lerna/lerna) and will automatically
+Atlantis uses [Lerna](https://github.com/lerna/lerna) and will
 automatically publish whenever a pull request is merged.
 
 <details>

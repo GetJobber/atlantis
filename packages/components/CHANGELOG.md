@@ -8,6 +8,119 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.65.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.65.0...@jobber/components@2.65.1) (2021-11-04)
+
+
+### Bug Fixes
+
+* **accessibility:** adding aria-controls and aria-hidden markup ([#740](https://github.com/GetJobber/atlantis/issues/740)) ([c3ec4bb](https://github.com/GetJobber/atlantis/commit/c3ec4bb2d7676a62f8d64df17344d29d06982621))
+
+
+
+
+
+# [2.65.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.64.1...@jobber/components@2.65.0) (2021-11-03)
+
+
+### Features
+
+* **components:** add Body component to Table components ([#763](https://github.com/GetJobber/atlantis/issues/763)) ([3602739](https://github.com/GetJobber/atlantis/commit/36027390f9ab9728bf7b792735f2da9b3e7fa0ef))
+
+
+
+
+
+## [2.64.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.64.0...@jobber/components@2.64.1) (2021-11-01)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.64.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.63.0...@jobber/components@2.64.0) (2021-10-29)
+
+
+### Features
+
+* **components:** Add description to base FormField component ([#714](https://github.com/GetJobber/atlantis/issues/714)) ([3fae72e](https://github.com/GetJobber/atlantis/commit/3fae72e9f483ece23263c9b2c981060248223db5))
+
+
+
+
+
+# [2.63.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.62.0...@jobber/components@2.63.0) (2021-10-28)
+
+
+### Features
+
+* **components:** BREAKING CHANGE: RadioGroup - Added aria-label attribute ([#723](https://github.com/GetJobber/atlantis/issues/723)) ([f966242](https://github.com/GetJobber/atlantis/commit/f966242fa990c4e2e0b158cffb5ea84862675b2e))
+* **components:** Remove drawer content padding ([#709](https://github.com/GetJobber/atlantis/issues/709)) ([8dca67b](https://github.com/GetJobber/atlantis/commit/8dca67be000fde9334f86fd55b3ac76b24c27678))
+
+
+
+
+
+# [2.62.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.61.0...@jobber/components@2.62.0) (2021-10-27)
+
+
+### Features
+
+* **components:** Add ability to open Page intro links in a new tab  ([#550](https://github.com/GetJobber/atlantis/issues/550)) ([f423dc6](https://github.com/GetJobber/atlantis/commit/f423dc6649f1584c4aee7515d570eecc3857a52e))
+
+
+
+
+
+# [2.61.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.60.2...@jobber/components@2.61.0) (2021-10-25)
+
+
+### Features
+
+* **components:** add alignment to Text and Typography ([#744](https://github.com/GetJobber/atlantis/issues/744)) ([d33a4ec](https://github.com/GetJobber/atlantis/commit/d33a4ecc1a278de45ce202ae9f0fd44c11678009))
+
+
+
+
+
+## [2.60.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.60.1...@jobber/components@2.60.2) (2021-10-25)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.60.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.60.0...@jobber/components@2.60.1) (2021-10-21)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.60.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.59.1...@jobber/components@2.60.0) (2021-10-19)
+
+
+### Features
+
+* **components:** Add countdown timer ([#730](https://github.com/GetJobber/atlantis/issues/730)) ([1975e8a](https://github.com/GetJobber/atlantis/commit/1975e8a4caacdbd83e4a54c93eee02600a1a34eb))
+
+
+
+
+
+## [2.59.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.59.0...@jobber/components@2.59.1) (2021-10-19)
+
+
+### Bug Fixes
+
+* **components:** Add alert role to Banner ([#741](https://github.com/GetJobber/atlantis/issues/741)) ([cfe08bf](https://github.com/GetJobber/atlantis/commit/cfe08bf73abdcfaee9374c8c7a990ad0c5efa896))
+
+
+
+
+
 # [2.59.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.58.2...@jobber/components@2.59.0) (2021-10-18)
 
 
