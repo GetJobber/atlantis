@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, RefObject, useRef, useState } from "react";
 import classnames from "classnames";
 import ReactDatePicker from "react-datepicker";
 /**
@@ -45,8 +45,10 @@ export function DatePicker({ onChange, activator, inline }: DatePickerProps) {
     [styles.inline]: inline,
   });
 
+  const datePickerRef = useRef() as RefObject<HTMLDivElement>;
+
   return (
-    <div>
+    <div ref={datePickerRef}>
       <ReactDatePicker
         calendarClassName={datePickerClassNames}
         showPopperArrow={false}
@@ -80,7 +82,7 @@ export function DatePicker({ onChange, activator, inline }: DatePickerProps) {
   function focusSelectedDate() {
     const selectedDateClass = ".react-datepicker__day--selected";
 
-    const selectedDate = document.querySelector(
+    const selectedDate = datePickerRef.current?.querySelector(
       selectedDateClass,
     ) as HTMLDivElement;
 
