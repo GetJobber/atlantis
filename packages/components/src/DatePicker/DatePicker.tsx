@@ -82,11 +82,10 @@ export function DatePicker({ onChange, activator, inline }: DatePickerProps) {
   function focusSelectedDate() {
     const selectedDateClass = ".react-datepicker__day--selected";
 
-    const selectedDate = datePickerRef.current?.querySelector(
-      selectedDateClass,
-    ) as HTMLDivElement;
+    const selectedDate =
+      datePickerRef.current?.querySelector(selectedDateClass);
 
-    if (selectedDate) {
+    if (selectedDate instanceof HTMLDivElement) {
       selectedDate.focus();
     }
   }
