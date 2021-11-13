@@ -1,7 +1,10 @@
+:global(.datePickerParentWrapper) {
+  display: inline-block;
+}
+
 .datePicker:global(.react-datepicker) {
   --datepicker-cell-size: calc(var(--space-base) * 2.375);
   box-shadow: var(--shadow-base);
-
   border-color: var(--color-border);
   border-radius: var(--radius-base);
   font-family: var(--typography--fontFamily-normal);
@@ -9,6 +12,11 @@
 
 .datePicker.inline {
   box-shadow: none;
+}
+
+:global(.react-datepicker__input-container),
+:global(.react-datepicker-wrapper) {
+  max-width: 100%;
 }
 
 .datePicker :global(.react-datepicker__header) {
