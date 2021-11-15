@@ -30,17 +30,12 @@ import { DatePicker } from "@jobber/components/DatePicker";
     const [date, setDate] = useState();
     return (
       <Content>
-        <DatePicker onChange={val => setDate(val)} />
+        <DatePicker selected={date} onChange={setDate} />
         {date && <DataDump defaultOpen data={date} />}
       </Content>
     );
   }}
 </Playground>
-
-The `DataDump` above shows the date object that is returned, which includes the
-values of a formatted date as a string, and a raw `Date` object (e.g.,
-attributes can be accessed via `date.raw.getMonth()`). The date object's state
-is managed internally by the component that is wrapped.
 
 ## Props
 
@@ -72,7 +67,7 @@ volume of UI elements to process at once.
     return (
       <Content>
         <div>
-          <DatePicker inline onChange={val => setDate(val)} />
+          <DatePicker selected={date} inline onChange={setDate} />
         </div>
         {date && <DataDump defaultOpen data={date} />}
       </Content>
@@ -91,7 +86,8 @@ pass a `React` component as the `activator`.
     return (
       <Content>
         <DatePicker
-          onChange={val => setDate(val)}
+          selected={date}
+          onChange={setDate}
           activator={<Button label="My fancy activator" variation="learning" />}
         />
         {date && <DataDump defaultOpen data={date} />}

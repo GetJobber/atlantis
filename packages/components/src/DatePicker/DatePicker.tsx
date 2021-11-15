@@ -1,4 +1,4 @@
-import React, { ReactElement, RefObject, useRef, useState } from "react";
+import React, { ReactElement, RefObject, useRef } from "react";
 import classnames from "classnames";
 import ReactDatePicker from "react-datepicker";
 /**
@@ -10,19 +10,18 @@ import "react-datepicker/dist/react-datepicker.css";
 import { XOR } from "ts-xor";
 import styles from "./DatePicker.css";
 import { DatePickerCustomHeader } from "./DatePickerCustomHeader";
-import { strFormatDate } from "../FormatDate";
 import { Button } from "../Button";
-
-export interface DatePickerReturnedDates {
-  readonly formatted: string;
-  readonly raw: Date;
-}
 
 interface BaseDatePickerProps {
   /**
+   * Some Date
+   */
+  readonly selected: Date;
+
+  /**
    * Change handler that will return the date selected.
    */
-  onChange(val: DatePickerReturnedDates): void;
+  onChange(val: Date): void;
 }
 
 interface DatePickerModalProps extends BaseDatePickerProps {
@@ -38,9 +37,12 @@ interface DatePickerInlineProps extends BaseDatePickerProps {
 
 type DatePickerProps = XOR<DatePickerModalProps, DatePickerInlineProps>;
 
-export function DatePicker({ onChange, activator, inline }: DatePickerProps) {
-  const [startDate, setStartDate] = useState(new Date());
-
+export function DatePicker({
+  onChange,
+  activator,
+  inline,
+  selected,
+}: DatePickerProps) {
   const datePickerClassNames = classnames(styles.datePicker, {
     [styles.inline]: inline,
   });
@@ -52,7 +54,7 @@ export function DatePicker({ onChange, activator, inline }: DatePickerProps) {
       <ReactDatePicker
         calendarClassName={datePickerClassNames}
         showPopperArrow={false}
-        selected={startDate}
+        selected={selected}
         inline={inline}
         onChange={handleChange}
         formatWeekDay={date => date.substr(0, 3)}
@@ -75,8 +77,7 @@ export function DatePicker({ onChange, activator, inline }: DatePickerProps) {
   );
 
   function handleChange(val: Date) {
-    setStartDate(val);
-    onChange && onChange({ formatted: strFormatDate(val), raw: val });
+    onChange && onChange(val);
   }
 
   function focusSelectedDate() {

@@ -17,7 +17,7 @@ beforeEach(() => {
 
 it("renders only a button by default", () => {
   const { container, queryByText } = render(
-    <DatePicker onChange={jest.fn()} />,
+    <DatePicker selected={new Date()} onChange={jest.fn()} />,
   );
 
   /**
@@ -31,7 +31,7 @@ it("renders only a button by default", () => {
 it("returns the dates from onChange", async () => {
   const changeHandler = jest.fn();
   const { getByTestId, getByText } = render(
-    <DatePicker onChange={changeHandler} />,
+    <DatePicker selected={new Date()} onChange={changeHandler} />,
   );
 
   const button = getByTestId("calendar");
@@ -40,15 +40,16 @@ it("returns the dates from onChange", async () => {
   const date = getByText("15");
   fireEvent.click(date);
 
-  expect(changeHandler).toHaveBeenCalledWith({
-    raw: expect.any(Date),
-    formatted: "Apr 15, 2021",
-  });
+  expect(changeHandler).toHaveBeenCalledWith(expect.any(Date));
 });
 
 it("allows for a custom activator to open the DatePicker", () => {
   const { getByText } = render(
-    <DatePicker onChange={jest.fn()} activator={<div>Activate me</div>} />,
+    <DatePicker
+      selected={new Date()}
+      onChange={jest.fn()}
+      activator={<div>Activate me</div>}
+    />,
   );
 
   const button = getByText("Activate me");
@@ -58,7 +59,9 @@ it("allows for a custom activator to open the DatePicker", () => {
 });
 
 it("always appears when inline", () => {
-  const { getByText } = render(<DatePicker onChange={jest.fn()} inline />);
+  const { getByText } = render(
+    <DatePicker selected={new Date()} onChange={jest.fn()} inline />,
+  );
 
   expect(getByText("15")).toBeInstanceOf(HTMLDivElement);
 });
