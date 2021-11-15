@@ -1,4 +1,4 @@
-:global(.datePickerParentWrapper) {
+.datePickerParentWrapper {
   display: inline-block;
 }
 
