@@ -16,7 +16,7 @@ beforeEach(() => {
 });
 
 it("renders only a button by default", () => {
-  const { container, queryByText } = render(
+  const { queryByText, getByLabelText } = render(
     <DatePicker selected={new Date()} onChange={jest.fn()} />,
   );
 
@@ -25,7 +25,7 @@ it("renders only a button by default", () => {
    * the `inline` prop to true by default this would fail.
    */
   expect(queryByText("15")).toBeNull();
-  expect(container).toMatchSnapshot();
+  expect(getByLabelText("Open Datepicker")).toBeInTheDocument();
 });
 
 it("returns the dates from onChange", async () => {
