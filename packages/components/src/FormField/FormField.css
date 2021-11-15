@@ -26,6 +26,8 @@
   --field--padding-left: var(--space-base);
   --field--padding-right: var(--space-base);
 
+  --field--value-color: var(--color-heading);
+
   --field--border-color: var(--color-border);
   --field--background-color: var(--color-surface);
 
@@ -43,7 +45,7 @@
   border-bottom-right-radius: var(--public-field--bottom-right-radius);
   border-bottom-left-radius: var(--public-field--bottom-left-radius);
   border-top-left-radius: var(--public-field--top-left-radius);
-  color: var(--color-blue);
+  color: var(--field--value-color);
   font-size: var(--base-unit);
   background-color: var(--field--background-color);
 }
@@ -75,10 +77,9 @@
 
 .disabled {
   --field--placeholder-color: var(--color-disabled);
+  --field--value-color: var(--color-disabled);
   --field--background-color: var(--color-surface--background);
   --field--border-color: var(--color-disabled--secondary);
-
-  opacity: 0.6;
 }
 
 .small {
