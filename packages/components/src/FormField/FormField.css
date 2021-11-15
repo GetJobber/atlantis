@@ -55,7 +55,9 @@
 }
 
 .wrapper:focus-within {
-  --field--border-color: var(--color-focus);
+  position: relative;
+  z-index: var(--field--base-elevation);
+  box-shadow: var(--shadow-focus);
 }
 
 .miniLabel {
