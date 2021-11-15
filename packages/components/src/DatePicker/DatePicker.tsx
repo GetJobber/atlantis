@@ -14,7 +14,7 @@ import { Button } from "../Button";
 
 interface BaseDatePickerProps {
   /**
-   * Some Date
+   * The selected Date object
    */
   readonly selected: Date;
 
