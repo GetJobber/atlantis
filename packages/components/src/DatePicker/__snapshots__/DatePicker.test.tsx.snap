@@ -3,7 +3,7 @@
 exports[`renders only a button by default 1`] = `
 <div>
   <div
-    class="datePickerParentWrapper"
+    class="datePickerWrapper"
   >
     <div
       class="react-datepicker-wrapper"

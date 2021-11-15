@@ -1,5 +1,5 @@
 declare const styles: {
-  readonly "datePickerParentWrapper": string;
+  readonly "datePickerWrapper": string;
   readonly "datePicker": string;
   readonly "inline": string;
   readonly "header": string;

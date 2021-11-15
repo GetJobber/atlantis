@@ -48,7 +48,7 @@ export function DatePicker({ onChange, activator, inline }: DatePickerProps) {
   const datePickerRef = useRef() as RefObject<HTMLDivElement>;
 
   return (
-    <div className={styles.datePickerParentWrapper} ref={datePickerRef}>
+    <div className={styles.datePickerWrapper} ref={datePickerRef}>
       <ReactDatePicker
         calendarClassName={datePickerClassNames}
         showPopperArrow={false}
