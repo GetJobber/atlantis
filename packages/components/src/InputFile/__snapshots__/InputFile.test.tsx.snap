@@ -42,7 +42,7 @@ exports[`renders an InputFile with multiple images allowed 1`] = `
     tabindex="0"
   >
     <input
-      accept="image/*"
+      accept="image/png, image/jpg, image/jpeg"
       autocomplete="off"
       multiple=""
       style="display: none;"
@@ -115,7 +115,7 @@ exports[`renders an InputFile with only images allowed 1`] = `
     tabindex="0"
   >
     <input
-      accept="image/*"
+      accept="image/png, image/jpg, image/jpeg"
       autocomplete="off"
       style="display: none;"
       tabindex="-1"
