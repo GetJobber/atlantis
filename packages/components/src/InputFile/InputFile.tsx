@@ -133,7 +133,9 @@ export function InputFile({
     multiple: allowMultiple,
     onDrop: useCallback(handleDrop, []),
   };
-  if (allowedTypes === "images") options.accept = "image/*";
+  if (allowedTypes === "images") {
+    options.accept = "image/png, image/jpg, image/jpeg";
+  }
   const { getRootProps, getInputProps, isDragActive } = useDropzone(options);
 
   const { buttonLabel, hintText } = getLabels(
