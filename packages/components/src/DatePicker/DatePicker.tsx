@@ -1,6 +1,6 @@
-import React, { ReactElement, RefObject, useRef } from "react";
+import React, { ReactElement, RefObject, forwardRef, useRef } from "react";
 import classnames from "classnames";
-import ReactDatePicker from "react-datepicker";
+import ReactDatePicker, { ReactDatePickerProps } from "react-datepicker";
 /**
  * Disabling no-internal-modules here because we need
  * to reach into the package to get the css file.
@@ -28,7 +28,9 @@ interface DatePickerModalProps extends BaseDatePickerProps {
   /**
    * Use a custom activator to trigger the DatePicker
    */
-  readonly activator?: ReactElement;
+  readonly activator?:
+    | ReactElement
+    | ((props: ActivatorProps) => React.ReactElement);
 }
 
 interface DatePickerInlineProps extends BaseDatePickerProps {
@@ -36,6 +38,32 @@ interface DatePickerInlineProps extends BaseDatePickerProps {
 }
 
 type DatePickerProps = XOR<DatePickerModalProps, DatePickerInlineProps>;
+
+export interface ActivatorProps
+  extends Pick<
+    ReactDatePickerProps,
+    | "id"
+    | "name"
+    | "autoFocus"
+    | "disabled"
+    | "autoComplete"
+    | "title"
+    | "readOnly"
+    | "required"
+    | "tabIndex"
+    | "ariaDescribedBy"
+    | "ariaInvalid"
+    | "ariaLabelledBy"
+    | "ariaRequired"
+  > {
+  onChange?(event: Event): void;
+  onClick?(): void;
+  onBlur?(): void;
+  onFocus?(): void;
+  onKeyDown?(event: KeyboardEvent): void;
+  value?: string;
+  placeholder?: string;
+}
 
 export function DatePicker({
   onChange,
@@ -48,6 +76,27 @@ export function DatePicker({
   });
 
   const datePickerRef = useRef() as RefObject<HTMLDivElement>;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const GenerateActivator = (props: ActivatorProps, ref: unknown) => {
+    if (activator) {
+      if (React.isValidElement(activator)) {
+        return React.cloneElement(activator, props);
+      } else {
+        return activator(props);
+      }
+    } else {
+      return (
+        <Button
+          variation="work"
+          type="tertiary"
+          icon="calendar"
+          ariaLabel="Open Datepicker"
+          {...props}
+        />
+      );
+    }
+  };
+  const Activator = forwardRef(GenerateActivator);
 
   return (
     <div className={styles.datePickerWrapper} ref={datePickerRef}>
@@ -58,18 +107,7 @@ export function DatePicker({
         inline={inline}
         onChange={handleChange}
         formatWeekDay={date => date.substr(0, 3)}
-        customInput={
-          activator ? (
-            activator
-          ) : (
-            <Button
-              variation="work"
-              type="tertiary"
-              icon="calendar"
-              ariaLabel="Open Datepicker"
-            />
-          )
-        }
+        customInput={<Activator />}
         renderCustomHeader={props => <DatePickerCustomHeader {...props} />}
         onCalendarOpen={focusSelectedDate}
       />
@@ -87,7 +125,7 @@ export function DatePicker({
       datePickerRef.current?.querySelector(selectedDateClass);
 
     if (selectedDate instanceof HTMLDivElement) {
-      selectedDate.focus();
+      // selectedDate.focus();
     }
   }
 }
