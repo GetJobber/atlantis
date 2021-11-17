@@ -18,7 +18,9 @@ it("renders a loud InputDate", () => {
 test("it should call the handler with the new value", () => {
   const clickHandler = jest.fn();
   const text = "Foo";
-  const { getByText } = render(<InputDate onClick={clickHandler} text={text} />);
+  const { getByText } = render(
+    <InputDate onClick={clickHandler} text={text} />,
+  );
 
   fireEvent.click(getByText(text));
   expect(clickHandler).toHaveBeenCalled();
