@@ -33,7 +33,7 @@ exports[`renders 1`] = `
       tabindex="-1"
     >
       <input
-        accept="image/png, image/jpg, image/jpeg"
+        accept="image/*"
         autocomplete="off"
         style="display: none;"
         tabindex="-1"
@@ -73,7 +73,7 @@ exports[`renders with a provided image 1`] = `
       tabindex="-1"
     >
       <input
-        accept="image/png, image/jpg, image/jpeg"
+        accept="image/*"
         autocomplete="off"
         style="display: none;"
         tabindex="-1"

@@ -84,7 +84,7 @@ interface InputFileProps {
    * Allowed File types.
    * @default "all"
    */
-  readonly allowedTypes?: "all" | "images";
+  readonly allowedTypes?: "all" | "images" | "basicImages";
 
   /**
    * Allow for multiple files to be selected for upload.
@@ -134,6 +134,8 @@ export function InputFile({
     onDrop: useCallback(handleDrop, []),
   };
   if (allowedTypes === "images") {
+    options.accept = "image/*";
+  } else if (allowedTypes === "basicImages") {
     options.accept = "image/png, image/jpg, image/jpeg";
   }
   const { getRootProps, getInputProps, isDragActive } = useDropzone(options);
