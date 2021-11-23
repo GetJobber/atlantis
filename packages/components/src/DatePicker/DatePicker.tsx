@@ -1,6 +1,6 @@
-import React, { ReactElement, RefObject, forwardRef, useRef } from "react";
+import React, { ReactElement, RefObject, useRef } from "react";
 import classnames from "classnames";
-import ReactDatePicker, { ReactDatePickerProps } from "react-datepicker";
+import ReactDatePicker from "react-datepicker";
 /**
  * Disabling no-internal-modules here because we need
  * to reach into the package to get the css file.
@@ -52,32 +52,6 @@ interface DatePickerInlineProps extends BaseDatePickerProps {
 
 type DatePickerProps = XOR<DatePickerModalProps, DatePickerInlineProps>;
 
-export interface ActivatorProps
-  extends Pick<
-    ReactDatePickerProps,
-    | "id"
-    | "name"
-    | "autoFocus"
-    | "disabled"
-    | "autoComplete"
-    | "title"
-    | "readOnly"
-    | "required"
-    | "tabIndex"
-    | "ariaDescribedBy"
-    | "ariaInvalid"
-    | "ariaLabelledBy"
-    | "ariaRequired"
-  > {
-  onChange?(event: Event): void;
-  onClick?(): void;
-  onBlur?(): void;
-  onFocus?(): void;
-  onKeyDown?(event: KeyboardEvent): void;
-  value?: string;
-  placeholder?: string;
-}
-
 export function DatePicker({
   onChange,
   activator,
@@ -94,27 +68,6 @@ export function DatePicker({
   });
 
   const datePickerRef = useRef() as RefObject<HTMLDivElement>;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const GenerateActivator = (props: ActivatorProps, ref: unknown) => {
-    if (activator) {
-      if (React.isValidElement(activator)) {
-        return React.cloneElement(activator, props);
-      } else {
-        return activator(props);
-      }
-    } else {
-      return (
-        <Button
-          variation="work"
-          type="tertiary"
-          icon="calendar"
-          ariaLabel="Open Datepicker"
-          {...props}
-        />
-      );
-    }
-  };
-  const Activator = forwardRef(GenerateActivator);
 
   return (
     <div className={wrapperClassName} ref={datePickerRef}>
