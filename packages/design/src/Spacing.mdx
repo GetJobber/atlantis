@@ -6,7 +6,74 @@ route: /space
 
 # Spacing
 
-Spacing for the Jobber Atlantis Design System
+Our spacing system exists to support the foundational visual design 
+principle of [proximity-based grouping:](https://www.nngroup.com/articles/gestalt-proximity/) 
+
+> Using varying amounts of whitespace to either unite or separate elements 
+> is key to communicating meaningful groupings.
+
+In the shortest, simplest, terms: the closer two elements are related, 
+the tighter the spacing between them should be. 
+
+With in mind, let’s start small and work our way up.
+
+## Spacing guidelines
+
+### Miniscule and Smallest
+
+At their respective sizes (`1px` and `2px` equivalent), these values should mostly be 
+used to provide optical adjustments where an element is visually off-centered.
+
+### Smaller
+
+The `smaller` spacing value can be used between contents of a single component. 
+For example, see the spacing between an Icon and the label inside of a [Button.](/components/button#icons)
+
+![image](https://user-images.githubusercontent.com/39704901/143130466-6754b6bc-5eb6-423c-b1a5-8ac7203f116a.png)
+
+#### Small
+
+Sibling items within a container can be separated by the `small` value to reflect their relation 
+to each other. An example would be the spacing between [Chips in a selection group.](/components/chips#single-select)
+
+![image](https://user-images.githubusercontent.com/39704901/143130218-5ecbd5ea-557b-494f-a949-7da93ac1f595.png)
+
+#### Base
+
+Use `base` as the default spacing in larger content containers with multiple children of their own, 
+such as [Card.](/components/card) This should also be used as the default starting point for spacing between
+[Form](/components/form) elements.
+
+![image](https://user-images.githubusercontent.com/39704901/143130996-ee2e8c1b-9b3f-41a2-a417-be280f3144a4.png)
+
+#### Large
+
+Use `large` spacing if you need a section to breathe a bit more. [Modal](/components/modal) uses `large` 
+spacing in its' header and around the edges to give itself a bit more prominence as a "standalone" view.
+
+![image](https://user-images.githubusercontent.com/39704901/143131252-280d81e6-7c01-4960-ae83-998dd4f92096.png)
+
+#### Larger
+
+`Larger` doubles the value of `base` to very clearly delineate two groups of content that themselves use `base`. 
+It may be useful if you have a long list of `Cards` that need to be broken up.
+
+![image](https://user-images.githubusercontent.com/39704901/143132579-943e8f40-82c2-44ba-950b-51b1f400ccb2.png)
+
+#### Largest and Extravagant
+
+You’ll probably never need these unless you’re doing a custom layout, but they’re here if you need ‘em.
+These values are equivalent to `48px` and `64px` respectively.
+
+## Implementation
+
+### Content
+
+Use the [Content component](/components/content) for any instances where you need uniform spacing beween elements.
+
+Content can set its' spacing to either `small`, `base`, or `large`; follow the guidelines above as needed.
+
+### Values
 
 export function Example({ of: size }) {
   const style = {
