@@ -1,70 +1,70 @@
-import React, { SyntheticEvent, useEffect, useRef, useState } from "react";
-import classnames from "classnames";
 import { omit } from "lodash";
-import styles from "./InputDate.css";
+import React from "react";
+import {
+  CommonFormFieldProps,
+  FormField,
+  FormFieldProps,
+  Suffix,
+} from "../FormField";
 import { DatePicker } from "../DatePicker";
-import { InputText } from "../InputText";
-import { ActivatorProps } from "../DatePicker/DatePicker";
 
-interface InputDateProps {
-  /**
-   * Styles the text bold and uppercased
-   * @default false
-   */
-  readonly loud?: boolean;
-
-  /**
-   * Text to display.
-   */
-  readonly text: string;
-
-  /**
-   * Click handler.
-   */
-  onClick?(event: React.MouseEvent<HTMLDivElement>): void;
+interface InputDateProps
+  extends CommonFormFieldProps,
+    Pick<
+      FormFieldProps,
+      | "readonly"
+      | "disabled"
+      | "onEnter"
+      | "onFocus"
+      | "inputRef"
+      | "validations"
+      | "placeholder"
+      | "onChange"
+      | "onBlur"
+    > {
+  value: Date;
+  onChange(newValue: Date): void;
+  onClick?(
+    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
+  ): void;
 }
 
-export function InputDate({ loud = false, text, onClick }: InputDateProps) {
-  const [ref, setRef] = useState<HTMLElement | null>();
-  const [selected, setSelected] = useState(new Date(1, 1, 20));
-
+export function InputDate(inputProps: InputDateProps) {
   return (
-    <div ref={setRef}>
-      <DatePicker
-        selected={selected}
-        onChange={setSelected}
-        activator={generateActivator}
-      />
-    </div>
+    <DatePicker
+      selected={inputProps.value}
+      onChange={inputProps.onChange}
+      disabled={inputProps.disabled}
+      fullWidth={!inputProps.inline}
+      activator={activatorProps => {
+        const { onChange, onClick, value } = activatorProps;
+        const newActivatorProps = omit(activatorProps, ["activator"]);
+        const suffix = {
+          icon: "calendar",
+          ...(onClick && {
+            onClick: onClick,
+            ariaLabel: "Show calendar",
+          }),
+        } as Suffix;
+
+        return (
+          <FormField
+            {...newActivatorProps}
+            {...inputProps}
+            value={value}
+            onChange={(_, event) => onChange && onChange(event)}
+            onBlur={() => {
+              inputProps.onBlur?.();
+              activatorProps.onBlur?.();
+            }}
+            onFocus={() => {
+              inputProps.onFocus?.();
+              activatorProps.onFocus?.();
+            }}
+            suffix={suffix}
+          />
+        );
+      }}
+    />
   );
-
-  function generateActivator(props: ActivatorProps) {
-    const [eventState, setEventState] = useState<Event>();
-    const newProps = omit(props, ["onChange"]);
-    useEffect(() => {
-      const input = ref?.querySelector("input");
-      if (props.onChange) {
-        input?.addEventListener("keydown", e => {
-          console.log("IT'S THERE");
-          setEventState(e);
-        });
-      }
-
-      // return () => {
-      //   console.log("FIRED!");
-      //   if (props.onChange) {
-      //     input?.removeEventListener("change", props.onChange);
-      //   }
-      // };
-    }, [ref]);
-
-    return (
-      <InputText
-        {...newProps}
-        onChange={() =>
-          props.onChange && eventState && props.onChange(eventState)
-        }
-      />
-    );
-  }
 }

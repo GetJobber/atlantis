@@ -1,4 +1,4 @@
-import { ReactNode, RefObject } from "react";
+import { ChangeEvent, ReactNode, RefObject } from "react";
 import { ValidationRules } from "react-hook-form";
 import { XOR } from "ts-xor";
 import { IconNames } from "../Icon";
@@ -91,7 +91,12 @@ export interface CommonFormFieldProps {
    * Simplified onChange handler that only provides the new value.
    * @param newValue
    */
-  onChange?(newValue: string | number | boolean): void;
+  onChange?(
+    newValue: string | number | boolean | Date,
+    event?: ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ): void;
 
   /**
    * Callback to get the the status and message when validating a field
@@ -112,7 +117,7 @@ export interface CommonFormFieldProps {
   /**
    * Set the component to the given value.
    */
-  readonly value?: string | number;
+  readonly value?: string | number | Date;
 }
 
 export interface FormFieldProps extends CommonFormFieldProps {

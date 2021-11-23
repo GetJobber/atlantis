@@ -2,6 +2,10 @@
   display: inline-block;
 }
 
+.fullWidth {
+  display: block;
+}
+
 .datePicker:global(.react-datepicker) {
   --datepicker-cell-size: calc(var(--space-base) * 2.375);
   box-shadow: var(--shadow-base);

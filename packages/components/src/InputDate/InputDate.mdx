@@ -7,6 +7,7 @@ showDirectoryLink: true
 
 import { Playground, Props } from "docz";
 import { InputDate } from ".";
+import { useState } from "react";
 
 # Input Date
 
@@ -15,7 +16,10 @@ import { InputDate } from "@jobber/components/InputDate";
 ```
 
 <Playground>
-  <InputDate text="Bob" />
+  {() => {
+    const [date, setDate] = useState();
+    return <InputDate value={date} onChange={setDate} />;
+  }}
 </Playground>
 
 <!--

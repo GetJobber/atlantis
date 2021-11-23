@@ -164,7 +164,7 @@ export function FormField(props: FormFieldProps) {
             newValue = parseFloat(newValue);
           }
 
-          onChange && onChange(newValue);
+          onChange && onChange(newValue, event);
           onControllerChange(event);
         }
 

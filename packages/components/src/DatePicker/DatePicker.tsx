@@ -1,6 +1,6 @@
-import React, { ReactElement, RefObject, forwardRef, useRef } from "react";
+import React, { ReactElement, RefObject, useRef } from "react";
 import classnames from "classnames";
-import ReactDatePicker, { ReactDatePickerProps } from "react-datepicker";
+import ReactDatePicker from "react-datepicker";
 /**
  * Disabling no-internal-modules here because we need
  * to reach into the package to get the css file.
@@ -10,7 +10,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import { XOR } from "ts-xor";
 import styles from "./DatePicker.css";
 import { DatePickerCustomHeader } from "./DatePickerCustomHeader";
-import { Button } from "../Button";
+import {
+  DatePickerActivator,
+  DatePickerActivatorProps,
+} from "./DatePickerActivator";
 
 interface BaseDatePickerProps {
   /**
@@ -22,6 +25,11 @@ interface BaseDatePickerProps {
    * Change handler that will return the date selected.
    */
   onChange(val: Date): void;
+
+  /**
+   * Stops the user from interaction
+   */
+  readonly disabled?: boolean;
 }
 
 interface DatePickerModalProps extends BaseDatePickerProps {
@@ -30,7 +38,12 @@ interface DatePickerModalProps extends BaseDatePickerProps {
    */
   readonly activator?:
     | ReactElement
-    | ((props: ActivatorProps) => React.ReactElement);
+    | ((props: DatePickerActivatorProps) => ReactElement);
+
+  /**
+   * Whether the datepicker should take up a whole block
+   */
+  readonly fullWidth?: boolean;
 }
 
 interface DatePickerInlineProps extends BaseDatePickerProps {
@@ -39,83 +52,44 @@ interface DatePickerInlineProps extends BaseDatePickerProps {
 
 type DatePickerProps = XOR<DatePickerModalProps, DatePickerInlineProps>;
 
-export interface ActivatorProps
-  extends Pick<
-    ReactDatePickerProps,
-    | "id"
-    | "name"
-    | "autoFocus"
-    | "disabled"
-    | "autoComplete"
-    | "title"
-    | "readOnly"
-    | "required"
-    | "tabIndex"
-    | "ariaDescribedBy"
-    | "ariaInvalid"
-    | "ariaLabelledBy"
-    | "ariaRequired"
-  > {
-  onChange?(event: Event): void;
-  onClick?(): void;
-  onBlur?(): void;
-  onFocus?(): void;
-  onKeyDown?(event: KeyboardEvent): void;
-  value?: string;
-  placeholder?: string;
-}
-
 export function DatePicker({
   onChange,
   activator,
   inline,
   selected,
+  disabled = false,
+  fullWidth = false,
 }: DatePickerProps) {
   const datePickerClassNames = classnames(styles.datePicker, {
     [styles.inline]: inline,
   });
+  const wrapperClassName = classnames(styles.datePickerWrapper, {
+    [styles.fullWidth]: fullWidth,
+  });
 
   const datePickerRef = useRef() as RefObject<HTMLDivElement>;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const GenerateActivator = (props: ActivatorProps, ref: unknown) => {
-    if (activator) {
-      if (React.isValidElement(activator)) {
-        return React.cloneElement(activator, props);
-      } else {
-        return activator(props);
-      }
-    } else {
-      return (
-        <Button
-          variation="work"
-          type="tertiary"
-          icon="calendar"
-          ariaLabel="Open Datepicker"
-          {...props}
-        />
-      );
-    }
-  };
-  const Activator = forwardRef(GenerateActivator);
 
   return (
-    <div className={styles.datePickerWrapper} ref={datePickerRef}>
+    <div className={wrapperClassName} ref={datePickerRef}>
       <ReactDatePicker
         calendarClassName={datePickerClassNames}
         showPopperArrow={false}
         selected={selected}
         inline={inline}
+        disabled={disabled}
         onChange={handleChange}
         formatWeekDay={date => date.substr(0, 3)}
-        customInput={<Activator />}
+        customInput={
+          <DatePickerActivator activator={activator} fullWidth={fullWidth} />
+        }
         renderCustomHeader={props => <DatePickerCustomHeader {...props} />}
         onCalendarOpen={focusSelectedDate}
       />
     </div>
   );
 
-  function handleChange(val: Date) {
-    onChange && onChange(val);
+  function handleChange(value: Date) {
+    onChange && onChange(value);
   }
 
   function focusSelectedDate() {

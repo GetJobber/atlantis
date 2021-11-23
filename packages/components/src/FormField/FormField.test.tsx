@@ -165,8 +165,9 @@ describe("FormField", () => {
         "The snake which cannot cast its skin has to die. As well the minds which are prevented from changing their opinions; they cease to be mind.";
       const newerValue =
         "They always say time changes things, but you actually have to change them yourself.";
-      const changeHandler = jest.fn();
-
+      const changeHandler = jest.fn(val => {
+        jest.fn(val);
+      });
       const { getByLabelText } = render(
         <FormField
           name="Got milk?"
@@ -178,12 +179,15 @@ describe("FormField", () => {
       fireEvent.change(getByLabelText(placeholder), {
         target: { value: newValue },
       });
-      expect(changeHandler).toHaveBeenCalledWith(newValue);
+      expect(changeHandler).toHaveBeenCalledWith(newValue, expect.any(Object));
 
       fireEvent.change(getByLabelText(placeholder), {
         target: { value: newerValue },
       });
-      expect(changeHandler).toHaveBeenCalledWith(newerValue);
+      expect(changeHandler).toHaveBeenCalledWith(
+        newerValue,
+        expect.any(Object),
+      );
     });
 
     describe("without validation errors", () => {
