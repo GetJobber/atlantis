@@ -110,6 +110,9 @@ possibly unknown impact a user’s changes or actions will have. They should not
 begin with "Warning:" and should not be used as a way to block or redirect a
 workflow.
 
+You should use [ConfirmationModal](/components/confirmation-modal) when you need to
+get explicit confirmation from the user before they complete an action.
+
 <Playground>
   <Banner type="warning">
     Your subscription will be automatically upgraded in 8 days
@@ -194,4 +197,6 @@ within a `Banner`. If you require an action, use the `primaryActions` prop. The
 ## Related components
 
 - To provide low priority, temporary feedback on the outcome of a user action,
-  use [Toast](toast) instead.
+  use [Toast](toast) instead
+- Use [ConfirmationModal](/components/confirmation-modal) when you need to
+get explicit confirmation from the user before they complete an action
