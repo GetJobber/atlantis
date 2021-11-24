@@ -83,23 +83,11 @@ export function DatePicker({
           <DatePickerActivator activator={activator} fullWidth={fullWidth} />
         }
         renderCustomHeader={props => <DatePickerCustomHeader {...props} />}
-        onCalendarOpen={focusSelectedDate}
       />
     </div>
   );
 
   function handleChange(value: Date) {
     onChange && onChange(value);
-  }
-
-  function focusSelectedDate() {
-    const selectedDateClass = ".react-datepicker__day--selected";
-
-    const selectedDate =
-      datePickerRef.current?.querySelector(selectedDateClass);
-
-    if (selectedDate instanceof HTMLDivElement) {
-      // selectedDate.focus();
-    }
   }
 }
