@@ -19,7 +19,7 @@ interface BaseDatePickerProps {
   /**
    * The selected Date object
    */
-  readonly selected: Date;
+  readonly selected?: Date;
 
   /**
    * Change handler that will return the date selected.

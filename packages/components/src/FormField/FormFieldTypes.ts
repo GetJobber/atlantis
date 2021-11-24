@@ -52,7 +52,7 @@ export interface CommonFormFieldProps {
    * the field with a data that is not controlled by the components state. If a
    * state is controlling the value, use the `value` prop instead.
    */
-  readonly defaultValue?: string;
+  readonly defaultValue?: string | Date;
 
   /**
    * Further description of the input, can be used for a hint.

@@ -1,11 +1,6 @@
 import { omit } from "lodash";
 import React from "react";
-import {
-  CommonFormFieldProps,
-  FormField,
-  FormFieldProps,
-  Suffix,
-} from "../FormField";
+import { CommonFormFieldProps, FormField, FormFieldProps } from "../FormField";
 import { DatePicker } from "../DatePicker";
 
 interface InputDateProps
@@ -22,7 +17,7 @@ interface InputDateProps
       | "onChange"
       | "onBlur"
     > {
-  value: Date;
+  value?: Date;
   onChange(newValue: Date): void;
   onClick?(
     event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
@@ -37,15 +32,8 @@ export function InputDate(inputProps: InputDateProps) {
       disabled={inputProps.disabled}
       fullWidth={!inputProps.inline}
       activator={activatorProps => {
-        const { onChange, onClick, value } = activatorProps;
+        const { onChange, value } = activatorProps;
         const newActivatorProps = omit(activatorProps, ["activator"]);
-        const suffix = {
-          icon: "calendar",
-          ...(onClick && {
-            onClick: onClick,
-            ariaLabel: "Show calendar",
-          }),
-        } as Suffix;
 
         return (
           <FormField
@@ -61,7 +49,6 @@ export function InputDate(inputProps: InputDateProps) {
               inputProps.onFocus?.();
               activatorProps.onFocus?.();
             }}
-            suffix={suffix}
           />
         );
       }}
