@@ -1,6 +1,6 @@
 ---
 name: InputDate
-menu: Components
+menu: Patterns
 route: /components/input-date
 showDirectoryLink: true
 ---
@@ -10,6 +10,13 @@ import { InputDate } from ".";
 import { useState } from "react";
 
 # Input Date
+
+InputDate provides a multi-modal way for the user to select a date, using either
+of:
+
+- form field
+- visual calendar selector and comes complete with the ability to re-format user
+  input into an expected date format.
 
 ```ts
 import { InputDate } from "@jobber/components/InputDate";
@@ -22,72 +29,56 @@ import { InputDate } from "@jobber/components/InputDate";
   }}
 </Playground>
 
-<!--
-  INTERFACE: This is for the proposal stage of the component
-
-  Provide an example of what the component looks like in code. How would you use
-  it from another React component? This should consist primarily of code blocks.
-  This section can be deleted once the component is built, when the Playground
-  will demonstrate this at a higher fidelity.
--->
-
 ## Props
 
 <Props of={InputDate} />
 
-<!--
-  It is not necessary to provide an example of each prop. Use usage examples to
-  highlight key features of a component or particular considerations.
+## Design & Usage Guidelines
 
-  See `Button.mdx` for a good example of this.
--->
-
-## Usage Guidelines
-
-The `<InputDate>` will... _Add a brief description of the component_
-
-<!--
-  What is the design purpose of this component? How do its responsibilities
-  relate to other components? What should this component not be used for? What
-  are some related components in Atlantis? Try to describe this component not
-  in terms of what it looks like or what elements make it up, but what function
-  it performs or how it enables a user to perform tasks (e.g. “Buttons allow users
-  to initiate, complete, and reverse actions.” vs “Buttons are rectangular elements
-  that have a green background and white text”).
--->
+The `<InputDate>` should be used in most cases where the user needs to select a
+date.
 
 ## Content Guidelines
 
-<!--
-  What type of content does this component present (documents, text, images, other components)?
-  What is the recommended, or expected, amount of content? What is the components’ behaviour when
-  the provided content diverges from what is expected (image aspect ratio, amount of text, video
-  vs audio, filesize)? Are there any important references to the [Product Vocabulary](https://atlantis.getjobber.com/guides/product-vocabulary)
-  that should be made regarding this component? What happens when content is unavailable or unreliable
-  (poor connection, empty states, flaky GPS data?)
--->
+The InputDate should only be used to display and submit date values. For other
+input usage, see [Related Components](#related-components).
 
 ## Accessibility
 
-<!--
-  Describe the accessibility concerns for the component. How does it handle touch vs cursor vs
-  keyboard events? Should it capture input? What should a screen reader see when it's focuse?
--->
+Accessibility concerns for the InputDate are captured by...
+
+### FormField
+
+Provides a label, announces input type, can be focused, and handles error
+validation and messaging.
+
+### Datepicker
+
+[Datepicker](/components/date-picker#accessibility) is keyboard-operable and
+announces the currently-focused date available for selection to the user via
+assistive technology.
 
 ## Responsiveness
 
-<!--
-  How should the component behave on an iPhone 8? An iPad? A 1920x1080 monitor? How does the
-  component appear when the component itself is less than 375px wide? Less than 640px wide?
-  Less than 1200px wide? Greater than 1200px? Does it change when the device DPI is higher
-  or lower?
--->
+When the InputDate is near the top or bottom of the viewport, the Datepicker
+will adjust its position to remain in view.
+
+The FormField for InputDate will take up the full available width of its parent.
+If used in an [InputGroup](/components/input-group), it will take up the
+available amount of space left by any other inputs in the group.
+
+## Related Components
+
+- If you do not need an accompanying form field, you can use the
+  [Datepicker](/components/Datepicker) on its own
+- If you need to allow the user to enter time, use
+  [InputTime](/components/input-time)
+- If you just need a text input, use [InputText](/components/input-text)
 
 ## Notes
 
-<!--
-  What decisions worth remembering have gone into this component? Did we consider any potentially valuable
-  functionality that we’re not implementing right now for scope purposes? Are there any design decisions
-  that might need explaining beyond the usage guidelines? This will help consumers understand this component
-  more fully.
--->
+Some functionality that we have opted not to introduce at this time, but that
+would be relatively feasible to add in the future:
+
+- allow for the concept of a date-range selection
+- allow for certain days or dates to be excluded from selection
