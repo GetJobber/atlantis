@@ -81,8 +81,9 @@ export interface CommonFormFieldProps {
   readonly name?: string;
 
   /**
-   * Simplified onChange handler that only provides the new value.
+   * onChange handler that provides the new value (or event)
    * @param newValue
+   * @param event
    */
   onChange?(
     newValue: string | number | boolean | Date,
