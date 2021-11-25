@@ -88,6 +88,6 @@ export function DatePicker({
   );
 
   function handleChange(value: Date) {
-    onChange && onChange(value);
+    onChange(value);
   }
 }

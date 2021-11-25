@@ -165,9 +165,7 @@ describe("FormField", () => {
         "The snake which cannot cast its skin has to die. As well the minds which are prevented from changing their opinions; they cease to be mind.";
       const newerValue =
         "They always say time changes things, but you actually have to change them yourself.";
-      const changeHandler = jest.fn(val => {
-        jest.fn(val);
-      });
+      const changeHandler = jest.fn();
       const { getByLabelText } = render(
         <FormField
           name="Got milk?"
