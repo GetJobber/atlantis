@@ -2,7 +2,10 @@ import React from "react";
 import { CommonFormFieldProps, FormField, FormFieldProps } from "../FormField";
 
 type InputEmailProps = CommonFormFieldProps &
-  Pick<FormFieldProps, "maxLength" | "readonly" | "validations">;
+  Pick<
+    FormFieldProps,
+    "maxLength" | "readonly" | "validations" | "defaultValue"
+  >;
 
 export const validationMessage = "Please enter a valid email";
 

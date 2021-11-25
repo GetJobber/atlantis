@@ -15,6 +15,7 @@ interface InputNumberProps
       | "inputRef"
       | "validations"
       | "readonly"
+      | "defaultValue"
     > {
   value?: number;
 }
