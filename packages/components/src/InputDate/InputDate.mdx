@@ -24,8 +24,10 @@ import { InputDate } from "@jobber/components/InputDate";
 
 <Playground>
   {() => {
-    const [date, setDate] = useState();
-    return <InputDate value={date} onChange={setDate} />;
+    const [date, setDate] = useState(new Date("11/11/2011"));
+    return (
+      <InputDate placeholder="Start Date" value={date} onChange={setDate} />
+    );
   }}
 </Playground>
 
