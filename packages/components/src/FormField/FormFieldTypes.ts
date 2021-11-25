@@ -48,13 +48,6 @@ export interface CommonFormFieldProps {
   readonly align?: "center" | "right";
 
   /**
-   * Initial value of the input. Only use this when you need to pre-populate
-   * the field with a data that is not controlled by the components state. If a
-   * state is controlling the value, use the `value` prop instead.
-   */
-  readonly defaultValue?: string | Date;
-
-  /**
    * Further description of the input, can be used for a hint.
    */
   readonly description?: string;
@@ -140,6 +133,13 @@ export interface FormFieldProps extends CommonFormFieldProps {
   inputRef?: RefObject<
     HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
   >;
+
+  /**
+   * Initial value of the input. Only use this when you need to pre-populate
+   * the field with a data that is not controlled by the components state. If a
+   * state is controlling the value, use the `value` prop instead.
+   */
+  readonly defaultValue?: string | Date;
 
   /**
    * Determines what kind of keyboard appears on mobile web.
