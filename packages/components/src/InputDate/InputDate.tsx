@@ -28,9 +28,6 @@ interface InputDateProps
    * */
   readonly value?: Date;
   onChange(newValue: Date): void;
-  onClick?(
-    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
-  ): void;
 }
 
 export function InputDate(inputProps: InputDateProps) {
