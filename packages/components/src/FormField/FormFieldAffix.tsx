@@ -57,6 +57,7 @@ export function AffixIcon({
           ariaLabel={ariaLabel as string}
           icon={icon}
           onClick={onClick}
+          variation="subtle"
           type="tertiary"
           size={iconSize}
         />
