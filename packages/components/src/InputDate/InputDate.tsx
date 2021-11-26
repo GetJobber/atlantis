@@ -17,7 +17,11 @@ interface InputDateProps
       | "onChange"
       | "onBlur"
     > {
-  value?: Date;
+  /**
+   * A Date object value
+   * (e.g., `new Date("11/11/2011")`)
+   * */
+  readonly value?: Date;
   onChange(newValue: Date): void;
   onClick?(
     event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
@@ -30,6 +34,7 @@ export function InputDate(inputProps: InputDateProps) {
       selected={inputProps.value}
       onChange={inputProps.onChange}
       disabled={inputProps.disabled}
+      readonly={inputProps.readonly}
       fullWidth={!inputProps.inline}
       activator={activatorProps => {
         const { onChange, value } = activatorProps;
