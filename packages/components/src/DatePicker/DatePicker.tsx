@@ -27,6 +27,11 @@ interface BaseDatePickerProps {
   readonly disabled?: boolean;
 
   /**
+   * Whether or not you can select a date
+   */
+  readonly readonly?: boolean;
+
+  /**
    * Change handler that will return the date selected.
    */
   onChange(val: Date): void;
@@ -57,6 +62,7 @@ export function DatePicker({
   activator,
   inline,
   selected,
+  readonly = false,
   disabled = false,
   fullWidth = false,
 }: DatePickerProps) {
@@ -77,6 +83,7 @@ export function DatePicker({
         selected={selected}
         inline={inline}
         disabled={disabled}
+        readOnly={readonly}
         onChange={handleChange}
         formatWeekDay={date => date.substr(0, 3)}
         customInput={
