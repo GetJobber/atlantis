@@ -1,6 +1,7 @@
 import React, {
   ChangeEvent,
   ReactElement,
+  Ref,
   cloneElement,
   forwardRef,
   isValidElement,
@@ -36,11 +37,14 @@ export interface DatePickerActivatorProps
 export const DatePickerActivator = forwardRef(InternalActivator);
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function InternalActivator(props: DatePickerActivatorProps, _ref: unknown) {
+function InternalActivator(
+  props: DatePickerActivatorProps,
+  ref: Ref<HTMLElement>,
+) {
   const { activator } = props;
   if (activator) {
     return isValidElement(activator)
-      ? cloneElement(activator, props)
+      ? cloneElement(activator, { ...props, ref })
       : activator(props);
   } else {
     return (
