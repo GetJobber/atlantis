@@ -10,12 +10,20 @@ export type FormFieldTypes =
   | "time"
   | "textarea"
   | "select"
-  | "email";
+  | "email"
+  | "maskedNumber";
 
 export type AutocompleteTypes =
   | "one-time-code"
   | "address-line1"
   | "address-line2";
+
+interface NumberMaskingPropertyTypes {
+  format: string;
+  mask: string;
+  prefix: string;
+  allowEmptyFormatting: boolean;
+}
 
 export interface FieldActionsRef {
   setValue(value: string | number): void;
@@ -140,6 +148,8 @@ export interface FormFieldProps extends CommonFormFieldProps {
    * Determines what kind of keyboard appears on mobile web.
    */
   readonly keyboard?: "numeric";
+
+  readonly maskingProperties?: NumberMaskingPropertyTypes;
 
   /**
    * Specifies the maximum numerical or date value that a user can type

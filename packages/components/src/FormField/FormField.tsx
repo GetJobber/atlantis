@@ -9,6 +9,7 @@ import React, {
 } from "react";
 import uuid from "uuid";
 import { Controller, useForm, useFormContext } from "react-hook-form";
+import NumberFormat from "react-number-format";
 import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.css";
 import { FormFieldWrapper } from "./FormFieldWrapper";
@@ -40,6 +41,7 @@ export function FormField(props: FormFieldProps) {
     onFocus,
     onBlur,
     onValidation,
+    maskingProperties,
   } = props;
 
   const { control, errors, setValue, watch } =
@@ -134,6 +136,21 @@ export function FormField(props: FormFieldProps) {
                   ref={inputRef as MutableRefObject<HTMLTextAreaElement>}
                 />
               );
+            case "maskedNumber":
+              return (
+                <>
+                  <NumberFormat
+                    {...textFieldProps}
+                    {...maskingProperties}
+                    thousandSeparator={true}
+                    prefix={"$"}
+                    onValueChange={handleOnValueChange}
+                    getInputRef={inputRef}
+                    onChange={maskedOnChangeHandler}
+                  />
+                  {loading && <FormFieldPostFix variation="spinner" />}
+                </>
+              );
             default:
               return (
                 <>
@@ -165,6 +182,17 @@ export function FormField(props: FormFieldProps) {
           }
 
           onChange && onChange(newValue);
+          onControllerChange(event);
+        }
+        function handleOnValueChange(values: {
+          formattedValue: string;
+          originalValue: string;
+        }) {
+          const { formattedValue } = values;
+          onChange && onChange(formattedValue);
+        }
+
+        function maskedOnChangeHandler(event: ChangeEvent<HTMLInputElement>) {
           onControllerChange(event);
         }
 
