@@ -82,6 +82,10 @@ interface InputFileProps {
 
   /**
    * Allowed File types.
+   * 
+   * @param "images" - only accepts all types of image
+   * @param "basicImages" - only accepts png, jpg and jpeg
+   *
    * @default "all"
    */
   readonly allowedTypes?: "all" | "images" | "basicImages";
