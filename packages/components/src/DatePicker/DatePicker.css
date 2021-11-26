@@ -4,6 +4,7 @@
 
 .fullWidth {
   display: block;
+  width: 100%;
 }
 
 .datePicker:global(.react-datepicker) {
