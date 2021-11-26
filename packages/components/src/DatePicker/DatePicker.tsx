@@ -22,16 +22,6 @@ interface BaseDatePickerProps {
   readonly selected?: Date;
 
   /**
-   * Stops the user from interaction
-   */
-  readonly disabled?: boolean;
-
-  /**
-   * Whether or not you can select a date
-   */
-  readonly readonly?: boolean;
-
-  /**
    * Change handler that will return the date selected.
    */
   onChange(val: Date): void;
@@ -46,9 +36,19 @@ interface DatePickerModalProps extends BaseDatePickerProps {
     | ((props: DatePickerActivatorProps) => ReactElement);
 
   /**
+   * Stops the user from interaction
+   */
+  readonly disabled?: boolean;
+
+  /**
    * Whether the datepicker should take up a whole block
    */
   readonly fullWidth?: boolean;
+
+  /**
+   * Whether or not you can select a date
+   */
+  readonly readonly?: boolean;
 }
 
 interface DatePickerInlineProps extends BaseDatePickerProps {
