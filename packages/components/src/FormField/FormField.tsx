@@ -142,8 +142,6 @@ export function FormField(props: FormFieldProps) {
                   <NumberFormat
                     {...textFieldProps}
                     {...maskingProperties}
-                    thousandSeparator={true}
-                    prefix={"$"}
                     onValueChange={handleOnValueChange}
                     getInputRef={inputRef}
                     onChange={maskedOnChangeHandler}

@@ -8,7 +8,7 @@ interface AllowedCountries {
 //TODO decide on this number formatting if it is best for the UK
 const countries: AllowedCountries = {
   NorthAmerica: { countryCode: 1, format: "(###) ###-####" },
-  GreatBritain: { countryCode: 1, format: "(###) #### ######" },
+  GreatBritain: { countryCode: 44, format: "(###) #### ####" },
 };
 
 // should it be form field or common form field?
@@ -26,7 +26,6 @@ export function InputPhoneNumber({
   showCountryCode = false,
   ...rest
 }: InputPhoneNumberProps) {
-  const [value, setValue] = React.useState("");
   const displayedCountryCode = showCountryCode
     ? `+${countries[country].countryCode}`
     : "";
@@ -38,16 +37,12 @@ export function InputPhoneNumber({
   };
   return (
     <FormField
-      value={value}
-      onChange={handleChange}
+      value={rest.value}
+      onChange={rest.onChange}
       type="maskedNumber"
       maskingProperties={maskingProperties}
       placeholder={placeholder}
       {...rest}
     />
   );
-
-  function handleChange(userInput: string) {
-    setValue(userInput);
-  }
 }

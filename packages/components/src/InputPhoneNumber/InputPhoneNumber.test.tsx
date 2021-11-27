@@ -4,33 +4,98 @@ import { cleanup, fireEvent, render } from "@testing-library/react";
 import { InputPhoneNumber } from ".";
 
 afterEach(cleanup);
-
+//TODO: do we want to keep this?
 it("renders a InputPhoneNumber", () => {
-  const tree = renderer.create(<InputPhoneNumber text="Foo" />).toJSON();
-  expect(tree).toMatchSnapshot();
-});
-
-it("renders a loud InputPhoneNumber", () => {
   const tree = renderer
-    .create(<InputPhoneNumber text="Foo" loud={true} />)
+    .create(<InputPhoneNumber country={"NorthAmerica"} />)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
 
-test("it should call the handler with the new value", () => {
-  const clickHandler = jest.fn();
-  const text = "Foo";
-  const { getByText } = render(
-    <InputPhoneNumber onClick={clickHandler} text={text} />,
+it("will only accept numerical characters", () => {
+  const rendered = render(
+    <InputPhoneNumber
+      country={"NorthAmerica"}
+      placeholder="Phone Number"
+      data-testid="custom-element"
+    />,
   );
+  const numberInput = rendered.getByLabelText(
+    "Phone Number",
+  ) as HTMLInputElement;
 
-  fireEvent.click(getByText(text));
-  expect(clickHandler).toHaveBeenCalled();
+  fireEvent.click(numberInput);
+  fireEvent.change(numberInput, {
+    target: { value: "abcde~!@#$%^&*()_+={}[]\\|`?/\"-'`" },
+  });
 
-  // E.g. If you need a change event, rather than a click event:
-  //
-  // fireEvent.change(getByLabelText(placeholder), {
-  //   target: { value: newValue },
-  // });
-  // expect(changeHandler).toHaveBeenCalledWith(newValue);
+  expect(numberInput.value).toBe(" (___) ___-____");
+});
+
+it("will return the correct phone number with formatting", () => {
+  const onChangeHandler = jest.fn();
+  const rendered = render(
+    <InputPhoneNumber
+      country={"NorthAmerica"}
+      placeholder="Phone Number"
+      data-testid="custom-element"
+      onChange={onChangeHandler}
+    />,
+  );
+  const numberInput = rendered.getByLabelText(
+    "Phone Number",
+  ) as HTMLInputElement;
+
+  fireEvent.click(numberInput);
+  fireEvent.change(numberInput, {
+    target: { value: "7802424496" },
+  });
+
+  expect(onChangeHandler).toHaveBeenCalledWith(" (780) 242-4496");
+});
+
+it("will return the correct phone number with formatting for Great Britain and the Country Code", () => {
+  const onChangeHandler = jest.fn();
+  const rendered = render(
+    <InputPhoneNumber
+      country={"GreatBritain"}
+      placeholder="Phone Number"
+      data-testid="custom-element"
+      onChange={onChangeHandler}
+      showCountryCode={true}
+    />,
+  );
+  const numberInput = rendered.getByLabelText(
+    "Phone Number",
+  ) as HTMLInputElement;
+
+  fireEvent.click(numberInput);
+  fireEvent.change(numberInput, {
+    target: { value: "020 7183 8750" },
+  });
+
+  expect(onChangeHandler).toHaveBeenCalledWith("+44 (020) 7183 8750");
+});
+
+it("will hide the mask until the user begins to enter valid input", () => {
+  const rendered = render(
+    <InputPhoneNumber
+      country={"NorthAmerica"}
+      placeholder="Phone Number"
+      data-testid="custom-element"
+      alwaysShowMask={false}
+    />,
+  );
+  const numberInput = rendered.getByLabelText(
+    "Phone Number",
+  ) as HTMLInputElement;
+
+  expect(numberInput.value).toBe("");
+
+  fireEvent.click(numberInput);
+  fireEvent.change(numberInput, {
+    target: { value: "7802424496" },
+  });
+
+  expect(numberInput.value).toBe(" (780) 242-4496");
 });

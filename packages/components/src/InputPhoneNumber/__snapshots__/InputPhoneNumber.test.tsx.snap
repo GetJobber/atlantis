@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a InputPhoneNumber 1`] = `
+<div
+  className="wrapper"
+  style={
+    Object {
+      "--formField-maxLength": undefined,
+    }
+  }
+>
+  <div
+    className="inputWrapper"
+  >
+    <label
+      className="label"
+      htmlFor="123e4567-e89b-12d3-a456-426655440001"
+    />
+    <input
+      className="input"
+      id="123e4567-e89b-12d3-a456-426655440001"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onMouseUp={[Function]}
+      type="text"
+      value=" (___) ___-____"
+    />
+  </div>
+</div>
+`;
