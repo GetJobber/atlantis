@@ -8,6 +8,28 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.67.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.66.3...@jobber/components@2.67.0) (2021-11-26)
+
+
+### Features
+
+* **components:** Adjust formfield suffix actions to subtle ([#784](https://github.com/GetJobber/atlantis/issues/784)) ([58827cf](https://github.com/GetJobber/atlantis/commit/58827cf578d84fff8f4ab59c9a7f2d74ff029c4a))
+
+
+
+
+
+## [2.66.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.66.2...@jobber/components@2.66.3) (2021-11-26)
+
+
+### Bug Fixes
+
+* **components:** Allowlist accepted image types [JOB-37183] ([#778](https://github.com/GetJobber/atlantis/issues/778)) ([95d2d62](https://github.com/GetJobber/atlantis/commit/95d2d62cb0a9b3bbad1496dd39e51cdf4125dc5b))
+
+
+
+
+
 ## [2.66.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.66.1...@jobber/components@2.66.2) (2021-11-24)
 
 **Note:** Version bump only for package @jobber/components
