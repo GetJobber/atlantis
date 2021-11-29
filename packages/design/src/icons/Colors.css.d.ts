@@ -14,8 +14,6 @@ declare const styles: {
   readonly "interactiveHover": string;
   readonly "destructive": string;
   readonly "destructiveHover": string;
-  readonly "cancel": string;
-  readonly "cancelHover": string;
   readonly "interactiveSubtle": string;
   readonly "interactiveSubtleHover": string;
   readonly "disabled": string;
