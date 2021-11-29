@@ -21,7 +21,6 @@ const REGION_SETTINGS: AllowedRegions = {
   Unknown: { format: "################", mask: "" },
 };
 
-// should it be form field or common form field?
 export interface InputPhoneNumberProps extends FormFieldProps {
   alwaysShowMask?: boolean;
   region?: keyof AllowedRegions;
