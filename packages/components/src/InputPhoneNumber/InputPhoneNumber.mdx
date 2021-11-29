@@ -21,7 +21,7 @@ import { Heading } from "@jobber/components/Heading";
 ```
 
 <Playground>
-  <InputPhoneNumber country={"NorthAmerica"} />
+  <InputPhoneNumber showCountryCode={true} />
 </Playground>
 
 ## Design Usage & Guidelines
@@ -34,34 +34,40 @@ consumable way.
 
 <Props of={InputPhoneNumber} />
 
-## Country Selection
+## Region Selection
 
 You can select between the countries that are supported.
+
+By default, we will assume `NorthAmerica`
 
 <ul>
   <li> North America </li>
   <li> Great Britain </li>
+  <li> Unknown </li>
 </ul>
 
 <Playground>
-  <InputPhoneNumber country={"GreatBritain"} showCountryCode={true} />
+  <InputPhoneNumber region={"GreatBritain"} showCountryCode={true} />
 </Playground>
 
 ## Always Show Mask
 
-By default the option is set to true. However, you may not want the mask to
-apear until a user begins to interact with the input, in which case you would
-set this value to false.
+You may not want the mask to appear until a user begins to interact with the
+input, in which case you would set this value to false.
+
+By default, we will assume `true`.
 
 <Playground>
-  <InputPhoneNumber country={"NorthAmerica"} alwaysShowMask={false} />
+  <InputPhoneNumber region={"NorthAmerica"} alwaysShowMask={false} />
 </Playground>
 
 ## Show Country Code
 
 This switch just hides or shows the country code that precedes the rest of the
-input. By default this value is set to false.
+input.
+
+By default, we will assume `false`.
 
 <Playground>
-  <InputPhoneNumber country={"NorthAmerica"} showCountryCode={true} />
+  <InputPhoneNumber region={"NorthAmerica"} showCountryCode={true} />
 </Playground>

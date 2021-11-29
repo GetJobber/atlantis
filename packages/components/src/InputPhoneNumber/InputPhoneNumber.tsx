@@ -1,50 +1,75 @@
 import React from "react";
 import { FormField, FormFieldProps } from "../FormField";
 
-interface AllowedCountries {
-  NorthAmerica: { countryCode: number; format: string };
-  GreatBritain: { countryCode: number; format: string };
+export interface RegionSettings {
+  countryCode?: number;
+  format?: string;
 }
-//TODO decide on this number formatting if it is best for the UK
-const countries: AllowedCountries = {
+
+export interface AllowedRegions {
+  NorthAmerica: RegionSettings;
+  GreatBritain: RegionSettings;
+  Unknown: RegionSettings;
+}
+
+const REGION_SETTINGS: AllowedRegions = {
   NorthAmerica: { countryCode: 1, format: "(###) ###-####" },
-  GreatBritain: { countryCode: 44, format: "(###) #### ####" },
+  GreatBritain: { countryCode: 44 },
+  Unknown: {},
 };
 
 // should it be form field or common form field?
-interface InputPhoneNumberProps extends FormFieldProps {
+export interface InputPhoneNumberProps extends FormFieldProps {
   alwaysShowMask?: boolean;
-  country: keyof AllowedCountries;
+  region?: keyof AllowedRegions;
   placeholder?: string;
   showCountryCode?: boolean;
 }
 
 export function InputPhoneNumber({
-  country,
+  region = "NorthAmerica",
   placeholder,
   alwaysShowMask = true,
   showCountryCode = false,
   ...rest
 }: InputPhoneNumberProps) {
-  const displayedCountryCode = showCountryCode
-    ? `+${countries[country].countryCode}`
-    : "";
-
-  const maskingProperties = {
-    allowEmptyFormatting: alwaysShowMask,
-    format: `${displayedCountryCode} ${countries[country].format}`,
-    mask: "_",
-    prefix: `${displayedCountryCode}`,
-  };
+  const regionSettings = REGION_SETTINGS[region];
 
   return (
     <FormField
       value={rest.value}
       onChange={rest.onChange}
       type="maskedNumber"
-      maskingProperties={maskingProperties}
+      maskingProperties={getMaskingProperties(regionSettings)}
       placeholder={placeholder}
       {...rest}
     />
   );
+
+  function getDisplayedCountryCode(settings: RegionSettings) {
+    if (showCountryCode && settings.countryCode) {
+      return `+${settings.countryCode} `;
+    }
+
+    return "";
+  }
+
+  function getMaskingProperties(
+    settings: RegionSettings,
+  ): FormFieldProps["maskingProperties"] {
+    const hasFormat = !!settings.format;
+    const countryCodeString = getDisplayedCountryCode(regionSettings);
+
+    if (!hasFormat) {
+      return {
+        prefix: countryCodeString,
+      };
+    }
+
+    return {
+      format: `${countryCodeString}${regionSettings.format}`,
+      allowEmptyFormatting: alwaysShowMask,
+      mask: "_",
+    };
+  }
 }

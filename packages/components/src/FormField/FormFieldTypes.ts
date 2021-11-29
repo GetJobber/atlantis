@@ -19,10 +19,10 @@ export type AutocompleteTypes =
   | "address-line2";
 
 interface NumberMaskingPropertyTypes {
-  format: string;
-  mask: string;
-  prefix: string;
-  allowEmptyFormatting: boolean;
+  prefix?: string;
+  format?: string;
+  mask?: string;
+  allowEmptyFormatting?: boolean;
 }
 
 export interface FieldActionsRef {

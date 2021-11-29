@@ -25,7 +25,7 @@ exports[`InputPhoneNumber renders a InputPhoneNumber 1`] = `
       onKeyDown={[Function]}
       onMouseUp={[Function]}
       type="text"
-      value=" (___) ___-____"
+      value="(___) ___-____"
     />
   </div>
 </div>
