@@ -8,6 +8,70 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.36](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.9.35...@jobber/docz-tools@1.9.36) (2021-11-26)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.9.35](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.9.34...@jobber/docz-tools@1.9.35) (2021-11-26)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.9.34](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.9.33...@jobber/docz-tools@1.9.34) (2021-11-24)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.9.33](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.9.32...@jobber/docz-tools@1.9.33) (2021-11-24)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.9.32](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.9.31...@jobber/docz-tools@1.9.32) (2021-11-16)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.9.31](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.9.30...@jobber/docz-tools@1.9.31) (2021-11-15)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.9.30](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.9.29...@jobber/docz-tools@1.9.30) (2021-11-15)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.9.29](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.9.28...@jobber/docz-tools@1.9.29) (2021-11-15)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
 ## [1.9.28](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.9.27...@jobber/docz-tools@1.9.28) (2021-11-04)
 
 **Note:** Version bump only for package @jobber/docz-tools

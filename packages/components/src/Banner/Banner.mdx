@@ -31,16 +31,29 @@ import { Banner } from "@jobber/components/Banner";
 
 <Props of={Banner} />
 
-## Types of Banner
+## Design & usage guidelines
 
-BannerType could be any of the followings
+### Layout and alignment
+
+Banner should align to the left and right of the content it is related to.
+
+When using a Banner within a modal or a page layout, this means Banner should align to the 
+text, inputs or other UI elements beneath it. For best results, use [Content](/components/content)
+to ensure consistent vertical spacing between Banner and adjacent elements.
+
+If the Banner is being used as a system-wide message or some other context in which it is
+outside of the main application layout, it should take up the full available width.
+
+### Types of Banner
+
+There are four types of Banner, each with guidelines for their usage:
 
 - `notice` [<Icon name="link" />](#notice-message)
 - `success` [<Icon name="link" />](#success-message)
 - `warning`[<Icon name="link" />](#warning-message)
 - `error` [<Icon name="link" />](#error-message)
 
-## Notice message
+### Notice message
 
 Use notice banners to provide information about:
 
@@ -59,7 +72,7 @@ or change is important if context is not provided elsewhere.
   </Banner>
 </Playground>
 
-## Success message
+### Success message
 
 Success banners are appropriate when:
 
@@ -83,7 +96,7 @@ Otherwise, use [toasts](toast) as the default for success messages.
   </Banner>
 </Playground>
 
-## Warning message
+### Warning message
 
 Use warning banners when:
 
@@ -104,7 +117,7 @@ workflow.
   </Banner>
 </Playground>
 
-## Error message
+### Error message
 
 Use error banners when:
 
@@ -140,6 +153,15 @@ to resolve or troubleshoot the issue if possible.
   </Banner>
 </Playground>
 
+## Content Guidelines
+
+Content in banner should:
+
+- Be concise and kept to only 1 to 2 sentences where possible
+- Avoid exceeding 200 characters
+- Follow the [product vocabulary](/content/product-vocabulary) where applicable
+- In the case of warning or error banners, explain how to resolve the issue
+
 ## Actions in Banners
 
 It is discouraged to use a `<Button />` component when requiring an action
@@ -169,15 +191,6 @@ within a `Banner`. If you require an action, use the `primaryActions` prop. The
     </Banner>
   </Content>
 </Playground>
-
-## Content Guidelines
-
-Content in banner should:
-
-- Be concise and kept to only 1 to 2 sentences where possible
-- Avoid exceeding 200 characters
-- Follow the [product vocabulary](/content/product-vocabulary) where applicable
-- In the case of warning or error banners, explain how to resolve the issue
 
 ## Related components
 
