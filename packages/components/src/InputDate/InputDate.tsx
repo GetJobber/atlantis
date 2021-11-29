@@ -57,8 +57,8 @@ export function InputDate(inputProps: InputDateProps) {
             value={value}
             onChange={(_, event) => onChange && onChange(event)}
             onBlur={() => {
-              inputProps.onBlur?.();
-              activatorProps.onBlur?.();
+              inputProps.onBlur && inputProps.onBlur();
+              activatorProps.onBlur && activatorProps.onBlur();
             }}
             onFocus={() => {
               inputProps.onFocus?.();

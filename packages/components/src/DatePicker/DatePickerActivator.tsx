@@ -7,6 +7,7 @@ import React, {
   isValidElement,
 } from "react";
 import { ReactDatePickerProps } from "react-datepicker";
+import { omit } from "lodash";
 import { Button } from "../Button";
 
 export interface DatePickerActivatorProps
@@ -36,16 +37,24 @@ export interface DatePickerActivatorProps
 
 export const DatePickerActivator = forwardRef(InternalActivator);
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function InternalActivator(
   props: DatePickerActivatorProps,
   ref: Ref<HTMLElement>,
 ) {
-  const { activator } = props;
+  const { activator, fullWidth } = props;
+  const newActivatorProps = omit(props, ["activator", "fullWidth"]);
+
   if (activator) {
-    return isValidElement(activator)
-      ? cloneElement(activator, { ...props, ref })
-      : activator(props);
+    if (isValidElement(activator)) {
+      const isAComponent = typeof activator.type === "function";
+      return cloneElement(activator, {
+        ...newActivatorProps,
+        ...(isAComponent && { fullWidth: fullWidth }),
+        ref,
+      });
+    } else {
+      return activator(props);
+    }
   } else {
     return (
       <Button
@@ -53,7 +62,8 @@ function InternalActivator(
         type="tertiary"
         icon="calendar"
         ariaLabel="Open Datepicker"
-        {...props}
+        fullWidth={fullWidth}
+        {...newActivatorProps}
       />
     );
   }
