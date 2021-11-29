@@ -149,8 +149,6 @@ export interface FormFieldProps extends CommonFormFieldProps {
    */
   readonly keyboard?: "numeric";
 
-  readonly maskingProperties?: NumberMaskingPropertyTypes;
-
   /**
    * Specifies the maximum numerical or date value that a user can type
    */
@@ -212,6 +210,11 @@ export interface FormFieldProps extends CommonFormFieldProps {
    * Determines what kind of form field should the component give you.
    */
   readonly type?: FormFieldTypes;
+
+  /**
+   * Properties for masking the input when the `type` is `numberMask`
+   */
+  readonly maskingProperties?: NumberMaskingPropertyTypes;
 
   /**
    * Show an error message above the field. This also

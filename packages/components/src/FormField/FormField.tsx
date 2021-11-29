@@ -3,13 +3,17 @@ import React, {
   FocusEvent,
   KeyboardEvent,
   MutableRefObject,
+  SyntheticEvent,
   useEffect,
   useImperativeHandle,
   useState,
 } from "react";
 import uuid from "uuid";
 import { Controller, useForm, useFormContext } from "react-hook-form";
-import NumberFormat from "react-number-format";
+import NumberFormat, {
+  NumberFormatProps,
+  NumberFormatValues,
+} from "react-number-format";
 import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.css";
 import { FormFieldWrapper } from "./FormFieldWrapper";
@@ -139,12 +143,12 @@ export function FormField(props: FormFieldProps) {
             case "maskedNumber":
               return (
                 <>
-                  <NumberFormat
-                    {...textFieldProps}
-                    {...maskingProperties}
-                    onValueChange={handleOnValueChange}
-                    getInputRef={inputRef}
-                    onChange={maskedOnChangeHandler}
+                  <MaskedNumberInputInternal
+                    textFieldProps={textFieldProps}
+                    maskingProperties={maskingProperties}
+                    onChange={onChange}
+                    onControllerChange={onControllerChange}
+                    inputRef={inputRef}
                   />
                   {loading && <FormFieldPostFix variation="spinner" />}
                 </>
@@ -180,17 +184,6 @@ export function FormField(props: FormFieldProps) {
           }
 
           onChange && onChange(newValue);
-          onControllerChange(event);
-        }
-        function handleOnValueChange(values: {
-          formattedValue: string;
-          originalValue: string;
-        }) {
-          const { formattedValue } = values;
-          onChange && onChange(formattedValue);
-        }
-
-        function maskedOnChangeHandler(event: ChangeEvent<HTMLInputElement>) {
           onControllerChange(event);
         }
 
@@ -235,4 +228,42 @@ function setAutocomplete(
   }
 
   return autocompleteSetting;
+}
+
+interface MaskedNumberInternalProps {
+  textFieldProps: Omit<
+    NumberFormatProps,
+    "onValueChange" | "getInputRef" | "onChange"
+  >;
+  maskingProperties: FormFieldProps["maskingProperties"];
+  onChange: FormFieldProps["onChange"];
+  onControllerChange: (event: SyntheticEvent) => void;
+  inputRef: FormFieldProps["inputRef"];
+}
+
+function MaskedNumberInputInternal({
+  textFieldProps,
+  maskingProperties,
+  onChange,
+  onControllerChange,
+  inputRef,
+}: MaskedNumberInternalProps) {
+  function handleOnValueChange(values: NumberFormatValues) {
+    const { formattedValue } = values;
+    onChange && onChange(formattedValue);
+  }
+
+  function handleRawChangeEvent(event: ChangeEvent<HTMLInputElement>) {
+    onControllerChange(event);
+  }
+
+  return (
+    <NumberFormat
+      {...textFieldProps}
+      {...maskingProperties}
+      onValueChange={handleOnValueChange}
+      getInputRef={inputRef}
+      onChange={handleRawChangeEvent}
+    />
+  );
 }

@@ -358,4 +358,68 @@ describe("FormField", () => {
       });
     });
   });
+
+  describe("with masking", () => {
+    describe("when invalid data is entered", () => {
+      it("should render a masked input with placeholder values", async () => {
+        const maskingProperties = {
+          allowEmptyFormatting: false,
+          format: `### * ###`,
+          mask: "_",
+          prefix: "$$$ ",
+        };
+        const onChange = jest.fn();
+
+        const rendered = render(
+          <FormField
+            type="maskedNumber"
+            maskingProperties={maskingProperties}
+            onChange={onChange}
+            placeholder={"Phone Number"}
+          />,
+        );
+
+        const numberInput = rendered.getByLabelText(
+          "Phone Number",
+        ) as HTMLInputElement;
+
+        fireEvent.change(numberInput, {
+          target: { value: "abcde~!@#$%^&*()_+={}[]\\|`?/\"-'`" },
+        });
+
+        expect(onChange).toHaveBeenCalledTimes(0);
+      });
+    });
+
+    describe("when valid data is entered", () => {
+      it("should render a masked input with the entered data in the correct spots", async () => {
+        const maskingProperties = {
+          allowEmptyFormatting: false,
+          format: `### * ###`,
+          mask: "_",
+          prefix: "$$$ ",
+        };
+        const onChange = jest.fn();
+
+        const rendered = render(
+          <FormField
+            type="maskedNumber"
+            maskingProperties={maskingProperties}
+            onChange={onChange}
+            placeholder={"Phone Number"}
+          />,
+        );
+
+        const numberInput = rendered.getByLabelText(
+          "Phone Number",
+        ) as HTMLInputElement;
+
+        fireEvent.change(numberInput, {
+          target: { value: "42" },
+        });
+
+        expect(onChange).toHaveBeenCalledWith("42_ * ___");
+      });
+    });
+  });
 });

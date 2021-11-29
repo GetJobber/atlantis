@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders a InputPhoneNumber 1`] = `
+exports[`InputPhoneNumber renders a InputPhoneNumber 1`] = `
 <div
   className="wrapper"
   style={
