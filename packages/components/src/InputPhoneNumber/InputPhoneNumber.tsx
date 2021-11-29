@@ -29,12 +29,14 @@ export function InputPhoneNumber({
   const displayedCountryCode = showCountryCode
     ? `+${countries[country].countryCode}`
     : "";
+
   const maskingProperties = {
     allowEmptyFormatting: alwaysShowMask,
     format: `${displayedCountryCode} ${countries[country].format}`,
     mask: "_",
     prefix: `${displayedCountryCode}`,
   };
+
   return (
     <FormField
       value={rest.value}
