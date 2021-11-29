@@ -3,7 +3,8 @@ import { FormField, FormFieldProps } from "../FormField";
 
 export interface RegionSettings {
   countryCode?: number;
-  format?: string;
+  format: string;
+  mask: string;
 }
 
 export interface AllowedRegions {
@@ -13,9 +14,11 @@ export interface AllowedRegions {
 }
 
 const REGION_SETTINGS: AllowedRegions = {
-  NorthAmerica: { countryCode: 1, format: "(###) ###-####" },
-  GreatBritain: { countryCode: 44 },
-  Unknown: {},
+  NorthAmerica: { countryCode: 1, format: "(###) ###-####", mask: "_" },
+  // Allows a max of 12 digits (not including country code) which is the max in the UK.
+  GreatBritain: { countryCode: 44, format: "############", mask: "" },
+  // Allowing for up to 16 digits. That should be enough for all numbers
+  Unknown: { format: "################", mask: "" },
 };
 
 // should it be form field or common form field?
@@ -57,19 +60,11 @@ export function InputPhoneNumber({
   function getMaskingProperties(
     settings: RegionSettings,
   ): FormFieldProps["maskingProperties"] {
-    const hasFormat = !!settings.format;
-    const countryCodeString = getDisplayedCountryCode(regionSettings);
-
-    if (!hasFormat) {
-      return {
-        prefix: countryCodeString,
-      };
-    }
-
+    const countryCodeString = getDisplayedCountryCode(settings);
     return {
-      format: `${countryCodeString}${regionSettings.format}`,
+      format: `${countryCodeString}${settings.format}`,
       allowEmptyFormatting: alwaysShowMask,
-      mask: "_",
+      mask: settings.mask,
     };
   }
 }
