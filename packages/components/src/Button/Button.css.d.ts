@@ -3,7 +3,6 @@ declare const styles: {
   readonly "work": string;
   readonly "learning": string;
   readonly "destructive": string;
-  readonly "cancel": string;
   readonly "subtle": string;
   readonly "primary": string;
   readonly "disabled": string;

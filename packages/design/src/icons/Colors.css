@@ -58,14 +58,6 @@
   fill: var(--color-destructive--hover);
 }
 
-.cancel {
-  fill: var(--color-cancel);
-}
-
-.cancelHover {
-  fill: var(--color-cancel--hover);
-}
-
 .interactiveSubtle {
   fill: var(--color-interactive--subtle);
 }

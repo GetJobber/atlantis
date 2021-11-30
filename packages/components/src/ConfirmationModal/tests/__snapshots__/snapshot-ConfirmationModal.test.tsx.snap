@@ -64,7 +64,7 @@ exports[`renders a simple ConfirmationModal 1`] = `
           </span>
         </button>
         <button
-          className="button base cancel secondary"
+          className="button base subtle primary"
           disabled={false}
           onClick={[Function]}
           type="button"
