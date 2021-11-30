@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { InputText } from "../InputText";
 
-export function InputMask() {
-  const mask = "+* (***) ***-****";
-  const delimiter = "*";
+interface InputMaskProps {
+  readonly mask: string;
+  readonly delimiter: string;
+}
+
+export function InputMask({
+  mask = "+* (***) ***-****",
+  delimiter = "*",
+}: InputMaskProps) {
   const [maskedVal, setMaskedVal] = useState("");
   return (
     <div style={{ position: "relative" }}>
