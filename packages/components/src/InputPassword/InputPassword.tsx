@@ -11,6 +11,7 @@ interface InputPasswordProps
       | "onBlur"
       | "inputRef"
       | "validations"
+      | "defaultValue"
     > {
   value?: string;
   onChange?(newValue: string): void;

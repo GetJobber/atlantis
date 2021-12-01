@@ -2,6 +2,11 @@
   display: inline-block;
 }
 
+.fullWidth {
+  display: block;
+  width: 100%;
+}
+
 .datePicker:global(.react-datepicker) {
   --datepicker-cell-size: calc(var(--space-base) * 2.375);
   box-shadow: var(--shadow-base);
@@ -17,6 +22,10 @@
 :global(.react-datepicker__input-container),
 :global(.react-datepicker-wrapper) {
   max-width: 100%;
+}
+
+.datePickerWrapper :global(.react-datepicker-popper) {
+  z-index: var(--elevation-datepicker);
 }
 
 .datePicker :global(.react-datepicker__header) {

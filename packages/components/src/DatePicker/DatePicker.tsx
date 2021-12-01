@@ -10,13 +10,16 @@ import "react-datepicker/dist/react-datepicker.css";
 import { XOR } from "ts-xor";
 import styles from "./DatePicker.css";
 import { DatePickerCustomHeader } from "./DatePickerCustomHeader";
-import { Button } from "../Button";
+import {
+  DatePickerActivator,
+  DatePickerActivatorProps,
+} from "./DatePickerActivator";
 
 interface BaseDatePickerProps {
   /**
    * The selected Date object
    */
-  readonly selected: Date;
+  readonly selected?: Date;
 
   /**
    * Change handler that will return the date selected.
@@ -28,7 +31,24 @@ interface DatePickerModalProps extends BaseDatePickerProps {
   /**
    * Use a custom activator to trigger the DatePicker
    */
-  readonly activator?: ReactElement;
+  readonly activator?:
+    | ReactElement
+    | ((props: DatePickerActivatorProps) => ReactElement);
+
+  /**
+   * Stops the user from interaction
+   */
+  readonly disabled?: boolean;
+
+  /**
+   * Whether the datepicker should take up a whole block
+   */
+  readonly fullWidth?: boolean;
+
+  /**
+   * Whether or not you can select a date
+   */
+  readonly readonly?: boolean;
 }
 
 interface DatePickerInlineProps extends BaseDatePickerProps {
@@ -42,52 +62,39 @@ export function DatePicker({
   activator,
   inline,
   selected,
+  readonly = false,
+  disabled = false,
+  fullWidth = false,
 }: DatePickerProps) {
   const datePickerClassNames = classnames(styles.datePicker, {
     [styles.inline]: inline,
+  });
+  const wrapperClassName = classnames(styles.datePickerWrapper, {
+    [styles.fullWidth]: fullWidth,
   });
 
   const datePickerRef = useRef() as RefObject<HTMLDivElement>;
 
   return (
-    <div className={styles.datePickerWrapper} ref={datePickerRef}>
+    <div className={wrapperClassName} ref={datePickerRef}>
       <ReactDatePicker
         calendarClassName={datePickerClassNames}
         showPopperArrow={false}
         selected={selected}
         inline={inline}
+        disabled={disabled}
+        readOnly={readonly}
         onChange={handleChange}
         formatWeekDay={date => date.substr(0, 3)}
         customInput={
-          activator ? (
-            activator
-          ) : (
-            <Button
-              variation="work"
-              type="tertiary"
-              icon="calendar"
-              ariaLabel="Open Datepicker"
-            />
-          )
+          <DatePickerActivator activator={activator} fullWidth={fullWidth} />
         }
         renderCustomHeader={props => <DatePickerCustomHeader {...props} />}
-        onCalendarOpen={focusSelectedDate}
       />
     </div>
   );
 
-  function handleChange(val: Date) {
-    onChange && onChange(val);
-  }
-
-  function focusSelectedDate() {
-    const selectedDateClass = ".react-datepicker__day--selected";
-
-    const selectedDate =
-      datePickerRef.current?.querySelector(selectedDateClass);
-
-    if (selectedDate instanceof HTMLDivElement) {
-      selectedDate.focus();
-    }
+  function handleChange(value: Date) {
+    onChange(value);
   }
 }

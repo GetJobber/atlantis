@@ -166,7 +166,6 @@ describe("FormField", () => {
       const newerValue =
         "They always say time changes things, but you actually have to change them yourself.";
       const changeHandler = jest.fn();
-
       const { getByLabelText } = render(
         <FormField
           name="Got milk?"
@@ -178,12 +177,15 @@ describe("FormField", () => {
       fireEvent.change(getByLabelText(placeholder), {
         target: { value: newValue },
       });
-      expect(changeHandler).toHaveBeenCalledWith(newValue);
+      expect(changeHandler).toHaveBeenCalledWith(newValue, expect.any(Object));
 
       fireEvent.change(getByLabelText(placeholder), {
         target: { value: newerValue },
       });
-      expect(changeHandler).toHaveBeenCalledWith(newerValue);
+      expect(changeHandler).toHaveBeenCalledWith(
+        newerValue,
+        expect.any(Object),
+      );
     });
 
     describe("without validation errors", () => {
