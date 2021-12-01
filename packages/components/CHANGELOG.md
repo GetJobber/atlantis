@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.68.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.67.2...@jobber/components@2.68.0) (2021-12-01)
+
+
+### Features
+
+* **components:** InputDate Component ([#783](https://github.com/GetJobber/atlantis/issues/783)) ([6247850](https://github.com/GetJobber/atlantis/commit/6247850eaf118d4cde6ca1830250bab2f652a88f))
+
+
+
+
+
 ## [2.67.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.67.1...@jobber/components@2.67.2) (2021-11-30)
 
 **Note:** Version bump only for package @jobber/components
