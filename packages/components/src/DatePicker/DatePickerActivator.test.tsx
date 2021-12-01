@@ -32,5 +32,5 @@ it("removes fullWidth and activator props if a basic html element is the activat
     <DatePickerActivator activator={<div>activate me</div>} fullWidth={true} />,
   );
   expect(getByText("activate me")).toBeInTheDocument();
-  expect(getByText("activate me")).not.toHaveClass("fullWidth");
+  expect(getByText("activate me")).not.toHaveAttribute("fullWidth");
 });
