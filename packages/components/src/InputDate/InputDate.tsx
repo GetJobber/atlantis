@@ -61,8 +61,8 @@ export function InputDate(inputProps: InputDateProps) {
               activatorProps.onBlur && activatorProps.onBlur();
             }}
             onFocus={() => {
-              inputProps.onFocus?.();
-              activatorProps.onFocus?.();
+              inputProps.onFocus && inputProps.onFocus();
+              activatorProps.onFocus && activatorProps.onFocus();
             }}
             suffix={suffix}
           />

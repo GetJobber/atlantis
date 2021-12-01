@@ -5,8 +5,11 @@ import { InputDate } from ".";
 afterEach(cleanup);
 
 it("renders a blank form by default", () => {
-  const { getByDisplayValue } = render(<InputDate onChange={jest.fn()} />);
-  expect(getByDisplayValue("")).toBeTruthy();
+  const { getByDisplayValue, queryByText } = render(
+    <InputDate onChange={jest.fn()} />,
+  );
+  expect(getByDisplayValue("")).toBeInTheDocument();
+  expect(queryByText("15")).not.toBeInTheDocument();
 });
 
 it("fires onChange with the new value when you click a date", () => {
