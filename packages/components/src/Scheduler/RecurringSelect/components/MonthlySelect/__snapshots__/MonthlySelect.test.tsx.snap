@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MonthlySelect should render the component 1`] = `
+<div
+  className="radioContainer"
+>
+  <div
+    aria-label="Monthly Frequency Selector"
+    className="_21aQKdbfCYC-03CNAUhBXW"
+    role="radiogroup"
+  >
+    <div>
+      <input
+        checked={true}
+        className="_11AeV22s7aou-ZpJgQCiPD"
+        disabled={false}
+        id="DayOfMonth_123e4567-e89b-12d3-a456-426655440002"
+        name="123e4567-e89b-12d3-a456-426655440001"
+        onChange={[Function]}
+        type="radio"
+        value="DayOfMonth"
+      />
+      <label
+        className="IiW-lj1gmbjv30FHatRaU"
+        htmlFor="DayOfMonth_123e4567-e89b-12d3-a456-426655440002"
+      >
+        Day of month
+      </label>
+    </div>
+    <div>
+      <input
+        checked={false}
+        className="_11AeV22s7aou-ZpJgQCiPD"
+        disabled={false}
+        id="WeekDayOfMonth_123e4567-e89b-12d3-a456-426655440003"
+        name="123e4567-e89b-12d3-a456-426655440001"
+        onChange={[Function]}
+        type="radio"
+        value="WeekDayOfMonth"
+      />
+      <label
+        className="IiW-lj1gmbjv30FHatRaU"
+        htmlFor="WeekDayOfMonth_123e4567-e89b-12d3-a456-426655440003"
+      >
+        Day of week
+      </label>
+    </div>
+  </div>
+</div>
+`;

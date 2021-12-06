@@ -1,0 +1,42 @@
+---
+name: Scheduler
+menu: Components
+route: /components/scheduler
+showDirectoryLink: true
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { Scheduler, useScheduler } from ".";
+import { Content } from "@jobber/components/Content";
+import { Text } from "@jobber/components/Text";
+import { Checkbox } from "@jobber/components/Checkbox";
+import { Divider } from "@jobber/components/Divider";
+import { Avatar } from "@jobber/components/Avatar";
+import { useState } from "react";
+
+# Scheduler
+
+<ComponentStatus stage="ready" responsive="yes" accessible="yes" />
+
+Scheduler, fill me out
+
+```ts
+import { Scheduler } from "@jobber/components/Scheduler";
+```
+
+<Playground>
+  {() => {
+    const [schedulerState, setSchedulerState] = useScheduler();
+    const onChangeSchedule = (partialNextSchedule) => setSchedulerState({ ...schedulerState, ...partialNextSchedule });
+
+    return (
+      <Scheduler
+        onChange={onChangeSchedule}
+        {...schedulerState}
+      />
+    );
+
+}}
+
+</Playground>

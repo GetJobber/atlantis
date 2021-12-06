@@ -1,0 +1,19 @@
+.title {
+    display: flex;
+}
+
+.title > *:first-child {
+    flex: 1 1 auto;
+}
+
+.datePicker sg-icon[icon="calendar"] {
+    color: var(--color-greyBlue);
+}
+
+.container input:focus, .container select:focus {
+  box-shadow: var(--shadow-focus);
+}
+
+.disabled h5 {
+color: var(--color-disabled);
+}

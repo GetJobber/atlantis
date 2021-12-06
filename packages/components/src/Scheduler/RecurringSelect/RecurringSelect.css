@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+}
+
+.container span {
+  right: var(--space-small)
+}
+
+.intervalText {
+  align-self: center;
+  padding-right: 1rem;
+}
+
+.disabled {
+  color: var(--color-disabled)
+}
+
+.modifierText {
+  padding-left: 1rem;
+  align-self: center;
+}
+
+.fullWidthWrapper {
+  width: 100%;
+}

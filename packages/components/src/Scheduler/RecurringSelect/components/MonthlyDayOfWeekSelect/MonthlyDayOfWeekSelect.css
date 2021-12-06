@@ -1,0 +1,13 @@
+.container{
+    display: flex;
+    margin-bottom: calc(-1 * var(--border-base))
+}
+
+.order{
+    align-self: center;
+    flex: 1 1 0;
+}
+
+.selector {
+    flex: 9 1 0;
+}
