@@ -7,7 +7,7 @@ showDirectoryLink: true
 
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
-import { Scheduler, useScheduler } from ".";
+import { Scheduler } from ".";
 import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
 import { Checkbox } from "@jobber/components/Checkbox";
@@ -26,17 +26,5 @@ import { Scheduler } from "@jobber/components/Scheduler";
 ```
 
 <Playground>
-  {() => {
-    const [schedulerState, setSchedulerState] = useScheduler();
-    const onChangeSchedule = (partialNextSchedule) => setSchedulerState({ ...schedulerState, ...partialNextSchedule });
-
-    return (
-      <Scheduler
-        onChange={onChangeSchedule}
-        {...schedulerState}
-      />
-    );
-
-}}
-
+  <Scheduler />
 </Playground>

@@ -3,6 +3,7 @@ import { CivilTime } from "@std-proposal/temporal";
 import classNames from "classnames";
 import { RecurringSelect } from "./RecurringSelect";
 import {
+  DurationPeriod,
   Recurrence,
   RecurrenceOptions,
   RecurrenceRule,
@@ -13,54 +14,61 @@ import styles from "./Scheduler.css";
 import { computeRecurrence } from "./computeRecurrence";
 import { ScheduleSummary } from "./ScheduleSummary";
 import { computeOccurrence } from "./computeOccurrence";
+import { useScheduler } from "./useScheduler";
 import { strFormatDate } from "../FormatDate";
 import { Content } from "../Content";
 import { Card } from "../Card";
 
-export interface SchedulerProps {
-  startDate: Date;
-  startTime: CivilTime | undefined;
-  endTime: CivilTime | undefined;
-  recurrence: Recurrence;
-  selectedRecurringOption: RecurrenceOptions;
-  summaryString?: string;
-  onChange(state: Partial<SchedulerState>): void;
-}
-
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 // eslint-disable-next-line max-statements
-export const Scheduler = (props: SchedulerProps) => {
+export const Scheduler = () => {
+  const [schedulerState, setSchedulerState] = useScheduler({
+    startDate: new Date(),
+    startTime: undefined,
+    endTime: undefined,
+    recurrence: {
+      rule: { interval: 1, type: DurationPeriod.Day },
+      ends: {
+        type: "date",
+        date: new Date(),
+        numOfPeriods: 1,
+        durationPeriod: DurationPeriod.Day,
+      },
+    },
+  });
+  const onChangeSchedule = (partialNextSchedule: Partial<SchedulerState>) =>
+    setSchedulerState({ ...schedulerState, ...partialNextSchedule });
+
   const getRecurrenceRule = (option: RecurrenceOptions) => {
     if (option === RecurrenceOptions.AsNeeded) {
-      return props.recurrence;
+      return schedulerState.recurrence;
     }
 
-    return computeRecurrence(props.startDate, props.recurrence, option);
+    return computeRecurrence(
+      schedulerState.startDate,
+      schedulerState.recurrence,
+      option,
+    );
   };
 
   const onRecurrenceChange = (newRecurrence: {
     ends: ScheduleEnd;
     rule: RecurrenceRule;
   }) =>
-    props.onChange({
+    onChangeSchedule({
       recurrence: {
         ...newRecurrence,
       },
     });
 
   const schedule = useMemo(
-    () => computeOccurrence(props.startDate, props.recurrence),
-    [props.startDate, props.recurrence],
+    () =>
+      computeOccurrence(schedulerState.startDate, schedulerState.recurrence),
+    [schedulerState.startDate, schedulerState.recurrence],
   );
 
   const containerClass = classNames(styles.container);
-
-  const showAdditionalDetail =
-    (props.recurrence.ends.type === "duration" ||
-      (props.recurrence.ends.type === "date" &&
-        props.recurrence.ends.date > props.startDate)) &&
-    props.selectedRecurringOption !== RecurrenceOptions.AsNeeded &&
-    schedule.lastOccurrence !== undefined;
+  const showAdditionalDetail = false;
 
   return (
     <div className={containerClass}>
@@ -69,8 +77,8 @@ export const Scheduler = (props: SchedulerProps) => {
           <>
             <Content spacing="small">
               <RecurringSelect
-                recurrenceRule={props.recurrence.rule}
-                recurrenceEnds={props.recurrence.ends}
+                recurrenceRule={schedulerState.recurrence.rule}
+                recurrenceEnds={schedulerState.recurrence.ends}
                 disabled={false}
                 onRecurrenceChange={onRecurrenceChange}
               />
