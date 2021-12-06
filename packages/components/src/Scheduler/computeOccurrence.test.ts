@@ -1,18 +1,18 @@
 import { computeOccurrence, convertToUtcDate } from "./computeOccurrence";
 import { DayOfMonth, DurationPeriod, Recurrence, WeekDay } from "./types";
 
-type expectedObject = {
+interface expectedObject {
   firstOccurrence: Date | string;
   lastOccurrence: Date | undefined | string;
   totalOccurrence: number;
-};
+}
 
-type resultObject = {
+interface resultObject {
   firstOccurrence: Date | string;
   lastOccurrence: Date | undefined | string;
   totalOccurrence: number;
   scheduledDates: Date[];
-};
+}
 
 const compareExpectedToResults = (
   expected: expectedObject,

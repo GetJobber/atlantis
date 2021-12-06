@@ -3,7 +3,7 @@
 }
 
 .container span {
-  right: var(--space-small)
+  right: var(--space-small);
 }
 
 .intervalText {
@@ -12,7 +12,7 @@
 }
 
 .disabled {
-  color: var(--color-disabled)
+  color: var(--color-disabled);
 }
 
 .modifierText {

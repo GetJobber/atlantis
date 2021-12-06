@@ -3,35 +3,36 @@
   to prevent double borders on overlapping boxes
 */
 .container {
-  width: 100%;
   display: grid;
-  grid-template-areas: ". . . . . . ."
-                       ". . . . . . ."
-                       ". . . . . . ."
-                       ". . . . . . ."
-                       ". . . lastday lastday lastday lastday";
-  column-gap: var(--border-base);
-  row-gap: var(--border-base);
-  background: var(--color-border);
+  width: 100%;
   padding: var(--border-base);
   border-radius: var(--radius-base);
+  background: var(--color-border);
+  grid-template-areas:
+    ". . . . . . ."
+    ". . . . . . ."
+    ". . . . . . ."
+    ". . . . . . ."
+    ". . . lastday lastday lastday lastday";
+  column-gap: var(--border-base);
+  row-gap: var(--border-base);
 }
 
-.checkboxWrapper{
+.checkboxWrapper {
   position: relative;
 }
 
-.checkboxWrapper:nth-child(n + 1):nth-last-child(-n + 1){
+.checkboxWrapper:nth-child(n + 1):nth-last-child(-n + 1) {
   grid-area: lastday;
 }
 
 /* kept present but hidden for accessibility */
 .container input[type="checkbox"] {
   position: absolute;
-  height: 1rem;
-  width: 1rem;
   top: 0;
   left: 0;
+  width: 1rem;
+  height: 1rem;
   opacity: 0;
 }
 
@@ -48,12 +49,12 @@
   content: "";
   display: block;
   position: absolute;
-  z-index: 2;
-  border-radius: var(--radius-base);
   top: calc(-1 * var(--border-base));
   right: calc(-1 * var(--border-base));
   bottom: calc(-1 * var(--border-base));
   left: calc(-1 * var(--border-base));
+  z-index: 2;
+  border-radius: var(--radius-base);
 }
 
 /* Checked stlying */
@@ -86,8 +87,8 @@
 
 /* Disabled styling */
 .container input[type="checkbox"]:disabled:checked + .dayCheckbox {
-  background: var(--color-disabled);
   color: var(--color-disabled--secondary);
+  background: var(--color-disabled);
 }
 
 .container input[type="checkbox"]:checked:disabled + .dayCheckbox::after {
@@ -95,11 +96,11 @@
 }
 
 .container input[type="checkbox"]:disabled + .dayCheckbox {
-  background: var(--color-surface--background);
   color: var(--color-disabled);
+  background: var(--color-surface--background);
   cursor: default;
 }
 
-.container input[type="checkbox"]:enabled + .dayCheckbox{
+.container input[type="checkbox"]:enabled + .dayCheckbox {
   cursor: pointer;
 }

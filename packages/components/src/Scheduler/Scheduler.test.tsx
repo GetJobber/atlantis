@@ -167,9 +167,10 @@ describe("Scheduler", () => {
         });
       }
 
-      const scheduleRecurrenceIntervalInputEl = rendered.container.querySelector(
-        'input[name="schedule-recurrence-interval"]',
-      );
+      const scheduleRecurrenceIntervalInputEl =
+        rendered.container.querySelector(
+          'input[name="schedule-recurrence-interval"]',
+        );
       expect(scheduleRecurrenceIntervalInputEl).not.toBeNull();
       expect(
         scheduleRecurrenceIntervalInputEl instanceof HTMLInputElement,
@@ -403,9 +404,10 @@ describe("Scheduler", () => {
         });
       }
 
-      const scheduleRecurrenceIntervalInputEl = rendered.container.querySelector(
-        'input[name="schedule-recurrence-interval"]',
-      );
+      const scheduleRecurrenceIntervalInputEl =
+        rendered.container.querySelector(
+          'input[name="schedule-recurrence-interval"]',
+        );
       expect(scheduleRecurrenceIntervalInputEl).not.toBeNull();
       expect(
         scheduleRecurrenceIntervalInputEl instanceof HTMLInputElement,

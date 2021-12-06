@@ -1,8 +1,7 @@
-
-.radioContainer div[role="radiogroup"]{
-    flex-direction: row;
+.radioContainer div[role="radiogroup"] {
+  flex-direction: row;
 }
 
-.radioContainer label{
-    margin-right: var(--space-base);
+.radioContainer label {
+  margin-right: var(--space-base);
 }

@@ -1,12 +1,13 @@
-.disabled > h5{
+.disabled > h5 {
   color: var(--color-disabled);
 }
 
-.disabled > p{
+.disabled > p {
   color: var(--color-disabled);
 }
 
-.disabled dt, .disabled dd {
+.disabled dt,
+.disabled dd {
   color: var(--color-disabled);
 }
 
