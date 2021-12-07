@@ -15,6 +15,7 @@ import {
   RecurrenceRule,
   RecurrenceRuleWeekDayOfMonth,
   ScheduleEnd,
+  SchedulerState,
   WeekDay,
 } from "../types";
 import { Content } from "../../Content";
@@ -23,18 +24,24 @@ interface RecurringSelectProps {
   disabled: boolean;
   recurrenceRule: RecurrenceRule;
   recurrenceEnds: ScheduleEnd;
-  onRecurrenceChange(newRecurrence: {
-    ends: ScheduleEnd;
-    rule: RecurrenceRule;
-  }): void;
+  onChange(newPartialState: Partial<SchedulerState>): void;
 }
 
 export function RecurringSelect({
   recurrenceRule,
   recurrenceEnds,
   disabled,
-  onRecurrenceChange,
+  onChange,
 }: RecurringSelectProps) {
+  const onRecurrenceChange = (newRecurrence: {
+    ends: ScheduleEnd;
+    rule: RecurrenceRule;
+  }) =>
+    onChange({
+      recurrence: {
+        ...newRecurrence,
+      },
+    });
   const currentRecurrenceComponent = getCurrentComponent(
     recurrenceRule,
     recurrenceEnds,

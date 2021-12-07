@@ -7,24 +7,48 @@ showDirectoryLink: true
 
 import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
-import { Scheduler } from ".";
+import { RecurringSelect } from "./RecurringSelect";
 import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
 import { Checkbox } from "@jobber/components/Checkbox";
 import { Divider } from "@jobber/components/Divider";
 import { Avatar } from "@jobber/components/Avatar";
 import { useState } from "react";
+import { DurationPeriod, SchedulerState } from "./types";
+import { useScheduler } from "./useScheduler";
 
-# Scheduler
+# RecurringSelect
 
 <ComponentStatus stage="ready" responsive="yes" accessible="yes" />
 
-Scheduler, fill me out
+RecurringSelect, fill me out & rename me please
 
 ```ts
 import { Scheduler } from "@jobber/components/Scheduler";
 ```
 
 <Playground>
-  <Scheduler />
+  {() => {
+    const [schedulerState, setSchedulerState] = useScheduler({
+      recurrence: {
+        rule: { interval: 1, type: DurationPeriod.Day },
+        ends: {
+          type: "date",
+          date: new Date(),
+          numOfPeriods: 1,
+          durationPeriod: DurationPeriod.Day,
+        },
+      },
+    });
+    const onChangeSchedule = (partialNextSchedule) =>
+      setSchedulerState({ ...schedulerState, ...partialNextSchedule });
+    return(
+      <RecurringSelect
+        recurrenceRule={schedulerState.recurrence.rule}
+        recurrenceEnds={schedulerState.recurrence.ends}
+        disabled={false}
+        onChange={onChangeSchedule}
+      />);
+    }}
+
 </Playground>
