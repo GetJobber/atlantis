@@ -1,7 +1,7 @@
 /* tslint:disable no-relative-imports */
 import React from "react";
 import styles from "./MonthlyDayOfWeekSelect.css";
-import { WeekDay } from "../../../types";
+import { WeekDay } from "../../types";
 // eslint-disable-next-line
 import { WeeklySelect } from "../WeeklySelect/WeeklySelect";
 

@@ -5,10 +5,6 @@ import styles from "./RecurringSelect.css";
 import { WeeklySelect } from "./components/WeeklySelect/WeeklySelect";
 import { MonthlySelect } from "./components/MonthlySelect/MonthlySelect";
 import { MonthlyDayOfWeekSelect } from "./components/MonthlyDayOfWeekSelect/MonthlyDayOfWeekSelect";
-import { typeInitialStateMap } from "./types";
-import { Option, Select } from "../../Select";
-import { InputNumber } from "../../InputNumber";
-import { InputGroup } from "../../InputGroup";
 import {
   DayOfMonth,
   DurationPeriod,
@@ -17,8 +13,12 @@ import {
   ScheduleEnd,
   SchedulerState,
   WeekDay,
-} from "../types";
-import { Content } from "../../Content";
+  typeInitialStateMap,
+} from "./types";
+import { Option, Select } from "../Select";
+import { InputNumber } from "../InputNumber";
+import { InputGroup } from "../InputGroup";
+import { Content } from "../Content";
 
 interface RecurringSelectProps {
   disabled: boolean;

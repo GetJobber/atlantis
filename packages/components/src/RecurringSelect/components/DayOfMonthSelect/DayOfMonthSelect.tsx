@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./DayOfMonthSelect.css";
-import { DayOfMonth } from "../../../types";
+import { DayOfMonth } from "../../types";
 
 interface DayOfMonthSelectProps {
   selectedDays: Set<DayOfMonth>;

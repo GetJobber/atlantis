@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./WeeklySelect.css";
-import { WeekDay } from "../../../types";
+import { WeekDay } from "../../types";
 
 interface WeeklySelectProps {
   disabled: boolean;

@@ -5,7 +5,7 @@ import { cleanup, fireEvent, render } from "@testing-library/react";
 import renderer from "react-test-renderer";
 import { RecurringSelect } from "./RecurringSelect";
 // eslint-disable-next-line
-import { DayOfMonth, DurationPeriod, WeekDay } from "../Scheduler/types";
+import { DayOfMonth, DurationPeriod, WeekDay } from "./types";
 
 afterEach(cleanup);
 

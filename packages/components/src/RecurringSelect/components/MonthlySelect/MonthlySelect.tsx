@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./MonthlySelect.css";
-import { DurationPeriod } from "../../../types";
-import { RadioGroup, RadioOption } from "../../../../RadioGroup";
+import { DurationPeriod } from "../../types";
+import { RadioGroup, RadioOption } from "../../../RadioGroup";
 
 interface MonthlySelectProps {
   disabled: boolean;

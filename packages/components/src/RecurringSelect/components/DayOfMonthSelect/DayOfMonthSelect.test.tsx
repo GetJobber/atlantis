@@ -1,8 +1,8 @@
 import React from "react";
 import { act, cleanup, fireEvent, render } from "@testing-library/react";
 import renderer from "react-test-renderer";
-import { DayOfMonth } from "jobber/workOrders/components/Scheduler/types";
 import { DayOfMonthSelect } from "./DayOfMonthSelect";
+import { DayOfMonth } from "../../types";
 
 afterEach(cleanup);
 
