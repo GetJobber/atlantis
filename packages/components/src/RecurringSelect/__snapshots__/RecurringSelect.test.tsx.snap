@@ -2,7 +2,7 @@
 
 exports[`RecurringSelect should render the recurring select component 1`] = `
 <div
-  className="_1TB2WRsjEoAUFq0FMfwdQ3 _3XB3f5356G3URhbYQmxO0U"
+  className="padded base"
 >
   <div
     className="container"
@@ -16,10 +16,10 @@ exports[`RecurringSelect should render the recurring select component 1`] = `
       className="fullWidthWrapper"
     >
       <div
-        className="_3kywSyvvwSdmNSTOqX-AQA _26qQBed5Rzu9i2ZIDEaESr"
+        className="inputGroup horizontal"
       >
         <div
-          className="_2bOj_Hpd2VvA3mi9t4RcZO _1tABQjw4-IkgUE3cbBzs7r"
+          className="wrapper maxLength"
           style={
             Object {
               "--formField-maxLength": 3,
@@ -27,14 +27,14 @@ exports[`RecurringSelect should render the recurring select component 1`] = `
           }
         >
           <div
-            className="_1WnxEaBZY0zLsD8oKwh20b"
+            className="inputWrapper"
           >
             <label
-              className="ktPFw5_r1v4MB-Ts5rPTG"
+              className="label"
               htmlFor="123e4567-e89b-12d3-a456-426655440001"
             />
             <input
-              className="_3koQsrzZZXPVxXmmESjSG_"
+              className="input"
               disabled={false}
               id="123e4567-e89b-12d3-a456-426655440001"
               maxLength={3}
@@ -50,7 +50,7 @@ exports[`RecurringSelect should render the recurring select component 1`] = `
           </div>
         </div>
         <div
-          className="_2bOj_Hpd2VvA3mi9t4RcZO Ntcl388Qhhu4uLJc2d1Ll"
+          className="wrapper select"
           style={
             Object {
               "--formField-maxLength": undefined,
@@ -58,14 +58,14 @@ exports[`RecurringSelect should render the recurring select component 1`] = `
           }
         >
           <div
-            className="_1WnxEaBZY0zLsD8oKwh20b"
+            className="inputWrapper"
           >
             <label
-              className="ktPFw5_r1v4MB-Ts5rPTG"
+              className="label"
               htmlFor="123e4567-e89b-12d3-a456-426655440003"
             />
             <select
-              className="_3koQsrzZZXPVxXmmESjSG_"
+              className="input"
               disabled={false}
               id="123e4567-e89b-12d3-a456-426655440003"
               name="schedule-recurrence-type"
@@ -94,7 +94,7 @@ exports[`RecurringSelect should render the recurring select component 1`] = `
               </option>
             </select>
             <span
-              className="_1yJbSG5N0hfPjPkrih4Q99"
+              className="postfix"
             >
               <svg
                 className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"

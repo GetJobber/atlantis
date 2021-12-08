@@ -28,7 +28,7 @@ describe("RecurringSelect", () => {
             numOfPeriods: 1,
             durationPeriod: DurationPeriod.Day,
           }}
-          onRecurrenceChange={onChange}
+          onChange={onChange}
           disabled={false}
         />,
       )
@@ -58,7 +58,7 @@ describe("RecurringSelect with a weekly recurrenceRule", () => {
           numOfPeriods: 1,
           durationPeriod: DurationPeriod.Day,
         }}
-        onRecurrenceChange={onChange}
+        onChange={onChange}
         disabled={false}
       />,
     );
@@ -85,7 +85,7 @@ describe("RecurringSelect with a weekly recurrenceRule", () => {
           numOfPeriods: 1,
           durationPeriod: DurationPeriod.Day,
         }}
-        onRecurrenceChange={onChange}
+        onChange={onChange}
         disabled={false}
       />,
     );
@@ -118,7 +118,7 @@ describe("RecurringSelect with an existing week day selected", () => {
           numOfPeriods: 1,
           durationPeriod: DurationPeriod.Day,
         }}
-        onRecurrenceChange={onChange}
+        onChange={onChange}
         disabled={false}
       />,
     );
@@ -147,7 +147,7 @@ describe("RecurringSelect with a daily recurrence", () => {
           numOfPeriods: 1,
           durationPeriod: DurationPeriod.Day,
         }}
-        onRecurrenceChange={onChange}
+        onChange={onChange}
         disabled={false}
       />,
     );
@@ -198,7 +198,7 @@ describe("RecurringSelect with a day of month recurrenceRule", () => {
           numOfPeriods: 1,
           durationPeriod: DurationPeriod.Day,
         }}
-        onRecurrenceChange={onChange}
+        onChange={onChange}
         disabled={false}
       />,
     );
@@ -226,7 +226,7 @@ describe("RecurringSelect with a day of month recurrenceRule", () => {
           numOfPeriods: 1,
           durationPeriod: DurationPeriod.Day,
         }}
-        onRecurrenceChange={onChange}
+        onChange={onChange}
         disabled={false}
       />,
     );
@@ -253,7 +253,7 @@ describe("RecurringSelect with a day of month recurrenceRule", () => {
           numOfPeriods: 1,
           durationPeriod: DurationPeriod.Day,
         }}
-        onRecurrenceChange={onChange}
+        onChange={onChange}
         disabled={false}
       />,
     );
@@ -279,7 +279,7 @@ describe("RecurringSelect with a day of month recurrenceRule", () => {
           numOfPeriods: 1,
           durationPeriod: DurationPeriod.Day,
         }}
-        onRecurrenceChange={onChange}
+        onChange={onChange}
         disabled={false}
       />,
     );
