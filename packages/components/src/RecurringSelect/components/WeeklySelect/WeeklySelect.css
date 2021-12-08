@@ -48,7 +48,14 @@
   border-radius: var(--radius-base);
 }
 
-/* Checked stlying */
+.dayCheckbox:hover {
+  background: var(--color-surface--hover);
+}
+
+.container input[type="checkbox"]:focus + .dayCheckbox {
+  background: var(--color-surface--hover);
+}
+
 .container input[type="checkbox"]:checked + .dayCheckbox::after {
   border: var(--border-base) solid var(--color-interactive--hover);
 }
@@ -56,34 +63,6 @@
 .container input[type="checkbox"]:checked + .dayCheckbox {
   color: var(--color-white);
   background: var(--color-interactive);
-}
-
-.container input[type="checkbox"]:checked:focus + .dayCheckbox {
-  background: var(--color-interactive--hover);
-}
-
-/* Focus & hover styling */
-.container input[type="checkbox"]:focus + .dayCheckbox,
-.dayCheckbox:hover {
-  background: var(--color-surface--hover);
-}
-
-.container input[type="checkbox"]:focus + .dayCheckbox::after {
-  box-shadow: var(--shadow-focus);
-}
-
-.container input[type="checkbox"]:checked + .dayCheckbox:hover {
-  background: var(--color-interactive--hover);
-}
-
-/* Disabled styling */
-.container input[type="checkbox"]:disabled:checked + .dayCheckbox {
-  color: var(--color-disabled--secondary);
-  background: var(--color-disabled);
-}
-
-.container input[type="checkbox"]:checked:disabled + .dayCheckbox::after {
-  border: none;
 }
 
 .container input[type="checkbox"]:disabled + .dayCheckbox {
@@ -94,4 +73,25 @@
 
 .container input[type="checkbox"]:enabled + .dayCheckbox {
   cursor: pointer;
+}
+
+.container input[type="checkbox"]:checked:focus + .dayCheckbox {
+  background: var(--color-interactive--hover);
+}
+
+.container input[type="checkbox"]:focus + .dayCheckbox::after {
+  box-shadow: var(--shadow-focus);
+}
+
+.container input[type="checkbox"]:checked + .dayCheckbox:hover {
+  background: var(--color-interactive--hover);
+}
+
+.container input[type="checkbox"]:disabled:checked + .dayCheckbox {
+  color: var(--color-disabled--secondary);
+  background: var(--color-disabled);
+}
+
+.container input[type="checkbox"]:checked:disabled + .dayCheckbox::after {
+  border: none;
 }

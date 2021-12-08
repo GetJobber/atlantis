@@ -56,8 +56,23 @@
   z-index: 2;
   border-radius: var(--radius-base);
 }
+.dayCheckbox:hover {
+  background: var(--color-surface--hover);
+}
 
-/* Checked stlying */
+.container input[type="checkbox"]:disabled + .dayCheckbox {
+  color: var(--color-disabled);
+  background: var(--color-surface--background);
+  cursor: default;
+}
+
+.container input[type="checkbox"]:enabled + .dayCheckbox {
+  cursor: pointer;
+}
+
+.container input[type="checkbox"]:focus + .dayCheckbox {
+  background: var(--color-surface--hover);
+}
 .container input[type="checkbox"]:checked + .dayCheckbox::after {
   border: var(--border-base) solid var(--color-interactive--hover);
 }
@@ -71,36 +86,19 @@
   background: var(--color-interactive--hover);
 }
 
-/* Focus & hover styling */
-.container input[type="checkbox"]:focus + .dayCheckbox,
-.dayCheckbox:hover {
-  background: var(--color-surface--hover);
-}
-
 .container input[type="checkbox"]:focus + .dayCheckbox::after {
   box-shadow: var(--shadow-focus);
+}
+
+.container input[type="checkbox"]:disabled:checked + .dayCheckbox {
+  color: var(--color-disabled--secondary);
+  background: var(--color-disabled);
 }
 
 .container input[type="checkbox"]:checked + .dayCheckbox:hover {
   background: var(--color-interactive--hover);
 }
 
-/* Disabled styling */
-.container input[type="checkbox"]:disabled:checked + .dayCheckbox {
-  color: var(--color-disabled--secondary);
-  background: var(--color-disabled);
-}
-
 .container input[type="checkbox"]:checked:disabled + .dayCheckbox::after {
   border: none;
-}
-
-.container input[type="checkbox"]:disabled + .dayCheckbox {
-  color: var(--color-disabled);
-  background: var(--color-surface--background);
-  cursor: default;
-}
-
-.container input[type="checkbox"]:enabled + .dayCheckbox {
-  cursor: pointer;
 }
