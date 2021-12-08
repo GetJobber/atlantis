@@ -5,12 +5,12 @@
 .container {
   display: grid;
   width: 100%;
-  padding: var(--border-base);
-  border-radius: var(--radius-base);
-  background: var(--color-border);
+  padding: var(--space-smaller);
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: var(--radius-large);
   grid-template-columns: repeat(7, 1fr);
-  column-gap: var(--border-base);
-  row-gap: var(--border-base);
+  row-gap: var(--space-smaller);
+  column-gap: var(--space-smaller);
 }
 
 .checkboxWrapper {
@@ -30,22 +30,11 @@
 .dayCheckbox {
   display: block;
   padding: 1rem;
+  border-radius: var(--radius-large);
   text-align: center;
   user-select: none;
   background: var(--color-white);
   transition: 300ms;
-}
-
-.dayCheckbox::after {
-  content: "";
-  display: block;
-  position: absolute;
-  top: calc(-1 * var(--border-base));
-  right: calc(-1 * var(--border-base));
-  bottom: calc(-1 * var(--border-base));
-  left: calc(-1 * var(--border-base));
-  z-index: 2;
-  border-radius: var(--radius-base);
 }
 
 .dayCheckbox:hover {
@@ -54,10 +43,6 @@
 
 .container input[type="checkbox"]:focus + .dayCheckbox {
   background: var(--color-surface--hover);
-}
-
-.container input[type="checkbox"]:checked + .dayCheckbox::after {
-  border: var(--border-base) solid var(--color-interactive--hover);
 }
 
 .container input[type="checkbox"]:checked + .dayCheckbox {
@@ -79,10 +64,6 @@
   background: var(--color-interactive--hover);
 }
 
-.container input[type="checkbox"]:focus + .dayCheckbox::after {
-  box-shadow: var(--shadow-focus);
-}
-
 .container input[type="checkbox"]:checked + .dayCheckbox:hover {
   background: var(--color-interactive--hover);
 }
@@ -90,8 +71,4 @@
 .container input[type="checkbox"]:disabled:checked + .dayCheckbox {
   color: var(--color-disabled--secondary);
   background: var(--color-disabled);
-}
-
-.container input[type="checkbox"]:checked:disabled + .dayCheckbox::after {
-  border: none;
 }
