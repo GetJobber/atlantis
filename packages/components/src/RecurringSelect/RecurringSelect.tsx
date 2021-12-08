@@ -1,3 +1,4 @@
+/* eslint-disable import/no-internal-modules */
 import React, { ReactNode } from "react";
 import classNames from "classnames";
 import { DayOfMonthSelect } from "./components/DayOfMonthSelect/DayOfMonthSelect";
