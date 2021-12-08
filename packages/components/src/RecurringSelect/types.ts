@@ -1,5 +1,3 @@
-import { CivilTime } from "@std-proposal/temporal";
-
 export enum WeekDay {
   Sunday,
   Monday,
@@ -51,13 +49,6 @@ export enum DurationPeriod {
   Year = "Year",
   Visit = "Visit",
 }
-export interface ScheduleEnd {
-  type: "duration" | "date";
-  numOfPeriods: number;
-  durationPeriod: DurationPeriod;
-  date: Date;
-}
-
 export interface RecurrenceRuleDay {
   type: DurationPeriod.Day;
 }
@@ -93,13 +84,9 @@ export type RecurrenceRule = {
 
 export interface Recurrence {
   rule: RecurrenceRule;
-  ends: ScheduleEnd;
 }
 
 export interface SchedulerState {
-  startDate: Date;
-  startTime: CivilTime | undefined;
-  endTime: CivilTime | undefined;
   recurrence: Recurrence;
 }
 

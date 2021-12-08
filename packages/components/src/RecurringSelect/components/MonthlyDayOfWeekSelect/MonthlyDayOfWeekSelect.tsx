@@ -1,4 +1,3 @@
-/* tslint:disable no-relative-imports */
 import React from "react";
 import styles from "./MonthlyDayOfWeekSelect.css";
 import { WeekDay } from "../../types";

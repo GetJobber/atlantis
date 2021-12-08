@@ -11,7 +11,6 @@ import {
   DurationPeriod,
   RecurrenceRule,
   RecurrenceRuleWeekDayOfMonth,
-  ScheduleEnd,
   SchedulerState,
   WeekDay,
   typeInitialStateMap,
@@ -24,20 +23,15 @@ import { Content } from "../Content";
 interface RecurringSelectProps {
   disabled: boolean;
   recurrenceRule: RecurrenceRule;
-  recurrenceEnds: ScheduleEnd;
   onChange(newPartialState: Partial<SchedulerState>): void;
 }
 
 export function RecurringSelect({
   recurrenceRule,
-  recurrenceEnds,
   disabled,
   onChange,
 }: RecurringSelectProps) {
-  const onRecurrenceChange = (newRecurrence: {
-    ends: ScheduleEnd;
-    rule: RecurrenceRule;
-  }) =>
+  const onRecurrenceChange = (newRecurrence: { rule: RecurrenceRule }) =>
     onChange({
       recurrence: {
         ...newRecurrence,
@@ -45,7 +39,6 @@ export function RecurringSelect({
     });
   const currentRecurrenceComponent = getCurrentComponent(
     recurrenceRule,
-    recurrenceEnds,
     onRecurrenceChange,
     disabled,
   );
@@ -129,7 +122,6 @@ export function RecurringSelect({
         ...recurrenceRule,
         interval,
       },
-      ends: recurrenceEnds,
     });
   }
 
@@ -146,18 +138,13 @@ export function RecurringSelect({
         interval: recurrenceRule.interval,
         ...typeInitialStateMap[type],
       },
-      ends: recurrenceEnds,
     });
   }
 }
 
 function getCurrentComponent(
   recurrenceRule: RecurrenceRule,
-  recurrenceEnds: ScheduleEnd,
-  callback: (newRecurrence: {
-    rule: RecurrenceRule;
-    ends: ScheduleEnd;
-  }) => void,
+  callback: (newRecurrence: { rule: RecurrenceRule }) => void,
   disabled: boolean,
 ): ReactNode {
   if (recurrenceRule.type === DurationPeriod.Week) {
@@ -167,7 +154,6 @@ function getCurrentComponent(
           ...recurrenceRule,
           weekDays: next,
         },
-        ends: recurrenceEnds,
       });
     };
 
@@ -189,7 +175,6 @@ function getCurrentComponent(
           ...recurrenceRule,
           dayOfWeek: next,
         },
-        ends: recurrenceEnds,
       });
     };
 
@@ -209,7 +194,6 @@ function getCurrentComponent(
           ...recurrenceRule,
           date: next,
         },
-        ends: recurrenceEnds,
       });
     };
     return (

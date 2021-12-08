@@ -22,12 +22,6 @@ describe("RecurringSelect", () => {
         <RecurringSelect
           data-testid="boop"
           recurrenceRule={{ interval: 1, type: DurationPeriod.Day }}
-          recurrenceEnds={{
-            type: "date",
-            date: new Date("December 17, 2021 03:24:00"),
-            numOfPeriods: 1,
-            durationPeriod: DurationPeriod.Day,
-          }}
           onChange={onChange}
           disabled={false}
         />,
@@ -52,12 +46,6 @@ describe("RecurringSelect with a weekly recurrenceRule", () => {
           type: DurationPeriod.Week,
           weekDays: new Set(),
         }}
-        recurrenceEnds={{
-          type: "date",
-          date: new Date("December 17, 2021 03:24:00"),
-          numOfPeriods: 1,
-          durationPeriod: DurationPeriod.Day,
-        }}
         onChange={onChange}
         disabled={false}
       />,
@@ -78,12 +66,6 @@ describe("RecurringSelect with a weekly recurrenceRule", () => {
           interval: 1,
           type: DurationPeriod.Week,
           weekDays: new Set(),
-        }}
-        recurrenceEnds={{
-          type: "date",
-          date: new Date("December 17, 2021 03:24:00"),
-          numOfPeriods: 1,
-          durationPeriod: DurationPeriod.Day,
         }}
         onChange={onChange}
         disabled={false}
@@ -112,12 +94,6 @@ describe("RecurringSelect with an existing week day selected", () => {
           type: DurationPeriod.Week,
           weekDays: newWeekDaySet,
         }}
-        recurrenceEnds={{
-          type: "date",
-          date: new Date("December 17, 2021 03:24:00"),
-          numOfPeriods: 1,
-          durationPeriod: DurationPeriod.Day,
-        }}
         onChange={onChange}
         disabled={false}
       />,
@@ -140,12 +116,6 @@ describe("RecurringSelect with a daily recurrence", () => {
         recurrenceRule={{
           interval: 1,
           type: DurationPeriod.Day,
-        }}
-        recurrenceEnds={{
-          type: "date",
-          date: new Date("December 17, 2021 03:24:00"),
-          numOfPeriods: 1,
-          durationPeriod: DurationPeriod.Day,
         }}
         onChange={onChange}
         disabled={false}
@@ -192,12 +162,6 @@ describe("RecurringSelect with a day of month recurrenceRule", () => {
           type: DurationPeriod.DayOfMonth,
           date: new Set(),
         }}
-        recurrenceEnds={{
-          type: "date",
-          date: new Date("December 17, 2021 03:24:00"),
-          numOfPeriods: 1,
-          durationPeriod: DurationPeriod.Day,
-        }}
         onChange={onChange}
         disabled={false}
       />,
@@ -220,12 +184,6 @@ describe("RecurringSelect with a day of month recurrenceRule", () => {
           type: DurationPeriod.DayOfMonth,
           date: newDayOfMonthSet,
         }}
-        recurrenceEnds={{
-          type: "date",
-          date: new Date("December 17, 2021 03:24:00"),
-          numOfPeriods: 1,
-          durationPeriod: DurationPeriod.Day,
-        }}
         onChange={onChange}
         disabled={false}
       />,
@@ -247,12 +205,6 @@ describe("RecurringSelect with a day of month recurrenceRule", () => {
           type: DurationPeriod.DayOfMonth,
           date: newDayOfMonthSet,
         }}
-        recurrenceEnds={{
-          type: "date",
-          date: new Date("December 17, 2021 03:24:00"),
-          numOfPeriods: 1,
-          durationPeriod: DurationPeriod.Day,
-        }}
         onChange={onChange}
         disabled={false}
       />,
@@ -272,12 +224,6 @@ describe("RecurringSelect with a day of month recurrenceRule", () => {
           interval: 1,
           type: DurationPeriod.DayOfMonth,
           date: newDayOfMonthSet,
-        }}
-        recurrenceEnds={{
-          type: "date",
-          date: new Date("December 17, 2021 03:24:00"),
-          numOfPeriods: 1,
-          durationPeriod: DurationPeriod.Day,
         }}
         onChange={onChange}
         disabled={false}
