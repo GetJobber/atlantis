@@ -6,13 +6,13 @@ exports[`MonthlySelect should render the component 1`] = `
 >
   <div
     aria-label="Monthly Frequency Selector"
-    className="_21aQKdbfCYC-03CNAUhBXW"
+    className="radioGroup"
     role="radiogroup"
   >
     <div>
       <input
         checked={true}
-        className="_11AeV22s7aou-ZpJgQCiPD"
+        className="input"
         disabled={false}
         id="DayOfMonth_123e4567-e89b-12d3-a456-426655440002"
         name="123e4567-e89b-12d3-a456-426655440001"
@@ -21,7 +21,7 @@ exports[`MonthlySelect should render the component 1`] = `
         value="DayOfMonth"
       />
       <label
-        className="IiW-lj1gmbjv30FHatRaU"
+        className="label"
         htmlFor="DayOfMonth_123e4567-e89b-12d3-a456-426655440002"
       >
         Day of month
@@ -30,7 +30,7 @@ exports[`MonthlySelect should render the component 1`] = `
     <div>
       <input
         checked={false}
-        className="_11AeV22s7aou-ZpJgQCiPD"
+        className="input"
         disabled={false}
         id="WeekDayOfMonth_123e4567-e89b-12d3-a456-426655440003"
         name="123e4567-e89b-12d3-a456-426655440001"
@@ -39,7 +39,7 @@ exports[`MonthlySelect should render the component 1`] = `
         value="WeekDayOfMonth"
       />
       <label
-        className="IiW-lj1gmbjv30FHatRaU"
+        className="label"
         htmlFor="WeekDayOfMonth_123e4567-e89b-12d3-a456-426655440003"
       >
         Day of week

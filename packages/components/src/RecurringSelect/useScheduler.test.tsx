@@ -18,7 +18,6 @@ describe("useScheduler", () => {
 
     const Scheduler: React.FC = () => {
       [state] = useScheduler({
-        scheduleLater: false,
         startDate: new Date(),
         recurrence: {
           rule: { interval: 1, type: DurationPeriod.Day },
@@ -35,6 +34,6 @@ describe("useScheduler", () => {
 
     render(<Scheduler />);
 
-    expect(state.anyTimeOfDay).toBe(true);
+    expect(state.recurrence.rule.interval).toBe(1);
   });
 });
