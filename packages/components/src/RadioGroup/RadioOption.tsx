@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from "react";
 import { XOR } from "ts-xor";
-import uuid from "uuid";
+import { v1 as uuidv1 } from "uuid";
 import styles from "./RadioGroup.css";
 import { Text } from "../Text";
 
@@ -59,7 +59,7 @@ export function InternalRadioOption({
   children,
   onChange,
 }: PropsWithChildren<InternalRadioOptionProps>) {
-  const inputId = `${value.toString()}_${uuid.v1()}`;
+  const inputId = `${value.toString()}_${uuidv1()}`;
   return (
     <div>
       <input

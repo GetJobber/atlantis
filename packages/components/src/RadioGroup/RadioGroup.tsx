@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import uuid from "uuid";
+import { v1 as uuidv1 } from "uuid";
 import { InternalRadioOption } from "./RadioOption";
 import styles from "./RadioGroup.css";
 
@@ -37,7 +37,7 @@ export function RadioGroup({
   value,
   ariaLabel,
   onChange,
-  name = uuid.v1(),
+  name = uuidv1(),
 }: RadioGroupProps) {
   return (
     <div role="radiogroup" aria-label={ariaLabel} className={styles.radioGroup}>
