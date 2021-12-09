@@ -6,7 +6,7 @@
   display: grid;
   width: 100%;
   padding: var(--space-smaller);
-  border: 1px solid rgb(204, 204, 204);
+  border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-large);
   grid-template-columns: repeat(7, 1fr);
   row-gap: var(--space-smaller);
