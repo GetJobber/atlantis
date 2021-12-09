@@ -190,7 +190,7 @@ export function InputFile({
   }
 
   async function uploadFile(file: File) {
-    const { url, key = uuid(), fields = {} } = await getUploadParams(file);
+    const { url, key = uuid.v1(), fields = {} } = await getUploadParams(file);
 
     const fileUpload = getFileUpload(file, key);
     onUploadStart && onUploadStart({ ...fileUpload });

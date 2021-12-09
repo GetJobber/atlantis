@@ -59,7 +59,7 @@ export function InternalRadioOption({
   children,
   onChange,
 }: PropsWithChildren<InternalRadioOptionProps>) {
-  const inputId = `${value.toString()}_${uuid()}`;
+  const inputId = `${value.toString()}_${uuid.v1()}`;
   return (
     <div>
       <input

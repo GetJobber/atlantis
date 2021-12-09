@@ -68,8 +68,8 @@ export function Menu({ activator, items }: MenuProps) {
     horizontal: "right",
   });
   const wrapperRef = createRef<HTMLDivElement>();
-  const buttonID = uuid();
-  const menuID = uuid();
+  const buttonID = uuid.v1();
+  const menuID = uuid.v1();
 
   useOnKeyDown(handleKeyboardShortcut, ["Escape"]);
   useLayoutEffect(() => {
