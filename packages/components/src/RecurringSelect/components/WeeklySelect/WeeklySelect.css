@@ -42,6 +42,7 @@
 }
 
 .container input[type="checkbox"]:focus + .dayCheckbox {
+  box-shadow: var(--shadow-focus);
   background: var(--color-surface--hover);
 }
 
