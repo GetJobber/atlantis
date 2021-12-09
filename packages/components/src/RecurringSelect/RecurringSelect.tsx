@@ -21,14 +21,14 @@ import { InputGroup } from "../InputGroup";
 import { Content } from "../Content";
 
 interface RecurringSelectProps {
-  disabled: boolean;
+  disabled?: boolean;
   recurrenceRule: RecurrenceRule;
   onChange(newPartialState: Partial<SchedulerState>): void;
 }
 
 export function RecurringSelect({
   recurrenceRule,
-  disabled,
+  disabled = false,
   onChange,
 }: RecurringSelectProps) {
   const onRecurrenceChange = (newRecurrence: { rule: RecurrenceRule }) =>
