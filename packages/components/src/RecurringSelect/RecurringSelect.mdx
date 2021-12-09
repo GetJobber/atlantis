@@ -21,7 +21,13 @@ import { useScheduler } from "./useScheduler";
 
 <ComponentStatus stage="ready" responsive="yes" accessible="yes" />
 
-RecurringSelect, fill me out & rename me please
+A `RecurringSelect` is used to provide an intuitive, accessible pre-built UI
+allowing a user to build a custom schedule using a handful of different time
+intervals.
+
+While it can be used in isolation, most often makes sense to include it as part
+of a more complex scheduling component that can use the returned data as part of
+a complete schedule.
 
 ```ts
 import { RecurringSelect } from "@jobber/components/RecurringSelect";
@@ -46,3 +52,13 @@ import { RecurringSelect } from "@jobber/components/RecurringSelect";
     }}
 
 </Playground>
+
+## Props
+
+<Props of={RecurringSelect} />
+
+## Accessibility
+
+The `RecurringSelect` component is entirely usable by keyboard.
+
+All selections can be done and undone with tabs, arrows and the space bar.
