@@ -36,7 +36,7 @@ export function MonthlyDayOfWeekSelect({
   onChange,
 }: MonthlyDayOfWeekSelectProps) {
   return (
-    <div>
+    <div className={styles.parentContainer}>
       {selectedWeeks.map((week, index) => {
         const onChangeWeek = (weekDay: Set<WeekDay>) => {
           const next: typeof selectedWeeks = [...selectedWeeks];
