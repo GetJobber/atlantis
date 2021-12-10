@@ -18,15 +18,8 @@ describe("useScheduler", () => {
 
     const Scheduler: React.FC = () => {
       [state] = useScheduler({
-        startDate: new Date(),
         recurrence: {
           rule: { interval: 1, type: DurationPeriod.Day },
-          ends: {
-            type: "date",
-            date: new Date(),
-            numOfPeriods: 1,
-            durationPeriod: DurationPeriod.Day,
-          },
         },
       });
       return <></>;

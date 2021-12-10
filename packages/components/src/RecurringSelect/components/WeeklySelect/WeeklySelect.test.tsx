@@ -4,7 +4,7 @@ import { cleanup } from "@testing-library/react";
 import renderer from "react-test-renderer";
 import { WeeklySelect } from "./WeeklySelect";
 // eslint-disable-next-line
-import { DurationPeriod, WeekDay } from "../../../Scheduler/types";
+import { WeekDay } from "../../types";
 
 afterEach(cleanup);
 
