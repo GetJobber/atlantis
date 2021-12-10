@@ -4,7 +4,7 @@ import { cleanup, fireEvent, render } from "@testing-library/react";
 import renderer from "react-test-renderer";
 import { MonthlyDayOfWeekSelect } from "./MonthlyDayOfWeekSelect";
 // eslint-disable-next-line
-import { WeekDay } from "../../../Scheduler/types";
+import { WeekDay } from "../../types";
 
 afterEach(cleanup);
 
