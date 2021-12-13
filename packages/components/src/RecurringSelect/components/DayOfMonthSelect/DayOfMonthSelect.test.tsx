@@ -1,6 +1,5 @@
 import React from "react";
-import { act, cleanup, fireEvent, render } from "@testing-library/react";
-import renderer from "react-test-renderer";
+import { cleanup, fireEvent, render } from "@testing-library/react";
 import { DayOfMonthSelect } from "./DayOfMonthSelect";
 import { DayOfMonth } from "../../types";
 
@@ -11,21 +10,6 @@ let onChange: jest.Mock;
 describe("DayOfMonthSelect", () => {
   beforeEach(() => {
     onChange = jest.fn();
-  });
-  it("should render the component", () => {
-    let tree;
-    act(() => {
-      tree = renderer
-        .create(
-          <DayOfMonthSelect
-            disabled={false}
-            onChange={onChange}
-            selectedDays={new Set<DayOfMonth>()}
-          />,
-        )
-        .toJSON();
-    });
-    expect(tree).toMatchSnapshot();
   });
 
   it("should tigger onchange when rechecked", async () => {

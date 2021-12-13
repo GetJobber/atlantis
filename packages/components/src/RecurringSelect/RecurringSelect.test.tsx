@@ -1,36 +1,11 @@
-/* eslint-disable max-statements */
-/* tslint:disable no-relative-imports */
 import React from "react";
 import { cleanup, fireEvent, render } from "@testing-library/react";
-import renderer from "react-test-renderer";
 import { RecurringSelect } from "./RecurringSelect";
-// eslint-disable-next-line
 import { DayOfMonth, DurationPeriod, WeekDay } from "./types";
 
 afterEach(cleanup);
 
 let onChange: jest.Mock;
-
-describe("RecurringSelect", () => {
-  beforeEach(() => {
-    onChange = jest.fn();
-  });
-
-  it("should render the recurring select component", () => {
-    const tree = renderer
-      .create(
-        <RecurringSelect
-          data-testid="boop"
-          recurrenceRule={{ interval: 1, type: DurationPeriod.Day }}
-          onChange={onChange}
-          disabled={false}
-        />,
-      )
-      .toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-});
 
 describe("RecurringSelect with a weekly recurrenceRule", () => {
   beforeEach(() => {
@@ -109,6 +84,7 @@ describe("RecurringSelect with a daily recurrence", () => {
     onChange = jest.fn();
   });
 
+  // eslint-disable-next-line max-statements
   it("should call the onChange when interval and type are changed", () => {
     const { container } = render(
       <RecurringSelect

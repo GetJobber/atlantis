@@ -1,9 +1,6 @@
-/* tslint:disable no-relative-imports */
 import React from "react";
 import { cleanup, fireEvent, render } from "@testing-library/react";
-import renderer from "react-test-renderer";
 import { MonthlyDayOfWeekSelect } from "./MonthlyDayOfWeekSelect";
-// eslint-disable-next-line
 import { WeekDay } from "../../types";
 
 afterEach(cleanup);
@@ -13,25 +10,6 @@ let onChange: jest.Mock;
 describe("MonthlyDayOfWeekSelect", () => {
   beforeEach(() => {
     onChange = jest.fn();
-  });
-
-  it("should render the component", () => {
-    const tree = renderer
-      .create(
-        <MonthlyDayOfWeekSelect
-          disabled={false}
-          onChange={onChange}
-          selectedWeeks={[
-            new Set<WeekDay>(),
-            new Set<WeekDay>(),
-            new Set<WeekDay>(),
-            new Set<WeekDay>(),
-          ]}
-        />,
-      )
-      .toJSON();
-
-    expect(tree).toMatchSnapshot();
   });
 
   describe("MonthlyDayOfWeekSelect with a monthly reccurrence", () => {
