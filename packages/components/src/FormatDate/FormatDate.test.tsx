@@ -37,12 +37,12 @@ describe("strFormatDate", () => {
 
   it("should return the right locale date format", () => {
     const mockDateSpy = jest.spyOn(Date.prototype, "toLocaleDateString");
-    strFormatDate(new Date(expectedDate));
+    strFormatDate(expectedDate);
     expect(mockDateSpy).toHaveBeenCalledWith(mockLocale, mockLocaleDateFormat);
   });
 
   it("should return the proper date format", () => {
-    expect(strFormatDate(new Date(expectedDate))).toBe(
+    expect(strFormatDate(expectedDate)).toBe(
       new Date(expectedDateString).toLocaleDateString(
         mockLocale,
         mockLocaleDateFormat,

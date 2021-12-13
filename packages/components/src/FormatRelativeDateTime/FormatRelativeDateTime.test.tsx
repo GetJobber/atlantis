@@ -41,7 +41,6 @@ it("renders 1 minute ago when less than a minute ago", () => {
 it("renders the time when less than a day ago", () => {
   const testDate = new Date();
   testDate.setHours(testDate.getHours() - 9);
-
   const dates = getMockDates(testDate);
 
   Object.values(dates).forEach(value => {
@@ -59,7 +58,6 @@ it("renders the time when less than a day ago", () => {
 it("renders the day when less than 7 days ago", () => {
   const testDate = new Date();
   testDate.setDate(testDate.getDate() - 3);
-
   const dates = getMockDates(testDate);
 
   Object.values(dates).forEach(value => {
