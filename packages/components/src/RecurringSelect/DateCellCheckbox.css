@@ -1,0 +1,66 @@
+.container {
+  display: block;
+}
+
+.checkboxWrapper {
+  position: relative;
+}
+
+/* kept present but hidden for accessibility */
+.container input[type="checkbox"] {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.dayCheckbox {
+  display: block;
+  padding: var(--space-base);
+  border-radius: var(--radius-large);
+  text-align: center;
+  user-select: none;
+  background: var(--color-surface);
+  transition: var(--timing-base);
+}
+
+.dayCheckbox:hover {
+  background: var(--color-surface--hover);
+}
+
+.container input[type="checkbox"]:focus + .dayCheckbox {
+  box-shadow: var(--shadow-focus);
+  background: var(--color-surface--hover);
+}
+
+.container input[type="checkbox"]:checked + .dayCheckbox {
+  color: var(--color-text--reverse);
+  background: var(--color-interactive);
+}
+
+.container input[type="checkbox"]:disabled + .dayCheckbox {
+  color: var(--color-disabled);
+  background: var(--color-surface--background);
+  cursor: default;
+}
+
+.container input[type="checkbox"]:enabled + .dayCheckbox {
+  cursor: pointer;
+}
+
+.container input[type="checkbox"]:checked:focus + .dayCheckbox {
+  background: var(--color-interactive--hover);
+}
+
+.container input[type="checkbox"]:checked + .dayCheckbox:hover {
+  background: var(--color-interactive--hover);
+}
+
+.container input[type="checkbox"]:disabled:checked + .dayCheckbox {
+  color: var(--color-disabled--secondary);
+  background: var(--color-disabled);
+}

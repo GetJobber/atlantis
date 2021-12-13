@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./WeeklySelect.css";
+import checkBoxStyles from "../../DateCellCheckbox.css";
 import { WeekDay } from "../../types";
 
 interface WeeklySelectProps {
@@ -34,7 +35,7 @@ export function WeeklySelect({
         const isSelected = selectedDays.has(weekDay);
 
         return (
-          <div key={`${weekDay}`} className={styles.checkboxWrapper}>
+          <div key={`${weekDay}`} className={checkBoxStyles.checkboxWrapper}>
             <input
               disabled={disabled}
               type="checkbox"
@@ -45,7 +46,7 @@ export function WeeklySelect({
               value={weekDay}
             />
             <label
-              className={styles.dayCheckbox}
+              className={checkBoxStyles.dayCheckbox}
               htmlFor={`weekly-select-${weekDay}${disambiguator}`}
             >
               {`${WeekDay[weekDay].substr(0, 1).toUpperCase()}`}

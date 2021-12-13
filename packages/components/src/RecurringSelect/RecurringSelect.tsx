@@ -1,8 +1,8 @@
-/* eslint-disable max-statements */
 /* eslint-disable import/no-internal-modules */
 import React, { ReactNode } from "react";
 import { DayOfMonthSelect } from "./components/DayOfMonthSelect/DayOfMonthSelect";
 import styles from "./RecurringSelect.css";
+import checkBoxStyles from "./DateCellCheckbox.css";
 import { WeeklySelect } from "./components/WeeklySelect/WeeklySelect";
 import { MonthlySelect } from "./components/MonthlySelect/MonthlySelect";
 import { MonthlyDayOfWeekSelect } from "./components/MonthlyDayOfWeekSelect/MonthlyDayOfWeekSelect";
@@ -100,7 +100,9 @@ export function RecurringSelect({
           selectedMonthOption={recurrenceRule.type}
         />
       )}
-      {currentRecurrenceComponent}
+      <div className={checkBoxStyles.container}>
+        {currentRecurrenceComponent}
+      </div>
     </Content>
   );
 

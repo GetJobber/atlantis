@@ -113,5 +113,8 @@ exports[`RecurringSelect should render the recurring select component 1`] = `
       </div>
     </div>
   </div>
+  <div
+    className="container"
+  />
 </div>
 `;
