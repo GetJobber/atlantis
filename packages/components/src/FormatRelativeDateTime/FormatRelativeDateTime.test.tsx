@@ -4,13 +4,18 @@ import { cleanup } from "@testing-library/react";
 import { CivilDateTime } from "@std-proposal/temporal";
 import { FormatRelativeDateTime } from "./FormatRelativeDateTime";
 
-afterEach(cleanup);
 beforeEach(() => {
-  Date.now = jest.fn(() => 1593115122000);
+  jest.useFakeTimers("modern");
+  jest.setSystemTime(new Date(1593115122000));
+});
+
+afterEach(() => {
+  jest.useRealTimers();
+  cleanup();
 });
 
 it("renders x minutes ago when less than an hour ago", () => {
-  const testDate = new Date(Date.now());
+  const testDate = new Date();
   testDate.setMinutes(testDate.getMinutes() - 5);
   const dates = getMockDates(testDate);
 
@@ -22,7 +27,7 @@ it("renders x minutes ago when less than an hour ago", () => {
 });
 
 it("renders 1 minute ago when less than a minute ago", () => {
-  const testDate = new Date(Date.now());
+  const testDate = new Date();
   testDate.setSeconds(testDate.getSeconds() - 25);
   const dates = getMockDates(testDate);
 
@@ -34,7 +39,7 @@ it("renders 1 minute ago when less than a minute ago", () => {
 });
 
 it("renders the time when less than a day ago", () => {
-  const testDate = new Date(Date.now());
+  const testDate = new Date();
   testDate.setHours(testDate.getHours() - 9);
 
   const dates = getMockDates(testDate);
@@ -52,7 +57,7 @@ it("renders the time when less than a day ago", () => {
 });
 
 it("renders the day when less than 7 days ago", () => {
-  const testDate = new Date(Date.now());
+  const testDate = new Date();
   testDate.setDate(testDate.getDate() - 3);
 
   const dates = getMockDates(testDate);
@@ -65,7 +70,7 @@ it("renders the day when less than 7 days ago", () => {
 });
 
 it("renders the month and date when less than 1 year ago", () => {
-  const testDate = new Date(Date.now());
+  const testDate = new Date();
   testDate.setDate(testDate.getDate() - 60);
   const dates = getMockDates(testDate);
 
@@ -82,7 +87,7 @@ it("renders the month and date when less than 1 year ago", () => {
 });
 
 it("renders the month and date when yesterday's date 1 year previous (border case)", () => {
-  const testDate = new Date(Date.now());
+  const testDate = new Date();
   testDate.setFullYear(testDate.getFullYear() - 1);
   testDate.setDate(testDate.getDate() + 2); //The +2 vs. +1 is a fudge for leap year
   const dates = getMockDates(testDate);
@@ -100,7 +105,7 @@ it("renders the month and date when yesterday's date 1 year previous (border cas
 });
 
 it("renders the month day, year when over a year ago", () => {
-  const testDate = new Date(Date.now());
+  const testDate = new Date();
   testDate.setFullYear(testDate.getFullYear() - 2);
   const dates = getMockDates(testDate);
 
