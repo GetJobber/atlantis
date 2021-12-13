@@ -8,7 +8,7 @@
 
 .intervalText {
   align-self: center;
-  padding-right: 1rem;
+  padding-right: var(--space-base);
 }
 
 .disabled {
