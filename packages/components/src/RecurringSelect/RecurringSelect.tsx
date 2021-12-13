@@ -32,12 +32,13 @@ export function RecurringSelect({
   disabled = false,
   onChange,
 }: RecurringSelectProps) {
-  const onRecurrenceChange = (newRecurrence: { rule: RecurrenceRule }) =>
+  function onRecurrenceChange(newRecurrence: { rule: RecurrenceRule }) {
     onChange({
       recurrence: {
         ...newRecurrence,
       },
     });
+  }
   const currentRecurrenceComponent = getCurrentComponent(
     recurrenceRule,
     onRecurrenceChange,
