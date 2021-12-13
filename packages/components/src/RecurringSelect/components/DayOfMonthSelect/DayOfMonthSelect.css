@@ -21,3 +21,19 @@
 .container div:nth-child(n + 1):nth-last-child(-n + 1) {
   grid-area: lastday;
 }
+
+.container div:nth-child(n + 1):nth-last-child(-n + 1) label {
+  height: 100%;
+}
+
+@supports (aspect-ratio: unset) {
+  .container div:nth-child(n + 1):nth-last-child(-n + 1) label {
+    /*
+    * disabling property-no-unknown here as this is a real property
+    * that stylelint just doesn't know about. We may be able to remove
+    * this when we update our stylelint to not care about IE11.
+    */
+    /* stylelint-disable-next-line property-no-unknown */
+    aspect-ratio: unset;
+  }
+}

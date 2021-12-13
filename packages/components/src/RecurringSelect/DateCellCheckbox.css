@@ -19,13 +19,27 @@
 }
 
 .dayCheckbox {
-  display: block;
-  padding: var(--space-base);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-smaller);
   border-radius: var(--radius-large);
   text-align: center;
   user-select: none;
   background: var(--color-surface);
   transition: var(--timing-base);
+}
+
+@supports (aspect-ratio: 1/1) {
+  .dayCheckbox {
+    /*
+     * disabling property-no-unknown here as this is a real property
+     * that stylelint just doesn't know about. We may be able to remove
+     * this when we update our stylelint to not care about IE11.
+     */
+    /* stylelint-disable-next-line property-no-unknown */
+    aspect-ratio: 1/1;
+  }
 }
 
 .dayCheckbox:hover {
