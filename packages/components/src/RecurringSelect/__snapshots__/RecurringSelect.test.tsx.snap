@@ -7,11 +7,11 @@ exports[`RecurringSelect should render the recurring select component 1`] = `
   <div
     className="container"
   >
-    <span
-      className="intervalText"
+    <p
+      className="base regular base text"
     >
       Every
-    </span>
+    </p>
     <div
       className="fullWidthWrapper"
     >

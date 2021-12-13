@@ -1,6 +1,6 @@
+/* eslint-disable max-statements */
 /* eslint-disable import/no-internal-modules */
 import React, { ReactNode } from "react";
-import classNames from "classnames";
 import { DayOfMonthSelect } from "./components/DayOfMonthSelect/DayOfMonthSelect";
 import styles from "./RecurringSelect.css";
 import { WeeklySelect } from "./components/WeeklySelect/WeeklySelect";
@@ -19,6 +19,7 @@ import { Option, Select } from "../Select";
 import { InputNumber } from "../InputNumber";
 import { InputGroup } from "../InputGroup";
 import { Content } from "../Content";
+import { Text } from "../Text";
 
 interface RecurringSelectProps {
   disabled?: boolean;
@@ -42,6 +43,7 @@ export function RecurringSelect({
     onRecurrenceChange,
     disabled,
   );
+  const disabledTextVariation = disabled ? "disabled" : undefined;
   const monthlySelectOption =
     recurrenceRule.type === DurationPeriod.WeekDayOfMonth ? (
       <Option value={DurationPeriod.WeekDayOfMonth}>Month(s)</Option>
@@ -56,7 +58,9 @@ export function RecurringSelect({
     recurrenceRule.type === DurationPeriod.DayOfMonth ||
     recurrenceRule.type === DurationPeriod.Week
   ) {
-    extraFrequencyDescriptor = <span className={styles.modifierText}>on</span>;
+    extraFrequencyDescriptor = (
+      <Text variation={disabledTextVariation}>on</Text>
+    );
   }
 
   if (
@@ -77,14 +81,7 @@ export function RecurringSelect({
   return (
     <Content>
       <div className={styles.container}>
-        <span
-          className={classNames(
-            styles.intervalText,
-            disabled ? styles.disabled : "",
-          )}
-        >
-          Every
-        </span>
+        <Text variation={disabledTextVariation}>Every</Text>
         <div className={styles.fullWidthWrapper}>
           <InputGroup flowDirection="horizontal">
             <InputNumber

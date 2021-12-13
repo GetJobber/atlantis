@@ -1,23 +1,7 @@
 .container {
   display: flex;
-}
-
-.container span {
-  right: var(--space-small);
-}
-
-.intervalText {
-  align-self: center;
-  padding-right: var(--space-base);
-}
-
-.disabled {
-  color: var(--color-disabled);
-}
-
-.modifierText {
-  padding-left: var(--space-base);
-  align-self: center;
+  align-items: center;
+  gap: var(--space-base);
 }
 
 .fullWidthWrapper {
