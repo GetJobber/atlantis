@@ -1,8 +1,3 @@
-.parentContainer {
-  /* useless, only here to avoid linting error */
-  display: block;
-}
-
 .container {
   display: flex;
   margin-bottom: calc(-1 * var(--border-base));

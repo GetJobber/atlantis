@@ -1,7 +1,3 @@
-/* 
-  faking a border with a background on the parent element, gaps & padding
-  to prevent double borders on overlapping boxes
-*/
 .container {
   display: grid;
   width: 100%;
