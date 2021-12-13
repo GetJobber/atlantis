@@ -45,7 +45,7 @@
   text-align: center;
   user-select: none;
   background: var(--color-white);
-  transition: 300ms;
+  transition: var(--timing-base);
 }
 
 .dayCheckbox:hover {
