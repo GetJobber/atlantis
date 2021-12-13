@@ -68,7 +68,7 @@
 }
 
 .container input[type="checkbox"]:checked + .dayCheckbox {
-  color: var(--color-white);
+  color: var(--color-text--reverse);
   background: var(--color-interactive);
 }
 
