@@ -51,18 +51,11 @@ export function RecurringSelect({
     ) : (
       <Option value={DurationPeriod.DayOfMonth}>Month(s)</Option>
     );
-  let extraFrequencyDescriptor = <></>;
-  let monthlySelectEl = <></>;
-
-  if (
+  const hasExtraFrequencyDescriptor =
     recurrenceRule.type === DurationPeriod.WeekDayOfMonth ||
     recurrenceRule.type === DurationPeriod.DayOfMonth ||
-    recurrenceRule.type === DurationPeriod.Week
-  ) {
-    extraFrequencyDescriptor = (
-      <Text variation={disabledTextVariation}>on</Text>
-    );
-  }
+    recurrenceRule.type === DurationPeriod.Week;
+  let monthlySelectEl = <></>;
 
   if (
     recurrenceRule.type === DurationPeriod.WeekDayOfMonth ||
@@ -107,7 +100,9 @@ export function RecurringSelect({
             </Select>
           </InputGroup>
         </div>
-        {extraFrequencyDescriptor}
+        {hasExtraFrequencyDescriptor && (
+          <Text variation={disabledTextVariation}>on</Text>
+        )}
       </div>
       {monthlySelectEl}
       {currentRecurrenceComponent}
