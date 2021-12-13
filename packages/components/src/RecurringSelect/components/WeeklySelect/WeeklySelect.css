@@ -35,7 +35,7 @@
   border-radius: var(--radius-large);
   text-align: center;
   user-select: none;
-  background: var(--color-white);
+  background: var(--color-surface);
   transition: 300ms;
 }
 
