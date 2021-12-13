@@ -16,7 +16,7 @@
 }
 
 .modifierText {
-  padding-left: 1rem;
+  padding-left: var(--space-base);
   align-self: center;
 }
 
