@@ -31,13 +31,6 @@ export function RecurringSelect({
   disabled = false,
   onChange,
 }: RecurringSelectProps) {
-  function onRecurrenceChange(newRecurrence: { rule: RecurrenceRule }) {
-    onChange({
-      recurrence: {
-        ...newRecurrence,
-      },
-    });
-  }
   const currentRecurrenceComponent = getCurrentComponent(
     recurrenceRule,
     onRecurrenceChange,
@@ -102,6 +95,14 @@ export function RecurringSelect({
       {currentRecurrenceComponent}
     </Content>
   );
+
+  function onRecurrenceChange(newRecurrence: { rule: RecurrenceRule }) {
+    onChange({
+      recurrence: {
+        ...newRecurrence,
+      },
+    });
+  }
 
   function onChangeInterval(interval: number) {
     onRecurrenceChange({
