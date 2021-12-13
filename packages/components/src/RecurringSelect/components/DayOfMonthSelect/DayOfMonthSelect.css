@@ -40,7 +40,7 @@
 
 .dayCheckbox {
   display: block;
-  padding: 1rem;
+  padding: var(--space-base);
   border-radius: var(--radius-large);
   text-align: center;
   user-select: none;
