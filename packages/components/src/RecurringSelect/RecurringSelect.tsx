@@ -45,6 +45,8 @@ export function RecurringSelect({
     disabled,
   );
   const disabledTextVariation = disabled ? "disabled" : undefined;
+  // we must dynamically populate the select option based on which is selected
+  // because there is no single "month" option, it must always be one of these two
   const monthlySelectOption =
     recurrenceRule.type === DurationPeriod.WeekDayOfMonth ? (
       <Option value={DurationPeriod.WeekDayOfMonth}>Month(s)</Option>
@@ -55,22 +57,9 @@ export function RecurringSelect({
     recurrenceRule.type === DurationPeriod.WeekDayOfMonth ||
     recurrenceRule.type === DurationPeriod.DayOfMonth ||
     recurrenceRule.type === DurationPeriod.Week;
-  let monthlySelectEl = <></>;
-
-  if (
+  const isMonthly =
     recurrenceRule.type === DurationPeriod.WeekDayOfMonth ||
-    recurrenceRule.type === DurationPeriod.DayOfMonth
-  ) {
-    // we must dynamically populate the select option based on which is selected
-    // because there is no single "month" option, it must always be one of these two
-    monthlySelectEl = (
-      <MonthlySelect
-        disabled={disabled}
-        onChange={onChangeType}
-        selectedMonthOption={recurrenceRule.type}
-      />
-    );
-  }
+    recurrenceRule.type === DurationPeriod.DayOfMonth;
 
   return (
     <Content>
@@ -104,7 +93,13 @@ export function RecurringSelect({
           <Text variation={disabledTextVariation}>on</Text>
         )}
       </div>
-      {monthlySelectEl}
+      {isMonthly && (
+        <MonthlySelect
+          disabled={disabled}
+          onChange={onChangeType}
+          selectedMonthOption={recurrenceRule.type}
+        />
+      )}
       {currentRecurrenceComponent}
     </Content>
   );
