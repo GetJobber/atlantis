@@ -10,6 +10,7 @@ exports[`WeeklySelect should render the component 1`] = `
     <input
       aria-checked={false}
       checked={false}
+      className="dayCheckboxInput"
       disabled={false}
       id="weekly-select-0"
       onChange={[Function]}
@@ -29,6 +30,7 @@ exports[`WeeklySelect should render the component 1`] = `
     <input
       aria-checked={false}
       checked={false}
+      className="dayCheckboxInput"
       disabled={false}
       id="weekly-select-1"
       onChange={[Function]}
@@ -48,6 +50,7 @@ exports[`WeeklySelect should render the component 1`] = `
     <input
       aria-checked={false}
       checked={false}
+      className="dayCheckboxInput"
       disabled={false}
       id="weekly-select-2"
       onChange={[Function]}
@@ -67,6 +70,7 @@ exports[`WeeklySelect should render the component 1`] = `
     <input
       aria-checked={false}
       checked={false}
+      className="dayCheckboxInput"
       disabled={false}
       id="weekly-select-3"
       onChange={[Function]}
@@ -86,6 +90,7 @@ exports[`WeeklySelect should render the component 1`] = `
     <input
       aria-checked={false}
       checked={false}
+      className="dayCheckboxInput"
       disabled={false}
       id="weekly-select-4"
       onChange={[Function]}
@@ -105,6 +110,7 @@ exports[`WeeklySelect should render the component 1`] = `
     <input
       aria-checked={false}
       checked={false}
+      className="dayCheckboxInput"
       disabled={false}
       id="weekly-select-5"
       onChange={[Function]}
@@ -124,6 +130,7 @@ exports[`WeeklySelect should render the component 1`] = `
     <input
       aria-checked={false}
       checked={false}
+      className="dayCheckboxInput"
       disabled={false}
       id="weekly-select-6"
       onChange={[Function]}

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./DayOfMonthSelect.css";
-import checkBoxStyles from "../../DateCellCheckbox.css";
+import checkboxStyles from "../../DateCellCheckbox.css";
 import { DayOfMonth } from "../../types";
 
 interface DayOfMonthSelectProps {
@@ -71,8 +71,9 @@ export function DayOfMonthSelect({
       {daysInMonth.map(day => {
         const isSelected = selectedDays.has(day as DayOfMonth);
         return (
-          <div key={`${day}`} className={checkBoxStyles.checkboxWrapper}>
+          <div key={`${day}`} className={checkboxStyles.checkboxWrapper}>
             <input
+              className={checkboxStyles.dayCheckboxInput}
               disabled={disabled}
               type="checkbox"
               id={`${day}`}
@@ -81,7 +82,7 @@ export function DayOfMonthSelect({
               checked={isSelected}
               value={day}
             />
-            <label className={checkBoxStyles.dayCheckbox} htmlFor={`${day}`}>
+            <label className={checkboxStyles.dayCheckbox} htmlFor={`${day}`}>
               {`${day === "LAST" ? "Last day" : day}`}
             </label>
           </div>

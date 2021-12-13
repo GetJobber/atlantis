@@ -2,7 +2,6 @@
 import React, { ReactNode } from "react";
 import { DayOfMonthSelect } from "./components/DayOfMonthSelect/DayOfMonthSelect";
 import styles from "./RecurringSelect.css";
-import checkBoxStyles from "./DateCellCheckbox.css";
 import { WeeklySelect } from "./components/WeeklySelect/WeeklySelect";
 import { MonthlySelect } from "./components/MonthlySelect/MonthlySelect";
 import { MonthlyDayOfWeekSelect } from "./components/MonthlyDayOfWeekSelect/MonthlyDayOfWeekSelect";
@@ -100,9 +99,7 @@ export function RecurringSelect({
           selectedMonthOption={recurrenceRule.type}
         />
       )}
-      <div className={checkBoxStyles.container}>
-        {currentRecurrenceComponent}
-      </div>
+      {currentRecurrenceComponent}
     </Content>
   );
 

@@ -1,13 +1,9 @@
-.container {
-  display: block;
-}
-
 .checkboxWrapper {
   position: relative;
 }
 
 /* kept present but hidden for accessibility */
-.container input[type="checkbox"] {
+.dayCheckboxInput {
   clip: rect(1px, 1px, 1px, 1px);
   clip-path: inset(50%);
   position: absolute;
@@ -46,35 +42,35 @@
   background: var(--color-surface--hover);
 }
 
-.container input[type="checkbox"]:focus + .dayCheckbox {
+.dayCheckboxInput:focus + .dayCheckbox {
   box-shadow: var(--shadow-focus);
   background: var(--color-surface--hover);
 }
 
-.container input[type="checkbox"]:checked + .dayCheckbox {
+.dayCheckboxInput:checked + .dayCheckbox {
   color: var(--color-text--reverse);
   background: var(--color-interactive);
 }
 
-.container input[type="checkbox"]:disabled + .dayCheckbox {
+.dayCheckboxInput:disabled + .dayCheckbox {
   color: var(--color-disabled);
   background: var(--color-surface--background);
   cursor: default;
 }
 
-.container input[type="checkbox"]:enabled + .dayCheckbox {
+.dayCheckboxInput:enabled + .dayCheckbox {
   cursor: pointer;
 }
 
-.container input[type="checkbox"]:checked:focus + .dayCheckbox {
+.dayCheckboxInput:checked:focus + .dayCheckbox {
   background: var(--color-interactive--hover);
 }
 
-.container input[type="checkbox"]:checked + .dayCheckbox:hover {
+.dayCheckboxInput:checked + .dayCheckbox:hover {
   background: var(--color-interactive--hover);
 }
 
-.container input[type="checkbox"]:disabled:checked + .dayCheckbox {
+.dayCheckboxInput:disabled:checked + .dayCheckbox {
   color: var(--color-disabled--secondary);
   background: var(--color-disabled);
 }
