@@ -1,17 +1,10 @@
 import React from "react";
-import {
-  DayOfMonthSelect,
-  MonthlyDayOfWeekSelect,
-  MonthlySelect,
-  WeeklySelect,
-} from "./components";
+import { MonthlySelect } from "./components";
+import { CurrentRecurrenceComponent } from "./CurrentRecurrenceComponent";
 import styles from "./RecurringSelect.css";
 import {
-  DayOfMonth,
   DurationPeriod,
   RecurrenceRule,
-  RecurrenceRuleWeekDayOfMonth,
-  WeekDay,
   isMonthly,
   typeInitialStateMap,
 } from "./types";
@@ -32,11 +25,6 @@ export function RecurringSelect({
   disabled = false,
   onChange,
 }: RecurringSelectProps) {
-  const currentRecurrenceComponent = getCurrentComponent(
-    recurrenceRule,
-    onChange,
-    disabled,
-  );
   const disabledTextVariation = disabled ? "disabled" : undefined;
   // we must dynamically populate the select option based on which is selected
   // because there is no single "month" option, it must always be one of these two
@@ -90,7 +78,12 @@ export function RecurringSelect({
           selectedMonthOption={recurrenceRule.type}
         />
       )}
-      {currentRecurrenceComponent}
+
+      <CurrentRecurrenceComponent
+        disabled={disabled}
+        recurrenceRule={recurrenceRule}
+        onChange={onChange}
+      />
     </Content>
   );
 
@@ -113,69 +106,5 @@ export function RecurringSelect({
       interval: recurrenceRule.interval,
       ...typeInitialStateMap[type],
     });
-  }
-}
-
-function getCurrentComponent(
-  recurrenceRule: RecurrenceRule,
-  callback: (next: RecurrenceRule) => void,
-  disabled: boolean,
-) {
-  switch (recurrenceRule.type) {
-    case DurationPeriod.Week: {
-      const onChangeWeekDays = (next: Set<WeekDay>): void => {
-        callback({
-          ...recurrenceRule,
-          weekDays: next,
-        });
-      };
-
-      return (
-        <WeeklySelect
-          disabled={disabled}
-          selectedDays={recurrenceRule.weekDays}
-          onChange={onChangeWeekDays}
-        />
-      );
-    }
-
-    case DurationPeriod.WeekDayOfMonth: {
-      const onChangeWeekDayOfMonth = (
-        next: RecurrenceRuleWeekDayOfMonth["dayOfWeek"],
-      ): void => {
-        callback({
-          ...recurrenceRule,
-          dayOfWeek: next,
-        });
-      };
-
-      return (
-        <MonthlyDayOfWeekSelect
-          disabled={disabled}
-          onChange={onChangeWeekDayOfMonth}
-          selectedWeeks={recurrenceRule.dayOfWeek}
-        />
-      );
-    }
-
-    case DurationPeriod.DayOfMonth: {
-      const onChangeDayOfMonth = (next: Set<DayOfMonth>): void => {
-        callback({
-          ...recurrenceRule,
-          date: next,
-        });
-      };
-
-      return (
-        <DayOfMonthSelect
-          disabled={disabled}
-          selectedDays={recurrenceRule.date}
-          onChange={onChangeDayOfMonth}
-        />
-      );
-    }
-
-    default:
-      return;
   }
 }
