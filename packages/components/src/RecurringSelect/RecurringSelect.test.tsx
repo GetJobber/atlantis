@@ -15,7 +15,6 @@ describe("RecurringSelect with a weekly recurrenceRule", () => {
   it("should render the days of the WeeklySelect component", () => {
     const { queryAllByText, queryByLabelText } = render(
       <RecurringSelect
-        data-testid="boop"
         recurrenceRule={{
           interval: 1,
           type: DurationPeriod.Week,
@@ -36,7 +35,6 @@ describe("RecurringSelect with a weekly recurrenceRule", () => {
   it("should call the onChange when checkbox is clicked", () => {
     const { getByLabelText } = render(
       <RecurringSelect
-        data-testid="boop"
         recurrenceRule={{
           interval: 1,
           type: DurationPeriod.Week,
@@ -63,7 +61,6 @@ describe("RecurringSelect with an existing week day selected", () => {
 
     const { getByLabelText } = render(
       <RecurringSelect
-        data-testid="boop"
         recurrenceRule={{
           interval: 1,
           type: DurationPeriod.Week,
@@ -88,7 +85,6 @@ describe("RecurringSelect with a daily recurrence", () => {
   it("should call the onChange when interval and type are changed", () => {
     const { container } = render(
       <RecurringSelect
-        data-testid="boop"
         recurrenceRule={{
           interval: 1,
           type: DurationPeriod.Day,
@@ -132,7 +128,6 @@ describe("RecurringSelect with a day of month recurrenceRule", () => {
   it("should render the days of the day of month component", () => {
     const { queryAllByText, queryByLabelText } = render(
       <RecurringSelect
-        data-testid="boop"
         recurrenceRule={{
           interval: 1,
           type: DurationPeriod.DayOfMonth,
@@ -154,7 +149,6 @@ describe("RecurringSelect with a day of month recurrenceRule", () => {
     const newDayOfMonthSet = new Set<DayOfMonth>();
     const { getByLabelText } = render(
       <RecurringSelect
-        data-testid="boop"
         recurrenceRule={{
           interval: 1,
           type: DurationPeriod.DayOfMonth,
@@ -175,7 +169,6 @@ describe("RecurringSelect with a day of month recurrenceRule", () => {
     newDayOfMonthSet.add(1);
     const { getByLabelText } = render(
       <RecurringSelect
-        data-testid="boop"
         recurrenceRule={{
           interval: 1,
           type: DurationPeriod.DayOfMonth,
@@ -195,7 +188,6 @@ describe("RecurringSelect with a day of month recurrenceRule", () => {
     newDayOfMonthSet.add("LAST");
     const { getByLabelText } = render(
       <RecurringSelect
-        data-testid="boop"
         recurrenceRule={{
           interval: 1,
           type: DurationPeriod.DayOfMonth,
