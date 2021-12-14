@@ -2,4 +2,5 @@
   --border-base: var(--space-minuscule);
   --border-thick: var(--space-smallest);
   --border-thicker: var(--space-smaller);
+  --border-thickest: var(--space-small);
 }

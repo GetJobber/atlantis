@@ -44,8 +44,15 @@ should be used within a [`Content`](/components/content) component.
 
 ### Size
 
+For different levels of segmentation, you may find the need to use larger
+Dividers. As Dividers increase in size, they get lighter to offset the visual
+impact of their additional weight.
+
 <Playground>
   <Content>
+    <Heading level={2}>Intro Section</Heading>
+    <Text>Important main content</Text>
+    <Divider size="largest" />
     <Content>Some amazing content</Content>
     <Divider size="large" />
     <Content>Even more amazing content</Content>
@@ -53,6 +60,8 @@ should be used within a [`Content`](/components/content) component.
 </Playground>
 
 ### Vertical
+
+Use a vertical divider when the content to be divided runs horizontally.
 
 <Playground>
   <div style={{ width: "fit-content" }}>
