@@ -81,15 +81,6 @@ export type RecurrenceRule = {
   | RecurrenceRuleDayOfMonth
   | RecurrenceRuleWeekDayOfMonth
 );
-
-export interface Recurrence {
-  rule: RecurrenceRule;
-}
-
-export interface SchedulerState {
-  recurrence: Recurrence;
-}
-
 export interface InitialStateMap {
   [DurationPeriod.Day]: {
     type: DurationPeriod.Day;
@@ -136,3 +127,12 @@ export const typeInitialStateMap: InitialStateMap = {
     type: DurationPeriod.Year,
   },
 };
+
+export const isMonthly = (
+  rule: RecurrenceRule,
+): rule is Extract<
+  RecurrenceRule,
+  { type: DurationPeriod.WeekDayOfMonth | DurationPeriod.DayOfMonth }
+> =>
+  rule.type === DurationPeriod.WeekDayOfMonth ||
+  rule.type === DurationPeriod.DayOfMonth;

@@ -15,7 +15,6 @@ import { Divider } from "@jobber/components/Divider";
 import { Avatar } from "@jobber/components/Avatar";
 import { useState } from "react";
 import { DurationPeriod, SchedulerState } from "./types";
-import { useScheduler } from "./useScheduler";
 
 # RecurringSelect
 
@@ -35,19 +34,13 @@ import { RecurringSelect } from "@jobber/components/RecurringSelect";
 
 <Playground>
   {() => {
-    const [schedulerState, setSchedulerState] = useScheduler({
-      recurrence: {
-        rule: { interval: 1, type: DurationPeriod.Day },
-      },
-    });
-    const onChangeSchedule = (partialNextSchedule) => {
-      setSchedulerState({ ...schedulerState, ...partialNextSchedule });
-    }
+    const [rule, setRule] = useState({ interval: 1, type: DurationPeriod.Day });
+    
     return(
       <RecurringSelect
-        recurrenceRule={schedulerState.recurrence.rule}
+        recurrenceRule={rule}
         disabled={false}
-        onChange={onChangeSchedule}
+        onChange={setRule}
       />);
     }}
 
