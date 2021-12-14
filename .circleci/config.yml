@@ -138,6 +138,7 @@ jobs:
 
   build_docs:
     <<: *container_config
+    resource_class: medium+
     steps:
       - *restore_repo
       - *sum_lockfiles
