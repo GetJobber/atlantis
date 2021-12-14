@@ -9,40 +9,7 @@ interface DayOfMonthSelectProps {
   onChange(selectedDays: Set<DayOfMonth>): void;
 }
 
-const daysInMonth = [
-  1,
-  2,
-  3,
-  4,
-  5,
-  6,
-  7,
-  8,
-  9,
-  10,
-  11,
-  12,
-  13,
-  14,
-  15,
-  16,
-  17,
-  18,
-  19,
-  20,
-  21,
-  22,
-  23,
-  24,
-  25,
-  26,
-  27,
-  28,
-  29,
-  30,
-  31,
-  "LAST",
-];
+const daysInMonth = [...Array.from({ length: 31 }, (_, i) => i + 1), "LAST"];
 
 export function DayOfMonthSelect({
   selectedDays,
