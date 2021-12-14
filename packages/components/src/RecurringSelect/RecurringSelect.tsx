@@ -1,10 +1,11 @@
-/* eslint-disable import/no-internal-modules */
 import React, { ReactNode } from "react";
-import { DayOfMonthSelect } from "./components/DayOfMonthSelect/DayOfMonthSelect";
+import {
+  DayOfMonthSelect,
+  MonthlyDayOfWeekSelect,
+  MonthlySelect,
+  WeeklySelect,
+} from "./components";
 import styles from "./RecurringSelect.css";
-import { WeeklySelect } from "./components/WeeklySelect/WeeklySelect";
-import { MonthlySelect } from "./components/MonthlySelect/MonthlySelect";
-import { MonthlyDayOfWeekSelect } from "./components/MonthlyDayOfWeekSelect/MonthlyDayOfWeekSelect";
 import {
   DayOfMonth,
   DurationPeriod,
