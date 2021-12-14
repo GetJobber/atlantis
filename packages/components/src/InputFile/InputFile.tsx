@@ -227,7 +227,7 @@ function getLabels(
     ? "or drag files here to upload"
     : "or drag a file here to upload";
 
-  if (allowedTypes === "images") {
+  if (allowedTypes === "images" || allowedTypes === "basicImages") {
     buttonLabel = multiple ? "Upload Images" : "Upload Image";
     hintText = multiple
       ? "or drag images here to upload"
