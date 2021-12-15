@@ -1,11 +1,11 @@
 import React from "react";
+import uuid from "uuid";
 import styles from "./WeeklySelect.css";
 import checkboxStyles from "../../DateCellCheckbox.css";
 import { WeekDay } from "../../types";
 
 interface WeeklySelectProps {
   disabled: boolean;
-  disambiguator?: string;
   selectedDays: Set<WeekDay>;
   onChange(selectedDays: Set<WeekDay>): void;
 }
@@ -13,7 +13,6 @@ const weekDays = [0, 1, 2, 3, 4, 5, 6];
 
 export function WeeklySelect({
   onChange,
-  disambiguator = "",
   selectedDays,
   disabled,
 }: WeeklySelectProps) {
@@ -33,6 +32,7 @@ export function WeeklySelect({
     <div className={styles.container}>
       {weekDays.map(weekDay => {
         const isSelected = selectedDays.has(weekDay);
+        const inputId = uuid();
 
         return (
           <div key={`${weekDay}`} className={checkboxStyles.checkboxWrapper}>
@@ -41,14 +41,14 @@ export function WeeklySelect({
               disabled={disabled}
               type="checkbox"
               onChange={onChangeWeekDays}
-              id={`weekly-select-${weekDay}${disambiguator}`}
+              id={`weekly-select-${weekDay}${inputId}`}
               aria-checked={isSelected}
               checked={isSelected}
               value={weekDay}
             />
             <label
               className={checkboxStyles.dayCheckbox}
-              htmlFor={`weekly-select-${weekDay}${disambiguator}`}
+              htmlFor={`weekly-select-${weekDay}${inputId}`}
             >
               {`${WeekDay[weekDay].substr(0, 1).toUpperCase()}`}
             </label>

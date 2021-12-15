@@ -52,7 +52,6 @@ export function MonthlyDayOfWeekSelect({
             <div className={styles.selector}>
               <WeeklySelect
                 disabled={disabled}
-                disambiguator={index.toString()}
                 selectedDays={week}
                 onChange={onChangeWeek}
               />

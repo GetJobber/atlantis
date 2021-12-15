@@ -1,4 +1,5 @@
 import React from "react";
+import uuid from "uuid";
 import styles from "./DayOfMonthSelect.css";
 import checkboxStyles from "../../DateCellCheckbox.css";
 import { DayOfMonth } from "../../types";
@@ -37,19 +38,24 @@ export function DayOfMonthSelect({
     <div className={styles.container}>
       {daysInMonth.map(day => {
         const isSelected = selectedDays.has(day as DayOfMonth);
+        const inputId = uuid();
+
         return (
           <div key={`${day}`} className={checkboxStyles.checkboxWrapper}>
             <input
               className={checkboxStyles.dayCheckboxInput}
               disabled={disabled}
               type="checkbox"
-              id={`${day}`}
+              id={`${day}-${inputId}`}
               onChange={onChangeDayOfMonth}
               aria-checked={isSelected}
               checked={isSelected}
               value={day}
             />
-            <label className={checkboxStyles.dayCheckbox} htmlFor={`${day}`}>
+            <label
+              className={checkboxStyles.dayCheckbox}
+              htmlFor={`${day}-${inputId}`}
+            >
               {`${day === "LAST" ? "Last day" : day}`}
             </label>
           </div>
