@@ -1,10 +1,11 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, MouseEvent } from "react";
 import classnames from "classnames";
+import { XOR } from "ts-xor";
 import styles from "./Checkbox.css";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
 
-interface CheckboxProps {
+interface BaseCheckboxProps {
   /**
    * Determines if the checkbox is checked or not.
    */
@@ -30,11 +31,6 @@ interface CheckboxProps {
   readonly indeterminate?: boolean;
 
   /**
-   * Label that shows up beside the checkbox.
-   */
-  readonly label?: string;
-
-  /**
    * Checkbox input name
    */
   readonly name?: string;
@@ -48,9 +44,25 @@ interface CheckboxProps {
    * Further description of the label
    */
   readonly description?: string;
+}
 
+interface CheckboxLabelProps extends BaseCheckboxProps {
+  /**
+   * Label that shows up beside the checkbox.
+   */
+  readonly label?: string;
   onChange?(newValue: boolean): void;
 }
+
+interface CheckboxChildrenProps extends BaseCheckboxProps {
+  /**
+   * Component children, which shows up as a label
+   */
+  readonly children?: JSX.Element;
+  onClick?(newValue?: boolean): void;
+}
+
+type CheckboxProps = XOR<CheckboxLabelProps, CheckboxChildrenProps>;
 
 export function Checkbox({
   checked,
@@ -61,7 +73,9 @@ export function Checkbox({
   value,
   indeterminate = false,
   description,
+  children,
   onChange,
+  onClick,
 }: CheckboxProps) {
   const wrapperClassName = classnames(
     styles.wrapper,
@@ -83,6 +97,7 @@ export function Checkbox({
             className={inputClassName}
             aria-label={label}
             onChange={handleChange}
+            onClick={handleClick}
             value={value}
             name={name}
             disabled={disabled}
@@ -96,6 +111,10 @@ export function Checkbox({
           <span className={styles.label}>
             <Text>{label}</Text>
           </span>
+        )}
+
+        {children != undefined && (
+          <span className={styles.label}>{children}</span>
         )}
       </label>
       {description && (
@@ -111,5 +130,10 @@ export function Checkbox({
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const newChecked = event.currentTarget.checked;
     onChange && onChange(newChecked);
+  }
+
+  function handleClick(event: MouseEvent<HTMLInputElement>) {
+    const newChecked = event.currentTarget.checked;
+    onClick && onClick(newChecked);
   }
 }

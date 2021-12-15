@@ -9,6 +9,9 @@ import { Playground, Props } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { Checkbox } from ".";
 import { useState } from "react";
+import { Text } from "../Text";
+import { Modal } from "../Modal";
+import { Content } from "../Content";
 
 # Checkbox
 
@@ -118,6 +121,56 @@ that the user has lost control of the interface.
     defaultChecked={true}
     label="Subscribe on marketing emails"
   />
+</Playground>
+
+## With an embedded react component
+
+If you require more functionality than a simple string for the label, it is
+possible to pass a child component to the checkbox to use as a label. This
+allows us to embed a link into the checkbox label.
+
+<Playground>
+  {() => {
+    const [checked, setChecked] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    function handleOpenModal(e) {
+      e.preventDefault();
+      setIsModalOpen(true);
+    }
+    function handleCloseModal() {
+      setIsModalOpen(false);
+    }
+    return (
+      <>
+        <Checkbox checked={checked} onClick={setChecked}>
+          <Text>
+            I agree to the
+            <a
+              style={{
+                color: "var(--color-interactive)",
+                textDecoration: "underline",
+              }}
+              onClick={handleOpenModal}
+            >
+              terms of service
+            </a>
+          </Text>
+        </Checkbox>
+        <Modal
+          title="Terms of Service"
+          open={isModalOpen}
+          onRequestClose={handleCloseModal}
+        >
+          <Content>
+            <Text>
+              And this is where I would keep my Terms of Service... if I had
+              any!
+            </Text>
+          </Content>
+        </Modal>
+      </>
+    );
+  }}
 </Playground>
 
 ## Related components
