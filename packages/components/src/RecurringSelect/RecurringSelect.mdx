@@ -32,6 +32,8 @@ a complete schedule.
 import { RecurringSelect } from "@jobber/components/RecurringSelect";
 ```
 
+## Basic example
+
 <Playground>
   {() => {
     const [rule, setRule] = useState({ interval: 1, type: DurationPeriod.Day });
@@ -40,6 +42,22 @@ import { RecurringSelect } from "@jobber/components/RecurringSelect";
       <RecurringSelect
         recurrenceRule={rule}
         disabled={false}
+        onChange={setRule}
+      />);
+    }}
+
+</Playground>
+
+## Monthly with some selections & disabled example
+
+<Playground>
+  {() => {
+    const [rule, setRule] = useState({ interval: 1, type: DurationPeriod.DayOfMonth, date: new Set([2, 4, 6, 10, 12, 18, 25, "LAST"]) });
+
+    return(
+      <RecurringSelect
+        recurrenceRule={rule}
+        disabled={true}
         onChange={setRule}
       />);
     }}
