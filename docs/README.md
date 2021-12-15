@@ -23,7 +23,7 @@ developers to quickly build beautiful and consistent interfaces for our users.
 
 ### Prerequisites
 
-- `node@10` or higher
+- `node@14`
 - `npm@6`
 
 To install Atlantis locally for development:
@@ -165,8 +165,8 @@ Everyone is a friend of Atlantis and we welcome pull requests. See the
 
 ## Publishing
 
-Atlantis uses [Lerna](https://github.com/lerna/lerna) and will
-automatically publish whenever a pull request is merged.
+Atlantis uses [Lerna](https://github.com/lerna/lerna) and will automatically
+publish whenever a pull request is merged.
 
 <details>
 <summary>Manual Release Instructions</summary>

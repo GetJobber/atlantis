@@ -9,7 +9,7 @@ afterEach(cleanup);
 it(`Shows units`, () => {
   const { container } = render(
     <Countdown
-      date={new Date(new Date().getTime() + 25 * 3600 * 1000)}
+      date={new Date(new Date().getTime() + 48 * 3600 * 1000)}
       granularity="dhms"
       showUnits={true}
     />,
@@ -24,7 +24,7 @@ it(`Shows units`, () => {
 it(`Should have the right units show up when they're supposed to`, () => {
   const { container } = render(
     <Countdown
-      date={new Date(new Date().getTime() + 25 * 3600 * 1000)}
+      date={new Date(new Date().getTime() + 48 * 3600 * 1000)}
       granularity="d"
       showUnits={true}
     />,

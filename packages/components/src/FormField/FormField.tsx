@@ -7,7 +7,7 @@ import React, {
   useImperativeHandle,
   useState,
 } from "react";
-import uuid from "uuid";
+import { v1 as uuidv1 } from "uuid";
 import { Controller, useForm, useFormContext } from "react-hook-form";
 import { FormFieldProps } from "./FormFieldTypes";
 import styles from "./FormField.css";
@@ -47,8 +47,8 @@ export function FormField(props: FormFieldProps) {
       ? useFormContext()
       : useForm({ mode: "onTouched" });
 
-  const [identifier] = useState(uuid.v1());
-  const [descriptionIdentifier] = useState(`descriptionUUID--${uuid.v1()}`);
+  const [identifier] = useState(uuidv1());
+  const [descriptionIdentifier] = useState(`descriptionUUID--${uuidv1()}`);
   /**
    * Generate a name if one is not supplied, this is the name
    * that will be used for react-hook-form and not neccessarily

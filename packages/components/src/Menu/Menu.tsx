@@ -8,7 +8,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import uuid from "uuid";
+import { v1 as uuidv1 } from "uuid";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import { IconNames } from "@jobber/design";
@@ -68,8 +68,8 @@ export function Menu({ activator, items }: MenuProps) {
     horizontal: "right",
   });
   const wrapperRef = createRef<HTMLDivElement>();
-  const buttonID = uuid();
-  const menuID = uuid();
+  const buttonID = uuidv1();
+  const menuID = uuidv1();
 
   useOnKeyDown(handleKeyboardShortcut, ["Escape"]);
   useLayoutEffect(() => {
