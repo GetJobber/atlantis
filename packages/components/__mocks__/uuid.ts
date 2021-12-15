@@ -7,4 +7,3 @@ function fakeUUID() {
 }
 
 export const v1 = fakeUUID;
-export const v4 = fakeUUID;
