@@ -1,4 +1,4 @@
-import React, { ChangeEvent, MouseEvent } from "react";
+import React, { ChangeEvent } from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
 import styles from "./Checkbox.css";
@@ -44,6 +44,8 @@ interface BaseCheckboxProps {
    * Further description of the label
    */
   readonly description?: string;
+
+  onChange?(newValue: boolean): void;
 }
 
 interface CheckboxLabelProps extends BaseCheckboxProps {
@@ -51,7 +53,6 @@ interface CheckboxLabelProps extends BaseCheckboxProps {
    * Label that shows up beside the checkbox.
    */
   readonly label?: string;
-  onChange?(newValue: boolean): void;
 }
 
 interface CheckboxChildrenProps extends BaseCheckboxProps {
@@ -59,7 +60,6 @@ interface CheckboxChildrenProps extends BaseCheckboxProps {
    * Component children, which shows up as a label
    */
   readonly children?: JSX.Element;
-  onClick?(newValue?: boolean): void;
 }
 
 type CheckboxProps = XOR<CheckboxLabelProps, CheckboxChildrenProps>;
@@ -75,7 +75,6 @@ export function Checkbox({
   description,
   children,
   onChange,
-  onClick,
 }: CheckboxProps) {
   const wrapperClassName = classnames(
     styles.wrapper,
@@ -97,7 +96,6 @@ export function Checkbox({
             className={inputClassName}
             aria-label={label}
             onChange={handleChange}
-            onClick={handleClick}
             value={value}
             name={name}
             disabled={disabled}
@@ -107,15 +105,13 @@ export function Checkbox({
           </span>
         </span>
 
-        {label != undefined && (
+        {label && (
           <span className={styles.label}>
             <Text>{label}</Text>
           </span>
         )}
 
-        {children != undefined && (
-          <span className={styles.label}>{children}</span>
-        )}
+        {children && <span className={styles.label}>{children}</span>}
       </label>
       {description && (
         <div className={styles.description}>
@@ -130,10 +126,5 @@ export function Checkbox({
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const newChecked = event.currentTarget.checked;
     onChange && onChange(newChecked);
-  }
-
-  function handleClick(event: MouseEvent<HTMLInputElement>) {
-    const newChecked = event.currentTarget.checked;
-    onClick && onClick(newChecked);
   }
 }
