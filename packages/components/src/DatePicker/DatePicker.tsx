@@ -1,4 +1,4 @@
-import React, { ReactElement, RefObject, useRef } from "react";
+import React, { ReactElement } from "react";
 import classnames from "classnames";
 import ReactDatePicker from "react-datepicker";
 /**
@@ -70,20 +70,19 @@ export function DatePicker({
     [styles.inline]: inline,
   });
   const wrapperClassName = classnames(styles.datePickerWrapper, {
-    // react date picker uses this class name to not close the date picker when
+    // react-datepicker uses this class name to not close the date picker when
     // the activator is clicked
     // https://github.com/Hacker0x01/react-datepicker/blob/master/src/index.jsx#L905
-    // It uses react-onclickoutside and declaring some elements to be ignored
-    // via said class name
+    //
+    // It uses react-onclickoutside package and declaring some elements to be
+    // ignored via said class name
     // https://www.npmjs.com/package/react-onclickoutside#marking-elements-as-skip-over-this-one-during-the-event-loop
     "react-datepicker-ignore-onclickoutside": !inline,
     [styles.fullWidth]: fullWidth,
   });
 
-  const datePickerRef = useRef() as RefObject<HTMLDivElement>;
-
   return (
-    <div className={wrapperClassName} ref={datePickerRef}>
+    <div className={wrapperClassName}>
       <ReactDatePicker
         calendarClassName={datePickerClassNames}
         showPopperArrow={false}

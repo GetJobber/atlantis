@@ -65,3 +65,15 @@ it("always appears when inline", () => {
 
   expect(getByText("15")).toBeInstanceOf(HTMLDivElement);
 });
+
+it("should not add the `react-datepicker-ignore-onclickoutside` when inline", () => {
+  const { container, rerender } = render(<DatePicker onChange={jest.fn()} />);
+
+  const target = container.firstChild;
+  const className = "react-datepicker-ignore-onclickoutside";
+  expect(target).toHaveClass(className);
+
+  rerender(<DatePicker onChange={jest.fn()} inline />);
+
+  expect(target).not.toHaveClass(className);
+});
