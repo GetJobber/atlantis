@@ -144,7 +144,10 @@ jobs:
       - *restore_npm_cache
       - *npm_install
       - *generate_base_path
-      - run: npm run build -- --base "/${BASE_PATH}/"
+      - run:
+          command: node -v && node -e 'console.log(`heap_size_limit = ${v8.getHeapStatistics().heap_size_limit / (1024 * 1024)} MB`)' && npm run build -- --base "/${BASE_PATH}/"
+          environment:
+            NODE_OPTIONS: --max_old_space_size=1400
       - store_artifacts:
           path: ~/atlantis/.docz/dist
           destination: docs
