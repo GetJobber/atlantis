@@ -7,6 +7,7 @@ export enum WeekDay {
   Friday,
   Saturday,
 }
+
 export type DayOfMonth =
   | 1
   | 2
@@ -49,6 +50,7 @@ export enum DurationPeriod {
   Year = "Year",
   Visit = "Visit",
 }
+
 export interface RecurrenceRuleDay {
   type: DurationPeriod.Day;
 }
@@ -81,6 +83,7 @@ export type RecurrenceRule = {
   | RecurrenceRuleDayOfMonth
   | RecurrenceRuleWeekDayOfMonth
 );
+
 export interface InitialStateMap {
   [DurationPeriod.Day]: {
     type: DurationPeriod.Day;
