@@ -31,6 +31,12 @@ it("renders a checkbox with an empty element", () => {
   expect(tree).toMatchSnapshot();
 });
 
+it("renders a checkbox with children", () => {
+  const childContent = <Text>Content</Text>;
+  const tree = renderer.create(<Checkbox>{childContent}</Checkbox>).toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
 it("renders each variation of checked, defaultChecked and indeterminate", () => {
   const variations = [
     { checked: true, indeterminate: true },
@@ -57,7 +63,7 @@ it("renders a description when set", () => {
   expect(description).toBeInstanceOf(HTMLParagraphElement);
 });
 
-it("allows an interactive react component to be passed as a child", () => {
+it("should still fire the onClick within the children", () => {
   const handleLinkClick = jest.fn();
   const { getByText } = render(
     <Checkbox description="Checkers">
