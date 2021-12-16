@@ -77,6 +77,7 @@ export function DatePicker({
     // It uses react-onclickoutside package and declaring some elements to be
     // ignored via said class name
     // https://www.npmjs.com/package/react-onclickoutside#marking-elements-as-skip-over-this-one-during-the-event-loop
+    // test
     "react-datepicker-ignore-onclickoutside": !inline,
     [styles.fullWidth]: fullWidth,
   });
