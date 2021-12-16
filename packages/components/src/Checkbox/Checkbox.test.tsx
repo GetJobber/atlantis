@@ -7,34 +7,34 @@ import { Text } from "../Text";
 afterEach(cleanup);
 
 it("renders a Checkbox", () => {
-  const tree = renderer
-    .create(<Checkbox label="Send me spam?" name="send_me_span" value="spam" />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { getByRole } = render(
+    <Checkbox label="Send me spam?" name="send_me_span" value="spam" />,
+  );
+  const checkbox = getByRole("checkbox");
+  expect(checkbox).toBeInTheDocument();
 });
 
 it("renders a disabled Checkbox", () => {
-  const tree = renderer
-    .create(<Checkbox label="Dont click me" disabled={true} />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { getByRole } = render(
+    <Checkbox label="Dont click me" disabled={true} />,
+  );
+  const checkbox = getByRole("checkbox");
+  expect(checkbox).toBeDisabled();
 });
 
 it("renders a checkbox with an empty element", () => {
-  const tree = renderer
-    .create(
-      <Checkbox>
-        <></>
-      </Checkbox>,
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { getByRole } = render(
+    <Checkbox>
+      <></>
+    </Checkbox>,
+  );
+  const checkbox = getByRole("checkbox");
+  expect(checkbox).toBeInTheDocument();
 });
 
 it("renders a checkbox with children", () => {
-  const childContent = <Text>Content</Text>;
-  const tree = renderer.create(<Checkbox>{childContent}</Checkbox>).toJSON();
-  expect(tree).toMatchSnapshot();
+  const { getByText } = render(<Checkbox>{<Text>Content</Text>}</Checkbox>);
+  expect(getByText("Content")).toBeInTheDocument();
 });
 
 it("renders each variation of checked, defaultChecked and indeterminate", () => {
