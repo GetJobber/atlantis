@@ -2,6 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import { Checkbox } from ".";
+import { Text } from "../Text";
 
 afterEach(cleanup);
 
@@ -39,6 +40,37 @@ it("renders each variation of checked, defaultChecked and indeterminate", () => 
   });
 });
 
+it("renders a description when set", () => {
+  const { getByText } = render(<Checkbox description="Checkers" />);
+  const description = getByText("Checkers");
+  expect(description).toBeInstanceOf(HTMLParagraphElement);
+});
+
+it("allows react components to be passed as children", () => {
+  const handleLinkClick = jest.fn();
+  const { getByText } = render(
+    <Checkbox description="Checkers">
+      <Text>
+        I agree to the
+        <a
+          style={{
+            color: "var(--color-interactive)",
+            textDecoration: "underline",
+          }}
+          tabIndex={0}
+          onClick={handleLinkClick}
+        >
+          Terms of Service
+        </a>
+      </Text>
+    </Checkbox>,
+  );
+  const TOSAnchorElement = getByText("Terms of Service");
+  expect(TOSAnchorElement).toBeInTheDocument();
+  fireEvent.click(TOSAnchorElement);
+  expect(handleLinkClick).toHaveBeenCalled();
+});
+
 describe("Clicking the checkbox it should call the handler", () => {
   test("with a true value", () => {
     const clickHandler = jest.fn();
@@ -61,10 +93,4 @@ describe("Clicking the checkbox it should call the handler", () => {
     fireEvent.click(getByLabelText("foo"));
     expect(clickHandler).toHaveBeenCalledWith(false);
   });
-});
-
-test("should render a description when set", () => {
-  const { getByText } = render(<Checkbox description="Checkers" />);
-  const description = getByText("Checkers");
-  expect(description).toBeInstanceOf(HTMLParagraphElement);
 });

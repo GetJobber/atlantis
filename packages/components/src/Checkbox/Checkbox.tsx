@@ -84,6 +84,7 @@ export function Checkbox({
     [styles.indeterminate]: indeterminate,
   });
   const iconName = indeterminate ? "minus2" : "checkmark";
+  const labelText = label ? <Text>{label}</Text> : children;
 
   return (
     <div className={styles.checkbox}>
@@ -105,13 +106,7 @@ export function Checkbox({
           </span>
         </span>
 
-        {label && (
-          <span className={styles.label}>
-            <Text>{label}</Text>
-          </span>
-        )}
-
-        {children && <span className={styles.label}>{children}</span>}
+        {labelText && <span className={styles.label}>{labelText}</span>}
       </label>
       {description && (
         <div className={styles.description}>
