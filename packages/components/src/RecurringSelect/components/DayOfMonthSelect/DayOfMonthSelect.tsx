@@ -17,23 +17,6 @@ export function DayOfMonthSelect({
   disabled,
   onChange,
 }: DayOfMonthSelectProps) {
-  const onChangeDayOfMonth = (
-    event: React.FormEvent<HTMLInputElement>,
-  ): void => {
-    const day =
-      event.currentTarget.value === "LAST"
-        ? event.currentTarget.value
-        : (+event.currentTarget.value as DayOfMonth);
-    const next = new Set(selectedDays);
-
-    if (selectedDays.has(day)) {
-      next.delete(day);
-    } else {
-      next.add(day);
-    }
-    onChange(next);
-  };
-
   return (
     <div className={styles.container}>
       {daysInMonth.map(day => {
@@ -47,7 +30,7 @@ export function DayOfMonthSelect({
               disabled={disabled}
               type="checkbox"
               id={`${day}-${inputId}`}
-              onChange={onChangeDayOfMonth}
+              onChange={handleChangeDayOfMonth}
               aria-checked={isSelected}
               checked={isSelected}
               value={day}
@@ -63,4 +46,21 @@ export function DayOfMonthSelect({
       })}
     </div>
   );
+
+  function handleChangeDayOfMonth(
+    event: React.FormEvent<HTMLInputElement>,
+  ): void {
+    const day =
+      event.currentTarget.value === "LAST"
+        ? event.currentTarget.value
+        : (+event.currentTarget.value as DayOfMonth);
+    const next = new Set(selectedDays);
+
+    if (selectedDays.has(day)) {
+      next.delete(day);
+    } else {
+      next.add(day);
+    }
+    onChange(next);
+  }
 }
