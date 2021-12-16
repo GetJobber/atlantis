@@ -5,33 +5,37 @@ exports[`it should display headers when headers are passed in 1`] = `
   className="autocomplete"
 >
   <div
-    className="wrapper"
-    style={
-      Object {
-        "--formField-maxLength": undefined,
-      }
-    }
+    className="padded small"
   >
     <div
-      className="inputWrapper"
+      className="wrapper"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
     >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440035"
+      <div
+        className="inputWrapper"
       >
-        placeholder_name
-      </label>
-      <input
-        autoComplete="autocomplete-off"
-        className="input"
-        id="123e4567-e89b-12d3-a456-426655440035"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        type="text"
-        value=""
-      />
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440035"
+        >
+          placeholder_name
+        </label>
+        <input
+          autoComplete="autocomplete-off"
+          className="input"
+          id="123e4567-e89b-12d3-a456-426655440035"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
     </div>
   </div>
 </div>
@@ -42,33 +46,37 @@ exports[`renders an Autocomplete 1`] = `
   className="autocomplete"
 >
   <div
-    className="wrapper"
-    style={
-      Object {
-        "--formField-maxLength": undefined,
-      }
-    }
+    className="padded small"
   >
     <div
-      className="inputWrapper"
+      className="wrapper"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
     >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440001"
+      <div
+        className="inputWrapper"
       >
-        placeholder_name
-      </label>
-      <input
-        autoComplete="autocomplete-off"
-        className="input"
-        id="123e4567-e89b-12d3-a456-426655440001"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        type="text"
-        value=""
-      />
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440001"
+        >
+          placeholder_name
+        </label>
+        <input
+          autoComplete="autocomplete-off"
+          className="input"
+          id="123e4567-e89b-12d3-a456-426655440001"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
     </div>
   </div>
 </div>

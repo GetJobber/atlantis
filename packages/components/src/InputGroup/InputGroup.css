@@ -3,8 +3,8 @@
 }
 
 .horizontal {
-  display: flex;
-  align-items: flex-end;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
 }
 
 .horizontal > *:not(:last-child) {
