@@ -20,6 +20,17 @@ it("renders a disabled Checkbox", () => {
   expect(tree).toMatchSnapshot();
 });
 
+it("renders a checkbox with an empty element", () => {
+  const tree = renderer
+    .create(
+      <Checkbox>
+        <></>
+      </Checkbox>,
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
 it("renders each variation of checked, defaultChecked and indeterminate", () => {
   const variations = [
     { checked: true, indeterminate: true },
@@ -46,22 +57,13 @@ it("renders a description when set", () => {
   expect(description).toBeInstanceOf(HTMLParagraphElement);
 });
 
-it("allows react components to be passed as children", () => {
+it("allows an interactive react component to be passed as a child", () => {
   const handleLinkClick = jest.fn();
   const { getByText } = render(
     <Checkbox description="Checkers">
       <Text>
         I agree to the
-        <a
-          style={{
-            color: "var(--color-interactive)",
-            textDecoration: "underline",
-          }}
-          tabIndex={0}
-          onClick={handleLinkClick}
-        >
-          Terms of Service
-        </a>
+        <a onClick={handleLinkClick}>Terms of Service</a>
       </Text>
     </Checkbox>,
   );

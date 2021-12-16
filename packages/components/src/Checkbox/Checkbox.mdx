@@ -123,7 +123,7 @@ that the user has lost control of the interface.
   />
 </Playground>
 
-## With an embedded react component
+## Children as the label
 
 If you require more functionality than a simple string for the label, it is
 possible to pass a child component to the checkbox to use as a label. This
@@ -134,6 +134,7 @@ allows us to embed a link into the checkbox label.
     const [checked, setChecked] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     function handleOpenModal(e) {
+      // Prevent the checkbox from being checked
       e.preventDefault();
       setIsModalOpen(true);
     }
@@ -145,16 +146,20 @@ allows us to embed a link into the checkbox label.
         <Checkbox checked={checked} onChange={setChecked}>
           <Text>
             I agree to the
-            <a
+            <button
               style={{
                 color: "var(--color-interactive)",
+                fontFamily: "inherit",
+                fontSize: "inherit",
+                padding: "0",
                 textDecoration: "underline",
+                background: "transparent",
+                border: "none",
               }}
-              tabindex="0"
               onClick={handleOpenModal}
             >
               terms of service
-            </a>
+            </button>
           </Text>
         </Checkbox>
         <Modal

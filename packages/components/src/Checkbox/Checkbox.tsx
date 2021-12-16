@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, ReactElement } from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
 import styles from "./Checkbox.css";
@@ -59,7 +59,7 @@ interface CheckboxChildrenProps extends BaseCheckboxProps {
   /**
    * Component children, which shows up as a label
    */
-  readonly children?: JSX.Element;
+  readonly children?: ReactElement;
 }
 
 type CheckboxProps = XOR<CheckboxLabelProps, CheckboxChildrenProps>;
