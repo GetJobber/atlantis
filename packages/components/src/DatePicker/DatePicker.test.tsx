@@ -34,12 +34,8 @@ it("returns the dates from onChange", async () => {
   const { getByTestId, getByText } = render(
     <DatePicker selected={new Date()} onChange={changeHandler} />,
   );
-
-  const button = getByTestId("calendar");
-  fireEvent.click(button);
-
-  const date = getByText("15");
-  fireEvent.click(date);
+  clickOn(getByTestId("calendar"));
+  clickOn(getByText("15"));
 
   expect(changeHandler).toHaveBeenCalledWith(expect.any(Date));
 });
@@ -52,9 +48,7 @@ it("allows for a custom activator to open the DatePicker", () => {
       activator={<div>Activate me</div>}
     />,
   );
-
-  const button = getByText("Activate me");
-  fireEvent.click(button);
+  clickOn(getByText("Activate me"));
 
   expect(getByText("15")).toBeInstanceOf(HTMLDivElement);
 });
@@ -86,10 +80,7 @@ describe("Ensure ReactDatePicker CSS class names exists", () => {
     const className = "react-datepicker-ignore-onclickoutside";
 
     expect(input).not.toHaveClass(className);
-    fireEvent.focus(input);
-    // Popper update() - https://github.com/popperjs/react-popper/issues/350
-    await act(async () => undefined);
-
+    focusOn(input);
     expect(input).toHaveClass(className);
   });
 
@@ -113,11 +104,24 @@ describe("Ensure ReactDatePicker CSS class names exists", () => {
         const { getByRole, container } = render(
           <ReactDatePicker selected={new Date()} onChange={jest.fn} />,
         );
-        fireEvent.focus(getByRole("textbox"));
-        // Popper update() - https://github.com/popperjs/react-popper/issues/350
-        await act(async () => undefined);
+        focusOn(getByRole("textbox"));
         expect(container.querySelector(className)).toBeTruthy();
       });
     });
   });
 });
+
+async function focusOn(element: Element) {
+  fireEvent.focus(element);
+  await awaitPopper();
+}
+
+async function clickOn(element: Element) {
+  fireEvent.click(element);
+  await awaitPopper();
+}
+
+async function awaitPopper() {
+  // Popper update() - https://github.com/popperjs/react-popper/issues/350
+  await act(async () => undefined);
+}
