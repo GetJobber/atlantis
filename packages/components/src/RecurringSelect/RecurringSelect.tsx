@@ -93,14 +93,7 @@ export function RecurringSelect({
     });
   }
 
-  function onChangeType(
-    type:
-      | DurationPeriod.Day
-      | DurationPeriod.Week
-      | DurationPeriod.DayOfMonth
-      | DurationPeriod.WeekDayOfMonth
-      | DurationPeriod.Year,
-  ) {
+  function onChangeType(type: typeof recurrenceRule.type) {
     onChange({
       interval: recurrenceRule.interval,
       ...typeInitialStateMap[type],
