@@ -48,8 +48,8 @@ export function MonthlyDayOfWeekSelect({
 
         return (
           <div className={styles.container} key={`${index}${week}`}>
-            <div className={styles.order}>{`${getOrderString(index)}`}</div>
-            <div className={styles.selector}>
+            <div>{`${getOrderString(index)}`}</div>
+            <div>
               <WeeklySelect
                 disabled={disabled}
                 selectedDays={week}

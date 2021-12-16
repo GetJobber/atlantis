@@ -1,5 +1,8 @@
 .container {
-  display: flex;
+  display: grid;
+  grid-template-columns: var(--space-largest) 1fr;
+  align-items: center;
+  gap: var(--space-small);
   margin-bottom: calc(-1 * var(--border-base));
 }
 
@@ -20,13 +23,4 @@
   border-bottom-right-radius: var(--radius-large);
   border-bottom-left-radius: var(--radius-large);
   border-top-left-radius: 0;
-}
-
-.order {
-  align-self: center;
-  flex: 1 1 0;
-}
-
-.selector {
-  flex: 9 1 0;
 }
