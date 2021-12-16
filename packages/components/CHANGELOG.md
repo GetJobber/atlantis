@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.68.12](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.68.11...@jobber/components@2.68.12) (2021-12-16)
+
+
+### Bug Fixes
+
+* **components:** Fix form field inconsistent spacing when used under Form and InputGroup JOB-37646 ([#762](https://github.com/GetJobber/atlantis/issues/762)) ([8148039](https://github.com/GetJobber/atlantis/commit/814803912c8a67ba02db2577ec857522833f3f01))
+
+
+
+
+
 ## [2.68.11](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.68.10...@jobber/components@2.68.11) (2021-12-16)
 
 **Note:** Version bump only for package @jobber/components
