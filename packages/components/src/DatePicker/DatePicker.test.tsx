@@ -34,13 +34,17 @@ it("returns the dates from onChange", async () => {
   const { getByTestId, getByText } = render(
     <DatePicker selected={new Date()} onChange={changeHandler} />,
   );
-  clickOn(getByTestId("calendar"));
-  clickOn(getByText("15"));
+  await popperUpdate(() => {
+    fireEvent.click(getByTestId("calendar"));
+  });
+  await popperUpdate(() => {
+    fireEvent.click(getByText("15"));
+  });
 
   expect(changeHandler).toHaveBeenCalledWith(expect.any(Date));
 });
 
-it("allows for a custom activator to open the DatePicker", () => {
+it("allows for a custom activator to open the DatePicker", async () => {
   const { getByText } = render(
     <DatePicker
       selected={new Date()}
@@ -48,7 +52,9 @@ it("allows for a custom activator to open the DatePicker", () => {
       activator={<div>Activate me</div>}
     />,
   );
-  clickOn(getByText("Activate me"));
+  await popperUpdate(() => {
+    fireEvent.click(getByText("Activate me"));
+  });
 
   expect(getByText("15")).toBeInstanceOf(HTMLDivElement);
 });
@@ -80,7 +86,9 @@ describe("Ensure ReactDatePicker CSS class names exists", () => {
     const className = "react-datepicker-ignore-onclickoutside";
 
     expect(input).not.toHaveClass(className);
-    focusOn(input);
+    await popperUpdate(() => {
+      fireEvent.focus(input);
+    });
     expect(input).toHaveClass(className);
   });
 
@@ -104,24 +112,18 @@ describe("Ensure ReactDatePicker CSS class names exists", () => {
         const { getByRole, container } = render(
           <ReactDatePicker selected={new Date()} onChange={jest.fn} />,
         );
-        focusOn(getByRole("textbox"));
+        await popperUpdate(() => {
+          fireEvent.focus(getByRole("textbox"));
+        });
         expect(container.querySelector(className)).toBeTruthy();
       });
     });
   });
 });
 
-async function focusOn(element: Element) {
-  fireEvent.focus(element);
-  await awaitPopper();
-}
-
-async function clickOn(element: Element) {
-  fireEvent.click(element);
-  await awaitPopper();
-}
-
-async function awaitPopper() {
-  // Popper update() - https://github.com/popperjs/react-popper/issues/350
+async function popperUpdate(event: Function) {
+  event();
+  // Wait for the Popper update() so jest doesn't throw an act warning
+  // https://github.com/popperjs/react-popper/issues/350
   await act(async () => undefined);
 }
