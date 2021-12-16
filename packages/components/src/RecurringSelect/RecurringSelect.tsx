@@ -28,12 +28,11 @@ export function RecurringSelect({
   const disabledTextVariation = disabled ? "disabled" : undefined;
   // we must dynamically populate the select option based on which is selected
   // because there is no single "month" option, it must always be one of these two
-  const monthlySelectOption =
-    recurrenceRule.type === DurationPeriod.WeekDayOfMonth ? (
-      <Option value={DurationPeriod.WeekDayOfMonth}>Month(s)</Option>
-    ) : (
-      <Option value={DurationPeriod.DayOfMonth}>Month(s)</Option>
-    );
+  const monthlySelectOptionValue =
+    recurrenceRule.type === DurationPeriod.WeekDayOfMonth
+      ? DurationPeriod.WeekDayOfMonth
+      : DurationPeriod.DayOfMonth;
+
   const hasExtraFrequencyDescriptor =
     recurrenceRule.type === DurationPeriod.WeekDayOfMonth ||
     recurrenceRule.type === DurationPeriod.DayOfMonth ||
@@ -62,7 +61,7 @@ export function RecurringSelect({
             >
               <Option value={DurationPeriod.Day}>Day(s)</Option>
               <Option value={DurationPeriod.Week}>Week(s)</Option>
-              {monthlySelectOption}
+              <Option value={monthlySelectOptionValue}>Month(s)</Option>
               <Option value={DurationPeriod.Year}>Year(s)</Option>
             </Select>
           </InputGroup>
