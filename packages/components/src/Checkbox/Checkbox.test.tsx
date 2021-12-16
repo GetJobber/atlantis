@@ -22,21 +22,6 @@ it("renders a disabled Checkbox", () => {
   expect(checkbox).toBeDisabled();
 });
 
-it("renders a checkbox with an empty element", () => {
-  const { getByRole } = render(
-    <Checkbox>
-      <></>
-    </Checkbox>,
-  );
-  const checkbox = getByRole("checkbox");
-  expect(checkbox).toBeInTheDocument();
-});
-
-it("renders a checkbox with children", () => {
-  const { getByText } = render(<Checkbox>{<Text>Content</Text>}</Checkbox>);
-  expect(getByText("Content")).toBeInTheDocument();
-});
-
 it("renders each variation of checked, defaultChecked and indeterminate", () => {
   const variations = [
     { checked: true, indeterminate: true },
@@ -63,20 +48,27 @@ it("renders a description when set", () => {
   expect(description).toBeInstanceOf(HTMLParagraphElement);
 });
 
-it("should still fire the onClick within the children", () => {
-  const handleLinkClick = jest.fn();
-  const { getByText } = render(
-    <Checkbox description="Checkers">
-      <Text>
-        I agree to the
-        <a onClick={handleLinkClick}>Terms of Service</a>
-      </Text>
-    </Checkbox>,
-  );
-  const TOSAnchorElement = getByText("Terms of Service");
-  expect(TOSAnchorElement).toBeInTheDocument();
-  fireEvent.click(TOSAnchorElement);
-  expect(handleLinkClick).toHaveBeenCalled();
+describe("With children components", () => {
+  it("renders a checkbox with children", () => {
+    const { getByText } = render(<Checkbox>{<Text>Content</Text>}</Checkbox>);
+    expect(getByText("Content")).toBeInTheDocument();
+  });
+
+  it("should still fire the onClick within the children", () => {
+    const handleLinkClick = jest.fn();
+    const { getByText } = render(
+      <Checkbox description="Checkers">
+        <Text>
+          I agree to the
+          <a onClick={handleLinkClick}>Terms of Service</a>
+        </Text>
+      </Checkbox>,
+    );
+    const TOSAnchorElement = getByText("Terms of Service");
+    expect(TOSAnchorElement).toBeInTheDocument();
+    fireEvent.click(TOSAnchorElement);
+    expect(handleLinkClick).toHaveBeenCalled();
+  });
 });
 
 describe("Clicking the checkbox it should call the handler", () => {
