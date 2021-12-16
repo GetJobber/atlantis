@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.69.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.68.12...@jobber/components@2.69.0) (2021-12-16)
+
+
+### Features
+
+* **components:** Update checkbox to use react components as a label ([#806](https://github.com/GetJobber/atlantis/issues/806)) ([450d035](https://github.com/GetJobber/atlantis/commit/450d03545b7f63764e4beb29f1f1582f7934682b))
+
+
+
+
+
 ## [2.68.12](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.68.11...@jobber/components@2.68.12) (2021-12-16)
 
 
