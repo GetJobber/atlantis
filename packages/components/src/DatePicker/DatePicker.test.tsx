@@ -34,12 +34,8 @@ it("returns the dates from onChange", async () => {
   const { getByTestId, getByText } = render(
     <DatePicker selected={new Date()} onChange={changeHandler} />,
   );
-  await popperUpdate(() => {
-    fireEvent.click(getByTestId("calendar"));
-  });
-  await popperUpdate(() => {
-    fireEvent.click(getByText("15"));
-  });
+  await popperUpdate(() => fireEvent.click(getByTestId("calendar")));
+  await popperUpdate(() => fireEvent.click(getByText("15")));
 
   expect(changeHandler).toHaveBeenCalledWith(expect.any(Date));
 });
@@ -52,9 +48,7 @@ it("allows for a custom activator to open the DatePicker", async () => {
       activator={<div>Activate me</div>}
     />,
   );
-  await popperUpdate(() => {
-    fireEvent.click(getByText("Activate me"));
-  });
+  await popperUpdate(() => fireEvent.click(getByText("Activate me")));
 
   expect(getByText("15")).toBeInstanceOf(HTMLDivElement);
 });
@@ -86,9 +80,7 @@ describe("Ensure ReactDatePicker CSS class names exists", () => {
     const className = "react-datepicker-ignore-onclickoutside";
 
     expect(input).not.toHaveClass(className);
-    await popperUpdate(() => {
-      fireEvent.focus(input);
-    });
+    await popperUpdate(() => fireEvent.focus(input));
     expect(input).toHaveClass(className);
   });
 
@@ -112,9 +104,7 @@ describe("Ensure ReactDatePicker CSS class names exists", () => {
         const { getByRole, container } = render(
           <ReactDatePicker selected={new Date()} onChange={jest.fn} />,
         );
-        await popperUpdate(() => {
-          fireEvent.focus(getByRole("textbox"));
-        });
+        await popperUpdate(() => fireEvent.focus(getByRole("textbox")));
         expect(container.querySelector(className)).toBeTruthy();
       });
     });
