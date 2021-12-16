@@ -8,6 +8,49 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.68.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.68.8...@jobber/components@2.68.9) (2021-12-15)
+
+
+### Bug Fixes
+
+* **components:** Prevent date picker from flickering / closing when click the activator again ([#807](https://github.com/GetJobber/atlantis/issues/807)) ([a53a4c9](https://github.com/GetJobber/atlantis/commit/a53a4c900aefb4b674b4f04ce67dbb8334cd7756))
+
+
+
+
+
+## [2.68.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.68.7...@jobber/components@2.68.8) (2021-12-15)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.68.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.68.6...@jobber/components@2.68.7) (2021-12-15)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.68.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.68.5...@jobber/components@2.68.6) (2021-12-14)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.68.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.68.4...@jobber/components@2.68.5) (2021-12-14)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 ## [2.68.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.68.3...@jobber/components@2.68.4) (2021-12-06)
 
 **Note:** Version bump only for package @jobber/components

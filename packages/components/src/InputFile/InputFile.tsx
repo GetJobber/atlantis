@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import classnames from "classnames";
 import { DropzoneOptions, useDropzone } from "react-dropzone";
 import axios from "axios";
-import uuid from "uuid";
+import { v1 as uuidv1 } from "uuid";
 import styles from "./InputFile.css";
 import { Button } from "../Button";
 import { Content } from "../Content";
@@ -190,7 +190,7 @@ export function InputFile({
   }
 
   async function uploadFile(file: File) {
-    const { url, key = uuid(), fields = {} } = await getUploadParams(file);
+    const { url, key = uuidv1(), fields = {} } = await getUploadParams(file);
 
     const fileUpload = getFileUpload(file, key);
     onUploadStart && onUploadStart({ ...fileUpload });
@@ -227,7 +227,7 @@ function getLabels(
     ? "or drag files here to upload"
     : "or drag a file here to upload";
 
-  if (allowedTypes === "images") {
+  if (allowedTypes === "images" || allowedTypes === "basicImages") {
     buttonLabel = multiple ? "Upload Images" : "Upload Image";
     hintText = multiple
       ? "or drag images here to upload"

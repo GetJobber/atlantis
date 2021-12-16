@@ -1,5 +1,5 @@
 import React, { MouseEvent } from "react";
-import uuid from "uuid";
+import { v1 as uuidv1 } from "uuid";
 import styles from "./InternalChip.css";
 import { InternalChip } from "./InternalChip";
 import { ChipSingleSelectProps } from "./ChipsTypes";
@@ -12,7 +12,7 @@ type InternalChipChoiceProps = Pick<
 export function InternalChipSingleSelect({
   children,
   selected,
-  name = uuid.v1(),
+  name = uuidv1(),
   onChange,
   onClick,
 }: InternalChipChoiceProps) {

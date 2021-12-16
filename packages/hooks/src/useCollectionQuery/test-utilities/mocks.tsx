@@ -1,6 +1,6 @@
 import { MockedProvider, MockedResponse } from "@apollo/react-testing";
 import React from "react";
-import uuid from "uuid";
+import { v1 as uuidv1 } from "uuid";
 import { LIST_QUERY, SUBSCRIPTION_QUERY } from "./queries";
 
 export function wrapper(mocks: MockedResponse[]) {
@@ -32,14 +32,14 @@ export const listQueryResponseMock = jest.fn(id => {
               __typename: "SMSMessageEdge",
               node: {
                 __typename: "SMSMessage",
-                id: id || uuid.v1(),
+                id: id || uuidv1(),
               },
             },
           ],
           nodes: [
             {
               __typename: "SMSMessage",
-              id: id || uuid.v1(),
+              id: id || uuidv1(),
             },
           ],
           pageInfo: {
