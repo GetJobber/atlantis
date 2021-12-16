@@ -10,31 +10,13 @@ interface MonthlyDayOfWeekSelectProps {
   onChange(nextSelectedWeeks: Set<WeekDay>[]): void;
 }
 
-const getOrderString = (index: number): string => {
-  switch (index) {
-    case 0: {
-      return "1st";
-    }
-    case 1: {
-      return "2nd";
-    }
-    case 2: {
-      return "3rd";
-    }
-    case 3: {
-      return "4th";
-    }
-    default: {
-      return "";
-    }
-  }
-};
-
 export function MonthlyDayOfWeekSelect({
   disabled,
   selectedWeeks,
   onChange,
 }: MonthlyDayOfWeekSelectProps) {
+  const orderString = ["1st", "2nd", "3rd", "4th"];
+
   return (
     <div className={styles.parentContainer}>
       {selectedWeeks.map((week, index) => {
@@ -48,7 +30,7 @@ export function MonthlyDayOfWeekSelect({
 
         return (
           <div className={styles.container} key={`${index}${week}`}>
-            <Text>{`${getOrderString(index)}`}</Text>
+            <Text>{`${orderString[index]}`}</Text>
             <div>
               <WeeklySelect
                 disabled={disabled}
