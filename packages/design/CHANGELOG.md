@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.20.0...@jobber/design@0.20.1) (2021-12-16)
+
+
+### Bug Fixes
+
+* resolve build warning ([#757](https://github.com/GetJobber/atlantis/issues/757)) ([6c3fbda](https://github.com/GetJobber/atlantis/commit/6c3fbdabbdea37b38a4a74c0d318ce61a8fb24c5))
+
+
+
+
+
 # [0.20.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.19.3...@jobber/design@0.20.0) (2021-12-01)
 
 
