@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./MonthlyDayOfWeekSelect.css";
+import { Text } from "../../../Text";
 import { WeekDay } from "../../types";
 import { WeeklySelect } from "../index";
 
@@ -47,7 +48,7 @@ export function MonthlyDayOfWeekSelect({
 
         return (
           <div className={styles.container} key={`${index}${week}`}>
-            <div>{`${getOrderString(index)}`}</div>
+            <Text>{`${getOrderString(index)}`}</Text>
             <div>
               <WeeklySelect
                 disabled={disabled}
