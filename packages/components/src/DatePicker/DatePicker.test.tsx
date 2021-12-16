@@ -1,5 +1,6 @@
 import React from "react";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { act, cleanup, fireEvent, render } from "@testing-library/react";
+import ReactDatePicker from "react-datepicker";
 import { DatePicker } from "./DatePicker";
 
 afterEach(cleanup);
@@ -76,4 +77,47 @@ it("should not add the `react-datepicker-ignore-onclickoutside` when inline", ()
   rerender(<DatePicker onChange={jest.fn()} inline />);
 
   expect(target).not.toHaveClass(className);
+});
+
+describe("Ensure ReactDatePicker CSS class names exists", () => {
+  it("should have the click outside class", async () => {
+    const { getByRole } = render(<ReactDatePicker onChange={jest.fn} />);
+    const input = getByRole("textbox");
+    const className = "react-datepicker-ignore-onclickoutside";
+
+    expect(input).not.toHaveClass(className);
+    fireEvent.focus(input);
+    // Popper update() - https://github.com/popperjs/react-popper/issues/350
+    await act(async () => undefined);
+
+    expect(input).toHaveClass(className);
+  });
+
+  describe("Overwritten CSS class name", () => {
+    const classNames = [
+      ".react-datepicker",
+      ".react-datepicker__input-container",
+      ".react-datepicker-wrapper",
+      ".react-datepicker-popper",
+      ".react-datepicker__header",
+      ".react-datepicker__month",
+      ".react-datepicker__day",
+      ".react-datepicker__day--outside-month",
+      ".react-datepicker__day--selected",
+      ".react-datepicker__day-names",
+      ".react-datepicker__day-name",
+    ];
+
+    classNames.forEach(className => {
+      it(`should have ${className}`, async () => {
+        const { getByRole, container } = render(
+          <ReactDatePicker selected={new Date()} onChange={jest.fn} />,
+        );
+        fireEvent.focus(getByRole("textbox"));
+        // Popper update() - https://github.com/popperjs/react-popper/issues/350
+        await act(async () => undefined);
+        expect(container.querySelector(className)).toBeTruthy();
+      });
+    });
+  });
 });
