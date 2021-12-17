@@ -72,7 +72,11 @@ describe("RecurringSelect with an existing week day selected", () => {
     );
 
     fireEvent.click(getByLabelText(/F/i));
-    expect(onChange).toHaveBeenCalled();
+    expect(onChange).toHaveBeenCalledWith({
+      interval: 1,
+      type: DurationPeriod.Week,
+      weekDays: new Set(),
+    });
   });
 });
 
