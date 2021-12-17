@@ -15,13 +15,13 @@ import { Content } from "../Content";
 import { Text } from "../Text";
 
 interface RecurringSelectProps {
-  disabled?: boolean;
-  recurrenceRule: RecurrenceRule;
-  onChange(next: RecurrenceRule): void;
+  readonly disabled?: boolean;
+  readonly value: RecurrenceRule;
+  onChange(value: RecurrenceRule): void;
 }
 
 export function RecurringSelect({
-  recurrenceRule,
+  value,
   disabled = false,
   onChange,
 }: RecurringSelectProps) {
@@ -29,14 +29,14 @@ export function RecurringSelect({
   // we must dynamically populate the select option based on which is selected
   // because there is no single "month" option, it must always be one of these two
   const monthlySelectOptionValue =
-    recurrenceRule.type === DurationPeriod.WeekDayOfMonth
+    value.type === DurationPeriod.WeekDayOfMonth
       ? DurationPeriod.WeekDayOfMonth
       : DurationPeriod.DayOfMonth;
 
   const hasExtraFrequencyDescriptor =
-    recurrenceRule.type === DurationPeriod.WeekDayOfMonth ||
-    recurrenceRule.type === DurationPeriod.DayOfMonth ||
-    recurrenceRule.type === DurationPeriod.Week;
+    value.type === DurationPeriod.WeekDayOfMonth ||
+    value.type === DurationPeriod.DayOfMonth ||
+    value.type === DurationPeriod.Week;
 
   return (
     <Content>
@@ -47,7 +47,7 @@ export function RecurringSelect({
             <InputNumber
               disabled={disabled}
               name="schedule-recurrence-interval"
-              value={recurrenceRule.interval}
+              value={value.interval}
               min={1}
               maxLength={3}
               onChange={onChangeInterval}
@@ -55,7 +55,7 @@ export function RecurringSelect({
 
             <Select
               disabled={disabled}
-              value={recurrenceRule.type}
+              value={value.type}
               onChange={onChangeType}
               name="schedule-recurrence-type"
             >
@@ -70,17 +70,17 @@ export function RecurringSelect({
           <Text variation={disabledTextVariation}>on</Text>
         )}
       </div>
-      {isMonthly(recurrenceRule) && (
+      {isMonthly(value) && (
         <MonthlySelect
           disabled={disabled}
           onChange={onChangeType}
-          selectedMonthOption={recurrenceRule.type}
+          selectedMonthOption={value.type}
         />
       )}
 
       <CurrentRecurrenceComponent
         disabled={disabled}
-        recurrenceRule={recurrenceRule}
+        recurrenceRule={value}
         onChange={onChange}
       />
     </Content>
@@ -88,14 +88,14 @@ export function RecurringSelect({
 
   function onChangeInterval(interval: number) {
     onChange({
-      ...recurrenceRule,
+      ...value,
       interval,
     });
   }
 
-  function onChangeType(type: typeof recurrenceRule.type) {
+  function onChangeType(type: typeof value.type) {
     onChange({
-      interval: recurrenceRule.interval,
+      interval: value.interval,
       ...typeInitialStateMap[type],
     });
   }
