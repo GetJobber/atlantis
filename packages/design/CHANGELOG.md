@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.20.1...@jobber/design@0.21.0) (2021-12-18)
+
+
+### Features
+
+* **components:** More dividers to align with mobile conventions ([#799](https://github.com/GetJobber/atlantis/issues/799)) ([2db1c32](https://github.com/GetJobber/atlantis/commit/2db1c3287d805683fe89e3994ab0f69a1487d728))
+
+
+
+
+
 ## [0.20.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.20.0...@jobber/design@0.20.1) (2021-12-16)
 
 

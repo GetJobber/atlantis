@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.70.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.69.1...@jobber/components@2.70.0) (2021-12-18)
+
+
+### Features
+
+* **components:** More dividers to align with mobile conventions ([#799](https://github.com/GetJobber/atlantis/issues/799)) ([2db1c32](https://github.com/GetJobber/atlantis/commit/2db1c3287d805683fe89e3994ab0f69a1487d728))
+
+
+
+
+
 ## [2.69.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.69.0...@jobber/components@2.69.1) (2021-12-17)
 
 **Note:** Version bump only for package @jobber/components
