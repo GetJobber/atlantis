@@ -25,4 +25,36 @@ describe("Divider", () => {
       });
     });
   });
+
+  describe("when larger", () => {
+    it("renders", () => {
+      const { container } = render(<Divider size="larger" />);
+      expect(container).toMatchSnapshot();
+    });
+
+    describe("when also vertical", () => {
+      it("renders", () => {
+        const { container } = render(
+          <Divider direction="vertical" size="larger" />,
+        );
+        expect(container).toMatchSnapshot();
+      });
+    });
+  });
+
+  describe("when largest", () => {
+    it("renders", () => {
+      const { container } = render(<Divider size="largest" />);
+      expect(container).toMatchSnapshot();
+    });
+
+    describe("when also vertical", () => {
+      it("renders", () => {
+        const { container } = render(
+          <Divider direction="vertical" size="largest" />,
+        );
+        expect(container).toMatchSnapshot();
+      });
+    });
+  });
 });

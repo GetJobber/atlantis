@@ -26,3 +26,39 @@ exports[`Divider when large when also vertical renders 1`] = `
   />
 </div>
 `;
+
+exports[`Divider when larger renders 1`] = `
+<div>
+  <div
+    class="divider larger horizontal"
+    role="none presentation"
+  />
+</div>
+`;
+
+exports[`Divider when larger when also vertical renders 1`] = `
+<div>
+  <div
+    class="divider larger vertical"
+    role="none presentation"
+  />
+</div>
+`;
+
+exports[`Divider when largest renders 1`] = `
+<div>
+  <div
+    class="divider largest horizontal"
+    role="none presentation"
+  />
+</div>
+`;
+
+exports[`Divider when largest when also vertical renders 1`] = `
+<div>
+  <div
+    class="divider largest vertical"
+    role="none presentation"
+  />
+</div>
+`;
