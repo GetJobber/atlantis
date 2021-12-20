@@ -1,0 +1,9 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: var(--space-base);
+}
+
+.fullWidthWrapper {
+  width: 100%;
+}
