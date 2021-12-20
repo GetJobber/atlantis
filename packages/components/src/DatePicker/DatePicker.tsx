@@ -1,4 +1,10 @@
-import React, { MutableRefObject, ReactElement, useRef } from "react";
+import React, {
+  MutableRefObject,
+  ReactElement,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import classnames from "classnames";
 import ReactDatePicker from "react-datepicker";
 /**
@@ -8,6 +14,7 @@ import ReactDatePicker from "react-datepicker";
 // eslint-disable-next-line import/no-internal-modules
 import "react-datepicker/dist/react-datepicker.module.css";
 import { XOR } from "ts-xor";
+import { useRefocusOnActivator } from "@jobber/hooks";
 import styles from "./DatePicker.css";
 import { DatePickerCustomHeader } from "./DatePickerCustomHeader";
 import {
@@ -74,6 +81,7 @@ export function DatePicker({
   smartAutofocus = true,
 }: DatePickerProps) {
   const datePickerRef = useRef() as MutableRefObject<HTMLDivElement>;
+  const [open, setOpen] = useState(false);
   const wrapperClassName = classnames(styles.datePickerWrapper, {
     // react-datepicker uses this class name to not close the date picker when
     // the activator is clicked
@@ -88,6 +96,11 @@ export function DatePicker({
   const datePickerClassNames = classnames(styles.datePicker, {
     [styles.inline]: inline,
   });
+
+  if (smartAutofocus) {
+    useRefocusOnActivator(open);
+    useEffect(focusOnSelectedDate, [open]);
+  }
 
   return (
     <div className={wrapperClassName} ref={datePickerRef}>
@@ -105,6 +118,7 @@ export function DatePicker({
         }
         renderCustomHeader={props => <DatePickerCustomHeader {...props} />}
         onCalendarOpen={handleCalendarOpen}
+        onCalendarClose={handleCalendarClose}
       />
     </div>
   );
@@ -114,8 +128,14 @@ export function DatePicker({
   }
 
   function handleCalendarOpen() {
-    if (!smartAutofocus) return;
+    setOpen(true);
+  }
 
+  function handleCalendarClose() {
+    setOpen(false);
+  }
+
+  function focusOnSelectedDate() {
     const selectedDateClass = ".react-datepicker__day--selected";
     const selectedDate =
       datePickerRef.current?.querySelector(selectedDateClass);
