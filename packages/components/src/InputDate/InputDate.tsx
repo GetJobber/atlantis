@@ -38,6 +38,7 @@ export function InputDate(inputProps: InputDateProps) {
       disabled={inputProps.disabled}
       readonly={inputProps.readonly}
       fullWidth={!inputProps.inline}
+      smartAutofocus={false}
       activator={activatorProps => {
         const { onChange, onClick, value } = activatorProps;
         const newActivatorProps = omit(activatorProps, ["activator"]);
