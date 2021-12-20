@@ -4,7 +4,6 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "prestart": "cd packages/components",
     "start": "USE_ATLANTIS_ALIASES=true docz dev",
     "start:withPrivateComponents": "USE_ATLANTIS_ALIASES=true PRIVATE_COMPONENTS=visible docz dev",
     "test": "jest",
