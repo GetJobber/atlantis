@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { MutableRefObject, ReactElement, useRef } from "react";
 import classnames from "classnames";
 import ReactDatePicker from "react-datepicker";
 /**
@@ -66,9 +66,7 @@ export function DatePicker({
   disabled = false,
   fullWidth = false,
 }: DatePickerProps) {
-  const datePickerClassNames = classnames(styles.datePicker, {
-    [styles.inline]: inline,
-  });
+  const datePickerRef = useRef() as MutableRefObject<HTMLDivElement>;
   const wrapperClassName = classnames(styles.datePickerWrapper, {
     // react-datepicker uses this class name to not close the date picker when
     // the activator is clicked
@@ -80,9 +78,12 @@ export function DatePicker({
     "react-datepicker-ignore-onclickoutside": !inline,
     [styles.fullWidth]: fullWidth,
   });
+  const datePickerClassNames = classnames(styles.datePicker, {
+    [styles.inline]: inline,
+  });
 
   return (
-    <div className={wrapperClassName}>
+    <div className={wrapperClassName} ref={datePickerRef}>
       <ReactDatePicker
         calendarClassName={datePickerClassNames}
         showPopperArrow={false}
@@ -96,11 +97,23 @@ export function DatePicker({
           <DatePickerActivator activator={activator} fullWidth={fullWidth} />
         }
         renderCustomHeader={props => <DatePickerCustomHeader {...props} />}
+        onCalendarOpen={handleCalendarOpen}
       />
     </div>
   );
 
   function handleChange(value: Date) {
     onChange(value);
+  }
+
+  function handleCalendarOpen() {
+    const selectedDateClass = ".react-datepicker__day--selected";
+
+    const selectedDate =
+      datePickerRef.current?.querySelector(selectedDateClass);
+
+    if (selectedDate instanceof HTMLDivElement) {
+      selectedDate.focus();
+    }
   }
 }
