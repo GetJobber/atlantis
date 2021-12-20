@@ -91,7 +91,7 @@ export function DatePicker({
         disabled={disabled}
         readOnly={readonly}
         onChange={handleChange}
-        formatWeekDay={date => date.substr(0, 3)}
+        formatWeekDay={date => date.substring(0, 3)}
         customInput={
           <DatePickerActivator activator={activator} fullWidth={fullWidth} />
         }
