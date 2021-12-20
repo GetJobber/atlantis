@@ -1,12 +1,6 @@
 import React, { ReactElement } from "react";
 import classnames from "classnames";
 import ReactDatePicker from "react-datepicker";
-/**
- * Disabling no-internal-modules here because we need
- * to reach into the package to get the css file.
- */
-// eslint-disable-next-line import/no-internal-modules
-import "react-datepicker/dist/react-datepicker.module.css";
 import { XOR } from "ts-xor";
 import styles from "./DatePicker.css";
 import { DatePickerCustomHeader } from "./DatePickerCustomHeader";
