@@ -22,6 +22,12 @@ interface BaseDatePickerProps {
   readonly selected?: Date;
 
   /**
+   * Determines if the focus moves to the selected date (if any) or back to
+   * the activator
+   */
+  readonly smartAutofocus?: boolean;
+
+  /**
    * Change handler that will return the date selected.
    */
   onChange(val: Date): void;
@@ -65,6 +71,7 @@ export function DatePicker({
   readonly = false,
   disabled = false,
   fullWidth = false,
+  smartAutofocus = true,
 }: DatePickerProps) {
   const datePickerRef = useRef() as MutableRefObject<HTMLDivElement>;
   const wrapperClassName = classnames(styles.datePickerWrapper, {
@@ -107,8 +114,9 @@ export function DatePicker({
   }
 
   function handleCalendarOpen() {
-    const selectedDateClass = ".react-datepicker__day--selected";
+    if (!smartAutofocus) return;
 
+    const selectedDateClass = ".react-datepicker__day--selected";
     const selectedDate =
       datePickerRef.current?.querySelector(selectedDateClass);
 
