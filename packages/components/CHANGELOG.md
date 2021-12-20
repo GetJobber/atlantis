@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.71.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.70.0...@jobber/components@2.71.0) (2021-12-20)
+
+
+### Features
+
+* **components:** RecurringSelect Component ([#793](https://github.com/GetJobber/atlantis/issues/793)) ([043af4c](https://github.com/GetJobber/atlantis/commit/043af4c318e77675c777fc2578d80b796a792083))
+
+
+
+
+
 # [2.70.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.69.1...@jobber/components@2.70.0) (2021-12-18)
 
 
