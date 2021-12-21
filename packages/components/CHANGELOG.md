@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.71.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.71.0...@jobber/components@2.71.1) (2021-12-21)
+
+
+### Bug Fixes
+
+* DatePicker smart focus [JOB-39118, JOB-38255] ([#812](https://github.com/GetJobber/atlantis/issues/812)) ([12cc017](https://github.com/GetJobber/atlantis/commit/12cc0178260195e33a6a12a7c122c22cf7679dc4))
+
+
+
+
+
 # [2.71.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.70.0...@jobber/components@2.71.0) (2021-12-20)
 
 
