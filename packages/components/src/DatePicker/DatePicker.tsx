@@ -1,4 +1,10 @@
-import React, { ReactElement } from "react";
+import React, {
+  MutableRefObject,
+  ReactElement,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import classnames from "classnames";
 import ReactDatePicker from "react-datepicker";
 /**
@@ -8,6 +14,7 @@ import ReactDatePicker from "react-datepicker";
 // eslint-disable-next-line import/no-internal-modules
 import "react-datepicker/dist/react-datepicker.module.css";
 import { XOR } from "ts-xor";
+import { useRefocusOnActivator } from "@jobber/hooks";
 import styles from "./DatePicker.css";
 import { DatePickerCustomHeader } from "./DatePickerCustomHeader";
 import {
@@ -20,6 +27,12 @@ interface BaseDatePickerProps {
    * The selected Date object
    */
   readonly selected?: Date;
+
+  /**
+   * Determines if the focus moves to the selected date (if any) or back to
+   * the activator
+   */
+  readonly smartAutofocus?: boolean;
 
   /**
    * Change handler that will return the date selected.
@@ -65,10 +78,10 @@ export function DatePicker({
   readonly = false,
   disabled = false,
   fullWidth = false,
+  smartAutofocus = true,
 }: DatePickerProps) {
-  const datePickerClassNames = classnames(styles.datePicker, {
-    [styles.inline]: inline,
-  });
+  const datePickerRef = useRef() as MutableRefObject<HTMLDivElement>;
+  const [open, setOpen] = useState(false);
   const wrapperClassName = classnames(styles.datePickerWrapper, {
     // react-datepicker uses this class name to not close the date picker when
     // the activator is clicked
@@ -80,9 +93,17 @@ export function DatePicker({
     "react-datepicker-ignore-onclickoutside": !inline,
     [styles.fullWidth]: fullWidth,
   });
+  const datePickerClassNames = classnames(styles.datePicker, {
+    [styles.inline]: inline,
+  });
+
+  if (smartAutofocus) {
+    useRefocusOnActivator(open);
+    useEffect(focusOnSelectedDate, [open]);
+  }
 
   return (
-    <div className={wrapperClassName}>
+    <div className={wrapperClassName} ref={datePickerRef}>
       <ReactDatePicker
         calendarClassName={datePickerClassNames}
         showPopperArrow={false}
@@ -91,16 +112,36 @@ export function DatePicker({
         disabled={disabled}
         readOnly={readonly}
         onChange={handleChange}
-        formatWeekDay={date => date.substr(0, 3)}
+        formatWeekDay={date => date.substring(0, 3)}
         customInput={
           <DatePickerActivator activator={activator} fullWidth={fullWidth} />
         }
         renderCustomHeader={props => <DatePickerCustomHeader {...props} />}
+        onCalendarOpen={handleCalendarOpen}
+        onCalendarClose={handleCalendarClose}
       />
     </div>
   );
 
   function handleChange(value: Date) {
     onChange(value);
+  }
+
+  function handleCalendarOpen() {
+    setOpen(true);
+  }
+
+  function handleCalendarClose() {
+    setOpen(false);
+  }
+
+  function focusOnSelectedDate() {
+    const selectedDateClass = ".react-datepicker__day--selected";
+    const selectedDate =
+      datePickerRef.current?.querySelector(selectedDateClass);
+
+    if (selectedDate instanceof HTMLDivElement) {
+      selectedDate.focus();
+    }
   }
 }
