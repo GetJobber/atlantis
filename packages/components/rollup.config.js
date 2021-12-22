@@ -3,6 +3,7 @@ import multiInput from "rollup-plugin-multi-input";
 import typescript from "rollup-plugin-typescript2";
 import postcss from "rollup-plugin-postcss";
 import commonjs from "rollup-plugin-commonjs";
+import tcm from "typed-css-modules";
 
 export default {
   input: `src/*/index.ts`,
@@ -16,7 +17,9 @@ export default {
         generateScopedName: "[hash:base64]",
         globalModulePaths: [/node_modules/],
       },
+      loader: "postcss-loader",
       plugins: [
+        tcm(),
         require("postcss-import"),
         require("autoprefixer"),
         // eslint-disable-next-line @typescript-eslint/no-var-requires
