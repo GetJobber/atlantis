@@ -9,6 +9,7 @@ import textColors from "./css/TextColors.css";
 import emphasis from "./css/Emphasis.css";
 import truncate from "./css/Truncate.css";
 import alignment from "./css/TextAlignment.css";
+import fontFamilies from "./css/FontFamilies.css";
 
 interface TypographyProps {
   readonly id?: string;
@@ -46,6 +47,7 @@ interface TypographyProps {
    * @default "start"
    */
   readonly align?: keyof typeof alignment;
+  readonly fontFamily?: keyof typeof fontFamilies;
   readonly children: ReactNode;
   numberOfLines?: number;
 }
@@ -62,6 +64,7 @@ export function Typography({
   textColor,
   emphasisType,
   numberOfLines,
+  fontFamily,
 }: TypographyProps) {
   const shouldTruncateText = numberOfLines && numberOfLines > 0;
   const className = classnames(
@@ -71,6 +74,7 @@ export function Typography({
     textCase && textCases[textCase],
     textColor && textColors[textColor],
     emphasisType && emphasis[emphasisType],
+    fontFamily && fontFamilies[fontFamily],
     shouldTruncateText && truncate.textTruncate,
     {
       ...(align && { [alignment[align]]: align !== `start` }),

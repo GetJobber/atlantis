@@ -136,9 +136,9 @@ exports[`renders a Link as a Button for routing 1`] = `
 </a>
 `;
 
-exports[`renders a cancel Button 1`] = `
+exports[`renders a subtle Button 1`] = `
 <button
-  className="button base cancel primary"
+  className="button base subtle primary"
   disabled={false}
   type="button"
 >

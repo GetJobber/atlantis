@@ -120,6 +120,10 @@
   }
 }
 
+.fullWidth {
+  width: 100%;
+}
+
 .screenReaderOnly {
   position: absolute;
   width: 1px;

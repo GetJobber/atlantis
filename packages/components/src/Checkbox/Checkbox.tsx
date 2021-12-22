@@ -1,10 +1,11 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, ReactElement } from "react";
 import classnames from "classnames";
+import { XOR } from "ts-xor";
 import styles from "./Checkbox.css";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
 
-interface CheckboxProps {
+interface BaseCheckboxProps {
   /**
    * Determines if the checkbox is checked or not.
    */
@@ -30,11 +31,6 @@ interface CheckboxProps {
   readonly indeterminate?: boolean;
 
   /**
-   * Label that shows up beside the checkbox.
-   */
-  readonly label?: string;
-
-  /**
    * Checkbox input name
    */
   readonly name?: string;
@@ -52,6 +48,22 @@ interface CheckboxProps {
   onChange?(newValue: boolean): void;
 }
 
+interface CheckboxLabelProps extends BaseCheckboxProps {
+  /**
+   * Label that shows up beside the checkbox.
+   */
+  readonly label?: string;
+}
+
+interface CheckboxChildrenProps extends BaseCheckboxProps {
+  /**
+   * Component children, which shows up as a label
+   */
+  readonly children?: ReactElement;
+}
+
+type CheckboxProps = XOR<CheckboxLabelProps, CheckboxChildrenProps>;
+
 export function Checkbox({
   checked,
   defaultChecked,
@@ -61,6 +73,7 @@ export function Checkbox({
   value,
   indeterminate = false,
   description,
+  children,
   onChange,
 }: CheckboxProps) {
   const wrapperClassName = classnames(
@@ -71,6 +84,7 @@ export function Checkbox({
     [styles.indeterminate]: indeterminate,
   });
   const iconName = indeterminate ? "minus2" : "checkmark";
+  const labelText = label ? <Text>{label}</Text> : children;
 
   return (
     <div className={styles.checkbox}>
@@ -92,11 +106,7 @@ export function Checkbox({
           </span>
         </span>
 
-        {label != undefined && (
-          <span className={styles.label}>
-            <Text>{label}</Text>
-          </span>
-        )}
+        {labelText && <span className={styles.label}>{labelText}</span>}
       </label>
       {description && (
         <div className={styles.description}>

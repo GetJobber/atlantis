@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { CivilDate } from "@std-proposal/temporal";
 import ReactCountdown, { CountdownRenderProps } from "react-countdown";
+import { computeTimeUnit } from "./computeTimeUnit";
 
 /**
  * Options for deciding how much information is shown to the user
@@ -86,16 +87,27 @@ function RenderedCountdown({
     const totalSeconds = 60 * totalMinutes + Number(seconds);
 
     const times: TimesType = {
-      d: { total: days, remainder: days, unit: "days" },
-      h: { total: totalHours, remainder: hours, unit: "hours" },
-      m: { total: totalMinutes, remainder: minutes, unit: "minutes" },
-      s: { total: totalSeconds, remainder: seconds, unit: "seconds" },
+      d: { total: days, remainder: days, unit: computeTimeUnit(days, "day") },
+      h: {
+        total: totalHours,
+        remainder: hours,
+        unit: computeTimeUnit(hours, "hour"),
+      },
+      m: {
+        total: totalMinutes,
+        remainder: minutes,
+        unit: computeTimeUnit(minutes, "minute"),
+      },
+      s: {
+        total: totalSeconds,
+        remainder: seconds,
+        unit: computeTimeUnit(seconds, "second"),
+      },
     };
 
     return timeFormatter(times, granularity, showUnits);
   }
 }
-
 interface TimeType {
   /**
    * The total amount of that unit (assuming there is no parent unit)

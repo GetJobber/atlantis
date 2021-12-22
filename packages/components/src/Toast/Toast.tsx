@@ -80,7 +80,7 @@ export function Toast({
                 ariaLabel={"Hide Notification"}
                 onClick={handleToastClose}
                 type="tertiary"
-                variation="cancel"
+                variation="subtle"
               />
             </div>
           </div>
@@ -102,9 +102,9 @@ export function Toast({
   }
 
   function getTimeout() {
-    const min = 2000;
-    const max = 5000;
-    const time = message.length * 100;
+    const min = 5000;
+    const max = 10000;
+    const time = message.length * 200;
 
     if (time < min) return min;
     if (time > max) return max;

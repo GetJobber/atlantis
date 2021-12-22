@@ -1,7 +1,3 @@
-.hasValidationMessage {
-  margin-top: var(--space-smaller);
-}
-
 .message {
   display: flex;
   align-items: center;

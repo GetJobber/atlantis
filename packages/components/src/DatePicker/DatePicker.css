@@ -1,0 +1,106 @@
+.datePickerWrapper {
+  display: inline-block;
+}
+
+.fullWidth {
+  display: block;
+  width: 100%;
+}
+
+.datePicker:global(.react-datepicker) {
+  --datepicker-cell-size: calc(var(--space-base) * 2.375);
+  box-shadow: var(--shadow-base);
+  border-color: var(--color-border);
+  border-radius: var(--radius-base);
+  font-family: var(--typography--fontFamily-normal);
+}
+
+.datePicker.inline {
+  box-shadow: none;
+}
+
+:global(.react-datepicker__input-container),
+:global(.react-datepicker-wrapper) {
+  max-width: 100%;
+}
+
+.datePickerWrapper :global(.react-datepicker-popper) {
+  z-index: var(--elevation-datepicker);
+}
+
+.datePicker :global(.react-datepicker__header) {
+  padding: 0;
+  border-bottom: var(--border-base) solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.datePicker :global(.react-datepicker__day) {
+  display: inline-flex;
+  width: var(--datepicker-cell-size);
+  height: var(--datepicker-cell-size);
+  margin: 0;
+  border-radius: var(--radius-base);
+  color: var(--color-heading);
+  font-size: var(--typography--fontSize-base);
+  line-height: inherit;
+  background: var(--color-surface);
+  align-items: center;
+  justify-content: center;
+}
+
+.datePicker :global(.react-datepicker__day--outside-month) {
+  border-radius: 0;
+  color: var(--color-text);
+  background: var(--color-surface--background);
+}
+
+.datePicker :global(.react-datepicker__month) {
+  margin: 0;
+}
+
+.datePicker :global(.react-datepicker__day--selected) {
+  color: var(--color-text--reverse);
+  background: var(--color-interactive);
+}
+
+.datePicker :global(.react-datepicker__day-names) {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: var(--space-smallest) 0 0;
+  color: var(--color-text);
+  text-transform: uppercase;
+}
+
+.datePicker :global(.react-datepicker__day-name) {
+  width: auto;
+  color: var(--color-text);
+  flex: 1;
+}
+
+.datePicker :global(.react-datepicker__day):hover,
+.datePicker :global(.react-datepicker__day):focus {
+  background: var(--color-surface--hover);
+}
+
+.datePicker :global(.react-datepicker__day):focus {
+  position: relative;
+  box-shadow: var(--shadow-focus);
+  outline: none;
+}
+
+.datePicker :global(.react-datepicker__day--selected):hover,
+.datePicker :global(.react-datepicker__day--selected):focus {
+  background: var(--color-interactive--hover);
+}
+
+.month {
+  margin-top: var(--space-minuscule);
+  color: var(--color-heading);
+}

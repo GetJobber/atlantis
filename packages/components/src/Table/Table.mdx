@@ -14,6 +14,7 @@ import {
   Cell,
   CellCurrency,
   CellNumeric,
+  Body,
 } from "./";
 
 # Table
@@ -23,13 +24,20 @@ import {
 Tables are used to organize and display tabular data to users.
 
 In addition to the base `Table` component there are additionally `Header`,
-`Footer`, `Row` and `Cell` each of which are used to construct a compliant
-table.
+`Body`, `Footer`, `Row` and `Cell` each of which are used to construct a
+compliant table.
 
 Multiple [Cell types](#cell-types) are provided for common formats.
 
 ```ts
-import { Table, Header, Footer, Row, Cell } from "@jobber/components/Table";
+import {
+  Table,
+  Header,
+  Body,
+  Footer,
+  Row,
+  Cell,
+} from "@jobber/components/Table";
 ```
 
 <Playground>
@@ -40,24 +48,26 @@ import { Table, Header, Footer, Row, Cell } from "@jobber/components/Table";
       <Cell align="right">Cost</Cell>
       <Cell align="right">Crew</Cell>
     </Header>
-    <Row>
-      <Cell>Nostromo</Cell>
-      <Cell>Towing Vehicle</Cell>
-      <CellCurrency value={42000000} />
-      <CellNumeric value={7} />
-    </Row>
-    <Row>
-      <Cell>Rodger Young</Cell>
-      <Cell>Corvette Transport</Cell>
-      <Cell />
-      <CellNumeric value={200} />
-    </Row>
-    <Row>
-      <Cell>USS Enterprise</Cell>
-      <Cell>Constitution</Cell>
-      <Cell />
-      <CellNumeric value={205} />
-    </Row>
+    <Body>
+      <Row>
+        <Cell>Nostromo</Cell>
+        <Cell>Towing Vehicle</Cell>
+        <CellCurrency value={42000000} />
+        <CellNumeric value={7} />
+      </Row>
+      <Row>
+        <Cell>Rodger Young</Cell>
+        <Cell>Corvette Transport</Cell>
+        <Cell />
+        <CellNumeric value={200} />
+      </Row>
+      <Row>
+        <Cell>USS Enterprise</Cell>
+        <Cell>Constitution</Cell>
+        <Cell />
+        <CellNumeric value={205} />
+      </Row>
+    </Body>
     <Footer>
       <Cell />
       <Cell />

@@ -37,9 +37,9 @@ it("renders a learning Button", () => {
   expect(tree).toMatchSnapshot();
 });
 
-it("renders a cancel Button", () => {
+it("renders a subtle Button", () => {
   const tree = renderer
-    .create(<Button label="Submit" variation="cancel" />)
+    .create(<Button label="Submit" variation="subtle" />)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

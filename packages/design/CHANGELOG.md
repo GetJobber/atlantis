@@ -8,6 +8,63 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.20.1...@jobber/design@0.21.0) (2021-12-18)
+
+
+### Features
+
+* **components:** More dividers to align with mobile conventions ([#799](https://github.com/GetJobber/atlantis/issues/799)) ([2db1c32](https://github.com/GetJobber/atlantis/commit/2db1c3287d805683fe89e3994ab0f69a1487d728))
+
+
+
+
+
+## [0.20.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.20.0...@jobber/design@0.20.1) (2021-12-16)
+
+
+### Bug Fixes
+
+* resolve build warning ([#757](https://github.com/GetJobber/atlantis/issues/757)) ([6c3fbda](https://github.com/GetJobber/atlantis/commit/6c3fbdabbdea37b38a4a74c0d318ce61a8fb24c5))
+
+
+
+
+
+# [0.20.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.19.3...@jobber/design@0.20.0) (2021-12-01)
+
+
+### Features
+
+* **components:** InputDate Component ([#783](https://github.com/GetJobber/atlantis/issues/783)) ([6247850](https://github.com/GetJobber/atlantis/commit/6247850eaf118d4cde6ca1830250bab2f652a88f))
+
+
+
+
+
+## [0.19.3](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.19.2...@jobber/design@0.19.3) (2021-11-30)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.19.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.19.1...@jobber/design@0.19.2) (2021-11-24)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.19.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.19.0...@jobber/design@0.19.1) (2021-11-15)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
 # [0.19.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.18.0...@jobber/design@0.19.0) (2021-10-25)
 
 

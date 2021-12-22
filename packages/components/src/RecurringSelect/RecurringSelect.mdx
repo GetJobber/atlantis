@@ -1,0 +1,65 @@
+---
+name: RecurringSelect
+menu: Patterns
+route: /patterns/recurringselect
+showDirectoryLink: true
+---
+
+import { Playground, Props } from "docz";
+import { ComponentStatus } from "@jobber/docx";
+import { RecurringSelect } from "./RecurringSelect";
+import { Content } from "@jobber/components/Content";
+import { Text } from "@jobber/components/Text";
+import { Checkbox } from "@jobber/components/Checkbox";
+import { Divider } from "@jobber/components/Divider";
+import { Avatar } from "@jobber/components/Avatar";
+import { useState } from "react";
+import { DurationPeriod } from "./types";
+
+# RecurringSelect
+
+<ComponentStatus stage="ready" responsive="yes" accessible="yes" />
+
+A `RecurringSelect` is used to provide an intuitive, accessible pre-built UI
+allowing a user to build a custom schedule using a handful of different time
+intervals.
+
+While it can be used in isolation, most often makes sense to include it as part
+of a more complex scheduling component that can use the returned data as part of
+a complete schedule.
+
+```ts
+import { RecurringSelect } from "@jobber/components/RecurringSelect";
+```
+
+## Basic example
+
+<Playground>
+  {() => {
+    const [rule, setRule] = useState({ interval: 1, type: DurationPeriod.Day });
+    return <RecurringSelect value={rule} disabled={false} onChange={setRule} />;
+  }}
+</Playground>
+
+## Monthly with some selections & disabled example
+
+<Playground>
+  {() => {
+    const [rule, setRule] = useState({
+      interval: 1,
+      type: DurationPeriod.DayOfMonth,
+      date: new Set([2, 4, 6, 10, 12, 18, 25, "LAST"]),
+    });
+    return <RecurringSelect value={rule} disabled={true} onChange={setRule} />;
+  }}
+</Playground>
+
+## Props
+
+<Props of={RecurringSelect} />
+
+## Accessibility
+
+The `RecurringSelect` component is entirely usable by keyboard.
+
+All selections can be done and undone with tabs, arrows and the space bar.

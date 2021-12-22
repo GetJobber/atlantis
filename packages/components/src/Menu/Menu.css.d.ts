@@ -10,6 +10,7 @@ declare const styles: {
   readonly "action": string;
   readonly "icon": string;
   readonly "overlay": string;
+  readonly "fullWidth": string;
   readonly "screenReaderOnly": string;
 };
 export = styles;
