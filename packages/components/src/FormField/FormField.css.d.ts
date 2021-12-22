@@ -19,6 +19,7 @@ declare const styles: {
   readonly "suffix": string;
   readonly "hasAction": string;
   readonly "affixLabel": string;
+  readonly "description": string;
 };
 export = styles;
 
