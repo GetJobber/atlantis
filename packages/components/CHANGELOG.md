@@ -8,6 +8,22 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.71.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.71.2...@jobber/components@2.71.3) (2021-12-23)
+
+
+### Bug Fixes
+
+* **components:** Move focus to hook ([#817](https://github.com/GetJobber/atlantis/issues/817)) ([688d25d](https://github.com/GetJobber/atlantis/commit/688d25d27db2aaf7b2407de74b2edae872e98cb5))
+
+
+### Reverts
+
+* Revert "fix(components): Fix form field inconsistent spacing when used under Form and InputGroup JOB-37646 (#762)" (#815) ([5bf6c59](https://github.com/GetJobber/atlantis/commit/5bf6c59776c12d0a318bcd11925dad59f107123a)), closes [#762](https://github.com/GetJobber/atlantis/issues/762) [#815](https://github.com/GetJobber/atlantis/issues/815)
+
+
+
+
+
 ## [2.71.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.71.1...@jobber/components@2.71.2) (2021-12-22)
 
 **Note:** Version bump only for package @jobber/components
