@@ -1,12 +1,6 @@
-import React, {
-  MutableRefObject,
-  ReactElement,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import classnames from "classnames";
-import ReactDatePicker from "react-datepicker";
+import { ReactDatePicker } from "react-datepicker";
 /**
  * Disabling no-internal-modules here because we need
  * to reach into the package to get the css file.
@@ -21,6 +15,7 @@ import {
   DatePickerActivator,
   DatePickerActivatorProps,
 } from "./DatePickerActivator";
+import { useFocusOnSelectedDate } from "./useFocusOnSelectedDate";
 
 interface BaseDatePickerProps {
   /**
@@ -80,7 +75,7 @@ export function DatePicker({
   fullWidth = false,
   smartAutofocus = true,
 }: DatePickerProps) {
-  const datePickerRef = useRef() as MutableRefObject<HTMLDivElement>;
+  const { ref, focusOnSelectedDate } = useFocusOnSelectedDate();
   const [open, setOpen] = useState(false);
   const wrapperClassName = classnames(styles.datePickerWrapper, {
     // react-datepicker uses this class name to not close the date picker when
@@ -103,7 +98,7 @@ export function DatePicker({
   }
 
   return (
-    <div className={wrapperClassName} ref={datePickerRef}>
+    <div className={wrapperClassName} ref={ref}>
       <ReactDatePicker
         calendarClassName={datePickerClassNames}
         showPopperArrow={false}
@@ -133,15 +128,5 @@ export function DatePicker({
 
   function handleCalendarClose() {
     setOpen(false);
-  }
-
-  function focusOnSelectedDate() {
-    const selectedDateClass = ".react-datepicker__day--selected";
-    const selectedDate =
-      datePickerRef.current?.querySelector(selectedDateClass);
-
-    if (selectedDate instanceof HTMLDivElement) {
-      selectedDate.focus();
-    }
   }
 }
