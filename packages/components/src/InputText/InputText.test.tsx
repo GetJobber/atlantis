@@ -10,36 +10,32 @@ it("renders a regular input for text and numbers", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="padded small"
+      className="wrapper"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
     >
       <div
-        className="wrapper"
-        style={
-          Object {
-            "--formField-maxLength": undefined,
-          }
-        }
+        className="inputWrapper"
       >
-        <div
-          className="inputWrapper"
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440001"
         >
-          <label
-            className="label"
-            htmlFor="123e4567-e89b-12d3-a456-426655440001"
-          >
-            Favourite colour
-          </label>
-          <input
-            className="input"
-            id="123e4567-e89b-12d3-a456-426655440001"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            onKeyDown={[Function]}
-            type="text"
-            value=""
-          />
-        </div>
+          Favourite colour
+        </label>
+        <input
+          className="input"
+          id="123e4567-e89b-12d3-a456-426655440001"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          type="text"
+          value=""
+        />
       </div>
     </div>
   `);
@@ -53,36 +49,32 @@ it("renders a textarea", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="padded small"
+      className="wrapper textarea"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
     >
       <div
-        className="wrapper textarea"
-        style={
-          Object {
-            "--formField-maxLength": undefined,
-          }
-        }
+        className="inputWrapper"
       >
-        <div
-          className="inputWrapper"
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440003"
         >
-          <label
-            className="label"
-            htmlFor="123e4567-e89b-12d3-a456-426655440003"
-          >
-            Describe your favourite colour?
-          </label>
-          <textarea
-            className="input"
-            id="123e4567-e89b-12d3-a456-426655440003"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            onKeyDown={[Function]}
-            rows={3}
-            value=""
-          />
-        </div>
+          Describe your favourite colour?
+        </label>
+        <textarea
+          className="input"
+          id="123e4567-e89b-12d3-a456-426655440003"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          rows={3}
+          value=""
+        />
       </div>
     </div>
   `);
@@ -100,36 +92,32 @@ it("renders a textarea with 4 rows", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="padded small"
+      className="wrapper textarea"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
     >
       <div
-        className="wrapper textarea"
-        style={
-          Object {
-            "--formField-maxLength": undefined,
-          }
-        }
+        className="inputWrapper"
       >
-        <div
-          className="inputWrapper"
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440005"
         >
-          <label
-            className="label"
-            htmlFor="123e4567-e89b-12d3-a456-426655440005"
-          >
-            Describe your favourite colour?
-          </label>
-          <textarea
-            className="input"
-            id="123e4567-e89b-12d3-a456-426655440005"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            onKeyDown={[Function]}
-            rows={4}
-            value=""
-          />
-        </div>
+          Describe your favourite colour?
+        </label>
+        <textarea
+          className="input"
+          id="123e4567-e89b-12d3-a456-426655440005"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          rows={4}
+          value=""
+        />
       </div>
     </div>
   `);

@@ -9,35 +9,31 @@ it("renders an input type number", () => {
   const tree = renderer.create(<InputNumber value={123} />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="padded small"
+      className="wrapper"
+      style={
+        Object {
+          "--formField-maxLength": undefined,
+        }
+      }
     >
       <div
-        className="wrapper"
-        style={
-          Object {
-            "--formField-maxLength": undefined,
-          }
-        }
+        className="inputWrapper"
       >
-        <div
-          className="inputWrapper"
-        >
-          <label
-            className="label"
-            htmlFor="123e4567-e89b-12d3-a456-426655440001"
-          />
-          <input
-            className="input"
-            id="123e4567-e89b-12d3-a456-426655440001"
-            name="generatedName--123e4567-e89b-12d3-a456-426655440001"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            onKeyDown={[Function]}
-            type="number"
-            value={123}
-          />
-        </div>
+        <label
+          className="label"
+          htmlFor="123e4567-e89b-12d3-a456-426655440001"
+        />
+        <input
+          className="input"
+          id="123e4567-e89b-12d3-a456-426655440001"
+          name="generatedName--123e4567-e89b-12d3-a456-426655440001"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          type="number"
+          value={123}
+        />
       </div>
     </div>
   `);
