@@ -111,28 +111,6 @@ describe("Ensure ReactDatePicker CSS class names exists", () => {
   });
 });
 
-describe("Smart autofocus", () => {
-  it("should focus on the selected date", async () => {
-    const { getByTestId } = render(
-      <DatePicker selected={new Date()} onChange={jest.fn} />,
-    );
-    await popperUpdate(() => fireEvent.click(getByTestId("calendar")));
-
-    expect(document.activeElement).toHaveClass(
-      "react-datepicker__day--selected",
-    );
-  });
-
-  it("should NOT focus on the selected date if there's none", async () => {
-    const { getByTestId } = render(<DatePicker onChange={jest.fn} />);
-    await popperUpdate(() => fireEvent.click(getByTestId("calendar")));
-
-    expect(document.activeElement).not.toHaveClass(
-      "react-datepicker__day--selected",
-    );
-  });
-});
-
 async function popperUpdate(event: Function) {
   event();
   // Wait for the Popper update() so jest doesn't throw an act warning
