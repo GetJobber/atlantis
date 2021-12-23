@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import classnames from "classnames";
-import { ReactDatePicker } from "react-datepicker";
+import ReactDatePicker from "react-datepicker";
 /**
  * Disabling no-internal-modules here because we need
  * to reach into the package to get the css file.
