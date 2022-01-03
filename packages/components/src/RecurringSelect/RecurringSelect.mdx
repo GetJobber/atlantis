@@ -32,8 +32,6 @@ a complete schedule.
 import { RecurringSelect } from "@jobber/components/RecurringSelect";
 ```
 
-## Basic example
-
 <Playground>
   {() => {
     const [rule, setRule] = useState({ interval: 1, type: DurationPeriod.Day });
@@ -41,7 +39,27 @@ import { RecurringSelect } from "@jobber/components/RecurringSelect";
   }}
 </Playground>
 
-## Monthly with some selections & disabled example
+## Props
+
+<Props of={RecurringSelect} />
+
+## Design and usage guidelines
+
+The RecurringSelect is a complex tool, so ensure the user will require the full suite of 
+recurrence options before reaching for it. For instances where you may only require 
+a simple recurrence option, such as "Every `n` weeks", you are likely better served using basic
+form inputs such as `InputNumber` or `Select` to give the user fewer options.
+
+The visual calendar selections in the RecurringSelect will scale up or down to adapt to the 
+width of the RecurringSelect's container, allowing this pattern to be more prominent when used as a 
+primary interface, or work in a smaller column-based or mobile interface. Consider this as you
+design solutions that may require RecurringSelect.
+
+### Disabled state
+
+When the RecurringSelect is set to disabled, all child components become disabled. As with
+any design, your first goal should be to _avoid_ creating a flow where the user 
+encounters a disabled state, so only use this approach if a disabled state cannot be avoided.
 
 <Playground>
   {() => {
@@ -54,12 +72,15 @@ import { RecurringSelect } from "@jobber/components/RecurringSelect";
   }}
 </Playground>
 
-## Props
-
-<Props of={RecurringSelect} />
-
 ## Accessibility
 
 The `RecurringSelect` component is entirely usable by keyboard.
 
-All selections can be done and undone with tabs, arrows and the space bar.
+All selections can be done and undone with tabs, arrows and the space bar. The "visual" 
+calendar-style selectors are all built using radio or checkbox elements where necessary,
+ensuring that users of assistive tech have appropriate context as to the type of
+selection they are making.
+
+## Related Components
+
+To allow the user to select specific dates, use [Datepicker](/components/date-picker) or [InputDate](/components/input-date).
