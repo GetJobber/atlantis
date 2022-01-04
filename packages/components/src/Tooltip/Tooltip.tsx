@@ -46,7 +46,7 @@ export function Tooltip({ message, children }: TooltipProps) {
     placement === "above" && styles.above,
   );
 
-  return (
+  return typeof window === "object" ? (
     <>
       <span className={styles.shadowActivator} ref={shadowRef} />
       {children}
@@ -83,6 +83,8 @@ export function Tooltip({ message, children }: TooltipProps) {
         </div>
       </TooltipPortal>
     </>
+  ) : (
+    <></>
   );
 
   function initializeListeners() {

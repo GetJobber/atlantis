@@ -10,7 +10,7 @@ export function useRefocusOnActivator(active: boolean) {
   useEffect(() => {
     let activator: Element | null | undefined;
 
-    if (active && !activator) {
+    if (typeof window === "object" && active && !activator) {
       activator = document.activeElement;
     }
 

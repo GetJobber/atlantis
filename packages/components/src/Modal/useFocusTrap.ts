@@ -16,7 +16,11 @@ export function useFocusTrap<T extends HTMLElement>(active: boolean) {
   const ref = useRef<T>(null);
 
   function handleKeyDown(event: KeyboardEvent) {
-    if (!(active && ref.current) || event.key !== "Tab") {
+    if (
+      !(typeof window === "object") ||
+      !(active && ref.current) ||
+      event.key !== "Tab"
+    ) {
       return;
     }
 

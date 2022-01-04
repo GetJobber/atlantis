@@ -45,6 +45,7 @@ export function InternalChipButton({
 
   function handleKeyUp(event: KeyboardEvent) {
     if (
+      typeof window === "object" &&
       document.activeElement === buttonRef.current &&
       (event.key === " " || event.key === "Enter")
     ) {
@@ -54,7 +55,11 @@ export function InternalChipButton({
   }
 
   function handleKeyDown(event: KeyboardEvent) {
-    if (document.activeElement === buttonRef.current && event.key === " ") {
+    if (
+      typeof window === "object" &&
+      document.activeElement === buttonRef.current &&
+      event.key === " "
+    ) {
       // Don't scroll down
       event.preventDefault();
     }

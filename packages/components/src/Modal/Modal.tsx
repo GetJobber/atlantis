@@ -88,7 +88,11 @@ export function Modal({
     </AnimatePresence>
   );
 
-  return ReactDOM.createPortal(template, document.body);
+  return typeof window === "object" ? (
+    ReactDOM.createPortal(template, document.body)
+  ) : (
+    <></>
+  );
 
   function handleRequestClose() {
     if (open && onRequestClose) {
