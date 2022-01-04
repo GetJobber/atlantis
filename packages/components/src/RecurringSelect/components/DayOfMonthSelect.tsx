@@ -1,8 +1,8 @@
 import React from "react";
 import { v1 as uuidv1 } from "uuid";
 import styles from "./DayOfMonthSelect.css";
-import checkboxStyles from "../../DateCellCheckbox.css";
-import { DayOfMonth } from "../../types";
+import checkboxStyles from "../DateCellCheckbox.css";
+import { DayOfMonth } from "../types";
 
 interface DayOfMonthSelectProps {
   selectedDays: Set<DayOfMonth>;

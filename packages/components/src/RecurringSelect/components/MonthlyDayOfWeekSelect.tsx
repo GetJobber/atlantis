@@ -1,9 +1,8 @@
 import React from "react";
 import styles from "./MonthlyDayOfWeekSelect.css";
-import { Text } from "../../../Text";
-import { WeekDay } from "../../types";
-// eslint-disable-next-line
-import { WeeklySelect } from "../WeeklySelect/WeeklySelect";
+import { WeeklySelect } from "./WeeklySelect";
+import { Text } from "../../Text";
+import { WeekDay } from "../types";
 
 interface MonthlyDayOfWeekSelectProps {
   disabled: boolean;
