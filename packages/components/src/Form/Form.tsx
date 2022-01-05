@@ -83,14 +83,12 @@ export const Form = forwardRef(function InternalForm(
 
   function errorHandler(errs: ErrorOption) {
     const firstErrName = Object.keys(errs)[0];
-    if (typeof window === "object") {
-      const element = document.querySelector(
-        `[name="${firstErrName}"]`,
-      ) as HTMLElement;
+    const element = document.querySelector(
+      `[name="${firstErrName}"]`,
+    ) as HTMLElement;
 
-      if (typeof element != undefined) {
-        element?.focus();
-      }
+    if (typeof element != undefined) {
+      element?.focus();
     }
   }
 });

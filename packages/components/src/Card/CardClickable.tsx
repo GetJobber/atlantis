@@ -36,9 +36,7 @@ export function CardClickable({
   );
 
   function isCardFocused() {
-    return (
-      typeof window === "object" && document.activeElement === cardRef.current
-    );
+    return document.activeElement === cardRef.current;
   }
 
   function handleKeyup(event: React.KeyboardEvent<HTMLDivElement>) {
