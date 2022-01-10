@@ -1,4 +1,4 @@
-export { WeeklySelect } from "./WeeklySelect/WeeklySelect";
-export { MonthlySelect } from "./MonthlySelect/MonthlySelect";
-export { MonthlyDayOfWeekSelect } from "./MonthlyDayOfWeekSelect/MonthlyDayOfWeekSelect";
-export { DayOfMonthSelect } from "./DayOfMonthSelect/DayOfMonthSelect";
+export { WeeklySelect } from "./WeeklySelect";
+export { MonthlySelect } from "./MonthlySelect";
+export { MonthlyDayOfWeekSelect } from "./MonthlyDayOfWeekSelect";
+export { DayOfMonthSelect } from "./DayOfMonthSelect";

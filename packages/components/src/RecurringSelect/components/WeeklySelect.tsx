@@ -1,8 +1,8 @@
 import React from "react";
 import { v1 as uuidv1 } from "uuid";
 import styles from "./WeeklySelect.css";
-import checkboxStyles from "../../DateCellCheckbox.css";
-import { WeekDay } from "../../types";
+import checkboxStyles from "../DateCellCheckbox.css";
+import { WeekDay } from "../types";
 
 interface WeeklySelectProps {
   disabled: boolean;
