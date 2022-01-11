@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.72.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.71.7...@jobber/components@2.72.0) (2022-01-11)
+
+
+### Features
+
+* section header in label for screen readers ([#759](https://github.com/GetJobber/atlantis/issues/759)) ([6551f4d](https://github.com/GetJobber/atlantis/commit/6551f4d4d11229fd29043b8e66638e332ede7d50))
+
+
+
+
+
 ## [2.71.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.71.6...@jobber/components@2.71.7) (2022-01-10)
 
 **Note:** Version bump only for package @jobber/components
