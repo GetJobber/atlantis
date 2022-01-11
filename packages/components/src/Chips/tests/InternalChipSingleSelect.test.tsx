@@ -67,11 +67,10 @@ describe("onClick", () => {
   });
 });
 
-describe("Keyboard shortcut", () => {
-  it("should deselect the chip on space bar press", async () => {
-    const target = chips[0];
+describe("On space bar press", () => {
+  it("should deselect the selected chip", async () => {
     const element = within(
-      screen.getByLabelText(target).closest("label"),
+      screen.getByLabelText(selectedChip).closest("label"),
     ).getByRole("radio");
     fireEvent.keyUp(element, { key: " " });
 
