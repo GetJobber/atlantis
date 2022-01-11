@@ -37,12 +37,14 @@ import { Banner } from "@jobber/components/Banner";
 
 Banner should align to the left and right of the content it is related to.
 
-When using a Banner within a modal or a page layout, this means Banner should align to the 
-text, inputs or other UI elements beneath it. For best results, use [Content](/components/content)
-to ensure consistent vertical spacing between Banner and adjacent elements.
+When using a Banner within a modal or a page layout, this means Banner should
+align to the text, inputs or other UI elements beneath it. For best results, use
+[Content](/components/content) to ensure consistent vertical spacing between
+Banner and adjacent elements.
 
-If the Banner is being used as a system-wide message or some other context in which it is
-outside of the main application layout, it should take up the full available width.
+If the Banner is being used as a system-wide message or some other context in
+which it is outside of the main application layout, it should take up the full
+available width.
 
 ### Types of Banner
 
@@ -110,8 +112,9 @@ possibly unknown impact a user’s changes or actions will have. They should not
 begin with "Warning:" and should not be used as a way to block or redirect a
 workflow.
 
-You should use [ConfirmationModal](/components/confirmation-modal) when you need to
-get explicit confirmation from the user before they complete an action that is difficult to reverse.
+You should use [ConfirmationModal](/components/confirmation-modal) when you need
+to get explicit confirmation from the user before they complete an action that
+is difficult to reverse.
 
 <Playground>
   <Banner type="warning">
@@ -198,5 +201,5 @@ within a `Banner`. If you require an action, use the `primaryActions` prop. The
 
 - To provide low priority, temporary feedback on the outcome of a user action,
   use [Toast](toast) instead
-- Use [ConfirmationModal](/components/confirmation-modal) when you need to
-get explicit confirmation from the user before they complete an action
+- Use [ConfirmationModal](/components/confirmation-modal) when you need to get
+  explicit confirmation from the user before they complete an action

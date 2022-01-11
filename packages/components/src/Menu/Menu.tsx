@@ -162,6 +162,7 @@ export function Menu({ activator, items }: MenuProps) {
 
                   {item.actions.map((action, index) => (
                     <Action
+                      sectionLabel={item.header}
                       key={action.label}
                       shouldFocus={key === 0 && index === 0}
                       {...action}
@@ -224,6 +225,11 @@ export interface ActionProps {
   label: string;
 
   /**
+   * Parent Section Label
+   */
+  sectionLabel?: string;
+
+  /**
    * Visual cue for the action label
    */
   icon?: IconNames;
@@ -239,7 +245,13 @@ export interface ActionProps {
   shouldFocus?: boolean;
 }
 
-function Action({ label, icon, onClick, shouldFocus = false }: ActionProps) {
+function Action({
+  label,
+  sectionLabel,
+  icon,
+  onClick,
+  shouldFocus = false,
+}: ActionProps) {
   const actionButtonRef = useRef() as RefObject<HTMLButtonElement>;
 
   useEffect(() => {
@@ -262,6 +274,9 @@ function Action({ label, icon, onClick, shouldFocus = false }: ActionProps) {
         </span>
       )}
       <Typography element="span" size="base" textColor="greyBlueDark">
+        {sectionLabel && (
+          <span className={styles.screenReaderOnly}>{sectionLabel}</span>
+        )}
         {label}
       </Typography>
     </button>
