@@ -46,7 +46,7 @@ export function InternalChipSingleSelect({
 
     return (event: KeyboardEvent<HTMLInputElement>) => {
       if (event.key === " ") {
-        // Wait for dom changes before applying the new change.
+        // Wait for DOM changes before applying the new change.
         setTimeout(() => handleChange(value), 0);
       }
     };
