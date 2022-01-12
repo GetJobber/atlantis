@@ -78,7 +78,6 @@ jobs:
       - *restore_repo
       - *sum_lockfiles
       - *restore_npm_cache
-      - *npm_install
       - run:
           name: Check for manual releases
           command: |
