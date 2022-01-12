@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.72.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.72.0...@jobber/components@2.72.1) (2022-01-12)
+
+
+### Bug Fixes
+
+* Allow space bar key deselect on single select chip ([#827](https://github.com/GetJobber/atlantis/issues/827)) ([a6bc802](https://github.com/GetJobber/atlantis/commit/a6bc802b128a731be5a308f955ee2099029375dd))
+
+
+
+
+
 # [2.72.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.71.7...@jobber/components@2.72.0) (2022-01-11)
 
 
