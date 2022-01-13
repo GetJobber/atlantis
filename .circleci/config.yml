@@ -29,7 +29,6 @@ references:
       name: Restore npm cache
       keys:
         - npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
-        - npm-cache-v1
 
   npm_install: &npm_install
     run:
