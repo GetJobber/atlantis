@@ -75,6 +75,8 @@ jobs:
   check_for_manual_release:
     <<: *container_config
     steps:
+      - *restore_repo
+      - *sum_lockfiles
       - *restore_npm_cache
       - run:
           name: Check for manual releases
@@ -89,6 +91,8 @@ jobs:
   lint_javascript:
     <<: *container_config
     steps:
+      - *restore_repo
+      - *sum_lockfiles
       - *restore_npm_cache
       - run: npm run lint:js -- --format junit -o reports/junit/js-lint-results.xml
       - store_test_results:
@@ -99,6 +103,8 @@ jobs:
   lint_css:
     <<: *container_config
     steps:
+      - *restore_repo
+      - *sum_lockfiles
       - *restore_npm_cache
       - run: mkdir -p reports/junit
       - run: npm run lint:css -- --custom-formatter node_modules/stylelint-junit-formatter > reports/junit/css-lint-results.xml
@@ -110,6 +116,8 @@ jobs:
   test:
     <<: *container_config
     steps:
+      - *restore_repo
+      - *sum_lockfiles
       - *restore_npm_cache
       - run:
           name: "Run tests with jest"
@@ -127,6 +135,8 @@ jobs:
   build_docs:
     <<: *container_config
     steps:
+      - *restore_repo
+      - *sum_lockfiles
       - *restore_npm_cache
       - *generate_base_path
       - run:
@@ -147,6 +157,8 @@ jobs:
   release:
     <<: *container_config
     steps:
+      - *restore_repo
+      - *sum_lockfiles
       - *restore_npm_cache
       - *github_authenticity
       - add_ssh_keys:
