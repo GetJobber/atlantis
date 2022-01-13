@@ -210,7 +210,3 @@ workflows:
             - lint_css
             - test
             - build_docs
-
-
-npm-cache-v1-arch1-linux-amd64-6_85-gHFkQFRFTCRZ12Gqf3VtX8ryvW_08pWcCSydIfaOanU=
-npm-cache-v1-arch1-linux-amd64-6_85-gHFkQFRFTCRZ12Gqf3VtX8ryvW_08pWcCSydIfaOanU=
