@@ -1,7 +1,7 @@
 /**
  * In Atlantis 🔱, we want to ensure that there are never any direct
  * version bumps to any of the @jobber packages. The reason being is
- * that if a version is manually bumped, lerna will have a stuggle to
+ * that if a version is manually bumped, lerna will have a struggle to
  * try and figure out what the next proper version to release is.
  */
 
