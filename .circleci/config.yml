@@ -71,6 +71,7 @@ jobs:
           key: npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
           paths:
             - ~/.npm
+            - node_modules
 
   check_for_manual_release:
     <<: *container_config
