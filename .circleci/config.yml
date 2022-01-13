@@ -63,7 +63,9 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
+      - *sum_lockfiles
       - *restore_npm_cache
+      - *npm_install
       - save_cache:
           name: Save npm cache
           key: npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
@@ -74,6 +76,7 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
+      - *sum_lockfiles
       - *restore_npm_cache
       - run:
           name: Check for manual releases
@@ -89,6 +92,7 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
+      - *sum_lockfiles
       - *restore_npm_cache
       - run: npm run lint:js -- --format junit -o reports/junit/js-lint-results.xml
       - store_test_results:
@@ -102,7 +106,6 @@ jobs:
       - *restore_repo
       - *sum_lockfiles
       - *restore_npm_cache
-      - *npm_install
       - run: mkdir -p reports/junit
       - run: npm run lint:css -- --custom-formatter node_modules/stylelint-junit-formatter > reports/junit/css-lint-results.xml
       - store_test_results:
@@ -114,6 +117,7 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
+      - *sum_lockfiles
       - *restore_npm_cache
       - run:
           name: "Run tests with jest"
@@ -132,6 +136,7 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
+      - *sum_lockfiles
       - *restore_npm_cache
       - *generate_base_path
       - run:
@@ -153,6 +158,7 @@ jobs:
     <<: *container_config
     steps:
       - *restore_repo
+      - *sum_lockfiles
       - *restore_npm_cache
       - *github_authenticity
       - add_ssh_keys:
