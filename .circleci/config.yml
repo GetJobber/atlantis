@@ -24,16 +24,20 @@ references:
       name: Sum Lockfiles
       command: md5sum package-lock.json packages/*/package-lock.json > /tmp/lock-sums
 
+  workspace_root: &workspace_root
+    /tmp/workspace
+
   persist: &persist
     persist_to_workspace:
-      root: .
+      root: *workspace_root
       paths:
         - ~/.npm
         - node_modules
+        - pacakge-lock.json
 
   attach: &attach
     attach_workspace:
-      at: .
+      at: *workspace_root
 
   restore_npm_cache: &restore_npm_cache
     restore_cache:
@@ -76,6 +80,11 @@ jobs:
       - *sum_lockfiles
       - *restore_npm_cache
       - *npm_install
+      - run:
+        name: "Persist node modules"
+        command: |
+          mv -r node_modules /tmp/workspace/node_modules
+          mv package-lock.json /tmp/workspace/package-lock.json
       - *persist
       - save_cache:
           name: Save npm cache
@@ -83,6 +92,7 @@ jobs:
           paths:
             - ~/.npm
             - node_modules
+
 
   check_for_manual_release:
     <<: *container_config
