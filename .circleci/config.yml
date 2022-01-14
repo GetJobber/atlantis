@@ -24,12 +24,9 @@ references:
       name: Sum Lockfiles
       command: md5sum package-lock.json packages/*/package-lock.json > /tmp/lock-sums
 
-  workspace_root: &workspace_root
-    /tmp/workspace
-
   persist: &persist
     persist_to_workspace:
-      root: *workspace_root
+      root: /tmp/workspace
       paths:
         - ~/.npm
         - node_modules
@@ -37,7 +34,7 @@ references:
 
   attach: &attach
     attach_workspace:
-      at: *workspace_root
+      at: /tmp/workspace
 
   restore_npm_cache: &restore_npm_cache
     restore_cache:
