@@ -30,6 +30,13 @@ references:
       keys:
         - npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
 
+  save_cache:
+    name: Save npm cache
+    key: npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
+    paths:
+      - ~/.npm
+      - node_modules
+
   npm_install: &npm_install
     run:
       name: Install Dependencies
@@ -65,12 +72,7 @@ jobs:
       - *sum_lockfiles
       - *restore_npm_cache
       - *npm_install
-      - save_cache:
-          name: Save npm cache
-          key: npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
-          paths:
-            - ~/.npm
-            - node_modules
+      - *save_cache
 
   check_for_manual_release:
     <<: *container_config
@@ -78,6 +80,8 @@ jobs:
       - *restore_repo
       - *sum_lockfiles
       - *restore_npm_cache
+      - *npm_install
+      - *save_cache
       - run:
           name: Check for manual releases
           command: |
@@ -94,6 +98,8 @@ jobs:
       - *restore_repo
       - *sum_lockfiles
       - *restore_npm_cache
+      - *npm_install
+      - *save_cache
       - run: npm run lint:js -- --format junit -o reports/junit/js-lint-results.xml
       - store_test_results:
           path: reports/junit
@@ -106,6 +112,8 @@ jobs:
       - *restore_repo
       - *sum_lockfiles
       - *restore_npm_cache
+      - *npm_install
+      - *save_cache
       - run: mkdir -p reports/junit
       - run: npm run lint:css -- --custom-formatter node_modules/stylelint-junit-formatter > reports/junit/css-lint-results.xml
       - store_test_results:
@@ -119,6 +127,8 @@ jobs:
       - *restore_repo
       - *sum_lockfiles
       - *restore_npm_cache
+      - *npm_install
+      - *save_cache
       - run:
           name: "Run tests with jest"
           command:
@@ -138,6 +148,8 @@ jobs:
       - *restore_repo
       - *sum_lockfiles
       - *restore_npm_cache
+      - *npm_install
+      - *save_cache
       - *generate_base_path
       - run:
           command: node -v && node -e 'console.log(`heap_size_limit = ${v8.getHeapStatistics().heap_size_limit / (1024 * 1024)} MB`)' && npm run build -- --base "/${BASE_PATH}/"
@@ -160,6 +172,8 @@ jobs:
       - *restore_repo
       - *sum_lockfiles
       - *restore_npm_cache
+      - *npm_install
+      - *save_cache
       - *github_authenticity
       - add_ssh_keys:
           fingerprints:
