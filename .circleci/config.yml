@@ -26,6 +26,7 @@ references:
 
   persist: &persist
     persist_to_workspace:
+      root: .
       paths:
         - ~/.npm
         - node_modules
