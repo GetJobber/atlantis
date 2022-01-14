@@ -28,6 +28,7 @@ references:
     run:
       name: "Persist node modules"
       command: |
+        mkdir /tmp/workspace
         mv node_modules /tmp/workspace/node_modules
         mv package-lock.json /tmp/workspace/package-lock.json
       persist_to_workspace:
