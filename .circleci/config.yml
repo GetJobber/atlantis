@@ -73,7 +73,7 @@ jobs:
       - *sum_lockfiles
       - *restore_npm_cache
       - *npm_install
-      - *save_cache
+      - *save_npm_cache
 
   check_for_manual_release:
     <<: *container_config
@@ -82,7 +82,7 @@ jobs:
       - *sum_lockfiles
       - *restore_npm_cache
       - *npm_install
-      - *save_cache
+      - *save_npm_cache
       - run:
           name: Check for manual releases
           command: |
