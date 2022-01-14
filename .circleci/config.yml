@@ -30,7 +30,7 @@ references:
       keys:
         - npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
 
-  save_cache:
+  save_cache: &save_cache
     name: Save npm cache
     key: npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
     paths:
