@@ -258,8 +258,8 @@ function fetchMoreUpdateQueryHandler<TQuery>(
 
   const totalCount = outputCollection.totalCount != undefined ? { totalCount: nextCollection.totalCount } : {};
 
-  Object.assign(outputCollection, { ...{
-    pageInfo: cloneDeep(nextCollection.pageInfo) },
+  Object.assign(outputCollection, {
+    ...{ pageInfo: cloneDeep(nextCollection.pageInfo) },
     ...totalCount
   });
 
@@ -301,7 +301,7 @@ function subscribeToMoreHandler<TQuery, TSubscription>(
   const totalCount = outputCollection.totalCount != undefined ? { totalCount: outputCollection.totalCount + 1} : {};
 
   Object.assign(outputCollection, {
-    ...{pageInfo: cloneDeep(outputCollection.pageInfo)},
+    ...{ pageInfo: cloneDeep(outputCollection.pageInfo) },
     ...totalCount
   });
 
