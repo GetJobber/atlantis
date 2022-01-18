@@ -1,11 +1,11 @@
 // DELETE ME: For testing purposes, delete before putting up for review
+// TODO: Move to MDX playground as an example
 
 import React, { useState } from "react";
 import { Chip, Chips } from ".";
 import { Avatar } from "../Avatar";
 
 export function TestChip() {
-  const [selected, setSelected] = useState(["1"]);
   const [options, setOptions] = useState([
     "Darryl Tec",
     "Chris Murray",
@@ -25,27 +25,24 @@ export function TestChip() {
     "Hoss Talebi",
     "Lori-Anne Morgan",
   ]);
+  const [selected, setSelected] = useState([options[0]]);
 
   return (
     <Chips
       type="dismissible"
       selected={selected}
       onChange={setSelected}
-      onClick={(_, v) => {
-        alert(v);
-      }}
       onCustomAdd={handleCustomAdd}
+      onClick={(_, v) => alert(v)}
     >
-      {options.map((name, i) => {
-        return (
-          <Chip
-            key={name}
-            prefix={<Avatar initials={getInitials(name)} />}
-            label={name}
-            value={(i + 1).toString()}
-          />
-        );
-      })}
+      {options.map(name => (
+        <Chip
+          key={name}
+          prefix={<Avatar initials={getInitials(name)} />}
+          label={name}
+          value={name}
+        />
+      ))}
     </Chips>
   );
 
@@ -58,6 +55,6 @@ export function TestChip() {
 
   function handleCustomAdd(value: string) {
     setOptions([...options, value]);
-    setSelected([...selected, (options.length + 1).toString()]);
+    setSelected([...selected, value]);
   }
 }
