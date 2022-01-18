@@ -36,11 +36,15 @@ exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
     ],
   });
 
+  console.log("=====================");
+  console.log("running gatsby node");
+  console.log("=====================");
+
   if (useAtlantisAliases) {
     config.resolve.alias = {
       ...config.resolve.alias,
       "@jobber/components": path.resolve(__dirname, "../components/src"),
-      "@jobber/hooks": path.resolve(__dirname, "../hooks"),
+      "@jobber/hooks": path.resolve(__dirname, "../hooks/src"),
     };
   }
 
