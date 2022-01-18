@@ -24,29 +24,12 @@ references:
       name: Sum Lockfiles
       command: md5sum package-lock.json packages/*/package-lock.json > /tmp/lock-sums
 
-  persist: &persist
-    run:
-      name: "Persist node modules"
-      command: |
-        mkdir /tmp/workspace
-        mv node_modules /tmp/workspace/node_modules
-        mv package-lock.json /tmp/workspace/package-lock.json
-      persist_to_workspace:
-        root: /tmp/workspace
-        paths:
-          - ~/.npm
-          - node_modules
-          - pacakge-lock.json
-
-  attach: &attach
-    attach_workspace:
-      at: /tmp/workspace
-
   restore_npm_cache: &restore_npm_cache
     restore_cache:
       name: Restore npm cache
       keys:
         - npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
+        - npm-cache-v1
 
   npm_install: &npm_install
     run:
@@ -83,19 +66,19 @@ jobs:
       - *sum_lockfiles
       - *restore_npm_cache
       - *npm_install
-      - *persist
       - save_cache:
           name: Save npm cache
           key: npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
           paths:
             - ~/.npm
-            - node_modules
-
 
   check_for_manual_release:
     <<: *container_config
     steps:
-      - *attach
+      - *restore_repo
+      - *sum_lockfiles
+      - *restore_npm_cache
+      - *npm_install
       - run:
           name: Check for manual releases
           command: |
@@ -109,7 +92,10 @@ jobs:
   lint_javascript:
     <<: *container_config
     steps:
-      - *attach
+      - *restore_repo
+      - *sum_lockfiles
+      - *restore_npm_cache
+      - *npm_install
       - run: npm run lint:js -- --format junit -o reports/junit/js-lint-results.xml
       - store_test_results:
           path: reports/junit
@@ -119,7 +105,10 @@ jobs:
   lint_css:
     <<: *container_config
     steps:
-      - *attach
+      - *restore_repo
+      - *sum_lockfiles
+      - *restore_npm_cache
+      - *npm_install
       - run: mkdir -p reports/junit
       - run: npm run lint:css -- --custom-formatter node_modules/stylelint-junit-formatter > reports/junit/css-lint-results.xml
       - store_test_results:
@@ -130,7 +119,10 @@ jobs:
   test:
     <<: *container_config
     steps:
-      - *attach
+      - *restore_repo
+      - *sum_lockfiles
+      - *restore_npm_cache
+      - *npm_install
       - run:
           name: "Run tests with jest"
           command:
@@ -147,7 +139,10 @@ jobs:
   build_docs:
     <<: *container_config
     steps:
-      - *attach
+      - *restore_repo
+      - *sum_lockfiles
+      - *restore_npm_cache
+      - *npm_install
       - *generate_base_path
       - run:
           command: node -v && node -e 'console.log(`heap_size_limit = ${v8.getHeapStatistics().heap_size_limit / (1024 * 1024)} MB`)' && npm run build -- --base "/${BASE_PATH}/"
@@ -167,7 +162,10 @@ jobs:
   release:
     <<: *container_config
     steps:
-      - *attach
+      - *restore_repo
+      - *sum_lockfiles
+      - *restore_npm_cache
+      - *npm_install
       - *github_authenticity
       - add_ssh_keys:
           fingerprints:
