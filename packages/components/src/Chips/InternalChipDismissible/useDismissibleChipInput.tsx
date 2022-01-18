@@ -9,12 +9,17 @@ export function useDismissibleChipInput(options: ChipProps[]) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [shouldCancelBlur, setShouldCancelBlur] = useState(false);
-  const menuId = uuidV1();
-  const inputRef = useRef<HTMLInputElement>(null); // eslint-disable-line no-null/no-null
   const allOptions = generateOptions(options, searchValue);
-  const activeOption = allOptions[activeIndex];
+
+  const computed = {
+    inputRef: useRef<HTMLInputElement>(null), // eslint-disable-line no-null/no-null
+    menuId: uuidV1(),
+    activeOption: allOptions[activeIndex],
+    hasAvailableOptions: allOptions.length > 0,
+  };
 
   const actions = {
+    generateDescendantId: (index: number) => `${computed.menuId}-${index}`,
     handleReset: () => {
       setActiveIndex(0);
       setSearchValue("");
@@ -32,15 +37,14 @@ export function useDismissibleChipInput(options: ChipProps[]) {
       setActiveIndex(0);
       setSearchValue(event.currentTarget.value);
     },
+    handleSetActiveOnMouseOver: (index: number) => () => setActiveIndex(index),
   };
 
   return {
     ...actions,
     activeIndex,
-    activeOption,
     allOptions,
-    inputRef,
-    menuId,
+    ...computed,
     menuOpen,
     searchValue,
     setActiveIndex,

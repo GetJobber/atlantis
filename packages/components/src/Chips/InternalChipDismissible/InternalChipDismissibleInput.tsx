@@ -8,6 +8,7 @@ import {
 } from "./useDismissibleChipKeydown";
 import { useDismissibleChipInput } from "./useDismissibleChipInput";
 import { ChipDismissibleInputProps } from "./InternalChipDismissibleTypes";
+import { useScrollToActive } from "./useScrollToActive";
 import { Text } from "../../Text";
 import { Button } from "../../Button";
 
@@ -21,18 +22,23 @@ export function InternalChipDismissibleInput({
     activeOption,
     activeIndex,
     allOptions,
+    hasAvailableOptions,
     inputRef,
     menuId,
     menuOpen,
     searchValue,
+    generateDescendantId,
     handleBlur,
     handleOpenMenu,
     handleReset,
     handleSearchChange,
     handleCancelBlur,
     handleEnableBlur,
+    handleSetActiveOnMouseOver,
     setActiveIndex,
   } = useDismissibleChipInput(options);
+
+  const menuRef = useScrollToActive(activeIndex);
 
   if (!menuOpen) {
     return (
@@ -50,13 +56,13 @@ export function InternalChipDismissibleInput({
     <>
       <input
         ref={inputRef}
+        className={styles.input}
+        type="text"
         role="combobox"
         aria-autocomplete="list"
         aria-owns={menuId}
-        aria-expanded={menuOpen}
-        aria-activedescendant={`${menuId}-${activeIndex}`}
-        className={styles.input}
-        type="text"
+        aria-expanded={hasAvailableOptions}
+        aria-activedescendant={generateDescendantId(activeIndex)}
         value={searchValue}
         onChange={handleSearchChange}
         onKeyDown={handleKeyDown()}
@@ -65,26 +71,25 @@ export function InternalChipDismissibleInput({
         autoFocus={true}
       />
 
-      {allOptions.length > 0 && (
-        <div className={styles.menu} role="listbox" id={menuId}>
-          {allOptions.map((option, i) => {
-            return (
-              <button
-                key={option.value}
-                role="option"
-                id={`${menuId}-${i}`}
-                className={classNames(styles.menuOption, {
-                  [styles.activeOption]: activeIndex === i,
-                })}
-                onClick={() => handleSelectOption(option)}
-                onMouseDown={handleCancelBlur}
-                onMouseUp={handleEnableBlur}
-              >
-                {option.prefix}
-                <Text>{option.label}</Text>
-              </button>
-            );
-          })}
+      {hasAvailableOptions && (
+        <div ref={menuRef} className={styles.menu} role="listbox" id={menuId}>
+          {allOptions.map((option, i) => (
+            <button
+              key={option.value}
+              role="option"
+              id={generateDescendantId(i)}
+              className={classNames(styles.menuOption, {
+                [styles.activeOption]: activeIndex === i,
+              })}
+              onClick={() => handleSelectOption(option)}
+              onMouseEnter={handleSetActiveOnMouseOver(i)}
+              onMouseDown={handleCancelBlur}
+              onMouseUp={handleEnableBlur}
+            >
+              {option.prefix}
+              <Text>{option.label}</Text>
+            </button>
+          ))}
         </div>
       )}
     </>
