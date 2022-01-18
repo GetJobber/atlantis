@@ -31,6 +31,11 @@ references:
         - npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
         - npm-cache-v1
 
+  attach_workspace: &attach_workspace
+    run:
+      - attach_workspace:
+        at: .
+
   npm_install: &npm_install
     run:
       name: Install Dependencies
@@ -79,8 +84,7 @@ jobs:
   check_for_manual_release:
     <<: *container_config
     steps:
-      - attach_workspace:
-          at: .
+      - *attach_workspace
       - run:
           name: Check for manual releases
           command: |
@@ -94,8 +98,7 @@ jobs:
   lint_javascript:
     <<: *container_config
     steps:
-      - attach_workspace:
-          at: .
+      - *attach_workspace
       - run: npm run lint:js -- --format junit -o reports/junit/js-lint-results.xml
       - store_test_results:
           path: reports/junit
@@ -105,8 +108,7 @@ jobs:
   lint_css:
     <<: *container_config
     steps:
-      - attach_workspace:
-          at: .
+      - *attach_workspace
       - run: mkdir -p reports/junit
       - run: npm run lint:css -- --custom-formatter node_modules/stylelint-junit-formatter > reports/junit/css-lint-results.xml
       - store_test_results:
@@ -117,8 +119,7 @@ jobs:
   test:
     <<: *container_config
     steps:
-      - attach_workspace:
-          at: .
+      - *attach_workspace
       - run:
           name: "Run tests with jest"
           command:
@@ -135,8 +136,7 @@ jobs:
   build_docs:
     <<: *container_config
     steps:
-      - attach_workspace:
-          at: .
+      - *attach_workspace
       - run:
           command: node -v && node -e 'console.log(`heap_size_limit = ${v8.getHeapStatistics().heap_size_limit / (1024 * 1024)} MB`)' && npm run build -- --base "/${BASE_PATH}/"
           environment:
@@ -155,8 +155,7 @@ jobs:
   release:
     <<: *container_config
     steps:
-      - attach_workspace:
-          at: .
+      - *attach_workspace
       - add_ssh_keys:
           fingerprints:
             - "39:99:9f:56:1c:70:0e:53:6a:ed:64:14:c3:a8:e2:ce"
