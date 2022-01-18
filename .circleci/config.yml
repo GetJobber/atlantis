@@ -94,10 +94,8 @@ jobs:
   lint_javascript:
     <<: *container_config
     steps:
-      - *restore_repo
-      - *sum_lockfiles
-      - *restore_npm_cache
-      - *npm_install
+      - attach_workspace:
+          at: .
       - run: npm run lint:js -- --format junit -o reports/junit/js-lint-results.xml
       - store_test_results:
           path: reports/junit
@@ -107,10 +105,8 @@ jobs:
   lint_css:
     <<: *container_config
     steps:
-      - *restore_repo
-      - *sum_lockfiles
-      - *restore_npm_cache
-      - *npm_install
+      - attach_workspace:
+          at: .
       - run: mkdir -p reports/junit
       - run: npm run lint:css -- --custom-formatter node_modules/stylelint-junit-formatter > reports/junit/css-lint-results.xml
       - store_test_results:
@@ -121,10 +117,8 @@ jobs:
   test:
     <<: *container_config
     steps:
-      - *restore_repo
-      - *sum_lockfiles
-      - *restore_npm_cache
-      - *npm_install
+      - attach_workspace:
+          at: .
       - run:
           name: "Run tests with jest"
           command:
@@ -141,11 +135,8 @@ jobs:
   build_docs:
     <<: *container_config
     steps:
-      - *restore_repo
-      - *sum_lockfiles
-      - *restore_npm_cache
-      - *npm_install
-      - *generate_base_path
+      - attach_workspace:
+          at: .
       - run:
           command: node -v && node -e 'console.log(`heap_size_limit = ${v8.getHeapStatistics().heap_size_limit / (1024 * 1024)} MB`)' && npm run build -- --base "/${BASE_PATH}/"
           environment:
@@ -164,11 +155,8 @@ jobs:
   release:
     <<: *container_config
     steps:
-      - *restore_repo
-      - *sum_lockfiles
-      - *restore_npm_cache
-      - *npm_install
-      - *github_authenticity
+      - attach_workspace:
+          at: .
       - add_ssh_keys:
           fingerprints:
             - "39:99:9f:56:1c:70:0e:53:6a:ed:64:14:c3:a8:e2:ce"
