@@ -3,7 +3,7 @@ import { ChipProps } from "../Chip";
 export interface ChipDismissibleInputProps {
   readonly options: ChipProps[];
   onEmptyBackspace(): void;
-  onCustomOptionAdd(value: string): void;
+  onCustomOptionSelect(value: string): void;
   onOptionSelect(value: string): void;
 }
 

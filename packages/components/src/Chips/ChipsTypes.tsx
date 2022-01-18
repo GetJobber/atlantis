@@ -58,7 +58,14 @@ export interface ChipDismissibleProps extends ChipFoundationProps {
   readonly type: "dismissible";
   readonly selected: string[];
   onChange(value: string[]): void;
-  onCustomAdd(value: string): void;
+
+  /**
+   * The callback that gets fired when the user selects the custom option
+   * instead of the available chips
+   *
+   * @param value
+   */
+  onCustomAdd(value: string): void; // TODO: Evaluate if we do need this or can this be merged with the `onChange` as another param
 }
 
 export type ChipsProps = XOR<

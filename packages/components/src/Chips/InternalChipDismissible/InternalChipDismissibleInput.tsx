@@ -15,7 +15,7 @@ import { Button } from "../../Button";
 export function InternalChipDismissibleInput({
   options,
   onEmptyBackspace,
-  onCustomOptionAdd,
+  onCustomOptionSelect,
   onOptionSelect,
 }: ChipDismissibleInputProps) {
   const {
@@ -96,7 +96,7 @@ export function InternalChipDismissibleInput({
   );
 
   function handleSelectOption(selected: typeof activeOption) {
-    const setValue = selected.custom ? onCustomOptionAdd : onOptionSelect;
+    const setValue = selected.custom ? onCustomOptionSelect : onOptionSelect;
     setValue(selected.value);
     handleReset();
     inputRef.current?.focus();
