@@ -34,6 +34,12 @@ references:
   attach_workspace: &attach_workspace
     attach_workspace:
         at: .
+  
+  persist_to_workspace: &persist_to_workspace
+    persist_to_workspace:
+      root: .
+      paths:
+        - '*'
 
   npm_install: &npm_install
     run:
@@ -58,10 +64,7 @@ jobs:
     steps:
       - *restore_repo
       - checkout
-      - persist_to_workspace:
-        root: .
-        paths:
-          - '*'
+      - *persist_to_workspace
       - save_cache:
           key: v1-repo-{{ .Branch }}-{{ .Revision }}
           paths:
@@ -74,10 +77,7 @@ jobs:
       - *sum_lockfiles
       - *restore_npm_cache
       - *npm_install
-      - persist_to_workspace:
-          root: .
-          paths:
-            - '*'
+      - *persist_to_workspace
       - save_cache:
           name: Save npm cache
           key: npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
