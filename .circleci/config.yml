@@ -67,9 +67,9 @@ jobs:
       - *restore_npm_cache
       - *npm_install
       - persist_to_workspace:
-        root: .
-        paths:
-          - '*'
+          root: .
+          paths:
+            - '*'
       - save_cache:
           name: Save npm cache
           key: npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
@@ -80,7 +80,7 @@ jobs:
     <<: *container_config
     steps:
       - attach_workspace:
-        at: .
+          at: .
       - run:
           name: Check for manual releases
           command: |
