@@ -141,7 +141,8 @@ jobs:
     <<: *container_config
     steps:
       - *attach_workspace
-      - run: npm run build -- --base "/${BASE_PATH}/"
+      - run:
+          command: node -v && node -e 'console.log(`heap_size_limit = ${v8.getHeapStatistics().heap_size_limit / (1024 * 1024)} MB`)' && npm run build -- --base "/${BASE_PATH}/"
       - store_artifacts:
           path: ~/atlantis/.docz/dist
           destination: docs
