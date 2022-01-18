@@ -32,8 +32,7 @@ references:
         - npm-cache-v1
 
   attach_workspace: &attach_workspace
-    run:
-      - attach_workspace:
+    attach_workspace:
         at: .
 
   npm_install: &npm_install
