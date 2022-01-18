@@ -11,6 +11,19 @@ export function TestChip() {
     "Chris Murray",
     "Rebecca Li",
     "Katie-Lynn Kimble",
+    "Adam Bobadam",
+    "Deep Vishwas",
+    "Eddy Sims",
+    "Selina Wang",
+    "Wang Yi",
+    "Queena Zhang",
+    "Chen Chen",
+    "Juan Pablo",
+    "Robby Tiu",
+    "Michael Paradis",
+    "Konstantin Rakitine",
+    "Hoss Talebi",
+    "Lori-Anne Morgan",
   ]);
 
   return (
