@@ -31,6 +31,16 @@ references:
         - npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
         - npm-cache-v1
 
+  attach_workspace: &attach_workspace
+    attach_workspace:
+        at: .
+
+  persist_to_workspace: &persist_to_workspace
+    persist_to_workspace:
+      root: .
+      paths:
+        - '*'
+
   npm_install: &npm_install
     run:
       name: Install Dependencies
@@ -54,6 +64,7 @@ jobs:
     steps:
       - *restore_repo
       - checkout
+      - *persist_to_workspace
       - save_cache:
           key: v1-repo-{{ .Branch }}-{{ .Revision }}
           paths:
@@ -62,10 +73,11 @@ jobs:
   install_dependencies:
     <<: *container_config
     steps:
-      - *restore_repo
+      - *attach_workspace
       - *sum_lockfiles
       - *restore_npm_cache
       - *npm_install
+      - *persist_to_workspace
       - save_cache:
           name: Save npm cache
           key: npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
@@ -75,10 +87,7 @@ jobs:
   check_for_manual_release:
     <<: *container_config
     steps:
-      - *restore_repo
-      - *sum_lockfiles
-      - *restore_npm_cache
-      - *npm_install
+      - *attach_workspace
       - run:
           name: Check for manual releases
           command: |
@@ -92,10 +101,7 @@ jobs:
   lint_javascript:
     <<: *container_config
     steps:
-      - *restore_repo
-      - *sum_lockfiles
-      - *restore_npm_cache
-      - *npm_install
+      - *attach_workspace
       - run: npm run lint:js -- --format junit -o reports/junit/js-lint-results.xml
       - store_test_results:
           path: reports/junit
@@ -105,10 +111,7 @@ jobs:
   lint_css:
     <<: *container_config
     steps:
-      - *restore_repo
-      - *sum_lockfiles
-      - *restore_npm_cache
-      - *npm_install
+      - *attach_workspace
       - run: mkdir -p reports/junit
       - run: npm run lint:css -- --custom-formatter node_modules/stylelint-junit-formatter > reports/junit/css-lint-results.xml
       - store_test_results:
@@ -119,10 +122,7 @@ jobs:
   test:
     <<: *container_config
     steps:
-      - *restore_repo
-      - *sum_lockfiles
-      - *restore_npm_cache
-      - *npm_install
+      - *attach_workspace
       - run:
           name: "Run tests with jest"
           command:
@@ -137,17 +137,13 @@ jobs:
           path: coverage
 
   build_docs:
+    resource_class: medium+
     <<: *container_config
     steps:
-      - *restore_repo
-      - *sum_lockfiles
-      - *restore_npm_cache
-      - *npm_install
+      - *attach_workspace
       - *generate_base_path
       - run:
           command: node -v && node -e 'console.log(`heap_size_limit = ${v8.getHeapStatistics().heap_size_limit / (1024 * 1024)} MB`)' && npm run build -- --base "/${BASE_PATH}/"
-          environment:
-            NODE_OPTIONS: --max_old_space_size=1400
       - store_artifacts:
           path: ~/atlantis/.docz/dist
           destination: docs
@@ -162,10 +158,7 @@ jobs:
   release:
     <<: *container_config
     steps:
-      - *restore_repo
-      - *sum_lockfiles
-      - *restore_npm_cache
-      - *npm_install
+      - *attach_workspace
       - *github_authenticity
       - add_ssh_keys:
           fingerprints:
