@@ -60,6 +60,11 @@ export interface ChipDismissibleProps extends ChipFoundationProps {
   onChange(value: string[]): void;
 
   /**
+   * Use a custom activator to trigger the Chip option selector
+   */
+  readonly activator?: ReactElement;
+
+  /**
    * The callback that gets fired when the user selects the custom option
    * instead of the available chips
    *
