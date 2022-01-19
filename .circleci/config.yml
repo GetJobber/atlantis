@@ -64,6 +64,7 @@ jobs:
     steps:
       - *restore_repo
       - checkout
+      - *persist_to_workspace
       - save_cache:
           key: v1-repo-{{ .Branch }}-{{ .Revision }}
           paths:
@@ -72,7 +73,7 @@ jobs:
   install_dependencies:
     <<: *container_config
     steps:
-      - *restore_repo
+      - *attach_workspace
       - *sum_lockfiles
       - *restore_npm_cache
       - *npm_install
