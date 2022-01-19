@@ -141,6 +141,7 @@ jobs:
     <<: *container_config
     steps:
       - *attach_workspace
+      - *generate_base_path
       - run:
           command: node -v && node -e 'console.log(`heap_size_limit = ${v8.getHeapStatistics().heap_size_limit / (1024 * 1024)} MB`)' && npm run build -- --base "/${BASE_PATH}/"
       - store_artifacts:
@@ -158,6 +159,7 @@ jobs:
     <<: *container_config
     steps:
       - *attach_workspace
+      - *github_authenticity
       - add_ssh_keys:
           fingerprints:
             - "39:99:9f:56:1c:70:0e:53:6a:ed:64:14:c3:a8:e2:ce"
