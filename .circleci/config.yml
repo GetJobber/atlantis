@@ -144,16 +144,6 @@ jobs:
       - *generate_base_path
       - run:
           command: node -v && node -e 'console.log(`heap_size_limit = ${v8.getHeapStatistics().heap_size_limit / (1024 * 1024)} MB`)' && npm run build -- --base "/${BASE_PATH}/"
-      - store_artifacts:
-          path: ~/atlantis/.docz/dist
-          destination: docs
-      - attach_workspace:
-          at: /tmp/workspace
-      - run: cp -r ~/atlantis/.docz/dist /tmp/workspace/
-      - persist_to_workspace:
-          root: /tmp/workspace
-          paths:
-            - dist
 
   release:
     <<: *container_config
