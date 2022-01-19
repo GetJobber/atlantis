@@ -5,3 +5,4 @@ export * from "./useIsMounted";
 export * from "./useOnKeyDown";
 export * from "./usePasswordStrength";
 export * from "./useRefocusOnActivator";
+export * from "./useResizeObserver";
