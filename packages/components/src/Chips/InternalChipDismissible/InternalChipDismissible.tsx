@@ -28,6 +28,7 @@ export function InternalChipDismissible(props: ChipDismissibleProps) {
       ))}
 
       <InternalChipDismissibleInput
+        activator={props.activator}
         options={availableChipOptions}
         onOptionSelect={handleChipAdd}
         onCustomOptionSelect={handleCustomAdd}

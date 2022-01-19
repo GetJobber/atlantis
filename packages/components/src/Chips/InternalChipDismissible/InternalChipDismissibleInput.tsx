@@ -14,6 +14,7 @@ import { Button } from "../../Button";
 
 export function InternalChipDismissibleInput({
   options,
+  activator,
   onEmptyBackspace,
   onCustomOptionSelect,
   onOptionSelect,
@@ -41,15 +42,18 @@ export function InternalChipDismissibleInput({
   const menuRef = useScrollToActive(activeIndex);
 
   if (!menuOpen) {
-    return (
-      <Button
-        icon="add"
-        type="secondary"
-        size="small"
-        ariaLabel="Add" // FIXME
-        onClick={handleOpenMenu}
-      />
-    );
+    if (activator) {
+      return React.cloneElement(activator, { onClick: handleOpenMenu });
+    } else {
+      return (
+        <Button
+          icon="add"
+          type="secondary"
+          ariaLabel="Add" // FIXME
+          onClick={handleOpenMenu}
+        />
+      );
+    }
   }
 
   return (
