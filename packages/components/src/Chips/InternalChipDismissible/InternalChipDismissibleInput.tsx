@@ -59,6 +59,7 @@ export function InternalChipDismissibleInput({
         className={styles.input}
         type="text"
         role="combobox"
+        aria-label="Press up and down arrow to cycle through the options or type to narrow down the results"
         aria-autocomplete="list"
         aria-owns={menuId}
         aria-expanded={hasAvailableOptions}
@@ -86,7 +87,7 @@ export function InternalChipDismissibleInput({
               onMouseDown={handleCancelBlur}
               onMouseUp={handleEnableBlur}
             >
-              {option.prefix}
+              <span aria-hidden>{option.prefix}</span>
               <Text>{option.label}</Text>
             </button>
           ))}
