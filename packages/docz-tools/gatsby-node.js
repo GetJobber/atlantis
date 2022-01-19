@@ -36,10 +36,6 @@ exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
     ],
   });
 
-  console.log("=====================");
-  console.log("running gatsby node");
-  console.log("=====================");
-
   if (useAtlantisAliases) {
     config.resolve.alias = {
       ...config.resolve.alias,
