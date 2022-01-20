@@ -1,11 +1,16 @@
 {
   "version": "independent",
-  "packages": ["packages/*"],
+  "packages": [
+    "packages/*"
+  ],
   "command": {
     "version": {
       "conventionalCommits": true,
       "message": "chore(release): Publish",
-      "allowBranch": ["master"]
+      "allowBranch": [
+        "master",
+        "test-ssh-key"
+      ]
     },
     "publish": {
       "ignoreChanges": [
