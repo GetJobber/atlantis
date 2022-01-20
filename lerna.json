@@ -5,7 +5,7 @@
     "version": {
       "conventionalCommits": true,
       "message": "chore(release): Publish",
-      "allowBranch": ["master"]
+      "allowBranch": ["ci-vars"]
     },
     "publish": {
       "ignoreChanges": [
