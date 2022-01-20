@@ -17,6 +17,7 @@
     "dist/*"
   ],
   "dependencies": {
+    "@apollo/client": "^3.5.7",
     "@jobber/design": "^0.21.0",
     "@jobber/formatters": "^0.2.0",
     "@jobber/hooks": "^1.9.1",

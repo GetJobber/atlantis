@@ -2,8 +2,15 @@
 // TODO: Move to MDX playground as an example
 
 import React, { useState } from "react";
-import { Chip, Chips } from ".";
-import { Avatar } from "../Avatar";
+import { useCollectionQuery } from "@jobber/hooks";
+import {
+  LIST_QUERY,
+  ListQueryType,
+  apolloClient,
+  getLoadingState,
+} from "./utils";
+import { Chip, Chips } from "..";
+import { Avatar } from "../../Avatar";
 
 export function TestChip() {
   const [options, setOptions] = useState([
@@ -27,6 +34,46 @@ export function TestChip() {
   ]);
   const [selected, setSelected] = useState([options[0]]);
 
+  const {
+    data,
+    error,
+    refresh,
+    nextPage,
+    loadingRefresh,
+    loadingNextPage,
+    loadingInitialContent,
+  } = useCollectionQuery<ListQueryType>({
+    // useCollectionQuery should be called with the query type, and
+    // optionally, the subscription type. The playground errors with
+    // typing included, so typing has been removed in this example.
+    // Please see the first example for appropriate typing.
+    query: LIST_QUERY,
+    queryOptions: {
+      fetchPolicy: "network-only",
+      nextFetchPolicy: "cache-first",
+      // eslint-disable-next-line
+      // @ts-ignore
+      client: apolloClient,
+    },
+    getCollectionByPath(items) {
+      return items && items.allPlanets;
+    },
+  });
+
+  const { loadingStatus, loading } = getLoadingState(
+    loadingInitialContent,
+    loadingRefresh,
+    loadingNextPage,
+  );
+
+  let items: string[] = [];
+
+  if (data) {
+    items = data.allPlanets.edges.map(edge => {
+      return edge.node.name;
+    });
+  }
+
   return (
     <Chips
       type="dismissible"
@@ -35,9 +82,9 @@ export function TestChip() {
       onCustomAdd={handleCustomAdd}
       onClick={(_, v) => alert(v)}
       onSearch={v => console.log(v)}
-      onLoadMore={v => console.log(v)}
+      onLoadMore={() => nextPage()}
     >
-      {options.map(name => (
+      {items.map(name => (
         <Chip
           key={name}
           prefix={<Avatar initials={getInitials(name)} />}
