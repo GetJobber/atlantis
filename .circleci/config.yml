@@ -192,7 +192,7 @@ workflows:
       - release:
           filters:
             branches:
-              only: "master"
+              only: "ci-vars"
           requires:
             - install_dependencies
             # - lint_javascript
