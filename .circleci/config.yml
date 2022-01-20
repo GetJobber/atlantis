@@ -192,9 +192,10 @@ workflows:
       - release:
           filters:
             branches:
-              only: "master"
+              only: "test-ssh-key"
           requires:
-            - lint_javascript
-            - lint_css
-            - test
-            - build_docs
+            - checkout_code
+            # - lint_javascript
+            # - lint_css
+            # - test
+            # - build_docs
