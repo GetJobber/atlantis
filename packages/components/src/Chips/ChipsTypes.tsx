@@ -65,6 +65,11 @@ export interface ChipDismissibleProps extends ChipFoundationProps {
   readonly activator?: ReactElement;
 
   /**
+   * Adds a loading indicator
+   */
+  readonly isLoadingMore?: boolean;
+
+  /**
    * Callback when the user selects the custom option
    * instead of the available chips
    *

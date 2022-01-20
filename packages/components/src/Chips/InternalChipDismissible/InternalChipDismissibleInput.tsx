@@ -79,7 +79,7 @@ export function InternalChipDismissibleInput({
         autoFocus={true}
       />
 
-      {hasAvailableOptions && (
+      {(hasAvailableOptions || isLoadingMore) && (
         <div ref={menuRef} className={styles.menu} role="listbox" id={menuId}>
           {allOptions.map((option, i) => (
             <button
