@@ -50,7 +50,8 @@
   background-color: var(--color-surface);
 }
 
-.menuOption {
+.menuOption,
+.loadingIndicator {
   display: flex;
   width: 100%;
   padding: var(--space-small);
@@ -71,4 +72,8 @@
 .activeOption {
   outline: none;
   background-color: var(--color-surface--hover);
+}
+
+.loadingIndicator {
+  justify-content: center;
 }
