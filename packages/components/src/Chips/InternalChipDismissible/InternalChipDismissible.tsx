@@ -33,6 +33,8 @@ export function InternalChipDismissible(props: ChipDismissibleProps) {
         onOptionSelect={handleChipAdd}
         onCustomOptionSelect={handleCustomAdd}
         onEmptyBackspace={handleEmptyBackspace}
+        onSearch={props.onSearch}
+        onLoadMore={props.onLoadMore}
       />
     </div>
   );

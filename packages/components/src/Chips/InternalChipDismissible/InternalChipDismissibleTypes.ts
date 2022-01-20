@@ -2,7 +2,7 @@ import { ChipProps } from "../Chip";
 import { ChipDismissibleProps } from "../ChipsTypes";
 
 export interface ChipDismissibleInputProps
-  extends Pick<ChipDismissibleProps, "activator"> {
+  extends Pick<ChipDismissibleProps, "activator" | "onSearch" | "onLoadMore"> {
   readonly options: ChipProps[];
   onEmptyBackspace(): void;
   onCustomOptionSelect(value: string): void;
