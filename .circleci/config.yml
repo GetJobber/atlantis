@@ -152,7 +152,7 @@ jobs:
       - *github_authenticity
       - add_ssh_keys:
           fingerprints:
-            - "${RELEASE_SSH_FINGERPRINT}"
+            - ${RELEASE_SSH_FINGERPRINT}
       - run:
           name: Authenticate with npm
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/atlantis/.npmrc
