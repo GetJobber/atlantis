@@ -50,7 +50,7 @@ references:
     run:
       name: Establishing GitHub Authenticity
       command: |
-        echo ${GH_AUTHENTICITY}
+        echo "ssh: ${GH_AUTHENTICITY}"
         echo ${RELEASE_SSH_FINGERPRINT}
         mkdir -p ~/.ssh; echo 'github.com ssh-rsa ${GH_AUTHENTICITY}' >> ~/.ssh/known_hosts
 
