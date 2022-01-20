@@ -1,21 +1,21 @@
 import React, { useEffect } from "react";
 import { debounce } from "lodash";
 import classNames from "classnames";
-import styles from "../../InternalChipDismissible.css";
-import { Text } from "../../../../Text";
-import { Button } from "../../../../Button";
-import { ChipDismissibleInputProps } from "../../InternalChipDismissibleTypes";
+import styles from "./InternalChipDismissible.css";
+import { ChipDismissibleInputProps } from "./InternalChipDismissibleTypes";
 import {
   KeyDownCallBacks,
   useDismissibleChipInput,
   useDismissibleChipKeydown,
   useInView,
   useScrollToActive,
-} from "../../hooks";
+} from "./hooks";
+import { Text } from "../../Text";
+import { Button } from "../../Button";
 
 export function InternalChipDismissibleInput({
   options,
-  activator,
+  activator = <Button icon="add" type="secondary" ariaLabel="Add" />,
   onEmptyBackspace,
   onCustomOptionSelect,
   onOptionSelect,
@@ -54,18 +54,7 @@ export function InternalChipDismissibleInput({
   }, [isInView]);
 
   if (!menuOpen) {
-    if (activator) {
-      return React.cloneElement(activator, { onClick: handleOpenMenu });
-    } else {
-      return (
-        <Button
-          icon="add"
-          type="secondary"
-          ariaLabel="Add" // FIXME
-          onClick={handleOpenMenu}
-        />
-      );
-    }
+    return React.cloneElement(activator, { onClick: handleOpenMenu });
   }
 
   return (
