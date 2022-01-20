@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useRef, useState } from "react";
 import { v1 as uuidV1 } from "uuid";
-import { ChipDismissibleInputOptionProps } from "./InternalChipDismissibleTypes";
-import { Icon } from "../../Icon";
-import { ChipProps } from "../Chip";
+import { ChipDismissibleInputOptionProps } from "../InternalChipDismissibleTypes";
+import { Icon } from "../../../Icon";
+import { ChipProps } from "../../Chip";
 
 export function useDismissibleChipInput(options: ChipProps[]) {
   const [searchValue, setSearchValue] = useState("");
