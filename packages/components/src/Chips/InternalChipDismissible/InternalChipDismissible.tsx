@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./InternalChipDismissible.css";
-import { InternalChipDismissibleInput } from "./components";
 import { useInternalChipDismissible } from "./hooks";
+import { InternalChipDismissibleInput } from "./InternalChipDismissibleInput";
 import { ChipDismissible } from "..";
 import { ChipDismissibleProps } from "../ChipsTypes";
 
