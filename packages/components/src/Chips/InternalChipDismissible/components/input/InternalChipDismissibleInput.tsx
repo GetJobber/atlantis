@@ -1,16 +1,16 @@
 import React from "react";
 import { debounce } from "lodash";
 import classNames from "classnames";
-import styles from "./InternalChipDismissible.css";
+import styles from "../../InternalChipDismissible.css";
+import { Text } from "../../../../Text";
+import { Button } from "../../../../Button";
+import { ChipDismissibleInputProps } from "../../InternalChipDismissibleTypes";
 import {
   KeyDownCallBacks,
+  useDismissibleChipInput,
   useDismissibleChipKeydown,
-} from "./useDismissibleChipKeydown";
-import { useDismissibleChipInput } from "./useDismissibleChipInput";
-import { ChipDismissibleInputProps } from "./InternalChipDismissibleTypes";
-import { useScrollToActive } from "./useScrollToActive";
-import { Text } from "../../Text";
-import { Button } from "../../Button";
+  useScrollToActive,
+} from "../../hooks";
 
 export function InternalChipDismissibleInput({
   options,

@@ -1,6 +1,6 @@
 import { MouseEvent } from "react";
 import { sortBy } from "lodash";
-import { ChipDismissibleProps } from "../ChipsTypes";
+import { ChipDismissibleProps } from "../../ChipsTypes";
 
 export function useInternalChipDismissible({
   children,
