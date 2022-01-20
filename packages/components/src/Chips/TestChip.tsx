@@ -34,6 +34,8 @@ export function TestChip() {
       onChange={setSelected}
       onCustomAdd={handleCustomAdd}
       onClick={(_, v) => alert(v)}
+      onSearch={v => console.log(v)}
+      onLoadMore={v => console.log(v)}
     >
       {options.map(name => (
         <Chip

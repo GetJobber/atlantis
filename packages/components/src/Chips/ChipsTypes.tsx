@@ -65,12 +65,28 @@ export interface ChipDismissibleProps extends ChipFoundationProps {
   readonly activator?: ReactElement;
 
   /**
-   * The callback that gets fired when the user selects the custom option
+   * Callback when the user selects the custom option
    * instead of the available chips
    *
    * @param value
    */
   onCustomAdd(value: string): void; // TODO: Evaluate if we do need this or can this be merged with the `onChange` as another param
+
+  /**
+   * Callback when a user types a word that filters the options. Use this when
+   * you need to query new options from the database based on the search value.
+   *
+   * @param searchValue - The input value
+   */
+  onSearch?(searchValue: string): void;
+
+  /**
+   * Callback when the user scrolls at the end of the chip option list. Use this
+   * to load more options from the database.
+   *
+   * @param searchValue - The input value
+   */
+  onLoadMore?(searchValue: string): void;
 }
 
 export type ChipsProps = XOR<

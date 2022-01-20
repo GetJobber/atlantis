@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { debounce } from "lodash";
 import classNames from "classnames";
 import styles from "../../InternalChipDismissible.css";
@@ -9,6 +9,7 @@ import {
   KeyDownCallBacks,
   useDismissibleChipInput,
   useDismissibleChipKeydown,
+  useInView,
   useScrollToActive,
 } from "../../hooks";
 
@@ -18,6 +19,8 @@ export function InternalChipDismissibleInput({
   onEmptyBackspace,
   onCustomOptionSelect,
   onOptionSelect,
+  onSearch,
+  onLoadMore,
 }: ChipDismissibleInputProps) {
   const {
     activeOption,
@@ -40,6 +43,15 @@ export function InternalChipDismissibleInput({
   } = useDismissibleChipInput(options);
 
   const menuRef = useScrollToActive(activeIndex);
+  const { ref: visibleChildRef, isInView } = useInView<HTMLDivElement>();
+
+  useEffect(() => {
+    onSearch && onSearch(searchValue);
+  }, [searchValue]);
+
+  useEffect(() => {
+    isInView && onLoadMore && onLoadMore(searchValue);
+  }, [isInView]);
 
   if (!menuOpen) {
     if (activator) {
@@ -95,6 +107,8 @@ export function InternalChipDismissibleInput({
               <Text>{option.label}</Text>
             </button>
           ))}
+
+          <div ref={visibleChildRef} />
         </div>
       )}
     </>
