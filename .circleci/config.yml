@@ -194,7 +194,7 @@ workflows:
             branches:
               only: "test-ssh-key"
           requires:
-            - checkout_code
+            - install_dependencies
             # - lint_javascript
             # - lint_css
             # - test
