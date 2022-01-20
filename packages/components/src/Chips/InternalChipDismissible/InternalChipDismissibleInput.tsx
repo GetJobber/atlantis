@@ -12,10 +12,12 @@ import {
 } from "./hooks";
 import { Text } from "../../Text";
 import { Button } from "../../Button";
+import { Spinner } from "../../Spinner";
 
 export function InternalChipDismissibleInput({
   options,
   activator = <Button icon="add" type="secondary" ariaLabel="Add" />,
+  isLoadingMore = false,
   onEmptyBackspace,
   onCustomOptionSelect,
   onOptionSelect,
@@ -98,6 +100,12 @@ export function InternalChipDismissibleInput({
           ))}
 
           <div ref={visibleChildRef} />
+
+          {isLoadingMore && (
+            <div className={styles.loadingIndicator}>
+              <Spinner size="small" inline />
+            </div>
+          )}
         </div>
       )}
     </>
