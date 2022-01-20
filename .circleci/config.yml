@@ -171,9 +171,9 @@ workflows:
   atlantis:
     jobs:
       - checkout_code
-      # - install_dependencies:
-      #     requires:
-      #       - checkout_code
+      - install_dependencies:
+          requires:
+            - checkout_code
       # - check_for_manual_release:
       #     requires:
       #       - install_dependencies
