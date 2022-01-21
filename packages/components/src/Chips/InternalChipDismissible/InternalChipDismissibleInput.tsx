@@ -3,29 +3,20 @@ import { debounce } from "lodash";
 import classNames from "classnames";
 import styles from "./InternalChipDismissible.css";
 import { ChipDismissibleInputProps } from "./InternalChipDismissibleTypes";
-import {
-  KeyDownCallBacks,
-  useDismissibleChipInput,
-  useDismissibleChipKeydown,
-  useInView,
-  useScrollToActive,
-} from "./hooks";
+import { useDismissibleChipInput, useInView, useScrollToActive } from "./hooks";
 import { Text } from "../../Text";
 import { Button } from "../../Button";
 import { Spinner } from "../../Spinner";
 
-export function InternalChipDismissibleInput({
-  options,
-  activator = <Button icon="add" type="secondary" ariaLabel="Add" />,
-  isLoadingMore = false,
-  onEmptyBackspace,
-  onCustomOptionSelect,
-  onOptionSelect,
-  onSearch,
-  onLoadMore,
-}: ChipDismissibleInputProps) {
+export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
   const {
-    activeOption,
+    activator = <Button icon="add" type="secondary" ariaLabel="Add" />,
+    isLoadingMore = false,
+    onSearch,
+    onLoadMore,
+  } = props;
+
+  const {
     activeIndex,
     allOptions,
     hasAvailableOptions,
@@ -36,13 +27,13 @@ export function InternalChipDismissibleInput({
     generateDescendantId,
     handleBlur,
     handleOpenMenu,
-    handleReset,
     handleSearchChange,
     handleCancelBlur,
     handleEnableBlur,
     handleSetActiveOnMouseOver,
-    setActiveIndex,
-  } = useDismissibleChipInput(options);
+    handleKeyDown,
+    handleSelectOption,
+  } = useDismissibleChipInput(props);
 
   const menuRef = useScrollToActive(activeIndex);
   const { ref: visibleChildRef, isInView } = useInView<HTMLDivElement>();
@@ -73,7 +64,7 @@ export function InternalChipDismissibleInput({
         aria-activedescendant={generateDescendantId(activeIndex)}
         value={searchValue}
         onChange={handleSearchChange}
-        onKeyDown={handleKeyDown()}
+        onKeyDown={handleKeyDown}
         onBlur={debounce(handleBlur, 200)}
         onFocus={handleOpenMenu}
         autoFocus={true}
@@ -110,35 +101,4 @@ export function InternalChipDismissibleInput({
       )}
     </>
   );
-
-  function handleSelectOption(selected: typeof activeOption) {
-    const setValue = selected.custom ? onCustomOptionSelect : onOptionSelect;
-    setValue(selected.value);
-    handleReset();
-    inputRef.current?.focus();
-  }
-
-  function handleKeyDown() {
-    const callbacks: KeyDownCallBacks = {
-      Enter: () => handleSelectOption(activeOption),
-      Tab: () => handleSelectOption(activeOption),
-      ArrowDown: () => {
-        if (isLoadingMore) return;
-        const newIndex =
-          activeIndex < allOptions.length - 1 ? activeIndex + 1 : 0;
-        setActiveIndex(newIndex);
-      },
-      ArrowUp: () => {
-        const newIndex =
-          activeIndex > 0 ? activeIndex - 1 : allOptions.length - 1;
-        setActiveIndex(newIndex);
-      },
-    };
-
-    if (searchValue.length === 0) {
-      callbacks.Backspace = () => onEmptyBackspace();
-    }
-
-    return useDismissibleChipKeydown(callbacks);
-  }
 }

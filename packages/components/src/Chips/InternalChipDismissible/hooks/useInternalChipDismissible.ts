@@ -25,7 +25,7 @@ export function useInternalChipDismissible({
       return () => onChange(selected.filter(val => val !== value));
     },
     handleChipAdd: (value: string) => onChange([...selected, value]),
-    handleCustomAdd: (value: string) => onCustomAdd(value),
+    handleCustomAdd: onCustomAdd,
     handleChipClick: (value: string) => {
       if (onClick === undefined) return;
       return (event: MouseEvent<HTMLButtonElement>) => onClick(event, value);

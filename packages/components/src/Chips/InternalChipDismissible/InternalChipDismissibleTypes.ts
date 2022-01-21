@@ -8,7 +8,7 @@ export interface ChipDismissibleInputProps
   > {
   readonly options: ChipProps[];
   onEmptyBackspace(): void;
-  onCustomOptionSelect(value: string): void;
+  onCustomOptionSelect?(value: string): void;
   onOptionSelect(value: string): void;
 }
 

@@ -3,37 +3,37 @@ import { useEffect, useState } from "react";
 
 export function useFakeOptionQuery() {
   const [options, setOptions] = useState<string[]>([]);
-  const initialDataUrl = "https://swapi.dev/api/people/?format=json";
-  const [next, setNext] = useState(initialDataUrl);
+  const initialDataGetUrl = "https://swapi.dev/api/people/?format=json";
+  const [nextGet, setNextGet] = useState(initialDataGetUrl);
   const [loading, setLoading] = useState(false);
   const [selected, setSelected] = useState(["Mando", "Din Djarin"]);
 
   const actions = {
     handleLoadMore: () => {
-      if (loading || !next) return;
+      if (loading || !nextGet) return;
 
       setLoading(true);
-      fetchData(next).then(result => {
+      fetchData(nextGet).then(result => {
         const newOptions = uniq([...selected, ...options, ...result.options]);
         setOptions(newOptions);
-        setNext(result.next);
+        setNextGet(result.next);
         setLoading(false);
       });
     },
     handleSearch: (searchValue: string) => {
-      setNext(initialDataUrl + `&search=${searchValue}`);
+      setNextGet(initialDataGetUrl + `&search=${searchValue}`);
       setOptions(selected);
     },
     handleSelect: (value: string[]) => {
       setSelected(value);
     },
     handleCustomAdd: (value: string) => {
-      setSelected([...selected, value]);
+      setSelected(uniq([...selected, value]));
     },
   };
 
   useEffect(() => actions.handleLoadMore(), []); // load once on mount
-  useEffect(() => actions.handleLoadMore(), [next]);
+  useEffect(() => actions.handleLoadMore(), [nextGet]);
 
   return { selected, options, loading, ...actions };
 }

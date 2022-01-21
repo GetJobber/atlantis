@@ -70,12 +70,14 @@ export interface ChipDismissibleProps extends ChipFoundationProps {
   readonly isLoadingMore?: boolean;
 
   /**
-   * Callback when the user selects the custom option
-   * instead of the available chips
+   * Callback when the user selects the custom option instead of the available
+   * chips.
+   *
+   * If not implemented, it won't allow custom add.
    *
    * @param value
    */
-  onCustomAdd(value: string): void; // TODO: Evaluate if we do need this or can this be merged with the `onChange` as another param
+  onCustomAdd?(value: string): void;
 
   /**
    * Callback when a user types a word that filters the options. Use this when
