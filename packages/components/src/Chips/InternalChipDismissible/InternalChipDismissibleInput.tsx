@@ -123,6 +123,7 @@ export function InternalChipDismissibleInput({
       Enter: () => handleSelectOption(activeOption),
       Tab: () => handleSelectOption(activeOption),
       ArrowDown: () => {
+        if (isLoadingMore) return;
         const newIndex =
           activeIndex < allOptions.length - 1 ? activeIndex + 1 : 0;
         setActiveIndex(newIndex);
