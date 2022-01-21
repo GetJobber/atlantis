@@ -8,6 +8,14 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.66](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.9.65...@jobber/docz-tools@1.9.66) (2022-01-21)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
 ## [1.9.65](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.9.64...@jobber/docz-tools@1.9.65) (2022-01-21)
 
 **Note:** Version bump only for package @jobber/docz-tools
