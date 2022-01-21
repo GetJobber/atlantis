@@ -21,10 +21,13 @@ export function useDismissibleChipInput(options: ChipProps[]) {
   const actions = {
     generateDescendantId: (index: number) => `${computed.menuId}-${index}`,
     handleReset: () => {
-      setActiveIndex(0);
+      setActiveIndex(activeIndex === 0 ? activeIndex : activeIndex - 1);
       setSearchValue("");
     },
-    handleOpenMenu: () => setMenuOpen(true),
+    handleOpenMenu: () => {
+      setMenuOpen(true);
+      setActiveIndex(0);
+    },
     handleCloseMenu: () => setMenuOpen(false),
     handleCancelBlur: () => setShouldCancelBlur(true),
     handleEnableBlur: () => setShouldCancelBlur(false),
