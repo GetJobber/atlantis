@@ -113,9 +113,11 @@ export function InternalChipDismissibleInput({
 
   function handleSelectOption(selected: typeof activeOption) {
     const setValue = selected.custom ? onCustomOptionSelect : onOptionSelect;
-    setValue(selected.value);
-    handleReset();
-    inputRef.current?.focus();
+    if (setValue) {
+      setValue(selected.value);
+      handleReset();
+      inputRef.current?.focus();
+    }
   }
 
   function handleKeyDown() {
