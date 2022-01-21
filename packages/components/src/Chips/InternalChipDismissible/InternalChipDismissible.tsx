@@ -2,10 +2,10 @@ import React from "react";
 import styles from "./InternalChipDismissible.css";
 import { useInternalChipDismissible } from "./hooks";
 import { InternalChipDismissibleInput } from "./InternalChipDismissibleInput";
+import { InternalChipDismissibleProps } from "./InternalChipDismissibleTypes";
 import { ChipDismissible } from "..";
-import { ChipDismissibleProps } from "../ChipsTypes";
 
-export function InternalChipDismissible(props: ChipDismissibleProps) {
+export function InternalChipDismissible(props: InternalChipDismissibleProps) {
   const {
     availableChipOptions,
     sortedVisibleChipOptions,
