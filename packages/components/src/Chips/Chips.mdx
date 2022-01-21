@@ -18,14 +18,6 @@ import { Text } from "@jobber/components/Text";
 
 # Chips
 
-<!-- DELETE ME: For testing purposes, delete before putting up for review -->
-
-### Add/dismiss selection playgound
-
-<Playground>
-  <TestChip />
-</Playground>
-
 Chips are a flexible component that can be used for selection of items from a
 group while preserving vertical space in the interface.
 
@@ -143,15 +135,24 @@ which they can also remove once added.
 
 <Playground>
   {() => {
-    const { options, loading, loadMore } = useFakeOptionQuery();
-    const [selected, setSelected] = useState(["Tatooine"]);
+    const {
+      selected,
+      options,
+      loading,
+      handleLoadMore,
+      handleSearch,
+      handleSelect,
+      handleCustomAdd,
+    } = useFakeOptionQuery();
     return (
       <Chips
         type="dismissible"
         selected={selected}
-        onChange={setSelected}
+        onChange={handleSelect}
+        onCustomAdd={handleCustomAdd}
         isLoadingMore={loading}
-        onLoadMore={loadMore}
+        onSearch={handleSearch} // TODO: merge search and load more into one callback
+        onLoadMore={handleLoadMore}
       >
         {options.map(name => (
           <Chip key={name} label={name} value={name} />
