@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.9.1...@jobber/hooks@1.10.0) (2022-01-21)
+
+
+### Features
+
+* **hooks:** Create the hooks index dynamically ([#839](https://github.com/GetJobber/atlantis/issues/839)) ([dc770a8](https://github.com/GetJobber/atlantis/commit/dc770a813268cc2f3d011e2a559761043ae398ab))
+
+
+
+
+
 ## [1.9.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.9.0...@jobber/hooks@1.9.1) (2021-12-15)
 
 **Note:** Version bump only for package @jobber/hooks
