@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  act,
   cleanup,
   fireEvent,
   render,
@@ -9,15 +10,24 @@ import {
 import { InternalChipDismissible } from "..";
 import { Chip } from "../..";
 
+const mockIsInView = jest.fn(() => false);
+
+jest.mock("../hooks/useInView", () => ({
+  useInView: () => ({ isInView: mockIsInView() }),
+}));
+
 const handleChange = jest.fn(value => value);
 const handleClickChip = jest.fn((_, value) => value);
-const handleSearch = jest.fn(value => value);
 const handleCustomAdd = jest.fn(value => value);
+const handleSearch = jest.fn(value => value);
+const handleLoadMore = jest.fn(value => value);
 
 const chips = ["Amazing", "Fabulous", "Magical"];
 const selectedChips = ["Amazing"];
 
-beforeEach(() => {
+beforeEach(async () => {
+  await popperUpdate();
+
   render(
     <InternalChipDismissible
       selected={selectedChips}
@@ -25,12 +35,15 @@ beforeEach(() => {
       onCustomAdd={handleCustomAdd}
       onClick={handleClickChip}
       onSearch={handleSearch}
+      onLoadMore={handleLoadMore}
     >
       {chips.map(chip => (
         <Chip key={chip} label={chip} value={chip} />
       ))}
     </InternalChipDismissible>,
   );
+
+  await popperUpdate();
 });
 
 afterEach(cleanup);
@@ -96,6 +109,20 @@ describe("Open Menu", () => {
     expect(handleCustomAdd).toHaveBeenCalledWith(value);
     expect(handleChange).not.toHaveBeenCalled();
   });
+
+  it("should nit trigger the onLoadMore callback", () => {
+    expect(handleLoadMore).not.toHaveBeenCalled();
+  });
+
+  describe("Load More", () => {
+    beforeAll(() => {
+      mockIsInView.mockReturnValueOnce(true);
+    });
+
+    it("should trigger the onLoadMore callback", () => {
+      expect(handleLoadMore).toHaveBeenCalled();
+    });
+  });
 });
 
 it("should trigger the onclick callback when a chip gets clicked", () => {
@@ -107,3 +134,9 @@ it("should trigger the onclick callback when a chip gets clicked", () => {
     selectedChips[0],
   );
 });
+
+async function popperUpdate() {
+  // Wait for the Popper update() so jest doesn't throw an act warning
+  // https://github.com/popperjs/react-popper/issues/350
+  await act(async () => undefined);
+}
