@@ -38,7 +38,7 @@ it("renders a card", () => {
         className="header"
       >
         <h3
-          className="base extraBold large uppercase"
+          className="base extraBold large uppercase heading"
         >
           The Undiscovered Country
         </h3>
