@@ -24,11 +24,11 @@ export function useDismissibleChipInput(options: ChipProps[]) {
       setActiveIndex(activeIndex === 0 ? activeIndex : activeIndex - 1);
       setSearchValue("");
     },
-    handleOpenMenu: () => {
-      setMenuOpen(true);
+    handleOpenMenu: () => setMenuOpen(true),
+    handleCloseMenu: () => {
+      setMenuOpen(false);
       setActiveIndex(0);
     },
-    handleCloseMenu: () => setMenuOpen(false),
     handleCancelBlur: () => setShouldCancelBlur(true),
     handleEnableBlur: () => setShouldCancelBlur(false),
     handleBlur: () => {
