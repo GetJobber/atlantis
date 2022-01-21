@@ -1,46 +1,95 @@
-import React, { ChangeEvent, useRef, useState } from "react";
+import React, { ChangeEvent, KeyboardEvent, useRef, useState } from "react";
 import { v1 as uuidV1 } from "uuid";
-import { ChipDismissibleInputOptionProps } from "../InternalChipDismissibleTypes";
+import {
+  ChipDismissibleInputOptionProps,
+  ChipDismissibleInputProps,
+} from "../InternalChipDismissibleTypes";
 import { Icon } from "../../../Icon";
 import { ChipProps } from "../../Chip";
 
-export function useDismissibleChipInput(options: ChipProps[]) {
+const menuId = uuidV1();
+
+export function useDismissibleChipInput({
+  options,
+  isLoadingMore = false,
+  onEmptyBackspace,
+  onCustomOptionSelect,
+  onOptionSelect,
+}: ChipDismissibleInputProps) {
   const [searchValue, setSearchValue] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [shouldCancelBlur, setShouldCancelBlur] = useState(false);
-  const allOptions = generateOptions(options, searchValue);
+  const canAddCustomOption = onCustomOptionSelect !== undefined;
+  const allOptions = generateOptions(options, searchValue, canAddCustomOption);
+  const maxOptionIndex = allOptions.length - 1;
 
   const computed = {
+    menuId,
     inputRef: useRef<HTMLInputElement>(null), // eslint-disable-line no-null/no-null
-    menuId: uuidV1(),
     activeOption: allOptions[activeIndex],
     hasAvailableOptions: allOptions.length > 0,
+    nextOptionIndex: activeIndex < maxOptionIndex ? activeIndex + 1 : 0,
+    previousOptionIndex: activeIndex > 0 ? activeIndex - 1 : maxOptionIndex,
   };
 
   const actions = {
     generateDescendantId: (index: number) => `${computed.menuId}-${index}`,
+
     handleReset: () => {
       setActiveIndex(activeIndex === 0 ? activeIndex : activeIndex - 1);
       setSearchValue("");
     },
+
     handleOpenMenu: () => setMenuOpen(true),
+
     handleCloseMenu: () => {
       setMenuOpen(false);
       setActiveIndex(0);
     },
+
     handleCancelBlur: () => setShouldCancelBlur(true),
     handleEnableBlur: () => setShouldCancelBlur(false),
+
     handleBlur: () => {
       if (shouldCancelBlur) return;
       actions.handleReset();
       actions.handleCloseMenu();
     },
+
     handleSearchChange: (event: ChangeEvent<HTMLInputElement>) => {
       setActiveIndex(0);
       setSearchValue(event.currentTarget.value);
     },
-    handleSetActiveOnMouseOver: (index: number) => () => setActiveIndex(index),
+
+    handleSetActiveOnMouseOver: (index: number) => {
+      return () => setActiveIndex(index);
+    },
+
+    handleSelectOption: (selected: typeof computed.activeOption) => {
+      const setValue = selected.custom ? onCustomOptionSelect : onOptionSelect;
+      if (setValue) {
+        setValue(selected.value);
+        actions.handleReset();
+        computed.inputRef.current?.focus();
+      }
+    },
+
+    handleKeyDown: (event: KeyboardEvent<HTMLInputElement>) => {
+      const callbacks: KeyDownCallBacks = {
+        Enter: () => actions.handleSelectOption(computed.activeOption),
+        Tab: () => actions.handleSelectOption(computed.activeOption),
+        ArrowDown: () =>
+          !isLoadingMore && setActiveIndex(computed.nextOptionIndex),
+        ArrowUp: () => setActiveIndex(computed.previousOptionIndex),
+      };
+
+      if (searchValue.length === 0) {
+        callbacks.Backspace = () => onEmptyBackspace();
+      }
+
+      handleKeydownEvents(callbacks, event);
+    },
   };
 
   return {
@@ -50,14 +99,15 @@ export function useDismissibleChipInput(options: ChipProps[]) {
     ...computed,
     menuOpen,
     searchValue,
-    setActiveIndex,
-    setMenuOpen,
-    setSearchValue,
     shouldCancelBlur,
   };
 }
 
-function generateOptions(options: ChipProps[], searchValue: string) {
+function generateOptions(
+  options: ChipProps[],
+  searchValue: string,
+  canAddCustomOption: boolean,
+) {
   const allOptions: ChipDismissibleInputOptionProps[] = options
     .filter(option =>
       option.label.toLowerCase().match(searchValue.trim().toLowerCase()),
@@ -67,6 +117,7 @@ function generateOptions(options: ChipProps[], searchValue: string) {
   const { shouldAddCustomOption, customOption } = generateCustomOption(
     allOptions,
     searchValue,
+    canAddCustomOption,
   );
   shouldAddCustomOption && allOptions.push(customOption);
 
@@ -76,6 +127,7 @@ function generateOptions(options: ChipProps[], searchValue: string) {
 function generateCustomOption(
   options: ChipDismissibleInputOptionProps[],
   searchValue: string,
+  canAddCustomOption: boolean,
 ) {
   function shouldAddCustomOption() {
     const isMatchingOption = options.some(
@@ -86,7 +138,7 @@ function generateCustomOption(
   }
 
   return {
-    shouldAddCustomOption: shouldAddCustomOption(),
+    shouldAddCustomOption: canAddCustomOption && shouldAddCustomOption(),
     customOption: {
       value: searchValue,
       label: searchValue,
@@ -94,4 +146,21 @@ function generateCustomOption(
       custom: true,
     },
   };
+}
+
+interface KeyDownCallBacks {
+  [key: string]: (event: KeyboardEvent<HTMLInputElement>) => void;
+}
+
+function handleKeydownEvents(
+  callbacks: KeyDownCallBacks,
+  event: React.KeyboardEvent<HTMLInputElement>,
+) {
+  if (event.shiftKey) return;
+  Object.entries(callbacks).forEach(([key, callback]) => {
+    if (event.key === key) {
+      event.preventDefault();
+      callback(event);
+    }
+  });
 }
