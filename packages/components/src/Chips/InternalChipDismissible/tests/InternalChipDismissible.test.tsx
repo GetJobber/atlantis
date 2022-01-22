@@ -126,8 +126,7 @@ describe("Open Menu", () => {
 });
 
 it("should trigger the onclick callback when a chip gets clicked", () => {
-  const wrapperEl = screen.getByTestId("dismissible-chips");
-  fireEvent.click(within(wrapperEl).queryByText(selectedChips[0]));
+  fireEvent.click(screen.getByRole("button", { name: selectedChips[0] }));
 
   expect(handleClickChip).toHaveBeenCalledWith(
     expect.any(Object),
@@ -135,8 +134,41 @@ it("should trigger the onclick callback when a chip gets clicked", () => {
   );
 });
 
+it("should trigger the onChange callback when removing a chip", () => {
+  const targetChip = selectedChips[0];
+  const wrapperEl = screen.getByRole("button", { name: targetChip });
+  fireEvent.click(within(wrapperEl).getByTestId("remove-chip-button"));
+
+  expect(handleChange).toHaveBeenCalledWith([]);
+});
+
 async function popperUpdate() {
   // Wait for the Popper update() so jest doesn't throw an act warning
   // https://github.com/popperjs/react-popper/issues/350
   await act(async () => undefined);
 }
+
+describe("delete via keyboard", () => {
+  beforeEach(() => {
+    const addButton = screen.getByRole("button", { name: "Add" });
+    fireEvent.click(addButton);
+  });
+
+  it("should add the highlighted option on enter", () => {
+    fireEvent.keyDown(screen.queryByRole("combobox"), { key: "Enter" });
+    expect(handleChange).toHaveBeenCalledWith([...selectedChips, chips[1]]);
+    expect(handleCustomAdd).not.toHaveBeenCalled();
+  });
+
+  it("should add the highlighted option on tab", () => {
+    fireEvent.keyDown(screen.queryByRole("combobox"), { key: "Tab" });
+    expect(handleChange).toHaveBeenCalledWith([...selectedChips, chips[1]]);
+    expect(handleCustomAdd).not.toHaveBeenCalled();
+  });
+
+  it("should delete the last selected chip on backspace", () => {
+    fireEvent.keyDown(screen.queryByRole("combobox"), { key: "Backspace" });
+    expect(handleChange).toHaveBeenCalledWith([]);
+    expect(handleCustomAdd).not.toHaveBeenCalled();
+  });
+});
