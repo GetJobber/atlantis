@@ -10,13 +10,6 @@
   align-items: center;
 }
 
-/* TODO: Evaluate the focus state */
-
-/* .wrapper:focus-within {
-  padding: var(--space-smaller);
-  border-color: var(--color-focus);
-} */
-
 .input {
   flex: 1;
   min-width: 120px;

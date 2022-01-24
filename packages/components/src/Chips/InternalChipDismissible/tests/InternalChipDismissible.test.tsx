@@ -142,12 +142,6 @@ it("should trigger the onChange callback when removing a chip", () => {
   expect(handleChange).toHaveBeenCalledWith([]);
 });
 
-async function popperUpdate() {
-  // Wait for the Popper update() so jest doesn't throw an act warning
-  // https://github.com/popperjs/react-popper/issues/350
-  await act(async () => undefined);
-}
-
 describe("delete via keyboard", () => {
   beforeEach(() => {
     const addButton = screen.getByRole("button", { name: "Add" });
@@ -172,3 +166,9 @@ describe("delete via keyboard", () => {
     expect(handleCustomAdd).not.toHaveBeenCalled();
   });
 });
+
+async function popperUpdate() {
+  // Wait for the Popper update() so jest doesn't throw an act warning
+  // https://github.com/popperjs/react-popper/issues/350
+  await act(async () => undefined);
+}
