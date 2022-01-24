@@ -29,6 +29,7 @@ const options: ChipProps[] = optionsArray.map(opt => ({
 
 const props = {
   options: options,
+  attachTo: { current: undefined },
   isLoadingMore: false,
   onEmptyBackspace: handleEmptyBackspace,
   onOptionSelect: handleOptionSelect,

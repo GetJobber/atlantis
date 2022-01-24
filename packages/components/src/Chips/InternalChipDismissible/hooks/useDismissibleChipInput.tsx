@@ -1,4 +1,10 @@
-import React, { ChangeEvent, KeyboardEvent, useRef, useState } from "react";
+import React, {
+  ChangeEvent,
+  KeyboardEvent,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { v1 as uuidV1 } from "uuid";
 import { debounce } from "lodash";
 import {
@@ -18,13 +24,19 @@ export function useDismissibleChipInput({
   onOptionSelect,
   onSearch,
 }: ChipDismissibleInputProps) {
+  const [allOptions, setAllOptions] = useState<
+    ChipDismissibleInputOptionProps[]
+  >([]);
   const [searchValue, setSearchValue] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [shouldCancelBlur, setShouldCancelBlur] = useState(false);
   const canAddCustomOption = onCustomOptionSelect !== undefined;
-  const allOptions = generateOptions(options, searchValue, canAddCustomOption);
   const maxOptionIndex = allOptions.length - 1;
+
+  useEffect(() => {
+    setAllOptions(generateOptions(options, searchValue, canAddCustomOption));
+  }, [options, searchValue]);
 
   const computed = {
     menuId,

@@ -1,4 +1,4 @@
-import { MouseEvent } from "react";
+import { MouseEvent, useRef } from "react";
 import { sortBy } from "lodash";
 import { InternalChipDismissibleProps } from "../InternalChipDismissibleTypes";
 
@@ -9,6 +9,7 @@ export function useInternalChipDismissible({
   onClick,
   onCustomAdd,
 }: InternalChipDismissibleProps) {
+  const ref = useRef<HTMLDivElement>(null); // eslint-disable-line no-null/no-null
   const chipOptions = children.map(chip => chip.props);
   const visibleChipOptions = chipOptions.filter(chip =>
     selected.includes(chip.value),
@@ -35,5 +36,5 @@ export function useInternalChipDismissible({
     },
   };
 
-  return { ...actions, sortedVisibleChipOptions, availableChipOptions };
+  return { ...actions, ref, sortedVisibleChipOptions, availableChipOptions };
 }

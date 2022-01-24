@@ -8,6 +8,7 @@ import { ChipDismissible } from "../ChipDismissible";
 export function InternalChipDismissible(props: InternalChipDismissibleProps) {
   const {
     availableChipOptions,
+    ref: wrapperRef,
     sortedVisibleChipOptions,
     handleChipClick,
     handleChipAdd,
@@ -17,7 +18,11 @@ export function InternalChipDismissible(props: InternalChipDismissibleProps) {
   } = useInternalChipDismissible(props);
 
   return (
-    <div className={styles.wrapper} data-testid="dismissible-chips">
+    <div
+      ref={wrapperRef}
+      className={styles.wrapper}
+      data-testid="dismissible-chips"
+    >
       {sortedVisibleChipOptions.map(chip => (
         <ChipDismissible
           key={chip.value}
@@ -29,6 +34,7 @@ export function InternalChipDismissible(props: InternalChipDismissibleProps) {
 
       <InternalChipDismissibleInput
         activator={props.activator}
+        attachTo={wrapperRef}
         isLoadingMore={props.isLoadingMore}
         options={availableChipOptions}
         onOptionSelect={handleChipAdd}

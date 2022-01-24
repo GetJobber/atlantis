@@ -30,20 +30,21 @@
 }
 
 .menu {
-  position: absolute;
-  top: calc(100% + var(--space-smaller));
-  left: 0;
+  position: relative;
   z-index: var(--elevation-menu);
   width: 100%;
+}
+
+.menuList {
   max-height: 320px;
   box-shadow: var(--shadow-base);
-  padding: var(--space-small);
+  padding: var(--space-small) 0;
   border-radius: var(--radius-base);
   overflow-y: scroll;
   background-color: var(--color-surface);
 }
 
-.menuOption,
+.menuListOption,
 .loadingIndicator {
   display: flex;
   width: 100%;
@@ -56,12 +57,12 @@
   gap: var(--space-small);
 }
 
-.menuOption:focus {
+.menuListOption:focus {
   box-shadow: var(--shadow-focus);
 }
 
-.menuOption:focus,
-.menuOption:hover,
+.menuListOption:focus,
+.menuListOption:hover,
 .activeOption {
   outline: none;
   background-color: var(--color-surface--hover);

@@ -3,7 +3,12 @@ import { debounce } from "lodash";
 import classNames from "classnames";
 import styles from "./InternalChipDismissible.css";
 import { ChipDismissibleInputProps } from "./InternalChipDismissibleTypes";
-import { useDismissibleChipInput, useInView, useScrollToActive } from "./hooks";
+import {
+  useDismissibleChipInput,
+  useInView,
+  useRepositionMenu,
+  useScrollToActive,
+} from "./hooks";
 import { Text } from "../../Text";
 import { Button } from "../../Button";
 import { Spinner } from "../../Spinner";
@@ -11,6 +16,7 @@ import { Spinner } from "../../Spinner";
 export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
   const {
     activator = <Button icon="add" type="secondary" ariaLabel="Add" />,
+    attachTo,
     isLoadingMore = false,
     onLoadMore,
   } = props;
@@ -37,6 +43,15 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
 
   const menuRef = useScrollToActive(activeIndex);
   const { ref: visibleChildRef, isInView } = useInView<HTMLDivElement>();
+
+  const {
+    styles: popperStyles,
+    attributes,
+    forceUpdate,
+    setPositionedElementRef,
+  } = useRepositionMenu(attachTo);
+
+  useEffect(() => forceUpdate?.(), [allOptions]);
 
   useEffect(() => {
     handleDebouncedSearch();
@@ -72,32 +87,44 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
       />
 
       {(hasAvailableOptions || isLoadingMore) && (
-        <div ref={menuRef} className={styles.menu} role="listbox" id={menuId}>
-          {allOptions.map((option, i) => (
-            <button
-              key={option.value}
-              role="option"
-              id={generateDescendantId(i)}
-              className={classNames(styles.menuOption, {
-                [styles.activeOption]: activeIndex === i,
-              })}
-              onClick={() => handleSelectOption(option)}
-              onMouseEnter={handleSetActiveOnMouseOver(i)}
-              onMouseDown={handleCancelBlur}
-              onMouseUp={handleEnableBlur}
-            >
-              <span aria-hidden>{option.prefix}</span>
-              <Text>{option.label}</Text>
-            </button>
-          ))}
+        <div
+          ref={setPositionedElementRef}
+          className={styles.menu}
+          style={popperStyles.popper}
+          {...attributes.popper}
+        >
+          <div
+            ref={menuRef}
+            role="listbox"
+            id={menuId}
+            className={styles.menuList}
+          >
+            {allOptions.map((option, i) => (
+              <button
+                key={option.value}
+                role="option"
+                id={generateDescendantId(i)}
+                className={classNames(styles.menuListOption, {
+                  [styles.activeOption]: activeIndex === i,
+                })}
+                onClick={() => handleSelectOption(option)}
+                onMouseEnter={handleSetActiveOnMouseOver(i)}
+                onMouseDown={handleCancelBlur}
+                onMouseUp={handleEnableBlur}
+              >
+                <span aria-hidden>{option.prefix}</span>
+                <Text>{option.label}</Text>
+              </button>
+            ))}
 
-          <div ref={visibleChildRef} />
+            <div ref={visibleChildRef} />
 
-          {isLoadingMore && (
-            <div className={styles.loadingIndicator}>
-              <Spinner size="small" inline />
-            </div>
-          )}
+            {isLoadingMore && (
+              <div className={styles.loadingIndicator}>
+                <Spinner size="small" inline />
+              </div>
+            )}
+          </div>
         </div>
       )}
     </>
