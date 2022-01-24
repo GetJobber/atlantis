@@ -4,8 +4,8 @@ import classNames from "classnames";
 import styles from "./InternalChipDismissible.css";
 import { ChipDismissibleInputProps } from "./InternalChipDismissibleTypes";
 import {
-  useDismissibleChipInput,
   useInView,
+  useInternalChipDismissibleInput,
   useRepositionMenu,
   useScrollToActive,
 } from "./hooks";
@@ -39,7 +39,7 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
     handleKeyDown,
     handleSelectOption,
     handleDebouncedSearch,
-  } = useDismissibleChipInput(props);
+  } = useInternalChipDismissibleInput(props);
 
   const menuRef = useScrollToActive(activeIndex);
   const { ref: visibleChildRef, isInView } = useInView<HTMLDivElement>();

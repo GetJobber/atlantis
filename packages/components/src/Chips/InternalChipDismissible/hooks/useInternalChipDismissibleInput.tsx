@@ -16,7 +16,7 @@ import { ChipProps } from "../../Chip";
 
 const menuId = uuidV1();
 
-export function useDismissibleChipInput({
+export function useInternalChipDismissibleInput({
   options,
   isLoadingMore = false,
   onEmptyBackspace,
