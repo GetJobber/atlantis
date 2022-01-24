@@ -9,8 +9,6 @@ import {
 import { InternalChipDismissibleInput } from "../InternalChipDismissibleInput";
 import { ChipProps } from "../../Chip";
 
-window.HTMLElement.prototype.scrollIntoView = jest.fn;
-
 const mockIsInView = jest.fn(() => false);
 
 jest.mock("../hooks/useInView", () => ({
@@ -34,7 +32,6 @@ const props = {
   isLoadingMore: false,
   onEmptyBackspace: handleEmptyBackspace,
   onOptionSelect: handleOptionSelect,
-  // activator: props.activator,
   onCustomOptionSelect: handleCustomOptionSelect,
   onSearch: handleSearch,
   onLoadMore: handleLoadMore,
@@ -171,6 +168,33 @@ describe("Add/delete via keyboard", () => {
     });
     fireEvent.keyDown(screen.queryByRole("combobox"), { key: "Backspace" });
     expect(handleEmptyBackspace).not.toHaveBeenCalled();
+  });
+});
+
+describe("Activator", () => {
+  const activatorLabel = "Activate me";
+  beforeEach(() => {
+    rerender(
+      <InternalChipDismissibleInput
+        {...props}
+        activator={<div>{activatorLabel}</div>}
+      />,
+    );
+  });
+
+  it("should render a custom activator", () => {
+    expect(screen.getByText(activatorLabel)).toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "Add" }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("should open the menu on click", () => {
+    const target = screen.getByText(activatorLabel);
+    expect(target).toBeInTheDocument();
+    fireEvent.click(target);
+    expect(screen.queryByRole("combobox")).toBeInTheDocument();
+    expect(screen.queryByRole("listbox")).toBeInTheDocument();
   });
 });
 
