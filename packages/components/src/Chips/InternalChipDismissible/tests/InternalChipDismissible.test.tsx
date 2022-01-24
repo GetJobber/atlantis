@@ -5,6 +5,7 @@ import {
   fireEvent,
   render,
   screen,
+  waitFor,
   within,
 } from "@testing-library/react";
 import { InternalChipDismissible } from "..";
@@ -90,13 +91,13 @@ describe("Open Menu", () => {
     expect(handleCustomAdd).not.toHaveBeenCalled();
   });
 
-  it("should trigger the onSearch callback when you type on the input", () => {
+  it("should trigger the onSearch callback when you type on the input", async () => {
     const value = "🌮";
     fireEvent.change(screen.getByRole("combobox"), {
       target: { value: value },
     });
 
-    expect(handleSearch).toHaveBeenCalledWith(value);
+    await waitFor(() => expect(handleSearch).toHaveBeenCalledWith(value));
   });
 
   it("should only trigger the onCustomAdd callback when you select the custom option", () => {

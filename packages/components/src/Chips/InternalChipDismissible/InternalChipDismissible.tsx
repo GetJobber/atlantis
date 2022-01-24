@@ -3,7 +3,7 @@ import styles from "./InternalChipDismissible.css";
 import { useInternalChipDismissible } from "./hooks";
 import { InternalChipDismissibleInput } from "./InternalChipDismissibleInput";
 import { InternalChipDismissibleProps } from "./InternalChipDismissibleTypes";
-import { ChipDismissible } from "..";
+import { ChipDismissible } from "../ChipDismissible";
 
 export function InternalChipDismissible(props: InternalChipDismissibleProps) {
   const {

@@ -12,7 +12,6 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
   const {
     activator = <Button icon="add" type="secondary" ariaLabel="Add" />,
     isLoadingMore = false,
-    onSearch,
     onLoadMore,
   } = props;
 
@@ -33,13 +32,15 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
     handleSetActiveOnMouseOver,
     handleKeyDown,
     handleSelectOption,
+    handleDebouncedSearch,
   } = useDismissibleChipInput(props);
 
   const menuRef = useScrollToActive(activeIndex);
   const { ref: visibleChildRef, isInView } = useInView<HTMLDivElement>();
 
   useEffect(() => {
-    onSearch && onSearch(searchValue);
+    handleDebouncedSearch();
+    return handleDebouncedSearch.cancel;
   }, [searchValue]);
 
   useEffect(() => {
