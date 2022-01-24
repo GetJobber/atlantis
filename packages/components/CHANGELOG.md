@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.73.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.72.3...@jobber/components@2.73.0) (2022-01-24)
+
+
+### Features
+
+* **components:** Left-align wrapping button labels when Icon is present  ([#841](https://github.com/GetJobber/atlantis/issues/841)) ([8fc93a4](https://github.com/GetJobber/atlantis/commit/8fc93a4f3cbef9b39fe7e5a82e538cc26c41eeae))
+
+
+
+
+
 ## [2.72.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.72.2...@jobber/components@2.72.3) (2022-01-21)
 
 **Note:** Version bump only for package @jobber/components
