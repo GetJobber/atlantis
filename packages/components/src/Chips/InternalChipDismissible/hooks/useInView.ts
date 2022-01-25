@@ -3,9 +3,8 @@ import { useEffect, useRef, useState } from "react";
 export function useInView<T extends Element>() {
   const ref = useRef<T>(null); // eslint-disable-line no-null/no-null
   const [isInView, setIsInView] = useState(false);
-  const hasIntersectionObserver = !!window.IntersectionObserver;
 
-  if (hasIntersectionObserver) {
+  if (window.IntersectionObserver) {
     const observer = new IntersectionObserver(entries => {
       setIsInView(entries[0].isIntersecting);
     });
@@ -18,8 +17,6 @@ export function useInView<T extends Element>() {
         observer.unobserve(ref.current);
       };
     });
-  } else {
-    console.warn("IntersectionObserver is not supported");
   }
 
   return { ref, isInView };

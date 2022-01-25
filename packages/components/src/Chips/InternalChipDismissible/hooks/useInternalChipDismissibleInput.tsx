@@ -81,6 +81,7 @@ export function useInternalChipDismissibleInput({
     },
 
     handleSelectOption: (selected: typeof computed.activeOption) => {
+      if (allOptions.length === 0) return;
       const setValue = selected.custom ? onCustomOptionSelect : onOptionSelect;
       if (setValue) {
         setValue(selected.value);
