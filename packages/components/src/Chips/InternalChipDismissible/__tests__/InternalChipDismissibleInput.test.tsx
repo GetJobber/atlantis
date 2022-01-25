@@ -80,7 +80,7 @@ describe("Menu open", () => {
     expect(addButton).not.toBeInTheDocument();
   });
 
-  it("should not show an input and menu", () => {
+  it("should show an input and menu", () => {
     expect(screen.queryByRole("combobox")).toBeInTheDocument();
     expect(screen.queryByRole("listbox")).toBeInTheDocument();
   });

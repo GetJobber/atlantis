@@ -83,7 +83,7 @@ describe("Open Menu", () => {
       });
   });
 
-  it("should trigger the onChange callback when you select from available optipns", () => {
+  it("should trigger the onChange callback when you select from available options", () => {
     const target = chips[chips.length - 1];
     fireEvent.click(screen.getByText(target));
 
@@ -113,7 +113,7 @@ describe("Open Menu", () => {
     });
   });
 
-  it("should nit trigger the onLoadMore callback", () => {
+  it("should not trigger the onLoadMore callback", () => {
     expect(handleLoadMore).not.toHaveBeenCalled();
   });
 
@@ -128,7 +128,7 @@ describe("Open Menu", () => {
   });
 });
 
-it("should trigger the onclick callback when a chip gets clicked", () => {
+it("should trigger the onClick callback when a chip gets clicked", () => {
   fireEvent.click(screen.getByRole("button", { name: selectedChips[0] }));
 
   expect(handleClickChip).toHaveBeenCalledWith(

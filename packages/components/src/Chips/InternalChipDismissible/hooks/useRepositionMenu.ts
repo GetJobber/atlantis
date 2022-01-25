@@ -9,8 +9,9 @@ export function useRepositionMenu(attachTo: RefObject<Element | null>) {
       { name: "offset", options: { offset: [0, 8] } },
       { name: "flip", options: { fallbackPlacements: ["top"] } },
     ],
-    placement: "bottom",
   });
 
-  return { ...popper, setPositionedElementRef };
+  const targetWidth = attachTo.current?.clientWidth;
+
+  return { ...popper, setPositionedElementRef, targetWidth };
 }

@@ -99,8 +99,10 @@ export function useInternalChipDismissibleInput({
           if (searchValue.length === 0) return;
           actions.handleSelectOption(generateCustomOptionObject(searchValue));
         },
-        ArrowDown: () =>
-          !isLoadingMore && setActiveIndex(computed.nextOptionIndex),
+        ArrowDown: () => {
+          if (isLoadingMore && activeIndex === maxOptionIndex) return;
+          setActiveIndex(computed.nextOptionIndex);
+        },
         ArrowUp: () => setActiveIndex(computed.previousOptionIndex),
       };
 
