@@ -158,13 +158,9 @@ describe("Selecting an option", () => {
 
   it("should only trigger the onCustomOptionSelect callback when the value is custom", () => {
     const result = setupHook();
-    const value = "🎉";
-    act(() => result.current.handleSearchChange(fakeChangeEvent(value)));
 
-    // Last option is always custom when a search value exists
-    const selectedOption =
-      result.current.allOptions[result.current.allOptions.length - 1];
-    expect(selectedOption.custom).toBe(true);
+    const value = "🍩";
+    const selectedOption = { label: value, value, custom: true };
     act(() => result.current.handleSelectOption(selectedOption));
     expect(handleCustomOptionSelect).toHaveBeenCalledWith(selectedOption.value);
     expect(handleCustomOptionSelect).toHaveBeenCalledWith(value);

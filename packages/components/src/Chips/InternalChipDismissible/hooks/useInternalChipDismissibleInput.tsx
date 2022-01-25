@@ -31,12 +31,13 @@ export function useInternalChipDismissibleInput({
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [shouldCancelBlur, setShouldCancelBlur] = useState(false);
-  const canAddCustomOption = onCustomOptionSelect !== undefined;
+  const canAddCustomOption =
+    onCustomOptionSelect !== undefined && !isLoadingMore;
   const maxOptionIndex = allOptions.length - 1;
 
   useEffect(() => {
     setAllOptions(generateOptions(options, searchValue, canAddCustomOption));
-  }, [options, searchValue]);
+  }, [options]);
 
   const computed = {
     menuId,
@@ -110,10 +111,10 @@ export function useInternalChipDismissibleInput({
       handleKeydownEvents(callbacks, event);
     },
 
-    handleDebouncedSearch: debounce(
-      () => onSearch && onSearch(searchValue),
-      300,
-    ),
+    handleDebouncedSearch: debounce(() => {
+      onSearch && onSearch(searchValue);
+      setAllOptions(generateOptions(options, searchValue, canAddCustomOption));
+    }, 300),
   };
 
   return {

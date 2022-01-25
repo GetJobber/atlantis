@@ -100,15 +100,17 @@ describe("Open Menu", () => {
     await waitFor(() => expect(handleSearch).toHaveBeenCalledWith(value));
   });
 
-  it("should only trigger the onCustomAdd callback when you select the custom option", () => {
+  it("should only trigger the onCustomAdd callback when you select the custom option", async () => {
     const value = "🌮";
     fireEvent.change(screen.getByRole("combobox"), {
       target: { value: value },
     });
-    fireEvent.click(screen.getByText(value));
 
-    expect(handleCustomAdd).toHaveBeenCalledWith(value);
-    expect(handleChange).not.toHaveBeenCalled();
+    await waitFor(() => {
+      fireEvent.click(screen.getByText(value));
+      expect(handleCustomAdd).toHaveBeenCalledWith(value);
+      expect(handleChange).not.toHaveBeenCalled();
+    });
   });
 
   it("should nit trigger the onLoadMore callback", () => {
