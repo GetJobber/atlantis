@@ -62,7 +62,6 @@
 }
 
 .menuListOption:focus,
-.menuListOption:hover,
 .activeOption {
   outline: none;
   background-color: var(--color-surface--hover);

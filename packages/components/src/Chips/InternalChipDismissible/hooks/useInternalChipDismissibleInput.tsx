@@ -94,6 +94,10 @@ export function useInternalChipDismissibleInput({
       const callbacks: KeyDownCallBacks = {
         Enter: () => actions.handleSelectOption(computed.activeOption),
         Tab: () => actions.handleSelectOption(computed.activeOption),
+        ",": () => {
+          if (searchValue.length === 0) return;
+          actions.handleSelectOption(generateCustomOptionObject(searchValue));
+        },
         ArrowDown: () =>
           !isLoadingMore && setActiveIndex(computed.nextOptionIndex),
         ArrowUp: () => setActiveIndex(computed.previousOptionIndex),
@@ -159,12 +163,16 @@ function generateCustomOption(
 
   return {
     shouldAddCustomOption: canAddCustomOption && shouldAddCustomOption(),
-    customOption: {
-      value: searchValue,
-      label: searchValue,
-      prefix: <Icon name="add" />,
-      custom: true,
-    },
+    customOption: generateCustomOptionObject(searchValue),
+  };
+}
+
+function generateCustomOptionObject(searchValue: string) {
+  return {
+    value: searchValue,
+    label: searchValue,
+    prefix: <Icon name="add" />,
+    custom: true,
   };
 }
 

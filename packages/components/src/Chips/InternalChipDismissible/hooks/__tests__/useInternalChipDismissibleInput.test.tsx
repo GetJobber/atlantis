@@ -192,6 +192,22 @@ describe("Selecting an option", () => {
       expect(handleOptionSelect).toHaveBeenCalledWith(chips[1]);
     });
 
+    it("should add the typed text on 'Comma' ", () => {
+      const result = setupHook();
+      const value = "Marvelous";
+      act(() => result.current.handleSearchChange(fakeChangeEvent(value)));
+      act(() => result.current.handleKeyDown(fakeKeyDownEvent(",")));
+      expect(handleCustomOptionSelect).toHaveBeenCalledWith(value);
+      expect(handleOptionSelect).not.toHaveBeenCalled();
+    });
+
+    it("should not add an empty string 'Comma' ", () => {
+      const result = setupHook();
+      act(() => result.current.handleKeyDown(fakeKeyDownEvent(",")));
+      expect(handleCustomOptionSelect).not.toHaveBeenCalled();
+      expect(handleOptionSelect).not.toHaveBeenCalled();
+    });
+
     it("should increment the active index by one on 'ArrowDown'", () => {
       const result = setupHook();
       act(() => result.current.handleKeyDown(fakeKeyDownEvent("ArrowDown")));
@@ -232,7 +248,7 @@ describe("Selecting an option", () => {
       expect(handleEmptyBackspace).toHaveBeenCalled();
     });
 
-    it("should not trigger onEmptyBackspace on 'Backspace' ", () => {
+    it("should not trigger onEmptyBackspace on 'Backspace' when there's a search value", () => {
       const result = setupHook();
       act(() => result.current.handleSearchChange(fakeChangeEvent("Hey")));
       act(() => result.current.handleKeyDown(fakeKeyDownEvent("Backspace")));
