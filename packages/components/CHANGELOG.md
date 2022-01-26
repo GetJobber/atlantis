@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.74.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.73.0...@jobber/components@2.74.0) (2022-01-26)
+
+
+### Features
+
+* **components:** Support dismissible type on Chips ([#847](https://github.com/GetJobber/atlantis/issues/847)) ([5f88b41](https://github.com/GetJobber/atlantis/commit/5f88b41576f80529bcd7479a5313ffc699d9e31e))
+
+
+
+
+
 # [2.73.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.72.3...@jobber/components@2.73.0) (2022-01-24)
 
 
