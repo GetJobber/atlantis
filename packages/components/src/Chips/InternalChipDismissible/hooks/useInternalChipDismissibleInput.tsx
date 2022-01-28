@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import { v1 as uuidV1 } from "uuid";
 import { debounce } from "lodash";
-import { useLiveAnnounce } from "./useLiveAnnounce";
+import { useLiveAnnounce } from "@jobber/hooks";
 import {
   ChipDismissibleInputOptionProps,
   ChipDismissibleInputProps,

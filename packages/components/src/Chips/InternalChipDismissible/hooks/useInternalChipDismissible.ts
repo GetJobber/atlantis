@@ -1,6 +1,6 @@
 import { MouseEvent, useRef } from "react";
 import { sortBy } from "lodash";
-import { useLiveAnnounce } from "./useLiveAnnounce";
+import { useLiveAnnounce } from "@jobber/hooks";
 import { InternalChipDismissibleProps } from "../InternalChipDismissibleTypes";
 
 export function useInternalChipDismissible({
