@@ -1,5 +1,6 @@
 import { MouseEvent, useRef } from "react";
 import { sortBy } from "lodash";
+import { useLiveAnnounce } from "@jobber/hooks";
 import { InternalChipDismissibleProps } from "../InternalChipDismissibleTypes";
 
 export function useInternalChipDismissible({
@@ -20,10 +21,14 @@ export function useInternalChipDismissible({
   const availableChipOptions = chipOptions.filter(
     chip => !selected.includes(chip.value),
   );
+  const { liveAnnounce } = useLiveAnnounce();
 
   const actions = {
-    handleChipRemove: (value: string) => {
-      return () => onChange(selected.filter(val => val !== value));
+    handleChipRemove: (chip: typeof chipOptions[number]) => {
+      return () => {
+        liveAnnounce(`${chip.label} Removed`);
+        onChange(selected.filter(val => val !== chip.value));
+      };
     },
     handleChipAdd: (value: string) => onChange([...selected, value]),
     handleCustomAdd: onCustomAdd,
@@ -32,9 +37,14 @@ export function useInternalChipDismissible({
       return (event: MouseEvent<HTMLButtonElement>) => onClick(event, value);
     },
     handleEmptyBackspace: () => {
-      actions.handleChipRemove(selected[selected.length - 1])();
+      actions.handleChipRemove(sortedVisibleChipOptions[selected.length - 1])();
     },
   };
 
-  return { ...actions, ref, sortedVisibleChipOptions, availableChipOptions };
+  return {
+    ...actions,
+    ref,
+    sortedVisibleChipOptions,
+    availableChipOptions,
+  };
 }
