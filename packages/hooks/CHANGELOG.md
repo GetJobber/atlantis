@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.10.0...@jobber/hooks@1.11.0) (2022-01-28)
+
+
+### Features
+
+* Announce chip deletion and addition JOB-41252 ([#848](https://github.com/GetJobber/atlantis/issues/848)) ([f251b42](https://github.com/GetJobber/atlantis/commit/f251b42c5aa98ee07f7e16d3605a6bd965a8231b))
+
+
+
+
+
 # [1.10.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.9.1...@jobber/hooks@1.10.0) (2022-01-21)
 
 

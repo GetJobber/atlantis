@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.75.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.74.0...@jobber/components@2.75.0) (2022-01-28)
+
+
+### Features
+
+* Announce chip deletion and addition JOB-41252 ([#848](https://github.com/GetJobber/atlantis/issues/848)) ([f251b42](https://github.com/GetJobber/atlantis/commit/f251b42c5aa98ee07f7e16d3605a6bd965a8231b))
+
+
+
+
+
 # [2.74.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.73.0...@jobber/components@2.74.0) (2022-01-26)
 
 
