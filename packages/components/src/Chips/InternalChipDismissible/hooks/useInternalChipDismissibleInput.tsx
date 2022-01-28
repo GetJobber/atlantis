@@ -7,6 +7,7 @@ import React, {
 } from "react";
 import { v1 as uuidV1 } from "uuid";
 import { debounce } from "lodash";
+import { useLiveAnnounce } from "./useLiveAnnounce";
 import {
   ChipDismissibleInputOptionProps,
   ChipDismissibleInputProps,
@@ -34,6 +35,8 @@ export function useInternalChipDismissibleInput({
   const canAddCustomOption =
     onCustomOptionSelect !== undefined && !isLoadingMore;
   const maxOptionIndex = allOptions.length - 1;
+
+  const { liveAnnounce } = useLiveAnnounce();
 
   useEffect(() => {
     setAllOptions(generateOptions(options, searchValue, canAddCustomOption));
@@ -86,6 +89,7 @@ export function useInternalChipDismissibleInput({
       const setValue = selected.custom ? onCustomOptionSelect : onOptionSelect;
       if (setValue) {
         setValue(selected.value);
+        liveAnnounce(`${selected.label} Added`);
         actions.handleReset();
         computed.inputRef.current?.focus();
       }

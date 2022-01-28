@@ -28,7 +28,7 @@ export function InternalChipDismissible(props: InternalChipDismissibleProps) {
           key={chip.value}
           {...chip}
           onClick={handleChipClick(chip.value)}
-          onRequestRemove={handleChipRemove(chip.value)}
+          onRequestRemove={handleChipRemove(chip)}
         />
       ))}
 
