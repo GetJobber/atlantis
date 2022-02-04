@@ -9,6 +9,7 @@
     "dist/*",
     "*.css",
     "foundation.*",
+    "iconStyle.*",
     "icons/*"
   ],
   "scripts": {
