@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.22.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.21.0...@jobber/design@0.22.0) (2022-02-07)
+
+
+### Features
+
+* **design:** Build Icon CSS to a CSS-in-JS react native format ([#850](https://github.com/GetJobber/atlantis/issues/850)) ([5ff025f](https://github.com/GetJobber/atlantis/commit/5ff025ff8fd770f5c4919afa5fe5a0387c6bfe8a))
+
+
+
+
+
 # [0.21.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.20.1...@jobber/design@0.21.0) (2021-12-18)
 
 
