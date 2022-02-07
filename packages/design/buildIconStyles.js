@@ -29,7 +29,7 @@ postcss([
       JSON.stringify(calculated, undefined, 2);
 
     fs.writeFile(
-      path.join(__dirname, "src/icons/iconStyles.js"),
+      path.join(__dirname, "src/icons/iconStyles.ts"),
       jsonContent,
       "utf8",
       function (err) {
