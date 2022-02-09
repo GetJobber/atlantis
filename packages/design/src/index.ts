@@ -7,4 +7,4 @@ export {
   sizesClassMap,
   colorsClassMap,
 } from "./icons/getIcon";
-export { iconStyles } from "./icons/iconStyles";
+export { iconStyleProperties } from "./icons/iconStyleProperties";
