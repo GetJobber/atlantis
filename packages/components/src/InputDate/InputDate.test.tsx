@@ -27,6 +27,29 @@ it("fires onChange with the new value when you click a date", () => {
   fireEvent.click(selectDate);
   expect(changeHandler).toHaveBeenCalledWith(new Date(newDate));
 });
+it("shouldn't call onChange with the new value when you click a disabled date", () => {
+  const date = "11/11/2011";
+  const minDate = "11/9/2011";
+  const maxDate = "11/15/2011";
+  const changeHandler = jest.fn();
+  const { getByDisplayValue, getByText } = render(
+    <InputDate
+      minDate={new Date(minDate)}
+      maxDate={new Date(maxDate)}
+      value={new Date(date)}
+      onChange={changeHandler}
+    />,
+  );
+
+  const form = getByDisplayValue(date);
+  fireEvent.focus(form);
+
+  const selectDate1 = getByText("7");
+  fireEvent.click(selectDate1);
+  const selectDate2 = getByText("17");
+  fireEvent.click(selectDate2);
+  expect(changeHandler).not.toHaveBeenCalled();
+});
 
 it("fires onChange with the new value when you type a different date", () => {
   const date = "11/11/2011";
