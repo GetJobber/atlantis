@@ -40,6 +40,23 @@ it("returns the dates from onChange", async () => {
   expect(changeHandler).toHaveBeenCalledWith(expect.any(Date));
 });
 
+it("should not call onChange handler if date is disabled", async () => {
+  const changeHandler = jest.fn();
+  const { getByTestId, getByText } = render(
+    <DatePicker
+      minDate={new Date(2021, 3, 4)}
+      maxDate={new Date(2021, 3, 17)}
+      selected={new Date()}
+      onChange={changeHandler}
+    />,
+  );
+  await popperUpdate(() => fireEvent.click(getByTestId("calendar")));
+  await popperUpdate(() => fireEvent.click(getByText("2")));
+  await popperUpdate(() => fireEvent.click(getByText("21")));
+
+  expect(changeHandler).not.toHaveBeenCalled();
+});
+
 it("allows for a custom activator to open the DatePicker", async () => {
   const { getByText } = render(
     <DatePicker
@@ -97,12 +114,18 @@ describe("Ensure ReactDatePicker CSS class names exists", () => {
       ".react-datepicker__day--selected",
       ".react-datepicker__day-names",
       ".react-datepicker__day-name",
+      ".react-datepicker__day--disabled",
     ];
 
     classNames.forEach(className => {
       it(`should have ${className}`, async () => {
         const { getByRole, container } = render(
-          <ReactDatePicker selected={new Date()} onChange={jest.fn} />,
+          <ReactDatePicker
+            minDate={new Date(2021, 3, 4)}
+            maxDate={new Date(2021, 3, 27)}
+            selected={new Date()}
+            onChange={jest.fn}
+          />,
         );
         await popperUpdate(() => fireEvent.focus(getByRole("textbox")));
         expect(container.querySelector(className)).toBeTruthy();
