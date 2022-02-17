@@ -99,6 +99,31 @@ pass a `React` component as the `activator`.
   }}
 </Playground>
 
+## Disabling dates
+
+If you want to enable for selection only for a set of dates you can pass
+`minDate` or `maxDate` to the component as props.
+
+<Playground>
+  {() => {
+    const [date, setDate] = useState(new Date("02/17/2022"));
+    return (
+      <Content>
+        <div>
+          <DatePicker
+            minDate={new Date("02/07/2022")}
+            maxDate={new Date("02/27/2022")}
+            selected={date}
+            inline
+            onChange={setDate}
+          />
+        </div>
+        {date && <DataDump defaultOpen data={date} />}
+      </Content>
+    );
+  }}
+</Playground>
+
 ## Accessibility
 
 At this point, the `DatePicker` component is a wrapped version of
