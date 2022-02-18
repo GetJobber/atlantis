@@ -27,6 +27,8 @@ interface BaseProps
       | "inputRef"
       | "validations"
       | "defaultValue"
+      | "prefix"
+      | "suffix"
     > {
   multiline?: boolean;
 }
