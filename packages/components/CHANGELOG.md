@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.76.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.75.2...@jobber/components@2.76.0) (2022-02-22)
+
+
+### Features
+
+* **design:** add new icons to atlantis -- (Minor) Feature Release ([#860](https://github.com/GetJobber/atlantis/issues/860)) ([feca432](https://github.com/GetJobber/atlantis/commit/feca432a9234d2849203f5edbed06c58839e3175))
+
+
+
+
+
 ## [2.75.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.75.1...@jobber/components@2.75.2) (2022-02-18)
 
 **Note:** Version bump only for package @jobber/components
