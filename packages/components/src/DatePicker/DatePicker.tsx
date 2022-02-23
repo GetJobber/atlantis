@@ -13,6 +13,16 @@ import { useFocusOnSelectedDate } from "./useFocusOnSelectedDate";
 
 interface BaseDatePickerProps {
   /**
+   * The maximum selectable date.
+   */
+  readonly maxDate?: Date;
+
+  /**
+   * The minimum selectable date.
+   */
+  readonly minDate?: Date;
+
+  /**
    * The selected Date object
    */
   readonly selected?: Date;
@@ -68,6 +78,8 @@ export function DatePicker({
   disabled = false,
   fullWidth = false,
   smartAutofocus = true,
+  maxDate,
+  minDate,
 }: DatePickerProps) {
   const { ref, focusOnSelectedDate } = useFocusOnSelectedDate();
   const [open, setOpen] = useState(false);
@@ -101,6 +113,8 @@ export function DatePicker({
         disabled={disabled}
         readOnly={readonly}
         onChange={handleChange}
+        maxDate={maxDate}
+        minDate={minDate}
         formatWeekDay={date => date.substring(0, 3)}
         customInput={
           <DatePickerActivator activator={activator} fullWidth={fullWidth} />
