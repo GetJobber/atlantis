@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.77.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.76.0...@jobber/components@2.77.0) (2022-02-23)
+
+
+### Features
+
+* **components:** expose minDate and maxDate props from react-datepicker (JOB-40742) ([#856](https://github.com/GetJobber/atlantis/issues/856)) ([a90e4ac](https://github.com/GetJobber/atlantis/commit/a90e4ac9d28f6a649258db55f76af8c516f07299))
+
+
+
+
+
 # [2.76.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.75.2...@jobber/components@2.76.0) (2022-02-22)
 
 
