@@ -53,7 +53,7 @@
   --color-border: var(--color-grey--lighter);
   --color-border--section: var(--color-blue);
 
-  --color-overlay: rgba(var(--color-greyBlue--rgb), 0.8);
+  --color-overlay: rgba(var(--color-black--rgb), 0.32);
   --color-overlay--dimmed: rgba(var(--color-white--rgb), 0.6);
 
   /* Brand */
@@ -169,4 +169,7 @@
 
   --color-white--rgb: 255, 255, 255;
   --color-white: rgba(var(--color-white--rgb), 1);
+
+  --color-black--rgb: 0, 0, 0;
+  --color-black: rgba(var(--color-black--rgb), 1);
 }

@@ -27,7 +27,7 @@
 }
 
 .overlay {
-  background-color: var(--color-greyBlue);
+  background-color: var(--color-overlay);
   opacity: 0.8;
 }
 
