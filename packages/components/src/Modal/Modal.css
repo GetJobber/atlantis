@@ -27,8 +27,7 @@
 }
 
 .overlay {
-  background-color: var(--color-greyBlue);
-  opacity: 0.8;
+  background-color: var(--color-overlay);
 }
 
 .modal {
