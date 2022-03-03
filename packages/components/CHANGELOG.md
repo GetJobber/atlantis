@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.78.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.77.0...@jobber/components@2.78.0) (2022-03-03)
+
+
+### Features
+
+* **design:** update overlay color to black ([#861](https://github.com/GetJobber/atlantis/issues/861)) ([40351db](https://github.com/GetJobber/atlantis/commit/40351db7bf7b8f7494ca7d3d70b2a98ff46b1203))
+
+
+
+
+
 # [2.77.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.76.0...@jobber/components@2.77.0) (2022-02-23)
 
 
