@@ -1,16 +1,14 @@
 import React, {
   ReactElement,
   ReactNode,
-  createRef,
-  useEffect,
   useLayoutEffect,
   useState,
 } from "react";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
-import { AnimatePresence, motion } from "framer-motion";
-import { Instance as PopperInstance, createPopper } from "@popperjs/core";
+import { motion } from "framer-motion";
 import styles from "./Tooltip.css";
+import { useTooltipPositioning } from "./useTooltipPositioning";
 import { Text } from "../Text";
 
 const variation = {
@@ -26,24 +24,24 @@ interface TooltipProps {
   readonly message: string;
 }
 
-type Direction = "above" | "below";
-
 export function Tooltip({ message, children }: TooltipProps) {
-  const [placement, setPlacement] = useState("above" as Direction);
-  const [tooltipStyles, setTooltipStyles] = useState({});
-  const [arrowStyles, setArrowStyles] = useState({});
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
 
-  const tooltipRef = createRef<HTMLDivElement>();
-  const arrowRef = createRef<HTMLDivElement>();
-  const shadowRef = createRef<HTMLSpanElement>();
+  const {
+    attributes,
+    placement,
+    shadowRef,
+    styles: popperStyles,
+    setArrowRef,
+    setTooltipRef,
+  } = useTooltipPositioning();
 
   initializeListeners();
 
   const toolTipClassNames = classnames(
     styles.tooltipWrapper,
-    placement === "below" && styles.below,
-    placement === "above" && styles.above,
+    placement === "bottom" && styles.below,
+    placement === "top" && styles.above,
   );
 
   return (
@@ -51,49 +49,40 @@ export function Tooltip({ message, children }: TooltipProps) {
       <span className={styles.shadowActivator} ref={shadowRef} />
       {children}
       <TooltipPortal>
-        <div
-          className={toolTipClassNames}
-          style={tooltipStyles}
-          ref={tooltipRef}
-          role="tooltip"
-        >
-          <AnimatePresence>
-            {show && (
-              <motion.div
-                className={styles.tooltip}
-                variants={variation}
-                initial="startOrStop"
-                animate="done"
-                exit="startOrStop"
-                transition={{
-                  type: "spring",
-                  damping: 20,
-                  stiffness: 300,
-                }}
-              >
-                <Text>{message}</Text>
-                <div
-                  ref={arrowRef}
-                  style={arrowStyles}
-                  className={styles.arrow}
-                ></div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+        {show && (
+          <div
+            className={toolTipClassNames}
+            style={popperStyles.popper}
+            ref={setTooltipRef}
+            role="tooltip"
+            {...attributes.popper}
+          >
+            <motion.div
+              className={styles.tooltip}
+              variants={variation}
+              initial="startOrStop"
+              animate="done"
+              exit="startOrStop"
+              transition={{
+                type: "spring",
+                damping: 20,
+                stiffness: 300,
+              }}
+            >
+              <Text>{message}</Text>
+              <div
+                ref={setArrowRef}
+                style={popperStyles.arrow}
+                className={styles.arrow}
+              />
+            </motion.div>
+          </div>
+        )}
       </TooltipPortal>
     </>
   );
 
   function initializeListeners() {
-    const [popperInstance, setPopperInstance] = useState<
-      PopperInstance | undefined
-    >(undefined);
-
-    useEffect(() => {
-      if (popperInstance) popperInstance.update();
-    }, [show]);
-
     const showTooltip = () => {
       setShow(true);
     };
@@ -135,65 +124,13 @@ export function Tooltip({ message, children }: TooltipProps) {
     };
 
     useLayoutEffect(() => {
-      const popper = setupPopper();
-      setPopperInstance(popper);
-      setShow(false);
       injectAttributes();
       addListeners();
 
       return () => {
-        if (popper) popper.destroy();
         removeListeners();
       };
     }, []);
-  }
-
-  function setupPopper() {
-    if (
-      shadowRef.current &&
-      shadowRef.current.nextElementSibling &&
-      tooltipRef.current
-    ) {
-      const popper = createPopper(
-        shadowRef.current.nextElementSibling,
-        tooltipRef.current,
-        {
-          placement: "top",
-          modifiers: [
-            {
-              name: "preventOverflow",
-              options: {
-                padding: 5,
-              },
-            },
-            {
-              name: "flip",
-              options: { padding: 50, fallbackPlacements: ["bottom"] },
-            },
-            {
-              name: "arrow",
-              options: { element: arrowRef.current, padding: 5 },
-            },
-            {
-              name: "applyStyles",
-              fn: data => {
-                setTooltipStyles(data.state.styles.popper);
-                setArrowStyles(data.state.styles.arrow);
-                if (data.state.placement === "top") {
-                  setPlacement("above");
-                } else {
-                  setPlacement("below");
-                }
-              },
-            },
-          ],
-        },
-      );
-
-      return popper;
-    } else {
-      return undefined;
-    }
   }
 }
 
