@@ -2,14 +2,13 @@ import React, {
   ReactElement,
   ReactNode,
   useLayoutEffect,
-  useRef,
   useState,
 } from "react";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
 import { motion } from "framer-motion";
-import { usePopper } from "react-popper";
 import styles from "./Tooltip.css";
+import { useTooltipPositioning } from "./useTooltipPositioning";
 import { Text } from "../Text";
 
 const variation = {
@@ -27,32 +26,22 @@ interface TooltipProps {
 
 export function Tooltip({ message, children }: TooltipProps) {
   const [show, setShow] = useState(false);
-  const shadowRef = useRef<HTMLSpanElement>(null); // eslint-disable-line no-null/no-null
-  const [positionElement, setPositionedElementRef] =
-    useState<HTMLElement | null>();
-  const [arrowElement, setArrowElement] = useState<HTMLElement | null>();
 
-  const popper = usePopper(
-    shadowRef.current?.nextElementSibling,
-    positionElement,
-    {
-      placement: "top",
-      modifiers: [
-        { name: "flip", options: { fallbackPlacements: ["bottom"] } },
-        {
-          name: "arrow",
-          options: { element: arrowElement, padding: 10 },
-        },
-      ],
-    },
-  );
+  const {
+    attributes,
+    placement,
+    shadowRef,
+    styles: popperStyles,
+    setArrowRef,
+    setTooltipRef,
+  } = useTooltipPositioning();
 
   initializeListeners();
 
   const toolTipClassNames = classnames(
     styles.tooltipWrapper,
-    popper.state?.placement === "bottom" && styles.below,
-    popper.state?.placement === "top" && styles.above,
+    placement === "bottom" && styles.below,
+    placement === "top" && styles.above,
   );
 
   return (
@@ -63,10 +52,10 @@ export function Tooltip({ message, children }: TooltipProps) {
         {show && (
           <div
             className={toolTipClassNames}
-            style={popper.styles.popper}
-            ref={setPositionedElementRef}
+            style={popperStyles.popper}
+            ref={setTooltipRef}
             role="tooltip"
-            {...popper.attributes.popper}
+            {...attributes.popper}
           >
             <motion.div
               className={styles.tooltip}
@@ -82,8 +71,8 @@ export function Tooltip({ message, children }: TooltipProps) {
             >
               <Text>{message}</Text>
               <div
-                ref={setArrowElement}
-                style={popper.styles.arrow}
+                ref={setArrowRef}
+                style={popperStyles.arrow}
                 className={styles.arrow}
               />
             </motion.div>
