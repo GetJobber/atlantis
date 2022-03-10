@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.78.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.78.0...@jobber/components@2.78.1) (2022-03-10)
+
+
+### Bug Fixes
+
+* **components:** Update tooltip to use react-popper ([#863](https://github.com/GetJobber/atlantis/issues/863)) ([16fd491](https://github.com/GetJobber/atlantis/commit/16fd49119c1cb6467168c7491574be1e21eadfb3))
+
+
+
+
+
 # [2.78.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.77.0...@jobber/components@2.78.0) (2022-03-03)
 
 
