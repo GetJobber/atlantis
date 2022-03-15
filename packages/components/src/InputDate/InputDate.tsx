@@ -28,6 +28,15 @@ interface InputDateProps
    * */
   readonly value?: Date;
   onChange(newValue: Date): void;
+  /**
+   * The maximum selectable date.
+   */
+  readonly maxDate?: Date;
+
+  /**
+   * The minimum selectable date.
+   */
+  readonly minDate?: Date;
 }
 
 export function InputDate(inputProps: InputDateProps) {
@@ -38,6 +47,8 @@ export function InputDate(inputProps: InputDateProps) {
       disabled={inputProps.disabled}
       readonly={inputProps.readonly}
       fullWidth={!inputProps.inline}
+      minDate={inputProps.minDate}
+      maxDate={inputProps.maxDate}
       smartAutofocus={false}
       activator={activatorProps => {
         const { onChange, onClick, value } = activatorProps;

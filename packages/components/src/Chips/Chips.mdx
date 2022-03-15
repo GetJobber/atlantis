@@ -8,6 +8,7 @@ showDirectoryLink: true
 import { Playground, Props } from "docz";
 import { useState } from "react";
 import { Chip, Chips, ChipDismissible } from ".";
+import { useFakeOptionQuery } from "./utils/mdxUtils.ts";
 import { Avatar } from "@jobber/components/Avatar";
 import { Content } from "@jobber/components/Content";
 import { Disclosure } from "@jobber/components/Disclosure";
@@ -118,45 +119,47 @@ user, leaving all selections blank.
   }}
 </Playground>
 
-<!-- TODO: Uncomment once dismissible is implemented -->
-
-<!-- ### Add/dismiss selection
+### Add/dismiss selection
 
 When the user will be selecting one or more items by inputting their own Chip
 options with, use the dismissible Chip.
 
-The dismissible Chip allows them to remove previous
-selections from the Chips. Use this option when the full list of possible
-selections is too great to reasonably display in one group of Chip. For example,
-"all of my phone contacts" would be far too many Chip options to present in one
-group, and would be overwhelming for the user to interpret.
+The dismissible Chip allows them to remove previous selections from the Chips.
+Use this option when the full list of possible selections is too great to
+reasonably display in one group of Chip. For example, "all of my phone contacts"
+would be far too many Chip options to present in one group, and would be
+overwhelming for the user to interpret.
 
 This format also allows the user to create their own "freeform" Chip options,
 which they can also remove once added.
 
- -->
-
-### Dismissible Chip
-
-A standalone chip that gives you an action to remove it from a list.
-
-```ts
-import { ChipDismissible } from "@jobber/components/Chips";
-```
-
 <Playground>
-  <ChipDismissible
-    prefix={<Avatar initials="MB" />}
-    label="Mercedes-Benz"
-    onClick={() => alert("chip")}
-    onRequestRemove={() => alert("remove")}
-  />{" "}
-  <ChipDismissible
-    prefix={<Icon name="engine" color="yellow" />}
-    label="Check engine light"
-    onRequestRemove={() => alert("remove")}
-  />{" "}
-  <ChipDismissible label="Black" onRequestRemove={() => alert("remove")} />
+  {() => {
+    const {
+      selected,
+      options,
+      loading,
+      handleLoadMore,
+      handleSearch,
+      handleSelect,
+      handleCustomAdd,
+    } = useFakeOptionQuery();
+    return (
+      <Chips
+        type="dismissible"
+        selected={selected}
+        onChange={handleSelect}
+        onCustomAdd={handleCustomAdd}
+        isLoadingMore={loading}
+        onSearch={handleSearch}
+        onLoadMore={handleLoadMore}
+      >
+        {options.map(name => (
+          <Chip key={name} label={name} value={name} />
+        ))}
+      </Chips>
+    );
+  }}
 </Playground>
 
 ## Props of Chips
@@ -166,10 +169,6 @@ import { ChipDismissible } from "@jobber/components/Chips";
 ## Props of Chip
 
 <Props of={Chip} />
-
-## Props of ChipDismissible
-
-<Props of={ChipDismissible} />
 
 ## Content Guidelines
 

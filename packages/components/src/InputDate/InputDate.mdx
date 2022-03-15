@@ -31,6 +31,24 @@ import { InputDate } from "@jobber/components/InputDate";
   }}
 </Playground>
 
+InputDate also exposes `minDate`and `maxDate` props in order to restrict date
+ranges.
+
+<Playground>
+  {() => {
+    const [date, setDate] = useState(new Date("11/11/2011"));
+    return (
+      <InputDate
+        minDate={new Date("11/06/2011")}
+        maxDate={new Date("11/25/2011")}
+        placeholder="Start Date"
+        value={date}
+        onChange={setDate}
+      />
+    );
+  }}
+</Playground>
+
 ## Props
 
 <Props of={InputDate} />

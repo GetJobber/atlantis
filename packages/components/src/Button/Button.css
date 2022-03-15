@@ -205,7 +205,12 @@ a.button.disabled:hover {
   width: auto;
 }
 
+.hasIconAndLabel > * {
+  text-align: start;
+}
+
 .hasIconAndLabel > *:first-child {
+  flex-shrink: 0;
   margin-right: var(--space-small);
 }
 

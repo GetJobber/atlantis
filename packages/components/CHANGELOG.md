@@ -8,6 +8,126 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.78.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.78.0...@jobber/components@2.78.1) (2022-03-10)
+
+
+### Bug Fixes
+
+* **components:** Update tooltip to use react-popper ([#863](https://github.com/GetJobber/atlantis/issues/863)) ([16fd491](https://github.com/GetJobber/atlantis/commit/16fd49119c1cb6467168c7491574be1e21eadfb3))
+
+
+
+
+
+# [2.78.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.77.0...@jobber/components@2.78.0) (2022-03-03)
+
+
+### Features
+
+* **design:** update overlay color to black ([#861](https://github.com/GetJobber/atlantis/issues/861)) ([40351db](https://github.com/GetJobber/atlantis/commit/40351db7bf7b8f7494ca7d3d70b2a98ff46b1203))
+
+
+
+
+
+# [2.77.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.76.0...@jobber/components@2.77.0) (2022-02-23)
+
+
+### Features
+
+* **components:** expose minDate and maxDate props from react-datepicker (JOB-40742) ([#856](https://github.com/GetJobber/atlantis/issues/856)) ([a90e4ac](https://github.com/GetJobber/atlantis/commit/a90e4ac9d28f6a649258db55f76af8c516f07299))
+
+
+
+
+
+# [2.76.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.75.2...@jobber/components@2.76.0) (2022-02-22)
+
+
+### Features
+
+* **design:** add new icons to atlantis -- (Minor) Feature Release ([#860](https://github.com/GetJobber/atlantis/issues/860)) ([feca432](https://github.com/GetJobber/atlantis/commit/feca432a9234d2849203f5edbed06c58839e3175))
+
+
+
+
+
+## [2.75.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.75.1...@jobber/components@2.75.2) (2022-02-18)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.75.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.75.0...@jobber/components@2.75.1) (2022-02-07)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.75.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.74.0...@jobber/components@2.75.0) (2022-01-28)
+
+
+### Features
+
+* Announce chip deletion and addition JOB-41252 ([#848](https://github.com/GetJobber/atlantis/issues/848)) ([f251b42](https://github.com/GetJobber/atlantis/commit/f251b42c5aa98ee07f7e16d3605a6bd965a8231b))
+
+
+
+
+
+# [2.74.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.73.0...@jobber/components@2.74.0) (2022-01-26)
+
+
+### Features
+
+* **components:** Support dismissible type on Chips ([#847](https://github.com/GetJobber/atlantis/issues/847)) ([5f88b41](https://github.com/GetJobber/atlantis/commit/5f88b41576f80529bcd7479a5313ffc699d9e31e))
+
+
+
+
+
+# [2.73.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.72.3...@jobber/components@2.73.0) (2022-01-24)
+
+
+### Features
+
+* **components:** Left-align wrapping button labels when Icon is present  ([#841](https://github.com/GetJobber/atlantis/issues/841)) ([8fc93a4](https://github.com/GetJobber/atlantis/commit/8fc93a4f3cbef9b39fe7e5a82e538cc26c41eeae))
+
+
+
+
+
+## [2.72.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.72.2...@jobber/components@2.72.3) (2022-01-21)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.72.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.72.1...@jobber/components@2.72.2) (2022-01-21)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.72.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.72.0...@jobber/components@2.72.1) (2022-01-12)
+
+
+### Bug Fixes
+
+* Allow space bar key deselect on single select chip ([#827](https://github.com/GetJobber/atlantis/issues/827)) ([a6bc802](https://github.com/GetJobber/atlantis/commit/a6bc802b128a731be5a308f955ee2099029375dd))
+
+
+
+
+
 # [2.72.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.71.7...@jobber/components@2.72.0) (2022-01-11)
 
 

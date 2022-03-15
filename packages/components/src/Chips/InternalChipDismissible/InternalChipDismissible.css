@@ -1,0 +1,72 @@
+.wrapper {
+  display: flex;
+  position: relative;
+  box-sizing: border-box;
+  border: var(--border-base) solid transparent;
+  border-radius: var(--radius-base);
+  transition: all var(--timing-base);
+  gap: var(--space-small);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.input {
+  flex: 1;
+  min-width: 120px;
+  padding: var(--space-small) 0;
+  border: none;
+  border-radius: 0;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-size: var(--typography--fontSize-base);
+  line-height: var(--typography--lineHeight-base);
+  background: transparent;
+  appearance: none;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.menu {
+  position: relative;
+  z-index: var(--elevation-menu);
+  width: 100%;
+}
+
+.menuList {
+  max-height: 320px;
+  box-shadow: var(--shadow-base);
+  padding: var(--space-small) 0;
+  border-radius: var(--radius-base);
+  overflow-y: scroll;
+  background-color: var(--color-surface);
+}
+
+.menuListOption,
+.loadingIndicator {
+  display: flex;
+  width: 100%;
+  padding: var(--space-small);
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  appearance: none;
+  align-items: center;
+  gap: var(--space-small);
+}
+
+.menuListOption:focus {
+  box-shadow: var(--shadow-focus);
+}
+
+.menuListOption:focus,
+.activeOption {
+  outline: none;
+  background-color: var(--color-surface--hover);
+}
+
+.loadingIndicator {
+  justify-content: center;
+}
