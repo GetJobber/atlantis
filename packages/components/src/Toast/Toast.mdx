@@ -51,20 +51,20 @@ When contributing to or consuming the Toast component, consider the following:
 - Don't use `Dismiss` or `Cancel` as an action label.
   - Examples of action labels: `Undo`, `View`, `Refresh`.
 
-### Errors
-
-Only use Toast for errors if there is some other mechanism alerting the user of
-the problem (such as [InputValidation](input-validation)) so that they can
-recover from the error.
-
-In most cases, use [Banner](banner) so the user can appropriately assess and
-recover from the error.
-
 ## Related Components
 
 For more persistent feedback (such as displaying errors), communicating a
 background process that is ongoing, or for feedback that has a longer reading
 length or CTA, use [Banner.](banner)
+
+### Errors
+
+> Do not use Toast for errors. This is currently an available variation, but
+> should be considered deprecated and not propagated.
+
+Use [Banner](banner) and, where necessary, targeted error messaging (such as
+[InputValidation](input-validation)) so that the user can appropriately assess
+and recover from the error.
 
 ## Props
 
@@ -72,10 +72,10 @@ length or CTA, use [Banner.](banner)
 
 ## Variations
 
-Toasts have 3 variations, `info`, `success`, and `error`. Each should be used
-appropriately when using Toast.
-
 The primary use case for Toast is success messages.
+
+In some cases, an informational Toast may be used to inform the user of some
+background system activity.
 
 <Playground>
   {() => {
@@ -86,7 +86,7 @@ The primary use case for Toast is success messages.
           variation="learning"
           onClick={() =>
             showToast({
-              message: "Toast is crispy bread",
+              message: "Toasting is underway",
               variation: "info",
             })
           }
@@ -97,16 +97,6 @@ The primary use case for Toast is success messages.
             showToast({
               message: "Toast is ready",
               variation: "success",
-            })
-          }
-        />
-        <Button
-          label="Error Toast"
-          variation="destructive"
-          onClick={() =>
-            showToast({
-              message: "Toast is burnt",
-              variation: "error",
             })
           }
         />

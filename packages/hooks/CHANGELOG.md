@@ -8,6 +8,47 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.10.0...@jobber/hooks@1.11.0) (2022-01-28)
+
+
+### Features
+
+* Announce chip deletion and addition JOB-41252 ([#848](https://github.com/GetJobber/atlantis/issues/848)) ([f251b42](https://github.com/GetJobber/atlantis/commit/f251b42c5aa98ee07f7e16d3605a6bd965a8231b))
+
+
+
+
+
+# [1.10.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.9.1...@jobber/hooks@1.10.0) (2022-01-21)
+
+
+### Features
+
+* **hooks:** Create the hooks index dynamically ([#839](https://github.com/GetJobber/atlantis/issues/839)) ([dc770a8](https://github.com/GetJobber/atlantis/commit/dc770a813268cc2f3d011e2a559761043ae398ab))
+
+
+
+
+
+## [1.9.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.9.0...@jobber/hooks@1.9.1) (2021-12-15)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+# [1.9.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.8.0...@jobber/hooks@1.9.0) (2021-10-29)
+
+
+### Features
+
+* **components:** Add description to base FormField component ([#714](https://github.com/GetJobber/atlantis/issues/714)) ([3fae72e](https://github.com/GetJobber/atlantis/commit/3fae72e9f483ece23263c9b2c981060248223db5))
+
+
+
+
+
 # [1.8.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.7.2...@jobber/hooks@1.8.0) (2021-10-13)
 
 

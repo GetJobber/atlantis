@@ -8,7 +8,7 @@ interface DividerProps {
    *
    * @default "base"
    */
-  readonly size?: "base" | "large";
+  readonly size?: "base" | "large" | "larger" | "largest";
   /**
    * The direction of the divider
    *
@@ -23,6 +23,8 @@ export function Divider({
 }: DividerProps) {
   const className = classnames(styles.divider, {
     [styles.large]: size === "large",
+    [styles.larger]: size === "larger",
+    [styles.largest]: size === "largest",
     [styles.horizontal]: direction == "horizontal",
     [styles.vertical]: direction == "vertical",
   });

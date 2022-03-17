@@ -1,4 +1,4 @@
-import { ReactNode, RefObject } from "react";
+import { ChangeEvent, ReactNode, RefObject } from "react";
 import { ValidationRules } from "react-hook-form";
 import { XOR } from "ts-xor";
 import { IconNames } from "../Icon";
@@ -48,11 +48,9 @@ export interface CommonFormFieldProps {
   readonly align?: "center" | "right";
 
   /**
-   * Initial value of the input. Only use this when you need to pre-populate
-   * the field with a data that is not controlled by the components state. If a
-   * state is controlling the value, use the `value` prop instead.
+   * Further description of the input, can be used for a hint.
    */
-  readonly defaultValue?: string;
+  readonly description?: string;
 
   /**
    * Disable the input
@@ -83,10 +81,16 @@ export interface CommonFormFieldProps {
   readonly name?: string;
 
   /**
-   * Simplified onChange handler that only provides the new value.
+   * onChange handler that provides the new value (or event)
    * @param newValue
+   * @param event
    */
-  onChange?(newValue: string | number | boolean): void;
+  onChange?(
+    newValue: string | number | boolean | Date,
+    event?: ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ): void;
 
   /**
    * Callback to get the the status and message when validating a field
@@ -107,7 +111,7 @@ export interface CommonFormFieldProps {
   /**
    * Set the component to the given value.
    */
-  readonly value?: string | number;
+  readonly value?: string | number | Date;
 }
 
 export interface FormFieldProps extends CommonFormFieldProps {
@@ -130,6 +134,13 @@ export interface FormFieldProps extends CommonFormFieldProps {
   inputRef?: RefObject<
     HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
   >;
+
+  /**
+   * Initial value of the input. Only use this when you need to pre-populate
+   * the field with a data that is not controlled by the components state. If a
+   * state is controlling the value, use the `value` prop instead.
+   */
+  readonly defaultValue?: string | Date;
 
   /**
    * Determines what kind of keyboard appears on mobile web.

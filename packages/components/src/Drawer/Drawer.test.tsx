@@ -4,45 +4,47 @@ import { Drawer } from ".";
 
 afterEach(cleanup);
 
-test("drawer shows the children and a close button", () => {
-  const title = "Drawer title";
-  const content = "Drawer content";
-  const handleClose = jest.fn();
+describe("Drawer", () => {
+  it("should render the drawer", () => {
+    const title = "A drawer with content";
+    const content = "Drawer Content";
+    const { getByText, getByTestId, getByLabelText } = render(
+      <Drawer title={title} open onRequestClose={jest.fn}>
+        {content}
+      </Drawer>,
+    );
+    expect(getByTestId("drawer-header")).toBeInTheDocument();
+    expect(getByText(title)).toBeInTheDocument();
+    expect(getByLabelText(`Close ${title}`)).toBeInTheDocument();
+    expect(getByText(content)).toBeInTheDocument();
+  });
 
-  const { getByLabelText, getByText, queryByTestId } = render(
-    <Drawer title={title} open={true} onRequestClose={handleClose}>
-      {content}
-    </Drawer>,
-  );
+  describe("when open", () => {
+    describe("when clicking on dismiss button", () => {
+      it("should trigger request close", () => {
+        const onRequestCloseFn = jest.fn();
+        const { getByLabelText } = render(
+          <Drawer title="My drawer" open onRequestClose={onRequestCloseFn}>
+            {"Drawer Content"}
+          </Drawer>,
+        );
+        fireEvent.click(getByLabelText("Close My drawer"));
+        expect(onRequestCloseFn).toHaveBeenCalledTimes(1);
+      });
+    });
+  });
 
-  expect(queryByTestId("drawer-header")).not.toBeNull();
-  expect(getByText(title)).toBeTruthy();
-  expect(getByLabelText("Close drawer")).toBeTruthy();
-  expect(getByText(content)).toBeTruthy();
-});
-
-it("doesn't render a closed drawer", () => {
-  const handleClose = jest.fn();
-
-  const { queryByTestId } = render(
-    <Drawer title="Drawer" open={false} onRequestClose={handleClose}>
-      Drawer content
-    </Drawer>,
-  );
-  expect(
-    queryByTestId("drawer-container").classList.contains("open"),
-  ).toBeFalsy();
-});
-
-test("drawer fires onRequestClose when selecting the close button", () => {
-  const handleClose = jest.fn();
-
-  const { getByLabelText } = render(
-    <Drawer title="Drawer" onRequestClose={handleClose}>
-      Drawer content
-    </Drawer>,
-  );
-
-  fireEvent.click(getByLabelText("Close drawer"));
-  expect(handleClose).toHaveBeenCalledTimes(1);
+  describe("when closed", () => {
+    it("should hide the drawer", () => {
+      const content = "Drawer Content";
+      const { getByTestId } = render(
+        <Drawer title="A closed drawer" open={false} onRequestClose={jest.fn}>
+          {content}
+        </Drawer>,
+      );
+      expect(
+        getByTestId("drawer-container").classList.contains("open"),
+      ).toBeFalsy();
+    });
+  });
 });

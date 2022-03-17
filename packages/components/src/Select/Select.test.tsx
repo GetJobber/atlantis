@@ -125,5 +125,5 @@ it("should pass the new value to the onChange handler when the selected option c
   fireEvent.change(select, {
     target: { value: expectedValue },
   });
-  expect(changeHandler).toHaveBeenCalledWith(expectedValue);
+  expect(changeHandler).toHaveBeenCalledWith(expectedValue, expect.any(Object));
 });

@@ -26,6 +26,9 @@ interface BaseProps
       | "onChange"
       | "inputRef"
       | "validations"
+      | "defaultValue"
+      | "prefix"
+      | "suffix"
     > {
   multiline?: boolean;
 }

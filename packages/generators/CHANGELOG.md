@@ -8,6 +8,14 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.5.0...@jobber/generators@0.5.1) (2021-12-23)
+
+**Note:** Version bump only for package @jobber/generators
+
+
+
+
+
 # [0.5.0](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.4.3...@jobber/generators@0.5.0) (2021-09-03)
 
 

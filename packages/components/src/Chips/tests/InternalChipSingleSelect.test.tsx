@@ -1,5 +1,12 @@
 import React from "react";
-import { cleanup, render, screen } from "@testing-library/react";
+import {
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Chip } from "..";
 import { InternalChipSingleSelect } from "../InternalChipSingleSelect";
@@ -57,5 +64,20 @@ describe("onClick", () => {
     userEvent.click(screen.getByLabelText(target));
     expect(handleClickChip).toHaveBeenCalledTimes(1);
     expect(handleClickChip).toHaveReturnedWith(target);
+  });
+});
+
+describe("On space bar press", () => {
+  it("should deselect the selected chip", async () => {
+    const element = within(
+      screen.getByLabelText(selectedChip).closest("label"),
+    ).getByRole("radio");
+    fireEvent.keyUp(element, { key: " " });
+
+    // Wait for next tick
+    await waitFor(() => {
+      expect(handleChange).toHaveBeenCalledTimes(1);
+      expect(handleChange).toHaveReturnedWith(undefined);
+    });
   });
 });

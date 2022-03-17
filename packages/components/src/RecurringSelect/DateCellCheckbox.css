@@ -1,0 +1,76 @@
+.checkboxWrapper {
+  position: relative;
+}
+
+/* kept present but hidden for accessibility */
+.dayCheckboxInput {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.dayCheckbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-smaller);
+  border-radius: var(--radius-large);
+  text-align: center;
+  user-select: none;
+  background: var(--color-surface);
+  transition: var(--timing-base);
+}
+
+@supports (aspect-ratio: 1/1) {
+  .dayCheckbox {
+    /*
+     * disabling property-no-unknown here as this is a real property
+     * that stylelint just doesn't know about. We may be able to remove
+     * this when we update our stylelint to not care about IE11.
+     */
+    /* stylelint-disable-next-line property-no-unknown */
+    aspect-ratio: 1/1;
+  }
+}
+
+.dayCheckbox:hover {
+  background: var(--color-surface--hover);
+}
+
+.dayCheckboxInput:focus + .dayCheckbox {
+  box-shadow: var(--shadow-focus);
+  background: var(--color-surface--hover);
+}
+
+.dayCheckboxInput:checked + .dayCheckbox {
+  color: var(--color-text--reverse);
+  background: var(--color-interactive);
+}
+
+.dayCheckboxInput:disabled + .dayCheckbox {
+  color: var(--color-disabled);
+  background: var(--color-surface--background);
+  cursor: default;
+}
+
+.dayCheckboxInput:enabled + .dayCheckbox {
+  cursor: pointer;
+}
+
+.dayCheckboxInput:checked:focus + .dayCheckbox {
+  background: var(--color-interactive--hover);
+}
+
+.dayCheckboxInput:checked + .dayCheckbox:hover {
+  background: var(--color-interactive--hover);
+}
+
+.dayCheckboxInput:disabled:checked + .dayCheckbox {
+  color: var(--color-disabled--secondary);
+  background: var(--color-disabled);
+}

@@ -52,7 +52,7 @@ Use this to allow users to provide short answers.
 ## Multiline
 
 Use this to allow users to provide long answers. The default number of rows is
-three.
+three. Note that `loading={true}` is unimplemented for multiline input text.
 
 <Playground>
   <InputText
@@ -77,18 +77,36 @@ The textarea will start at a specified minimum and grow to a specified maximum.
 
 ## Prefix/Suffix
 
+Use a prefix or suffix when additional visual cues about an input's function may
+be helpful.
+
+Some fields have common visual patterns such as “search” having a magnifying
+glass icon, “Select” having a downwards arrow, or currency inputs having a
+currency symbol. These signifiers reinforce the purpose of the input to increase
+[Recognition over Recall](https://www.nngroup.com/articles/ten-usability-heuristics/)
+and align the input with
+[Consistency and Standards](https://www.nngroup.com/articles/ten-usability-heuristics/).
+With clearer guidance around the purpose of inputs, the user is able to better
+focus on the task at hand.
+
 <Playground>
-  <InputText
-    defaultValue="1,000,000"
-    placeholder="Invoice Total"
-    prefix={{ label: "$", icon: "invoice" }}
-    suffix={{
-      label: "💰💰💰",
-      icon: "paidInvoice",
-      ariaLabel: "Tell me i'm rich",
-      onClick: () => alert("You're rich!"),
-    }}
-  />
+  <Content>
+    <InputText
+      defaultValue="1,000,000"
+      placeholder="Invoice Total"
+      prefix={{ label: "$", icon: "invoice" }}
+      suffix={{ label: ".00" }}
+    />
+    <InputText
+      placeholder="Search"
+      prefix={{ icon: "search" }}
+      suffix={{
+        icon: "cross",
+        ariaLabel: "clear search",
+        onClick: () => alert("This could clear a search value"),
+      }}
+    />
+  </Content>
 </Playground>
 
 ## Validation message
@@ -263,7 +281,8 @@ Determine what default keyboard appears on mobile web.
 
 ## Loading
 
-Add a loading state to content.
+Add a loading state to content. Note that `loading={true}` is unimplemented
+for multiline input text, i.e., when `multiline={true}`.
 
 <Playground>
   <InputText

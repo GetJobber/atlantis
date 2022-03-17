@@ -6,8 +6,6 @@
   --color-interactive--hover: var(--color-green--dark);
   --color-destructive: var(--color-red);
   --color-destructive--hover: var(--color-red--dark);
-  --color-cancel: var(--color-greyBlue);
-  --color-cancel--hover: var(--color-greyBlue--dark);
   --color-interactive--subtle: var(--color-greyBlue);
   --color-interactive--subtle--hover: var(--color-greyBlue--dark);
 
@@ -55,7 +53,7 @@
   --color-border: var(--color-grey--lighter);
   --color-border--section: var(--color-blue);
 
-  --color-overlay: rgba(var(--color-greyBlue--rgb), 0.8);
+  --color-overlay: rgba(var(--color-black--rgb), 0.32);
   --color-overlay--dimmed: rgba(var(--color-white--rgb), 0.6);
 
   /* Brand */
@@ -171,4 +169,7 @@
 
   --color-white--rgb: 255, 255, 255;
   --color-white: rgba(var(--color-white--rgb), 1);
+
+  --color-black--rgb: 0, 0, 0;
+  --color-black: rgba(var(--color-black--rgb), 1);
 }

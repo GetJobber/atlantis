@@ -62,6 +62,7 @@ export function Card({
             size="large"
             textCase="uppercase"
             fontWeight="extraBold"
+            textColor="heading"
           >
             {title}
           </Typography>

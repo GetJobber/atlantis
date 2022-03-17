@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "prestart": "cd packages/components && npm run build:cssTypes",
+    "prestart": "npm run buildHooksIndex",
     "start": "USE_ATLANTIS_ALIASES=true docz dev",
     "start:withPrivateComponents": "USE_ATLANTIS_ALIASES=true PRIVATE_COMPONENTS=visible docz dev",
     "test": "jest",
@@ -25,7 +25,8 @@
     "ci:release": "lerna publish --yes",
     "version": "node ensureChangelogHeaders.js",
     "convertIcoMoon": "scripts/convertIcoMoon.ts",
-    "preventManualRelease": "node scripts/preventManualRelease.js"
+    "preventManualRelease": "node scripts/preventManualRelease.js",
+    "buildHooksIndex": "node scripts/createIndexFile.js ./packages/hooks/src"
   },
   "repository": {
     "type": "git",
