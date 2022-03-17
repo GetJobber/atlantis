@@ -20,8 +20,8 @@
 }
 
 .popover {
-  z-index: var(--elevation-base);
-  width: 100%;
+  z-index: var(--elevation-tooltip);
+  width: max-content;
   max-width: var(--popover--width);
   box-shadow: var(--shadow-base);
   border: var(--border-base) solid var(--color-border);
