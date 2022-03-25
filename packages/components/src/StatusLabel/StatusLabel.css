@@ -1,0 +1,24 @@
+:root {
+  --statusLabel-icon-diameter: calc(var(--space-base) - var(--space-smaller));
+}
+
+.statusLabelRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: var(--space-small);
+  width: fit-content;
+}
+
+.statusIndicator {
+  width: var(--statusLabel-icon-diameter);
+  height: var(--statusLabel-icon-diameter);
+  margin-top: var(--space-smallest);
+  border-radius: var(--radius-base);
+  background-color: var(--color-success);
+  flex-shrink: 0;
+}
+
+.labelTextEndAligned {
+  flex-direction: row-reverse;
+}
