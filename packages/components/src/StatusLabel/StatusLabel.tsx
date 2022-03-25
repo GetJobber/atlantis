@@ -23,14 +23,14 @@ interface StatusLabelProps {
 
   /**
    * Alignment of label
-   **
+   *
    * @default "start"
    */
   readonly alignment?: "start" | "end";
 
   /**
    * Status color of the indicator beside text
-   *  **
+   *
    * @default "inactive"
    */
   readonly status: StatusType;
@@ -47,7 +47,7 @@ export function StatusLabel({
   );
 
   return (
-    <div className={containerClassNames}>
+    <div role="status" className={containerClassNames}>
       <StatusLabelIcon status={status} />
       <Text size="small" align={alignment}>
         {label}

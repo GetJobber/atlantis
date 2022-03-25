@@ -34,19 +34,22 @@ representations:
 
 ### Success
 
-Convey that an item is in a successful state.
+Convey that an item is in a successful state, such as approved or paid.
 
 ### Critical
 
-Alert the user to a critically important issue.
+Alert the user to a critically important issue such as a late appointment or an
+overdue payment.
 
 ### Warning
 
-Warn the user of a potential forthcoming issue.
+Warn the user of a potential forthcoming issue like an upcoming deadline or an
+item awaiting response.
 
 ### Informative
 
-Inform the user about something that may not require action.
+Inform the user about something that may not require action, such as a quote
+that has already been converted into a job.
 
 ### Inactive
 
@@ -92,10 +95,14 @@ The label should be short, ideally no longer than two words.
 
 ## Accessibility
 
+The StatusLabel has a `role` of `status` which is communicated to assistive
+technology. It does not pull focus to itself but informs the user of its'
+purpose.
+
 The label portion of StatusLabel should be readable by assistive technology.
 
-The color indicator is supplemented by the label to ensure that users who cannot
-distinguish color have the same understanding of the labeled item's status.
+The color indicator is always used with a text label so that color is not the
+only method of communicating status.
 
 ## Responsiveness
 

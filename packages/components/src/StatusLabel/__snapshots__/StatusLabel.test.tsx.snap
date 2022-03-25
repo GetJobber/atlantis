@@ -3,6 +3,7 @@
 exports[`renders a critical StatusLabel 1`] = `
 <div
   className="statusLabelRow"
+  role="status"
 >
   <div
     className="statusIndicator"
@@ -23,6 +24,7 @@ exports[`renders a critical StatusLabel 1`] = `
 exports[`renders a successful StatusLabel 1`] = `
 <div
   className="statusLabelRow"
+  role="status"
 >
   <div
     className="statusIndicator"
@@ -43,6 +45,7 @@ exports[`renders a successful StatusLabel 1`] = `
 exports[`renders a warning StatusLabel 1`] = `
 <div
   className="statusLabelRow"
+  role="status"
 >
   <div
     className="statusIndicator"
@@ -63,6 +66,7 @@ exports[`renders a warning StatusLabel 1`] = `
 exports[`renders an end-aligned StatusLabel 1`] = `
 <div
   className="statusLabelRow labelTextEndAligned"
+  role="status"
 >
   <div
     className="statusIndicator"
@@ -83,6 +87,7 @@ exports[`renders an end-aligned StatusLabel 1`] = `
 exports[`renders an inactive StatusLabel 1`] = `
 <div
   className="statusLabelRow"
+  role="status"
 >
   <div
     className="statusIndicator"
@@ -103,6 +108,7 @@ exports[`renders an inactive StatusLabel 1`] = `
 exports[`renders an informative StatusLabel 1`] = `
 <div
   className="statusLabelRow"
+  role="status"
 >
   <div
     className="statusIndicator"
