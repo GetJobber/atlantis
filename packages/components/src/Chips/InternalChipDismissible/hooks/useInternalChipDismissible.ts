@@ -41,7 +41,8 @@ export function useInternalChipDismissible({
     handleWrapperKeyDown: (event: KeyboardEvent<HTMLDivElement>) => {
       const target = event.target;
       if (!(target instanceof HTMLElement)) return;
-      if (target instanceof HTMLInputElement && target.value) return;
+      console.log(target);
+      // if (target instanceof HTMLInputElement && target.value) return;
       if (
         event.key === "ArrowLeft" &&
         target.previousElementSibling instanceof HTMLElement
@@ -58,7 +59,7 @@ export function useInternalChipDismissible({
 
     handleChipKeyDown: (value: string) => {
       return (event: KeyboardEvent<HTMLDivElement>) => {
-        if (event.key === "Backspace") {
+        if (event.key === "Backspace" || event.key === "Delete") {
           const target = event.target;
           if (
             target instanceof HTMLElement &&
