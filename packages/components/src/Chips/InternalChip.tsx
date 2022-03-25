@@ -35,8 +35,8 @@ export function InternalChip({
       tabIndex={0}
       className={classNames}
       {...(isClickable && {
-        onClick: onClick,
-        disabled: disabled,
+        onClick,
+        disabled,
       })}
       onKeyDown={onKeyDown}
       data-testid="chip-wrapper"

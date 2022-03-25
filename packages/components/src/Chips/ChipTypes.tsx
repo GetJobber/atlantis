@@ -15,7 +15,7 @@ export interface InternalChipProps {
   readonly active?: boolean;
 
   /**
-   * Makes the chip look and feels uninteractable.
+   * Makes the chip look and feel uninteractable.
    */
   readonly disabled?: boolean;
 
@@ -49,7 +49,13 @@ export interface InternalChipProps {
     event: MouseEvent<HTMLDivElement | HTMLInputElement | HTMLButtonElement>,
   ): void;
 
+  /**
+   * Callback for keyboard interaction with chips (e.g., chip deletion).
+   */
   onKeyDown?(event: KeyboardEvent<HTMLDivElement | HTMLButtonElement>): void;
 
+  /**
+   * If the chip needs children (e.g., empty span for screen reading).
+   */
   readonly children?: ReactNode;
 }
