@@ -38,12 +38,20 @@ export function useInternalChipDismissible({
       actions.handleChipRemove(selected[selected.length - 1])();
     },
 
-    handleWrapperKeyDown: (event: KeyboardEvent<HTMLDivElement>) => {
+    handleWrapperKeyDown: (
+      event: KeyboardEvent<HTMLDivElement> & {
+        target: HTMLDivElement;
+      },
+    ) => {
       const target = event.target;
-      if (!(target instanceof HTMLElement)) return;
-      if (target instanceof HTMLInputElement && target.value) return;
+
+      const stopLeftRightIfInput =
+        target instanceof HTMLInputElement && target.value;
+      if (stopLeftRightIfInput) return;
+
       const nextElementToFocus = target.nextElementSibling;
       const prevElementToFocus = target.previousElementSibling;
+
       if (
         event.key === "ArrowLeft" &&
         prevElementToFocus instanceof HTMLElement
