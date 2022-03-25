@@ -111,7 +111,18 @@ export function useInternalChipDismissibleInput({
       };
 
       if (searchValue.length === 0) {
-        callbacks.Backspace = () => onEmptyBackspace();
+        callbacks.Backspace = () => {
+          // If there's no text left to delete,
+          // and delete is pressed again, focus on a chip instead.
+          if (
+            computed.inputRef.current?.previousElementSibling instanceof
+            HTMLDivElement
+          ) {
+            computed.inputRef.current?.previousElementSibling.focus();
+          } else {
+            onEmptyBackspace();
+          }
+        };
       }
 
       handleKeydownEvents(callbacks, event);
