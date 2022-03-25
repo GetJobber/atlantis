@@ -6,6 +6,7 @@ declare const styles: {
   readonly "menuListOption": string;
   readonly "loadingIndicator": string;
   readonly "activeOption": string;
+  readonly "visuallyHidden": string;
 };
 export = styles;
 

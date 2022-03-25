@@ -1,4 +1,4 @@
-import { MouseEvent, ReactElement } from "react";
+import { KeyboardEvent, MouseEvent, ReactElement, ReactNode } from "react";
 import { ChipButtonProps } from "./InternalChipButton";
 import { AvatarProps } from "../Avatar";
 import { IconProps } from "../Icon";
@@ -48,4 +48,8 @@ export interface InternalChipProps {
   onClick?(
     event: MouseEvent<HTMLDivElement | HTMLInputElement | HTMLButtonElement>,
   ): void;
+
+  onKeyDown?(event: KeyboardEvent<HTMLDivElement | HTMLButtonElement>): void;
+
+  readonly children?: ReactNode;
 }

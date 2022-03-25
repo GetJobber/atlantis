@@ -13,7 +13,9 @@ export function InternalChip({
   invalid = false,
   prefix,
   suffix,
+  children,
   onClick,
+  onKeyDown,
 }: InternalChipProps) {
   const [truncateRef, setTruncateRef] = useState<HTMLElement | null>();
   const isClickable = onClick && !disabled;
@@ -30,17 +32,20 @@ export function InternalChip({
 
   const chip = (
     <Tag
+      tabIndex={0}
       className={classNames}
       {...(isClickable && {
         onClick: onClick,
         disabled: disabled,
       })}
+      onKeyDown={onKeyDown}
       data-testid="chip-wrapper"
     >
       <InternalChipAffix affix={prefix} {...affixProps} />
       <Typography element="span" numberOfLines={1} size="base">
         <span ref={setTruncateRef}>{label}</span>
       </Typography>
+      {children}
       <InternalChipAffix affix={suffix} {...affixProps} />
     </Tag>
   );
