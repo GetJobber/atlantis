@@ -1,4 +1,5 @@
 import { KeyboardEvent, MouseEvent, ReactElement, ReactNode } from "react";
+import { XOR } from "ts-xor";
 import { ChipButtonProps } from "./InternalChipButton";
 import { AvatarProps } from "../Avatar";
 import { IconProps } from "../Icon";
@@ -52,7 +53,9 @@ export interface InternalChipProps {
   /**
    * Callback for keyboard interaction with chips (e.g., chip deletion).
    */
-  onKeyDown?(event: KeyboardEvent<HTMLDivElement | HTMLButtonElement>): void;
+  onKeyDown?(
+    event: KeyboardEvent<XOR<HTMLDivElement, HTMLButtonElement>>,
+  ): void;
 
   /**
    * If the chip needs children (e.g., empty span for screen reading).
