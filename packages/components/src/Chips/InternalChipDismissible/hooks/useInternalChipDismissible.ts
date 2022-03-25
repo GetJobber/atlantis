@@ -41,19 +41,20 @@ export function useInternalChipDismissible({
     handleWrapperKeyDown: (event: KeyboardEvent<HTMLDivElement>) => {
       const target = event.target;
       if (!(target instanceof HTMLElement)) return;
-      console.log(target);
-      // if (target instanceof HTMLInputElement && target.value) return;
+      if (target instanceof HTMLInputElement && target.value) return;
+      const nextElementToFocus = target.nextElementSibling;
+      const prevElementToFocus = target.previousElementSibling;
       if (
         event.key === "ArrowLeft" &&
-        target.previousElementSibling instanceof HTMLElement
+        prevElementToFocus instanceof HTMLElement
       ) {
-        target.previousElementSibling.focus();
+        prevElementToFocus.focus();
       }
       if (
         event.key === "ArrowRight" &&
-        target.nextElementSibling instanceof HTMLElement
+        nextElementToFocus instanceof HTMLElement
       ) {
-        target.nextElementSibling.focus();
+        nextElementToFocus.focus();
       }
     },
 
