@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.79.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.78.3...@jobber/components@2.79.0) (2022-03-25)
+
+
+### Features
+
+* **components:** create statuslabel component ([#870](https://github.com/GetJobber/atlantis/issues/870)) ([cced9b9](https://github.com/GetJobber/atlantis/commit/cced9b9c1af70432b62766e440f445b949bdd236))
+
+
+
+
+
 ## [2.78.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.78.2...@jobber/components@2.78.3) (2022-03-17)
 
 **Note:** Version bump only for package @jobber/components
