@@ -61,9 +61,15 @@
 .clickable:hover,
 .chip:focus,
 .input:focus ~ .chip:not(.active) {
-  box-shadow: var(--shadow-focus);
   outline: none;
   background-color: var(--color-surface--hover);
+}
+
+/* Disabling since this is a valid css order */
+/* stylelint-disable-next-line no-descending-specificity */
+.chip:focus,
+.input:focus ~ .chip:not(.active) {
+  box-shadow: var(--shadow-focus);
 }
 
 /**

@@ -25,6 +25,8 @@ const handleLoadMore = jest.fn(value => value);
 
 const chips = ["Amazing", "Fabulous", "Magical"];
 const selectedChips = ["Amazing"];
+const voiceOver = " Press delete to remove chip";
+
 
 beforeEach(async () => {
   await popperUpdate();
