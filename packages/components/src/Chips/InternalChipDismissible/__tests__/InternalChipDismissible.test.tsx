@@ -129,8 +129,12 @@ describe("Open Menu", () => {
 });
 
 it("should trigger the onClick callback when a chip gets clicked", () => {
-  fireEvent.click(screen.getByRole("button", { name: selectedChips[0] }));
-
+  const targetChip = selectedChips[0];
+  fireEvent.click(
+    screen.getByRole("button", {
+      name: targetChip + voiceOver,
+    }),
+  );
   expect(handleClickChip).toHaveBeenCalledWith(
     expect.any(Object),
     selectedChips[0],
@@ -139,7 +143,9 @@ it("should trigger the onClick callback when a chip gets clicked", () => {
 
 it("should trigger the onChange callback when removing a chip", () => {
   const targetChip = selectedChips[0];
-  const wrapperEl = screen.getByRole("button", { name: targetChip });
+  const wrapperEl = screen.getByRole("button", {
+    name: targetChip + voiceOver,
+  });
   fireEvent.click(within(wrapperEl).getByTestId("remove-chip-button"));
 
   expect(handleChange).toHaveBeenCalledWith([]);
@@ -163,10 +169,15 @@ describe("delete via keyboard", () => {
     expect(handleCustomAdd).not.toHaveBeenCalled();
   });
 
-  it("should delete the last selected chip on backspace", () => {
+  it("should focus on the last selected chip on backspace", () => {
     fireEvent.keyDown(screen.queryByRole("combobox"), { key: "Backspace" });
-    expect(handleChange).toHaveBeenCalledWith([]);
-    expect(handleCustomAdd).not.toHaveBeenCalled();
+    const wrapperEl = screen.getByRole("button", {
+      name: selectedChips[0] + voiceOver,
+    });
+    expect(wrapperEl).toHaveFocus();
+  });
+});
+
   });
 });
 

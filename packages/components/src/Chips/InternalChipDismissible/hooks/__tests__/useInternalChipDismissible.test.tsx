@@ -54,14 +54,14 @@ describe("availableChipOptions", () => {
 describe("handleChipRemove", () => {
   it("should return a function", () => {
     const { sortedVisibleChipOptions, handleChipRemove } = setupHook();
-    expect(handleChipRemove(sortedVisibleChipOptions[0])).toEqual(
+    expect(handleChipRemove(sortedVisibleChipOptions[0].label)).toEqual(
       expect.any(Function),
     );
   });
 
   it("should return remove the selected chip", () => {
     const { sortedVisibleChipOptions, handleChipRemove } = setupHook();
-    handleChipRemove(sortedVisibleChipOptions[0])();
+    handleChipRemove(sortedVisibleChipOptions[0].label)();
     expect(handleChange).toHaveBeenCalledWith([]);
   });
 });
