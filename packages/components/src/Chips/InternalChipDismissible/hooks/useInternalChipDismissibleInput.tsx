@@ -114,11 +114,9 @@ export function useInternalChipDismissibleInput({
         callbacks.Backspace = () => {
           // If there's no text left to delete,
           // and delete is pressed again, focus on a chip instead.
-          if (
-            computed.inputRef.current?.previousElementSibling instanceof
-            HTMLDivElement
-          ) {
-            computed.inputRef.current?.previousElementSibling.focus();
+          const target = computed.inputRef.current?.previousElementSibling;
+          if (target instanceof HTMLElement) {
+            target.focus();
           } else {
             onEmptyBackspace();
           }
