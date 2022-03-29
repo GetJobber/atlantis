@@ -180,6 +180,27 @@ describe("delete via keyboard", () => {
   });
 });
 
+describe("left and right arrow keys via keyboard", () => {
+  it("should focus on the correct element when left or right arrow down", () => {
+    const chipWrappers = screen.getAllByTestId("chip-wrapper");
+    const first = chipWrappers[0];
+
+    fireEvent.select(first);
+    expect(first).toHaveFocus();
+
+    fireEvent.keyDown(first, {
+      key: "ArrowRight",
+    });
+    expect(first).not.toHaveFocus();
+
+    const addButton = screen.getByRole("button", { name: "Add" });
+    expect(addButton).toHaveFocus();
+
+    fireEvent.keyDown(addButton, {
+      key: "ArrowLeft",
+    });
+    expect(addButton).not.toHaveFocus();
+    expect(first).toHaveFocus();
   });
 });
 
