@@ -207,7 +207,8 @@ describe("Basic interaction", () => {
 
 describe("Deleting a chip", () => {
   function MockChips() {
-    const [selected, setSelected] = useState(["chip", "chip2"]);
+    const mockChips = ["chip", "chip2"];
+    const [selected, setSelected] = useState(mockChips);
 
     return (
       <InternalChipDismissible
@@ -215,7 +216,7 @@ describe("Deleting a chip", () => {
         onChange={setSelected}
         onClick={jest.fn}
       >
-        {["chip", "chip2"].map(chip => (
+        {mockChips.map(chip => (
           <Chip key={chip} label={chip} value={chip} />
         ))}
       </InternalChipDismissible>
@@ -233,17 +234,12 @@ describe("Deleting a chip", () => {
     const first = screen.getByRole("button", { name: "chip" + voiceOver });
     first.focus();
     expect(first).toHaveFocus();
+    fireEvent.keyDown(first, { key: "Backspace" });
 
-    fireEvent.keyDown(document.body, { key: "Backspace" });
-
-    await waitFor(() => {
-      expect(first).not.toBeInTheDocument();
-    });
-
+    expect(first).not.toBeInTheDocument();
     const second = screen.getByRole("button", {
       name: "chip2" + voiceOver,
     });
-
     expect(second).toHaveFocus();
   });
 });
