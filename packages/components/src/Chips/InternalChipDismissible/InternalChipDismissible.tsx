@@ -20,26 +20,6 @@ export function InternalChipDismissible(props: InternalChipDismissibleProps) {
     handleWrapperKeyDown,
   } = useInternalChipDismissible(props);
 
-  /**
-    label,
-    active = false,
-    disabled = false,
-    invalid = false,
-    prefix,
-    suffix,
-    children,
-    onClick,
-    onKeyDown,
-   */
-
-  /**
-    icon,
-    invalid,
-    disabled,
-    label,
-    onClick,
-  */
-
   return (
     <div
       ref={wrapperRef}
