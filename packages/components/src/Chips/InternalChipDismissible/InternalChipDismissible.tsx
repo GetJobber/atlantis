@@ -42,11 +42,7 @@ export function InternalChipDismissible(props: InternalChipDismissibleProps) {
               onClick={handleChipRemove(chip.value)}
             />
           }
-        >
-          <span className={styles.visuallyHidden}>
-            Press delete or backspace to remove chip
-          </span>
-        </InternalChip>
+        />
       ))}
 
       <InternalChipDismissibleInput

@@ -1,4 +1,4 @@
-import { KeyboardEvent, MouseEvent, ReactElement, ReactNode } from "react";
+import { KeyboardEvent, MouseEvent, ReactElement } from "react";
 import { ChipButtonProps } from "./InternalChipButton";
 import { AvatarProps } from "../Avatar";
 import { IconProps } from "../Icon";
@@ -53,9 +53,4 @@ export interface InternalChipProps {
    * Callback for keyboard interaction with chips (e.g., chip deletion).
    */
   onKeyDown?(event: KeyboardEvent<HTMLDivElement | HTMLButtonElement>): void;
-
-  /**
-   * Adds an element or component between the label and suffix
-   */
-  readonly children?: ReactNode;
 }

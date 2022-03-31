@@ -13,7 +13,6 @@ export function InternalChip({
   invalid = false,
   prefix,
   suffix,
-  children,
   onClick,
   onKeyDown,
 }: InternalChipProps) {
@@ -37,12 +36,12 @@ export function InternalChip({
       {...(isClickable && { onClick, disabled })}
       onKeyDown={onKeyDown}
       data-testid="chip-wrapper"
+      aria-label={`Press delete or backspace to remove chip ${label}`}
     >
       <InternalChipAffix affix={prefix} {...affixProps} />
       <Typography element="span" numberOfLines={1} size="base">
         <span ref={setTruncateRef}>{label}</span>
       </Typography>
-      {children}
       <InternalChipAffix affix={suffix} {...affixProps} />
     </Tag>
   );

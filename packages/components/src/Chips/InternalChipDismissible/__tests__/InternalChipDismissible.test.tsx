@@ -22,10 +22,11 @@ const handleClickChip = jest.fn((_, value) => value);
 const handleCustomAdd = jest.fn(value => value);
 const handleSearch = jest.fn(value => value);
 const handleLoadMore = jest.fn(value => value);
-const voiceOver = " Press delete or backspace to remove chip";
 
-function getChipByButtonRole(chipName: string) {
-  return screen.getByRole("button", { name: chipName + voiceOver });
+function getByChipLabelText(chipName: string) {
+  return screen.getByLabelText(
+    "Press delete or backspace to remove chip " + chipName,
+  );
 }
 
 describe("Basic interaction", () => {
@@ -135,17 +136,17 @@ describe("Basic interaction", () => {
   });
 
   it("should trigger the onClick callback when a chip gets clicked", () => {
-    const targetChip = selectedChips[0];
-    fireEvent.click(getChipByButtonRole(targetChip));
+    fireEvent.click(getByChipLabelText(selectedChips[0]));
     expect(handleClickChip).toHaveBeenCalledWith(
       expect.any(Object),
       selectedChips[0],
     );
   });
 
+  //
   it("should trigger the onChange callback when removing a chip", () => {
-    const targetChip = selectedChips[0];
-    const wrapperEl = getChipByButtonRole(targetChip);
+    const wrapperEl = getByChipLabelText(selectedChips[0]);
+
     fireEvent.click(within(wrapperEl).getByTestId("remove-chip-button"));
 
     expect(handleChange).toHaveBeenCalledWith([]);
@@ -171,7 +172,7 @@ describe("Basic interaction", () => {
 
     it("should focus on the last selected chip on input backspace", () => {
       fireEvent.keyDown(screen.queryByRole("combobox"), { key: "Backspace" });
-      const wrapperEl = getChipByButtonRole(selectedChips[0]);
+      const wrapperEl = getByChipLabelText(selectedChips[0]);
       expect(wrapperEl).toHaveFocus();
     });
   });
@@ -227,13 +228,13 @@ describe("Deleting a chip", () => {
   it.skip("should focus on the next chip", async () => {
     render(<MockChips />);
 
-    const first = getChipByButtonRole("chip");
+    const first = getByChipLabelText("chip");
     first.focus();
     expect(first).toHaveFocus();
     fireEvent.keyDown(first, { key: "Backspace" });
 
     expect(first).not.toBeInTheDocument();
-    const second = getChipByButtonRole("chip2");
+    const second = getByChipLabelText("chip2");
     expect(second).toHaveFocus();
   });
 });
