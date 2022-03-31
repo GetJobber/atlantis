@@ -42,7 +42,7 @@ export function InternalChipDismissible(props: InternalChipDismissibleProps) {
           }
         >
           <span className={styles.visuallyHidden}>
-            Press delete to remove chip
+            Press delete or backspace to remove chip
           </span>
         </InternalChip>
       ))}

@@ -22,7 +22,7 @@ const handleClickChip = jest.fn((_, value) => value);
 const handleCustomAdd = jest.fn(value => value);
 const handleSearch = jest.fn(value => value);
 const handleLoadMore = jest.fn(value => value);
-const voiceOver = " Press delete to remove chip";
+const voiceOver = " Press delete or backspace to remove chip";
 
 function getChipByButtonRole(chipName: string) {
   return screen.getByRole("button", { name: chipName + voiceOver });
