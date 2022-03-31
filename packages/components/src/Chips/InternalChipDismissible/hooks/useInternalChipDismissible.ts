@@ -73,7 +73,7 @@ export function useInternalChipDismissible({
     },
 
     handleChipKeyDown: (value: string) => {
-      return (event: KeyboardEvent<HTMLDivElement>) => {
+      return (event: KeyboardEvent<HTMLElement>) => {
         if (event.key === "Backspace" || event.key === "Delete") {
           const target = event.target;
           if (
