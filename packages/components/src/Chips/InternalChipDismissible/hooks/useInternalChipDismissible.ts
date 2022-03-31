@@ -1,5 +1,6 @@
 import { KeyboardEvent, MouseEvent, useRef } from "react";
 import { sortBy } from "lodash";
+import { useLiveAnnounce } from "@jobber/hooks";
 import { InternalChipDismissibleProps } from "../InternalChipDismissibleTypes";
 
 export function useInternalChipDismissible({
@@ -21,9 +22,14 @@ export function useInternalChipDismissible({
     chip => !selected.includes(chip.value),
   );
 
+  const { liveAnnounce } = useLiveAnnounce();
+
   const actions = {
     handleChipRemove: (value: string) => {
-      return () => onChange(selected.filter(val => val !== value));
+      return () => {
+        liveAnnounce(`${value} Removed`);
+        onChange(selected.filter(val => val !== value));
+      };
     },
 
     handleChipAdd: (value: string) => onChange([...selected, value]),
