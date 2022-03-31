@@ -46,7 +46,7 @@ export function useInternalChipDismissible({
 
     handleWrapperKeyDown: (
       event: KeyboardEvent<HTMLDivElement> & {
-        target: HTMLDivElement;
+        target: HTMLElement;
       },
     ) => {
       const target = event.target;
