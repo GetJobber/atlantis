@@ -45,9 +45,9 @@ export function useInternalChipDismissible({
     ) => {
       const target = event.target;
 
-      const stopLeftRightIfInput =
+      const isInputAndHasValue =
         target instanceof HTMLInputElement && target.value;
-      if (stopLeftRightIfInput) return;
+      if (isInputAndHasValue) return;
 
       const nextElementToFocus = target.nextElementSibling;
       const prevElementToFocus = target.previousElementSibling;

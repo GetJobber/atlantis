@@ -58,7 +58,7 @@ export interface InternalChipProps {
   ): void;
 
   /**
-   * If the chip needs children (e.g., empty span for screen reading).
+   * Adds an element or component between the label and suffix
    */
   readonly children?: ReactNode;
 }

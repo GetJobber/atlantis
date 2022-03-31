@@ -171,7 +171,7 @@ describe("Basic interaction", () => {
       expect(handleCustomAdd).not.toHaveBeenCalled();
     });
 
-    it("should focus on the last selected chip on backspace", () => {
+    it("should focus on the last selected chip on input backspace", () => {
       fireEvent.keyDown(screen.queryByRole("combobox"), { key: "Backspace" });
       const wrapperEl = screen.getByRole("button", {
         name: selectedChips[0] + voiceOver,

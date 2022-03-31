@@ -34,10 +34,7 @@ export function InternalChip({
     <Tag
       tabIndex={0}
       className={classNames}
-      {...(isClickable && {
-        onClick,
-        disabled,
-      })}
+      {...(isClickable && { onClick, disabled })}
       onKeyDown={onKeyDown}
       data-testid="chip-wrapper"
     >
