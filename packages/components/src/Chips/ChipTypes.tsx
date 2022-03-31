@@ -1,5 +1,4 @@
 import { KeyboardEvent, MouseEvent, ReactElement, ReactNode } from "react";
-import { XOR } from "ts-xor";
 import { ChipButtonProps } from "./InternalChipButton";
 import { AvatarProps } from "../Avatar";
 import { IconProps } from "../Icon";
