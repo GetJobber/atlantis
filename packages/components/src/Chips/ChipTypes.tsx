@@ -53,9 +53,7 @@ export interface InternalChipProps {
   /**
    * Callback for keyboard interaction with chips (e.g., chip deletion).
    */
-  onKeyDown?(
-    event: KeyboardEvent<XOR<HTMLDivElement, HTMLButtonElement>>,
-  ): void;
+  onKeyDown?(event: KeyboardEvent<HTMLDivElement | HTMLButtonElement>): void;
 
   /**
    * Adds an element or component between the label and suffix
