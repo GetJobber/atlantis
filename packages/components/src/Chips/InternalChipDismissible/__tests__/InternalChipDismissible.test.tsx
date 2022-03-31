@@ -24,6 +24,10 @@ const handleSearch = jest.fn(value => value);
 const handleLoadMore = jest.fn(value => value);
 const voiceOver = " Press delete to remove chip";
 
+function getChipByButtonRole(chipName: string) {
+  return screen.getByRole("button", { name: chipName + voiceOver });
+}
+
 describe("Basic interaction", () => {
   const chips = ["Amazing", "Fabulous", "Magical"];
   const selectedChips = ["Amazing"];
@@ -132,11 +136,7 @@ describe("Basic interaction", () => {
 
   it("should trigger the onClick callback when a chip gets clicked", () => {
     const targetChip = selectedChips[0];
-    fireEvent.click(
-      screen.getByRole("button", {
-        name: targetChip + voiceOver,
-      }),
-    );
+    fireEvent.click(getChipByButtonRole(targetChip));
     expect(handleClickChip).toHaveBeenCalledWith(
       expect.any(Object),
       selectedChips[0],
@@ -145,9 +145,7 @@ describe("Basic interaction", () => {
 
   it("should trigger the onChange callback when removing a chip", () => {
     const targetChip = selectedChips[0];
-    const wrapperEl = screen.getByRole("button", {
-      name: targetChip + voiceOver,
-    });
+    const wrapperEl = getChipByButtonRole(targetChip);
     fireEvent.click(within(wrapperEl).getByTestId("remove-chip-button"));
 
     expect(handleChange).toHaveBeenCalledWith([]);
@@ -173,9 +171,7 @@ describe("Basic interaction", () => {
 
     it("should focus on the last selected chip on input backspace", () => {
       fireEvent.keyDown(screen.queryByRole("combobox"), { key: "Backspace" });
-      const wrapperEl = screen.getByRole("button", {
-        name: selectedChips[0] + voiceOver,
-      });
+      const wrapperEl = getChipByButtonRole(selectedChips[0]);
       expect(wrapperEl).toHaveFocus();
     });
   });
@@ -231,15 +227,13 @@ describe("Deleting a chip", () => {
   it.skip("should focus on the next chip", async () => {
     render(<MockChips />);
 
-    const first = screen.getByRole("button", { name: "chip" + voiceOver });
+    const first = getChipByButtonRole("chip");
     first.focus();
     expect(first).toHaveFocus();
     fireEvent.keyDown(first, { key: "Backspace" });
 
     expect(first).not.toBeInTheDocument();
-    const second = screen.getByRole("button", {
-      name: "chip2" + voiceOver,
-    });
+    const second = getChipByButtonRole("chip2");
     expect(second).toHaveFocus();
   });
 });
