@@ -40,10 +40,6 @@ export function useInternalChipDismissible({
       return (event: MouseEvent<HTMLButtonElement>) => onClick(event, value);
     },
 
-    handleEmptyBackspace: () => {
-      actions.handleChipRemove(selected[selected.length - 1])();
-    },
-
     handleWrapperKeyDown: (
       event: KeyboardEvent<HTMLDivElement> & {
         target: HTMLElement;

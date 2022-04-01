@@ -20,7 +20,6 @@ const menuId = uuidV1();
 export function useInternalChipDismissibleInput({
   options,
   isLoadingMore = false,
-  onEmptyBackspace,
   onCustomOptionSelect,
   onOptionSelect,
   onSearch,
@@ -117,8 +116,6 @@ export function useInternalChipDismissibleInput({
           const target = computed.inputRef.current?.previousElementSibling;
           if (target instanceof HTMLElement) {
             target.focus();
-          } else {
-            onEmptyBackspace();
           }
         };
       }

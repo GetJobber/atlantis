@@ -16,7 +16,6 @@ export function InternalChipDismissible(props: InternalChipDismissibleProps) {
     handleChipKeyDown,
     handleChipRemove,
     handleCustomAdd,
-    handleEmptyBackspace,
     handleWrapperKeyDown,
   } = useInternalChipDismissible(props);
 
@@ -52,7 +51,6 @@ export function InternalChipDismissible(props: InternalChipDismissibleProps) {
         options={availableChipOptions}
         onOptionSelect={handleChipAdd}
         onCustomOptionSelect={handleCustomAdd}
-        onEmptyBackspace={handleEmptyBackspace}
         onSearch={props.onSearch}
         onLoadMore={props.onLoadMore}
       />

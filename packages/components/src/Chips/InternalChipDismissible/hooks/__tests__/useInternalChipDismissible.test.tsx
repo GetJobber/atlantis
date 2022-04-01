@@ -97,14 +97,3 @@ describe("handleChipClick", () => {
     expect(handleClickChip).toHaveBeenCalledWith(expect.any(Object), clickedId);
   });
 });
-
-describe("handleEmptyBackspace", () => {
-  it("should fire the onChange callback with only the first value", () => {
-    const value = [chips[1], ...selectedChips];
-    const { handleEmptyBackspace } = setupHook({
-      selected: value,
-    });
-    handleEmptyBackspace();
-    expect(handleChange).toHaveBeenCalledWith([value[0]]);
-  });
-});
