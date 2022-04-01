@@ -32,6 +32,7 @@ export function InternalChipDismissible(props: InternalChipDismissibleProps) {
           {...chip}
           onKeyDown={handleChipKeyDown(chip.value)}
           onClick={handleChipClick(chip.value)}
+          tabIndex={0}
           suffix={
             <InternalChipButton
               icon="remove"

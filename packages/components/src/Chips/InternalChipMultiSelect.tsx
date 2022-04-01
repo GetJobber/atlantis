@@ -23,7 +23,6 @@ export function InternalChipMultiSelect({
           <label>
             <input
               type="checkbox"
-              tabIndex={-1}
               checked={isChipActive}
               className={styles.input}
               onClick={handleClick(chip.props.value)}

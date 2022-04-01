@@ -7,6 +7,7 @@ import { Typography } from "../Typography";
 import { Tooltip } from "../Tooltip";
 
 export function InternalChip({
+  tabIndex,
   label,
   active = false,
   disabled = false,
@@ -31,7 +32,7 @@ export function InternalChip({
 
   const chip = (
     <Tag
-      tabIndex={0}
+      tabIndex={tabIndex}
       className={classNames}
       {...(isClickable && { onClick, disabled })}
       onKeyDown={onKeyDown}

@@ -5,6 +5,11 @@ import { IconProps } from "../Icon";
 
 export interface InternalChipProps {
   /**
+   * Adds the ability to control focus via tabindex
+   */
+  readonly tabIndex?: number;
+
+  /**
    * Label of the chip.
    */
   readonly label: string;
