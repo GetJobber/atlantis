@@ -225,17 +225,31 @@ describe("Deleting a chip", () => {
   // Strategies tried: userEvent library (typing backspace),
   // and waitFor on the first chip's removal.
   // eslint-disable-next-line jest/no-disabled-tests
-  it.skip("should focus on the next chip", async () => {
+  it.skip("should focus on the next chip if the very first chip has focus", async () => {
     render(<MockChips />);
 
     const first = getByChipLabelText("chip");
     first.focus();
     expect(first).toHaveFocus();
     fireEvent.keyDown(first, { key: "Backspace" });
-
     expect(first).not.toBeInTheDocument();
+
     const second = getByChipLabelText("chip2");
     expect(second).toHaveFocus();
+  });
+
+  // eslint-disable-next-line jest/no-disabled-tests
+  it.skip("should focus on the previous chip if the not-first chip has focus", async () => {
+    render(<MockChips />);
+
+    const second = getByChipLabelText("chip2");
+    second.focus();
+    expect(second).toHaveFocus();
+    fireEvent.keyDown(second, { key: "Backspace" });
+    expect(second).not.toBeInTheDocument();
+
+    const first = getByChipLabelText("chip2");
+    expect(first).toHaveFocus();
   });
 });
 
