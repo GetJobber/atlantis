@@ -5,11 +5,6 @@ import { IconProps } from "../Icon";
 
 export interface InternalChipProps {
   /**
-   * Adds the ability to control focus via tabindex
-   */
-  readonly tabIndex?: number;
-
-  /**
    * Label of the chip.
    */
   readonly label: string;
@@ -46,6 +41,16 @@ export interface InternalChipProps {
    * Adds a component on the right side of the label.
    */
   readonly suffix?: ReactElement<IconProps | ChipButtonProps>;
+
+  /**
+   * Allows the chip to be focused.
+   *
+   * **NOTE**: Clickable chips are focusable by default so you don't need to
+   * specify this prop.
+   *
+   * This has the same effect as HTML [tabindex](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex).
+   */
+  readonly tabIndex?: number;
 
   /**
    * Callback when the chip itself gets clicked.
