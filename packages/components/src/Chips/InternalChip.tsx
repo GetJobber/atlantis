@@ -37,7 +37,11 @@ export function InternalChip({
       {...(isClickable && { onClick, disabled })}
       onKeyDown={onKeyDown}
       data-testid="chip-wrapper"
-      aria-label={`Press delete or backspace to remove chip ${label}`}
+      aria-label={
+        tabIndex !== undefined
+          ? `Press delete or backspace to remove chip ${label}`
+          : undefined
+      }
       role={tabIndex !== undefined ? "option" : undefined}
     >
       <InternalChipAffix affix={prefix} {...affixProps} />
