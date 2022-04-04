@@ -38,7 +38,7 @@ export function InternalChip({
       onKeyDown={onKeyDown}
       data-testid="chip-wrapper"
       aria-label={`Press delete or backspace to remove chip ${label}`}
-      role="option"
+      role={tabIndex !== undefined ? "option" : undefined}
     >
       <InternalChipAffix affix={prefix} {...affixProps} />
       <Typography element="span" numberOfLines={1} size="base">

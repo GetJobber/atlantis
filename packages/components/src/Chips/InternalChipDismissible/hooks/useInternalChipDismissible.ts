@@ -72,11 +72,15 @@ export function useInternalChipDismissible({
       return (event: KeyboardEvent<HTMLElement>) => {
         if (event.key === "Backspace" || event.key === "Delete") {
           const target = event.target;
-          if (
-            target instanceof HTMLElement &&
-            target.nextElementSibling instanceof HTMLElement
-          ) {
-            target.nextElementSibling.focus();
+          if (target instanceof HTMLElement) {
+            const prevElement = target.previousElementSibling;
+            const nextElement = target.nextElementSibling;
+
+            if (prevElement instanceof HTMLElement) {
+              prevElement.focus();
+            } else if (nextElement instanceof HTMLElement) {
+              nextElement.focus();
+            }
           }
           actions.handleChipRemove(value)();
         }
