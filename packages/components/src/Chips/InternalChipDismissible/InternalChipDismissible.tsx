@@ -25,6 +25,7 @@ export function InternalChipDismissible(props: InternalChipDismissibleProps) {
       className={styles.wrapper}
       data-testid="dismissible-chips"
       onKeyDown={handleWrapperKeyDown}
+      role="listbox"
     >
       {sortedVisibleChipOptions.map(chip => (
         <InternalChip

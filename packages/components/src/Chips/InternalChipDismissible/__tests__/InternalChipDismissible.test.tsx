@@ -75,7 +75,7 @@ describe("Basic interaction", () => {
 
     beforeEach(() => {
       fireEvent.click(screen.getByLabelText("Add"));
-      wrapperEl = screen.getByRole("listbox");
+      wrapperEl = screen.getByTestId("menu");
     });
 
     it("should not render the selected chips on the menu", () => {
