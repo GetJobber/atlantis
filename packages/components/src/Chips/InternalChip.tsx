@@ -39,7 +39,7 @@ export function InternalChip({
       data-testid="chip-wrapper"
       aria-label={
         tabIndex !== undefined
-          ? `Press delete or backspace to remove chip ${label}`
+          ? `${label}. Press delete or backspace to remove chip`
           : undefined
       }
       role={tabIndex !== undefined ? "option" : undefined}
