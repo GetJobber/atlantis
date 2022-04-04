@@ -25,7 +25,7 @@ const handleLoadMore = jest.fn(value => value);
 
 function getByChipLabelText(chipName: string) {
   return screen.getByLabelText(
-    chipName + ". Press delete or backspace to remove chip",
+    chipName + ". Press delete or backspace to remove " + chipName,
   );
 }
 

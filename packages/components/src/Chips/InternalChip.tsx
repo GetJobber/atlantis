@@ -7,13 +7,14 @@ import { Typography } from "../Typography";
 import { Tooltip } from "../Tooltip";
 
 export function InternalChip({
-  tabIndex,
   label,
   active = false,
   disabled = false,
   invalid = false,
   prefix,
   suffix,
+  tabIndex,
+  ariaLabel,
   onClick,
   onKeyDown,
 }: InternalChipProps) {
@@ -32,16 +33,12 @@ export function InternalChip({
 
   const chip = (
     <Tag
-      tabIndex={tabIndex}
       className={classNames}
       {...(isClickable && { onClick, disabled })}
       onKeyDown={onKeyDown}
       data-testid="chip-wrapper"
-      aria-label={
-        tabIndex !== undefined
-          ? `${label}. Press delete or backspace to remove chip`
-          : undefined
-      }
+      aria-label={ariaLabel}
+      tabIndex={tabIndex}
       role={tabIndex !== undefined ? "option" : undefined}
     >
       <InternalChipAffix affix={prefix} {...affixProps} />

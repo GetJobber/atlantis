@@ -33,6 +33,7 @@ export function InternalChipDismissible(props: InternalChipDismissibleProps) {
           {...chip}
           onKeyDown={handleChipKeyDown(chip.value)}
           onClick={handleChipClick(chip.value)}
+          ariaLabel={`${chip.value}. Press delete or backspace to remove ${chip.value}`}
           tabIndex={0}
           suffix={
             <InternalChipButton

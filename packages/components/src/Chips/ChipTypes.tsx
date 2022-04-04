@@ -43,6 +43,11 @@ export interface InternalChipProps {
   readonly suffix?: ReactElement<IconProps | ChipButtonProps>;
 
   /**
+   * The label for the interactive chip element for voice over
+   */
+  readonly ariaLabel?: string;
+
+  /**
    * Allows the chip to be focused.
    *
    * **NOTE**: Clickable chips are focusable by default so you don't need to
