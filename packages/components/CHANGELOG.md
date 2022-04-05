@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.80.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.80.0...@jobber/components@2.80.1) (2022-04-05)
+
+
+### Bug Fixes
+
+* disable enter press on chip menu debounce ([#874](https://github.com/GetJobber/atlantis/issues/874)) ([569e4d3](https://github.com/GetJobber/atlantis/commit/569e4d317369fc6af12f2603d9212a159fb88602))
+
+
+
+
+
 # [2.80.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.79.0...@jobber/components@2.80.0) (2022-04-05)
 
 
