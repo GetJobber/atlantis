@@ -17,6 +17,7 @@ import { ChipProps } from "../../Chip";
 
 const menuId = uuidV1();
 
+// eslint-disable-next-line max-statements
 export function useInternalChipDismissibleInput({
   options,
   isLoadingMore = false,
@@ -31,6 +32,7 @@ export function useInternalChipDismissibleInput({
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [shouldCancelBlur, setShouldCancelBlur] = useState(false);
+  const [shouldCancelEnter, setShouldCancelEnter] = useState(false);
   const canAddCustomOption =
     onCustomOptionSelect !== undefined && !isLoadingMore;
   const maxOptionIndex = allOptions.length - 1;
@@ -77,6 +79,7 @@ export function useInternalChipDismissibleInput({
     handleSearchChange: (event: ChangeEvent<HTMLInputElement>) => {
       setActiveIndex(0);
       setSearchValue(event.currentTarget.value);
+      setShouldCancelEnter(true);
     },
 
     handleSetActiveOnMouseOver: (index: number) => {
@@ -96,7 +99,10 @@ export function useInternalChipDismissibleInput({
 
     handleKeyDown: (event: KeyboardEvent<HTMLInputElement>) => {
       const callbacks: KeyDownCallBacks = {
-        Enter: () => actions.handleSelectOption(computed.activeOption),
+        Enter: () => {
+          if (shouldCancelEnter) return;
+          actions.handleSelectOption(computed.activeOption);
+        },
         Tab: () => actions.handleSelectOption(computed.activeOption),
         ",": () => {
           if (searchValue.length === 0) return;
@@ -126,6 +132,7 @@ export function useInternalChipDismissibleInput({
     handleDebouncedSearch: debounce(() => {
       onSearch && onSearch(searchValue);
       setAllOptions(generateOptions(options, searchValue, canAddCustomOption));
+      setShouldCancelEnter(false);
     }, 300),
   };
 
