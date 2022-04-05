@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.80.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.79.0...@jobber/components@2.80.0) (2022-04-05)
+
+
+### Features
+
+* **components:** Enable chip navigation with left and right arrow keys ([#872](https://github.com/GetJobber/atlantis/issues/872)) ([065b17b](https://github.com/GetJobber/atlantis/commit/065b17bf55161c85d11346fdd1d41a1c6e01e39d))
+
+
+
+
+
 # [2.79.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.78.3...@jobber/components@2.79.0) (2022-03-25)
 
 
