@@ -10,7 +10,6 @@ export interface ChipDismissibleInputProps
   > {
   readonly attachTo: React.RefObject<Element | null>;
   readonly options: ChipProps[];
-  onEmptyBackspace(): void;
   onCustomOptionSelect?(value: string): void;
   onOptionSelect(value: string): void;
 }

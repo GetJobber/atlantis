@@ -20,7 +20,6 @@ const menuId = uuidV1();
 export function useInternalChipDismissibleInput({
   options,
   isLoadingMore = false,
-  onEmptyBackspace,
   onCustomOptionSelect,
   onOptionSelect,
   onSearch,
@@ -111,7 +110,14 @@ export function useInternalChipDismissibleInput({
       };
 
       if (searchValue.length === 0) {
-        callbacks.Backspace = () => onEmptyBackspace();
+        callbacks.Backspace = () => {
+          // If there's no text left to delete,
+          // and delete is pressed again, focus on a chip instead.
+          const target = computed.inputRef.current?.previousElementSibling;
+          if (target instanceof HTMLElement) {
+            target.focus();
+          }
+        };
       }
 
       handleKeydownEvents(callbacks, event);

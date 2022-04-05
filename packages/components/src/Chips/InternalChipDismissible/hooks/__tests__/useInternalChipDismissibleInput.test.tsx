@@ -4,7 +4,6 @@ import { useInternalChipDismissibleInput } from "../useInternalChipDismissibleIn
 
 afterEach(cleanup);
 
-const handleEmptyBackspace = jest.fn();
 const handleOptionSelect = jest.fn(value => value);
 const handleCustomOptionSelect = jest.fn(value => value);
 const handleSearch = jest.fn(value => value);
@@ -15,7 +14,6 @@ const hookParams = {
   attachTo: { current: undefined },
   options: chips.map(chip => ({ label: chip, value: chip })),
   isLoadingMore: false,
-  onEmptyBackspace: handleEmptyBackspace,
   onOptionSelect: handleOptionSelect,
   onCustomOptionSelect: handleCustomOptionSelect,
   onSearch: handleSearch,
@@ -236,19 +234,6 @@ describe("Selecting an option", () => {
       expect(result.current.activeIndex).toBe(chips.length - 1);
       act(() => result.current.handleKeyDown(fakeKeyDownEvent("ArrowDown")));
       expect(result.current.activeIndex).toBe(0);
-    });
-
-    it("should trigger onEmptyBackspace on 'Backspace'", () => {
-      const result = setupHook();
-      act(() => result.current.handleKeyDown(fakeKeyDownEvent("Backspace")));
-      expect(handleEmptyBackspace).toHaveBeenCalled();
-    });
-
-    it("should not trigger onEmptyBackspace on 'Backspace' when there's a search value", () => {
-      const result = setupHook();
-      act(() => result.current.handleSearchChange(fakeChangeEvent("Hey")));
-      act(() => result.current.handleKeyDown(fakeKeyDownEvent("Backspace")));
-      expect(handleEmptyBackspace).not.toHaveBeenCalled();
     });
   });
 });

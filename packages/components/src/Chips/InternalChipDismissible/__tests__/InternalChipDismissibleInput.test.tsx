@@ -15,7 +15,6 @@ jest.mock("../hooks/useInView", () => ({
   useInView: () => ({ isInView: mockIsInView() }),
 }));
 
-const handleEmptyBackspace = jest.fn();
 const handleOptionSelect = jest.fn(value => value);
 const handleCustomOptionSelect = jest.fn(value => value);
 const handleSearch = jest.fn(value => value);
@@ -31,7 +30,6 @@ const props = {
   options: options,
   attachTo: { current: undefined },
   isLoadingMore: false,
-  onEmptyBackspace: handleEmptyBackspace,
   onOptionSelect: handleOptionSelect,
   onCustomOptionSelect: handleCustomOptionSelect,
   onSearch: handleSearch,
@@ -156,19 +154,6 @@ describe("Add/delete via keyboard", () => {
     fireEvent.keyDown(input, { key: "Tab" });
     expect(handleOptionSelect).toHaveBeenCalledWith(optionsArray[1]);
     expect(handleCustomOptionSelect).not.toHaveBeenCalled();
-  });
-
-  it("should trigger the empty onEmptyBackspace on backspace", () => {
-    fireEvent.keyDown(screen.queryByRole("combobox"), { key: "Backspace" });
-    expect(handleEmptyBackspace).toHaveBeenCalled();
-  });
-
-  it("should not trigger the empty onEmptyBackspace on backspace when there's a search value", () => {
-    fireEvent.change(screen.queryByRole("combobox"), {
-      target: { value: "Sup?" },
-    });
-    fireEvent.keyDown(screen.queryByRole("combobox"), { key: "Backspace" });
-    expect(handleEmptyBackspace).not.toHaveBeenCalled();
   });
 });
 

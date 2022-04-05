@@ -1,4 +1,4 @@
-import { MouseEvent, ReactElement } from "react";
+import { KeyboardEvent, MouseEvent, ReactElement } from "react";
 import { ChipButtonProps } from "./InternalChipButton";
 import { AvatarProps } from "../Avatar";
 import { IconProps } from "../Icon";
@@ -15,7 +15,7 @@ export interface InternalChipProps {
   readonly active?: boolean;
 
   /**
-   * Makes the chip look and feels uninteractable.
+   * Makes the chip look and feel uninteractable.
    */
   readonly disabled?: boolean;
 
@@ -43,9 +43,29 @@ export interface InternalChipProps {
   readonly suffix?: ReactElement<IconProps | ChipButtonProps>;
 
   /**
+   * The label for the interactive chip element for voice over
+   */
+  readonly ariaLabel?: string;
+
+  /**
+   * Allows the chip to be focused.
+   *
+   * **NOTE**: Clickable chips are focusable by default so you don't need to
+   * specify this prop.
+   *
+   * This has the same effect as HTML [tabindex](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex).
+   */
+  readonly tabIndex?: number;
+
+  /**
    * Callback when the chip itself gets clicked.
    */
   onClick?(
     event: MouseEvent<HTMLDivElement | HTMLInputElement | HTMLButtonElement>,
   ): void;
+
+  /**
+   * Callback for keyboard interaction with chips (e.g., chip deletion).
+   */
+  onKeyDown?(event: KeyboardEvent<HTMLDivElement | HTMLButtonElement>): void;
 }
