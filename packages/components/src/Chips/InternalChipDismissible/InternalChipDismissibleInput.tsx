@@ -98,7 +98,7 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
             role="listbox"
             id={menuId}
             className={styles.menuList}
-            data-testid="menu"
+            data-testid="chip-menu"
           >
             {allOptions.map((option, i) => (
               <button
