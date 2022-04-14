@@ -28,7 +28,7 @@ export default {
       ignore: [],
     }),
     copy({
-      targets: [{ src: "src/icons/Colors.css.d.ts", dest: "dist/icons" }],
+      targets: [{ src: "src/icons/*.css.d.ts", dest: "dist/icons" }],
     }),
   ],
   output: [

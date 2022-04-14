@@ -26,7 +26,7 @@ export type IconNames =
   | "thumbsDown"
   | "truck";
 export type IconColorNames = keyof typeof colors;
-export type IconSizes = "small" | "base" | "large";
+export type IconSizes = keyof typeof sizes;
 interface IconProps {
   /** The icon to show.  */
   readonly name: IconNames;
