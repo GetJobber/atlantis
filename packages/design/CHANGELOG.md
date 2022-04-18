@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.24.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.24.0...@jobber/design@0.24.1) (2022-04-18)
+
+
+### Bug Fixes
+
+* **design:** Add back missing icon colors types ([#880](https://github.com/GetJobber/atlantis/issues/880)) ([6f45adc](https://github.com/GetJobber/atlantis/commit/6f45adc0e12687dd85ba176125727f45f827a64d))
+
+
+
+
+
 # [0.24.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.23.0...@jobber/design@0.24.0) (2022-03-03)
 
 
