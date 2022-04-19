@@ -92,7 +92,23 @@ it("renders a banner with a primary 'learning' action when the type is 'notice'"
   expect(tree).toMatchSnapshot();
 });
 
-test("it should call the onClick when primaryAction is present", () => {
+it("does not wrap the its children in text if the children are not a simple string", () => {
+  const tree = renderer
+    .create(
+      <Banner
+        type="notice"
+        primaryAction={{
+          label: "smash me",
+        }}
+      >
+        <h3>Bruce</h3>
+      </Banner>,
+    )
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
+it("it should call the onClick when primaryAction is present", () => {
   const onClick = jest.fn();
 
   const { getByText } = render(

@@ -1,5 +1,52 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`does not wrap the its children in text if the children are not a simple string 1`] = `
+<div
+  className="flash notice"
+  role="status"
+>
+  <div
+    className="bannerContent dismissibleSpacing"
+  >
+    <h3>
+      Bruce
+    </h3>
+    <div
+      className="bannerAction"
+    >
+      <button
+        className="button small learning tertiary"
+        disabled={false}
+        type="button"
+      >
+        <span
+          className="base extraBold smaller uppercase"
+        >
+          smash me
+        </span>
+      </button>
+    </div>
+  </div>
+  <button
+    aria-label="Close this notification"
+    className="closeButton"
+    onClick={[Function]}
+  >
+    <svg
+      className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+      data-testid="cross"
+      viewBox="0 0 1024 1024"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        className="_1Fz3GVTXQVAtpcbXjBZ1DQ"
+        d="M512 451.669l-225.835-225.835c-8.047-7.772-18.825-12.073-30.012-11.976s-21.888 4.585-29.799 12.495c-7.911 7.911-12.398 18.612-12.495 29.799s4.204 21.964 11.976 30.012l225.835 225.835-225.835 225.835c-7.772 8.047-12.073 18.825-11.976 30.012s4.585 21.888 12.495 29.798c7.91 7.91 18.612 12.399 29.799 12.497s21.965-4.203 30.012-11.977l225.835-225.835 225.835 225.835c8.047 7.774 18.825 12.075 30.012 11.977s21.888-4.587 29.798-12.497c7.91-7.91 12.399-18.611 12.497-29.798 0.094-11.187-4.203-21.965-11.977-30.012l-225.835-225.835 225.835-225.835c4.075-3.936 7.326-8.644 9.562-13.85s3.413-10.804 3.46-16.469c0.051-5.665-1.028-11.284-3.174-16.527s-5.312-10.007-9.318-14.013c-4.006-4.006-8.772-7.174-14.016-9.319-5.239-2.146-10.859-3.225-16.525-3.176s-11.264 1.226-16.469 3.462c-5.205 2.236-9.916 5.487-13.85 9.562l-225.835 225.835z"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
 exports[`renders a banner with a primary 'learning' action when the type is 'notice' 1`] = `
 <div
   className="flash notice"
