@@ -83,7 +83,7 @@ export function Banner({
           role={type === "error" ? "alert" : "status"}
         >
           <div className={contentClassNames}>
-            <Text>{children}</Text>
+            <BannerChildren>{children}</BannerChildren>
             {primaryAction && (
               <div className={styles.bannerAction}>
                 <Button {...primaryAction} />
@@ -108,4 +108,14 @@ export function Banner({
     setShowFlash(!showFlash);
     onDismiss && onDismiss();
   }
+}
+
+function BannerChildren({ children }: { children?: ReactNode }): JSX.Element {
+  if (!children) return <></>;
+
+  if (children && typeof children === "string") {
+    return <Text>{children}</Text>;
+  }
+
+  return <>{children}</>;
 }

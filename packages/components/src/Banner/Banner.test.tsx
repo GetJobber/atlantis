@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { Banner } from ".";
 
 afterEach(cleanup);
@@ -92,7 +92,37 @@ it("renders a banner with a primary 'learning' action when the type is 'notice'"
   expect(tree).toMatchSnapshot();
 });
 
-test("it should call the onClick when primaryAction is present", () => {
+it("wraps its children in text if the children are a simple string", () => {
+  render(
+    <Banner
+      type="notice"
+      primaryAction={{
+        label: "smash me",
+      }}
+    >
+      Bruce
+    </Banner>,
+  );
+  expect(screen.getByText("Bruce")).toBeInstanceOf(HTMLParagraphElement);
+});
+
+it("does not wrap the its children in text if the children are not a simple string", () => {
+  render(
+    <Banner
+      type="notice"
+      primaryAction={{
+        label: "smash me",
+      }}
+    >
+      <h3>Bruce</h3>
+    </Banner>,
+  );
+  const bruceHeading = screen.getByText("Bruce");
+  expect(bruceHeading).toBeInstanceOf(HTMLHeadingElement);
+  expect(bruceHeading.parentElement).toBeInstanceOf(HTMLDivElement);
+});
+
+it("it should call the onClick when primaryAction is present", () => {
   const onClick = jest.fn();
 
   const { getByText } = render(
