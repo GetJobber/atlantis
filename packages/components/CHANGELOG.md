@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.81.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.80.2...@jobber/components@2.81.0) (2022-04-21)
+
+
+### Features
+
+* **components:** only wrap Banner children in Text if they are a simple string.  ([#881](https://github.com/GetJobber/atlantis/issues/881)) ([58a8ac3](https://github.com/GetJobber/atlantis/commit/58a8ac31c0fd4f5f0ae53f30de5f976149dddc5f))
+
+
+
+
+
 ## [2.80.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.80.1...@jobber/components@2.80.2) (2022-04-18)
 
 **Note:** Version bump only for package @jobber/components
