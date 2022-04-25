@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.82.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.81.0...@jobber/components@2.82.0) (2022-04-25)
+
+
+### Features
+
+* **stylelint:** Add alpha-value-notation rule to stylelint ([#836](https://github.com/GetJobber/atlantis/issues/836)) ([ddc7f43](https://github.com/GetJobber/atlantis/commit/ddc7f430d399e3293004d6d27301a3e19f3c5bfa))
+
+
+
+
+
 # [2.81.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.80.2...@jobber/components@2.81.0) (2022-04-21)
 
 

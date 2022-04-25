@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.9.82...@jobber/docz-tools@1.10.0) (2022-04-25)
+
+
+### Features
+
+* **stylelint:** Add alpha-value-notation rule to stylelint ([#836](https://github.com/GetJobber/atlantis/issues/836)) ([ddc7f43](https://github.com/GetJobber/atlantis/commit/ddc7f430d399e3293004d6d27301a3e19f3c5bfa))
+
+
+
+
+
 ## [1.9.82](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.9.81...@jobber/docz-tools@1.9.82) (2022-04-21)
 
 **Note:** Version bump only for package @jobber/docz-tools
