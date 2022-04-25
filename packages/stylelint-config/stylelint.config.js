@@ -12,5 +12,6 @@ module.exports = {
     "color-format/format": { format: "rgb" },
     "plugin/declaration-block-no-ignored-properties": true,
     "order/properties-order": require("./properties-order"),
+    "alpha-value-notation": "number",
   },
 };

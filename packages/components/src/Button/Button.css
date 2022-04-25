@@ -227,12 +227,12 @@ a.button.disabled:hover {
 .loading {
   background-image: linear-gradient(
     135deg,
-    rgba(0, 0, 0, 10%) 0%,
-    rgba(0, 0, 0, 10%) 25%,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.1) 25%,
     transparent 25%,
     transparent 50%,
-    rgba(0, 0, 0, 10%) 50%,
-    rgba(0, 0, 0, 10%) 75%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.1) 75%,
     transparent 75%,
     transparent 100%
   );
@@ -248,12 +248,12 @@ a.button.disabled:hover {
 .primary.loading:not(.subtle) {
   background-image: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 25%) 0%,
-    rgba(255, 255, 255, 25%) 25%,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.25) 25%,
     transparent 25%,
     transparent 50%,
-    rgba(255, 255, 255, 25%) 50%,
-    rgba(255, 255, 255, 25%) 75%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0.25) 75%,
     transparent 75%,
     transparent 100%
   );
