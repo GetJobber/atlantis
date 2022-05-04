@@ -173,6 +173,11 @@ publish whenever a pull request is merged.
 <p>Follow <a href="https://semver.org" target="_blank">semver</a> when choosing versions.</p>
 <code>npm run release-the-kraken</code>
 </details>
+<details>
+<summary>Publishing a failed release to NPM</summary>
+<p>In some cases, the automatic release would successfully bump the version and add a changelog but fails to publish to NPM. When that happens, simply run the code below to send unpublished versions to NPM.</p>
+<code>npm run release:unpublished-package</code>
+</details>
 
 ### Pre-Release
 
