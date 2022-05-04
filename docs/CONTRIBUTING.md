@@ -161,7 +161,7 @@ Want help with your pull request title? We have a
 
 To request a review from Atlantis maintainers, use
 [Github's review tool](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/requesting-a-pull-request-review)
-and request from review from `GetJobber/McWeb`.
+and request from review from `GetJobber/Atlantis`.
 
 ## Guiding Principles
 
