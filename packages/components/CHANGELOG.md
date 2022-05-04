@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.83.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.82.1...@jobber/components@2.83.0) (2022-05-04)
+
+
+### Features
+
+* **components:** update icon colors [JOB-44183] ([#884](https://github.com/GetJobber/atlantis/issues/884)) ([9a8e850](https://github.com/GetJobber/atlantis/commit/9a8e8507d0f6cb594be9358f7d05bdb87f8181b9))
+
+
+
+
+
 ## [2.82.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.82.0...@jobber/components@2.82.1) (2022-05-02)
 
 **Note:** Version bump only for package @jobber/components
