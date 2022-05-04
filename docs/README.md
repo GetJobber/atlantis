@@ -175,7 +175,12 @@ publish whenever a pull request is merged.
 </details>
 <details>
 <summary>Publishing a failed release to NPM</summary>
-<p>In some cases, the automatic release may successfully bump the version and add a [changelog](https://atlantis.getjobber.com/packages-components-changelog) but fail to publish to NPM. If this happens, run the code below to send unpublished versions to NPM.</p>
+<p>
+  In some cases, the automatic release may successfully bump the version and add
+  a <a href="https://atlantis.getjobber.com/packages-components-changelog">changelog</a> but
+  fail to publish to NPM. If this happens and you're one of the Atlantis NPM
+  collaborators, run the code below to send unpublished versions to NPM.
+</p>
 <code>npm run release:unpublished-package</code>
 </details>
 
