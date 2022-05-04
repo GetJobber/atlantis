@@ -158,12 +158,13 @@ jobs:
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/atlantis/.npmrc
       - run:
           name: Release Packages
-          command: |
-            if git log --max-count=1 --pretty=%s | grep -q "chore(release): Publish"; then
-              echo "Skipping run on release commit."
-            else
-              npm run ci:release
-            fi
+          command: npm whoami
+          # command: |
+            # if git log --max-count=1 --pretty=%s | grep -q "chore(release): Publish"; then
+            #   echo "Skipping run on release commit."
+            # else
+            #   npm run ci:release
+            # fi
 
 workflows:
   version: 2
@@ -174,27 +175,28 @@ workflows:
       - install_dependencies:
           requires:
             - checkout_code
-      - check_for_manual_release:
-          requires:
-            - install_dependencies
-      - lint_javascript:
-          requires:
-            - check_for_manual_release
-      - lint_css:
-          requires:
-            - check_for_manual_release
-      - test:
-          requires:
-            - check_for_manual_release
-      - build_docs:
-          requires:
-            - check_for_manual_release
+      # - check_for_manual_release:
+      #     requires:
+      #       - install_dependencies
+      # - lint_javascript:
+      #     requires:
+      #       - check_for_manual_release
+      # - lint_css:
+      #     requires:
+      #       - check_for_manual_release
+      # - test:
+      #     requires:
+      #       - check_for_manual_release
+      # - build_docs:
+      #     requires:
+      #       - check_for_manual_release
       - release:
-          filters:
-            branches:
-              only: "master"
+          # filters:
+          #   branches:
+          #     only: "master"
           requires:
-            - lint_javascript
-            - lint_css
-            - test
-            - build_docs
+            # - lint_javascript
+            # - lint_css
+            # - test
+            # - build_docs
+            - install_dependencies
