@@ -1,5 +1,5 @@
 .icon {
-  fill: var(--color-greyBlue--dark);
+  fill: var(--color-greyBlue);
   display: inline-block;
   vertical-align: middle;
 }
@@ -37,26 +37,30 @@
   fill: var(--color-yellow);
 }
 
-.request {
-  fill: var(--color-request);
+.quote {
+  fill: var(--color-quote);
 }
 
-.userUnassigned,
-.reminder,
-.trash {
-  fill: var(--color-red);
+.request {
+  fill: var(--color-request);
 }
 
 .task {
   fill: var(--color-navy);
 }
 
-.timer {
-  fill: var(--color-lightBlue);
+.userUnassigned,
+.reminder,
+.trash {
+  fill: var(--color-destructive);
 }
 
-.quote {
-  fill: var(--color-quote);
+.checkmark {
+  fill: var(--color-success);
+}
+
+.timer {
+  fill: var(--color-lightBlue);
 }
 
 .invoice,
@@ -67,7 +71,7 @@
 }
 
 .badInvoice {
-  fill: var(--color-red);
+  fill: var(--color-critical);
 }
 
 .payment,
@@ -75,20 +79,18 @@
   fill: var(--color-orange);
 }
 
-.edit {
-  fill: var(--color-brown);
-}
-
 .archive {
   fill: var(--color-blue);
 }
 
-.excel {
-  fill: rgb(31, 115, 71);
+.video {
+  fill: var(--color-lightBlue);
 }
 
-.file {
-  fill: var(--color-greyBlue);
+/* non-Atlantis colors to match brand colors of these file-types */
+
+.excel {
+  fill: rgb(31, 115, 71);
 }
 
 .pdf {
@@ -97,8 +99,4 @@
 
 .word {
   fill: rgb(41, 86, 154);
-}
-
-.video {
-  fill: var(--color-lightBlue);
 }
