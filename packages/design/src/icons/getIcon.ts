@@ -100,6 +100,7 @@ function getPathClassNames(name: string, color?: IconColorNames) {
     [styles.timer]: name === "timer",
     [styles.quote]: name === "quote",
     [styles.invoice]: name === "invoice",
+    [styles.checkmark]: name === "checkmark",
     [styles.invoiceLater]: name === "invoiceLater",
     [styles.badInvoice]: name === "badInvoice",
     [styles.sendInvoice]: name === "sendInvoice",

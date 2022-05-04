@@ -19,6 +19,7 @@ declare const styles: {
   readonly "task": string;
   readonly "timer": string;
   readonly "quote": string;
+  readonly "checkmark": string;
   readonly "invoice": string;
   readonly "invoiceLater": string;
   readonly "sendInvoice": string;
