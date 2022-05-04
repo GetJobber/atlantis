@@ -12,14 +12,14 @@ declare const styles: {
   readonly "visit": string;
   readonly "moveVisits": string;
   readonly "event": string;
+  readonly "quote": string;
   readonly "request": string;
+  readonly "task": string;
   readonly "userUnassigned": string;
   readonly "reminder": string;
   readonly "trash": string;
-  readonly "task": string;
-  readonly "timer": string;
-  readonly "quote": string;
   readonly "checkmark": string;
+  readonly "timer": string;
   readonly "invoice": string;
   readonly "invoiceLater": string;
   readonly "sendInvoice": string;
@@ -27,13 +27,11 @@ declare const styles: {
   readonly "badInvoice": string;
   readonly "payment": string;
   readonly "expense": string;
-  readonly "edit": string;
   readonly "archive": string;
+  readonly "video": string;
   readonly "excel": string;
-  readonly "file": string;
   readonly "pdf": string;
   readonly "word": string;
-  readonly "video": string;
 };
 export = styles;
 
