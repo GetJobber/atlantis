@@ -173,6 +173,7 @@ function ButtonInternals({ label, icon, size = "base" }: ButtonProps) {
 }
 
 function getTypeSizes(size: string) {
+  // release me
   switch (size) {
     case "small":
       return "smaller";
