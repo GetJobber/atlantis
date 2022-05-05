@@ -158,7 +158,7 @@ jobs:
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/atlantis/.npmrc
       - run:
           name: Release Packages
-          command: npm run ci:release
+          command: npm run prerelease
           # command: |
             # if git log --max-count=1 --pretty=%s | grep -q "chore(release): Publish"; then
             #   echo "Skipping run on release commit."

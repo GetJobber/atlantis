@@ -22,7 +22,7 @@
     "install": "npm run lerna:bootstrap",
     "release-the-kraken": "npm ci && lerna publish",
     "prerelease": "lerna publish --canary --dist-tag next --preid pre",
-    "ci:release": "lerna publish",
+    "ci:release": "lerna publish --yes",
     "version": "node ensureChangelogHeaders.js",
     "convertIcoMoon": "scripts/convertIcoMoon.ts",
     "preventManualRelease": "node scripts/preventManualRelease.js",
