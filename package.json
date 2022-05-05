@@ -21,7 +21,7 @@
     "lint:fix": "npm run lint:js -- --fix && npm run lint:css -- --fix && npm run lint:markdown -- --write",
     "install": "npm run lerna:bootstrap",
     "release-the-kraken": "npm ci && lerna publish",
-    "prerelease": "lerna publish --canary --dist-tag next --preid pre",
+    "prerelease": "lerna publish --canary --dist-tag next --preid pre --yes",
     "ci:release": "lerna publish --yes",
     "version": "node ensureChangelogHeaders.js",
     "convertIcoMoon": "scripts/convertIcoMoon.ts",

@@ -158,7 +158,7 @@ export function Button(props: ButtonProps) {
 
 function ButtonInternals({ label, icon, size = "base" }: ButtonProps) {
   return (
-    <div>
+    <div data-method>
       {icon && <Icon name={icon} size={size} />}
       <Typography
         element="span"
