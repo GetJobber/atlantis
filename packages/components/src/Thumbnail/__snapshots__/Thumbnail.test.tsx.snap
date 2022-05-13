@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a Thumbnail 1`] = `
+<div
+  className="thumbnail"
+>
+  <img
+    alt="Image could not be rendered"
+    height={56}
+    width={56}
+  />
+</div>
+`;
+
+exports[`renders a loud Thumbnail 1`] = `
+<div
+  className="thumbnail"
+>
+  <img
+    alt="Image could not be rendered"
+    height={56}
+    width={56}
+  />
+</div>
+`;
