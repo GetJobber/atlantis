@@ -1,5 +1,5 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import renderer, { act } from "react-test-renderer";
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import { FormatFile } from ".";
 
@@ -37,7 +37,7 @@ it("renders an image when provided as src", done => {
   });
 });
 
-it("it should call the delete handler", () => {
+it("it should call the delete handler", async () => {
   const testFile = {
     key: "234",
     name: "TPS Reports",
@@ -46,11 +46,63 @@ it("it should call the delete handler", () => {
     progress: 1,
   };
   const deleteHandler = jest.fn();
-  const { getByLabelText } = render(
-    <FormatFile onDelete={deleteHandler} file={testFile} />,
+  const { getByLabelText, getByText } = render(
+    <body>
+      <FormatFile onDelete={deleteHandler} file={testFile} />
+    </body>,
   );
 
-  fireEvent.click(getByLabelText("Delete"));
+  act(() => {
+    fireEvent.click(getByLabelText("Delete Thumbnail"));
+  });
+
+  await waitFor(() => {
+    expect(
+      getByText("Are you sure you want to delete this file?"),
+    ).toBeInstanceOf(HTMLParagraphElement);
+  });
+
+  act(() => {
+    fireEvent.click(getByText("Delete"));
+  });
 
   expect(deleteHandler).toHaveBeenCalled();
+});
+
+describe("when the format file is a thumbnail", () => {
+  describe("when the thumbnail is default sized", () => {
+    it("renders a FormatFile as a default sized thumbnail", () => {
+      const testFile = {
+        key: "368",
+        name: "Pink Dolphin",
+        type: "image/png",
+        src: () => Promise.resolve("https://source.unsplash.com/250x250"),
+        size: 1024,
+        progress: 1,
+      };
+      const tree = renderer
+        .create(<FormatFile display="compact" file={testFile} />)
+        .toJSON();
+      expect(tree).toMatchSnapshot();
+    });
+  });
+
+  describe("when the thumbnail is large sized", () => {
+    it("renders a FormatFile as a larget sized thumbnail", () => {
+      const testFile = {
+        key: "368",
+        name: "Pink Dolphin",
+        type: "image/png",
+        src: () => Promise.resolve("https://source.unsplash.com/250x250"),
+        size: 1024,
+        progress: 1,
+      };
+      const tree = renderer
+        .create(
+          <FormatFile display="compact" displaySize="large" file={testFile} />,
+        )
+        .toJSON();
+      expect(tree).toMatchSnapshot();
+    });
+  });
 });
