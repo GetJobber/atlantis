@@ -3,16 +3,14 @@
 }
 
 .highlight {
-  margin-left: calc(-1 * var(--space-smaller));
-  padding: 0 var(--space-smaller);
+  display: inline;
+  margin: 0 calc(-1 * var(--space-smaller));
+  padding: var(--space-smaller);
   font-family: var(--typography--fontFamily-display);
+  font-style: normal;
   font-weight: inherit;
-  background-image: linear-gradient(
-    to left,
-    var(--color-brand--highlight),
-    var(--color-brand--highlight)
-  );
-  background-position: left 75%;
-  background-repeat: repeat-x;
-  background-size: 100% 52%;
+  background-image: url(../../Emphasis/EmphasisBrushstroke.svg);
+  background-position: center 90%;
+  background-repeat: no-repeat;
+  background-size: 100% var(--space-small);
 }
