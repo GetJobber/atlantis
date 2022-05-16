@@ -1,6 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import styles from "./Thumbnail.css";
+import { Button } from "../Button";
 
 const sizeToDimensions = {
   default: {
@@ -25,17 +26,22 @@ interface ThumbnailProps {
   readonly src: string;
 
   /**
-   * Source of the image the thumbnail displays
-   */
-  readonly deletable: boolean;
-
-  /**
    * Click handler.
    */
   onClick?(event: React.MouseEvent<HTMLDivElement>): void;
+
+  /**
+   * On delete button clicked handler.
+   */
+  onDeleteClicked?(): void;
 }
 
-export function Thumbnail({ size = "default", src, onClick }: ThumbnailProps) {
+export function Thumbnail({
+  size = "default",
+  src,
+  onClick,
+  onDeleteClicked,
+}: ThumbnailProps) {
   const className = classnames(styles.thumbnail);
   const thumbnailDimensions = sizeToDimensions[size];
 
@@ -47,6 +53,17 @@ export function Thumbnail({ size = "default", src, onClick }: ThumbnailProps) {
         width={thumbnailDimensions.width}
         height={thumbnailDimensions.height}
       />
+      {onDeleteClicked && (
+        <div className={styles.deleteButton}>
+          <Button
+            onClick={() => onDeleteClicked?.()}
+            variation="destructive"
+            type="tertiary"
+            icon="trash"
+            ariaLabel="Delete Thumbnail"
+          />
+        </div>
+      )}
     </div>
   );
 }
