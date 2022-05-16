@@ -35,9 +35,11 @@ import { FormatFile } from "@jobber/components/FormatFile";
         name: "myballisbigandroundIamrollingitontheground.png",
         type: "image/png",
         size: 213402324,
-        progress: 0.3,
+        progress: 0.4,
         src: () => Promise.resolve("https://source.unsplash.com/250x250"),
       }}
+      displaySize="large"
+      display="thumbnail"
       onDelete={() => alert("🧨BALEETED!💥")}
     />
     <FormatFile

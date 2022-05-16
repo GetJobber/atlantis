@@ -76,3 +76,40 @@
 .actionBlock {
   padding: 0 var(--file-card--base-padding) 0 0;
 }
+
+.thumbnail {
+  --message-weight: 400;
+  display: inline-block;
+
+  position: relative;
+
+  font-weight: var(--message-weight);
+}
+
+.deleteButton {
+  position: absolute;
+  top: var(--space-smaller);
+  right: var(--space-smaller);
+  z-index: 1;
+}
+
+.bold {
+  --message-weight: 800;
+  transform: uppercase;
+}
+
+.centered {
+  display: flex;
+  position: relative;
+  height: 100%;
+  margin: 0 var(--space-small);
+  align-items: center;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}

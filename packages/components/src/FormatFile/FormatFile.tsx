@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { PropsWithChildren, useState } from "react";
 import filesize from "filesize";
+import classnames from "classnames";
 import { IconNames } from "@jobber/design";
 import styles from "./FormatFile.css";
 import { Button } from "../Button";
@@ -7,6 +8,18 @@ import { Icon } from "../Icon";
 import { Typography } from "../Typography";
 import { ProgressBar } from "../ProgressBar";
 import { FileUpload } from "../InputFile";
+import { ConfirmationModal } from "../ConfirmationModal";
+
+const sizeToDimensions = {
+  default: {
+    width: 56,
+    height: 56,
+  },
+  large: {
+    width: 168,
+    height: 168,
+  },
+};
 
 interface FormatFileProps {
   /**
@@ -15,14 +28,43 @@ interface FormatFileProps {
   readonly file: FileUpload;
 
   /**
+   * TODO: change me
+   *
+   * @default "file"
+   */
+  readonly display?: "file" | "thumbnail";
+
+  /**
+   * TODO: change me
+   *
+   * @default "default"
+   */
+  readonly displaySize?: keyof typeof sizeToDimensions;
+
+  /**
+   * Click handler.
+   */
+  onClick?(event: React.MouseEvent<HTMLDivElement>): void;
+
+  /**
    * onDelete callback - this function will be called when the delete action is triggered
    */
   onDelete?(): void;
 }
 
-export function FormatFile({ file, onDelete }: FormatFileProps) {
+export function FormatFile({
+  file,
+  display = "file",
+  displaySize = "default",
+  onDelete,
+  onClick,
+}: FormatFileProps) {
   const [imageSource, setImageSource] = useState<string>();
   const isComplete = file.progress >= 1;
+
+  const className = classnames(styles.thumbnail);
+  const thumbnailDimensions = sizeToDimensions[displaySize];
+  const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
 
   const iconName = getIconNameFromType(file.type);
   const fileSize = getHumanReadableFileSize(file.size);
@@ -34,41 +76,91 @@ export function FormatFile({ file, onDelete }: FormatFileProps) {
   const style = imageSource ? { backgroundImage: `url(${imageSource})` } : {};
 
   return (
-    <div className={styles.formatFile}>
-      <div className={styles.imageBlock} style={style} data-testid="imageBlock">
-        {!imageSource && (
-          <div className={styles.icon}>
-            <Icon name={iconName} />
+    <>
+      {display === "file" && (
+        <div className={styles.formatFile}>
+          <div
+            className={styles.imageBlock}
+            style={style}
+            data-testid="imageBlock"
+          >
+            {!imageSource && (
+              <div className={styles.icon}>
+                <Icon name={iconName} />
+              </div>
+            )}
+            {!isComplete && (
+              <div className={styles.progress}>
+                <ProgressBar
+                  size="small"
+                  currentStep={file.progress * 100}
+                  totalSteps={100}
+                />
+              </div>
+            )}
           </div>
-        )}
-        {!isComplete && (
-          <div className={styles.progress}>
-            <ProgressBar
-              size="small"
-              currentStep={file.progress * 100}
-              totalSteps={100}
-            />
+          <div className={styles.contentBlock}>
+            <Typography element="span">{file.name}</Typography>
+            <Typography element="p" size="small" textColor="greyBlueDark">
+              {fileSize}
+            </Typography>
           </div>
-        )}
-      </div>
-      <div className={styles.contentBlock}>
-        <Typography element="span">{file.name}</Typography>
-        <Typography element="p" size="small" textColor="greyBlueDark">
-          {fileSize}
-        </Typography>
-      </div>
-      {isComplete && onDelete && (
-        <div className={styles.actionBlock}>
-          <Button
-            onClick={onDelete}
-            type="tertiary"
-            variation="destructive"
-            icon="trash"
-            ariaLabel="Delete"
-          />
+          {isComplete && onDelete && (
+            <div className={styles.actionBlock}>
+              <Button
+                onClick={onDelete}
+                type="tertiary"
+                variation="destructive"
+                icon="trash"
+                ariaLabel="Delete"
+              />
+            </div>
+          )}
         </div>
       )}
-    </div>
+      {display === "thumbnail" && (
+        <div className={className} onClick={onClick}>
+          <img
+            src={imageSource}
+            alt="Image could not be rendered"
+            width={thumbnailDimensions.width}
+            height={thumbnailDimensions.height}
+          />
+          {isComplete && onDelete && (
+            <>
+              <div className={styles.deleteButton}>
+                <Button
+                  onClick={() => setDeleteConfirmationOpen(true)}
+                  variation="destructive"
+                  type="tertiary"
+                  icon="trash"
+                  ariaLabel="Delete Thumbnail"
+                />
+              </div>
+              <ConfirmationModal
+                title="Should we?"
+                message={`Let's do **something**!`}
+                confirmLabel="Do it"
+                open={deleteConfirmationOpen}
+                onConfirm={() => onDelete?.()}
+                onRequestClose={() => setDeleteConfirmationOpen(false)}
+              />
+            </>
+          )}
+          {!isComplete && (
+            <Overlay>
+              <Centered>
+                <ProgressBar
+                  size={displaySize === "default" ? "small" : "base"}
+                  currentStep={file.progress * 100}
+                  totalSteps={100}
+                />
+              </Centered>
+            </Overlay>
+          )}
+        </div>
+      )}
+    </>
   );
 }
 
@@ -88,4 +180,13 @@ function getIconNameFromType(mimeType: string): IconNames {
     default:
       return "file";
   }
+}
+
+function Overlay({ children }: PropsWithChildren<{}>) {
+  return <div className={styles.overlay}>{children}</div>;
+}
+
+function Centered({ children }: PropsWithChildren<{}>) {
+  // Note: this HIGHLY experimental Centered component is applying margin.
+  return <div className={styles.centered}>{children}</div>;
 }
