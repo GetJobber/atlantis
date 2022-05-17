@@ -54,3 +54,45 @@ it("it should call the delete handler", () => {
 
   expect(deleteHandler).toHaveBeenCalled();
 });
+
+describe("when the format file is a thumbnail", () => {
+  describe("when the thumbnail is default sized", () => {
+    it("renders a FormatFile as a default sized thumbnail", () => {
+      const testFile = {
+        key: "368",
+        name: "Pink Dolphin",
+        type: "image/png",
+        src: () => Promise.resolve("https://source.unsplash.com/250x250"),
+        size: 1024,
+        progress: 1,
+      };
+      const tree = renderer
+        .create(<FormatFile display="thumbnail" file={testFile} />)
+        .toJSON();
+      expect(tree).toMatchSnapshot();
+    });
+  });
+
+  describe("when the thumbnail is large sized", () => {
+    it("renders a FormatFile as a larget sized thumbnail", () => {
+      const testFile = {
+        key: "368",
+        name: "Pink Dolphin",
+        type: "image/png",
+        src: () => Promise.resolve("https://source.unsplash.com/250x250"),
+        size: 1024,
+        progress: 1,
+      };
+      const tree = renderer
+        .create(
+          <FormatFile
+            display="thumbnail"
+            displaySize="large"
+            file={testFile}
+          />,
+        )
+        .toJSON();
+      expect(tree).toMatchSnapshot();
+    });
+  });
+});
