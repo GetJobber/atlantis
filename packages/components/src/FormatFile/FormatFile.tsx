@@ -168,9 +168,9 @@ export function FormatFile({
                 />
               </div>
               <ConfirmationModal
-                title="Should we?"
-                message={`Let's do **something**!`}
-                confirmLabel="Do it"
+                title="Confirm Deletion"
+                message={`Are you sure you want to delete this thumbnail?`}
+                confirmLabel="Yes"
                 open={deleteConfirmationOpen}
                 onConfirm={() => onDelete?.()}
                 onRequestClose={() => setDeleteConfirmationOpen(false)}
