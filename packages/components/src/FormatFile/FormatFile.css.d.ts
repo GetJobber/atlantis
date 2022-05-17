@@ -2,6 +2,7 @@ declare const styles: {
   readonly "formatFile": string;
   readonly "imageBlock": string;
   readonly "icon": string;
+  readonly "fileContentWrapper": string;
   readonly "thumbailIconWrapper": string;
   readonly "thumbnailFilename": string;
   readonly "thumbnailIcon": string;

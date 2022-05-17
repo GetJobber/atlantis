@@ -135,9 +135,11 @@ export function FormatFile({
             data-testid="imageBlock"
           >
             {!imageSource && (
-              <div className={styles.thumbailIconWrapper}>
-                <div className={styles.thumbnailIcon}>
-                  <Icon name={iconName} />
+              <div className={styles.fileContentWrapper}>
+                <div className={styles.thumbailIconWrapper}>
+                  <div className={styles.thumbnailIcon}>
+                    <Icon name={iconName} />
+                  </div>
                 </div>
                 <div className={styles.thumbnailFilename}>
                   <Typography element="span">{file.name}</Typography>
@@ -154,12 +156,6 @@ export function FormatFile({
               </div>
             )}
           </div>
-          {/* <img
-            src={imageSource}
-            alt="Image could not be rendered"
-            width={thumbnailDimensions.width}
-            height={thumbnailDimensions.height}
-          /> */}
           {isComplete && onDelete && (
             <>
               <div className={styles.deleteButton}>

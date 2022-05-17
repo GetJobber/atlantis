@@ -21,7 +21,6 @@
 
 .imageBlock {
   display: flex;
-  position: relative;
   width: var(--file-card--height);
   height: 100%;
   box-sizing: border-box;
@@ -37,8 +36,6 @@
 
 .imageBlock::before {
   content: "";
-  display: block;
-  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
@@ -51,17 +48,26 @@
   margin: 0 auto;
 }
 
+.fileContentWrapper {
+  display: flex;
+  width: inherit;
+  height: inherit;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .thumbailIconWrapper {
-  flex-wrap: wrap;
-  margin: auto;
+  align-self: center;
 }
 
 .thumbnailFilename {
-  margin: 0 auto;
+  position: absolute;
+  bottom: 5px;
+  left: 9px;
 }
 
 .thumbnailIcon {
-  margin: 0 auto;
   text-align: center;
 }
 
@@ -83,6 +89,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .contentBlock p {
   margin: 0;
 }
@@ -97,7 +104,6 @@
   align-items: center;
   position: relative;
   height: 50px;
-
   font-weight: var(--message-weight);
 }
 
