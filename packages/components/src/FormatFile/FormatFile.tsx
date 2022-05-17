@@ -177,17 +177,6 @@ export function FormatFile({
               />
             </>
           )}
-          {/* {!isComplete && (
-            <Overlay>
-              <Centered>
-                <ProgressBar
-                  size={displaySize === "default" ? "small" : "base"}
-                  currentStep={file.progress * 100}
-                  totalSteps={100}
-                />
-              </Centered>
-            </Overlay>
-          )} */}
         </div>
       )}
     </>
