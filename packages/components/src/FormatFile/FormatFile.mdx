@@ -31,31 +31,6 @@ import { FormatFile } from "@jobber/components/FormatFile";
   <Content>
     <FormatFile
       file={{
-        key: "abc",
-        name: "myballisbigandroundIamrollingitontheground.png",
-        type: "image/png",
-        size: 213402324,
-        progress: 0.4,
-        src: () => Promise.resolve("https://source.unsplash.com/250x250"),
-      }}
-      displaySize="large"
-      display="thumbnail"
-      onDelete={() => alert("🧨BALEETED!💥")}
-    />
-    <FormatFile
-      file={{
-        key: "mosdef",
-        name: "tps_report.png",
-        type: "application/pdf",
-        size: 2134023,
-        progress: 1,
-      }}
-      displaySize="large"
-      display="thumbnail"
-      onDelete={() => alert("🧨BALEETED!💥")}
-    />
-    <FormatFile
-      file={{
         key: "mosdef",
         name: "tps_report.png",
         type: "application/pdf",
@@ -67,6 +42,12 @@ import { FormatFile } from "@jobber/components/FormatFile";
   </Content>
 </Playground>
 
+## Props
+
+<Props of={FormatFile} />
+
+---
+
 ## Design and Usage Guidelines
 
 When contributing to, or consuming the `InputFile` component, consider the
@@ -75,11 +56,31 @@ following:
 - FormatFile components should take up the full width of the parent container (1
   or 2 files per row).
 
-## Props
+### Display
 
-<Props of={FormatFile} />
+Format files can be displayed as either a file row or a thumbnail.
 
----
+### Thumbnail
+
+Used to display a cropped smaller version of the file or image that has been
+uploaded by the SP
+
+<Playground>
+  <Content>
+    <FormatFile
+      file={{
+        key: "abc",
+        name: "myballisbigandroundIamrollingitontheground.png",
+        type: "image/png",
+        size: 213402324,
+        progress: 1,
+        src: () => Promise.resolve("https://source.unsplash.com/250x250"),
+      }}
+      displaySize="large"
+      display="thumbnail"
+    />
+  </Content>
+</Playground>
 
 ## Related components
 

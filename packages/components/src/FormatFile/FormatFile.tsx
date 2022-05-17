@@ -27,21 +27,21 @@ interface FormatFileProps {
   readonly file: FileUpload;
 
   /**
-   * TODO: change me
+   * To display as either a file row or thumbnail
    *
    * @default "file"
    */
   readonly display?: "file" | "thumbnail";
 
   /**
-   * TODO: change me
+   * The base dimensions of the thumbnail
    *
    * @default "default"
    */
   readonly displaySize?: keyof typeof sizeToDimensions;
 
   /**
-   * Click handler.
+   * Function to execute when format file is clicked
    */
   onClick?(event: React.MouseEvent<HTMLDivElement>): void;
 
