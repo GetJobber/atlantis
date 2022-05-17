@@ -101,10 +101,11 @@
 .thumbnail {
   --message-weight: 400;
   display: flex;
-  align-items: center;
+  display: inline-block;
   position: relative;
   height: 50px;
   font-weight: var(--message-weight);
+  align-items: center;
 }
 
 .deleteButton {
