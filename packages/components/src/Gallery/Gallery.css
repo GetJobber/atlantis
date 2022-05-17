@@ -1,0 +1,11 @@
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-small);
+}
+
+.galleryLarge {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-base);
+}
