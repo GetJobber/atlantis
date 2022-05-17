@@ -1,6 +1,5 @@
-import React, { PropsWithChildren, useState } from "react";
+import React, { useState } from "react";
 import filesize from "filesize";
-import classnames from "classnames";
 import { IconNames } from "@jobber/design";
 import styles from "./FormatFile.css";
 import { Button } from "../Button";
@@ -62,7 +61,6 @@ export function FormatFile({
   const [imageSource, setImageSource] = useState<string>();
   const isComplete = file.progress >= 1;
 
-  const className = classnames(styles.thumbnail);
   const thumbnailDimensions = sizeToDimensions[displaySize];
   const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
 
@@ -119,13 +117,49 @@ export function FormatFile({
         </div>
       )}
       {display === "thumbnail" && (
-        <div className={className} onClick={onClick}>
-          <img
+        <div
+          className={styles.thumbnail}
+          style={{
+            width: thumbnailDimensions.width,
+            height: thumbnailDimensions.height,
+          }}
+          onClick={onClick}
+        >
+          <div
+            className={styles.imageBlock}
+            style={{
+              ...style,
+              width: "inherit",
+              height: "inherit",
+            }}
+            data-testid="imageBlock"
+          >
+            {!imageSource && (
+              <div className={styles.thumbailIconWrapper}>
+                <div className={styles.thumbnailIcon}>
+                  <Icon name={iconName} />
+                </div>
+                <div className={styles.thumbnailFilename}>
+                  <Typography element="span">{file.name}</Typography>
+                </div>
+              </div>
+            )}
+            {!isComplete && (
+              <div className={styles.progress}>
+                <ProgressBar
+                  size="small"
+                  currentStep={file.progress * 100}
+                  totalSteps={100}
+                />
+              </div>
+            )}
+          </div>
+          {/* <img
             src={imageSource}
             alt="Image could not be rendered"
             width={thumbnailDimensions.width}
             height={thumbnailDimensions.height}
-          />
+          /> */}
           {isComplete && onDelete && (
             <>
               <div className={styles.deleteButton}>
@@ -147,7 +181,7 @@ export function FormatFile({
               />
             </>
           )}
-          {!isComplete && (
+          {/* {!isComplete && (
             <Overlay>
               <Centered>
                 <ProgressBar
@@ -157,7 +191,7 @@ export function FormatFile({
                 />
               </Centered>
             </Overlay>
-          )}
+          )} */}
         </div>
       )}
     </>
@@ -180,13 +214,4 @@ function getIconNameFromType(mimeType: string): IconNames {
     default:
       return "file";
   }
-}
-
-function Overlay({ children }: PropsWithChildren<{}>) {
-  return <div className={styles.overlay}>{children}</div>;
-}
-
-function Centered({ children }: PropsWithChildren<{}>) {
-  // Note: this HIGHLY experimental Centered component is applying margin.
-  return <div className={styles.centered}>{children}</div>;
 }

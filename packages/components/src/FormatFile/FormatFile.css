@@ -51,6 +51,20 @@
   margin: 0 auto;
 }
 
+.thumbailIconWrapper {
+  flex-wrap: wrap;
+  margin: auto;
+}
+
+.thumbnailFilename {
+  margin: 0 auto;
+}
+
+.thumbnailIcon {
+  margin: 0 auto;
+  text-align: center;
+}
+
 .progress {
   display: flex;
   position: absolute;
@@ -79,9 +93,10 @@
 
 .thumbnail {
   --message-weight: 400;
-  display: inline-block;
-
+  display: flex;
+  align-items: center;
   position: relative;
+  height: 50px;
 
   font-weight: var(--message-weight);
 }
