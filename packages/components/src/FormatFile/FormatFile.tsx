@@ -23,21 +23,33 @@ const sizeToDimensions = {
 
 const deleteButton = (
   deleteButtonStyle: any,
+  deleteConfirmationOpen: boolean,
   setDeleteConfirmationOpen: any,
   size?: keyof typeof sizeToDimensions,
+  onDelete?: () => void,
 ) => {
   const buttonSize = size === "default" ? "small" : "base";
   return (
-    <div className={deleteButtonStyle}>
-      <Button
-        onClick={() => setDeleteConfirmationOpen(true)}
-        variation="destructive"
-        type="tertiary"
-        icon="trash"
-        ariaLabel="Delete Thumbnail"
-        size={buttonSize}
+    <>
+      <div className={deleteButtonStyle}>
+        <Button
+          onClick={() => setDeleteConfirmationOpen(true)}
+          variation="destructive"
+          type="tertiary"
+          icon="trash"
+          ariaLabel="Delete Thumbnail"
+          size={buttonSize}
+        />
+      </div>
+      <ConfirmationModal
+        title="Confirm Deletion"
+        message={`Are you sure you want to delete this thumbnail?`}
+        confirmLabel="Yes"
+        open={deleteConfirmationOpen}
+        onConfirm={() => onDelete?.()}
+        onRequestClose={() => setDeleteConfirmationOpen(false)}
       />
-    </div>
+    </>
   );
 };
 
@@ -127,7 +139,15 @@ export function FormatFile({
             </Typography>
           </div>
           {isComplete && onDelete && (
-            <> {deleteButton(styles.actionBlock, setDeleteConfirmationOpen)} </>
+            <>
+              {deleteButton(
+                styles.actionBlock,
+                deleteConfirmationOpen,
+                setDeleteConfirmationOpen,
+                "default",
+                onDelete,
+              )}
+            </>
           )}
         </div>
       )}
@@ -180,17 +200,19 @@ export function FormatFile({
             <>
               {deleteButton(
                 styles.deleteButton,
+                deleteConfirmationOpen,
                 setDeleteConfirmationOpen,
                 displaySize,
+                onDelete,
               )}
-              <ConfirmationModal
+              {/* <ConfirmationModal
                 title="Confirm Deletion"
                 message={`Are you sure you want to delete this thumbnail?`}
                 confirmLabel="Yes"
                 open={deleteConfirmationOpen}
                 onConfirm={() => onDelete?.()}
                 onRequestClose={() => setDeleteConfirmationOpen(false)}
-              />
+              /> */}
             </>
           )}
         </div>
