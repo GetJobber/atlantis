@@ -3,57 +3,14 @@ import filesize from "filesize";
 import classNames from "classnames";
 import { IconNames } from "@jobber/design";
 import styles from "./FormatFile.css";
-import { Button } from "../Button";
+import { FormatFileDeleteButton } from "./FormatFileDeleteButton";
+import { sizeToDimensions } from "./sizeToDimensions";
 import { Icon } from "../Icon";
 import { Typography } from "../Typography";
 import { ProgressBar } from "../ProgressBar";
 import { FileUpload } from "../InputFile";
-import { ConfirmationModal } from "../ConfirmationModal";
 
-const sizeToDimensions = {
-  default: {
-    width: 56,
-    height: 56,
-  },
-  large: {
-    width: 168,
-    height: 168,
-  },
-};
-
-const deleteButton = (
-  deleteButtonStyle: any,
-  deleteConfirmationOpen: boolean,
-  setDeleteConfirmationOpen: any,
-  size?: keyof typeof sizeToDimensions,
-  onDelete?: () => void,
-) => {
-  const buttonSize = size === "default" ? "small" : "base";
-  return (
-    <>
-      <div className={deleteButtonStyle}>
-        <Button
-          onClick={() => setDeleteConfirmationOpen(true)}
-          variation="destructive"
-          type="tertiary"
-          icon="trash"
-          ariaLabel="Delete Thumbnail"
-          size={buttonSize}
-        />
-      </div>
-      <ConfirmationModal
-        title="Confirm Deletion"
-        message={`Are you sure you want to delete this thumbnail?`}
-        confirmLabel="Yes"
-        open={deleteConfirmationOpen}
-        onConfirm={() => onDelete?.()}
-        onRequestClose={() => setDeleteConfirmationOpen(false)}
-      />
-    </>
-  );
-};
-
-const progressBar = (file: any) => (
+const progressBar = (file: FileUpload) => (
   <div className={styles.progress}>
     <ProgressBar
       size="small"
@@ -140,13 +97,12 @@ export function FormatFile({
           </div>
           {isComplete && onDelete && (
             <>
-              {deleteButton(
-                styles.actionBlock,
-                deleteConfirmationOpen,
-                setDeleteConfirmationOpen,
-                "default",
-                onDelete,
-              )}
+              <FormatFileDeleteButton
+                deleteButtonStyle={styles.actionBlock}
+                deleteConfirmationOpen={deleteConfirmationOpen}
+                setDeleteConfirmationOpen={setDeleteConfirmationOpen}
+                onDelete={onDelete}
+              />
             </>
           )}
         </div>
@@ -198,21 +154,13 @@ export function FormatFile({
           </div>
           {isComplete && onDelete && (
             <>
-              {deleteButton(
-                styles.deleteButton,
-                deleteConfirmationOpen,
-                setDeleteConfirmationOpen,
-                displaySize,
-                onDelete,
-              )}
-              {/* <ConfirmationModal
-                title="Confirm Deletion"
-                message={`Are you sure you want to delete this thumbnail?`}
-                confirmLabel="Yes"
-                open={deleteConfirmationOpen}
-                onConfirm={() => onDelete?.()}
-                onRequestClose={() => setDeleteConfirmationOpen(false)}
-              /> */}
+              <FormatFileDeleteButton
+                deleteButtonStyle={styles.deleteButton}
+                deleteConfirmationOpen={deleteConfirmationOpen}
+                size={displaySize}
+                setDeleteConfirmationOpen={setDeleteConfirmationOpen}
+                onDelete={onDelete}
+              />
             </>
           )}
         </div>
