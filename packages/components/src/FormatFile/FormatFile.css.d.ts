@@ -5,15 +5,14 @@ declare const styles: {
   readonly "fileContentWrapper": string;
   readonly "thumbailIconWrapper": string;
   readonly "thumbnailFilename": string;
-  readonly "thumbnailIcon": string;
+  readonly "thumbnailFilenameSmall": string;
+  readonly "thumbnailNonImage": string;
+  readonly "thumbnail": string;
   readonly "progress": string;
   readonly "contentBlock": string;
   readonly "actionBlock": string;
-  readonly "thumbnail": string;
   readonly "deleteButton": string;
   readonly "bold": string;
-  readonly "centered": string;
-  readonly "overlay": string;
 };
 export = styles;
 

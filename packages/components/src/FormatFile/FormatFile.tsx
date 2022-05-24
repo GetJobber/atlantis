@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import filesize from "filesize";
+import classNames from "classnames";
 import { IconNames } from "@jobber/design";
 import styles from "./FormatFile.css";
 import { Button } from "../Button";
@@ -19,6 +20,36 @@ const sizeToDimensions = {
     height: 168,
   },
 };
+
+const deleteButton = (
+  deleteButtonStyle: any,
+  setDeleteConfirmationOpen: any,
+  size?: keyof typeof sizeToDimensions,
+) => {
+  const buttonSize = size === "default" ? "small" : "base";
+  return (
+    <div className={deleteButtonStyle}>
+      <Button
+        onClick={() => setDeleteConfirmationOpen(true)}
+        variation="destructive"
+        type="tertiary"
+        icon="trash"
+        ariaLabel="Delete Thumbnail"
+        size={buttonSize}
+      />
+    </div>
+  );
+};
+
+const progressBar = (file: any) => (
+  <div className={styles.progress}>
+    <ProgressBar
+      size="small"
+      currentStep={file.progress * 100}
+      totalSteps={100}
+    />
+  </div>
+);
 
 interface FormatFileProps {
   /**
@@ -84,18 +115,10 @@ export function FormatFile({
           >
             {!imageSource && (
               <div className={styles.icon}>
-                <Icon name={iconName} />
+                <Icon name={iconName} color="greyBlue" />
               </div>
             )}
-            {!isComplete && (
-              <div className={styles.progress}>
-                <ProgressBar
-                  size="small"
-                  currentStep={file.progress * 100}
-                  totalSteps={100}
-                />
-              </div>
-            )}
+            {!isComplete && <>{progressBar(file)}</>}
           </div>
           <div className={styles.contentBlock}>
             <Typography element="span">{file.name}</Typography>
@@ -104,21 +127,17 @@ export function FormatFile({
             </Typography>
           </div>
           {isComplete && onDelete && (
-            <div className={styles.actionBlock}>
-              <Button
-                onClick={onDelete}
-                type="tertiary"
-                variation="destructive"
-                icon="trash"
-                ariaLabel="Delete"
-              />
-            </div>
+            <> {deleteButton(styles.actionBlock, setDeleteConfirmationOpen)} </>
           )}
         </div>
       )}
       {display === "thumbnail" && (
         <div
-          className={styles.thumbnail}
+          className={
+            imageSource
+              ? styles.thumbnail
+              : classNames(styles.thumbnail, styles.thumbnailNonImage)
+          }
           style={{
             width: thumbnailDimensions.width,
             height: thumbnailDimensions.height,
@@ -136,37 +155,34 @@ export function FormatFile({
           >
             {!imageSource && (
               <div className={styles.fileContentWrapper}>
-                <div className={styles.thumbailIconWrapper}>
-                  <div className={styles.thumbnailIcon}>
-                    <Icon name={iconName} />
-                  </div>
+                <div className={styles.icon}>
+                  <Icon name={iconName} color="greyBlue" />
                 </div>
-                <div className={styles.thumbnailFilename}>
-                  <Typography element="span">{file.name}</Typography>
+                <div
+                  className={
+                    displaySize === "default"
+                      ? styles.thumbnailFilenameSmall
+                      : styles.thumbnailFilename
+                  }
+                >
+                  <Typography
+                    size={displaySize === "default" ? "smaller" : "small"}
+                    element="span"
+                  >
+                    {file.name}
+                  </Typography>
                 </div>
               </div>
             )}
-            {!isComplete && (
-              <div className={styles.progress}>
-                <ProgressBar
-                  size="small"
-                  currentStep={file.progress * 100}
-                  totalSteps={100}
-                />
-              </div>
-            )}
+            {!isComplete && <>{progressBar(file)}</>}
           </div>
           {isComplete && onDelete && (
             <>
-              <div className={styles.deleteButton}>
-                <Button
-                  onClick={() => setDeleteConfirmationOpen(true)}
-                  variation="destructive"
-                  type="tertiary"
-                  icon="trash"
-                  ariaLabel="Delete Thumbnail"
-                />
-              </div>
+              {deleteButton(
+                styles.deleteButton,
+                setDeleteConfirmationOpen,
+                displaySize,
+              )}
               <ConfirmationModal
                 title="Confirm Deletion"
                 message={`Are you sure you want to delete this thumbnail?`}

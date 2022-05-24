@@ -6,6 +6,7 @@
   --file-card--border-color: var(--color-border);
   --file-card--accent-color: var(--color-grey);
   --file-card--base-padding: var(--space-small);
+  --border-basebackground: var(--color-surface--background);
 }
 
 .formatFile {
@@ -21,11 +22,12 @@
 
 .imageBlock {
   display: flex;
+  position: relative;
   width: var(--file-card--height);
   height: 100%;
   box-sizing: border-box;
   padding: 0;
-  background-color: var(--file-card--header-background-color);
+  background-color: var(--border-basebackground);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -36,6 +38,7 @@
 
 .imageBlock::before {
   content: "";
+  display: block;
   top: 0;
   right: 0;
   bottom: 0;
@@ -62,21 +65,47 @@
 }
 
 .thumbnailFilename {
+  display: flex;
   position: absolute;
-  bottom: 5px;
-  left: 9px;
+  bottom: var(--space-small);
+  left: var(--space-small);
 }
 
-.thumbnailIcon {
-  text-align: center;
+.thumbnailFilenameSmall {
+  display: flex;
+  position: absolute;
+  bottom: var(--space-smaller);
+  left: var(--space-smaller);
+}
+
+.thumbnailNonImage::before {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(
+    270deg,
+    rgb(244, 244, 244) 38.46%,
+    rgba(244, 244, 244, 0) 100%
+  );
+}
+
+.thumbnail .fileContentWrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .progress {
   display: flex;
   position: absolute;
-  top: 0;
   right: 0;
-  bottom: 0;
   left: 0;
   padding: var(--file-card--base-padding);
   align-items: center;
@@ -99,13 +128,9 @@
 }
 
 .thumbnail {
-  --message-weight: 400;
   display: flex;
-  display: inline-block;
   position: relative;
-  height: 50px;
   font-weight: var(--message-weight);
-  align-items: center;
 }
 
 .deleteButton {
@@ -118,20 +143,4 @@
 .bold {
   --message-weight: 800;
   transform: uppercase;
-}
-
-.centered {
-  display: flex;
-  position: relative;
-  height: 100%;
-  margin: 0 var(--space-small);
-  align-items: center;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
 }
