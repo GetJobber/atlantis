@@ -72,13 +72,16 @@ export function FormatFile({
   }
 
   const style = imageSource ? { backgroundImage: `url(${imageSource})` } : {};
+  const imageBlockStyle = isComplete
+    ? styles.imageBlock
+    : classNames(styles.imageBlock, styles.imageBlockOverlay);
 
   return (
     <>
       {display === "file" && (
         <div className={styles.formatFile}>
           <div
-            className={styles.imageBlock}
+            className={imageBlockStyle}
             style={style}
             data-testid="imageBlock"
           >
@@ -121,7 +124,7 @@ export function FormatFile({
           onClick={onClick}
         >
           <div
-            className={styles.imageBlock}
+            className={imageBlockStyle}
             style={{
               ...style,
               width: "inherit",
