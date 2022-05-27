@@ -115,7 +115,10 @@ export function FormatFile({
           className={
             imageSource
               ? styles.thumbnail
-              : classNames(styles.thumbnail, styles.thumbnailNonImage)
+              : classNames(
+                  styles.thumbnail,
+                  styles[`thumbnailNonImage${displaySize}`],
+                )
           }
           style={{
             width: thumbnailDimensions.width,
@@ -144,12 +147,7 @@ export function FormatFile({
                       : styles.thumbnailFilename
                   }
                 >
-                  <Typography
-                    size={displaySize === "default" ? "smaller" : "small"}
-                    element="span"
-                  >
-                    {file.name}
-                  </Typography>
+                  <Typography element="span">{file.name}</Typography>
                 </div>
               </div>
             )}

@@ -27,8 +27,9 @@
   height: 100%;
   box-sizing: border-box;
   padding: 0;
+  border: var(--border-base);
+  border-radius: var(--radius-base);
   background-color: var(--border-basebackground);
-  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   align-items: center;
@@ -44,25 +45,20 @@
   left: 0;
   width: 100%;
   height: 100%;
+  border: var(--border-base);
+  border-radius: var(--radius-base);
   background-color: var(--color-overlay);
   mix-blend-mode: multiply;
 }
 
 .icon {
-  margin: 0 auto;
+  margin: auto auto;
 }
 
 .fileContentWrapper {
   display: flex;
   width: inherit;
   height: inherit;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.thumbailIconWrapper {
-  align-self: center;
 }
 
 .thumbnailFilename {
@@ -70,6 +66,7 @@
   position: absolute;
   bottom: var(--space-small);
   left: var(--space-small);
+  font-size: var(--typography--fontSize-small);
 }
 
 .thumbnailFilenameSmall {
@@ -77,17 +74,34 @@
   position: absolute;
   bottom: var(--space-smaller);
   left: var(--space-smaller);
+  font-size: calc(var(--base-unit) * 0.625);
 }
 
-.thumbnailNonImage::before {
+.thumbnailNonImagedefault::before {
   content: "";
   display: block;
   position: absolute;
   right: 0;
   bottom: 0;
   z-index: 1;
-  width: 20px;
-  height: 20px;
+  width: var(--space-base);
+  height: var(--space-base);
+  background: linear-gradient(
+    270deg,
+    rgb(244, 244, 244) 38.46%,
+    rgba(244, 244, 244, 0) 100%
+  );
+}
+
+.thumbnailNonImagelarge::before {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  width: var(--space-large);
+  height: var(--space-large);
   background: linear-gradient(
     270deg,
     rgb(244, 244, 244) 38.46%,
@@ -131,17 +145,12 @@
 .thumbnail {
   display: flex;
   position: relative;
-  font-weight: var(--message-weight);
 }
 
 .deleteButton {
+  display: flex;
   position: absolute;
   top: var(--space-smaller);
   right: var(--space-smaller);
   z-index: 1;
-}
-
-.bold {
-  --message-weight: 800;
-  transform: uppercase;
 }
