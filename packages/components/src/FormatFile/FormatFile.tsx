@@ -117,7 +117,9 @@ export function FormatFile({
               ? styles.thumbnail
               : classNames(
                   styles.thumbnail,
-                  styles[`thumbnailNonImage${displaySize}`],
+                  styles[
+                    `thumbnailNonImage${displaySize}` as keyof typeof styles
+                  ],
                 )
           }
           style={{

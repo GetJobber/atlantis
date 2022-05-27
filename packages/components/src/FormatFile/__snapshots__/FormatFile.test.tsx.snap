@@ -48,7 +48,7 @@ exports[`renders a FormatFile 1`] = `
 
 exports[`when the format file is a thumbnail when the thumbnail is default sized renders a FormatFile as a default sized thumbnail 1`] = `
 <div
-  className="thumbnail thumbnailNonImage"
+  className="thumbnail thumbnailNonImagedefault"
   style={
     Object {
       "height": 56,
@@ -88,7 +88,7 @@ exports[`when the format file is a thumbnail when the thumbnail is default sized
         className="thumbnailFilenameSmall"
       >
         <span
-          className="base regular smaller"
+          className="base regular"
         >
           Pink Dolphin
         </span>
@@ -100,7 +100,7 @@ exports[`when the format file is a thumbnail when the thumbnail is default sized
 
 exports[`when the format file is a thumbnail when the thumbnail is large sized renders a FormatFile as a larget sized thumbnail 1`] = `
 <div
-  className="thumbnail thumbnailNonImage"
+  className="thumbnail thumbnailNonImagelarge"
   style={
     Object {
       "height": 168,
@@ -140,7 +140,7 @@ exports[`when the format file is a thumbnail when the thumbnail is large sized r
         className="thumbnailFilename"
       >
         <span
-          className="base regular small"
+          className="base regular"
         >
           Pink Dolphin
         </span>
