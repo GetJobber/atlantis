@@ -39,7 +39,7 @@ import { FormatFile } from "@jobber/components/FormatFile";
         src: () => Promise.resolve("https://source.unsplash.com/250x250"),
       }}
       display="thumbnail"
-      onDelete={() => alert("🧨BALEETED!💥")}
+      onDelete={() => alert("Deleted")}
     />
     <FormatFile
       file={{
@@ -49,7 +49,7 @@ import { FormatFile } from "@jobber/components/FormatFile";
         size: 2134023,
         progress: 1,
       }}
-      onDelete={() => alert("🧨BALEETED!💥")}
+      onDelete={() => alert("Deleted")}
     />
   </Content>
 </Playground>
@@ -72,10 +72,44 @@ following:
 
 Format files can be displayed as either a file row or a thumbnail.
 
+### File Row
+
+Used to display a file alongside it's details.
+
+<Playground>
+  <Content>
+    <FormatFile
+      file={{
+        key: "abc",
+        name: "myballisbigandroundIamrollingitontheground.png",
+        type: "image/png",
+        size: 213402324,
+        progress: 0.5,
+        src: () => Promise.resolve("https://source.unsplash.com/250x250"),
+      }}
+      displaySize="large"
+      display="file"
+      onDelete={() => alert("Deleted")}
+    />
+    <FormatFile
+      file={{
+        key: "abc",
+        name: "myballisbigandroundIamrollingitontheground.png",
+        type: "image/png",
+        size: 213402324,
+        progress: 1,
+        src: () => Promise.resolve("https://source.unsplash.com/250x250"),
+      }}
+      displaySize="large"
+      display="file"
+      onDelete={() => alert("Deleted")}
+    />
+  </Content>
+</Playground>
+
 ### Thumbnail
 
-Used to display a cropped smaller version of the file or image that has been
-uploaded by the SP
+Used to display a cropped smaller version of a file or image.
 
 <Playground>
   <Content>
@@ -90,7 +124,7 @@ uploaded by the SP
       }}
       displaySize="large"
       display="thumbnail"
-      onDelete={() => alert("🧨BALEETED!💥")}
+      onDelete={() => alert("Deleted")}
     />
     <FormatFile
       file={{
@@ -103,7 +137,7 @@ uploaded by the SP
       }}
       displaySize="large"
       display="thumbnail"
-      onDelete={() => alert("🧨BALEETED!💥")}
+      onDelete={() => alert("Deleted")}
     />
   </Content>
 </Playground>

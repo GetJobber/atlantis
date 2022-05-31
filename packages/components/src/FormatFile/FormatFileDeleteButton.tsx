@@ -33,8 +33,9 @@ export function FormatFileDeleteButton({
       </div>
       <ConfirmationModal
         title="Confirm Deletion"
-        message={`Are you sure you want to delete this thumbnail?`}
-        confirmLabel="Yes"
+        message={`Are you sure you want to delete this file?`}
+        confirmLabel="Delete"
+        variation="destructive"
         open={deleteConfirmationOpen}
         onConfirm={() => onDelete?.()}
         onRequestClose={() => setDeleteConfirmationOpen(false)}

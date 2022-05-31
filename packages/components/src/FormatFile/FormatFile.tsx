@@ -20,6 +20,8 @@ const progressBar = (file: FileUpload) => (
   </div>
 );
 
+type DisplaySize = keyof typeof sizeToDimensions;
+
 interface FormatFileProps {
   /**
    * File upload details object. (See FileUpload type.)
@@ -38,7 +40,7 @@ interface FormatFileProps {
    *
    * @default "default"
    */
-  readonly displaySize?: keyof typeof sizeToDimensions;
+  readonly displaySize?: DisplaySize;
 
   /**
    * Function to execute when format file is clicked
@@ -112,16 +114,7 @@ export function FormatFile({
       )}
       {display === "thumbnail" && (
         <div
-          className={
-            imageSource
-              ? styles.thumbnail
-              : classNames(
-                  styles.thumbnail,
-                  styles[
-                    `thumbnailNonImage${displaySize}` as keyof typeof styles
-                  ],
-                )
-          }
+          className={thumbnailParentClassnames(imageSource, displaySize)}
           style={{
             width: thumbnailDimensions.width,
             height: thumbnailDimensions.height,
@@ -170,6 +163,25 @@ export function FormatFile({
       )}
     </>
   );
+}
+
+function thumbnailParentClassnames(
+  imageSource: string | undefined,
+  displaySize: DisplaySize,
+) {
+  if (imageSource) {
+    return styles.thumbnail;
+  } else {
+    if (displaySize === "large") {
+      return classNames(
+        styles.thumbnail,
+        styles.thumbnailNonImage,
+        styles.thumbnailLarge,
+      );
+    } else {
+      return classNames(styles.thumbnail, styles.thumbnailNonImage);
+    }
+  }
 }
 
 function getHumanReadableFileSize(sizeInBytes: number): string {
