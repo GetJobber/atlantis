@@ -55,10 +55,17 @@ export interface UploadParams {
   readonly key?: string;
 
   /**
-   * Any extra fields to send with the upload POST.
+   * Any extra fields or headers to send with the upload.
    * If unspecified only the file will be included.
    */
   readonly fields?: { [field: string]: string };
+
+  /**
+   * The HTTP method which we wish to use for the upload
+   * If unspecified, it will default to POST
+   * The `fields` will then be used as headers for the request
+   */
+  readonly httpMethod?: "POST" | "PUT";
 }
 
 interface InputFileProps {
@@ -190,30 +197,49 @@ export function InputFile({
   }
 
   async function uploadFile(file: File) {
-    const { url, key = uuidv1(), fields = {} } = await getUploadParams(file);
+    const {
+      url,
+      key = uuidv1(),
+      fields = {},
+      httpMethod = "POST",
+    } = await getUploadParams(file);
 
     const fileUpload = getFileUpload(file, key);
     onUploadStart && onUploadStart({ ...fileUpload });
 
-    const formData = new FormData();
-    Object.entries(fields).forEach(([field, value]) =>
-      formData.append(field, value),
-    );
-    formData.append("file", file);
+    const uploadProgressUpdate = (progressEvent: any) => {
+      onUploadProgress &&
+        onUploadProgress({
+          ...fileUpload,
+          progress: progressEvent.loaded / progressEvent.total,
+        });
+    };
 
-    axios
-      .post(url, formData, {
-        headers: { "X-Requested-With": "XMLHttpRequest" },
-        onUploadProgress: progressEvent =>
-          onUploadProgress &&
-          onUploadProgress({
-            ...fileUpload,
-            progress: progressEvent.loaded / progressEvent.total,
-          }),
-      })
-      .then(() => {
-        onUploadComplete && onUploadComplete({ ...fileUpload, progress: 1 });
-      });
+    if (httpMethod === "POST") {
+      const formData = new FormData();
+      Object.entries(fields).forEach(([field, value]) =>
+        formData.append(field, value),
+      );
+      formData.append("file", file);
+
+      axios
+        .post(url, formData, {
+          headers: { "X-Requested-With": "XMLHttpRequest" },
+          onUploadProgress: uploadProgressUpdate,
+        })
+        .then(() => {
+          onUploadComplete && onUploadComplete({ ...fileUpload, progress: 1 });
+        });
+    } else if (httpMethod === "PUT") {
+      axios
+        .put(url, file, {
+          headers: fields,
+          onUploadProgress: uploadProgressUpdate,
+        })
+        .then(() => {
+          onUploadComplete && onUploadComplete({ ...fileUpload, progress: 1 });
+        });
+    }
   }
 }
 
