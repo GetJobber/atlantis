@@ -7,6 +7,7 @@ declare const styles: {
   readonly "thumbnailFilename": string;
   readonly "thumbnailFilenameSmall": string;
   readonly "thumbnailNonImage": string;
+  readonly "thumbnailNonImageProgress": string;
   readonly "thumbnailLarge": string;
   readonly "thumbnail": string;
   readonly "progress": string;

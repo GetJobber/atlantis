@@ -83,7 +83,7 @@ export function FormatFile({
       className={
         isFileDisplay
           ? styles.formatFile
-          : thumbnailParentClassnames(imageSource, displaySize)
+          : thumbnailParentClassnames(imageSource, displaySize, isComplete)
       }
       style={
         isFileDisplay
@@ -147,20 +147,20 @@ export function FormatFile({
 function thumbnailParentClassnames(
   imageSource: string | undefined,
   displaySize: DisplaySize,
+  isComplete: boolean,
 ) {
-  if (imageSource) {
-    return styles.thumbnail;
-  } else {
+  const thumbnailClassnames = [styles.thumbnail];
+  if (!imageSource) {
+    thumbnailClassnames.push(styles.thumbnailNonImage);
     if (displaySize === "large") {
-      return classNames(
-        styles.thumbnail,
-        styles.thumbnailNonImage,
-        styles.thumbnailLarge,
-      );
-    } else {
-      return classNames(styles.thumbnail, styles.thumbnailNonImage);
+      thumbnailClassnames.push(styles.thumbnailLarge);
+    }
+    if (!isComplete) {
+      thumbnailClassnames.push(styles.thumbnailNonImageProgress);
     }
   }
+
+  return classNames(thumbnailClassnames);
 }
 
 function getHumanReadableFileSize(sizeInBytes: number): string {
