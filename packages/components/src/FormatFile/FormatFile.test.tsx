@@ -81,7 +81,7 @@ describe("when the format file is a thumbnail", () => {
         progress: 1,
       };
       const tree = renderer
-        .create(<FormatFile display="thumbnail" file={testFile} />)
+        .create(<FormatFile display="compact" file={testFile} />)
         .toJSON();
       expect(tree).toMatchSnapshot();
     });
@@ -99,11 +99,7 @@ describe("when the format file is a thumbnail", () => {
       };
       const tree = renderer
         .create(
-          <FormatFile
-            display="thumbnail"
-            displaySize="large"
-            file={testFile}
-          />,
+          <FormatFile display="compact" displaySize="large" file={testFile} />,
         )
         .toJSON();
       expect(tree).toMatchSnapshot();

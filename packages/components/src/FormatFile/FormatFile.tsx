@@ -29,9 +29,9 @@ interface FormatFileProps {
   /**
    * To display as either a file row or thumbnail
    *
-   * @default "file"
+   * @default "expanded"
    */
-  readonly display?: "file" | "thumbnail";
+  readonly display?: "expanded" | "compact";
 
   /**
    * The base dimensions of the thumbnail
@@ -53,7 +53,7 @@ interface FormatFileProps {
 
 export function FormatFile({
   file,
-  display = "file",
+  display = "expanded",
   displaySize = "default",
   onDelete,
   onClick,
@@ -76,7 +76,7 @@ export function FormatFile({
     ? styles.imageBlock
     : classNames(styles.imageBlock, styles.imageBlockOverlay);
 
-  const isFileDisplay = display === "file";
+  const isFileDisplay = display === "expanded";
 
   return (
     <div

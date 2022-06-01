@@ -38,7 +38,7 @@ import { FormatFile } from "@jobber/components/FormatFile";
         progress: 0.4,
         src: () => Promise.resolve("https://source.unsplash.com/250x250"),
       }}
-      display="thumbnail"
+      display="compact"
       onDelete={() => alert("Deleted")}
     />
     <FormatFile
@@ -88,7 +88,7 @@ Used to display a file alongside it's details.
         src: () => Promise.resolve("https://source.unsplash.com/250x250"),
       }}
       displaySize="large"
-      display="file"
+      display="expanded"
       onDelete={() => alert("Deleted")}
     />
     <FormatFile
@@ -101,7 +101,7 @@ Used to display a file alongside it's details.
         src: () => Promise.resolve("https://source.unsplash.com/250x250"),
       }}
       displaySize="large"
-      display="file"
+      display="expanded"
       onDelete={() => alert("Deleted")}
     />
   </Content>
@@ -123,7 +123,7 @@ Used to display a cropped smaller version of a file or image.
         src: () => Promise.resolve("https://source.unsplash.com/250x250"),
       }}
       displaySize="large"
-      display="thumbnail"
+      display="compact"
       onDelete={() => alert("Deleted")}
     />
     <FormatFile
@@ -136,7 +136,7 @@ Used to display a cropped smaller version of a file or image.
         src: () => Promise.resolve("https://source.unsplash.com/250x250"),
       }}
       displaySize="large"
-      display="thumbnail"
+      display="compact"
       onDelete={() => alert("Deleted")}
     />
   </Content>
