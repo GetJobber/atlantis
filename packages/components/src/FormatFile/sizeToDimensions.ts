@@ -8,3 +8,5 @@ export const sizeToDimensions = {
     height: 168,
   },
 };
+
+export type DisplaySize = keyof typeof sizeToDimensions;

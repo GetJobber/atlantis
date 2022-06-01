@@ -3,11 +3,13 @@
 exports[`renders a FormatFile 1`] = `
 <div
   className="formatFile"
+  style={Object {}}
 >
   <div
     className="imageBlock"
     data-testid="imageBlock"
     style={Object {}}
+    tabIndex={0}
   >
     <div
       className="icon"
@@ -65,6 +67,7 @@ exports[`when the format file is a thumbnail when the thumbnail is default sized
         "width": "inherit",
       }
     }
+    tabIndex={0}
   >
     <div
       className="fileContentWrapper"
@@ -117,6 +120,7 @@ exports[`when the format file is a thumbnail when the thumbnail is large sized r
         "width": "inherit",
       }
     }
+    tabIndex={0}
   >
     <div
       className="fileContentWrapper"

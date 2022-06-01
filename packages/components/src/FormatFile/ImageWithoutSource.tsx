@@ -1,0 +1,45 @@
+import React from "react";
+import { IconNames } from "@jobber/design";
+import styles from "./FormatFile.css";
+import { DisplaySize } from "./sizeToDimensions";
+import { Icon } from "../Icon";
+import { Typography } from "../Typography";
+
+interface ImageWithoutSourceProps {
+  displayIsExpanded: boolean;
+  iconName: IconNames;
+  displaySize: DisplaySize;
+  filename: string;
+}
+
+export function ImageWithoutSource({
+  displayIsExpanded,
+  iconName,
+  displaySize,
+  filename,
+}: ImageWithoutSourceProps) {
+  const iconElement = (
+    <div className={styles.icon}>
+      <Icon name={iconName} color="greyBlue" />
+    </div>
+  );
+
+  if (displayIsExpanded) {
+    return iconElement;
+  }
+
+  return (
+    <div className={styles.fileContentWrapper}>
+      {iconElement}
+      <div
+        className={
+          displaySize === "default"
+            ? styles.thumbnailFilenameSmall
+            : styles.thumbnailFilename
+        }
+      >
+        <Typography element="span">{filename}</Typography>
+      </div>
+    </div>
+  );
+}

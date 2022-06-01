@@ -4,8 +4,8 @@ import classNames from "classnames";
 import { IconNames } from "@jobber/design";
 import styles from "./FormatFile.css";
 import { FormatFileDeleteButton } from "./FormatFileDeleteButton";
-import { sizeToDimensions } from "./sizeToDimensions";
-import { Icon } from "../Icon";
+import { DisplaySize, sizeToDimensions } from "./sizeToDimensions";
+import { ImageWithoutSource } from "./ImageWithoutSource";
 import { Typography } from "../Typography";
 import { ProgressBar } from "../ProgressBar";
 import { FileUpload } from "../InputFile";
@@ -19,8 +19,6 @@ const progressBar = (file: FileUpload) => (
     />
   </div>
 );
-
-type DisplaySize = keyof typeof sizeToDimensions;
 
 interface FormatFileProps {
   /**
@@ -78,90 +76,71 @@ export function FormatFile({
     ? styles.imageBlock
     : classNames(styles.imageBlock, styles.imageBlockOverlay);
 
+  const isFileDisplay = display === "file";
+
   return (
-    <>
-      {display === "file" && (
-        <div className={styles.formatFile}>
-          <div
-            className={imageBlockStyle}
-            style={style}
-            data-testid="imageBlock"
-          >
-            {!imageSource && (
-              <div className={styles.icon}>
-                <Icon name={iconName} color="greyBlue" />
-              </div>
-            )}
-            {!isComplete && <>{progressBar(file)}</>}
-          </div>
-          <div className={styles.contentBlock}>
-            <Typography element="span">{file.name}</Typography>
-            <Typography element="p" size="small" textColor="greyBlueDark">
-              {fileSize}
-            </Typography>
-          </div>
-          {isComplete && onDelete && (
-            <>
-              <FormatFileDeleteButton
-                deleteButtonStyle={styles.actionBlock}
-                deleteConfirmationOpen={deleteConfirmationOpen}
-                setDeleteConfirmationOpen={setDeleteConfirmationOpen}
-                onDelete={onDelete}
-              />
-            </>
-          )}
+    <div
+      className={
+        isFileDisplay
+          ? styles.formatFile
+          : thumbnailParentClassnames(imageSource, displaySize)
+      }
+      style={
+        isFileDisplay
+          ? {}
+          : {
+              width: thumbnailDimensions.width,
+              height: thumbnailDimensions.height,
+            }
+      }
+    >
+      <div
+        className={imageBlockStyle}
+        style={
+          isFileDisplay
+            ? { ...style }
+            : {
+                ...style,
+                width: "inherit",
+                height: "inherit",
+              }
+        }
+        tabIndex={0}
+        data-testid="imageBlock"
+        onClick={onClick}
+      >
+        {!imageSource && (
+          <ImageWithoutSource
+            displayIsExpanded={isFileDisplay}
+            displaySize={displaySize}
+            iconName={iconName}
+            filename={file.name}
+          />
+        )}
+        {!isComplete && <>{progressBar(file)}</>}
+      </div>
+      {isFileDisplay && (
+        <div className={styles.contentBlock}>
+          <Typography element="span">{file.name}</Typography>
+          <Typography element="p" size="small" textColor="greyBlueDark">
+            {fileSize}
+          </Typography>
         </div>
       )}
-      {display === "thumbnail" && (
-        <div
-          className={thumbnailParentClassnames(imageSource, displaySize)}
-          style={{
-            width: thumbnailDimensions.width,
-            height: thumbnailDimensions.height,
-          }}
-          onClick={onClick}
-        >
-          <div
-            className={imageBlockStyle}
-            style={{
-              ...style,
-              width: "inherit",
-              height: "inherit",
-            }}
-            data-testid="imageBlock"
-          >
-            {!imageSource && (
-              <div className={styles.fileContentWrapper}>
-                <div className={styles.icon}>
-                  <Icon name={iconName} color="greyBlue" />
-                </div>
-                <div
-                  className={
-                    displaySize === "default"
-                      ? styles.thumbnailFilenameSmall
-                      : styles.thumbnailFilename
-                  }
-                >
-                  <Typography element="span">{file.name}</Typography>
-                </div>
-              </div>
-            )}
-            {!isComplete && <>{progressBar(file)}</>}
-          </div>
-          {isComplete && onDelete && (
-            <>
-              <FormatFileDeleteButton
-                deleteButtonStyle={styles.deleteButton}
-                deleteConfirmationOpen={deleteConfirmationOpen}
-                size={displaySize}
-                setDeleteConfirmationOpen={setDeleteConfirmationOpen}
-                onDelete={onDelete}
-              />
-            </>
-          )}
-        </div>
+      {isComplete && onDelete && (
+        <>
+          <FormatFileDeleteButton
+            deleteButtonStyle={
+              isFileDisplay ? styles.actionBlock : styles.deleteButton
+            }
+            deleteConfirmationOpen={deleteConfirmationOpen}
+            size={isFileDisplay ? "large" : displaySize}
+            setDeleteConfirmationOpen={setDeleteConfirmationOpen}
+            onDelete={onDelete}
+          />
+        </>
       )}
-    </>
+    </div>
   );
 }
 
