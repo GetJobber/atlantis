@@ -58,12 +58,12 @@ it("it should call the delete handler", async () => {
 
   await waitFor(() => {
     expect(
-      getByText("Are you sure you want to delete this thumbnail?"),
+      getByText("Are you sure you want to delete this file?"),
     ).toBeInstanceOf(HTMLParagraphElement);
   });
 
   act(() => {
-    fireEvent.click(getByText("Yes"));
+    fireEvent.click(getByText("Delete"));
   });
 
   expect(deleteHandler).toHaveBeenCalled();
