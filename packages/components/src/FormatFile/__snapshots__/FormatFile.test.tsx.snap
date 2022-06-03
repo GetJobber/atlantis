@@ -3,11 +3,14 @@
 exports[`renders a FormatFile 1`] = `
 <div
   className="formatFile"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
   style={Object {}}
 >
   <div
     className="imageBlock"
     data-testid="imageBlock"
+    onClick={[Function]}
     style={Object {}}
     tabIndex={0}
   >
@@ -51,6 +54,8 @@ exports[`renders a FormatFile 1`] = `
 exports[`when the format file is a thumbnail when the thumbnail is default sized renders a FormatFile as a default sized thumbnail 1`] = `
 <div
   className="thumbnail thumbnailNonImage"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
   style={
     Object {
       "height": 56,
@@ -61,6 +66,7 @@ exports[`when the format file is a thumbnail when the thumbnail is default sized
   <div
     className="imageBlock"
     data-testid="imageBlock"
+    onClick={[Function]}
     style={
       Object {
         "height": "inherit",
@@ -104,6 +110,8 @@ exports[`when the format file is a thumbnail when the thumbnail is default sized
 exports[`when the format file is a thumbnail when the thumbnail is large sized renders a FormatFile as a larget sized thumbnail 1`] = `
 <div
   className="thumbnail thumbnailNonImage thumbnailLarge"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
   style={
     Object {
       "height": 168,
@@ -114,6 +122,7 @@ exports[`when the format file is a thumbnail when the thumbnail is large sized r
   <div
     className="imageBlock"
     data-testid="imageBlock"
+    onClick={[Function]}
     style={
       Object {
         "height": "inherit",

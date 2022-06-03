@@ -63,6 +63,9 @@ export function FormatFile({
 
   const thumbnailDimensions = sizeToDimensions[displaySize];
   const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
+  const [showDeleteButton, setShowDeleteButton] = useState(
+    display === "compact" && displaySize === "default" ? false : true,
+  );
 
   const iconName = getIconNameFromType(file.type);
   const fileSize = getHumanReadableFileSize(file.size);
@@ -76,17 +79,27 @@ export function FormatFile({
     ? styles.imageBlock
     : classNames(styles.imageBlock, styles.imageBlockOverlay);
 
-  const isFileDisplay = display === "expanded";
-
   return (
     <div
+      onMouseEnter={() => {
+        showDeleteButtonIfSmallThumbnail(
+          display === "compact" && displaySize === "default",
+          setShowDeleteButton,
+        );
+      }}
+      onMouseLeave={() => {
+        hideDeleteButtonIfSmallThumbnail(
+          display === "compact" && displaySize === "default",
+          setShowDeleteButton,
+        );
+      }}
       className={
-        isFileDisplay
+        IsFileDisplay(display)
           ? styles.formatFile
           : thumbnailParentClassnames(imageSource, displaySize, isComplete)
       }
       style={
-        isFileDisplay
+        IsFileDisplay(display)
           ? {}
           : {
               width: thumbnailDimensions.width,
@@ -97,7 +110,7 @@ export function FormatFile({
       <div
         className={imageBlockStyle}
         style={
-          isFileDisplay
+          IsFileDisplay(display)
             ? { ...style }
             : {
                 ...style,
@@ -107,11 +120,14 @@ export function FormatFile({
         }
         tabIndex={0}
         data-testid="imageBlock"
-        onClick={onClick}
+        onClick={event => {
+          onClick?.(event);
+          event.currentTarget.focus();
+        }}
       >
         {!imageSource && (
           <ImageWithoutSource
-            displayIsExpanded={isFileDisplay}
+            displayIsExpanded={IsFileDisplay(display)}
             displaySize={displaySize}
             iconName={iconName}
             filename={file.name}
@@ -119,7 +135,7 @@ export function FormatFile({
         )}
         {!isComplete && <>{progressBar(file)}</>}
       </div>
-      {isFileDisplay && (
+      {IsFileDisplay(display) && (
         <div className={styles.contentBlock}>
           <Typography element="span">{file.name}</Typography>
           <Typography element="p" size="small" textColor="greyBlueDark">
@@ -127,14 +143,14 @@ export function FormatFile({
           </Typography>
         </div>
       )}
-      {isComplete && onDelete && (
+      {isComplete && onDelete && showDeleteButton && (
         <>
           <FormatFileDeleteButton
             deleteButtonStyle={
-              isFileDisplay ? styles.actionBlock : styles.deleteButton
+              IsFileDisplay(display) ? styles.actionBlock : styles.deleteButton
             }
             deleteConfirmationOpen={deleteConfirmationOpen}
-            size={isFileDisplay ? "large" : displaySize}
+            size={IsFileDisplay(display) ? "large" : displaySize}
             setDeleteConfirmationOpen={setDeleteConfirmationOpen}
             onDelete={onDelete}
           />
@@ -142,6 +158,28 @@ export function FormatFile({
       )}
     </div>
   );
+}
+
+function hideDeleteButtonIfSmallThumbnail(
+  smallAndCompact: boolean,
+  setShowDeleteButton: React.Dispatch<React.SetStateAction<boolean>>,
+) {
+  if (smallAndCompact) {
+    setShowDeleteButton(false);
+  }
+}
+
+function showDeleteButtonIfSmallThumbnail(
+  smallAndCompact: boolean,
+  setShowDeleteButton: React.Dispatch<React.SetStateAction<boolean>>,
+) {
+  if (smallAndCompact) {
+    setShowDeleteButton(true);
+  }
+}
+
+function IsFileDisplay(display: "expanded" | "compact") {
+  return display === "expanded";
 }
 
 function thumbnailParentClassnames(
