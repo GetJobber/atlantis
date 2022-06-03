@@ -105,6 +105,7 @@ export function FormatFile({
         className={imageBlockClassnames(
           isComplete,
           onClick !== undefined || onDelete !== undefined,
+          !isFileDisplay(display),
         )}
         style={
           isFileDisplay(display)
@@ -180,13 +181,21 @@ function isFileDisplay(display: "expanded" | "compact") {
   return display === "expanded";
 }
 
-function imageBlockClassnames(isComplete: boolean, hoverable: boolean) {
+function imageBlockClassnames(
+  isComplete: boolean,
+  hoverable: boolean,
+  isCompact: boolean,
+) {
   const imageBlockClassnamesArray = [styles.imageBlock];
   if (!isComplete) {
     imageBlockClassnamesArray.push(styles.imageBlockOverlay);
   }
   if (isComplete && hoverable) {
     imageBlockClassnamesArray.push(styles.imageBlockHoverable);
+  }
+  if (isCompact) {
+    imageBlockClassnamesArray.push(styles.imageBlockCompact);
+    imageBlockClassnamesArray.push(styles.imageBlockOverlayCompact);
   }
 
   return classNames(imageBlockClassnamesArray);

@@ -26,14 +26,17 @@
   height: 100%;
   box-sizing: border-box;
   padding: 0;
-  border: var(--border-base);
-  border-radius: var(--radius-base);
   background-color: var(--color-surface--background);
   background-repeat: no-repeat;
   background-size: cover;
   align-items: center;
   object-fit: cover;
   flex-shrink: 0;
+}
+
+.imageBlock.imageBlockCompact {
+  border: var(--border-base);
+  border-radius: var(--radius-base);
 }
 
 .imageBlock:focus {
@@ -66,6 +69,11 @@
   border-radius: var(--radius-base);
   background-color: var(--color-overlay);
   mix-blend-mode: multiply;
+}
+
+.imageBlockOverlay.imageBlockOverlayCompact::before {
+  border: var(--border-base);
+  border-radius: var(--radius-base);
 }
 
 .icon {

@@ -68,7 +68,7 @@ exports[`when the format file is a thumbnail when the thumbnail is default sized
   }
 >
   <div
-    className="imageBlock"
+    className="imageBlock imageBlockCompact imageBlockOverlayCompact"
     data-testid="imageBlock"
     onClick={[Function]}
     style={
@@ -126,7 +126,7 @@ exports[`when the format file is a thumbnail when the thumbnail is large sized r
   }
 >
   <div
-    className="imageBlock"
+    className="imageBlock imageBlockCompact imageBlockOverlayCompact"
     data-testid="imageBlock"
     onClick={[Function]}
     style={
