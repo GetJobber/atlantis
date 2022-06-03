@@ -123,10 +123,12 @@ exports[`renders a combination of Markdown components 1`] = `
   >
     This is a paragraph.
   </h1>
+  
+
   <p
     className="base regular base text"
   >
-      The paragraph has some 
+    The paragraph has some 
     <b
       className="base bold"
     >
@@ -140,10 +142,12 @@ exports[`renders a combination of Markdown components 1`] = `
     </em>
     .
   </p>
+  
+
   <p
     className="base regular base text"
   >
-      This is the end of this paragraph.
+    This is the end of this paragraph.
   </p>
 </div>
 `;
@@ -151,7 +155,9 @@ exports[`renders a combination of Markdown components 1`] = `
 exports[`renders a without headings, paragraph, and wrapping content 1`] = `
 Array [
   "No heading should show up",
-  "  This should just be pure string with ",
+  "
+",
+  "This should just be pure string with ",
   <b
     className="base bold"
   >
@@ -164,7 +170,7 @@ Array [
     italicized text
   </em>,
   "
-  and of course a ",
+and of course a ",
   <a
     href="http://to.somewhere"
   >
