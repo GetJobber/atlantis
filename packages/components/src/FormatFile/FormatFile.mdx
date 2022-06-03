@@ -70,9 +70,9 @@ following:
 
 ### Display
 
-Format files can be displayed as either a file row or a thumbnail.
+Format files can be displayed as either an expanded or compact format file.
 
-### File Row
+### Expanded
 
 Used to display a file alongside it's details.
 
@@ -87,7 +87,6 @@ Used to display a file alongside it's details.
         progress: 0.5,
         src: () => Promise.resolve("https://source.unsplash.com/250x250"),
       }}
-      displaySize="large"
       display="expanded"
       onDelete={() => alert("Deleted")}
     />
@@ -100,14 +99,13 @@ Used to display a file alongside it's details.
         progress: 1,
         src: () => Promise.resolve("https://source.unsplash.com/250x250"),
       }}
-      displaySize="large"
       display="expanded"
       onDelete={() => alert("Deleted")}
     />
   </Content>
 </Playground>
 
-### Thumbnail
+### Compact
 
 Used to display a cropped smaller version of a file or image.
 
