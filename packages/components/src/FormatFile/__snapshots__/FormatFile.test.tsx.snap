@@ -55,7 +55,7 @@ exports[`renders a FormatFile 1`] = `
 
 exports[`when the format file is a thumbnail when the thumbnail is default sized renders a FormatFile as a default sized thumbnail 1`] = `
 <div
-  className="thumbnail thumbnailNonImage"
+  className="thumbnail"
   onBlur={[Function]}
   onFocus={[Function]}
   onMouseEnter={[Function]}
@@ -113,7 +113,7 @@ exports[`when the format file is a thumbnail when the thumbnail is default sized
 
 exports[`when the format file is a thumbnail when the thumbnail is large sized renders a FormatFile as a larget sized thumbnail 1`] = `
 <div
-  className="thumbnail thumbnailNonImage thumbnailLarge"
+  className="thumbnail"
   onBlur={[Function]}
   onFocus={[Function]}
   onMouseEnter={[Function]}

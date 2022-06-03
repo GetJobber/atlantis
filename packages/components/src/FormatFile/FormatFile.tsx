@@ -92,11 +92,7 @@ export function FormatFile({
       onBlur={() => {
         hideDeleteButtonIfSmallThumbnail(isSmallThumbnail, setShowDeleteButton);
       }}
-      className={
-        isFileDisplay(display)
-          ? styles.formatFile
-          : thumbnailParentClassnames(imageSource, displaySize, isComplete)
-      }
+      className={isFileDisplay(display) ? styles.formatFile : styles.thumbnail}
       style={
         isFileDisplay(display)
           ? {}
@@ -195,25 +191,6 @@ function imageBlockClassnames(isComplete: boolean, hoverable: boolean) {
   }
 
   return classNames(imageBlockClassnamesArray);
-}
-
-function thumbnailParentClassnames(
-  imageSource: string | undefined,
-  displaySize: DisplaySize,
-  isComplete: boolean,
-) {
-  const thumbnailClassnames = [styles.thumbnail];
-  if (!imageSource) {
-    thumbnailClassnames.push(styles.thumbnailNonImage);
-    if (displaySize === "large") {
-      thumbnailClassnames.push(styles.thumbnailLarge);
-    }
-    if (!isComplete) {
-      thumbnailClassnames.push(styles.thumbnailNonImageProgress);
-    }
-  }
-
-  return classNames(thumbnailClassnames);
 }
 
 function getHumanReadableFileSize(sizeInBytes: number): string {
