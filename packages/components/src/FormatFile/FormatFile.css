@@ -51,9 +51,12 @@
   left: 0;
   width: 100%;
   height: 100%;
+  background-color: var(--color-overlay);
+}
+
+.imageBlock.imageBlockCompact:hover::after {
   border: var(--border-base);
   border-radius: var(--radius-base);
-  background-color: var(--color-overlay);
 }
 
 .imageBlockOverlay::before {
@@ -65,8 +68,6 @@
   left: 0;
   width: 100%;
   height: 100%;
-  border: var(--border-base);
-  border-radius: var(--radius-base);
   background-color: var(--color-overlay);
   mix-blend-mode: multiply;
 }
