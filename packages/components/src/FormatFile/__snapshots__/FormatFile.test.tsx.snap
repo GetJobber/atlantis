@@ -3,6 +3,8 @@
 exports[`renders a FormatFile 1`] = `
 <div
   className="formatFile"
+  onBlur={[Function]}
+  onFocus={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
   style={Object {}}
@@ -54,6 +56,8 @@ exports[`renders a FormatFile 1`] = `
 exports[`when the format file is a thumbnail when the thumbnail is default sized renders a FormatFile as a default sized thumbnail 1`] = `
 <div
   className="thumbnail thumbnailNonImage"
+  onBlur={[Function]}
+  onFocus={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
   style={
@@ -110,6 +114,8 @@ exports[`when the format file is a thumbnail when the thumbnail is default sized
 exports[`when the format file is a thumbnail when the thumbnail is large sized renders a FormatFile as a larget sized thumbnail 1`] = `
 <div
   className="thumbnail thumbnailNonImage thumbnailLarge"
+  onBlur={[Function]}
+  onFocus={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
   style={

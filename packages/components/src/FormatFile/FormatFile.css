@@ -150,7 +150,7 @@
   margin: 0;
 }
 
-.actionBlock {
+.deleteButtonExpanded {
   padding: 0 var(--file-card--base-padding) 0 0;
 }
 
@@ -159,7 +159,7 @@
   position: relative;
 }
 
-.deleteButton {
+.deleteButtonCompact {
   display: flex;
   position: absolute;
   top: var(--space-smaller);

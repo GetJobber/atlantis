@@ -1,24 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { sizeToDimensions } from "./sizeToDimensions";
 import { Button } from "../Button";
 import { ConfirmationModal } from "../ConfirmationModal";
 
 interface DeleteButtonProps {
   deleteButtonStyle: string;
-  deleteConfirmationOpen: boolean;
-  setDeleteConfirmationOpen: React.Dispatch<React.SetStateAction<boolean>>;
   size?: keyof typeof sizeToDimensions;
   onDelete?: () => void;
 }
 
 export function FormatFileDeleteButton({
   deleteButtonStyle,
-  deleteConfirmationOpen,
   size,
-  setDeleteConfirmationOpen,
   onDelete,
 }: DeleteButtonProps) {
   const buttonSize = size === "default" ? "small" : "base";
+  const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
+
   return (
     <>
       <div className={deleteButtonStyle}>

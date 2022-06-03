@@ -62,41 +62,43 @@ export function FormatFile({
   const isComplete = file.progress >= 1;
 
   const thumbnailDimensions = sizeToDimensions[displaySize];
-  const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
   const [showDeleteButton, setShowDeleteButton] = useState(
     display === "compact" && displaySize === "default" ? false : true,
   );
 
   const iconName = getIconNameFromType(file.type);
   const fileSize = getHumanReadableFileSize(file.size);
+  const isSmallThumbnail = display === "compact" && displaySize === "default";
 
   if (!imageSource && file.type.startsWith("image/") && file.src) {
     file.src().then(src => setImageSource(src));
   }
 
-  const style = imageSource ? { backgroundImage: `url(${imageSource})` } : {};
+  const imageBlockStyle = imageSource
+    ? { backgroundImage: `url(${imageSource})` }
+    : {};
 
   return (
     <div
       onMouseEnter={() => {
-        showDeleteButtonIfSmallThumbnail(
-          display === "compact" && displaySize === "default",
-          setShowDeleteButton,
-        );
+        showDeleteButtonIfSmallThumbnail(isSmallThumbnail, setShowDeleteButton);
       }}
       onMouseLeave={() => {
-        hideDeleteButtonIfSmallThumbnail(
-          display === "compact" && displaySize === "default",
-          setShowDeleteButton,
-        );
+        hideDeleteButtonIfSmallThumbnail(isSmallThumbnail, setShowDeleteButton);
+      }}
+      onFocus={() => {
+        showDeleteButtonIfSmallThumbnail(isSmallThumbnail, setShowDeleteButton);
+      }}
+      onBlur={() => {
+        hideDeleteButtonIfSmallThumbnail(isSmallThumbnail, setShowDeleteButton);
       }}
       className={
-        IsFileDisplay(display)
+        isFileDisplay(display)
           ? styles.formatFile
           : thumbnailParentClassnames(imageSource, displaySize, isComplete)
       }
       style={
-        IsFileDisplay(display)
+        isFileDisplay(display)
           ? {}
           : {
               width: thumbnailDimensions.width,
@@ -110,10 +112,10 @@ export function FormatFile({
           onClick !== undefined || onDelete !== undefined,
         )}
         style={
-          IsFileDisplay(display)
-            ? { ...style }
+          isFileDisplay(display)
+            ? { ...imageBlockStyle }
             : {
-                ...style,
+                ...imageBlockStyle,
                 width: "inherit",
                 height: "inherit",
               }
@@ -127,7 +129,7 @@ export function FormatFile({
       >
         {!imageSource && (
           <ImageWithoutSource
-            displayIsExpanded={IsFileDisplay(display)}
+            displayIsExpanded={isFileDisplay(display)}
             displaySize={displaySize}
             iconName={iconName}
             filename={file.name}
@@ -135,7 +137,7 @@ export function FormatFile({
         )}
         {!isComplete && <>{progressBar(file)}</>}
       </div>
-      {IsFileDisplay(display) && (
+      {isFileDisplay(display) && (
         <div className={styles.contentBlock}>
           <Typography element="span">{file.name}</Typography>
           <Typography element="p" size="small" textColor="greyBlueDark">
@@ -147,11 +149,11 @@ export function FormatFile({
         <>
           <FormatFileDeleteButton
             deleteButtonStyle={
-              IsFileDisplay(display) ? styles.actionBlock : styles.deleteButton
+              isFileDisplay(display)
+                ? styles.deleteButtonExpanded
+                : styles.deleteButtonCompact
             }
-            deleteConfirmationOpen={deleteConfirmationOpen}
-            size={IsFileDisplay(display) ? "large" : displaySize}
-            setDeleteConfirmationOpen={setDeleteConfirmationOpen}
+            size={isFileDisplay(display) ? "large" : displaySize}
             onDelete={onDelete}
           />
         </>
@@ -178,7 +180,7 @@ function showDeleteButtonIfSmallThumbnail(
   }
 }
 
-function IsFileDisplay(display: "expanded" | "compact") {
+function isFileDisplay(display: "expanded" | "compact") {
   return display === "expanded";
 }
 
