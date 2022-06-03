@@ -103,6 +103,8 @@
   z-index: 1;
   width: var(--space-base);
   height: var(--space-base);
+  border: var(--border-base);
+  border-radius: var(--radius-base);
   background: linear-gradient(
     270deg,
     rgb(244, 244, 244) 38.46%,
