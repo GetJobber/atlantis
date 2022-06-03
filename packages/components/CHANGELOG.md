@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.83.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.83.0...@jobber/components@2.83.1) (2022-06-03)
+
+
+### Bug Fixes
+
+* **deps:** update markdown to v6.0.3 ([#896](https://github.com/GetJobber/atlantis/issues/896)) ([93b36de](https://github.com/GetJobber/atlantis/commit/93b36de87bc8a5184eb794c7dce46d7e8f47dbfd))
+
+
+
+
+
 # [2.83.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.82.1...@jobber/components@2.83.0) (2022-05-04)
 
 
