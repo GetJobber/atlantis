@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import classnames from "classnames";
 import { DropzoneOptions, useDropzone } from "react-dropzone";
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import { v1 as uuidv1 } from "uuid";
 import styles from "./InputFile.css";
 import { Button } from "../Button";
@@ -129,6 +129,18 @@ interface InputFileProps {
   onUploadComplete?(file: FileUpload): void;
 }
 
+interface RequestParams extends Omit<UploadParams, "key"> {
+  /**
+   * The file being uploaded
+   */
+  file: File;
+
+  /**
+   *
+   */
+  handleUploadProgress(progress: any): void;
+}
+
 export function InputFile({
   variation = "dropzone",
   size = "base",
@@ -219,32 +231,50 @@ export function InputFile({
       onUploadComplete?.({ ...fileUpload, progress: 1 });
     };
 
-    if (httpMethod === "POST") {
-      const formData = new FormData();
-      Object.entries(fields).forEach(([field, value]) =>
-        formData.append(field, value),
-      );
-      formData.append("file", file);
-
-      axios
-        .post(url, formData, {
-          headers: { "X-Requested-With": "XMLHttpRequest" },
-          onUploadProgress: handleUploadProgress,
-        })
-        .then(() => {
-          handleUploadComplete();
-        });
-    } else if (httpMethod === "PUT") {
-      axios
-        .put(url, file, {
-          headers: fields,
-          onUploadProgress: handleUploadProgress,
-        })
-        .then(() => {
-          handleUploadComplete();
-        });
-    }
+    const axiosConfig = createAxiosConfig({
+      url,
+      httpMethod,
+      fields,
+      file,
+      handleUploadProgress,
+    });
+    axios.request(axiosConfig).then(() => {
+      handleUploadComplete();
+    });
   }
+}
+
+function createAxiosConfig({
+  url,
+  httpMethod = "POST",
+  fields = {},
+  file,
+  handleUploadProgress,
+}: RequestParams): AxiosRequestConfig {
+  let data: FormData | File;
+  let headers: { [field: string]: string };
+
+  if (httpMethod === "POST") {
+    const formData = new FormData();
+    Object.entries(fields).forEach(([field, value]) =>
+      formData.append(field, value),
+    );
+    formData.append("file", file);
+
+    data = formData;
+    headers = { "X-Requested-With": "XMLHttpRequest" };
+  } else {
+    data = file;
+    headers = fields;
+  }
+
+  return {
+    method: httpMethod,
+    url: url,
+    headers: headers,
+    data: data,
+    onUploadProgress: handleUploadProgress,
+  };
 }
 
 function getLabels(

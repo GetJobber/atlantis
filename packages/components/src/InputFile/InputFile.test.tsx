@@ -4,12 +4,11 @@ import axios from "axios";
 import { InputFile } from ".";
 
 jest.mock("axios", () => {
-  return { put: jest.fn(), post: jest.fn() };
+  return { request: jest.fn() };
 });
 
 beforeEach(() => {
-  (axios.put as jest.Mock).mockReturnValue(Promise.resolve());
-  (axios.post as jest.Mock).mockReturnValue(Promise.resolve());
+  (axios.request as jest.Mock).mockReturnValue(Promise.resolve());
 });
 
 afterEach(cleanup);
@@ -121,14 +120,13 @@ describe("Post Requests", () => {
         ...baseMatch,
         progress: 0,
       });
-      expect(axios.post).toHaveBeenCalledWith(
-        "https://httpbin.org/post",
-        expect.any(FormData),
-        {
-          headers: { "X-Requested-With": "XMLHttpRequest" },
-          onUploadProgress: expect.any(Function),
-        },
-      );
+      expect(axios.request).toHaveBeenCalledWith({
+        data: expect.any(FormData),
+        headers: { "X-Requested-With": "XMLHttpRequest" },
+        method: "POST",
+        onUploadProgress: expect.any(Function),
+        url: "https://httpbin.org/post",
+      });
       expect(handleComplete).toHaveBeenCalledWith({
         ...baseMatch,
         progress: 1,
@@ -149,7 +147,7 @@ describe("PUT requests", () => {
         "Content-Type": "sol_badguy",
         "Content-MD5": "dragon_install",
       },
-      httpMethod: "PUT",
+      httpMethod: "PUT" as "PUT" | "POST",
     });
   }
 
@@ -172,7 +170,10 @@ describe("PUT requests", () => {
     fireEvent.change(input, { target: { files: [testFile] } });
 
     await waitFor(() => {
-      expect(axios.put).toHaveBeenCalledWith("definitely_fake_url", testFile, {
+      expect(axios.request).toHaveBeenCalledWith({
+        data: testFile,
+        url: "definitely_fake_url",
+        method: "PUT",
         headers: {
           "Content-MD5": "dragon_install",
           "Content-Type": "sol_badguy",
