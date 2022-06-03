@@ -63,12 +63,11 @@ export function FormatFile({
 
   const thumbnailDimensions = sizeToDimensions[displaySize];
   const [showDeleteButton, setShowDeleteButton] = useState(
-    display === "compact" && displaySize === "default" ? false : true,
+    isFileDisplay(display) ? true : false,
   );
 
   const iconName = getIconNameFromType(file.type);
   const fileSize = getHumanReadableFileSize(file.size);
-  const isSmallThumbnail = display === "compact" && displaySize === "default";
 
   if (!imageSource && file.type.startsWith("image/") && file.src) {
     file.src().then(src => setImageSource(src));
@@ -81,16 +80,16 @@ export function FormatFile({
   return (
     <div
       onMouseEnter={() => {
-        showDeleteButtonIfSmallThumbnail(isSmallThumbnail, setShowDeleteButton);
+        showDeleteButtonIfCompact(!isFileDisplay(display), setShowDeleteButton);
       }}
       onMouseLeave={() => {
-        hideDeleteButtonIfSmallThumbnail(isSmallThumbnail, setShowDeleteButton);
+        hideDeleteButtonIfCompact(!isFileDisplay(display), setShowDeleteButton);
       }}
       onFocus={() => {
-        showDeleteButtonIfSmallThumbnail(isSmallThumbnail, setShowDeleteButton);
+        showDeleteButtonIfCompact(!isFileDisplay(display), setShowDeleteButton);
       }}
       onBlur={() => {
-        hideDeleteButtonIfSmallThumbnail(isSmallThumbnail, setShowDeleteButton);
+        hideDeleteButtonIfCompact(!isFileDisplay(display), setShowDeleteButton);
       }}
       className={isFileDisplay(display) ? styles.formatFile : styles.thumbnail}
       style={
@@ -159,20 +158,20 @@ export function FormatFile({
   );
 }
 
-function hideDeleteButtonIfSmallThumbnail(
-  smallAndCompact: boolean,
+function hideDeleteButtonIfCompact(
+  isCompact: boolean,
   setShowDeleteButton: React.Dispatch<React.SetStateAction<boolean>>,
 ) {
-  if (smallAndCompact) {
+  if (isCompact) {
     setShowDeleteButton(false);
   }
 }
 
-function showDeleteButtonIfSmallThumbnail(
-  smallAndCompact: boolean,
+function showDeleteButtonIfCompact(
+  isCompact: boolean,
   setShowDeleteButton: React.Dispatch<React.SetStateAction<boolean>>,
 ) {
-  if (smallAndCompact) {
+  if (isCompact) {
     setShowDeleteButton(true);
   }
 }
