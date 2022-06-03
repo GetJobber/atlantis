@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { sizeToDimensions } from "./sizeToDimensions";
 import { Button } from "../Button";
 import { ConfirmationModal } from "../ConfirmationModal";
 
 interface DeleteButtonProps {
   deleteButtonStyle: string;
-  size?: keyof typeof sizeToDimensions;
+  size?: "default" | "large";
   onDelete?: () => void;
 }
 

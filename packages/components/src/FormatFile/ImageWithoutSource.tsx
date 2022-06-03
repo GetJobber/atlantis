@@ -2,14 +2,13 @@ import React from "react";
 import classNames from "classnames";
 import { IconNames } from "@jobber/design";
 import styles from "./FormatFile.css";
-import { DisplaySize } from "./sizeToDimensions";
 import { Icon } from "../Icon";
 import { Typography } from "../Typography";
 
 interface ImageWithoutSourceProps {
   displayIsExpanded: boolean;
   iconName: IconNames;
-  displaySize: DisplaySize;
+  displaySize: "default" | "large";
   filename: string;
   isComplete: boolean;
 }
@@ -49,7 +48,7 @@ export function ImageWithoutSource({
 
 function classnamesForFileContentWrapper(
   isComplete: boolean,
-  displaySize: DisplaySize,
+  displaySize: "default" | "large",
 ) {
   const fileContentWrapperClassnames = [styles.fileContentWrapper];
 

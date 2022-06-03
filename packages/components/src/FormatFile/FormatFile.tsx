@@ -4,7 +4,6 @@ import classNames from "classnames";
 import { IconNames } from "@jobber/design";
 import styles from "./FormatFile.css";
 import { FormatFileDeleteButton } from "./FormatFileDeleteButton";
-import { DisplaySize, sizeToDimensions } from "./sizeToDimensions";
 import { ImageWithoutSource } from "./ImageWithoutSource";
 import { Typography } from "../Typography";
 import { ProgressBar } from "../ProgressBar";
@@ -38,7 +37,7 @@ interface FormatFileProps {
    *
    * @default "default"
    */
-  readonly displaySize?: DisplaySize;
+  readonly displaySize?: "default" | "large";
 
   /**
    * Function to execute when format file is clicked
@@ -61,7 +60,6 @@ export function FormatFile({
   const [imageSource, setImageSource] = useState<string>();
   const isComplete = file.progress >= 1;
 
-  const thumbnailDimensions = sizeToDimensions[displaySize];
   const [showDeleteButton, setShowDeleteButton] = useState(
     isFileDisplay(display) ? true : false,
   );
@@ -91,15 +89,7 @@ export function FormatFile({
       onBlur={() => {
         hideDeleteButtonIfCompact(!isFileDisplay(display), setShowDeleteButton);
       }}
-      className={isFileDisplay(display) ? styles.formatFile : styles.thumbnail}
-      style={
-        isFileDisplay(display)
-          ? {}
-          : {
-              width: thumbnailDimensions.width,
-              height: thumbnailDimensions.height,
-            }
-      }
+      className={formatFileClassnames(display, displaySize)}
     >
       <div
         className={imageBlockClassnames(
@@ -179,6 +169,26 @@ function showDeleteButtonIfCompact(
 
 function isFileDisplay(display: "expanded" | "compact") {
   return display === "expanded";
+}
+
+function formatFileClassnames(
+  display: "expanded" | "compact",
+  displaySize: "default" | "large",
+) {
+  const classnamesForFormatFile = [];
+
+  if (display === "expanded") {
+    classnamesForFormatFile.push(styles.formatFile);
+  } else if (display === "compact") {
+    classnamesForFormatFile.push(styles.thumbnail);
+    if (displaySize === "default") {
+      classnamesForFormatFile.push(styles.thumbnailDefault);
+    } else {
+      classnamesForFormatFile.push(styles.thumbnailLarge);
+    }
+  }
+
+  return classNames(classnamesForFormatFile);
 }
 
 function imageBlockClassnames(

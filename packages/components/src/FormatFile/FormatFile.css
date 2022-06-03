@@ -173,6 +173,16 @@
   position: relative;
 }
 
+.thumbnail.thumbnailLarge {
+  width: 168px;
+  height: 168px;
+}
+
+.thumbnail.thumbnailDefault {
+  width: 56px;
+  height: 56px;
+}
+
 .deleteButtonCompact {
   display: flex;
   position: absolute;

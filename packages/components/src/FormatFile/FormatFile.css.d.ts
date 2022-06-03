@@ -15,6 +15,8 @@ declare const styles: {
   readonly "progress": string;
   readonly "contentBlock": string;
   readonly "deleteButtonExpanded": string;
+  readonly "thumbnailLarge": string;
+  readonly "thumbnailDefault": string;
   readonly "deleteButtonCompact": string;
 };
 export = styles;
