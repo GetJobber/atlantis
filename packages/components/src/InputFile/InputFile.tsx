@@ -207,12 +207,16 @@ export function InputFile({
     const fileUpload = getFileUpload(file, key);
     onUploadStart && onUploadStart({ ...fileUpload });
 
-    const uploadProgressUpdate = (progressEvent: any) => {
+    const handleUploadProgress = (progressEvent: any) => {
       onUploadProgress &&
         onUploadProgress({
           ...fileUpload,
           progress: progressEvent.loaded / progressEvent.total,
         });
+    };
+
+    const handleUploadComplete = () => {
+      onUploadComplete?.({ ...fileUpload, progress: 1 });
     };
 
     if (httpMethod === "POST") {
@@ -225,19 +229,19 @@ export function InputFile({
       axios
         .post(url, formData, {
           headers: { "X-Requested-With": "XMLHttpRequest" },
-          onUploadProgress: uploadProgressUpdate,
+          onUploadProgress: handleUploadProgress,
         })
         .then(() => {
-          onUploadComplete && onUploadComplete({ ...fileUpload, progress: 1 });
+          handleUploadComplete();
         });
     } else if (httpMethod === "PUT") {
       axios
         .put(url, file, {
           headers: fields,
-          onUploadProgress: uploadProgressUpdate,
+          onUploadProgress: handleUploadProgress,
         })
         .then(() => {
-          onUploadComplete && onUploadComplete({ ...fileUpload, progress: 1 });
+          handleUploadComplete();
         });
     }
   }
