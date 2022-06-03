@@ -111,6 +111,8 @@
 }
 
 .thumbnailNonImage.thumbnailNonImageProgress::before {
+  border: var(--border-base);
+  border-radius: var(--radius-base);
   background: linear-gradient(
     270deg,
     rgb(165, 165, 165) 38.46%,
