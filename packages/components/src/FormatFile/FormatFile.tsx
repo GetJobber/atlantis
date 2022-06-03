@@ -133,6 +133,7 @@ export function FormatFile({
             displaySize={displaySize}
             iconName={iconName}
             filename={file.name}
+            isComplete={isComplete}
           />
         )}
         {!isComplete && <>{progressBar(file)}</>}

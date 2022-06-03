@@ -138,7 +138,7 @@ exports[`when the format file is a thumbnail when the thumbnail is large sized r
     tabIndex={0}
   >
     <div
-      className="fileContentWrapper"
+      className="fileContentWrapper fileContentWrapperLarge"
     >
       <div
         className="icon"

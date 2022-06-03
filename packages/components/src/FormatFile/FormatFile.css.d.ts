@@ -5,11 +5,10 @@ declare const styles: {
   readonly "imageBlockOverlay": string;
   readonly "icon": string;
   readonly "fileContentWrapper": string;
+  readonly "fileContentWrapperInProgress": string;
+  readonly "fileContentWrapperLarge": string;
   readonly "thumbnailFilename": string;
   readonly "thumbnailFilenameSmall": string;
-  readonly "thumbnailNonImage": string;
-  readonly "thumbnailNonImageProgress": string;
-  readonly "thumbnailLarge": string;
   readonly "thumbnail": string;
   readonly "progress": string;
   readonly "contentBlock": string;

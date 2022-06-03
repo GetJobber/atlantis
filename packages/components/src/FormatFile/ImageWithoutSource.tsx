@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 import { IconNames } from "@jobber/design";
 import styles from "./FormatFile.css";
 import { DisplaySize } from "./sizeToDimensions";
@@ -10,6 +11,7 @@ interface ImageWithoutSourceProps {
   iconName: IconNames;
   displaySize: DisplaySize;
   filename: string;
+  isComplete: boolean;
 }
 
 export function ImageWithoutSource({
@@ -17,6 +19,7 @@ export function ImageWithoutSource({
   iconName,
   displaySize,
   filename,
+  isComplete,
 }: ImageWithoutSourceProps) {
   const iconElement = (
     <div className={styles.icon}>
@@ -29,7 +32,7 @@ export function ImageWithoutSource({
   }
 
   return (
-    <div className={styles.fileContentWrapper}>
+    <div className={classnamesForFileContentWrapper(isComplete, displaySize)}>
       {iconElement}
       <div
         className={
@@ -42,4 +45,21 @@ export function ImageWithoutSource({
       </div>
     </div>
   );
+}
+
+function classnamesForFileContentWrapper(
+  isComplete: boolean,
+  displaySize: DisplaySize,
+) {
+  const fileContentWrapperClassnames = [styles.fileContentWrapper];
+
+  if (!isComplete) {
+    fileContentWrapperClassnames.push(styles.fileContentWrapperInProgress);
+  }
+
+  if (displaySize === "large") {
+    fileContentWrapperClassnames.push(styles.fileContentWrapperLarge);
+  }
+
+  return classNames(fileContentWrapperClassnames);
 }
