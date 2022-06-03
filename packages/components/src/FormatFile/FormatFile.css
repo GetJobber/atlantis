@@ -40,7 +40,7 @@
   outline-color: var(--color-focus);
 }
 
-.imageBlock:hover::after {
+.imageBlock.imageBlockHoverable:hover::after {
   content: "";
   display: block;
   position: absolute;

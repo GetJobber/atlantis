@@ -1,6 +1,7 @@
 declare const styles: {
   readonly "formatFile": string;
   readonly "imageBlock": string;
+  readonly "imageBlockHoverable": string;
   readonly "imageBlockOverlay": string;
   readonly "icon": string;
   readonly "fileContentWrapper": string;

@@ -75,9 +75,6 @@ export function FormatFile({
   }
 
   const style = imageSource ? { backgroundImage: `url(${imageSource})` } : {};
-  const imageBlockStyle = isComplete
-    ? styles.imageBlock
-    : classNames(styles.imageBlock, styles.imageBlockOverlay);
 
   return (
     <div
@@ -108,7 +105,10 @@ export function FormatFile({
       }
     >
       <div
-        className={imageBlockStyle}
+        className={imageBlockClassnames(
+          isComplete,
+          onClick !== undefined || onDelete !== undefined,
+        )}
         style={
           IsFileDisplay(display)
             ? { ...style }
@@ -180,6 +180,18 @@ function showDeleteButtonIfSmallThumbnail(
 
 function IsFileDisplay(display: "expanded" | "compact") {
   return display === "expanded";
+}
+
+function imageBlockClassnames(isComplete: boolean, hoverable: boolean) {
+  const imageBlockClassnamesArray = [styles.imageBlock];
+  if (!isComplete) {
+    imageBlockClassnamesArray.push(styles.imageBlockOverlay);
+  }
+  if (isComplete && hoverable) {
+    imageBlockClassnamesArray.push(styles.imageBlockHoverable);
+  }
+
+  return classNames(imageBlockClassnamesArray);
 }
 
 function thumbnailParentClassnames(
