@@ -43,7 +43,20 @@
   outline: none;
 }
 
-.imageBlock:focus::after {
+.imageBlock.imageBlockHoverable::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-overlay);
+  opacity: 0;
+  transition: all var(--timing-base);
+}
+
+.imageBlock.imageBlockHoverable:focus::after {
   content: "";
   display: block;
   position: absolute;
@@ -56,19 +69,7 @@
   border-radius: var(--radius-base);
   outline: none;
   background-color: var(--color-overlay);
-}
-
-.imageBlock.imageBlockHoverable::after {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--color-overlay);
-  opacity: 0;
-  transition: all var(--timing-base);
+  opacity: 1;
 }
 
 .thumbnail:hover .imageBlock.imageBlockHoverable::after,
