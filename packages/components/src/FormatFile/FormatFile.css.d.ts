@@ -2,8 +2,8 @@ declare const styles: {
   readonly "expanded": string;
   readonly "imageBlock": string;
   readonly "imageBlockCompact": string;
-  readonly "thumbnail": string;
   readonly "imageBlockHoverable": string;
+  readonly "thumbnail": string;
   readonly "imageBlockOverlay": string;
   readonly "imageBlockOverlayCompact": string;
   readonly "icon": string;
