@@ -129,14 +129,16 @@ interface InputFileProps {
   onUploadComplete?(file: FileUpload): void;
 }
 
-interface RequestParams extends Omit<UploadParams, "key"> {
+interface CreateAxiosConfigParams extends Omit<UploadParams, "key"> {
   /**
    * The file being uploaded
    */
-  file: File;
+  readonly file: File;
 
   /**
-   *
+   * The uploadProgress callback used by axios.
+   * The axios request config type from the library specifies
+   * the input to this function as `any`
    */
   handleUploadProgress(progress: any): void;
 }
@@ -250,7 +252,7 @@ function createAxiosConfig({
   fields = {},
   file,
   handleUploadProgress,
-}: RequestParams): AxiosRequestConfig {
+}: CreateAxiosConfigParams): AxiosRequestConfig {
   let data: FormData | File;
   let headers: { [field: string]: string };
 
