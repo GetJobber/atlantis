@@ -178,7 +178,7 @@ function formatFileClassnames(
   const classnamesForFormatFile = [];
 
   if (display === "expanded") {
-    classnamesForFormatFile.push(styles.formatFile);
+    classnamesForFormatFile.push(styles.expanded);
   } else if (display === "compact") {
     classnamesForFormatFile.push(styles.thumbnail);
     if (displaySize === "default") {

@@ -2,7 +2,7 @@
 
 exports[`renders a FormatFile 1`] = `
 <div
-  className="formatFile"
+  className="expanded"
   onBlur={[Function]}
   onFocus={[Function]}
   onMouseEnter={[Function]}

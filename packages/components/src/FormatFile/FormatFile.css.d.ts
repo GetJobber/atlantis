@@ -1,7 +1,8 @@
 declare const styles: {
-  readonly "formatFile": string;
+  readonly "expanded": string;
   readonly "imageBlock": string;
   readonly "imageBlockCompact": string;
+  readonly "thumbnail": string;
   readonly "imageBlockHoverable": string;
   readonly "imageBlockOverlay": string;
   readonly "imageBlockOverlayCompact": string;
@@ -11,7 +12,6 @@ declare const styles: {
   readonly "fileContentWrapperLarge": string;
   readonly "thumbnailFilename": string;
   readonly "thumbnailFilenameSmall": string;
-  readonly "thumbnail": string;
   readonly "progress": string;
   readonly "contentBlock": string;
   readonly "deleteButtonExpanded": string;
