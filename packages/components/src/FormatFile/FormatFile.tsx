@@ -94,7 +94,7 @@ export function FormatFile({
       <div
         className={imageBlockClassnames(
           isComplete,
-          onClick !== undefined || onDelete !== undefined,
+          isInteractable(display, isComplete, onClick, onDelete),
           !isFileDisplay(display),
         )}
         style={
@@ -106,7 +106,9 @@ export function FormatFile({
                 height: "inherit",
               }
         }
-        tabIndex={0}
+        tabIndex={
+          isInteractable(display, isComplete, onClick, onDelete) ? 0 : undefined
+        }
         data-testid="imageBlock"
         onClick={event => {
           onClick?.(event);
@@ -146,6 +148,23 @@ export function FormatFile({
         </>
       )}
     </div>
+  );
+}
+
+function isInteractable(
+  display: "expanded" | "compact",
+  isComplete: boolean,
+  onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void,
+  onDelete?: () => void,
+) {
+  if (!isComplete) {
+    return false;
+  }
+
+  return (
+    (!isFileDisplay(display) && onClick !== undefined) ||
+    (!isFileDisplay(display) && onDelete !== undefined) ||
+    (isFileDisplay(display) && onClick !== undefined)
   );
 }
 
