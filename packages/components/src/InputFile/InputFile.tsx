@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import classnames from "classnames";
 import { DropzoneOptions, useDropzone } from "react-dropzone";
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import { v1 as uuidv1 } from "uuid";
 import styles from "./InputFile.css";
 import { Button } from "../Button";
@@ -55,10 +55,23 @@ export interface UploadParams {
   readonly key?: string;
 
   /**
-   * Any extra fields to send with the upload POST.
+   * Any extra fields or headers to send with the upload.
    * If unspecified only the file will be included.
    */
   readonly fields?: { [field: string]: string };
+
+  /**
+   * The HTTP method which we wish to use for the upload
+   *
+   * When the HTTP method is `"PUT"`, the `fields` will
+   * be used as headers for the request
+   *
+   * When the HTTP method is `"POST"` the `fields` are
+   * form fields
+   *
+   * @default "POST"
+   */
+  readonly httpMethod?: "POST" | "PUT";
 }
 
 interface InputFileProps {
@@ -120,6 +133,20 @@ interface InputFileProps {
    * Upload event handler. Triggered on upload completion.
    */
   onUploadComplete?(file: FileUpload): void;
+}
+
+interface CreateAxiosConfigParams extends Omit<UploadParams, "key"> {
+  /**
+   * The file being uploaded
+   */
+  readonly file: File;
+
+  /**
+   * The uploadProgress callback used by axios.
+   * The axios request config type from the library specifies
+   * the input to this function as `any`
+   */
+  handleUploadProgress(progress: any): void;
 }
 
 export function InputFile({
@@ -190,31 +217,70 @@ export function InputFile({
   }
 
   async function uploadFile(file: File) {
-    const { url, key = uuidv1(), fields = {} } = await getUploadParams(file);
+    const {
+      url,
+      key = uuidv1(),
+      fields = {},
+      httpMethod = "POST",
+    } = await getUploadParams(file);
 
     const fileUpload = getFileUpload(file, key);
     onUploadStart && onUploadStart({ ...fileUpload });
 
+    const handleUploadProgress = (progressEvent: any) => {
+      onUploadProgress &&
+        onUploadProgress({
+          ...fileUpload,
+          progress: progressEvent.loaded / progressEvent.total,
+        });
+    };
+
+    const handleUploadComplete = () => {
+      onUploadComplete?.({ ...fileUpload, progress: 1 });
+    };
+
+    const axiosConfig = createAxiosConfig({
+      url,
+      httpMethod,
+      fields,
+      file,
+      handleUploadProgress,
+    });
+    axios.request(axiosConfig).then(handleUploadComplete);
+  }
+}
+
+function createAxiosConfig({
+  url,
+  httpMethod = "POST",
+  fields = {},
+  file,
+  handleUploadProgress,
+}: CreateAxiosConfigParams): AxiosRequestConfig {
+  let data: FormData | File;
+  let headers: { [field: string]: string };
+
+  if (httpMethod === "POST") {
     const formData = new FormData();
     Object.entries(fields).forEach(([field, value]) =>
       formData.append(field, value),
     );
     formData.append("file", file);
 
-    axios
-      .post(url, formData, {
-        headers: { "X-Requested-With": "XMLHttpRequest" },
-        onUploadProgress: progressEvent =>
-          onUploadProgress &&
-          onUploadProgress({
-            ...fileUpload,
-            progress: progressEvent.loaded / progressEvent.total,
-          }),
-      })
-      .then(() => {
-        onUploadComplete && onUploadComplete({ ...fileUpload, progress: 1 });
-      });
+    data = formData;
+    headers = { "X-Requested-With": "XMLHttpRequest" };
+  } else {
+    data = file;
+    headers = fields;
   }
+
+  return {
+    method: httpMethod,
+    url: url,
+    headers: headers,
+    data: data,
+    onUploadProgress: handleUploadProgress,
+  };
 }
 
 function getLabels(

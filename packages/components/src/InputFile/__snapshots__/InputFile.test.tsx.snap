@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders a InputFile 1`] = `
+exports[`Post Requests renders an InputFile 1`] = `
 <div>
   <div
     class="dropZoneBase dropZone"
@@ -35,7 +35,7 @@ exports[`renders a InputFile 1`] = `
 </div>
 `;
 
-exports[`renders an InputFile with multiple images allowed 1`] = `
+exports[`Post Requests renders an InputFile with multiple images allowed 1`] = `
 <div>
   <div
     class="dropZoneBase dropZone"
@@ -72,7 +72,7 @@ exports[`renders an InputFile with multiple images allowed 1`] = `
 </div>
 `;
 
-exports[`renders an InputFile with multiple uploads 1`] = `
+exports[`Post Requests renders an InputFile with multiple uploads 1`] = `
 <div>
   <div
     class="dropZoneBase dropZone"
@@ -108,7 +108,7 @@ exports[`renders an InputFile with multiple uploads 1`] = `
 </div>
 `;
 
-exports[`renders an InputFile with only images allowed 1`] = `
+exports[`Post Requests renders an InputFile with only images allowed 1`] = `
 <div>
   <div
     class="dropZoneBase dropZone"
@@ -144,7 +144,7 @@ exports[`renders an InputFile with only images allowed 1`] = `
 </div>
 `;
 
-exports[`renders an InputFile with proper variations 1`] = `
+exports[`Post Requests renders an InputFile with proper variations 1`] = `
 <div>
   <div
     class="dropZoneBase dropZone"
