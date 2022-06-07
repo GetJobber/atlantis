@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.84.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.83.1...@jobber/components@2.84.0) (2022-06-07)
+
+
+### Features
+
+* **components:** JOB-40406 Allow PUT requests in InputFile component ([#895](https://github.com/GetJobber/atlantis/issues/895)) ([4101f44](https://github.com/GetJobber/atlantis/commit/4101f441327ecfebb55ce868dbd9bf7d3d9ec837))
+
+
+
+
+
 ## [2.83.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.83.0...@jobber/components@2.83.1) (2022-06-03)
 
 
