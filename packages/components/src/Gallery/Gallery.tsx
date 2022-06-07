@@ -5,7 +5,7 @@ import { LightBox } from "../LightBox";
 import { FormatFile } from "../FormatFile";
 import { Button } from "../Button";
 
-export function Gallery({ files, size = "default", max }: GalleryProps) {
+export function Gallery({ files, size = "base", max }: GalleryProps) {
   const images = files
     .filter(file => file.type.startsWith("image/"))
     .map(file => {

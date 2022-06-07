@@ -10,9 +10,9 @@ export type FileIconsNames = Extract<
 export interface GalleryProps {
   /**
    * The size of the Gallery and it's files
-   * @default "default"
+   * @default "base"
    */
-  size?: "default" | "large";
+  size?: "base" | "large";
 
   /**
    * The files for the gallery to display
