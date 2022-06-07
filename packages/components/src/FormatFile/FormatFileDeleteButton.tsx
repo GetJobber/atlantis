@@ -1,20 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "../Button";
-import { ConfirmationModal } from "../ConfirmationModal";
 
 interface DeleteButtonProps {
   deleteButtonStyle: string;
   size?: "default" | "large";
-  onDelete?: () => void;
+  setDeleteConfirmationOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export function FormatFileDeleteButton({
   deleteButtonStyle,
   size,
-  onDelete,
+  setDeleteConfirmationOpen,
 }: DeleteButtonProps) {
   const buttonSize = size === "default" ? "small" : "base";
-  const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
 
   return (
     <>
@@ -28,15 +26,6 @@ export function FormatFileDeleteButton({
           size={buttonSize}
         />
       </div>
-      <ConfirmationModal
-        title="Confirm Deletion"
-        message={`Are you sure you want to delete this file?`}
-        confirmLabel="Delete"
-        variation="destructive"
-        open={deleteConfirmationOpen}
-        onConfirm={() => onDelete?.()}
-        onRequestClose={() => setDeleteConfirmationOpen(false)}
-      />
     </>
   );
 }

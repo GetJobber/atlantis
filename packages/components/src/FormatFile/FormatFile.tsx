@@ -8,6 +8,7 @@ import { ImageWithoutSource } from "./ImageWithoutSource";
 import { Typography } from "../Typography";
 import { ProgressBar } from "../ProgressBar";
 import { FileUpload } from "../InputFile";
+import { ConfirmationModal } from "../ConfirmationModal";
 
 const progressBar = (file: FileUpload) => (
   <div className={styles.progress}>
@@ -63,6 +64,7 @@ export function FormatFile({
   const [showDeleteButton, setShowDeleteButton] = useState(
     isFileDisplay(display) ? true : false,
   );
+  const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
 
   const iconName = getIconNameFromType(file.type);
   const fileSize = getHumanReadableFileSize(file.size);
@@ -143,10 +145,19 @@ export function FormatFile({
                 : styles.deleteButtonCompact
             }
             size={isFileDisplay(display) ? "large" : displaySize}
-            onDelete={onDelete}
+            setDeleteConfirmationOpen={setDeleteConfirmationOpen}
           />
         </>
       )}
+      <ConfirmationModal
+        title="Confirm Deletion"
+        message={`Are you sure you want to delete this file?`}
+        confirmLabel="Delete"
+        variation="destructive"
+        open={deleteConfirmationOpen}
+        onConfirm={() => onDelete?.()}
+        onRequestClose={() => setDeleteConfirmationOpen(false)}
+      />
     </div>
   );
 }
