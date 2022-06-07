@@ -62,8 +62,14 @@ export interface UploadParams {
 
   /**
    * The HTTP method which we wish to use for the upload
-   * If unspecified, it will default to POST
-   * The `fields` will then be used as headers for the request
+   *
+   * When the HTTP method is `"PUT"`, the `fields` will
+   * be used as headers for the request
+   *
+   * When the HTTP method is `"POST"` the `fields` are
+   * form fields
+   *
+   * @default "POST"
    */
   readonly httpMethod?: "POST" | "PUT";
 }
@@ -240,9 +246,7 @@ export function InputFile({
       file,
       handleUploadProgress,
     });
-    axios.request(axiosConfig).then(() => {
-      handleUploadComplete();
-    });
+    axios.request(axiosConfig).then(handleUploadComplete);
   }
 }
 
