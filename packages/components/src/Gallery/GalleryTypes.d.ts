@@ -58,6 +58,11 @@ interface File {
    * The data url of the file.
    */
   src: string;
+
+  /**
+   * onDelete callback - this function will be called when the delete action is triggered on a gallery image
+   */
+  onDelete?: () => void;
 }
 
 interface GalleryItem extends File {

@@ -32,6 +32,7 @@ export function Gallery({ files, size = "default", max }: GalleryProps) {
                 onClick={() => {
                   handleThumbnailClicked(index);
                 }}
+                onDelete={file.onDelete}
               />
             </div>
           );
