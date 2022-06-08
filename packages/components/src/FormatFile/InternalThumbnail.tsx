@@ -8,7 +8,7 @@ import { Typography } from "../Typography";
 interface InternalThumbnailProps {
   readonly name?: string;
   readonly hideName?: boolean;
-  readonly size: "default" | "large";
+  readonly size: "base" | "large";
   readonly file: FileUpload;
 }
 

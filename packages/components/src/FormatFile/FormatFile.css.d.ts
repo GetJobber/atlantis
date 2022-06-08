@@ -3,7 +3,7 @@ declare const styles: {
   readonly "compact": string;
   readonly "wrapper": string;
   readonly "large": string;
-  readonly "default": string;
+  readonly "base": string;
   readonly "thumbnail": string;
   readonly "clickable": string;
   readonly "hoverable": string;

@@ -3,12 +3,12 @@ import { Button } from "../Button";
 import { ConfirmationModal } from "../ConfirmationModal";
 
 interface DeleteButtonProps {
-  size?: "default" | "large";
+  size?: "base" | "large";
   onDelete?: () => void;
 }
 
 export function FormatFileDeleteButton({ size, onDelete }: DeleteButtonProps) {
-  const buttonSize = size === "default" ? "small" : "base";
+  const buttonSize = size === "base" ? "small" : "base";
   const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
 
   return (

@@ -31,7 +31,7 @@
   );
 }
 
-.content.default::after {
+.content.base::after {
   width: var(--space-base);
   height: var(--space-base);
 }
@@ -45,7 +45,7 @@
   position: absolute;
 }
 
-.default .fileName {
+.base .fileName {
   bottom: var(--space-smaller);
   left: var(--space-smaller);
   font-size: calc(var(--base-unit) * 0.625);

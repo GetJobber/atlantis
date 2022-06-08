@@ -10,10 +10,10 @@ exports[`renders a FormatFile 1`] = `
     tabIndex={0}
   >
     <div
-      className="thumbnail default"
+      className="thumbnail base"
     >
       <div
-        className="content default"
+        className="content base"
       >
         <svg
           className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
@@ -55,18 +55,18 @@ exports[`renders a FormatFile 1`] = `
 
 exports[`when the format file is a thumbnail when the thumbnail is default sized renders a FormatFile as a default sized thumbnail 1`] = `
 <div
-  className="compact default"
+  className="compact base"
 >
   <div
     aria-busy={false}
-    className="wrapper default deleteable"
+    className="wrapper base deleteable"
     tabIndex={0}
   >
     <div
-      className="thumbnail default"
+      className="thumbnail base"
     >
       <div
-        className="content default"
+        className="content base"
       >
         <svg
           className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"

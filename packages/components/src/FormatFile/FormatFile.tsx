@@ -26,7 +26,7 @@ interface FormatFileProps {
    *
    * @default "default"
    */
-  readonly displaySize?: "default" | "large";
+  readonly displaySize?: "base" | "large";
 
   /**
    * Function to execute when format file is clicked
@@ -42,7 +42,7 @@ interface FormatFileProps {
 export function FormatFile({
   file,
   display = "expanded",
-  displaySize = "default",
+  displaySize = "base",
   onDelete,
   onClick,
 }: FormatFileProps) {
