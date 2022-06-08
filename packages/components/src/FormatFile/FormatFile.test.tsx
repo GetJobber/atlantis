@@ -12,12 +12,13 @@ it("renders a FormatFile", () => {
     type: "audio/ogg",
     size: 1024,
     progress: 1,
+    src: () => Promise.resolve("https://audio/somesound.ogg"),
   };
   const tree = renderer.create(<FormatFile file={testFile} />).toJSON();
   expect(tree).toMatchSnapshot();
 });
 
-it("renders an image when provided as src", done => {
+it("renders an image when provided as src", async done => {
   const url = "not_actually_a_url";
   const testFile = {
     key: "234",
@@ -29,10 +30,15 @@ it("renders an image when provided as src", done => {
   };
 
   const { queryByTestId } = render(<FormatFile file={testFile} />);
-  const imageBlockDiv = queryByTestId("imageBlock");
+
+  await waitFor(() => {
+    expect(queryByTestId("internalThumbnailImage")).not.toBeUndefined();
+  });
+
+  const internalThumbnailImage = queryByTestId("internalThumbnailImage");
 
   waitFor(() => {
-    expect(imageBlockDiv).toHaveStyle(`background-image: url(${url})`);
+    expect(internalThumbnailImage).toBeInstanceOf(HTMLImageElement);
     done();
   });
 });
@@ -44,6 +50,7 @@ it("it should call the delete handler", async () => {
     type: "application/pdf",
     size: 1022,
     progress: 1,
+    src: () => Promise.resolve("https://nature/interesting-article.png"),
   };
   const deleteHandler = jest.fn();
   const { getByLabelText, getByText } = render(

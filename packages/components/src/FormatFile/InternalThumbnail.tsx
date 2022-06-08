@@ -33,6 +33,7 @@ export function InternalThumbnail({
       }}
       className={classNames(styles.image, { [styles.loading]: !imageLoaded })}
       alt={name}
+      data-testid="internalThumbnailImage"
     />
   );
   if (imageLoaded) {
