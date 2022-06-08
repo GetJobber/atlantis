@@ -5,7 +5,7 @@ import { LightBox } from "../LightBox";
 import { FormatFile } from "../FormatFile";
 import { Button } from "../Button";
 
-export function Gallery({ files, size = "base", max }: GalleryProps) {
+export function Gallery({ files, size = "base", max, onDelete }: GalleryProps) {
   const { images, filesToImageIndex } = generateImagesArray(files);
 
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -28,7 +28,7 @@ export function Gallery({ files, size = "base", max }: GalleryProps) {
                 onClick={() => {
                   handleThumbnailClicked(index);
                 }}
-                onDelete={file.onDelete}
+                onDelete={() => onDelete?.(file)}
               />
             </div>
           );

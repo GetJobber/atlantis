@@ -90,6 +90,9 @@ import { Gallery } from "@jobber/components/Gallery";
         src: "https://source.unsplash.com/250x250",
       },
     ]}
+    onDelete={file => {
+      alert("Deleted " + file.name);
+    }}
   />
 </Playground>
 
@@ -118,9 +121,6 @@ size isn't explicitly set, and can also set the size to "large"
         size: 213402324,
         progress: 1,
         src: "https://source.unsplash.com/250x250",
-        onDelete: () => {
-          alert("DELETED!");
-        },
       },
       {
         key: "def",

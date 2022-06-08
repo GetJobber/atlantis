@@ -24,6 +24,11 @@ export interface GalleryProps {
    * unless the user clicks an action to display the rest
    */
   max?: number;
+
+  /**
+   * onDelete callback - this function will be called when the delete action is triggered on a gallery image
+   */
+  onDelete?(file: File): void;
 }
 
 export interface File {
@@ -58,11 +63,6 @@ export interface File {
    * The data url of the file.
    */
   src: string;
-
-  /**
-   * onDelete callback - this function will be called when the delete action is triggered on a gallery image
-   */
-  onDelete?: () => void;
 }
 
 interface GalleryItem extends File {
