@@ -34,13 +34,17 @@ export function Gallery({ files, size = "base", max }: GalleryProps) {
           );
         })}
         {max && files.length > max && !displayPastMax && (
-          <Button
-            type="tertiary"
-            label={`+ ${files.length - max}`}
-            onClick={() => {
-              setDisplayPastMax(true);
-            }}
-          />
+          <div className={styles[`${size}ShowMoreButton`]}>
+            <Button
+              type="tertiary"
+              size={size}
+              label={`+ ${files.length - max}`}
+              fullWidth
+              onClick={() => {
+                setDisplayPastMax(true);
+              }}
+            />
+          </div>
         )}
       </div>
       <LightBox

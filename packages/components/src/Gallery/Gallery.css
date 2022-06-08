@@ -9,3 +9,13 @@
   flex-wrap: wrap;
   gap: var(--space-base);
 }
+
+.baseShowMoreButton {
+  display: flex;
+  width: 56px;
+}
+
+.largeShowMoreButton {
+  display: flex;
+  width: 168px;
+}
