@@ -34,7 +34,9 @@ export function Gallery({ files, size = "base", max, onDelete }: GalleryProps) {
           );
         })}
         {max && files.length > max && !displayPastMax && (
-          <div className={styles[`${size}ShowMoreButton`]}>
+          <div
+            className={styles[`${size}ShowMoreButton` as keyof typeof styles]}
+          >
             <Button
               type="tertiary"
               size={size}
