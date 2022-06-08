@@ -10,14 +10,14 @@
 
 .expanded {
   display: grid;
+  position: relative;
   grid-template-columns: auto max-content;
   gap: var(--file-card--base-padding);
   align-items: center;
+  padding-right: var(--space-small);
   border: var(--border-base) solid var(--file-card--border-color);
   border-radius: var(--radius-base);
   background-color: var(--file-card--background-color);
-  padding-right: var(--space-small);
-  position: relative;
 }
 
 .compact {
@@ -29,10 +29,10 @@
   grid-template-columns: max-content auto;
   gap: var(--file-card--base-padding);
   align-items: center;
-  border: none;
-  background-color: var(--color-transparent);
   padding: 0;
+  border: none;
   text-align: left;
+  background-color: var(--color-transparent);
 }
 
 .large {
@@ -57,6 +57,10 @@
   justify-content: center;
 }
 
+.expanded .wrapper {
+  outline: none;
+}
+
 .compact .wrapper:focus {
   box-shadow: var(--shadow-focus);
   outline: none;
@@ -64,10 +68,6 @@
 
 .compact .thumbnail {
   border-radius: var(--radius-base);
-}
-
-.expanded .wrapper{
-  outline: none;
 }
 
 .expanded .wrapper:focus::after {
@@ -82,9 +82,9 @@
 }
 
 .expanded .thumbnail {
-  border-top-left-radius: var(--radius-base);
-  border-bottom-left-radius: var(--radius-base);
   border-right: none;
+  border-bottom-left-radius: var(--radius-base);
+  border-top-left-radius: var(--radius-base);
 }
 
 .clickable {
@@ -136,13 +136,13 @@
   right: var(--space-smaller);
 }
 
-.deleteable~.deleteButton {
+.deleteable ~ .deleteButton {
   visibility: hidden;
 }
 
-.deleteable:hover~.deleteButton,
-.deleteable:focus~.deleteButton,
 .deleteButton:focus-within,
-.deleteButton:hover {
+.deleteButton:hover,
+.deleteable:hover ~ .deleteButton,
+.deleteable:focus ~ .deleteButton {
   visibility: visible;
 }
