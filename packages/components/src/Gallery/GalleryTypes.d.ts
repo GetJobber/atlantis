@@ -26,7 +26,7 @@ export interface GalleryProps {
   max?: number;
 }
 
-interface File {
+export interface File {
   /**
    * File Identifier
    */

@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import styles from "./Gallery.css";
-import { GalleryProps } from "./GalleryTypes";
+import { File, GalleryProps } from "./GalleryTypes";
 import { LightBox } from "../LightBox";
 import { FormatFile } from "../FormatFile";
 import { Button } from "../Button";
 
 export function Gallery({ files, size = "base", max }: GalleryProps) {
-  const images = files
-    .filter(file => file.type.startsWith("image/"))
-    .map(file => {
-      return { title: file.name, url: file.src };
-    });
+  const { images, filesToImageIndex } = generateImagesArray(files);
 
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
@@ -65,10 +61,31 @@ export function Gallery({ files, size = "base", max }: GalleryProps) {
   }
 
   function handleLightboxOpen(index: number) {
-    setLightboxIndex(index);
-    setLightboxOpen(true);
+    const fileToImageIndex = filesToImageIndex[index];
+    if (fileToImageIndex !== undefined) {
+      setLightboxIndex(fileToImageIndex);
+      setLightboxOpen(true);
+    }
   }
   function handleLightboxClose() {
     setLightboxOpen(false);
   }
+}
+
+function generateImagesArray(files: File[]) {
+  const images = [];
+  const filesToImageIndex = [];
+  let imageIndex = 0;
+
+  for (let i = 0; i < files.length; i++) {
+    if (files[i].type.startsWith("image/")) {
+      images.push({ title: files[i].name, url: files[i].src });
+      filesToImageIndex.push(imageIndex);
+      imageIndex++;
+    } else {
+      filesToImageIndex.push(undefined);
+    }
+  }
+
+  return { images, filesToImageIndex };
 }
