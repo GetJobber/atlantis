@@ -53,14 +53,14 @@ it("renders a Gallery", () => {
   expect(tree).toMatchSnapshot();
 });
 
-describe("when the gallery is large", () => {
+describe("when the Gallery is large", () => {
   it("displays large thumbnails", () => {
     const tree = renderer.create(<Gallery size="large" files={files} />);
     expect(tree).toMatchSnapshot();
   });
 });
 
-describe("when the gallery has a maximum", () => {
+describe("when the Gallery has a maximum", () => {
   it("only displays the thumbnails up to the maximum", async () => {
     const maxImages = 2;
     const { queryAllByTestId } = render(
@@ -97,7 +97,7 @@ describe("when the gallery has a maximum", () => {
     });
   });
 
-  describe("when the a gallery thumbnail is clicked", () => {
+  describe("when the a Gallery thumbnail is clicked", () => {
     it("opens the lightbox", async () => {
       const { queryAllByTestId, getByLabelText } = render(
         <Gallery files={files} />,

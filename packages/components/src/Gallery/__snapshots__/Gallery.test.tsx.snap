@@ -382,7 +382,7 @@ exports[`renders a Gallery 1`] = `
 </div>
 `;
 
-exports[`when the gallery is large displays large thumbnails 1`] = `
+exports[`when the Gallery is large displays large thumbnails 1`] = `
 <div
   className="galleryLarge"
 >

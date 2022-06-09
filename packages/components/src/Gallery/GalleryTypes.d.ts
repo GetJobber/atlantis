@@ -15,7 +15,7 @@ export interface GalleryProps {
   size?: "base" | "large";
 
   /**
-   * The files for the gallery to display
+   * The files for the Gallery to display
    */
   files: File[];
 
@@ -26,7 +26,7 @@ export interface GalleryProps {
   max?: number;
 
   /**
-   * onDelete callback - this function will be called when the delete action is triggered on a gallery image
+   * onDelete callback - this function will be called when the delete action is triggered on a Gallery image
    */
   onDelete?(file: File): void;
 }
