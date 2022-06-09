@@ -1,6 +1,6 @@
 import React from "react";
 import renderer, { act } from "react-test-renderer";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import { Gallery } from ".";
 
 afterEach(cleanup);
@@ -61,14 +61,19 @@ describe("when the gallery is large", () => {
 });
 
 describe("when the gallery has a maximum", () => {
-  it("only displays the thumbnails up to the maximum", () => {
+  it("only displays the thumbnails up to the maximum", async () => {
     const maxImages = 2;
     const { queryAllByTestId } = render(
       <Gallery max={maxImages} files={files} />,
     );
-    const imageBlockDivs = queryAllByTestId("imageBlock");
 
-    expect(imageBlockDivs.length).toEqual(maxImages);
+    await waitFor(() => {
+      expect(queryAllByTestId("internalThumbnailImage")).not.toBeUndefined();
+    });
+
+    const internalThumbnails = queryAllByTestId("internalThumbnailImage");
+
+    expect(internalThumbnails.length).toEqual(maxImages);
   });
 
   describe("when the plus button is clicked", () => {
@@ -82,9 +87,13 @@ describe("when the gallery has a maximum", () => {
         fireEvent.click(getByText(`+ ${files.length - maxImages}`));
       });
 
-      const imageBlockDivs = queryAllByTestId("imageBlock");
+      await waitFor(() => {
+        expect(queryAllByTestId("internalThumbnailImage")).not.toBeUndefined();
+      });
 
-      expect(imageBlockDivs.length).toEqual(files.length);
+      const internalThumbnails = queryAllByTestId("internalThumbnailImage");
+
+      expect(internalThumbnails.length).toEqual(files.length);
     });
   });
 
@@ -94,10 +103,14 @@ describe("when the gallery has a maximum", () => {
         <Gallery files={files} />,
       );
 
-      const imageBlockDivs = queryAllByTestId("imageBlock");
+      await waitFor(() => {
+        expect(queryAllByTestId("internalThumbnailImage")).not.toBeUndefined();
+      });
+
+      const internalThumbnails = queryAllByTestId("internalThumbnailImage");
 
       await act(() => {
-        fireEvent.click(imageBlockDivs[0]);
+        fireEvent.click(internalThumbnails[0]);
       });
 
       expect(getByLabelText("Lightbox")).not.toBeNull();

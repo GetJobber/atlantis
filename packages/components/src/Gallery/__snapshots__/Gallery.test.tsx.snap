@@ -6,29 +6,19 @@ exports[`renders a Gallery 1`] = `
 >
   <div>
     <div
-      className="thumbnail thumbnailDefault"
-      onBlur={[Function]}
-      onFocus={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
+      className="compact base"
     >
-      <div
-        className="imageBlock imageBlockHoverable imageBlockCompact imageBlockOverlayCompact"
-        data-testid="imageBlock"
+      <button
+        aria-busy={false}
+        className="wrapper base hoverable clickable deleteable"
         onClick={[Function]}
-        style={
-          Object {
-            "height": "inherit",
-            "width": "inherit",
-          }
-        }
         tabIndex={0}
       >
         <div
-          className="fileContentWrapper"
+          className="thumbnail base"
         >
           <div
-            className="icon"
+            className="content base"
           >
             <svg
               className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
@@ -41,45 +31,69 @@ exports[`renders a Gallery 1`] = `
                 d="M367.703 170.667c-32.322 0-61.87 18.261-76.325 47.171l-19.081 38.162h-101.631c-47.128 0-85.333 38.205-85.333 85.333v426.667c0 47.13 38.205 85.333 85.333 85.333h682.667c47.13 0 85.333-38.204 85.333-85.333v-426.667c0-47.128-38.204-85.333-85.333-85.333h-101.632l-19.081-38.162c-14.455-28.91-44.002-47.171-76.322-47.171h-288.596zM325.036 341.333l42.667-85.333h288.596l42.667 85.333h154.368v426.667h-682.667v-426.667h154.369zM682.667 554.667c0-94.255-76.412-170.667-170.667-170.667-94.257 0-170.667 76.412-170.667 170.667s76.41 170.667 170.667 170.667c94.255 0 170.667-76.412 170.667-170.667zM597.333 554.667c0 47.13-38.204 85.333-85.333 85.333s-85.333-38.204-85.333-85.333c0-47.13 38.204-85.333 85.333-85.333s85.333 38.204 85.333 85.333z"
               />
             </svg>
-          </div>
-          <div
-            className="thumbnailFilenameSmall"
-          >
-            <span
-              className="base regular"
+            <div
+              className="fileName"
             >
-              myballisbigandroundIamrollingitontheground.png
-            </span>
+              <span
+                className="base regular text"
+              >
+                myballisbigandroundIamrollingitontheground.png
+              </span>
+            </div>
           </div>
         </div>
+      </button>
+      <div
+        className="deleteButton"
+      >
+        <button
+          aria-label="Delete Thumbnail"
+          className="button small onlyIcon destructive tertiary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          <svg
+            className="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+            data-testid="trash"
+            viewBox="0 0 1024 1024"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M384 469.333c0-23.565 19.103-42.667 42.667-42.667s42.667 19.102 42.667 42.667v256c0 23.565-19.102 42.667-42.667 42.667s-42.667-19.102-42.667-42.667v-256z"
+            />
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M597.333 426.667c-23.565 0-42.667 19.102-42.667 42.667v256c0 23.565 19.102 42.667 42.667 42.667s42.667-19.102 42.667-42.667v-256c0-23.565-19.102-42.667-42.667-42.667z"
+            />
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M341.333 170.667c0-23.564 19.103-42.667 42.667-42.667h256c23.565 0 42.667 19.103 42.667 42.667v85.333h128c23.565 0 42.667 19.103 42.667 42.667s-19.102 42.667-42.667 42.667h-42.667v512c0 47.13-38.204 85.333-85.333 85.333h-341.333c-47.128 0-85.333-38.204-85.333-85.333v-512h-42.667c-23.564 0-42.667-19.103-42.667-42.667s19.103-42.667 42.667-42.667h128v-85.333zM597.333 256v-42.667h-170.667v42.667h170.667zM341.333 341.333v512h341.333v-512h-341.333z"
+            />
+          </svg>
+          <span
+            className="base extraBold smaller uppercase"
+          />
+        </button>
       </div>
     </div>
   </div>
   <div>
     <div
-      className="thumbnail thumbnailDefault"
-      onBlur={[Function]}
-      onFocus={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
+      className="compact base"
     >
-      <div
-        className="imageBlock imageBlockHoverable imageBlockCompact imageBlockOverlayCompact"
-        data-testid="imageBlock"
+      <button
+        aria-busy={false}
+        className="wrapper base hoverable clickable deleteable"
         onClick={[Function]}
-        style={
-          Object {
-            "height": "inherit",
-            "width": "inherit",
-          }
-        }
         tabIndex={0}
       >
         <div
-          className="fileContentWrapper"
+          className="thumbnail base"
         >
           <div
-            className="icon"
+            className="content base"
           >
             <svg
               className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
@@ -92,45 +106,69 @@ exports[`renders a Gallery 1`] = `
                 d="M367.703 170.667c-32.322 0-61.87 18.261-76.325 47.171l-19.081 38.162h-101.631c-47.128 0-85.333 38.205-85.333 85.333v426.667c0 47.13 38.205 85.333 85.333 85.333h682.667c47.13 0 85.333-38.204 85.333-85.333v-426.667c0-47.128-38.204-85.333-85.333-85.333h-101.632l-19.081-38.162c-14.455-28.91-44.002-47.171-76.322-47.171h-288.596zM325.036 341.333l42.667-85.333h288.596l42.667 85.333h154.368v426.667h-682.667v-426.667h154.369zM682.667 554.667c0-94.255-76.412-170.667-170.667-170.667-94.257 0-170.667 76.412-170.667 170.667s76.41 170.667 170.667 170.667c94.255 0 170.667-76.412 170.667-170.667zM597.333 554.667c0 47.13-38.204 85.333-85.333 85.333s-85.333-38.204-85.333-85.333c0-47.13 38.204-85.333 85.333-85.333s85.333 38.204 85.333 85.333z"
               />
             </svg>
-          </div>
-          <div
-            className="thumbnailFilenameSmall"
-          >
-            <span
-              className="base regular"
+            <div
+              className="fileName"
             >
-              iamanimage.png
-            </span>
+              <span
+                className="base regular text"
+              >
+                iamanimage.png
+              </span>
+            </div>
           </div>
         </div>
+      </button>
+      <div
+        className="deleteButton"
+      >
+        <button
+          aria-label="Delete Thumbnail"
+          className="button small onlyIcon destructive tertiary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          <svg
+            className="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+            data-testid="trash"
+            viewBox="0 0 1024 1024"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M384 469.333c0-23.565 19.103-42.667 42.667-42.667s42.667 19.102 42.667 42.667v256c0 23.565-19.102 42.667-42.667 42.667s-42.667-19.102-42.667-42.667v-256z"
+            />
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M597.333 426.667c-23.565 0-42.667 19.102-42.667 42.667v256c0 23.565 19.102 42.667 42.667 42.667s42.667-19.102 42.667-42.667v-256c0-23.565-19.102-42.667-42.667-42.667z"
+            />
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M341.333 170.667c0-23.564 19.103-42.667 42.667-42.667h256c23.565 0 42.667 19.103 42.667 42.667v85.333h128c23.565 0 42.667 19.103 42.667 42.667s-19.102 42.667-42.667 42.667h-42.667v512c0 47.13-38.204 85.333-85.333 85.333h-341.333c-47.128 0-85.333-38.204-85.333-85.333v-512h-42.667c-23.564 0-42.667-19.103-42.667-42.667s19.103-42.667 42.667-42.667h128v-85.333zM597.333 256v-42.667h-170.667v42.667h170.667zM341.333 341.333v512h341.333v-512h-341.333z"
+            />
+          </svg>
+          <span
+            className="base extraBold smaller uppercase"
+          />
+        </button>
       </div>
     </div>
   </div>
   <div>
     <div
-      className="thumbnail thumbnailDefault"
-      onBlur={[Function]}
-      onFocus={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
+      className="compact base"
     >
-      <div
-        className="imageBlock imageBlockHoverable imageBlockCompact imageBlockOverlayCompact"
-        data-testid="imageBlock"
+      <button
+        aria-busy={false}
+        className="wrapper base hoverable clickable deleteable"
         onClick={[Function]}
-        style={
-          Object {
-            "height": "inherit",
-            "width": "inherit",
-          }
-        }
         tabIndex={0}
       >
         <div
-          className="fileContentWrapper"
+          className="thumbnail base"
         >
           <div
-            className="icon"
+            className="content base"
           >
             <svg
               className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
@@ -143,45 +181,69 @@ exports[`renders a Gallery 1`] = `
                 d="M367.703 170.667c-32.322 0-61.87 18.261-76.325 47.171l-19.081 38.162h-101.631c-47.128 0-85.333 38.205-85.333 85.333v426.667c0 47.13 38.205 85.333 85.333 85.333h682.667c47.13 0 85.333-38.204 85.333-85.333v-426.667c0-47.128-38.204-85.333-85.333-85.333h-101.632l-19.081-38.162c-14.455-28.91-44.002-47.171-76.322-47.171h-288.596zM325.036 341.333l42.667-85.333h288.596l42.667 85.333h154.368v426.667h-682.667v-426.667h154.369zM682.667 554.667c0-94.255-76.412-170.667-170.667-170.667-94.257 0-170.667 76.412-170.667 170.667s76.41 170.667 170.667 170.667c94.255 0 170.667-76.412 170.667-170.667zM597.333 554.667c0 47.13-38.204 85.333-85.333 85.333s-85.333-38.204-85.333-85.333c0-47.13 38.204-85.333 85.333-85.333s85.333 38.204 85.333 85.333z"
               />
             </svg>
-          </div>
-          <div
-            className="thumbnailFilenameSmall"
-          >
-            <span
-              className="base regular"
+            <div
+              className="fileName"
             >
-              upanddown.png
-            </span>
+              <span
+                className="base regular text"
+              >
+                upanddown.png
+              </span>
+            </div>
           </div>
         </div>
+      </button>
+      <div
+        className="deleteButton"
+      >
+        <button
+          aria-label="Delete Thumbnail"
+          className="button small onlyIcon destructive tertiary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          <svg
+            className="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+            data-testid="trash"
+            viewBox="0 0 1024 1024"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M384 469.333c0-23.565 19.103-42.667 42.667-42.667s42.667 19.102 42.667 42.667v256c0 23.565-19.102 42.667-42.667 42.667s-42.667-19.102-42.667-42.667v-256z"
+            />
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M597.333 426.667c-23.565 0-42.667 19.102-42.667 42.667v256c0 23.565 19.102 42.667 42.667 42.667s42.667-19.102 42.667-42.667v-256c0-23.565-19.102-42.667-42.667-42.667z"
+            />
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M341.333 170.667c0-23.564 19.103-42.667 42.667-42.667h256c23.565 0 42.667 19.103 42.667 42.667v85.333h128c23.565 0 42.667 19.103 42.667 42.667s-19.102 42.667-42.667 42.667h-42.667v512c0 47.13-38.204 85.333-85.333 85.333h-341.333c-47.128 0-85.333-38.204-85.333-85.333v-512h-42.667c-23.564 0-42.667-19.103-42.667-42.667s19.103-42.667 42.667-42.667h128v-85.333zM597.333 256v-42.667h-170.667v42.667h170.667zM341.333 341.333v512h341.333v-512h-341.333z"
+            />
+          </svg>
+          <span
+            className="base extraBold smaller uppercase"
+          />
+        </button>
       </div>
     </div>
   </div>
   <div>
     <div
-      className="thumbnail thumbnailDefault"
-      onBlur={[Function]}
-      onFocus={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
+      className="compact base"
     >
-      <div
-        className="imageBlock imageBlockHoverable imageBlockCompact imageBlockOverlayCompact"
-        data-testid="imageBlock"
+      <button
+        aria-busy={false}
+        className="wrapper base hoverable clickable deleteable"
         onClick={[Function]}
-        style={
-          Object {
-            "height": "inherit",
-            "width": "inherit",
-          }
-        }
         tabIndex={0}
       >
         <div
-          className="fileContentWrapper"
+          className="thumbnail base"
         >
           <div
-            className="icon"
+            className="content base"
           >
             <svg
               className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
@@ -194,45 +256,69 @@ exports[`renders a Gallery 1`] = `
                 d="M367.703 170.667c-32.322 0-61.87 18.261-76.325 47.171l-19.081 38.162h-101.631c-47.128 0-85.333 38.205-85.333 85.333v426.667c0 47.13 38.205 85.333 85.333 85.333h682.667c47.13 0 85.333-38.204 85.333-85.333v-426.667c0-47.128-38.204-85.333-85.333-85.333h-101.632l-19.081-38.162c-14.455-28.91-44.002-47.171-76.322-47.171h-288.596zM325.036 341.333l42.667-85.333h288.596l42.667 85.333h154.368v426.667h-682.667v-426.667h154.369zM682.667 554.667c0-94.255-76.412-170.667-170.667-170.667-94.257 0-170.667 76.412-170.667 170.667s76.41 170.667 170.667 170.667c94.255 0 170.667-76.412 170.667-170.667zM597.333 554.667c0 47.13-38.204 85.333-85.333 85.333s-85.333-38.204-85.333-85.333c0-47.13 38.204-85.333 85.333-85.333s85.333 38.204 85.333 85.333z"
               />
             </svg>
-          </div>
-          <div
-            className="thumbnailFilenameSmall"
-          >
-            <span
-              className="base regular"
+            <div
+              className="fileName"
             >
-              kramer.png
-            </span>
+              <span
+                className="base regular text"
+              >
+                kramer.png
+              </span>
+            </div>
           </div>
         </div>
+      </button>
+      <div
+        className="deleteButton"
+      >
+        <button
+          aria-label="Delete Thumbnail"
+          className="button small onlyIcon destructive tertiary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          <svg
+            className="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+            data-testid="trash"
+            viewBox="0 0 1024 1024"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M384 469.333c0-23.565 19.103-42.667 42.667-42.667s42.667 19.102 42.667 42.667v256c0 23.565-19.102 42.667-42.667 42.667s-42.667-19.102-42.667-42.667v-256z"
+            />
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M597.333 426.667c-23.565 0-42.667 19.102-42.667 42.667v256c0 23.565 19.102 42.667 42.667 42.667s42.667-19.102 42.667-42.667v-256c0-23.565-19.102-42.667-42.667-42.667z"
+            />
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M341.333 170.667c0-23.564 19.103-42.667 42.667-42.667h256c23.565 0 42.667 19.103 42.667 42.667v85.333h128c23.565 0 42.667 19.103 42.667 42.667s-19.102 42.667-42.667 42.667h-42.667v512c0 47.13-38.204 85.333-85.333 85.333h-341.333c-47.128 0-85.333-38.204-85.333-85.333v-512h-42.667c-23.564 0-42.667-19.103-42.667-42.667s19.103-42.667 42.667-42.667h128v-85.333zM597.333 256v-42.667h-170.667v42.667h170.667zM341.333 341.333v512h341.333v-512h-341.333z"
+            />
+          </svg>
+          <span
+            className="base extraBold smaller uppercase"
+          />
+        </button>
       </div>
     </div>
   </div>
   <div>
     <div
-      className="thumbnail thumbnailDefault"
-      onBlur={[Function]}
-      onFocus={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
+      className="compact base"
     >
-      <div
-        className="imageBlock imageBlockHoverable imageBlockCompact imageBlockOverlayCompact"
-        data-testid="imageBlock"
+      <button
+        aria-busy={false}
+        className="wrapper base hoverable clickable deleteable"
         onClick={[Function]}
-        style={
-          Object {
-            "height": "inherit",
-            "width": "inherit",
-          }
-        }
         tabIndex={0}
       >
         <div
-          className="fileContentWrapper"
+          className="thumbnail base"
         >
           <div
-            className="icon"
+            className="content base"
           >
             <svg
               className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
@@ -245,17 +331,51 @@ exports[`renders a Gallery 1`] = `
                 d="M367.703 170.667c-32.322 0-61.87 18.261-76.325 47.171l-19.081 38.162h-101.631c-47.128 0-85.333 38.205-85.333 85.333v426.667c0 47.13 38.205 85.333 85.333 85.333h682.667c47.13 0 85.333-38.204 85.333-85.333v-426.667c0-47.128-38.204-85.333-85.333-85.333h-101.632l-19.081-38.162c-14.455-28.91-44.002-47.171-76.322-47.171h-288.596zM325.036 341.333l42.667-85.333h288.596l42.667 85.333h154.368v426.667h-682.667v-426.667h154.369zM682.667 554.667c0-94.255-76.412-170.667-170.667-170.667-94.257 0-170.667 76.412-170.667 170.667s76.41 170.667 170.667 170.667c94.255 0 170.667-76.412 170.667-170.667zM597.333 554.667c0 47.13-38.204 85.333-85.333 85.333s-85.333-38.204-85.333-85.333c0-47.13 38.204-85.333 85.333-85.333s85.333 38.204 85.333 85.333z"
               />
             </svg>
-          </div>
-          <div
-            className="thumbnailFilenameSmall"
-          >
-            <span
-              className="base regular"
+            <div
+              className="fileName"
             >
-              boston.png
-            </span>
+              <span
+                className="base regular text"
+              >
+                boston.png
+              </span>
+            </div>
           </div>
         </div>
+      </button>
+      <div
+        className="deleteButton"
+      >
+        <button
+          aria-label="Delete Thumbnail"
+          className="button small onlyIcon destructive tertiary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          <svg
+            className="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+            data-testid="trash"
+            viewBox="0 0 1024 1024"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M384 469.333c0-23.565 19.103-42.667 42.667-42.667s42.667 19.102 42.667 42.667v256c0 23.565-19.102 42.667-42.667 42.667s-42.667-19.102-42.667-42.667v-256z"
+            />
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M597.333 426.667c-23.565 0-42.667 19.102-42.667 42.667v256c0 23.565 19.102 42.667 42.667 42.667s42.667-19.102 42.667-42.667v-256c0-23.565-19.102-42.667-42.667-42.667z"
+            />
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M341.333 170.667c0-23.564 19.103-42.667 42.667-42.667h256c23.565 0 42.667 19.103 42.667 42.667v85.333h128c23.565 0 42.667 19.103 42.667 42.667s-19.102 42.667-42.667 42.667h-42.667v512c0 47.13-38.204 85.333-85.333 85.333h-341.333c-47.128 0-85.333-38.204-85.333-85.333v-512h-42.667c-23.564 0-42.667-19.103-42.667-42.667s19.103-42.667 42.667-42.667h128v-85.333zM597.333 256v-42.667h-170.667v42.667h170.667zM341.333 341.333v512h341.333v-512h-341.333z"
+            />
+          </svg>
+          <span
+            className="base extraBold smaller uppercase"
+          />
+        </button>
       </div>
     </div>
   </div>
@@ -268,29 +388,19 @@ exports[`when the gallery is large displays large thumbnails 1`] = `
 >
   <div>
     <div
-      className="thumbnail thumbnailLarge"
-      onBlur={[Function]}
-      onFocus={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
+      className="compact large"
     >
-      <div
-        className="imageBlock imageBlockHoverable imageBlockCompact imageBlockOverlayCompact"
-        data-testid="imageBlock"
+      <button
+        aria-busy={false}
+        className="wrapper large hoverable clickable deleteable"
         onClick={[Function]}
-        style={
-          Object {
-            "height": "inherit",
-            "width": "inherit",
-          }
-        }
         tabIndex={0}
       >
         <div
-          className="fileContentWrapper fileContentWrapperLarge"
+          className="thumbnail large"
         >
           <div
-            className="icon"
+            className="content large"
           >
             <svg
               className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
@@ -303,45 +413,69 @@ exports[`when the gallery is large displays large thumbnails 1`] = `
                 d="M367.703 170.667c-32.322 0-61.87 18.261-76.325 47.171l-19.081 38.162h-101.631c-47.128 0-85.333 38.205-85.333 85.333v426.667c0 47.13 38.205 85.333 85.333 85.333h682.667c47.13 0 85.333-38.204 85.333-85.333v-426.667c0-47.128-38.204-85.333-85.333-85.333h-101.632l-19.081-38.162c-14.455-28.91-44.002-47.171-76.322-47.171h-288.596zM325.036 341.333l42.667-85.333h288.596l42.667 85.333h154.368v426.667h-682.667v-426.667h154.369zM682.667 554.667c0-94.255-76.412-170.667-170.667-170.667-94.257 0-170.667 76.412-170.667 170.667s76.41 170.667 170.667 170.667c94.255 0 170.667-76.412 170.667-170.667zM597.333 554.667c0 47.13-38.204 85.333-85.333 85.333s-85.333-38.204-85.333-85.333c0-47.13 38.204-85.333 85.333-85.333s85.333 38.204 85.333 85.333z"
               />
             </svg>
-          </div>
-          <div
-            className="thumbnailFilename"
-          >
-            <span
-              className="base regular"
+            <div
+              className="fileName"
             >
-              myballisbigandroundIamrollingitontheground.png
-            </span>
+              <span
+                className="base regular text"
+              >
+                myballisbigandroundIamrollingitontheground.png
+              </span>
+            </div>
           </div>
         </div>
+      </button>
+      <div
+        className="deleteButton"
+      >
+        <button
+          aria-label="Delete Thumbnail"
+          className="button base onlyIcon destructive tertiary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          <svg
+            className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+            data-testid="trash"
+            viewBox="0 0 1024 1024"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M384 469.333c0-23.565 19.103-42.667 42.667-42.667s42.667 19.102 42.667 42.667v256c0 23.565-19.102 42.667-42.667 42.667s-42.667-19.102-42.667-42.667v-256z"
+            />
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M597.333 426.667c-23.565 0-42.667 19.102-42.667 42.667v256c0 23.565 19.102 42.667 42.667 42.667s42.667-19.102 42.667-42.667v-256c0-23.565-19.102-42.667-42.667-42.667z"
+            />
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M341.333 170.667c0-23.564 19.103-42.667 42.667-42.667h256c23.565 0 42.667 19.103 42.667 42.667v85.333h128c23.565 0 42.667 19.103 42.667 42.667s-19.102 42.667-42.667 42.667h-42.667v512c0 47.13-38.204 85.333-85.333 85.333h-341.333c-47.128 0-85.333-38.204-85.333-85.333v-512h-42.667c-23.564 0-42.667-19.103-42.667-42.667s19.103-42.667 42.667-42.667h128v-85.333zM597.333 256v-42.667h-170.667v42.667h170.667zM341.333 341.333v512h341.333v-512h-341.333z"
+            />
+          </svg>
+          <span
+            className="base extraBold small uppercase"
+          />
+        </button>
       </div>
     </div>
   </div>
   <div>
     <div
-      className="thumbnail thumbnailLarge"
-      onBlur={[Function]}
-      onFocus={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
+      className="compact large"
     >
-      <div
-        className="imageBlock imageBlockHoverable imageBlockCompact imageBlockOverlayCompact"
-        data-testid="imageBlock"
+      <button
+        aria-busy={false}
+        className="wrapper large hoverable clickable deleteable"
         onClick={[Function]}
-        style={
-          Object {
-            "height": "inherit",
-            "width": "inherit",
-          }
-        }
         tabIndex={0}
       >
         <div
-          className="fileContentWrapper fileContentWrapperLarge"
+          className="thumbnail large"
         >
           <div
-            className="icon"
+            className="content large"
           >
             <svg
               className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
@@ -354,45 +488,69 @@ exports[`when the gallery is large displays large thumbnails 1`] = `
                 d="M367.703 170.667c-32.322 0-61.87 18.261-76.325 47.171l-19.081 38.162h-101.631c-47.128 0-85.333 38.205-85.333 85.333v426.667c0 47.13 38.205 85.333 85.333 85.333h682.667c47.13 0 85.333-38.204 85.333-85.333v-426.667c0-47.128-38.204-85.333-85.333-85.333h-101.632l-19.081-38.162c-14.455-28.91-44.002-47.171-76.322-47.171h-288.596zM325.036 341.333l42.667-85.333h288.596l42.667 85.333h154.368v426.667h-682.667v-426.667h154.369zM682.667 554.667c0-94.255-76.412-170.667-170.667-170.667-94.257 0-170.667 76.412-170.667 170.667s76.41 170.667 170.667 170.667c94.255 0 170.667-76.412 170.667-170.667zM597.333 554.667c0 47.13-38.204 85.333-85.333 85.333s-85.333-38.204-85.333-85.333c0-47.13 38.204-85.333 85.333-85.333s85.333 38.204 85.333 85.333z"
               />
             </svg>
-          </div>
-          <div
-            className="thumbnailFilename"
-          >
-            <span
-              className="base regular"
+            <div
+              className="fileName"
             >
-              iamanimage.png
-            </span>
+              <span
+                className="base regular text"
+              >
+                iamanimage.png
+              </span>
+            </div>
           </div>
         </div>
+      </button>
+      <div
+        className="deleteButton"
+      >
+        <button
+          aria-label="Delete Thumbnail"
+          className="button base onlyIcon destructive tertiary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          <svg
+            className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+            data-testid="trash"
+            viewBox="0 0 1024 1024"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M384 469.333c0-23.565 19.103-42.667 42.667-42.667s42.667 19.102 42.667 42.667v256c0 23.565-19.102 42.667-42.667 42.667s-42.667-19.102-42.667-42.667v-256z"
+            />
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M597.333 426.667c-23.565 0-42.667 19.102-42.667 42.667v256c0 23.565 19.102 42.667 42.667 42.667s42.667-19.102 42.667-42.667v-256c0-23.565-19.102-42.667-42.667-42.667z"
+            />
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M341.333 170.667c0-23.564 19.103-42.667 42.667-42.667h256c23.565 0 42.667 19.103 42.667 42.667v85.333h128c23.565 0 42.667 19.103 42.667 42.667s-19.102 42.667-42.667 42.667h-42.667v512c0 47.13-38.204 85.333-85.333 85.333h-341.333c-47.128 0-85.333-38.204-85.333-85.333v-512h-42.667c-23.564 0-42.667-19.103-42.667-42.667s19.103-42.667 42.667-42.667h128v-85.333zM597.333 256v-42.667h-170.667v42.667h170.667zM341.333 341.333v512h341.333v-512h-341.333z"
+            />
+          </svg>
+          <span
+            className="base extraBold small uppercase"
+          />
+        </button>
       </div>
     </div>
   </div>
   <div>
     <div
-      className="thumbnail thumbnailLarge"
-      onBlur={[Function]}
-      onFocus={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
+      className="compact large"
     >
-      <div
-        className="imageBlock imageBlockHoverable imageBlockCompact imageBlockOverlayCompact"
-        data-testid="imageBlock"
+      <button
+        aria-busy={false}
+        className="wrapper large hoverable clickable deleteable"
         onClick={[Function]}
-        style={
-          Object {
-            "height": "inherit",
-            "width": "inherit",
-          }
-        }
         tabIndex={0}
       >
         <div
-          className="fileContentWrapper fileContentWrapperLarge"
+          className="thumbnail large"
         >
           <div
-            className="icon"
+            className="content large"
           >
             <svg
               className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
@@ -405,45 +563,69 @@ exports[`when the gallery is large displays large thumbnails 1`] = `
                 d="M367.703 170.667c-32.322 0-61.87 18.261-76.325 47.171l-19.081 38.162h-101.631c-47.128 0-85.333 38.205-85.333 85.333v426.667c0 47.13 38.205 85.333 85.333 85.333h682.667c47.13 0 85.333-38.204 85.333-85.333v-426.667c0-47.128-38.204-85.333-85.333-85.333h-101.632l-19.081-38.162c-14.455-28.91-44.002-47.171-76.322-47.171h-288.596zM325.036 341.333l42.667-85.333h288.596l42.667 85.333h154.368v426.667h-682.667v-426.667h154.369zM682.667 554.667c0-94.255-76.412-170.667-170.667-170.667-94.257 0-170.667 76.412-170.667 170.667s76.41 170.667 170.667 170.667c94.255 0 170.667-76.412 170.667-170.667zM597.333 554.667c0 47.13-38.204 85.333-85.333 85.333s-85.333-38.204-85.333-85.333c0-47.13 38.204-85.333 85.333-85.333s85.333 38.204 85.333 85.333z"
               />
             </svg>
-          </div>
-          <div
-            className="thumbnailFilename"
-          >
-            <span
-              className="base regular"
+            <div
+              className="fileName"
             >
-              upanddown.png
-            </span>
+              <span
+                className="base regular text"
+              >
+                upanddown.png
+              </span>
+            </div>
           </div>
         </div>
+      </button>
+      <div
+        className="deleteButton"
+      >
+        <button
+          aria-label="Delete Thumbnail"
+          className="button base onlyIcon destructive tertiary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          <svg
+            className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+            data-testid="trash"
+            viewBox="0 0 1024 1024"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M384 469.333c0-23.565 19.103-42.667 42.667-42.667s42.667 19.102 42.667 42.667v256c0 23.565-19.102 42.667-42.667 42.667s-42.667-19.102-42.667-42.667v-256z"
+            />
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M597.333 426.667c-23.565 0-42.667 19.102-42.667 42.667v256c0 23.565 19.102 42.667 42.667 42.667s42.667-19.102 42.667-42.667v-256c0-23.565-19.102-42.667-42.667-42.667z"
+            />
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M341.333 170.667c0-23.564 19.103-42.667 42.667-42.667h256c23.565 0 42.667 19.103 42.667 42.667v85.333h128c23.565 0 42.667 19.103 42.667 42.667s-19.102 42.667-42.667 42.667h-42.667v512c0 47.13-38.204 85.333-85.333 85.333h-341.333c-47.128 0-85.333-38.204-85.333-85.333v-512h-42.667c-23.564 0-42.667-19.103-42.667-42.667s19.103-42.667 42.667-42.667h128v-85.333zM597.333 256v-42.667h-170.667v42.667h170.667zM341.333 341.333v512h341.333v-512h-341.333z"
+            />
+          </svg>
+          <span
+            className="base extraBold small uppercase"
+          />
+        </button>
       </div>
     </div>
   </div>
   <div>
     <div
-      className="thumbnail thumbnailLarge"
-      onBlur={[Function]}
-      onFocus={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
+      className="compact large"
     >
-      <div
-        className="imageBlock imageBlockHoverable imageBlockCompact imageBlockOverlayCompact"
-        data-testid="imageBlock"
+      <button
+        aria-busy={false}
+        className="wrapper large hoverable clickable deleteable"
         onClick={[Function]}
-        style={
-          Object {
-            "height": "inherit",
-            "width": "inherit",
-          }
-        }
         tabIndex={0}
       >
         <div
-          className="fileContentWrapper fileContentWrapperLarge"
+          className="thumbnail large"
         >
           <div
-            className="icon"
+            className="content large"
           >
             <svg
               className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
@@ -456,45 +638,69 @@ exports[`when the gallery is large displays large thumbnails 1`] = `
                 d="M367.703 170.667c-32.322 0-61.87 18.261-76.325 47.171l-19.081 38.162h-101.631c-47.128 0-85.333 38.205-85.333 85.333v426.667c0 47.13 38.205 85.333 85.333 85.333h682.667c47.13 0 85.333-38.204 85.333-85.333v-426.667c0-47.128-38.204-85.333-85.333-85.333h-101.632l-19.081-38.162c-14.455-28.91-44.002-47.171-76.322-47.171h-288.596zM325.036 341.333l42.667-85.333h288.596l42.667 85.333h154.368v426.667h-682.667v-426.667h154.369zM682.667 554.667c0-94.255-76.412-170.667-170.667-170.667-94.257 0-170.667 76.412-170.667 170.667s76.41 170.667 170.667 170.667c94.255 0 170.667-76.412 170.667-170.667zM597.333 554.667c0 47.13-38.204 85.333-85.333 85.333s-85.333-38.204-85.333-85.333c0-47.13 38.204-85.333 85.333-85.333s85.333 38.204 85.333 85.333z"
               />
             </svg>
-          </div>
-          <div
-            className="thumbnailFilename"
-          >
-            <span
-              className="base regular"
+            <div
+              className="fileName"
             >
-              kramer.png
-            </span>
+              <span
+                className="base regular text"
+              >
+                kramer.png
+              </span>
+            </div>
           </div>
         </div>
+      </button>
+      <div
+        className="deleteButton"
+      >
+        <button
+          aria-label="Delete Thumbnail"
+          className="button base onlyIcon destructive tertiary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          <svg
+            className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+            data-testid="trash"
+            viewBox="0 0 1024 1024"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M384 469.333c0-23.565 19.103-42.667 42.667-42.667s42.667 19.102 42.667 42.667v256c0 23.565-19.102 42.667-42.667 42.667s-42.667-19.102-42.667-42.667v-256z"
+            />
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M597.333 426.667c-23.565 0-42.667 19.102-42.667 42.667v256c0 23.565 19.102 42.667 42.667 42.667s42.667-19.102 42.667-42.667v-256c0-23.565-19.102-42.667-42.667-42.667z"
+            />
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M341.333 170.667c0-23.564 19.103-42.667 42.667-42.667h256c23.565 0 42.667 19.103 42.667 42.667v85.333h128c23.565 0 42.667 19.103 42.667 42.667s-19.102 42.667-42.667 42.667h-42.667v512c0 47.13-38.204 85.333-85.333 85.333h-341.333c-47.128 0-85.333-38.204-85.333-85.333v-512h-42.667c-23.564 0-42.667-19.103-42.667-42.667s19.103-42.667 42.667-42.667h128v-85.333zM597.333 256v-42.667h-170.667v42.667h170.667zM341.333 341.333v512h341.333v-512h-341.333z"
+            />
+          </svg>
+          <span
+            className="base extraBold small uppercase"
+          />
+        </button>
       </div>
     </div>
   </div>
   <div>
     <div
-      className="thumbnail thumbnailLarge"
-      onBlur={[Function]}
-      onFocus={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
+      className="compact large"
     >
-      <div
-        className="imageBlock imageBlockHoverable imageBlockCompact imageBlockOverlayCompact"
-        data-testid="imageBlock"
+      <button
+        aria-busy={false}
+        className="wrapper large hoverable clickable deleteable"
         onClick={[Function]}
-        style={
-          Object {
-            "height": "inherit",
-            "width": "inherit",
-          }
-        }
         tabIndex={0}
       >
         <div
-          className="fileContentWrapper fileContentWrapperLarge"
+          className="thumbnail large"
         >
           <div
-            className="icon"
+            className="content large"
           >
             <svg
               className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
@@ -507,17 +713,51 @@ exports[`when the gallery is large displays large thumbnails 1`] = `
                 d="M367.703 170.667c-32.322 0-61.87 18.261-76.325 47.171l-19.081 38.162h-101.631c-47.128 0-85.333 38.205-85.333 85.333v426.667c0 47.13 38.205 85.333 85.333 85.333h682.667c47.13 0 85.333-38.204 85.333-85.333v-426.667c0-47.128-38.204-85.333-85.333-85.333h-101.632l-19.081-38.162c-14.455-28.91-44.002-47.171-76.322-47.171h-288.596zM325.036 341.333l42.667-85.333h288.596l42.667 85.333h154.368v426.667h-682.667v-426.667h154.369zM682.667 554.667c0-94.255-76.412-170.667-170.667-170.667-94.257 0-170.667 76.412-170.667 170.667s76.41 170.667 170.667 170.667c94.255 0 170.667-76.412 170.667-170.667zM597.333 554.667c0 47.13-38.204 85.333-85.333 85.333s-85.333-38.204-85.333-85.333c0-47.13 38.204-85.333 85.333-85.333s85.333 38.204 85.333 85.333z"
               />
             </svg>
-          </div>
-          <div
-            className="thumbnailFilename"
-          >
-            <span
-              className="base regular"
+            <div
+              className="fileName"
             >
-              boston.png
-            </span>
+              <span
+                className="base regular text"
+              >
+                boston.png
+              </span>
+            </div>
           </div>
         </div>
+      </button>
+      <div
+        className="deleteButton"
+      >
+        <button
+          aria-label="Delete Thumbnail"
+          className="button base onlyIcon destructive tertiary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          <svg
+            className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+            data-testid="trash"
+            viewBox="0 0 1024 1024"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M384 469.333c0-23.565 19.103-42.667 42.667-42.667s42.667 19.102 42.667 42.667v256c0 23.565-19.102 42.667-42.667 42.667s-42.667-19.102-42.667-42.667v-256z"
+            />
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M597.333 426.667c-23.565 0-42.667 19.102-42.667 42.667v256c0 23.565 19.102 42.667 42.667 42.667s42.667-19.102 42.667-42.667v-256c0-23.565-19.102-42.667-42.667-42.667z"
+            />
+            <path
+              className="_1fbz56arQt3_OOO8zZg33p"
+              d="M341.333 170.667c0-23.564 19.103-42.667 42.667-42.667h256c23.565 0 42.667 19.103 42.667 42.667v85.333h128c23.565 0 42.667 19.103 42.667 42.667s-19.102 42.667-42.667 42.667h-42.667v512c0 47.13-38.204 85.333-85.333 85.333h-341.333c-47.128 0-85.333-38.204-85.333-85.333v-512h-42.667c-23.564 0-42.667-19.103-42.667-42.667s19.103-42.667 42.667-42.667h128v-85.333zM597.333 256v-42.667h-170.667v42.667h170.667zM341.333 341.333v512h341.333v-512h-341.333z"
+            />
+          </svg>
+          <span
+            className="base extraBold small uppercase"
+          />
+        </button>
       </div>
     </div>
   </div>
