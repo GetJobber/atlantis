@@ -64,6 +64,9 @@
   --color-request: var(--color-indigo);
   --color-quote: var(--color-pink);
   --color-job: var(--color-yellowGreen);
+  --color-visit: var(--color-green);
+  --color-task: var(--color-navy);
+  --color-event: var(--color-yellow);
   --color-invoice: var(--color-purple);
   --color-payments: var(--color-orange);
 
