@@ -24,7 +24,7 @@ interface FormatFileProps {
   /**
    * The base dimensions of the thumbnail
    *
-   * @default "default"
+   * @default "base"
    */
   readonly displaySize?: "base" | "large";
 

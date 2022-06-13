@@ -10,7 +10,6 @@
 
 .expanded {
   display: grid;
-  position: relative;
   grid-template-columns: auto max-content;
   gap: var(--file-card--base-padding);
   align-items: center;
@@ -20,7 +19,8 @@
   background-color: var(--file-card--background-color);
 }
 
-.compact {
+.compact,
+.expanded {
   position: relative;
 }
 
