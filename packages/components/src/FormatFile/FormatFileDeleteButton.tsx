@@ -18,7 +18,7 @@ export function FormatFileDeleteButton({ size, onDelete }: DeleteButtonProps) {
         variation="destructive"
         type="tertiary"
         icon="trash"
-        ariaLabel="Delete Thumbnail"
+        ariaLabel="Delete File"
         size={buttonSize}
       />
       <ConfirmationModal

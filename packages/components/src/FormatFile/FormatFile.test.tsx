@@ -1,6 +1,6 @@
 import React from "react";
 import renderer, { act } from "react-test-renderer";
-import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
+import { cleanup, fireEvent, render } from "@testing-library/react";
 import { FormatFile } from ".";
 
 afterEach(cleanup);
@@ -18,7 +18,7 @@ it("renders a FormatFile", () => {
   expect(tree).toMatchSnapshot();
 });
 
-it("renders an image when provided as src", async done => {
+it("renders an image when provided as src", async () => {
   const url = "not_actually_a_url";
   const testFile = {
     key: "234",
@@ -29,18 +29,9 @@ it("renders an image when provided as src", async done => {
     src: () => Promise.resolve(url),
   };
 
-  const { queryByTestId } = render(<FormatFile file={testFile} />);
+  const { findByRole } = render(<FormatFile file={testFile} />);
 
-  await waitFor(() => {
-    expect(queryByTestId("internalThumbnailImage")).not.toBeUndefined();
-  });
-
-  const internalThumbnailImage = queryByTestId("internalThumbnailImage");
-
-  waitFor(() => {
-    expect(internalThumbnailImage).toBeInstanceOf(HTMLImageElement);
-    done();
-  });
+  expect(await findByRole("img")).toBeInTheDocument();
 });
 
 it("it should call the delete handler", async () => {
@@ -54,31 +45,25 @@ it("it should call the delete handler", async () => {
   };
   const deleteHandler = jest.fn();
   const { getByLabelText, getByText } = render(
-    <body>
-      <FormatFile onDelete={deleteHandler} file={testFile} />
-    </body>,
+    <FormatFile onDelete={deleteHandler} file={testFile} />,
   );
 
   act(() => {
-    fireEvent.click(getByLabelText("Delete Thumbnail"));
+    fireEvent.click(getByLabelText("Delete File"));
   });
 
-  await waitFor(() => {
-    expect(
-      getByText("Are you sure you want to delete this file?"),
-    ).toBeInstanceOf(HTMLParagraphElement);
-  });
+  expect(
+    getByText("Are you sure you want to delete this file?"),
+  ).toBeInstanceOf(HTMLParagraphElement);
 
-  act(() => {
-    fireEvent.click(getByText("Delete"));
-  });
+  fireEvent.click(getByText("Delete"));
 
   expect(deleteHandler).toHaveBeenCalled();
 });
 
 describe("when the format file is a thumbnail", () => {
   describe("when the thumbnail is default sized", () => {
-    it("renders a FormatFile as a default sized thumbnail", () => {
+    it("renders a FormatFile as a default sized thumbnail", async () => {
       const testFile = {
         key: "368",
         name: "Pink Dolphin",
@@ -87,15 +72,21 @@ describe("when the format file is a thumbnail", () => {
         size: 1024,
         progress: 1,
       };
-      const tree = renderer
-        .create(<FormatFile display="compact" file={testFile} />)
-        .toJSON();
-      expect(tree).toMatchSnapshot();
+
+      const { findByRole } = render(
+        <FormatFile display="compact" file={testFile} />,
+      );
+
+      expect(await findByRole("img")).toBeInTheDocument();
+
+      const thumbnailImage = await findByRole("img");
+
+      expect(thumbnailImage.parentElement.className).toContain("base");
     });
   });
 
   describe("when the thumbnail is large sized", () => {
-    it("renders a FormatFile as a larget sized thumbnail", () => {
+    it("renders a FormatFile as a larget sized thumbnail", async () => {
       const testFile = {
         key: "368",
         name: "Pink Dolphin",
@@ -104,12 +95,15 @@ describe("when the format file is a thumbnail", () => {
         size: 1024,
         progress: 1,
       };
-      const tree = renderer
-        .create(
-          <FormatFile display="compact" displaySize="large" file={testFile} />,
-        )
-        .toJSON();
-      expect(tree).toMatchSnapshot();
+      const { findByRole } = render(
+        <FormatFile display="compact" displaySize="large" file={testFile} />,
+      );
+
+      expect(await findByRole("img")).toBeInTheDocument();
+
+      const thumbnailImage = await findByRole("img");
+
+      expect(thumbnailImage.parentElement.className).toContain("large");
     });
   });
 });
