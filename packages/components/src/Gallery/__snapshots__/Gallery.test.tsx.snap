@@ -47,7 +47,7 @@ exports[`renders a Gallery 1`] = `
         className="deleteButton"
       >
         <button
-          aria-label="Delete Thumbnail"
+          aria-label="Delete File"
           className="button small onlyIcon destructive tertiary"
           disabled={false}
           onClick={[Function]}
@@ -122,7 +122,7 @@ exports[`renders a Gallery 1`] = `
         className="deleteButton"
       >
         <button
-          aria-label="Delete Thumbnail"
+          aria-label="Delete File"
           className="button small onlyIcon destructive tertiary"
           disabled={false}
           onClick={[Function]}
@@ -197,7 +197,7 @@ exports[`renders a Gallery 1`] = `
         className="deleteButton"
       >
         <button
-          aria-label="Delete Thumbnail"
+          aria-label="Delete File"
           className="button small onlyIcon destructive tertiary"
           disabled={false}
           onClick={[Function]}
@@ -272,7 +272,7 @@ exports[`renders a Gallery 1`] = `
         className="deleteButton"
       >
         <button
-          aria-label="Delete Thumbnail"
+          aria-label="Delete File"
           className="button small onlyIcon destructive tertiary"
           disabled={false}
           onClick={[Function]}
@@ -347,7 +347,7 @@ exports[`renders a Gallery 1`] = `
         className="deleteButton"
       >
         <button
-          aria-label="Delete Thumbnail"
+          aria-label="Delete File"
           className="button small onlyIcon destructive tertiary"
           disabled={false}
           onClick={[Function]}
@@ -429,7 +429,7 @@ exports[`when the Gallery is large displays large thumbnails 1`] = `
         className="deleteButton"
       >
         <button
-          aria-label="Delete Thumbnail"
+          aria-label="Delete File"
           className="button base onlyIcon destructive tertiary"
           disabled={false}
           onClick={[Function]}
@@ -504,7 +504,7 @@ exports[`when the Gallery is large displays large thumbnails 1`] = `
         className="deleteButton"
       >
         <button
-          aria-label="Delete Thumbnail"
+          aria-label="Delete File"
           className="button base onlyIcon destructive tertiary"
           disabled={false}
           onClick={[Function]}
@@ -579,7 +579,7 @@ exports[`when the Gallery is large displays large thumbnails 1`] = `
         className="deleteButton"
       >
         <button
-          aria-label="Delete Thumbnail"
+          aria-label="Delete File"
           className="button base onlyIcon destructive tertiary"
           disabled={false}
           onClick={[Function]}
@@ -654,7 +654,7 @@ exports[`when the Gallery is large displays large thumbnails 1`] = `
         className="deleteButton"
       >
         <button
-          aria-label="Delete Thumbnail"
+          aria-label="Delete File"
           className="button base onlyIcon destructive tertiary"
           disabled={false}
           onClick={[Function]}
@@ -729,7 +729,7 @@ exports[`when the Gallery is large displays large thumbnails 1`] = `
         className="deleteButton"
       >
         <button
-          aria-label="Delete Thumbnail"
+          aria-label="Delete File"
           className="button base onlyIcon destructive tertiary"
           disabled={false}
           onClick={[Function]}
