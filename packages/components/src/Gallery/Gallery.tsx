@@ -10,27 +10,25 @@ export function Gallery({ files, size = "base", max, onDelete }: GalleryProps) {
 
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
-  const [displayPastMax, setDisplayPastMax] = useState(false);
+  const [displayPastMax, setDisplayPastMax] = useState(max ? false : true);
+
+  const visibleFiles = displayPastMax ? files : files.slice(0, max);
 
   return (
     <>
       <div className={size === "large" ? styles.galleryLarge : styles.gallery}>
-        {files.map((file, index) => {
-          if (max && !displayPastMax && index + 1 > max) {
-            return <></>;
-          }
+        {visibleFiles.map((file, index) => {
           return (
-            <div key={file.key}>
-              <FormatFile
-                file={{ ...file, src: () => Promise.resolve(file.src) }}
-                display="compact"
-                displaySize={size}
-                onClick={() => {
-                  handleThumbnailClicked(index);
-                }}
-                onDelete={() => onDelete?.(file)}
-              />
-            </div>
+            <FormatFile
+              key={file.key}
+              file={{ ...file, src: () => Promise.resolve(file.src) }}
+              display="compact"
+              displaySize={size}
+              onClick={() => {
+                handleThumbnailClicked(index);
+              }}
+              onDelete={() => onDelete?.(file)}
+            />
           );
         })}
         {max && files.length > max && !displayPastMax && (

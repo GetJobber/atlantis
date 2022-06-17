@@ -1,6 +1,5 @@
 import React from "react";
-import renderer, { act } from "react-test-renderer";
-import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
+import { cleanup, fireEvent, render } from "@testing-library/react";
 import { Gallery } from ".";
 
 afterEach(cleanup);
@@ -48,50 +47,40 @@ const files = [
   },
 ];
 
-it("renders a Gallery", () => {
-  const tree = renderer.create(<Gallery files={files} />);
-  expect(tree).toMatchSnapshot();
-});
-
 describe("when the Gallery is large", () => {
-  it("displays large thumbnails", () => {
-    const tree = renderer.create(<Gallery size="large" files={files} />);
-    expect(tree).toMatchSnapshot();
+  it("displays large thumbnails", async () => {
+    const { findAllByTestId } = render(<Gallery files={files} size="large" />);
+
+    const internalThumbnails = await findAllByTestId("internalThumbnailImage");
+
+    expect(internalThumbnails[0].parentElement.className).toContain("large");
   });
 });
 
 describe("when the Gallery has a maximum", () => {
   it("only displays the thumbnails up to the maximum", async () => {
     const maxImages = 2;
-    const { queryAllByTestId } = render(
+    const { findAllByTestId } = render(
       <Gallery max={maxImages} files={files} />,
     );
 
-    await waitFor(() => {
-      expect(queryAllByTestId("internalThumbnailImage")).not.toBeUndefined();
-    });
-
-    const internalThumbnails = queryAllByTestId("internalThumbnailImage");
-
-    expect(internalThumbnails.length).toEqual(maxImages);
+    expect(await findAllByTestId("internalThumbnailImage")).toHaveLength(
+      maxImages,
+    );
   });
 
   describe("when the plus button is clicked", () => {
     it("displays the rest of the images", async () => {
       const maxImages = 2;
-      const { getByText, queryAllByTestId } = render(
+      const { getByText, findAllByTestId } = render(
         <Gallery max={maxImages} files={files} />,
       );
 
-      await act(() => {
-        fireEvent.click(getByText(`+ ${files.length - maxImages}`));
-      });
+      fireEvent.click(getByText(`+ ${files.length - maxImages}`));
 
-      await waitFor(() => {
-        expect(queryAllByTestId("internalThumbnailImage")).not.toBeUndefined();
-      });
-
-      const internalThumbnails = queryAllByTestId("internalThumbnailImage");
+      const internalThumbnails = await findAllByTestId(
+        "internalThumbnailImage",
+      );
 
       expect(internalThumbnails.length).toEqual(files.length);
     });
@@ -99,21 +88,16 @@ describe("when the Gallery has a maximum", () => {
 
   describe("when the a Gallery thumbnail is clicked", () => {
     it("opens the lightbox", async () => {
-      const { queryAllByTestId, getByLabelText } = render(
+      const { findAllByTestId, getByLabelText } = render(
         <Gallery files={files} />,
       );
 
-      await waitFor(() => {
-        expect(queryAllByTestId("internalThumbnailImage")).not.toBeUndefined();
-      });
+      const internalThumbnails = await findAllByTestId(
+        "internalThumbnailImage",
+      );
+      fireEvent.click(internalThumbnails[0]);
 
-      const internalThumbnails = queryAllByTestId("internalThumbnailImage");
-
-      await act(() => {
-        fireEvent.click(internalThumbnails[0]);
-      });
-
-      expect(getByLabelText("Lightbox")).not.toBeNull();
+      expect(getByLabelText("Lightbox")).toBeInTheDocument();
     });
   });
 });

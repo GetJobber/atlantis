@@ -9,7 +9,7 @@ export type FileIconsNames = Extract<
 
 export interface GalleryProps {
   /**
-   * The size of the Gallery and it's files
+   * The size of the files and their spacing in the gallery
    * @default "base"
    */
   size?: "base" | "large";
@@ -26,7 +26,8 @@ export interface GalleryProps {
   max?: number;
 
   /**
-   * onDelete callback - this function will be called when the delete action is triggered on a Gallery image
+   * onDelete callback - this function will be called when the delete action is
+   * triggered on a Gallery image
    */
   onDelete?(file: File): void;
 }
@@ -62,9 +63,9 @@ export interface File {
   /**
    * The data url of the file.
    */
-  src: string;
+  readonly src: string;
 }
 
 interface GalleryItem extends File {
-  icon?: FileIconsNames;
+  readonly icon?: FileIconsNames;
 }
