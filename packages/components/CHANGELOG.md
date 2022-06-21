@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.85.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.84.3...@jobber/components@2.85.0) (2022-06-21)
+
+
+### Features
+
+* **components:** Atlantis Component For Gallery ([#891](https://github.com/GetJobber/atlantis/issues/891)) ([266d2c8](https://github.com/GetJobber/atlantis/commit/266d2c897156b50859bf996d19ae972e305ac092))
+
+
+
+
+
 ## [2.84.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.84.2...@jobber/components@2.84.3) (2022-06-13)
 
 **Note:** Version bump only for package @jobber/components
