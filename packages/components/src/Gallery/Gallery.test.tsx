@@ -162,7 +162,7 @@ describe("when a non-image is clicked", () => {
 
     const internalPDFImage = await findByTestId("pdf");
 
-    fireEvent.click(internalPDFImage.parentElement.parentElement.parentElement);
+    fireEvent.click(internalPDFImage);
 
     await waitFor(() => {
       expect(window.open).toHaveBeenCalledWith(pdfSrc, "_blank");
