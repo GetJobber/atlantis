@@ -9,12 +9,17 @@
   gap: var(--space-base);
 }
 
-.baseShowMoreButton {
+.showMoreButton {
   display: flex;
+}
+
+.baseShowMoreButton {
   width: 56px;
+  height: 56px;
 }
 
 .largeShowMoreButton {
-  display: flex;
   width: 168px;
+  height: 168px;
+  box-shadow: var(--shadow-base);
 }
