@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import classNames from "classnames";
 import styles from "./Gallery.css";
 import { File, GalleryProps } from "./GalleryTypes";
 import { LightBox } from "../LightBox";
@@ -27,13 +28,16 @@ export function Gallery({ files, size = "base", max, onDelete }: GalleryProps) {
               onClick={() => {
                 handleThumbnailClicked(index);
               }}
-              onDelete={() => onDelete?.(file)}
+              onDelete={onDelete ? () => onDelete?.(file) : undefined}
             />
           );
         })}
         {max && files.length > max && !displayPastMax && (
           <div
-            className={styles[`${size}ShowMoreButton` as keyof typeof styles]}
+            className={classNames(
+              styles.showMoreButton,
+              styles[`${size}ShowMoreButton` as keyof typeof styles],
+            )}
           >
             <Button
               type="tertiary"
