@@ -63,7 +63,7 @@ describe("Interaction", () => {
 describe("Chip icon colors depending on state", () => {
   it("should be red when it's invalid", () => {
     expect(mockChip({ invalid: true })).toHaveStyle({
-      fill: "var(--color-critical--onSurface)",
+      fill: "var(--color-critical)",
     });
   });
 

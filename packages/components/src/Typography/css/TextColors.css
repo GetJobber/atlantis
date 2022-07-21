@@ -51,7 +51,7 @@
 }
 
 .critical {
-  color: var(--color-critical--onSurface);
+  color: var(--color-critical);
 }
 
 .warning {

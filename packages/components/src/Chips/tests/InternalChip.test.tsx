@@ -26,13 +26,13 @@ it("should fire the callback when it's clicked", () => {
 describe("Chip icon colors depending on state", () => {
   it("should be red when it's invalid", () => {
     expect(mockChip({ invalid: true })).toHaveStyle({
-      fill: "var(--color-critical--onSurface)",
+      fill: "var(--color-critical)",
     });
   });
 
   it("should be red when it's invalid and active", () => {
     expect(mockChip({ invalid: true, active: true })).toHaveStyle({
-      fill: "var(--color-critical--onSurface)",
+      fill: "var(--color-critical)",
     });
   });
 
