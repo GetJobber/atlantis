@@ -47,7 +47,7 @@ export function InternalChipAffix({
 
   function getIconColor() {
     if (disabled && !active) return "disabled";
-    if (invalid && !disabled) return "criticalOnSurface";
+    if (invalid && !disabled) return "critical";
     if (active) return "white";
     return;
   }
