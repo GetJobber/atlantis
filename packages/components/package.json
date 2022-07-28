@@ -39,7 +39,7 @@
     "react-dropzone": "^11.0.2",
     "react-hook-form": "^6.7.2",
     "react-image-lightbox": "^5.1.1",
-    "react-markdown": "^6.0.3",
+    "react-markdown": "^8.0.3",
     "react-popper": "^2.2.5",
     "react-router-dom": "^5.2.0",
     "time-input-polyfill": "^1.0.7",
