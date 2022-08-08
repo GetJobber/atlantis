@@ -8,6 +8,7 @@ exports[`renders a FormatFile 1`] = `
     aria-busy={false}
     className="wrapper"
     tabIndex={0}
+    type="button"
   >
     <div
       className="thumbnail base"

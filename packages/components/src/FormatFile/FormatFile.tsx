@@ -69,6 +69,7 @@ export function FormatFile({
   return (
     <div className={wrapperClassNames}>
       <DetailsContainer
+        type="button"
         className={detailsClassNames}
         onClick={isComplete ? onClick : undefined}
         tabIndex={0}
