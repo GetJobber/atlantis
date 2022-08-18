@@ -198,6 +198,19 @@
   transition: all var(--timing-quick);
 }
 
+/**
+ * Cursor types
+ **/
+.textCursor,
+.textCursor .label {
+  cursor: text;
+}
+
+.selectCursor,
+.selectCursor .label {
+  cursor: select;
+}
+
 .miniLabel .label {
   font-size: calc(var(--base-unit) * 0.875);
 }

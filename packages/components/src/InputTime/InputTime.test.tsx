@@ -10,7 +10,7 @@ it("renders a InputTime", () => {
   const tree = renderer.create(<InputTime />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="wrapper"
+      className="wrapper textCursor"
       style={
         Object {
           "--formField-maxLength": undefined,
@@ -45,7 +45,7 @@ it("renders an initial time when given 'defaultValue'", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="wrapper"
+      className="wrapper textCursor"
       style={
         Object {
           "--formField-maxLength": undefined,
@@ -80,7 +80,7 @@ it("renders correctly in a readonly state", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="wrapper"
+      className="wrapper textCursor"
       style={
         Object {
           "--formField-maxLength": undefined,
@@ -116,7 +116,7 @@ it("adds a error border when invalid", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="wrapper"
+      className="wrapper textCursor"
       style={
         Object {
           "--formField-maxLength": undefined,
@@ -150,7 +150,7 @@ it("should set the value when given 'value' and 'onChange'", () => {
   const tree = renderer.create(<InputTime invalid />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="wrapper invalid"
+      className="wrapper invalid textCursor"
       style={
         Object {
           "--formField-maxLength": undefined,

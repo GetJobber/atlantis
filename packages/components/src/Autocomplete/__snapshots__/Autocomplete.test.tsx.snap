@@ -5,7 +5,7 @@ exports[`it should display headers when headers are passed in 1`] = `
   className="autocomplete"
 >
   <div
-    className="wrapper"
+    className="wrapper textCursor"
     style={
       Object {
         "--formField-maxLength": undefined,
@@ -42,7 +42,7 @@ exports[`renders an Autocomplete 1`] = `
   className="autocomplete"
 >
   <div
-    className="wrapper"
+    className="wrapper textCursor"
     style={
       Object {
         "--formField-maxLength": undefined,

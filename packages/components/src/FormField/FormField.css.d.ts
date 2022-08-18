@@ -15,6 +15,8 @@ declare const styles: {
   readonly "select": string;
   readonly "label": string;
   readonly "postfix": string;
+  readonly "textCursor": string;
+  readonly "selectCursor": string;
   readonly "affixIcon": string;
   readonly "suffix": string;
   readonly "hasAction": string;

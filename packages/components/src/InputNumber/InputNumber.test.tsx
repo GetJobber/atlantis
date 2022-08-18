@@ -9,7 +9,7 @@ it("renders an input type number", () => {
   const tree = renderer.create(<InputNumber value={123} />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="wrapper"
+      className="wrapper textCursor"
       style={
         Object {
           "--formField-maxLength": undefined,

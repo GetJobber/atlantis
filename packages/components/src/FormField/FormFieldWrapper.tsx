@@ -56,7 +56,12 @@ export function FormFieldWrapper({
       [styles.disabled]: disabled,
       [styles.inline]: inline,
       [styles.maxLength]: maxLength,
-      [styles.select]: type === "select",
+      [styles.textCursor]:
+        type &&
+        ["text", "password", "number", "time", "textarea", "email"].includes(
+          type,
+        ),
+      [styles.selectCursor]: type === "select",
     },
   );
 

@@ -10,7 +10,7 @@ it("renders a regular input for text and numbers", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="wrapper"
+      className="wrapper textCursor"
       style={
         Object {
           "--formField-maxLength": undefined,
@@ -49,7 +49,7 @@ it("renders a textarea", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="wrapper textarea"
+      className="wrapper textarea textCursor"
       style={
         Object {
           "--formField-maxLength": undefined,
@@ -92,7 +92,7 @@ it("renders a textarea with 4 rows", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <div
-      className="wrapper textarea"
+      className="wrapper textarea textCursor"
       style={
         Object {
           "--formField-maxLength": undefined,
