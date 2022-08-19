@@ -18,6 +18,29 @@ export const LIST_QUERY = gql`
           endCursor
           hasNextPage
         }
+      }
+    }
+  }
+`;
+
+export const LIST_QUERY_WITH_TOTAL_COUNT = gql`
+  query ConversationMessages($cursor: string, $searchTerm: string) {
+    conversation(id: "MQ==") {
+      smsMessages(first: 1, after: $cursor, searchTerm: $searchTerm) {
+        edges {
+          node {
+            __typename
+            id
+          }
+        }
+        nodes {
+          __typename
+          id
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
         totalCount
       }
     }
@@ -45,7 +68,7 @@ export interface ListQueryType {
         endCursor: string;
         hasNextPage: boolean;
       };
-      totalCount: number;
+      totalCount?: number;
     };
   };
 }

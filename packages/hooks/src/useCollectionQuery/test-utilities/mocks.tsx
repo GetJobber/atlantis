@@ -1,7 +1,8 @@
+import { DocumentNode } from "@apollo/client";
 import { MockedProvider, MockedResponse } from "@apollo/react-testing";
 import React from "react";
 import { v1 as uuidv1 } from "uuid";
-import { LIST_QUERY, SUBSCRIPTION_QUERY } from "./queries";
+import { SUBSCRIPTION_QUERY } from "./queries";
 
 export function wrapper(mocks: MockedResponse[]) {
   function ApolloMockedProvider({
@@ -21,6 +22,39 @@ export function wrapper(mocks: MockedResponse[]) {
 
 let listQueryHasNextPage = true;
 export const listQueryResponseMock = jest.fn(id => {
+  return {
+    data: {
+      conversation: {
+        __typename: "Conversation",
+        smsMessages: {
+          __typename: "SMSMessageConnection",
+          edges: [
+            {
+              __typename: "SMSMessageEdge",
+              node: {
+                __typename: "SMSMessage",
+                id: id || uuidv1(),
+              },
+            },
+          ],
+          nodes: [
+            {
+              __typename: "SMSMessage",
+              id: id || uuidv1(),
+            },
+          ],
+          pageInfo: {
+            __typename: "PageInfo",
+            endCursor: "MZ",
+            hasNextPage: listQueryHasNextPage,
+          },
+        },
+      },
+    },
+  };
+});
+
+export const listQueryWithTotalCountResponseMock = jest.fn(id => {
   return {
     data: {
       conversation: {
@@ -70,15 +104,17 @@ export const subscriptionQueryMock = jest.fn(id => {
 });
 
 export function buildListRequestMock(
+  query: DocumentNode,
+  responseMock: jest.Mock,
   id?: string | undefined,
   searchTerm?: string | undefined,
 ) {
   return {
     request: {
-      query: LIST_QUERY,
+      query: query,
       variables: { searchTerm: searchTerm },
     },
-    result: () => listQueryResponseMock(id),
+    result: () => responseMock(id),
   };
 }
 
@@ -92,13 +128,17 @@ export function buildSubscriptionRequestMock(id?: string | undefined) {
   };
 }
 
-export function buildListRequestMockForNextPage(id?: string | undefined) {
+export function buildListRequestMockForNextPage(
+  query: DocumentNode,
+  responseMock: jest.Mock,
+  id?: string | undefined,
+) {
   return {
     request: {
-      query: LIST_QUERY,
+      query: query,
       variables: { cursor: "MZ" },
     },
-    result: () => listQueryResponseMock(id),
+    result: () => responseMock(id),
   };
 }
 
