@@ -70,7 +70,7 @@ interface Collection {
     hasNextPage: boolean;
     [otherProperties: string]: unknown;
   };
-  totalCount: number;
+  totalCount?: number;
   [otherProperties: string]: unknown;
 }
 
@@ -258,7 +258,7 @@ function fetchMoreUpdateQueryHandler<TQuery>(
 
   Object.assign(outputCollection, {
     pageInfo: cloneDeep(nextCollection.pageInfo),
-    totalCount: nextCollection.totalCount,
+    ...getTotalCount(nextCollection.totalCount),
   });
 
   return output;
@@ -298,10 +298,23 @@ function subscribeToMoreHandler<TQuery, TSubscription>(
 
   Object.assign(outputCollection, {
     pageInfo: cloneDeep(outputCollection.pageInfo),
-    totalCount: outputCollection.totalCount + 1,
+    ...getTotalCount(outputCollection.totalCount, 1),
   });
 
   return output;
+}
+
+interface TotalCountReturn {
+  totalCount?: number;
+}
+
+function getTotalCount(
+  totalCount: number | undefined,
+  additionalCount = 0,
+): TotalCountReturn {
+  return totalCount !== undefined
+    ? { totalCount: totalCount + additionalCount }
+    : {};
 }
 
 export function isAlreadyUpdated(outputCollection: Collection, newNode: Node) {
