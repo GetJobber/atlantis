@@ -1,7 +1,9 @@
+import { DocumentNode } from "@apollo/client";
 import { act, renderHook } from "@testing-library/react-hooks";
 import { useCollectionQuery } from "./useCollectionQuery";
 import {
   LIST_QUERY,
+  LIST_QUERY_WITH_TOTAL_COUNT,
   ListQueryType,
   SUBSCRIPTION_QUERY,
   SubscriptionQueryType,
@@ -9,6 +11,7 @@ import {
   buildListRequestMockForNextPage,
   buildSubscriptionRequestMock,
   listQueryResponseMock,
+  listQueryWithTotalCountResponseMock,
   setListQueryMockHasNextPage,
   subscriptionQueryMock,
   wait,
@@ -21,18 +24,18 @@ beforeEach(() => {
   subscriptionQueryMock.mockClear();
 });
 
-function useCollectionQueryHook() {
+function useCollectionQueryHook(query: DocumentNode) {
   return useCollectionQuery<ListQueryType>({
-    query: LIST_QUERY,
+    query: query,
     getCollectionByPath(data) {
       return data?.conversation?.smsMessages;
     },
   });
 }
 
-function useCollectionQueryHookWithSubscription() {
+function useCollectionQueryHookWithSubscription(query: DocumentNode) {
   return useCollectionQuery<ListQueryType, SubscriptionQueryType>({
-    query: LIST_QUERY,
+    query: query,
     getCollectionByPath(data) {
       return data?.conversation?.smsMessages;
     },
@@ -45,9 +48,12 @@ function useCollectionQueryHookWithSubscription() {
   });
 }
 
-function useCollectionQueryHookWithSubscriptionAndSearch(searchTerm: string) {
+function useCollectionQueryHookWithSubscriptionAndSearch(
+  query: DocumentNode,
+  searchTerm: string,
+) {
   return useCollectionQuery<ListQueryType, SubscriptionQueryType>({
-    query: LIST_QUERY,
+    query: query,
     queryOptions: {
       variables: {
         searchTerm: searchTerm,
@@ -65,326 +71,344 @@ function useCollectionQueryHookWithSubscriptionAndSearch(searchTerm: string) {
   });
 }
 
-describe("when useCollectionQuery is first called", () => {
-  describe("when nextPage is called while it's still loading initial content", () => {
-    it("should not trigger a the next page to be fetched", async () => {
-      const { result } = renderHook(() => useCollectionQueryHook(), {
-        wrapper: wrapper([
-          buildListRequestMock(),
-          buildListRequestMockForNextPage(),
-        ]),
+describe("useCollectionQuery", () => {
+  describe.each`
+    testCase                 | query                          | responseMock
+    ${"excludes totalCount"} | ${LIST_QUERY}                  | ${listQueryResponseMock}
+    ${"includes totalCount"} | ${LIST_QUERY_WITH_TOTAL_COUNT} | ${listQueryWithTotalCountResponseMock}
+  `("when the query run $testCase", ({ query, responseMock }) => {
+    describe("when useCollectionQuery is first called", () => {
+      describe("when nextPage is called while it's still loading initial content", () => {
+        it("should not trigger a the next page to be fetched", async () => {
+          const { result } = renderHook(() => useCollectionQueryHook(query), {
+            wrapper: wrapper([
+              buildListRequestMock(query, responseMock),
+              buildListRequestMockForNextPage(query, responseMock),
+            ]),
+          });
+
+          act(() => {
+            result.current.nextPage();
+          });
+
+          await act(wait);
+          expect(responseMock).toHaveBeenCalledTimes(1);
+        });
       });
 
-      act(() => {
-        result.current.nextPage();
+      describe("when refresh is called while it's still loading initial content", () => {
+        it("should not trigger a refresh", async () => {
+          const { result } = renderHook(() => useCollectionQueryHook(query), {
+            wrapper: wrapper([
+              buildListRequestMock(query, responseMock),
+              buildListRequestMock(query, responseMock),
+            ]),
+          });
+
+          act(() => {
+            result.current.refresh();
+          });
+
+          await act(wait);
+          expect(responseMock).toHaveBeenCalledTimes(1);
+        });
       });
 
-      await act(wait);
-      expect(listQueryResponseMock).toHaveBeenCalledTimes(1);
-    });
-  });
+      describe("when there is no error", () => {
+        it("should update data", async () => {
+          const { result } = renderHook(() => useCollectionQueryHook(query), {
+            wrapper: wrapper([buildListRequestMock(query, responseMock)]),
+          });
 
-  describe("when refresh is called while it's still loading initial content", () => {
-    it("should not trigger a refresh", async () => {
-      const { result } = renderHook(() => useCollectionQueryHook(), {
-        wrapper: wrapper([buildListRequestMock(), buildListRequestMock()]),
+          await act(wait);
+
+          expect(
+            result.current.data?.conversation?.smsMessages?.edges?.length,
+          ).toBe(1);
+        });
+
+        it("should set initialLoading while loading data", async () => {
+          const { result } = renderHook(() => useCollectionQueryHook(query), {
+            wrapper: wrapper([buildListRequestMock(query, responseMock)]),
+          });
+
+          expect(result.current.loadingInitialContent).toBe(true);
+
+          await act(wait);
+        });
       });
-
-      act(() => {
-        result.current.refresh();
-      });
-
-      await act(wait);
-      expect(listQueryResponseMock).toHaveBeenCalledTimes(1);
-    });
-  });
-
-  describe("when there is no error", () => {
-    it("should update data", async () => {
-      const { result } = renderHook(() => useCollectionQueryHook(), {
-        wrapper: wrapper([buildListRequestMock()]),
-      });
-
-      await act(wait);
-
-      expect(
-        result.current.data?.conversation?.smsMessages?.edges?.length,
-      ).toBe(1);
-    });
-
-    it("should set initialLoading while loading data", async () => {
-      const { result } = renderHook(() => useCollectionQueryHook(), {
-        wrapper: wrapper([buildListRequestMock()]),
-      });
-
-      expect(result.current.loadingInitialContent).toBe(true);
-
-      await act(wait);
-    });
-  });
-});
-
-describe("#nextPage", () => {
-  describe("when nextPage is called while it's still loadingNextPage", () => {
-    it("should not trigger a nextPage", async () => {
-      const { result } = renderHook(() => useCollectionQueryHook(), {
-        wrapper: wrapper([
-          buildListRequestMock(),
-          buildListRequestMockForNextPage(),
-          buildListRequestMockForNextPage(),
-        ]),
-      });
-
-      await act(wait);
-      act(() => {
-        result.current.nextPage();
-      });
-
-      act(() => {
-        result.current.nextPage();
-      });
-
-      await act(wait);
-
-      expect(
-        result.current.data?.conversation?.smsMessages?.edges?.length,
-      ).toBe(2);
-    });
-  });
-
-  describe("when refresh is called while it's still loadingNextPage", () => {
-    it("should trigger a refresh", async () => {
-      const { result } = renderHook(() => useCollectionQueryHook(), {
-        wrapper: wrapper([
-          buildListRequestMock(),
-          buildListRequestMock(),
-          buildListRequestMockForNextPage(),
-        ]),
-      });
-
-      await act(wait);
-
-      act(() => {
-        result.current.nextPage();
-      });
-
-      act(() => {
-        result.current.refresh();
-      });
-
-      expect(result.current.loadingRefresh).toBe(true);
-
-      await act(wait);
-    });
-  });
-
-  describe("when there is no more data to fetch", () => {
-    it("should not fetch more data", async () => {
-      setListQueryMockHasNextPage(false);
-
-      const { result } = renderHook(() => useCollectionQueryHook(), {
-        wrapper: wrapper([
-          buildListRequestMock(),
-          buildListRequestMockForNextPage(),
-        ]),
-      });
-
-      await act(wait);
-      act(() => {
-        result.current.nextPage();
-      });
-
-      await act(wait);
-
-      expect(listQueryResponseMock).toHaveBeenCalledTimes(1);
-    });
-  });
-
-  describe("when there is no error", () => {
-    it("should update data", async () => {
-      const { result } = renderHook(() => useCollectionQueryHook(), {
-        wrapper: wrapper([
-          buildListRequestMock(),
-          buildListRequestMockForNextPage(),
-        ]),
-      });
-
-      await act(wait);
-      act(() => {
-        result.current.nextPage();
-      });
-
-      await act(wait);
-
-      expect(
-        result.current.data?.conversation?.smsMessages?.edges?.length,
-      ).toBe(2);
     });
 
-    it("should set loadingNextPage while loading data", async () => {
-      const { result } = renderHook(() => useCollectionQueryHook(), {
-        wrapper: wrapper([
-          buildListRequestMock(),
-          buildListRequestMockForNextPage(),
-        ]),
+    describe("#nextPage", () => {
+      describe("when nextPage is called while it's still loadingNextPage", () => {
+        it("should not trigger a nextPage", async () => {
+          const { result } = renderHook(() => useCollectionQueryHook(query), {
+            wrapper: wrapper([
+              buildListRequestMock(query, responseMock),
+              buildListRequestMockForNextPage(query, responseMock),
+              buildListRequestMockForNextPage(query, responseMock),
+            ]),
+          });
+
+          await act(wait);
+          act(() => {
+            result.current.nextPage();
+          });
+
+          act(() => {
+            result.current.nextPage();
+          });
+
+          await act(wait);
+
+          expect(
+            result.current.data?.conversation?.smsMessages?.edges?.length,
+          ).toBe(2);
+        });
       });
 
-      await act(wait);
+      describe("when refresh is called while it's still loadingNextPage", () => {
+        it("should trigger a refresh", async () => {
+          const { result } = renderHook(() => useCollectionQueryHook(query), {
+            wrapper: wrapper([
+              buildListRequestMock(query, responseMock),
+              buildListRequestMock(query, responseMock),
+              buildListRequestMockForNextPage(query, responseMock),
+            ]),
+          });
 
-      act(() => {
-        result.current.nextPage();
+          await act(wait);
+
+          act(() => {
+            result.current.nextPage();
+          });
+
+          act(() => {
+            result.current.refresh();
+          });
+
+          expect(result.current.loadingRefresh).toBe(true);
+
+          await act(wait);
+        });
       });
 
-      expect(result.current.loadingNextPage).toBe(true);
+      describe("when there is no more data to fetch", () => {
+        it("should not fetch more data", async () => {
+          setListQueryMockHasNextPage(false);
 
-      await act(wait);
+          const { result } = renderHook(() => useCollectionQueryHook(query), {
+            wrapper: wrapper([
+              buildListRequestMock(query, responseMock),
+              buildListRequestMockForNextPage(query, responseMock),
+            ]),
+          });
+
+          await act(wait);
+          act(() => {
+            result.current.nextPage();
+          });
+
+          await act(wait);
+
+          expect(responseMock).toHaveBeenCalledTimes(1);
+        });
+      });
+
+      describe("when there is no error", () => {
+        it("should update data", async () => {
+          const { result } = renderHook(() => useCollectionQueryHook(query), {
+            wrapper: wrapper([
+              buildListRequestMock(query, responseMock),
+              buildListRequestMockForNextPage(query, responseMock),
+            ]),
+          });
+
+          await act(wait);
+          act(() => {
+            result.current.nextPage();
+          });
+
+          await act(wait);
+
+          expect(
+            result.current.data?.conversation?.smsMessages?.edges?.length,
+          ).toBe(2);
+        });
+
+        it("should set loadingNextPage while loading data", async () => {
+          const { result } = renderHook(() => useCollectionQueryHook(query), {
+            wrapper: wrapper([
+              buildListRequestMock(query, responseMock),
+              buildListRequestMockForNextPage(query, responseMock),
+            ]),
+          });
+
+          await act(wait);
+
+          act(() => {
+            result.current.nextPage();
+          });
+
+          expect(result.current.loadingNextPage).toBe(true);
+
+          await act(wait);
+        });
+      });
     });
-  });
-});
 
-describe("#refresh", () => {
-  describe("when refresh is called while it's still loadingRefresh", () => {
-    it("should not trigger a refresh", async () => {
-      const { result } = renderHook(() => useCollectionQueryHook(), {
-        wrapper: wrapper([
-          buildListRequestMock(),
-          buildListRequestMock(),
-          buildListRequestMock(),
-        ]),
+    describe("#refresh", () => {
+      describe("when refresh is called while it's still loadingRefresh", () => {
+        it("should not trigger a refresh", async () => {
+          const { result } = renderHook(() => useCollectionQueryHook(query), {
+            wrapper: wrapper([
+              buildListRequestMock(query, responseMock),
+              buildListRequestMock(query, responseMock),
+              buildListRequestMock(query, responseMock),
+            ]),
+          });
+
+          await act(wait);
+
+          act(() => {
+            result.current.refresh();
+          });
+
+          act(() => {
+            result.current.refresh();
+          });
+
+          await act(wait);
+
+          expect(responseMock).toHaveBeenCalledTimes(2);
+        });
       });
 
-      await act(wait);
+      describe("when nextPage is called while it's still loadingRefresh", () => {
+        it("should not trigger a nextPage", async () => {
+          const { result } = renderHook(() => useCollectionQueryHook(query), {
+            wrapper: wrapper([
+              buildListRequestMock(query, responseMock),
+              buildListRequestMock(query, responseMock),
+              buildListRequestMockForNextPage(query, responseMock),
+            ]),
+          });
 
-      act(() => {
-        result.current.refresh();
+          await act(wait);
+
+          act(() => {
+            result.current.refresh();
+          });
+
+          act(() => {
+            result.current.nextPage();
+          });
+
+          expect(result.current.loadingNextPage).toBe(false);
+
+          await act(wait);
+        });
       });
 
-      act(() => {
-        result.current.refresh();
+      describe("when there is no error", () => {
+        it("should set loadingRefresh while loading data", async () => {
+          const { result } = renderHook(() => useCollectionQueryHook(query), {
+            wrapper: wrapper([
+              buildListRequestMock(query, responseMock),
+              buildListRequestMock(query, responseMock),
+            ]),
+          });
+
+          await act(wait);
+
+          act(() => {
+            result.current.refresh();
+          });
+
+          expect(result.current.loadingRefresh).toBe(true);
+
+          await act(wait);
+        });
       });
-
-      await act(wait);
-
-      expect(listQueryResponseMock).toHaveBeenCalledTimes(2);
     });
-  });
 
-  describe("when nextPage is called while it's still loadingRefresh", () => {
-    it("should not trigger a nextPage", async () => {
-      const { result } = renderHook(() => useCollectionQueryHook(), {
-        wrapper: wrapper([
-          buildListRequestMock(),
-          buildListRequestMock(),
-          buildListRequestMockForNextPage(),
-        ]),
+    describe("#subscribeToMore", () => {
+      describe("when hook receives update from item not in collection", () => {
+        it("it should add new item to collection", async () => {
+          const { result, waitForNextUpdate } = renderHook(
+            () => useCollectionQueryHookWithSubscription(query),
+            {
+              wrapper: wrapper([
+                buildListRequestMock(query, responseMock, "1"),
+                buildSubscriptionRequestMock("2"),
+              ]),
+            },
+          );
+
+          // Wait for initial load
+          await act(waitForNextUpdate);
+
+          // Wait for subscription
+          await act(waitForNextUpdate);
+
+          expect(
+            result?.current?.data?.conversation?.smsMessages?.edges?.length,
+          ).toBe(2);
+        });
       });
 
-      await act(wait);
+      describe("when hook receives update from item already in collection", () => {
+        it("it should return the existing collection", async () => {
+          const { result, waitForNextUpdate } = renderHook(
+            () => useCollectionQueryHookWithSubscription(query),
+            {
+              wrapper: wrapper([
+                buildListRequestMock(query, responseMock, "1"),
+                buildSubscriptionRequestMock("1"),
+              ]),
+            },
+          );
 
-      act(() => {
-        result.current.refresh();
+          // Wait for initial load
+          await act(waitForNextUpdate);
+
+          // Wait for subscription
+          await act(() => wait(200));
+
+          expect(
+            result?.current?.data?.conversation?.smsMessages?.edges?.length,
+          ).toBe(1);
+        });
       });
 
-      act(() => {
-        result.current.nextPage();
+      describe("when hook receives `update` but is currently searching a collection", () => {
+        it("should return the existing collection without adding the subscribed content", async () => {
+          const searchTerm = "FooBar";
+          const { result, waitForNextUpdate } = renderHook(
+            () =>
+              useCollectionQueryHookWithSubscriptionAndSearch(
+                query,
+                searchTerm,
+              ),
+            {
+              wrapper: wrapper([
+                buildListRequestMock(query, responseMock, "1", searchTerm),
+                buildSubscriptionRequestMock("1"),
+              ]),
+            },
+          );
+
+          // Wait for initial load
+          await act(waitForNextUpdate);
+
+          // Wait for subscription
+          await act(() => wait(200));
+
+          expect(
+            result?.current?.data?.conversation?.smsMessages?.edges?.length,
+          ).toBe(1);
+        });
       });
-
-      expect(result.current.loadingNextPage).toBe(false);
-
-      await act(wait);
-    });
-  });
-
-  describe("when there is no error", () => {
-    it("should set loadingRefresh while loading data", async () => {
-      const { result } = renderHook(() => useCollectionQueryHook(), {
-        wrapper: wrapper([buildListRequestMock(), buildListRequestMock()]),
-      });
-
-      await act(wait);
-
-      act(() => {
-        result.current.refresh();
-      });
-
-      expect(result.current.loadingRefresh).toBe(true);
-
-      await act(wait);
-    });
-  });
-});
-
-describe("#subscribeToMore", () => {
-  describe("when hook receives update from item not in collection", () => {
-    it("it should add new item to collection", async () => {
-      const { result, waitForNextUpdate } = renderHook(
-        () => useCollectionQueryHookWithSubscription(),
-        {
-          wrapper: wrapper([
-            buildListRequestMock("1"),
-            buildSubscriptionRequestMock("2"),
-          ]),
-        },
-      );
-
-      // Wait for initial load
-      await act(waitForNextUpdate);
-
-      // Wait for subscription
-      await act(waitForNextUpdate);
-
-      expect(
-        result?.current?.data?.conversation?.smsMessages?.edges?.length,
-      ).toBe(2);
-    });
-  });
-
-  describe("when hook receives update from item already in collection", () => {
-    it("it should return the existing collection", async () => {
-      const { result, waitForNextUpdate } = renderHook(
-        () => useCollectionQueryHookWithSubscription(),
-        {
-          wrapper: wrapper([
-            buildListRequestMock("1"),
-            buildSubscriptionRequestMock("1"),
-          ]),
-        },
-      );
-
-      // Wait for initial load
-      await act(waitForNextUpdate);
-
-      // Wait for subscription
-      await act(() => wait(200));
-
-      expect(
-        result?.current?.data?.conversation?.smsMessages?.edges?.length,
-      ).toBe(1);
-    });
-  });
-
-  describe("when hook receives `update` but is currently searching a collection", () => {
-    it("should return the existing collection without adding the subscribed content", async () => {
-      const searchTerm = "FooBar";
-      const { result, waitForNextUpdate } = renderHook(
-        () => useCollectionQueryHookWithSubscriptionAndSearch(searchTerm),
-        {
-          wrapper: wrapper([
-            buildListRequestMock("1", searchTerm),
-            buildSubscriptionRequestMock("1"),
-          ]),
-        },
-      );
-
-      // Wait for initial load
-      await act(waitForNextUpdate);
-
-      // Wait for subscription
-      await act(() => wait(200));
-
-      expect(
-        result?.current?.data?.conversation?.smsMessages?.edges?.length,
-      ).toBe(1);
     });
   });
 });
