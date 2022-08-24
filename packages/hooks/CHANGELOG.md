@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.11.0...@jobber/hooks@1.12.0) (2022-08-24)
+
+
+### Features
+
+* **hooks:** allow totalCount to be optional -- (Minor) Feature Release ([#916](https://github.com/GetJobber/atlantis/issues/916)) ([0c11138](https://github.com/GetJobber/atlantis/commit/0c111384378d7b4512f54047683646512fe2b9f9))
+
+
+
+
+
 # [1.11.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.10.0...@jobber/hooks@1.11.0) (2022-01-28)
 
 
