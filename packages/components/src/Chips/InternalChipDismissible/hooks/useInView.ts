@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 export function useInView<T extends Element>() {
-  const ref = useRef<T>(null); // eslint-disable-line no-null/no-null
+  const ref = useRef<T>(null);
   const [isInView, setIsInView] = useState(false);
 
   if (window.IntersectionObserver) {
