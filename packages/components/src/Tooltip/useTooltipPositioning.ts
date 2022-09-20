@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { usePopper } from "react-popper";
 
 export function useTooltipPositioning() {
-  const shadowRef = useRef<HTMLSpanElement>(null); // eslint-disable-line no-null/no-null
+  const shadowRef = useRef<HTMLSpanElement>(null);
   const [positionElement, setTooltipRef] = useState<HTMLDivElement | null>();
   const [arrowElement, setArrowRef] = useState<HTMLDivElement | null>();
 

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 export function useScrollToActive(index: number) {
-  const ref = useRef<HTMLDivElement>(null); // eslint-disable-line no-null/no-null
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!window.HTMLElement.prototype.scrollIntoView) return;
