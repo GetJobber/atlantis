@@ -45,7 +45,7 @@ export function useInternalChipDismissibleInput({
 
   const computed = {
     menuId,
-    inputRef: useRef<HTMLInputElement>(null), // eslint-disable-line no-null/no-null
+    inputRef: useRef<HTMLInputElement>(null),
     activeOption: allOptions[activeIndex],
     hasAvailableOptions: allOptions.length > 0,
     nextOptionIndex: activeIndex < maxOptionIndex ? activeIndex + 1 : 0,
