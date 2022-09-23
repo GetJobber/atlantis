@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/GetJobber/atlantis/compare/@jobber/eslint-config@0.8.1...@jobber/eslint-config@0.9.0) (2022-09-23)
+
+
+### Features
+
+* **eslint:** Update prettier to latest version ([#667](https://github.com/GetJobber/atlantis/issues/667)) ([84e5895](https://github.com/GetJobber/atlantis/commit/84e589542c642b27acd2997af7200b86ba197b7e))
+
+
+
+
+
 ## [0.8.1](https://github.com/GetJobber/atlantis/compare/@jobber/eslint-config@0.8.0...@jobber/eslint-config@0.8.1) (2021-09-15)
 
 
