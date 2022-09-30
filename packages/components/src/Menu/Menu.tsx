@@ -263,6 +263,7 @@ function Action({
   return (
     <button
       role="menuitem"
+      type="button"
       className={styles.action}
       key={label}
       onClick={onClick}
