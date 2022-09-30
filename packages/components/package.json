@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "2.85.7",
+  "version": "2.85.8",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
