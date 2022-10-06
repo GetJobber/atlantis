@@ -5,7 +5,7 @@ options from a menu.
 
 ## Design Patterns
 
-The goal of the `MultiSelect` component is to allow a suer to check multiple
+The goal of the `MultiSelect` component is to allow a user to check multiple
 options within a list of items.
 
 A user can click on the element to expand it and display the multiple options.
