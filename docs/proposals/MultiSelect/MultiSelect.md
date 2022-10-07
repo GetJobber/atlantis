@@ -65,7 +65,7 @@ import { MultiSelect } from "@jobber/components/MultiSelect";
 ```ts
 <Playground>
   {() => {
-    const items = [
+    const options = [
       {
         label: "Synced",
         checked: false,
@@ -85,7 +85,7 @@ import { MultiSelect } from "@jobber/components/MultiSelect";
     ];
 
     return (
-      <MultiSelect items={items} />
+      <MultiSelect options={options} />
     );
   }
 </Playground>
@@ -99,7 +99,7 @@ import { MultiSelect } from "@jobber/components/MultiSelect";
 
 | name                | type                  | default   | description                                                                                                            |
 | ------------------- | --------------------- | --------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `items`             | `Array?`              | undefined | An associative array that represents the labels and values that are to be associated with each option, and determines. |
+| `options`           | `Array?`              | undefined | An associative array that represents the labels and values that are to be associated with each option, and determines. |
 | `noneSelectedLabel` | `String?`             | undefined | The text that will be displayed when no options are selected.                                                          |
 | `allSelectedLabel`  | `String?`             | undefined | The text that will be displayed when all options are selected.                                                         |
 | `onChange?`         | `(newValue?: string)` | undefined | Callback function for value change.                                                                                    |
