@@ -85,6 +85,14 @@ interface DataTableProps<T> {
    * @type {Pagination}
    */
   pagination?: Pagination;
+
+  /**
+   * Enables pagination, mostly follows:
+   * https://tanstack.com/table/v8/docs/api/features/sorting#table-options
+   * @type {Sorting}
+   * @memberof DataTable
+   */
+  sorting?: Sorting;
 }
 
 type Pagination = {
@@ -122,6 +130,35 @@ type Pagination = {
 type PaginationState = {
   pageIndex: number;
   pageSize: number;
+};
+
+type Sorting = {
+  /**
+   * Represents the current sorting state of the table.
+   *
+   * @type {SortingState}
+   */
+  state?: SortingState;
+
+  /**
+   * Enables manual sorting for the table.
+   *
+   * @type {boolean}
+   */
+  manualSorting: boolean;
+
+  /**
+   * This overrides the default internal state management,
+   * so you will need to persist the state change either fully or partially outside of the table.
+   */
+  onSortingChange?: (newSortingState: SortingState) => void;
+};
+
+type SortingState = ColumnSort[];
+
+type ColumnSort = {
+  id: string;
+  desc: boolean;
 };
 ```
 
