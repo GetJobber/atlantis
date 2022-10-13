@@ -1,10 +1,106 @@
 .dataTable {
-  --message-weight: 400;
+  display: flex;
+  flex-direction: column;
 
-  font-weight: var(--message-weight);
+  width: 100%;
+  border: 1px solid rgb(225, 225, 225);
+  color: rgb(66, 78, 86);
+}
+.dataTable .tableContainer {
+  /* When fixed height */
+  max-height: 50vh;
+  overflow: scroll;
 }
 
-.bold {
-  --message-weight: 800;
-  transform: uppercase;
+.dataTable .tableContainer table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.dataTable .tableContainer thead {
+  border-bottom: 2px solid rgb(225, 225, 225);
+  background-color: white;
+
+  /* When fixed height
+  position: sticky;
+  top: -1px;
+  left: 0;
+  right: 0;
+  */
+}
+
+.dataTable .tableContainer tbody {
+  position: relative;
+}
+
+.dataTable .tableContainer th {
+  text-align: left;
+  cursor: pointer;
+}
+.dataTable .tableContainer th:hover,
+.dataTable .tableContainer th:first-child:hover {
+  background-color: rgb(239, 239, 239);
+}
+
+.dataTable .tableContainer th > span {
+  padding-left: 17px;
+}
+
+.dataTable .tableContainer tr {
+  position: relative;
+  height: 52px;
+  border-top: 1px solid rgb(225, 225, 225);
+  border-bottom: 1px solid rgb(225, 225, 225);
+}
+
+.dataTable .tableContainer td {
+  padding-left: 17px;
+}
+
+.dataTable .tableContainer td:first-child {
+  font-weight: bold;
+}
+
+/* Detect with screen size AND javascript in case it overflows even on desktop?*/
+@media only screen and (max-width: 768px) {
+  .dataTable .tableContainer th,
+  .dataTable .tableContainer td {
+    padding-right: 10px;
+
+    white-space: nowrap;
+    background-color: rgb(252, 252, 252);
+  }
+
+  .dataTable .tableContainer th:first-child,
+  .dataTable .tableContainer td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    height: 52px;
+    background-color: rgb(255, 255, 255);
+
+    /* box-shadow: 1px 0px 0px 0px rgba(63, 63, 68, 0.05),
+      3px 0px 3px 0px rgba(63, 63, 68, 0.15); */
+
+    /* filter: drop-shadow(5px 0px 3px rgba(0, 0, 0, 0.4)); */
+  }
+
+  /* PSEUDO ELEMENTS to create drop-shadow */
+  .dataTable .tableContainer th:first-child::after,
+  .dataTable .tableContainer td:first-child::after,
+  .dataTable .tableContainer th:first-child::before,
+  .dataTable .tableContainer td:first-child::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+
+    box-shadow: 1px 0px 1px 0px rgba(0, 0, 0, 0.05),
+      3px 0px 3px 0px rgba(0, 0, 0, 0.15);
+    background-color: transparent;
+  }
 }

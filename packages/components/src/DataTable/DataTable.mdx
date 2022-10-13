@@ -15,7 +15,24 @@ import { DataTable } from "@jobber/components/DataTable";
 ```
 
 <Playground>
-  <DataTable text="Bob" />
+  <DataTable
+    data={[
+      { name: "Gui", awesome: "yes" },
+      { name: "Harry", awesome: "yes" },
+      { name: "Chris", awesome: "yes" },
+      { name: "Juan", awesome: "yes" },
+    ]}
+    columns={[
+      {
+        accessorKey: "name",
+        cell: info => <span>{info.getValue()}</span>,
+      },
+      {
+        accessorKey: "awesome",
+        cell: info => info.getValue(),
+      },
+    ]}
+  />
 </Playground>
 
 <!--
