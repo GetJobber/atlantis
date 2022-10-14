@@ -2,39 +2,36 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  height: 52px;
+  min-height: 52px;
   margin: 0 16px;
 }
 
-.footerContainer .pageNatigation {
+.footerContainer .pageNavigation {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* .footerContainer .pageNatigation select {
-  margin-right: 8px;
-  padding: 6px;
-  border: 1px solid rgb(225, 225, 225);
-  border-radius: 2px;
-} */
-
-.footerContainer .pageNatigation span {
+.footerContainer .pageNavigation span {
+  padding-left: 8px;
   white-space: nowrap;
 }
 
-.footerContainer .pageNatigation .pageNatigationButtonsContainer {
+.footerContainer .pageNavigation .pageNavigationSelect {
+  min-width: 70px;
+}
+
+.footerContainer .pageNavigation .pageNavigationButtonsContainer {
   display: flex;
   width: 100%;
 
-  padding-left: 40px;
+  padding-left: 16px;
   justify-content: space-between;
 }
 
 .footerContainer
-  .pageNatigation
-  .pageNatigationButtonsContainer
+  .pageNavigation
+  .pageNavigationButtonsContainer
   button:first-child {
   margin-right: 16px;
 }

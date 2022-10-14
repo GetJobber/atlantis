@@ -1,7 +1,8 @@
 declare const styles: {
   readonly "footerContainer": string;
-  readonly "pageNatigation": string;
-  readonly "pageNatigationButtonsContainer": string;
+  readonly "pageNavigation": string;
+  readonly "pageNavigationSelect": string;
+  readonly "pageNavigationButtonsContainer": string;
 };
 export = styles;
 
