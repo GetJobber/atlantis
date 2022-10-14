@@ -12,6 +12,7 @@ import {
 } from "@tanstack/react-table";
 import { Footer } from "./Footer";
 import styles from "./DataTable.css";
+import { Icon } from "../Icon";
 
 interface DataTableProps<T> {
   /**
@@ -139,8 +140,10 @@ export function DataTable<T extends object>({
                                 header.getContext(),
                               )}
                               {{
-                                asc: " 🔼",
-                                desc: " 🔽",
+                                asc: <Icon name="longArrowUp" color="green" />,
+                                desc: (
+                                  <Icon name="longArrowDown" color="green" />
+                                ),
                               }[header.column.getIsSorted() as string] ?? null}
                             </div>
                           ) : (
