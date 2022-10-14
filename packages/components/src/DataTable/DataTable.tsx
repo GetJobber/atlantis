@@ -104,37 +104,7 @@ export function DataTable<T extends object>({
   columns,
   pagination,
 }: DataTableProps<T>) {
-  const tableSettings: TableOptions<T> = {
-    data: data,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
-    // pageCount: pagination?.pageCount,
-    // state: {
-    //   // ...(pagination?.state && { pagination: pagination.state }),
-    // },
-    // onPaginationChange: pagination?.onPaginationChange,
-    // ...(!pagination?.manualPagination && {
-    //   getPaginationRowModel: getPaginationRowModel(),
-    // }),
-  };
-
-  if (pagination) {
-    const { state, manualPagination, onPaginationChange } = pagination;
-
-    tableSettings.manualPagination = manualPagination;
-
-    if (manualPagination) {
-      if (state) {
-        tableSettings.state = { ...tableSettings.state, pagination: state };
-      }
-
-      if (onPaginationChange) {
-        tableSettings.onPaginationChange = onPaginationChange;
-      }
-    } else {
-      tableSettings.getPaginationRowModel = getPaginationRowModel();
-    }
-  }
+  const tableSettings = createTableSettings(data, columns, { pagination });
 
   const table = useReactTable(tableSettings);
   return (
@@ -184,4 +154,43 @@ export function DataTable<T extends object>({
       {pagination && <Footer table={table} />}
     </div>
   );
+}
+
+function createTableSettings<T>(
+  data: T[],
+  columns: ColumnDef<T>[],
+  options?: { pagination?: Pagination },
+) {
+  const tableSettings: TableOptions<T> = {
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+  };
+
+  if (options?.pagination) {
+    const {
+      state: paginationState,
+      manualPagination,
+      onPaginationChange,
+    } = options.pagination;
+
+    tableSettings.manualPagination = manualPagination;
+
+    if (manualPagination) {
+      if (paginationState) {
+        tableSettings.state = {
+          ...tableSettings.state,
+          pagination: paginationState,
+        };
+      }
+
+      if (onPaginationChange) {
+        tableSettings.onPaginationChange = onPaginationChange;
+      }
+    } else {
+      tableSettings.getPaginationRowModel = getPaginationRowModel();
+    }
+  }
+
+  return tableSettings;
 }
