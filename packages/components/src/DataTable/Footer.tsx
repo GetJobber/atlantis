@@ -45,12 +45,16 @@ export function Footer<T extends object>({ table }: FooterProps<T>) {
             variation="subtle"
             icon="arrowLeft"
             ariaLabel="arrowLeft"
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
           />
           <Button
             type="secondary"
             variation="subtle"
             icon="arrowRight"
             ariaLabel="arrowRight"
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
           />
         </div>
       </div>
