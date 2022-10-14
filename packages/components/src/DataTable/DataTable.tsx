@@ -7,6 +7,7 @@ import {
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
+  getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 import { Footer } from "./Footer";
@@ -96,15 +97,19 @@ interface Sorting {
    * This overrides the default internal state management,
    * so you will need to persist the state change either fully or partially outside of the table.
    */
-  onSortingChange?: (newSortingState: SortingState) => void;
+  onSortingChange?: Dispatch<SetStateAction<SortingState>>;
 }
 
 export function DataTable<T extends object>({
   data,
   columns,
   pagination,
+  sorting,
 }: DataTableProps<T>) {
-  const tableSettings = createTableSettings(data, columns, { pagination });
+  const tableSettings = createTableSettings(data, columns, {
+    pagination,
+    sorting,
+  });
 
   const table = useReactTable(tableSettings);
   return (
@@ -118,12 +123,35 @@ export function DataTable<T extends object>({
                   return (
                     <th key={header.id} colSpan={header.colSpan}>
                       {header.isPlaceholder ? null : (
-                        <span>
-                          {flexRender(
-                            header.column.columnDef.header,
-                            header.getContext(),
+                        <>
+                          {sorting ? (
+                            <div
+                              {...{
+                                className: header.column.getCanSort()
+                                  ? "cursor-pointer select-none"
+                                  : "",
+                                onClick:
+                                  header.column.getToggleSortingHandler(),
+                              }}
+                            >
+                              {flexRender(
+                                header.column.columnDef.header,
+                                header.getContext(),
+                              )}
+                              {{
+                                asc: " 🔼",
+                                desc: " 🔽",
+                              }[header.column.getIsSorted() as string] ?? null}
+                            </div>
+                          ) : (
+                            <div>
+                              {flexRender(
+                                header.column.columnDef.header,
+                                header.getContext(),
+                              )}
+                            </div>
                           )}
-                        </span>
+                        </>
                       )}
                     </th>
                   );
@@ -159,38 +187,81 @@ export function DataTable<T extends object>({
 function createTableSettings<T>(
   data: T[],
   columns: ColumnDef<T>[],
-  options?: { pagination?: Pagination },
+  options?: { pagination?: Pagination; sorting?: Sorting },
 ) {
-  const tableSettings: TableOptions<T> = {
+  let tableSettings: TableOptions<T> = {
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
   };
 
-  if (options?.pagination) {
-    const {
-      state: paginationState,
-      manualPagination,
-      onPaginationChange,
-    } = options.pagination;
+  tableSettings = addPaginationSettings(tableSettings, options?.pagination);
 
-    tableSettings.manualPagination = manualPagination;
-
-    if (manualPagination) {
-      if (paginationState) {
-        tableSettings.state = {
-          ...tableSettings.state,
-          pagination: paginationState,
-        };
-      }
-
-      if (onPaginationChange) {
-        tableSettings.onPaginationChange = onPaginationChange;
-      }
-    } else {
-      tableSettings.getPaginationRowModel = getPaginationRowModel();
-    }
-  }
+  tableSettings = addSortingSettings(tableSettings, options?.sorting);
 
   return tableSettings;
+}
+
+function addPaginationSettings<T>(
+  tableSettings: TableOptions<T>,
+  pagination?: Pagination,
+) {
+  if (!pagination) return tableSettings;
+
+  const {
+    state: paginationState,
+    onPaginationChange,
+    manualPagination,
+  } = pagination;
+
+  const newTableSettings = { ...tableSettings }; //code smell??
+
+  newTableSettings.manualPagination = manualPagination;
+
+  if (manualPagination) {
+    if (paginationState) {
+      newTableSettings.state = {
+        ...newTableSettings.state,
+        pagination: paginationState,
+      };
+    }
+
+    if (onPaginationChange) {
+      newTableSettings.onPaginationChange = onPaginationChange;
+    }
+  } else {
+    newTableSettings.getPaginationRowModel = getPaginationRowModel();
+  }
+
+  return newTableSettings;
+}
+
+function addSortingSettings<T>(
+  tableSettings: TableOptions<T>,
+  sorting?: Sorting,
+) {
+  if (!sorting) return tableSettings;
+
+  const { onSortingChange, state: sortingState, manualSorting } = sorting;
+
+  const newTableSettings = { ...tableSettings }; //code smell??
+
+  newTableSettings.manualSorting = sorting.manualSorting;
+
+  if (manualSorting) {
+    if (sortingState) {
+      newTableSettings.state = {
+        ...newTableSettings.state,
+        sorting: sortingState,
+      };
+    }
+
+    if (onSortingChange) {
+      newTableSettings.onSortingChange = onSortingChange;
+    }
+  } else {
+    newTableSettings.getSortedRowModel = getSortedRowModel();
+  }
+
+  return newTableSettings;
 }

@@ -43,7 +43,7 @@
   background-color: rgb(239, 239, 239);
 }
 
-.dataTable .tableContainer th > span {
+.dataTable .tableContainer th > div {
   padding-left: 17px;
 }
 

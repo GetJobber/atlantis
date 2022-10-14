@@ -1,6 +1,7 @@
 import { Table } from "@tanstack/react-table";
 import React from "react";
 import styles from "./Footer.css";
+import { Option, Select } from "../Select";
 
 interface FooterProps<T> {
   table: Table<T>;
@@ -14,8 +15,8 @@ export function Footer<T extends object>({ table }: FooterProps<T>) {
 
   return (
     <div className={styles.footerContainer}>
-      <div className="page-info">
-        <span className="flex items-center gap-1">
+      <div>
+        <span>
           {`Showing ${firstPosition}-${secondPosition} of ${totalRows} items`}
         </span>
       </div>
@@ -24,18 +25,18 @@ export function Footer<T extends object>({ table }: FooterProps<T>) {
         {/* 
           this can be changed to Atlantis Select component
         */}
-        <select
+        <Select
           value={table.getState().pagination.pageSize}
-          onChange={e => {
-            table.setPageSize(Number(e.target.value));
+          onChange={value => {
+            table.setPageSize(Number(value));
           }}
         >
-          {[10, 20, 30, 40, 50].map(numOfPages => (
-            <option key={numOfPages} value={numOfPages}>
+          {["10", "20", "30", "40", "50"].map(numOfPages => (
+            <Option key={numOfPages} value={numOfPages}>
               {numOfPages}
-            </option>
+            </Option>
           ))}
-        </select>
+        </Select>
 
         <span>Per page</span>
 

@@ -13,12 +13,12 @@
   justify-content: center;
 }
 
-.footerContainer .pageNatigation select {
+/* .footerContainer .pageNatigation select {
   margin-right: 8px;
   padding: 6px;
   border: 1px solid rgb(225, 225, 225);
   border-radius: 2px;
-}
+} */
 
 .footerContainer .pageNatigation span {
   white-space: nowrap;
