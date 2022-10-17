@@ -77,6 +77,13 @@ interface Pagination {
    * @type {boolean}
    */
   manualPagination: boolean;
+  /**
+   * The options to controll the pagination
+   *
+   * @type {number[]}
+   * @memberof Pagination
+   */
+  itemsPerPage?: number[];
 }
 
 interface Sorting {
@@ -182,7 +189,9 @@ export function DataTable<T extends object>({
           </tbody>
         </table>
       </div>
-      {pagination && <Footer table={table} />}
+      {pagination && (
+        <Footer table={table} itemsPerPage={pagination.itemsPerPage} />
+      )}
     </div>
   );
 }
