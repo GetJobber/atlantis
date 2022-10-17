@@ -2,36 +2,45 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 52px;
-  margin: 0 16px;
+  min-height: calc(var(--space-smaller) + var(--space-largest));
+  margin: var(--space-small) var(--space-base);
 }
 
 .footerContainer .pageNavigation {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: var(--space-base);
 }
 
-.footerContainer .pageNavigation span {
-  padding-left: 8px;
+/* .footerContainer .pageNavigation span {
+  padding-left: var(--space-small);
   white-space: nowrap;
-}
+} */
 
 .footerContainer .pageNavigation .pageNavigationSelect {
-  min-width: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-small);
+  min-width: calc(3 * var(--space-largest) + var(--space-small));
+}
+
+.footerContainer .pageNavigation .pageNavigationSelect .label {
+  min-width: calc(var(--space-extravagant) + var(--space-smaller));
 }
 
 .footerContainer .pageNavigation .pageNavigationButtonsContainer {
   display: flex;
   width: 100%;
 
-  padding-left: 16px;
+  padding-left: var(--space-base);
   justify-content: space-between;
 }
 
-.footerContainer
+/* .footerContainer
   .pageNavigation
   .pageNavigationButtonsContainer
   button:first-child {
-  margin-right: 16px;
-}
+  margin-right: var(--space-base);
+} */

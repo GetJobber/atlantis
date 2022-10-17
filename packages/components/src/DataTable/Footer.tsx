@@ -45,10 +45,8 @@ export function Footer<T extends object>({
               </Option>
             ))}
           </Select>
+          <span className={styles.label}>Per page</span>
         </div>
-
-        <span>Per page</span>
-
         <div className={styles.pageNavigationButtonsContainer}>
           <Button
             type="secondary"
