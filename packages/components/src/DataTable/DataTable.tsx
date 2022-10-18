@@ -78,7 +78,7 @@ interface Pagination {
    */
   manualPagination: boolean;
   /**
-   * The options to controll the pagination
+   * The options to control the pagination
    *
    * @type {number[]}
    * @memberof Pagination
