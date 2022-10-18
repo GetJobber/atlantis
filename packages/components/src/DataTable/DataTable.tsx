@@ -45,6 +45,10 @@ interface DataTableProps<T> {
    *
    */
   sorting?: Sorting;
+
+  height?: number;
+
+  stickyHeader?: boolean;
 }
 
 interface Pagination {
@@ -84,6 +88,14 @@ interface Pagination {
    * @memberof Pagination
    */
   itemsPerPage?: number[];
+  /**
+   * When manual pagination is enable the total numbers of
+   * records in the table should be provided.
+   *
+   * @type {number}
+   * @memberof Pagination
+   */
+  totalItems?: number;
 }
 
 interface Sorting {
@@ -113,6 +125,8 @@ export function DataTable<T extends object>({
   columns,
   pagination,
   sorting,
+  height,
+  stickyHeader,
 }: DataTableProps<T>) {
   const tableSettings = createTableSettings(data, columns, {
     pagination,
@@ -122,9 +136,9 @@ export function DataTable<T extends object>({
   const table = useReactTable(tableSettings);
   return (
     <div className={styles.dataTable}>
-      <div className={styles.tableContainer}>
+      <div className={styles.tableContainer} style={{ height }}>
         <table>
-          <thead>
+          <thead className={stickyHeader ? styles.stickyThead : ""}>
             {table.getHeaderGroups().map(headerGroup => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map(header => {
@@ -190,7 +204,13 @@ export function DataTable<T extends object>({
         </table>
       </div>
       {pagination && (
-        <Footer table={table} itemsPerPage={pagination.itemsPerPage} />
+        <Footer
+          table={table}
+          itemsPerPage={pagination.itemsPerPage}
+          totalItems={
+            pagination.totalItems ?? table.getCoreRowModel().rows.length
+          }
+        />
       )}
     </div>
   );
@@ -224,9 +244,10 @@ function addPaginationSettings<T>(
     state: paginationState,
     onPaginationChange,
     manualPagination,
+    pageCount,
   } = pagination;
 
-  const newTableSettings = { ...tableSettings }; //code smell??
+  const newTableSettings = { ...tableSettings, pageCount: pageCount }; //code smell??
 
   newTableSettings.manualPagination = manualPagination;
 

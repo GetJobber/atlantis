@@ -3,33 +3,34 @@ import React, { useMemo } from "react";
 import styles from "./Footer.css";
 import { Option, Select } from "../Select";
 import { Button } from "../Button";
-import { Text } from "../Text";
 
 interface FooterProps<T> {
   table: Table<T>;
   itemsPerPage?: number[];
+  totalItems: number;
 }
 
 export function Footer<T extends object>({
   table,
   itemsPerPage,
+  totalItems,
 }: FooterProps<T>) {
   const { pageIndex, pageSize } = table.getState().pagination;
-  const totalRows = table.getCoreRowModel().rows.length;
+  const totalRows = totalItems;
   const firstPosition = pageIndex * pageSize + 1;
   const secondPosition = Math.min(totalRows, pageSize * (pageIndex + 1));
 
   const itemsPerPageOptions = useMemo(
     () =>
       itemsPerPage?.map(item => String(item)) ?? ["10", "20", "30", "40", "50"],
-    [],
+    [itemsPerPage],
   );
 
   return (
     <div className={styles.footerContainer}>
-      <Text>
+      <span>
         {`Showing ${firstPosition}-${secondPosition} of ${totalRows} items`}
-      </Text>
+      </span>
 
       <div className={styles.pageNavigation}>
         <div className={styles.pageNavigationSelect}>
@@ -45,7 +46,7 @@ export function Footer<T extends object>({
               </Option>
             ))}
           </Select>
-          <span className={styles.label}>Per page</span>
+          <span className={styles.label}>per page</span>
         </div>
         <div className={styles.pageNavigationButtonsContainer}>
           <Button
