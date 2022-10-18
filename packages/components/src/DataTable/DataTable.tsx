@@ -221,80 +221,83 @@ function createTableSettings<T>(
   columns: ColumnDef<T>[],
   options?: { pagination?: Pagination; sorting?: Sorting },
 ) {
-  let tableSettings: TableOptions<T> = {
+  const { state: paginationState, ...restPaginationSettings } =
+    getPaginationSettings(options?.pagination);
+
+  const { state: sortingState, ...restSortingSettings } = getSortingSettings(
+    options?.sorting,
+  );
+
+  const tableSettings: TableOptions<T> = {
     data,
     columns,
+    state: { ...paginationState, ...sortingState },
     getCoreRowModel: getCoreRowModel(),
+    ...restPaginationSettings,
+    ...restSortingSettings,
   };
-
-  tableSettings = addPaginationSettings(tableSettings, options?.pagination);
-
-  tableSettings = addSortingSettings(tableSettings, options?.sorting);
 
   return tableSettings;
 }
 
-function addPaginationSettings<T>(
-  tableSettings: TableOptions<T>,
+type PaginationSettings<T> = Pick<
+  TableOptions<T>,
+  | "state"
+  | "pageCount"
+  | "onPaginationChange"
+  | "manualPagination"
+  | "getPaginationRowModel"
+>;
+
+function getPaginationSettings<T>(
   pagination?: Pagination,
-) {
-  if (!pagination) return tableSettings;
+): PaginationSettings<T> {
+  const paginationSettings: PaginationSettings<T> = {};
 
-  const {
-    state: paginationState,
-    onPaginationChange,
-    manualPagination,
-    pageCount,
-  } = pagination;
+  if (!pagination) {
+    return paginationSettings;
+  }
 
-  const newTableSettings = { ...tableSettings, pageCount: pageCount }; //code smell??
+  const { manualPagination, state, pageCount, onPaginationChange } = pagination;
 
-  newTableSettings.manualPagination = manualPagination;
+  paginationSettings.manualPagination = manualPagination;
 
   if (manualPagination) {
-    if (paginationState) {
-      newTableSettings.state = {
-        ...newTableSettings.state,
-        pagination: paginationState,
-      };
-    }
+    if (state) paginationSettings.state = { pagination: state };
+
+    if (pageCount) paginationSettings.pageCount = pageCount;
 
     if (onPaginationChange) {
-      newTableSettings.onPaginationChange = onPaginationChange;
+      paginationSettings.onPaginationChange = onPaginationChange;
     }
   } else {
-    newTableSettings.getPaginationRowModel = getPaginationRowModel();
+    paginationSettings.getPaginationRowModel = getPaginationRowModel();
   }
 
-  return newTableSettings;
+  return paginationSettings;
 }
 
-function addSortingSettings<T>(
-  tableSettings: TableOptions<T>,
-  sorting?: Sorting,
-) {
-  if (!sorting) return tableSettings;
+type SortingSettings<T> = Pick<
+  TableOptions<T>,
+  "state" | "manualSorting" | "onSortingChange" | "getSortedRowModel"
+>;
 
-  const { onSortingChange, state: sortingState, manualSorting } = sorting;
+function getSortingSettings<T>(sorting?: Sorting): SortingSettings<T> {
+  const sortingSettings: SortingSettings<T> = {};
 
-  const newTableSettings = { ...tableSettings }; //code smell??
+  if (!sorting) return sortingSettings;
 
-  newTableSettings.manualSorting = sorting.manualSorting;
+  const { manualSorting, onSortingChange, state } = sorting;
+
+  sortingSettings.manualSorting = manualSorting;
 
   if (manualSorting) {
-    if (sortingState) {
-      newTableSettings.state = {
-        ...newTableSettings.state,
-        sorting: sortingState,
-      };
-    }
+    if (state) sortingSettings.state = { sorting: state };
 
-    if (onSortingChange) {
-      newTableSettings.onSortingChange = onSortingChange;
-    }
+    if (onSortingChange) sortingSettings.onSortingChange = onSortingChange;
   } else {
-    newTableSettings.getSortedRowModel = getSortedRowModel();
+    sortingSettings.getSortedRowModel = getSortedRowModel();
   }
 
-  return newTableSettings;
+  return sortingSettings;
 }
