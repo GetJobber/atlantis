@@ -1,13 +1,13 @@
 import { PaginationState, SortingState } from "@tanstack/react-table";
 import { Dispatch, SetStateAction } from "react";
 
-export interface Pagination {
+interface ManualPagination {
   /**
    * When manually controlled represents the current pagination state of the table.
    *
    * @type {PaginationState}
    */
-  state?: PaginationState;
+  state: PaginationState;
 
   /**
    * When manually controlling pagination, you should supply a total pageCount value to the table if you know it.
@@ -15,13 +15,13 @@ export interface Pagination {
    *
    * @type {number}
    */
-  pageCount?: number;
+  pageCount: number;
 
   /**
    * If this function is provided, it will be called when the pagination state changes and you will be expected
    * to manage the state yourself. You can pass the managed state back to the table via the state option.
    */
-  onPaginationChange?: Dispatch<SetStateAction<PaginationState>>;
+  onPaginationChange: Dispatch<SetStateAction<PaginationState>>;
 
   /**
    * Enables manual pagination. If this option is set to true,
@@ -30,7 +30,7 @@ export interface Pagination {
    *
    * @type {boolean}
    */
-  manualPagination: boolean;
+  manualPagination: true;
   /**
    * The options to control the pagination
    *
@@ -45,27 +45,44 @@ export interface Pagination {
    * @type {number}
    * @memberof Pagination
    */
-  totalItems?: number;
+  totalItems: number;
 }
 
-export interface Sorting {
+interface DefaultPagination {
+  manualPagination: false;
+}
+
+export type Pagination = DefaultPagination | ManualPagination;
+
+export interface ManualSorting {
   /**
    * Represents the current sorting state of the table.
    *
    * @type {SortingState}
    */
-  state?: SortingState;
+  state: SortingState;
 
   /**
    * Enables manual sorting for the table.
    *
    * @type {boolean}
    */
-  manualSorting: boolean;
+  manualSorting: true;
 
   /**
    * This overrides the default internal state management,
    * so you will need to persist the state change either fully or partially outside of the table.
    */
-  onSortingChange?: Dispatch<SetStateAction<SortingState>>;
+  onSortingChange: Dispatch<SetStateAction<SortingState>>;
 }
+
+interface DefaultSorting {
+  /**
+   * Enables manual sorting for the table.
+   *
+   * @type {boolean}
+   */
+  manualSorting: false;
+}
+
+export type Sorting = DefaultSorting | ManualSorting;

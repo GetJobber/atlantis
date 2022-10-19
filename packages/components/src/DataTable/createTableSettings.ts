@@ -49,18 +49,18 @@ function getPaginationSettings<T>(
     return paginationSettings;
   }
 
-  const { manualPagination, state, pageCount, onPaginationChange } = pagination;
+  const { manualPagination } = pagination;
 
   paginationSettings.manualPagination = manualPagination;
 
   if (manualPagination) {
-    if (state) paginationSettings.state = { pagination: state };
+    const { state, pageCount, onPaginationChange } = pagination;
 
-    if (pageCount) paginationSettings.pageCount = pageCount;
+    paginationSettings.state = { pagination: state };
 
-    if (onPaginationChange) {
-      paginationSettings.onPaginationChange = onPaginationChange;
-    }
+    paginationSettings.pageCount = pageCount;
+
+    paginationSettings.onPaginationChange = onPaginationChange;
   } else {
     paginationSettings.getPaginationRowModel = getPaginationRowModel();
   }
@@ -78,14 +78,16 @@ function getSortingSettings<T>(sorting?: Sorting): SortingSettings<T> {
 
   if (!sorting) return sortingSettings;
 
-  const { manualSorting, onSortingChange, state } = sorting;
+  const { manualSorting } = sorting;
 
   sortingSettings.manualSorting = manualSorting;
 
   if (manualSorting) {
-    if (state) sortingSettings.state = { sorting: state };
+    const { onSortingChange, state } = sorting;
 
-    if (onSortingChange) sortingSettings.onSortingChange = onSortingChange;
+    sortingSettings.state = { sorting: state };
+
+    sortingSettings.onSortingChange = onSortingChange;
   } else {
     sortingSettings.getSortedRowModel = getSortedRowModel();
   }
