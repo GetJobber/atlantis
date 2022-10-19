@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  border: var(--border-base) solid var(--color-border);
 }
 .dataTable .tableContainer {
   overflow: auto;
@@ -10,6 +9,7 @@
 
 .dataTable .tableContainer table {
   width: 100%;
+  border: var(--border-base) solid var(--color-border);
   border-collapse: collapse;
   border-spacing: 0;
 }
@@ -37,11 +37,11 @@
 
 .dataTable .tableContainer th {
   text-align: left;
+  white-space: nowrap;
   cursor: pointer;
 
   @media (--handhelds) {
     padding-right: calc(var(--space-small) + var(--space-smallest));
-    white-space: nowrap;
   }
 }
 
