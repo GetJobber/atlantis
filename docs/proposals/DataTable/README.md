@@ -93,6 +93,21 @@ interface DataTableProps<T> {
    * @memberof DataTable
    */
   sorting?: Sorting;
+
+  /**
+   * Force the height of the table, enables scrolling
+   */
+  height?: number;
+
+  /**
+   * Force the width of the table
+   */
+  width?: number;
+
+  /**
+   * Makes the header stick while scrolling.
+   */
+  stickyHeader?: boolean;
 }
 
 type Pagination = {
@@ -125,6 +140,21 @@ type Pagination = {
    * @type {boolean}
    */
   manualPagination: boolean;
+  /**
+   * The options to control the pagination
+   *
+   * @type {number[]}
+   * @memberof Pagination
+   */
+  itemsPerPage?: number[];
+  /**
+   * When manual pagination is enable the total numbers of
+   * records in the table should be provided.
+   *
+   * @type {number}
+   * @memberof Pagination
+   */
+  totalItems?: number;
 };
 
 type PaginationState = {
