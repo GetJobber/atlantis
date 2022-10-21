@@ -2,7 +2,7 @@
 
 exports[`renders a basic table table 1`] = `
 <div
-  className="dataTable"
+  className="dataTableContainer"
 >
   <div
     className="tableContainer"
@@ -12,7 +12,9 @@ exports[`renders a basic table table 1`] = `
       }
     }
   >
-    <table>
+    <table
+      className="table"
+    >
       <thead
         className=""
       >
@@ -284,7 +286,7 @@ exports[`renders a basic table table 1`] = `
 
 exports[`renders a table table with manual pagination 1`] = `
 <div
-  className="dataTable"
+  className="dataTableContainer"
 >
   <div
     className="tableContainer"
@@ -294,7 +296,9 @@ exports[`renders a table table with manual pagination 1`] = `
       }
     }
   >
-    <table>
+    <table
+      className="table"
+    >
       <thead
         className=""
       >
@@ -577,16 +581,18 @@ exports[`renders a table table with manual pagination 1`] = `
     </table>
   </div>
   <div
-    className="footerContainer"
+    className="pagination"
   >
-    <span>
-      Showing 1-NaN of undefined items
-    </span>
     <div
-      className="pageNavigation"
+      className="paginationInfo"
+    >
+      Showing 1-NaN of undefined items
+    </div>
+    <div
+      className="paginationNav"
     >
       <div
-        className="pageNavigationSelect"
+        className="pagenationSelect"
       >
         <div
           className="wrapper select"
@@ -653,13 +659,13 @@ exports[`renders a table table with manual pagination 1`] = `
           </div>
         </div>
         <span
-          className="label"
+          className="paginationSelectLabel"
         >
           per page
         </span>
       </div>
       <div
-        className="pageNavigationButtonsContainer"
+        className="paginationButtons"
       >
         <button
           aria-label="arrowLeft"
@@ -712,7 +718,7 @@ exports[`renders a table table with manual pagination 1`] = `
 
 exports[`renders a table table with manual sorting 1`] = `
 <div
-  className="dataTable"
+  className="dataTableContainer"
 >
   <div
     className="tableContainer"
@@ -722,7 +728,9 @@ exports[`renders a table table with manual sorting 1`] = `
       }
     }
   >
-    <table>
+    <table
+      className="table"
+    >
       <thead
         className=""
       >
@@ -1020,7 +1028,7 @@ exports[`renders a table table with manual sorting 1`] = `
 
 exports[`renders a table table with pagination 1`] = `
 <div
-  className="dataTable"
+  className="dataTableContainer"
 >
   <div
     className="tableContainer"
@@ -1030,7 +1038,9 @@ exports[`renders a table table with pagination 1`] = `
       }
     }
   >
-    <table>
+    <table
+      className="table"
+    >
       <thead
         className=""
       >
@@ -1247,16 +1257,18 @@ exports[`renders a table table with pagination 1`] = `
     </table>
   </div>
   <div
-    className="footerContainer"
+    className="pagination"
   >
-    <span>
-      Showing 1-10 of 13 items
-    </span>
     <div
-      className="pageNavigation"
+      className="paginationInfo"
+    >
+      Showing 1-10 of 13 items
+    </div>
+    <div
+      className="paginationNav"
     >
       <div
-        className="pageNavigationSelect"
+        className="pagenationSelect"
       >
         <div
           className="wrapper select"
@@ -1323,13 +1335,13 @@ exports[`renders a table table with pagination 1`] = `
           </div>
         </div>
         <span
-          className="label"
+          className="paginationSelectLabel"
         >
           per page
         </span>
       </div>
       <div
-        className="pageNavigationButtonsContainer"
+        className="paginationButtons"
       >
         <button
           aria-label="arrowLeft"
@@ -1382,7 +1394,7 @@ exports[`renders a table table with pagination 1`] = `
 
 exports[`renders a table table with sorting enable 1`] = `
 <div
-  className="dataTable"
+  className="dataTableContainer"
 >
   <div
     className="tableContainer"
@@ -1392,7 +1404,9 @@ exports[`renders a table table with sorting enable 1`] = `
       }
     }
   >
-    <table>
+    <table
+      className="table"
+    >
       <thead
         className=""
       >

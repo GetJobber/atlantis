@@ -27,13 +27,12 @@ export function Footer<T extends object>({
   );
 
   return (
-    <div className={styles.footerContainer}>
-      <span>
+    <div className={styles.pagination}>
+      <div className={styles.paginationInfo}>
         {`Showing ${firstPosition}-${secondPosition} of ${totalRows} items`}
-      </span>
-
-      <div className={styles.pageNavigation}>
-        <div className={styles.pageNavigationSelect}>
+      </div>
+      <div className={styles.paginationNav}>
+        <div className={styles.pagenationSelect}>
           <Select
             value={table.getState().pagination.pageSize}
             onChange={value => {
@@ -46,9 +45,9 @@ export function Footer<T extends object>({
               </Option>
             ))}
           </Select>
-          <span className={styles.label}>per page</span>
+          <span className={styles.paginationSelectLabel}>per page</span>
         </div>
-        <div className={styles.pageNavigationButtonsContainer}>
+        <div className={styles.paginationButtons}>
           <Button
             type="secondary"
             variation="subtle"

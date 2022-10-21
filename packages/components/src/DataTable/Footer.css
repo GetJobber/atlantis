@@ -1,19 +1,28 @@
-.footerContainer {
+.pagination {
   display: flex;
   align-items: center;
   justify-content: space-between;
   min-height: calc(var(--space-smaller) + var(--space-largest));
-  margin: var(--space-small) var(--space-base);
+  padding: var(--space-small) var(--space-base);
+  border-top: var(--border-base) solid var(--color-border);
+  flex-wrap: wrap;
+  gap: var(--space-small);
 }
 
-.footerContainer .pageNavigation {
+.paginationInfo {
+  flex: 2;
+  white-space: nowrap;
+}
+
+.paginationNav {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: var(--space-base);
+  flex: 1;
 }
 
-.footerContainer .pageNavigation .pageNavigationSelect {
+.pagenationSelect {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,14 +30,14 @@
   min-width: calc(3 * var(--space-largest) + var(--space-small));
 }
 
-.footerContainer .pageNavigation .pageNavigationSelect .label {
+.paginationSelectLabel {
   min-width: calc(var(--space-extravagant) + var(--space-smaller));
 }
 
-.footerContainer .pageNavigation .pageNavigationButtonsContainer {
+.paginationButtons {
   display: flex;
-  width: 100%;
   gap: var(--space-large);
+  align-items: center;
   justify-content: center;
 
   @media (--handhelds) {

@@ -1,7 +1,9 @@
 declare const styles: {
-  readonly "dataTable": string;
+  readonly "dataTableContainer": string;
   readonly "tableContainer": string;
-  readonly "stickyThead": string;
+  readonly "table": string;
+  readonly "pinFirstColumn": string;
+  readonly "stickyHeader": string;
 };
 export = styles;
 

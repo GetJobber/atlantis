@@ -1,5 +1,6 @@
 import { ColumnDef, flexRender, useReactTable } from "@tanstack/react-table";
 import React from "react";
+import classNames from "classnames";
 import { createTableSettings } from "./createTableSettings";
 import styles from "./DataTable.css";
 import { Footer } from "./Footer";
@@ -41,6 +42,8 @@ interface DataTableProps<T> {
   height?: number;
 
   stickyHeader?: boolean;
+
+  pinFirstColumn?: boolean;
 }
 
 export function DataTable<T extends object>({
@@ -50,18 +53,25 @@ export function DataTable<T extends object>({
   sorting,
   height,
   stickyHeader,
+  pinFirstColumn,
 }: DataTableProps<T>) {
   const tableSettings = createTableSettings(data, columns, {
     pagination,
     sorting,
   });
 
+  const stickyClass = classNames({ [styles.stickyHeader]: stickyHeader });
+
+  const tableClasses = classNames(styles.table, {
+    [styles.pinFirstColumn]: pinFirstColumn,
+  });
+
   const table = useReactTable(tableSettings);
   return (
-    <div className={styles.dataTable}>
+    <div className={styles.dataTableContainer}>
       <div className={styles.tableContainer} style={{ height }}>
-        <table>
-          <thead className={stickyHeader ? styles.stickyThead : ""}>
+        <table className={tableClasses}>
+          <thead className={stickyClass}>
             {table.getHeaderGroups().map(headerGroup => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map(header => {
