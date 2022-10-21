@@ -16,10 +16,7 @@ interface DataTableProps<T> {
   data: T[];
 
   /**
-   * Should follow the @tanstack/react-table ColumnDef.
-   * I'm not sure if we need to create an abstraction around this
-   * specific type, ColumnDef by itself is already very flexible and powerfull enough
-   * to enable us to configure the table any way we like.
+   * Should follow the @tanstack/react-table ColumnDef..
    * https://tanstack.com/table/v8/docs/guide/column-defs
    *
    */
@@ -40,9 +37,16 @@ interface DataTableProps<T> {
   sorting?: Sorting;
 
   height?: number;
-
+  /**
+   * when set to true makes the header sticky while scrolling vertically
+   *
+   */
   stickyHeader?: boolean;
 
+  /**
+   *
+   * pins the firstColumn when scrolling horizontally
+   */
   pinFirstColumn?: boolean;
 }
 
@@ -139,9 +143,7 @@ export function DataTable<T extends object>({
       {pagination && (
         <Footer
           table={table}
-          itemsPerPage={
-            pagination.manualPagination ? pagination.itemsPerPage : undefined
-          }
+          itemsPerPage={pagination.itemsPerPage}
           totalItems={
             pagination.manualPagination
               ? pagination.totalItems

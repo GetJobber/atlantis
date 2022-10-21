@@ -1306,16 +1306,6 @@ exports[`renders a table table with pagination 1`] = `
               >
                 30
               </option>
-              <option
-                value="40"
-              >
-                40
-              </option>
-              <option
-                value="50"
-              >
-                50
-              </option>
             </select>
             <span
               className="postfix"

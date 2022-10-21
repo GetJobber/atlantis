@@ -50,6 +50,8 @@ interface ManualPagination {
 
 interface DefaultPagination {
   manualPagination: false;
+
+  itemsPerPage?: number[];
 }
 
 export type Pagination = DefaultPagination | ManualPagination;
