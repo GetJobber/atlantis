@@ -49,6 +49,9 @@ the onChange prop
   technology
 - The trigger contains a downward-pointing-arrow to hint that it can be
   expanded.
+- When the selector is triggered, set focus to the popover.
+- When the selector is closed, return focus to the trigger element (see
+  `useRefocusOnActivator` hook).
 
 ## Responsiveness
 
