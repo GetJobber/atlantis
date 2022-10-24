@@ -7,7 +7,9 @@ showDirectoryLink: true
 
 import { Playground, Props } from "docz";
 import { DataTable } from ".";
+import { DataDump } from "../DataDump";
 import { CustomPagination } from "./CustomPagination";
+import { useState, useCallback } from "react";
 
 # Data Table
 
@@ -15,8 +17,73 @@ import { CustomPagination } from "./CustomPagination";
 import { DataTable } from "@jobber/components/DataTable";
 ```
 
+## Basic Table
+
 <Playground>
   <DataTable
+    data={[
+      {
+        name: "Jon Snow",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "Yes",
+      },
+      {
+        name: "Robert",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "No",
+      },
+      {
+        name: "Rickon",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "No",
+      },
+      {
+        name: "Robert",
+        house: "Baratheon",
+        region: "Stormlands",
+        sigil: "Black Stag",
+        isAlive: "No",
+      },
+      {
+        name: "Cercei",
+        house: "Lannister",
+        region: "Westerlands",
+        sigil: "Golden Lion",
+        isAlive: "Yes",
+      },
+    ]}
+    columns={[
+      {
+        accessorKey: "name",
+      },
+      {
+        accessorKey: "house",
+      },
+      {
+        accessorKey: "region",
+      },
+      {
+        accessorKey: "sigil",
+      },
+      {
+        accessorKey: "isAlive",
+      },
+    ]}
+  />
+</Playground>
+
+## Client-Side Pagination, Sorting and Fixed Height with Sticky Header
+
+<Playground>
+  <DataTable
+    height={400}
+    stickyHeader
     data={[
       {
         name: "Eddard",
@@ -115,23 +182,28 @@ import { DataTable } from "@jobber/components/DataTable";
     columns={[
       {
         accessorKey: "name",
-        cell: info => <span>{info.getValue()}</span>,
+        cell: info => info.getValue(),
+        header: "Name",
       },
       {
         accessorKey: "house",
         cell: info => info.getValue(),
+        header: "House",
       },
       {
         accessorKey: "region",
         cell: info => info.getValue(),
+        header: "Region",
       },
       {
         accessorKey: "sigil",
         cell: info => info.getValue(),
+        header: "Sigil",
       },
       {
         accessorKey: "isAlive",
         cell: info => info.getValue(),
+        header: "Alive",
       },
     ]}
   />
@@ -156,6 +228,176 @@ import { DataTable } from "@jobber/components/DataTable";
 
   See `Button.mdx` for a good example of this.
 -->
+
+# Horizontal Scrolling, Pinning First Column, Custom Cell, Custom Header
+
+<Playground>
+  <div style={{ width: 390 }}>
+    <DataTable
+      data={[
+        {
+          name: "Jon Snow",
+          house: "Stark",
+          region: "North",
+          sigil: "Direwolf",
+          isAlive: "Yes",
+        },
+        {
+          name: "Robert",
+          house: "Stark",
+          region: "North",
+          sigil: "Direwolf",
+          isAlive: "No",
+        },
+        {
+          name: "Rickon",
+          house: "Stark",
+          region: "North",
+          sigil: "Direwolf",
+          isAlive: "No",
+        },
+        {
+          name: "Robert",
+          house: "Baratheon",
+          region: "Stormlands",
+          sigil: "Black Stag",
+          isAlive: "No",
+        },
+        {
+          name: "Cercei",
+          house: "Lannister",
+          region: "Westerlands",
+          sigil: "Golden Lion",
+          isAlive: "Yes",
+        },
+      ]}
+      pinFirstColumn
+      columns={[
+        {
+          accessorKey: "name",
+          cell: info => <strong>{info.getValue()}</strong>,
+          header: "Name",
+        },
+        {
+          accessorKey: "house",
+          header: "House",
+        },
+        {
+          accessorKey: "region",
+          header: "Region",
+        },
+        {
+          accessorKey: "sigil",
+          header: () => "Sigil",
+        },
+        {
+          accessorKey: "isAlive",
+          cell: info => (info.getValue() == "Yes" ? "✅" : "❌"),
+          header: "Alive",
+        },
+      ]}
+    />
+  </div>
+</Playground>
+
+## Manual Sorting
+
+<Playground>
+  {() => {
+    const [sortingState, setSortingState] = useState([]);
+    const handleSortingStateChange = useCallback(state => {
+      setSortingState(state);
+      alert("Yo, new state coming, update the data!");
+    }, []);
+    const data = [
+      {
+        name: "Eddard",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "No",
+      },
+      {
+        name: "Catelyn",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "No",
+      },
+      {
+        name: "Jon Snow",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "Yes",
+      },
+      {
+        name: "Robert",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "No",
+      },
+      {
+        name: "Rickon",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "No",
+      },
+      {
+        name: "Robert",
+        house: "Baratheon",
+        region: "Stormlands",
+        sigil: "Black Stag",
+        isAlive: "No",
+      },
+      {
+        name: "Cercei",
+        house: "Lannister",
+        region: "Westerlands",
+        sigil: "Golden Lion",
+        isAlive: "Yes",
+      },
+    ];
+    const columns = [
+      {
+        accessorKey: "name",
+        cell: info => <span>{info.getValue()}</span>,
+      },
+      {
+        accessorKey: "house",
+        cell: info => info.getValue(),
+      },
+      {
+        accessorKey: "region",
+        cell: info => info.getValue(),
+      },
+      {
+        accessorKey: "sigil",
+        cell: info => info.getValue(),
+      },
+      {
+        accessorKey: "isAlive",
+        cell: info => info.getValue(),
+      },
+    ];
+    return (
+      <div>
+        <DataDump label="Sorting State" data={sortingState} defaultOpen />
+        <DataTable
+          data={data}
+          columns={columns}
+          sorting={{
+            manualSorting: true,
+            state: sortingState,
+            onSortingChange: handleSortingStateChange,
+          }}
+        />
+      </div>
+    );
+  }}
+</Playground>
 
 ## Usage Guidelines
 
