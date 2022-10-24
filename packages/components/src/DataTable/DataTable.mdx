@@ -8,6 +8,8 @@ showDirectoryLink: true
 import { Playground, Props } from "docz";
 import { DataTable } from ".";
 import { DataDump } from "../DataDump";
+import { Button } from "../Button";
+import { Menu } from "../Menu";
 import { CustomPagination } from "./CustomPagination";
 import { useState, useCallback } from "react";
 
@@ -73,6 +75,105 @@ import { DataTable } from "@jobber/components/DataTable";
       },
       {
         accessorKey: "isAlive",
+      },
+    ]}
+  />
+</Playground>
+
+## Table with Actions
+
+<Playground>
+  <DataTable
+    data={[
+      {
+        name: "Jon Snow",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "Yes",
+      },
+      {
+        name: "Robert",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "No",
+      },
+      {
+        name: "Rickon",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "No",
+      },
+      {
+        name: "Robert",
+        house: "Baratheon",
+        region: "Stormlands",
+        sigil: "Black Stag",
+        isAlive: "No",
+      },
+      {
+        name: "Cercei",
+        house: "Lannister",
+        region: "Westerlands",
+        sigil: "Golden Lion",
+        isAlive: "Yes",
+      },
+    ]}
+    columns={[
+      {
+        accessorKey: "name",
+        cell: info => info.getValue(),
+        header: "Name",
+      },
+      {
+        accessorKey: "house",
+        cell: info => info.getValue(),
+        header: "House",
+      },
+      {
+        accessorKey: "region",
+        cell: info => info.getValue(),
+        header: "Region",
+      },
+      {
+        accessorKey: "sigil",
+        cell: info => info.getValue(),
+        header: "Sigil",
+      },
+      {
+        accessorKey: "isAlive",
+        cell: info => info.getValue(),
+        header: "Alive",
+      },
+      {
+        id: "actions",
+        cell: ({ row }) => (
+          <Menu
+            activator={
+              <Button
+                variation="subtle"
+                type="tertiary"
+                icon="more"
+                aria-label="more"
+              />
+            }
+            items={[
+              {
+                actions: [
+                  {
+                    label: "Alert",
+                    icon: "alert",
+                    onClick: () => {
+                      alert(JSON.stringify(row.original, null, 2));
+                    },
+                  },
+                ],
+              },
+            ]}
+          />
+        ),
       },
     ]}
   />
