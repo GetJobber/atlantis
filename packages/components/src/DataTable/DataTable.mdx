@@ -11,7 +11,7 @@ import { DataDump } from "../DataDump";
 import { Button } from "../Button";
 import { Menu } from "../Menu";
 import { CustomPagination } from "./CustomPagination";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 # Data Table
 
@@ -406,9 +406,12 @@ import { DataTable } from "@jobber/components/DataTable";
 <Playground>
   {() => {
     const [sortingState, setSortingState] = useState([]);
-    const handleSortingStateChange = useCallback(state => {
-      setSortingState(state);
-      alert("Yo, new state coming, update the data!");
+    const handleSortingStateChange = useCallback(newValue => {
+      alert(
+        "Manually update your data!!\nNew sorting state:\n" +
+          JSON.stringify(newValue(), null, 2)
+      );
+      setSortingState(newValue());
     }, []);
     const data = [
       {
@@ -500,6 +503,12 @@ import { DataTable } from "@jobber/components/DataTable";
   }}
 </Playground>
 
+## Manual Pagination
+
+<Playground>
+  <CustomPagination />
+</Playground>
+
 ## Usage Guidelines
 
 The `<DataTable>` will... _Add a brief description of the component_
@@ -513,10 +522,6 @@ The `<DataTable>` will... _Add a brief description of the component_
   to initiate, complete, and reverse actions.” vs “Buttons are rectangular elements
   that have a green background and white text”).
 -->
-
-<Playground>
-  <CustomPagination />
-</Playground>
 
 ## Content Guidelines
 
