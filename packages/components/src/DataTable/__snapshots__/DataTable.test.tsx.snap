@@ -586,7 +586,7 @@ exports[`renders a table table with manual pagination 1`] = `
     <div
       className="paginationInfo"
     >
-      Showing 1-10 of 100 items
+      Showing 1-NaN of undefined items
     </div>
     <div
       className="paginationNav"
