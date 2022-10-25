@@ -11,7 +11,8 @@ import { DataDump } from "../DataDump";
 import { Button } from "../Button";
 import { Menu } from "../Menu";
 import { CustomPagination } from "./CustomPagination";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useMemo } from "react";
+import { sortBy } from "lodash";
 
 # Data Table
 
@@ -392,65 +393,69 @@ import { DataTable } from "@jobber/components/DataTable";
 
 <Playground>
   {() => {
-    const [sortingState, setSortingState] = useState([]);
-    const handleSortingStateChange = useCallback(newValue => {
-      alert(
-        "Manually update your data!!\nNew sorting state:\n" +
-          JSON.stringify(newValue(), null, 2)
-      );
-      setSortingState(newValue());
-    }, []);
-    const data = [
-      {
-        name: "Eddard",
-        house: "Stark",
-        region: "North",
-        sigil: "Direwolf",
-        isAlive: "No",
-      },
-      {
-        name: "Catelyn",
-        house: "Stark",
-        region: "North",
-        sigil: "Direwolf",
-        isAlive: "No",
-      },
-      {
-        name: "Jon Snow",
-        house: "Stark",
-        region: "North",
-        sigil: "Direwolf",
-        isAlive: "Yes",
-      },
-      {
-        name: "Robert",
-        house: "Stark",
-        region: "North",
-        sigil: "Direwolf",
-        isAlive: "No",
-      },
-      {
-        name: "Rickon",
-        house: "Stark",
-        region: "North",
-        sigil: "Direwolf",
-        isAlive: "No",
-      },
-      {
-        name: "Robert",
-        house: "Baratheon",
-        region: "Stormlands",
-        sigil: "Black Stag",
-        isAlive: "No",
-      },
-      {
-        name: "Cercei",
-        house: "Lannister",
-        region: "Westerlands",
-        sigil: "Golden Lion",
-        isAlive: "Yes",
-      },
-    ];
+    const [sortingState, setSortingState] = useState([
+      { id: "name", desc: false },
+    ]);
+    const defaultData = useMemo(
+      () => [
+        {
+          name: "Eddard",
+          house: "Stark",
+          region: "North",
+          sigil: "Direwolf",
+          isAlive: "No",
+        },
+        {
+          name: "Catelyn",
+          house: "Stark",
+          region: "North",
+          sigil: "Direwolf",
+          isAlive: "No",
+        },
+        {
+          name: "Jon Snow",
+          house: "Stark",
+          region: "North",
+          sigil: "Direwolf",
+          isAlive: "Yes",
+        },
+        {
+          name: "Robert",
+          house: "Stark",
+          region: "North",
+          sigil: "Direwolf",
+          isAlive: "No",
+        },
+        {
+          name: "Rickon",
+          house: "Stark",
+          region: "North",
+          sigil: "Direwolf",
+          isAlive: "No",
+        },
+        {
+          name: "Robert",
+          house: "Baratheon",
+          region: "Stormlands",
+          sigil: "Black Stag",
+          isAlive: "No",
+        },
+        {
+          name: "Cercei",
+          house: "Lannister",
+          region: "Westerlands",
+          sigil: "Golden Lion",
+          isAlive: "Yes",
+        },
+      ],
+      []
+    );
+    const sortedData = useMemo(() => {
+      if (sortingState.length == 0) return defaultData;
+      return sortingState[0].desc
+        ? sortBy(defaultData, [sortingState[0].id]).reverse()
+        : sortBy(defaultData, [sortingState[0].id]);
+    }, [sortingState]);
     const columns = [
       {
         accessorKey: "name",
@@ -477,12 +482,12 @@ import { DataTable } from "@jobber/components/DataTable";
       <div>
         <DataDump label="Sorting State" data={sortingState} defaultOpen />
         <DataTable
-          data={data}
+          data={sortedData}
           columns={columns}
           sorting={{
             manualSorting: true,
             state: sortingState,
-            onSortingChange: handleSortingStateChange,
+            onSortingChange: setSortingState,
           }}
         />
       </div>
