@@ -113,18 +113,23 @@ export function DataTable<T extends object>({
                       }
                     >
                       {header.isPlaceholder ? null : (
-                        <>
-                          <div>
-                            {flexRender(
-                              header.column.columnDef.header,
-                              header.getContext(),
-                            )}
-                            {{
-                              asc: <Icon name="longArrowUp" color="green" />,
-                              desc: <Icon name="longArrowDown" color="green" />,
-                            }[header.column.getIsSorted() as string] ?? null}
-                          </div>
-                        </>
+                        <div>
+                          {flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
+                          {{
+                            asc: <Icon name="longArrowUp" color="green" />,
+                            desc: <Icon name="longArrowDown" color="green" />,
+                          }[header.column.getIsSorted() as string] ?? (
+                            <svg
+                              style={{
+                                width: "var(--space-large)",
+                                height: "var(--space-large)",
+                              }}
+                            />
+                          )}
+                        </div>
                       )}
                     </th>
                   );
