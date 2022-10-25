@@ -70,3 +70,13 @@
     3px 0px 3px rgba(63, 63, 68, 0.15);
   background-color: transparent;
 }
+
+.clicableRow:hover {
+  background: var(--color-grey--lightest);
+  cursor: pointer;
+}
+
+.sortableColumn:hover {
+  background: var(--color-surface--hover);
+  cursor: pointer;
+}

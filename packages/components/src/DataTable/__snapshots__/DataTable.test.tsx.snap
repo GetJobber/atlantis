@@ -20,6 +20,7 @@ exports[`renders a basic table table 1`] = `
       >
         <tr>
           <th
+            className=""
             colSpan={1}
           >
             <div>
@@ -27,6 +28,7 @@ exports[`renders a basic table table 1`] = `
             </div>
           </th>
           <th
+            className=""
             colSpan={1}
           >
             <div>
@@ -34,6 +36,7 @@ exports[`renders a basic table table 1`] = `
             </div>
           </th>
           <th
+            className=""
             colSpan={1}
           >
             <div>
@@ -41,6 +44,7 @@ exports[`renders a basic table table 1`] = `
             </div>
           </th>
           <th
+            className=""
             colSpan={1}
           >
             <div>
@@ -48,6 +52,7 @@ exports[`renders a basic table table 1`] = `
             </div>
           </th>
           <th
+            className=""
             colSpan={1}
           >
             <div>
@@ -57,7 +62,10 @@ exports[`renders a basic table table 1`] = `
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Eddard
           </td>
@@ -74,7 +82,10 @@ exports[`renders a basic table table 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Catelyn
           </td>
@@ -91,7 +102,10 @@ exports[`renders a basic table table 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Jon Snow
           </td>
@@ -108,7 +122,10 @@ exports[`renders a basic table table 1`] = `
             Yes
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Robert
           </td>
@@ -125,7 +142,10 @@ exports[`renders a basic table table 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Rickon
           </td>
@@ -142,7 +162,10 @@ exports[`renders a basic table table 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Robert
           </td>
@@ -159,7 +182,10 @@ exports[`renders a basic table table 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Cercei
           </td>
@@ -176,7 +202,10 @@ exports[`renders a basic table table 1`] = `
             Yes
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Sansa
           </td>
@@ -193,7 +222,10 @@ exports[`renders a basic table table 1`] = `
             Yes
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Arya
           </td>
@@ -210,7 +242,10 @@ exports[`renders a basic table table 1`] = `
             Yes
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Bran
           </td>
@@ -227,7 +262,10 @@ exports[`renders a basic table table 1`] = `
             Yes
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Joffrey
           </td>
@@ -244,7 +282,10 @@ exports[`renders a basic table table 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Myrcella
           </td>
@@ -261,7 +302,10 @@ exports[`renders a basic table table 1`] = `
             Yes
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Tommen
           </td>
@@ -304,59 +348,57 @@ exports[`renders a table table with manual pagination 1`] = `
       >
         <tr>
           <th
+            className="sortableColumn"
             colSpan={1}
+            onClick={[Function]}
           >
-            <div
-              className="cursor-pointer select-none"
-              onClick={[Function]}
-            >
+            <div>
               name
             </div>
           </th>
           <th
+            className="sortableColumn"
             colSpan={1}
+            onClick={[Function]}
           >
-            <div
-              className="cursor-pointer select-none"
-              onClick={[Function]}
-            >
+            <div>
               house
             </div>
           </th>
           <th
+            className="sortableColumn"
             colSpan={1}
+            onClick={[Function]}
           >
-            <div
-              className="cursor-pointer select-none"
-              onClick={[Function]}
-            >
+            <div>
               region
             </div>
           </th>
           <th
+            className="sortableColumn"
             colSpan={1}
+            onClick={[Function]}
           >
-            <div
-              className="cursor-pointer select-none"
-              onClick={[Function]}
-            >
+            <div>
               sigil
             </div>
           </th>
           <th
+            className="sortableColumn"
             colSpan={1}
+            onClick={[Function]}
           >
-            <div
-              className="cursor-pointer select-none"
-              onClick={[Function]}
-            >
+            <div>
               isAlive
             </div>
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Eddard
           </td>
@@ -373,7 +415,10 @@ exports[`renders a table table with manual pagination 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Catelyn
           </td>
@@ -390,7 +435,10 @@ exports[`renders a table table with manual pagination 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Jon Snow
           </td>
@@ -407,7 +455,10 @@ exports[`renders a table table with manual pagination 1`] = `
             Yes
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Robert
           </td>
@@ -424,7 +475,10 @@ exports[`renders a table table with manual pagination 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Rickon
           </td>
@@ -441,7 +495,10 @@ exports[`renders a table table with manual pagination 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Robert
           </td>
@@ -458,7 +515,10 @@ exports[`renders a table table with manual pagination 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Cercei
           </td>
@@ -475,7 +535,10 @@ exports[`renders a table table with manual pagination 1`] = `
             Yes
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Sansa
           </td>
@@ -492,7 +555,10 @@ exports[`renders a table table with manual pagination 1`] = `
             Yes
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Arya
           </td>
@@ -509,7 +575,10 @@ exports[`renders a table table with manual pagination 1`] = `
             Yes
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Bran
           </td>
@@ -526,7 +595,10 @@ exports[`renders a table table with manual pagination 1`] = `
             Yes
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Joffrey
           </td>
@@ -543,7 +615,10 @@ exports[`renders a table table with manual pagination 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Myrcella
           </td>
@@ -560,7 +635,10 @@ exports[`renders a table table with manual pagination 1`] = `
             Yes
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Tommen
           </td>
@@ -736,12 +814,11 @@ exports[`renders a table table with manual sorting 1`] = `
       >
         <tr>
           <th
+            className="sortableColumn"
             colSpan={1}
+            onClick={[Function]}
           >
-            <div
-              className="cursor-pointer select-none"
-              onClick={[Function]}
-            >
+            <div>
               name
               <svg
                 className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC _2azt9Jt0fRUQn8YEtWXIl3"
@@ -757,49 +834,48 @@ exports[`renders a table table with manual sorting 1`] = `
             </div>
           </th>
           <th
+            className="sortableColumn"
             colSpan={1}
+            onClick={[Function]}
           >
-            <div
-              className="cursor-pointer select-none"
-              onClick={[Function]}
-            >
+            <div>
               house
             </div>
           </th>
           <th
+            className="sortableColumn"
             colSpan={1}
+            onClick={[Function]}
           >
-            <div
-              className="cursor-pointer select-none"
-              onClick={[Function]}
-            >
+            <div>
               region
             </div>
           </th>
           <th
+            className="sortableColumn"
             colSpan={1}
+            onClick={[Function]}
           >
-            <div
-              className="cursor-pointer select-none"
-              onClick={[Function]}
-            >
+            <div>
               sigil
             </div>
           </th>
           <th
+            className="sortableColumn"
             colSpan={1}
+            onClick={[Function]}
           >
-            <div
-              className="cursor-pointer select-none"
-              onClick={[Function]}
-            >
+            <div>
               isAlive
             </div>
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Eddard
           </td>
@@ -816,7 +892,10 @@ exports[`renders a table table with manual sorting 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Catelyn
           </td>
@@ -833,7 +912,10 @@ exports[`renders a table table with manual sorting 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Jon Snow
           </td>
@@ -850,7 +932,10 @@ exports[`renders a table table with manual sorting 1`] = `
             Yes
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Robert
           </td>
@@ -867,7 +952,10 @@ exports[`renders a table table with manual sorting 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Rickon
           </td>
@@ -884,7 +972,10 @@ exports[`renders a table table with manual sorting 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Robert
           </td>
@@ -901,7 +992,10 @@ exports[`renders a table table with manual sorting 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Cercei
           </td>
@@ -918,7 +1012,10 @@ exports[`renders a table table with manual sorting 1`] = `
             Yes
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Sansa
           </td>
@@ -935,7 +1032,10 @@ exports[`renders a table table with manual sorting 1`] = `
             Yes
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Arya
           </td>
@@ -952,7 +1052,10 @@ exports[`renders a table table with manual sorting 1`] = `
             Yes
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Bran
           </td>
@@ -969,7 +1072,10 @@ exports[`renders a table table with manual sorting 1`] = `
             Yes
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Joffrey
           </td>
@@ -986,7 +1092,10 @@ exports[`renders a table table with manual sorting 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Myrcella
           </td>
@@ -1003,7 +1112,10 @@ exports[`renders a table table with manual sorting 1`] = `
             Yes
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Tommen
           </td>
@@ -1046,6 +1158,7 @@ exports[`renders a table table with pagination 1`] = `
       >
         <tr>
           <th
+            className=""
             colSpan={1}
           >
             <div>
@@ -1053,6 +1166,7 @@ exports[`renders a table table with pagination 1`] = `
             </div>
           </th>
           <th
+            className=""
             colSpan={1}
           >
             <div>
@@ -1060,6 +1174,7 @@ exports[`renders a table table with pagination 1`] = `
             </div>
           </th>
           <th
+            className=""
             colSpan={1}
           >
             <div>
@@ -1067,6 +1182,7 @@ exports[`renders a table table with pagination 1`] = `
             </div>
           </th>
           <th
+            className=""
             colSpan={1}
           >
             <div>
@@ -1074,6 +1190,7 @@ exports[`renders a table table with pagination 1`] = `
             </div>
           </th>
           <th
+            className=""
             colSpan={1}
           >
             <div>
@@ -1083,7 +1200,10 @@ exports[`renders a table table with pagination 1`] = `
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Eddard
           </td>
@@ -1100,7 +1220,10 @@ exports[`renders a table table with pagination 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Catelyn
           </td>
@@ -1117,7 +1240,10 @@ exports[`renders a table table with pagination 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Jon Snow
           </td>
@@ -1134,7 +1260,10 @@ exports[`renders a table table with pagination 1`] = `
             Yes
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Robert
           </td>
@@ -1151,7 +1280,10 @@ exports[`renders a table table with pagination 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Rickon
           </td>
@@ -1168,7 +1300,10 @@ exports[`renders a table table with pagination 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Robert
           </td>
@@ -1185,7 +1320,10 @@ exports[`renders a table table with pagination 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Cercei
           </td>
@@ -1202,7 +1340,10 @@ exports[`renders a table table with pagination 1`] = `
             Yes
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Sansa
           </td>
@@ -1219,7 +1360,10 @@ exports[`renders a table table with pagination 1`] = `
             Yes
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Arya
           </td>
@@ -1236,7 +1380,10 @@ exports[`renders a table table with pagination 1`] = `
             Yes
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Bran
           </td>
@@ -1402,59 +1549,57 @@ exports[`renders a table table with sorting enable 1`] = `
       >
         <tr>
           <th
+            className="sortableColumn"
             colSpan={1}
+            onClick={[Function]}
           >
-            <div
-              className="cursor-pointer select-none"
-              onClick={[Function]}
-            >
+            <div>
               name
             </div>
           </th>
           <th
+            className="sortableColumn"
             colSpan={1}
+            onClick={[Function]}
           >
-            <div
-              className="cursor-pointer select-none"
-              onClick={[Function]}
-            >
+            <div>
               house
             </div>
           </th>
           <th
+            className="sortableColumn"
             colSpan={1}
+            onClick={[Function]}
           >
-            <div
-              className="cursor-pointer select-none"
-              onClick={[Function]}
-            >
+            <div>
               region
             </div>
           </th>
           <th
+            className="sortableColumn"
             colSpan={1}
+            onClick={[Function]}
           >
-            <div
-              className="cursor-pointer select-none"
-              onClick={[Function]}
-            >
+            <div>
               sigil
             </div>
           </th>
           <th
+            className="sortableColumn"
             colSpan={1}
+            onClick={[Function]}
           >
-            <div
-              className="cursor-pointer select-none"
-              onClick={[Function]}
-            >
+            <div>
               isAlive
             </div>
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Eddard
           </td>
@@ -1471,7 +1616,10 @@ exports[`renders a table table with sorting enable 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Catelyn
           </td>
@@ -1488,7 +1636,10 @@ exports[`renders a table table with sorting enable 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Jon Snow
           </td>
@@ -1505,7 +1656,10 @@ exports[`renders a table table with sorting enable 1`] = `
             Yes
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Robert
           </td>
@@ -1522,7 +1676,10 @@ exports[`renders a table table with sorting enable 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Rickon
           </td>
@@ -1539,7 +1696,10 @@ exports[`renders a table table with sorting enable 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Robert
           </td>
@@ -1556,7 +1716,10 @@ exports[`renders a table table with sorting enable 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Cercei
           </td>
@@ -1573,7 +1736,10 @@ exports[`renders a table table with sorting enable 1`] = `
             Yes
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Sansa
           </td>
@@ -1590,7 +1756,10 @@ exports[`renders a table table with sorting enable 1`] = `
             Yes
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Arya
           </td>
@@ -1607,7 +1776,10 @@ exports[`renders a table table with sorting enable 1`] = `
             Yes
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Bran
           </td>
@@ -1624,7 +1796,10 @@ exports[`renders a table table with sorting enable 1`] = `
             Yes
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Joffrey
           </td>
@@ -1641,7 +1816,10 @@ exports[`renders a table table with sorting enable 1`] = `
             No
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Myrcella
           </td>
@@ -1658,7 +1836,10 @@ exports[`renders a table table with sorting enable 1`] = `
             Yes
           </td>
         </tr>
-        <tr>
+        <tr
+          className=""
+          onClick={[Function]}
+        >
           <td>
             Tommen
           </td>

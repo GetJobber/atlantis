@@ -4,6 +4,8 @@ declare const styles: {
   readonly "table": string;
   readonly "pinFirstColumn": string;
   readonly "stickyHeader": string;
+  readonly "clicableRow": string;
+  readonly "sortableColumn": string;
 };
 export = styles;
 

@@ -1,5 +1,10 @@
-import { ColumnDef, flexRender, useReactTable } from "@tanstack/react-table";
-import React from "react";
+import {
+  ColumnDef,
+  Row,
+  flexRender,
+  useReactTable,
+} from "@tanstack/react-table";
+import React, { useCallback } from "react";
 import classNames from "classnames";
 import { createTableSettings } from "./createTableSettings";
 import styles from "./DataTable.css";
@@ -48,6 +53,8 @@ interface DataTableProps<T> {
    * pins the firstColumn when scrolling horizontally
    */
   pinFirstColumn?: boolean;
+
+  onRowClick?: (row: Row<T>) => void;
 }
 
 export function DataTable<T extends object>({
@@ -58,6 +65,7 @@ export function DataTable<T extends object>({
   height,
   stickyHeader,
   pinFirstColumn,
+  onRowClick,
 }: DataTableProps<T>) {
   const tableSettings = createTableSettings(data, columns, {
     pagination,
@@ -70,6 +78,16 @@ export function DataTable<T extends object>({
     [styles.pinFirstColumn]: pinFirstColumn,
   });
 
+  const bodyRowClasses = classNames({ [styles.clicableRow]: !!onRowClick });
+
+  const handleRowClick = useCallback(
+    (row: Row<T>) => () => {
+      if (onRowClick == undefined) return;
+      onRowClick(row);
+    },
+    [onRowClick],
+  );
+
   const table = useReactTable(tableSettings);
   return (
     <div className={styles.dataTableContainer}>
@@ -80,38 +98,32 @@ export function DataTable<T extends object>({
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map(header => {
                   return (
-                    <th key={header.id} colSpan={header.colSpan}>
+                    <th
+                      key={header.id}
+                      colSpan={header.colSpan}
+                      className={
+                        sorting && header.column.getCanSort()
+                          ? styles.sortableColumn
+                          : ""
+                      }
+                      onClick={
+                        sorting
+                          ? header.column.getToggleSortingHandler()
+                          : undefined
+                      }
+                    >
                       {header.isPlaceholder ? null : (
                         <>
-                          {sorting ? (
-                            <div
-                              {...{
-                                className: header.column.getCanSort()
-                                  ? "cursor-pointer select-none"
-                                  : "",
-                                onClick:
-                                  header.column.getToggleSortingHandler(),
-                              }}
-                            >
-                              {flexRender(
-                                header.column.columnDef.header,
-                                header.getContext(),
-                              )}
-                              {{
-                                asc: <Icon name="longArrowUp" color="green" />,
-                                desc: (
-                                  <Icon name="longArrowDown" color="green" />
-                                ),
-                              }[header.column.getIsSorted() as string] ?? null}
-                            </div>
-                          ) : (
-                            <div>
-                              {flexRender(
-                                header.column.columnDef.header,
-                                header.getContext(),
-                              )}
-                            </div>
-                          )}
+                          <div>
+                            {flexRender(
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
+                            {{
+                              asc: <Icon name="longArrowUp" color="green" />,
+                              desc: <Icon name="longArrowDown" color="green" />,
+                            }[header.column.getIsSorted() as string] ?? null}
+                          </div>
                         </>
                       )}
                     </th>
@@ -123,7 +135,11 @@ export function DataTable<T extends object>({
           <tbody>
             {table.getRowModel().rows.map(row => {
               return (
-                <tr key={row.id}>
+                <tr
+                  key={row.id}
+                  onClick={handleRowClick(row)}
+                  className={bodyRowClasses}
+                >
                   {row.getVisibleCells().map(cell => {
                     return (
                       <td key={cell.id}>

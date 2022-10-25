@@ -193,7 +193,7 @@ import { DataTable } from "@jobber/components/DataTable";
   />
 </Playground>
 
-## Client-Side Pagination, Sorting and Fixed Height with Sticky Header
+## Client-Side Pagination, Sorting, Clickable Rows, and Fixed Height with Sticky Header
 
 <Playground>
   <DataTable
@@ -294,6 +294,7 @@ import { DataTable } from "@jobber/components/DataTable";
     ]}
     pagination={{ manualPagination: false, itemsPerPage: [10, 20, 30] }}
     sorting={{ manualSorting: false }}
+    onRowClick={row => alert(JSON.stringify(row.original, null, 2))}
     columns={[
       {
         accessorKey: "name",
@@ -494,6 +495,7 @@ import { DataTable } from "@jobber/components/DataTable";
             manualSorting: true,
             state: sortingState,
             onSortingChange: setSortingState,
+            enableSortingRemoval: true,
           }}
         />
       </div>
