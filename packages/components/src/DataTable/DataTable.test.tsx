@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { DataTable } from ".";
+import { Pagination, Sorting } from "./types";
 
 const data = [
   {
@@ -125,12 +126,16 @@ const setSorting = () => {
 };
 const pageIndex = 0;
 const pageSize = 10;
-const sorting = { manualSorting: false };
-const pagination = { manualPagination: false, itemsPerPage: [10, 20, 30] };
-const manualPagination = {
+const sorting: Sorting = { manualSorting: false };
+const pagination: Pagination = {
+  manualPagination: false,
+  itemsPerPage: [10, 20, 30],
+};
+const manualPagination: Pagination = {
   manualPagination: true,
   onPaginationChange: setPagination,
   pageCount: Math.ceil(100 / pageSize),
+  totalItems: 100,
   state: {
     pageIndex,
     pageSize,
