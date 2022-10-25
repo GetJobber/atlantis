@@ -70,7 +70,11 @@ function getPaginationSettings<T>(
 
 type SortingSettings<T> = Pick<
   TableOptions<T>,
-  "state" | "manualSorting" | "onSortingChange" | "getSortedRowModel"
+  | "state"
+  | "manualSorting"
+  | "onSortingChange"
+  | "getSortedRowModel"
+  | "enableSortingRemoval"
 >;
 
 function getSortingSettings<T>(sorting?: Sorting): SortingSettings<T> {
@@ -83,11 +87,13 @@ function getSortingSettings<T>(sorting?: Sorting): SortingSettings<T> {
   sortingSettings.manualSorting = manualSorting;
 
   if (manualSorting) {
-    const { onSortingChange, state } = sorting;
+    const { onSortingChange, state, enableSortingRemoval } = sorting;
 
     sortingSettings.state = { sorting: state };
 
     sortingSettings.onSortingChange = onSortingChange;
+
+    sortingSettings.enableSortingRemoval = enableSortingRemoval ?? true;
   } else {
     sortingSettings.getSortedRowModel = getSortedRowModel();
   }

@@ -76,6 +76,11 @@ export interface ManualSorting {
    * so you will need to persist the state change either fully or partially outside of the table.
    */
   onSortingChange: Dispatch<SetStateAction<SortingState>>;
+  /**
+   * Enables/Disables the ability to remove sorting for the table.
+   *
+   */
+  enableSortingRemoval?: boolean;
 }
 
 interface DefaultSorting {
