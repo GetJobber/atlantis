@@ -63,15 +63,17 @@
 .pinFirstColumn th:first-child::after,
 .pinFirstColumn td:first-child::after {
   content: "";
-  display: inline-block;
+  display: block;
   position: absolute;
-  top: 0px;
-  right: 0px;
-  width: var(--space-minuscule);
+  top: 0;
+  right: calc(-1 * var(--space-small));
+  width: var(--space-small);
   height: 100%;
-  box-shadow: 1px 0px 0px rgba(63, 63, 68, 0.05),
-    3px 0px 3px rgba(63, 63, 68, 0.15);
-  background-color: transparent;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0) 80%
+  );
 }
 
 .clicableRow:hover {
