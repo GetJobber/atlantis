@@ -15,6 +15,15 @@ import { useState, useCallback, useEffect } from "react";
 
 # Data Table
 
+<ComponentStatus stage="pre" responsive="no" accessible="yes" />
+
+Data Tables are used to organize and display tabular data to users while
+providing a multitude of features that allows the user to interact with the data
+been displayed on the table.
+
+The `DataTable` component has the capability to integrate sorting, filtering and
+pagination with an external API or on the client side.
+
 ```ts
 import { DataTable } from "@jobber/components/DataTable";
 ```
@@ -310,28 +319,6 @@ import { DataTable } from "@jobber/components/DataTable";
   />
 </Playground>
 
-<!--
-  INTERFACE: This is for the proposal stage of the component
-
-  Provide an example of what the component looks like in code. How would you use
-  it from another React component? This should consist primarily of code blocks.
-  This section can be deleted once the component is built, when the Playground
-  will demonstrate this at a higher fidelity.
--->
-
-## Props
-
-<Props of={DataTable} />
-
-<!--
-  It is not necessary to provide an example of each prop. Use usage examples to
-  highlight key features of a component or particular considerations.
-
-  See `Button.mdx` for a good example of this.
--->
-
-# Horizontal Scrolling, Pinning First Column, Custom Cell, Custom Header
-
 <Playground>
   <div style={{ width: 390 }}>
     <DataTable
@@ -509,48 +496,36 @@ import { DataTable } from "@jobber/components/DataTable";
   <CustomPagination />
 </Playground>
 
-## Usage Guidelines
+## Design & Usage Guidelines
 
-The `<DataTable>` will... _Add a brief description of the component_
+The `DataTable` component is a great solution if you are looking to display data
+in a tabular way while giving your user the ability to sort, paginate or filter
+that data, this can be implemented on the server side or on the client side
+depending on your needs.
 
-<!--
-  What is the design purpose of this component? How do its responsibilities
-  relate to other components? What should this component not be used for? What
-  are some related components in Atlantis? Try to describe this component not
-  in terms of what it looks like or what elements make it up, but what function
-  it performs or how it enables a user to perform tasks (e.g. “Buttons allow users
-  to initiate, complete, and reverse actions.” vs “Buttons are rectangular elements
-  that have a green background and white text”).
--->
+A best practice in Data Table presentation is to ensure that all columns with
+numerical data (and their headers) round to the same decimal point, and are
+right-aligned. This makes it much easier for the reader to quickly parse large
+distinctions in dollar amounts, inventory counts, and other key business data.
 
-## Content Guidelines
+To list more complex collections of information (such as multi-line content like
+a detailed property address), you may want to consider the
+[List](https://atlantis.getjobber.com/components/list) component. If you have a
+small list of information with a 1:1 label-to-data relationship (for example,
+the issued and due dates on an invoice), consider using
+[DescriptionList](https://atlantis.getjobber.com/components/description-list).
 
-<!--
-  What type of content does this component present (documents, text, images, other components)?
-  What is the recommended, or expected, amount of content? What is the components’ behaviour when
-  the provided content diverges from what is expected (image aspect ratio, amount of text, video
-  vs audio, filesize)? Are there any important references to the [Product Vocabulary](https://atlantis.getjobber.com/guides/product-vocabulary)
-  that should be made regarding this component? What happens when content is unavailable or unreliable
-  (poor connection, empty states, flaky GPS data?)
--->
+## Props
 
-## Accessibility
+<Props of={DataTable} />
 
-<!--
-  Describe the accessibility concerns for the component. How does it handle touch vs cursor vs
-  keyboard events? Should it capture input? What should a screen reader see when it's focuse?
--->
+# Horizontal Scrolling, Pinning First Column, Custom Cell, Custom Header
 
 ## Responsiveness
 
-<!--
-  How should the component behave on an iPhone 8? An iPad? A 1920x1080 monitor? How does the
-  component appear when the component itself is less than 375px wide? Less than 640px wide?
-  Less than 1200px wide? Greater than 1200px? Does it change when the device DPI is higher
-  or lower?
--->
-
-## Mockup
+The `DataTable` component has the option to handle responsive design, these
+options will allow us to fix the header or the first left column depending on
+your needs, this will allow the user a more efficient way to visualize the data.
 
 <iframe
   style="border: 1px solid rgba(0, 0, 0, 0.1);"
@@ -565,13 +540,4 @@ The `<DataTable>` will... _Add a brief description of the component_
   that conveys the visual design of the component, with variants and state accounted for.
   Consider progressive enhancement; might this rely on newer browser features that aren’t
   widely supported yet?
--->
-
-## Notes
-
-<!--
-  What decisions worth remembering have gone into this component? Did we consider any potentially valuable
-  functionality that we’re not implementing right now for scope purposes? Are there any design decisions
-  that might need explaining beyond the usage guidelines? This will help consumers understand this component
-  more fully.
 -->
