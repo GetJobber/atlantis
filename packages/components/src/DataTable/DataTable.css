@@ -34,29 +34,12 @@
   padding: var(--space-base);
 }
 
-.pinFirstColumn thead tr th:first-child {
-  position: sticky;
-  left: 0;
-  z-index: 1;
-  height: calc(var(--space-largest) + var(--space-smaller));
-  background-color: var(--color-white);
-}
-
+.pinFirstColumn thead tr th:first-child,
 .pinFirstColumn tbody tr td:first-child {
   position: sticky;
   left: 0;
   z-index: 1;
   height: calc(var(--space-largest) + var(--space-smaller));
-  background-color: var(--color-white);
-}
-
-.stickyHeader {
-  position: sticky;
-  top: 0px;
-  right: 0;
-  left: 0;
-  z-index: 2;
-  box-shadow: var(--shadow-base);
   background-color: var(--color-white);
 }
 
@@ -76,12 +59,28 @@
   );
 }
 
-.clicableRow:hover {
-  background: var(--color-grey--lightest);
+.stickyHeader {
+  position: sticky;
+  top: 0px;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  box-shadow: var(--shadow-base);
+  background-color: var(--color-white);
+}
+
+.pinFirstHeaderSortable:first-child:hover {
+  background: var(--color-surface--hover);
   cursor: pointer;
 }
 
 .sortableColumn:hover {
   background: var(--color-surface--hover);
+  cursor: pointer;
+}
+
+.clicableRow:hover,
+.clicableRow:hover :first-child {
+  background: var(--color-grey--lightest);
   cursor: pointer;
 }

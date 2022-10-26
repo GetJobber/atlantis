@@ -103,7 +103,9 @@ export function DataTable<T extends object>({
                       colSpan={header.colSpan}
                       className={
                         sorting && header.column.getCanSort()
-                          ? styles.sortableColumn
+                          ? classNames(styles.sortableColumn, {
+                              [styles.pinFirstHeaderSortable]: !!onRowClick,
+                            })
                           : ""
                       }
                       onClick={
