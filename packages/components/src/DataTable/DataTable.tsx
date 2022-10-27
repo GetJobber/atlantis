@@ -35,25 +35,32 @@ interface DataTableProps<T> {
   pagination?: Pagination;
 
   /**
-   * Enables pagination, mostly follows:
+   * Enables sorting, mostly follows:
    * https://tanstack.com/table/v8/docs/api/features/sorting#table-options
    *
    */
   sorting?: Sorting;
 
+  /**
+   * This will force the table to have the specified hight
+   *
+   */
   height?: number;
   /**
-   * when set to true makes the header sticky while scrolling vertically
+   * When set to true makes the header sticky while scrolling vertically
    *
    */
   stickyHeader?: boolean;
 
   /**
+   * Pins the firstColumn when scrolling horizontally
    *
-   * pins the firstColumn when scrolling horizontally
    */
   pinFirstColumn?: boolean;
 
+  /**
+   * Enables row click action. The provided callback will be executed when the row is clicked.
+   */
   onRowClick?: (row: Row<T>) => void;
 }
 
