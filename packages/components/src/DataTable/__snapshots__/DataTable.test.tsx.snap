@@ -750,7 +750,7 @@ exports[`renders a table table with manual pagination 1`] = `
       className="paginationNav"
     >
       <div
-        className="pagenationSelect"
+        className="paginationSelect"
       >
         <div
           className="wrapper select"
@@ -1567,7 +1567,7 @@ exports[`renders a table table with pagination 1`] = `
       className="paginationNav"
     >
       <div
-        className="pagenationSelect"
+        className="paginationSelect"
       >
         <div
           className="wrapper select"

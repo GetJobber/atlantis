@@ -32,7 +32,7 @@ export function Footer<T extends object>({
         {`Showing ${firstPosition}-${secondPosition} of ${totalRows} items`}
       </div>
       <div className={styles.paginationNav}>
-        <div className={styles.pagenationSelect}>
+        <div className={styles.paginationSelect}>
           <Select
             value={table.getState().pagination.pageSize}
             onChange={value => {

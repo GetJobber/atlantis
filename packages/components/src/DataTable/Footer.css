@@ -24,7 +24,7 @@
   min-width: fit-content;
 }
 
-.pagenationSelect {
+.paginationSelect {
   display: flex;
   align-items: center;
   justify-content: center;
