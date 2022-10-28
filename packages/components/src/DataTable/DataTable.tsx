@@ -12,7 +12,7 @@ import { Footer } from "./Footer";
 import { Pagination, Sorting } from "./types";
 import { Icon } from "../Icon";
 
-interface DataTableProps<T> {
+export interface DataTableProps<T> {
   /**
    * The actual data that will be used for the table.
    * Typescript should infer T from typeof data.
@@ -21,9 +21,9 @@ interface DataTableProps<T> {
   data: T[];
 
   /**
-   * Should follow the @tanstack/react-table ColumnDef..
-   * https://tanstack.com/table/v8/docs/guide/column-defs
-   *
+   * Should follow the @tanstack/react-table [ColumnDef](https://tanstack.com/table/v8/docs/guide/column-defs).
+   * [createColumnHelper](https://tanstack.com/table/v8/docs/guide/column-defs#column-helpers) is also exposed to make it more convenient
+   * to create columns.
    */
   columns: ColumnDef<T>[];
 

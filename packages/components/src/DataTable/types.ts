@@ -1,7 +1,7 @@
 import { PaginationState, SortingState } from "@tanstack/react-table";
 import { Dispatch, SetStateAction } from "react";
 
-interface ManualPagination {
+export interface ManualPagination {
   /**
    * When manually controlled represents the current pagination state of the table.
    *
@@ -48,7 +48,7 @@ interface ManualPagination {
   totalItems: number;
 }
 
-interface DefaultPagination {
+export interface DefaultPagination {
   manualPagination: false;
 
   itemsPerPage?: number[];
@@ -83,7 +83,7 @@ export interface ManualSorting {
   enableSortingRemoval?: boolean;
 }
 
-interface DefaultSorting {
+export interface DefaultSorting {
   /**
    * Enables manual sorting for the table.
    *
