@@ -1,16 +1,12 @@
-import {
-  ColumnDef,
-  Row,
-  flexRender,
-  useReactTable,
-} from "@tanstack/react-table";
-import React, { useCallback } from "react";
+import { ColumnDef, Row, useReactTable } from "@tanstack/react-table";
 import classNames from "classnames";
+import React from "react";
+import { Body } from "./Body";
 import { createTableSettings } from "./createTableSettings";
 import styles from "./DataTable.css";
 import { Footer } from "./Footer";
+import { Header } from "./Header";
 import { Pagination, Sorting } from "./types";
-import { Icon } from "../Icon";
 
 export interface DataTableProps<T> {
   /**
@@ -79,95 +75,22 @@ export function DataTable<T extends object>({
     sorting,
   });
 
-  const stickyClass = classNames({ [styles.stickyHeader]: stickyHeader });
-
   const tableClasses = classNames(styles.table, {
     [styles.pinFirstColumn]: pinFirstColumn,
   });
-
-  const bodyRowClasses = classNames({ [styles.clickableRow]: !!onRowClick });
-
-  const handleRowClick = useCallback(
-    (row: Row<T>) => () => {
-      if (onRowClick == undefined) return;
-      onRowClick(row);
-    },
-    [onRowClick],
-  );
 
   const table = useReactTable(tableSettings);
   return (
     <div className={styles.dataTableContainer}>
       <div className={styles.tableContainer} style={{ height }}>
         <table className={tableClasses}>
-          <thead className={stickyClass}>
-            {table.getHeaderGroups().map(headerGroup => (
-              <tr key={headerGroup.id}>
-                {headerGroup.headers.map(header => {
-                  return (
-                    <th
-                      key={header.id}
-                      colSpan={header.colSpan}
-                      className={
-                        sorting && header.column.getCanSort()
-                          ? classNames(styles.sortableColumn, {
-                              [styles.pinFirstHeaderSortable]: !!onRowClick,
-                            })
-                          : ""
-                      }
-                      onClick={
-                        sorting
-                          ? header.column.getToggleSortingHandler()
-                          : undefined
-                      }
-                    >
-                      {header.isPlaceholder ? null : (
-                        <div>
-                          {flexRender(
-                            header.column.columnDef.header,
-                            header.getContext(),
-                          )}
-                          {{
-                            asc: <Icon name="longArrowUp" color="green" />,
-                            desc: <Icon name="longArrowDown" color="green" />,
-                          }[header.column.getIsSorted() as string] ?? (
-                            <svg
-                              style={{
-                                width: "var(--space-large)",
-                                height: "var(--space-large)",
-                              }}
-                            />
-                          )}
-                        </div>
-                      )}
-                    </th>
-                  );
-                })}
-              </tr>
-            ))}
-          </thead>
-          <tbody>
-            {table.getRowModel().rows.map(row => {
-              return (
-                <tr
-                  key={row.id}
-                  onClick={handleRowClick(row)}
-                  className={bodyRowClasses}
-                >
-                  {row.getVisibleCells().map(cell => {
-                    return (
-                      <td key={cell.id}>
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext(),
-                        )}
-                      </td>
-                    );
-                  })}
-                </tr>
-              );
-            })}
-          </tbody>
+          <Header
+            table={table}
+            sorting={sorting}
+            onRowClick={onRowClick}
+            stickyHeader={stickyHeader}
+          />
+          <Body table={table} onRowClick={onRowClick} />
         </table>
       </div>
       {pagination && (
