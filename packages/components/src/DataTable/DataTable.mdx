@@ -10,7 +10,7 @@ import { DataTable } from ".";
 import { DataDump } from "../DataDump";
 import { Button } from "../Button";
 import { Menu } from "../Menu";
-import { CustomPagination } from "./CustomPagination";
+import axios from "axios";
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { sortBy } from "lodash";
 
@@ -506,7 +506,65 @@ import { DataTable } from "@jobber/components/DataTable";
 ## Manual Pagination
 
 <Playground>
-  <CustomPagination />
+  {() => {
+    const [posts, setPosts] = useState([]);
+    const [{ pageIndex, pageSize }, setPagination] = useState({
+      pageIndex: 0,
+      pageSize: 10,
+    });
+    useEffect(() => {
+      const url = `https://jsonplaceholder.typicode.com/posts?_page=${
+        pageIndex + 1
+      }&_limit=${pageSize}`;
+      axios.get(url).then(response => {
+        setPosts(response.data);
+      });
+    }, [pageIndex, pageSize]);
+    const pagination = useMemo(
+      () => ({
+        pageIndex,
+        pageSize,
+      }),
+      [pageIndex, pageSize]
+    );
+    const columns = useMemo(
+      () => [
+        {
+          accessorFn: row => row.id,
+          id: "id",
+          cell: info => info.getValue(),
+        },
+        {
+          accessorFn: row => row.title,
+          id: "title",
+          cell: info => info.getValue(),
+        },
+        {
+          accessorFn: row => row.body,
+          id: "body",
+          cell: info => info.getValue(),
+        },
+      ],
+      []
+    );
+    return (
+      <div>
+        <DataTable
+          data={posts}
+          columns={columns}
+          pagination={{
+            manualPagination: true,
+            onPaginationChange: setPagination,
+            pageCount: Math.ceil(100 / pageSize),
+            totalItems: 100,
+            state: pagination,
+          }}
+          height={400}
+          stickyHeader
+        />
+      </div>
+    );
+  }}
 </Playground>
 
 ## Design & Usage Guidelines
