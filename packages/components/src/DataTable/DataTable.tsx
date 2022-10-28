@@ -85,7 +85,7 @@ export function DataTable<T extends object>({
     [styles.pinFirstColumn]: pinFirstColumn,
   });
 
-  const bodyRowClasses = classNames({ [styles.clicableRow]: !!onRowClick });
+  const bodyRowClasses = classNames({ [styles.clickableRow]: !!onRowClick });
 
   const handleRowClick = useCallback(
     (row: Row<T>) => () => {

@@ -6,7 +6,7 @@ declare const styles: {
   readonly "stickyHeader": string;
   readonly "pinFirstHeaderSortable": string;
   readonly "sortableColumn": string;
-  readonly "clicableRow": string;
+  readonly "clickableRow": string;
 };
 export = styles;
 

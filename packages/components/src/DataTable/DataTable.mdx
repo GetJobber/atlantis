@@ -85,6 +85,8 @@ import { DataTable } from "@jobber/components/DataTable";
       },
       {
         accessorKey: "isAlive",
+        accessorFn: row =>
+          row.name === "Jon Snow" ? "Resurrected" : row.isAlive,
       },
     ]}
   />
@@ -158,6 +160,8 @@ import { DataTable } from "@jobber/components/DataTable";
       },
       {
         accessorKey: "isAlive",
+        accessorFn: row =>
+          row.name === "Jon Snow" ? "Resurrected" : row.isAlive,
         cell: info => info.getValue(),
         header: "Alive",
       },
@@ -318,6 +322,8 @@ import { DataTable } from "@jobber/components/DataTable";
       },
       {
         accessorKey: "isAlive",
+        accessorFn: row =>
+          row.name === "Jon Snow" ? "Resurrected" : row.isAlive,
         cell: info => info.getValue(),
         header: "Alive",
       },
@@ -482,6 +488,8 @@ import { DataTable } from "@jobber/components/DataTable";
       },
       {
         accessorKey: "isAlive",
+        accessorFn: row =>
+          row.name === "Jon Snow" ? "Resurrected" : row.isAlive,
         cell: info => info.getValue(),
       },
     ];
