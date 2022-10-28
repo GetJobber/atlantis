@@ -535,6 +535,7 @@ import { DataTable } from "@jobber/components/DataTable";
       }),
       [pageIndex, pageSize]
     );
+    const totalItems = 100;
     const columns = useMemo(
       () => [
         {
@@ -563,8 +564,8 @@ import { DataTable } from "@jobber/components/DataTable";
           pagination={{
             manualPagination: true,
             onPaginationChange: setPagination,
-            pageCount: Math.ceil(100 / pageSize),
-            totalItems: 100,
+            pageCount: Math.ceil(totalItems / pageSize),
+            totalItems,
             state: pagination,
           }}
           height={400}
