@@ -1,5 +1,6 @@
 .dataTableContainer {
   border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-base);
 }
 
 .tableContainer {
