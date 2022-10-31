@@ -378,24 +378,34 @@ import { DataTable } from "@jobber/components/DataTable";
         {
           accessorKey: "name",
           cell: info => <strong>{info.getValue()}</strong>,
-          header: "Name",
+          header: () => (
+            <span style={{ color: "var(--color-blue)" }}>Name</span>
+          ),
         },
         {
           accessorKey: "house",
-          header: "House",
+          header: () => (
+            <span style={{ color: "var(--color-blue)" }}>House</span>
+          ),
         },
         {
           accessorKey: "region",
-          header: "Region",
+          header: () => (
+            <span style={{ color: "var(--color-blue)" }}>Region</span>
+          ),
         },
         {
           accessorKey: "sigil",
-          header: () => "Sigil",
+          header: () => (
+            <span style={{ color: "var(--color-blue)" }}>Sigil</span>
+          ),
         },
         {
           accessorKey: "isAlive",
           cell: info => (info.getValue() == "Yes" ? "✅" : "❌"),
-          header: "Alive",
+          header: () => (
+            <span style={{ color: "var(--color-blue)" }}>Alive</span>
+          ),
         },
       ]}
     />
