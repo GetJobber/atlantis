@@ -16,6 +16,7 @@
 .table thead tr th {
   padding: var(--space-base);
   border-bottom: var(--border-base) solid var(--color-border);
+  color: var(--color-heading);
   white-space: nowrap;
 }
 
