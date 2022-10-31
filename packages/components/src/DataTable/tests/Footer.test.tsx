@@ -1,7 +1,8 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import { DataTable } from ".";
-import { Pagination, Sorting } from "./types";
+// import renderer from "react-test-renderer";
+import { render, screen } from "@testing-library/react";
+import { DataTable } from "../DataTable";
+import { Pagination } from "../types";
 
 const data = [
   {
@@ -118,73 +119,49 @@ const columns = [
     cell: info => info.getValue(),
   },
 ];
-const setPagination = () => {
-  console.log("Change pagination");
-};
-const setSorting = () => {
-  console.log("Change sorting");
-};
-const pageIndex = 0;
-const pageSize = 10;
-const sorting: Sorting = { manualSorting: false };
+// const setPagination = () => {
+//   console.log("Change pagination");
+// };
+// const setSorting = () => {
+//   console.log("Change sorting");
+// };
+// const pageIndex = 0;
+// const pageSize = 10;
+// const sorting: Sorting = { manualSorting: false };
 const pagination: Pagination = {
   manualPagination: false,
-  itemsPerPage: [10, 20, 30],
 };
-const manualPagination: Pagination = {
-  manualPagination: true,
-  onPaginationChange: setPagination,
-  pageCount: Math.ceil(100 / pageSize),
-  totalItems: 100,
-  state: {
-    pageIndex,
-    pageSize,
-  },
-};
-const manualSorting = {
-  manualSorting: true,
-  state: [{ id: "name", desc: false }],
-  onSortingChange: setSorting,
-};
+// const manualPagination: Pagination = {
+//   manualPagination: true,
+//   onPaginationChange: setPagination,
+//   pageCount: Math.ceil(100 / pageSize),
+//   itemsPerPage: [10, 20, 30],
+//   totalItems: 100,
+//   state: {
+//     pageIndex,
+//     pageSize,
+//   },
+// };
+// const manualSorting = {
+//   manualSorting: true,
+//   state: [{ id: "name", desc: false }],
+//   onSortingChange: setSorting,
+// };
 
-it("renders a basic table table", () => {
-  const tree = renderer
-    .create(<DataTable data={data} columns={columns} />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
-});
-
-it("renders a table table with pagination", () => {
-  const tree = renderer
-    .create(<DataTable data={data} columns={columns} pagination={pagination} />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
-});
-
-it("renders a table table with sorting enable", () => {
-  const tree = renderer
-    .create(<DataTable data={data} columns={columns} sorting={sorting} />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
-});
-
-it("renders a table table with manual pagination", () => {
-  const tree = renderer
-    .create(
-      <DataTable
-        data={data}
-        columns={columns}
-        sorting={sorting}
-        pagination={manualPagination}
-      />,
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
-});
-
-it("renders a table table with manual sorting", () => {
-  const tree = renderer
-    .create(<DataTable data={data} columns={columns} sorting={manualSorting} />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+describe("renders a basic table table with footer", () => {
+  it("render the footer text", () => {
+    render(<DataTable data={data} columns={columns} pagination={pagination} />);
+    const heeding = screen.getByText(`Showing 1-10 of ${data.length} items`);
+    expect(heeding).toBeInTheDocument();
+    const options = screen.getAllByRole("option");
+    expect(options.length).toBe(5);
+  });
+  // it("changes items per page options when click", () => {
+  //   render(<DataTable data={data} columns={columns} pagination={pagination} />);
+  //   const test = screen.getByText("20");
+  //   // const test = fireEvent.click(screen.getByText("10"));
+  //   // fireEvent.click(screen.getByText("20"));
+  //   // const heeding = screen.getByText(`Showing 1-13 of ${data.length} items`);
+  //   expect(test).toBeInTheDocument();
+  // });
 });
