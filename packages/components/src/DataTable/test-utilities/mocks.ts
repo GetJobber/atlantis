@@ -1,10 +1,14 @@
-import React from "react";
-// import renderer from "react-test-renderer";
-import { render, screen } from "@testing-library/react";
-import { DataTable } from "../DataTable";
-import { Pagination } from "../types";
+import { ColumnDef } from "@tanstack/react-table";
 
-const data = [
+interface Data {
+  name: string;
+  house: string;
+  region: string;
+  sigil: string;
+  isAlive: string;
+}
+
+export const data: Data[] = [
   {
     name: "Eddard",
     house: "Stark",
@@ -97,71 +101,32 @@ const data = [
     isAlive: "Yes",
   },
 ];
-const columns = [
+
+export const columns: ColumnDef<Data>[] = [
   {
     accessorKey: "name",
     cell: info => info.getValue(),
+    header: "Name",
   },
   {
     accessorKey: "house",
     cell: info => info.getValue(),
+    header: "House",
   },
   {
     accessorKey: "region",
     cell: info => info.getValue(),
+    header: "Region",
   },
   {
     accessorKey: "sigil",
     cell: info => info.getValue(),
+    header: "Sigil",
   },
   {
     accessorKey: "isAlive",
+    accessorFn: row => (row.name === "Jon Snow" ? "Resurrected" : row.isAlive),
     cell: info => info.getValue(),
+    header: "Alive",
   },
 ];
-// const setPagination = () => {
-//   console.log("Change pagination");
-// };
-// const setSorting = () => {
-//   console.log("Change sorting");
-// };
-// const pageIndex = 0;
-// const pageSize = 10;
-// const sorting: Sorting = { manualSorting: false };
-const pagination: Pagination = {
-  manualPagination: false,
-};
-// const manualPagination: Pagination = {
-//   manualPagination: true,
-//   onPaginationChange: setPagination,
-//   pageCount: Math.ceil(100 / pageSize),
-//   itemsPerPage: [10, 20, 30],
-//   totalItems: 100,
-//   state: {
-//     pageIndex,
-//     pageSize,
-//   },
-// };
-// const manualSorting = {
-//   manualSorting: true,
-//   state: [{ id: "name", desc: false }],
-//   onSortingChange: setSorting,
-// };
-
-describe("renders a basic table table with footer", () => {
-  it("render the footer text", () => {
-    render(<DataTable data={data} columns={columns} pagination={pagination} />);
-    const heeding = screen.getByText(`Showing 1-10 of ${data.length} items`);
-    expect(heeding).toBeInTheDocument();
-    const options = screen.getAllByRole("option");
-    expect(options.length).toBe(5);
-  });
-  // it("changes items per page options when click", () => {
-  //   render(<DataTable data={data} columns={columns} pagination={pagination} />);
-  //   const test = screen.getByText("20");
-  //   // const test = fireEvent.click(screen.getByText("10"));
-  //   // fireEvent.click(screen.getByText("20"));
-  //   // const heeding = screen.getByText(`Showing 1-13 of ${data.length} items`);
-  //   expect(test).toBeInTheDocument();
-  // });
-});
