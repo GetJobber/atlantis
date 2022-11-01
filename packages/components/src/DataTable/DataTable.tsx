@@ -96,9 +96,7 @@ export function DataTable<T extends object>({
       {pagination && (
         <Footer
           table={table}
-          itemsPerPage={
-            pagination.manualPagination ? pagination.itemsPerPage : undefined
-          }
+          itemsPerPage={pagination.itemsPerPage}
           totalItems={
             pagination.manualPagination
               ? pagination.totalItems
