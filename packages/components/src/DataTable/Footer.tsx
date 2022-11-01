@@ -20,9 +20,13 @@ export function Footer<T extends object>({
   const firstPosition = pageIndex * pageSize + 1;
   const secondPosition = Math.min(totalRows, pageSize * (pageIndex + 1));
 
+  const defaultItemsPerPageOptions = useMemo(
+    () => ["10", "20", "30", "40", "50"],
+    [],
+  );
+
   const itemsPerPageOptions = useMemo(
-    () =>
-      itemsPerPage?.map(item => String(item)) ?? ["10", "20", "30", "40", "50"],
+    () => itemsPerPage?.map(item => String(item)) ?? defaultItemsPerPageOptions,
     [itemsPerPage],
   );
 
