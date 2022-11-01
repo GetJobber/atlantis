@@ -96,8 +96,34 @@ describe("when using pagination", () => {
   });
 });
 
-describe("when using sorting", () => {
+describe("when using manual pagination", () => {
+  const mockedOnPaginationChange = jest.fn();
+  const state = { pageIndex: 0, pageSize: 10 };
+  const totalItems = 13;
   beforeEach(() => {
+    render(
+      <DataTable
+        data={data}
+        columns={columns}
+        pagination={{
+          manualPagination: true,
+          state,
+          onPaginationChange: mockedOnPaginationChange,
+          pageCount: Math.ceil(totalItems / state.pageSize),
+          totalItems,
+        }}
+      />,
+    );
+  });
+  it("calls the provided callback", () => {
+    userEvent.click(screen.getByLabelText("arrowRight"));
+
+    expect(mockedOnPaginationChange).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe("when using sorting", () => {
+  it("renders table with clickable headers", () => {
     render(
       <DataTable
         data={data}
@@ -105,10 +131,7 @@ describe("when using sorting", () => {
         sorting={{ manualSorting: false }}
       />,
     );
-  });
-
-  it("renders table with clickable headers", () => {
-    const nameHeader = screen.getByRole("columnheader", { name: /name/i });
+    const nameHeader = screen.getByText("Name");
 
     userEvent.click(nameHeader); // sort to asc
 
@@ -119,5 +142,44 @@ describe("when using sorting", () => {
 
     const firstBodyRowUpdated = screen.getAllByRole("row")[1];
     expect(within(firstBodyRowUpdated).getByText("Tommen")).toBeInTheDocument();
+  });
+});
+
+describe("when using manual sorting", () => {
+  const mockedOnSortingChange = jest.fn();
+
+  it("calls the provided callback", () => {
+    render(
+      <DataTable
+        data={data}
+        columns={columns}
+        sorting={{
+          manualSorting: true,
+          state: [],
+          onSortingChange: mockedOnSortingChange,
+        }}
+      />,
+    );
+
+    const nameHeader = screen.getByText("Name");
+
+    userEvent.click(nameHeader);
+
+    expect(mockedOnSortingChange).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe("when using onRowClick", () => {
+  const clickHandler = jest.fn();
+  beforeEach(() => {
+    render(
+      <DataTable data={data} columns={columns} onRowClick={clickHandler} />,
+    );
+  });
+
+  it("Executes a callback function", () => {
+    const firstBodyRow = screen.getAllByRole("row")[1];
+    userEvent.click(firstBodyRow);
+    expect(clickHandler).toHaveBeenCalledTimes(1);
   });
 });
