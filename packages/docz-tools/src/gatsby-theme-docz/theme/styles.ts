@@ -1,11 +1,11 @@
 export const styles = {
   a: {
-    color: "green",
+    color: "var(--color-interactive)",
     textDecoration: "none",
     transition: "color 300ms",
 
     "&:hover": {
-      color: "greenDark",
+      color: "var(--color-interactive--hover)",
     },
   },
   ol: {
@@ -23,18 +23,18 @@ export const styles = {
     fontWeight: "bold",
   },
   blockquote: {
-    bg: "greyLightest",
+    bg: "var(--color-surface--background)",
     marginY: "large",
     marginX: 0,
     paddingY: "base",
     pl: "large",
     pr: "base",
     borderLeft: "var(--border-thicker) solid",
-    borderColor: "greyBlueLighter",
+    borderColor: "var(--color-border)",
     borderRadius: "base",
     lineHeight: "large",
     fontStyle: "italic",
-    color: "greyBlue",
+    color: "var(--color-text--secondary)",
 
     "> p": {
       m: 0,
@@ -45,15 +45,15 @@ export const styles = {
     paddingY: "base",
     paddingX: "large",
     border: "1px solid",
-    borderColor: "greyLighter",
+    borderColor: "var(--color-border)",
   },
   inlineCode: {
     display: "inline-block",
     borderRadius: "base",
     fontSize: "base",
     fontFamily: "monospace",
-    bg: "greyLightest",
-    color: "greyBlueDark",
+    bg: "var(--color-surface--background)",
+    color: "var(--color-text)",
     paddingX: "smaller",
   },
 };

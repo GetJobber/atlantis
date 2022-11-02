@@ -5,8 +5,8 @@ import { colors } from "../colors";
 export const prism = {
   plain: {
     fontFamily: fonts.monospace,
-    color: colors.greyBlueDark,
-    backgroundColor: colors.greyLightest,
+    color: colors.textSecondary,
+    backgroundColor: colors.surfaceBackground,
     borderRadius: radii.base,
     lineHeight: "1.6",
     fontSize: fontSizes.base,
@@ -15,7 +15,7 @@ export const prism = {
     {
       types: ["comment", "prolog", "doctype", "cdata"],
       style: {
-        color: colors.grey,
+        color: colors.disabled,
         fontStyle: "italic",
       },
     },
@@ -34,7 +34,7 @@ export const prism = {
     {
       types: ["punctuation", "operator"],
       style: {
-        color: colors.greyBlueDark,
+        color: colors.textSecondary,
       },
     },
     {

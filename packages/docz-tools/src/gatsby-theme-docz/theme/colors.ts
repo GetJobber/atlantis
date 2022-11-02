@@ -1,5 +1,15 @@
 export const colors = {
-  background: "var(--color-white)",
+  // Surfaces
+  surfaceBackground: "var(--color-surface--background)",
+  background: "var(--color-surface)",
+
+  // Text
+  text: "var(--color-text)",
+  textSecondary: "var(--color-text--secondary",
+
+  // Disabled
+  disabled: "var(--color-disabled)",
+
   // Greens
   green: "var(--color-green)",
   greenDark: "var(--color-green--dark)",
@@ -45,6 +55,6 @@ export const colors = {
 
   // Playground
   playground: {
-    border: "var(--color-grey--lighter)",
+    border: "var(--color-border)",
   },
 };
