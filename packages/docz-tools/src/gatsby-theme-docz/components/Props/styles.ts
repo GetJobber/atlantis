@@ -1,7 +1,7 @@
 export const container = {
-  bg: "greyLightest",
+  bg: "var(--color-surface--background)",
   border: "1px solid",
-  borderColor: "greyLighter",
+  borderColor: "var(--color-border)",
   borderRadius: "base",
   marginBottom: "large",
 };
@@ -11,7 +11,7 @@ export const prop = {
   paddingY: "base",
   paddingX: "base",
   borderTop: "1px solid",
-  borderColor: "greyLighter",
+  borderColor: "var(--color-border)",
 
   "&:first-of-type": {
     borderTop: "none",
@@ -26,20 +26,20 @@ export const propName = {
   fontFamily: "monospace",
   fontSize: "small",
   fontWeight: "bold",
-  color: "greyBlueDark",
+  color: "var(--color-text--secondary)",
   marginRight: "base",
 };
 
 export const required = {
   position: "relative",
   display: "inline-block",
-  color: "red",
+  color: "var(--color-critical)",
   marginLeft: "smallest",
   top: "-5px",
 };
 
 export const defaultValue = {
-  color: "greyBlue",
+  color: "var(--color-text--secondary)",
   marginTop: "smallest",
 };
 
@@ -48,7 +48,7 @@ export const typeValue = {
   alignItems: "center",
   fontFamily: "monospace",
   fontSize: "small",
-  color: "greyBlue",
+  color: "var(--color-text--secondary)",
   lineHeight: "large",
   flex: "1",
 };
@@ -60,11 +60,11 @@ export const toggle = {
 };
 
 export const description = {
-  bg: "white",
+  bg: "var(--color-surface)",
   padding: "base",
   borderTop: "1px solid",
-  borderColor: "greyLighter",
-  color: "greyBlue",
+  borderColor: "var(--color-border)",
+  color: "var(--color-text--secondary)",
   fontSize: "base",
 
   "> p": {
