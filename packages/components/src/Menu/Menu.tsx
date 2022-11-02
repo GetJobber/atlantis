@@ -209,7 +209,7 @@ function SectionHeader({ text }: SectionHeaderProps) {
         element="h6"
         size="small"
         textCase="uppercase"
-        textColor="greyBlue"
+        textColor="textSecondary"
         fontWeight="bold"
       >
         {text}
@@ -274,7 +274,7 @@ function Action({
           <Icon name={icon} />
         </span>
       )}
-      <Typography element="span" size="base" textColor="greyBlueDark">
+      <Typography element="span" size="base" textColor="text">
         {sectionLabel && (
           <span className={styles.screenReaderOnly}>{sectionLabel}</span>
         )}

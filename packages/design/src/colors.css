@@ -184,10 +184,10 @@
     /* Interactive and States */
     --color-interactive: var(--color-green);
     --color-interactive--hover: var(--color-green--dark);
-    --color-destructive: var(--color-red--dark);
+    --color-destructive: var(--color-red);
     --color-destructive--hover: var(--color-red--dark);
-    --color-interactive--subtle: var(--color-greyBlue);
-    --color-interactive--subtle--hover: var(--color-greyBlue--dark);
+    --color-interactive--subtle: var(--color-greyBlue--light);
+    --color-interactive--subtle--hover: var(--color-greyBlue);
 
     --color-disabled: var(--color-grey);
     --color-disabled--secondary: var(--color-grey--lighter);
@@ -197,24 +197,24 @@
     /* Status Colours */
 
     --color-critical: var(--color-red);
-    --color-critical--surface: var(--color-red--lightest);
-    --color-critical--onSurface: var(--color-red--dark);
+    --color-critical--surface: var(--color-red--dark);
+    --color-critical--onSurface: var(--color-red--lightest);
 
     --color-warning: var(--color-yellow);
-    --color-warning--surface: var(--color-yellow--lightest);
-    --color-warning--onSurface: var(--color-yellow--dark);
+    --color-warning--surface: var(--color-yellow--dark);
+    --color-warning--onSurface: var(--color-yellow--lightest);
 
     --color-success: var(--color-green);
-    --color-success--surface: var(--color-green--lightest);
-    --color-success--onSurface: var(--color-green--dark);
+    --color-success--surface: var(--color-green--dark);
+    --color-success--onSurface: var(--color-green--lightest);
 
     --color-informative: var(--color-lightBlue);
-    --color-informative--surface: var(--color-lightBlue--lightest);
-    --color-informative--onSurface: var(--color-lightBlue--dark);
+    --color-informative--surface: var(--color-lightBlue--dark);
+    --color-informative--onSurface: var(--color-lightBlue--lightest);
 
     --color-inactive: var(--color-blue--light);
-    --color-inactive--surface: var(--color-blue--lightest);
-    --color-inactive--onSurface: var(--color-blue--dark);
+    --color-inactive--surface: var(--color-blue--dark);
+    --color-inactive--onSurface: var(--color-blue--lightest);
 
     /* Typography */
     --color-heading: var(--color-white);

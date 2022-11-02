@@ -23,7 +23,7 @@ export const playground = (containerWidth: number, sideBarWidth: number) => {
     },
 
     "[data-testid='playground']": {
-      bg: "surface--background",
+      bg: "var(--color-surface--background)",
       position: "relative",
       marginX: "auto !important",
       width: "900px",
@@ -36,7 +36,7 @@ export const playground = (containerWidth: number, sideBarWidth: number) => {
           right: "0 !important",
           transform: "translateX(calc(100% + 1px))",
           width: `${space.small} !important`,
-          bg: "surface--background",
+          bg: "var(--color-surface--background)",
           borderRadius: "base",
           [media.desktop]: {
             display: "none",
@@ -53,7 +53,7 @@ export const playground = (containerWidth: number, sideBarWidth: number) => {
             width: "smallest",
             borderLeft: "1px solid",
             borderRight: "1px solid",
-            borderColor: "border",
+            borderColor: "var(--color-border)",
           },
         },
       },
@@ -67,9 +67,9 @@ export const previewWrapper = {
 
 export const editor = {
   border: "1px solid",
-  borderColor: "border",
+  borderColor: "var(--color-border)",
   padding: "small",
-  bg: "surface--background",
+  bg: "var(--color-surface--background)",
   borderBottomLeftRadius: "base",
   borderBottomRightRadius: "base",
 
@@ -79,11 +79,11 @@ export const editor = {
 };
 
 export const error = {
-  bg: "critical",
+  bg: "var(--color-critical",
   marginY: "smallest",
   padding: "large",
   borderRadius: "base",
-  color: "text--reverse",
+  color: "var(--color-text--reverse)",
   fontSize: "small",
   whiteSpace: "pre-wrap",
 } as const;
@@ -91,7 +91,7 @@ export const error = {
 export const preview = {
   padding: "large",
   border: "1px solid",
-  borderColor: "border",
+  borderColor: "var(--color-border)",
   borderBottom: "none",
   borderTopLeftRadius: "base",
   borderTopRightRadius: "base",

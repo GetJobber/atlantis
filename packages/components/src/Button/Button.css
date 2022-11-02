@@ -3,7 +3,7 @@
   --button--color-variation--hover: var(--color-interactive--hover);
   --button--color-surface: var(--color-surface);
   --button--color-surface--hover: var(--color-surface--background);
-  --button--color-primaryLabel: var(--color-white);
+  --button--color-primaryLabel: var(--color-surface);
 
   --button--duration-loading: 2s;
 }

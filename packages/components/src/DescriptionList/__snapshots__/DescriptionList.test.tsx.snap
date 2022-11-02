@@ -8,12 +8,12 @@ exports[`renders an object as a list of key value pairs 1`] = `
     className="termGroup"
   >
     <dt
-      className="base regular base blue"
+      className="base regular base heading"
     >
       Issued
     </dt>
     <dd
-      className="base regular base greyBlueDark"
+      className="base regular base text"
     >
       2018-12-08
     </dd>
@@ -22,12 +22,12 @@ exports[`renders an object as a list of key value pairs 1`] = `
     className="termGroup"
   >
     <dt
-      className="base regular base blue"
+      className="base regular base heading"
     >
       Due
     </dt>
     <dd
-      className="base regular base greyBlueDark"
+      className="base regular base text"
     >
       2019-01-06
     </dd>
@@ -43,12 +43,12 @@ exports[`renders an object as a list of key value pairs with an element 1`] = `
     className="termGroup"
   >
     <dt
-      className="base regular base blue"
+      className="base regular base heading"
     >
       Foo
     </dt>
     <dd
-      className="base regular base greyBlueDark"
+      className="base regular base text"
     >
       Foo
     </dd>
@@ -57,12 +57,12 @@ exports[`renders an object as a list of key value pairs with an element 1`] = `
     className="termGroup"
   >
     <dt
-      className="base regular base blue"
+      className="base regular base heading"
     >
       Bar
     </dt>
     <dd
-      className="base regular base greyBlueDark"
+      className="base regular base text"
     >
       Bar
     </dd>
