@@ -28,6 +28,17 @@
   }
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --typography--lineHeight-large: 1.6;
+    --typography--lineHeight-base: 1.5;
+    --typography--lineHeight-tight: 1.35;
+    --typography--lineHeight-tighter: 1.25;
+    --typography--lineHeight-tightest: 1.16;
+    --typography--lineHeight-miniscule: 1.08;
+  }
+}
+
 .base {
   margin: 0;
   padding: 0;
