@@ -8,8 +8,8 @@
   position: relative;
   box-shadow: var(--shadow-base);
   padding: var(--flash--inset);
-  color: var(--color-black);
-  background-color: var(--color-grey--lightest);
+  color: var(--color-text);
+  background-color: var(--color-surface--background);
   align-items: flex-start;
 }
 

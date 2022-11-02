@@ -48,9 +48,9 @@ describe("Chip icon colors depending on state", () => {
     });
   });
 
-  it("should be white when it's active", () => {
+  it("should be contrasted with the background when it's active", () => {
     expect(mockChip({ active: true })).toHaveStyle({
-      fill: "var(--color-white)",
+      fill: "var(--color-text--reverse)",
     });
   });
 

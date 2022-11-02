@@ -5,13 +5,13 @@
 /* Our Banner "surface" colors should be lighter than they are so we're leaving the following alone for now */
 
 .success {
-  background-color: var(--color-green--lighter);
+  background-color: var(--color-success--surface);
 }
 
 .warning {
-  background-color: var(--color-yellow--lighter);
+  background-color: var(--color-warning--surface);
 }
 
 .error {
-  background-color: var(--color-red--lighter);
+  background-color: var(--color-critical--surface);
 }
