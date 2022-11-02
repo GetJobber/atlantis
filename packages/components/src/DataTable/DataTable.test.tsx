@@ -38,14 +38,14 @@ describe("when using pagination", () => {
   });
 
   it("renders table with pagination info", () => {
-    const paginationInfo = screen.getByText(/Showing 1-10 of 13 items/i);
+    const paginationInfo = screen.getByText(/Showing 1-5 of 13 items/i);
     expect(paginationInfo).toBeInTheDocument();
   });
 
   it("renders the correct number of rows", () => {
     const [, ...bodyRows] = screen.getAllByRole("row");
 
-    expect(bodyRows).toHaveLength(10);
+    expect(bodyRows).toHaveLength(5);
   });
 
   it("renders previous page button disabled on the first page", () => {
@@ -56,7 +56,7 @@ describe("when using pagination", () => {
     const arrowRight = screen.getByTestId("arrowRight");
     userEvent.click(arrowRight);
 
-    const paginationInfo = screen.getByText(/Showing 11-13 of 13 items/i);
+    const paginationInfo = screen.getByText(/Showing 6-10 of 13 items/i);
     expect(paginationInfo).toBeInTheDocument();
   });
 
@@ -65,17 +65,22 @@ describe("when using pagination", () => {
     userEvent.click(arrowRight);
 
     const [, ...bodyRowsPage2] = screen.getAllByRole("row");
-    expect(bodyRowsPage2).toHaveLength(3);
+    expect(bodyRowsPage2).toHaveLength(5);
+
+    userEvent.click(arrowRight);
+
+    const [, ...bodyRowsPage3] = screen.getAllByRole("row");
+    expect(bodyRowsPage3).toHaveLength(3);
 
     userEvent.click(screen.getByTestId("arrowLeft"));
 
-    const [, ...bodyRowsPage1] = screen.getAllByRole("row");
-    expect(bodyRowsPage1).toHaveLength(10);
+    const [, ...bodyRowsFinalPage] = screen.getAllByRole("row");
+    expect(bodyRowsFinalPage).toHaveLength(5);
   });
 
   it("renders correctly after per page change", async () => {
     const select = screen.getByRole("combobox");
-    const selectedOption1 = "5";
+    const selectedOption1 = "10";
 
     fireEvent.change(select, {
       target: { value: selectedOption1 },
@@ -83,7 +88,7 @@ describe("when using pagination", () => {
 
     const [, ...bodyRows] = screen.getAllByRole("row");
 
-    expect(bodyRows).toHaveLength(5);
+    expect(bodyRows).toHaveLength(10);
 
     const selectedOption2 = "15";
 

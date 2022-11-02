@@ -1,5 +1,6 @@
 import {
   ColumnDef,
+  PaginationState,
   TableOptions,
   getCoreRowModel,
   getPaginationRowModel,
@@ -19,6 +20,15 @@ export function createTableSettings<T>(
     options?.sorting,
   );
 
+  let initialPatinationState: PaginationState | undefined;
+
+  if (options?.pagination?.itemsPerPage) {
+    initialPatinationState = {
+      pageIndex: 0,
+      pageSize: options.pagination.itemsPerPage[0],
+    };
+  }
+
   const tableSettings: TableOptions<T> = {
     data,
     columns,
@@ -26,6 +36,9 @@ export function createTableSettings<T>(
     getCoreRowModel: getCoreRowModel(),
     ...restPaginationSettings,
     ...restSortingSettings,
+    initialState: {
+      pagination: initialPatinationState,
+    },
   };
 
   return tableSettings;
