@@ -28,7 +28,7 @@
     "build:removeTempFiles": "rm -f src/foundation.js && mv foundation.d.ts.temp foundation.d.ts && mv foundation.js.temp foundation.js",
     "build:iconCssStyle": "node buildIconStyles.js && npm run build:iconCssStyleTypes",
     "build:iconCssStyleTypes": "tsc --declaration --emitDeclarationOnly --allowJs src/icons/iconStyles.ts --outDir ./src/icons",
-    "clean": "rm -rf dist/* icons/* colors.js foundation.css iconStyles.* tsconfig.tsbuildinfo",
+    "clean": "rm -rf dist/* icons/* colors*.js foundation.css iconStyles.* tsconfig.tsbuildinfo",
     "prepare": "npm run clean; npm run build"
   },
   "dependencies": {
