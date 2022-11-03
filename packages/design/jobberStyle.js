@@ -21,16 +21,22 @@ const resolvedCssVarsColorsDark = getResolvedCSSVars(
   customPropertiesColorsDark.customProperties,
 );
 
-const jsonContent =
-  "export const JobberStyle = " +
-  JSON.stringify(
-    {
-      ...resolvedCssVarsFoundation,
-      dark: { ...resolvedCssVarsFoundation, ...resolvedCssVarsColorsDark },
-    },
-    undefined,
-    2,
-  );
+const jsonContent = `
+export const JobberStyle = ${JSON.stringify(
+  resolvedCssVarsFoundation,
+  undefined,
+  2,
+)};
+
+export const JobberStyleDark = ${JSON.stringify(
+  {
+    ...resolvedCssVarsFoundation,
+    ...resolvedCssVarsColorsDark,
+  },
+  undefined,
+  2,
+)};
+`;
 
 fs.writeFile("./foundation.js", jsonContent, "utf8", function (err) {
   if (err) {
