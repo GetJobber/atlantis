@@ -4,12 +4,21 @@ const fs = require("fs");
 const postcss = require("postcss");
 const postcssCustomProperties = require("postcss-custom-properties");
 
-const colors = fs.readFileSync("src/colors.css");
+const colorsDark = fs.readFileSync("src/colorsDark.css");
+const colorsLight = fs.readFileSync("src/colorsLight.css");
 
 postcss([
   postcssCustomProperties({
-    exportTo: ["colors.js"],
+    exportTo: ["colorsLight.js"],
   }),
 ])
-  .process(colors, { from: undefined })
+  .process(colorsLight, { from: undefined })
+  .then();
+
+postcss([
+  postcssCustomProperties({
+    exportTo: ["colorsDark.js"],
+  }),
+])
+  .process(colorsDark, { from: undefined })
   .then();

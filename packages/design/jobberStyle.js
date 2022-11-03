@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const fs = require("fs");
 // eslint-disable-next-line import/no-internal-modules
-const customPropertiesObject = require("./src/foundation.js");
+const customPropertiesFoundation = require("./src/foundation.js");
+const customPropertiesColorsDark = require("./colorsDark.js");
 
 const regexExpressions = {
   cssVars: /var\((.*)\)/,
@@ -12,12 +13,24 @@ const regexExpressions = {
   extractAllVarGroups: /var\(.*?\)/g,
 };
 
-const customProperties = customPropertiesObject.customProperties;
+const resolvedCssVarsFoundation = getResolvedCSSVars(
+  customPropertiesFoundation.customProperties,
+);
 
-const resolvedCssVars = getResolvedCSSVars(customProperties);
+const resolvedCssVarsColorsDark = getResolvedCSSVars(
+  customPropertiesColorsDark.customProperties,
+);
 
 const jsonContent =
-  "export const JobberStyle = " + JSON.stringify(resolvedCssVars, undefined, 2);
+  "export const JobberStyle = " +
+  JSON.stringify(
+    {
+      ...resolvedCssVarsFoundation,
+      dark: { ...resolvedCssVarsFoundation, ...resolvedCssVarsColorsDark },
+    },
+    undefined,
+    2,
+  );
 
 fs.writeFile("./foundation.js", jsonContent, "utf8", function (err) {
   if (err) {
@@ -47,7 +60,7 @@ fs.writeFile("./foundation.js", jsonContent, "utf8", function (err) {
  */
 
 function jobberStyle(styling) {
-  const styleValue = customProperties[styling];
+  const styleValue = customPropertiesFoundation.customProperties[styling];
 
   //varRegexResult returns --base-unit from var(--base-unit)
   const varRegexResult = regexExpressions.cssVars.exec(styleValue);

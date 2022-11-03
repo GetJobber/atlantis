@@ -1,0 +1,74 @@
+:root {
+  /* Jobber Semantic Layer */
+
+  /* Interactive and States */
+  --color-interactive: var(--color-green);
+  --color-interactive--hover: var(--color-green--dark);
+  --color-destructive: var(--color-red);
+  --color-destructive--hover: var(--color-red--dark);
+  --color-interactive--subtle: var(--color-greyBlue--light);
+  --color-interactive--subtle--hover: var(--color-greyBlue);
+
+  --color-disabled: var(--color-grey);
+  --color-disabled--secondary: var(--color-grey--lighter);
+
+  --color-focus: var(--color-yellow--light);
+
+  /* Status Colours */
+
+  --color-critical: var(--color-red);
+  --color-critical--surface: var(--color-red--dark);
+  --color-critical--onSurface: var(--color-red--lightest);
+
+  --color-warning: var(--color-yellow);
+  --color-warning--surface: var(--color-yellow--dark);
+  --color-warning--onSurface: var(--color-yellow--lightest);
+
+  --color-success: var(--color-green);
+  --color-success--surface: var(--color-green--dark);
+  --color-success--onSurface: var(--color-green--lightest);
+
+  --color-informative: var(--color-lightBlue);
+  --color-informative--surface: var(--color-lightBlue--dark);
+  --color-informative--onSurface: var(--color-lightBlue--lightest);
+
+  --color-inactive: var(--color-blue--light);
+  --color-inactive--surface: var(--color-blue--dark);
+  --color-inactive--onSurface: var(--color-blue--lightest);
+
+  /* Typography */
+  --color-heading: var(--color-white);
+  --color-text: var(--color-greyBlue--lightest);
+  --color-text--secondary: var(--color-greyBlue--lighter);
+  --color-text--reverse: var(--color-blue);
+  --color-text--reverse--secondary: var(--color-greyBlue);
+
+  /* Surfaces and Borders */
+  --color-surface: var(--color-blue);
+  --color-surface--hover: var(--color-blue--dark);
+  --color-surface--active: var(--color-green--lightest);
+  --color-surface--background: var(--color-blue--dark);
+  --color-surface--reverse: var(--color-white);
+
+  --color-border: var(--color-greyBlue--dark);
+  --color-border--section: var(--color-greyBlue);
+
+  --color-overlay: rgba(var(--color-black--rgb), 0.32);
+  --color-overlay--dimmed: rgba(var(--color-white--rgb), 0.6);
+
+  /* Brand */
+  --color-brand: var(--color-green);
+  --color-brand--highlight: rgb(160, 215, 42);
+
+  /* Jobber Workflow Colors */
+  --color-request: var(--color-indigo);
+  --color-quote: var(--color-pink);
+  --color-job: var(--color-yellowGreen);
+  --color-visit: var(--color-green);
+  --color-task: var(--color-navy);
+  --color-event: var(--color-yellow);
+  --color-invoice: var(--color-purple);
+  --color-payments: var(--color-orange);
+
+  --color-client: var(--color-teal);
+}

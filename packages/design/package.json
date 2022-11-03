@@ -14,7 +14,9 @@
   "scripts": {
     "build": "npm run build:css && npm run build:css:icons && npm run build:colors && npm run build:cssTypes && npm run build:foundation && npm run build:iconCssStyle && npm run build:rollup",
     "build:rollup": "rollup --config",
-    "build:css": "postcss src/foundation.css --output foundation.css --use postcss-import",
+    "build:css": "npm run build:css:foundation && npm run build:css:colors",
+    "build:css:foundation": "postcss src/foundation.css --output foundation.css --use postcss-import",
+    "build:css:colors": "postcss src/colors.css --output colors.css --use postcss-import",
     "build:css:icons": "postcss src/icons/*.css --dir icons/ --use postcss-import",
     "build:ts": "tsc --project .",
     "build:cssTypes": "tcm src/icons",
