@@ -13,9 +13,12 @@ const regexExpressions = {
   extractAllVarGroups: /var\(.*?\)/g,
 };
 
+let customProperties = customPropertiesFoundation.customProperties;
 const resolvedCssVarsFoundation = getResolvedCSSVars(
   customPropertiesFoundation.customProperties,
 );
+
+customProperties = customPropertiesColorsDark.customProperties;
 
 const resolvedCssVarsColorsDark = getResolvedCSSVars(
   customPropertiesColorsDark.customProperties,
@@ -66,7 +69,7 @@ fs.writeFile("./foundation.js", jsonContent, "utf8", function (err) {
  */
 
 function jobberStyle(styling) {
-  const styleValue = customPropertiesFoundation.customProperties[styling];
+  const styleValue = customProperties[styling];
 
   //varRegexResult returns --base-unit from var(--base-unit)
   const varRegexResult = regexExpressions.cssVars.exec(styleValue);
