@@ -4,7 +4,7 @@
   /* Jobber Semantic Layer */
 
   /* Interactive and States */
-  --color-interactive: var(--color-green);
+  --color-interactive: var(--color-red);
   --color-interactive--hover: var(--color-green--dark);
   --color-destructive: var(--color-red);
   --color-destructive--hover: var(--color-red--dark);
