@@ -8,6 +8,44 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.87.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.86.2...@jobber/components@2.87.0) (2022-11-02)
+
+
+### Features
+
+* **components:** Data table component ([#925](https://github.com/GetJobber/atlantis/issues/925)) ([777f4dc](https://github.com/GetJobber/atlantis/commit/777f4dce695e0c28880db77483e6d77903b7b484))
+
+
+
+
+
+## [2.86.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.86.1...@jobber/components@2.86.2) (2022-11-01)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.86.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.86.0...@jobber/components@2.86.1) (2022-10-17)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.86.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.85.8...@jobber/components@2.86.0) (2022-10-14)
+
+
+### Features
+
+* **design:** update icon set ([#924](https://github.com/GetJobber/atlantis/issues/924)) ([b04062a](https://github.com/GetJobber/atlantis/commit/b04062aa2dd60229fb48b67fe0ca01c00ded223b))
+
+
+
+
+
 ## [2.85.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.85.7...@jobber/components@2.85.8) (2022-09-30)
 
 **Note:** Version bump only for package @jobber/components
