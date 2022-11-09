@@ -36,35 +36,37 @@ export function DropDownMenu({ options, onOptionSelect }: DropDownMenuProps) {
     setHighlightedIndex(index);
   }
 
-  function setupKeyListeners(key: string) {
-    function scrollMenuIfItemNotInView(
-      menuDivElement: HTMLDivElement,
-      direction: "up" | "down",
-    ) {
-      const itemDiv = menuDivElement.querySelector(
-        `:nth-child(${highlightedIndex + 1})`,
-      ) as HTMLButtonElement;
+  function scrollMenuIfItemNotInView(
+    menuDivElement: HTMLDivElement,
+    direction: "up" | "down",
+  ) {
+    const itemDiv = menuDivElement.querySelector(
+      `:nth-child(${highlightedIndex + 1})`,
+    ) as HTMLButtonElement;
 
-      if (!itemDiv) return;
+    if (!itemDiv) return;
 
-      const menuTop = menuDivElement.getBoundingClientRect().top;
-      const {
-        top: itemTop,
-        height: itemHeight,
-        bottom: itemBottom,
-      } = itemDiv.getBoundingClientRect();
-      const itemTrueBottom = itemBottom + itemHeight;
-      const menuBottom = menuDivElement.getBoundingClientRect().bottom;
-      if (direction == "up" && itemTop - itemHeight < menuTop) {
-        menuDivElement.scrollTop -= itemHeight;
-      } else if (direction == "down" && itemTrueBottom > menuBottom) {
-        menuDivElement.scrollTop += itemHeight;
-      }
+    const menuTop = menuDivElement.getBoundingClientRect().top;
+    const {
+      top: itemTop,
+      height: itemHeight,
+      bottom: itemBottom,
+    } = itemDiv.getBoundingClientRect();
+    const itemTrueBottom = itemBottom + itemHeight;
+    const menuBottom = menuDivElement.getBoundingClientRect().bottom;
+    if (direction == "up" && itemTop - itemHeight < menuTop) {
+      menuDivElement.scrollTop -= itemHeight;
+    } else if (direction == "down" && itemTrueBottom > menuBottom) {
+      menuDivElement.scrollTop += itemHeight;
     }
+  }
 
+  function setupKeyListeners(key: string) {
     switch (key) {
       case "Enter": {
-        onOptionSelect && onOptionSelect(options[highlightedIndex]);
+        if (highlightedIndex >= 0) {
+          onOptionSelect && onOptionSelect(options[highlightedIndex]);
+        }
         break;
       }
       case "ArrowDown": {
