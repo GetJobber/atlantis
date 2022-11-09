@@ -1,0 +1,28 @@
+.dropDownMenuContainer {
+  display: flex;
+  position: absolute;
+  z-index: var(--elevation-menu);
+  width: 100%;
+  max-height: 300px;
+  box-shadow: var(--shadow-base);
+  padding-bottom: var(--space-smaller);
+  border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-large);
+  overflow: auto;
+  background-color: var(--color-surface);
+  flex-direction: column;
+  scroll-behavior: smooth;
+}
+
+.option {
+  width: 100%;
+  padding: var(--space-small) var(--space-base) 0;
+  cursor: pointer;
+  transition: all var(--timing-base);
+}
+
+.option:focus,
+.option.active {
+  background-color: var(--color-surface--hover);
+  outline-color: var(--color-focus);
+}

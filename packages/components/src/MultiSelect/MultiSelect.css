@@ -1,0 +1,13 @@
+.multiSelectContainer {
+  position: relative;
+  width: 100%;
+}
+
+.multiSelectContainer:hover,
+.multiSelectContainer input {
+  cursor: pointer;
+}
+
+.multiSelectContainer.active {
+  box-shadow: var(--shadow-focus);
+}
