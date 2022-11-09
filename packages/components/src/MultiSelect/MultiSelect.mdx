@@ -1,0 +1,127 @@
+---
+name: MultiSelect
+menu: Components
+route: /components/multi-select
+showDirectoryLink: true
+---
+
+import { Playground, Props } from "docz";
+import { MultiSelect } from ".";
+import { useState } from "react";
+
+# Multi Select
+
+The `MultiSelect` component gives our users the possibility to select multiple
+options from a menu.
+
+```ts
+import { MultiSelect } from "@jobber/components/MultiSelect";
+```
+
+<Playground>
+  {() => {
+    const [options, setOptions] = useState([
+      { label: "Synced", checked: true },
+      { label: "Errors" },
+      { label: "Warnings", checked: true },
+      { label: "Ignored", checked: true },
+    ]);
+    const handleChange = clickedOption => {
+      setOptions(current =>
+        current.map(option => {
+          if (option.label == clickedOption.label) {
+            return { ...option, checked: !clickedOption.checked };
+          }
+          return option;
+        })
+      );
+    };
+    return (
+      <MultiSelect
+        defaultLabel="Status"
+        allSelectedLabel="All Statuses"
+        options={options}
+        onChange={handleChange}
+      />
+    );
+  }}
+</Playground>
+
+<!--
+  INTERFACE: This is for the proposal stage of the component
+
+  Provide an example of what the component looks like in code. How would you use
+  it from another React component? This should consist primarily of code blocks.
+  This section can be deleted once the component is built, when the Playground
+  will demonstrate this at a higher fidelity.
+-->
+
+## Props
+
+<Props of={MultiSelect} />
+
+<!--
+  It is not necessary to provide an example of each prop. Use usage examples to
+  highlight key features of a component or particular considerations.
+
+  See `Button.mdx` for a good example of this.
+-->
+
+## Usage Guidelines
+
+The goal of the `MultiSelect` component is to allow a user to check multiple
+options within a list of items.
+
+A user can click on the element to expand it and display the multiple options.
+The element will display the selected options or the placeholder text if none
+are selected.
+
+Every time an option is checked or unchecked a behavior can be triggered using
+the onChange prop
+
+<!--
+  What is the design purpose of this component? How do its responsibilities
+  relate to other components? What should this component not be used for? What
+  are some related components in Atlantis? Try to describe this component not
+  in terms of what it looks like or what elements make it up, but what function
+  it performs or how it enables a user to perform tasks (e.g. “Buttons allow users
+  to initiate, complete, and reverse actions.” vs “Buttons are rectangular elements
+  that have a green background and white text”).
+-->
+
+## Accessibility
+
+- Users should be able to use their keyboard to navigate through the options and
+  check/uncheck them
+- The trigger contains a downward-pointing-arrow to hint that it can be
+  expanded.
+
+## Responsiveness
+
+On mobile devices the interaction behaviour would be the same as a mouse with
+touch/click. The component should adapt to different screen sizes the same as an
+html select would.
+
+<!--
+  How should the component behave on an iPhone 8? An iPad? A 1920x1080 monitor? How does the
+  component appear when the component itself is less than 375px wide? Less than 640px wide?
+  Less than 1200px wide? Greater than 1200px? Does it change when the device DPI is higher
+  or lower?
+-->
+
+## Mockup
+
+<iframe
+  style="border: 1px solid rgba(0, 0, 0, 0.1);"
+  width="800"
+  height="450"
+  src="https://www.figma.com/file/Dat89UMBtcroHoy2TFpqxA/QBO-Integration?node-id=318%3A75252"
+  allowfullscreen
+></iframe>
+
+<!--
+  Insert a Figma mockup from the [Design System Contribution template](https://www.figma.com/file/3BXCXXD9glMtj8RAHjXiQC/Design-System-Contribution-TEMPLATE?node-id=26%3A2)
+  that conveys the visual design of the component, with variants and state accounted for.
+  Consider progressive enhancement; might this rely on newer browser features that aren’t
+  widely supported yet?
+-->
