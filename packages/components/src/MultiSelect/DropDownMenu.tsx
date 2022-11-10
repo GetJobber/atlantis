@@ -97,7 +97,11 @@ export function DropDownMenu({ options, onOptionSelect }: DropDownMenuProps) {
   ]);
 
   return (
-    <div className={styles.dropDownMenuContainer} ref={menuDiv}>
+    <div
+      data-testid="dropdown-menu"
+      className={styles.dropDownMenuContainer}
+      ref={menuDiv}
+    >
       {options.map((option, index) => {
         const optionClass = classNames(styles.option, {
           [styles.active]: index === highlightedIndex,
