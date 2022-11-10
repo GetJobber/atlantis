@@ -1,11 +1,18 @@
-import React from "react";
+import React, {
+  MouseEvent,
+  MutableRefObject,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import classNames from "classnames";
 import { useOnKeyDown } from "@jobber/hooks";
 import styles from "./MultiSelect.css";
 import { DropDownMenu } from "./DropDownMenu";
 import { Option, Options } from "./types";
 import { handleKeyboardShortcut } from "./utils";
-import { InputText } from "../InputText";
+import { Text } from "../Text";
+import { Icon } from "../Icon";
 
 interface MultiSelectProps {
   /**
@@ -35,28 +42,53 @@ export function MultiSelect({
   options,
   onChange,
 }: MultiSelectProps) {
-  const [label, setLabel] = React.useState(defaultLabel);
-  const [menuVisible, setMenuVisible] = React.useState(false);
-  const multiSelectContainerClass = classNames(styles.multiSelectContainer, {
+  const [label, setLabel] = useState(defaultLabel);
+  const [menuVisible, setMenuVisible] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const multiSelectRef = useRef() as MutableRefObject<HTMLDivElement>;
+  const multiSelectClass = classNames(styles.multiSelect, {
     [styles.active]: menuVisible,
   });
 
   function handleMenuVisibility() {
+    setFocused(true);
     setMenuVisible(!menuVisible);
   }
 
+  const handleClickOutside = (e: globalThis.MouseEvent) => {
+    if (!multiSelectRef?.current?.contains(e.target as Node)) {
+      setFocused(false);
+      setMenuVisible(false);
+    }
+  };
+
   function setupKeyListeners(key: string) {
     switch (key) {
+      case "Enter": {
+        if (!menuVisible && focused) {
+          setMenuVisible(true);
+        }
+        break;
+      }
       case "Escape": {
+        setFocused(false);
         setMenuVisible(false);
         break;
       }
     }
   }
 
-  useOnKeyDown(handleKeyboardShortcut(setupKeyListeners).callback, ["Escape"]);
+  useOnKeyDown(handleKeyboardShortcut(setupKeyListeners).callback, [
+    "Enter",
+    "Escape",
+  ]);
 
-  React.useEffect(() => {
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  });
+
+  useEffect(() => {
     const selected = options.filter(option => option.checked);
 
     if (selected.length === 0) {
@@ -71,12 +103,16 @@ export function MultiSelect({
   }, [options]);
 
   return (
-    <div className={multiSelectContainerClass}>
-      <div onClick={handleMenuVisibility}>
-        <InputText
-          value={label}
-          suffix={{ icon: menuVisible ? "arrowUp" : "arrowDown" }}
-        />
+    <div ref={multiSelectRef} className={styles.multiSelectContainer}>
+      <div
+        data-testid="multi-select"
+        className={multiSelectClass}
+        onClick={handleMenuVisibility}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
+      >
+        <Text>{label}</Text>
+        <Icon name="arrowDown" />
       </div>
       {menuVisible && (
         <DropDownMenu options={options} onOptionSelect={onChange} />

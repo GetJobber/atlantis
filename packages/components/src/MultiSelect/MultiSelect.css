@@ -3,11 +3,34 @@
   width: 100%;
 }
 
-.multiSelectContainer:hover,
-.multiSelectContainer input {
-  cursor: pointer;
+.multiSelect {
+  display: flex;
+  padding-top: calc(var(--space-base) - var(--space-smallest));
+  padding-bottom: calc(var(--space-base) - var(--space-smallest));
+  padding-left: var(--space-base);
+  padding-right: var(--space-base);
+  border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-base);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.multiSelectContainer.active {
+.multiSelect p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.multiSelectContainer:hover,
+.multiSelectContainer.multiSelect {
+  cursor: pointer;
+  caret-color: transparent;
+}
+
+.multiSelect.active {
   box-shadow: var(--shadow-focus);
 }

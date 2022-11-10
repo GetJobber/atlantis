@@ -1,4 +1,4 @@
-import React, { MouseEvent, useRef, useState } from "react";
+import React, { MouseEvent, MutableRefObject, useRef, useState } from "react";
 import classNames from "classnames";
 import { useOnKeyDown } from "@jobber/hooks";
 import styles from "./DropDownMenu.css";
@@ -20,24 +20,21 @@ interface DropDownMenuProps {
 }
 
 export function DropDownMenu({ options, onOptionSelect }: DropDownMenuProps) {
-  const [highlightedIndex, setHighlightedIndex] = useState(-1);
-  const menuDiv = useRef() as React.MutableRefObject<HTMLDivElement>;
+  const [highlightedIndex, setHighlightedIndex] = useState(0);
+  const menuDiv = useRef() as MutableRefObject<HTMLUListElement>;
 
-  function handleOptionClick(
-    event: MouseEvent<HTMLDivElement>,
-    option: Option,
-  ) {
+  function handleOptionClick(event: MouseEvent<HTMLLIElement>, option: Option) {
     event.preventDefault();
     onOptionSelect && onOptionSelect(option);
   }
 
-  function handleOptionHover(event: MouseEvent<HTMLDivElement>, index: number) {
+  function handleOptionHover(event: MouseEvent<HTMLLIElement>, index: number) {
     event.preventDefault();
     setHighlightedIndex(index);
   }
 
   function scrollMenuIfItemNotInView(
-    menuDivElement: HTMLDivElement,
+    menuDivElement: HTMLUListElement,
     direction: "up" | "down",
   ) {
     const itemDiv = menuDivElement.querySelector(
@@ -97,10 +94,11 @@ export function DropDownMenu({ options, onOptionSelect }: DropDownMenuProps) {
   ]);
 
   return (
-    <div
+    <ul
       data-testid="dropdown-menu"
       className={styles.dropDownMenuContainer}
       ref={menuDiv}
+      aria-multiselectable="true"
     >
       {options.map((option, index) => {
         const optionClass = classNames(styles.option, {
@@ -108,16 +106,16 @@ export function DropDownMenu({ options, onOptionSelect }: DropDownMenuProps) {
         });
 
         return (
-          <div
+          <li
             key={`${index}-${option.label}`}
             className={optionClass}
             onClick={e => handleOptionClick(e, option)}
             onMouseOver={e => handleOptionHover(e, index)}
           >
             <Checkbox label={option.label} checked={option.checked} />
-          </div>
+          </li>
         );
       })}
-    </div>
+    </ul>
   );
 }

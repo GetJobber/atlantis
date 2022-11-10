@@ -5,6 +5,8 @@
   width: 100%;
   max-height: 300px;
   box-shadow: var(--shadow-base);
+  margin: 0;
+  padding: 0;
   padding-bottom: var(--space-smaller);
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-large);
@@ -12,6 +14,10 @@
   background-color: var(--color-surface);
   flex-direction: column;
   scroll-behavior: smooth;
+}
+
+.dropDownMenuContainer li {
+  list-style: none;
 }
 
 .option {

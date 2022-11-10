@@ -34,9 +34,9 @@ describe("when rendering MultiSelect component", () => {
     });
 
     it("input should have checked options as the value", () => {
-      const multiSelectInput = screen.getByRole("textbox");
+      const multiSelectInput = screen.getByTestId("multi-select");
 
-      expect(multiSelectInput).toHaveValue("Synced, Warnings, Ignored");
+      expect(multiSelectInput).toHaveTextContent("Synced, Warnings, Ignored");
     });
   });
 
@@ -60,9 +60,9 @@ describe("when rendering MultiSelect component", () => {
     });
 
     it("input should have the provided defaultLabel as value", () => {
-      const multiSelectInput = screen.getByRole("textbox");
+      const multiSelectInput = screen.getByTestId("multi-select");
 
-      expect(multiSelectInput).toHaveValue("Status");
+      expect(multiSelectInput).toHaveTextContent("Status");
     });
   });
 
@@ -86,9 +86,9 @@ describe("when rendering MultiSelect component", () => {
     });
 
     it("input should have the provided allSelectedLabel as value", () => {
-      const multiSelectInput = screen.getByRole("textbox");
+      const multiSelectInput = screen.getByTestId("multi-select");
 
-      expect(multiSelectInput).toHaveValue("All Statuses");
+      expect(multiSelectInput).toHaveTextContent("All Statuses");
     });
   });
 });
@@ -104,7 +104,7 @@ describe("when displaying the options", () => {
 
   describe("when clicking MultiSelect", () => {
     it("should display the dropdown menu with the options", () => {
-      userEvent.click(screen.getByRole("textbox"));
+      userEvent.click(screen.getByTestId("multi-select"));
       const dropDownMenu = screen.getByTestId("dropdown-menu");
 
       expect(dropDownMenu).not.toBeNull();
@@ -117,18 +117,30 @@ describe("when displaying the options", () => {
 
   describe("when pressing 'Escape' key", () => {
     it("should hide the dropdown menu", () => {
-      userEvent.click(screen.getByRole("textbox"));
+      userEvent.click(screen.getByTestId("multi-select"));
 
       expect(screen.queryByTestId("dropdown-menu")).not.toBeNull();
 
       fireEvent(
-        screen.getByRole("textbox"),
+        screen.getByTestId("multi-select"),
         new KeyboardEvent("keydown", {
           key: "Escape",
           bubbles: true,
           cancelable: false,
         }),
       );
+
+      expect(screen.queryByTestId("dropdown-menu")).toBeNull();
+    });
+  });
+
+  describe("when clicking out of the component", () => {
+    it("should hide the dropdown menu", () => {
+      userEvent.click(screen.getByTestId("multi-select"));
+
+      expect(screen.queryByTestId("dropdown-menu")).not.toBeNull();
+
+      userEvent.click(document.body);
 
       expect(screen.queryByTestId("dropdown-menu")).toBeNull();
     });
@@ -142,7 +154,7 @@ describe("when selecting an option", () => {
 
   describe("when using mouse click event", () => {
     it("should call the provided callback", () => {
-      userEvent.click(screen.getByRole("textbox"));
+      userEvent.click(screen.getByTestId("multi-select"));
       userEvent.click(screen.getAllByRole("checkbox")[0]);
 
       expect(changeHandler).toHaveBeenCalledTimes(1);
@@ -151,16 +163,8 @@ describe("when selecting an option", () => {
 
   describe("when using keyboard navigation", () => {
     it("should call the provided callback", () => {
-      userEvent.click(screen.getByRole("textbox"));
+      userEvent.click(screen.getByTestId("multi-select"));
 
-      fireEvent(
-        screen.getByTestId("dropdown-menu"),
-        new KeyboardEvent("keydown", {
-          key: "ArrowDown",
-          bubbles: true,
-          cancelable: false,
-        }),
-      );
       fireEvent(
         screen.getByTestId("dropdown-menu"),
         new KeyboardEvent("keydown", {
