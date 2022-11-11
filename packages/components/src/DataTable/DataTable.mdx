@@ -586,6 +586,114 @@ import { DataTable } from "@jobber/components/DataTable";
   }}
 </Playground>
 
+## Table with totals footer row
+
+<Playground>
+  <DataTable
+    height={400}
+    pagination={{ manualPagination: false, itemsPerPage: [10, 20, 30] }}
+    data={[
+      {
+        franchiseName: "The Patch Boys of Macon and Warner Robins",
+        payment: 1000000,
+        royaltyRate: 5,
+        royaltyAmount: 50000,
+      },
+      {
+        franchiseName: "The Patch Boys of San Antonio",
+        payment: 2000000,
+        royaltyRate: 5,
+        royaltyAmount: 40000,
+      },
+      {
+        franchiseName: "The Patch Boys of Phoenix",
+        payment: 1250000,
+        royaltyRate: 8,
+        royaltyAmount: 20000,
+      },
+      {
+        franchiseName: "The Patch Boys of Macon and Warner Robins",
+        payment: 1000000,
+        royaltyRate: 5,
+        royaltyAmount: 50000,
+      },
+      {
+        franchiseName: "The Patch Boys of San Antonio",
+        payment: 2000000,
+        royaltyRate: 5,
+        royaltyAmount: 40000,
+      },
+      {
+        franchiseName: "The Patch Boys of Phoenix",
+        payment: 1250000,
+        royaltyRate: 8,
+        royaltyAmount: 20000,
+      },
+      {
+        franchiseName: "The Patch Boys of Macon and Warner Robins",
+        payment: 1000000,
+        royaltyRate: 5,
+        royaltyAmount: 50000,
+      },
+      {
+        franchiseName: "The Patch Boys of San Antonio",
+        payment: 2000000,
+        royaltyRate: 5,
+        royaltyAmount: 40000,
+      },
+      {
+        franchiseName: "The Patch Boys of Phoenix",
+        payment: 1250000,
+        royaltyRate: 8,
+        royaltyAmount: 20000,
+      },
+      {
+        franchiseName: "The Patch Boys of Macon and Warner Robins",
+        payment: 1000000,
+        royaltyRate: 5,
+        royaltyAmount: 50000,
+      },
+      {
+        franchiseName: "The Patch Boys of San Antonio",
+        payment: 2000000,
+        royaltyRate: 5,
+        royaltyAmount: 40000,
+      },
+      {
+        franchiseName: "The Patch Boys of Phoenix",
+        payment: 1250000,
+        royaltyRate: 8,
+        royaltyAmount: 20000,
+      },
+    ]}
+    columns={[
+      {
+        id: "franchiseName",
+        accessorKey: "franchiseName",
+        header: "Franchise Name",
+        footer: "Report Totals ($)",
+      },
+      {
+        id: "payment",
+        accessorKey: "payment",
+        header: "Payment ($)",
+        footer: "10,050,400",
+      },
+      {
+        id: "royaltyRate",
+        accessorKey: "royaltyRate",
+        header: "Royalty Rate (%)",
+      },
+      {
+        id: "royaltyAmount",
+        accessorKey: "royaltyAmount",
+        header: "Royalty Amount ($)",
+        footer: "300,000",
+      },
+    ]}
+  />
+</Playground>
+
 ## Design & Usage Guidelines
 
 The `DataTable` component is a great solution if you are looking to display data

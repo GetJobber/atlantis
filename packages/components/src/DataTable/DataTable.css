@@ -36,6 +36,25 @@
   padding: var(--space-base);
 }
 
+/* ToDo: Move to component css after validation */
+
+.table tfoot {
+  position: sticky;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  border-top: var(--border-base) solid var(--color-border);
+  background-color: var(--color-white);
+}
+
+.table tfoot tr th {
+  padding: var(--space-base);
+}
+
+/* ToDo end */
+
 .pinFirstColumn thead tr th:first-child,
 .pinFirstColumn tbody tr td:first-child {
   position: sticky;

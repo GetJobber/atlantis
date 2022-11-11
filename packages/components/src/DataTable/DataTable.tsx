@@ -1,6 +1,12 @@
-import { ColumnDef, Row, useReactTable } from "@tanstack/react-table";
+import {
+  ColumnDef,
+  Row,
+  flexRender,
+  useReactTable,
+} from "@tanstack/react-table";
 import classNames from "classnames";
-import React from "react";
+import React, { LegacyRef } from "react";
+import { Breakpoints, useResizeObserver } from "@jobber/hooks";
 import { Body } from "./Body";
 import { createTableSettings } from "./createTableSettings";
 import styles from "./DataTable.css";
@@ -70,6 +76,7 @@ export function DataTable<T extends object>({
   pinFirstColumn,
   onRowClick,
 }: DataTableProps<T>) {
+  const [ref, { width }] = useResizeObserver();
   const tableSettings = createTableSettings(data, columns, {
     pagination,
     sorting,
@@ -82,7 +89,11 @@ export function DataTable<T extends object>({
   const table = useReactTable(tableSettings);
   return (
     <div className={styles.dataTableContainer}>
-      <div className={styles.tableContainer} style={{ height }}>
+      <div
+        className={styles.tableContainer}
+        style={{ height }}
+        ref={ref as LegacyRef<HTMLDivElement> | undefined}
+      >
         <table className={tableClasses}>
           <Header
             table={table}
@@ -91,6 +102,71 @@ export function DataTable<T extends object>({
             stickyHeader={stickyHeader}
           />
           <Body table={table} onRowClick={onRowClick} />
+
+          {/* ToDo: Turn into a subcomponent after validation */}
+
+          {width && width <= Breakpoints.small ? (
+            <tfoot>
+              {table.getFooterGroups().map(footerGroup => (
+                <>
+                  {footerGroup.headers
+                    .filter(header => header.column.columnDef.footer)
+                    .map((header, index) => (
+                      <>
+                        {index === 0 ? (
+                          <tr key={footerGroup.id}>
+                            <th key={header.id}>
+                              {header.isPlaceholder
+                                ? null
+                                : flexRender(
+                                    header.column.columnDef.footer,
+                                    header.getContext(),
+                                  )}
+                            </th>
+                          </tr>
+                        ) : (
+                          <tr key={footerGroup.id}>
+                            <th key={header.id}>
+                              {header.isPlaceholder
+                                ? null
+                                : flexRender(
+                                    header.column.columnDef.header,
+                                    header.getContext(),
+                                  )}
+                            </th>
+                            <td key={header.id}>
+                              {flexRender(
+                                header.column.columnDef.footer,
+                                header.getContext(),
+                              )}
+                            </td>
+                          </tr>
+                        )}
+                      </>
+                    ))}
+                </>
+              ))}
+            </tfoot>
+          ) : (
+            <tfoot>
+              {table.getFooterGroups().map(footerGroup => (
+                <tr key={footerGroup.id}>
+                  {footerGroup.headers.map(header => (
+                    <th key={header.id}>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.footer,
+                            header.getContext(),
+                          )}
+                    </th>
+                  ))}
+                </tr>
+              ))}
+            </tfoot>
+          )}
+
+          {/* ToDo end */}
         </table>
       </div>
       {pagination && (
