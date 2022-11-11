@@ -3,7 +3,6 @@ export function handleKeyboardShortcut(
 ) {
   function callback(event: KeyboardEvent) {
     const { metaKey, ctrlKey, key, target } = event;
-    if (!open) return;
 
     const shouldTriggerShortcut =
       target instanceof HTMLButtonElement ? metaKey || ctrlKey : true;

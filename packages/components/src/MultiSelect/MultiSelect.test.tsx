@@ -93,7 +93,7 @@ describe("when rendering MultiSelect component", () => {
   });
 });
 
-describe("when displaying the options", () => {
+describe("when focusing multislect to display the options", () => {
   beforeEach(() => {
     render(component);
   });
@@ -105,6 +105,50 @@ describe("when displaying the options", () => {
   describe("when clicking MultiSelect", () => {
     it("should display the dropdown menu with the options", () => {
       userEvent.click(screen.getByTestId("multi-select"));
+      const dropDownMenu = screen.getByTestId("dropdown-menu");
+
+      expect(dropDownMenu).not.toBeNull();
+      expect(within(dropDownMenu).getByText(/Synced/i)).toBeInTheDocument();
+      expect(within(dropDownMenu).getByText(/Errors/i)).toBeInTheDocument();
+      expect(within(dropDownMenu).getByText(/Warnings/i)).toBeInTheDocument();
+      expect(within(dropDownMenu).getByText(/Ignored/i)).toBeInTheDocument();
+    });
+  });
+
+  describe("when pressing Spacebar key", () => {
+    it("should display the dropdown menu with the options", () => {
+      userEvent.tab();
+      fireEvent(
+        screen.getByTestId("multi-select"),
+        new KeyboardEvent("keydown", {
+          key: " ",
+          bubbles: true,
+          cancelable: false,
+        }),
+      );
+
+      const dropDownMenu = screen.getByTestId("dropdown-menu");
+
+      expect(dropDownMenu).not.toBeNull();
+      expect(within(dropDownMenu).getByText(/Synced/i)).toBeInTheDocument();
+      expect(within(dropDownMenu).getByText(/Errors/i)).toBeInTheDocument();
+      expect(within(dropDownMenu).getByText(/Warnings/i)).toBeInTheDocument();
+      expect(within(dropDownMenu).getByText(/Ignored/i)).toBeInTheDocument();
+    });
+  });
+
+  describe("when pressing Enter key", () => {
+    it("should display the dropdown menu with the options", () => {
+      userEvent.tab();
+      fireEvent(
+        screen.getByTestId("multi-select"),
+        new KeyboardEvent("keydown", {
+          key: "Enter",
+          bubbles: true,
+          cancelable: false,
+        }),
+      );
+
       const dropDownMenu = screen.getByTestId("dropdown-menu");
 
       expect(dropDownMenu).not.toBeNull();
@@ -155,14 +199,14 @@ describe("when selecting an option", () => {
   describe("when using mouse click event", () => {
     it("should call the provided callback", () => {
       userEvent.click(screen.getByTestId("multi-select"));
-      userEvent.click(screen.getAllByRole("checkbox")[0]);
+      userEvent.click(screen.getAllByRole("checkbox")[2]);
 
-      expect(changeHandler).toHaveBeenCalledTimes(1);
+      expect(changeHandler).toHaveBeenCalledWith(options[2]);
     });
   });
 
   describe("when using keyboard navigation", () => {
-    it("should call the provided callback", () => {
+    it("should call the provided callback when using arrows and Enter keys", () => {
       userEvent.click(screen.getByTestId("multi-select"));
 
       fireEvent(
@@ -177,6 +221,22 @@ describe("when selecting an option", () => {
         screen.getByTestId("dropdown-menu"),
         new KeyboardEvent("keydown", {
           key: "Enter",
+          bubbles: true,
+          cancelable: false,
+        }),
+      );
+
+      expect(changeHandler).toHaveBeenCalledWith(options[1]);
+    });
+
+    it("should call the provided callback when using tab and spacebar keys", () => {
+      userEvent.click(screen.getByTestId("multi-select"));
+
+      userEvent.tab();
+      fireEvent(
+        screen.getByTestId("dropdown-menu"),
+        new KeyboardEvent("keydown", {
+          key: " ",
           bubbles: true,
           cancelable: false,
         }),

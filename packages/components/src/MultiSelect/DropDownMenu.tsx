@@ -1,4 +1,10 @@
-import React, { MouseEvent, MutableRefObject, useRef, useState } from "react";
+import React, {
+  MouseEvent,
+  MutableRefObject,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import classNames from "classnames";
 import { useOnKeyDown } from "@jobber/hooks";
 import styles from "./DropDownMenu.css";
@@ -30,7 +36,16 @@ export function DropDownMenu({ options, onOptionSelect }: DropDownMenuProps) {
 
   function handleOptionHover(event: MouseEvent<HTMLLIElement>, index: number) {
     event.preventDefault();
+    handleOptionFocus(index);
+  }
+
+  function handleOptionFocus(index: number) {
     setHighlightedIndex(index);
+
+    if (menuDiv.current) {
+      const option = menuDiv.current.children[index].querySelector("input");
+      option?.focus();
+    }
   }
 
   function scrollMenuIfItemNotInView(
@@ -60,28 +75,25 @@ export function DropDownMenu({ options, onOptionSelect }: DropDownMenuProps) {
 
   function setupKeyListeners(key: string) {
     switch (key) {
-      case "Enter": {
+      case "Enter":
+      case " ": {
         if (highlightedIndex >= 0) {
           onOptionSelect && onOptionSelect(options[highlightedIndex]);
         }
         break;
       }
       case "ArrowDown": {
-        setHighlightedIndex(Math.min(options.length - 1, highlightedIndex + 1));
+        const newIndex = Math.min(options.length - 1, highlightedIndex + 1);
 
-        if (menuDiv.current) {
-          scrollMenuIfItemNotInView(menuDiv.current, "down");
-        }
-
+        handleOptionFocus(newIndex);
+        scrollMenuIfItemNotInView(menuDiv.current, "down");
         break;
       }
       case "ArrowUp": {
-        setHighlightedIndex(Math.max(0, highlightedIndex - 1));
+        const newIndex = Math.max(0, highlightedIndex - 1);
 
-        if (menuDiv.current) {
-          scrollMenuIfItemNotInView(menuDiv.current, "up");
-        }
-
+        handleOptionFocus(newIndex);
+        scrollMenuIfItemNotInView(menuDiv.current, "up");
         break;
       }
     }
@@ -89,9 +101,15 @@ export function DropDownMenu({ options, onOptionSelect }: DropDownMenuProps) {
 
   useOnKeyDown(handleKeyboardShortcut(setupKeyListeners).callback, [
     "Enter",
+    " ",
     "ArrowDown",
     "ArrowUp",
   ]);
+
+  useEffect(() => {
+    // focus first option
+    handleOptionFocus(0);
+  }, [menuDiv]);
 
   return (
     <ul
@@ -112,7 +130,11 @@ export function DropDownMenu({ options, onOptionSelect }: DropDownMenuProps) {
             onClick={e => handleOptionClick(e, option)}
             onMouseOver={e => handleOptionHover(e, index)}
           >
-            <Checkbox label={option.label} checked={option.checked} />
+            <Checkbox
+              label={option.label}
+              checked={option.checked}
+              onFocus={() => setHighlightedIndex(index)}
+            />
           </li>
         );
       })}

@@ -36,6 +36,7 @@ interface MultiSelectProps {
   onChange?(option: Option): void;
 }
 
+// eslint-disable-next-line max-statements
 export function MultiSelect({
   defaultLabel,
   allSelectedLabel,
@@ -45,33 +46,34 @@ export function MultiSelect({
   const [label, setLabel] = useState(defaultLabel);
   const [menuVisible, setMenuVisible] = useState(false);
   const [focused, setFocused] = useState(false);
+  const multiSelectContainer = useRef() as MutableRefObject<HTMLDivElement>;
   const multiSelectRef = useRef() as MutableRefObject<HTMLDivElement>;
   const multiSelectClass = classNames(styles.multiSelect, {
     [styles.active]: menuVisible,
   });
 
   function handleMenuVisibility() {
-    setFocused(true);
+    multiSelectRef.current.focus();
     setMenuVisible(!menuVisible);
   }
 
   const handleClickOutside = (e: globalThis.MouseEvent) => {
-    if (!multiSelectRef?.current?.contains(e.target as Node)) {
-      setFocused(false);
+    if (!multiSelectContainer?.current?.contains(e.target as Node)) {
       setMenuVisible(false);
     }
   };
 
   function setupKeyListeners(key: string) {
     switch (key) {
-      case "Enter": {
-        if (!menuVisible && focused) {
-          setMenuVisible(true);
+      case "Enter":
+      case " ": {
+        if (focused) {
+          setMenuVisible(!menuVisible);
         }
         break;
       }
       case "Escape": {
-        setFocused(false);
+        multiSelectRef.current.focus();
         setMenuVisible(false);
         break;
       }
@@ -80,6 +82,7 @@ export function MultiSelect({
 
   useOnKeyDown(handleKeyboardShortcut(setupKeyListeners).callback, [
     "Enter",
+    " ",
     "Escape",
   ]);
 
@@ -103,13 +106,16 @@ export function MultiSelect({
   }, [options]);
 
   return (
-    <div ref={multiSelectRef} className={styles.multiSelectContainer}>
+    <div ref={multiSelectContainer} className={styles.multiSelectContainer}>
       <div
         data-testid="multi-select"
         className={multiSelectClass}
         onClick={handleMenuVisibility}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
+        tabIndex={0}
+        ref={multiSelectRef}
+        role="button"
       >
         <Text>{label}</Text>
         <Icon name="arrowDown" />
