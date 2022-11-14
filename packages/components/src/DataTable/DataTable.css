@@ -40,9 +40,7 @@
 
 .table tfoot {
   position: sticky;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  inset-block-end: 0;
   z-index: 1;
   width: 100%;
   border-top: var(--border-base) solid var(--color-border);
@@ -51,6 +49,20 @@
 
 .table tfoot tr th {
   padding: var(--space-base);
+}
+
+.mobileFooterContainer {
+  padding: var(--space-base);
+  border-top: var(--border-base) solid var(--color-border);
+}
+
+.mobileFooterRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mobileFooterRow:not(:last-child) {
+  padding-bottom: var(--space-small);
 }
 
 /* ToDo end */

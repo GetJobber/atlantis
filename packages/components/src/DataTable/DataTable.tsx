@@ -13,6 +13,7 @@ import styles from "./DataTable.css";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 import { Pagination, Sorting } from "./types";
+import { Typography } from "../Typography";
 
 export interface DataTableProps<T> {
   /**
@@ -105,70 +106,59 @@ export function DataTable<T extends object>({
 
           {/* ToDo: Turn into a subcomponent after validation */}
 
-          {width && width <= Breakpoints.small ? (
-            <tfoot>
-              {table.getFooterGroups().map(footerGroup => (
-                <>
-                  {footerGroup.headers
-                    .filter(header => header.column.columnDef.footer)
-                    .map((header, index) => (
-                      <>
-                        {index === 0 ? (
-                          <tr key={footerGroup.id}>
-                            <th key={header.id}>
-                              {header.isPlaceholder
-                                ? null
-                                : flexRender(
-                                    header.column.columnDef.footer,
-                                    header.getContext(),
-                                  )}
-                            </th>
-                          </tr>
-                        ) : (
-                          <tr key={footerGroup.id}>
-                            <th key={header.id}>
-                              {header.isPlaceholder
-                                ? null
-                                : flexRender(
-                                    header.column.columnDef.header,
-                                    header.getContext(),
-                                  )}
-                            </th>
-                            <td key={header.id}>
-                              {flexRender(
-                                header.column.columnDef.footer,
-                                header.getContext(),
-                              )}
-                            </td>
-                          </tr>
-                        )}
-                      </>
-                    ))}
-                </>
-              ))}
-            </tfoot>
-          ) : (
+          {width && width > Breakpoints.small ? (
             <tfoot>
               {table.getFooterGroups().map(footerGroup => (
                 <tr key={footerGroup.id}>
                   {footerGroup.headers.map(header => (
                     <th key={header.id}>
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.footer,
-                            header.getContext(),
-                          )}
+                      {flexRender(
+                        header.column.columnDef.footer,
+                        header.getContext(),
+                      )}
                     </th>
                   ))}
                 </tr>
               ))}
             </tfoot>
-          )}
+          ) : null}
 
           {/* ToDo end */}
         </table>
       </div>
+      {width && width <= Breakpoints.small ? (
+        <div className={styles.mobileFooterContainer}>
+          {table.getFooterGroups().map(footerGroup => (
+            <div key={footerGroup.id}>
+              {footerGroup.headers
+                .filter(header => header.column.columnDef.footer)
+                .map((header, index) => (
+                  <>
+                    {index === 0 ? (
+                      <div className={styles.mobileFooterRow}>
+                        <Typography fontWeight="bold" key={header.id}>
+                          {header.column.columnDef.footer}
+                        </Typography>
+                      </div>
+                    ) : (
+                      <div
+                        className={styles.mobileFooterRow}
+                        key={footerGroup.id}
+                      >
+                        <Typography fontWeight="bold" key={header.id}>
+                          {header.column.columnDef.header}
+                        </Typography>
+                        <Typography key={header.id}>
+                          {header.column.columnDef.footer}
+                        </Typography>
+                      </div>
+                    )}
+                  </>
+                ))}
+            </div>
+          ))}
+        </div>
+      ) : null}
       {pagination && (
         <Footer
           table={table}
