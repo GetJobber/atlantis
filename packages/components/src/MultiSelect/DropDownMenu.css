@@ -3,7 +3,7 @@
   position: absolute;
   z-index: var(--elevation-menu);
   width: 100%;
-  max-height: 300px;
+  max-height: calc(var(--space-extravagant) * 5);
   box-shadow: var(--shadow-base);
   margin: 0;
   padding: 0;
