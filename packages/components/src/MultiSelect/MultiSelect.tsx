@@ -31,9 +31,14 @@ interface MultiSelectProps {
   readonly options: Options;
 
   /**
+   * Text to be announced by screen readers
+   */
+  readonly ariaLabel?: string;
+
+  /**
    * Change handler
    */
-  onChange?(option: Option): void;
+  onChange(option: Option): void;
 }
 
 // eslint-disable-next-line max-statements
@@ -41,6 +46,7 @@ export function MultiSelect({
   defaultLabel,
   allSelectedLabel,
   options,
+  ariaLabel,
   onChange,
 }: MultiSelectProps) {
   const [label, setLabel] = useState(defaultLabel);
@@ -116,6 +122,7 @@ export function MultiSelect({
         tabIndex={0}
         ref={multiSelectRef}
         role="button"
+        aria-label={ariaLabel}
         aria-multiselectable
         aria-haspopup
       >
