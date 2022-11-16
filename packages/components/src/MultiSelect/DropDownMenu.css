@@ -1,0 +1,34 @@
+.dropDownMenuContainer {
+  display: flex;
+  position: absolute;
+  z-index: var(--elevation-menu);
+  width: 100%;
+  max-height: calc(var(--space-extravagant) * 5);
+  box-shadow: var(--shadow-base);
+  margin: 0;
+  padding: 0;
+  border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-large);
+  overflow: auto;
+  background-color: var(--color-surface);
+  flex-direction: column;
+  scroll-behavior: smooth;
+}
+
+.dropDownMenuContainer li {
+  list-style: none;
+}
+
+.option {
+  display: flex;
+  width: 100%;
+  padding: var(--space-small) var(--space-base);
+  cursor: pointer;
+  transition: all var(--timing-base);
+}
+
+.option:focus,
+.option.active {
+  background-color: var(--color-surface--hover);
+  outline-color: var(--color-focus);
+}

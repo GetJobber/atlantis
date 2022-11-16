@@ -1,0 +1,35 @@
+.multiSelectContainer {
+  position: relative;
+  width: 100%;
+}
+
+.multiSelect {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: calc(var(--space-base) - var(--space-smallest));
+  padding-bottom: calc(var(--space-base) - var(--space-smallest));
+  padding-left: var(--space-base);
+  padding-right: var(--space-base);
+  border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-base);
+}
+
+.multiSelect p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.multiSelectContainer:hover,
+.multiSelectContainer.multiSelect {
+  cursor: pointer;
+  caret-color: transparent;
+}
+
+.multiSelect:focus,
+.multiSelect.active {
+  box-shadow: var(--shadow-focus);
+  outline: none;
+}
