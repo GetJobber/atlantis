@@ -31,6 +31,8 @@
   caret-color: transparent;
 }
 
+.multiSelect:focus,
 .multiSelect.active {
   box-shadow: var(--shadow-focus);
+  outline-color: transparent;
 }

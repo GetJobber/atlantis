@@ -116,6 +116,8 @@ export function MultiSelect({
         tabIndex={0}
         ref={multiSelectRef}
         role="button"
+        aria-multiselectable
+        aria-haspopup
       >
         <Text>{label}</Text>
         <Icon name="arrowDown" />

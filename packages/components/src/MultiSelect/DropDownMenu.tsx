@@ -36,7 +36,7 @@ export function DropDownMenu({ options, onOptionSelect }: DropDownMenuProps) {
 
   function handleOptionHover(event: MouseEvent<HTMLLIElement>, index: number) {
     event.preventDefault();
-    handleOptionFocus(index);
+    setHighlightedIndex(index);
   }
 
   function handleOptionFocus(index: number) {
@@ -116,7 +116,6 @@ export function DropDownMenu({ options, onOptionSelect }: DropDownMenuProps) {
       data-testid="dropdown-menu"
       className={styles.dropDownMenuContainer}
       ref={menuDiv}
-      aria-multiselectable="true"
     >
       {options.map((option, index) => {
         const optionClass = classNames(styles.option, {

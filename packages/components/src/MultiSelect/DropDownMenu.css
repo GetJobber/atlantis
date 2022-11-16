@@ -7,7 +7,6 @@
   box-shadow: var(--shadow-base);
   margin: 0;
   padding: 0;
-  padding-bottom: var(--space-smaller);
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-large);
   overflow: auto;
@@ -21,8 +20,9 @@
 }
 
 .option {
+  display: flex;
   width: 100%;
-  padding: var(--space-small) var(--space-base) 0;
+  padding: var(--space-small) var(--space-base);
   cursor: pointer;
   transition: all var(--timing-base);
 }
