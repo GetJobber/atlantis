@@ -40,11 +40,12 @@
 
 .table tfoot {
   position: sticky;
-  inset-block-end: 0;
   z-index: 1;
   width: 100%;
+  box-shadow: var(--shadow-base);
   border-top: var(--border-base) solid var(--color-border);
   background-color: var(--color-white);
+  inset-block-end: 0;
 }
 
 .table tfoot tr th {

@@ -77,7 +77,7 @@ export function DataTable<T extends object>({
   pinFirstColumn,
   onRowClick,
 }: DataTableProps<T>) {
-  const [ref, { width }] = useResizeObserver();
+  const [ref, { exactWidth }] = useResizeObserver();
   const tableSettings = createTableSettings(data, columns, {
     pagination,
     sorting,
@@ -106,7 +106,7 @@ export function DataTable<T extends object>({
 
           {/* ToDo: Turn into a subcomponent after validation */}
 
-          {width && width > Breakpoints.small ? (
+          {exactWidth && exactWidth > Breakpoints.small ? (
             <tfoot>
               {table.getFooterGroups().map(footerGroup => (
                 <tr key={footerGroup.id}>
@@ -126,7 +126,7 @@ export function DataTable<T extends object>({
           {/* ToDo end */}
         </table>
       </div>
-      {width && width <= Breakpoints.small ? (
+      {exactWidth && exactWidth <= Breakpoints.small ? (
         <div className={styles.mobileFooterContainer}>
           {table.getFooterGroups().map(footerGroup => (
             <div key={footerGroup.id}>
