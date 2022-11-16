@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.88.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.87.0...@jobber/components@2.88.0) (2022-11-16)
+
+
+### Features
+
+* **components:** MultiSelect component ([#932](https://github.com/GetJobber/atlantis/issues/932)) ([c47a80d](https://github.com/GetJobber/atlantis/commit/c47a80d55dbfb72815386e699cda30e44fe8d9fc))
+
+
+
+
+
 # [2.87.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.86.2...@jobber/components@2.87.0) (2022-11-02)
 
 
