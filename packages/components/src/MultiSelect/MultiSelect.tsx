@@ -31,11 +31,6 @@ interface MultiSelectProps {
   readonly options: Options;
 
   /**
-   * Text to be announced by screen readers
-   */
-  readonly ariaLabel?: string;
-
-  /**
    * Change handler
    */
   onOptionsChange: Dispatch<React.SetStateAction<Options>>;
@@ -46,7 +41,6 @@ export function MultiSelect({
   defaultLabel,
   allSelectedLabel,
   options,
-  ariaLabel,
   onOptionsChange,
 }: MultiSelectProps) {
   const [label, setLabel] = useState(defaultLabel);
@@ -122,7 +116,7 @@ export function MultiSelect({
         tabIndex={0}
         ref={multiSelectRef}
         role="button"
-        aria-label={ariaLabel}
+        aria-label={`${defaultLabel}: ${label}`}
         aria-multiselectable
         aria-haspopup
       >
