@@ -1,6 +1,8 @@
 import React, {
+  Dispatch,
   MouseEvent,
   MutableRefObject,
+  useCallback,
   useEffect,
   useRef,
   useState,
@@ -22,17 +24,23 @@ interface DropDownMenuProps {
   /**
    * Change handler.
    */
-  onOptionSelect?(option: Option): void;
+  setOptions: Dispatch<React.SetStateAction<Options>>;
 }
 
-export function DropDownMenu({ options, onOptionSelect }: DropDownMenuProps) {
+export function DropDownMenu({ options, setOptions }: DropDownMenuProps) {
   const [highlightedIndex, setHighlightedIndex] = useState(0);
   const menuDiv = useRef() as MutableRefObject<HTMLUListElement>;
 
-  function handleOptionClick(event: MouseEvent<HTMLLIElement>, option: Option) {
-    event.preventDefault();
-    onOptionSelect && onOptionSelect(option);
-  }
+  const handleOptionClick = useCallback((clickedOption: Option) => {
+    setOptions(current =>
+      current.map(option => {
+        if (option.label == clickedOption.label) {
+          return { ...option, checked: !clickedOption.checked };
+        }
+        return option;
+      }),
+    );
+  }, []);
 
   function handleOptionHover(event: MouseEvent<HTMLLIElement>, index: number) {
     event.preventDefault();
@@ -78,7 +86,7 @@ export function DropDownMenu({ options, onOptionSelect }: DropDownMenuProps) {
       case "Enter":
       case " ": {
         if (highlightedIndex >= 0) {
-          onOptionSelect && onOptionSelect(options[highlightedIndex]);
+          handleOptionClick(options[highlightedIndex]);
         }
         break;
       }
@@ -126,7 +134,11 @@ export function DropDownMenu({ options, onOptionSelect }: DropDownMenuProps) {
           <li
             key={`${index}-${option.label}`}
             className={optionClass}
-            onClick={e => handleOptionClick(e, option)}
+            onClick={event => {
+              event.stopPropagation();
+              event.preventDefault();
+              handleOptionClick(option);
+            }}
             onMouseOver={e => handleOptionHover(e, index)}
           >
             <Checkbox

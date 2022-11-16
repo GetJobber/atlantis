@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   cleanup,
   fireEvent,
@@ -11,26 +11,28 @@ import { MultiSelect } from ".";
 
 afterEach(cleanup);
 
-const options = [
-  { label: "Synced", checked: true },
-  { label: "Errors" },
-  { label: "Warnings", checked: true },
-  { label: "Ignored", checked: true },
-];
-const changeHandler = jest.fn();
-const component = (
-  <MultiSelect
-    defaultLabel="Status"
-    allSelectedLabel="All Statuses"
-    options={options}
-    onChange={changeHandler}
-  />
-);
+const Component = () => {
+  const [options, setOptions] = useState([
+    { label: "Synced", checked: true },
+    { label: "Errors", checked: false },
+    { label: "Warnings", checked: true },
+    { label: "Ignored", checked: true },
+  ]);
+
+  return (
+    <MultiSelect
+      defaultLabel="Status"
+      allSelectedLabel="All Statuses"
+      options={options}
+      onOptionsChange={setOptions}
+    />
+  );
+};
 
 describe("when rendering MultiSelect component", () => {
   describe("when not all options are checked", () => {
     beforeEach(() => {
-      render(component);
+      render(<Component />);
     });
 
     it("input should have checked options as the value", () => {
@@ -41,22 +43,26 @@ describe("when rendering MultiSelect component", () => {
   });
 
   describe("when all options are unchecked ", () => {
-    const allOptionsUnchecked = [
-      { label: "Synced", checked: false },
-      { label: "Errors", checked: false },
-      { label: "Warnings", checked: false },
-      { label: "Ignored", checked: false },
-    ];
+    const AllOptionsUnchecked = () => {
+      const [options, setOptions] = useState([
+        { label: "Synced", checked: false },
+        { label: "Errors", checked: false },
+        { label: "Warnings", checked: false },
+        { label: "Ignored", checked: false },
+      ]);
 
-    beforeEach(() => {
-      render(
+      return (
         <MultiSelect
           defaultLabel="Status"
           allSelectedLabel="All Statuses"
-          options={allOptionsUnchecked}
-          onChange={changeHandler}
-        />,
+          options={options}
+          onOptionsChange={setOptions}
+        />
       );
+    };
+
+    beforeEach(() => {
+      render(<AllOptionsUnchecked />);
     });
 
     it("input should have the provided defaultLabel as value", () => {
@@ -67,22 +73,26 @@ describe("when rendering MultiSelect component", () => {
   });
 
   describe("when all options are checked ", () => {
-    const allOptionsChecked = [
-      { label: "Synced", checked: true },
-      { label: "Errors", checked: true },
-      { label: "Warnings", checked: true },
-      { label: "Ignored", checked: true },
-    ];
+    const AllOptionsChecked = () => {
+      const [options, setOptions] = useState([
+        { label: "Synced", checked: true },
+        { label: "Errors", checked: true },
+        { label: "Warnings", checked: true },
+        { label: "Ignored", checked: true },
+      ]);
 
-    beforeEach(() => {
-      render(
+      return (
         <MultiSelect
           defaultLabel="Status"
           allSelectedLabel="All Statuses"
-          options={allOptionsChecked}
-          onChange={changeHandler}
-        />,
+          options={options}
+          onOptionsChange={setOptions}
+        />
       );
+    };
+
+    beforeEach(() => {
+      render(<AllOptionsChecked />);
     });
 
     it("input should have the provided allSelectedLabel as value", () => {
@@ -95,7 +105,7 @@ describe("when rendering MultiSelect component", () => {
 
 describe("when focusing multislect to display the options", () => {
   beforeEach(() => {
-    render(component);
+    render(<Component />);
   });
 
   it("should not display the menu", () => {
@@ -193,7 +203,7 @@ describe("when focusing multislect to display the options", () => {
 
 describe("when selecting an option", () => {
   beforeEach(() => {
-    render(component);
+    render(<Component />);
   });
 
   describe("when using mouse click event", () => {
@@ -201,7 +211,7 @@ describe("when selecting an option", () => {
       userEvent.click(screen.getByTestId("multi-select"));
       userEvent.click(screen.getAllByRole("checkbox")[2]);
 
-      expect(changeHandler).toHaveBeenCalledWith(options[2]);
+      expect(screen.getByLabelText("Warnings")).not.toBeChecked();
     });
   });
 
@@ -226,7 +236,7 @@ describe("when selecting an option", () => {
         }),
       );
 
-      expect(changeHandler).toHaveBeenCalledWith(options[1]);
+      expect(screen.getByLabelText("Errors")).toBeChecked();
     });
 
     it("should call the provided callback when using tab and spacebar keys", () => {
@@ -242,7 +252,7 @@ describe("when selecting an option", () => {
         }),
       );
 
-      expect(changeHandler).toHaveBeenCalledWith(options[1]);
+      expect(screen.getByLabelText("Errors")).toBeChecked();
     });
   });
 });

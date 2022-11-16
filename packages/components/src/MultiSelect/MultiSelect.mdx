@@ -22,26 +22,16 @@ import { MultiSelect } from "@jobber/components/MultiSelect";
   {() => {
     const [options, setOptions] = useState([
       { label: "Synced", checked: true },
-      { label: "Errors" },
+      { label: "Errors", checked: false },
       { label: "Warnings", checked: true },
       { label: "Ignored", checked: true },
     ]);
-    const handleChange = clickedOption => {
-      setOptions(current =>
-        current.map(option => {
-          if (option.label == clickedOption.label) {
-            return { ...option, checked: !clickedOption.checked };
-          }
-          return option;
-        })
-      );
-    };
     return (
       <MultiSelect
         defaultLabel="Status"
         allSelectedLabel="All Statuses"
         options={options}
-        onChange={handleChange}
+        onOptionsChange={setOptions}
       />
     );
   }}

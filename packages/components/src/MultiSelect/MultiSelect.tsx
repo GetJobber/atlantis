@@ -1,5 +1,5 @@
 import React, {
-  MouseEvent,
+  Dispatch,
   MutableRefObject,
   useEffect,
   useRef,
@@ -9,7 +9,7 @@ import classNames from "classnames";
 import { useOnKeyDown } from "@jobber/hooks";
 import styles from "./MultiSelect.css";
 import { DropDownMenu } from "./DropDownMenu";
-import { Option, Options } from "./types";
+import { Options } from "./types";
 import { handleKeyboardShortcut } from "./utils";
 import { Text } from "../Text";
 import { Icon } from "../Icon";
@@ -38,7 +38,7 @@ interface MultiSelectProps {
   /**
    * Change handler
    */
-  onChange(option: Option): void;
+  onOptionsChange: Dispatch<React.SetStateAction<Options>>;
 }
 
 // eslint-disable-next-line max-statements
@@ -47,7 +47,7 @@ export function MultiSelect({
   allSelectedLabel,
   options,
   ariaLabel,
-  onChange,
+  onOptionsChange,
 }: MultiSelectProps) {
   const [label, setLabel] = useState(defaultLabel);
   const [menuVisible, setMenuVisible] = useState(false);
@@ -130,7 +130,7 @@ export function MultiSelect({
         <Icon name="arrowDown" />
       </div>
       {menuVisible && (
-        <DropDownMenu options={options} onOptionSelect={onChange} />
+        <DropDownMenu options={options} setOptions={onOptionsChange} />
       )}
     </div>
   );
