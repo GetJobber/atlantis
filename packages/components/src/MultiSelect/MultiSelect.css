@@ -34,5 +34,5 @@
 .multiSelect:focus,
 .multiSelect.active {
   box-shadow: var(--shadow-focus);
-  outline-color: transparent;
+  outline: none;
 }
