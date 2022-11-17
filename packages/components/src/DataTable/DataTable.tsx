@@ -1,9 +1,4 @@
-import {
-  ColumnDef,
-  Row,
-  flexRender,
-  useReactTable,
-} from "@tanstack/react-table";
+import { ColumnDef, Row, useReactTable } from "@tanstack/react-table";
 import classNames from "classnames";
 import React, { LegacyRef } from "react";
 import { Breakpoints, useResizeObserver } from "@jobber/hooks";
@@ -13,7 +8,7 @@ import styles from "./DataTable.css";
 import { Pagination } from "./Pagination";
 import { Header } from "./Header";
 import { PaginationType, Sorting } from "./types";
-import { Typography } from "../Typography";
+import { Footer } from "./Footer";
 
 export interface DataTableProps<T> {
   /**
@@ -103,62 +98,15 @@ export function DataTable<T extends object>({
             stickyHeader={stickyHeader}
           />
           <Body table={table} onRowClick={onRowClick} />
-
-          {/* ToDo: Turn into a subcomponent after validation */}
-
           {exactWidth && exactWidth > Breakpoints.small ? (
-            <tfoot>
-              {table.getFooterGroups().map(footerGroup => (
-                <tr key={footerGroup.id}>
-                  {footerGroup.headers.map(header => (
-                    <th key={header.id}>
-                      {flexRender(
-                        header.column.columnDef.footer,
-                        header.getContext(),
-                      )}
-                    </th>
-                  ))}
-                </tr>
-              ))}
-            </tfoot>
+            <Footer table={table} exactWidth={exactWidth} viewType="desktop" />
           ) : null}
-
-          {/* ToDo end */}
         </table>
       </div>
       {exactWidth && exactWidth <= Breakpoints.small ? (
-        <div className={styles.mobileFooterContainer}>
-          {table.getFooterGroups().map(footerGroup => (
-            <div key={footerGroup.id}>
-              {footerGroup.headers
-                .filter(header => header.column.columnDef.footer)
-                .map((header, index) => (
-                  <>
-                    {index === 0 ? (
-                      <div className={styles.mobileFooterRow}>
-                        <Typography fontWeight="bold" key={header.id}>
-                          {header.column.columnDef.footer}
-                        </Typography>
-                      </div>
-                    ) : (
-                      <div
-                        className={styles.mobileFooterRow}
-                        key={footerGroup.id}
-                      >
-                        <Typography fontWeight="bold" key={header.id}>
-                          {header.column.columnDef.header}
-                        </Typography>
-                        <Typography key={header.id}>
-                          {header.column.columnDef.footer}
-                        </Typography>
-                      </div>
-                    )}
-                  </>
-                ))}
-            </div>
-          ))}
-        </div>
+        <Footer table={table} exactWidth={exactWidth} viewType="handheld" />
       ) : null}
+
       {pagination && (
         <Pagination
           table={table}

@@ -36,8 +36,6 @@
   padding: var(--space-base);
 }
 
-/* ToDo: Move to component css after validation */
-
 .table tfoot {
   position: sticky;
   z-index: 1;
@@ -51,22 +49,6 @@
 .table tfoot tr th {
   padding: var(--space-base);
 }
-
-.mobileFooterContainer {
-  padding: var(--space-base);
-  border-top: var(--border-base) solid var(--color-border);
-}
-
-.mobileFooterRow {
-  display: flex;
-  justify-content: space-between;
-}
-
-.mobileFooterRow:not(:last-child) {
-  padding-bottom: var(--space-small);
-}
-
-/* ToDo end */
 
 .pinFirstColumn thead tr th:first-child,
 .pinFirstColumn tbody tr td:first-child {
