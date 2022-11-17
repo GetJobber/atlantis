@@ -1,20 +1,20 @@
 import { Table } from "@tanstack/react-table";
 import React, { useMemo } from "react";
-import styles from "./Footer.css";
+import styles from "./Pagination.css";
 import { Option, Select } from "../Select";
 import { Button } from "../Button";
 
-interface FooterProps<T> {
+interface PaginationProps<T> {
   table: Table<T>;
   itemsPerPage?: number[];
   totalItems: number;
 }
 
-export function Footer<T extends object>({
+export function Pagination<T extends object>({
   table,
   itemsPerPage,
   totalItems,
-}: FooterProps<T>) {
+}: PaginationProps<T>) {
   const { pageIndex, pageSize } = table.getState().pagination;
   const totalRows = totalItems;
   const firstPosition = pageIndex * pageSize + 1;

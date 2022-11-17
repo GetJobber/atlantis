@@ -10,9 +10,9 @@ import { Breakpoints, useResizeObserver } from "@jobber/hooks";
 import { Body } from "./Body";
 import { createTableSettings } from "./createTableSettings";
 import styles from "./DataTable.css";
-import { Footer } from "./Footer";
+import { Pagination } from "./Pagination";
 import { Header } from "./Header";
-import { Pagination, Sorting } from "./types";
+import { PaginationType, Sorting } from "./types";
 import { Typography } from "../Typography";
 
 export interface DataTableProps<T> {
@@ -35,7 +35,7 @@ export interface DataTableProps<T> {
    * https://tanstack.com/table/v8/docs/api/features/pagination
    *
    */
-  pagination?: Pagination;
+  pagination?: PaginationType;
 
   /**
    * Enables sorting, mostly follows:
@@ -160,7 +160,7 @@ export function DataTable<T extends object>({
         </div>
       ) : null}
       {pagination && (
-        <Footer
+        <Pagination
           table={table}
           itemsPerPage={pagination.itemsPerPage}
           totalItems={
