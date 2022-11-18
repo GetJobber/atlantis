@@ -6,6 +6,12 @@
 .mobileFooterRow {
   display: flex;
   justify-content: space-between;
+  font-weight: bold;
+}
+
+.mobileFooterRowData,
+.mobileFooterRowData * {
+  font-weight: normal;
 }
 
 .mobileFooterRow:not(:last-child) {
