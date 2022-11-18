@@ -99,12 +99,12 @@ export function DataTable<T extends object>({
           />
           <Body table={table} onRowClick={onRowClick} />
           {exactWidth && exactWidth > Breakpoints.small ? (
-            <Footer table={table} exactWidth={exactWidth} viewType="desktop" />
+            <Footer table={table} viewType="desktop" />
           ) : null}
         </table>
       </div>
       {exactWidth && exactWidth <= Breakpoints.small ? (
-        <Footer table={table} exactWidth={exactWidth} viewType="handheld" />
+        <Footer table={table} />
       ) : null}
 
       {pagination && (

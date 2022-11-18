@@ -8,6 +8,13 @@ interface Data {
   isAlive: string;
 }
 
+interface RoyaltyReportData {
+  franchiseName: string;
+  payment: string;
+  royaltyRate: number;
+  royaltyAmount: string;
+}
+
 export const data: Data[] = [
   {
     name: "Eddard",
@@ -128,5 +135,52 @@ export const columns: ColumnDef<Data>[] = [
     accessorFn: row => (row.name === "Jon Snow" ? "Resurrected" : row.isAlive),
     cell: info => info.getValue(),
     header: "Alive",
+  },
+];
+
+export const royaltyReportColumns: ColumnDef<RoyaltyReportData>[] = [
+  {
+    id: "franchiseName",
+    accessorKey: "franchiseName",
+    header: "Franchise Name",
+    footer: "Report Totals ($)",
+  },
+  {
+    id: "payment",
+    accessorKey: "payment",
+    header: "Payment ($)",
+    footer: "10,050,400",
+  },
+  {
+    id: "royaltyRate",
+    accessorKey: "royaltyRate",
+    header: "Royalty Rate (%)",
+  },
+  {
+    id: "royaltyAmount",
+    accessorKey: "royaltyAmount",
+    header: "Royalty Amount ($)",
+    footer: "300,000",
+  },
+];
+
+export const royaltyReportData: RoyaltyReportData[] = [
+  {
+    franchiseName: "The Patch Boys of Macon and Warner Robins",
+    payment: "1,000,000",
+    royaltyRate: 5,
+    royaltyAmount: "50,000",
+  },
+  {
+    franchiseName: "The Patch Boys of San Antonio",
+    payment: "2,000,000",
+    royaltyRate: 5,
+    royaltyAmount: "40,000",
+  },
+  {
+    franchiseName: "The Patch Boys of Phoenix",
+    payment: "1,250,000",
+    royaltyRate: 8,
+    royaltyAmount: "20,000",
   },
 ];

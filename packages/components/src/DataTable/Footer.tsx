@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, flexRender } from "@tanstack/react-table";
+import { ColumnDef, Table, flexRender } from "@tanstack/react-table";
 import styles from "./Footer.css";
 import { Typography } from "../Typography";
 
@@ -10,12 +10,16 @@ export interface FooterProps<T> {
   viewType?: ViewType;
 }
 
-interface ViewProps<T> {
+interface DesktopViewProps<T> {
   table: Table<T>;
 }
 
-const DesktopView = <T extends object>({ table }: ViewProps<T>) => (
-  <tfoot>
+interface HandheldViewProps<T> {
+  columns: ColumnDef<T>[];
+}
+
+const DesktopView = <T extends object>({ table }: DesktopViewProps<T>) => (
+  <tfoot data-testid="data-table-desktop-footer">
     {table.getFooterGroups().map(footerGroup => (
       <tr key={footerGroup.id}>
         {footerGroup.headers.map(header => (
@@ -28,32 +32,23 @@ const DesktopView = <T extends object>({ table }: ViewProps<T>) => (
   </tfoot>
 );
 
-const HandheldView = <T extends object>({ table }: ViewProps<T>) => (
-  <div className={styles.mobileFooterContainer}>
-    {table.getFooterGroups().map(footerGroup => (
-      <div key={footerGroup.id}>
-        {footerGroup.headers
-          .filter(header => header.column.columnDef.footer)
-          .map((header, index) => (
-            <>
-              {index === 0 ? (
-                <div className={styles.mobileFooterRow}>
-                  <Typography fontWeight="bold" key={header.id}>
-                    {header.column.columnDef.footer}
-                  </Typography>
-                </div>
-              ) : (
-                <div className={styles.mobileFooterRow} key={footerGroup.id}>
-                  <Typography fontWeight="bold" key={header.id}>
-                    {header.column.columnDef.header}
-                  </Typography>
-                  <Typography key={header.id}>
-                    {header.column.columnDef.footer}
-                  </Typography>
-                </div>
-              )}
-            </>
-          ))}
+const HandheldView = <T extends object>({ columns }: HandheldViewProps<T>) => (
+  <div
+    className={styles.mobileFooterContainer}
+    data-testid="data-table-handheld-footer"
+  >
+    {columns.map((column, index) => (
+      <div key={column.id}>
+        {index === 0 ? (
+          <div className={styles.mobileFooterRow}>
+            <Typography fontWeight="bold">{column.footer}</Typography>
+          </div>
+        ) : (
+          <div className={styles.mobileFooterRow}>
+            <Typography fontWeight="bold">{column.header}</Typography>
+            <Typography>{column.footer}</Typography>
+          </div>
+        )}
       </div>
     ))}
   </div>
@@ -63,9 +58,17 @@ export const Footer = <T extends object>({
   table,
   viewType = "handheld",
 }: FooterProps<T>) => {
-  return viewType === "handheld" ? (
-    <HandheldView table={table} />
-  ) : (
-    <DesktopView table={table} />
-  );
+  const columnsWithFooter = table
+    ._getColumnDefs()
+    .filter(column => column.footer);
+
+  if (columnsWithFooter.length > 0) {
+    return viewType === "handheld" ? (
+      <HandheldView columns={columnsWithFooter} />
+    ) : (
+      <DesktopView table={table} />
+    );
+  }
+
+  return null;
 };

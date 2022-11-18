@@ -1,12 +1,34 @@
 import React from "react";
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import * as jobberHooks from "@jobber/hooks";
 import { DataTable } from "./DataTable";
-import { columns, data } from "./test-utilities";
+import {
+  columns,
+  data,
+  royaltyReportColumns,
+  royaltyReportData,
+} from "./test-utilities";
+
+const mockContainerWidth = (exactWidth?: number) => {
+  jest.spyOn(jobberHooks, "useResizeObserver").mockReturnValue([
+    { current: null },
+    {
+      width: 1200,
+      height: 800,
+      exactWidth: exactWidth || 1200,
+      exactHeight: 800,
+    },
+  ]);
+};
 
 describe("when rendering a Basic Table", () => {
   beforeEach(() => {
     render(<DataTable data={data} columns={columns} />);
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
   it("renders all headers", () => {
@@ -186,5 +208,47 @@ describe("when using onRowClick", () => {
     const firstBodyRow = screen.getAllByRole("row")[1];
     userEvent.click(firstBodyRow);
     expect(clickHandler).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe("when using the column footers", () => {
+  beforeEach(() => {
+    mockContainerWidth();
+    render(
+      <DataTable data={royaltyReportData} columns={royaltyReportColumns} />,
+    );
+  });
+
+  it("renders the footer row with the totals", () => {
+    const totalsRowTitle = screen.getByText("Report Totals ($)");
+    const totalsRowFirstData = screen.getByText("10,050,400");
+    const totalsRowSecondData = screen.getByText("300,000");
+
+    expect(totalsRowTitle).toBeDefined();
+    expect(totalsRowFirstData).toBeDefined();
+    expect(totalsRowSecondData).toBeDefined();
+  });
+
+  describe("when the table has a width > 500px", () => {
+    it("renders the footer desktop view", () => {
+      const totalsRow = screen.getByTestId("data-table-desktop-footer");
+
+      expect(totalsRow).toBeDefined();
+    });
+  });
+
+  describe("when the table has a width <= 500px", () => {
+    beforeEach(() => {
+      mockContainerWidth(499);
+      render(
+        <DataTable data={royaltyReportData} columns={royaltyReportColumns} />,
+      );
+    });
+
+    it("renders the footer handheld view", () => {
+      const totalsRow = screen.getByTestId("data-table-handheld-footer");
+
+      expect(totalsRow).toBeDefined();
+    });
   });
 });
