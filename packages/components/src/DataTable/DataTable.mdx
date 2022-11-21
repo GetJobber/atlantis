@@ -587,7 +587,7 @@ import { DataTable } from "@jobber/components/DataTable";
   }}
 </Playground>
 
-## Table with totals footer row
+## Table with footer row
 
 <Playground>
   <DataTable
@@ -596,91 +596,79 @@ import { DataTable } from "@jobber/components/DataTable";
     sorting={{ manualSorting: false }}
     data={[
       {
-        franchiseName: "The Patch Boys of Macon and Warner Robins",
-        payment: "1,000,000",
-        royaltyRate: 5,
-        royaltyAmount: "50,000",
+        name: "Eddard",
+        points: "1,000,000",
+        chance: 5,
+        power: "50,000",
       },
       {
-        franchiseName: "The Patch Boys of San Antonio",
-        payment: "2,000,000",
-        royaltyRate: 5,
-        royaltyAmount: "40,000",
+        name: "Catelyn",
+        points: "2,000,000",
+        chance: 5,
+        power: "40,000",
       },
       {
-        franchiseName: "The Patch Boys of Phoenix",
-        payment: "1,250,000",
-        royaltyRate: 8,
-        royaltyAmount: "20,000",
+        name: "Jon",
+        points: "1,250,000",
+        chance: 8,
+        power: "20,000",
       },
       {
-        franchiseName: "The Patch Boys of Macon and Warner Robins",
-        payment: "1,000,000",
-        royaltyRate: 5,
-        royaltyAmount: "50,000",
+        name: "Robert",
+        points: "1,000,000",
+        chance: 5,
+        power: "50,000",
       },
       {
-        franchiseName: "The Patch Boys of San Antonio",
-        payment: "2,000,000",
-        royaltyRate: 5,
-        royaltyAmount: "40,000",
+        name: "Rickon",
+        points: "2,000,000",
+        chance: 5,
+        power: "40,000",
       },
       {
-        franchiseName: "The Patch Boys of Phoenix",
-        payment: "1,250,000",
-        royaltyRate: 8,
-        royaltyAmount: "20,000",
+        name: "Robert",
+        points: "1,250,000",
+        chance: 8,
+        power: "20,000",
       },
       {
-        franchiseName: "The Patch Boys of Macon and Warner Robins",
-        payment: "1,000,000",
-        royaltyRate: 5,
-        royaltyAmount: "50,000",
+        name: "Cersei",
+        points: "1,000,000",
+        chance: 5,
+        power: "50,000",
       },
       {
-        franchiseName: "The Patch Boys of San Antonio",
-        payment: "2,000,000",
-        royaltyRate: 5,
-        royaltyAmount: "40,000",
+        name: "Sansa",
+        points: "2,000,000",
+        chance: 5,
+        power: "40,000",
       },
       {
-        franchiseName: "The Patch Boys of Phoenix",
-        payment: "1,250,000",
-        royaltyRate: 8,
-        royaltyAmount: "20,000",
+        name: "Arya",
+        points: "1,250,000",
+        chance: 8,
+        power: "20,000",
       },
       {
-        franchiseName: "The Patch Boys of Macon and Warner Robins",
-        payment: "1,000,000",
-        royaltyRate: 5,
-        royaltyAmount: "50,000",
-      },
-      {
-        franchiseName: "The Patch Boys of San Antonio",
-        payment: "2,000,000",
-        royaltyRate: 5,
-        royaltyAmount: "40,000",
-      },
-      {
-        franchiseName: "The Patch Boys of Phoenix",
-        payment: "1,250,000",
-        royaltyRate: 8,
-        royaltyAmount: "20,000",
+        name: "Bran",
+        points: "1,000,000",
+        chance: 5,
+        power: "50,000",
       },
     ]}
     columns={[
       {
-        id: "franchiseName",
-        accessorKey: "franchiseName",
-        header: "Franchise Name",
-        footer: "Report Totals ($)",
+        id: "name",
+        accessorKey: "name",
+        header: "Name",
+        footer: "Totals",
       },
       {
-        id: "payment",
-        accessorKey: "payment",
+        id: "points",
+        accessorKey: "points",
         header: () => (
           <Typography align="end" fontWeight="bold">
-            Payment ($)
+            Points
           </Typography>
         ),
         footer: () => (
@@ -691,21 +679,21 @@ import { DataTable } from "@jobber/components/DataTable";
         cell: info => <Typography align="end">{info.getValue()}</Typography>,
       },
       {
-        id: "royaltyRate",
-        accessorKey: "royaltyRate",
+        id: "chance",
+        accessorKey: "chance",
         header: () => (
           <Typography align="end" fontWeight="bold">
-            Royalty Rate (%)
+            Chance (%)
           </Typography>
         ),
         cell: info => <Typography align="end">{info.getValue()}</Typography>,
       },
       {
-        id: "royaltyAmount",
-        accessorKey: "royaltyAmount",
+        id: "power",
+        accessorKey: "power",
         header: () => (
           <Typography align="end" fontWeight="bold">
-            Royalty Amount ($)
+            Power
           </Typography>
         ),
         footer: () => (
