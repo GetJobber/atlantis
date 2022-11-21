@@ -95,8 +95,29 @@ import { DataTable } from "@jobber/components/DataTable";
 ## Props
 
 <Props of={DataTable} />
+  
+## Design & Usage Guidelines
 
-## Table with Actions
+The `DataTable` component is a great solution if you are looking to display data
+in a tabular way while giving your user the ability to sort, paginate or filter
+that data, this can be implemented on the server side or on the client side
+depending on your needs.
+
+A best practice in Data Table presentation is to ensure that all columns with
+numerical data (and their headers) round to the same decimal point, and are
+right-aligned. This makes it much easier for the reader to quickly parse large
+distinctions in dollar amounts, inventory counts, and other key business data.
+  
+### Related components
+
+To list more complex collections of information (such as multi-line content like
+a detailed property address), you may want to consider the
+[List](https://atlantis.getjobber.com/components/list) component. If you have a
+small list of information with a 1:1 label-to-data relationship (for example,
+the issued and due dates on an invoice), consider using
+[DescriptionList](https://atlantis.getjobber.com/components/description-list).
+
+### Table with actions
 
 <Playground>
   <DataTable
@@ -197,7 +218,7 @@ import { DataTable } from "@jobber/components/DataTable";
   />
 </Playground>
 
-## Client-Side Pagination, Sorting, Clickable Rows, and Fixed Height with Sticky Header
+### Client-side pagination, sorting, clickable rows, and fixed height with sticky header
 
 <Playground>
   <DataTable
@@ -331,7 +352,7 @@ import { DataTable } from "@jobber/components/DataTable";
   />
 </Playground>
 
-## Horizontal Scrolling, Pinning First Column, Custom Cell, Custom Header
+### Horizontal scrolling, pinning first column, custom cell, custom header
 
 <Playground>
   <div style={{ maxWidth: 390 }}>
@@ -412,7 +433,7 @@ import { DataTable } from "@jobber/components/DataTable";
   </div>
 </Playground>
 
-## Manual Sorting
+### Manual sorting
 
 <Playground>
   {() => {
@@ -521,7 +542,7 @@ import { DataTable } from "@jobber/components/DataTable";
   }}
 </Playground>
 
-## Manual Pagination
+### Manual pagination
 
 <Playground>
   {() => {
@@ -586,42 +607,12 @@ import { DataTable } from "@jobber/components/DataTable";
   }}
 </Playground>
 
-## Design & Usage Guidelines
-
-The `DataTable` component is a great solution if you are looking to display data
-in a tabular way while giving your user the ability to sort, paginate or filter
-that data, this can be implemented on the server side or on the client side
-depending on your needs.
-
-A best practice in Data Table presentation is to ensure that all columns with
-numerical data (and their headers) round to the same decimal point, and are
-right-aligned. This makes it much easier for the reader to quickly parse large
-distinctions in dollar amounts, inventory counts, and other key business data.
-
-To list more complex collections of information (such as multi-line content like
-a detailed property address), you may want to consider the
-[List](https://atlantis.getjobber.com/components/list) component. If you have a
-small list of information with a 1:1 label-to-data relationship (for example,
-the issued and due dates on an invoice), consider using
-[DescriptionList](https://atlantis.getjobber.com/components/description-list).
-
 ## Responsiveness
+  
+Each cell will take up an equal amount of width as long as the width of table allows.
+As the table narrows, columns will resize respecting the longest content, eventually
+reflowing the content as space becomes more scarce. Once the cells can no longer 
+reflow, the table will scroll horizontally.
 
-The `DataTable` component has the option to handle responsive design, these
-options will allow us to fix the header or the first left column depending on
-your needs, this will allow the user a more efficient way to visualize the data.
-
-<iframe
-  style="border: 1px solid rgba(0, 0, 0, 0.1);"
-  width="800"
-  height="450"
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F3BXCXXD9glMtj8RAHjXiQC%2FDesign-System-Contribution-TEMPLATE%3Fnode-id%3D332%253A5526"
-  allowfullscreen
-></iframe>
-
-<!--
-  Insert a Figma mockup from the [Design System Contribution template](https://www.figma.com/file/3BXCXXD9glMtj8RAHjXiQC/Design-System-Contribution-TEMPLATE?node-id=26%3A2)
-  that conveys the visual design of the component, with variants and state accounted for.
-  Consider progressive enhancement; might this rely on newer browser features that aren’t
-  widely supported yet?
--->
+The `DataTable` component has the option to fix the header or the first left column 
+as needed to allow the user a more efficient way to read the data at narrower widths.
