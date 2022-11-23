@@ -1,6 +1,6 @@
 .mobileFooterContainer {
   padding: var(--space-base);
-  border-top: var(--border-base) solid var(--color-border);
+  border-top: var(--border-thick) solid var(--color-border);
 }
 
 .mobileFooterRow {
