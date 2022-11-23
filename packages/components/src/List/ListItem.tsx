@@ -72,7 +72,7 @@ export interface ListItemProps {
     event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
   ): void;
 }
-
+const button = "button" as const;
 export function ListItem({
   caption,
   content,
@@ -93,7 +93,10 @@ export function ListItem({
   const Wrapper = url ? "a" : "button";
 
   const buttonProps = {
-    ...(Wrapper === "button" && { role: "button", type: "button" }),
+    ...(Wrapper === "button" && {
+      role: button,
+      type: button,
+    }),
   };
 
   return (
