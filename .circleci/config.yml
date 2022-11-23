@@ -46,6 +46,11 @@ references:
       name: Install Dependencies
       command: npm ci
 
+  learna_build_types: &learna_build_types
+    run:
+      name: "Learna Build"
+      command: npm run install
+
   github_authenticity: &github_authenticity
     run:
       name: Establishing GitHub Authenticity
@@ -77,6 +82,7 @@ jobs:
       - *sum_lockfiles
       - *restore_npm_cache
       - *npm_install
+      - *learna_build_types
       - *persist_to_workspace
       - save_cache:
           name: Save npm cache
