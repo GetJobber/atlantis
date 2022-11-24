@@ -9,9 +9,14 @@
   font-weight: bold;
 }
 
+.mobileFooterRow * {
+  text-align: start;
+}
+
 .mobileFooterRowData,
 .mobileFooterRowData * {
   font-weight: normal;
+  text-align: end;
 }
 
 .mobileFooterRow:not(:last-child) {
