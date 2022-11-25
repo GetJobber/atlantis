@@ -10,6 +10,8 @@ interface PaginationProps<T> {
   totalItems: number;
 }
 
+const defaultItemsPerPageOptions = ["10", "20", "30", "40", "50"];
+
 export function Pagination<T extends object>({
   table,
   itemsPerPage,
@@ -19,11 +21,6 @@ export function Pagination<T extends object>({
   const totalRows = totalItems;
   const firstPosition = pageIndex * pageSize + 1;
   const secondPosition = Math.min(totalRows, pageSize * (pageIndex + 1));
-
-  const defaultItemsPerPageOptions = useMemo(
-    () => ["10", "20", "30", "40", "50"],
-    [],
-  );
 
   const itemsPerPageOptions = useMemo(
     () => itemsPerPage?.map(item => String(item)) ?? defaultItemsPerPageOptions,

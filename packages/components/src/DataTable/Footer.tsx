@@ -70,7 +70,9 @@ export const Footer = <T extends object>({
   table,
   viewType = "handheld",
 }: FooterProps<T>) => {
-  const hasFooter = table._getColumnDefs().find(column => column.footer);
+  const hasFooter = table
+    .getAllColumns()
+    .find(column => column.columnDef.footer);
 
   if (hasFooter) {
     return viewType === "handheld" ? (
