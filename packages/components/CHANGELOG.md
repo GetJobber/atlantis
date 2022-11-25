@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.89.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.88.0...@jobber/components@2.89.0) (2022-11-25)
+
+
+### Features
+
+* **components:** Add footer row to Data Table component (JOB-57643) ([#934](https://github.com/GetJobber/atlantis/issues/934)) ([452f0de](https://github.com/GetJobber/atlantis/commit/452f0de362a711b42ef72f0c2dc84a15ae6ffc54))
+
+
+
+
+
 # [2.88.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.87.0...@jobber/components@2.88.0) (2022-11-16)
 
 
