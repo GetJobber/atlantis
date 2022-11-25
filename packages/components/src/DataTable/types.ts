@@ -92,4 +92,4 @@ export interface DefaultSorting {
   manualSorting: false;
 }
 
-export type Sorting = DefaultSorting | ManualSorting;
+export type SortingType = DefaultSorting | ManualSorting;
