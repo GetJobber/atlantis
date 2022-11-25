@@ -35,7 +35,7 @@ export interface ManualPagination {
    * The options to control the pagination
    *
    * @type {number[]}
-   * @memberof Pagination
+   * @memberof PaginationType
    */
   itemsPerPage?: number[];
   /**
@@ -43,7 +43,7 @@ export interface ManualPagination {
    * records in the table should be provided.
    *
    * @type {number}
-   * @memberof Pagination
+   * @memberof PaginationType
    */
   totalItems: number;
 }
@@ -54,7 +54,7 @@ export interface DefaultPagination {
   itemsPerPage?: number[];
 }
 
-export type Pagination = DefaultPagination | ManualPagination;
+export type PaginationType = DefaultPagination | ManualPagination;
 
 export interface ManualSorting {
   /**

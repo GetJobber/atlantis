@@ -1,75 +1,86 @@
-import { Table } from "@tanstack/react-table";
-import React, { useMemo } from "react";
+import React from "react";
+import { Table, flexRender } from "@tanstack/react-table";
 import styles from "./Footer.css";
-import { Option, Select } from "../Select";
-import { Button } from "../Button";
 
-interface FooterProps<T> {
+export type ViewType = "desktop" | "handheld";
+
+export interface FooterProps<T> {
   table: Table<T>;
-  itemsPerPage?: number[];
-  totalItems: number;
+  viewType?: ViewType;
 }
 
-export function Footer<T extends object>({
+interface ViewProps<T> {
+  table: Table<T>;
+}
+
+const DesktopView = <T extends object>({ table }: ViewProps<T>) => (
+  <tfoot data-testid="data-table-desktop-footer">
+    {table.getFooterGroups().map(footerGroup => (
+      <tr key={footerGroup.id}>
+        {footerGroup.headers.map(header => (
+          <th key={header.id}>
+            {flexRender(header.column.columnDef.footer, header.getContext())}
+          </th>
+        ))}
+      </tr>
+    ))}
+  </tfoot>
+);
+
+const HandheldView = <T extends object>({ table }: ViewProps<T>) => (
+  <div
+    className={styles.mobileFooterContainer}
+    data-testid="data-table-handheld-footer"
+  >
+    {table.getFooterGroups().map(footerGroup => (
+      <div key={footerGroup.id}>
+        {footerGroup.headers
+          .filter(header => header.column.columnDef.footer)
+          .map((header, index) => (
+            <>
+              {index === 0 ? (
+                <div className={styles.mobileFooterRow}>
+                  {flexRender(
+                    header.column.columnDef.footer,
+                    header.getContext(),
+                  )}
+                </div>
+              ) : (
+                <div className={styles.mobileFooterRow} key={footerGroup.id}>
+                  {flexRender(
+                    header.column.columnDef.header,
+                    header.getContext(),
+                  )}
+                  <div className={styles.mobileFooterRowData}>
+                    {flexRender(
+                      header.column.columnDef.footer,
+                      header.getContext(),
+                    )}
+                  </div>
+                </div>
+              )}
+            </>
+          ))}
+      </div>
+    ))}
+  </div>
+);
+
+export const Footer = <T extends object>({
   table,
-  itemsPerPage,
-  totalItems,
-}: FooterProps<T>) {
-  const { pageIndex, pageSize } = table.getState().pagination;
-  const totalRows = totalItems;
-  const firstPosition = pageIndex * pageSize + 1;
-  const secondPosition = Math.min(totalRows, pageSize * (pageIndex + 1));
+  viewType = "handheld",
+}: FooterProps<T>) => {
+  const hasFooter = table
+    .getAllColumns()
+    .find(column => column.columnDef.footer);
 
-  const defaultItemsPerPageOptions = useMemo(
-    () => ["10", "20", "30", "40", "50"],
-    [],
-  );
+  if (hasFooter) {
+    return viewType === "handheld" ? (
+      <HandheldView table={table} />
+    ) : (
+      <DesktopView table={table} />
+    );
+  }
 
-  const itemsPerPageOptions = useMemo(
-    () => itemsPerPage?.map(item => String(item)) ?? defaultItemsPerPageOptions,
-    [itemsPerPage],
-  );
-
-  return (
-    <div className={styles.pagination}>
-      <div className={styles.paginationInfo}>
-        {`Showing ${firstPosition}-${secondPosition} of ${totalRows} items`}
-      </div>
-      <div className={styles.paginationNav}>
-        <div className={styles.paginationSelect}>
-          <Select
-            value={table.getState().pagination.pageSize}
-            onChange={value => {
-              table.setPageSize(Number(value));
-            }}
-          >
-            {itemsPerPageOptions.map(numOfPages => (
-              <Option key={numOfPages} value={numOfPages}>
-                {numOfPages}
-              </Option>
-            ))}
-          </Select>
-          <span className={styles.paginationSelectLabel}>per page</span>
-        </div>
-        <div className={styles.paginationButtons}>
-          <Button
-            type="secondary"
-            variation="subtle"
-            icon="arrowLeft"
-            ariaLabel="arrowLeft"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          />
-          <Button
-            type="secondary"
-            variation="subtle"
-            icon="arrowRight"
-            ariaLabel="arrowRight"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          />
-        </div>
-      </div>
-    </div>
-  );
-}
+  return null;
+};

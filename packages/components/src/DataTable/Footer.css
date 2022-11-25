@@ -1,48 +1,24 @@
-.pagination {
+.mobileFooterContainer {
+  padding: var(--space-base);
+  border-top: var(--border-thick) solid var(--color-border);
+}
+
+.mobileFooterRow {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  min-height: calc(var(--space-smaller) + var(--space-largest));
-  padding: var(--space-small) var(--space-base);
-  border-top: var(--border-base) solid var(--color-border);
-  flex-wrap: wrap;
-  gap: var(--space-small);
+  font-weight: bold;
 }
 
-.paginationInfo {
-  flex: 9999;
-  white-space: nowrap;
+.mobileFooterRow * {
+  text-align: start;
 }
 
-.paginationNav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-base);
-  flex: 1;
-  flex-wrap: wrap;
-  min-width: fit-content;
+.mobileFooterRowData,
+.mobileFooterRowData * {
+  font-weight: normal;
+  text-align: end;
 }
 
-.paginationSelect {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-small);
-  min-width: calc(3 * var(--space-largest) + var(--space-small));
-}
-
-.paginationSelectLabel {
-  min-width: calc(var(--space-extravagant) + var(--space-smaller));
-}
-
-.paginationButtons {
-  display: flex;
-  gap: var(--space-large);
-  align-items: center;
-  justify-content: center;
-
-  @media (--handhelds) {
-    gap: var(--space-base);
-  }
+.mobileFooterRow:not(:last-child) {
+  padding-bottom: var(--space-small);
 }

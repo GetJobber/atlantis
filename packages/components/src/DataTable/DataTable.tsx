@@ -1,12 +1,14 @@
 import { ColumnDef, Row, useReactTable } from "@tanstack/react-table";
 import classNames from "classnames";
-import React from "react";
+import React, { LegacyRef } from "react";
+import { Breakpoints, useResizeObserver } from "@jobber/hooks";
 import { Body } from "./Body";
 import { createTableSettings } from "./createTableSettings";
 import styles from "./DataTable.css";
-import { Footer } from "./Footer";
+import { Pagination } from "./Pagination";
 import { Header } from "./Header";
-import { Pagination, Sorting } from "./types";
+import { PaginationType, Sorting } from "./types";
+import { Footer } from "./Footer";
 
 export interface DataTableProps<T> {
   /**
@@ -28,7 +30,7 @@ export interface DataTableProps<T> {
    * https://tanstack.com/table/v8/docs/api/features/pagination
    *
    */
-  pagination?: Pagination;
+  pagination?: PaginationType;
 
   /**
    * Enables sorting, mostly follows:
@@ -70,6 +72,7 @@ export function DataTable<T extends object>({
   pinFirstColumn,
   onRowClick,
 }: DataTableProps<T>) {
+  const [ref, { exactWidth }] = useResizeObserver();
   const tableSettings = createTableSettings(data, columns, {
     pagination,
     sorting,
@@ -82,7 +85,11 @@ export function DataTable<T extends object>({
   const table = useReactTable(tableSettings);
   return (
     <div className={styles.dataTableContainer}>
-      <div className={styles.tableContainer} style={{ height }}>
+      <div
+        className={styles.tableContainer}
+        style={{ height }}
+        ref={ref as LegacyRef<HTMLDivElement> | undefined}
+      >
         <table className={tableClasses}>
           <Header
             table={table}
@@ -91,10 +98,17 @@ export function DataTable<T extends object>({
             stickyHeader={stickyHeader}
           />
           <Body table={table} onRowClick={onRowClick} />
+          {exactWidth && exactWidth > Breakpoints.small ? (
+            <Footer table={table} viewType="desktop" />
+          ) : null}
         </table>
       </div>
+      {exactWidth && exactWidth <= Breakpoints.small ? (
+        <Footer table={table} />
+      ) : null}
+
       {pagination && (
-        <Footer
+        <Pagination
           table={table}
           itemsPerPage={pagination.itemsPerPage}
           totalItems={

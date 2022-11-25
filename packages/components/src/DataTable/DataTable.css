@@ -36,6 +36,20 @@
   padding: var(--space-base);
 }
 
+.table tfoot {
+  position: sticky;
+  z-index: 1;
+  width: 100%;
+  box-shadow: var(--shadow-base);
+  border-top: var(--border-thick) solid var(--color-border);
+  background-color: var(--color-surface);
+  inset-block-end: 0;
+}
+
+.table tfoot tr th {
+  padding: var(--space-base);
+}
+
 .pinFirstColumn thead tr th:first-child,
 .pinFirstColumn tbody tr td:first-child {
   position: sticky;
