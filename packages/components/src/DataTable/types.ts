@@ -1,6 +1,8 @@
 import { PaginationState, SortingState } from "@tanstack/react-table";
 import { Dispatch, SetStateAction } from "react";
 
+export { CellContext, HeaderContext } from "@tanstack/react-table";
+
 export interface ManualPagination {
   /**
    * When manually controlled represents the current pagination state of the table.
