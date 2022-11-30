@@ -6,12 +6,12 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
 } from "@tanstack/react-table";
-import { Pagination, Sorting } from "./types";
+import { PaginationType, SortingType } from "./types";
 
 export function createTableSettings<T>(
   data: T[],
   columns: ColumnDef<T>[],
-  options?: { pagination?: Pagination; sorting?: Sorting },
+  options?: { pagination?: PaginationType; sorting?: SortingType },
 ) {
   const { state: paginationState, ...restPaginationSettings } =
     getPaginationSettings(options?.pagination);
@@ -54,7 +54,7 @@ type PaginationSettings<T> = Pick<
 >;
 
 function getPaginationSettings<T>(
-  pagination?: Pagination,
+  pagination?: PaginationType,
 ): PaginationSettings<T> {
   const paginationSettings: PaginationSettings<T> = {};
 
@@ -90,7 +90,7 @@ type SortingSettings<T> = Pick<
   | "enableSortingRemoval"
 >;
 
-function getSortingSettings<T>(sorting?: Sorting): SortingSettings<T> {
+function getSortingSettings<T>(sorting?: SortingType): SortingSettings<T> {
   const sortingSettings: SortingSettings<T> = {};
 
   if (!sorting) return sortingSettings;

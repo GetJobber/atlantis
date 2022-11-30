@@ -7,7 +7,7 @@ import { createTableSettings } from "./createTableSettings";
 import styles from "./DataTable.css";
 import { Pagination } from "./Pagination";
 import { Header } from "./Header";
-import { PaginationType, Sorting } from "./types";
+import { PaginationType, SortingType } from "./types";
 import { Footer } from "./Footer";
 
 export interface DataTableProps<T> {
@@ -37,7 +37,7 @@ export interface DataTableProps<T> {
    * https://tanstack.com/table/v8/docs/api/features/sorting#table-options
    *
    */
-  sorting?: Sorting;
+  sorting?: SortingType;
 
   /**
    * This will force the table to have the specified hight

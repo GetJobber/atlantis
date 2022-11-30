@@ -39,6 +39,7 @@ export function Pagination<T extends object>({
             onChange={value => {
               table.setPageSize(Number(value));
             }}
+            size="small"
           >
             {itemsPerPageOptions.map(numOfPages => (
               <Option key={numOfPages} value={numOfPages}>
