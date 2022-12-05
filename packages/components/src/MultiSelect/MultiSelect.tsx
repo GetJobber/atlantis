@@ -34,6 +34,11 @@ interface MultiSelectProps {
    * Change handler
    */
   onOptionsChange: Dispatch<React.SetStateAction<Options>>;
+
+  /**
+   * Adjusts the interface to either have small or large spacing.
+   */
+  readonly size?: "small" | "large";
 }
 
 // eslint-disable-next-line max-statements
@@ -42,14 +47,17 @@ export function MultiSelect({
   allSelectedLabel,
   options,
   onOptionsChange,
+  size,
 }: MultiSelectProps) {
   const [label, setLabel] = useState(defaultLabel);
   const [menuVisible, setMenuVisible] = useState(false);
   const [focused, setFocused] = useState(false);
   const multiSelectContainer = useRef() as MutableRefObject<HTMLDivElement>;
   const multiSelectRef = useRef() as MutableRefObject<HTMLDivElement>;
-  const multiSelectClass = classNames(styles.multiSelect, {
+  const multiSelectClass = classNames(styles.multiSelectInput, {
     [styles.active]: menuVisible,
+    [styles.large]: size === "large",
+    [styles.small]: size === "small",
   });
 
   function handleMenuVisibility() {
