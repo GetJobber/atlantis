@@ -54,7 +54,7 @@ export function MultiSelect({
   const [focused, setFocused] = useState(false);
   const multiSelectContainer = useRef() as MutableRefObject<HTMLDivElement>;
   const multiSelectRef = useRef() as MutableRefObject<HTMLDivElement>;
-  const multiSelectClass = classNames(styles.multiSelectInput, {
+  const multiSelectClass = classNames(styles.multiSelect, {
     [styles.active]: menuVisible,
     [styles.large]: size === "large",
     [styles.small]: size === "small",

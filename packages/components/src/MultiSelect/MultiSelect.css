@@ -3,7 +3,7 @@
   width: 100%;
 }
 
-.multiSelectInput {
+.multiSelect {
   --field--height: var(--space-largest);
 
   --field--padding-top: calc(var(--space-base) - var(--space-smallest));
@@ -25,20 +25,20 @@
   border-radius: var(--radius-base);
 }
 
-.multiSelectInput p {
+.multiSelect p {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .multiSelectContainer:hover,
-.multiSelectContainer.multiSelectInput {
+.multiSelectContainer.multiSelect {
   cursor: pointer;
   caret-color: transparent;
 }
 
-.multiSelectInput:focus,
-.multiSelectInput.active {
+.multiSelect:focus,
+.multiSelect.active {
   box-shadow: var(--shadow-focus);
   outline: none;
 }
