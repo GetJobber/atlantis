@@ -14,6 +14,7 @@
     "serve": "docz serve",
     "clean": "rm -rf .docz",
     "lerna:bootstrap": "lerna bootstrap",
+    "lerna:compile-typescript": "lerna run ci:typescript-compile",
     "lint:js": "eslint --ext .js,.jsx,.ts,.tsx .",
     "lint:css": "stylelint 'packages/**/*.css' --allow-empty-input",
     "lint:markdown": "prettier --check '**/*.{md,mdx}' --write",
