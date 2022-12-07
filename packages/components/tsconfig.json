@@ -11,11 +11,15 @@
     "outDir": "dist"
   },
   "include": [
-    "src"
+    "src",
+    "typings"
   ],
   "paths": {
-    "@tanstack": [
-      "typings/@tanstack"
+    "@tanstack/table-core": [
+      "typings/@tanstack/table-core"
+    ],
+    "@tanstack/react-table": [
+      "typings/@tanstack/react-table"
     ],
   },
   "exclude": [

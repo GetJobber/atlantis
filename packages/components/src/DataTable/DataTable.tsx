@@ -1,4 +1,9 @@
-import { ColumnDef, Row, useReactTable } from "@tanstack/react-table";
+import {
+  ColumnDef,
+  DeepValue,
+  Row,
+  useReactTable,
+} from "@tanstack/react-table";
 import classNames from "classnames";
 import React, { LegacyRef } from "react";
 import { Breakpoints, useResizeObserver } from "@jobber/hooks";
