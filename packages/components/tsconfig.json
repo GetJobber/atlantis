@@ -1,13 +1,31 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "lib": ["dom", "es2018"],
+    "lib": [
+      "dom",
+      "es2018"
+    ],
     "jsx": "react",
     "declaration": true,
     "rootDir": "src",
     "outDir": "dist"
   },
-  "include": ["src"],
-  "exclude": ["**/*.test.ts", "**/*.test.tsx", "entryPoints.ts"],
-  "references": [{ "path": "../formatters" }]
+  "include": [
+    "src"
+  ],
+  "paths": {
+    "@tanstack": [
+      "typings/@tanstack"
+    ],
+  },
+  "exclude": [
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "entryPoints.ts"
+  ],
+  "references": [
+    {
+      "path": "../formatters"
+    }
+  ]
 }
