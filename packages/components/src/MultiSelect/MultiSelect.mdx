@@ -8,6 +8,7 @@ showDirectoryLink: true
 import { Playground, Props } from "docz";
 import { MultiSelect } from ".";
 import { useState } from "react";
+import { Divider } from "@jobber/components/Divider";
 
 # Multi Select
 
@@ -51,7 +52,40 @@ The element will display the selected options or the placeholder text if none
 are selected.
 
 Every time an option is checked or unchecked a behavior can be triggered using
-the onChange prop
+the onOptionsChange prop
+
+### Sizes
+
+Adjusting the size of the `MultiSelect` can be used to help align with common
+adjacent elements such as `InputText` or `Select`.
+
+<Playground>
+  {() => {
+    const [options, setOptions] = useState([
+      { label: "Small", checked: false },
+      { label: "Large", checked: false },
+    ]);
+    return (
+      <>
+        <MultiSelect
+          defaultLabel="Small"
+          allSelectedLabel="All Selected"
+          options={options}
+          onOptionsChange={setOptions}
+          size="small"
+        />
+        <Divider size="largest" />
+        <MultiSelect
+          defaultLabel="Large"
+          allSelectedLabel="All selected"
+          options={options}
+          onOptionsChange={setOptions}
+          size="large"
+        />
+      </>
+    );
+  }}
+</Playground>
 
 ## Accessibility
 
