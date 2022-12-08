@@ -3,6 +3,10 @@
   width: 100%;
 }
 
+.multiSelectContainer * {
+  box-sizing: border-box;
+}
+
 .multiSelect {
   --field--height: var(--space-largest);
 
