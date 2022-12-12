@@ -10,7 +10,7 @@
     "prepublishOnly": "ts-node --project ../../tsconfig.bin.json scripts/entryPoints.ts",
     "prepare": "npm run clean; npm run build",
     "postpublish": "ts-node --project ../../tsconfig.bin.json scripts/entryPoints.ts clean",
-    "ci:typescript-compile": "tsc --project ."
+    "ci:typescript-compile": "rm tsconfig.ci.tsbuildinfo && tsc --project tsconfig.ci.json"
   },
   "files": [
     "*.js",
