@@ -203,7 +203,6 @@ workflows:
             branches:
               only: "master"
           requires:
-            - check_for_manual_release
             - typescript_compile
             - lint_javascript
             - lint_css
