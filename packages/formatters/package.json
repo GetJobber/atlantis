@@ -9,8 +9,6 @@
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
     "prepare": "npm run clean; npm run build",
     "ci:typescript-compile": "npm run prepare"
-
-
   },
   "files": [
     "dist/*"
