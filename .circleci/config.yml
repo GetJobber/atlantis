@@ -95,7 +95,6 @@ jobs:
       - *build_types
       - *persist_to_workspace
 
-
   typescript_compile:
     <<: *container_config
     steps:
