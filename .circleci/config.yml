@@ -92,6 +92,7 @@ jobs:
   lerna_build_types:
     <<: *container_config
     steps:
+      - *attach_workspace
       - *build_types
       - *persist_to_workspace
 
