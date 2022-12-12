@@ -2,9 +2,9 @@
 
 version: 2.1
 
-# orbs:
-#   aws-cli: cimg/aws-cli@0.1.1
-#   aws-s3: cimg/aws-s3@1.0.8
+orbs:
+  aws-cli: circleci/aws-cli@0.1.1
+  aws-s3: circleci/aws-s3@1.0.8
 
 references:
   container_config: &container_config
@@ -95,21 +95,6 @@ jobs:
       - *build_types
       - *persist_to_workspace
 
-  local_lerna_build_types:
-    <<: *container_config
-    steps:
-      - checkout
-      - *sum_lockfiles
-      - *npm_install
-      - *build_types
-      - run: npm run lint:js -- --format junit -o reports/junit/js-lint-results.xml
-  local_typescript:
-    <<: *container_config
-    steps:
-      - checkout
-      - *sum_lockfiles
-      - *npm_install
-      - run: npm run lerna:compile-typescript
 
   typescript_compile:
     <<: *container_config
@@ -204,8 +189,6 @@ workflows:
   atlantis:
     jobs:
       - checkout_code
-      - local_lerna_build_types
-      - local_typescript
       - install_dependencies:
           requires:
             - checkout_code
