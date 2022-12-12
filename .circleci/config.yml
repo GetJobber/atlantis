@@ -46,11 +46,6 @@ references:
       name: Install Dependencies
       command: npm ci
 
-  build_types: &build_types
-    run:
-      name: "Learna Build"
-      command: npm run install
-
   github_authenticity: &github_authenticity
     run:
       name: Establishing GitHub Authenticity
@@ -88,13 +83,6 @@ jobs:
           key: npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
           paths:
             - ~/.npm
-
-  lerna_build_types:
-    <<: *container_config
-    steps:
-      - *attach_workspace
-      - *build_types
-      - *persist_to_workspace
 
   typescript_compile:
     <<: *container_config
@@ -195,30 +183,27 @@ workflows:
       - check_for_manual_release:
           requires:
             - install_dependencies
-      - lerna_build_types:
-          requires:
-            - check_for_manual_release
       - typescript_compile:
           requires:
             - check_for_manual_release
       - lint_javascript:
           requires:
-            - lerna_build_types
+            - check_for_manual_release
       - lint_css:
           requires:
-            - lerna_build_types
+            - check_for_manual_release
       - test:
           requires:
-            - lerna_build_types
+            - check_for_manual_release
       - build_docs:
           requires:
-            - lerna_build_types
+            - check_for_manual_release
       - release:
           filters:
             branches:
               only: "master"
           requires:
-            - lerna_build_types
+            - check_for_manual_release
             - typescript_compile
             - lint_javascript
             - lint_css
