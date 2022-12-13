@@ -662,6 +662,7 @@ import { DataTable } from "@jobber/components/DataTable";
         accessorKey: "name",
         header: "Name",
         footer: "Totals",
+        enableResizing: false,
       },
       {
         id: "points",
@@ -702,6 +703,99 @@ import { DataTable } from "@jobber/components/DataTable";
           </Typography>
         ),
         cell: info => <Typography align="end">{info.getValue()}</Typography>,
+      },
+    ]}
+  />
+</Playground>
+
+## Table with manual column sizing
+
+<Playground>
+  <DataTable
+    pagination={{ manualPagination: false, itemsPerPage: [10, 20, 30] }}
+    sorting={{ manualSorting: false }}
+    data={[
+      {
+        name: "Daenerys Stormborn of House Targaryen, the First of Her Name, Queen of the Andals and the First Men, Protector of the Seven Kingdoms, the Mother of Dragons, the Khaleesi of the Great Grass Sea, the Unburnt, the Breaker of Chains.",
+        points: "1,000,000",
+        chance: 5,
+        power: "50,000",
+      },
+      {
+        name: "Aegon “The Conqueror” Targaryen and Rhaenys Targaryen",
+        points: "2,000,000",
+        chance: 5,
+        power: "40,000",
+      },
+      {
+        name: "Jaehaerys “The Old King” Targaryen and Alysanne Targaryen",
+        points: "1,250,000",
+        chance: 8,
+        power: "20,000",
+      },
+    ]}
+    columns={[
+      {
+        id: "name",
+        accessorKey: "name",
+        header: "Name",
+        footer: "Totals",
+        enableResizing: false,
+        cell: info => (
+          <Typography numberOfLines={1}>{info.getValue()}</Typography>
+        ),
+        size: 538,
+        minSize: 438,
+        maxSize: 538,
+      },
+      {
+        id: "points",
+        accessorKey: "points",
+        header: () => (
+          <Typography align="end" fontWeight="bold">
+            Points
+          </Typography>
+        ),
+        footer: () => (
+          <Typography align="end" fontWeight="bold">
+            10,050,400
+          </Typography>
+        ),
+        cell: info => <Typography align="end">{info.getValue()}</Typography>,
+        size: 268,
+        minSize: 168,
+        maxSize: 268,
+      },
+      {
+        id: "chance",
+        accessorKey: "chance",
+        header: () => (
+          <Typography align="end" fontWeight="bold">
+            Chance (%)
+          </Typography>
+        ),
+        cell: info => <Typography align="end">{info.getValue()}</Typography>,
+        size: 268,
+        minSize: 168,
+        maxSize: 268,
+      },
+      {
+        id: "power",
+        accessorKey: "power",
+        header: () => (
+          <Typography align="end" fontWeight="bold">
+            Power
+          </Typography>
+        ),
+        footer: () => (
+          <Typography align="end" fontWeight="bold">
+            300,000
+          </Typography>
+        ),
+        cell: info => <Typography align="end">{info.getValue()}</Typography>,
+        size: 268,
+        minSize: 168,
+        maxSize: 268,
       },
     ]}
   />

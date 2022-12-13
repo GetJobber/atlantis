@@ -18,7 +18,14 @@ const DesktopView = <T extends object>({ table }: ViewProps<T>) => (
     {table.getFooterGroups().map(footerGroup => (
       <tr key={footerGroup.id}>
         {footerGroup.headers.map(header => (
-          <th key={header.id}>
+          <th
+            key={header.id}
+            style={{
+              width: header.getSize(),
+              minWidth: header.column.columnDef.minSize,
+              maxWidth: header.column.columnDef.maxSize,
+            }}
+          >
             {flexRender(header.column.columnDef.footer, header.getContext())}
           </th>
         ))}
