@@ -4,6 +4,8 @@ import userEvent from "@testing-library/user-event";
 import * as jobberHooks from "@jobber/hooks";
 import { DataTable } from "./DataTable";
 import {
+  columSizeColumns,
+  columnSizeData,
   columns,
   data,
   royaltyReportColumns,
@@ -250,5 +252,27 @@ describe("when using the column footers", () => {
 
       expect(totalsRow).toBeDefined();
     });
+  });
+});
+
+describe("when using manual column sizing", () => {
+  beforeEach(() => {
+    render(<DataTable data={columnSizeData} columns={columSizeColumns} />);
+  });
+
+  it("applies the defined widths to headers", () => {
+    const firstHeader = screen.getAllByRole("columnheader")[0];
+
+    expect(firstHeader.style.width).toBe("538px");
+    expect(firstHeader.style["min-width"]).toBe("438px");
+    expect(firstHeader.style["max-width"]).toBe("538px");
+  });
+
+  it("applies the defined widths to cells", () => {
+    const firstCell = screen.getAllByRole("cell")[0];
+
+    expect(firstCell.style.width).toBe("538px");
+    expect(firstCell.style["min-width"]).toBe("438px");
+    expect(firstCell.style["max-width"]).toBe("538px");
   });
 });
