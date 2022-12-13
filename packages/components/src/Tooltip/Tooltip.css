@@ -27,7 +27,7 @@
 .tooltip .arrow::after {
   width: var(--tooltip--arrow-size);
   height: var(--tooltip--arrow-size);
-  background-color: inherit;
+  background-color: transparent;
 }
 
 .tooltip .arrow::after {
@@ -35,6 +35,7 @@
   display: block;
   position: absolute;
   border: var(--border-base) solid var(--color-informative);
+  background-color: var(--color-informative--surface);
   transform: rotate(45deg);
 }
 
