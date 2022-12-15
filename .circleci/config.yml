@@ -84,6 +84,12 @@ jobs:
           paths:
             - ~/.npm
 
+  typescript_compile:
+    <<: *container_config
+    steps:
+      - *attach_workspace
+      - run: npm run lerna:compile-typescript
+
   check_for_manual_release:
     <<: *container_config
     steps:
@@ -177,6 +183,9 @@ workflows:
       - check_for_manual_release:
           requires:
             - install_dependencies
+      - typescript_compile:
+          requires:
+            - check_for_manual_release
       - lint_javascript:
           requires:
             - check_for_manual_release
@@ -194,6 +203,7 @@ workflows:
             branches:
               only: "master"
           requires:
+            - typescript_compile
             - lint_javascript
             - lint_css
             - test
