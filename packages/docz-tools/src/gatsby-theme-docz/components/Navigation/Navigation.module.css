@@ -16,7 +16,7 @@
   padding: 0;
   border: none;
   color: var(--color-text--reverse--secondary);
-  font-family: "Poppins", sans-serif;
+  font-family: "Inter", "Poppins", sans-serif;
   font-size: var(--base-unit);
   font-weight: 700;
   letter-spacing: 0.2px;
@@ -49,7 +49,7 @@
   margin: var(--space-base) 0 var(--space-small);
   border-bottom: var(--border-base) solid var(--color-greyBlue--lighter);
   color: var(--color-greyBlue--lighter);
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Jobber Pro", "Source Sans Pro", sans-serif;
   font-size: calc(var(--base-unit) * 0.875);
   font-weight: 700;
   letter-spacing: calc(var(--space-minuscule) / 2);
@@ -61,7 +61,7 @@
   justify-content: flex-start;
   align-items: baseline;
   padding: var(--space-smaller) 0;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Jobber Pro", "Source Sans Pro", sans-serif;
   font-weight: normal;
   text-transform: none;
 }

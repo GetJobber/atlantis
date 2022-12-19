@@ -1,7 +1,8 @@
 :root {
-  --typography--fontFamily-normal: "Source Sans Pro", Helvetica, Arial,
+  --typography--fontFamily-normal: "Jobber Pro", "Source Sans Pro", Helvetica,
+    Arial, sans-serif;
+  --typography--fontFamily-display: "Inter", "Poppins", Helvetica, Arial,
     sans-serif;
-  --typography--fontFamily-display: "Poppins", Helvetica, Arial, sans-serif;
 
   --typography--fontSize-extravagant: calc(var(--base-unit) * 3); /* 48 */
   --typography--fontSize-jumbo: calc(var(--base-unit) * 2.25); /* 36 */
