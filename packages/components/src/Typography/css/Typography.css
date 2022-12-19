@@ -1,6 +1,5 @@
 :root {
-  --typography--fontFamily-normal: "Inter", "Source Sans Pro", Helvetica, Arial,
-    sans-serif;
+  --typography--fontFamily-normal: "Inter", Helvetica, Arial, sans-serif;
   --typography--fontFamily-display: "JobberPro-Blk", "Poppins", Helvetica, Arial,
     sans-serif;
 
