@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.90.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.89.4...@jobber/components@2.90.0) (2022-12-19)
+
+
+### Features
+
+* **components:** Add configurable column width to DataTable ([#951](https://github.com/GetJobber/atlantis/issues/951)) ([01fad3e](https://github.com/GetJobber/atlantis/commit/01fad3e9e047dbdb7b69198efbdfd986c4c1d039))
+
+
+
+
+
 ## [2.89.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.89.3...@jobber/components@2.89.4) (2022-12-15)
 
 **Note:** Version bump only for package @jobber/components
