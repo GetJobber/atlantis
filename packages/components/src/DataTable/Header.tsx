@@ -38,6 +38,11 @@ export function Header<T extends object>({
                 onClick={
                   sorting ? header.column.getToggleSortingHandler() : undefined
                 }
+                style={{
+                  width: header.getSize(),
+                  minWidth: header.column.columnDef.minSize,
+                  maxWidth: header.column.columnDef.maxSize,
+                }}
               >
                 {header.isPlaceholder ? null : (
                   <div>

@@ -29,7 +29,14 @@ export function Body<T extends object>({ table, onRowClick }: BodyProps<T>) {
           >
             {row.getVisibleCells().map(cell => {
               return (
-                <td key={cell.id}>
+                <td
+                  key={cell.id}
+                  style={{
+                    width: cell.column.getSize(),
+                    minWidth: cell.column.columnDef.minSize,
+                    maxWidth: cell.column.columnDef.maxSize,
+                  }}
+                >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               );
