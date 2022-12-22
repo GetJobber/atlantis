@@ -1,5 +1,6 @@
 declare const styles: {
   readonly "button": string;
+  readonly "labelStyle": string;
   readonly "work": string;
   readonly "learning": string;
   readonly "destructive": string;

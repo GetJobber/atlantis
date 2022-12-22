@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { IconNames } from "@jobber/design";
 import styles from "./Button.css";
 import { Icon } from "../Icon";
-import { Typography } from "../Typography";
 
 type ButtonType = "button" | "submit";
 
@@ -160,25 +159,7 @@ function ButtonInternals({ label, icon, size = "base" }: ButtonProps) {
   return (
     <>
       {icon && <Icon name={icon} size={size} />}
-      <Typography
-        element="span"
-        textCase="uppercase"
-        fontWeight="extraBold"
-        size={getTypeSizes(size)}
-      >
-        {label}
-      </Typography>
+      <span className={styles.labelStyle}>{label}</span>
     </>
   );
-}
-
-function getTypeSizes(size: string) {
-  switch (size) {
-    case "small":
-      return "smaller";
-    case "large":
-      return "base";
-    default:
-      return "small";
-  }
 }

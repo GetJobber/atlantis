@@ -3,7 +3,9 @@
   --button--color-variation--hover: var(--color-interactive--hover);
   --button--color-surface: var(--color-surface);
   --button--color-surface--hover: var(--color-surface--background);
-  --button--color-primaryLabel: var(--color-white);
+  --button--color-primaryLabel: var(--color-surface);
+
+  --button--label-size: var(--typography--fontSize-small);
 
   --button--duration-loading: 2s;
 }
@@ -52,6 +54,15 @@ a.button:focus,
 a.button:active {
   box-shadow: var(--shadow-focus);
   outline: none;
+}
+
+.labelStyle {
+  padding-bottom: var(--space-smallest);
+  font-family: var(--typography--fontFamily-normal);
+  font-size: var(--button--label-size);
+  font-weight: 900;
+  letter-spacing: var(--typography--letterSpacing-loose);
+  text-transform: capitalize;
 }
 
 /* Variation */
@@ -170,6 +181,7 @@ a.button.disabled:hover {
 .small {
   min-height: calc(var(--base-unit) * 1.5);
   padding: 0 var(--space-small);
+  --button--label-size: var(--typography--fontSize-smaller);
 }
 
 .base {
@@ -180,6 +192,7 @@ a.button.disabled:hover {
 .large {
   min-height: calc(var(--base-unit) * 3);
   padding: 0 var(--space-base);
+  --button--label-size: var(--typography--fontSize-base);
 }
 
 /* Icon */
