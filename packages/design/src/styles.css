@@ -2,12 +2,7 @@
 
 body {
   color: var(--color-text);
-  font-family: var(
-    --typography--fontFamily-normal,
-    Helvetica,
-    Arial,
-    sans-serif
-  );
+  font-family: var(--typography--fontFamily-normal);
   font-size: var(--typography--fontSize-base);
   line-height: var(--typography--lineHeight-larger, 1.5);
   background-color: var(--color-surface);
