@@ -48,7 +48,7 @@
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-multi-input": "^0.2.2",
     "rollup-plugin-node-resolve": "^4.2.4",
-    "rollup-plugin-postcss": "^2.0.3",
+    "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-typescript": "^1.0.1",
     "rollup-plugin-typescript2": "^0.31.2",
     "typed-css-modules": "^0.7.0",
