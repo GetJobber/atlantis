@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import filesize from "filesize";
-import { IconNames } from "@jobber/design";
+import React from "react";
+import classnames from "classnames";
+import getHumanReadableFileSize from "filesize";
 import styles from "./FormatFile.css";
-import { Button } from "../Button";
-import { Icon } from "../Icon";
-import { Typography } from "../Typography";
-import { ProgressBar } from "../ProgressBar";
+import { FormatFileDeleteButton } from "./FormatFileDeleteButton";
+import { InternalThumbnail } from "./InternalThumbnail";
 import { FileUpload } from "../InputFile";
+import { Text } from "../Text";
+import { ProgressBar } from "../ProgressBar";
 
 interface FormatFileProps {
   /**
@@ -15,56 +15,97 @@ interface FormatFileProps {
   readonly file: FileUpload;
 
   /**
+   * To display as either a file row or thumbnail
+   *
+   * @default "expanded"
+   */
+  readonly display?: "expanded" | "compact";
+
+  /**
+   * The base dimensions of the thumbnail
+   *
+   * @default "base"
+   */
+  readonly displaySize?: "base" | "large";
+
+  /**
+   * Function to execute when format file is clicked
+   */
+  onClick?(event: React.MouseEvent<HTMLDivElement | HTMLButtonElement>): void;
+
+  /**
    * onDelete callback - this function will be called when the delete action is triggered
    */
   onDelete?(): void;
 }
 
-export function FormatFile({ file, onDelete }: FormatFileProps) {
-  const [imageSource, setImageSource] = useState<string>();
+export function FormatFile({
+  file,
+  display = "expanded",
+  displaySize = "base",
+  onDelete,
+  onClick,
+}: FormatFileProps) {
   const isComplete = file.progress >= 1;
-
-  const iconName = getIconNameFromType(file.type);
   const fileSize = getHumanReadableFileSize(file.size);
+  const wrapperClassNames = classnames(styles[display], {
+    [styles[displaySize]]: display === "compact",
+  });
 
-  if (!imageSource && file.type.startsWith("image/") && file.src) {
-    file.src().then(src => setImageSource(src));
-  }
+  const DetailsContainer = isComplete && onClick ? "button" : "div";
 
-  const style = imageSource ? { backgroundImage: `url(${imageSource})` } : {};
+  const detailsClassNames = classnames(styles.wrapper, {
+    [styles[displaySize]]: display === "compact",
+    [styles.hoverable]: isHoverable({ display, isComplete, onClick, onDelete }),
+    [styles.clickable]: onClick,
+    [styles.deleteable]: display === "compact",
+  });
+
+  const thumbnailContainerClassNames = classnames(
+    styles.thumbnail,
+    styles[displaySize],
+  );
 
   return (
-    <div className={styles.formatFile}>
-      <div className={styles.imageBlock} style={style} data-testid="imageBlock">
-        {!imageSource && (
-          <div className={styles.icon}>
-            <Icon name={iconName} />
+    <div className={wrapperClassNames}>
+      <DetailsContainer
+        type="button"
+        className={detailsClassNames}
+        onClick={isComplete ? onClick : undefined}
+        tabIndex={0}
+        aria-busy={!isComplete}
+      >
+        <div className={thumbnailContainerClassNames}>
+          <InternalThumbnail
+            name={file.name}
+            hideName={display === "compact"}
+            file={file}
+            size={displaySize}
+          />
+
+          {!isComplete && (
+            <div className={styles.progress}>
+              <ProgressBar
+                size="small"
+                currentStep={file.progress * 100}
+                totalSteps={100}
+              />
+            </div>
+          )}
+        </div>
+
+        {display === "expanded" && (
+          <div className={styles.contentBlock}>
+            <Text size="large">{file.name}</Text>
+            <Text size="small">{fileSize}</Text>
           </div>
         )}
-        {!isComplete && (
-          <div className={styles.progress}>
-            <ProgressBar
-              size="small"
-              currentStep={file.progress * 100}
-              totalSteps={100}
-            />
-          </div>
-        )}
-      </div>
-      <div className={styles.contentBlock}>
-        <Typography element="span">{file.name}</Typography>
-        <Typography element="p" size="small" textColor="greyBlueDark">
-          {fileSize}
-        </Typography>
-      </div>
+      </DetailsContainer>
       {isComplete && onDelete && (
-        <div className={styles.actionBlock}>
-          <Button
-            onClick={onDelete}
-            type="tertiary"
-            variation="destructive"
-            icon="trash"
-            ariaLabel="Delete"
+        <div className={styles.deleteButton}>
+          <FormatFileDeleteButton
+            size={display === "expanded" ? "large" : displaySize}
+            onDelete={onDelete}
           />
         </div>
       )}
@@ -72,20 +113,18 @@ export function FormatFile({ file, onDelete }: FormatFileProps) {
   );
 }
 
-function getHumanReadableFileSize(sizeInBytes: number): string {
-  return filesize(sizeInBytes);
-}
-
-function getIconNameFromType(mimeType: string): IconNames {
-  if (mimeType.startsWith("image/")) return "camera";
-  if (mimeType.startsWith("video/")) return "video";
-
-  switch (mimeType) {
-    case "application/pdf":
-      return "pdf";
-    case "application/vnd.ms-excel":
-      return "excel";
-    default:
-      return "file";
+function isHoverable({
+  display,
+  isComplete,
+  onClick,
+  onDelete,
+}: Pick<FormatFileProps, "display" | "onClick" | "onDelete"> & {
+  isComplete: boolean;
+}): boolean {
+  if (display === "compact") {
+    return Boolean(isComplete && (onClick || onDelete));
+  } else if (display === "expanded") {
+    return Boolean(isComplete && onClick);
   }
+  return false;
 }

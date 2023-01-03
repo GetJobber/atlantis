@@ -8,71 +8,142 @@
   --file-card--base-padding: var(--space-small);
 }
 
-.formatFile {
-  display: flex;
-  height: var(--file-card--height);
+.expanded {
+  display: grid;
+  grid-template-columns: auto max-content;
+  gap: var(--file-card--base-padding);
+  align-items: center;
+  padding-right: var(--space-small);
   border: var(--border-base) solid var(--file-card--border-color);
   border-radius: var(--radius-base);
-  overflow: hidden;
   background-color: var(--file-card--background-color);
-  align-items: center;
-  outline-color: var(--color-focus);
 }
 
-.imageBlock {
+.compact,
+.expanded {
+  position: relative;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: max-content auto;
+  gap: var(--file-card--base-padding);
+  align-items: center;
+  padding: 0;
+  border: none;
+  text-align: left;
+  background-color: var(--color-transparent);
+}
+
+.large {
+  width: 168px;
+  height: 168px;
+}
+
+.base {
+  width: 56px;
+  height: 56px;
+}
+
+.thumbnail {
   display: flex;
   position: relative;
-  width: var(--file-card--height);
-  height: 100%;
   box-sizing: border-box;
   padding: 0;
-  background-color: var(--file-card--header-background-color);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  align-items: center;
-  object-fit: cover;
+  overflow: hidden;
+  background-color: var(--color-surface--background);
   flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
 }
 
-.imageBlock::before {
+.expanded .wrapper {
+  outline: none;
+}
+
+.compact .wrapper:focus {
+  box-shadow: var(--shadow-focus);
+  outline: none;
+}
+
+.compact .thumbnail {
+  border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-base);
+}
+
+.expanded .wrapper:focus::after {
   content: "";
   display: block;
   position: absolute;
   top: 0;
-  right: 0;
-  bottom: 0;
   left: 0;
-  background-color: var(--color-overlay);
-  mix-blend-mode: multiply;
+  width: 100%;
+  height: 100%;
+  box-shadow: var(--shadow-focus);
 }
 
-.icon {
-  margin: 0 auto;
+.expanded .thumbnail {
+  border-right: none;
+  border-bottom-left-radius: var(--radius-base);
+  border-top-left-radius: var(--radius-base);
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.hoverable .thumbnail::after,
+.progress {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-overlay);
+  opacity: 0;
+  transition: all var(--timing-base);
+}
+
+.hoverable:hover .thumbnail::after,
+.hoverable:focus .thumbnail::after,
+.progress {
+  opacity: 1;
 }
 
 .progress {
   display: flex;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: var(--file-card--base-padding);
   align-items: center;
+  padding: var(--file-card--base-padding);
 }
 
 .contentBlock {
-  flex-grow: 1;
-  padding: 0 var(--file-card--base-padding);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.contentBlock p {
+  margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.contentBlock p {
-  margin: 0;
+
+.compact .deleteButton {
+  position: absolute;
+  top: var(--space-smaller);
+  right: var(--space-smaller);
 }
 
-.actionBlock {
-  padding: 0 var(--file-card--base-padding) 0 0;
+.deleteable ~ .deleteButton {
+  visibility: hidden;
+}
+
+.deleteButton:focus-within,
+.deleteButton:hover,
+.deleteable:hover ~ .deleteButton,
+.deleteable:focus ~ .deleteButton {
+  visibility: visible;
 }

@@ -35,23 +35,30 @@ import { FormatFile } from "@jobber/components/FormatFile";
         name: "myballisbigandroundIamrollingitontheground.png",
         type: "image/png",
         size: 213402324,
-        progress: 0.3,
+        progress: 0.4,
         src: () => Promise.resolve("https://source.unsplash.com/250x250"),
       }}
-      onDelete={() => alert("🧨BALEETED!💥")}
+      display="compact"
+      onDelete={() => alert("Deleted")}
     />
     <FormatFile
       file={{
         key: "mosdef",
-        name: "tps_report.png",
+        name: "tps_report.pdf",
         type: "application/pdf",
         size: 2134023,
         progress: 1,
       }}
-      onDelete={() => alert("🧨BALEETED!💥")}
+      onDelete={() => alert("Deleted")}
     />
   </Content>
 </Playground>
+
+## Props
+
+<Props of={FormatFile} />
+
+---
 
 ## Design and Usage Guidelines
 
@@ -61,11 +68,77 @@ following:
 - FormatFile components should take up the full width of the parent container (1
   or 2 files per row).
 
-## Props
+### Display
 
-<Props of={FormatFile} />
+Format files can be displayed as either an expanded or compact format file.
 
----
+### Expanded
+
+Used to display a file alongside it's details.
+
+<Playground>
+  <Content>
+    <FormatFile
+      file={{
+        key: "abc",
+        name: "myballisbigandroundIamrollingitontheground.png",
+        type: "image/png",
+        size: 213402324,
+        progress: 0.5,
+        src: () => Promise.resolve("https://source.unsplash.com/250x250"),
+      }}
+      display="expanded"
+      onDelete={() => alert("Deleted")}
+    />
+    <FormatFile
+      file={{
+        key: "abc",
+        name: "image_of_something.png",
+        type: "image/png",
+        size: 213402324,
+        progress: 1,
+        src: () => Promise.resolve("https://source.unsplash.com/250x250"),
+      }}
+      display="expanded"
+      onDelete={() => alert("Deleted")}
+    />
+  </Content>
+</Playground>
+
+### Compact
+
+Used to display a cropped smaller version of a file or image.
+
+<Playground>
+  <Content>
+    <FormatFile
+      file={{
+        key: "abc",
+        name: "myballisbigandroundIamrollingitontheground.png",
+        type: "image/png",
+        size: 213402324,
+        progress: 0.5,
+        src: () => Promise.resolve("https://source.unsplash.com/250x250"),
+      }}
+      displaySize="large"
+      display="compact"
+      onDelete={() => alert("Deleted")}
+    />
+    <FormatFile
+      file={{
+        key: "abc",
+        name: "myballisbigandroundIamrollingitontheground.png",
+        type: "image/png",
+        size: 213402324,
+        progress: 1,
+        src: () => Promise.resolve("https://source.unsplash.com/250x250"),
+      }}
+      displaySize="large"
+      display="compact"
+      onDelete={() => alert("Deleted")}
+    />
+  </Content>
+</Playground>
 
 ## Related components
 

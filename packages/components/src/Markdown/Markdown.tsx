@@ -1,5 +1,5 @@
+import React, { DetailedHTMLProps, HTMLAttributes } from "react";
 import ReactMarkdown from "react-markdown";
-import React, { ReactNode } from "react";
 import { Text } from "../Text";
 import { Emphasis } from "../Emphasis";
 import { Heading } from "../Heading";
@@ -23,23 +23,20 @@ interface MarkdownProps {
   readonly basicUsage?: boolean;
 }
 
-interface HeadingRendererProps {
-  readonly level: 1 | 2 | 3 | 4 | 5 | 6;
-  readonly children: ReactNode;
-}
-
-interface BaseRendererProps {
-  children: ReactNode;
-}
-
 export function Markdown({ content, externalLink, basicUsage }: MarkdownProps) {
   const props = {
     ...(basicUsage && {
-      disallowedTypes: [
-        "paragraph",
-        "heading",
+      disallowedElements: [
+        "p",
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
         "table",
-        "list",
+        "ul",
+        "li",
         "code",
         "image",
       ],
@@ -47,45 +44,48 @@ export function Markdown({ content, externalLink, basicUsage }: MarkdownProps) {
     }),
   };
 
+  const Tag = basicUsage ? React.Fragment : Content;
+
   return (
-    <ReactMarkdown
-      {...props}
-      source={content}
-      linkTarget={externalLink ? "_blank" : undefined}
-      renderers={{
-        root: renderWrapper,
-        paragraph: renderParagraph,
-        emphasis: renderEmphasis,
-        strong: renderStrong,
-        heading: renderHeading,
-      }}
-    />
+    <Tag>
+      <ReactMarkdown
+        {...props}
+        linkTarget={externalLink ? "_blank" : undefined}
+        components={{
+          p: renderParagraph,
+          strong: renderStrong,
+          em: renderEmphasis,
+          h1: renderHeading(1),
+          h2: renderHeading(2),
+          h3: renderHeading(3),
+          h4: renderHeading(4),
+          h5: renderHeading(5),
+        }}
+      >
+        {content}
+      </ReactMarkdown>
+    </Tag>
   );
+}
 
-  function renderWrapper({ children }: BaseRendererProps) {
-    if (basicUsage) {
-      return <>{children}</>;
-    }
+type HTMLProps = DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>;
 
-    return <Content>{children}</Content>;
-  }
+function renderParagraph({ children }: HTMLProps) {
+  return <Text>{children}</Text>;
+}
 
-  function renderParagraph({ children }: BaseRendererProps) {
-    return <Text>{children}</Text>;
-  }
+function renderStrong({ children }: HTMLProps) {
+  return <Emphasis variation="bold">{children}</Emphasis>;
+}
 
-  function renderEmphasis({ children }: BaseRendererProps) {
-    return <Emphasis variation="italic">{children}</Emphasis>;
-  }
+function renderEmphasis({ children }: HTMLProps) {
+  return <Emphasis variation="italic">{children}</Emphasis>;
+}
 
-  function renderStrong({ children }: BaseRendererProps) {
-    return <Emphasis variation="bold">{children}</Emphasis>;
-  }
-
-  function renderHeading({ level, children }: HeadingRendererProps) {
-    if (level === 6) {
-      return <h6>{children}</h6>;
-    }
+function renderHeading(level: 1 | 2 | 3 | 4 | 5) {
+  function buildHeading({ children }: HTMLProps) {
     return <Heading level={level}>{children}</Heading>;
   }
+
+  return buildHeading;
 }

@@ -62,7 +62,7 @@ export function InternalChipButton({
 
   function getColor() {
     if (disabled) return "disabled";
-    if (invalid) return "criticalOnSurface";
+    if (invalid) return "critical";
     return "greyBlue";
   }
 

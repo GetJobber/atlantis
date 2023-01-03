@@ -1,6 +1,6 @@
 {
   "name": "@jobber/design",
-  "version": "0.25.0",
+  "version": "0.26.0",
   "description": "Design foundation for the Jobber Atlantis Design System",
   "license": "MIT",
   "main": "dist/index.js",
@@ -27,7 +27,8 @@
     "build:iconCssStyle": "node buildIconStyles.js && npm run build:iconCssStyleTypes",
     "build:iconCssStyleTypes": "tsc --declaration --emitDeclarationOnly --allowJs src/icons/iconStyles.ts --outDir ./src/icons",
     "clean": "rm -rf dist/* icons/* colors.js foundation.css iconStyles.* tsconfig.tsbuildinfo",
-    "prepare": "npm run clean; npm run build"
+    "prepare": "npm run clean; npm run build",
+    "ci:typescript-compile": "npm run build:ts"
   },
   "dependencies": {
     "classnames": "^2.2.6"

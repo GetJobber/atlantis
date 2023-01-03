@@ -8,6 +8,33 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.25.2...@jobber/design@0.26.0) (2022-10-14)
+
+
+### Features
+
+* **design:** update icon set ([#924](https://github.com/GetJobber/atlantis/issues/924)) ([b04062a](https://github.com/GetJobber/atlantis/commit/b04062aa2dd60229fb48b67fe0ca01c00ded223b))
+
+
+
+
+
+## [0.25.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.25.1...@jobber/design@0.25.2) (2022-07-22)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.25.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.25.0...@jobber/design@0.25.1) (2022-06-09)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
 # [0.25.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.24.1...@jobber/design@0.25.0) (2022-05-04)
 
 

@@ -1,0 +1,24 @@
+.mobileFooterContainer {
+  padding: var(--space-base);
+  border-top: var(--border-thick) solid var(--color-border);
+}
+
+.mobileFooterRow {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.mobileFooterRow * {
+  text-align: start;
+}
+
+.mobileFooterRowData,
+.mobileFooterRowData * {
+  font-weight: normal;
+  text-align: end;
+}
+
+.mobileFooterRow:not(:last-child) {
+  padding-bottom: var(--space-small);
+}

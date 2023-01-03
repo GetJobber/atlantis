@@ -1,0 +1,102 @@
+.dataTableContainer {
+  border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-base);
+}
+
+.tableContainer {
+  overflow: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table thead tr th {
+  padding: var(--space-base);
+  border-bottom: var(--border-base) solid var(--color-border);
+  color: var(--color-heading);
+  white-space: nowrap;
+}
+
+.table thead tr th :first-child {
+  display: flex;
+}
+
+.table tbody tr {
+  border-bottom: var(--border-base) solid var(--color-border);
+}
+
+.table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.table tbody tr td {
+  padding: var(--space-base);
+}
+
+.table tfoot {
+  position: sticky;
+  z-index: 1;
+  width: 100%;
+  box-shadow: var(--shadow-base);
+  border-top: var(--border-thick) solid var(--color-border);
+  background-color: var(--color-surface);
+  inset-block-end: 0;
+}
+
+.table tfoot tr th {
+  padding: var(--space-base);
+}
+
+.pinFirstColumn thead tr th:first-child,
+.pinFirstColumn tbody tr td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  height: calc(var(--space-largest) + var(--space-smaller));
+  background-color: var(--color-white);
+}
+
+.pinFirstColumn th:first-child::after,
+.pinFirstColumn td:first-child::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: calc(-1 * var(--space-small));
+  width: var(--space-small);
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(var(--color-black--rgb), 0.1) 0%,
+    rgba(var(--color-black--rgb), 0) 80%
+  );
+}
+
+.stickyHeader {
+  position: sticky;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  box-shadow: var(--shadow-base);
+  background-color: var(--color-white);
+}
+
+.pinFirstHeaderSortable:first-child:hover {
+  background: var(--color-surface--hover);
+  cursor: pointer;
+}
+
+.sortableColumn:hover {
+  background: var(--color-surface--hover);
+  cursor: pointer;
+}
+
+.clickableRow:hover,
+.clickableRow:hover :first-child {
+  background: var(--color-surface--background);
+  cursor: pointer;
+}

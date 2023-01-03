@@ -1,8 +1,8 @@
 /* eslint-disable import/no-default-export */
 import multiInput from "rollup-plugin-multi-input";
-import typescript from "rollup-plugin-typescript2";
+import typescript from "@rollup/plugin-typescript";
 import postcss from "rollup-plugin-postcss";
-import commonjs from "rollup-plugin-commonjs";
+import commonjs from "@rollup/plugin-commonjs";
 
 export default {
   input: `src/*/index.ts`,
@@ -40,5 +40,31 @@ export default {
       format: "cjs",
     },
   ],
-  external: ["react", "classnames", "@jobber/formatters"],
+  external: [
+    "react",
+    "react-hook-form",
+    "react-router-dom",
+    "react-dom",
+    "react-markdown",
+    "react-countdown",
+    "react-popper",
+    "react-datepicker",
+    "react-image-lightbox",
+    "react-image-lightbox/style.css",
+    "react-dropzone",
+    "axios",
+    "filesize",
+    "color",
+    "framer-motion",
+    "classnames",
+    "lodash",
+    "uuid",
+    "lodash/debounce",
+    "@std-proposal/temporal",
+    "@use-it/event-listener",
+    "@jobber/design",
+    "@jobber/formatters",
+    "@jobber/hooks",
+    "@tanstack/react-table",
+  ],
 };

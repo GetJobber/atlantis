@@ -16,7 +16,7 @@ export interface ListQueryType {
       };
       cursor: string;
     }>;
-    totalCount: number;
+    totalCount?: number;
   };
 }
 
@@ -34,7 +34,6 @@ export const LIST_QUERY = gql`
         }
         cursor
       }
-      totalCount
     }
   }
 `;

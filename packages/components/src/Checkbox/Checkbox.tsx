@@ -46,6 +46,8 @@ interface BaseCheckboxProps {
   readonly description?: string;
 
   onChange?(newValue: boolean): void;
+
+  onFocus?(): void;
 }
 
 interface CheckboxLabelProps extends BaseCheckboxProps {
@@ -75,6 +77,7 @@ export function Checkbox({
   description,
   children,
   onChange,
+  onFocus,
 }: CheckboxProps) {
   const wrapperClassName = classnames(
     styles.wrapper,
@@ -100,6 +103,7 @@ export function Checkbox({
             value={value}
             name={name}
             disabled={disabled}
+            onFocus={onFocus}
           />
           <span className={styles.checkBox}>
             <Icon name={iconName} size="small" color="white" />

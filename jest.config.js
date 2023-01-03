@@ -79,6 +79,8 @@ module.exports = {
   // A map from regular expressions to module names that allow to stub out resources with a single module
   moduleNameMapper: {
     "\\.css$": "identity-obj-proxy",
+    "react-markdown":
+      "<rootDir>/packages/components/node_modules/react-markdown/react-markdown.min.js",
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader

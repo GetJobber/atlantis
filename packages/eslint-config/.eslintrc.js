@@ -15,7 +15,6 @@ module.exports = {
     "react",
     "prettier",
     "import",
-    "no-null",
     "jest",
   ],
   settings: {
@@ -51,7 +50,6 @@ module.exports = {
     "import/no-deprecated": "error",
     "import/newline-after-import": "error",
     "jest/no-jasmine-globals": "error",
-    "no-null/no-null": "error",
     "react/no-danger": "error",
     "prettier/prettier": [
       "error",

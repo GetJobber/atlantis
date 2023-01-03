@@ -1,13 +1,14 @@
 {
   "name": "@jobber/hooks",
-  "version": "1.11.0",
+  "version": "1.12.1",
   "license": "MIT",
   "main": "./dist/index.js",
   "types": "./dist/index.d.js",
   "scripts": {
     "build": "tsc --project .",
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
-    "prepare": "npm run clean; npm run build"
+    "prepare": "npm run clean; npm run build",
+    "ci:typescript-compile": "npm run prepare"
   },
   "files": [
     "dist/*"

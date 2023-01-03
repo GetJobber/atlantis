@@ -1,0 +1,60 @@
+.multiSelectContainer {
+  position: relative;
+  width: 100%;
+}
+
+.multiSelectContainer * {
+  box-sizing: border-box;
+}
+
+.multiSelect {
+  --field--height: var(--space-largest);
+
+  --field--padding-top: calc(var(--space-base) - var(--space-smallest));
+  --field--padding-bottom: calc(var(--space-base) - var(--space-smallest));
+  --field--padding-left: var(--space-base);
+  --field--padding-right: var(--space-base);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: var(--field--height);
+  padding-top: var(--field--padding-top);
+  padding-bottom: var(--field--padding-bottom);
+  padding-left: var(--field--padding-left);
+  padding-right: var(--field--padding-right);
+  border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-base);
+}
+
+.multiSelect p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.multiSelectContainer:hover,
+.multiSelectContainer.multiSelect {
+  cursor: pointer;
+  caret-color: transparent;
+}
+
+.multiSelect:focus,
+.multiSelect.active {
+  box-shadow: var(--shadow-focus);
+  outline: none;
+}
+
+.small {
+  --field--padding-left: calc(var(--space-base) - var(--space-smaller));
+  --field--padding-right: calc(var(--space-base) - var(--space-smaller));
+  --field--height: calc(var(--space-larger) + var(--space-smaller));
+}
+
+.large {
+  --field--padding-left: var(--space-large);
+  --field--padding-right: var(--space-large);
+  --field--height: calc(var(--space-extravagant));
+}

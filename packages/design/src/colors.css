@@ -64,6 +64,9 @@
   --color-request: var(--color-indigo);
   --color-quote: var(--color-pink);
   --color-job: var(--color-yellowGreen);
+  --color-visit: var(--color-green);
+  --color-task: var(--color-navy);
+  --color-event: var(--color-yellow);
   --color-invoice: var(--color-purple);
   --color-payments: var(--color-orange);
 
@@ -100,11 +103,11 @@
   --color-yellow--lightest: rgb(250, 246, 219);
   --color-yellow--dark: rgb(144, 127, 10);
 
-  --color-red: rgb(239, 87, 51);
-  --color-red--light: rgb(244, 137, 112);
-  --color-red--lighter: rgb(249, 188, 173);
-  --color-red--lightest: rgb(253, 230, 224);
-  --color-red--dark: rgb(155, 57, 33);
+  --color-red: rgb(201, 66, 33);
+  --color-red--light: rgb(233, 141, 119);
+  --color-red--lighter: rgb(255, 206, 194);
+  --color-red--lightest: rgb(255, 226, 219);
+  --color-red--dark: rgb(128, 25, 0);
 
   --color-grey: rgb(181, 181, 181);
   --color-grey--light: rgb(203, 203, 203);

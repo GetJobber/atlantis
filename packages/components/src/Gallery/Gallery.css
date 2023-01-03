@@ -1,0 +1,25 @@
+.gallery,
+.galleryLarge {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-small);
+}
+
+.galleryLarge {
+  gap: var(--space-base);
+}
+
+.showMoreButton {
+  display: flex;
+}
+
+.baseShowMoreButton {
+  width: 56px;
+  height: 56px;
+}
+
+.largeShowMoreButton {
+  width: 168px;
+  height: 168px;
+  box-shadow: var(--shadow-base);
+}

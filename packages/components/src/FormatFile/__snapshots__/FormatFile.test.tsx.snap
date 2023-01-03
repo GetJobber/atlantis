@@ -2,46 +2,50 @@
 
 exports[`renders a FormatFile 1`] = `
 <div
-  className="formatFile"
+  className="expanded"
 >
   <div
-    className="imageBlock"
-    data-testid="imageBlock"
-    style={Object {}}
+    aria-busy={false}
+    className="wrapper"
+    tabIndex={0}
+    type="button"
   >
     <div
-      className="icon"
+      className="thumbnail base"
     >
-      <svg
-        className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
-        data-testid="file"
-        viewBox="0 0 1024 1024"
-        xmlns="http://www.w3.org/2000/svg"
+      <div
+        className="content base"
       >
-        <path
-          className=""
-          d="M597.333 384c0-23.564-19.102-42.667-42.667-42.667h-128c-23.564 0-42.667 19.103-42.667 42.667v256c0 23.565 19.103 42.667 42.667 42.667s42.667-19.102 42.667-42.667v-64h85.333c23.565 0 42.667-19.102 42.667-42.667s-19.102-42.667-42.667-42.667h-85.333v-64h85.333c23.565 0 42.667-19.103 42.667-42.667z"
+        <svg
+          className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+          data-testid="file"
+          viewBox="0 0 1024 1024"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            className="_2e1AAW5-LqZd1rLcmAUuzN"
+            d="M597.917 381.372c0-23.587-19.121-42.709-42.709-42.709h-128.125c-23.587 0-42.709 19.122-42.709 42.709v256.25c0 23.588 19.122 42.709 42.709 42.709s42.709-19.121 42.709-42.709v-64.063h85.416c23.588 0 42.709-19.121 42.709-42.709s-19.121-42.709-42.709-42.709h-85.416v-64.063h85.416c23.588 0 42.709-19.122 42.709-42.709zM256.25 82.413c-47.174 0-85.416 38.242-85.416 85.416v683.334c0 47.176 38.242 85.416 85.416 85.416h512.5c47.176 0 85.416-38.241 85.416-85.416v-537.519c0-22.654-8.999-44.38-25.018-60.399l-145.815-145.815c-16.020-16.019-37.746-25.018-60.398-25.018h-366.685zM256.25 851.164v-683.334h366.685l145.815 145.815v537.519h-512.5z"
+          />
+        </svg>
+        <div
+          className="fileName"
         />
-        <path
-          className=""
-          d="M256 85.333c-47.128 0-85.333 38.205-85.333 85.333v682.667c0 47.13 38.205 85.333 85.333 85.333h512c47.13 0 85.333-38.204 85.333-85.333v-536.994c0-22.632-8.99-44.337-24.994-60.34l-145.673-145.673c-16.004-16.003-37.709-24.994-60.339-24.994h-366.327zM256 853.333v-682.667h366.327l145.673 145.673v536.994h-512z"
-        />
-      </svg>
+      </div>
     </div>
-  </div>
-  <div
-    className="contentBlock"
-  >
-    <span
-      className="base regular"
+    <div
+      className="contentBlock"
     >
-      Funky Corn
-    </span>
-    <p
-      className="base regular small greyBlueDark"
-    >
-      1 KB
-    </p>
+      <p
+        className="base regular large text"
+      >
+        Funky Corn
+      </p>
+      <p
+        className="base regular small text"
+      >
+        1 KB
+      </p>
+    </div>
   </div>
 </div>
 `;

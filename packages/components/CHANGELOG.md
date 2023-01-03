@@ -8,6 +8,238 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.90.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.90.0...@jobber/components@2.90.1) (2022-12-20)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.90.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.89.4...@jobber/components@2.90.0) (2022-12-19)
+
+
+### Features
+
+* **components:** Add configurable column width to DataTable ([#951](https://github.com/GetJobber/atlantis/issues/951)) ([01fad3e](https://github.com/GetJobber/atlantis/commit/01fad3e9e047dbdb7b69198efbdfd986c4c1d039))
+
+
+
+
+
+## [2.89.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.89.3...@jobber/components@2.89.4) (2022-12-15)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.89.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.89.2...@jobber/components@2.89.3) (2022-12-12)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.89.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.89.1...@jobber/components@2.89.2) (2022-12-07)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.89.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.89.0...@jobber/components@2.89.1) (2022-11-30)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.89.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.88.0...@jobber/components@2.89.0) (2022-11-25)
+
+
+### Features
+
+* **components:** Add footer row to Data Table component (JOB-57643) ([#934](https://github.com/GetJobber/atlantis/issues/934)) ([452f0de](https://github.com/GetJobber/atlantis/commit/452f0de362a711b42ef72f0c2dc84a15ae6ffc54))
+
+
+
+
+
+# [2.88.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.87.0...@jobber/components@2.88.0) (2022-11-16)
+
+
+### Features
+
+* **components:** MultiSelect component ([#932](https://github.com/GetJobber/atlantis/issues/932)) ([c47a80d](https://github.com/GetJobber/atlantis/commit/c47a80d55dbfb72815386e699cda30e44fe8d9fc))
+
+
+
+
+
+# [2.87.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.86.2...@jobber/components@2.87.0) (2022-11-02)
+
+
+### Features
+
+* **components:** Data table component ([#925](https://github.com/GetJobber/atlantis/issues/925)) ([777f4dc](https://github.com/GetJobber/atlantis/commit/777f4dce695e0c28880db77483e6d77903b7b484))
+
+
+
+
+
+## [2.86.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.86.1...@jobber/components@2.86.2) (2022-11-01)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.86.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.86.0...@jobber/components@2.86.1) (2022-10-17)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.86.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.85.8...@jobber/components@2.86.0) (2022-10-14)
+
+
+### Features
+
+* **design:** update icon set ([#924](https://github.com/GetJobber/atlantis/issues/924)) ([b04062a](https://github.com/GetJobber/atlantis/commit/b04062aa2dd60229fb48b67fe0ca01c00ded223b))
+
+
+
+
+
+## [2.85.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.85.7...@jobber/components@2.85.8) (2022-09-30)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.85.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.85.6...@jobber/components@2.85.7) (2022-09-23)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.85.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.85.5...@jobber/components@2.85.6) (2022-08-25)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.85.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.85.4...@jobber/components@2.85.5) (2022-08-24)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.85.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.85.3...@jobber/components@2.85.4) (2022-08-08)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.85.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.85.2...@jobber/components@2.85.3) (2022-07-28)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.85.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.85.1...@jobber/components@2.85.2) (2022-07-22)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.85.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.85.0...@jobber/components@2.85.1) (2022-06-29)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.85.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.84.3...@jobber/components@2.85.0) (2022-06-21)
+
+
+### Features
+
+* **components:** Atlantis Component For Gallery ([#891](https://github.com/GetJobber/atlantis/issues/891)) ([266d2c8](https://github.com/GetJobber/atlantis/commit/266d2c897156b50859bf996d19ae972e305ac092))
+
+
+
+
+
+## [2.84.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.84.2...@jobber/components@2.84.3) (2022-06-13)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.84.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.84.1...@jobber/components@2.84.2) (2022-06-10)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.84.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.84.0...@jobber/components@2.84.1) (2022-06-09)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.84.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.83.1...@jobber/components@2.84.0) (2022-06-07)
+
+
+### Features
+
+* **components:** JOB-40406 Allow PUT requests in InputFile component ([#895](https://github.com/GetJobber/atlantis/issues/895)) ([4101f44](https://github.com/GetJobber/atlantis/commit/4101f441327ecfebb55ce868dbd9bf7d3d9ec837))
+
+
+
+
+
+## [2.83.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.83.0...@jobber/components@2.83.1) (2022-06-03)
+
+
+### Bug Fixes
+
+* **deps:** update markdown to v6.0.3 ([#896](https://github.com/GetJobber/atlantis/issues/896)) ([93b36de](https://github.com/GetJobber/atlantis/commit/93b36de87bc8a5184eb794c7dce46d7e8f47dbfd))
+
+
+
+
+
 # [2.83.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.82.1...@jobber/components@2.83.0) (2022-05-04)
 
 
