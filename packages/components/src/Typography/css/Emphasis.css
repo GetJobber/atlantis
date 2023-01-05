@@ -4,12 +4,11 @@
 
 .highlight {
   display: inline;
-  padding: var(--space-smaller) 0;
   font-family: inherit;
   font-style: normal;
   font-weight: inherit;
   background-image: url(../../Emphasis/EmphasisBrushstroke.svg);
   background-position: center 90%;
   background-repeat: no-repeat;
-  background-size: 100% var(--space-small);
+  background-size: 100% 20%;
 }
