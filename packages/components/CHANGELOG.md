@@ -8,6 +8,18 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.91.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.90.1...@jobber/components@2.91.0) (2023-01-06)
+
+
+### Features
+
+* **components:** new highlighter for Emphasis ([#890](https://github.com/GetJobber/atlantis/issues/890)) ([df6d29c](https://github.com/GetJobber/atlantis/commit/df6d29c7b351cf1756ee286b2580ac2961456cbf))
+* **design:** add syncAlert and apps icons  ([#953](https://github.com/GetJobber/atlantis/issues/953)) ([87e1cb7](https://github.com/GetJobber/atlantis/commit/87e1cb732cd73e412fa4b896392a78505294bc82))
+
+
+
+
+
 ## [2.90.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.90.0...@jobber/components@2.90.1) (2022-12-20)
 
 **Note:** Version bump only for package @jobber/components

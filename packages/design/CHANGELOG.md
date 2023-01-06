@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.27.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.26.0...@jobber/design@0.27.0) (2023-01-06)
+
+
+### Features
+
+* **design:** add syncAlert and apps icons  ([#953](https://github.com/GetJobber/atlantis/issues/953)) ([87e1cb7](https://github.com/GetJobber/atlantis/commit/87e1cb732cd73e412fa4b896392a78505294bc82))
+
+
+
+
+
 # [0.26.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.25.2...@jobber/design@0.26.0) (2022-10-14)
 
 
