@@ -46,11 +46,20 @@
     "react-router-dom": "^5.2.0",
     "time-input-polyfill": "^1.0.7",
     "ts-xor": "^1.0.8",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "postcss": "^7.0.36",
+    "postcss-cli": "^6.1.2",
+    "postcss-import": "^12.0.1",
+    "postcss-preset-env": "^6.7.0",
+    "postcss-copy-assets": "^0.3.1",
+    "react-test-renderer": "^16.9.0",
+    "rollup": "^2.79.1",
+    "rollup-plugin-multi-input": "^0.2.2",
+    "rollup-plugin-postcss": "^2.0.3",
+    "@rollup/plugin-commonjs": "^23.0.0",
+    "@rollup/plugin-typescript": "^9.0.1"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^23.0.0",
-    "@rollup/plugin-typescript": "^9.0.1",
     "@testing-library/jest-dom": "^5.10.1",
     "@testing-library/react": "^10.3.0",
     "@testing-library/react-hooks": "^7.0.2",
@@ -64,17 +73,13 @@
     "autoprefixer": "^9.5.1",
     "copyfiles": "^2.4.1",
     "glob": "^7.1.4",
-    "postcss": "^7.0.36",
-    "postcss-import": "^12.0.1",
-    "postcss-preset-env": "^6.7.0",
-    "react-test-renderer": "^16.9.0",
-    "rollup": "^2.79.1",
-    "rollup-plugin-multi-input": "^0.2.2",
-    "rollup-plugin-postcss": "^2.0.3",
     "ts-node": "^8.1.0",
     "typed-css-modules": "^0.7.0",
     "typescript": "^3.8.3",
     "uuid": "^8.3.2"
+  },
+  "optionalDependencies": {
+    "@jobber/fonts": "file:~/workspace/jobber-fonts"
   },
   "peerDependencies": {
     "react": "^16.8.6",

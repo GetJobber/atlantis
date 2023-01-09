@@ -4,8 +4,17 @@
     // "module": "commonjs",
     "declaration": true,
     "rootDir": "src",
-    "outDir": "dist"
+    "outDir": "dist",
   },
-  "include": ["src"],
-  "files": ["src/index.ts"]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "./node_modules",
+    "./node_modules/*",
+  ],
+  "files": [
+    "src/index.ts"
+  ]
 }

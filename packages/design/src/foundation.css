@@ -8,3 +8,4 @@
 @import "./typography.css";
 @import "./responsiveBreakpoints.css";
 @import "./styles.css";
+@import "@jobber/fonts";
