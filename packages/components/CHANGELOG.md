@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.92.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.91.0...@jobber/components@2.92.0) (2023-01-09)
+
+
+### Features
+
+* **components:** Add DataTable test helpers ([#954](https://github.com/GetJobber/atlantis/issues/954)) ([aa58d84](https://github.com/GetJobber/atlantis/commit/aa58d84df2e1c656f748187d6c0d216647a03e64))
+
+
+
+
+
 # [2.91.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.90.1...@jobber/components@2.91.0) (2023-01-06)
 
 
