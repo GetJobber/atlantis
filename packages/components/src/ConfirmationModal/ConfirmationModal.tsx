@@ -1,4 +1,5 @@
 import React, {
+  ReactNode,
   Ref,
   forwardRef,
   useEffect,
@@ -113,6 +114,16 @@ interface BaseConfirmationModalProps {
   readonly variation?: "work" | "destructive";
 
   /**
+   * Size of the modal (small, large),
+   */
+  readonly size?: "small" | "large";
+
+  /**
+   * Type (Work or destructive) for confirm button.
+   */
+  readonly children?: ReactNode;
+
+  /**
    * Callback for when the confirm button is pressed.
    */
   onConfirm?(): void;
@@ -139,8 +150,18 @@ interface ComplexConfirmationModalProps extends BaseConfirmationModalProps {
   readonly open?: undefined;
 }
 
+interface ChildrenMessage extends BaseConfirmationModalProps {
+  message?: never;
+  children: ReactNode;
+}
+
+interface StringMessage extends BaseConfirmationModalProps {
+  message: string;
+  children?: never;
+}
+
 type ConfirmationModalProps =
-  | SimpleConfirmationModalProps
+  | (SimpleConfirmationModalProps & (StringMessage | ChildrenMessage))
   | ComplexConfirmationModalProps;
 
 export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
@@ -154,6 +175,8 @@ export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
     onCancel,
     onRequestClose,
     variation = "work",
+    size = "small",
+    children,
   }: ConfirmationModalProps,
   ref: Ref<ConfirmationModalRef>,
 ) {
@@ -210,7 +233,7 @@ export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
     <Modal
       title={state.title}
       open={open || state.open}
-      size="small"
+      size={size}
       dismissible={false}
       primaryAction={{
         label: state.confirmLabel,
@@ -222,7 +245,12 @@ export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
         onClick: handleAction("cancel"),
       }}
     >
-      <Content>{state.message && <Markdown content={state.message} />}</Content>
+      {state.message && (
+        <Content>
+          <Markdown content={state.message} />
+        </Content>
+      )}
+      {children}
     </Modal>
   );
 
