@@ -90,6 +90,7 @@ interface BaseConfirmationModalProps {
 
   /**
    * Text or rich text content for the body of the modal.
+   * Not displayed if **children** prop is passed.
    */
   readonly message?: string;
 
@@ -119,7 +120,7 @@ interface BaseConfirmationModalProps {
   readonly size?: "small" | "large";
 
   /**
-   * Child component
+   * Child component. Not displayed if **message** prop is passed.
    */
   readonly children?: ReactNode;
 
@@ -161,7 +162,7 @@ interface StringMessage extends BaseConfirmationModalProps {
 
 type ConfirmationModalProps =
   | (SimpleConfirmationModalProps & (StringMessage | ChildrenMessage))
-  | ComplexConfirmationModalProps;
+  | (ComplexConfirmationModalProps & (StringMessage | ChildrenMessage));
 
 export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
   {
