@@ -1,7 +1,7 @@
 /* eslint-env node */
 
 let hasJobberFonts = false;
-console.error(process.env);
+// console.error(process.env);
 try {
   require("@jobber/fonts");
   hasJobberFonts = true;

@@ -7,8 +7,6 @@ import copy from "rollup-plugin-copy";
 
 export default {
   input: `src/index.ts`,
-  modules: true,
-  namedExports: true,
   plugins: [
     multiInput(),
     typescript({
@@ -19,8 +17,6 @@ export default {
       plugins: [
         require("postcss-import"),
         require("autoprefixer"),
-        require("postcss-copy-assets")({ base: "dist" }),
-
         // eslint-disable-next-line @typescript-eslint/no-var-requires
         require("postcss-preset-env")({
           stage: 1,

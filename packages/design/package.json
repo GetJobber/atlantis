@@ -36,13 +36,13 @@
     "@jobber/fonts": "file:~/workspace/jobber-fonts"
   },
   "dependencies": {
-    "classnames": "^2.2.6",
     "autoprefixer": "^9.5.1",
+    "classnames": "^2.2.6",
     "css-to-react-native-transform": "^2.0.0",
     "postcss": "^7.0.36",
     "postcss-calc": "7.0.2",
     "postcss-cli": "^6.1.2",
-    "postcss-copy-assets": "^0.3.1",
+    "postcss-copy": "^7.1.0",
     "postcss-custom-properties": "^8.0.10",
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^6.6.0",
