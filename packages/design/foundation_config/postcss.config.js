@@ -8,41 +8,40 @@ const postcssImport = require("postcss-import");
 const postcssCopy = require("postcss-copy");
 const removeRule = require("./postcss-filter-rules");
 
-const hasJobberFonts = true; //Boolean(process.env.INCLUDE_FONTS);
+const hasJobberFonts = Boolean(process.env.INCLUDE_FONTS);
 console.warn("foundationPostCSS", { hasJobberFonts });
 function removeFontImport(rule) {
   if (rule.params.includes("@jobber/fonts")) {
-    if (!hasJobberFonts) rule.remove();
+    if (!hasJobberFonts) {
+      console.warn("remove import");
+      rule.remove();
+    }
   }
 }
 const postcssCopyInstance = postcssCopy({
-  dest: "dist",
+  dest: "./dist",
   basePath: ["./src", "./node_modules"],
-  // preservePath: true,
   template(fileMeta) {
+    console.warn("copyMeta", { fileMeta });
     return fileMeta.filename;
   },
 });
 const postcssImportInstance = postcssImport({
-  // plugins: [testCopy],
-  basedir: [".", "./node_modules"],
+  basedir: ["./src", "./node_modules"],
   filter: path => {
     if (path.includes("@jobber/fonts")) {
-      return hasJobberFonts;
+      return false;
     } else {
       return true;
     }
   },
-  // load: (fileName, importOptions) => {
-  //   console.warn({ fileName, importOptions });
-  // },
 });
 
 module.exports = {
   plugins: [
     removeRule({ ruleFilters: [removeFontImport] }),
     postcssImportInstance,
-    hasJobberFonts && postcssCopyInstance,
+    // hasJobberFonts && postcssCopyInstance,
     postcssCustomProperties({
       exportTo: ["src/foundation.js"],
     }),
