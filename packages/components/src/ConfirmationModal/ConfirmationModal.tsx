@@ -119,7 +119,7 @@ interface BaseConfirmationModalProps {
   readonly size?: "small" | "large";
 
   /**
-   * Type (Work or destructive) for confirm button.
+   * Child component
    */
   readonly children?: ReactNode;
 
@@ -140,7 +140,6 @@ interface BaseConfirmationModalProps {
 }
 
 interface SimpleConfirmationModalProps extends BaseConfirmationModalProps {
-  readonly message: string;
   readonly open: boolean;
   readonly confirmLabel: string;
 }
