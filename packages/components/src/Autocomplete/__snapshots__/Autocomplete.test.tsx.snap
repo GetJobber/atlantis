@@ -22,7 +22,7 @@ exports[`it should display headers when headers are passed in 1`] = `
         placeholder_name
       </label>
       <input
-        autoComplete="autocomplete-off"
+        autoComplete="off"
         className="input"
         id="123e4567-e89b-12d3-a456-426655440035"
         onBlur={[Function]}
@@ -59,7 +59,7 @@ exports[`renders an Autocomplete 1`] = `
         placeholder_name
       </label>
       <input
-        autoComplete="autocomplete-off"
+        autoComplete="off"
         className="input"
         id="123e4567-e89b-12d3-a456-426655440001"
         onBlur={[Function]}
