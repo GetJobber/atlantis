@@ -24,7 +24,7 @@
     "release-the-kraken": "npm ci && lerna publish",
     "release:unpublished-package": "npm ci && lerna publish from-package",
     "prerelease": "lerna publish --canary --dist-tag next --preid pre",
-    "ci:release": "lerna publish --yes",
+    "ci:release": "lerna publish",
     "version": "node ensureChangelogHeaders.js",
     "convertIcoMoon": "scripts/convertIcoMoon.ts",
     "preventManualRelease": "node scripts/preventManualRelease.js",

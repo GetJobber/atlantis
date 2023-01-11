@@ -13,7 +13,10 @@
         "package.json",
         "package-lock.json",
         "CHANGELOG.md"
-      ]
+      ],
+      "env": {
+        "INCLUDE_FONTS": false
+      }
     }
   }
 }
