@@ -4,8 +4,7 @@
   "command": {
     "version": {
       "conventionalCommits": true,
-      "message": "chore(release): Publish",
-      "allowBranch": ["master"]
+      "message": "chore(release): test Publish"
     },
     "publish": {
       "ignoreChanges": [
