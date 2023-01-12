@@ -4,7 +4,8 @@
   "command": {
     "version": {
       "conventionalCommits": true,
-      "message": "chore(release): test Publish"
+      "message": "chore(release): Publish",
+      "allowBranch": ["master"]
     },
     "publish": {
       "ignoreChanges": [
@@ -12,10 +13,11 @@
         "package.json",
         "package-lock.json",
         "CHANGELOG.md"
-      ],
-      "env": {
-        "INCLUDE_FONTS": false
-      }
+      ]
+    },
+  "__bootstrap": {
+    "npmClientArgs": ["--no-optional=$YEET"]
     }
   }
+
 }
