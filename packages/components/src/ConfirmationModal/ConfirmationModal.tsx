@@ -245,12 +245,11 @@ export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
         onClick: handleAction("cancel"),
       }}
     >
-      {state.message && (
+      {state.message ? (
         <Content>
           <Markdown content={state.message} />
         </Content>
-      )}
-      {children}
+      ) : children}
     </Modal>
   );
 
