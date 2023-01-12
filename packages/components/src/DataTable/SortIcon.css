@@ -1,0 +1,17 @@
+.sortIcon {
+  margin: 0;
+  padding-top: var(--space-smaller);
+  padding-left: var(--space-small);
+}
+
+path {
+  fill: var(--color-text--reverse--secondary);
+}
+
+path.topArrow {
+  fill: var(--color-surface--reverse);
+}
+
+path.bottomArrow {
+  fill: var(--color-surface--reverse);
+}

@@ -1,7 +1,7 @@
 import { Row, Table, flexRender } from "@tanstack/react-table";
 import classNames from "classnames";
 import React from "react";
-import { SortIcon } from "./constants/SortIcon";
+import { SortDownIcon, SortIcon, SortUpIcon } from "./SortIcon";
 import styles from "./DataTable.css";
 import { SortingType } from "./types";
 
@@ -46,22 +46,17 @@ export function Header<T extends object>({
               >
                 {header.isPlaceholder ? null : (
                   <div>
-                    {flexRender(
-                      header.column.columnDef.header,
-                      header.getContext(),
-                    )}
+                    <>
+                      {flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
+                      {header.column.getIsSorted() ? undefined : <SortIcon />}
+                    </>
                     {
                       {
-                        asc: (
-                          <div className={classNames(styles.sortUp)}>
-                            <SortIcon />
-                          </div>
-                        ),
-                        desc: (
-                          <div className="sortDown">
-                            <SortIcon />
-                          </div>
-                        ),
+                        asc: <SortUpIcon />,
+                        desc: <SortDownIcon />,
                       }[header.column.getIsSorted() as string]
                     }
                   </div>
