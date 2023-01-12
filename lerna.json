@@ -14,9 +14,6 @@
         "package-lock.json",
         "CHANGELOG.md"
       ]
-    },
-  "__bootstrap": {
-    "npmClientArgs": ["--no-optional=$YEET"]
     }
   }
 

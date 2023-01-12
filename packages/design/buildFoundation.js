@@ -4,9 +4,18 @@ const fs = require("fs");
 const postcss = require("postcss");
 const postcssCustomProperties = require("postcss-custom-properties");
 const postcssImport = require("postcss-import");
+// eslint-disable-next-line import/no-internal-modules
+const removeRule = require("./foundation_config/postcss-filter-rules");
 
-const hasJobberFonts = Boolean(process.env.INCLUDE_FONTS);
-console.warn("buildFoundation", { hasJobberFonts });
+const hasJobberFonts = Boolean(process.env.INCLUDE_FONTS === "true");
+function removeFontImport(rule) {
+  if (rule.params?.includes("@jobber/fonts")) {
+    if (!hasJobberFonts) {
+      rule.remove();
+    }
+  }
+}
+
 const foundation = fs.readFileSync("./foundation.css");
 
 const postcssImportInstance = postcssImport({
@@ -21,6 +30,7 @@ const postcssImportInstance = postcssImport({
 });
 
 postcss([
+  removeRule({ ruleFilters: [removeFontImport] }),
   postcssImportInstance,
   postcssCustomProperties({
     exportTo: ["src/foundation.js"],

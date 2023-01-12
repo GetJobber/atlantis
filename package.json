@@ -13,7 +13,7 @@
     "build": "USE_ATLANTIS_ALIASES=true docz build",
     "serve": "docz serve",
     "clean": "rm -rf .docz",
-    "lerna:bootstrap": "lerna bootstrap",
+    "lerna:bootstrap": "./scripts/bootstrap.sh",
     "lerna:compile-typescript": "lerna run ci:typescript-compile",
     "lint:js": "eslint --ext .js,.jsx,.ts,.tsx .",
     "lint:css": "stylelint 'packages/**/*.css' --allow-empty-input",
@@ -28,7 +28,9 @@
     "version": "node ensureChangelogHeaders.js",
     "convertIcoMoon": "scripts/convertIcoMoon.ts",
     "preventManualRelease": "node scripts/preventManualRelease.js",
-    "buildHooksIndex": "node scripts/createIndexFile.js ./packages/hooks/src"
+    "buildHooksIndex": "node scripts/createIndexFile.js ./packages/hooks/src",
+    "lerna:clean": "lerna clean --y && npm run clean:packages && npm run clean",
+    "clean:packages": "rm -rf node_modules **/dist"
   },
   "repository": {
     "type": "git",
@@ -113,9 +115,6 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  },
-  "optionalDependencies": {
-    "@jobber/fonts": "file:../jobber-fonts"
   },
   "browserslist": [
     "> 1%",

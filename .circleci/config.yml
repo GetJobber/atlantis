@@ -44,7 +44,7 @@ references:
   npm_install: &npm_install
     run:
       name: Install Dependencies
-      command: npm ci
+      command: export IGNORE_OPTIONAL_DEPENDENCIES=true; npm ci --no-optional
 
   github_authenticity: &github_authenticity
     run:

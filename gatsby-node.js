@@ -35,9 +35,6 @@ exports.onCreateWebpackConfig = ({
                 require.resolve(
                   path.join(__dirname, "../packages/design/foundation.css"),
                 ),
-                // require.resolve(
-                //   path.join(__dirname, "../packages/design/dist"),
-                // ),
               ],
             }),
           ],

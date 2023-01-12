@@ -13,9 +13,7 @@
   ],
   "scripts": {
     "build": "npm run build:css && npm run build:css:icons && npm run build:colors && npm run build:cssTypes && npm run build:foundation && npm run build:iconCssStyle && npm run build:rollup",
-    "__build:rollup": "echo no rollup",
     "build:rollup": "rollup --config",
-    "__build:css": "postcss src/foundation.css --output foundation.css --use postcss-import",
     "build:css": "postcss src/foundation.css --config foundation_config --output foundation.css ",
     "build:css:icons": "postcss src/icons/*.css --dir icons/ --use postcss-import",
     "build:ts": "tsc --project .",
@@ -34,7 +32,7 @@
     "ci:typescript-compile": "npm run build:ts"
   },
   "optionalDependencies": {
-    "@jobber/fonts": "file:~/workspace/jobber-fonts"
+    "@jobber/fonts": "^1.0.0-pre-release.0"
   },
   "dependencies": {
     "autoprefixer": "^9.5.1",

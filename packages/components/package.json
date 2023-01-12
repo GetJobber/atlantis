@@ -78,7 +78,7 @@
     "uuid": "^8.3.2"
   },
   "optionalDependencies": {
-    "@jobber/fonts": "file:~/workspace/jobber-fonts"
+    "@jobber/fonts": "^1.0.0-pre-release.0"
   },
   "peerDependencies": {
     "react": "^16.8.6",
