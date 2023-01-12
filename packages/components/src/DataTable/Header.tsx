@@ -51,7 +51,12 @@ export function Header<T extends object>({
                         header.column.columnDef.header,
                         header.getContext(),
                       )}
-                      {header.column.getIsSorted() ? undefined : <SortIcon />}
+                      {header.column.getCanSort() ||
+                      header.column.getCanMultiSort() ? (
+                        header.column.getIsSorted() ? undefined : (
+                          <SortIcon />
+                        )
+                      ) : undefined}
                     </>
                     {
                       {
