@@ -100,3 +100,22 @@
   background: var(--color-surface--background);
   cursor: pointer;
 }
+
+path {
+  fill: grey;
+}
+
+.sortUp {
+  margin: 0;
+  padding-top: var(--space-smaller);
+  padding-left: var(--space-small);
+  background-color: antiquewhite;
+}
+
+.sortUp svg path#topArrow {
+  fill: red;
+}
+
+.sortDown path#bottomArrow {
+  fill: red;
+}

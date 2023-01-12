@@ -1,9 +1,9 @@
 import { Row, Table, flexRender } from "@tanstack/react-table";
 import classNames from "classnames";
 import React from "react";
+import { SortIcon } from "./constants/SortIcon";
 import styles from "./DataTable.css";
 import { SortingType } from "./types";
-import { Icon } from "../Icon";
 
 interface HeaderProps<T> {
   table: Table<T>;
@@ -52,8 +52,16 @@ export function Header<T extends object>({
                     )}
                     {
                       {
-                        asc: <Icon name="longArrowUp" color="green" />,
-                        desc: <Icon name="longArrowDown" color="green" />,
+                        asc: (
+                          <div className={classNames(styles.sortUp)}>
+                            <SortIcon />
+                          </div>
+                        ),
+                        desc: (
+                          <div className="sortDown">
+                            <SortIcon />
+                          </div>
+                        ),
                       }[header.column.getIsSorted() as string]
                     }
                   </div>

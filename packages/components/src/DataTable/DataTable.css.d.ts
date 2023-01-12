@@ -7,6 +7,10 @@ declare const styles: {
   readonly "pinFirstHeaderSortable": string;
   readonly "sortableColumn": string;
   readonly "clickableRow": string;
+  readonly "sortUp": string;
+  readonly "topArrow": string;
+  readonly "sortDown": string;
+  readonly "bottomArrow": string;
 };
 export = styles;
 
