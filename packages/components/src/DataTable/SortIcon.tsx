@@ -8,7 +8,7 @@ export enum SortDirection {
   equilibrium,
 }
 
-export const sortStyleIndex = [
+const sortStyleIndex = [
   {
     option: SortDirection.equilibrium,
     upArrowStyle: undefined,
@@ -31,7 +31,7 @@ interface SortIconProps {
 }
 
 export function SortIcon({ direction }: SortIconProps): JSX.Element {
-  const foundStyle = sortStyleIndex.find(option => option.option === direction);
+  const foundStyle = sortStyleIndex.find(style => style.option === direction);
   const finalStyle = foundStyle === undefined ? sortStyleIndex[0] : foundStyle;
   return (
     <div className={classNames(styles.sortIcon)}>
