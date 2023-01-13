@@ -97,7 +97,11 @@ export function DataTable<T extends object>({
             onRowClick={onRowClick}
             stickyHeader={stickyHeader}
           />
-          <Body table={table} onRowClick={onRowClick} />
+          <Body
+            table={table}
+            onRowClick={onRowClick}
+            height={height ? height / 2 : undefined}
+          />
           {exactWidth && exactWidth > Breakpoints.small ? (
             <Footer table={table} viewType="desktop" />
           ) : null}

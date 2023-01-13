@@ -707,6 +707,65 @@ import { DataTable } from "@jobber/components/DataTable";
   />
 </Playground>
 
+## Table empty state
+
+<Playground>
+  <DataTable
+    height={400}
+    pagination={{ manualPagination: false, itemsPerPage: [10, 20, 30] }}
+    sorting={{ manualSorting: false }}
+    data={[]}
+    columns={[
+      {
+        id: "name",
+        accessorKey: "name",
+        header: "Name",
+        footer: "Totals",
+      },
+      {
+        id: "points",
+        accessorKey: "points",
+        header: () => (
+          <Typography align="end" fontWeight="bold">
+            Points
+          </Typography>
+        ),
+        footer: () => (
+          <Typography align="end" fontWeight="bold">
+            $0.00
+          </Typography>
+        ),
+        cell: info => <Typography align="end">{info.getValue()}</Typography>,
+      },
+      {
+        id: "chance",
+        accessorKey: "chance",
+        header: () => (
+          <Typography align="end" fontWeight="bold">
+            Chance (%)
+          </Typography>
+        ),
+        cell: info => <Typography align="end">{info.getValue()}</Typography>,
+      },
+      {
+        id: "power",
+        accessorKey: "power",
+        header: () => (
+          <Typography align="end" fontWeight="bold">
+            Power
+          </Typography>
+        ),
+        footer: () => (
+          <Typography align="end" fontWeight="bold">
+            $0.00
+          </Typography>
+        ),
+        cell: info => <Typography align="end">{info.getValue()}</Typography>,
+      },
+    ]}
+  />
+</Playground>
+
 ## Table with manual column sizing
 
 <Playground>
