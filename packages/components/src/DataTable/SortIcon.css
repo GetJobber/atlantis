@@ -1,17 +1,17 @@
 .sortIcon {
   margin: 0;
-  padding-top: var(--space-smaller);
+  padding-top: calc(var(--space-smaller) + (var(--space-smaller) * 0.2));
   padding-left: var(--space-small);
 }
 
 path {
-  fill: var(--color-greyBlue--lighter);
-}
-
-path.active {
   fill: var(--color-greyBlue);
 }
 
-path.inactive {
+path.active {
   fill: var(--color-blue);
+}
+
+path.inactive {
+  fill: var(--color-greyBlue--lighter);
 }
