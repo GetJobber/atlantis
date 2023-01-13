@@ -5,13 +5,13 @@
 }
 
 path {
-  fill: var(--color-text--reverse--secondary);
+  fill: var(--color-greyBlue--lighter);
 }
 
-path.topArrow {
-  fill: var(--color-surface--reverse);
+path.active {
+  fill: var(--color-greyBlue);
 }
 
-path.bottomArrow {
-  fill: var(--color-surface--reverse);
+path.inactive {
+  fill: var(--color-blue);
 }
