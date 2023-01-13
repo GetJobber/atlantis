@@ -60,6 +60,11 @@ export interface DataTableProps<T> {
    * Enables row click action. The provided callback will be executed when the row is clicked.
    */
   onRowClick?: (row: Row<T>) => void;
+
+  /**
+   * The message to display when the data table is empty
+   */
+  emptyTableMessageElement?: string;
 }
 
 export function DataTable<T extends object>({
@@ -71,6 +76,7 @@ export function DataTable<T extends object>({
   stickyHeader,
   pinFirstColumn,
   onRowClick,
+  emptyTableMessageElement,
 }: DataTableProps<T>) {
   const [ref, { exactWidth }] = useResizeObserver();
   const tableSettings = createTableSettings(data, columns, {
@@ -101,6 +107,7 @@ export function DataTable<T extends object>({
             table={table}
             onRowClick={onRowClick}
             height={height ? height * 0.7 : undefined}
+            emptyTableBodyMessageElement={emptyTableMessageElement}
           />
           {table.getRowModel().rows.length &&
           exactWidth &&
