@@ -1,7 +1,7 @@
 import { Row, Table, flexRender } from "@tanstack/react-table";
 import classNames from "classnames";
 import React from "react";
-import { SortDownIcon, SortIcon, SortUpIcon } from "./SortIcon";
+import { SortDirection, SortIcon } from "./SortIcon";
 import styles from "./DataTable.css";
 import { SortingType } from "./types";
 
@@ -53,12 +53,14 @@ export function Header<T extends object>({
                       )}
                       {header.column.getCanSort() &&
                         sorting &&
-                        !header.column.getIsSorted() && <SortIcon />}
+                        !header.column.getIsSorted() && (
+                          <SortIcon direction={SortDirection.equilibrium} />
+                        )}
                     </>
                     {
                       {
-                        asc: <SortUpIcon />,
-                        desc: <SortDownIcon />,
+                        asc: <SortIcon direction={SortDirection.ascending} />,
+                        desc: <SortIcon direction={SortDirection.descending} />,
                       }[header.column.getIsSorted() as string]
                     }
                   </div>
