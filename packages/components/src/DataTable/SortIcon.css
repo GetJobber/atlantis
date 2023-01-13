@@ -1,9 +1,3 @@
-.sortIcon {
-  margin: 0;
-  /* padding-top: calc(var(--space-smaller) + (var(--space-smaller) * 0.2));
-  padding-left: var(--space-small); */
-}
-
 path {
   fill: var(--color-greyBlue);
 }
