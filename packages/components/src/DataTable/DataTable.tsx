@@ -102,12 +102,16 @@ export function DataTable<T extends object>({
             onRowClick={onRowClick}
             height={height ? height * 0.7 : undefined}
           />
-          {exactWidth && exactWidth > Breakpoints.small ? (
+          {table.getRowModel().rows.length &&
+          exactWidth &&
+          exactWidth > Breakpoints.small ? (
             <Footer table={table} viewType="desktop" />
           ) : null}
         </table>
       </div>
-      {exactWidth && exactWidth <= Breakpoints.small ? (
+      {table.getRowModel().rows.length &&
+      exactWidth &&
+      exactWidth <= Breakpoints.small ? (
         <Footer table={table} />
       ) : null}
 
