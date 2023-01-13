@@ -13,7 +13,14 @@ const size = fs.readFileSync("src/icons/Sizes.css");
 const color = fs.readFileSync("src/icons/Colors.css");
 
 const allCss = [icon, size, color].join("\n");
-console.warn(process.env);
+
+let hasJobberFonts = false;
+try {
+  require("@jobber/fonts");
+  hasJobberFonts = true;
+} catch (e) {
+  hasJobberFonts = false;
+}
 postcss([
   postcssCustomProperties({
     preserve: false,
@@ -32,6 +39,7 @@ postcss([
           ...calculated,
           circleCi: process.env.CIRCLECI || "false",
           tokenExists: Boolean(process.env.JOBBER_NPM_TOKEN) || "false",
+          hasJobberFonts,
         },
         undefined,
         2,
