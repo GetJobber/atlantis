@@ -100,7 +100,7 @@ export function DataTable<T extends object>({
           <Body
             table={table}
             onRowClick={onRowClick}
-            height={height ? height / 2 : undefined}
+            height={height ? height * 0.7 : undefined}
           />
           {exactWidth && exactWidth > Breakpoints.small ? (
             <Footer table={table} viewType="desktop" />

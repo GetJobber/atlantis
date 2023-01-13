@@ -2,13 +2,20 @@ import { Row, Table, flexRender } from "@tanstack/react-table";
 import classNames from "classnames";
 import React, { useCallback } from "react";
 import styles from "./DataTable.css";
+import { Heading } from "../Heading";
+import { Text } from "../Text";
 
 interface BodyProps<T> {
   table: Table<T>;
   onRowClick?: (row: Row<T>) => void;
+  height?: number;
 }
 
-export function Body<T extends object>({ table, onRowClick }: BodyProps<T>) {
+export function Body<T extends object>({
+  table,
+  onRowClick,
+  height,
+}: BodyProps<T>) {
   const bodyRowClasses = classNames({ [styles.clickableRow]: !!onRowClick });
 
   const handleRowClick = useCallback(
@@ -18,7 +25,8 @@ export function Body<T extends object>({ table, onRowClick }: BodyProps<T>) {
     },
     [onRowClick],
   );
-  return (
+
+  return table.getRowModel().rows.length ? (
     <tbody>
       {table.getRowModel().rows.map(row => {
         return (
@@ -45,5 +53,16 @@ export function Body<T extends object>({ table, onRowClick }: BodyProps<T>) {
         );
       })}
     </tbody>
+  ) : (
+    <div className={classNames(styles.emptyState)} style={{ height }}>
+      <div className={classNames(styles.emptyMessage)}>
+        <Heading level={5}>No items found</Heading>
+        <Text>
+          No items to display for the
+          <br />
+          selected date range
+        </Text>
+      </div>
+    </div>
   );
 }
