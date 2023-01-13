@@ -9,14 +9,14 @@ interface BodyProps<T> {
   table: Table<T>;
   onRowClick?: (row: Row<T>) => void;
   height?: number;
-  emptyTableBodyMessageElement?: string;
+  emptyTableBodyMessage?: string;
 }
 
 export function Body<T extends object>({
   table,
   onRowClick,
   height,
-  emptyTableBodyMessageElement,
+  emptyTableBodyMessage,
 }: BodyProps<T>) {
   const bodyRowClasses = classNames({ [styles.clickableRow]: !!onRowClick });
 
@@ -59,8 +59,8 @@ export function Body<T extends object>({
     <div className={classNames(styles.emptyState)} style={{ height }}>
       <div className={classNames(styles.emptyMessage)}>
         <Heading level={5}>No items found</Heading>
-        {emptyTableBodyMessageElement ? (
-          <Text>{emptyTableBodyMessageElement}</Text>
+        {emptyTableBodyMessage ? (
+          <Text>{emptyTableBodyMessage}</Text>
         ) : undefined}
       </div>
     </div>

@@ -64,7 +64,7 @@ export interface DataTableProps<T> {
   /**
    * The message to display when the data table is empty
    */
-  emptyTableMessageElement?: string;
+  emptyTableMessage?: string;
 }
 
 export function DataTable<T extends object>({
@@ -76,7 +76,7 @@ export function DataTable<T extends object>({
   stickyHeader,
   pinFirstColumn,
   onRowClick,
-  emptyTableMessageElement,
+  emptyTableMessage,
 }: DataTableProps<T>) {
   const [ref, { exactWidth }] = useResizeObserver();
   const tableSettings = createTableSettings(data, columns, {
@@ -107,7 +107,7 @@ export function DataTable<T extends object>({
             table={table}
             onRowClick={onRowClick}
             height={height ? height * 0.7 : undefined}
-            emptyTableBodyMessageElement={emptyTableMessageElement}
+            emptyTableBodyMessage={emptyTableMessage}
           />
           {table.getRowModel().rows.length &&
           exactWidth &&
