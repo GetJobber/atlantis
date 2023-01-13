@@ -57,11 +57,7 @@ export function Body<T extends object>({
     <div className={classNames(styles.emptyState)} style={{ height }}>
       <div className={classNames(styles.emptyMessage)}>
         <Heading level={5}>No items found</Heading>
-        <Text>
-          No items to display for the
-          <br />
-          selected date range
-        </Text>
+        <Text>No items found, update your search or filter selection</Text>
       </div>
     </div>
   );
