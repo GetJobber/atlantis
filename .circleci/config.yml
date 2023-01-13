@@ -42,9 +42,13 @@ references:
         - '*'
 
   npm_install: &npm_install
-    run:
-      name: Install Dependencies
-      command: export IGNORE_OPTIONAL_DEPENDENCIES=true; npm ci --no-optional
+    steps:
+      - run:
+          name: Authenticate with npm
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/atlantis/.npmrc
+      - run:
+          name: Install Dependencies
+          command: export IGNORE_OPTIONAL_DEPENDENCIES=true; npm ci --no-optional
 
   github_authenticity: &github_authenticity
     run:
@@ -159,9 +163,6 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "39:99:9f:56:1c:70:0e:53:6a:ed:64:14:c3:a8:e2:ce"
-      - run:
-          name: Authenticate with npm
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/atlantis/.npmrc
       - run:
           name: Release Packages
           command: |
