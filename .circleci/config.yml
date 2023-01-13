@@ -42,13 +42,9 @@ references:
         - '*'
 
   npm_install: &npm_install
-    steps:
-      - run:
-          name: Authenticate with npm
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/atlantis/.npmrc
-      - run:
-          name: Install Dependencies
-          command: export IGNORE_OPTIONAL_DEPENDENCIES=true; npm ci --no-optional
+    run:
+      name: Install Dependencies
+      command: export IGNORE_OPTIONAL_DEPENDENCIES=true; npm ci --no-optional
 
   github_authenticity: &github_authenticity
     run:
@@ -80,6 +76,9 @@ jobs:
       - *attach_workspace
       - *sum_lockfiles
       - *restore_npm_cache
+      - run:
+          name: Authenticate with npm
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/atlantis/.npmrc
       - *npm_install
       - *persist_to_workspace
       - save_cache:
