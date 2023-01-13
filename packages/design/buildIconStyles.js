@@ -39,7 +39,10 @@ postcss([
           ...calculated,
           circleCi: process.env.CIRCLECI || "false",
           tokenExists: Boolean(process.env.JOBBER_NPM_TOKEN) || "false",
+          ignoreDeps:
+            Boolean(process.env.IGNORE_OPTIONAL_DEPENDENCIES) || "false",
           hasJobberFonts,
+          includeFonts: Boolean(process.env.INCLUDE_FONTS),
         },
         undefined,
         2,
