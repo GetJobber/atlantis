@@ -317,5 +317,5 @@ test("should display child component", () => {
   // </div>
 
   // Ensure that only child component is displayed
-  expect(text.parentElement.children[1]).not.toHaveClass("padded", "base");
+  expect(text?.parentElement?.children[1]).not.toHaveClass("padded", "base");
 });
