@@ -249,7 +249,9 @@ export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
         <Content>
           <Markdown content={state.message} />
         </Content>
-      ) : children}
+      ) : (
+        children
+      )}
     </Modal>
   );
 
