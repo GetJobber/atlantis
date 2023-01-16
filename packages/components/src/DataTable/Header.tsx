@@ -31,6 +31,11 @@ export function Header<T extends object>({
       {table.getHeaderGroups().map(headerGroup => (
         <tr key={headerGroup.id}>
           {headerGroup.headers.map((header, index) => {
+            const rightAlignment = columnAlignment
+              ? columnAlignment[index] == ColumnAlignment.right
+                ? true
+                : false
+              : false;
             return (
               <th
                 key={header.id}
@@ -49,10 +54,17 @@ export function Header<T extends object>({
                   width: header.getSize(),
                   minWidth: header.column.columnDef.minSize,
                   maxWidth: header.column.columnDef.maxSize,
+                  paddingRight: rightAlignment ? 0 : "inherit",
                 }}
               >
                 {header.isPlaceholder ? null : (
-                  <div>
+                  <div
+                    style={
+                      rightAlignment
+                        ? { display: "flex", justifyContent: "space-between" }
+                        : undefined
+                    }
+                  >
                     <>
                       {flexRender(
                         header.column.columnDef.header,
@@ -63,14 +75,7 @@ export function Header<T extends object>({
                         !header.column.getIsSorted() && (
                           <SortIcon
                             direction={SortDirection.equilibrium}
-                            alignRight={
-                              columnAlignment
-                                ? columnAlignment[index] ==
-                                  ColumnAlignment.right
-                                  ? true
-                                  : false
-                                : false
-                            }
+                            alignRight={rightAlignment}
                           />
                         )}
                     </>
@@ -79,27 +84,13 @@ export function Header<T extends object>({
                         asc: (
                           <SortIcon
                             direction={SortDirection.ascending}
-                            alignRight={
-                              columnAlignment
-                                ? columnAlignment[index] ==
-                                  ColumnAlignment.right
-                                  ? true
-                                  : false
-                                : false
-                            }
+                            alignRight={rightAlignment}
                           />
                         ),
                         desc: (
                           <SortIcon
                             direction={SortDirection.descending}
-                            alignRight={
-                              columnAlignment
-                                ? columnAlignment[index] ==
-                                  ColumnAlignment.right
-                                  ? true
-                                  : false
-                                : false
-                            }
+                            alignRight={rightAlignment}
                           />
                         ),
                       }[header.column.getIsSorted() as string]

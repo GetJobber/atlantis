@@ -11,8 +11,5 @@ path.inactive {
 }
 
 .sortIconRightAlign {
-  display: block;
-  position: relative;
-  /* margin-left: calc(var(--space-largest) * 2 + var(--space-large) + var(--space-large) * 0.5); */
-  float: right;
+  padding-right: var(--space-smallest);
 }
