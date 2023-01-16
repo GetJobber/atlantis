@@ -63,6 +63,7 @@ export interface DataTableProps<T> {
 
   /**
    * An array of values which indicate the alignment of the columns.
+   * Tech debt: this is a temporary solution until the column interface can be properly extended.
    */
   columnAlignment?: ColumnAlignment[];
 }
