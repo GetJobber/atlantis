@@ -9,7 +9,3 @@ path.active {
 path.inactive {
   fill: var(--color-greyBlue--lighter);
 }
-
-.sortIconRightAlign {
-  padding-right: var(--space-smallest);
-}
