@@ -7,9 +7,12 @@ const postcssCopy = require("postcss-copy");
 const removeRule = require("./postcss-filter-rules");
 
 let maintainPath;
-const hasJobberFonts = Boolean(process.env.INCLUDE_FONTS === "true");
-if (hasJobberFonts) {
+let hasJobberFonts = false;
+try {
   ({ maintainPath } = require("@jobber/fonts"));
+  hasJobberFonts = true;
+} catch (e) {
+  hasJobberFonts = false;
 }
 function removeFontImport(rule) {
   if (rule.params?.includes("@jobber/fonts")) {

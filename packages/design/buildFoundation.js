@@ -7,7 +7,13 @@ const postcssImport = require("postcss-import");
 // eslint-disable-next-line import/no-internal-modules
 const removeRule = require("./foundation_config/postcss-filter-rules");
 
-const hasJobberFonts = Boolean(process.env.INCLUDE_FONTS === "true");
+let hasJobberFonts = false;
+try {
+  require("@jobber/fonts");
+  hasJobberFonts = true;
+} catch (e) {
+  hasJobberFonts = false;
+}
 function removeFontImport(rule) {
   if (rule.params?.includes("@jobber/fonts")) {
     if (!hasJobberFonts) {
