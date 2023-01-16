@@ -15,6 +15,9 @@ import axios from "axios";
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { sortBy } from "lodash";
 import { Text } from "../Text";
+import styles from "./DataTable.css";
+import classNames from "classnames";
+import { Heading } from "../Heading";
 
 # Data Table
 
@@ -765,7 +768,10 @@ import { DataTable } from "@jobber/components/DataTable";
       },
     ]}
   >
-    <Text>Update your search or filter selection</Text>
+    <div className={classNames(styles.emptyMessage)}>
+      <Text>Update your search or filter selection</Text>
+      <Heading level={5}>No items found</Heading>
+    </div>
   </DataTable>
 </Playground>
 

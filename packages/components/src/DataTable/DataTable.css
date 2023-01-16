@@ -104,9 +104,8 @@
 .emptyState {
   display: flex;
   width: 100%;
-  text-align: center;
-  justify-content: space-around;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .emptyMessage {

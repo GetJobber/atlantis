@@ -2,7 +2,6 @@ import { Row, Table, flexRender } from "@tanstack/react-table";
 import classNames from "classnames";
 import React, { ReactNode, useCallback } from "react";
 import styles from "./DataTable.css";
-import { Heading } from "../Heading";
 
 interface BodyProps<T> {
   table: Table<T>;
@@ -56,10 +55,7 @@ export function Body<T extends object>({
     </tbody>
   ) : (
     <div className={classNames(styles.emptyState)} style={{ height }}>
-      <div className={classNames(styles.emptyMessage)}>
-        <Heading level={5}>No items found</Heading>
-        {children}
-      </div>
+      {children}
     </div>
   );
 }
