@@ -125,5 +125,8 @@
   ],
   "dependencies": {
     "@std-proposal/temporal": "0.0.1"
+  },
+  "optionalDependencies": {
+    "@jobber/fonts": "^1.0.0-pre-release.0"
   }
 }
