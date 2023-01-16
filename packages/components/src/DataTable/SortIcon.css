@@ -9,3 +9,10 @@ path.active {
 path.inactive {
   fill: var(--color-greyBlue--lighter);
 }
+
+.sortIconRightAlign {
+  display: block;
+  position: relative;
+  /* margin-left: calc(var(--space-largest) * 2 + var(--space-large) + var(--space-large) * 0.5); */
+  float: right;
+}

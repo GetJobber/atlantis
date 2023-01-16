@@ -5,11 +5,17 @@ import { SortDirection, SortIcon } from "./SortIcon";
 import styles from "./DataTable.css";
 import { SortingType } from "./types";
 
+export enum ColumnAlignment {
+  right,
+  left,
+}
+
 interface HeaderProps<T> {
   table: Table<T>;
   stickyHeader?: boolean;
   sorting?: SortingType;
   onRowClick?: (row: Row<T>) => void;
+  columnAlignment?: ColumnAlignment[];
 }
 
 export function Header<T extends object>({
@@ -17,13 +23,14 @@ export function Header<T extends object>({
   stickyHeader,
   sorting,
   onRowClick,
+  columnAlignment,
 }: HeaderProps<T>) {
   const stickyClass = classNames({ [styles.stickyHeader]: stickyHeader });
   return (
     <thead className={stickyClass}>
       {table.getHeaderGroups().map(headerGroup => (
         <tr key={headerGroup.id}>
-          {headerGroup.headers.map(header => {
+          {headerGroup.headers.map((header, index) => {
             return (
               <th
                 key={header.id}
@@ -54,13 +61,47 @@ export function Header<T extends object>({
                       {header.column.getCanSort() &&
                         sorting &&
                         !header.column.getIsSorted() && (
-                          <SortIcon direction={SortDirection.equilibrium} />
+                          <SortIcon
+                            direction={SortDirection.equilibrium}
+                            alignRight={
+                              columnAlignment
+                                ? columnAlignment[index] ==
+                                  ColumnAlignment.right
+                                  ? true
+                                  : false
+                                : false
+                            }
+                          />
                         )}
                     </>
                     {
                       {
-                        asc: <SortIcon direction={SortDirection.ascending} />,
-                        desc: <SortIcon direction={SortDirection.descending} />,
+                        asc: (
+                          <SortIcon
+                            direction={SortDirection.ascending}
+                            alignRight={
+                              columnAlignment
+                                ? columnAlignment[index] ==
+                                  ColumnAlignment.right
+                                  ? true
+                                  : false
+                                : false
+                            }
+                          />
+                        ),
+                        desc: (
+                          <SortIcon
+                            direction={SortDirection.descending}
+                            alignRight={
+                              columnAlignment
+                                ? columnAlignment[index] ==
+                                  ColumnAlignment.right
+                                  ? true
+                                  : false
+                                : false
+                            }
+                          />
+                        ),
                       }[header.column.getIsSorted() as string]
                     }
                   </div>

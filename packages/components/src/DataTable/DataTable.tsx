@@ -6,7 +6,7 @@ import { Body } from "./Body";
 import { createTableSettings } from "./createTableSettings";
 import styles from "./DataTable.css";
 import { Pagination } from "./Pagination";
-import { Header } from "./Header";
+import { ColumnAlignment, Header } from "./Header";
 import { PaginationType, SortingType } from "./types";
 import { Footer } from "./Footer";
 
@@ -60,6 +60,11 @@ export interface DataTableProps<T> {
    * Enables row click action. The provided callback will be executed when the row is clicked.
    */
   onRowClick?: (row: Row<T>) => void;
+
+  /**
+   * An array of values which indicate the alignment of the columns.
+   */
+  columnAlignment?: ColumnAlignment[];
 }
 
 export function DataTable<T extends object>({
@@ -71,6 +76,7 @@ export function DataTable<T extends object>({
   stickyHeader,
   pinFirstColumn,
   onRowClick,
+  columnAlignment,
 }: DataTableProps<T>) {
   const [ref, { exactWidth }] = useResizeObserver();
   const tableSettings = createTableSettings(data, columns, {
@@ -96,6 +102,7 @@ export function DataTable<T extends object>({
             sorting={sorting}
             onRowClick={onRowClick}
             stickyHeader={stickyHeader}
+            columnAlignment={columnAlignment}
           />
           <Body table={table} onRowClick={onRowClick} />
           {exactWidth && exactWidth > Breakpoints.small ? (
