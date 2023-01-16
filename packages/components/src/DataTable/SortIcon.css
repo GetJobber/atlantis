@@ -1,3 +1,6 @@
+.sortIcon {
+  padding-right: var(--space-small);
+}
 path {
   fill: var(--color-greyBlue);
 }
