@@ -62,7 +62,7 @@ export interface DataTableProps<T> {
   onRowClick?: (row: Row<T>) => void;
 
   /**
-   * The message to display when the data table is empty
+   * The elements to display when the data table is empty
    */
   children?: ReactNode | ReactNode[];
 }
