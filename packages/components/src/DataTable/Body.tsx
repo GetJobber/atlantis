@@ -1,22 +1,21 @@
 import { Row, Table, flexRender } from "@tanstack/react-table";
 import classNames from "classnames";
-import React, { useCallback } from "react";
+import React, { ReactNode, useCallback } from "react";
 import styles from "./DataTable.css";
 import { Heading } from "../Heading";
-import { Text } from "../Text";
 
 interface BodyProps<T> {
   table: Table<T>;
   onRowClick?: (row: Row<T>) => void;
   height?: number;
-  emptyTableBodyMessage?: string;
+  children?: ReactNode | ReactNode[];
 }
 
 export function Body<T extends object>({
   table,
   onRowClick,
   height,
-  emptyTableBodyMessage,
+  children,
 }: BodyProps<T>) {
   const bodyRowClasses = classNames({ [styles.clickableRow]: !!onRowClick });
 
@@ -59,9 +58,7 @@ export function Body<T extends object>({
     <div className={classNames(styles.emptyState)} style={{ height }}>
       <div className={classNames(styles.emptyMessage)}>
         <Heading level={5}>No items found</Heading>
-        {emptyTableBodyMessage ? (
-          <Text>{emptyTableBodyMessage}</Text>
-        ) : undefined}
+        {children}
       </div>
     </div>
   );

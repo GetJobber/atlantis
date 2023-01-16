@@ -14,6 +14,7 @@ import { Menu } from "../Menu";
 import axios from "axios";
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { sortBy } from "lodash";
+import { Text } from "../Text";
 
 # Data Table
 
@@ -715,7 +716,6 @@ import { DataTable } from "@jobber/components/DataTable";
     pagination={{ manualPagination: false, itemsPerPage: [10, 20, 30] }}
     sorting={{ manualSorting: false }}
     data={[]}
-    emptyTableMessage={"Update your search or filter selection"}
     columns={[
       {
         id: "name",
@@ -764,7 +764,9 @@ import { DataTable } from "@jobber/components/DataTable";
         cell: info => <Typography align="end">{info.getValue()}</Typography>,
       },
     ]}
-  />
+  >
+    <Text>Update your search or filter selection</Text>
+  </DataTable>
 </Playground>
 
 ## Table with manual column sizing

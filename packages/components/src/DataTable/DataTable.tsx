@@ -1,6 +1,6 @@
 import { ColumnDef, Row, useReactTable } from "@tanstack/react-table";
 import classNames from "classnames";
-import React, { LegacyRef } from "react";
+import React, { LegacyRef, ReactNode } from "react";
 import { Breakpoints, useResizeObserver } from "@jobber/hooks";
 import { Body } from "./Body";
 import { createTableSettings } from "./createTableSettings";
@@ -64,7 +64,7 @@ export interface DataTableProps<T> {
   /**
    * The message to display when the data table is empty
    */
-  emptyTableMessage?: string;
+  children?: ReactNode | ReactNode[];
 }
 
 export function DataTable<T extends object>({
@@ -76,7 +76,7 @@ export function DataTable<T extends object>({
   stickyHeader,
   pinFirstColumn,
   onRowClick,
-  emptyTableMessage,
+  children,
 }: DataTableProps<T>) {
   const [ref, { exactWidth }] = useResizeObserver();
   const tableSettings = createTableSettings(data, columns, {
@@ -107,8 +107,9 @@ export function DataTable<T extends object>({
             table={table}
             onRowClick={onRowClick}
             height={height ? height * 0.7 : undefined}
-            emptyTableBodyMessage={emptyTableMessage}
-          />
+          >
+            {children}
+          </Body>
           {table.getRowModel().rows.length &&
           exactWidth &&
           exactWidth > Breakpoints.small ? (
