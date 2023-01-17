@@ -8,7 +8,6 @@ declare const styles: {
   readonly "sortableColumn": string;
   readonly "clickableRow": string;
   readonly "emptyState": string;
-  readonly "emptyMessage": string;
 };
 export = styles;
 

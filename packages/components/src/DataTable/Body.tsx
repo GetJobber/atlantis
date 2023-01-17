@@ -13,7 +13,6 @@ interface BodyProps<T> {
 export function Body<T extends object>({
   table,
   onRowClick,
-  height,
   children,
 }: BodyProps<T>) {
   const bodyRowClasses = classNames({ [styles.clickableRow]: !!onRowClick });
@@ -54,8 +53,6 @@ export function Body<T extends object>({
       })}
     </tbody>
   ) : (
-    <div className={classNames(styles.emptyState)} style={{ height }}>
-      {children}
-    </div>
+    <div className={classNames(styles.emptyState)}>{children}</div>
   );
 }

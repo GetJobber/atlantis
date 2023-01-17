@@ -15,8 +15,6 @@ import axios from "axios";
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { sortBy } from "lodash";
 import { Text } from "../Text";
-import styles from "./DataTable.css";
-import classNames from "classnames";
 import { Heading } from "../Heading";
 
 # Data Table
@@ -713,6 +711,14 @@ import { DataTable } from "@jobber/components/DataTable";
 
 ## Table empty state
 
+The DataTable accepts any child component for an empty state. By default it will
+center-align any content vertically and horizontally.
+
+Consider the context of the user to determine what to use for an empty state.
+Are they encountering an empty state because they're a new user? Have they added
+too many filters to the dataset? Can you provide them with an action to populate
+content?
+
 <Playground>
   <DataTable
     height={400}
@@ -768,10 +774,8 @@ import { DataTable } from "@jobber/components/DataTable";
       },
     ]}
   >
-    <div className={classNames(styles.emptyMessage)}>
-      <Heading level={5}>No items found</Heading>
-      <Text>Update your search or filter selection</Text>
-    </div>
+    <Heading level={5}>No items found</Heading>
+    <Text>Update your search or filter selection</Text>
   </DataTable>
 </Playground>
 
@@ -891,18 +895,3 @@ the issued and due dates on an invoice), consider using
 The `DataTable` component has the option to handle responsive design, these
 options will allow us to fix the header or the first left column depending on
 your needs, this will allow the user a more efficient way to visualize the data.
-
-<iframe
-  style="border: 1px solid rgba(0, 0, 0, 0.1);"
-  width="800"
-  height="450"
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F3BXCXXD9glMtj8RAHjXiQC%2FDesign-System-Contribution-TEMPLATE%3Fnode-id%3D332%253A5526"
-  allowfullscreen
-></iframe>
-
-<!--
-  Insert a Figma mockup from the [Design System Contribution template](https://www.figma.com/file/3BXCXXD9glMtj8RAHjXiQC/Design-System-Contribution-TEMPLATE?node-id=26%3A2)
-  that conveys the visual design of the component, with variants and state accounted for.
-  Consider progressive enhancement; might this rely on newer browser features that aren’t
-  widely supported yet?
--->

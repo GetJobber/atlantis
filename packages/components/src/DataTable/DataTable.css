@@ -1,6 +1,7 @@
 .dataTableContainer {
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
+  position: relative;
 }
 
 .tableContainer {
@@ -56,7 +57,7 @@
   left: 0;
   z-index: 1;
   height: calc(var(--space-largest) + var(--space-smaller));
-  background-color: var(--color-white);
+  background-color: var(--color-surface);
 }
 
 .pinFirstColumn th:first-child::after,
@@ -82,7 +83,7 @@
   left: 0;
   z-index: 2;
   box-shadow: var(--shadow-base);
-  background-color: var(--color-white);
+  background-color: var(--color-surface);
 }
 
 .pinFirstHeaderSortable:first-child:hover {
@@ -102,25 +103,14 @@
 }
 
 .emptyState {
+  position: absolute;
   display: flex;
+  flex-direction: column;
+  top: var(--space-largest);
+  right: 0;
+  bottom: var(--space-largest);
+  left: 0;
   width: 100%;
   justify-content: center;
   align-items: center;
-}
-
-.emptyMessage {
-  position: absolute;
-  right: 0;
-  left: 0;
-  width: 100%;
-  margin-top: var(--space-largest);
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-
-@media only screen and (max-width: 640px) {
-  .emptyMessage {
-    width: 70%;
-  }
 }
