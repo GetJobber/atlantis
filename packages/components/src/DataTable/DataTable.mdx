@@ -724,6 +724,12 @@ content?
     height={400}
     pagination={{ manualPagination: false, itemsPerPage: [10, 20, 30] }}
     sorting={{ manualSorting: false }}
+    emptyState={
+      <div className={classNames(styles.emptyMessage)}>
+        <Heading level={5}>No items found</Heading>
+        <Text>Update your search or filter selection</Text>
+      </div>
+    }
     data={[]}
     columns={[
       {
@@ -773,10 +779,7 @@ content?
         cell: info => <Typography align="end">{info.getValue()}</Typography>,
       },
     ]}
-  >
-    <Heading level={5}>No items found</Heading>
-    <Text>Update your search or filter selection</Text>
-  </DataTable>
+  ></DataTable>
 </Playground>
 
 ## Table with manual column sizing
