@@ -6,9 +6,9 @@ import { Body } from "./Body";
 import { createTableSettings } from "./createTableSettings";
 import styles from "./DataTable.css";
 import { Pagination } from "./Pagination";
-import { Header } from "./Header";
 import { PaginationType, SortingType } from "./types";
 import { Footer } from "./Footer";
+import { Header } from "./Header";
 
 export interface DataTableProps<T> {
   /**
