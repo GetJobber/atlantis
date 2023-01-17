@@ -14,6 +14,10 @@ import { Menu } from "../Menu";
 import axios from "axios";
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { sortBy } from "lodash";
+import { Text } from "../Text";
+import { Heading } from "../Heading";
+import classNames from "classnames";
+import styles from "./DataTable.css";
 
 # Data Table
 
@@ -848,6 +852,79 @@ import { DataTable } from "@jobber/components/DataTable";
   />
 </Playground>
 
+## Table empty state
+
+The DataTable accepts any child component for an empty state. By default it will
+center-align any content vertically and horizontally.
+
+Consider the context of the user to determine what to use for an empty state.
+Are they encountering an empty state because they're a new user? Have they added
+too many filters to the dataset? Can you provide them with an action to populate
+content?
+
+<Playground>
+  <DataTable
+    height={400}
+    pagination={{ manualPagination: false, itemsPerPage: [10, 20, 30] }}
+    sorting={{ manualSorting: false }}
+    emptyState={
+      <div className={classNames(styles.emptyState)}>
+        <Heading level={5}>No items found</Heading>
+        <Text>Update your search or filter selection</Text>
+      </div>
+    }
+    data={[]}
+    columns={[
+      {
+        id: "name",
+        accessorKey: "name",
+        header: "Name",
+        footer: "Totals",
+      },
+      {
+        id: "points",
+        accessorKey: "points",
+        header: () => (
+          <Typography align="end" fontWeight="bold">
+            Points
+          </Typography>
+        ),
+        footer: () => (
+          <Typography align="end" fontWeight="bold">
+            $0.00
+          </Typography>
+        ),
+        cell: info => <Typography align="end">{info.getValue()}</Typography>,
+      },
+      {
+        id: "chance",
+        accessorKey: "chance",
+        header: () => (
+          <Typography align="end" fontWeight="bold">
+            Chance (%)
+          </Typography>
+        ),
+        cell: info => <Typography align="end">{info.getValue()}</Typography>,
+      },
+      {
+        id: "power",
+        accessorKey: "power",
+        header: () => (
+          <Typography align="end" fontWeight="bold">
+            Power
+          </Typography>
+        ),
+        footer: () => (
+          <Typography align="end" fontWeight="bold">
+            $0.00
+          </Typography>
+        ),
+        cell: info => <Typography align="end">{info.getValue()}</Typography>,
+      },
+    ]}
+  ></DataTable>
+</Playground>
+
 ## Table with manual column sizing
 
 <Playground>
@@ -970,18 +1047,3 @@ the issued and due dates on an invoice), consider using
 The `DataTable` component has the option to handle responsive design, these
 options will allow us to fix the header or the first left column depending on
 your needs, this will allow the user a more efficient way to visualize the data.
-
-<iframe
-  style="border: 1px solid rgba(0, 0, 0, 0.1);"
-  width="800"
-  height="450"
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F3BXCXXD9glMtj8RAHjXiQC%2FDesign-System-Contribution-TEMPLATE%3Fnode-id%3D332%253A5526"
-  allowfullscreen
-></iframe>
-
-<!--
-  Insert a Figma mockup from the [Design System Contribution template](https://www.figma.com/file/3BXCXXD9glMtj8RAHjXiQC/Design-System-Contribution-TEMPLATE?node-id=26%3A2)
-  that conveys the visual design of the component, with variants and state accounted for.
-  Consider progressive enhancement; might this rely on newer browser features that aren’t
-  widely supported yet?
--->
