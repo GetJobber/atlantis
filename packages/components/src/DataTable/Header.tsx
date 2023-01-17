@@ -24,12 +24,13 @@ export function Header<T extends object>({
       {table.getHeaderGroups().map(headerGroup => (
         <tr key={headerGroup.id}>
           {headerGroup.headers.map(header => {
+            const isSorting = sorting && header.column.getCanSort();
             return (
               <th
                 key={header.id}
                 colSpan={header.colSpan}
                 className={
-                  sorting && header.column.getCanSort()
+                  isSorting
                     ? classNames(styles.sortableColumn, {
                         [styles.pinFirstHeaderSortable]: !!onRowClick,
                       })
@@ -42,8 +43,7 @@ export function Header<T extends object>({
                   width: header.getSize(),
                   minWidth: header.column.columnDef.minSize,
                   maxWidth: header.column.columnDef.maxSize,
-                  paddingRight:
-                    sorting && header.column.getCanSort() ? 0 : "inherit",
+                  paddingRight: isSorting ? 0 : "inherit",
                 }}
               >
                 {header.isPlaceholder ? null : (
