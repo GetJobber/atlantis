@@ -107,9 +107,8 @@ export function DataTable<T extends object>({
             table={table}
             onRowClick={onRowClick}
             height={height ? height * 0.7 : undefined}
-          >
-            {emptyState}
-          </Body>
+            emptyState={emptyState}
+          />
           {table.getRowModel().rows.length &&
           exactWidth &&
           exactWidth > Breakpoints.small ? (

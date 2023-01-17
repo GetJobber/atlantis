@@ -16,6 +16,8 @@ import { useState, useCallback, useEffect, useMemo } from "react";
 import { sortBy } from "lodash";
 import { Text } from "../Text";
 import { Heading } from "../Heading";
+import classNames from "classnames";
+import styles from "./DataTable.css";
 
 # Data Table
 
@@ -725,7 +727,7 @@ content?
     pagination={{ manualPagination: false, itemsPerPage: [10, 20, 30] }}
     sorting={{ manualSorting: false }}
     emptyState={
-      <div className={classNames(styles.emptyMessage)}>
+      <div className={classNames(styles.emptyState)}>
         <Heading level={5}>No items found</Heading>
         <Text>Update your search or filter selection</Text>
       </div>

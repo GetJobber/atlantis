@@ -7,13 +7,13 @@ interface BodyProps<T> {
   table: Table<T>;
   onRowClick?: (row: Row<T>) => void;
   height?: number;
-  children?: ReactNode | ReactNode[];
+  emptyState?: ReactNode | ReactNode[];
 }
 
 export function Body<T extends object>({
   table,
   onRowClick,
-  children,
+  emptyState,
 }: BodyProps<T>) {
   const bodyRowClasses = classNames({ [styles.clickableRow]: !!onRowClick });
 
@@ -53,6 +53,6 @@ export function Body<T extends object>({
       })}
     </tbody>
   ) : (
-    <div className={classNames(styles.emptyState)}>{children}</div>
+    <div className={classNames(styles.emptyState)}>{emptyState}</div>
   );
 }
