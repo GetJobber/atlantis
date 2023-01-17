@@ -42,7 +42,8 @@ export function Header<T extends object>({
                   width: header.getSize(),
                   minWidth: header.column.columnDef.minSize,
                   maxWidth: header.column.columnDef.maxSize,
-                  paddingRight: 0,
+                  paddingRight:
+                    sorting && header.column.getCanSort() ? 0 : "inherit",
                 }}
               >
                 {header.isPlaceholder ? null : (
