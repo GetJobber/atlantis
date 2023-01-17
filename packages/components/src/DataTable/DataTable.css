@@ -1,7 +1,7 @@
 .dataTableContainer {
+  position: relative;
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
-  position: relative;
 }
 
 .tableContainer {
@@ -103,8 +103,8 @@
 }
 
 .emptyState {
-  position: absolute;
   display: flex;
+  position: absolute;
   flex-direction: column;
   top: var(--space-largest);
   right: 0;
