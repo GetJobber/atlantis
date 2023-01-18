@@ -31,7 +31,7 @@ To install Atlantis locally for development:
 ```sh
 git clone git@github.com:GetJobber/atlantis.git
 cd atlantis
-npm ci
+./install.sh
 ```
 
 To start the [docz](https://www.docz.site/) development server:
