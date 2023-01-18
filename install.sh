@@ -1,5 +1,3 @@
-if test -z "$JOBBER_NPM_TOKEN"; then
-  export JOBBER_NPM_TOKEN=
+if test "$JOBBER_NPM_TOKEN" && ! test -f ".npmrc"; then
+  echo "//registry.npmjs.org/:_authToken=\${JOBBER_NPM_TOKEN}" > ./.npmrc
 fi
-
-npm install
