@@ -1,5 +1,5 @@
 export const fonts = {
-  body: `'Inter', sans-serif`,
+  body: `var(--typography--fontFamily-normal)`,
   heading: "var(--typography--fontFamily-display)",
   monospace: "monospace",
 };
