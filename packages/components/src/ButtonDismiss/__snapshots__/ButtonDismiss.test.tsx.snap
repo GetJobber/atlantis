@@ -19,7 +19,7 @@ exports[`renders a ButtonDismiss 1`] = `
     />
   </svg>
   <span
-    className="labelStyle"
+    className="base extraBold small uppercase"
   />
 </button>
 `;
