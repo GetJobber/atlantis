@@ -30,3 +30,14 @@
   --typography--lineHeight-tightest: 1.12;
   --typography--lineHeight-miniscule: 1.08;
 }
+
+@media (--handhelds) {
+  :root {
+    --typography--fontSize-extravagant: calc(var(--base-unit) * 2.5);
+    /* 40 */
+    --typography--fontSize-jumbo: calc(var(--base-unit) * 1.75);
+    /* 28 */
+    --typography--fontSize-largest: calc(var(--base-unit) * 1.375);
+    /* 22 */
+  }
+}
