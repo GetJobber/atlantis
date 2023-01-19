@@ -26,7 +26,7 @@
   box-shadow: var(--shadow-base);
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
-  font-size: var(--base-unit);
+  font-size: var(--typography--fontSize-large);
   line-height: normal;
   background: var(--color-surface);
 }
@@ -59,6 +59,7 @@
 .popover[data-popper-placement^="top"] > .arrow {
   bottom: -5px;
 }
+
 .popover[data-popper-placement^="top"] > .arrow::before {
   transform: rotate(-135deg);
 }
@@ -70,6 +71,7 @@
 .popover[data-popper-placement^="left"] > .arrow {
   right: -5px;
 }
+
 .popover[data-popper-placement^="left"] > .arrow::before {
   transform: rotate(135deg);
 }
@@ -77,6 +79,7 @@
 .popover[data-popper-placement^="right"] > .arrow {
   left: -7px;
 }
+
 .popover[data-popper-placement^="right"] > .arrow::before {
   transform: rotate(-45deg);
 }
