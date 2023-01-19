@@ -114,8 +114,6 @@ Suggestions for when to use varying font-sizes are discussed in the
 [Heading](/packages-components-src-heading-heading) component, and within the
 [Sizes](/packages-components-src-text-text#sizes) section of the Text component.
 
-### Implementation
-
 export function Example({ of: size }) {
   const style = {
     fontSize: `var(--typography--fontSize-${size})`,
@@ -157,8 +155,6 @@ the user to more easily parse multiple lines of small text. As font-size
 increases into "display" sizes such as a level 1 `Heading`, the ratio of
 line-height to font-size decreases as the larger font-size is more readable and
 requires less line-to-line breathing room.
-
-### Implementation
 
 export function Visual({ of: size }) {
   const style = {
