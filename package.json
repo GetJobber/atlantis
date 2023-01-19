@@ -20,7 +20,7 @@
     "lint:markdown": "prettier --check '**/*.{md,mdx}' --write",
     "lint": "npm run lint:js && npm run lint:css",
     "lint:fix": "npm run lint:js -- --fix && npm run lint:css -- --fix && npm run lint:markdown -- --write",
-    "preinstall": "./install.sh",
+    "preinstall": "./scripts/pre-install.sh",
     "install": "npm run lerna:bootstrap",
     "release-the-kraken": "npm ci && lerna publish",
     "release:unpublished-package": "npm ci && lerna publish from-package",
