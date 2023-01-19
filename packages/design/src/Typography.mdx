@@ -106,11 +106,40 @@ form inputs, labels, and more!
 
 ## Font sizes
 
-Our base font-size is based on our [Spacing](/space) scale for a consistent
-sizing rhythm across Jobber. At its' default zoom level, the equivalent is
-`16px`. While this is higher than in some systems where `14` may be more common,
-Source Sans Pro is optically a bit smaller, particularly at the x-height, so we
-start with `16` and work our way up and down from there.
+At the default zoom level, our base font-size is equivalent to `14px`. Depending
+on the context in which your typography is being used, font-size can be adjusted
+to be larger or smaller than the base font-size.
+
+Suggestions for when to use varying font-sizes are discussed in the
+[Heading](/packages-components-src-heading-heading) component, and within the
+[Sizes](/packages-components-src-text-text#sizes) section of the Text component.
+
+export function Example({ of: size }) {
+  const style = {
+    fontSize: `var(--typography--fontSize-${size})`,
+  };
+  return <div style={style}>{size}</div>;
+}
+
+export function PixelSize({ of: size }) {
+  const element = document.createElement("div");
+  element.style.fontSize = `var(--typography--fontSize-${size})`;
+  document.body.appendChild(element);
+  const value = getComputedStyle(element).fontSize;
+  element.remove();
+  return value;
+}
+
+| Name                                 | Visual                       | Value                          |
+| :----------------------------------- | :--------------------------- | :----------------------------- |
+| `--typography--fontSize-smaller`     | <Example of="smaller" />     | <PixelSize of="smaller" />     |
+| `--typography--fontSize-small`       | <Example of="small" />       | <PixelSize of="small" />       |
+| `--typography--fontSize-base`        | <Example of="base" />        | <PixelSize of="base" />        |
+| `--typography--fontSize-large`       | <Example of="large" />       | <PixelSize of="large" />       |
+| `--typography--fontSize-larger`      | <Example of="larger" />      | <PixelSize of="larger" />      |
+| `--typography--fontSize-largest`     | <Example of="largest" />     | <PixelSize of="largest" />     |
+| `--typography--fontSize-jumbo`       | <Example of="jumbo" />       | <PixelSize of="jumbo" />       |
+| `--typography--fontSize-extravagant` | <Example of="extravagant" /> | <PixelSize of="extravagant" /> |
 
 ## Line-height
 
@@ -126,3 +155,36 @@ the user to more easily parse multiple lines of small text. As font-size
 increases into "display" sizes such as a level 1 `Heading`, the ratio of
 line-height to font-size decreases as the larger font-size is more readable and
 requires less line-to-line breathing room.
+
+export function Visual({ of: size }) {
+  const style = {
+    lineHeight: `var(--typography--lineHeight-${size})`,
+  };
+  return (
+    <div style={style}>
+      Line-height, or leading, is the space between subsequent lines of type.
+      The line-heights in the Heading and Text components are optimized for each
+      variation's unique combination of...
+    </div>
+  );
+}
+
+export function Value({ of: size }) {
+  const element = document.createElement("div");
+  element.style.lineHeight = `var(--typography--lineHeight-${size})`;
+  document.body.appendChild(element);
+  const value =
+    parseFloat(getComputedStyle(element).lineHeight) /
+    parseFloat(getComputedStyle(element).fontSize);
+  element.remove();
+  return value;
+}
+
+| Name                                 | Visual                    | Value                    |
+| :----------------------------------- | :------------------------ | :----------------------- |
+| `--typography--lineHeight-large`     | <Visual of="large" />     | <Value of="large" />     |
+| `--typography--lineHeight-base`      | <Visual of="base" />      | <Value of="base" />      |
+| `--typography--lineHeight-tight`     | <Visual of="tight" />     | <Value of="tight" />     |
+| `--typography--lineHeight-tighter`   | <Visual of="tighter" />   | <Value of="tighter" />   |
+| `--typography--lineHeight-tightest`  | <Visual of="tightest" />  | <Value of="tightest" />  |
+| `--typography--lineHeight-miniscule` | <Visual of="miniscule" /> | <Value of="miniscule" /> |
