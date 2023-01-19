@@ -31,6 +31,7 @@ To install Atlantis locally for development:
 ```sh
 git clone git@github.com:GetJobber/atlantis.git
 cd atlantis
+./scripts/pre-install.sh
 npm ci
 ```
 
