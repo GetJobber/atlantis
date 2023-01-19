@@ -99,9 +99,6 @@
     "typed-css-modules": "^0.7.0",
     "typescript": "^3.8.3"
   },
-  "config": {
-    "JOBBER_NPM_TOKEN": "__INVALID__"
-  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
