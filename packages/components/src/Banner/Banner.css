@@ -10,7 +10,7 @@
   padding: var(--flash--inset);
   color: var(--color-black);
   background-color: var(--color-grey--lightest);
-  align-items: flex-start;
+  align-items: center;
 }
 
 .bannerContent {
