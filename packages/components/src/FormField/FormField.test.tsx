@@ -320,7 +320,7 @@ describe("FormField", () => {
           <FormField placeholder="foo" autocomplete={false} />,
         );
         const input = getByLabelText("foo");
-        expect(input).toHaveAttribute("autocomplete", "autocomplete-off");
+        expect(input).toHaveAttribute("autocomplete", "off");
       });
     });
   });
