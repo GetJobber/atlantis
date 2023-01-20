@@ -6,7 +6,7 @@
   font-size: var(--typography--fontSize-larger);
   font-weight: 800;
   line-height: var(--typography--lineHeight-tight);
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .swatchGroup {
