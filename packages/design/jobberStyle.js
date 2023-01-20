@@ -27,6 +27,21 @@ fs.writeFile("./foundation.js", jsonContent, "utf8", function (err) {
   console.log("JSON file has been saved.");
 });
 
+const scssColors = getResolvedSCSSColors(resolvedCssVars);
+
+fs.writeFile(
+  "./foundation.scss",
+  scssColors.join("\n"),
+  "utf-8",
+  function (err) {
+    if (err) {
+      console.log("An error occured while writing SCSS to File.");
+      return console.log(err);
+    }
+    console.log("SCSS file has been saved.");
+  },
+);
+
 /**
  * Recursively resolve css custom properties.
  *
@@ -135,4 +150,15 @@ function getResolvedCSSVars(cssProperties) {
     acc[newKey] = jobberStyle(key);
     return acc;
   }, {});
+}
+
+function getResolvedSCSSColors(cssProperties) {
+  const allKeys = Object.keys(cssProperties);
+  return allKeys.reduce((acc, cssVar) => {
+    if (cssVar.includes("color")) {
+      return [...acc, `$${cssVar}: ${resolvedCssVars[cssVar]};`];
+    } else {
+      return acc;
+    }
+  }, []);
 }

@@ -3,6 +3,7 @@ import React, { useMemo } from "react";
 import styles from "./Pagination.css";
 import { Option, Select } from "../Select";
 import { Button } from "../Button";
+import { Text } from "../Text";
 
 interface PaginationProps<T> {
   table: Table<T>;
@@ -26,8 +27,13 @@ export function Pagination<T extends object>({
     () => itemsPerPage?.map(item => String(item)) ?? defaultItemsPerPageOptions,
     [itemsPerPage],
   );
-
-  return (
+  return secondPosition <= 0 ? (
+    <div className={styles.pagination}>
+      <div className={styles.paginationInfo}>
+        <Text>No items</Text>
+      </div>
+    </div>
+  ) : (
     <div className={styles.pagination}>
       <div className={styles.paginationInfo}>
         {`Showing ${firstPosition}-${secondPosition} of ${totalRows} items`}
