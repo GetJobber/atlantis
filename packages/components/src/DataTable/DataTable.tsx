@@ -1,14 +1,14 @@
 import { ColumnDef, Row, useReactTable } from "@tanstack/react-table";
 import classNames from "classnames";
-import React, { LegacyRef } from "react";
+import React, { LegacyRef, ReactNode } from "react";
 import { Breakpoints, useResizeObserver } from "@jobber/hooks";
 import { Body } from "./Body";
 import { createTableSettings } from "./createTableSettings";
 import styles from "./DataTable.css";
 import { Pagination } from "./Pagination";
-import { Header } from "./Header";
 import { PaginationType, SortingType } from "./types";
 import { Footer } from "./Footer";
+import { Header } from "./Header";
 
 export interface DataTableProps<T> {
   /**
@@ -60,6 +60,11 @@ export interface DataTableProps<T> {
    * Enables row click action. The provided callback will be executed when the row is clicked.
    */
   onRowClick?: (row: Row<T>) => void;
+
+  /**
+   * The elements to display when the data table is empty
+   */
+  emptyState?: ReactNode | ReactNode[];
 }
 
 export function DataTable<T extends object>({
@@ -71,6 +76,7 @@ export function DataTable<T extends object>({
   stickyHeader,
   pinFirstColumn,
   onRowClick,
+  emptyState,
 }: DataTableProps<T>) {
   const [ref, { exactWidth }] = useResizeObserver();
   const tableSettings = createTableSettings(data, columns, {
@@ -97,13 +103,22 @@ export function DataTable<T extends object>({
             onRowClick={onRowClick}
             stickyHeader={stickyHeader}
           />
-          <Body table={table} onRowClick={onRowClick} />
-          {exactWidth && exactWidth > Breakpoints.small ? (
+          <Body
+            table={table}
+            onRowClick={onRowClick}
+            height={height ? height * 0.7 : undefined}
+            emptyState={emptyState}
+          />
+          {table.getRowModel().rows.length &&
+          exactWidth &&
+          exactWidth > Breakpoints.small ? (
             <Footer table={table} viewType="desktop" />
           ) : null}
         </table>
       </div>
-      {exactWidth && exactWidth <= Breakpoints.small ? (
+      {table.getRowModel().rows.length &&
+      exactWidth &&
+      exactWidth <= Breakpoints.small ? (
         <Footer table={table} />
       ) : null}
 

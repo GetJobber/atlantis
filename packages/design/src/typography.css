@@ -1,4 +1,43 @@
 :root {
   --typography--letterSpacing-base: 0;
   --typography--letterSpacing-loose: calc(var(--base-unit) / 40);
+
+  --typography--fontFamily-normal: "Inter", Helvetica, Arial, sans-serif;
+  --typography--fontFamily-display: "Jobber Pro", "Poppins", Helvetica, Arial,
+    sans-serif;
+
+  --typography--fontSize-extravagant: calc(var(--base-unit) * 3);
+  /* 48 */
+  --typography--fontSize-jumbo: calc(var(--base-unit) * 2.25);
+  /* 36 */
+  --typography--fontSize-largest: calc(var(--base-unit) * 1.5);
+  /* 24 */
+  --typography--fontSize-larger: calc(var(--base-unit) * 1.25);
+  /* 20 */
+  --typography--fontSize-large: calc(var(--base-unit) * 1.125);
+  /* 18 */
+  --typography--fontSize-base: calc(var(--base-unit) * 1);
+  /* 16 */
+  --typography--fontSize-small: calc(var(--base-unit) * 0.875);
+  /* 14 */
+  --typography--fontSize-smaller: calc(var(--base-unit) * 0.75);
+  /* 12 */
+
+  --typography--lineHeight-large: 1.34;
+  --typography--lineHeight-base: 1.25;
+  --typography--lineHeight-tight: 1.2;
+  --typography--lineHeight-tighter: 1.143;
+  --typography--lineHeight-tightest: 1.12;
+  --typography--lineHeight-miniscule: 1.08;
+}
+
+@media (--handhelds) {
+  :root {
+    --typography--fontSize-extravagant: calc(var(--base-unit) * 2.5);
+    /* 40 */
+    --typography--fontSize-jumbo: calc(var(--base-unit) * 1.75);
+    /* 28 */
+    --typography--fontSize-largest: calc(var(--base-unit) * 1.375);
+    /* 22 */
+  }
 }

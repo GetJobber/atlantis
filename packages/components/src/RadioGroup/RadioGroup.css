@@ -27,6 +27,7 @@
   border-radius: 100%;
   background-color: var(--color-surface);
   transition: all var(--timing-base);
+  flex-shrink: 0;
 }
 
 .input:focus + .label:before {

@@ -205,7 +205,7 @@ function setAutocomplete(
   if (autocompleteSetting === true) {
     return undefined;
   } else if (autocompleteSetting === false) {
-    return "autocomplete-off";
+    return "off";
   }
 
   return autocompleteSetting;
