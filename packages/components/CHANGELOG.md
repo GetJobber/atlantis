@@ -8,6 +8,89 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.93.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.93.1...@jobber/components@2.93.2) (2023-01-19)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.93.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.93.0...@jobber/components@2.93.1) (2023-01-19)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.93.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.92.3...@jobber/components@2.93.0) (2023-01-17)
+
+
+### Features
+
+* **components:** Add empty state behavior to DataTable component in Atlantis [JOB-58935] ([#973](https://github.com/GetJobber/atlantis/issues/973)) ([5d2882e](https://github.com/GetJobber/atlantis/commit/5d2882ecdf0f66435d44ed53c9c5b70fc89ef972))
+* **components:** Implement the new sorting behavior / alignment to DataTable component in Atlantis [JOB-58028] ([#972](https://github.com/GetJobber/atlantis/issues/972)) ([259b11a](https://github.com/GetJobber/atlantis/commit/259b11a82ef7f36c15f854a49aa52e8a9c72a295))
+
+
+
+
+
+## [2.92.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.92.2...@jobber/components@2.92.3) (2023-01-12)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.92.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.92.1...@jobber/components@2.92.2) (2023-01-11)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.92.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.92.0...@jobber/components@2.92.1) (2023-01-10)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.92.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.91.0...@jobber/components@2.92.0) (2023-01-09)
+
+
+### Features
+
+* **components:** Add DataTable test helpers ([#954](https://github.com/GetJobber/atlantis/issues/954)) ([aa58d84](https://github.com/GetJobber/atlantis/commit/aa58d84df2e1c656f748187d6c0d216647a03e64))
+
+
+
+
+
+# [2.91.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.90.1...@jobber/components@2.91.0) (2023-01-06)
+
+
+### Features
+
+* **components:** new highlighter for Emphasis ([#890](https://github.com/GetJobber/atlantis/issues/890)) ([df6d29c](https://github.com/GetJobber/atlantis/commit/df6d29c7b351cf1756ee286b2580ac2961456cbf))
+* **design:** add syncAlert and apps icons  ([#953](https://github.com/GetJobber/atlantis/issues/953)) ([87e1cb7](https://github.com/GetJobber/atlantis/commit/87e1cb732cd73e412fa4b896392a78505294bc82))
+
+
+
+
+
+## [2.90.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.90.0...@jobber/components@2.90.1) (2022-12-20)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 # [2.90.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.89.4...@jobber/components@2.90.0) (2022-12-19)
 
 
