@@ -31,7 +31,8 @@ To install Atlantis locally for development:
 ```sh
 git clone git@github.com:GetJobber/atlantis.git
 cd atlantis
-npm ci
+./scripts/pre-install.sh
+npm install
 ```
 
 To start the [docz](https://www.docz.site/) development server:
@@ -187,7 +188,7 @@ publish whenever a pull request is merged.
 ### Pre-Release
 
 ```sh
-npm run prerelease
+npm run publish:prerelease
 ```
 
 ### What has Changed

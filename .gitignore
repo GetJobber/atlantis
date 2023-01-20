@@ -3,7 +3,7 @@
 coverage
 dist
 node_modules
-
+.npmrc
 **/tsconfig.tsbuildinfo
 **/tsconfig.ci.tsbuildinfo
 .DS_Store

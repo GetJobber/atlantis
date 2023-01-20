@@ -49,46 +49,47 @@ There are some foundational elements that make up these components:
 
 ### Display
 
-[Poppins](https://fonts.google.com/specimen/Poppins) is our display face across
-all of Jobber's platforms. It has a heft that makes it especially well-suited
-for high-level headings, and its' association with our brand makes it effective
-for labeling our [Buttons](/components/button).
+Jobber Pro is Jobber's internal typeface and is only suitable for use in Jobber
+products. It lends a hefty-but-professional face to larger usages such as page
+titles and main section headings.
+
+As Jobber Pro is a custom typeface licensed specifically for Jobber usage, it
+will be rendered in any environments where it is licensed for use. In external
+usages, [Poppins](https://fonts.google.com/specimen/Poppins) is Atlantis'
+fallback display face. It has similar structural features and optical sizing as
+Jobber Pro.
 
 <Playground>
   <Content>
-    <Heading level={2}>Poppins is used for bold statements</Heading>
-    <Button label="And punchy labels"></Button>
+    <Heading level={2}>Jobber Pro is used for bold statements</Heading>
   </Content>
 </Playground>
 
 ### Base
 
-[Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+Pro) is our most
-broadly-used typeface. It is used for body copy, most headings, data display,
-form inputs, labels, and more!
+[Inter](https://fonts.google.com/specimen/Inter) is our most broadly-used
+typeface. It is used for body copy, most headings, data display, form inputs,
+labels, and more!
 
 <Playground>
   <Content spacing="large">
-    <Heading level={3}>Source Sans Pro is for less prominent headings</Heading>
+    <Heading level={3}>Inter is for less prominent headings</Heading>
     <Text>
       You can also use it for longer, more readable statements in paragraphs,
       descriptive text, in lists, and more. If you've been paying careful
-      attention, you might have noticed that Atlantis even uses Source Sans Pro
-      for presenting documentation!
+      attention, you might have noticed that Atlantis even uses Inter for
+      presenting documentation!
     </Text>
-    <Checkbox
-      checked
-      label="Source Sans Pro can label inputs nicely"
-    ></Checkbox>
+    <Checkbox checked label="Inter can label inputs nicely"></Checkbox>
     <InputText
       defaultValue="It's great for input values too"
-      placeholder="Source Sans Pro for labels"
+      placeholder="Inter for labels"
     />
     <Table>
       <Header>
-        <Cell>Source</Cell>
-        <Cell>Sans</Cell>
-        <Cell align="right">Pro</Cell>
+        <Cell>Inter</Cell>
+        <Cell>Renders</Cell>
+        <Cell align="right">Data</Cell>
       </Header>
       <Row>
         <Cell>Data point</Cell>

@@ -16,7 +16,7 @@
   padding: 0;
   border: none;
   color: var(--color-text--reverse--secondary);
-  font-family: "Poppins", sans-serif;
+  font-family: var(--typography--fontFamily-display);
   font-size: var(--base-unit);
   font-weight: 700;
   letter-spacing: 0.2px;
@@ -49,7 +49,7 @@
   margin: var(--space-base) 0 var(--space-small);
   border-bottom: var(--border-base) solid var(--color-greyBlue--lighter);
   color: var(--color-greyBlue--lighter);
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: var(--typography--fontFamily-normal);
   font-size: calc(var(--base-unit) * 0.875);
   font-weight: 700;
   letter-spacing: calc(var(--space-minuscule) / 2);
@@ -59,9 +59,10 @@
 .level2 .pageLabel {
   display: flex;
   justify-content: flex-start;
-  align-items: baseline;
+  /* align-items: baseline; */
   padding: var(--space-smaller) 0;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: var(--typography--fontFamily-normal);
+  font-size: var(--typography--fontSize-small);
   font-weight: normal;
   text-transform: none;
 }
@@ -85,8 +86,8 @@
 }
 
 .level2 .pageLabel.active::before {
-  border-color: var(--color-green);
-  background: var(--color-green);
+  border-color: var(--color-interactive);
+  background: var(--color-interactive);
 }
 
 /**
