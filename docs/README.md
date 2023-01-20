@@ -188,7 +188,7 @@ publish whenever a pull request is merged.
 ### Pre-Release
 
 ```sh
-npm run prerelease
+npm run publish:prerelease
 ```
 
 ### What has Changed
