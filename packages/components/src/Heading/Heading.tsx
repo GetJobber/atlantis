@@ -30,7 +30,7 @@ export function Heading({ level = 5, children }: HeadingProps) {
     3: {
       element: "h3",
       size: "larger",
-      fontWeight: "bold",
+      fontWeight: "extraBold",
       textColor: "heading",
     },
     4: {

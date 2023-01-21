@@ -61,7 +61,7 @@ exports[`renders Level 3 Heading Component 1`] = `
   className="padded base"
 >
   <h3
-    className="base bold larger heading"
+    className="base extraBold larger heading"
   >
     Heading 3
   </h3>
