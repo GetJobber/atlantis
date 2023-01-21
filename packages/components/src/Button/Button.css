@@ -16,8 +16,8 @@
   border: var(--border-base) solid var(--button--color-variation);
   border-radius: var(--radius-base);
   color: var(--button--color-variation);
-  fill: var(--button--color-variation);
   -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.2px;
   text-align: center;
   text-decoration: none;
   vertical-align: middle;
@@ -25,13 +25,15 @@
   cursor: pointer;
   transition: all var(--timing-base);
   appearance: none;
+  fill: var(--button--color-variation);
   align-items: center;
   justify-content: center;
 }
 
 .button * {
   color: inherit;
-  fill: inherit !important; /* required to over-ride very specific fill from <Icon> */
+  fill: inherit !important;
+  /* required to over-ride very specific fill from <Icon> */
 }
 
 .button:hover,
@@ -263,6 +265,7 @@ a.button.disabled:hover {
   0% {
     background-position: 0 0;
   }
+
   100% {
     background-position: var(--space-larger) var(--space-larger);
   }
