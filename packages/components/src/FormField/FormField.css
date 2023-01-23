@@ -46,7 +46,7 @@
   border-bottom-left-radius: var(--public-field--bottom-left-radius);
   border-top-left-radius: var(--public-field--top-left-radius);
   color: var(--field--value-color);
-  font-size: var(--base-unit);
+  font-size: var(--typography--fontSize-base);
   background-color: var(--field--background-color);
 }
 
@@ -199,7 +199,7 @@
 }
 
 .miniLabel .label {
-  font-size: calc(var(--base-unit) * 0.875);
+  font-size: var(--typography--fontSize-small);
 }
 
 .textarea .label {
