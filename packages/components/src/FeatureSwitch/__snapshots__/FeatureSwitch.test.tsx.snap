@@ -166,7 +166,7 @@ exports[`renders a full FeatureSwitch 1`] = `
         type="button"
       >
         <span
-          className="base extraBold base capitalize base"
+          className="base extraBold base base"
         >
           Edit
         </span>

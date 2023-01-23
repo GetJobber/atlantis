@@ -25,7 +25,7 @@ exports[`Menu renders 1`] = `
         />
       </svg>
       <span
-        class="base extraBold base capitalize base"
+        class="base extraBold base base"
       >
         More Actions
       </span>
@@ -48,7 +48,7 @@ exports[`Menu with custom activator renders 1`] = `
       type="button"
     >
       <span
-        class="base extraBold base capitalize base"
+        class="base extraBold base base"
       >
         Menu
       </span>

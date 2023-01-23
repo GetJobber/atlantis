@@ -40,7 +40,7 @@ exports[`renders 1`] = `
         type="button"
       >
         <span
-          class="base extraBold small capitalize base"
+          class="base extraBold small base"
         >
           Upload Image
         </span>
@@ -80,7 +80,7 @@ exports[`renders with a provided image 1`] = `
         type="button"
       >
         <span
-          class="base extraBold small capitalize base"
+          class="base extraBold small base"
         >
           Change Image
         </span>
@@ -91,7 +91,7 @@ exports[`renders with a provided image 1`] = `
       type="button"
     >
       <span
-        class="base extraBold small capitalize base"
+        class="base extraBold small base"
       >
         Remove
       </span>

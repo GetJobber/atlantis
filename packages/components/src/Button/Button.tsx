@@ -162,7 +162,6 @@ function ButtonInternals({ label, icon, size = "base" }: ButtonProps) {
       {icon && <Icon name={icon} size={size} />}
       <Typography
         element="span"
-        textCase="capitalize"
         fontWeight="extraBold"
         fontFamily="base"
         size={getTypeSizes(size)}
