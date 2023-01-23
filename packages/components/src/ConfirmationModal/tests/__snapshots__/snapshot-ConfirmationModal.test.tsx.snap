@@ -27,7 +27,7 @@ exports[`renders a simple ConfirmationModal 1`] = `
       data-testid="modal-header"
     >
       <h3
-        className="base extraBold large uppercase"
+        className="base extraBold larger heading"
       >
         Should we?
       </h3>

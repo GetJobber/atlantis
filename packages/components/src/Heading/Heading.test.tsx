@@ -34,7 +34,7 @@ it("renders a Heading 3", () => {
     .toJSON();
   expect(tree).toMatchInlineSnapshot(`
     <h3
-      className="base bold larger heading"
+      className="base extraBold larger heading"
     >
       Dis be a Heading 3
     </h3>
