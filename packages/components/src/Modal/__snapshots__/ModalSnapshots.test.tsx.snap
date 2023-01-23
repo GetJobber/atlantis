@@ -27,7 +27,7 @@ exports[`Button Variations modal shows with primary learning button 1`] = `
       data-testid="modal-header"
     >
       <h3
-        className="base extraBold large uppercase"
+        className="base extraBold larger heading"
       >
         Teaching Modal
       </h3>
