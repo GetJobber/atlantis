@@ -62,7 +62,7 @@
   /* align-items: baseline; */
   padding: var(--space-smaller) 0;
   font-family: var(--typography--fontFamily-normal);
-  font-size: var(--typography--fontSize-small);
+  font-size: var(--typography--fontSize-base);
   font-weight: normal;
   text-transform: none;
 }
