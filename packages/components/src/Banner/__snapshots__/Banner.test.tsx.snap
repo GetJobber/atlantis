@@ -8,11 +8,15 @@ exports[`renders a banner with a primary 'learning' action when the type is 'not
   <div
     className="bannerContent dismissibleSpacing"
   >
-    <p
-      className="base regular base text"
+    <div
+      className="bannerChildren"
     >
-      Bruce
-    </p>
+      <p
+        className="base regular base text"
+      >
+        Bruce
+      </p>
+    </div>
     <div
       className="bannerAction"
     >
@@ -57,11 +61,15 @@ exports[`renders a banner with a primary action 1`] = `
   <div
     className="bannerContent dismissibleSpacing"
   >
-    <p
-      className="base regular base text"
+    <div
+      className="bannerChildren"
     >
-      Bruce
-    </p>
+      <p
+        className="base regular base text"
+      >
+        Bruce
+      </p>
+    </div>
     <div
       className="bannerAction"
     >
@@ -106,11 +114,15 @@ exports[`renders a notice banner 1`] = `
   <div
     className="bannerContent dismissibleSpacing"
   >
-    <p
-      className="base regular base text"
+    <div
+      className="bannerChildren"
     >
-      Notice me
-    </p>
+      <p
+        className="base regular base text"
+      >
+        Notice me
+      </p>
+    </div>
   </div>
   <button
     aria-label="Close this notification"
@@ -140,11 +152,15 @@ exports[`renders a success banner 1`] = `
   <div
     className="bannerContent dismissibleSpacing"
   >
-    <p
-      className="base regular base text"
+    <div
+      className="bannerChildren"
     >
-      Success
-    </p>
+      <p
+        className="base regular base text"
+      >
+        Success
+      </p>
+    </div>
   </div>
   <button
     aria-label="Close this notification"
@@ -174,11 +190,15 @@ exports[`renders a warning banner 1`] = `
   <div
     className="bannerContent dismissibleSpacing"
   >
-    <p
-      className="base regular base text"
+    <div
+      className="bannerChildren"
     >
-      Warn
-    </p>
+      <p
+        className="base regular base text"
+      >
+        Warn
+      </p>
+    </div>
   </div>
   <button
     aria-label="Close this notification"

@@ -21,6 +21,10 @@
   align-items: flex-start;
 }
 
+.bannerChildren {
+  align-self: center;
+}
+
 .dismissibleSpacing {
   padding-top: var(--space-smallest);
   padding-right: var(--flash--inset);
@@ -61,6 +65,7 @@
   cursor: pointer;
   appearance: none;
   flex: 0;
+  align-self: flex-start;
 }
 
 .closeButton:hover {
