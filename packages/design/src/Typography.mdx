@@ -178,7 +178,7 @@ export function Value({ of: size }) {
     parseFloat(getComputedStyle(element).lineHeight) /
     parseFloat(getComputedStyle(element).fontSize);
   element.remove();
-  return value;
+  return parseFloat(value.toFixed(3));
 }
 
 | Name                                 | Visual                    | Value                    |
