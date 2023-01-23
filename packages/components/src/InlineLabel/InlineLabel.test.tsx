@@ -9,7 +9,7 @@ it("renders correctly", () => {
       className="inlineLabel base greyBlue"
     >
       <span
-        className="base regular small uppercase"
+        className="base regular smaller"
       >
         My Label
       </span>

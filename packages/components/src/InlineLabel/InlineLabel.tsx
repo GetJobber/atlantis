@@ -34,7 +34,7 @@ interface InlineLabelProps {
 }
 
 interface SizeMapProps {
-  [key: string]: "small" | "base" | "large";
+  [key: string]: "smaller" | "base" | "large";
 }
 
 export function InlineLabel({
@@ -45,14 +45,14 @@ export function InlineLabel({
   const className = classnames(styles.inlineLabel, styles[size], styles[color]);
 
   const sizeMapper: SizeMapProps = {
-    base: "small",
-    large: "base",
+    base: "smaller",
+    large: "large",
     larger: "large",
   };
 
   return (
     <span className={className}>
-      <Typography element="span" size={sizeMapper[size]} textCase="uppercase">
+      <Typography element="span" size={sizeMapper[size]}>
         {children}
       </Typography>
     </span>
