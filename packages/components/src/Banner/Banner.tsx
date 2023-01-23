@@ -83,7 +83,9 @@ export function Banner({
           role={type === "error" ? "alert" : "status"}
         >
           <div className={contentClassNames}>
-            <BannerChildren>{children}</BannerChildren>
+            <div className={styles.bannerChildren}>
+              <BannerChildren>{children}</BannerChildren>
+            </div>
             {primaryAction && (
               <div className={styles.bannerAction}>
                 <Button {...primaryAction} />
