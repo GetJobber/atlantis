@@ -26,7 +26,7 @@ exports[`renders a banner with a primary 'learning' action when the type is 'not
         type="button"
       >
         <span
-          className="base extraBold smaller uppercase"
+          className="base extraBold small base"
         >
           smash me
         </span>
@@ -79,7 +79,7 @@ exports[`renders a banner with a primary action 1`] = `
         type="button"
       >
         <span
-          className="base extraBold smaller uppercase"
+          className="base extraBold small base"
         >
           smash me
         </span>
