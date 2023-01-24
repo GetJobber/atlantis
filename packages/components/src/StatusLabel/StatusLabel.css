@@ -13,7 +13,7 @@
 .statusIndicator {
   width: var(--statusLabel-icon-diameter);
   height: var(--statusLabel-icon-diameter);
-  margin-top: var(--space-smallest);
+  margin-top: var(--space-minuscule);
   border-radius: var(--radius-base);
   background-color: var(--color-success);
   flex-shrink: 0;
