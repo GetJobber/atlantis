@@ -188,6 +188,7 @@ publish whenever a pull request is merged.
 ### Pre-Release
 
 ```sh
+npx lerna version --allow-branch <branch-for-pre-release> --conventional-prerelease
 npm run publish:prerelease
 ```
 
