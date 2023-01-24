@@ -8,6 +8,53 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.90.0...@jobber/components@3.0.0-alpha.0) (2023-01-24)
+
+
+### Features
+
+* **components:** Update drawer, modal and card headings ([#991](https://github.com/GetJobber/atlantis/issues/991)) ([1d9ade2](https://github.com/GetJobber/atlantis/commit/1d9ade2ec2043c0dcd7b9415409e094fcd7d27cb))
+* **design:** BREAKING CHANGE: Implement new typefaces in Atlantis [JOB-46209] ([#952](https://github.com/GetJobber/atlantis/issues/952)) ([15f604c](https://github.com/GetJobber/atlantis/commit/15f604cc51ee6881a5ed9c1be01081c76cf5ce6e))
+
+
+### BREAKING CHANGES
+
+* **design:** Added Jobber Fonts support
+
+* Remove file that was needed for major bump in design
+
+* Revert "update button styles"
+
+This reverts commit d5278133003f4f770af56d583ef104b5abc8b886.
+
+* Remove unneeded logging
+
+* Update install instructions for non-jobber developers
+
+* Changed how package works when being installed to better support non jobber devs.
+
+* Use variables in docz instead of a string
+
+* Remove change that caused failures for Jobber people
+
+* Moved script location
+
+* Maybe fix cloudflare builds. Hopefully
+
+* Update README.md
+
+* Updated prerelease docs.
+Verify fonts aren't bundled with pre-releases.
+
+* rebuild cloudflare
+
+Co-authored-by: Chris Murray <39704901+chris-at-jobber@users.noreply.github.com>
+Co-authored-by: Michael Paradis <michael.p@getjobber.com>
+
+
+
+
+
 ## [2.93.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.93.1...@jobber/components@2.93.2) (2023-01-19)
 
 **Note:** Version bump only for package @jobber/components
