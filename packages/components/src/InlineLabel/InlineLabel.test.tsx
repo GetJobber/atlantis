@@ -9,7 +9,7 @@ it("renders correctly", () => {
       className="inlineLabel base greyBlue"
     >
       <span
-        className="base regular smaller"
+        className="base regular small"
       >
         My Label
       </span>
