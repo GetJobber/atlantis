@@ -24,7 +24,7 @@
     "release-the-kraken": "export IGNORE_OPTIONAL_DEPENDENCIES=true; npm ci --no-optional && lerna publish",
     "release:unpublished-package": "export IGNORE_OPTIONAL_DEPENDENCIES=true; npm ci --no-optional && lerna publish from-package",
     "prepublish:prerelease": "./scripts/pre-prerelease.sh",
-    "publish:prerelease": "lerna publish --canary --dist-tag next --preid pre ",
+    "publish:prerelease": "lerna publish --canary --dist-tag next --preid pre from-package",
     "preci:release": "./scripts/pre-prerelease.sh",
     "ci:release": "lerna publish --yes",
     "version": "node ensureChangelogHeaders.js",
