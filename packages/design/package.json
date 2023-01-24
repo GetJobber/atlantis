@@ -13,7 +13,8 @@
     "src/*",
     "foundation_config/*",
     "build*.js",
-    "*.json"
+    "*.json",
+    "jobberStyle.js"
   ],
   "scripts": {
     "build": "npm run build:css && npm run build:css:icons && npm run build:colors && npm run build:cssTypes && npm run build:foundation && npm run build:iconCssStyle && npm run build:rollup",
