@@ -8,6 +8,34 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.93.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.93.1...@jobber/components@2.93.2) (2023-01-19)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [2.93.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.93.0...@jobber/components@2.93.1) (2023-01-19)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [2.93.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.92.3...@jobber/components@2.93.0) (2023-01-17)
+
+
+### Features
+
+* **components:** Add empty state behavior to DataTable component in Atlantis [JOB-58935] ([#973](https://github.com/GetJobber/atlantis/issues/973)) ([5d2882e](https://github.com/GetJobber/atlantis/commit/5d2882ecdf0f66435d44ed53c9c5b70fc89ef972))
+* **components:** Implement the new sorting behavior / alignment to DataTable component in Atlantis [JOB-58028] ([#972](https://github.com/GetJobber/atlantis/issues/972)) ([259b11a](https://github.com/GetJobber/atlantis/commit/259b11a82ef7f36c15f854a49aa52e8a9c72a295))
+
+
+
+
+
 ## [2.92.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.92.2...@jobber/components@2.92.3) (2023-01-12)
 
 **Note:** Version bump only for package @jobber/components

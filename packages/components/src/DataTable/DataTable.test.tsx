@@ -264,3 +264,19 @@ describe("when using manual column sizing", () => {
     expect(firstCell.style["max-width"]).toBe("538px");
   });
 });
+
+describe("when the table has no data", () => {
+  beforeEach(() => {
+    render(
+      <DataTable
+        data={[]}
+        columns={columSizeColumns}
+        emptyState={<p>No data</p>}
+      />,
+    );
+  });
+
+  it("renders the provided empty state", () => {
+    expect(screen.getByText("No data")).toBeDefined();
+  });
+});
