@@ -1,4 +1,5 @@
 import React, {
+  ReactNode,
   Ref,
   forwardRef,
   useEffect,
@@ -89,6 +90,7 @@ interface BaseConfirmationModalProps {
 
   /**
    * Text or rich text content for the body of the modal.
+   * Not displayed if **children** prop is passed.
    */
   readonly message?: string;
 
@@ -113,6 +115,16 @@ interface BaseConfirmationModalProps {
   readonly variation?: "work" | "destructive";
 
   /**
+   * Size of the modal (small, large),
+   */
+  readonly size?: "small" | "large";
+
+  /**
+   * Child component. Not displayed if **message** prop is passed.
+   */
+  readonly children?: ReactNode;
+
+  /**
    * Callback for when the confirm button is pressed.
    */
   onConfirm?(): void;
@@ -129,7 +141,6 @@ interface BaseConfirmationModalProps {
 }
 
 interface SimpleConfirmationModalProps extends BaseConfirmationModalProps {
-  readonly message: string;
   readonly open: boolean;
   readonly confirmLabel: string;
 }
@@ -139,9 +150,19 @@ interface ComplexConfirmationModalProps extends BaseConfirmationModalProps {
   readonly open?: undefined;
 }
 
+interface ChildrenMessage extends BaseConfirmationModalProps {
+  message?: never;
+  children: ReactNode;
+}
+
+interface StringMessage extends BaseConfirmationModalProps {
+  message: string;
+  children?: never;
+}
+
 type ConfirmationModalProps =
-  | SimpleConfirmationModalProps
-  | ComplexConfirmationModalProps;
+  | (SimpleConfirmationModalProps & (StringMessage | ChildrenMessage))
+  | (ComplexConfirmationModalProps & (StringMessage | ChildrenMessage));
 
 export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
   {
@@ -154,6 +175,8 @@ export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
     onCancel,
     onRequestClose,
     variation = "work",
+    size = "small",
+    children,
   }: ConfirmationModalProps,
   ref: Ref<ConfirmationModalRef>,
 ) {
@@ -210,7 +233,7 @@ export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
     <Modal
       title={state.title}
       open={open || state.open}
-      size="small"
+      size={size}
       dismissible={false}
       primaryAction={{
         label: state.confirmLabel,
@@ -222,7 +245,13 @@ export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
         onClick: handleAction("cancel"),
       }}
     >
-      <Content>{state.message && <Markdown content={state.message} />}</Content>
+      {state.message ? (
+        <Content>
+          <Markdown content={state.message} />
+        </Content>
+      ) : (
+        children
+      )}
     </Modal>
   );
 
