@@ -12,7 +12,7 @@
     "icons/*",
     "src/*",
     "foundation_config/*",
-    "*.json",
+    "tsconfig.json",
     "*.js"
   ],
   "scripts": {
