@@ -176,11 +176,13 @@ a.button.disabled:hover {
 .base {
   min-height: calc(var(--base-unit) * 2.25);
   padding: 0 calc(var(--space-base) - 4px);
+  letter-spacing: var(--typography--letterSpacing-loose);
 }
 
 .large {
   min-height: calc(var(--base-unit) * 3);
   padding: 0 var(--space-base);
+  letter-spacing: var(--typography--letterSpacing-loose);
 }
 
 /* Icon */
