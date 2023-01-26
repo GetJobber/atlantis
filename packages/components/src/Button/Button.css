@@ -17,7 +17,6 @@
   border-radius: var(--radius-base);
   color: var(--button--color-variation);
   -webkit-font-smoothing: antialiased;
-  letter-spacing: var(--typography--letterSpacing-loose);
   text-align: center;
   text-decoration: none;
   vertical-align: middle;
