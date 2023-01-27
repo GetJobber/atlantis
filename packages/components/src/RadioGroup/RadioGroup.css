@@ -13,7 +13,6 @@
   display: inline-flex;
   font-size: var(--typography--fontSize-base);
   cursor: pointer;
-  align-items: center;
 }
 
 .input + .label::before {
@@ -22,7 +21,7 @@
   width: var(--space-base);
   height: var(--space-base);
   box-sizing: border-box;
-  margin: 0 var(--space-small) 0 0;
+  margin: var(--space-smallest) var(--space-small) 0 0;
   border: var(--border-thick) solid var(--color-interactive);
   border-radius: 100%;
   background-color: var(--color-surface);
