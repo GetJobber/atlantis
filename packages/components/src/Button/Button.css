@@ -17,6 +17,7 @@
   border-radius: var(--radius-base);
   color: var(--button--color-variation);
   -webkit-font-smoothing: antialiased;
+  letter-spacing: var(--typography--letterSpacing-loose);
   text-align: center;
   text-decoration: none;
   vertical-align: middle;
@@ -171,18 +172,17 @@ a.button.disabled:hover {
 .small {
   min-height: calc(var(--base-unit) * 1.5);
   padding: 0 var(--space-small);
+  letter-spacing: 0;
 }
 
 .base {
   min-height: calc(var(--base-unit) * 2.25);
   padding: 0 calc(var(--space-base) - 4px);
-  letter-spacing: var(--typography--letterSpacing-loose);
 }
 
 .large {
   min-height: calc(var(--base-unit) * 3);
   padding: 0 var(--space-base);
-  letter-spacing: var(--typography--letterSpacing-loose);
 }
 
 /* Icon */
