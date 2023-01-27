@@ -1,6 +1,6 @@
 {
   "name": "@jobber/docx",
-  "version": "0.2.2-alpha.0",
+  "version": "0.2.2-pre.0",
   "private": true,
   "description": "Internal Docs components.",
   "license": "MIT",
