@@ -172,6 +172,7 @@ a.button.disabled:hover {
 .small {
   min-height: calc(var(--base-unit) * 1.5);
   padding: 0 var(--space-small);
+  letter-spacing: 0;
 }
 
 .base {
