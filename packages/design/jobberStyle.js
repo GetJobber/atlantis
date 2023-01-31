@@ -193,9 +193,9 @@ function getResolvedSCSSVariables(cssProperties) {
 }
 
 function resolveShadow(shadowValue) {
-  const splittedValue = shadowValue.split(" ").filter(n => n);
+  const splitValue = shadowValue.split(" ").filter(n => n);
 
-  return splittedValue
+  return splitValue
     .map(value => {
       const varRegexResult = regexExpressions.cssVars.exec(value);
 
