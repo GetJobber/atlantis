@@ -180,8 +180,33 @@ function getResolvedSCSSVariables(cssProperties) {
     } else if (isSizeVariable) {
       const suffix = customProperties["--" + cssVar].includes("%") ? "%" : "px";
       return [...acc, `$${cssVar}: ${resolvedCssVars[cssVar]}${suffix};`];
+    } else if (cssVar.includes("shadow")) {
+      const resolvedShadowProperty = resolveShadow(
+        customProperties["--" + cssVar],
+      );
+
+      return [...acc, `$${cssVar}: ${resolvedShadowProperty};`];
     } else {
       return acc;
     }
   }, []);
+}
+
+function resolveShadow(shadowValue) {
+  const splitValue = shadowValue.split(" ").filter(n => n);
+
+  return splitValue
+    .map(value => {
+      const varRegexResult = regexExpressions.cssVars.exec(value);
+
+      if (varRegexResult) {
+        const result = jobberStyle(varRegexResult[1]);
+        const suffix = typeof result === "string" ? "" : "px";
+
+        return `${result}${suffix}`;
+      }
+
+      return value;
+    })
+    .join(" ");
 }
