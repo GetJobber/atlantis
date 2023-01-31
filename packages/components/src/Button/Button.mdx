@@ -39,7 +39,7 @@ import { Button } from "@jobber/components/Button";
 
 ---
 
-## Design & Usage Guidelines
+## Design & usage guidelines
 
 The right button to use depends on:
 
@@ -222,7 +222,35 @@ elements such as a Modal header.
   </Content>
 </Playground>
 
-## Disabled
+## Content guidelines
+
+Button labels should be title-cased. This means in general, capitalize all words
+with the exception of:
+
+- articles (a, an, the)
+- coordinating conjunctions (but, for)
+- prepositions (at, by, to, etc.)
+
+| ✅ Do        | ❌ Don't     |
+| ------------ | ------------ |
+| Go to Visits | Go To Visits |
+| Save Job     | SAVE JOB     |
+
+### & vs and
+
+If you have a Button with "compound" actions such as "Review & Send" or "Approve
+& Schedule", use an ampersand (&) for brevity and to reduce the likelihood that
+your label will wrap. A non-breaking space should be used between the ampersand
+and the second word so that the ampersand wraps with the second word.
+
+| ✅ Do              | ❌ Don't             |
+| ------------------ | -------------------- |
+| Review & Send      | Review and Send      |
+| Approve & Schedule | Approve and Schedule |
+
+## States and variants
+
+### Disabled
 
 As a best practice, do not design with disabled button states. This has negative
 impacts on accessibility as well as an increase in complexity for users to
@@ -235,7 +263,7 @@ how you disable a button.
   <Button label="Do the Thing" disabled />
 </Playground>
 
-## Sizes
+### Sizes
 
 Buttons comes in three sizes. `Base` is the default and should be used for
 almost every use case.
@@ -257,7 +285,7 @@ Only use `large` for extremely spacious interfaces such as a login form, and
   </Content>
 </Playground>
 
-## Icons
+### Icons
 
 You can use icons inside buttons. They can stand-alone, or appear before, after,
 or on top of the button label. They can also be added before or after the label.
@@ -276,7 +304,7 @@ present to describe the button.
   />
 </Playground>
 
-## Loading
+### Loading
 
 A way to communicate to the user that a background action is being performed.
 
@@ -296,7 +324,7 @@ A way to communicate to the user that a background action is being performed.
   <Button label="Canceling..." variation="subtle" loading={true} />
 </Playground>
 
-## Client Side Routing
+## Client-side routing
 
 A `Button` can be used for client side routing as well. When using a Button to
 handle the client side routing, use the `to` prop. Notice when you click below
@@ -326,7 +354,7 @@ that the url will change to the appropriate route.
   }}
 </Playground>
 
-## Form Submit
+## Form submit
 
 Passing the `submit` prop will allow a `Button` to submit a
 [Form](/components/form). Since submitting a form is a specific action, only

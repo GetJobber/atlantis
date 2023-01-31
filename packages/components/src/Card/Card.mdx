@@ -41,7 +41,7 @@ import { Card } from "@jobber/components/Card";
   </Card>
 </Playground>
 
-## Design & Usage Guidelines
+## Design & usage guidelines
 
 A card is useful for grouping content because of it's distinct visual
 boundaries. However, similar to the idea that "making everything stand out means
@@ -57,7 +57,17 @@ removed, and it may be worth re-assessing the hierarchy of your interface.
 
 ---
 
-## Usage
+## Content guidelines
+
+Card titles should be sentence-cased.
+
+| ✅ Do                   | ❌ Don't                |
+| ----------------------- | ----------------------- |
+| Client property details | Client Property Details |
+| Assigned team           | ASSIGNED TEAM           |
+| Required deposit        | Required Deposit        |
+
+## Variations
 
 ### Clickable with URL
 
@@ -72,7 +82,7 @@ removed, and it may be worth re-assessing the hierarchy of your interface.
   </Card>
 </Playground>
 
-### Clickable with External URL
+### Clickable with external URL
 
 <Playground>
   <Card url="https://atlantis.getjobber.com/" external={true}>
