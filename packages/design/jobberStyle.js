@@ -27,7 +27,7 @@ fs.writeFile("./foundation.js", jsonContent, "utf8", function (err) {
   console.log("JSON file has been saved.");
 });
 
-const scssColors = getResolvedSCSSColors(resolvedCssVars);
+const scssColors = getResolvedSCSSVariables(resolvedCssVars);
 
 fs.writeFile(
   "./foundation.scss",
@@ -152,11 +152,16 @@ function getResolvedCSSVars(cssProperties) {
   }, {});
 }
 
-function getResolvedSCSSColors(cssProperties) {
+function getResolvedSCSSVariables(cssProperties) {
   const allKeys = Object.keys(cssProperties);
   return allKeys.reduce((acc, cssVar) => {
     if (cssVar.includes("color")) {
       return [...acc, `$${cssVar}: ${resolvedCssVars[cssVar]};`];
+    } else if (cssVar.includes("space")) {
+      const calcRegexResult = regexExpressions.calculations.exec(
+        customProperties["--" + cssVar],
+      );
+      return [...acc, `$${cssVar}: ${handleCalc(calcRegexResult)}px;`];
     } else {
       return acc;
     }
