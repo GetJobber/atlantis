@@ -155,7 +155,7 @@ function getResolvedCSSVars(cssProperties) {
 function getResolvedSCSSVariables(cssProperties) {
   const allKeys = Object.keys(cssProperties);
   return allKeys.reduce((acc, cssVar) => {
-    if (cssVar.includes("color")) {
+    if (cssVar.includes("color") || cssVar.includes("timing")) {
       return [...acc, `$${cssVar}: ${resolvedCssVars[cssVar]};`];
     } else if (cssVar.includes("space")) {
       const calcRegexResult = regexExpressions.calculations.exec(
