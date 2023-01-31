@@ -155,11 +155,13 @@ function getResolvedCSSVars(cssProperties) {
 function getResolvedSCSSVariables(cssProperties) {
   const allKeys = Object.keys(cssProperties);
   const sizeVariables = ["border", "radius"];
+  const simpleVariables = ["color", "timing", "elevation"];
 
   return allKeys.reduce((acc, cssVar) => {
     const isSizeVariable = sizeVariables.some(v => cssVar.includes(v));
+    const isSimpleVariable = simpleVariables.some(v => cssVar.includes(v));
 
-    if (cssVar.includes("color")) {
+    if (isSimpleVariable) {
       return [...acc, `$${cssVar}: ${resolvedCssVars[cssVar]};`];
     } else if (cssVar.includes("space")) {
       const calcRegexResult = regexExpressions.calculations.exec(
