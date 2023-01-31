@@ -162,6 +162,8 @@ function getResolvedSCSSVariables(cssProperties) {
         customProperties["--" + cssVar],
       );
       return [...acc, `$${cssVar}: ${handleCalc(calcRegexResult)}px;`];
+    } else if (cssVar.includes("border")) {
+      return [...acc, `$${cssVar}: ${resolvedCssVars[cssVar]}px;`];
     } else {
       return acc;
     }
