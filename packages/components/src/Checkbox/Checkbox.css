@@ -4,7 +4,7 @@
 
 .wrapper {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   user-select: none;
   cursor: pointer;
 }
@@ -15,6 +15,7 @@
 
 .checkHolder {
   position: relative;
+  margin-top: var(--space-smallest);
 }
 
 .input {
