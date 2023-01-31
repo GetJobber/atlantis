@@ -154,9 +154,11 @@ function getResolvedCSSVars(cssProperties) {
 
 function getResolvedSCSSVariables(cssProperties) {
   const allKeys = Object.keys(cssProperties);
+  const sizeVariables = ["border", "radius"];
   const simpleVariables = ["color", "timing", "elevation"];
 
   return allKeys.reduce((acc, cssVar) => {
+    const isSizeVariable = sizeVariables.some(v => cssVar.includes(v));
     const isSimpleVariable = simpleVariables.some(v => cssVar.includes(v));
 
     if (isSimpleVariable) {
@@ -166,6 +168,9 @@ function getResolvedSCSSVariables(cssProperties) {
         customProperties["--" + cssVar],
       );
       return [...acc, `$${cssVar}: ${handleCalc(calcRegexResult)}px;`];
+    } else if (isSizeVariable) {
+      const suffix = customProperties["--" + cssVar].includes("%") ? "%" : "px";
+      return [...acc, `$${cssVar}: ${resolvedCssVars[cssVar]}${suffix};`];
     } else {
       return acc;
     }
