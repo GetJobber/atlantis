@@ -17,7 +17,7 @@ import { Menu } from ".";
 
 A toggleable menu that holds a list of actions. Where `InputSelect` is used to
 select an item from a list `Menu` is used to display a dismissible menu of
-actions the user can preform.
+actions the user can perform.
 
 ```ts
 import { Menu } from "@jobber/components/Menu";
@@ -41,7 +41,7 @@ import { Menu } from "@jobber/components/Menu";
         header: "Send as...",
         actions: [
           {
-            label: "Text Message",
+            label: "Text message",
             icon: "sms",
             onClick: () => {
               alert("📱");
@@ -65,7 +65,20 @@ import { Menu } from "@jobber/components/Menu";
 
 <Props of={Menu} />
 
----
+## Content guidelines
+
+Menu action labels should be sentence-cased. This means in general, capitalize
+only the first letter of the label unless there is a proper noun (such as a
+person's name) in the label.
+
+Jobber features, such as jobs, quotes, and invoices, are not proper nouns and
+[should not be capitalized.](/content/product-vocabulary#concepts-and-items)
+
+| ✅ Do                            | ❌ Don't                         |
+| -------------------------------- | -------------------------------- |
+| Send as text message             | Send As Text Message             |
+| Collect signature                | COLLECT SIGNATURE                |
+| Assign Jasmine Williams to visit | Assign jasmine williams to visit |
 
 ## Custom activator
 

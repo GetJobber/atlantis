@@ -41,14 +41,14 @@ To start the [docz](https://www.docz.site/) development server:
 npm start
 ```
 
-### Monorepo Notes
+### Monorepo notes
 
-#### Installing Dependencies
+#### Installing dependencies
 
 When installing dependencies, unless they are required for the documentation
 viewer, they should be within the package you are working within.
 
-#### Cross Linking
+#### Cross-linking
 
 If you are making a change in one package that will be needed in another you
 will need to make the needed change and run a `npm run lerna:bootstrap` before
@@ -81,7 +81,7 @@ standards, these packages will be useful:
 - [EsLint configuration](/packages/eslint-config)
 - [StyleLint configuration](/packages/stylelint-config)
 
-## Generating a Component
+## Generating a component
 
 Running the following command will prompt you for a component name and generate
 a starting point consisting of a component, tests, styling, etc to help you get
@@ -139,7 +139,7 @@ npm run lint:css
 npm run lint:ts
 ```
 
-## Repo Structure
+## Repo structure
 
 The `atlantis` repo is a monorepo consisting of a few different packages all
 living in the `./packages/` directory.
@@ -185,14 +185,14 @@ publish whenever a pull request is merged.
 <code>npm run release:unpublished-package</code>
 </details>
 
-### Pre-Release
+### Pre-release
 
 ```sh
 npx lerna version --allow-branch <branch-for-pre-release> --conventional-prerelease --preid pre
 npm run publish:prerelease
 ```
 
-### What has Changed
+### What has changed
 
 ```sh
 lerna changed
