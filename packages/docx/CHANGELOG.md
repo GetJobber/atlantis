@@ -8,6 +8,14 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2-pre.1](https://github.com/GetJobber/atlantis/compare/@jobber/docx@0.2.1...@jobber/docx@0.2.2-pre.1) (2023-02-01)
+
+**Note:** Version bump only for package @jobber/docx
+
+
+
+
+
 ## [0.2.2-pre.0](https://github.com/GetJobber/atlantis/compare/@jobber/docx@0.2.1...@jobber/docx@0.2.2-pre.0) (2023-01-24)
 
 **Note:** Version bump only for package @jobber/docx
