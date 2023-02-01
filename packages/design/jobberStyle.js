@@ -228,8 +228,8 @@ function getVariableType(cssVar) {
   );
   const isShadowVariable = cssVar.includes("shadow");
 
-  if (isSizeVariables) return "size";
   if (isSimpleVariables) return "simple";
+  if (isSizeVariables) return "size";
   if (isCalcVariables) return "calc";
   if (isShadowVariable) return "shadow";
 }
