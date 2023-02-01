@@ -46,10 +46,10 @@ The right button to use depends on:
 - the type of action your user is attempting to complete
 - the hierarchy of the interface the button lives in
 
-### Work actions
+### Work
 
-Use Work Actions buttons to enable user interactions in the goal of completing
-work in Jobber.
+Use work buttons to enable user interactions in the goal of completing work in
+Jobber.
 
 #### Primary
 
@@ -81,15 +81,15 @@ editing, revealing details, or navigating within the view.
   <Button label="Do the Thing" type="tertiary" />
 </Playground>
 
-### Learning Actions
+### Learning
 
-Use the Learning Actions buttons to enable user interactions in the goal of
-learning about Jobber, whether for marketing or coaching purposes.
+Use the Learning buttons to enable user interactions in the goal of learning
+about Jobber, whether for marketing or coaching purposes.
 
-#### Primary, Secondary, Tertiary
+#### Primary, secondary, tertiary
 
-The usage pattern for Learning Actions should follow the same logic as Work
-Actions for all three levels.
+The usage pattern for Learning should follow the same logic as Work actions for
+all three levels.
 
 <Playground>
   <Content>
@@ -122,24 +122,24 @@ Actions for all three levels.
   </Content>
 </Playground>
 
-### Destructive Actions
+### Destructive
 
 Destructive actions remove something from Jobber.
 
 #### Primary
 
-A Primary destructive action will permanently destroy an object carrying
+A primary destructive action will permanently destroy an object carrying
 significant data, such as a job, quote, or client. This destructive action
 should be contained in a [ConfirmationModal](/components/confirmation-modal)
 triggered by clicking a secondary or tertiary destructive button.
 
-#### Secondary or Tertiary
+#### Secondary or tertiary
 
-A Secondary or tertiary destructive action will either...
+A secondary or tertiary destructive action will either...
 
 - destroy an item on an object that can be quickly restored, such as a line item
   on a job
-- trigger a dialog to confirm a Primary destructive action
+- trigger a dialog to confirm a primary destructive action
 
 <Playground>
   <Content>
@@ -155,10 +155,7 @@ A Secondary or tertiary destructive action will either...
   </Content>
 </Playground>
 
-### Subtle Actions
-
-> Subtle actions replace a previous concept of "cancel" actions which has been
-> deprecated.
+### Subtle
 
 Use a subtle button when you want the visual appearance to be more, well...
 _subtle._ This variation of button uses subdued color, allowing it to sit
@@ -167,7 +164,7 @@ comfortably alongside more prominent content.
 Think of icon actions in a navigation bar, buttons to dismiss a modal, or opting
 out of completing an action they have triggered.
 
-#### Primary, Secondary, and Tertiary
+#### Primary, secondary, and tertiary
 
 A key distinction between subtle buttons and the other variations is that the
 primary/secondary/tertiary scale is styled differently, but conceptual hierarchy
@@ -296,7 +293,7 @@ A way to communicate to the user that a background action is being performed.
   <Button label="Canceling..." variation="subtle" loading={true} />
 </Playground>
 
-## Client Side Routing
+## Client-side routing
 
 A `Button` can be used for client side routing as well. When using a Button to
 handle the client side routing, use the `to` prop. Notice when you click below
@@ -326,7 +323,7 @@ that the url will change to the appropriate route.
   }}
 </Playground>
 
-## Form Submit
+## Form submit
 
 Passing the `submit` prop will allow a `Button` to submit a
 [Form](/components/form). Since submitting a form is a specific action, only
