@@ -115,7 +115,7 @@ export function DatePicker({
         onChange={handleChange}
         maxDate={maxDate}
         minDate={minDate}
-        formatWeekDay={date => date.substring(0, 3)}
+        useWeekdaysShort={true}
         customInput={
           <DatePickerActivator activator={activator} fullWidth={fullWidth} />
         }
