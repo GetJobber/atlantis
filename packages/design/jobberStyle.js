@@ -156,33 +156,7 @@ function getResolvedSCSSVariables(cssProperties) {
   const allKeys = Object.keys(cssProperties);
 
   return allKeys.reduce((acc, cssVar) => {
-    const customPropertyValue = customProperties["--" + cssVar];
-    const variableType = getVariableType(cssVar);
-    let propertyValue = "";
-
-    switch (variableType) {
-      case "simple":
-        propertyValue = `${resolvedCssVars[cssVar]}`;
-        break;
-      case "calc":
-        {
-          const calcRegexResult =
-            regexExpressions.calculations.exec(customPropertyValue);
-          propertyValue = `${handleCalc(calcRegexResult)}px`;
-        }
-        break;
-      case "size":
-        {
-          const suffix = customPropertyValue.includes("%") ? "%" : "px";
-          propertyValue = `${resolvedCssVars[cssVar]}${suffix}`;
-        }
-        break;
-      case "shadow":
-        propertyValue = `${resolveShadow(customPropertyValue)}`;
-        break;
-      default:
-        propertyValue = "";
-    }
+    const propertyValue = getPropertyValue(cssVar);
 
     if (propertyValue) {
       return [...acc, `$${cssVar}: ${propertyValue};`];
@@ -232,4 +206,27 @@ function getVariableType(cssVar) {
   if (isSizeVariables) return "size";
   if (isCalcVariables) return "calc";
   if (isShadowVariable) return "shadow";
+}
+
+function getPropertyValue(cssVar) {
+  const customPropertyValue = customProperties["--" + cssVar];
+  const variableType = getVariableType(cssVar);
+
+  switch (variableType) {
+    case "simple":
+      return `${resolvedCssVars[cssVar]}`;
+    case "calc": {
+      const calcRegexResult =
+        regexExpressions.calculations.exec(customPropertyValue);
+      return `${handleCalc(calcRegexResult)}px`;
+    }
+    case "size": {
+      const suffix = customPropertyValue.includes("%") ? "%" : "px";
+      return `${resolvedCssVars[cssVar]}${suffix}`;
+    }
+    case "shadow":
+      return `${resolveShadow(customPropertyValue)}`;
+    default:
+      return "";
+  }
 }
