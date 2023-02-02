@@ -37,7 +37,7 @@
     "framer-motion": "^1.10.3",
     "lodash": "^4.17.21",
     "react-countdown": "^2.3.2",
-    "react-datepicker": "^4.3.0",
+    "react-datepicker": "~4.8.0",
     "react-dropzone": "^11.0.2",
     "react-hook-form": "^6.7.2",
     "react-image-lightbox": "^5.1.1",
