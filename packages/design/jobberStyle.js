@@ -154,41 +154,15 @@ function getResolvedCSSVars(cssProperties) {
 
 function getResolvedSCSSVariables(cssProperties) {
   const allKeys = Object.keys(cssProperties);
-  const sizeVariables = ["border", "radius"];
-  const simpleVariables = [
-    "color",
-    "timing",
-    "elevation",
-    "lineHeight",
-    "fontFamily",
-    "letterSpacing-base",
-  ];
-  const calcVariables = ["space", "letterSpacing-loose", "fontSize"];
 
   return allKeys.reduce((acc, cssVar) => {
-    const isSizeVariable = sizeVariables.some(v => cssVar.includes(v));
-    const isSimpleVariable = simpleVariables.some(v => cssVar.includes(v));
-    const isCalcVariable = calcVariables.some(v => cssVar.includes(v));
+    const propertyValue = getPropertyValue(cssVar);
 
-    if (isSimpleVariable) {
-      return [...acc, `$${cssVar}: ${resolvedCssVars[cssVar]};`];
-    } else if (isCalcVariable) {
-      const calcRegexResult = regexExpressions.calculations.exec(
-        customProperties["--" + cssVar],
-      );
-      return [...acc, `$${cssVar}: ${handleCalc(calcRegexResult)}px;`];
-    } else if (isSizeVariable) {
-      const suffix = customProperties["--" + cssVar].includes("%") ? "%" : "px";
-      return [...acc, `$${cssVar}: ${resolvedCssVars[cssVar]}${suffix};`];
-    } else if (cssVar.includes("shadow")) {
-      const resolvedShadowProperty = resolveShadow(
-        customProperties["--" + cssVar],
-      );
-
-      return [...acc, `$${cssVar}: ${resolvedShadowProperty};`];
-    } else {
-      return acc;
+    if (propertyValue) {
+      return [...acc, `$${cssVar}: ${propertyValue};`];
     }
+
+    return acc;
   }, []);
 }
 
@@ -209,4 +183,50 @@ function resolveShadow(shadowValue) {
       return value;
     })
     .join(" ");
+}
+
+function getVariableType(cssVar) {
+  const includesInArray = v => cssVar.includes(v);
+
+  const isSizeVariables = ["border", "radius"].some(includesInArray);
+  const isSimpleVariables = [
+    "color",
+    "timing",
+    "elevation",
+    "lineHeight",
+    "fontFamily",
+    "letterSpacing-base",
+  ].some(includesInArray);
+  const isCalcVariables = ["space", "letterSpacing-loose", "fontSize"].some(
+    includesInArray,
+  );
+  const isShadowVariable = cssVar.includes("shadow");
+
+  if (isSimpleVariables) return "simple";
+  if (isSizeVariables) return "size";
+  if (isCalcVariables) return "calc";
+  if (isShadowVariable) return "shadow";
+}
+
+function getPropertyValue(cssVar) {
+  const customPropertyValue = customProperties["--" + cssVar];
+  const variableType = getVariableType(cssVar);
+
+  switch (variableType) {
+    case "simple":
+      return `${resolvedCssVars[cssVar]}`;
+    case "calc": {
+      const calcRegexResult =
+        regexExpressions.calculations.exec(customPropertyValue);
+      return `${handleCalc(calcRegexResult)}px`;
+    }
+    case "size": {
+      const suffix = customPropertyValue.includes("%") ? "%" : "px";
+      return `${resolvedCssVars[cssVar]}${suffix}`;
+    }
+    case "shadow":
+      return `${resolveShadow(customPropertyValue)}`;
+    default:
+      return "";
+  }
 }
