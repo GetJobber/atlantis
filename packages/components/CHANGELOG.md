@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.94.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.94.7...@jobber/components@2.94.8) (2023-02-02)
+
+
+### Bug Fixes
+
+* **components:** restrict react-datepicker version  ([#1019](https://github.com/GetJobber/atlantis/issues/1019)) ([9c9a88a](https://github.com/GetJobber/atlantis/commit/9c9a88a1dfcc6ee6cc96a69aab598546886f37de))
+
+
+
+
+
 ## [2.94.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.94.6...@jobber/components@2.94.7) (2023-02-02)
 
 **Note:** Version bump only for package @jobber/components
