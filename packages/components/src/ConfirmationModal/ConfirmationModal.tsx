@@ -175,7 +175,7 @@ export const ConfirmationModal = forwardRef(function ConfirmationModalInternal(
     onCancel,
     onRequestClose,
     variation = "work",
-    size = "small",
+    size = undefined,
     children,
   }: ConfirmationModalProps,
   ref: Ref<ConfirmationModalRef>,
