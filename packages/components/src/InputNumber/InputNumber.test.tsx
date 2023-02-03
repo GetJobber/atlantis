@@ -26,7 +26,6 @@ it("renders an input type number", () => {
         <input
           className="input"
           id="123e4567-e89b-12d3-a456-426655440001"
-          inputMode="numeric"
           name="generatedName--123e4567-e89b-12d3-a456-426655440001"
           onBlur={[Function]}
           onChange={[Function]}
@@ -229,16 +228,25 @@ test("it should handle blur", () => {
 
 it("should set inputMode to decimal", () => {
   const { getByLabelText } = render(
-    <InputNumber allowDecimals={true} placeholder="Allow Decimals" />,
+    <InputNumber keyboard="decimal" placeholder="Allow Decimals" />,
   );
   const input = getByLabelText("Allow Decimals");
 
   expect(input.inputMode).toEqual("decimal");
 });
 
-it("should set not inputMode to numeric by default", () => {
-  const { getByLabelText } = render(<InputNumber placeholder="Numeric" />);
+it("should set inputMode to numeric", () => {
+  const { getByLabelText } = render(
+    <InputNumber keyboard="numeric" placeholder="Numeric" />,
+  );
   const input = getByLabelText("Numeric");
 
   expect(input.inputMode).toEqual("numeric");
+});
+
+it("should set not inputMode by default", () => {
+  const { getByLabelText } = render(<InputNumber placeholder="Unset" />);
+  const input = getByLabelText("Unset");
+
+  expect(input.inputMode).toBeFalsy();
 });
