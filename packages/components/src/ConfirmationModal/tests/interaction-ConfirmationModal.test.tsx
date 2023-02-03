@@ -285,3 +285,37 @@ test("Work should have work styled confirmation button", () => {
 
   expect(getByText("Ok").parentElement).toHaveClass("work");
 });
+
+test("should display child component", () => {
+  const { getByText } = render(
+    <ConfirmationModal
+      title="Should we?"
+      size={"small"}
+      open={true}
+      confirmLabel="Ok"
+      variation="work"
+    >
+      <h1>Hello Atlantis!</h1>
+    </ConfirmationModal>,
+  );
+
+  const text = getByText("Hello Atlantis!");
+  expect(text).toBeDefined();
+  // Example of message display
+  // <div
+  //   className="padded base"
+  // >
+  //   <div
+  //     className="padded base"
+  //   >
+  //     <p
+  //       className="base regular base text"
+  //     >
+  //       Do something…
+  //     </p>
+  //   </div>
+  // </div>
+
+  // Ensure that only child component is displayed
+  expect(text?.parentElement?.children[1]).not.toHaveClass("padded", "base");
+});
