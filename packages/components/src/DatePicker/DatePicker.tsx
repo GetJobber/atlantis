@@ -122,6 +122,7 @@ export function DatePicker({
         renderCustomHeader={props => <DatePickerCustomHeader {...props} />}
         onCalendarOpen={handleCalendarOpen}
         onCalendarClose={handleCalendarClose}
+        dateFormat={["P", "PP", "PPP"]}
       />
     </div>
   );

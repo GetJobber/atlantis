@@ -85,6 +85,22 @@ it("updates the value of the field when the value prop changes", () => {
   expect(queryByDisplayValue(newDate)).toBeInTheDocument();
 });
 
+it("returns the correct date object when long formatted date is supplied", () => {
+  const date = "11/11/2011";
+  const newDate = "November 15, 2011";
+  const changeHandler = jest.fn();
+  const { getByDisplayValue } = render(
+    <InputDate value={new Date(date)} onChange={changeHandler} />,
+  );
+  expect(getByDisplayValue(date)).toBeInTheDocument();
+
+  fireEvent.change(getByDisplayValue(date), {
+    target: { value: newDate },
+  });
+
+  expect(changeHandler).toHaveBeenCalledWith(new Date(newDate));
+});
+
 it("doesn't fire onChange when the new value is invalid", async () => {
   const date = "11/11/2011";
   const badInput = "bad input";
