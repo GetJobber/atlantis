@@ -10,8 +10,6 @@
     "publish": {
       "ignoreChanges": [
         "lerna.json",
-        "package.json",
-        "package-lock.json",
         "CHANGELOG.md"
       ]
     }
