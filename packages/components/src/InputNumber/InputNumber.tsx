@@ -18,6 +18,11 @@ interface InputNumberProps
       | "defaultValue"
     > {
   value?: number;
+
+  /**
+   * Allow keyboards for mobile to display decimal option
+   */
+  allowDecimals?: boolean;
 }
 
 export interface InputNumberRef {
@@ -50,6 +55,7 @@ function InputNumberInternal(
     <FormField
       {...props}
       type="number"
+      keyboard={props.allowDecimals ? "decimal" : "numeric"}
       inputRef={inputRef}
       onChange={handleChange}
       validations={{
