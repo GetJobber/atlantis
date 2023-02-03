@@ -56,6 +56,29 @@ Co-authored-by: Michael Paradis <michael.p@getjobber.com>
 
 
 # [3.0.0-pre.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.0.0-pre.6...@jobber/components@3.0.0-pre.7) (2023-01-25)
+## [2.94.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.94.8...@jobber/components@2.94.9) (2023-02-03)
+
+
+### Bug Fixes
+
+* **deps:** Update react date picker and adjust usage ([#1020](https://github.com/GetJobber/atlantis/issues/1020)) ([e6d5e86](https://github.com/GetJobber/atlantis/commit/e6d5e86507b7a6500d2c1d270c1982e9f4a6dc78))
+
+
+
+
+
+## [2.94.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.94.7...@jobber/components@2.94.8) (2023-02-02)
+
+
+### Bug Fixes
+
+* **components:** restrict react-datepicker version  ([#1019](https://github.com/GetJobber/atlantis/issues/1019)) ([9c9a88a](https://github.com/GetJobber/atlantis/commit/9c9a88a1dfcc6ee6cc96a69aab598546886f37de))
+
+
+
+
+
+## [2.94.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.94.6...@jobber/components@2.94.7) (2023-02-02)
 
 **Note:** Version bump only for package @jobber/components
 
@@ -64,6 +87,10 @@ Co-authored-by: Michael Paradis <michael.p@getjobber.com>
 
 
 # [3.0.0-pre.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.0.0-pre.5...@jobber/components@3.0.0-pre.6) (2023-01-25)
+
+**Note:** Version bump only for package @jobber/components
+
+## [2.94.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@2.94.5...@jobber/components@2.94.6) (2023-01-31)
 
 **Note:** Version bump only for package @jobber/components
 

@@ -55,6 +55,7 @@ Co-authored-by: Michael Paradis <michael.p@getjobber.com>
 
 
 # [1.0.0-pre.7](https://github.com/GetJobber/atlantis/compare/@jobber/design@1.0.0-pre.6...@jobber/design@1.0.0-pre.7) (2023-01-25)
+## [0.27.9](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.27.8...@jobber/design@0.27.9) (2023-02-02)
 
 **Note:** Version bump only for package @jobber/design
 
@@ -63,6 +64,7 @@ Co-authored-by: Michael Paradis <michael.p@getjobber.com>
 
 
 # [1.0.0-pre.6](https://github.com/GetJobber/atlantis/compare/@jobber/design@1.0.0-pre.5...@jobber/design@1.0.0-pre.6) (2023-01-25)
+## [0.27.8](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.27.7...@jobber/design@0.27.8) (2023-01-31)
 
 **Note:** Version bump only for package @jobber/design
 

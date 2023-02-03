@@ -160,5 +160,7 @@ function getResolvedSCSSColors(cssProperties) {
     } else {
       return acc;
     }
+
+    return acc;
   }, []);
 }
