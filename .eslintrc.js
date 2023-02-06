@@ -11,7 +11,7 @@ module.exports = {
     "import/resolver": {
       alias: {
         map: packageAliases,
-        extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
+        extensions: [".ts", ".tsx", ".js", ".jsx", ".json", ".stories.mdx"]
       }
     }
   },
