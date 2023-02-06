@@ -27,7 +27,7 @@ fs.writeFile("./foundation.js", jsonContent, "utf8", function (err) {
   console.log("JSON file has been saved.");
 });
 
-const scssColors = getResolvedSCSSColors(resolvedCssVars);
+const scssColors = getResolvedSCSSVariables(resolvedCssVars);
 
 fs.writeFile(
   "./foundation.scss",
@@ -152,13 +152,81 @@ function getResolvedCSSVars(cssProperties) {
   }, {});
 }
 
-function getResolvedSCSSColors(cssProperties) {
+function getResolvedSCSSVariables(cssProperties) {
   const allKeys = Object.keys(cssProperties);
+
   return allKeys.reduce((acc, cssVar) => {
-    if (cssVar.includes("color")) {
-      return [...acc, `$${cssVar}: ${resolvedCssVars[cssVar]};`];
-    } else {
-      return acc;
+    const propertyValue = getPropertyValue(cssVar);
+
+    if (propertyValue) {
+      return [...acc, `$${cssVar}: ${propertyValue};`];
     }
+
+    return acc;
   }, []);
+}
+
+function resolveShadow(shadowValue) {
+  const splitValue = shadowValue.split(" ").filter(n => n);
+
+  return splitValue
+    .map(value => {
+      const varRegexResult = regexExpressions.cssVars.exec(value);
+
+      if (varRegexResult) {
+        const result = jobberStyle(varRegexResult[1]);
+        const suffix = typeof result === "string" ? "" : "px";
+
+        return `${result}${suffix}`;
+      }
+
+      return value;
+    })
+    .join(" ");
+}
+
+function getVariableType(cssVar) {
+  const includesInArray = v => cssVar.includes(v);
+
+  const isSizeVariables = ["border", "radius"].some(includesInArray);
+  const isSimpleVariables = [
+    "color",
+    "timing",
+    "elevation",
+    "lineHeight",
+    "fontFamily",
+    "letterSpacing-base",
+  ].some(includesInArray);
+  const isCalcVariables = ["space", "letterSpacing-loose", "fontSize"].some(
+    includesInArray,
+  );
+  const isShadowVariable = cssVar.includes("shadow");
+
+  if (isSimpleVariables) return "simple";
+  if (isSizeVariables) return "size";
+  if (isCalcVariables) return "calc";
+  if (isShadowVariable) return "shadow";
+}
+
+function getPropertyValue(cssVar) {
+  const customPropertyValue = customProperties["--" + cssVar];
+  const variableType = getVariableType(cssVar);
+
+  switch (variableType) {
+    case "simple":
+      return `${resolvedCssVars[cssVar]}`;
+    case "calc": {
+      const calcRegexResult =
+        regexExpressions.calculations.exec(customPropertyValue);
+      return `${handleCalc(calcRegexResult)}px`;
+    }
+    case "size": {
+      const suffix = customPropertyValue.includes("%") ? "%" : "px";
+      return `${resolvedCssVars[cssVar]}${suffix}`;
+    }
+    case "shadow":
+      return `${resolveShadow(customPropertyValue)}`;
+    default:
+      return "";
+  }
 }
