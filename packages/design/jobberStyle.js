@@ -109,6 +109,7 @@ function handleRbga(rgbaVarRegexResult) {
 }
 
 function handleExpressionsInCalc(calcRegexResult) {
+  console.log(calcRegexResult);
   const calcExtract = calcRegexResult[1];
   const varGroups = calcExtract.match(regexExpressions.extractAllVarGroups);
   let finalExpression = calcExtract;
@@ -216,8 +217,10 @@ function getPropertyValue(cssVar) {
     case "simple":
       return `${resolvedCssVars[cssVar]}`;
     case "calc": {
-      const calcRegexResult =
-        regexExpressions.calculations.exec(customPropertyValue);
+      const calcRegexResult = regexExpressions.calculations.exec(
+        removeNewLines(customPropertyValue),
+      );
+
       return `${handleCalc(calcRegexResult)}px`;
     }
     case "size": {
@@ -229,4 +232,13 @@ function getPropertyValue(cssVar) {
     default:
       return "";
   }
+}
+
+/**
+ *
+ * Removes all types of line breaks from the text
+ * Reference: https://stackoverflow.com/a/10805198
+ */
+function removeNewLines(text) {
+  return text.replace(/(\r\n|\n|\r)/gm, "");
 }
