@@ -1,0 +1,27 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Button } from "@jobber/components/Button";
+
+<Meta title="Components/Button" component={Button} />
+
+# Button
+
+Buttons are a core user interface component, as they allow users to initiate,
+complete, and reverse actions.
+
+```ts
+import { Button } from "@jobber/components/Button";
+```
+
+<Canvas>
+  <Story
+    name="Button"
+    args={{
+      label: "Press Me!",
+      onPress: () => alert("👍"),
+    }}
+  >
+    {args => <Button {...args} />}
+  </Story>
+</Canvas>
+
+<ArgsTable of={Button} story="Button" />
