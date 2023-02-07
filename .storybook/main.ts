@@ -11,6 +11,7 @@ const config: StorybookConfig = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
+    "@storybook/addon-docs",
   ],
   "framework": "@storybook/react",
   webpackFinal: async (config) => {
@@ -64,6 +65,9 @@ const config: StorybookConfig = {
         return item;
       })
     }
+
+    // Alias @jobber so it works on MDX files
+    Object.assign(config.resolve?.alias, { "@jobber/components": path.resolve(__dirname, "../packages/components/src") });
 
     // Return the altered config
     return config;
