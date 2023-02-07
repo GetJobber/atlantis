@@ -1,12 +1,20 @@
 import React, { ReactNode } from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
+import { IconNames } from "@jobber/design";
 import styles from "./Card.css";
 import colors from "./colors.css";
 import { CardClickable } from "./CardClickable";
+import { Button } from "../Button";
 import { Typography } from "../Typography";
 
+export type HeaderProps = XOR<HeaderActionProps, HeaderCustomProps>;
 interface CardProps {
+  /**
+   * The header props of the card.
+   */
+  readonly header?: HeaderProps;
+
   /**
    * The `accent`, if provided, will effect the color accent at the top of
    * the card.
@@ -15,10 +23,42 @@ interface CardProps {
   readonly children: ReactNode | ReactNode[];
 
   /**
-   * The title of the card.
+   * The title of the card. (deprecated)
    */
   readonly title?: string;
 }
+
+interface HeaderCustomProps {
+  readonly customHeader?: React.ReactNode;
+}
+
+interface HeaderActionProps {
+  readonly title?: string;
+  readonly action?: ActionItem;
+}
+
+// | {
+//     readonly onPress?: never;
+//     readonly actionItem?: never;
+//   }
+// | {
+//     readonly onPress: () => void;
+//     readonly actionItem: ActionItem;
+//   };
+
+interface IconAction {
+  readonly iconName: IconNames;
+}
+
+interface ButtonAction {
+  readonly label: string;
+  readonly size?: "small" | "base" | "large";
+  readonly type?: "primary" | "secondary" | "tertiary";
+  readonly icon?: IconNames;
+  readonly onPress?: () => void;
+}
+
+export type ActionItem = XOR<IconAction, ButtonAction>;
 
 interface LinkCardProps extends CardProps {
   /**
@@ -40,6 +80,7 @@ type CardPropOptions = XOR<CardProps, XOR<LinkCardProps, ClickableCardProps>>;
 
 export function Card({
   accent,
+  header,
   children,
   onClick,
   title,
@@ -55,17 +96,31 @@ export function Card({
 
   const cardContent = (
     <>
-      {title && (
+      {header?.customHeader && header.customHeader}
+      {(header?.title || title || header?.action) && (
         <div className={styles.header}>
-          <Typography
-            element="h3"
-            size="large"
-            textCase="uppercase"
-            fontWeight="extraBold"
-            textColor="heading"
-          >
-            {title}
-          </Typography>
+          <div>
+            <Typography
+              element="h3"
+              size="large"
+              textCase="uppercase"
+              fontWeight="extraBold"
+              textColor="heading"
+            >
+              {header?.title || title}
+            </Typography>
+          </div>
+          {!title && header?.title && header?.action && header?.action?.label && (
+            <div className={styles.button}>
+              <Button
+                label={header.action.label}
+                size={header.action.size}
+                type={header.action.type}
+                icon={header.action.icon}
+                onClick={header.action.onPress}
+              />
+            </div>
+          )}
         </div>
       )}
       {children}

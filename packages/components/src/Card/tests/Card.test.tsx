@@ -37,11 +37,13 @@ it("renders a card", () => {
       <div
         className="header"
       >
-        <h3
-          className="base extraBold large uppercase heading"
-        >
-          The Undiscovered Country
-        </h3>
+        <div>
+          <h3
+            className="base extraBold large uppercase heading"
+          >
+            The Undiscovered Country
+          </h3>
+        </div>
       </div>
       <p>
         This is the card content.

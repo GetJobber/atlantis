@@ -8,6 +8,7 @@ import { Playground, Props, Link } from "docz";
 import { ComponentStatus } from "@jobber/docx";
 import { Card } from ".";
 import { Text } from "../Text";
+import { Banner } from "../Banner";
 import { Heading } from "../Heading";
 import { Content } from "../Content";
 
@@ -98,6 +99,65 @@ removed, and it may be worth re-assessing the hierarchy of your interface.
       <Heading level={4}>View All</Heading>
       <Text>
         See how our 20+ features can help you organize, impress, and grow.
+      </Text>
+    </Content>
+  </Card>
+</Playground>
+
+### Header with button
+
+<Playground>
+  <Card
+    header={{
+      title: "Banana",
+      action: {
+        label: "Buy",
+        size: "small",
+        type: "primary",
+        icon: "add",
+        onPress: () => {
+          alert("Buy Bananas!");
+        },
+      },
+    }}
+  >
+    <Content>
+      <Heading level={4}>Burro</Heading>
+      <Text>
+        Squatty and slightly square at the edges, these bananas are slightly
+        tangy and lemony. When ripe, the fruit is soft and the skin is yellow
+        with black spots. Also called Horse, Hog, or Orinoco bananas.
+      </Text>
+      <Heading level={4}>Cavendish</Heading>
+      <Text>
+        This is the familiar yellow banana sold in United States’ supermarkets.
+        There are also other sizes of Cavendish, including Dwarf and Giant,
+        though they are difficult to find.
+      </Text>
+    </Content>
+  </Card>
+</Playground>
+
+### Header with custom component
+
+<Playground>
+  <Card
+    header={{
+      customHeader: <Banner type="notice">Bananas are on sale!</Banner>,
+    }}
+  >
+    <Content>
+      <Heading level={4}>Burro</Heading>
+      <Text>
+        Squatty and slightly square at the edges, these bananas are slightly
+        tangy and lemony. When ripe, the fruit is soft and the skin is yellow
+        with black spots. Also called Horse, Hog, or Orinoco bananas.
+      </Text>
+      <Heading level={4}>Cavendish</Heading>
+      <Text>
+        This is the familiar yellow banana sold in United States’ supermarkets.
+        There are also other sizes of Cavendish, including Dwarf and Giant,
+        though they are difficult to find.
       </Text>
     </Content>
   </Card>
