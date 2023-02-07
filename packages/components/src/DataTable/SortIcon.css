@@ -1,14 +1,14 @@
 .sortIcon {
   padding-right: var(--space-small);
 }
-path {
+.sortIcon path {
   fill: var(--color-greyBlue);
 }
 
-path.active {
+.sortIcon path.active {
   fill: var(--color-blue);
 }
 
-path.inactive {
+.sortIcon path.inactive {
   fill: var(--color-greyBlue--lighter);
 }
