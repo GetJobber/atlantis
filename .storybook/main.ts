@@ -1,8 +1,6 @@
 import type { StorybookConfig } from "@storybook/react/types";
-
-// import { config as webpackConfig } from "./webpack.config";
-// const { merge } = require("webpack-merge");
-// const path = require("path");
+import * as webpack from "webpack";
+const path = require("path");
 
 const config: StorybookConfig = {
   "stories": [
@@ -14,10 +12,63 @@ const config: StorybookConfig = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
-    "storybook-css-modules",
-
   ],
   "framework": "@storybook/react",
+  webpackFinal: async (config) => {
+
+    /**
+     * Generate css types on `.css` file save,
+     * as well as handle PostCss
+     */
+    config.module?.rules.push({
+      enforce: "pre",
+      test: /\.css$/,
+      exclude: /node_modules/,
+      use: [
+        require.resolve("typed-css-modules-loader"),
+        {
+          loader: "postcss-loader",
+          options: {
+            ident: "postcss",
+            plugins: () => [
+              require("postcss-import"),
+              require("autoprefixer"),
+              require("postcss-preset-env")({
+                stage: 1,
+                preserve: true,
+                importFrom: [
+                  require.resolve(
+                    path.join(__dirname, "../packages/design/foundation.css"),
+                  ),
+                ],
+              }),
+            ],
+          },
+        },
+      ],
+    });
+
+    /**
+     * Since we don't use .module.css, we'll have to enable CSS modules for
+     * all files.
+     */
+    const ruleCssIndex = config.module?.rules.findIndex(rule => rule.test?.toString() === '/\\.css$/');
+
+    if (ruleCssIndex) {
+      (config.module?.rules[ruleCssIndex]?.use as webpack.RuleSetLoader[])?.map(item => {
+        if (item.loader && item.loader.includes('/css-loader/')) {
+          (item.options as Record<any, any>).modules = {
+            localIdentName: "[name]__[local]--[hash:base64:5]",
+          };
+        }
+
+        return item;
+      })
+    }
+
+    // Return the altered config
+    return config;
+  }
 }
 
 module.exports = config
