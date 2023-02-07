@@ -44,7 +44,7 @@ references:
   npm_install: &npm_install
     run:
       name: Install Dependencies
-      command: npm ci
+      command: export IGNORE_OPTIONAL_DEPENDENCIES=true; npm ci --no-optional
 
   github_authenticity: &github_authenticity
     run:
@@ -76,6 +76,9 @@ jobs:
       - *attach_workspace
       - *sum_lockfiles
       - *restore_npm_cache
+      - run:
+          name: Authenticate with npm
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/atlantis/.npmrc
       - *npm_install
       - *persist_to_workspace
       - save_cache:
@@ -159,9 +162,6 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "0a:70:b5:5e:87:c1:05:50:cc:54:c6:59:3b:43:77:63"
-      - run:
-          name: Authenticate with npm
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/atlantis/.npmrc
       - run:
           name: Release Packages
           command: |

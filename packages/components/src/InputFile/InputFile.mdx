@@ -51,7 +51,7 @@ import { InputFile, updateFiles } from "@jobber/components/InputFile";
   }}
 </Playground>
 
-## Design & Usage Guidelines
+## Design & usage guidelines
 
 When contributing to, or consuming the `InputFile` component, consider the
 following:
@@ -90,7 +90,7 @@ interface UploadParams {
 }
 ```
 
-## updateFiles Helper
+## updateFiles helper
 
 `InputFile` also exports a `updateFiles` method. This method allows for easily
 updating an array of `FileUpload`s based on their `key` as uploads progress.
@@ -107,7 +107,7 @@ updating an array of `FileUpload`s based on their `key` as uploads progress.
 export function updateFiles(updatedFile: FileUpload, files: FileUpload[]);
 ```
 
-## Only Allow Images
+## Only allow images
 
 Using the `allowedTypes` prop you can choose to allow all files types or only
 images. To upload multiple images you can use the `multiple` prop;
@@ -127,7 +127,7 @@ export function fetchUploadParams() {
   </Content>
 </Playground>
 
-## Variations & Size
+## Variations & size
 
 InputFile supports two variations (`dropzone` & `button`) each with two sizes
 (`small` & `base`). Both variations of InputFile allow for drag and drop however

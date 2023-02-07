@@ -18,11 +18,15 @@ A FormatRelateDateTime displays the date and time using relative wording or
 approximate values. Note. This component only represents current date and dates
 in the past. No future dating.
 
-## Simple Example
-
 ```ts
 import { FormatRelativeDateTime } from "@jobber/components/FormatRelativeDateTime";
 ```
+
+## Props
+
+<Props of={FormatRelativeDateTime} />
+
+---
 
 ## Rules
 
@@ -43,7 +47,3 @@ format is Month Day, Year
 <Playground>
   <FormatRelativeDateTime date={new CivilDateTime(2020, 2, 26, 14, 29, 39)} />
 </Playground>
-
-## Props
-
-<Props of={FormatRelativeDateTime} />

@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import classnames from "classnames";
 import styles from "./Drawer.css";
-import { Typography } from "../Typography";
+import { Heading } from "../Heading";
 import { ButtonDismiss } from "../ButtonDismiss";
 
 interface DrawerProps {
@@ -57,14 +57,7 @@ interface HeaderProps {
 function Header({ title, onRequestClose }: HeaderProps) {
   return (
     <div className={styles.header} data-testid="drawer-header">
-      <Typography
-        element="h3"
-        size="large"
-        textCase="uppercase"
-        fontWeight="extraBold"
-      >
-        {title}
-      </Typography>
+      <Heading level={3}>{title}</Heading>
       <ButtonDismiss
         onClick={onRequestClose}
         ariaLabel={`Close ${title || "drawer"}`}

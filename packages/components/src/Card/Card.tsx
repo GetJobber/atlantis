@@ -4,7 +4,7 @@ import { XOR } from "ts-xor";
 import styles from "./Card.css";
 import colors from "./colors.css";
 import { CardClickable } from "./CardClickable";
-import { Typography } from "../Typography";
+import { Heading } from "../Heading";
 
 interface CardProps {
   /**
@@ -57,15 +57,7 @@ export function Card({
     <>
       {title && (
         <div className={styles.header}>
-          <Typography
-            element="h3"
-            size="large"
-            textCase="uppercase"
-            fontWeight="extraBold"
-            textColor="heading"
-          >
-            {title}
-          </Typography>
+          <Heading level={3}>{title}</Heading>
         </div>
       )}
       {children}

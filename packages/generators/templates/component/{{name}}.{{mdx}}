@@ -38,7 +38,7 @@ import { {{ name }} } from "@jobber/components/{{ name }}";
   See `Button.mdx` for a good example of this.
 -->
 
-## Usage Guidelines
+## Usage guidelines
 
 The `<{{name}}>` will... _Add a brief description of the component_
 
@@ -52,7 +52,7 @@ The `<{{name}}>` will... _Add a brief description of the component_
   that have a green background and white text”).
 -->
 
-## Content Guidelines
+## Content guidelines
 
 <!--
   What type of content does this component present (documents, text, images, other components)?

@@ -13,7 +13,7 @@
     "build": "USE_ATLANTIS_ALIASES=true docz build",
     "serve": "docz serve",
     "clean": "rm -rf .docz",
-    "lerna:bootstrap": "lerna bootstrap",
+    "lerna:bootstrap": "./scripts/bootstrap.sh",
     "lerna:compile-typescript": "lerna run ci:typescript-compile",
     "lint:js": "eslint --ext .js,.jsx,.ts,.tsx .",
     "lint:css": "stylelint 'packages/**/*.css' --allow-empty-input",
@@ -21,14 +21,18 @@
     "lint": "npm run lint:js && npm run lint:css",
     "lint:fix": "npm run lint:js -- --fix && npm run lint:css -- --fix && npm run lint:markdown -- --write",
     "install": "npm run lerna:bootstrap",
-    "release-the-kraken": "npm ci && lerna publish",
-    "release:unpublished-package": "npm ci && lerna publish from-package",
-    "prerelease": "lerna publish --canary --dist-tag next --preid pre",
+    "release-the-kraken": "export IGNORE_OPTIONAL_DEPENDENCIES=true; npm ci --no-optional && lerna publish",
+    "release:unpublished-package": "export IGNORE_OPTIONAL_DEPENDENCIES=true; npm ci --no-optional && lerna publish from-package",
+    "prepublish:prerelease": "./scripts/pre-prerelease.sh",
+    "publish:prerelease": "lerna publish --canary --dist-tag next --preid pre from-package",
+    "preci:release": "./scripts/pre-prerelease.sh",
     "ci:release": "lerna publish --yes",
     "version": "node ensureChangelogHeaders.js",
     "convertIcoMoon": "scripts/convertIcoMoon.ts",
     "preventManualRelease": "node scripts/preventManualRelease.js",
-    "buildHooksIndex": "node scripts/createIndexFile.js ./packages/hooks/src"
+    "buildHooksIndex": "node scripts/createIndexFile.js ./packages/hooks/src",
+    "lerna:clean": "lerna run clean && lerna clean --y && npm run clean:packages && npm run clean",
+    "clean:packages": "rm -rf node_modules **/dist"
   },
   "repository": {
     "type": "git",
@@ -93,6 +97,7 @@
     "stylelint": "^14.2.0",
     "stylelint-junit-formatter": "^0.2.1",
     "typed-css-modules-loader": "0.0.18",
+    "typed-css-modules": "^0.7.0",
     "typescript": "^3.8.3"
   },
   "husky": {
@@ -109,5 +114,8 @@
   ],
   "dependencies": {
     "@std-proposal/temporal": "0.0.1"
+  },
+  "optionalDependencies": {
+    "@jobber/fonts": "^1.0.0"
   }
 }
