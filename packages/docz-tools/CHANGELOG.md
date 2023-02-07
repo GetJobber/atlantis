@@ -55,6 +55,21 @@ Co-authored-by: Michael Paradis <michael.p@getjobber.com>
 
 
 # [2.0.0-pre.7](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@2.0.0-pre.6...@jobber/docz-tools@2.0.0-pre.7) (2023-01-25)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
+## [1.10.47](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.10.46...@jobber/docz-tools@1.10.47) (2023-02-07)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
 ## [1.10.46](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@1.10.45...@jobber/docz-tools@1.10.46) (2023-02-03)
 
 **Note:** Version bump only for package @jobber/docz-tools
