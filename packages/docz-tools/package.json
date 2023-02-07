@@ -1,6 +1,6 @@
 {
   "name": "@jobber/docz-tools",
-  "version": "1.10.47",
+  "version": "2.0.0",
   "description": "",
   "main": "index.ts",
   "scripts": {
@@ -11,8 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "@emotion/react": "^11.1.4",
-    "@jobber/components": "^2.94.10",
-    "@jobber/design": "^0.27.9",
+    "@jobber/components": "^3.0.0",
+    "@jobber/design": "^0.28.0",
     "classnames": "^2.3.1",
     "deepmerge": "^4.2.2",
     "framer-motion": "^1.11.1",
