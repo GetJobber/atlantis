@@ -24,6 +24,38 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
+## [0.27.7](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.27.6...@jobber/design@0.27.7) (2023-01-31)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.27.6](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.27.5...@jobber/design@0.27.6) (2023-01-31)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.27.5](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.27.4...@jobber/design@0.27.5) (2023-01-31)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.27.4](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.27.3...@jobber/design@0.27.4) (2023-01-31)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
 ## [0.27.3](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.27.2...@jobber/design@0.27.3) (2023-01-19)
 
 **Note:** Version bump only for package @jobber/design
