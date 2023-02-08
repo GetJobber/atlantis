@@ -130,14 +130,14 @@ component once your proposal is approved.
 7. Once approved a maintainer will land the proposal in `master` and you can
    proceed to implementation
 
-### Implement a Proposal
+### Implement a proposal
 
 All components should start with a proposal. One of our
 [Guiding Principles](#guiding-principles) is to start all components with
 documentation. Once your proposal has been approved, proceed to contribute code
 to Atlantis to make it a reality!
 
-#### Contributing Code
+#### Contributing code
 
 The process for contributing code is fairly simple.
 
@@ -147,7 +147,7 @@ The process for contributing code is fairly simple.
    referencing the Issue that you are trying to solve.
 4. Once approved a maintainer will land the proposal in `master`
 
-#### Opening a Pull Request
+#### Opening a pull request
 
 Atlantis uses Conventional Commits to track versions. Pull request titles should
 follow the following format.
@@ -163,7 +163,7 @@ To request a review from Atlantis maintainers, use
 [Github's review tool](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/requesting-a-pull-request-review)
 and request from review from `GetJobber/Atlantis`.
 
-## Guiding Principles
+## Guiding principles
 
 ### Documentation first
 

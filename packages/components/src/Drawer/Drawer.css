@@ -41,7 +41,7 @@
 
 .header {
   display: flex;
-  padding: var(--drawer--base-padding);
+  padding: var(--space-small) var(--drawer--base-padding);
   background-color: var(--color-surface--background);
   justify-content: space-between;
   align-items: center;

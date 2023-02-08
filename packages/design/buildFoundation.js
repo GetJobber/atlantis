@@ -4,7 +4,7 @@ const fs = require("fs");
 const postcss = require("postcss");
 const postcssCustomProperties = require("postcss-custom-properties");
 
-const foundation = fs.readFileSync("foundation.css");
+const foundation = fs.readFileSync("./foundation.css");
 
 postcss([
   postcssCustomProperties({

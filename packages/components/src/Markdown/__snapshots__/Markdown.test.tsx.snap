@@ -37,7 +37,7 @@ exports[`renders Level 1 Heading Component 1`] = `
   className="padded base"
 >
   <h1
-    className="base black jumbo uppercase heading"
+    className="base black jumbo heading"
   >
     Heading 1
   </h1>
@@ -49,7 +49,7 @@ exports[`renders Level 2 Heading Component 1`] = `
   className="padded base"
 >
   <h2
-    className="base black largest uppercase heading"
+    className="base black largest heading"
   >
     Heading 2
   </h2>
@@ -61,7 +61,7 @@ exports[`renders Level 3 Heading Component 1`] = `
   className="padded base"
 >
   <h3
-    className="base bold larger heading"
+    className="base extraBold larger heading"
   >
     Heading 3
   </h3>
@@ -119,7 +119,7 @@ exports[`renders a combination of Markdown components 1`] = `
   className="padded base"
 >
   <h1
-    className="base black jumbo uppercase heading"
+    className="base black jumbo heading"
   >
     This is a paragraph.
   </h1>
