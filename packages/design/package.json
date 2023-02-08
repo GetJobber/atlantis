@@ -20,7 +20,7 @@
     "build:rollup": "rollup --config",
     "build:css": "postcss src/foundation.css --config foundation_config --output foundation.css",
     "build:css:icons": "postcss src/icons/*.css --dir icons/ --use postcss-import",
-    "build:ts": "tsc --project .",
+    "build:ts": "tsc --project . --skipLibCheck",
     "build:cssTypes": "tcm src/icons",
     "build:colors": "node buildColors.js",
     "build:foundation": "node buildFoundation.js && node jobberStyle.js && npm run build:foundationTypes && npm run build:addTypeLinterExceptions && npm run build:addFoundationLinterExceptions && npm run build:removeTempFiles",
