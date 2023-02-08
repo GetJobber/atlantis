@@ -33,9 +33,6 @@ interface CardTitleProps {
    */
   readonly title?: string;
 
-  /**
-   * The header props of the card.
-   */
   readonly header?: never;
 }
 
@@ -54,7 +51,7 @@ interface ButtonAction {
   readonly size?: "small" | "base" | "large";
   readonly type?: "primary" | "secondary" | "tertiary";
   readonly icon?: IconNames;
-  readonly onPress?: () => void;
+  readonly onClick?: () => void;
 }
 type LinkCardProps = CardProps & {
   /**
@@ -90,10 +87,16 @@ export function Card({
     accent && colors[accent],
   );
 
+  const { showCustomCompHeader, showCardHeader } = checkHeaderVisibility(
+    title,
+    header,
+  );
+
   const cardContent = (
     <>
-      {header?.customHeader && header.customHeader}
-      {(header?.title || title || header?.action) && (
+      {showCustomCompHeader && header?.customHeader}
+
+      {!showCustomCompHeader && showCardHeader && (
         <div className={styles.header}>
           <div>
             <Typography
@@ -106,14 +109,14 @@ export function Card({
               {header?.title || title}
             </Typography>
           </div>
-          {!title && header?.title && header?.action && header?.action?.label && (
-            <div className={styles.button}>
+          {header?.action?.label && (
+            <div className={styles.headerButton}>
               <Button
                 label={header.action.label}
                 size={header.action.size}
                 type={header.action.type}
                 icon={header.action.icon}
-                onClick={header.action.onPress}
+                onClick={header.action.onClick}
               />
             </div>
           )}
@@ -142,4 +145,20 @@ export function Card({
   } else {
     return <div className={className}>{cardContent}</div>;
   }
+}
+
+function checkHeaderVisibility(
+  title?: string,
+  header?: HeaderProps,
+): {
+  showCustomCompHeader: boolean;
+  showCardHeader: boolean;
+} {
+  if (header?.customHeader) {
+    return { showCustomCompHeader: true, showCardHeader: true };
+  } else if (header?.action || header?.title || title) {
+    return { showCustomCompHeader: false, showCardHeader: true };
+  }
+
+  return { showCustomCompHeader: false, showCardHeader: false };
 }

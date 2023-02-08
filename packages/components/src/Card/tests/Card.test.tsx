@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { fireEvent, render } from "@testing-library/react";
+import { Text } from "../../Text";
 import { Card } from "..";
 
 it("renders a simple card", () => {
@@ -75,7 +76,7 @@ it("renders a card with button", () => {
           </h3>
         </div>
         <div
-          className="button"
+          className="headerButton"
         >
           <button
             className="button base work primary"
@@ -97,10 +98,9 @@ it("renders a card with button", () => {
   `);
 });
 
-it.skip("renders a card with custom header", () => {
+it("renders a card with custom header", () => {
   const headerProp = {
-    header: { customHeader: <p>Custom Header</p> },
-    // <Card header={{ customHeader: <Text>Custom</Text> }}></Card>
+    header: { customHeader: <Text>Custom Header</Text> },
   };
 
   const tree = renderer
@@ -114,7 +114,9 @@ it.skip("renders a card with custom header", () => {
     <div
       className="card"
     >
-      <p>
+      <p
+        className="base regular base text"
+      >
         Custom Header
       </p>
       <p>
