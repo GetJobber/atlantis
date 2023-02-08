@@ -1,12 +1,11 @@
 import React, { ReactNode } from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
-import { IconNames } from "@jobber/design";
 import styles from "./Card.css";
 import colors from "./colors.css";
 import { CardClickable } from "./CardClickable";
-import { Button } from "../Button";
-import { Typography } from "../Typography";
+import { Button, ButtonProps } from "../Button";
+import { Heading } from "../Heading";
 
 export type HeaderProps = XOR<HeaderActionProps, HeaderCustomProps>;
 interface CardCommonProps {
@@ -46,13 +45,12 @@ interface HeaderActionProps {
   readonly title?: string;
   readonly action?: ButtonAction;
 }
-interface ButtonAction {
-  readonly label: string;
-  readonly size?: "small" | "base" | "large";
-  readonly type?: "primary" | "secondary" | "tertiary";
-  readonly icon?: IconNames;
-  readonly onClick?: () => void;
-}
+
+type ButtonAction = Pick<
+  ButtonProps,
+  "label" | "size" | "type" | "icon" | "onClick"
+>;
+
 type LinkCardProps = CardProps & {
   /**
    * URL that the card would navigate to once clicked.
@@ -99,15 +97,7 @@ export function Card({
       {!showCustomCompHeader && showCardHeader && (
         <div className={styles.header}>
           <div>
-            <Typography
-              element="h3"
-              size="large"
-              textCase="uppercase"
-              fontWeight="extraBold"
-              textColor="heading"
-            >
-              {header?.title || title}
-            </Typography>
+            <Heading level={3}>{header?.title || title}</Heading>
           </div>
           {header?.action?.label && (
             <div className={styles.headerButton}>

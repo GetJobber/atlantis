@@ -10,7 +10,7 @@
   padding: var(--flash--inset);
   color: var(--color-black);
   background-color: var(--color-grey--lightest);
-  align-items: flex-start;
+  align-items: center;
 }
 
 .bannerContent {
@@ -19,6 +19,10 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
+}
+
+.bannerChildren {
+  align-self: center;
 }
 
 .dismissibleSpacing {
@@ -61,6 +65,7 @@
   cursor: pointer;
   appearance: none;
   flex: 0;
+  align-self: flex-start;
 }
 
 .closeButton:hover {

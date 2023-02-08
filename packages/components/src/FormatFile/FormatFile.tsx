@@ -96,7 +96,7 @@ export function FormatFile({
 
         {display === "expanded" && (
           <div className={styles.contentBlock}>
-            <Text size="large">{file.name}</Text>
+            <Text size="base">{file.name}</Text>
             <Text size="small">{fileSize}</Text>
           </div>
         )}

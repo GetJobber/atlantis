@@ -48,7 +48,7 @@
 .base .fileName {
   bottom: var(--space-smaller);
   left: var(--space-smaller);
-  font-size: calc(var(--base-unit) * 0.625);
+  font-size: var(--typography--fontSize-smaller);
 }
 
 .large .fileName {

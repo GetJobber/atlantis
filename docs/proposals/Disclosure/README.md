@@ -26,7 +26,7 @@ users may care about, should they choose to learn more about it.
         clickable/interactable
       - title has a `<summary>` of its content
 
-## Content Guidelines
+## Content guidelines
 
 - **Title** should be informative and label the type of content grouped in the
   body content in it

@@ -24,7 +24,7 @@ import { Card } from "@jobber/components/Card";
 ```
 
 <Playground>
-  <Card title="Banana">
+  <Card title="Banana varieties">
     <Content>
       <Heading level={4}>Burro</Heading>
       <Text>
@@ -42,7 +42,7 @@ import { Card } from "@jobber/components/Card";
   </Card>
 </Playground>
 
-## Design & Usage Guidelines
+## Design & usage guidelines
 
 A card is useful for grouping content because of it's distinct visual
 boundaries. However, similar to the idea that "making everything stand out means
@@ -58,14 +58,24 @@ removed, and it may be worth re-assessing the hierarchy of your interface.
 
 ---
 
-## Usage
+## Content guidelines
+
+Card titles should be sentence-cased.
+
+| ✅ Do                   | ❌ Don't                |
+| ----------------------- | ----------------------- |
+| Client property details | Client Property Details |
+| Assigned team           | ASSIGNED TEAM           |
+| Required deposit        | Required Deposit        |
+
+## Variations
 
 ### Clickable with URL
 
 <Playground>
   <Card url="#">
     <Content>
-      <Heading level={4}>View All</Heading>
+      <Heading level={4}>View all</Heading>
       <Text>
         See how our 20+ features can help you organize, impress, and grow.
       </Text>
@@ -73,12 +83,12 @@ removed, and it may be worth re-assessing the hierarchy of your interface.
   </Card>
 </Playground>
 
-### Clickable with External URL
+### Clickable with external URL
 
 <Playground>
   <Card url="https://atlantis.getjobber.com/" external={true}>
     <Content>
-      <Heading level={4}>View All</Heading>
+      <Heading level={4}>View all</Heading>
       <Text>
         See how our 20+ features can help you organize, impress, and grow.
       </Text>
@@ -96,7 +106,7 @@ removed, and it may be worth re-assessing the hierarchy of your interface.
     }}
   >
     <Content>
-      <Heading level={4}>View All</Heading>
+      <Heading level={4}>View all</Heading>
       <Text>
         See how our 20+ features can help you organize, impress, and grow.
       </Text>
@@ -109,7 +119,7 @@ removed, and it may be worth re-assessing the hierarchy of your interface.
 <Playground>
   <Card
     header={{
-      title: "Banana",
+      title: "Banana varieties",
       action: {
         label: "Buy",
         size: "small",

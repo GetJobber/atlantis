@@ -49,46 +49,47 @@ There are some foundational elements that make up these components:
 
 ### Display
 
-[Poppins](https://fonts.google.com/specimen/Poppins) is our display face across
-all of Jobber's platforms. It has a heft that makes it especially well-suited
-for high-level headings, and its' association with our brand makes it effective
-for labeling our [Buttons](/components/button).
+Jobber Pro is Jobber's internal typeface and is only suitable for use in Jobber
+products. It lends a hefty-but-professional face to larger usages such as page
+titles and main section headings.
+
+As Jobber Pro is a custom typeface licensed specifically for Jobber usage, it
+will be rendered in any environments where it is licensed for use. In external
+usages, [Poppins](https://fonts.google.com/specimen/Poppins) is Atlantis'
+fallback display face. It has similar structural features and optical sizing as
+Jobber Pro.
 
 <Playground>
   <Content>
-    <Heading level={2}>Poppins is used for bold statements</Heading>
-    <Button label="And punchy labels"></Button>
+    <Heading level={2}>Jobber Pro is used for bold statements</Heading>
   </Content>
 </Playground>
 
 ### Base
 
-[Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+Pro) is our most
-broadly-used typeface. It is used for body copy, most headings, data display,
-form inputs, labels, and more!
+[Inter](https://fonts.google.com/specimen/Inter) is our most broadly-used
+typeface. It is used for body copy, most headings, data display, form inputs,
+labels, and more!
 
 <Playground>
   <Content spacing="large">
-    <Heading level={3}>Source Sans Pro is for less prominent headings</Heading>
+    <Heading level={3}>Inter is for less prominent headings</Heading>
     <Text>
       You can also use it for longer, more readable statements in paragraphs,
       descriptive text, in lists, and more. If you've been paying careful
-      attention, you might have noticed that Atlantis even uses Source Sans Pro
-      for presenting documentation!
+      attention, you might have noticed that Atlantis even uses Inter for
+      presenting documentation!
     </Text>
-    <Checkbox
-      checked
-      label="Source Sans Pro can label inputs nicely"
-    ></Checkbox>
+    <Checkbox checked label="Inter can label inputs nicely"></Checkbox>
     <InputText
       defaultValue="It's great for input values too"
-      placeholder="Source Sans Pro for labels"
+      placeholder="Inter for labels"
     />
     <Table>
       <Header>
-        <Cell>Source</Cell>
-        <Cell>Sans</Cell>
-        <Cell align="right">Pro</Cell>
+        <Cell>Inter</Cell>
+        <Cell>Renders</Cell>
+        <Cell align="right">Data</Cell>
       </Header>
       <Row>
         <Cell>Data point</Cell>
@@ -106,11 +107,40 @@ form inputs, labels, and more!
 
 ## Font sizes
 
-Our base font-size is based on our [Spacing](/space) scale for a consistent
-sizing rhythm across Jobber. At its' default zoom level, the equivalent is
-`16px`. While this is higher than in some systems where `14` may be more common,
-Source Sans Pro is optically a bit smaller, particularly at the x-height, so we
-start with `16` and work our way up and down from there.
+At the default zoom level, our base font-size is equivalent to `14px`. Depending
+on the context in which your typography is being used, font-size can be adjusted
+to be larger or smaller than the base font-size.
+
+Suggestions for when to use varying font-sizes are discussed in the
+[Heading](/packages-components-src-heading-heading) component, and within the
+[Sizes](/packages-components-src-text-text#sizes) section of the Text component.
+
+export function Example({ of: size }) {
+  const style = {
+    fontSize: `var(--typography--fontSize-${size})`,
+  };
+  return <div style={style}>{size}</div>;
+}
+
+export function PixelSize({ of: size }) {
+  const element = document.createElement("div");
+  element.style.fontSize = `var(--typography--fontSize-${size})`;
+  document.body.appendChild(element);
+  const value = getComputedStyle(element).fontSize;
+  element.remove();
+  return value;
+}
+
+| Name                                 | Visual                       | Value                          |
+| :----------------------------------- | :--------------------------- | :----------------------------- |
+| `--typography--fontSize-smaller`     | <Example of="smaller" />     | <PixelSize of="smaller" />     |
+| `--typography--fontSize-small`       | <Example of="small" />       | <PixelSize of="small" />       |
+| `--typography--fontSize-base`        | <Example of="base" />        | <PixelSize of="base" />        |
+| `--typography--fontSize-large`       | <Example of="large" />       | <PixelSize of="large" />       |
+| `--typography--fontSize-larger`      | <Example of="larger" />      | <PixelSize of="larger" />      |
+| `--typography--fontSize-largest`     | <Example of="largest" />     | <PixelSize of="largest" />     |
+| `--typography--fontSize-jumbo`       | <Example of="jumbo" />       | <PixelSize of="jumbo" />       |
+| `--typography--fontSize-extravagant` | <Example of="extravagant" /> | <PixelSize of="extravagant" /> |
 
 ## Line-height
 
@@ -126,3 +156,36 @@ the user to more easily parse multiple lines of small text. As font-size
 increases into "display" sizes such as a level 1 `Heading`, the ratio of
 line-height to font-size decreases as the larger font-size is more readable and
 requires less line-to-line breathing room.
+
+export function Visual({ of: size }) {
+  const style = {
+    lineHeight: `var(--typography--lineHeight-${size})`,
+  };
+  return (
+    <div style={style}>
+      Line-height, or leading, is the space between subsequent lines of type.
+      The line-heights in the Heading and Text components are optimized for each
+      variation's unique combination of...
+    </div>
+  );
+}
+
+export function Value({ of: size }) {
+  const element = document.createElement("div");
+  element.style.lineHeight = `var(--typography--lineHeight-${size})`;
+  document.body.appendChild(element);
+  const value =
+    parseFloat(getComputedStyle(element).lineHeight) /
+    parseFloat(getComputedStyle(element).fontSize);
+  element.remove();
+  return parseFloat(value.toFixed(3));
+}
+
+| Name                                 | Visual                    | Value                    |
+| :----------------------------------- | :------------------------ | :----------------------- |
+| `--typography--lineHeight-large`     | <Visual of="large" />     | <Value of="large" />     |
+| `--typography--lineHeight-base`      | <Visual of="base" />      | <Value of="base" />      |
+| `--typography--lineHeight-tight`     | <Visual of="tight" />     | <Value of="tight" />     |
+| `--typography--lineHeight-tighter`   | <Visual of="tighter" />   | <Value of="tighter" />   |
+| `--typography--lineHeight-tightest`  | <Visual of="tightest" />  | <Value of="tightest" />  |
+| `--typography--lineHeight-miniscule` | <Visual of="miniscule" /> | <Value of="miniscule" /> |

@@ -40,7 +40,7 @@ it("renders a card", () => {
       >
         <div>
           <h3
-            className="base extraBold large uppercase heading"
+            className="base extraBold larger heading"
           >
             The Undiscovered Country
           </h3>
@@ -56,7 +56,16 @@ it("renders a card", () => {
 it("renders a card with button", () => {
   const tree = renderer
     .create(
-      <Card header={{ title: "Header with button", action: { label: "add" } }}>
+      <Card
+        header={{
+          title: "Header with button",
+          action: {
+            label: "add",
+            size: "small",
+            type: "primary",
+          },
+        }}
+      >
         <p>This is the card content.</p>
       </Card>,
     )
@@ -70,7 +79,7 @@ it("renders a card with button", () => {
       >
         <div>
           <h3
-            className="base extraBold large uppercase heading"
+            className="base extraBold larger heading"
           >
             Header with button
           </h3>
@@ -79,12 +88,12 @@ it("renders a card with button", () => {
           className="headerButton"
         >
           <button
-            className="button base work primary"
+            className="button small work primary"
             disabled={false}
             type="button"
           >
             <span
-              className="base extraBold small uppercase"
+              className="base extraBold small base"
             >
               add
             </span>
