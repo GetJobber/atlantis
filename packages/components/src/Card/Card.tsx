@@ -9,24 +9,37 @@ import { Button } from "../Button";
 import { Typography } from "../Typography";
 
 export type HeaderProps = XOR<HeaderActionProps, HeaderCustomProps>;
-interface CardProps {
-  /**
-   * The header props of the card.
-   */
-  readonly header?: HeaderProps;
-
+interface CardCommonProps {
   /**
    * The `accent`, if provided, will effect the color accent at the top of
    * the card.
    */
   readonly accent?: keyof typeof colors;
   readonly children: ReactNode | ReactNode[];
+}
+
+interface CardHeaderProps {
+  readonly title?: never;
 
   /**
-   * The title of the card. (deprecated)
+   * The header props of the card.
+   */
+  readonly header?: HeaderProps;
+}
+
+interface CardTitleProps {
+  /**
+   * @deprecated Use header instead
    */
   readonly title?: string;
+
+  /**
+   * The header props of the card.
+   */
+  readonly header?: never;
 }
+
+type CardProps = CardCommonProps & XOR<CardHeaderProps, CardTitleProps>;
 
 interface HeaderCustomProps {
   readonly customHeader?: React.ReactNode;
@@ -34,22 +47,8 @@ interface HeaderCustomProps {
 
 interface HeaderActionProps {
   readonly title?: string;
-  readonly action?: ActionItem;
+  readonly action?: ButtonAction;
 }
-
-// | {
-//     readonly onPress?: never;
-//     readonly actionItem?: never;
-//   }
-// | {
-//     readonly onPress: () => void;
-//     readonly actionItem: ActionItem;
-//   };
-
-interface IconAction {
-  readonly iconName: IconNames;
-}
-
 interface ButtonAction {
   readonly label: string;
   readonly size?: "small" | "base" | "large";
@@ -57,10 +56,7 @@ interface ButtonAction {
   readonly icon?: IconNames;
   readonly onPress?: () => void;
 }
-
-export type ActionItem = XOR<IconAction, ButtonAction>;
-
-interface LinkCardProps extends CardProps {
+type LinkCardProps = CardProps & {
   /**
    * URL that the card would navigate to once clicked.
    */
@@ -70,11 +66,11 @@ interface LinkCardProps extends CardProps {
    * Makes the URL open in new tab on click.
    */
   external?: boolean;
-}
+};
 
-interface ClickableCardProps extends CardProps {
+type ClickableCardProps = CardProps & {
   onClick(event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>): void;
-}
+};
 
 type CardPropOptions = XOR<CardProps, XOR<LinkCardProps, ClickableCardProps>>;
 

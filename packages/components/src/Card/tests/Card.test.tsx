@@ -52,6 +52,78 @@ it("renders a card", () => {
   `);
 });
 
+it("renders a card with button", () => {
+  const tree = renderer
+    .create(
+      <Card header={{ title: "Header with button", action: { label: "add" } }}>
+        <p>This is the card content.</p>
+      </Card>,
+    )
+    .toJSON();
+  expect(tree).toMatchInlineSnapshot(`
+    <div
+      className="card"
+    >
+      <div
+        className="header"
+      >
+        <div>
+          <h3
+            className="base extraBold large uppercase heading"
+          >
+            Header with button
+          </h3>
+        </div>
+        <div
+          className="button"
+        >
+          <button
+            className="button base work primary"
+            disabled={false}
+            type="button"
+          >
+            <span
+              className="base extraBold small uppercase"
+            >
+              add
+            </span>
+          </button>
+        </div>
+      </div>
+      <p>
+        This is the card content.
+      </p>
+    </div>
+  `);
+});
+
+it.skip("renders a card with custom header", () => {
+  const headerProp = {
+    header: { customHeader: <p>Custom Header</p> },
+    // <Card header={{ customHeader: <Text>Custom</Text> }}></Card>
+  };
+
+  const tree = renderer
+    .create(
+      <Card {...headerProp}>
+        <p>This is the card content.</p>
+      </Card>,
+    )
+    .toJSON();
+  expect(tree).toMatchInlineSnapshot(`
+    <div
+      className="card"
+    >
+      <p>
+        Custom Header
+      </p>
+      <p>
+        This is the card content.
+      </p>
+    </div>
+  `);
+});
+
 it("renders a link card", () => {
   const tree = renderer
     .create(
