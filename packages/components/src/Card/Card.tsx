@@ -7,7 +7,6 @@ import { CardClickable } from "./CardClickable";
 import { Button, ButtonProps } from "../Button";
 import { Heading } from "../Heading";
 
-export type HeaderProps = XOR<HeaderActionProps, HeaderCustomProps>;
 interface CardCommonProps {
   /**
    * The `accent`, if provided, will effect the color accent at the top of
@@ -17,9 +16,18 @@ interface CardCommonProps {
   readonly children: ReactNode | ReactNode[];
 }
 
-interface CardHeaderProps {
-  readonly title?: never;
+interface HeaderActionProps {
+  readonly title?: string;
+  readonly action?: ButtonProps;
+}
 
+interface HeaderCustomProps {
+  readonly customHeader?: React.ReactNode;
+}
+
+type HeaderProps = XOR<HeaderActionProps, HeaderCustomProps>;
+
+interface CardHeaderProps {
   /**
    * The header props of the card.
    */
@@ -31,20 +39,9 @@ interface CardTitleProps {
    * @deprecated Use header instead
    */
   readonly title?: string;
-
-  readonly header?: never;
 }
 
 type CardProps = CardCommonProps & XOR<CardHeaderProps, CardTitleProps>;
-
-interface HeaderCustomProps {
-  readonly customHeader?: React.ReactNode;
-}
-
-interface HeaderActionProps {
-  readonly title?: string;
-  readonly action?: ButtonProps;
-}
 
 type LinkCardProps = CardProps & {
   /**
