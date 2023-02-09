@@ -43,13 +43,8 @@ interface HeaderCustomProps {
 
 interface HeaderActionProps {
   readonly title?: string;
-  readonly action?: ButtonAction;
+  readonly action?: ButtonProps;
 }
-
-type ButtonAction = Pick<
-  ButtonProps,
-  "label" | "size" | "type" | "icon" | "onClick"
->;
 
 type LinkCardProps = CardProps & {
   /**
@@ -96,20 +91,8 @@ export function Card({
 
       {!showCustomCompHeader && showCardHeader && (
         <div className={styles.header}>
-          <div>
-            <Heading level={3}>{header?.title || title}</Heading>
-          </div>
-          {header?.action?.label && (
-            <div className={styles.headerButton}>
-              <Button
-                label={header.action.label}
-                size={header.action.size}
-                type={header.action.type}
-                icon={header.action.icon}
-                onClick={header.action.onClick}
-              />
-            </div>
-          )}
+          <Heading level={3}>{header?.title || title}</Heading>
+          {header?.action?.label && <Button {...header.action} />}
         </div>
       )}
       {children}

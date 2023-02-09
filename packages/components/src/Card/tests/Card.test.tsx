@@ -38,13 +38,11 @@ it("renders a card", () => {
       <div
         className="header"
       >
-        <div>
-          <h3
-            className="base extraBold larger heading"
-          >
-            The Undiscovered Country
-          </h3>
-        </div>
+        <h3
+          className="base extraBold larger heading"
+        >
+          The Undiscovered Country
+        </h3>
       </div>
       <p>
         This is the card content.
@@ -77,28 +75,22 @@ it("renders a card with button", () => {
       <div
         className="header"
       >
-        <div>
-          <h3
-            className="base extraBold larger heading"
-          >
-            Header with button
-          </h3>
-        </div>
-        <div
-          className="headerButton"
+        <h3
+          className="base extraBold larger heading"
         >
-          <button
-            className="button small work primary"
-            disabled={false}
-            type="button"
+          Header with button
+        </h3>
+        <button
+          className="button small work primary"
+          disabled={false}
+          type="button"
+        >
+          <span
+            className="base extraBold small base"
           >
-            <span
-              className="base extraBold small base"
-            >
-              add
-            </span>
-          </button>
-        </div>
+            add
+          </span>
+        </button>
       </div>
       <p>
         This is the card content.

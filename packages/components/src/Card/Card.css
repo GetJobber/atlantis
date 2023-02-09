@@ -57,11 +57,7 @@
 
 .header {
   display: flex;
-  flex-direction: row;
   padding: var(--card--base-padding);
   background-color: var(--color-surface--background);
-}
-
-.headerButton {
-  margin-left: auto;
+  justify-content: space-between;
 }
