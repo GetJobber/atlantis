@@ -8,6 +8,14 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3-pre.1](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@2.0.3-pre.0...@jobber/docz-tools@2.0.3-pre.1) (2023-02-10)
+
+**Note:** Version bump only for package @jobber/docz-tools
+
+
+
+
+
 ## [2.0.3-pre.0](https://github.com/GetJobber/atlantis/compare/@jobber/docz-tools@2.0.2...@jobber/docz-tools@2.0.3-pre.0) (2023-02-10)
 
 **Note:** Version bump only for package @jobber/docz-tools
