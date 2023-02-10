@@ -17,11 +17,20 @@ interface CardCommonProps {
 }
 
 interface HeaderActionProps {
+  /**
+   * The title of the card.
+   */
   readonly title?: string;
+  /**
+   * The action props that renders into a button on the card header.
+   */
   readonly action?: ButtonProps;
 }
 
 interface HeaderCustomProps {
+  /**
+   * The custom component to be rendered on the card header.
+   */
   readonly customHeader?: React.ReactNode;
 }
 
