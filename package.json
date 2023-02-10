@@ -115,8 +115,7 @@
     "ie >= 11"
   ],
   "dependencies": {
-    "@std-proposal/temporal": "0.0.1",
-    "is-number": "^7.0.0"
+    "@std-proposal/temporal": "0.0.1"
   },
   "optionalDependencies": {
     "@jobber/fonts": "^1.0.0"
