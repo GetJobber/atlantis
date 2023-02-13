@@ -5,8 +5,7 @@ const path = require("path");
 const config: StorybookConfig = {
   "stories": [
     "../packages/**/*.stories.mdx",
-    "../stories/**/*.stories.mdx",
-    "../stories/**/*.stories.@(js|jsx|ts|tsx)"
+    "../packages/**/*.stories.@(js|jsx|ts|tsx)"
   ],
   "addons": [
     "@storybook/addon-links",
@@ -51,7 +50,7 @@ const config: StorybookConfig = {
 
     /**
      * Since we don't use .module.css, we'll have to enable CSS modules for
-     * all files.
+     * all CSS files.
      */
     const ruleCssIndex = config.module?.rules.findIndex(rule => rule.test?.toString() === '/\\.css$/');
 
