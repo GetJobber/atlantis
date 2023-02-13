@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.0.2...@jobber/components@3.0.3) (2023-02-13)
+
+
+### Bug Fixes
+
+* **components:** Remove default value for prop size in ConfirmationModal ([#1022](https://github.com/GetJobber/atlantis/issues/1022)) ([33fccb9](https://github.com/GetJobber/atlantis/commit/33fccb9aa673645273ae3f067d3ac7e5082913b6))
+
+
+
+
+
 ## [3.0.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.0.1...@jobber/components@3.0.2) (2023-02-10)
 
 **Note:** Version bump only for package @jobber/components
