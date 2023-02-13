@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
+import { isEmpty } from "lodash";
 import styles from "./Card.css";
 import colors from "./colors.css";
 import { CardClickable } from "./CardClickable";
@@ -27,30 +28,27 @@ interface HeaderActionProps {
   readonly action?: ButtonProps;
 }
 
-interface HeaderCustomProps {
+type HeaderProps = string | HeaderActionProps | ReactNode;
+
+interface CardProps {
   /**
-   * The custom component to be rendered on the card header.
+   * The `accent`, if provided, will effect the color accent at the top of
+   * the card.
    */
-  readonly customHeader?: React.ReactNode;
-}
+  readonly accent?: keyof typeof colors;
+  readonly children: ReactNode | ReactNode[];
+  /**
+   * @deprecated
+   * The title of the card. Use header instead.
+   *
+   */
+  readonly title?: string;
 
-type HeaderProps = XOR<HeaderActionProps, HeaderCustomProps>;
-
-interface CardHeaderProps {
   /**
    * The header props of the card.
    */
   readonly header?: HeaderProps;
 }
-
-interface CardTitleProps {
-  /**
-   * @deprecated Use header instead
-   */
-  readonly title?: string;
-}
-
-type CardProps = CardCommonProps & XOR<CardHeaderProps, CardTitleProps>;
 
 type LinkCardProps = CardProps & {
   /**
@@ -86,19 +84,19 @@ export function Card({
     accent && colors[accent],
   );
 
-  const { showCustomCompHeader, showCardHeader } = checkHeaderVisibility(
-    title,
-    header,
-  );
+  const { showCardHeader, isCustomHeader, titleToDisplay } =
+    prepareHeaderVisibility(title, header);
 
   const cardContent = (
     <>
-      {showCustomCompHeader && header?.customHeader}
-
-      {!showCustomCompHeader && showCardHeader && (
+      {isCustomHeader && header}
+      {!isCustomHeader && showCardHeader && (
         <div className={styles.header}>
-          <Heading level={3}>{header?.title || title}</Heading>
-          {header?.action?.label && <Button {...header.action} />}
+          <Heading level={3}>{titleToDisplay}</Heading>
+          {header &&
+            typeof header === "object" &&
+            "action" in header &&
+            header.action?.label && <Button {...header.action} />}
         </div>
       )}
       {children}
@@ -126,18 +124,49 @@ export function Card({
   }
 }
 
-function checkHeaderVisibility(
+function getHeaderTitle(
+  title?: string,
+  header?: HeaderProps,
+): string | undefined {
+  if (header) {
+    if (typeof header === "string") {
+      return header;
+    } else if (typeof header === "object" && "title" in header) {
+      return header.title;
+    }
+  }
+
+  return title;
+}
+
+function prepareHeaderVisibility(
   title?: string,
   header?: HeaderProps,
 ): {
-  showCustomCompHeader: boolean;
   showCardHeader: boolean;
+  isCustomHeader: boolean;
+  titleToDisplay: string | undefined;
 } {
-  if (header?.customHeader) {
-    return { showCustomCompHeader: true, showCardHeader: true };
-  } else if (header?.action || header?.title || title) {
-    return { showCustomCompHeader: false, showCardHeader: true };
+  let isCustomHeader = false,
+    showCardHeader = false;
+
+  if (title || header) {
+    showCardHeader = true;
   }
 
-  return { showCustomCompHeader: false, showCardHeader: false };
+  if (
+    header &&
+    !isEmpty(header) &&
+    typeof header === "object" &&
+    !("title" in header) &&
+    !("action" in header)
+  ) {
+    isCustomHeader = true;
+  }
+
+  return {
+    showCardHeader: showCardHeader,
+    isCustomHeader: isCustomHeader,
+    titleToDisplay: getHeaderTitle(title, header),
+  };
 }
