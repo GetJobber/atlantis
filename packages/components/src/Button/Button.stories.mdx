@@ -1,5 +1,9 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { Button } from "@jobber/components/Button";
+import { Form } from "@jobber/components/Form";
+import { InputNumber } from "@jobber/components/InputNumber";
+import { Content } from "@jobber/components/Content";
 
 <Meta title="Components/Button" component={Button} />
 
@@ -25,3 +29,307 @@ import { Button } from "@jobber/components/Button";
 </Canvas>
 
 <ArgsTable of={Button} story="Button" />
+
+---
+
+## Design & Usage Guidelines
+
+The right button to use depends on:
+
+- the type of action your user is attempting to complete
+- the hierarchy of the interface the button lives in
+
+### Work actions
+
+Use Work Actions buttons to enable user interactions in the goal of completing
+work in Jobber.
+
+#### Primary
+
+The most important action in a view. Examples include the Save Job button, Log
+In, or the main action in a dialog. There should be one Primary action per view,
+at most.
+
+<Canvas>
+  <Button label="Do the thing" />
+</Canvas>
+
+#### Secondary
+
+A secondary button should be used when...
+
+- there is one or more alternative, but less important, actions to the primary
+  action
+
+<Canvas>
+  <Button label="Do the thing" type="secondary" />
+</Canvas>
+
+#### Tertiary
+
+A tertiary button should be used to complete actions within the view such as
+editing, revealing details, or navigating within the view.
+
+<Canvas>
+  <Button label="Do the thing" type="tertiary" />
+</Canvas>
+
+### Learning Actions
+
+Use the Learning Actions buttons to enable user interactions in the goal of
+learning about Jobber, whether for marketing or coaching purposes.
+
+#### Primary, Secondary, Tertiary
+
+The usage pattern for Learning Actions should follow the same logic as Work
+Actions for all three levels.
+
+<Canvas>
+  <Content>
+    <Content>
+      <Button
+        label="Learn More"
+        variation="learning"
+        url="//getjobber.com"
+        external={true}
+      />
+    </Content>
+    <Content>
+      <Button
+        label="Learn More"
+        variation="learning"
+        type="secondary"
+        url="//getjobber.com"
+        external={true}
+      />
+    </Content>
+    <Content>
+      <Button
+        label="Learn More"
+        variation="learning"
+        type="tertiary"
+        url="//getjobber.com"
+        external={true}
+      />
+    </Content>
+  </Content>
+</Canvas>
+
+### Destructive Actions
+
+Destructive actions remove something from Jobber.
+
+#### Primary
+
+A Primary destructive action will permanently destroy an object carrying
+signficant data, such as a job, quote, or client. This destructive action should
+be contained in a [ConfirmationModal](/components/confirmation-modal) triggered
+by clicking a secondary or tertiary destructive button.
+
+#### Secondary or Tertiary
+
+A Secondary or tertiary destructive action will either...
+
+- destroy an item on an object that can be quickly restored, such as a line item
+  on a job
+- trigger a dialog to confirm a Primary destructive action
+
+<Canvas>
+  <Content>
+    <Content>
+      <Button label="Delete" variation="destructive" />
+    </Content>
+    <Content>
+      <Button label="Delete" variation="destructive" type="secondary" />
+    </Content>
+    <Content>
+      <Button label="Delete" variation="destructive" type="tertiary" />
+    </Content>
+  </Content>
+</Canvas>
+
+### Subtle Actions
+
+> Subtle actions replace a previous concept of "cancel" actions which has been
+> deprecated.
+
+Use a subtle button when you want the visual appearance to be more, well...
+_subtle._ This variation of button uses subdued color, allowing it to sit
+comfortably alongside more prominent content.
+
+Think of icon actions in a navigation bar, buttons to dismiss a modal, or opting
+out of completing an action they have triggered.
+
+#### Primary, Secondary, and Tertiary
+
+A key distinction between subtle buttons and the other variations is that the
+primary/secondary/tertiary scale is styled differently, but the conceptual
+hierarchy is the same. Notably, the tertiary subtle button has a transparent
+background, allowing it to be _extra_ subtle when placed overtop
+`surface--background` elements such as a Modal header.
+
+<Canvas>
+  <Content>
+    <Content>
+      <Content>
+        <Button label="Cancel" type="primary" variation="subtle" />
+      </Content>
+      <Content>
+        <Button label="Dismiss" type="secondary" variation="subtle" />
+      </Content>
+      <Content>
+        <Button label="Maybe Later" type="tertiary" variation="subtle" />
+      </Content>
+    </Content>
+    <div
+      style={{
+        backgroundColor: "var(--color-surface--background)",
+        padding: "var(--space-base)",
+      }}
+    >
+      <Button
+        variation="subtle"
+        type="tertiary"
+        icon="search"
+        aria-label="search"
+      />
+      <Button
+        variation="subtle"
+        type="tertiary"
+        icon="cog"
+        aria-label="settings"
+      />
+      <Button
+        variation="subtle"
+        type="tertiary"
+        icon="help"
+        aria-label="help"
+      />
+      <Button
+        variation="subtle"
+        type="tertiary"
+        icon="more"
+        aria-label="more"
+      />
+    </div>
+  </Content>
+</Canvas>
+
+## Disabled
+
+As a best practice, do not design with disabled button states. This has negative
+impacts on accessibility as well as an increase in complexity for users to
+understand why the interface is disabled and how to resolve it.
+
+With that said, if you _can't_ design a flow without a disabled state, this is
+how you disable a button.
+
+<Canvas>
+  <Button label="Do the thing" disabled />
+</Canvas>
+
+## Sizes
+
+Buttons come in three sizes. `Base` is the default and should be used for almost
+every use case.
+
+Only use `large` for extremely spacious interfaces such as a login form, and
+`small` when the interface has extremely tight size constraints.
+
+<Canvas>
+  <Content>
+    <Content>
+      <Button label="Small" size="small" />
+    </Content>
+    <Content>
+      <Button label="Base" />
+    </Content>
+    <Content>
+      <Button label="Large" size="large" />
+    </Content>
+  </Content>
+</Canvas>
+
+## Icons
+
+You can use icons inside the buttons. They can stand-alone, or appear before,
+after, or on top of the button label. They can also be added before or after the
+label.
+
+**Note:** If an icon is used in a stand-alone method, an `ariaLabel` must be
+present to describe the button.
+
+<Canvas>
+  <Button type="secondary" icon="user" ariaLabel="I'm a person" />
+  <Button label="More" type="secondary" icon="more" />
+  <Button
+    label="Actions"
+    type="secondary"
+    icon="arrowDown"
+    iconOnRight={true}
+  />
+</Canvas>
+
+## Loading
+
+A way to communicate to the user that a background action is being performed.
+
+<Canvas>
+  <Button
+    label="Deleting..."
+    type="primary"
+    variation="destructive"
+    loading={true}
+  />
+  <Button
+    label="Loading..."
+    type="tertiary"
+    variation="learning"
+    loading={true}
+  />
+  <Button label="Canceling..." variation="subtle" loading={true} />
+</Canvas>
+
+## Client Side Routing
+
+A `Button` can be used for client-side routing as well. When using a Button to
+handle the client-side routing, use the `to` prop. Notice when you click below
+that the URL will change to the appropriate route.
+
+<Canvas>
+  <Router basename="/components/button">
+    <Button label="Home" to="/" />
+    <Button label="Office" to="/office" />
+    <Button label="Dentist" to="/dentist" />
+    <hr />
+    <Switch>
+      <Route exact path="/">
+        This is my home, time to get cozy.
+      </Route>
+      <Route exact path="/office">
+        This is my office, time to get to work.
+      </Route>
+      <Route exact path="/dentist">
+        This is the dentist, time to get my teeth fixed.
+      </Route>
+    </Switch>
+  </Router>
+</Canvas>
+
+## Form Submit
+
+Passing the `submit` prop will allow a `Button` to submit a
+[Form](/components/form). Since submitting a form is a specific action, only
+`variation="work"` and `type="primary"` are allowed.
+
+Since this type of `Button` will only be used to submit a form, it does not make
+sense to allow the `external`, `onClick`, `to`, or `url` props.
+
+<Canvas>
+  <Form onSubmit={() => alert("Wow, what a number")}>
+    <Content>
+      <InputNumber placeholder="Pick a number" />
+      <Button label="Submit" submit={true} />
+    </Content>
+  </Form>
+</Canvas>
