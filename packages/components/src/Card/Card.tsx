@@ -113,10 +113,12 @@ export function Card({
     }
     // Case 4: Default Header Props
     return (
-      <div className={styles.header}>
-        {header?.title && <Heading level={3}>{header?.title}</Heading>}
-        {header?.action && <Button {...header?.action} />}
-      </div>
+      !!header && (
+        <div className={styles.header}>
+          {header?.title && <Heading level={3}>{header?.title}</Heading>}
+          {header?.action && <Button {...header?.action} />}
+        </div>
+      )
     );
   }
 
