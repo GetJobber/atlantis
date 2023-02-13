@@ -78,11 +78,12 @@
 
 .datePicker :global(.react-datepicker__day-names) {
   display: flex;
-  justify-content: space-between;
   margin: 0;
   padding: var(--space-smallest) 0 0;
   color: var(--color-text);
+  font-size: var(--typography--fontSize-small);
   text-transform: uppercase;
+  justify-content: space-between;
 }
 
 .datePicker :global(.react-datepicker__day-name) {

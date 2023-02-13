@@ -4,15 +4,15 @@
 }
 
 .base {
-  padding: var(--space-smaller) var(--space-small);
+  padding: calc(var(--space-smaller) * 1.5) calc(var(--space-small) * 1.25);
 }
 
 .large {
-  padding: var(--space-smaller) calc(var(--space-base) - var(--space-smallest));
+  padding: calc(var(--space-smaller) * 1.5) calc(var(--space-small) * 1.25);
 }
 
 .larger {
-  padding: var(--space-small) var(--space-base);
+  padding: calc(var(--space-small) * 1.25) calc(var(--space-smaller) * 3.5);
 }
 
 .greyBlue {

@@ -46,13 +46,13 @@ export function InlineLabel({
 
   const sizeMapper: SizeMapProps = {
     base: "small",
-    large: "base",
+    large: "large",
     larger: "large",
   };
 
   return (
     <span className={className}>
-      <Typography element="span" size={sizeMapper[size]} textCase="uppercase">
+      <Typography element="span" size={sizeMapper[size]}>
         {children}
       </Typography>
     </span>

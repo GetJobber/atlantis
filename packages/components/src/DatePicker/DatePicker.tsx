@@ -115,13 +115,14 @@ export function DatePicker({
         onChange={handleChange}
         maxDate={maxDate}
         minDate={minDate}
-        formatWeekDay={date => date.substring(0, 3)}
+        useWeekdaysShort={true}
         customInput={
           <DatePickerActivator activator={activator} fullWidth={fullWidth} />
         }
         renderCustomHeader={props => <DatePickerCustomHeader {...props} />}
         onCalendarOpen={handleCalendarOpen}
         onCalendarClose={handleCalendarClose}
+        dateFormat={["P", "PP", "PPP", "MMM dd yyyy", "MMMM dd yyyy"]}
       />
     </div>
   );

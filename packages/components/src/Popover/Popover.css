@@ -26,7 +26,7 @@
   box-shadow: var(--shadow-base);
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
-  font-size: var(--base-unit);
+  font-size: var(--typography--fontSize-base);
   line-height: normal;
   background: var(--color-surface);
 }

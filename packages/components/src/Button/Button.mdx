@@ -26,7 +26,7 @@ import { Button } from "@jobber/components/Button";
 
 <Playground>
   <Button
-    label="Do the thing"
+    label="Do the Thing"
     onClick={() => {
       alert("✅");
     }}
@@ -39,17 +39,17 @@ import { Button } from "@jobber/components/Button";
 
 ---
 
-## Design & Usage Guidelines
+## Design & usage guidelines
 
 The right button to use depends on:
 
 - the type of action your user is attempting to complete
 - the hierarchy of the interface the button lives in
 
-### Work actions
+### Work
 
-Use Work Actions buttons to enable user interactions in the goal of completing
-work in Jobber.
+Use work buttons to enable user interactions in the goal of completing work in
+Jobber.
 
 #### Primary
 
@@ -58,7 +58,7 @@ In, or the main action in a dialog. There should be one Primary action per view,
 at most.
 
 <Playground>
-  <Button label="Do the thing" />
+  <Button label="Do the Thing" />
 </Playground>
 
 #### Secondary
@@ -69,7 +69,7 @@ A secondary button should be used when...
   action
 
 <Playground>
-  <Button label="Do the thing" type="secondary" />
+  <Button label="Do the Thing" type="secondary" />
 </Playground>
 
 #### Tertiary
@@ -78,18 +78,18 @@ A tertiary button should be used to complete actions within the view such as
 editing, revealing details, or navigating within the view.
 
 <Playground>
-  <Button label="Do the thing" type="tertiary" />
+  <Button label="Do the Thing" type="tertiary" />
 </Playground>
 
-### Learning Actions
+### Learning
 
-Use the Learning Actions buttons to enable user interactions in the goal of
-learning about Jobber, whether for marketing or coaching purposes.
+Use the Learning buttons to enable user interactions in the goal of learning
+about Jobber, whether for marketing or coaching purposes.
 
-#### Primary, Secondary, Tertiary
+#### Primary, secondary, tertiary
 
-The usage pattern for Learning Actions should follow the same logic as Work
-Actions for all three levels.
+The usage pattern for Learning should follow the same logic as Work actions for
+all three levels.
 
 <Playground>
   <Content>
@@ -122,24 +122,24 @@ Actions for all three levels.
   </Content>
 </Playground>
 
-### Destructive Actions
+### Destructive
 
 Destructive actions remove something from Jobber.
 
 #### Primary
 
-A Primary destructive action will permanently destroy an object carrying
-signficant data, such as a job, quote, or client. This destructive action should
-be contained in a [ConfirmationModal](/components/confirmation-modal) triggered
-by clicking a secondary or tertiary destructive button.
+A primary destructive action will permanently destroy an object carrying
+significant data, such as a job, quote, or client. This destructive action
+should be contained in a [ConfirmationModal](/components/confirmation-modal)
+triggered by clicking a secondary or tertiary destructive button.
 
-#### Secondary or Tertiary
+#### Secondary or tertiary
 
-A Secondary or tertiary destructive action will either...
+A secondary or tertiary destructive action will either...
 
 - destroy an item on an object that can be quickly restored, such as a line item
   on a job
-- trigger a dialog to confirm a Primary destructive action
+- trigger a dialog to confirm a primary destructive action
 
 <Playground>
   <Content>
@@ -155,10 +155,7 @@ A Secondary or tertiary destructive action will either...
   </Content>
 </Playground>
 
-### Subtle Actions
-
-> Subtle actions replace a previous concept of "cancel" actions which has been
-> deprecated.
+### Subtle
 
 Use a subtle button when you want the visual appearance to be more, well...
 _subtle._ This variation of button uses subdued color, allowing it to sit
@@ -167,7 +164,7 @@ comfortably alongside more prominent content.
 Think of icon actions in a navigation bar, buttons to dismiss a modal, or opting
 out of completing an action they have triggered.
 
-#### Primary, Secondary, and Tertiary
+#### Primary, secondary, and tertiary
 
 A key distinction between subtle buttons and the other variations is that the
 primary/secondary/tertiary scale is styled differently, but conceptual hierarchy
@@ -222,7 +219,35 @@ elements such as a Modal header.
   </Content>
 </Playground>
 
-## Disabled
+## Content guidelines
+
+Button labels should be title-cased. This means in general, capitalize all words
+with the exception of:
+
+- articles (a, an, the)
+- coordinating conjunctions (but, for)
+- prepositions (at, by, to, etc.)
+
+| ✅ Do        | ❌ Don't     |
+| ------------ | ------------ |
+| Go to Visits | Go To Visits |
+| Save Job     | SAVE JOB     |
+
+### & vs and
+
+If you have a Button with "compound" actions such as "Review & Send" or "Approve
+& Schedule", use an ampersand (&) for brevity and to reduce the likelihood that
+your label will wrap. A non-breaking space should be used between the ampersand
+and the second word so that the ampersand wraps with the second word.
+
+| ✅ Do              | ❌ Don't             |
+| ------------------ | -------------------- |
+| Review & Send      | Review and Send      |
+| Approve & Schedule | Approve and Schedule |
+
+## States and variants
+
+### Disabled
 
 As a best practice, do not design with disabled button states. This has negative
 impacts on accessibility as well as an increase in complexity for users to
@@ -232,10 +257,10 @@ With that said, if you _can't_ design a flow without a disabled state, this is
 how you disable a button.
 
 <Playground>
-  <Button label="Do the thing" disabled />
+  <Button label="Do the Thing" disabled />
 </Playground>
 
-## Sizes
+### Sizes
 
 Buttons comes in three sizes. `Base` is the default and should be used for
 almost every use case.
@@ -257,7 +282,7 @@ Only use `large` for extremely spacious interfaces such as a login form, and
   </Content>
 </Playground>
 
-## Icons
+### Icons
 
 You can use icons inside buttons. They can stand-alone, or appear before, after,
 or on top of the button label. They can also be added before or after the label.
@@ -276,7 +301,7 @@ present to describe the button.
   />
 </Playground>
 
-## Loading
+### Loading
 
 A way to communicate to the user that a background action is being performed.
 
@@ -296,7 +321,7 @@ A way to communicate to the user that a background action is being performed.
   <Button label="Canceling..." variation="subtle" loading={true} />
 </Playground>
 
-## Client Side Routing
+## Client-side routing
 
 A `Button` can be used for client side routing as well. When using a Button to
 handle the client side routing, use the `to` prop. Notice when you click below
@@ -326,7 +351,7 @@ that the url will change to the appropriate route.
   }}
 </Playground>
 
-## Form Submit
+## Form submit
 
 Passing the `submit` prop will allow a `Button` to submit a
 [Form](/components/form). Since submitting a form is a specific action, only

@@ -6,7 +6,7 @@ import { useOnKeyDown, useRefocusOnActivator } from "@jobber/hooks";
 import styles from "./Modal.css";
 import sizes from "./Sizes.css";
 import { useFocusTrap } from "./useFocusTrap";
-import { Typography } from "../Typography";
+import { Heading } from "../Heading";
 import { Button, ButtonProps } from "../Button";
 import { ButtonDismiss } from "../ButtonDismiss";
 
@@ -106,14 +106,7 @@ interface HeaderProps {
 function Header({ title, dismissible, onRequestClose }: HeaderProps) {
   return (
     <div className={styles.header} data-testid="modal-header">
-      <Typography
-        element="h3"
-        size="large"
-        textCase="uppercase"
-        fontWeight="extraBold"
-      >
-        {title}
-      </Typography>
+      <Heading level={3}>{title}</Heading>
 
       {dismissible && (
         <ButtonDismiss onClick={onRequestClose} ariaLabel="Close modal" />
