@@ -1,7 +1,6 @@
-import React, { ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
-import { isEmpty } from "lodash";
 import styles from "./Card.css";
 import colors from "./colors.css";
 import { CardClickable } from "./CardClickable";
@@ -28,7 +27,7 @@ interface HeaderActionProps {
   readonly action?: ButtonProps;
 }
 
-type HeaderProps = string | HeaderActionProps | ReactNode;
+type HeaderProps = string | HeaderActionProps | ReactElement;
 
 interface CardProps {
   /**
@@ -84,24 +83,42 @@ export function Card({
     accent && colors[accent],
   );
 
-  const { showCardHeader, isCustomHeader, titleToDisplay } =
-    prepareHeaderVisibility(title, header);
-
   const cardContent = (
     <>
-      {isCustomHeader && header}
-      {!isCustomHeader && showCardHeader && (
-        <div className={styles.header}>
-          <Heading level={3}>{titleToDisplay}</Heading>
-          {header &&
-            typeof header === "object" &&
-            "action" in header &&
-            header.action?.label && <Button {...header.action} />}
-        </div>
-      )}
+      {CardHeader && CardHeader()}
       {children}
     </>
   );
+
+  function CardHeader() {
+    // Case 1: Deprecated Title
+    if (title) {
+      return (
+        <div className={styles.header}>
+          {title && <Heading level={3}>{title}</Heading>}
+        </div>
+      );
+    }
+    // Case 2: String Header
+    if (typeof header === "string") {
+      return (
+        <div className={styles.header}>
+          {header && <Heading level={3}>{header}</Heading>}
+        </div>
+      );
+    }
+    // Case 3: Custom Header
+    if (React.isValidElement(header)) {
+      return header;
+    }
+    // Case 4: Default Header Props
+    return (
+      <div className={styles.header}>
+        {header?.title && <Heading level={3}>{header?.title}</Heading>}
+        {header?.action && <Button {...header?.action} />}
+      </div>
+    );
+  }
 
   if (onClick) {
     return (
@@ -122,51 +139,4 @@ export function Card({
   } else {
     return <div className={className}>{cardContent}</div>;
   }
-}
-
-function getHeaderTitle(
-  title?: string,
-  header?: HeaderProps,
-): string | undefined {
-  if (header) {
-    if (typeof header === "string") {
-      return header;
-    } else if (typeof header === "object" && "title" in header) {
-      return header.title;
-    }
-  }
-
-  return title;
-}
-
-function prepareHeaderVisibility(
-  title?: string,
-  header?: HeaderProps,
-): {
-  showCardHeader: boolean;
-  isCustomHeader: boolean;
-  titleToDisplay: string | undefined;
-} {
-  let isCustomHeader = false,
-    showCardHeader = false;
-
-  if (title || header) {
-    showCardHeader = true;
-  }
-
-  if (
-    header &&
-    !isEmpty(header) &&
-    typeof header === "object" &&
-    !("title" in header) &&
-    !("action" in header)
-  ) {
-    isCustomHeader = true;
-  }
-
-  return {
-    showCardHeader: showCardHeader,
-    isCustomHeader: isCustomHeader,
-    titleToDisplay: getHeaderTitle(title, header),
-  };
 }
