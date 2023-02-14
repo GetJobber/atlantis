@@ -24,7 +24,7 @@ interface HeaderActionProps {
   /**
    * The action props that renders into a button on the card header.
    */
-  readonly action?: ButtonProps;
+  readonly action?: Omit<ButtonProps, "size" | "fullWidth">;
 }
 
 type HeaderProps = string | HeaderActionProps | ReactElement;
@@ -116,7 +116,9 @@ export function Card({
       !!header && (
         <div className={styles.header}>
           {header?.title && <Heading level={3}>{header?.title}</Heading>}
-          {header?.action && <Button {...header?.action} />}
+          {header?.action && (
+            <Button {...(header?.action as ButtonProps)} size="small" />
+          )}
         </div>
       )
     );

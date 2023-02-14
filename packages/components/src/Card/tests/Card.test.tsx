@@ -35,7 +35,6 @@ it("renders a card with button", () => {
         title: "Header with button",
         action: {
           label: "add",
-          size: "small",
           type: "primary",
         },
       }}
