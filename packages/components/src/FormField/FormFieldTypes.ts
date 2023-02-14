@@ -145,7 +145,7 @@ export interface FormFieldProps extends CommonFormFieldProps {
   /**
    * Determines what kind of keyboard appears on mobile web.
    */
-  readonly keyboard?: "numeric";
+  readonly keyboard?: "numeric" | "decimal";
 
   /**
    * Specifies the maximum numerical or date value that a user can type
