@@ -8,6 +8,44 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.0.4...@jobber/components@3.0.5) (2023-02-14)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.0.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.0.3...@jobber/components@3.0.4) (2023-02-14)
+
+
+### Bug Fixes
+
+* **components:** JOB-61635 InputNumber on iOS not allowing decimals ([#1023](https://github.com/GetJobber/atlantis/issues/1023)) ([4ba4923](https://github.com/GetJobber/atlantis/commit/4ba4923ae665611fb83f1ae6ac670e3a4f5ea8b0))
+
+
+
+
+
+## [3.0.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.0.2...@jobber/components@3.0.3) (2023-02-13)
+
+
+### Bug Fixes
+
+* **components:** Remove default value for prop size in ConfirmationModal ([#1022](https://github.com/GetJobber/atlantis/issues/1022)) ([33fccb9](https://github.com/GetJobber/atlantis/commit/33fccb9aa673645273ae3f067d3ac7e5082913b6))
+
+
+
+
+
+## [3.0.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.0.1...@jobber/components@3.0.2) (2023-02-10)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 ## [3.0.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.0.0...@jobber/components@3.0.1) (2023-02-08)
 
 **Note:** Version bump only for package @jobber/components
