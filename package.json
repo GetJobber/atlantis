@@ -115,6 +115,6 @@
     "@std-proposal/temporal": "0.0.1"
   },
   "optionalDependencies": {
-    "@jobber/fonts": "^1.0.0"
+    "@jobber/fonts": "^1.1.0"
   }
 }
