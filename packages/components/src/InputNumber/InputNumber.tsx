@@ -16,6 +16,7 @@ interface InputNumberProps
       | "validations"
       | "readonly"
       | "defaultValue"
+      | "keyboard"
     > {
   value?: number;
 }
