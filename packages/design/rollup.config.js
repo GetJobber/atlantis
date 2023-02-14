@@ -37,5 +37,5 @@ export default {
       format: "cjs",
     },
   ],
-  external: ["react", "classnames", "@jobber/fonts"],
+  external: ["react", "classnames"],
 };
