@@ -225,3 +225,28 @@ test("it should handle blur", () => {
   inputRef.current.blur();
   expect(blurHandler).toHaveBeenCalledTimes(1);
 });
+
+it("should set inputMode to decimal", () => {
+  const { getByLabelText } = render(
+    <InputNumber keyboard="decimal" placeholder="Allow Decimals" />,
+  );
+  const input = getByLabelText("Allow Decimals");
+
+  expect(input.inputMode).toEqual("decimal");
+});
+
+it("should set inputMode to numeric", () => {
+  const { getByLabelText } = render(
+    <InputNumber keyboard="numeric" placeholder="Numeric" />,
+  );
+  const input = getByLabelText("Numeric");
+
+  expect(input.inputMode).toEqual("numeric");
+});
+
+it("should set not inputMode by default", () => {
+  const { getByLabelText } = render(<InputNumber placeholder="Unset" />);
+  const input = getByLabelText("Unset");
+
+  expect(input.inputMode).toBeFalsy();
+});

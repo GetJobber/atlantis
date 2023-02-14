@@ -109,7 +109,6 @@ function handleRbga(rgbaVarRegexResult) {
 }
 
 function handleExpressionsInCalc(calcRegexResult) {
-  console.log(calcRegexResult);
   const calcExtract = calcRegexResult[1];
   const varGroups = calcExtract.match(regexExpressions.extractAllVarGroups);
   let finalExpression = calcExtract;
