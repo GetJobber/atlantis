@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.0.3...@jobber/components@3.0.4) (2023-02-14)
+
+
+### Bug Fixes
+
+* **components:** JOB-61635 InputNumber on iOS not allowing decimals ([#1023](https://github.com/GetJobber/atlantis/issues/1023)) ([4ba4923](https://github.com/GetJobber/atlantis/commit/4ba4923ae665611fb83f1ae6ac670e3a4f5ea8b0))
+
+
+
+
+
 ## [3.0.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.0.2...@jobber/components@3.0.3) (2023-02-13)
 
 
