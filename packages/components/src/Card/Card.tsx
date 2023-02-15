@@ -136,12 +136,16 @@ function CardHeader({ title, header }: CardHeaderProps) {
   }
   // Case 4: Default Header Props
   if (header) {
+    const props: ButtonProps = {
+      type: "tertiary",
+      ...header.action,
+      size: "small",
+    } as ButtonProps;
+
     return (
       <div className={styles.header}>
         {header?.title && <Heading level={3}>{header?.title}</Heading>}
-        {header?.action && (
-          <Button {...(header?.action as ButtonProps)} size="small" />
-        )}
+        {header?.action && <Button {...props} />}
       </div>
     );
   }
