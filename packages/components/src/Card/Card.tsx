@@ -49,6 +49,8 @@ interface CardProps {
   readonly header?: HeaderProps;
 }
 
+type CardHeaderProps = Pick<CardProps, "title" | "header">;
+
 type LinkCardProps = CardProps & {
   /**
    * URL that the card would navigate to once clicked.
@@ -85,44 +87,10 @@ export function Card({
 
   const cardContent = (
     <>
-      {CardHeader && CardHeader()}
+      <CardHeader title={title} header={header} />
       {children}
     </>
   );
-
-  function CardHeader() {
-    // Case 1: Deprecated Title
-    if (title) {
-      return (
-        <div className={styles.header}>
-          {title && <Heading level={3}>{title}</Heading>}
-        </div>
-      );
-    }
-    // Case 2: String Header
-    if (typeof header === "string") {
-      return (
-        <div className={styles.header}>
-          {header && <Heading level={3}>{header}</Heading>}
-        </div>
-      );
-    }
-    // Case 3: Custom Header
-    if (React.isValidElement(header)) {
-      return header;
-    }
-    // Case 4: Default Header Props
-    return (
-      !!header && (
-        <div className={styles.header}>
-          {header?.title && <Heading level={3}>{header?.title}</Heading>}
-          {header?.action && (
-            <Button {...(header?.action as ButtonProps)} size="small" />
-          )}
-        </div>
-      )
-    );
-  }
 
   if (onClick) {
     return (
@@ -143,4 +111,39 @@ export function Card({
   } else {
     return <div className={className}>{cardContent}</div>;
   }
+}
+
+function CardHeader({ title, header }: CardHeaderProps) {
+  // Case 1: Deprecated Title
+  if (title) {
+    return (
+      <div className={styles.header}>
+        {title && <Heading level={3}>{title}</Heading>}
+      </div>
+    );
+  }
+  // Case 2: String Header
+  if (typeof header === "string") {
+    return (
+      <div className={styles.header}>
+        {header && <Heading level={3}>{header}</Heading>}
+      </div>
+    );
+  }
+  // Case 3: Custom Header
+  if (React.isValidElement(header)) {
+    return header;
+  }
+  // Case 4: Default Header Props
+  if (header) {
+    return (
+      <div className={styles.header}>
+        {header?.title && <Heading level={3}>{header?.title}</Heading>}
+        {header?.action && (
+          <Button {...(header?.action as ButtonProps)} size="small" />
+        )}
+      </div>
+    );
+  }
+  return <></>;
 }
