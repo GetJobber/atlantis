@@ -1,44 +1,11 @@
-import React, { ReactElement, ReactNode } from "react";
+import React from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
 import styles from "./Card.css";
 import colors from "./colors.css";
 import { CardClickable } from "./CardClickable";
-import { Button, ButtonProps } from "../Button";
-import { Heading } from "../Heading";
-
-interface HeaderActionProps {
-  /**
-   * The title of the card.
-   */
-  readonly title?: string;
-  /**
-   * The action props that renders into a button on the card header.
-   */
-  readonly action?: Omit<ButtonProps, "size" | "fullWidth">;
-}
-
-interface CardProps {
-  /**
-   * The `accent`, if provided, will effect the color accent at the top of
-   * the card.
-   */
-  readonly accent?: keyof typeof colors;
-  readonly children: ReactNode | ReactNode[];
-  /**
-   * @deprecated
-   * Use header instead.
-   *
-   */
-  readonly title?: string;
-
-  /**
-   * The header props of the card.
-   */
-  readonly header?: string | HeaderActionProps | ReactElement;
-}
-
-type CardHeaderProps = Pick<CardProps, "title" | "header">;
+import { CardHeader } from "./CardHeader";
+import { CardProps } from "./types";
 
 interface LinkCardProps extends CardProps {
   /**
@@ -76,7 +43,7 @@ export function Card({
 
   const cardContent = (
     <>
-      <CardHeader title={title} header={header} />
+      <CardHeader className={styles.header} title={title} header={header} />
       {children}
     </>
   );
@@ -100,43 +67,4 @@ export function Card({
   } else {
     return <div className={className}>{cardContent}</div>;
   }
-}
-
-function CardHeader({ title, header }: CardHeaderProps) {
-  // Case 1: Deprecated Title
-  if (title) {
-    return (
-      <div className={styles.header}>
-        {title && <Heading level={3}>{title}</Heading>}
-      </div>
-    );
-  }
-  // Case 2: String Header
-  if (typeof header === "string") {
-    return (
-      <div className={styles.header}>
-        {header && <Heading level={3}>{header}</Heading>}
-      </div>
-    );
-  }
-  // Case 3: Custom Header
-  if (React.isValidElement(header)) {
-    return header;
-  }
-  // Case 4: Default Header Props
-  if (header) {
-    const props: ButtonProps = {
-      type: "tertiary",
-      ...header.action,
-      size: "small",
-    } as ButtonProps;
-
-    return (
-      <div className={styles.header}>
-        {header?.title && <Heading level={3}>{header?.title}</Heading>}
-        {header?.action && <Button {...props} />}
-      </div>
-    );
-  }
-  return <></>;
 }

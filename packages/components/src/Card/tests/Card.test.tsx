@@ -1,7 +1,9 @@
 import React from "react";
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import { Text } from "../../Text";
+import { Button } from "../../Button";
 import { Card } from "..";
+import { Menu } from "../../Menu";
 
 it("renders a simple card", () => {
   const { getByText, container } = render(
@@ -33,10 +35,7 @@ it("renders a card with button", () => {
     <Card
       header={{
         title: "Header with button",
-        action: {
-          label: "add",
-          type: "primary",
-        },
+        action: <Button label="add" type="primary" />,
       }}
     >
       <p>This is the card content.</p>
@@ -45,6 +44,35 @@ it("renders a card with button", () => {
 
   expect(getByRole("button", { name: "add" })).toBeDefined();
   expect(getByText("Header with button")).toBeDefined();
+  expect(getByText("This is the card content.")).toBeDefined();
+});
+
+it("renders a card with menu", async () => {
+  const header = "Mark as...";
+  const actionLabel = "Awaiting Response";
+  const clickHandler = jest.fn();
+  const actions = [
+    {
+      header: header,
+      actions: [{ label: actionLabel, onClick: clickHandler }],
+    },
+  ];
+  const { getByRole, getByText } = render(
+    <Card
+      header={{
+        title: "Header with menu",
+        action: <Menu items={actions} />,
+      }}
+    >
+      <p>This is the card content.</p>
+    </Card>,
+  );
+
+  fireEvent.click(getByRole("button"));
+  await waitFor(() => {
+    expect(getByRole("menuitem")).toBeInTheDocument();
+  });
+  expect(getByText("Header with menu")).toBeDefined();
   expect(getByText("This is the card content.")).toBeDefined();
 });
 

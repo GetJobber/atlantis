@@ -1,7 +1,8 @@
 import React from "react";
-import { CardProps } from ".";
+import { ActionProps, CardProps } from "./types";
 import { Heading } from "../Heading";
 import { Button, ButtonProps } from "../Button";
+import { Menu, MenuProps } from "../Menu";
 
 interface CardHeaderProps extends Pick<CardProps, "title" | "header"> {
   className: string;
@@ -20,7 +21,6 @@ export function CardHeader({ className, title, header }: CardHeaderProps) {
       </div>
     );
   }
-  // Case 2: String Header
   if (typeof header === "string") {
     return (
       <div className={className}>
@@ -28,24 +28,35 @@ export function CardHeader({ className, title, header }: CardHeaderProps) {
       </div>
     );
   }
-  // Case 3: Custom Header
+  // header is a custom component
   if (React.isValidElement(header)) {
     return header;
   }
-  // Case 4: Default Header Props
-  if (header) {
-    const props: ButtonProps = {
-      type: "tertiary",
-      ...header.action,
-      size: "small",
-    } as ButtonProps;
-
+  // header is an action
+  if (header?.action) {
     return (
       <div className={className}>
         {header?.title && <Heading level={3}>{header?.title}</Heading>}
-        {header?.action && <Button {...props} />}
+        {renderHeaderAction(header.action)}
       </div>
     );
+  }
+
+  return <></>;
+}
+
+function renderHeaderAction(action: ActionProps) {
+  if (action.type === Button) {
+    const props: ButtonProps = {
+      type: "tertiary",
+      ...action.props,
+      size: "small",
+    } as ButtonProps;
+    return action && <Button {...props} />;
+  }
+
+  if (action.type === Menu) {
+    return action && <Menu {...(action.props as MenuProps)} />;
   }
   return <></>;
 }
