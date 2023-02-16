@@ -1,0 +1,73 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Typography } from "@jobber/components/Typography";
+
+# Typography
+
+<Meta title="Components/Typography" component={Typography} />
+
+Base component that defines typographic standards across Jobber.
+
+```ts
+import { Typography } from "@jobber/components/Typography";
+```
+
+<Canvas>
+  <Story
+    name="Typography"
+    args={{
+      children: "Just some type here.",
+    }}
+  >
+    {args => <Typography {...args} />}
+  </Story>
+</Canvas>
+
+<ArgsTable of={Typography} story="Typography" />
+
+## Element
+
+<Canvas>
+  <Typography element="h1">Change the element</Typography>
+</Canvas>
+
+## Font size
+
+<Canvas isColumn>
+  <Typography size="smaller">smaller</Typography>
+  <Typography size="small">small</Typography>
+  <Typography size="base">base</Typography>
+  <Typography size="large">large</Typography>
+  <Typography size="larger">larger</Typography>
+  <Typography size="largest">largest</Typography>
+  <Typography size="jumbo">jumbo</Typography>
+  <Typography size="extravagant">extravagant</Typography>
+</Canvas>
+
+## Font weight
+
+<Canvas>
+  <Typography fontWeight="black">Shout</Typography>
+</Canvas>
+
+## Alignment
+
+Uses start and end instead of left and right to allow for resiliency in both LTR
+and RTL applications.
+
+<Canvas isColumn>
+  <Typography align="start">Start</Typography>
+  <Typography align="center">Center</Typography>
+  <Typography align="end">End</Typography>
+</Canvas>
+
+<Canvas>
+  <Typography textCase="uppercase">Shout</Typography>
+</Canvas>
+
+## Emphasis
+
+<Canvas>
+  <Typography element="span" emphasisType="highlight">
+    Highlight
+  </Typography>
+</Canvas>
