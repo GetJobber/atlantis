@@ -23,9 +23,7 @@
     "install": "npm run lerna:bootstrap",
     "release-the-kraken": "export IGNORE_OPTIONAL_DEPENDENCIES=true; npm ci --no-optional && lerna publish",
     "release:unpublished-package": "export IGNORE_OPTIONAL_DEPENDENCIES=true; npm ci --no-optional && lerna publish from-package",
-    "prepublish:prerelease": "./scripts/pre-prerelease.sh",
     "publish:prerelease": "lerna publish --canary --dist-tag next --preid pre from-package",
-    "preci:release": "./scripts/pre-prerelease.sh",
     "ci:release": "lerna publish --yes",
     "version": "node ensureChangelogHeaders.js",
     "convertIcoMoon": "scripts/convertIcoMoon.ts",
@@ -60,6 +58,7 @@
     "@testing-library/jest-dom": "^5.10.1",
     "@testing-library/react": "^10.2.1",
     "@testing-library/user-event": "^12.0.2",
+    "@types/history": "^4.7.6",
     "@types/jest": "^26.0.0",
     "@types/lodash": "^4.14.149",
     "@types/react": "^16.9.9",
@@ -92,12 +91,12 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-helmet-async": "^1.0.4",
-    "react-router-dom": "^5.2.0",
+    "react-router-dom": "~5.2.0",
     "style-loader": "^0.23.1",
     "stylelint": "^14.2.0",
     "stylelint-junit-formatter": "^0.2.1",
-    "typed-css-modules-loader": "0.0.18",
     "typed-css-modules": "^0.7.0",
+    "typed-css-modules-loader": "0.0.18",
     "typescript": "^3.8.3"
   },
   "husky": {
@@ -116,6 +115,6 @@
     "@std-proposal/temporal": "0.0.1"
   },
   "optionalDependencies": {
-    "@jobber/fonts": "^1.0.0"
+    "@jobber/fonts": "^1.1.0"
   }
 }

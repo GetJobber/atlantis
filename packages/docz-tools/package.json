@@ -1,6 +1,6 @@
 {
   "name": "@jobber/docz-tools",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "",
   "main": "index.ts",
   "scripts": {
@@ -11,8 +11,9 @@
   "license": "ISC",
   "dependencies": {
     "@emotion/react": "^11.1.4",
-    "@jobber/components": "^3.0.4",
-    "@jobber/design": "^0.28.2",
+    "@types/uuid": "^8.3.3",
+    "@jobber/components": "^3.0.5",
+    "@jobber/design": "^0.28.3",
     "classnames": "^2.3.1",
     "deepmerge": "^4.2.2",
     "framer-motion": "^1.11.1",
@@ -20,7 +21,8 @@
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.7.0",
     "react-helmet": "^6.1.0",
-    "ts-xor": "^1.0.8"
+    "ts-xor": "^1.0.8",
+    "uuid": "^8.3.2"
   },
   "peerDependencies": {
     "copy-text-to-clipboard": "*",
