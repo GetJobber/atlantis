@@ -7,15 +7,6 @@ import { CardClickable } from "./CardClickable";
 import { Button, ButtonProps } from "../Button";
 import { Heading } from "../Heading";
 
-interface CardCommonProps {
-  /**
-   * The `accent`, if provided, will effect the color accent at the top of
-   * the card.
-   */
-  readonly accent?: keyof typeof colors;
-  readonly children: ReactNode | ReactNode[];
-}
-
 interface HeaderActionProps {
   /**
    * The title of the card.
@@ -27,8 +18,6 @@ interface HeaderActionProps {
   readonly action?: Omit<ButtonProps, "size" | "fullWidth">;
 }
 
-type HeaderProps = string | HeaderActionProps | ReactElement;
-
 interface CardProps {
   /**
    * The `accent`, if provided, will effect the color accent at the top of
@@ -38,7 +27,7 @@ interface CardProps {
   readonly children: ReactNode | ReactNode[];
   /**
    * @deprecated
-   * The title of the card. Use header instead.
+   * Use header instead.
    *
    */
   readonly title?: string;
@@ -46,12 +35,12 @@ interface CardProps {
   /**
    * The header props of the card.
    */
-  readonly header?: HeaderProps;
+  readonly header?: string | HeaderActionProps | ReactElement;
 }
 
 type CardHeaderProps = Pick<CardProps, "title" | "header">;
 
-type LinkCardProps = CardProps & {
+interface LinkCardProps extends CardProps {
   /**
    * URL that the card would navigate to once clicked.
    */
@@ -61,11 +50,11 @@ type LinkCardProps = CardProps & {
    * Makes the URL open in new tab on click.
    */
   external?: boolean;
-};
+}
 
-type ClickableCardProps = CardProps & {
+interface ClickableCardProps extends CardProps {
   onClick(event: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>): void;
-};
+}
 
 type CardPropOptions = XOR<CardProps, XOR<LinkCardProps, ClickableCardProps>>;
 
