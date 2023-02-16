@@ -11,7 +11,7 @@ module.exports = {
     "import/resolver": {
       alias: {
         map: packageAliases,
-        extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
+        extensions: [".ts", ".tsx", ".js", ".jsx", ".json", ".stories.mdx"]
       }
     }
   },
@@ -61,6 +61,17 @@ module.exports = {
           }
         }
       }
-    }
+    },
+    {
+      files: ["*.stories.mdx"],
+      extends: "plugin:mdx/recommended",
+      rules: {
+        "react-native/no-inline-styles": "off",
+        "no-alert": "off",
+        "@typescript-eslint/naming-convention": "off",
+        "@typescript-eslint/no-unused-expressions": "off",
+        "import/no-extraneous-dependencies": "off",
+      },
+    },
   ]
 };
