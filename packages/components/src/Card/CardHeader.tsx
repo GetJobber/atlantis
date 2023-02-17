@@ -1,33 +1,26 @@
 import React from "react";
 import { ActionProps, CardProps } from "./types";
+import styles from "./Card.css";
 import { Heading } from "../Heading";
 import { Button, ButtonProps } from "../Button";
 import { Menu, MenuProps } from "../Menu";
-
-interface CardHeaderProps extends Pick<CardProps, "title" | "header"> {
-  className: string;
-}
 
 /**
  * Intended to be used in the Card component.
  * Use `<Card header={header} />` component instead.
  */
-export function CardHeader({ className, title, header }: CardHeaderProps) {
-  // Case 1: Deprecated Title
-  if (title) {
+export function CardHeader({
+  title,
+  header,
+}: Pick<CardProps, "title" | "header">) {
+  if (title || typeof header === "string") {
     return (
-      <div className={className}>
-        {title && <Heading level={3}>{title}</Heading>}
+      <div className={styles.header}>
+        {<Heading level={3}>{title || header}</Heading>}
       </div>
     );
   }
-  if (typeof header === "string") {
-    return (
-      <div className={className}>
-        {header && <Heading level={3}>{header}</Heading>}
-      </div>
-    );
-  }
+
   // header is a custom component
   if (React.isValidElement(header)) {
     return header;
@@ -35,7 +28,7 @@ export function CardHeader({ className, title, header }: CardHeaderProps) {
   // header is an action
   if (header?.action) {
     return (
-      <div className={className}>
+      <div className={styles.header}>
         {header?.title && <Heading level={3}>{header?.title}</Heading>}
         {renderHeaderAction(header.action)}
       </div>
