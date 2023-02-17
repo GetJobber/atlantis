@@ -37,16 +37,10 @@ contents have
 [strong importance, seriousness, or urgency.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/strong)
 
 <Canvas>
-  <Story name="Bold">
-    {() => {
-      return (
-        <Text>
-          <Emphasis variation="bold">Save $240</Emphasis> when you choose our
-          Annual Plan
-        </Text>
-      );
-    }}
-  </Story>
+  <Text>
+    <Emphasis variation="bold">Save $240</Emphasis> when you choose our Annual
+    Plan
+  </Text>
 </Canvas>
 
 ### Italic
@@ -55,16 +49,10 @@ Italic emphasis should be used when there is stress emphasis on a word (or
 words) which modifies the meaning of the sentence itself.
 
 <Canvas>
-  <Story name="Italic">
-    {() => {
-      return (
-        <Text>
-          Simon’s here to show <Emphasis variation="italic">you</Emphasis> how
-          Jobber works.
-        </Text>
-      );
-    }}
-  </Story>
+  <Text>
+    Simon’s here to show <Emphasis variation="italic">you</Emphasis> how Jobber
+    works.
+  </Text>
 </Canvas>
 
 ### Highlight
@@ -73,13 +61,7 @@ Used to call attention to a specific value prop on a heading. Highlight should
 only be used on page titles and subtitle, and is similar in meaning to Bold.
 
 <Canvas>
-  <Story name="Highlight">
-    {() => {
-      return (
-        <Heading level={1}>
-          Get paid <Emphasis variation="highlight">faster</Emphasis>
-        </Heading>
-      );
-    }}
-  </Story>
+  <Heading level={1}>
+    Get paid <Emphasis variation="highlight">faster</Emphasis>
+  </Heading>
 </Canvas>

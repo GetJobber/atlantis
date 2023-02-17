@@ -19,8 +19,14 @@ import { Autocomplete } from "@jobber/components/Autocomplete";
 ```
 
 <Canvas>
-  <Story name="Autocomplete">
-    {() => {
+  <Story
+    name="Autocomplete"
+    args={{
+      initialOptions: [],
+      placeholder: "Search for something",
+    }}
+  >
+    {args => {
       const options = [
         { value: 1, label: "Nostromo" },
         { value: 2, label: "Rodger Young" },
@@ -32,11 +38,10 @@ import { Autocomplete } from "@jobber/components/Autocomplete";
       const [value, setValue] = useState();
       return (
         <Autocomplete
+          {...args}
           value={value}
-          initialOptions={[]}
           onChange={setValue}
           getOptions={getOptions}
-          placeholder="Search for something"
         />
       );
       function getOptions(text) {

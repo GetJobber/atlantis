@@ -80,45 +80,39 @@ Jobber features, such as jobs, quotes, and invoices, are not proper nouns and
 ## Custom activator
 
 <Canvas>
-  <Story name="Custom activator">
-    {() => {
-      return (
-        <Menu
-          activator={<Button label="My Fancy Menu" />}
-          items={[
-            {
-              actions: [
-                {
-                  label: "Edit",
-                  icon: "edit",
-                  onClick: () => {
-                    alert("✏️");
-                  },
-                },
-              ],
+  <Menu
+    activator={<Button label="My Fancy Menu" />}
+    items={[
+      {
+        actions: [
+          {
+            label: "Edit",
+            icon: "edit",
+            onClick: () => {
+              alert("✏️");
             },
-            {
-              header: "Send as...",
-              actions: [
-                {
-                  label: "Text Message",
-                  icon: "sms",
-                  onClick: () => {
-                    alert("📱");
-                  },
-                },
-                {
-                  label: "Email",
-                  icon: "email",
-                  onClick: () => {
-                    alert("📨");
-                  },
-                },
-              ],
+          },
+        ],
+      },
+      {
+        header: "Send as...",
+        actions: [
+          {
+            label: "Text Message",
+            icon: "sms",
+            onClick: () => {
+              alert("📱");
             },
-          ]}
-        />
-      );
-    }}
-  </Story>
+          },
+          {
+            label: "Email",
+            icon: "email",
+            onClick: () => {
+              alert("📨");
+            },
+          },
+        ],
+      },
+    ]}
+  />
 </Canvas>
