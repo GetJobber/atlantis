@@ -1,0 +1,101 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { InputDate } from "@jobber/components/InputDate";
+import { useState } from "react";
+
+<Meta title="Components/InputDate" component={InputDate} />
+
+# Input Date
+
+InputDate provides a multi-modal way for the user to select a date, using either
+of:
+
+- form field
+- visual calendar selector and comes complete with the ability to re-format user
+  input into an expected date format.
+
+```ts
+import { InputDate } from "@jobber/components/InputDate";
+```
+
+<Canvas>
+  <Story name="InputDate">
+    {() => {
+      const [date, setDate] = useState(new Date("11/11/2011"));
+      return (
+        <InputDate placeholder="Start Date" value={date} onChange={setDate} />
+      );
+    }}
+  </Story>
+</Canvas>
+
+<ArgsTable of={InputDate} story="InputDate" />
+
+InputDate also exposes `minDate`and `maxDate` props in order to restrict date
+ranges.
+
+<Canvas>
+  <Story name="Date Range">
+    {() => {
+      const [date, setDate] = useState(new Date("11/11/2011"));
+      return (
+        <InputDate
+          minDate={new Date("11/06/2011")}
+          maxDate={new Date("11/25/2011")}
+          placeholder="Start Date"
+          value={date}
+          onChange={setDate}
+        />
+      );
+    }}
+  </Story>
+</Canvas>
+
+## Design & usage guidelines
+
+The `<InputDate>` should be used in most cases where the user needs to select a
+date.
+
+## Content guidelines
+
+The InputDate should only be used to display and submit date values. For other
+input usage, see [Related Components](#related-components).
+
+## Accessibility
+
+Accessibility concerns for the InputDate are captured by...
+
+### FormField
+
+Provides a label, announces input type, can be focused, and handles error
+validation and messaging.
+
+### Datepicker
+
+[Datepicker](/components/date-picker#accessibility) is keyboard-operable and
+announces the currently-focused date available for selection to the user via
+assistive technology.
+
+## Responsiveness
+
+When the InputDate is near the top or bottom of the viewport, the Datepicker
+will adjust its position to remain in view.
+
+The FormField for InputDate will take up the full available width of its parent.
+If used in an [InputGroup](/components/input-group), it will take up the
+available amount of space left by any other inputs in the group.
+
+## Related components
+
+- If you do not need an accompanying form field, you can use the
+  [Datepicker](/components/Datepicker) on its own
+- If you need to allow the user to enter time, use
+  [InputTime](/components/input-time)
+- If you just need a text input, use [InputText](/components/input-text)
+
+## Notes
+
+Some functionality that we have opted not to introduce at this time, but that
+would be relatively feasible to add in the future:
+
+- allow for the concept of a date-range selection
+- allow for certain days or dates to be excluded from selection
