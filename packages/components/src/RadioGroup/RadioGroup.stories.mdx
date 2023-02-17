@@ -1,0 +1,150 @@
+import { Content } from "@jobber/components/Content";
+import { Text } from "@jobber/components/Text";
+import { Checkbox } from "@jobber/components/Checkbox";
+import { Divider } from "@jobber/components/Divider";
+import { Avatar } from "@jobber/components/Avatar";
+import { useState } from "react";
+import { RadioGroup } from "@jobber/components/RadioGroup";
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+
+<Meta title="Components/RadioGroup" component={RadioGroup} />
+
+# Radio Group
+
+RadioGroup will allow users to choose a single selection from one of a list of
+provided options.
+
+```ts
+import { RadioGroup } from "@jobber/components/RadioGroup";
+```
+
+<Canvas>
+  <Story name="RadioGroup">
+    {() => {
+      const [company, setCompany] = useState("apple");
+      return (
+        <RadioGroup onChange={setCompany} value={company} ariaLabel="Companies">
+          <RadioOption value="apple" label="Apple" />
+          <RadioOption value="google" label="Google" />
+          <RadioOption value="microsoft" label="Microsoft" />
+        </RadioGroup>
+      );
+    }}
+  </Story>
+</Canvas>
+
+<ArgsTable of={RadioGroup} story="RadioGroup" />
+
+## RadioOption props
+
+<Props of={RadioOption} />
+
+## Disabled
+
+`RadioOptions` can be disabled by passing in the disabled prop. Disabling an
+option will prevent a user from being able to select the option.
+
+<Canvas>
+  <Story name="Disabled">
+    {() => {
+      const [company, setCompany] = useState("apple");
+      const [checked, setChecked] = useState(true);
+      return (
+        <Content spacing="large">
+          <RadioGroup
+            onChange={setCompany}
+            value={company}
+            ariaLabel="Companies"
+          >
+            <RadioOption value="apple" label="Apple" />
+            <RadioOption value="google" label="Google" />
+            <RadioOption value="amazon" label="Amazon" disabled={true} />
+            <RadioOption
+              value="microsoft"
+              label="Microsoft"
+              disabled={!checked}
+            />
+          </RadioGroup>
+          <Divider />
+          <Checkbox
+            checked={checked}
+            label="Allow Microsoft"
+            onChange={setChecked}
+          />
+        </Content>
+      );
+    }}
+  </Story>
+</Canvas>
+
+## Description
+
+A `description` can be used to further describe the label of the `RadioOption`.
+
+<Canvas>
+  <Story name="Description">
+    {() => {
+      const [company, setCompany] = useState("apple");
+      return (
+        <RadioGroup onChange={setCompany} value={company} ariaLabel="Companies">
+          <RadioOption
+            value="apple"
+            label="Apple"
+            description="A delicious fruit that fends off doctors"
+          />
+          <RadioOption
+            value="amazon"
+            label="Amazon"
+            description="The worlds largest rainforest"
+          />
+          <RadioOption
+            value="google"
+            label="Google"
+            description="A search engine"
+          />
+        </RadioGroup>
+      );
+    }}
+  </Story>
+</Canvas>
+
+## Render RadioOption with children
+
+If the `RadioGroup` is being used to select something other then text, you can
+render the `RadioOptions` with `children`.
+
+**Note:** When using `children`, `label` and `description` are not allowed due
+to the fact that they would collide with the `children` prop.
+
+**Note:** When using `children` it is the responsibility of the child to supply
+the proper accessible labels. If you are using children that do not contain
+text, an `aria-label` should be provided.
+
+<Canvas>
+  <Story name="RadioOption with children">
+    {() => {
+      const [company, setPhoto] = useState("JBR");
+      const users = [
+        { name: "Jobber", initials: "JBR" },
+        { name: "User 1", initials: "U1" },
+        { name: "User 2", initials: "U2" },
+        { name: "User 3", initials: "U3" },
+        { name: "User 4", initials: "U4" },
+      ];
+      return (
+        <>
+          <Content>
+            <Text>Select a user</Text>
+            <RadioGroup onChange={setPhoto} value={company} ariaLabel="Users">
+              {users.map(user => (
+                <RadioOption value={user.name}>
+                  <Avatar initials={user.initials} name={user.name} />
+                </RadioOption>
+              ))}
+            </RadioGroup>
+          </Content>
+        </>
+      );
+    }}
+  </Story>
+</Canvas>
