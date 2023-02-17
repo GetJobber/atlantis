@@ -23,7 +23,50 @@ import { Form } from "@jobber/components/Form";
 
 <Canvas>
   <Story name="Form">
-    <FormComponent />
+    {() => {
+      const [{ isDirty, isValid }, setFormState] = useFormState();
+      const [first, setFirst] = useState("");
+      return (
+        <Form
+          onSubmit={() => alert("Submitted 🎉🎉🎉")}
+          onStateChange={setFormState}
+        >
+          <Content>
+            <InputText
+              placeholder="First Name"
+              name="firstName"
+              value={first}
+              onChange={setFirst}
+              validations={{
+                required: {
+                  value: true,
+                  message: "Tell us your name",
+                },
+                minLength: {
+                  value: 3,
+                  message: "Your name is to short.",
+                },
+              }}
+            />
+            <InputText
+              placeholder="Last Name"
+              name="lastName"
+              validations={{
+                required: {
+                  value: true,
+                  message: "Tell us your last name.",
+                },
+              }}
+            />
+            <Button
+              label="Submit Form"
+              submit={true}
+              disabled={!isDirty || !isValid}
+            />
+          </Content>
+        </Form>
+      );
+    }}
   </Story>
 </Canvas>
 
@@ -47,51 +90,6 @@ Submission of a Form can be done outside of the Form itself by using the
 <Canvas>
   <TriggeringSubmissionForm />
 </Canvas>
-
-export function FormComponent() {
-  const [{ isDirty, isValid }, setFormState] = useFormState();
-  const [first, setFirst] = useState("");
-  return (
-    <Form
-      onSubmit={() => alert("Submitted 🎉🎉🎉")}
-      onStateChange={setFormState}
-    >
-      <Content>
-        <InputText
-          placeholder="First Name"
-          name="firstName"
-          value={first}
-          onChange={setFirst}
-          validations={{
-            required: {
-              value: true,
-              message: "Tell us your name",
-            },
-            minLength: {
-              value: 3,
-              message: "Your name is to short.",
-            },
-          }}
-        />
-        <InputText
-          placeholder="Last Name"
-          name="lastName"
-          validations={{
-            required: {
-              value: true,
-              message: "Tell us your last name.",
-            },
-          }}
-        />
-        <Button
-          label="Submit Form"
-          submit={true}
-          disabled={!isDirty || !isValid}
-        />
-      </Content>
-    </Form>
-  );
-}
 
 export function OnStateChangeForm() {
   const [formState, setFormState] = useFormState();
