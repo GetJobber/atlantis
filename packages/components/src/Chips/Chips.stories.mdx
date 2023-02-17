@@ -7,7 +7,7 @@ import { Text } from "@jobber/components/Text";
 import { Chip, Chips } from ".";
 import { useFakeOptionQuery } from "./utils/mdxUtils.ts";
 
-<Meta title="Components/Chip" component={Chips} subcomponents={{ Chip }} />
+<Meta title="Components/Chips" component={Chips} subcomponents={{ Chip }} />
 
 # Chips
 
@@ -37,7 +37,7 @@ Unlike [Radio](/components/radio-group), the selected single-select Chip can be
 de-selected by the user, leaving all selections blank.
 
 <Canvas>
-  <Story name="Single-select">
+  <Story name="Chips">
     {args => {
       const [selected, setSelected] = useState();
       return (
@@ -83,37 +83,25 @@ a [Checkbox](/components/checkbox).
 Similar to Checkbox, a selected multi-select Chip can be de-selected by the
 user, leaving all selections blank.
 
-<Canvas>
-  <Story name="Multi-select">
-    {() => {
-      const [selected, setSelected] = useState([]);
-      return (
-        <Content>
-          <Text>
-            You are <u>{selected.length ? selected.join(" ") : "_______"}</u>
-          </Text>
-          <Chips type="multiselect" selected={selected} onChange={setSelected}>
-            <Chip
-              prefix={<Avatar initials="AZ" />}
-              label="Amazing"
-              value="Amazing"
-            />
-            <Chip
-              prefix={<Icon name="video" />}
-              label="Wonderful"
-              value="Wonderful"
-            />
-            <Chip
-              prefix={<Icon name="starFill" />}
-              label="Brilliant"
-              value="Brilliant"
-            />
-            <Chip label="Magnificent" value="Magnificent" />
-          </Chips>
-        </Content>
-      );
-    }}
-  </Story>
+export function MultiSelectExample() {
+  const [selected, setSelected] = useState([]);
+  return (
+    <Content>
+      <Text>
+        You are <u>{selected.length ? selected.join(" ") : "_______"}</u>
+      </Text>
+      <Chips type="multiselect" selected={selected} onChange={setSelected}>
+        <Chip label="Amazing" value="Amazing" />
+        <Chip label="Wonderful" value="Wonderful" />
+        <Chip label="Brilliant" value="Brilliant" />
+        <Chip label="Magnificent" value="Magnificent" />
+      </Chips>
+    </Content>
+  );
+}
+
+<Canvas withSource="none">
+  <MultiSelectExample />
 </Canvas>
 
 ### Add/dismiss selection
@@ -130,35 +118,35 @@ overwhelming for the user to interpret.
 This format also allows the user to create their own "freeform" Chip options,
 which they can also remove once added.
 
-<Canvas>
-  <Story name="Add/dismiss selection">
-    {() => {
-      const {
-        selected,
-        options,
-        loading,
-        handleLoadMore,
-        handleSearch,
-        handleSelect,
-        handleCustomAdd,
-      } = useFakeOptionQuery();
-      return (
-        <Chips
-          type="dismissible"
-          selected={selected}
-          onChange={handleSelect}
-          onCustomAdd={handleCustomAdd}
-          isLoadingMore={loading}
-          onSearch={handleSearch}
-          onLoadMore={handleLoadMore}
-        >
-          {options.map(name => (
-            <Chip key={name} label={name} value={name} />
-          ))}
-        </Chips>
-      );
-    }}
-  </Story>
+export function AddDismissSelectionExample() {
+  const {
+    selected,
+    options,
+    loading,
+    handleLoadMore,
+    handleSearch,
+    handleSelect,
+    handleCustomAdd,
+  } = useFakeOptionQuery();
+  return (
+    <Chips
+      type="dismissible"
+      selected={selected}
+      onChange={handleSelect}
+      onCustomAdd={handleCustomAdd}
+      isLoadingMore={loading}
+      onSearch={handleSearch}
+      onLoadMore={handleLoadMore}
+    >
+      {options.map(name => (
+        <Chip key={name} label={name} value={name} />
+      ))}
+    </Chips>
+  );
+}
+
+<Canvas withSource="none">
+  <AddDismissSelectionExample />
 </Canvas>
 
 ## Props
