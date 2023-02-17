@@ -1,24 +1,11 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
 import styles from "./Card.css";
 import colors from "./colors.css";
 import { CardClickable } from "./CardClickable";
-import { Heading } from "../Heading";
-
-interface CardProps {
-  /**
-   * The `accent`, if provided, will effect the color accent at the top of
-   * the card.
-   */
-  readonly accent?: keyof typeof colors;
-  readonly children: ReactNode | ReactNode[];
-
-  /**
-   * The title of the card.
-   */
-  readonly title?: string;
-}
+import { CardHeader } from "./CardHeader";
+import { CardProps } from "./types";
 
 interface LinkCardProps extends CardProps {
   /**
@@ -40,6 +27,7 @@ type CardPropOptions = XOR<CardProps, XOR<LinkCardProps, ClickableCardProps>>;
 
 export function Card({
   accent,
+  header,
   children,
   onClick,
   title,
@@ -55,11 +43,7 @@ export function Card({
 
   const cardContent = (
     <>
-      {title && (
-        <div className={styles.header}>
-          <Heading level={3}>{title}</Heading>
-        </div>
-      )}
+      <CardHeader className={styles.header} title={title} header={header} />
       {children}
     </>
   );
