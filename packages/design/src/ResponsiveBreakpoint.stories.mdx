@@ -1,0 +1,45 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Button } from "@jobber/components/Button";
+
+<Meta title="Design/Breakpoints" />
+
+# Responsive Breakpoints
+
+**To make most components responsive, you will want to use the
+[useResizeObserver hook](/hooks/use-resize-observer) so that the component can
+be responsive based on its container.**
+
+However, there are times the component will not care about its container and
+want to be responsive based on the browser size. For this you will want to use a
+breakpoint in the CSS.
+
+**Note** Components should be styled mobile first, meaning that it should be
+styled for small screens and then scaled up. This means that the `--handhelds`
+breakpoint should be rarely considered.
+
+**Note** Media queries can be nested inside selectors. This will help with
+clarity when reading.
+
+| Breakpoint         | Width       |
+| :----------------- | :---------- |
+| `--handhelds`      | `< 640px`   |
+| `--medium-screens` | `>= 640px`  |
+| `--wide-screens`   | `>= 1024px` |
+
+## Usage
+
+```css
+.foo {
+  ...;
+  /** small screens first **/
+  padding: var(--space-base);
+
+  @media (--medium-screens) {
+    padding: var(--space-large);
+  }
+
+  @media (--wide-screens) {
+    padding: var(--space-extravagant);
+  }
+}
+```
