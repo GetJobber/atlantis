@@ -1,0 +1,93 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Content } from "@jobber/components/Content";
+import { Text } from "@jobber/components/Text";
+import { Heading } from "@jobber/components/Heading";
+import { InputText } from "@jobber/components/InputText";
+import { Button } from "@jobber/components/Button";
+import { Tabs, Tab } from "@jobber/components/Tabs";
+import { Card } from "@jobber/components/Card";
+
+<Meta title="Components/Content" component={Content} />
+
+# Content
+
+Content is a container component which provides its' child elements with
+consistent vertical spacing and padding.
+
+```ts
+import { Content } from "@jobber/components/Content";
+```
+
+<Canvas>
+  <Story name="Content">
+    {() => (
+      <Content>
+        <Card title="About me">
+          <Content>
+            <Content spacing="large">
+              <Heading level={2}>Sign up!</Heading>
+              <Text>
+                Aenean eu leo quam. Pellentesque ornare sem lacinia quam
+                venenatis vestibulum. Nulla vitae elit libero, a pharetra augue.
+                Nullam quis risus eget urna mollis ornare vel eu leo. Vestibulum
+                id ligula porta felis euismod semper. Curabitur blandit tempus
+                porttitor.
+              </Text>
+            </Content>
+            <InputText placeholder="Name" />
+            <InputText placeholder="Phone" />
+            <InputText placeholder="Email" />
+            <InputText
+              multiline={true}
+              placeholder="Describe yourself"
+              name="describeAge"
+            />
+          </Content>
+        </Card>
+      </Content>
+    )}
+  </Story>
+</Canvas>
+
+<ArgsTable of={Content} story="Content" />
+
+## Design & usage guidelines
+
+Content should be used whenever you have a container with mixed content that
+requires consistent spacing between the elements.
+
+---
+
+## Usage
+
+### Within Cards
+
+<Canvas>
+  <Story name="Within Cards">
+    {() => (
+      <Card title="About me">
+        <Content>
+          <Heading level={4}>My favourite food</Heading>
+          <Text>
+            Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis
+            vestibulum. Nulla vitae elit libero, a pharetra augue. Nullam quis
+            risus eget urna mollis ornare vel eu leo. Vestibulum id ligula porta
+            felis euismod semper. Curabitur blandit tempus porttitor.
+          </Text>
+        </Content>
+        <Tabs>
+          <Tab label="Eggs">
+            🍳 Some eggs are laid by female animals of many different species,
+            including birds, reptiles, amphibians, mammals, and fish, and have
+            been eaten by humans for thousands of years.
+          </Tab>
+          <Tab label="Cheese">
+            🧀 Cheese is a dairy product derived from milk that is produced in a
+            wide range of flavors, textures, and forms by coagulation of the
+            milk protein casein.
+          </Tab>
+        </Tabs>
+      </Card>
+    )}
+  </Story>
+</Canvas>
