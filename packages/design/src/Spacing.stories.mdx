@@ -1,0 +1,119 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Design/Spacing" />
+
+# Spacing
+
+Our spacing system exists to support the foundational visual design principle of
+[proximity-based grouping:](https://www.nngroup.com/articles/gestalt-proximity/)
+
+> Using varying amounts of whitespace to either unite or separate elements is
+> key to communicating meaningful groupings.
+
+In the shortest, simplest terms: the closer two elements are related, the
+tighter the spacing between them should be.
+
+With this in mind, let’s start small and work our way up.
+
+## Design & usage guidelines
+
+### Miniscule and Smallest
+
+At their respective sizes (`1px` and `2px` equivalent), these values should
+mostly be used to provide optical adjustments where an element is visually
+misaligned.
+
+### Smaller
+
+The `smaller` spacing value can be used between contents of a single component.
+For example, see the spacing between an Icon and the label inside of a
+[Button.](/components/button#icons)
+
+![illustration of a smaller space between icon and button label](https://user-images.githubusercontent.com/39704901/143141489-679fa61b-5497-4e81-bfe0-b5f463673e4b.png)
+
+### Small
+
+Sibling items within a container can be separated by the `small` value to
+reflect their relation to each other. An example would be the spacing between
+[Chips in a selection group.](/components/chips#single-select)
+
+![illustration of a small space between Chip components](https://user-images.githubusercontent.com/39704901/143141613-193ceeb2-b393-44ab-a5e8-21d2f88c67c4.png)
+
+### Base
+
+Use `base` as the default spacing in larger content containers with multiple
+children of their own, such as [Card.](/components/card) This should also be
+used as the default starting point for spacing between [Form](/components/form)
+elements.
+
+![illustration of spacing between form elements inside of a card](https://user-images.githubusercontent.com/39704901/143141662-0f20eec4-8b27-44fe-96f5-1bf1c4d567aa.png)
+
+### Large
+
+Use `large` spacing for higher-level "parent" containers.
+[Modal](/components/modal) uses `large` spacing in its header and around the
+edges to give itself a bit more prominence as a "standalone" view, in a similar
+manner to [Page](/components/page).
+
+`Large` can also be used to help give a "floating" element some clear separation
+from the edge of its container, as seen in [Toast](/components/toast).
+
+![illustration of the large space around a Modal's header and content, a Page's outer padding, and a Toast near the bottom of a viewport](https://user-images.githubusercontent.com/39704901/143152557-8fca3292-dc07-4f9b-a33b-f4d4603c9dd2.png)
+
+### Larger
+
+`Larger` doubles the value of `base` to very clearly delineate two groups of
+content that themselves use `base`. It may be useful if you have a long list of
+mixed content types that need to be broken up.
+
+![illustration of larger spacing being used to break up unrelated sections of content](https://user-images.githubusercontent.com/39704901/143141846-43606573-1383-4ad2-9d95-46611488cbae.png)
+
+### Largest and Extravagant
+
+You’ll probably never need these unless you’re doing a custom layout, but
+they’re here if you need ‘em. These values are equivalent to `48px` and `64px`
+respectively.
+
+---
+
+## Implementation
+
+### Content
+
+Use the [Content component](/components/content) for any instances where you
+need uniform spacing between elements.
+
+Content can set its spacing to either `small`, `base`, or `large`; follow the
+guidelines above as needed.
+
+### Values
+
+export function Example({ of: size }) {
+  const style = {
+    width: `var(--space-${size})`,
+    height: "var(--space-base)",
+    backgroundColor: "var(--color-indigo)",
+  };
+  return <div style={style} />;
+}
+
+export function Height({ of: size }) {
+  const element = document.createElement("div");
+  element.style.height = `var(--space-${size})`;
+  document.body.appendChild(element);
+  const value = getComputedStyle(element).height;
+  element.remove();
+  return value;
+}
+
+| Name                  | Visual                       | Value                       |
+| :-------------------- | :--------------------------- | :-------------------------- |
+| `--space-minuscule`   | <Example of="minuscule" />   | <Height of="minuscule" />   |
+| `--space-smallest`    | <Example of="smallest" />    | <Height of="smallest" />    |
+| `--space-smaller`     | <Example of="smaller" />     | <Height of="smaller" />     |
+| `--space-small`       | <Example of="small" />       | <Height of="small" />       |
+| `--space-base`        | <Example of="base" />        | <Height of="base" />        |
+| `--space-large`       | <Example of="large" />       | <Height of="large" />       |
+| `--space-larger`      | <Example of="larger" />      | <Height of="larger" />      |
+| `--space-largest`     | <Example of="largest" />     | <Height of="largest" />     |
+| `--space-extravagant` | <Example of="extravagant" /> | <Height of="extravagant" /> |
