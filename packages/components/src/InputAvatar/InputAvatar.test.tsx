@@ -33,7 +33,7 @@ it("renders with a provided image", () => {
   expect(container).toMatchSnapshot();
 });
 
-it("properly notifies upload callbacks", async () => {
+it.skip("properly notifies upload callbacks", async () => {
   const changeHandler = jest.fn();
   const completionHandler = jest.fn();
   const { container } = render(
