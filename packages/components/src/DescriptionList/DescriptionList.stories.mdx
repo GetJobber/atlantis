@@ -41,16 +41,12 @@ due dates on an invoice, or the job type, billing type and duration of a job.
 You are able to pass a react element in as the second term of the data tuple.
 
 <Canvas>
-  <Story name="Passing a custom element">
-    {() => (
-      <DescriptionList
-        data={[
-          ["Issued", <FormatDate date={new CivilDate(2018, 12, 8)} />],
-          ["Due", <FormatDate date={new CivilDate(2019, 1, 6)} />],
-        ]}
-      />
-    )}
-  </Story>
+  <DescriptionList
+    data={[
+      ["Issued", <FormatDate date={new CivilDate(2018, 12, 8)} />],
+      ["Due", <FormatDate date={new CivilDate(2019, 1, 6)} />],
+    ]}
+  />
 </Canvas>
 
 ## Related components

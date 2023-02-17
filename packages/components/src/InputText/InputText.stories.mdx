@@ -49,15 +49,11 @@ Use this to allow users to provide long answers. The default number of rows is
 three. Note that `loading={true}` is unimplemented for multiline input text.
 
 <Canvas>
-  <Story name="Multiline">
-    {() => (
-      <InputText
-        multiline={true}
-        placeholder="Describe your age"
-        name="describeAge"
-      />
-    )}
-  </Story>
+  <InputText
+    multiline={true}
+    placeholder="Describe your age"
+    name="describeAge"
+  />
 </Canvas>
 
 ## Multiline with minimum and maximum
@@ -66,15 +62,11 @@ This is to allow flexibility in the displayed textarea size as the user types.
 The textarea will start at a specified minimum and grow to a specified maximum.
 
 <Canvas>
-  <Story name="Multiline with minimum and maximum">
-    {() => (
-      <InputText
-        defaultValue="Rocinante"
-        multiline={true}
-        rows={{ min: 1, max: 4 }}
-      />
-    )}
-  </Story>
+  <InputText
+    defaultValue="Rocinante"
+    multiline={true}
+    rows={{ min: 1, max: 4 }}
+  />
 </Canvas>
 
 ## Prefix/suffix
@@ -92,27 +84,23 @@ With clearer guidance around the purpose of inputs, the user is able to better
 focus on the task at hand.
 
 <Canvas>
-  <Story name="Prefix/Suffix">
-    {() => (
-      <Content>
-        <InputText
-          defaultValue="1,000,000"
-          placeholder="Invoice Total"
-          prefix={{ label: "$", icon: "invoice" }}
-          suffix={{ label: ".00" }}
-        />
-        <InputText
-          placeholder="Search"
-          prefix={{ icon: "search" }}
-          suffix={{
-            icon: "cross",
-            ariaLabel: "clear search",
-            onClick: () => alert("This could clear a search value"),
-          }}
-        />
-      </Content>
-    )}
-  </Story>
+  <Content>
+    <InputText
+      defaultValue="1,000,000"
+      placeholder="Invoice Total"
+      prefix={{ label: "$", icon: "invoice" }}
+      suffix={{ label: ".00" }}
+    />
+    <InputText
+      placeholder="Search"
+      prefix={{ icon: "search" }}
+      suffix={{
+        icon: "cross",
+        ariaLabel: "clear search",
+        onClick: () => alert("This could clear a search value"),
+      }}
+    />
+  </Content>
 </Canvas>
 
 ## Validation message
@@ -169,46 +157,34 @@ This includes, but is not limited to:
 ### Disabled
 
 <Canvas>
-  <Story name="Disabled">
-    {() => (
-      <InputText
-        placeholder="Credit card"
-        value="**** **** **** 1234"
-        disabled={true}
-        name="creditCard"
-      />
-    )}
-  </Story>
+  <InputText
+    placeholder="Credit card"
+    value="**** **** **** 1234"
+    disabled={true}
+    name="creditCard"
+  />
 </Canvas>
 
 ### Read-only
 
 <Canvas>
-  <Story name="Read-only">
-    {() => (
-      <InputText
-        placeholder="Your referral code"
-        value="WXYZ100"
-        readonly={true}
-        name="referralCode"
-      />
-    )}
-  </Story>
+  <InputText
+    placeholder="Your referral code"
+    value="WXYZ100"
+    readonly={true}
+    name="referralCode"
+  />
 </Canvas>
 
 ### Invalid
 
 <Canvas>
-  <Story name="Invalid">
-    {() => (
-      <InputText
-        placeholder="Email"
-        value="atlantis"
-        invalid={true}
-        name="emailAddress"
-      />
-    )}
-  </Story>
+  <InputText
+    placeholder="Email"
+    value="atlantis"
+    invalid={true}
+    name="emailAddress"
+  />
 </Canvas>
 
 ## Sizes
@@ -216,39 +192,29 @@ This includes, but is not limited to:
 ### Small
 
 <Canvas>
-  <Story name="Small">
-    {() => <InputText name="smallField" size="small" placeholder="Duration" />}
-  </Story>
+  <InputText name="smallField" size="small" placeholder="Duration" />}
 </Canvas>
 
 ### Large
 
 <Canvas>
-  <Story name="Large">
-    {() => (
-      <InputText name="largeField" size="large" placeholder="Your username" />
-    )}
-  </Story>
+  <InputText name="largeField" size="large" placeholder="Your username" />
 </Canvas>
 
 ## Inline
 
 <Canvas>
-  <Story name="Inline">
-    {() => (
-      <Text>
-        My name is
-        <InputText
-          name="durationInDays"
-          value="Jeff"
-          size="small"
-          inline={true}
-          maxLength={4}
-          align="center"
-        />
-      </Text>
-    )}
-  </Story>
+  <Text>
+    My name is
+    <InputText
+      name="durationInDays"
+      value="Jeff"
+      size="small"
+      inline={true}
+      maxLength={4}
+      align="center"
+    />
+  </Text>
 </Canvas>
 
 ## Insertion
@@ -306,15 +272,11 @@ This includes, but is not limited to:
 Determine what default keyboard appears on mobile web.
 
 <Canvas>
-  <Story name="Keyboard">
-    {() => (
-      <InputText
-        placeholder="Describe your age"
-        name="describeAge"
-        keyboard="numeric"
-      />
-    )}
-  </Story>
+  <InputText
+    placeholder="Describe your age"
+    name="describeAge"
+    keyboard="numeric"
+  />
 </Canvas>
 
 ## Loading
@@ -323,16 +285,12 @@ Add a loading state to content. Note that `loading={true}` is unimplemented for
 multiline input text, i.e., when `multiline={true}`.
 
 <Canvas>
-  <Story name="Loading">
-    {() => (
-      <InputText
-        placeholder="Checking phone number"
-        name="phoneNumber"
-        loading={true}
-        keyboard="numeric"
-      />
-    )}
-  </Story>
+  <InputText
+    placeholder="Checking phone number"
+    name="phoneNumber"
+    loading={true}
+    keyboard="numeric"
+  />
 </Canvas>
 
 ## Using onValidation

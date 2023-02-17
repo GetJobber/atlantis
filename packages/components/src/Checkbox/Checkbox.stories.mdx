@@ -93,14 +93,10 @@ If there is more information needed for a `Checkbox`, use the `description` prop
 instead of a longer `label`.
 
 <Canvas>
-  <Story name="With a description">
-    {() => (
-      <Checkbox
-        label="Save card for future use"
-        description="If you save your card now, you'll never need to save it again."
-      />
-    )}
-  </Story>
+  <Checkbox
+    label="Save card for future use"
+    description="If you save your card now, you'll never need to save it again."
+  />
 </Canvas>
 
 ## Disabled
@@ -114,15 +110,11 @@ description for the user on how to enable the checkbox to avoid creating a sense
 that the user has lost control of the interface.
 
 <Canvas>
-  <Story name="Disabled">
-    {() => (
-      <Checkbox
-        disabled={true}
-        defaultChecked={true}
-        label="Subscribe on marketing emails"
-      />
-    )}
-  </Story>
+  <Checkbox
+    disabled={true}
+    defaultChecked={true}
+    label="Subscribe on marketing emails"
+  />
 </Canvas>
 
 ## Children as the label
