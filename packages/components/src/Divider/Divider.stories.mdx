@@ -17,11 +17,13 @@ import { Divider } from "@jobber/components/Divider";
 
 <Canvas>
   <Story name="Divider">
-    <Content>
-      <Content>Some amazing content</Content>
-      <Divider />
-      <Content>Even more amazing content</Content>
-    </Content>
+    {args => (
+      <Content>
+        <Content>Some amazing content</Content>
+        <Divider {...args} />
+        <Content>Even more amazing content</Content>
+      </Content>
+    )}
   </Story>
 </Canvas>
 

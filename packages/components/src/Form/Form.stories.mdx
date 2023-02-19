@@ -23,11 +23,12 @@ import { Form } from "@jobber/components/Form";
 
 <Canvas>
   <Story name="Form">
-    {() => {
+    {args => {
       const [{ isDirty, isValid }, setFormState] = useFormState();
       const [first, setFirst] = useState("");
       return (
         <Form
+          {...args}
           onSubmit={() => alert("Submitted 🎉🎉🎉")}
           onStateChange={setFormState}
         >
