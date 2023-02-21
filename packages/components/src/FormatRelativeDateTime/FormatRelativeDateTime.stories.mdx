@@ -1,5 +1,4 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
-import { CivilDateTime } from "@std-proposal/temporal";
 import { FormatRelativeDateTime } from ".";
 
 <Meta
@@ -20,7 +19,9 @@ import { FormatRelativeDateTime } from "@jobber/components/FormatRelativeDateTim
 <Canvas>
   <Story
     name="FormatRelativeDateTime"
-    args={{ date: new CivilDateTime(2020, 2, 26, 14, 29, 39) }}
+    args={{
+      date: new Date(new Date().setMinutes(new Date().getMinutes() - 5)),
+    }}
   >
     {args => <FormatRelativeDateTime {...args} />}
   </Story>
