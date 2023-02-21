@@ -6,7 +6,6 @@ import { Content } from "@jobber/components/Content";
 import { Card } from "@jobber/components/Card";
 import { InputText } from "@jobber/components/InputText";
 import { Button } from "@jobber/components/Button";
-import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 
 <Meta title="Components/Form" component={Form} />
 
@@ -80,79 +79,76 @@ import { Form } from "@jobber/components/Form";
 practice to use the [`useFormState`](/hooks/useFormState) hook with the
 `onStateChange` prop.
 
-<Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const [formState, setFormState] = useFormState();
-      return (
-        <>
-          <Form
-            onSubmit={() => alert("submitted")}
-            onStateChange={setFormState}
-          >
-            <InputText
-              placeholder="First Name"
-              name="firstName"
-              validations={{
-                required: {
-                  value: true,
-                  message: "Tell us your name",
-                },
-                minLength: {
-                  value: 3,
-                  message: "Your name is too short.",
-                },
-              }}
-            />
-          </Form>
-          <pre>{JSON.stringify(formState, null, 2)}</pre>
-        </>
-      );
-    }}
-  </ExampleWithHooks>
+<Canvas withSource="none">
+  <OnStateChangeExample />
 </Canvas>
+
+export function OnStateChangeExample() {
+  const [formState, setFormState] = useFormState();
+  return (
+    <>
+      <Form onSubmit={() => alert("submitted")} onStateChange={setFormState}>
+        <InputText
+          placeholder="First Name"
+          name="firstName"
+          validations={{
+            required: {
+              value: true,
+              message: "Tell us your name",
+            },
+            minLength: {
+              value: 3,
+              message: "Your name is too short.",
+            },
+          }}
+        />
+      </Form>
+      <pre>{JSON.stringify(formState, null, 2)}</pre>
+    </>
+  );
+}
 
 ## Triggering submission
 
 Submission of a Form can be done outside of the Form itself by using the
 `validate` function that is exposed.
 
-<Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const formRef = useRef();
-      return (
+<Canvas withSource="none">
+  <TriggeringSubmissionExample />
+</Canvas>
+
+export function TriggeringSubmissionExample() {
+  const formRef = useRef();
+  return (
+    <Content>
+      <Form onSubmit={() => alert("Submitted 🎉🎉🎉")} ref={formRef}>
         <Content>
-          <Form onSubmit={() => alert("Submitted 🎉🎉🎉")} ref={formRef}>
-            <Content>
-              <InputText
-                placeholder="First Name"
-                name="firstName"
-                validations={{
-                  required: {
-                    value: true,
-                    message: "Tell us your name",
-                  },
-                }}
-              />
-              <InputText
-                placeholder="Last Name"
-                name="lastName"
-                validations={{
-                  required: {
-                    value: true,
-                    message: "Tell us your last name.",
-                  },
-                }}
-              />
-            </Content>
-          </Form>
-          <Button
-            label="Submit Form from the outside"
-            onClick={() => formRef.current.submit()}
+          <InputText
+            placeholder="First Name"
+            name="firstName"
+            validations={{
+              required: {
+                value: true,
+                message: "Tell us your name",
+              },
+            }}
+          />
+          <InputText
+            placeholder="Last Name"
+            name="lastName"
+            validations={{
+              required: {
+                value: true,
+                message: "Tell us your last name.",
+              },
+            }}
           />
         </Content>
-      );
-    }}
-  </ExampleWithHooks>
-</Canvas>
+      </Form>
+      <Button
+        label="Submit Form from the outside"
+        onClick={() => formRef.current.submit()}
+      />
+    </Content>
+  );
+}
