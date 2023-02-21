@@ -1,4 +1,6 @@
+import { isValidElement } from "react";
 import { Canvas, Meta, Source, Story } from "@storybook/addon-docs";
+import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 import { Text } from "@jobber/components/Text";
 import { Card } from "@jobber/components/Card";
 import { Content } from "@jobber/components/Content";
@@ -75,7 +77,7 @@ import { Breakpoints } from "@jobber/hooks";
 want to use `Breakpoints`.
 
 <Canvas withToolbar>
-  <Story name="Custom size">
+  <ExampleWithHooks>
     {() => {
       const customWidths = {
         small: 480,
@@ -106,7 +108,7 @@ want to use `Breakpoints`.
         );
       }
     }}
-  </Story>
+  </ExampleWithHooks>
 </Canvas>
 
 ## Testing with Jest
