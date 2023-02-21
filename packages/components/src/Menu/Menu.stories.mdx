@@ -1,5 +1,4 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
-import { createRef, useState } from "react";
 import { Button } from "@jobber/components/Button";
 import { Menu } from "@jobber/components/Menu";
 
@@ -16,45 +15,44 @@ import { Menu } from "@jobber/components/Menu";
 ```
 
 <Canvas>
-  <Story name="Menu">
-    {() => {
-      return (
-        <Menu
-          items={[
+  <Story
+    name="Menu"
+    args={{
+      items: [
+        {
+          actions: [
             {
-              actions: [
-                {
-                  label: "Edit",
-                  icon: "edit",
-                  onClick: () => {
-                    alert("✏️");
-                  },
-                },
-              ],
+              label: "Edit",
+              icon: "edit",
+              onClick: () => {
+                alert("✏️");
+              },
+            },
+          ],
+        },
+        {
+          header: "Send as...",
+          actions: [
+            {
+              label: "Text message",
+              icon: "sms",
+              onClick: () => {
+                alert("📱");
+              },
             },
             {
-              header: "Send as...",
-              actions: [
-                {
-                  label: "Text message",
-                  icon: "sms",
-                  onClick: () => {
-                    alert("📱");
-                  },
-                },
-                {
-                  label: "Email",
-                  icon: "email",
-                  onClick: () => {
-                    alert("📨");
-                  },
-                },
-              ],
+              label: "Email",
+              icon: "email",
+              onClick: () => {
+                alert("📨");
+              },
             },
-          ]}
-        />
-      );
+          ],
+        },
+      ],
     }}
+  >
+    {args => <Menu {...args} />}
   </Story>
 </Canvas>
 

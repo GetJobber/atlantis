@@ -9,7 +9,7 @@ import { InputValidation } from "@jobber/components/InputValidation";
 
 # Input Validation
 
-<Banner type="warning">
+<Banner type="warning" dismissible={false}>
   90% of validation for inputs will be handled out-of-the-box by the{" "}
   <a href="/components/input-text/#validation-message">
     input component's validation
@@ -31,9 +31,9 @@ import { InputValidation } from "@jobber/components/InputValidation";
 <Canvas>
   <Story name="InputValidation">
     {() => {
-      const [validationMessages, setValidationMessages] = useState(undefined);
+      const [validationMessages, setValidationMessages] = useState();
       return (
-        <div>
+        <>
           <Text>
             My name is
             <InputText
@@ -57,7 +57,7 @@ import { InputValidation } from "@jobber/components/InputValidation";
           {validationMessages && (
             <InputValidation message={validationMessages} />
           )}
-        </div>
+        </>
       );
     }}
   </Story>

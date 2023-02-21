@@ -1,7 +1,7 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
-import { Tabs, Tab } from "@jobber/components/Tabs";
+import { Tab, Tabs } from "@jobber/components/Tabs";
 
-<Meta title="Components/Tabs" component={Tabs} />
+<Meta title="Components/Tabs" component={Tabs} subcomponents={{ Tab }} />
 
 # Tabs
 
@@ -39,7 +39,7 @@ import { Tabs, Tab } from "@jobber/components/Tabs";
 
 ## Props
 
-<ArgsTable of={Tab} story="Tabs" />
+<ArgsTable of={Tabs} story="Tabs" />
 
 ## Design & usage guidelines
 

@@ -15,10 +15,15 @@ The `<Disclosure>` will reveal and hide additional information that the user may
 care about, should they choose to learn more about it.
 
 <Canvas>
-  <Story name="Disclosure">
-    {() => {
+  <Story
+    name="Disclosure"
+    args={{
+      title: "Advanced instructions",
+    }}
+  >
+    {args => {
       return (
-        <Disclosure title="Advanced instructions">
+        <Disclosure {...args}>
           <Content>
             <Text>
               Here is some helpful information to level up your business:
@@ -74,8 +79,8 @@ optional setting that a user _may_ want to change but is not required to, a
 - Include aria-controls attribute ties on the trigger to the content it controls
   using the id of the collapsible container
 - The trigger contains a downward-pointing-arrow to hint that it can be
-  expanded. when the disclosure item is in expanded state, this is rotated 180
-  degrees to point upwards
+  expanded. when the disclosure item is in an expanded state, this is rotated
+  180 degrees to point upwards
 - The icon will be given an `aria-hidden="true"` attribute to hide it from
   assistive technologies, as well as `focusable="false"` to address an
   inconsistency in IE and older versions of Edge
@@ -92,9 +97,9 @@ optional setting that a user _may_ want to change but is not required to, a
 
 ### Trade-offs, considerations, and things we want to remember
 
-- We may, in the future, setup an onchange handler that receives
-  expanded/collapsed events. For example so other parts of a page, SPA or not,
-  can subscribe to this and react accordingly.
+- We may, in the future, set up an onChange handler that receives
+  expanded/collapsed events. For example, other parts of a page, SPA or not, can
+  subscribe to this and react accordingly.
 - While this is roughly based on a legacy Jobber implementation of an accordion,
   we haven't fleshed out exactly how Disclosure will behave and look if used in
   an accordion fashion
@@ -105,14 +110,9 @@ optional setting that a user _may_ want to change but is not required to, a
 
 ### Similar components in other design systems
 
-https://reakit.io/docs/disclosure/
-
-https://reach.tech/disclosure/
-
-https://chakra-ui.com/usedisclosure
-
-https://github.com/accessible-ui/disclosure
-
-https://developer.apple.com/design/human-interface-guidelines/macos/buttons/disclosure-controls/
-
-https://polaris.shopify.com/components/behavior/collapsible
+- https://reakit.io/docs/disclosure/
+- https://reach.tech/disclosure/
+- https://chakra-ui.com/usedisclosure
+- https://github.com/accessible-ui/disclosure
+- https://developer.apple.com/design/human-interface-guidelines/macos/buttons/disclosure-controls/
+- https://polaris.shopify.com/components/behavior/collapsible

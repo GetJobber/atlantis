@@ -18,16 +18,19 @@ import { Drawer } from "@jobber/components/Drawer";
 ```
 
 <Canvas>
-  <Story name="Drawer">
-    {() => {
-      const [drawerOpen, setDrawerOpen] = useState(true);
+  <Story
+    name="Drawer"
+    args={{ id: "drawer-element", title: "Drawer", open: true }}
+  >
+    {args => {
+      const [drawerOpen, setDrawerOpen] = useState(args.open);
       return (
         <DrawerGrid>
           <Page title="Page" width="fill" intro="">
             <Content>
               <Button
                 label="Toggle Drawer"
-                ariaControls="drawer-element"
+                ariaControls={args.id}
                 onClick={() => setDrawerOpen(!drawerOpen)}
               />
               <Text>
@@ -42,8 +45,7 @@ import { Drawer } from "@jobber/components/Drawer";
             </Content>
           </Page>
           <Drawer
-            id="drawer-element"
-            title="Drawer"
+            {...args}
             open={drawerOpen}
             onRequestClose={() => setDrawerOpen(!drawerOpen)}
           >

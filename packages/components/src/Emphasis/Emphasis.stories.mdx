@@ -15,11 +15,16 @@ import { Emphasis } from "@jobber/components/Emphasis";
 ```
 
 <Canvas>
-  <Story name="Emphasis">
-    {() => {
+  <Story
+    name="Emphasis"
+    args={{
+      variation: "bold",
+    }}
+  >
+    {args => {
       return (
         <Text>
-          To <Emphasis variation="bold">boldly</Emphasis> go…
+          To <Emphasis {...args}>boldly</Emphasis> go…
         </Text>
       );
     }}
