@@ -1,13 +1,18 @@
+import { useState } from "react";
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
 import { Checkbox } from "@jobber/components/Checkbox";
 import { Divider } from "@jobber/components/Divider";
 import { Avatar } from "@jobber/components/Avatar";
-import { useState } from "react";
-import { RadioGroup } from "@jobber/components/RadioGroup";
-import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { RadioGroup, RadioOption } from "@jobber/components/RadioGroup";
 
-<Meta title="Components/RadioGroup" component={RadioGroup} />
+<Meta
+  title="Components/RadioGroup"
+  component={RadioGroup}
+  subcomponents={{ RadioOption }}
+/>
 
 # Radio Group
 
@@ -37,7 +42,7 @@ import { RadioGroup } from "@jobber/components/RadioGroup";
 
 ## RadioOption props
 
-<Props of={RadioOption} />
+<ArgsTable of={RadioOption} story="RadioGroup" />
 
 ## Disabled
 
@@ -45,7 +50,7 @@ import { RadioGroup } from "@jobber/components/RadioGroup";
 option will prevent a user from being able to select the option.
 
 <Canvas>
-  <Story name="Disabled">
+  <ExampleWithHooks>
     {() => {
       const [company, setCompany] = useState("apple");
       const [checked, setChecked] = useState(true);
@@ -74,7 +79,7 @@ option will prevent a user from being able to select the option.
         </Content>
       );
     }}
-  </Story>
+  </ExampleWithHooks>
 </Canvas>
 
 ## Description
@@ -82,7 +87,7 @@ option will prevent a user from being able to select the option.
 A `description` can be used to further describe the label of the `RadioOption`.
 
 <Canvas>
-  <Story name="Description">
+  <ExampleWithHooks>
     {() => {
       const [company, setCompany] = useState("apple");
       return (
@@ -105,7 +110,7 @@ A `description` can be used to further describe the label of the `RadioOption`.
         </RadioGroup>
       );
     }}
-  </Story>
+  </ExampleWithHooks>
 </Canvas>
 
 ## Render RadioOption with children
@@ -121,7 +126,7 @@ the proper accessible labels. If you are using children that do not contain
 text, an `aria-label` should be provided.
 
 <Canvas>
-  <Story name="RadioOption with children">
+  <ExampleWithHooks>
     {() => {
       const [company, setPhoto] = useState("JBR");
       const users = [
@@ -137,7 +142,7 @@ text, an `aria-label` should be provided.
             <Text>Select a user</Text>
             <RadioGroup onChange={setPhoto} value={company} ariaLabel="Users">
               {users.map(user => (
-                <RadioOption value={user.name}>
+                <RadioOption value={user.name} key={user.name}>
                   <Avatar initials={user.initials} name={user.name} />
                 </RadioOption>
               ))}
@@ -146,5 +151,5 @@ text, an `aria-label` should be provided.
         </>
       );
     }}
-  </Story>
+  </ExampleWithHooks>
 </Canvas>
