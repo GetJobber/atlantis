@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 import { Tooltip } from "@jobber/components/Tooltip";
 import { Avatar } from "@jobber/components/Avatar";
 
@@ -7,25 +8,25 @@ import { Avatar } from "@jobber/components/Avatar";
 
 # Avatar
 
-An avatar will be used to display an visual identifier for an individual user.
+An avatar will be used to display a visual identifier for an individual user.
 
 ```ts
 import { Avatar } from "@jobber/components/Avatar";
 ```
 
 <Canvas>
-  <Story name="Avatar">
-    {() => {
-      return (
-        <Avatar
-          imageUrl="https://images.unsplash.com/photo-1533858539156-90ea20bafd17?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80"
-          name="The Jobbler"
-          size="large"
-          initials="JBLR"
-          color="var(--color-indigo)"
-        />
-      );
+  <Story
+    name="Avatar"
+    args={{
+      imageUrl:
+        "https://images.unsplash.com/photo-1533858539156-90ea20bafd17?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80",
+      name: "The Jobbler",
+      size: "large",
+      initials: "JBLR",
+      color: "var(--color-indigo)",
     }}
+  >
+    {args => <Avatar {...args} />}
   </Story>
 </Canvas>
 
@@ -56,7 +57,7 @@ color that represents a user in other parts of the application, such as the
 calendar.
 
 <Canvas>
-  <Story name="Color">
+  <ExampleWithHooks>
     {() => {
       const [color, setColor] = useState("#7db00e");
       const style = {
@@ -97,7 +98,7 @@ calendar.
         </>
       );
     }}
-  </Story>
+  </ExampleWithHooks>
 </Canvas>
 
 ## Usage with Tooltip
@@ -105,16 +106,9 @@ calendar.
 If an avatar is displayed without a name label, display a tooltip.
 
 <Canvas>
-  <Story name="Usage with Tooltip">
-    {() => {
-      const [name] = useState("The Jobbler");
-      return (
-        <Tooltip message={name}>
-          <Avatar size="large" initials="JBLR" />
-        </Tooltip>
-      );
-    }}
-  </Story>
+  <Tooltip message="The Jobbler">
+    <Avatar size="large" initials="JBLR" />
+  </Tooltip>
 </Canvas>
 
 ##### Avatar image credit
