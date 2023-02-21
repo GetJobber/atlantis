@@ -1,8 +1,9 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
-import { Button } from "@jobber/components/Button";
-import { Autocomplete } from "@jobber/components/Autocomplete";
 import { useState } from "react";
 import cloneDeep from "lodash/cloneDeep";
+import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
+import { Button } from "@jobber/components/Button";
+import { Autocomplete } from "@jobber/components/Autocomplete";
 
 <Meta title="Components/Autocomplete" component={Autocomplete} />
 
@@ -64,11 +65,11 @@ import { Autocomplete } from "@jobber/components/Autocomplete";
 ## With details
 
 You can add a description to an option, which will appear below the option's
-label. You can also add a detail to an option which shows on the option's the
+label. You can also add detail to an option that shows on the option's the
 bottom right. Both of these are optional per option.
 
 <Canvas>
-  <Story name="With details">
+  <ExampleWithHooks>
     {() => {
       const options = [
         {
@@ -108,7 +109,7 @@ bottom right. Both of these are optional per option.
         );
       }
     }}
-  </Story>
+  </ExampleWithHooks>
 </Canvas>
 
 ## Section headings
@@ -116,7 +117,7 @@ bottom right. Both of these are optional per option.
 An autocomplete can provide section headings to break up the options.
 
 <Canvas>
-  <Story name="Section headings">
+  <ExampleWithHooks>
     {() => {
       const options = [
         {
@@ -170,7 +171,7 @@ An autocomplete can provide section headings to break up the options.
         });
       }
     }}
-  </Story>
+  </ExampleWithHooks>
 </Canvas>
 
 ## Kitchen sink
@@ -179,7 +180,7 @@ This autocomplete uses section headings, details, descriptions and option
 separators.
 
 <Canvas>
-  <Story name="Kitchen sink">
+  <ExampleWithHooks>
     {() => {
       const options = [
         {
@@ -245,7 +246,7 @@ separators.
         });
       }
     }}
-  </Story>
+  </ExampleWithHooks>
 </Canvas>
 
 ## Setting a value
@@ -253,7 +254,7 @@ separators.
 You can supply a value to `Autocomplete` in the form of an active `Option`.
 
 <Canvas>
-  <Story name="Setting a value">
+  <ExampleWithHooks>
     {() => {
       const options = [
         { value: 1, label: "Nostromo" },
@@ -296,7 +297,7 @@ You can supply a value to `Autocomplete` in the form of an active `Option`.
         return options.filter(option => option.label.match(filterRegex));
       }
     }}
-  </Story>
+  </ExampleWithHooks>
 </Canvas>
 
 ## Async requests for options
@@ -305,7 +306,7 @@ The `getOptions` method expected to be async so you can do any desired requests
 using either promises or `await` in `getOptions`.
 
 <Canvas>
-  <Story name="Async request for options">
+  <ExampleWithHooks>
     {() => {
       const options = [
         { value: 1, label: "Nostromo" },
@@ -337,7 +338,7 @@ using either promises or `await` in `getOptions`.
         });
       }
     }}
-  </Story>
+  </ExampleWithHooks>
 </Canvas>
 
 ## Related components
