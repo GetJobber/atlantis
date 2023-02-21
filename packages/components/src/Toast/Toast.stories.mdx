@@ -9,7 +9,7 @@ import { Toast, showToast } from "@jobber/components/Toast";
 
 Toasts are short, temporary messages used to inform users that a process was
 performed. They provide visual feedback on the outcome of an action, and require
-minimal user interacction.
+minimal user interaction.
 
 Toast, unlike common React components is not a component that will be added to
 your view. Instead, Toast is used by importing and calling the `showToast()`
@@ -20,23 +20,17 @@ import { showToast } from "@jobber/components/Toast";
 ```
 
 <Canvas>
-  <Story name="Toast">
-    {() => {
-      return (
-        <Button
-          label="show toast"
-          onClick={() =>
-            showToast({
-              message: "Toast has been toasted",
-            })
-          }
-        />
-      );
+  <Story
+    name="Toast"
+    args={{
+      message: "Toast has been toasted",
     }}
+  >
+    {args => <Button label="Show toast" onClick={() => showToast(args)} />}
   </Story>
 </Canvas>
 
-<ArgsTable of={Toast} story="Toast" />
+<ArgsTable of={showToast} story="Toast" />
 
 ## Design & usage guidelines
 
@@ -73,31 +67,23 @@ In some cases, an informational Toast may be used to inform the user of some
 background system activity.
 
 <Canvas>
-  <Story name="variations">
-    {() => {
-      return (
-        <>
-          <Button
-            label="Info Toast"
-            variation="learning"
-            onClick={() =>
-              showToast({
-                message: "Toasting is underway",
-                variation: "info",
-              })
-            }
-          />
-          <Button
-            label="Success Toast"
-            onClick={() =>
-              showToast({
-                message: "Toast is ready",
-                variation: "success",
-              })
-            }
-          />
-        </>
-      );
-    }}
-  </Story>
+  <Button
+    label="Info Toast"
+    variation="learning"
+    onClick={() =>
+      showToast({
+        message: "Toasting is underway",
+        variation: "info",
+      })
+    }
+  />
+  <Button
+    label="Success Toast"
+    onClick={() =>
+      showToast({
+        message: "Toast is ready",
+        variation: "success",
+      })
+    }
+  />
 </Canvas>

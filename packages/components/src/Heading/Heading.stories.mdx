@@ -13,9 +13,9 @@ import { Heading } from "@jobber/components/Heading";
 ```
 
 <Canvas>
-  <Story name="Heading">
+  <Story name="Heading" args={{ level: 2 }}>
     {() => {
-      return <Heading level={2}>Subtitle</Heading>;
+      return <Heading {...args}>Subtitle</Heading>;
     }}
   </Story>
 </Canvas>
@@ -30,11 +30,7 @@ This should explain the main subject of the page. There should only be one on a
 page.
 
 <Canvas>
-  <Story name="Heading 1">
-    {() => {
-      return <Heading level={1}>New client</Heading>;
-    }}
-  </Story>
+  <Heading level={1}>New client</Heading>
 </Canvas>
 
 ### Heading 2
@@ -45,18 +41,10 @@ categories when creating a new client: client details and property details.
 This heading can be skipped if there are no large groups that need breaking up.
 
 <Canvas>
-  <Story name="Heading 2">
-    {() => {
-      return (
-        <>
-          <Heading level={2}>Client details</Heading>
-          ...
-          <Heading level={2}>Property details</Heading>
-          ...
-        </>
-      );
-    }}
-  </Story>
+  <Heading level={2}>Client details</Heading>
+  ...
+  <Heading level={2}>Property details</Heading>
+  ...
 </Canvas>
 
 ### Heading 3
@@ -64,20 +52,12 @@ This heading can be skipped if there are no large groups that need breaking up.
 Used to group content and forms on a single topic.
 
 <Canvas>
-  <Story name="Heading 3">
-    {() => {
-      return (
-        <>
-          <Heading level={3}>Contact details</Heading>
-          ...
-          <Heading level={3}>Notifications</Heading>
-          ...
-          <Heading level={3}>Additional details</Heading>
-          ...
-        </>
-      );
-    }}
-  </Story>
+  <Heading level={3}>Contact details</Heading>
+  ...
+  <Heading level={3}>Notifications</Heading>
+  ...
+  <Heading level={3}>Additional details</Heading>
+  ...
 </Canvas>
 
 ### Heading 4
@@ -86,20 +66,12 @@ Used to group contents after a [heading 3](#heading-3) or inside a card
 component.
 
 <Canvas>
-  <Story name="Heading 4">
-    {() => {
-      return (
-        <>
-          <Heading level={4}>Phone numbers</Heading>
-          ...
-          <Heading level={4}>Email</Heading>
-          ...
-          <Heading level={4}>Pigeon</Heading>
-          ...
-        </>
-      );
-    }}
-  </Story>
+  <Heading level={4}>Phone numbers</Heading>
+  ...
+  <Heading level={4}>Email</Heading>
+  ...
+  <Heading level={4}>Pigeon</Heading>
+  ...
 </Canvas>
 
 ### Heading 5
@@ -107,11 +79,7 @@ component.
 Used to group contents after a [heading 4](#heading-4).
 
 <Canvas>
-  <Story name="Heading 5">
-    {() => {
-      return <Heading level={5}>Receives SMS</Heading>;
-    }}
-  </Story>
+  <Heading level={5}>Receives SMS</Heading>;
 </Canvas>
 
 ### Heading 6
@@ -120,20 +88,12 @@ Used to group contents after a [heading 5](#heading-5) or to group small lists
 of content.
 
 <Canvas>
-  <Story name="Heading 6">
-    {() => {
-      return (
-        <>
-          <Heading level={6}>Business Settings</Heading>
-          ...
-          <Heading level={6}>Organization Settings</Heading>
-          ...
-          <Heading level={6}>Communication Settings</Heading>
-          ...
-        </>
-      );
-    }}
-  </Story>
+  <Heading level={6}>Business Settings</Heading>
+  ...
+  <Heading level={6}>Organization Settings</Heading>
+  ...
+  <Heading level={6}>Communication Settings</Heading>
+  ...
 </Canvas>
 
 ---

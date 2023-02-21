@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 import { DataDump } from "@jobber/components/DataDump";
 import { Content } from "@jobber/components/Content";
 import { Button } from "@jobber/components/Button";
@@ -22,11 +23,11 @@ import { DatePicker } from "@jobber/components/DatePicker";
 
 <Canvas>
   <Story name="DatePicker">
-    {() => {
-      const [date, setDate] = useState();
+    {args => {
+      const [date, setDate] = useState(args.date);
       return (
         <Content>
-          <DatePicker selected={date} onChange={setDate} />
+          <DatePicker {...args} selected={date} onChange={setDate} />
           {date && <DataDump defaultOpen data={date} />}
         </Content>
       );
@@ -51,8 +52,8 @@ entering their date selection, such as providing a `date` input.
 
 Use an inline Datepicker when you have sufficient space in the interface to have
 a permanent date selection fixture, or when date selection is the primary
-function of the interface, such as a stepped flow where the user is being asked
-a series of scheduling questions individually, in sequence.
+function of the interface, such as a stepped flow where the user is asked a
+series of scheduling questions individually, in sequence.
 
 In cases like complex scheduling forms where all the factors of a schedule such
 as times, repeating frequency, and duration are being asked, consider using the
@@ -60,7 +61,7 @@ default popover-type behaviour for those use cases to reduce an overwhelming
 volume of UI elements to process at once.
 
 <Canvas>
-  <Story name="Inline">
+  <ExampleWithHooks>
     {() => {
       const [date, setDate] = useState();
       return (
@@ -72,7 +73,7 @@ volume of UI elements to process at once.
         </Content>
       );
     }}
-  </Story>
+  </ExampleWithHooks>
 </Canvas>
 
 ## Custom activator
@@ -81,7 +82,7 @@ If you want to use a different activator to display the `DatePicker` you can
 pass a `React` component as the `activator`.
 
 <Canvas>
-  <Story name="Custom activator">
+  <ExampleWithHooks>
     {() => {
       const [date, setDate] = useState();
       return (
@@ -97,7 +98,7 @@ pass a `React` component as the `activator`.
         </Content>
       );
     }}
-  </Story>
+  </ExampleWithHooks>
 </Canvas>
 
 ## Restricting date ranges
@@ -106,7 +107,7 @@ If you want to enable for selection only a range of dates you can pass `minDate`
 or `maxDate` to the component as props.
 
 <Canvas>
-  <Story name="Restricting date ranges">
+  <ExampleWithHooks>
     {() => {
       const [date, setDate] = useState(new Date("02/17/2022"));
       return (
@@ -124,7 +125,7 @@ or `maxDate` to the component as props.
         </Content>
       );
     }}
-  </Story>
+  </ExampleWithHooks>
 </Canvas>
 
 ## Accessibility

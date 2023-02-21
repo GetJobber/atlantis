@@ -1,6 +1,6 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
-import { Gallery } from "@jobber/components/Gallery";
 import { Figma } from "storybook-addon-designs/blocks";
+import { Gallery } from "@jobber/components/Gallery";
 
 <Meta title="Components/Gallery" component={Gallery} />
 
@@ -10,85 +10,87 @@ import { Figma } from "storybook-addon-designs/blocks";
 import { Gallery } from "@jobber/components/Gallery";
 ```
 
+export const files = [
+  {
+    key: "abc",
+    name: "myballisbigandroundIamrollingitontheground.png",
+    type: "image/png",
+    size: 213402324,
+    progress: 1,
+    src: "https://source.unsplash.com/250x250",
+  },
+  {
+    key: "def",
+    name: "iamanimage.png",
+    type: "image/png",
+    size: 124525234,
+    progress: 1,
+    src: "https://source.unsplash.com/250x250",
+  },
+  {
+    key: "efg",
+    name: "upanddown.png",
+    type: "image/png",
+    size: 233411234,
+    progress: 1,
+    src: "https://source.unsplash.com/250x250",
+  },
+  {
+    key: "jkl",
+    name: "kramer.png",
+    type: "image/png",
+    size: 233411234,
+    progress: 1,
+    src: "https://source.unsplash.com/250x250",
+  },
+  {
+    key: "mno",
+    name: "boston.png",
+    type: "image/png",
+    size: 233411234,
+    progress: 1,
+    src: "https://source.unsplash.com/250x250",
+  },
+  {
+    key: "pqr",
+    name: "pizzaisgood.png",
+    type: "image/png",
+    size: 233411234,
+    progress: 1,
+    src: "https://source.unsplash.com/250x250",
+  },
+  {
+    key: "pQ=",
+    name: "avatar.png",
+    type: "image/png",
+    size: 233411234,
+    progress: 1,
+    src: "https://source.unsplash.com/250x250",
+  },
+  {
+    key: "fGr",
+    name: "whatevenisthat.png",
+    type: "image/png",
+    size: 233411234,
+    progress: 1,
+    src: "https://source.unsplash.com/250x250",
+  },
+  {
+    key: "AM=",
+    name: "stairs.png",
+    type: "image/png",
+    size: 233411234,
+    progress: 1,
+    src: "https://source.unsplash.com/250x250",
+  },
+];
+
 <Canvas>
-  <Story name="Gallery">
-    {() => {
+  <Story name="Gallery" args={{ files }}>
+    {args => {
       return (
         <Gallery
-          files={[
-            {
-              key: "abc",
-              name: "myballisbigandroundIamrollingitontheground.png",
-              type: "image/png",
-              size: 213402324,
-              progress: 1,
-              src: "https://source.unsplash.com/250x250",
-            },
-            {
-              key: "def",
-              name: "iamanimage.png",
-              type: "image/png",
-              size: 124525234,
-              progress: 1,
-              src: "https://source.unsplash.com/250x250",
-            },
-            {
-              key: "efg",
-              name: "upanddown.png",
-              type: "image/png",
-              size: 233411234,
-              progress: 1,
-              src: "https://source.unsplash.com/250x250",
-            },
-            {
-              key: "jkl",
-              name: "kramer.png",
-              type: "image/png",
-              size: 233411234,
-              progress: 1,
-              src: "https://source.unsplash.com/250x250",
-            },
-            {
-              key: "mno",
-              name: "boston.png",
-              type: "image/png",
-              size: 233411234,
-              progress: 1,
-              src: "https://source.unsplash.com/250x250",
-            },
-            {
-              key: "pqr",
-              name: "pizzaisgood.png",
-              type: "image/png",
-              size: 233411234,
-              progress: 1,
-              src: "https://source.unsplash.com/250x250",
-            },
-            {
-              key: "pQ=",
-              name: "avatar.png",
-              type: "image/png",
-              size: 233411234,
-              progress: 1,
-              src: "https://source.unsplash.com/250x250",
-            },
-            {
-              key: "fGr",
-              name: "whatevenisthat.png",
-              type: "image/png",
-              size: 233411234,
-              progress: 1,
-              src: "https://source.unsplash.com/250x250",
-            },
-            {
-              key: "AM=",
-              name: "stairs.png",
-              type: "image/png",
-              size: 233411234,
-              progress: 1,
-              src: "https://source.unsplash.com/250x250",
-            },
-          ]}
+          {...args}
           onDelete={file => {
             alert("Deleted " + file.name);
           }}
@@ -113,57 +115,7 @@ The Gallery will set the size of the thumbnails it displays to "default" if a
 size isn't explicitly set, and can also set the size to "large"
 
 <Canvas>
-  <Story name="Sizes">
-    {() => {
-      return (
-        <Gallery
-          size="large"
-          files={[
-            {
-              key: "abc",
-              name: "myballisbigandroundIamrollingitontheground.png",
-              type: "image/png",
-              size: 213402324,
-              progress: 1,
-              src: "https://source.unsplash.com/250x250",
-            },
-            {
-              key: "def",
-              name: "iamanimage.png",
-              type: "image/png",
-              size: 124525234,
-              progress: 1,
-              src: "https://source.unsplash.com/250x250",
-            },
-            {
-              key: "efg",
-              name: "sample.pdf",
-              type: "application/png",
-              size: 233411234,
-              progress: 1,
-              src: "http://www.africau.edu/images/default/sample.pdf",
-            },
-            {
-              key: "jkl",
-              name: "kramer.png",
-              type: "image/png",
-              size: 233411234,
-              progress: 1,
-              src: "https://source.unsplash.com/250x250",
-            },
-            {
-              key: "mno",
-              name: "boston.png",
-              type: "image/png",
-              size: 233411234,
-              progress: 1,
-              src: "https://source.unsplash.com/250x250",
-            },
-          ]}
-        />
-      );
-    }}
-  </Story>
+  <Gallery size="large" files={files} />
 </Canvas>
 
 ### Max
@@ -173,57 +125,7 @@ provide the user with a button to display the rest of the thumbnails beyond the
 maximum
 
 <Canvas>
-  <Story name="Max">
-    {() => {
-      return (
-        <Gallery
-          max={2}
-          files={[
-            {
-              key: "abc",
-              name: "myballisbigandroundIamrollingitontheground.png",
-              type: "image/png",
-              size: 213402324,
-              progress: 1,
-              src: "https://source.unsplash.com/250x250",
-            },
-            {
-              key: "def",
-              name: "iamanimage.png",
-              type: "image/png",
-              size: 124525234,
-              progress: 1,
-              src: "https://source.unsplash.com/250x250",
-            },
-            {
-              key: "efg",
-              name: "upanddown.png",
-              type: "image/png",
-              size: 233411234,
-              progress: 1,
-              src: "https://source.unsplash.com/250x250",
-            },
-            {
-              key: "jkl",
-              name: "kramer.png",
-              type: "image/png",
-              size: 233411234,
-              progress: 1,
-              src: "https://source.unsplash.com/250x250",
-            },
-            {
-              key: "mno",
-              name: "boston.png",
-              type: "image/png",
-              size: 233411234,
-              progress: 1,
-              src: "https://source.unsplash.com/250x250",
-            },
-          ]}
-        />
-      );
-    }}
-  </Story>
+  <Gallery max={2} files={files} />
 </Canvas>
 
 ## Content guidelines

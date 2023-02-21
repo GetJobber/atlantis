@@ -1,14 +1,20 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { useRef, useState } from "react";
+import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 import { Content } from "@jobber/components/Content";
 import { Heading } from "@jobber/components/Heading";
 import { Text } from "@jobber/components/Text";
 import { Banner } from "@jobber/components/Banner";
 import { Button } from "@jobber/components/Button";
-import { Checkbox } from "@jobber/components/Checkbox";
-import { useState, useRef } from "react";
 import { Popover } from "@jobber/components/Popover";
 
-<Meta title="Components/Popover" component={Popover} />
+<Meta
+  title="Components/Popover"
+  component={Popover}
+  parameters={{
+    layout: "centered",
+  }}
+/>
 
 # Popover
 
@@ -21,10 +27,10 @@ import { Popover } from "@jobber/components/Popover";
 ```
 
 <Canvas>
-  <Story name="Popover">
-    {() => {
+  <Story name="Popover" args={{ open: true }}>
+    {args => {
       const divRef = useRef();
-      const [showPopover, setShowPopover] = useState(false);
+      const [showPopover, setShowPopover] = useState(args.open);
       return (
         <>
           <span ref={divRef}>
@@ -34,9 +40,9 @@ import { Popover } from "@jobber/components/Popover";
             />
           </span>
           <Popover
+            {...args}
             attachTo={divRef}
             open={showPopover}
-            preferredPlacement="right"
             onRequestClose={() => setShowPopover(false)}
           >
             <Content>Here is your first Popover</Content>
@@ -65,10 +71,10 @@ understand the change, use a `learning`
 [Button](https://atlantis.getjobber.com/components/button).
 
 <Canvas>
-  <Story name="Informational">
+  <ExampleWithHooks>
     {() => {
       const newFeatureButton = useRef();
-      const [showPopover, setShowPopover] = useState(false);
+      const [showPopover, setShowPopover] = useState(true);
       return (
         <>
           <span ref={newFeatureButton}>
@@ -99,7 +105,7 @@ understand the change, use a `learning`
         </>
       );
     }}
-  </Story>
+  </ExampleWithHooks>
 </Canvas>
 
 ### Functional
@@ -150,80 +156,6 @@ focus to the button that opened the Popover.
 If your element is effectively acting as an inline DOM element that the user
 would otherwise encounter when traversing the page, this focus management may
 not be necessary.
-
-## preferredPlacement options
-
-You have 5 `preferredPlacement` options you can use:
-
-- `right`
-- `top`
-- `bottom`
-- `auto`
-- `left`
-
-<Canvas>
-  <Story name="preferredPlacement options">
-    {() => {
-      const topRef = useRef();
-      const leftRef = useRef();
-      const rightRef = useRef();
-      const bottomRef = useRef();
-      const [showPopover, setShowPopover] = useState(true);
-      return (
-        <div>
-          <Content>
-            <span ref={topRef}>
-              <Button label="Top Reference" />
-            </span>
-          </Content>
-          <Popover
-            attachTo={topRef}
-            open={showPopover}
-            preferredPlacement="top"
-          >
-            <Content>Top Popover</Content>
-          </Popover>
-          <Content>
-            <span ref={leftRef}>
-              <Button label="Left Reference" />
-            </span>
-          </Content>
-          <Popover
-            attachTo={leftRef}
-            open={showPopover}
-            preferredPlacement="left"
-          >
-            <Content>Left Popover</Content>
-          </Popover>
-          <Content>
-            <span ref={rightRef}>
-              <Button label="Right Reference" />
-            </span>
-          </Content>
-          <Popover
-            attachTo={rightRef}
-            open={showPopover}
-            preferredPlacement="right"
-          >
-            <Content>Right Popover</Content>
-          </Popover>
-          <Content>
-            <span ref={bottomRef}>
-              <Button label="Bottom Reference" />
-            </span>
-          </Content>
-          <Popover
-            attachTo={bottomRef}
-            open={showPopover}
-            preferredPlacement="bottom"
-          >
-            <Content>Bottom Popover</Content>
-          </Popover>
-        </div>
-      );
-    }}
-  </Story>
-</Canvas>
 
 ## Notes
 
