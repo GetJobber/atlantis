@@ -8,6 +8,41 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.1.2...@jobber/components@3.1.3) (2023-02-21)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.1.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.1.1...@jobber/components@3.1.2) (2023-02-17)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.1.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.1.0...@jobber/components@3.1.1) (2023-02-17)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [3.1.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.0.6...@jobber/components@3.1.0) (2023-02-17)
+
+
+### Features
+
+* **components:** Add Customizable Header Prop to Atlantis Web Card Component ([#1026](https://github.com/GetJobber/atlantis/issues/1026)) ([4961208](https://github.com/GetJobber/atlantis/commit/4961208efa6db6e2aec4318f29cb637334f43ea1))
+
+
+
+
+
 ## [3.0.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.0.5...@jobber/components@3.0.6) (2023-02-16)
 
 **Note:** Version bump only for package @jobber/components

@@ -56,6 +56,10 @@
 }
 
 .header {
+  display: flex;
   padding: var(--card--base-padding);
   background-color: var(--color-surface--background);
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-small);
 }

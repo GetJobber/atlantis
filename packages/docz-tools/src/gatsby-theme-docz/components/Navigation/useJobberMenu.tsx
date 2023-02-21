@@ -41,6 +41,8 @@ export function useJobberMenu(query?: string) {
       item: entry,
     };
 
+    if (entry.name.endsWith(".stories")) return menu;
+
     if (entry.menu == undefined) {
       menu.push(page);
     } else {
