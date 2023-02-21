@@ -70,6 +70,42 @@ Card titles should be sentence-cased.
 
 ## Variations
 
+### Header with action
+
+Use the header action when there's an action tied directly to the Card's
+contents, such as adding more items. It comes with pre-defined styling and
+layout to standardize how Card actions look across the product.
+
+<Playground>
+  <Card
+    header={{
+      title: "Banana varieties",
+      action: {
+        label: "New Banana",
+        icon: "add",
+        onClick: () => {
+          alert("New banana added");
+        },
+      },
+    }}
+  >
+    <Content>
+      <Heading level={4}>Burro</Heading>
+      <Text>
+        Squatty and slightly square at the edges, these bananas are slightly
+        tangy and lemony. When ripe, the fruit is soft and the skin is yellow
+        with black spots. Also called Horse, Hog, or Orinoco bananas.
+      </Text>
+      <Heading level={4}>Cavendish</Heading>
+      <Text>
+        This is the familiar yellow banana sold in United States’ supermarkets.
+        There are also other sizes of Cavendish, including Dwarf and Giant,
+        though they are difficult to find.
+      </Text>
+    </Content>
+  </Card>
+</Playground>
+
 ### Clickable with URL
 
 <Playground>
