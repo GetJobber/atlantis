@@ -1,1 +1,1 @@
-export { ExampleWithHooks } from "./ExampleWithHooks";
+export * from "./ExampleWithHooks";
