@@ -1,0 +1,296 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { ColorSwatches } from "@jobber/docx";
+import { ColorSwatches as Swatch } from "@jobber/docz-tools";
+
+import colors from "../colors";
+
+<Meta title="Design/Colors" />
+
+# Colors
+
+Color can provide a visual cue for users to navigate and understand an
+interface.
+
+Atlantis is built with a
+[semantic layer](https://dev.to/ynab/a-semantic-color-system-the-theory-hk7)
+overtop of a base palette. Use the semantic color values defined in the usage
+guidelines whenever possible to ensure you are using colors for their intended
+purpose.
+
+## Accessibility
+
+Color should never be the single means of conveying information in an interface.
+Use labels, iconography, or hints for assistive technology alongside color to
+ensure your content can be understood by everyone.
+
+## Usage guidelines
+
+### Typography
+
+Typographic elements in Jobber should use consistent colors to ensure
+readability.
+
+#### Heading
+
+<Swatch colors={[`--color-heading`]} />
+
+Headings have a bold, high-contrast color to cement their hierarchy.
+
+#### Text
+
+<Swatch colors={[`--color-text`, "--color-text--secondary"]} />
+
+A slightly softer color is used for body text for greater readability.
+
+Text that is relevant but less important ("secondary") can be lower-contrast to
+suggest its’ reduced importance. This color should only be used when there is
+more important text content already present.
+
+##### Text--Reverse
+
+<Swatch
+  colors={[`--color-text--reverse`, "--color-text--reverse--secondary"]}
+/>
+
+When used against a [reversed surface](#surface--reverse), reversed text should
+be used to maintain readability.
+
+Reverse text also has a secondary value following the same rules outlined for
+standard secondary text.
+
+### Interactions
+
+Use these colors in buttons and form controls to communicate the presence and
+meaning of interaction. In cases such as [Buttons](/components/button) where the
+interactive color is functioning as a background color or the text color, the
+alternative color should be `--color-white`\*.
+
+_\*This is a known contrast issue in the case of Interactive/White, as we have
+currently tied our interactive color to our brand color._
+
+#### Interactive
+
+<Swatch colors={[`--color-interactive`, "--color-interactive--hover"]} />
+
+The default color used for interactive elements.
+
+##### Interactive--Subtle
+
+<Swatch
+  colors={[`--color-interactive--subtle`, "--color-interactive--subtle--hover"]}
+/>
+
+Use for interactive elements that should be less visually pronounced, such as an
+icon action in main navigation, or buttons to dismiss or cancel a workflow.
+
+#### Destructive
+
+<Swatch colors={[`--color-destructive`, "--color-destructive--hover"]} />
+
+Use to signify that an interaction will destroy something in the users’ account
+or workflow.
+
+#### Disabled
+
+<Swatch colors={[`--color-disabled`, "--color-disabled--secondary"]} />
+
+Use to signify that an interactive element is disabled.
+
+Use `secondary` when a disabled element needs more than one color to be readable
+in a disabled state; for example, a button's background and label colors must be
+different.
+
+#### Focus
+
+<div
+  style={{
+    width: "100%",
+    height: `var(--space-extravagant)`,
+    backgroundColor: `var(--color-surface)`,
+    boxShadow: `var(--shadow-focus)`,
+  }}
+></div>
+
+`--color-focus`
+
+Used by the `--shadow-focus` property to indicate that an element has received
+focus. Avoid using `--color-focus` directly on UI elements.
+
+### Status
+
+Use these colors in labels, icons, filters, alerts, and other elements where
+color can add meaning to the state of the system or an item in the system.
+
+All status colors have a main color, a surface color, and an on-surface color.
+The on-surface color should be used for an element when it sits inside of an
+element with the status' surface color to maintain a cohesive tone and ensure
+sufficient color contrast.
+
+#### Critical
+
+<Swatch
+  colors={[
+    "--color-critical",
+    "--color-critical--surface",
+    "--color-critical--onSurface",
+  ]}
+/>
+
+Action required; user must see this status to be unblocked.
+
+#### Warning
+
+<Swatch
+  colors={[
+    "--color-warning",
+    "--color-warning--surface",
+    "--color-warning--onSurface",
+  ]}
+/>
+
+Action _may_ be required as a consequence of current state.
+
+#### Success
+
+<Swatch
+  colors={[
+    "--color-success",
+    "--color-success--surface",
+    "--color-success--onSurface",
+  ]}
+/>
+
+No action required; an action has completed successfully.
+
+#### Informative
+
+<Swatch
+  colors={[
+    "--color-informative",
+    "--color-informative--surface",
+    "--color-informative--onSurface",
+  ]}
+/>
+
+No action required; but helpful to know about.
+
+#### Inactive
+
+<Swatch
+  colors={[
+    "--color-inactive",
+    "--color-inactive--surface",
+    "--color-inactive--onSurface",
+  ]}
+/>
+
+No action required; not part of an active workflow.
+
+### Surfaces
+
+Surfaces are the background-colors of almost every element in Jobber. Overlays
+act as supplementary surfaces that mask areas of the interface to adjust visual
+focus.
+
+#### Surface
+
+<Swatch
+  colors={[
+    "--color-surface",
+    "--color-surface--hover",
+    "--color-surface--active",
+  ]}
+/>
+
+Most elements in Jobber have a light surface to indicate their nearness to the
+user; if interactive, they have a hover color and an active color to indicate
+state.
+
+#### Surface--Background
+
+<Swatch colors={["--color-surface--background"]} />
+
+A slightly darker surface gives a receded appearance relative to main surfaces.
+
+#### Surface--Reverse
+
+<Swatch colors={["--color-surface--reverse"]} />
+
+Use a reversed surface when a strong contrast is needed with the rest of the
+application.
+
+#### Overlay
+
+<Swatch colors={["--color-overlay"]} />
+
+Use to mask an area of the interface to promote focus to a foreground action,
+such as a [Modal](/components/modal)’s appearance. Overlay includes built-in
+opacity values.
+
+#### Overlay--Dimmed
+
+<Swatch colors={["--color-overlay--dimmed"]} />
+
+A transparent version of [Surface](#surface), this masks an area of the
+interface to indicate inactivity (i.e. waiting for updates). Overlay--Dimmed
+includes built-in opacity values.
+
+### Borders
+
+Defining the edges of elements on the same elevation plane, border colors are
+the subtle maintainers of layout structure. Learn more about borders in our
+[Borders guide.](/borders)
+
+<div
+  style={{
+    width: "100%",
+    height: `var(--space-extravagant)`,
+    backgroundColor: `var(--color-surface)`,
+    border: `var(--border-base) solid var(--color-border)`,
+  }}
+></div>
+
+`--color-border`
+
+Most borders should use `--color-border` for subtle definition.
+
+#### Border--Section
+
+<div
+  style={{
+    width: "100%",
+    height: `var(--space-extravagant)`,
+    backgroundColor: `var(--color-surface)`,
+    border: `var(--border-base) solid var(--color-border--section)`,
+  }}
+></div>
+
+`--color-border--section`
+
+Use `--color-border--section` where other bordered content is being further
+sectioned, such as table headers or list sections.
+
+### Brand
+
+Use these colors to represent the Jobber brand visual language.
+
+#### Brand
+
+<Swatch colors={["--color-brand"]} />
+
+The primary color associated with our brand, from website to ads to product; AKA
+“Jobber Green”.
+
+#### Brand--Highlight
+
+<Swatch colors={["--color-brand--highlight"]} />
+
+Use to highlight an element in a way that aligns with our website. Use with
+caution, it’s _bright!_
+
+<br />
+<br />
+
+## Swatch list
+
+<ColorSwatches colors={colors.customProperties} />

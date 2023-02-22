@@ -1,0 +1,59 @@
+import { Canvas, Meta, Story } from "@storybook/addon-docs";
+import { useEffect, useState } from "react";
+import { Button } from "@jobber/components/Button";
+import * as hooks from ".";
+
+<Meta title="Hooks/useIsMounted" />
+
+# UseIsMounted
+
+`useIsMounted` should be used on asynchronous calls to ensure the component is
+mounted before manipulating the state of that component. Manipulating the state
+of unmounted components can cause errors and memory leaks.
+
+```tsx
+import { useIsMounted } from "@jobber/hooks";
+```
+
+<Canvas>
+  <Story name="useIsMounted">
+    {() => {
+      function AlertMountedComponent() {
+        const isMounted = hooks.useIsMounted();
+        useEffect(() => {
+          setTimeout(() => {
+            if (isMounted.current) {
+              // only set state if the component is still mounted
+              console.log("The component is mounted");
+            } else {
+              console.log("The component is not mounted");
+            }
+          }, 10000);
+        }, []);
+        return <h4>I am the AlertMountedComponent</h4>;
+      }
+      const [shouldMount, setShouldMount] = useState(false);
+      let component = <></>;
+      if (shouldMount) {
+        component = <AlertMountedComponent />;
+      }
+      return (
+        <>
+          {component}
+          <Button
+            label={"Mount Component"}
+            onClick={() => {
+              setShouldMount(true);
+            }}
+          />
+          <Button
+            label={"Unmount Component"}
+            onClick={() => {
+              setShouldMount(false);
+            }}
+          />
+        </>
+      );
+    }}
+  </Story>
+</Canvas>

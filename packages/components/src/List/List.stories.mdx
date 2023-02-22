@@ -1,0 +1,104 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { List } from "@jobber/components/List";
+import { ListItem } from "@jobber/components/List/ListItem";
+import { Card } from "@jobber/components/Card";
+import { StorybookListPropsInterface } from "./List.stories";
+
+<Meta
+  title="Components/List"
+  component={List}
+  subcomponents={{ ListItemProps: StorybookListPropsInterface }}
+/>
+
+# List
+
+Displays a collection of objects that are either the same type or related to one
+another, like billing or activity feed. The main purpose of a list is to help
+the user find an object that leads to its full representation.
+
+```ts
+import { List } from "@jobber/components/List";
+```
+
+<Canvas>
+  <Story
+    name="List"
+    args={{
+      items: [
+        {
+          id: 1,
+          icon: "wallet",
+          iconColor: "orange",
+          content: "Payment for Invoice #39",
+          value: "-$300.00",
+          caption: "Sep 25, 2019",
+          onClick: () => alert("TODO: Implement onClick"),
+        },
+        {
+          id: 3,
+          icon: "paidInvoice",
+          content: "Invoice #39",
+          value: "$300.00",
+          caption: "Sep 24, 2019",
+          onClick: () => alert("TODO: Implement onClick"),
+        },
+      ],
+    }}
+  >
+    {args => (
+      <Card>
+        <List {...args} />
+      </Card>
+    )}
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of={List} story="List" />
+
+## Sectioned ListItems
+
+This groups the component in specific sections.
+
+<Canvas>
+  <Card>
+    <List
+      items={[
+        {
+          id: 1,
+          icon: "addNote",
+          title: "Darryl Tec added a note",
+          content: [
+            '_"Called the client. Asked if they want the luxury package, they said yes!"_',
+            "Deck Build",
+          ],
+          caption: "1 minute ago",
+          section: "Today",
+          isActive: true,
+          onClick: () => alert("TODO: Implement onClick"),
+        },
+        {
+          id: 2,
+          icon: "checkmark",
+          iconColor: "green",
+          title: "Josh Elford completed a visit",
+          content: "Annual Maintenance",
+          caption: "2 hours ago",
+          section: "Today",
+          onClick: () => alert("TODO: Implement onClick"),
+        },
+        {
+          id: 3,
+          icon: "badInvoice",
+          title: "Payment failed",
+          content: "For services rendered",
+          value: "$300.00",
+          caption: "1 day ago",
+          onClick: () => alert("TODO: Implement onClick"),
+          section: "Yesterday",
+        },
+      ]}
+    />
+  </Card>
+</Canvas>

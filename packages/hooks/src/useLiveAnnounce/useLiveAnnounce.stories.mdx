@@ -1,0 +1,38 @@
+import { Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Button } from "@jobber/components/Button";
+import * as hooks from ".";
+
+<Meta title="Hooks/useLiveAnnounce" />
+
+# useLiveAnnounce
+
+Announce a message through the screen reader whenever a user does an action like
+deletion or addition.
+
+```ts
+import { useLiveAnnounce } from "@jobber/hooks";
+```
+
+Before you try this example, turn on Voice Over (Mac), or a Windows equivalent.
+You can turn on Voice Over by holding `Command ⌘` and press the fingerprint key
+3 times (fast).
+
+<Canvas>
+  <Story name="useLiveAnnounce">
+    {() => {
+      const { liveAnnounce } = hooks.useLiveAnnounce();
+      return (
+        <>
+          <Button
+            label="Delete"
+            onClick={() => liveAnnounce("You have clicked the Delete button")}
+          />{" "}
+          <Button
+            label="Add"
+            onClick={() => liveAnnounce("You have clicked the Add button")}
+          />
+        </>
+      );
+    }}
+  </Story>
+</Canvas>
