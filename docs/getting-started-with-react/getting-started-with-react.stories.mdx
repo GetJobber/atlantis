@@ -5,6 +5,7 @@ import { Button } from "@jobber/components/Button";
 import { InputText } from "@jobber/components/InputText";
 import { loadingGIF, getGIF } from "./getGIF";
 import { useState } from "react";
+import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 
 <Meta title="Guides/Getting started with React" />
 
@@ -98,26 +99,26 @@ that.
 For this example we are going to build a card that allows you to enter a topic
 and then search for a related gif.
 
-export function ComposingComponents() {
-  const [topic, setTopic] = useState();
-  const [url, setURL] = useState();
-  return (
-    <Card title="Gif Gift">
-      <Content>
-        <InputText value={topic} onChange={setTopic} placeholder="Topic" />
-        <Button label="Search" fullWidth={true} onClick={gifSearch} />
-        <center>{url && <img src={url} />}</center>
-      </Content>
-    </Card>
-  );
-  async function gifSearch() {
-    setURL(loadingGIF);
-    setURL(await getGIF(topic));
-  }
-}
-
-<Canvas withSource="none">
-  <ComposingComponents />
+<Canvas>
+  <ExampleWithHooks>
+    {() => {
+      const [topic, setTopic] = useState();
+      const [url, setURL] = useState();
+      return (
+        <Card title="Gif Gift">
+          <Content>
+            <InputText value={topic} onChange={setTopic} placeholder="Topic" />
+            <Button label="Search" fullWidth={true} onClick={gifSearch} />
+            <center>{url && <img src={url} />}</center>
+          </Content>
+        </Card>
+      );
+      async function gifSearch() {
+        setURL(loadingGIF);
+        setURL(await getGIF(topic));
+      }
+    }}
+  </ExampleWithHooks>
 </Canvas>
 
 > **Note:**
