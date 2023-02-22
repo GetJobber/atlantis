@@ -1,21 +1,9 @@
 import React, { useEffect, useState } from "react";
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore: Unreachable code error
 import { Content } from "@jobber/components/Content";
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore: Unreachable code error
 import { Button } from "@jobber/components/Button";
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore: Unreachable code error
 import { Heading } from "@jobber/components/Heading";
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore: Unreachable code error
 import { Text } from "@jobber/components/Text";
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore: Unreachable code error
 import { Tooltip } from "@jobber/components/Tooltip";
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore: Unreachable code error
 import { Divider } from "@jobber/components/Divider";
 
 export function TableOfContents() {
