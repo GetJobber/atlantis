@@ -1,6 +1,7 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
 import { InputDate } from "@jobber/components/InputDate";
 import { useState } from "react";
+import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 
 <Meta title="Components/InputDate" component={InputDate} />
 
@@ -34,7 +35,7 @@ InputDate also exposes `minDate`and `maxDate` props in order to restrict date
 ranges.
 
 <Canvas>
-  <Story name="Date Range">
+  <ExampleWithHooks>
     {() => {
       const [date, setDate] = useState(new Date("11/11/2011"));
       return (
@@ -47,7 +48,7 @@ ranges.
         />
       );
     }}
-  </Story>
+  </ExampleWithHooks>
 </Canvas>
 
 ## Design & usage guidelines
