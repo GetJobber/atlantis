@@ -43,7 +43,7 @@ export function Card({
 
   const cardContent = (
     <>
-      <CardHeader className={styles.header} title={title} header={header} />
+      <CardHeader title={title} header={header} />
       {children}
     </>
   );
