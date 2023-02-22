@@ -6,7 +6,18 @@ import { Text } from "@jobber/components/Text";
 import { Tooltip } from "@jobber/components/Tooltip";
 import { Divider } from "@jobber/components/Divider";
 
-export function TableOfContents() {
+interface TableOfContentsProps {
+  readonly githubInfo?: GithubInfo;
+}
+
+interface GithubInfo {
+  readonly repo: string;
+  readonly name: string;
+  readonly viewFile: string;
+  readonly editFile: string;
+}
+
+export function TableOfContents({ githubInfo }: TableOfContentsProps) {
   const [headings, setHeadings] = useState<Element[]>([]);
 
   useEffect(() => {
@@ -28,24 +39,29 @@ export function TableOfContents() {
               // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
               // @ts-ignore
               label={<Github />}
-              url={"repository"}
+              url={githubInfo?.repo}
               external={true}
               type="secondary"
               ariaLabel={""}
             />
           </Tooltip>
 
-          <Tooltip message={`View {doc.name} on Github`}>
+          <Tooltip message={`View ${githubInfo?.name} on Github`}>
             <Button
-              url={"directoryLink"}
+              url={githubInfo?.viewFile}
               icon="embed"
               external
               type="secondary"
-              ariaLabel={`View {doc.name} directory on Github`}
+              ariaLabel={`View ${githubInfo?.name} directory on Github`}
             />
           </Tooltip>
 
-          <Button icon="edit" label="Edit" url="" external={true} />
+          <Button
+            icon="edit"
+            label="Edit"
+            url={githubInfo?.editFile}
+            external={true}
+          />
         </div>
 
         {headings.length > 1 && (
