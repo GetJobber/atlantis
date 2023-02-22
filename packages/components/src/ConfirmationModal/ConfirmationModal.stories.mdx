@@ -23,16 +23,21 @@ import {
 ```
 
 <Canvas>
-  <Story name="ConfirmationModal">
-    {() => {
+  <Story
+    name="ConfirmationModal"
+    args={{
+      title: "Should we?",
+      message: `Let's do **something**!`,
+      confirmLabel: "Do it",
+    }}
+  >
+    {args => {
       const [open, setOpen] = useState(false);
       return (
         <>
           <Button label="Open" onClick={() => setOpen(true)} />
           <ConfirmationModal
-            title="Should we?"
-            message={`Let's do **something**!`}
-            confirmLabel="Do it"
+            {...args}
             open={open}
             onConfirm={() => alert("✅")}
             onCancel={() => alert("🙅‍♂️")}
@@ -57,7 +62,7 @@ performing.
 
 ## Props
 
-<ArgsTable of={ConfirmationModal} />
+<ArgsTable of={ConfirmationModal} story="ConfirmationModal" />
 
 ## Controlled Confirmation Modal
 
