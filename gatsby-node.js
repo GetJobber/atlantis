@@ -87,7 +87,7 @@ exports.onCreateWebpackConfig = ({
     });
 
     config.module.rules.push({
-      test: /.*\.(?<!stories\.)(?:md|mdx)$/,
+      test: /.*\.(?:md|mdx)$/,
       use: path.resolve("../null-markdown-loader.js"),
     });
 
