@@ -19,12 +19,15 @@ import { InputDate } from "@jobber/components/InputDate";
 ```
 
 <Canvas>
-  <Story name="InputDate">
-    {() => {
+  <Story
+    name="InputDate"
+    args={{
+      placeholder: "Start Date",
+    }}
+  >
+    {args => {
       const [date, setDate] = useState(new Date("11/11/2011"));
-      return (
-        <InputDate placeholder="Start Date" value={date} onChange={setDate} />
-      );
+      return <InputDate {...args} value={date} onChange={setDate} />;
     }}
   </Story>
 </Canvas>

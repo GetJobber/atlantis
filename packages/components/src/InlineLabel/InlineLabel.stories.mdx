@@ -13,7 +13,14 @@ import { InlineLabel } from "@jobber/components/InlineLabel";
 ```
 
 <Canvas>
-  <Story name="InlineLabel">{() => <InlineLabel>Draft</InlineLabel>}</Story>
+  <Story
+    name="InlineLabel"
+    args={{
+      children: "Draft",
+    }}
+  >
+    {args => <InlineLabel {...args} />}
+  </Story>
 </Canvas>
 
 <ArgsTable of={InlineLabel} story="InlineLabel" />

@@ -14,7 +14,14 @@ import { Switch } from "@jobber/components/Switch";
 ```
 
 <Canvas>
-  <Story name="Switch">{() => <Switch ariaLabel="Visible to clients" />}</Story>
+  <Story
+    name="Switch"
+    args={{
+      ariaLabel: "Visible to clients",
+    }}
+  >
+    {args => <Switch {...args} />}
+  </Story>
 </Canvas>
 
 <ArgsTable of={Switch} story="Switch" />

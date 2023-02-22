@@ -13,9 +13,14 @@ import { Select, Option } from "@jobber/components/Select";
 ```
 
 <Canvas>
-  <Story name="Select">
-    {() => (
-      <Select placeholder="My best friend">
+  <Story
+    name="Select"
+    args={{
+      placeholder: "My best friend",
+    }}
+  >
+    {args => (
+      <Select {...args}>
         <Option value="tony">Tony</Option>
         <Option value="quincy">Quincy</Option>
         <Option value="peppa">Peppa Pig</Option>
