@@ -1,0 +1,67 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Tab, Tabs } from "@jobber/components/Tabs";
+
+<Meta title="Components/Tabs" component={Tabs} subcomponents={{ Tab }} />
+
+# Tabs
+
+Tabs are used to alternate amongst related views within the same context.
+
+```ts
+import { Tabs, Tab } from "@jobber/components/Tabs";
+```
+
+<Canvas>
+  <Story name="Tabs">
+    {() => {
+      return (
+        <Tabs>
+          <Tab label="Eggs">
+            🍳 Some eggs are laid by female animals of many different species,
+            including birds, reptiles, amphibians, mammals, and fish, and have
+            been eaten by humans for thousands of years.
+          </Tab>
+          <Tab label="Cheese">
+            🧀 Cheese is a dairy product derived from milk that is produced in a
+            wide range of flavors, textures, and forms by coagulation of the
+            milk protein casein.
+          </Tab>
+          <Tab label="Berries">
+            🍓 A berry is a small, pulpy, and often edible fruit. Typically,
+            berries are juicy, rounded, brightly colored, sweet, sour or tart,
+            and do not have a stone or pit.
+          </Tab>
+        </Tabs>
+      );
+    }}
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of={Tabs} story="Tabs" />
+
+## Design & usage guidelines
+
+Use Tabs when you need to group related sub-groups of content and the user only
+needs to access one sub-group at a time.
+
+Do not use Tabs as a means of navigating the view or in lieu of a Table of
+Contents.
+
+## Related components
+
+To show multiple groupings of content at once, use [Card](card).
+
+To allow the user to select one-of-many options in a form, use
+[RadioGroup](radio-group) or [Select](select).
+
+## Accessibility
+
+Tabs have known accessibility concerns, including:
+
+- the user cannot navigate between Tabs using the arrow keys
+  - this breaks a universal expectation for tabbed interfaces
+- the user cannot keyboard-navigate directly from the selected Tab into the
+  selected Tab content
+  - initial keypress of `tab` key or `command+option+right` focuses next Tab
