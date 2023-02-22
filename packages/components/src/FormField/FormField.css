@@ -60,12 +60,6 @@
   box-shadow: var(--shadow-focus);
 }
 
-/* override iOS default styling for disabled input */
-.wrapper input:disabled {
-  -webkit-text-fill-color: var(--field--value-color);
-  opacity: 1;
-}
-
 .miniLabel {
   --field--label-elevation: calc(var(--field--base-elevation) - 1);
   --field--placeholder-color: var(--color-text--secondary);
@@ -88,6 +82,12 @@
   --field--value-color: var(--color-disabled);
   --field--background-color: var(--color-surface--background);
   --field--border-color: var(--color-disabled--secondary);
+}
+
+/* override iOS default styling for disabled input */
+.disabled :disabled {
+  -webkit-text-fill-color: var(--field--value-color);
+  opacity: 1;
 }
 
 .small {
