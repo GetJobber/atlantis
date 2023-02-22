@@ -4,6 +4,7 @@ import { InputText } from "@jobber/components/InputText";
 import { Button } from "@jobber/components/Button";
 import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
+import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 
 <Meta title="Components/InputText" component={InputText} />
 
@@ -28,7 +29,7 @@ import { InputText } from "@jobber/components/InputText";
 Use this to allow users to provide short answers.
 
 <Canvas>
-  <Story name="Controlled">
+  <ExampleWithHooks>
     {() => {
       const [age, setAge] = useState("Veintisiete");
       return (
@@ -40,7 +41,7 @@ Use this to allow users to provide short answers.
         />
       );
     }}
-  </Story>
+  </ExampleWithHooks>
 </Canvas>
 
 ## Multiline
@@ -124,7 +125,7 @@ This includes, but is not limited to:
   you can pass an object of callback functions to validate all of them.
 
 <Canvas>
-  <Story name="Validation message">
+  <ExampleWithHooks>
     {() => {
       return (
         <InputText
@@ -149,7 +150,7 @@ This includes, but is not limited to:
         return true;
       }
     }}
-  </Story>
+  </ExampleWithHooks>
 </Canvas>
 
 ## States
@@ -220,7 +221,7 @@ This includes, but is not limited to:
 ## Insertion
 
 <Canvas>
-  <Story name="Insertion">
+  <ExampleWithHooks>
     {() => {
       const [text, setText] = useState("Just some words here.");
       const textRef = React.createRef();
@@ -238,13 +239,13 @@ This includes, but is not limited to:
         </Content>
       );
     }}
-  </Story>
+  </ExampleWithHooks>
 </Canvas>
 
 ## Focus
 
 <Canvas>
-  <Story name="Focus">
+  <ExampleWithHooks>
     {() => {
       const textARef = React.createRef();
       const textBRef = React.createRef();
@@ -264,7 +265,7 @@ This includes, but is not limited to:
         </Content>
       );
     }}
-  </Story>
+  </ExampleWithHooks>
 </Canvas>
 
 ## Keyboard
