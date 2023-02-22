@@ -14,6 +14,9 @@ import { Text } from "@jobber/components/Text";
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore: Unreachable code error
 import { Tooltip } from "@jobber/components/Tooltip";
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore: Unreachable code error
+import { Divider } from "@jobber/components/Divider";
 
 export function TableOfContents() {
   const [headings, setHeadings] = useState<Element[]>([]);
@@ -22,12 +25,11 @@ export function TableOfContents() {
     const anchors = Array.from(document.querySelectorAll("h2"));
     if (anchors.length < 2) return;
     setHeadings(anchors);
-    console.log(anchors);
   }, []);
 
   return (
     <div style={{ padding: "var(--space-base)" }}>
-      <Content>
+      <Content spacing="large">
         <div style={{ display: "flex", gap: "var(--space-small)" }}>
           <Tooltip message="View Atlantis on github">
             <Button
@@ -62,6 +64,7 @@ export function TableOfContents() {
           <nav>
             <Content spacing="small">
               <Heading level={6}>Contents</Heading>
+              <Divider />
               {headings.map(header => {
                 return (
                   <Text key={header.id}>
