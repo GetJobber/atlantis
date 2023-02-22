@@ -16,7 +16,7 @@ export default {
   menu: ["Atlantis", "Patterns", "Components", "Hooks", "Design"],
   files: [
     "./docs/**/*.{md,mdx}",
-    ...packages.map(pckg => `./packages/${pckg}/src/**/*.{md,mdx}`),
+    ...packages.map(pckg => `./packages/${pckg}/src/**/!(*.stories).{md,mdx}`),
     ...packages.map(pckg => `./packages/${pckg}/README.{md,mdx}`),
     ...packages.map(pckg => `./packages/${pckg}/CHANGELOG.md`),
   ],
