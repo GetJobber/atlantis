@@ -8,5 +8,12 @@ module.exports = {
         modules: ["@jobber/docz-tools"],
       },
     },
+    {
+      resolve: "gatsby-theme-docz",
+      options: {
+        files: "**/!(*.stories)*.{md,mdx}",
+        ignore: ["*.stories.mdx"],
+      },
+    },
   ],
 };
