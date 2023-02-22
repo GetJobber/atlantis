@@ -13,8 +13,14 @@ import { FormField } from "@jobber/components/FormField";
 ```
 
 <Canvas>
-  <Story name="FormField">
-    {() => <FormField type="text" placeholder="Words…" />}
+  <Story
+    name="FormField"
+    args={{
+      type: "text",
+      placeholder: "Words...",
+    }}
+  >
+    {args => <FormField {...args} />}
   </Story>
 </Canvas>
 

@@ -17,16 +17,15 @@ import { Checkbox } from "@jobber/components/Checkbox";
 ```
 
 <Canvas>
-  <Story name="Checkbox">
-    {() => {
+  <Story
+    name="Checkbox"
+    args={{
+      label: "Save card for future use",
+    }}
+  >
+    {args => {
       const [checked, setChecked] = useState(true);
-      return (
-        <Checkbox
-          checked={checked}
-          label="Save card for future use"
-          onChange={setChecked}
-        />
-      );
+      return <Checkbox {...args} checked={checked} onChange={setChecked} />;
     }}
   </Story>
 </Canvas>

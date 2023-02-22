@@ -14,7 +14,14 @@ import { StatusLabel } from "@jobber/components/StatusLabel";
 ```
 
 <Canvas>
-  <Story name="StatusLabel">{() => <StatusLabel label="Bob" />}</Story>
+  <Story
+    name="StatusLabel"
+    args={{
+      label: "Bob",
+    }}
+  >
+    {args => <StatusLabel {...args} />}
+  </Story>
 </Canvas>
 
 <ArgsTable of={StatusLabel} story="StatusLabel" />

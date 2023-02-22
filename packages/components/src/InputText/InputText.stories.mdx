@@ -17,8 +17,14 @@ import { InputText } from "@jobber/components/InputText";
 ```
 
 <Canvas>
-  <Story name="InputText">
-    {() => <InputText defaultValue="Rocinante" placeholder="Ship Name" />}
+  <Story
+    name="InputText"
+    args={{
+      defaultValue: "Rocinante",
+      placeholder: "Ship Name",
+    }}
+  >
+    {args => <InputText {...args} />}
   </Story>
 </Canvas>
 

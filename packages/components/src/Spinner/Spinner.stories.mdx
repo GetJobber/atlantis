@@ -11,7 +11,14 @@ import { Spinner } from "@jobber/components/Spinner";
 ```
 
 <Canvas>
-  <Story name="Spinner">{() => <Spinner />}</Story>
+  <Story
+    name="Spinner"
+    args={{
+      size: "base",
+    }}
+  >
+    {args => <Spinner {...args} />}
+  </Story>
 </Canvas>
 
 <ArgsTable of={Spinner} story="Spinner" />
