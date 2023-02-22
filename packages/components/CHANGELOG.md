@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.10](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.1.9...@jobber/components@3.1.10) (2023-02-22)
+
+
+### Bug Fixes
+
+* Override iOS default styling for disabled input ([#1058](https://github.com/GetJobber/atlantis/issues/1058)) ([3fb5819](https://github.com/GetJobber/atlantis/commit/3fb58193a6f94a8a25fae269a4a7585ea0909eba))
+
+
+
+
+
 ## [3.1.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.1.8...@jobber/components@3.1.9) (2023-02-22)
 
 **Note:** Version bump only for package @jobber/components
