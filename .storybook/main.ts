@@ -67,14 +67,13 @@ const config: StorybookConfig = {
     }
 
     // Alias @jobber so it works on MDX files
-    Object.assign(
-      config.resolve?.alias,
-      {
-        "@jobber/components": path.resolve(__dirname, "../packages/components/src"),
-        "mdxUtils": path.resolve(__dirname, "components")
-      }
-    );
+    Object.assign(config.resolve?.alias, {
+      "@jobber/components": path.resolve(__dirname, "../packages/components/src"),
+      "@jobber/docx": path.resolve(__dirname, "../packages/docx/src"),
+      "@jobber/docz-tools": path.resolve(__dirname, "../packages/docz-tools/src/components"),
+      "mdxUtils": path.resolve(__dirname, "components")
 
+    });
     // Return the altered config
     return config;
   }

@@ -1,0 +1,63 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+
+<Meta title="Design/Borders" />
+
+# Borders and Dividers
+
+You may find that a visual indicator is helpful to segment elements in an
+interface. We have elements to help you do so in a consistent way across
+platforms: borders and dividers.
+
+## Borders
+
+### Border Widths
+
+To add a border to an element, use the border-width variables in the component's
+styling to ensure consistent border thickness throughout Jobber.
+
+Border style should be `solid` unless a specific use case calls for some other
+format, such as indicating a dropzone on the
+[`InputFile` component](https://atlantis.getjobber.com/components/input-file).
+
+export function Example({ of: size }) {
+  const style = {
+    width: "100%",
+    height: "var(--space-miniscule)",
+    borderBottomStyle: "solid",
+    borderBottomWidth: `var(--border-${size})`,
+    borderBottomColor: "var(--color-grey--lighter)",
+  };
+  return <div style={style} />;
+}
+
+| Width               | Visual                    |
+| :------------------ | :------------------------ |
+| `--border-base`     | <Example of="base" />     |
+| `--border-thick`    | <Example of="thick" />    |
+| `--border-thicker`  | <Example of="thicker" />  |
+| `--border-thickest` | <Example of="thickest" /> |
+
+The `base` border width should be used for most use cases (see
+[`Card`](https://atlantis.getjobber.com/components/card) and
+[`List` items](https://atlantis.getjobber.com/components/list) for in-context
+examples). You may want to consider thicker borders when the border conveys a
+closing of already-divided sections, such as a
+[`Table` footer](https://atlantis.getjobber.com/components/table).
+
+### Border Colors
+
+Borders should use `--color-border)` for most use cases.
+[`List` sections](https://atlantis.getjobber.com/components/list#sectioned-list-items),
+[`Table` headers](https://atlantis.getjobber.com/components/table) and other
+scenarios where other bordered content is being further subsectioned should use
+`--color-border--section)`.
+
+For accessibility reasons, ensure that color usage is not the only way to
+[convey meaning](https://webaim.org/articles/contrast/#sc141) in an interface.
+
+## Dividers
+
+The [`Divider` component](https://atlantis.getjobber.com/components/divider)
+will help you segment sections of content without writing additional styling.
+This component will render a horizontal rule that takes up the full available
+width.
