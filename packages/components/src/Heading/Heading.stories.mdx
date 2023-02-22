@@ -1,0 +1,117 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Heading } from "@jobber/components/Heading";
+
+<Meta title="Components/Heading" component={Heading} />
+
+# Heading
+
+Headings are used as the titles of each major section of a page in the
+interface. Reserved for short, important text or numbers.
+
+```ts
+import { Heading } from "@jobber/components/Heading";
+```
+
+<Canvas>
+  <Story name="Heading" args={{ level: 2 }}>
+    {args => {
+      return <Heading {...args}>Subtitle</Heading>;
+    }}
+  </Story>
+</Canvas>
+
+<ArgsTable of={Heading} story="Heading" />
+
+## Design & usage guidelines
+
+### Heading 1
+
+This should explain the main subject of the page. There should only be one on a
+page.
+
+<Canvas>
+  <Heading level={1}>New client</Heading>
+</Canvas>
+
+### Heading 2
+
+Used to categorize large groups of content. For example, there are two main
+categories when creating a new client: client details and property details.
+
+This heading can be skipped if there are no large groups that need breaking up.
+
+<Canvas>
+  <Heading level={2}>Client details</Heading>
+  ...
+  <Heading level={2}>Property details</Heading>
+  ...
+</Canvas>
+
+### Heading 3
+
+Used to group content and forms on a single topic.
+
+<Canvas>
+  <Heading level={3}>Contact details</Heading>
+  ...
+  <Heading level={3}>Notifications</Heading>
+  ...
+  <Heading level={3}>Additional details</Heading>
+  ...
+</Canvas>
+
+### Heading 4
+
+Used to group contents after a [heading 3](#heading-3) or inside a card
+component.
+
+<Canvas>
+  <Heading level={4}>Phone numbers</Heading>
+  ...
+  <Heading level={4}>Email</Heading>
+  ...
+  <Heading level={4}>Pigeon</Heading>
+  ...
+</Canvas>
+
+### Heading 5
+
+Used to group contents after a [heading 4](#heading-4).
+
+<Canvas>
+  <Heading level={5}>Receives SMS</Heading>;
+</Canvas>
+
+### Heading 6
+
+Used to group contents after a [heading 5](#heading-5) or to group small lists
+of content.
+
+<Canvas>
+  <Heading level={6}>Business Settings</Heading>
+  ...
+  <Heading level={6}>Organization Settings</Heading>
+  ...
+  <Heading level={6}>Communication Settings</Heading>
+  ...
+</Canvas>
+
+---
+
+## Content guidelines
+
+The only content that should be used in a `Heading` is text. Use sentence-case
+for headings. The exception is `Heading 6`, which is capitalized as a stylistic
+reference to the
+[eyebrow typgraphic pattern.](https://app.uxcel.com/lessons/basics-ii-588#eyebrow-headline-8095)
+
+| ✅ Do                       | ❌ Don't                    |
+| --------------------------- | --------------------------- |
+| Job #21 for Nathaniel Lewis | Job #21 For Nathaniel Lewis |
+| Save job and...             | Save Job And...             |
+| Push notification settings  | Push Notification Settings  |
+
+## Related components
+
+- For introductory text after a page title or paragraph text for body copy, use
+  [Text](text).
