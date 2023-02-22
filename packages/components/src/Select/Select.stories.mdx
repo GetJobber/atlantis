@@ -1,0 +1,112 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Select, Option } from "@jobber/components/Select";
+
+<Meta title="Components/Select" component={Select} />
+
+# Select
+
+In Jobber a `Select` is used to present a defined list of options for the user
+to choose from.
+
+```ts
+import { Select, Option } from "@jobber/components/Select";
+```
+
+<Canvas>
+  <Story
+    name="Select"
+    args={{
+      placeholder: "My best friend",
+    }}
+  >
+    {args => (
+      <Select {...args}>
+        <Option value="tony">Tony</Option>
+        <Option value="quincy">Quincy</Option>
+        <Option value="peppa">Peppa Pig</Option>
+      </Select>
+    )}
+  </Story>
+</Canvas>
+
+<ArgsTable of={Select} story="Select" />
+
+---
+
+## Sizes
+
+### Small
+
+<Canvas>
+  <Select size="small">
+    <Option value="">Small</Option>
+    <Option value="sad" disabled>
+      Tony
+    </Option>
+    <Option value="old">Steve</Option>
+    <Option value="splat">Natasha</Option>
+  </Select>
+</Canvas>
+
+### Large
+
+<Canvas>
+  <Select size="large">
+    <Option value="">Small</Option>
+    <Option value="sad" disabled>
+      Tony
+    </Option>
+    <Option value="old">Steve</Option>
+    <Option value="splat">Natasha</Option>
+  </Select>
+</Canvas>
+
+## States
+
+### Invalid
+
+<Canvas>
+  <Select size="large" invalid={true}>
+    <Option value="sad">Tony</Option>
+    <Option value="old">Steve</Option>
+  </Select>
+</Canvas>
+
+### Disabled
+
+<Canvas>
+  <Select size="large" disabled={true}>
+    <Option value="sad">Tony</Option>
+    <Option value="old">Steve</Option>
+  </Select>
+</Canvas>
+
+## Initial value
+
+<Canvas>
+  <Select defaultValue="yoink">
+    <Option value="sad">Tony</Option>
+    <Option value="old">Steve</Option>
+    <Option value="splat">Natasha</Option>
+    <Option value="yoink">Vision</Option>
+  </Select>
+</Canvas>
+
+## Events
+
+<Canvas>
+  <Select onChange={x => console.log(x)}>
+    <Option value="sad">Tony</Option>
+    <Option value="old">Steve</Option>
+  </Select>
+</Canvas>
+
+---
+
+## `Option`
+
+An `Option` defines a value selectable by a `<Select>`.
+
+## Option props
+
+<ArgsTable of={Option} />
