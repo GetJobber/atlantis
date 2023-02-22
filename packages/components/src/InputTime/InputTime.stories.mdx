@@ -4,6 +4,7 @@ import { Button } from "@jobber/components/Button";
 import { Content } from "@jobber/components/Content";
 import { useState } from "react";
 import { CivilTime } from "@std-proposal/temporal";
+import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 
 <Meta title="Components/InputTime" component={InputTime} />
 
@@ -57,23 +58,23 @@ If the input starts empty the `ChangeEvent` isn't fired until a full time is
 set. Setting just the hour or minute or _period_ (AM/PM) won't fire the event.
 When the last element is set the change event will fire.
 
-export function InputTimeEventsExample() {
-  const [time, setTime] = useState(new CivilTime(3, 52));
-  const resetTime = () => {
-    setTime(new CivilTime(3, 52));
-  };
-  const handleChange = newTime => {
-    setTime(newTime);
-  };
-  return (
-    <Content>
-      <InputTime value={time} onChange={handleChange} />
-      <pre>{time && time.toString()}</pre>
-      <Button label="Reset" onClick={resetTime} />
-    </Content>
-  );
-}
-
-<Canvas withSource="none">
-  <InputTimeEventsExample />
+<Canvas>
+  <ExampleWithHooks>
+    {() => {
+      const [time, setTime] = useState(new CivilTime(3, 52));
+      const resetTime = () => {
+        setTime(new CivilTime(3, 52));
+      };
+      const handleChange = newTime => {
+        setTime(newTime);
+      };
+      return (
+        <Content>
+          <InputTime value={time} onChange={handleChange} />
+          <pre>{time && time.toString()}</pre>
+          <Button label="Reset" onClick={resetTime} />
+        </Content>
+      );
+    }}
+  </ExampleWithHooks>
 </Canvas>
