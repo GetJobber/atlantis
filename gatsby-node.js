@@ -74,6 +74,11 @@ exports.onCreateWebpackConfig = ({
     cssRule,
   ];
 
+  config.resolve.alias = {
+    ...config.resolve.alias,
+    mdxUtils: path.resolve(__dirname, "../.storybook/components"),
+  };
+
   // Situationally disable serverside rendering.
   if (stage.includes("html")) {
     config.module.rules.push({
@@ -84,6 +89,11 @@ exports.onCreateWebpackConfig = ({
     config.module.rules.push({
       test: /.*\.(?:md|mdx)$/,
       use: path.resolve("../null-markdown-loader.js"),
+    });
+
+    config.module.rules.push({
+      test: /storybook-addon-designs\/blocks/,
+      use: loaders.null(),
     });
   }
 
