@@ -1,5 +1,6 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
 import { useState } from "react";
+import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 import { Heading } from "@jobber/components/Heading";
 import { Content } from "@jobber/components/Content";
 import { Emphasis } from "@jobber/components/Emphasis";
@@ -66,28 +67,28 @@ decision on whether to show or hide the units.
 `onComplete` is a callback that will fire once the countdown to the specified
 time has been completed.
 
-export function OnCompleteExample() {
-  const [start, setStart] = useState(false);
-  const inTenSeconds = new Date(new Date().getTime() + 10 * 1000);
-  return (
-    <>
-      <Button label={"Start Timer"} onClick={() => setStart(true)} />
-      {start && (
-        <Heading variation={"highlight"}>
-          <Countdown
-            date={inTenSeconds}
-            granularity={"s"}
-            showUnits={true}
-            onComplete={() => alert("Completed Timer!")}
-          />
-        </Heading>
-      )}
-    </>
-  );
-}
-
-<Canvas withSource="none">
-  <OnCompleteExample />
+<Canvas>
+  <ExampleWithHooks>
+    {() => {
+      const [start, setStart] = useState(false);
+      const inTenSeconds = new Date(new Date().getTime() + 10 * 1000);
+      return (
+        <>
+          <Button label={"Start Timer"} onClick={() => setStart(true)} />
+          {start && (
+            <Heading variation={"highlight"}>
+              <Countdown
+                date={inTenSeconds}
+                granularity={"s"}
+                showUnits={true}
+                onComplete={() => alert("Completed Timer!")}
+              />
+            </Heading>
+          )}
+        </>
+      );
+    }}
+  </ExampleWithHooks>
 </Canvas>
 
 ## Styling
