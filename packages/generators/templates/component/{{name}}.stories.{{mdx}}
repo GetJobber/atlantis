@@ -1,7 +1,11 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
 import { {{name}} } from ".";
+import { Figma } from "storybook-addon-designs/blocks";
+
 
 # {{ titleCase name }}
+
+<Meta title="Components/{{ name }}" component={ {{ name }} } />
 
 ```ts
 import { {{ name }} } from "@jobber/components/{{ name }}";
@@ -9,7 +13,7 @@ import { {{ name }} } from "@jobber/components/{{ name }}";
 
 <Canvas>
   <Story name="{{ name }}" args={ { "text": "Bob"} }>
-    {args => <{{ name }} {...args}" /> }
+    {args => <{{ name }} {...args} />}
   </Story>
 </Canvas>
 
@@ -24,7 +28,7 @@ import { {{ name }} } from "@jobber/components/{{ name }}";
 
 ## Props
 
-<ArgsTable of={{{ name }}} story="{{ name }}" />
+<ArgsTable of={ {{ name }} } story="{{ name }}" />
 
 <!--
   It is not necessary to provide an example of each prop. Use usage examples to
@@ -76,13 +80,7 @@ The `<{{name}}>` will... _Add a brief description of the component_
 
 ## Mockup
 
-<iframe
-  style="border: 1px solid rgba(0, 0, 0, 0.1);"
-  width="800"
-  height="450"
-  src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F3BXCXXD9glMtj8RAHjXiQC%2FDesign-System-Contribution-TEMPLATE%3Fnode-id%3D332%253A5526"
-  allowfullscreen>
-</iframe>
+<Figma collapsable />
 
 <!--
   Insert a Figma mockup from the [Design System Contribution template](https://www.figma.com/file/3BXCXXD9glMtj8RAHjXiQC/Design-System-Contribution-TEMPLATE?node-id=26%3A2)
