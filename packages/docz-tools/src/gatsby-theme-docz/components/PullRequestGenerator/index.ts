@@ -1,1 +1,0 @@
-export { PullRequestGenerator } from "./PullRequestGenerator";
