@@ -1,0 +1,324 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Icon } from "@jobber/components/Icon";
+
+<Meta title="Components/Icon" component={Icon} />
+
+# Icon
+
+Atlantis provides built-in icons that represent common tasks and types of
+content in a variety of use cases.
+
+Icons are used to visually communicate core parts of the product and available
+actions. They can act as wayfinding tools to more easily understand where they
+are in the product, and common interaction patterns that are available.
+
+Use icons as intended. Provided icons have a specific meaning. To avoid
+confusing users, each icon should be used in accordance with its meaning and
+recommended usage.
+
+## Design guidelines
+
+### Icon sizes
+
+#### Base
+
+Use the `base` size for most icon usage.
+
+#### Small
+
+Only use `small` when space is severely constrained, such as in a
+[small Button.](/docs/components-button--button#sizes)
+
+#### Large
+
+Only use `large` icons when the icon is a prominent feature of the interface,
+such as in a full-screen error view on a mobile device.
+
+### Icon construction guidelines
+
+When contributing a new icon, design to these guidelines for the `base` size.
+The `small` and `large` sizes will be generated programatically once the `base`
+size icon has been created.
+
+#### Size, weight, and spacing
+
+Icons are only responsible for their own spacing. Spacing when used within other
+components, such as [List](/docs/components-list--list), is the responsibility
+of those other components.
+
+- Icons should have a height and width of 20px container within a 24px artboard,
+  effectively providing a 2px padding on all sides
+- Icons can be optically adjusted within this 20px space to attain good visual
+  balance with the rest of the Atlantis icon set
+- Circular icons should have a 20px diameter
+- Lines should have a 2px weight
+
+#### Corners
+
+- 90° corners should have a 2px radius
+- Greater than 90° corners should have a 1px radius
+- Less than 90° corners should have an 0.5px radius
+- Interior corners should not have a radius
+
+#### Line terminals
+
+- When a line is interrupted, terminals should be geometric/square
+- when a line ends organically, terminals should be round
+
+#### Color
+
+Design your icons with `#000000`. If an icon is associated with a systemic color
+such as ["destructive"](/docs/design-colors--page#destructive) specify the
+system color for the icon when it is added to Atlantis. In all other cases, use
+the default icon color.
+
+```ts
+import { Icon } from "@jobber/components/Icon";
+```
+
+<Canvas>
+  <Story name="Icon" args={{ name: "gift" }}>
+    {args => <Icon {...args} />}
+  </Story>
+</Canvas>
+
+<ArgsTable of={Icon} story="Icon" />
+
+---
+
+## Available icons
+
+### Arrows
+
+| Icon                          | `Name`          |
+| :---------------------------- | :-------------- |
+| <Icon name="arrowDown" />     | `arrowDown`     |
+| <Icon name="arrowLeft" />     | `arrowLeft`     |
+| <Icon name="arrowRight" />    | `arrowRight`    |
+| <Icon name="arrowUp" />       | `arrowUp`       |
+| <Icon name="backArrow" />     | `backArrow`     |
+| <Icon name="longArrowDown" /> | `longArrowDown` |
+| <Icon name="longArrowUp" />   | `longArrowUp`   |
+
+### Calendar
+
+| Icon                         | `Name`         |
+| :--------------------------- | :------------- |
+| <Icon name="availability" /> | `availability` |
+| <Icon name="calendar" />     | `calendar`     |
+| <Icon name="clearFilters" /> | `clearFilters` |
+| <Icon name="event" />        | `event`        |
+| <Icon name="schedule" />     | `schedule`     |
+| <Icon name="task" />         | `task`         |
+| <Icon name="timeline" />     | `timeline`     |
+| <Icon name="today" />        | `today`        |
+| <Icon name="recurring" />    | `recurring`    |
+
+### Files
+
+| Icon                      | `Name`      |
+| :------------------------ | :---------- |
+| <Icon name="addNote" />   | `addNote`   |
+| <Icon name="archive" />   | `archive`   |
+| <Icon name="excel" />     | `excel`     |
+| <Icon name="file" />      | `file`      |
+| <Icon name="note" />      | `note`      |
+| <Icon name="pdf" />       | `pdf`       |
+| <Icon name="video" />     | `video`     |
+| <Icon name="word" />      | `word`      |
+| <Icon name="upload" />    | `upload`    |
+| <Icon name="image" />     | `image`     |
+| <Icon name="paperclip" /> | `paperclip` |
+
+### Forms
+
+| Icon                      | `Name`      |
+| :------------------------ | :---------- |
+| <Icon name="checkbox" />  | `checkbox`  |
+| <Icon name="edit" />      | `edit`      |
+| <Icon name="star" />      | `star`      |
+| <Icon name="starFill" />  | `starFill`  |
+| <Icon name="textBox" />   | `textBox`   |
+| <Icon name="textField" /> | `textField` |
+| <Icon name="dropdown" />  | `dropdown`  |
+| <Icon name="trash" />     | `trash`     |
+
+### Help
+
+| Icon                  | `Name`  |
+| :-------------------- | :------ |
+| <Icon name="alert" /> | `alert` |
+| <Icon name="help" />  | `help`  |
+| <Icon name="knot" />  | `knot`  |
+
+### Map
+
+| Icon                       | `Name`       |
+| :------------------------- | :----------- |
+| <Icon name="address" />    | `address`    |
+| <Icon name="moveMarker" /> | `moveMarker` |
+| <Icon name="property" />   | `property`   |
+| <Icon name="directions" /> | `directions` |
+
+### Messaging
+
+| Icon                        | `Name`        |
+| :-------------------------- | :------------ |
+| <Icon name="chat" />        | `chat`        |
+| <Icon name="email" />       | `email`       |
+| <Icon name="markSent" />    | `markSent`    |
+| <Icon name="reminder" />    | `reminder`    |
+| <Icon name="sms" />         | `sms`         |
+| <Icon name="sms2" />        | `sms2`        |
+| <Icon name="sendMessage" /> | `sendMessage` |
+| <Icon name="compose" />     | `compose`     |
+
+### User
+
+| Icon                           | `Name`           |
+| :----------------------------- | :--------------- |
+| <Icon name="clients" />        | `clients`        |
+| <Icon name="person" />         | `person`         |
+| <Icon name="company" />        | `company`        |
+| <Icon name="user" />           | `user`           |
+| <Icon name="userSwitch" />     | `userSwitch`     |
+| <Icon name="userUnassigned" /> | `userUnassigned` |
+| <Icon name="vcard" />          | `vcard`          |
+
+### Social media
+
+| Icon                       | `Name`       |
+| :------------------------- | :----------- |
+| <Icon name="angieslist" /> | `angieslist` |
+| <Icon name="facebook" />   | `facebook`   |
+| <Icon name="googlePlay" /> | `googlePlay` |
+| <Icon name="google" />     | `google`     |
+| <Icon name="instagram" />  | `instagram`  |
+| <Icon name="linkedIn" />   | `linkedIn`   |
+| <Icon name="twitter" />    | `twitter`    |
+| <Icon name="yelp" />       | `yelp`       |
+| <Icon name="youtube" />    | `youtube`    |
+| <Icon name="embed" />      | `embed`      |
+
+### Transaction
+
+| Icon                    | `Name`    |
+| :---------------------- | :-------- |
+| <Icon name="payment" /> | `payment` |
+| <Icon name="percent" /> | `percent` |
+| <Icon name="wallet" />  | `wallet`  |
+
+### Work
+
+| Icon                     | `Name`     |
+| :----------------------- | :--------- |
+| <Icon name="chemical" /> | `chemical` |
+| <Icon name="clockIn" />  | `clockIn`  |
+| <Icon name="clockOut" /> | `clockOut` |
+| <Icon name="expense" />  | `expense`  |
+| <Icon name="timer" />    | `timer`    |
+| <Icon name="work" />     | `work`     |
+
+### Request
+
+| Icon                    | `Name`    |
+| :---------------------- | :-------- |
+| <Icon name="request" /> | `request` |
+
+### Quote
+
+| Icon                  | `Name`  |
+| :-------------------- | :------ |
+| <Icon name="quote" /> | `quote` |
+
+### Job
+
+| Icon                       | `Name`       |
+| :------------------------- | :----------- |
+| <Icon name="job" />        | `job`        |
+| <Icon name="jobOnHold" />  | `jobOnHold`  |
+| <Icon name="moveVisits" /> | `moveVisits` |
+| <Icon name="visit" />      | `visit`      |
+
+### Invoice
+
+| Icon                         | `Name`         |
+| :--------------------------- | :------------- |
+| <Icon name="badInvoice" />   | `badInvoice`   |
+| <Icon name="invoice" />      | `invoice`      |
+| <Icon name="invoiceLater" /> | `invoiceLater` |
+| <Icon name="paidInvoice" />  | `paidInvoice`  |
+| <Icon name="sendInvoice" />  | `sendInvoice`  |
+
+### Fleet management
+
+| Icon                   | `Name`   |
+| :--------------------- | :------- |
+| <Icon name="truck" />  | `truck`  |
+| <Icon name="fuel" />   | `fuel`   |
+| <Icon name="engine" /> | `engine` |
+
+### System actions
+
+| Icon                      | `Name`      |
+| :------------------------ | :---------- |
+| <Icon name="add" />       | `add`       |
+| <Icon name="batch" />     | `batch`     |
+| <Icon name="copy" />      | `copy`      |
+| <Icon name="customize" /> | `customize` |
+| <Icon name="download" />  | `download`  |
+| <Icon name="embed" />     | `embed`     |
+| <Icon name="export" />    | `export`    |
+| <Icon name="import" />    | `import`    |
+| <Icon name="redo" />      | `redo`      |
+| <Icon name="remove" />    | `remove`    |
+| <Icon name="search" />    | `search`    |
+| <Icon name="sort" />      | `sort`      |
+| <Icon name="sync" />      | `sync`      |
+| <Icon name="syncAlert" /> | `syncAlert` |
+| <Icon name="filter" />    | `filter`    |
+| <Icon name="future" />    | `future`    |
+
+### Other
+
+| Icon                         | `Name`         |
+| :--------------------------- | :------------- |
+| <Icon name="apps" />         | `apps`         |
+| <Icon name="camera" />       | `camera`       |
+| <Icon name="checkmark" />    | `checkmark`    |
+| <Icon name="cog" />          | `cog`          |
+| <Icon name="dashboard" />    | `dashboard`    |
+| <Icon name="eye" />          | `eye`          |
+| <Icon name="eyeCrossed" />   | `eyeCrossed`   |
+| <Icon name="gift" />         | `gift`         |
+| <Icon name="grid" />         | `grid`         |
+| <Icon name="home" />         | `home`         |
+| <Icon name="link" />         | `link`         |
+| <Icon name="lock" />         | `lock`         |
+| <Icon name="logout" />       | `logout`       |
+| <Icon name="menu" />         | `menu`         |
+| <Icon name="more" />         | `more`         |
+| <Icon name="offline" />      | `offline`      |
+| <Icon name="phone" />        | `phone`        |
+| <Icon name="presentation" /> | `presentation` |
+| <Icon name="quickbooks" />   | `quickbooks`   |
+| <Icon name="reports" />      | `reports`      |
+| <Icon name="signature" />    | `signature`    |
+| <Icon name="sparkles" />     | `sparkles`     |
+| <Icon name="starburst" />    | `starburst`    |
+| <Icon name="sun" />          | `sun`          |
+| <Icon name="thumbsUp" />     | `thumbsUp`     |
+| <Icon name="thumbsDown" />   | `thumbsDown`   |
+| <Icon name="xero" />         | `xero`         |
+
+### Legacy
+
+| Icon                   | `Name`   |
+| :--------------------- | :------- |
+| <Icon name="apple" />  | `apple`  |
+| <Icon name="cross" />  | `cross`  |
+| <Icon name="list" />   | `list`   |
+| <Icon name="minus" />  | `minus`  |
+| <Icon name="minus2" /> | `minus2` |
+| <Icon name="plus" />   | `plus`   |
+| <Icon name="plus2" />  | `plus2`  |
