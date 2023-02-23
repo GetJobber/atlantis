@@ -1,0 +1,116 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { StatusLabel } from "@jobber/components/StatusLabel";
+import { Content } from "@jobber/components/Content";
+
+<Meta title="Components/StatusLabel" component={StatusLabel} />
+
+# Status Label
+
+The `<StatusLabel>` component is a visual component that allows users to quickly
+determine the status of an item (e.g., "Active", "Overdue").
+
+```ts
+import { StatusLabel } from "@jobber/components/StatusLabel";
+```
+
+<Canvas>
+  <Story
+    name="StatusLabel"
+    args={{
+      label: "Bob",
+    }}
+  >
+    {args => <StatusLabel {...args} />}
+  </Story>
+</Canvas>
+
+<ArgsTable of={StatusLabel} story="StatusLabel" />
+
+## Usage guidelines
+
+StatusLabel is a more opinionated version of
+[InlineLabel](/docs/components-inlinelabel--inline-label) and offers only 5
+possible status representations:
+
+### Success
+
+Convey that an item is in a successful state, such as approved or paid.
+
+### Critical
+
+Alert the user to a critically important issue such as a late appointment or an
+overdue payment.
+
+### Warning
+
+Warn the user of a potential forthcoming issue like an upcoming deadline or an
+item awaiting response.
+
+### Informative
+
+Inform the user about something that may not require action, such as a quote
+that has already been converted into a job.
+
+### Inactive
+
+Signify that an item has been archived, closed, or otherwise removed from an
+active workflow.
+
+<Canvas>
+  <Content>
+    <StatusLabel label="Success" status="success" alignment="start" />
+    <StatusLabel label="Critical" status="critical" alignment="start" />
+    <StatusLabel label="Informative" status="informative" alignment="start" />
+    <StatusLabel label="Warning" status="warning" alignment="start" />
+    <StatusLabel label="Inactive" status="inactive" alignment="start" />
+  </Content>
+</Canvas>
+
+### Alignment
+
+Align the color indicator with the start or end of a layout as needed.
+
+For example, in a [List](/docs/components-list--list) where the StatusLabel is
+on the right, use the `end` alignment.
+
+<Canvas>
+  <div style={{ display: "flex", justifyContent: "space-between" }}>
+    <StatusLabel label="Start" status="inactive" alignment="start" />
+    <StatusLabel label="End" status="inactive" alignment="end" />
+  </div>
+</Canvas>
+
+## Related components
+
+- [InlineLabel](/docs/components-inlinelabel--inline-label) should be replaced
+  with StatusLabel where possible to provide a more intentional communication of
+  status to users
+
+## Content guidelines
+
+StatusLabel does not accept any child content. It presents only a text-based
+label describing the status, and a visual color indicator to reinforce the
+status.
+
+The label should be short, ideally no longer than two words.
+
+## Accessibility
+
+The StatusLabel has a `role` of `status` which is communicated to assistive
+technology. It does not pull focus to itself but informs the user of its'
+purpose.
+
+The label portion of StatusLabel should be readable by assistive technology.
+
+The color indicator is always used with a text label so that color is not the
+only method of communicating status.
+
+## Responsiveness
+
+StatusLabel should take up as much space as is available. If StatusLabel's label
+is longer than the space available, the label should wrap.
+
+## Notes
+
+- StatusLabel should replace
+  [InlineLabel](/docs/components-inlinelabel--inline-label) where possible.

@@ -1,16 +1,9 @@
----
-menu: Components
-route: /components/icon
-showDirectoryLink: true
----
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Icon } from "@jobber/components/Icon";
 
-import { Playground, Props } from "docz";
-import { ComponentStatus } from "@jobber/docx";
-import { Icon } from "./";
+<Meta title="Components/Icon" component={Icon} />
 
 # Icon
-
-<ComponentStatus stage="ready" responsive="yes" accessible="no" />
 
 Atlantis provides built-in icons that represent common tasks and types of
 content in a variety of use cases.
@@ -34,7 +27,7 @@ Use the `base` size for most icon usage.
 #### Small
 
 Only use `small` when space is severely constrained, such as in a
-[small Button.](/components/button/#small)
+[small Button.](/docs/components-button--button#sizes)
 
 #### Large
 
@@ -50,8 +43,8 @@ size icon has been created.
 #### Size, weight, and spacing
 
 Icons are only responsible for their own spacing. Spacing when used within other
-components, such as [List](/components/list), is the responsibility of those
-other components.
+components, such as [List](/docs/components-list--list), is the responsibility
+of those other components.
 
 - Icons should have a height and width of 20px container within a 24px artboard,
   effectively providing a 2px padding on all sides
@@ -75,21 +68,21 @@ other components.
 #### Color
 
 Design your icons with `#000000`. If an icon is associated with a systemic color
-such as ["destructive"](/colors#destructive) specify the system color for the
-icon when it is added to Atlantis. In all other cases, use the default icon
-color.
+such as ["destructive"](/docs/design-colors--page#destructive) specify the
+system color for the icon when it is added to Atlantis. In all other cases, use
+the default icon color.
 
 ```ts
 import { Icon } from "@jobber/components/Icon";
 ```
 
-<Playground>
-  <Icon name="gift" />
-</Playground>
+<Canvas>
+  <Story name="Icon" args={{ name: "gift" }}>
+    {args => <Icon {...args} />}
+  </Story>
+</Canvas>
 
-## Props
-
-<Props of={Icon} />
+<ArgsTable of={Icon} story="Icon" />
 
 ---
 
