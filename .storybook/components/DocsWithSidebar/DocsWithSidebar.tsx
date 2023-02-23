@@ -1,5 +1,7 @@
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren, useState } from "react";
 import { DocsContainer, DocsContainerProps } from "@storybook/addon-docs";
+import { Button } from "@jobber/components/Button";
+import * as styles from "./DocsWithSidebar.css";
 import { TableOfContents } from "../TableOfContents";
 
 export function DocsWithSidebar({
@@ -19,18 +21,37 @@ export function DocsWithSidebar({
     ),
   };
 
+  const [navigationOpen, setNavigationOpen] = useState(false);
+  const sidebarClassNames = [
+    styles.sidebar,
+    navigationOpen && styles.visible,
+  ].join(" ");
+
   return (
-    <div style={{ display: "flex", height: "100vh" }}>
-      <div style={{ flex: 1, overflow: "auto" }}>
+    <div className={styles.wrapper}>
+      <div className={styles.content}>
         <DocsContainer context={context} {...rest}>
           {children}
         </DocsContainer>
       </div>
-      <div style={{ flex: "0 1 auto", width: 250, overflow: "auto" }}>
-        <TableOfContents githubInfo={githubInfo} />
-      </div>
+      <aside className={sidebarClassNames}>
+        <div className={styles.sidebarToggle}>
+          <Button
+            icon={navigationOpen ? "remove" : "menu"}
+            onClick={toggleMenu}
+            ariaLabel={"toggle sidebar"}
+          />
+        </div>
+        <div className={styles.sidebarContent}>
+          <TableOfContents githubInfo={githubInfo} />
+        </div>
+      </aside>
     </div>
   );
+
+  function toggleMenu() {
+    setNavigationOpen(!navigationOpen);
+  }
 }
 
 function generateFilePath(githubRepo: string, file?: string, type = "tree") {
