@@ -21,7 +21,7 @@ export function TableOfContents({ githubInfo }: TableOfContentsProps) {
   const [headings, setHeadings] = useState<Element[]>([]);
 
   useEffect(() => {
-    const anchors = Array.from(document.querySelectorAll("h2"));
+    const anchors = Array.from(document.querySelectorAll("[data-toc='true']"));
     if (anchors.length < 2) return;
     setHeadings(anchors);
   }, []);

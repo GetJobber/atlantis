@@ -1,5 +1,5 @@
 import React from "react";
-import { Heading } from "@jobber/components/Heading";
+import { Header } from "./components/Header";
 import { Text } from "@jobber/components/Text";
 import { Content } from "@jobber/components/Content";
 import { InlineCode } from "./components/InlineCode";
@@ -19,9 +19,10 @@ export const parameters = {
   docs: {
     components: {
       wrapper: props => <Content>{props.children}</Content>,
-      h1: props => <Heading {...props} level={1} />,
-      h2: props => <Heading {...props} level={2} />,
-      h3: props => <Heading {...props} level={3} />,
+      h1: props => <Header {...props} level={1} />,
+      h2: props => <Header {...props} level={2} isTOC />,
+      h3: props => <Header {...props} level={3} />,
+      h4: props => <Header {...props} level={4} />,
       p: props => <Text {...props} />,
       inlineCode: props => <InlineCode {...props} />,
     },

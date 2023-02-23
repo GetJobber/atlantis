@@ -8,3 +8,4 @@ node_modules
 **/tsconfig.ci.tsbuildinfo
 .DS_Store
 .idea
+storybook-static
