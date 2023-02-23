@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.29.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.28.6...@jobber/design@0.29.0) (2023-02-23)
+
+
+### Features
+
+* **components:** Add new "range slider" icons ([#1062](https://github.com/GetJobber/atlantis/issues/1062)) ([3c7e05d](https://github.com/GetJobber/atlantis/commit/3c7e05da1b9e5c113a3cc832ce10970de153d8b6))
+
+
+
+
+
 ## [0.28.6](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.28.5...@jobber/design@0.28.6) (2023-02-23)
 
 **Note:** Version bump only for package @jobber/design
