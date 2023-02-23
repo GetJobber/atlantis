@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "3.1.7",
+  "version": "3.2.1",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -18,9 +18,9 @@
     "dist/*"
   ],
   "dependencies": {
-    "@jobber/design": "^0.28.5",
+    "@jobber/design": "^0.29.0",
     "@jobber/formatters": "^0.2.0",
-    "@jobber/hooks": "^1.12.1",
+    "@jobber/hooks": "^1.12.2",
     "@popperjs/core": "^2.0.6",
     "@std-proposal/temporal": "0.0.1",
     "@tanstack/react-table": "8.5.13",

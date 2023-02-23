@@ -84,6 +84,12 @@
   --field--border-color: var(--color-disabled--secondary);
 }
 
+/* override iOS default styling for disabled input */
+.disabled :disabled {
+  -webkit-text-fill-color: var(--field--value-color);
+  opacity: 1;
+}
+
 .small {
   --field--padding-left: calc(var(--space-base) - var(--space-smaller));
   --field--padding-right: calc(var(--space-base) - var(--space-smaller));

@@ -1,0 +1,277 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Guides/Frontend styleguide" />
+
+# Frontend Styleguide
+
+## Purpose
+
+Our goal with Typescript and React code is to automate as much style guidance as
+we can. To that end this guide serves to document conventions that we can't (or
+haven't yet been able to) automate. Automation is always preferred to adding a
+guidance here.
+
+## Property naming conventions
+
+Consider common terminology across components and design foundations when naming
+properties. As Atlantis is a system, end users should expect similar-behaving
+properties to have similar names across the system. For example...
+
+### Base vs "Default" or "Medium" for setting the default option in a range
+
+We use `base` as our default whenever possible when a property has a set range
+of outcomes. This can be seen in..
+
+- the `size` properties of [Button](/components/Button),
+  [Avatar](/components/avatar), [InputText](/components/input-text),
+  [Text](/packages-components-src-text-text),
+  [ProgressBar](/components/progress-bar), [Spinner](/components/spinner), etc;
+- `maxLines` of [Text](/packages-components-src-text-text)
+- values of [Shadow](/elevation), [Spacing](/space),
+  [Border Radius](/border-radius) design tokens
+
+This allows us to set an expectation of the base (or most common) use case when
+a prop is in action.
+
+### Open and closed states
+
+If a component has `open` and `closed` states, use a boolean property named
+`open`.
+
+This can be seen in [Modal](/components/modal), [Drawer](/components/drawer),
+and [Popover](/components/popover).
+
+## Typescript
+
+### Linter Exceptions
+
+While we should strive to conform to our set linter rules, if for some reason
+you are unable to you should turn them off for the single line where the
+exception is required.
+
+You should also leave a comment immediately above the exception explaining why
+it is necessary.
+
+#### ✅ Do
+
+```ts
+// Pending: https://github.com/donavon/use-event-listener/pull/12
+// The types in useEventListener mistakenly require a SyntheticEvent for the passed generic.
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+//@ts-ignore
+useEventListener<KeyboardEvent>("keydown", (event: KeyboardEvent) => {
+```
+
+```ts
+// Library requires fetching its CSS.
+// eslint-disable-next-line import/no-internal-modules
+import "react-image-lightbox/style.css";
+```
+
+#### ❌ Don't
+
+Missing rationale for disabling rule.
+
+```ts
+// eslint-disable-next-line max-statements
+function MyBigComponent() {
+```
+
+```ts
+const { given, expect: expectation, serverRates } = assertion;
+// eslint-disable-next-line jest/valid-describe
+describe(`given ${given}`, () => {
+```
+
+Missing rationale and disabling rules for a whole file.
+
+```ts
+/* eslint-disable @typescript-eslint/camelcase */
+/* eslint-disable max-statements */
+import React, { ReactText, useState } from "react";
+```
+
+<!--
+### Choosing Libraries
+-->
+
+### Use XOR over Unions for conditional properties
+
+When creating props that will change from required to optional, we prefer to use
+[XOR](https://www.npmjs.com/package/ts-xor) over
+[Unions](https://www.typescriptlang.org/docs/handbook/unions-and-intersections.html).
+This allows us to be more secure with our `interface` by saying a type will
+either be `TypeA` or `TypeB` but never a combination of both.
+
+```tsx
+import { XOR } from "ts-xor";
+
+interface BaseComponentProps {
+  readonly label?: string;
+  readonly icon?: IconNames;
+}
+
+interface ComponentWithActionProps extends BaseComponentProps {
+  readonly icon: IconNames;
+  onClick?(): void;
+}
+
+type ComponentProps = XOR<BaseComponentProps, ComponentWithActionProps>;
+```
+
+In the example above, our `BaseComponentProps` tells us that the `label` and the
+`icon` are both optional properties. In `ComponentWithActionProps` we tell
+typscript that we are extending the `BaseComponentProps`, but the `icon` is now
+a required property, and we have added an additional `onClick` property. The
+result will look something like:
+
+```tsx
+✅
+<Component label="Atlantis" icon="gift" />
+✅
+<Component label="Atlantis" icon="gift" onClick={() => alert('Hello 👋')} />
+✅
+<Component icon="gift" onClick={() => alert('Hello 👋')} />
+❌
+<Component label="Atlantis" onClick={() => alert('Hello 👋')} />
+```
+
+The last example will cause a typescript error because we have now said that if
+an `onClick` is used, then the component must be using the
+`ComponentWithActionProps`. Since that is the case, the `icon` property is now
+required.
+
+### `function` vs arrow function
+
+In an effort to make our Typescript code a bit more accessible we are preferring
+the `function` keyword to define named functions.
+
+#### ✅ Do
+
+```ts
+function MyComponent() {
+  // ...
+}
+```
+
+```ts
+[1, 2, 3].map(num => num * 2);
+```
+
+#### ❌ Don't
+
+```ts
+const MyComponent = () => {
+  // ...
+};
+```
+
+### Interface Declaration
+
+#### ✅ Do
+
+```ts
+interface MyInterface {
+  foo: number;
+  bar: string;
+}
+```
+
+#### ❌ Don't
+
+```ts
+type MyInterface = {
+  foo: number;
+  bar: string;
+};
+```
+
+<!--
+## React
+
+## Testing
+
+### `toBeNull`
+
+#### ✅ Do
+
+```ts
+
+```
+
+#### ❌ Don't
+
+```ts
+
+```
+
+---
+
+### `it` vs `test`
+
+#### ✅ Do
+
+```ts
+
+```
+
+#### ❌ Don't
+
+```ts
+
+```
+
+---
+
+### Snapshots
+
+#### ✅ Do
+
+```ts
+
+```
+
+#### ❌ Don't
+
+```ts
+
+```
+
+## Mobile Specific
+
+## Web Specific
+-->
+
+## CSS
+
+Wherever possible use Atlantis `design` tokens.
+
+### Units
+
+For size units, use the appropriate [Spacing](/space) variables. Do not use
+rems, ems, or hard-coded pixel values, as Atlantis is built using variables to
+allow for consistent re-flow as the browser scales.
+
+If you require a size that is larger than the Spacing variables, or falls
+somewhere in between, use the CSS `calc` function with Atlantis spacing values
+in a custom property in your file to avoid magic numbers.
+
+#### ✅ Do
+
+```css
+:root {
+  --drawer-width: calc(var(--space-base) * 17.5);
+}
+
+.container {
+  width: var(--drawer-width);
+}
+```
+
+#### ❌ Don't
+
+```css
+.container {
+  width: 280px;
+}
+```
