@@ -1,5 +1,5 @@
 import { DocumentNode } from "@apollo/client";
-import { act, renderHook } from "@testing-library/react-hooks";
+import { act, renderHook } from "@testing-library/react";
 import { useCollectionQuery } from "./useCollectionQuery";
 import {
   LIST_QUERY,
@@ -335,7 +335,7 @@ describe("useCollectionQuery", () => {
     describe("#subscribeToMore", () => {
       describe("when hook receives update from item not in collection", () => {
         it("it should add new item to collection", async () => {
-          const { result, waitForNextUpdate } = renderHook(
+          const { result, rerender } = renderHook(
             () => useCollectionQueryHookWithSubscription(query),
             {
               wrapper: wrapper([
@@ -346,10 +346,15 @@ describe("useCollectionQuery", () => {
           );
 
           // Wait for initial load
-          await act(waitForNextUpdate);
+          await act(() => {
+            rerender();
+          });
 
           // Wait for subscription
-          await act(waitForNextUpdate);
+          await act(() => wait(200));
+          await act(() => {
+            rerender();
+          });
 
           expect(
             result?.current?.data?.conversation?.smsMessages?.edges?.length,
@@ -359,7 +364,7 @@ describe("useCollectionQuery", () => {
 
       describe("when hook receives update from item already in collection", () => {
         it("it should return the existing collection", async () => {
-          const { result, waitForNextUpdate } = renderHook(
+          const { result, rerender } = renderHook(
             () => useCollectionQueryHookWithSubscription(query),
             {
               wrapper: wrapper([
@@ -370,7 +375,7 @@ describe("useCollectionQuery", () => {
           );
 
           // Wait for initial load
-          await act(waitForNextUpdate);
+          await act(rerender);
 
           // Wait for subscription
           await act(() => wait(200));
@@ -384,7 +389,7 @@ describe("useCollectionQuery", () => {
       describe("when hook receives `update` but is currently searching a collection", () => {
         it("should return the existing collection without adding the subscribed content", async () => {
           const searchTerm = "FooBar";
-          const { result, waitForNextUpdate } = renderHook(
+          const { result, rerender } = renderHook(
             () =>
               useCollectionQueryHookWithSubscriptionAndSearch(
                 query,
@@ -399,7 +404,7 @@ describe("useCollectionQuery", () => {
           );
 
           // Wait for initial load
-          await act(waitForNextUpdate);
+          await act(rerender);
 
           // Wait for subscription
           await act(() => wait(200));
