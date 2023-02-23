@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@emotion/react": "^11.1.4",
+    "@emotion/react": "11.10.6",
     "@jobber/components": "^3.2.1",
     "@jobber/design": "^0.29.0",
     "@types/uuid": "^8.3.3",
@@ -26,13 +26,10 @@
   },
   "peerDependencies": {
     "copy-text-to-clipboard": "*",
-    "docz": "*",
-    "gatsby-theme-docz": "*",
     "re-resizable": "*",
     "react": "*",
     "react-dom": "*",
-    "react-live": "*",
-    "theme-ui": "*"
+    "react-live": "*"
   },
   "devDependencies": {
     "@types/react-helmet": "^6.1.1"
