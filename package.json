@@ -10,7 +10,7 @@
     "test": "jest",
     "plop": "echo '🚧 `npm run plop` is now `npm run generate`'",
     "generate": "plop -- --path='./packages/components/src/'",
-    "build": "npm run build-storybook",
+    "build": "npm run build-storybook -- -o .docz/dist",
     "clean": "rm -rf .docz",
     "lerna:bootstrap": "./scripts/bootstrap.sh",
     "lerna:compile-typescript": "lerna run ci:typescript-compile",
