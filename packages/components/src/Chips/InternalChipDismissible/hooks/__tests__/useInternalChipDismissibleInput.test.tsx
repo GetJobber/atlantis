@@ -1,5 +1,5 @@
 import { ChangeEvent, KeyboardEvent } from "react";
-import { act, cleanup, renderHook } from "@testing-library/react-hooks";
+import { act, cleanup, renderHook } from "@testing-library/react";
 import { useInternalChipDismissibleInput } from "../useInternalChipDismissibleInput";
 
 afterEach(cleanup);
@@ -11,7 +11,7 @@ const handleSearch = jest.fn(value => value);
 const chips = ["Amazing", "Fabulous", "Magical"];
 
 const hookParams = {
-  attachTo: { current: undefined },
+  attachTo: { current: null },
   options: chips.map(chip => ({ label: chip, value: chip })),
   isLoadingMore: false,
   onOptionSelect: handleOptionSelect,
@@ -139,7 +139,9 @@ describe("handleSetActiveOnMouseOver", () => {
 
   it("should update the active index", () => {
     const result = setupHook();
-    result.current.handleSetActiveOnMouseOver(2)();
+    act(() => {
+      result.current.handleSetActiveOnMouseOver(2)();
+    });
     expect(result.current.activeIndex).toEqual(2);
   });
 });
