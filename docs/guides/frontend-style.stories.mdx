@@ -22,13 +22,17 @@ properties to have similar names across the system. For example...
 We use `base` as our default whenever possible when a property has a set range
 of outcomes. This can be seen in..
 
-- the `size` properties of [Button](/components/Button),
-  [Avatar](/components/avatar), [InputText](/components/input-text),
-  [Text](/packages-components-src-text-text),
-  [ProgressBar](/components/progress-bar), [Spinner](/components/spinner), etc;
-- `maxLines` of [Text](/packages-components-src-text-text)
-- values of [Shadow](/elevation), [Spacing](/space),
-  [Border Radius](/border-radius) design tokens
+- the `size` properties of
+  <a href="../?path=/docs/components-button--button">Button</a>,
+  <a href="../?path=/docs/components-avatar--avatar">Avatar</a>, <a href="../?path=/docs/components-inputtext--input-text">
+    InputText
+  </a>,<a href="../?path=/docs/components-text--text">Text</a>,<a href="../?path=/docs/components-progressbar--progress-bar">
+    ProgressBar
+  </a>, <a href="../?path=/docs/components-spinner--spinner">Spinner</a>, etc;
+- `maxLines` of <a href="../?path=/docs/components-text--text">Text</a>
+- values of <a href="../?path=/docs/design-elevations--page">Shadow</a>,
+  <a href="../?path=/docs/design-spacing--page">Spacing</a>,
+  <a href="../?path=/docs/design-borders--page">Border Radius</a> design tokens
 
 This allows us to set an expectation of the base (or most common) use case when
 a prop is in action.
@@ -38,8 +42,9 @@ a prop is in action.
 If a component has `open` and `closed` states, use a boolean property named
 `open`.
 
-This can be seen in [Modal](/components/modal), [Drawer](/components/drawer),
-and [Popover](/components/popover).
+This can be seen in <a href="../?path=/docs/components-modal--modal">Modal</a>,
+<a href="../?path=/docs/components-drawer--drawer">Drawer</a>, and
+<a href="../?path=/docs/components-popover--popover">Popover</a>.
 
 ## Typescript
 
@@ -248,7 +253,8 @@ Wherever possible use Atlantis `design` tokens.
 
 ### Units
 
-For size units, use the appropriate [Spacing](/space) variables. Do not use
+For size units, use the appropriate
+<a href="../?path=/docs/design-spacing--page">Spacing</a> variables. Do not use
 rems, ems, or hard-coded pixel values, as Atlantis is built using variables to
 allow for consistent re-flow as the browser scales.
 
