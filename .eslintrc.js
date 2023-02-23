@@ -3,7 +3,6 @@ require("@jobber/eslint-config/patch-eslint-plugin-resolution.js");
 const packageAliases = [
   ["@jobber/components", "./packages/components/src"],
   ["@jobber/hooks", "./packages/hooks"]
-  ["mdxUtils", "./.storybook/components"]
 ];
 
 module.exports = {
@@ -72,13 +71,6 @@ module.exports = {
         "@typescript-eslint/naming-convention": "off",
         "@typescript-eslint/no-unused-expressions": "off",
         "import/no-extraneous-dependencies": "off",
-      },
-    },
-    {
-      files: ["./.storybook/**"],
-      rules: {
-        "import/no-internal-modules": "off",
-        "import/no-relative-parent-imports": "off"
       },
     },
   ]

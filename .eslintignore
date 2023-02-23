@@ -5,6 +5,5 @@ packages/design/colors.js
 packages/design/src/icons/iconStyles.*
 packages/design/icons
 packages/generators/templates
-!/.storybook
 
 **/*/*.css.d.ts
