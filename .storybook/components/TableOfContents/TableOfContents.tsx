@@ -30,7 +30,7 @@ export function TableOfContents({ githubInfo }: TableOfContentsProps) {
     <div style={{ padding: "var(--space-base)" }}>
       <Content spacing="large">
         <div style={{ display: "flex", gap: "var(--space-small)" }}>
-          <Tooltip message="View Atlantis on github">
+          <Tooltip message="View Atlantis on GitHub">
             <Button
               /**
                *  Disabling ts for this line as we don't have a Github icon in
@@ -52,7 +52,7 @@ export function TableOfContents({ githubInfo }: TableOfContentsProps) {
               icon="embed"
               external
               type="secondary"
-              ariaLabel={`View ${githubInfo?.name} directory on Github`}
+              ariaLabel={`View ${githubInfo?.name} directory on GitHub`}
             />
           </Tooltip>
 
