@@ -46,7 +46,7 @@ export function TableOfContents({ githubInfo }: TableOfContentsProps) {
             />
           </Tooltip>
 
-          <Tooltip message={`View ${githubInfo?.name} on Github`}>
+          <Tooltip message={`View ${githubInfo?.name} on GitHub`}>
             <Button
               url={githubInfo?.viewFile}
               icon="embed"
