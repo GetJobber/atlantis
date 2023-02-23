@@ -34,7 +34,7 @@ export function Header({
   function handleClick(e) {
     e.preventDefault()
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    window.parent.history.pushState("", "", `${window.location.search}#${id}`);
+    window.parent.history.pushState("", "", `${window.parent.location.search}#${id}`);
     navigator.clipboard.writeText(window.parent.location.href);
   }
 }
