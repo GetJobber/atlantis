@@ -8,8 +8,8 @@ import { {{ name }} } from "@jobber/components/{{ name }}";
 ```
 
 <Canvas>
-  <Story name="{{ name }}">
-    <{{ name }} text="Bob" />
+  <Story name="{{ name }}" args={ { "text": "Bob"} }>
+    {args => <{{ name }} {...args}" /> }
   </Story>
 </Canvas>
 
