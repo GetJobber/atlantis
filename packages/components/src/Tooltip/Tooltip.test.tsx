@@ -32,7 +32,7 @@ it("should show up on hover", async () => {
     </Tooltip>,
   );
 
-  userEvent.hover(getByTestId(contentID));
+  await userEvent.hover(getByTestId(contentID));
   expect(getByText(message)).toBeInTheDocument();
   expect(getByText(content)).toBeInTheDocument();
 });
@@ -48,7 +48,7 @@ it("should show the tooltip up on focus", async () => {
     </Tooltip>,
   );
 
-  userEvent.hover(getByTestId(contentID));
+  await userEvent.hover(getByTestId(contentID));
   expect(getByText(message)).toBeInTheDocument();
 });
 
