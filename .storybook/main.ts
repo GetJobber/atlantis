@@ -5,7 +5,8 @@ const path = require("path");
 const config: StorybookConfig = {
   "stories": [
     "../packages/**/*.stories.mdx",
-    "../packages/**/*.stories.@(js|jsx|ts|tsx)"
+    "../packages/**/*.stories.@(js|jsx|ts|tsx)",
+    "../docs/**/*.stories.mdx",
   ],
   "addons": [
     "@storybook/addon-links",
