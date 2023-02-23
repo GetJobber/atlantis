@@ -1,0 +1,49 @@
+.wrapper {
+  display: flex;
+  height: 100vh;
+}
+
+.content {
+  flex: 1 1 0;
+  overflow: auto;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--elevation-menu);
+  width: 250px;
+  background-color: var(--color-white);
+  filter: drop-shadow(0px 0 var(--space-small) rgba(0, 0, 0, 0.25));
+  transform: translateX(100%);
+  transition: transform 200ms ease-in-out;
+  flex: 0 1 auto;
+
+  @media (--wide-screens) {
+    position: relative;
+    filter: none;
+    transform: translateX(0);
+  }
+}
+
+.sidebar.visible {
+  transform: translateX(0);
+}
+
+.sidebarContent {
+  height: 100%;
+  overflow: auto;
+}
+
+.sidebarToggle {
+  position: absolute;
+  top: calc(-1 * var(--space-small));
+  right: 100%;
+  padding: var(--space-large);
+
+  @media (--wide-screens) {
+    display: none;
+  }
+}
