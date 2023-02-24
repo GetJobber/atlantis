@@ -7,7 +7,7 @@ import { Button } from "@jobber/components/Button";
 import { InputText } from "@jobber/components/InputText";
 import { InputGroup } from "@jobber/components/InputGroup";
 import { List } from "@jobber/components/List";
-import { Menu } from "@jobber/components/Menu";
+// import { Menu } from "@jobber/components/Menu";
 
 # Card
 
@@ -146,19 +146,16 @@ related to the Card contents.
           items={[
             actions: [
               {
-                icon: "edit",
-                label: "Edit",
-                onClick: {() => alert("Dismiss")},
+                label: "Edit categories",
+                onClick: {() => alert("Edit")},
               },
               {
-                icon: "sms",
-                label: "Text message",
-                onClick: {() => alert("Dismiss")},
+                label: "New category",
+                onClick: {() => alert("New")},
               },
               {
-                icon: "email",
-                label: "Email",
-                onClick: {() => alert("Dismiss")},
+                label: "Export list",
+                onClick: {() => alert("Export")},
               }
             ]
           ]}
