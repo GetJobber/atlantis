@@ -5,7 +5,6 @@ import {
   fireEvent,
   render,
   waitFor,
-  waitForElementToBeRemoved,
 } from "@testing-library/react";
 import { showToast } from ".";
 
@@ -68,7 +67,7 @@ it("fires an action callback when the action button is clicked", () => {
   expect(mockAction).toHaveBeenCalledTimes(1);
 });
 
-it.only("sets a timer and clears the Slice after a certain amount of time", async done => {
+it("sets a timer and clears the Slice after a certain amount of time", async () => {
   const { getByText, queryAllByText } = render(<MockToast />);
 
   fireEvent.click(getByText("No Variation"));
@@ -76,13 +75,16 @@ it.only("sets a timer and clears the Slice after a certain amount of time", asyn
   expect(queryAllByText(infoMessage).length).toBe(1);
 
   await act(() => jest.runAllTimers());
-  await waitFor(() => {
-    expect(queryAllByText("Bland Toast")).not.toBeInTheDocument();
-    expect(queryAllByText("Bland Toast").length).toBe(0);
-  });
+  waitFor(
+    () => {
+      expect(queryAllByText("Bland Toast")).not.toBeInTheDocument();
+      expect(queryAllByText(infoMessage).length).toBe(0);
+    },
+    { timeout: 5000, interval: 50 },
+  );
 });
 
-it("stops and starts the timer when the item is hover toggled", done => {
+it("stops and starts the timer when the item is hover toggled", async () => {
   const { getByText, queryAllByText } = render(<MockToast />);
 
   fireEvent.click(getByText("No Variation"));
@@ -91,19 +93,18 @@ it("stops and starts the timer when the item is hover toggled", done => {
 
   fireEvent.mouseEnter(getByText("Bland Toast"));
 
-  act(() => jest.runAllTimers());
+  await act(() => jest.runAllTimers());
 
   expect(queryAllByText("Bland Toast").length).toBe(1);
   expect(queryAllByText("Bland Toast").length).not.toBe(0);
 
   fireEvent.mouseLeave(getByText("Bland Toast"));
 
-  act(() => jest.advanceTimersByTime(10000));
+  await act(() => jest.runAllTimers());
 
   waitFor(() => {
     expect(queryAllByText("Bland Toast").length).not.toBe(1);
     expect(queryAllByText("Bland Toast").length).toBe(0);
-    done();
   });
 });
 
