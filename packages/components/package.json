@@ -35,7 +35,7 @@
     "classnames": "^2.2.6",
     "color": "^3.1.2",
     "filesize": "^6.1.0",
-    "framer-motion": "^6.2.5",
+    "framer-motion": "^1.10.3",
     "lodash": "^4.17.21",
     "react-countdown": "^2.3.2",
     "react-datepicker": "^4.10.0",
