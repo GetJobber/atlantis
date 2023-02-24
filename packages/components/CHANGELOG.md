@@ -8,6 +8,17 @@ menu: Changelog
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.2.1...@jobber/components@3.2.2) (2023-02-24)
+
+
+### Bug Fixes
+
+* JOB-62724 Update RadioGroup alignment ([#1069](https://github.com/GetJobber/atlantis/issues/1069)) ([1fbfc56](https://github.com/GetJobber/atlantis/commit/1fbfc5675b8a9a92ba5848cb5c65dc0e4b8f0b7c))
+
+
+
+
+
 ## [3.2.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.2.0...@jobber/components@3.2.1) (2023-02-23)
 
 **Note:** Version bump only for package @jobber/components

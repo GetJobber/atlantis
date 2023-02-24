@@ -3,24 +3,61 @@ import * as webpack from "webpack";
 const path = require("path");
 
 const config: StorybookConfig = {
-  "stories": [
+  stories: [
     "../packages/**/*.stories.mdx",
     "../packages/**/*.stories.@(js|jsx|ts|tsx)",
     "../docs/**/*.stories.mdx",
   ],
-  "addons": [
+  addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     {
-      name: '@storybook/addon-docs',
+      name: "@storybook/addon-docs",
       options: {
         transcludeMarkdown: true,
       },
     },
   ],
-  "framework": "@storybook/react",
-  webpackFinal: async (config) => {
+  framework: "@storybook/react",
+  webpackFinal: async config => {
+    /**
+     * Separate existing rules for CSS files
+     */
+    if (config.module?.rules) {
+      const matcher = (rule: webpack.RuleSetRule): boolean =>
+        rule.test?.toString() === "/\\.css$/";
+      const existingRule = config.module.rules.find(matcher);
+
+      // CSS rules for 3rd-party package only
+      const packageCssRule = { ...existingRule, include: /node_modules/ };
+
+      // CSS rules for Atlantis
+      const atlantisCssRule = {
+        ...existingRule,
+        exclude: /node_modules/,
+        use: (existingRule?.use as webpack.RuleSetLoader[])?.map(item => {
+          let newItem = item;
+          if (newItem.loader?.includes("/css-loader/")) {
+            const modules = {
+              localIdentName: "[name]__[local]--[hash:base64:5]",
+            };
+            newItem = {
+              ...newItem,
+              options: { ...(newItem.options as Record<any, any>), modules },
+            };
+          }
+          return newItem;
+        }),
+      };
+
+      // Delete existing CSS rule and replace them with the new ones
+      config.module.rules = [
+        ...config.module.rules.filter(r => !matcher(r)),
+        packageCssRule,
+        atlantisCssRule,
+      ];
+    }
 
     /**
      * Generate css types on `.css` file save,
@@ -54,35 +91,24 @@ const config: StorybookConfig = {
       ],
     });
 
-    /**
-     * Since we don't use .module.css, we'll have to enable CSS modules for
-     * all CSS files.
-     */
-    const ruleCssIndex = config.module?.rules.findIndex(rule => rule.test?.toString() === '/\\.css$/');
-
-    if (ruleCssIndex) {
-      (config.module?.rules[ruleCssIndex]?.use as webpack.RuleSetLoader[])?.map(item => {
-        if (item.loader && item.loader.includes('/css-loader/')) {
-          (item.options as Record<any, any>).modules = {
-            localIdentName: "[name]__[local]--[hash:base64:5]",
-          };
-        }
-
-        return item;
-      })
-    }
-
     // Alias @jobber so it works on MDX files
     Object.assign(config.resolve?.alias, {
-      "@jobber/components": path.resolve(__dirname, "../packages/components/src"),
+      "@jobber/components": path.resolve(
+        __dirname,
+        "../packages/components/src",
+      ),
       "@jobber/docx": path.resolve(__dirname, "../packages/docx/src"),
-      "@jobber/docz-tools": path.resolve(__dirname, "../packages/docz-tools/src/components"),
-      "mdxUtils": path.resolve(__dirname, "components"),
+      "@jobber/docz-tools": path.resolve(
+        __dirname,
+        "../packages/docz-tools/src/components",
+      ),
+      mdxUtils: path.resolve(__dirname, "components"),
       "@atlantis": path.resolve(__dirname, "../"),
     });
+
     // Return the altered config
     return config;
-  }
-}
+  },
+};
 
-module.exports = config
+module.exports = config;
