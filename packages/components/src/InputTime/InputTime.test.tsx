@@ -57,11 +57,11 @@ it("renders an initial time when given 'defaultValue'", () => {
       >
         <label
           className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440007"
+          htmlFor="123e4567-e89b-12d3-a456-426655440003"
         />
         <input
           className="input"
-          id="123e4567-e89b-12d3-a456-426655440007"
+          id="123e4567-e89b-12d3-a456-426655440003"
           onBlur={[Function]}
           onChange={[Function]}
           onFocus={[Function]}
@@ -128,11 +128,11 @@ it("adds a error border when invalid", () => {
       >
         <label
           className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440015"
+          htmlFor="123e4567-e89b-12d3-a456-426655440011"
         />
         <input
           className="input"
-          id="123e4567-e89b-12d3-a456-426655440015"
+          id="123e4567-e89b-12d3-a456-426655440011"
           onBlur={[Function]}
           onChange={[Function]}
           onFocus={[Function]}
