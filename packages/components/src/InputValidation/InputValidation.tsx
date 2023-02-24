@@ -28,7 +28,7 @@ export function InputValidation({ message }: InputValidationProps) {
               initial="slideOut"
               animate="slideIn"
               exit="slideOut"
-              transition={{ duration: 2 }}
+              transition={{ duration: 0.2 }}
             >
               <div
                 className={styles.message}
