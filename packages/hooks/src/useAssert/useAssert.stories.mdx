@@ -1,0 +1,32 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Hooks/useAssert" />
+
+# useAssert
+
+During development, disrupt the render of a component when a conditional is met.
+This is helpful when you want to limit something that Typescript can't do...
+yet.
+
+```ts
+import { useAssert } from "@jobber/hooks";
+```
+
+```ts
+const child: ReactElement = <Avatar initials="JBR" />;
+// Make sure the child can only be an <Icon /> component
+useAssert(child.type !== Icon, "You can only pass in an <Icon /> child");
+```
+
+## Warn
+
+If you still want to assert but doesn't want to disrupt the render, you can pass
+in a `warn: true` param. This will throw a warning on your browser console.
+
+```ts
+const url: string = "http://getjobber.com";
+// Make sure the url always starts with https://
+useAssert(url.startsWith("http://"), "Please pass in an `https://` url", {
+  warn: true,
+});
+```
