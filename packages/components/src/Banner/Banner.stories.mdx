@@ -39,8 +39,8 @@ Banner should align to the left and right of the content it is related to.
 
 When using a Banner within a modal or a page layout, this means Banner should
 align to the text, inputs or other UI elements beneath it. For best results, use
-[Content](/components/content) to ensure consistent vertical spacing between
-Banner and adjacent elements.
+[Content](../?path=/docs/components-content--content) to ensure consistent
+vertical spacing between Banner and adjacent elements.
 
 If the Banner is being used as a system-wide message or some other context in
 which it is outside of the main application layout, it should take up the full
@@ -83,7 +83,8 @@ Success banners are appropriate when:
   <li>success feeback is delayed</li>
 </ul>
 
-Otherwise, use [toasts](toast) as the default for success messages.
+Otherwise, use [toasts](../?path=/docs/components-toast--toast) as the default
+for success messages.
 
 <Canvas>
   <Banner
@@ -112,9 +113,10 @@ possibly unknown impact a user’s changes or actions will have. They should not
 begin with "Warning:" and should not be used as a way to block or redirect a
 workflow.
 
-You should use [ConfirmationModal](/components/confirmation-modal) when you need
-to get explicit confirmation from the user before they complete an action that
-is difficult to reverse.
+You should use
+[ConfirmationModal](../?path=/docs/components-confirmationmodal--confirmation-modal)
+when you need to get explicit confirmation from the user before they complete an
+action that is difficult to reverse.
 
 <Canvas>
   <Banner type="warning">
@@ -133,11 +135,13 @@ Use error banners when:
 
 Errors should explain what happened, and summarize how many issues need to be
 addressed in a concise manner. Detailed information about each error is the role
-of the [InputText validation message](input-text/#validation-message) component
-or, if unavailable, [input validation](input-validation).
+of the
+[InputText validation message](../?path=/docs/components-inputtext--input-text/#validation-message)
+component or, if unavailable,
+[input validation](../?path=/docs/components-inputvalidation--input-validation).
 
 For more guidance on wording, check out the
-[Product Vocabulary](../guides/product-vocabulary).
+[Product Vocabulary](../?path=/docs/content-product-vocabulary--page).
 
 <Canvas>
   <Banner type="error">
@@ -165,7 +169,9 @@ Content in banner should:
 
 - Be concise and kept to only 1 to 2 sentences where possible
 - Avoid exceeding 200 characters
-- Follow the [product vocabulary](/content/product-vocabulary) where applicable
+- Follow the
+  [product vocabulary](../?path=/docs/content-product-vocabulary--page) where
+  applicable
 - In the case of warning or error banners, explain how to resolve the issue
 
 ## Actions in Banners
@@ -201,6 +207,8 @@ within a `Banner`. If you require an action, use the `primaryActions` prop. The
 ## Related components
 
 - To provide low priority, temporary feedback on the outcome of a user action,
-  use [Toast](toast) instead
-- Use [ConfirmationModal](/components/confirmation-modal) when you need to get
-  explicit confirmation from the user before they complete an action
+  use [Toast](../?path=/docs/components-toast--toast) instead
+- Use
+  [ConfirmationModal](../?path=/docs/components-confirmationmodal--confirmation-modal)
+  when you need to get explicit confirmation from the user before they complete
+  an action
