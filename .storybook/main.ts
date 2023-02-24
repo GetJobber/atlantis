@@ -77,8 +77,8 @@ const config: StorybookConfig = {
       "@jobber/components": path.resolve(__dirname, "../packages/components/src"),
       "@jobber/docx": path.resolve(__dirname, "../packages/docx/src"),
       "@jobber/docz-tools": path.resolve(__dirname, "../packages/docz-tools/src/components"),
-      "mdxUtils": path.resolve(__dirname, "components")
-
+      "mdxUtils": path.resolve(__dirname, "components"),
+      "@atlantis": path.resolve(__dirname, "../"),
     });
     // Return the altered config
     return config;
