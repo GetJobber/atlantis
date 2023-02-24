@@ -7,6 +7,7 @@ import { DocsWithSidebar } from "./components/DocsWithSidebar";
 
 import "@jobber/design/foundation.css";
 import "@jobber/fonts";
+import "./assets/css/preview.css";
 
 export const parameters = {
   viewMode: "docs",
@@ -23,6 +24,7 @@ export const parameters = {
       h2: props => <Header {...props} level={2} isTOC />,
       h3: props => <Header {...props} level={3} />,
       h4: props => <Header {...props} level={4} />,
+      h5: props => <Header {...props} level={5} />,
       p: props => <Text {...props} />,
       inlineCode: props => <InlineCode {...props} />,
     },

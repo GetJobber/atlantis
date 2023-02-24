@@ -19,6 +19,7 @@ const config: StorybookConfig = {
       },
     },
   ],
+  features: { storyStoreV7: true, buildStoriesJson: true },
   "framework": "@storybook/react",
   webpackFinal: async (config) => {
 
@@ -29,7 +30,7 @@ const config: StorybookConfig = {
     config.module?.rules.push({
       enforce: "pre",
       test: /\.css$/,
-      exclude: /node_modules/,
+    exclude: [/node_modules/, /\.storybook\/assets\/css\/.*\.css$/],
       use: [
         require.resolve("typed-css-modules-loader"),
         {
