@@ -53,6 +53,7 @@ function ToastInternal(_: unknown, ref: Ref<ToastRef>) {
       ]);
     },
   }));
+  console.error(toasts);
 
   return (
     <div className={styles.container}>

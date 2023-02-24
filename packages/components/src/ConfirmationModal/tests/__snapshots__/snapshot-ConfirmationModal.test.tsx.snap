@@ -1,80 +1,69 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders a simple ConfirmationModal 1`] = `
-<div
-  className="container"
-  tabIndex={0}
->
+<div>
   <div
-    className="overlay"
-    style={
-      Object {
-        "opacity": 0,
-      }
-    }
-  />
-  <div
-    className="modal"
-    style={
-      Object {
-        "opacity": 0,
-        "transform": "scale(0.9) translateZ(0)",
-      }
-    }
+    class="container"
+    tabindex="0"
   >
     <div
-      className="header"
-      data-testid="modal-header"
-    >
-      <h3
-        className="base extraBold larger heading"
-      >
-        Should we?
-      </h3>
-    </div>
+      class="overlay"
+      style="opacity: 0;"
+    />
     <div
-      className="padded base"
+      class="modal"
+      style="opacity: 0; transform: scale(0.9) translateZ(0);"
     >
       <div
-        className="padded base"
+        class="header"
+        data-testid="modal-header"
       >
-        <p
-          className="base regular base text"
+        <h3
+          class="base extraBold larger heading"
         >
-          Do something…
-        </p>
+          Should we?
+        </h3>
       </div>
-    </div>
-    <div
-      className="actionBar"
-    >
       <div
-        className="rightAction"
+        class="padded base"
       >
-        <button
-          className="button base work primary"
-          disabled={false}
-          onClick={[Function]}
-          type="button"
+        <div
+          class="padded base"
         >
-          <span
-            className="base extraBold base base"
+          <p
+            class="base regular base text"
           >
-            We Shall
-          </span>
-        </button>
-        <button
-          className="button base subtle primary"
-          disabled={false}
-          onClick={[Function]}
-          type="button"
+            Do something…
+          </p>
+        </div>
+      </div>
+      <div
+        class="actionBar"
+      >
+        <div
+          class="rightAction"
         >
-          <span
-            className="base extraBold base base"
+          <button
+            class="button base work primary"
+            type="button"
           >
-            Cancel
-          </span>
-        </button>
+            <span
+              class="base extraBold base base"
+            >
+              We Shall
+            </span>
+          </button>
+          <button
+            class="button base subtle primary"
+            type="button"
+          >
+            <span
+              class="base extraBold base base"
+            >
+              Cancel
+            </span>
+          </button>
+        </div>
       </div>
     </div>
   </div>

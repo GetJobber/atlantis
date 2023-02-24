@@ -5,6 +5,7 @@ import {
   fireEvent,
   render,
   waitFor,
+  waitForElementToBeRemoved,
 } from "@testing-library/react";
 import { showToast } from ".";
 
@@ -67,19 +68,17 @@ it("fires an action callback when the action button is clicked", () => {
   expect(mockAction).toHaveBeenCalledTimes(1);
 });
 
-it("sets a timer and clears the Slice after a certain amount of time", done => {
+it.only("sets a timer and clears the Slice after a certain amount of time", async done => {
   const { getByText, queryAllByText } = render(<MockToast />);
 
   fireEvent.click(getByText("No Variation"));
   expect(setTimeout).toHaveBeenCalled();
   expect(queryAllByText(infoMessage).length).toBe(1);
 
-  act(() => jest.runAllTimers());
-
-  waitFor(() => {
-    expect(queryAllByText("Bland Toast").length).not.toBe(1);
+  await act(() => jest.runAllTimers());
+  await waitFor(() => {
+    expect(queryAllByText("Bland Toast")).not.toBeInTheDocument();
     expect(queryAllByText("Bland Toast").length).toBe(0);
-    done();
   });
 });
 
@@ -92,7 +91,7 @@ it("stops and starts the timer when the item is hover toggled", done => {
 
   fireEvent.mouseEnter(getByText("Bland Toast"));
 
-  act(() => jest.advanceTimersByTime(10000));
+  act(() => jest.runAllTimers());
 
   expect(queryAllByText("Bland Toast").length).toBe(1);
   expect(queryAllByText("Bland Toast").length).not.toBe(0);

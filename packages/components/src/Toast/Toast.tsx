@@ -90,6 +90,8 @@ export function Toast({
   );
 
   function startTimer() {
+    console.error("starttimer toast");
+
     timer = setTimeout(() => handleToastClose(), getTimeout());
   }
 
@@ -98,6 +100,7 @@ export function Toast({
   }
 
   function handleToastClose() {
+    console.error("closing toast");
     setVisible(false);
   }
 
