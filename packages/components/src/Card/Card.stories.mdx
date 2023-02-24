@@ -4,6 +4,10 @@ import { Text } from "@jobber/components//Text";
 import { Heading } from "@jobber/components//Heading";
 import { Content } from "@jobber/components//Content";
 import { Button } from "@jobber/components/Button";
+import { InputText } from "@jobber/components/InputText";
+import { InputGroup } from "@jobber/components/InputGroup";
+import { List } from "@jobber/components/List";
+import { Menu } from "@jobber/components/Menu";
 
 # Card
 
@@ -20,24 +24,44 @@ import { Card } from "@jobber/components/Card";
   <Story
     name="Card"
     args={{
-      header: "Banana varieties",
+      header: {
+        title: "Company settings",
+        action: <Button label="Add New Setting" />,
+      },
     }}
   >
     {args => (
       <Card {...args}>
         <Content>
-          <Heading level={4}>Burro</Heading>
-          <Text>
-            Squatty and slightly square at the edges, these bananas are slightly
-            tangy and lemony. When ripe, the fruit is soft and the skin is
-            yellow with black spots. Also called Horse, Hog, or Orinoco bananas.
-          </Text>
-          <Heading level={4}>Cavendish</Heading>
-          <Text>
-            This is the familiar yellow banana sold in United States’
-            supermarkets. There are also other sizes of Cavendish, including
-            Dwarf and Giant, though they are difficult to find.
-          </Text>
+          <Heading level={4}>Details</Heading>
+          <InputGroup>
+            <InputText
+              defaultValue="Quest Provider"
+              placeholder="Company name"
+            />
+            <InputText placeholder="Years in business" />
+          </InputGroup>
+          <Heading level={4}>Contact</Heading>
+          <InputGroup>
+            <InputText
+              prefix={{
+                icon: "phone",
+              }}
+              placeholder="Phone number"
+            />
+            <InputText
+              prefix={{
+                icon: "presentation",
+              }}
+              placeholder="Website"
+            />
+            <InputText
+              prefix={{
+                icon: "email",
+              }}
+              placeholder="Email"
+            />
+          </InputGroup>
         </Content>
       </Card>
     )}
@@ -67,6 +91,108 @@ Card titles should be sentence-cased.
 | Required deposit        | Required Deposit        |
 
 ## Variations
+
+### Header with action
+
+Pass a Button in as the header action to present the user with an action related
+to the Card contents.
+
+<Canvas>
+  <Card
+    header={{
+      title: "Services",
+      action: (
+        <Button label="Add New Service" onClick={() => alert("Dismiss")} />
+      ),
+    }}
+  >
+    <List
+      items={[
+        {
+          id: 1,
+          title: "Home Cleaning - 2 Bed 2 Bath",
+          content: "Basic clean for 2 bedrooms 2 bathrooms",
+          value: "$250.00",
+        },
+        {
+          id: 2,
+          title: "Kitchen Cleaning",
+          content: "Basic clean for 1 kitchen - includes stove and fridge",
+          value: "$175.00",
+        },
+        {
+          id: 3,
+          title: "Baseboard Cleaning",
+          content:
+            "Ensure that baseboards are cleaned in addition to walls and floors",
+          value: "$25.00",
+        },
+      ]}
+    />
+  </Card>
+</Canvas>
+
+### Header with multiple actions
+
+Pass a Menu in as the header action to present the user with multiple actions
+related to the Card contents.
+
+<!--
+<Canvas>
+  <Card
+    header={{
+      action:
+        <Menu
+          items={[
+            actions: [
+              {
+                icon: "edit",
+                label: "Edit",
+                onClick: {() => alert("Dismiss")},
+              },
+              {
+                icon: "sms",
+                label: "Text message",
+                onClick: {() => alert("Dismiss")},
+              },
+              {
+                icon: "email",
+                label: "Email",
+                onClick: {() => alert("Dismiss")},
+              }
+            ]
+          ]}
+        />
+      ,
+      title: "Services",
+    }}
+  >
+    <List
+      items={[
+        {
+          id: 1,
+          title: "Home Cleaning - 2 Bed 2 Bath",
+          content: "Basic clean for 2 bedrooms 2 bathrooms",
+          value: "$250.00",
+        },
+        {
+          id: 2,
+          title: "Kitchen Cleaning",
+          content: "Basic clean for 1 kitchen - includes stove and fridge",
+          value: "$175.00",
+        },
+        {
+          id: 3,
+          title: "Baseboard Cleaning",
+          content:
+            "Ensure that baseboards are cleaned in addition to walls and floors",
+          value: "$25.00",
+        },
+      ]}
+    />
+  </Card>
+</Canvas>
+-->
 
 ### Clickable with URL
 
