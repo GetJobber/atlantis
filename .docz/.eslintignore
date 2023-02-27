@@ -1,0 +1,9 @@
+node_modules
+dist
+.rpt2_cache
+packages/design/colors.js
+packages/design/src/icons/iconStyles.*
+packages/design/icons
+packages/generators/templates
+
+**/*/*.css.d.ts

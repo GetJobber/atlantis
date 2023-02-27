@@ -125,7 +125,8 @@
     "ie >= 11"
   ],
   "dependencies": {
-    "@std-proposal/temporal": "0.0.1"
+    "@std-proposal/temporal": "0.0.1",
+    "react-hook-form": "^7.43.2"
   },
   "optionalDependencies": {
     "@jobber/fonts": "^1.1.0"
