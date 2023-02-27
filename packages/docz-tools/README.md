@@ -1,9 +1,3 @@
----
-name: Docz Tools
-menu: Packages
-route: /packages/docz-tools
----
-
 # Jobber Docz Tools
 
 Jobber Docz Tools contains the theme and components to create Jobber flavored

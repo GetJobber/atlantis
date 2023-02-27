@@ -1,8 +1,3 @@
----
-name: Contributing
-route: /CONTRIBUTING.md
----
-
 # Contributing
 
 ## How can you contribute?

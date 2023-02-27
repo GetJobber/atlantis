@@ -1,8 +1,3 @@
----
-name: Atlantis
-route: /
----
-
 # 🔱 Atlantis
 
 [![CircleCI](https://circleci.com/gh/GetJobber/atlantis/tree/master.svg?style=svg&circle-token=3f1b0343273ef589350516e23713e81c8c3ac094)](https://circleci.com/gh/GetJobber/atlantis/tree/master)
