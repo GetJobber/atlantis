@@ -1,0 +1,19 @@
+:focus,
+:focus-visible {
+  outline: none;
+}
+
+:global(h6.sbdocs-h6) {
+  color: var(--color-heading);
+}
+
+a,
+:global(.sbdocs.sbdocs-a) {
+  color: var(--color-interactive);
+  font-family: inherit;
+  font-size: inherit;
+}
+
+a:hover {
+  color: var(--color-interactive--hover);
+}
