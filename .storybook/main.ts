@@ -67,7 +67,7 @@ const config: StorybookConfig = {
     config.module?.rules.push({
       enforce: "pre",
       test: /\.css$/,
-    exclude: [/node_modules/, /\.storybook\/assets\/css\/.*\.css$/],
+      exclude: [/node_modules/, /\.storybook\/assets\/css\/.*\.css$/],
       use: [
         require.resolve("typed-css-modules-loader"),
         {
