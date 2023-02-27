@@ -19,7 +19,7 @@ const config: StorybookConfig = {
       },
     },
   ],
-  features: { storyStoreV7: true, buildStoriesJson: true },
+  features: { buildStoriesJson: true },
   framework: "@storybook/react",
   webpackFinal: async config => {
     /**
