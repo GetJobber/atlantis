@@ -99,10 +99,6 @@ const config: StorybookConfig = {
         "../packages/components/src",
       ),
       "@jobber/docx": path.resolve(__dirname, "../packages/docx/src"),
-      "@jobber/docz-tools": path.resolve(
-        __dirname,
-        "../packages/docz-tools/src/components",
-      ),
       mdxUtils: path.resolve(__dirname, "components"),
     });
 
