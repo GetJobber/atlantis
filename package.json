@@ -50,7 +50,6 @@
     "@jobber/components": "file:packages/components",
     "@jobber/design": "file:packages/design",
     "@jobber/docx": "file:packages/docx",
-    "@jobber/docz-tools": "file:packages/docz-tools",
     "@jobber/eslint-config": "file:packages/eslint-config",
     "@jobber/generators": "file:packages/generators",
     "@jobber/stylelint-config": "file:packages/stylelint-config",
