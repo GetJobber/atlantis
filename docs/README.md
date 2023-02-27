@@ -30,7 +30,7 @@ cd atlantis
 npm install
 ```
 
-To start the [docz](https://www.docz.site/) development server:
+To start the [Storybook](https://storybook.js.org/) development server:
 
 ```sh
 npm start
@@ -72,7 +72,6 @@ These are the core packages you'll need to build with Atlantis:
 If you're looking to build documentation and tooling using Atlantis' development
 standards, these packages will be useful:
 
-- [Docz tools](/packages/docz-tools)
 - [EsLint configuration](/packages/eslint-config)
 - [StyleLint configuration](/packages/stylelint-config)
 
@@ -100,7 +99,7 @@ npm run generate
 ✔  +! 5 files added
  -> /packages/components/src/ExampleComponent/index.ts
  -> /packages/components/src/ExampleComponent/ExampleComponent.css
- -> /packages/components/src/ExampleComponent/ExampleComponent.mdx
+ -> /packages/components/src/ExampleComponent/ExampleComponent.stories.mdx
  -> /packages/components/src/ExampleComponent/ExampleComponent.test.tsx
  -> /packages/components/src/ExampleComponent/ExampleComponent.tsx
 ```

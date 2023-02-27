@@ -37,7 +37,6 @@ export function PullRequestGenerator() {
               <Option value="components">component library</Option>
               <Option value="hooks">hooks library</Option>
               <Option value="design">design foundation system</Option>
-              <Option value="docz-tools">internal docz tools</Option>
               <Option value="eslint-config">eslint config</Option>
               <Option value="stylelint-config">stylelint config</Option>
             </Select>
