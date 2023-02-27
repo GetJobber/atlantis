@@ -1,65 +1,58 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import { FeatureSwitch } from ".";
 
 afterEach(cleanup);
 
 it("renders a full FeatureSwitch", () => {
-  const tree = renderer
-    .create(
-      <FeatureSwitch
-        enabled={true}
-        title="Quote follow-up"
-        externalLink={true}
-        description="Send a [notification](www.fakeurl.com) to your _client_ following up on an **outstanding quote**."
-        hasSaveIndicator={true}
-        onSwitch={() => {
-          console.log("You clicked the switch");
-        }}
-        onEdit={() => {
-          console.log("You clicked edit");
-        }}
-      >
-        Dis dem content yo
-      </FeatureSwitch>,
-    )
-    .toJSON();
+  const tree = render(
+    <FeatureSwitch
+      enabled={true}
+      title="Quote follow-up"
+      externalLink={true}
+      description="Send a [notification](www.fakeurl.com) to your _client_ following up on an **outstanding quote**."
+      hasSaveIndicator={true}
+      onSwitch={() => {
+        console.log("You clicked the switch");
+      }}
+      onEdit={() => {
+        console.log("You clicked edit");
+      }}
+    >
+      Dis dem content yo
+    </FeatureSwitch>,
+  );
   expect(tree).toMatchSnapshot();
 });
 
 it("renders a subdued FeatureSwitch content", () => {
-  const tree = renderer
-    .create(
-      <FeatureSwitch
-        enabled={false}
-        description="Send a notification to your client following up on an outstanding quote."
-      >
-        Dis dem content yo
-      </FeatureSwitch>,
-    )
-    .toJSON();
+  const tree = render(
+    <FeatureSwitch
+      enabled={false}
+      description="Send a notification to your client following up on an outstanding quote."
+    >
+      Dis dem content yo
+    </FeatureSwitch>,
+  );
   expect(tree).toMatchSnapshot();
 });
 
 test("it should not show description if absent", () => {
-  const tree = renderer
-    .create(<FeatureSwitch enabled={false}>Dis dem content yo</FeatureSwitch>)
-    .toJSON();
+  const tree = render(
+    <FeatureSwitch enabled={false}>Dis dem content yo</FeatureSwitch>,
+  );
   expect(tree).toMatchSnapshot();
 });
 
 test("it should not show switch if onSwitch is absent", () => {
-  const tree = renderer
-    .create(
-      <FeatureSwitch
-        enabled={false}
-        description="Send a notification to your client following up on an outstanding quote."
-      >
-        Dis dem content yo
-      </FeatureSwitch>,
-    )
-    .toJSON();
+  const tree = render(
+    <FeatureSwitch
+      enabled={false}
+      description="Send a notification to your client following up on an outstanding quote."
+    >
+      Dis dem content yo
+    </FeatureSwitch>,
+  );
   expect(tree).toMatchSnapshot();
 });
 

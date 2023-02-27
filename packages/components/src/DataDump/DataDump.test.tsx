@@ -1,15 +1,13 @@
+import { render } from "@testing-library/react";
 import React from "react";
-import renderer from "react-test-renderer";
 import { DataDump } from ".";
 
 it("renders a DataDump", () => {
-  const tree = renderer.create(<DataDump data={{ Foo: "bar" }} />).toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(<DataDump data={{ Foo: "bar" }} />);
+  expect(container).toMatchSnapshot();
 });
 
 it("dumps some data with a label", () => {
-  const tree = renderer
-    .create(<DataDump label="💩" data={{ Foo: "bar" }} />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(<DataDump label="💩" data={{ Foo: "bar" }} />);
+  expect(container).toMatchSnapshot();
 });

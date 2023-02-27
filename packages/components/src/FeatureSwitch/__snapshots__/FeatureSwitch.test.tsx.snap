@@ -1,210 +1,639 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`it should not show description if absent 1`] = `
-<div
-  className="padded base"
->
-  <div
-    className="container"
-  >
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="padded base"
+      >
+        <div
+          class="container"
+        >
+          <div
+            class="content"
+          >
+            <div
+              class="padded base"
+            />
+          </div>
+        </div>
+        <div
+          class="container"
+        >
+          <div
+            class="featureContent content"
+          >
+            Dis dem content yo
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
     <div
-      className="content"
+      class="padded base"
     >
       <div
-        className="padded base"
-      />
+        class="container"
+      >
+        <div
+          class="content"
+        >
+          <div
+            class="padded base"
+          />
+        </div>
+      </div>
+      <div
+        class="container"
+      >
+        <div
+          class="featureContent content"
+        >
+          Dis dem content yo
+        </div>
+      </div>
     </div>
-  </div>
-  <div
-    className="container"
-  >
-    <div
-      className="featureContent content"
-    >
-      Dis dem content yo
-    </div>
-  </div>
-</div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;
 
 exports[`it should not show switch if onSwitch is absent 1`] = `
-<div
-  className="padded base"
->
-  <div
-    className="container"
-  >
-    <div
-      className="content"
-    >
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
       <div
-        className="padded base"
+        class="padded base"
       >
-        <p
-          className="base regular base text"
+        <div
+          class="container"
         >
-          Send a notification to your client following up on an outstanding quote.
-        </p>
+          <div
+            class="content"
+          >
+            <div
+              class="padded base"
+            >
+              <p
+                class="base regular base text"
+              >
+                Send a notification to your client following up on an outstanding quote.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="container"
+        >
+          <div
+            class="featureContent content"
+          >
+            Dis dem content yo
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div
-    className="container"
-  >
+  </body>,
+  "container": <div>
     <div
-      className="featureContent content"
+      class="padded base"
     >
-      Dis dem content yo
+      <div
+        class="container"
+      >
+        <div
+          class="content"
+        >
+          <div
+            class="padded base"
+          >
+            <p
+              class="base regular base text"
+            >
+              Send a notification to your client following up on an outstanding quote.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="container"
+      >
+        <div
+          class="featureContent content"
+        >
+          Dis dem content yo
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;
 
 exports[`renders a full FeatureSwitch 1`] = `
-<div
-  className="padded base"
->
-  <div
-    className="container"
-  >
-    <div
-      className="content"
-    >
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
       <div
-        className="padded base"
+        class="padded base"
       >
-        <h4
-          className="base bold large heading"
+        <div
+          class="container"
         >
-          Quote follow-up
-        </h4>
-        <p
-          className="base regular base text"
+          <div
+            class="content"
+          >
+            <div
+              class="padded base"
+            >
+              <h4
+                class="base bold large heading"
+              >
+                Quote follow-up
+              </h4>
+              <p
+                class="base regular base text"
+              >
+                Send a 
+                <a
+                  href="www.fakeurl.com"
+                  target="_blank"
+                >
+                  notification
+                </a>
+                 to your 
+                <em
+                  class="base regular italic"
+                >
+                  client
+                </em>
+                 following up on an 
+                <b
+                  class="base bold"
+                >
+                  outstanding quote
+                </b>
+                .
+              </p>
+            </div>
+          </div>
+          <div
+            class="action"
+          >
+            <button
+              aria-checked="true"
+              aria-label="Send a [notification](www.fakeurl.com) to your _client_ following up on an **outstanding quote**."
+              class="track isChecked"
+              role="switch"
+              type="button"
+            >
+              <span
+                class="toggle"
+              >
+                <span
+                  class="label"
+                >
+                  <span
+                    class="base bold small uppercase white"
+                  >
+                    On
+                  </span>
+                </span>
+                <span
+                  class="pip"
+                />
+                <span
+                  class="label"
+                >
+                  <span
+                    class="base bold small uppercase greyBlue"
+                  >
+                    Off
+                  </span>
+                </span>
+              </span>
+            </button>
+            <input
+              type="hidden"
+              value="true"
+            />
+          </div>
+        </div>
+        <div
+          class="container"
         >
-          Send a 
-          <a
-            href="www.fakeurl.com"
-            target="_blank"
+          <div
+            class="featureContent content enabled"
           >
-            notification
-          </a>
-           to your 
-          <em
-            className="base regular italic"
+            Dis dem content yo
+          </div>
+          <div
+            class="action"
           >
-            client
-          </em>
-           following up on an 
-          <b
-            className="base bold"
-          >
-            outstanding quote
-          </b>
-          .
-        </p>
+            <button
+              class="button base work tertiary"
+              type="button"
+            >
+              <span
+                class="base extraBold base base"
+              >
+                Edit
+              </span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
+  </body>,
+  "container": <div>
     <div
-      className="action"
+      class="padded base"
     >
-      <button
-        aria-checked={true}
-        aria-label="Send a [notification](www.fakeurl.com) to your _client_ following up on an **outstanding quote**."
-        className="track isChecked"
-        disabled={false}
-        onClick={[Function]}
-        role="switch"
-        type="button"
+      <div
+        class="container"
       >
-        <span
-          className="toggle"
+        <div
+          class="content"
         >
-          <span
-            className="label"
+          <div
+            class="padded base"
+          >
+            <h4
+              class="base bold large heading"
+            >
+              Quote follow-up
+            </h4>
+            <p
+              class="base regular base text"
+            >
+              Send a 
+              <a
+                href="www.fakeurl.com"
+                target="_blank"
+              >
+                notification
+              </a>
+               to your 
+              <em
+                class="base regular italic"
+              >
+                client
+              </em>
+               following up on an 
+              <b
+                class="base bold"
+              >
+                outstanding quote
+              </b>
+              .
+            </p>
+          </div>
+        </div>
+        <div
+          class="action"
+        >
+          <button
+            aria-checked="true"
+            aria-label="Send a [notification](www.fakeurl.com) to your _client_ following up on an **outstanding quote**."
+            class="track isChecked"
+            role="switch"
+            type="button"
           >
             <span
-              className="base bold small uppercase white"
+              class="toggle"
             >
-              On
+              <span
+                class="label"
+              >
+                <span
+                  class="base bold small uppercase white"
+                >
+                  On
+                </span>
+              </span>
+              <span
+                class="pip"
+              />
+              <span
+                class="label"
+              >
+                <span
+                  class="base bold small uppercase greyBlue"
+                >
+                  Off
+                </span>
+              </span>
             </span>
-          </span>
-          <span
-            className="pip"
+          </button>
+          <input
+            type="hidden"
+            value="true"
           />
-          <span
-            className="label"
+        </div>
+      </div>
+      <div
+        class="container"
+      >
+        <div
+          class="featureContent content enabled"
+        >
+          Dis dem content yo
+        </div>
+        <div
+          class="action"
+        >
+          <button
+            class="button base work tertiary"
+            type="button"
           >
             <span
-              className="base bold small uppercase greyBlue"
+              class="base extraBold base base"
             >
-              Off
+              Edit
             </span>
-          </span>
-        </span>
-      </button>
-      <input
-        type="hidden"
-        value="true"
-      />
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
-  <div
-    className="container"
-  >
-    <div
-      className="featureContent content enabled"
-    >
-      Dis dem content yo
-    </div>
-    <div
-      className="action"
-    >
-      <button
-        className="button base work tertiary"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
-      >
-        <span
-          className="base extraBold base base"
-        >
-          Edit
-        </span>
-      </button>
-    </div>
-  </div>
-</div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;
 
 exports[`renders a subdued FeatureSwitch content 1`] = `
-<div
-  className="padded base"
->
-  <div
-    className="container"
-  >
-    <div
-      className="content"
-    >
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
       <div
-        className="padded base"
+        class="padded base"
       >
-        <p
-          className="base regular base text"
+        <div
+          class="container"
         >
-          Send a notification to your client following up on an outstanding quote.
-        </p>
+          <div
+            class="content"
+          >
+            <div
+              class="padded base"
+            >
+              <p
+                class="base regular base text"
+              >
+                Send a notification to your client following up on an outstanding quote.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="container"
+        >
+          <div
+            class="featureContent content"
+          >
+            Dis dem content yo
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div
-    className="container"
-  >
+  </body>,
+  "container": <div>
     <div
-      className="featureContent content"
+      class="padded base"
     >
-      Dis dem content yo
+      <div
+        class="container"
+      >
+        <div
+          class="content"
+        >
+          <div
+            class="padded base"
+          >
+            <p
+              class="base regular base text"
+            >
+              Send a notification to your client following up on an outstanding quote.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="container"
+      >
+        <div
+          class="featureContent content"
+        >
+          Dis dem content yo
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;

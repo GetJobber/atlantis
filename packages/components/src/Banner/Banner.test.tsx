@@ -1,15 +1,12 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { Banner } from ".";
 
 afterEach(cleanup);
 
 it("renders a success banner", () => {
-  const tree = renderer
-    .create(<Banner type="success">Success</Banner>)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(<Banner type="success">Success</Banner>);
+  expect(container).toMatchSnapshot();
 });
 
 it("adds an error class to error banners", () => {
@@ -18,15 +15,13 @@ it("adds an error class to error banners", () => {
 });
 
 it("renders a notice banner", () => {
-  const tree = renderer
-    .create(<Banner type="notice">Notice me</Banner>)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(<Banner type="notice">Notice me</Banner>);
+  expect(container).toMatchSnapshot();
 });
 
 it("renders a warning banner", () => {
-  const tree = renderer.create(<Banner type="warning">Warn</Banner>).toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(<Banner type="warning">Warn</Banner>);
+  expect(container).toMatchSnapshot();
 });
 
 it("renders without close button", () => {
@@ -61,35 +56,33 @@ test("it should call the handler with a number value", () => {
 });
 
 it("renders a banner with a primary action", () => {
-  const tree = renderer
-    .create(
-      <Banner
-        type="success"
-        primaryAction={{
-          label: "smash me",
-        }}
-      >
-        Bruce
-      </Banner>,
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(
+    <Banner
+      type="success"
+      primaryAction={{
+        label: "smash me",
+      }}
+    >
+      Bruce
+    </Banner>,
+  );
+
+  expect(container).toMatchSnapshot();
 });
 
 it("renders a banner with a primary 'learning' action when the type is 'notice'", () => {
-  const tree = renderer
-    .create(
-      <Banner
-        type="notice"
-        primaryAction={{
-          label: "smash me",
-        }}
-      >
-        Bruce
-      </Banner>,
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(
+    <Banner
+      type="notice"
+      primaryAction={{
+        label: "smash me",
+      }}
+    >
+      Bruce
+    </Banner>,
+  );
+
+  expect(container).toMatchSnapshot();
 });
 
 it("wraps its children in text if the children are a simple string", () => {

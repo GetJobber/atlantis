@@ -1,5 +1,4 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import { Checkbox } from ".";
 import { Text } from "../Text";
@@ -36,9 +35,7 @@ it("renders each variation of checked, defaultChecked and indeterminate", () => 
   ];
 
   variations.forEach(variation => {
-    expect(
-      renderer.create(<Checkbox label="Foo" {...variation} />).toJSON(),
-    ).toMatchSnapshot();
+    expect(render(<Checkbox label="Foo" {...variation} />)).toMatchSnapshot();
   });
 });
 

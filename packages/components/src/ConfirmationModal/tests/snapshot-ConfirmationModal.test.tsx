@@ -3,8 +3,8 @@
  * https://github.com/GetJobber/atlantis/pull/171/files
  */
 
+import { render } from "@testing-library/react";
 import React, { ReactPortal } from "react";
-import renderer from "react-test-renderer";
 import ReactDOM from "react-dom";
 import { ConfirmationModal } from "..";
 
@@ -19,17 +19,15 @@ afterEach(() => {
 });
 
 it("renders a simple ConfirmationModal", () => {
-  const tree = renderer
-    .create(
-      <ConfirmationModal
-        title="Should we?"
-        message="Do something…"
-        open={true}
-        confirmLabel="We Shall"
-        onConfirm={() => jest.fn()}
-        onCancel={() => jest.fn()}
-      />,
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(
+    <ConfirmationModal
+      title="Should we?"
+      message="Do something…"
+      open={true}
+      confirmLabel="We Shall"
+      onConfirm={() => jest.fn()}
+      onCancel={() => jest.fn()}
+    />,
+  );
+  expect(container).toMatchSnapshot();
 });

@@ -1,6 +1,5 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import { cleanup } from "@testing-library/react";
+import { cleanup, render } from "@testing-library/react";
 import { CivilDate } from "@std-proposal/temporal";
 import { FormatDate, strFormatDate } from "./FormatDate";
 
@@ -17,8 +16,8 @@ describe("Different date values", () => {
 
   Object.entries(dates).forEach(([inputType, value], index) => {
     it(`renders a formatted date from ${inputType}`, () => {
-      const tree = renderer.create(<FormatDate date={value} />).toJSON();
-      expect(tree).toEqual(strFormatDate(new Date(mockDateResult[index])));
+      const { container } = render(<FormatDate date={value} />);
+      expect(container).toEqual(strFormatDate(new Date(mockDateResult[index])));
     });
   });
 });
