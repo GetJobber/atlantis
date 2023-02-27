@@ -1,7 +1,15 @@
-# @jobber/hooks: Change Log
+# Change Log
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.12.5-pre.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.12.4...@jobber/hooks@1.12.5-pre.0) (2023-02-27)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
 
 ## [1.12.4](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.12.3...@jobber/hooks@1.12.4) (2023-02-27)
 
