@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import copy from "copy-text-to-clipboard";
 import { Card } from "@jobber/components/Card";
 import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
@@ -74,7 +73,7 @@ export function PullRequestGenerator() {
   );
 
   function handleCopy() {
-    copy(title);
+    navigator.clipboard.writeText(title);
     showToast({
       message: "Copied PR title to clipboard",
     });

@@ -1,5 +1,4 @@
 import React from "react";
-import copy from "copy-text-to-clipboard";
 import { Button } from "@jobber/components/Button";
 import { showToast } from "@jobber/components/Toast";
 import styles from "./ColorSwatches.module.css";
@@ -47,7 +46,7 @@ function Color({ color }: ColorProps) {
   );
 
   function handleClick() {
-    copy(`var(${color})`);
+    navigator.clipboard.writeText(`var(${color})`);
     showToast({
       message: `Color ${color} copied to clipboard`,
     });
