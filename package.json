@@ -24,7 +24,6 @@
     "release:unpublished-package": "export IGNORE_OPTIONAL_DEPENDENCIES=true; npm ci --no-optional && lerna publish from-package",
     "publish:prerelease": "lerna publish --canary --dist-tag next --preid pre from-package",
     "ci:release": "lerna publish --yes",
-    "version": "node ensureChangelogHeaders.js",
     "convertIcoMoon": "scripts/convertIcoMoon.ts",
     "preventManualRelease": "node scripts/preventManualRelease.js",
     "buildHooksIndex": "node scripts/createIndexFile.js ./packages/hooks/src",
