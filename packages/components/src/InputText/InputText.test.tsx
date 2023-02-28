@@ -33,7 +33,7 @@ it("renders a regular input for text and numbers", () => {
 
 it("renders a textarea", () => {
   const { container } = render(
-    <InputText placeholder="Describe your favourite colour?" multiline />
+    <InputText placeholder="Describe your favourite colour?" multiline />,
   );
   expect(container).toMatchInlineSnapshot(`
     <div>
@@ -66,7 +66,7 @@ it("renders a textarea with 4 rows", () => {
       placeholder="Describe your favourite colour?"
       multiline
       rows={4}
-    />
+    />,
   );
   expect(container).toMatchInlineSnapshot(`
     <div>
@@ -106,7 +106,7 @@ test("it should call the handler with the new value", () => {
       name="Got milk?"
       onChange={changeHandler}
       placeholder={placeholder}
-    />
+    />,
   );
 
   fireEvent.change(getByLabelText(placeholder), {

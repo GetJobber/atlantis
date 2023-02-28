@@ -8,7 +8,7 @@ it("renders a vertical InputGroup", () => {
   const tree = render(
     <InputGroup>
       <div>Test content</div>
-    </InputGroup>
+    </InputGroup>,
   );
 
   expect(tree).toMatchInlineSnapshot(`
@@ -93,7 +93,7 @@ it("renders a horizontal InputGroup", () => {
   const tree = render(
     <InputGroup flowDirection="horizontal">
       <div>Test content</div>
-    </InputGroup>
+    </InputGroup>,
   );
   expect(tree).toMatchInlineSnapshot(`
     Object {
@@ -179,7 +179,7 @@ it("renders a valid nested InputGroup", () => {
       <InputGroup flowDirection="horizontal">
         <div>Test content</div>
       </InputGroup>
-    </InputGroup>
+    </InputGroup>,
   );
   expect(tree).toMatchInlineSnapshot(`
     Object {
@@ -273,7 +273,7 @@ it("renders a null fragment for an invalidly nested InputGroup", () => {
       <InputGroup>
         <div>Test content</div>
       </InputGroup>
-    </InputGroup>
+    </InputGroup>,
   );
 
   expect(tree).toMatchInlineSnapshot(`

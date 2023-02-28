@@ -97,7 +97,7 @@ it("renders a Switch that is turned ON", () => {
 
 it("renders a disabled Switch", () => {
   const { container } = render(
-    <Switch ariaLabel="Can't touch this" disabled={true} />
+    <Switch ariaLabel="Can't touch this" disabled={true} />,
   );
   expect(container).toMatchInlineSnapshot(`
     <div>
@@ -156,7 +156,7 @@ test("it should change the input value on click", () => {
 
 test("it should not change the input value on click", () => {
   const { getByRole } = render(
-    <Switch ariaLabel="Can't touch this" value={true} disabled={true} />
+    <Switch ariaLabel="Can't touch this" value={true} disabled={true} />,
   );
   const element = getByRole("switch");
 

@@ -11,7 +11,7 @@ it("renders an H1 title", () => {
       fontWeight="black"
     >
       Page title
-    </Typography>
+    </Typography>,
   );
   expect(container).toMatchInlineSnapshot(`
     <div>
@@ -33,7 +33,7 @@ it("renders an H2 title", () => {
       fontWeight="black"
     >
       Subtitle
-    </Typography>
+    </Typography>,
   );
   expect(container).toMatchInlineSnapshot(`
     <div>
@@ -50,7 +50,7 @@ it("renders an H3 title", () => {
   const { container } = render(
     <Typography element="h3" size="larger" fontWeight="bold">
       Content Group
-    </Typography>
+    </Typography>,
   );
   expect(container).toMatchInlineSnapshot(`
     <div>
@@ -67,7 +67,7 @@ it("renders an H4 title", () => {
   const { container } = render(
     <Typography element="h4" size="large" fontWeight="bold">
       Section
-    </Typography>
+    </Typography>,
   );
   expect(container).toMatchInlineSnapshot(`
     <div>
@@ -84,7 +84,7 @@ it("renders an H5 title", () => {
   const { container } = render(
     <Typography element="h5" size="base" fontWeight="bold">
       Subsection
-    </Typography>
+    </Typography>,
   );
   expect(container).toMatchInlineSnapshot(`
     <div>
@@ -106,7 +106,7 @@ it("renders an H6 title", () => {
       fontWeight="bold"
     >
       Overline
-    </Typography>
+    </Typography>,
   );
   expect(container).toMatchInlineSnapshot(`
     <div>
@@ -125,7 +125,7 @@ it("renders a paragraph", () => {
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat quae
       architecto accusamus cumque voluptate aspernatur repellendus natus, quo
       veniam illum.
-    </Typography>
+    </Typography>,
   );
   expect(container).toMatchInlineSnapshot(`
     <div>
@@ -153,7 +153,7 @@ it("renders a span", () => {
 
 it("renders an uppercased span", () => {
   const { container } = render(
-    <Typography textCase="uppercase">uppercase</Typography>
+    <Typography textCase="uppercase">uppercase</Typography>,
   );
   expect(container).toMatchInlineSnapshot(`
     <div>
@@ -168,7 +168,7 @@ it("renders an uppercased span", () => {
 
 it("renders a lowercased text", () => {
   const { container } = render(
-    <Typography textCase="lowercase">LOWERCASE</Typography>
+    <Typography textCase="lowercase">LOWERCASE</Typography>,
   );
   expect(container).toMatchInlineSnapshot(`
     <div>
@@ -183,7 +183,7 @@ it("renders a lowercased text", () => {
 
 it("renders a capitalized text", () => {
   const { container } = render(
-    <Typography textCase="capitalize">wElL tHiS iS hArD tO tYpE</Typography>
+    <Typography textCase="capitalize">wElL tHiS iS hArD tO tYpE</Typography>,
   );
   expect(container).toMatchInlineSnapshot(`
     <div>
@@ -198,7 +198,7 @@ it("renders a capitalized text", () => {
 
 it("should add textTruncate class when numberOfLines property is passed", () => {
   const { container } = render(
-    <Typography numberOfLines={3}>Pretend this is a multiline text</Typography>
+    <Typography numberOfLines={3}>Pretend this is a multiline text</Typography>,
   );
   expect(container).toMatchInlineSnapshot(`
     <div>
@@ -213,7 +213,7 @@ it("should add textTruncate class when numberOfLines property is passed", () => 
 
 it("renders a end-aligned text", () => {
   const { container } = render(
-    <Typography align="end">End align me</Typography>
+    <Typography align="end">End align me</Typography>,
   );
   expect(container).toMatchInlineSnapshot(`
     <div>
@@ -228,7 +228,7 @@ it("renders a end-aligned text", () => {
 
 it("renders a center-aligned text", () => {
   const { container } = render(
-    <Typography align="center">Center align me</Typography>
+    <Typography align="center">Center align me</Typography>,
   );
   expect(container).toMatchInlineSnapshot(`
     <div>
