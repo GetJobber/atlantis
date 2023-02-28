@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.2](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.7.1...@jobber/generators@0.7.2) (2023-02-28)
+
+**Note:** Version bump only for package @jobber/generators
+
+
+
+
+
 ## [0.7.1](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.7.0...@jobber/generators@0.7.1) (2023-02-28)
 
 **Note:** Version bump only for package @jobber/generators

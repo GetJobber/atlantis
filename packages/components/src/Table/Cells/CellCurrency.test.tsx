@@ -1,35 +1,39 @@
+import { render } from "@testing-library/react";
 import React from "react";
-import renderer from "react-test-renderer";
 import { CellCurrency } from "./CellCurrency";
 
 it("renders a currency cell", () => {
-  const tree = renderer.create(<CellCurrency value={42000000} />).toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <td
-      className="cell right"
-    >
-      <span
-        className="numeric"
+  const { container } = render(<CellCurrency value={42000000} />);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <td
+        class="cell right"
       >
-        $42,000,000.00
-      </span>
-    </td>
+        <span
+          class="numeric"
+        >
+          $42,000,000.00
+        </span>
+      </td>
+    </div>
   `);
 });
 
 it("renders a currency cell in Pound Sterling", () => {
-  const tree = renderer
-    .create(<CellCurrency value={32074770} currency="GBP" />)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-        <td
-          className="cell right"
+  const { container } = render(
+    <CellCurrency value={32074770} currency="GBP" />,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <td
+        class="cell right"
+      >
+        <span
+          class="numeric"
         >
-          <span
-            className="numeric"
-          >
-            £32,074,770.00
-          </span>
-        </td>
-    `);
+          £32,074,770.00
+        </span>
+      </td>
+    </div>
+  `);
 });

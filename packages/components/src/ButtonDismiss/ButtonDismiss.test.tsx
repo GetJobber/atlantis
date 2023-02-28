@@ -1,15 +1,14 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import { ButtonDismiss } from ".";
 
 afterEach(cleanup);
 
 it("renders a ButtonDismiss", () => {
-  const tree = renderer
-    .create(<ButtonDismiss onClick={undefined} ariaLabel="Close" />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(
+    <ButtonDismiss onClick={undefined} ariaLabel="Close" />,
+  );
+  expect(container).toMatchSnapshot();
 });
 
 test("it should call the handler with the new value", () => {
