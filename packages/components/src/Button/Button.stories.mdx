@@ -36,17 +36,17 @@ title prop. -->
 
 <ArgsTable of={Button} story="Button" />
 
-## Design & Usage Guidelines
+## Design & usage guidelines
 
 The right button to use depends on:
 
 - the type of action your user is attempting to complete
 - the hierarchy of the interface the button lives in
 
-### Work actions
+### Work buttons
 
-Use Work Actions buttons to enable user interactions with the goal of completing
-work in Jobber.
+Use "work" buttons to enable user interactions with the goal of completing work
+in Jobber.
 
 #### Primary
 
@@ -82,10 +82,10 @@ editing, revealing details, or navigating within the view.
   <Button label="Do the thing" type="tertiary" />
 </Canvas>
 
-### Learning Actions
+### Learning
 
-Use the Learning Actions buttons to enable user interactions in the goal of
-learning about Jobber, whether for marketing or coaching purposes.
+Use "learning" buttons to enable user interactions in the goal of learning about
+Jobber, whether for marketing or coaching purposes.
 
 #### Primary, Secondary, Tertiary
 
@@ -123,9 +123,9 @@ Actions for all three levels.
   </Content>
 </Canvas>
 
-### Destructive Actions
+### Destructive
 
-Destructive actions remove something from Jobber.
+"Destructive" actions remove something from Jobber.
 
 #### Primary
 
@@ -157,12 +157,9 @@ A Secondary or tertiary destructive action will either...
   </Content>
 </Canvas>
 
-### Subtle Actions
+### Subtle
 
-> Subtle actions replace a previous concept of "cancel" actions which has been
-> deprecated.
-
-Use a subtle button when you want the visual appearance to be more, well...
+Use a "subtle" button when you want the visual appearance to be more, well...
 _subtle._ This variation of button uses subdued color, allowing it to sit
 comfortably alongside more prominent content.
 
@@ -325,7 +322,7 @@ A way to communicate to the user that a background action is being performed.
   <Button label="Canceling..." variation="subtle" loading={true} />
 </Canvas>
 
-## Client Side Routing
+## Client-side routing
 
 A `Button` can be used for client-side routing as well. When using a Button to
 handle the client-side routing, use the `to` prop. Notice when you click below
@@ -351,7 +348,7 @@ that the URL will change to the appropriate route.
   </Router>
 </Canvas>
 
-## Form Submit
+## Form submit
 
 Passing the `submit` prop will allow a `Button` to submit a
 [Form](../?path=/docs/components-form--form). Since submitting a form is a
