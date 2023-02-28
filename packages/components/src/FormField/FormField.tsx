@@ -48,7 +48,9 @@ export function FormField(props: FormFieldProps) {
     formState: { errors },
     setValue,
     watch,
-  } = useForm({ mode: "onTouched", criteriaMode: "all" });
+  } = useFormContext() != undefined
+    ? useFormContext()
+    : useForm({ mode: "onTouched" });
 
   const [identifier] = useState(uuidv1());
   const [descriptionIdentifier] = useState(`descriptionUUID--${uuidv1()}`);
@@ -74,7 +76,6 @@ export function FormField(props: FormFieldProps) {
   }));
 
   const message = errors[controlledName]?.message;
-  console.log(errors[controlledName]);
   const error = getErrorMessage();
   useEffect(() => handleValidation(), [error]);
 
@@ -205,11 +206,10 @@ export function FormField(props: FormFieldProps) {
     if (typeof message === "string") {
       return message;
     }
-    // if (typeof message === "object") {
-    // console.log(message);
+
     return "";
-    // }
   }
+
   function handleValidation() {
     onValidation && onValidation(error);
   }

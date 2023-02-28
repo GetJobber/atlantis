@@ -8,34 +8,37 @@ afterEach(cleanup);
 it("renders an input type number", () => {
   const tree = renderer.create(<InputNumber value={123} />).toJSON();
   expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
-    >
+    Array [
       <div
-        className="inputWrapper"
+        className="wrapper"
+        style={
+          Object {
+            "--formField-maxLength": undefined,
+          }
+        }
       >
-        <label
-          className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440001"
-        />
-        <input
-          className="input"
-          id="123e4567-e89b-12d3-a456-426655440001"
-          name="generatedName--123e4567-e89b-12d3-a456-426655440001"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          type="number"
-          value={123}
-        />
-      </div>
-    </div>
+        <div
+          className="inputWrapper"
+        >
+          <label
+            className="label"
+            htmlFor="123e4567-e89b-12d3-a456-426655440001"
+          />
+          <input
+            className="input"
+            id="123e4567-e89b-12d3-a456-426655440001"
+            name="generatedName--123e4567-e89b-12d3-a456-426655440001"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            type="number"
+            value={123}
+          />
+        </div>
+      </div>,
+      "",
+    ]
   `);
 });
 
@@ -71,7 +74,7 @@ test("it should call the validation with undefined as a success", () => {
     />,
   );
 
-  expect(validationHandler).toHaveBeenCalledWith(undefined);
+  expect(validationHandler).toHaveBeenCalledWith("");
 });
 
 test("it should call the validation with a range error", async () => {
@@ -171,7 +174,7 @@ test("validation passes if number is correct", async () => {
   input.blur();
 
   await waitFor(() => {
-    expect(validationHandler).toHaveBeenCalledWith(undefined);
+    expect(validationHandler).toHaveBeenCalledWith("");
   });
 });
 

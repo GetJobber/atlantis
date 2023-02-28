@@ -67,14 +67,13 @@ export function FormFieldWrapper({
   const prefixRef = useRef() as RefObject<HTMLDivElement>;
   const suffixRef = useRef() as RefObject<HTMLDivElement>;
 
-  console.log(error);
   const [labelStyle, setLabelStyle] = useState<LabelPadding>({
     paddingLeft: undefined,
     paddingRight: undefined,
   });
 
   useEffect(() => {
-    setLabelStyle(getAffixPaddding);
+    setLabelStyle(getAffixPadding);
   }, [value]);
 
   return (
@@ -111,7 +110,7 @@ export function FormFieldWrapper({
     </>
   );
 
-  function getAffixPaddding() {
+  function getAffixPadding() {
     const hasValue = value !== "";
     const newPadding: LabelPadding = {
       paddingLeft: undefined,

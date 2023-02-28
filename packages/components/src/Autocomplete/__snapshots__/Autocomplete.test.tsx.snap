@@ -34,6 +34,7 @@ exports[`it should display headers when headers are passed in 1`] = `
       />
     </div>
   </div>
+  
 </div>
 `;
 
@@ -71,5 +72,6 @@ exports[`renders an Autocomplete 1`] = `
       />
     </div>
   </div>
+  
 </div>
 `;
