@@ -1,75 +1,77 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Button Variations modal shows with primary learning button 1`] = `
-<div
-  class="container"
-  tabindex="0"
->
+<div>
   <div
-    class="overlay"
-    style="opacity: 0;"
-  />
-  <div
-    class="modal"
-    style="opacity: 0; transform: scale(0.9) translateZ(0);"
+    class="container"
+    tabindex="0"
   >
     <div
-      class="header"
-      data-testid="modal-header"
-    >
-      <h3
-        class="base extraBold larger heading"
-      >
-        Teaching Modal
-      </h3>
-      <button
-        aria-label="Close modal"
-        class="button base onlyIcon subtle tertiary"
-        type="button"
-      >
-        <svg
-          class="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
-          data-testid="remove"
-          viewBox="0 0 1024 1024"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            class=""
-            d="M512.5 449.108l-226.056-226.056c-8.055-7.78-18.843-12.085-30.041-11.988s-21.909 4.589-29.828 12.507c-7.919 7.919-12.41 18.63-12.507 29.828s4.208 21.985 11.988 30.041l226.056 226.056-226.056 226.056c-7.78 8.055-12.085 18.843-11.988 30.041s4.589 21.909 12.507 29.827c7.918 7.918 18.63 12.411 29.828 12.509s21.986-4.207 30.041-11.989l226.056-226.056 226.056 226.056c8.055 7.782 18.843 12.087 30.041 11.989s21.909-4.591 29.827-12.509c7.918-7.918 12.411-18.629 12.509-29.827 0.094-11.198-4.207-21.986-11.989-30.041l-226.056-226.056 226.056-226.056c4.079-3.94 7.333-8.652 9.571-13.864s3.416-10.815 3.463-16.485c0.051-5.671-1.029-11.295-3.177-16.543s-5.317-10.017-9.327-14.027c-4.010-4.010-8.781-7.181-14.030-9.328-5.244-2.148-10.87-3.228-16.541-3.179s-11.275 1.227-16.485 3.465c-5.21 2.238-9.926 5.492-13.864 9.571l-226.056 226.056z"
-          />
-        </svg>
-        <span
-          class="base extraBold base base"
-        />
-      </button>
-    </div>
-    Learn a lesson?
+      class="overlay"
+      style="opacity: 0;"
+    />
     <div
-      class="actionBar"
+      class="modal"
+      style="opacity: 0; transform: scale(0.9) translateZ(0);"
     >
       <div
-        class="rightAction"
+        class="header"
+        data-testid="modal-header"
       >
+        <h3
+          class="base extraBold larger heading"
+        >
+          Teaching Modal
+        </h3>
         <button
-          class="button base learning primary"
+          aria-label="Close modal"
+          class="button base onlyIcon subtle tertiary"
           type="button"
         >
+          <svg
+            class="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+            data-testid="remove"
+            viewBox="0 0 1024 1024"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              class=""
+              d="M512.5 449.108l-226.056-226.056c-8.055-7.78-18.843-12.085-30.041-11.988s-21.909 4.589-29.828 12.507c-7.919 7.919-12.41 18.63-12.507 29.828s4.208 21.985 11.988 30.041l226.056 226.056-226.056 226.056c-7.78 8.055-12.085 18.843-11.988 30.041s4.589 21.909 12.507 29.827c7.918 7.918 18.63 12.411 29.828 12.509s21.986-4.207 30.041-11.989l226.056-226.056 226.056 226.056c8.055 7.782 18.843 12.087 30.041 11.989s21.909-4.591 29.827-12.509c7.918-7.918 12.411-18.629 12.509-29.827 0.094-11.198-4.207-21.986-11.989-30.041l-226.056-226.056 226.056-226.056c4.079-3.94 7.333-8.652 9.571-13.864s3.416-10.815 3.463-16.485c0.051-5.671-1.029-11.295-3.177-16.543s-5.317-10.017-9.327-14.027c-4.010-4.010-8.781-7.181-14.030-9.328-5.244-2.148-10.87-3.228-16.541-3.179s-11.275 1.227-16.485 3.465c-5.21 2.238-9.926 5.492-13.864 9.571l-226.056 226.056z"
+            />
+          </svg>
           <span
             class="base extraBold base base"
-          >
-            I Would Like to Know More
-          </span>
+          />
         </button>
-        <button
-          class="button base subtle primary"
-          type="button"
+      </div>
+      Learn a lesson?
+      <div
+        class="actionBar"
+      >
+        <div
+          class="rightAction"
         >
-          <span
-            class="base extraBold base base"
+          <button
+            class="button base learning primary"
+            type="button"
           >
-            Nevermind
-          </span>
-        </button>
+            <span
+              class="base extraBold base base"
+            >
+              I Would Like to Know More
+            </span>
+          </button>
+          <button
+            class="button base subtle primary"
+            type="button"
+          >
+            <span
+              class="base extraBold base base"
+            >
+              Nevermind
+            </span>
+          </button>
+        </div>
       </div>
     </div>
   </div>

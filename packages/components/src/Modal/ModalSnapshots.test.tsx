@@ -31,6 +31,6 @@ describe("Button Variations", () => {
       </Modal>,
     );
 
-    expect(container.firstChild).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 });
