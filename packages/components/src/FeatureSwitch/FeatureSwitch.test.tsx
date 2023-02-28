@@ -5,7 +5,7 @@ import { FeatureSwitch } from ".";
 afterEach(cleanup);
 
 it("renders a full FeatureSwitch", () => {
-  const tree = render(
+  const { container } = render(
     <FeatureSwitch
       enabled={true}
       title="Quote follow-up"
@@ -22,11 +22,11 @@ it("renders a full FeatureSwitch", () => {
       Dis dem content yo
     </FeatureSwitch>,
   );
-  expect(tree).toMatchSnapshot();
+  expect(container).toMatchSnapshot();
 });
 
 it("renders a subdued FeatureSwitch content", () => {
-  const tree = render(
+  const { container } = render(
     <FeatureSwitch
       enabled={false}
       description="Send a notification to your client following up on an outstanding quote."
@@ -34,18 +34,18 @@ it("renders a subdued FeatureSwitch content", () => {
       Dis dem content yo
     </FeatureSwitch>,
   );
-  expect(tree).toMatchSnapshot();
+  expect(container).toMatchSnapshot();
 });
 
 test("it should not show description if absent", () => {
-  const tree = render(
+  const { container } = render(
     <FeatureSwitch enabled={false}>Dis dem content yo</FeatureSwitch>,
   );
-  expect(tree).toMatchSnapshot();
+  expect(container).toMatchSnapshot();
 });
 
 test("it should not show switch if onSwitch is absent", () => {
-  const tree = render(
+  const { container } = render(
     <FeatureSwitch
       enabled={false}
       description="Send a notification to your client following up on an outstanding quote."
@@ -53,7 +53,7 @@ test("it should not show switch if onSwitch is absent", () => {
       Dis dem content yo
     </FeatureSwitch>,
   );
-  expect(tree).toMatchSnapshot();
+  expect(container).toMatchSnapshot();
 });
 
 test("it should call the switch handler with the new value", () => {
