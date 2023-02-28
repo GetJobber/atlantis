@@ -5,12 +5,12 @@ import { {{name}} } from ".";
 afterEach(cleanup);
 
 it("renders a {{name}}", () => {
-  const { container } = render(<{{name}} text="Foo" />).toJSON();
+  const { container } = render(<{{name}} text="Foo" />);
   expect(container).toMatchSnapshot();
 });
 
 it("renders a loud {{name}}", () => {
-  const { container } = render(<{{name}} text="Foo" loud={true} />).toJSON();
+  const { container } = render(<{{name}} text="Foo" loud={true} />);
   expect(container).toMatchSnapshot();
 });
 
