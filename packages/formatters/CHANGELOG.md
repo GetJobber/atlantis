@@ -1,8 +1,3 @@
----
-name: Formatters
-menu: Changelog
----
-
 # @jobber/formatters: Change Log
 
 All notable changes to this project will be documented in this file.

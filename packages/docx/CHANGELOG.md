@@ -1,8 +1,3 @@
----
-name: Docx
-menu: Changelog
----
-
 # @jobber/docx: Change Log
 
 All notable changes to this project will be documented in this file.

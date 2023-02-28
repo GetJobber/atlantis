@@ -1,8 +1,3 @@
----
-name: Components
-menu: Changelog
----
-
 # @jobber/components: Change Log
 
 All notable changes to this project will be documented in this file.
