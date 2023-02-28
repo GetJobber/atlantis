@@ -1,209 +1,213 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`it should not show description if absent 1`] = `
-<div
-  className="padded base"
->
+<div>
   <div
-    className="container"
+    class="padded base"
   >
     <div
-      className="content"
+      class="container"
     >
       <div
-        className="padded base"
-      />
+        class="content"
+      >
+        <div
+          class="padded base"
+        />
+      </div>
     </div>
-  </div>
-  <div
-    className="container"
-  >
     <div
-      className="featureContent content"
+      class="container"
     >
-      Dis dem content yo
+      <div
+        class="featureContent content"
+      >
+        Dis dem content yo
+      </div>
     </div>
   </div>
 </div>
 `;
 
 exports[`it should not show switch if onSwitch is absent 1`] = `
-<div
-  className="padded base"
->
+<div>
   <div
-    className="container"
+    class="padded base"
   >
     <div
-      className="content"
+      class="container"
     >
       <div
-        className="padded base"
+        class="content"
       >
-        <p
-          className="base regular base text"
+        <div
+          class="padded base"
         >
-          Send a notification to your client following up on an outstanding quote.
-        </p>
+          <p
+            class="base regular base text"
+          >
+            Send a notification to your client following up on an outstanding quote.
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-  <div
-    className="container"
-  >
     <div
-      className="featureContent content"
+      class="container"
     >
-      Dis dem content yo
+      <div
+        class="featureContent content"
+      >
+        Dis dem content yo
+      </div>
     </div>
   </div>
 </div>
 `;
 
 exports[`renders a full FeatureSwitch 1`] = `
-<div
-  className="padded base"
->
+<div>
   <div
-    className="container"
+    class="padded base"
   >
     <div
-      className="content"
+      class="container"
     >
       <div
-        className="padded base"
+        class="content"
       >
-        <h4
-          className="base bold large heading"
+        <div
+          class="padded base"
         >
-          Quote follow-up
-        </h4>
-        <p
-          className="base regular base text"
+          <h4
+            class="base bold large heading"
+          >
+            Quote follow-up
+          </h4>
+          <p
+            class="base regular base text"
+          >
+            Send a 
+            <a
+              href="www.fakeurl.com"
+              target="_blank"
+            >
+              notification
+            </a>
+             to your 
+            <em
+              class="base regular italic"
+            >
+              client
+            </em>
+             following up on an 
+            <b
+              class="base bold"
+            >
+              outstanding quote
+            </b>
+            .
+          </p>
+        </div>
+      </div>
+      <div
+        class="action"
+      >
+        <button
+          aria-checked="true"
+          aria-label="Send a [notification](www.fakeurl.com) to your _client_ following up on an **outstanding quote**."
+          class="track isChecked"
+          role="switch"
+          type="button"
         >
-          Send a 
-          <a
-            href="www.fakeurl.com"
-            target="_blank"
+          <span
+            class="toggle"
           >
-            notification
-          </a>
-           to your 
-          <em
-            className="base regular italic"
-          >
-            client
-          </em>
-           following up on an 
-          <b
-            className="base bold"
-          >
-            outstanding quote
-          </b>
-          .
-        </p>
+            <span
+              class="label"
+            >
+              <span
+                class="base bold small uppercase white"
+              >
+                On
+              </span>
+            </span>
+            <span
+              class="pip"
+            />
+            <span
+              class="label"
+            >
+              <span
+                class="base bold small uppercase greyBlue"
+              >
+                Off
+              </span>
+            </span>
+          </span>
+        </button>
+        <input
+          type="hidden"
+          value="true"
+        />
       </div>
     </div>
     <div
-      className="action"
+      class="container"
     >
-      <button
-        aria-checked={true}
-        aria-label="Send a [notification](www.fakeurl.com) to your _client_ following up on an **outstanding quote**."
-        className="track isChecked"
-        disabled={false}
-        onClick={[Function]}
-        role="switch"
-        type="button"
+      <div
+        class="featureContent content enabled"
       >
-        <span
-          className="toggle"
+        Dis dem content yo
+      </div>
+      <div
+        class="action"
+      >
+        <button
+          class="button base work tertiary"
+          type="button"
         >
           <span
-            className="label"
+            class="base extraBold base base"
           >
-            <span
-              className="base bold small uppercase white"
-            >
-              On
-            </span>
+            Edit
           </span>
-          <span
-            className="pip"
-          />
-          <span
-            className="label"
-          >
-            <span
-              className="base bold small uppercase greyBlue"
-            >
-              Off
-            </span>
-          </span>
-        </span>
-      </button>
-      <input
-        type="hidden"
-        value="true"
-      />
-    </div>
-  </div>
-  <div
-    className="container"
-  >
-    <div
-      className="featureContent content enabled"
-    >
-      Dis dem content yo
-    </div>
-    <div
-      className="action"
-    >
-      <button
-        className="button base work tertiary"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
-      >
-        <span
-          className="base extraBold base base"
-        >
-          Edit
-        </span>
-      </button>
+        </button>
+      </div>
     </div>
   </div>
 </div>
 `;
 
 exports[`renders a subdued FeatureSwitch content 1`] = `
-<div
-  className="padded base"
->
+<div>
   <div
-    className="container"
+    class="padded base"
   >
     <div
-      className="content"
+      class="container"
     >
       <div
-        className="padded base"
+        class="content"
       >
-        <p
-          className="base regular base text"
+        <div
+          class="padded base"
         >
-          Send a notification to your client following up on an outstanding quote.
-        </p>
+          <p
+            class="base regular base text"
+          >
+            Send a notification to your client following up on an outstanding quote.
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-  <div
-    className="container"
-  >
     <div
-      className="featureContent content"
+      class="container"
     >
-      Dis dem content yo
+      <div
+        class="featureContent content"
+      >
+        Dis dem content yo
+      </div>
     </div>
   </div>
 </div>

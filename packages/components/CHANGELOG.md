@@ -1,12 +1,31 @@
----
-name: Components
-menu: Changelog
----
-
-# @jobber/components: Change Log
+# Change Log
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [3.2.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.2.7...@jobber/components@3.2.8) (2023-02-28)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.2.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.2.6...@jobber/components@3.2.7) (2023-02-28)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.2.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.2.5...@jobber/components@3.2.6) (2023-02-28)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
 
 ## [3.2.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.2.4...@jobber/components@3.2.5) (2023-02-27)
 

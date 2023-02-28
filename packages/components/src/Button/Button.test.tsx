@@ -1,97 +1,82 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import { fireEvent, render } from "@testing-library/react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { Button } from ".";
 
 it("renders a Button", () => {
-  const tree = renderer.create(<Button label="Submit" />).toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(<Button label="Submit" />);
+  expect(container).toMatchSnapshot();
 });
 
 it("renders a secondary Button", () => {
-  const tree = renderer
-    .create(<Button label="Submit" type="secondary" />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(<Button label="Submit" type="secondary" />);
+  expect(container).toMatchSnapshot();
 });
 
 it("renders a tertiary Button", () => {
-  const tree = renderer
-    .create(<Button label="Submit" type="tertiary" />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(<Button label="Submit" type="tertiary" />);
+  expect(container).toMatchSnapshot();
 });
 
 it("renders a destructuve Button", () => {
-  const tree = renderer
-    .create(<Button label="Submit" variation="destructive" />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(
+    <Button label="Submit" variation="destructive" />,
+  );
+  expect(container).toMatchSnapshot();
 });
 
 it("renders a learning Button", () => {
-  const tree = renderer
-    .create(<Button label="Submit" variation="learning" />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(<Button label="Submit" variation="learning" />);
+  expect(container).toMatchSnapshot();
 });
 
 it("renders a subtle Button", () => {
-  const tree = renderer
-    .create(<Button label="Submit" variation="subtle" />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(<Button label="Submit" variation="subtle" />);
+  expect(container).toMatchSnapshot();
 });
 
 it("renders a disabled Button", () => {
-  const tree = renderer
-    .create(<Button label="Submit" disabled={true} />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(<Button label="Submit" disabled={true} />);
+  expect(container).toMatchSnapshot();
 });
 
 it("renders a Button with a link and opens in new tab", () => {
-  const tree = renderer
-    .create(<Button label="Submit" url="💩.com" external={true} />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(
+    <Button label="Submit" url="💩.com" external={true} />,
+  );
+  expect(container).toMatchSnapshot();
 });
 
 it("renders a Button with an icon", () => {
-  const tree = renderer.create(<Button label="Add" icon="add" />).toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(<Button label="Add" icon="add" />);
+  expect(container).toMatchSnapshot();
 });
 
 it("renders a Button with an icon on the right", () => {
-  const tree = renderer
-    .create(<Button label="Add" icon="add" iconOnRight={true} />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(
+    <Button label="Add" icon="add" iconOnRight={true} />,
+  );
+  expect(container).toMatchSnapshot();
 });
 
 it("renders a Button that is just an icon", () => {
-  const tree = renderer
-    .create(<Button icon="user" ariaLabel="Person" />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(<Button icon="user" ariaLabel="Person" />);
+  expect(container).toMatchSnapshot();
 });
 
 it("renders a small Button", () => {
-  const tree = renderer.create(<Button label="Add" size="small" />).toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(<Button label="Add" size="small" />);
+  expect(container).toMatchSnapshot();
 });
 
 it("renders a large Button", () => {
-  const tree = renderer.create(<Button label="Add" size="large" />).toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(<Button label="Add" size="large" />);
+  expect(container).toMatchSnapshot();
 });
 
 it("renders a Button with a loading state", () => {
-  const tree = renderer
-    .create(<Button label="Adding" loading={true} />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(<Button label="Adding" loading={true} />);
+  expect(container).toMatchSnapshot();
 });
 
 test("it should call the handler on click", () => {
@@ -137,14 +122,12 @@ test("it shouldn't call the handler on mouse down when disabled", () => {
 });
 
 it("renders a Link as a Button for routing", () => {
-  const tree = renderer
-    .create(
-      <Router>
-        <Button label="Adding" to="/jobber" />
-      </Router>,
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(
+    <Router>
+      <Button label="Adding" to="/jobber" />
+    </Router>,
+  );
+  expect(container).toMatchSnapshot();
 });
 
 it("renders button type='button' by default", () => {

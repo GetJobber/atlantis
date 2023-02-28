@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import copy from "copy-text-to-clipboard";
 import { Card } from "@jobber/components/Card";
 import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
@@ -38,7 +37,6 @@ export function PullRequestGenerator() {
               <Option value="components">component library</Option>
               <Option value="hooks">hooks library</Option>
               <Option value="design">design foundation system</Option>
-              <Option value="docz-tools">internal docz tools</Option>
               <Option value="eslint-config">eslint config</Option>
               <Option value="stylelint-config">stylelint config</Option>
             </Select>
@@ -74,7 +72,7 @@ export function PullRequestGenerator() {
   );
 
   function handleCopy() {
-    copy(title);
+    navigator.clipboard.writeText(title);
     showToast({
       message: "Copied PR title to clipboard",
     });

@@ -6,8 +6,13 @@ import { InlineCode } from "./components/InlineCode";
 import { DocsWithSidebar } from "./components/DocsWithSidebar";
 
 import "@jobber/design/foundation.css";
-import "@jobber/fonts";
 import "./assets/css/preview.css";
+
+try {
+  require("@jobber/fonts");
+} catch {
+  console.log("Jobber fonts not found");
+}
 
 export const parameters = {
   viewMode: "docs",
