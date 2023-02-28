@@ -33,7 +33,7 @@ it("renders a InputTime", () => {
 
 it("renders an initial time when given 'defaultValue'", () => {
   const { container } = render(
-    <InputTime defaultValue={new CivilTime(11, 23)} />
+    <InputTime defaultValue={new CivilTime(11, 23)} />,
   );
   expect(container).toMatchInlineSnapshot(`
     <div>
@@ -61,7 +61,7 @@ it("renders an initial time when given 'defaultValue'", () => {
 
 it("renders correctly in a readonly state", () => {
   const { container } = render(
-    <InputTime value={new CivilTime(11, 23)} readonly={true} />
+    <InputTime value={new CivilTime(11, 23)} readonly={true} />,
   );
   expect(container).toMatchInlineSnapshot(`
     <div>
@@ -90,7 +90,7 @@ it("renders correctly in a readonly state", () => {
 
 it("adds a error border when invalid", () => {
   const { container } = render(
-    <InputTime value={new CivilTime(11, 23)} readonly={true} />
+    <InputTime value={new CivilTime(11, 23)} readonly={true} />,
   );
   expect(container).toMatchInlineSnapshot(`
     <div>
@@ -151,7 +151,7 @@ it("should call the onChange function when the component is modified", () => {
   const changeHandler = jest.fn();
 
   const { container } = render(
-    <InputTime value={new CivilTime(2, 35)} onChange={changeHandler} />
+    <InputTime value={new CivilTime(2, 35)} onChange={changeHandler} />,
   );
 
   fireEvent.change(container.querySelector("input"), {
