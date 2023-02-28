@@ -77,14 +77,14 @@ Once that's done, it should tell you where the files got added.
 
 Right, I promised to explain them.
 
-| File name                | Description                                                                                                                                                                                                 |
-| :----------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `index.ts`               | This tells react what to render. Honestly, You'd rarely have to touch this.                                                                                                                                 |
-| `AmountCounter.tsx`      | This file is where you make the magic happen.                                                                                                                                                               |
-| `AmountCounter.mdx`      | This creates the page that you see under Components/AmountCounter. This is where you explain what the magic is doing.                                                                                       |
-| `AmountCounter.test.tsx` | Self explanatory.                                                                                                                                                                                           |
-| `AmountCounter.css`      | Self explanatory.                                                                                                                                                                                           |
-| `AmountCounter.css.d.ts` | This wasn't on the original list but it's very important. This is how react knows what class names you added and automagically serializes them so it doesn't clash with other components. More on it later. |
+| File name                   | Description                                                                                                                                                                                                 |
+| :-------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `index.ts`                  | This tells react what to render. Honestly, You'd rarely have to touch this.                                                                                                                                 |
+| `AmountCounter.tsx`         | This file is where you make the magic happen.                                                                                                                                                               |
+| `AmountCounter.stories.mdx` | This creates the page that you see under Components/AmountCounter. This is where you explain what the magic is doing.                                                                                       |
+| `AmountCounter.test.tsx`    | Self-explanatory.                                                                                                                                                                                           |
+| `AmountCounter.css`         | Self-explanatory.                                                                                                                                                                                           |
+| `AmountCounter.css.d.ts`    | This wasn't on the original list but it's very important. This is how react knows what class names you added and automagically serializes them so it doesn't clash with other components. More on it later. |
 
 ## Let's get started
 
@@ -217,27 +217,28 @@ the `Heading`, `Text`, and `InputNumber` component.
 
 <img src={importedExistingComponents} style={{ maxWidth: "100%" }} />
 
-There will be warning around the imports and that's fine. We're aware of it but,
-that shouldn't stop you from making your own component. Onwards!
+There will be a warning about the imports and that's fine. We're aware of it
+but, that shouldn't stop you from making your component. Onwards!
 
 #### How do I preview this?
 
-Glad you asked, go to `AmountCounter.mdx` and drop the code below on that file.
+Glad you asked, go to `AmountCounter.stories.mdx` and drop the code below on
+that file.
 
 ```
-<Playground>
+<Canvas>
   <AmountCounter
     title="Children"
     description="Ages 2 - 12"
     value={0}
   />
-</Playground>
+</Canvas>
 ```
 
 Few things to note about that code snippet:
 
-- `<Playground>` is a
-  [docz built-in component](https://www.docz.site/docs/built-ins-components#playground-component)
+- `<Canvas>` is a
+  [storybook built-in component](https://storybook.js.org/docs/react/writing-docs/doc-block-canvas)
   that handles the preview and live editing of the code! Yes, really!
 - `<AmountCounter>` is the component we just built! See how it's the same name
   as the function name?
@@ -250,12 +251,12 @@ something like this:
 <img src={firstPreview} style={{ maxWidth: "100%" }} />
 
 Not quite the same as the mockup but, you know, baby steps. Oh, if you don't see
-the props table, stop atlantis and then run `npm run clean; npm start`. That
-busts the cache 🔥 and re-render everything.
+the props table, stop Atlantis and then run `npm run clean; npm start`. That
+busts the cache 🔥 and re-renders everything.
 
 ## Style me up!
 
-Now that we have the basic structure, we can style our component to look like
+Now that we have the basic structure, we can style our components to look like
 the mockup. Let's reference the mockup again. This time, it's annotated by a
 simple grid system.
 

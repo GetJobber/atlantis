@@ -1,12 +1,15 @@
----
-name: Design
-menu: Changelog
----
-
-# @jobber/design: Change Log
+# Change Log
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [0.29.3](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.29.2...@jobber/design@0.29.3) (2023-02-28)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
 
 ## [0.29.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.29.1...@jobber/design@0.29.2) (2023-02-27)
 

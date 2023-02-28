@@ -19,7 +19,7 @@ const config: StorybookConfig = {
       },
     },
   ],
-  features: { storyStoreV7: true, buildStoriesJson: true },
+  features: { buildStoriesJson: true },
   framework: "@storybook/react",
   webpackFinal: async config => {
     /**
@@ -99,10 +99,6 @@ const config: StorybookConfig = {
         "../packages/components/src",
       ),
       "@jobber/docx": path.resolve(__dirname, "../packages/docx/src"),
-      "@jobber/docz-tools": path.resolve(
-        __dirname,
-        "../packages/docz-tools/src/components",
-      ),
       mdxUtils: path.resolve(__dirname, "components"),
     });
 

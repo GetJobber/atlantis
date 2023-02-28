@@ -1,12 +1,15 @@
----
-name: Hooks
-menu: Changelog
----
-
-# @jobber/hooks: Change Log
+# Change Log
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.12.5](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.12.4...@jobber/hooks@1.12.5) (2023-02-28)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
 
 ## [1.12.4](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.12.3...@jobber/hooks@1.12.4) (2023-02-27)
 
@@ -361,16 +364,3 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * add hook package with useResizeOberserver hook ([#242](https://github.com/GetJobber/atlantis/issues/242)) ([59411d7](https://github.com/GetJobber/atlantis/commit/59411d7dd34508e56dcdd4b9de9806414196959c))
-
-
-
-
-
----
-name: Atlantis Hooks
-menu: Changelog
----
-
-# @jobber/hooks: Change Log
-
-All notable changes to this project will be documented in this file.
