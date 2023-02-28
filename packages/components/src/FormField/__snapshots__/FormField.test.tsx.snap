@@ -20,6 +20,7 @@ exports[`FormField when small renders 1`] = `
       />
     </div>
   </div>
+  
 </div>
 `;
 
@@ -43,5 +44,6 @@ exports[`FormField with no props renders 1`] = `
       />
     </div>
   </div>
+  
 </div>
 `;

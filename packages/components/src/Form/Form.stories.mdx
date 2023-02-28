@@ -46,6 +46,10 @@ import { Form } from "@jobber/components/Form";
                   value: true,
                   message: "Tell us your name",
                 },
+                pattern: {
+                  value: /d+/,
+                  message: "This input is number only.",
+                },
                 minLength: {
                   value: 3,
                   message: "Your name is too short.",

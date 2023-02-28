@@ -67,6 +67,7 @@ export function FormFieldWrapper({
   const prefixRef = useRef() as RefObject<HTMLDivElement>;
   const suffixRef = useRef() as RefObject<HTMLDivElement>;
 
+  console.log(error);
   const [labelStyle, setLabelStyle] = useState<LabelPadding>({
     paddingLeft: undefined,
     paddingRight: undefined,
