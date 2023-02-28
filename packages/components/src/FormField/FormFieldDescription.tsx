@@ -13,7 +13,9 @@ export function FormFieldDescription({
 }: FormFieldDescriptionProps) {
   return (
     <div id={id} className={styles.description}>
-      <Text variation="subdued">{description}</Text>
+      <Text size="small" variation="subdued">
+        {description}
+      </Text>
     </div>
   );
 }
