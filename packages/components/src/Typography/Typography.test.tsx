@@ -1,242 +1,242 @@
+import { render } from "@testing-library/react";
 import React from "react";
-import renderer from "react-test-renderer";
 import { Typography } from ".";
 
 it("renders an H1 title", () => {
-  const tree = renderer
-    .create(
-      <Typography
-        element="h1"
-        size="jumbo"
-        textCase="uppercase"
-        fontWeight="black"
-      >
-        Page title
-      </Typography>,
-    )
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <h1
-      className="base black jumbo uppercase"
+  const { container } = render(
+    <Typography
+      element="h1"
+      size="jumbo"
+      textCase="uppercase"
+      fontWeight="black"
     >
       Page title
-    </h1>
+    </Typography>
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <h1
+        class="base black jumbo uppercase"
+      >
+        Page title
+      </h1>
+    </div>
   `);
 });
 
 it("renders an H2 title", () => {
-  const tree = renderer
-    .create(
-      <Typography
-        element="h2"
-        size="largest"
-        textCase="uppercase"
-        fontWeight="black"
-      >
-        Subtitle
-      </Typography>,
-    )
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <h2
-      className="base black largest uppercase"
+  const { container } = render(
+    <Typography
+      element="h2"
+      size="largest"
+      textCase="uppercase"
+      fontWeight="black"
     >
       Subtitle
-    </h2>
+    </Typography>
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <h2
+        class="base black largest uppercase"
+      >
+        Subtitle
+      </h2>
+    </div>
   `);
 });
 
 it("renders an H3 title", () => {
-  const tree = renderer
-    .create(
-      <Typography element="h3" size="larger" fontWeight="bold">
-        Content Group
-      </Typography>,
-    )
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <h3
-      className="base bold larger"
-    >
+  const { container } = render(
+    <Typography element="h3" size="larger" fontWeight="bold">
       Content Group
-    </h3>
+    </Typography>
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <h3
+        class="base bold larger"
+      >
+        Content Group
+      </h3>
+    </div>
   `);
 });
 
 it("renders an H4 title", () => {
-  const tree = renderer
-    .create(
-      <Typography element="h4" size="large" fontWeight="bold">
-        Section
-      </Typography>,
-    )
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <h4
-      className="base bold large"
-    >
+  const { container } = render(
+    <Typography element="h4" size="large" fontWeight="bold">
       Section
-    </h4>
+    </Typography>
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <h4
+        class="base bold large"
+      >
+        Section
+      </h4>
+    </div>
   `);
 });
 
 it("renders an H5 title", () => {
-  const tree = renderer
-    .create(
-      <Typography element="h5" size="base" fontWeight="bold">
-        Subsection
-      </Typography>,
-    )
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <h5
-      className="base bold base"
-    >
+  const { container } = render(
+    <Typography element="h5" size="base" fontWeight="bold">
       Subsection
-    </h5>
+    </Typography>
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <h5
+        class="base bold base"
+      >
+        Subsection
+      </h5>
+    </div>
   `);
 });
 
 it("renders an H6 title", () => {
-  const tree = renderer
-    .create(
-      <Typography
-        element="h6"
-        size="small"
-        textCase="uppercase"
-        fontWeight="bold"
-      >
-        Overline
-      </Typography>,
-    )
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <h6
-      className="base bold small uppercase"
+  const { container } = render(
+    <Typography
+      element="h6"
+      size="small"
+      textCase="uppercase"
+      fontWeight="bold"
     >
       Overline
-    </h6>
+    </Typography>
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <h6
+        class="base bold small uppercase"
+      >
+        Overline
+      </h6>
+    </div>
   `);
 });
 
 it("renders a paragraph", () => {
-  const tree = renderer
-    .create(
-      <Typography>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat quae
-        architecto accusamus cumque voluptate aspernatur repellendus natus, quo
-        veniam illum.
-      </Typography>,
-    )
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <p
-      className="base regular"
-    >
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat quae architecto accusamus cumque voluptate aspernatur repellendus natus, quo veniam illum.
-    </p>
+  const { container } = render(
+    <Typography>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat quae
+      architecto accusamus cumque voluptate aspernatur repellendus natus, quo
+      veniam illum.
+    </Typography>
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular"
+      >
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat quae architecto accusamus cumque voluptate aspernatur repellendus natus, quo veniam illum.
+      </p>
+    </div>
   `);
 });
 
 it("renders a span", () => {
-  const tree = renderer
-    .create(<Typography element="span">SHOUT!</Typography>)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <span
-      className="base regular"
-    >
-      SHOUT!
-    </span>
+  const { container } = render(<Typography element="span">SHOUT!</Typography>);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <span
+        class="base regular"
+      >
+        SHOUT!
+      </span>
+    </div>
   `);
 });
 
 it("renders an uppercased span", () => {
-  const tree = renderer
-    .create(<Typography textCase="uppercase">uppercase</Typography>)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <p
-      className="base regular uppercase"
-    >
-      uppercase
-    </p>
+  const { container } = render(
+    <Typography textCase="uppercase">uppercase</Typography>
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular uppercase"
+      >
+        uppercase
+      </p>
+    </div>
   `);
 });
 
 it("renders a lowercased text", () => {
-  const tree = renderer
-    .create(<Typography textCase="lowercase">LOWERCASE</Typography>)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <p
-      className="base regular lowercase"
-    >
-      LOWERCASE
-    </p>
+  const { container } = render(
+    <Typography textCase="lowercase">LOWERCASE</Typography>
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular lowercase"
+      >
+        LOWERCASE
+      </p>
+    </div>
   `);
 });
 
 it("renders a capitalized text", () => {
-  const tree = renderer
-    .create(
-      <Typography textCase="capitalize">wElL tHiS iS hArD tO tYpE</Typography>,
-    )
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <p
-      className="base regular capitalize"
-    >
-      wElL tHiS iS hArD tO tYpE
-    </p>
+  const { container } = render(
+    <Typography textCase="capitalize">wElL tHiS iS hArD tO tYpE</Typography>
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular capitalize"
+      >
+        wElL tHiS iS hArD tO tYpE
+      </p>
+    </div>
   `);
 });
 
 it("should add textTruncate class when numberOfLines property is passed", () => {
-  const tree = renderer
-    .create(
-      <Typography numberOfLines={3}>
+  const { container } = render(
+    <Typography numberOfLines={3}>Pretend this is a multiline text</Typography>
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular textTruncate"
+      >
         Pretend this is a multiline text
-      </Typography>,
-    )
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <p
-      className="base regular textTruncate"
-      style={
-        Object {
-          "WebkitBoxOrient": "vertical",
-          "WebkitLineClamp": 3,
-        }
-      }
-    >
-      Pretend this is a multiline text
-    </p>
+      </p>
+    </div>
   `);
 });
 
 it("renders a end-aligned text", () => {
-  const tree = renderer
-    .create(<Typography align="end">End align me</Typography>)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <p
-      className="base regular end"
-    >
-      End align me
-    </p>
+  const { container } = render(
+    <Typography align="end">End align me</Typography>
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular end"
+      >
+        End align me
+      </p>
+    </div>
   `);
 });
 
 it("renders a center-aligned text", () => {
-  const tree = renderer
-    .create(<Typography align="center">Center align me</Typography>)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <p
-      className="base regular center"
-    >
-      Center align me
-    </p>
+  const { container } = render(
+    <Typography align="center">Center align me</Typography>
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <p
+        class="base regular center"
+      >
+        Center align me
+      </p>
+    </div>
   `);
 });

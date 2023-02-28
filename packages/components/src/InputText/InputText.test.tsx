@@ -1,123 +1,93 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import { fireEvent, render } from "@testing-library/react";
 import { InputText } from ".";
 import { InputTextRef } from "./InputText";
 
 it("renders a regular input for text and numbers", () => {
-  const tree = renderer
-    .create(<InputText placeholder="Favourite colour" />)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
-    >
+  const { container } = render(<InputText placeholder="Favourite colour" />);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
       <div
-        className="inputWrapper"
+        class="wrapper"
       >
-        <label
-          className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440001"
+        <div
+          class="inputWrapper"
         >
-          Favourite colour
-        </label>
-        <input
-          className="input"
-          id="123e4567-e89b-12d3-a456-426655440001"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          type="text"
-          value=""
-        />
+          <label
+            class="label"
+            for="123e4567-e89b-12d3-a456-426655440001"
+          >
+            Favourite colour
+          </label>
+          <input
+            class="input"
+            id="123e4567-e89b-12d3-a456-426655440001"
+            type="text"
+            value=""
+          />
+        </div>
       </div>
     </div>
   `);
 });
 
 it("renders a textarea", () => {
-  const tree = renderer
-    .create(
-      <InputText placeholder="Describe your favourite colour?" multiline />,
-    )
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper textarea"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
-    >
+  const { container } = render(
+    <InputText placeholder="Describe your favourite colour?" multiline />
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
       <div
-        className="inputWrapper"
+        class="wrapper textarea"
       >
-        <label
-          className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440003"
+        <div
+          class="inputWrapper"
         >
-          Describe your favourite colour?
-        </label>
-        <textarea
-          className="input"
-          id="123e4567-e89b-12d3-a456-426655440003"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          rows={3}
-          value=""
-        />
+          <label
+            class="label"
+            for="123e4567-e89b-12d3-a456-426655440003"
+          >
+            Describe your favourite colour?
+          </label>
+          <textarea
+            class="input"
+            id="123e4567-e89b-12d3-a456-426655440003"
+            rows="3"
+          />
+        </div>
       </div>
     </div>
   `);
 });
 
 it("renders a textarea with 4 rows", () => {
-  const tree = renderer
-    .create(
-      <InputText
-        placeholder="Describe your favourite colour?"
-        multiline
-        rows={4}
-      />,
-    )
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <div
-      className="wrapper textarea"
-      style={
-        Object {
-          "--formField-maxLength": undefined,
-        }
-      }
-    >
+  const { container } = render(
+    <InputText
+      placeholder="Describe your favourite colour?"
+      multiline
+      rows={4}
+    />
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
       <div
-        className="inputWrapper"
+        class="wrapper textarea"
       >
-        <label
-          className="label"
-          htmlFor="123e4567-e89b-12d3-a456-426655440005"
+        <div
+          class="inputWrapper"
         >
-          Describe your favourite colour?
-        </label>
-        <textarea
-          className="input"
-          id="123e4567-e89b-12d3-a456-426655440005"
-          onBlur={[Function]}
-          onChange={[Function]}
-          onFocus={[Function]}
-          onKeyDown={[Function]}
-          rows={4}
-          value=""
-        />
+          <label
+            class="label"
+            for="123e4567-e89b-12d3-a456-426655440005"
+          >
+            Describe your favourite colour?
+          </label>
+          <textarea
+            class="input"
+            id="123e4567-e89b-12d3-a456-426655440005"
+            rows="4"
+          />
+        </div>
       </div>
     </div>
   `);
@@ -136,7 +106,7 @@ test("it should call the handler with the new value", () => {
       name="Got milk?"
       onChange={changeHandler}
       placeholder={placeholder}
-    />,
+    />
   );
 
   fireEvent.change(getByLabelText(placeholder), {

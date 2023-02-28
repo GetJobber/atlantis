@@ -1,6 +1,5 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import { cleanup } from "@testing-library/react";
+import { cleanup, render } from "@testing-library/react";
 import { CivilDateTime } from "@std-proposal/temporal";
 import { FormatRelativeDateTime } from "./FormatRelativeDateTime";
 
@@ -20,9 +19,9 @@ it("renders x minutes ago when less than an hour ago", () => {
   const dates = getMockDates(testDate);
 
   Object.values(dates).forEach(value => {
-    expect(
-      renderer.create(<FormatRelativeDateTime date={value} />).toJSON(),
-    ).toEqual("5 minutes ago");
+    expect(render(<FormatRelativeDateTime date={value} />)).toEqual(
+      "5 minutes ago",
+    );
   });
 });
 
@@ -32,9 +31,9 @@ it("renders 1 minute ago when less than a minute ago", () => {
   const dates = getMockDates(testDate);
 
   Object.values(dates).forEach(value => {
-    expect(
-      renderer.create(<FormatRelativeDateTime date={value} />).toJSON(),
-    ).toEqual("1 minute ago");
+    expect(render(<FormatRelativeDateTime date={value} />)).toEqual(
+      "1 minute ago",
+    );
   });
 });
 
@@ -44,9 +43,7 @@ it("renders the time when less than a day ago", () => {
   const dates = getMockDates(testDate);
 
   Object.values(dates).forEach(value => {
-    expect(
-      renderer.create(<FormatRelativeDateTime date={value} />).toJSON(),
-    ).toEqual(
+    expect(render(<FormatRelativeDateTime date={value} />)).toEqual(
       testDate.toLocaleTimeString(undefined, {
         hour: "numeric",
         minute: "numeric",
@@ -61,9 +58,9 @@ it("renders the day when less than 7 days ago", () => {
   const dates = getMockDates(testDate);
 
   Object.values(dates).forEach(value => {
-    expect(
-      renderer.create(<FormatRelativeDateTime date={value} />).toJSON(),
-    ).toEqual(testDate.toLocaleDateString(undefined, { weekday: "short" }));
+    expect(render(<FormatRelativeDateTime date={value} />)).toEqual(
+      testDate.toLocaleDateString(undefined, { weekday: "short" }),
+    );
   });
 });
 
@@ -73,9 +70,7 @@ it("renders the month and date when less than 1 year ago", () => {
   const dates = getMockDates(testDate);
 
   Object.values(dates).forEach(value => {
-    expect(
-      renderer.create(<FormatRelativeDateTime date={value} />).toJSON(),
-    ).toEqual(
+    expect(render(<FormatRelativeDateTime date={value} />)).toEqual(
       new Date("Apr 26").toLocaleDateString(undefined, {
         month: "short",
         day: "numeric",
@@ -91,9 +86,7 @@ it("renders the month and date when yesterday's date 1 year previous (border cas
   const dates = getMockDates(testDate);
 
   Object.values(dates).forEach(value => {
-    expect(
-      renderer.create(<FormatRelativeDateTime date={value} />).toJSON(),
-    ).toEqual(
+    expect(render(<FormatRelativeDateTime date={value} />)).toEqual(
       new Date("Jun 27").toLocaleDateString(undefined, {
         month: "short",
         day: "numeric",
@@ -108,9 +101,7 @@ it("renders the month day, year when over a year ago", () => {
   const dates = getMockDates(testDate);
 
   Object.values(dates).forEach(value => {
-    expect(
-      renderer.create(<FormatRelativeDateTime date={value} />).toJSON(),
-    ).toEqual(
+    expect(render(<FormatRelativeDateTime date={value} />)).toEqual(
       new Date("Jun 25, 2018").toLocaleDateString(undefined, {
         month: "short",
         day: "numeric",
