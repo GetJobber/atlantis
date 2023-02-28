@@ -1,43 +1,46 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import { cleanup } from "@testing-library/react";
+import { cleanup, render } from "@testing-library/react";
 import { Content } from ".";
 
 afterEach(cleanup);
 
 it("renders a Content", () => {
-  const tree = renderer.create(<Content>Wazaaaaa</Content>).toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-        <div
-          className="padded base"
-        >
-          Wazaaaaa
-        </div>
-    `);
+  const { container } = render(<Content>Wazaaaaa</Content>);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <div
+        class="padded base"
+      >
+        Wazaaaaa
+      </div>
+    </div>
+  `);
 });
 
 it("renders a Content with a large spacing", () => {
-  const tree = renderer
-    .create(<Content spacing="large">Space me up!</Content>)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-        <div
-          className="padded large"
-        >
-          Space me up!
-        </div>
-    `);
+  const { container } = render(<Content spacing="large">Space me up!</Content>);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <div
+        class="padded large"
+      >
+        Space me up!
+      </div>
+    </div>
+  `);
 });
 
 it("renders a Content with a small spacing", () => {
-  const tree = renderer
-    .create(<Content spacing="small">Space me down!</Content>)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-        <div
-          className="padded small"
-        >
-          Space me down!
-        </div>
-    `);
+  const { container } = render(
+    <Content spacing="small">Space me down!</Content>,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <div
+        class="padded small"
+      >
+        Space me down!
+      </div>
+    </div>
+  `);
 });

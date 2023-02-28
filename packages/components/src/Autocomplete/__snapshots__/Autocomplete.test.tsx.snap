@@ -1,74 +1,60 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`it should display headers when headers are passed in 1`] = `
-<div
-  className="autocomplete"
->
+<div>
   <div
-    className="wrapper"
-    style={
-      Object {
-        "--formField-maxLength": undefined,
-      }
-    }
+    class="autocomplete"
   >
     <div
-      className="inputWrapper"
+      class="wrapper"
     >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440035"
+      <div
+        class="inputWrapper"
       >
-        placeholder_name
-      </label>
-      <input
-        autoComplete="off"
-        className="input"
-        id="123e4567-e89b-12d3-a456-426655440035"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        type="text"
-        value=""
-      />
+        <label
+          class="label"
+          for="123e4567-e89b-12d3-a456-426655440033"
+        >
+          placeholder_name
+        </label>
+        <input
+          autocomplete="off"
+          class="input"
+          id="123e4567-e89b-12d3-a456-426655440033"
+          type="text"
+          value=""
+        />
+      </div>
     </div>
   </div>
 </div>
 `;
 
 exports[`renders an Autocomplete 1`] = `
-<div
-  className="autocomplete"
->
+<div>
   <div
-    className="wrapper"
-    style={
-      Object {
-        "--formField-maxLength": undefined,
-      }
-    }
+    class="autocomplete"
   >
     <div
-      className="inputWrapper"
+      class="wrapper"
     >
-      <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440001"
+      <div
+        class="inputWrapper"
       >
-        placeholder_name
-      </label>
-      <input
-        autoComplete="off"
-        className="input"
-        id="123e4567-e89b-12d3-a456-426655440001"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        type="text"
-        value=""
-      />
+        <label
+          class="label"
+          for="123e4567-e89b-12d3-a456-426655440001"
+        >
+          placeholder_name
+        </label>
+        <input
+          autocomplete="off"
+          class="input"
+          id="123e4567-e89b-12d3-a456-426655440001"
+          type="text"
+          value=""
+        />
+      </div>
     </div>
   </div>
 </div>

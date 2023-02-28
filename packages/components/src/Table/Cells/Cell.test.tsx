@@ -1,47 +1,55 @@
+import { render } from "@testing-library/react";
 import React from "react";
-import renderer from "react-test-renderer";
 import { Cell } from "./Cell";
 
 it("renders a simple cell", () => {
-  const tree = renderer.create(<Cell>Ship</Cell>).toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <td
-      className="cell left"
-    >
-      Ship
-    </td>
+  const { container } = render(<Cell>Ship</Cell>);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <td
+        class="cell left"
+      >
+        Ship
+      </td>
+    </div>
   `);
 });
 
 it("renders a left aligned cell", () => {
-  const tree = renderer.create(<Cell align="left">Ship</Cell>).toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <td
-      className="cell left"
-    >
-      Ship
-    </td>
+  const { container } = render(<Cell align="left">Ship</Cell>);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <td
+        class="cell left"
+      >
+        Ship
+      </td>
+    </div>
   `);
 });
 
 it("renders a right aligned cell", () => {
-  const tree = renderer.create(<Cell align="right">Ship</Cell>).toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <td
-      className="cell right"
-    >
-      Ship
-    </td>
+  const { container } = render(<Cell align="right">Ship</Cell>);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <td
+        class="cell right"
+      >
+        Ship
+      </td>
+    </div>
   `);
 });
 
 it("renders a center aligned cell", () => {
-  const tree = renderer.create(<Cell align="center">Ship</Cell>).toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    <td
-      className="cell center"
-    >
-      Ship
-    </td>
+  const { container } = render(<Cell align="center">Ship</Cell>);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
+      <td
+        class="cell center"
+      >
+        Ship
+      </td>
+    </div>
   `);
 });

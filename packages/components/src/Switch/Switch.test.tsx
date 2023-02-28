@@ -1,5 +1,4 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import { cleanup, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Switch } from ".";
@@ -7,145 +6,140 @@ import { Switch } from ".";
 afterEach(cleanup);
 
 it("renders a Switch", () => {
-  const tree = renderer.create(<Switch ariaLabel="Toggle me" />).toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    Array [
+  const { container } = render(<Switch ariaLabel="Toggle me" />);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
       <button
-        aria-checked={false}
+        aria-checked="false"
         aria-label="Toggle me"
-        className="track"
-        onClick={[Function]}
+        class="track"
         role="switch"
         type="button"
       >
         <span
-          className="toggle"
+          class="toggle"
         >
           <span
-            className="label"
+            class="label"
           >
             <span
-              className="base bold small uppercase white"
+              class="base bold small uppercase white"
             >
               On
             </span>
           </span>
           <span
-            className="pip"
+            class="pip"
           />
           <span
-            className="label"
+            class="label"
           >
             <span
-              className="base bold small uppercase greyBlue"
+              class="base bold small uppercase greyBlue"
             >
               Off
             </span>
           </span>
         </span>
-      </button>,
+      </button>
       <input
         type="hidden"
         value="false"
-      />,
-    ]
+      />
+    </div>
   `);
 });
 
 it("renders a Switch that is turned ON", () => {
-  const tree = renderer
-    .create(<Switch ariaLabel="Toggle me" value={true} />)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    Array [
+  const { container } = render(<Switch ariaLabel="Toggle me" value={true} />);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
       <button
-        aria-checked={true}
+        aria-checked="true"
         aria-label="Toggle me"
-        className="track isChecked"
-        onClick={[Function]}
+        class="track isChecked"
         role="switch"
         type="button"
       >
         <span
-          className="toggle"
+          class="toggle"
         >
           <span
-            className="label"
+            class="label"
           >
             <span
-              className="base bold small uppercase white"
+              class="base bold small uppercase white"
             >
               On
             </span>
           </span>
           <span
-            className="pip"
+            class="pip"
           />
           <span
-            className="label"
+            class="label"
           >
             <span
-              className="base bold small uppercase greyBlue"
+              class="base bold small uppercase greyBlue"
             >
               Off
             </span>
           </span>
         </span>
-      </button>,
+      </button>
       <input
         type="hidden"
         value="true"
-      />,
-    ]
+      />
+    </div>
   `);
 });
 
 it("renders a disabled Switch", () => {
-  const tree = renderer
-    .create(<Switch ariaLabel="Can't touch this" disabled={true} />)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    Array [
+  const { container } = render(
+    <Switch ariaLabel="Can't touch this" disabled={true} />,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
       <button
-        aria-checked={false}
+        aria-checked="false"
         aria-label="Can't touch this"
-        className="track disabled"
-        disabled={true}
-        onClick={[Function]}
+        class="track disabled"
+        disabled=""
         role="switch"
         type="button"
       >
         <span
-          className="toggle"
+          class="toggle"
         >
           <span
-            className="label"
+            class="label"
           >
             <span
-              className="base bold small uppercase grey"
+              class="base bold small uppercase grey"
             >
               On
             </span>
           </span>
           <span
-            className="pip"
+            class="pip"
           />
           <span
-            className="label"
+            class="label"
           >
             <span
-              className="base bold small uppercase grey"
+              class="base bold small uppercase grey"
             >
               Off
             </span>
           </span>
         </span>
-      </button>,
+      </button>
       <input
         type="hidden"
         value="false"
-      />,
-    ]
+      />
+    </div>
   `);
 });
 
