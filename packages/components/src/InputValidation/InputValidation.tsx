@@ -2,6 +2,7 @@ import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import styles from "./InputValidation.css";
 import { Text } from "../Text";
+import { Icon } from "../Icon";
 
 interface InputValidationProps {
   /**
@@ -36,7 +37,10 @@ export function InputValidation({ message }: InputValidationProps) {
                 role="alert"
                 tabIndex={0}
               >
-                <Text variation="error">{msg}</Text>
+                <Icon name="alert" size="small" color="critical" />
+                <Text size="small" variation="error">
+                  {msg}
+                </Text>
               </div>
             </motion.div>
           ))}
