@@ -1,9 +1,3 @@
----
-name: Eslint Config
-menu: Packages
-route: /packages/eslint-config
----
-
 # ESLint Config _aka Dip Lint_
 
 ## Installing

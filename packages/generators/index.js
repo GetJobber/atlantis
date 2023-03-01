@@ -7,7 +7,7 @@ module.exports = function (plop, config) {
   const { basePath, templateGlob } = Object.assign(
     {
       basePath: "packages/components/src",
-      templateGlob: "!(*.stories.*)",
+      templateGlob: "*",
     },
     config || {},
   );
@@ -30,23 +30,6 @@ module.exports = function (plop, config) {
         default: basePath,
         directoryOnly: true,
       },
-      {
-        type: "expand",
-        name: "storybook",
-        message: "Create Storybook mdx?",
-        choices: [
-          {
-            key: "y",
-            name: "Yes",
-            value: "yes",
-          },
-          {
-            key: "n",
-            name: "No",
-            value: "no",
-          },
-        ],
-      },
     ],
     actions: [
       /**
@@ -62,18 +45,6 @@ module.exports = function (plop, config) {
         destination: `{{path}}/{{name}}/`,
         base: "templates/component",
         templateFiles: `templates/component/${templateGlob}`,
-      },
-      {
-        type: "addMany",
-        destination: `{{path}}/{{name}}/`,
-        base: "templates/component",
-        templateFiles: `templates/component/*.stories.*`,
-        skip(data) {
-          if (data.storybook !== "yes") {
-            return "Not adding storybook file";
-          }
-          return;
-        },
       },
     ],
   });

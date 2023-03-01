@@ -1,12 +1,66 @@
----
-name: Components
-menu: Changelog
----
-
-# @jobber/components: Change Log
+# Change Log
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [3.2.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.2.7...@jobber/components@3.2.8) (2023-02-28)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.2.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.2.6...@jobber/components@3.2.7) (2023-02-28)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.2.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.2.5...@jobber/components@3.2.6) (2023-02-28)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.2.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.2.4...@jobber/components@3.2.5) (2023-02-27)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.2.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.2.3...@jobber/components@3.2.4) (2023-02-27)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.2.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.2.2...@jobber/components@3.2.3) (2023-02-24)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.2.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.2.1...@jobber/components@3.2.2) (2023-02-24)
+
+
+### Bug Fixes
+
+* JOB-62724 Update RadioGroup alignment ([#1069](https://github.com/GetJobber/atlantis/issues/1069)) ([1fbfc56](https://github.com/GetJobber/atlantis/commit/1fbfc5675b8a9a92ba5848cb5c65dc0e4b8f0b7c))
+
+
+
+
 
 ## [3.2.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.2.0...@jobber/components@3.2.1) (2023-02-23)
 
