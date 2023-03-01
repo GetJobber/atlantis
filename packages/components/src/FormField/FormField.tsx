@@ -42,10 +42,14 @@ export function FormField(props: FormFieldProps) {
     onValidation,
   } = props;
 
-  const { control, errors, setValue, watch } =
-    useFormContext() != undefined
-      ? useFormContext()
-      : useForm({ mode: "onTouched" });
+  const {
+    control,
+    formState: { errors },
+    setValue,
+    watch,
+  } = useFormContext() != undefined
+    ? useFormContext()
+    : useForm({ mode: "onTouched" });
 
   const [identifier] = useState(uuidv1());
   const [descriptionIdentifier] = useState(`descriptionUUID--${uuidv1()}`);
@@ -80,10 +84,12 @@ export function FormField(props: FormFieldProps) {
       rules={{ ...validations }}
       defaultValue={value ?? defaultValue ?? ""}
       render={({
-        onChange: onControllerChange,
-        onBlur: onControllerBlur,
-        name: controllerName,
-        ...rest
+        field: {
+          onChange: onControllerChange,
+          onBlur: onControllerBlur,
+          name: controllerName,
+          ...rest
+        },
       }) => {
         const fieldProps = {
           ...rest,

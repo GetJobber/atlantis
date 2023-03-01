@@ -28,10 +28,9 @@ export const Form = forwardRef(function InternalForm(
 ) {
   const methods = useForm({ mode: "onTouched" });
   const {
-    errors,
     trigger,
     handleSubmit,
-    formState: { isDirty, isValid },
+    formState: { isDirty, isValid, errors },
   } = methods;
 
   useEffect(
