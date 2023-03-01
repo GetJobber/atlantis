@@ -1,134 +1,98 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import { fireEvent, render } from "@testing-library/react";
 import { InputText } from ".";
 import { InputTextRef } from "./InputText";
 
 it("renders a regular input for text and numbers", () => {
-  const tree = renderer
-    .create(<InputText placeholder="Favourite colour" />)
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    Array [
+  const { container } = render(<InputText placeholder="Favourite colour" />);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
       <div
-        className="wrapper"
-        style={
-          Object {
-            "--formField-maxLength": undefined,
-          }
-        }
+        class="wrapper"
       >
         <div
-          className="inputWrapper"
+          class="inputWrapper"
         >
           <label
-            className="label"
-            htmlFor="123e4567-e89b-12d3-a456-426655440001"
+            class="label"
+            for="123e4567-e89b-12d3-a456-426655440001"
           >
             Favourite colour
           </label>
           <input
-            className="input"
+            class="input"
             id="123e4567-e89b-12d3-a456-426655440001"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            onKeyDown={[Function]}
             type="text"
             value=""
           />
         </div>
-      </div>,
-      "",
-    ]
+      </div>
+      
+    </div>
   `);
 });
 
 it("renders a textarea", () => {
-  const tree = renderer
-    .create(
-      <InputText placeholder="Describe your favourite colour?" multiline />,
-    )
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    Array [
+  const { container } = render(
+    <InputText placeholder="Describe your favourite colour?" multiline />,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
       <div
-        className="wrapper textarea"
-        style={
-          Object {
-            "--formField-maxLength": undefined,
-          }
-        }
+        class="wrapper textarea"
       >
         <div
-          className="inputWrapper"
+          class="inputWrapper"
         >
           <label
-            className="label"
-            htmlFor="123e4567-e89b-12d3-a456-426655440003"
+            class="label"
+            for="123e4567-e89b-12d3-a456-426655440003"
           >
             Describe your favourite colour?
           </label>
           <textarea
-            className="input"
+            class="input"
             id="123e4567-e89b-12d3-a456-426655440003"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            onKeyDown={[Function]}
-            rows={3}
-            value=""
+            rows="3"
           />
         </div>
-      </div>,
-      "",
-    ]
+      </div>
+      
+    </div>
   `);
 });
 
 it("renders a textarea with 4 rows", () => {
-  const tree = renderer
-    .create(
-      <InputText
-        placeholder="Describe your favourite colour?"
-        multiline
-        rows={4}
-      />,
-    )
-    .toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    Array [
+  const { container } = render(
+    <InputText
+      placeholder="Describe your favourite colour?"
+      multiline
+      rows={4}
+    />,
+  );
+  expect(container).toMatchInlineSnapshot(`
+    <div>
       <div
-        className="wrapper textarea"
-        style={
-          Object {
-            "--formField-maxLength": undefined,
-          }
-        }
+        class="wrapper textarea"
       >
         <div
-          className="inputWrapper"
+          class="inputWrapper"
         >
           <label
-            className="label"
-            htmlFor="123e4567-e89b-12d3-a456-426655440005"
+            class="label"
+            for="123e4567-e89b-12d3-a456-426655440005"
           >
             Describe your favourite colour?
           </label>
           <textarea
-            className="input"
+            class="input"
             id="123e4567-e89b-12d3-a456-426655440005"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            onKeyDown={[Function]}
-            rows={4}
-            value=""
+            rows="4"
           />
         </div>
-      </div>,
-      "",
-    ]
+      </div>
+      
+    </div>
   `);
 });
 

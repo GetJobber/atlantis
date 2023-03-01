@@ -1,44 +1,34 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import { InputNumber, InputNumberRef } from ".";
 
 afterEach(cleanup);
 
 it("renders an input type number", () => {
-  const tree = renderer.create(<InputNumber value={123} />).toJSON();
-  expect(tree).toMatchInlineSnapshot(`
-    Array [
+  const { container } = render(<InputNumber value={123} />);
+  expect(container).toMatchInlineSnapshot(`
+    <div>
       <div
-        className="wrapper"
-        style={
-          Object {
-            "--formField-maxLength": undefined,
-          }
-        }
+        class="wrapper"
       >
         <div
-          className="inputWrapper"
+          class="inputWrapper"
         >
           <label
-            className="label"
-            htmlFor="123e4567-e89b-12d3-a456-426655440001"
+            class="label"
+            for="123e4567-e89b-12d3-a456-426655440001"
           />
           <input
-            className="input"
+            class="input"
             id="123e4567-e89b-12d3-a456-426655440001"
             name="generatedName--123e4567-e89b-12d3-a456-426655440001"
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            onKeyDown={[Function]}
             type="number"
-            value={123}
+            value="123"
           />
         </div>
-      </div>,
-      "",
-    ]
+      </div>
+      
+    </div>
   `);
 });
 

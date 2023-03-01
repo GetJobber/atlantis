@@ -1,27 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders a Select with many options 1`] = `
-Array [
+<div>
   <div
-    className="wrapper select"
-    style={
-      Object {
-        "--formField-maxLength": undefined,
-      }
-    }
+    class="wrapper select"
   >
     <div
-      className="inputWrapper"
+      class="inputWrapper"
     >
       <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440005"
+        class="label"
+        for="123e4567-e89b-12d3-a456-426655440005"
       />
       <select
-        className="input"
+        class="input"
         id="123e4567-e89b-12d3-a456-426655440005"
-        onChange={[Function]}
-        value=""
       >
         <option>
           Foo
@@ -37,307 +30,265 @@ Array [
         </option>
       </select>
       <span
-        className="postfix"
+        class="postfix"
       >
         <svg
-          className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+          class="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
           data-testid="arrowDown"
           viewBox="0 0 1024 1024"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            className=""
+            class=""
             d="M328.998 351.11c-8.341-8.317-19.268-12.465-30.189-12.445-10.887 0.019-21.766 4.179-30.071 12.478s-12.468 19.172-12.487 30.050c-0.019 10.929 4.143 21.863 12.487 30.201l213.543 213.719c8.345 8.341 19.283 12.509 30.221 12.509s21.875-4.168 30.221-12.509l213.542-213.539c8.345-8.338 12.509-19.273 12.488-30.201-0.021-10.879-4.181-21.75-12.488-30.050-8.302-8.299-19.185-12.459-30.071-12.478-10.921-0.019-21.849 4.129-30.19 12.445l-183.501 183.158-183.502-183.338z"
           />
         </svg>
       </span>
     </div>
-  </div>,
-  "",
-]
+  </div>
+  
+</div>
 `;
 
 exports[`renders a Select with no options 1`] = `
-Array [
+<div>
   <div
-    className="wrapper select"
-    style={
-      Object {
-        "--formField-maxLength": undefined,
-      }
-    }
+    class="wrapper select"
   >
     <div
-      className="inputWrapper"
+      class="inputWrapper"
     >
       <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440001"
+        class="label"
+        for="123e4567-e89b-12d3-a456-426655440001"
       />
       <select
-        className="input"
+        class="input"
         id="123e4567-e89b-12d3-a456-426655440001"
-        onChange={[Function]}
-        value=""
       />
       <span
-        className="postfix"
+        class="postfix"
       >
         <svg
-          className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+          class="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
           data-testid="arrowDown"
           viewBox="0 0 1024 1024"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            className=""
+            class=""
             d="M328.998 351.11c-8.341-8.317-19.268-12.465-30.189-12.445-10.887 0.019-21.766 4.179-30.071 12.478s-12.468 19.172-12.487 30.050c-0.019 10.929 4.143 21.863 12.487 30.201l213.543 213.719c8.345 8.341 19.283 12.509 30.221 12.509s21.875-4.168 30.221-12.509l213.542-213.539c8.345-8.338 12.509-19.273 12.488-30.201-0.021-10.879-4.181-21.75-12.488-30.050-8.302-8.299-19.185-12.459-30.071-12.478-10.921-0.019-21.849 4.129-30.19 12.445l-183.501 183.158-183.502-183.338z"
           />
         </svg>
       </span>
     </div>
-  </div>,
-  "",
-]
+  </div>
+  
+</div>
 `;
 
 exports[`renders a Select with one option 1`] = `
-Array [
+<div>
   <div
-    className="wrapper select"
-    style={
-      Object {
-        "--formField-maxLength": undefined,
-      }
-    }
+    class="wrapper select"
   >
     <div
-      className="inputWrapper"
+      class="inputWrapper"
     >
       <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440003"
+        class="label"
+        for="123e4567-e89b-12d3-a456-426655440003"
       />
       <select
-        className="input"
+        class="input"
         id="123e4567-e89b-12d3-a456-426655440003"
-        onChange={[Function]}
-        value=""
       >
         <option>
           Foo
         </option>
       </select>
       <span
-        className="postfix"
+        class="postfix"
       >
         <svg
-          className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+          class="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
           data-testid="arrowDown"
           viewBox="0 0 1024 1024"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            className=""
+            class=""
             d="M328.998 351.11c-8.341-8.317-19.268-12.465-30.189-12.445-10.887 0.019-21.766 4.179-30.071 12.478s-12.468 19.172-12.487 30.050c-0.019 10.929 4.143 21.863 12.487 30.201l213.543 213.719c8.345 8.341 19.283 12.509 30.221 12.509s21.875-4.168 30.221-12.509l213.542-213.539c8.345-8.338 12.509-19.273 12.488-30.201-0.021-10.879-4.181-21.75-12.488-30.050-8.302-8.299-19.185-12.459-30.071-12.478-10.921-0.019-21.849 4.129-30.19 12.445l-183.501 183.158-183.502-183.338z"
           />
         </svg>
       </span>
     </div>
-  </div>,
-  "",
-]
+  </div>
+  
+</div>
 `;
 
 exports[`renders correctly as large 1`] = `
-Array [
+<div>
   <div
-    className="wrapper large select"
-    style={
-      Object {
-        "--formField-maxLength": undefined,
-      }
-    }
+    class="wrapper large select"
   >
     <div
-      className="inputWrapper"
+      class="inputWrapper"
     >
       <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440009"
+        class="label"
+        for="123e4567-e89b-12d3-a456-426655440009"
       />
       <select
-        className="input"
+        class="input"
         id="123e4567-e89b-12d3-a456-426655440009"
-        onChange={[Function]}
-        value=""
       >
         <option>
           Foo
         </option>
       </select>
       <span
-        className="postfix"
+        class="postfix"
       >
         <svg
-          className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+          class="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
           data-testid="arrowDown"
           viewBox="0 0 1024 1024"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            className=""
+            class=""
             d="M328.998 351.11c-8.341-8.317-19.268-12.465-30.189-12.445-10.887 0.019-21.766 4.179-30.071 12.478s-12.468 19.172-12.487 30.050c-0.019 10.929 4.143 21.863 12.487 30.201l213.543 213.719c8.345 8.341 19.283 12.509 30.221 12.509s21.875-4.168 30.221-12.509l213.542-213.539c8.345-8.338 12.509-19.273 12.488-30.201-0.021-10.879-4.181-21.75-12.488-30.050-8.302-8.299-19.185-12.459-30.071-12.478-10.921-0.019-21.849 4.129-30.19 12.445l-183.501 183.158-183.502-183.338z"
           />
         </svg>
       </span>
     </div>
-  </div>,
-  "",
-]
+  </div>
+  
+</div>
 `;
 
 exports[`renders correctly as small 1`] = `
-Array [
+<div>
   <div
-    className="wrapper small select"
-    style={
-      Object {
-        "--formField-maxLength": undefined,
-      }
-    }
+    class="wrapper small select"
   >
     <div
-      className="inputWrapper"
+      class="inputWrapper"
     >
       <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440007"
+        class="label"
+        for="123e4567-e89b-12d3-a456-426655440007"
       />
       <select
-        className="input"
+        class="input"
         id="123e4567-e89b-12d3-a456-426655440007"
-        onChange={[Function]}
-        value=""
       >
         <option>
           Foo
         </option>
       </select>
       <span
-        className="postfix"
+        class="postfix"
       >
         <svg
-          className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+          class="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
           data-testid="arrowDown"
           viewBox="0 0 1024 1024"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            className=""
+            class=""
             d="M328.998 351.11c-8.341-8.317-19.268-12.465-30.189-12.445-10.887 0.019-21.766 4.179-30.071 12.478s-12.468 19.172-12.487 30.050c-0.019 10.929 4.143 21.863 12.487 30.201l213.543 213.719c8.345 8.341 19.283 12.509 30.221 12.509s21.875-4.168 30.221-12.509l213.542-213.539c8.345-8.338 12.509-19.273 12.488-30.201-0.021-10.879-4.181-21.75-12.488-30.050-8.302-8.299-19.185-12.459-30.071-12.478-10.921-0.019-21.849 4.129-30.19 12.445l-183.501 183.158-183.502-183.338z"
           />
         </svg>
       </span>
     </div>
-  </div>,
-  "",
-]
+  </div>
+  
+</div>
 `;
 
 exports[`renders correctly when disabled 1`] = `
-Array [
+<div>
   <div
-    className="wrapper disabled select"
-    style={
-      Object {
-        "--formField-maxLength": undefined,
-      }
-    }
+    class="wrapper disabled select"
   >
     <div
-      className="inputWrapper"
+      class="inputWrapper"
     >
       <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440011"
+        class="label"
+        for="123e4567-e89b-12d3-a456-426655440011"
       />
       <select
-        className="input"
-        disabled={true}
+        class="input"
+        disabled=""
         id="123e4567-e89b-12d3-a456-426655440011"
-        onChange={[Function]}
-        value=""
       >
         <option>
           Foo
         </option>
       </select>
       <span
-        className="postfix"
+        class="postfix"
       >
         <svg
-          className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+          class="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
           data-testid="arrowDown"
           viewBox="0 0 1024 1024"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            className=""
+            class=""
             d="M328.998 351.11c-8.341-8.317-19.268-12.465-30.189-12.445-10.887 0.019-21.766 4.179-30.071 12.478s-12.468 19.172-12.487 30.050c-0.019 10.929 4.143 21.863 12.487 30.201l213.543 213.719c8.345 8.341 19.283 12.509 30.221 12.509s21.875-4.168 30.221-12.509l213.542-213.539c8.345-8.338 12.509-19.273 12.488-30.201-0.021-10.879-4.181-21.75-12.488-30.050-8.302-8.299-19.185-12.459-30.071-12.478-10.921-0.019-21.849 4.129-30.19 12.445l-183.501 183.158-183.502-183.338z"
           />
         </svg>
       </span>
     </div>
-  </div>,
-  "",
-]
+  </div>
+  
+</div>
 `;
 
 exports[`renders correctly when invalid 1`] = `
-Array [
+<div>
   <div
-    className="wrapper invalid select"
-    style={
-      Object {
-        "--formField-maxLength": undefined,
-      }
-    }
+    class="wrapper invalid select"
   >
     <div
-      className="inputWrapper"
+      class="inputWrapper"
     >
       <label
-        className="label"
-        htmlFor="123e4567-e89b-12d3-a456-426655440013"
+        class="label"
+        for="123e4567-e89b-12d3-a456-426655440013"
       />
       <select
-        className="input"
+        class="input"
         id="123e4567-e89b-12d3-a456-426655440013"
-        onChange={[Function]}
-        value=""
       >
         <option>
           Foo
         </option>
       </select>
       <span
-        className="postfix"
+        class="postfix"
       >
         <svg
-          className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+          class="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
           data-testid="arrowDown"
           viewBox="0 0 1024 1024"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            className=""
+            class=""
             d="M328.998 351.11c-8.341-8.317-19.268-12.465-30.189-12.445-10.887 0.019-21.766 4.179-30.071 12.478s-12.468 19.172-12.487 30.050c-0.019 10.929 4.143 21.863 12.487 30.201l213.543 213.719c8.345 8.341 19.283 12.509 30.221 12.509s21.875-4.168 30.221-12.509l213.542-213.539c8.345-8.338 12.509-19.273 12.488-30.201-0.021-10.879-4.181-21.75-12.488-30.050-8.302-8.299-19.185-12.459-30.071-12.478-10.921-0.019-21.849 4.129-30.19 12.445l-183.501 183.158-183.502-183.338z"
           />
         </svg>
       </span>
     </div>
-  </div>,
-  "",
-]
+  </div>
+  
+</div>
 `;
