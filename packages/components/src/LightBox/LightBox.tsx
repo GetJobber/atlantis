@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
-import ExternalLightBox from "react-image-lightbox";
+import React, { ReactNode, useEffect, useState } from "react";
+import { AnimatePresence, PanInfo, motion } from "framer-motion";
+import { useOnKeyDown, useRefocusOnActivator } from "@jobber/hooks";
 import styles from "./LightBox.css";
-
-// Library requires fetching its CSS.
-// eslint-disable-next-line import/no-internal-modules
-import "react-image-lightbox/style.css";
+import { Icon } from "../Icon";
+import { ButtonDismiss } from "../ButtonDismiss";
 
 interface PresentedImage {
   title?: string;
@@ -43,6 +42,30 @@ interface LightBoxProps {
   onRequestClose(options: RequestCloseOptions): void;
 }
 
+const swipeConfidenceThreshold = 10000;
+const swipePower = (offset: number, velocity: number) => {
+  return Math.abs(offset) * velocity;
+};
+
+const variants = {
+  enter: (direction: number) => {
+    return {
+      x: direction > 0 ? 2000 : -2000,
+      opacity: 0,
+    };
+  },
+  center: {
+    zIndex: 1,
+    x: 0,
+    opacity: 1,
+  },
+};
+
+const imageTransition = {
+  x: { type: "spring", stiffness: 300, damping: 30 },
+  opacity: { duration: 0.2 },
+};
+
 export function LightBox({
   open,
   images,
@@ -50,36 +73,59 @@ export function LightBox({
   onRequestClose,
 }: LightBoxProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(imageIndex);
-  let nextSrc = undefined;
-  let prevSrc = undefined;
-  if (images.length > 1) {
-    nextSrc = images[(currentImageIndex + 1) % images.length].url;
-    prevSrc =
-      images[(currentImageIndex + images.length - 1) % images.length].url;
-  }
+  useRefocusOnActivator(open);
+
+  useOnKeyDown(() => {
+    onRequestClose({ lastPosition: currentImageIndex });
+  }, "Escape");
+
+  useOnKeyDown(handleMovePrevious, {
+    key: "ArrowLeft",
+  });
+
+  useOnKeyDown(handleMoveNext, {
+    key: "ArrowRight",
+  });
 
   useEffect(() => {
     setCurrentImageIndex(imageIndex);
-  }, [imageIndex]);
+  }, [imageIndex, open]);
 
   return (
     <>
-      {open && (
-        <ExternalLightBox
-          wrapperClassName={styles.wrapper}
-          mainSrc={images[currentImageIndex].url}
-          enableZoom={false}
-          nextSrc={nextSrc}
-          prevSrc={prevSrc}
-          imageTitle={images[currentImageIndex].title}
-          imageCaption={images[currentImageIndex].caption}
-          onCloseRequest={() =>
-            onRequestClose({ lastPosition: currentImageIndex })
-          }
-          onMovePrevRequest={handleMovePrevious}
-          onMoveNextRequest={handleMoveNext}
-        />
-      )}
+      <AnimatePresence initial={false}>
+        {open && (
+          <LightBoxWrapper key="lightbox">
+            <Toolbar>
+              <Title>{images[currentImageIndex].title}</Title>
+              <ButtonDismiss
+                ariaLabel="Close lightbox"
+                onClick={() => {
+                  onRequestClose({ lastPosition: currentImageIndex });
+                }}
+              />
+            </Toolbar>
+            <ImagesWrapper handleImageWrapperClick={handleImageWrapperClick}>
+              <PreviousButton onClick={handleMovePrevious} />
+              <motion.img
+                key={currentImageIndex}
+                variants={variants}
+                src={images[currentImageIndex].url}
+                initial="enter"
+                animate="center"
+                transition={imageTransition}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={1}
+                onDragEnd={handleOnDragEnd}
+              />
+
+              <NextButton onClick={handleMoveNext} />
+            </ImagesWrapper>
+            <Toolbar>{images[currentImageIndex].caption}</Toolbar>
+          </LightBoxWrapper>
+        )}
+      </AnimatePresence>
     </>
   );
 
@@ -92,4 +138,86 @@ export function LightBox({
   function handleMoveNext() {
     setCurrentImageIndex((currentImageIndex + 1) % images.length);
   }
+
+  function handleImageWrapperClick(
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) {
+    const target = event.target as HTMLDivElement;
+    if (target.id === "imageWrapper") {
+      onRequestClose({ lastPosition: currentImageIndex });
+    }
+  }
+
+  function handleOnDragEnd(
+    event: MouseEvent | TouchEvent | PointerEvent,
+    { offset, velocity }: PanInfo,
+  ) {
+    const swipe = swipePower(offset.x, velocity.x);
+
+    if (swipe < -swipeConfidenceThreshold) {
+      handleMovePrevious();
+    } else if (swipe > swipeConfidenceThreshold) {
+      handleMoveNext();
+    }
+  }
+}
+
+interface ChildrenProps {
+  children: ReactNode;
+}
+
+function Title({ children }: ChildrenProps) {
+  return <span className={styles.title}>{children}</span>;
+}
+
+function Toolbar({ children }: ChildrenProps) {
+  return <div className={styles.toolbar}>{children}</div>;
+}
+
+function LightBoxWrapper({ children }: ChildrenProps) {
+  return (
+    <div className={styles.lightboxWrapper} tabIndex={0} aria-label="Lightbox">
+      {children}
+    </div>
+  );
+}
+
+function ImagesWrapper({
+  children,
+  handleImageWrapperClick,
+}: {
+  children: ReactNode;
+  handleImageWrapperClick: (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) => void;
+}) {
+  return (
+    <div
+      className={styles.imagesWrapper}
+      onClick={handleImageWrapperClick}
+      id="imageWrapper"
+    >
+      {children}
+    </div>
+  );
+}
+
+interface NavButtonProps {
+  onClick: () => void;
+}
+
+function PreviousButton({ onClick }: NavButtonProps) {
+  return (
+    <div className={styles.prev} onClick={onClick}>
+      <Icon name="arrowLeft" color="white" size="large" />
+    </div>
+  );
+}
+
+function NextButton({ onClick }: NavButtonProps) {
+  return (
+    <div className={styles.next} onClick={onClick}>
+      <Icon name="arrowRight" color="white" size="large" />
+    </div>
+  );
 }
