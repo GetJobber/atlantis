@@ -13,14 +13,14 @@ interface InputValidationProps {
 export function InputValidation({ message }: InputValidationProps) {
   const messages = [message];
   const variants = {
-    slideOut: { y: "5%", height: 0, opacity: 0 },
-    slideIn: { y: 0, height: "100%", opacity: 1 },
+    slideOut: { y: "5%", opacity: 0 },
+    slideIn: { y: 0, opacity: 1 },
   };
 
   return (
     <>
       {messages && messages.length > 0 && (
-        <AnimatePresence>
+        <AnimatePresence exitBeforeEnter>
           {messages.map(msg => (
             <motion.div
               key={`validation-${msg}`}
