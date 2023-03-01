@@ -12,7 +12,5 @@
     "**/*.test.ts",
     "**/*.test.tsx",
     "entryPoints.ts",
-    "**/Form/*",
-    "**/FormField/*",
   ],
 }
