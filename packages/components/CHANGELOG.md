@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.2.8...@jobber/components@3.3.0) (2023-03-01)
+
+
+### Features
+
+* **components:** update validation + description patterns for text inputs ([#1087](https://github.com/GetJobber/atlantis/issues/1087)) ([6b7fb96](https://github.com/GetJobber/atlantis/commit/6b7fb966144547da0a67b8551e90158bb2abaab5))
+
+
+
+
+
 ## [3.2.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.2.7...@jobber/components@3.2.8) (2023-02-28)
 
 **Note:** Version bump only for package @jobber/components
