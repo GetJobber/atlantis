@@ -8,6 +8,6 @@
   "main": "src/index.ts",
   "scripts": {},
   "devDependencies": {
-    "react": "^16.8.6"
+    "react": "^18.2.0"
   }
 }
