@@ -1,5 +1,5 @@
 import { ChangeEvent, ReactNode, RefObject } from "react";
-import { ValidationRules } from "react-hook-form";
+import { RegisterOptions } from "react-hook-form";
 import { XOR } from "ts-xor";
 import { IconNames } from "../Icon";
 
@@ -213,5 +213,5 @@ export interface FormFieldProps extends CommonFormFieldProps {
    * Show an error message above the field. This also
    * highlights the the field red if an error message shows up.
    */
-  readonly validations?: ValidationRules;
+  readonly validations?: RegisterOptions;
 }
