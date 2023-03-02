@@ -1,0 +1,89 @@
+import { Canvas, Meta, Story } from "@storybook/addon-docs";
+import { useState } from "react";
+import { Button } from "@jobber/components/Button";
+import * as hooks from ".";
+
+<Meta title="Hooks/useFocusTrap" />
+
+# UseFocusTrap
+
+Trap focus within a DOM node.
+
+Useful for building Modals, lightboxes, menus, bottom sheets, etc. The user will
+be able to navigate the component using `Tab` and `Shift+Tab`.
+
+```ts
+import { useFocusTrap } from "@jobber/hooks";
+```
+
+<Canvas>
+  <Story name="useFocusTrap">
+    {() => {
+      const [open, setOpen] = useState(false);
+      const modalRef = hooks.useFocusTrap(open);
+      return (
+        <>
+          <Button label="Open modal" onClick={() => setOpen(true)} />
+          {open && (
+            <div
+              ref={modalRef}
+              tabIndex={0}
+              style={{
+                position: "fixed",
+                top: 0,
+                bottom: 0,
+                right: 0,
+                left: 0,
+                zIndex: "var(--elevation-modal)",
+              }}
+            >
+              <Overlay onClick={() => setOpen(false)} />
+              <Modal>
+                <Button label="first button" />
+                <Button label="second button" />
+                <Button label="third button" />
+                <Button label="close" onClick={() => setOpen(false)} />
+              </Modal>
+            </div>
+          )}
+        </>
+      );
+    }}
+  </Story>
+</Canvas>
+
+<ArgsTable of={hooks.useFocusTrap} />
+
+export function Overlay({ onClick }) {
+  return (
+    <div
+      onClick={onClick}
+      style={{
+        position: "fixed",
+        top: 0,
+        bottom: 0,
+        right: 0,
+        left: 0,
+        backgroundColor: "var(--color-overlay)",
+        zIndex: "var(--elevation-modal)",
+      }}
+    />
+  );
+}
+
+export function Modal({ children }) {
+  return (
+    <div
+      style={{
+        position: "relative",
+        display: "flex",
+        margin: "auto",
+        justifyContent: "center",
+        alignItems: "center",
+        zIndex: "var(--elevation-modal)",
+      }}
+    >
+      {children}
+    </div>
+  );
+}
