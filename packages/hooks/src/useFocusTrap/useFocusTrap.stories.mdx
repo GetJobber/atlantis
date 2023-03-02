@@ -1,9 +1,10 @@
 import { Canvas, Meta, Story } from "@storybook/addon-docs";
 import { useState } from "react";
 import { Button } from "@jobber/components/Button";
-import { Card } from "@jobber/components/Card";
 import { Content } from "@jobber/components/Content";
-import { Divider } from "@jobber/components/Divider";
+import { Checkbox } from "@jobber/components/Checkbox";
+import { InputText } from "@jobber/components/InputText";
+import { Text } from "@jobber/components/Text";
 import * as hooks from ".";
 
 <Meta title="Hooks/useFocusTrap" />
@@ -22,21 +23,23 @@ import { useFocusTrap } from "@jobber/hooks";
 <Canvas>
   <Story name="useFocusTrap">
     {() => {
-      const [open, setOpen] = useState(false);
-      const trapRef = hooks.useFocusTrap(open);
+      const [checked, setChecked] = useState(false);
+      const trapRef = hooks.useFocusTrap(checked);
       return (
         <>
-          <Button label="Open focus trap" onClick={() => setOpen(true)} />
-          {open && (
-            <div ref={trapRef} tabIndex={0}>
-              <Card header="Navigate using TAB">
-                <Button label="first button" />
-                <Button label="second button" />
-                <Button label="third button" />
-                <Button label="close" onClick={() => setOpen(false)} />
-              </Card>
-            </div>
-          )}
+          <Checkbox
+            checked={checked}
+            onChange={setChecked}
+            label="Trap focus"
+          />
+          <div ref={trapRef} tabIndex={0}>
+            <Content>
+              {checked}
+              <InputText placeholder="First Name" name="firstName" />
+              <InputText placeholder="Last Name" name="lastName" />
+              <Button label="Submit Form" submit={true} />
+            </Content>
+          </div>
         </>
       );
     }}
