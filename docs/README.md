@@ -198,7 +198,7 @@ npm run publish:prerelease:force @jobber/components
 ```
 
 _NOTE: You can replace `@jobber/components` with the package you want to
-prerelease or remove prerelease all of them._
+prerelease or remove it to prerelease all of them._
 
 </details>
 
