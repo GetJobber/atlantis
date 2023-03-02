@@ -29,7 +29,7 @@ function isInvalidGroupNesting(childs: ReactElement | ReactElement[]): boolean {
     ) {
       console.error(
         `ERROR: InputGroup not rendered: nesting 'flowDirection="vertical"' columns not supported.`,
-        `https://atlantis.getjobber.com/components/input-group#nested-example`,
+        `https://atlantis.getjobber.com/?path=/docs/components-inputgroup--input-group#nested-example`,
       );
       return true;
     }

@@ -57,7 +57,7 @@ The `<{{name}}>` will... _Add a brief description of the component_
   What type of content does this component present (documents, text, images, other components)?
   What is the recommended, or expected, amount of content? What is the components’ behaviour when
   the provided content diverges from what is expected (image aspect ratio, amount of text, video
-  vs audio, filesize)? Are there any important references to the [Product Vocabulary](https://atlantis.getjobber.com/guides/product-vocabulary)
+  vs audio, filesize)? Are there any important references to the [Product Vocabulary](https://atlantis.getjobber.com/?path=/docs/content-product-vocabulary--page)
   that should be made regarding this component? What happens when content is unavailable or unreliable
   (poor connection, empty states, flaky GPS data?)
 -->
