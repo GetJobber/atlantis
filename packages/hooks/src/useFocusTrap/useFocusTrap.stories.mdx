@@ -1,0 +1,49 @@
+import { Canvas, Meta, Story } from "@storybook/addon-docs";
+import { useState } from "react";
+import { Button } from "@jobber/components/Button";
+import { Content } from "@jobber/components/Content";
+import { Checkbox } from "@jobber/components/Checkbox";
+import { InputText } from "@jobber/components/InputText";
+import { Text } from "@jobber/components/Text";
+import * as hooks from ".";
+
+<Meta title="Hooks/useFocusTrap" />
+
+# UseFocusTrap
+
+Trap focus within a DOM node.
+
+Useful for building Modals, lightboxes, menus, bottom sheets, etc. The user will
+be able to navigate the component using `Tab` and `Shift+Tab`.
+
+```ts
+import { useFocusTrap } from "@jobber/hooks";
+```
+
+<Canvas>
+  <Story name="useFocusTrap">
+    {() => {
+      const [checked, setChecked] = useState(false);
+      const trapRef = hooks.useFocusTrap(checked);
+      return (
+        <>
+          <Checkbox
+            checked={checked}
+            onChange={setChecked}
+            label="Trap focus"
+          />
+          <div ref={trapRef} tabIndex={0}>
+            <Content>
+              {checked}
+              <InputText placeholder="First Name" name="firstName" />
+              <InputText placeholder="Last Name" name="lastName" />
+              <Button label="Submit Form" submit={true} />
+            </Content>
+          </div>
+        </>
+      );
+    }}
+  </Story>
+</Canvas>
+
+<ArgsTable of={hooks.useFocusTrap} />
