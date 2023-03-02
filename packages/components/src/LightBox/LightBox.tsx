@@ -1,9 +1,10 @@
+/* eslint-disable max-statements */
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, PanInfo, motion } from "framer-motion";
 import { useOnKeyDown, useRefocusOnActivator } from "@jobber/hooks";
 import styles from "./LightBox.css";
-import { Icon } from "../Icon";
 import { ButtonDismiss } from "../ButtonDismiss";
+import { Button } from "../Button";
 
 interface PresentedImage {
   title?: string;
@@ -73,6 +74,8 @@ export function LightBox({
   onRequestClose,
 }: LightBoxProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(imageIndex);
+  const [direction, setDirection] = useState(0);
+
   useRefocusOnActivator(open);
 
   useOnKeyDown(handleRequestClose, "Escape");
@@ -90,7 +93,7 @@ export function LightBox({
   }, [imageIndex, open]);
 
   return (
-    <AnimatePresence initial={false}>
+    <AnimatePresence initial={false} custom={direction}>
       {open && (
         <div
           className={styles.lightboxWrapper}
@@ -114,6 +117,7 @@ export function LightBox({
               key={currentImageIndex}
               variants={variants}
               src={images[currentImageIndex].url}
+              custom={direction}
               initial="enter"
               animate="center"
               transition={imageTransition}
@@ -134,12 +138,14 @@ export function LightBox({
   );
 
   function handleMovePrevious() {
+    setDirection(-1);
     setCurrentImageIndex(
       (currentImageIndex + images.length - 1) % images.length,
     );
   }
 
   function handleMoveNext() {
+    setDirection(1);
     setCurrentImageIndex((currentImageIndex + 1) % images.length);
   }
 
@@ -163,9 +169,9 @@ export function LightBox({
     const swipe = swipePower(offset.x, velocity.x);
 
     if (swipe < -swipeConfidenceThreshold) {
-      handleMovePrevious();
-    } else if (swipe > swipeConfidenceThreshold) {
       handleMoveNext();
+    } else if (swipe > swipeConfidenceThreshold) {
+      handleMovePrevious();
     }
   }
 }
@@ -176,16 +182,29 @@ interface NavButtonProps {
 
 function PreviousButton({ onClick }: NavButtonProps) {
   return (
-    <div className={styles.prev} onClick={onClick}>
-      <Icon name="arrowLeft" color="white" size="large" />
+    <div className={styles.prev}>
+      <Button
+        variation="subtle"
+        type="secondary"
+        icon="arrowLeft"
+        ariaLabel="Previous image"
+        onClick={onClick}
+      />
     </div>
   );
 }
 
 function NextButton({ onClick }: NavButtonProps) {
   return (
-    <div className={styles.next} onClick={onClick}>
-      <Icon name="arrowRight" color="white" size="large" />
+    <div className={styles.next}>
+      <Button
+        fullWidth
+        variation="subtle"
+        type="secondary"
+        icon="arrowRight"
+        ariaLabel="Next image"
+        onClick={onClick}
+      />
     </div>
   );
 }
