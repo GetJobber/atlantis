@@ -1,5 +1,4 @@
 declare const styles: {
-  readonly "wrapper": string;
   readonly "next": string;
   readonly "prev": string;
   readonly "lightboxWrapper": string;

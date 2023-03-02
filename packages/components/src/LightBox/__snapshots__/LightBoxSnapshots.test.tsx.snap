@@ -16,7 +16,7 @@ exports[`Images renders an image 1`] = `
         Dis be a title
       </span>
       <button
-        aria-label="Close lightbox"
+        aria-label="Close"
         class="button base onlyIcon subtle tertiary"
         type="button"
       >

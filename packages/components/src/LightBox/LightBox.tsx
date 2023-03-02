@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AnimatePresence, PanInfo, motion } from "framer-motion";
 import { useOnKeyDown, useRefocusOnActivator } from "@jobber/hooks";
 import styles from "./LightBox.css";
@@ -75,9 +75,7 @@ export function LightBox({
   const [currentImageIndex, setCurrentImageIndex] = useState(imageIndex);
   useRefocusOnActivator(open);
 
-  useOnKeyDown(() => {
-    onRequestClose({ lastPosition: currentImageIndex });
-  }, "Escape");
+  useOnKeyDown(handleRequestClose, "Escape");
 
   useOnKeyDown(handleMovePrevious, {
     key: "ArrowLeft",
@@ -92,41 +90,47 @@ export function LightBox({
   }, [imageIndex, open]);
 
   return (
-    <>
-      <AnimatePresence initial={false}>
-        {open && (
-          <LightBoxWrapper key="lightbox">
-            <Toolbar>
-              <Title>{images[currentImageIndex].title}</Title>
-              <ButtonDismiss
-                ariaLabel="Close lightbox"
-                onClick={() => {
-                  onRequestClose({ lastPosition: currentImageIndex });
-                }}
-              />
-            </Toolbar>
-            <ImagesWrapper handleImageWrapperClick={handleImageWrapperClick}>
-              <PreviousButton onClick={handleMovePrevious} />
-              <motion.img
-                key={currentImageIndex}
-                variants={variants}
-                src={images[currentImageIndex].url}
-                initial="enter"
-                animate="center"
-                transition={imageTransition}
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={1}
-                onDragEnd={handleOnDragEnd}
-              />
+    <AnimatePresence initial={false}>
+      {open && (
+        <div
+          className={styles.lightboxWrapper}
+          tabIndex={0}
+          aria-label="Lightbox"
+          key="Lightbox"
+        >
+          <div className={styles.toolbar}>
+            <span className={styles.title}>
+              {images[currentImageIndex].title}
+            </span>
+            <ButtonDismiss ariaLabel="Close" onClick={handleRequestClose} />
+          </div>
+          <div
+            className={styles.imagesWrapper}
+            onClick={handleImageWrapperClick}
+            id="imageWrapper"
+          >
+            <PreviousButton onClick={handleMovePrevious} />
+            <motion.img
+              key={currentImageIndex}
+              variants={variants}
+              src={images[currentImageIndex].url}
+              initial="enter"
+              animate="center"
+              transition={imageTransition}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={1}
+              onDragEnd={handleOnDragEnd}
+            />
 
-              <NextButton onClick={handleMoveNext} />
-            </ImagesWrapper>
-            <Toolbar>{images[currentImageIndex].caption}</Toolbar>
-          </LightBoxWrapper>
-        )}
-      </AnimatePresence>
-    </>
+            <NextButton onClick={handleMoveNext} />
+          </div>
+          <div className={styles.toolbar}>
+            {images[currentImageIndex].caption}
+          </div>
+        </div>
+      )}
+    </AnimatePresence>
   );
 
   function handleMovePrevious() {
@@ -139,12 +143,16 @@ export function LightBox({
     setCurrentImageIndex((currentImageIndex + 1) % images.length);
   }
 
+  function handleRequestClose() {
+    onRequestClose({ lastPosition: currentImageIndex });
+  }
+
   function handleImageWrapperClick(
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) {
     const target = event.target as HTMLDivElement;
     if (target.id === "imageWrapper") {
-      onRequestClose({ lastPosition: currentImageIndex });
+      handleRequestClose();
     }
   }
 
@@ -160,46 +168,6 @@ export function LightBox({
       handleMoveNext();
     }
   }
-}
-
-interface ChildrenProps {
-  children: ReactNode;
-}
-
-function Title({ children }: ChildrenProps) {
-  return <span className={styles.title}>{children}</span>;
-}
-
-function Toolbar({ children }: ChildrenProps) {
-  return <div className={styles.toolbar}>{children}</div>;
-}
-
-function LightBoxWrapper({ children }: ChildrenProps) {
-  return (
-    <div className={styles.lightboxWrapper} tabIndex={0} aria-label="Lightbox">
-      {children}
-    </div>
-  );
-}
-
-function ImagesWrapper({
-  children,
-  handleImageWrapperClick,
-}: {
-  children: ReactNode;
-  handleImageWrapperClick: (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  ) => void;
-}) {
-  return (
-    <div
-      className={styles.imagesWrapper}
-      onClick={handleImageWrapperClick}
-      id="imageWrapper"
-    >
-      {children}
-    </div>
-  );
 }
 
 interface NavButtonProps {

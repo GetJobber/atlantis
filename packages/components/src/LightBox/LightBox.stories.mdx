@@ -17,30 +17,32 @@ defined images.
 import { LightBox } from "@jobber/components/LightBox";
 ```
 
+export const images = [
+  {
+    title: "😃 Happy Face",
+    url: "https://i.imgur.com/6Jcfgnp.jpg",
+    caption: "This is a happy face",
+  },
+  {
+    title: "😮",
+    url: "https://i.imgur.com/OsLxYkT.jpg",
+    caption: "Suprised face",
+  },
+  {
+    url: "https://i.imgur.com/uigfzs5.jpg",
+  },
+];
+
 <Canvas>
-  <Story name="LightBox">
-    {() => {
+  <Story name="LightBox" args={{ images }}>
+    {args => {
       const [open, isOpen] = useState(false);
       return (
         <>
           <Button label="😈 Click me!" onClick={() => isOpen(true)} />
           <LightBox
+            {...args}
             open={open}
-            images={[
-              {
-                title: "😃 Happy Face",
-                url: "https://i.imgur.com/6Jcfgnp.jpg",
-                caption: "This is a happy face",
-              },
-              {
-                title: "😮",
-                url: "https://i.imgur.com/OsLxYkT.jpg",
-                caption: "Suprised face",
-              },
-              {
-                url: "https://i.imgur.com/uigfzs5.jpg",
-              },
-            ]}
             onRequestClose={() => isOpen(false)}
           />
         </>
