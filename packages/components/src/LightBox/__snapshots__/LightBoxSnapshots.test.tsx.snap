@@ -38,7 +38,6 @@ exports[`Images renders an image 1`] = `
     </div>
     <div
       class="imagesWrapper"
-      id="imageWrapper"
     >
       <div
         class="prev"
@@ -64,6 +63,9 @@ exports[`Images renders an image 1`] = `
           />
         </button>
       </div>
+      <div
+        class="overlay"
+      />
       <img
         draggable="false"
         src="https://i.imgur.com/6Jcfgnp.jpg"

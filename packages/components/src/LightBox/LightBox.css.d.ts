@@ -5,6 +5,7 @@ declare const styles: {
   readonly "toolbar": string;
   readonly "title": string;
   readonly "imagesWrapper": string;
+  readonly "overlay": string;
 };
 export = styles;
 

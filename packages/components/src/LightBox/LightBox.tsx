@@ -107,12 +107,9 @@ export function LightBox({
             </span>
             <ButtonDismiss ariaLabel="Close" onClick={handleRequestClose} />
           </div>
-          <div
-            className={styles.imagesWrapper}
-            onClick={handleImageWrapperClick}
-            id="imageWrapper"
-          >
+          <div className={styles.imagesWrapper}>
             <PreviousButton onClick={handleMovePrevious} />
+            <div className={styles.overlay} onClick={handleRequestClose} />
             <motion.img
               key={currentImageIndex}
               variants={variants}
@@ -151,15 +148,6 @@ export function LightBox({
 
   function handleRequestClose() {
     onRequestClose({ lastPosition: currentImageIndex });
-  }
-
-  function handleImageWrapperClick(
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  ) {
-    const target = event.target as HTMLDivElement;
-    if (target.id === "imageWrapper") {
-      handleRequestClose();
-    }
   }
 
   function handleOnDragEnd(
