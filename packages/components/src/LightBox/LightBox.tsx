@@ -1,7 +1,11 @@
 /* eslint-disable max-statements */
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, PanInfo, motion } from "framer-motion";
-import { useOnKeyDown, useRefocusOnActivator } from "@jobber/hooks";
+import {
+  useFocusTrap,
+  useOnKeyDown,
+  useRefocusOnActivator,
+} from "@jobber/hooks";
 import styles from "./LightBox.css";
 import { ButtonDismiss } from "../ButtonDismiss";
 import { Button } from "../Button";
@@ -75,6 +79,7 @@ export function LightBox({
 }: LightBoxProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(imageIndex);
   const [direction, setDirection] = useState(0);
+  const lightboxRef = useFocusTrap<HTMLDivElement>(open);
 
   useRefocusOnActivator(open);
 
@@ -100,6 +105,7 @@ export function LightBox({
           tabIndex={0}
           aria-label="Lightbox"
           key="Lightbox"
+          ref={lightboxRef}
         >
           <div className={styles.toolbar}>
             <span className={styles.title}>
