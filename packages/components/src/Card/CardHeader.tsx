@@ -15,7 +15,7 @@ export function CardHeader({
 }: Pick<CardProps, "title" | "header">) {
   const heading = title || header;
 
-  if (React.isValidElement(heading)) return <>{header}</>;
+  if (React.isValidElement(heading)) return <>{heading}</>;
   if (heading) {
     const titleString = typeof heading === "string" ? heading : heading.title;
 
