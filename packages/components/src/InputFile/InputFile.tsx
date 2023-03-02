@@ -120,7 +120,7 @@ interface InputFileProps {
    * to upload the file.
    *
    * More info is available at:
-   * https://atlantis.getjobber.com/components/input-file#getuploadparams
+   * https://atlantis.getjobber.com/?path=/docs/components-inputfile--input-file#getuploadparams
    */
   getUploadParams(file: File): UploadParams | Promise<UploadParams>;
 
