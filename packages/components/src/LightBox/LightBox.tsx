@@ -55,7 +55,7 @@ const swipePower = (offset: number, velocity: number) => {
 const variants = {
   enter: (direction: number) => {
     return {
-      x: direction > 0 ? 2000 : -2000,
+      x: direction > 0 ? 1000 : -1000,
       opacity: 0,
     };
   },
@@ -63,6 +63,13 @@ const variants = {
     zIndex: 1,
     x: 0,
     opacity: 1,
+  },
+  exit: (direction: number) => {
+    return {
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0,
+    };
   },
 };
 
@@ -98,7 +105,7 @@ export function LightBox({
   }, [imageIndex, open]);
 
   return (
-    <AnimatePresence initial={false} custom={direction}>
+    <AnimatePresence initial={false}>
       {open && (
         <div
           className={styles.lightboxWrapper}
@@ -116,22 +123,27 @@ export function LightBox({
           <div className={styles.imagesWrapper}>
             <PreviousButton onClick={handleMovePrevious} />
             <div className={styles.overlay} onClick={handleRequestClose} />
-            <motion.img
-              key={currentImageIndex}
-              variants={variants}
-              src={images[currentImageIndex].url}
-              custom={direction}
-              initial="enter"
-              animate="center"
-              transition={imageTransition}
-              drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={1}
-              onDragEnd={handleOnDragEnd}
-            />
-
+            <AnimatePresence initial={false}>
+              <motion.img
+                key={currentImageIndex}
+                variants={variants}
+                src={images[currentImageIndex].url}
+                custom={direction}
+                className={styles.image}
+                style={{ y: "-50%" }}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={imageTransition}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={1}
+                onDragEnd={handleOnDragEnd}
+              />
+            </AnimatePresence>
             <NextButton onClick={handleMoveNext} />
           </div>
+
           <div className={styles.toolbar}>
             {images[currentImageIndex].caption}
           </div>

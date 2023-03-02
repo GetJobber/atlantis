@@ -67,9 +67,10 @@ exports[`Images renders an image 1`] = `
         class="overlay"
       />
       <img
+        class="image"
         draggable="false"
         src="https://i.imgur.com/6Jcfgnp.jpg"
-        style="z-index: 1; opacity: 1; transform: none; user-select: none;"
+        style="z-index: 1; opacity: 1; transform: translateX(0px) translateY(-50%) translateZ(0); user-select: none;"
       />
       <div
         class="next"

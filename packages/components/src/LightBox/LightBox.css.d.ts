@@ -6,6 +6,7 @@ declare const styles: {
   readonly "title": string;
   readonly "imagesWrapper": string;
   readonly "overlay": string;
+  readonly "image": string;
 };
 export = styles;
 
