@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "3.2.8",
+  "version": "3.3.1",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -35,7 +35,7 @@
     "classnames": "^2.2.6",
     "color": "^3.1.2",
     "filesize": "^6.1.0",
-    "framer-motion": "^1.10.3",
+    "framer-motion": "6.3.16",
     "lodash": "^4.17.21",
     "react-countdown": "^2.3.2",
     "react-datepicker": "^4.10.0",
