@@ -1,5 +1,4 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import { Tab, Tabs } from ".";
 
@@ -19,8 +18,8 @@ const omelet = (
 );
 
 it("renders Tabs", () => {
-  const tree = renderer.create(omelet).toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(omelet);
+  expect(container).toMatchSnapshot();
 });
 
 test("it should switch tabs", () => {

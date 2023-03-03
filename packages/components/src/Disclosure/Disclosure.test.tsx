@@ -1,19 +1,16 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import { cleanup, render } from "@testing-library/react";
 import { Disclosure } from ".";
 
 afterEach(cleanup);
 
 it("renders a Disclosure", () => {
-  const tree = renderer
-    .create(
-      <Disclosure title="Example Disclosure Title">
-        <p>Wafer topping soufflé bear claw cake chocolate toffee.</p>
-      </Disclosure>,
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(
+    <Disclosure title="Example Disclosure Title">
+      <p>Wafer topping soufflé bear claw cake chocolate toffee.</p>
+    </Disclosure>,
+  );
+  expect(container).toMatchSnapshot();
 });
 
 it("renders a Disclosure which should be closed by default", () => {

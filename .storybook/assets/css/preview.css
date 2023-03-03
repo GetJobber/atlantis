@@ -1,0 +1,41 @@
+:focus,
+:focus-visible {
+  outline: none;
+}
+
+a {
+  color: var(--color-interactive);
+  font-family: inherit;
+  font-size: inherit;
+}
+
+a:hover {
+  color: var(--color-interactive--hover);
+}
+
+:global(.sbdocs-table) {
+  width: 100%;
+}
+
+:global(h6.sbdocs-h6) {
+  color: var(--color-heading);
+}
+
+:global(.sbdocs-table th) {
+  width: 50%;
+  background-color: var(--color-surface--background);
+}
+
+:global(.sbdocs.sbdocs-a) {
+  color: var(--color-interactive);
+  font-family: inherit;
+  font-size: inherit;
+}
+
+:global(.sbdocs.sbdocs-content) {
+  max-width: calc(var(--base-unit) * 48);
+}
+
+:global(.sbdocs.sbdocs-table tr:nth-of-type(2n)) {
+  background-color: transparent;
+}
