@@ -27,7 +27,6 @@ jobs:
             generators
             hooks
             stylelint
-            docz-tools
           requireScope: false
       - name: Add guidance
         uses: GetJobber/sticky-pull-request-comment@v2

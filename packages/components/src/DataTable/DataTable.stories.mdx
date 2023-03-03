@@ -1,0 +1,1052 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import axios from "axios";
+import { useEffect, useMemo, useState } from "react";
+import { sortBy } from "lodash";
+import classNames from "classnames";
+import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
+import { ComponentStatus } from "@jobber/docx";
+import { DataTable } from ".";
+import styles from "./DataTable.css";
+import { DataDump } from "../DataDump";
+import { Button } from "../Button";
+import { Typography } from "../Typography";
+import { Menu } from "../Menu";
+import { Text } from "../Text";
+import { Heading } from "../Heading";
+
+<Meta title="Components/DataTable" component={DataTable} />
+
+# Data Table
+
+<ComponentStatus stage="pre" responsive="no" accessible="yes" />
+
+Data Tables are used to organize and display tabular data to users while
+providing a multitude of features that allows the user to interact with the data
+been displayed on the table.
+
+The `DataTable` component has the capability to integrate sorting, filtering and
+pagination with an external API or on the client side.
+
+```ts
+import { DataTable } from "@jobber/components/DataTable";
+```
+
+## Basic table
+
+<Canvas>
+  <Story name="DataTable">
+    <DataTable
+      data={[
+        {
+          name: "Jon Snow",
+          house: "Stark",
+          region: "North",
+          sigil: "Direwolf",
+          isAlive: "Yes",
+        },
+        {
+          name: "Robert",
+          house: "Stark",
+          region: "North",
+          sigil: "Direwolf",
+          isAlive: "No",
+        },
+        {
+          name: "Rickon",
+          house: "Stark",
+          region: "North",
+          sigil: "Direwolf",
+          isAlive: "No",
+        },
+        {
+          name: "Robert",
+          house: "Baratheon",
+          region: "Stormlands",
+          sigil: "Black Stag",
+          isAlive: "No",
+        },
+        {
+          name: "Cercei",
+          house: "Lannister",
+          region: "Westerlands",
+          sigil: "Golden Lion",
+          isAlive: "Yes",
+        },
+      ]}
+      columns={[
+        {
+          accessorKey: "name",
+        },
+        {
+          accessorKey: "house",
+        },
+        {
+          accessorKey: "region",
+        },
+        {
+          accessorKey: "sigil",
+        },
+        {
+          accessorKey: "isAlive",
+          accessorFn: row =>
+            row.name === "Jon Snow" ? "Resurrected" : row.isAlive,
+        },
+      ]}
+    />
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of={DataTable} />
+
+## Table with actions
+
+<Canvas>
+  <DataTable
+    data={[
+      {
+        name: "Jon Snow",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "Yes",
+      },
+      {
+        name: "Robert",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "No",
+      },
+      {
+        name: "Rickon",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "No",
+      },
+      {
+        name: "Robert",
+        house: "Baratheon",
+        region: "Stormlands",
+        sigil: "Black Stag",
+        isAlive: "No",
+      },
+      {
+        name: "Cercei",
+        house: "Lannister",
+        region: "Westerlands",
+        sigil: "Golden Lion",
+        isAlive: "Yes",
+      },
+    ]}
+    columns={[
+      {
+        accessorKey: "name",
+        cell: info => info.getValue(),
+        header: "Name",
+      },
+      {
+        accessorKey: "house",
+        cell: info => info.getValue(),
+        header: "House",
+      },
+      {
+        accessorKey: "region",
+        cell: info => info.getValue(),
+        header: "Region",
+      },
+      {
+        accessorKey: "sigil",
+        cell: info => info.getValue(),
+        header: "Sigil",
+      },
+      {
+        accessorKey: "isAlive",
+        accessorFn: row =>
+          row.name === "Jon Snow" ? "Resurrected" : row.isAlive,
+        cell: info => info.getValue(),
+        header: "Alive",
+      },
+      {
+        id: "actions",
+        cell: ({ row }) => (
+          <Menu
+            activator={
+              <Button
+                variation="subtle"
+                type="tertiary"
+                icon="more"
+                aria-label="more"
+              />
+            }
+            items={[
+              {
+                actions: [
+                  {
+                    label: "Alert",
+                    icon: "alert",
+                    onClick: () => {
+                      alert(JSON.stringify(row.original, null, 2));
+                    },
+                  },
+                ],
+              },
+            ]}
+          />
+        ),
+      },
+    ]}
+  />
+</Canvas>
+
+## Client-side pagination, sorting, clickable rows, and fixed height with sticky header
+
+<Canvas>
+  <DataTable
+    height={400}
+    stickyHeader
+    data={[
+      {
+        name: "Eddard",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "No",
+      },
+      {
+        name: "Catelyn",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "No",
+      },
+      {
+        name: "Jon Snow",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "Yes",
+      },
+      {
+        name: "Robert",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "No",
+      },
+      {
+        name: "Rickon",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "No",
+      },
+      {
+        name: "Robert",
+        house: "Baratheon",
+        region: "Stormlands",
+        sigil: "Black Stag",
+        isAlive: "No",
+      },
+      {
+        name: "Cercei",
+        house: "Lannister",
+        region: "Westerlands",
+        sigil: "Golden Lion",
+        isAlive: "Yes",
+      },
+      {
+        name: "Sansa",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "Yes",
+      },
+      {
+        name: "Arya",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "Yes",
+      },
+      {
+        name: "Bran",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "Yes",
+      },
+      {
+        name: "Joffrey",
+        house: "Baratheon",
+        region: "Stormlands",
+        sigil: "Black Stag",
+        isAlive: "No",
+      },
+      {
+        name: "Myrcella",
+        house: "Baratheon",
+        region: "Stormlands",
+        sigil: "Black Stag",
+        isAlive: "Yes",
+      },
+      {
+        name: "Tommen",
+        house: "Baratheon",
+        region: "Stormlands",
+        sigil: "Black Stag",
+        isAlive: "Yes",
+      },
+    ]}
+    pagination={{ manualPagination: false, itemsPerPage: [10, 20, 30] }}
+    sorting={{ manualSorting: false }}
+    onRowClick={row => alert(JSON.stringify(row.original, null, 2))}
+    columns={[
+      {
+        accessorKey: "name",
+        cell: info => info.getValue(),
+        header: "Name",
+      },
+      {
+        accessorKey: "house",
+        cell: info => info.getValue(),
+        header: "House",
+      },
+      {
+        accessorKey: "region",
+        cell: info => info.getValue(),
+        header: "Region",
+      },
+      {
+        accessorKey: "sigil",
+        cell: info => info.getValue(),
+        header: "Sigil",
+      },
+      {
+        accessorKey: "isAlive",
+        accessorFn: row =>
+          row.name === "Jon Snow" ? "Resurrected" : row.isAlive,
+        cell: info => info.getValue(),
+        header: "Alive",
+      },
+    ]}
+  />
+</Canvas>
+
+## Disable sorting of a specific column
+
+<Canvas>
+  <DataTable
+    height={400}
+    stickyHeader
+    data={[
+      {
+        name: "Eddard",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "No",
+      },
+      {
+        name: "Catelyn",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "No",
+      },
+      {
+        name: "Jon Snow",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "Yes",
+      },
+      {
+        name: "Robert",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "No",
+      },
+      {
+        name: "Rickon",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "No",
+      },
+      {
+        name: "Robert",
+        house: "Baratheon",
+        region: "Stormlands",
+        sigil: "Black Stag",
+        isAlive: "No",
+      },
+      {
+        name: "Cercei",
+        house: "Lannister",
+        region: "Westerlands",
+        sigil: "Golden Lion",
+        isAlive: "Yes",
+      },
+      {
+        name: "Sansa",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "Yes",
+      },
+      {
+        name: "Arya",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "Yes",
+      },
+      {
+        name: "Bran",
+        house: "Stark",
+        region: "North",
+        sigil: "Direwolf",
+        isAlive: "Yes",
+      },
+      {
+        name: "Joffrey",
+        house: "Baratheon",
+        region: "Stormlands",
+        sigil: "Black Stag",
+        isAlive: "No",
+      },
+      {
+        name: "Myrcella",
+        house: "Baratheon",
+        region: "Stormlands",
+        sigil: "Black Stag",
+        isAlive: "Yes",
+      },
+      {
+        name: "Tommen",
+        house: "Baratheon",
+        region: "Stormlands",
+        sigil: "Black Stag",
+        isAlive: "Yes",
+      },
+    ]}
+    pagination={{ manualPagination: false, itemsPerPage: [10, 20, 30] }}
+    sorting={{ manualSorting: false }}
+    onRowClick={row => alert(JSON.stringify(row.original, null, 2))}
+    columns={[
+      {
+        accessorKey: "name",
+        cell: info => info.getValue(),
+        header: "Name",
+        enableSorting: false,
+      },
+      {
+        accessorKey: "house",
+        cell: info => info.getValue(),
+        header: "House",
+      },
+      {
+        accessorKey: "region",
+        cell: info => info.getValue(),
+        header: "Region",
+      },
+      {
+        accessorKey: "sigil",
+        cell: info => info.getValue(),
+        header: "Sigil",
+      },
+      {
+        accessorKey: "isAlive",
+        accessorFn: row =>
+          row.name === "Jon Snow" ? "Resurrected" : row.isAlive,
+        cell: info => info.getValue(),
+        header: "Alive",
+      },
+    ]}
+  />
+</Canvas>
+
+## Horizontal scrolling, pinning first column, custom cell, custom header
+
+<Canvas>
+  <div style={{ maxWidth: 390 }}>
+    <DataTable
+      data={[
+        {
+          name: "Jon Snow",
+          house: "Stark",
+          region: "North",
+          sigil: "Direwolf",
+          isAlive: "Yes",
+        },
+        {
+          name: "Robert",
+          house: "Stark",
+          region: "North",
+          sigil: "Direwolf",
+          isAlive: "No",
+        },
+        {
+          name: "Rickon",
+          house: "Stark",
+          region: "North",
+          sigil: "Direwolf",
+          isAlive: "No",
+        },
+        {
+          name: "Robert",
+          house: "Baratheon",
+          region: "Stormlands",
+          sigil: "Black Stag",
+          isAlive: "No",
+        },
+        {
+          name: "Cercei",
+          house: "Lannister",
+          region: "Westerlands",
+          sigil: "Golden Lion",
+          isAlive: "Yes",
+        },
+      ]}
+      pinFirstColumn
+      columns={[
+        {
+          accessorKey: "name",
+          cell: info => <strong>{info.getValue()}</strong>,
+          header: () => (
+            <span style={{ color: "var(--color-green)" }}>Name</span>
+          ),
+        },
+        {
+          accessorKey: "house",
+          header: () => (
+            <span style={{ color: "var(--color-green)" }}>House</span>
+          ),
+        },
+        {
+          accessorKey: "region",
+          header: () => (
+            <span style={{ color: "var(--color-green)" }}>Region</span>
+          ),
+        },
+        {
+          accessorKey: "sigil",
+          header: () => (
+            <span style={{ color: "var(--color-green)" }}>Sigil</span>
+          ),
+        },
+        {
+          accessorKey: "isAlive",
+          cell: info => (info.getValue() == "Yes" ? "✅" : "❌"),
+          header: () => (
+            <span style={{ color: "var(--color-green)" }}>Alive</span>
+          ),
+        },
+      ]}
+    />
+  </div>
+</Canvas>
+
+## Manual sorting
+
+<Canvas>
+  <ExampleWithHooks>
+    {() => {
+      const [sortingState, setSortingState] = useState([
+        { id: "name", desc: false },
+      ]);
+      const defaultData = useMemo(
+        () => [
+          {
+            name: "Eddard",
+            house: "Stark",
+            region: "North",
+            sigil: "Direwolf",
+            isAlive: "No",
+          },
+          {
+            name: "Catelyn",
+            house: "Stark",
+            region: "North",
+            sigil: "Direwolf",
+            isAlive: "No",
+          },
+          {
+            name: "Jon Snow",
+            house: "Stark",
+            region: "North",
+            sigil: "Direwolf",
+            isAlive: "Yes",
+          },
+          {
+            name: "Robert",
+            house: "Stark",
+            region: "North",
+            sigil: "Direwolf",
+            isAlive: "No",
+          },
+          {
+            name: "Rickon",
+            house: "Stark",
+            region: "North",
+            sigil: "Direwolf",
+            isAlive: "No",
+          },
+          {
+            name: "Robert",
+            house: "Baratheon",
+            region: "Stormlands",
+            sigil: "Black Stag",
+            isAlive: "No",
+          },
+          {
+            name: "Cercei",
+            house: "Lannister",
+            region: "Westerlands",
+            sigil: "Golden Lion",
+            isAlive: "Yes",
+          },
+        ],
+        []
+      );
+      const sortedData = useMemo(() => {
+        if (sortingState.length == 0) return defaultData;
+        return sortingState[0].desc
+          ? sortBy(defaultData, [sortingState[0].id]).reverse()
+          : sortBy(defaultData, [sortingState[0].id]);
+      }, [sortingState]);
+      const columns = [
+        {
+          accessorKey: "name",
+          cell: info => <span>{info.getValue()}</span>,
+        },
+        {
+          accessorKey: "house",
+          cell: info => info.getValue(),
+        },
+        {
+          accessorKey: "region",
+          cell: info => info.getValue(),
+        },
+        {
+          accessorKey: "sigil",
+          cell: info => info.getValue(),
+        },
+        {
+          accessorKey: "isAlive",
+          accessorFn: row =>
+            row.name === "Jon Snow" ? "Resurrected" : row.isAlive,
+          cell: info => info.getValue(),
+        },
+      ];
+      return (
+        <div>
+          <DataDump label="Sorting State" data={sortingState} defaultOpen />
+          <DataTable
+            data={sortedData}
+            columns={columns}
+            sorting={{
+              manualSorting: true,
+              state: sortingState,
+              onSortingChange: setSortingState,
+              enableSortingRemoval: true,
+            }}
+          />
+        </div>
+      );
+    }}
+  </ExampleWithHooks>
+</Canvas>
+
+## Manual pagination
+
+<Canvas>
+  <ExampleWithHooks>
+    {() => {
+      const [posts, setPosts] = useState([]);
+      const [{ pageIndex, pageSize }, setPagination] = useState({
+        pageIndex: 0,
+        pageSize: 10,
+      });
+      useEffect(() => {
+        const url = `https://jsonplaceholder.typicode.com/posts?_page=${
+          pageIndex + 1
+        }&_limit=${pageSize}`;
+        axios.get(url).then(response => {
+          setPosts(response.data);
+        });
+      }, [pageIndex, pageSize]);
+      const pagination = useMemo(
+        () => ({
+          pageIndex,
+          pageSize,
+        }),
+        [pageIndex, pageSize]
+      );
+      const totalItems = 100;
+      const columns = useMemo(
+        () => [
+          {
+            accessorFn: row => row.id,
+            id: "id",
+            cell: info => info.getValue(),
+          },
+          {
+            accessorFn: row => row.title,
+            id: "title",
+            cell: info => info.getValue(),
+          },
+          {
+            accessorFn: row => row.body,
+            id: "body",
+            cell: info => info.getValue(),
+          },
+        ],
+        []
+      );
+      return (
+        <div>
+          <DataTable
+            data={posts}
+            columns={columns}
+            pagination={{
+              manualPagination: true,
+              onPaginationChange: setPagination,
+              pageCount: Math.ceil(totalItems / pageSize),
+              totalItems,
+              state: pagination,
+            }}
+            height={400}
+            stickyHeader
+          />
+        </div>
+      );
+    }}
+  </ExampleWithHooks>
+</Canvas>
+
+## Table with footer row
+
+<Canvas>
+  <DataTable
+    height={400}
+    pagination={{ manualPagination: false, itemsPerPage: [10, 20, 30] }}
+    sorting={{ manualSorting: false }}
+    data={[
+      {
+        name: "Eddard",
+        points: "1,000,000",
+        chance: 5,
+        power: "50,000",
+      },
+      {
+        name: "Catelyn",
+        points: "2,000,000",
+        chance: 5,
+        power: "40,000",
+      },
+      {
+        name: "Jon",
+        points: "1,250,000",
+        chance: 8,
+        power: "20,000",
+      },
+      {
+        name: "Robert",
+        points: "1,000,000",
+        chance: 5,
+        power: "50,000",
+      },
+      {
+        name: "Rickon",
+        points: "2,000,000",
+        chance: 5,
+        power: "40,000",
+      },
+      {
+        name: "Robert",
+        points: "1,250,000",
+        chance: 8,
+        power: "20,000",
+      },
+      {
+        name: "Cersei",
+        points: "1,000,000",
+        chance: 5,
+        power: "50,000",
+      },
+      {
+        name: "Sansa",
+        points: "2,000,000",
+        chance: 5,
+        power: "40,000",
+      },
+      {
+        name: "Arya",
+        points: "1,250,000",
+        chance: 8,
+        power: "20,000",
+      },
+      {
+        name: "Bran",
+        points: "1,000,000",
+        chance: 5,
+        power: "50,000",
+      },
+    ]}
+    columns={[
+      {
+        id: "name",
+        accessorKey: "name",
+        header: "Name",
+        footer: "Totals",
+      },
+      {
+        id: "points",
+        accessorKey: "points",
+        header: () => (
+          <div style={{ display: "flex", flex: 1 }}>
+            <Typography align="end" fontWeight="bold">
+              Points
+            </Typography>
+          </div>
+        ),
+        footer: () => (
+          <Typography align="end" fontWeight="bold">
+            10,050,400
+          </Typography>
+        ),
+        cell: info => <Typography align="end">{info.getValue()}</Typography>,
+      },
+      {
+        id: "chance",
+        accessorKey: "chance",
+        header: () => (
+          <div style={{ display: "flex", flex: 1 }}>
+            <Typography align="end" fontWeight="bold">
+              Chance (%)
+            </Typography>
+          </div>
+        ),
+        cell: info => <Typography align="end">{info.getValue()}</Typography>,
+      },
+      {
+        id: "power",
+        accessorKey: "power",
+        header: () => (
+          <div style={{ display: "flex", flex: 1 }}>
+            <Typography align="end" fontWeight="bold">
+              Power
+            </Typography>
+          </div>
+        ),
+        footer: () => (
+          <Typography align="end" fontWeight="bold">
+            300,000
+          </Typography>
+        ),
+        cell: info => <Typography align="end">{info.getValue()}</Typography>,
+      },
+    ]}
+  />
+</Canvas>
+
+## Table empty state
+
+The DataTable accepts any child component for an empty state. By default it will
+center-align any content vertically and horizontally.
+
+Consider the context of the user to determine what to use for an empty state.
+Are they encountering an empty state because they're a new user? Have they added
+too many filters to the dataset? Can you provide them with an action to populate
+content?
+
+<Canvas>
+  <DataTable
+    height={400}
+    pagination={{ manualPagination: false, itemsPerPage: [10, 20, 30] }}
+    sorting={{ manualSorting: false }}
+    emptyState={
+      <div className={classNames(styles.emptyState)}>
+        <Heading level={5}>No items found</Heading>
+        <Text>Update your search or filter selection</Text>
+      </div>
+    }
+    data={[]}
+    columns={[
+      {
+        id: "name",
+        accessorKey: "name",
+        header: "Name",
+        footer: "Totals",
+      },
+      {
+        id: "points",
+        accessorKey: "points",
+        header: () => (
+          <Typography align="end" fontWeight="bold">
+            Points
+          </Typography>
+        ),
+        footer: () => (
+          <Typography align="end" fontWeight="bold">
+            $0.00
+          </Typography>
+        ),
+        cell: info => <Typography align="end">{info.getValue()}</Typography>,
+      },
+      {
+        id: "chance",
+        accessorKey: "chance",
+        header: () => (
+          <Typography align="end" fontWeight="bold">
+            Chance (%)
+          </Typography>
+        ),
+        cell: info => <Typography align="end">{info.getValue()}</Typography>,
+      },
+      {
+        id: "power",
+        accessorKey: "power",
+        header: () => (
+          <Typography align="end" fontWeight="bold">
+            Power
+          </Typography>
+        ),
+        footer: () => (
+          <Typography align="end" fontWeight="bold">
+            $0.00
+          </Typography>
+        ),
+        cell: info => <Typography align="end">{info.getValue()}</Typography>,
+      },
+    ]}
+  ></DataTable>
+</Canvas>
+
+## Table with manual column sizing
+
+<Canvas>
+  <DataTable
+    pagination={{ manualPagination: false, itemsPerPage: [10, 20, 30] }}
+    sorting={{ manualSorting: false }}
+    data={[
+      {
+        name: "Daenerys Stormborn of House Targaryen, the First of Her Name, Queen of the Andals and the First Men, Protector of the Seven Kingdoms, the Mother of Dragons, the Khaleesi of the Great Grass Sea, the Unburnt, the Breaker of Chains.",
+        points: "1,000,000",
+        chance: 5,
+        power: "50,000",
+      },
+      {
+        name: "Aegon “The Conqueror” Targaryen and Rhaenys Targaryen",
+        points: "2,000,000",
+        chance: 5,
+        power: "40,000",
+      },
+      {
+        name: "Jaehaerys “The Old King” Targaryen and Alysanne Targaryen",
+        points: "1,250,000",
+        chance: 8,
+        power: "20,000",
+      },
+    ]}
+    columns={[
+      {
+        id: "name",
+        accessorKey: "name",
+        header: "Name",
+        footer: "Totals",
+        cell: info => (
+          <Typography numberOfLines={1}>{info.getValue()}</Typography>
+        ),
+        size: 538,
+        minSize: 438,
+        maxSize: 538,
+      },
+      {
+        id: "points",
+        accessorKey: "points",
+        header: () => (
+          <div style={{ display: "flex", flex: 1 }}>
+            <Typography align="end" fontWeight="bold">
+              Points
+            </Typography>
+          </div>
+        ),
+        footer: () => (
+          <Typography align="end" fontWeight="bold">
+            10,050,400
+          </Typography>
+        ),
+        cell: info => <Typography align="end">{info.getValue()}</Typography>,
+        size: 268,
+        minSize: 168,
+        maxSize: 268,
+      },
+      {
+        id: "chance",
+        accessorKey: "chance",
+        header: () => (
+          <div style={{ display: "flex", flex: 1 }}>
+            <Typography align="end" fontWeight="bold">
+              Chance (%)
+            </Typography>
+          </div>
+        ),
+        cell: info => <Typography align="end">{info.getValue()}</Typography>,
+        size: 268,
+        minSize: 168,
+        maxSize: 268,
+      },
+      {
+        id: "power",
+        accessorKey: "power",
+        header: () => (
+          <div style={{ display: "flex", flex: 1 }}>
+            <Typography align="end" fontWeight="bold">
+              Power
+            </Typography>
+          </div>
+        ),
+        footer: () => (
+          <Typography align="end" fontWeight="bold">
+            300,000
+          </Typography>
+        ),
+        cell: info => <Typography align="end">{info.getValue()}</Typography>,
+        size: 268,
+        minSize: 168,
+        maxSize: 268,
+      },
+    ]}
+  />
+</Canvas>
+
+## Design & usage guidelines
+
+The `DataTable` component is a great solution if you are looking to display data
+in a tabular way while giving your user the ability to sort, paginate or filter
+that data, this can be implemented on the server side or on the client side
+depending on your needs.
+
+A best practice in Data Table presentation is to ensure that all columns with
+numerical data (and their headers) round to the same decimal point, and are
+right-aligned. This makes it much easier for the reader to quickly parse large
+distinctions in dollar amounts, inventory counts, and other key business data.
+
+To list more complex collections of information (such as multi-line content like
+a detailed property address), you may want to consider the
+[List](../?path=/docs/components-list--list) component. If you have a small list
+of information with a 1:1 label-to-data relationship (for example, the issued
+and due dates on an invoice), consider using
+[DescriptionList](../?path=/docs/components-descriptionlist--description-list).
+
+## Responsiveness
+
+The `DataTable` component has the option to handle responsive design, these
+options will allow us to fix the header or the first left column depending on
+your needs, this will allow the user a more efficient way to visualize the data.

@@ -1,0 +1,90 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Content } from "@jobber/components/Content";
+import { Text } from "@jobber/components/Text";
+import { Heading } from "@jobber/components/Heading";
+import { Card } from "@jobber/components/Card";
+import { Divider } from "@jobber/components/Divider";
+
+<Meta title="Components/Divider" component={Divider} />
+
+# Divider
+
+Divider is a UI element meant to divide to areas of content.
+
+```ts
+import { Divider } from "@jobber/components/Divider";
+```
+
+<Canvas>
+  <Story name="Divider">
+    {args => (
+      <Content>
+        <Content>Some amazing content</Content>
+        <Divider {...args} />
+        <Content>Even more amazing content</Content>
+      </Content>
+    )}
+  </Story>
+</Canvas>
+
+<ArgsTable of={Divider} story="Divider" />
+
+## Design & usage guidelines
+
+The Divider component comes with no spacing around it. This means that it should
+be used within a [`Content`](../?path=/docs/components-content--content)
+component.
+
+### Size
+
+For different levels of segmentation, you may find the need to use larger
+Dividers. As Dividers increase in size, they get lighter to offset the visual
+impact of their additional weight.
+
+<Canvas>
+  <Content>
+    <Heading level={2}>Intro Section</Heading>
+    <Text>Important main content</Text>
+    <Divider size="largest" />
+    <Content>Some amazing content</Content>
+    <Divider size="large" />
+    <Content>Even more amazing content</Content>
+  </Content>
+</Canvas>
+
+### Vertical
+
+Use a vertical divider when the content to be divided runs horizontally.
+
+<Canvas>
+  <div style={{ width: "fit-content" }}>
+    <Card>
+      <Content>
+        <Heading level={4}>Summary</Heading>
+        <div style={{ display: "flex", gap: "var(--space-base)" }}>
+          <Content spacing="small">
+            <Heading level={5}>Today</Heading>
+            <Text>$ 104.13</Text>
+          </Content>
+          <Divider direction="vertical" />
+          <Content spacing="small">
+            <Heading level={5}>Tomorrow</Heading>
+            <Text>$ 262.42</Text>
+          </Content>
+          <Divider direction="vertical" />
+          <Content spacing="small">
+            <Heading level={5}>Next Week</Heading>
+            <Text>$ 12403.23</Text>
+          </Content>
+        </div>
+      </Content>
+    </Card>
+  </div>
+</Canvas>
+
+## Related components
+
+- To segment different groups of content, use
+  [Card.](../?path=/docs/components-card--card)
+- For guidance on borders in general, see our
+  [Borders guide.](../?path=/docs/design-borders--page)

@@ -1,369 +1,2433 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders each variation of checked, defaultChecked and indeterminate 1`] = `
-<div
-  className="checkbox"
->
-  <label
-    className="wrapper"
-  >
-    <span
-      className="checkHolder"
-    >
-      <input
-        aria-label="Foo"
-        checked={true}
-        className="input indeterminate"
-        onChange={[Function]}
-        type="checkbox"
-      />
-      <span
-        className="checkBox"
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="checkbox"
       >
-        <svg
-          className="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
-          data-testid="minus2"
-          viewBox="0 0 1024 1024"
-          xmlns="http://www.w3.org/2000/svg"
+        <label
+          class="wrapper"
         >
-          <path
-            className="_2GsLyQLHv8yNULHeXGdver"
-            d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
-          />
-        </svg>
-      </span>
-    </span>
-    <span
-      className="label"
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              checked=""
+              class="input indeterminate"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="minus2"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver"
+                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="checkbox"
     >
-      <p
-        className="base regular base text"
+      <label
+        class="wrapper"
       >
-        Foo
-      </p>
-    </span>
-  </label>
-</div>
+        <span
+          class="checkHolder"
+        >
+          <input
+            aria-label="Foo"
+            checked=""
+            class="input indeterminate"
+            type="checkbox"
+            value=""
+          />
+          <span
+            class="checkBox"
+          >
+            <svg
+              class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+              data-testid="minus2"
+              viewBox="0 0 1024 1024"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class="_2GsLyQLHv8yNULHeXGdver"
+                d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          class="label"
+        >
+          <p
+            class="base regular base text"
+          >
+            Foo
+          </p>
+        </span>
+      </label>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;
 
 exports[`renders each variation of checked, defaultChecked and indeterminate 2`] = `
-<div
-  className="checkbox"
->
-  <label
-    className="wrapper"
-  >
-    <span
-      className="checkHolder"
-    >
-      <input
-        aria-label="Foo"
-        checked={false}
-        className="input indeterminate"
-        onChange={[Function]}
-        type="checkbox"
-      />
-      <span
-        className="checkBox"
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="checkbox"
       >
-        <svg
-          className="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
-          data-testid="minus2"
-          viewBox="0 0 1024 1024"
-          xmlns="http://www.w3.org/2000/svg"
+        <label
+          class="wrapper"
         >
-          <path
-            className="_2GsLyQLHv8yNULHeXGdver"
-            d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
-          />
-        </svg>
-      </span>
-    </span>
-    <span
-      className="label"
-    >
-      <p
-        className="base regular base text"
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              checked=""
+              class="input indeterminate"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="minus2"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver"
+                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div
+        class="checkbox"
       >
-        Foo
-      </p>
-    </span>
-  </label>
-</div>
+        <label
+          class="wrapper"
+        >
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              class="input indeterminate"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="minus2"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver"
+                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="checkbox"
+    >
+      <label
+        class="wrapper"
+      >
+        <span
+          class="checkHolder"
+        >
+          <input
+            aria-label="Foo"
+            class="input indeterminate"
+            type="checkbox"
+            value=""
+          />
+          <span
+            class="checkBox"
+          >
+            <svg
+              class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+              data-testid="minus2"
+              viewBox="0 0 1024 1024"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class="_2GsLyQLHv8yNULHeXGdver"
+                d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          class="label"
+        >
+          <p
+            class="base regular base text"
+          >
+            Foo
+          </p>
+        </span>
+      </label>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;
 
 exports[`renders each variation of checked, defaultChecked and indeterminate 3`] = `
-<div
-  className="checkbox"
->
-  <label
-    className="wrapper"
-  >
-    <span
-      className="checkHolder"
-    >
-      <input
-        aria-label="Foo"
-        checked={true}
-        className="input"
-        onChange={[Function]}
-        type="checkbox"
-      />
-      <span
-        className="checkBox"
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="checkbox"
       >
-        <svg
-          className="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
-          data-testid="checkmark"
-          viewBox="0 0 1024 1024"
-          xmlns="http://www.w3.org/2000/svg"
+        <label
+          class="wrapper"
         >
-          <path
-            className="_2GsLyQLHv8yNULHeXGdver k-yTz4leACw0mElhFmX3p"
-            d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
-          />
-        </svg>
-      </span>
-    </span>
-    <span
-      className="label"
-    >
-      <p
-        className="base regular base text"
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              checked=""
+              class="input indeterminate"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="minus2"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver"
+                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div
+        class="checkbox"
       >
-        Foo
-      </p>
-    </span>
-  </label>
-</div>
+        <label
+          class="wrapper"
+        >
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              class="input indeterminate"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="minus2"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver"
+                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div
+        class="checkbox"
+      >
+        <label
+          class="wrapper"
+        >
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              checked=""
+              class="input"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="checkmark"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver k-yTz4leACw0mElhFmX3p"
+                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="checkbox"
+    >
+      <label
+        class="wrapper"
+      >
+        <span
+          class="checkHolder"
+        >
+          <input
+            aria-label="Foo"
+            checked=""
+            class="input"
+            type="checkbox"
+            value=""
+          />
+          <span
+            class="checkBox"
+          >
+            <svg
+              class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+              data-testid="checkmark"
+              viewBox="0 0 1024 1024"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class="_2GsLyQLHv8yNULHeXGdver k-yTz4leACw0mElhFmX3p"
+                d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          class="label"
+        >
+          <p
+            class="base regular base text"
+          >
+            Foo
+          </p>
+        </span>
+      </label>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;
 
 exports[`renders each variation of checked, defaultChecked and indeterminate 4`] = `
-<div
-  className="checkbox"
->
-  <label
-    className="wrapper"
-  >
-    <span
-      className="checkHolder"
-    >
-      <input
-        aria-label="Foo"
-        checked={false}
-        className="input"
-        onChange={[Function]}
-        type="checkbox"
-      />
-      <span
-        className="checkBox"
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="checkbox"
       >
-        <svg
-          className="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
-          data-testid="checkmark"
-          viewBox="0 0 1024 1024"
-          xmlns="http://www.w3.org/2000/svg"
+        <label
+          class="wrapper"
         >
-          <path
-            className="_2GsLyQLHv8yNULHeXGdver k-yTz4leACw0mElhFmX3p"
-            d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
-          />
-        </svg>
-      </span>
-    </span>
-    <span
-      className="label"
-    >
-      <p
-        className="base regular base text"
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              checked=""
+              class="input indeterminate"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="minus2"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver"
+                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div
+        class="checkbox"
       >
-        Foo
-      </p>
-    </span>
-  </label>
-</div>
+        <label
+          class="wrapper"
+        >
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              class="input indeterminate"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="minus2"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver"
+                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div
+        class="checkbox"
+      >
+        <label
+          class="wrapper"
+        >
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              checked=""
+              class="input"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="checkmark"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver k-yTz4leACw0mElhFmX3p"
+                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div
+        class="checkbox"
+      >
+        <label
+          class="wrapper"
+        >
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              class="input"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="checkmark"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver k-yTz4leACw0mElhFmX3p"
+                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="checkbox"
+    >
+      <label
+        class="wrapper"
+      >
+        <span
+          class="checkHolder"
+        >
+          <input
+            aria-label="Foo"
+            class="input"
+            type="checkbox"
+            value=""
+          />
+          <span
+            class="checkBox"
+          >
+            <svg
+              class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+              data-testid="checkmark"
+              viewBox="0 0 1024 1024"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class="_2GsLyQLHv8yNULHeXGdver k-yTz4leACw0mElhFmX3p"
+                d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          class="label"
+        >
+          <p
+            class="base regular base text"
+          >
+            Foo
+          </p>
+        </span>
+      </label>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;
 
 exports[`renders each variation of checked, defaultChecked and indeterminate 5`] = `
-<div
-  className="checkbox"
->
-  <label
-    className="wrapper"
-  >
-    <span
-      className="checkHolder"
-    >
-      <input
-        aria-label="Foo"
-        className="input indeterminate"
-        defaultChecked={true}
-        onChange={[Function]}
-        type="checkbox"
-      />
-      <span
-        className="checkBox"
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="checkbox"
       >
-        <svg
-          className="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
-          data-testid="minus2"
-          viewBox="0 0 1024 1024"
-          xmlns="http://www.w3.org/2000/svg"
+        <label
+          class="wrapper"
         >
-          <path
-            className="_2GsLyQLHv8yNULHeXGdver"
-            d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
-          />
-        </svg>
-      </span>
-    </span>
-    <span
-      className="label"
-    >
-      <p
-        className="base regular base text"
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              checked=""
+              class="input indeterminate"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="minus2"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver"
+                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div
+        class="checkbox"
       >
-        Foo
-      </p>
-    </span>
-  </label>
-</div>
+        <label
+          class="wrapper"
+        >
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              class="input indeterminate"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="minus2"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver"
+                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div
+        class="checkbox"
+      >
+        <label
+          class="wrapper"
+        >
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              checked=""
+              class="input"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="checkmark"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver k-yTz4leACw0mElhFmX3p"
+                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div
+        class="checkbox"
+      >
+        <label
+          class="wrapper"
+        >
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              class="input"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="checkmark"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver k-yTz4leACw0mElhFmX3p"
+                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div
+        class="checkbox"
+      >
+        <label
+          class="wrapper"
+        >
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              checked=""
+              class="input indeterminate"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="minus2"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver"
+                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="checkbox"
+    >
+      <label
+        class="wrapper"
+      >
+        <span
+          class="checkHolder"
+        >
+          <input
+            aria-label="Foo"
+            checked=""
+            class="input indeterminate"
+            type="checkbox"
+            value=""
+          />
+          <span
+            class="checkBox"
+          >
+            <svg
+              class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+              data-testid="minus2"
+              viewBox="0 0 1024 1024"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class="_2GsLyQLHv8yNULHeXGdver"
+                d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          class="label"
+        >
+          <p
+            class="base regular base text"
+          >
+            Foo
+          </p>
+        </span>
+      </label>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;
 
 exports[`renders each variation of checked, defaultChecked and indeterminate 6`] = `
-<div
-  className="checkbox"
->
-  <label
-    className="wrapper"
-  >
-    <span
-      className="checkHolder"
-    >
-      <input
-        aria-label="Foo"
-        className="input indeterminate"
-        defaultChecked={false}
-        onChange={[Function]}
-        type="checkbox"
-      />
-      <span
-        className="checkBox"
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="checkbox"
       >
-        <svg
-          className="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
-          data-testid="minus2"
-          viewBox="0 0 1024 1024"
-          xmlns="http://www.w3.org/2000/svg"
+        <label
+          class="wrapper"
         >
-          <path
-            className="_2GsLyQLHv8yNULHeXGdver"
-            d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
-          />
-        </svg>
-      </span>
-    </span>
-    <span
-      className="label"
-    >
-      <p
-        className="base regular base text"
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              checked=""
+              class="input indeterminate"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="minus2"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver"
+                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div
+        class="checkbox"
       >
-        Foo
-      </p>
-    </span>
-  </label>
-</div>
+        <label
+          class="wrapper"
+        >
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              class="input indeterminate"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="minus2"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver"
+                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div
+        class="checkbox"
+      >
+        <label
+          class="wrapper"
+        >
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              checked=""
+              class="input"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="checkmark"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver k-yTz4leACw0mElhFmX3p"
+                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div
+        class="checkbox"
+      >
+        <label
+          class="wrapper"
+        >
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              class="input"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="checkmark"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver k-yTz4leACw0mElhFmX3p"
+                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div
+        class="checkbox"
+      >
+        <label
+          class="wrapper"
+        >
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              checked=""
+              class="input indeterminate"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="minus2"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver"
+                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div
+        class="checkbox"
+      >
+        <label
+          class="wrapper"
+        >
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              class="input indeterminate"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="minus2"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver"
+                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="checkbox"
+    >
+      <label
+        class="wrapper"
+      >
+        <span
+          class="checkHolder"
+        >
+          <input
+            aria-label="Foo"
+            class="input indeterminate"
+            type="checkbox"
+            value=""
+          />
+          <span
+            class="checkBox"
+          >
+            <svg
+              class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+              data-testid="minus2"
+              viewBox="0 0 1024 1024"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class="_2GsLyQLHv8yNULHeXGdver"
+                d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          class="label"
+        >
+          <p
+            class="base regular base text"
+          >
+            Foo
+          </p>
+        </span>
+      </label>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;
 
 exports[`renders each variation of checked, defaultChecked and indeterminate 7`] = `
-<div
-  className="checkbox"
->
-  <label
-    className="wrapper"
-  >
-    <span
-      className="checkHolder"
-    >
-      <input
-        aria-label="Foo"
-        className="input"
-        defaultChecked={true}
-        onChange={[Function]}
-        type="checkbox"
-      />
-      <span
-        className="checkBox"
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="checkbox"
       >
-        <svg
-          className="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
-          data-testid="checkmark"
-          viewBox="0 0 1024 1024"
-          xmlns="http://www.w3.org/2000/svg"
+        <label
+          class="wrapper"
         >
-          <path
-            className="_2GsLyQLHv8yNULHeXGdver k-yTz4leACw0mElhFmX3p"
-            d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
-          />
-        </svg>
-      </span>
-    </span>
-    <span
-      className="label"
-    >
-      <p
-        className="base regular base text"
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              checked=""
+              class="input indeterminate"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="minus2"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver"
+                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div
+        class="checkbox"
       >
-        Foo
-      </p>
-    </span>
-  </label>
-</div>
+        <label
+          class="wrapper"
+        >
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              class="input indeterminate"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="minus2"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver"
+                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div
+        class="checkbox"
+      >
+        <label
+          class="wrapper"
+        >
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              checked=""
+              class="input"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="checkmark"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver k-yTz4leACw0mElhFmX3p"
+                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div
+        class="checkbox"
+      >
+        <label
+          class="wrapper"
+        >
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              class="input"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="checkmark"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver k-yTz4leACw0mElhFmX3p"
+                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div
+        class="checkbox"
+      >
+        <label
+          class="wrapper"
+        >
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              checked=""
+              class="input indeterminate"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="minus2"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver"
+                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div
+        class="checkbox"
+      >
+        <label
+          class="wrapper"
+        >
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              class="input indeterminate"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="minus2"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver"
+                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div
+        class="checkbox"
+      >
+        <label
+          class="wrapper"
+        >
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              checked=""
+              class="input"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="checkmark"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver k-yTz4leACw0mElhFmX3p"
+                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="checkbox"
+    >
+      <label
+        class="wrapper"
+      >
+        <span
+          class="checkHolder"
+        >
+          <input
+            aria-label="Foo"
+            checked=""
+            class="input"
+            type="checkbox"
+            value=""
+          />
+          <span
+            class="checkBox"
+          >
+            <svg
+              class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+              data-testid="checkmark"
+              viewBox="0 0 1024 1024"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class="_2GsLyQLHv8yNULHeXGdver k-yTz4leACw0mElhFmX3p"
+                d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          class="label"
+        >
+          <p
+            class="base regular base text"
+          >
+            Foo
+          </p>
+        </span>
+      </label>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;
 
 exports[`renders each variation of checked, defaultChecked and indeterminate 8`] = `
-<div
-  className="checkbox"
->
-  <label
-    className="wrapper"
-  >
-    <span
-      className="checkHolder"
-    >
-      <input
-        aria-label="Foo"
-        className="input"
-        defaultChecked={false}
-        onChange={[Function]}
-        type="checkbox"
-      />
-      <span
-        className="checkBox"
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="checkbox"
       >
-        <svg
-          className="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
-          data-testid="checkmark"
-          viewBox="0 0 1024 1024"
-          xmlns="http://www.w3.org/2000/svg"
+        <label
+          class="wrapper"
         >
-          <path
-            className="_2GsLyQLHv8yNULHeXGdver k-yTz4leACw0mElhFmX3p"
-            d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
-          />
-        </svg>
-      </span>
-    </span>
-    <span
-      className="label"
-    >
-      <p
-        className="base regular base text"
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              checked=""
+              class="input indeterminate"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="minus2"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver"
+                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div
+        class="checkbox"
       >
-        Foo
-      </p>
-    </span>
-  </label>
-</div>
+        <label
+          class="wrapper"
+        >
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              class="input indeterminate"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="minus2"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver"
+                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div
+        class="checkbox"
+      >
+        <label
+          class="wrapper"
+        >
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              checked=""
+              class="input"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="checkmark"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver k-yTz4leACw0mElhFmX3p"
+                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div
+        class="checkbox"
+      >
+        <label
+          class="wrapper"
+        >
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              class="input"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="checkmark"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver k-yTz4leACw0mElhFmX3p"
+                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div
+        class="checkbox"
+      >
+        <label
+          class="wrapper"
+        >
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              checked=""
+              class="input indeterminate"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="minus2"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver"
+                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div
+        class="checkbox"
+      >
+        <label
+          class="wrapper"
+        >
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              class="input indeterminate"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="minus2"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver"
+                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div
+        class="checkbox"
+      >
+        <label
+          class="wrapper"
+        >
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              checked=""
+              class="input"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="checkmark"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver k-yTz4leACw0mElhFmX3p"
+                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <div
+        class="checkbox"
+      >
+        <label
+          class="wrapper"
+        >
+          <span
+            class="checkHolder"
+          >
+            <input
+              aria-label="Foo"
+              class="input"
+              type="checkbox"
+              value=""
+            />
+            <span
+              class="checkBox"
+            >
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+                data-testid="checkmark"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  class="_2GsLyQLHv8yNULHeXGdver k-yTz4leACw0mElhFmX3p"
+                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                />
+              </svg>
+            </span>
+          </span>
+          <span
+            class="label"
+          >
+            <p
+              class="base regular base text"
+            >
+              Foo
+            </p>
+          </span>
+        </label>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="checkbox"
+    >
+      <label
+        class="wrapper"
+      >
+        <span
+          class="checkHolder"
+        >
+          <input
+            aria-label="Foo"
+            class="input"
+            type="checkbox"
+            value=""
+          />
+          <span
+            class="checkBox"
+          >
+            <svg
+              class="ZDlJU6tECg7ouG-b27gya _isfJqqskSRqop8TStvGA"
+              data-testid="checkmark"
+              viewBox="0 0 1024 1024"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class="_2GsLyQLHv8yNULHeXGdver k-yTz4leACw0mElhFmX3p"
+                d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          class="label"
+        >
+          <p
+            class="base regular base text"
+          >
+            Foo
+          </p>
+        </span>
+      </label>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;

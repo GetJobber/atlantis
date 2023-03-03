@@ -1,37 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders a small inline spinner 1`] = `
-<div
-  aria-busy={true}
-  aria-label="loading"
-  className="spinner small inline"
-  role="alert"
-/>
+<div>
+  <div
+    aria-busy="true"
+    aria-label="loading"
+    class="spinner small inline"
+    role="alert"
+  />
+</div>
 `;
 
 exports[`renders the inline spinner 1`] = `
-<div
-  aria-busy={true}
-  aria-label="loading"
-  className="spinner inline"
-  role="alert"
-/>
+<div>
+  <div
+    aria-busy="true"
+    aria-label="loading"
+    class="spinner inline"
+    role="alert"
+  />
+</div>
 `;
 
 exports[`renders the small spinner 1`] = `
-<div
-  aria-busy={true}
-  aria-label="loading"
-  className="spinner small"
-  role="alert"
-/>
+<div>
+  <div
+    aria-busy="true"
+    aria-label="loading"
+    class="spinner small"
+    role="alert"
+  />
+</div>
 `;
 
 exports[`renders the spinner 1`] = `
-<div
-  aria-busy={true}
-  aria-label="loading"
-  className="spinner"
-  role="alert"
-/>
+<div>
+  <div
+    aria-busy="true"
+    aria-label="loading"
+    class="spinner"
+    role="alert"
+  />
+</div>
 `;

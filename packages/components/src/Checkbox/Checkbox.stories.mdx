@@ -1,0 +1,184 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Checkbox } from "@jobber/components/Checkbox";
+import { useState } from "react";
+import { Text } from "@jobber/components/Text";
+import { Modal } from "@jobber/components/Modal";
+import { Content } from "@jobber/components/Content";
+import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
+
+<Meta title="Components/Checkbox" component={Checkbox} />
+
+# Checkbox
+
+A checkbox lets a user select one or more items from a set of options.
+
+```ts
+import { Checkbox } from "@jobber/components/Checkbox";
+```
+
+<Canvas>
+  <Story
+    name="Checkbox"
+    args={{
+      label: "Save card for future use",
+    }}
+  >
+    {args => {
+      const [checked, setChecked] = useState(true);
+      return <Checkbox {...args} checked={checked} onChange={setChecked} />;
+    }}
+  </Story>
+</Canvas>
+
+<ArgsTable of={Checkbox} story="Checkbox" />
+
+## Design & usage guidelines
+
+A checkbox is a familiar pattern for users who need to choose from a set of
+options, or opt in to a single choice.
+
+A single checkbox, a [Switch](../?path=/docs/components-switch--switch-story),
+and a pair of [radio buttons](../?path=/docs/components-radiogroup--radio-group)
+can seem similar in theory, as all can represent an either/or decision for the
+user. Use a switch when the user must make a decision to turn something on or
+off, and a single checkbox when a user is opting in to a choice. A pair of radio
+buttons can be used to help the user decide between two discrete options, such
+as “fixed price” and “per visit” invoicing options.
+
+---
+
+## Indeterminate
+
+<Canvas>
+  <ExampleWithHooks>
+    {() => {
+      const [items, setItems] = useState([true, false, false]);
+      return (
+        <>
+          <Checkbox
+            label="Select All"
+            checked={!items.includes(false)}
+            onChange={toggleAll}
+            indeterminate={items.includes(false) && items.includes(true)}
+          />
+          <ul>
+            {items.map((value, index) => (
+              <li key={index}>
+                <Checkbox
+                  label={`Item ${index}`}
+                  checked={value}
+                  onChange={toggleIndex(index)}
+                />
+              </li>
+            ))}
+          </ul>
+        </>
+      );
+      function toggleIndex(index) {
+        return newValue => {
+          const updatedItems = Array.from(items);
+          updatedItems[index] = newValue;
+          setItems(updatedItems);
+        };
+      }
+      function toggleAll(newValue) {
+        setItems(Array(items.length).fill(newValue));
+      }
+    }}
+  </ExampleWithHooks>
+</Canvas>
+
+## With a description
+
+If there is more information needed for a `Checkbox`, use the `description` prop
+instead of a longer `label`.
+
+<Canvas>
+  <Checkbox
+    label="Save card for future use"
+    description="If you save your card now, you'll never need to save it again."
+  />
+</Canvas>
+
+## Disabled
+
+A disabled checkbox cannot be operated by the user. Your primary goal should be
+to avoid disabled states in an interface, but some cases may require that an
+element be disabled.
+
+If presenting a disabled "checked" checkbox to the user, provide a clear
+description for the user on how to enable the checkbox to avoid creating a sense
+that the user has lost control of the interface.
+
+<Canvas>
+  <Checkbox
+    disabled={true}
+    defaultChecked={true}
+    label="Subscribe on marketing emails"
+  />
+</Canvas>
+
+## Children as the label
+
+If you require more functionality than a simple string for the label, it is
+possible to pass a child component to the checkbox to use as a label. This
+allows us to embed a link into the checkbox label.
+
+<Canvas>
+  <ExampleWithHooks>
+    {() => {
+      const [checked, setChecked] = useState(false);
+      const [isModalOpen, setIsModalOpen] = useState(false);
+      function handleOpenModal(e) {
+        // Prevent the checkbox from being checked
+        e.preventDefault();
+        setIsModalOpen(true);
+      }
+      function handleCloseModal() {
+        setIsModalOpen(false);
+      }
+      return (
+        <>
+          <Checkbox checked={checked} onChange={setChecked}>
+            <Text>
+              I agree to the
+              <button
+                style={{
+                  color: "var(--color-interactive)",
+                  fontFamily: "inherit",
+                  fontSize: "inherit",
+                  padding: "0",
+                  textDecoration: "underline",
+                  background: "transparent",
+                  border: "none",
+                }}
+                onClick={handleOpenModal}
+              >
+                terms of service
+              </button>
+            </Text>
+          </Checkbox>
+          <Modal
+            title="Terms of Service"
+            open={isModalOpen}
+            onRequestClose={handleCloseModal}
+          >
+            <Content>
+              <Text>
+                And this is where I would keep my Terms of Service... if I had
+                any!
+              </Text>
+            </Content>
+          </Modal>
+        </>
+      );
+    }}
+  </ExampleWithHooks>
+</Canvas>
+
+## Related components
+
+- To let people turn a setting on or off instantly, use a
+  [Switch](../?path=/docs/components-switch--switch-story).
+- To present a set of options where people can only make a single choice, use a
+  [RadioGroup](../?path=/docs/components-radiogroup--radio-group).

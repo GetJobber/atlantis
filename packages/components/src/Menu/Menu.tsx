@@ -36,7 +36,7 @@ interface Position {
   horizontal: "left" | "right";
 }
 
-interface MenuProps {
+export interface MenuProps {
   /**
    * Custom menu activator. If this is not provided a default [… More] will be used.
    */

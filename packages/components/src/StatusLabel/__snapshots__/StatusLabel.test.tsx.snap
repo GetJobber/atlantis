@@ -1,127 +1,109 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders a critical StatusLabel 1`] = `
-<div
-  className="statusLabelRow"
-  role="status"
->
+<div>
   <div
-    className="statusIndicator"
-    style={
-      Object {
-        "backgroundColor": "var(--color-critical",
-      }
-    }
-  />
-  <p
-    className="base regular small text"
+    class="statusLabelRow"
+    role="status"
   >
-    Foo
-  </p>
+    <div
+      class="statusIndicator"
+    />
+    <p
+      class="base regular small text"
+    >
+      Foo
+    </p>
+  </div>
 </div>
 `;
 
 exports[`renders a successful StatusLabel 1`] = `
-<div
-  className="statusLabelRow"
-  role="status"
->
+<div>
   <div
-    className="statusIndicator"
-    style={
-      Object {
-        "backgroundColor": "var(--color-success",
-      }
-    }
-  />
-  <p
-    className="base regular small text"
+    class="statusLabelRow"
+    role="status"
   >
-    Foo
-  </p>
+    <div
+      class="statusIndicator"
+    />
+    <p
+      class="base regular small text"
+    >
+      Foo
+    </p>
+  </div>
 </div>
 `;
 
 exports[`renders a warning StatusLabel 1`] = `
-<div
-  className="statusLabelRow"
-  role="status"
->
+<div>
   <div
-    className="statusIndicator"
-    style={
-      Object {
-        "backgroundColor": "var(--color-warning",
-      }
-    }
-  />
-  <p
-    className="base regular small text"
+    class="statusLabelRow"
+    role="status"
   >
-    Foo
-  </p>
+    <div
+      class="statusIndicator"
+    />
+    <p
+      class="base regular small text"
+    >
+      Foo
+    </p>
+  </div>
 </div>
 `;
 
 exports[`renders an end-aligned StatusLabel 1`] = `
-<div
-  className="statusLabelRow labelTextEndAligned"
-  role="status"
->
+<div>
   <div
-    className="statusIndicator"
-    style={
-      Object {
-        "backgroundColor": "var(--color-informative",
-      }
-    }
-  />
-  <p
-    className="base regular small text end"
+    class="statusLabelRow labelTextEndAligned"
+    role="status"
   >
-    Foo
-  </p>
+    <div
+      class="statusIndicator"
+    />
+    <p
+      class="base regular small text end"
+    >
+      Foo
+    </p>
+  </div>
 </div>
 `;
 
 exports[`renders an inactive StatusLabel 1`] = `
-<div
-  className="statusLabelRow"
-  role="status"
->
+<div>
   <div
-    className="statusIndicator"
-    style={
-      Object {
-        "backgroundColor": "var(--color-inactive",
-      }
-    }
-  />
-  <p
-    className="base regular small text"
+    class="statusLabelRow"
+    role="status"
   >
-    Foo
-  </p>
+    <div
+      class="statusIndicator"
+    />
+    <p
+      class="base regular small text"
+    >
+      Foo
+    </p>
+  </div>
 </div>
 `;
 
 exports[`renders an informative StatusLabel 1`] = `
-<div
-  className="statusLabelRow"
-  role="status"
->
+<div>
   <div
-    className="statusIndicator"
-    style={
-      Object {
-        "backgroundColor": "var(--color-informative",
-      }
-    }
-  />
-  <p
-    className="base regular small text"
+    class="statusLabelRow"
+    role="status"
   >
-    Foo
-  </p>
+    <div
+      class="statusIndicator"
+    />
+    <p
+      class="base regular small text"
+    >
+      Foo
+    </p>
+  </div>
 </div>
 `;

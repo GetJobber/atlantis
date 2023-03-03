@@ -1,12 +1,246 @@
----
-name: Components
-menu: Changelog
----
-
-# @jobber/components: Change Log
+# Change Log
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [3.4.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.4.0...@jobber/components@3.4.1) (2023-03-03)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [3.4.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.3.2...@jobber/components@3.4.0) (2023-03-02)
+
+
+### Features
+
+* **hooks:** Add useFocusTrap hook ([#1100](https://github.com/GetJobber/atlantis/issues/1100)) ([2fed042](https://github.com/GetJobber/atlantis/commit/2fed042db990704e1723e1ebe87bff7b04acc44f))
+
+
+### Reverts
+
+* Revert "chore(components): Upgrade react router dom (#1089)" (#1101) ([717cb0f](https://github.com/GetJobber/atlantis/commit/717cb0fb0cc1fd178d9fe4f931ebef5949a15818)), closes [#1089](https://github.com/GetJobber/atlantis/issues/1089) [#1101](https://github.com/GetJobber/atlantis/issues/1101)
+
+
+
+
+
+## [3.3.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.3.1...@jobber/components@3.3.2) (2023-03-02)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.3.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.3.0...@jobber/components@3.3.1) (2023-03-01)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [3.3.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.2.8...@jobber/components@3.3.0) (2023-03-01)
+
+
+### Features
+
+* **components:** update validation + description patterns for text inputs ([#1087](https://github.com/GetJobber/atlantis/issues/1087)) ([6b7fb96](https://github.com/GetJobber/atlantis/commit/6b7fb966144547da0a67b8551e90158bb2abaab5))
+
+
+
+
+
+## [3.2.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.2.7...@jobber/components@3.2.8) (2023-02-28)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.2.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.2.6...@jobber/components@3.2.7) (2023-02-28)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.2.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.2.5...@jobber/components@3.2.6) (2023-02-28)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.2.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.2.4...@jobber/components@3.2.5) (2023-02-27)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.2.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.2.3...@jobber/components@3.2.4) (2023-02-27)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.2.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.2.2...@jobber/components@3.2.3) (2023-02-24)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.2.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.2.1...@jobber/components@3.2.2) (2023-02-24)
+
+
+### Bug Fixes
+
+* JOB-62724 Update RadioGroup alignment ([#1069](https://github.com/GetJobber/atlantis/issues/1069)) ([1fbfc56](https://github.com/GetJobber/atlantis/commit/1fbfc5675b8a9a92ba5848cb5c65dc0e4b8f0b7c))
+
+
+
+
+
+## [3.2.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.2.0...@jobber/components@3.2.1) (2023-02-23)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [3.2.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.1.12...@jobber/components@3.2.0) (2023-02-23)
+
+
+### Features
+
+* **components:** Add new "range slider" icons ([#1062](https://github.com/GetJobber/atlantis/issues/1062)) ([3c7e05d](https://github.com/GetJobber/atlantis/commit/3c7e05da1b9e5c113a3cc832ce10970de153d8b6))
+
+
+
+
+
+## [3.1.12](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.1.11...@jobber/components@3.1.12) (2023-02-23)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.1.11](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.1.10...@jobber/components@3.1.11) (2023-02-22)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.1.10](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.1.9...@jobber/components@3.1.10) (2023-02-22)
+
+
+### Bug Fixes
+
+* Override iOS default styling for disabled input ([#1058](https://github.com/GetJobber/atlantis/issues/1058)) ([3fb5819](https://github.com/GetJobber/atlantis/commit/3fb58193a6f94a8a25fae269a4a7585ea0909eba))
+
+
+
+
+
+## [3.1.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.1.8...@jobber/components@3.1.9) (2023-02-22)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.1.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.1.7...@jobber/components@3.1.8) (2023-02-22)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.1.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.1.6...@jobber/components@3.1.7) (2023-02-22)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.1.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.1.5...@jobber/components@3.1.6) (2023-02-22)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.1.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.1.4...@jobber/components@3.1.5) (2023-02-22)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.1.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.1.3...@jobber/components@3.1.4) (2023-02-21)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.1.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.1.2...@jobber/components@3.1.3) (2023-02-21)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.1.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.1.1...@jobber/components@3.1.2) (2023-02-17)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.1.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.1.0...@jobber/components@3.1.1) (2023-02-17)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [3.1.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.0.6...@jobber/components@3.1.0) (2023-02-17)
+
+
+### Features
+
+* **components:** Add Customizable Header Prop to Atlantis Web Card Component ([#1026](https://github.com/GetJobber/atlantis/issues/1026)) ([4961208](https://github.com/GetJobber/atlantis/commit/4961208efa6db6e2aec4318f29cb637334f43ea1))
+
+
+
+
 
 ## [3.0.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.0.5...@jobber/components@3.0.6) (2023-02-16)
 
