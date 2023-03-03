@@ -1,21 +1,18 @@
-:root {
-  --flash--inset: var(--space-base);
-  --flash--inset--small: var(--space-small);
-}
-
-.flash {
+.banner {
   display: flex;
   position: relative;
   box-shadow: var(--shadow-base);
-  padding: var(--flash--inset);
-  color: var(--color-black);
-  background-color: var(--color-grey--lightest);
+  padding: var(--space-base);
+  color: var(--color-text);
+  background-color: var(--color-surface--background);
+  gap: var(--space-small);
   align-items: center;
 }
 
 .bannerContent {
   display: flex;
   flex: 1 1 auto;
+  gap: var(--space-small);
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
@@ -23,21 +20,6 @@
 
 .bannerChildren {
   align-self: center;
-}
-
-.dismissibleSpacing {
-  padding-top: var(--space-smallest);
-  padding-right: var(--flash--inset);
-}
-
-.bannerContent > * {
-  margin-top: var(--flash--inset--small);
-  margin-bottom: var(--flash--inset--small);
-}
-
-.bannerContent > *:first-child {
-  margin-top: 0;
-  margin-right: var(--space-base);
 }
 
 .bannerContent > *:last-child {
@@ -48,17 +30,13 @@
   flex-wrap: nowrap;
 }
 
-.medium .bannerContent > * {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
 .bannerAction {
   display: flex;
   flex: 0 0 auto;
 }
 
 .closeButton {
+  margin: calc(var(--space-smallest) * -1) 0;
   padding: var(--space-smallest);
   border: none;
   background-color: transparent;
