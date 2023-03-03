@@ -45,6 +45,9 @@
 .imagesWrapper {
   display: flex;
   justify-content: center;
+  position: relative;
+  flex: 1 1 0;
+  min-height: 0;
 }
 
 .overlay {
@@ -58,7 +61,8 @@
 
 .image {
   position: absolute;
-  right: 0;
-  left: 0;
+  top: 50%;
+  max-width: 100%;
+  max-height: 100%;
   margin: auto;
 }

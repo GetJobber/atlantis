@@ -106,7 +106,7 @@ export function LightBox({
   }, [imageIndex, open]);
 
   const template = (
-    <AnimatePresence initial={false}>
+    <>
       {open && (
         <div
           className={styles.lightboxWrapper}
@@ -115,7 +115,6 @@ export function LightBox({
           key="Lightbox"
           ref={lightboxRef}
         >
-          <div className={styles.overlay} onClick={handleRequestClose} />
           <div className={styles.toolbar}>
             <span className={styles.title}>
               {images[currentImageIndex].title}
@@ -123,7 +122,6 @@ export function LightBox({
             <ButtonDismiss ariaLabel="Close" onClick={handleRequestClose} />
           </div>
           <div className={styles.imagesWrapper}>
-            <PreviousButton onClick={handleMovePrevious} />
             <AnimatePresence initial={false}>
               <motion.img
                 key={currentImageIndex}
@@ -142,15 +140,17 @@ export function LightBox({
                 onDragEnd={handleOnDragEnd}
               />
             </AnimatePresence>
-            <NextButton onClick={handleMoveNext} />
           </div>
+          <PreviousButton onClick={handleMovePrevious} />
+          <NextButton onClick={handleMoveNext} />
 
           <div className={styles.toolbar}>
             {images[currentImageIndex].caption}
           </div>
+          <div className={styles.overlay} onClick={handleRequestClose} />
         </div>
       )}
-    </AnimatePresence>
+    </>
   );
 
   return ReactDOM.createPortal(template, document.body);
