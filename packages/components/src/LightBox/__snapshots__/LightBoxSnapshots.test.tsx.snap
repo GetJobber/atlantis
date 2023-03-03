@@ -8,6 +8,9 @@ exports[`Images renders an image 1`] = `
     tabindex="0"
   >
     <div
+      class="overlay"
+    />
+    <div
       class="toolbar"
     >
       <span
@@ -44,11 +47,11 @@ exports[`Images renders an image 1`] = `
       >
         <button
           aria-label="Previous image"
-          class="button base onlyIcon subtle secondary"
+          class="button large onlyIcon subtle secondary"
           type="button"
         >
           <svg
-            class="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+            class="ZDlJU6tECg7ouG-b27gya _2SoAwA0A8G1BGDNjtkt-lt"
             data-testid="arrowLeft"
             viewBox="0 0 1024 1024"
             xmlns="http://www.w3.org/2000/svg"
@@ -59,13 +62,10 @@ exports[`Images renders an image 1`] = `
             />
           </svg>
           <span
-            class="base extraBold base base"
+            class="base extraBold large base"
           />
         </button>
       </div>
-      <div
-        class="overlay"
-      />
       <img
         class="image"
         draggable="false"
@@ -77,11 +77,11 @@ exports[`Images renders an image 1`] = `
       >
         <button
           aria-label="Next image"
-          class="button base onlyIcon subtle secondary fullWidth"
+          class="button large onlyIcon subtle secondary"
           type="button"
         >
           <svg
-            class="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+            class="ZDlJU6tECg7ouG-b27gya _2SoAwA0A8G1BGDNjtkt-lt"
             data-testid="arrowRight"
             viewBox="0 0 1024 1024"
             xmlns="http://www.w3.org/2000/svg"
@@ -92,7 +92,7 @@ exports[`Images renders an image 1`] = `
             />
           </svg>
           <span
-            class="base extraBold base base"
+            class="base extraBold large base"
           />
         </button>
       </div>

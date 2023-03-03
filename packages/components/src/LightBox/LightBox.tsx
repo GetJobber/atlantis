@@ -1,6 +1,7 @@
 /* eslint-disable max-statements */
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, PanInfo, motion } from "framer-motion";
+import ReactDOM from "react-dom";
 import {
   useFocusTrap,
   useOnKeyDown,
@@ -104,7 +105,7 @@ export function LightBox({
     setCurrentImageIndex(imageIndex);
   }, [imageIndex, open]);
 
-  return (
+  const template = (
     <AnimatePresence initial={false}>
       {open && (
         <div
@@ -114,6 +115,7 @@ export function LightBox({
           key="Lightbox"
           ref={lightboxRef}
         >
+          <div className={styles.overlay} onClick={handleRequestClose} />
           <div className={styles.toolbar}>
             <span className={styles.title}>
               {images[currentImageIndex].title}
@@ -122,7 +124,6 @@ export function LightBox({
           </div>
           <div className={styles.imagesWrapper}>
             <PreviousButton onClick={handleMovePrevious} />
-            <div className={styles.overlay} onClick={handleRequestClose} />
             <AnimatePresence initial={false}>
               <motion.img
                 key={currentImageIndex}
@@ -151,6 +152,8 @@ export function LightBox({
       )}
     </AnimatePresence>
   );
+
+  return ReactDOM.createPortal(template, document.body);
 
   function handleMovePrevious() {
     setDirection(-1);
@@ -190,6 +193,7 @@ function PreviousButton({ onClick }: NavButtonProps) {
   return (
     <div className={styles.prev}>
       <Button
+        size="large"
         variation="subtle"
         type="secondary"
         icon="arrowLeft"
@@ -204,7 +208,7 @@ function NextButton({ onClick }: NavButtonProps) {
   return (
     <div className={styles.next}>
       <Button
-        fullWidth
+        size="large"
         variation="subtle"
         type="secondary"
         icon="arrowRight"

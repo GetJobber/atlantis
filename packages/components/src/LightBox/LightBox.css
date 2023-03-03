@@ -2,26 +2,17 @@
 .prev {
   display: flex;
   position: absolute;
-  top: calc(50% - 20px);
-  z-index: 2;
-  width: 20px;
-  height: 20px;
-  padding: 20px 20px;
-  user-select: none;
-  background-color: var(--color-surface);
-  cursor: pointer;
-  justify-content: center;
-  align-items: center;
+  top: 50%;
+  z-index: var(--elevation-base);
+  transform: translateY(-50%);
 }
 
 .next {
   right: var(--space-base);
-  border-radius: var(--radius-base) 0 0 var(--radius-base);
 }
 
 .prev {
   left: var(--space-base);
-  border-radius: 0 var(--radius-base) var(--radius-base) 0;
 }
 
 .lightboxWrapper {
@@ -38,7 +29,7 @@
 
 .toolbar {
   display: flex;
-  z-index: var(--elevation-modal);
+  z-index: var(--elevation-base);
   padding: var(--space-small) var(--space-base);
   color: var(--color-text--reverse--secondary);
   font-size: var(--typography--fontSize-large);
