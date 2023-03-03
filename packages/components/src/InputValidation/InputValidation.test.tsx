@@ -7,7 +7,7 @@ it("renders the input validation messages", () => {
   expect(container).toMatchInlineSnapshot(`
     <div>
       <div
-        style="height: 0px; opacity: 0; transform: none;"
+        style="opacity: 0; transform: translateY(5%) translateZ(0);"
       >
         <div
           aria-live="assertive"
