@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.12.5...@jobber/hooks@1.13.0) (2023-03-02)
+
+
+### Features
+
+* **hooks:** Add useFocusTrap hook ([#1100](https://github.com/GetJobber/atlantis/issues/1100)) ([2fed042](https://github.com/GetJobber/atlantis/commit/2fed042db990704e1723e1ebe87bff7b04acc44f))
+
+
+
+
+
 ## [1.12.5](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.12.4...@jobber/hooks@1.12.5) (2023-02-28)
 
 **Note:** Version bump only for package @jobber/hooks
