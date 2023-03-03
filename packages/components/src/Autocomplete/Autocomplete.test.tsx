@@ -1,5 +1,4 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import { AnyOption, Autocomplete } from ".";
 
@@ -48,18 +47,17 @@ const headingOptions = [
 ];
 
 it("renders an Autocomplete", () => {
-  const tree = renderer
-    .create(
-      <Autocomplete
-        value={undefined}
-        initialOptions={options}
-        onChange={jest.fn()}
-        getOptions={returnOptions([])}
-        placeholder="placeholder_name"
-      />,
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(
+    <Autocomplete
+      value={undefined}
+      initialOptions={options}
+      onChange={jest.fn()}
+      getOptions={returnOptions([])}
+      placeholder="placeholder_name"
+    />,
+  );
+
+  expect(container).toMatchSnapshot();
 });
 
 test("it should call the getOptions handler with the new value", async () => {
@@ -117,18 +115,17 @@ test("it should call the handler when an option is selected", () => {
 });
 
 test("it should display headers when headers are passed in", () => {
-  const tree = renderer
-    .create(
-      <Autocomplete
-        value={undefined}
-        onChange={jest.fn()}
-        initialOptions={headingOptions}
-        getOptions={returnOptions([])}
-        placeholder="placeholder_name"
-      />,
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(
+    <Autocomplete
+      value={undefined}
+      onChange={jest.fn()}
+      initialOptions={headingOptions}
+      getOptions={returnOptions([])}
+      placeholder="placeholder_name"
+    />,
+  );
+
+  expect(container).toMatchSnapshot();
 });
 
 test("it should call the handler skipping headings when an option is selected", () => {

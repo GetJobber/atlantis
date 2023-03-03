@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { MouseEvent, useEffect, useState } from "react";
 import { Content } from "@jobber/components/Content";
 import { Button } from "@jobber/components/Button";
 import { Heading } from "@jobber/components/Heading";
@@ -21,7 +21,7 @@ export function TableOfContents({ githubInfo }: TableOfContentsProps) {
   const [headings, setHeadings] = useState<Element[]>([]);
 
   useEffect(() => {
-    const anchors = Array.from(document.querySelectorAll("h2"));
+    const anchors = Array.from(document.querySelectorAll("[data-toc='true']"));
     if (anchors.length < 2) return;
     setHeadings(anchors);
   }, []);
@@ -72,7 +72,10 @@ export function TableOfContents({ githubInfo }: TableOfContentsProps) {
               {headings.map(header => {
                 return (
                   <Text key={header.id}>
-                    <a href={`#${header.id}`} target="_self">
+                    <a
+                      href={`${window.parent.location.origin}/${window.parent.location.search}#${header.id}`}
+                      onClick={handleClick(header.id)}
+                    >
                       {header.textContent}
                     </a>
                   </Text>
@@ -84,6 +87,18 @@ export function TableOfContents({ githubInfo }: TableOfContentsProps) {
       </Content>
     </div>
   );
+
+  function handleClick(id: string) {
+    return (e: MouseEvent<HTMLAnchorElement>) => {
+      e.preventDefault();
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      window.parent.history.pushState(
+        "",
+        "",
+        `${window.parent.location.search}#${id}`,
+      );
+    };
+  }
 }
 
 function Github() {
