@@ -156,7 +156,8 @@ would run `npm install foo` from within the `components` directory.
 ## Contributing
 
 Everyone is a friend of Atlantis and we welcome pull requests. See the
-[contribution guidelines](./CONTRIBUTING.md) to learn how.
+[contribution guidelines](../?path=/docs/contributing--page)
+to learn how.
 
 ## Publishing
 
@@ -182,9 +183,25 @@ publish whenever a pull request is merged.
 ### Pre-release
 
 ```sh
-npx lerna version --allow-branch <branch-for-pre-release> --conventional-prerelease --preid pre
 npm run publish:prerelease
 ```
+
+<details>
+<summary>Releasing with dependency changes changes</summary>
+
+Lerna automatically determines which package changed and can be released.
+However, if you've only changed/added/updated an NPM package, Lerna won't count
+that as a releasable "change". The script below should allow you to create a
+prerelease for package changes.
+
+```
+npm run publish:prerelease:force @jobber/components
+```
+
+_NOTE: You can replace `@jobber/components` with the package you want to
+prerelease or remove it to prerelease all of them._
+
+</details>
 
 ### What has changed
 

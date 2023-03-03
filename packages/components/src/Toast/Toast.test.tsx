@@ -8,6 +8,20 @@ import {
 } from "@testing-library/react";
 import { showToast } from ".";
 
+jest.mock("framer-motion", () => ({
+  motion: {
+    div: require("react").forwardRef(({ children, ...rest }, ref) => (
+      <div {...rest} ref={ref}>
+        {children}
+      </div>
+    )),
+  },
+  AnimatePresence: jest
+    .fn()
+    .mockImplementation(({ children }) => <>{children}</>),
+  default: jest.fn(),
+}));
+
 beforeEach(() => jest.useFakeTimers());
 
 afterEach(() => {
@@ -67,23 +81,22 @@ it("fires an action callback when the action button is clicked", () => {
   expect(mockAction).toHaveBeenCalledTimes(1);
 });
 
-it("sets a timer and clears the Slice after a certain amount of time", done => {
-  const { getByText, queryAllByText } = render(<MockToast />);
+it("sets a timer and clears the Slice after a certain amount of time", async done => {
+  const { getByText, queryAllByText, findAllByText } = render(<MockToast />);
 
   fireEvent.click(getByText("No Variation"));
   expect(setTimeout).toHaveBeenCalled();
-  expect(queryAllByText(infoMessage).length).toBe(1);
+  expect(await findAllByText(infoMessage)).toHaveLength(1);
 
-  act(() => jest.runAllTimers());
+  await act(() => jest.runAllTimers());
 
-  waitFor(() => {
-    expect(queryAllByText("Bland Toast").length).not.toBe(1);
+  await waitFor(() => {
     expect(queryAllByText("Bland Toast").length).toBe(0);
     done();
   });
 });
 
-it("stops and starts the timer when the item is hover toggled", done => {
+it("stops and starts the timer when the item is hover toggled", async done => {
   const { getByText, queryAllByText } = render(<MockToast />);
 
   fireEvent.click(getByText("No Variation"));
@@ -92,18 +105,16 @@ it("stops and starts the timer when the item is hover toggled", done => {
 
   fireEvent.mouseEnter(getByText("Bland Toast"));
 
-  act(() => jest.advanceTimersByTime(10000));
+  await act(() => jest.advanceTimersByTime(10000));
 
-  expect(queryAllByText("Bland Toast").length).toBe(1);
-  expect(queryAllByText("Bland Toast").length).not.toBe(0);
+  expect(queryAllByText("Bland Toast")).toHaveLength(1);
 
   fireEvent.mouseLeave(getByText("Bland Toast"));
 
-  act(() => jest.advanceTimersByTime(10000));
+  await act(() => jest.advanceTimersByTime(10000));
 
-  waitFor(() => {
-    expect(queryAllByText("Bland Toast").length).not.toBe(1);
-    expect(queryAllByText("Bland Toast").length).toBe(0);
+  await waitFor(() => {
+    expect(queryAllByText("Bland Toast")).toHaveLength(0);
     done();
   });
 });
