@@ -15,11 +15,11 @@ export function DescriptionList({ data }: DescriptionListProps) {
     <dl className={styles.descriptionList}>
       {data.map(([term, description]) => (
         <div key={term} className={styles.termGroup}>
-          <Typography element="dt" textColor="blue" size="base">
+          <Typography element="dt" textColor="heading" size="base">
             {term}
           </Typography>
 
-          <Typography element="dd" textColor="greyBlueDark" size="base">
+          <Typography element="dd" textColor="text" size="base">
             {description}
           </Typography>
         </div>
