@@ -58,19 +58,15 @@
  * Interaction
  */
 
-.clickable:hover,
-.chip:focus {
-  outline: none;
-  background-color: var(--color-surface--hover);
-}
-
 .chip:focus,
 .input:focus ~ .chip {
   box-shadow: var(--shadow-focus);
+  outline: none;
 }
 
+.clickable:hover,
+.input ~ .chip:not(.active):hover,
 .input:focus ~ .chip:not(.active) {
-  outline: none;
   background-color: var(--color-surface--hover);
 }
 

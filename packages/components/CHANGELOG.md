@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.4.2...@jobber/components@3.4.3) (2023-03-03)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.4.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.4.1...@jobber/components@3.4.2) (2023-03-03)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.4.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.4.0...@jobber/components@3.4.1) (2023-03-03)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [3.4.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.3.2...@jobber/components@3.4.0) (2023-03-02)
+
+
+### Features
+
+* **hooks:** Add useFocusTrap hook ([#1100](https://github.com/GetJobber/atlantis/issues/1100)) ([2fed042](https://github.com/GetJobber/atlantis/commit/2fed042db990704e1723e1ebe87bff7b04acc44f))
+
+
+### Reverts
+
+* Revert "chore(components): Upgrade react router dom (#1089)" (#1101) ([717cb0f](https://github.com/GetJobber/atlantis/commit/717cb0fb0cc1fd178d9fe4f931ebef5949a15818)), closes [#1089](https://github.com/GetJobber/atlantis/issues/1089) [#1101](https://github.com/GetJobber/atlantis/issues/1101)
+
+
+
+
+
 ## [3.3.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.3.1...@jobber/components@3.3.2) (2023-03-02)
 
 **Note:** Version bump only for package @jobber/components
