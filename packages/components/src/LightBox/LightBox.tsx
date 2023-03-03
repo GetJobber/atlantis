@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, PanInfo, motion } from "framer-motion";
 import ReactDOM from "react-dom";
+import debounce from "lodash/debounce";
 import {
   useFocusTrap,
   useOnKeyDown,
@@ -79,6 +80,11 @@ const imageTransition = {
   opacity: { duration: 0.2 },
 };
 
+// A little bit more than the transition's duration
+// We're doing this to prevent a bug from framer-motion
+// https://github.com/framer/motion/issues/1769
+const debounceDuration = 250;
+
 export function LightBox({
   open,
   images,
@@ -88,16 +94,21 @@ export function LightBox({
   const [currentImageIndex, setCurrentImageIndex] = useState(imageIndex);
   const [direction, setDirection] = useState(0);
   const lightboxRef = useFocusTrap<HTMLDivElement>(open);
+  const debouncedHandleNext = debounce(handleMoveNext, debounceDuration);
+  const debouncedHandlePrevious = debounce(
+    handleMovePrevious,
+    debounceDuration,
+  );
 
   useRefocusOnActivator(open);
 
   useOnKeyDown(handleRequestClose, "Escape");
 
-  useOnKeyDown(handleMovePrevious, {
+  useOnKeyDown(debouncedHandlePrevious, {
     key: "ArrowLeft",
   });
 
-  useOnKeyDown(handleMoveNext, {
+  useOnKeyDown(debouncedHandleNext, {
     key: "ArrowRight",
   });
 
@@ -141,8 +152,8 @@ export function LightBox({
               />
             </AnimatePresence>
           </div>
-          <PreviousButton onClick={handleMovePrevious} />
-          <NextButton onClick={handleMoveNext} />
+          <PreviousButton onClick={debouncedHandlePrevious} />
+          <NextButton onClick={debouncedHandleNext} />
 
           <div className={styles.toolbar}>
             {images[currentImageIndex].caption}
