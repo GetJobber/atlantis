@@ -11,8 +11,8 @@ import React, {
 import { v1 as uuidv1 } from "uuid";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
-import { IconNames } from "@jobber/design";
 import { useOnKeyDown } from "@jobber/hooks";
+import { IconNames } from "@jobber/design";
 import styles from "./Menu.css";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
@@ -209,7 +209,7 @@ function SectionHeader({ text }: SectionHeaderProps) {
         element="h6"
         size="small"
         textCase="uppercase"
-        textColor="greyBlue"
+        textColor="textSecondary"
         fontWeight="bold"
       >
         {text}
@@ -274,7 +274,7 @@ function Action({
           <Icon name={icon} />
         </span>
       )}
-      <Typography element="span" size="base" textColor="greyBlueDark">
+      <Typography element="span" size="base" textColor="text">
         {sectionLabel && (
           <span className={styles.screenReaderOnly}>{sectionLabel}</span>
         )}
