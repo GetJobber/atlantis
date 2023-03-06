@@ -280,3 +280,32 @@ in a custom property in your file to avoid magic numbers.
   width: 280px;
 }
 ```
+
+### Targeting native HTML selectors
+
+Use a classname to select DOM elements for styling whenever possible.
+
+Scope CSS selectors that target native HTML elements with a classname if you
+cannot add a classname to the element directly. This keeps the styling
+encapsulated to the component and prevents styling from "leaking out" of the
+React component and into the rest of the project.
+
+#### ✅ Do
+
+```css
+a.myDestructiveComponent {
+  color: var(--color-destructive);
+}
+
+// this will only select `<a>` elements with the `myDestructiveComponent` classname
+```
+
+#### ❌ Don't
+
+```css
+a {
+  color: var(--color-destructive);
+}
+
+// this will select every `<a>` element in the project
+```
