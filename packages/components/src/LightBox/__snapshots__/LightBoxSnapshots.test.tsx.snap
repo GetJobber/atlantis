@@ -3,115 +3,105 @@
 exports[`Images renders an image 1`] = `
 <div>
   <div
-    class="ReactModal__Overlay ReactModal__Overlay--after-open"
-    style="position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; background-color: transparent; z-index: 1000;"
+    aria-label="Lightbox"
+    class="lightboxWrapper"
+    tabindex="0"
   >
     <div
-      aria-label="Lightbox"
-      class="ReactModal__Content ReactModal__Content--after-open"
-      role="dialog"
-      style="position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; background: rgb(255, 255, 255); overflow: hidden; border-radius: 0; outline: none; padding: 0px; background-color: transparent;"
-      tabindex="-1"
+      class="toolbar"
     >
-      <div
-        class="ril-outer ril__outer ril__outerAnimating wrapper "
-        style="transition: opacity 300ms; animation-duration: 300ms; animation-direction: reverse;"
-        tabindex="-1"
+      <span
+        class="title"
       >
-        <div
-          class="ril-inner ril__inner"
+        Dis be a title
+      </span>
+      <button
+        aria-label="Close"
+        class="button base onlyIcon subtle tertiary"
+        type="button"
+      >
+        <svg
+          class="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+          data-testid="remove"
+          viewBox="0 0 1024 1024"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <div
-            class="ril-image-current ril__image ril-not-loaded"
-            style="transform: translate3d(0px,0px,0) scale3d(NaN,NaN,1);"
-          >
-            <div
-              class="ril__loadingContainer"
-            >
-              <div
-                class="ril-loading-circle ril__loadingCircle ril__loadingContainer__icon"
-              >
-                <div
-                  class="ril-loading-circle-point ril__loadingCirclePoint"
-                />
-                <div
-                  class="ril-loading-circle-point ril__loadingCirclePoint"
-                />
-                <div
-                  class="ril-loading-circle-point ril__loadingCirclePoint"
-                />
-                <div
-                  class="ril-loading-circle-point ril__loadingCirclePoint"
-                />
-                <div
-                  class="ril-loading-circle-point ril__loadingCirclePoint"
-                />
-                <div
-                  class="ril-loading-circle-point ril__loadingCirclePoint"
-                />
-                <div
-                  class="ril-loading-circle-point ril__loadingCirclePoint"
-                />
-                <div
-                  class="ril-loading-circle-point ril__loadingCirclePoint"
-                />
-                <div
-                  class="ril-loading-circle-point ril__loadingCirclePoint"
-                />
-                <div
-                  class="ril-loading-circle-point ril__loadingCirclePoint"
-                />
-                <div
-                  class="ril-loading-circle-point ril__loadingCirclePoint"
-                />
-                <div
-                  class="ril-loading-circle-point ril__loadingCirclePoint"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="ril-toolbar ril__toolbar"
-        >
-          <ul
-            class="ril-toolbar-left ril__toolbarSide ril__toolbarLeftSide"
-          >
-            <li
-              class="ril-toolbar__item ril__toolbarItem"
-            >
-              <span
-                class="ril-toolbar__item__child ril__toolbarItemChild"
-              >
-                Dis be a title
-              </span>
-            </li>
-          </ul>
-          <ul
-            class="ril-toolbar-right ril__toolbarSide ril__toolbarRightSide"
-          >
-            <li
-              class="ril-toolbar__item ril__toolbarItem"
-            >
-              <button
-                aria-label="Close lightbox"
-                class="ril-close ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__closeButton"
-                type="button"
-              />
-            </li>
-          </ul>
-        </div>
-        <div
-          class="ril-caption ril__caption"
-        >
-          <div
-            class="ril-caption-content ril__captionContent"
-          >
-            Dis be a caption 🎉
-          </div>
-        </div>
-      </div>
+          <path
+            class=""
+            d="M512.5 449.108l-226.056-226.056c-8.055-7.78-18.843-12.085-30.041-11.988s-21.909 4.589-29.828 12.507c-7.919 7.919-12.41 18.63-12.507 29.828s4.208 21.985 11.988 30.041l226.056 226.056-226.056 226.056c-7.78 8.055-12.085 18.843-11.988 30.041s4.589 21.909 12.507 29.827c7.918 7.918 18.63 12.411 29.828 12.509s21.986-4.207 30.041-11.989l226.056-226.056 226.056 226.056c8.055 7.782 18.843 12.087 30.041 11.989s21.909-4.591 29.827-12.509c7.918-7.918 12.411-18.629 12.509-29.827 0.094-11.198-4.207-21.986-11.989-30.041l-226.056-226.056 226.056-226.056c4.079-3.94 7.333-8.652 9.571-13.864s3.416-10.815 3.463-16.485c0.051-5.671-1.029-11.295-3.177-16.543s-5.317-10.017-9.327-14.027c-4.010-4.010-8.781-7.181-14.030-9.328-5.244-2.148-10.87-3.228-16.541-3.179s-11.275 1.227-16.485 3.465c-5.21 2.238-9.926 5.492-13.864 9.571l-226.056 226.056z"
+          />
+        </svg>
+        <span
+          class="base extraBold base base"
+        />
+      </button>
     </div>
+    <div
+      class="imagesWrapper"
+    >
+      <img
+        class="image"
+        draggable="false"
+        src="https://i.imgur.com/6Jcfgnp.jpg"
+        style="z-index: 1; opacity: 1; transform: translateX(0px) translateY(-50%) translateZ(0); user-select: none;"
+      />
+    </div>
+    <div
+      class="prev"
+    >
+      <button
+        aria-label="Previous image"
+        class="button large onlyIcon subtle secondary"
+        type="button"
+      >
+        <svg
+          class="ZDlJU6tECg7ouG-b27gya _2SoAwA0A8G1BGDNjtkt-lt"
+          data-testid="arrowLeft"
+          viewBox="0 0 1024 1024"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            class=""
+            d="M649.534 671.644c8.315 8.341 12.466 19.27 12.445 30.19-0.021 10.887-4.181 21.768-12.479 30.071-8.298 8.307-19.172 12.466-30.049 12.488-10.929 0.021-21.862-4.143-30.199-12.488l-213.722-213.542c-8.339-8.345-12.509-19.283-12.509-30.221s4.17-21.875 12.509-30.221l213.539-213.543c8.341-8.344 19.274-12.507 30.203-12.487 10.878 0.019 21.751 4.181 30.049 12.487s12.458 19.185 12.479 30.071c0.017 10.922-4.13 21.849-12.445 30.189l-183.159 183.502 183.338 183.501z"
+          />
+        </svg>
+        <span
+          class="base extraBold large base"
+        />
+      </button>
+    </div>
+    <div
+      class="next"
+    >
+      <button
+        aria-label="Next image"
+        class="button large onlyIcon subtle secondary"
+        type="button"
+      >
+        <svg
+          class="ZDlJU6tECg7ouG-b27gya _2SoAwA0A8G1BGDNjtkt-lt"
+          data-testid="arrowRight"
+          viewBox="0 0 1024 1024"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            class=""
+            d="M375.467 671.644c-8.317 8.341-12.465 19.27-12.445 30.19 0.019 10.887 4.179 21.768 12.478 30.071 8.299 8.307 19.172 12.466 30.050 12.488 10.929 0.021 21.862-4.143 30.199-12.488l213.722-213.542c8.341-8.345 12.509-19.283 12.509-30.221s-4.168-21.875-12.509-30.221l-213.538-213.543c-8.341-8.344-19.274-12.507-30.202-12.487-10.879 0.019-21.75 4.181-30.050 12.487s-12.459 19.185-12.478 30.071c-0.019 10.922 4.129 21.849 12.445 30.189l183.158 183.502-183.338 183.501z"
+          />
+        </svg>
+        <span
+          class="base extraBold large base"
+        />
+      </button>
+    </div>
+    <div
+      class="toolbar"
+    >
+      Dis be a caption 🎉
+    </div>
+    <div
+      class="overlay"
+    />
   </div>
 </div>
 `;

@@ -13,38 +13,36 @@ LightBox is a component designed to display an array of images to the user. A
 user clicks on a control and is shown a carousel style presentation of the
 defined images.
 
-This component is a wrapper of the frontend-collective's react-image-lightbox
-third party library. This component is a wrapper of the
-[frontend-collective's react-image-lightbox](https://github.com/frontend-collective/react-image-lightbox).
-
 ```ts
 import { LightBox } from "@jobber/components/LightBox";
 ```
 
+export const images = [
+  {
+    title: "😃 Happy Face",
+    url: "https://i.imgur.com/6Jcfgnp.jpg",
+    caption: "This is a happy face",
+  },
+  {
+    title: "😮",
+    url: "https://i.imgur.com/OsLxYkT.jpg",
+    caption: "Suprised face",
+  },
+  {
+    url: "https://i.imgur.com/uigfzs5.jpg",
+  },
+];
+
 <Canvas>
-  <Story name="LightBox">
-    {() => {
+  <Story name="LightBox" args={{ images }}>
+    {args => {
       const [open, isOpen] = useState(false);
       return (
         <>
           <Button label="😈 Click me!" onClick={() => isOpen(true)} />
           <LightBox
+            {...args}
             open={open}
-            images={[
-              {
-                title: "😃 Happy Face",
-                url: "https://i.imgur.com/6Jcfgnp.jpg",
-                caption: "This is a happy face",
-              },
-              {
-                title: "😮",
-                url: "https://i.imgur.com/OsLxYkT.jpg",
-                caption: "Suprised face",
-              },
-              {
-                url: "https://i.imgur.com/uigfzs5.jpg",
-              },
-            ]}
             onRequestClose={() => isOpen(false)}
           />
         </>

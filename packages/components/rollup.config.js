@@ -50,8 +50,6 @@ export default {
     "react-countdown",
     "react-popper",
     "react-datepicker",
-    "react-image-lightbox",
-    "react-image-lightbox/style.css",
     "react-dropzone",
     "axios",
     "filesize",

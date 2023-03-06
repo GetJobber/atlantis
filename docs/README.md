@@ -156,8 +156,7 @@ would run `npm install foo` from within the `components` directory.
 ## Contributing
 
 Everyone is a friend of Atlantis and we welcome pull requests. See the
-[contribution guidelines](../?path=/docs/contributing--page)
-to learn how.
+[contribution guidelines](../?path=/docs/contributing--page) to learn how.
 
 ## Publishing
 

@@ -76,7 +76,7 @@ test("lightbox closes when user clicks close", done => {
     />,
   );
 
-  fireEvent.click(getByLabelText("Close lightbox"));
+  fireEvent.click(getByLabelText("Close"));
 });
 
 test("Lightbox displays the selected imageIndex", () => {
