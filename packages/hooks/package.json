@@ -38,7 +38,7 @@
     "zxcvbn": "^4.4.2"
   },
   "peerDependencies": {
-    "@apollo/client": "^3.3.16",
+    "@apollo/client": "^3.7.10",
     "react": ">=16.8"
   }
 }
