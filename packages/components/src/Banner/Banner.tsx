@@ -36,7 +36,7 @@ export function Banner({
   dismissible = true,
   onDismiss,
 }: BannerProps) {
-  const [showFlash, setShowFlash] = useState(true);
+  const [showBanner, setShowBanner] = useState(true);
 
   const bannerWidths = {
     small: 320,
@@ -49,10 +49,10 @@ export function Banner({
     });
 
   const iconColors: IconColorMap = {
-    notice: "lightBlue",
-    success: "green",
-    warning: "yellow",
-    error: "red",
+    notice: "informative",
+    success: "success",
+    warning: "warning",
+    error: "critical",
   };
 
   if (primaryAction != undefined) {
@@ -66,23 +66,19 @@ export function Banner({
     );
   }
 
-  const flashClassNames = classnames(styles.flash, types[type], {
+  const bannerClassNames = classnames(styles.banner, types[type], {
     [styles.medium]: bannerWidth >= bannerWidths.medium,
-  });
-
-  const contentClassNames = classnames(styles.bannerContent, {
-    [styles.dismissibleSpacing]: dismissible,
   });
 
   return (
     <>
-      {showFlash && (
+      {showBanner && (
         <div
-          className={flashClassNames}
+          className={bannerClassNames}
           ref={bannerRef}
           role={type === "error" ? "alert" : "status"}
         >
-          <div className={contentClassNames}>
+          <div className={styles.bannerContent}>
             <div className={styles.bannerChildren}>
               <BannerChildren>{children}</BannerChildren>
             </div>
@@ -107,7 +103,7 @@ export function Banner({
   );
 
   function handleClose() {
-    setShowFlash(!showFlash);
+    setShowBanner(!showBanner);
     onDismiss && onDismiss();
   }
 }
