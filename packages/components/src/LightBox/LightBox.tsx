@@ -153,12 +153,12 @@ export function LightBox({
             </AnimatePresence>
           </div>
 
-          {images.length > 1 ? (
+          {images.length > 1 && (
             <>
               <PreviousButton onClick={debouncedHandlePrevious} />
               <NextButton onClick={debouncedHandleNext} />
             </>
-          ) : null}
+          )}
 
           <div className={styles.toolbar}>
             {images[currentImageIndex].caption}
