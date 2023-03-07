@@ -76,8 +76,8 @@
     "uuid": "^8.3.2"
   },
   "peerDependencies": {
-    "react": ">=16.8",
-    "react-dom": ">=16.8"
+    "react": "^18",
+    "react-dom": "^18"
   },
   "browserslist": [
     "last 1 version",
