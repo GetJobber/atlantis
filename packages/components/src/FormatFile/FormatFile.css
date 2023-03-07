@@ -115,6 +115,7 @@
 .progress {
   display: flex;
   align-items: center;
+  box-sizing: border-box;
   padding: var(--file-card--base-padding);
 }
 

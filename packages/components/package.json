@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "3.4.3",
+  "version": "3.4.8",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -20,7 +20,7 @@
   "dependencies": {
     "@jobber/design": "^0.29.3",
     "@jobber/formatters": "^0.2.1",
-    "@jobber/hooks": "^1.13.0",
+    "@jobber/hooks": "^1.13.1",
     "@popperjs/core": "^2.0.6",
     "@std-proposal/temporal": "0.0.1",
     "@tanstack/react-table": "8.5.13",
@@ -41,7 +41,6 @@
     "react-datepicker": "^4.10.0",
     "react-dropzone": "^11.0.2",
     "react-hook-form": "^6.15.8",
-    "react-image-lightbox": "^5.1.1",
     "react-markdown": "^8.0.3",
     "react-popper": "^2.2.5",
     "react-router-dom": "~5.2.0",
@@ -53,13 +52,13 @@
     "@rollup/plugin-commonjs": "^23.0.0",
     "@rollup/plugin-typescript": "^9.0.1",
     "@testing-library/jest-dom": "^5.10.1",
-    "@testing-library/react": "^10.3.0",
+    "@testing-library/react": "^14.0.0",
     "@testing-library/react-hooks": "^7.0.2",
     "@testing-library/user-event": "^12.0.2",
     "@types/classnames": "^2.2.7",
     "@types/glob": "^7.1.1",
-    "@types/react": "^16.9.43",
-    "@types/react-dom": "^16.8.4",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
     "@types/uuid": "^8.3.3",
     "autoprefixer": "^9.5.1",
     "copyfiles": "^2.4.1",
@@ -77,8 +76,8 @@
     "uuid": "^8.3.2"
   },
   "peerDependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react": ">=16.8",
+    "react-dom": ">=16.8"
   },
   "browserslist": [
     "last 1 version",
