@@ -42,7 +42,7 @@
   },
   "homepage": "https://github.com/GetJobber/atlantis#readme",
   "devDependencies": {
-    "@apollo/client": "^3.6.0",
+    "@apollo/client": "^3.7.10",
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
@@ -83,6 +83,7 @@
     "eslint-plugin-mdx": "^1.16.0",
     "glob": "^7.1.4",
     "graphql": "^15.8.0",
+    "graphql-ws": "^5.12.0",
     "husky": "^2.4.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.0.1",
