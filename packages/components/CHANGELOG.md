@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.4.8...@jobber/components@3.5.0) (2023-03-08)
+
+
+### Features
+
+* **components:** only show the navigation buttons on Lightbox when there is more than 1 image ([#1112](https://github.com/GetJobber/atlantis/issues/1112)) ([63f0a85](https://github.com/GetJobber/atlantis/commit/63f0a85cbdc48492a9c1da90b016bd1c0a8f46fe))
+
+
+
+
+
 ## [3.4.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.4.7...@jobber/components@3.4.8) (2023-03-07)
 
 **Note:** Version bump only for package @jobber/components
