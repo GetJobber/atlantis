@@ -47,11 +47,13 @@ export function InternalChipDismissibleInput(props: ChipDismissibleInputProps) {
   const {
     styles: popperStyles,
     attributes,
-    forceUpdate,
+    update,
     setPositionedElementRef,
   } = useRepositionMenu(attachTo);
 
-  useEffect(() => forceUpdate?.(), [allOptions]);
+  useEffect(() => {
+    if (menuOpen && update) update();
+  }, [allOptions]);
 
   useEffect(() => {
     handleDebouncedSearch();
