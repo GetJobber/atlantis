@@ -20,6 +20,7 @@
 
 .bannerChildren {
   align-self: center;
+  flex: 1;
 }
 
 .bannerContent > *:last-child {
