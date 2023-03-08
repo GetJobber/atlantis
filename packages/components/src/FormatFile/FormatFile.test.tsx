@@ -1,6 +1,5 @@
 import React from "react";
-import renderer, { act } from "react-test-renderer";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { act, cleanup, fireEvent, render } from "@testing-library/react";
 import { FormatFile } from ".";
 
 afterEach(cleanup);
@@ -14,8 +13,8 @@ it("renders a FormatFile", () => {
     progress: 1,
     src: () => Promise.resolve("https://audio/somesound.ogg"),
   };
-  const tree = renderer.create(<FormatFile file={testFile} />).toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(<FormatFile file={testFile} />);
+  expect(container).toMatchSnapshot();
 });
 
 it("renders an image when provided as src", async () => {

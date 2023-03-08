@@ -1,180 +1,200 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders Bold Component 1`] = `
-<div
-  className="padded base"
->
-  <p
-    className="base regular base text"
+<div>
+  <div
+    class="padded base"
   >
-    <b
-      className="base bold"
+    <p
+      class="base regular base text"
     >
-      Bold Foo
-    </b>
-  </p>
+      <b
+        class="base bold"
+      >
+        Bold Foo
+      </b>
+    </p>
+  </div>
 </div>
 `;
 
 exports[`renders Italicized Component 1`] = `
-<div
-  className="padded base"
->
-  <p
-    className="base regular base text"
+<div>
+  <div
+    class="padded base"
   >
-    <em
-      className="base regular italic"
+    <p
+      class="base regular base text"
     >
-      Italicized Foo
-    </em>
-  </p>
+      <em
+        class="base regular italic"
+      >
+        Italicized Foo
+      </em>
+    </p>
+  </div>
 </div>
 `;
 
 exports[`renders Level 1 Heading Component 1`] = `
-<div
-  className="padded base"
->
-  <h1
-    className="base black jumbo heading"
+<div>
+  <div
+    class="padded base"
   >
-    Heading 1
-  </h1>
+    <h1
+      class="base black jumbo heading"
+    >
+      Heading 1
+    </h1>
+  </div>
 </div>
 `;
 
 exports[`renders Level 2 Heading Component 1`] = `
-<div
-  className="padded base"
->
-  <h2
-    className="base black largest heading"
+<div>
+  <div
+    class="padded base"
   >
-    Heading 2
-  </h2>
+    <h2
+      class="base black largest heading"
+    >
+      Heading 2
+    </h2>
+  </div>
 </div>
 `;
 
 exports[`renders Level 3 Heading Component 1`] = `
-<div
-  className="padded base"
->
-  <h3
-    className="base extraBold larger heading"
+<div>
+  <div
+    class="padded base"
   >
-    Heading 3
-  </h3>
+    <h3
+      class="base extraBold larger heading"
+    >
+      Heading 3
+    </h3>
+  </div>
 </div>
 `;
 
 exports[`renders Level 4 Heading Component 1`] = `
-<div
-  className="padded base"
->
-  <h4
-    className="base bold large heading"
+<div>
+  <div
+    class="padded base"
   >
-    Heading 4
-  </h4>
+    <h4
+      class="base bold large heading"
+    >
+      Heading 4
+    </h4>
+  </div>
 </div>
 `;
 
 exports[`renders Level 5 Heading Component 1`] = `
-<div
-  className="padded base"
->
-  <h5
-    className="base bold base heading"
+<div>
+  <div
+    class="padded base"
   >
-    Heading 5
-  </h5>
+    <h5
+      class="base bold base heading"
+    >
+      Heading 5
+    </h5>
+  </div>
 </div>
 `;
 
 exports[`renders Level 6 Heading Component 1`] = `
-<div
-  className="padded base"
->
-  <h6>
-    Heading
-  </h6>
+<div>
+  <div
+    class="padded base"
+  >
+    <h6>
+      Heading
+    </h6>
+  </div>
 </div>
 `;
 
 exports[`renders Text Component 1`] = `
-<div
-  className="padded base"
->
-  <p
-    className="base regular base text"
+<div>
+  <div
+    class="padded base"
   >
-    Paragraph
-  </p>
+    <p
+      class="base regular base text"
+    >
+      Paragraph
+    </p>
+  </div>
 </div>
 `;
 
 exports[`renders a combination of Markdown components 1`] = `
-<div
-  className="padded base"
->
-  <h1
-    className="base black jumbo heading"
+<div>
+  <div
+    class="padded base"
   >
-    This is a paragraph.
-  </h1>
-  
-
-  <p
-    className="base regular base text"
-  >
-    The paragraph has some 
-    <b
-      className="base bold"
+    <h1
+      class="base black jumbo heading"
     >
-      bold text
-    </b>
-     and some 
-    <em
-      className="base regular italic"
-    >
-      italicized text
-    </em>
-    .
-  </p>
-  
+      This is a paragraph.
+    </h1>
+    
 
-  <p
-    className="base regular base text"
-  >
-    This is the end of this paragraph.
-  </p>
+    <p
+      class="base regular base text"
+    >
+      The paragraph has some 
+      <b
+        class="base bold"
+      >
+        bold text
+      </b>
+       and some 
+      <em
+        class="base regular italic"
+      >
+        italicized text
+      </em>
+      .
+    </p>
+    
+
+    <p
+      class="base regular base text"
+    >
+      This is the end of this paragraph.
+    </p>
+  </div>
 </div>
 `;
 
 exports[`renders a without headings, paragraph, and wrapping content 1`] = `
-Array [
-  "No heading should show up",
-  "
-",
-  "This should just be pure string with ",
+<div>
+  No heading should show up
+  
+
+  This should just be pure string with 
   <b
-    className="base bold"
+    class="base bold"
   >
     bold text
-  </b>,
-  " and some ",
+  </b>
+   and some 
   <em
-    className="base regular italic"
+    class="base regular italic"
   >
     italicized text
-  </em>,
-  "
-and of course a ",
+  </em>
+  
+and of course a 
   <a
     href="http://to.somewhere"
   >
     link
-  </a>,
-]
+  </a>
+</div>
 `;

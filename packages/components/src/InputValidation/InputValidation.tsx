@@ -2,6 +2,7 @@ import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import styles from "./InputValidation.css";
 import { Text } from "../Text";
+import { Icon } from "../Icon";
 
 interface InputValidationProps {
   /**
@@ -13,14 +14,14 @@ interface InputValidationProps {
 export function InputValidation({ message }: InputValidationProps) {
   const messages = [message];
   const variants = {
-    slideOut: { y: "5%", height: 0, opacity: 0 },
-    slideIn: { y: 0, height: "100%", opacity: 1 },
+    slideOut: { y: "5%", opacity: 0 },
+    slideIn: { y: 0, opacity: 1 },
   };
 
   return (
     <>
       {messages && messages.length > 0 && (
-        <AnimatePresence>
+        <AnimatePresence exitBeforeEnter>
           {messages.map(msg => (
             <motion.div
               key={`validation-${msg}`}
@@ -36,7 +37,10 @@ export function InputValidation({ message }: InputValidationProps) {
                 role="alert"
                 tabIndex={0}
               >
-                <Text variation="error">{msg}</Text>
+                <Icon name="alert" size="small" color="critical" />
+                <Text size="small" variation="error">
+                  {msg}
+                </Text>
               </div>
             </motion.div>
           ))}

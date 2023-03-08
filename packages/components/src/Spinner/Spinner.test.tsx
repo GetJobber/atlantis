@@ -1,23 +1,23 @@
+import { render } from "@testing-library/react";
 import React from "react";
-import renderer from "react-test-renderer";
 import { Spinner } from ".";
 
 it("renders the spinner", () => {
-  const tree = renderer.create(<Spinner />).toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(<Spinner />);
+  expect(container).toMatchSnapshot();
 });
 
 it("renders the small spinner", () => {
-  const tree = renderer.create(<Spinner size="small" />).toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(<Spinner size="small" />);
+  expect(container).toMatchSnapshot();
 });
 
 it("renders the inline spinner", () => {
-  const tree = renderer.create(<Spinner inline={true} />).toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(<Spinner inline={true} />);
+  expect(container).toMatchSnapshot();
 });
 
 it("renders a small inline spinner", () => {
-  const tree = renderer.create(<Spinner inline={true} size="small" />).toJSON();
-  expect(tree).toMatchSnapshot();
+  const { container } = render(<Spinner inline={true} size="small" />);
+  expect(container).toMatchSnapshot();
 });

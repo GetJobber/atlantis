@@ -1,8 +1,3 @@
----
-name: Atlantis
-route: /
----
-
 # 🔱 Atlantis
 
 [![CircleCI](https://circleci.com/gh/GetJobber/atlantis/tree/master.svg?style=svg&circle-token=3f1b0343273ef589350516e23713e81c8c3ac094)](https://circleci.com/gh/GetJobber/atlantis/tree/master)
@@ -35,7 +30,7 @@ cd atlantis
 npm install
 ```
 
-To start the [docz](https://www.docz.site/) development server:
+To start the [Storybook](https://storybook.js.org/) development server:
 
 ```sh
 npm start
@@ -77,7 +72,6 @@ These are the core packages you'll need to build with Atlantis:
 If you're looking to build documentation and tooling using Atlantis' development
 standards, these packages will be useful:
 
-- [Docz tools](/packages/docz-tools)
 - [EsLint configuration](/packages/eslint-config)
 - [StyleLint configuration](/packages/stylelint-config)
 
@@ -105,7 +99,7 @@ npm run generate
 ✔  +! 5 files added
  -> /packages/components/src/ExampleComponent/index.ts
  -> /packages/components/src/ExampleComponent/ExampleComponent.css
- -> /packages/components/src/ExampleComponent/ExampleComponent.mdx
+ -> /packages/components/src/ExampleComponent/ExampleComponent.stories.mdx
  -> /packages/components/src/ExampleComponent/ExampleComponent.test.tsx
  -> /packages/components/src/ExampleComponent/ExampleComponent.tsx
 ```
@@ -162,7 +156,7 @@ would run `npm install foo` from within the `components` directory.
 ## Contributing
 
 Everyone is a friend of Atlantis and we welcome pull requests. See the
-[contribution guidelines](./CONTRIBUTING.md) to learn how.
+[contribution guidelines](../?path=/docs/contributing--page) to learn how.
 
 ## Publishing
 
@@ -188,9 +182,25 @@ publish whenever a pull request is merged.
 ### Pre-release
 
 ```sh
-npx lerna version --allow-branch <branch-for-pre-release> --conventional-prerelease --preid pre
 npm run publish:prerelease
 ```
+
+<details>
+<summary>Releasing with dependency changes changes</summary>
+
+Lerna automatically determines which package changed and can be released.
+However, if you've only changed/added/updated an NPM package, Lerna won't count
+that as a releasable "change". The script below should allow you to create a
+prerelease for package changes.
+
+```
+npm run publish:prerelease:force @jobber/components
+```
+
+_NOTE: You can replace `@jobber/components` with the package you want to
+prerelease or remove it to prerelease all of them._
+
+</details>
 
 ### What has changed
 

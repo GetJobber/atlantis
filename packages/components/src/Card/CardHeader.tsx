@@ -13,24 +13,16 @@ export function CardHeader({
   title,
   header,
 }: Pick<CardProps, "title" | "header">) {
-  if (title || typeof header === "string") {
-    return (
-      <div className={styles.header}>
-        {<Heading level={3}>{title || header}</Heading>}
-      </div>
-    );
-  }
+  const heading = title || header;
 
-  // header is a custom component
-  if (React.isValidElement(header)) {
-    return header;
-  }
-  // header is an action
-  if (header?.action) {
+  if (React.isValidElement(heading)) return <>{heading}</>;
+  if (heading) {
+    const titleString = typeof heading === "string" ? heading : heading.title;
+
     return (
       <div className={styles.header}>
-        {header?.title && <Heading level={3}>{header?.title}</Heading>}
-        {renderHeaderAction(header.action)}
+        {titleString && <Heading level={3}>{titleString}</Heading>}
+        {typeof heading === "object" && renderHeaderAction(heading?.action)}
       </div>
     );
   }
@@ -38,8 +30,8 @@ export function CardHeader({
   return <></>;
 }
 
-function renderHeaderAction(action: ActionProps) {
-  if (action.type === Button) {
+function renderHeaderAction(action?: ActionProps) {
+  if (action?.type === Button) {
     const props: ButtonProps = {
       type: "tertiary",
       ...action.props,
@@ -48,8 +40,9 @@ function renderHeaderAction(action: ActionProps) {
     return action && <Button {...props} />;
   }
 
-  if (action.type === Menu) {
+  if (action?.type === Menu) {
     return action && <Menu {...(action.props as MenuProps)} />;
   }
+
   return <></>;
 }

@@ -1,8 +1,3 @@
----
-name: Contributing
-route: /CONTRIBUTING.md
----
-
 # Contributing
 
 ## How can you contribute?
@@ -155,7 +150,7 @@ follow the following format.
 `<TYPE>(<optional SCOPE>): <conditionally BREAKING CHANGE:> <description>`
 
 Want help with your pull request title? We have a
-[tool to help](https://atlantis.getjobber.com/pull-request-name-generator).
+[tool to help](../?path=/docs/guides-pull-request-title-generator--page).
 
 ##### Requesting review
 

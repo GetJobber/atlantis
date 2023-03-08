@@ -1,58 +1,46 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`displays an icon if no image and no initials are set 1`] = `
-<div
-  className="avatar isDark"
-  style={
-    Object {
-      "backgroundColor": undefined,
-      "borderColor": undefined,
-    }
-  }
->
-  <svg
-    className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
-    data-testid="person"
-    viewBox="0 0 1024 1024"
-    xmlns="http://www.w3.org/2000/svg"
+<div>
+  <div
+    class="avatar isDark"
   >
-    <path
-      className="_2GsLyQLHv8yNULHeXGdver _29W47x5R7CHDPdmq99tUBc"
-      d="M512.5 466.789c-94.347 0-170.832-76.485-170.832-170.834s76.485-170.834 170.832-170.834c94.351 0 170.834 76.485 170.834 170.834s-76.482 170.834-170.834 170.834zM512.5 381.372c47.176 0 85.416-38.242 85.416-85.416s-38.241-85.416-85.416-85.416c-47.171 0-85.416 38.242-85.416 85.416s38.245 85.416 85.416 85.416zM225.9 808.457h573.204c-36.734-123.513-151.248-213.542-286.603-213.542s-249.867 90.029-286.601 213.542zM811.588 808.443l-0.115 0.013zM213.531 808.457l-0.114-0.013zM130.046 809.122c38.595-171.508 199.291-299.625 382.454-299.625 183.168 0 343.965 128.116 382.561 299.625 1.264 5.62 1.79 11.134 1.649 16.477-0.068 2.725-0.311 5.407-0.718 8.034-5.308 34.475-38.498 60.24-76.977 60.24h-612.926c-39.062 0-72.674-26.552-77.198-61.816-0.94-7.32-0.625-15.021 1.156-22.934z"
-    />
-  </svg>
+    <svg
+      class="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+      data-testid="person"
+      viewBox="0 0 1024 1024"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        class="_2GsLyQLHv8yNULHeXGdver _29W47x5R7CHDPdmq99tUBc"
+        d="M512.5 466.789c-94.347 0-170.832-76.485-170.832-170.834s76.485-170.834 170.832-170.834c94.351 0 170.834 76.485 170.834 170.834s-76.482 170.834-170.834 170.834zM512.5 381.372c47.176 0 85.416-38.242 85.416-85.416s-38.241-85.416-85.416-85.416c-47.171 0-85.416 38.242-85.416 85.416s38.245 85.416 85.416 85.416zM225.9 808.457h573.204c-36.734-123.513-151.248-213.542-286.603-213.542s-249.867 90.029-286.601 213.542zM811.588 808.443l-0.115 0.013zM213.531 808.457l-0.114-0.013zM130.046 809.122c38.595-171.508 199.291-299.625 382.454-299.625 183.168 0 343.965 128.116 382.561 299.625 1.264 5.62 1.79 11.134 1.649 16.477-0.068 2.725-0.311 5.407-0.718 8.034-5.308 34.475-38.498 60.24-76.977 60.24h-612.926c-39.062 0-72.674-26.552-77.198-61.816-0.94-7.32-0.625-15.021 1.156-22.934z"
+      />
+    </svg>
+  </div>
 </div>
 `;
 
 exports[`displays initials if no image is set 1`] = `
-<div
-  className="avatar isDark"
-  style={
-    Object {
-      "backgroundColor": undefined,
-      "borderColor": undefined,
-    }
-  }
->
-  <span
-    className="initials smallInitials"
+<div>
+  <div
+    class="avatar isDark"
   >
-    JBL
-  </span>
+    <span
+      class="initials smallInitials"
+    >
+      JBL
+    </span>
+  </div>
 </div>
 `;
 
 exports[`renders a Avatar 1`] = `
-<div
-  aria-label="The Jobbler"
-  className="avatar large isDark"
-  role="img"
-  style={
-    Object {
-      "backgroundColor": undefined,
-      "backgroundImage": "url(https://api.adorable.io/avatars/150/jobbler)",
-      "borderColor": undefined,
-    }
-  }
-/>
+<div>
+  <div
+    aria-label="The Jobbler"
+    class="avatar large isDark"
+    role="img"
+    style="background-image: url(https://api.adorable.io/avatars/150/jobbler);"
+  />
+</div>
 `;

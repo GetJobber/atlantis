@@ -22,13 +22,16 @@ properties to have similar names across the system. For example...
 We use `base` as our default whenever possible when a property has a set range
 of outcomes. This can be seen in..
 
-- the `size` properties of [Button](/components/Button),
-  [Avatar](/components/avatar), [InputText](/components/input-text),
-  [Text](/packages-components-src-text-text),
-  [ProgressBar](/components/progress-bar), [Spinner](/components/spinner), etc;
-- `maxLines` of [Text](/packages-components-src-text-text)
-- values of [Shadow](/elevation), [Spacing](/space),
-  [Border Radius](/border-radius) design tokens
+- the `size` properties of [Button](../?path=/docs/components-button--button),
+  [Avatar](../?path=/docs/components-avatar--avatar),
+  [InputText](../?path=/docs/components-inputtext--input-text),
+  [Text](../?path=/docs/components-text--text),
+  [ProgressBar](../?path=/docs/components-progressbar--progress-bar),
+  [Spinner](../?path=/docs/components-spinner--spinner), etc;
+- `maxLines` of [Text](../?path=/docs/components-text--text)
+- values of [Shadow](../?path=/docs/design-elevations--page),
+  [Spacing](../?path=/docs/design-spacing--page),
+  [Border Radius](../?path=/docs/design-borders--page) design tokens
 
 This allows us to set an expectation of the base (or most common) use case when
 a prop is in action.
@@ -38,8 +41,9 @@ a prop is in action.
 If a component has `open` and `closed` states, use a boolean property named
 `open`.
 
-This can be seen in [Modal](/components/modal), [Drawer](/components/drawer),
-and [Popover](/components/popover).
+This can be seen in [Modal](../?path=/docs/components-modal--modal),
+[Drawer](../?path=/docs/components-drawer--drawer), and
+[Popover](../?path=/docs/components-popover--popover).
 
 ## Typescript
 
@@ -248,9 +252,10 @@ Wherever possible use Atlantis `design` tokens.
 
 ### Units
 
-For size units, use the appropriate [Spacing](/space) variables. Do not use
-rems, ems, or hard-coded pixel values, as Atlantis is built using variables to
-allow for consistent re-flow as the browser scales.
+For size units, use the appropriate
+[Spacing](../?path=/docs/design-spacing--page) variables. Do not use rems, ems,
+or hard-coded pixel values, as Atlantis is built using variables to allow for
+consistent re-flow as the browser scales.
 
 If you require a size that is larger than the Spacing variables, or falls
 somewhere in between, use the CSS `calc` function with Atlantis spacing values
@@ -274,4 +279,33 @@ in a custom property in your file to avoid magic numbers.
 .container {
   width: 280px;
 }
+```
+
+### Targeting native HTML selectors
+
+Use a classname to select DOM elements for styling whenever possible.
+
+Scope CSS selectors that target native HTML elements with a classname if you
+cannot add a classname to the element directly. This keeps the styling
+encapsulated to the component and prevents styling from "leaking out" of the
+React component and into the rest of the project.
+
+#### ✅ Do
+
+```css
+a.myDestructiveComponent {
+  color: var(--color-destructive);
+}
+
+// this will only select `<a>` elements with the `myDestructiveComponent` classname
+```
+
+#### ❌ Don't
+
+```css
+a {
+  color: var(--color-destructive);
+}
+
+// this will select every `<a>` element in the project
 ```

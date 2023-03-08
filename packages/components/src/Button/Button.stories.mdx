@@ -36,17 +36,17 @@ title prop. -->
 
 <ArgsTable of={Button} story="Button" />
 
-## Design & Usage Guidelines
+## Design & usage guidelines
 
 The right button to use depends on:
 
 - the type of action your user is attempting to complete
 - the hierarchy of the interface the button lives in
 
-### Work actions
+### Work buttons
 
-Use Work Actions buttons to enable user interactions with the goal of completing
-work in Jobber.
+Use "work" buttons to enable user interactions with the goal of completing work
+in Jobber.
 
 #### Primary
 
@@ -82,10 +82,10 @@ editing, revealing details, or navigating within the view.
   <Button label="Do the thing" type="tertiary" />
 </Canvas>
 
-### Learning Actions
+### Learning
 
-Use the Learning Actions buttons to enable user interactions in the goal of
-learning about Jobber, whether for marketing or coaching purposes.
+Use "learning" buttons to enable user interactions in the goal of learning about
+Jobber, whether for marketing or coaching purposes.
 
 #### Primary, Secondary, Tertiary
 
@@ -123,15 +123,16 @@ Actions for all three levels.
   </Content>
 </Canvas>
 
-### Destructive Actions
+### Destructive
 
-Destructive actions remove something from Jobber.
+"Destructive" actions remove something from Jobber.
 
 #### Primary
 
 A Primary destructive action will permanently destroy an object carrying
 significant data, such as a job, quote, or client. This destructive action
-should be contained in a [ConfirmationModal](/components/confirmation-modal)
+should be contained in a
+[ConfirmationModal](../?path=/docs/components-confirmationmodal--confirmation-modal)
 triggered by clicking a secondary or tertiary destructive button.
 
 #### Secondary or Tertiary
@@ -156,12 +157,9 @@ A Secondary or tertiary destructive action will either...
   </Content>
 </Canvas>
 
-### Subtle Actions
+### Subtle
 
-> Subtle actions replace a previous concept of "cancel" actions which has been
-> deprecated.
-
-Use a subtle button when you want the visual appearance to be more, well...
+Use a "subtle" button when you want the visual appearance to be more, well...
 _subtle._ This variation of button uses subdued color, allowing it to sit
 comfortably alongside more prominent content.
 
@@ -222,6 +220,32 @@ background, allowing it to be _extra_ subtle when placed overtop
     </div>
   </Content>
 </Canvas>
+
+## Content guidelines
+
+Button labels should be title-cased. This means in general, capitalize all words
+with the exception of:
+
+- articles (a, an, the)
+- coordinating conjunctions (but, for)
+- prepositions (at, by, to, etc.)
+
+| ✅ Do        | ❌ Don't     |
+| ------------ | ------------ |
+| Go to Visits | Go To Visits |
+| Save Job     | SAVE JOB     |
+
+### & vs and
+
+If you have a Button with "compound" actions such as "Review & Send" or "Approve
+& Schedule", use an ampersand (&) for brevity and to reduce the likelihood that
+your label will wrap. A non-breaking space should be used between the ampersand
+and the second word so that the ampersand wraps with the second word.
+
+| ✅ Do              | ❌ Don't             |
+| ------------------ | -------------------- |
+| Review & Send      | Review and Send      |
+| Approve & Schedule | Approve and Schedule |
 
 ## Disabled
 
@@ -298,7 +322,7 @@ A way to communicate to the user that a background action is being performed.
   <Button label="Canceling..." variation="subtle" loading={true} />
 </Canvas>
 
-## Client Side Routing
+## Client-side routing
 
 A `Button` can be used for client-side routing as well. When using a Button to
 handle the client-side routing, use the `to` prop. Notice when you click below
@@ -324,11 +348,11 @@ that the URL will change to the appropriate route.
   </Router>
 </Canvas>
 
-## Form Submit
+## Form submit
 
 Passing the `submit` prop will allow a `Button` to submit a
-[Form](/components/form). Since submitting a form is a specific action, only
-`variation="work"` and `type="primary"` are allowed.
+[Form](../?path=/docs/components-form--form). Since submitting a form is a
+specific action, only `variation="work"` and `type="primary"` are allowed.
 
 Since this type of `Button` will only be used to submit a form, it does not make
 sense to allow the `external`, `onClick`, `to`, or `url` props.

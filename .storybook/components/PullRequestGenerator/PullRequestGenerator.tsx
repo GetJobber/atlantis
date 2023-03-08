@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import copy from "copy-text-to-clipboard";
 import { Card } from "@jobber/components/Card";
 import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
@@ -24,13 +23,14 @@ export function PullRequestGenerator() {
       <Card title="Tell us about your pull request">
         <Content spacing="large">
           <Content spacing="small">
-            <Text>I want to...</Text>
+            <Text>I want to make a change that...</Text>
             <Select value={type} onChange={(val: string) => setType(val)}>
-              <Option value="fix">fix something that&apos;s broken</Option>
-              <Option value="feat">add some new functionality</Option>
-              <Option value="docs">write documentation</Option>
-              <Option value="build">improve the build system</Option>
-              <Option value="chore">do something else important</Option>
+              <Option value="fix">fixes a bug</Option>
+              <Option value="feat">adds a new feature</Option>
+              <Option value="docs">adds or updates documentation only</Option>
+              <Option value="build">improves the build system</Option>
+              <Option value="chore">doesn't modify src or test files</Option>
+              <Option value="refactor">doesn't fix a bug or introduce a new feature</Option>
             </Select>
             <Text>in our...</Text>
             <Select value={type} onChange={(val: string) => setScope(val)}>
@@ -38,9 +38,9 @@ export function PullRequestGenerator() {
               <Option value="components">component library</Option>
               <Option value="hooks">hooks library</Option>
               <Option value="design">design foundation system</Option>
-              <Option value="docz-tools">internal docz tools</Option>
               <Option value="eslint-config">eslint config</Option>
               <Option value="stylelint-config">stylelint config</Option>
+              <Option value="generators">generators</Option>
             </Select>
           </Content>
           <Divider />
@@ -58,7 +58,7 @@ export function PullRequestGenerator() {
           </Content>
         </Content>
       </Card>
-      <Heading level={2}>Your Pull Request Title:</Heading>
+      <Heading level={2}>Your pull request title:</Heading>
       <Banner
         type="success"
         dismissible={false}
@@ -74,7 +74,7 @@ export function PullRequestGenerator() {
   );
 
   function handleCopy() {
-    copy(title);
+    navigator.clipboard.writeText(title);
     showToast({
       message: "Copied PR title to clipboard",
     });

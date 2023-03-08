@@ -1,5 +1,6 @@
 export * from "./useAssert";
 export * from "./useCollectionQuery";
+export * from "./useFocusTrap";
 export * from "./useFormState";
 export * from "./useIsMounted";
 export * from "./useLiveAnnounce";

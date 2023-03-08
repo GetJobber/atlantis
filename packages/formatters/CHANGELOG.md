@@ -1,12 +1,15 @@
----
-name: Formatters
-menu: Changelog
----
-
-# @jobber/formatters: Change Log
+# Change Log
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [0.2.1](https://github.com/GetJobber/atlantis/compare/@jobber/formatters@0.2.0...@jobber/formatters@0.2.1) (2023-02-28)
+
+**Note:** Version bump only for package @jobber/formatters
+
+
+
+
 
 # [0.2.0](https://github.com/GetJobber/atlantis/compare/@jobber/formatters@0.1.0...@jobber/formatters@0.2.0) (2021-07-06)
 

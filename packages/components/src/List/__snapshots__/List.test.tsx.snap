@@ -1,199 +1,206 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders 1 List item with all the props 1`] = `
-<ul
-  className="list"
->
-  <li
-    className="section"
+<div>
+  <ul
+    class="list"
   >
-    <div
-      className="sectionHeader"
+    <li
+      class="section"
     >
-      <h4
-        className="base bold large"
+      <div
+        class="sectionHeader"
       >
-        Notification
-      </h4>
-    </div>
-    <ul
-      className="list"
-    >
-      <li
-        className="item"
-      >
-        <a
-          className="action isActive hoverable"
-          href="#"
-          id="1"
-          onClick={[Function]}
+        <h4
+          class="base bold large"
         >
-          <div
-            className="icon"
+          Notification
+        </h4>
+      </div>
+      <ul
+        class="list"
+      >
+        <li
+          class="item"
+        >
+          <a
+            class="action isActive hoverable"
+            href="#"
+            id="1"
           >
-            <svg
-              className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
-              data-testid="checkmark"
-              viewBox="0 0 1024 1024"
-              xmlns="http://www.w3.org/2000/svg"
+            <div
+              class="icon"
             >
-              <path
-                className="_1R4_alABGZICCj4KPfBOIa k-yTz4leACw0mElhFmX3p"
-                d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
-              />
-            </svg>
-          </div>
-          <div
-            className="info"
-          >
-            <h5
-              className="base bold base heading"
-            >
-              Jordan Yeo completed a visit
-            </h5>
-            <p
-              className="base regular base text"
-            >
-              <span
-                className="truncate"
+              <svg
+                class="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+                data-testid="checkmark"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                Build a deck
-              </span>
-            </p>
-            <p
-              className="base regular base text"
+                <path
+                  class="_1R4_alABGZICCj4KPfBOIa k-yTz4leACw0mElhFmX3p"
+                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                />
+              </svg>
+            </div>
+            <div
+              class="info"
             >
-              <span
-                className="truncate"
+              <h5
+                class="base bold base heading"
               >
-                Fa la la la la
-              </span>
-            </p>
-            <p
-              className="base regular base textSecondary"
+                Jordan Yeo completed a visit
+              </h5>
+              <p
+                class="base regular base text"
+              >
+                <span
+                  class="truncate"
+                >
+                  Build a deck
+                </span>
+              </p>
+              <p
+                class="base regular base text"
+              >
+                <span
+                  class="truncate"
+                >
+                  Fa la la la la
+                </span>
+              </p>
+              <p
+                class="base regular base textSecondary"
+              >
+                <span
+                  class="base regular small italic"
+                >
+                  Sep 24, 2019
+                </span>
+              </p>
+            </div>
+            <div
+              class="amount"
             >
-              <span
-                className="base regular small italic"
+              <p
+                class="base regular base text"
               >
-                Sep 24, 2019
-              </span>
-            </p>
-          </div>
-          <div
-            className="amount"
-          >
-            <p
-              className="base regular base text"
-            >
-              <b
-                className="base bold"
-              >
-                $30.00
-              </b>
-            </p>
-          </div>
-        </a>
-      </li>
-    </ul>
-  </li>
-</ul>
+                <b
+                  class="base bold"
+                >
+                  $30.00
+                </b>
+              </p>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
 `;
 
 exports[`should render a button list item 1`] = `
-<ul
-  className="list"
->
-  <li
-    className="item"
+<div>
+  <ul
+    class="list"
   >
-    <button
-      className="action hoverable"
-      id="1"
-      onClick={[Function]}
-      role="button"
-      type="button"
+    <li
+      class="item"
     >
-      <div
-        className="info"
+      <button
+        class="action hoverable"
+        id="1"
+        role="button"
+        type="button"
       >
-        <p
-          className="base regular base text"
+        <div
+          class="info"
         >
-          <span
-            className="truncate"
+          <p
+            class="base regular base text"
           >
-            Click me
-          </span>
-        </p>
-      </div>
-    </button>
-  </li>
-</ul>
+            <span
+              class="truncate"
+            >
+              Click me
+            </span>
+          </p>
+        </div>
+      </button>
+    </li>
+  </ul>
+</div>
 `;
 
 exports[`should render a link with url list item 1`] = `
-<ul
-  className="list"
->
-  <li
-    className="item"
+<div>
+  <ul
+    class="list"
   >
-    <a
-      className="action hoverable"
-      href="/path/to/stuff"
-      id="1"
+    <li
+      class="item"
     >
-      <div
-        className="info"
+      <a
+        class="action hoverable"
+        href="/path/to/stuff"
+        id="1"
       >
-        <p
-          className="base regular base text"
+        <div
+          class="info"
         >
-          <span
-            className="truncate"
+          <p
+            class="base regular base text"
           >
-            Learn more
-          </span>
-        </p>
-      </div>
-    </a>
-  </li>
-</ul>
+            <span
+              class="truncate"
+            >
+              Learn more
+            </span>
+          </p>
+        </div>
+      </a>
+    </li>
+  </ul>
+</div>
 `;
 
 exports[`should render an a tag with url and on click list item 1`] = `
-<ul
-  className="list"
->
-  <li
-    className="item"
+<div>
+  <ul
+    class="list"
   >
-    <a
-      className="action hoverable"
-      href="/path/to/stuff"
-      id="1"
-      onClick={[Function]}
+    <li
+      class="item"
     >
-      <div
-        className="info"
+      <a
+        class="action hoverable"
+        href="/path/to/stuff"
+        id="1"
       >
-        <p
-          className="base regular base text"
+        <div
+          class="info"
         >
-          <span
-            className="truncate"
+          <p
+            class="base regular base text"
           >
-            Learn more
-          </span>
-        </p>
-      </div>
-    </a>
-  </li>
-</ul>
+            <span
+              class="truncate"
+            >
+              Learn more
+            </span>
+          </p>
+        </div>
+      </a>
+    </li>
+  </ul>
+</div>
 `;
 
 exports[`shouldn't render a list item if it's given an empty array 1`] = `
-<ul
-  className="list"
-/>
+<div>
+  <ul
+    class="list"
+  />
+</div>
 `;

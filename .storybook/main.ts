@@ -19,6 +19,7 @@ const config: StorybookConfig = {
       },
     },
   ],
+  features: { buildStoriesJson: true },
   framework: "@storybook/react",
   webpackFinal: async config => {
     /**
@@ -60,13 +61,25 @@ const config: StorybookConfig = {
     }
 
     /**
+     * Framer motion 5 and up use ESM mjs files which doesn't work out of the
+     * box for webpack 4.
+     *
+     * Until we get to React 18, Node 18, Webpack 5, Storybook 7, this is needed.
+     */
+    config.module?.rules.push({
+      test: /\.mjs$/,
+      include: /node_modules/,
+      type: "javascript/auto",
+    })
+
+    /**
      * Generate css types on `.css` file save,
      * as well as handle PostCss
      */
     config.module?.rules.push({
       enforce: "pre",
       test: /\.css$/,
-      exclude: /node_modules/,
+      exclude: [/node_modules/, /\.storybook\/assets\/css\/.*\.css$/],
       use: [
         require.resolve("typed-css-modules-loader"),
         {
@@ -98,10 +111,6 @@ const config: StorybookConfig = {
         "../packages/components/src",
       ),
       "@jobber/docx": path.resolve(__dirname, "../packages/docx/src"),
-      "@jobber/docz-tools": path.resolve(
-        __dirname,
-        "../packages/docz-tools/src/components",
-      ),
       mdxUtils: path.resolve(__dirname, "components"),
       "@atlantis": path.resolve(__dirname, "../"),
     });

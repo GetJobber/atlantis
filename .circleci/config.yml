@@ -152,7 +152,7 @@ jobs:
       - *attach_workspace
       - *generate_base_path
       - run:
-          command: node -v && node -e 'console.log(`heap_size_limit = ${v8.getHeapStatistics().heap_size_limit / (1024 * 1024)} MB`)' && npm run build -- --base "/${BASE_PATH}/"
+          command: npm run build
 
   release:
     <<: *container_config
