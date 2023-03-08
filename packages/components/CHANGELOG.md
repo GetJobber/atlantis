@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.5.0...@jobber/components@3.5.1) (2023-03-08)
+
+
+### Bug Fixes
+
+* use update instead of forceUpdate on popper ([#1115](https://github.com/GetJobber/atlantis/issues/1115)) ([e74114c](https://github.com/GetJobber/atlantis/commit/e74114cabf8c00b6336939d4f670f11c5eb20a95))
+
+
+
+
+
 # [3.5.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.4.8...@jobber/components@3.5.0) (2023-03-08)
 
 
