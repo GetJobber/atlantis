@@ -7,26 +7,27 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { render } from "react-dom";
+// eslint-disable-next-line import/no-internal-modules
+import { createRoot } from "react-dom/client";
 import { Toast, ToastProps, ToastRef } from "./Toast";
 import styles from "./Toast.css";
 
-export function showToast(props: ToastProps) {
-  createDocumentToast(props);
+const targetId = "atlantis-toast-element";
+let target = document.querySelector(`#${targetId}`);
+
+if (!target) {
+  target = document.createElement("div");
+  target.id = targetId;
+  target.classList.add(styles.wrapper);
+  document.body.appendChild(target);
 }
 
-function createDocumentToast(props: ToastProps) {
-  const targetId = "atlantis-toast-element";
-  let target = document.querySelector(`#${targetId}`);
+// https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const root = createRoot(target!);
 
-  if (!target) {
-    target = document.createElement("div");
-    target.id = targetId;
-    target.classList.add(styles.wrapper);
-    document.body.appendChild(target);
-  }
-
-  render(<ToasterOven {...props} />, target);
+export function showToast(props: ToastProps) {
+  root.render(<ToasterOven {...props} />);
 }
 
 const ToastContainer = forwardRef(ToastInternal);

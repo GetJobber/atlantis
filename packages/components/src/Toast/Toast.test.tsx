@@ -27,7 +27,6 @@ beforeEach(() => jest.useFakeTimers());
 afterEach(() => {
   cleanup();
   jest.clearAllTimers();
-  document.body.innerHTML = ``;
 });
 
 const successMessage =
@@ -36,49 +35,70 @@ const infoMessage = "Bland Toast";
 const errorMessage = "Errorful should last inbetween min-max";
 
 it("creates the placeholder div on showToast call", () => {
-  const { getByText } = render(<MockToast />);
-  expect(document.querySelector(`#atlantis-toast-element`)).not.toBeInstanceOf(
-    HTMLDivElement,
-  );
+  const { getByText, queryByText, getByLabelText } = render(<MockToast />);
 
   fireEvent.click(getByText("No Variation"));
 
-  expect(document.querySelector(`#atlantis-toast-element`)).toBeInstanceOf(
-    HTMLDivElement,
-  );
+  expect(getByText(infoMessage)).toBeInstanceOf(HTMLSpanElement);
+
+  fireEvent.click(getByLabelText("Hide Notification"));
+  expect(queryByText(infoMessage)).toBeNull();
 });
 
 it("renders a Slice of Toast when the 'showToast' method is called", () => {
-  const { getByText } = render(<MockToast />);
+  const { getByText, getByLabelText, queryByText } = render(<MockToast />);
   fireEvent.click(getByText("Success"));
   expect(getByText(successMessage)).toBeInstanceOf(HTMLSpanElement);
+
+  fireEvent.click(getByLabelText("Hide Notification"));
+  expect(queryByText(infoMessage)).toBeNull();
 });
 
 it("shows a the checkmark icon for success toast", () => {
-  const { getByText, getByTestId } = render(<MockToast />);
+  const { getByText, getByTestId, getByLabelText, queryByText } = render(
+    <MockToast />,
+  );
   fireEvent.click(getByText("Success"));
   expect(getByTestId("checkmark")).toBeInstanceOf(SVGElement);
+
+  fireEvent.click(getByLabelText("Hide Notification"));
+  expect(queryByText(infoMessage)).toBeNull();
 });
 
 it("renders an knot icon variation: 'info' is set", () => {
-  const { getByText, getByTestId } = render(<MockToast />);
+  const { getByText, getByTestId, getByLabelText, queryByText } = render(
+    <MockToast />,
+  );
   fireEvent.click(getByText("No Variation"));
   expect(getByTestId("knot")).toBeInstanceOf(SVGElement);
+
+  fireEvent.click(getByLabelText("Hide Notification"));
+  expect(queryByText(infoMessage)).toBeNull();
 });
 
 it("renders an alert icon variation: 'error' is set", () => {
-  const { getByText, getByTestId } = render(<MockToast />);
+  const { getByText, getByTestId, getByLabelText, queryByText } = render(
+    <MockToast />,
+  );
   fireEvent.click(getByText("Error"));
   expect(getByTestId("alert")).toBeInstanceOf(SVGElement);
+
+  fireEvent.click(getByLabelText("Hide Notification"));
+  expect(queryByText(infoMessage)).toBeNull();
 });
 
 it("fires an action callback when the action button is clicked", () => {
   const mockAction = jest.fn();
-  const { getByText } = render(<MockToast mockAction={mockAction} />);
+  const { getByText, getByLabelText, queryByText } = render(
+    <MockToast mockAction={mockAction} />,
+  );
 
   fireEvent.click(getByText("No Variation"));
   fireEvent.click(getByText("Do The Action"));
   expect(mockAction).toHaveBeenCalledTimes(1);
+
+  fireEvent.click(getByLabelText("Hide Notification"));
+  expect(queryByText(infoMessage)).toBeNull();
 });
 
 it("sets a timer and clears the Slice after a certain amount of time", async done => {
