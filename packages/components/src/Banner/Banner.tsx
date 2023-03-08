@@ -78,16 +78,16 @@ export function Banner({
           ref={bannerRef}
           role={type === "error" ? "alert" : "status"}
         >
-          <div className={styles.bannerContent}>
-            <div className={styles.bannerChildren}>
-              <BannerChildren>{children}</BannerChildren>
-            </div>
-            {primaryAction && (
-              <div className={styles.bannerAction}>
-                <Button {...primaryAction} />
-              </div>
-            )}
+          {/* <div className={styles.bannerContent}> */}
+          <div className={styles.bannerChildren}>
+            <BannerChildren>{children}</BannerChildren>
           </div>
+          {primaryAction && (
+            <div className={styles.bannerAction}>
+              <Button {...primaryAction} />
+            </div>
+          )}
+          {/* </div> */}
           {dismissible && (
             <button
               className={styles.closeButton}
