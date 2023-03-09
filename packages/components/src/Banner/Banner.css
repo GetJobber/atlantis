@@ -20,21 +20,14 @@
 
 .bannerChildren {
   align-self: center;
-  /* flex: 1; */
-  /* display: flex; */
-  flex: 1 1 auto;
-  gap: var(--space-small);
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
 }
 
 .bannerContent > *:last-child {
   margin-bottom: 0;
 }
 
-.medium .bannerContent {
-  flex-wrap: nowrap;
+.medium .bannerChildren {
+  flex: 1;
 }
 
 .bannerAction {
