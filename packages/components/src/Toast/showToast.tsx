@@ -7,6 +7,8 @@ import React, {
   useRef,
   useState,
 } from "react";
+// According to react, it's imported within the package
+// https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis
 // eslint-disable-next-line import/no-internal-modules
 import { createRoot } from "react-dom/client";
 import { Toast, ToastProps, ToastRef } from "./Toast";
@@ -22,9 +24,7 @@ if (!target) {
   document.body.appendChild(target);
 }
 
-// https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const root = createRoot(target!);
+const root = createRoot(target);
 
 export function showToast(props: ToastProps) {
   root.render(<ToasterOven {...props} />);

@@ -34,18 +34,17 @@ const successMessage =
 const infoMessage = "Bland Toast";
 const errorMessage = "Errorful should last inbetween min-max";
 
-it("creates the placeholder div on showToast call", () => {
-  const { getByText } = render(<MockToast />);
-
-  fireEvent.click(getByText("No Variation"));
-
-  expect(getByText(infoMessage)).toBeInstanceOf(HTMLSpanElement);
+it("creates the toasts target div", () => {
+  render(<MockToast />);
+  expect(document.querySelector("#atlantis-toast-element")).toBeInTheDocument();
 });
 
 it("renders a Slice of Toast when the 'showToast' method is called", () => {
-  const { getByText } = render(<MockToast />);
+  const { getByText, queryByText } = render(<MockToast />);
+  expect(queryByText(successMessage)).not.toBeInTheDocument();
+
   fireEvent.click(getByText("Success"));
-  expect(getByText(successMessage)).toBeInstanceOf(HTMLSpanElement);
+  expect(getByText(successMessage)).toBeInTheDocument();
 });
 
 it("shows a the checkmark icon for success toast", () => {
