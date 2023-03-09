@@ -26,8 +26,7 @@ beforeEach(() => jest.useFakeTimers());
 
 afterEach(() => {
   cleanup();
-  jest.clearAllTimers();
-  document.body.innerHTML = ``;
+  jest.runAllTimers();
 });
 
 const successMessage =
@@ -35,23 +34,17 @@ const successMessage =
 const infoMessage = "Bland Toast";
 const errorMessage = "Errorful should last inbetween min-max";
 
-it("creates the placeholder div on showToast call", () => {
-  const { getByText } = render(<MockToast />);
-  expect(document.querySelector(`#atlantis-toast-element`)).not.toBeInstanceOf(
-    HTMLDivElement,
-  );
-
-  fireEvent.click(getByText("No Variation"));
-
-  expect(document.querySelector(`#atlantis-toast-element`)).toBeInstanceOf(
-    HTMLDivElement,
-  );
+it("creates the toasts target div", () => {
+  render(<MockToast />);
+  expect(document.querySelector("#atlantis-toast-element")).toBeInTheDocument();
 });
 
 it("renders a Slice of Toast when the 'showToast' method is called", () => {
-  const { getByText } = render(<MockToast />);
+  const { getByText, queryByText } = render(<MockToast />);
+  expect(queryByText(successMessage)).not.toBeInTheDocument();
+
   fireEvent.click(getByText("Success"));
-  expect(getByText(successMessage)).toBeInstanceOf(HTMLSpanElement);
+  expect(getByText(successMessage)).toBeInTheDocument();
 });
 
 it("shows a the checkmark icon for success toast", () => {
