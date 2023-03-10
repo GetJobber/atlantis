@@ -150,7 +150,7 @@ follow the following format.
 `<TYPE>(<optional SCOPE>): <conditionally BREAKING CHANGE:> <description>`
 
 Want help with your pull request title? We have a
-[tool to help](../?path=/docs/guides-pull-request-title-generator--page).
+[tool to help](https://atlantis.getjobber.com/?path=/docs/guides-pull-request-title-generator--page).
 
 ##### Requesting review
 
