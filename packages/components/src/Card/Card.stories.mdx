@@ -4,6 +4,8 @@ import { Text } from "@jobber/components//Text";
 import { Heading } from "@jobber/components//Heading";
 import { Content } from "@jobber/components//Content";
 import { Button } from "@jobber/components/Button";
+import { InputText } from "@jobber/components/InputText";
+import { InputGroup } from "@jobber/components/InputGroup";
 
 # Card
 
@@ -20,24 +22,44 @@ import { Card } from "@jobber/components/Card";
   <Story
     name="Card"
     args={{
-      header: "Banana varieties",
+      header: {
+        title: "Company settings",
+        action: <Button label="Add New Setting" />,
+      },
     }}
   >
     {args => (
       <Card {...args}>
         <Content>
-          <Heading level={4}>Burro</Heading>
-          <Text>
-            Squatty and slightly square at the edges, these bananas are slightly
-            tangy and lemony. When ripe, the fruit is soft and the skin is
-            yellow with black spots. Also called Horse, Hog, or Orinoco bananas.
-          </Text>
-          <Heading level={4}>Cavendish</Heading>
-          <Text>
-            This is the familiar yellow banana sold in United States’
-            supermarkets. There are also other sizes of Cavendish, including
-            Dwarf and Giant, though they are difficult to find.
-          </Text>
+          <Heading level={4}>Details</Heading>
+          <InputGroup>
+            <InputText
+              defaultValue="Quest Provider"
+              placeholder="Company name"
+            />
+            <InputText placeholder="Years in business" />
+          </InputGroup>
+          <Heading level={4}>Contact</Heading>
+          <InputGroup>
+            <InputText
+              prefix={{
+                icon: "phone",
+              }}
+              placeholder="Phone number"
+            />
+            <InputText
+              prefix={{
+                icon: "presentation",
+              }}
+              placeholder="Website"
+            />
+            <InputText
+              prefix={{
+                icon: "email",
+              }}
+              placeholder="Email"
+            />
+          </InputGroup>
         </Content>
       </Card>
     )}

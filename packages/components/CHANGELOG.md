@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.5.1...@jobber/components@3.5.2) (2023-03-10)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [3.5.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.5.0...@jobber/components@3.5.1) (2023-03-08)
+
+
+### Bug Fixes
+
+* use update instead of forceUpdate on popper ([#1115](https://github.com/GetJobber/atlantis/issues/1115)) ([e74114c](https://github.com/GetJobber/atlantis/commit/e74114cabf8c00b6336939d4f670f11c5eb20a95))
+
+
+
+
+
+# [3.5.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.4.8...@jobber/components@3.5.0) (2023-03-08)
+
+
+### Features
+
+* **components:** only show the navigation buttons on Lightbox when there is more than 1 image ([#1112](https://github.com/GetJobber/atlantis/issues/1112)) ([63f0a85](https://github.com/GetJobber/atlantis/commit/63f0a85cbdc48492a9c1da90b016bd1c0a8f46fe))
+
+
+
+
+
 ## [3.4.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.4.7...@jobber/components@3.4.8) (2023-03-07)
 
 **Note:** Version bump only for package @jobber/components
