@@ -1,7 +1,18 @@
-# Changelog
+# Change Log
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [3.5.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.5.2...@jobber/components@3.5.3) (2023-03-10)
+
+
+### Bug Fixes
+
+* **components:** Update Banner to fix Global Banner layout in JO ([#1113](https://github.com/GetJobber/atlantis/issues/1113)) ([380cb89](https://github.com/GetJobber/atlantis/commit/380cb89133a984dae7cf445a08837bd17cc551e7))
+
+
+
+
 
 ## [3.5.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.5.1...@jobber/components@3.5.2) (2023-03-10)
 
