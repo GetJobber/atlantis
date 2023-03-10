@@ -86,7 +86,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.0.1",
     "jest-junit": "^6.4.0",
-    "lerna": "^3.20.2",
+    "lerna": "^6.5.1",
     "lint-staged": "^9.4.2",
     "lodash": "^4.17.21",
     "plop": "^2.5.3",
