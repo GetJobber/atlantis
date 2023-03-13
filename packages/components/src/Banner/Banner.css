@@ -26,8 +26,8 @@
   margin-bottom: 0;
 }
 
-.medium .bannerContent {
-  flex-wrap: nowrap;
+.medium .bannerChildren {
+  flex: 1;
 }
 
 .bannerAction {

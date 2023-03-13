@@ -112,6 +112,7 @@ const config: StorybookConfig = {
       ),
       "@jobber/docx": path.resolve(__dirname, "../packages/docx/src"),
       mdxUtils: path.resolve(__dirname, "components"),
+      "@atlantis": path.resolve(__dirname, "../"),
     });
 
     // Return the altered config
