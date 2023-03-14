@@ -1,4 +1,4 @@
-declare const global: {};
+declare const global: unknown;
 
 function getGlobal() {
   if (typeof window !== "undefined") {

@@ -30,7 +30,7 @@ it("Initials are trimmed to the first 3 characters", () => {
 it("displays an icon if no image and no initials are set", () => {
   // Disabling typecheck here to test a fallback. This version of avatar
   // should never be used, but is created as an extra safety.
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const { container } = render(<Avatar />);
   expect(container).toMatchSnapshot();

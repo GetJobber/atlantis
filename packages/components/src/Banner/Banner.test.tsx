@@ -115,7 +115,7 @@ it("does not wrap the its children in text if the children are not a simple stri
   expect(bruceHeading.parentElement).toBeInstanceOf(HTMLDivElement);
 });
 
-it("it should call the onClick when primaryAction is present", () => {
+it("should call the onClick when primaryAction is present", () => {
   const onClick = jest.fn();
 
   const { getByText } = render(

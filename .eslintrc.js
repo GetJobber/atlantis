@@ -1,8 +1,9 @@
+// eslint-disable-next-line import/no-internal-modules
 require("@jobber/eslint-config/patch-eslint-plugin-resolution.js");
 
 const packageAliases = [
   ["@jobber/components", "./packages/components/src"],
-  ["@jobber/hooks", "./packages/hooks"]
+  ["@jobber/hooks", "./packages/hooks"],
 ];
 
 module.exports = {
@@ -11,9 +12,9 @@ module.exports = {
     "import/resolver": {
       alias: {
         map: packageAliases,
-        extensions: [".ts", ".tsx", ".js", ".jsx", ".json", ".stories.mdx"]
-      }
-    }
+        extensions: [".ts", ".tsx", ".js", ".jsx", ".json", ".stories.mdx"],
+      },
+    },
   },
   rules: {
     /*
@@ -25,9 +26,9 @@ module.exports = {
     "import/no-internal-modules": [
       "error",
       {
-        allow: ["@jobber/components/*", "lodash/*"]
-      }
-    ]
+        allow: ["@jobber/components/*", "lodash/*"],
+      },
+    ],
   },
   overrides: [
     {
@@ -41,5 +42,5 @@ module.exports = {
         "import/no-extraneous-dependencies": "off",
       },
     },
-  ]
+  ],
 };

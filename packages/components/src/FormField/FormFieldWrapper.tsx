@@ -118,11 +118,13 @@ export function FormFieldWrapper({
     };
 
     if (prefixRef?.current && !hasValue) {
+      // eslint-disable-next-line no-unsafe-optional-chaining
       const { offsetWidth } = prefixRef?.current;
       newPadding.paddingLeft = offset(offsetWidth);
     }
 
     if (suffixRef?.current && !hasValue) {
+      // eslint-disable-next-line no-unsafe-optional-chaining
       const { offsetWidth } = suffixRef?.current;
       newPadding.paddingRight = offset(offsetWidth);
     }

@@ -36,7 +36,7 @@ export function TableOfContents({ githubInfo }: TableOfContentsProps) {
                *  Disabling ts for this line as we don't have a Github icon in
                * Jobber icons. This is bad. Do not copy this pattern.
                */
-              // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore
               label={<Github />}
               url={githubInfo?.repo}
