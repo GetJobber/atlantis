@@ -11,7 +11,6 @@ import { config } from "@jobber/formatters";
 import { Node, uniqueNodes } from "./uniqueNodes";
 import { Edge, createEdge, uniqueEdges } from "./uniqueEdges";
 import { useIsMounted } from "../useIsMounted";
-// hello
 
 interface UseCollectionQueryArguments<TQuery, TSubscription> {
   /**
