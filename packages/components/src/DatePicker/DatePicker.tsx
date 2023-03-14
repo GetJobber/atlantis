@@ -42,6 +42,11 @@ interface BaseDatePickerProps {
    * Change handler that will return the date selected.
    */
   onChange(val: Date): void;
+
+  /**
+   * Change handler when the selected month changes
+   */
+  onMonthChange?(val: Date): void;
 }
 
 interface DatePickerModalProps extends BaseDatePickerProps {
@@ -76,6 +81,7 @@ type DatePickerProps = XOR<DatePickerModalProps, DatePickerInlineProps>;
 
 export function DatePicker({
   onChange,
+  onMonthChange,
   activator,
   inline,
   selected,
@@ -130,12 +136,17 @@ export function DatePicker({
         onCalendarClose={handleCalendarClose}
         dateFormat={["P", "PP", "PPP", "MMM dd yyyy", "MMMM dd yyyy"]}
         highlightDates={highlightDates}
+        onMonthChange={handleMonthChange}
       />
     </div>
   );
 
   function handleChange(value: Date) {
     onChange(value);
+  }
+
+  function handleMonthChange(value: Date) {
+    onMonthChange?.(value);
   }
 
   function handleCalendarOpen() {
