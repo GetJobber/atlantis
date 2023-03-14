@@ -34,6 +34,11 @@ interface BaseDatePickerProps {
   readonly smartAutofocus?: boolean;
 
   /**
+   * Dates on the calendar to highlight
+   */
+  readonly highlightDates?: Date[];
+
+  /**
    * Change handler that will return the date selected.
    */
   onChange(val: Date): void;
@@ -80,6 +85,7 @@ export function DatePicker({
   smartAutofocus = true,
   maxDate,
   minDate,
+  highlightDates,
 }: DatePickerProps) {
   const { ref, focusOnSelectedDate } = useFocusOnSelectedDate();
   const [open, setOpen] = useState(false);
@@ -123,6 +129,7 @@ export function DatePicker({
         onCalendarOpen={handleCalendarOpen}
         onCalendarClose={handleCalendarClose}
         dateFormat={["P", "PP", "PPP", "MMM dd yyyy", "MMMM dd yyyy"]}
+        highlightDates={highlightDates}
       />
     </div>
   );

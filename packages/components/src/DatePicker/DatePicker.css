@@ -56,6 +56,10 @@
   justify-content: center;
 }
 
+.datePicker :global(.react-datepicker__day--highlighted) {
+  background: var(--color-surface--active);
+}
+
 .datePicker :global(.react-datepicker__day--outside-month) {
   border-radius: 0;
   color: var(--color-text);
