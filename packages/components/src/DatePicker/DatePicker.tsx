@@ -136,17 +136,13 @@ export function DatePicker({
         onCalendarClose={handleCalendarClose}
         dateFormat={["P", "PP", "PPP", "MMM dd yyyy", "MMMM dd yyyy"]}
         highlightDates={highlightDates}
-        onMonthChange={handleMonthChange}
+        onMonthChange={onMonthChange}
       />
     </div>
   );
 
-  function handleChange(value: Date) {
+  function handleChange(value: Date /* , event: React.SyntheticEvent */) {
     onChange(value);
-  }
-
-  function handleMonthChange(value: Date) {
-    onMonthChange?.(value);
   }
 
   function handleCalendarOpen() {
