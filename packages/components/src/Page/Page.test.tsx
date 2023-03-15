@@ -5,7 +5,6 @@ import { SectionProps } from "../Menu";
 
 jest.mock("@jobber/hooks", () => {
   return {
-    //https://stackoverflow.com/questions/62774929/mocking-react-router-dom-for-usehistory-hook-causes-the-following-error-ts2698
     ...(jest.requireActual("@jobber/hooks") as object),
     useResizeObserver: () => [
       { current: undefined },
