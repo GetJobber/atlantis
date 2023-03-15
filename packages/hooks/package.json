@@ -7,8 +7,7 @@
   "scripts": {
     "build": "tsc --project .",
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
-    "prepare": "npm run clean; npm run build",
-    "ci:typescript-compile": "npm run prepare"
+    "prepare": "npm run clean; npm run build"
   },
   "files": [
     "dist/*"

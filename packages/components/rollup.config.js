@@ -64,6 +64,5 @@ export default {
     "@jobber/design",
     "@jobber/formatters",
     "@jobber/hooks",
-    "@tanstack/react-table",
   ],
 };
