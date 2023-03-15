@@ -27,7 +27,12 @@ if (!target) {
 const root = createRoot(target);
 
 export function showToast(props: ToastProps) {
-  root.render(<ToasterOven {...props} />);
+  // Ensure target and body is still there when rendering the toast. This is due
+  // to an issue with ReactDOM createRoot assuming document is always there and
+  // Jest taking the document down.
+  if (document.body.contains(target)) {
+    root.render(<ToasterOven {...props} />);
+  }
 }
 
 const ToastContainer = forwardRef(ToastInternal);
