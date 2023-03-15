@@ -23,6 +23,7 @@ export function InputDuration({
         defaultValue={defaultValue}
         value={maskedVal}
         onChange={handleChange}
+        placeholder="Duration"
       />
       <div
         style={{
