@@ -27,8 +27,7 @@
     "build:iconCssStyle": "node buildIconStyles.js && npm run build:iconCssStyleTypes",
     "build:iconCssStyleTypes": "tsc --declaration --emitDeclarationOnly --allowJs src/icons/iconStyles.ts --outDir ./src/icons",
     "clean": "rm -rf dist/* icons/* colors.js foundation.* iconStyles.* tsconfig.tsbuildinfo",
-    "prepare": "npm run clean && npm run build",
-    "ci:typescript-compile": "npm run build:ts"
+    "prepare": "npm run clean && npm run build"
   },
   "dependencies": {
     "classnames": "^2.2.6"
