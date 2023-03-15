@@ -7,7 +7,7 @@
   border-width: calc(var(--space-small) * 0.75);
   border-radius: var(--radius-circle);
   background-color: var(--color-blue--lightest);
-  animation-duration: 1s;
+  animation-duration: calc(var(--timing-slowest) * 2);
   animation-iteration-count: infinite;
   animation-name: animationSpin;
   animation-timing-function: linear;

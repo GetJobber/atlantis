@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "3.5.3",
+  "version": "3.5.5",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,8 +9,7 @@
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
     "prepublishOnly": "ts-node --project ../../tsconfig.bin.json scripts/entryPoints.ts",
     "prepare": "npm run clean; npm run build",
-    "postpublish": "ts-node --project ../../tsconfig.bin.json scripts/entryPoints.ts clean",
-    "ci:typescript-compile": "rm -rf tsconfig.ci.tsbuildinfo && tsc --project tsconfig.ci.json"
+    "postpublish": "ts-node --project ../../tsconfig.bin.json scripts/entryPoints.ts clean"
   },
   "files": [
     "*.js",
