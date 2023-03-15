@@ -1,0 +1,26 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { InputDuration } from "@jobber/components/InputDuration";
+
+<Meta title="Components/InputDuration" component={InputDuration} />
+
+# InputDuration
+
+Input text with duration (24h time format) used in forms that needs to set a time duration.
+
+```ts
+import { InputDuration } from "@jobber/components/InputDuration";
+```
+
+<Canvas>
+  <Story
+    name="InputDuration"
+    args={{
+      defaultValue: "10:10",
+      description: "Description of the field"
+    }}
+  >
+    {args => <InputDuration {...args} />}
+  </Story>
+</Canvas>
+
+<ArgsTable of={InputDuration} story="InputDuration" />
