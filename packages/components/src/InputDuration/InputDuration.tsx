@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./InputDuration.css";
 import { InputText } from "../InputText";
 import { Typography } from "../Typography";
 
@@ -18,28 +19,18 @@ export function InputDuration({
 }: InputDurationProps) {
   const [maskedVal, setMaskedVal] = useState(defaultValue);
   return (
-    <div style={{ position: "relative" }}>
+    <div className={styles.container}>
       <InputText
         defaultValue={defaultValue}
         value={maskedVal}
         onChange={handleChange}
         placeholder="Duration"
       />
-      <div
-        style={{
-          position: "absolute",
-          top: "14px",
-          fontSize: "16px",
-          left: "17px",
-          zIndex: 2,
-          pointerEvents: "none",
-        }}
-        aria-hidden="true"
-      >
-        <span style={{ opacity: 0 }}>{maskedVal}</span>
+      <div className={styles.textWrapper} aria-hidden="true">
+        <span className={styles.maskText}>{maskedVal}</span>
       </div>
       {description && (
-        <div style={{ marginTop: 6 }}>
+        <div className={styles.description}>
           <Typography size="small" textColor="textSecondary">
             {description}
           </Typography>

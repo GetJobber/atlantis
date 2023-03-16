@@ -1,0 +1,20 @@
+.container {
+  position: relative;
+}
+
+.textWrapper {
+  position: absolute;
+  top: 14px;
+  font-size: 16px;
+  left: 17px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.maskText {
+  opacity: 0;
+}
+
+.description {
+  margin-top: 6px;
+}
