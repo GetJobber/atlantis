@@ -49,10 +49,6 @@ export function InputDuration({
   );
 
   function handleChange(value: string) {
-    const regex = /^[1-9]\d*$/;
-    const match = regex.exec(value);
-    console.log("match", match);
-
     const pattern = mask.split("");
     const specialChars = pattern.filter(char => char !== delimiter);
     const cleanVal = value

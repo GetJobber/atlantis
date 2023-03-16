@@ -20,7 +20,9 @@ it("renders a InputDuration", () => {
             <label
               class="label"
               for="123e4567-e89b-12d3-a456-426655440001"
-            />
+            >
+              Duration
+            </label>
             <input
               class="input"
               id="123e4567-e89b-12d3-a456-426655440001"
@@ -52,7 +54,7 @@ it("renders an initial time when given 'defaultValue'", () => {
         style="position: relative;"
       >
         <div
-          class="wrapper"
+          class="wrapper miniLabel"
         >
           <div
             class="inputWrapper"
@@ -60,7 +62,9 @@ it("renders an initial time when given 'defaultValue'", () => {
             <label
               class="label"
               for="123e4567-e89b-12d3-a456-426655440003"
-            />
+            >
+              Duration
+            </label>
             <input
               class="input"
               id="123e4567-e89b-12d3-a456-426655440003"
