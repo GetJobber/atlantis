@@ -42,7 +42,7 @@ it("renders with close button", () => {
   expect(queryByLabelText("Close this notification")).toBeTruthy();
 });
 
-test("it should call the handler with a number value", () => {
+test("should call the handler with a number value", () => {
   const changeHandler = jest.fn();
 
   const { getByLabelText } = render(

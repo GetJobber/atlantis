@@ -43,12 +43,6 @@ export const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-interface ListItems {
-  id?: string;
-  icon?: string;
-  content?: string;
-}
-
 interface LoadingState {
   loadingStatus: string;
   loading: boolean;

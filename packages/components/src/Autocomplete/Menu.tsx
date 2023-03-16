@@ -164,11 +164,10 @@ function useOnKeyDown(
 ) {
   // Pending: https://github.com/donavon/use-event-listener/pull/12
   // The types in useEventListener mistakenly require a SyntheticEvent for the passed generic.
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-  //@ts-ignore
-  useEventListener<KeyboardEvent>("keydown", (event: KeyboardEvent) => {
-    if (event.key === keyName) {
-      handler(event);
+  useEventListener("keydown", event => {
+    const newEvent = event as unknown as KeyboardEvent;
+    if (newEvent.key === keyName) {
+      handler(newEvent);
     }
   });
 }
