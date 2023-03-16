@@ -49,13 +49,23 @@ export function InputDuration({
   );
 
   function handleChange(value: string) {
+    const regex = /^[1-9]\d*$/;
+    const match = regex.exec(value);
+    console.log("match", match);
+
     const pattern = mask.split("");
     const specialChars = pattern.filter(char => char !== delimiter);
     const cleanVal = value
       .split("")
       .filter(char => !specialChars.includes(char));
 
-    if (parseInt(cleanVal[2], 10) > 5) {
+    /**
+     * Validation to check any not number or number > 59 (for minutes)
+     *  */
+    if (
+      parseInt(cleanVal[2], 10) > 5 ||
+      cleanVal.filter(i => isNaN(parseInt(i, 10))).length > 0
+    ) {
       return;
     }
 
