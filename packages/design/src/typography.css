@@ -35,7 +35,7 @@
   --typography--lineHeight-miniscule: 1.08;
 }
 
-@media (--handhelds) {
+@media (max-width: 639px) {
   :root {
     --typography--fontSize-extravagant: calc(
       var(--typography--fontSize-large) * 2.5
