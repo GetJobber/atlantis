@@ -9,7 +9,7 @@ it("renders a InputDuration", () => {
   expect(container).toMatchInlineSnapshot(`
     <div>
       <div
-        style="position: relative;"
+        class="container"
       >
         <div
           class="wrapper"
@@ -33,10 +33,10 @@ it("renders a InputDuration", () => {
         </div>
         <div
           aria-hidden="true"
-          style="position: absolute; top: 14px; font-size: 16px; left: 17px; z-index: 2; pointer-events: none;"
+          class="textWrapper"
         >
           <span
-            style="opacity: 0;"
+            class="maskText"
           />
         </div>
       </div>
@@ -51,7 +51,7 @@ it("renders an initial time when given 'defaultValue'", () => {
   expect(container).toMatchInlineSnapshot(`
     <div>
       <div
-        style="position: relative;"
+        class="container"
       >
         <div
           class="wrapper miniLabel"
@@ -75,10 +75,10 @@ it("renders an initial time when given 'defaultValue'", () => {
         </div>
         <div
           aria-hidden="true"
-          style="position: absolute; top: 14px; font-size: 16px; left: 17px; z-index: 2; pointer-events: none;"
+          class="textWrapper"
         >
           <span
-            style="opacity: 0;"
+            class="maskText"
           >
             10:55
           </span>
