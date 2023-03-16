@@ -141,6 +141,14 @@ export function DatePicker({
     </div>
   );
 
+  /**
+   * The onChange callback on ReactDatePicker returns a Date and an Event, but
+   * the onChange in our interface only provides the Date. Simplifying the code
+   * by removing this function and passing it directly to the underlying
+   * component breaks tests both here and downstream (i.e. the pattern
+   * `expect(onChange).toHaveBeenCalledWith(date)` is commonly used and would
+   * fail).
+   */
   function handleChange(value: Date /* , event: React.SyntheticEvent */) {
     onChange(value);
   }
