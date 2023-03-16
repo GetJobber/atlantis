@@ -134,9 +134,9 @@ describe("Ensure ReactDatePicker CSS class names exists", () => {
   });
 });
 
-async function popperUpdate(event: Function) {
+async function popperUpdate(event: () => void) {
   event();
   // Wait for the Popper update() so jest doesn't throw an act warning
   // https://github.com/popperjs/react-popper/issues/350
-  await act(async () => undefined);
+  await act(async () => () => undefined);
 }

@@ -40,7 +40,3 @@ export interface File
    */
   readonly src: string;
 }
-
-interface GalleryItem extends File {
-  readonly icon?: FileIconsNames;
-}

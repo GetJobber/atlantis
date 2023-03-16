@@ -92,11 +92,11 @@ export function InputAvatar({
   }
 }
 
-function Overlay({ children }: PropsWithChildren<{}>) {
+function Overlay({ children }: PropsWithChildren) {
   return <div className={styles.overlay}>{children}</div>;
 }
 
-function Centered({ children }: PropsWithChildren<{}>) {
+function Centered({ children }: PropsWithChildren) {
   // Note: this HIGHLY experimental Centered component is applying margin.
   return <div className={styles.centered}>{children}</div>;
 }

@@ -35,7 +35,7 @@ export function Drawer({
         className={drawerClassNames}
         data-testid="drawer-container"
         aria-label={title}
-        aria-visible={open}
+        aria-hidden={!open}
         id={id}
       >
         <div className={styles.drawer}>

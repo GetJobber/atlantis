@@ -334,7 +334,7 @@ describe("useCollectionQuery", () => {
 
     describe("#subscribeToMore", () => {
       describe("when hook receives update from item not in collection", () => {
-        it("it should add new item to collection", async () => {
+        it("should add new item to collection", async () => {
           const { result, waitForNextUpdate } = renderHook(
             () => useCollectionQueryHookWithSubscription(query),
             {
@@ -358,7 +358,7 @@ describe("useCollectionQuery", () => {
       });
 
       describe("when hook receives update from item already in collection", () => {
-        it("it should return the existing collection", async () => {
+        it("should return the existing collection", async () => {
           const { result, waitForNextUpdate } = renderHook(
             () => useCollectionQueryHookWithSubscription(query),
             {
