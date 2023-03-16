@@ -5,7 +5,7 @@ import { SectionProps } from "../Menu";
 
 jest.mock("@jobber/hooks", () => {
   return {
-    ...(jest.requireActual("@jobber/hooks") as object),
+    ...(jest.requireActual("@jobber/hooks") as Record<string, unknown>),
     useResizeObserver: () => [
       { current: undefined },
       { width: 1000, height: 100 },
