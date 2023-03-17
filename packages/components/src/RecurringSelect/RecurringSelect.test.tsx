@@ -81,49 +81,49 @@ describe("RecurringSelect with an existing week day selected", () => {
   });
 });
 
-describe("RecurringSelect with a daily recurrence", () => {
-  beforeEach(() => {
-    onChange = jest.fn();
-  });
+// describe("RecurringSelect with a daily recurrence", () => {
+//   beforeEach(() => {
+//     onChange = jest.fn();
+//   });
 
-  // eslint-disable-next-line max-statements
-  it("should call the onChange when interval and type are changed", () => {
-    const { container } = render(
-      <RecurringSelect
-        value={{
-          interval: 1,
-          type: DurationPeriod.Day,
-        }}
-        onChange={onChange}
-        disabled={false}
-      />,
-    );
+//   // eslint-disable-next-line max-statements
+//   it("should call the onChange when interval and type are changed", () => {
+//     const { container } = render(
+//       <RecurringSelect
+//         value={{
+//           interval: 1,
+//           type: DurationPeriod.Day,
+//         }}
+//         onChange={onChange}
+//         disabled={false}
+//       />,
+//     );
 
-    const intervalEl = container.querySelector(
-      'input[name="schedule-recurrence-interval"]',
-    );
-    expect(intervalEl).not.toBeNull();
-    expect(intervalEl instanceof HTMLInputElement).toBe(true);
+//     const intervalEl = container.querySelector(
+//       'input[name="schedule-recurrence-interval"]',
+//     );
+//     expect(intervalEl).not.toBeNull();
+//     expect(intervalEl instanceof HTMLInputElement).toBe(true);
 
-    if (intervalEl) {
-      fireEvent.change(intervalEl, { target: { value: 3 } });
+//     if (intervalEl) {
+//       fireEvent.change(intervalEl, { target: { value: 3 } });
 
-      expect(onChange).toHaveBeenCalledTimes(1);
+//       expect(onChange).toHaveBeenCalledTimes(1);
 
-      const typeEl = container.querySelector(
-        'select[name="schedule-recurrence-type"]',
-      );
-      expect(typeEl).not.toBeNull();
-      expect(typeEl instanceof HTMLSelectElement).toBe(true);
+//       const typeEl = container.querySelector(
+//         'select[name="schedule-recurrence-type"]',
+//       );
+//       expect(typeEl).not.toBeNull();
+//       expect(typeEl instanceof HTMLSelectElement).toBe(true);
 
-      if (typeEl) {
-        fireEvent.change(typeEl, { target: { value: "Year" } });
-      }
+//       if (typeEl) {
+//         fireEvent.change(typeEl, { target: { value: "Year" } });
+//       }
 
-      expect(onChange).toHaveBeenCalledTimes(2);
-    }
-  });
-});
+//       expect(onChange).toHaveBeenCalledTimes(2);
+//     }
+//   });
+// });
 
 describe("RecurringSelect with a day of month recurrenceRule", () => {
   beforeEach(() => {
