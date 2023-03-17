@@ -12,6 +12,16 @@ import {
   royaltyReportData,
 } from "./test-utilities";
 
+// Allow us to mock and replace the value of useResizeObserver would return via
+// a spy
+// https://stackoverflow.com/a/72885576
+jest.mock("@jobber/hooks", () => {
+  return {
+    __esModule: true, //    <----- this __esModule: true is important
+    ...(jest.requireActual("@jobber/hooks") as object),
+  };
+});
+
 describe("when rendering a Basic Table", () => {
   beforeEach(() => {
     render(<DataTable data={data} columns={columns} />);
