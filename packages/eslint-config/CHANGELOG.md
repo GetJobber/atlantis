@@ -1,7 +1,37 @@
-# Changelog
+# Change Log
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [0.11.0](https://github.com/GetJobber/atlantis/compare/@jobber/eslint-config@0.10.3...@jobber/eslint-config@0.11.0) (2023-03-17)
+
+
+* feat(eslint)!: Bump ESLint and related packages to latest (#1136) ([ff574fa](https://github.com/GetJobber/atlantis/commit/ff574fa1dfed862fef8843eff573491f59af8981)), closes [#1136](https://github.com/GetJobber/atlantis/issues/1136)
+
+
+### BREAKING CHANGES
+
+* Eslint peer dependency updated to >=7.28.0
+
+
+
+
+
+## [0.10.3](https://github.com/GetJobber/atlantis/compare/@jobber/eslint-config@0.10.2...@jobber/eslint-config@0.10.3) (2023-03-17)
+
+**Note:** Version bump only for package @jobber/eslint-config
+
+
+
+
+
+## [0.10.2](https://github.com/GetJobber/atlantis/compare/@jobber/eslint-config@0.10.1...@jobber/eslint-config@0.10.2) (2023-03-17)
+
+**Note:** Version bump only for package @jobber/eslint-config
+
+
+
+
 
 ## [0.10.1](https://github.com/GetJobber/atlantis/compare/@jobber/eslint-config@0.10.0...@jobber/eslint-config@0.10.1) (2023-02-28)
 
