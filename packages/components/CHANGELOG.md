@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.5.10...@jobber/components@4.0.0) (2023-03-17)
+
+
+* feat!: Make React 18 as the only Peer Deps [JOB-63252] BREAKING CHANGE (#1111) ([c4682e8](https://github.com/GetJobber/atlantis/commit/c4682e89f8926ab9ba8341331474c81676ff9c6d)), closes [#1111](https://github.com/GetJobber/atlantis/issues/1111) [#1103](https://github.com/GetJobber/atlantis/issues/1103) [#1105](https://github.com/GetJobber/atlantis/issues/1105)
+
+
+### BREAKING CHANGES
+
+* React 18 as Peer Deps
+
+* build: Force React 18 Peer Deps BREAKING CHANGE
+
+
+
+
+
 ## [3.5.10](https://github.com/GetJobber/atlantis/compare/@jobber/components@3.5.9...@jobber/components@3.5.10) (2023-03-17)
 
 **Note:** Version bump only for package @jobber/components
