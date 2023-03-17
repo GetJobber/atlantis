@@ -1,4 +1,3 @@
-/* eslint-disable jest/no-conditional-expect */
 import React from "react";
 import { cleanup, fireEvent, render } from "@testing-library/react";
 import { RecurringSelect } from "./RecurringSelect";
