@@ -13,7 +13,6 @@
     "dist/*"
   ],
   "devDependencies": {
-    "@apollo/client": "^3.3.16",
     "@apollo/react-testing": "^4.0.0",
     "@jobber/formatters": "^0.2.2",
     "@testing-library/react": "^14.0.0",
@@ -24,7 +23,6 @@
     "@types/react-dom": "^18.0.11",
     "@types/uuid": "^8.3.3",
     "@types/zxcvbn": "^4.4.1",
-    "graphql": "^14.6.0",
     "typescript": "^3.8.3",
     "uuid": "^8.3.2"
   },
@@ -37,7 +35,7 @@
     "zxcvbn": "^4.4.2"
   },
   "peerDependencies": {
-    "@apollo/client": "^3.3.16",
-    "react": ">=16.8"
+    "@apollo/client": "^3.7.10",
+    "react": "^18"
   }
 }
