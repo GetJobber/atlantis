@@ -186,7 +186,7 @@ describe("Selecting an option", () => {
       expect(handleOptionSelect).toHaveBeenCalledWith(chips[1]);
     });
 
-    it("should add the typed text on 'Comma' ", () => {
+    it("should add the typed text on 'Comma'", () => {
       const result = setupHook();
       const value = "Marvelous";
       act(() => result.current.handleSearchChange(fakeChangeEvent(value)));
@@ -195,7 +195,7 @@ describe("Selecting an option", () => {
       expect(handleOptionSelect).not.toHaveBeenCalled();
     });
 
-    it("should not add an empty string 'Comma' ", () => {
+    it("should not add an empty string 'Comma'", () => {
       const result = setupHook();
       act(() => result.current.handleKeyDown(fakeKeyDownEvent(",")));
       expect(handleCustomOptionSelect).not.toHaveBeenCalled();

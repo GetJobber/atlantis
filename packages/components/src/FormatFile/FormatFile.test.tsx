@@ -33,7 +33,7 @@ it("renders an image when provided as src", async () => {
   expect(await findByRole("img")).toBeInTheDocument();
 });
 
-it("it should call the delete handler", async () => {
+it("should call the delete handler", async () => {
   const testFile = {
     key: "234",
     name: "TPS Reports",

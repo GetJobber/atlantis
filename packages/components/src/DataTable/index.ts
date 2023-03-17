@@ -2,6 +2,7 @@ export { DataTable } from "./DataTable";
 
 export * from "./types";
 
+// eslint-disable-next-line import/no-internal-modules
 export * from "./test-utilities/helpers";
 
 export {

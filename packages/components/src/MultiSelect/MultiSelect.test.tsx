@@ -42,7 +42,7 @@ describe("when rendering MultiSelect component", () => {
     });
   });
 
-  describe("when all options are unchecked ", () => {
+  describe("when all options are unchecked", () => {
     const AllOptionsUnchecked = () => {
       const [options, setOptions] = useState([
         { label: "Synced", checked: false },
@@ -72,7 +72,7 @@ describe("when rendering MultiSelect component", () => {
     });
   });
 
-  describe("when all options are checked ", () => {
+  describe("when all options are checked", () => {
     const AllOptionsChecked = () => {
       const [options, setOptions] = useState([
         { label: "Synced", checked: true },

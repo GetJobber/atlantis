@@ -42,7 +42,7 @@ it("renders with close button", () => {
   expect(queryByLabelText("Close this notification")).toBeTruthy();
 });
 
-test("it should call the handler with a number value", () => {
+test("should call the handler with a number value", () => {
   const changeHandler = jest.fn();
 
   const { getByLabelText } = render(
@@ -115,7 +115,7 @@ it("does not wrap the its children in text if the children are not a simple stri
   expect(bruceHeading.parentElement).toBeInstanceOf(HTMLDivElement);
 });
 
-it("it should call the onClick when primaryAction is present", () => {
+it("should call the onClick when primaryAction is present", () => {
   const onClick = jest.fn();
 
   const { getByText } = render(

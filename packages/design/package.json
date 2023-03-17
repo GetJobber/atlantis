@@ -1,6 +1,6 @@
 {
   "name": "@jobber/design",
-  "version": "0.29.4",
+  "version": "0.29.5",
   "description": "Design foundation for the Jobber Atlantis Design System",
   "license": "MIT",
   "main": "dist/index.js",
@@ -30,12 +30,10 @@
     "prepare": "npm run clean && npm run build"
   },
   "dependencies": {
-    "classnames": "^2.2.6"
+    "classnames": "^2.3.2"
   },
   "devDependencies": {
-    "@types/classnames": "^2.2.10",
     "autoprefixer": "^9.5.1",
-    "classnames": "^2.2.6",
     "css-to-react-native-transform": "^2.0.0",
     "postcss": "^7.0.36",
     "postcss-calc": "7.0.2",

@@ -2,7 +2,7 @@
 
 module.exports = {
   "*.{js,jsx,ts,tsx}": [
-    "eslint --format=codeFrame --fix",
+    "eslint --format=codeframe --fix",
     "git add",
     "jest --bail --findRelatedTests",
   ],
