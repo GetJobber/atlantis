@@ -29,10 +29,11 @@
     "clean": "rm -rf dist/* icons/* colors.js foundation.* iconStyles.* tsconfig.tsbuildinfo",
     "prepare": "npm run clean && npm run build"
   },
-  "dependencies": {},
+  "dependencies": {
+    "classnames": "^2.3.2"
+  },
   "devDependencies": {
     "autoprefixer": "^9.5.1",
-    "classnames": "^2.3.2",
     "css-to-react-native-transform": "^2.0.0",
     "postcss": "^7.0.36",
     "postcss-calc": "7.0.2",
