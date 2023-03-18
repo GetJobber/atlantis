@@ -19,14 +19,14 @@ export default {
       plugins: [
         require("postcss-import"),
         require("autoprefixer"),
-        require("postcss-svg"),
+        // require("postcss-svg"), Remove this package or replace it
         // eslint-disable-next-line @typescript-eslint/no-var-requires
         require("postcss-preset-env")({
           stage: 1,
           preserve: true,
           importFrom: [
             require.resolve("@jobber/design"),
-            require.resolve("@jobber/design/src/responsiveBreakpoints.css"),
+            require.resolve("@jobber/design/foundation.css"),
           ],
         }),
       ],

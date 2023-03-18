@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import styles from "./DrawerGrid.module.css";
+import styles from "./DrawerGrid.css";
 
 interface DrawerGridProps {
   children: ReactElement | ReactElement[];
