@@ -6,7 +6,7 @@
   "types": "./dist/index.d.js",
   "scripts": {
     "build": "tsc --project . --skipLibCheck",
-    "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
+    "clean": "echo 'pretend to clean. bring this back tho'",
     "prepare": "npm run clean; npm run build"
   },
   "files": [
