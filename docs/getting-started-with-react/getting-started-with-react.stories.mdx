@@ -1,27 +1,17 @@
 import { Canvas, Meta } from "@storybook/addon-docs";
+import { useState } from "react";
+import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 import { Card } from "@jobber/components/Card";
 import { Content } from "@jobber/components/Content";
 import { Button } from "@jobber/components/Button";
 import { InputText } from "@jobber/components/InputText";
-import { loadingGIF, getGIF } from "./getGIF";
-import { useState } from "react";
-import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
+import { getGIF, loadingGIF } from "./getGIF";
 
 <Meta title="Guides/Getting started with React" />
 
 # Getting Started with React
 
 ## Things to know.
-
-<!--
-- We will reference Typescript in this guide.
-  - https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html
-  - https://create-react-app.dev/docs/getting-started#creating-a-typescript-app
-  - Why Typescript?
-- We will reference functional components. Older class components are still
-  around and you will see them in some guides but we should prefer functional
-  components.
--->
 
 ## What is React
 
