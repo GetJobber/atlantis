@@ -22,7 +22,7 @@ import { DatePicker } from "@jobber/components/DatePicker";
 ```
 
 <Canvas>
-  <Story name="DatePicker">
+  <Story name="DatePicker" args={{ date: undefined }}>
     {args => {
       const [date, setDate] = useState(args.date);
       return (
@@ -180,7 +180,7 @@ dates, and `space` and/or `return` to make selections. Pressing `escape` will
 close the Datepicker.
 
 The date available for selection is read aloud to assistive technology in the
-format "Choose {date} (button)". For example, "Choose December 1st, 2021
+format "Choose [date] (button)". For example, "Choose December 1st, 2021
 (button)".
 
 If using a custom activator, ensure that the activator is keyboard-operable.
