@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.0.1...@jobber/components@4.0.2) (2023-03-20)
+
+
+### Bug Fixes
+
+* **components:** define and standardize lineheight in FormField ([#1139](https://github.com/GetJobber/atlantis/issues/1139)) ([9b50684](https://github.com/GetJobber/atlantis/commit/9b5068432357084857d29aee216f4720b77cd671))
+
+
+
+
+
 ## [4.0.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.0.0...@jobber/components@4.0.1) (2023-03-17)
 
 **Note:** Version bump only for package @jobber/components
