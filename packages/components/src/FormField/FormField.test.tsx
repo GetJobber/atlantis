@@ -201,7 +201,7 @@ describe("FormField", () => {
         );
 
         expect(validationHandler).toHaveBeenCalled();
-        expect(validationHandler).toHaveBeenCalledWith(undefined);
+        expect(validationHandler).toHaveBeenCalledWith("");
       });
     });
 

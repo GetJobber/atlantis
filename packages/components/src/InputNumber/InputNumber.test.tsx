@@ -63,7 +63,7 @@ test("it should call the validation with undefined as a success", () => {
     />,
   );
 
-  expect(validationHandler).toHaveBeenCalledWith(undefined);
+  expect(validationHandler).toHaveBeenCalledWith("");
 });
 
 test("it should call the validation with a range error", async () => {
@@ -163,7 +163,7 @@ test("validation passes if number is correct", async () => {
   input.blur();
 
   await waitFor(() => {
-    expect(validationHandler).toHaveBeenCalledWith(undefined);
+    expect(validationHandler).toHaveBeenCalledWith("");
   });
 });
 
