@@ -6,9 +6,9 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rollup --config",
-    "clean": "echo 'pretend to clean. bring this back tho'",
+    "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
     "prepublishOnly": "ts-node --project ../../tsconfig.bin.json scripts/entryPoints.ts",
-    "prepare": "npm run clean; npm run build",
+    "bootstrap": "npm run clean; npm run build",
     "postpublish": "ts-node --project ../../tsconfig.bin.json scripts/entryPoints.ts clean"
   },
   "files": [

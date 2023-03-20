@@ -8,7 +8,10 @@
     "packages/design",
     "packages/hooks",
     "packages/components",
-    "packages/*"
+    "packages/docx",
+    "packages/eslint-config",
+    "packages/generators",
+    "packages/stylelint-config"
   ],
   "scripts": {
     "prestart": "npm run buildHooksIndex",
@@ -35,7 +38,8 @@
     "lerna:clean": "lerna run clean && lerna clean --y && npm run clean:packages && npm run clean",
     "clean:packages": "rm -rf node_modules **/dist",
     "storybook": "storybook dev -p 6005",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "postinstall": "npm run bootstrap --workspaces --if-present"
   },
   "repository": {
     "type": "git",
