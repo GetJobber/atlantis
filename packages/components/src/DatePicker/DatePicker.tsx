@@ -34,9 +34,19 @@ interface BaseDatePickerProps {
   readonly smartAutofocus?: boolean;
 
   /**
+   * Dates on the calendar to highlight
+   */
+  readonly highlightDates?: Date[];
+
+  /**
    * Change handler that will return the date selected.
    */
   onChange(val: Date): void;
+
+  /**
+   * Change handler when the selected month changes
+   */
+  onMonthChange?(val: Date): void;
 }
 
 interface DatePickerModalProps extends BaseDatePickerProps {
@@ -71,6 +81,7 @@ type DatePickerProps = XOR<DatePickerModalProps, DatePickerInlineProps>;
 
 export function DatePicker({
   onChange,
+  onMonthChange,
   activator,
   inline,
   selected,
@@ -80,6 +91,7 @@ export function DatePicker({
   smartAutofocus = true,
   maxDate,
   minDate,
+  highlightDates,
 }: DatePickerProps) {
   const { ref, focusOnSelectedDate } = useFocusOnSelectedDate();
   const [open, setOpen] = useState(false);
@@ -123,11 +135,21 @@ export function DatePicker({
         onCalendarOpen={handleCalendarOpen}
         onCalendarClose={handleCalendarClose}
         dateFormat={["P", "PP", "PPP", "MMM dd yyyy", "MMMM dd yyyy"]}
+        highlightDates={highlightDates}
+        onMonthChange={onMonthChange}
       />
     </div>
   );
 
-  function handleChange(value: Date) {
+  /**
+   * The onChange callback on ReactDatePicker returns a Date and an Event, but
+   * the onChange in our interface only provides the Date. Simplifying the code
+   * by removing this function and passing it directly to the underlying
+   * component breaks tests both here and downstream (i.e. the pattern
+   * `expect(onChange).toHaveBeenCalledWith(date)` is commonly used and would
+   * fail).
+   */
+  function handleChange(value: Date /* , event: React.SyntheticEvent */) {
     onChange(value);
   }
 

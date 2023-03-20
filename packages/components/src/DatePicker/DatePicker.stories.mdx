@@ -128,6 +128,46 @@ or `maxDate` to the component as props.
   </ExampleWithHooks>
 </Canvas>
 
+## Highlighted dates
+
+If you need to call attention to a series of dates on the calendar, the
+`highlightDates` prop accepts an array of dates that will be displayed with
+additional emphasis.
+
+<Canvas>
+  <ExampleWithHooks>
+    {() => {
+      const [date, setDate] = useState(new Date("01/02/2023"));
+      const highlightDates = [
+        new Date("01/01/2023"),
+        new Date("02/20/2023"),
+        new Date("04/07/2023"),
+        new Date("05/22/2023"),
+        new Date("07/01/2023"),
+        new Date("08/07/2023"),
+        new Date("09/04/2023"),
+        new Date("10/09/2023"),
+        new Date("11/13/2023"),
+        new Date("12/25/2023"),
+        new Date("12/26/2023"),
+      ];
+      return (
+        <Content>
+          <DatePicker
+            minDate={new Date("01/01/2023")}
+            maxDate={new Date("12/31/2023")}
+            selected={date}
+            inline
+            onChange={setDate}
+            highlightDates={highlightDates}
+          />
+          <DataDump defaultOpen label="highlightDates" data={highlightDates} />
+        </Content>
+      );
+    }}
+  </ExampleWithHooks>
+</Canvas>
+
 ## Accessibility
 
 At this point, the `DatePicker` component is a wrapped version of
