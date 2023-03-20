@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.0.2...@jobber/components@4.1.0) (2023-03-20)
+
+
+### Features
+
+* **components:** Add highlightDates and onMonthChange props to DatePicker ([#1119](https://github.com/GetJobber/atlantis/issues/1119)) ([06b421b](https://github.com/GetJobber/atlantis/commit/06b421babbd625c6e47d3dad31082ff7794ac714))
+
+
+
+
+
 ## [4.0.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.0.1...@jobber/components@4.0.2) (2023-03-20)
 
 
