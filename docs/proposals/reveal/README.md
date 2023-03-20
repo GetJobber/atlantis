@@ -33,7 +33,7 @@ render() {
   return (
     <Card>
       <Reveal expanded=this.state.expanded>
-        <!-- ... -->
+        {/* ... */}
       </Reveal>
 
       <button onClick={this.toggleExpanded}>{buttonText}</button>
@@ -52,7 +52,7 @@ render() {
         </CardHeader>
       }
       <Reveal expanded=this.state.expanded>
-        <!-- ... -->
+        {/* ... */}
       </Reveal>
 
       {this.state.expanded &&
