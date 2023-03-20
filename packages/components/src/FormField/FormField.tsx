@@ -14,6 +14,7 @@ import styles from "./FormField.css";
 import { FormFieldWrapper } from "./FormFieldWrapper";
 import { FormFieldPostFix } from "./FormFieldPostFix";
 
+// eslint-disable-next-line max-statements
 export function FormField(props: FormFieldProps) {
   const {
     actionsRef,
@@ -42,10 +43,14 @@ export function FormField(props: FormFieldProps) {
     onValidation,
   } = props;
 
-  const { control, errors, setValue, watch } =
-    useFormContext() != undefined
-      ? useFormContext()
-      : useForm({ mode: "onTouched" });
+  const {
+    control,
+    formState: { errors },
+    setValue,
+    watch,
+  } = useFormContext() != undefined
+    ? useFormContext()
+    : useForm({ mode: "onTouched" });
 
   const [identifier] = useState(uuidv1());
   const [descriptionIdentifier] = useState(`descriptionUUID--${uuidv1()}`);
@@ -70,7 +75,10 @@ export function FormField(props: FormFieldProps) {
     },
   }));
 
-  const error = errors[controlledName] && errors[controlledName].message;
+  const message = errors[controlledName]?.message;
+
+  const error = getErrorMessage();
+
   useEffect(() => handleValidation(), [error]);
 
   return (
@@ -80,10 +88,12 @@ export function FormField(props: FormFieldProps) {
       rules={{ ...validations }}
       defaultValue={value ?? defaultValue ?? ""}
       render={({
-        onChange: onControllerChange,
-        onBlur: onControllerBlur,
-        name: controllerName,
-        ...rest
+        field: {
+          onChange: onControllerChange,
+          onBlur: onControllerBlur,
+          name: controllerName,
+          ...rest
+        },
       }) => {
         const fieldProps = {
           ...rest,
@@ -193,6 +203,14 @@ export function FormField(props: FormFieldProps) {
       }}
     />
   );
+
+  function getErrorMessage() {
+    if (typeof message === "string") {
+      return message;
+    }
+
+    return "";
+  }
 
   function handleValidation() {
     onValidation && onValidation(error);
