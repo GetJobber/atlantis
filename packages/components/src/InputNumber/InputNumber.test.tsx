@@ -50,7 +50,7 @@ test("it should call the handler with a number value", () => {
   expect(changeHandler).toHaveBeenCalledWith(newValue);
 });
 
-test("it should call the validation with undefined as a success", () => {
+test("it should call the validation with empty string as a success", () => {
   const validationHandler = jest.fn();
 
   render(
