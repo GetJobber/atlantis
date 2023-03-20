@@ -8,7 +8,7 @@
     "build": "rollup --config",
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
     "prepublishOnly": "ts-node --project ../../tsconfig.bin.json scripts/entryPoints.ts",
-    "prepare": "npm run clean; npm run build",
+    "bootstrap": "npm run clean; npm run build",
     "postpublish": "ts-node --project ../../tsconfig.bin.json scripts/entryPoints.ts clean"
   },
   "files": [

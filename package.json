@@ -37,7 +37,8 @@
     "lerna:clean": "lerna run clean && lerna clean --y && npm run clean:packages && npm run clean",
     "clean:packages": "rm -rf node_modules **/dist",
     "storybook": "start-storybook -p 6005",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "postinstall": "npm run bootstrap --workspaces --if-present"
   },
   "repository": {
     "type": "git",
