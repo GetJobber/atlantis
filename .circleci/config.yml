@@ -38,7 +38,7 @@ references:
   npm_install: &npm_install
     run:
       name: Install Dependencies
-      command: export IGNORE_OPTIONAL_DEPENDENCIES=true; npm ci --no-optional --legacy-peer-deps
+      command: export IGNORE_OPTIONAL_DEPENDENCIES=true; npm ci -omit=optional --legacy-peer-deps
 
   github_authenticity: &github_authenticity
     run:
