@@ -36,8 +36,8 @@
     "release-the-kraken": "export IGNORE_OPTIONAL_DEPENDENCIES=true; npm ci -omit=optional && lerna publish",
     "release:unpublished-package": "export IGNORE_OPTIONAL_DEPENDENCIES=true; npm ci -omit=optional && lerna publish from-package",
     "start": "npm run storybook",
-    "storybook": "start-storybook -p 6005",
-    "storybook:build": "build-storybook",
+    "storybook": "export NODE_OPTIONS=--openssl-legacy-provider && start-storybook -p 6005",
+    "storybook:build": "export NODE_OPTIONS=--openssl-legacy-provider && build-storybook",
     "test": "jest"
   },
   "repository": {
@@ -61,6 +61,7 @@
     "@jobber/eslint-config": "*",
     "@jobber/generators": "*",
     "@jobber/stylelint-config": "*",
+    "@mdx-js/react": "^1.6.22",
     "@storybook/addon-actions": "^6.5.16",
     "@storybook/addon-docs": "^6.5.16",
     "@storybook/addon-essentials": "^6.5.16",
@@ -93,6 +94,7 @@
     "glob": "^7.1.4",
     "graphql": "^15.8.0",
     "graphql-ws": "^5.12.0",
+    "html-webpack-plugin": "^5.5.0",
     "husky": "^2.4.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.0.1",
@@ -136,5 +138,11 @@
   },
   "optionalDependencies": {
     "@jobber/fonts": "^1.1.0"
+  },
+  "overrides": {
+    "@mdx-js/react": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    }
   }
 }
