@@ -19,16 +19,10 @@ references:
         - v1-repo-{{ .Branch }}
         - v1-repo
 
-  sum_lockfiles: &sum_lockfiles
-    run:
-      name: Sum Lockfiles
-      command: md5sum package-lock.json packages/*/package-lock.json > /tmp/lock-sums
-
   restore_npm_cache: &restore_npm_cache
     restore_cache:
       name: Restore npm cache
       keys:
-        - npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
         - npm-cache-v1
 
   attach_workspace: &attach_workspace
@@ -74,18 +68,12 @@ jobs:
     <<: *container_config
     steps:
       - *attach_workspace
-      - *sum_lockfiles
       - *restore_npm_cache
       - run:
           name: Authenticate with npm
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/atlantis/.npmrc
       - *npm_install
       - *persist_to_workspace
-      - save_cache:
-          name: Save npm cache
-          key: npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
-          paths:
-            - ~/.npm
 
   check_for_manual_release:
     <<: *container_config
