@@ -1,4 +1,4 @@
-import type { StorybookConfig } from "@storybook/react/types";
+import type { StorybookConfig } from "@storybook/react-webpack5";
 import * as webpack from "webpack";
 const path = require("path");
 
@@ -12,6 +12,7 @@ const config: StorybookConfig = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
+    "@storybook/addon-mdx-gfm",
     {
       name: "@storybook/addon-docs",
       options: {
@@ -20,15 +21,25 @@ const config: StorybookConfig = {
     },
   ],
   features: { buildStoriesJson: true },
-  framework: "@storybook/react",
-  webpackFinal: async config => {
+  framework: {
+    name: "@storybook/react-webpack5",
+    options: {},
+  },
+  // Prevent reactDocgen from reaching into Webpack 4 and breaking the build.
+  typescript: { reactDocgen: false },
+  docs: {
+    autodocs: true,
+  },
+  webpackFinal: async webpackConfig => {
     /**
      * Separate existing rules for CSS files
      */
-    if (config.module?.rules) {
-      const matcher = (rule: webpack.RuleSetRule): boolean =>
-        rule.test?.toString() === "/\\.css$/";
-      const existingRule = config.module.rules.find(matcher);
+    if (webpackConfig.module?.rules) {
+      const matcher = (rule: string | webpack.RuleSetRule): boolean => {
+        if (typeof rule === "string") return false;
+        return rule.test?.toString() === "/\\.css$/";
+      };
+      const existingRule = webpackConfig.module.rules.find(matcher);
 
       // CSS rules for 3rd-party package only
       const packageCssRule = { ...existingRule, include: /node_modules/ };
@@ -53,8 +64,8 @@ const config: StorybookConfig = {
       };
 
       // Delete existing CSS rule and replace them with the new ones
-      config.module.rules = [
-        ...config.module.rules.filter(r => !matcher(r)),
+      webpackConfig.module.rules = [
+        ...webpackConfig.module.rules.filter(r => !matcher(r)),
         packageCssRule,
         atlantisCssRule,
       ];
@@ -66,22 +77,28 @@ const config: StorybookConfig = {
      *
      * Until we get to React 18, Node 18, Webpack 5, Storybook 7, this is needed.
      */
-    config.module?.rules.push({
+    webpackConfig.module?.rules?.push({
       test: /\.mjs$/,
       include: /node_modules/,
       type: "javascript/auto",
-    })
+    });
 
     /**
      * Generate css types on `.css` file save,
      * as well as handle PostCss
      */
-    config.module?.rules.push({
+    webpackConfig.module?.rules?.push({
       enforce: "pre",
       test: /\.css$/,
       exclude: [/node_modules/, /\.storybook\/assets\/css\/.*\.css$/],
       use: [
-        require.resolve("typed-css-modules-loader"),
+        // FIXME: This throws a warning for generating d.ts file with the same name
+        // FIXME
+        // FIXME
+        // FIXME
+        // FIXME
+        // FIXME
+        // require.resolve("typed-css-modules-loader"),
         {
           loader: "postcss-loader",
           options: {
@@ -105,7 +122,7 @@ const config: StorybookConfig = {
     });
 
     // Alias @jobber so it works on MDX files
-    Object.assign(config.resolve?.alias, {
+    Object.assign(webpackConfig.resolve?.alias, {
       "@jobber/components": path.resolve(
         __dirname,
         "../packages/components/src",
@@ -116,7 +133,7 @@ const config: StorybookConfig = {
     });
 
     // Return the altered config
-    return config;
+    return webpackConfig;
   },
 };
 
