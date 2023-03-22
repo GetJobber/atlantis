@@ -22,7 +22,10 @@ jest.mock("framer-motion", () => ({
   default: jest.fn(),
 }));
 
-beforeEach(() => jest.useFakeTimers());
+beforeEach(() => {
+  jest.useFakeTimers();
+  jest.spyOn(global, "setTimeout");
+});
 
 afterEach(() => {
   cleanup();

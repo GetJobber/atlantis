@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders each variation of checked, defaultChecked and indeterminate 1`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>
@@ -150,7 +150,7 @@ Object {
 `;
 
 exports[`renders each variation of checked, defaultChecked and indeterminate 2`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>
@@ -342,7 +342,7 @@ Object {
 `;
 
 exports[`renders each variation of checked, defaultChecked and indeterminate 3`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>
@@ -580,7 +580,7 @@ Object {
 `;
 
 exports[`renders each variation of checked, defaultChecked and indeterminate 4`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>
@@ -861,7 +861,7 @@ Object {
 `;
 
 exports[`renders each variation of checked, defaultChecked and indeterminate 5`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>
@@ -1188,7 +1188,7 @@ Object {
 `;
 
 exports[`renders each variation of checked, defaultChecked and indeterminate 6`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>
@@ -1558,7 +1558,7 @@ Object {
 `;
 
 exports[`renders each variation of checked, defaultChecked and indeterminate 7`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>
@@ -1974,7 +1974,7 @@ Object {
 `;
 
 exports[`renders each variation of checked, defaultChecked and indeterminate 8`] = `
-Object {
+{
   "asFragment": [Function],
   "baseElement": <body>
     <div>

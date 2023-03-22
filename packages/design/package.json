@@ -30,6 +30,7 @@
     "prepare": "npm run clean && npm run build"
   },
   "dependencies": {
+    "@types/node": "^18.15.5",
     "classnames": "^2.3.2"
   },
   "devDependencies": {
