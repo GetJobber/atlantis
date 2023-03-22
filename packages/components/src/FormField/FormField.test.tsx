@@ -189,7 +189,7 @@ describe("FormField", () => {
     });
 
     describe("without validation errors", () => {
-      it("should trigger onValidation with an empty string", () => {
+      it("should trigger onValidation with undefined", () => {
         const validationHandler = jest.fn();
 
         render(
@@ -201,7 +201,7 @@ describe("FormField", () => {
         );
 
         expect(validationHandler).toHaveBeenCalled();
-        expect(validationHandler).toHaveBeenCalledWith("");
+        expect(validationHandler).toHaveBeenCalledWith(undefined);
       });
     });
 
