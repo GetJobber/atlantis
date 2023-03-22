@@ -29,9 +29,7 @@ beforeEach(() => {
 
 afterEach(() => {
   cleanup();
-  // jest.runAllTimers();
-  jest.runOnlyPendingTimers();
-  jest.useRealTimers();
+  jest.runAllTimers();
 });
 
 const successMessage =
@@ -93,6 +91,8 @@ it("sets a timer and clears the Slice after a certain amount of time", async () 
   await waitFor(() => {
     expect(queryAllByText("Bland Toast").length).toBe(0);
   });
+
+  jest.runOnlyPendingTimers();
 });
 
 it("stops and starts the timer when the item is hover toggled", async () => {
