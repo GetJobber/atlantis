@@ -29,7 +29,9 @@ beforeEach(() => {
 
 afterEach(() => {
   cleanup();
-  jest.runAllTimers();
+  // jest.runAllTimers();
+  jest.runOnlyPendingTimers();
+  jest.useRealTimers();
 });
 
 const successMessage =
