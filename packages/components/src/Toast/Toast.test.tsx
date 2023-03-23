@@ -85,7 +85,7 @@ it("sets a timer and clears the Slice after a certain amount of time", async () 
   expect(await findAllByText(infoMessage)).toHaveLength(1);
 
   await act(() => {
-    jest.runOnlyPendingTimers();
+    jest.runAllTimers();
   });
 
   await waitFor(() => {
