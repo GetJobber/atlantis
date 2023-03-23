@@ -4,11 +4,12 @@ import { CivilDateTime } from "@std-proposal/temporal";
 import { FormatRelativeDateTime } from "./FormatRelativeDateTime";
 
 beforeEach(() => {
-  jest.useFakeTimers("modern");
+  jest.useFakeTimers();
   jest.setSystemTime(new Date(1593115122000));
 });
 
 afterEach(() => {
+  jest.runOnlyPendingTimers();
   jest.useRealTimers();
   cleanup();
 });
