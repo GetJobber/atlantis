@@ -12,7 +12,7 @@ beforeEach(() => {
    *
    * This will mock our system time to `April 7, 2021`.
    */
-  jest.useFakeTimers("modern");
+  jest.useFakeTimers();
   jest.setSystemTime(new Date(2021, 3, 7));
 });
 

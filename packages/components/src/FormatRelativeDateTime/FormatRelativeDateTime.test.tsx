@@ -33,7 +33,7 @@ it("renders 1 minute ago when less than a minute ago", () => {
   Object.values(dates).forEach(async value => {
     cleanup();
     const { getByText } = render(<FormatRelativeDateTime date={value} />);
-    expect(await getByText("1 minute ago")).toBeDefined();
+    expect(getByText("1 minute ago")).toBeDefined();
   });
 });
 
@@ -47,7 +47,7 @@ it("renders the time when less than a day ago", () => {
       minute: "numeric",
     });
     const { getByText } = render(<FormatRelativeDateTime date={value} />);
-    expect(await getByText(expectedTime)).toBeDefined();
+    expect(getByText(expectedTime)).toBeDefined();
   });
 });
 
@@ -59,9 +59,7 @@ it("renders the day when less than 7 days ago", () => {
   Object.values(dates).forEach(async value => {
     const { getByText } = render(<FormatRelativeDateTime date={value} />);
     expect(
-      await getByText(
-        testDate.toLocaleDateString(undefined, { weekday: "short" }),
-      ),
+      getByText(testDate.toLocaleDateString(undefined, { weekday: "short" })),
     ).toBeDefined();
   });
 });
@@ -74,7 +72,7 @@ it("renders the month and date when less than 1 year ago", () => {
   Object.values(dates).forEach(async value => {
     const { getByText } = render(<FormatRelativeDateTime date={value} />);
     expect(
-      await getByText(
+      getByText(
         new Date("Apr 26").toLocaleDateString(undefined, {
           month: "short",
           day: "numeric",
