@@ -24,7 +24,7 @@ jest.mock("framer-motion", () => ({
 
 beforeEach(() => {
   jest.useFakeTimers();
-  // jest.spyOn(global, "setTimeout");
+  jest.spyOn(global, "setTimeout");
 });
 
 afterEach(() => {
@@ -79,7 +79,7 @@ it("fires an action callback when the action button is clicked", () => {
 
 it("sets a timer and clears the Slice after a certain amount of time", async () => {
   const { getByText, queryAllByText, findAllByText } = render(<MockToast />);
-  jest.spyOn(global, "setTimeout");
+
   fireEvent.click(getByText("No Variation"));
   expect(setTimeout).toHaveBeenCalled();
   expect(await findAllByText(infoMessage)).toHaveLength(1);
@@ -95,7 +95,7 @@ it("sets a timer and clears the Slice after a certain amount of time", async () 
 
 it("stops and starts the timer when the item is hover toggled", async () => {
   const { getByText, queryAllByText } = render(<MockToast />);
-  jest.spyOn(global, "setTimeout");
+
   fireEvent.click(getByText("No Variation"));
   expect(setTimeout).toHaveBeenCalled();
   expect(queryAllByText("Bland Toast").length).toBe(1);
