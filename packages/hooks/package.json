@@ -7,14 +7,14 @@
   "scripts": {
     "build": "tsc --project . --skipLibCheck",
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
-    "prepare": "npm run clean; npm run build"
+    "bootstrap": "npm run clean; npm run build"
   },
   "files": [
     "dist/*"
   ],
   "devDependencies": {
     "@apollo/react-testing": "^4.0.0",
-    "@jobber/formatters": "^0.2.2",
+    "@jobber/formatters": "*",
     "@testing-library/react": "^14.0.0",
     "@testing-library/react-hooks": "^7.0.0",
     "@testing-library/user-event": "^12.0.2",

@@ -105,9 +105,9 @@ async function checkForPreReleases() {
       if (dependency.includes("@jobber/")) {
         /**
          * Check if the package name does not match the format of
-         * either "N.N.N" or "^N.N.N".
+         * either "N.N.N" or "^N.N.N" or "*"
          **/
-        if (!/^\^?\d+.\d+.\d+$/.test(allDependencies[dependency])) {
+        if (!/(^\^?\d+.\d+.\d+$|\*)/.test(allDependencies[dependency])) {
           console.log(
             chalk.red(
               `There seems to be a non-official release version of a Jobber npm package: ${package}@${packages[package]}`,

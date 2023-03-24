@@ -1,1 +1,2 @@
 //registry.npmjs.org/:_authToken=${JOBBER_NPM_TOKEN}
+legacy-peer-deps=true

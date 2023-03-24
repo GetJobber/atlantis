@@ -1,8 +1,6 @@
-import type { StorybookConfig } from "@storybook/react/types";
-import * as webpack from "webpack";
 const path = require("path");
 
-const config: StorybookConfig = {
+const config = {
   stories: [
     "../packages/**/*.stories.mdx",
     "../packages/**/*.stories.@(js|jsx|ts|tsx)",
@@ -26,7 +24,7 @@ const config: StorybookConfig = {
      * Separate existing rules for CSS files
      */
     if (config.module?.rules) {
-      const matcher = (rule: webpack.RuleSetRule): boolean =>
+      const matcher = (rule) =>
         rule.test?.toString() === "/\\.css$/";
       const existingRule = config.module.rules.find(matcher);
 
@@ -37,7 +35,7 @@ const config: StorybookConfig = {
       const atlantisCssRule = {
         ...existingRule,
         exclude: /node_modules/,
-        use: (existingRule?.use as webpack.RuleSetLoader[])?.map(item => {
+        use: existingRule?.use?.map(item => {
           let newItem = item;
           if (newItem.loader?.includes("/css-loader/")) {
             const modules = {
@@ -45,7 +43,7 @@ const config: StorybookConfig = {
             };
             newItem = {
               ...newItem,
-              options: { ...(newItem.options as Record<any, any>), modules },
+              options: { ...newItem.options, modules },
             };
           }
           return newItem;
