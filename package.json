@@ -136,5 +136,9 @@
   },
   "optionalDependencies": {
     "@jobber/fonts": "^1.1.0"
+  },
+  "engines": {
+    "node": "18",
+    "npm": "9"
   }
 }

@@ -18,8 +18,8 @@ developers to quickly build beautiful and consistent interfaces for our users.
 
 ### Prerequisites
 
-- `node@14`
-- `npm@6`
+- `node@18`
+- `npm@9`
 
 To install Atlantis locally for development:
 
