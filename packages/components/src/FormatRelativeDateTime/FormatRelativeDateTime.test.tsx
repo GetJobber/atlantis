@@ -8,13 +8,10 @@ describe("Less than an hour ago", () => {
   testDate.setMinutes(testDate.getMinutes() - 5);
   const dates = getMockDates(testDate);
 
-  it.each(Object.entries(dates))(
-    "renders x minutes ago for %s",
-    async (_, value) => {
-      const { findByText } = render(<FormatRelativeDateTime date={value} />);
-      expect(await findByText("5 minutes ago")).toBeDefined();
-    },
-  );
+  it.each(Object.entries(dates))("renders x minutes ago for %s", (_, value) => {
+    const { getByText } = render(<FormatRelativeDateTime date={value} />);
+    expect(getByText("5 minutes ago")).toBeDefined();
+  });
 });
 
 describe("Less than a minute ago", () => {
@@ -22,13 +19,10 @@ describe("Less than a minute ago", () => {
   testDate.setSeconds(testDate.getSeconds() - 25);
   const dates = getMockDates(testDate);
 
-  it.each(Object.entries(dates))(
-    "renders 1 minute ago for %s",
-    async (_, value) => {
-      const { findByText } = render(<FormatRelativeDateTime date={value} />);
-      expect(await findByText("1 minute ago")).toBeDefined();
-    },
-  );
+  it.each(Object.entries(dates))("renders 1 minute ago for %s", (_, value) => {
+    const { getByText } = render(<FormatRelativeDateTime date={value} />);
+    expect(getByText("1 minute ago")).toBeDefined();
+  });
 });
 
 describe("Less than a day ago", () => {
@@ -36,21 +30,18 @@ describe("Less than a day ago", () => {
   testDate.setHours(testDate.getHours() - 9);
   const dates = getMockDates(testDate);
 
-  it.each(Object.entries(dates))(
-    "renders time ago for %s",
-    async (_, value) => {
-      const expectedTime = testDate
-        .toLocaleTimeString(undefined, {
-          hour: "numeric",
-          minute: "numeric",
-        })
-        // The space between  HH:MM and AM/PM is a non-breaking space which
-        // breaks the test.
-        .replace(/[\u202F]/, " ");
-      const { findByText } = render(<FormatRelativeDateTime date={value} />);
-      expect(await findByText(expectedTime, { exact: false })).toBeDefined();
-    },
-  );
+  it.each(Object.entries(dates))("renders time ago for %s", (_, value) => {
+    const expectedTime = testDate
+      .toLocaleTimeString(undefined, {
+        hour: "numeric",
+        minute: "numeric",
+      })
+      // The space between  HH:MM and AM/PM is a non-breaking space which
+      // breaks the test.
+      .replace(/[\u202F]/, " ");
+    const { getByText } = render(<FormatRelativeDateTime date={value} />);
+    expect(getByText(expectedTime, { exact: false })).toBeDefined();
+  });
 });
 
 describe("Less than 7 days ago", () => {
@@ -58,12 +49,10 @@ describe("Less than 7 days ago", () => {
   testDate.setDate(testDate.getDate() - 3);
   const dates = getMockDates(testDate);
 
-  it.each(Object.entries(dates))("renders the day for %s", async (_, value) => {
-    const { findByText } = render(<FormatRelativeDateTime date={value} />);
+  it.each(Object.entries(dates))("renders the day for %s", (_, value) => {
+    const { getByText } = render(<FormatRelativeDateTime date={value} />);
     expect(
-      await findByText(
-        testDate.toLocaleDateString(undefined, { weekday: "short" }),
-      ),
+      getByText(testDate.toLocaleDateString(undefined, { weekday: "short" })),
     ).toBeDefined();
   });
 });
@@ -75,10 +64,10 @@ describe("Less than 1 year ago", () => {
 
   it.each(Object.entries(dates))(
     "renders the month and date for %s",
-    async (_, value) => {
-      const { findByText } = render(<FormatRelativeDateTime date={value} />);
+    (_, value) => {
+      const { getByText } = render(<FormatRelativeDateTime date={value} />);
       expect(
-        await findByText(
+        getByText(
           testDate.toLocaleDateString(undefined, {
             month: "short",
             day: "numeric",
@@ -97,11 +86,11 @@ describe("Yesterday's date 1 year previous (border case)", () => {
 
   it.each(Object.entries(dates))(
     "renders the month and date for %s",
-    async (_, value) => {
-      const { findByText } = render(<FormatRelativeDateTime date={value} />);
+    (_, value) => {
+      const { getByText } = render(<FormatRelativeDateTime date={value} />);
       expect(
-        findByText(
-          new Date("Jun 27").toLocaleDateString(undefined, {
+        getByText(
+          testDate.toLocaleDateString(undefined, {
             month: "short",
             day: "numeric",
           }),
@@ -118,10 +107,10 @@ describe("Over a year ago", () => {
 
   it.each(Object.entries(dates))(
     "renders the month day, year for %s",
-    async (_, value) => {
-      const { findByText } = render(<FormatRelativeDateTime date={value} />);
+    (_, value) => {
+      const { getByText } = render(<FormatRelativeDateTime date={value} />);
       expect(
-        await findByText(
+        getByText(
           testDate.toLocaleDateString(undefined, {
             month: "short",
             day: "numeric",
