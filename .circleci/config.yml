@@ -135,6 +135,22 @@ jobs:
       - *generate_base_path
       - run:
           command: npm run build
+      - *persist_to_workspace
+
+  upload_to_cloudflare:
+    <<: *container_config
+    environment:
+      ATLANTIS_BRANCH: << pipeline.git.branch >>
+    steps:
+      - *attach_workspace
+      - *generate_base_path
+      - run:
+          command: |
+            if [ "$ATLANTIS_BRANCH" = "master" ]; then
+              npx wrangler pages publish storybook-static --project-name=atlantis
+            else
+              npx wrangler pages publish storybook-static --project-name=atlantis --branch=$ATLANTIS_BRANCH
+            fi
 
   release:
     <<: *container_config
@@ -177,6 +193,9 @@ workflows:
       - build_docs:
           requires:
             - check_for_manual_release
+      - upload_to_cloudflare:
+          requires:
+            - build_docs
       - release:
           filters:
             branches:
