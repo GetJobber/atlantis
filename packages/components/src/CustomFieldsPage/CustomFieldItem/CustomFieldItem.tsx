@@ -30,9 +30,13 @@ export function CustomFieldItem({
       </div>
       <div className={classnames(styles.customFieldItemContentArea)}>
         <div className={classnames(styles.customFieldItemName)}>
-          <a onClick={() => onEditCustomField(customField)}>
-            {customField.name}
-          </a>
+          {customField.transferredFrom ? (
+            customField.name
+          ) : (
+            <a onClick={() => onEditCustomField(customField)}>
+              {customField.name}
+            </a>
+          )}
         </div>
         <div className={classnames(styles.customFieldItemDescription)}>
           <CustomFieldDescription customField={customField} />
