@@ -4,11 +4,12 @@ import { CivilDateTime } from "@std-proposal/temporal";
 import { FormatRelativeDateTime } from "./FormatRelativeDateTime";
 
 beforeEach(() => {
-  jest.useFakeTimers("modern");
+  jest.useFakeTimers();
   jest.setSystemTime(new Date(1593115122000));
 });
 
 afterEach(() => {
+  jest.runOnlyPendingTimers();
   jest.useRealTimers();
   cleanup();
 });
@@ -18,9 +19,10 @@ it("renders x minutes ago when less than an hour ago", () => {
   testDate.setMinutes(testDate.getMinutes() - 5);
   const dates = getMockDates(testDate);
 
-  Object.values(dates).forEach(async value => {
-    const { findByText } = render(<FormatRelativeDateTime date={value} />);
-    expect(await findByText("5 minutes ago")).toBeDefined();
+  Object.values(dates).forEach(value => {
+    cleanup();
+    const { getByText } = render(<FormatRelativeDateTime date={value} />);
+    expect(getByText("5 minutes ago")).toBeDefined();
   });
 });
 
@@ -29,10 +31,10 @@ it("renders 1 minute ago when less than a minute ago", () => {
   testDate.setSeconds(testDate.getSeconds() - 25);
   const dates = getMockDates(testDate);
 
-  Object.values(dates).forEach(async value => {
+  Object.values(dates).forEach(value => {
     cleanup();
-    const { findByText } = render(<FormatRelativeDateTime date={value} />);
-    expect(await findByText("1 minute ago")).toBeDefined();
+    const { getByText } = render(<FormatRelativeDateTime date={value} />);
+    expect(getByText("1 minute ago")).toBeDefined();
   });
 });
 
@@ -40,13 +42,14 @@ it("renders the time when less than a day ago", () => {
   const testDate = new Date();
   testDate.setHours(testDate.getHours() - 9);
   const dates = getMockDates(testDate);
-  Object.values(dates).forEach(async value => {
+  Object.values(dates).forEach(value => {
+    cleanup();
     const expectedTime = testDate.toLocaleTimeString(undefined, {
       hour: "numeric",
       minute: "numeric",
     });
-    const { findByText } = render(<FormatRelativeDateTime date={value} />);
-    expect(await findByText(expectedTime)).toBeDefined();
+    const { getByText } = render(<FormatRelativeDateTime date={value} />);
+    expect(getByText(expectedTime)).toBeDefined();
   });
 });
 
@@ -55,12 +58,11 @@ it("renders the day when less than 7 days ago", () => {
   testDate.setDate(testDate.getDate() - 3);
   const dates = getMockDates(testDate);
 
-  Object.values(dates).forEach(async value => {
-    const { findByText } = render(<FormatRelativeDateTime date={value} />);
+  Object.values(dates).forEach(value => {
+    cleanup();
+    const { getByText } = render(<FormatRelativeDateTime date={value} />);
     expect(
-      await findByText(
-        testDate.toLocaleDateString(undefined, { weekday: "short" }),
-      ),
+      getByText(testDate.toLocaleDateString(undefined, { weekday: "short" })),
     ).toBeDefined();
   });
 });
@@ -70,10 +72,11 @@ it("renders the month and date when less than 1 year ago", () => {
   testDate.setDate(testDate.getDate() - 60);
   const dates = getMockDates(testDate);
 
-  Object.values(dates).forEach(async value => {
-    const { findByText } = render(<FormatRelativeDateTime date={value} />);
+  Object.values(dates).forEach(value => {
+    cleanup();
+    const { getByText } = render(<FormatRelativeDateTime date={value} />);
     expect(
-      await findByText(
+      getByText(
         new Date("Apr 26").toLocaleDateString(undefined, {
           month: "short",
           day: "numeric",
@@ -89,10 +92,11 @@ it("renders the month and date when yesterday's date 1 year previous (border cas
   testDate.setDate(testDate.getDate() + 2); //The +2 vs. +1 is a fudge for leap year
   const dates = getMockDates(testDate);
 
-  Object.values(dates).forEach(async value => {
-    const { findByText } = render(<FormatRelativeDateTime date={value} />);
+  Object.values(dates).forEach(value => {
+    cleanup();
+    const { getByText } = render(<FormatRelativeDateTime date={value} />);
     expect(
-      findByText(
+      getByText(
         new Date("Jun 27").toLocaleDateString(undefined, {
           month: "short",
           day: "numeric",
@@ -107,10 +111,11 @@ it("renders the month day, year when over a year ago", () => {
   testDate.setFullYear(testDate.getFullYear() - 2);
   const dates = getMockDates(testDate);
 
-  Object.values(dates).forEach(async value => {
-    const { findByText } = render(<FormatRelativeDateTime date={value} />);
+  Object.values(dates).forEach(value => {
+    cleanup();
+    const { getByText } = render(<FormatRelativeDateTime date={value} />);
     expect(
-      findByText(
+      getByText(
         new Date("Jun 25, 2018").toLocaleDateString(undefined, {
           month: "short",
           day: "numeric",

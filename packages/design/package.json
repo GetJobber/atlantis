@@ -33,6 +33,7 @@
     "classnames": "^2.3.2"
   },
   "devDependencies": {
+    "@types/node": "^18.15.7",
     "autoprefixer": "^9.5.1",
     "css-to-react-native-transform": "^2.0.0",
     "postcss": "^7.0.36",
