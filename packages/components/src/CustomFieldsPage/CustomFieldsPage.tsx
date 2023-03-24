@@ -91,7 +91,7 @@ function CustomFieldsSection({
 
   function newCustomField() {
     const customFieldConfig = {
-      appliesTo: CustomFieldAppliesTo.ALL_CLIENTS,
+      appliesTo: customFieldModelType,
       transferable: false,
       name: undefined,
       valueType: undefined,
