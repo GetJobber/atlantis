@@ -8,7 +8,7 @@
     "build": "rollup --config",
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
     "prepublishOnly": "ts-node --project ../../tsconfig.bin.json scripts/entryPoints.ts",
-    "prepare": "npm run clean; npm run build",
+    "bootstrap": "npm run clean; npm run build",
     "postpublish": "ts-node --project ../../tsconfig.bin.json scripts/entryPoints.ts clean"
   },
   "files": [
@@ -17,9 +17,9 @@
     "dist/*"
   ],
   "dependencies": {
-    "@jobber/design": "^0.29.5",
-    "@jobber/formatters": "^0.2.2",
-    "@jobber/hooks": "^2.0.1",
+    "@jobber/design": "*",
+    "@jobber/formatters": "*",
+    "@jobber/hooks": "*",
     "@popperjs/core": "^2.0.6",
     "@std-proposal/temporal": "0.0.1",
     "@tanstack/react-table": "8.5.13",
