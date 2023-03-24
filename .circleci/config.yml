@@ -141,7 +141,7 @@ jobs:
     resource_class: medium+
     <<: *container_config
     environment:
-      ATLANTIS_BRANCH: << pipeline.git.branch
+      ATLANTIS_BRANCH: << pipeline.git.branch >>
     steps:
       - *attach_workspace
       - *generate_base_path
