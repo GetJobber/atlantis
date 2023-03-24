@@ -77,7 +77,7 @@ export const Form = forwardRef(function InternalForm(
     </FormProvider>
   );
 
-  function submitHandler() {
+  function submitHandler(data) {
     onSubmit && onSubmit();
   }
 

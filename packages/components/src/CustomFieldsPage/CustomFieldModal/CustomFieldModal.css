@@ -1,0 +1,8 @@
+.transferableFieldContainer {
+  display: flex;
+  align-content: center;
+}
+
+.dropdownOptionsOrderedList li:not(:last-child) {
+  margin-bottom: var(--space-smaller);
+}

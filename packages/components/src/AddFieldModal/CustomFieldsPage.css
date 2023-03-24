@@ -1,0 +1,37 @@
+.customFieldItemContainer {
+  display: flex;
+  flex-direction: row;
+  padding-top: var(--space-base);
+  padding-bottom: var(--space-base);
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.customFieldsSectionCard {
+  padding-bottom: var(--space-largest);
+}
+
+.customFieldItemDragAnchor {
+  padding-left: var(--space-base);
+  padding-right: var(--space-base);
+}
+
+.customFieldItemContentArea {
+  flex-grow: 1;
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.customFieldItemName {
+  flex-grow: 2;
+  flex-basis: 0;
+}
+
+.customFieldItemDescription {
+  flex-grow: 4;
+  flex-basis: 0;
+  /* TODO: This min width needs rethinking. It's forcing the wrap at a certain size.*/
+  min-width: 250px;
+}

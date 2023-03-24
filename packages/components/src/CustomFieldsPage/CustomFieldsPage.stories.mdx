@@ -1,0 +1,11 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { CustomFieldsPage } from ".";
+import { Figma } from "storybook-addon-designs/blocks";
+
+<Meta title="Components/CustomFieldsPage" component={CustomFieldsPage} />
+
+<Canvas>
+  <Story name="CustomFieldsPage" args={{ text: "Bob" }}>
+    {args => <CustomFieldsPage {...args} />}
+  </Story>
+</Canvas>
