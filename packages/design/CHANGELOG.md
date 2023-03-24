@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.30.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.29.5...@jobber/design@0.30.0) (2023-03-23)
+
+
+### Features
+
+* **stylelint:** Ban HTML selectors on CSS ([#1148](https://github.com/GetJobber/atlantis/issues/1148)) ([6a54786](https://github.com/GetJobber/atlantis/commit/6a5478647c8fa0bbdf3b6731830d77904820df9e))
+
+
+
+
+
 ## [0.29.5](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.29.4...@jobber/design@0.29.5) (2023-03-16)
 
 **Note:** Version bump only for package @jobber/design

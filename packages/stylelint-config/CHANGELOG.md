@@ -1,7 +1,18 @@
-# Changelog
+# Change Log
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [0.5.0](https://github.com/GetJobber/atlantis/compare/@jobber/stylelint-config@0.4.2...@jobber/stylelint-config@0.5.0) (2023-03-23)
+
+
+### Features
+
+* **stylelint:** Ban HTML selectors on CSS ([#1148](https://github.com/GetJobber/atlantis/issues/1148)) ([6a54786](https://github.com/GetJobber/atlantis/commit/6a5478647c8fa0bbdf3b6731830d77904820df9e))
+
+
+
+
 
 ## [0.4.2](https://github.com/GetJobber/atlantis/compare/@jobber/stylelint-config@0.4.1...@jobber/stylelint-config@0.4.2) (2023-02-28)
 

@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "4.1.2",
+  "version": "4.1.4",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -39,7 +39,7 @@
     "react-countdown": "^2.3.2",
     "react-datepicker": "^4.10.0",
     "react-dropzone": "^11.0.2",
-    "react-hook-form": "^7.43.7",
+    "react-hook-form": "^6.15.8",
     "react-markdown": "^8.0.3",
     "react-popper": "^2.2.5",
     "react-router-dom": "^5.3.4",
