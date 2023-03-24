@@ -138,7 +138,6 @@ jobs:
       - *persist_to_workspace
 
   upload_to_cloudflare:
-    resource_class: medium+
     <<: *container_config
     environment:
       ATLANTIS_BRANCH: << pipeline.git.branch >>
