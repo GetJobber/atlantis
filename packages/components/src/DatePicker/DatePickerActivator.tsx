@@ -50,6 +50,8 @@ function InternalActivator(
       return cloneElement(activator, {
         ...newActivatorProps,
         ...(isAComponent && { fullWidth: fullWidth }),
+        // @ts-expect-error - Issue with react types not including `ref` in
+        // cloneElement. https://github.com/DefinitelyTyped/DefinitelyTyped/issues/40888
         ref,
       });
     } else {
