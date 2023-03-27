@@ -51,6 +51,7 @@ export default {
     "react-popper",
     "react-datepicker",
     "react-dropzone",
+    "react-dom/client",
     "axios",
     "filesize",
     "color",
@@ -64,5 +65,6 @@ export default {
     "@jobber/design",
     "@jobber/formatters",
     "@jobber/hooks",
+    "@tanstack/react-table",
   ],
 };
