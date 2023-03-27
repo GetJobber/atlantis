@@ -1,7 +1,8 @@
 import React, { ReactNode, useEffect, useState } from "react";
+import { Breakpoints, useResizeObserver } from "@jobber/hooks";
 import styles from "./Disclosure.css";
-import { Heading } from "../Heading";
 import { Icon } from "../Icon";
+import { Typography } from "../Typography";
 
 interface DisclosureProps {
   /**
@@ -30,6 +31,7 @@ export function Disclosure({
 }: DisclosureProps) {
   const [isOpen, setOpen] = useState(defaultOpen);
   const [isMounted, setMount] = useState(false);
+  const [disclosureRef, { exactWidth }] = useResizeObserver<HTMLDivElement>();
 
   useEffect(() => {
     setMount(true);
@@ -38,8 +40,17 @@ export function Disclosure({
   return (
     <details open={isOpen} onToggle={onToggle} className={styles.details}>
       <summary className={styles.summary}>
-        <div className={styles.summaryWrap}>
-          <Heading level={4}>{title}</Heading>
+        <div className={styles.summaryWrap} ref={disclosureRef}>
+          <Typography
+            element="h4"
+            size={
+              exactWidth && exactWidth < Breakpoints.small ? "base" : "large"
+            }
+            fontWeight="bold"
+            textColor="heading"
+          >
+            {title}
+          </Typography>
           <span className={styles.arrowIconWrapper}>
             <Icon size="large" name="arrowDown" color="green" />
           </span>
