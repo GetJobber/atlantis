@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.2.0...@jobber/components@4.2.1) (2023-03-27)
+
+
+### Bug Fixes
+
+* **components:** Fix Typescript warnings on components ([#1155](https://github.com/GetJobber/atlantis/issues/1155)) ([db8f072](https://github.com/GetJobber/atlantis/commit/db8f0721489473a3506603cfe7237eb84fb35144))
+
+
+
+
+
 # [4.2.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.1.4...@jobber/components@4.2.0) (2023-03-24)
 
 
