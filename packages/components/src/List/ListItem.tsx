@@ -93,7 +93,7 @@ export function ListItem({
   const Wrapper = url ? "a" : "button";
 
   const buttonProps = {
-    ...(Wrapper === "button" && { role: "button", type: "button" }),
+    ...(Wrapper === "button" && { role: "button", type: "button" as const }),
   };
 
   return (
