@@ -20,6 +20,7 @@
     "@jobber/design": "*",
     "@jobber/formatters": "*",
     "@jobber/hooks": "*",
+    "@js-temporal/polyfill": "^0.4.3",
     "@popperjs/core": "^2.0.6",
     "@std-proposal/temporal": "0.0.1",
     "@tanstack/react-table": "8.5.13",
