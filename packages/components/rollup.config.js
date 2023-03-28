@@ -16,6 +16,7 @@ export default {
         generateScopedName: "[hash:base64]",
         globalModulePaths: [/node_modules/],
       },
+      autoModules: false,
       plugins: [
         require("postcss-import"),
         require("autoprefixer"),
