@@ -131,6 +131,7 @@ describe("Post Requests", () => {
       expect(handleComplete).toHaveBeenCalledWith({
         ...baseMatch,
         progress: 1,
+        uploadUrl: "https://httpbin.org/post",
       });
 
       expect(handleStart).toHaveBeenCalledTimes(1);
