@@ -31,7 +31,8 @@ export function Disclosure({
 }: DisclosureProps) {
   const [isOpen, setOpen] = useState(defaultOpen);
   const [isMounted, setMount] = useState(false);
-  const [disclosureRef, { exactWidth }] = useResizeObserver<HTMLDivElement>();
+  const [titleRef, { exactWidth }] = useResizeObserver<HTMLDivElement>();
+  const isBelowBreakpoint = exactWidth && exactWidth < Breakpoints.small;
 
   useEffect(() => {
     setMount(true);
@@ -40,12 +41,10 @@ export function Disclosure({
   return (
     <details open={isOpen} onToggle={onToggle} className={styles.details}>
       <summary className={styles.summary}>
-        <div className={styles.summaryWrap} ref={disclosureRef}>
+        <div className={styles.summaryWrap} ref={titleRef}>
           <Typography
             element="h4"
-            size={
-              exactWidth && exactWidth < Breakpoints.small ? "base" : "large"
-            }
+            size={isBelowBreakpoint ? "base" : "large"}
             fontWeight="bold"
             textColor="heading"
           >
