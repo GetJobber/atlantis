@@ -60,7 +60,7 @@ export default {
     "lodash",
     "uuid",
     "lodash/debounce",
-    "@std-proposal/temporal",
+    "@js-temporal/polyfill",
     "@use-it/event-listener",
     "@jobber/design",
     "@jobber/formatters",

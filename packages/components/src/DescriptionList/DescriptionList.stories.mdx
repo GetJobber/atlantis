@@ -1,5 +1,5 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
-import { CivilDate } from "@std-proposal/temporal";
+import { Temporal } from "@js-temporal/polyfill";
 import { FormatDate } from "@jobber/components/FormatDate";
 import { DescriptionList } from "@jobber/components/DescriptionList";
 
@@ -43,8 +43,8 @@ You are able to pass a react element in as the second term of the data tuple.
 <Canvas>
   <DescriptionList
     data={[
-      ["Issued", <FormatDate date={new CivilDate(2018, 12, 8)} />],
-      ["Due", <FormatDate date={new CivilDate(2019, 1, 6)} />],
+      ["Issued", <FormatDate date={new Temporal.PlainDateTime(2018, 12, 8)} />],
+      ["Due", <FormatDate date={new Temporal.PlainDateTime(2019, 1, 6)} />],
     ]}
   />
 </Canvas>

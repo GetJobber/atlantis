@@ -1,5 +1,5 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
-import { CivilTime } from "@std-proposal/temporal";
+import { Temporal } from "@js-temporal/polyfill";
 import { FormatTime } from ".";
 
 <Meta title="Components/FormatTime" component={FormatTime} />
@@ -17,14 +17,14 @@ import { FormatTime } from "@jobber/components/FormatTime";
   <Story
     name="FormatTime"
     args={{
-      time: new CivilTime(2, 35),
+      time: new Temporal.PlainTime(2, 35),
     }}
   >
     {args => (
       <>
         <FormatTime {...args} />
         -
-        <FormatTime {...args} time={new CivilTime(18, 35)} />
+        <FormatTime {...args} time={new Temporal.PlainTime(18, 35)} />
       </>
     )}
   </Story>
@@ -39,11 +39,11 @@ import { FormatTime } from "@jobber/components/FormatTime";
 ## Specify format
 
 <Canvas>
-  <FormatTime time={new CivilTime(2, 35)} use24HourClock={true} />
+  <FormatTime time={new Temporal.PlainTime(2, 35)} use24HourClock={true} />
   -
-  <FormatTime time={new CivilTime(18, 35)} use24HourClock={true} />
+  <FormatTime time={new Temporal.PlainTime(18, 35)} use24HourClock={true} />
   <br />
-  <FormatTime time={new CivilTime(2, 35)} use24HourClock={false} />
+  <FormatTime time={new Temporal.PlainTime(2, 35)} use24HourClock={false} />
   -
-  <FormatTime time={new CivilTime(18, 35)} use24HourClock={false} />
+  <FormatTime time={new Temporal.PlainTime(18, 35)} use24HourClock={false} />
 </Canvas>

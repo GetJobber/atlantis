@@ -1,5 +1,5 @@
 import React from "react";
-import { CivilTime } from "@std-proposal/temporal";
+import { Temporal } from "@js-temporal/polyfill";
 
 interface FormatTimeProps {
   /**
@@ -7,7 +7,7 @@ interface FormatTimeProps {
    *
    * A `string` should be an ISO 8601 format date string.
    */
-  readonly time: CivilTime | Date | string;
+  readonly time: Temporal.PlainTime | Date | string;
 
   /**
    * Optionally specify clock format. If `undefined` system format will be respected.

@@ -1,13 +1,13 @@
 import React from "react";
 import { cleanup, render } from "@testing-library/react";
-import { CivilDate } from "@std-proposal/temporal";
+import { Temporal } from "@js-temporal/polyfill";
 import { FormatDate, strFormatDate } from "./FormatDate";
 
 afterEach(cleanup);
 
 describe("Different date values", () => {
   const dates = {
-    CivilDate: new CivilDate(2020, 2, 26),
+    CivilDate: new Temporal.PlainDateTime(2020, 2, 26),
     ISO8601DateString: "2019-03-30T00:45",
     Date: new Date("2020-03-30T00:45"),
   };

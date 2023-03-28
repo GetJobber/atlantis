@@ -1,12 +1,12 @@
 import React from "react";
 import { cleanup, render } from "@testing-library/react";
-import { CivilTime } from "@std-proposal/temporal";
+import { Temporal } from "@js-temporal/polyfill";
 import { FormatTime } from "./FormatTime";
 
 afterEach(cleanup);
 
 Object.entries({
-  CivilDate: new CivilTime(14, 30),
+  CivilDate: new Temporal.PlainTime(14, 30),
   ISO8601DateString: "2019-03-30T14:30",
   Date: new Date("2019-03-30T14:30"),
 }).forEach(([inputType, value]) => {

@@ -1,7 +1,7 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
 import { useState } from "react";
 import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
-import { CivilDate } from "@std-proposal/temporal";
+import { Temporal } from "@js-temporal/polyfill";
 import { ComponentStatus } from "@jobber/docx";
 import { FormatDate, strFormatDate } from ".";
 import { Text } from "../Text";
@@ -23,7 +23,7 @@ import { FormatDate } from "@jobber/components/FormatDate";
   <Story
     name="FormatDate"
     args={{
-      date: new CivilDate(2020, 2, 26),
+      date: new Temporal.PlainDateTime(2020, 2, 26),
     }}
   >
     {args => <FormatDate {...args} />}

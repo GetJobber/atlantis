@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
-import { CivilDate } from "@std-proposal/temporal";
 import ReactCountdown, { CountdownRenderProps } from "react-countdown";
+import { Temporal } from "@js-temporal/polyfill";
 import { computeTimeUnit } from "./computeTimeUnit";
 
 /**
@@ -15,7 +15,7 @@ interface CountdownProps {
    * Civil Time of time is to be displayed.
    * In the case of `date` a `string` should be in ISO 8601 format
    */
-  readonly date: CivilDate | Date | number | string;
+  readonly date: Temporal.PlainDateTime | Date | number | string;
 
   /**
    * Whether or not to present the unit of time to the user, or just the raw numbers.
@@ -44,7 +44,7 @@ export function Countdown({
 }: CountdownProps) {
   const date = useMemo(() => {
     let initDate: Date;
-    if (inputDate instanceof CivilDate) {
+    if (inputDate instanceof Temporal.PlainDateTime) {
       initDate = new Date(inputDate.year, inputDate.month - 1, inputDate.day);
     } else {
       initDate = new Date(inputDate);

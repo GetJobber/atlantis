@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { CivilDateTime } from "@std-proposal/temporal";
+import { Temporal } from "@js-temporal/polyfill";
 import { FormatRelativeDateTime } from "./FormatRelativeDateTime";
 
 describe("Less than an hour ago", () => {
@@ -142,7 +142,7 @@ function getCivilTime(date: Date) {
   const testMinute = date.getMinutes();
   const testSecond = 35; // Want to make sure we don't have flakiness around 0 and 59
 
-  const civilTestDate = new CivilDateTime(
+  const civilTestDate = new Temporal.PlainDateTime(
     testYear,
     testMonth,
     testDay,

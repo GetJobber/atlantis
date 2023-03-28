@@ -1,6 +1,6 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
 import { useState } from "react";
-import { CivilTime } from "@std-proposal/temporal";
+import { Temporal } from "@js-temporal/polyfill";
 import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 import { ComponentStatus } from "@jobber/docx";
 import { InputGroup } from ".";
@@ -23,8 +23,8 @@ event) they are great candidates for an InputGroup.
   <Story name="InputGroup" args={{ flowDirection: "horizontal" }}>
     {args => (
       <InputGroup {...args}>
-        <InputTime defaultValue={new CivilTime(8, 0)} />
-        <InputTime defaultValue={new CivilTime(17, 0)} />
+        <InputTime defaultValue={new Temporal.PlainTime(8, 0)} />
+        <InputTime defaultValue={new Temporal.PlainTime(17, 0)} />
       </InputGroup>
     )}
   </Story>

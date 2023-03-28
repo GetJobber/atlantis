@@ -1,4 +1,4 @@
-import { CivilTime } from "@std-proposal/temporal";
+import { Temporal } from "@js-temporal/polyfill";
 import { CommonFormFieldProps, FormFieldProps } from "../FormField";
 
 export interface InputTimeProps
@@ -33,13 +33,13 @@ export interface InputTimeProps
    * field with a data that is not controlled by the components state. If a
    * state is controlling the value, use the `value` prop instead.
    */
-  readonly defaultValue?: CivilTime;
+  readonly defaultValue?: Temporal.PlainTime;
   /**
    * Set the component to the given value.
    */
-  readonly value?: CivilTime;
+  readonly value?: Temporal.PlainTime;
   /**
    * Function called when user changes input value.
    */
-  onChange?(newValue?: CivilTime): void;
+  onChange?(newValue?: Temporal.PlainTime): void;
 }

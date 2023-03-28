@@ -3,7 +3,7 @@ import { InputTime } from "@jobber/components/InputTime";
 import { Button } from "@jobber/components/Button";
 import { Content } from "@jobber/components/Content";
 import { useState } from "react";
-import { CivilTime } from "@std-proposal/temporal";
+import { Temporal } from "@js-temporal/polyfill";
 import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 
 <Meta title="Components/InputTime" component={InputTime} />
@@ -23,7 +23,7 @@ import { InputTime } "@jobber/components/InputTime";
   <Story
     name="InputTime"
     args={{
-      defaultValue: new CivilTime(2, 35),
+      defaultValue: new Temporal.PlainTime(2, 35),
     }}
   >
     {args => <InputTime {...args} />}
@@ -37,19 +37,19 @@ import { InputTime } "@jobber/components/InputTime";
 ### Disabled
 
 <Canvas>
-  <InputTime defaultValue={new CivilTime(3, 52)} disabled={true} />
+  <InputTime defaultValue={new Temporal.PlainTime(3, 52)} disabled={true} />
 </Canvas>
 
 ### Read-only
 
 <Canvas>
-  <InputTime defaultValue={new CivilTime(5, 23)} readonly={true} />
+  <InputTime defaultValue={new Temporal.PlainTime(5, 23)} readonly={true} />
 </Canvas>
 
 ### Invalid
 
 <Canvas>
-  <InputTime defaultValue={new CivilTime(2, 35)} invalid={true} />
+  <InputTime defaultValue={new Temporal.PlainTime(2, 35)} invalid={true} />
 </Canvas>
 
 ## Events
@@ -61,9 +61,9 @@ When the last element is set the change event will fire.
 <Canvas>
   <ExampleWithHooks>
     {() => {
-      const [time, setTime] = useState(new CivilTime(3, 52));
+      const [time, setTime] = useState(new Temporal.PlainTime(3, 52));
       const resetTime = () => {
-        setTime(new CivilTime(3, 52));
+        setTime(new Temporal.PlainTime(3, 52));
       };
       const handleChange = newTime => {
         setTime(newTime);
