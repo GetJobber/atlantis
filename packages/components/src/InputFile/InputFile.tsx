@@ -37,6 +37,11 @@ export interface FileUpload {
   readonly progress: number;
 
   /**
+   * Base URL where file was sent as a POST. This is the same URL as what's returned in getUploadParams.
+   */
+  readonly uploadUrl: string;
+
+  /**
    * The data url of the file.
    */
   src(): Promise<string>;
@@ -224,7 +229,10 @@ export function InputFile({
       httpMethod = "POST",
     } = await getUploadParams(file);
 
-    const fileUpload = getFileUpload(file, key);
+    const fileUpload = {
+      ...getFileUpload(file, key),
+      uploadUrl: url,
+    };
     onUploadStart && onUploadStart({ ...fileUpload });
 
     const handleUploadProgress = (progressEvent: any) => {

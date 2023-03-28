@@ -119,6 +119,7 @@ describe("Post Requests", () => {
       expect(handleStart).toHaveBeenCalledWith({
         ...baseMatch,
         progress: 0,
+        uploadUrl: "https://httpbin.org/post",
       });
       expect(axios.request).toHaveBeenCalledWith({
         data: expect.any(FormData),
@@ -130,6 +131,7 @@ describe("Post Requests", () => {
       expect(handleComplete).toHaveBeenCalledWith({
         ...baseMatch,
         progress: 1,
+        uploadUrl: "https://httpbin.org/post",
       });
 
       expect(handleStart).toHaveBeenCalledTimes(1);
