@@ -37,6 +37,11 @@ export interface FileUpload {
   readonly progress: number;
 
   /**
+   * Url file was uploaded to, used to send in mutation to JO
+   */
+  uploadUrl?: string;
+
+  /**
    * The data url of the file.
    */
   src(): Promise<string>;
@@ -225,18 +230,23 @@ export function InputFile({
     } = await getUploadParams(file);
 
     const fileUpload = getFileUpload(file, key);
-    onUploadStart && onUploadStart({ ...fileUpload });
+    onUploadStart &&
+      onUploadStart({
+        ...fileUpload,
+        uploadUrl: url,
+      });
 
     const handleUploadProgress = (progressEvent: any) => {
       onUploadProgress &&
         onUploadProgress({
           ...fileUpload,
           progress: progressEvent.loaded / progressEvent.total,
+          uploadUrl: url,
         });
     };
 
     const handleUploadComplete = () => {
-      onUploadComplete?.({ ...fileUpload, progress: 1 });
+      onUploadComplete?.({ ...fileUpload, progress: 1, uploadUrl: url });
     };
 
     const axiosConfig = createAxiosConfig({
