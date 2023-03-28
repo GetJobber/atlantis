@@ -37,9 +37,9 @@ export interface FileUpload {
   readonly progress: number;
 
   /**
-   * Url file was uploaded to, used to send in mutation to Jobber Online
+   * Base URL where file was sent as a POST. This is the same URL as what's returned in getUploadParams.
    */
-  readonly uploadUrl?: string;
+  readonly uploadUrl: string;
 
   /**
    * The data url of the file.
@@ -231,12 +231,9 @@ export function InputFile({
 
     const fileUpload = {
       ...getFileUpload(file, key),
-      uploadUrl: url || undefined,
+      uploadUrl: url,
     };
-    onUploadStart &&
-      onUploadStart({
-        ...fileUpload,
-      });
+    onUploadStart && onUploadStart({ ...fileUpload });
 
     const handleUploadProgress = (progressEvent: any) => {
       onUploadProgress &&
