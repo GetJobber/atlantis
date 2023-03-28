@@ -22,7 +22,6 @@
     "@jobber/hooks": "*",
     "@js-temporal/polyfill": "^0.4.3",
     "@popperjs/core": "^2.0.6",
-    "@std-proposal/temporal": "0.0.1",
     "@tanstack/react-table": "8.5.13",
     "@types/color": "^3.0.1",
     "@types/lodash": "^4.14.136",

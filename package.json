@@ -133,7 +133,6 @@
   ],
   "dependencies": {
     "@js-temporal/polyfill": "^0.4.3",
-    "@std-proposal/temporal": "0.0.1",
     "jest-environment-jsdom": "^29.5.0"
   },
   "optionalDependencies": {
