@@ -8,10 +8,10 @@ import external from "rollup-plugin-peer-deps-external";
 import postcss from "rollup-plugin-postcss";
 
 export default {
-  input: `src/*/index.ts`,
+  input: "src/*/index.ts",
   plugins: [
     multiInput.default(),
-    typescript({ tsconfig: "./tsconfig.json", declarationDir: "dist" }),
+    typescript({ declarationDir: "dist" }),
     external(),
     resolve(),
     commonjs(),

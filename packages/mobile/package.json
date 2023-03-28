@@ -1,11 +1,10 @@
 {
   "name": "mobile",
-  "version": "1.0.0",
   "main": "dist/cjs/index.js",
+  "version": "0.0.0",
   "scripts": {
-    "build": "rm -rf /dist && npm run build:rollup && npm run build:esm && npm run build:cjs",
-    "build:cjs": "tsc --module CommonJS --outDir dist/cjs",
-    "build:esm": "tsc",
+    "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
+    "build": "npm run clean && npm run build:rollup",
     "build:rollup": "rollup --config --bundleConfigAsCjs",
     "start": "expo start",
     "start:android": "expo start --android",
