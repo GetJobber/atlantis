@@ -15,6 +15,7 @@ module.exports = {
         extensions: [".ts", ".tsx", ".js", ".jsx", ".json", ".stories.mdx"],
       },
     },
+    "import/ignore": ["react-native"],
   },
   rules: {
     /*
