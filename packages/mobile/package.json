@@ -1,6 +1,13 @@
 {
   "name": "mobile",
-  "main": "dist/cjs/index.js",
+  "main": "lib/commonjs/index.js",
+  "module": "lib/module/index.js",
+  "react-native": "src/index.ts",
+  "types": "lib/typescript/index.d.ts",
+  "files": [
+    "lib/",
+    "src/"
+  ],
   "version": "0.0.0",
   "scripts": {
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
@@ -9,7 +16,8 @@
     "start": "expo start",
     "start:android": "expo start --android",
     "start:ios": "expo start --ios",
-    "start:web": "expo start --web"
+    "start:web": "expo start --web",
+    "prepack": "bob build"
   },
   "dependencies": {
     "expo": "~48.0.9",
@@ -23,6 +31,7 @@
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-typescript": "^11.0.0",
     "@types/react": "~18.0.14",
+    "react-native-builder-bob": "^0.20.4",
     "rollup": "^3.20.2",
     "rollup-plugin-dts": "^5.3.0",
     "rollup-plugin-multi-input": "^1.4.1",
@@ -31,5 +40,19 @@
     "rollup-plugin-terser": "^7.0.2",
     "typescript": "^4.9.4"
   },
-  "private": true
+  "private": true,
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      [
+        "commonjs",
+        {
+          "copyFlow": true
+        }
+      ],
+      "module",
+      "typescript"
+    ]
+  }
 }
