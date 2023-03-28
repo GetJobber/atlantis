@@ -39,7 +39,7 @@ export interface FileUpload {
   /**
    * Url file was uploaded to, used to send in mutation to Jobber Online
    */
-  uploadUrl?: string;
+  readonly uploadUrl?: string;
 
   /**
    * The data url of the file.
