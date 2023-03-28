@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.2.1...@jobber/components@4.2.2) (2023-03-28)
+
+
+### Bug Fixes
+
+* **components:** update Disclosure component to use useResizeObserver on title ([#1156](https://github.com/GetJobber/atlantis/issues/1156)) ([80cfbac](https://github.com/GetJobber/atlantis/commit/80cfbac27831697dc4da183eb7ecbc020d572d88))
+
+
+
+
+
 ## [4.2.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.2.0...@jobber/components@4.2.1) (2023-03-27)
 
 
