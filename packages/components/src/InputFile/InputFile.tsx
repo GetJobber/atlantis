@@ -37,7 +37,7 @@ export interface FileUpload {
   readonly progress: number;
 
   /**
-   * Url file was uploaded to, used to send in mutation to JO
+   * Url file was uploaded to, used to send in mutation to Jobber Online
    */
   uploadUrl?: string;
 
@@ -229,11 +229,13 @@ export function InputFile({
       httpMethod = "POST",
     } = await getUploadParams(file);
 
-    const fileUpload = getFileUpload(file, key);
+    const fileUpload = {
+      ...getFileUpload(file, key),
+      uploadUrl: url || undefined,
+    };
     onUploadStart &&
       onUploadStart({
         ...fileUpload,
-        uploadUrl: url,
       });
 
     const handleUploadProgress = (progressEvent: any) => {
@@ -241,12 +243,11 @@ export function InputFile({
         onUploadProgress({
           ...fileUpload,
           progress: progressEvent.loaded / progressEvent.total,
-          uploadUrl: url,
         });
     };
 
     const handleUploadComplete = () => {
-      onUploadComplete?.({ ...fileUpload, progress: 1, uploadUrl: url });
+      onUploadComplete?.({ ...fileUpload, progress: 1 });
     };
 
     const axiosConfig = createAxiosConfig({
