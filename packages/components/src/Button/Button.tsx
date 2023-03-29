@@ -71,6 +71,7 @@ interface SubmitButtonProps {
    */
   submit: true;
   readonly type?: "primary";
+  readonly variation?: "work";
 }
 
 /** This type ensures the button defines only one purpose */
