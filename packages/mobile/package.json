@@ -44,31 +44,6 @@
     "typescript": "^4.9.5"
   },
   "private": true,
-  "react-native-builder-bob": {
-    "source": "src",
-    "output": "lib",
-    "targets": [
-      [
-        "commonjs",
-        {
-          "configFile": true
-        }
-      ],
-      [
-        "module",
-        {
-          "configFile": true
-        }
-      ],
-      [
-        "typescript",
-        {
-          "project": "tsconfig.json",
-          "tsc": "./node_modules/typescript/bin/tsc"
-        }
-      ]
-    ]
-  },
   "eslintIgnore": [
     "node_modules/",
     "lib/"
