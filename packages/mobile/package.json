@@ -3,10 +3,13 @@
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
   "react-native": "src/index.ts",
-  "types": "lib/typescript/index.d.ts",
+  "types": "lib/typescript/src/index.d.ts",
   "files": [
-    "lib/",
-    "src/"
+    "src",
+    "lib",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__"
   ],
   "version": "0.0.0",
   "scripts": {
@@ -17,7 +20,7 @@
     "start:android": "expo start --android",
     "start:ios": "expo start --ios",
     "start:web": "expo start --web",
-    "prepack": "bob build"
+    "prepack": "npm run clean && bob build"
   },
   "dependencies": {
     "expo": "~48.0.9",
@@ -38,7 +41,7 @@
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-terser": "^7.0.2",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.5"
   },
   "private": true,
   "react-native-builder-bob": {
@@ -48,11 +51,26 @@
       [
         "commonjs",
         {
-          "copyFlow": true
+          "configFile": true
         }
       ],
-      "module",
-      "typescript"
+      [
+        "module",
+        {
+          "configFile": true
+        }
+      ],
+      [
+        "typescript",
+        {
+          "project": "tsconfig.json",
+          "tsc": "./node_modules/typescript/bin/tsc"
+        }
+      ]
     ]
-  }
+  },
+  "eslintIgnore": [
+    "node_modules/",
+    "lib/"
+  ]
 }
