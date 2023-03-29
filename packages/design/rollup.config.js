@@ -14,6 +14,7 @@ export default {
     }),
     postcss({
       modules: { generateScopedName: "[hash:base64]" },
+      autoModules: false,
       plugins: [
         require("postcss-import"),
         require("autoprefixer"),
