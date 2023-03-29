@@ -1,5 +1,6 @@
 import React from "react";
 import { Temporal } from "@js-temporal/polyfill";
+import { CivilDate } from "@std-proposal/temporal";
 
 interface FormatRelativeDateTimeProps {
   /**
@@ -7,7 +8,7 @@ interface FormatRelativeDateTimeProps {
    *
    * A `string` should be an ISO 8601 format date string.
    */
-  readonly date: Temporal.PlainDateTime | Date | string;
+  readonly date: Temporal.PlainDateTime | CivilDate | Date | string;
 }
 
 export function FormatRelativeDateTime({
