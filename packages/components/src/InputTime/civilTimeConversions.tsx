@@ -1,8 +1,8 @@
 import { Temporal } from "@js-temporal/polyfill";
-import { CivilTime } from "@std-proposal/temporal";
+import { AtlantisTemporalPlainTime } from "./InputTimeProps";
 
 export function civilTimeToHTMLTime(
-  civilTime?: Temporal.PlainTime | CivilTime,
+  civilTime?: AtlantisTemporalPlainTime,
 ): string {
   if (civilTime == undefined) {
     return "";
@@ -14,7 +14,7 @@ export function civilTimeToHTMLTime(
 
 export function htmlTimeToCivilTime(
   timeString: string,
-): Temporal.PlainTime | CivilTime | undefined {
+): AtlantisTemporalPlainTime | undefined {
   try {
     return Temporal.PlainTime.from(timeString + ":00.000000000");
   } catch {

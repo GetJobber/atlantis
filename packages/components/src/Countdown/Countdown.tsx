@@ -3,6 +3,7 @@ import ReactCountdown, { CountdownRenderProps } from "react-countdown";
 import { Temporal } from "@js-temporal/polyfill";
 import { CivilDate } from "@std-proposal/temporal";
 import { computeTimeUnit } from "./computeTimeUnit";
+import { AtlantisTemporalPlainDateTime } from "../InputTime";
 
 /**
  * Options for deciding how much information is shown to the user
@@ -16,7 +17,7 @@ interface CountdownProps {
    * Civil Time of time is to be displayed.
    * In the case of `date` a `string` should be in ISO 8601 format
    */
-  readonly date: Temporal.PlainDateTime | CivilDate | Date | number | string;
+  readonly date: AtlantisTemporalPlainDateTime | Date | number | string;
 
   /**
    * Whether or not to present the unit of time to the user, or just the raw numbers.
