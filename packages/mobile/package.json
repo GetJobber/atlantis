@@ -1,5 +1,5 @@
 {
-  "name": "mobile",
+  "name": "@jobber/mobile",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
   "react-native": "src/index.ts",
