@@ -19,7 +19,6 @@ export default {
       plugins: [
         require("postcss-import"),
         require("autoprefixer"),
-        require("postcss-svg"),
         // eslint-disable-next-line @typescript-eslint/no-var-requires
         require("postcss-preset-env")({
           stage: 1,
