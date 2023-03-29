@@ -2,7 +2,7 @@
 import multiInput from "rollup-plugin-multi-input";
 import typescript from "rollup-plugin-typescript2";
 import postcss from "rollup-plugin-postcss";
-import commonjs from "rollup-plugin-commonjs";
+import commonjs from "@rollup/plugin-commonjs";
 import copy from "rollup-plugin-copy";
 
 export default {
