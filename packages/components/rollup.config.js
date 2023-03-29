@@ -61,6 +61,7 @@ export default {
     "uuid",
     "lodash/debounce",
     "@js-temporal/polyfill",
+    "@std-proposal/temporal",
     "@use-it/event-listener",
     "@jobber/design",
     "@jobber/formatters",
