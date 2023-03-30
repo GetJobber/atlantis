@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.4.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.4.0...@jobber/components@4.4.1) (2023-03-30)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [4.4.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.3.0...@jobber/components@4.4.0) (2023-03-29)
+
+
+### Features
+
+* **components:** Add new “money” icons ([#1161](https://github.com/GetJobber/atlantis/issues/1161)) ([1b04ab4](https://github.com/GetJobber/atlantis/commit/1b04ab4ddd82364de9b1d373592dc6c984921057))
+
+
+
+
+
 # [4.3.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.2.2...@jobber/components@4.3.0) (2023-03-28)
 
 
