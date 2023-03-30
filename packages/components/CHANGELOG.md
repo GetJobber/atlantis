@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.4.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.4.2...@jobber/components@4.4.3) (2023-03-30)
+
+
+### Reverts
+
+* "refactor(components): Remove redundant button prop types" ([#1168](https://github.com/GetJobber/atlantis/issues/1168)) ([45a0402](https://github.com/GetJobber/atlantis/commit/45a0402e1f8aabacf716dea91f9ad6a8c67522d4)), closes [#1164](https://github.com/GetJobber/atlantis/issues/1164)
+
+
+
+
+
 ## [4.4.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.4.1...@jobber/components@4.4.2) (2023-03-30)
 
 **Note:** Version bump only for package @jobber/components
