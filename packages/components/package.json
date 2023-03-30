@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "4.4.0",
+  "version": "4.4.2",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -17,7 +17,7 @@
     "dist/*"
   ],
   "dependencies": {
-    "@jobber/design": "^0.31.0",
+    "@jobber/design": "^0.31.1",
     "@jobber/formatters": "*",
     "@jobber/hooks": "*",
     "@js-temporal/polyfill": "^0.4.3",
@@ -49,7 +49,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^23.0.0",
+    "@rollup/plugin-commonjs": "^24.0.1",
     "@rollup/plugin-typescript": "^9.0.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
@@ -62,13 +62,12 @@
     "autoprefixer": "^9.5.1",
     "copyfiles": "^2.4.1",
     "glob": "^7.1.4",
-    "postcss": "^7.0.36",
+    "postcss": "^8.4.21",
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^6.7.0",
-    "postcss-svg": "^3.0.0",
     "rollup": "^2.79.1",
-    "rollup-plugin-multi-input": "^0.2.2",
-    "rollup-plugin-postcss": "^2.0.3",
+    "rollup-plugin-multi-input": "^1.4.1",
+    "rollup-plugin-postcss": "^4.0.2",
     "ts-node": "^8.1.0",
     "typed-css-modules": "^0.7.0",
     "typescript": "^4.9.5",
