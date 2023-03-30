@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.4.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.3.0...@jobber/components@4.4.0) (2023-03-29)
+
+
+### Features
+
+* **components:** Add new “money” icons ([#1161](https://github.com/GetJobber/atlantis/issues/1161)) ([1b04ab4](https://github.com/GetJobber/atlantis/commit/1b04ab4ddd82364de9b1d373592dc6c984921057))
+
+
+
+
+
+# [4.3.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.2.2...@jobber/components@4.3.0) (2023-03-28)
+
+
+### Features
+
+* Add uploadUrl to FileUpload ([#1159](https://github.com/GetJobber/atlantis/issues/1159)) ([4413a44](https://github.com/GetJobber/atlantis/commit/4413a4423233cf2d9c569fc379cdca736092ac50))
+
+
+
+
+
+## [4.2.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.2.1...@jobber/components@4.2.2) (2023-03-28)
+
+
+### Bug Fixes
+
+* **components:** update Disclosure component to use useResizeObserver on title ([#1156](https://github.com/GetJobber/atlantis/issues/1156)) ([80cfbac](https://github.com/GetJobber/atlantis/commit/80cfbac27831697dc4da183eb7ecbc020d572d88))
+
+
+
+
+
 ## [4.2.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.2.0...@jobber/components@4.2.1) (2023-03-27)
 
 
