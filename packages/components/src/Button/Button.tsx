@@ -78,7 +78,7 @@ interface SubmitButtonProps {
 type ButtonFunctionality = XOR<
   SubmitButtonProps,
   XOR<ButtonLinkProps, ButtonAnchorProps>
-  >;
+>;
 
 /**This type ensures the button is identifiable to users*/
 type ButtonIdentification = XOR<ButtonIconProps, ButtonLabelProps>;
