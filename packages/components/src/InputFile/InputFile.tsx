@@ -230,8 +230,7 @@ export function InputFile({
     } = await getUploadParams(file);
 
     const fileUpload = {
-      ...getFileUpload(file, key),
-      uploadUrl: url,
+      ...getFileUpload(file, key, url),
     };
     onUploadStart && onUploadStart({ ...fileUpload });
 
@@ -313,7 +312,7 @@ function getLabels(
   return { buttonLabel, hintText };
 }
 
-function getFileUpload(file: File, key: string): FileUpload {
+function getFileUpload(file: File, key: string, url: string): FileUpload {
   return {
     key: key,
     name: file.name,
@@ -321,6 +320,7 @@ function getFileUpload(file: File, key: string): FileUpload {
     size: file.size,
     progress: 0,
     src: getSrc,
+    uploadUrl: url,
   };
 
   function getSrc() {
