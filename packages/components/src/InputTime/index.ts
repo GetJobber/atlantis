@@ -1,5 +1,5 @@
 export { InputTime } from "./InputTime";
-export {
+export type {
   AtlantisTemporalPlainDateTime,
   AtlantisTemporalPlainTime,
 } from "./InputTimeProps";
