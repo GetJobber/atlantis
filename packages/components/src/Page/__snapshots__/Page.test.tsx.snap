@@ -67,7 +67,7 @@ exports[`When actions are provided renders a Page with action buttons and a menu
                   type="button"
                 >
                   <svg
-                    class="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
+                    class="Z6OfUI2sH34- TphtDHcwxDc-"
                     data-testid="more"
                     viewBox="0 0 1024 1024"
                     xmlns="http://www.w3.org/2000/svg"
