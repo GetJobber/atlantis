@@ -13,8 +13,9 @@
   ],
   "version": "0.0.0",
   "scripts": {
-    "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
-    "build": "npm run clean && bob build"
+    "clean": "rm -rf lib/* tsconfig.tsbuildinfo",
+    "build": "npm run clean && bob build",
+    "bootstrap": "npm run clean && bob build"
   },
   "devDependencies": {
     "@types/react": "~18.0.14",

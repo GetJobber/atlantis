@@ -2,7 +2,7 @@ import React from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 // eslint-disable-next-line import/no-internal-modules
-import { Button } from "./src/Button";
+import { Button } from "./packages/mobile/src/Button";
 
 // eslint-disable-next-line import/no-default-export
 export default function App() {
