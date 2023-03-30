@@ -3,8 +3,8 @@ import TimePolyfill from "time-input-polyfill";
 import debounce from "lodash/debounce";
 import { InputTimeProps } from "./InputTimeProps";
 import {
-  civilTimeToHTMLTime,
-  htmlTimeToCivilTime,
+  atlantisTimeToHTMLTime,
+  htmlTimeToAtlantisTime,
 } from "./civilTimeConversions";
 import { FormField } from "../FormField";
 
@@ -29,12 +29,12 @@ export function InputTimeSafari({
     new TimePolyfill(input);
 
     if (value) {
-      input.value = civilTimeToHTMLTime(value);
+      input.value = atlantisTimeToHTMLTime(value);
       input.polyfill.update();
     }
 
     if (defaultValue) {
-      input.value = civilTimeToHTMLTime(defaultValue);
+      input.value = atlantisTimeToHTMLTime(defaultValue);
       input.polyfill.update();
     }
 
@@ -51,12 +51,12 @@ export function InputTimeSafari({
     const input = inputTime.current as PolyfilledInputElement;
 
     if (value) {
-      input.value = civilTimeToHTMLTime(value);
+      input.value = atlantisTimeToHTMLTime(value);
       input.polyfill.update();
     }
 
     if (defaultValue) {
-      input.value = civilTimeToHTMLTime(defaultValue);
+      input.value = atlantisTimeToHTMLTime(defaultValue);
       input.polyfill.update();
     }
   }, [value, defaultValue]);
@@ -64,7 +64,7 @@ export function InputTimeSafari({
   return <FormField inputRef={inputTime} type="time" {...params} />;
 
   function handleChange(newValue: string) {
-    onChange && onChange(htmlTimeToCivilTime(newValue));
+    onChange && onChange(htmlTimeToAtlantisTime(newValue));
   }
 
   function generateEventHandler(handler: typeof handleChange) {

@@ -1,18 +1,18 @@
 import { Temporal } from "@js-temporal/polyfill";
 import { AtlantisTemporalPlainTime } from "./InputTimeProps";
 
-export function civilTimeToHTMLTime(
-  civilTime?: AtlantisTemporalPlainTime,
+export function atlantisTimeToHTMLTime(
+  atlantisTime?: AtlantisTemporalPlainTime,
 ): string {
-  if (civilTime == undefined) {
+  if (atlantisTime == undefined) {
     return "";
   }
 
-  const timeString = civilTime.toString();
+  const timeString = atlantisTime.toString();
   return timeString.slice(0, 5);
 }
 
-export function htmlTimeToCivilTime(
+export function htmlTimeToAtlantisTime(
   timeString: string,
 ): AtlantisTemporalPlainTime | undefined {
   try {

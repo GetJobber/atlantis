@@ -3,8 +3,8 @@ import React from "react";
 import supportsTime from "time-input-polyfill/supportsTime";
 import { InputTimeSafari } from "./InputTimeSafari";
 import {
-  civilTimeToHTMLTime,
-  htmlTimeToCivilTime,
+  atlantisTimeToHTMLTime,
+  htmlTimeToAtlantisTime,
 } from "./civilTimeConversions";
 import { InputTimeProps } from "./InputTimeProps";
 import { FormField, FormFieldProps } from "../FormField";
@@ -16,14 +16,16 @@ export function InputTime({
   ...params
 }: InputTimeProps) {
   const handleChange = (newValue: string) => {
-    onChange && onChange(htmlTimeToCivilTime(newValue));
+    onChange && onChange(htmlTimeToAtlantisTime(newValue));
   };
 
   if (supportsTime) {
     const fieldProps: FormFieldProps = {
       onChange: handleChange,
-      ...(defaultValue && { defaultValue: civilTimeToHTMLTime(defaultValue) }),
-      ...(!defaultValue && { value: civilTimeToHTMLTime(value) }),
+      ...(defaultValue && {
+        defaultValue: atlantisTimeToHTMLTime(defaultValue),
+      }),
+      ...(!defaultValue && { value: atlantisTimeToHTMLTime(value) }),
       ...params,
     };
 
