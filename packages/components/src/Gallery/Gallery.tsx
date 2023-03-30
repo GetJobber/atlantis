@@ -24,7 +24,6 @@ export function Gallery({ files, size = "base", max, onDelete }: GalleryProps) {
               key={file.key}
               file={{
                 ...file,
-                uploadUrl: "",
                 src: () => Promise.resolve(file.src),
               }}
               display="compact"

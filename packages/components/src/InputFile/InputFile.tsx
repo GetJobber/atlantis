@@ -39,7 +39,7 @@ export interface FileUpload {
   /**
    * Base URL where file was sent as a POST. This is the same URL as what's returned in getUploadParams.
    */
-  readonly uploadUrl: string;
+  readonly uploadUrl?: string;
 
   /**
    * The data url of the file.
@@ -321,7 +321,6 @@ function getFileUpload(file: File, key: string): FileUpload {
     size: file.size,
     progress: 0,
     src: getSrc,
-    uploadUrl: "",
   };
 
   function getSrc() {
