@@ -22,10 +22,7 @@ export function Gallery({ files, size = "base", max, onDelete }: GalleryProps) {
           return (
             <FormatFile
               key={file.key}
-              file={{
-                ...file,
-                src: () => Promise.resolve(file.src),
-              }}
+              file={{ ...file, src: () => Promise.resolve(file.src) }}
               display="compact"
               displaySize={size}
               onClick={() => {
