@@ -142,5 +142,8 @@
     "node": "18",
     "npm": "9"
   },
+  "overrides": {
+    "trim": "0.0.3"
+  },
   "engineStrict": true
 }
