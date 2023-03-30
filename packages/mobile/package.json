@@ -2,10 +2,8 @@
   "name": "@jobber/mobile",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
-  "react-native": "src/index.ts",
-  "types": "lib/typescript/src/index.d.ts",
+  "types": "lib/typescript/index.d.ts",
   "files": [
-    "src",
     "lib",
     "!**/__tests__",
     "!**/__fixtures__",
@@ -24,8 +22,8 @@
     "typescript": "^4.9.5"
   },
   "peerDependencies": {
-    "react": "*",
     "@babel/core": "*",
+    "react": "*",
     "react-native": "*"
   },
   "private": true,

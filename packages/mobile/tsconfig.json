@@ -1,15 +1,11 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "allowJs": true,
-    "esModuleInterop": true,
-    "jsx": "react-native",
+    "target": "ESNext",
     "lib": [
       "ESNext"
     ],
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
     "skipLibCheck": true,
-    "target": "ESNext",
     "declaration": true,
     "rootDir": "src",
   },
@@ -19,9 +15,5 @@
   "exclude": [
     "**/*.test.ts",
     "**/*.test.tsx",
-    "App.tsx",
-    "node_modules",
-    "babel.config.js",
-    "jest.config.js"
   ],
 }
