@@ -14,25 +14,18 @@
   "version": "0.0.0",
   "scripts": {
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
-    "build": "npm run clean && npm run build:rollup",
-    "build:rollup": "rollup --config --bundleConfigAsCjs",
-    "start": "expo start",
-    "start:android": "expo start --android",
-    "start:ios": "expo start --ios",
-    "start:web": "expo start --web",
-    "prepack": "npm run clean && bob build"
-  },
-  "dependencies": {
-    "expo": "~48.0.9",
-    "expo-status-bar": "~1.4.4",
-    "react": "18.2.0",
-    "react-native": "0.71.4"
+    "build": "npm run clean && bob build"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0",
     "@types/react": "~18.0.14",
+    "@types/react-native": "^0.71.5",
     "react-native-builder-bob": "^0.20.4",
     "typescript": "^4.9.5"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "@babel/core": "*",
+    "react-native": "*"
   },
   "private": true,
   "eslintIgnore": [

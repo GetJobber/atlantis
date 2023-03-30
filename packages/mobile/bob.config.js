@@ -18,7 +18,7 @@ module.exports = {
       "typescript",
       {
         // For some reason bob couldn't find tsc so we have to tell it
-        tsc: "./node_modules/typescript/bin/tsc",
+        tsc: "../../node_modules/typescript/bin/tsc",
       },
     ],
   ],
