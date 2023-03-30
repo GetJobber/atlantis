@@ -71,7 +71,10 @@ interface SubmitButtonProps {
    */
   submit: true;
   readonly type?: "primary";
-  readonly variation?: "work";
+  readonly variation?: Extract<
+    BaseActionProps["variation"],
+    "work" | "destructive"
+  >;
 }
 
 /** This type ensures the button defines only one purpose */
