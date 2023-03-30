@@ -5,7 +5,7 @@ import { InputTimeProps } from "./InputTimeProps";
 import {
   atlantisTimeToHTMLTime,
   htmlTimeToAtlantisTime,
-} from "./civilTimeConversions";
+} from "./atlantisTimeConversions";
 import { FormField } from "../FormField";
 
 interface PolyfilledInputElement extends HTMLInputElement {

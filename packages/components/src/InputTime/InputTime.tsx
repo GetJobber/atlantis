@@ -5,7 +5,7 @@ import { InputTimeSafari } from "./InputTimeSafari";
 import {
   atlantisTimeToHTMLTime,
   htmlTimeToAtlantisTime,
-} from "./civilTimeConversions";
+} from "./atlantisTimeConversions";
 import { InputTimeProps } from "./InputTimeProps";
 import { FormField, FormFieldProps } from "../FormField";
 
