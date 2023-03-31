@@ -6,27 +6,35 @@
   --typography--fontFamily-display: "Jobber Pro", "Poppins", Helvetica, Arial,
     sans-serif;
 
+  /* 42 */
   --typography--fontSize-extravagant: calc(
-    var(--typography--fontSize-large) * 3
+    var(--typography--fontSize-base) * 2.1
   );
-  /* 48 */
-  --typography--fontSize-jumbo: calc(var(--typography--fontSize-large) * 2.25);
   /* 36 */
-  --typography--fontSize-largest: calc(var(--typography--fontSize-large) * 1.5);
+  --typography--fontSize-jumbo: calc(var(--typography--fontSize-base) * 1.8);
+  /* 28 */
+  --typography--fontSize-largest: calc(var(--typography--fontSize-base) * 1.4);
   /* 24 */
-  --typography--fontSize-larger: calc(var(--typography--fontSize-large) * 1.25);
+  --typography--fontSize-larger: calc(var(--typography--fontSize-base) * 1.2);
+  /* 22 */
+  --typography--fontSize-large: calc(var(--typography--fontSize-base) * 1.1);
   /* 20 */
-  --typography--fontSize-large: calc(var(--base-unit) * 1);
+  --typography--fontSize-base: calc(var(--base-unit) * 1.125);
+  /* 18 */
+  --typography--fontSize-small: calc(var(--typography--fontSize-base) * 0.9);
   /* 16 */
-  --typography--fontSize-base: calc(var(--typography--fontSize-large) * 0.875);
+  --typography--fontSize-smaller: calc(var(--typography--fontSize-base) * 0.8);
   /* 14 */
-  --typography--fontSize-small: calc(var(--typography--fontSize-large) * 0.75);
-  /* 12 */
-  --typography--fontSize-smaller: calc(
-    var(--typography--fontSize-large) * 0.625
-  );
+  --typography--fontSize-smallest: calc(var(--typography--fontSize-base) * 0.7);
   /* 10 */
+  --typography--fontSize-miniscule: calc(
+    var(--typography--fontSize-base) * 0.5
+  );
 
+  --typography--lineHeight-extravagant: 2.625;
+  --typography--lineHeight-jumbo: 2.25;
+  --typography--lineHeight-largest: 1.75;
+  --typography--lineHeight-larger: 1.5;
   --typography--lineHeight-large: 1.34;
   --typography--lineHeight-base: 1.25;
   --typography--lineHeight-tight: 1.2;

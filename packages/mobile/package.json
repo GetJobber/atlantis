@@ -5,6 +5,7 @@
   "types": "lib/typescript/index.d.ts",
   "files": [
     "lib",
+    "src",
     "!**/__tests__",
     "!**/__fixtures__",
     "!**/__mocks__"
@@ -15,9 +16,17 @@
     "build": "npm run clean && bob build",
     "bootstrap": "npm run clean && bob build"
   },
+  "dependencies": {
+    "@jobber/design": "*",
+    "react-native-gesture-handler": "^2.9.0",
+    "react-native-reanimated": "^2.14.4",
+    "react-native-svg": "^13.9.0",
+    "ts-xor": "^1.1.0"
+  },
   "devDependencies": {
     "@types/react": "~18.0.14",
     "@types/react-native": "^0.71.5",
+    "metro-react-native-babel-preset": "^0.76.0",
     "react-native-builder-bob": "^0.20.4",
     "typescript": "^4.9.5"
   },
