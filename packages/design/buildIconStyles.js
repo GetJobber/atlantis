@@ -4,7 +4,9 @@
 const fs = require("fs");
 const path = require("path");
 const postcss = require("postcss");
-const postcssCustomProperties = require("postcss-custom-properties");
+// const postcssCustomProperties = require("postcss-custom-properties");
+// const postcssExtract = require("@csstools/postcss-extract");
+const postcssImport = require("postcss-import");
 const postcssCalc = require("postcss-calc");
 const transform = require("css-to-react-native-transform").default;
 
@@ -14,14 +16,8 @@ const color = fs.readFileSync("src/icons/Colors.css");
 
 const allCss = [icon, size, color].join("\n");
 
-postcss([
-  postcssCustomProperties({
-    preserve: false,
-    importFrom: ["foundation.css"],
-  }),
-  postcssCalc(),
-])
-  .process(allCss, { from: undefined })
+postcss([postcssImport(), postcssCalc()])
+  .process(allCss, { from: "src/icons/Colors.css" })
   .then(function (result) {
     const calculated = transform(result.css);
     const jsonContent =

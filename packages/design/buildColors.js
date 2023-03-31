@@ -2,13 +2,33 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const fs = require("fs");
 const postcss = require("postcss");
-const postcssCustomProperties = require("postcss-custom-properties");
+// const postcssCustomProperties = require("postcss-custom-properties");
+const postcssExtract = require("@csstools/postcss-extract");
 
 const colors = fs.readFileSync("src/colors.css");
 
 postcss([
-  postcssCustomProperties({
-    exportTo: ["colors.js"],
+  postcssExtract({
+    queries: {
+      customProperties: 'rule[selector*=":root" i] > decl[value]',
+    },
+    results: yourResults => {
+      //{ type: 'decl', prop: '--your-property', value: 'cyan', variable: true },
+      const mappedResults = yourResults.customProperties.reduce(
+        (acc, { prop, value }) => {
+          acc[prop] = value;
+          return acc;
+        },
+        {},
+      );
+      const resultsString = `module.exports = ${JSON.stringify(
+        { customProperties: mappedResults },
+        null,
+        2,
+      )}`;
+      // console.log(JSON.stringify({ customProperties: mappedResults }, null, 2));
+      fs.writeFileSync("colors.js", resultsString);
+    },
   }),
 ])
   .process(colors, { from: undefined })

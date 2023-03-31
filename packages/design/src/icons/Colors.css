@@ -1,3 +1,5 @@
+@import "../../foundation.css";
+
 .white {
   fill: var(--color-white);
 }
