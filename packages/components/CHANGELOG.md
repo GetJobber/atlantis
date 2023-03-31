@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.4.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.4.4...@jobber/components@4.4.5) (2023-03-31)
+
+
+### Bug Fixes
+
+* Enable noEmitOnError on component bootstrap ([#1171](https://github.com/GetJobber/atlantis/issues/1171)) ([a4f1000](https://github.com/GetJobber/atlantis/commit/a4f1000215c66e0ab905aaae3a6735c7e2cca621))
+
+
+
+
+
 ## [4.4.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.4.3...@jobber/components@4.4.4) (2023-03-31)
 
 
