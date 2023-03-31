@@ -10,6 +10,7 @@ export default {
     multiInput(),
     typescript({
       declarationDir: "dist",
+      noEmitOnError: true,
     }),
     postcss({
       modules: {
