@@ -19,6 +19,7 @@ interface ButtonFoundationProps {
   readonly ariaHaspopup?: boolean;
   readonly ariaExpanded?: boolean;
   readonly disabled?: boolean;
+  readonly external?: boolean;
   readonly fullWidth?: boolean;
   readonly icon?: IconNames;
   readonly iconOnRight?: boolean;
@@ -26,69 +27,67 @@ interface ButtonFoundationProps {
   readonly label?: string;
   readonly loading?: boolean;
   readonly size?: "small" | "base" | "large";
+  onClick?(
+    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
+  ): void;
   onMouseDown?(
     event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
   ): void;
 }
 
-interface ButtonIconProps {
+interface ButtonIconProps extends ButtonFoundationProps {
   readonly icon: IconNames;
   readonly ariaLabel: string;
 }
+
 interface ButtonLabelProps extends ButtonFoundationProps {
   readonly label: string;
 }
 
-interface BaseActionProps {
-  readonly variation?: "work" | "learning" | "subtle" | "destructive";
-  readonly type?: "primary" | "secondary" | "tertiary";
-  onClick?(
-    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
-  ): void;
-}
-
-interface ButtonAnchorProps extends BaseActionProps {
+interface ButtonAnchorProps extends ButtonFoundationProps {
   /**
    * Used to create an 'href' on an anchor tag.
    */
   readonly url?: string;
-  /**
-   * Used to open a new tab instead of change the location of the current tab
-   */
-  readonly external?: boolean;
 }
 
-interface ButtonLinkProps extends BaseActionProps {
+interface ButtonLinkProps extends ButtonFoundationProps {
   /**
    * Used for client side routing. Only use when inside a routed component.
    */
   readonly to?: string;
 }
 
-interface SubmitButtonProps {
+interface BaseActionProps extends ButtonFoundationProps {
+  readonly variation?: "work" | "learning" | "subtle" | "destructive";
+  readonly type?: "primary" | "secondary" | "tertiary";
+}
+
+interface DestructiveActionProps extends ButtonFoundationProps {
+  readonly variation: "destructive";
+  readonly type?: "primary" | "secondary" | "tertiary";
+}
+
+interface SubmitActionProps
+  extends Omit<ButtonFoundationProps, "external" | "onClick"> {
+  readonly type?: "primary";
+  readonly submit: boolean;
+}
+
+interface SubmitButtonProps
+  extends Omit<ButtonFoundationProps, "external" | "onClick"> {
   /**
    * Allows the button to submit a form
    */
-  submit: true;
-  readonly type?: "primary";
-  readonly variation?: Extract<
-    BaseActionProps["variation"],
-    "work" | "destructive"
-  >;
+  submit: boolean;
 }
 
-/** This type ensures the button defines only one purpose */
-type ButtonFunctionality = XOR<
-  SubmitButtonProps,
-  XOR<ButtonLinkProps, ButtonAnchorProps>
->;
-
-/**This type ensures the button is identifiable to users*/
-type ButtonIdentification = XOR<ButtonIconProps, ButtonLabelProps>;
-
-export type ButtonProps = ButtonFoundationProps &
-  ButtonFunctionality &
-  ButtonIdentification;
+export type ButtonProps = XOR<
+  BaseActionProps,
+  XOR<DestructiveActionProps, SubmitActionProps>
+> &
+  XOR<SubmitButtonProps, XOR<ButtonLinkProps, ButtonAnchorProps>> &
+  XOR<ButtonIconProps, ButtonLabelProps>;
 
 export function Button(props: ButtonProps) {
   const {
