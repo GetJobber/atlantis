@@ -1,0 +1,80 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { useState } from "react";
+import { ComponentStatus } from "@jobber/docx";
+import { FeatureSwitch } from ".";
+import { Text } from "../Text";
+
+# Feature Switch
+
+<ComponentStatus stage="ready" responsive="yes" accessible="yes" />
+
+<Meta title="Components/FeatureSwitch" component={FeatureSwitch} />
+
+Use the Feature Switch to give users control over a settings-level feature. The
+Feature Switch should tell the user what the feature is, allow them to turn it
+on and off, and optionally allow them to edit any options applicable to the
+feature.
+
+```ts
+import { FeatureSwitch } from "@jobber/components/FeatureSwitch";
+```
+
+<Canvas>
+  <Story
+    name="FeatureSwitch"
+    args={{
+      title: "Quote follow-up",
+      description:
+        "Send a notification to your client following up on an outstanding quote.",
+    }}
+  >
+    {args => {
+      const [featureEnabled, setFeatureEnabled] = useState(true);
+      function handleSwitch(newValue) {
+        setFeatureEnabled(newValue);
+      }
+      return (
+        <FeatureSwitch
+          {...args}
+          enabled={featureEnabled}
+          hasSaveIndicator={true}
+          onSwitch={handleSwitch}
+          onEdit={() => {
+            console.log("You clicked edit");
+          }}
+        >
+          <Text>Extra feature content and information</Text>
+        </FeatureSwitch>
+      );
+    }}
+  </Story>
+</Canvas>
+
+## Design Usage and Guidelines
+
+The Feature Switch is intended to be used in Settings for features that apply to
+a system-wide experience. An example of this might be automated messaging
+settings, where the user needs to both decide whether or not to use a type of
+message, what the message template might be, and when the message should be
+sent.
+
+If the user is making a per-use-case on/off decision, such as enabling automatic
+payments for a single invoice, use the
+[Switch](../?path=/docs/components-switch--switch-story) component.
+
+## Props
+
+<ArgsTable of={FeatureSwitch} story="FeatureSwitch" />
+
+---
+
+## Simplified
+
+<Canvas>
+  <FeatureSwitch
+    description="Send a notification to your client following up on an outstanding quote"
+    onSwitch={newValue => {
+      console.log(`Feature ${newValue ? "enabled" : "disabled"}`);
+    }}
+  />
+</Canvas>

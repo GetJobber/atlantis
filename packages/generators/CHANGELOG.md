@@ -1,12 +1,34 @@
----
-name: Generators
-menu: Changelog
----
-
-# @jobber/generators: Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [0.7.2](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.7.1...@jobber/generators@0.7.2) (2023-02-28)
+
+**Note:** Version bump only for package @jobber/generators
+
+
+
+
+
+## [0.7.1](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.7.0...@jobber/generators@0.7.1) (2023-02-28)
+
+**Note:** Version bump only for package @jobber/generators
+
+
+
+
+
+# [0.7.0](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.6.0...@jobber/generators@0.7.0) (2023-02-23)
+
+
+### Features
+
+* **generators:** JOB-62646 Update generator to create storybook file ([#1063](https://github.com/GetJobber/atlantis/issues/1063)) ([7347292](https://github.com/GetJobber/atlantis/commit/734729221c8c6331ddbfbb5b84692a504b270e67))
+
+
+
+
 
 # [0.6.0](https://github.com/GetJobber/atlantis/compare/@jobber/generators@0.5.1...@jobber/generators@0.6.0) (2023-02-07)
 

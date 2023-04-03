@@ -50,7 +50,7 @@ test("lightbox doesn't show up", () => {
   expect(queryByText(caption)).toBeNull();
 });
 
-test("lightbox closes when user clicks close", done => {
+test("lightbox closes when user clicks close", () => {
   const title = "Dis be a title";
   const caption = "Dis be a caption 🎉";
 
@@ -59,7 +59,6 @@ test("lightbox closes when user clicks close", done => {
   //called. This avoids an arbitrary setTimeout in our test.
   const handleClose = jest.fn(() => {
     expect(handleClose).toHaveBeenCalledTimes(1);
-    done();
   });
 
   const { getByLabelText } = render(
@@ -76,7 +75,7 @@ test("lightbox closes when user clicks close", done => {
     />,
   );
 
-  fireEvent.click(getByLabelText("Close lightbox"));
+  fireEvent.click(getByLabelText("Close"));
 });
 
 test("Lightbox displays the selected imageIndex", () => {

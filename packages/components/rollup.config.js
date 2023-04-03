@@ -10,16 +10,17 @@ export default {
     multiInput(),
     typescript({
       declarationDir: "dist",
+      noEmitOnError: true,
     }),
     postcss({
       modules: {
         generateScopedName: "[hash:base64]",
         globalModulePaths: [/node_modules/],
       },
+      autoModules: false,
       plugins: [
         require("postcss-import"),
         require("autoprefixer"),
-        require("postcss-svg"),
         // eslint-disable-next-line @typescript-eslint/no-var-requires
         require("postcss-preset-env")({
           stage: 1,
@@ -50,9 +51,8 @@ export default {
     "react-countdown",
     "react-popper",
     "react-datepicker",
-    "react-image-lightbox",
-    "react-image-lightbox/style.css",
     "react-dropzone",
+    "react-dom/client",
     "axios",
     "filesize",
     "color",

@@ -4,6 +4,7 @@ exports[`Post Requests renders an InputFile 1`] = `
 <div>
   <div
     class="dropZoneBase dropZone"
+    role="button"
     tabindex="0"
   >
     <input
@@ -26,7 +27,7 @@ exports[`Post Requests renders an InputFile 1`] = `
         </span>
       </button>
       <p
-        class="base regular small greyBlue"
+        class="base regular small textSecondary"
       >
         or drag a file here to upload
       </p>
@@ -39,6 +40,7 @@ exports[`Post Requests renders an InputFile with multiple images allowed 1`] = `
 <div>
   <div
     class="dropZoneBase dropZone"
+    role="button"
     tabindex="0"
   >
     <input
@@ -63,7 +65,7 @@ exports[`Post Requests renders an InputFile with multiple images allowed 1`] = `
         </span>
       </button>
       <p
-        class="base regular small greyBlue"
+        class="base regular small textSecondary"
       >
         or drag images here to upload
       </p>
@@ -76,6 +78,7 @@ exports[`Post Requests renders an InputFile with multiple uploads 1`] = `
 <div>
   <div
     class="dropZoneBase dropZone"
+    role="button"
     tabindex="0"
   >
     <input
@@ -99,7 +102,7 @@ exports[`Post Requests renders an InputFile with multiple uploads 1`] = `
         </span>
       </button>
       <p
-        class="base regular small greyBlue"
+        class="base regular small textSecondary"
       >
         or drag files here to upload
       </p>
@@ -112,6 +115,7 @@ exports[`Post Requests renders an InputFile with only images allowed 1`] = `
 <div>
   <div
     class="dropZoneBase dropZone"
+    role="button"
     tabindex="0"
   >
     <input
@@ -135,7 +139,7 @@ exports[`Post Requests renders an InputFile with only images allowed 1`] = `
         </span>
       </button>
       <p
-        class="base regular small greyBlue"
+        class="base regular small textSecondary"
       >
         or drag an image here to upload
       </p>
@@ -148,6 +152,7 @@ exports[`Post Requests renders an InputFile with proper variations 1`] = `
 <div>
   <div
     class="dropZoneBase dropZone"
+    role="button"
     tabindex="0"
   >
     <input
@@ -170,7 +175,7 @@ exports[`Post Requests renders an InputFile with proper variations 1`] = `
         </span>
       </button>
       <p
-        class="base regular small greyBlue"
+        class="base regular small textSecondary"
       >
         or drag a file here to upload
       </p>
@@ -178,6 +183,7 @@ exports[`Post Requests renders an InputFile with proper variations 1`] = `
   </div>
   <div
     class="dropZoneBase dropZone"
+    role="button"
     tabindex="0"
   >
     <input
@@ -203,6 +209,7 @@ exports[`Post Requests renders an InputFile with proper variations 1`] = `
   </div>
   <div
     class="dropZoneBase"
+    role="button"
     tabindex="-1"
   >
     <input
@@ -224,6 +231,7 @@ exports[`Post Requests renders an InputFile with proper variations 1`] = `
   </div>
   <div
     class="dropZoneBase"
+    role="button"
     tabindex="-1"
   >
     <input

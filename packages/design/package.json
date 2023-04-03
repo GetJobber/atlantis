@@ -1,6 +1,6 @@
 {
   "name": "@jobber/design",
-  "version": "0.28.2",
+  "version": "0.31.1",
   "description": "Design foundation for the Jobber Atlantis Design System",
   "license": "MIT",
   "main": "dist/index.js",
@@ -9,16 +9,12 @@
     "dist/*",
     "*.css",
     "foundation.*",
-    "icons/*",
-    "src/*",
-    "foundation_config/*",
-    "tsconfig.json",
-    "*.js"
+    "icons/*"
   ],
   "scripts": {
     "build": "npm run build:css && npm run build:css:icons && npm run build:colors && npm run build:cssTypes && npm run build:foundation && npm run build:iconCssStyle && npm run build:rollup",
     "build:rollup": "rollup --config",
-    "build:css": "postcss src/foundation.css --config foundation_config --output foundation.css",
+    "build:css": "postcss src/foundation.css --output foundation.css --use postcss-import",
     "build:css:icons": "postcss src/icons/*.css --dir icons/ --use postcss-import",
     "build:ts": "tsc --project .",
     "build:cssTypes": "tcm src/icons",
@@ -30,35 +26,29 @@
     "build:removeTempFiles": "rm -f src/foundation.js && mv foundation.d.ts.temp foundation.d.ts && mv foundation.js.temp foundation.js",
     "build:iconCssStyle": "node buildIconStyles.js && npm run build:iconCssStyleTypes",
     "build:iconCssStyleTypes": "tsc --declaration --emitDeclarationOnly --allowJs src/icons/iconStyles.ts --outDir ./src/icons --skipLibCheck",
-    "clean": "rm -rf dist/* icons/* colors.js foundation.* iconStyles.* tsconfig.tsbuildinfo ./src/icons/iconStyles.*",
-    "prepare": "npm run clean && npm run build",
-    "postinstall": "npm run prepare",
-    "ci:typescript-compile": "npm run build:ts"
-  },
-  "optionalDependencies": {
-    "@jobber/fonts": "^1.0.0"
+    "clean": "rm -rf dist/* icons/* colors.js foundation.* iconStyles.* tsconfig.tsbuildinfo",
+    "bootstrap": "npm run clean && npm run build"
   },
   "dependencies": {
-    "@types/classnames": "^2.2.10",
+    "classnames": "^2.3.2"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@types/node": "^18.15.7",
     "autoprefixer": "^9.5.1",
-    "classnames": "^2.2.6",
     "css-to-react-native-transform": "^2.0.0",
-    "postcss": "^7.0.36",
+    "postcss": "^8.4.21",
     "postcss-calc": "7.0.2",
     "postcss-cli": "^6.1.2",
-    "postcss-copy": "^7.1.0",
     "postcss-custom-properties": "^8.0.10",
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^6.6.0",
     "rollup": "^1.11.3",
-    "rollup-plugin-commonjs": "^9.3.4",
     "rollup-plugin-copy": "^3.4.0",
-    "rollup-plugin-multi-input": "^0.2.2",
-    "rollup-plugin-node-resolve": "^4.2.4",
-    "rollup-plugin-postcss": "^2.0.3",
-    "rollup-plugin-typescript": "^1.0.1",
-    "rollup-plugin-typescript2": "^0.31.2",
+    "rollup-plugin-multi-input": "^1.4.1",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-typescript2": "^0.34.1",
     "typed-css-modules": "^0.7.0",
-    "typescript": "^3.8.3"
+    "typescript": "^4.9.5"
   }
 }

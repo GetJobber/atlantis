@@ -1,5 +1,6 @@
 import { DocumentNode } from "@apollo/client";
 import { act, renderHook } from "@testing-library/react-hooks";
+import { waitFor } from "@testing-library/react";
 import { useCollectionQuery } from "./useCollectionQuery";
 import {
   LIST_QUERY,
@@ -161,9 +162,11 @@ describe("useCollectionQuery", () => {
 
           await act(wait);
 
-          expect(
-            result.current.data?.conversation?.smsMessages?.edges?.length,
-          ).toBe(2);
+          await waitFor(() => {
+            expect(
+              result.current.data?.conversation?.smsMessages?.edges,
+            ).toHaveLength(2);
+          });
         });
       });
 
@@ -231,9 +234,11 @@ describe("useCollectionQuery", () => {
 
           await act(wait);
 
-          expect(
-            result.current.data?.conversation?.smsMessages?.edges?.length,
-          ).toBe(2);
+          await waitFor(() => {
+            expect(
+              result.current.data?.conversation?.smsMessages?.edges,
+            ).toHaveLength(2);
+          });
         });
 
         it("should set loadingNextPage while loading data", async () => {
@@ -334,7 +339,7 @@ describe("useCollectionQuery", () => {
 
     describe("#subscribeToMore", () => {
       describe("when hook receives update from item not in collection", () => {
-        it("it should add new item to collection", async () => {
+        it("should add new item to collection", async () => {
           const { result, waitForNextUpdate } = renderHook(
             () => useCollectionQueryHookWithSubscription(query),
             {
@@ -358,7 +363,7 @@ describe("useCollectionQuery", () => {
       });
 
       describe("when hook receives update from item already in collection", () => {
-        it("it should return the existing collection", async () => {
+        it("should return the existing collection", async () => {
           const { result, waitForNextUpdate } = renderHook(
             () => useCollectionQueryHookWithSubscription(query),
             {

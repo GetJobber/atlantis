@@ -1,123 +1,125 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import { cleanup } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { CivilDateTime } from "@std-proposal/temporal";
 import { FormatRelativeDateTime } from "./FormatRelativeDateTime";
 
-beforeEach(() => {
-  jest.useFakeTimers("modern");
-  jest.setSystemTime(new Date(1593115122000));
-});
-
-afterEach(() => {
-  jest.useRealTimers();
-  cleanup();
-});
-
-it("renders x minutes ago when less than an hour ago", () => {
+describe("Less than an hour ago", () => {
   const testDate = new Date();
   testDate.setMinutes(testDate.getMinutes() - 5);
   const dates = getMockDates(testDate);
 
-  Object.values(dates).forEach(value => {
-    expect(
-      renderer.create(<FormatRelativeDateTime date={value} />).toJSON(),
-    ).toEqual("5 minutes ago");
+  it.each(Object.entries(dates))("renders x minutes ago for %s", (_, value) => {
+    const { getByText } = render(<FormatRelativeDateTime date={value} />);
+    expect(getByText("5 minutes ago")).toBeDefined();
   });
 });
 
-it("renders 1 minute ago when less than a minute ago", () => {
+describe("Less than a minute ago", () => {
   const testDate = new Date();
   testDate.setSeconds(testDate.getSeconds() - 25);
   const dates = getMockDates(testDate);
 
-  Object.values(dates).forEach(value => {
-    expect(
-      renderer.create(<FormatRelativeDateTime date={value} />).toJSON(),
-    ).toEqual("1 minute ago");
+  it.each(Object.entries(dates))("renders 1 minute ago for %s", (_, value) => {
+    const { getByText } = render(<FormatRelativeDateTime date={value} />);
+    expect(getByText("1 minute ago")).toBeDefined();
   });
 });
 
-it("renders the time when less than a day ago", () => {
+describe("Less than a day ago", () => {
   const testDate = new Date();
   testDate.setHours(testDate.getHours() - 9);
   const dates = getMockDates(testDate);
 
-  Object.values(dates).forEach(value => {
-    expect(
-      renderer.create(<FormatRelativeDateTime date={value} />).toJSON(),
-    ).toEqual(
-      testDate.toLocaleTimeString(undefined, {
+  it.each(Object.entries(dates))("renders time ago for %s", (_, value) => {
+    const expectedTime = testDate
+      .toLocaleTimeString(undefined, {
         hour: "numeric",
         minute: "numeric",
-      }),
-    );
+      })
+      // The space between  HH:MM and AM/PM is a non-breaking space which
+      // breaks the test.
+      .replace(/[\u202F]/, " ");
+    const { getByText } = render(<FormatRelativeDateTime date={value} />);
+    expect(getByText(expectedTime, { exact: false })).toBeDefined();
   });
 });
 
-it("renders the day when less than 7 days ago", () => {
+describe("Less than 7 days ago", () => {
   const testDate = new Date();
   testDate.setDate(testDate.getDate() - 3);
   const dates = getMockDates(testDate);
 
-  Object.values(dates).forEach(value => {
+  it.each(Object.entries(dates))("renders the day for %s", (_, value) => {
+    const { getByText } = render(<FormatRelativeDateTime date={value} />);
     expect(
-      renderer.create(<FormatRelativeDateTime date={value} />).toJSON(),
-    ).toEqual(testDate.toLocaleDateString(undefined, { weekday: "short" }));
+      getByText(testDate.toLocaleDateString(undefined, { weekday: "short" })),
+    ).toBeDefined();
   });
 });
 
-it("renders the month and date when less than 1 year ago", () => {
+describe("Less than 1 year ago", () => {
   const testDate = new Date();
   testDate.setDate(testDate.getDate() - 60);
   const dates = getMockDates(testDate);
 
-  Object.values(dates).forEach(value => {
-    expect(
-      renderer.create(<FormatRelativeDateTime date={value} />).toJSON(),
-    ).toEqual(
-      new Date("Apr 26").toLocaleDateString(undefined, {
-        month: "short",
-        day: "numeric",
-      }),
-    );
-  });
+  it.each(Object.entries(dates))(
+    "renders the month and date for %s",
+    (_, value) => {
+      const { getByText } = render(<FormatRelativeDateTime date={value} />);
+      expect(
+        getByText(
+          testDate.toLocaleDateString(undefined, {
+            month: "short",
+            day: "numeric",
+          }),
+        ),
+      ).toBeDefined();
+    },
+  );
 });
 
-it("renders the month and date when yesterday's date 1 year previous (border case)", () => {
+describe("Yesterday's date 1 year previous (border case)", () => {
   const testDate = new Date();
   testDate.setFullYear(testDate.getFullYear() - 1);
   testDate.setDate(testDate.getDate() + 2); //The +2 vs. +1 is a fudge for leap year
   const dates = getMockDates(testDate);
 
-  Object.values(dates).forEach(value => {
-    expect(
-      renderer.create(<FormatRelativeDateTime date={value} />).toJSON(),
-    ).toEqual(
-      new Date("Jun 27").toLocaleDateString(undefined, {
-        month: "short",
-        day: "numeric",
-      }),
-    );
-  });
+  it.each(Object.entries(dates))(
+    "renders the month and date for %s",
+    (_, value) => {
+      const { getByText } = render(<FormatRelativeDateTime date={value} />);
+      expect(
+        getByText(
+          testDate.toLocaleDateString(undefined, {
+            month: "short",
+            day: "numeric",
+          }),
+        ),
+      ).toBeDefined();
+    },
+  );
 });
 
-it("renders the month day, year when over a year ago", () => {
+describe("Over a year ago", () => {
   const testDate = new Date();
   testDate.setFullYear(testDate.getFullYear() - 2);
   const dates = getMockDates(testDate);
 
-  Object.values(dates).forEach(value => {
-    expect(
-      renderer.create(<FormatRelativeDateTime date={value} />).toJSON(),
-    ).toEqual(
-      new Date("Jun 25, 2018").toLocaleDateString(undefined, {
-        month: "short",
-        day: "numeric",
-        year: "numeric",
-      }),
-    );
-  });
+  it.each(Object.entries(dates))(
+    "renders the month day, year for %s",
+    (_, value) => {
+      const { getByText } = render(<FormatRelativeDateTime date={value} />);
+      expect(
+        getByText(
+          testDate.toLocaleDateString(undefined, {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+          }),
+        ),
+      ).toBeDefined();
+    },
+  );
 });
 
 function getMockDates(date: Date) {

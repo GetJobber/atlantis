@@ -1,4 +1,4 @@
-declare const global: {};
+declare const global: Record<string, unknown>;
 
 function getGlobal() {
   if (typeof window !== "undefined") {

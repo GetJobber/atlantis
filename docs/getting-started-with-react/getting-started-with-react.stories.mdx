@@ -1,0 +1,196 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Card } from "@jobber/components/Card";
+import { Content } from "@jobber/components/Content";
+import { Button } from "@jobber/components/Button";
+import { InputText } from "@jobber/components/InputText";
+import { loadingGIF, getGIF } from "./getGIF";
+import { useState } from "react";
+import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
+
+<Meta title="Guides/Getting started with React" />
+
+# Getting Started with React
+
+## Things to know.
+
+<!--
+- We will reference Typescript in this guide.
+  - https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html
+  - https://create-react-app.dev/docs/getting-started#creating-a-typescript-app
+  - Why Typescript?
+- We will reference functional components. Older class components are still
+  around and you will see them in some guides but we should prefer functional
+  components.
+-->
+
+## What is React
+
+At its core React is simply a JavaScript view library layer. It provides us with
+a way to define and render view components. It also aids with tracking and
+re-rendering changes to data that the components are representing.
+
+## What is a Component
+
+Much as a function in programing allows you to encapsulate, test and reuse logic
+a React Component allows you to encapsulate, test and reuse pieces of your UI.
+In this way you can think of a React Component as a view function. This even
+carries into how components are themselves written.
+
+```tsx
+interface MessageProps {
+  readonly text: string;
+  readonly yell: boolean;
+}
+
+export function Message({ text, yell }: MessageProps) {
+  if (yell) {
+    text = text.toLocaleUpperCase();
+  }
+
+  return <p>{text}</p>;
+}
+```
+
+```tsx
+<Message text="foo" yell={false} /> // → <p>foo</p>
+<Message text="bar" yell={true} /> // → <p>BAR</p>
+```
+
+> **Note:**
+>
+> In this example you may have noticed some HTML like code embedded in the
+> JavaScript. This is called
+> [JSX ↗︎](https://reactjs.org/docs/introducing-jsx.html).
+>
+> This example also uses a
+> [Typescript interface](https://www.typescriptlang.org/docs/handbook/interfaces.html)
+> to enforce the shape of the component's props.
+
+There are a few things going on in the example above. Lets break them down:
+
+| Artifact                       | Description                                                                                                                                                                                                                                             |
+| :----------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `interface MessageProps`       | The `props` define options that a component will accept. In the examples above you ca see how calling the component with different props results in different output.                                                                                   |
+| `export function Message`      | This function is the Message component. The `export` here means that we can import the component into another file. If you are writing a local component you don't need the `export`.                                                                   |
+| `{ text, yell }: MessageProps` | There are two parts to this. Starting on the right `MessageProps` indicates that this funciton takes a parameter of type `MessageProps`. On the left the `{ text, yell }` unpacks the parameter into local variables.                                   |
+| `return <p>{text}</p>`         | Every React component will return an [element](https://reactjs.org/docs/rendering-elements.html) or [fragment](https://reactjs.org/docs/fragments.html). (Note the [fragment short hand syntax](https://reactjs.org/docs/fragments.html#short-syntax).) |
+
+## It's Components All the Way Down
+
+In React everything is a component. A typical page will consist of one top level
+component representing the main view. Then within that page you will break down
+smaller components. Brad Frost covers this break down very well with
+[Atomic Design ↗](http://bradfrost.com/blog/post/atomic-web-design/).
+
+<img
+  src="http://bradfrost.com/wp-content/uploads/2013/06/atomic-design.png"
+  width="100%"
+/>
+
+When you are writing a front end using React each of the levels he talks about
+are represented by components functions.
+
+## Composing Components
+
+As mentioned above a lot of the power of React comes from being able to build
+components out of other components. Lets take a look at an example on how to do
+that.
+
+For this example we are going to build a card that allows you to enter a topic
+and then search for a related gif.
+
+<Canvas>
+  <ExampleWithHooks>
+    {() => {
+      const [topic, setTopic] = useState();
+      const [url, setURL] = useState();
+      return (
+        <Card title="Gif Gift">
+          <Content>
+            <InputText value={topic} onChange={setTopic} placeholder="Topic" />
+            <Button label="Search" fullWidth={true} onClick={gifSearch} />
+            <center>{url && <img src={url} />}</center>
+          </Content>
+        </Card>
+      );
+      async function gifSearch() {
+        setURL(loadingGIF);
+        setURL(await getGIF(topic));
+      }
+    }}
+  </ExampleWithHooks>
+</Canvas>
+
+> **Note:**
+>
+> This example assumes the presence of a constant `const loadingGIF: string;`
+> which will contain the URL to a loading gif as well as a function
+> `function getGIF(topic: string): Promise<string>;` that will return a promise
+> resolving to a url.
+
+### Breaking it Down
+
+```tsx
+const [topic, setTopic] = useState();
+const [url, setURL] = useState();
+```
+
+The example starts with
+[defining two stateful variables using the `useState` hook ↗](https://reactjs.org/docs/hooks-overview.html#state-hook).
+`useState` returns a pair. The first of which is the current value and the
+second is a setter that allows you to update the value. For this component we
+need one stateful value to represent the content of the input and another to
+store the result of the `gifSearch`.
+
+---
+
+```tsx
+return (
+  <Card title="Gif Gift">
+...
+```
+
+The next section is the return value which will return the TSX defining our
+component. In here you can see that our `GifGift` component is composed of the
+following other react components:
+
+- [Card](../?path=/docs/components-card--card)
+- [Content](../?path=/docs/components-content--content)
+- [Button](../?path=/docs/components-button--button)
+- [InputText](../?path=/docs/components-inputtext--input-text)
+
+If you look at the docs for the above components you can see how the different
+props they expose allow us to customize their behaviour given the needs of our
+`GifGift` component.
+
+> **Note:**
+>
+> Normally when you use a component you would need to import it. The docs for
+> each component start with the import path for that component.
+>
+> ```ts
+> import { Button } from "@jobber/components/Button";
+> ```
+>
+> This means for the above example we would need to import the following
+>
+> ```ts
+> import { Card } from "@jobber/components/Card";
+> import { Content } from "@jobber/components/Content";
+> import { Button } from "@jobber/components/Button";
+> import { InputText } from "@jobber/components/InputText";
+> ```
+
+---
+
+```tsx
+async function gifSearch() {
+  setURL(loadingGIF);
+  setURL(await getGIF(topic));
+}
+```
+
+The final part of our example defines the custom actions needed to power our
+component. In this case the action when the user clicks on the **Search**
+button. Here we call the `setURL` setter to show the `loadingGIF`. Then, we call
+`setURL` awaiting the async response of `getGIF`.

@@ -1,5 +1,5 @@
 import React from "react";
-import { cleanup, render } from "@testing-library/react";
+import { cleanup, render, waitFor } from "@testing-library/react";
 import { Countdown } from "./Countdown";
 
 jest.useFakeTimers();
@@ -36,7 +36,7 @@ it(`Should have the right units show up when they're supposed to`, () => {
   expect(container.innerHTML).not.toContain("seconds");
 });
 
-it(`Should fire onComplete once the time is up!`, () => {
+it(`Should fire onComplete once the time is up!`, async () => {
   const completeHandler = jest.fn();
 
   render(
@@ -50,5 +50,5 @@ it(`Should fire onComplete once the time is up!`, () => {
 
   jest.runAllTimers();
 
-  expect(completeHandler).toHaveBeenCalled();
+  await waitFor(() => expect(completeHandler).toHaveBeenCalled());
 });

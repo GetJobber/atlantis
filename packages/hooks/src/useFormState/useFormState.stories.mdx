@@ -1,0 +1,70 @@
+import { Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Form } from "@jobber/components/Form";
+import { InputText } from "@jobber/components/InputText";
+import { Content } from "@jobber/components/Content";
+import { Button } from "@jobber/components/Button";
+import * as hooks from ".";
+
+<Meta title="Hooks/useFormState" />
+
+# UseFormState
+
+`useFormState` is an extremely simple hook that wraps the
+[useState()](https://reactjs.org/docs/hooks-state.html) hook and supplies some
+default values.
+
+`useFormState` should **only** only by used when using a
+[`<Form />`](../?path=/docs/components-form--form) component.
+
+```tsx
+import { useFormState } from "@jobber/hooks";
+```
+
+<Canvas>
+  <Story name="useFormState">
+    {() => {
+      const [formState, setFormState] = hooks.useFormState();
+      return (
+        <>
+          <Form
+            onSubmit={() => alert("submitted")}
+            onStateChange={setFormState}
+          >
+            <Content>
+              <InputText
+                placeholder="First Name"
+                name="firstName"
+                validations={{
+                  required: {
+                    value: true,
+                    message: "Tell us your name",
+                  },
+                  minLength: {
+                    value: 3,
+                    message: "Your name is too short.",
+                  },
+                }}
+              />
+              <InputText
+                placeholder="Last Name"
+                name="lastName"
+                validations={{
+                  required: {
+                    value: true,
+                    message: "Tell us your last name.",
+                  },
+                }}
+              />
+              <Button
+                label="Submit Form"
+                submit={true}
+                disabled={!formState.isDirty || !formState.isValid}
+              />
+            </Content>
+          </Form>
+          <pre>{JSON.stringify(formState, null, 2)}</pre>
+        </>
+      );
+    }}
+  </Story>
+</Canvas>

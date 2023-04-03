@@ -9,7 +9,7 @@ orbs:
 references:
   container_config: &container_config
     docker:
-      - image: circleci/node:14
+      - image: cimg/node:18.15.0
     working_directory: ~/atlantis
 
   restore_repo: &restore_repo
@@ -19,16 +19,10 @@ references:
         - v1-repo-{{ .Branch }}
         - v1-repo
 
-  sum_lockfiles: &sum_lockfiles
-    run:
-      name: Sum Lockfiles
-      command: md5sum package-lock.json packages/*/package-lock.json > /tmp/lock-sums
-
   restore_npm_cache: &restore_npm_cache
     restore_cache:
       name: Restore npm cache
       keys:
-        - npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
         - npm-cache-v1
 
   attach_workspace: &attach_workspace
@@ -44,12 +38,12 @@ references:
   npm_install: &npm_install
     run:
       name: Install Dependencies
-      command: export IGNORE_OPTIONAL_DEPENDENCIES=true; npm ci --no-optional
+      command: npm ci --legacy-peer-deps
 
   github_authenticity: &github_authenticity
     run:
       name: Establishing GitHub Authenticity
-      command: mkdir -p ~/.ssh; echo 'github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==' >> ~/.ssh/known_hosts
+      command: mkdir -p ~/.ssh; echo 'github.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=' >> ~/.ssh/known_hosts
 
   generate_base_path: &generate_base_path
     run:
@@ -74,24 +68,12 @@ jobs:
     <<: *container_config
     steps:
       - *attach_workspace
-      - *sum_lockfiles
       - *restore_npm_cache
       - run:
           name: Authenticate with npm
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/atlantis/.npmrc
       - *npm_install
       - *persist_to_workspace
-      - save_cache:
-          name: Save npm cache
-          key: npm-cache-v1-{{ arch }}-{{ checksum "/tmp/lock-sums" }}
-          paths:
-            - ~/.npm
-
-  typescript_compile:
-    <<: *container_config
-    steps:
-      - *attach_workspace
-      - run: npm run lerna:compile-typescript
 
   check_for_manual_release:
     <<: *container_config
@@ -152,7 +134,23 @@ jobs:
       - *attach_workspace
       - *generate_base_path
       - run:
-          command: node -v && node -e 'console.log(`heap_size_limit = ${v8.getHeapStatistics().heap_size_limit / (1024 * 1024)} MB`)' && npm run build -- --base "/${BASE_PATH}/"
+          command: npm run build
+      - *persist_to_workspace
+
+  upload_to_cloudflare:
+    <<: *container_config
+    environment:
+      ATLANTIS_BRANCH: << pipeline.git.branch >>
+    steps:
+      - *attach_workspace
+      - *generate_base_path
+      - run:
+          command: |
+            if [ "$ATLANTIS_BRANCH" = "master" ]; then
+              npx wrangler pages publish storybook-static --project-name=atlantis
+            else
+              npx wrangler pages publish storybook-static --project-name=atlantis --branch=$ATLANTIS_BRANCH
+            fi
 
   release:
     <<: *container_config
@@ -183,9 +181,6 @@ workflows:
       - check_for_manual_release:
           requires:
             - install_dependencies
-      - typescript_compile:
-          requires:
-            - check_for_manual_release
       - lint_javascript:
           requires:
             - check_for_manual_release
@@ -198,12 +193,14 @@ workflows:
       - build_docs:
           requires:
             - check_for_manual_release
+      - upload_to_cloudflare:
+          requires:
+            - build_docs
       - release:
           filters:
             branches:
               only: "master"
           requires:
-            - typescript_compile
             - lint_javascript
             - lint_css
             - test

@@ -119,7 +119,7 @@ describe("when the lightbox is already opened", () => {
       const { getByLabelText, queryAllByLabelText } =
         await setupAndOpenLightbox();
 
-      fireEvent.click(getByLabelText("Close lightbox"));
+      fireEvent.click(getByLabelText("Close"));
 
       await waitFor(() => {
         expect(queryAllByLabelText("Lightbox")).toHaveLength(0);

@@ -1,45 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders a Disclosure 1`] = `
-<details
-  className="details"
-  onToggle={[Function]}
-  open={false}
->
-  <summary
-    className="summary"
+<div>
+  <details
+    class="details"
   >
-    <div
-      className="summaryWrap"
+    <summary
+      class="summary"
     >
-      <h4
-        className="base bold large heading"
+      <div
+        class="summaryWrap"
       >
-        Example Disclosure Title
-      </h4>
-      <span
-        className="arrowIconWrapper"
-      >
-        <svg
-          className="ZDlJU6tECg7ouG-b27gya _2SoAwA0A8G1BGDNjtkt-lt"
-          data-testid="arrowDown"
-          viewBox="0 0 1024 1024"
-          xmlns="http://www.w3.org/2000/svg"
+        <h4
+          class="base bold large heading"
         >
-          <path
-            className="_1R4_alABGZICCj4KPfBOIa"
-            d="M328.998 351.11c-8.341-8.317-19.268-12.465-30.189-12.445-10.887 0.019-21.766 4.179-30.071 12.478s-12.468 19.172-12.487 30.050c-0.019 10.929 4.143 21.863 12.487 30.201l213.543 213.719c8.345 8.341 19.283 12.509 30.221 12.509s21.875-4.168 30.221-12.509l213.542-213.539c8.345-8.338 12.509-19.273 12.488-30.201-0.021-10.879-4.181-21.75-12.488-30.050-8.302-8.299-19.185-12.459-30.071-12.478-10.921-0.019-21.849 4.129-30.19 12.445l-183.501 183.158-183.502-183.338z"
-          />
-        </svg>
-      </span>
-    </div>
-  </summary>
-  <span
-    className="content"
-  >
-    <p>
-      Wafer topping soufflé bear claw cake chocolate toffee.
-    </p>
-  </span>
-</details>
+          Example Disclosure Title
+        </h4>
+        <span
+          class="arrowIconWrapper"
+        >
+          <svg
+            class="Z6OfUI2sH34- xZ6Jnv-7uXc-"
+            data-testid="arrowDown"
+            viewBox="0 0 1024 1024"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              class="kBAjqBTXEsI-"
+              d="M328.998 351.11c-8.341-8.317-19.268-12.465-30.189-12.445-10.887 0.019-21.766 4.179-30.071 12.478s-12.468 19.172-12.487 30.050c-0.019 10.929 4.143 21.863 12.487 30.201l213.543 213.719c8.345 8.341 19.283 12.509 30.221 12.509s21.875-4.168 30.221-12.509l213.542-213.539c8.345-8.338 12.509-19.273 12.488-30.201-0.021-10.879-4.181-21.75-12.488-30.050-8.302-8.299-19.185-12.459-30.071-12.478-10.921-0.019-21.849 4.129-30.19 12.445l-183.501 183.158-183.502-183.338z"
+            />
+          </svg>
+        </span>
+      </div>
+    </summary>
+    <span
+      class="content"
+    >
+      <p>
+        Wafer topping soufflé bear claw cake chocolate toffee.
+      </p>
+    </span>
+  </details>
+</div>
 `;

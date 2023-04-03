@@ -1,8 +1,9 @@
+// eslint-disable-next-line import/no-internal-modules
 require("@jobber/eslint-config/patch-eslint-plugin-resolution.js");
 
 const packageAliases = [
   ["@jobber/components", "./packages/components/src"],
-  ["@jobber/hooks", "./packages/hooks"]
+  ["@jobber/hooks", "./packages/hooks"],
 ];
 
 module.exports = {
@@ -11,9 +12,9 @@ module.exports = {
     "import/resolver": {
       alias: {
         map: packageAliases,
-        extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
-      }
-    }
+        extensions: [".ts", ".tsx", ".js", ".jsx", ".json", ".stories.mdx"],
+      },
+    },
   },
   rules: {
     /*
@@ -25,42 +26,21 @@ module.exports = {
     "import/no-internal-modules": [
       "error",
       {
-        allow: ["@jobber/components/*", "gatsby-theme-docz/**", "lodash/*"]
-      }
-    ]
+        allow: ["@jobber/components/*", "lodash/*"],
+      },
+    ],
   },
   overrides: [
     {
-      /**
-       * Disabling default exports for a few files as docz requires
-       * some files to have default exports.
-       */
-      files: [
-        "./packages/docz-tools/src/gatsby-theme-docz/theme/index.ts",
-        "./packages/docz-tools/src/gatsby-theme-docz/components/index.ts",
-        "./packages/docz-tools/src/wrapper.tsx"
-      ],
+      files: ["*.stories.mdx"],
+      extends: "plugin:mdx/recommended",
       rules: {
-        "import/no-default-export": "off"
-      }
+        "react-native/no-inline-styles": "off",
+        "no-alert": "off",
+        "@typescript-eslint/naming-convention": "off",
+        "@typescript-eslint/no-unused-expressions": "off",
+        "import/no-extraneous-dependencies": "off",
+      },
     },
-    {
-      /**
-       * Adds an alias that is only available in the docz-tools
-       * package. We do not want this available anywhere else.
-       */
-      files: ["./packages/docz-tools/**/*"],
-      settings: {
-        "import/resolver": {
-          alias: {
-            map: [
-              ...packageAliases,
-              ["~theme", "./packages/docz-tools/src/gatsby-theme-docz/theme"]
-            ],
-            extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
-          }
-        }
-      }
-    }
-  ]
+  ],
 };

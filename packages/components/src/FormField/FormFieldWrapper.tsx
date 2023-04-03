@@ -118,12 +118,12 @@ export function FormFieldWrapper({
     };
 
     if (prefixRef?.current && !hasValue) {
-      const { offsetWidth } = prefixRef?.current;
+      const { offsetWidth } = prefixRef.current;
       newPadding.paddingLeft = offset(offsetWidth);
     }
 
     if (suffixRef?.current && !hasValue) {
-      const { offsetWidth } = suffixRef?.current;
+      const { offsetWidth } = suffixRef.current;
       newPadding.paddingRight = offset(offsetWidth);
     }
 

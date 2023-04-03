@@ -1,0 +1,214 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { ComponentStatus } from "@jobber/docx";
+import { Content } from "@jobber/components/Content";
+import { Icon } from "@jobber/components/Icon";
+import { Banner } from ".";
+
+# Banner
+
+<ComponentStatus stage="ready" responsive="yes" accessible="yes" />
+
+<Meta title="Components/Banner" component={Banner} />
+
+Banners provide information about important changes, persistent conditions, and
+system errors. They're positioned at the top of the screen or near the content
+they reference, and are persistent until dismissed or the issue is resolved.
+
+```ts
+import { Banner } from "@jobber/components/Banner";
+```
+
+<Canvas>
+  <Story
+    name="Banner"
+    args={{ type: "notice", children: "Your visits are being scheduled" }}
+  >
+    {({ children, ...args }) => <Banner {...args}>{children}</Banner>}
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of={Banner} story="Banner" />
+
+## Design & usage guidelines
+
+### Layout and alignment
+
+Banner should align to the left and right of the content it is related to.
+
+When using a Banner within a modal or a page layout, this means Banner should
+align to the text, inputs or other UI elements beneath it. For best results, use
+[Content](../?path=/docs/components-content--content) to ensure consistent
+vertical spacing between Banner and adjacent elements.
+
+If the Banner is being used as a system-wide message or some other context in
+which it is outside of the main application layout, it should take up the full
+available width.
+
+### Types of Banner
+
+There are four types of Banner, each with guidelines for their usage:
+
+- `notice` [<Icon name="link" />](#notice-message)
+- `success` [<Icon name="link" />](#success-message)
+- `warning`[<Icon name="link" />](#warning-message)
+- `error` [<Icon name="link" />](#error-message)
+
+### Notice message
+
+Use notice banners to provide information about:
+
+<ul>
+  <li>new functionality</li>
+  <li>background operations</li>
+  <li>general non-blocking advice</li>
+</ul>
+
+Notices should get to the point and inform the user about why the functionality
+or change is important if context is not provided elsewhere.
+
+<Canvas>
+  <Banner type="notice">
+    Your import is in progress. Feel free to leave this page while it continues.
+  </Banner>
+</Canvas>
+
+### Success message
+
+Success banners are appropriate when:
+
+<ul>
+  <li>success feedback had a call to action</li>
+  <li>success feeback is delayed</li>
+</ul>
+
+Otherwise, use [Toast](../?path=/docs/components-toast--toast) as the default
+for success messages.
+
+<Canvas>
+  <Banner
+    type="success"
+    primaryAction={{
+      label: "View clients",
+      onClick: () => alert("🎉 Woo hoo"),
+    }}
+    dismissible={false}
+  >
+    Your client import is complete
+  </Banner>
+</Canvas>
+
+### Warning message
+
+Use warning banners when:
+
+<ul>
+  <li>an action could have unseen consequences</li>
+  <li>additional action has to be taken by the user</li>
+</ul>
+
+Warning messages should be one to two short sentences which clearly describe the
+possibly unknown impact a user’s changes or actions will have. They should not
+begin with "Warning:" and should not be used as a way to block or redirect a
+workflow.
+
+You should use
+[ConfirmationModal](../?path=/docs/components-confirmationmodal--confirmation-modal)
+when you need to get explicit confirmation from the user before they complete an
+action that is difficult to reverse.
+
+<Canvas>
+  <Banner type="warning">
+    Your subscription will be automatically upgraded in 8 days
+  </Banner>
+</Canvas>
+
+### Error message
+
+Use error banners when:
+
+<ul>
+  <li>something requires immediate attention</li>
+  <li>blocks the user</li>
+</ul>
+
+Errors should explain what happened, and summarize how many issues need to be
+addressed in a concise manner. Detailed information about each error is the role
+of the
+[InputText validation message](../?path=/docs/components-inputtext--input-text/#validation-message)
+component or, if unavailable,
+[InputValidation](../?path=/docs/components-inputvalidation--input-validation).
+
+For more guidance on wording, check out the
+[Product Vocabulary](../?path=/docs/content-product-vocabulary--page).
+
+<Canvas>
+  <Banner type="error">
+    Client cannot be saved. 1 change needs to be made:
+    <ul>
+      <li>Email address</li>
+    </ul>
+  </Banner>
+</Canvas>
+
+<br />
+
+System errors should avoid technical or intimidating language, and provide ways
+to resolve or troubleshoot the issue if possible.
+
+<Canvas>
+  <Banner type="error">
+    Something went wrong. Please try again in a few minutes.
+  </Banner>
+</Canvas>
+
+## Content guidelines
+
+Content in banner should:
+
+- Be concise and kept to only 1 to 2 sentences where possible
+- Avoid exceeding 200 characters
+- Follow the
+  [Product Vocabulary](../?path=/docs/content-product-vocabulary--page) where
+  applicable
+- In the case of warning or error banners, explain how to resolve the issue
+
+## Actions in Banners
+
+It is discouraged to use a `<Button />` component when requiring an action
+within a `Banner`. If you require an action, use the `primaryActions` prop. The
+`primaryAction` accepts the same props as the `Button` component.
+
+<Canvas>
+  <Content>
+    <Banner
+      type="notice"
+      primaryAction={{
+        label: "View Plans",
+        onClick: () => alert("Plans"),
+      }}
+      dismissible={false}
+    >
+      Your trial has been extended!
+    </Banner>
+    <Banner
+      type="error"
+      primaryAction={{
+        label: "Refresh",
+        onClick: () => alert("Refreshing"),
+      }}
+    >
+      Network is unavailable. Please check your internet connection.
+    </Banner>
+  </Content>
+</Canvas>
+
+## Related components
+
+- To provide low priority, temporary feedback on the outcome of a user action,
+  use [Toast](../?path=/docs/components-toast--toast) instead
+- Use
+  [ConfirmationModal](../?path=/docs/components-confirmationmodal--confirmation-modal)
+  when you need to get explicit confirmation from the user before they complete
+  an action

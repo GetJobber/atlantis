@@ -27,6 +27,7 @@
   --field--padding-right: var(--space-base);
 
   --field--value-color: var(--color-heading);
+  --field--value-lineHeight: calc(var(--base-unit) * 1.25);
 
   --field--border-color: var(--color-border);
   --field--background-color: var(--color-surface);
@@ -82,6 +83,12 @@
   --field--value-color: var(--color-disabled);
   --field--background-color: var(--color-surface--background);
   --field--border-color: var(--color-disabled--secondary);
+}
+
+/* override iOS default styling for disabled input */
+.disabled :disabled {
+  -webkit-text-fill-color: var(--field--value-color);
+  opacity: 1;
 }
 
 .small {
@@ -145,7 +152,7 @@
   color: inherit;
   font-family: inherit;
   font-size: inherit;
-  line-height: calc(var(--base-unit) * 1.25);
+  line-height: var(--field--value-lineHeight);
   text-align: var(--field--textAlign);
   background: transparent;
   appearance: none;
@@ -190,7 +197,7 @@
   padding-right: var(--field--padding-right);
   overflow: hidden;
   color: var(--field--placeholder-color);
-  line-height: calc(var(--base-unit) * 1.25);
+  line-height: var(--field--value-lineHeight);
   text-align: var(--field--textAlign);
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -266,10 +273,11 @@
 
 .affixLabel {
   display: flex;
-  align-items: center;
-  flex: 0 0 auto;
   margin: 0 calc((var(--field--padding-left) - var(--space-smallest)) * -1) 0 0;
   padding: 0 0 0 var(--field--padding-left);
+  line-height: var(--field--value-lineHeight);
+  align-items: center;
+  flex: 0 0 auto;
 }
 
 .affixLabel.suffix {

@@ -1,12 +1,11 @@
 import React from "react";
 import { cleanup, fireEvent, render } from "@testing-library/react";
-import renderer from "react-test-renderer";
 import { Page } from ".";
 import { SectionProps } from "../Menu";
 
 jest.mock("@jobber/hooks", () => {
   return {
-    ...(jest.requireActual("@jobber/hooks") as {}),
+    ...(jest.requireActual("@jobber/hooks") as Record<string, unknown>),
     useResizeObserver: () => [
       { current: undefined },
       { width: 1000, height: 100 },
@@ -25,7 +24,7 @@ jest.mock("@jobber/hooks", () => {
 afterEach(cleanup);
 
 it("renders a Page", () => {
-  const tree = renderer.create(
+  const { container } = render(
     <Page
       title="Notifications"
       intro="Improve job completion rates, stop chasing payments, and boost your customer service by automatically communicating with your clients at key points before, during, and after a job. Read more about Notifications by visiting our [Help Center](https://help.getjobber.com/hc/en-us/articles/115009737128)."
@@ -34,7 +33,7 @@ it("renders a Page", () => {
     </Page>,
   );
 
-  expect(tree).toMatchSnapshot();
+  expect(container).toMatchSnapshot();
 });
 
 describe("When actions are provided", () => {
@@ -66,24 +65,22 @@ describe("When actions are provided", () => {
       },
     ];
 
-    const tree = renderer
-      .create(
-        <Page
-          title="Notifications"
-          intro="Improve job completion rates."
-          primaryAction={{ label: "Send Food", onClick: jest.fn() }}
-          secondaryAction={{
-            label: "Send Drink",
-            onClick: jest.fn(),
-          }}
-          moreActionsMenu={sampleActionMenu}
-        >
-          Sup
-        </Page>,
-      )
-      .toJSON();
+    const { container } = render(
+      <Page
+        title="Notifications"
+        intro="Improve job completion rates."
+        primaryAction={{ label: "Send Food", onClick: jest.fn() }}
+        secondaryAction={{
+          label: "Send Drink",
+          onClick: jest.fn(),
+        }}
+        moreActionsMenu={sampleActionMenu}
+      >
+        Sup
+      </Page>,
+    );
 
-    expect(tree).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 
   it("triggers the correct primary action on click", () => {

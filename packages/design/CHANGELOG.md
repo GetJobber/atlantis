@@ -1,12 +1,121 @@
----
-name: Design
-menu: Changelog
----
-
-# @jobber/design: Change Log
+# Change Log
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [0.31.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.31.0...@jobber/design@0.31.1) (2023-03-30)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+# [0.31.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.30.0...@jobber/design@0.31.0) (2023-03-29)
+
+
+### Features
+
+* **components:** Add new “money” icons ([#1161](https://github.com/GetJobber/atlantis/issues/1161)) ([1b04ab4](https://github.com/GetJobber/atlantis/commit/1b04ab4ddd82364de9b1d373592dc6c984921057))
+* Upgrade to Node 18 [Feature Branch][JOB-62820] ([#1141](https://github.com/GetJobber/atlantis/issues/1141)) ([8b766cd](https://github.com/GetJobber/atlantis/commit/8b766cd1ebb215610ff3b0babe5d1f05540872b6)), closes [#1142](https://github.com/GetJobber/atlantis/issues/1142) [#1149](https://github.com/GetJobber/atlantis/issues/1149) [#1150](https://github.com/GetJobber/atlantis/issues/1150)
+
+
+
+
+
+# [0.30.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.29.5...@jobber/design@0.30.0) (2023-03-23)
+
+
+### Features
+
+* **stylelint:** Ban HTML selectors on CSS ([#1148](https://github.com/GetJobber/atlantis/issues/1148)) ([6a54786](https://github.com/GetJobber/atlantis/commit/6a5478647c8fa0bbdf3b6731830d77904820df9e))
+
+
+
+
+
+## [0.29.5](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.29.4...@jobber/design@0.29.5) (2023-03-16)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.29.4](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.29.3...@jobber/design@0.29.4) (2023-03-16)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.29.3](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.29.2...@jobber/design@0.29.3) (2023-02-28)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.29.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.29.1...@jobber/design@0.29.2) (2023-02-27)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.29.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.29.0...@jobber/design@0.29.1) (2023-02-24)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+# [0.29.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.28.6...@jobber/design@0.29.0) (2023-02-23)
+
+
+### Features
+
+* **components:** Add new "range slider" icons ([#1062](https://github.com/GetJobber/atlantis/issues/1062)) ([3c7e05d](https://github.com/GetJobber/atlantis/commit/3c7e05da1b9e5c113a3cc832ce10970de153d8b6))
+
+
+
+
+
+## [0.28.6](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.28.5...@jobber/design@0.28.6) (2023-02-23)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.28.5](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.28.4...@jobber/design@0.28.5) (2023-02-22)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.28.4](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.28.3...@jobber/design@0.28.4) (2023-02-17)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.28.3](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.28.2...@jobber/design@0.28.3) (2023-02-14)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
 
 ## [0.28.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.28.1...@jobber/design@0.28.2) (2023-02-10)
 

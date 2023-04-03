@@ -37,6 +37,11 @@ export interface FileUpload {
   readonly progress: number;
 
   /**
+   * Base URL where file was sent as a POST. This is the same URL as what's returned in getUploadParams.
+   */
+  readonly uploadUrl?: string;
+
+  /**
    * The data url of the file.
    */
   src(): Promise<string>;
@@ -192,7 +197,7 @@ export function InputFile({
         <Content spacing="small">
           <Button label={buttonLabel} size="small" type="secondary" />
           {size === "base" && (
-            <Typography size="small" textColor="greyBlue">
+            <Typography size="small" textColor="textSecondary">
               {hintText}
             </Typography>
           )}
@@ -224,7 +229,7 @@ export function InputFile({
       httpMethod = "POST",
     } = await getUploadParams(file);
 
-    const fileUpload = getFileUpload(file, key);
+    const fileUpload = getFileUpload(file, key, url);
     onUploadStart && onUploadStart({ ...fileUpload });
 
     const handleUploadProgress = (progressEvent: any) => {
@@ -305,7 +310,11 @@ function getLabels(
   return { buttonLabel, hintText };
 }
 
-function getFileUpload(file: File, key: string): FileUpload {
+function getFileUpload(
+  file: File,
+  key: string,
+  uploadUrl?: string,
+): FileUpload {
   return {
     key: key,
     name: file.name,
@@ -313,6 +322,7 @@ function getFileUpload(file: File, key: string): FileUpload {
     size: file.size,
     progress: 0,
     src: getSrc,
+    uploadUrl,
   };
 
   function getSrc() {

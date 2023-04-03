@@ -1,149 +1,147 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`When actions are provided renders a Page with action buttons and a menu 1`] = `
-<div
-  className="page standard"
->
+<div>
   <div
-    className="padded base"
+    class="page standard"
   >
     <div
-      className="padded base"
+      class="padded base"
     >
       <div
-        className="titleBar small medium large"
+        class="padded base"
       >
-        <div>
-          <h1
-            className="base black jumbo heading"
-          >
-            Notifications
-          </h1>
-        </div>
         <div
-          className="actionGroup"
+          class="titleBar small medium large"
         >
-          <div
-            className="primaryAction"
-          >
-            <button
-              className="button base work primary fullWidth"
-              disabled={false}
-              onClick={[MockFunction]}
-              type="button"
+          <div>
+            <h1
+              class="base black jumbo heading"
             >
-              <span
-                className="base extraBold base base"
-              >
-                Send Food
-              </span>
-            </button>
+              Notifications
+            </h1>
           </div>
           <div
-            className="actionButton"
-          >
-            <button
-              className="button base work secondary fullWidth"
-              disabled={false}
-              onClick={[MockFunction]}
-              type="button"
-            >
-              <span
-                className="base extraBold base base"
-              >
-                Send Drink
-              </span>
-            </button>
-          </div>
-          <div
-            className="actionButton"
+            class="actionGroup"
           >
             <div
-              className="wrapper"
+              class="primaryAction"
             >
               <button
-                aria-controls="123e4567-e89b-12d3-a456-426655440002"
-                aria-expanded={false}
-                aria-haspopup={true}
-                className="button base hasIconAndLabel work secondary fullWidth"
-                disabled={false}
-                id="123e4567-e89b-12d3-a456-426655440001"
-                onClick={[Function]}
+                class="button base work primary fullWidth"
                 type="button"
               >
-                <svg
-                  className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
-                  data-testid="more"
-                  viewBox="0 0 1024 1024"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    className=""
-                    d="M170.834 509.498c0-47.176 38.242-85.416 85.416-85.416s85.416 38.241 85.416 85.416c0 47.176-38.242 85.416-85.416 85.416s-85.416-38.241-85.416-85.416zM427.084 509.498c0-47.176 38.241-85.416 85.416-85.416s85.416 38.241 85.416 85.416c0 47.176-38.241 85.416-85.416 85.416s-85.416-38.241-85.416-85.416zM768.751 424.081c-47.176 0-85.416 38.241-85.416 85.416s38.241 85.416 85.416 85.416c47.176 0 85.416-38.241 85.416-85.416s-38.241-85.416-85.416-85.416z"
-                  />
-                </svg>
                 <span
-                  className="base extraBold base base"
+                  class="base extraBold base base"
                 >
-                  More Actions
+                  Send Food
                 </span>
               </button>
             </div>
+            <div
+              class="actionButton"
+            >
+              <button
+                class="button base work secondary fullWidth"
+                type="button"
+              >
+                <span
+                  class="base extraBold base base"
+                >
+                  Send Drink
+                </span>
+              </button>
+            </div>
+            <div
+              class="actionButton"
+            >
+              <div
+                class="wrapper"
+              >
+                <button
+                  aria-controls="123e4567-e89b-12d3-a456-426655440004"
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                  class="button base hasIconAndLabel work secondary fullWidth"
+                  id="123e4567-e89b-12d3-a456-426655440003"
+                  type="button"
+                >
+                  <svg
+                    class="Z6OfUI2sH34- TphtDHcwxDc-"
+                    data-testid="more"
+                    viewBox="0 0 1024 1024"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      class=""
+                      d="M170.834 509.498c0-47.176 38.242-85.416 85.416-85.416s85.416 38.241 85.416 85.416c0 47.176-38.242 85.416-85.416 85.416s-85.416-38.241-85.416-85.416zM427.084 509.498c0-47.176 38.241-85.416 85.416-85.416s85.416 38.241 85.416 85.416c0 47.176-38.241 85.416-85.416 85.416s-85.416-38.241-85.416-85.416zM768.751 424.081c-47.176 0-85.416 38.241-85.416 85.416s38.241 85.416 85.416 85.416c47.176 0 85.416-38.241 85.416-85.416s-38.241-85.416-85.416-85.416z"
+                    />
+                  </svg>
+                  <span
+                    class="base extraBold base base"
+                  >
+                    More Actions
+                  </span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
+        <p
+          class="base regular large text"
+        >
+          Improve job completion rates.
+        </p>
       </div>
-      <p
-        className="base regular large text"
+      <div
+        class="padded base"
       >
-        Improve job completion rates.
-      </p>
-    </div>
-    <div
-      className="padded base"
-    >
-      Sup
+        Sup
+      </div>
     </div>
   </div>
 </div>
 `;
 
 exports[`renders a Page 1`] = `
-<div
-  className="page standard"
->
+<div>
   <div
-    className="padded base"
+    class="page standard"
   >
     <div
-      className="padded base"
+      class="padded base"
     >
       <div
-        className="titleBar small medium large"
+        class="padded base"
       >
-        <div>
-          <h1
-            className="base black jumbo heading"
-          >
-            Notifications
-          </h1>
-        </div>
-      </div>
-      <p
-        className="base regular large text"
-      >
-        Improve job completion rates, stop chasing payments, and boost your customer service by automatically communicating with your clients at key points before, during, and after a job. Read more about Notifications by visiting our 
-        <a
-          href="https://help.getjobber.com/hc/en-us/articles/115009737128"
+        <div
+          class="titleBar small medium large"
         >
-          Help Center
-        </a>
-        .
-      </p>
-    </div>
-    <div
-      className="padded base"
-    >
-      Sup
+          <div>
+            <h1
+              class="base black jumbo heading"
+            >
+              Notifications
+            </h1>
+          </div>
+        </div>
+        <p
+          class="base regular large text"
+        >
+          Improve job completion rates, stop chasing payments, and boost your customer service by automatically communicating with your clients at key points before, during, and after a job. Read more about Notifications by visiting our 
+          <a
+            href="https://help.getjobber.com/hc/en-us/articles/115009737128"
+          >
+            Help Center
+          </a>
+          .
+        </p>
+      </div>
+      <div
+        class="padded base"
+      >
+        Sup
+      </div>
     </div>
   </div>
 </div>

@@ -1,0 +1,48 @@
+name: PR Title
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+jobs:
+  pr-title-check:
+    name: PR Title Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR title
+        uses: GetJobber/action-semantic-pull-request@v5
+        id: check_pr_title
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          # Configure which scopes are allowed (newline delimited).
+          # These are regex patterns auto-wrapped in `^ $`.
+          scopes: |
+            components
+            deps
+            design
+            docx
+            eslint
+            formatters
+            generators
+            hooks
+            stylelint
+          requireScope: false
+      - name: Add guidance
+        uses: GetJobber/sticky-pull-request-comment@v2
+        # When the previous steps fails, the workflow would stop. By adding this
+        # condition you can continue the execution with the populated error message.
+        if: always() && (steps.check_pr_title.outputs.error_message != null)
+        with:
+          header: pr-title-guidance
+          message: |
+            ⚠️ Pull Request titles in this repo follow the [Conventional Commits specification](https://www.conventionalcommits.org/en/v1.0.0/).
+
+            > ${{ steps.check_pr_title.outputs.error_message }}
+      # Delete a previous comment when the issue has been resolved
+      - name: Remove guidance
+        if: ${{ steps.check_pr_title.outputs.error_message == null }}
+        uses: GetJobber/sticky-pull-request-comment@v2
+        with:
+          header: pr-title-guidance
+          delete: true

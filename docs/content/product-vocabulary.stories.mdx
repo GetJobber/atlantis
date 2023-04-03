@@ -1,0 +1,569 @@
+import { Meta } from "@storybook/addon-docs";
+import productVocabularyImage from "./assets/addvscreate.png";
+
+<Meta title="Content/Product vocabulary" />
+
+# Product vocabulary
+
+When and how to use words for our in-product experience. Refer to the
+[Voice and Tone Guidelines](https://jobber.atlassian.net/l/c/8vMbiEG1) for an
+overview of how we speak on behalf of the Jobber brand.
+
+---
+
+## People and us
+
+### account / profile
+
+Use **account** in reference to the SP's business' Jobber account.
+
+| ✅ **Do**                                         | ❌ **Don't**                                                        |
+| ------------------------------------------------- | ------------------------------------------------------------------- |
+| Only the account owner can set up Jobber Payments | Your account can not set up Jobber Payments for this Jobber account |
+
+Use **profile** for individual users to reduce ambiguity.
+
+| **✅ Do**                                                  | **❌ Don't**                                                          |
+| ---------------------------------------------------------- | --------------------------------------------------------------------- |
+| Join Lawn Care Pro Co\. on Jobber by creating your profile | Join Lawn Care Pro Co\.'s account by creating your own Jobber account |
+
+<br />
+
+### administrator / admin
+
+Always refer to this permission set as **administrator** permission for
+consistency with what appears on **Manage Team**.
+
+<br />
+
+### client / customer
+
+We call our Jobber subscribers **customers** and we call the people they serve
+**clients**.
+
+| **✅ Do**                                               | **❌ Don't**                                              |
+| ------------------------------------------------------- | --------------------------------------------------------- |
+| All selected invoices have been emailed to your clients | All selected invoices have been emailed to your customers |
+
+Sometimes in product, the context makes sense to use **customer** as terms our
+integration partners use or as a blanket term for existing clients and new
+leads.
+
+| **✅ Do**                                            | **❌ Don't**                                           |
+| ---------------------------------------------------- | ------------------------------------------------------ |
+| Sync clients with active QuickBooks Online customers | Sync customers with active QuickBooks Online customers |
+
+<br />
+
+### users / team / team members / field worker
+
+Use **users** when referring to the account's user limit, permissions, or
+individual team management.
+
+| **✅ Do**                                        | **❌ Don't**                                       |
+| ------------------------------------------------ | -------------------------------------------------- |
+| This user will be over your account’s user limit | This person will be over your account's user limit |
+
+Never use **users** to refer to an individual directly.
+
+| **✅ Do**                                                                    | **❌ Don't**                                                                            |
+| ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| Feedback from people like you will help us shape the future of this feature. | The feedback we receive from users like you will help shape the future of this feature. |
+
+Use **team member** or team when referring to assignments, time sheets and other
+work specific areas.
+
+| **✅ Do**                                          | **❌ Don't**                                |
+| -------------------------------------------------- | ------------------------------------------- |
+| No team members are currently assigned to this job | No users are currently assigned to this job |
+
+Never use **fieldworker** as this does not cover all company roles
+appropriately.
+
+<br />
+
+### we / our
+
+Generally avoid referring to Jobber as **we** - focus on the user and what they
+can do rather than on Jobber itself.
+
+| **✅ Do**                                                                            | **❌ Don't**                                                                                |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------- |
+| The Mailchimp integration could not be set up\. Please correct the following errors: | We weren't able to set up your Mailchimp integration\. Please correct the following errors: |
+
+Use **we** when we are actually performing an action for the user or making a
+suggestion.
+
+| **✅ Do**                                                          | **❌ Don't**                                                                |
+| ------------------------------------------------------------------ | --------------------------------------------------------------------------- |
+| We'll email you as soon as we hear back from the cardholder's bank | You'll receive an email when a response is given from the cardholder's bank |
+
+Use **our** when referencing our teams, help center, or services we offer.
+
+| **✅ Do**                                                            | **❌ Don't**                                                                |
+| -------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| Jobber Payments is our seamless and secure online payment processor. | Jobber Payments is a seamless and secure online payment processor in Jobber |
+
+<br />
+
+### you / you're / you are
+
+Referring to the user directly can help avoid awkward phrasing in our messaging.
+Stay human.
+
+| **✅ Do**                             | **❌ Don't**                                              |
+| ------------------------------------- | --------------------------------------------------------- |
+| You are over your plan’s user limit\. | This Jobber account is over the user limit of it's plan\. |
+
+For validation and inline errors, avoid saying the user caused the error.
+
+| **✅ Do**                       | **❌ Don't**                           |
+| ------------------------------- | -------------------------------------- |
+| Deposit amount must be positive | Your entered deposit amount is invalid |
+
+<br />
+
+## Actions
+
+### above / below / left / right
+
+Avoid spatial terms to direct users as they can be misinterpreted or irrelevant
+depending on screen size, screen reader, and so on. Reference a call to action
+and the component directly when possible.
+
+| **✅ Do**                                                    | **❌ Don't**                                                       |
+| ------------------------------------------------------------ | ------------------------------------------------------------------ |
+| Finish linking your Google and Jobber accounts by logging in | Finish linking your Google and Jobber accounts by logging in below |
+| View the sample's details in the following list              | Click on the request below to view it's details                    |
+
+<br />
+
+### add / create / new
+
+Use **create new** when a user is generating something from scratch within
+Jobber. Abbreviating to **New [object]** for page or view titles.
+
+Use **add** when a user is adding something to an object in Jobber, even if that
+object is being newly created.
+
+<img src={productVocabularyImage} style={{ maxWidth: "100%" }} />
+<br />
+
+### back / continue / next / previous
+
+Use **continue** and **back** (or an accessible back arrow icon) when progress
+is saved at each step on a form (ie. Save and Continue).
+
+Use **next** and **previous** in product tours or in pagination.
+
+<br />
+
+### close / dismiss / cancel
+
+Use an X icon with "**close**" as the accessible label for modals. Use
+**cancel** for modals where the user can lose changes, such as forms.
+
+<br />
+
+### delete / destroy / remove
+
+Use **delete** when permanently erasing information available in Jobber. Always
+follow up with a confirmation dialog. Think of **delete** as the inverse of
+[**create**](#add--create--new).
+
+| **✅ Do**     | **❌ Don't**  |
+| ------------- | ------------- |
+| Delete Quote  | Remove Quote  |
+| Delete Client | Remove Client |
+
+Use **remove** when hiding information from the current view but not permanently
+erasing it. Think of **remove** as the inverse of [**add**](#add--create--new).
+
+| **✅ Do**                         | **❌ Don't**                      |
+| --------------------------------- | --------------------------------- |
+| Remove users over your plan limit | Delete users over your plan limit |
+| Remove tax rate                   | Delete tax rate from group rate   |
+
+Never use **destroy** unless Wreck-it Ralph is making a cameo.
+
+<br />
+
+### enable / disable / turn on / turn off / connect / disconnect
+
+When discussing Jobber features, use **turn on** and **turn off** for
+controlling the availability of it on an account.
+
+| **✅ Do**               | **❌ Don't**           |
+| ----------------------- | ---------------------- |
+| Turn on Jobber Payments | Enable Jobber Payments |
+
+When referencing the apps in the App Marketplace, use **connect** and
+**disconnect** for controlling their availability.
+
+| **✅ Do**         | **❌ Don't**      |
+| ----------------- | ----------------- |
+| Connect Mailchimp | Turn on Mailchimp |
+
+<br />
+
+### export / import / download / upload
+
+Use **export** and **import** when data is moving in or out of Jobber and is
+converted into a different format.
+
+| **✅ Do**     | **❌ Don't**    |
+| ------------- | --------------- |
+| Import CSV    | Upload CSV      |
+| Export Report | Download Report |
+
+Use **download** and **upload** when data is being transferred in or out of
+Jobber in the same format.
+
+| **✅ Do**            | **❌ Don't**       |
+| -------------------- | ------------------ |
+| Upload photo         | Import photo       |
+| Download attachments | Export attachments |
+
+<br />
+
+### got it
+
+Use **got it** as a call to action when a user can acknowledge a message without
+taking action on it, like in promo cards or onboarding.
+
+<br />
+
+### link / attach / copy / clone / duplicate
+
+Use **link** when the same information is shown elsewhere in Jobber but not
+copied to create a new version.
+
+| **✅ Do**                          | **❌ Don't**                       |
+| ---------------------------------- | ---------------------------------- |
+| Link quote note to related invoice | Copy quote note to related invoice |
+
+Use **copy** when Jobber creates a new version that would have no effect on the
+original when edited.
+
+| **✅ Do**  | **❌ Don't**    |
+| ---------- | --------------- |
+| Copy Quote | Duplicate Quote |
+
+Use **attach** when describing receipts, forms or signatures being added to an
+object. For file selection, use **select a file** for consistency.
+
+| **✅ Do**                                                         | **❌ Don't**                                                      |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| Attach a receipt to this expense <br /> [Select a file](#actions) | Attach a receipt to this expense <br /> [Attach a file](#actions) |
+
+<br />
+
+### refresh / reload
+
+Use **refresh** in error messages or on error banner actions, for system or
+connectivity errors. Although 'Reload' and 'Refresh' have the same meaning, use
+'Refresh' for consistency.
+
+| **✅ Do** | **❌ Don't** |
+| --------- | ------------ |
+| Refresh   | Reload       |
+
+### save / update / submit
+
+Use **save** at the end of a form on completion or **save changes** on editing.
+
+| **✅ Do**               | **❌ Don't** |
+| ----------------------- | ------------ |
+| Save Job / Save Changes | Update Job   |
+
+Use **update** when individual changes or groups of changes can be saved inline
+without needing to save a whole view or page.
+
+| **✅ Do**             | **❌ Don't**        |
+| --------------------- | ------------------- |
+| Update Business Hours | Save Business Hours |
+
+Use **submit** when an account user is completing and sending a form to Jobber,
+or when a service consumer is submitting a form to their service provider.
+
+| **✅ Do**       | **❌ Don't**  |
+| --------------- | ------------- |
+| Submit Feedback | Save Feedback |
+
+<br />
+
+### sync / pull / push
+
+Use sync when a process with integration is active or to describe an integration
+in a general way.
+
+| **✅ Do**                            | **❌ Don't**                         |
+| ------------------------------------ | ------------------------------------ |
+| It appears the sync may have stalled | It appears the push may have stalled |
+
+Use **pull** or **push** when the sync is explicitly one-way with any aspect of
+an integration.
+
+| **✅ Do**                                              | **❌ Don't**                                           |
+| ------------------------------------------------------ | ------------------------------------------------------ |
+| Push approved timesheet hours                          | Sync approved timesheet hours                          |
+| All active items will be pulled from QuickBooks Online | All active items will be synced from QuickBooks Online |
+
+<br />
+
+### vault / vaulted / add / store
+
+Avoid using **vault** or **vaulted** for card storage. Use **add** and **store**
+instead.
+
+| **✅ Do**                              | **❌ Don't**                                      |
+| -------------------------------------- | ------------------------------------------------- |
+| Stored cards will need to be re\-added | Any vaulted cards will need to be re\-established |
+
+<br />
+
+## Concepts and items
+
+In general, none of these should be capitalized unless explicitly stated or when
+used in a page title.
+
+<br />
+
+### address / property / service address / billing address
+
+Use **property** when referring to the service address, custom fields and tax
+rate altogether.
+
+On quotes and invoices, use **service address** instead of property address to
+clearly differentiate between a **billing address**.
+
+<br />
+
+### app / application / integration
+
+Use app when referring to the Jobber app itself, or the apps provided within the
+App Marketplace. Apps in the Marketplace can also just be referred to by their
+brand name.
+
+| **✅ Do**                                                      | **❌ Don't**                                                                  |
+| -------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| Try the Jobber app                                             | Try the Jobber Mobile Application                                             |
+| Connect Mailchimp to your account to automate your marketing\. | Connect the Mailchimp integration to your account to automate your marketing. |
+
+Use integration when referring to how an app connects with Jobber.
+
+| **✅ Do**                                                                                                                       | **❌ Don't**                                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| The Mailchimp integration will be removed because the user who connected it to Jobber no longer has administrator permissions\. | The Mailchimp app will be removed because the user who connected it to Jobber no longer has administrator permissions\. |
+
+<br />
+
+### assessment / visit / appointment
+
+Use **appointment** to describe both visits and assessments to service consumers
+in emails and within client hub.
+
+Within Jobber, use **visit** or **assessment** as the name for those distinct
+items.
+
+<br />
+
+### attachment / file
+
+Use **attachments** when referring to files as a grouping rather than singular
+or as a verb.
+
+| **✅ Do**                    | **❌ Don't**      |
+| ---------------------------- | ----------------- |
+| Internal notes & attachments | Add an attachment |
+| Quote attachments            | Attach a file     |
+| Email attachments            |                   |
+
+<br />
+
+### client hub
+
+Always refer to our service consumer portal as the customer's client hub. Stick
+to sentence case, as it is a general term, not branded.
+
+| **✅ Do**                                  | **❌ Don't**                               |
+| ------------------------------------------ | ------------------------------------------ |
+| Changes will be visible in your client hub | Changes will be visible in your Client Hub |
+
+<br />
+
+### estimate / quote
+
+TBD
+
+<br />
+
+### help center / help docs / help documentation / learn more
+
+Use Help Center exclusively when linking to additional help documentation, and
+link to the related document directly when possible.
+
+| **✅ Do **                                                                                | **❌ Don't**                                                                                |
+| ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| Learn how disputes work and how to prevent them in our [Help Center](#concepts-and-items) | Learn how disputes work and how to prevent them in our [Documentation](#concepts-and-items) |
+
+Avoid using **learn more** as a link's label as it is poor for accessibility.
+Stick to descriptive labels that give more context of where the link is taking a
+user.
+
+| **✅ Do**                                                                                 | **❌ Don't**                                                                              |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| Learn how disputes work and how to prevent them in our [Help Center](#concepts-and-items) | Want to know how disputes work and how to prevent them? [Learn more](#concepts-and-items) |
+
+<br />
+
+### Jobber Payments
+
+Always refer to **Jobber Payments** in title case, as it's our branded feature.
+
+<br />
+
+### Jobber Labs / beta
+
+We always refer to our area for experimentation with new functionality as the
+branded feature, **Jobber Labs**.
+
+<br />
+
+### products and services / products & services / line items
+
+Use **products and services** (and avoid flipping the words) when referring to
+the master list of them in body text, and sentences in general.
+
+| **✅ Do**                                                                                       | **❌ Don't**                                                                         |
+| ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| The exported products and services are attached in a CSV file                                   | Attached are your exported products & services in a CSV file                         |
+| Would you like to add recommended products and services based on your industry to your account? | Would you like to add recommended line items based on your industry to your account? |
+
+Use **products & services** for titles and navigation to keep things short and
+snappy.
+
+| **✅ Do**                  | **❌ Don't**                 |
+| -------------------------- | ---------------------------- |
+| Add to Products & Services | Add to Products and Services |
+
+Use **line items** to describe the groupings of products and services on a
+quote, job or invoice.
+
+| **✅ Do**              | **❌ Don't**                    |
+| ---------------------- | ------------------------------- |
+| Add line item to quote | Add product or service to quote |
+
+<br />
+
+### subscription / subscribe(d) / plan
+
+Use **subscription** in reference to an SP’s individual recurring payment and
+how it is managed.
+
+Use **subscribe(d)** as a verb referring to the act of choosing, or having
+chosen, a plan.
+
+Use **plan** in reference to
+[Jobber's pre-determined feature templates](https://getjobber.com/pricing/)
+users can subscribe to.
+
+<br />
+
+### task / basic task / to do
+
+Use **task** when referring to all task items in Jobber.
+
+| **✅ Do** | **❌ Don't**   |
+| --------- | -------------- |
+| New task  | New basic task |
+
+<br />
+
+### text / text message / sms
+
+Use **text message** where space allows, and **text** as an action verb when
+space is limited.
+
+<br />
+
+### timesheets
+
+**Timesheets** is a single word in Jobber.
+
+| **✅ Do**          | **❌ Don't**        |
+| ------------------ | ------------------- |
+| Approve timesheets | Approve time sheets |
+
+<br />
+
+### track / log / record
+
+TBD
+
+<br />
+
+## General phrasing
+
+### please
+
+Avoid **please** for the most part, particularly in error messages to avoid
+overuse and loss of meaning.
+
+| **✅ Do**        | **❌ Don't**            |
+| ---------------- | ----------------------- |
+| Enter your email | Please enter your email |
+
+Use **please** sparingly when we're requesting the user to take additional
+effort to resolve an issue, outside of standard errors.
+
+| **✅ Do**                                                                      | **❌ Don't**                                                               |
+| ------------------------------------------------------------------------------ | -------------------------------------------------------------------------- |
+| Your card cannot be used to make this payment, please contact your card issuer | Your card cannot be used to make this payment\. Contact your card issuer\. |
+
+<br />
+
+### sorry
+
+Avoid using **sorry** much like the word please, as they can lose meaning when
+overused.
+
+| **✅ Do**                                         | **❌ Don't**                                                                                          |
+| ------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| Client cannot have more than 1500 email addresses | Sorry, can not add email address. You may not have more than 1500 email addresses on a single client. |
+
+<br />
+
+### success, successful, successfully
+
+Avoid these words in general as they are redundant.
+
+| **✅ Do**               | **❌ Don't**                     |
+| ----------------------- | -------------------------------- |
+| Your password was reset | Successfully reset your password |
+
+If referring to the **Success** team, always capitalize Success.
+
+| **✅ Do**                                            | **❌ Don't**                                         |
+| ---------------------------------------------------- | ---------------------------------------------------- |
+| Please contact our Success team for more information | Please contact the success team for more information |
+
+<br />
+
+### valid / invalid
+
+Avoid defaulting to generic messages for invalid fields where possible, as they
+can be unhelpful.
+
+| **✅ Do**                      | **❌ Don't**               |
+| ------------------------------ | -------------------------- |
+| Email address must contain a @ | Enter a valid phone number |
+
+Sometimes we can't account for all states of an error though, in this case err
+on using "valid".
+
+| **✅ Do**                     | **❌ Don't**                                     |
+| ----------------------------- | ------------------------------------------------ |
+| Enter a valid expiration year | The expiration year is invalid, please try again |
+
+<br />

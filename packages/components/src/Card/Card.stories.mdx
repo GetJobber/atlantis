@@ -1,0 +1,175 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Card } from "@jobber/components/Card";
+import { Text } from "@jobber/components//Text";
+import { Heading } from "@jobber/components//Heading";
+import { Content } from "@jobber/components//Content";
+import { Button } from "@jobber/components/Button";
+import { InputText } from "@jobber/components/InputText";
+import { InputGroup } from "@jobber/components/InputGroup";
+
+# Card
+
+<Meta title="Components/Card" component={Card} />
+
+A card is used to group related information and tasks so our users can scan and
+prioritize information more easily.
+
+```ts
+import { Card } from "@jobber/components/Card";
+```
+
+<Canvas>
+  <Story
+    name="Card"
+    args={{
+      header: {
+        title: "Company settings",
+        action: <Button label="Add New Setting" />,
+      },
+    }}
+  >
+    {args => (
+      <Card {...args}>
+        <Content>
+          <Heading level={4}>Details</Heading>
+          <InputGroup>
+            <InputText
+              defaultValue="Quest Provider"
+              placeholder="Company name"
+            />
+            <InputText placeholder="Years in business" />
+          </InputGroup>
+          <Heading level={4}>Contact</Heading>
+          <InputGroup>
+            <InputText
+              prefix={{
+                icon: "phone",
+              }}
+              placeholder="Phone number"
+            />
+            <InputText
+              prefix={{
+                icon: "presentation",
+              }}
+              placeholder="Website"
+            />
+            <InputText
+              prefix={{
+                icon: "email",
+              }}
+              placeholder="Email"
+            />
+          </InputGroup>
+        </Content>
+      </Card>
+    )}
+  </Story>
+</Canvas>
+
+<ArgsTable of={Card} story="Card" />
+
+## Design & usage guidelines
+
+A card is useful for grouping content because of it's distinct visual
+boundaries. However, similar to the idea that "making everything stand out means
+that nothing stands out", you should be mindful in your application of cards.
+
+A card should be the smallest-possible self-contained section of content. If you
+find yourself putting a card inside of another card, the outer card should be
+removed, and it may be worth re-assessing the hierarchy of your interface.
+
+## Content guidelines
+
+Card titles should be sentence-cased.
+
+| ✅ Do                   | ❌ Don't                |
+| ----------------------- | ----------------------- |
+| Client property details | Client Property Details |
+| Assigned team           | ASSIGNED TEAM           |
+| Required deposit        | Required Deposit        |
+
+## Variations
+
+### Clickable with URL
+
+<Canvas>
+  <Card url="#">
+    <Content>
+      <Heading level={4}>View all</Heading>
+      <Text>
+        See how our 20+ features can help you organize, impress, and grow.
+      </Text>
+    </Content>
+  </Card>
+</Canvas>
+
+### Clickable with external URL
+
+<Canvas>
+  <Card url="https://atlantis.getjobber.com/" external={true}>
+    <Content>
+      <Heading level={4}>View all</Heading>
+      <Text>
+        See how our 20+ features can help you organize, impress, and grow.
+      </Text>
+    </Content>
+  </Card>
+</Canvas>
+
+### Clickable with onClick
+
+<Canvas>
+  <Card
+    onClick={e => {
+      alert("😻");
+      console.log(e.currentTarget);
+    }}
+  >
+    <Content>
+      <Heading level={4}>View all</Heading>
+      <Text>
+        See how our 20+ features can help you organize, impress, and grow.
+      </Text>
+    </Content>
+  </Card>
+</Canvas>
+
+### Header with custom component
+
+Use the provided header title and action properties when possible. If you
+require UI elements not supported by the card's header, a custom component can
+be passed in.
+
+<Canvas>
+  <Card
+    header={
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          padding: "var(--card--base-padding)",
+          gap: "var(--space-base)",
+          alignItems: "flex-start",
+        }}
+      >
+        <Heading level={4}>Bananas varieties</Heading>
+        <Button onClick={() => alert("Dismiss")} icon="cross" type="tertiary" />
+      </div>
+    }
+  >
+    <Content>
+      <Heading level={4}>Burro</Heading>
+      <Text>
+        Squatty and slightly square at the edges, these bananas are slightly
+        tangy and lemony. When ripe, the fruit is soft and the skin is yellow
+        with black spots. Also called Horse, Hog, or Orinoco bananas.
+      </Text>
+      <Heading level={4}>Cavendish</Heading>
+      <Text>
+        This is the familiar yellow banana sold in United States’ supermarkets.
+        There are also other sizes of Cavendish, including Dwarf and Giant,
+        though they are difficult to find.
+      </Text>
+    </Content>
+  </Card>
+</Canvas>

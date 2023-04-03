@@ -1,71 +1,75 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders an object as a list of key value pairs 1`] = `
-<dl
-  className="descriptionList"
->
-  <div
-    className="termGroup"
+<div>
+  <dl
+    class="descriptionList"
   >
-    <dt
-      className="base regular base blue"
+    <div
+      class="termGroup"
     >
-      Issued
-    </dt>
-    <dd
-      className="base regular base greyBlueDark"
+      <dt
+        class="base regular base heading"
+      >
+        Issued
+      </dt>
+      <dd
+        class="base regular base text"
+      >
+        2018-12-08
+      </dd>
+    </div>
+    <div
+      class="termGroup"
     >
-      2018-12-08
-    </dd>
-  </div>
-  <div
-    className="termGroup"
-  >
-    <dt
-      className="base regular base blue"
-    >
-      Due
-    </dt>
-    <dd
-      className="base regular base greyBlueDark"
-    >
-      2019-01-06
-    </dd>
-  </div>
-</dl>
+      <dt
+        class="base regular base heading"
+      >
+        Due
+      </dt>
+      <dd
+        class="base regular base text"
+      >
+        2019-01-06
+      </dd>
+    </div>
+  </dl>
+</div>
 `;
 
 exports[`renders an object as a list of key value pairs with an element 1`] = `
-<dl
-  className="descriptionList"
->
-  <div
-    className="termGroup"
+<div>
+  <dl
+    class="descriptionList"
   >
-    <dt
-      className="base regular base blue"
+    <div
+      class="termGroup"
     >
-      Foo
-    </dt>
-    <dd
-      className="base regular base greyBlueDark"
+      <dt
+        class="base regular base heading"
+      >
+        Foo
+      </dt>
+      <dd
+        class="base regular base text"
+      >
+        Foo
+      </dd>
+    </div>
+    <div
+      class="termGroup"
     >
-      Foo
-    </dd>
-  </div>
-  <div
-    className="termGroup"
-  >
-    <dt
-      className="base regular base blue"
-    >
-      Bar
-    </dt>
-    <dd
-      className="base regular base greyBlueDark"
-    >
-      Bar
-    </dd>
-  </div>
-</dl>
+      <dt
+        class="base regular base heading"
+      >
+        Bar
+      </dt>
+      <dd
+        class="base regular base text"
+      >
+        Bar
+      </dd>
+    </div>
+  </dl>
+</div>
 `;

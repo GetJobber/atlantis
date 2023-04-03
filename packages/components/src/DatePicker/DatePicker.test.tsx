@@ -12,7 +12,7 @@ beforeEach(() => {
    *
    * This will mock our system time to `April 7, 2021`.
    */
-  jest.useFakeTimers("modern");
+  jest.useFakeTimers();
   jest.setSystemTime(new Date(2021, 3, 7));
 });
 
@@ -90,6 +90,21 @@ it("should not add the `react-datepicker-ignore-onclickoutside` when inline", ()
   expect(target).not.toHaveClass(className);
 });
 
+it("should call onMonthChange when the user switches month", async () => {
+  const monthChangeHandler = jest.fn();
+  const { getByTestId, getByLabelText } = render(
+    <DatePicker
+      selected={new Date()}
+      onChange={jest.fn()}
+      onMonthChange={monthChangeHandler}
+    />,
+  );
+  await popperUpdate(() => fireEvent.click(getByTestId("calendar")));
+  await popperUpdate(() => fireEvent.click(getByLabelText("Next Month")));
+
+  expect(monthChangeHandler).toHaveBeenCalledWith(expect.any(Date));
+});
+
 describe("Ensure ReactDatePicker CSS class names exists", () => {
   it("should have the click outside class", async () => {
     const { getByRole } = render(<ReactDatePicker onChange={jest.fn} />);
@@ -134,9 +149,9 @@ describe("Ensure ReactDatePicker CSS class names exists", () => {
   });
 });
 
-async function popperUpdate(event: Function) {
+async function popperUpdate(event: () => void) {
   event();
   // Wait for the Popper update() so jest doesn't throw an act warning
   // https://github.com/popperjs/react-popper/issues/350
-  await act(async () => undefined);
+  await act(async () => () => undefined);
 }

@@ -80,7 +80,7 @@ module.exports = {
   moduleNameMapper: {
     "\\.css$": "identity-obj-proxy",
     "react-markdown":
-      "<rootDir>/packages/components/node_modules/react-markdown/react-markdown.min.js",
+      "<rootDir>/node_modules/react-markdown/react-markdown.min.js",
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -134,7 +134,7 @@ module.exports = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  // testEnvironment: "jest-environment-jsdom",
+  testEnvironment: "jest-environment-jsdom",
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -149,11 +149,7 @@ module.exports = {
   // ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-  testPathIgnorePatterns: [
-    "/node_modules/",
-    "/packages/generators/templates/",
-    ".docz",
-  ],
+  testPathIgnorePatterns: ["/node_modules/", "/packages/generators/templates/"],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],

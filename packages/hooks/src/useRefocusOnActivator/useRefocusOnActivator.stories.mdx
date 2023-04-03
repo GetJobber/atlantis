@@ -1,0 +1,39 @@
+import { Canvas, Meta, Story } from "@storybook/addon-docs";
+import { useState } from "react";
+import { Button } from "@jobber/components/Button";
+import { Content } from "@jobber/components/Content";
+import { Card } from "@jobber/components/Card";
+import * as hooks from ".";
+
+<Meta title="Hooks/useRefocusOnActivator" />
+
+# useRefocusOnActivator
+
+Improves the keyboard accessibility on modals and/or popovers since the HTML
+element focus returns to the one that opens it.
+
+```tsx
+import { useRefocusOnActivator } from "@jobber/hooks";
+```
+
+<Canvas>
+  <Story name="useRefocusOnActivator">
+    {() => {
+      const [open, setOpen] = useState(false);
+      hooks.useRefocusOnActivator(open);
+      return (
+        <Content>
+          <Button label="Click me" onClick={() => setOpen(true)} />
+          {open && (
+            <Card onClick={() => setOpen(false)}>
+              <Content>
+                Huzzah! Click me to hide me and watch me return the focus on the
+                button
+              </Content>
+            </Card>
+          )}
+        </Content>
+      );
+    }}
+  </Story>
+</Canvas>

@@ -1,0 +1,82 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { InlineLabel } from "@jobber/components/InlineLabel";
+
+<Meta title="Components/InlineLabel" component={InlineLabel} />
+
+# Inline Label
+
+Inline labels are typically used to indicate state/status on objects within the
+application.
+
+```ts
+import { InlineLabel } from "@jobber/components/InlineLabel";
+```
+
+<Canvas>
+  <Story
+    name="InlineLabel"
+    args={{
+      children: "Draft",
+    }}
+  >
+    {args => <InlineLabel {...args} />}
+  </Story>
+</Canvas>
+
+<ArgsTable of={InlineLabel} story="InlineLabel" />
+
+## Design & usage guidelines
+
+Inline labels can be used fairly broadly, but the application of
+[color](../?path=/docs/design-colors--page) should be handled with intent. Use
+of colour along with a descriptive label can help the user understand the
+meaning of an item's status.
+
+| Color                                                 | Meaning                         |
+| :---------------------------------------------------- | :------------------------------ |
+| <InlineLabel color="red">Past Due</InlineLabel>       | Time-sensitive urgent           |
+| <InlineLabel color="orange">Unscheduled</InlineLabel> | Urgent                          |
+| <InlineLabel color="green">Approved</InlineLabel>     | Ready to action on              |
+| <InlineLabel color="teal">Converted</InlineLabel>     | Successful, no action required  |
+| <InlineLabel color="grey">Draft</InlineLabel>         | Object is in a draft state      |
+| <InlineLabel color="blue">Archived</InlineLabel>      | Object has been archived        |
+| <InlineLabel color="lightBlue">Sample</InlineLabel>   | Object is for learning purposes |
+
+---
+
+## Sizes
+
+### Large
+
+<Canvas>
+  <InlineLabel size="large" color="blue">
+    Beta
+  </InlineLabel>
+</Canvas>
+
+### Larger
+
+<Canvas>
+  <InlineLabel size="larger" color="green">
+    99+
+  </InlineLabel>
+</Canvas>
+
+## Colors
+
+| Inline Label                                               | Color         |
+| :--------------------------------------------------------- | :------------ |
+| <InlineLabel color="greyBlue">GreyBlue</InlineLabel>       | `greyBlue`    |
+| <InlineLabel color="red">Red</InlineLabel>                 | `red`         |
+| <InlineLabel color="orange">Orange</InlineLabel>           | `orange`      |
+| <InlineLabel color="green">Green</InlineLabel>             | `green`       |
+| <InlineLabel color="blue">Blue</InlineLabel>               | `blue`        |
+| <InlineLabel color="yellow">Yellow</InlineLabel>           | `yellow`      |
+| <InlineLabel color="lime">Lime</InlineLabel>               | `lime`        |
+| <InlineLabel color="purple">Purple</InlineLabel>           | `purple`      |
+| <InlineLabel color="pink">Pink</InlineLabel>               | `pink`        |
+| <InlineLabel color="teal">Teal</InlineLabel>               | `teal`        |
+| <InlineLabel color="yellowGreen">YellowGreen</InlineLabel> | `yellowGreen` |
+| <InlineLabel color="blueDark">BlueDark</InlineLabel>       | `blueDark`    |
+| <InlineLabel color="lightBlue">LightBlue</InlineLabel>     | `lightBlue`   |
+| <InlineLabel color="indigo">Indigo</InlineLabel>           | `indigo`      |

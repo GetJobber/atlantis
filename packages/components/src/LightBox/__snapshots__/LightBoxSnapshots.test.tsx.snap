@@ -1,168 +1,59 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Images renders an image 1`] = `
-<div
-  className="ReactModal__Overlay ReactModal__Overlay--after-open"
-  onClick={[Function]}
-  onMouseDown={[Function]}
-  style={
-    Object {
-      "backgroundColor": "transparent",
-      "bottom": 0,
-      "left": 0,
-      "position": "fixed",
-      "right": 0,
-      "top": 0,
-      "zIndex": 1000,
-    }
-  }
->
+<div>
   <div
     aria-label="Lightbox"
-    className="ReactModal__Content ReactModal__Content--after-open"
-    onClick={[Function]}
-    onKeyDown={[Function]}
-    onMouseDown={[Function]}
-    onMouseUp={[Function]}
-    role="dialog"
-    style={
-      Object {
-        "WebkitOverflowScrolling": "touch",
-        "background": "#fff",
-        "backgroundColor": "transparent",
-        "border": "none",
-        "borderRadius": 0,
-        "bottom": 0,
-        "left": 0,
-        "outline": "none",
-        "overflow": "hidden",
-        "padding": 0,
-        "position": "absolute",
-        "right": 0,
-        "top": 0,
-      }
-    }
-    tabIndex="-1"
+    class="lightboxWrapper"
+    tabindex="0"
   >
     <div
-      className="ril-outer ril__outer ril__outerAnimating wrapper "
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseMove={[Function]}
-      onTouchMove={[Function]}
-      onTouchStart={[Function]}
-      onWheel={[Function]}
-      style={
-        Object {
-          "animationDirection": "reverse",
-          "animationDuration": "300ms",
-          "transition": "opacity 300ms",
-        }
-      }
-      tabIndex="-1"
+      class="toolbar"
     >
-      <div
-        className="ril-inner ril__inner"
-        onClick={[Function]}
+      <span
+        class="title"
       >
-        <div
-          className="ril-image-current ril__image ril-not-loaded"
-          style={
-            Object {
-              "transform": "translate3d(0px,0px,0) scale3d(NaN,NaN,1)",
-            }
-          }
-        >
-          <div
-            className="ril__loadingContainer"
-          >
-            <div
-              className="ril-loading-circle ril__loadingCircle ril__loadingContainer__icon"
-            >
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-              <div
-                className="ril-loading-circle-point ril__loadingCirclePoint"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        className="ril-toolbar ril__toolbar"
+        Dis be a title
+      </span>
+      <button
+        aria-label="Close"
+        class="button base onlyIcon subtle tertiary"
+        type="button"
       >
-        <ul
-          className="ril-toolbar-left ril__toolbarSide ril__toolbarLeftSide"
+        <svg
+          class="Z6OfUI2sH34- TphtDHcwxDc-"
+          data-testid="remove"
+          viewBox="0 0 1024 1024"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <li
-            className="ril-toolbar__item ril__toolbarItem"
-          >
-            <span
-              className="ril-toolbar__item__child ril__toolbarItemChild"
-            >
-              Dis be a title
-            </span>
-          </li>
-        </ul>
-        <ul
-          className="ril-toolbar-right ril__toolbarSide ril__toolbarRightSide"
-        >
-          <li
-            className="ril-toolbar__item ril__toolbarItem"
-          >
-            <button
-              aria-label="Close lightbox"
-              className="ril-close ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__closeButton"
-              onClick={[Function]}
-              type="button"
-            />
-          </li>
-        </ul>
-      </div>
-      <div
-        className="ril-caption ril__caption"
-        onMouseDown={[Function]}
-        onWheel={[Function]}
-      >
-        <div
-          className="ril-caption-content ril__captionContent"
-        >
-          Dis be a caption 🎉
-        </div>
-      </div>
+          <path
+            class=""
+            d="M512.5 449.108l-226.056-226.056c-8.055-7.78-18.843-12.085-30.041-11.988s-21.909 4.589-29.828 12.507c-7.919 7.919-12.41 18.63-12.507 29.828s4.208 21.985 11.988 30.041l226.056 226.056-226.056 226.056c-7.78 8.055-12.085 18.843-11.988 30.041s4.589 21.909 12.507 29.827c7.918 7.918 18.63 12.411 29.828 12.509s21.986-4.207 30.041-11.989l226.056-226.056 226.056 226.056c8.055 7.782 18.843 12.087 30.041 11.989s21.909-4.591 29.827-12.509c7.918-7.918 12.411-18.629 12.509-29.827 0.094-11.198-4.207-21.986-11.989-30.041l-226.056-226.056 226.056-226.056c4.079-3.94 7.333-8.652 9.571-13.864s3.416-10.815 3.463-16.485c0.051-5.671-1.029-11.295-3.177-16.543s-5.317-10.017-9.327-14.027c-4.010-4.010-8.781-7.181-14.030-9.328-5.244-2.148-10.87-3.228-16.541-3.179s-11.275 1.227-16.485 3.465c-5.21 2.238-9.926 5.492-13.864 9.571l-226.056 226.056z"
+          />
+        </svg>
+        <span
+          class="base extraBold base base"
+        />
+      </button>
     </div>
+    <div
+      class="imagesWrapper"
+    >
+      <img
+        class="image"
+        draggable="false"
+        src="https://i.imgur.com/6Jcfgnp.jpg"
+        style="z-index: 1; opacity: 1; transform: translateX(0px) translateY(-50%) translateZ(0); user-select: none;"
+      />
+    </div>
+    <div
+      class="toolbar"
+    >
+      Dis be a caption 🎉
+    </div>
+    <div
+      class="overlay"
+    />
   </div>
 </div>
 `;

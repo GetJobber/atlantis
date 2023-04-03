@@ -1,50 +1,52 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders a FormatFile 1`] = `
-<div
-  className="expanded"
->
+<div>
   <div
-    aria-busy={false}
-    className="wrapper"
-    tabIndex={0}
-    type="button"
+    class="expanded"
   >
     <div
-      className="thumbnail base"
+      aria-busy="false"
+      class="wrapper"
+      tabindex="0"
+      type="button"
     >
       <div
-        className="content base"
+        class="thumbnail base"
       >
-        <svg
-          className="ZDlJU6tECg7ouG-b27gya _3ctOeOMP7zLhU37n25xoZC"
-          data-testid="file"
-          viewBox="0 0 1024 1024"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            className="_2e1AAW5-LqZd1rLcmAUuzN"
-            d="M597.917 381.372c0-23.587-19.121-42.709-42.709-42.709h-128.125c-23.587 0-42.709 19.122-42.709 42.709v256.25c0 23.588 19.122 42.709 42.709 42.709s42.709-19.121 42.709-42.709v-64.063h85.416c23.588 0 42.709-19.121 42.709-42.709s-19.121-42.709-42.709-42.709h-85.416v-64.063h85.416c23.588 0 42.709-19.122 42.709-42.709zM256.25 82.413c-47.174 0-85.416 38.242-85.416 85.416v683.334c0 47.176 38.242 85.416 85.416 85.416h512.5c47.176 0 85.416-38.241 85.416-85.416v-537.519c0-22.654-8.999-44.38-25.018-60.399l-145.815-145.815c-16.020-16.019-37.746-25.018-60.398-25.018h-366.685zM256.25 851.164v-683.334h366.685l145.815 145.815v537.519h-512.5z"
-          />
-        </svg>
         <div
-          className="fileName"
-        />
+          class="content base"
+        >
+          <svg
+            class="Z6OfUI2sH34- TphtDHcwxDc-"
+            data-testid="file"
+            viewBox="0 0 1024 1024"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              class="eenEpNGpzfA-"
+              d="M597.917 381.372c0-23.587-19.121-42.709-42.709-42.709h-128.125c-23.587 0-42.709 19.122-42.709 42.709v256.25c0 23.588 19.122 42.709 42.709 42.709s42.709-19.121 42.709-42.709v-64.063h85.416c23.588 0 42.709-19.121 42.709-42.709s-19.121-42.709-42.709-42.709h-85.416v-64.063h85.416c23.588 0 42.709-19.122 42.709-42.709zM256.25 82.413c-47.174 0-85.416 38.242-85.416 85.416v683.334c0 47.176 38.242 85.416 85.416 85.416h512.5c47.176 0 85.416-38.241 85.416-85.416v-537.519c0-22.654-8.999-44.38-25.018-60.399l-145.815-145.815c-16.020-16.019-37.746-25.018-60.398-25.018h-366.685zM256.25 851.164v-683.334h366.685l145.815 145.815v537.519h-512.5z"
+            />
+          </svg>
+          <div
+            class="fileName"
+          />
+        </div>
       </div>
-    </div>
-    <div
-      className="contentBlock"
-    >
-      <p
-        className="base regular base text"
+      <div
+        class="contentBlock"
       >
-        Funky Corn
-      </p>
-      <p
-        className="base regular small text"
-      >
-        1 KB
-      </p>
+        <p
+          class="base regular base text"
+        >
+          Funky Corn
+        </p>
+        <p
+          class="base regular small text"
+        >
+          1 KB
+        </p>
+      </div>
     </div>
   </div>
 </div>

@@ -1,0 +1,72 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Emphasis } from "@jobber/components/Emphasis";
+import { Heading } from "@jobber/components/Heading";
+import { Text } from "@jobber/components/Text";
+
+<Meta title="Components/Emphasis" component={Emphasis} />
+
+# Emphasis
+
+Use this component to emphasize certain content of a Heading or Text component.
+There are variations on Emphasis, each with their own use case and meaning.
+
+```ts
+import { Emphasis } from "@jobber/components/Emphasis";
+```
+
+<Canvas>
+  <Story
+    name="Emphasis"
+    args={{
+      variation: "bold",
+    }}
+  >
+    {args => {
+      return (
+        <Text>
+          To <Emphasis {...args}>boldly</Emphasis> go…
+        </Text>
+      );
+    }}
+  </Story>
+</Canvas>
+
+<ArgsTable of={Emphasis} story="Emphasis" />
+
+## Design & usage guidelines
+
+### Bold
+
+Used to call attention to a piece of text. Bold should indicate that its
+contents have
+[strong importance, seriousness, or urgency.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/strong)
+
+<Canvas>
+  <Text>
+    <Emphasis variation="bold">Save $240</Emphasis> when you choose our Annual
+    Plan
+  </Text>
+</Canvas>
+
+### Italic
+
+Italic emphasis should be used when there is stress emphasis on a word (or
+words) which modifies the meaning of the sentence itself.
+
+<Canvas>
+  <Text>
+    Simon’s here to show <Emphasis variation="italic">you</Emphasis> how Jobber
+    works.
+  </Text>
+</Canvas>
+
+### Highlight
+
+Used to call attention to a specific value prop on a heading. Highlight should
+only be used on page titles and subtitle, and is similar in meaning to Bold.
+
+<Canvas>
+  <Heading level={1}>
+    Get paid <Emphasis variation="highlight">faster</Emphasis>
+  </Heading>
+</Canvas>

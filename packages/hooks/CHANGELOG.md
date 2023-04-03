@@ -1,12 +1,106 @@
----
-name: Hooks
-menu: Changelog
----
-
-# @jobber/hooks: Change Log
+# Change Log
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.0.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.0.1...@jobber/hooks@2.0.2) (2023-03-22)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+## [2.0.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.0.0...@jobber/hooks@2.0.1) (2023-03-20)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+# [2.0.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.13.3...@jobber/hooks@2.0.0) (2023-03-17)
+
+
+* feat!: Make React 18 as the only Peer Deps [JOB-63252] BREAKING CHANGE (#1111) ([c4682e8](https://github.com/GetJobber/atlantis/commit/c4682e89f8926ab9ba8341331474c81676ff9c6d)), closes [#1111](https://github.com/GetJobber/atlantis/issues/1111) [#1103](https://github.com/GetJobber/atlantis/issues/1103) [#1105](https://github.com/GetJobber/atlantis/issues/1105)
+
+
+### BREAKING CHANGES
+
+* React 18 as Peer Deps
+
+* build: Force React 18 Peer Deps BREAKING CHANGE
+
+
+
+
+
+## [1.13.3](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.13.2...@jobber/hooks@1.13.3) (2023-03-16)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+## [1.13.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.13.1...@jobber/hooks@1.13.2) (2023-03-10)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+## [1.13.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.13.0...@jobber/hooks@1.13.1) (2023-03-07)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+# [1.13.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.12.5...@jobber/hooks@1.13.0) (2023-03-02)
+
+
+### Features
+
+* **hooks:** Add useFocusTrap hook ([#1100](https://github.com/GetJobber/atlantis/issues/1100)) ([2fed042](https://github.com/GetJobber/atlantis/commit/2fed042db990704e1723e1ebe87bff7b04acc44f))
+
+
+
+
+
+## [1.12.5](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.12.4...@jobber/hooks@1.12.5) (2023-02-28)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+## [1.12.4](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.12.3...@jobber/hooks@1.12.4) (2023-02-27)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+## [1.12.3](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.12.2...@jobber/hooks@1.12.3) (2023-02-24)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+## [1.12.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.12.1...@jobber/hooks@1.12.2) (2023-02-22)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
 
 ## [1.12.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@1.12.0...@jobber/hooks@1.12.1) (2022-11-01)
 
@@ -337,16 +431,3 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * add hook package with useResizeOberserver hook ([#242](https://github.com/GetJobber/atlantis/issues/242)) ([59411d7](https://github.com/GetJobber/atlantis/commit/59411d7dd34508e56dcdd4b9de9806414196959c))
-
-
-
-
-
----
-name: Atlantis Hooks
-menu: Changelog
----
-
-# @jobber/hooks: Change Log
-
-All notable changes to this project will be documented in this file.
