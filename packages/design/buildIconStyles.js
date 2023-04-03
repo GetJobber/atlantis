@@ -22,7 +22,7 @@ postcss({
     postcssCalc({ warnWhenCannotResolve: true }),
   ],
 })
-  .process(allCss, { from: undefined, to: "./test.css" })
+  .process(allCss, { from: undefined })
   .then(function (result) {
     const calculated = transform(result.css);
     // console.warn({ result: result.css, calculated });
