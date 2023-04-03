@@ -1,6 +1,4 @@
 import React, { useMemo } from "react";
-import { Temporal } from "@js-temporal/polyfill";
-import { CivilDate } from "@std-proposal/temporal";
 import ReactCountdown, { CountdownRenderProps } from "react-countdown";
 import { computeTimeUnit } from "./computeTimeUnit";
 import { AtlantisTemporalPlainDateTime } from "../types";
@@ -51,12 +49,13 @@ export function Countdown<
   const date = useMemo(() => {
     let initDate: Date;
     if (
-      inputDate instanceof Temporal.PlainDateTime ||
-      inputDate instanceof CivilDate
+      typeof inputDate === "string" ||
+      typeof inputDate === "number" ||
+      inputDate instanceof Date
     ) {
-      initDate = new Date(inputDate.year, inputDate.month - 1, inputDate.day);
-    } else {
       initDate = new Date(inputDate);
+    } else {
+      initDate = new Date(inputDate.year, inputDate.month - 1, inputDate.day);
     }
     return initDate;
   }, [inputDate]);

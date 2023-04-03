@@ -1,7 +1,7 @@
-import { CivilTime } from "@std-proposal/temporal";
 import { CommonFormFieldProps, FormFieldProps } from "../FormField";
+import { AtlantisTemporalPlainTime } from "../types";
 
-export interface InputTimeProps<T extends CivilTime>
+export interface InputTimeProps<T extends AtlantisTemporalPlainTime>
   extends Pick<
       CommonFormFieldProps,
       | "align"

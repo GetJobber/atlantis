@@ -1,7 +1,6 @@
 import React from "react";
 // eslint-disable-next-line import/no-internal-modules
 import supportsTime from "time-input-polyfill/supportsTime";
-import { CivilTime } from "@std-proposal/temporal";
 import { InputTimeSafari } from "./InputTimeSafari";
 import {
   civilTimeToHTMLTime,
@@ -9,8 +8,9 @@ import {
 } from "./civilTimeConversions";
 import { InputTimeProps } from "./InputTimeProps";
 import { FormField, FormFieldProps } from "../FormField";
+import { AtlantisTemporalPlainTime } from "../types";
 
-export function InputTime<T extends CivilTime>({
+export function InputTime<T extends AtlantisTemporalPlainTime>({
   defaultValue,
   value,
   onChange,

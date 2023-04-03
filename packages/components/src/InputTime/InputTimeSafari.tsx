@@ -7,17 +7,18 @@ import {
   htmlTimeToCivilTime,
 } from "./civilTimeConversions";
 import { FormField } from "../FormField";
+import { AtlantisTemporalPlainTime } from "../types";
 
 interface PolyfilledInputElement extends HTMLInputElement {
   polyfill: { update: () => void };
 }
 
-export function InputTimeSafari({
+export function InputTimeSafari<T extends AtlantisTemporalPlainTime>({
   defaultValue,
   value,
   onChange,
   ...params
-}: InputTimeProps) {
+}: InputTimeProps<T>) {
   const inputTime = React.createRef<HTMLInputElement>();
   const debouncedHandleChange = debounce(handleChange, 1000);
   const changeHandler = generateEventHandler(debouncedHandleChange);
