@@ -1,13 +1,13 @@
 import React from "react";
-import { CivilTime } from "@std-proposal/temporal";
+import { AtlantisTemporalPlainTime } from "../types";
 
-interface FormatTimeProps {
+interface FormatTimeProps<T extends AtlantisTemporalPlainTime | Date | string> {
   /**
    * Civil Time of time to be displayed.
    *
    * A `string` should be an ISO 8601 format date string.
    */
-  readonly time: CivilTime | Date | string;
+  readonly time: T;
 
   /**
    * Optionally specify clock format. If `undefined` system format will be respected.
@@ -15,10 +15,9 @@ interface FormatTimeProps {
   readonly use24HourClock?: boolean;
 }
 
-export function FormatTime({
-  time: inputTime,
-  use24HourClock,
-}: FormatTimeProps) {
+export function FormatTime<
+  T extends AtlantisTemporalPlainTime | Date | string,
+>({ time: inputTime, use24HourClock }: FormatTimeProps<T>) {
   let dateObject: Date;
 
   if (inputTime instanceof Date) {

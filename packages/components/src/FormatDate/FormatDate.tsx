@@ -1,16 +1,18 @@
 import React from "react";
-import { CivilDate } from "@std-proposal/temporal";
+import { AtlantisTemporalPlainDate } from "../types";
 
-interface FormatDateProps {
+interface FormatDateProps<T extends AtlantisTemporalPlainDate | Date | string> {
   /**
    * Date to be formatted.
    *
    * A `string` should be an ISO 8601 format date string.
    */
-  readonly date: CivilDate | Date | string;
+  readonly date: T;
 }
 
-export function FormatDate({ date: inputDate }: FormatDateProps) {
+export function FormatDate<
+  T extends AtlantisTemporalPlainDate | Date | string,
+>({ date: inputDate }: FormatDateProps<T>) {
   let dateObject: Date;
 
   if (inputDate instanceof Date) {

@@ -1,6 +1,9 @@
-import { CivilTime } from "@std-proposal/temporal";
+import { Temporal } from "@js-temporal/polyfill";
+import { AtlantisTemporalPlainTime } from "../types";
 
-export function civilTimeToHTMLTime(civilTime?: CivilTime): string {
+export function civilTimeToHTMLTime(
+  civilTime?: AtlantisTemporalPlainTime,
+): string {
   if (civilTime == undefined) {
     return "";
   }
@@ -9,9 +12,11 @@ export function civilTimeToHTMLTime(civilTime?: CivilTime): string {
   return timeString.slice(0, 5);
 }
 
-export function htmlTimeToCivilTime(timeString: string): CivilTime | undefined {
+export function htmlTimeToCivilTime<T extends AtlantisTemporalPlainTime>(
+  timeString: string,
+) {
   try {
-    return CivilTime.fromString(timeString + ":00.000000000");
+    return Temporal.PlainTime.from(timeString + ":00.000000000") as T;
   } catch {
     return undefined;
   }

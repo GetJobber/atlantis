@@ -1,18 +1,20 @@
 import React from "react";
-import { CivilDateTime } from "@std-proposal/temporal";
+import { AtlantisTemporalPlainDateTime } from "../types";
 
-interface FormatRelativeDateTimeProps {
+interface FormatRelativeDateTimeProps<
+  T extends AtlantisTemporalPlainDateTime | Date | string,
+> {
   /**
    * Date to be displayed.
    *
    * A `string` should be an ISO 8601 format date string.
    */
-  readonly date: CivilDateTime | Date | string;
+  readonly date: T;
 }
 
-export function FormatRelativeDateTime({
-  date: inputDate,
-}: FormatRelativeDateTimeProps) {
+export function FormatRelativeDateTime<
+  T extends AtlantisTemporalPlainDateTime | Date | string,
+>({ date: inputDate }: FormatRelativeDateTimeProps<T>) {
   let dateObject: Date;
 
   if (inputDate instanceof Date) {

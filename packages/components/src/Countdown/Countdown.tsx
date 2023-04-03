@@ -1,7 +1,9 @@
 import React, { useMemo } from "react";
+import { Temporal } from "@js-temporal/polyfill";
 import { CivilDate } from "@std-proposal/temporal";
 import ReactCountdown, { CountdownRenderProps } from "react-countdown";
 import { computeTimeUnit } from "./computeTimeUnit";
+import { AtlantisTemporalPlainDateTime } from "../types";
 
 /**
  * Options for deciding how much information is shown to the user
@@ -9,13 +11,15 @@ import { computeTimeUnit } from "./computeTimeUnit";
  */
 type GranularityOptions = "dhms" | "hms" | "ms" | "s" | "dhm" | "dh" | "d";
 
-interface CountdownProps {
+interface CountdownProps<
+  T extends AtlantisTemporalPlainDateTime | Date | number | string,
+> {
   /**
    * The date that is being counted down to
    * Civil Time of time is to be displayed.
    * In the case of `date` a `string` should be in ISO 8601 format
    */
-  readonly date: CivilDate | Date | number | string;
+  readonly date: T;
 
   /**
    * Whether or not to present the unit of time to the user, or just the raw numbers.
@@ -36,15 +40,20 @@ interface CountdownProps {
   onComplete?(): void;
 }
 
-export function Countdown({
+export function Countdown<
+  T extends AtlantisTemporalPlainDateTime | Date | number | string,
+>({
   date: inputDate,
   onComplete,
   showUnits,
   granularity = "dhms",
-}: CountdownProps) {
+}: CountdownProps<T>) {
   const date = useMemo(() => {
     let initDate: Date;
-    if (inputDate instanceof CivilDate) {
+    if (
+      inputDate instanceof Temporal.PlainDateTime ||
+      inputDate instanceof CivilDate
+    ) {
       initDate = new Date(inputDate.year, inputDate.month - 1, inputDate.day);
     } else {
       initDate = new Date(inputDate);
