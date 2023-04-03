@@ -176,7 +176,6 @@ workflows:
     jobs:
       - checkout_code
       - install_dependencies:
-          context: jobber-npm-token
           requires:
             - checkout_code
       - check_for_manual_release:
