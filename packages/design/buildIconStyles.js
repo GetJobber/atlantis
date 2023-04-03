@@ -18,7 +18,6 @@ const allCss = [foundation, icon, size, color].join("\n");
 postcss({
   plugins: [
     postcssCustomProperties({ preserve: false }),
-
     postcssCalc({ warnWhenCannotResolve: true }),
   ],
 })
