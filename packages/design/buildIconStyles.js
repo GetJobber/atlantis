@@ -16,7 +16,7 @@ const color = fs.readFileSync("src/icons/Colors.css");
 
 const allCss = [icon, size, color].join("\n");
 
-postcss([postcssImport(), postcssCalc()])
+postcss([postcssCalc(), postcssImport()])
   .process(allCss, { from: "src/icons/Colors.css" })
   .then(function (result) {
     const calculated = transform(result.css);
