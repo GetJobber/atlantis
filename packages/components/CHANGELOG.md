@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.4.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.4.4...@jobber/components@4.4.5) (2023-03-31)
+
+
+### Bug Fixes
+
+* Enable noEmitOnError on component bootstrap ([#1171](https://github.com/GetJobber/atlantis/issues/1171)) ([a4f1000](https://github.com/GetJobber/atlantis/commit/a4f1000215c66e0ab905aaae3a6735c7e2cca621))
+
+
+
+
+
+## [4.4.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.4.3...@jobber/components@4.4.4) (2023-03-31)
+
+
+### Bug Fixes
+
+* Gallery and InputFile uploadurl required ([#1169](https://github.com/GetJobber/atlantis/issues/1169)) ([fc7934b](https://github.com/GetJobber/atlantis/commit/fc7934be83d2f8e34acc876561b2f4dd6e757c89))
+
+
+
+
+
+## [4.4.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.4.2...@jobber/components@4.4.3) (2023-03-30)
+
+
+### Reverts
+
+* "refactor(components): Remove redundant button prop types" ([#1168](https://github.com/GetJobber/atlantis/issues/1168)) ([45a0402](https://github.com/GetJobber/atlantis/commit/45a0402e1f8aabacf716dea91f9ad6a8c67522d4)), closes [#1164](https://github.com/GetJobber/atlantis/issues/1164)
+
+
+
+
+
 ## [4.4.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.4.1...@jobber/components@4.4.2) (2023-03-30)
 
 **Note:** Version bump only for package @jobber/components
