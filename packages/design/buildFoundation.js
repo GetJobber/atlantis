@@ -27,7 +27,7 @@ postcss([
         2,
       )}`;
       // console.log(JSON.stringify({ customProperties: mappedResults }, null, 2));
-      fs.writeFileSync("src/foundations.js", resultsString);
+      fs.writeFileSync("src/foundation.js", resultsString);
     },
     // extractLate: true,
   }),
