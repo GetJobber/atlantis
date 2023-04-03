@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@jobber/design": "*",
-    "react-native-gesture-handler": "^2.9.0",
+    "react-native-gesture-handler": "^2.5.0",
     "react-native-reanimated": "^2.14.4",
     "react-native-svg": "^13.9.0",
     "ts-xor": "^1.1.0"

@@ -1,7 +1,7 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
-import { InputDate } from "@jobber/components/InputDate";
 import { useState } from "react";
 import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
+import { InputDate } from "@jobber/components/InputDate";
 
 <Meta title="Components/InputDate" component={InputDate} />
 
@@ -27,7 +27,19 @@ import { InputDate } from "@jobber/components/InputDate";
   >
     {args => {
       const [date, setDate] = useState(new Date("11/11/2011"));
-      return <InputDate {...args} value={date} onChange={setDate} />;
+      return (
+        <InputDate
+          {...args}
+          value={date}
+          onChange={setDate}
+          validation={{
+            required: {
+              value: true,
+              message: "Tell us your name",
+            },
+          }}
+        />
+      );
     }}
   </Story>
 </Canvas>

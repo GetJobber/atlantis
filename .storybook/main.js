@@ -10,6 +10,7 @@ const config = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
+    "@storybook/addon-react-native-web",
     {
       name: "@storybook/addon-docs",
       options: {
@@ -18,7 +19,7 @@ const config = {
     },
   ],
   features: { buildStoriesJson: true },
-  framework: "@storybook/react",
+  // framework: "@storybook/react",
   webpackFinal: async config => {
     /**
      * Separate existing rules for CSS files
