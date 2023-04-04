@@ -1,10 +1,41 @@
 {
+  // Set eslint as the default Formatter for TS/TSX
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
   },
   "eslint.enable": true,
   "eslint.packageManager": "npm",
+  "eslint.format.enable": true,
+  "eslint.options": {
+    "extensions": [
+      ".js",
+      ".jsx",
+      ".md",
+      ".mdx",
+      ".ts",
+      ".tsx"
+    ]
+  },
+  "eslint.validate": [
+    "markdown",
+    "mdx",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
   "peacock.color": "#F4E465",
+  "prettier.enable": false,
   "workbench.colorCustomizations": {
     "statusBar.background": "#f4e465",
     "statusBarItem.hoverBackground": "#f1dc35",

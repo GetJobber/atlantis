@@ -128,6 +128,10 @@ npm run lint:css
 npm run lint:ts
 ```
 
+If you want to troubleshoot linting errors in CircleCI, try running locally
+first to find the error. If that doesn't work you can open the artifacts for the
+linting step. To find the errors causing the failure, search for `Error - `.
+
 ## Repo structure
 
 The `atlantis` repo is a monorepo consisting of a few different packages all

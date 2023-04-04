@@ -7,7 +7,7 @@
   font-family: inherit;
   font-style: normal;
   font-weight: inherit;
-  background-image: url(../../Emphasis/EmphasisBrushstroke.svg);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 84 8' fill='none' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.5 6.50004C14.6667 4.50004 49.3 0.900038 82.5 2.50004' stroke='%2384EA00' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
   background-position: center bottom;
   background-repeat: no-repeat;
   background-size: 100% 20%;
