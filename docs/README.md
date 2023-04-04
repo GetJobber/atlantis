@@ -150,6 +150,9 @@ When installing dependencies be sure to install them relative to the appropriate
 sub package. For example if you want to use package `foo` in the components
 package, you would run `npm install foo -w @jobber/components`.
 
+For more information on how the packages are bootstrapped, check out
+[NPM workspaces](https://docs.npmjs.com/cli/v9/using-npm/workspaces).
+
 ## Contributing
 
 Everyone is a friend of Atlantis and we welcome pull requests. See the
