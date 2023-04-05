@@ -14,7 +14,9 @@ postcss([
     results: yourResults => {
       const mappedResults = yourResults.customProperties.reduce(
         (acc, { prop, value }) => {
-          acc[prop] = value;
+          if (!(prop in acc)) {
+            acc[prop] = value; //.trim(); //.replaceAll("\n", "");
+          }
           return acc;
         },
         {},
