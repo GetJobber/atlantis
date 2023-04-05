@@ -66,7 +66,7 @@ export function FormField(props: FormFieldProps) {
 
   useImperativeHandle(actionsRef, () => ({
     setValue: newValue => {
-      setValue(controlledName, newValue);
+      setValue(controlledName, newValue, { shouldValidate: true });
     },
   }));
 
