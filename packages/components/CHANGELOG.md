@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.4.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.4.5...@jobber/components@4.4.6) (2023-04-05)
+
+
+### Bug Fixes
+
+* Use chip label instead of value on aria-label [JOB-66426] ([#1175](https://github.com/GetJobber/atlantis/issues/1175)) ([b31c72c](https://github.com/GetJobber/atlantis/commit/b31c72c9200b1cf076cf1f3d68ec9b303c55a605))
+
+
+
+
+
 ## [4.4.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.4.4...@jobber/components@4.4.5) (2023-03-31)
 
 
