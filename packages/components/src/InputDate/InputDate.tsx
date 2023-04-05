@@ -1,7 +1,8 @@
 import { omit } from "lodash";
-import React from "react";
+import React, { useRef } from "react";
 import {
   CommonFormFieldProps,
+  FieldActionsRef,
   FormField,
   FormFieldProps,
   Suffix,
@@ -40,10 +41,17 @@ interface InputDateProps
 }
 
 export function InputDate(inputProps: InputDateProps) {
+  const formFieldActionsRef = useRef<FieldActionsRef>(null);
   return (
     <DatePicker
       selected={inputProps.value}
-      onChange={inputProps.onChange}
+      onChange={val => {
+        inputProps?.onChange(val);
+        formFieldActionsRef.current?.setValue(
+          // Text Input has a string type
+          `${val.getMonth()}/${val.getDay()}/${val.getFullYear()}`,
+        );
+      }}
       disabled={inputProps.disabled}
       readonly={inputProps.readonly}
       fullWidth={!inputProps.inline}
@@ -76,6 +84,7 @@ export function InputDate(inputProps: InputDateProps) {
               inputProps.onFocus && inputProps.onFocus();
               activatorProps.onFocus && activatorProps.onFocus();
             }}
+            actionsRef={formFieldActionsRef}
             suffix={suffix}
           />
         );
