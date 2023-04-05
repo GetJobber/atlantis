@@ -45,7 +45,8 @@ export function FormField(props: FormFieldProps) {
   const { control, errors, setValue, watch } =
     useFormContext() != undefined
       ? useFormContext()
-      : useForm({ mode: "onTouched" });
+      : // If there isn't a Form Context being provided, get a form for this field.
+        useForm({ mode: "onTouched" });
 
   const [identifier] = useState(uuidv1());
   const [descriptionIdentifier] = useState(`descriptionUUID--${uuidv1()}`);
