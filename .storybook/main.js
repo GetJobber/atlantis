@@ -82,7 +82,6 @@ const config = {
         require.resolve("typed-css-modules-loader"),
         {
           loader: "postcss-loader",
-          ident: "postcss",
           options: {
             postcssOptions: {
               autoModules: false,
