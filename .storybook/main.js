@@ -98,6 +98,7 @@ const config = {
                 }),
                 require("postcss-preset-env")({
                   stage: 1,
+                  enableClientSidePolyfills: true,
                   preserve: true,
                 }),
               ],
