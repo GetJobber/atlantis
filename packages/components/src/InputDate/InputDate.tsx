@@ -47,10 +47,10 @@ export function InputDate(inputProps: InputDateProps) {
       selected={inputProps.value}
       onChange={val => {
         inputProps?.onChange(val);
-        formFieldActionsRef.current?.setValue(
-          // Text Input has a string type
-          `${val.getMonth()}/${val.getDay()}/${val.getFullYear()}`,
-        );
+
+        // Set form field to formatted date string immediately, to avoid validations
+        //  triggering incorrectly when it blurs (to handle the datepicker UI click)
+        formFieldActionsRef.current?.setValue(getDateAsString(val));
       }}
       disabled={inputProps.disabled}
       readonly={inputProps.readonly}
@@ -91,4 +91,14 @@ export function InputDate(inputProps: InputDateProps) {
       }}
     />
   );
+}
+// Get a string that matches the default format from the Datepicker
+function getDateAsString(date: Date): string {
+  return date === null
+    ? ""
+    : `${date.getMonth() + 1}`.padStart(2, "0") +
+        "/" +
+        `${date.getDate()}`.padStart(2, "0") +
+        "/" +
+        date.getFullYear();
 }
