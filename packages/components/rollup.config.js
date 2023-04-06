@@ -21,12 +21,12 @@ export default {
       plugins: [
         require("postcss-import"),
         require("autoprefixer"),
-        // require("@csstools/postcss-global-data")({
-        //   files: [
-        //     require.resolve("@jobber/design/foundation.css"),
-        //     require.resolve("@jobber/design/src/responsiveBreakpoints.css"),
-        //   ],
-        // }),
+        require("@csstools/postcss-global-data")({
+          files: [
+            require.resolve("@jobber/design/foundation.css"),
+            require.resolve("@jobber/design/src/responsiveBreakpoints.css"),
+          ],
+        }),
         // eslint-disable-next-line @typescript-eslint/no-var-requires
         require("postcss-preset-env")({
           debug: true,
