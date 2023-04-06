@@ -62,7 +62,7 @@ fs.writeFile(
  */
 
 function jobberStyle(styling) {
-  const styleValue = customProperties[styling];
+  const styleValue = removeNewLines(customProperties[styling]);
 
   //varRegexResult returns --base-unit from var(--base-unit)
   const varRegexResult = regexExpressions.cssVars.exec(styleValue);
@@ -239,5 +239,6 @@ function getPropertyValue(cssVar) {
  * Reference: https://stackoverflow.com/a/10805198
  */
 function removeNewLines(text) {
+  if (!text) return text;
   return text.replace(/(\r\n|\n|\r)/gm, "");
 }

@@ -2,13 +2,33 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const fs = require("fs");
 const postcss = require("postcss");
-const postcssCustomProperties = require("postcss-custom-properties");
+const postcssExtract = require("@csstools/postcss-extract");
 
 const foundation = fs.readFileSync("./foundation.css");
 
 postcss([
-  postcssCustomProperties({
-    exportTo: ["src/foundation.js"],
+  postcssExtract({
+    queries: {
+      customProperties: 'rule[selector*=":root" i] > decl[value]',
+    },
+    results: yourResults => {
+      const mappedResults = yourResults.customProperties.reduce(
+        (acc, { prop, value }) => {
+          if (!(prop in acc)) {
+            acc[prop] = value;
+          }
+          return acc;
+        },
+        {},
+      );
+      const resultsString = `module.exports = ${JSON.stringify(
+        { customProperties: mappedResults },
+        null,
+        2,
+      )}`;
+
+      fs.writeFileSync("src/foundation.js", resultsString);
+    },
   }),
 ])
   .process(foundation, { from: undefined })
