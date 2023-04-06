@@ -77,9 +77,8 @@ export function FormatFile({
       >
         <div className={thumbnailContainerClassNames}>
           <InternalThumbnail
-            name={file.name}
-            hideName={display === "compact"}
             key={file.key}
+            compact={display === "compact"}
             file={file}
             size={displaySize}
           />

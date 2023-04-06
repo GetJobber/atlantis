@@ -6,53 +6,63 @@ import { FileUpload } from "../InputFile";
 import { Typography } from "../Typography";
 
 interface InternalThumbnailProps {
-  readonly name?: string;
-  readonly hideName?: boolean;
+  readonly compact?: boolean;
   readonly size: "base" | "large";
   readonly file: FileUpload;
 }
 
 export function InternalThumbnail({
-  name,
-  hideName = false,
+  compact = false,
   size,
   file,
 }: InternalThumbnailProps) {
+  const { name, type, src } = file;
   const [imageSource, setImageSource] = useState<string>();
   const [imageLoaded, setImageLoaded] = useState<boolean>(false);
-  const iconName = getIconNameFromType(file.type);
+  const iconName = getIconNameFromType(type);
+  const hasName = Boolean(name);
 
-  if (!imageSource && file.type.startsWith("image/")) {
-    file.src().then(src => setImageSource(src));
+  if (!imageLoaded && type.startsWith("image/")) {
+    src().then(url => setImageSource(url));
   }
+
   const image = (
     <img
       src={imageSource}
-      onLoad={() => {
-        setImageLoaded(true);
-      }}
+      onLoad={handleImageLoad}
       className={classNames(styles.image, { [styles.loading]: !imageLoaded })}
       alt={name}
       data-testid="internalThumbnailImage"
     />
   );
+
   if (imageLoaded) {
     return image;
   }
 
   return (
-    <div className={classNames(styles.content, styles[size])}>
+    <div
+      className={classNames(styles.content, styles[size], {
+        [styles.hasName]: hasName,
+      })}
+    >
       {imageSource && image}
-      <Icon name={iconName} color="greyBlue" />
-      <div className={classNames(styles.fileName)}>
-        {hideName && (
-          <Typography element="span" textColor="text">
+
+      <Icon name={iconName} color="greyBlue" size={size} />
+
+      {compact && hasName && (
+        <div className={styles.fileName}>
+          <Typography element="span" textColor="text" numberOfLines={1}>
             {name}
           </Typography>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
+
+  function handleImageLoad() {
+    setImageLoaded(true);
+  }
 }
 
 function getIconNameFromType(mimeType: string): IconNames {

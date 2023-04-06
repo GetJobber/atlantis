@@ -80,7 +80,7 @@ describe("when the format file is a thumbnail", () => {
 
       const thumbnailImage = await findByRole("img");
 
-      expect(thumbnailImage.parentElement.className).toContain("base");
+      expect(thumbnailImage.parentElement?.className).toContain("base");
     });
   });
 
@@ -102,7 +102,7 @@ describe("when the format file is a thumbnail", () => {
 
       const thumbnailImage = await findByRole("img");
 
-      expect(thumbnailImage.parentElement.className).toContain("large");
+      expect(thumbnailImage.parentElement?.className).toContain("large");
     });
   });
 });
