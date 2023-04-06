@@ -79,6 +79,7 @@ export function FormatFile({
           <InternalThumbnail
             name={file.name}
             hideName={display === "compact"}
+            key={file.key}
             file={file}
             size={displaySize}
           />
