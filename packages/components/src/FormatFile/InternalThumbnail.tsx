@@ -22,7 +22,7 @@ export function InternalThumbnail({
   const iconName = getIconNameFromType(type);
   const hasName = Boolean(name);
 
-  if (!imageLoaded && type.startsWith("image/")) {
+  if (!imageSource && type.startsWith("image/")) {
     src().then(url => setImageSource(url));
   }
 
