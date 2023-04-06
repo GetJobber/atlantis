@@ -20,7 +20,7 @@ export function InternalThumbnail({
   const [imageSource, setImageSource] = useState<string>();
   const [imageLoaded, setImageLoaded] = useState<boolean>(false);
   const iconName = getIconNameFromType(type);
-  const hasName = Boolean(name);
+  const hasName = Boolean(name) && compact;
 
   if (!imageSource && type.startsWith("image/")) {
     src().then(url => setImageSource(url));
@@ -50,7 +50,7 @@ export function InternalThumbnail({
 
       <Icon name={iconName} color="greyBlue" size={size} />
 
-      {compact && hasName && (
+      {hasName && (
         <div className={styles.fileName}>
           <Typography element="span" textColor="text" numberOfLines={1}>
             {name}
