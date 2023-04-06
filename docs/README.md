@@ -45,14 +45,9 @@ viewer, they should be within the package you are working within.
 
 #### Cross-linking
 
-If you are making a change in one package that will be needed in another you
-will need to make the needed change and run a `npm run lerna:bootstrap` before
-using it. The bootstrap will recompile and link the changes across the project.
-
-It's also worth noting that within Atlantis in order for one package to depend
-on another all that is required is for it to be listed in the appropriate
-`package.json` file. Lerna will automatically take care of managing the versions
-for you.
+Within Atlantis, in order for one package to depend on another all that is
+required is for it to be listed in the appropriate `package.json` file. Lerna
+will automatically take care of managing the versions for you.
 
 ## Installing packages
 
@@ -64,7 +59,7 @@ This following list has installation links for each package:
 These are the core packages you'll need to build with Atlantis:
 
 - [Components](/packages/components)
-- [Design foundations](/packages/design)
+- [Design](/packages/design)
 - [Hooks](/packages/hooks)
 
 ### Tooling and configuration
@@ -150,12 +145,13 @@ The primary packages in here are:
       the `./src` directory within here.
   - `design/`
     - A home for shareable css variables.
-  - `docx/`
-    - Any components internal to the documention viewer itself.
 
 When installing dependencies be sure to install them relative to the appropriate
-sub package. For example if you want to use package `foo` in a component you
-would run `npm install foo` from within the `components` directory.
+sub package. For example if you want to use package `foo` in the components
+package, you would run `npm install foo -w @jobber/components`.
+
+For more information on how the packages are bootstrapped, check out
+[NPM workspaces](https://docs.npmjs.com/cli/v9/using-npm/workspaces).
 
 ## Contributing
 
