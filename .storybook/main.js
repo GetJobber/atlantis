@@ -86,7 +86,7 @@ const config = {
           options: {
             postcssOptions: {
               autoModules: false,
-              plugins: () => [
+              plugins: [
                 require("postcss-import"),
                 require("autoprefixer"),
                 require('@csstools/postcss-global-data')({

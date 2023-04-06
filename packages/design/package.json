@@ -44,7 +44,7 @@
     "postcss-cli": "^10.1.0",
     "postcss-custom-properties": "^13.1.4",
     "postcss-import": "^15.1.0",
-    "postcss-preset-env": "^6.6.0",
+    "postcss-preset-env": "^8.3.0",
     "rollup": "^1.11.3",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-multi-input": "^1.4.1",
