@@ -30,7 +30,6 @@ export default {
         // eslint-disable-next-line @typescript-eslint/no-var-requires
         require("postcss-preset-env")({
           stage: 1,
-          enableClientSidePolyfills: true,
           preserve: true,
         }),
       ],
