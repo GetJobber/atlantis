@@ -31,7 +31,7 @@
   animation: fadeIn 200ms ease;
 }
 
-.loading {
+.hidden {
   display: none;
 }
 

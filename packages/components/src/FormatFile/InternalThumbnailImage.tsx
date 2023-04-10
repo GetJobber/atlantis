@@ -13,7 +13,7 @@ export function InternalThumbnailImage({ file }: InternalThumbnailImageProps) {
   const [imageLoaded, setImageLoaded] = useState<boolean>(false);
 
   if (!imageSource) {
-    src().then(url => setTimeout(() => setImageSource(url), 3000));
+    src().then(url => setImageSource(url));
   }
 
   return (
@@ -25,7 +25,7 @@ export function InternalThumbnailImage({ file }: InternalThumbnailImageProps) {
         onLoad={handleImageLoad}
         alt={name}
         data-testid="internalThumbnailImage"
-        className={classNames(styles.image, { [styles.loading]: !imageLoaded })}
+        className={classNames(styles.image, { [styles.hidden]: !imageLoaded })}
       />
     </>
   );

@@ -2,7 +2,7 @@ declare const styles: {
   readonly "glimmer": string;
   readonly "image": string;
   readonly "fadeIn": string;
-  readonly "loading": string;
+  readonly "hidden": string;
 };
 export = styles;
 
