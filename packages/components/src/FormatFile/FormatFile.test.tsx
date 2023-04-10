@@ -33,6 +33,26 @@ it("renders an image when provided as src", async () => {
   expect(await findByRole("img")).toBeInTheDocument();
 });
 
+it("renders a skeleton loader when provided an image", async () => {
+  jest.useFakeTimers();
+  const url = "not_actually_a_url";
+  const testFile = {
+    key: "234",
+    name: "Onion",
+    type: "image/png",
+    size: 102432,
+    progress: 1,
+    src: () =>
+      new Promise<string>(resolve => setTimeout(() => resolve(url), 3000)),
+  };
+
+  const { getByTestId } = render(<FormatFile file={testFile} />);
+  expect(getByTestId("internalThumbnailImageLoader")).toBeInTheDocument();
+
+  jest.runAllTimers();
+  jest.useRealTimers();
+});
+
 it("should call the delete handler", async () => {
   const testFile = {
     key: "234",

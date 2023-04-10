@@ -18,7 +18,12 @@ export function InternalThumbnailImage({ file }: InternalThumbnailImageProps) {
 
   return (
     <>
-      {!imageLoaded && <div className={styles.glimmer} />}
+      {!imageLoaded && (
+        <div
+          className={styles.glimmer}
+          data-testid="internalThumbnailImageLoader"
+        />
+      )}
 
       <img
         src={imageSource}
