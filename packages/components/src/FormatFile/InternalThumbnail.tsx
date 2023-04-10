@@ -48,7 +48,7 @@ export function InternalThumbnail({
     >
       {imageSource && image}
 
-      <Icon name={iconName} color="greyBlue" size={size} />
+      <Icon name={iconName} size={size} />
 
       {hasName && (
         <div className={styles.fileName}>

@@ -51,7 +51,7 @@ export function Disclosure({
             {title}
           </Typography>
           <span className={styles.arrowIconWrapper}>
-            <Icon size="large" name="arrowDown" color="green" />
+            <Icon size="large" name="arrowDown" color="interactive" />
           </span>
         </div>
       </summary>

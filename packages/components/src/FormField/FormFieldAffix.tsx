@@ -62,7 +62,7 @@ export function AffixIcon({
           size={iconSize}
         />
       ) : (
-        <Icon name={icon} size={iconSize} color="greyBlue" />
+        <Icon name={icon} size={iconSize} />
       )}
     </div>
   );
