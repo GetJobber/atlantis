@@ -1,4 +1,4 @@
-name: Trigger QA Build
+name: Trigger Pre-release Build
 
 on:
   workflow_dispatch:
