@@ -9,50 +9,34 @@
 }
 
 .content {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto max-content;
   width: inherit;
   height: inherit;
   align-items: center;
-  justify-content: center;
+  justify-items: center;
 }
 
-.content::after {
-  content: "";
-  display: block;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  border: var(--border-base);
-  border-radius: var(--radius-base);
-  background: linear-gradient(
-    270deg,
-    rgb(244, 244, 244) 38.46%,
-    rgba(244, 244, 244, 0) 100%
-  );
-}
-
-.content.base::after {
-  width: var(--space-base);
-  height: var(--space-base);
-}
-
-.content.large::after {
-  width: var(--space-large);
-  height: var(--space-large);
+.hasName:not(.large) {
+  align-items: end;
 }
 
 .fileName {
-  position: absolute;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .base .fileName {
-  bottom: var(--space-smaller);
-  left: var(--space-smaller);
+  padding: var(--space-smaller);
   font-size: var(--typography--fontSize-smaller);
 }
 
 .large .fileName {
-  bottom: var(--space-small);
-  left: var(--space-small);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: var(--space-small);
   font-size: var(--typography--fontSize-small);
 }
