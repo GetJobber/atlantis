@@ -61,7 +61,7 @@ export function FormField(props: FormFieldProps) {
 
   useEffect(() => {
     if (value != undefined) {
-      setValue(controlledName, value);
+      setValue(controlledName, value, { shouldValidate: true });
     }
   }, [value, watch(controlledName)]);
 

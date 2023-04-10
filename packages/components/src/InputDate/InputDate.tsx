@@ -45,7 +45,7 @@ export function InputDate(inputProps: InputDateProps) {
   return (
     <DatePicker
       selected={inputProps.value}
-      onChange={inputProps?.onChange}
+      onChange={inputProps.onChange}
       disabled={inputProps.disabled}
       readonly={inputProps.readonly}
       fullWidth={!inputProps.inline}
