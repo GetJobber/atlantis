@@ -1,0 +1,41 @@
+name: Trigger QA Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      workflow:
+        description: 'Desired Workflow'
+        required: true
+        default: 'LernaPublish'
+        type: choice
+        options:
+        - LernaPublish
+        - Lerna Publish All Forced
+
+jobs:
+  trigger-pre-release-build:
+    name: Trigger Pre-release Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          path: ${{ github.ref_name }}
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: 'https://registry.npmjs.org'
+          # Defaults to the user or organization that owns the workflow file
+          scope: '@jobber'
+      - name: NPM CI
+        run: npm ci
+      - name: NPM Publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.JOBBER_NPM_TOKEN }}
+          ATLANTIS_BRANCH_NAME_RAW: ${{ github.ref_name }}
+        run: |
+          ATLANTIS_BRANCH_NAME=$(echo ${ATLANTIS_BRANCH_NAME_RAW:0:10} | sed 's/\///g')
+          if [ "${{ github.event.inputs.workflow }}" = "LernaPublish" ]; then
+            npm run github:publish:prerelease -- --y --preid $ATLANTIS_BRANCH_NAME
+          else
+            npm run github:publish:prerelease:force -- --y --preid $ATLANTIS_BRANCH_NAME
+          fi

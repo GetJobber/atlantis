@@ -33,6 +33,8 @@
     "preventManualRelease": "node scripts/preventManualRelease.js",
     "publish:prerelease": "lerna publish --canary --dist-tag next --preid pre",
     "publish:prerelease:force": "npm run publish:prerelease -- --force-publish",
+    "github:publish:prerelease": "lerna publish --canary --dist-tag next",
+    "github:publish:prerelease:force": "npm run github:publish:prerelease -- --force-publish",
     "release-the-kraken": "npm ci -omit=optional && lerna publish",
     "release:unpublished-package": "npm ci -omit=optional && lerna publish from-package",
     "start": "npm run storybook",
