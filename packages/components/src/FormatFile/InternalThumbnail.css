@@ -1,13 +1,3 @@
-.image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.loading {
-  display: none;
-}
-
 .content {
   display: grid;
   grid-template-columns: auto;

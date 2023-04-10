@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import classNames from "classnames";
 import styles from "./InternalThumbnail.css";
+import { InternalThumbnailImage } from "./InternalThumbnailImage";
 import { Icon, IconNames } from "../Icon";
 import { FileUpload } from "../InputFile";
 import { Typography } from "../Typography";
@@ -16,28 +17,12 @@ export function InternalThumbnail({
   size,
   file,
 }: InternalThumbnailProps) {
-  const { name, type, src } = file;
-  const [imageSource, setImageSource] = useState<string>();
-  const [imageLoaded, setImageLoaded] = useState<boolean>(false);
+  const { name, type } = file;
   const iconName = getIconNameFromType(type);
   const hasName = Boolean(name) && compact;
 
-  if (!imageSource && type.startsWith("image/")) {
-    src().then(url => setImageSource(url));
-  }
-
-  const image = (
-    <img
-      src={imageSource}
-      onLoad={handleImageLoad}
-      className={classNames(styles.image, { [styles.loading]: !imageLoaded })}
-      alt={name}
-      data-testid="internalThumbnailImage"
-    />
-  );
-
-  if (imageLoaded) {
-    return image;
+  if (type.startsWith("image/")) {
+    return <InternalThumbnailImage file={file} />;
   }
 
   return (
@@ -46,8 +31,6 @@ export function InternalThumbnail({
         [styles.hasName]: hasName,
       })}
     >
-      {imageSource && image}
-
       <Icon name={iconName} color="greyBlue" size={size} />
 
       {hasName && (
@@ -59,10 +42,6 @@ export function InternalThumbnail({
       )}
     </div>
   );
-
-  function handleImageLoad() {
-    setImageLoaded(true);
-  }
 }
 
 function getIconNameFromType(mimeType: string): IconNames {
