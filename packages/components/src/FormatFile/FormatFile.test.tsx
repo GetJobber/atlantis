@@ -1,5 +1,11 @@
 import React from "react";
-import { act, cleanup, fireEvent, render } from "@testing-library/react";
+import {
+  act,
+  cleanup,
+  fireEvent,
+  render,
+  waitFor,
+} from "@testing-library/react";
 import { FormatFile } from ".";
 
 afterEach(cleanup);
@@ -28,13 +34,17 @@ it("renders an image when provided as src", async () => {
     src: () => Promise.resolve(url),
   };
 
-  const { findByRole } = render(<FormatFile file={testFile} />);
+  const { getByAltText } = render(<FormatFile file={testFile} />);
 
-  expect(await findByRole("img")).toBeInTheDocument();
+  expect(getByAltText(testFile.name)).not.toHaveAttribute("src");
+  fireEvent.load(getByAltText(testFile.name));
+
+  await waitFor(() => {
+    expect(getByAltText(testFile.name)).toHaveAttribute("src", url);
+  });
 });
 
-it("renders a skeleton loader when provided an image", async () => {
-  jest.useFakeTimers();
+it("renders a skeleton loader when the provided image has not fully loaded", async () => {
   const url = "not_actually_a_url";
   const testFile = {
     key: "234",
@@ -42,15 +52,23 @@ it("renders a skeleton loader when provided an image", async () => {
     type: "image/png",
     size: 102432,
     progress: 1,
-    src: () =>
-      new Promise<string>(resolve => setTimeout(() => resolve(url), 3000)),
+    src: () => Promise.resolve(url),
   };
 
-  const { getByTestId } = render(<FormatFile file={testFile} />);
+  const { getByTestId, queryByTestId, getByAltText } = render(
+    <FormatFile file={testFile} />,
+  );
   expect(getByTestId("internalThumbnailImageLoader")).toBeInTheDocument();
+  expect(getByAltText(testFile.name)).toHaveClass("hidden");
 
-  jest.runAllTimers();
-  jest.useRealTimers();
+  fireEvent.load(getByAltText(testFile.name));
+
+  await waitFor(() => {
+    expect(
+      queryByTestId("internalThumbnailImageLoader"),
+    ).not.toBeInTheDocument();
+  });
+  expect(getByAltText(testFile.name)).not.toHaveClass("hidden");
 });
 
 it("should call the delete handler", async () => {
