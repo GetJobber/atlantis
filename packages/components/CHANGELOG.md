@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.4.8...@jobber/components@4.5.0) (2023-04-10)
+
+
+### Features
+
+* **components:** Skeleton loader for image thumbnails ([#1179](https://github.com/GetJobber/atlantis/issues/1179)) ([a57ebf1](https://github.com/GetJobber/atlantis/commit/a57ebf108f8296f2c7c9e1e5cadc625140f648d2))
+
+
+
+
+
+## [4.4.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.4.7...@jobber/components@4.4.8) (2023-04-10)
+
+
+### Bug Fixes
+
+* Format file assuming the thumbnail image won't change ([#1177](https://github.com/GetJobber/atlantis/issues/1177)) ([1491ac1](https://github.com/GetJobber/atlantis/commit/1491ac106aa4a29db2a9610492b82112efe9afc5))
+
+
+
+
+
 ## [4.4.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.4.6...@jobber/components@4.4.7) (2023-04-05)
 
 **Note:** Version bump only for package @jobber/components

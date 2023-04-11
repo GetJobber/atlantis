@@ -1,56 +1,45 @@
-import React, { useState } from "react";
+import React from "react";
 import classNames from "classnames";
 import styles from "./InternalThumbnail.css";
+import { InternalThumbnailImage } from "./InternalThumbnailImage";
 import { Icon, IconNames } from "../Icon";
 import { FileUpload } from "../InputFile";
 import { Typography } from "../Typography";
 
 interface InternalThumbnailProps {
-  readonly name?: string;
-  readonly hideName?: boolean;
+  readonly compact?: boolean;
   readonly size: "base" | "large";
   readonly file: FileUpload;
 }
 
 export function InternalThumbnail({
-  name,
-  hideName = false,
+  compact = false,
   size,
   file,
 }: InternalThumbnailProps) {
-  const [imageSource, setImageSource] = useState<string>();
-  const [imageLoaded, setImageLoaded] = useState<boolean>(false);
-  const iconName = getIconNameFromType(file.type);
+  const { name, type } = file;
+  const iconName = getIconNameFromType(type);
+  const hasName = Boolean(name) && compact;
 
-  if (!imageSource && file.type.startsWith("image/")) {
-    file.src().then(src => setImageSource(src));
-  }
-  const image = (
-    <img
-      src={imageSource}
-      onLoad={() => {
-        setImageLoaded(true);
-      }}
-      className={classNames(styles.image, { [styles.loading]: !imageLoaded })}
-      alt={name}
-      data-testid="internalThumbnailImage"
-    />
-  );
-  if (imageLoaded) {
-    return image;
+  if (type.startsWith("image/")) {
+    return <InternalThumbnailImage file={file} />;
   }
 
   return (
-    <div className={classNames(styles.content, styles[size])}>
-      {imageSource && image}
-      <Icon name={iconName} color="greyBlue" />
-      <div className={classNames(styles.fileName)}>
-        {hideName && (
-          <Typography element="span" textColor="text">
+    <div
+      className={classNames(styles.content, styles[size], {
+        [styles.hasName]: hasName,
+      })}
+    >
+      <Icon name={iconName} color="greyBlue" size={size} />
+
+      {hasName && (
+        <div className={styles.fileName}>
+          <Typography element="span" textColor="text" numberOfLines={1}>
             {name}
           </Typography>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

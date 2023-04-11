@@ -1,0 +1,21 @@
+name: Trigger Pre-release Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      workflow:
+        description: 'Desired Workflow'
+        required: true
+        default: 'LernaPublish'
+        type: choice
+        options:
+        - LernaPublish
+        - Lerna Publish All Forced
+
+jobs:
+  trigger-pre-release-build:
+    name: Trigger Pre-release Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Test step"
+        run: echo "test"
