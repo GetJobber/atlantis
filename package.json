@@ -31,7 +31,7 @@
     "postinstall": "npm run bootstrap --workspaces --if-present",
     "prestart": "npm run build:hooksIndex",
     "preventManualRelease": "node scripts/preventManualRelease.js",
-    "publish:prerelease": "lerna publish --canary --dist-tag next --preid pre",
+    "publish:prerelease": "lerna publish --canary --dist-tag next --preid github",
     "publish:prerelease:force": "npm run publish:prerelease -- --force-publish",
     "github:publish:prerelease": "lerna publish --canary --summary-file",
     "github:publish:prerelease:force": "npm run github:publish:prerelease -- --force-publish",
