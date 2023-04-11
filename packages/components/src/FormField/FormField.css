@@ -62,7 +62,6 @@
 }
 
 .miniLabel {
-  --field--label-elevation: calc(var(--field--base-elevation) + 1);
   --field--placeholder-color: var(--color-text--secondary);
   --field--placeholder-offset: var(--space-smallest);
   --field--placeholder-transform: 0;
