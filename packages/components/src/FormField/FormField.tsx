@@ -45,7 +45,8 @@ export function FormField(props: FormFieldProps) {
   const { control, errors, setValue, watch } =
     useFormContext() != undefined
       ? useFormContext()
-      : useForm({ mode: "onTouched" });
+      : // If there isn't a Form Context being provided, get a form for this field.
+        useForm({ mode: "onTouched" });
 
   const [identifier] = useState(uuidv1());
   const [descriptionIdentifier] = useState(`descriptionUUID--${uuidv1()}`);
@@ -60,13 +61,13 @@ export function FormField(props: FormFieldProps) {
 
   useEffect(() => {
     if (value != undefined) {
-      setValue(controlledName, value);
+      setValue(controlledName, value, { shouldValidate: true });
     }
   }, [value, watch(controlledName)]);
 
   useImperativeHandle(actionsRef, () => ({
     setValue: newValue => {
-      setValue(controlledName, newValue);
+      setValue(controlledName, newValue, { shouldValidate: true });
     },
   }));
 
