@@ -16,6 +16,8 @@ jobs:
   trigger-pre-release-build:
     name: Trigger Pre-release Build
     runs-on: ubuntu-latest
+    outputs:
+      lernaOutput: ${{ steps.npmPublish.outputs.npmPublish }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -29,13 +31,27 @@ jobs:
       - name: NPM CI
         run: npm ci
       - name: NPM Publish
+        id: npmPublish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.JOBBER_NPM_TOKEN }}
           ATLANTIS_BRANCH_NAME_RAW: ${{ github.ref_name }}
         run: |
           ATLANTIS_BRANCH_NAME=$(echo ${ATLANTIS_BRANCH_NAME_RAW:0:10} | sed 's/\///g')
           if [ "${{ github.event.inputs.workflow }}" = "LernaPublish" ]; then
-            npm run github:publish:prerelease -- --y --preid $ATLANTIS_BRANCH_NAME
+            npm run github:publish:prerelease -- --y --preid $ATLANTIS_BRANCH_NAME >> $GITHUB_OUTPUT
           else
-            npm run github:publish:prerelease:force -- --y --preid $ATLANTIS_BRANCH_NAME
+            npm run github:publish:prerelease:force -- --y --preid $ATLANTIS_BRANCH_NAME >> $GITHUB_OUTPUT
           fi
+  send-build-information:
+    runs-on: ubuntu-latest
+    needs: trigger-pre-release-build
+    name: Send Build Information
+    env:
+      lernaOutput: ${{needs.trigger-pre-release-build.outputs.npmOutput}}
+    steps:
+      - uses: actions/github-script@v6
+        name: Comment on PR
+        with:
+          script: |
+            const script = require('./scripts/commentOnPr.js')
+            await script({github, context, core})
