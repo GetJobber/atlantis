@@ -36,9 +36,9 @@ jobs:
         run: |
           ATLANTIS_BRANCH_NAME=$(echo ${ATLANTIS_BRANCH_NAME_RAW:0:10} | sed 's/\///g')
           if [ "${{ github.event.inputs.workflow }}" == "LernaPublish" ]; then
-            npm run github:publish:prerelease -- --y --preid pre --pre-dist-tag pre-$ATLANTIS_BRANCH_NAME
+            npm run publish:prerelease -- --y --pre-dist-tag=pre-$ATLANTIS_BRANCH_NAME
           else
-            npm run github:publish:prerelease:force -- --y --preid pre ---pre-dist-tag pre-$ATLANTIS_BRANCH_NAME
+            npm run publish:prerelease:force -- --y --pre-dist-tag=pre-$ATLANTIS_BRANCH_NAME --force-publish
           fi
   send-build-information:
     runs-on: ubuntu-latest
