@@ -1,0 +1,13 @@
+.rectangle {
+  width: 100%;
+}
+
+.square,
+.circle {
+  width: auto;
+  aspect-ratio: 1;
+}
+
+.circle {
+  border-radius: var(--radius-circle);
+}
