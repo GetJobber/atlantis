@@ -1,12 +1,12 @@
+// eslint-disable-next-line max-statements
 module.exports = async ({ github, context }) => {
   const summaryFileJson = JSON.parse(process.env.summaryJSONString);
-  const prs = await github.rest.pulls
-    .list({
-      repo: context.repo.repo,
-      owner: context.repo.owner,
-      head: `${context.owner}:${context.ref}`,
-    })
-    .data.map(pr => pr.number);
+  const response = await github.rest.pulls.list({
+    repo: context.repo.repo,
+    owner: context.repo.owner,
+    head: `${context.owner}:${context.ref}`,
+  });
+  const prs = response.data.map(pr => pr.number);
   const commentBody = generatePRComment(summaryFileJson);
   if (prs.length === 0) return;
   const issueNumber = Number(prs[0]);
