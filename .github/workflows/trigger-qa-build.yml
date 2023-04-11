@@ -16,8 +16,6 @@ jobs:
   trigger-pre-release-build:
     name: Trigger Pre-release Build
     runs-on: ubuntu-latest
-    outputs:
-      lernaOutput: ${{ steps.npmPublish.outputs.npmPublish }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -46,8 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: trigger-pre-release-build
     name: Send Build Information
-    env:
-      lernaOutput: ${{needs.trigger-pre-release-build.outputs.npmOutput}}
+
     steps:
       - uses: actions/github-script@v6
         name: Comment on PR
