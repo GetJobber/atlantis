@@ -83,21 +83,25 @@ const config = {
         {
           loader: "postcss-loader",
           options: {
-            ident: "postcss",
-            plugins: () => [
-              require("postcss-import"),
-              require("autoprefixer"),
-              require("postcss-preset-env")({
-                stage: 1,
-                preserve: true,
-                importFrom: [
-                  require.resolve(
-                    path.join(__dirname, "../packages/design/foundation.css"),
-                  ),
-                ],
-              }),
-            ],
-          },
+            postcssOptions: {
+              autoModules: false,
+              plugins: [
+                require("postcss-import"),
+                require("autoprefixer"),
+                require('@csstools/postcss-global-data')({
+                  files: [
+                    require.resolve(
+                      path.join(__dirname, "../packages/design/foundation.css"),
+                    ),
+                  ]
+                }),
+                require("postcss-preset-env")({
+                  stage: 1,
+                  preserve: true,
+                }),
+              ],
+            },
+          }
         },
       ],
     });
