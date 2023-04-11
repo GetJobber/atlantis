@@ -1,0 +1,46 @@
+.glimmer {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-grey--lightest);
+  background-image: linear-gradient(
+    90deg,
+    var(--color-grey--lightest) 0px,
+    var(--color-white) var(--space-larger),
+    var(--color-grey--lightest) var(--space-extravagant)
+  );
+  background-repeat: no-repeat;
+  background-size: var(--space-extravagant) 100%;
+  animation: glimmer 1s infinite linear;
+}
+
+@keyframes glimmer {
+  0%,
+  20% {
+    background-position: calc(var(--space-extravagant) * -1);
+  }
+
+  100% {
+    background-position: calc(100% + var(--space-extravagant));
+  }
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: fadeIn 200ms ease;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
