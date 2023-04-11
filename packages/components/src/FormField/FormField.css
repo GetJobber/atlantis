@@ -62,7 +62,7 @@
 }
 
 .miniLabel {
-  --field--label-elevation: calc(var(--field--base-elevation) - 1);
+  --field--label-elevation: calc(var(--field--base-elevation) + 1);
   --field--placeholder-color: var(--color-text--secondary);
   --field--placeholder-offset: var(--space-smallest);
   --field--placeholder-transform: 0;
@@ -179,6 +179,13 @@
 .select .input {
   --field--padding-top: 0;
   --field--padding-bottom: 0;
+}
+
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:focus,
+.input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px var(--color-surface) inset !important;
 }
 
 .miniLabel.select:not(.small) .input {
