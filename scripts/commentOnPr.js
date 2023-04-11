@@ -1,9 +1,5 @@
-import { readFileSync } from "fs";
-
-const summaryFileName = "./lerna-publish-summary.json";
-
 module.exports = async ({ github, context }) => {
-  const summaryFileJson = JSON.parse(readFileSync(summaryFileName, "utf8"));
+  const summaryFileJson = JSON.parse(process.env.summaryJSONString);
   const prs = await github.rest.pulls
     .list({
       repo: context.repo.repo,
