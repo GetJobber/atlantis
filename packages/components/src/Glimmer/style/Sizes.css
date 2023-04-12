@@ -16,4 +16,5 @@
 
 .auto {
   height: 100%;
+  min-height: var(--space-base);
 }
