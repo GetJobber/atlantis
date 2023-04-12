@@ -1,6 +1,7 @@
 .glimmer {
   width: 100%;
   height: 100%;
+  border-radius: var(--radius-base);
   background-color: var(--color-grey--lightest);
   background-image: linear-gradient(
     90deg,
