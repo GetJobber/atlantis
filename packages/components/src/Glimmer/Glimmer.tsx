@@ -5,16 +5,19 @@ import styles from "./Glimmer.css";
 import sizes from "./style/Sizes.css";
 import shapes from "./style/Shape.css";
 import timings from "./style/Timing.css";
+/* eslint-enable import/no-internal-modules */
 
 export type Sizes = keyof typeof sizes;
 export type Shapes = keyof typeof shapes;
 export type Timings = keyof typeof timings;
 
-/* eslint-enable import/no-internal-modules */
-
 interface GlimmerProps {
   /**
    * Sets the size of the glimmer.
+   *
+   * If you use `"auto"` with a `"rectangle"` shape, it would try to fill the
+   * size of the parents width and height. With how CSS works, if it can't
+   * determine the parents width and height, it'll fallback to `base`.
    */
   readonly size?: Sizes;
 

@@ -8,8 +8,12 @@ describe("Glimmer", () => {
     const element = screen.getByTestId(GLIMMER_TEST_ID);
 
     expect(element).toHaveClass("glimmer");
-    expect(element).toHaveClass("base");
     expect(element).toHaveClass("rectangle");
+    expect(element).toHaveClass("base");
+    const baseClassNames = element.className
+      .split(" ")
+      .filter(c => c === "base");
+    expect(baseClassNames).toHaveLength(2);
   });
 
   it("should have an aria busy", () => {
