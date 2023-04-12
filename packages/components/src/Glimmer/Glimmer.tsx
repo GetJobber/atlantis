@@ -5,24 +5,29 @@ import styles from "./Glimmer.css";
 import sizes from "./style/Sizes.css";
 import shapes from "./style/Shape.css";
 import timings from "./style/Timing.css";
+
+export type Sizes = keyof typeof sizes;
+export type Shapes = keyof typeof shapes;
+export type Timings = keyof typeof timings;
+
 /* eslint-enable import/no-internal-modules */
 
 interface GlimmerProps {
   /**
    * Sets the size of the glimmer.
    */
-  readonly size?: keyof typeof sizes;
+  readonly size?: Sizes;
 
   /**
    * Sets the shape of the glimmer.
    */
-  readonly shape?: keyof typeof shapes;
+  readonly shape?: Shapes;
 
   /**
    * Control how fast the shine moves from left to right. This is useful when
    * the glimmer is used on smaller spaces.
    */
-  readonly timing?: keyof typeof timings;
+  readonly timing?: Timings;
 }
 
 export const GLIMMER_TEST_ID = "ATL-Glimmer";
