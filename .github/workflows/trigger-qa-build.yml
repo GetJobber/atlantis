@@ -36,8 +36,6 @@ jobs:
           scope: '@jobber'
       - name: NPM CI
         run: npm ci
-      - name: Lerna Changed
-        run: npx lerna changed
       - name: NPM Publish
         id: npmPublish
         env:
