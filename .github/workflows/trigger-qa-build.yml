@@ -6,11 +6,14 @@ on:
       workflow:
         description: 'Desired Workflow'
         required: true
-        default: 'LernaPublish'
+        default: 'Lerna Publish'
         type: choice
         options:
-        - LernaPublish
-        - Lerna Publish All Forced
+        - Lerna Publish
+        - Lerna Force Publish Components
+        - Lerna Force Publish Design
+        - Lerna Force Publish Components & Design
+        - Lerna Force Publish All
 
 jobs:
   trigger_pre_release_build:
@@ -42,10 +45,19 @@ jobs:
           ATLANTIS_BRANCH_NAME_RAW: ${{ github.ref_name }}
         run: |
           ATLANTIS_BRANCH_NAME=$(echo ${ATLANTIS_BRANCH_NAME_RAW:0:10} | sed 's/\///g')
-          if [ "${{ github.event.inputs.workflow }}" == "LernaPublish" ]; then
+          if [ "${{ github.event.inputs.workflow }}" == "Lerna Publish" ]; then
             npm run github:publish:prerelease -- --y --preid $ATLANTIS_BRANCH_NAME
           else
-            npm run github:publish:prerelease:force -- --y --force-publish --preid $ATLANTIS_BRANCH_NAME
+            if ["${{ github.event.inputs.workflow }}" == "Lerna Force Publish Components"]; then
+            FORCE_PUBLISH_SETTINGS="--force-publish components"
+            elif ["${{ github.event.inputs.workflow }}" == "Lerna Force Publish Design"]; then
+            FORCE_PUBLISH_SETTINGS="--force-publish design"
+            elif ["${{ github.event.inputs.workflow }}" == "Lerna Force Publish Components & Design"]; then
+            FORCE_PUBLISH_SETTINGS="--force-publish components,design"
+            else
+            FORCE_PUBLISH_SETTINGS="--force-publish"
+            fi
+            npm run github:publish:prerelease:force -- --y --preid $ATLANTIS_BRANCH_NAME $FORCE_PUBLISH_SETTINGS
           fi
 
       - name: Send Summary File
