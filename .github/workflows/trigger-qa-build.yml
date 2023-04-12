@@ -30,6 +30,8 @@ jobs:
           scope: '@jobber'
       - name: NPM CI
         run: npm ci
+      - name: Lerna Changed
+        run: npx lerna changed
       - name: NPM Publish
         id: npmPublish
         env:
@@ -37,7 +39,6 @@ jobs:
           ATLANTIS_BRANCH_NAME_RAW: ${{ github.ref_name }}
         run: |
           ATLANTIS_BRANCH_NAME=$(echo ${ATLANTIS_BRANCH_NAME_RAW:0:10} | sed 's/\///g')
-          echo $(npx lerna changed)
           if [ "${{ github.event.inputs.workflow }}" == "LernaPublish" ]; then
             npm run github:publish:prerelease -- --y --preid $ATLANTIS_BRANCH_NAME.$(git rev-parse --short HEAD)
           else
