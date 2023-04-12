@@ -7,7 +7,7 @@ module.exports = async ({ github, context, core }) => {
     head: `${context.repo.owner}:${context.ref}`,
   });
   const prs = response.data.map(pr => pr.number);
-
+  core.info("summary debug", JSON.stringify(summaryFileJson));
   const commentBody = generatePRComment(summaryFileJson);
   if (prs.length === 0) {
     core.info(
@@ -24,12 +24,14 @@ module.exports = async ({ github, context, core }) => {
     owner,
     repo,
   });
+  const matchExpr = new RegExp(".*Published Pre-release.*");
 
   const existingComment = comments.data.find(
     comment =>
       comment.user &&
       /.*bot.*/i.test(comment.user.type) &&
-      /.*jobbie.*/i.test(comment.user.login),
+      /.*github-actions.*/i.test(comment.user.login) &&
+      comment.body?.match(matchExpr),
   );
   let commentResponse;
   if (existingComment) {
@@ -53,7 +55,8 @@ module.exports = async ({ github, context, core }) => {
 function generatePRComment(summaryFileJson) {
   const releaseString = summaryFileJson.map(releaseSummary => {
     const { packageName, version } = releaseSummary;
-    return `  -${packageName}@${version}\n`;
+
+    return `  - ${packageName}@${version}\n`;
   });
-  return `\`\`\`${releaseString}\`\`\``;
+  return `Published Pre-release with versions:\n\`\`\`${releaseString}\`\`\``;
 }
