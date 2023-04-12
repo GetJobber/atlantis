@@ -40,7 +40,7 @@ export const GLIMMER_TEST_ID = "ATL-Glimmer";
  *
  * Foundational component used to build loading states such as Skeleton UI
  *
- @experimental
+ * @experimental
  */
 export function Glimmer({
   size = "base",
