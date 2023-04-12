@@ -10,7 +10,10 @@ module.exports = async ({ github, context, core }) => {
 
   const commentBody = generatePRComment(summaryFileJson);
   if (prs.length === 0) {
-    core.info("No PRs found", { response, contextRef: context.ref });
+    core.info(
+      "No PRs found",
+      JSON.stringify({ response, contextRef: context.ref }),
+    );
     return;
   }
   const issueNumber = Number(prs[0]);
@@ -44,7 +47,7 @@ module.exports = async ({ github, context, core }) => {
       body: commentBody,
     });
   }
-  core.info(commentResponse);
+  core.info(JSON.stringify(commentResponse));
 };
 
 function generatePRComment(summaryFileJson) {
