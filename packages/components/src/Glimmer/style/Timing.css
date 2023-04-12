@@ -1,0 +1,7 @@
+.base {
+  animation-duration: calc(var(--timing-slowest) * 2);
+}
+
+.fast {
+  animation-duration: calc(var(--timing-slowest) * 1);
+}
