@@ -23,7 +23,7 @@ function generatePRComment(summaryFileJson) {
       return `  - ${packageName}@${version}\n`;
     })
     .join("");
-  return `Published Pre-release with versions:\n\`\`\`${releaseString}\`\`\``;
+  return `Published Pre-release with versions:\n\`\`\`\n${releaseString}\`\`\``;
 }
 
 async function getPRs({ github, repo, owner, ref }) {
