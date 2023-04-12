@@ -1,4 +1,7 @@
 .glimmer {
+  --duration-base: calc(var(--timing-slowest) * 4); /* 2s */
+  --duration-fast: calc(var(--duration-base) / 2); /* 1s */
+
   width: 100%;
   height: 100%;
   border-radius: var(--radius-base);
