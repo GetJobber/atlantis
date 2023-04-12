@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import classNames from "classnames";
 import styles from "./InternalThumbnailImage.css";
 import { FileUpload } from "../InputFile";
+import { Glimmer } from "../Glimmer";
 
 interface InternalThumbnailImageProps {
   readonly file: FileUpload;
@@ -18,12 +19,7 @@ export function InternalThumbnailImage({ file }: InternalThumbnailImageProps) {
 
   return (
     <>
-      {!imageLoaded && (
-        <div
-          className={styles.glimmer}
-          data-testid="internalThumbnailImageLoader"
-        />
-      )}
+      {!imageLoaded && <Glimmer size="auto" />}
 
       <img
         src={imageSource}

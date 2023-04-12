@@ -13,6 +13,8 @@ interface GlimmerProps {
   readonly shape?: keyof typeof shapes;
 }
 
+export const GLIMMER_TEST_ID = "ATL-Glimmer";
+
 export function Glimmer({
   size = "base",
   corner = "base",
@@ -25,5 +27,7 @@ export function Glimmer({
     shapes[shape],
   );
 
-  return <div aria-busy="true" className={className} />;
+  return (
+    <div aria-busy="true" className={className} data-testid={GLIMMER_TEST_ID} />
+  );
 }
