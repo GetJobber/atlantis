@@ -12,18 +12,34 @@ module.exports = async ({ github, context, core }) => {
     repo,
     owner,
     prs,
+    context,
   });
 };
 
-function generatePRComment(summaryFileJson) {
+async function generatePRComment({ context, github, owner, repo }) {
+  if (!process.env.summaryJSONString) {
+    const workflowRunUrl = await github.rest.actions.getWorkflowRun({
+      owner,
+      repo,
+      run_id: context.runId,
+    }).data.html_url;
+    return `Failed to Publish Pre-release. See logs: ${workflowRunUrl}`;
+  }
+  const summaryFileJson = JSON.parse(process.env.summaryJSONString);
+
   const releaseString = summaryFileJson
     .map(releaseSummary => {
       const { packageName, version } = releaseSummary;
-
       return `  - ${packageName}@${version}\n`;
     })
     .join("");
-  return `Published Pre-release with versions:\n\`\`\`\n${releaseString}\`\`\``;
+  const toInstallString = summaryFileJson
+    .map(releaseSummary => {
+      const { packageName, version } = releaseSummary;
+      return `${packageName}@${version}`;
+    })
+    .join(" ");
+  return `Published Pre-release with versions:\n\`\`\`\n${releaseString}\`\`\`\n\nRun \`npm install ${toInstallString}\` to install the new versions`;
 }
 
 async function getPRs({ github, repo, owner, ref }) {
@@ -35,10 +51,8 @@ async function getPRs({ github, repo, owner, ref }) {
   return response.data.map(pr => pr.number);
 }
 
-async function createOrUpdateComment({ github, repo, owner, prs }) {
-  const summaryFileJson = JSON.parse(process.env.summaryJSONString);
-
-  const commentBody = generatePRComment(summaryFileJson);
+async function createOrUpdateComment({ github, repo, owner, prs, context }) {
+  const commentBody = await generatePRComment({ github, repo, owner, context });
   const issueNumber = Number(prs[0]);
 
   const comments = await github.rest.issues.listComments({
@@ -46,7 +60,7 @@ async function createOrUpdateComment({ github, repo, owner, prs }) {
     owner,
     repo,
   });
-  const matchExpr = new RegExp(".*Published Pre-release.*");
+  const matchExpr = new RegExp(".*Pre-release.*");
 
   const existingComment = comments.data.find(
     comment =>

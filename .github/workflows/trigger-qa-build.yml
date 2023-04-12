@@ -72,7 +72,6 @@ jobs:
         with:
           ref: ${{ github.ref_name }}
       - uses: actions/github-script@v6
-        if: ${{ needs.trigger_pre_release_build.outputs.output1 }}
         name: Comment on PR
         env:
           summaryJSONString: ${{ needs.trigger_pre_release_build.outputs.output1 }}
