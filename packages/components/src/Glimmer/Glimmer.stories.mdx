@@ -24,13 +24,7 @@ import { Glimmer } from "@jobber/components/Glimmer";
 ```
 
 <Canvas>
-  <Story
-    name="Glimmer"
-    args={{
-      shape: "rectangle",
-      timing: "base",
-    }}
-  >
+  <Story name="Glimmer">
     {args => (
       <Card>
         <Content>
@@ -42,24 +36,24 @@ import { Glimmer } from "@jobber/components/Glimmer";
               alignItems: "center",
             }}
           >
-            <Glimmer size="larger" {...args} shape="circle" />
+            <Glimmer size="larger" shape="circle" {...args} />
             <Content spacing="small">
               <Glimmer size="large" {...args} />
-              <Glimmer size="small" {...args} shape="rectangleShorter" />
+              <Glimmer size="small" shape="rectangleShorter" {...args} />
             </Content>
           </div>
         </Content>
         <Content>
           <Content spacing="small">
             <Glimmer size="small" {...args} />
-            <Glimmer size="small" {...args} shape="rectangleShort" />
-            <Glimmer size="small" {...args} shape="rectangleShorter" />
+            <Glimmer size="small" shape="rectangleShort" {...args} />
+            <Glimmer size="small" shape="rectangleShorter" {...args} />
           </Content>
           <div style={{ display: "flex", gap: "var(--space-base)" }}>
-            <Glimmer size="largest" {...args} shape="square" />
-            <Glimmer size="largest" {...args} shape="square" />
-            <Glimmer size="largest" {...args} shape="square" />
-            <Glimmer size="largest" {...args} shape="square" />
+            <Glimmer size="largest" shape="square" {...args} />
+            <Glimmer size="largest" shape="square" {...args} />
+            <Glimmer size="largest" shape="square" {...args} />
+            <Glimmer size="largest" shape="square" {...args} />
           </div>
         </Content>
       </Card>
