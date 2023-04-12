@@ -10,6 +10,10 @@
   height: var(--space-large);
 }
 
+.larger {
+  height: var(--space-larger);
+}
+
 .largest {
   height: var(--space-largest);
 }
