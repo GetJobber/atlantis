@@ -4,13 +4,13 @@ module.exports = async ({ github, context, core }) => {
   const response = await github.rest.pulls.list({
     repo: context.repo.repo,
     owner: context.repo.owner,
-    head: `${context.owner}:${context.ref}`,
+    head: `${context.repo.owner}:${context.ref}`,
   });
   const prs = response.data.map(pr => pr.number);
 
   const commentBody = generatePRComment(summaryFileJson);
   if (prs.length === 0) {
-    core.info("No PRs found");
+    core.info("No PRs found", { response, contextRef: context.ref });
     return;
   }
   const issueNumber = Number(prs[0]);
