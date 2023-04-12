@@ -2,6 +2,7 @@ import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
 import { Banner } from "@jobber/components/Banner";
 import { Card } from "@jobber/components/Card";
 import { Content } from "@jobber/components/Content";
+import { Divider } from "@jobber/components/Divider";
 import { Glimmer } from ".";
 
 <Meta title="Components/Glimmer" component={Glimmer} />
@@ -24,41 +25,56 @@ import { Glimmer } from "@jobber/components/Glimmer";
 ```
 
 <Canvas>
-  <Story name="Glimmer">
-    {args => (
-      <Card>
-        <Content>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "max-content minmax(auto, 30%)",
-              gap: "var(--space-base)",
-              alignItems: "center",
-            }}
-          >
-            <Glimmer size="larger" shape="circle" {...args} />
-            <Content spacing="small">
-              <Glimmer size="large" {...args} />
-              <Glimmer size="small" shape="rectangleShorter" {...args} />
-            </Content>
-          </div>
-        </Content>
-        <Content>
-          <Content spacing="small">
-            <Glimmer size="small" {...args} />
-            <Glimmer size="small" shape="rectangleShort" {...args} />
-            <Glimmer size="small" shape="rectangleShorter" {...args} />
-          </Content>
-          <div style={{ display: "flex", gap: "var(--space-base)" }}>
-            <Glimmer size="largest" shape="square" {...args} />
-            <Glimmer size="largest" shape="square" {...args} />
-            <Glimmer size="largest" shape="square" {...args} />
-            <Glimmer size="largest" shape="square" {...args} />
-          </div>
-        </Content>
-      </Card>
-    )}
+  <Story
+    name="Glimmer"
+    args={{
+      size: "base",
+      shape: "rectangle",
+      timing: "base",
+    }}
+  >
+    {args => <Glimmer {...args} />}
   </Story>
 </Canvas>
 
 <ArgsTable of={Glimmer} story="Glimmer" />
+
+## Example
+
+As an example of what `<Glimmer />` can help to build; here's a comments card
+with attachments.
+
+<Canvas>
+  <Card>
+    <Content>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "max-content minmax(auto, 30%)",
+          gap: "var(--space-base)",
+          alignItems: "center",
+        }}
+      >
+        <Glimmer size="larger" shape="circle" />
+        <Content spacing="small">
+          <Glimmer />
+          <Glimmer size="small" shape="rectangleShorter" />
+        </Content>
+      </div>
+    </Content>
+    <Divider />
+    <Content>
+      <Content spacing="small">
+        <Glimmer size="small" />
+        <Glimmer size="small" shape="rectangleShort" />
+        <Glimmer size="small" shape="rectangleShorter" />
+      </Content>
+      <div style={{ display: "flex", gap: "var(--space-base)" }}>
+        <Glimmer size="largest" shape="square" />
+        <Glimmer size="largest" shape="square" />
+        <Glimmer size="largest" shape="square" />
+        <Glimmer size="largest" shape="square" />
+      </div>
+    </Content>
+  </Card>
+</Canvas>
