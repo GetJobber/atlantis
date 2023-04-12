@@ -7,7 +7,7 @@ module.exports = async ({ github, context, core }) => {
     head: `${context.repo.owner}:${context.ref}`,
   });
   const prs = response.data.map(pr => pr.number);
-  core.info("summary debug", JSON.stringify(summaryFileJson));
+
   const commentBody = generatePRComment(summaryFileJson);
   if (prs.length === 0) {
     core.info(
@@ -53,10 +53,12 @@ module.exports = async ({ github, context, core }) => {
 };
 
 function generatePRComment(summaryFileJson) {
-  const releaseString = summaryFileJson.map(releaseSummary => {
-    const { packageName, version } = releaseSummary;
+  const releaseString = summaryFileJson
+    .map(releaseSummary => {
+      const { packageName, version } = releaseSummary;
 
-    return `  - ${packageName}@${version}\n`;
-  });
+      return `  - ${packageName}@${version}\n`;
+    })
+    .join("");
   return `Published Pre-release with versions:\n\`\`\`${releaseString}\`\`\``;
 }
