@@ -41,16 +41,17 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.JOBBER_NPM_TOKEN }}
           ATLANTIS_BRANCH_NAME_RAW: ${{ github.ref_name }}
+          PUBLISH_SETTING: ${{ github.event.inputs.workflow }}
         run: |
           ATLANTIS_BRANCH_NAME=$(echo ${ATLANTIS_BRANCH_NAME_RAW:0:10} | sed 's/\///g')
-          if [[ "${{ github.event.inputs.workflow }}" == "Lerna Publish" ]]; then
+          if [ "$PUBLISH_SETTING" == "Lerna Publish" ]; then
             npm run github:publish:prerelease -- --y --preid $ATLANTIS_BRANCH_NAME
           else
-            if [["${{ github.event.inputs.workflow }}" == "Lerna Force Publish Components"]]; then
+            if [ "$PUBLISH_SETTING" == "Lerna Force Publish Components" ]; then
             FORCE_PUBLISH_SETTINGS="--force-publish components"
-            elif [["${{ github.event.inputs.workflow }}" == "Lerna Force Publish Design"]]; then
+            elif [ "$PUBLISH_SETTING" == "Lerna Force Publish Design" ]; then
             FORCE_PUBLISH_SETTINGS="--force-publish design"
-            elif [["${{ github.event.inputs.workflow }}" == "Lerna Force Publish Components & Design"]]; then
+            elif [ "$PUBLISH_SETTING" == "Lerna Force Publish Components & Design" ]; then
             FORCE_PUBLISH_SETTINGS="--force-publish components,design"
             else
             FORCE_PUBLISH_SETTINGS="--force-publish"
