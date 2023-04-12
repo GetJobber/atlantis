@@ -1,5 +1,5 @@
 // eslint-disable-next-line max-statements
-module.exports = async ({ github, context }) => {
+module.exports = async ({ github, context, core }) => {
   const summaryFileJson = JSON.parse(process.env.summaryJSONString);
   const response = await github.rest.pulls.list({
     repo: context.repo.repo,
@@ -7,8 +7,12 @@ module.exports = async ({ github, context }) => {
     head: `${context.owner}:${context.ref}`,
   });
   const prs = response.data.map(pr => pr.number);
+
   const commentBody = generatePRComment(summaryFileJson);
-  if (prs.length === 0) return;
+  if (prs.length === 0) {
+    core.info("No PRs found");
+    return;
+  }
   const issueNumber = Number(prs[0]);
   const owner = context.repo.owner;
   const repo = context.repo.repo;
@@ -24,22 +28,23 @@ module.exports = async ({ github, context }) => {
       /.*bot.*/i.test(comment.user.type) &&
       /.*jobbie.*/i.test(comment.user.login),
   );
-
+  let commentResponse;
   if (existingComment) {
-    await github.rest.issues.updateComment({
+    commentResponse = await github.rest.issues.updateComment({
       comment_id: existingComment.id,
       owner,
       repo,
       body: commentBody,
     });
   } else {
-    await github.rest.issues.createComment({
+    commentResponse = await github.rest.issues.createComment({
       issue_number: issueNumber,
       owner,
       repo,
       body: commentBody,
     });
   }
+  core.info(commentResponse);
 };
 
 function generatePRComment(summaryFileJson) {
