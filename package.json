@@ -16,6 +16,7 @@
   "scripts": {
     "build": "npm run storybook:build",
     "build:hooksIndex": "node scripts/createIndexFile.js ./packages/hooks/src",
+    "bootstrap": "npm run bootstrap --workspaces --if-present",
     "ci:release": "lerna publish --yes",
     "clean": "rm -rf storybook-static",
     "clean:packages": "rm -rf node_modules **/dist",
@@ -28,7 +29,8 @@
     "lint:js": "eslint --ext .js,.jsx,.ts,.tsx .",
     "lint:markdown": "prettier --check '**/*.{md,mdx}' --write",
     "plop": "echo '🚧 `npm run plop` is now `npm run generate`'",
-    "postinstall": "npm run bootstrap --workspaces --if-present",
+    "postconvertIcoMoon": "npm run bootstrap",
+    "postinstall": "npm run bootstrap",
     "prestart": "npm run build:hooksIndex",
     "preventManualRelease": "node scripts/preventManualRelease.js",
     "publish:prerelease": "lerna publish --canary --dist-tag next --preid pre",
@@ -116,6 +118,7 @@
     "stylelint": "^14.2.0",
     "stylelint-junit-formatter": "^0.2.1",
     "subscriptions-transport-ws": "^0.11.0",
+    "ts-node": "^10.9.1",
     "typed-css-modules": "^0.7.0",
     "typed-css-modules-loader": "0.0.18",
     "typescript": "^4.9.5"
