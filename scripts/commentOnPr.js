@@ -16,14 +16,23 @@ module.exports = async ({ github, context, core }) => {
   });
 };
 
-async function generatePRComment({ context, github, owner, repo }) {
+async function generatePRComment({
+  context,
+  github,
+  owner,
+  repo,
+  existingComment,
+}) {
   if (!process.env.summaryJSONString) {
     const workflowRunUrl = await github.rest.actions.getWorkflowRun({
       owner,
       repo,
       run_id: context.runId,
-    }).data.html_url;
-    return `Failed to Publish Pre-release. See logs: ${workflowRunUrl}`;
+    });
+    const previousBuildStatus = existingComment
+      ? `\nPrevious build information:\n${existingComment.body}`
+      : "";
+    return `Failed to Publish Pre-release. See logs: ${workflowRunUrl.data.html_url}${previousBuildStatus}`;
   }
   const summaryFileJson = JSON.parse(process.env.summaryJSONString);
 
@@ -52,7 +61,6 @@ async function getPRs({ github, repo, owner, ref }) {
 }
 
 async function createOrUpdateComment({ github, repo, owner, prs, context }) {
-  const commentBody = await generatePRComment({ github, repo, owner, context });
   const issueNumber = Number(prs[0]);
 
   const comments = await github.rest.issues.listComments({
@@ -69,6 +77,13 @@ async function createOrUpdateComment({ github, repo, owner, prs, context }) {
       /.*github-actions.*/i.test(comment.user.login) &&
       comment.body?.match(matchExpr),
   );
+  const commentBody = await generatePRComment({
+    github,
+    repo,
+    owner,
+    context,
+    existingComment,
+  });
 
   if (existingComment) {
     await github.rest.issues.updateComment({
