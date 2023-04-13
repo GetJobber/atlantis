@@ -29,8 +29,10 @@ async function generatePRComment({
       repo,
       run_id: context.runId,
     });
-    const previousBuildStatus = existingComment
-      ? `\nPrevious build information:\n${existingComment.body}`
+    const quotedPreviousComment = quotePreviousComment(existingComment?.body);
+
+    const previousBuildStatus = quotedPreviousComment
+      ? `\nPrevious build information:\n${quotedPreviousComment}`
       : "";
     return `Failed to Publish Pre-release. See logs: ${workflowRunUrl.data.html_url}${previousBuildStatus}`;
   }
@@ -100,4 +102,16 @@ async function createOrUpdateComment({ github, repo, owner, prs, context }) {
       body: commentBody,
     });
   }
+}
+
+function quotePreviousComment(previousCommentBody) {
+  if (!previousCommentBody) {
+    return "";
+  }
+  return previousCommentBody
+    .split("\n")
+    .map(commentBodyLine => {
+      return `> ${commentBodyLine}`;
+    })
+    .join("\n");
 }
