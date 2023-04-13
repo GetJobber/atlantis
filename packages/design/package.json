@@ -1,6 +1,6 @@
 {
   "name": "@jobber/design",
-  "version": "0.31.2",
+  "version": "0.32.0",
   "description": "Design foundation for the Jobber Atlantis Design System",
   "license": "MIT",
   "main": "dist/index.js",

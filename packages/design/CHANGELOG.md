@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.32.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.31.2...@jobber/design@0.32.0) (2023-04-13)
+
+
+### Features
+
+* **components:** Add Drag Icon ([#1185](https://github.com/GetJobber/atlantis/issues/1185)) ([6af9846](https://github.com/GetJobber/atlantis/commit/6af9846df0d24058ec9fc10d546a7226f12e3519))
+
+
+
+
+
 ## [0.31.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.31.1...@jobber/design@0.31.2) (2023-04-05)
 
 **Note:** Version bump only for package @jobber/design

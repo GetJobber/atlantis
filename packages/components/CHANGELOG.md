@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.6.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.5.3...@jobber/components@4.6.0) (2023-04-13)
+
+
+### Features
+
+* **components:** Add Drag Icon ([#1185](https://github.com/GetJobber/atlantis/issues/1185)) ([6af9846](https://github.com/GetJobber/atlantis/commit/6af9846df0d24058ec9fc10d546a7226f12e3519))
+
+
+
+
+
 ## [4.5.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.5.2...@jobber/components@4.5.3) (2023-04-12)
 
 
