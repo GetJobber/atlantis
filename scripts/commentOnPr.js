@@ -23,20 +23,21 @@ async function generatePRComment({
   repo,
   existingComment,
 }) {
-  if (!process.env.summaryJSONString) {
-    const workflowRunUrl = await github.rest.actions.getWorkflowRun({
+  if (!process.env.SUMMARY_JSON_STRING) {
+    const workflowRun = await github.rest.actions.getWorkflowRun({
       owner,
       repo,
       run_id: context.runId,
     });
+    const workflowRunUrl = workflowRun.data.html_url;
     const quotedPreviousComment = quotePreviousComment(existingComment?.body);
 
     const previousBuildStatus = quotedPreviousComment
       ? `\nPrevious build information:\n${quotedPreviousComment}`
       : "";
-    return `Failed to Publish Pre-release. See logs: ${workflowRunUrl.data.html_url}${previousBuildStatus}`;
+    return `Failed to Publish Pre-release for ${process.env.COMMIT_SHA}. See logs: ${workflowRunUrl}${previousBuildStatus}`;
   }
-  const summaryFileJson = JSON.parse(process.env.summaryJSONString);
+  const summaryFileJson = JSON.parse(process.env.SUMMARY_JSON_STRING);
 
   const releaseString = summaryFileJson
     .map(releaseSummary => {
@@ -50,7 +51,7 @@ async function generatePRComment({
       return `${packageName}@${version}`;
     })
     .join(" ");
-  return `Published Pre-release with versions:\n\`\`\`\n${releaseString}\`\`\`\n\nRun \`npm install ${toInstallString}\` to install the new versions`;
+  return `Published Pre-release for ${process.env.COMMIT_SHA} with versions:\n\`\`\`\n${releaseString}\`\`\`\n\nRun \`npm install ${toInstallString}\` to install the new versions`;
 }
 
 async function getPRs({ github, repo, owner, ref }) {

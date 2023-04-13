@@ -20,7 +20,7 @@ jobs:
     name: Trigger Pre-release Build
     runs-on: ubuntu-latest
     outputs:
-      output1: ${{ steps.summaryFile.outputs.releaseSummary}}
+      lernaSummary: ${{ steps.summaryFile.outputs.releaseSummary}}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -43,6 +43,7 @@ jobs:
           ATLANTIS_BRANCH_NAME_RAW: ${{ github.ref_name }}
           PUBLISH_SETTING: ${{ github.event.inputs.workflow }}
         run: |
+          # Generates a preId from the branch name. Removes characters that can't be used in a preId
           ATLANTIS_BRANCH_NAME=$(echo ${ATLANTIS_BRANCH_NAME_RAW:0:10} | sed 's/\///g')
           if [ "$PUBLISH_SETTING" == "Lerna Publish" ]; then
             npm run github:publish:prerelease -- --y --preid $ATLANTIS_BRANCH_NAME
@@ -74,7 +75,8 @@ jobs:
       - uses: actions/github-script@v6
         name: Comment on PR
         env:
-          summaryJSONString: ${{ needs.trigger_pre_release_build.outputs.output1 }}
+          SUMMARY_JSON_STRING: ${{ needs.trigger_pre_release_build.outputs.lernaSummary }}
+          COMMIT_SHA: ${{ github.sha }}
         with:
           script: |
             const script = require('./scripts/commentOnPr.js')
