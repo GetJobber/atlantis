@@ -10,7 +10,8 @@
   },
   "typesVersions": {
     "*": {
-      "*": [ "dist/*", "dist/*/index.d.ts" ]
+      "dist/index.d.ts": [ "./dist/index.d.ts" ],
+      "*": [ "dist/*" ]
     }
   },
   "scripts": {
