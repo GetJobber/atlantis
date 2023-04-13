@@ -6,14 +6,15 @@ on:
       workflow:
         description: 'Desired Workflow'
         required: true
-        default: 'Lerna Publish'
+        default: 'Publish Pre-release'
         type: choice
         options:
-        - Lerna Publish
-        - Lerna Force Publish Components
-        - Lerna Force Publish Design
-        - Lerna Force Publish Components & Design
-        - Lerna Force Publish All
+        - Publish Pre-release
+        - Force Publish Components
+        - Force Publish Design
+        - Force Publish Components & Design
+        - Force Publish Hooks
+        - Force Publish All
 
 jobs:
   trigger_pre_release_build:
@@ -45,15 +46,17 @@ jobs:
         run: |
           # Generates a preId from the branch name. Removes characters that can't be used in a preId
           ATLANTIS_BRANCH_NAME=$(echo ${ATLANTIS_BRANCH_NAME_RAW:0:10} | sed 's/\///g')
-          if [ "$PUBLISH_SETTING" == "Lerna Publish" ]; then
+          if [ "$PUBLISH_SETTING" == "Publish Pre-release" ]; then
             npm run github:publish:prerelease -- --y --preid $ATLANTIS_BRANCH_NAME
           else
-            if [ "$PUBLISH_SETTING" == "Lerna Force Publish Components" ]; then
+            if [ "$PUBLISH_SETTING" == "Force Publish Components" ]; then
             FORCE_PUBLISH_SETTINGS="--force-publish @jobber/components"
-            elif [ "$PUBLISH_SETTING" == "Lerna Force Publish Design" ]; then
+            elif [ "$PUBLISH_SETTING" == "Force Publish Design" ]; then
             FORCE_PUBLISH_SETTINGS="--force-publish @jobber/design"
-            elif [ "$PUBLISH_SETTING" == "Lerna Force Publish Components & Design" ]; then
+            elif [ "$PUBLISH_SETTING" == "Force Publish Components & Design" ]; then
             FORCE_PUBLISH_SETTINGS="--force-publish @jobber/components,@jobber/design"
+            elif [ "$PUBLISH_SETTING" == "Force Publish Hooks" ]; then
+            FORCE_PUBLISH_SETTINGS="--force-publish @jobber/hooks"
             else
             FORCE_PUBLISH_SETTINGS="--force-publish"
             fi
@@ -79,5 +82,5 @@ jobs:
           COMMIT_SHA: ${{ github.sha }}
         with:
           script: |
-            const script = require('./scripts/commentOnPr.js')
+            const script = require('./scripts/commentOnPrAfterPreRelease.js')
             await script({github, context, core})
