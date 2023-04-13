@@ -155,7 +155,7 @@ export function Button(props: ButtonProps) {
 
   return <Tag {...tagProps}>{buttonInternals}</Tag>;
 }
-// Test comment
+
 function ButtonInternals({ label, icon, size = "base" }: ButtonProps) {
   return (
     <>
@@ -171,7 +171,6 @@ function ButtonInternals({ label, icon, size = "base" }: ButtonProps) {
     </>
   );
 }
-//Another comment
 
 function getTypeSizes(size: string) {
   switch (size) {
