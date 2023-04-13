@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.7.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.6.0...@jobber/components@4.7.0) (2023-04-13)
+
+
+### Features
+
+* Make a generic glimmer component ([#1183](https://github.com/GetJobber/atlantis/issues/1183)) ([e9ef6bf](https://github.com/GetJobber/atlantis/commit/e9ef6bfbf6d90dba212922db6775d10cb0b22c77))
+
+
+
+
+
 # [4.6.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.5.3...@jobber/components@4.6.0) (2023-04-13)
 
 
