@@ -6,12 +6,9 @@
   "types": "./dist/index.d.js",
   "exports": {
     ".": "./dist/index.js",
-    "./*": "./dist/*"
-  },
-  "typesVersions": {
-    "*": {
-      "dist/index.d.ts": [ "./dist/index.d.ts" ],
-      "*": [ "dist/*" ]
+    "./*": {
+      "default": "./dist/*",
+      "types": "./dist/*.d.ts"
     }
   },
   "scripts": {
