@@ -15,9 +15,9 @@ interface GlimmerProps {
   /**
    * Sets the size of the glimmer.
    *
-   * If you use `"auto"` with a `"rectangle"` shape, it would try to fill the
+   * If you use `"auto"` with a `"rectangle"` shape, it will fill the
    * size of the parents width and height. With how CSS works, if it can't
-   * determine the parents width and height, it'll fallback to `base`.
+   * determine the parents width and height, it'll default to `base`.
    */
   readonly size?: Sizes;
 

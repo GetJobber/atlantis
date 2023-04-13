@@ -30,7 +30,7 @@ describe("Glimmer", () => {
       ["rectangleShorter"],
       ["square"],
       ["circle"],
-    ])("should render a $s", expectedShape => {
+    ])("should render a %s", expectedShape => {
       render(<Glimmer shape={expectedShape} />);
       const element = screen.getByTestId(GLIMMER_TEST_ID);
       expect(element).toHaveClass(expectedShape);
@@ -45,7 +45,7 @@ describe("Glimmer", () => {
       ["larger"],
       ["largest"],
       ["auto"],
-    ])("should render as $s", expectedSize => {
+    ])("should render as %s", expectedSize => {
       render(<Glimmer timing="fast" size={expectedSize} />);
       const element = screen.getByTestId(GLIMMER_TEST_ID);
       expect(element).toHaveClass(expectedSize);
@@ -54,7 +54,7 @@ describe("Glimmer", () => {
 
   describe("Timing", () => {
     it.each<[Timings]>([["base"], ["fast"]])(
-      "should render as $s",
+      "should render as %s",
       expectedTimings => {
         render(<Glimmer timing={expectedTimings} size={"auto"} />);
         const element = screen.getByTestId(GLIMMER_TEST_ID);
