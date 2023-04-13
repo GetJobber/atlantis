@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.5.2...@jobber/components@4.5.3) (2023-04-12)
+
+
+### Bug Fixes
+
+* **components:** Fix label z-index and autofill style on Inputs ([#1182](https://github.com/GetJobber/atlantis/issues/1182)) ([39e91e6](https://github.com/GetJobber/atlantis/commit/39e91e6bf06e47ca551503ae0eb9ec5554d138d1))
+
+
+
+
+
+## [4.5.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.5.1...@jobber/components@4.5.2) (2023-04-11)
+
+
+### Bug Fixes
+
+* **components:** fix datepicker validations ([#1176](https://github.com/GetJobber/atlantis/issues/1176)) ([b63b21e](https://github.com/GetJobber/atlantis/commit/b63b21e496d9a70ad84a99968fafa8f935b06c54))
+
+
+
+
+
 ## [4.5.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.5.0...@jobber/components@4.5.1) (2023-04-11)
 
 **Note:** Version bump only for package @jobber/components

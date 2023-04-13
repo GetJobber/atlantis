@@ -1,7 +1,8 @@
 import { omit } from "lodash";
-import React from "react";
+import React, { useRef } from "react";
 import {
   CommonFormFieldProps,
+  FieldActionsRef,
   FormField,
   FormFieldProps,
   Suffix,
@@ -40,6 +41,7 @@ interface InputDateProps
 }
 
 export function InputDate(inputProps: InputDateProps) {
+  const formFieldActionsRef = useRef<FieldActionsRef>(null);
   return (
     <DatePicker
       selected={inputProps.value}
@@ -62,6 +64,10 @@ export function InputDate(inputProps: InputDateProps) {
           }),
         } as Suffix;
 
+        // Set form field to formatted date string immediately, to avoid validations
+        //  triggering incorrectly when it blurs (to handle the datepicker UI click)
+        value && formFieldActionsRef.current?.setValue(value);
+
         return (
           <FormField
             {...newActivatorProps}
@@ -76,6 +82,7 @@ export function InputDate(inputProps: InputDateProps) {
               inputProps.onFocus && inputProps.onFocus();
               activatorProps.onFocus && activatorProps.onFocus();
             }}
+            actionsRef={formFieldActionsRef}
             suffix={suffix}
           />
         );
