@@ -1,0 +1,29 @@
+.glimmer {
+  --duration-base: calc(var(--timing-slowest) * 4); /* 2s */
+  --duration-fast: calc(var(--duration-base) / 2); /* 1s */
+
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-base);
+  background-color: var(--color-grey--lightest);
+  background-image: linear-gradient(
+    90deg,
+    var(--color-grey--lightest) 0px,
+    var(--color-white) var(--space-larger),
+    var(--color-grey--lightest) var(--space-extravagant)
+  );
+  background-repeat: no-repeat;
+  background-size: var(--space-extravagant) 100%;
+  animation: glimmer 2s infinite linear;
+}
+
+@keyframes glimmer {
+  0%,
+  20% {
+    background-position: calc(var(--space-extravagant) * -1);
+  }
+
+  100% {
+    background-position: calc(100% + var(--space-extravagant));
+  }
+}

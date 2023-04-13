@@ -7,6 +7,7 @@ import {
   waitFor,
 } from "@testing-library/react";
 import { FormatFile } from ".";
+import { GLIMMER_TEST_ID } from "../Glimmer";
 
 afterEach(cleanup);
 
@@ -58,15 +59,13 @@ it("renders a skeleton loader when the provided image has not fully loaded", asy
   const { getByTestId, queryByTestId, getByAltText } = render(
     <FormatFile file={testFile} />,
   );
-  expect(getByTestId("internalThumbnailImageLoader")).toBeInTheDocument();
+  expect(getByTestId(GLIMMER_TEST_ID)).toBeInTheDocument();
   expect(getByAltText(testFile.name)).toHaveClass("hidden");
 
   fireEvent.load(getByAltText(testFile.name));
 
   await waitFor(() => {
-    expect(
-      queryByTestId("internalThumbnailImageLoader"),
-    ).not.toBeInTheDocument();
+    expect(queryByTestId(GLIMMER_TEST_ID)).not.toBeInTheDocument();
   });
   expect(getByAltText(testFile.name)).not.toHaveClass("hidden");
 });
