@@ -223,6 +223,10 @@ It is possible to generate Pre-releases through GitHub Actions.
 6. When the Action is finished your PR will have a comment with the new release
    versions
 
+_NOTE: You can only do 1 pre-release per commit. If you trigger another
+pre-release on a previously published commit, it will fail. This also happens on
+forced pre-release._
+
 </details>
 
 ### What has changed

@@ -35,7 +35,7 @@ async function generatePRComment({
     const previousBuildStatus = quotedPreviousComment
       ? `\nPrevious build information:\n${quotedPreviousComment}`
       : "";
-    return `Could not Publish Pre-release for ${process.env.COMMIT_SHA}. See logs: [here](${workflowRunUrl})${previousBuildStatus}.\n The problem is likely in the \`NPM Publish\` or \`NPM CI\` step in the \`Trigger Pre-release Build\` Job.`;
+    return `Could not publish Pre-release for ${process.env.COMMIT_SHA}. [View Logs](${workflowRunUrl})\nThe problem is likely in the \`NPM Publish\` or \`NPM CI\` step in the \`Trigger Pre-release Build\` Job.\n${previousBuildStatus}.\n `;
   }
   const summaryFileJson = JSON.parse(process.env.SUMMARY_JSON_STRING);
 
@@ -51,7 +51,7 @@ async function generatePRComment({
       return `${packageName}@${version}`;
     })
     .join(" ");
-  return `Published Pre-release for ${process.env.COMMIT_SHA} with versions:\n\`\`\`\n${releaseString}\`\`\`\n\nRun \`npm install ${toInstallString}\` to install the new versions`;
+  return `Published Pre-release for ${process.env.COMMIT_SHA} with versions:\n\`\`\`\n${releaseString}\`\`\`\n\nTo install the new version(s) run:\n\`\`\`\nnpm install ${toInstallString}\n\`\`\``;
 }
 
 async function getPRs({ github, repo, owner, ref }) {
