@@ -9,6 +9,10 @@
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
     "bootstrap": "npm run clean; npm run build"
   },
+  "exports": {
+    ".": "./dist/index.js",
+    "./useIsMounted": "./dist/useIsMounted/index.js"
+  },
   "files": [
     "dist/*"
   ],
