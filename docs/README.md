@@ -223,6 +223,9 @@ It is possible to generate Pre-releases through GitHub Actions.
 6. When the Action is finished your PR will have a comment with the new release
    versions
 
+_NOTE: If you publish using the same commit as a previously published version it
+will fail. This is intended and will also happen if you force publish._
+
 </details>
 
 ### What has changed
