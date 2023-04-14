@@ -20,7 +20,6 @@
     "ci:release": "lerna publish --yes",
     "clean": "rm -rf storybook-static",
     "clean:packages": "rm -rf node_modules **/dist",
-    "convertIcoMoon": "scripts/convertIcoMoon.ts",
     "generate": "plop -- --path='./packages/components/src/'",
     "generateIconMap": "scripts/generateIconMap.ts",
     "lint": "npm run lint:js && npm run lint:css",
