@@ -4,7 +4,7 @@
   "license": "MIT",
   "main": "./dist/index.js",
   "types": "./dist/index.d.js",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "build": "tsc --project . --skipLibCheck",
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
