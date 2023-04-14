@@ -22,6 +22,7 @@
     "clean:packages": "rm -rf node_modules **/dist",
     "convertIcoMoon": "scripts/convertIcoMoon.ts",
     "generate": "plop -- --path='./packages/components/src/'",
+    "generateIconMap": "scripts/generateIconMap.ts",
     "lint": "npm run lint:js && npm run lint:css",
     "lerna:clean": "lerna run clean && lerna clean --y && npm run clean:packages && npm run clean",
     "lint:css": "stylelint 'packages/**/*.css' --allow-empty-input",
