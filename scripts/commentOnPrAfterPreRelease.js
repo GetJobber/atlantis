@@ -51,7 +51,7 @@ async function generatePRComment({
       return `${packageName}@${version}`;
     })
     .join(" ");
-  return `Published Pre-release for ${process.env.COMMIT_SHA} with versions:\n\`\`\`\n${releaseString}\`\`\`\n\nRun \`npm install ${toInstallString}\` to install the new versions`;
+  return `Published Pre-release for ${process.env.COMMIT_SHA} with versions:\n\`\`\`\n${releaseString}\`\`\`\n\nTo install the new version(s) run:\n\`\`\`\nnpm install ${toInstallString}\n\`\`\``;
 }
 
 async function getPRs({ github, repo, owner, ref }) {
