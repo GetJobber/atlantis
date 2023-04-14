@@ -35,7 +35,7 @@ async function generatePRComment({
     const previousBuildStatus = quotedPreviousComment
       ? `\nPrevious build information:\n${quotedPreviousComment}`
       : "";
-    return `Failed to Publish Pre-release for ${process.env.COMMIT_SHA}. See logs: ${workflowRunUrl}${previousBuildStatus}`;
+    return `Did not Publish Pre-release for ${process.env.COMMIT_SHA}. See logs: ${workflowRunUrl}${previousBuildStatus}.\n The problem is likely in the \`NPM Publish\` or \`NPM CI\` step in the \`Trigger Pre-release Build\` Job.`;
   }
   const summaryFileJson = JSON.parse(process.env.SUMMARY_JSON_STRING);
 

@@ -6,10 +6,10 @@ on:
       workflow:
         description: 'Desired Workflow'
         required: true
-        default: 'Publish Pre-release'
+        default: 'Publish Pre-release (Recommended)'
         type: choice
         options:
-        - Publish Pre-release
+        - Publish Pre-release (Recommended)
         - Force Publish Components
         - Force Publish Design
         - Force Publish Components & Design
@@ -46,7 +46,7 @@ jobs:
         run: |
           # Generates a preId from the branch name. Removes characters that can't be used in a preId
           ATLANTIS_BRANCH_NAME=$(echo ${ATLANTIS_BRANCH_NAME_RAW:0:10} | sed 's/\///g')
-          if [ "$PUBLISH_SETTING" == "Publish Pre-release" ]; then
+          if [ "$PUBLISH_SETTING" == "Publish Pre-release (Recommended)" ]; then
             npm run publish:prerelease:githubAction -- --y --preid $ATLANTIS_BRANCH_NAME
           else
             if [ "$PUBLISH_SETTING" == "Force Publish Components" ]; then
