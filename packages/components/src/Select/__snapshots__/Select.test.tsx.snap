@@ -35,7 +35,7 @@ exports[`renders a Select with many options 1`] = `
         <svg
           class="Z6OfUI2sH34- TphtDHcwxDc-"
           data-testid="arrowDown"
-          viewBox="0 0 1024 1024"
+          viewBox="0 0 720 720"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
@@ -71,7 +71,7 @@ exports[`renders a Select with no options 1`] = `
         <svg
           class="Z6OfUI2sH34- TphtDHcwxDc-"
           data-testid="arrowDown"
-          viewBox="0 0 1024 1024"
+          viewBox="0 0 720 720"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
@@ -111,7 +111,7 @@ exports[`renders a Select with one option 1`] = `
         <svg
           class="Z6OfUI2sH34- TphtDHcwxDc-"
           data-testid="arrowDown"
-          viewBox="0 0 1024 1024"
+          viewBox="0 0 720 720"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
@@ -151,7 +151,7 @@ exports[`renders correctly as large 1`] = `
         <svg
           class="Z6OfUI2sH34- TphtDHcwxDc-"
           data-testid="arrowDown"
-          viewBox="0 0 1024 1024"
+          viewBox="0 0 720 720"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
@@ -191,7 +191,7 @@ exports[`renders correctly as small 1`] = `
         <svg
           class="Z6OfUI2sH34- TphtDHcwxDc-"
           data-testid="arrowDown"
-          viewBox="0 0 1024 1024"
+          viewBox="0 0 720 720"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
@@ -232,7 +232,7 @@ exports[`renders correctly when disabled 1`] = `
         <svg
           class="Z6OfUI2sH34- TphtDHcwxDc-"
           data-testid="arrowDown"
-          viewBox="0 0 1024 1024"
+          viewBox="0 0 720 720"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
@@ -272,7 +272,7 @@ exports[`renders correctly when invalid 1`] = `
         <svg
           class="Z6OfUI2sH34- TphtDHcwxDc-"
           data-testid="arrowDown"
-          viewBox="0 0 1024 1024"
+          viewBox="0 0 720 720"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path

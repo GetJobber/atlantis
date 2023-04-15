@@ -40,7 +40,7 @@ exports[`renders a banner with a primary 'learning' action when the type is 'not
       <svg
         class="Z6OfUI2sH34- TphtDHcwxDc-"
         data-testid="cross"
-        viewBox="0 0 1024 1024"
+        viewBox="0 0 720 720"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -93,7 +93,7 @@ exports[`renders a banner with a primary action 1`] = `
       <svg
         class="Z6OfUI2sH34- TphtDHcwxDc-"
         data-testid="cross"
-        viewBox="0 0 1024 1024"
+        viewBox="0 0 720 720"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -132,7 +132,7 @@ exports[`renders a notice banner 1`] = `
       <svg
         class="Z6OfUI2sH34- TphtDHcwxDc-"
         data-testid="cross"
-        viewBox="0 0 1024 1024"
+        viewBox="0 0 720 720"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -171,7 +171,7 @@ exports[`renders a success banner 1`] = `
       <svg
         class="Z6OfUI2sH34- TphtDHcwxDc-"
         data-testid="cross"
-        viewBox="0 0 1024 1024"
+        viewBox="0 0 720 720"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -210,7 +210,7 @@ exports[`renders a warning banner 1`] = `
       <svg
         class="Z6OfUI2sH34- TphtDHcwxDc-"
         data-testid="cross"
-        viewBox="0 0 1024 1024"
+        viewBox="0 0 720 720"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path

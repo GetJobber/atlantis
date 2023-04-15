@@ -10,7 +10,7 @@ exports[`renders a ButtonDismiss 1`] = `
     <svg
       class="Z6OfUI2sH34- TphtDHcwxDc-"
       data-testid="remove"
-      viewBox="0 0 1024 1024"
+      viewBox="0 0 720 720"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path

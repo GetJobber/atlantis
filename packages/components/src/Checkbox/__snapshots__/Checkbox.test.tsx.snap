@@ -27,7 +27,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 1`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -73,7 +73,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 1`]
             <svg
               class="Z6OfUI2sH34- qm8vYTlCGG4-"
               data-testid="minus2"
-              viewBox="0 0 1024 1024"
+              viewBox="0 0 720 720"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -176,7 +176,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 2`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -220,7 +220,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 2`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -265,7 +265,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 2`]
             <svg
               class="Z6OfUI2sH34- qm8vYTlCGG4-"
               data-testid="minus2"
-              viewBox="0 0 1024 1024"
+              viewBox="0 0 720 720"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -368,7 +368,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -412,7 +412,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -457,7 +457,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -503,7 +503,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
             <svg
               class="Z6OfUI2sH34- qm8vYTlCGG4-"
               data-testid="checkmark"
-              viewBox="0 0 1024 1024"
+              viewBox="0 0 720 720"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -606,7 +606,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -650,7 +650,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -695,7 +695,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -739,7 +739,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -784,7 +784,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
             <svg
               class="Z6OfUI2sH34- qm8vYTlCGG4-"
               data-testid="checkmark"
-              viewBox="0 0 1024 1024"
+              viewBox="0 0 720 720"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -887,7 +887,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -931,7 +931,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -976,7 +976,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -1020,7 +1020,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -1065,7 +1065,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -1111,7 +1111,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
             <svg
               class="Z6OfUI2sH34- qm8vYTlCGG4-"
               data-testid="minus2"
-              viewBox="0 0 1024 1024"
+              viewBox="0 0 720 720"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -1214,7 +1214,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -1258,7 +1258,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -1303,7 +1303,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -1347,7 +1347,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -1392,7 +1392,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -1436,7 +1436,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -1481,7 +1481,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
             <svg
               class="Z6OfUI2sH34- qm8vYTlCGG4-"
               data-testid="minus2"
-              viewBox="0 0 1024 1024"
+              viewBox="0 0 720 720"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -1584,7 +1584,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -1628,7 +1628,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -1673,7 +1673,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -1717,7 +1717,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -1762,7 +1762,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -1806,7 +1806,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -1851,7 +1851,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -1897,7 +1897,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
             <svg
               class="Z6OfUI2sH34- qm8vYTlCGG4-"
               data-testid="checkmark"
-              viewBox="0 0 1024 1024"
+              viewBox="0 0 720 720"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -2000,7 +2000,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -2044,7 +2044,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -2089,7 +2089,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -2133,7 +2133,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -2178,7 +2178,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -2222,7 +2222,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -2267,7 +2267,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -2311,7 +2311,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -2356,7 +2356,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
             <svg
               class="Z6OfUI2sH34- qm8vYTlCGG4-"
               data-testid="checkmark"
-              viewBox="0 0 1024 1024"
+              viewBox="0 0 720 720"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path

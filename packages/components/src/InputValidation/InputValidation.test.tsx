@@ -18,7 +18,7 @@ it("renders the input validation messages", () => {
           <svg
             class="Z6OfUI2sH34- qm8vYTlCGG4-"
             data-testid="alert"
-            viewBox="0 0 1024 1024"
+            viewBox="0 0 720 720"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path

@@ -34,7 +34,7 @@ exports[`renders 1 List item with all the props 1`] = `
               <svg
                 class="Z6OfUI2sH34- TphtDHcwxDc-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 720 720"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path

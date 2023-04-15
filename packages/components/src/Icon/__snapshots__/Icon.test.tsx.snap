@@ -5,7 +5,7 @@ exports[`renders apple icon 1`] = `
   <svg
     class="Z6OfUI2sH34- TphtDHcwxDc-"
     data-testid="apple"
-    viewBox="0 0 1024 1024"
+    viewBox="0 0 720 720"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
@@ -21,7 +21,7 @@ exports[`renders dashboard icon 1`] = `
   <svg
     class="Z6OfUI2sH34- TphtDHcwxDc-"
     data-testid="dashboard"
-    viewBox="0 0 1024 1024"
+    viewBox="0 0 720 720"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
@@ -37,7 +37,7 @@ exports[`renders large arrowDown icon 1`] = `
   <svg
     class="Z6OfUI2sH34- xZ6Jnv-7uXc-"
     data-testid="arrowDown"
-    viewBox="0 0 1024 1024"
+    viewBox="0 0 720 720"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
@@ -53,7 +53,7 @@ exports[`renders small more icon 1`] = `
   <svg
     class="Z6OfUI2sH34- qm8vYTlCGG4-"
     data-testid="more"
-    viewBox="0 0 1024 1024"
+    viewBox="0 0 720 720"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
@@ -69,7 +69,7 @@ exports[`renders star icon with custom color 1`] = `
   <svg
     class="Z6OfUI2sH34- TphtDHcwxDc-"
     data-testid="star"
-    viewBox="0 0 1024 1024"
+    viewBox="0 0 720 720"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
@@ -86,7 +86,7 @@ exports[`renders thumbsDown icon 1`] = `
   <svg
     class="Z6OfUI2sH34- TphtDHcwxDc- _30zSLR5-c7Y-"
     data-testid="thumbsDown"
-    viewBox="0 0 1024 1024"
+    viewBox="0 0 720 720"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
@@ -102,7 +102,7 @@ exports[`renders truck icon 1`] = `
   <svg
     class="Z6OfUI2sH34- TphtDHcwxDc-"
     data-testid="truck"
-    viewBox="0 0 1024 1024"
+    viewBox="0 0 720 720"
     xmlns="http://www.w3.org/2000/svg"
   >
     <g
