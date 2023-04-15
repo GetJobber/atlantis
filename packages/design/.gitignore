@@ -2,5 +2,6 @@
 /colors.js
 /foundation.*
 /src/icons/iconStyles.*
+/src/icons/iconMap.ts
 /icons
 /dist
