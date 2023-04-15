@@ -54,7 +54,8 @@ export function getIcon({ name, color, size = "base" }: IconProps) {
 
   const pathClassNames = getPathClassNames(name, color);
   const paths = getPaths(name);
-  const viewBox = `0 0 ${iconMap.height} ${iconMap.height}`;
+  const iconSize = name === "truck" ? 1024 : iconMap.height;
+  const viewBox = `0 0 ${iconSize} ${iconSize}`;
   return { svgClassNames, pathClassNames, paths, viewBox } as const;
 }
 
