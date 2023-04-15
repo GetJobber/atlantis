@@ -38,6 +38,7 @@
     "@rollup/plugin-commonjs": "^24.0.1",
     "@types/node": "^18.15.7",
     "autoprefixer": "^9.5.1",
+    "cheerio": "^1.0.0-rc.12",
     "css-to-react-native-transform": "^2.0.0",
     "postcss": "^8.4.21",
     "postcss-calc": "^8.2.3",
