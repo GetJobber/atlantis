@@ -33,7 +33,7 @@
     "postinstall": "npm run bootstrap",
     "prestart": "npm run build:hooksIndex",
     "preventManualRelease": "node scripts/preventManualRelease.js",
-    "publish:prerelease": "lerna publish --canary --dist-tag next --preid pre",
+    "publish:prerelease": "lerna publish --canary --dist-tag next --preid pre1",
     "publish:prerelease:force": "npm run publish:prerelease -- --force-publish",
     "release-the-kraken": "npm ci -omit=optional && lerna publish",
     "release:unpublished-package": "npm ci -omit=optional && lerna publish from-package",
