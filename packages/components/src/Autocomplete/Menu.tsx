@@ -34,6 +34,7 @@ export function Menu({
     setPositionedElementRef,
     styles: popperStyles,
     attributes,
+    targetWidth,
   } = useRepositionMenu(attachTo);
 
   const detectSeparatorCondition = (option: Option) =>
@@ -53,7 +54,7 @@ export function Menu({
     <div
       className={classnames(styles.options, { [styles.visible]: visible })}
       ref={setPositionedElementRef}
-      style={{ ...popperStyles.popper, width: attachTo.current?.clientWidth }}
+      style={{ ...popperStyles.popper, width: targetWidth }}
       {...attributes.popper}
     >
       {options.map((option, index) => {
