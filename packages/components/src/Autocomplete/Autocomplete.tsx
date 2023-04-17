@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import debounce from "lodash/debounce";
 import { XOR } from "ts-xor";
 import styles from "./Autocomplete.css";
@@ -77,6 +77,7 @@ export function Autocomplete({
   const [options, setOptions] = useState(initialOptions);
   const [menuVisible, setMenuVisible] = useState(false);
   const [inputText, setInputText] = useState(value?.label ?? "");
+  const autocompleteRef = useRef(null);
 
   const delayedSearch = debounce(updateSearch, debounceRate);
 
@@ -90,7 +91,7 @@ export function Autocomplete({
   }, [value]);
 
   return (
-    <div className={styles.autocomplete}>
+    <div className={styles.autocomplete} ref={autocompleteRef}>
       <InputText
         autocomplete={false}
         size={size}
@@ -103,6 +104,7 @@ export function Autocomplete({
       />
       {menuVisible && (
         <Menu
+          attachTo={autocompleteRef}
           visible={true}
           options={options}
           selectedOption={value}

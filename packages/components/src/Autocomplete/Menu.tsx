@@ -1,6 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { RefObject, useEffect, useState } from "react";
 import classnames from "classnames";
 import useEventListener from "@use-it/event-listener";
+import { createPortal } from "react-dom";
+import { usePopper } from "react-popper";
 import { AnyOption, Option } from "./Option";
 import styles from "./Autocomplete.css";
 import { Text } from "../Text";
@@ -16,6 +18,7 @@ interface MenuProps {
   readonly visible: boolean;
   readonly options: Option[];
   readonly selectedOption?: Option;
+  readonly attachTo: RefObject<Element | null>;
   onOptionSelect(chosenOption: Option): void;
 }
 
@@ -24,12 +27,14 @@ export function Menu({
   options,
   selectedOption,
   onOptionSelect,
+  attachTo,
 }: MenuProps) {
   const [highlightedIndex, setHighlightedIndex] = useState(0);
-  const optionMenuClass = classnames(styles.options, {
-    [styles.visible]: visible,
-  });
-  const menuDiv = useRef() as React.MutableRefObject<HTMLDivElement>;
+  const {
+    setPositionedElementRef,
+    styles: popperStyles,
+    attributes,
+  } = useRepositionMenu(attachTo);
 
   const detectSeparatorCondition = (option: Option) =>
     option.description || option.details;
@@ -44,8 +49,13 @@ export function Menu({
 
   useEffect(() => setHighlightedIndex(initialHighlight), [options]);
 
-  return (
-    <div className={optionMenuClass} ref={menuDiv}>
+  const menu = (
+    <div
+      className={classnames(styles.options, { [styles.visible]: visible })}
+      ref={setPositionedElementRef}
+      style={{ ...popperStyles.popper, width: attachTo.current?.clientWidth }}
+      {...attributes.popper}
+    >
       {options.map((option, index) => {
         const optionClass = classnames(styles.option, {
           [styles.active]: index === highlightedIndex,
@@ -88,6 +98,8 @@ export function Menu({
     </div>
   );
 
+  return createPortal(menu, document.body);
+
   function setupKeyListeners() {
     useOnKeyDown("ArrowDown", (event: KeyboardEvent) => {
       const indexChange = arrowKeyPress(event, IndexChange.Next);
@@ -96,9 +108,6 @@ export function Menu({
           Math.min(options.length - 1, highlightedIndex + indexChange),
         );
       }
-      if (menuDiv.current) {
-        scrollMenuIfItemNotInView(menuDiv.current, "down");
-      }
     });
 
     useOnKeyDown("ArrowUp", (event: KeyboardEvent) => {
@@ -106,33 +115,7 @@ export function Menu({
       if (indexChange) {
         setHighlightedIndex(Math.max(0, highlightedIndex + indexChange));
       }
-      if (menuDiv.current) {
-        scrollMenuIfItemNotInView(menuDiv.current, "up");
-      }
     });
-
-    function scrollMenuIfItemNotInView(
-      menuDivElement: HTMLDivElement,
-      direction: "up" | "down",
-    ) {
-      const itemDiv = menuDivElement.querySelector(
-        `button.${styles.option}:nth-child(${highlightedIndex + 1})`,
-      ) as HTMLButtonElement;
-      if (!itemDiv) return;
-      const menuTop = menuDivElement.getBoundingClientRect().top;
-      const {
-        top: itemTop,
-        height: itemHeight,
-        bottom: itemBottom,
-      } = itemDiv.getBoundingClientRect();
-      const itemTrueBottom = itemBottom + itemHeight;
-      const menuBottom = menuDivElement.getBoundingClientRect().bottom;
-      if (direction == "up" && itemTop - itemHeight < menuTop) {
-        menuDivElement.scrollTop -= itemHeight;
-      } else if (direction == "down" && itemTrueBottom > menuBottom) {
-        menuDivElement.scrollTop += itemHeight;
-      }
-    }
 
     useOnKeyDown("Enter", (event: KeyboardEvent) => {
       if (!visible) return;
@@ -175,4 +158,19 @@ function useOnKeyDown(
 function isGroup(option: AnyOption) {
   if (option.options) return true;
   return false;
+}
+
+function useRepositionMenu(attachTo: MenuProps["attachTo"]) {
+  const [positionElement, setPositionedElementRef] =
+    useState<HTMLElement | null>();
+  const popper = usePopper(attachTo.current, positionElement, {
+    modifiers: [
+      { name: "offset", options: { offset: [0, 8] } },
+      { name: "flip", options: { fallbackPlacements: ["top"] } },
+    ],
+  });
+
+  const targetWidth = attachTo.current?.clientWidth;
+
+  return { ...popper, setPositionedElementRef, targetWidth };
 }
