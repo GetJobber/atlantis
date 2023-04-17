@@ -1,1 +1,1 @@
-export { useIsMounted } from "./useIsMounted";
+export { useIsMounted } from "./useIsMounted.js";

@@ -1,4 +1,4 @@
-import { Node } from "./uniqueNodes";
+import { Node } from "./uniqueNodes.js";
 
 export interface Edge {
   __typename?: unknown;

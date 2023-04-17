@@ -1,3 +1,3 @@
-export * from "./queries";
-export * from "./utils";
-export * from "./mocks";
+export * from "./queries.js";
+export * from "./utils.js";
+export * from "./mocks.js";

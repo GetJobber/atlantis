@@ -1,1 +1,1 @@
-export { useFocusTrap } from "./useFocusTrap";
+export { useFocusTrap } from "./useFocusTrap.js";

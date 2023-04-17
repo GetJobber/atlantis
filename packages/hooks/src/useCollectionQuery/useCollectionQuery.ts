@@ -8,9 +8,9 @@ import {
 import { cloneDeep } from "lodash";
 import { useCallback, useEffect, useState } from "react";
 import { config } from "@jobber/formatters";
-import { Node, uniqueNodes } from "./uniqueNodes";
-import { Edge, createEdge, uniqueEdges } from "./uniqueEdges";
-import { useIsMounted } from "../useIsMounted";
+import { Node, uniqueNodes } from "./uniqueNodes.js";
+import { Edge, createEdge, uniqueEdges } from "./uniqueEdges.js";
+import { useIsMounted } from "../useIsMounted/index.js";
 
 interface UseCollectionQueryArguments<TQuery, TSubscription> {
   /**

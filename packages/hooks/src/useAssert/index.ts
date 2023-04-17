@@ -1,1 +1,1 @@
-export { useAssert } from "./useAssert";
+export { useAssert } from "./useAssert.js";

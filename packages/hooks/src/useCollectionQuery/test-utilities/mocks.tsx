@@ -2,7 +2,7 @@ import { DocumentNode } from "@apollo/client";
 import { MockedProvider, MockedResponse } from "@apollo/react-testing";
 import React from "react";
 import { v1 as uuidv1 } from "uuid";
-import { SUBSCRIPTION_QUERY } from "./queries";
+import { SUBSCRIPTION_QUERY } from "./queries.js";
 
 export function wrapper(mocks: MockedResponse[]) {
   function ApolloMockedProvider({

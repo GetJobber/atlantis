@@ -1,6 +1,6 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
-import { useOnKeyDown } from ".";
+import { useOnKeyDown } from "./index.js";
 
 test("fires the method when the key is pressed", () => {
   const keypressCallback = jest.fn();

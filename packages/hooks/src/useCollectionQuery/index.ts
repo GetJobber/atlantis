@@ -1,1 +1,1 @@
-export { useCollectionQuery } from "./useCollectionQuery";
+export { useCollectionQuery } from "./useCollectionQuery.js";

@@ -1,1 +1,1 @@
-export { usePasswordStrength } from "./usePasswordStrength";
+export { usePasswordStrength } from "./usePasswordStrength.js";

@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { useFocusTrap } from "./useFocusTrap";
+import { useFocusTrap } from "./useFocusTrap.js";
 
 const targetId = "target";
 const firstFocusableChild = "first-element";
