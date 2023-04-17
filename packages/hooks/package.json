@@ -12,6 +12,8 @@
     "postpublish": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts clean"
   },
   "files": [
+    "*.js",
+    "*.d.ts",
     "dist/*"
   ],
   "devDependencies": {
