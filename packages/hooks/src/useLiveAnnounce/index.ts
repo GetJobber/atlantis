@@ -1,1 +1,1 @@
-export { useLiveAnnounce } from "./useLiveAnnounce";
+export { useLiveAnnounce } from "./useLiveAnnounce.js";

@@ -1,1 +1,1 @@
-export { useRefocusOnActivator } from "./useRefocusOnActivator";
+export { useRefocusOnActivator } from "./useRefocusOnActivator.js";

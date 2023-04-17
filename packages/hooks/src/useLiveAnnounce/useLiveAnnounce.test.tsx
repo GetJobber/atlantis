@@ -1,6 +1,6 @@
 import React from "react";
 import { act, render, screen, waitFor } from "@testing-library/react";
-import { useLiveAnnounce } from ".";
+import { useLiveAnnounce } from "./index.js";
 
 function setupHook() {
   const returnVal: ReturnType<typeof useLiveAnnounce> = {

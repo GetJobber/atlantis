@@ -1,1 +1,0 @@
-export { useCollectionQuery } from "./useCollectionQuery";

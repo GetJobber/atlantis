@@ -5,7 +5,8 @@
     "jsx": "react",
     "declaration": true,
     "rootDir": "src",
-    "outDir": "dist"
+    "outDir": "dist",
+    "moduleResolution": "node16"
   },
   "include": ["src"],
   "files": ["src/index.ts"]
