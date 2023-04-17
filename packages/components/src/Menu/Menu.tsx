@@ -11,7 +11,7 @@ import React, {
 import { v1 as uuidv1 } from "uuid";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
-import { useOnKeyDown } from "@jobber/hooks";
+import { useOnKeyDown } from "@jobber/hooks/dist/useOnKeyDown";
 import { IconNames } from "@jobber/design";
 import styles from "./Menu.css";
 import { Button } from "../Button";

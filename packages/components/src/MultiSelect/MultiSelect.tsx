@@ -6,7 +6,7 @@ import React, {
   useState,
 } from "react";
 import classNames from "classnames";
-import { useOnKeyDown } from "@jobber/hooks";
+import { useOnKeyDown } from "@jobber/hooks/dist/useOnKeyDown";
 import styles from "./MultiSelect.css";
 import { DropDownMenu } from "./DropDownMenu";
 import { Options } from "./types";
