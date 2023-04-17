@@ -102,7 +102,7 @@ exports[`renders truck icon 1`] = `
   <svg
     class="Z6OfUI2sH34- TphtDHcwxDc-"
     data-testid="truck"
-    viewBox="0 0 720 720"
+    viewBox="0 0 1024 1024"
     xmlns="http://www.w3.org/2000/svg"
   >
     <g
