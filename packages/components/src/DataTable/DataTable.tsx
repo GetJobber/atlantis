@@ -1,10 +1,7 @@
 import { ColumnDef, Row, useReactTable } from "@tanstack/react-table";
 import classNames from "classnames";
 import React, { LegacyRef, ReactNode } from "react";
-import {
-  Breakpoints,
-  useResizeObserver,
-} from "@jobber/hooks/dist/useResizeObserver";
+import { Breakpoints, useResizeObserver } from "@jobber/hooks";
 import { Body } from "./Body";
 import { createTableSettings } from "./createTableSettings";
 import styles from "./DataTable.css";
