@@ -216,7 +216,7 @@ It is possible to generate Pre-releases through GitHub Actions.
 2. Navigate to the Actions tab.
 3. Navigate to the `Trigger Pre-release Build` Action
 4. Run click `Run Workflow`, select your branch and use the
-   `Publish Pre-release` option
+   `Publish Pre-release (Recommended)` option
 5. If you only have dependency changes run the `Force Publish <package>` to get
    those changes published. This is only needed if the only file modified is the
    `package.json` or `package-lock.json`
