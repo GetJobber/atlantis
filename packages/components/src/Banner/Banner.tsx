@@ -1,7 +1,7 @@
 import React, { ReactNode, useState } from "react";
 import classnames from "classnames";
 import { IconColorNames } from "@jobber/design";
-import { useResizeObserver } from "@jobber/hooks/dist/useResizeObserver";
+import { useResizeObserver } from "@jobber/hooks/useResizeObserver";
 import styles from "./Banner.css";
 import types from "./notificationTypes.css";
 import { Icon } from "../Icon";

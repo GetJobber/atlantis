@@ -4,7 +4,7 @@ import { XOR } from "ts-xor";
 import {
   Breakpoints,
   useResizeObserver,
-} from "@jobber/hooks/dist/useResizeObserver";
+} from "@jobber/hooks/useResizeObserver";
 import styles from "./Page.css";
 import { Heading } from "../Heading";
 import { Text } from "../Text";

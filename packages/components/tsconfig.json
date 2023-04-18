@@ -5,9 +5,17 @@
     "jsx": "react",
     "declaration": true,
     "rootDir": "src",
-    "outDir": "dist"
+    "outDir": "dist",
+    "paths": {
+      "@jobber/hooks/*": [
+        "../../packages/hooks/dist/*"
+      ]
+    }
   },
   "include": ["src"],
   "exclude": ["**/*.test.ts", "**/*.test.tsx", "entryPoints.ts"],
-  "references": [{ "path": "../formatters" }]
+  "references": [
+    { "path": "../formatters" },
+    { "path": "../hooks" }
+  ]
 }

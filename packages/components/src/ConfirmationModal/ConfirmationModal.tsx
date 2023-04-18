@@ -6,7 +6,7 @@ import React, {
   useImperativeHandle,
   useReducer,
 } from "react";
-import { useOnKeyDown } from "@jobber/hooks/dist/useOnKeyDown";
+import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { Modal } from "../Modal";
 import { Content } from "../Content";
 import { Markdown } from "../Markdown";
