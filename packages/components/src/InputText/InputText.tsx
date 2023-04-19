@@ -62,6 +62,11 @@ function InputTextInternal(
 ) {
   const inputRef = createRef<HTMLTextAreaElement | HTMLInputElement>();
   const actionsRef = createRef<FieldActionsRef>();
+  props = {
+    ...props,
+    multiline: true,
+    rows: 6,
+  };
 
   const rowRange = getRowRange();
 
