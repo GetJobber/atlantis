@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.7.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.7.0...@jobber/components@4.7.1) (2023-04-19)
+
+
+### Bug Fixes
+
+* **components:** form validations should only trigger on imperative change ([#1194](https://github.com/GetJobber/atlantis/issues/1194)) ([e6bb1a7](https://github.com/GetJobber/atlantis/commit/e6bb1a7fdbe24972265cea5a6e2377f84d5f124f))
+
+
+
+
+
 # [4.7.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.6.0...@jobber/components@4.7.0) (2023-04-13)
 
 
