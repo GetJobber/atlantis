@@ -15,53 +15,58 @@ interface EntryPoint {
   content: string;
 }
 
+const packages = process.argv.filter(param => param.includes("packages"));
+
 if (process.argv[2] === "clean") {
   clean();
 } else {
   build();
 }
 
-async function build() {
-  (await getEntryPoints()).forEach(async entryPoint => {
-    writeFileSync(entryPoint.file, entryPoint.content);
+function build() {
+  packages.forEach(async packagePath => {
+    (await getEntryPoints(packagePath)).forEach(async entryPoint => {
+      writeFileSync(`${packagePath}/${entryPoint.file}`, entryPoint.content);
+    });
   });
 }
 
-async function clean() {
-  (await getEntryPoints()).forEach(entryPoint => {
-    unlinkSync(entryPoint.file);
+function clean() {
+  packages.forEach(async packagePath => {
+    (await getEntryPoints(packagePath)).forEach(entryPoint => {
+      unlinkSync(`${packagePath}/${entryPoint.file}`);
+    });
   });
 }
 
-async function getEntryPoints() {
-  const indices = await pGlob("./src/*/index.ts");
-
+async function getEntryPoints(packagePath: string) {
+  const indices = await pGlob(`${packagePath}/src/*/index.ts`);
   return indices.reduce((entryPoints: EntryPoint[], entryPoint) => {
     const pathParts = entryPoint.split(sep);
-
+    const fileName = pathParts[3];
     entryPoints.push({
-      file: `${pathParts[2]}.js`,
+      file: `${pathParts[3]}.js`,
       content: `"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true,
 });
 
-var ${pathParts[2]} = require("./dist/${pathParts[2]}");
+var ${fileName} = require("./dist/${fileName}");
 
-Object.keys(${pathParts[2]}).forEach(function(key) {
+Object.keys(${fileName}).forEach(function(key) {
   if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
-      return ${pathParts[2]}[key];
+      return ${fileName}[key];
     },
   });
 });`,
     });
     entryPoints.push({
-      file: `${pathParts[2]}.d.ts`,
-      content: `export * from "./dist/${pathParts[2]}";\n`,
+      file: `${fileName}.d.ts`,
+      content: `export * from "./dist/${fileName}";\n`,
     });
 
     return entryPoints;
