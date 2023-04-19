@@ -51,6 +51,16 @@
   background-color: var(--field--background-color);
 }
 
+@keyframes animationSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
 .wrapper * {
   box-sizing: border-box;
 }
@@ -59,6 +69,11 @@
   position: relative;
   z-index: var(--field--base-elevation);
   box-shadow: var(--shadow-focus);
+  animation-duration: calc(var(--timing-slowest) * 10);
+  animation-iteration-count: infinite;
+  animation-name: animationSpin;
+  animation-timing-function: linear;
+  will-change: transform;
 }
 
 .miniLabel {

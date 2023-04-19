@@ -2,9 +2,10 @@
   --typography--letterSpacing-base: 0;
   --typography--letterSpacing-loose: calc(var(--base-unit) / 40);
 
-  --typography--fontFamily-normal: "Inter", Helvetica, Arial, sans-serif;
-  --typography--fontFamily-display: "Jobber Pro", "Poppins", Helvetica, Arial,
+  --typography--fontFamily-normal: "Comic Neue", "Inter", Helvetica, Arial,
     sans-serif;
+  --typography--fontFamily-display: "Comic Neue", "Jobber Pro", "Poppins",
+    Helvetica, Arial, sans-serif;
 
   --typography--fontSize-extravagant: calc(
     var(--typography--fontSize-large) * 3

@@ -37,17 +37,17 @@
   --color-inactive--onSurface: var(--color-blue--dark);
 
   /* Typography */
-  --color-heading: var(--color-blue);
-  --color-text: var(--color-greyBlue--dark);
+  --color-heading: var(--colour-new-heading);
+  --color-text: var(--colour-new-green);
   --color-text--secondary: var(--color-greyBlue);
   --color-text--reverse: var(--color-white);
   --color-text--reverse--secondary: var(--color-greyBlue--lighter);
 
   /* Surfaces and Borders */
-  --color-surface: var(--color-white);
+  --color-surface: var(--colour-hot-pink);
   --color-surface--hover: var(--color-yellow--lightest);
   --color-surface--active: var(--color-green--lightest);
-  --color-surface--background: var(--color-grey--lightest);
+  --color-surface--background: var(--colour-hot-pink-background);
   --color-surface--reverse: var(--color-blue);
 
   --color-border: var(--color-grey--lighter);
@@ -175,4 +175,9 @@
 
   --color-black--rgb: 0, 0, 0;
   --color-black: rgba(var(--color-black--rgb), 1);
+
+  --colour-hot-pink: rgb(227, 28, 121);
+  --colour-new-green: rgb(16, 227, 139);
+  --colour-new-heading: rgb(166, 227, 39);
+  --colour-hot-pink-background: rgb(250, 17, 242);
 }

@@ -1,5 +1,6 @@
 declare const styles: {
   readonly "wrapper": string;
+  readonly "animationSpin": string;
   readonly "miniLabel": string;
   readonly "textarea": string;
   readonly "invalid": string;

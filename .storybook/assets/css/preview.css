@@ -26,6 +26,10 @@ a:hover {
   background-color: var(--color-surface--background);
 }
 
+:global(.sbdocs-wrapper) {
+  background-color: var(--color-surface--background) !important;
+}
+
 :global(.sbdocs.sbdocs-a) {
   color: var(--color-interactive);
   font-family: inherit;
@@ -37,5 +41,5 @@ a:hover {
 }
 
 :global(.sbdocs.sbdocs-table tr:nth-of-type(2n)) {
-  background-color: transparent;
+  background-color: var(--color-surface--background);
 }
