@@ -8,6 +8,7 @@
     "packages/design",
     "packages/hooks",
     "packages/components",
+    "packages/mobile",
     "packages/docx",
     "packages/eslint-config",
     "packages/generators",
