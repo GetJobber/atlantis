@@ -18,6 +18,9 @@ interface MenuProps {
   readonly visible: boolean;
   readonly options: Option[];
   readonly selectedOption?: Option;
+  /**
+   * Element that it's attached to when the menu opens.
+   */
   readonly attachTo: RefObject<Element | null>;
   onOptionSelect(chosenOption: Option): void;
 }
@@ -31,7 +34,8 @@ export function Menu({
 }: MenuProps) {
   const [highlightedIndex, setHighlightedIndex] = useState(0);
   const {
-    setPositionedElementRef,
+    menuRef,
+    setMenuRef,
     styles: popperStyles,
     attributes,
     targetWidth,
@@ -53,7 +57,7 @@ export function Menu({
   const menu = (
     <div
       className={classnames(styles.options, { [styles.visible]: visible })}
-      ref={setPositionedElementRef}
+      ref={setMenuRef}
       style={{ ...popperStyles.popper, width: targetWidth }}
       {...attributes.popper}
     >
@@ -102,6 +106,14 @@ export function Menu({
   return createPortal(menu, document.body);
 
   function setupKeyListeners() {
+    useEffect(() => {
+      menuRef?.children[highlightedIndex].scrollIntoView?.({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "start",
+      });
+    }, [highlightedIndex]);
+
     useOnKeyDown("ArrowDown", (event: KeyboardEvent) => {
       const indexChange = arrowKeyPress(event, IndexChange.Next);
       if (indexChange) {
@@ -162,9 +174,8 @@ function isGroup(option: AnyOption) {
 }
 
 function useRepositionMenu(attachTo: MenuProps["attachTo"]) {
-  const [positionElement, setPositionedElementRef] =
-    useState<HTMLElement | null>();
-  const popper = usePopper(attachTo.current, positionElement, {
+  const [menuRef, setMenuRef] = useState<HTMLElement | null>();
+  const popper = usePopper(attachTo.current, menuRef, {
     modifiers: [
       { name: "offset", options: { offset: [0, 8] } },
       { name: "flip", options: { fallbackPlacements: ["top"] } },
@@ -173,5 +184,5 @@ function useRepositionMenu(attachTo: MenuProps["attachTo"]) {
 
   const targetWidth = attachTo.current?.clientWidth;
 
-  return { ...popper, setPositionedElementRef, targetWidth };
+  return { ...popper, menuRef, setMenuRef, targetWidth };
 }
