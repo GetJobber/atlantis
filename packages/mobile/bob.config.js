@@ -1,6 +1,6 @@
 module.exports = {
   source: "src",
-  output: "lib",
+  output: "dist",
   targets: [
     [
       "commonjs",

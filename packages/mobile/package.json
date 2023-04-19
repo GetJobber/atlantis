@@ -1,10 +1,10 @@
 {
   "name": "@jobber/mobile",
-  "main": "lib/commonjs/index.js",
-  "module": "lib/module/index.js",
-  "types": "lib/typescript/index.d.ts",
+  "main": "dist/commonjs/index.js",
+  "module": "dist/module/index.js",
+  "types": "dist/typescript/index.d.ts",
   "files": [
-    "lib",
+    "dist",
     "src",
     "!**/__tests__",
     "!**/__fixtures__",
@@ -12,7 +12,7 @@
   ],
   "version": "0.0.0",
   "scripts": {
-    "clean": "rm -rf lib/* tsconfig.tsbuildinfo",
+    "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
     "build": "npm run clean && bob build",
     "bootstrap": "npm run clean && bob build"
   },
