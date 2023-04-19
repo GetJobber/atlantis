@@ -9,7 +9,7 @@ it("returns dashboard icon", () => {
   expect(svgClassNames).toBe("icon base");
   expect(pathClassNames).toBe("");
   expect(paths).toEqual(iconMap.icons[name]);
-  expect(viewBox).toBe("0 0 720 720");
+  expect(viewBox).toBe("0 0 24 24");
 });
 
 it("returns apple icon", () => {
@@ -20,7 +20,7 @@ it("returns apple icon", () => {
   expect(svgClassNames).toBe("icon base");
   expect(pathClassNames).toBe("");
   expect(paths).toEqual(iconMap.icons[name]);
-  expect(viewBox).toBe("0 0 720 720");
+  expect(viewBox).toBe("0 0 24 24");
 });
 
 it("returns large arrowDown icon", () => {
@@ -33,7 +33,7 @@ it("returns large arrowDown icon", () => {
   expect(svgClassNames).toBe(`icon ${size}`);
   expect(pathClassNames).toBe("");
   expect(paths).toEqual(iconMap.icons[name]);
-  expect(viewBox).toBe("0 0 720 720");
+  expect(viewBox).toBe("0 0 24 24");
 });
 
 it("returns thumbsDown icon", () => {
@@ -45,7 +45,7 @@ it("returns thumbsDown icon", () => {
   expect(svgClassNames).toBe("icon base thumbsDown");
   expect(pathClassNames).toBe("");
   expect(paths).toEqual(iconMap.icons[mappedName]);
-  expect(viewBox).toBe("0 0 720 720");
+  expect(viewBox).toBe("0 0 24 24");
 });
 
 it("returns small more icon", () => {
@@ -58,7 +58,7 @@ it("returns small more icon", () => {
   expect(svgClassNames).toBe(`icon ${size}`);
   expect(pathClassNames).toBe("");
   expect(paths).toEqual(iconMap.icons[name]);
-  expect(viewBox).toBe("0 0 720 720");
+  expect(viewBox).toBe("0 0 24 24");
 });
 
 it("returns truck icon properties", () => {

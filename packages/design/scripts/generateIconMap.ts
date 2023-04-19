@@ -5,8 +5,7 @@ import { join, parse } from "path";
 import { load } from "cheerio";
 
 const iconFolder = join(__dirname, "../assets/icons");
-const iconMap: { height: number; icons: Record<string, string[]> } = {
-  height: 720,
+const iconMap: { icons: Record<string, string[]> } = {
   icons: {},
 };
 
