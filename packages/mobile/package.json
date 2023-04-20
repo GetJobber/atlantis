@@ -35,7 +35,6 @@
     "react": "*",
     "react-native": "*"
   },
-  "private": true,
   "eslintIgnore": [
     "node_modules/",
     "dist/"
