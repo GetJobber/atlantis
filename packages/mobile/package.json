@@ -1,11 +1,15 @@
 {
   "name": "@jobber/mobile",
-  "main": "dist/commonjs/index.js",
-  "module": "dist/module/index.js",
-  "types": "dist/typescript/index.d.ts",
+  "type": "module",
+  "exports": {
+    "./*": {
+      "types": "./dist/typescript/*",
+      "default": "./dist/module/*"
+    }
+  },
   "files": [
-    "dist",
     "src",
+    "dist",
     "!**/__tests__",
     "!**/__fixtures__",
     "!**/__mocks__"
@@ -24,6 +28,7 @@
     "ts-xor": "^1.1.0"
   },
   "devDependencies": {
+    "@babel/preset-flow": "^7.21.4",
     "@types/react": "~18.0.14",
     "@types/react-native": "^0.71.5",
     "metro-react-native-babel-preset": "^0.76.0",
@@ -38,6 +43,24 @@
   "private": true,
   "eslintIgnore": [
     "node_modules/",
-    "lib/"
-  ]
+    "dist/"
+  ],
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "dist",
+    "targets": [
+      [
+        "module",
+        {
+          "configFile": true
+        }
+      ],
+      [
+        "typescript",
+        {
+          "tsc": "../../node_modules/typescript/bin/tsc"
+        }
+      ]
+    ]
+  }
 }
