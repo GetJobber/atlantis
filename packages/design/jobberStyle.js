@@ -89,8 +89,7 @@ function jobberStyle(styling) {
 }
 
 function isFloatValue(value) {
-  const isFloat = parseFloat(value);
-  return value == isFloat;
+  return value == parseFloat(value);
 }
 
 function handleCalc(calcRegexResult) {
