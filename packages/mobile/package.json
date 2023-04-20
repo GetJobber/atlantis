@@ -38,6 +38,6 @@
   "private": true,
   "eslintIgnore": [
     "node_modules/",
-    "lib/"
+    "dist/"
   ]
 }
