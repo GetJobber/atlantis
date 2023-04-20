@@ -1,5 +1,7 @@
 {
   "name": "@jobber/mobile",
+  "version": "0.0.0",
+  "license": "MIT",
   "main": "dist/commonjs/index.js",
   "module": "dist/module/index.js",
   "types": "dist/typescript/index.d.ts",
@@ -10,7 +12,6 @@
     "!**/__fixtures__",
     "!**/__mocks__"
   ],
-  "version": "0.0.0",
   "scripts": {
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
     "build": "npm run clean && bob build",
@@ -18,17 +19,15 @@
   },
   "dependencies": {
     "@jobber/design": "*",
-    "react-native-gesture-handler": "^2.5.0",
-    "react-native-reanimated": "^2.14.4",
     "react-native-svg": "^13.9.0",
     "ts-xor": "^1.1.0"
   },
   "devDependencies": {
-    "@types/react": "~18.0.14",
-    "@types/react-native": "^0.71.5",
+    "@types/react": "*",
+    "@types/react-native": "*",
     "metro-react-native-babel-preset": "^0.76.0",
     "react-native-builder-bob": "^0.20.4",
-    "typescript": "^4.9.5"
+    "typescript": "*"
   },
   "peerDependencies": {
     "@babel/core": "*",
