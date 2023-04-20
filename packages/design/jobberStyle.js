@@ -82,8 +82,15 @@ function jobberStyle(styling) {
   } else if (varRegexResult) {
     return jobberStyle(varRegexResult[1]);
   } else {
-    return isSpacingValue(styleValue) ? parseFloat(styleValue) : styleValue;
+    return isSpacingValue(styleValue) || isFloatValue(styleValue)
+      ? parseFloat(styleValue)
+      : styleValue;
   }
+}
+
+function isFloatValue(value) {
+  const isFloat = parseFloat(value);
+  return value == isFloat;
 }
 
 function handleCalc(calcRegexResult) {
