@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.34.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.33.0...@jobber/design@0.34.0) (2023-04-21)
+
+
+### Features
+
+* **components:** Add the column button icon to atlantis [JOB-63504] ([#1199](https://github.com/GetJobber/atlantis/issues/1199)) ([348cc22](https://github.com/GetJobber/atlantis/commit/348cc2260cbf9e4b3585caced75420dfb531767b))
+
+
+
+
+
 # [0.33.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.32.0...@jobber/design@0.33.0) (2023-04-20)
 
 
