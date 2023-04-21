@@ -2,9 +2,29 @@
   "name": "@jobber/components-native",
   "version": "0.0.0",
   "license": "MIT",
-  "main": "dist/commonjs/index.js",
-  "module": "dist/module/index.js",
-  "types": "dist/typescript/index.d.ts",
+  "main": "dist/commonjs/src/index.js",
+  "module": "dist/module/src/index.js",
+  "types": "dist/typescript/src/index.d.ts",
+  "exports": {
+    "./*": {
+      "types": "./dist/types/*",
+      "require": "./dist/cjs/src/*",
+      "import": "./dist/esm/src/*",
+      "default": "./dist/esm/src/*"
+    }
+  },
+  "typesVersions": {
+    ">=3.1": {
+      "*": [
+        "ts3.1/*"
+      ]
+    },
+    ">=4.2": {
+      "*": [
+        "ts4.2/*"
+      ]
+    }
+  },
   "files": [
     "dist",
     "src",
@@ -14,8 +34,10 @@
   ],
   "scripts": {
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
-    "build": "npm run clean && bob build",
-    "bootstrap": "npm run clean && bob build"
+    "build": "npm run build:clean && npm run compile && node ./scripts/prepare-package-json",
+    "bootstrap": "npm run build",
+    "compile": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
+    "build:clean": "rm -rf ./dist"
   },
   "dependencies": {
     "@jobber/design": "*",
@@ -23,6 +45,7 @@
     "ts-xor": "^1.1.0"
   },
   "devDependencies": {
+    "@types/node": "*",
     "@types/react": "*",
     "@types/react-native": "*",
     "metro-react-native-babel-preset": "^0.76.0",

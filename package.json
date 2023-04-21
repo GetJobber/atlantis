@@ -61,6 +61,7 @@
     "@babel/preset-typescript": "^7.3.3",
     "@csstools/postcss-global-data": "^1.0.3",
     "@jobber/components": "*",
+    "@jobber/components-native": "*",
     "@jobber/design": "*",
     "@jobber/docx": "*",
     "@jobber/eslint-config": "*",
