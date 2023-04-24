@@ -6,10 +6,14 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rollup --config",
-    "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
-    "prepublishOnly": "ts-node --project ../../tsconfig.bin.json scripts/entryPoints.ts",
     "bootstrap": "npm run clean; npm run build",
-    "postpublish": "ts-node --project ../../tsconfig.bin.json scripts/entryPoints.ts clean"
+    "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
+    "entryPoints:build": "ts-node --project ../../tsconfig.bin.json scripts/entryPoints.ts",
+    "entryPoints:clean": "npm run entryPoints:build clean",
+    "prepack": "npm run entryPoints:build",
+    "postpack": "npm run entryPoints:clean",
+    "prepublishOnly": "npm run entryPoints:build",
+    "postpublish": "npm run entryPoints:clean"
   },
   "files": [
     "*.js",
