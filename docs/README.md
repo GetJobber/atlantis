@@ -229,6 +229,31 @@ forced pre-release._
 
 </details>
 
+<details>
+<summary>Creating a local release of Atlantis</summary>
+
+If you're not sharing your changes with your peers yet and want a quicker way to
+check your changes, you can run `npm pack` against one of the workspaces.
+
+```
+npm pack -w @jobber/components
+```
+
+That will create a `jobber-components-{{version}}.tgz` file on the root. You can
+then install it on your project.
+
+```
+npm i your/path/to/repo/jobber-components-{{version}}.tgz
+```
+
+You can replace `@jobber/components` with `@jobber/design`, `@jobber/hooks` or
+the package you want to be packed up.
+
+_NOTE: Use a pre-release if you want to share your changes with someone else
+instead of sending them the file._
+
+</details>
+
 ### What has changed
 
 ```sh
