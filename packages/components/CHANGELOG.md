@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.8.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.8.1...@jobber/components@4.8.2) (2023-04-24)
+
+
+### Bug Fixes
+
+* **components:** Autocomplete Menu Test Bug ([#1203](https://github.com/GetJobber/atlantis/issues/1203)) ([65cd14c](https://github.com/GetJobber/atlantis/commit/65cd14c676a368cbcfb37a2957d7a00ef9fa83fd))
+
+
+
+
+
 ## [4.8.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.8.0...@jobber/components@4.8.1) (2023-04-24)
 
 **Note:** Version bump only for package @jobber/components
