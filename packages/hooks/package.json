@@ -7,9 +7,13 @@
   "scripts": {
     "build": "tsc --project . --skipLibCheck",
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
-    "bootstrap": "npm run clean; npm run build"
+    "bootstrap": "npm run clean; npm run build",
+    "prepublishOnly": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts",
+    "postpublish": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts clean"
   },
   "files": [
+    "*.js",
+    "*.d.ts",
     "dist/*"
   ],
   "devDependencies": {
