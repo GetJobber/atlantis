@@ -6,37 +6,47 @@ interface InputPhoneNumberProps
   extends CommonFormFieldProps,
     Pick<
       FormFieldProps,
-      | "maxLength"
       | "autocomplete"
-      | "max"
-      | "min"
       | "onEnter"
       | "onFocus"
       | "onBlur"
-      | "inputRef"
       | "validations"
       | "readonly"
-      | "defaultValue"
-      | "keyboard"
     > {
   readonly value?: string;
+  readonly required?: boolean;
   onChange?(value: string): void;
-  readonly defaultValue?: string;
 }
 
 export function InputPhoneNumber(props: InputPhoneNumberProps) {
   const [maskedValue, setMaskedVal] = useState("");
+  const mask = "(***) ***-****";
 
   return (
-    <InputMask mask="(***) ***-****">
+    <InputMask mask={mask}>
       <FormField
         {...props}
         type="tel"
         miniLabelOnly={true}
-        validations={{ ...props.validations }}
+        validations={{
+          ...props.validations,
+          required: {
+            value: Boolean(props.required),
+            message: `${props.placeholder || "This"} is required`,
+          },
+          validate: getValidations,
+        }}
         value={maskedValue}
         onChange={(value: string) => setMaskedVal(value)}
       />
     </InputMask>
   );
+
+  function getValidations(value: InputPhoneNumberProps["value"]) {
+    if (value && value.length < mask.length) {
+      return `Enter a valid ${props.placeholder || "phone number"}`;
+    }
+
+    return true;
+  }
 }

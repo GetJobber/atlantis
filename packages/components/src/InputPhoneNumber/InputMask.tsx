@@ -15,9 +15,9 @@ export function InputMask({ mask, delimiter = "*", children }: InputMaskProps) {
         style={{
           fontFamily: "var(--typography--fontFamily-normal)",
           fontSize: "var(--typography--fontSize-base)",
-          color: "var(--color-text--secondary)",
+          color: "var(--color-grey)",
           position: "absolute",
-          bottom: "9px",
+          top: "20px",
           left: "17px",
           zIndex: 2,
           pointerEvents: "none",
