@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.8.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.7.3...@jobber/components@4.8.0) (2023-04-21)
+
+
+### Features
+
+* **components:** Add the column button icon to atlantis [JOB-63504] ([#1199](https://github.com/GetJobber/atlantis/issues/1199)) ([348cc22](https://github.com/GetJobber/atlantis/commit/348cc2260cbf9e4b3585caced75420dfb531767b))
+
+
+
+
+
+## [4.7.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.7.2...@jobber/components@4.7.3) (2023-04-20)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.7.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.7.1...@jobber/components@4.7.2) (2023-04-19)
+
+
+### Bug Fixes
+
+* Update positioning of Autocomplete Menu ([#1191](https://github.com/GetJobber/atlantis/issues/1191)) ([d6c2e78](https://github.com/GetJobber/atlantis/commit/d6c2e78a977e86e95065715ad73708b97345d1bf))
+
+
+
+
+
 ## [4.7.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.7.0...@jobber/components@4.7.1) (2023-04-19)
 
 
