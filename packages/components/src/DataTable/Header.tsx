@@ -19,7 +19,6 @@ export function Header<T extends object>({
   onRowClick,
 }: HeaderProps<T>) {
   const stickyClass = classNames({ [styles.stickyHeader]: stickyHeader });
-  console.log("remove me")
   return (
     <thead className={stickyClass}>
       {table.getHeaderGroups().map(headerGroup => (
