@@ -1,0 +1,23 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { InputPhoneNumber } from "@jobber/components/InputPhoneNumber";
+
+<Meta title="Components/InputPhoneNumber" component={InputPhoneNumber} />
+
+# Input Phone Number
+
+```ts
+import { InputPhoneNumber } from "@jobber/components/InputPhoneNumber";
+```
+
+<Canvas>
+  <Story
+    name="InputPhoneNumber"
+    args={{
+      placeholder: "Phone number",
+    }}
+  >
+    {args => <InputPhoneNumber {...args} />}
+  </Story>
+</Canvas>
+
+<ArgsTable of={InputPhoneNumber} story="InputPhoneNumber" />
