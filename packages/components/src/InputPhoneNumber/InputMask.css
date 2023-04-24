@@ -1,0 +1,14 @@
+.container {
+  position: relative;
+}
+
+.mask {
+  position: absolute;
+  top: 20px;
+  left: 17px;
+  z-index: var(--elevation-base);
+  color: var(--color-grey);
+  font-family: var(--typography--fontFamily-normal);
+  font-size: var(--typography--fontSize-base);
+  pointer-events: none;
+}
