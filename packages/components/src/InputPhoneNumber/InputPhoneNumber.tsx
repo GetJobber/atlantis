@@ -3,7 +3,7 @@ import { InputMask } from "./InputMask";
 import { CommonFormFieldProps, FormField, FormFieldProps } from "../FormField";
 
 interface InputPhoneNumberProps
-  extends CommonFormFieldProps,
+  extends Omit<CommonFormFieldProps, "align">,
     Pick<
       FormFieldProps,
       | "autocomplete"
