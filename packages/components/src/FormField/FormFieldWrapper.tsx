@@ -58,7 +58,6 @@ export function FormFieldWrapper({
       [styles.disabled]: disabled,
       [styles.inline]: inline,
       [styles.maxLength]: maxLength,
-      [styles.select]: type === "select",
     },
   );
 
@@ -93,7 +92,7 @@ export function FormFieldWrapper({
             {placeholder}
           </label>
           {prefix?.label && <AffixLabel {...prefix} labelRef={prefixRef} />}
-          {children}
+          <div className={styles.childrenWrapper}>{children}</div>
           {suffix?.label && (
             <AffixLabel {...suffix} labelRef={suffixRef} variation="suffix" />
           )}
