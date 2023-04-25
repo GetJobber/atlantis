@@ -62,7 +62,8 @@ fs.writeFile(
  * ```
  */
 
-// eslint-disable-next-line max-statements
+// Added up to 13 statements to accommodate sharing timing with mobile
+/*eslint max-statements: ["error", 13]*/
 function jobberStyle(styling) {
   const styleValue = removeNewLines(customProperties[styling]);
 
