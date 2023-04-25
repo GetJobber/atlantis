@@ -81,6 +81,7 @@ module.exports = {
     "\\.css$": "identity-obj-proxy",
     "react-markdown":
       "<rootDir>/node_modules/react-markdown/react-markdown.min.js",
+    "^@jobber/hooks/(.*)$": "<rootDir>/packages/hooks/dist/$1",
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
