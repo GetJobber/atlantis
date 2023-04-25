@@ -1,15 +1,19 @@
 {
   "name": "@jobber/hooks",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "license": "MIT",
   "main": "./dist/index.js",
   "types": "./dist/index.d.js",
   "scripts": {
     "build": "tsc --project . --skipLibCheck",
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
-    "bootstrap": "npm run clean; npm run build"
+    "bootstrap": "npm run clean; npm run build",
+    "prepublishOnly": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts",
+    "postpublish": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts clean"
   },
   "files": [
+    "*.js",
+    "*.d.ts",
     "dist/*"
   ],
   "devDependencies": {

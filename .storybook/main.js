@@ -113,6 +113,7 @@ const config = {
         "../packages/components/src",
       ),
       "@jobber/docx": path.resolve(__dirname, "../packages/docx/src"),
+      "@jobber/hooks": path.resolve(__dirname, "../packages/hooks/src"),
       mdxUtils: path.resolve(__dirname, "components"),
       "@atlantis": path.resolve(__dirname, "../"),
     });
