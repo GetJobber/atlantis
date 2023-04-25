@@ -24,7 +24,7 @@ export function InputMask({
         onChange: handleChange,
         children: (
           <div className={styles.mask} aria-hidden="true">
-            <span style={{ opacity: 0 }}>{String(inputValue)}</span>
+            <span className={styles.hiddenValue}>{String(inputValue)}</span>
             {placeholderValue}
           </div>
         ),

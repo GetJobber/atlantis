@@ -17,3 +17,8 @@
   line-height: var(--field--value-lineHeight);
   pointer-events: none;
 }
+
+.hiddenValue {
+  visibility: hidden;
+  opacity: 0;
+}
