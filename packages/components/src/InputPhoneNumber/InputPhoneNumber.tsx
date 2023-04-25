@@ -12,6 +12,8 @@ interface InputPhoneNumberProps
       | "onBlur"
       | "validations"
       | "readonly"
+      | "prefix"
+      | "suffix"
     > {
   readonly value?: string;
   readonly required?: boolean;
