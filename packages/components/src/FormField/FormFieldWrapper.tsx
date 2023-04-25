@@ -50,7 +50,9 @@ export function FormFieldWrapper({
       [styles.miniLabel]:
         (placeholder && value !== "") ||
         (placeholder && type === "select") ||
-        (placeholder && type === "time"),
+        (placeholder && type === "time") ||
+        // Naively assume that if the the type is tel, it is the InputPhoneNumber
+        (placeholder && type === "tel"),
       [styles.textarea]: type === "textarea",
       [styles.invalid]: invalid ?? error,
       [styles.disabled]: disabled,
@@ -116,6 +118,9 @@ export function FormFieldWrapper({
       paddingLeft: undefined,
       paddingRight: undefined,
     };
+
+    // Naively assume that if the the type is tel, it is the InputPhoneNumber
+    if (type === "tel") return newPadding;
 
     if (prefixRef?.current && !hasValue) {
       const { offsetWidth } = prefixRef.current;
