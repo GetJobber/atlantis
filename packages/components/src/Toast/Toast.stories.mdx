@@ -3,7 +3,15 @@ import { useRef } from "react";
 import { Button } from "@jobber/components/Button";
 import { Toast, showToast } from "@jobber/components/Toast";
 
-<Meta title="Components/Toast" component={Toast} />
+<Meta
+  title="Components/Toast"
+  component={Toast}
+  parameters={{
+    iframe: {
+      url: "https://codesandbox.io/s/individual-hooks-imports-itsnmd",
+    },
+  }}
+/>
 
 # Toast
 
@@ -31,6 +39,14 @@ import { showToast } from "@jobber/components/Toast";
 </Canvas>
 
 <ArgsTable of={showToast} />
+
+<iframe
+  src="https://codesandbox.io/embed/toast-example-xvwuoz?fontsize=14&hidenavigation=1&theme=dark"
+  title="Toast example"
+  className="iframe-example"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
 
 ## Design & usage guidelines
 
