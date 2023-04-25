@@ -18,19 +18,15 @@ export function InputMask({
     .replace(new RegExp(`\\${delimiter}`, "g"), "_")
     .slice(String(inputValue).length);
 
-  return (
-    <>
-      {cloneElement(children, {
-        onChange: handleChange,
-        children: (
-          <div className={styles.mask} aria-hidden="true">
-            <span className={styles.hiddenValue}>{String(inputValue)}</span>
-            {placeholderValue}
-          </div>
-        ),
-      })}
-    </>
-  );
+  return cloneElement(children, {
+    onChange: handleChange,
+    children: (
+      <div className={styles.mask} aria-hidden="true">
+        <span className={styles.hiddenValue}>{String(inputValue)}</span>
+        {placeholderValue}
+      </div>
+    ),
+  });
 
   function handleChange(value: string) {
     const patternChars = pattern.split("");
@@ -38,13 +34,36 @@ export function InputMask({
     const cleanVal = value
       .split("")
       .filter(char => !specialChars.includes(char));
-    const newMaskedValue = patternChars.reduce((result, item) => {
-      if (!cleanVal.length) return result;
-      if (specialChars.includes(item)) return result + item;
-      if (item === delimiter) return result + cleanVal.shift();
-      return result;
-    }, "");
+    const newMaskedValue = patternChars.reduce(
+      getMaskedValue(cleanVal, specialChars, delimiter),
+      "",
+    );
 
     onChange?.(newMaskedValue);
   }
+}
+
+function getMaskedValue(
+  cleanVal: string[],
+  specialChars: string[],
+  delimiter: string,
+) {
+  return (result: string, item: string) => {
+    if (!cleanVal.length) return result;
+    if (specialChars.includes(item)) return result + item;
+
+    if (item === delimiter) {
+      const nextValue = cleanVal.shift();
+
+      // Since this is only used in phone number, we can restrict it to
+      // just numbers for now.
+      if (!isNaN(Number(nextValue))) {
+        return result + nextValue;
+      }
+
+      return result;
+    }
+
+    return result;
+  };
 }
