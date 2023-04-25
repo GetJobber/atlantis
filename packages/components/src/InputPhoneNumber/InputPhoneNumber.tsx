@@ -20,10 +20,10 @@ interface InputPhoneNumberProps
 
 export function InputPhoneNumber(props: InputPhoneNumberProps) {
   const [maskedValue, setMaskedVal] = useState("");
-  const mask = "(***) ***-****";
+  const pattern = "(***) ***-****";
 
   return (
-    <InputMask mask={mask}>
+    <InputMask pattern={pattern}>
       <FormField
         {...props}
         type="tel"
@@ -43,7 +43,7 @@ export function InputPhoneNumber(props: InputPhoneNumberProps) {
   );
 
   function getValidations(value: InputPhoneNumberProps["value"]) {
-    if (value && value.length < mask.length) {
+    if (value && value.length < pattern.length) {
       return `Enter a valid ${props.placeholder || "phone number"}`;
     }
 
