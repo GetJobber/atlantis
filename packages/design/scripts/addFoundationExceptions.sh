@@ -14,5 +14,8 @@ add_js_linter_exceptions "foundation"
 add_type_linter_exceptions "foundation.ios"
 add_js_linter_exceptions "foundation.ios"
 
+add_type_linter_exceptions "foundation.native"
+add_js_linter_exceptions "foundation.native"
+
 add_type_linter_exceptions "foundation.android"
 add_js_linter_exceptions "foundation.android"

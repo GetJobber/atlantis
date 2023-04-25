@@ -20,7 +20,7 @@
     "build:cssTypes": "tcm src/icons",
     "build:colors": "node buildColors.js",
     "build:foundation": "node buildFoundation.js && node jobberStyle.js && npm run build:foundationTypes && npm run build:addFoundationExceptions && npm run build:removeTempFiles",
-    "build:foundationTypes": "tsc --declaration --emitDeclarationOnly --allowJs foundation.js foundation.android.js foundation.ios.js --outDir . --skipLibCheck",
+    "build:foundationTypes": "tsc --declaration --emitDeclarationOnly --allowJs foundation.js foundation.native.js foundation.android.js foundation.ios.js --outDir . --skipLibCheck",
     "build:addFoundationExceptions": "./scripts/addFoundationExceptions.sh",
     "build:removeTempFiles": "rm -f src/foundation.js && ./scripts/removeFoundationTempFiles.sh",
     "build:iconCssStyle": "node buildIconStyles.js && npm run build:iconCssStyleTypes",
@@ -51,6 +51,5 @@
     "rollup-plugin-typescript2": "^0.34.1",
     "typed-css-modules": "^0.7.0",
     "typescript": "^4.9.5"
-  },
-  "optionalDependencies": {}
+  }
 }

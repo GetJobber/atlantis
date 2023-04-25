@@ -5,3 +5,4 @@ remove_temp_files() {
 remove_temp_files "foundation"
 remove_temp_files "foundation.ios"
 remove_temp_files "foundation.android"
+remove_temp_files "foundation.native"

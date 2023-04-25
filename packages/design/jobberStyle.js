@@ -294,4 +294,16 @@ function writeMobileFoundationFiles() {
       console.log("Wrote iOS Foundations file");
     },
   );
+  fs.writeFile(
+    "./foundation.native.js",
+    iOSFoundationsExportString,
+    "utf-8",
+    err => {
+      if (err) {
+        console.log("An error occured while writing iOS Foundation File.");
+        return console.log(err);
+      }
+      console.log("Wrote Native Foundations file");
+    },
+  );
 }
