@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@jobber/design": "*",
-    "react-native-svg": "^13.9.0",
+    "react-native-svg": "^12.4.4",
     "ts-xor": "^1.1.0"
   },
   "devDependencies": {
