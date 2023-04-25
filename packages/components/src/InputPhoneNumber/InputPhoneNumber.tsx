@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { InputMask } from "./InputMask";
 import { CommonFormFieldProps, FormField, FormFieldProps } from "../FormField";
 
@@ -21,7 +21,6 @@ interface InputPhoneNumberProps
 }
 
 export function InputPhoneNumber(props: InputPhoneNumberProps) {
-  const [maskedValue, setMaskedVal] = useState("");
   const pattern = "(***) ***-****";
 
   return (
@@ -37,8 +36,6 @@ export function InputPhoneNumber(props: InputPhoneNumberProps) {
           },
           validate: getValidations,
         }}
-        value={maskedValue}
-        onChange={(value: string) => setMaskedVal(value)}
       />
     </InputMask>
   );

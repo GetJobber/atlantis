@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
 import { InputPhoneNumber } from "@jobber/components/InputPhoneNumber";
 
@@ -16,7 +17,10 @@ import { InputPhoneNumber } from "@jobber/components/InputPhoneNumber";
       placeholder: "Phone number",
     }}
   >
-    {args => <InputPhoneNumber {...args} />}
+    {args => {
+      const [value, setValue] = useState("");
+      return <InputPhoneNumber {...args} value={value} onChange={setValue} />;
+    }}
   </Story>
 </Canvas>
 
