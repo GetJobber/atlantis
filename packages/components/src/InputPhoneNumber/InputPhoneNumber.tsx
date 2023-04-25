@@ -27,7 +27,6 @@ export function InputPhoneNumber(props: InputPhoneNumberProps) {
       <FormField
         {...props}
         type="tel"
-        miniLabelOnly={true}
         validations={{
           ...props.validations,
           required: {

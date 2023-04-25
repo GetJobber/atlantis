@@ -19,13 +19,17 @@ export function InputMask({
     .slice(String(inputValue).length);
 
   return (
-    <div className={styles.container}>
-      {cloneElement(children, { onChange: handleChange })}
-      <div className={styles.mask} aria-hidden="true">
-        <span style={{ opacity: 0 }}>{String(inputValue)}</span>
-        {placeholderValue}
-      </div>
-    </div>
+    <>
+      {cloneElement(children, {
+        onChange: handleChange,
+        children: (
+          <div className={styles.mask} aria-hidden="true">
+            <span style={{ opacity: 0 }}>{String(inputValue)}</span>
+            {placeholderValue}
+          </div>
+        ),
+      })}
+    </>
   );
 
   function handleChange(value: string) {
