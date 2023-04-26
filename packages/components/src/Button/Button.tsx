@@ -112,7 +112,7 @@ export function Button(props: ButtonProps) {
     variation = "work",
     submit,
   } = props;
-
+  console.warn("test");
   const buttonClassNames = classnames(styles.button, styles[size], {
     [styles.onlyIcon]: icon && !label,
     [styles.hasIconAndLabel]: icon && label,
