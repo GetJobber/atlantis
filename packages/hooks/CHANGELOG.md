@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.0.2...@jobber/hooks@2.1.0) (2023-04-24)
+
+
+### Features
+
+* Upgrade to Node 18 [Feature Branch][JOB-62820] ([#1141](https://github.com/GetJobber/atlantis/issues/1141)) ([8b766cd](https://github.com/GetJobber/atlantis/commit/8b766cd1ebb215610ff3b0babe5d1f05540872b6)), closes [#1142](https://github.com/GetJobber/atlantis/issues/1142) [#1149](https://github.com/GetJobber/atlantis/issues/1149) [#1150](https://github.com/GetJobber/atlantis/issues/1150)
+
+
+
+
+
 ## [2.0.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.0.1...@jobber/hooks@2.0.2) (2023-03-22)
 
 **Note:** Version bump only for package @jobber/hooks

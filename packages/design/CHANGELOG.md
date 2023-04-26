@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.35.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.34.0...@jobber/design@0.35.0) (2023-04-25)
+
+
+### Features
+
+* **components:** Add the Online Booking icon to Atlantis [JOB-59894] ([#1208](https://github.com/GetJobber/atlantis/issues/1208)) ([dd969b2](https://github.com/GetJobber/atlantis/commit/dd969b2dfbeed1295c460efcdbf358f6a9ccca2b))
+
+
+
+
+
 # [0.34.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.33.0...@jobber/design@0.34.0) (2023-04-21)
 
 

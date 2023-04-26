@@ -67,7 +67,10 @@ export default {
     "@use-it/event-listener",
     "@jobber/design",
     "@jobber/formatters",
-    "@jobber/hooks",
+    new RegExp("@jobber/hooks/.*"),
+    "zxcvbn",
+    "use-resize-observer/polyfilled",
+    "@apollo/client",
     "@tanstack/react-table",
   ],
 };
