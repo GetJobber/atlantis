@@ -16,8 +16,12 @@ interface InputPhoneNumberProps
       | "suffix"
     > {
   readonly value?: string;
+  readonly onChange?: (value: string) => void;
+
+  /**
+   * Shows a "required" validation message when the component is left empty.
+   */
   readonly required?: boolean;
-  onChange?(value: string): void;
 }
 
 export function InputPhoneNumber(props: InputPhoneNumberProps) {

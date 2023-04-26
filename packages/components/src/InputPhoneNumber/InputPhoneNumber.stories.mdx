@@ -4,7 +4,7 @@ import { InputPhoneNumber } from "@jobber/components/InputPhoneNumber";
 
 <Meta title="Components/InputPhoneNumber" component={InputPhoneNumber} />
 
-# Input Phone Number
+# InputPhoneNumber
 
 ```ts
 import { InputPhoneNumber } from "@jobber/components/InputPhoneNumber";
@@ -15,6 +15,7 @@ import { InputPhoneNumber } from "@jobber/components/InputPhoneNumber";
     name="InputPhoneNumber"
     args={{
       placeholder: "Phone number",
+      prefix: { label: "+1", icon: "phone" },
     }}
   >
     {args => {
