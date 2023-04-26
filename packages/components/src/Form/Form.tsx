@@ -5,7 +5,13 @@ import React, {
   useEffect,
   useImperativeHandle,
 } from "react";
-import { ErrorOption, FormProvider, useForm } from "react-hook-form";
+import {
+  ErrorOption,
+  FormProvider,
+  NestedValue,
+  UnpackNestedValue,
+  useForm,
+} from "react-hook-form";
 
 export interface FormRef {
   submit(): void;
@@ -17,7 +23,7 @@ interface FormProps {
    * Callback for when the form has been sucessfully
    * submitted.
    */
-  onSubmit?(): void;
+  onSubmit?(data: UnpackNestedValue<NestedValue>): void;
 
   onStateChange?(formState: { isDirty: boolean; isValid: boolean }): void;
 }
@@ -32,6 +38,7 @@ export const Form = forwardRef(function InternalForm(
     trigger,
     handleSubmit,
     formState: { isDirty, isValid },
+    getValues,
   } = methods;
 
   useEffect(
@@ -50,7 +57,7 @@ export const Form = forwardRef(function InternalForm(
       const valid = await trigger();
 
       if (valid) {
-        submitHandler();
+        submitHandler(getValues());
       } else {
         trigger();
         errorHandler(errors);
@@ -77,8 +84,8 @@ export const Form = forwardRef(function InternalForm(
     </FormProvider>
   );
 
-  function submitHandler() {
-    onSubmit && onSubmit();
+  function submitHandler(data: UnpackNestedValue<NestedValue>) {
+    onSubmit?.(data);
   }
 
   function errorHandler(errs: ErrorOption) {

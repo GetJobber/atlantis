@@ -168,6 +168,45 @@ it("should focus on the first errored field", async () => {
   });
 });
 
+describe("onSubmit", () => {
+  it("should be able to access in the formData when submitted from the Form", async () => {
+    const submitHandler = jest.fn();
+    const { getByText, getByLabelText } = render(
+      <MockForm onSubmit={submitHandler} />,
+    );
+
+    const input = getByLabelText("test form");
+    const inputTwo = getByLabelText("test input");
+    fireEvent.change(input, { target: { value: "hello" } });
+    fireEvent.change(inputTwo, { target: { value: "second input" } });
+    fireEvent.click(getByText("submit"));
+
+    await waitFor(() =>
+      expect(submitHandler).toHaveBeenCalledWith({
+        test: "hello",
+        testInput: "second input",
+      }),
+    );
+  });
+
+  it("should be able to access in the formData when submitted outside of the form", async () => {
+    const submitHandler = jest.fn();
+    const { getByText, getByLabelText } = render(
+      <MockFormValidate onSubmit={submitHandler} />,
+    );
+
+    const input = getByLabelText("test form");
+    fireEvent.change(input, { target: { value: "hello" } });
+    fireEvent.click(getByText("submit"));
+
+    await waitFor(() =>
+      expect(submitHandler).toHaveBeenCalledWith({
+        test: "hello",
+      }),
+    );
+  });
+});
+
 interface MockFormValidateProps {
   onSubmit(): void;
   onStateChange?(): void;
