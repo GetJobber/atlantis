@@ -1,5 +1,5 @@
 import React from "react";
-import { useAssert } from "@jobber/hooks";
+import { useAssert } from "@jobber/hooks/useAssert";
 import { InternalChipProps } from "./ChipTypes";
 
 export interface ChipProps
