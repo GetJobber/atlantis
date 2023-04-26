@@ -207,6 +207,7 @@
   text-align: var(--field--textAlign);
   text-overflow: ellipsis;
   white-space: nowrap;
+  background-color: var(--color-surface);
   transform: translateY(var(--field--placeholder-transform));
   transition: all var(--timing-quick);
 }
