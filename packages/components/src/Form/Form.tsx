@@ -17,13 +17,13 @@ export interface FormRef {
   submit(): void;
 }
 
-interface FormProps {
+interface FormProps<T = NestedValue> {
   readonly children: ReactNode;
   /**
    * Callback for when the form has been sucessfully
    * submitted.
    */
-  onSubmit?(data: UnpackNestedValue<NestedValue>): void;
+  onSubmit?(data: UnpackNestedValue<T>): void;
 
   onStateChange?(formState: { isDirty: boolean; isValid: boolean }): void;
 }
