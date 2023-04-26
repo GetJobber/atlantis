@@ -17,7 +17,7 @@
     "build": "npm run build:clean && npm run compile",
     "bootstrap": "npm run build",
     "prepack": "npm run build",
-    "compile": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
+    "compile": "tsc -b ./tsconfig.esm.json ./tsconfig.types.json",
     "build:clean": "rm -rf ./dist"
   },
   "dependencies": {
