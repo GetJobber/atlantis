@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.36.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.35.0...@jobber/design@0.36.0) (2023-04-26)
+
+
+### Features
+
+* **design:** Add mobile timing tokens ([#1198](https://github.com/GetJobber/atlantis/issues/1198)) ([915c8cb](https://github.com/GetJobber/atlantis/commit/915c8cbc2df93c67e603025e329f6124325caf3b))
+
+
+
+
+
 # [0.35.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.34.0...@jobber/design@0.35.0) (2023-04-25)
 
 
