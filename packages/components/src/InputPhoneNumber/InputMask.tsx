@@ -1,4 +1,4 @@
-import React, { ReactElement, cloneElement } from "react";
+import React, { ReactElement, cloneElement, useState } from "react";
 import styles from "./InputMask.css";
 import { FormFieldProps } from "../FormField";
 
@@ -17,47 +17,81 @@ interface InputMaskProps {
    */
   readonly delimiter?: string;
 
+  /**
+   * Allow/prevent users adding from more value than the desired pattern.
+   * For example, your pattern could accept 10 characters. If it's strict, your
+   * users can only type 10 characters.
+   *
+   * @default true
+   */
+  readonly strict?: boolean;
+
   readonly children: ReactElement<FormFieldProps>;
 }
 
 export function InputMask({
-  pattern,
-  delimiter = "*",
   children,
+  delimiter = "*",
+  pattern,
+  strict = true,
 }: InputMaskProps) {
   const { value: inputValue, onChange } = children.props;
+  const [hasMask, setHasMask] = useState(true);
   const stringifiedValue = String(inputValue);
   const placeholderValue = pattern
     .replace(new RegExp(`\\${delimiter}`, "g"), "_")
     .slice(stringifiedValue.length);
 
+  const inputMask = (
+    <div className={styles.mask} aria-hidden="true">
+      <span className={styles.hiddenValue}>{stringifiedValue}</span>
+      {placeholderValue}
+    </div>
+  );
+
   return cloneElement(children, {
     onChange: handleChange,
-    children: (
-      <div className={styles.mask} aria-hidden="true">
-        <span className={styles.hiddenValue}>{stringifiedValue}</span>
-        {placeholderValue}
-      </div>
-    ),
+    children: hasMask && inputMask,
   });
 
   function handleChange(value: string) {
+    const { cleanValueChars, patternChars, specialChars, isOverCharLimit } =
+      getMaskingInfo(value);
+
+    if (!strict && isOverCharLimit) {
+      setHasMask(false);
+      onChange?.(cleanValueChars.join(""));
+    } else {
+      setHasMask(true);
+      const newMaskedValue = patternChars.reduce(
+        getMaskedValue(cleanValueChars, specialChars, delimiter),
+        "",
+      );
+      onChange?.(newMaskedValue);
+    }
+  }
+
+  function getMaskingInfo(value: string) {
     const patternChars = pattern.split("");
     const specialChars = patternChars.filter(char => char !== delimiter);
-    const cleanVal = value
-      .split("")
-      .filter(char => !specialChars.includes(char));
-    const newMaskedValue = patternChars.reduce(
-      getMaskedValue(cleanVal, specialChars, delimiter),
-      "",
-    );
 
-    onChange?.(newMaskedValue);
+    const cleanValueChars = value
+      .split("")
+      .filter(char => !specialChars.includes(char))
+      // Since this is only used in phone number, we can restrict it to
+      // just numbers for now.
+      .map(Number)
+      .filter(num => !isNaN(num));
+
+    const isOverCharLimit =
+      cleanValueChars.length > patternChars.length - specialChars.length;
+
+    return { cleanValueChars, patternChars, specialChars, isOverCharLimit };
   }
 }
 
 function getMaskedValue(
-  cleanVal: string[],
+  cleanVal: number[],
   specialChars: string[],
   delimiter: string,
 ) {
@@ -67,13 +101,6 @@ function getMaskedValue(
 
     if (nextCharacter === delimiter) {
       const nextValue = cleanVal.shift();
-
-      // Since this is only used in phone number, we can restrict it to
-      // just numbers for now.
-      if (isNaN(Number(nextValue))) {
-        return result;
-      }
-
       return result + nextValue;
     }
 

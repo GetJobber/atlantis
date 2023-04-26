@@ -24,31 +24,26 @@ interface InputPhoneNumberProps
   readonly required?: boolean;
 }
 
-export function InputPhoneNumber(props: InputPhoneNumberProps) {
+export function InputPhoneNumber({
+  required,
+  ...props
+}: InputPhoneNumberProps) {
+  const { placeholder, validations } = props;
   const pattern = "(***) ***-****";
 
   return (
-    <InputMask pattern={pattern}>
+    <InputMask pattern={pattern} strict={false}>
       <FormField
         {...props}
         type="tel"
         validations={{
-          ...props.validations,
           required: {
-            value: Boolean(props.required),
-            message: `${props.placeholder || "This"} is required`,
+            value: Boolean(required),
+            message: `${placeholder || "This"} is required`,
           },
-          validate: getValidations,
+          ...validations,
         }}
       />
     </InputMask>
   );
-
-  function getValidations(value: InputPhoneNumberProps["value"]) {
-    if (value && value.length < pattern.length) {
-      return `Enter a valid ${props.placeholder || "phone number"}`;
-    }
-
-    return true;
-  }
 }
