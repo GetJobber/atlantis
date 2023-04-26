@@ -4,6 +4,8 @@ const fs = require("fs");
 const customPropertiesObject = require("./src/foundation.js");
 // eslint-disable-next-line import/no-internal-modules
 const { getShadowStyles } = require("./src/getMobileShadows.js");
+// eslint-disable-next-line import/no-internal-modules
+const { getMobileLineHeights } = require("./src/getMobileLineHeights");
 
 const regexExpressions = {
   cssVars: /var\((.*)\)/,
@@ -251,13 +253,16 @@ function removeNewLines(text) {
 
 function writeMobileFoundationFiles() {
   const { androidShadows, iOSShadows } = getShadowStyles(resolvedCssVars);
+  const mobileLineHeightValues = getMobileLineHeights();
   const androidFoundationJobberStyle = {
     ...resolvedCssVars,
     ...androidShadows,
+    ...mobileLineHeightValues,
   };
   const iOSFoundationJobberStyle = {
     ...resolvedCssVars,
     ...iOSShadows,
+    ...mobileLineHeightValues,
   };
   const androidFoundationsExportString = `export const JobberStyle = ${JSON.stringify(
     androidFoundationJobberStyle,
