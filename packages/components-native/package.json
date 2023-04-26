@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
-    "build": "npm run build:clean && npm run compile && node ./scripts/prepare-package-json",
+    "build": "npm run build:clean && npm run compile",
     "bootstrap": "npm run build",
     "prepack": "npm run build",
     "compile": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
@@ -30,7 +30,6 @@
     "@types/react": "*",
     "@types/react-native": "*",
     "metro-react-native-babel-preset": "^0.76.0",
-    "react-native-builder-bob": "^0.20.4",
     "typescript": "*"
   },
   "peerDependencies": {
