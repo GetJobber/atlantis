@@ -207,7 +207,6 @@
   text-align: var(--field--textAlign);
   text-overflow: ellipsis;
   white-space: nowrap;
-  background-color: var(--color-surface);
   transform: translateY(var(--field--placeholder-transform));
   transition: all var(--timing-quick);
 }
@@ -218,6 +217,8 @@
 
 .textarea .label {
   top: var(--field--padding-top);
+  background-color: var(--color-surface);
+  background-clip: text;
   transform: translateY(0);
 }
 
