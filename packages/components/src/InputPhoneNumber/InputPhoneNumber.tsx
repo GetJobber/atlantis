@@ -15,8 +15,8 @@ interface InputPhoneNumberProps
       | "prefix"
       | "suffix"
     > {
-  readonly value?: string;
-  readonly onChange?: (value: string) => void;
+  readonly value: string;
+  readonly onChange: (value: string) => void;
 
   /**
    * Shows a "required" validation message when the component is left empty.
