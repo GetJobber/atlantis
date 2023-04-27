@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.37.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.36.0...@jobber/design@0.37.0) (2023-04-27)
+
+
+### Features
+
+* **design:** Export mobile foundations files ([#1206](https://github.com/GetJobber/atlantis/issues/1206)) ([043fec4](https://github.com/GetJobber/atlantis/commit/043fec4fec39c7a4f090907a715b118109614095))
+
+
+
+
+
 # [0.36.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.35.0...@jobber/design@0.36.0) (2023-04-26)
 
 
