@@ -218,7 +218,7 @@
 .textarea .label {
   top: var(--field--padding-top);
   background-color: var(--color-surface);
-  background-clip: text;
+  background-clip: content-box;
   transform: translateY(0);
 }
 
