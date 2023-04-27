@@ -4,7 +4,7 @@ require("@jobber/eslint-config/patch-eslint-plugin-resolution.js");
 const packageAliases = [
   ["@jobber/components", "./packages/components/src"],
   ["@jobber/components-native", "./packages/components-native/src"],
-  ["@jobber/hooks", "./packages/hooks"],
+  ["@jobber/hooks", "./packages/hooks/src"],
 ];
 
 module.exports = {
@@ -31,6 +31,7 @@ module.exports = {
         allow: [
           "@jobber/components/*",
           "@jobber/components-native/*",
+          "@jobber/hooks/*",
           "lodash/*",
         ],
       },

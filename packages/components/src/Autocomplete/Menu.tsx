@@ -107,7 +107,7 @@ export function Menu({
 
   function setupKeyListeners() {
     useEffect(() => {
-      menuRef?.children[highlightedIndex].scrollIntoView?.({
+      menuRef?.children[highlightedIndex]?.scrollIntoView?.({
         behavior: "smooth",
         block: "nearest",
         inline: "start",

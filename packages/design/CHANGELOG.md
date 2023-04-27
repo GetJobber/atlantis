@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.36.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.35.0...@jobber/design@0.36.0) (2023-04-26)
+
+
+### Features
+
+* **design:** Add mobile timing tokens ([#1198](https://github.com/GetJobber/atlantis/issues/1198)) ([915c8cb](https://github.com/GetJobber/atlantis/commit/915c8cbc2df93c67e603025e329f6124325caf3b))
+
+
+
+
+
+# [0.35.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.34.0...@jobber/design@0.35.0) (2023-04-25)
+
+
+### Features
+
+* **components:** Add the Online Booking icon to Atlantis [JOB-59894] ([#1208](https://github.com/GetJobber/atlantis/issues/1208)) ([dd969b2](https://github.com/GetJobber/atlantis/commit/dd969b2dfbeed1295c460efcdbf358f6a9ccca2b))
+
+
+
+
+
+# [0.34.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.33.0...@jobber/design@0.34.0) (2023-04-21)
+
+
+### Features
+
+* **components:** Add the column button icon to atlantis [JOB-63504] ([#1199](https://github.com/GetJobber/atlantis/issues/1199)) ([348cc22](https://github.com/GetJobber/atlantis/commit/348cc2260cbf9e4b3585caced75420dfb531767b))
+
+
+
+
+
+# [0.33.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.32.0...@jobber/design@0.33.0) (2023-04-20)
+
+
+### Features
+
+* **design:** Add opacity tokens to Atlantis web ([#1195](https://github.com/GetJobber/atlantis/issues/1195)) ([2a75d92](https://github.com/GetJobber/atlantis/commit/2a75d9257cbc8a0b5eb30ccaaef1dfbe7c65152e))
+
+
+
+
+
 # [0.32.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.31.2...@jobber/design@0.32.0) (2023-04-13)
 
 
