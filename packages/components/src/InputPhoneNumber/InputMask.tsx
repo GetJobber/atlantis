@@ -2,7 +2,7 @@ import React, { ReactElement, cloneElement, useState } from "react";
 import styles from "./InputMask.css";
 import { FormFieldProps } from "../FormField";
 
-interface InputMaskProps {
+export interface InputMaskProps {
   /**
    * Determines the masking pattern. By default, a `*` is used to be the value
    * you're expecting the user would type.
@@ -68,7 +68,7 @@ export function InputMask({
     } else {
       setHasMask(true);
       return patternChars.reduce(
-        getMaskedValue(cleanValueChars, specialChars, delimiter),
+        getMaskedValue(cleanValueChars, specialChars),
         "",
       );
     }
@@ -93,20 +93,12 @@ export function InputMask({
   }
 }
 
-function getMaskedValue(
-  cleanVal: number[],
-  specialChars: string[],
-  delimiter: string,
-) {
+function getMaskedValue(cleanVal: number[], specialChars: string[]) {
   return (result: string, nextCharacter: string) => {
     if (!cleanVal.length) return result;
     if (specialChars.includes(nextCharacter)) return result + nextCharacter;
 
-    if (nextCharacter === delimiter) {
-      const nextValue = cleanVal.shift();
-      return result + nextValue;
-    }
-
-    return result;
+    const nextValue = cleanVal.shift();
+    return result + nextValue;
   };
 }
