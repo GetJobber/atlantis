@@ -27,7 +27,6 @@ declare const styles: {
   readonly "badInvoice": string;
   readonly "payment": string;
   readonly "expense": string;
-  readonly "archive": string;
   readonly "video": string;
   readonly "excel": string;
   readonly "pdf": string;
