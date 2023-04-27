@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.9.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.9.1...@jobber/components@4.9.2) (2023-04-27)
+
+
+### Bug Fixes
+
+* **components:** calculate Z index for autocomplete  ([#1215](https://github.com/GetJobber/atlantis/issues/1215)) ([683e575](https://github.com/GetJobber/atlantis/commit/683e575bcbea6f2ac3f6e55a98cbb57065d69be7))
+
+
+
+
+
 ## [4.9.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.9.0...@jobber/components@4.9.1) (2023-04-26)
 
 **Note:** Version bump only for package @jobber/components
