@@ -36,8 +36,8 @@ export function InputMask({
   strict = true,
 }: InputMaskProps) {
   const { value: inputValue, onChange } = children.props;
-  const [hasMask, setHasMask] = useState(true);
-  const stringifiedValue = String(inputValue);
+  const [hasMask, setHasMask] = useState(!inputValue);
+  const stringifiedValue = String(inputValue || "");
   const placeholderValue = pattern
     .replace(new RegExp(`\\${delimiter}`, "g"), "_")
     .slice(stringifiedValue.length);
@@ -54,20 +54,23 @@ export function InputMask({
     children: hasMask && inputMask,
   });
 
-  function handleChange(value: string) {
+  function handleChange(value: string): void {
+    onChange?.(formatValue(value));
+  }
+
+  function formatValue(value: string): string {
     const { cleanValueChars, patternChars, specialChars, isOverCharLimit } =
       getMaskingInfo(value);
 
     if (!strict && isOverCharLimit) {
       setHasMask(false);
-      onChange?.(cleanValueChars.join(""));
+      return cleanValueChars.join("");
     } else {
       setHasMask(true);
-      const newMaskedValue = patternChars.reduce(
+      return patternChars.reduce(
         getMaskedValue(cleanValueChars, specialChars, delimiter),
         "",
       );
-      onChange?.(newMaskedValue);
     }
   }
 
