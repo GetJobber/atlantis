@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 import { InputPhoneNumber } from "@jobber/components/InputPhoneNumber";
 
 <Meta title="Components/InputPhoneNumber" component={InputPhoneNumber} />
 
 # InputPhoneNumber
+
+Automatically format your user's phone number as they type.
 
 ```ts
 import { InputPhoneNumber } from "@jobber/components/InputPhoneNumber";
@@ -15,14 +18,61 @@ import { InputPhoneNumber } from "@jobber/components/InputPhoneNumber";
     name="InputPhoneNumber"
     args={{
       placeholder: "Phone number",
-      prefix: { label: "+1", icon: "phone" },
     }}
   >
     {args => {
-      const [value, setValue] = useState("");
+      const [value, setValue] = useState(args.value);
       return <InputPhoneNumber {...args} value={value} onChange={setValue} />;
     }}
   </Story>
 </Canvas>
 
 <ArgsTable of={InputPhoneNumber} story="InputPhoneNumber" />
+
+## Usage guidelines
+
+Due to the auto-format, this component is restricted to only be used as a
+controlled component. That means the `value` and `onChange` prop is required,
+unlike the other input components.
+
+## With country code as a prefix
+
+Keep in mind that the country code won't be added to the value that the
+component would return. It is simply for visual purposes.
+
+<Canvas>
+  <ExampleWithHooks>
+    {() => {
+      const [value, setValue] = useState("");
+      return (
+        <InputPhoneNumber
+          placeholder="Phone number"
+          prefix={{ label: "+1" }}
+          value={value}
+          onChange={setValue}
+        />
+      );
+    }}
+  </ExampleWithHooks>
+</Canvas>
+
+## Dealing with existing data
+
+`InputPhoneNumber` will respect the format of the initial value you're giving
+it. It will only start auto-formatting the existing value when the user edits
+the input.
+
+<Canvas>
+  <ExampleWithHooks>
+    {() => {
+      const [value, setValue] = useState("555-TUNAA");
+      return (
+        <InputPhoneNumber
+          placeholder="Phone number"
+          value={value}
+          onChange={setValue}
+        />
+      );
+    }}
+  </ExampleWithHooks>
+</Canvas>
