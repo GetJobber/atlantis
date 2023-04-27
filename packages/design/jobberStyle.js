@@ -2,6 +2,8 @@
 const fs = require("fs");
 // eslint-disable-next-line import/no-internal-modules
 const customPropertiesObject = require("./src/foundation.js");
+// eslint-disable-next-line import/no-internal-modules
+const { getShadowStyles } = require("./src/getMobileShadows.js");
 
 const regexExpressions = {
   cssVars: /var\((.*)\)/,
@@ -25,9 +27,7 @@ fs.writeFile("./foundation.js", jsonContent, "utf8", function (err) {
     console.log("An error occured while writing JSON object to File.");
     return console.log(err);
   }
-  console.log("JSON file has been saved.");
 });
-
 const scssColors = getResolvedSCSSVariables(resolvedCssVars);
 
 fs.writeFile(
@@ -39,9 +39,9 @@ fs.writeFile(
       console.log("An error occured while writing SCSS to File.");
       return console.log(err);
     }
-    console.log("SCSS file has been saved.");
   },
 );
+writeMobileFoundationFiles();
 
 /**
  * Recursively resolve css custom properties.
@@ -258,4 +258,63 @@ function getPropertyValue(cssVar) {
 function removeNewLines(text) {
   if (!text) return text;
   return text.replace(/(\r\n|\n|\r)/gm, "");
+}
+
+function writeMobileFoundationFiles() {
+  const { androidShadows, iOSShadows } = getShadowStyles(resolvedCssVars);
+  const androidFoundationJobberStyle = {
+    ...resolvedCssVars,
+    ...androidShadows,
+  };
+  const iOSFoundationJobberStyle = {
+    ...resolvedCssVars,
+    ...iOSShadows,
+  };
+  const androidFoundationsExportString = `export const JobberStyle = ${JSON.stringify(
+    androidFoundationJobberStyle,
+    undefined,
+    2,
+  )}`;
+
+  const iOSFoundationsExportString = `export const JobberStyle = ${JSON.stringify(
+    iOSFoundationJobberStyle,
+    undefined,
+    2,
+  )}`;
+  fs.writeFile(
+    "./foundation.android.js",
+    androidFoundationsExportString,
+    "utf-8",
+    err => {
+      if (err) {
+        console.log("An error occured while writing Android Foundation File.");
+        return console.log(err);
+      }
+      console.log("Wrote Android Foundations file");
+    },
+  );
+  fs.writeFile(
+    "./foundation.ios.js",
+    iOSFoundationsExportString,
+    "utf-8",
+    err => {
+      if (err) {
+        console.log("An error occured while writing iOS Foundation File.");
+        return console.log(err);
+      }
+      console.log("Wrote iOS Foundations file");
+    },
+  );
+  fs.writeFile(
+    "./foundation.native.js",
+    iOSFoundationsExportString,
+    "utf-8",
+    err => {
+      if (err) {
+        console.log("An error occured while writing iOS Foundation File.");
+        return console.log(err);
+      }
+      console.log("Wrote Native Foundations file");
+    },
+  );
 }
