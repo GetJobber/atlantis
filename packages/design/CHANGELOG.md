@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.37.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.36.0...@jobber/design@0.37.0) (2023-04-27)
+
+
+### Features
+
+* **design:** Export mobile foundations files ([#1206](https://github.com/GetJobber/atlantis/issues/1206)) ([043fec4](https://github.com/GetJobber/atlantis/commit/043fec4fec39c7a4f090907a715b118109614095))
+
+
+
+
+
+# [0.36.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.35.0...@jobber/design@0.36.0) (2023-04-26)
+
+
+### Features
+
+* **design:** Add mobile timing tokens ([#1198](https://github.com/GetJobber/atlantis/issues/1198)) ([915c8cb](https://github.com/GetJobber/atlantis/commit/915c8cbc2df93c67e603025e329f6124325caf3b))
+
+
+
+
+
+# [0.35.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.34.0...@jobber/design@0.35.0) (2023-04-25)
+
+
+### Features
+
+* **components:** Add the Online Booking icon to Atlantis [JOB-59894] ([#1208](https://github.com/GetJobber/atlantis/issues/1208)) ([dd969b2](https://github.com/GetJobber/atlantis/commit/dd969b2dfbeed1295c460efcdbf358f6a9ccca2b))
+
+
+
+
+
 # [0.34.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.33.0...@jobber/design@0.34.0) (2023-04-21)
 
 

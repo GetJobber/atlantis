@@ -16,6 +16,7 @@ const regexExpressions = {
   rgbaVars: /rgba\(var\((.*)\),?(.*)\)/,
   removeAllNonNumerals: /[^0-9.+\-/*]/gi,
   extractAllVarGroups: /var\(.*?\)/g,
+  extractTimeNumber: /(\d+)ms/,
 };
 
 const customProperties = customPropertiesObject.customProperties;
@@ -65,6 +66,8 @@ writeMobileFoundationFiles();
  * ```
  */
 
+// Added up to 13 statements to accommodate sharing timing with mobile
+/*eslint max-statements: ["error", 13]*/
 function jobberStyle(styling) {
   const styleValue = removeNewLines(customProperties[styling]);
 
@@ -74,9 +77,11 @@ function jobberStyle(styling) {
   const rgbVarRegexResult = regexExpressions.rgbVars.exec(styleValue);
   //rgbaVarRegexResult returns --base-unit and alpha (if exists) from rgba(var(--base-unit), alpha)
   const rgbaVarRegexResult = regexExpressions.rgbaVars.exec(styleValue);
-
   //calcRegexResult returns var(--base-unit) / 16 from calc(var(--base-unit) / 16)
   const calcRegexResult = regexExpressions.calculations.exec(styleValue);
+  //timeNumberResult returns 100 from "100ms"
+  const timeNumberResult = regexExpressions.extractTimeNumber.exec(styleValue);
+
   if (calcRegexResult) {
     return handleCalc(calcRegexResult);
   } else if (rgbVarRegexResult) {
@@ -85,6 +90,8 @@ function jobberStyle(styling) {
     return handleRbga(rgbaVarRegexResult);
   } else if (varRegexResult) {
     return jobberStyle(varRegexResult[1]);
+  } else if (timeNumberResult) {
+    return handleTiming(timeNumberResult[1]);
   } else {
     return isSpacingValue(styleValue) || isFloatValue(styleValue)
       ? parseFloat(styleValue)
@@ -106,6 +113,10 @@ function handleCalc(calcRegexResult) {
   return isSpacingValue(calculatedValue)
     ? parseFloat(calculatedValue)
     : calculatedValue;
+}
+
+function handleTiming(timeNumberResult) {
+  return parseFloat(timeNumberResult);
 }
 
 function handleRbga(rgbaVarRegexResult) {

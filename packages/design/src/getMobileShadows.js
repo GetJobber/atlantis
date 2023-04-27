@@ -1,8 +1,8 @@
 // The API for shadows differs from iOS to Android.
 // iOS shadows behave fairly similar to CSS and have access to the full set of
-// [Shadow](https://reactnative.dev/docs/shadow-props) properties
+// Shadow properties: (https://reactnative.dev/docs/shadow-props).
 // Android can only access the shadowColor property and is otherwise reliant on
-// the more opinionated [elevation](https://reactnative.dev/docs/view-style-props#elevation-android)
+// the more opinionated elevation:(https://reactnative.dev/docs/view-style-props#elevation-android).
 
 function getShadowStyles(baseJobberStyle) {
   const sharedStyles = {
@@ -33,11 +33,9 @@ function getShadowStyles(baseJobberStyle) {
       shadowColor: sharedStyles["shadow-color"],
       shadowOffset: {
         width: sharedStyles["space-zero"],
-        // eslint-disable-next-line no-undef
         height: baseJobberStyle["space-minuscule"],
       },
       shadowOpacity: 0.16,
-      // eslint-disable-next-line no-undef
       shadowRadius: baseJobberStyle["radius-large"],
       elevation: sharedStyles["elevation-shadow-base"],
     },
