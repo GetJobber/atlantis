@@ -9,6 +9,11 @@ import { InputPhoneNumber } from "@jobber/components/InputPhoneNumber";
 
 Automatically format your user's phone number as they type.
 
+`InputPhoneNumber`'s auto-format is set to always be `(***) ***-****` and
+doesn't expect the user to type in their country code. Because phone numbers
+vary so much around the world, typing more than 10 digits will turn off the
+auto-formatting.
+
 ```ts
 import { InputPhoneNumber } from "@jobber/components/InputPhoneNumber";
 ```
