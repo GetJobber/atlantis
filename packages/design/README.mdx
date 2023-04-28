@@ -1,6 +1,7 @@
 # Foundation
 
-Foundational colors and rhythm for the Jobber Atlantis Design System
+Foundational colors, styling and design tokens for the Jobber Atlantis Design
+System
 
 ## Installation
 
@@ -75,5 +76,28 @@ module.exports = {
       importFrom: ["@jobber/design"],
     }),
   ],
+};
+```
+
+## Usage With React Native
+
+To use JobberStyles with React Native, add the following to the file containing
+your project's global styling:
+
+```ts
+// Import from `foundation.native` instead of `foundation` because foundation
+// would resolve the typescript for the web foundation instead of the React Native version.
+import { JobberStyle as mobileFoundationBase } from "@jobber/design/foundation.native";
+import { Platform } from "react-native";
+
+const JobberStyle: typeof mobileFoundationBase = Platform.select({
+  ios: () => require("@jobber/design/foundation.ios").JobberStyle,
+  android: () => require("@jobber/design/foundation.android").JobberStyle,
+  default: () => require("@jobber/design/foundation.native").JobberStyle,
+})();
+
+export const GlobalStyling = {
+  ...JobberStyle,
+  ...otherStyles,
 };
 ```
