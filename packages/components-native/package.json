@@ -34,6 +34,6 @@
   "peerDependencies": {
     "@babel/core": "^7.4.5",
     "react": "^18",
-    "react-native": ">=0.69.10"
+    "react-native": ">=0.69.2"
   }
 }
