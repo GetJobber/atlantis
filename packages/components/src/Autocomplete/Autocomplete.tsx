@@ -105,7 +105,7 @@ export function Autocomplete({
       {menuVisible && (
         <Menu
           attachTo={autocompleteRef}
-          visible={true}
+          visible={menuVisible && options.length > 0}
           options={options}
           selectedOption={value}
           onOptionSelect={handleMenuChange}
