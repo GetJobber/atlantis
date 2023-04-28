@@ -8,12 +8,12 @@ interface DividerProps {
    *
    * @default "base"
    */
-  readonly size?: "base" | "large" | "largest";
+  readonly size?: keyof typeof styles;
 }
 
 export function Divider({ size = "base" }: DividerProps): JSX.Element {
   const style = [
-    styles.divider,
+    styles.base,
     size === "large" && styles.large,
     size === "largest" && styles.largest,
   ];

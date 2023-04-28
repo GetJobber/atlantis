@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 import { JobberStyle } from "@jobber/design/foundation";
 
 export const styles = StyleSheet.create({
-  divider: {
+  base: {
     height: JobberStyle["space-minuscule"],
     margin: 0,
     borderBottomWidth: JobberStyle["border-base"],

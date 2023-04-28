@@ -25,7 +25,7 @@ Import and render an Atlantis component:
 import React from "react";
 import { Icon } from "@jobber/components-native";
 
-export default function MyComponent() {
+export function MyComponent() {
   return <Icon />;
 }
 ```

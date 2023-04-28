@@ -1,16 +1,7 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@jobber/components-native/*": [
-        "packages/components-native/src/*"
-      ]
-    }
+    "baseUrl": "."
   },
-  "include": [
-    "docs",
-    "packages/components-native"
-  ],
   "files": []
 }

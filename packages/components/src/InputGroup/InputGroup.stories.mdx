@@ -5,6 +5,7 @@ import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 import { ComponentStatus } from "@jobber/docx";
 import { InputGroup } from ".";
 import { Autocomplete } from "../Autocomplete";
+import { InputPhoneNumber } from "../InputPhoneNumber";
 import { InputText } from "../InputText";
 import { InputTime } from "../InputTime";
 
@@ -21,12 +22,16 @@ event) they are great candidates for an InputGroup.
 
 <Canvas>
   <Story name="InputGroup" args={{ flowDirection: "horizontal" }}>
-    {args => (
-      <InputGroup {...args}>
-        <InputTime defaultValue={new CivilTime(8, 0)} />
-        <InputTime defaultValue={new CivilTime(17, 0)} />
-      </InputGroup>
-    )}
+    {args => {
+      const [value, setValue] = useState("");
+      return (
+        <InputGroup {...args}>
+          <InputPhoneNumber value={value} onChange={setValue} />
+          <InputTime defaultValue={new CivilTime(8, 0)} />
+          <InputTime defaultValue={new CivilTime(17, 0)} />
+        </InputGroup>
+      );
+    }}
   </Story>
 </Canvas>
 
