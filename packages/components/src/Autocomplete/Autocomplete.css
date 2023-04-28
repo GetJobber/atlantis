@@ -6,7 +6,7 @@
 .options {
   display: none;
   position: absolute;
-  z-index: var(--elevation-menu);
+  z-index: calc(var(--elevation-menu) + var(--elevation-modal));
   width: 100%;
   /* Unfortunately this is how we define our line item picker height in jobber online.
   This is a concession to maintain visual parity. */
