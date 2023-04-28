@@ -93,7 +93,7 @@ export function InputMask({
     const cleanValueChars = value
       .split("")
       .filter(char => !specialChars.includes(char))
-      // Since this is only used in phone number, we can restrict it to
+      // Since this is only used in InputPhoneNumber, we can restrict it to
       // just numbers for now.
       .map(Number)
       .filter(num => !isNaN(num));
