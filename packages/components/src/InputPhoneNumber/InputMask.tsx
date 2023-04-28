@@ -4,14 +4,26 @@ import { FormFieldProps } from "../FormField";
 
 export interface InputMaskProps {
   /**
-   * Determines the masking pattern. By default, a `*` is used to be the value
-   * you're expecting the user would type.
+   * A string pattern to mask the value. For example:
+   *
+   * - Phone number: `(***) ***-*****` = `(555) 123-3456`
+   * - Hours and minutes: `**:**` = `01:20`
+   *
+   * By default, a `*` is used to indicate where a value would be in place. To
+   * change that, use the `delimiter` prop.
    */
   readonly pattern: string;
 
   /**
    * Change the delimiter when you need to have a `*` as a value that the input
-   * returns.
+   * returns. For example, you want your pattern to have a `*` in it.
+   *
+   * ```
+   * <InputMask pattern="n*n=n" delimiter="n" />
+   * ```
+   *
+   * It would now replace `n` with the value you type and end up with `1*2=2` if
+   * you give a value of `122`.
    *
    * @default "*"
    */
