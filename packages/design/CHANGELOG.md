@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.37.1...@jobber/design@0.38.0) (2023-04-28)
+
+
+### Features
+
+* **design:** Move mobile lineheight into design ([#1211](https://github.com/GetJobber/atlantis/issues/1211)) ([eaabf22](https://github.com/GetJobber/atlantis/commit/eaabf22e1d201763c018d68bfa9a7a2e1f7c09a4)), closes [#1214](https://github.com/GetJobber/atlantis/issues/1214)
+* Icon map generator in 🔱 Atlantis! ([#1190](https://github.com/GetJobber/atlantis/issues/1190)) ([c19e800](https://github.com/GetJobber/atlantis/commit/c19e8007932309b16d00d4c3228be14450f7a3e1))
+
+
+
+
+
 ## [0.37.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.37.0...@jobber/design@0.37.1) (2023-04-27)
 
 **Note:** Version bump only for package @jobber/design
