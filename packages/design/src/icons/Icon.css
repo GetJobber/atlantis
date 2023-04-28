@@ -79,10 +79,6 @@
   fill: var(--color-orange);
 }
 
-.archive {
-  fill: var(--color-blue);
-}
-
 .video {
   fill: var(--color-lightBlue);
 }
