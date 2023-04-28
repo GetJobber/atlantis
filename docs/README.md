@@ -179,7 +179,7 @@ publish whenever a pull request is merged.
 <code>npm run release:unpublished-package</code>
 </details>
 
-### Pre-release
+## Pre-release
 
 <details>
 <summary>Releasing manually (Team Atlantis Only)</summary>
@@ -229,30 +229,28 @@ forced pre-release._
 
 </details>
 
-<details>
-<summary>Creating a local release of Atlantis</summary>
+## Local testing
 
 If you're not sharing your changes with your peers yet and want a quicker way to
-check your changes, you can run `npm pack` against one of the workspaces.
+check your changes, you can run `npm run pack {{scope}}` from the root folder
+against one of the workspaces.
 
 ```
-npm pack -w @jobber/components
+npm run pack @jobber/components
 ```
 
 That will create a `jobber-components-{{version}}.tgz` file on the root. You can
 then install it on your project.
 
 ```
-npm i your/path/to/repo/jobber-components-{{version}}.tgz
+npm i your/path/to/atlantis/repo/jobber-components-{{version}}.tgz
 ```
 
 You can replace `@jobber/components` with `@jobber/design`, `@jobber/hooks` or
 the package you want to be packed up.
 
-_NOTE: Use a pre-release if you want to share your changes with someone else
-instead of sending them the file._
-
-</details>
+_**NOTE: Use a pre-release if you want to share your changes with someone else
+instead of sending them the file.**_
 
 ### What has changed
 
