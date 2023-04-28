@@ -8,4 +8,8 @@ module.exports = {
   ],
   "*.css": ["stylelint --fix --allow-empty-input", "git add"],
   "*.{md,mdx}": ["prettier --write", "git add"],
+  "./packages/design/assets/icons/*.svg": [
+    "svgo --config ./svgo.config.js",
+    "git add",
+  ],
 };

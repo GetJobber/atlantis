@@ -54,7 +54,8 @@ export function getIcon({ name, color, size = "base" }: IconProps) {
 
   const pathClassNames = getPathClassNames(name, color);
   const paths = getPaths(name);
-  const viewBox = `0 0 ${iconMap.height} ${iconMap.height}`;
+  const iconSize = name === "truck" ? 1024 : 24;
+  const viewBox = `0 0 ${iconSize} ${iconSize}`;
   return { svgClassNames, pathClassNames, paths, viewBox } as const;
 }
 
@@ -107,7 +108,6 @@ function getPathClassNames(name: string, color?: IconColorNames) {
     [styles.paidInvoice]: name === "paidInvoice",
     [styles.payment]: name === "payment",
     [styles.expense]: name === "expense",
-    [styles.archive]: name === "archive",
     [styles.excel]: name === "excel",
     [styles.pdf]: name === "pdf",
     [styles.word]: name === "word",
