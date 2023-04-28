@@ -26,11 +26,10 @@
     "ts-xor": "^1.1.0"
   },
   "devDependencies": {
-    "@types/node": "*",
-    "@types/react": "*",
-    "@types/react-native": "*",
+    "@types/react": "^18.0.28",
+    "@types/react-native": "^0.71.6",
     "metro-react-native-babel-preset": "^0.76.0",
-    "typescript": "*"
+    "typescript": "^4.9.5"
   },
   "peerDependencies": {
     "@babel/core": "^7.4.5",
