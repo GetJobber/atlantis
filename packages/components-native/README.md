@@ -30,6 +30,19 @@ export function MyComponent() {
 }
 ```
 
+## Setting up with Jest
+
+In order to make `@jobber/components-native` work with Jest, you may need to
+make Jest transpile the package by adding
+`"/node_modules/@jobber/components-native"` to `transformIgnorePatterns` in you
+Jest config.
+
+```json
+transformIgnorePatterns: [
+  "node_modules/@jobber/components-native",
+],
+```
+
 ## Further Reading
 
 More information on Atlantis can be found at
