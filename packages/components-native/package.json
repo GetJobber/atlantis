@@ -17,7 +17,7 @@
     "build": "npm run build:clean && npm run compile",
     "bootstrap": "npm run build",
     "prepack": "npm run build",
-    "compile": "tsc -b ./tsconfig.esm.json ./tsconfig.types.json",
+    "compile": "tsc -b",
     "build:clean": "rm -rf ./dist"
   },
   "dependencies": {
@@ -36,9 +36,5 @@
     "@babel/core": "*",
     "react": "*",
     "react-native": "*"
-  },
-  "eslintIgnore": [
-    "node_modules/",
-    "dist/"
-  ]
+  }
 }
