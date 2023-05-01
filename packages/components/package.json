@@ -2,8 +2,12 @@
   "name": "@jobber/components",
   "version": "4.10.0",
   "license": "MIT",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "exports": {
+    "./*": {
+      "types": "./dist/*/*.d.ts",
+      "default": "./dist/*.js"
+    }
+  },
   "scripts": {
     "build": "rollup --config",
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
