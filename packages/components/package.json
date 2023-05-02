@@ -11,9 +11,7 @@
     "entryPoints:build": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts",
     "entryPoints:clean": "npm run entryPoints:build clean",
     "prepack": "npm run entryPoints:build",
-    "postpack": "npm run entryPoints:clean",
-    "prepublishOnly": "npm run entryPoints:build",
-    "postpublish": "npm run entryPoints:clean"
+    "postpack": "npm run entryPoints:clean"
   },
   "files": [
     "*.js",
