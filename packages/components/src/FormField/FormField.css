@@ -65,6 +65,8 @@
   --field--placeholder-color: var(--color-text--secondary);
   --field--placeholder-offset: var(--space-smallest);
   --field--placeholder-transform: 0;
+  --field--padding-top: calc(var(--space-base) + var(--space-smaller));
+  --field--padding-bottom: var(--space-small);
 }
 
 .wrapper.textarea {
@@ -93,6 +95,8 @@
 .small {
   --field--padding-left: calc(var(--space-base) - var(--space-smaller));
   --field--padding-right: calc(var(--space-base) - var(--space-smaller));
+  --field--padding-top: var(--space-small);
+  --field--padding-bottom: var(--space-small);
   --field--height: calc(var(--space-larger) + var(--space-smaller));
 }
 
@@ -135,6 +139,11 @@
   position: relative;
 }
 
+.childrenWrapper {
+  position: relative;
+  flex: 1;
+}
+
 /**
  * Input
  **/
@@ -142,6 +151,7 @@
   position: relative;
   z-index: var(--field--base-elevation);
   width: 100%;
+  height: 100%;
   padding-top: var(--field--padding-top);
   padding-bottom: var(--field--padding-bottom);
   padding-left: var(--field--padding-left);
@@ -161,23 +171,8 @@
   outline: none;
 }
 
-.miniLabel .input {
-  --field--padding-top: calc(var(--space-base) + var(--space-smaller));
-  --field--padding-bottom: var(--space-small);
-}
-
 .textarea .input {
   resize: vertical;
-}
-
-.small .input {
-  --field--padding-top: var(--space-small);
-  --field--padding-bottom: var(--space-small);
-}
-
-.select .input {
-  --field--padding-top: 0;
-  --field--padding-bottom: 0;
 }
 
 .input:-webkit-autofill,
@@ -185,10 +180,6 @@
 .input:-webkit-autofill:focus,
 .input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px var(--color-surface) inset !important;
-}
-
-.miniLabel.select:not(.small) .input {
-  --field--padding-top: var(--space-small);
 }
 
 /**
@@ -295,7 +286,8 @@
 }
 
 .miniLabel:not(.small) .affixLabel {
-  padding-top: calc(var(--field--padding-top) - 2px);
+  padding-top: var(--field--padding-top);
+  padding-bottom: var(--field--padding-bottom);
 }
 
 .description {

@@ -148,6 +148,7 @@ export function FormField(props: FormFieldProps) {
                     ref={inputRef as MutableRefObject<HTMLInputElement>}
                   />
                   {loading && <FormFieldPostFix variation="spinner" />}
+                  {children}
                 </>
               );
           }

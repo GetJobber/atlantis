@@ -1,6 +1,6 @@
 {
   "name": "@jobber/hooks",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "license": "MIT",
   "main": "./dist/index.js",
   "types": "./dist/index.d.js",
@@ -8,8 +8,12 @@
     "build": "tsc --project . --skipLibCheck",
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
     "bootstrap": "npm run clean; npm run build",
-    "prepublishOnly": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts",
-    "postpublish": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts clean"
+    "entryPoints:build": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts",
+    "entryPoints:clean": "npm run entryPoints:build clean",
+    "prepack": "npm run entryPoints:build",
+    "postpack": "npm run entryPoints:clean",
+    "prepublishOnly": "npm run entryPoints:build",
+    "postpublish": "npm run entryPoints:clean"
   },
   "files": [
     "*.js",
@@ -39,7 +43,7 @@
     "zxcvbn": "^4.4.2"
   },
   "peerDependencies": {
-    "@apollo/client": "^3.7.10",
+    "@apollo/client": "^3.0.0",
     "react": "^18"
   }
 }

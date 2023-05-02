@@ -1,15 +1,19 @@
 {
   "name": "@jobber/components",
-  "version": "4.9.1",
+  "version": "4.11.0",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rollup --config",
-    "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
-    "prepublishOnly": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts",
     "bootstrap": "npm run clean; npm run build",
-    "postpublish": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts clean"
+    "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
+    "entryPoints:build": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts",
+    "entryPoints:clean": "npm run entryPoints:build clean",
+    "prepack": "npm run entryPoints:build",
+    "postpack": "npm run entryPoints:clean",
+    "prepublishOnly": "npm run entryPoints:build",
+    "postpublish": "npm run entryPoints:clean"
   },
   "files": [
     "*.js",
@@ -17,9 +21,9 @@
     "dist/*"
   ],
   "dependencies": {
-    "@jobber/design": "^0.36.0",
+    "@jobber/design": "^0.38.0",
     "@jobber/formatters": "*",
-    "@jobber/hooks": "^2.1.0",
+    "@jobber/hooks": "^2.1.1",
     "@popperjs/core": "^2.0.6",
     "@std-proposal/temporal": "0.0.1",
     "@tanstack/react-table": "8.5.13",
