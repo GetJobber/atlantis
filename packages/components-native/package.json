@@ -1,0 +1,39 @@
+{
+  "name": "@jobber/components-native",
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "dist/src/index.js",
+  "module": "dist/src/index.js",
+  "types": "dist/types/src/index.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__"
+  ],
+  "scripts": {
+    "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
+    "build": "npm run build:clean && npm run compile",
+    "bootstrap": "npm run build",
+    "prepack": "npm run build",
+    "compile": "tsc -b",
+    "build:clean": "rm -rf ./dist"
+  },
+  "dependencies": {
+    "@jobber/design": "*",
+    "react-native-svg": "^12.4.4",
+    "ts-xor": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.28",
+    "@types/react-native": "^0.71.6",
+    "metro-react-native-babel-preset": "^0.76.0",
+    "typescript": "^4.9.5"
+  },
+  "peerDependencies": {
+    "@babel/core": "^7.4.5",
+    "react": "^18",
+    "react-native": ">=0.69.2"
+  }
+}
