@@ -11,8 +11,8 @@ declare const styles: {
   readonly "right": string;
   readonly "maxLength": string;
   readonly "inputWrapper": string;
+  readonly "childrenWrapper": string;
   readonly "input": string;
-  readonly "select": string;
   readonly "label": string;
   readonly "postfix": string;
   readonly "affixIcon": string;
