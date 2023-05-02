@@ -27,6 +27,7 @@
     "lint:fix": "npm run lint:js -- --fix && npm run lint:css -- --fix && npm run lint:markdown -- --write",
     "lint:js": "eslint --ext .js,.jsx,.ts,.tsx .",
     "lint:markdown": "prettier --check '**/*.{md,mdx}' --write",
+    "pack": "npm run bootstrap && npm pack -w",
     "plop": "echo '🚧 `npm run plop` is now `npm run generate`'",
     "postinstall": "npm run bootstrap",
     "prestart": "npm run build:hooksIndex",
