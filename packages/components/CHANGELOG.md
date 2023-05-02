@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.11.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.10.1...@jobber/components@4.11.0) (2023-05-02)
+
+
+### Features
+
+* Create InputPhoneNumber ([#1209](https://github.com/GetJobber/atlantis/issues/1209)) ([bd9cfcb](https://github.com/GetJobber/atlantis/commit/bd9cfcbb446fecc3b133468eda1c5c12ca161651))
+
+
+
+
+
 ## [4.10.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.10.0...@jobber/components@4.10.1) (2023-05-01)
 
 **Note:** Version bump only for package @jobber/components
