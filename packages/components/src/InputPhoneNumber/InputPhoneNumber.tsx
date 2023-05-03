@@ -41,9 +41,21 @@ export function InputPhoneNumber({
             value: Boolean(required),
             message: `${placeholder || "This"} is required`,
           },
+          validate: getPhoneNumberValidation,
           ...validations,
         }}
       />
     </InputMask>
   );
+}
+
+function getPhoneNumberValidation(value: string): string | true {
+  // Remove space, parenthesis and hyphen
+  const cleanValue = value.replace(/[- )(]/g, "");
+
+  if (cleanValue.length < 10) {
+    return "Enter a phone number";
+  }
+
+  return true;
 }
