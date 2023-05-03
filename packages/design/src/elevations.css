@@ -7,7 +7,6 @@
    * Modal has this much z-index to overcome docz z-index. This can be lowered
    * once we create our own docz theme
    */
-  --elevation-topbar: 1000;
   --elevation-modal: 1001;
   --elevation-tooltip: 1002;
   --elevation-toast: 1003;
