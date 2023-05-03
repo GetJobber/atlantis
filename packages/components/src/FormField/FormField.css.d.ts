@@ -1,11 +1,11 @@
 declare const styles: {
   readonly "wrapper": string;
   readonly "miniLabel": string;
+  readonly "large": string;
   readonly "textarea": string;
   readonly "invalid": string;
   readonly "disabled": string;
   readonly "small": string;
-  readonly "large": string;
   readonly "inline": string;
   readonly "center": string;
   readonly "right": string;

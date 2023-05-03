@@ -69,6 +69,12 @@
   --field--padding-bottom: var(--space-small);
 }
 
+.miniLabel.large {
+  --field--padding-top: calc(
+    var(--space-base) + var(--space-smaller) + var(--space-small)
+  );
+}
+
 .wrapper.textarea {
   height: auto;
   min-height: auto;
@@ -207,15 +213,15 @@
 }
 
 .textarea .label {
-  top: 0;
+  --field--placeholder-offset: 0;
   width: calc(100% - var(--field--padding-right));
   padding-top: var(--field--padding-top);
-  background-color: var(--color-surface);
   transform: translateY(0);
 }
 
 .textarea.miniLabel .label {
   padding-top: var(--space-smallest);
+  background-color: var(--color-surface);
 }
 
 .small.miniLabel .label {
