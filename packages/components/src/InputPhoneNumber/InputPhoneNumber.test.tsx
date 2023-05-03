@@ -1,4 +1,3 @@
-/* eslint-disable max-statements */
 import React from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { InputPhoneNumber } from "./InputPhoneNumber";
