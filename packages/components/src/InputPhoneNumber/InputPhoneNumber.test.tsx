@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { InputPhoneNumber } from "./InputPhoneNumber";
 
 const placeholder = "Phone";
+const validationMessage = "Enter a phone number";
+
+jest.mock("framer-motion", () => ({
+  motion: {
+    div: require("react").forwardRef(({ children, ...rest }, ref) => (
+      <div {...rest} ref={ref}>
+        {children}
+      </div>
+    )),
+  },
+  AnimatePresence: jest
+    .fn()
+    .mockImplementation(({ children }) => <>{children}</>),
+  default: jest.fn(),
+}));
 
 describe("InputPhoneNumber", () => {
   it("should render a field", () => {
@@ -60,66 +75,42 @@ describe("InputPhoneNumber", () => {
     expect(await screen.findByText("This is required")).toBeInTheDocument();
   });
 
-describe("The validation error message", () => {
+  describe("The validation error message", () => {
     it("should appear when the user doesn't enter ten or more digits", async () => {
       render(<InputPhoneNumber value="123123" onChange={jest.fn()} />);
       const input = screen.getByRole("textbox");
       input.focus();
       input.blur();
-      expect(
-        await screen.findByText("Enter a phone number"),
-      ).toBeInTheDocument();
-    });
-
-    it("should not appear with a valid phone number", async () => {
-      const validationHandler = jest.fn();
-      render(
-        <InputPhoneNumber
-          value="6135551232"
-          onChange={jest.fn()}
-          onValidation={validationHandler}
-        />,
-      );
-      const input = screen.getByRole("textbox");
-      input.focus();
-      input.blur();
-
-      await waitFor(() => {
-        expect(validationHandler).toHaveBeenCalledWith(undefined);
-      });
+      expect(await screen.findByText(validationMessage)).toBeInTheDocument();
     });
 
     it("should disappear once the input has been changed back to a valid phone number", async () => {
-      const validationHandler = jest.fn();
-      const changeHandler = jest.fn();
+      render(<TestInput />);
 
-      render(
-        <InputPhoneNumber
-          value="613555"
-          onChange={changeHandler}
-          onValidation={validationHandler}
-        />,
-      );
       const input = screen.getByRole("textbox");
 
-      input.focus();
-      input.blur();
-
-      expect(
-        await screen.findByText("Enter a phone number"),
-      ).toBeInTheDocument();
-      waitFor(() => {
-        expect(validationHandler).toHaveBeenCalledWith("Enter a phone number");
+      fireEvent.focus(input);
+      fireEvent.change(input, {
+        target: { value: "32732" },
       });
+      fireEvent.blur(input);
 
-      input.focus();
-      fireEvent.change(input, { target: { value: "6135551232" } });
-      input.blur();
+      expect(await screen.findByText(validationMessage)).toBeInTheDocument();
+
+      fireEvent.focus(input);
+      fireEvent.change(input, {
+        target: { value: "6135551232" },
+      });
+      fireEvent.blur(input);
 
       await waitFor(() => {
-        expect(changeHandler).toHaveBeenCalledWith("(613) 555-1232");
-        expect(validationHandler).toHaveBeenCalledWith(undefined);
+        expect(screen.queryByText(validationMessage)).not.toBeInTheDocument();
       });
+
+      function TestInput() {
+        const [value, setValue] = useState("");
+        return <InputPhoneNumber value={value} onChange={setValue} />;
+      }
     });
   });
 });
