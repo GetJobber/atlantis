@@ -3,7 +3,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { InputPhoneNumber } from "./InputPhoneNumber";
 
 const placeholder = "Phone";
-const validationMessage = "Enter a phone number";
+const validationMessage = "Phone number must contain ten or more digits";
 
 jest.mock("framer-motion", () => ({
   motion: {
@@ -65,14 +65,16 @@ describe("InputPhoneNumber", () => {
     ).toBeInTheDocument();
   });
 
-  it("should use 'This' as a subject of the error when the placeholder doesn't exist", async () => {
+  it("should use 'Phone number' as a subject of the error when the placeholder doesn't exist", async () => {
     render(<InputPhoneNumber value="" onChange={jest.fn()} required={true} />);
 
     const input = screen.getByRole("textbox");
     fireEvent.focus(input);
     fireEvent.blur(input);
 
-    expect(await screen.findByText("This is required")).toBeInTheDocument();
+    expect(
+      await screen.findByText("Phone number is required"),
+    ).toBeInTheDocument();
   });
 
   describe("The validation error message", () => {
