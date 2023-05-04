@@ -114,6 +114,7 @@ component.
 export function Example({ of: size }) {
   const style = {
     fontSize: `var(--typography--fontSize-${size})`,
+    fontFamily: "Inter",
   };
   return <div style={style}>{size}</div>;
 }
