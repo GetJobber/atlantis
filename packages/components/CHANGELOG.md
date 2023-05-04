@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.12.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.12.0...@jobber/components@4.12.1) (2023-05-04)
+
+
+### Bug Fixes
+
+* **components:** fix the styling of DescriptionList component ([#1225](https://github.com/GetJobber/atlantis/issues/1225)) ([52f281c](https://github.com/GetJobber/atlantis/commit/52f281c64309708a4154175a40f06421365b12b8))
+
+
+
+
+
 # [4.12.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.11.1...@jobber/components@4.12.0) (2023-05-04)
 
 
