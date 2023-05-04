@@ -30,6 +30,7 @@ export function InputPhoneNumber({
 }: InputPhoneNumberProps) {
   const { placeholder, validations } = props;
   const pattern = "(***) ***-****";
+  const errorSubject = placeholder || "Phone number";
 
   return (
     <InputMask pattern={pattern} strict={false}>
@@ -39,11 +40,27 @@ export function InputPhoneNumber({
         validations={{
           required: {
             value: Boolean(required),
-            message: `${placeholder || "This"} is required`,
+            message: `${errorSubject} is required`,
           },
           ...validations,
+          validate: getPhoneNumberValidation,
         }}
       />
     </InputMask>
   );
+
+  function getPhoneNumberValidation(value: string) {
+    // Remove space, parenthesis and hyphen
+    const cleanValue = value.replace(/[- )(]/g, "");
+
+    if (cleanValue.length < 10) {
+      return `${errorSubject} must contain ten or more digits`;
+    }
+
+    if (typeof validations?.validate === "function") {
+      return validations.validate(value);
+    }
+
+    return true;
+  }
 }
