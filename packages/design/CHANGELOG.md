@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.38.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.38.0...@jobber/design@0.38.1) (2023-05-03)
+
+
+### Bug Fixes
+
+* Ensure form fields positioned children are contained ([#1223](https://github.com/GetJobber/atlantis/issues/1223)) ([f882322](https://github.com/GetJobber/atlantis/commit/f88232220da3263ce248ce4109a2ef0de7d1dea4))
+
+
+
+
+
 # [0.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.37.1...@jobber/design@0.38.0) (2023-04-28)
 
 

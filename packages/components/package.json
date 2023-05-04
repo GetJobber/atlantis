@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "4.11.0",
+  "version": "4.11.1",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -11,9 +11,7 @@
     "entryPoints:build": "ts-node --project ../../tsconfig.bin.json ../../scripts/entryPoints.ts",
     "entryPoints:clean": "npm run entryPoints:build clean",
     "prepack": "npm run entryPoints:build",
-    "postpack": "npm run entryPoints:clean",
-    "prepublishOnly": "npm run entryPoints:build",
-    "postpublish": "npm run entryPoints:clean"
+    "postpack": "npm run entryPoints:clean"
   },
   "files": [
     "*.js",
@@ -21,7 +19,7 @@
     "dist/*"
   ],
   "dependencies": {
-    "@jobber/design": "^0.38.0",
+    "@jobber/design": "^0.38.1",
     "@jobber/formatters": "*",
     "@jobber/hooks": "^2.1.1",
     "@popperjs/core": "^2.0.6",
