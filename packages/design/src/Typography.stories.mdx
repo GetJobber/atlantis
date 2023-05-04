@@ -1,16 +1,15 @@
-import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Canvas, Meta } from "@storybook/addon-docs";
 import { Heading } from "@jobber/components/Heading";
 import { Text } from "@jobber/components/Text";
 import { Emphasis } from "@jobber/components/Emphasis";
 import { Content } from "@jobber/components/Content";
-import { Button } from "@jobber/components/Button";
 import { Checkbox } from "@jobber/components/Checkbox";
 import { InputText } from "@jobber/components/InputText";
-import { Table, Header, Row, Cell } from "@jobber/components/Table";
+import { Cell, Header, Row, Table } from "@jobber/components/Table";
 
-<Meta title="Design/Typography" />
+<Meta title="Design/Typography/Web" />
 
-# Typography
+# Typography (Web)
 
 When a designer is talking about "type", it's unlikely they're asking about the
 latest Typescript linting rules! Typography is a core aspect of any user
@@ -27,7 +26,7 @@ The Atlantis typography system is based on the core components of
       A <Emphasis variation="highlight">prominent</Emphasis> heading
     </Heading>
     <Text>
-      A longer body of text that's better suited for readabilty at smaller
+      A longer body of text that&apos;s better suited for readabilty at smaller
       sizes. Typically a paragraph should be displayed in a typeface that has a
       moderate weight, and is <Emphasis variation="italic">relatively</Emphasis>{" "}
       free of flourish.
@@ -72,7 +71,7 @@ labels, and more!
     <Heading level={3}>Inter is for less prominent headings</Heading>
     <Text>
       You can also use it for longer, more readable statements in paragraphs,
-      descriptive text, in lists, and more. If you've been paying careful
+      descriptive text, in lists, and more. If you&apos;ve been paying careful
       attention, you might have noticed that Atlantis even uses Inter for
       presenting documentation!
     </Text>
@@ -162,7 +161,7 @@ export function Visual({ of: size }) {
     <div style={style}>
       Line-height, or leading, is the space between subsequent lines of type.
       The line-heights in the Heading and Text components are optimized for each
-      variation's unique combination of...
+      variation&apos;s unique combination of...
     </div>
   );
 }

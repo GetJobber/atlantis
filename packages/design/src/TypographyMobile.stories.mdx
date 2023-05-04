@@ -1,0 +1,68 @@
+import { Meta, Typeset } from "@storybook/addon-docs";
+import { Banner } from "@jobber/components/Banner";
+
+<Meta title="Design/Typography/Mobile" />
+
+# Typography (Mobile)
+
+<Banner type="notice" dismissible={false}>
+
+While the mobile Typography component still lives within
+[Jobber's mobile platform](https://atlantis-mobile.jobber.dev/?path=/docs/atlantis-text-and-typography-typography-internal--typography),
+the font size design tokens are generated in this monorepo.
+
+</Banner>
+
+export const typography = {
+  type: {
+    primary: '"Jobber Pro", "Helvetica Neue", Helvetica, Arial, sans-serif',
+  },
+};
+
+export const sizeLabel = [];
+
+<Typeset
+  fontSizes={["10px"]}
+  sampleText="typography--fontSize-smallest"
+  fontFamily={typography.type.primary}
+/>
+<Typeset
+  fontSizes={["12px"]}
+  sampleText="typography--fontSize-smaller"
+  fontFamily={typography.type.primary}
+/>
+<Typeset
+  fontSizes={["14px"]}
+  sampleText="typography--fontSize-small"
+  fontFamily={typography.type.primary}
+/>
+<Typeset
+  fontSizes={["16px"]}
+  sampleText="typography--fontSize-base"
+  fontFamily={typography.type.primary}
+/>
+<Typeset
+  fontSizes={["18px"]}
+  sampleText="typography--fontSize-large"
+  fontFamily={typography.type.primary}
+/>
+<Typeset
+  fontSizes={["20px"]}
+  sampleText="typography--fontSize-larger"
+  fontFamily={typography.type.primary}
+/>
+<Typeset
+  fontSizes={["24px"]}
+  sampleText="typography--fontSize-largest"
+  fontFamily={typography.type.primary}
+/>
+<Typeset
+  fontSizes={["32px"]}
+  sampleText="typography--fontSize-jumbo"
+  fontFamily={typography.type.primary}
+/>
+<Typeset
+  fontSizes={["42px"]}
+  sampleText="typography--fontSize-extravagant"
+  fontFamily={typography.type.primary}
+/>
