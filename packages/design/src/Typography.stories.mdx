@@ -7,7 +7,7 @@ import { Checkbox } from "@jobber/components/Checkbox";
 import { InputText } from "@jobber/components/InputText";
 import { Cell, Header, Row, Table } from "@jobber/components/Table";
 
-<Meta title="Design/Typography/Web" />
+<Meta title="Design/Typograph" />
 
 # Typography (Web)
 
@@ -100,11 +100,11 @@ labels, and more!
   </Content>
 </Canvas>
 
-## Font sizes
+## Font sizes (web)
 
-At the default zoom level, our base font-size is equivalent to `14px`. Depending
-on the context in which your typography is being used, font-size can be adjusted
-to be larger or smaller than the base font-size.
+At the default zoom level for web applications, our base font-size is equivalent
+to `14px`. Depending on the context in which your typography is being used,
+font-size can be adjusted to be larger or smaller than the base font-size.
 
 Suggestions for when to use varying font-sizes are discussed in the
 [Heading](../?path=/docs/components-heading--heading) component, and within the
@@ -137,6 +137,22 @@ export function PixelSize({ of: size }) {
 | `--typography--fontSize-largest`     | <Example of="largest" />     | <PixelSize of="largest" />     |
 | `--typography--fontSize-jumbo`       | <Example of="jumbo" />       | <PixelSize of="jumbo" />       |
 | `--typography--fontSize-extravagant` | <Example of="extravagant" /> | <PixelSize of="extravagant" /> |
+
+## Font sizes (mobile)
+
+Jobber's mobile platform uses unique sizing tokens for typography.
+
+| Name                                 | Visual                                                                  | Value |
+| :----------------------------------- | :---------------------------------------------------------------------- | :---- |
+| `--typography--fontSize-smallest`    | <div style={{fontSize: "10px", fontFamily: "Inter"}}>smallest </div>    | 10px  |
+| `--typography--fontSize-smaller`     | <div style={{fontSize: "12px", fontFamily: "Inter"}}>smaller </div>     | 12px  |
+| `--typography--fontSize-small`       | <div style={{fontSize: "14px", fontFamily: "Inter"}}>small </div>       | 14px  |
+| `--typography--fontSize-base`        | <div style={{fontSize: "16px", fontFamily: "Inter"}}>base </div>        | 16px  |
+| `--typography--fontSize-large`       | <div style={{fontSize: "18px", fontFamily: "Inter"}}>large </div>       | 18px  |
+| `--typography--fontSize-larger`      | <div style={{fontSize: "20px", fontFamily: "Inter"}}>larger </div>      | 20px  |
+| `--typography--fontSize-largest`     | <div style={{fontSize: "24px", fontFamily: "Inter"}}>largest </div>     | 24px  |
+| `--typography--fontSize-jumbo`       | <div style={{fontSize: "32px", fontFamily: "Inter"}}>jumbo </div>       | 32px  |
+| `--typography--fontSize-extravagant` | <div style={{fontSize: "42px", fontFamily: "Inter"}}>extravagant </div> | 42px  |
 
 ## Line-height
 
