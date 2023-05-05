@@ -3,7 +3,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { InputPhoneNumber } from "./InputPhoneNumber";
 
 const placeholder = "Phone";
-const validationMessage = "Phone number must contain 10 digits";
+const validationMessage = "Phone number must contain 10 or more digits";
 
 jest.mock("framer-motion", () => ({
   motion: {
@@ -139,7 +139,7 @@ describe("InputPhoneNumber", () => {
         />,
       );
       const customPatternValidationMessage =
-        "Phone number must contain 7 digits";
+        "Phone number must contain 7 or more digits";
       const input = screen.getByRole("textbox");
       input.focus();
       input.blur();

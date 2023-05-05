@@ -20,9 +20,10 @@ interface InputPhoneNumberProps
 
   /**
    * A pattern to specify the format to display the phone number in.
-   * For example if you want to display the format for Denmark https://en.wikipedia.org/wiki/National_conventions_for_writing_telephone_numbers#Denmark
+   * For example if you want to display the format for Denmark
+   * https://en.wikipedia.org/wiki/National_conventions_for_writing_telephone_numbers#Denmark
    * you could set it to ** ** ** **
-   * @default "(***) ***-****"
+   * @default (***) ***-****
    */
   readonly pattern?: InputMaskProps["pattern"];
 
@@ -70,7 +71,7 @@ export function InputPhoneNumber({
     );
     const cleanValueRequiredLength = (pattern.match(/\*/g) || []).length;
     if (cleanValue.length < cleanValueRequiredLength) {
-      return `${errorSubject} must contain ${cleanValueRequiredLength} digits`;
+      return `${errorSubject} must contain ${cleanValueRequiredLength} or more digits`;
     }
 
     if (typeof validations?.validate === "function") {
