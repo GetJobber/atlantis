@@ -56,7 +56,6 @@ export function InputPhoneNumber({
       .filter(char => char !== "*")
       .filter((char, index, arr) => arr.indexOf(char) === index);
     const specialCharacters = patternNonDelimterCharacters.join(" ");
-    console.log(specialCharacters, patternNonDelimterCharacters);
     // Remove special characters from pattern
     const cleanValue = value.replace(
       new RegExp(`[${specialCharacters}]`, "g"),
