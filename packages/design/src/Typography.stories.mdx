@@ -100,7 +100,7 @@ labels, and more!
   </Content>
 </Canvas>
 
-## Font sizes (web)
+## Font-size (web)
 
 At the default zoom level for web applications, our base font-size is equivalent
 to `14px`. Depending on the context in which your typography is being used,
@@ -139,9 +139,12 @@ export function PixelSize({ of: size }) {
 | `--typography--fontSize-jumbo`       | <Example of="jumbo" />       | <PixelSize of="jumbo" />       |
 | `--typography--fontSize-extravagant` | <Example of="extravagant" /> | <PixelSize of="extravagant" /> |
 
-## Font sizes (mobile)
+## Font-size (mobile)
 
-Jobber's mobile platform uses unique sizing tokens for typography.
+Jobber's mobile platform uses the following sizing tokens for typography.
+
+The mobile platform has a base font-size equivalent to `16px`, with options for
+a larger or smaller font-size depending on the use case.
 
 | Name                                 | Visual                                                                  | Value |
 | :----------------------------------- | :---------------------------------------------------------------------- | :---- |
@@ -173,6 +176,8 @@ requires less line-to-line breathing room.
 export function Visual({ of: size }) {
   const style = {
     lineHeight: `var(--typography--lineHeight-${size})`,
+    fontFamily: "Inter",
+    fontSize: "14px",
   };
   return (
     <div style={style}>
