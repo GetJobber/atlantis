@@ -1,6 +1,6 @@
 {
   "name": "@jobber/design",
-  "version": "0.37.1",
+  "version": "0.38.1",
   "description": "Design foundation for the Jobber Atlantis Design System",
   "license": "MIT",
   "main": "dist/index.js",
@@ -12,7 +12,7 @@
     "icons/*"
   ],
   "scripts": {
-    "build": "npm run build:css && npm run build:css:icons && npm run build:colors && npm run build:cssTypes && npm run build:foundation && npm run build:iconCssStyle && npm run build:rollup",
+    "build": "npm run build:iconMap && npm run build:css && npm run build:css:icons && npm run build:colors && npm run build:cssTypes && npm run build:foundation && npm run build:iconCssStyle && npm run build:rollup",
     "build:rollup": "rollup --config",
     "build:css": "postcss src/foundation.css --output foundation.css --use postcss-import",
     "build:css:icons": "postcss src/icons/*.css --dir icons/ --use postcss-import",
@@ -23,9 +23,10 @@
     "build:foundationTypes": "tsc --declaration --emitDeclarationOnly --allowJs foundation.js foundation.native.js foundation.android.js foundation.ios.js --outDir . --skipLibCheck",
     "build:addFoundationExceptions": "./scripts/addFoundationExceptions.sh",
     "build:removeTempFiles": "rm -f src/foundation.js && ./scripts/removeFoundationTempFiles.sh",
+    "build:iconMap": "ts-node --project ../../tsconfig.bin.json scripts/generateIconMap.ts",
     "build:iconCssStyle": "node buildIconStyles.js && npm run build:iconCssStyleTypes",
     "build:iconCssStyleTypes": "tsc --declaration --emitDeclarationOnly --allowJs src/icons/iconStyles.ts --outDir ./src/icons --skipLibCheck",
-    "clean": "rm -rf dist/* icons/* colors.js foundation.* iconStyles.* tsconfig.tsbuildinfo",
+    "clean": "rm -rf dist/* icons/* src/icons/iconMap.ts colors.js foundation.* iconStyles.* tsconfig.tsbuildinfo",
     "bootstrap": "npm run clean && npm run build"
   },
   "dependencies": {
@@ -37,6 +38,7 @@
     "@rollup/plugin-commonjs": "^24.0.1",
     "@types/node": "^18.15.7",
     "autoprefixer": "^9.5.1",
+    "cheerio": "^1.0.0-rc.12",
     "css-to-react-native-transform": "^2.0.0",
     "postcss": "^8.4.21",
     "postcss-calc": "^8.2.3",
@@ -49,6 +51,7 @@
     "rollup-plugin-multi-input": "^1.4.1",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-typescript2": "^0.34.1",
+    "svgo": "^3.0.2",
     "typed-css-modules": "^0.7.0",
     "typescript": "^4.9.5"
   }

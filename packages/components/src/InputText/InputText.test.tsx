@@ -19,12 +19,16 @@ it("renders a regular input for text and numbers", () => {
           >
             Favourite colour
           </label>
-          <input
-            class="input"
-            id="123e4567-e89b-12d3-a456-426655440001"
-            type="text"
-            value=""
-          />
+          <div
+            class="childrenWrapper"
+          >
+            <input
+              class="input"
+              id="123e4567-e89b-12d3-a456-426655440001"
+              type="text"
+              value=""
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -49,11 +53,15 @@ it("renders a textarea", () => {
           >
             Describe your favourite colour?
           </label>
-          <textarea
-            class="input"
-            id="123e4567-e89b-12d3-a456-426655440003"
-            rows="3"
-          />
+          <div
+            class="childrenWrapper"
+          >
+            <textarea
+              class="input"
+              id="123e4567-e89b-12d3-a456-426655440003"
+              rows="3"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -82,11 +90,15 @@ it("renders a textarea with 4 rows", () => {
           >
             Describe your favourite colour?
           </label>
-          <textarea
-            class="input"
-            id="123e4567-e89b-12d3-a456-426655440005"
-            rows="4"
-          />
+          <div
+            class="childrenWrapper"
+          >
+            <textarea
+              class="input"
+              id="123e4567-e89b-12d3-a456-426655440005"
+              rows="4"
+            />
+          </div>
         </div>
       </div>
     </div>

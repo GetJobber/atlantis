@@ -3,6 +3,69 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.12.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.12.0...@jobber/components@4.12.1) (2023-05-04)
+
+
+### Bug Fixes
+
+* **components:** fix the styling of DescriptionList component ([#1225](https://github.com/GetJobber/atlantis/issues/1225)) ([52f281c](https://github.com/GetJobber/atlantis/commit/52f281c64309708a4154175a40f06421365b12b8))
+
+
+
+
+
+# [4.12.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.11.1...@jobber/components@4.12.0) (2023-05-04)
+
+
+### Features
+
+* **components:** Add validations to InputPhoneNumber ([#1224](https://github.com/GetJobber/atlantis/issues/1224)) ([5dc34e0](https://github.com/GetJobber/atlantis/commit/5dc34e092303817cbf5d9aa44fe5582305fc9dd0))
+
+
+
+
+
+## [4.11.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.11.0...@jobber/components@4.11.1) (2023-05-03)
+
+
+### Bug Fixes
+
+* Ensure form fields positioned children are contained ([#1223](https://github.com/GetJobber/atlantis/issues/1223)) ([f882322](https://github.com/GetJobber/atlantis/commit/f88232220da3263ce248ce4109a2ef0de7d1dea4))
+
+
+
+
+
+# [4.11.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.10.1...@jobber/components@4.11.0) (2023-05-02)
+
+
+### Features
+
+* Create InputPhoneNumber ([#1209](https://github.com/GetJobber/atlantis/issues/1209)) ([bd9cfcb](https://github.com/GetJobber/atlantis/commit/bd9cfcbb446fecc3b133468eda1c5c12ca161651))
+
+
+
+
+
+## [4.10.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.10.0...@jobber/components@4.10.1) (2023-05-01)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [4.10.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.9.4...@jobber/components@4.10.0) (2023-04-28)
+
+
+### Features
+
+* Icon map generator in 🔱 Atlantis! ([#1190](https://github.com/GetJobber/atlantis/issues/1190)) ([c19e800](https://github.com/GetJobber/atlantis/commit/c19e8007932309b16d00d4c3228be14450f7a3e1))
+
+
+
+
+
 ## [4.9.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.9.3...@jobber/components@4.9.4) (2023-04-27)
 
 **Note:** Version bump only for package @jobber/components
