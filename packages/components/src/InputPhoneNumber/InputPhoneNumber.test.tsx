@@ -3,7 +3,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { InputPhoneNumber } from "./InputPhoneNumber";
 
 const placeholder = "Phone";
-const validationMessage = "Phone number must contain ten or more digits";
+const validationMessage = "Phone number must contain 10 digits";
 
 jest.mock("framer-motion", () => ({
   motion: {
@@ -128,6 +128,24 @@ describe("InputPhoneNumber", () => {
       );
 
       expect(getByText("___-___-__ n __")).toBeInTheDocument();
+    });
+
+    it("should update the validation to limit characters", async () => {
+      render(
+        <InputPhoneNumber
+          value="123123"
+          pattern="*** ****"
+          onChange={jest.fn()}
+        />,
+      );
+      const customPatternValidationMessage =
+        "Phone number must contain 7 digits";
+      const input = screen.getByRole("textbox");
+      input.focus();
+      input.blur();
+      expect(
+        await screen.findByText(customPatternValidationMessage),
+      ).toBeInTheDocument();
     });
   });
 });

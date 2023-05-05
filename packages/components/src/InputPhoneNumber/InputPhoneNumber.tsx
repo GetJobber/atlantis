@@ -14,10 +14,17 @@ interface InputPhoneNumberProps
       | "readonly"
       | "prefix"
       | "suffix"
-    >,
-    Partial<Pick<InputMaskProps, "pattern">> {
+    > {
   readonly value: string;
   readonly onChange: (value: string) => void;
+
+  /**
+   * A pattern to specify the format to display the phone number in.
+   * For example if you want to display the format for Denmark https://en.wikipedia.org/wiki/National_conventions_for_writing_telephone_numbers#Denmark
+   * you could set it to ** ** ** **
+   * @default "(***) ***-****"
+   */
+  readonly pattern?: InputMaskProps["pattern"];
 
   /**
    * Shows a "required" validation message when the component is left empty.
@@ -61,9 +68,9 @@ export function InputPhoneNumber({
       new RegExp(`[${specialCharacters}]`, "g"),
       "",
     );
-
-    if (cleanValue.length < 10) {
-      return `${errorSubject} must contain ten or more digits`;
+    const cleanValueRequiredLength = (pattern.match(/\*/g) || []).length;
+    if (cleanValue.length < cleanValueRequiredLength) {
+      return `${errorSubject} must contain ${cleanValueRequiredLength} digits`;
     }
 
     if (typeof validations?.validate === "function") {
