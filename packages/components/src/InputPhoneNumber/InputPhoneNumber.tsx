@@ -1,5 +1,5 @@
 import React from "react";
-import { InputMask } from "./InputMask";
+import { InputMask, InputMaskProps } from "./InputMask";
 import { CommonFormFieldProps, FormField, FormFieldProps } from "../FormField";
 
 interface InputPhoneNumberProps
@@ -14,7 +14,8 @@ interface InputPhoneNumberProps
       | "readonly"
       | "prefix"
       | "suffix"
-    > {
+    >,
+    Partial<Pick<InputMaskProps, "pattern">> {
   readonly value: string;
   readonly onChange: (value: string) => void;
 
@@ -28,8 +29,7 @@ export function InputPhoneNumber({
   required,
   ...props
 }: InputPhoneNumberProps) {
-  const { placeholder, validations } = props;
-  const pattern = "(***) ***-****";
+  const { placeholder, validations, pattern = "(***) ***-****" } = props;
   const errorSubject = placeholder || "Phone number";
 
   return (

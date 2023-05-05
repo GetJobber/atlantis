@@ -34,18 +34,6 @@ describe("InputPhoneNumber", () => {
     expect(input).toHaveAttribute("type", "tel");
   });
 
-  it("should have the phone number pattern", () => {
-    render(
-      <InputPhoneNumber
-        placeholder={placeholder}
-        value=""
-        onChange={jest.fn()}
-      />,
-    );
-
-    expect(screen.getByText("(___) ___-____")).toBeInTheDocument();
-  });
-
   it("should throw a required error when blurred", async () => {
     render(
       <InputPhoneNumber
@@ -113,6 +101,33 @@ describe("InputPhoneNumber", () => {
         const [value, setValue] = useState("");
         return <InputPhoneNumber value={value} onChange={setValue} />;
       }
+    });
+  });
+
+  describe("pattern", () => {
+    it("should have the phone number pattern", () => {
+      render(
+        <InputPhoneNumber
+          placeholder={placeholder}
+          value=""
+          onChange={jest.fn()}
+        />,
+      );
+
+      expect(screen.getByText("(___) ___-____")).toBeInTheDocument();
+    });
+
+    it("should render a custom pattern", () => {
+      const { getByText } = render(
+        <InputPhoneNumber
+          placeholder={placeholder}
+          pattern="***-***-****"
+          value=""
+          onChange={jest.fn()}
+        />,
+      );
+
+      expect(getByText("___-___-____")).toBeInTheDocument();
     });
   });
 });
