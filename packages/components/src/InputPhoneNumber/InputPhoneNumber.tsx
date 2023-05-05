@@ -20,10 +20,9 @@ interface InputPhoneNumberProps
 
   /**
    * A pattern to specify the format to display the phone number in.
-   * For example if you want to display the format for Denmark
-   * https://en.wikipedia.org/wiki/National_conventions_for_writing_telephone_numbers#Denmark
-   * you could set it to ** ** ** **
-   * @default (***) ***-****
+   * For example if you want to display the format for [Denmark](https://en.wikipedia.org/wiki/National_conventions_for_writing_telephone_numbers#Denmark)
+   * you could set it to `** ** ** **`
+   * @default "(***) ***-****"
    */
   readonly pattern?: InputMaskProps["pattern"];
 
