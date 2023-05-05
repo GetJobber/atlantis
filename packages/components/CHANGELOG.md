@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.12.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.12.0...@jobber/components@4.12.1) (2023-05-04)
+
+
+### Bug Fixes
+
+* **components:** fix the styling of DescriptionList component ([#1225](https://github.com/GetJobber/atlantis/issues/1225)) ([52f281c](https://github.com/GetJobber/atlantis/commit/52f281c64309708a4154175a40f06421365b12b8))
+
+
+
+
+
+# [4.12.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.11.1...@jobber/components@4.12.0) (2023-05-04)
+
+
+### Features
+
+* **components:** Add validations to InputPhoneNumber ([#1224](https://github.com/GetJobber/atlantis/issues/1224)) ([5dc34e0](https://github.com/GetJobber/atlantis/commit/5dc34e092303817cbf5d9aa44fe5582305fc9dd0))
+
+
+
+
+
+## [4.11.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.11.0...@jobber/components@4.11.1) (2023-05-03)
+
+
+### Bug Fixes
+
+* Ensure form fields positioned children are contained ([#1223](https://github.com/GetJobber/atlantis/issues/1223)) ([f882322](https://github.com/GetJobber/atlantis/commit/f88232220da3263ce248ce4109a2ef0de7d1dea4))
+
+
+
+
+
 # [4.11.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.10.1...@jobber/components@4.11.0) (2023-05-02)
 
 

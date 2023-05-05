@@ -143,6 +143,8 @@
   display: flex;
   flex: 1;
   position: relative;
+  /* Ensure input stays with the rest of the element stack */
+  z-index: var(--elevation-default);
 }
 
 .childrenWrapper {
