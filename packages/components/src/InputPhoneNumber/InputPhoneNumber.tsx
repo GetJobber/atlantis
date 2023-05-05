@@ -1,5 +1,5 @@
 import React from "react";
-import { InputMask } from "./InputMask";
+import { InputMask, InputMaskProps } from "./InputMask";
 import { CommonFormFieldProps, FormField, FormFieldProps } from "../FormField";
 
 interface InputPhoneNumberProps
@@ -19,6 +19,14 @@ interface InputPhoneNumberProps
   readonly onChange: (value: string) => void;
 
   /**
+   * A pattern to specify the format to display the phone number in.
+   * For example if you want to display the format for [Denmark](https://en.wikipedia.org/wiki/National_conventions_for_writing_telephone_numbers#Denmark)
+   * you could set it to `** ** ** **`
+   * @default "(***) ***-****"
+   */
+  readonly pattern?: InputMaskProps["pattern"];
+
+  /**
    * Shows a "required" validation message when the component is left empty.
    */
   readonly required?: boolean;
@@ -28,8 +36,7 @@ export function InputPhoneNumber({
   required,
   ...props
 }: InputPhoneNumberProps) {
-  const { placeholder, validations } = props;
-  const pattern = "(***) ***-****";
+  const { placeholder, validations, pattern = "(***) ***-****" } = props;
   const errorSubject = placeholder || "Phone number";
 
   return (
@@ -50,11 +57,20 @@ export function InputPhoneNumber({
   );
 
   function getPhoneNumberValidation(value: string) {
-    // Remove space, parenthesis and hyphen
-    const cleanValue = value.replace(/[- )(]/g, "");
-
-    if (cleanValue.length < 10) {
-      return `${errorSubject} must contain ten or more digits`;
+    // Get unique characters that aren't * in the pattern
+    const patternNonDelimterCharacters = pattern
+      .split("")
+      .filter(char => char !== "*")
+      .filter((char, index, arr) => arr.indexOf(char) === index);
+    const specialCharacters = patternNonDelimterCharacters.join(" ");
+    // Remove special characters from pattern
+    const cleanValue = value.replace(
+      new RegExp(`[${specialCharacters}]`, "g"),
+      "",
+    );
+    const cleanValueRequiredLength = (pattern.match(/\*/g) || []).length;
+    if (cleanValue.length < cleanValueRequiredLength) {
+      return `${errorSubject} must contain ${cleanValueRequiredLength} or more digits`;
     }
 
     if (typeof validations?.validate === "function") {
