@@ -121,13 +121,13 @@ describe("InputPhoneNumber", () => {
       const { getByText } = render(
         <InputPhoneNumber
           placeholder={placeholder}
-          pattern="***-***-****"
+          pattern="***-***-** n **"
           value=""
           onChange={jest.fn()}
         />,
       );
 
-      expect(getByText("___-___-____")).toBeInTheDocument();
+      expect(getByText("___-___-__ n __")).toBeInTheDocument();
     });
   });
 });

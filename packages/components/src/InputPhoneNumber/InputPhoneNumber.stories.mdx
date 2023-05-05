@@ -61,6 +61,27 @@ component would return. It is simply for visual purposes.
   </ExampleWithHooks>
 </Canvas>
 
+## Using a custom pattern
+
+`InputPhoneNumber` can have a custom pattern if you wish to use a different
+format for the phone number
+
+<Canvas>
+  <ExampleWithHooks>
+    {() => {
+      const [value, setValue] = useState("");
+      return (
+        <InputPhoneNumber
+          placeholder="Phone number"
+          pattern="(***) ***-**-**"
+          value={value}
+          onChange={setValue}
+        />
+      );
+    }}
+  </ExampleWithHooks>
+</Canvas>
+
 ## Dealing with existing data
 
 `InputPhoneNumber` will respect the format of the initial value you're giving

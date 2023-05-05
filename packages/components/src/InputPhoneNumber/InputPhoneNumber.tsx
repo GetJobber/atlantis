@@ -50,8 +50,18 @@ export function InputPhoneNumber({
   );
 
   function getPhoneNumberValidation(value: string) {
-    // Remove space, parenthesis and hyphen
-    const cleanValue = value.replace(/[- )(]/g, "");
+    // Get unique characters that aren't * in the pattern
+    const patternNonDelimterCharacters = pattern
+      .split("")
+      .filter(char => char !== "*")
+      .filter((char, index, arr) => arr.indexOf(char) === index);
+    const specialCharacters = patternNonDelimterCharacters.join(" ");
+    console.log(specialCharacters, patternNonDelimterCharacters);
+    // Remove special characters from pattern
+    const cleanValue = value.replace(
+      new RegExp(`[${specialCharacters}]`, "g"),
+      "",
+    );
 
     if (cleanValue.length < 10) {
       return `${errorSubject} must contain ten or more digits`;
