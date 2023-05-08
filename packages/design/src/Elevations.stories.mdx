@@ -91,7 +91,8 @@ export function Elevation({ of: shadow }) {
 ### Shadow elevation
 
 These are the box-shadows rendered to signify elevation on given UI elements;
-they map to our low/base/high pattern.
+they map to our low/base/high pattern. These tokens apply to both web and mobile
+applications.
 
 | Name            | Visual                |
 | :-------------- | :-------------------- |
@@ -104,3 +105,6 @@ they map to our low/base/high pattern.
 For mobile designs, the concept of elevation applies to both shadows and
 hierarchy of the element along the z-index. Android accepts a single "elevation"
 value, while iOS accepts more granular shadow values similar to CSS.
+
+When using the mobile tokens imported from `foundation.native`, the shadow
+tokens will be resolved to apply to either android or iOS devices automatically.
