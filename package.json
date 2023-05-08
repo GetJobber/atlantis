@@ -20,7 +20,7 @@
     "bootstrap": "npm run bootstrap --workspaces --if-present",
     "ci:release": "lerna publish --yes",
     "clean": "rm -rf storybook-static",
-    "clean:packages": "rm -rf node_modules **/dist",
+    "clean:packages": "rm -rf node_modules **/dist packages/**/.rollup.cache",
     "generate": "plop -- --path='./packages/components/src/'",
     "lint": "npm run lint:js && npm run lint:css",
     "lerna:clean": "lerna run clean && lerna clean --y && npm run clean:packages && npm run clean",
