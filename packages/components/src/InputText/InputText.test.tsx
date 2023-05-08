@@ -148,3 +148,16 @@ test("it should handle inserting text", () => {
   textRef.current.insert("sure");
   expect(changeHandler).toHaveBeenCalledWith(secondResult);
 });
+
+test("it should replace the text", () => {
+  const initial = "Got milk?";
+  const result = "YUP";
+
+  const textRef = React.createRef<InputTextRef>();
+  const changeHandler = jest.fn();
+
+  render(<InputText value={initial} onChange={changeHandler} ref={textRef} />);
+
+  textRef.current?.replace("YUP");
+  expect(changeHandler).toHaveBeenCalledWith(result);
+});

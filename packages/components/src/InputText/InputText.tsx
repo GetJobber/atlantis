@@ -35,6 +35,7 @@ interface BaseProps
 
 export interface InputTextRef {
   insert(text: string): void;
+  replace(text: string): void;
   blur(): void;
   focus(): void;
 }
@@ -68,6 +69,9 @@ function InputTextInternal(
   useImperativeHandle(ref, () => ({
     insert: (text: string) => {
       insertText(text);
+    },
+    replace: (text: string) => {
+      replaceText(text);
     },
     blur: () => {
       const input = inputRef.current;
@@ -147,6 +151,18 @@ function InputTextInternal(
     const input = inputRef.current;
     if (input) {
       insertAtCursor(input, text);
+
+      const newValue = input.value;
+      actionsRef.current?.setValue(newValue);
+      props.onChange && props.onChange(newValue);
+    }
+  }
+
+  function replaceText(text: string) {
+    const input = inputRef.current;
+    if (input) {
+      input.value = text;
+      input.focus();
 
       const newValue = input.value;
       actionsRef.current?.setValue(newValue);
