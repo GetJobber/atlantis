@@ -2,14 +2,13 @@ import React, { ReactElement } from "react";
 import classNames from "classnames";
 import { GridCell, GridCellProps } from "./GridCell";
 import styles from "./Grid.css";
-import gaps from "./GridGap.css";
 import alignments from "./GridAlign.css";
 
 interface GridProps {
   /**
    * Add spacing between elements.
    */
-  readonly gap?: keyof typeof gaps;
+  readonly gap?: boolean;
 
   /**
    * Adjust the alignment of columns
@@ -24,8 +23,11 @@ interface GridProps {
 
 export const GRID_TEST_ID = "ATL-Grid";
 
-export function Grid({ align = "start", gap = "base", children }: GridProps) {
-  const classnames = classNames(styles.grid, gaps[gap], alignments[align]);
+export function Grid({ align = "start", gap = true, children }: GridProps) {
+  const classnames = classNames(styles.grid, alignments[align], {
+    [styles.gap]: gap,
+  });
+
   return (
     <div data-testid={GRID_TEST_ID} className={classnames}>
       {children}

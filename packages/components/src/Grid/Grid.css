@@ -2,3 +2,13 @@
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
 }
+
+.gap {
+  gap: var(--space-small);
+}
+
+@media (--medium-screens-and-up) {
+  .gap {
+    gap: var(--space-base);
+  }
+}

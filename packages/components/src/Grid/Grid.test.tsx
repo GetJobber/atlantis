@@ -1,7 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { GRID_TEST_ID, Grid } from ".";
-import gaps from "./GridGap.css";
 import alignments from "./GridAlign.css";
 
 const children = [
@@ -20,21 +19,20 @@ describe("Grid", () => {
     render(<Grid>{children}</Grid>);
     const element = screen.getByTestId(GRID_TEST_ID);
     expect(element).toBeInTheDocument();
-    expect(element).toHaveClass("grid base start");
+    expect(element).toHaveClass("grid gap start");
   });
 
   describe("gap", () => {
-    it.each<[keyof typeof gaps]>([
-      ["none"],
-      ["smaller"],
-      ["small"],
-      ["base"],
-      ["large"],
-      ["larger"],
-    ])("should render %s", expectedGap => {
-      render(<Grid gap={expectedGap}>{children}</Grid>);
+    it("should have a gap by default", () => {
+      render(<Grid>{children}</Grid>);
       const element = screen.getByTestId(GRID_TEST_ID);
-      expect(element).toHaveClass(expectedGap);
+      expect(element).toHaveClass("gap");
+    });
+
+    it("should not have a gap by default", () => {
+      render(<Grid gap={false}>{children}</Grid>);
+      const element = screen.getByTestId(GRID_TEST_ID);
+      expect(element).not.toHaveClass("gap");
     });
   });
 
