@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.13.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.12.1...@jobber/components@4.13.0) (2023-05-08)
+
+
+### Features
+
+* **components:** Expose pattern prop in InputPhoneNumber ([#1226](https://github.com/GetJobber/atlantis/issues/1226)) ([a3ebaa7](https://github.com/GetJobber/atlantis/commit/a3ebaa7658a694b03355885fd2f1320a494955c8))
+
+
+
+
+
 ## [4.12.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.12.0...@jobber/components@4.12.1) (2023-05-04)
 
 

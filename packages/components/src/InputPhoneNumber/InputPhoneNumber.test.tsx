@@ -3,7 +3,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { InputPhoneNumber } from "./InputPhoneNumber";
 
 const placeholder = "Phone";
-const validationMessage = "Phone number must contain ten or more digits";
+const validationMessage = "Phone number must contain 10 or more digits";
 
 jest.mock("framer-motion", () => ({
   motion: {
@@ -32,18 +32,6 @@ describe("InputPhoneNumber", () => {
     const input = screen.getByLabelText(placeholder);
     expect(input).toBeInTheDocument();
     expect(input).toHaveAttribute("type", "tel");
-  });
-
-  it("should have the phone number pattern", () => {
-    render(
-      <InputPhoneNumber
-        placeholder={placeholder}
-        value=""
-        onChange={jest.fn()}
-      />,
-    );
-
-    expect(screen.getByText("(___) ___-____")).toBeInTheDocument();
   });
 
   it("should throw a required error when blurred", async () => {
@@ -113,6 +101,51 @@ describe("InputPhoneNumber", () => {
         const [value, setValue] = useState("");
         return <InputPhoneNumber value={value} onChange={setValue} />;
       }
+    });
+  });
+
+  describe("pattern", () => {
+    it("should have the phone number pattern", () => {
+      render(
+        <InputPhoneNumber
+          placeholder={placeholder}
+          value=""
+          onChange={jest.fn()}
+        />,
+      );
+
+      expect(screen.getByText("(___) ___-____")).toBeInTheDocument();
+    });
+
+    it("should render a custom pattern", () => {
+      const { getByText } = render(
+        <InputPhoneNumber
+          placeholder={placeholder}
+          pattern="***-***-** n **"
+          value=""
+          onChange={jest.fn()}
+        />,
+      );
+
+      expect(getByText("___-___-__ n __")).toBeInTheDocument();
+    });
+
+    it("should update the validation to limit characters", async () => {
+      render(
+        <InputPhoneNumber
+          value="123123"
+          pattern="*** ****"
+          onChange={jest.fn()}
+        />,
+      );
+      const customPatternValidationMessage =
+        "Phone number must contain 7 or more digits";
+      const input = screen.getByRole("textbox");
+      input.focus();
+      input.blur();
+      expect(
+        await screen.findByText(customPatternValidationMessage),
+      ).toBeInTheDocument();
     });
   });
 });
