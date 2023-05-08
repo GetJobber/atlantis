@@ -3,6 +3,6 @@ module.exports = {
   displayName: "Atlantis Mobile",
   preset: "react-native",
   setupFilesAfterEnv: ["@testing-library/jest-native/extend-expect"],
-  // rootDir: ".",
+  rootDir: "./packages/components-native",
   clearMocks: true,
 };
