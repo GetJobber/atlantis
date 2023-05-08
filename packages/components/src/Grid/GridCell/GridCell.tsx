@@ -7,7 +7,7 @@ import styles from "./GridCell.css";
 const breakpoints = ["xs", "sm", "md", "lg", "xl"] as const;
 
 /**
- *  Grab type from breakpoints const
+ *  Grab the type from breakpoints const
  */
 type ValuesOf<T extends readonly unknown[]> = T[number];
 type Breakpoints = ValuesOf<typeof breakpoints>;
@@ -15,6 +15,9 @@ type Breakpoints = ValuesOf<typeof breakpoints>;
 type Sizes = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 export interface GridCellProps {
+  /**
+   * Set how much column width a cell takes the grid
+   */
   readonly size: { [Breakpoint in Breakpoints]: Sizes };
 }
 
