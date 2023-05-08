@@ -22,9 +22,15 @@ interface GridProps {
   readonly children: Array<ReactElement<GridCellProps>>;
 }
 
+export const GRID_TEST_ID = "ATL-Grid";
+
 export function Grid({ align = "start", gap = "base", children }: GridProps) {
   const classnames = classNames(styles.grid, gaps[gap], alignments[align]);
-  return <div className={classnames}>{children}</div>;
+  return (
+    <div data-testid={GRID_TEST_ID} className={classnames}>
+      {children}
+    </div>
+  );
 }
 
 Grid.Cell = GridCell;

@@ -21,6 +21,8 @@ export interface GridCellProps {
   readonly size: { [Breakpoint in Breakpoints]: Sizes };
 }
 
+export const GRID_CELL_TEST_ID = "ATL-Grid-GridCell";
+
 export function GridCell({ size, children }: PropsWithChildren<GridCellProps>) {
   const cssVariables = breakpoints.reduce((values, currentSize) => {
     return Object.assign(values, {
@@ -29,7 +31,11 @@ export function GridCell({ size, children }: PropsWithChildren<GridCellProps>) {
   }, {});
 
   return (
-    <div className={styles.gridCell} style={cssVariables}>
+    <div
+      data-testid={GRID_CELL_TEST_ID}
+      className={styles.gridCell}
+      style={cssVariables}
+    >
       {children}
     </div>
   );
