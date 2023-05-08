@@ -1,7 +1,7 @@
 /* eslint-env node */
 // For a detailed explanation regarding each configuration property, visit:
 // https://jestjs.io/docs/en/configuration.html
-
+/** @type {import('jest').Config} */
 module.exports = {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
@@ -97,7 +97,10 @@ module.exports = {
   // preset: null,
 
   // Run tests from one or more projects
-  // projects: null,
+  projects: [
+    "<rootDir>/jest.web.config.js",
+    "<rootDir>/packages/components-native/jest.config.js",
+  ],
 
   // Use this configuration option to add custom reporters to Jest
   // reporters: undefined,
@@ -115,7 +118,7 @@ module.exports = {
   // restoreMocks: false,
 
   // The root directory that Jest should scan for tests and modules within
-  // rootDir: null,
+  rootDir: ".",
 
   // A list of paths to directories that Jest should use to search for files in
   // roots: [
@@ -129,13 +132,13 @@ module.exports = {
   // setupFiles: [],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  setupFilesAfterEnv: ["./jestConfig.js"],
+  // setupFilesAfterEnv: ["./jestConfig.js"],
 
   // A list of paths to snapshot serializer modules Jest should use for snapshot testing
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  testEnvironment: "jest-environment-jsdom",
+  // testEnvironment: "jest-environment-jsdom",
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
