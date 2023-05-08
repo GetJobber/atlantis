@@ -15,7 +15,7 @@ type Breakpoints = ValuesOf<typeof breakpoints>;
 type Sizes = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 export interface GridCellProps {
-  readonly size: Record<Breakpoints, Sizes>;
+  readonly size: { [Breakpoint in Breakpoints]: Sizes };
 }
 
 export function GridCell({ size, children }: PropsWithChildren<GridCellProps>) {
