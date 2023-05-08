@@ -1,0 +1,41 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Grid } from "@jobber/components/Grid";
+import { Card } from "@jobber/components/Card";
+import { Content } from "@jobber/components/Content";
+
+<Meta
+  title="Components/Grid"
+  component={Grid}
+  subcomponents={{ "Grid.Cell": Grid.Cell }}
+/>
+
+# Grid
+
+```ts
+import { Grid } from "@jobber/components/Grid";
+```
+
+<Canvas>
+  <Story name="Grid">
+    {args => (
+      <Grid {...args}>
+        <Grid.Cell size={{ xs: 12, sm: 8, md: 6, lg: 4, xl: 3 }}>
+          <Card>
+            <Content>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Consectetur doloribus maiores dignissimos animi minus non debitis
+              aperiam molestiae quod temporibus?
+            </Content>
+          </Card>
+        </Grid.Cell>
+        <Grid.Cell size={{ xs: 12, sm: 4, md: 6, lg: 8, xl: 7 }}>
+          <Card>
+            <Content>Hello There</Content>
+          </Card>
+        </Grid.Cell>
+      </Grid>
+    )}
+  </Story>
+</Canvas>
+
+<ArgsTable of={Grid} story="Grid" />
