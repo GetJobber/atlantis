@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.13.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.13.0...@jobber/components@4.13.1) (2023-05-09)
+
+
+### Bug Fixes
+
+* **components:** fix autocomplete menu positioning when used in modal ([#1220](https://github.com/GetJobber/atlantis/issues/1220)) ([d3f89e3](https://github.com/GetJobber/atlantis/commit/d3f89e3bfc1e246e86bcefb36ccc7c12eb82d4a1))
+
+
+
+
+
 # [4.13.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.12.1...@jobber/components@4.13.0) (2023-05-08)
 
 
