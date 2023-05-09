@@ -74,10 +74,11 @@ test("it should call the getOptions handler with the new value", async () => {
       placeholder={placeholder}
     />,
   );
+
+  fireEvent.change(getByLabelText(placeholder), {
+    target: { value: newValue },
+  });
   await waitFor(() => {
-    fireEvent.change(getByLabelText(placeholder), {
-      target: { value: newValue },
-    });
     expect(changeOptionsHandler).toHaveBeenCalledWith(newValue);
   });
 });
