@@ -13,7 +13,7 @@ interface GridProps {
   /**
    * Adjust the alignment of columns
    */
-  readonly align?: keyof typeof alignments;
+  readonly alignItems?: keyof typeof alignments;
 
   /**
    * Array of `Grid.Cell` children
@@ -23,8 +23,12 @@ interface GridProps {
 
 export const GRID_TEST_ID = "ATL-Grid";
 
-export function Grid({ align = "start", gap = true, children }: GridProps) {
-  const classnames = classNames(styles.grid, alignments[align], {
+export function Grid({
+  alignItems = "start",
+  gap = true,
+  children,
+}: GridProps) {
+  const classnames = classNames(styles.grid, alignments[alignItems], {
     [styles.gap]: gap,
   });
 

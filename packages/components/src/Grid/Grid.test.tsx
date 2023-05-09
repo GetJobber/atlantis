@@ -43,7 +43,7 @@ describe("Grid", () => {
       ["end"],
       ["stretch"],
     ])("should render %s", expectedAlign => {
-      render(<Grid align={expectedAlign}>{children}</Grid>);
+      render(<Grid alignItems={expectedAlign}>{children}</Grid>);
       const element = screen.getByTestId(GRID_TEST_ID);
       expect(element).toHaveClass(expectedAlign);
     });
