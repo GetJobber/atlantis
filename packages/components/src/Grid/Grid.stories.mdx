@@ -2,6 +2,9 @@ import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
 import { Grid } from "@jobber/components/Grid";
 import { Card } from "@jobber/components/Card";
 import { Content } from "@jobber/components/Content";
+import { Heading } from "@jobber/components/Heading";
+import { Text } from "@jobber/components/Text";
+import { DescriptionList } from "@jobber/components/DescriptionList";
 
 <Meta
   title="Components/Grid"
@@ -11,6 +14,8 @@ import { Content } from "@jobber/components/Content";
 
 # Grid
 
+Helps create a layout that conforms to a 12-point grid system.
+
 ```ts
 import { Grid } from "@jobber/components/Grid";
 ```
@@ -19,19 +24,31 @@ import { Grid } from "@jobber/components/Grid";
   <Story name="Grid">
     {args => (
       <Grid {...args}>
-        <Grid.Cell size={{ xs: 12, sm: 8, md: 6, lg: 4, xl: 3 }}>
-          <Card>
-            <Content>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Consectetur doloribus maiores dignissimos animi minus non debitis
-              aperiam molestiae quod temporibus?
-            </Content>
-          </Card>
+        <Grid.Cell size={{ xs: 12, sm: 6, md: 7, lg: 7, xl: 6 }}>
+          <Content>
+            <Heading level={1}>Welcome to Atlantis!</Heading>
+            <Text size="large">
+              Atlantis is a design system for Jobber. The primary objective for
+              Atlantis is to provide a system of reusable components to help
+              developers to quickly build beautiful and consistent interfaces
+              for our users.
+            </Text>
+          </Content>
         </Grid.Cell>
-        <Grid.Cell size={{ xs: 12, sm: 4, md: 6, lg: 8, xl: 7 }}>
-          <Card>
-            <Content>Hello There</Content>
-          </Card>
+        <Grid.Cell size={{ xs: 12, sm: 6, md: 5, lg: 5, xl: 6 }}>
+          <div style={{ display: "flex", height: "100%" }}>
+            <Card>
+              <Content>
+                <DescriptionList
+                  data={[
+                    ["Status", "Amazing"],
+                    ["Emoji", "🔱"],
+                    ["Components", "A lot!"],
+                  ]}
+                />
+              </Content>
+            </Card>
+          </div>
         </Grid.Cell>
       </Grid>
     )}
