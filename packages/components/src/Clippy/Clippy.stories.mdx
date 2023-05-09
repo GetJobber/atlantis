@@ -1,0 +1,189 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { useRef, useState } from "react";
+import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
+import { Banner } from "@jobber/components/Banner";
+import { Button } from "@jobber/components/Button";
+import { Clippy } from "@jobber/components/Clippy";
+import { Content } from "@jobber/components/Content";
+import { Divider } from "@jobber/components/Divider";
+
+<Meta
+  title="Components/Clippy"
+  component={Clippy}
+  parameters={{
+    layout: "centered",
+  }}
+/>
+
+# Clippy
+
+A Clippy displays floating informative and actionable content positioned in
+relation to a target. The Clippy can contain content, media, or other
+components.
+
+```ts
+import { Clippy } from "@jobber/components/Clippy";
+```
+
+<Canvas>
+  <Story name="Clippy" args={{ open: true, defaultMood: "calm" }}>
+    {args => {
+      const divRef = useRef();
+      const [showClippy, setShowClippy] = useState(args.open);
+      const [dialog, setDialog] = useState(args.dialog);
+      // const [mood, setMood] = useState(args.defaultMood)
+      const clippyRef = useRef();
+      console.log({ clippyRef });
+      return (
+        <Content>
+          <Content>
+            <span ref={divRef}>
+              <Button
+                label="Toggle Clippy"
+                onClick={() => setShowClippy(!showClippy)}
+              />
+            </span>
+            <Clippy
+              {...args}
+              attachTo={divRef}
+              ref={clippyRef}
+              open={showClippy}
+              dialog={dialog}
+              onRequestClose={() => setShowClippy(false)}
+            ></Clippy>
+          </Content>
+          <Divider></Divider>
+          <Content>
+            <Content>
+              <Button
+                label="Make Lazer"
+                onClick={() => {
+                  clippyRef.current.makeLazer();
+                  setDialog("Lazer beams!!!!");
+                }}
+              />
+            </Content>
+            <Content>
+              <Button
+                label="Make Calm"
+                onClick={() => {
+                  clippyRef.current.makeCalm();
+                  setDialog("Stay calm!");
+                }}
+              />
+            </Content>
+            <Content>
+              <Button
+                label="Make Cool"
+                onClick={() => {
+                  clippyRef.current.makeCool();
+                  setDialog("Chilling in the sun");
+                }}
+              />
+            </Content>
+          </Content>
+        </Content>
+      );
+    }}
+  </Story>
+</Canvas>
+
+<ArgsTable of={Clippy} story="Clippy" />
+
+## Usage guidelines
+
+Some scenarios for Clippy include the following:
+
+### Informational
+
+Introducing the user to a new experience, whether their first time using a
+product or to introduce a new or updated functionality in an existing
+experience, Clippy can be an excellent choice to highlight a specific piece of
+the experience.
+
+If there is an "acknowledgement" CTA for the user to confirm that they
+understand the change, use a `learning`
+[Button](../?path=/docs/components-button--button).
+
+<Canvas>
+  <ExampleWithHooks>
+    {() => {
+      const newFeatureButton = useRef();
+      const [showClippy, setShowClippy] = useState(true);
+      return (
+        <>
+          <span ref={newFeatureButton}>
+            <Button
+              label="New Feature"
+              onClick={() => setShowClippy(!showClippy)}
+            />
+          </span>
+          <Clippy
+            attachTo={newFeatureButton}
+            open={showClippy}
+            preferredPlacement="right"
+            onRequestClose={() => setShowClippy(false)}
+          ></Clippy>
+        </>
+      );
+    }}
+  </ExampleWithHooks>
+</Canvas>
+
+### Functional
+
+Reveal a list of available actions to the user. For example, if the user clicks
+on an element and there are four potential actions they might take, Clippy is a
+great way to present those actions. If you're looking to provide a menu of
+actions that comes complete with a trigger button,
+[Menu](../?path=/docs/components-menu--menu) has that bundle ready to go.
+
+<Banner type="warning" dismissible={false}>
+  A "functional" Clippy hasn't been implemented in a componentized fashion yet.
+</Banner>
+
+### Related components
+
+To add a menu button that presents multiple actions to the user, use
+[Menu](../?path=/docs/components-menu--menu).
+
+To add a hint about a UI element's function in a permanent fashion (ie revealing
+a Button's label on hover), use
+[Tooltip](../?path=/docs/components-tooltip--tooltip).
+
+To add an inline informational element that the user can dismiss, consider if
+[Banner](../?path=/docs/components-banner--banner) is the right fit for your use
+case.
+
+## Content guidelines
+
+- Clippy text content should be concise and clear. Try not to go over three
+  lines so the user can get back to what they were doing!
+- In "informational" usage, Popper may have a CTA that allows the user to
+  "acknowledge" and dismiss the Clippy; this does not replace the need for the
+  dismiss button
+
+## Accessibility
+
+Clippy has a role of `dialog` as it is an element that the user will be "in
+dialogue" with, whether selecting an action, confirming acknowledgement, or
+dismissing the Clippy.
+
+Depending on your use case, you may need to add focus management to your usage
+of Clippy; for example, if selecting a Button opens a Clippy, you will want to
+then set focus to the Clippy, and if the user dismisses the Clippy, return focus
+to the button that opened the Clippy.
+
+If your element is effectively acting as an inline DOM element that the user
+would otherwise encounter when traversing the page, this focus management may
+not be necessary.
+
+## Notes
+
+- There is no componentized way to pass in actions for a "functional" Clippy
+  yet, but we have a good idea of what that would look like. We believe there
+  may be some opportunity to share elements of Clippy with Menu and vice-versa.
+- There is no built-in focus management in Clippy, as the specific
+  implementation should drive those considerations
+- Clippy uses a plugin called [Popper](https://popper.js.org/react-popper/v2/)
+  to power its' positioning
