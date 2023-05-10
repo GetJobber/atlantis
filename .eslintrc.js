@@ -3,6 +3,7 @@ require("@jobber/eslint-config/patch-eslint-plugin-resolution.js");
 
 const packageAliases = [
   ["@jobber/components", "./packages/components/src"],
+  ["@jobber/components-native", "./packages/components-native"],
   ["@jobber/hooks", "./packages/hooks/src"],
 ];
 
