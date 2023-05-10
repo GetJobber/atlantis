@@ -6,6 +6,7 @@ import { Content } from "@jobber/components/Content";
 import { Checkbox } from "@jobber/components/Checkbox";
 import { InputText } from "@jobber/components/InputText";
 import { Cell, Header, Row, Table } from "@jobber/components/Table";
+import { Tab, Tabs } from "@jobber/components/Tabs";
 
 <Meta title="Design/Typography" />
 
@@ -100,7 +101,10 @@ labels, and more!
   </Content>
 </Canvas>
 
-## Font-size (web)
+## Font-size
+
+<Tabs>
+  <Tab label="Web">
 
 At the default zoom level for web applications, our base font-size is equivalent
 to `14px`. Depending on the context in which your typography is being used,
@@ -139,7 +143,8 @@ export function PixelSize({ of: size }) {
 | `--typography--fontSize-jumbo`       | <Example of="jumbo" />       | <PixelSize of="jumbo" />       |
 | `--typography--fontSize-extravagant` | <Example of="extravagant" /> | <PixelSize of="extravagant" /> |
 
-## Font-size (mobile)
+  </Tab>
+  <Tab label="Mobile">
 
 Jobber's mobile platform uses the following sizing tokens for typography.
 
@@ -158,7 +163,13 @@ a larger or smaller font-size depending on the use case.
 | `--typography--fontSize-jumbo`       | <div style={{fontSize: "32px", fontFamily: "Inter"}}>jumbo </div>       | 32px  |
 | `--typography--fontSize-extravagant` | <div style={{fontSize: "42px", fontFamily: "Inter"}}>extravagant </div> | 42px  |
 
-## Line-height (web)
+  </Tab>
+</Tabs>
+
+## Line-height
+
+<Tabs>
+  <Tab label="Web">
 
 Line-height, or
 [leading](https://www.shillingtoneducation.com/blog/leading-typography/), is the
@@ -208,7 +219,8 @@ export function Value({ of: size }) {
 | `--typography--lineHeight-tightest`  | <Visual of="tightest" />  | <Value of="tightest" />  |
 | `--typography--lineHeight-miniscule` | <Visual of="miniscule" /> | <Value of="miniscule" /> |
 
-## Line-height (mobile)
+  </Tab>
+  <Tab label="Mobile">
 
 | Name                                   | Visual                                                                                                                                                       | Value |
 | :------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- | :---- |
@@ -219,3 +231,6 @@ export function Value({ of: size }) {
 | `--typography--lineHeight-large`       | <div style={{lineHeight: "22px", fontFamily: "Inter"}}>Line-height, or leading, is the space between subsequent lines of type. The line-heights in... </div> | 22px  |
 | `--typography--lineHeight-base`        | <div style={{lineHeight: "20px", fontFamily: "Inter"}}>Line-height, or leading, is the space between subsequent lines of type. The line-heights in... </div> | 20px  |
 | `--typography--lineHeight-tight`       | <div style={{lineHeight: "18px", fontFamily: "Inter"}}>Line-height, or leading, is the space between subsequent lines of type. The line-heights in... </div> | 18px  |
+
+  </Tab>
+</Tabs>
