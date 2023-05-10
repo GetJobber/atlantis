@@ -29,7 +29,7 @@ describe("Grid", () => {
       expect(element).toHaveClass("gap");
     });
 
-    it("should not have a gap by default", () => {
+    it("should not have a gap when set", () => {
       render(<Grid gap={false}>{children}</Grid>);
       const element = screen.getByTestId(GRID_TEST_ID);
       expect(element).not.toHaveClass("gap");
