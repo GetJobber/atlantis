@@ -1,0 +1,29 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { TextList } from "@jobber/components/TextList";
+
+<Meta title="Components/TextList" component={TextList} />
+
+# TextList
+
+```ts
+import { TextList } from "@jobber/components/TextList";
+```
+
+<Canvas>
+  <Story
+    name="TextList"
+    args={{
+      data: [
+        "Your name",
+        "Company name (if applicable)",
+        "Phone number",
+        "Email address",
+        "Property address",
+      ],
+    }}
+  >
+    {args => <TextList {...args} />}
+  </Story>
+</Canvas>
+
+<ArgsTable of={TextList} story="TextList" />
