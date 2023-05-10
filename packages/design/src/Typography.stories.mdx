@@ -160,17 +160,22 @@ export function MobileExample({ of: mobileSize }) {
   return <div style={style}>{mobileSize}</div>;
 }
 
-| Name                                 | Visual                             | Value |
-| :----------------------------------- | :--------------------------------- | :---- |
-| `--typography--fontSize-smallest`    | <MobileExample of="smallest" />    | 10px  |
-| `--typography--fontSize-smaller`     | <MobileExample of="smaller" />     | 12px  |
-| `--typography--fontSize-small`       | <MobileExample of="small" />       | 14px  |
-| `--typography--fontSize-base`        | <MobileExample of="base" />        | 16px  |
-| `--typography--fontSize-large`       | <MobileExample of="large" />       | 18px  |
-| `--typography--fontSize-larger`      | <MobileExample of="larger" />      | 20px  |
-| `--typography--fontSize-largest`     | <MobileExample of="largest" />     | 24px  |
-| `--typography--fontSize-jumbo`       | <MobileExample of="jumbo" />       | 32px  |
-| `--typography--fontSize-extravagant` | <MobileExample of="extravagant" /> | 42px  |
+export function MobilePixelSize({ of: mobileSize }) {
+  const value = JobberStyle[`typography--fontSize-${mobileSize}`] + "px";
+  return value;
+}
+
+| Name                                 | Visual                             | Value                                |
+| :----------------------------------- | :--------------------------------- | :----------------------------------- |
+| `--typography--fontSize-smallest`    | <MobileExample of="smallest" />    | <MobilePixelSize of="smallest" />    |
+| `--typography--fontSize-smaller`     | <MobileExample of="smaller" />     | <MobilePixelSize of="smaller" />     |
+| `--typography--fontSize-small`       | <MobileExample of="small" />       | <MobilePixelSize of="small" />       |
+| `--typography--fontSize-base`        | <MobileExample of="base" />        | <MobilePixelSize of="base" />        |
+| `--typography--fontSize-large`       | <MobileExample of="large" />       | <MobilePixelSize of="large" />       |
+| `--typography--fontSize-larger`      | <MobileExample of="larger" />      | <MobilePixelSize of="larger" />      |
+| `--typography--fontSize-largest`     | <MobileExample of="largest" />     | <MobilePixelSize of="largest" />     |
+| `--typography--fontSize-jumbo`       | <MobileExample of="jumbo" />       | <MobilePixelSize of="jumbo" />       |
+| `--typography--fontSize-extravagant` | <MobileExample of="extravagant" /> | <MobilePixelSize of="extravagant" /> |
 
   </Tab>
 </Tabs>
@@ -231,15 +236,34 @@ export function Value({ of: size }) {
   </Tab>
   <Tab label="Mobile">
 
-| Name                                   | Visual                                                                                                                                                       | Value |
-| :------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- | :---- |
-| `--typography--lineHeight-extravagant` | <div style={{lineHeight: "42px", fontFamily: "Inter"}}>Line-height, or leading, is the space between subsequent lines of type. The line-heights in... </div> | 42px  |
-| `--typography--lineHeight-jumbo`       | <div style={{lineHeight: "36px", fontFamily: "Inter"}}>Line-height, or leading, is the space between subsequent lines of type. The line-heights in... </div> | 36px  |
-| `--typography--lineHeight-largest`     | <div style={{lineHeight: "28px", fontFamily: "Inter"}}>Line-height, or leading, is the space between subsequent lines of type. The line-heights in... </div> | 28px  |
-| `--typography--lineHeight-larger`      | <div style={{lineHeight: "24px", fontFamily: "Inter"}}>Line-height, or leading, is the space between subsequent lines of type. The line-heights in... </div> | 24px  |
-| `--typography--lineHeight-large`       | <div style={{lineHeight: "22px", fontFamily: "Inter"}}>Line-height, or leading, is the space between subsequent lines of type. The line-heights in... </div> | 22px  |
-| `--typography--lineHeight-base`        | <div style={{lineHeight: "20px", fontFamily: "Inter"}}>Line-height, or leading, is the space between subsequent lines of type. The line-heights in... </div> | 20px  |
-| `--typography--lineHeight-tight`       | <div style={{lineHeight: "18px", fontFamily: "Inter"}}>Line-height, or leading, is the space between subsequent lines of type. The line-heights in... </div> | 18px  |
+export function MobileLineHeightExample({ of: mobileLineHeight }) {
+  const style = {
+    lineHeight:
+      JobberStyle[`typography--lineHeight-${mobileLineHeight}`] + "px",
+    fontFamily: "Inter",
+  };
+  console.log(JobberStyle, mobileLineHeight);
+  return (
+    <div style={style}>
+      Line-height, or leading, is the space between subsequent lines of type...
+    </div>
+  );
+}
+
+export function MobileLineHeightPixelSize({ of: mobileSize }) {
+  const value = JobberStyle[`typography--lineHeight-${mobileSize}`] + "px";
+  return value;
+}
+
+| Name                                   | Visual                                       | Value                                          |
+| :------------------------------------- | :------------------------------------------- | :--------------------------------------------- |
+| `--typography--lineHeight-extravagant` | <MobileLineHeightExample of="extravagant" /> | <MobileLineHeightPixelSize of="extravagant" /> |
+| `--typography--lineHeight-jumbo`       | <MobileLineHeightExample of="jumbo" />       | <MobileLineHeightPixelSize of="jumbo" />       |
+| `--typography--lineHeight-largest`     | <MobileLineHeightExample of="largest" />     | <MobileLineHeightPixelSize of="largest" />     |
+| `--typography--lineHeight-larger`      | <MobileLineHeightExample of="larger" />      | <MobileLineHeightPixelSize of="larger" />      |
+| `--typography--lineHeight-large`       | <MobileLineHeightExample of="large" />       | <MobileLineHeightPixelSize of="large" />       |
+| `--typography--lineHeight-base`        | <MobileLineHeightExample of="base" />        | <MobileLineHeightPixelSize of="base" />        |
+| `--typography--lineHeight-tight`       | <MobileLineHeightExample of="tight" />       | <MobileLineHeightPixelSize of="tight" />       |
 
   </Tab>
 </Tabs>
