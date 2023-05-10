@@ -1,0 +1,14 @@
+.textList {
+  margin: 0;
+  padding: 0;
+  padding-left: var(--space-base);
+  list-style: disc outside none;
+}
+
+.numbered {
+  list-style-type: decimal;
+}
+
+.textListItem {
+  display: list-item;
+}

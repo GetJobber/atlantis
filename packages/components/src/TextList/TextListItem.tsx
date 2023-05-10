@@ -1,4 +1,5 @@
 import React, { ReactNode, isValidElement } from "react";
+import styles from "./TextList.css";
 import { Text } from "../Text";
 
 interface TextListItemProps {
@@ -12,5 +13,5 @@ export function TextListItem({ children }: TextListItemProps) {
     item = children;
   }
 
-  return <li>{item}</li>;
+  return <li className={styles.textListItem}>{item}</li>;
 }
