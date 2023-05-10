@@ -11,6 +11,9 @@ import { Divider } from "@jobber/components/Divider";
   title="Components/Divider"
   component={Divider}
   subcomponents={{ "Mobile Divider": MobileDivider }}
+  parameters={{
+    viewMode: "docs",
+  }}
 />
 
 # Divider
@@ -20,18 +23,25 @@ Divider is a UI element meant to divide into areas of content.
 <ImportCodeSnippet name="Divider" />
 
 <Canvas>
-  <Story name="Divider">
+  <Story name="Overview">
     {args => (
-      <Content>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns:
+            args.direction === "vertical" ? "auto min-content auto" : "auto",
+          gap: "var(--space-base)",
+        }}
+      >
         <Content>Some amazing content</Content>
         <Divider {...args} />
         <Content>Even more amazing content</Content>
-      </Content>
+      </div>
     )}
   </Story>
 </Canvas>
 
-<ArgsTable of={Divider} story="Divider" />
+<ArgsTable of={Divider} story="Overview" />
 
 ## Design & usage guidelines
 
