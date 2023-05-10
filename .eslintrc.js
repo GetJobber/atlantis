@@ -44,5 +44,16 @@ module.exports = {
         "import/no-extraneous-dependencies": "off",
       },
     },
+    {
+      files: ["*.stories.tsx"],
+      rules: {
+        "react-native/no-inline-styles": "off",
+        "no-alert": "off",
+        "@typescript-eslint/naming-convention": "off",
+        "@typescript-eslint/no-unused-expressions": "off",
+        "import/no-extraneous-dependencies": "off",
+        "import/no-default-export": "off",
+      },
+    },
   ],
 };
