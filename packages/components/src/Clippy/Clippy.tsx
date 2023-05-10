@@ -5,76 +5,24 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import { motion } from "framer-motion";
-import { Sammy } from "./components";
+import { AnimatedTextWord, SpamPillar } from "./components";
 import { ClippyRef, Mood } from "./types";
 import { Popover } from "../Popover";
 
-const AnimatedTextWord = ({ text }: { text: string }) => {
-  const words = text.split(" ");
-
-  // Variants for Container of words.
-  const container = {
-    hidden: { opacity: 0 },
-    visible: (i = 1) => ({
-      opacity: 1,
-      transition: { staggerChildren: 0.12, delayChildren: 0.04 * i },
-    }),
-  };
-
-  // Variants for each word.
-
-  const child = {
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        type: "spring",
-        duration: 0.1,
-      },
-    },
-    hidden: {
-      opacity: 0,
-      x: 20,
-      transition: {
-        type: "spring",
-        duration: 0.1,
-      },
-    },
-  };
-
-  return (
-    <motion.div
-      style={{
-        width: "auto",
-        padding: "var(--base-unit)",
-      }}
-      variants={container}
-      initial="hidden"
-      animate="visible"
-    >
-      {words.map((word, index) => (
-        <motion.span
-          variants={child}
-          style={{
-            marginRight: "5px",
-            // overflowWrap: "break-word",
-          }}
-          key={index}
-        >
-          {word}
-        </motion.span>
-      ))}
-    </motion.div>
-  );
-};
-
-export interface ClippyProps {
+interface BaseAssistant {
+  mood?: Mood;
+}
+export interface ClippyProps<T extends BaseAssistant = BaseAssistant> {
   /**
    * Element the Popover will attach to and point at. A `useRef` must be attached to an html element
    * and passed as an attachTo prop in order for the Popover to function properly
    */
   readonly attachTo: Element | React.RefObject<Element | null>;
+
+  /** The virtual assistant to use
+   * @default SpamPillar
+   */
+  readonly virtualAssistant?: () => React.ReactElement<T>;
 
   /**
    * Control Popover visibility.
@@ -93,30 +41,22 @@ export interface ClippyProps {
   readonly preferredPlacement?: "top" | "bottom" | "left" | "right" | "auto";
 
   /**
-   * Describes how much Sammy will pester the SP.
-   * @default 'base'
-   */
-
-  readonly pesteringLevel?: "none" | "low" | "base" | "high";
-
-  /**
    * Set if Clippy is Angry by default
    * @default 'calm'
    */
   readonly defaultMood?: Mood;
 
+  /**
+   * What the virtual assistant is saying!
+   */
   readonly dialog?: string;
-
-  readonly onLazer?: () => void;
-  readonly onCalm?: () => void;
-  readonly onCool?: () => void;
 
   ref?: Ref<ClippyRef>;
 }
 
 export const Clippy = forwardRef(InternalClippy);
 
-function InternalClippy(
+function InternalClippy<T extends BaseAssistant = BaseAssistant>(
   {
     onRequestClose,
     attachTo,
@@ -124,10 +64,8 @@ function InternalClippy(
     preferredPlacement = "auto",
     defaultMood = "calm",
     dialog,
-    onLazer,
-    onCalm,
-    onCool,
-  }: ClippyProps,
+    virtualAssistant,
+  }: ClippyProps<T>,
   ref: Ref<ClippyRef>,
 ) {
   const [mood, setMood] = useState(defaultMood);
@@ -145,18 +83,16 @@ function InternalClippy(
   const content = useMemo(() => {
     return dialog ? <AnimatedTextWord text={dialog} /> : undefined;
   }, [dialog]);
-
+  const Assistant = virtualAssistant ?? SpamPillar;
   return (
-    <>
-      <Popover
-        attachTo={attachTo}
-        open={open}
-        onRequestClose={onRequestClose}
-        preferredPlacement={preferredPlacement}
-      >
-        <Sammy mood={mood} />
-        {content}
-      </Popover>
-    </>
+    <Popover
+      attachTo={attachTo}
+      open={open}
+      onRequestClose={onRequestClose}
+      preferredPlacement={preferredPlacement}
+    >
+      <Assistant mood={mood} />
+      {content}
+    </Popover>
   );
 }

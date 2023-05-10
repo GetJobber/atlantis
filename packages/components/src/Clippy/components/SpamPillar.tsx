@@ -1,7 +1,7 @@
 import React from "react";
 import { Mood } from "../types";
 
-export function Sammy({ mood = "calm" }: { mood: Mood }): JSX.Element {
+export function SpamPillar({ mood = "calm" }: { mood: Mood }): JSX.Element {
   switch (mood) {
     case "calm":
       return (

@@ -1,1 +1,2 @@
-export * from "./Sammy";
+export * from "./SpamPillar";
+export * from "./AnimatedText";
