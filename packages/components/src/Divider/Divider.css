@@ -8,12 +8,12 @@
 
 .large {
   --divider-width: var(--border-thick);
-  opacity: var(--opacity-overlay);
+  opacity: 0.875;
 }
 
 .larger {
   --divider-width: var(--border-thicker);
-  opacity: var(--opacity-pressed);
+  opacity: 0.625;
 }
 
 .largest {
