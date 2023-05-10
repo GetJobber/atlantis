@@ -7,11 +7,18 @@ interface TextListItemProps {
 }
 
 export function TextListItem({ children }: TextListItemProps) {
-  let item = <Text>{children}</Text>;
+  return <li className={styles.textListItem}>{getChild(children)}</li>;
+}
 
-  if (isValidElement(children)) {
-    item = children;
+function getChild(children: ReactNode): JSX.Element {
+  if (Array.isArray(children)) {
+    const nestedChildren = children.map((child: ReactNode) => getChild(child));
+    return <>{nestedChildren}</>;
   }
 
-  return <li className={styles.textListItem}>{item}</li>;
+  if (isValidElement(children)) {
+    return children;
+  }
+
+  return <Text>{children}</Text>;
 }

@@ -5,6 +5,18 @@
   list-style: disc outside none;
 }
 
+.textList .textList {
+  margin-top: var(--space-small);
+}
+
+.bulleted .bulleted {
+  list-style-type: circle;
+}
+
+.bulleted .bulleted .bulleted {
+  list-style-type: square;
+}
+
 .numbered {
   list-style-type: decimal;
 }
