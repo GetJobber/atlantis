@@ -7,6 +7,7 @@ import { Checkbox } from "@jobber/components/Checkbox";
 import { InputText } from "@jobber/components/InputText";
 import { Cell, Header, Row, Table } from "@jobber/components/Table";
 import { Tab, Tabs } from "@jobber/components/Tabs";
+import { JobberStyle } from "@jobber/design/foundation.native.js";
 
 <Meta title="Design/Typography" />
 
@@ -151,17 +152,25 @@ Jobber's mobile platform uses the following sizing tokens for typography.
 The mobile platform has a base font-size equivalent to `16px`, with options for
 a larger or smaller font-size depending on the use case.
 
-| Name                                 | Visual                                                                  | Value |
-| :----------------------------------- | :---------------------------------------------------------------------- | :---- |
-| `--typography--fontSize-smallest`    | <div style={{fontSize: "10px", fontFamily: "Inter"}}>smallest </div>    | 10px  |
-| `--typography--fontSize-smaller`     | <div style={{fontSize: "12px", fontFamily: "Inter"}}>smaller </div>     | 12px  |
-| `--typography--fontSize-small`       | <div style={{fontSize: "14px", fontFamily: "Inter"}}>small </div>       | 14px  |
-| `--typography--fontSize-base`        | <div style={{fontSize: "16px", fontFamily: "Inter"}}>base </div>        | 16px  |
-| `--typography--fontSize-large`       | <div style={{fontSize: "18px", fontFamily: "Inter"}}>large </div>       | 18px  |
-| `--typography--fontSize-larger`      | <div style={{fontSize: "20px", fontFamily: "Inter"}}>larger </div>      | 20px  |
-| `--typography--fontSize-largest`     | <div style={{fontSize: "24px", fontFamily: "Inter"}}>largest </div>     | 24px  |
-| `--typography--fontSize-jumbo`       | <div style={{fontSize: "32px", fontFamily: "Inter"}}>jumbo </div>       | 32px  |
-| `--typography--fontSize-extravagant` | <div style={{fontSize: "42px", fontFamily: "Inter"}}>extravagant </div> | 42px  |
+export function MobileExample({ of: mobileSize }) {
+  const style = {
+    fontSize: JobberStyle[`typography--fontSize-${mobileSize}`],
+    fontFamily: "Inter",
+  };
+  return <div style={style}>{mobileSize}</div>;
+}
+
+| Name                                 | Visual                             | Value |
+| :----------------------------------- | :--------------------------------- | :---- |
+| `--typography--fontSize-smallest`    | <MobileExample of="smallest" />    | 10px  |
+| `--typography--fontSize-smaller`     | <MobileExample of="smaller" />     | 12px  |
+| `--typography--fontSize-small`       | <MobileExample of="small" />       | 14px  |
+| `--typography--fontSize-base`        | <MobileExample of="base" />        | 16px  |
+| `--typography--fontSize-large`       | <MobileExample of="large" />       | 18px  |
+| `--typography--fontSize-larger`      | <MobileExample of="larger" />      | 20px  |
+| `--typography--fontSize-largest`     | <MobileExample of="largest" />     | 24px  |
+| `--typography--fontSize-jumbo`       | <MobileExample of="jumbo" />       | 32px  |
+| `--typography--fontSize-extravagant` | <MobileExample of="extravagant" /> | 42px  |
 
   </Tab>
 </Tabs>
