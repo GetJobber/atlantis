@@ -59,6 +59,7 @@
     "@babel/preset-typescript": "^7.3.3",
     "@csstools/postcss-global-data": "^1.0.3",
     "@jobber/components": "*",
+    "@jobber/components-native": "*",
     "@jobber/design": "*",
     "@jobber/docx": "*",
     "@jobber/eslint-config": "*",
@@ -69,10 +70,12 @@
     "@storybook/addon-essentials": "^6.5.16",
     "@storybook/addon-interactions": "^6.5.16",
     "@storybook/addon-links": "^6.5.16",
+    "@storybook/addon-react-native-web": "^0.0.20",
     "@storybook/addons": "^6.5.16",
     "@storybook/builder-webpack4": "^6.5.16",
     "@storybook/manager-webpack4": "^6.5.16",
     "@storybook/react": "^6.5.16",
+    "@storybook/react-native": "^6.5.3",
     "@storybook/testing-library": "0.0.13",
     "@storybook/theming": "^6.5.16",
     "@testing-library/jest-dom": "^5.16.5",
@@ -86,6 +89,7 @@
     "autoprefixer": "^9.8.4",
     "axios": "^0.21.4",
     "babel-loader": "^8.3.0",
+    "babel-plugin-react-native-web": "^0.19.4",
     "chalk": "^4.1.2",
     "css-loader": "^3.4.2",
     "eslint": "^8.36.0",
@@ -113,6 +117,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-native": "^0.71.7",
+    "react-native-web": "^0.19.4",
     "react-router-dom": "^5.3.4",
     "storybook-addon-designs": "^6.3.1",
     "style-loader": "^0.23.1",
@@ -122,7 +127,8 @@
     "ts-node": "^10.9.1",
     "typed-css-modules": "^0.7.0",
     "typed-css-modules-loader": "0.0.18",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "webpack": "^4.46.0"
   },
   "husky": {
     "hooks": {
