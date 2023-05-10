@@ -16,6 +16,7 @@ const config = {
         transcludeMarkdown: true,
       },
     },
+    "@storybook/addon-react-native-web",
   ],
   features: { buildStoriesJson: true },
   framework: "@storybook/react",
@@ -24,8 +25,7 @@ const config = {
      * Separate existing rules for CSS files
      */
     if (config.module?.rules) {
-      const matcher = (rule) =>
-        rule.test?.toString() === "/\\.css$/";
+      const matcher = rule => rule.test?.toString() === "/\\.css$/";
       const existingRule = config.module.rules.find(matcher);
 
       // CSS rules for 3rd-party package only
@@ -68,7 +68,7 @@ const config = {
       test: /\.mjs$/,
       include: /node_modules/,
       type: "javascript/auto",
-    })
+    });
 
     /**
      * Generate css types on `.css` file save,
@@ -88,12 +88,12 @@ const config = {
               plugins: [
                 require("postcss-import"),
                 require("autoprefixer"),
-                require('@csstools/postcss-global-data')({
+                require("@csstools/postcss-global-data")({
                   files: [
                     require.resolve(
                       path.join(__dirname, "../packages/design/foundation.css"),
                     ),
-                  ]
+                  ],
                 }),
                 require("postcss-preset-env")({
                   stage: 1,
@@ -101,7 +101,7 @@ const config = {
                 }),
               ],
             },
-          }
+          },
         },
       ],
     });
@@ -111,6 +111,10 @@ const config = {
       "@jobber/components": path.resolve(
         __dirname,
         "../packages/components/src",
+      ),
+      "@jobber/components-native": path.resolve(
+        __dirname,
+        "../packages/components-native",
       ),
       "@jobber/docx": path.resolve(__dirname, "../packages/docx/src"),
       "@jobber/hooks": path.resolve(__dirname, "../packages/hooks/src"),
