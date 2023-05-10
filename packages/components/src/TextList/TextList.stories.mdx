@@ -27,3 +27,41 @@ import { TextList } from "@jobber/components/TextList";
 </Canvas>
 
 <ArgsTable of={TextList} story="TextList" />
+
+## Nested List
+
+You can nest `TextList` by adding another array within the `data` array.
+
+<Canvas>
+  <TextList
+    data={[
+      "Strawberries",
+      "Blueberries",
+      "Mango",
+      "Kiwi",
+      [
+        "Bananas",
+        <TextList
+          key="Bananas"
+          data={[
+            "Burro",
+            [
+              "Cavendish",
+              <TextList
+                key="Cavendish"
+                data={[
+                  "This is the familiar yellow banana sold in United States supermarkets.",
+                  [
+                    "There are also other sizes of Cavendish",
+                    <TextList key="size" data={["Dwarf", "Giant"]} />,
+                  ],
+                  "Though they are difficult to find",
+                ]}
+              />,
+            ],
+          ]}
+        />,
+      ],
+    ]}
+  />
+</Canvas>
