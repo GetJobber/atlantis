@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.14.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.13.1...@jobber/components@4.14.0) (2023-05-10)
+
+
+### Features
+
+* **components:** Add validation support to Autocomplete component ([#1233](https://github.com/GetJobber/atlantis/issues/1233)) ([ac727d9](https://github.com/GetJobber/atlantis/commit/ac727d99ef6ac3327212ed9f1514fd0b84ede776))
+
+
+
+
+
 ## [4.13.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.13.0...@jobber/components@4.13.1) (2023-05-09)
 
 
