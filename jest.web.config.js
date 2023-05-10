@@ -4,6 +4,7 @@
 /** @type {import('jest').Config} */
 module.exports = {
   displayName: "Atlantis Web",
+  rootDir: ".",
   // A map from regular expressions to module names that allow to stub out resources with a single module
   moduleNameMapper: {
     "\\.css$": "identity-obj-proxy",
