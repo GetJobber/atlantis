@@ -3,14 +3,11 @@ module.exports = {
   displayName: "Atlantis Mobile",
   preset: "react-native",
   setupFilesAfterEnv: ["./jestMobileSetupConfig.js"],
-  // rootDir: "./packages/components-native",
   testPathIgnorePatterns: ["/node_modules/"],
-  testMatch: [
-    "<rootDir>/packages/components-native/**/*.test.tsx",
-    "<rootDir>/packages/components-native/**/*.test.ts",
-  ],
   transformIgnorePatterns: [
-    "node_modules/(?!(jest-)?@?react-native|@react-native-community",
+    "node_modules/(?!(jest-)?@?react-native|@react-native-community|@react-native)",
   ],
+  // moduleDirectories: ["node_modules"],
+  testMatch: ["**/*.test.tsx", "**/*.test.ts"],
   clearMocks: true,
 };

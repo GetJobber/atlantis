@@ -100,7 +100,7 @@ module.exports = {
   // Run tests from one or more projects
   projects: [
     "<rootDir>/jest.web.config.js",
-    "<rootDir>/packages/components-native/jest.mobile.config.js",
+    "<rootDir>/packages/components-native/jest.config.js",
   ],
 
   // Use this configuration option to add custom reporters to Jest

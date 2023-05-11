@@ -144,19 +144,21 @@ jobs:
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/atlantis/.npmrc
       - run:
           name: Install Dependencies
-          command: npm ci
-      - run:
-          name: List files
-          command: ls -l packages/components-native/src/Divider
+          command: rm -rf node_modules packages/**/node_modules **/dist **/.rollup.cache coverage && npm ci --legacy-peer-deps
       - run:
           name: "make report dir"
           command: mkdir -p reports/junit
       - run:
           name: "Run tests with jest"
-          command: |
-            npm test -- --runInBand --no-cache --coverage --reporters=jest-junit
+          command: npm test -- --runInBand --no-cache
+      - run:
+          name: "Run tests with jest"
+          command: npm test -- --runInBand --no-cache --coverage --reporters=jest-junit
           environment:
-            JEST_JUNIT_OUTPUT: "reports/junit/web-test-results.xml"
+            JEST_JUNIT_OUTPUT: "reports/junit/test-results.xml"
+      - run:
+          name: List files
+          command: ls -l packages/components-native
       # - run:
       #     name: Get value
       #     command: echo $?
@@ -219,9 +221,9 @@ workflows:
       - build_docs:
           requires:
             - check_for_manual_release
-      # - test_local:
-      #     requires:
-      #       - check_for_manual_release
+      - test_local:
+          requires:
+            - check_for_manual_release
       - release:
           filters:
             branches:
