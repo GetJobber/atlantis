@@ -1,19 +1,19 @@
 import { StyleSheet } from "react-native";
-import { JobberStyle } from "../utils/design";
+import { tokens } from "../utils/design";
 
 export const styles = StyleSheet.create({
   base: {
-    height: JobberStyle["space-minuscule"],
+    height: tokens["space-minuscule"],
     margin: 0,
-    borderBottomWidth: JobberStyle["border-base"],
-    borderBottomColor: JobberStyle["color-border"],
+    borderBottomWidth: tokens["border-base"],
+    borderBottomColor: tokens["color-border"],
   },
   large: {
-    borderBottomWidth: JobberStyle["border-thick"],
+    borderBottomWidth: tokens["border-thick"],
     opacity: 0.875,
   },
   largest: {
-    borderBottomWidth: JobberStyle["space-small"],
+    borderBottomWidth: tokens["space-small"],
     opacity: 0.375,
   },
 });

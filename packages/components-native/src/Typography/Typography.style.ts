@@ -1,14 +1,14 @@
 import { StyleSheet, TextStyle } from "react-native";
-import { JobberStyle } from "../utils/design";
+import { tokens } from "../utils/design";
 
-const extravagantLineHeight = JobberStyle["typography--lineHeight-extravagant"];
-const jumboLineHeight = JobberStyle["typography--lineHeight-jumbo"];
-const largestLineHeight = JobberStyle["typography--lineHeight-largest"];
-const largerLineHeight = JobberStyle["typography--lineHeight-larger"];
-const largeLineHeight = JobberStyle["typography--lineHeight-large"];
-const baseLineHeight = JobberStyle["typography--lineHeight-base"];
-const tightLineHeight = JobberStyle["typography--lineHeight-tight"];
-const minisculeLineHeight = JobberStyle["typography--lineHeight-miniscule"];
+const extravagantLineHeight = tokens["typography--lineHeight-extravagant"];
+const jumboLineHeight = tokens["typography--lineHeight-jumbo"];
+const largestLineHeight = tokens["typography--lineHeight-largest"];
+const largerLineHeight = tokens["typography--lineHeight-larger"];
+const largeLineHeight = tokens["typography--lineHeight-large"];
+const baseLineHeight = tokens["typography--lineHeight-base"];
+const tightLineHeight = tokens["typography--lineHeight-tight"];
+const minisculeLineHeight = tokens["typography--lineHeight-miniscule"];
 
 /**
  * Reusable typography tokens to ensure consistency for any client facing texts.
@@ -65,247 +65,247 @@ export const typographyStyles: { [index: string]: TextStyle } = {
   },
 
   blue: {
-    color: JobberStyle["color-heading"],
+    color: tokens["color-heading"],
   },
 
   blueDark: {
-    color: JobberStyle["color-blue--dark"],
+    color: tokens["color-blue--dark"],
   },
 
   white: {
-    color: JobberStyle["color-white"],
+    color: tokens["color-white"],
   },
 
   green: {
-    color: JobberStyle["color-green"],
+    color: tokens["color-green"],
   },
 
   greenDark: {
-    color: JobberStyle["color-green--dark"],
+    color: tokens["color-green--dark"],
   },
 
   grey: {
-    color: JobberStyle["color-grey"],
+    color: tokens["color-grey"],
   },
 
   greyDark: {
-    color: JobberStyle["color-grey--dark"],
+    color: tokens["color-grey--dark"],
   },
 
   greyBlue: {
-    color: JobberStyle["color-greyBlue"],
+    color: tokens["color-greyBlue"],
   },
 
   greyBlueDark: {
-    color: JobberStyle["color-greyBlue--dark"],
+    color: tokens["color-greyBlue--dark"],
   },
 
   lightBlue: {
-    color: JobberStyle["color-lightBlue"],
+    color: tokens["color-lightBlue"],
   },
 
   lightBlueDark: {
-    color: JobberStyle["color-lightBlue--dark"],
+    color: tokens["color-lightBlue--dark"],
   },
 
   red: {
-    color: JobberStyle["color-red"],
+    color: tokens["color-red"],
   },
 
   redDark: {
-    color: JobberStyle["color-red--dark"],
+    color: tokens["color-red--dark"],
   },
 
   yellow: {
-    color: JobberStyle["color-yellow"],
+    color: tokens["color-yellow"],
   },
 
   yellowDark: {
-    color: JobberStyle["color-yellow--dark"],
+    color: tokens["color-yellow--dark"],
   },
 
   yellowGreenDark: {
-    color: JobberStyle["color-yellowGreen--dark"],
+    color: tokens["color-yellowGreen--dark"],
   },
 
   orangeDark: {
-    color: JobberStyle["color-orange--dark"],
+    color: tokens["color-orange--dark"],
   },
 
   navyDark: {
-    color: JobberStyle["color-navy--dark"],
+    color: tokens["color-navy--dark"],
   },
 
   limeDark: {
-    color: JobberStyle["color-lime--dark"],
+    color: tokens["color-lime--dark"],
   },
 
   purpleDark: {
-    color: JobberStyle["color-purple--dark"],
+    color: tokens["color-purple--dark"],
   },
 
   pinkDark: {
-    color: JobberStyle["color-pink--dark"],
+    color: tokens["color-pink--dark"],
   },
 
   tealDark: {
-    color: JobberStyle["color-teal--dark"],
+    color: tokens["color-teal--dark"],
   },
 
   indigoDark: {
-    color: JobberStyle["color-indigo--dark"],
+    color: tokens["color-indigo--dark"],
   },
 
   navy: {
-    color: JobberStyle["color-navy"],
+    color: tokens["color-navy"],
   },
 
   heading: {
-    color: JobberStyle["color-heading"],
+    color: tokens["color-heading"],
   },
 
   headingReverse: {
-    color: JobberStyle["color-text--reverse"],
+    color: tokens["color-text--reverse"],
   },
 
   text: {
-    color: JobberStyle["color-text"],
+    color: tokens["color-text"],
   },
 
   textSecondary: {
-    color: JobberStyle["color-text--secondary"],
+    color: tokens["color-text--secondary"],
   },
 
   textReverse: {
-    color: JobberStyle["color-text--reverse"],
+    color: tokens["color-text--reverse"],
   },
 
   textReverseSecondary: {
-    color: JobberStyle["color-text--reverse--secondary"],
+    color: tokens["color-text--reverse--secondary"],
   },
 
   success: {
-    color: JobberStyle["color-success--onSurface"],
+    color: tokens["color-success--onSurface"],
   },
 
   error: {
-    color: JobberStyle["color-critical"],
+    color: tokens["color-critical"],
   },
 
   base: {
-    color: JobberStyle["color-text"],
+    color: tokens["color-text"],
   },
 
   subdued: {
-    color: JobberStyle["color-text--secondary"],
+    color: tokens["color-text--secondary"],
   },
 
   warn: {
-    color: JobberStyle["color-warning--onSurface"],
+    color: tokens["color-warning--onSurface"],
   },
 
   info: {
-    color: JobberStyle["color-informative--onSurface"],
+    color: tokens["color-informative--onSurface"],
   },
 
   critical: {
-    color: JobberStyle["color-critical"],
+    color: tokens["color-critical"],
   },
 
   successReverse: {
-    color: JobberStyle["color-success"],
+    color: tokens["color-success"],
   },
 
   errorReverse: {
-    color: JobberStyle["color-critical"],
+    color: tokens["color-critical"],
   },
 
   baseReverse: {
-    color: JobberStyle["color-text--reverse"],
+    color: tokens["color-text--reverse"],
   },
 
   subduedReverse: {
-    color: JobberStyle["color-text--reverse--secondary"],
+    color: tokens["color-text--reverse--secondary"],
   },
 
   warnReverse: {
-    color: JobberStyle["color-warning"],
+    color: tokens["color-warning"],
   },
 
   infoReverse: {
-    color: JobberStyle["color-informative"],
+    color: tokens["color-informative"],
   },
 
   criticalReverse: {
-    color: JobberStyle["color-critical"],
+    color: tokens["color-critical"],
   },
 
   interactive: {
-    color: JobberStyle["color-interactive"],
+    color: tokens["color-interactive"],
   },
 
   destructive: {
-    color: JobberStyle["color-destructive"],
+    color: tokens["color-destructive"],
   },
 
   learning: {
-    color: JobberStyle["color-informative"],
+    color: tokens["color-informative"],
   },
 
   subtle: {
-    color: JobberStyle["color-interactive--subtle"],
+    color: tokens["color-interactive--subtle"],
   },
 
   onPrimary: {
-    color: JobberStyle["color-surface"],
+    color: tokens["color-surface"],
   },
 
   disabled: {
-    color: JobberStyle["color-disabled"],
+    color: tokens["color-disabled"],
   },
 
   smallestSize: {
-    fontSize: JobberStyle["typography--fontSize-smallest"],
+    fontSize: tokens["typography--fontSize-smallest"],
     lineHeight: minisculeLineHeight,
   },
 
   smallerSize: {
-    fontSize: JobberStyle["typography--fontSize-smaller"],
+    fontSize: tokens["typography--fontSize-smaller"],
     lineHeight: tightLineHeight,
   },
 
   smallSize: {
-    fontSize: JobberStyle["typography--fontSize-small"],
+    fontSize: tokens["typography--fontSize-small"],
     lineHeight: tightLineHeight,
   },
 
   defaultSize: {
-    fontSize: JobberStyle["typography--fontSize-base"],
+    fontSize: tokens["typography--fontSize-base"],
     lineHeight: baseLineHeight,
   },
 
   largeSize: {
-    fontSize: JobberStyle["typography--fontSize-large"],
+    fontSize: tokens["typography--fontSize-large"],
     lineHeight: largeLineHeight,
   },
 
   largerSize: {
-    fontSize: JobberStyle["typography--fontSize-larger"],
+    fontSize: tokens["typography--fontSize-larger"],
     lineHeight: largeLineHeight,
   },
 
   largestSize: {
-    fontSize: JobberStyle["typography--fontSize-largest"],
+    fontSize: tokens["typography--fontSize-largest"],
     lineHeight: largerLineHeight,
   },
 
   jumboSize: {
-    fontSize: JobberStyle["typography--fontSize-jumbo"],
+    fontSize: tokens["typography--fontSize-jumbo"],
     lineHeight: jumboLineHeight,
   },
 
   extravagantSize: {
-    fontSize: JobberStyle["typography--fontSize-extravagant"],
+    fontSize: tokens["typography--fontSize-extravagant"],
     lineHeight: extravagantLineHeight,
   },
 
@@ -337,11 +337,11 @@ export const typographyStyles: { [index: string]: TextStyle } = {
   },
 
   baseLetterSpacing: {
-    letterSpacing: JobberStyle["typography--letterSpacing-base"],
+    letterSpacing: tokens["typography--letterSpacing-base"],
   },
 
   looseLetterSpacing: {
-    letterSpacing: JobberStyle["typography--letterSpacing-loose"],
+    letterSpacing: tokens["typography--letterSpacing-loose"],
   },
 
   strikeThrough: {

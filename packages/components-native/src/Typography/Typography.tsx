@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { styles } from "./Typography.style";
 import { TypographyGestureDetector } from "./TypographyGestureDetector";
-import { JobberStyle } from "../utils/design";
+import { tokens } from "../utils/design";
 import { capitalize } from "../utils/intl";
 
 export interface TypographyProps<T extends FontFamily>
@@ -182,7 +182,7 @@ function InternalTypography<T extends FontFamily = "base">({
           sizeAndHeight.fontSize,
         )}
         selectable={selectable}
-        selectionColor={JobberStyle["color-brand--highlight"]}
+        selectionColor={tokens["color-brand--highlight"]}
       >
         {text}
       </Text>
