@@ -353,10 +353,10 @@ export const typographyStyles: { [index: string]: TextStyle } = {
  * `StyleSheet` for Typography.tsx.
  *
  * If you find yourself needing to use what's inside this object on files other
- * than `<Typography />`, please import from `@jobber/components-native/Typography` instead.
+ * than `<Typography />`, please import from `@jobber/components-native` instead.
  *
  * ```
- * import { styles } from "@jobber/components-native/Typography"
+ * import { typographyStyles } from "@jobber/components-native"
  * ```
  */
 export const styles: { [index: string]: TextStyle } =
