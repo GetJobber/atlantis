@@ -294,5 +294,5 @@
 }
 
 select.input {
-  z-index: calc(var(--field--base-elevation) + 1);
+  z-index: var(--field--label-elevation);
 }
