@@ -19,6 +19,7 @@ jobs:
           # These are regex patterns auto-wrapped in `^ $`.
           scopes: |
             components
+            components-native
             deps
             design
             docx
