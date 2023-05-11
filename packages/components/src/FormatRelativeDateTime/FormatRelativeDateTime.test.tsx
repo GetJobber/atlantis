@@ -3,7 +3,7 @@ import { render } from "@testing-library/react";
 import { CivilDateTime } from "@std-proposal/temporal";
 import { FormatRelativeDateTime } from "./FormatRelativeDateTime";
 
-describe.skip("Less than an hour ago", () => {
+describe("Less than an hour ago", () => {
   const testDate = new Date();
   testDate.setMinutes(testDate.getMinutes() - 5);
   const dates = getMockDates(testDate);
@@ -14,7 +14,7 @@ describe.skip("Less than an hour ago", () => {
   });
 });
 
-describe.skip("Less than a minute ago", () => {
+describe("Less than a minute ago", () => {
   const testDate = new Date();
   testDate.setSeconds(testDate.getSeconds() - 25);
   const dates = getMockDates(testDate);
