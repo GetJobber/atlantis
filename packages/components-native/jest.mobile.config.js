@@ -5,12 +5,9 @@ module.exports = {
   setupFilesAfterEnv: ["./jestMobileSetupConfig.js"],
   // rootDir: "./packages/components-native",
   testPathIgnorePatterns: ["/node_modules/"],
-  testMatch: [
-    "<rootDir>/packages/components-native/**/*.test.tsx",
-    "<rootDir>/packages/components-native/**/*.test.ts",
-  ],
-  transformIgnorePatterns: [
-    "node_modules/(?!(jest-)?@?react-native|@react-native-community",
-  ],
+  // testMatch: [
+  //   "<rootDir>/packages/components-native/**/*.test.tsx",
+  //   "<rootDir>/packages/components-native/**/*.test.ts",
+  // ],
   clearMocks: true,
 };

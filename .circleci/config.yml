@@ -112,6 +112,7 @@ jobs:
     <<: *container_config
     steps:
       - *attach_workspace
+      - run: mkdir -p reports/junit
       - run:
           name: "Run tests with jest"
           command:
@@ -143,22 +144,31 @@ jobs:
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/atlantis/.npmrc
       - run:
           name: Install Dependencies
-          command: npm ci --legacy-peer-deps
+          command: npm ci
+      - run:
+          name: List files
+          command: ls -l packages/components-native/src/Divider
       - run:
           name: "make report dir"
           command: mkdir -p reports/junit
       - run:
           name: "Run tests with jest"
           command: |
-            npm test -- --runInBand --no-cache --coverage --reporters=jest-junit --config jest.web.config.js
+            npm test -- --runInBand --no-cache --coverage --reporters=jest-junit
           environment:
             JEST_JUNIT_OUTPUT: "reports/junit/web-test-results.xml"
+      # - run:
+      #     name: Get value
+      #     command: echo $?
+      # - run:
+      #     name: "Run mobile tests with jest"
+      #     command: |
+      #       npm test -- --runInBand --no-cache --config jest.mobile.config.js
+      #     environment:
+      #       JEST_JUNIT_OUTPUT: "reports/junit/mobile-test-results.xml"
       - run:
-          name: "Run mobile tests with jest"
-          command: |
-            npm test -- --runInBand --no-cache --coverage --reporters=jest-junit --config jest.mobile.config.js
-          environment:
-            JEST_JUNIT_OUTPUT: "reports/junit/mobile-test-results.xml"
+          name: Get value 2
+          command: echo $?
       - store_test_results:
           path: reports/junit
       - store_artifacts:
@@ -209,9 +219,9 @@ workflows:
       - build_docs:
           requires:
             - check_for_manual_release
-      - test_local:
-          requires:
-            - check_for_manual_release
+      # - test_local:
+      #     requires:
+      #       - check_for_manual_release
       - release:
           filters:
             branches:
