@@ -1,4 +1,4 @@
-import React, { ReactNode, isValidElement } from "react";
+import React, { Fragment, ReactNode, isValidElement } from "react";
 import styles from "./TextList.css";
 import { Text } from "../Text";
 
@@ -12,7 +12,9 @@ export function TextListItem({ children }: TextListItemProps) {
 
 function getChild(children: ReactNode): JSX.Element {
   if (Array.isArray(children)) {
-    const nestedChildren = children.map((child: ReactNode) => getChild(child));
+    const nestedChildren = children.map((child: ReactNode, i) => (
+      <Fragment key={i}>{getChild(child)}</Fragment>
+    ));
     return <>{nestedChildren}</>;
   }
 
