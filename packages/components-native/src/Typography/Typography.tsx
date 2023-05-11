@@ -9,7 +9,6 @@ import {
   TextProps,
   ViewStyle,
 } from "react-native";
-// eslint-disable-next-line import/no-internal-modules
 import { styles } from "./Typography.style";
 import { TypographyGestureDetector } from "./TypographyGestureDetector";
 import { JobberStyle } from "../utils/design";
@@ -20,84 +19,84 @@ export interface TypographyProps<T extends FontFamily>
   /**
    * Text capitalization
    */
-  transform?: TextTransform;
+  readonly transform?: TextTransform;
 
   /**
    * Color of text
    */
-  color?: TextColor;
+  readonly color?: TextColor;
 
   /**
    * Alignment of text
    */
-  align?: TextAlign;
+  readonly align?: TextAlign;
 
   /**
    * Font size
    */
-  size?: TextSize;
+  readonly size?: TextSize;
 
   /**
    * Text to display
    */
-  children?: string;
+  readonly children?: string;
 
   /**
    * The maximum amount of lines the text can occupy before being truncated with "...".
    * Uses predefined string values that correspond to a doubling scale for the amount of lines.
    */
-  maxLines?: TruncateLength;
+  readonly maxLines?: TruncateLength;
 
   /**
    * Allow text to be resized based on user's device display scale
    */
-  allowFontScaling?: boolean;
+  readonly allowFontScaling?: boolean;
 
   /**
    * Set the maximum font the text can go to size when the user scales their
    * device font size
    */
-  maxFontScaleSize?: number;
+  readonly maxFontScaleSize?: number;
 
   /**
    * Determines whether text should be scaled down to fit based on maxLines prop
    */
-  adjustsFontSizeToFit?: boolean;
+  readonly adjustsFontSizeToFit?: boolean;
 
   /**
    * Line Height
    */
-  lineHeight?: LineHeight;
+  readonly lineHeight?: LineHeight;
 
   /**
    * Spacing between letters
    */
-  letterSpacing?: LetterSpacing;
+  readonly letterSpacing?: LetterSpacing;
 
   /**
    * Font Family
    */
-  fontFamily?: T;
+  readonly fontFamily?: T;
 
   /**
    * Font style
    */
-  fontStyle?: T extends "base" ? BaseStyle : DisplayStyle;
+  readonly fontStyle?: T extends "base" ? BaseStyle : DisplayStyle;
 
   /**
    * Font weight
    */
-  fontWeight?: T extends "base" ? BaseWeight : DisplayWeight;
+  readonly fontWeight?: T extends "base" ? BaseWeight : DisplayWeight;
 
   /**
    * Reverse theme for better display on dark background
    */
-  reverseTheme?: boolean;
+  readonly reverseTheme?: boolean;
 
   /**
    * Accessibility role describing the context of the text
    */
-  accessibilityRole?: TextAccessibilityRole;
+  readonly accessibilityRole?: TextAccessibilityRole;
 
   /**
    * This will make the text inaccessible to the screen reader.
@@ -106,11 +105,11 @@ export interface TypographyProps<T extends FontFamily>
    * selectable because it is already read from the accessibilityLabel
    * of the TextInput
    */
-  hideFromScreenReader?: boolean;
+  readonly hideFromScreenReader?: boolean;
   /**
    * Have text styled with strike through
    */
-  strikeThrough?: boolean;
+  readonly strikeThrough?: boolean;
 }
 
 const maxNumberOfLines = {

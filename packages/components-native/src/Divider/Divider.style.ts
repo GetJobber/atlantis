@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-// eslint-disable-next-line import/no-internal-modules
 import { JobberStyle } from "../utils/design";
 
 export const styles = StyleSheet.create({
