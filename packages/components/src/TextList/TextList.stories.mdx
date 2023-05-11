@@ -5,6 +5,8 @@ import { TextList } from "@jobber/components/TextList";
 
 # TextList
 
+TextList creates a bulleted or numbered list of text and/or components.
+
 ```ts
 import { TextList } from "@jobber/components/TextList";
 ```
@@ -43,6 +45,7 @@ You can nest `TextList` by adding another array within the `data` array.
         "Bananas",
         <TextList
           key="Bananas"
+          type="numbers"
           data={[
             "Burro",
             [
