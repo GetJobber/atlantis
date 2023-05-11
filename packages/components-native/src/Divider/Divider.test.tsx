@@ -14,6 +14,7 @@ describe("Divider", () => {
     expect(dividerStyle).toContainEqual(styles.base);
     expect(dividerStyle).not.toContainEqual(styles.large);
     expect(dividerStyle).not.toContainEqual(styles.largest);
+    expect(false).toBeTruthy();
   });
 
   it("renders a large Divider", () => {
