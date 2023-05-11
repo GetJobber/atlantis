@@ -42,7 +42,6 @@ export function FormFieldWrapper({
   inline,
   identifier,
 }: PropsWithChildren<FormFieldWrapperProps>) {
-  console.log({ type });
   const wrapperClasses = classnames(
     styles.wrapper,
     size && styles[size],
