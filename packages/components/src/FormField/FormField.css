@@ -292,3 +292,7 @@
 .description {
   margin-top: var(--space-smaller);
 }
+
+select.input {
+  z-index: calc(var(--field--base-elevation) + 1);
+}
