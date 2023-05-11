@@ -1,9 +1,0 @@
-.importCodeSnippet :global(.sbdocs-pre) > div {
-  box-shadow: none;
-  margin: calc(var(--public-tab--inset) * -1);
-  border: 0;
-}
-
-.importCodeSnippet ul {
-  margin-top: 0;
-}
