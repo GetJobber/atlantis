@@ -177,6 +177,10 @@
   resize: vertical;
 }
 
+.select .input {
+  z-index: var(--field--label-elevation);
+}
+
 .input:-webkit-autofill,
 .input:-webkit-autofill:hover,
 .input:-webkit-autofill:focus,
@@ -291,8 +295,4 @@
 
 .description {
   margin-top: var(--space-smaller);
-}
-
-select.input {
-  z-index: var(--field--label-elevation);
 }
