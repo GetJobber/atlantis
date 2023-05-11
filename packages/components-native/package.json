@@ -18,7 +18,8 @@
     "bootstrap": "npm run build",
     "prepack": "npm run build",
     "compile": "tsc -b",
-    "build:clean": "rm -rf ./dist"
+    "build:clean": "rm -rf ./dist",
+    "test": "echo test"
   },
   "dependencies": {
     "@jobber/design": "^0.38.1",
