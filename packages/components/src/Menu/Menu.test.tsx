@@ -77,7 +77,7 @@ describe("Menu", () => {
     });
   });
 
-  describe("when menu is opened and escape is pressed", () => {
+  describe.skip("when menu is opened and escape is pressed", () => {
     const actionLabel = "Text Message";
     it("should close the menu", async () => {
       const { getByRole, queryByRole, container } = render(

@@ -40,11 +40,11 @@ exports[`Menu with custom activator renders 1`] = `
     class="wrapper"
   >
     <button
-      aria-controls="123e4567-e89b-12d3-a456-426655440040"
+      aria-controls="123e4567-e89b-12d3-a456-426655440028"
       aria-expanded="false"
       aria-haspopup="true"
       class="button base work primary"
-      id="123e4567-e89b-12d3-a456-426655440039"
+      id="123e4567-e89b-12d3-a456-426655440027"
       type="button"
     >
       <span
