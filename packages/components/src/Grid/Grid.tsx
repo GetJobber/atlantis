@@ -11,7 +11,9 @@ interface GridProps {
   readonly gap?: boolean;
 
   /**
-   * Adjust the alignment of columns
+   * Adjust the alignment of columns. We only support a few select properties
+   * from `align-items` due to the nature of the other properties acting the
+   * same. Read more about [align-items](https://developer.mozilla.org/en-US/docs/Web/CSS/align-items) property values.
    */
   readonly alignItems?: keyof typeof alignments;
 
