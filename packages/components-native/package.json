@@ -21,9 +21,8 @@
     "build:clean": "rm -rf ./dist"
   },
   "dependencies": {
-    "react-intl": "^6.4.2",
-    "react-native-gesture-handler": "^2.10.0",
     "@jobber/design": "^0.38.2",
+    "react-native-gesture-handler": "^2.10.0",
     "react-native-svg": "^12.4.4",
     "ts-xor": "^1.1.0"
   },
