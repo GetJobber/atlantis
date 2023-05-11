@@ -3,7 +3,6 @@ require("@jobber/eslint-config/patch-eslint-plugin-resolution.js");
 
 const packageAliases = [
   ["@jobber/components", "./packages/components/src"],
-  ["@jobber/components-native", "./packages/components-native"],
   ["@jobber/hooks", "./packages/hooks/src"],
 ];
 
@@ -42,17 +41,6 @@ module.exports = {
         "@typescript-eslint/naming-convention": "off",
         "@typescript-eslint/no-unused-expressions": "off",
         "import/no-extraneous-dependencies": "off",
-      },
-    },
-    {
-      files: ["*.stories.tsx"],
-      rules: {
-        "react-native/no-inline-styles": "off",
-        "no-alert": "off",
-        "@typescript-eslint/naming-convention": "off",
-        "@typescript-eslint/no-unused-expressions": "off",
-        "import/no-extraneous-dependencies": "off",
-        "import/no-default-export": "off",
       },
     },
   ],

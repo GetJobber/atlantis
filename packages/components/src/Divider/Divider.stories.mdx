@@ -1,26 +1,19 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
-import { Divider as MobileDivider } from "@jobber/components-native";
-import { ImportCodeSnippet } from "mdxUtils/ImportCodeSnippet";
 import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
 import { Heading } from "@jobber/components/Heading";
 import { Card } from "@jobber/components/Card";
 import { Divider } from "@jobber/components/Divider";
 
-<Meta
-  title="Components/Divider"
-  component={Divider}
-  subcomponents={{ "Mobile Divider": MobileDivider }}
-  parameters={{
-    viewMode: "docs",
-  }}
-/>
+<Meta title="Components/Divider" component={Divider} />
 
 # Divider
 
 Divider is a UI element meant to divide into areas of content.
 
-<ImportCodeSnippet name="Divider" />
+```ts
+import { Divider } from "@jobber/components/Divider";
+```
 
 <Canvas>
   <Story name="Overview">
