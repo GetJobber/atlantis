@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { ComponentStatus } from "@jobber/docx";
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
 import { Button } from "@jobber/components/Button";
 import { LightBox } from "@jobber/components/LightBox";
-import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
-import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 
 <Meta title="Components/LightBox" component={LightBox} />
 
@@ -73,25 +72,23 @@ if we want to return information about the final state when closed (e.g. for
 analytics).
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const [open, isOpen] = useState(false);
-      return (
-        <>
-          <Button label="Click me!" onClick={() => isOpen(true)} />
-          <LightBox
-            open={open}
-            images={images}
-            onRequestClose={options => {
-              console.log(
-                "The user was saw this image last - ",
-                options.lastPosition
-              );
-              isOpen(false);
-            }}
-          />
-        </>
-      );
-    }}
-  </ExampleWithHooks>
+  {() => {
+    const [open, isOpen] = useState(false);
+    return (
+      <>
+        <Button label="Click me!" onClick={() => isOpen(true)} />
+        <LightBox
+          open={open}
+          images={images}
+          onRequestClose={options => {
+            console.log(
+              "The user was saw this image last - ",
+              options.lastPosition
+            );
+            isOpen(false);
+          }}
+        />
+      </>
+    );
+  }}
 </Canvas>

@@ -1,7 +1,6 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
 import { useState } from "react";
 import cloneDeep from "lodash/cloneDeep";
-import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 import { Button } from "@jobber/components/Button";
 import { Autocomplete } from "@jobber/components/Autocomplete";
 
@@ -77,47 +76,45 @@ label. You can also add detail to an option that shows on the option's the
 bottom right. Both of these are optional per option.
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const options = [
-        {
-          value: 1,
-          label: "Sulaco",
-          description: "They mostly come at night, mostly.",
-          details: "LV-426",
-        },
-        { value: 2, label: "Nostromo", details: "LV-426" },
-        { value: 3, label: "Serenity", description: "I aim to misbehave." },
-        { value: 4, label: "Sleeper Service" },
-        { value: 5, label: "Enterprise" },
-        {
-          value: 6,
-          label: "Enterprise-D",
-          description: "Tea, earl grey, hot.",
-          details: "NCC-1701D",
-        },
-      ];
-      const [value, setValue] = useState();
-      return (
-        <Autocomplete
-          value={value}
-          initialOptions={options}
-          onChange={setValue}
-          getOptions={getOptions}
-          placeholder="Search for something"
-        />
-      );
-      function getOptions(text) {
-        if (text === "") {
-          return options;
-        }
-        const filterRegex = new RegExp(text, "i");
-        return options.filter(option =>
-          option.heading ? true : option.label.match(filterRegex)
-        );
+  {() => {
+    const options = [
+      {
+        value: 1,
+        label: "Sulaco",
+        description: "They mostly come at night, mostly.",
+        details: "LV-426",
+      },
+      { value: 2, label: "Nostromo", details: "LV-426" },
+      { value: 3, label: "Serenity", description: "I aim to misbehave." },
+      { value: 4, label: "Sleeper Service" },
+      { value: 5, label: "Enterprise" },
+      {
+        value: 6,
+        label: "Enterprise-D",
+        description: "Tea, earl grey, hot.",
+        details: "NCC-1701D",
+      },
+    ];
+    const [value, setValue] = useState();
+    return (
+      <Autocomplete
+        value={value}
+        initialOptions={options}
+        onChange={setValue}
+        getOptions={getOptions}
+        placeholder="Search for something"
+      />
+    );
+    function getOptions(text) {
+      if (text === "") {
+        return options;
       }
-    }}
-  </ExampleWithHooks>
+      const filterRegex = new RegExp(text, "i");
+      return options.filter(option =>
+        option.heading ? true : option.label.match(filterRegex)
+      );
+    }
+  }}
 </Canvas>
 
 ## Section headings
@@ -125,61 +122,59 @@ bottom right. Both of these are optional per option.
 An autocomplete can provide section headings to break up the options.
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const options = [
-        {
-          label: "Ships",
-          options: [
-            { value: 1, label: "Sulaco" },
-            { value: 2, label: "Nostromo" },
-            { value: 3, label: "Serenity" },
-            { value: 4, label: "Sleeper Service" },
-            { value: 5, label: "Enterprise" },
-            { value: 6, label: "Enterprise-D" },
-          ],
-        },
-        {
-          label: "Planets",
-          options: [
-            { value: 7, label: "Endor" },
-            { value: 8, label: "Vulcan" },
-            { value: 9, label: "Bespin" },
-            { value: 10, label: "Tatooine" },
-          ],
-        },
-      ];
-      const [value, setValue] = useState();
-      return (
-        <Autocomplete
-          value={value}
-          separators={true}
-          initialOptions={options}
-          onChange={setValue}
-          getOptions={getOptions}
-          placeholder="Search for something"
-        />
-      );
-      function getOptions(text) {
-        const workingOptions = cloneDeep(options);
-        return filterOptions(text, workingOptions);
-      }
-      /**
-       * This is an example of a synchronous filter function.
-       * In reality an api should return this pre-formatted structure.
-       */
-      function filterOptions(text, options = []) {
-        return options.filter(option => {
-          if (option.options) {
-            option.options = filterOptions(text, option.options);
-            return true;
-          }
-          const filterRegex = new RegExp(text, "i");
-          return option.label.match(filterRegex);
-        });
-      }
-    }}
-  </ExampleWithHooks>
+  {() => {
+    const options = [
+      {
+        label: "Ships",
+        options: [
+          { value: 1, label: "Sulaco" },
+          { value: 2, label: "Nostromo" },
+          { value: 3, label: "Serenity" },
+          { value: 4, label: "Sleeper Service" },
+          { value: 5, label: "Enterprise" },
+          { value: 6, label: "Enterprise-D" },
+        ],
+      },
+      {
+        label: "Planets",
+        options: [
+          { value: 7, label: "Endor" },
+          { value: 8, label: "Vulcan" },
+          { value: 9, label: "Bespin" },
+          { value: 10, label: "Tatooine" },
+        ],
+      },
+    ];
+    const [value, setValue] = useState();
+    return (
+      <Autocomplete
+        value={value}
+        separators={true}
+        initialOptions={options}
+        onChange={setValue}
+        getOptions={getOptions}
+        placeholder="Search for something"
+      />
+    );
+    function getOptions(text) {
+      const workingOptions = cloneDeep(options);
+      return filterOptions(text, workingOptions);
+    }
+    /**
+     * This is an example of a synchronous filter function.
+     * In reality an api should return this pre-formatted structure.
+     */
+    function filterOptions(text, options = []) {
+      return options.filter(option => {
+        if (option.options) {
+          option.options = filterOptions(text, option.options);
+          return true;
+        }
+        const filterRegex = new RegExp(text, "i");
+        return option.label.match(filterRegex);
+      });
+    }
+  }}
 </Canvas>
 
 ## Kitchen sink
@@ -188,73 +183,71 @@ This autocomplete uses section headings, details, descriptions and option
 separators.
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const options = [
-        {
-          label: "Ships",
-          options: [
-            {
-              value: 1,
-              label: "Sulaco",
-              description: "They mostly come at night, mostly.",
-              details: "LV-426",
-            },
-            { value: 2, label: "Nostromo", details: "LV-426" },
-            { value: 3, label: "Serenity", description: "I aim to misbehave." },
-            { value: 4, label: "Sleeper Service" },
-            { value: 5, label: "Enterprise" },
-            {
-              value: 6,
-              label: "Enterprise-D",
-              description: "Tea, earl grey, hot.",
-              details: "NCC-1701D",
-            },
-          ],
-        },
-        {
-          label: "Planets",
-          options: [
-            { value: 7, label: "Endor" },
-            { value: 8, label: "Vulcan" },
-            { value: 9, label: "Bespin" },
-            { value: 10, label: "Tatooine" },
-            { value: 11, label: "Enterprise" },
-            { value: 12, label: "Ariel" },
-          ],
-        },
-      ];
-      const [value, setValue] = useState();
-      return (
-        <Autocomplete
-          value={value}
-          initialOptions={options}
-          onChange={setValue}
-          getOptions={getOptions}
-          size={"small"}
-          placeholder="Search for something"
-        />
-      );
-      function getOptions(text) {
-        const workingOptions = cloneDeep(options);
-        return filterOptions(text, workingOptions);
-      }
-      /**
-       * This is an example of a synchronous filter function.
-       * In reality an api should return this pre-formatted structure.
-       */
-      function filterOptions(text, options = []) {
-        return options.filter(option => {
-          if (option.options) {
-            option.options = filterOptions(text, option.options);
-            return true;
-          }
-          const filterRegex = new RegExp(text, "i");
-          return option.label.match(filterRegex);
-        });
-      }
-    }}
-  </ExampleWithHooks>
+  {() => {
+    const options = [
+      {
+        label: "Ships",
+        options: [
+          {
+            value: 1,
+            label: "Sulaco",
+            description: "They mostly come at night, mostly.",
+            details: "LV-426",
+          },
+          { value: 2, label: "Nostromo", details: "LV-426" },
+          { value: 3, label: "Serenity", description: "I aim to misbehave." },
+          { value: 4, label: "Sleeper Service" },
+          { value: 5, label: "Enterprise" },
+          {
+            value: 6,
+            label: "Enterprise-D",
+            description: "Tea, earl grey, hot.",
+            details: "NCC-1701D",
+          },
+        ],
+      },
+      {
+        label: "Planets",
+        options: [
+          { value: 7, label: "Endor" },
+          { value: 8, label: "Vulcan" },
+          { value: 9, label: "Bespin" },
+          { value: 10, label: "Tatooine" },
+          { value: 11, label: "Enterprise" },
+          { value: 12, label: "Ariel" },
+        ],
+      },
+    ];
+    const [value, setValue] = useState();
+    return (
+      <Autocomplete
+        value={value}
+        initialOptions={options}
+        onChange={setValue}
+        getOptions={getOptions}
+        size={"small"}
+        placeholder="Search for something"
+      />
+    );
+    function getOptions(text) {
+      const workingOptions = cloneDeep(options);
+      return filterOptions(text, workingOptions);
+    }
+    /**
+     * This is an example of a synchronous filter function.
+     * In reality an api should return this pre-formatted structure.
+     */
+    function filterOptions(text, options = []) {
+      return options.filter(option => {
+        if (option.options) {
+          option.options = filterOptions(text, option.options);
+          return true;
+        }
+        const filterRegex = new RegExp(text, "i");
+        return option.label.match(filterRegex);
+      });
+    }
+  }}
 </Canvas>
 
 ## Setting a value
@@ -262,50 +255,48 @@ separators.
 You can supply a value to `Autocomplete` in the form of an active `Option`.
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const options = [
-        { value: 1, label: "Nostromo" },
-        { value: 2, label: "Rodger Young" },
-        { value: 3, label: "Serenity" },
-        { value: 4, label: "Sleeper Service" },
-        { value: 5, label: "Enterprise" },
-        { value: 6, label: "Enterprise-D" },
-      ];
-      const [value, setValue] = useState();
-      return (
-        <>
-          <pre>{JSON.stringify(value, undefined, 2)}</pre>
-          <Autocomplete
-            value={value}
-            initialOptions={[]}
-            onChange={setValue}
-            getOptions={getOptions}
-            placeholder="Search for something"
-          />
-          <Button
-            label="Choose the Enterprise"
-            onClick={() => {
-              setValue(options[4]);
-            }}
-          />
-          <Button
-            label="Reset"
-            onClick={() => {
-              setValue();
-            }}
-          />
-        </>
-      );
-      function getOptions(text) {
-        if (text === "") {
-          return options;
-        }
-        const filterRegex = new RegExp(text, "i");
-        return options.filter(option => option.label.match(filterRegex));
+  {() => {
+    const options = [
+      { value: 1, label: "Nostromo" },
+      { value: 2, label: "Rodger Young" },
+      { value: 3, label: "Serenity" },
+      { value: 4, label: "Sleeper Service" },
+      { value: 5, label: "Enterprise" },
+      { value: 6, label: "Enterprise-D" },
+    ];
+    const [value, setValue] = useState();
+    return (
+      <>
+        <pre>{JSON.stringify(value, undefined, 2)}</pre>
+        <Autocomplete
+          value={value}
+          initialOptions={[]}
+          onChange={setValue}
+          getOptions={getOptions}
+          placeholder="Search for something"
+        />
+        <Button
+          label="Choose the Enterprise"
+          onClick={() => {
+            setValue(options[4]);
+          }}
+        />
+        <Button
+          label="Reset"
+          onClick={() => {
+            setValue();
+          }}
+        />
+      </>
+    );
+    function getOptions(text) {
+      if (text === "") {
+        return options;
       }
-    }}
-  </ExampleWithHooks>
+      const filterRegex = new RegExp(text, "i");
+      return options.filter(option => option.label.match(filterRegex));
+    }
+  }}
 </Canvas>
 
 ## Async requests for options
@@ -314,39 +305,37 @@ The `getOptions` method expected to be async so you can do any desired requests
 using either promises or `await` in `getOptions`.
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const options = [
-        { value: 1, label: "Nostromo" },
-        { value: 2, label: "Rodger Young" },
-        { value: 3, label: "Serenity" },
-        { value: 4, label: "Sleeper Service" },
-        { value: 5, label: "Enterprise" },
-        { value: 6, label: "Enterprise-D" },
-      ];
-      const [value, setValue] = useState();
-      return (
-        <Autocomplete
-          value={value}
-          initialOptions={[]}
-          onChange={setValue}
-          getOptions={getOptions}
-          placeholder="Search for something"
-        />
-      );
-      async function getOptions(text) {
-        return new Promise(resolve => {
-          setTimeout(() => {
-            if (text === "") {
-              resolve(options);
-            }
-            const filterRegex = new RegExp(text, "i");
-            resolve(options.filter(option => option.label.match(filterRegex)));
-          }, 300);
-        });
-      }
-    }}
-  </ExampleWithHooks>
+  {() => {
+    const options = [
+      { value: 1, label: "Nostromo" },
+      { value: 2, label: "Rodger Young" },
+      { value: 3, label: "Serenity" },
+      { value: 4, label: "Sleeper Service" },
+      { value: 5, label: "Enterprise" },
+      { value: 6, label: "Enterprise-D" },
+    ];
+    const [value, setValue] = useState();
+    return (
+      <Autocomplete
+        value={value}
+        initialOptions={[]}
+        onChange={setValue}
+        getOptions={getOptions}
+        placeholder="Search for something"
+      />
+    );
+    async function getOptions(text) {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          if (text === "") {
+            resolve(options);
+          }
+          const filterRegex = new RegExp(text, "i");
+          resolve(options.filter(option => option.label.match(filterRegex)));
+        }, 300);
+      });
+    }
+  }}
 </Canvas>
 
 ## Related components
