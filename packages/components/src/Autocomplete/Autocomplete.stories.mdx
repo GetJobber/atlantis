@@ -43,6 +43,14 @@ import { Autocomplete } from "@jobber/components/Autocomplete";
           value={value}
           onChange={setValue}
           getOptions={getOptions}
+          name={"autocompleteInput"}
+          validations={{
+            maxLength: 255,
+            required: {
+              value: true,
+              message: "This is a required field",
+            },
+          }}
         />
       );
       function getOptions(text) {

@@ -1,4 +1,4 @@
-import React, { RefObject, useEffect, useState } from "react";
+import React, { RefObject, useEffect, useLayoutEffect, useState } from "react";
 import classnames from "classnames";
 import useEventListener from "@use-it/event-listener";
 import { createPortal } from "react-dom";
@@ -39,7 +39,7 @@ export function Menu({
     styles: popperStyles,
     attributes,
     targetWidth,
-  } = useRepositionMenu(attachTo);
+  } = useRepositionMenu(attachTo, visible);
 
   const detectSeparatorCondition = (option: Option) =>
     option.description || option.details;
@@ -173,7 +173,7 @@ function isGroup(option: AnyOption) {
   return false;
 }
 
-function useRepositionMenu(attachTo: MenuProps["attachTo"]) {
+function useRepositionMenu(attachTo: MenuProps["attachTo"], visible = false) {
   const [menuRef, setMenuRef] = useState<HTMLElement | null>();
   const popper = usePopper(attachTo.current, menuRef, {
     modifiers: [
@@ -181,6 +181,10 @@ function useRepositionMenu(attachTo: MenuProps["attachTo"]) {
       { name: "flip", options: { fallbackPlacements: ["top"] } },
     ],
   });
+
+  useLayoutEffect(() => {
+    popper?.update?.();
+  }, [visible]);
 
   const targetWidth = attachTo.current?.clientWidth;
 

@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components-native",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
@@ -22,7 +22,7 @@
     "test": "echo test"
   },
   "dependencies": {
-    "@jobber/design": "^0.38.1",
+    "@jobber/design": "^0.38.2",
     "react-native-svg": "^12.4.4",
     "ts-xor": "^1.1.0"
   },
