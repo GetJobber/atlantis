@@ -1,3 +1,5 @@
+# prettier-ignore
+
 version: 2.1
 
 orbs:
@@ -112,7 +114,7 @@ jobs:
     <<: *container_config
     steps:
       - *attach_workspace
-      - run: mkdir -p reports/junit
+      # - run: mkdir -p reports/junit
       - run:
           name: "Run tests with jest"
           command:
@@ -136,49 +138,6 @@ jobs:
       - run:
           command: npm run build
 
-  test_local:
-    <<: *container_config
-    steps:
-      - checkout
-      - run:
-          name: Authenticate with npm
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/atlantis/.npmrc
-      - run:
-          name: Install Dependencies
-          command: rm -rf node_modules packages/**/node_modules **/dist **/.rollup.cache coverage && npm ci --legacy-peer-deps
-      - run:
-          name: "make report dir"
-          command: mkdir -p reports/junit
-      - run:
-          name: "Run tests with jest"
-          command: npm test -- --runInBand --no-cache
-      - run:
-          name: "Run tests with jest"
-          command: npm test -- --runInBand --no-cache --coverage --reporters=jest-junit
-          environment:
-            JEST_JUNIT_OUTPUT: "reports/junit/test-results.xml"
-      - run:
-          name: List files
-          command: ls -l packages/components-native
-      # - run:
-      #     name: Get value
-      #     command: echo $?
-      # - run:
-      #     name: "Run mobile tests with jest"
-      #     command: |
-      #       npm test -- --runInBand --no-cache --config jest.mobile.config.js
-      #     environment:
-      #       JEST_JUNIT_OUTPUT: "reports/junit/mobile-test-results.xml"
-      - run:
-          name: Get value 2
-          command: echo $?
-      - store_test_results:
-          path: reports/junit
-      - store_artifacts:
-          path: reports/junit
-      - store_artifacts:
-          path: coverage
-
   release:
     <<: *container_config
     steps:
@@ -195,8 +154,6 @@ jobs:
             else
               npm run ci:release
             fi
-
-
 
 workflows:
   version: 2
@@ -220,9 +177,6 @@ workflows:
           requires:
             - check_for_manual_release
       - build_docs:
-          requires:
-            - check_for_manual_release
-      - test_local:
           requires:
             - check_for_manual_release
       - release:
