@@ -67,7 +67,13 @@ describe("InputPhoneNumber", () => {
 
   describe("The validation error message", () => {
     it("should appear when the user doesn't enter ten or more digits", async () => {
-      render(<InputPhoneNumber value="123123" onChange={jest.fn()} />);
+      render(
+        <InputPhoneNumber
+          value="123123"
+          onChange={jest.fn()}
+          required={true}
+        />,
+      );
       const input = screen.getByRole("textbox");
       input.focus();
       input.blur();
@@ -99,7 +105,9 @@ describe("InputPhoneNumber", () => {
 
       function TestInput() {
         const [value, setValue] = useState("");
-        return <InputPhoneNumber value={value} onChange={setValue} />;
+        return (
+          <InputPhoneNumber value={value} onChange={setValue} required={true} />
+        );
       }
     });
   });
@@ -136,6 +144,7 @@ describe("InputPhoneNumber", () => {
           value="123123"
           pattern="*** ****"
           onChange={jest.fn()}
+          required={true}
         />,
       );
       const customPatternValidationMessage =
