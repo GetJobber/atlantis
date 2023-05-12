@@ -18,8 +18,13 @@ const config = {
     },
     "@storybook/addon-react-native-web",
   ],
-  features: { buildStoriesJson: true },
-  framework: "@storybook/react",
+  features: {
+    buildStoriesJson: true,
+  },
+  framework: {
+    name: "@storybook/react-webpack5",
+    options: {},
+  },
   webpackFinal: async config => {
     /**
      * Separate existing rules for CSS files
