@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.15.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.15.1...@jobber/components@4.15.2) (2023-05-12)
+
+
+### Bug Fixes
+
+* **components:** Fix Select component hit area ([#1241](https://github.com/GetJobber/atlantis/issues/1241)) ([8ef7813](https://github.com/GetJobber/atlantis/commit/8ef78135cf451f83658ac35d1bfbf8ff8c0b8225))
+
+
+
+
+
 ## [4.15.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.15.0...@jobber/components@4.15.1) (2023-05-12)
 
 
