@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
-import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 import { DataDump } from "@jobber/components/DataDump";
 import { Content } from "@jobber/components/Content";
 import { Button } from "@jobber/components/Button";
@@ -61,19 +60,17 @@ default popover-type behaviour for those use cases to reduce an overwhelming
 volume of UI elements to process at once.
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const [date, setDate] = useState();
-      return (
-        <Content>
-          <div>
-            <DatePicker selected={date} inline onChange={setDate} />
-          </div>
-          {date && <DataDump defaultOpen data={date} />}
-        </Content>
-      );
-    }}
-  </ExampleWithHooks>
+  {() => {
+    const [date, setDate] = useState();
+    return (
+      <Content>
+        <div>
+          <DatePicker selected={date} inline onChange={setDate} />
+        </div>
+        {date && <DataDump defaultOpen data={date} />}
+      </Content>
+    );
+  }}
 </Canvas>
 
 ## Custom activator
@@ -82,23 +79,19 @@ If you want to use a different activator to display the `DatePicker` you can
 pass a `React` component as the `activator`.
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const [date, setDate] = useState();
-      return (
-        <Content>
-          <DatePicker
-            selected={date}
-            onChange={setDate}
-            activator={
-              <Button label="My fancy activator" variation="learning" />
-            }
-          />
-          {date && <DataDump defaultOpen data={date} />}
-        </Content>
-      );
-    }}
-  </ExampleWithHooks>
+  {() => {
+    const [date, setDate] = useState();
+    return (
+      <Content>
+        <DatePicker
+          selected={date}
+          onChange={setDate}
+          activator={<Button label="My fancy activator" variation="learning" />}
+        />
+        {date && <DataDump defaultOpen data={date} />}
+      </Content>
+    );
+  }}
 </Canvas>
 
 ## Restricting date ranges
@@ -107,25 +100,23 @@ If you want to enable for selection only a range of dates you can pass `minDate`
 or `maxDate` to the component as props.
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const [date, setDate] = useState(new Date("02/17/2022"));
-      return (
-        <Content>
-          <div>
-            <DatePicker
-              minDate={new Date("02/07/2022")}
-              maxDate={new Date("02/27/2022")}
-              selected={date}
-              inline
-              onChange={setDate}
-            />
-          </div>
-          {date && <DataDump defaultOpen data={date} />}
-        </Content>
-      );
-    }}
-  </ExampleWithHooks>
+  {() => {
+    const [date, setDate] = useState(new Date("02/17/2022"));
+    return (
+      <Content>
+        <div>
+          <DatePicker
+            minDate={new Date("02/07/2022")}
+            maxDate={new Date("02/27/2022")}
+            selected={date}
+            inline
+            onChange={setDate}
+          />
+        </div>
+        {date && <DataDump defaultOpen data={date} />}
+      </Content>
+    );
+  }}
 </Canvas>
 
 ## Highlighted dates
@@ -135,37 +126,35 @@ If you need to call attention to a series of dates on the calendar, the
 additional emphasis.
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const [date, setDate] = useState(new Date("01/02/2023"));
-      const highlightDates = [
-        new Date("01/01/2023"),
-        new Date("02/20/2023"),
-        new Date("04/07/2023"),
-        new Date("05/22/2023"),
-        new Date("07/01/2023"),
-        new Date("08/07/2023"),
-        new Date("09/04/2023"),
-        new Date("10/09/2023"),
-        new Date("11/13/2023"),
-        new Date("12/25/2023"),
-        new Date("12/26/2023"),
-      ];
-      return (
-        <Content>
-          <DatePicker
-            minDate={new Date("01/01/2023")}
-            maxDate={new Date("12/31/2023")}
-            selected={date}
-            inline
-            onChange={setDate}
-            highlightDates={highlightDates}
-          />
-          <DataDump defaultOpen label="highlightDates" data={highlightDates} />
-        </Content>
-      );
-    }}
-  </ExampleWithHooks>
+  {() => {
+    const [date, setDate] = useState(new Date("01/02/2023"));
+    const highlightDates = [
+      new Date("01/01/2023"),
+      new Date("02/20/2023"),
+      new Date("04/07/2023"),
+      new Date("05/22/2023"),
+      new Date("07/01/2023"),
+      new Date("08/07/2023"),
+      new Date("09/04/2023"),
+      new Date("10/09/2023"),
+      new Date("11/13/2023"),
+      new Date("12/25/2023"),
+      new Date("12/26/2023"),
+    ];
+    return (
+      <Content>
+        <DatePicker
+          minDate={new Date("01/01/2023")}
+          maxDate={new Date("12/31/2023")}
+          selected={date}
+          inline
+          onChange={setDate}
+          highlightDates={highlightDates}
+        />
+        <DataDump defaultOpen label="highlightDates" data={highlightDates} />
+      </Content>
+    );
+  }}
 </Canvas>
 
 ## Accessibility

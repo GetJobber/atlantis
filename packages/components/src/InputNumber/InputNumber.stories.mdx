@@ -1,5 +1,4 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
-import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 import { useState } from "react";
 import { InputNumber } from "@jobber/components/InputNumber";
 import { Text } from "@jobber/components/Text";
@@ -49,20 +48,18 @@ no value to the user by offering an incrementer.
 ## Controlled
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const [value, setValue] = useState(30);
-      return (
-        <InputNumber
-          value={value}
-          max={32}
-          min={0}
-          onChange={setValue}
-          placeholder="Age"
-        />
-      );
-    }}
-  </ExampleWithHooks>
+  {() => {
+    const [value, setValue] = useState(30);
+    return (
+      <InputNumber
+        value={value}
+        max={32}
+        min={0}
+        onChange={setValue}
+        placeholder="Age"
+      />
+    );
+  }}
 </Canvas>
 
 ## States
@@ -143,25 +140,23 @@ docs.
 ## Focus & blur
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const inputNumberRef = React.createRef();
-      const focusInput = () => {
-        inputNumberRef.current.focus();
-      };
-      const blurInput = () => {
-        inputNumberRef.current.blur();
-      };
-      return (
-        <Content>
-          <InputNumber value={5} ref={inputNumberRef} />
-          <Button label="Focus input" onClick={focusInput} />
-          <br />
-          <Button label="Blur input" onClick={blurInput} />
-        </Content>
-      );
-    }}
-  </ExampleWithHooks>
+  {() => {
+    const inputNumberRef = React.createRef();
+    const focusInput = () => {
+      inputNumberRef.current.focus();
+    };
+    const blurInput = () => {
+      inputNumberRef.current.blur();
+    };
+    return (
+      <Content>
+        <InputNumber value={5} ref={inputNumberRef} />
+        <Button label="Focus input" onClick={focusInput} />
+        <br />
+        <Button label="Blur input" onClick={blurInput} />
+      </Content>
+    );
+  }}
 </Canvas>
 
 ## Using onValidation

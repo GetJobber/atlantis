@@ -3,7 +3,6 @@ import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
 import { sortBy } from "lodash";
 import classNames from "classnames";
-import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 import { ComponentStatus } from "@jobber/docx";
 import { DataTable } from ".";
 import styles from "./DataTable.css";
@@ -554,179 +553,175 @@ import { DataTable } from "@jobber/components/DataTable";
 ## Manual sorting
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const [sortingState, setSortingState] = useState([
-        { id: "name", desc: false },
-      ]);
-      const defaultData = useMemo(
-        () => [
-          {
-            name: "Eddard",
-            house: "Stark",
-            region: "North",
-            sigil: "Direwolf",
-            isAlive: "No",
-          },
-          {
-            name: "Catelyn",
-            house: "Stark",
-            region: "North",
-            sigil: "Direwolf",
-            isAlive: "No",
-          },
-          {
-            name: "Jon Snow",
-            house: "Stark",
-            region: "North",
-            sigil: "Direwolf",
-            isAlive: "Yes",
-          },
-          {
-            name: "Robert",
-            house: "Stark",
-            region: "North",
-            sigil: "Direwolf",
-            isAlive: "No",
-          },
-          {
-            name: "Rickon",
-            house: "Stark",
-            region: "North",
-            sigil: "Direwolf",
-            isAlive: "No",
-          },
-          {
-            name: "Robert",
-            house: "Baratheon",
-            region: "Stormlands",
-            sigil: "Black Stag",
-            isAlive: "No",
-          },
-          {
-            name: "Cercei",
-            house: "Lannister",
-            region: "Westerlands",
-            sigil: "Golden Lion",
-            isAlive: "Yes",
-          },
-        ],
-        []
-      );
-      const sortedData = useMemo(() => {
-        if (sortingState.length == 0) return defaultData;
-        return sortingState[0].desc
-          ? sortBy(defaultData, [sortingState[0].id]).reverse()
-          : sortBy(defaultData, [sortingState[0].id]);
-      }, [sortingState]);
-      const columns = [
+  {() => {
+    const [sortingState, setSortingState] = useState([
+      { id: "name", desc: false },
+    ]);
+    const defaultData = useMemo(
+      () => [
         {
-          accessorKey: "name",
-          cell: info => <span>{info.getValue()}</span>,
+          name: "Eddard",
+          house: "Stark",
+          region: "North",
+          sigil: "Direwolf",
+          isAlive: "No",
         },
         {
-          accessorKey: "house",
-          cell: info => info.getValue(),
+          name: "Catelyn",
+          house: "Stark",
+          region: "North",
+          sigil: "Direwolf",
+          isAlive: "No",
         },
         {
-          accessorKey: "region",
-          cell: info => info.getValue(),
+          name: "Jon Snow",
+          house: "Stark",
+          region: "North",
+          sigil: "Direwolf",
+          isAlive: "Yes",
         },
         {
-          accessorKey: "sigil",
-          cell: info => info.getValue(),
+          name: "Robert",
+          house: "Stark",
+          region: "North",
+          sigil: "Direwolf",
+          isAlive: "No",
         },
         {
-          accessorKey: "isAlive",
-          accessorFn: row =>
-            row.name === "Jon Snow" ? "Resurrected" : row.isAlive,
-          cell: info => info.getValue(),
+          name: "Rickon",
+          house: "Stark",
+          region: "North",
+          sigil: "Direwolf",
+          isAlive: "No",
         },
-      ];
-      return (
-        <div>
-          <DataDump label="Sorting State" data={sortingState} defaultOpen />
-          <DataTable
-            data={sortedData}
-            columns={columns}
-            sorting={{
-              manualSorting: true,
-              state: sortingState,
-              onSortingChange: setSortingState,
-              enableSortingRemoval: true,
-            }}
-          />
-        </div>
-      );
-    }}
-  </ExampleWithHooks>
+        {
+          name: "Robert",
+          house: "Baratheon",
+          region: "Stormlands",
+          sigil: "Black Stag",
+          isAlive: "No",
+        },
+        {
+          name: "Cercei",
+          house: "Lannister",
+          region: "Westerlands",
+          sigil: "Golden Lion",
+          isAlive: "Yes",
+        },
+      ],
+      []
+    );
+    const sortedData = useMemo(() => {
+      if (sortingState.length == 0) return defaultData;
+      return sortingState[0].desc
+        ? sortBy(defaultData, [sortingState[0].id]).reverse()
+        : sortBy(defaultData, [sortingState[0].id]);
+    }, [sortingState]);
+    const columns = [
+      {
+        accessorKey: "name",
+        cell: info => <span>{info.getValue()}</span>,
+      },
+      {
+        accessorKey: "house",
+        cell: info => info.getValue(),
+      },
+      {
+        accessorKey: "region",
+        cell: info => info.getValue(),
+      },
+      {
+        accessorKey: "sigil",
+        cell: info => info.getValue(),
+      },
+      {
+        accessorKey: "isAlive",
+        accessorFn: row =>
+          row.name === "Jon Snow" ? "Resurrected" : row.isAlive,
+        cell: info => info.getValue(),
+      },
+    ];
+    return (
+      <div>
+        <DataDump label="Sorting State" data={sortingState} defaultOpen />
+        <DataTable
+          data={sortedData}
+          columns={columns}
+          sorting={{
+            manualSorting: true,
+            state: sortingState,
+            onSortingChange: setSortingState,
+            enableSortingRemoval: true,
+          }}
+        />
+      </div>
+    );
+  }}
 </Canvas>
 
 ## Manual pagination
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const [posts, setPosts] = useState([]);
-      const [{ pageIndex, pageSize }, setPagination] = useState({
-        pageIndex: 0,
-        pageSize: 10,
+  {() => {
+    const [posts, setPosts] = useState([]);
+    const [{ pageIndex, pageSize }, setPagination] = useState({
+      pageIndex: 0,
+      pageSize: 10,
+    });
+    useEffect(() => {
+      const url = `https://jsonplaceholder.typicode.com/posts?_page=${
+        pageIndex + 1
+      }&_limit=${pageSize}`;
+      axios.get(url).then(response => {
+        setPosts(response.data);
       });
-      useEffect(() => {
-        const url = `https://jsonplaceholder.typicode.com/posts?_page=${
-          pageIndex + 1
-        }&_limit=${pageSize}`;
-        axios.get(url).then(response => {
-          setPosts(response.data);
-        });
-      }, [pageIndex, pageSize]);
-      const pagination = useMemo(
-        () => ({
-          pageIndex,
-          pageSize,
-        }),
-        [pageIndex, pageSize]
-      );
-      const totalItems = 100;
-      const columns = useMemo(
-        () => [
-          {
-            accessorFn: row => row.id,
-            id: "id",
-            cell: info => info.getValue(),
-          },
-          {
-            accessorFn: row => row.title,
-            id: "title",
-            cell: info => info.getValue(),
-          },
-          {
-            accessorFn: row => row.body,
-            id: "body",
-            cell: info => info.getValue(),
-          },
-        ],
-        []
-      );
-      return (
-        <div>
-          <DataTable
-            data={posts}
-            columns={columns}
-            pagination={{
-              manualPagination: true,
-              onPaginationChange: setPagination,
-              pageCount: Math.ceil(totalItems / pageSize),
-              totalItems,
-              state: pagination,
-            }}
-            height={400}
-            stickyHeader
-          />
-        </div>
-      );
-    }}
-  </ExampleWithHooks>
+    }, [pageIndex, pageSize]);
+    const pagination = useMemo(
+      () => ({
+        pageIndex,
+        pageSize,
+      }),
+      [pageIndex, pageSize]
+    );
+    const totalItems = 100;
+    const columns = useMemo(
+      () => [
+        {
+          accessorFn: row => row.id,
+          id: "id",
+          cell: info => info.getValue(),
+        },
+        {
+          accessorFn: row => row.title,
+          id: "title",
+          cell: info => info.getValue(),
+        },
+        {
+          accessorFn: row => row.body,
+          id: "body",
+          cell: info => info.getValue(),
+        },
+      ],
+      []
+    );
+    return (
+      <div>
+        <DataTable
+          data={posts}
+          columns={columns}
+          pagination={{
+            manualPagination: true,
+            onPaginationChange: setPagination,
+            pageCount: Math.ceil(totalItems / pageSize),
+            totalItems,
+            state: pagination,
+          }}
+          height={400}
+          stickyHeader
+        />
+      </div>
+    );
+  }}
 </Canvas>
 
 ## Table with footer row
