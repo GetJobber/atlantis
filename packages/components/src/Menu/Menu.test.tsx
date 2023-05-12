@@ -74,7 +74,6 @@ describe("Menu", () => {
       await waitFor(() => {
         expect(queryByRole("menuitem")).not.toBeInTheDocument();
       });
-      expect(false).toBeTruthy();
     });
   });
 
