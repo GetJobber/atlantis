@@ -69,10 +69,7 @@ export function InputPhoneNumber({
       "",
     );
     const cleanValueRequiredLength = (pattern.match(/\*/g) || []).length;
-    if (
-      (required || cleanValue.length >= 1) &&
-      cleanValue.length < cleanValueRequiredLength
-    ) {
+    if (cleanValue.length > 0 && cleanValue.length < cleanValueRequiredLength) {
       return `${errorSubject} must contain ${cleanValueRequiredLength} or more digits`;
     }
 
