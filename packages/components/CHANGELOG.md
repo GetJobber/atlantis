@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.15.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.15.0...@jobber/components@4.15.1) (2023-05-12)
+
+
+### Bug Fixes
+
+* **components:** fix phone number validation for when it's not required ([#1245](https://github.com/GetJobber/atlantis/issues/1245)) ([ce410a1](https://github.com/GetJobber/atlantis/commit/ce410a1ba71caac2adbf8ae580853340e6cd7ba5))
+
+
+
+
+
 # [4.15.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.14.1...@jobber/components@4.15.0) (2023-05-11)
 
 
