@@ -27,7 +27,6 @@ export default {
             require.resolve("@jobber/design/src/responsiveBreakpoints.css"),
           ],
         }),
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
         require("postcss-preset-env")({
           stage: 1,
           preserve: true,

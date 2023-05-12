@@ -9,8 +9,8 @@ import {
   TextProps,
   ViewStyle,
 } from "react-native";
-import { typographyStyles as styles } from "./Typography.style";
 import { TypographyGestureDetector } from "./TypographyGestureDetector";
+import { typographyStyles as styles } from "./Typography.style";
 import { tokens } from "../utils/design";
 import { capitalize } from "../utils/intl";
 

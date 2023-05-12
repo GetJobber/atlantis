@@ -1,6 +1,5 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
 import { useState } from "react";
-import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 import { ProgressBar } from "@jobber/components/ProgressBar";
 import { Content } from "@jobber/components/Content";
 import { Button } from "@jobber/components/Button";
@@ -52,24 +51,22 @@ An example where you might be better served using a spinner:
 ## Example with state
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const [step, setStep] = useState(2);
-      const totalSteps = 4;
-      return (
-        <Content>
-          <Button
-            label="Step Back"
-            onClick={() => setStep(Math.max(0, step - 1))}
-          />{" "}
-          <Button
-            label="Step Forward"
-            onClick={() => setStep(Math.min(totalSteps, step + 1))}
-          />
-          <ProgressBar currentStep={step} totalSteps={totalSteps} />
-          Step: <strong>{step}</strong> of <strong>{totalSteps}</strong>
-        </Content>
-      );
-    }}
-  </ExampleWithHooks>
+  {() => {
+    const [step, setStep] = useState(2);
+    const totalSteps = 4;
+    return (
+      <Content>
+        <Button
+          label="Step Back"
+          onClick={() => setStep(Math.max(0, step - 1))}
+        />{" "}
+        <Button
+          label="Step Forward"
+          onClick={() => setStep(Math.min(totalSteps, step + 1))}
+        />
+        <ProgressBar currentStep={step} totalSteps={totalSteps} />
+        Step: <strong>{step}</strong> of <strong>{totalSteps}</strong>
+      </Content>
+    );
+  }}
 </Canvas>

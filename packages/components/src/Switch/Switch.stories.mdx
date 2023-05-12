@@ -1,7 +1,6 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
 import { useState } from "react";
 import { Switch } from "@jobber/components/Switch";
-import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 
 <Meta title="Components/Switch" component={Switch} />
 
@@ -51,23 +50,21 @@ manipulating another part of the interface should logically drive the same state
 change.
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const [toggleState, setToggleState] = useState(true);
-      const label = "Toggle example";
-      return (
-        <>
-          <button onClick={() => setToggleState(!toggleState)}>{label}</button>
-          <br />
-          <Switch
-            value={toggleState}
-            onChange={newToggleState => setToggleState(newToggleState)}
-            ariaLabel={label}
-          />
-        </>
-      );
-    }}
-  </ExampleWithHooks>
+  {() => {
+    const [toggleState, setToggleState] = useState(true);
+    const label = "Toggle example";
+    return (
+      <>
+        <button onClick={() => setToggleState(!toggleState)}>{label}</button>
+        <br />
+        <Switch
+          value={toggleState}
+          onChange={newToggleState => setToggleState(newToggleState)}
+          ariaLabel={label}
+        />
+      </>
+    );
+  }}
 </Canvas>
 
 ## Disabled
