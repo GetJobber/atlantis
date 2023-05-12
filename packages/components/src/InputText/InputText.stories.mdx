@@ -1,6 +1,5 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
 import { useState } from "react";
-import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 import { InputText } from "@jobber/components/InputText";
 import { Button } from "@jobber/components/Button";
 import { Content } from "@jobber/components/Content";
@@ -35,19 +34,17 @@ import { InputText } from "@jobber/components/InputText";
 Use this to allow users to provide short answers.
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const [age, setAge] = useState("Veintisiete");
-      return (
-        <InputText
-          value={age}
-          onChange={setAge}
-          name="age"
-          placeholder="Age in words"
-        />
-      );
-    }}
-  </ExampleWithHooks>
+  {() => {
+    const [age, setAge] = useState("Veintisiete");
+    return (
+      <InputText
+        value={age}
+        onChange={setAge}
+        name="age"
+        placeholder="Age in words"
+      />
+    );
+  }}
 </Canvas>
 
 ## Multiline
@@ -137,32 +134,30 @@ This includes, but is not limited to:
   you can pass an object of callback functions to validate all of them.
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      return (
-        <InputText
-          name="age"
-          placeholder="What's your age"
-          validations={{
-            required: {
-              value: true,
-              message: "You have to tell us your age",
-            },
-            validate: validations,
-          }}
-        />
-      );
-      function validations(val) {
-        if (val.length > 0 && !isNaN(val)) {
-          return "Type your age in words please.";
-        }
-        if (val.length >= 10) {
-          return "That seems too old.";
-        }
-        return true;
+  {() => {
+    return (
+      <InputText
+        name="age"
+        placeholder="What's your age"
+        validations={{
+          required: {
+            value: true,
+            message: "You have to tell us your age",
+          },
+          validate: validations,
+        }}
+      />
+    );
+    function validations(val) {
+      if (val.length > 0 && !isNaN(val)) {
+        return "Type your age in words please.";
       }
-    }}
-  </ExampleWithHooks>
+      if (val.length >= 10) {
+        return "That seems too old.";
+      }
+      return true;
+    }
+  }}
 </Canvas>
 
 ## States
@@ -233,51 +228,47 @@ This includes, but is not limited to:
 ## Insertion
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const [text, setText] = useState("Just some words here.");
-      const textRef = React.createRef();
-      const handleTextChange = newValue => {
-        setText(newValue);
-      };
-      const insert = () => {
-        textRef.current.insert("🎉");
-      };
-      return (
-        <Content>
-          <InputText value={text} onChange={handleTextChange} ref={textRef} />
-          <pre>{text}</pre>
-          <Button label="Insert Emoji" onClick={insert} />
-        </Content>
-      );
-    }}
-  </ExampleWithHooks>
+  {() => {
+    const [text, setText] = useState("Just some words here.");
+    const textRef = React.createRef();
+    const handleTextChange = newValue => {
+      setText(newValue);
+    };
+    const insert = () => {
+      textRef.current.insert("🎉");
+    };
+    return (
+      <Content>
+        <InputText value={text} onChange={handleTextChange} ref={textRef} />
+        <pre>{text}</pre>
+        <Button label="Insert Emoji" onClick={insert} />
+      </Content>
+    );
+  }}
 </Canvas>
 
 ## Focus
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const textARef = React.createRef();
-      const textBRef = React.createRef();
-      const focusA = () => {
-        textARef.current.focus();
-      };
-      const focusB = () => {
-        textBRef.current.focus();
-      };
-      return (
-        <Content>
-          <InputText value="Text input A" ref={textARef} />
-          <InputText value="Text input B" ref={textBRef} />
-          <Button label="Focus text input A" onClick={focusA} />
-          <br />
-          <Button label="Focus text input B" onClick={focusB} />
-        </Content>
-      );
-    }}
-  </ExampleWithHooks>
+  {() => {
+    const textARef = React.createRef();
+    const textBRef = React.createRef();
+    const focusA = () => {
+      textARef.current.focus();
+    };
+    const focusB = () => {
+      textBRef.current.focus();
+    };
+    return (
+      <Content>
+        <InputText value="Text input A" ref={textARef} />
+        <InputText value="Text input B" ref={textBRef} />
+        <Button label="Focus text input A" onClick={focusA} />
+        <br />
+        <Button label="Focus text input B" onClick={focusB} />
+      </Content>
+    );
+  }}
 </Canvas>
 
 ## Keyboard

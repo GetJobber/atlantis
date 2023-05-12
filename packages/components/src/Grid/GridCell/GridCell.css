@@ -1,0 +1,20 @@
+.gridCell {
+  grid-column: initial;
+  grid-column-end: span var(--gridCell--size-xs);
+
+  @media (--small-screens-and-up) {
+    grid-column-end: span var(--gridCell--size-sm);
+  }
+
+  @media (--medium-screens) {
+    grid-column-end: span var(--gridCell--size-md);
+  }
+
+  @media (--large-screens-and-up) {
+    grid-column-end: span var(--gridCell--size-lg);
+  }
+
+  @media (--extra-large-screens-and-up) {
+    grid-column-end: span var(--gridCell--size-xl);
+  }
+}

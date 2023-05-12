@@ -1,6 +1,5 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
 import { useState } from "react";
-import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 import { Divider } from "@jobber/components/Divider";
 import { Content } from "@jobber/components/Content";
 import { MultiSelect } from ".";
@@ -59,33 +58,31 @@ Adjusting the size of the `MultiSelect` can be used to help align with common
 adjacent elements such as `InputText` or `Select`.
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const [options, setOptions] = useState([
-        { label: "Small", checked: false },
-        { label: "Large", checked: false },
-      ]);
-      return (
-        <Content>
-          <MultiSelect
-            defaultLabel="Small"
-            allSelectedLabel="All Selected"
-            options={options}
-            onOptionsChange={setOptions}
-            size="small"
-          />
-          <Divider size="largest" />
-          <MultiSelect
-            defaultLabel="Large"
-            allSelectedLabel="All selected"
-            options={options}
-            onOptionsChange={setOptions}
-            size="large"
-          />
-        </Content>
-      );
-    }}
-  </ExampleWithHooks>
+  {() => {
+    const [options, setOptions] = useState([
+      { label: "Small", checked: false },
+      { label: "Large", checked: false },
+    ]);
+    return (
+      <Content>
+        <MultiSelect
+          defaultLabel="Small"
+          allSelectedLabel="All Selected"
+          options={options}
+          onOptionsChange={setOptions}
+          size="small"
+        />
+        <Divider size="largest" />
+        <MultiSelect
+          defaultLabel="Large"
+          allSelectedLabel="All selected"
+          options={options}
+          onOptionsChange={setOptions}
+          size="large"
+        />
+      </Content>
+    );
+  }}
 </Canvas>
 
 ## Accessibility

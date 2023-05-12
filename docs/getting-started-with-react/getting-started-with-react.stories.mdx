@@ -1,11 +1,10 @@
 import { Canvas, Meta } from "@storybook/addon-docs";
+import { useState } from "react";
 import { Card } from "@jobber/components/Card";
 import { Content } from "@jobber/components/Content";
 import { Button } from "@jobber/components/Button";
 import { InputText } from "@jobber/components/InputText";
-import { loadingGIF, getGIF } from "./getGIF";
-import { useState } from "react";
-import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
+import { getGIF, loadingGIF } from "./getGIF";
 
 <Meta title="Guides/Getting started with React" />
 
@@ -100,25 +99,23 @@ For this example we are going to build a card that allows you to enter a topic
 and then search for a related gif.
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const [topic, setTopic] = useState();
-      const [url, setURL] = useState();
-      return (
-        <Card title="Gif Gift">
-          <Content>
-            <InputText value={topic} onChange={setTopic} placeholder="Topic" />
-            <Button label="Search" fullWidth={true} onClick={gifSearch} />
-            <center>{url && <img src={url} />}</center>
-          </Content>
-        </Card>
-      );
-      async function gifSearch() {
-        setURL(loadingGIF);
-        setURL(await getGIF(topic));
-      }
-    }}
-  </ExampleWithHooks>
+  {() => {
+    const [topic, setTopic] = useState();
+    const [url, setURL] = useState();
+    return (
+      <Card title="Gif Gift">
+        <Content>
+          <InputText value={topic} onChange={setTopic} placeholder="Topic" />
+          <Button label="Search" fullWidth={true} onClick={gifSearch} />
+          <center>{url && <img src={url} />}</center>
+        </Content>
+      </Card>
+    );
+    async function gifSearch() {
+      setURL(loadingGIF);
+      setURL(await getGIF(topic));
+    }
+  }}
 </Canvas>
 
 > **Note:**
