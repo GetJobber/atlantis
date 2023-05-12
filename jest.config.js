@@ -75,7 +75,6 @@ module.exports = {
   //   "tsx",
   //   "node"
   // ],
-  // rootDir: ".",
 
   // A map from regular expressions to module names that allow to stub out resources with a single module
   moduleNameMapper: {
@@ -104,10 +103,7 @@ module.exports = {
   ],
 
   // Use this configuration option to add custom reporters to Jest
-  // reporters: [
-  //   "default",
-  //   ["jest-junit", { suiteNameTemplate: "{displayName} {title}" }],
-  // ],
+  // reporters: undefined,
 
   // Automatically reset mock state between every test
   // resetMocks: false,
@@ -122,7 +118,7 @@ module.exports = {
   // restoreMocks: false,
 
   // The root directory that Jest should scan for tests and modules within
-  // rootDir: ".",
+  // rootDir: null,
 
   // A list of paths to directories that Jest should use to search for files in
   // roots: [
@@ -136,7 +132,7 @@ module.exports = {
   // setupFiles: [],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  // setupFilesAfterEnv: ["./jestConfig.js"],
+  // setupFilesAfterEnv: [],
 
   // A list of paths to snapshot serializer modules Jest should use for snapshot testing
   // snapshotSerializers: [],

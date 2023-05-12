@@ -114,7 +114,6 @@ jobs:
     <<: *container_config
     steps:
       - *attach_workspace
-      # - run: mkdir -p reports/junit
       - run:
           name: "Run tests with jest"
           command:
