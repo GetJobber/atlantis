@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@jobber/design": "^0.39.0",
-    "react-native-gesture-handler": "^2.10.0",
+    "react-native-gesture-handler": "^2.5.0",
     "react-native-svg": "^13.9.0",
     "ts-xor": "^1.1.0"
   },
