@@ -122,6 +122,7 @@ jobs:
           environment:
             JEST_JUNIT_OUTPUT_DIR: "reports/junit/"
             JEST_JUNIT_OUTPUT_NAME: "js-test-results.xml"
+            JEST_JUNIT_ADD_FILE_ATTRIBUTE: "true"
       - store_test_results:
           path: reports/junit
       - store_artifacts:
