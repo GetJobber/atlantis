@@ -7,8 +7,6 @@
 Seed your `.eslintrc.js` with:
 
 ```js
-require("@jobber/eslint-config/patch-eslint-plugin-resolution.js");
-
 module.exports = {
   extends: ["@jobber/eslint-config"],
   settings: {},
