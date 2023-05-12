@@ -7,7 +7,7 @@ const packageAliases = [
 ];
 
 module.exports = {
-  extends: ["@jobber/eslint-config"],
+  extends: ["@jobber/eslint-config", "plugin:storybook/recommended"],
   settings: {
     "import/ignore": ["react-native/index"],
     "import/resolver": {
