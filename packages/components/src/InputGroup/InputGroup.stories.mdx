@@ -1,7 +1,6 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
 import { useState } from "react";
 import { CivilTime } from "@std-proposal/temporal";
-import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 import { ComponentStatus } from "@jobber/docx";
 import { InputGroup } from ".";
 import { Autocomplete } from "../Autocomplete";
@@ -71,44 +70,42 @@ The
 also works inside the `InputGroup`.
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const options = [
-        { value: 1, label: "Nostromo" },
-        { value: 2, label: "Rodger Young" },
-        { value: 3, label: "Serenity" },
-        { value: 4, label: "Sleeper Service" },
-        { value: 5, label: "Enterprise" },
-        { value: 6, label: "Enterprise-D" },
-      ];
-      const [value, setValue] = useState();
-      return (
-        <InputGroup>
-          <InputText placeholder="Street 1" />
-          <InputText placeholder="Street 2" />
-          <InputGroup flowDirection="horizontal">
-            <InputText placeholder="City" />
-            <Autocomplete
-              value={value}
-              initialOptions={[]}
-              onChange={setValue}
-              getOptions={getOptions}
-              placeholder="Autocomplete this!"
-            />
-          </InputGroup>
-          <InputGroup flowDirection="horizontal">
-            <InputText placeholder="Zip code" />
-            <InputText placeholder="Country" />
-          </InputGroup>
+  {() => {
+    const options = [
+      { value: 1, label: "Nostromo" },
+      { value: 2, label: "Rodger Young" },
+      { value: 3, label: "Serenity" },
+      { value: 4, label: "Sleeper Service" },
+      { value: 5, label: "Enterprise" },
+      { value: 6, label: "Enterprise-D" },
+    ];
+    const [value, setValue] = useState();
+    return (
+      <InputGroup>
+        <InputText placeholder="Street 1" />
+        <InputText placeholder="Street 2" />
+        <InputGroup flowDirection="horizontal">
+          <InputText placeholder="City" />
+          <Autocomplete
+            value={value}
+            initialOptions={[]}
+            onChange={setValue}
+            getOptions={getOptions}
+            placeholder="Autocomplete this!"
+          />
         </InputGroup>
-      );
-      function getOptions(text) {
-        if (text === "") {
-          return options;
-        }
-        const filterRegex = new RegExp(text, "i");
-        return options.filter(option => option.label.match(filterRegex));
+        <InputGroup flowDirection="horizontal">
+          <InputText placeholder="Zip code" />
+          <InputText placeholder="Country" />
+        </InputGroup>
+      </InputGroup>
+    );
+    function getOptions(text) {
+      if (text === "") {
+        return options;
       }
-    }}
-  </ExampleWithHooks>
+      const filterRegex = new RegExp(text, "i");
+      return options.filter(option => option.label.match(filterRegex));
+    }
+  }}
 </Canvas>

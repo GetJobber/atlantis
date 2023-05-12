@@ -1,0 +1,864 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders text respecting the text direction 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgba(101, 120, 132, 1)",
+      },
+      {
+        "textAlign": "right",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text using the maxLines is also passed 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  numberOfLines={2}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgba(101, 120, 132, 1)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text that happens to be longer than the rest of the text. This just keeps going on and on. maxLines being set will make this work its magic
+</Text>
+`;
+
+exports[`renders text with adjustsFontSizeToFit set to true 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={true}
+  allowFontScaling={true}
+  collapsable={false}
+  numberOfLines={1}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgba(101, 120, 132, 1)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text that happens to be longer than the rest of the text. This just keeps going on and on. maxLines being set will make this work its magic
+</Text>
+`;
+
+exports[`renders text with black style and display as fontFamily 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "jobberpro-blk",
+      },
+      {
+        "color": "rgba(101, 120, 132, 1)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with bold style 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-bold",
+      },
+      {
+        "color": "rgba(101, 120, 132, 1)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with bold style and display as fontFamily 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "jobberpro-bd",
+      },
+      {
+        "color": "rgba(101, 120, 132, 1)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with bold weight and italic style 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgba(101, 120, 132, 1)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with center align 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgba(101, 120, 132, 1)",
+      },
+      {
+        "textAlign": "center",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with default color 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgba(101, 120, 132, 1)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with default size 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgba(101, 120, 132, 1)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with extraBold weight and display as fontFamily 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "jobberpro-xbd",
+      },
+      {
+        "color": "rgba(101, 120, 132, 1)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with green color 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgb(125, 176, 14)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with italic style 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgba(101, 120, 132, 1)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with large size 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgba(101, 120, 132, 1)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 18,
+        "lineHeight": 22,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with letter spacing 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgba(101, 120, 132, 1)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0.4,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with line height override 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgba(101, 120, 132, 1)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 36,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with lowercase transform 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgba(101, 120, 132, 1)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  test text
+</Text>
+`;
+
+exports[`renders text with multiple properties 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-bold",
+      },
+      {
+        "color": "rgba(255, 255, 255, 1)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 18,
+        "lineHeight": 22,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with no additional props 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgba(101, 120, 132, 1)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with regular style 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgba(101, 120, 132, 1)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with reverseTheme false with reversible color 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgb(81, 114, 9)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with reverseTheme true with reversible color 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgb(125, 176, 14)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with small size 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgba(101, 120, 132, 1)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 14,
+        "lineHeight": 18,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with strikethough styling 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgba(101, 120, 132, 1)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+      {
+        "textDecorationLine": "line-through",
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with uppercase transform 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgba(101, 120, 132, 1)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  TEST TEXT
+</Text>
+`;
+
+exports[`renders text with white color 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgba(255, 255, 255, 1)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;

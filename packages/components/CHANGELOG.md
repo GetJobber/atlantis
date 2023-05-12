@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.15.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.15.2...@jobber/components@4.15.3) (2023-05-12)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.15.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.15.1...@jobber/components@4.15.2) (2023-05-12)
+
+
+### Bug Fixes
+
+* **components:** Fix Select component hit area ([#1241](https://github.com/GetJobber/atlantis/issues/1241)) ([8ef7813](https://github.com/GetJobber/atlantis/commit/8ef78135cf451f83658ac35d1bfbf8ff8c0b8225))
+
+
+
+
+
+## [4.15.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.15.0...@jobber/components@4.15.1) (2023-05-12)
+
+
+### Bug Fixes
+
+* **components:** fix phone number validation for when it's not required ([#1245](https://github.com/GetJobber/atlantis/issues/1245)) ([ce410a1](https://github.com/GetJobber/atlantis/commit/ce410a1ba71caac2adbf8ae580853340e6cd7ba5))
+
+
+
+
+
+# [4.15.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.14.1...@jobber/components@4.15.0) (2023-05-11)
+
+
+### Features
+
+* Grid component ([#1229](https://github.com/GetJobber/atlantis/issues/1229)) ([8328d6c](https://github.com/GetJobber/atlantis/commit/8328d6c718c533c20853e4fcc281c9dcf36218b2))
+
+
+
+
+
 ## [4.14.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.14.0...@jobber/components@4.14.1) (2023-05-10)
 
 **Note:** Version bump only for package @jobber/components

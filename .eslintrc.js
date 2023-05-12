@@ -27,7 +27,13 @@ module.exports = {
     "import/no-internal-modules": [
       "error",
       {
-        allow: ["@jobber/components/*", "@jobber/hooks/*", "lodash/*"],
+        allow: [
+          "@jobber/components/*",
+          "@jobber/hooks/*",
+          "@jobber/design/*",
+          "lodash/*",
+          "utils/*",
+        ],
       },
     ],
   },

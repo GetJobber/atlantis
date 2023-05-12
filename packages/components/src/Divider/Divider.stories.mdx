@@ -9,7 +9,7 @@ import { Divider } from "@jobber/components/Divider";
 
 # Divider
 
-Divider is a UI element meant to divide to areas of content.
+Divider is a UI element meant to divide into areas of content.
 
 ```ts
 import { Divider } from "@jobber/components/Divider";
@@ -18,11 +18,18 @@ import { Divider } from "@jobber/components/Divider";
 <Canvas>
   <Story name="Divider">
     {args => (
-      <Content>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns:
+            args.direction === "vertical" ? "auto min-content auto" : "auto",
+          gap: "var(--space-base)",
+        }}
+      >
         <Content>Some amazing content</Content>
         <Divider {...args} />
         <Content>Even more amazing content</Content>
-      </Content>
+      </div>
     )}
   </Story>
 </Canvas>

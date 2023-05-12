@@ -1,7 +1,6 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
 import { useRef, useState } from "react";
 import { useFormState } from "@jobber/hooks/useFormState";
-import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 import { Form } from "@jobber/components/Form";
 import { Content } from "@jobber/components/Content";
 import { InputText } from "@jobber/components/InputText";
@@ -83,35 +82,30 @@ practice to use the
 the `onStateChange` prop.
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const [formState, setFormState] = useFormState();
-      return (
-        <>
-          <Form
-            onSubmit={() => alert("submitted")}
-            onStateChange={setFormState}
-          >
-            <InputText
-              placeholder="First Name"
-              name="firstName"
-              validations={{
-                required: {
-                  value: true,
-                  message: "Tell us your name",
-                },
-                minLength: {
-                  value: 3,
-                  message: "Your name is too short.",
-                },
-              }}
-            />
-          </Form>
-          <pre>{JSON.stringify(formState, null, 2)}</pre>
-        </>
-      );
-    }}
-  </ExampleWithHooks>
+  {() => {
+    const [formState, setFormState] = useFormState();
+    return (
+      <>
+        <Form onSubmit={() => alert("submitted")} onStateChange={setFormState}>
+          <InputText
+            placeholder="First Name"
+            name="firstName"
+            validations={{
+              required: {
+                value: true,
+                message: "Tell us your name",
+              },
+              minLength: {
+                value: 3,
+                message: "Your name is too short.",
+              },
+            }}
+          />
+        </Form>
+        <pre>{JSON.stringify(formState, null, 2)}</pre>
+      </>
+    );
+  }}
 </Canvas>
 
 ## Triggering submission
@@ -120,41 +114,39 @@ Submission of a Form can be done outside of the Form itself by using the
 `validate` function that is exposed.
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const formRef = useRef();
-      return (
-        <Content>
-          <Form onSubmit={() => alert("Submitted 🎉🎉🎉")} ref={formRef}>
-            <Content>
-              <InputText
-                placeholder="First Name"
-                name="firstName"
-                validations={{
-                  required: {
-                    value: true,
-                    message: "Tell us your name",
-                  },
-                }}
-              />
-              <InputText
-                placeholder="Last Name"
-                name="lastName"
-                validations={{
-                  required: {
-                    value: true,
-                    message: "Tell us your last name.",
-                  },
-                }}
-              />
-            </Content>
-          </Form>
-          <Button
-            label="Submit Form from the outside"
-            onClick={() => formRef.current.submit()}
-          />
-        </Content>
-      );
-    }}
-  </ExampleWithHooks>
+  {() => {
+    const formRef = useRef();
+    return (
+      <Content>
+        <Form onSubmit={() => alert("Submitted 🎉🎉🎉")} ref={formRef}>
+          <Content>
+            <InputText
+              placeholder="First Name"
+              name="firstName"
+              validations={{
+                required: {
+                  value: true,
+                  message: "Tell us your name",
+                },
+              }}
+            />
+            <InputText
+              placeholder="Last Name"
+              name="lastName"
+              validations={{
+                required: {
+                  value: true,
+                  message: "Tell us your last name.",
+                },
+              }}
+            />
+          </Content>
+        </Form>
+        <Button
+          label="Submit Form from the outside"
+          onClick={() => formRef.current.submit()}
+        />
+      </Content>
+    );
+  }}
 </Canvas>

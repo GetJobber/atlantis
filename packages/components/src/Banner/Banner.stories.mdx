@@ -129,26 +129,27 @@ action that is difficult to reverse.
 Use error banners when:
 
 <ul>
-  <li>something requires immediate attention</li>
-  <li>blocks the user</li>
+  <li>an issue requires immediate attention</li>
+  <li>an issue blocks the user</li>
+  <li>inline validation can not be used</li>
 </ul>
 
-Errors should explain what happened, and summarize how many issues need to be
-addressed in a concise manner. Detailed information about each error is the role
-of the
+Errors should explain what happened, and how to address the issue in a concise
+manner.
+
+If an error is directly related to an input, don't use a banner. Use the
 [InputText validation message](../?path=/docs/components-inputtext--input-text/#validation-message)
 component or, if unavailable,
 [InputValidation](../?path=/docs/components-inputvalidation--input-validation).
+Scroll to the first affected field on submission.
 
 For more guidance on wording, check out the
 [Product Vocabulary](../?path=/docs/content-product-vocabulary--page).
 
 <Canvas>
   <Banner type="error">
-    Client cannot be saved. 1 change needs to be made:
-    <ul>
-      <li>Email address</li>
-    </ul>
+    This link has expired. Please try again using the most recent email in your
+    inbox, or request a new link.
   </Banner>
 </Canvas>
 

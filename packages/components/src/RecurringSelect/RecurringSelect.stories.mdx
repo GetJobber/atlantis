@@ -1,6 +1,5 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
 import { useState } from "react";
-import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 import { ComponentStatus } from "@jobber/docx";
 import { RecurringSelect } from "./RecurringSelect";
 import { DurationPeriod } from "./types";
@@ -63,18 +62,14 @@ flow where the user encounters a disabled state, so only use this approach if a
 disabled state cannot be avoided.
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const [rule, setRule] = useState({
-        interval: 1,
-        type: DurationPeriod.DayOfMonth,
-        date: new Set([2, 4, 6, 10, 12, 18, 25, "LAST"]),
-      });
-      return (
-        <RecurringSelect value={rule} disabled={true} onChange={setRule} />
-      );
-    }}
-  </ExampleWithHooks>
+  {() => {
+    const [rule, setRule] = useState({
+      interval: 1,
+      type: DurationPeriod.DayOfMonth,
+      date: new Set([2, 4, 6, 10, 12, 18, 25, "LAST"]),
+    });
+    return <RecurringSelect value={rule} disabled={true} onChange={setRule} />;
+  }}
 </Canvas>
 
 ## Accessibility
