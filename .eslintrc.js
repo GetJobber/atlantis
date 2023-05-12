@@ -1,6 +1,3 @@
-// eslint-disable-next-line import/no-internal-modules
-require("@jobber/eslint-config/patch-eslint-plugin-resolution.js");
-
 const packageAliases = [
   ["@jobber/components", "./packages/components/src"],
   ["@jobber/hooks", "./packages/hooks/src"],
