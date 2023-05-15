@@ -3,3 +3,4 @@ export * from "./Divider";
 export * from "./Typography";
 export * from "./Text";
 export * from "./ActionLabel";
+export * from "./ActivityIndicator";
