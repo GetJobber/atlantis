@@ -6,7 +6,7 @@
     grid-column-end: span var(--gridCell--size-sm);
   }
 
-  @media (--medium-screens) {
+  @media (--medium-screens-and-up) {
     grid-column-end: span var(--gridCell--size-md);
   }
 
