@@ -16,9 +16,6 @@ complete, and reverse actions.
 import { Button } from "@jobber/components/Button";
 ```
 
-<!-- First <Canvas /> should hold a <Story /> with the same name as <Meta />'s
-title prop. -->
-
 <Canvas>
   <Story
     name="Button"
@@ -30,9 +27,6 @@ title prop. -->
     {args => <Button {...args} />}
   </Story>
 </Canvas>
-
-<!-- ArgsTable should have a story prop that matches the name of the
-<Story /> above so it can have controls under Docs -->
 
 <ArgsTable of={Button} story="Button" />
 
@@ -53,10 +47,6 @@ in Jobber.
 The most important action in a view. Examples include the Save Job button, Log
 In, or the main action in a dialog. There should be one Primary action per view,
 at most.
-
-<!-- After the first <Canvas />, the next ones should not have a story so it
-doesn't get added on the sidebar. We're adding a table of contents sidebar on
-each page that links to headings instead of stories -->
 
 <Canvas>
   <Button label="Do the Thing" />
