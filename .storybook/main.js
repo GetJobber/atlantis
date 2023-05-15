@@ -20,6 +20,7 @@ const config = {
   ],
   features: {
     buildStoriesJson: true,
+    storyStoreV7: false,
   },
   framework: {
     name: "@storybook/react-webpack5",
@@ -64,18 +65,6 @@ const config = {
     }
 
     /**
-     * Framer motion 5 and up use ESM mjs files which doesn't work out of the
-     * box for webpack 4.
-     *
-     * Until we get to React 18, Node 18, Webpack 5, Storybook 7, this is needed.
-     */
-    config.module?.rules.push({
-      test: /\.mjs$/,
-      include: /node_modules/,
-      type: "javascript/auto",
-    });
-
-    /**
      * Generate css types on `.css` file save,
      * as well as handle PostCss
      */
@@ -84,7 +73,7 @@ const config = {
       test: /\.css$/,
       exclude: [/node_modules/, /\.storybook\/assets\/css\/.*\.css$/],
       use: [
-        require.resolve("typed-css-modules-loader"),
+        // require.resolve("typed-css-modules-loader"),
         {
           loader: "postcss-loader",
           options: {
