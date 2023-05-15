@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { GridCell, GridCellProps } from "./GridCell";
 import styles from "./Grid.css";
 import alignments from "./GridAlign.css";
+import { InternalGridProvider } from "./context";
 
 interface GridProps {
   /**
@@ -35,9 +36,11 @@ export function Grid({
   });
 
   return (
-    <div data-testid={GRID_TEST_ID} className={classnames}>
-      {children}
-    </div>
+    <InternalGridProvider>
+      <div data-testid={GRID_TEST_ID} className={classnames}>
+        {children}
+      </div>
+    </InternalGridProvider>
   );
 }
 

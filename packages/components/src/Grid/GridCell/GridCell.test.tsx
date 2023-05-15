@@ -2,7 +2,19 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import { GRID_CELL_TEST_ID, GridCell } from ".";
 
+const mockUseInternalGridContext = jest.fn();
+
+jest.mock("../context", () => ({
+  useInternalGridContext: () => mockUseInternalGridContext(),
+}));
+
 describe("GridCell", () => {
+  beforeEach(() => {
+    mockUseInternalGridContext.mockImplementation(() => ({
+      gridName: "gridContextValue",
+    }));
+  });
+
   it("should add a css variable inline styling", () => {
     render(
       <GridCell size={{ xs: 12, sm: 10, md: 8, lg: 6, xl: 4 }}>
@@ -47,6 +59,20 @@ describe("GridCell", () => {
       expect(getCssVar("--gridCell--size-lg")).toBe("10");
       expect(getCssVar("--gridCell--size-xl")).toBe("10");
     });
+  });
+
+  it("should throw an error when not in a grid", () => {
+    mockUseInternalGridContext.mockImplementation(() => {
+      return { gridName: "" };
+    });
+
+    expect(() =>
+      render(
+        <GridCell size={{ xs: 12, sm: 10, md: 8, lg: 6, xl: 4 }}>
+          Even numbers baby!
+        </GridCell>,
+      ),
+    ).toThrow("`<Grid.Cell>` can only be used inside of a `<Grid>` component!");
   });
 });
 
