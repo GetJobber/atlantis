@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, useState } from "react";
 import { DocsContainer, DocsContainerProps } from "@storybook/addon-docs";
 import { Button } from "@jobber/components/Button";
-import * as styles from "./DocsWithSidebar.css";
+import styles from "./DocsWithSidebar.css";
 import { TableOfContents } from "../TableOfContents";
 
 export function DocsWithSidebar({
@@ -12,11 +12,14 @@ export function DocsWithSidebar({
   const githubRepo = "https://github.com/GetJobber/atlantis";
   const githubInfo = {
     repo: githubRepo,
-    name: context?.story || "",
-    viewFile: generateFilePath(githubRepo, context?.parameters?.fileName),
+    name: "File",
+    viewFile: generateFilePath(
+      githubRepo,
+      context?.attachedCSFFile?.meta?.parameters?.fileName,
+    ),
     editFile: generateFilePath(
       githubRepo,
-      context?.parameters?.fileName,
+      context?.attachedCSFFile?.meta?.parameters?.fileName,
       "edit",
     ),
   };
