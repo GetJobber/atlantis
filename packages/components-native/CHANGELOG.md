@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.5.0...@jobber/components-native@0.6.0) (2023-05-15)
+
+
+### Features
+
+* **components-native:** Import ErrorMessageWrapper to components-native ([#1251](https://github.com/GetJobber/atlantis/issues/1251)) ([64a05f5](https://github.com/GetJobber/atlantis/commit/64a05f57cf55d11a4e2c719470f2c3fa46e4d1af))
+
+
+
+
+
 # [0.5.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.3.0...@jobber/components-native@0.5.0) (2023-05-15)
 
 
