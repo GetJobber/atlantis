@@ -1,4 +1,4 @@
-import { StyleSheet, TextStyle } from "react-native";
+import { Platform, StyleSheet, TextStyle } from "react-native";
 import { tokens } from "../utils/design";
 
 const extravagantLineHeight = tokens["typography--lineHeight-extravagant"];
@@ -10,23 +10,49 @@ const baseLineHeight = tokens["typography--lineHeight-base"];
 const tightLineHeight = tokens["typography--lineHeight-tight"];
 const minisculeLineHeight = tokens["typography--lineHeight-miniscule"];
 
-/**
- * `StyleSheet` for Typography.tsx.
- *
- * If you find yourself needing to use what's inside this object on files other
- * than `<Typography />`, please import from `@jobber/components-native` instead.
- *
- * ```
- * import { typographyStyles } from "@jobber/components-native"
- * ```
- */
+const webFonts: { [index: string]: TextStyle } = {
+  baseRegularRegular: {
+    fontFamily: "'Inter', Helvetica, Arial, sans-serif",
+    fontWeight: "400",
+  },
 
-/**
- * Reusable typography tokens to ensure consistency for any client facing texts.
- */
-export const typographyTokens: { [index: string]: TextStyle } = {
-  // This follows a pattern of
-  // { fontFamily }{ fontStyle }{ fontWeight }
+  baseRegularMedium: {
+    fontFamily: "'Inter', Helvetica, Arial, sans-serif",
+    fontWeight: "500",
+  },
+
+  baseRegularSemiBold: {
+    fontFamily: "'Inter', Helvetica, Arial, sans-serif",
+    fontWeight: "600",
+  },
+
+  baseRegularBold: {
+    fontFamily: "'Inter', Helvetica, Arial, sans-serif",
+    fontWeight: "700",
+  },
+
+  baseRegularExtraBold: {
+    fontFamily: "'Inter', Helvetica, Arial, sans-serif",
+    fontWeight: "800",
+  },
+
+  displayRegularBold: {
+    fontFamily: "'Jobber Pro', 'Poppins', Helvetica, Arial, sans-serif",
+    fontWeight: "700",
+  },
+
+  displayRegularExtraBold: {
+    fontFamily: "'Jobber Pro', 'Poppins', Helvetica, Arial, sans-serif",
+    fontWeight: "800",
+  },
+
+  displayRegularBlack: {
+    fontFamily: "'Jobber Pro', 'Poppins', Helvetica, Arial, sans-serif",
+    fontWeight: "900",
+  },
+};
+
+const deviceFonts = {
   baseRegularRegular: {
     fontFamily: "inter-regular",
   },
@@ -58,6 +84,28 @@ export const typographyTokens: { [index: string]: TextStyle } = {
   displayRegularBlack: {
     fontFamily: "jobberpro-blk",
   },
+};
+
+const fonts = Platform.OS === "web" ? webFonts : deviceFonts;
+
+/**
+ * `StyleSheet` for Typography.tsx.
+ *
+ * If you find yourself needing to use what's inside this object on files other
+ * than `<Typography />`, please import from `@jobber/components-native` instead.
+ *
+ * ```
+ * import { typographyStyles } from "@jobber/components-native"
+ * ```
+ */
+
+/**
+ * Reusable typography tokens to ensure consistency for any client facing texts.
+ */
+export const typographyTokens: { [index: string]: TextStyle } = {
+  // This follows a pattern of
+  // { fontFamily }{ fontStyle }{ fontWeight }
+  ...fonts,
 
   startAlign: {
     textAlign: "left",
