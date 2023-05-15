@@ -16,19 +16,19 @@ export interface ContentProps {
   /**
    * The child or children that will be given spacing.
    */
-  children: ReactNode;
+  readonly children: ReactNode;
 
   /**
    * The amount of spacing that content will give.
    */
-  spacing?: Spacing;
+  readonly spacing?: Spacing;
 
   /**
    * The amount of spacing that will be applied between children.
    */
-  childSpacing?: Spacing;
+  readonly childSpacing?: Spacing;
 
-  direction?: "horizontal" | "vertical";
+  readonly direction?: "horizontal" | "vertical";
 }
 
 export function Content({
