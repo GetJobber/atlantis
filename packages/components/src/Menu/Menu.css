@@ -21,7 +21,7 @@
   overflow-y: scroll;
   background-color: var(--color-surface);
 
-  @media (--medium-screens) {
+  @media (--medium-screens-and-up) {
     position: absolute;
     left: auto;
     width: calc(var(--base-unit) * 12.5);
@@ -34,14 +34,14 @@
 }
 
 .above {
-  @media (--medium-screens) {
+  @media (--medium-screens-and-up) {
     bottom: 100%;
     margin-bottom: var(--space-smallest);
   }
 }
 
 .below {
-  @media (--medium-screens) {
+  @media (--medium-screens-and-up) {
     top: 100%;
     bottom: auto;
     margin-top: var(--space-smallest);
@@ -49,14 +49,14 @@
 }
 
 .left {
-  @media (--medium-screens) {
+  @media (--medium-screens-and-up) {
     right: 0;
     left: auto;
   }
 }
 
 .right {
-  @media (--medium-screens) {
+  @media (--medium-screens-and-up) {
     right: auto;
     left: 0;
   }
@@ -110,7 +110,7 @@
   z-index: var(--elevation-menu);
   background-color: var(--color-overlay);
 
-  @media (--medium-screens) {
+  @media (--medium-screens-and-up) {
     background-color: transparent;
   }
 }
