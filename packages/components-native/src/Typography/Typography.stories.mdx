@@ -1,0 +1,142 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Banner } from "@jobber/components/Banner";
+import { Typography } from "./Typography";
+
+<Meta
+  title="Atlantis/Text and Typography/Typography (Internal)"
+  component={Typography}
+  parameters={{
+    viewMode: "docs",
+  }}
+/>
+
+# Typography (Internal)
+
+<Banner type="notice" dismissible={false}>
+
+Typography is the component that powers our Heading and Text components “under
+the hood”. You should first look to use
+[Heading](/docs/atlantis-text-and-typography-heading--heading) and
+[Text](/docs/atlantis-text-and-typography-text--text) before you reach for
+Typography.
+
+</Banner>
+
+```ts
+import { Typography } from "atlantis/Typography";
+```
+
+<Canvas>
+  <Story
+    name="Typography"
+    args={{
+      children: "Just some type here.",
+    }}
+  >
+    {args => <Typography {...args} />}
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of={Typography} />
+
+## Alignment
+
+<Canvas>
+  <Story
+    name="Alignment"
+    args={{
+      align: "right",
+      children: "'align' prop changes the font alignment.",
+    }}
+  >
+    {args => <Typography {...args} />}
+  </Story>
+</Canvas>
+
+## Color
+
+<Canvas>
+  <Story
+    name="Color"
+    args={{
+      children: "'color' prop changes the font color.",
+      color: "green",
+    }}
+  >
+    {args => <Typography {...args} />}
+  </Story>
+</Canvas>
+
+## Size
+
+The unique sizing tokens for mobile applications can be seen
+[here](https://atlantis.getjobber.com/?path=/docs/design-typography--page#font-size).
+
+<Canvas>
+  <Story
+    name="Size"
+    args={{
+      size: "extravagant",
+      children: "'size' prop changes the font size.",
+    }}
+  >
+    {args => <Typography {...args} />}
+  </Story>
+</Canvas>
+
+## Style
+
+<Canvas>
+  <Story
+    name="Font Style"
+    args={{
+      children: "'fontStyle' prop changes the font style.",
+      style: "black",
+    }}
+  >
+    {args => <Typography {...args} />}
+  </Story>
+</Canvas>
+
+## Transform
+
+<Canvas>
+  <Story
+    name="Transform"
+    args={{
+      children: "'transform' prop changes the text casing.",
+      transform: "uppercase",
+    }}
+  >
+    {args => <Typography {...args} />}
+  </Story>
+</Canvas>
+
+## Notes
+
+### Copying text
+
+React Native has a lot of limitations around Android and iOS when it comes to
+copying text on a device.
+
+#### Android
+
+- ✅ Highlight specific text
+- ✅ Have an option to copy and other smart actions like opening a map when it's
+  an address
+- ❌ It can't highlight the text on anything that is tappable. For example
+  - Button
+  - List
+  - Long press to copy phone, address, etc
+  - In short, anything text you can tap and it does an action like open a modal
+    cannot be highlighted
+
+#### iOS
+
+- ❌ Highlight specific text
+  - ✅ It can only copy all of the block of text
+- ➖ Only have an option to "copy"
+- ✅ Unlike Android, It can copy the text on anything that is tappable
+  - The long press would show a copy action and cancel the press action on it
