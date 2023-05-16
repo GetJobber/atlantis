@@ -45,7 +45,10 @@ const deviceFonts = {
   },
 };
 
-const fonts = Platform.OS === "web" ? webFonts : deviceFonts;
+const fonts = Platform.select({
+  web: webFonts,
+  default: deviceFonts,
+});
 
 /**
  * `StyleSheet` for Typography.tsx.
