@@ -3,7 +3,7 @@
   --modal--padding: var(--space-base);
 }
 
-@media (--medium-screens) {
+@media (--medium-screens-and-up) {
   :root {
     --modal--padding: var(--space-base) var(--space-large);
   }
