@@ -45,21 +45,16 @@ const deviceFonts = {
   },
 };
 
+/**
+ * We need to use web fonts for rendering Typography on Storybook
+ * because it uses font files (.ttf) to render them on devices.
+ * As we don't want to expose the font files, we are setting the fonts
+ * in CSS.
+ */
 const fonts = Platform.select({
   web: webFonts,
   default: deviceFonts,
 });
-
-/**
- * `StyleSheet` for Typography.tsx.
- *
- * If you find yourself needing to use what's inside this object on files other
- * than `<Typography />`, please import from `@jobber/components-native` instead.
- *
- * ```
- * import { typographyStyles } from "@jobber/components-native"
- * ```
- */
 
 /**
  * Reusable typography tokens to ensure consistency for any client facing texts.
@@ -370,5 +365,15 @@ export const typographyTokens: { [index: string]: TextStyle } = {
   },
 };
 
+/**
+ * `StyleSheet` for Typography.tsx.
+ *
+ * If you find yourself needing to use what's inside this object on files other
+ * than `<Typography />`, please import from `@jobber/components-native` instead.
+ *
+ * ```
+ * import { typographyStyles } from "@jobber/components-native"
+ * ```
+ */
 export const typographyStyles: { [index: string]: TextStyle } =
   StyleSheet.create(typographyTokens);
