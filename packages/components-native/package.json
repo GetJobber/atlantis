@@ -22,6 +22,8 @@
   },
   "dependencies": {
     "@jobber/design": "^0.39.0",
+    "react-hook-form": "^7.30.0",
+    "react-intl": "^6.4.2",
     "react-native-gesture-handler": "^2.5.0",
     "react-native-svg": "^13.9.0",
     "react-native-uuid": "^1.4.9",
