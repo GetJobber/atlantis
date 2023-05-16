@@ -5,36 +5,19 @@ import { Heading } from "@jobber/components/Heading";
 import { Card } from "@jobber/components/Card";
 import { Divider } from "@jobber/components/Divider";
 
-<Meta title="Components/Divider" component={Divider} />
+<Meta title="Components/Divider/Docs" />
 
 # Divider
 
 Divider is a UI element meant to divide into areas of content.
 
-```ts
-import { Divider } from "@jobber/components/Divider";
-```
-
 <Canvas>
-  <Story name="Divider">
-    {args => (
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns:
-            args.direction === "vertical" ? "auto min-content auto" : "auto",
-          gap: "var(--space-base)",
-        }}
-      >
-        <Content>Some amazing content</Content>
-        <Divider {...args} />
-        <Content>Even more amazing content</Content>
-      </div>
-    )}
-  </Story>
+  <Content>
+    <Content>Some amazing content</Content>
+    <Divider />
+    <Content>Even more amazing content</Content>
+  </Content>
 </Canvas>
-
-<ArgsTable of={Divider} story="Divider" />
 
 ## Design & usage guidelines
 
