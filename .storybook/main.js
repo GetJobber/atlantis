@@ -23,8 +23,11 @@ const config = {
   features: { buildStoriesJson: true },
   framework: "@storybook/react",
   webpackFinal: async config => {
+
     config.plugins = [
       ...config.plugins,
+
+      // Mock react-native-gesture-handler to do nothing in web
       new webpack.NormalModuleReplacementPlugin(
         /react-native-gesture-handler$/,
         path.join(__dirname, "__mocks__/react-native-gesture-handler.tsx"),
