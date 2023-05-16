@@ -1,7 +1,5 @@
 import React, { PropsWithChildren } from "react";
-import { useAssert } from "@jobber/hooks/useAssert";
-import styles from "./GridCell.css";
-import { useInternalGridContext } from "../context";
+import styles from "./InternalGridCell.css";
 
 /**
  * Breakpoints that we support
@@ -26,17 +24,16 @@ export interface GridCellProps {
 const MAX_COLUMNS = 12;
 export const GRID_CELL_TEST_ID = "ATL-Grid-GridCell";
 
-export function GridCell({ size, children }: PropsWithChildren<GridCellProps>) {
+export function InternalGridCell({
+  size,
+  children,
+}: PropsWithChildren<GridCellProps>) {
   /**
    * Build CSS variables for column sizes for all possible breakpoints to size
    * the column
    */
   const cssSizeVariables = breakpoints.reduce(getSizeCSSVariables(size), {});
-  const gridContext = useInternalGridContext();
-  useAssert(
-    !gridContext.gridName,
-    "`<Grid.Cell>` can only be used inside of a `<Grid>` component!",
-  );
+
   return (
     <div
       data-testid={GRID_CELL_TEST_ID}
