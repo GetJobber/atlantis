@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.7.0...@jobber/components-native@0.8.0) (2023-05-16)
+
+
+### Features
+
+* **components-native:** Import StatusLabel to components-native ([#1257](https://github.com/GetJobber/atlantis/issues/1257)) ([b40d7b1](https://github.com/GetJobber/atlantis/commit/b40d7b17c732ee92eedcdb0b6fcb86de6f42fd5c))
+* **components-native:** Make react native components fonts render on Storybook ([#1255](https://github.com/GetJobber/atlantis/issues/1255)) ([8821c82](https://github.com/GetJobber/atlantis/commit/8821c8207371047b3001a7224ec659b6581e09a5))
+
+
+
+
+
 # [0.7.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.6.0...@jobber/components-native@0.7.0) (2023-05-16)
 
 
