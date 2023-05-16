@@ -9,6 +9,7 @@ import {
   TextProps,
   ViewStyle,
 } from "react-native";
+import { TypographyGestureDetector } from "./TypographyGestureDetector";
 import { typographyStyles as styles } from "./Typography.style";
 import { tokens } from "../utils/design";
 import { capitalize } from "../utils/intl";
@@ -167,23 +168,25 @@ function InternalTypography<T extends FontFamily = "base">({
     : { accessibilityRole };
 
   return (
-    <Text
-      {...{
-        allowFontScaling,
-        adjustsFontSizeToFit,
-        style,
-        numberOfLines: numberOfLinesForNativeText,
-      }}
-      {...accessibilityProps}
-      maxFontSizeMultiplier={getScaleMultiplier(
-        maxFontScaleSize,
-        sizeAndHeight.fontSize,
-      )}
-      selectable={selectable}
-      selectionColor={tokens["color-brand--highlight"]}
-    >
-      {text}
-    </Text>
+    <TypographyGestureDetector>
+      <Text
+        {...{
+          allowFontScaling,
+          adjustsFontSizeToFit,
+          style,
+          numberOfLines: numberOfLinesForNativeText,
+        }}
+        {...accessibilityProps}
+        maxFontSizeMultiplier={getScaleMultiplier(
+          maxFontScaleSize,
+          sizeAndHeight.fontSize,
+        )}
+        selectable={selectable}
+        selectionColor={tokens["color-brand--highlight"]}
+      >
+        {text}
+      </Text>
+    </TypographyGestureDetector>
   );
 }
 
