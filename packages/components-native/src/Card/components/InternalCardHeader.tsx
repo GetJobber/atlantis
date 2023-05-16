@@ -5,7 +5,7 @@ import { styles } from "./InternalCardHeader.style";
 interface InternalCardHeaderProps {
   readonly children: ReactNode[] | ReactNode;
   readonly onPress?: () => void;
-  testID?: string;
+  readonly testID?: string;
   readonly collapsable: boolean;
 }
 
