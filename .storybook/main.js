@@ -1,3 +1,4 @@
+const webpack = require("webpack");
 const path = require("path");
 
 const config = {
@@ -22,6 +23,14 @@ const config = {
   features: { buildStoriesJson: true },
   framework: "@storybook/react",
   webpackFinal: async config => {
+    config.plugins = [
+      ...config.plugins,
+      new webpack.NormalModuleReplacementPlugin(
+        /react-native-gesture-handler$/,
+        path.join(__dirname, "__mocks__/react-native-gesture-handler.tsx"),
+      ),
+    ];
+
     /**
      * Separate existing rules for CSS files
      */
