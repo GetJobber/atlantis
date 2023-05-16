@@ -6,7 +6,7 @@ import { GridCellProps } from "./InternalGridCell";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function GridCell(props: PropsWithChildren<GridCellProps>) {
-  // Throw error when <Chip /> gets used outside of the <Chips />
+  // Throw error when <Grid.Cell /> gets used outside of the <Grid />
   useAssert(
     true,
     "`<Grid.Cell>` can only be used inside of a `<Grid>` component!",

@@ -37,8 +37,8 @@ export function Grid({
 
   return (
     <div data-testid={GRID_TEST_ID} className={classnames}>
-      {React.Children.map(children, gridCell => {
-        return <InternalGridCell {...gridCell.props} />;
+      {React.Children.map(children, { props } => {
+        return <InternalGridCell {...props} />;
       })}
     </div>
   );
