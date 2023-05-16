@@ -1,9 +1,9 @@
-import React, { PropsWithChildren, ReactElement } from "react";
+import React, { ReactElement } from "react";
 import classNames from "classnames";
-import { useAssert } from "@jobber/hooks/useAssert";
 import { GridCellProps, InternalGridCell } from "./InternalGridCell";
 import styles from "./Grid.css";
 import alignments from "./GridAlign.css";
+import { GridCell } from "./GridCell";
 
 interface GridProps {
   /**
@@ -42,18 +42,6 @@ export function Grid({
       })}
     </div>
   );
-}
-
-// Only need the component to pass in the data as a react children
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function GridCell(props: PropsWithChildren<GridCellProps>) {
-  // Throw error when <Chip /> gets used outside of the <Chips />
-  useAssert(
-    true,
-    "`<Grid.Cell>` can only be used inside of a `<Grid>` component!",
-  );
-
-  return <></>;
 }
 
 Grid.Cell = GridCell;
