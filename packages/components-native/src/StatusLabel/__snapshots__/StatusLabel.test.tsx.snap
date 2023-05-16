@@ -1,0 +1,554 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatusLabel alignment when alignment prop set to "end" should match snapshot 1`] = `
+<View
+  style={
+    [
+      {
+        "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "justifyContent": "flex-end",
+      },
+      false,
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "flexShrink": 1,
+      }
+    }
+  >
+    <Text
+      accessibilityRole="text"
+      adjustsFontSizeToFit={false}
+      allowFontScaling={true}
+      collapsable={false}
+      maxFontSizeMultiplier={1.1428571428571428}
+      selectable={true}
+      selectionColor="rgb(160, 215, 42)"
+      style={
+        [
+          {
+            "fontFamily": "inter-medium",
+          },
+          {
+            "color": "rgba(101, 120, 132, 1)",
+          },
+          {
+            "textAlign": "right",
+          },
+          {
+            "fontSize": 14,
+            "lineHeight": 18,
+          },
+          {
+            "letterSpacing": 0,
+          },
+        ]
+      }
+    >
+      End Aligned
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "width": 8,
+      }
+    }
+  />
+  <View
+    style={
+      [
+        {
+          "backgroundColor": "rgb(125, 176, 14)",
+          "borderRadius": 2,
+          "height": 12,
+          "marginTop": 3,
+          "width": 12,
+        },
+        {
+          "backgroundColor": "rgb(125, 176, 14)",
+        },
+      ]
+    }
+    testID="successLabelIcon"
+  />
+</View>
+`;
+
+exports[`StatusLabel alignment when alignment prop set to default ("start") should match snapshot 1`] = `
+<View
+  style={
+    [
+      {
+        "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "justifyContent": "flex-end",
+      },
+      false,
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "flexShrink": 1,
+      }
+    }
+  >
+    <Text
+      accessibilityRole="text"
+      adjustsFontSizeToFit={false}
+      allowFontScaling={true}
+      collapsable={false}
+      maxFontSizeMultiplier={1.1428571428571428}
+      selectable={true}
+      selectionColor="rgb(160, 215, 42)"
+      style={
+        [
+          {
+            "fontFamily": "inter-medium",
+          },
+          {
+            "color": "rgba(101, 120, 132, 1)",
+          },
+          {
+            "textAlign": "right",
+          },
+          {
+            "fontSize": 14,
+            "lineHeight": 18,
+          },
+          {
+            "letterSpacing": 0,
+          },
+        ]
+      }
+    >
+      Start Aligned
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "width": 8,
+      }
+    }
+  />
+  <View
+    style={
+      [
+        {
+          "backgroundColor": "rgb(125, 176, 14)",
+          "borderRadius": 2,
+          "height": 12,
+          "marginTop": 3,
+          "width": 12,
+        },
+        {
+          "backgroundColor": "rgb(125, 176, 14)",
+        },
+      ]
+    }
+    testID="successLabelIcon"
+  />
+</View>
+`;
+
+exports[`StatusLabel status when status prop set to "critical" should match snapshot 1`] = `
+<View
+  style={
+    [
+      {
+        "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "justifyContent": "flex-end",
+      },
+      false,
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "flexShrink": 1,
+      }
+    }
+  >
+    <Text
+      accessibilityRole="text"
+      adjustsFontSizeToFit={false}
+      allowFontScaling={true}
+      collapsable={false}
+      maxFontSizeMultiplier={1.1428571428571428}
+      selectable={true}
+      selectionColor="rgb(160, 215, 42)"
+      style={
+        [
+          {
+            "fontFamily": "inter-medium",
+          },
+          {
+            "color": "rgba(101, 120, 132, 1)",
+          },
+          {
+            "textAlign": "right",
+          },
+          {
+            "fontSize": 14,
+            "lineHeight": 18,
+          },
+          {
+            "letterSpacing": 0,
+          },
+        ]
+      }
+    >
+      Critical
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "width": 8,
+      }
+    }
+  />
+  <View
+    style={
+      [
+        {
+          "backgroundColor": "rgb(125, 176, 14)",
+          "borderRadius": 2,
+          "height": 12,
+          "marginTop": 3,
+          "width": 12,
+        },
+        {
+          "backgroundColor": "rgb(201, 66, 33)",
+        },
+      ]
+    }
+    testID="criticalLabelIcon"
+  />
+</View>
+`;
+
+exports[`StatusLabel status when status prop set to "inactive" should match snapshot 1`] = `
+<View
+  style={
+    [
+      {
+        "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "justifyContent": "flex-end",
+      },
+      false,
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "flexShrink": 1,
+      }
+    }
+  >
+    <Text
+      accessibilityRole="text"
+      adjustsFontSizeToFit={false}
+      allowFontScaling={true}
+      collapsable={false}
+      maxFontSizeMultiplier={1.1428571428571428}
+      selectable={true}
+      selectionColor="rgb(160, 215, 42)"
+      style={
+        [
+          {
+            "fontFamily": "inter-medium",
+          },
+          {
+            "color": "rgba(101, 120, 132, 1)",
+          },
+          {
+            "textAlign": "right",
+          },
+          {
+            "fontSize": 14,
+            "lineHeight": 18,
+          },
+          {
+            "letterSpacing": 0,
+          },
+        ]
+      }
+    >
+      Inactive
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "width": 8,
+      }
+    }
+  />
+  <View
+    style={
+      [
+        {
+          "backgroundColor": "rgb(125, 176, 14)",
+          "borderRadius": 2,
+          "height": 12,
+          "marginTop": 3,
+          "width": 12,
+        },
+        {
+          "backgroundColor": "rgb(77, 105, 116)",
+        },
+      ]
+    }
+    testID="inactiveLabelIcon"
+  />
+</View>
+`;
+
+exports[`StatusLabel status when status prop set to "informative" should match snapshot 1`] = `
+<View
+  style={
+    [
+      {
+        "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "justifyContent": "flex-end",
+      },
+      false,
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "flexShrink": 1,
+      }
+    }
+  >
+    <Text
+      accessibilityRole="text"
+      adjustsFontSizeToFit={false}
+      allowFontScaling={true}
+      collapsable={false}
+      maxFontSizeMultiplier={1.1428571428571428}
+      selectable={true}
+      selectionColor="rgb(160, 215, 42)"
+      style={
+        [
+          {
+            "fontFamily": "inter-medium",
+          },
+          {
+            "color": "rgba(101, 120, 132, 1)",
+          },
+          {
+            "textAlign": "right",
+          },
+          {
+            "fontSize": 14,
+            "lineHeight": 18,
+          },
+          {
+            "letterSpacing": 0,
+          },
+        ]
+      }
+    >
+      Informative
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "width": 8,
+      }
+    }
+  />
+  <View
+    style={
+      [
+        {
+          "backgroundColor": "rgb(125, 176, 14)",
+          "borderRadius": 2,
+          "height": 12,
+          "marginTop": 3,
+          "width": 12,
+        },
+        {
+          "backgroundColor": "rgb(60, 162, 224)",
+        },
+      ]
+    }
+    testID="informativeLabelIcon"
+  />
+</View>
+`;
+
+exports[`StatusLabel status when status prop set to "warning" should match snapshot 1`] = `
+<View
+  style={
+    [
+      {
+        "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "justifyContent": "flex-end",
+      },
+      false,
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "flexShrink": 1,
+      }
+    }
+  >
+    <Text
+      accessibilityRole="text"
+      adjustsFontSizeToFit={false}
+      allowFontScaling={true}
+      collapsable={false}
+      maxFontSizeMultiplier={1.1428571428571428}
+      selectable={true}
+      selectionColor="rgb(160, 215, 42)"
+      style={
+        [
+          {
+            "fontFamily": "inter-medium",
+          },
+          {
+            "color": "rgba(101, 120, 132, 1)",
+          },
+          {
+            "textAlign": "right",
+          },
+          {
+            "fontSize": 14,
+            "lineHeight": 18,
+          },
+          {
+            "letterSpacing": 0,
+          },
+        ]
+      }
+    >
+      Warning
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "width": 8,
+      }
+    }
+  />
+  <View
+    style={
+      [
+        {
+          "backgroundColor": "rgb(125, 176, 14)",
+          "borderRadius": 2,
+          "height": 12,
+          "marginTop": 3,
+          "width": 12,
+        },
+        {
+          "backgroundColor": "rgb(221, 195, 15)",
+        },
+      ]
+    }
+    testID="warningLabelIcon"
+  />
+</View>
+`;
+
+exports[`StatusLabel status when status prop set to default ("success") should match snapshot 1`] = `
+<View
+  style={
+    [
+      {
+        "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "justifyContent": "flex-end",
+      },
+      false,
+    ]
+  }
+>
+  <View
+    style={
+      {
+        "flexShrink": 1,
+      }
+    }
+  >
+    <Text
+      accessibilityRole="text"
+      adjustsFontSizeToFit={false}
+      allowFontScaling={true}
+      collapsable={false}
+      maxFontSizeMultiplier={1.1428571428571428}
+      selectable={true}
+      selectionColor="rgb(160, 215, 42)"
+      style={
+        [
+          {
+            "fontFamily": "inter-medium",
+          },
+          {
+            "color": "rgba(101, 120, 132, 1)",
+          },
+          {
+            "textAlign": "right",
+          },
+          {
+            "fontSize": 14,
+            "lineHeight": 18,
+          },
+          {
+            "letterSpacing": 0,
+          },
+        ]
+      }
+    >
+      Success
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "width": 8,
+      }
+    }
+  />
+  <View
+    style={
+      [
+        {
+          "backgroundColor": "rgb(125, 176, 14)",
+          "borderRadius": 2,
+          "height": 12,
+          "marginTop": 3,
+          "width": 12,
+        },
+        {
+          "backgroundColor": "rgb(125, 176, 14)",
+        },
+      ]
+    }
+    testID="successLabelIcon"
+  />
+</View>
+`;
