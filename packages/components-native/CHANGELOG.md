@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.5.0...@jobber/components-native@0.6.0) (2023-05-15)
+
+
+### Features
+
+* **components-native:** Import ErrorMessageWrapper to components-native ([#1251](https://github.com/GetJobber/atlantis/issues/1251)) ([64a05f5](https://github.com/GetJobber/atlantis/commit/64a05f57cf55d11a4e2c719470f2c3fa46e4d1af))
+
+
+
+
+
+# [0.5.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.3.0...@jobber/components-native@0.5.0) (2023-05-15)
+
+
+### Features
+
+* **components-native:** Import ActionLabel to components-native ([#1250](https://github.com/GetJobber/atlantis/issues/1250)) ([9fa2517](https://github.com/GetJobber/atlantis/commit/9fa251783f2fc535c5b09f161f1abd33d072c5f8))
+* **components-native:** Import ActivityIndicator to components-native ([#1253](https://github.com/GetJobber/atlantis/issues/1253)) ([bf184a2](https://github.com/GetJobber/atlantis/commit/bf184a2b35f44e2933e0697fe45bd8c14e53b175))
+* **components-native:** Import Content to components-native ([#1252](https://github.com/GetJobber/atlantis/issues/1252)) ([460f6cf](https://github.com/GetJobber/atlantis/commit/460f6cf5a6de18aa06669961852f7c6753fa298c))
+
+
+
+
+
 # [0.4.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.3.0...@jobber/components-native@0.4.0) (2023-05-15)
 
 
