@@ -9,3 +9,4 @@ export * from "./ActivityIndicator";
 export * from "./Card";
 export * from "./StatusLabel";
 export * from "./AtlantisContext";
+export * from "./Chip";
