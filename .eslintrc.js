@@ -8,6 +8,7 @@ const packageAliases = [
 
 module.exports = {
   extends: ["@jobber/eslint-config"],
+  root: true,
   settings: {
     "import/ignore": ["react-native/index"],
     "import/resolver": {
