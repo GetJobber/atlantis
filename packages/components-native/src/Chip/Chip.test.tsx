@@ -1,7 +1,7 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react-native";
-import { JobberStyle } from "@jobber/design/foundation";
 import { Chip } from "./Chip";
+import { tokens } from "../utils/design";
 
 it("renders an active Chip", () => {
   const { getByText, getByLabelText } = render(
@@ -14,7 +14,7 @@ it("renders an active Chip", () => {
   );
   expect(getByText("Foo")).toBeDefined();
   expect(getByLabelText("Foo chip").props.style).toContainEqual({
-    backgroundColor: JobberStyle["color-surface--reverse"],
+    backgroundColor: tokens["color-surface--reverse"],
   });
 });
 
@@ -32,10 +32,10 @@ it("renders an inactive Chip with a default backgroundColor", () => {
     <Chip label="Foo" onPress={jest.fn()} isActive={false} />,
   );
   expect(getByTestId("chipTest").props.style).not.toContainEqual({
-    backgroundColor: JobberStyle["color-surface--reverse"],
+    backgroundColor: tokens["color-surface--reverse"],
   });
   expect(getByTestId("chipTest").props.style).toContainEqual({
-    backgroundColor: JobberStyle["color-surface--background"],
+    backgroundColor: tokens["color-surface--background"],
   });
 });
 
@@ -49,7 +49,7 @@ it("renders an inactive Chip with a surface backgroundColor", () => {
     />,
   );
   expect(getByTestId("chipTest").props.style).toContainEqual({
-    backgroundColor: JobberStyle["color-surface"],
+    backgroundColor: tokens["color-surface"],
   });
 });
 
@@ -127,7 +127,7 @@ describe("accent", () => {
       />,
     );
     expect(getByTestId("chipTest").props.style).toContainEqual({
-      backgroundColor: JobberStyle["color-client"],
+      backgroundColor: tokens["color-client"],
     });
   });
 });
