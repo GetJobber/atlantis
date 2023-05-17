@@ -1,0 +1,381 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders blue inProgress bar when 1 or more jobs is in progress 1`] = `
+<View
+  accessibilityLabel="0 of 0 complete, 1 in progress"
+  accessibilityRole="progressbar"
+  accessible={true}
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text
+      accessibilityRole="header"
+      adjustsFontSizeToFit={false}
+      allowFontScaling={true}
+      collapsable={false}
+      maxFontSizeMultiplier={1.375}
+      selectable={true}
+      selectionColor="rgb(160, 215, 42)"
+      style={
+        [
+          {
+            "fontFamily": "inter-semibold",
+          },
+          {
+            "color": "rgba(255, 255, 255, 1)",
+          },
+          {
+            "textAlign": "left",
+          },
+          {
+            "fontSize": 16,
+            "lineHeight": 20,
+          },
+          {
+            "letterSpacing": 0,
+          },
+        ]
+      }
+    >
+      0 visits completed
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "flexDirection": "row",
+        "height": 20,
+        "marginBottom": 8,
+        "marginTop": 8,
+        "position": "relative",
+      }
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "rgba(255,255,255,0.3)",
+            "borderRadius": 100,
+            "height": "100%",
+            "left": 0,
+            "position": "absolute",
+            "top": 0,
+            "width": "100%",
+          },
+          {
+            "backgroundColor": "rgb(244, 244, 244)",
+            "width": "100%",
+          },
+        ]
+      }
+    />
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "rgba(255,255,255,0.3)",
+            "borderRadius": 100,
+            "height": "100%",
+            "left": 0,
+            "position": "absolute",
+            "top": 0,
+            "width": "100%",
+          },
+          {
+            "backgroundColor": "rgb(60, 162, 224)",
+            "width": "0%",
+          },
+        ]
+      }
+    />
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "rgba(255,255,255,0.3)",
+            "borderRadius": 100,
+            "height": "100%",
+            "left": 0,
+            "position": "absolute",
+            "top": 0,
+            "width": "100%",
+          },
+          {
+            "backgroundColor": "rgb(125, 176, 14)",
+            "width": "0%",
+          },
+        ]
+      }
+    />
+  </View>
+</View>
+`;
+
+exports[`renders green CompletedProgress bar and renders 'visit' as the smart string in the progress bar title 1`] = `
+<View
+  accessibilityLabel="1 of 2 complete"
+  accessibilityRole="progressbar"
+  accessible={true}
+>
+  <View
+    style={
+      {
+        "alignItems": "flex-start",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <Text
+      accessibilityRole="header"
+      adjustsFontSizeToFit={false}
+      allowFontScaling={true}
+      collapsable={false}
+      maxFontSizeMultiplier={1.375}
+      selectable={true}
+      selectionColor="rgb(160, 215, 42)"
+      style={
+        [
+          {
+            "fontFamily": "inter-semibold",
+          },
+          {
+            "color": "rgba(255, 255, 255, 1)",
+          },
+          {
+            "textAlign": "left",
+          },
+          {
+            "fontSize": 16,
+            "lineHeight": 20,
+          },
+          {
+            "letterSpacing": 0,
+          },
+        ]
+      }
+    >
+      1 visit completed
+    </Text>
+    <Text
+      accessibilityRole="text"
+      adjustsFontSizeToFit={false}
+      allowFontScaling={true}
+      collapsable={false}
+      maxFontSizeMultiplier={3.125}
+      selectable={true}
+      selectionColor="rgb(160, 215, 42)"
+      style={
+        [
+          {
+            "fontFamily": "inter-regular",
+          },
+          {
+            "color": "rgba(255, 255, 255, 1)",
+          },
+          {
+            "textAlign": "left",
+          },
+          {
+            "fontSize": 16,
+            "lineHeight": 20,
+          },
+          {
+            "letterSpacing": 0,
+          },
+        ]
+      }
+    >
+      $0 of $0
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "flexDirection": "row",
+        "height": 20,
+        "marginBottom": 8,
+        "marginTop": 8,
+        "position": "relative",
+      }
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "rgba(255,255,255,0.3)",
+            "borderRadius": 100,
+            "height": "100%",
+            "left": 0,
+            "position": "absolute",
+            "top": 0,
+            "width": "100%",
+          },
+          {
+            "backgroundColor": "rgb(244, 244, 244)",
+            "width": "100%",
+          },
+        ]
+      }
+    />
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "rgba(255,255,255,0.3)",
+            "borderRadius": 100,
+            "height": "100%",
+            "left": 0,
+            "position": "absolute",
+            "top": 0,
+            "width": "100%",
+          },
+          {
+            "backgroundColor": "rgb(125, 176, 14)",
+            "width": "50%",
+          },
+        ]
+      }
+    />
+  </View>
+</View>
+`;
+
+exports[`renders green CompletedProgress bar and renders 'visits' as the smart string in the progress bar title 1`] = `
+<View
+  accessibilityLabel="2 of 3 complete"
+  accessibilityRole="progressbar"
+  accessible={true}
+>
+  <View
+    style={
+      {
+        "alignItems": "flex-start",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <Text
+      accessibilityRole="header"
+      adjustsFontSizeToFit={false}
+      allowFontScaling={true}
+      collapsable={false}
+      maxFontSizeMultiplier={1.375}
+      selectable={true}
+      selectionColor="rgb(160, 215, 42)"
+      style={
+        [
+          {
+            "fontFamily": "inter-semibold",
+          },
+          {
+            "color": "rgba(255, 255, 255, 1)",
+          },
+          {
+            "textAlign": "left",
+          },
+          {
+            "fontSize": 16,
+            "lineHeight": 20,
+          },
+          {
+            "letterSpacing": 0,
+          },
+        ]
+      }
+    >
+      2 visits completed
+    </Text>
+    <Text
+      accessibilityRole="text"
+      adjustsFontSizeToFit={false}
+      allowFontScaling={true}
+      collapsable={false}
+      maxFontSizeMultiplier={3.125}
+      selectable={true}
+      selectionColor="rgb(160, 215, 42)"
+      style={
+        [
+          {
+            "fontFamily": "inter-regular",
+          },
+          {
+            "color": "rgba(255, 255, 255, 1)",
+          },
+          {
+            "textAlign": "left",
+          },
+          {
+            "fontSize": 16,
+            "lineHeight": 20,
+          },
+          {
+            "letterSpacing": 0,
+          },
+        ]
+      }
+    >
+      $0 of $0
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "flexDirection": "row",
+        "height": 20,
+        "marginBottom": 8,
+        "marginTop": 8,
+        "position": "relative",
+      }
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "rgba(255,255,255,0.3)",
+            "borderRadius": 100,
+            "height": "100%",
+            "left": 0,
+            "position": "absolute",
+            "top": 0,
+            "width": "100%",
+          },
+          {
+            "backgroundColor": "rgb(244, 244, 244)",
+            "width": "100%",
+          },
+        ]
+      }
+    />
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "rgba(255,255,255,0.3)",
+            "borderRadius": 100,
+            "height": "100%",
+            "left": 0,
+            "position": "absolute",
+            "top": 0,
+            "width": "100%",
+          },
+          {
+            "backgroundColor": "rgb(125, 176, 14)",
+            "width": "66.66666666666666%",
+          },
+        ]
+      }
+    />
+  </View>
+</View>
+`;
