@@ -18,15 +18,6 @@ export const styles = StyleSheet.create({
     top: 0,
     borderRadius: 100,
   },
-  centeredContent: {
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  spacedContent: {
-    justifyContent: "space-between",
-    alignItems: "flex-start",
-    flexDirection: "row",
-  },
   progressInner: {
     height: "100%",
     borderRadius: 100,

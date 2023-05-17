@@ -29,7 +29,7 @@ it("renders blue inProgress bar when 1 or more jobs is in progress", () => {
   expect(bar).toMatchSnapshot();
 });
 
-it("renders green CompletedProgress bar and renders 'visit' as the smart string in the progress bar title", () => {
+it("renders green CompletedProgress bar when 1 or more jobs is completed", () => {
   const current = 1;
   const bar = renderProgressBarComponent({
     ...defaultSetupProps,
@@ -37,14 +37,5 @@ it("renders green CompletedProgress bar and renders 'visit' as the smart string 
     total: 2,
   });
   expect(bar).toMatchSnapshot();
-});
-
-it("renders green CompletedProgress bar and renders 'visits' as the smart string in the progress bar title", () => {
-  const current = 2;
-  const bar = renderProgressBarComponent({
-    ...defaultSetupProps,
-    current: current,
-    total: 3,
-  });
-  expect(bar).toMatchSnapshot();
+  expect(bar.getByLabelText("1 of 2 complete")).toBeDefined();
 });
