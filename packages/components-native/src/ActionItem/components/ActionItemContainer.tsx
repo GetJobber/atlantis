@@ -7,7 +7,7 @@ interface ActionItemContainerProps {
   readonly children: ReactNode;
   readonly title?: string;
   readonly onPress?: () => void;
-  testID?: string;
+  readonly testID?: string;
 }
 
 export function ActionItemContainer({
