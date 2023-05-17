@@ -14,7 +14,7 @@ interface CommonButtonProps {
   /**
    * Press handler
    */
-  onPress?(): void;
+  readonly onPress?: () => void;
 
   /**
    * Themes the button to the type of action it performs
