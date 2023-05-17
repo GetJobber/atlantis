@@ -8,3 +8,4 @@ export * from "./Content";
 export * from "./ActivityIndicator";
 export * from "./StatusLabel";
 export * from "./AtlantisContext";
+export * from "./Button";
