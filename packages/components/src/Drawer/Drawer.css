@@ -13,9 +13,11 @@
   z-index: var(--elevation-modal);
   overflow: hidden;
 
-  /* Drawer is primarily used in Jobber Online and is currently used in a layout
+  /* SPECIAL CASE:
+     Drawer is primarily used in Jobber Online and is currently used in a layout
      that rearranges at 640px. For compatibility, this is hardcoded here
      rather than using the breakpoint custom properties.
+     DO NOT COPY THIS - USE THE BREAKPOINTS DEFINED IN THE @jobber/design package!
   */
   @media (width >= 640px), print {
     position: relative;
