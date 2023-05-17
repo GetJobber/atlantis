@@ -12,3 +12,4 @@ export * from "./AtlantisContext";
 export * from "./Button";
 export * from "./InputFieldWrapper";
 export * from "./Heading";
+export * from "./Chip";
