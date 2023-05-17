@@ -1,32 +1,14 @@
-import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Canvas, Meta } from "@storybook/addon-docs";
 import { useState } from "react";
 import { ProgressBar } from "@jobber/components/ProgressBar";
 import { Content } from "@jobber/components/Content";
 import { Button } from "@jobber/components/Button";
 
-<Meta title="Components/ProgressBar" component={ProgressBar} />
+<Meta title="Components/ProgressBar/Docs" component={Content} />
 
 # ProgressBar
 
 A progress bar is a visual indicator of how close something is to completion.
-
-```ts
-import { ProgressBar } from "@jobber/components/ProgressBar";
-```
-
-<Canvas>
-  <Story
-    name="ProgressBar"
-    args={{
-      currentStep: 3,
-      totalSteps: 4,
-    }}
-  >
-    {args => <ProgressBar {...args} />}
-  </Story>
-</Canvas>
-
-<ArgsTable of={ProgressBar} story="ProgressBar" />
 
 ## Design & usage guidelines
 
@@ -45,8 +27,6 @@ An example where you might be better served using a spinner:
 
 - Loading a calendar within a view, where we do not know it's "complete" until
   there's no more data left to load
-
----
 
 ## Example with state
 

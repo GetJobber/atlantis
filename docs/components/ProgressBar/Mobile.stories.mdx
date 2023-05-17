@@ -1,0 +1,29 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { ProgressBar } from "@jobber/components-native";
+
+<Meta title="Components/ProgressBar/Mobile" component={ProgressBar} />
+
+# ProgressBar
+
+A progress bar is a visual indicator of how close something is to completion.
+
+```ts
+import { ProgressBar } from "@jobber/components-native";
+```
+
+<Canvas>
+  <Story
+    name="Mobile"
+    args={{
+      total: 5,
+      current: 1,
+      inProgress: 2,
+      loading: false,
+      reverseTheme: false,
+    }}
+  >
+    {args => <ProgressBar {...args} />}
+  </Story>
+</Canvas>
+
+<ArgsTable of={ProgressBar} story="Mobile" />
