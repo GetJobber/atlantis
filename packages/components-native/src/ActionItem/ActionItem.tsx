@@ -46,9 +46,9 @@ export interface ActionItemProps {
   /**
    * Press handler
    */
-  onPress?(): void;
+  readonly onPress?: () => void;
 
-  testID?: string;
+  readonly testID?: string;
 }
 
 export function ActionItem({
