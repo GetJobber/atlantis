@@ -1,3 +1,4 @@
+const webpack = require("webpack");
 const path = require("path");
 
 const config = {
@@ -5,6 +6,7 @@ const config = {
     "../packages/**/*.stories.mdx",
     "../packages/**/*.stories.@(js|jsx|ts|tsx)",
     "../docs/**/*.stories.mdx",
+    "../docs/**/*.stories.@(js|jsx|ts|tsx)",
   ],
   addons: [
     "@storybook/addon-links",
@@ -21,6 +23,17 @@ const config = {
   features: { buildStoriesJson: true },
   framework: "@storybook/react",
   webpackFinal: async config => {
+
+    config.plugins = [
+      ...config.plugins,
+
+      // Mock react-native-gesture-handler to do nothing in web
+      new webpack.NormalModuleReplacementPlugin(
+        /react-native-gesture-handler$/,
+        path.join(__dirname, "__mocks__/react-native-gesture-handler.tsx"),
+      ),
+    ];
+
     /**
      * Separate existing rules for CSS files
      */
@@ -114,7 +127,7 @@ const config = {
       ),
       "@jobber/components-native": path.resolve(
         __dirname,
-        "../packages/components-native",
+        "../packages/components-native/src",
       ),
       "@jobber/docx": path.resolve(__dirname, "../packages/docx/src"),
       "@jobber/hooks": path.resolve(__dirname, "../packages/hooks/src"),

@@ -1,0 +1,47 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Content } from "@jobber/components/Content";
+import { Text } from "@jobber/components/Text";
+import { Heading } from "@jobber/components/Heading";
+import { InputText } from "@jobber/components/InputText";
+import { Card } from "@jobber/components/Card";
+
+<Meta title="Components/Content/Web" component={Content} />
+
+## Content
+
+```ts
+import { Content } from "@jobber/components/Content";
+```
+
+<Canvas>
+  <Story name="Web">
+    {args => (
+      <Content {...args}>
+        <Card title="About me">
+          <Content {...args}>
+            <Content spacing={args.spacing || "large"}>
+              <Heading level={2}>Sign up!</Heading>
+              <Text>
+                Aenean eu leo quam. Pellentesque ornare sem lacinia quam
+                venenatis vestibulum. Nulla vitae elit libero, a pharetra augue.
+                Nullam quis risus eget urna mollis ornare vel eu leo. Vestibulum
+                id ligula porta felis euismod semper. Curabitur blandit tempus
+                porttitor.
+              </Text>
+            </Content>
+            <InputText placeholder="Name" />
+            <InputText placeholder="Phone" />
+            <InputText placeholder="Email" />
+            <InputText
+              multiline={true}
+              placeholder="Describe yourself"
+              name="describeAge"
+            />
+          </Content>
+        </Card>
+      </Content>
+    )}
+  </Story>
+</Canvas>
+
+<ArgsTable of={Content} story="Web" />
