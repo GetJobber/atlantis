@@ -10,3 +10,4 @@ export * from "./Card";
 export * from "./StatusLabel";
 export * from "./AtlantisContext";
 export * from "./InputFieldWrapper";
+export * from "./ProgressBar";
