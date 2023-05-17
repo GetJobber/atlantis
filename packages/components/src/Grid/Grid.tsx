@@ -1,8 +1,9 @@
 import React, { ReactElement } from "react";
 import classNames from "classnames";
-import { GridCell, GridCellProps } from "./GridCell";
+import { GridCellProps, InternalGridCell } from "./InternalGridCell";
 import styles from "./Grid.css";
 import alignments from "./GridAlign.css";
+import { GridCell } from "./GridCell";
 
 interface GridProps {
   /**
@@ -36,7 +37,9 @@ export function Grid({
 
   return (
     <div data-testid={GRID_TEST_ID} className={classnames}>
-      {children}
+      {React.Children.map(children, ({ props }: { props: GridCellProps }) => {
+        return <InternalGridCell {...props} />;
+      })}
     </div>
   );
 }
