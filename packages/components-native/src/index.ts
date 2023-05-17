@@ -11,3 +11,4 @@ export * from "./StatusLabel";
 export * from "./AtlantisContext";
 export * from "./Button";
 export * from "./InputFieldWrapper";
+export * from "./Heading";
