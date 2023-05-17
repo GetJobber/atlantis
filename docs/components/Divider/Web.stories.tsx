@@ -3,7 +3,6 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Content } from "@jobber/components/Content";
 import { Divider } from "@jobber/components/Divider";
 
-// eslint-disable-next-line import/no-default-export
 export default {
   title: "Components/Divider/Web",
   component: Divider,

@@ -3,7 +3,6 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Content } from "@jobber/components/Content";
 import { Divider } from "@jobber/components-native";
 
-// eslint-disable-next-line import/no-default-export
 export default {
   title: "Components/Divider/Mobile",
   component: Divider,
@@ -13,7 +12,9 @@ export default {
   },
 } as ComponentMeta<typeof Divider>;
 
-const Template: ComponentStory<typeof Divider> = args => (
+type Story = ComponentStory<typeof Divider>;
+
+const Template: Story = args => (
   <Content>
     <Content>Some amazing content</Content>
     <Divider {...args} />
@@ -21,5 +22,4 @@ const Template: ComponentStory<typeof Divider> = args => (
   </Content>
 );
 
-export const Mobile = Template.bind({});
-Mobile.args = { size: "base" };
+export const Mobile: Story = Template.bind({});
