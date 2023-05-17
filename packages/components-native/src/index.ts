@@ -9,5 +9,7 @@ export * from "./ActivityIndicator";
 export * from "./Card";
 export * from "./StatusLabel";
 export * from "./AtlantisContext";
+export * from "./Button";
 export * from "./InputFieldWrapper";
 export * from "./ProgressBar";
+export * from "./Heading";

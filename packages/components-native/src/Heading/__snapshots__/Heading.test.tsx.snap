@@ -1,0 +1,270 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`when Heading called with Subtitle variation should match snapshot 1`] = `
+<Text
+  accessibilityRole="header"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  maxFontSizeMultiplier={1}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "jobberpro-xbd",
+      },
+      {
+        "color": "rgb(1, 41, 57)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 24,
+        "lineHeight": 28,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Subtitle
+</Text>
+`;
+
+exports[`when Heading called with an alignment should match snapshot 1`] = `
+<Text
+  accessibilityRole="header"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "jobberpro-xbd",
+      },
+      {
+        "color": "rgb(1, 41, 57)",
+      },
+      {
+        "textAlign": "right",
+      },
+      {
+        "fontSize": 20,
+        "lineHeight": 22,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Text Aligned Right
+</Text>
+`;
+
+exports[`when Heading called with maxLines should match snapshot 1`] = `
+<Text
+  accessibilityRole="header"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  numberOfLines={1}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "jobberpro-xbd",
+      },
+      {
+        "color": "rgb(1, 41, 57)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 20,
+        "lineHeight": 22,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Text Aligned Right
+</Text>
+`;
+
+exports[`when Heading called with reverseTheme should match snapshot 1`] = `
+<Text
+  accessibilityRole="header"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "jobberpro-xbd",
+      },
+      {
+        "color": "rgba(255, 255, 255, 1)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 20,
+        "lineHeight": 22,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Reverse Theme Heading
+</Text>
+`;
+
+exports[`when Heading called with sub-heading variation and text-color should match snapshot 1`] = `
+<Text
+  accessibilityRole="header"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  maxFontSizeMultiplier={1.375}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-semibold",
+      },
+      {
+        "color": "rgba(101, 120, 132, 1)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Sub-Heading
+</Text>
+`;
+
+exports[`when Heading called with sub-heading variation should match snapshot 1`] = `
+<Text
+  accessibilityRole="header"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  maxFontSizeMultiplier={1.375}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-semibold",
+      },
+      {
+        "color": "rgb(1, 41, 57)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Sub-Heading
+</Text>
+`;
+
+exports[`when Heading called with text as the only prop should match snapshot 1`] = `
+<Text
+  accessibilityRole="header"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "jobberpro-xbd",
+      },
+      {
+        "color": "rgb(1, 41, 57)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 20,
+        "lineHeight": 22,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Default Heading
+</Text>
+`;
+
+exports[`when Heading called with title variation should match snapshot 1`] = `
+<Text
+  accessibilityRole="header"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  maxFontSizeMultiplier={1.0625}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "jobberpro-blk",
+      },
+      {
+        "color": "rgb(1, 41, 57)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 32,
+        "lineHeight": 36,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Title Heading
+</Text>
+`;
