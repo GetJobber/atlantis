@@ -127,7 +127,7 @@ const config = {
       ),
       "@jobber/components-native": path.resolve(
         __dirname,
-        "../packages/components-native",
+        "../packages/components-native/src",
       ),
       "@jobber/docx": path.resolve(__dirname, "../packages/docx/src"),
       "@jobber/hooks": path.resolve(__dirname, "../packages/hooks/src"),
