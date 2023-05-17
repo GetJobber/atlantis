@@ -1,0 +1,18 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Icon } from "@jobber/components-native";
+
+<Meta title="Components/Icon/Mobile" component={Icon} />
+
+# Icon
+
+```ts
+import { Icon } from "@jobber/components/Icon";
+```
+
+<Canvas>
+  <Story name="Mobile" args={{ name: "gift" }}>
+    {args => <Icon {...args} />}
+  </Story>
+</Canvas>
+
+<ArgsTable of={Icon} story="Mobile" />

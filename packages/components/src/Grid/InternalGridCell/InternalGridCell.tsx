@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from "react";
-import styles from "./GridCell.css";
+import styles from "./InternalGridCell.css";
 
 /**
  * Breakpoints that we support
@@ -24,7 +24,10 @@ export interface GridCellProps {
 const MAX_COLUMNS = 12;
 export const GRID_CELL_TEST_ID = "ATL-Grid-GridCell";
 
-export function GridCell({ size, children }: PropsWithChildren<GridCellProps>) {
+export function InternalGridCell({
+  size,
+  children,
+}: PropsWithChildren<GridCellProps>) {
   /**
    * Build CSS variables for column sizes for all possible breakpoints to size
    * the column

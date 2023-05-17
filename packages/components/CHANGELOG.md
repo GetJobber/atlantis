@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.16.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.16.0...@jobber/components@4.16.1) (2023-05-17)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [4.16.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.15.3...@jobber/components@4.16.0) (2023-05-17)
+
+
+### Features
+
+* **components:** Allow GridCell' s to only be usable in Grids ([#1254](https://github.com/GetJobber/atlantis/issues/1254)) ([58218f8](https://github.com/GetJobber/atlantis/commit/58218f8f6e6569aba7130e564b1fae4553d4e0aa))
+
+
+
+
+
 ## [4.15.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.15.2...@jobber/components@4.15.3) (2023-05-12)
 
 **Note:** Version bump only for package @jobber/components

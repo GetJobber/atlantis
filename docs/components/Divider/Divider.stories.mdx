@@ -1,0 +1,41 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Content } from "@jobber/components/Content";
+import { Text } from "@jobber/components/Text";
+import { Heading } from "@jobber/components/Heading";
+import { Divider } from "@jobber/components/Divider";
+
+<Meta title="Components/Divider/Docs" />
+
+# Divider
+
+Divider is a UI element meant to divide into areas of content.
+
+## Design & usage guidelines
+
+The Divider component comes with no spacing around it. This means that it should
+be used within a [`Content`](../?path=/docs/components-content--content)
+component.
+
+### Size
+
+For different levels of segmentation, you may find the need to use larger
+Dividers. As Dividers increase in size, they get lighter to offset the visual
+impact of their additional weight.
+
+<Canvas>
+  <Content>
+    <Heading level={2}>Intro Section</Heading>
+    <Text>Important main content</Text>
+    <Divider size="largest" />
+    <Content>Some amazing content</Content>
+    <Divider size="large" />
+    <Content>Even more amazing content</Content>
+  </Content>
+</Canvas>
+
+## Related components
+
+- To segment different groups of content, use
+  [Card.](../?path=/docs/components-card--card)
+- For guidance on borders in general, see our
+  [Borders guide.](../?path=/docs/design-borders--page)

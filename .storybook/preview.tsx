@@ -17,6 +17,10 @@ try {
 
 export const parameters = {
   viewMode: "docs",
+  controls: {
+    expanded: true,
+    sort: "alpha",
+  },
   options: {
     storySort: {
       method: "alphabetical",

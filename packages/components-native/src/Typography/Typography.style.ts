@@ -1,4 +1,5 @@
-import { StyleSheet, TextStyle } from "react-native";
+import { Platform, StyleSheet, TextStyle } from "react-native";
+import { webFonts } from "./webFonts";
 import { tokens } from "../utils/design";
 
 const extravagantLineHeight = tokens["typography--lineHeight-extravagant"];
@@ -10,23 +11,7 @@ const baseLineHeight = tokens["typography--lineHeight-base"];
 const tightLineHeight = tokens["typography--lineHeight-tight"];
 const minisculeLineHeight = tokens["typography--lineHeight-miniscule"];
 
-/**
- * `StyleSheet` for Typography.tsx.
- *
- * If you find yourself needing to use what's inside this object on files other
- * than `<Typography />`, please import from `@jobber/components-native` instead.
- *
- * ```
- * import { typographyStyles } from "@jobber/components-native"
- * ```
- */
-
-/**
- * Reusable typography tokens to ensure consistency for any client facing texts.
- */
-export const typographyTokens: { [index: string]: TextStyle } = {
-  // This follows a pattern of
-  // { fontFamily }{ fontStyle }{ fontWeight }
+const deviceFonts = {
   baseRegularRegular: {
     fontFamily: "inter-regular",
   },
@@ -58,6 +43,26 @@ export const typographyTokens: { [index: string]: TextStyle } = {
   displayRegularBlack: {
     fontFamily: "jobberpro-blk",
   },
+};
+
+/**
+ * We need to use web fonts for rendering Typography on Storybook
+ * because it uses font files (.ttf) to render them on devices.
+ * As we don't want to expose the font files, we are setting the fonts
+ * in CSS.
+ */
+const fonts = Platform.select({
+  web: webFonts,
+  default: deviceFonts,
+});
+
+/**
+ * Reusable typography tokens to ensure consistency for any client facing texts.
+ */
+export const typographyTokens: { [index: string]: TextStyle } = {
+  // This follows a pattern of
+  // { fontFamily }{ fontStyle }{ fontWeight }
+  ...fonts,
 
   startAlign: {
     textAlign: "left",
@@ -360,5 +365,15 @@ export const typographyTokens: { [index: string]: TextStyle } = {
   },
 };
 
+/**
+ * `StyleSheet` for Typography.tsx.
+ *
+ * If you find yourself needing to use what's inside this object on files other
+ * than `<Typography />`, please import from `@jobber/components-native` instead.
+ *
+ * ```
+ * import { typographyStyles } from "@jobber/components-native"
+ * ```
+ */
 export const typographyStyles: { [index: string]: TextStyle } =
   StyleSheet.create(typographyTokens);
