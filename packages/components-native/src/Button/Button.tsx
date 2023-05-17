@@ -3,7 +3,6 @@ import { TouchableHighlight, View } from "react-native";
 import { IconColorNames, IconNames } from "@jobber/design";
 import { XOR } from "ts-xor";
 import { styles } from "./Button.style";
-// eslint-disable-next-line import/no-internal-modules
 import { InternalButtonLoading } from "./components/InternalButtonLoading";
 import { ButtonSize, ButtonType, ButtonVariation } from "./types";
 import { ActionLabel, ActionLabelVariation } from "../ActionLabel";

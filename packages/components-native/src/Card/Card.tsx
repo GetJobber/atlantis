@@ -8,7 +8,6 @@ import {
 import { IconNames } from "@jobber/design";
 import { XOR } from "ts-xor";
 import { styles } from "./Card.style";
-// eslint-disable-next-line import/no-internal-modules
 import { InternalCardHeader } from "./components/InternalCardHeader";
 import { ErrorMessageWrapper } from "../ErrorMessageWrapper";
 import { ActionLabel } from "../ActionLabel";

@@ -2,7 +2,6 @@ import React, { ReactNode } from "react";
 import { View } from "react-native";
 import { IconColorNames, IconNames } from "@jobber/design";
 import { styles } from "./ActionItem.style";
-// eslint-disable-next-line import/no-internal-modules
 import { ActionItemContainer } from "./components/ActionItemContainer";
 import { Typography } from "../Typography";
 import { Icon } from "../Icon";

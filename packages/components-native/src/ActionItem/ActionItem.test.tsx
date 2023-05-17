@@ -1,7 +1,7 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react-native";
 import { ActionItem } from "./ActionItem";
-// import { Button } from "../Button";
+import { Button } from "../Button";
 import { Text } from "../Text";
 
 describe("ActionItem", () => {
@@ -82,40 +82,40 @@ describe("ActionItem", () => {
     });
   });
 
-  // describe("When child has onPress event", () => {
-  //   const childPressHandler = jest.fn();
-  //   beforeEach(() => {
-  //     childPressHandler.mockClear();
-  //   });
+  describe("When child has onPress event", () => {
+    const childPressHandler = jest.fn();
+    beforeEach(() => {
+      childPressHandler.mockClear();
+    });
 
-  // it("should only call child onPress when child is pressed", () => {
-  //   const buttonLabel = "I am button label";
-  //   const text = "Some other text chillin";
-  //   const { getByText } = render(
-  //     <ActionItem onPress={pressHandler}>
-  //       <Button label={buttonLabel} onPress={childPressHandler} />
-  //       <Text>{text}</Text>
-  //     </ActionItem>,
-  //   );
+    it("should only call child onPress when child is pressed", () => {
+      const buttonLabel = "I am button label";
+      const text = "Some other text chillin";
+      const { getByText } = render(
+        <ActionItem onPress={pressHandler}>
+          <Button label={buttonLabel} onPress={childPressHandler} />
+          <Text>{text}</Text>
+        </ActionItem>,
+      );
 
-  //   fireEvent.press(getByText(buttonLabel));
-  //   expect(childPressHandler).toHaveBeenCalledTimes(1);
-  //   expect(pressHandler).toHaveBeenCalledTimes(0);
-  // });
+      fireEvent.press(getByText(buttonLabel));
+      expect(childPressHandler).toHaveBeenCalledTimes(1);
+      expect(pressHandler).toHaveBeenCalledTimes(0);
+    });
 
-  // it("should only call parent onPress when the rest of Parent is pressed", () => {
-  //   const buttonLabel = "I am button label";
-  //   const text = "Some other text chillin";
-  //   const { getByText } = render(
-  //     <ActionItem onPress={pressHandler}>
-  //       <Button label={buttonLabel} onPress={childPressHandler} />
-  //       <Text>{text}</Text>
-  //     </ActionItem>,
-  //   );
+    it("should only call parent onPress when the rest of Parent is pressed", () => {
+      const buttonLabel = "I am button label";
+      const text = "Some other text chillin";
+      const { getByText } = render(
+        <ActionItem onPress={pressHandler}>
+          <Button label={buttonLabel} onPress={childPressHandler} />
+          <Text>{text}</Text>
+        </ActionItem>,
+      );
 
-  //   fireEvent.press(getByText(text));
-  //   expect(pressHandler).toHaveBeenCalledTimes(1);
-  //   expect(childPressHandler).toHaveBeenCalledTimes(0);
-  // });
-  // });
+      fireEvent.press(getByText(text));
+      expect(pressHandler).toHaveBeenCalledTimes(1);
+      expect(childPressHandler).toHaveBeenCalledTimes(0);
+    });
+  });
 });
