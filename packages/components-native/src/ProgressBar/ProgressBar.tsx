@@ -1,11 +1,11 @@
 import React from "react";
 import { View } from "react-native";
 import { useIntl } from "react-intl";
-import { JobberStyle } from "design/mobile-foundation";
 import { ProgressBarProps } from "./types";
 import { styles } from "./ProgressBar.style";
 import { ProgressBarInner, calculateWidth } from "./ProgressBarInner";
 import { messages } from "./messages";
+import { tokens } from "../utils/design";
 
 export function ProgressBar({
   loading,
@@ -32,16 +32,14 @@ export function ProgressBar({
         <ProgressBarInner
           width={100}
           animationDuration={0}
-          color={
-            reverseTheme ? undefined : JobberStyle["color-surface--background"]
-          }
+          color={reverseTheme ? undefined : tokens["color-surface--background"]}
         />
         {!loading && (
           <>
             {inProgress && inProgress > 0 ? (
               <ProgressBarInner
                 width={calculateWidth(total, current + inProgress)}
-                color={JobberStyle["color-informative"]}
+                color={tokens["color-informative"]}
                 animationDuration={800}
               />
             ) : (
@@ -49,7 +47,7 @@ export function ProgressBar({
             )}
             <ProgressBarInner
               width={calculateWidth(total, current)}
-              color={JobberStyle["color-interactive"]}
+              color={tokens["color-interactive"]}
               animationDuration={600}
             />
           </>

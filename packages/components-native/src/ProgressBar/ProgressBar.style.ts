@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native";
-import { JobberStyle } from "design";
+import { tokens } from "../utils/design";
 
 export const styles = StyleSheet.create({
   progressBarContainer: {
-    marginTop: JobberStyle["space-small"],
-    marginBottom: JobberStyle["space-small"],
+    marginTop: tokens["space-small"],
+    marginBottom: tokens["space-small"],
     height: 20,
     position: "relative",
     flexDirection: "row",

@@ -9,46 +9,6 @@ exports[`renders blue inProgress bar when 1 or more jobs is in progress 1`] = `
   <View
     style={
       {
-        "alignItems": "center",
-        "justifyContent": "center",
-      }
-    }
-  >
-    <Text
-      accessibilityRole="header"
-      adjustsFontSizeToFit={false}
-      allowFontScaling={true}
-      collapsable={false}
-      maxFontSizeMultiplier={1.375}
-      selectable={true}
-      selectionColor="rgb(160, 215, 42)"
-      style={
-        [
-          {
-            "fontFamily": "inter-semibold",
-          },
-          {
-            "color": "rgba(255, 255, 255, 1)",
-          },
-          {
-            "textAlign": "left",
-          },
-          {
-            "fontSize": 16,
-            "lineHeight": 20,
-          },
-          {
-            "letterSpacing": 0,
-          },
-        ]
-      }
-    >
-      0 visits completed
-    </Text>
-  </View>
-  <View
-    style={
-      {
         "flexDirection": "row",
         "height": 20,
         "marginBottom": 8,
@@ -127,78 +87,6 @@ exports[`renders green CompletedProgress bar and renders 'visit' as the smart st
   <View
     style={
       {
-        "alignItems": "flex-start",
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-      }
-    }
-  >
-    <Text
-      accessibilityRole="header"
-      adjustsFontSizeToFit={false}
-      allowFontScaling={true}
-      collapsable={false}
-      maxFontSizeMultiplier={1.375}
-      selectable={true}
-      selectionColor="rgb(160, 215, 42)"
-      style={
-        [
-          {
-            "fontFamily": "inter-semibold",
-          },
-          {
-            "color": "rgba(255, 255, 255, 1)",
-          },
-          {
-            "textAlign": "left",
-          },
-          {
-            "fontSize": 16,
-            "lineHeight": 20,
-          },
-          {
-            "letterSpacing": 0,
-          },
-        ]
-      }
-    >
-      1 visit completed
-    </Text>
-    <Text
-      accessibilityRole="text"
-      adjustsFontSizeToFit={false}
-      allowFontScaling={true}
-      collapsable={false}
-      maxFontSizeMultiplier={3.125}
-      selectable={true}
-      selectionColor="rgb(160, 215, 42)"
-      style={
-        [
-          {
-            "fontFamily": "inter-regular",
-          },
-          {
-            "color": "rgba(255, 255, 255, 1)",
-          },
-          {
-            "textAlign": "left",
-          },
-          {
-            "fontSize": 16,
-            "lineHeight": 20,
-          },
-          {
-            "letterSpacing": 0,
-          },
-        ]
-      }
-    >
-      $0 of $0
-    </Text>
-  </View>
-  <View
-    style={
-      {
         "flexDirection": "row",
         "height": 20,
         "marginBottom": 8,
@@ -255,78 +143,6 @@ exports[`renders green CompletedProgress bar and renders 'visits' as the smart s
   accessibilityRole="progressbar"
   accessible={true}
 >
-  <View
-    style={
-      {
-        "alignItems": "flex-start",
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-      }
-    }
-  >
-    <Text
-      accessibilityRole="header"
-      adjustsFontSizeToFit={false}
-      allowFontScaling={true}
-      collapsable={false}
-      maxFontSizeMultiplier={1.375}
-      selectable={true}
-      selectionColor="rgb(160, 215, 42)"
-      style={
-        [
-          {
-            "fontFamily": "inter-semibold",
-          },
-          {
-            "color": "rgba(255, 255, 255, 1)",
-          },
-          {
-            "textAlign": "left",
-          },
-          {
-            "fontSize": 16,
-            "lineHeight": 20,
-          },
-          {
-            "letterSpacing": 0,
-          },
-        ]
-      }
-    >
-      2 visits completed
-    </Text>
-    <Text
-      accessibilityRole="text"
-      adjustsFontSizeToFit={false}
-      allowFontScaling={true}
-      collapsable={false}
-      maxFontSizeMultiplier={3.125}
-      selectable={true}
-      selectionColor="rgb(160, 215, 42)"
-      style={
-        [
-          {
-            "fontFamily": "inter-regular",
-          },
-          {
-            "color": "rgba(255, 255, 255, 1)",
-          },
-          {
-            "textAlign": "left",
-          },
-          {
-            "fontSize": 16,
-            "lineHeight": 20,
-          },
-          {
-            "letterSpacing": 0,
-          },
-        ]
-      }
-    >
-      $0 of $0
-    </Text>
-  </View>
   <View
     style={
       {
