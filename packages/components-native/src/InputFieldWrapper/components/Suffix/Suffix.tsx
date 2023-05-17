@@ -24,6 +24,9 @@ export interface SuffixLabelProps {
   styleOverride?: StyleProp<TextStyle>;
 }
 
+export const suffixLabelTestId = "ATL-InputFieldWrapper-SuffixLabel";
+export const suffixIconTestId = "ATL-InputFieldWrapper-SuffixIcon";
+
 export function SuffixLabel({
   focused,
   disabled,
@@ -35,7 +38,7 @@ export function SuffixLabel({
 }: SuffixLabelProps): JSX.Element {
   return (
     <View
-      testID="suffixLabel"
+      testID={suffixLabelTestId}
       style={[
         styles.fieldAffix,
         focused && styles.inputFocused,
@@ -87,7 +90,7 @@ export function SuffixIcon({
 }: SuffixIconProps): JSX.Element {
   return (
     <View
-      testID="suffixIcon"
+      testID={suffixIconTestId}
       style={[
         styles.fieldAffix,
         focused && styles.inputFocused,

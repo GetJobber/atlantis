@@ -1,13 +1,21 @@
 import React from "react";
 import { render } from "@testing-library/react-native";
 import { TextStyle } from "react-native";
+import { ReactTestInstance } from "react-test-renderer";
 import {
   PrefixIcon,
   PrefixIconProps,
   PrefixLabel,
   PrefixLabelProps,
+  prefixIconTestId,
+  prefixLabelTestId,
 } from "./Prefix";
 import { typographyStyles } from "../../../Typography";
+import { styles } from "../../InputFieldWrapper.style";
+import { tokens } from "../../../utils/design";
+import * as IconComponent from "../../../Icon/Icon";
+
+const iconSpy = jest.spyOn(IconComponent, "Icon");
 
 const mockLabel = "$";
 
@@ -64,15 +72,35 @@ describe("Prefix", () => {
     it("for the label", () => {
       const tree = setupLabel({
         focused: true,
-      }).toJSON();
-      expect(tree).toMatchSnapshot();
+      });
+      const expectedStyle = { ...styles.fieldAffix, ...styles.inputFocused };
+      const prefixLabel = tree.getByTestId(prefixLabelTestId);
+      const flattenedStyle = prefixLabel.props.style.reduce(
+        (style: TextStyle, additionalStyles: TextStyle) => ({
+          ...style,
+          ...additionalStyles,
+        }),
+        {},
+      );
+
+      expect(flattenedStyle).toEqual(expectedStyle);
     });
 
     it("for the icon", () => {
       const tree = setupIcon({
         focused: true,
-      }).toJSON();
-      expect(tree).toMatchSnapshot();
+      });
+      const expectedStyle = { ...styles.fieldAffix, ...styles.inputFocused };
+      const icon = tree.getByTestId(prefixIconTestId);
+      const flattenedStyle = icon.props.style.reduce(
+        (style: TextStyle, additionalStyles: TextStyle) => ({
+          ...style,
+          ...additionalStyles,
+        }),
+        {},
+      );
+
+      expect(flattenedStyle).toEqual(expectedStyle);
     });
   });
 
@@ -80,38 +108,75 @@ describe("Prefix", () => {
     it("for the label", () => {
       const tree = setupLabel({
         inputInvalid: true,
-      }).toJSON();
-      expect(tree).toMatchSnapshot();
+      });
+      const expectedStyle = { ...styles.fieldAffix, ...styles.inputInvalid };
+      const prefixLabel = tree.getByTestId(prefixLabelTestId);
+      const flattenedStyle = prefixLabel.props.style.reduce(
+        (style: TextStyle, additionalStyles: TextStyle) => ({
+          ...style,
+          ...additionalStyles,
+        }),
+        {},
+      );
+
+      expect(flattenedStyle).toEqual(expectedStyle);
     });
 
     it("for the icon", () => {
       const tree = setupIcon({
         inputInvalid: true,
-      }).toJSON();
-      expect(tree).toMatchSnapshot();
+      });
+      const expectedStyle = { ...styles.fieldAffix, ...styles.inputInvalid };
+      const prefixIcon = tree.getByTestId(prefixIconTestId);
+      const flattenedStyle = prefixIcon.props.style.reduce(
+        (style: TextStyle, additionalStyles: TextStyle) => ({
+          ...style,
+          ...additionalStyles,
+        }),
+        {},
+      );
+
+      expect(flattenedStyle).toEqual(expectedStyle);
     });
   });
 
   it("updates the position of the label when a value is entered", () => {
     const tree = setupLabel({
       hasMiniLabel: true,
-    }).toJSON();
-    expect(tree).toMatchSnapshot();
+    });
+    const prefixLabel = tree.getByTestId(prefixLabelTestId);
+    const labelWrapper = prefixLabel.children[0] as ReactTestInstance;
+    const expectedStyle = [styles.prefixLabel, styles.fieldAffixMiniLabel];
+    expect(labelWrapper.props.style).toEqual(expectedStyle);
   });
 
   describe("when disabled", () => {
     it("updates the label", () => {
       const tree = setupLabel({
         disabled: true,
-      }).toJSON();
-      expect(tree).toMatchSnapshot();
+      });
+      const prefixLabel = tree.getByText(mockLabel);
+      const expectedStyle = [
+        typographyStyles.baseRegularRegular,
+        typographyStyles.disabled,
+        typographyStyles.startAlign,
+        typographyStyles.defaultSize,
+        typographyStyles.baseLetterSpacing,
+      ];
+      expect(prefixLabel.props.style).toEqual(expectedStyle);
     });
 
     it("updates the icon", () => {
-      const tree = setupIcon({
+      setupIcon({
         disabled: true,
-      }).toJSON();
-      expect(tree).toMatchSnapshot();
+      });
+      expect(iconSpy).toHaveBeenCalledWith(
+        {
+          customColor: tokens["color-disabled"],
+          name: "invoice",
+        },
+        {},
+      );
     });
   });
 

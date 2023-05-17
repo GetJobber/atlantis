@@ -23,6 +23,9 @@ export interface PrefixLabelProps {
   styleOverride?: StyleProp<TextStyle>;
 }
 
+export const prefixLabelTestId = "ATL-InputFieldWrapper-PrefixLabel";
+export const prefixIconTestId = "ATL-InputFieldWrapper-PrefixIcon";
+
 export function PrefixLabel({
   focused,
   disabled,
@@ -38,6 +41,7 @@ export function PrefixLabel({
         focused && styles.inputFocused,
         inputInvalid && styles.inputInvalid,
       ]}
+      testID={prefixLabelTestId}
     >
       <View
         style={[styles.prefixLabel, hasMiniLabel && styles.fieldAffixMiniLabel]}
@@ -80,6 +84,7 @@ export function PrefixIcon({
 }: PrefixIconProps): JSX.Element {
   return (
     <View
+      testID={prefixIconTestId}
       style={[
         styles.fieldAffix,
         focused && styles.inputFocused,
