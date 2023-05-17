@@ -1,4 +1,3 @@
-/* eslint-disable import/no-internal-modules */
 import { MissingTranslationError } from "react-intl";
 import mockRNLocalize from "react-native-localize/mock";
 
@@ -23,6 +22,9 @@ jest.mock("react-native-reanimated", () => {
     FadeIn: {
       duration: () => undefined,
     },
+  };
+});
+
 export const MOCK_INTL_CONFIG = {
   locale: "en-US",
   onError: (error: MissingTranslationError): void => {
