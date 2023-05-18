@@ -14,7 +14,8 @@ export function CanvasSourceCode({ key, active = false }: RenderOptions) {
   const rawSourceCode = activeStory?.parameters?.storySource?.source;
   const sourceCode = rawSourceCode
     ?.replace("args => ", "")
-    .replace(" {...args}", getAttributeProps());
+    .replace("{...args}", getAttributeProps())
+    .replace("{args.children}", activeStory.args.children);
 
   return (
     <AddonPanel key={key} active={active}>
@@ -39,8 +40,10 @@ export function CanvasSourceCode({ key, active = false }: RenderOptions) {
 
       return argsKeys
         .reduce(
-          (currentArgs, arg) =>
-            [currentArgs, `${arg}={${JSON.stringify(args[arg])}} `].join(""),
+          (currentArgs, arg) => {
+            if (arg === "children") return currentArgs;
+            return [currentArgs, `${arg}={${JSON.stringify(args[arg])}} `].join("");
+          },
           "",
         )
         .trim();
