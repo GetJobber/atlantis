@@ -1,4 +1,5 @@
-import { addons } from "@storybook/addons";
+import { addons, types } from "@storybook/addons";
+import { CanvasSourceCode } from "./components/CanvasSourceCode";
 import theme from "./theme";
 import favicon from "./assets/favicon.svg";
 
@@ -9,4 +10,12 @@ document.head.appendChild(link);
 
 addons.setConfig({
   theme,
+});
+
+addons.register("atlantis/panel", () => {
+  addons.add("source-code/panel", {
+    title: "Source code",
+    type: types.PANEL,
+    render: CanvasSourceCode,
+  });
 });
