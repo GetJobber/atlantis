@@ -1,0 +1,25 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { ProgressBar } from "@jobber/components-native";
+
+<Meta title="Components/ProgressBar/Mobile" component={ProgressBar} />
+
+# ProgressBar
+
+```ts
+import { ProgressBar } from "@jobber/components-native";
+```
+
+<Canvas>
+  <Story
+    name="Mobile"
+    args={{
+      total: 5,
+      current: 1,
+      inProgress: 2,
+    }}
+  >
+    {args => <ProgressBar {...args} />}
+  </Story>
+</Canvas>
+
+<ArgsTable of={ProgressBar} story="Mobile" />
