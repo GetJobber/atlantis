@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { Figma } from "storybook-addon-designs/blocks";
 import { ActionLabel } from "@jobber/components-native";
 
-<Meta title="Components/ActionLabel/Mobile" component={ActionLabel} />
+<Meta title="Components/ActionLabel/Docs" component={ActionLabel} />
 
 # Action Label
 
@@ -14,21 +14,7 @@ The aim is to reduce the amount of inconsistencies when a designer or an
 engineer decides to build pressable component that has a text on it. This makes
 it easier to maintain consistency of how we visually present tappable actions.
 
-```ts
-import { ActionLabel } from "atlantis/ActionLabel";
-```
-
-<Canvas>
-  <Story name="ActionLabel" args={{ children: "I am a label text" }}>
-    {args => <ActionLabel {...args}>{args.children}</ActionLabel>}
-  </Story>
-</Canvas>
-
-## Props
-
-<ArgsTable of={ActionLabel} story="ActionLabel" />
-
-## Usage guidelines
+## Design & usage guidelines
 
 `ActionLabel` supports similar semantic variations as Button:
 
@@ -41,53 +27,5 @@ with an additional variation of `onPrimary` which should be used when the
 ActionLabel is consumed by a primary Button or other dark surface.
 
 <Canvas>
-  <Story
-    name="Font color variation"
-    parameters={{
-      backgrounds: {
-        default: "light",
-      },
-    }}
-    args={{ variation: "learning", children: "Learning" }}
-  >
-    {args => <ActionLabel {...args}>{args.children}</ActionLabel>}
-  </Story>
+  <ActionLabel>I am a label text</ActionLabel>
 </Canvas>
-
-### Disabled
-
-As a best practice, do not design with disabled button states. This has negative
-impacts on accessibility as well as an increase in complexity for users to
-understand why the interface is disabled and how to resolve it.
-
-With that said, if you can't design a flow without a disabled state, this is how
-you disable an `ActionLabel`.
-
-<Canvas>
-  <Story name="Disabled" args={{ disabled: "true", children: "Disabled" }}>
-    {args => <ActionLabel {...args}>{args.children}</ActionLabel>}
-  </Story>
-</Canvas>
-
-### Alignment
-
-The alignment of the text can be changed to your liking. However, this would
-only work when the parent component/element adjusts the width of the
-`ActionLabel` like `<View />`.
-
-<Canvas>
-  <Story name="Alignment" args={{ align: "center", children: "I am centered" }}>
-    {args => (
-      <View>
-        <ActionLabel {...args}>{args.children}</ActionLabel>
-      </View>
-    )}
-  </Story>
-</Canvas>
-
-## Mockup
-
-<Figma
-  collapsable
-  url="https://www.figma.com/file/avvgu5SkbBvS8lGVePBsqO/%F0%9F%92%99-Product%2FMobile?node-id=17175%3A63867"
-/>
