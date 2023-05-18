@@ -1,0 +1,53 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Text } from "@jobber/components-native";
+
+<Meta title="Components/Text/Mobile" component={Text} />
+
+# Text
+
+Text is used to add an additional visual meaning on your content
+
+```ts
+import { Text } from "@jobber/components-native";
+```
+
+<Canvas>
+  <Story
+    name="Mobile"
+    args={{
+      children:
+        "'640K is more memory than anyone will ever need on a computer' - Not Bill Gates",
+    }}
+  >
+    {args => <Text {...args} />}
+  </Story>
+</Canvas>
+
+<ArgsTable of={Text} story="Mobile" />
+
+## Variations
+
+<Canvas isColumn>
+  <Text variation="success">
+    Text color should be changed with a semantic (meaningful) intent
+  </Text>
+  <Text level="textSupporting">
+    Supporting Text should be used to supplement additional, more important
+    content
+  </Text>
+  <View style={{ backgroundColor: "black" }}>
+    <Text reverseTheme={true}>
+      Changes Text color for display on a dark background
+    </Text>
+  </View>
+</Canvas>
+
+## Notes
+
+`Text` uses the core component [Text](https://reactnative.dev/docs/text) from
+`react-native`.
+
+### Copying text
+
+There are a few caveats around copying text on Android and iOS that you can read
+under the Typography documentation.
