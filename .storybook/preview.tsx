@@ -5,6 +5,8 @@ import { Header } from "./components/Header";
 import { InlineCode } from "./components/InlineCode";
 import { DocsWithSidebar } from "./components/DocsWithSidebar";
 import { CustomCanvas } from "./components/CustomCanvas";
+import { SBProvider } from "./components/SBProvider";
+
 
 import "@jobber/design/foundation.css";
 import "./assets/css/preview.css";
@@ -42,3 +44,11 @@ export const parameters = {
     container: DocsWithSidebar,
   },
 };
+
+export const decorators = [
+  Story => (
+    <SBProvider>
+      <Story />
+    </SBProvider>
+  ),
+]
