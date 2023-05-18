@@ -1,9 +1,9 @@
-import { Canvas, Meta } from "@storybook/addon-docs";
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
 import { Text } from "@jobber/components/Text";
 import { Content } from "@jobber/components/Content";
 import { Checkbox } from "@jobber/components/Checkbox";
 
-<Meta title="Components/Text/Docs" component={Text} />
+<Meta title="Components/Text" component={Text} />
 
 # Text
 
@@ -14,11 +14,18 @@ import { Text } from "@jobber/components/Text";
 ```
 
 <Canvas>
-  <Text>
-    &lsquo;640K is more memory than anyone will ever need on a computer&rsquo; -
-    Not Bill Gates
-  </Text>
+  <Story
+    name="Text"
+    args={{
+      children:
+        "'640K is more memory than anyone will ever need on a computer' - Not Bill Gates",
+    }}
+  >
+    {args => <Text {...args} />}
+  </Story>
 </Canvas>
+
+<ArgsTable of={Text} story="Text" />
 
 ---
 
