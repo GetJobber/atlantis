@@ -9,6 +9,5 @@ import { Gesture, GestureDetector } from "react-native-gesture-handler";
 export function TypographyGestureDetector(
   props: PropsWithChildren<unknown>,
 ): JSX.Element {
-  console.warn("yeet", Gesture, GestureDetector);
   return <GestureDetector {...props} gesture={Gesture.Native()} />;
 }
