@@ -1,0 +1,28 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Figma } from "storybook-addon-designs/blocks";
+import { ActivityIndicator } from "@jobber/components-native";
+
+<Meta title="Components/ActivityIndicator/Docs" component={ActivityIndicator} />
+
+# ActivityIndicator
+
+Use ActivityIndicator to indicate loading of content where the actual amount of
+loading time or progress is unknown.
+
+<Canvas>
+  <ActivityIndicator />
+</Canvas>
+
+## Mockup
+
+<Figma
+  collapsable
+  url="https://www.figma.com/file/avvgu5SkbBvS8lGVePBsqO/%F0%9F%92%99-Product%2FMobile?node-id=13095%3A32"
+/>
+
+## Notes
+
+`ActivityIndicator` uses the core component
+[ActivityIndicator](https://reactnative.dev/docs/activityIndicator)
+([Expo example](https://reactnative.dev/docs/activityIndicator#example)) from
+`react-native`.

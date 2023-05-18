@@ -1,0 +1,25 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Figma } from "storybook-addon-designs/blocks";
+import { ActivityIndicator } from "@jobber/components-native";
+
+<Meta
+  title="Components/ActivityIndicator/Mobile"
+  component={ActivityIndicator}
+/>
+
+# ActivityIndicator
+
+Use ActivityIndicator to indicate loading of content where the actual amount of
+loading time or progress is unknown.
+
+```ts
+import { ActivityIndicator } from "@jobber/components-native";
+```
+
+<Canvas>
+  <Story name="Mobile">{args => <ActivityIndicator {...args} />}</Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of={ActivityIndicator} story="Mobile" />
