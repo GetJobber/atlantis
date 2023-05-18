@@ -24,3 +24,39 @@ import { Text } from "@jobber/components-native";
 </Canvas>
 
 <ArgsTable of={Text} story="Mobile" />
+
+## Variations
+
+<Canvas isColumn>
+  <Text variation="success">
+    Text color should be changed with a semantic (meaningful) intent
+  </Text>
+  <Text level="textSupporting">
+    Supporting Text should be used to supplement additional, more important
+    content
+  </Text>
+  <View style={{ backgroundColor: "black" }}>
+    <Text reverseTheme={true}>
+      Changes Text color for display on a dark background
+    </Text>
+  </View>
+</Canvas>
+
+## Mockups
+
+<Figma
+  collapsable
+  url="https://www.figma.com/file/avvgu5SkbBvS8lGVePBsqO/%F0%9F%92%99-Product%2FMobile?node-id=13039%3A157"
+/>
+
+## Notes
+
+`Text` uses the core component [Text](https://reactnative.dev/docs/text) from
+`react-native`.
+
+### Copying text
+
+There are a few caveats around copying text on Android and iOS that you can read
+under the
+[Typography](/docs/atlantis-text-and-typography-typography-internal--typography)
+documentation.
