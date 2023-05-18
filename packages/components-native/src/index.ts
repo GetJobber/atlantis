@@ -13,3 +13,4 @@ export * from "./Button";
 export * from "./InputFieldWrapper";
 export * from "./Heading";
 export * from "./Chip";
+export * from "./ActionItem";

@@ -48,7 +48,7 @@ type HeaderActionProps =
     }
   | {
       readonly onPress: () => void;
-      readonly actionItem: ActionItem;
+      readonly actionItem: CardAction;
     };
 
 interface IconAction {
@@ -59,7 +59,7 @@ interface ButtonAction {
   readonly label: string;
 }
 
-export type ActionItem = XOR<IconAction, ButtonAction>;
+export type CardAction = XOR<IconAction, ButtonAction>;
 
 function getElevationStyle(elevation: elevationProp) {
   if (elevation === "none") {
