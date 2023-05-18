@@ -3,10 +3,7 @@ import * as RNGestureHandler from "react-native-gesture-handler";
 
 module.exports = {
   ...RNGestureHandler,
-  GestureDetector: ({ children }) => {
-    console.warn("hihihi", RNGestureHandler);
-    return <>{children}</>;
-  },
+  GestureDetector: ({ children }) => <>{children}</>,
   Gesture: {
     Tap: () => undefined,
     Pan: () => undefined,
