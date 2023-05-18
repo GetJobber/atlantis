@@ -1,175 +1,327 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
-import { Card } from "@jobber/components/Card";
-import { Text } from "@jobber/components//Text";
-import { Heading } from "@jobber/components//Heading";
-import { Content } from "@jobber/components//Content";
-import { Button } from "@jobber/components/Button";
-import { InputText } from "@jobber/components/InputText";
-import { InputGroup } from "@jobber/components/InputGroup";
+import { ActionItem, ActionItemGroup, Card } from "@jobber/components-native";
+import { Content } from "@jobber/components/Content";
+import { Text } from "../Text";
+
+<Meta title="Components/Card/Mobile" component={Card} />
 
 # Card
 
-<Meta title="Components/Card" component={Card} />
-
-A card is used to group related information and tasks so our users can scan and
+A Card is used to group related information and tasks so our users can scan and
 prioritize information more easily.
 
 ```ts
-import { Card } from "@jobber/components/Card";
+import { Card } from "atlantis/Card";
 ```
 
 <Canvas>
   <Story
-    name="Card"
-    args={{
-      header: {
-        title: "Company settings",
-        action: <Button label="Add New Setting" />,
+    name="Mobile"
+    parameters={{
+      backgrounds: {
+        default: "light",
       },
+    }}
+    args={{
+      header: { title: "Client" },
     }}
   >
     {args => (
       <Card {...args}>
-        <Content>
-          <Heading level={4}>Details</Heading>
-          <InputGroup>
-            <InputText
-              defaultValue="Quest Provider"
-              placeholder="Company name"
-            />
-            <InputText placeholder="Years in business" />
-          </InputGroup>
-          <Heading level={4}>Contact</Heading>
-          <InputGroup>
-            <InputText
-              prefix={{
-                icon: "phone",
-              }}
-              placeholder="Phone number"
-            />
-            <InputText
-              prefix={{
-                icon: "presentation",
-              }}
-              placeholder="Website"
-            />
-            <InputText
-              prefix={{
-                icon: "email",
-              }}
-              placeholder="Email"
-            />
-          </InputGroup>
+        <Content childSpacing={"small"}>
+          <Content spacing={"none"} childSpacing={"none"}>
+            <Text variation={"subdued"}>Address</Text>
+            <Text>12345 Fake Street</Text>
+          </Content>
+          <Content spacing={"none"} childSpacing={"none"}>
+            <Text variation={"subdued"}>Phone</Text>
+            <Text>555-555-5555</Text>
+          </Content>
         </Content>
       </Card>
     )}
   </Story>
 </Canvas>
 
-<ArgsTable of={Card} story="Card" />
+## Props
+
+<ArgsTable of={Card} />
 
 ## Design & usage guidelines
 
-A card is useful for grouping content because of it's distinct visual
+A Card is useful for grouping content because of it's distinct visual
 boundaries. However, similar to the idea that "making everything stand out means
-that nothing stands out", you should be mindful in your application of cards.
+that nothing stands out", you should be mindful in your application of Cards.
 
-A card should be the smallest-possible self-contained section of content. If you
-find yourself putting a card inside of another card, the outer card should be
+A Card should be the smallest-possible self-contained section of content. If you
+find yourself putting a Card inside of another Card, the outer Card should be
 removed, and it may be worth re-assessing the hierarchy of your interface.
+
+An exception to this may be when you have a set of Cards in a Carousel that the
+user can scroll horizontally within a main container Card.
+
+### Elevation
+
+By default, it should be assumed that a Card is on the same "plane" as the
+surface it sits on, and has no elevation.
+
+If a Card benefits from having elevation indicated, such as when it sits overtop
+another Card, or is used in a Carousel fashion, the appropriate elevation level
+can be set.
+
+<Canvas>
+  <Story
+    name="Elevation"
+    parameters={{
+      backgrounds: {
+        default: "light",
+      },
+    }}
+    args={{
+      elevation: "base",
+    }}
+  >
+    {args => (
+      <div style={{ background: "var(--color-surface--background)" }}>
+        <Content direction="horizontal">
+          <Card header={{ title: "Property" }}>
+            <Content childSpacing="none">
+              <Text>10130 103 St NW</Text>
+              <Text>Edmonton, Alberta</Text>
+              <Text>T5J 3N9</Text>
+            </Content>
+          </Card>
+          <Card header={{ title: "Properties" }}>
+            <Content>
+              <Card {...args}>
+                <Content childSpacing="none">
+                  <Text>10130 103 St NW</Text>
+                  <Text>Edmonton, Alberta</Text>
+                  <Text>T5J 3N9</Text>
+                </Content>
+              </Card>
+              <Card {...args}>
+                <Content childSpacing="none">
+                  <Text>10520 Jasper Ave NW</Text>
+                  <Text>Edmonton, Alberta</Text>
+                  <Text>T5J 3N9</Text>
+                </Content>
+              </Card>
+            </Content>
+          </Card>
+        </Content>
+      </div>
+    )}
+  </Story>
+</Canvas>
+
+### With an ActionItemGroup
+
+Displaying multiple
+[ActionItems](/docs/atlantis-layouts-and-containers-actionitem--action-item)
+within an
+[ActionItemGroup](/docs/atlantis-layouts-and-containers-actionitemgroup--action-item-group)
+in a Card is a common pattern across the app.
+
+<Canvas
+  style={{
+    background: "var(--color-surface--background)",
+  }}
+>
+  <Story name="With an ActionItemGroup">
+    <Card>
+      <ActionItemGroup>
+        <ActionItem
+          title={"Request #13"}
+          icon={"request"}
+          onPress={() => alert("request")}
+        />
+        <ActionItem
+          title={"Quote #64"}
+          icon={"quote"}
+          onPress={() => alert("quote")}
+        />
+        <ActionItem
+          title={"Job #12"}
+          icon={"job"}
+          onPress={() => alert("job")}
+        />
+        <ActionItem
+          title={"Invoice #72"}
+          icon={"invoice"}
+          onPress={() => alert("invoice")}
+        >
+          <Text>$250.00</Text>
+        </ActionItem>
+      </ActionItemGroup>
+    </Card>
+  </Story>
+</Canvas>
+
+### Pressable header and footer
+
+The information in a Card may benefit from the user being able to action on it.
+For most cases, using the action of the Card header is sufficient, but if you
+have a truncated list in the Card, a footer action can be useful to reveal more.
+
+<Canvas>
+  <Story
+    name="Pressable header"
+    parameters={{
+      backgrounds: {
+        default: "light",
+      },
+    }}
+    args={{
+      header: {
+        title: "Your address",
+        actionItem: { iconName: "plus2" },
+        onPress: () => alert("🏡"),
+      },
+      footer: {
+        title: "View All",
+        onPress: () => alert("View all"),
+      },
+    }}
+  >
+    {args => (
+      <Card {...args}>
+        <Content childSpacing="none">
+          <Text>10130 103 St NW</Text>
+          <Text>Edmonton, Alberta</Text>
+          <Text>T5J 3N9</Text>
+        </Content>
+      </Card>
+    )}
+  </Story>
+</Canvas>
+
+### Without a header
+
+<Canvas>
+  <Story
+    name="No header"
+    parameters={{
+      backgrounds: {
+        default: "light",
+      },
+    }}
+  >
+    <div style={{ background: "var(--color-surface--background)" }}>
+      <Content direction="horizontal">
+        <Card>
+          <Content childSpacing="none">
+            <Text>10130 103 St NW</Text>
+            <Text>Edmonton, Alberta</Text>
+            <Text>T5J 3N9</Text>
+          </Content>
+        </Card>
+      </Content>
+    </div>
+  </Story>
+</Canvas>
+
+### Only a header
+
+<Canvas>
+  <Story
+    name="Only a header"
+    parameters={{
+      backgrounds: {
+        default: "light",
+      },
+    }}
+    args={{
+      header: {
+        title: "Property",
+        actionItem: { iconName: "plus2" },
+        onPress: () => alert("🏡"),
+      },
+    }}
+  >
+    {args => (
+      <div style={{ background: "var(--color-surface--background)" }}>
+        <Content direction="horizontal">
+          <Card {...args} />
+        </Content>
+      </div>
+    )}
+  </Story>
+</Canvas>
 
 ## Content guidelines
 
-Card titles should be sentence-cased.
+Card is not opinionated about the content that goes inside of it. Text, images,
+icons, inputs are all acceptable entries.
+[ActionItem](/docs/atlantis-layouts-and-containers-actionitem--action-item) is a
+very common, flexible way of passing in the right content for your needs. When
+you need more than one ActionItem, you can wrap them in an
+[ActionItemGroup](/docs/atlantis-layouts-and-containers-actionitemgroup--action-item-group)
+to get evenly spaced items separated by dividers.
 
-| ✅ Do                   | ❌ Don't                |
+### Header
+
+The Card's _header_ accepts a string for the title, and an optional action that
+can be represented by a label or icon.
+
+When the Card header has an action, the entire header is tappable. When using a
+label for the action, keep it succinct; ideally, a single word should suffice.
+If using an icon, ensure the meaning can be universally understood, such as the
+"plus" icon representing "add".
+
+Card headers should be sentence-cased.
+
+| Do ✅                   | Don't ❌                |
 | ----------------------- | ----------------------- |
 | Client property details | Client Property Details |
 | Assigned team           | ASSIGNED TEAM           |
 | Required deposit        | Required Deposit        |
 
-## Variations
+## Related components
 
-### Clickable with URL
+[ActionItem](/docs/atlantis-layouts-and-containers-actionitem--action-item) is a
+very common, flexible way of passing in the right content for your needs.
 
-<Canvas>
-  <Card url="#">
-    <Content>
-      <Heading level={4}>View all</Heading>
-      <Text>
-        See how our 20+ features can help you organize, impress, and grow.
-      </Text>
-    </Content>
-  </Card>
-</Canvas>
+For more than one ActionItem,
+[ActionItemGroup](/docs/atlantis-layouts-and-containers-actionitemgroup--action-item-group)
+is recommended.
 
-### Clickable with external URL
+Use
+[ContentSection](/docs/shared-layouts-and-containers-contentsection--content-section)
+to group multiple cards evenly, and pass in a consistent section heading where
+needed.
 
-<Canvas>
-  <Card url="https://atlantis.getjobber.com/" external={true}>
-    <Content>
-      <Heading level={4}>View all</Heading>
-      <Text>
-        See how our 20+ features can help you organize, impress, and grow.
-      </Text>
-    </Content>
-  </Card>
-</Canvas>
+## Accessibility
 
-### Clickable with onClick
+When it has a title, Card should announce its title to assistive technology. If
+the header has an action, the user should be able to tap the entire header, and
+the header should be announced as a tappable action.
 
-<Canvas>
-  <Card
-    onClick={e => {
-      alert("😻");
-      console.log(e.currentTarget);
-    }}
-  >
-    <Content>
-      <Heading level={4}>View all</Heading>
-      <Text>
-        See how our 20+ features can help you organize, impress, and grow.
-      </Text>
-    </Content>
-  </Card>
-</Canvas>
+The contents of the Card are generally responsible for their own accessibility
+concerns.
 
-### Header with custom component
+The Card should not be wrapped in a `View` with an `accessibilityLabel`
+describing it as a card. Adding an `accessibilityLabel` in this fashion hides
+the content of the Card from screen-readers on both iOS and Android.
 
-Use the provided header title and action properties when possible. If you
-require UI elements not supported by the card's header, a custom component can
-be passed in.
+## Testing
 
-<Canvas>
-  <Card
-    header={
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          padding: "var(--card--base-padding)",
-          gap: "var(--space-base)",
-          alignItems: "flex-start",
-        }}
-      >
-        <Heading level={4}>Bananas varieties</Heading>
-        <Button onClick={() => alert("Dismiss")} icon="cross" type="tertiary" />
-      </div>
-    }
-  >
-    <Content>
-      <Heading level={4}>Burro</Heading>
-      <Text>
-        Squatty and slightly square at the edges, these bananas are slightly
-        tangy and lemony. When ripe, the fruit is soft and the skin is yellow
-        with black spots. Also called Horse, Hog, or Orinoco bananas.
-      </Text>
-      <Heading level={4}>Cavendish</Heading>
-      <Text>
-        This is the familiar yellow banana sold in United States’ supermarkets.
-        There are also other sizes of Cavendish, including Dwarf and Giant,
-        though they are difficult to find.
-      </Text>
-    </Content>
-  </Card>
-</Canvas>
+If you need to use a query to get a `Card` to test the content you should wrap
+the card in a `View` and give the `View` a `testID` see below
+
+```tsx
+<View testID="my-card-test-id">
+  <Card>...</Card>
+</View>
+```
+
+## Responsiveness
+
+Card will take up the full available width of its parent container.
+
+## Mockup
+
+<Figma
+  collapsable
+  url="https://www.figma.com/file/avvgu5SkbBvS8lGVePBsqO/%F0%9F%92%99-Product%2FMobile?node-id=15057%3A13419"
+/>
