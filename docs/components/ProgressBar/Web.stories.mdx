@@ -1,0 +1,24 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { ProgressBar } from "@jobber/components/ProgressBar";
+
+<Meta title="Components/ProgressBar/Web" component={ProgressBar} />
+
+# ProgressBar
+
+```ts
+import { ProgressBar } from "@jobber/components/ProgressBar";
+```
+
+<Canvas>
+  <Story
+    name="Web"
+    args={{
+      currentStep: 3,
+      totalSteps: 4,
+    }}
+  >
+    {args => <ProgressBar {...args} />}
+  </Story>
+</Canvas>
+
+<ArgsTable of={ProgressBar} story="Web" />
