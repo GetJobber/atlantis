@@ -1,0 +1,32 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Content } from "@jobber/components/Content";
+import { Divider } from "@jobber/components-native";
+
+<Meta title="Components/Divider/Mobile" component={Divider} />
+
+# Divider
+
+```ts
+import { Divider } from "@jobber/components-native";
+```
+
+<Canvas>
+  <Story name="Mobile">
+    {args => (
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns:
+            args.direction === "vertical" ? "auto min-content auto" : "auto",
+          gap: "var(--space-base)",
+        }}
+      >
+        <Content>Some amazing content</Content>
+        <Divider {...args} />
+        <Content>Even more amazing content</Content>
+      </div>
+    )}
+  </Story>
+</Canvas>
+
+<ArgsTable of={Divider} story="Mobile" />
