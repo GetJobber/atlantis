@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.13.0...@jobber/components-native@0.14.0) (2023-05-18)
+
+
+### Features
+
+* **components-native:** Import ProgressBar  ([#1266](https://github.com/GetJobber/atlantis/issues/1266)) ([d4d003c](https://github.com/GetJobber/atlantis/commit/d4d003cb143998abae7c3ea9526e8eb84df1250c))
+
+
+
+
+
 # [0.13.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.12.0...@jobber/components-native@0.13.0) (2023-05-17)
 
 
