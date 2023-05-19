@@ -1,5 +1,6 @@
 import React, { PropsWithChildren } from "react";
 import { IntlProvider, IntlConfig } from "react-intl";
+import { SafeAreaProvider, initialWindowMetrics } from "react-native-safe-area-context";
 
 export function SBProvider({
   children,
@@ -22,7 +23,9 @@ export function SBProvider({
       messages={translationsForUsersLocale}
       onError={onIntlError}
     >
-       {children}
+      <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+        {children}
+      </SafeAreaProvider>
     </IntlProvider>
   );
 
