@@ -5,8 +5,6 @@ import { Text } from "@jobber/components-native";
 
 # Text
 
-Text is used to add an additional visual meaning on your content
-
 ```ts
 import { Text } from "@jobber/components-native";
 ```
@@ -16,7 +14,7 @@ import { Text } from "@jobber/components-native";
     name="Mobile"
     args={{
       children:
-        "'640K is more memory than anyone will ever need on a computer' - Not Bill Gates",
+        '"640K is more memory than anyone will ever need on a computer" - Not Bill Gates',
     }}
   >
     {args => <Text {...args} />}
@@ -25,21 +23,26 @@ import { Text } from "@jobber/components-native";
 
 <ArgsTable of={Text} story="Mobile" />
 
-## Variations
+## Supporting text
 
-<Canvas isColumn>
-  <Text variation="success">
-    Text color should be changed with a semantic (meaningful) intent
-  </Text>
+There's a `textSupporting` `level` that you can use to add an additional
+content.
+
+<Canvas>
   <Text level="textSupporting">
     Supporting Text should be used to supplement additional, more important
     content
   </Text>
-  <View style={{ backgroundColor: "black" }}>
-    <Text reverseTheme={true}>
-      Changes Text color for display on a dark background
-    </Text>
-  </View>
+</Canvas>
+
+## Reverse theme
+
+For the times when a text is added on a dark background.
+
+<Canvas style={{ backgroundColor: "black" }}>
+  <Text reverseTheme={true}>
+    Changes Text color for display on a dark background
+  </Text>
 </Canvas>
 
 ## Notes
