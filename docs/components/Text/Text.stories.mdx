@@ -1,0 +1,159 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Text } from "@jobber/components/Text";
+import { Checkbox } from "@jobber/components/Checkbox";
+import { Content } from "@jobber/components/Content";
+
+<Meta title="Components/Text/Docs" component={Text} />
+
+# Text
+
+Text is used to add an additional visual meaning on your content
+
+## Usage guidelines
+
+The default styling of a text is used as the body text for almost everything.
+
+<Canvas>
+  <Text>Ask the information you need upfront from clients and new leads</Text>
+</Canvas>
+
+### Subdued
+
+De-emphasize a piece of text that is less important to the user.
+
+<Canvas>
+  <Text variation="subdued">Job note linked to related invoice</Text>
+</Canvas>
+
+### Feedback message
+
+The variation also includes text that conveys feedback messages.
+
+<Canvas>
+  <Text variation="success">Invoice sent</Text>
+  <br />
+  <Text variation="error">Name is required</Text>
+  <br />
+  <Text variation="warn">Your message is over 160 characters</Text>
+  <br />
+  <Text variation="info">
+    Drag to rearrange the order that the fields show up in Jobber
+  </Text>
+</Canvas>
+
+### Disabled
+
+Use when the text is part of a disabled section of the interface.
+
+Do not use `disabled` text to explain why an element is disabled. That text
+should be default text with full intended contrast so that the user can clearly
+identify why an element is disabled.
+
+<Canvas>
+  <Content>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--space-small)",
+        marginBottom: "var(--space-small)",
+      }}
+    >
+      <Checkbox disabled checked={false} />
+      <Text variation="disabled">A checkbox option</Text>
+    </div>
+    <Text>
+      You must enable your other settings before you can select this option.
+    </Text>
+  </Content>
+</Canvas>
+
+## Alignment
+
+Use left-aligned text for the the vast majority of use cases, particularly when
+setting paragraphs. You may need to right-align text in cases where a label or
+other small typographic element helps maintain vertical alignment on the right
+side of a layout.
+
+Centered text should be used sparingly, and largely in standalone cases like
+empty states where the content is vertically and horizontally centered.
+
+For text alignment, we use `start` and `end` instead of `left` and `right`. This
+allows us to support
+[bi-directionality](https://material.io/design/usability/bidirectionality.html#mirroring-layout)
+when needed.
+
+<Canvas isColumn>
+  <Text align="start">
+    Start aligns text to the left in Latin and other LTR scripts
+  </Text>
+  <Text align="center">Center is always in... the center</Text>
+  <Text align="end">
+    End aligns text to the right in Latin and other LTR scripts
+  </Text>
+</Canvas>
+
+## maxLines
+
+Used to truncate large text with `...` based on line wrapping, such that the
+total number of lines does not exceed the preset. This is an optional prop. If
+left undefined all the contents are shown.
+
+<Canvas>
+  <Content>
+    <Text maxLines="single">
+      This will show 1 line. Lorem ipsum dolor sit amet, consectetur adipiscing
+      elit. Vestibulum nec pulvinar nunc. Suspendisse nec eros pretium, rutrum
+      purus sit amet, finibus ante. Donec pretium condimentum scelerisque.
+    </Text>
+    <Text maxLines="small">
+      This will show 2 lines. Lorem ipsum dolor sit amet, consectetur adipiscing
+      elit. Vestibulum nec pulvinar nunc. Suspendisse nec eros pretium, rutrum
+      purus sit amet, finibus ante. Donec pretium condimentum scelerisque. Duis
+      eu ligula nec metus suscipit feugiat.Etiam sapien sapien, mattis eu
+      tincidunt quis, pretium sed metus. Maecenas quis dolor lacinia libero
+      rhoncus fringilla. Cras mi ante, euismod nec tortor in, tempus mollis
+      nulla.
+    </Text>
+    <Text maxLines="base">
+      This will show 4 lines. Lorem ipsum dolor sit amet, consectetur adipiscing
+      elit. Vestibulum nec pulvinar nunc. Suspendisse nec eros pretium, rutrum
+      purus sit amet, finibus ante. Donec pretium condimentum scelerisque. Duis
+      eu ligula nec metus suscipit feugiat.Etiam sapien sapien, mattis eu
+      tincidunt quis, pretium sed metus. Maecenas quis dolor lacinia libero
+      rhoncus fringilla. Cras mi ante, euismod nec tortor in, tempus mollis
+      nulla.
+    </Text>
+    <Text maxLines="large">
+      This will show 8 lines. Lorem ipsum dolor sit amet, consectetur adipiscing
+      elit. Vestibulum nec pulvinar nunc. Suspendisse nec eros pretium, rutrum
+      purus sit amet, finibus ante. Donec pretium condimentum scelerisque. Duis
+      eu ligula nec metus suscipit feugiat.Etiam sapien sapien, mattis eu
+      tincidunt quis, pretium sed metus. Maecenas quis dolor lacinia libero
+      rhoncus fringilla. Cras mi ante, euismod nec tortor in, tempus mollis
+      nulla. Etiam eu lacus nibh. Donec tristique lacus magna, vulputate
+      tristique lacus blandit vitae. Aenean vitae commodo metus. Fusce eu risus
+      quis orci pharetra consequat nec nec libero.
+    </Text>
+    <Text maxLines="larger">
+      This will show 16 lines. Lorem ipsum dolor sit amet, consectetur
+      adipiscing elit. Vestibulum nec pulvinar nunc. Suspendisse nec eros
+      pretium, rutrum purus sit amet, finibus ante. Donec pretium condimentum
+      scelerisque. Duis eu ligula nec metus suscipit feugiat.Etiam sapien
+      sapien, mattis eu tincidunt quis, pretium sed metus. Maecenas quis dolor
+      lacinia libero rhoncus fringilla. Cras mi ante, euismod nec tortor in,
+      tempus mollis nulla. Etiam eu lacus nibh. Donec tristique lacus magna,
+      vulputate tristique lacus blandit vitae. Aenean vitae commodo metus. Fusce
+      eu risus quis orci pharetra consequat nec nec libero. Lorem ipsum dolor
+      sit amet, consectetur adipiscing elit. Vestibulum nec pulvinar nunc.
+      Suspendisse nec eros pretium, rutrum purus sit amet, finibus ante. Donec
+      pretium condimentum scelerisque. Duis eu ligula nec metus suscipit
+      feugiat.Etiam sapien sapien, mattis eu tincidunt quis, pretium sed metus.
+      Maecenas quis dolor lacinia libero rhoncus fringilla. Cras mi ante,
+      euismod nec tortor in, tempus mollis nulla. Etiam eu lacus nibh. Donec
+      tristique lacus magna, vulputate tristique lacus blandit vitae. Aenean
+      vitae commodo metus. Fusce eu risus quis orci pharetra consequat nec nec
+      libero.
+    </Text>
+  </Content>
+</Canvas>

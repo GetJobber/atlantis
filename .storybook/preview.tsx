@@ -1,9 +1,12 @@
 import React from "react";
-import { Header } from "./components/Header";
 import { Text } from "@jobber/components/Text";
 import { Content } from "@jobber/components/Content";
+import { Header } from "./components/Header";
 import { InlineCode } from "./components/InlineCode";
 import { DocsWithSidebar } from "./components/DocsWithSidebar";
+import { CustomCanvas } from "./components/CustomCanvas";
+import { SBProvider } from "./components/SBProvider";
+
 
 import "@jobber/design/foundation.css";
 import "./assets/css/preview.css";
@@ -16,6 +19,10 @@ try {
 
 export const parameters = {
   viewMode: "docs",
+  controls: {
+    expanded: true,
+    sort: "alpha",
+  },
   options: {
     storySort: {
       method: "alphabetical",
@@ -32,7 +39,16 @@ export const parameters = {
       h5: props => <Header {...props} level={5} />,
       p: props => <Text {...props} />,
       inlineCode: props => <InlineCode {...props} />,
+      Canvas: CustomCanvas,
     },
     container: DocsWithSidebar,
   },
 };
+
+export const decorators = [
+  Story => (
+    <SBProvider>
+      <Story />
+    </SBProvider>
+  ),
+]

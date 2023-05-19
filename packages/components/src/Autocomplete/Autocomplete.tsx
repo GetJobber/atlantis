@@ -10,7 +10,10 @@ import { FormFieldProps } from "../FormField";
 type OptionCollection = XOR<Option[], GroupOption[]>;
 
 interface AutocompleteProps
-  extends Pick<FormFieldProps, "size" | "onBlur" | "onFocus" | "invalid"> {
+  extends Pick<
+    FormFieldProps,
+    "size" | "onBlur" | "onFocus" | "invalid" | "name" | "validations"
+  > {
   /**
    * Initial options to show when user first focuses the Autocomplete
    */
@@ -73,6 +76,8 @@ export function Autocomplete({
   placeholder,
   onBlur,
   onFocus,
+  name,
+  validations,
 }: AutocompleteProps) {
   const [options, setOptions] = useState(initialOptions);
   const [menuVisible, setMenuVisible] = useState(false);
@@ -101,11 +106,13 @@ export function Autocomplete({
         placeholder={placeholder}
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
+        name={name}
+        validations={validations}
       />
       {menuVisible && (
         <Menu
           attachTo={autocompleteRef}
-          visible={true}
+          visible={menuVisible && options.length > 0}
           options={options}
           selectedOption={value}
           onOptionSelect={handleMenuChange}

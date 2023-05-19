@@ -1,10 +1,9 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
-import { Checkbox } from "@jobber/components/Checkbox";
 import { useState } from "react";
+import { Checkbox } from "@jobber/components/Checkbox";
 import { Text } from "@jobber/components/Text";
 import { Modal } from "@jobber/components/Modal";
 import { Content } from "@jobber/components/Content";
-import { ExampleWithHooks } from "mdxUtils/ExampleWithHooks";
 
 <Meta title="Components/Checkbox" component={Checkbox} />
 
@@ -50,42 +49,40 @@ as “fixed price” and “per visit” invoicing options.
 ## Indeterminate
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const [items, setItems] = useState([true, false, false]);
-      return (
-        <>
-          <Checkbox
-            label="Select All"
-            checked={!items.includes(false)}
-            onChange={toggleAll}
-            indeterminate={items.includes(false) && items.includes(true)}
-          />
-          <ul>
-            {items.map((value, index) => (
-              <li key={index}>
-                <Checkbox
-                  label={`Item ${index}`}
-                  checked={value}
-                  onChange={toggleIndex(index)}
-                />
-              </li>
-            ))}
-          </ul>
-        </>
-      );
-      function toggleIndex(index) {
-        return newValue => {
-          const updatedItems = Array.from(items);
-          updatedItems[index] = newValue;
-          setItems(updatedItems);
-        };
-      }
-      function toggleAll(newValue) {
-        setItems(Array(items.length).fill(newValue));
-      }
-    }}
-  </ExampleWithHooks>
+  {() => {
+    const [items, setItems] = useState([true, false, false]);
+    return (
+      <>
+        <Checkbox
+          label="Select All"
+          checked={!items.includes(false)}
+          onChange={toggleAll}
+          indeterminate={items.includes(false) && items.includes(true)}
+        />
+        <ul>
+          {items.map((value, index) => (
+            <li key={index}>
+              <Checkbox
+                label={`Item ${index}`}
+                checked={value}
+                onChange={toggleIndex(index)}
+              />
+            </li>
+          ))}
+        </ul>
+      </>
+    );
+    function toggleIndex(index) {
+      return newValue => {
+        const updatedItems = Array.from(items);
+        updatedItems[index] = newValue;
+        setItems(updatedItems);
+      };
+    }
+    function toggleAll(newValue) {
+      setItems(Array(items.length).fill(newValue));
+    }
+  }}
 </Canvas>
 
 ## With a description
@@ -125,55 +122,53 @@ possible to pass a child component to the checkbox to use as a label. This
 allows us to embed a link into the checkbox label.
 
 <Canvas>
-  <ExampleWithHooks>
-    {() => {
-      const [checked, setChecked] = useState(false);
-      const [isModalOpen, setIsModalOpen] = useState(false);
-      function handleOpenModal(e) {
-        // Prevent the checkbox from being checked
-        e.preventDefault();
-        setIsModalOpen(true);
-      }
-      function handleCloseModal() {
-        setIsModalOpen(false);
-      }
-      return (
-        <>
-          <Checkbox checked={checked} onChange={setChecked}>
+  {() => {
+    const [checked, setChecked] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    function handleOpenModal(e) {
+      // Prevent the checkbox from being checked
+      e.preventDefault();
+      setIsModalOpen(true);
+    }
+    function handleCloseModal() {
+      setIsModalOpen(false);
+    }
+    return (
+      <>
+        <Checkbox checked={checked} onChange={setChecked}>
+          <Text>
+            I agree to the
+            <button
+              style={{
+                color: "var(--color-interactive)",
+                fontFamily: "inherit",
+                fontSize: "inherit",
+                padding: "0",
+                textDecoration: "underline",
+                background: "transparent",
+                border: "none",
+              }}
+              onClick={handleOpenModal}
+            >
+              terms of service
+            </button>
+          </Text>
+        </Checkbox>
+        <Modal
+          title="Terms of Service"
+          open={isModalOpen}
+          onRequestClose={handleCloseModal}
+        >
+          <Content>
             <Text>
-              I agree to the
-              <button
-                style={{
-                  color: "var(--color-interactive)",
-                  fontFamily: "inherit",
-                  fontSize: "inherit",
-                  padding: "0",
-                  textDecoration: "underline",
-                  background: "transparent",
-                  border: "none",
-                }}
-                onClick={handleOpenModal}
-              >
-                terms of service
-              </button>
+              And this is where I would keep my Terms of Service... if I had
+              any!
             </Text>
-          </Checkbox>
-          <Modal
-            title="Terms of Service"
-            open={isModalOpen}
-            onRequestClose={handleCloseModal}
-          >
-            <Content>
-              <Text>
-                And this is where I would keep my Terms of Service... if I had
-                any!
-              </Text>
-            </Content>
-          </Modal>
-        </>
-      );
-    }}
-  </ExampleWithHooks>
+          </Content>
+        </Modal>
+      </>
+    );
+  }}
 </Canvas>
 
 ## Related components

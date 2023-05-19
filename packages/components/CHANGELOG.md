@@ -3,6 +3,131 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.18.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.18.0...@jobber/components@4.18.1) (2023-05-19)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [4.18.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.17.1...@jobber/components@4.18.0) (2023-05-19)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.17.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.17.0...@jobber/components@4.17.1) (2023-05-18)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [4.17.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.16.1...@jobber/components@4.17.0) (2023-05-18)
+
+
+### Features
+
+* **components-native:** Import ProgressBar  ([#1266](https://github.com/GetJobber/atlantis/issues/1266)) ([d4d003c](https://github.com/GetJobber/atlantis/commit/d4d003cb143998abae7c3ea9526e8eb84df1250c))
+
+
+
+
+
+## [4.16.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.16.0...@jobber/components@4.16.1) (2023-05-17)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [4.16.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.15.3...@jobber/components@4.16.0) (2023-05-17)
+
+
+### Features
+
+* **components:** Allow GridCell' s to only be usable in Grids ([#1254](https://github.com/GetJobber/atlantis/issues/1254)) ([58218f8](https://github.com/GetJobber/atlantis/commit/58218f8f6e6569aba7130e564b1fae4553d4e0aa))
+
+
+
+
+
+## [4.15.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.15.2...@jobber/components@4.15.3) (2023-05-12)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.15.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.15.1...@jobber/components@4.15.2) (2023-05-12)
+
+
+### Bug Fixes
+
+* **components:** Fix Select component hit area ([#1241](https://github.com/GetJobber/atlantis/issues/1241)) ([8ef7813](https://github.com/GetJobber/atlantis/commit/8ef78135cf451f83658ac35d1bfbf8ff8c0b8225))
+
+
+
+
+
+## [4.15.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.15.0...@jobber/components@4.15.1) (2023-05-12)
+
+
+### Bug Fixes
+
+* **components:** fix phone number validation for when it's not required ([#1245](https://github.com/GetJobber/atlantis/issues/1245)) ([ce410a1](https://github.com/GetJobber/atlantis/commit/ce410a1ba71caac2adbf8ae580853340e6cd7ba5))
+
+
+
+
+
+# [4.15.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.14.1...@jobber/components@4.15.0) (2023-05-11)
+
+
+### Features
+
+* Grid component ([#1229](https://github.com/GetJobber/atlantis/issues/1229)) ([8328d6c](https://github.com/GetJobber/atlantis/commit/8328d6c718c533c20853e4fcc281c9dcf36218b2))
+
+
+
+
+
+## [4.14.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.14.0...@jobber/components@4.14.1) (2023-05-10)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [4.14.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.13.1...@jobber/components@4.14.0) (2023-05-10)
+
+
+### Features
+
+* **components:** Add validation support to Autocomplete component ([#1233](https://github.com/GetJobber/atlantis/issues/1233)) ([ac727d9](https://github.com/GetJobber/atlantis/commit/ac727d99ef6ac3327212ed9f1514fd0b84ede776))
+
+
+
+
+
+## [4.13.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.13.0...@jobber/components@4.13.1) (2023-05-09)
+
+
+### Bug Fixes
+
+* **components:** fix autocomplete menu positioning when used in modal ([#1220](https://github.com/GetJobber/atlantis/issues/1220)) ([d3f89e3](https://github.com/GetJobber/atlantis/commit/d3f89e3bfc1e246e86bcefb36ccc7c12eb82d4a1))
+
+
+
+
+
 # [4.13.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.12.1...@jobber/components@4.13.0) (2023-05-08)
 
 

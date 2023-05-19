@@ -1,0 +1,44 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Content } from "@jobber/components/Content";
+import { Text } from "@jobber/components/Text";
+import { Heading } from "@jobber/components/Heading";
+import { InputText } from "@jobber/components/InputText";
+import { Card } from "@jobber/components/Card";
+
+<Meta title="Components/Content/Docs" component={Content} />
+
+# Content
+
+Content is a container component that provides it's child elements with
+consistent vertical spacing and padding.
+
+## Design & usage guidelines
+
+Content should be used whenever you have a container with mixed content that
+requires consistent spacing between the elements.
+
+<Canvas>
+  <Content>
+    <Card title="About me">
+      <Content>
+        <Content spacing="large">
+          <Heading level={2}>Sign up!</Heading>
+          <Text>
+            Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis
+            vestibulum. Nulla vitae elit libero, a pharetra augue. Nullam quis
+            risus eget urna mollis ornare vel eu leo. Vestibulum id ligula porta
+            felis euismod semper. Curabitur blandit tempus porttitor.
+          </Text>
+        </Content>
+        <InputText placeholder="Name" />
+        <InputText placeholder="Phone" />
+        <InputText placeholder="Email" />
+        <InputText
+          multiline={true}
+          placeholder="Describe yourself"
+          name="describeAge"
+        />
+      </Content>
+    </Card>
+  </Content>
+</Canvas>

@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.40.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.39.0...@jobber/design@0.40.0) (2023-05-19)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+# [0.39.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.38.2...@jobber/design@0.39.0) (2023-05-11)
+
+
+### Features
+
+* Grid component ([#1229](https://github.com/GetJobber/atlantis/issues/1229)) ([8328d6c](https://github.com/GetJobber/atlantis/commit/8328d6c718c533c20853e4fcc281c9dcf36218b2))
+
+
+
+
+
+## [0.38.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.38.1...@jobber/design@0.38.2) (2023-05-10)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
 ## [0.38.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.38.0...@jobber/design@0.38.1) (2023-05-03)
 
 

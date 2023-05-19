@@ -3,7 +3,7 @@
 exports[`renders a Select with many options 1`] = `
 <div>
   <div
-    class="wrapper"
+    class="wrapper select"
   >
     <div
       class="inputWrapper"
@@ -56,7 +56,7 @@ exports[`renders a Select with many options 1`] = `
 exports[`renders a Select with no options 1`] = `
 <div>
   <div
-    class="wrapper"
+    class="wrapper select"
   >
     <div
       class="inputWrapper"
@@ -96,7 +96,7 @@ exports[`renders a Select with no options 1`] = `
 exports[`renders a Select with one option 1`] = `
 <div>
   <div
-    class="wrapper"
+    class="wrapper select"
   >
     <div
       class="inputWrapper"
@@ -140,7 +140,7 @@ exports[`renders a Select with one option 1`] = `
 exports[`renders correctly as large 1`] = `
 <div>
   <div
-    class="wrapper large"
+    class="wrapper large select"
   >
     <div
       class="inputWrapper"
@@ -184,7 +184,7 @@ exports[`renders correctly as large 1`] = `
 exports[`renders correctly as small 1`] = `
 <div>
   <div
-    class="wrapper small"
+    class="wrapper small select"
   >
     <div
       class="inputWrapper"
@@ -228,7 +228,7 @@ exports[`renders correctly as small 1`] = `
 exports[`renders correctly when disabled 1`] = `
 <div>
   <div
-    class="wrapper disabled"
+    class="wrapper select disabled"
   >
     <div
       class="inputWrapper"
@@ -273,7 +273,7 @@ exports[`renders correctly when disabled 1`] = `
 exports[`renders correctly when invalid 1`] = `
 <div>
   <div
-    class="wrapper invalid"
+    class="wrapper select invalid"
   >
     <div
       class="inputWrapper"

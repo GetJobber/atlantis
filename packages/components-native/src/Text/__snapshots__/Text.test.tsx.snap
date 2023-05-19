@@ -1,0 +1,618 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders text supporting with no additional props 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  maxFontSizeMultiplier={1.1428571428571428}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-medium",
+      },
+      {
+        "color": "rgb(66, 78, 86)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 14,
+        "lineHeight": 18,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text supporting with variation success 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  maxFontSizeMultiplier={1.1428571428571428}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-medium",
+      },
+      {
+        "color": "rgb(81, 114, 9)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 14,
+        "lineHeight": 18,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text supporting with variation success reverseTheme true 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  maxFontSizeMultiplier={1.1428571428571428}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-medium",
+      },
+      {
+        "color": "rgb(125, 176, 14)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 14,
+        "lineHeight": 18,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text that is not scaled down with adjustsFontSize false 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  maxFontSizeMultiplier={3.125}
+  numberOfLines={4}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgb(66, 78, 86)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  The quick brown fox jumped over the lazy dog. The quick brown fox jumped over the lazy dog. The quick brown fox jumped over the lazy dog. The quick brown fox jumped over the lazy dog. The quick brown fox jumped over the lazy dog. The quick brown fox jumped over the lazy dog
+</Text>
+`;
+
+exports[`renders text that is scaled down with adjustsFontSize true 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={true}
+  allowFontScaling={true}
+  collapsable={false}
+  maxFontSizeMultiplier={3.125}
+  numberOfLines={4}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgb(66, 78, 86)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  The quick brown fox jumped over the lazy dog. The quick brown fox jumped over the lazy dog. The quick brown fox jumped over the lazy dog. The quick brown fox jumped over the lazy dog. The quick brown fox jumped over the lazy dog. The quick brown fox jumped over the lazy dog
+</Text>
+`;
+
+exports[`renders text with base variation 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  maxFontSizeMultiplier={3.125}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgb(66, 78, 86)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with center alignment 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  maxFontSizeMultiplier={3.125}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgb(66, 78, 86)",
+      },
+      {
+        "textAlign": "center",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with error variation 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  maxFontSizeMultiplier={3.125}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgb(201, 66, 33)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with error variation reverseTheme true 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  maxFontSizeMultiplier={3.125}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgb(201, 66, 33)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with info variation 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  maxFontSizeMultiplier={3.125}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgb(39, 105, 146)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with left alignment 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  maxFontSizeMultiplier={3.125}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgb(66, 78, 86)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with no additional props 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  maxFontSizeMultiplier={3.125}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgb(66, 78, 86)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with right alignment 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  maxFontSizeMultiplier={3.125}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgb(66, 78, 86)",
+      },
+      {
+        "textAlign": "right",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with subdued variation 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  maxFontSizeMultiplier={3.125}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgba(101, 120, 132, 1)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with success variation 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  maxFontSizeMultiplier={3.125}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgb(81, 114, 9)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with success variation reverseTheme true 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  maxFontSizeMultiplier={3.125}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgb(125, 176, 14)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders text with warn variation 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  maxFontSizeMultiplier={3.125}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgb(144, 127, 10)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
+
+exports[`renders with strikethrough styling 1`] = `
+<Text
+  accessibilityRole="text"
+  adjustsFontSizeToFit={false}
+  allowFontScaling={true}
+  collapsable={false}
+  maxFontSizeMultiplier={3.125}
+  selectable={true}
+  selectionColor="rgb(160, 215, 42)"
+  style={
+    [
+      {
+        "fontFamily": "inter-regular",
+      },
+      {
+        "color": "rgb(66, 78, 86)",
+      },
+      {
+        "textAlign": "left",
+      },
+      {
+        "fontSize": 16,
+        "lineHeight": 20,
+      },
+      {
+        "letterSpacing": 0,
+      },
+      {
+        "textDecorationLine": "line-through",
+      },
+    ]
+  }
+>
+  Test Text
+</Text>
+`;
