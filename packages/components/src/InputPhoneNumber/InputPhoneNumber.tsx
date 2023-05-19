@@ -39,7 +39,7 @@ export function InputPhoneNumber({
 }: InputPhoneNumberProps) {
   const { placeholder, validations, pattern = "(***) ***-****" } = props;
   const errorSubject = placeholder || "Phone number";
-  const { getValues } = useFormContext();
+  const getValues = useFormContext();
 
   return (
     <InputMask pattern={pattern} strict={false}>
