@@ -1,0 +1,74 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { View } from "react-native";
+import { Figma } from "storybook-addon-designs/blocks";
+import { ActionLabel } from "@jobber/components-native";
+
+<Meta title="Components/ActionLabel/Mobile" component={ActionLabel} />
+
+## Action Label
+
+```ts
+import { ActionLabel } from "@jobber/components-native";
+```
+
+<Canvas>
+  <Story name="ActionLabel" args={{ children: "I am a label text" }}>
+    {args => <ActionLabel {...args}>{args.children}</ActionLabel>}
+  </Story>
+</Canvas>
+
+<ArgsTable of={ActionLabel} />
+
+### Font color variation
+
+<Canvas>
+  <Story
+    name="Font color variation"
+    parameters={{
+      backgrounds: {
+        default: "light",
+      },
+    }}
+    args={{ variation: "learning", children: "Learning" }}
+  >
+    {args => <ActionLabel {...args}>{args.children}</ActionLabel>}
+  </Story>
+</Canvas>
+
+### Disabled
+
+As a best practice, do not design with disabled button states. This has negative
+impacts on accessibility as well as an increase in complexity for users to
+understand why the interface is disabled and how to resolve it.
+
+With that said, if you can't design a flow without a disabled state, this is how
+you disable an `ActionLabel`.
+
+<Canvas>
+  <Story name="Disabled" args={{ disabled: "true", children: "Disabled" }}>
+    {args => <ActionLabel {...args}>{args.children}</ActionLabel>}
+  </Story>
+</Canvas>
+
+### Alignment
+
+The alignment of the text can be changed to your liking. However, this would
+only work when the parent component/element adjusts the width of the
+`ActionLabel` like `<View />`.
+
+<Canvas>
+  <Story name="Alignment" args={{ align: "center", children: "I am centered" }}>
+    {args => (
+      <View>
+        <ActionLabel {...args}>{args.children}</ActionLabel>
+      </View>
+    )}
+  </Story>
+</Canvas>
+
+## Mockup
+
+<Figma
+  collapsable
+  url="https://www.figma.com/file/avvgu5SkbBvS8lGVePBsqO/%F0%9F%92%99-Product%2FMobile?node-id=17175%3A63867"
+/>
