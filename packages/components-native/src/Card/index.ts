@@ -1,2 +1,2 @@
 export { Card } from "./Card";
-export type { ActionItem, HeaderProps } from "./Card";
+export type { CardAction, HeaderProps } from "./Card";

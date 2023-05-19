@@ -3,8 +3,3 @@
 @custom-media --medium-screens-and-up (width >=768px);
 @custom-media --large-screens-and-up (width >=1440px);
 @custom-media --extra-large-screens-and-up (width >=1680px);
-
-/* Deprecated */
-@custom-media --handhelds (width < 640px);
-@custom-media --medium-screens (width >= 640px);
-@custom-media --wide-screens (width >= 1024px);

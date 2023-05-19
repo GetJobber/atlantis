@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components-native",
-  "version": "0.14.0",
+  "version": "0.16.0",
   "license": "MIT",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
@@ -21,7 +21,7 @@
     "build:clean": "rm -rf ./dist"
   },
   "dependencies": {
-    "@jobber/design": "^0.39.0",
+    "@jobber/design": "^0.40.0",
     "react-hook-form": "^7.30.0",
     "react-intl": "^6.4.2",
     "react-native-gesture-handler": "^2.5.0",
