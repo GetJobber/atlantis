@@ -14,3 +14,4 @@ export * from "./InputFieldWrapper";
 export * from "./ProgressBar";
 export * from "./Heading";
 export * from "./Chip";
+export * from "./ActionItem";

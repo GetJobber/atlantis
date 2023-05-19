@@ -8,7 +8,6 @@ import {
 import { IconNames } from "@jobber/design";
 import { XOR } from "ts-xor";
 import { styles } from "./Card.style";
-// eslint-disable-next-line import/no-internal-modules
 import { InternalCardHeader } from "./components/InternalCardHeader";
 import { ErrorMessageWrapper } from "../ErrorMessageWrapper";
 import { ActionLabel } from "../ActionLabel";
@@ -49,7 +48,7 @@ type HeaderActionProps =
     }
   | {
       readonly onPress: () => void;
-      readonly actionItem: ActionItem;
+      readonly actionItem: CardAction;
     };
 
 interface IconAction {
@@ -60,7 +59,7 @@ interface ButtonAction {
   readonly label: string;
 }
 
-export type ActionItem = XOR<IconAction, ButtonAction>;
+export type CardAction = XOR<IconAction, ButtonAction>;
 
 function getElevationStyle(elevation: elevationProp) {
   if (elevation === "none") {
