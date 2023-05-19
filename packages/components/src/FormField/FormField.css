@@ -229,7 +229,7 @@
 
 .textarea.miniLabel .label {
   padding-top: var(--space-smallest);
-  background-color: var(--color-surface);
+  background-color: var(--field--background-color);
 }
 
 .small.miniLabel .label {
