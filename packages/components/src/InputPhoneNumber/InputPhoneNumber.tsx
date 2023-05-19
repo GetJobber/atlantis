@@ -1,4 +1,5 @@
 import React from "react";
+import { useFormContext } from "react-hook-form";
 import { InputMask, InputMaskProps } from "./InputMask";
 import { CommonFormFieldProps, FormField, FormFieldProps } from "../FormField";
 
@@ -38,6 +39,7 @@ export function InputPhoneNumber({
 }: InputPhoneNumberProps) {
   const { placeholder, validations, pattern = "(***) ***-****" } = props;
   const errorSubject = placeholder || "Phone number";
+  const { getValues } = useFormContext();
 
   return (
     <InputMask pattern={pattern} strict={false}>
@@ -74,7 +76,7 @@ export function InputPhoneNumber({
     }
 
     if (typeof validations?.validate === "function") {
-      return validations.validate(value);
+      return validations.validate(value, getValues);
     }
 
     return true;
