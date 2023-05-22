@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@jobber/design": "^0.40.0",
+    "lodash.identity": "^3.0.0",
     "react-hook-form": "^7.30.0",
     "react-intl": "^6.4.2",
     "react-native-gesture-handler": "^2.5.0",
@@ -35,6 +36,7 @@
     "@testing-library/jest-native": "^5.4.2",
     "@testing-library/react-hooks": "^7.0.2",
     "@testing-library/react-native": "^12.0.1",
+    "@types/lodash.identity": "^3.0.7",
     "@types/react": "^18.0.28",
     "@types/react-native": "^0.71.6",
     "@types/react-native-uuid": "^1.4.0",
