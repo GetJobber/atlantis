@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.18.0...@jobber/components-native@0.19.0) (2023-05-23)
+
+
+### Features
+
+* **design:** change colour code for brand--highlight ([#1280](https://github.com/GetJobber/atlantis/issues/1280)) ([ce44b13](https://github.com/GetJobber/atlantis/commit/ce44b13d728dc305c73e12e1190c28582a651c4f))
+
+
+
+
+
 # [0.18.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.17.0...@jobber/components-native@0.18.0) (2023-05-23)
 
 
