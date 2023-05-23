@@ -43,14 +43,15 @@ export function FormField(props: FormFieldProps) {
     onBlur,
     onValidation,
   } = props;
-  // If there isn't a Form Context being provided, get a form for this field.
 
   const {
     control,
     formState: { errors },
     setValue,
     watch,
-  } = useFormContext() ?? useForm({ mode: "onTouched" });
+  } = useFormContext() ??
+  // If there isn't a Form Context being provided, get a form for this field.
+  useForm({ mode: "onTouched" });
 
   const [identifier] = useState(uuidv1());
   const [descriptionIdentifier] = useState(`descriptionUUID--${uuidv1()}`);
