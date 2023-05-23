@@ -16,7 +16,7 @@ interface IconButtonProps {
   /**
    * Accessibilty label for the component. It's also used for testing
    */
-  accessibilityLabel: string;
+  readonly accessibilityLabel: string;
 
   /**
    * Determines the color of the icon. If not specified, some icons have a default system colour
