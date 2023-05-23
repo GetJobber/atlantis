@@ -1,5 +1,5 @@
 import React from "react";
-import { useFormContext } from "react-hook-form";
+import { useForm, useFormContext } from "react-hook-form";
 import { InputMask, InputMaskProps } from "./InputMask";
 import { CommonFormFieldProps, FormField, FormFieldProps } from "../FormField";
 
@@ -39,7 +39,11 @@ export function InputPhoneNumber({
 }: InputPhoneNumberProps) {
   const { placeholder, validations, pattern = "(***) ***-****" } = props;
   const errorSubject = placeholder || "Phone number";
-  const getValues = useFormContext();
+  const { getValues } =
+    useFormContext() != undefined
+      ? useFormContext()
+      : // If there isn't a Form Context being provided, get a form for this field.
+        useForm({ mode: "onTouched" });
 
   return (
     <InputMask pattern={pattern} strict={false}>
