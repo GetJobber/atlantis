@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.17.0...@jobber/components-native@0.18.0) (2023-05-23)
+
+
+### Features
+
+* **components-native:** Import Flex (before it was Grid) to components-native ([#1277](https://github.com/GetJobber/atlantis/issues/1277)) ([fe3850a](https://github.com/GetJobber/atlantis/commit/fe3850a20b70e16d59dcbca94271a1999c5e5d4c))
+
+
+
+
+
 # [0.17.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.16.0...@jobber/components-native@0.17.0) (2023-05-23)
 
 
