@@ -27,7 +27,7 @@ exports[`StatusLabel alignment when alignment prop set to "end" should match sna
       collapsable={false}
       maxFontSizeMultiplier={1.1428571428571428}
       selectable={true}
-      selectionColor="rgb(160, 215, 42)"
+      selectionColor="rgb(132, 234, 0)"
       style={
         [
           {
@@ -106,7 +106,7 @@ exports[`StatusLabel alignment when alignment prop set to default ("start") shou
       collapsable={false}
       maxFontSizeMultiplier={1.1428571428571428}
       selectable={true}
-      selectionColor="rgb(160, 215, 42)"
+      selectionColor="rgb(132, 234, 0)"
       style={
         [
           {
@@ -185,7 +185,7 @@ exports[`StatusLabel status when status prop set to "critical" should match snap
       collapsable={false}
       maxFontSizeMultiplier={1.1428571428571428}
       selectable={true}
-      selectionColor="rgb(160, 215, 42)"
+      selectionColor="rgb(132, 234, 0)"
       style={
         [
           {
@@ -264,7 +264,7 @@ exports[`StatusLabel status when status prop set to "inactive" should match snap
       collapsable={false}
       maxFontSizeMultiplier={1.1428571428571428}
       selectable={true}
-      selectionColor="rgb(160, 215, 42)"
+      selectionColor="rgb(132, 234, 0)"
       style={
         [
           {
@@ -343,7 +343,7 @@ exports[`StatusLabel status when status prop set to "informative" should match s
       collapsable={false}
       maxFontSizeMultiplier={1.1428571428571428}
       selectable={true}
-      selectionColor="rgb(160, 215, 42)"
+      selectionColor="rgb(132, 234, 0)"
       style={
         [
           {
@@ -422,7 +422,7 @@ exports[`StatusLabel status when status prop set to "warning" should match snaps
       collapsable={false}
       maxFontSizeMultiplier={1.1428571428571428}
       selectable={true}
-      selectionColor="rgb(160, 215, 42)"
+      selectionColor="rgb(132, 234, 0)"
       style={
         [
           {
@@ -501,7 +501,7 @@ exports[`StatusLabel status when status prop set to default ("success") should m
       collapsable={false}
       maxFontSizeMultiplier={1.1428571428571428}
       selectable={true}
-      selectionColor="rgb(160, 215, 42)"
+      selectionColor="rgb(132, 234, 0)"
       style={
         [
           {

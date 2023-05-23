@@ -7,7 +7,7 @@ exports[`renders text respecting the text direction 1`] = `
   allowFontScaling={true}
   collapsable={false}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -41,7 +41,7 @@ exports[`renders text using the maxLines is also passed 1`] = `
   collapsable={false}
   numberOfLines={2}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -75,7 +75,7 @@ exports[`renders text with adjustsFontSizeToFit set to true 1`] = `
   collapsable={false}
   numberOfLines={1}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -108,7 +108,7 @@ exports[`renders text with black style and display as fontFamily 1`] = `
   allowFontScaling={true}
   collapsable={false}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -141,7 +141,7 @@ exports[`renders text with bold style 1`] = `
   allowFontScaling={true}
   collapsable={false}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -174,7 +174,7 @@ exports[`renders text with bold style and display as fontFamily 1`] = `
   allowFontScaling={true}
   collapsable={false}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -207,7 +207,7 @@ exports[`renders text with bold weight and italic style 1`] = `
   allowFontScaling={true}
   collapsable={false}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -240,7 +240,7 @@ exports[`renders text with center align 1`] = `
   allowFontScaling={true}
   collapsable={false}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -273,7 +273,7 @@ exports[`renders text with default color 1`] = `
   allowFontScaling={true}
   collapsable={false}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -306,7 +306,7 @@ exports[`renders text with default size 1`] = `
   allowFontScaling={true}
   collapsable={false}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -339,7 +339,7 @@ exports[`renders text with extraBold weight and display as fontFamily 1`] = `
   allowFontScaling={true}
   collapsable={false}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -372,7 +372,7 @@ exports[`renders text with green color 1`] = `
   allowFontScaling={true}
   collapsable={false}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -405,7 +405,7 @@ exports[`renders text with italic style 1`] = `
   allowFontScaling={true}
   collapsable={false}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -438,7 +438,7 @@ exports[`renders text with large size 1`] = `
   allowFontScaling={true}
   collapsable={false}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -471,7 +471,7 @@ exports[`renders text with letter spacing 1`] = `
   allowFontScaling={true}
   collapsable={false}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -504,7 +504,7 @@ exports[`renders text with line height override 1`] = `
   allowFontScaling={true}
   collapsable={false}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -537,7 +537,7 @@ exports[`renders text with lowercase transform 1`] = `
   allowFontScaling={true}
   collapsable={false}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -570,7 +570,7 @@ exports[`renders text with multiple properties 1`] = `
   allowFontScaling={true}
   collapsable={false}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -603,7 +603,7 @@ exports[`renders text with no additional props 1`] = `
   allowFontScaling={true}
   collapsable={false}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -636,7 +636,7 @@ exports[`renders text with regular style 1`] = `
   allowFontScaling={true}
   collapsable={false}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -669,7 +669,7 @@ exports[`renders text with reverseTheme false with reversible color 1`] = `
   allowFontScaling={true}
   collapsable={false}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -702,7 +702,7 @@ exports[`renders text with reverseTheme true with reversible color 1`] = `
   allowFontScaling={true}
   collapsable={false}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -735,7 +735,7 @@ exports[`renders text with small size 1`] = `
   allowFontScaling={true}
   collapsable={false}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -768,7 +768,7 @@ exports[`renders text with strikethough styling 1`] = `
   allowFontScaling={true}
   collapsable={false}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -804,7 +804,7 @@ exports[`renders text with uppercase transform 1`] = `
   allowFontScaling={true}
   collapsable={false}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -837,7 +837,7 @@ exports[`renders text with white color 1`] = `
   allowFontScaling={true}
   collapsable={false}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
