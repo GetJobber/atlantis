@@ -2,9 +2,9 @@ import { ViewStyle } from "react-native";
 
 export type ColumnKeys = "shrink" | "grow";
 
-export interface GridProps {
+export interface FlexProps {
   /**
-   * Determine how the children gets laid out on the grid. If there are more
+   * Determine how the children gets laid out on the flex grid. If there are more
    * Children than elements in the template, it will render multiple rows.
    *
    * **Supported keys**

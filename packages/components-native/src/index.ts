@@ -15,4 +15,4 @@ export * from "./ProgressBar";
 export * from "./Heading";
 export * from "./Chip";
 export * from "./ActionItem";
-export * from "./Grid";
+export * from "./Flex";

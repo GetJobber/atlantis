@@ -1,16 +1,16 @@
 import React, { Children, PropsWithChildren } from "react";
 import { View } from "react-native";
 import chunk from "lodash.chunk";
-import { columnStyles, gapStyles, styles } from "./Grid.styles";
-import { GridProps } from "./types";
+import { columnStyles, gapStyles, styles } from "./Flex.styles";
+import { FlexProps } from "./types";
 import { Content } from "../Content";
 
-export function Grid({
+export function Flex({
   template = [],
   align = "center",
   gap = "base",
   children,
-}: PropsWithChildren<GridProps>): JSX.Element {
+}: PropsWithChildren<FlexProps>): JSX.Element {
   if (template.length === 1) {
     console.warn("Please use <Content /> component for a stacked layout");
   }
@@ -53,9 +53,9 @@ function Row({
   align = "center",
   gap = "base",
   children,
-}: PropsWithChildren<GridProps>): JSX.Element {
+}: PropsWithChildren<FlexProps>): JSX.Element {
   return (
-    <View testID="ATL-Grid-Row" style={[styles.row, { alignItems: align }]}>
+    <View testID="ATL-Flex-Row" style={[styles.row, { alignItems: align }]}>
       {Children.map(children, (child, index) => (
         <View
           style={[
