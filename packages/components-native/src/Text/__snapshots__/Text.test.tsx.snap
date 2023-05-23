@@ -8,7 +8,7 @@ exports[`renders text supporting with no additional props 1`] = `
   collapsable={false}
   maxFontSizeMultiplier={1.1428571428571428}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -42,7 +42,7 @@ exports[`renders text supporting with variation success 1`] = `
   collapsable={false}
   maxFontSizeMultiplier={1.1428571428571428}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -76,7 +76,7 @@ exports[`renders text supporting with variation success reverseTheme true 1`] = 
   collapsable={false}
   maxFontSizeMultiplier={1.1428571428571428}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -111,7 +111,7 @@ exports[`renders text that is not scaled down with adjustsFontSize false 1`] = `
   maxFontSizeMultiplier={3.125}
   numberOfLines={4}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -146,7 +146,7 @@ exports[`renders text that is scaled down with adjustsFontSize true 1`] = `
   maxFontSizeMultiplier={3.125}
   numberOfLines={4}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -180,7 +180,7 @@ exports[`renders text with base variation 1`] = `
   collapsable={false}
   maxFontSizeMultiplier={3.125}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -214,7 +214,7 @@ exports[`renders text with center alignment 1`] = `
   collapsable={false}
   maxFontSizeMultiplier={3.125}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -248,7 +248,7 @@ exports[`renders text with error variation 1`] = `
   collapsable={false}
   maxFontSizeMultiplier={3.125}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -282,7 +282,7 @@ exports[`renders text with error variation reverseTheme true 1`] = `
   collapsable={false}
   maxFontSizeMultiplier={3.125}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -316,7 +316,7 @@ exports[`renders text with info variation 1`] = `
   collapsable={false}
   maxFontSizeMultiplier={3.125}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -350,7 +350,7 @@ exports[`renders text with left alignment 1`] = `
   collapsable={false}
   maxFontSizeMultiplier={3.125}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -384,7 +384,7 @@ exports[`renders text with no additional props 1`] = `
   collapsable={false}
   maxFontSizeMultiplier={3.125}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -418,7 +418,7 @@ exports[`renders text with right alignment 1`] = `
   collapsable={false}
   maxFontSizeMultiplier={3.125}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -452,7 +452,7 @@ exports[`renders text with subdued variation 1`] = `
   collapsable={false}
   maxFontSizeMultiplier={3.125}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -486,7 +486,7 @@ exports[`renders text with success variation 1`] = `
   collapsable={false}
   maxFontSizeMultiplier={3.125}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -520,7 +520,7 @@ exports[`renders text with success variation reverseTheme true 1`] = `
   collapsable={false}
   maxFontSizeMultiplier={3.125}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -554,7 +554,7 @@ exports[`renders text with warn variation 1`] = `
   collapsable={false}
   maxFontSizeMultiplier={3.125}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
@@ -588,7 +588,7 @@ exports[`renders with strikethrough styling 1`] = `
   collapsable={false}
   maxFontSizeMultiplier={3.125}
   selectable={true}
-  selectionColor="rgb(160, 215, 42)"
+  selectionColor="rgb(132, 234, 0)"
   style={
     [
       {
