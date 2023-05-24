@@ -189,7 +189,7 @@ describe("FormField", () => {
     });
 
     describe("without validation errors", () => {
-      it("should trigger onValidation with am empty string", () => {
+      it("should trigger onValidation with an empty string", () => {
         const validationHandler = jest.fn();
 
         render(
