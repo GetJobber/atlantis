@@ -5,7 +5,7 @@ import styles from "./Grid.css";
 import alignments from "./GridAlign.css";
 import { GridCell } from "./GridCell";
 
-interface GridProps {
+export interface GridProps {
   /**
    * Add spacing between elements.
    */

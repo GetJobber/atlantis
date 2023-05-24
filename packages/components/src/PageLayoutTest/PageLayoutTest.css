@@ -1,0 +1,15 @@
+.actionGroup {
+  /* flex: 1 0 auto; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.primaryAction {
+  flex: 0 0 auto;
+  margin-bottom: var(--space-small);
+}
+
+.actionButton {
+  flex: 0 0 auto;
+  margin-bottom: var(--space-small);
+}

@@ -1,0 +1,16 @@
+import { Canvas, Meta, Story } from "@storybook/addon-docs";
+import { TestComponent, TwoColumnPageLayoutTest } from ".";
+
+# Page Layout Test
+
+<Meta title="Components/PageLayoutTest" component={TwoColumnPageLayoutTest} />
+
+```ts
+import { TwoColumnPageLayoutTest } from "@jobber/components/PageLayoutTest";
+```
+
+<Canvas>
+  <Story name="PageLayoutTest" args={{ text: "Bob" }}>
+    {args => <TestComponent />}
+  </Story>
+</Canvas>
