@@ -1,15 +1,16 @@
 import React from "react";
-import { useStorybookApi, useStorybookState } from "@storybook/api";
+import { Story, useStorybookApi, useStorybookState } from "@storybook/api";
 import {
   SandpackCodeEditor,
   SandpackPreview,
   SandpackProvider,
 } from "@codesandbox/sandpack-react";
+import { Args } from "@storybook/addons";
 
 export function Playground() {
   const sbState = useStorybookState();
   const sbAPI = useStorybookApi();
-  const activeStory = sbAPI.getCurrentStoryData();
+  const activeStory = sbAPI.getCurrentStoryData() as Story;
 
   if (!activeStory) return <></>;
 
@@ -26,20 +27,13 @@ export function Playground() {
       }}
       options={{
         wrapContent: true,
-        visibleFiles: ["./Example.js"],
+        visibleFiles: ["/Example.js"],
         activeFile: "/Example.js",
       }}
       theme="dark"
       files={{
-        "/App.js": `import "@jobber/design/foundation.css";
-import { Example } from "./Example";\n
-export default function App() {
-  return <Example />
-}`,
-        "/Example.js": `import { Text } from "@jobber/components/Text";\n
-export function Example() {
-  return ${getSourceCode()}
-}`,
+        "/App.js": getAppJsCode(),
+        "/Example.js": getExampleJsCode(),
       }}
     >
       <SandpackPreview />
@@ -47,29 +41,51 @@ export function Example() {
     </SandpackProvider>
   );
 
-  function getSourceCode() {
-    const rawSourceCode = activeStory?.parameters?.storySource?.source;
+  function getExampleJsCode(): string {
+    return `${activeStory.parameters?.playground?.imports}
+
+export function Example() {
+  return ${getSourceCode(activeStory)}
+}`;
+  }
+}
+
+function getSourceCode(story: Story) {
+  const parameters = story?.parameters;
+
+  if (parameters && "storySource" in parameters) {
+    const rawSourceCode = parameters.storySource.source;
     const sourceCodeArr = RegExp("<((.*|\\n)*)>", "m").exec(rawSourceCode);
-    // eslint-disable-next-line no-new-func
+    const { attributes, args } = getAttributeProps(story);
+
     return sourceCodeArr?.[0]
-      .replace(" {...args}", getAttributeProps())
-      .replace("{args.children}", activeStory.args.children);
+      .replace(" {...args}", attributes)
+      .replace("{args.children}", args?.children);
+  }
+}
+
+function getAttributeProps(story: Story) {
+  let args: Args | undefined;
+  let attributes = "";
+
+  if ("args" in story && story.args) {
+    args = story.args;
+    const argsKeys = Object.keys(args);
+
+    attributes = argsKeys.reduce((currentArgs, arg) => {
+      if (arg === "children") return currentArgs;
+      return [currentArgs, ` ${arg}={${JSON.stringify(args[arg])}}`].join("");
+    }, "");
   }
 
-  function getAttributeProps() {
-    if ("args" in activeStory && activeStory.args) {
-      const args = activeStory.args;
-      const argsKeys = Object.keys(args);
+  return { attributes, args };
+}
 
-      return argsKeys
-        .reduce((currentArgs, arg) => {
-          if (arg === "children") return currentArgs;
-          return [currentArgs, ` ${arg}={${JSON.stringify(args[arg])}}`].join(
-            "",
-          );
-        }, "")
-        .trim();
-    }
-    return "";
-  }
+function getAppJsCode(): string {
+  return `import "@jobber/design/foundation.css";
+import { Example } from "./Example";
+
+export default function App() {
+  return <Example />
+}`;
 }
