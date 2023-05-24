@@ -1,22 +1,13 @@
-import { useResizeObserver } from "@jobber/hooks/useResizeObserver";
-import classnames from "classnames";
-import React, { useMemo, useRef, useState } from "react";
-import { render } from "react-dom";
-import styles from "./PageLayoutTest.css";
+import React, { useRef, useState } from "react";
 import { Button, ButtonProps } from "../Button";
 import { Content } from "../Content";
 import { DataTable } from "../DataTable";
 import { Grid, GridProps } from "../Grid";
 import { List } from "../List";
-import { Menu, SectionProps } from "../Menu";
-import pageStylesBase from "../Page/Page.css";
-import { Text } from "../Text";
+import { SectionProps } from "../Menu";
 // import classnames from "classnames";
 // import styles from "./PageLayoutTest.css";
 
-interface NewHeaderProps {
-  children: React.ReactElement<GridProps>;
-}
 // type test = React.PropsWithChildren<GridProps>;
 
 interface HeaderProp {
@@ -58,13 +49,7 @@ interface TwoColumnPageLayoutTestProps {
 //   primaryState: any;
 //   secondaryState: any;
 // }
-const Breakpoints = {
-  base: 768,
-  small: 490,
-  smaller: 0,
-  large: 1440,
-  larger: 1680,
-};
+
 const header: HeaderProp = {
   primaryAction: { label: "Send Food Alert", onClick: () => alert("🥨") },
   secondaryAction: { label: "Send Drink Alert", onClick: () => alert("🍹") },
@@ -115,9 +100,7 @@ export function TwoColumnPageLayoutTest({
     <Grid>
       <Grid.Cell size={primarySize}>{primary}</Grid.Cell>
       {secondary ? (
-        <Grid.Cell size={{ xs: 12, md: 4 }}>
-          <Secondary />
-        </Grid.Cell>
+        <Grid.Cell size={{ xs: 12, md: 4 }}>{secondary}</Grid.Cell>
       ) : (
         <Grid.Cell size={{ xs: 12 }}>
           <></>
