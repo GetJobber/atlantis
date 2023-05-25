@@ -146,8 +146,6 @@ export function Autocomplete({
     updateInput(newText);
     if (allowFreeForm) {
       onChange({ label: newText });
-    } else {
-      setMenuVisible(true);
     }
   }
 
