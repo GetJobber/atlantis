@@ -24,7 +24,7 @@ const customProperties = customPropertiesObject.customProperties;
 const resolvedCssVars = getResolvedCSSVars(customProperties);
 
 const jsonContent =
-  "export const JobberStyle = " + JSON.stringify(resolvedCssVars, undefined, 2);
+  "export const tokens = " + JSON.stringify(resolvedCssVars, undefined, 2);
 
 fs.writeFile("./foundation.js", jsonContent, "utf8", function (err) {
   if (err) {
@@ -280,13 +280,13 @@ function writeMobileFoundationFiles() {
     ...mobileLineHeightValues,
     ...mobileFontSizeValues,
   };
-  const androidFoundationsExportString = `export const JobberStyle = ${JSON.stringify(
+  const androidFoundationsExportString = `export const tokens = ${JSON.stringify(
     androidFoundationJobberStyle,
     undefined,
     2,
   )}`;
 
-  const iOSFoundationsExportString = `export const JobberStyle = ${JSON.stringify(
+  const iOSFoundationsExportString = `export const tokens = ${JSON.stringify(
     iOSFoundationJobberStyle,
     undefined,
     2,
