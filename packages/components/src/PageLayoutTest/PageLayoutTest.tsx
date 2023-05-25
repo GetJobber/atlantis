@@ -1,32 +1,13 @@
 import React, { useRef, useState } from "react";
-import { Button, ButtonProps } from "../Button";
+import { Button } from "../Button";
 import { Content } from "../Content";
 import { DataTable } from "../DataTable";
-import { Grid, GridProps } from "../Grid";
+import { Grid } from "../Grid";
 import { List } from "../List";
-import { SectionProps } from "../Menu";
 // import classnames from "classnames";
 // import styles from "./PageLayoutTest.css";
 
 // type test = React.PropsWithChildren<GridProps>;
-
-interface HeaderProp {
-  /**
-   * Page title primary action button settings.
-   */
-  readonly primaryAction?: ButtonProps;
-
-  /**
-   * Page title secondary action button settings.
-   *   Only shown if there is a primaryAction.
-   */
-  readonly secondaryAction?: ButtonProps;
-
-  /**
-   * Page title Action menu.
-   */
-  readonly moreActionsMenu?: SectionProps[];
-}
 
 interface TwoColumnPageLayoutTestProps {
   /**
@@ -50,48 +31,11 @@ interface TwoColumnPageLayoutTestProps {
 //   secondaryState: any;
 // }
 
-const header: HeaderProp = {
-  primaryAction: { label: "Send Food Alert", onClick: () => alert("🥨") },
-  secondaryAction: { label: "Send Drink Alert", onClick: () => alert("🍹") },
-  moreActionsMenu: [
-    {
-      actions: [
-        {
-          label: "Edit",
-          icon: "edit",
-          onClick: () => {
-            alert("✏️");
-          },
-        },
-      ],
-    },
-    {
-      header: "Send as...",
-      actions: [
-        {
-          label: "Text Message",
-          icon: "sms",
-          onClick: () => {
-            alert("📱");
-          },
-        },
-        {
-          label: "Email",
-          icon: "email",
-          onClick: () => {
-            alert("📨");
-          },
-        },
-      ],
-    },
-  ],
-};
-
 export function TwoColumnPageLayoutTest({
   primary,
   secondary,
 }: TwoColumnPageLayoutTestProps) {
-  const primarySize = { xs: 12, ...(secondary && { md: 8 }) };
+  const primarySize = { xs: 12 as const, ...(secondary && { md: 8 as const }) };
   const renders = useRef(0);
   renders.current += 1;
   console.log("main renders", renders.current);
