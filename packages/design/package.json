@@ -19,7 +19,7 @@
     "build:ts": "tsc --project .",
     "build:cssTypes": "tcm src/icons",
     "build:colors": "node buildColors.js",
-    "build:foundation": "node buildFoundation.js && node jobberStyle.js && npm run build:foundationTypes && npm run build:addFoundationExceptions && npm run build:removeTempFiles",
+    "build:foundation": "node buildFoundation.js && node resolveFoundationValues.js && npm run build:foundationTypes && npm run build:addFoundationExceptions && npm run build:removeTempFiles",
     "build:foundationTypes": "tsc --declaration --emitDeclarationOnly --allowJs foundation.js foundation.native.js foundation.android.js foundation.ios.js --outDir . --skipLibCheck",
     "build:addFoundationExceptions": "./scripts/addFoundationExceptions.sh",
     "build:removeTempFiles": "rm -f src/foundation.js && ./scripts/removeFoundationTempFiles.sh",
