@@ -16,4 +16,5 @@ export * from "./InputFieldWrapper";
 export * from "./ProgressBar";
 export * from "./StatusLabel";
 export * from "./Text";
+export * from "./Toast";
 export * from "./Typography";
