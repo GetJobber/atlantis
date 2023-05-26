@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.18.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.18.5...@jobber/components@4.18.6) (2023-05-26)
+
+
+### Bug Fixes
+
+* enable prefix and suffix on InputNumber ([#1289](https://github.com/GetJobber/atlantis/issues/1289)) ([ff02f7a](https://github.com/GetJobber/atlantis/commit/ff02f7ad2805d6473176fe1fe92064a330a4d2cb))
+
+
+
+
+
 ## [4.18.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.18.4...@jobber/components@4.18.5) (2023-05-26)
 
 **Note:** Version bump only for package @jobber/components
