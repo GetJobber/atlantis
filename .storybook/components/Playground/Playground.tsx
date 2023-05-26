@@ -1,7 +1,12 @@
 import React from "react";
-import { Story, useStorybookApi, useStorybookState } from "@storybook/api";
-import { Sandpack } from "@codesandbox/sandpack-react";
 import { Args } from "@storybook/addons";
+import { Story, useStorybookApi, useStorybookState } from "@storybook/api";
+import {
+  SandpackLayout,
+  SandpackPreview,
+  SandpackProvider,
+} from "@codesandbox/sandpack-react";
+import { PlaygroundEditor } from "./PlaygroundEditor";
 import "./Playground.css";
 
 export function Playground() {
@@ -15,7 +20,7 @@ export function Playground() {
   console.log("activeStory", activeStory);
 
   return (
-    <Sandpack
+    <SandpackProvider
       template="react"
       customSetup={{
         dependencies: {
@@ -38,7 +43,12 @@ export function Playground() {
         "/App.js": getAppJsCode(),
         "/Example.js": getExampleJsCode(),
       }}
-    />
+    >
+      <SandpackLayout>
+        <PlaygroundEditor />
+        <SandpackPreview style={{ height: "100vh" }} />
+      </SandpackLayout>
+    </SandpackProvider>
   );
 
   function getExampleJsCode(): string {
