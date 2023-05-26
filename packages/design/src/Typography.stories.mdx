@@ -7,7 +7,7 @@ import { Checkbox } from "@jobber/components/Checkbox";
 import { InputText } from "@jobber/components/InputText";
 import { Cell, Header, Row, Table } from "@jobber/components/Table";
 import { Tab, Tabs } from "@jobber/components/Tabs";
-import { JobberStyle } from "@jobber/design/foundation.native.js";
+import { tokens } from "@jobber/design/foundation.native.js";
 
 <Meta title="Design/Typography" />
 
@@ -154,14 +154,14 @@ a larger or smaller font-size depending on the use case.
 
 export function MobileExample({ of: mobileSize }) {
   const style = {
-    fontSize: JobberStyle[`typography--fontSize-${mobileSize}`],
+    fontSize: tokens[`typography--fontSize-${mobileSize}`],
     fontFamily: "Inter",
   };
   return <div style={style}>{mobileSize}</div>;
 }
 
 export function MobilePixelSize({ of: mobileSize }) {
-  const value = JobberStyle[`typography--fontSize-${mobileSize}`] + "px";
+  const value = tokens[`typography--fontSize-${mobileSize}`] + "px";
   return value;
 }
 
@@ -238,11 +238,9 @@ export function Value({ of: size }) {
 
 export function MobileLineHeightExample({ of: mobileLineHeight }) {
   const style = {
-    lineHeight:
-      JobberStyle[`typography--lineHeight-${mobileLineHeight}`] + "px",
+    lineHeight: tokens[`typography--lineHeight-${mobileLineHeight}`] + "px",
     fontFamily: "Inter",
   };
-  console.log(JobberStyle, mobileLineHeight);
   return (
     <div style={style}>
       Line-height, or leading, is the space between subsequent lines of type...
@@ -251,7 +249,7 @@ export function MobileLineHeightExample({ of: mobileLineHeight }) {
 }
 
 export function MobileLineHeightPixelSize({ of: mobileSize }) {
-  const value = JobberStyle[`typography--lineHeight-${mobileSize}`] + "px";
+  const value = tokens[`typography--lineHeight-${mobileSize}`] + "px";
   return value;
 }
 

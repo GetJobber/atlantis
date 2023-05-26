@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react-native";
 import { View, ViewStyle } from "react-native";
 import { ReactTestInstance } from "react-test-renderer";
-import { JobberStyle } from "@jobber/design/foundation";
+import { tokens } from "@jobber/design/foundation";
 import { Flex } from "./Flex";
 import { FlexProps, Spacing } from "./types";
 import { columnStyles } from "./Flex.styles";
@@ -39,11 +39,11 @@ function setUp(props?: FlexProps) {
 describe("Gap", () => {
   const gapTestCases: [Spacing, number][] = [
     ["none", 0],
-    ["smallest", JobberStyle["space-smallest"]],
-    ["smaller", JobberStyle["space-smaller"]],
-    ["small", JobberStyle["space-small"]],
-    ["base", JobberStyle["space-base"]],
-    ["large", JobberStyle["space-large"]],
+    ["smallest", tokens["space-smallest"]],
+    ["smaller", tokens["space-smaller"]],
+    ["small", tokens["space-small"]],
+    ["base", tokens["space-base"]],
+    ["large", tokens["space-large"]],
   ];
   it.each(gapTestCases)(
     "Should have a gap of %s around the children components",

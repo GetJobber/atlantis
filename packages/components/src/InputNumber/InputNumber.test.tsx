@@ -54,7 +54,7 @@ test("it should call the handler with a number value", () => {
   expect(changeHandler).toHaveBeenCalledWith(newValue);
 });
 
-test("it should call the validation with undefined as a success", () => {
+test("it should call the validation with empty string as a success", () => {
   const validationHandler = jest.fn();
 
   render(
@@ -67,7 +67,7 @@ test("it should call the validation with undefined as a success", () => {
     />,
   );
 
-  expect(validationHandler).toHaveBeenCalledWith(undefined);
+  expect(validationHandler).toHaveBeenCalledWith("");
 });
 
 test("it should call the validation with a range error", async () => {
@@ -167,7 +167,7 @@ test("validation passes if number is correct", async () => {
   input.blur();
 
   await waitFor(() => {
-    expect(validationHandler).toHaveBeenCalledWith(undefined);
+    expect(validationHandler).toHaveBeenCalledWith("");
   });
 });
 

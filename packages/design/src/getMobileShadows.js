@@ -4,13 +4,13 @@
 // Android can only access the shadowColor property and is otherwise reliant on
 // the more opinionated elevation:(https://reactnative.dev/docs/view-style-props#elevation-android).
 
-function getShadowStyles(baseJobberStyle) {
+function getShadowStyles(baseTokens) {
   const sharedStyles = {
-    "shadow-color": baseJobberStyle["color-black"],
+    "shadow-color": baseTokens["color-black"],
     "shadow-color-android": "rgba(0,0,0,0.9)",
     "shadow-high-color-android": "rgba(0,0,0,0.5)",
     "space-zero": 0,
-    "radius-small": baseJobberStyle["space-minuscule"],
+    "radius-small": baseTokens["space-minuscule"],
     // Elevation values for Android - these are not tokenized as they are extremely
     // context-dependent and should not be tied back to values like spacing
     "elevation-shadow-low": 2,
@@ -23,7 +23,7 @@ function getShadowStyles(baseJobberStyle) {
       shadowColor: sharedStyles["shadow-color"],
       shadowOffset: {
         width: sharedStyles["space-zero"],
-        height: baseJobberStyle["space-minuscule"],
+        height: baseTokens["space-minuscule"],
       },
       shadowOpacity: 0.2,
       shadowRadius: sharedStyles["radius-small"],
@@ -33,20 +33,20 @@ function getShadowStyles(baseJobberStyle) {
       shadowColor: sharedStyles["shadow-color"],
       shadowOffset: {
         width: sharedStyles["space-zero"],
-        height: baseJobberStyle["space-minuscule"],
+        height: baseTokens["space-minuscule"],
       },
       shadowOpacity: 0.16,
-      shadowRadius: baseJobberStyle["radius-large"],
+      shadowRadius: baseTokens["radius-large"],
       elevation: sharedStyles["elevation-shadow-base"],
     },
     "shadow-high": {
       shadowColor: sharedStyles["shadow-color"],
       shadowOffset: {
         width: sharedStyles["space-zero"],
-        height: baseJobberStyle["space-small"],
+        height: baseTokens["space-small"],
       },
       shadowOpacity: 0.125,
-      shadowRadius: baseJobberStyle["space-base"],
+      shadowRadius: baseTokens["space-base"],
       elevation: sharedStyles["elevation-shadow-high"],
     },
   };
