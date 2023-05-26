@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.19.0...@jobber/components-native@0.20.0) (2023-05-26)
+
+
+### Features
+
+* **components-native:** Import InputPressable to components-native ([#1281](https://github.com/GetJobber/atlantis/issues/1281)) ([c7af05a](https://github.com/GetJobber/atlantis/commit/c7af05a6745d25b1c8e103fbb4beaa6f49c25144))
+
+
+
+
+
 # [0.19.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.18.0...@jobber/components-native@0.19.0) (2023-05-23)
 
 
