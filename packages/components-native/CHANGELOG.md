@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.20.0...@jobber/components-native@0.20.1) (2023-05-26)
+
+
+### Bug Fixes
+
+* use tokens instead of JobberStyle on InputPressable ([#1288](https://github.com/GetJobber/atlantis/issues/1288)) ([df9ffd7](https://github.com/GetJobber/atlantis/commit/df9ffd7fc69f7ae8b0fc349f093ea754a32c2da4))
+
+
+
+
+
 # [0.20.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.19.0...@jobber/components-native@0.20.0) (2023-05-26)
 
 
