@@ -58,7 +58,7 @@ async function generatePRComment({
     }),
   );
 
-  return `Published Pre-release for ${process.env.COMMIT_SHA} with versions:\n\`\`\`\n${releaseString}\`\`\`\n\nTo install the new version(s) for Web run:\n\`\`\`\nnpm install ${webInstallString}\n\`\`\`\n\nTo install the new version(s) for Web run:\n\`\`\`\nnpm install ${mobileInstallString}\n\`\`\``;
+  return `Published Pre-release for ${process.env.COMMIT_SHA} with versions:\n\`\`\`\n${releaseString}\`\`\`\n\nTo install the new version(s) for Web run:\n\`\`\`\nnpm install ${webInstallString}\n\`\`\`\n\nTo install the new version(s) for Mobile run:\n\`\`\`\nnpm install ${mobileInstallString}\n\`\`\``;
 }
 
 async function getPRs({ github, repo, owner, ref }) {

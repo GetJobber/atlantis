@@ -1,8 +1,5 @@
 :root {
   /* Jobber Semantic Layer */
-  /* Trigger both mobile and web changes /*
-  /* Re-Trigger both mobile and web changes /*
-
 
   /* Interactive and States */
   --color-interactive: var(--color-green);
