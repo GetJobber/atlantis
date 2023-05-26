@@ -269,26 +269,26 @@ function writeMobileFoundationFiles() {
   const { androidShadows, iOSShadows } = getShadowStyles(resolvedCssVars);
   const mobileLineHeightValues = getMobileLineHeights();
   const mobileFontSizeValues = getMobileFontSizes();
-  const androidFoundationJobberStyle = {
+  const androidFoundationTokens = {
     ...resolvedCssVars,
     ...androidShadows,
     ...mobileLineHeightValues,
     ...mobileFontSizeValues,
   };
-  const iOSFoundationJobberStyle = {
+  const iOSFoundationTokens = {
     ...resolvedCssVars,
     ...iOSShadows,
     ...mobileLineHeightValues,
     ...mobileFontSizeValues,
   };
   const androidFoundationsExportString = `export const tokens = ${JSON.stringify(
-    androidFoundationJobberStyle,
+    androidFoundationTokens,
     undefined,
     2,
   )}`;
 
   const iOSFoundationsExportString = `export const tokens = ${JSON.stringify(
-    iOSFoundationJobberStyle,
+    iOSFoundationTokens,
     undefined,
     2,
   )}`;
