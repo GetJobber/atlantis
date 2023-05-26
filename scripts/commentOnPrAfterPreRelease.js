@@ -45,13 +45,20 @@ async function generatePRComment({
       return `  - ${packageName}@${version}\n`;
     })
     .join("");
-  const toInstallString = summaryFileJson
-    .map(releaseSummary => {
-      const { packageName, version } = releaseSummary;
-      return `${packageName}@${version}`;
-    })
-    .join(" ");
-  return `Published Pre-release for ${process.env.COMMIT_SHA} with versions:\n\`\`\`\n${releaseString}\`\`\`\n\nTo install the new version(s) run:\n\`\`\`\nnpm install ${toInstallString}\n\`\`\``;
+  const webInstallString = getInstallPackageString(
+    summaryFileJson.filter(releaseSummary => {
+      const { packageName } = releaseSummary;
+      return packageName !== "components-native";
+    }),
+  );
+  const mobileInstallString = getInstallPackageString(
+    summaryFileJson.filter(releaseSummary => {
+      const { packageName } = releaseSummary;
+      return packageName !== "components";
+    }),
+  );
+
+  return `Published Pre-release for ${process.env.COMMIT_SHA} with versions:\n\`\`\`\n${releaseString}\`\`\`\n\nTo install the new version(s) for Web run:\n\`\`\`\nnpm install ${webInstallString}\n\`\`\`\n\nTo install the new version(s) for Web run:\n\`\`\`\nnpm install ${mobileInstallString}\n\`\`\``;
 }
 
 async function getPRs({ github, repo, owner, ref }) {
@@ -115,4 +122,13 @@ function quotePreviousComment(previousCommentBody) {
       return `> ${commentBodyLine}`;
     })
     .join("\n");
+}
+
+function getInstallPackageString(packages) {
+  return packages
+    .map(releaseSummary => {
+      const { packageName, version } = releaseSummary;
+      return `${packageName}@${version}`;
+    })
+    .join(" ");
 }
