@@ -1,0 +1,8 @@
+.playground-wrapper {
+  --sp-layout-height: 100%;
+}
+
+.playground-wrapper,
+.playground-layout {
+  height: var(--sp-layout-height);
+}
