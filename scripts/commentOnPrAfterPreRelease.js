@@ -48,13 +48,13 @@ async function generatePRComment({
   const webInstallString = getInstallPackageString(
     summaryFileJson.filter(releaseSummary => {
       const { packageName } = releaseSummary;
-      return packageName !== "components-native";
+      return packageName !== "@jobber/components-native";
     }),
   );
   const mobileInstallString = getInstallPackageString(
     summaryFileJson.filter(releaseSummary => {
       const { packageName } = releaseSummary;
-      return packageName !== "components";
+      return packageName !== "@jobber/components";
     }),
   );
 
