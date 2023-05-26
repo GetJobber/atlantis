@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.18.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.18.3...@jobber/components@4.18.4) (2023-05-26)
+
+
+### Bug Fixes
+
+* **components:** Prevent menu from appearing onChange in freeform Autocomplete fields ([#1284](https://github.com/GetJobber/atlantis/issues/1284)) ([ca63359](https://github.com/GetJobber/atlantis/commit/ca633596d8743ba7e9eaac396f65df3a9991fe58))
+
+
+
+
+
+## [4.18.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.18.2...@jobber/components@4.18.3) (2023-05-25)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 ## [4.18.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.18.1...@jobber/components@4.18.2) (2023-05-23)
 
 **Note:** Version bump only for package @jobber/components

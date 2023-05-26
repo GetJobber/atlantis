@@ -13,6 +13,7 @@ export * from "./Heading";
 export * from "./Icon";
 export * from "./IconButton";
 export * from "./InputFieldWrapper";
+export * from "./InputPressable";
 export * from "./InputText";
 export * from "./ProgressBar";
 export * from "./StatusLabel";
