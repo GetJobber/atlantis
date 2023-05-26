@@ -37,17 +37,17 @@
   --color-inactive--onSurface: var(--color-blue--dark);
 
   /* Typography */
-  --color-heading: var(--color-blue);
-  --color-text: var(--color-greyBlue--dark);
+  --color-heading: var(--color-teal);
+  --color-text: var(--color-teal--dark);
   --color-text--secondary: var(--color-greyBlue);
   --color-text--reverse: var(--color-white);
   --color-text--reverse--secondary: var(--color-greyBlue--lighter);
 
   /* Surfaces and Borders */
-  --color-surface: var(--color-white);
+  --color-surface: var(--color-pink);
   --color-surface--hover: var(--color-yellow--lightest);
   --color-surface--active: var(--color-green--lightest);
-  --color-surface--background: var(--color-grey--lightest);
+  --color-surface--background: var(--color-pink--lightest);
   --color-surface--reverse: var(--color-blue);
 
   --color-border: var(--color-grey--lighter);
