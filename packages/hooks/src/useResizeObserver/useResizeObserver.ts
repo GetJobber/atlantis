@@ -3,11 +3,7 @@ import { useMemo, useState } from "react";
 // eslint-disable-next-line import/no-internal-modules
 import useResizeObserverPackage from "use-resize-observer/polyfilled";
 import { throttle } from "lodash";
-// @custom-media --small-screens-and-below (width < 490px);
-// @custom-media --small-screens-and-up (width >=490px);
-// @custom-media --medium-screens-and-up (width >=768px);
-// @custom-media --large-screens-and-up (width >=1440px);
-// @custom-media --extra-large-screens-and-up (width >=1680px);
+
 export const Breakpoints = {
   base: 640,
   small: 500,

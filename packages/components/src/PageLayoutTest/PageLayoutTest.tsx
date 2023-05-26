@@ -4,32 +4,18 @@ import { Content } from "../Content";
 import { DataTable } from "../DataTable";
 import { Grid } from "../Grid";
 import { List } from "../List";
-// import classnames from "classnames";
-// import styles from "./PageLayoutTest.css";
-
-// type test = React.PropsWithChildren<GridProps>;
 
 interface TwoColumnPageLayoutTestProps {
   /**
-   * Styles the text bold and uppercased
-   * @default false
+   * The primary content in the layout
    */
   readonly primary: React.ReactNode;
 
   /**
-   * Text to display.
+   * Secondary content
    */
   readonly secondary?: React.ReactNode;
-
-  // readonly header: NewHeaderProps;
 }
-
-// interface TwoColumnPageLayoutRef {
-//   openSecondary: () => void;
-//   closeSecondary: () => void;
-//   primaryState: any;
-//   secondaryState: any;
-// }
 
 export function TwoColumnPageLayoutTest({
   primary,
@@ -53,17 +39,6 @@ export function TwoColumnPageLayoutTest({
     </Grid>
   );
 }
-
-// function UsingComponent() {
-//   const [state, setState] = useState();
-
-//   return (
-//     <TwoColumnPageLayoutTest
-//       primary={<Primary onUpdate={setState} onUpdate={setState} />}
-//       secondary={state.showSecondary && <Secondary state={state} />}
-//     />
-//   );
-// }
 
 export function Secondary({
   toggle,
@@ -243,15 +218,13 @@ export function Primary({
   );
 }
 
-const MemoPrimary = React.memo(Primary);
-const MemoSecondary = React.memo(Secondary);
 export function TestComponent() {
   const [showSecondary, setShowSecondary] = useState(false);
   const [shared, setShared] = useState(0);
   return (
     <TwoColumnPageLayoutTest
       primary={
-        <MemoPrimary
+        <Primary
           toggle={() => setShowSecondary(oldValue => !oldValue)}
           shared={shared}
           inc={() => setShared(o => o + 1)}
@@ -259,7 +232,7 @@ export function TestComponent() {
       }
       secondary={
         showSecondary && (
-          <MemoSecondary
+          <Secondary
             toggle={() => setShowSecondary(oldValue => !oldValue)}
             inc={() => setShared(o => o + 1)}
             shared={shared}
