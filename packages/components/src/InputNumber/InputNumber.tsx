@@ -17,6 +17,8 @@ interface InputNumberProps
       | "readonly"
       | "defaultValue"
       | "keyboard"
+      | "prefix"
+      | "suffix"
     > {
   value?: number;
 }
