@@ -7,7 +7,10 @@ export default {
   component: Text,
   parameters: {
     viewMode: "story",
-    previewTabs: { "storybook/docs/panel": { hidden: true } },
+    previewTabs: {
+      "storybook/docs/panel": { hidden: true },
+      "playground-tab": { hidden: false },
+    },
     playground: {
       imports: `import { Text } from "@jobber/components/Text";`,
     },

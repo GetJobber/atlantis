@@ -7,7 +7,6 @@ import { DocsWithSidebar } from "./components/DocsWithSidebar";
 import { CustomCanvas } from "./components/CustomCanvas";
 import { SBProvider } from "./components/SBProvider";
 
-
 import "@jobber/design/foundation.css";
 import "./assets/css/preview.css";
 
@@ -19,6 +18,7 @@ try {
 
 export const parameters = {
   viewMode: "docs",
+  previewTabs: { "playground-tab": { hidden: true } },
   controls: {
     expanded: true,
     sort: "alpha",
@@ -51,4 +51,4 @@ export const decorators = [
       <Story />
     </SBProvider>
   ),
-]
+];
