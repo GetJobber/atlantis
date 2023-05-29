@@ -7,6 +7,7 @@ export * from "./Card";
 export * from "./Chip";
 export * from "./Content";
 export * from "./Divider";
+export * from "./EmptyState";
 export * from "./ErrorMessageWrapper";
 export * from "./Flex";
 export * from "./Heading";
