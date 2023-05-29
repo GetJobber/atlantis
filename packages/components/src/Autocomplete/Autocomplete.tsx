@@ -147,7 +147,6 @@ export function Autocomplete({
     if (allowFreeForm) {
       onChange({ label: newText });
     }
-    setMenuVisible(true);
   }
 
   function handleInputBlur() {

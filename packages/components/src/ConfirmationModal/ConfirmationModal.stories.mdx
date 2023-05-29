@@ -50,14 +50,32 @@ import {
 
 ## Design & usage guidelines
 
-ConfirmationModals should be used to confirm or cancel an action the user is
+`ConfirmationModals` should be used to confirm or cancel an action the user is
 performing.
 
-- Ensure that you are labeling the buttons with appropriate verbs. For example:
-  "Are you sure you want to delete" should have a label of "Delete" which is the
-  action that will be performed.
-- It's good to identify the Object that is being acted upon. For example: "Are
-  you sure you want to delete the user: Bub"
+Keep language in a `confirmationModal` clear, concise, and consistent.
+
+Verbs in the title should directly relate to the `confirmLabel`.
+
+| **✅ Do**                    | **❌ Don't**        |
+| ---------------------------- | ------------------- |
+| **Discard unsaved changes?** | **Cancel editing?** |
+| Cancel / Discard             | No / Yes            |
+
+Only use **Cancel** as a label to allow the user to exit the current action.
+
+| **✅ Do**             | **❌ Don't**            |
+| --------------------- | ----------------------- |
+| **Stop file upload?** | **Cancel file upload?** |
+| Cancel / Stop         | Exit / Cancel           |
+
+Avoid using generic or verbose titles.
+
+| **✅ Do**                                           | **❌ Don't**                                        |
+| --------------------------------------------------- | --------------------------------------------------- |
+| **Delete job #2121?**                               | **Are you sure?**                                   |
+| Deleting this job will remove all associated visits | Deleting this job will remove all associated visits |
+| Cancel / Delete Job                                 | Cancel / Delete Job                                 |
 
 ## Props
 
