@@ -1,6 +1,10 @@
 import React from "react";
 import { Story, useStorybookApi, useStorybookState } from "@storybook/api";
-import { Sandpack } from "@codesandbox/sandpack-react";
+import {
+  SandpackCodeEditor,
+  SandpackPreview,
+  SandpackProvider,
+} from "@codesandbox/sandpack-react";
 import { Args } from "@storybook/addons";
 import "./Playground.css";
 
@@ -14,8 +18,11 @@ export function Playground() {
   console.log("sbState", sbState);
   console.log("activeStory", activeStory);
 
+  const importsString = activeStory.parameters?.playground?.imports;
+  const canPreview = Boolean(importsString);
+
   return (
-    <Sandpack
+    <SandpackProvider
       template="react-ts"
       customSetup={{
         dependencies: {
@@ -23,30 +30,29 @@ export function Playground() {
         },
       }}
       options={{
-        wrapContent: true,
         visibleFiles: ["/Example.tsx"],
         activeFile: "/Example.tsx",
-        showLineNumbers: true,
-        editorWidthPercentage: 40,
-        classes: {
-          "sp-wrapper": "playground-wrapper",
-          "sp-layout": "playground-layout",
-        },
       }}
       theme="dark"
       files={{
         "/App.tsx": getAppJsCode(),
         "/Example.tsx": getExampleJsCode(),
       }}
-    />
+    >
+      {canPreview && <SandpackPreview />}
+      <SandpackCodeEditor
+        showLineNumbers={true}
+        showInlineErrors={true}
+        readOnly={!canPreview}
+      />
+    </SandpackProvider>
   );
 
   function getExampleJsCode(): string {
-    return `${activeStory.parameters?.playground?.imports}
-
-export function Example() {
+    const exampleComponent = `export function Example() {
   return ${getSourceCode(activeStory)}
 }`;
+    return [importsString, exampleComponent].filter(Boolean).join("\n\n");
   }
 }
 
@@ -74,7 +80,7 @@ function getAttributeProps(story: Story) {
 
     attributes = argsKeys.reduce((currentArgs, arg) => {
       if (arg === "children") return currentArgs;
-      return [currentArgs, ` ${arg}={${JSON.stringify(args[arg])}}`].join("");
+      return [currentArgs, ` ${arg}={${args?.[arg]}}`].join("");
     }, "");
   }
 
