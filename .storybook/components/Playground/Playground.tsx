@@ -16,7 +16,7 @@ export function Playground() {
 
   return (
     <Sandpack
-      template="react"
+      template="react-ts"
       customSetup={{
         dependencies: {
           "@jobber/components": "*",
@@ -24,8 +24,8 @@ export function Playground() {
       }}
       options={{
         wrapContent: true,
-        visibleFiles: ["/Example.js"],
-        activeFile: "/Example.js",
+        visibleFiles: ["/Example.tsx"],
+        activeFile: "/Example.tsx",
         showLineNumbers: true,
         editorWidthPercentage: 40,
         classes: {
@@ -35,8 +35,8 @@ export function Playground() {
       }}
       theme="dark"
       files={{
-        "/App.js": getAppJsCode(),
-        "/Example.js": getExampleJsCode(),
+        "/App.tsx": getAppJsCode(),
+        "/Example.tsx": getExampleJsCode(),
       }}
     />
   );
