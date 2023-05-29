@@ -80,7 +80,12 @@ function getAttributeProps(story: Story) {
 
     attributes = argsKeys.reduce((currentArgs, arg) => {
       if (arg === "children") return currentArgs;
-      return [currentArgs, ` ${arg}={${args?.[arg]}}`].join("");
+      const rawArgValue = args?.[arg];
+      const argValue =
+        typeof rawArgValue === "string"
+          ? `"${rawArgValue}"`
+          : `{${rawArgValue}}`;
+      return [currentArgs, ` ${arg}=${argValue}`].join("");
     }, "");
   }
 
