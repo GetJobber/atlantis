@@ -39,10 +39,6 @@ module.exports = {
         ],
       },
     ],
-    "jest/expect-expect": [
-      "error",
-      { assertFunctionNames: ["expect", "expectToastWithMessage"] },
-    ],
   },
   overrides: [
     {
