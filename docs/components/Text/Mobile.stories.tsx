@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Text } from "@jobber/components-native";
-import { JobberStyle } from "@jobber/design/foundation";
+import { tokens } from "@jobber/design/foundation";
 
 export default {
   title: "Components/Text/Mobile",
@@ -9,6 +9,10 @@ export default {
   parameters: {
     viewMode: "story",
     previewTabs: { "storybook/docs/panel": { hidden: true } },
+    playground: {
+      type: "react-native",
+      imports: `import { Text } from "@jobber/components-native";`,
+    },
   },
 } as ComponentMeta<typeof Text>;
 
@@ -28,11 +32,11 @@ ReverseTheme.parameters = {
     values: [
       {
         name: "dark",
-        value: JobberStyle["color-surface--reverse"],
+        value: tokens["color-surface--reverse"],
       },
       {
         name: "light",
-        value: JobberStyle["color-surface"],
+        value: tokens["color-surface"],
       },
     ],
   },
