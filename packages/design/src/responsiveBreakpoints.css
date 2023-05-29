@@ -1,5 +1,5 @@
 @custom-media --small-screens-and-below (width < 490px);
 @custom-media --small-screens-and-up (width >=490px);
 @custom-media --medium-screens-and-up (width >=768px);
-@custom-media --large-screens-and-up (width >=1440px);
-@custom-media --extra-large-screens-and-up (width >=1680px);
+@custom-media --large-screens-and-up (width >=1080);
+@custom-media --extra-large-screens-and-up (width >=1440);
