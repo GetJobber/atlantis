@@ -1,20 +1,19 @@
 import React from "react";
 import { Platform } from "react-native";
-// eslint-disable-next-line no-restricted-imports
 import { Switch } from "react-native-gesture-handler";
-import { useFormController } from "./hooks/useFormController";
+import { useFormController } from "../../../hooks";
 import { tokens } from "../../../utils/design";
 
 export interface BaseSwitchProps {
   /**
    * Value of the switch
    */
-  value?: boolean;
+  readonly value?: boolean;
 
   /**
    * Default value of the switch when uncontrolled
    */
-  defaultValue?: boolean;
+  readonly defaultValue?: boolean;
 
   /**
    * Callback to handle value changes
@@ -24,12 +23,12 @@ export interface BaseSwitchProps {
   /**
    * When true, the switch cannot be toggled
    */
-  disabled?: boolean;
+  readonly disabled?: boolean;
 
   /**
    * Accessibility label for this switch
    */
-  accessibilityLabel?: string;
+  readonly accessibilityLabel?: string;
 
   /**
    * Name of the input.
