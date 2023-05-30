@@ -8,10 +8,9 @@ export default {
   component: Text,
   parameters: {
     viewMode: "story",
-    previewTabs: { "storybook/docs/panel": { hidden: true } },
-    playground: {
-      type: "react-native",
-      imports: `import { Text } from "@jobber/components-native";`,
+    previewTabs: {
+      "storybook/docs/panel": { hidden: true },
+      "playground-tab": { hidden: false },
     },
   },
 } as ComponentMeta<typeof Text>;

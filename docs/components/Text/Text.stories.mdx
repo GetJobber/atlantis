@@ -1,13 +1,7 @@
 import { Canvas, Meta } from "@storybook/addon-docs";
-import {
-  SandpackCodeEditor,
-  SandpackPreview,
-  SandpackProvider,
-} from "@codesandbox/sandpack-react";
 import { Text } from "@jobber/components/Text";
 import { Checkbox } from "@jobber/components/Checkbox";
 import { Content } from "@jobber/components/Content";
-import { Card } from "@jobber/components/Card";
 
 <Meta title="Components/Text/Docs" component={Text} />
 
@@ -19,36 +13,9 @@ Text is used to add an additional visual meaning on your content
 
 The default styling of a text is used as the body text for almost everything.
 
-<Card>
-  <SandpackProvider
-    template="react"
-    customSetup={{
-      dependencies: {
-        "@jobber/components": "*",
-      },
-    }}
-    options={{
-      wrapContent: true,
-      visibleFiles: ["./Example.js"],
-      activeFile: "/Example.js",
-    }}
-    theme="dark"
-    files={{
-      "/App.js": `import "@jobber/design/foundation.css";
-import { Example } from "./Example";\n
-export default function App() {
-  return <Example />
-}`,
-      "/Example.js": `import { Text } from "@jobber/components/Text";\n
-export function Example() {
-  return <Text>Ask the information you need upfront from clients and new leads</Text>
-}`,
-    }}
-  >
-    <SandpackPreview />
-    <SandpackCodeEditor />
-  </SandpackProvider>
-</Card>
+<Canvas>
+  <Text>Ask the information you need upfront from clients and new leads</Text>
+</Canvas>
 
 ### Subdued
 
