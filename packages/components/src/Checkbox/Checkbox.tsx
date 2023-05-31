@@ -2,12 +2,7 @@ import React, { ChangeEvent, ReactElement, useEffect, useState } from "react";
 import { v1 as uuidv1 } from "uuid";
 import classnames from "classnames";
 import { XOR } from "ts-xor";
-import {
-  Controller,
-  RegisterOptions,
-  useForm,
-  useFormContext,
-} from "react-hook-form";
+import { Controller, useForm, useFormContext } from "react-hook-form";
 import styles from "./Checkbox.css";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
@@ -55,12 +50,6 @@ interface BaseCheckboxProps {
   onChange?(newValue: boolean): void;
 
   onFocus?(): void;
-
-  /**
-   * Show an error message above the field. This also
-   * highlights the the field red if an error message shows up.
-   */
-  readonly validations?: RegisterOptions;
 }
 
 interface CheckboxLabelProps extends BaseCheckboxProps {
@@ -89,7 +78,6 @@ export function Checkbox({
   indeterminate = false,
   description,
   children,
-  validations,
   onChange,
   onFocus,
 }: CheckboxProps) {
@@ -130,7 +118,6 @@ export function Checkbox({
     <Controller
       control={control}
       name={controlledName}
-      rules={{ ...validations }}
       defaultValue={defaultChecked}
       render={({
         field: { onChange: onControllerChange, name: controllerName, ...rest },
@@ -139,7 +126,7 @@ export function Checkbox({
           ...rest,
           id: identifier,
           className: inputClassName,
-          name: (validations || name) && controllerName,
+          name: name && controllerName,
           onChange: handleChange,
           disabled: disabled,
         };
