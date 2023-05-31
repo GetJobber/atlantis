@@ -55,7 +55,7 @@ jest.mock("../hooks/useIsScreenReaderEnabled", () => ({
 
 // By default React Native mocks the return value of `addEventListener` using
 // jest.fn(). See https://github.com/facebook/react-native/blob/0.69-stable/jest/setup.js#L124
-// This provides an implementation of .remove for useEffect's that do sbuscribe and
+// This provides an implementation of .remove for useEffect's that do subscribe and
 // call .remove on tear down.
 jest.spyOn(ReactNative.AccessibilityInfo, "addEventListener").mockReturnValue({
   remove: jest.fn(),
