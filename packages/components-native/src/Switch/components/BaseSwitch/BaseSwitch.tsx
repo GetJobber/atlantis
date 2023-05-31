@@ -46,7 +46,6 @@ export function BaseSwitch({
 }: BaseSwitchProps): JSX.Element {
   const { field } = useFormController({
     name,
-    // value: value,
     value: value ?? defaultValue,
   });
 
