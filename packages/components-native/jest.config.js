@@ -4,7 +4,7 @@ module.exports = {
   preset: "react-native",
   setupFiles: [
     "../../node_modules/react-native-gesture-handler/jestSetup.js",
-    "./jestAttemptOne.js",
+    "./jestSafeAreaContext.js",
   ],
   setupFilesAfterEnv: [
     "./jestMobileSetupConfig.js",
