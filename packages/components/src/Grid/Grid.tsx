@@ -21,7 +21,9 @@ interface GridProps {
   /**
    * Array of `Grid.Cell` children
    */
-  readonly children: Array<ReactElement<GridCellProps>>;
+  readonly children:
+    | Array<ReactElement<GridCellProps>>
+    | ReactElement<GridCellProps>;
 }
 
 export const GRID_TEST_ID = "ATL-Grid";
