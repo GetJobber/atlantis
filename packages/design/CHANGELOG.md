@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.41.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.41.1...@jobber/design@0.41.2) (2023-05-29)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.41.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.41.0...@jobber/design@0.41.1) (2023-05-26)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+# [0.41.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.40.0...@jobber/design@0.41.0) (2023-05-23)
+
+
+### Features
+
+* **design:** change colour code for brand--highlight ([#1280](https://github.com/GetJobber/atlantis/issues/1280)) ([ce44b13](https://github.com/GetJobber/atlantis/commit/ce44b13d728dc305c73e12e1190c28582a651c4f))
+
+
+
+
+
 # [0.40.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.39.0...@jobber/design@0.40.0) (2023-05-19)
 
 **Note:** Version bump only for package @jobber/design

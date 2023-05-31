@@ -4,11 +4,11 @@
 }
 
 .gap {
-  gap: var(--space-small);
+  gap: var(--space-base);
 }
 
 @media (--medium-screens-and-up) {
   .gap {
-    gap: var(--space-base);
+    gap: var(--space-large);
   }
 }

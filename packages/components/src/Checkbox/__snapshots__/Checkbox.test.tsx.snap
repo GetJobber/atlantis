@@ -18,6 +18,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 1`]
               aria-label="Foo"
               checked=""
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440005"
               type="checkbox"
               value=""
             />
@@ -64,6 +65,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 1`]
             aria-label="Foo"
             checked=""
             class="input indeterminate"
+            id="123e4567-e89b-12d3-a456-426655440005"
             type="checkbox"
             value=""
           />
@@ -167,6 +169,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 2`]
               aria-label="Foo"
               checked=""
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440005"
               type="checkbox"
               value=""
             />
@@ -211,6 +214,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 2`]
             <input
               aria-label="Foo"
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440006"
               type="checkbox"
               value=""
             />
@@ -256,6 +260,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 2`]
           <input
             aria-label="Foo"
             class="input indeterminate"
+            id="123e4567-e89b-12d3-a456-426655440006"
             type="checkbox"
             value=""
           />
@@ -359,6 +364,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
               aria-label="Foo"
               checked=""
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440005"
               type="checkbox"
               value=""
             />
@@ -403,6 +409,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
             <input
               aria-label="Foo"
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440006"
               type="checkbox"
               value=""
             />
@@ -448,6 +455,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
               aria-label="Foo"
               checked=""
               class="input"
+              id="123e4567-e89b-12d3-a456-426655440007"
               type="checkbox"
               value=""
             />
@@ -494,6 +502,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
             aria-label="Foo"
             checked=""
             class="input"
+            id="123e4567-e89b-12d3-a456-426655440007"
             type="checkbox"
             value=""
           />
@@ -597,6 +606,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
               aria-label="Foo"
               checked=""
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440005"
               type="checkbox"
               value=""
             />
@@ -641,6 +651,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
             <input
               aria-label="Foo"
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440006"
               type="checkbox"
               value=""
             />
@@ -686,6 +697,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
               aria-label="Foo"
               checked=""
               class="input"
+              id="123e4567-e89b-12d3-a456-426655440007"
               type="checkbox"
               value=""
             />
@@ -730,6 +742,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
             <input
               aria-label="Foo"
               class="input"
+              id="123e4567-e89b-12d3-a456-426655440008"
               type="checkbox"
               value=""
             />
@@ -775,6 +788,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
           <input
             aria-label="Foo"
             class="input"
+            id="123e4567-e89b-12d3-a456-426655440008"
             type="checkbox"
             value=""
           />
@@ -878,6 +892,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
               aria-label="Foo"
               checked=""
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440005"
               type="checkbox"
               value=""
             />
@@ -922,6 +937,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
             <input
               aria-label="Foo"
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440006"
               type="checkbox"
               value=""
             />
@@ -967,6 +983,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
               aria-label="Foo"
               checked=""
               class="input"
+              id="123e4567-e89b-12d3-a456-426655440007"
               type="checkbox"
               value=""
             />
@@ -1011,6 +1028,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
             <input
               aria-label="Foo"
               class="input"
+              id="123e4567-e89b-12d3-a456-426655440008"
               type="checkbox"
               value=""
             />
@@ -1056,8 +1074,9 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
               aria-label="Foo"
               checked=""
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440009"
               type="checkbox"
-              value=""
+              value="true"
             />
             <span
               class="checkBox"
@@ -1102,8 +1121,9 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
             aria-label="Foo"
             checked=""
             class="input indeterminate"
+            id="123e4567-e89b-12d3-a456-426655440009"
             type="checkbox"
-            value=""
+            value="true"
           />
           <span
             class="checkBox"
@@ -1205,6 +1225,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               aria-label="Foo"
               checked=""
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440005"
               type="checkbox"
               value=""
             />
@@ -1249,6 +1270,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
             <input
               aria-label="Foo"
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440006"
               type="checkbox"
               value=""
             />
@@ -1294,6 +1316,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               aria-label="Foo"
               checked=""
               class="input"
+              id="123e4567-e89b-12d3-a456-426655440007"
               type="checkbox"
               value=""
             />
@@ -1338,6 +1361,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
             <input
               aria-label="Foo"
               class="input"
+              id="123e4567-e89b-12d3-a456-426655440008"
               type="checkbox"
               value=""
             />
@@ -1383,8 +1407,9 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               aria-label="Foo"
               checked=""
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440009"
               type="checkbox"
-              value=""
+              value="true"
             />
             <span
               class="checkBox"
@@ -1427,8 +1452,9 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
             <input
               aria-label="Foo"
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440010"
               type="checkbox"
-              value=""
+              value="false"
             />
             <span
               class="checkBox"
@@ -1472,8 +1498,9 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
           <input
             aria-label="Foo"
             class="input indeterminate"
+            id="123e4567-e89b-12d3-a456-426655440010"
             type="checkbox"
-            value=""
+            value="false"
           />
           <span
             class="checkBox"
@@ -1575,6 +1602,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               aria-label="Foo"
               checked=""
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440005"
               type="checkbox"
               value=""
             />
@@ -1619,6 +1647,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
             <input
               aria-label="Foo"
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440006"
               type="checkbox"
               value=""
             />
@@ -1664,6 +1693,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               aria-label="Foo"
               checked=""
               class="input"
+              id="123e4567-e89b-12d3-a456-426655440007"
               type="checkbox"
               value=""
             />
@@ -1708,6 +1738,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
             <input
               aria-label="Foo"
               class="input"
+              id="123e4567-e89b-12d3-a456-426655440008"
               type="checkbox"
               value=""
             />
@@ -1753,8 +1784,9 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               aria-label="Foo"
               checked=""
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440009"
               type="checkbox"
-              value=""
+              value="true"
             />
             <span
               class="checkBox"
@@ -1797,8 +1829,9 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
             <input
               aria-label="Foo"
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440010"
               type="checkbox"
-              value=""
+              value="false"
             />
             <span
               class="checkBox"
@@ -1842,8 +1875,9 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               aria-label="Foo"
               checked=""
               class="input"
+              id="123e4567-e89b-12d3-a456-426655440011"
               type="checkbox"
-              value=""
+              value="true"
             />
             <span
               class="checkBox"
@@ -1888,8 +1922,9 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
             aria-label="Foo"
             checked=""
             class="input"
+            id="123e4567-e89b-12d3-a456-426655440011"
             type="checkbox"
-            value=""
+            value="true"
           />
           <span
             class="checkBox"
@@ -1991,6 +2026,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               aria-label="Foo"
               checked=""
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440005"
               type="checkbox"
               value=""
             />
@@ -2035,6 +2071,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
             <input
               aria-label="Foo"
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440006"
               type="checkbox"
               value=""
             />
@@ -2080,6 +2117,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               aria-label="Foo"
               checked=""
               class="input"
+              id="123e4567-e89b-12d3-a456-426655440007"
               type="checkbox"
               value=""
             />
@@ -2124,6 +2162,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
             <input
               aria-label="Foo"
               class="input"
+              id="123e4567-e89b-12d3-a456-426655440008"
               type="checkbox"
               value=""
             />
@@ -2169,8 +2208,9 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               aria-label="Foo"
               checked=""
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440009"
               type="checkbox"
-              value=""
+              value="true"
             />
             <span
               class="checkBox"
@@ -2213,8 +2253,9 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
             <input
               aria-label="Foo"
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440010"
               type="checkbox"
-              value=""
+              value="false"
             />
             <span
               class="checkBox"
@@ -2258,8 +2299,9 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               aria-label="Foo"
               checked=""
               class="input"
+              id="123e4567-e89b-12d3-a456-426655440011"
               type="checkbox"
-              value=""
+              value="true"
             />
             <span
               class="checkBox"
@@ -2302,8 +2344,9 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
             <input
               aria-label="Foo"
               class="input"
+              id="123e4567-e89b-12d3-a456-426655440012"
               type="checkbox"
-              value=""
+              value="false"
             />
             <span
               class="checkBox"
@@ -2347,8 +2390,9 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
           <input
             aria-label="Foo"
             class="input"
+            id="123e4567-e89b-12d3-a456-426655440012"
             type="checkbox"
-            value=""
+            value="false"
           />
           <span
             class="checkBox"
