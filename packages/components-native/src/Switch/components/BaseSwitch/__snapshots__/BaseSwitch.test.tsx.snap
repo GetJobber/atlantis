@@ -1,0 +1,217 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a Switch with defaultValue false 1`] = `
+<RCTSwitch
+  accessibilityRole="switch"
+  accessibilityState={
+    {
+      "checked": false,
+      "disabled": false,
+    }
+  }
+  collapsable={false}
+  disabled={false}
+  handlerTag={4}
+  handlerType="NativeViewGestureHandler"
+  onChange={[Function]}
+  onGestureHandlerEvent={[Function]}
+  onGestureHandlerStateChange={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  onTintColor="rgb(125, 176, 14)"
+  style={
+    [
+      {
+        "height": 31,
+        "width": 51,
+      },
+      {
+        "backgroundColor": "rgb(244, 244, 244)",
+        "borderRadius": 16,
+      },
+    ]
+  }
+  tintColor="rgb(244, 244, 244)"
+  value={false}
+/>
+`;
+
+exports[`renders a Switch with defaultValue true 1`] = `
+<RCTSwitch
+  accessibilityRole="switch"
+  accessibilityState={
+    {
+      "checked": true,
+      "disabled": false,
+    }
+  }
+  collapsable={false}
+  disabled={false}
+  handlerTag={2}
+  handlerType="NativeViewGestureHandler"
+  onChange={[Function]}
+  onGestureHandlerEvent={[Function]}
+  onGestureHandlerStateChange={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  onTintColor="rgb(125, 176, 14)"
+  style={
+    [
+      {
+        "height": 31,
+        "width": 51,
+      },
+      {
+        "backgroundColor": "rgb(244, 244, 244)",
+        "borderRadius": 16,
+      },
+    ]
+  }
+  tintColor="rgb(244, 244, 244)"
+  value={true}
+/>
+`;
+
+exports[`renders a Switch with value false 1`] = `
+<RCTSwitch
+  accessibilityRole="switch"
+  accessibilityState={
+    {
+      "checked": false,
+      "disabled": false,
+    }
+  }
+  collapsable={false}
+  disabled={false}
+  handlerTag={3}
+  handlerType="NativeViewGestureHandler"
+  onChange={[Function]}
+  onGestureHandlerEvent={[Function]}
+  onGestureHandlerStateChange={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  onTintColor="rgb(125, 176, 14)"
+  style={
+    [
+      {
+        "height": 31,
+        "width": 51,
+      },
+      {
+        "backgroundColor": "rgb(244, 244, 244)",
+        "borderRadius": 16,
+      },
+    ]
+  }
+  tintColor="rgb(244, 244, 244)"
+  value={false}
+/>
+`;
+
+exports[`renders a Switch with value true 1`] = `
+<RCTSwitch
+  accessibilityRole="switch"
+  accessibilityState={
+    {
+      "checked": true,
+      "disabled": false,
+    }
+  }
+  collapsable={false}
+  disabled={false}
+  handlerTag={1}
+  handlerType="NativeViewGestureHandler"
+  onChange={[Function]}
+  onGestureHandlerEvent={[Function]}
+  onGestureHandlerStateChange={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  onTintColor="rgb(125, 176, 14)"
+  style={
+    [
+      {
+        "height": 31,
+        "width": 51,
+      },
+      {
+        "backgroundColor": "rgb(244, 244, 244)",
+        "borderRadius": 16,
+      },
+    ]
+  }
+  tintColor="rgb(244, 244, 244)"
+  value={true}
+/>
+`;
+
+exports[`renders a disabled Switch with value false 1`] = `
+<RCTSwitch
+  accessibilityRole="switch"
+  accessibilityState={
+    {
+      "checked": false,
+      "disabled": true,
+    }
+  }
+  collapsable={false}
+  disabled={true}
+  handlerTag={6}
+  handlerType="NativeViewGestureHandler"
+  onChange={[Function]}
+  onGestureHandlerEvent={[Function]}
+  onGestureHandlerStateChange={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  onTintColor="rgb(125, 176, 14)"
+  style={
+    [
+      {
+        "height": 31,
+        "width": 51,
+      },
+      {
+        "backgroundColor": "rgb(244, 244, 244)",
+        "borderRadius": 16,
+      },
+    ]
+  }
+  tintColor="rgb(244, 244, 244)"
+  value={false}
+/>
+`;
+
+exports[`renders a disabled Switch with value true 1`] = `
+<RCTSwitch
+  accessibilityRole="switch"
+  accessibilityState={
+    {
+      "checked": true,
+      "disabled": true,
+    }
+  }
+  collapsable={false}
+  disabled={true}
+  handlerTag={5}
+  handlerType="NativeViewGestureHandler"
+  onChange={[Function]}
+  onGestureHandlerEvent={[Function]}
+  onGestureHandlerStateChange={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  onTintColor="rgb(125, 176, 14)"
+  style={
+    [
+      {
+        "height": 31,
+        "width": 51,
+      },
+      {
+        "backgroundColor": "rgb(244, 244, 244)",
+        "borderRadius": 16,
+      },
+    ]
+  }
+  tintColor="rgb(244, 244, 244)"
+  value={true}
+/>
+`;

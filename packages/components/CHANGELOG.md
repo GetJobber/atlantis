@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.18.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.18.8...@jobber/components@4.18.9) (2023-05-29)
+
+
+### Bug Fixes
+
+* **components:** adjust grid and page spacing ([#1287](https://github.com/GetJobber/atlantis/issues/1287)) ([3091a6c](https://github.com/GetJobber/atlantis/commit/3091a6ccf98b2dc1b11137a387a9d32121068514))
+
+
+
+
+
 ## [4.18.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.18.7...@jobber/components@4.18.8) (2023-05-29)
 
 **Note:** Version bump only for package @jobber/components
