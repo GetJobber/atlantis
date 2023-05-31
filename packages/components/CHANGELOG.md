@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.19.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.18.9...@jobber/components@4.19.0) (2023-05-31)
+
+
+### Features
+
+* **components:** Add Controller to Checkbox ([#1296](https://github.com/GetJobber/atlantis/issues/1296)) ([91fafd6](https://github.com/GetJobber/atlantis/commit/91fafd6b15c307f002e86540b1c1c75a99389888))
+
+
+
+
+
 ## [4.18.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.18.8...@jobber/components@4.18.9) (2023-05-29)
 
 
