@@ -3,7 +3,7 @@ module.exports = {
   displayName: "Atlantis Mobile",
   preset: "react-native",
   setupFiles: [
-    "./node_modules/react-native-gesture-handler/jestSetup.js",
+    "../../node_modules/react-native-gesture-handler/jestSetup.js",
     "./jestAttemptOne.js",
   ],
   setupFilesAfterEnv: [
