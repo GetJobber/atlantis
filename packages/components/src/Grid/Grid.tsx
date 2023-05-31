@@ -19,7 +19,7 @@ interface GridProps {
   readonly alignItems?: keyof typeof alignments;
 
   /**
-   * Array of `Grid.Cell` children
+   * Array of `Grid.Cell` children or Single `Grid.Cell`
    */
   readonly children:
     | Array<ReactElement<GridCellProps>>
