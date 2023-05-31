@@ -1,1 +1,1 @@
-export { BottomSheetOption } from "./BottomSheetOption";
+export { BottomSheetOption, BottomSheetOptionProps } from "./BottomSheetOption";
