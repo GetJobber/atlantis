@@ -8,9 +8,23 @@ interface FormatDateProps {
    * A `string` should be an ISO 8601 format date string.
    */
   readonly date: CivilDate | Date | string;
+
+  /**
+   * Boolean to show year or not.
+   */
+  readonly showYear?: boolean;
 }
 
-export function FormatDate({ date: inputDate }: FormatDateProps) {
+interface formatOptions {
+  readonly month: "short";
+  readonly day: "numeric";
+  readonly year?: "numeric";
+}
+
+export function FormatDate({
+  date: inputDate,
+  showYear = true,
+}: FormatDateProps) {
   let dateObject: Date;
 
   if (inputDate instanceof Date) {
@@ -21,13 +35,19 @@ export function FormatDate({ date: inputDate }: FormatDateProps) {
     dateObject = new Date(inputDate.year, inputDate.month - 1, inputDate.day);
   }
 
-  return <>{strFormatDate(dateObject)}</>;
+  return <>{strFormatDate(dateObject, showYear)}</>;
 }
 
-export function strFormatDate(date: Date) {
-  return date.toLocaleDateString(undefined, {
-    year: "numeric",
+export function strFormatDate(date: Date, showYear = true) {
+  let formatOptions: formatOptions = {
     month: "short",
     day: "numeric",
-  });
+  };
+  if (showYear) {
+    formatOptions = {
+      ...formatOptions,
+      year: "numeric",
+    };
+  }
+  return date.toLocaleDateString(undefined, formatOptions);
 }
