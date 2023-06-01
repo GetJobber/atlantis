@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components-native",
-  "version": "0.25.0",
+  "version": "0.25.1",
   "license": "MIT",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
@@ -21,7 +21,7 @@
     "build:clean": "rm -rf ./dist"
   },
   "dependencies": {
-    "@jobber/design": "^0.41.2",
+    "@jobber/design": "^0.41.3",
     "lodash.chunk": "^4.2.0",
     "lodash.identity": "^3.0.0",
     "react-hook-form": "^7.30.0",
