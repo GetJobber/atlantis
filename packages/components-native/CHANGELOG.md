@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.25.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.24.0...@jobber/components-native@0.25.0) (2023-06-01)
+
+
+### Features
+
+* **components-native:** Import BottomSheet to components-native ([#1297](https://github.com/GetJobber/atlantis/issues/1297)) ([2deb67d](https://github.com/GetJobber/atlantis/commit/2deb67d3015cc30b98b9bff7ff509ce19ac5e968))
+
+
+
+
+
 # [0.24.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.23.0...@jobber/components-native@0.24.0) (2023-05-31)
 
 
