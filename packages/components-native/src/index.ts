@@ -2,6 +2,7 @@ export * from "./ActionItem";
 export * from "./ActionLabel";
 export * from "./ActivityIndicator";
 export * from "./AtlantisContext";
+export * from "./BottomSheet";
 export * from "./Button";
 export * from "./Card";
 export * from "./Chip";
