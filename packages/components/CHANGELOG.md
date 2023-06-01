@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.19.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.19.0...@jobber/components@4.19.1) (2023-06-01)
+
+
+### Bug Fixes
+
+* **components:** TECH-22 Fixing Grid prop type ([#1298](https://github.com/GetJobber/atlantis/issues/1298)) ([551fd33](https://github.com/GetJobber/atlantis/commit/551fd3314c95286505f3c5e6cdc568e0a50f9587))
+
+
+
+
+
 # [4.19.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.18.9...@jobber/components@4.19.0) (2023-05-31)
 
 
