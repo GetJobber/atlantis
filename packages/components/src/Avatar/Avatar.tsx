@@ -4,7 +4,7 @@ import { XOR } from "ts-xor";
 import styles from "./Avatar.css";
 import { isDark } from "./utilities";
 import { Icon } from "../Icon";
-
+// trigger web
 type AvatarSize = "base" | "large" | "small";
 interface AvatarFoundationProps {
   /**
