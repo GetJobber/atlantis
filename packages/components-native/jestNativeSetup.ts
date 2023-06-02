@@ -3,4 +3,3 @@ async function setTimezone(): Promise<void> {
 }
 
 module.exports = setTimezone;
-// trigger mobile build
