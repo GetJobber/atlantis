@@ -1,2 +1,8 @@
 export { ButtonGroup } from "./ButtonGroup";
-export type { ButtonGroupActionProps } from "./ButtonGroupAction";
+export type {
+  ButtonGroupActionProps,
+  ButtonGroupPrimaryActionProps,
+  ButtonGroupSecondaryActionProps,
+  ButtonGroupActionElement,
+} from "./types";
+export { usePreventTapWhenOffline } from "./utils";
