@@ -16,6 +16,7 @@ export * from "./Icon";
 export * from "./IconButton";
 export * from "./InputFieldWrapper";
 export * from "./InputPressable";
+export * from "./InputSearch";
 export * from "./InputText";
 export * from "./TextList";
 export * from "./ProgressBar";
