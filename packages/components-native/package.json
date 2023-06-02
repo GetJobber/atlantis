@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@jobber/design": "^0.41.3",
+    "@react-native-picker/picker": "^2.4.10",
     "lodash.chunk": "^4.2.0",
     "lodash.identity": "^3.0.0",
     "react-hook-form": "^7.30.0",
