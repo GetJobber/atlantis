@@ -15,12 +15,6 @@ interface FormatDateProps {
   readonly showYear?: boolean;
 }
 
-interface formatOptions {
-  readonly month: "short";
-  readonly day: "numeric";
-  readonly year?: "numeric";
-}
-
 export function FormatDate({
   date: inputDate,
   showYear = true,
@@ -39,7 +33,7 @@ export function FormatDate({
 }
 
 export function strFormatDate(date: Date, showYear = true) {
-  let formatOptions: formatOptions = {
+  let formatOptions: Intl.DateTimeFormatOptions = {
     month: "short",
     day: "numeric",
   };
