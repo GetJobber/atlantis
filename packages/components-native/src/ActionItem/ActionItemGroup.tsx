@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { ActionItem, ActionItemProps } from "./ActionItem";
 import { styles } from "./ActionItem.style";
 import { Divider } from "../Divider";
-
+//trigger mobile build
 export type ActionItemElement =
   | ReactElement<ActionItemProps, typeof ActionItem>
   | boolean
