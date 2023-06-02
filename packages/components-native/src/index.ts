@@ -4,6 +4,7 @@ export * from "./ActivityIndicator";
 export * from "./AtlantisContext";
 export * from "./BottomSheet";
 export * from "./Button";
+export * from "./ButtonGroup";
 export * from "./Card";
 export * from "./Chip";
 export * from "./Content";
