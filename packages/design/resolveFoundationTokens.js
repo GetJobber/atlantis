@@ -24,7 +24,7 @@ const customProperties = customPropertiesObject.customProperties;
 const resolvedCssVars = getResolvedCSSVars(customProperties);
 
 const jsonContent =
-  "export const JobberStyle = " + JSON.stringify(resolvedCssVars, undefined, 2);
+  "export const tokens = " + JSON.stringify(resolvedCssVars, undefined, 2);
 
 fs.writeFile("./foundation.js", jsonContent, "utf8", function (err) {
   if (err) {
@@ -52,12 +52,13 @@ writeMobileFoundationFiles();
  *
  * eg:
  * ```
- * jobberStyle(`
+ * resolveCSSToken(`
  *   "--base": "5px",
  *   "--foo": "calc(var(--base) * 2),
  * `);
  * ```
- * =>
+ *
+ * would return
  * ```
  * {
  *   "--base": "5",
@@ -68,7 +69,7 @@ writeMobileFoundationFiles();
 
 // Added up to 13 statements to accommodate sharing timing with mobile
 /*eslint max-statements: ["error", 13]*/
-function jobberStyle(styling) {
+function resolveCSSToken(styling) {
   const styleValue = removeNewLines(customProperties[styling]);
 
   //varRegexResult returns --base-unit from var(--base-unit)
@@ -85,11 +86,11 @@ function jobberStyle(styling) {
   if (calcRegexResult) {
     return handleCalc(calcRegexResult);
   } else if (rgbVarRegexResult) {
-    return jobberStyle(rgbVarRegexResult[1]);
+    return resolveCSSToken(rgbVarRegexResult[1]);
   } else if (rgbaVarRegexResult) {
     return handleRbga(rgbaVarRegexResult);
   } else if (varRegexResult) {
-    return jobberStyle(varRegexResult[1]);
+    return resolveCSSToken(varRegexResult[1]);
   } else if (timeNumberResult) {
     return handleTiming(timeNumberResult[1]);
   } else {
@@ -120,7 +121,7 @@ function handleTiming(timeNumberResult) {
 }
 
 function handleRbga(rgbaVarRegexResult) {
-  let resolved = "rgba(" + jobberStyle(rgbaVarRegexResult[1]);
+  let resolved = "rgba(" + resolveCSSToken(rgbaVarRegexResult[1]);
   if (rgbaVarRegexResult[2]) {
     resolved += "," + rgbaVarRegexResult[2];
   }
@@ -153,7 +154,7 @@ function resolveCssVarsInExpression({
   finalExpression,
 }) {
   const cssVariable = cssVariableRegexResult[1];
-  const realValue = jobberStyle(cssVariable);
+  const realValue = resolveCSSToken(cssVariable);
   const unresolvedCssVariable = group;
   return finalExpression.replace(unresolvedCssVariable, realValue);
 }
@@ -168,7 +169,7 @@ function getResolvedCSSVars(cssProperties) {
   const allKeys = Object.keys(cssProperties);
   return allKeys.reduce((acc, key) => {
     const newKey = key.replace("--", "");
-    acc[newKey] = jobberStyle(key);
+    acc[newKey] = resolveCSSToken(key);
     return acc;
   }, {});
 }
@@ -195,7 +196,7 @@ function resolveShadow(shadowValue) {
       const varRegexResult = regexExpressions.cssVars.exec(value);
 
       if (varRegexResult) {
-        const result = jobberStyle(varRegexResult[1]);
+        const result = resolveCSSToken(varRegexResult[1]);
         const suffix = typeof result === "string" ? "" : "px";
 
         return `${result}${suffix}`;
@@ -268,26 +269,26 @@ function writeMobileFoundationFiles() {
   const { androidShadows, iOSShadows } = getShadowStyles(resolvedCssVars);
   const mobileLineHeightValues = getMobileLineHeights();
   const mobileFontSizeValues = getMobileFontSizes();
-  const androidFoundationJobberStyle = {
+  const androidFoundationTokens = {
     ...resolvedCssVars,
     ...androidShadows,
     ...mobileLineHeightValues,
     ...mobileFontSizeValues,
   };
-  const iOSFoundationJobberStyle = {
+  const iOSFoundationTokens = {
     ...resolvedCssVars,
     ...iOSShadows,
     ...mobileLineHeightValues,
     ...mobileFontSizeValues,
   };
-  const androidFoundationsExportString = `export const JobberStyle = ${JSON.stringify(
-    androidFoundationJobberStyle,
+  const androidFoundationsExportString = `export const tokens = ${JSON.stringify(
+    androidFoundationTokens,
     undefined,
     2,
   )}`;
 
-  const iOSFoundationsExportString = `export const JobberStyle = ${JSON.stringify(
-    iOSFoundationJobberStyle,
+  const iOSFoundationsExportString = `export const tokens = ${JSON.stringify(
+    iOSFoundationTokens,
     undefined,
     2,
   )}`;

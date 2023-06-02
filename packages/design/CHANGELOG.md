@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.41.3](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.41.2...@jobber/design@0.41.3) (2023-06-01)
+
+
+### Bug Fixes
+
+* **design:** Fix breakpoints with missing "px" units ([#1300](https://github.com/GetJobber/atlantis/issues/1300)) ([20456bc](https://github.com/GetJobber/atlantis/commit/20456bc83f446d5cdff6249f1286ba0c8865525c))
+
+
+
+
+
+## [0.41.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.41.1...@jobber/design@0.41.2) (2023-05-29)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.41.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.41.0...@jobber/design@0.41.1) (2023-05-26)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
 # [0.41.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.40.0...@jobber/design@0.41.0) (2023-05-23)
 
 
