@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   // Need to use iOS style button
-  // eslint-disable-next-line no-restricted-imports
   Button,
   Modal,
   TouchableOpacity,
