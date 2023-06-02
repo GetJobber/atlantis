@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.25.1...@jobber/components-native@0.26.0) (2023-06-02)
+
+
+### Features
+
+* **components-native:** Import TextList (currently ListBulleted in JB) to components-native ([#1299](https://github.com/GetJobber/atlantis/issues/1299)) ([5786350](https://github.com/GetJobber/atlantis/commit/5786350232170a339bd19e6a10e5a22b6f050e67))
+
+
+
+
+
 ## [0.25.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.25.0...@jobber/components-native@0.25.1) (2023-06-01)
 
 **Note:** Version bump only for package @jobber/components-native
