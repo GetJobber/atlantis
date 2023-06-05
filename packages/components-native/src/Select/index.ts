@@ -1,4 +1,4 @@
-export { Select, Option } from "./Select";
+export { Select, Option, SelectOption, SelectProps } from "./Select";
 import { NativeModules, Platform } from "react-native";
 
 const LINKING_ERROR =

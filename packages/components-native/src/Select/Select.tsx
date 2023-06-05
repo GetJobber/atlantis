@@ -11,7 +11,7 @@ import { TextVariation } from "../Typography";
 import { Text } from "../Text";
 import { useFormController } from "../hooks";
 
-interface SelectOption {
+export interface SelectOption {
   /**
    * Text that shows up as the option
    */
@@ -23,7 +23,7 @@ interface SelectOption {
   readonly value: string;
 }
 
-interface SelectProps {
+export interface SelectProps {
   /**
    * Current value of the component
    */
