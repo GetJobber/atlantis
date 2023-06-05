@@ -7,3 +7,15 @@ node_modules
 .DS_Store
 .idea
 storybook-static
+
+
+# Android/IJ
+#
+.classpath
+.cxx
+.gradle
+.idea
+.project
+.settings
+local.properties
+android.iml
