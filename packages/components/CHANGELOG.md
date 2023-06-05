@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.20.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.19.2...@jobber/components@4.20.0) (2023-06-02)
+
+
+### Features
+
+* **components:** Update formatDate component with optional date ([#1301](https://github.com/GetJobber/atlantis/issues/1301)) ([6b4a805](https://github.com/GetJobber/atlantis/commit/6b4a80582f538ada398888924265efe534627d99))
+
+
+
+
+
+## [4.19.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.19.1...@jobber/components@4.19.2) (2023-06-01)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.19.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.19.0...@jobber/components@4.19.1) (2023-06-01)
+
+
+### Bug Fixes
+
+* **components:** TECH-22 Fixing Grid prop type ([#1298](https://github.com/GetJobber/atlantis/issues/1298)) ([551fd33](https://github.com/GetJobber/atlantis/commit/551fd3314c95286505f3c5e6cdc568e0a50f9587))
+
+
+
+
+
+# [4.19.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.18.9...@jobber/components@4.19.0) (2023-05-31)
+
+
+### Features
+
+* **components:** Add Controller to Checkbox ([#1296](https://github.com/GetJobber/atlantis/issues/1296)) ([91fafd6](https://github.com/GetJobber/atlantis/commit/91fafd6b15c307f002e86540b1c1c75a99389888))
+
+
+
+
+
 ## [4.18.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.18.8...@jobber/components@4.18.9) (2023-05-29)
 
 
