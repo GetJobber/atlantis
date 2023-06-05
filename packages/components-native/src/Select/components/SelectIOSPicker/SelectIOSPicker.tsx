@@ -13,4 +13,4 @@ interface NativeSelectIOSPickerProps
 }
 
 export const SelectIOSPicker: HostComponent<NativeSelectIOSPickerProps> =
-  requireNativeComponent?.<NativeSelectIOSPickerProps>("RCTPicker");
+  requireNativeComponent?.<NativeSelectIOSPickerProps>("RCTATLPicker");

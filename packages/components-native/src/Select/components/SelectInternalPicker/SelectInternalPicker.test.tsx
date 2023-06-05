@@ -23,7 +23,7 @@ afterEach(() => {
   jest.resetAllMocks();
 });
 
-const RCTPicker = "RCTPicker" as ElementType;
+const RCTPicker = "RCTATLPicker" as ElementType;
 const childText = "Click me";
 const handleChange = jest.fn();
 
