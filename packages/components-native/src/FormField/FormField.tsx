@@ -9,7 +9,7 @@ import { useFormController } from "../hooks";
 
 interface FormFieldProps<T> {
   /**
-   * name of the field
+   * Name of the field.
    */
   name: string;
 
@@ -19,7 +19,7 @@ interface FormFieldProps<T> {
   readonly defaultValue?: T;
 
   /**
-   * children to render
+   * Children to render.
    */
   children: (
     field: ControllerRenderProps<FieldValues, string>,
@@ -27,7 +27,9 @@ interface FormFieldProps<T> {
   ) => React.ReactNode;
 
   /**
-   * rules for returning an error when validations are violated
+   * Rules for returning an error when validations are violated.
+   * WARNING: This component needs to be nested inside a FormProvider
+   *   for validations to work.
    */
   readonly validations?: RegisterOptions;
 }
