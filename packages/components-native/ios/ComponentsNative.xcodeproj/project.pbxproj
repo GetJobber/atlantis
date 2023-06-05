@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E555C0D2413F4C50049A1A2 /* ComponentsNative.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* ComponentsNative.m */; };
-		F4FF95D7245B92E800C19C63 /*  ComponentsNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /*  ComponentsNative.swift */; };
+		330AAF4A2A2E37F300B234CB /* ComponentsNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 330AAF472A2E37F300B234CB /* ComponentsNative.m */; };
+		330AAF4B2A2E37F300B234CB /* ComponentsNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330AAF482A2E37F300B234CB /* ComponentsNative.swift */; };
+		330AAF4C2A2E37F300B234CB /* ComponentsNative-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = 330AAF492A2E37F300B234CB /* ComponentsNative-Bridging-Header.h */; };
+		33BC14D62A2E33650099E579 /* PickerOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC14D12A2E33650099E579 /* PickerOption.swift */; };
+		33BC14D72A2E33650099E579 /* RCTATLPickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BC14D22A2E33650099E579 /* RCTATLPickerManager.m */; };
+		33BC14D82A2E33650099E579 /* FallBackPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC14D32A2E33650099E579 /* FallBackPickerView.swift */; };
+		33BC14D92A2E33650099E579 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC14D42A2E33650099E579 /* PickerView.swift */; };
+		33BC14DA2A2E33650099E579 /* RCTATLPickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BC14D52A2E33650099E579 /* RCTATLPickerManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,9 +31,14 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libComponentsNative.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libComponentsNative.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		B3E7B5891CC2AC0600A0062D /* ComponentsNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComponentsNative.m; sourceTree = "<group>"; };
-		F4FF95D5245B92E700C19C63 /* ComponentsNative-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ComponentsNative-Bridging-Header.h"; sourceTree = "<group>"; };
-		F4FF95D6245B92E800C19C63 /* ComponentsNative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsNative.swift; sourceTree = "<group>"; };
+		330AAF472A2E37F300B234CB /* ComponentsNative.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ComponentsNative.m; path = ComponentsNative/ComponentsNative.m; sourceTree = "<group>"; };
+		330AAF482A2E37F300B234CB /* ComponentsNative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ComponentsNative.swift; path = ComponentsNative/ComponentsNative.swift; sourceTree = "<group>"; };
+		330AAF492A2E37F300B234CB /* ComponentsNative-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ComponentsNative-Bridging-Header.h"; path = "ComponentsNative/ComponentsNative-Bridging-Header.h"; sourceTree = "<group>"; };
+		33BC14D12A2E33650099E579 /* PickerOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PickerOption.swift; path = ComponentsNative/Picker/PickerOption.swift; sourceTree = "<group>"; };
+		33BC14D22A2E33650099E579 /* RCTATLPickerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RCTATLPickerManager.m; path = ComponentsNative/Picker/RCTATLPickerManager.m; sourceTree = "<group>"; };
+		33BC14D32A2E33650099E579 /* FallBackPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FallBackPickerView.swift; path = ComponentsNative/Picker/FallBackPickerView.swift; sourceTree = "<group>"; };
+		33BC14D42A2E33650099E579 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PickerView.swift; path = ComponentsNative/Picker/PickerView.swift; sourceTree = "<group>"; };
+		33BC14D52A2E33650099E579 /* RCTATLPickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RCTATLPickerManager.swift; path = ComponentsNative/Picker/RCTATLPickerManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,9 +63,14 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-				F4FF95D6245B92E800C19C63 /* ComponentsNative.swift */,
-				B3E7B5891CC2AC0600A0062D /* ComponentsNative.m */,
-				F4FF95D5245B92E700C19C63 /* ComponentsNative-Bridging-Header.h */,
+				330AAF492A2E37F300B234CB /* ComponentsNative-Bridging-Header.h */,
+				330AAF472A2E37F300B234CB /* ComponentsNative.m */,
+				330AAF482A2E37F300B234CB /* ComponentsNative.swift */,
+				33BC14D32A2E33650099E579 /* FallBackPickerView.swift */,
+				33BC14D12A2E33650099E579 /* PickerOption.swift */,
+				33BC14D42A2E33650099E579 /* PickerView.swift */,
+				33BC14D22A2E33650099E579 /* RCTATLPickerManager.m */,
+				33BC14D52A2E33650099E579 /* RCTATLPickerManager.swift */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -116,8 +132,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4FF95D7245B92E800C19C63 /* ComponentsNative.swift in Sources */,
-				B3E7B58A1CC2AC0600A0062D /* ComponentsNative.m in Sources */,
+				330AAF4A2A2E37F300B234CB /* ComponentsNative.m in Sources */,
+				330AAF4B2A2E37F300B234CB /* ComponentsNative.swift in Sources */,
+				330AAF4C2A2E37F300B234CB /* ComponentsNative-Bridging-Header.h in Sources */,
+				33BC14D62A2E33650099E579 /* PickerOption.swift in Sources */,
+				33BC14D72A2E33650099E579 /* RCTATLPickerManager.m in Sources */,
+				33BC14D82A2E33650099E579 /* FallBackPickerView.swift in Sources */,
+				33BC14D92A2E33650099E579 /* PickerView.swift in Sources */,
+				33BC14DA2A2E33650099E579 /* RCTATLPickerManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

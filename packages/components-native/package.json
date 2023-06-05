@@ -2,6 +2,16 @@
   "name": "@jobber/components-native",
   "version": "0.26.0",
   "license": "MIT",
+  "description": "React Native implementation of Atlantis",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GetJobber/atlantis.git"
+  },
+  "author": "The Frends",
+  "bugs": {
+    "url": "https://github.com/GetJobber/atlantis/issues"
+  },
+  "homepage": "https://github.com/GetJobber/atlantis#readme",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
   "types": "dist/types/src/index.d.ts",
