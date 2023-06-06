@@ -12,7 +12,6 @@
 		3373AC9D2A2E77EB001862FC /* ATLPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373AC9C2A2E77EB001862FC /* ATLPickerView.swift */; };
 		3373AC9F2A2E783E001862FC /* ATLPickerOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373AC9E2A2E783E001862FC /* ATLPickerOption.swift */; };
 		3373ACA12A2E786F001862FC /* ATLFallBackPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3373ACA02A2E786F001862FC /* ATLFallBackPickerView.swift */; };
-		F4FF95D7245B92E800C19C63 /* ComponentsNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /* ComponentsNative.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,7 +35,6 @@
 		3373ACA02A2E786F001862FC /* ATLFallBackPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATLFallBackPickerView.swift; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* ComponentsNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComponentsNative.m; sourceTree = "<group>"; };
 		F4FF95D5245B92E700C19C63 /* ComponentsNative-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ComponentsNative-Bridging-Header.h"; sourceTree = "<group>"; };
-		F4FF95D6245B92E800C19C63 /* ComponentsNative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsNative.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +71,6 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-				F4FF95D6245B92E800C19C63 /* ComponentsNative.swift */,
 				3373AC942A2E7669001862FC /* Picker */,
 				B3E7B5891CC2AC0600A0062D /* ComponentsNative.m */,
 				F4FF95D5245B92E700C19C63 /* ComponentsNative-Bridging-Header.h */,
@@ -140,7 +137,6 @@
 			files = (
 				3373AC9D2A2E77EB001862FC /* ATLPickerView.swift in Sources */,
 				3373AC9F2A2E783E001862FC /* ATLPickerOption.swift in Sources */,
-				F4FF95D7245B92E800C19C63 /* ComponentsNative.swift in Sources */,
 				3373AC982A2E7708001862FC /* RCTATLPickerManager.swift in Sources */,
 				3373ACA12A2E786F001862FC /* ATLFallBackPickerView.swift in Sources */,
 				3373AC9B2A2E77B1001862FC /* RCTATLPickerManager.m in Sources */,
