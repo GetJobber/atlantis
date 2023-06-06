@@ -12,14 +12,14 @@ export interface InputNumberProps
     InputTextProps,
     "keyboard" | "onChangeText" | "value" | "defaultValue"
   > {
-  value?: number;
-  defaultValue?: number;
-  onChange?(newValue?: number | string | undefined): void;
-  keyboard?: NumberKeyboard;
+  readonly value?: number;
+  readonly defaultValue?: number;
+  readonly onChange: (newValue?: number | string | undefined) => void;
+  readonly keyboard?: NumberKeyboard;
   /**
    * Used to locate this view in end-to-end tests
    */
-  testID?: string;
+  readonly testID?: string;
 }
 
 const NUMBER_VALIDATION_REGEX =
