@@ -33,7 +33,12 @@ import { Glimmer } from "@jobber/components/Glimmer";
       timing: "base",
     }}
   >
-    {args => <Glimmer {...args} />}
+    {args => (
+      // Avoid storybook wrapping flex messing with square and circle example works
+      <div>
+        <Glimmer {...args} />
+      </div>
+    )}
   </Story>
 </Canvas>
 
