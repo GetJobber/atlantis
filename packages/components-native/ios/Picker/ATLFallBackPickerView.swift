@@ -1,6 +1,6 @@
 //
 //  FallBackPickerView.swift
-//  Jobber
+//  @jobber/components-native
 //
 //  Created by Darryl Tec on 2022-07-21.
 //  Copyright © 2022 Octopusapp Inc. All rights reserved.
