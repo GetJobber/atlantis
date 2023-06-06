@@ -24,7 +24,7 @@
     "ios",
     "cpp",
     "*.podspec",
-    "!ios/build",
+    "!ios/build"
   ],
   "scripts": {
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
