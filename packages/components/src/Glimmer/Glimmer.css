@@ -28,10 +28,10 @@
 @keyframes glimmer {
   0%,
   20% {
-    background-position: calc(var(--space-extravagant) * -1);
+    background-position-x: calc(var(--space-extravagant) * -1);
   }
 
   100% {
-    background-position: calc(100% + var(--space-extravagant));
+    background-position-x: calc(100% + var(--space-extravagant));
   }
 }
