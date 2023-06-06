@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.29.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.28.1...@jobber/components-native@0.29.0) (2023-06-06)
+
+
+### Features
+
+* **components-native:** Import InputPassword to components-native ([#1311](https://github.com/GetJobber/atlantis/issues/1311)) ([644f3bd](https://github.com/GetJobber/atlantis/commit/644f3bd4121d647ae783e2b7a336d014d67f7680))
+
+
+
+
+
 ## [0.28.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.28.0...@jobber/components-native@0.28.1) (2023-06-05)
 
 
