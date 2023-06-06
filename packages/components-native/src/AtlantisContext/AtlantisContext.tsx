@@ -2,6 +2,11 @@
 import { createContext, useContext } from "react";
 import RNLocalize from "react-native-localize";
 
+interface SessionShape {
+  accountId: string;
+  userId: string;
+}
+
 export interface AtlantisContextProps {
   /**
    * The date format Atlantis components would use
@@ -34,6 +39,11 @@ export interface AtlantisContextProps {
    * Grabs the decimal separator and group separator based on locale
    */
   readonly floatSeparators: Record<"decimal" | "group", string>;
+
+  /**
+   * Session information to build the storage key
+   */
+  readonly session?: SessionShape;
 }
 
 export const defaultValues: AtlantisContextProps = {
