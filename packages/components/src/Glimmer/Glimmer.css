@@ -20,6 +20,11 @@
   animation: glimmer 2s infinite linear;
 }
 
+.reverseTheme {
+  --glimmer-background: rgba(var(--color-white--rgb), 10%);
+  --glimmer-shine-opacity: 25%;
+}
+
 @keyframes glimmer {
   0%,
   20% {

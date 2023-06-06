@@ -31,6 +31,11 @@ interface GlimmerProps {
    * the glimmer is used on smaller spaces.
    */
   readonly timing?: Timings;
+
+  /**
+   * Use on surfaces with dark backgrounds.
+   */
+  readonly reverseTheme?: boolean;
 }
 
 export const GLIMMER_TEST_ID = "ATL-Glimmer";
@@ -46,12 +51,14 @@ export function Glimmer({
   size = "base",
   shape = "rectangle",
   timing = "base",
+  reverseTheme = false,
 }: GlimmerProps) {
   const className = classnames(
     styles.glimmer,
     sizes[size],
     shapes[shape],
     timings[timing],
+    { [styles.reverseTheme]: reverseTheme },
   );
 
   return (
