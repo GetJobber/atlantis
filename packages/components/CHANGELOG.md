@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.20.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.19.2...@jobber/components@4.20.0) (2023-06-02)
+
+
+### Features
+
+* **components:** Update formatDate component with optional date ([#1301](https://github.com/GetJobber/atlantis/issues/1301)) ([6b4a805](https://github.com/GetJobber/atlantis/commit/6b4a80582f538ada398888924265efe534627d99))
+
+
+
+
+
 ## [4.19.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.19.1...@jobber/components@4.19.2) (2023-06-01)
 
 **Note:** Version bump only for package @jobber/components
