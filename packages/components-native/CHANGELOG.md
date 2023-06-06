@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.30.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.29.0...@jobber/components-native@0.30.0) (2023-06-06)
+
+
+### Features
+
+* **components-native:** Add FormField to components-native ([#1309](https://github.com/GetJobber/atlantis/issues/1309)) ([7d3a6bb](https://github.com/GetJobber/atlantis/commit/7d3a6bb6424cfe85c34fed8f8df05def4e68365e))
+
+
+
+
+
 # [0.29.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.28.1...@jobber/components-native@0.29.0) (2023-06-06)
 
 
