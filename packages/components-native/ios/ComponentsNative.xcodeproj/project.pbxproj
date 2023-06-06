@@ -33,7 +33,6 @@
 		3373AC9C2A2E77EB001862FC /* ATLPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATLPickerView.swift; sourceTree = "<group>"; };
 		3373AC9E2A2E783E001862FC /* ATLPickerOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATLPickerOption.swift; sourceTree = "<group>"; };
 		3373ACA02A2E786F001862FC /* ATLFallBackPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATLFallBackPickerView.swift; sourceTree = "<group>"; };
-		B3E7B5891CC2AC0600A0062D /* ComponentsNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComponentsNative.m; sourceTree = "<group>"; };
 		F4FF95D5245B92E700C19C63 /* ComponentsNative-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ComponentsNative-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,7 +71,6 @@
 			isa = PBXGroup;
 			children = (
 				3373AC942A2E7669001862FC /* Picker */,
-				B3E7B5891CC2AC0600A0062D /* ComponentsNative.m */,
 				F4FF95D5245B92E700C19C63 /* ComponentsNative-Bridging-Header.h */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
