@@ -15,6 +15,9 @@ run:
 
 ```sh
 npm install @jobber/components-native
+# iOS Linking
+cd ios
+pod install
 ```
 
 ## Usage
