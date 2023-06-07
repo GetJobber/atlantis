@@ -6,6 +6,7 @@ import sizes from "./style/Sizes.css";
 import shapes from "./style/Shape.css";
 import timings from "./style/Timing.css";
 /* eslint-enable import/no-internal-modules */
+import { Content } from "../Content";
 
 export type Sizes = keyof typeof sizes;
 export type Shapes = keyof typeof shapes;
@@ -46,6 +47,9 @@ interface GlimmerProps {
 }
 
 export const GLIMMER_TEST_ID = "ATL-Glimmer";
+export const GLIMMER_HEADER_TEST_ID = "ATL-GlimmerHeader";
+export const GLIMMER_TEXT_TEST_ID = "ATL-GlimmerText";
+export const GLIMMER_BUTTON_TEST_ID = "ATL-GlimmerButton";
 
 /**
  * **Experimental component! Use at your own risk.**
@@ -78,3 +82,46 @@ export function Glimmer({
     />
   );
 }
+
+Glimmer.Header = function GlimmerHeader({
+  size = "large",
+  ...props
+}: Omit<GlimmerProps, "shape">) {
+  return (
+    <div className={styles.header} data-testid={GLIMMER_HEADER_TEST_ID}>
+      <Glimmer size={size} {...props} />
+    </div>
+  );
+};
+
+interface GlimmerTextProps extends Omit<GlimmerProps, "shape" | "size"> {
+  readonly lines?: 1 | 2 | 3;
+}
+
+Glimmer.Text = function GlimmerText({
+  width,
+  lines = 3,
+  ...props
+}: GlimmerTextProps) {
+  const children = [
+    <Glimmer key="1" size="small" shape="rectangleShort" {...props} />,
+    <Glimmer key="2" size="small" {...props} />,
+    <Glimmer key="3" size="small" shape="rectangleShorter" {...props} />,
+  ].slice(0, lines);
+
+  return (
+    <div style={{ width }} data-testid={GLIMMER_TEXT_TEST_ID}>
+      <Content spacing="small">{children}</Content>
+    </div>
+  );
+};
+
+Glimmer.Button = function GlimmerButton(
+  props: Pick<GlimmerProps, "reverseTheme">,
+) {
+  return (
+    <div className={styles.button} data-testid={GLIMMER_BUTTON_TEST_ID}>
+      <Glimmer {...props} size="auto" />
+    </div>
+  );
+};
