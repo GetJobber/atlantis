@@ -117,7 +117,7 @@ Glimmer.Text = function GlimmerText({
 };
 
 Glimmer.Button = function GlimmerButton(
-  props: Pick<GlimmerProps, "reverseTheme">,
+  props: Omit<GlimmerProps, "shape" | "size">,
 ) {
   return (
     <div className={styles.button} data-testid={GLIMMER_BUTTON_TEST_ID}>
