@@ -33,7 +33,6 @@ declare const styles: {
   readonly "word": string;
   readonly "runningTimer": string;
   readonly "spinning": string;
-  readonly "spinHands": string;
 };
 export = styles;
 
