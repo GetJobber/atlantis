@@ -1,7 +1,17 @@
 {
   "name": "@jobber/components-native",
-  "version": "0.29.0",
+  "version": "0.30.0",
   "license": "MIT",
+  "description": "React Native implementation of Atlantis",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GetJobber/atlantis.git"
+  },
+  "author": "The Frends",
+  "bugs": {
+    "url": "https://github.com/GetJobber/atlantis/issues"
+  },
+  "homepage": "https://github.com/GetJobber/atlantis#readme",
   "main": "dist/src/index.js",
   "module": "dist/src/index.js",
   "types": "dist/types/src/index.d.ts",
@@ -10,7 +20,11 @@
     "src",
     "!**/__tests__",
     "!**/__fixtures__",
-    "!**/__mocks__"
+    "!**/__mocks__",
+    "ios",
+    "cpp",
+    "*.podspec",
+    "!ios/build"
   ],
   "scripts": {
     "clean": "rm -rf dist/* tsconfig.tsbuildinfo",
@@ -23,6 +37,7 @@
   "dependencies": {
     "@jobber/design": "^0.41.3",
     "lodash": "^4.17.21",
+    "@react-native-picker/picker": "^2.4.10",
     "lodash.chunk": "^4.2.0",
     "lodash.debounce": "^4.0.8",
     "lodash.identity": "^3.0.0",
