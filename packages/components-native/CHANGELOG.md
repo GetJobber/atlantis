@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.31.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.30.0...@jobber/components-native@0.31.0) (2023-06-07)
+
+
+### Features
+
+* **components-native:** Import Select to components-native ([#1312](https://github.com/GetJobber/atlantis/issues/1312)) ([18f49e1](https://github.com/GetJobber/atlantis/commit/18f49e13523d76eda666ffa70a417f732371bcd4))
+
+
+
+
+
 # [0.30.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.29.0...@jobber/components-native@0.30.0) (2023-06-06)
 
 
