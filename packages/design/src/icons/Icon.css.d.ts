@@ -32,6 +32,7 @@ declare const styles: {
   readonly "pdf": string;
   readonly "word": string;
   readonly "runningTimer": string;
+  readonly "spinning": string;
   readonly "spinHands": string;
 };
 export = styles;

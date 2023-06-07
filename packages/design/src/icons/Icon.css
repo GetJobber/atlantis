@@ -100,7 +100,7 @@
 .runningTimer {
   animation-duration: 5s;
   animation-iteration-count: infinite;
-  animation-name: spinHands;
+  animation-name: spinning;
   animation-timing-function: linear;
 }
 
