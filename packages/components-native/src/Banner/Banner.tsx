@@ -15,7 +15,11 @@ export function Banner({
   type,
 }: BannerProps): JSX.Element {
   return (
-    <Pressable style={[styles.container, BannerTypeStyles[type].styles]}>
+    <Pressable
+      style={[styles.container, BannerTypeStyles[type].styles]}
+      accessibilityRole="alert"
+      onPress={action?.onPress}
+    >
       <Content childSpacing="small">
         <Text level="textSupporting">{text}</Text>
         {details && <TextList items={details} level="textSupporting" />}
