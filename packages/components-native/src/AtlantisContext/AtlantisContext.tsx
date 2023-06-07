@@ -2,6 +2,8 @@
 import { createContext, useContext } from "react";
 import RNLocalize from "react-native-localize";
 
+export const DEFAULT_CURRENCY_SYMBOL = "$";
+
 export interface AtlantisContextProps {
   /**
    * The date format Atlantis components would use
@@ -34,6 +36,11 @@ export interface AtlantisContextProps {
    * Grabs the decimal separator and group separator based on locale
    */
   readonly floatSeparators: Record<"decimal" | "group", string>;
+
+  /**
+   * The currency symbol Atlantis components will use
+   */
+  readonly currencySymbol: string;
 }
 
 export const defaultValues: AtlantisContextProps = {
@@ -45,6 +52,7 @@ export const defaultValues: AtlantisContextProps = {
     return;
   },
   floatSeparators: { group: ",", decimal: "." },
+  currencySymbol: DEFAULT_CURRENCY_SYMBOL,
 };
 
 export const AtlantisContext = createContext(defaultValues);

@@ -19,6 +19,7 @@ const providerValues: AtlantisContextProps = {
     return;
   },
   floatSeparators: { decimal: ".", group: "," },
+  currencySymbol: "€",
 };
 
 describe("AtlantisContext", () => {
