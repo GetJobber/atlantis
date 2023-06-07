@@ -23,6 +23,8 @@ interface GlimmerProps {
 
   /**
    * Sets the shape of the glimmer.
+   *
+   * If you need a specific width, use the `width` prop.
    */
   readonly shape?: Shapes;
 
@@ -36,6 +38,11 @@ interface GlimmerProps {
    * Use on surfaces with dark backgrounds.
    */
   readonly reverseTheme?: boolean;
+
+  /**
+   * Adjust the width of the glimmer in px values.
+   */
+  readonly width?: number;
 }
 
 export const GLIMMER_TEST_ID = "ATL-Glimmer";
@@ -52,6 +59,7 @@ export function Glimmer({
   shape = "rectangle",
   timing = "base",
   reverseTheme = false,
+  width,
 }: GlimmerProps) {
   const className = classnames(
     styles.glimmer,
@@ -62,6 +70,11 @@ export function Glimmer({
   );
 
   return (
-    <div aria-busy="true" className={className} data-testid={GLIMMER_TEST_ID} />
+    <div
+      aria-busy="true"
+      className={className}
+      data-testid={GLIMMER_TEST_ID}
+      style={{ width }}
+    />
   );
 }
