@@ -25,7 +25,17 @@ module.exports = {
       rules. For now, warn on these.
      */
     "import/no-relative-parent-imports": "warn",
-    "no-restricted-imports": "warn",
+    "no-restricted-imports": [
+      "error",
+      {
+        paths: [
+          {
+            name: "lodash",
+            message: "Import [module] from lodash/[module] instead",
+          },
+        ],
+      },
+    ],
     "import/no-internal-modules": [
       "error",
       {

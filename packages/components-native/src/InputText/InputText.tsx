@@ -24,7 +24,7 @@ import {
   RegisterOptions,
 } from "react-hook-form";
 import { IconNames } from "@jobber/design";
-import identity from "lodash.identity";
+import identity from "lodash/identity";
 import { styles } from "./InputText.style";
 import { useInputAccessoriesContext } from "./context";
 import { useFormController } from "../hooks";
