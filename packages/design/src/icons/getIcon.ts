@@ -50,6 +50,7 @@ export function getIcon({ name, color, size = "base" }: IconProps) {
     [styles.longArrowUp]: name === "longArrowUp",
     [styles.longArrowDown]: name === "longArrowDown",
     [styles.thumbsDown]: name === "thumbsDown",
+    [styles.runningTimer]: name === "runningTimer",
   });
 
   const pathClassNames = getPathClassNames(name, color);
@@ -98,7 +99,7 @@ function getPathClassNames(name: string, color?: IconColorNames) {
     [styles.reminder]: name === "reminder",
     [styles.trash]: name === "trash",
     [styles.task]: name === "task",
-    [styles.timer]: name === "timer",
+    [styles.timer]: name === "timer" || name === "runningTimer",
     [styles.quote]: name === "quote",
     [styles.invoice]: name === "invoice",
     [styles.checkmark]: name === "checkmark",
