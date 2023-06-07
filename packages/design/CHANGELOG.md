@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.42.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.41.3...@jobber/design@0.42.0) (2023-06-07)
+
+
+### Features
+
+* **components:** add a runningTimer icon [JOB 70534] ([#1319](https://github.com/GetJobber/atlantis/issues/1319)) ([19e8c99](https://github.com/GetJobber/atlantis/commit/19e8c995524169988f9ccbada0c203782941bb90))
+
+
+
+
+
 ## [0.41.3](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.41.2...@jobber/design@0.41.3) (2023-06-01)
 
 
