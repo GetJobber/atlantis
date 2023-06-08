@@ -31,7 +31,7 @@ module.exports = {
         paths: [
           {
             name: "lodash",
-            message: "Import [module] from lodash/[module] instead",
+            message: "Import [module] from lodash/[module] instead.",
           },
         ],
       },
