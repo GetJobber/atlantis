@@ -1,0 +1,5 @@
+export const MAX_SELECTED_FILES = 50;
+export const MAX_TOTAL_FILE_SIZE = 500000000;
+export const SMALL_IMAGE_DIMENSION = 1080;
+export const EMAIL_IMAGE_DIMENSION = 2048;
+export const CONCURRENT_UPLOADS = 4;
