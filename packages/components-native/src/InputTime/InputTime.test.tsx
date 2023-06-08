@@ -1,5 +1,10 @@
 import React from "react";
-import { cleanup, fireEvent, render } from "@testing-library/react-native";
+import {
+  cleanup,
+  fireEvent,
+  render,
+  waitFor,
+} from "@testing-library/react-native";
 import { Host } from "react-native-portalize";
 import { FormProvider, useForm } from "react-hook-form";
 import { InputTime } from "./InputTime";
@@ -187,15 +192,19 @@ const mockOnSubmit = jest.fn();
 const saveButtonText = "Submit";
 
 const requiredError = "This is required";
-function SimpleFormWithProvider({ children }) {
-  const formMethods = useForm();
+function SimpleFormWithProvider({ children, defaultValues }) {
+  const formMethods = useForm({
+    reValidateMode: "onChange",
+    defaultValues,
+    mode: "onTouched",
+  });
 
   return (
     <FormProvider {...formMethods}>
       {children}
       <Button
         onPress={formMethods.handleSubmit(values => mockOnSubmit(values))}
-        title={saveButtonText}
+        label={saveButtonText}
         accessibilityLabel={saveButtonText}
       />
     </FormProvider>
@@ -210,7 +219,7 @@ describe("Form controlled", () => {
 
   const setup = () =>
     render(
-      <SimpleFormWithProvider>
+      <SimpleFormWithProvider defaultValues={{ [pickerName]: value }}>
         <Host>
           <InputTime
             name={pickerName}
@@ -254,10 +263,12 @@ describe("Form controlled", () => {
     expect(clearAction).toBeDefined();
 
     fireEvent.press(clearAction);
-
-    expect(
-      await screen.findByText(requiredError, { includeHiddenElements: true }),
-    ).toBeDefined();
+    screen.debug();
+    await waitFor(() => {
+      expect(
+        screen.getByText(requiredError, { includeHiddenElements: true }),
+      ).toBeDefined();
+    });
   });
 
   it("should clear the input with null value when it is in a form", async () => {
