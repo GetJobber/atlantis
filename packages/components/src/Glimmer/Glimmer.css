@@ -44,7 +44,11 @@
 
 .button {
   display: inline-block;
-  width: 30%;
+  width: 100px;
   height: 36px;
-  max-width: 100px;
+}
+
+.buttonFill {
+  display: block;
+  width: 100%;
 }

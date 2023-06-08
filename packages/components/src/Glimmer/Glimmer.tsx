@@ -116,11 +116,19 @@ Glimmer.Text = function GlimmerText({
   );
 };
 
-Glimmer.Button = function GlimmerButton(
-  props: Omit<GlimmerProps, "shape" | "size">,
-) {
+interface GlimmerButtonProps extends Omit<GlimmerProps, "shape" | "size"> {
+  readonly fullWidth?: boolean;
+}
+
+Glimmer.Button = function GlimmerButton({
+  fullWidth = false,
+  ...props
+}: GlimmerButtonProps) {
+  const buttonClassNames = classnames(styles.button, {
+    [styles.buttonFill]: fullWidth,
+  });
   return (
-    <div className={styles.button} data-testid={GLIMMER_BUTTON_TEST_ID}>
+    <div className={buttonClassNames} data-testid={GLIMMER_BUTTON_TEST_ID}>
       <Glimmer {...props} size="auto" />
     </div>
   );
