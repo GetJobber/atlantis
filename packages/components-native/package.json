@@ -55,6 +55,7 @@
     "ts-xor": "^1.1.0"
   },
   "devDependencies": {
+    "@react-native-community/datetimepicker": "^6.4.2",
     "@testing-library/jest-native": "^5.4.2",
     "@testing-library/react-hooks": "^7.0.2",
     "@testing-library/react-native": "^12.0.1",
@@ -64,16 +65,18 @@
     "@types/react": "^18.0.28",
     "@types/react-native": "^0.71.6",
     "@types/react-native-uuid": "^1.4.0",
+    "date-fns": "^2.30.0",
+    "date-fns-tz": "^2.0.0",
     "metro-react-native-babel-preset": "^0.76.0",
     "react-test-renderer": "^18.2.0",
     "typescript": "^4.9.5"
   },
   "peerDependencies": {
     "@babel/core": "^7.4.5",
-    "react": "^18",
-    "react-native": ">=0.69.2",
     "date-fns": "^2.0.0",
     "date-fns-tz": "*",
+    "react": "^18",
+    "react-native": ">=0.69.2",
     "react-native-modal-datetime-picker": " >=13.0.0"
   }
 }
