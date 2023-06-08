@@ -83,18 +83,39 @@ export function Glimmer({
   );
 }
 
+interface GlimmerHeaderProps extends Omit<GlimmerProps, "shape" | "size"> {
+  /**
+   * Adjust the size of the `Glimmer.Header`.
+   *
+   * @default 3
+   */
+  readonly level?: 1 | 2 | 3 | 4 | 5;
+}
+
 Glimmer.Header = function GlimmerHeader({
-  size = "large",
+  level = 3,
   ...props
-}: Omit<GlimmerProps, "shape">) {
+}: GlimmerHeaderProps) {
+  const headerSize: Record<number, GlimmerProps["size"]> = {
+    1: "largest",
+    2: "larger",
+    3: "large",
+    4: "base",
+    5: "small",
+  };
   return (
     <div className={styles.header} data-testid={GLIMMER_HEADER_TEST_ID}>
-      <Glimmer size={size} {...props} />
+      <Glimmer size={headerSize[level]} {...props} />
     </div>
   );
 };
 
 interface GlimmerTextProps extends Omit<GlimmerProps, "shape" | "size"> {
+  /**
+   * Set how many lines shows up.
+   *
+   * @default 3
+   */
   readonly lines?: 1 | 2 | 3;
 }
 
@@ -117,6 +138,11 @@ Glimmer.Text = function GlimmerText({
 };
 
 interface GlimmerButtonProps extends Omit<GlimmerProps, "shape" | "size"> {
+  /**
+   * Allow `Glimmer.Button` to go full width.
+   *
+   * @default false
+   */
   readonly fullWidth?: boolean;
 }
 
