@@ -21,9 +21,7 @@ import {
   checkAndRequestCameraPermissions,
   checkAndRequestGalleryPermissions,
 } from "utils/permissions";
-import { Button } from "atlantis/Button";
 import { useIsDeviceOnline } from "hooks/useIsDeviceOnline";
-import { useAtlantisContext } from "atlantis/AtlantisContext";
 import { messages } from "./messages";
 import { UploadError, uploadAssetToS3 } from "./utils/uploadAssetToS3";
 import { styles } from "./InputFile.style";
@@ -49,6 +47,8 @@ import {
 import { validateFiles, validateFilesReturnType } from "./utils/validateFiles";
 import { buildFileUpload } from "./utils/buildFileUpload";
 import { buildSourceFile } from "./utils/buildSourceFile";
+import { useAtlantisContext } from "../AtlantisContext";
+import { Button } from "../Button";
 
 const { JobberWebInterface } = NativeModules;
 
