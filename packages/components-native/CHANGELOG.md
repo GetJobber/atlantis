@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.33.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.32.1...@jobber/components-native@0.33.0) (2023-06-08)
+
+
+### Features
+
+* **components-native:** Import Banner to components-native ([#1315](https://github.com/GetJobber/atlantis/issues/1315)) ([29cbe2f](https://github.com/GetJobber/atlantis/commit/29cbe2f3292fcad3aff4e48fa0ae1cad181cbc34))
+
+
+
+
+
 ## [0.32.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.32.0...@jobber/components-native@0.32.1) (2023-06-07)
 
 **Note:** Version bump only for package @jobber/components-native
