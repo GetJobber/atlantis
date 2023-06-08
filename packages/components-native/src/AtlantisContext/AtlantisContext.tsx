@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { createContext, useContext } from "react";
 import RNLocalize from "react-native-localize";
-
-export const DEFAULT_CURRENCY_SYMBOL = "$";
+import { DEFAULT_CURRENCY_SYMBOL } from "../InputCurrency/constants";
 
 export interface AtlantisContextProps {
   /**
