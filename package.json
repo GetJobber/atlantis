@@ -65,6 +65,7 @@
     "@jobber/eslint-config": "*",
     "@jobber/generators": "*",
     "@jobber/stylelint-config": "*",
+    "@react-native-community/datetimepicker": "^7.1.0",
     "@storybook/addon-actions": "^6.5.16",
     "@storybook/addon-docs": "^6.5.16",
     "@storybook/addon-essentials": "^6.5.16",
