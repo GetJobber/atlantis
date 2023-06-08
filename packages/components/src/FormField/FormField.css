@@ -69,7 +69,13 @@
   --field--padding-bottom: var(--space-small);
 }
 
+.miniLabel.large {
+  --field--padding-top: calc(var(--space-large) + var(--space-smaller));
+}
+
 .wrapper.textarea {
+  --field--placeholder-offset: 0;
+  --field--placeholder-transform: 0;
   height: auto;
   min-height: auto;
 }
@@ -213,12 +219,17 @@
 }
 
 .textarea .label {
-  top: var(--field--padding-top);
-  transform: translateY(0);
+  /* Changes the width so that the scrollbar on the textarea doesn't get cut off */
+  width: calc(100% - var(--field--padding-right));
+  padding-top: var(--field--padding-top);
+  /* Remove padding on right to make use of the entire width */
+  padding-right: 0;
+  transform: translateY(--field--placeholder-transform);
 }
 
 .textarea.miniLabel .label {
-  top: var(--space-smallest);
+  padding-top: var(--space-smallest);
+  background-color: var(--field--background-color);
 }
 
 .small.miniLabel .label {
@@ -226,7 +237,7 @@
 }
 
 .large.miniLabel .label {
-  top: var(--space-small);
+  padding-top: var(--space-small);
 }
 
 /**
