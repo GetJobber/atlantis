@@ -20,6 +20,7 @@ export * from "./InputFieldWrapper";
 export * from "./InputPassword";
 export * from "./InputPressable";
 export * from "./InputSearch";
+export * from "./InputTime";
 export * from "./InputText";
 export * from "./TextList";
 export * from "./ProgressBar";
