@@ -38,7 +38,7 @@ references:
   npm_install: &npm_install
     run:
       name: Install Dependencies
-      command: npm ci
+      command: npm ci --legacy-peer-deps
 
   github_authenticity: &github_authenticity
     run:
