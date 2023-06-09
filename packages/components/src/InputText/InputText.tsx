@@ -1,4 +1,10 @@
-import React, { Ref, createRef, forwardRef, useImperativeHandle } from "react";
+import React, {
+  Ref,
+  createRef,
+  forwardRef,
+  useImperativeHandle,
+  useLayoutEffect,
+} from "react";
 import { XOR } from "ts-xor";
 import {
   CommonFormFieldProps,
@@ -82,6 +88,12 @@ function InputTextInternal(
       }
     },
   }));
+
+  useLayoutEffect(() => {
+    if (inputRef && inputRef.current instanceof HTMLTextAreaElement) {
+      resize(inputRef.current);
+    }
+  }, [inputRef.current]);
 
   return (
     <FormField

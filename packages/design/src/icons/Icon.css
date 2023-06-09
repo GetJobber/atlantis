@@ -96,3 +96,20 @@
 .word {
   fill: rgb(41, 86, 154);
 }
+
+.runningTimer {
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-name: spinning;
+  animation-timing-function: linear;
+}
+
+@keyframes spinning {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

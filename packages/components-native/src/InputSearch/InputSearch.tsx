@@ -1,6 +1,6 @@
 import React, { Ref, forwardRef, useEffect } from "react";
 import { View } from "react-native";
-import debounce from "lodash.debounce";
+import debounce from "lodash/debounce";
 import { styles } from "./InputSearch.style";
 import { InputText, InputTextProps, InputTextRef } from "../InputText";
 
