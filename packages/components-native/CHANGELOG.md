@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.34.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.33.1...@jobber/components-native@0.34.0) (2023-06-09)
+
+
+### Features
+
+* **components-native:** Import InputCurrency ([#1316](https://github.com/GetJobber/atlantis/issues/1316)) ([25d37f7](https://github.com/GetJobber/atlantis/commit/25d37f7f2f0563469ab4d0670c6ab134b6f2f96f))
+
+
+
+
+
 ## [0.33.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.33.0...@jobber/components-native@0.33.1) (2023-06-09)
 
 **Note:** Version bump only for package @jobber/components-native
