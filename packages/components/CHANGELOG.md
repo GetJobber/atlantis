@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.20.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.20.3...@jobber/components@4.20.4) (2023-06-09)
+
+
+### Bug Fixes
+
+* **components:** Fix initial resize of InputText when rows are passed in ([#1321](https://github.com/GetJobber/atlantis/issues/1321)) ([1492706](https://github.com/GetJobber/atlantis/commit/14927068875b8016e8b8919cbc72877aabced799))
+
+
+
+
+
 ## [4.20.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.20.2...@jobber/components@4.20.3) (2023-06-09)
 
 **Note:** Version bump only for package @jobber/components
