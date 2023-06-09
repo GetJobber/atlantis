@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { createContext, useContext } from "react";
 import RNLocalize from "react-native-localize";
+import { DEFAULT_CURRENCY_SYMBOL } from "../InputCurrency/constants";
 
 export interface AtlantisContextProps {
   /**
@@ -34,6 +35,11 @@ export interface AtlantisContextProps {
    * Grabs the decimal separator and group separator based on locale
    */
   readonly floatSeparators: Record<"decimal" | "group", string>;
+
+  /**
+   * The currency symbol Atlantis components will use
+   */
+  readonly currencySymbol: string;
 }
 
 export const defaultValues: AtlantisContextProps = {
@@ -45,6 +51,7 @@ export const defaultValues: AtlantisContextProps = {
     return;
   },
   floatSeparators: { group: ",", decimal: "." },
+  currencySymbol: DEFAULT_CURRENCY_SYMBOL,
 };
 
 export const AtlantisContext = createContext(defaultValues);
