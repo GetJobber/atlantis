@@ -1,6 +1,6 @@
 import React, { Children, PropsWithChildren } from "react";
 import { View } from "react-native";
-import chunk from "lodash.chunk";
+import chunk from "lodash/chunk";
 import { columnStyles, gapStyles, styles } from "./Flex.styles";
 import { FlexProps } from "./types";
 import { Content } from "../Content";
