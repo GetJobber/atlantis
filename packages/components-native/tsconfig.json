@@ -3,6 +3,14 @@
   "compilerOptions": {
     "outDir": "./dist",
     "module": "ESNext",
+    "types": [
+      "react-native",
+      "jest"
+    ],
+    "lib": [
+      "es2019"
+    ],
+    "jsx": "react-native",
     "skipLibCheck": true,
     "declaration": true,
     "declarationDir": "./dist/types",

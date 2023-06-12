@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components-native",
-  "version": "0.34.0",
+  "version": "0.35.0",
   "license": "MIT",
   "description": "React Native implementation of Atlantis",
   "repository": {
@@ -37,14 +37,14 @@
   "dependencies": {
     "@jobber/design": "^0.42.0",
     "@react-native-picker/picker": "^2.4.10",
-    "@types/lodash": "^4.14.195",
     "lodash": "^4.17.21",
-    "mime": "^3.0.0",
     "react-hook-form": "^7.30.0",
     "react-intl": "^6.4.2",
     "react-native-gesture-handler": "^2.10.2",
+    "react-native-image-picker": "^4.0.0",
     "react-native-localize": "^2.2.6",
     "react-native-modalize": "^2.0.13",
+    "react-native-permissions": "^3.8.0",
     "react-native-portalize": "^1.0.7",
     "react-native-reanimated": "^2.17.0",
     "react-native-safe-area-context": "^4.5.3",
@@ -57,7 +57,10 @@
     "@testing-library/jest-native": "^5.4.2",
     "@testing-library/react-hooks": "^7.0.2",
     "@testing-library/react-native": "^12.0.1",
-    "@tsconfig/react-native": "^2.0.2",
+    "@types/lodash": "^4.14.195",
+    "@types/lodash.chunk": "^4.2.7",
+    "@types/lodash.debounce": "^4.0.7",
+    "@types/lodash.identity": "^3.0.7",
     "@types/mime": "^3.0.1",
     "@types/react": "^18.0.28",
     "@types/react-native": "^0.71.6",
@@ -68,11 +71,15 @@
   },
   "peerDependencies": {
     "@babel/core": "^7.4.5",
+    "@react-native-community/datetimepicker": ">=6.7.0",
     "@react-native-community/netinfo": "^9.3.0",
+    "date-fns": "^2.0.0",
+    "date-fns-tz": "*",
     "react": "^18",
     "react-native": ">=0.69.2",
     "react-native-document-picker": "^8.0.0",
     "react-native-image-picker": "^4.0.0",
+    "react-native-modal-datetime-picker": " >=13.0.0",
     "react-native-permissions": "^3.8.0"
   }
 }
