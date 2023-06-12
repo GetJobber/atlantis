@@ -1,0 +1,488 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a Collapsable item with a header and a content when open is true 1`] = `
+<View
+  style={
+    {
+      "width": "100%",
+    }
+  }
+>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": false,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <Text
+        accessibilityRole="text"
+        adjustsFontSizeToFit={false}
+        allowFontScaling={true}
+        collapsable={false}
+        maxFontSizeMultiplier={3.125}
+        selectable={true}
+        selectionColor="rgb(132, 234, 0)"
+        style={
+          [
+            {
+              "fontFamily": "inter-regular",
+            },
+            {
+              "color": "rgb(66, 78, 86)",
+            },
+            {
+              "textAlign": "left",
+            },
+            {
+              "fontSize": 16,
+              "lineHeight": 20,
+            },
+            {
+              "letterSpacing": 0,
+            },
+          ]
+        }
+      >
+        This is the header
+      </Text>
+      <View
+        style={
+          [
+            {
+              "transform": [
+                {
+                  "rotateZ": "0deg",
+                },
+              ],
+            },
+          ]
+        }
+      >
+        <SVGMock
+          style={
+            {
+              "display": "flex",
+              "fill": "rgb(181, 181, 181)",
+              "height": 24,
+              "verticalAlign": "middle",
+              "width": 24,
+            }
+          }
+          testID="arrowUp"
+          viewBox="0 0 24 24"
+        >
+          <Path
+            d="M16.297 14.709a.996.996 0 0 0 1.41-.001.994.994 0 0 0 0-1.41l-5-5.005a.998.998 0 0 0-1.415 0l-5 5a.994.994 0 0 0 0 1.41.996.996 0 0 0 1.411.001L12 10.416l4.297 4.293Z"
+            fill="rgb(181, 181, 181)"
+          />
+        </SVGMock>
+      </View>
+    </View>
+  </View>
+  <RCTScrollView
+    scrollEnabled={false}
+    showsHorizontalScrollIndicator={false}
+    showsVerticalScrollIndicator={false}
+    style={
+      [
+        {
+          "paddingTop": 8,
+        },
+        {
+          "height": 100,
+        },
+      ]
+    }
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        testID="content"
+      >
+        <Text
+          accessibilityRole="text"
+          adjustsFontSizeToFit={false}
+          allowFontScaling={true}
+          collapsable={false}
+          maxFontSizeMultiplier={3.125}
+          selectable={true}
+          selectionColor="rgb(132, 234, 0)"
+          style={
+            [
+              {
+                "fontFamily": "inter-regular",
+              },
+              {
+                "color": "rgb(66, 78, 86)",
+              },
+              {
+                "textAlign": "left",
+              },
+              {
+                "fontSize": 16,
+                "lineHeight": 20,
+              },
+              {
+                "letterSpacing": 0,
+              },
+            ]
+          }
+        >
+          This is the content
+        </Text>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`renders a Collapsable item with a header and with a content of size 0 when closed is false 1`] = `
+<View
+  style={
+    {
+      "width": "100%",
+    }
+  }
+>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": false,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <Text
+        accessibilityRole="text"
+        adjustsFontSizeToFit={false}
+        allowFontScaling={true}
+        collapsable={false}
+        maxFontSizeMultiplier={3.125}
+        selectable={true}
+        selectionColor="rgb(132, 234, 0)"
+        style={
+          [
+            {
+              "fontFamily": "inter-regular",
+            },
+            {
+              "color": "rgb(66, 78, 86)",
+            },
+            {
+              "textAlign": "left",
+            },
+            {
+              "fontSize": 16,
+              "lineHeight": 20,
+            },
+            {
+              "letterSpacing": 0,
+            },
+          ]
+        }
+      >
+        This is the header
+      </Text>
+      <View
+        style={
+          [
+            {
+              "transform": [
+                {
+                  "rotateZ": "-180deg",
+                },
+              ],
+            },
+          ]
+        }
+      >
+        <SVGMock
+          style={
+            {
+              "display": "flex",
+              "fill": "rgb(181, 181, 181)",
+              "height": 24,
+              "verticalAlign": "middle",
+              "width": 24,
+            }
+          }
+          testID="arrowUp"
+          viewBox="0 0 24 24"
+        >
+          <Path
+            d="M16.297 14.709a.996.996 0 0 0 1.41-.001.994.994 0 0 0 0-1.41l-5-5.005a.998.998 0 0 0-1.415 0l-5 5a.994.994 0 0 0 0 1.41.996.996 0 0 0 1.411.001L12 10.416l4.297 4.293Z"
+            fill="rgb(181, 181, 181)"
+          />
+        </SVGMock>
+      </View>
+    </View>
+  </View>
+  <RCTScrollView
+    scrollEnabled={false}
+    showsHorizontalScrollIndicator={false}
+    showsVerticalScrollIndicator={false}
+    style={
+      [
+        {
+          "paddingTop": 8,
+        },
+        {
+          "height": 0,
+        },
+      ]
+    }
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        testID="content"
+      >
+        <Text
+          accessibilityRole="text"
+          adjustsFontSizeToFit={false}
+          allowFontScaling={true}
+          collapsable={false}
+          maxFontSizeMultiplier={3.125}
+          selectable={true}
+          selectionColor="rgb(132, 234, 0)"
+          style={
+            [
+              {
+                "fontFamily": "inter-regular",
+              },
+              {
+                "color": "rgb(66, 78, 86)",
+              },
+              {
+                "textAlign": "left",
+              },
+              {
+                "fontSize": 16,
+                "lineHeight": 20,
+              },
+              {
+                "letterSpacing": 0,
+              },
+            ]
+          }
+        >
+          This is the content
+        </Text>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`should not render the caret when the collapsable item is empty 1`] = `
+<View
+  style={
+    {
+      "width": "100%",
+    }
+  }
+>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": true,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <Text
+        accessibilityRole="text"
+        adjustsFontSizeToFit={false}
+        allowFontScaling={true}
+        collapsable={false}
+        maxFontSizeMultiplier={3.125}
+        selectable={true}
+        selectionColor="rgb(132, 234, 0)"
+        style={
+          [
+            {
+              "fontFamily": "inter-regular",
+            },
+            {
+              "color": "rgb(66, 78, 86)",
+            },
+            {
+              "textAlign": "left",
+            },
+            {
+              "fontSize": 16,
+              "lineHeight": 20,
+            },
+            {
+              "letterSpacing": 0,
+            },
+          ]
+        }
+      >
+        This is the header
+      </Text>
+    </View>
+  </View>
+  <RCTScrollView
+    scrollEnabled={false}
+    showsHorizontalScrollIndicator={false}
+    showsVerticalScrollIndicator={false}
+    style={
+      [
+        {
+          "paddingTop": 8,
+        },
+        {
+          "height": 0,
+        },
+      ]
+    }
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        testID="content"
+      >
+        <Text
+          accessibilityRole="text"
+          adjustsFontSizeToFit={false}
+          allowFontScaling={true}
+          collapsable={false}
+          maxFontSizeMultiplier={3.125}
+          selectable={true}
+          selectionColor="rgb(132, 234, 0)"
+          style={
+            [
+              {
+                "fontFamily": "inter-regular",
+              },
+              {
+                "color": "rgb(66, 78, 86)",
+              },
+              {
+                "textAlign": "left",
+              },
+              {
+                "fontSize": 16,
+                "lineHeight": 20,
+              },
+              {
+                "letterSpacing": 0,
+              },
+            ]
+          }
+        >
+          This is the content
+        </Text>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;

@@ -8,6 +8,7 @@ export * from "./Button";
 export * from "./ButtonGroup";
 export * from "./Card";
 export * from "./Chip";
+export * from "./CollapsableItem";
 export * from "./Content";
 export * from "./Divider";
 export * from "./EmptyState";
