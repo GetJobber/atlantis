@@ -21,7 +21,7 @@ interface AnimatedSwitcherProps {
    */
   readonly switchTo: ReactElement;
 
-  readonly type?: "slideVertical" | "fade" | "icon";
+  readonly type?: "slideVertical" | "fade";
 }
 
 const DURATION_SIMPLE = 0.1;
@@ -46,13 +46,11 @@ const spinCounterClockWise: Variants = {
   visible: {
     rotate: 0,
     scale: 1,
-    opacity: 1,
     transition: { duration: DURATION_AVERAGE, ease: "easeOut" },
   },
   hidden: {
     rotate: 180,
     scale: 0.6,
-    opacity: 0.1,
     transition: { duration: DURATION_AVERAGE, ease: "easeIn" },
   },
 };
@@ -61,13 +59,11 @@ const spinClockWise: Variants = {
   visible: {
     rotate: 0,
     scale: 1,
-    opacity: 1,
     transition: { duration: DURATION_AVERAGE, ease: "easeOut" },
   },
   hidden: {
     rotate: -180,
     scale: 0.6,
-    opacity: 0.1,
     transition: { duration: DURATION_AVERAGE, ease: "easeIn" },
   },
 };
@@ -78,6 +74,8 @@ export function AnimatedSwitcher({
   switchTo,
   type = "slideVertical",
 }: AnimatedSwitcherProps) {
+  const isSwitchingBetweenIcons =
+    initialChild.type === Icon && switchTo.type === Icon;
   const { key, transition, child, duration } = getChildData();
 
   return (
@@ -110,15 +108,14 @@ export function AnimatedSwitcher({
   }
 
   function getTransitionType(): Variants {
-    switch (type) {
-      case "fade":
-        return fade;
-      case "icon":
-        if (switched) return spinCounterClockWise;
-        return spinClockWise;
-      default:
-        if (switched) return slideInUp;
-        return slideInDown;
+    if (isSwitchingBetweenIcons) {
+      if (switched) return spinCounterClockWise;
+      return spinClockWise;
+    } else if (type === "fade") {
+      return fade;
+    } else {
+      if (switched) return slideInUp;
+      return slideInDown;
     }
   }
 
@@ -148,7 +145,6 @@ AnimatedSwitcher.Icon = function AnimatedSwitcherIcon({
       switched={switched}
       initialChild={<Icon name={initialIcon} />}
       switchTo={<Icon name={switchToIcon} />}
-      type="icon"
     />
   );
 };
