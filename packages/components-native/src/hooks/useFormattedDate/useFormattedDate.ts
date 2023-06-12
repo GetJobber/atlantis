@@ -1,6 +1,7 @@
 import { formatInTimeZone } from "date-fns-tz";
 import { useAtlantisContext } from "../../AtlantisContext";
 import {
+  AtlantisDateFormat,
   accountFormattedDate,
   shortFormattedDate,
 } from "../../utils/format/date";
@@ -11,7 +12,7 @@ function formatDate(
   date: Date,
   format: DateFormat,
   accountTimeZoneName: string,
-  accountDateFormat: string,
+  accountDateFormat: AtlantisDateFormat,
 ) {
   if (format === "shorthand") {
     return shortFormattedDate(date, accountTimeZoneName);

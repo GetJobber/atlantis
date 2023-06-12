@@ -2,9 +2,15 @@ import { isValid } from "date-fns";
 import { enUS } from "date-fns/locale";
 import { format } from "date-fns-tz";
 
+export type AtlantisDateFormat =
+  | "%d/%m/%Y"
+  | "%m/%d/%Y"
+  | "%Y-%m-%d"
+  | "%b %d, %Y";
+
 export function accountFormattedDate(
   date: Date,
-  accountFormat: string,
+  accountFormat: AtlantisDateFormat,
   timeZone: string | undefined,
 ): string {
   if (!isValid(date)) {
