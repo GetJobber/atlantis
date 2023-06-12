@@ -67,7 +67,11 @@
   },
   "peerDependencies": {
     "@babel/core": "^7.4.5",
+    "date-fns": "^2.0.0",
+    "date-fns-tz": "*",
     "react": "^18",
-    "react-native": ">=0.69.2"
+    "react-native": ">=0.69.2",
+    "react-native-modal-datetime-picker": " >=13.0.0",
+    "@react-native-community/datetimepicker": ">=6.7.0"
   }
 }
