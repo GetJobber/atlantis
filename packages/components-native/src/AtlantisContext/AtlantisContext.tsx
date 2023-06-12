@@ -7,7 +7,7 @@ export interface AtlantisContextProps {
   /**
    * The date format Atlantis components would use
    */
-  readonly dateFormat?: string;
+  readonly dateFormat: string;
 
   /**
    * The time format Atlantis components would use
