@@ -60,3 +60,11 @@ jest.mock("../hooks/useIsScreenReaderEnabled", () => ({
 jest.spyOn(ReactNative.AccessibilityInfo, "addEventListener").mockReturnValue({
   remove: jest.fn(),
 } as unknown as ReactNative.EmitterSubscription);
+
+jest.mock("@react-navigation/stack", () => {
+  const realStackNavigator = jest.requireActual("@react-navigation/stack");
+  return {
+    ...realStackNavigator,
+    useHeaderHeight: jest.fn(),
+  };
+});
