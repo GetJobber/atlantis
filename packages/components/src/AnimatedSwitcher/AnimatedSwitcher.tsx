@@ -21,7 +21,7 @@ interface AnimatedSwitcherProps {
    */
   readonly switchTo: ReactElement;
 
-  readonly type?: "slideVertical" | "fade";
+  readonly type?: "slideFromBottom" | "fade";
 }
 
 const DURATION_SIMPLE = 0.1;
@@ -72,7 +72,7 @@ export function AnimatedSwitcher({
   switched = false,
   initialChild,
   switchTo,
-  type = "slideVertical",
+  type = "slideFromBottom",
 }: AnimatedSwitcherProps) {
   const isSwitchingBetweenIcons =
     initialChild.type === Icon && switchTo.type === Icon;
