@@ -1,5 +1,7 @@
 import React, { ReactElement } from "react";
 import { AnimatePresence, Variants, motion } from "framer-motion";
+import { IconNames } from "@jobber/design";
+import { Icon } from "../Icon";
 
 interface AnimatedSwitcherProps {
   /**
@@ -22,6 +24,9 @@ interface AnimatedSwitcherProps {
   readonly type?: "slideVertical" | "fade" | "icon";
 }
 
+const DURATION_SIMPLE = 0.1;
+const DURATION_AVERAGE = 0.2;
+
 const slideInUp = {
   visible: { y: 0, opacity: 1 },
   hidden: { y: "10%", opacity: 0 },
@@ -42,13 +47,13 @@ const spinCounterClockWise: Variants = {
     rotate: 0,
     scale: 1,
     opacity: 1,
-    transition: { duration: 0.5, ease: "easeOut" },
+    transition: { duration: DURATION_AVERAGE, ease: "easeOut" },
   },
   hidden: {
     rotate: 180,
     scale: 0.6,
     opacity: 0.1,
-    transition: { duration: 0.5, ease: "easeIn" },
+    transition: { duration: DURATION_AVERAGE, ease: "easeIn" },
   },
 };
 
@@ -57,13 +62,13 @@ const spinClockWise: Variants = {
     rotate: 0,
     scale: 1,
     opacity: 1,
-    transition: { duration: 0.5, ease: "easeOut" },
+    transition: { duration: DURATION_AVERAGE, ease: "easeOut" },
   },
   hidden: {
     rotate: -180,
     scale: 0.6,
     opacity: 0.1,
-    transition: { duration: 0.5, ease: "easeIn" },
+    transition: { duration: DURATION_AVERAGE, ease: "easeIn" },
   },
 };
 
@@ -92,9 +97,9 @@ export function AnimatedSwitcher({
   );
 
   function getChildData() {
-    let data = { key: "1", child: initialChild };
+    let data = { key: `${initialChild.type}_1`, child: initialChild };
     if (switched) {
-      data = { key: "2", child: switchTo };
+      data = { key: `${switchTo.type}_2`, child: switchTo };
     }
 
     return {
@@ -104,7 +109,7 @@ export function AnimatedSwitcher({
     };
   }
 
-  function getTransitionType() {
+  function getTransitionType(): Variants {
     switch (type) {
       case "fade":
         return fade;
@@ -120,9 +125,30 @@ export function AnimatedSwitcher({
   function getTransitionDuration() {
     switch (type) {
       case "fade":
-        return 0.2;
+        return DURATION_AVERAGE;
       default:
-        return 0.1;
+        return DURATION_SIMPLE;
     }
   }
 }
+
+interface AnimatedSwitcherIconProps
+  extends Pick<AnimatedSwitcherProps, "switched"> {
+  readonly initialIcon: IconNames;
+  readonly switchToIcon: IconNames;
+}
+
+AnimatedSwitcher.Icon = function AnimatedSwitcherIcon({
+  switchToIcon,
+  switched,
+  initialIcon,
+}: AnimatedSwitcherIconProps) {
+  return (
+    <AnimatedSwitcher
+      switched={switched}
+      initialChild={<Icon name={initialIcon} />}
+      switchTo={<Icon name={switchToIcon} />}
+      type="icon"
+    />
+  );
+};
