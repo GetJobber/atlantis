@@ -2,12 +2,13 @@
 import { createContext, useContext } from "react";
 import RNLocalize from "react-native-localize";
 import { DEFAULT_CURRENCY_SYMBOL } from "../InputCurrency/constants";
+import { AtlantisDateFormatType } from "../utils/format/date";
 
 export interface AtlantisContextProps {
   /**
    * The date format Atlantis components would use
    */
-  readonly dateFormat?: string;
+  readonly dateFormat: AtlantisDateFormatType;
 
   /**
    * The time format Atlantis components would use
@@ -43,6 +44,7 @@ export interface AtlantisContextProps {
 }
 
 export const defaultValues: AtlantisContextProps = {
+  dateFormat: "%b %d, %Y",
   // The system time is "p"
   timeFormat: "p",
   timeZone: RNLocalize.getTimeZone(),
