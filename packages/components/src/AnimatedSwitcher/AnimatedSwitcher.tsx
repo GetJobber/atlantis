@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import { AnimatePresence, Variants, motion } from "framer-motion";
 import { IconNames } from "@jobber/design";
 import { Icon } from "../Icon";
@@ -74,24 +74,33 @@ export function AnimatedSwitcher({
   switchTo,
   type = "slideFromBottom",
 }: AnimatedSwitcherProps) {
+  const [ref, setRef] = useState<HTMLDivElement | null>(null);
   const isSwitchingBetweenIcons =
     initialChild.type === Icon && switchTo.type === Icon;
   const { key, transition, child, duration } = getChildData();
 
   return (
-    <AnimatePresence exitBeforeEnter initial={false}>
-      <motion.div
-        key={key}
-        variants={transition}
-        initial="hidden"
-        animate="visible"
-        exit="hidden"
-        transition={{ duration }}
-        style={{ display: "inline-block" }}
-      >
-        {child}
-      </motion.div>
-    </AnimatePresence>
+    <motion.div
+      animate={{
+        width: ref?.getBoundingClientRect().width,
+        height: ref?.getBoundingClientRect().height,
+      }}
+      transition={{ duration: getTransitionDuration() }}
+    >
+      <AnimatePresence exitBeforeEnter initial={false}>
+        <motion.div
+          key={key}
+          ref={setRef}
+          variants={transition}
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+          transition={{ duration }}
+        >
+          {child}
+        </motion.div>
+      </AnimatePresence>
+    </motion.div>
   );
 
   function getChildData() {
