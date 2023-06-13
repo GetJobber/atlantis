@@ -1,8 +1,6 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import { AnimatePresence, Variants, motion } from "framer-motion";
 import { IconNames } from "@jobber/design";
-import classNames from "classnames";
-import styles from "./AnimatedSwitcher.css";
 import { Icon } from "../Icon";
 
 interface AnimatedSwitcherProps {
@@ -27,12 +25,6 @@ interface AnimatedSwitcherProps {
    * Change the transition between 2 elements.
    */
   readonly type?: "slideFromBottom" | "fade";
-
-  /**
-   * When you're switching inline elements, like `Button`, you should set this
-   * to true so the wrapping element respects the size of your element.
-   */
-  readonly inline?: boolean;
 }
 
 const DURATION_SIMPLE = 0.1;
@@ -81,34 +73,38 @@ const spinClockWise: Variants = {
 
 export function AnimatedSwitcher({
   initialChild,
-  inline = false,
   switched = false,
   switchTo,
   type = "slideFromBottom",
 }: AnimatedSwitcherProps) {
+  const [ref, setRef] = useState<HTMLDivElement | null>(null);
   const isSwitchingBetweenIcons =
     initialChild.type === Icon && switchTo.type === Icon;
 
   const { key, transition, child, duration } = getChildData();
-  const classnames = classNames({
-    [styles.isInlineElement]: inline || isSwitchingBetweenIcons,
-  });
 
   return (
     <AnimatePresence exitBeforeEnter initial={false}>
       <motion.div
-        className={classnames}
+        ref={setRef}
         key={key}
         variants={transition}
         initial="hidden"
         animate="visible"
         exit="hidden"
         transition={{ duration }}
+        style={{ display: getDisplayValue() }}
       >
         {child}
       </motion.div>
     </AnimatePresence>
   );
+
+  function getDisplayValue() {
+    if (ref?.firstElementChild) {
+      return window.getComputedStyle(ref.firstElementChild).display;
+    }
+  }
 
   function getChildData() {
     let data = { key: `${initialChild.type}_1`, child: initialChild };
