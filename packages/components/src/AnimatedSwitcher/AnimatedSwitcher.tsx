@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useEffect, useRef, useState } from "react";
 import { AnimatePresence, Variants, motion } from "framer-motion";
 import { IconNames } from "@jobber/design";
 import { Icon } from "../Icon";
@@ -74,18 +74,37 @@ export function AnimatedSwitcher({
   switchTo,
   type = "slideFromBottom",
 }: AnimatedSwitcherProps) {
+  const parentRef = useRef<HTMLDivElement>(null);
   const [ref, setRef] = useState<HTMLDivElement | null>(null);
+  const [metadata, setMetadata] = useState<{
+    width?: number;
+    height?: number;
+    display?: string;
+  }>();
   const isSwitchingBetweenIcons =
     initialChild.type === Icon && switchTo.type === Icon;
   const { key, transition, child, duration } = getChildData();
 
+  useEffect(() => {
+    setMetadata({
+      width: ref?.clientWidth,
+      height: ref?.clientHeight,
+      display:
+        ref && ref.firstElementChild
+          ? window.getComputedStyle(ref.firstElementChild).display
+          : undefined,
+    });
+  }, [ref]);
+
   return (
     <motion.div
+      ref={parentRef}
       animate={{
-        width: ref?.getBoundingClientRect().width,
-        height: ref?.getBoundingClientRect().height,
+        width: metadata?.width,
+        height: metadata?.height,
       }}
       transition={{ duration: getTransitionDuration() }}
+      style={{ display: metadata?.display }}
     >
       <AnimatePresence exitBeforeEnter initial={false}>
         <motion.div
@@ -96,6 +115,7 @@ export function AnimatedSwitcher({
           animate="visible"
           exit="hidden"
           transition={{ duration }}
+          style={{ display: metadata?.display }}
         >
           {child}
         </motion.div>
