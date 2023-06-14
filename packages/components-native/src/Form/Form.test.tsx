@@ -2,8 +2,6 @@
 import React, { createRef } from "react";
 import { act, fireEvent, render, waitFor } from "@testing-library/react-native";
 import { Alert, Keyboard } from "react-native";
-// @ts-expect-error tsc-ci
-import mockRNCNetInfo from "@react-native-community/netinfo/jest/netinfo-mock.js";
 import { NavigationContainerRef } from "@react-navigation/native";
 import { useIntl } from "react-intl";
 import { Host } from "react-native-portalize";
@@ -24,6 +22,8 @@ import { messages as formErrorBannerMessages } from "./components/FormErrorBanne
 import { messages } from "./components/FormSaveButton/messages";
 import { messages as formMessages } from "./messages";
 import { FormBannerErrors, FormSubmitErrorType } from "./types";
+import { defaultValues as contextDefaultValue } from "../AtlantisContext";
+import * as atlantisContext from "../AtlantisContext/AtlantisContext";
 import { Text } from "../Text";
 import { Checkbox } from "../Checkbox";
 import { InputNumber } from "../InputNumber";
@@ -36,7 +36,6 @@ const session = {
   accountId: "1",
 };
 
-jest.mock("hooks/useEditMode");
 jest.mock("lodash/debounce", () => {
   return jest.fn(fn => {
     fn.cancel = jest.fn();
@@ -549,10 +548,17 @@ describe("Form", () => {
   });
 
   describe("Error Banner", () => {
+    const atlantisContextSpy = jest.spyOn(
+      atlantisContext,
+      "useAtlantisContext",
+    );
+
+    atlantisContextSpy.mockReturnValue({
+      ...contextDefaultValue,
+      isOnline: false,
+    });
+
     it("renders Offline Banner when disconnected", async () => {
-      mockRNCNetInfo.useNetInfo = () => {
-        return { isConnected: false, type: "other" };
-      };
       const { getByText } = render(<FormTest onSubmit={onSubmitMock} />);
       const { formatMessage } = useIntl();
 
@@ -562,9 +568,6 @@ describe("Form", () => {
     });
 
     it("does not render Offline Banner when connected", async () => {
-      mockRNCNetInfo.useNetInfo = () => {
-        return { isConnected: true, type: "other" };
-      };
       const { queryByText } = render(<FormTest onSubmit={onSubmitMock} />);
       const { formatMessage } = useIntl();
 
