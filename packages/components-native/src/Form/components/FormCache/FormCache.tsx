@@ -1,18 +1,18 @@
 import React, { useEffect, useMemo } from "react";
-import { useFormContext, useWatch } from "react-hook-form";
+import { FieldValues, useFormContext, useWatch } from "react-hook-form";
 import omit from "lodash/omit";
 
-interface FormCacheProps {
+interface FormCacheProps<T extends FieldValues> {
   localCacheId?: string | string[];
-  localCacheKey?: Record<string, string>;
+  localCacheKey?: string;
   localCacheExclude?: string[];
-  setLocalCache: <T>(data: T) => void;
+  setLocalCache: (data: T) => void;
 }
-export function FormCache({
+export function FormCache<T extends FieldValues>({
   localCacheExclude,
   localCacheKey,
   setLocalCache,
-}: FormCacheProps): JSX.Element {
+}: FormCacheProps<T>): JSX.Element {
   const { control, formState } = useFormContext();
   const { isDirty } = formState;
 

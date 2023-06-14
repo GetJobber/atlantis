@@ -146,7 +146,7 @@ export interface FormProps<T extends FieldValues, SubmitResponseType> {
    * Adding a key will save a local copy of the form data that will be used to
    * recover values when the app is backgrounded or has crashed.
    */
-  localCacheKey?: Record<string, string>;
+  localCacheKey?: string;
 
   /**
    * Forms field names that will not be considered for caching.

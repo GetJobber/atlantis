@@ -31,7 +31,7 @@ interface UseInternalForm<T extends FieldValues> {
   readonly isSubmitting: boolean;
   readonly isDirty: boolean;
   readonly removeListenerRef: MutableRefObject<() => void>;
-  readonly setLocalCache: <S>(data: S) => void;
+  readonly setLocalCache: (data: T) => void;
 }
 
 export function useInternalForm<T extends FieldValues, SubmitResponseType>({
@@ -45,8 +45,8 @@ export function useInternalForm<T extends FieldValues, SubmitResponseType>({
   saveButtonHeight,
   messageBannerHeight,
 }: UseInternalFormProps<T, SubmitResponseType>): UseInternalForm<T> {
-  const { useConfirmBeforeBack, LocalCacheKeys, useInternalFormLocalCache } =
-    useAtlantisFormContext();
+  const { useConfirmBeforeBack, useInternalFormLocalCache } =
+    useAtlantisFormContext<T>();
 
   const { isOnline } = useAtlantisContext();
 
@@ -57,8 +57,7 @@ export function useInternalForm<T extends FieldValues, SubmitResponseType>({
     shouldFocusError: false,
   });
 
-  const clientSideSaveOn =
-    localCacheKey && localCacheKey !== LocalCacheKeys.INVALID;
+  const clientSideSaveOn = localCacheKey && localCacheKey !== "INVALID";
 
   const { setLocalCache, removeLocalCache } = useInternalFormLocalCache(
     formMethods,
@@ -81,8 +80,6 @@ export function useInternalForm<T extends FieldValues, SubmitResponseType>({
       scrollViewRef,
     };
   }
-
-  useEditMode();
 
   const removeListenerRef = useConfirmBeforeBack({
     alwaysPreventBack: isSubmitting,
