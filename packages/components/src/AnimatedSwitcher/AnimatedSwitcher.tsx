@@ -12,7 +12,7 @@ import {
 } from "./transitions";
 import { Icon } from "../Icon";
 
-interface AnimatedSwitcherProps {
+export interface AnimatedSwitcherProps {
   /**
    * Determines when to switch the component to the `switchTo` prop.
    *
