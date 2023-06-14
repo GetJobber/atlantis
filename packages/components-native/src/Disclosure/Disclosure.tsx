@@ -12,14 +12,14 @@ import Reanimated, {
   withTiming,
 } from "react-native-reanimated";
 import { EASE_CUBIC_IN_OUT } from "./constants";
-import { styles } from "./CollapsableItem.style";
+import { styles } from "./Disclosure.style";
 import { tokens } from "../utils/design";
 import { Icon } from "../Icon";
 
 const ReanimatedView = Reanimated.createAnimatedComponent(View);
 const ReanimatedScrollView = Reanimated.createAnimatedComponent(ScrollView);
 
-interface CollapsableItemProps {
+interface DisclosureProps {
   readonly content: React.ReactNode;
   readonly header: React.ReactNode;
   readonly open: boolean;
@@ -28,36 +28,36 @@ interface CollapsableItemProps {
   onToggle(): void;
 }
 
-export function CollapsableItem({
+export function Disclosure({
   content,
   header,
   open,
   onToggle,
   isEmpty,
   animationDuration = tokens["timing-slowest"],
-}: CollapsableItemProps): JSX.Element {
+}: DisclosureProps): JSX.Element {
   return (
     <View style={styles.container}>
-      <CollapsableItemHeader
+      <DisclosureHeader
         {...{ header, onToggle, isEmpty, open, animationDuration }}
       />
-      <CollapsableItemContent {...{ content, open, animationDuration }} />
+      <DisclosureContent {...{ content, open, animationDuration }} />
     </View>
   );
 }
 
-type CollapsableItemHeaderProps = Pick<
-  CollapsableItemProps,
+type DisclosureHeaderProps = Pick<
+  DisclosureProps,
   "header" | "onToggle" | "isEmpty" | "open" | "animationDuration"
 >;
 
-function CollapsableItemHeader({
+function DisclosureHeader({
   header,
   onToggle,
   isEmpty,
   open,
   animationDuration,
-}: CollapsableItemHeaderProps) {
+}: DisclosureHeaderProps) {
   const rotateZ = useSharedValue(0);
 
   rotateZ.value = withTiming(open ? 0 : -180, {
@@ -89,16 +89,16 @@ function CollapsableItemHeader({
   );
 }
 
-type CollapsableItemContentProps = Pick<
-  CollapsableItemProps,
+type DisclosureContentProps = Pick<
+  DisclosureProps,
   "content" | "open" | "animationDuration"
 >;
 
-function CollapsableItemContent({
+function DisclosureContent({
   content,
   open,
   animationDuration,
-}: CollapsableItemContentProps) {
+}: DisclosureContentProps) {
   const [maxHeight, setMaxHeight] = useState(0);
   const height = useSharedValue(0);
 

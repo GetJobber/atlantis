@@ -1,7 +1,7 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react-native";
 import { ReactTestInstance } from "react-test-renderer";
-import { CollapsableItem } from ".";
+import { Disclosure } from ".";
 import { Text } from "../Text";
 
 jest.mock("react-native-svg", () => {
@@ -13,8 +13,8 @@ jest.mock("react-native-svg", () => {
   };
 });
 
-function fireLayoutEvent(collapsableItemContent: ReactTestInstance) {
-  fireEvent(collapsableItemContent, "onLayout", {
+function fireLayoutEvent(disclosureContent: ReactTestInstance) {
+  fireEvent(disclosureContent, "onLayout", {
     nativeEvent: {
       layout: {
         height: 100,
@@ -24,8 +24,8 @@ function fireLayoutEvent(collapsableItemContent: ReactTestInstance) {
 }
 
 it("renders a Collapsable item with a header and a content when open is true", () => {
-  const collapsableItem = render(
-    <CollapsableItem
+  const disclosure = render(
+    <Disclosure
       header={<Text>This is the header</Text>}
       content={<Text>This is the content</Text>}
       open={true}
@@ -35,13 +35,13 @@ it("renders a Collapsable item with a header and a content when open is true", (
       }}
     />,
   );
-  fireLayoutEvent(collapsableItem.getByTestId("content"));
-  expect(collapsableItem).toMatchSnapshot();
+  fireLayoutEvent(disclosure.getByTestId("content"));
+  expect(disclosure).toMatchSnapshot();
 });
 
 it("renders a Collapsable item with a header and with a content of size 0 when closed is false", () => {
-  const collapsableItem = render(
-    <CollapsableItem
+  const disclosure = render(
+    <Disclosure
       header={<Text>This is the header</Text>}
       content={<Text>This is the content</Text>}
       open={false}
@@ -51,13 +51,13 @@ it("renders a Collapsable item with a header and with a content of size 0 when c
       }}
     />,
   );
-  fireLayoutEvent(collapsableItem.getByTestId("content"));
-  expect(collapsableItem).toMatchSnapshot();
+  fireLayoutEvent(disclosure.getByTestId("content"));
+  expect(disclosure).toMatchSnapshot();
 });
 
 it("should not render the caret when the collapsable item is empty", () => {
-  const collapsableItem = render(
-    <CollapsableItem
+  const disclosure = render(
+    <Disclosure
       header={<Text>This is the header</Text>}
       content={<Text>This is the content</Text>}
       open={false}
@@ -67,5 +67,5 @@ it("should not render the caret when the collapsable item is empty", () => {
       }}
     />,
   );
-  expect(collapsableItem).toMatchSnapshot();
+  expect(disclosure).toMatchSnapshot();
 });
