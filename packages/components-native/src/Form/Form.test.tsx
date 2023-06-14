@@ -1,22 +1,9 @@
 /* eslint-disable max-statements */
-import React, { createRef } from "react";
+import React from "react";
 import { act, fireEvent, render, waitFor } from "@testing-library/react-native";
 import { Alert, Keyboard } from "react-native";
-import { NavigationContainerRef } from "@react-navigation/native";
 import { useIntl } from "react-intl";
 import { Host } from "react-native-portalize";
-import {
-  MockSessionProvider,
-  MockedNavigator,
-  MockedStackNavigator,
-  wait,
-} from "utils/test";
-import { LocalCacheKeys } from "hooks/useLocalCache";
-import { debounceTime } from "hooks/useLocalCache/useLocalCache";
-import { generateLocalCacheKey } from "hooks/useLocalCache/utils/generateLocalCacheKey";
-import * as hooks from "hooks/useConfirmBeforeBack/useConfirmBeforeBack";
-import { appVersion } from "utils/versionInfo";
-import { storage } from "utils/syncStorage";
 import { Form, FormBannerMessage, FormBannerMessageType } from ".";
 import { messages as formErrorBannerMessages } from "./components/FormErrorBanner/messages";
 import { messages } from "./components/FormSaveButton/messages";
@@ -31,24 +18,13 @@ import { Switch } from "../Switch";
 import { Option, Select } from "../Select";
 import { InputText } from "../InputText";
 
-const session = {
-  userId: "1",
-  accountId: "1",
-};
-
 jest.mock("lodash/debounce", () => {
   return jest.fn(fn => {
     fn.cancel = jest.fn();
     return fn;
   });
 });
-const mockAppVersion = jest.fn(() => 2);
 
-jest.mock("utils/versionInfo/versionInfo", () => {
-  return {
-    appVersion: () => mockAppVersion(),
-  };
-});
 const onSubmitMock = jest.fn().mockImplementation(() => {
   return Promise.resolve(() => Promise.resolve());
 });
@@ -57,20 +33,15 @@ const onErrorMock = jest.fn();
 const onChangeMock = jest.fn();
 const onChangeSelectMock = jest.fn();
 const onChangeSwitchMock = jest.fn();
-const mockedEvents: Record<string, () => void> = {};
-
-jest.mock("hooks/useRecordEvent/useRecordEvent", () => ({
-  useRecordEvent: ({ name }: { name: string }) => {
-    if (!mockedEvents[name]) {
-      mockedEvents[name] = jest.fn();
-    }
-    return mockedEvents[name];
-  },
-}));
 
 const mockScrollToPosition = jest.fn();
 const mockScrollToTop = jest.fn();
-jest.mock("atlantis/Form/hooks/useFormViewRefs", () => ({
+
+jest.mock("@react-navigation/stack", () => ({
+  useHeaderHeight: jest.fn().mockImplementation(() => 200),
+}));
+
+jest.mock("./hooks/useFormViewRefs", () => ({
   useFormViewRefs: () => {
     return {
       scrollViewRef: {
@@ -133,7 +104,7 @@ interface FormTestProps {
   initialLoading?: boolean;
   initialValues?: FormFields;
   bannerMessages?: FormBannerMessage[];
-  localCacheKey?: Record<string, string>;
+  localCacheKey?: string;
   localCacheExclude?: string[];
   localCacheId?: string[] | string;
   onBeforeSubmit?: jest.Mock;
@@ -142,7 +113,7 @@ interface FormTestProps {
 }
 
 function FormTest(props: FormTestProps) {
-  return <MockedNavigator component={() => <MockForm {...props} />} />;
+  return <MockForm {...props} />;
 }
 
 function MockForm({
@@ -171,61 +142,56 @@ function MockForm({
 
   return (
     <Host>
-      <MockSessionProvider {...session} validSession={true}>
-        <Form
-          onSubmit={onSubmit}
-          onSubmitError={onErrorMock}
-          onSubmitSuccess={onSuccessMock}
-          bannerErrors={formErrors}
-          bannerMessages={bannerMessages}
-          saveButtonLabel={saveLabel}
-          renderStickySection={renderStickySection}
-          initialLoading={initialLoading}
-          initialValues={initialValues}
-          localCacheKey={localCacheKey}
-          localCacheExclude={localCacheExclude}
-          localCacheId={localCacheId}
-          onBeforeSubmit={onBeforeSubmit}
-          renderFooter={renderFooter}
-          saveButtonOffset={saveButtonOffset}
-        >
+      <Form
+        onSubmit={onSubmit}
+        onSubmitError={onErrorMock}
+        onSubmitSuccess={onSuccessMock}
+        bannerErrors={formErrors}
+        bannerMessages={bannerMessages}
+        saveButtonLabel={saveLabel}
+        renderStickySection={renderStickySection}
+        initialLoading={initialLoading}
+        initialValues={initialValues}
+        localCacheKey={localCacheKey}
+        localCacheExclude={localCacheExclude}
+        localCacheId={localCacheId}
+        onBeforeSubmit={onBeforeSubmit}
+        renderFooter={renderFooter}
+        saveButtonOffset={saveButtonOffset}
+      >
+        <InputText
+          name={testInputTextName}
+          placeholder={testInputTextPlaceholder}
+          onChangeText={onChangeMock}
+          accessibilityLabel={testInputTextPlaceholder}
+          validations={{
+            required: requiredInputText,
+            minLength: { value: 3, message: minLengthText },
+          }}
+        />
+        {Array.isArray(localCacheExclude) && localCacheExclude.length > 0 && (
           <InputText
-            name={testInputTextName}
-            placeholder={testInputTextPlaceholder}
-            onChangeText={onChangeMock}
-            accessibilityLabel={testInputTextPlaceholder}
-            validations={{
-              required: requiredInputText,
-              minLength: { value: 3, message: minLengthText },
-            }}
+            name={testInputTextNameExclude}
+            placeholder={testInputTextPlaceholderExclude}
           />
-          {Array.isArray(localCacheExclude) && localCacheExclude.length > 0 && (
-            <InputText
-              name={testInputTextNameExclude}
-              placeholder={testInputTextPlaceholderExclude}
-            />
-          )}
-          <Select
-            onChange={onChangeSelectMock}
-            label={selectLabel}
-            name={testSelectName}
-          >
-            <Option value={"1"}>1</Option>
-            <Option value={"2"}>2</Option>
-          </Select>
-          <Switch
-            name={testSwitchName}
-            label="Test Switch"
-            accessibilityLabel={switchLabel}
-            onValueChange={onChangeSwitchMock}
-          />
-          <InputNumber name={testInputNumberName} placeholder="Test Num" />
-          <Checkbox
-            name={testCheckboxName}
-            accessibilityLabel={checkboxLabel}
-          />
-        </Form>
-      </MockSessionProvider>
+        )}
+        <Select
+          onChange={onChangeSelectMock}
+          label={selectLabel}
+          name={testSelectName}
+        >
+          <Option value={"1"}>1</Option>
+          <Option value={"2"}>2</Option>
+        </Select>
+        <Switch
+          name={testSwitchName}
+          label="Test Switch"
+          accessibilityLabel={switchLabel}
+          onValueChange={onChangeSwitchMock}
+        />
+        <InputNumber name={testInputNumberName} placeholder="Test Num" />
+        <Checkbox name={testCheckboxName} accessibilityLabel={checkboxLabel} />
+      </Form>
     </Host>
   );
 }
@@ -238,17 +204,12 @@ const testPresetValues = {
   [testCheckboxName]: true,
 };
 
-const MOCK_CACHE_KEY = Object.values(LocalCacheKeys)[0] as LocalCacheKeys;
-const PREFIXED_MOCK_KEY = generateLocalCacheKey(MOCK_CACHE_KEY, session);
-const cache = {
-  data: testPresetValues,
-  timestamp: new Date().toJSON(),
-  version: appVersion(),
-};
+async function wait(milliseconds = 0): Promise<void> {
+  await new Promise(resolve => setTimeout(resolve, milliseconds));
+}
 
 afterEach(() => {
   jest.clearAllMocks();
-  storage.removeAll();
 });
 
 describe("Form", () => {
@@ -343,28 +304,6 @@ describe("Form", () => {
           [testSwitchName]: true,
         });
       });
-    });
-
-    it("should remove out of date beforeBack navigation listener", async () => {
-      const listenerRefRemoveMock = jest.fn();
-      const mockUseConfirmBeforeBack = jest
-        .spyOn(hooks, "useConfirmBeforeBack")
-        .mockImplementation(() => ({ current: listenerRefRemoveMock }));
-
-      const { getByLabelText } = render(<FormTest onSubmit={onSubmitMock} />);
-
-      const newValue = "New Value";
-      fireEvent.changeText(getByLabelText(testInputTextPlaceholder), newValue);
-
-      const saveButton = getByLabelText(saveButtonText);
-      fireEvent.press(saveButton);
-
-      await waitFor(() => {
-        expect(onSubmitMock).toHaveBeenCalled();
-      });
-
-      expect(listenerRefRemoveMock).toHaveBeenCalledTimes(1);
-      mockUseConfirmBeforeBack.mockRestore();
     });
 
     it("should dismiss keyboard when form is saved", async () => {
@@ -482,11 +421,7 @@ describe("Form", () => {
       );
       const setup = () => {
         const view = render(
-          <FormTest
-            sendNetworkErrors={true}
-            localCacheKey={MOCK_CACHE_KEY}
-            onSubmit={mockSubmit}
-          />,
+          <FormTest sendNetworkErrors={true} onSubmit={mockSubmit} />,
         );
 
         const { getByLabelText } = view;
@@ -502,13 +437,14 @@ describe("Form", () => {
 
       it("should show offline alert when attempting to save while offline", async () => {
         const alertSpy = jest.spyOn(Alert, "alert");
+        const { formatMessage } = useIntl();
         setup();
 
         await act(wait);
         expect(alertSpy).toHaveBeenCalledTimes(1);
         expect(alertSpy).toHaveBeenCalledWith(
-          formMessages.unavailableNetworkTitle,
-          formMessages.unavailableNetworkMessage,
+          formatMessage(formMessages.unavailableNetworkTitle),
+          formatMessage(formMessages.unavailableNetworkMessage),
           expect.anything(),
         );
       });
@@ -568,6 +504,10 @@ describe("Form", () => {
     });
 
     it("does not render Offline Banner when connected", async () => {
+      atlantisContextSpy.mockReturnValue({
+        ...contextDefaultValue,
+        isOnline: true,
+      });
       const { queryByText } = render(<FormTest onSubmit={onSubmitMock} />);
       const { formatMessage } = useIntl();
 
@@ -649,185 +589,5 @@ describe("Form", () => {
 
       expect(queryByTestId("ATL-FormSafeArea")).toBeNull();
     });
-  });
-});
-
-describe("Local caching", () => {
-  describe("`localCacheKey` is not defined", () => {
-    it("shouldn't cache", async () => {
-      const { getByLabelText } = render(<FormTest onSubmit={onSubmitMock} />);
-      const newValue = "🍩";
-
-      const input = getByLabelText(testInputTextPlaceholder);
-      fireEvent.changeText(input, newValue);
-
-      expect(input.props.value).toEqual(newValue);
-      const InitialKeys = storage.getAllKeys();
-      expect(InitialKeys).toHaveLength(0);
-    });
-
-    it("should throw a console log", () => {
-      const consoleSpy = jest.spyOn(console, "log");
-      render(<FormTest onSubmit={onSubmitMock} />);
-
-      expect(consoleSpy).toHaveBeenCalledTimes(1);
-      expect(consoleSpy).toHaveBeenCalledWith(
-        "No `localCacheKey` specified on Form. Local copy of form data is now disabled.",
-      );
-    });
-  });
-
-  it("should cache when `localCacheKey` is declared", async () => {
-    const newValue = "🤯";
-    const { getByLabelText } = render(
-      <FormTest onSubmit={onSubmitMock} localCacheKey={MOCK_CACHE_KEY} />,
-    );
-
-    const input = getByLabelText(testInputTextPlaceholder);
-    fireEvent.changeText(input, newValue);
-
-    expect(input.props.value).toEqual(newValue);
-    const InitialKeys = storage.getAllKeys();
-    expect(InitialKeys).toEqual([PREFIXED_MOCK_KEY]);
-  });
-
-  it("should not cache an excluded field", async () => {
-    const newValue = "a";
-    const { getByLabelText } = render(
-      <FormTest
-        onSubmit={onSubmitMock}
-        localCacheKey={MOCK_CACHE_KEY}
-        localCacheExclude={[testInputTextNameExclude]}
-      />,
-    );
-
-    const inputNormal = getByLabelText(testInputTextPlaceholder);
-    fireEvent.changeText(inputNormal, newValue);
-    expect(inputNormal.props.value).toEqual(newValue);
-
-    const inputExclude = getByLabelText(testInputTextPlaceholderExclude);
-    fireEvent.changeText(inputExclude, newValue);
-    expect(inputExclude.props.value).toEqual(newValue);
-
-    const afterSaveSData = storage.readString(PREFIXED_MOCK_KEY);
-    expect(afterSaveSData).toContain(testInputTextName);
-    expect(afterSaveSData).not.toContain(testInputTextNameExclude);
-  });
-
-  it("should delete the cache on successful submit", async () => {
-    const { getByLabelText } = render(
-      <FormTest onSubmit={onSubmitMock} localCacheKey={MOCK_CACHE_KEY} />,
-    );
-
-    fireEvent.changeText(
-      getByLabelText(testInputTextPlaceholder),
-      "Other Value",
-    );
-    const InitialData = storage.readString(PREFIXED_MOCK_KEY);
-    expect(InitialData).toBeTruthy();
-
-    fireEvent.press(getByLabelText(saveButtonText));
-
-    // Ensure it successfully submits
-    await waitFor(() => {
-      expect(onSubmitMock).toHaveBeenCalled();
-      expect(onSuccessMock).toHaveBeenCalled();
-      expect(onErrorMock).not.toHaveBeenCalled();
-    });
-
-    await new Promise(resolve => setTimeout(resolve, debounceTime + 2));
-    const afterSaveSData = storage.readString(MOCK_CACHE_KEY);
-    expect(afterSaveSData).toBeUndefined();
-  });
-
-  it("should delete the local cache on navigate away", async () => {
-    jest.useFakeTimers();
-    const alertSpy = jest.spyOn(Alert, "alert");
-    const navigationRef = createRef<NavigationContainerRef>();
-    const activeComponent = () => (
-      <MockForm onSubmit={onSubmitMock} localCacheKey={MOCK_CACHE_KEY} />
-    );
-    const { getByLabelText } = render(
-      <MockedStackNavigator
-        navigationRef={navigationRef}
-        components={[
-          { name: "prev", component: () => <></> },
-          { name: "active", component: activeComponent },
-        ]}
-      />,
-    );
-
-    navigationRef.current?.navigate("active");
-
-    await fireEvent.changeText(
-      getByLabelText(testInputTextPlaceholder),
-      "New Value",
-    );
-    navigationRef.current?.goBack();
-
-    // ensure the alert gets called
-    expect(alertSpy).toHaveBeenCalled();
-
-    // fire the onPress on the "Yes" action of the alert
-    const alertActions = alertSpy.mock.calls[0][2];
-    const yesAction = alertActions?.find(action => action.text === "Yes");
-    yesAction?.onPress?.();
-    jest.runOnlyPendingTimers();
-
-    // ensure data is deleted
-    const afterSaveSData = storage.readString(MOCK_CACHE_KEY);
-    expect(afterSaveSData).toBeUndefined();
-
-    jest.useRealTimers();
-  });
-
-  it("should apply cached data to form", async () => {
-    storage.write(PREFIXED_MOCK_KEY, cache);
-
-    const { getByLabelText, getByDisplayValue } = render(
-      <FormTest onSubmit={onSubmitMock} localCacheKey={MOCK_CACHE_KEY} />,
-    );
-
-    await waitFor(() => {
-      expect(getByDisplayValue(cache.data[testInputTextName])).toBeTruthy();
-    });
-    expect(
-      getByDisplayValue(cache.data[testInputNumberName].toString()),
-    ).toBeTruthy();
-    expect(getByLabelText(switchLabel).props.value).toEqual(true);
-    expect(
-      getByLabelText(checkboxLabel).props.accessibilityState.checked,
-    ).toEqual(true);
-  });
-
-  it("should show warning about lost progress when pressing back after cache applied", async () => {
-    storage.write(PREFIXED_MOCK_KEY, cache);
-
-    const alertSpy = jest.spyOn(Alert, "alert");
-    const navigationRef = createRef<NavigationContainerRef>();
-    const activeComponent = () => (
-      <MockForm onSubmit={onSubmitMock} localCacheKey={MOCK_CACHE_KEY} />
-    );
-
-    const { getByLabelText } = render(
-      <MockedStackNavigator
-        navigationRef={navigationRef}
-        components={[
-          { name: "prev", component: () => <></> },
-          { name: "active", component: activeComponent },
-        ]}
-      />,
-    );
-    navigationRef.current?.navigate("active");
-
-    await waitFor(() => {
-      expect(
-        getByLabelText(checkboxLabel).props.accessibilityState.checked,
-      ).toEqual(true);
-    });
-
-    navigationRef.current?.goBack();
-
-    expect(alertSpy).toHaveBeenCalled();
   });
 });

@@ -12,7 +12,7 @@ module.exports = {
   ],
   testPathIgnorePatterns: ["/node_modules/"],
   transformIgnorePatterns: [
-    "node_modules/(?!(jest-)?@?react-native|@react-native-community|@react-native)",
+    "node_modules/(?!(jest-)?@?react-native|@react-native-community|@react-native|@react-navigation/stack)",
   ],
   testMatch: ["**/*.test.tsx", "**/*.test.ts"],
   clearMocks: true,

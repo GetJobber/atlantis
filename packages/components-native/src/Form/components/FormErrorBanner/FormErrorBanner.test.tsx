@@ -1,25 +1,23 @@
 import React from "react";
 import { cleanup, render } from "@testing-library/react-native";
-import { ApolloError } from "@apollo/client";
-// @ts-expect-error tsc-ci
-import mockRNCNetInfo from "@react-native-community/netinfo/jest/netinfo-mock.js";
 import { useIntl } from "react-intl";
 import { FormErrorBanner } from "./FormErrorBanner";
 import { messages as formErrorBannerMessages } from "./messages";
-
-// Form component required mocks
-jest.mock("hooks/useEditMode");
-
-beforeEach(() => {
-  // Default to online
-  mockRNCNetInfo.useNetInfo = () => {
-    return { isConnected: true, type: "other" };
-  };
-});
+import { defaultValues as contextDefaultValue } from "../../../AtlantisContext";
+import * as atlantisContext from "../../../AtlantisContext/AtlantisContext";
 
 describe("FormErrorBanner", () => {
+  const atlantisContextSpy = jest.spyOn(atlantisContext, "useAtlantisContext");
+
+  beforeEach(() => {
+    atlantisContextSpy.mockReturnValue({
+      ...contextDefaultValue,
+      isOnline: true,
+    });
+  });
+
   const { formatMessage } = useIntl();
-  const networkError = new ApolloError({});
+  const networkError = new Error();
   const userError = {
     title: "My error",
     messages: ["userError1", "userError2"],
@@ -30,10 +28,10 @@ describe("FormErrorBanner", () => {
   ];
 
   it("should render Offline banner when offline", () => {
-    mockRNCNetInfo.useNetInfo = () => {
-      return { isConnected: false, type: "other" };
-    };
-
+    atlantisContextSpy.mockReturnValue({
+      ...contextDefaultValue,
+      isOnline: false,
+    });
     const { getByText, queryByText } = render(
       <FormErrorBanner
         // @ts-expect-error tsc-ci

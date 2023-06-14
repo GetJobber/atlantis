@@ -15,11 +15,11 @@ const mockFormState = {
 };
 
 const mockScreenReaderEnabled = jest.fn().mockReturnValue(false);
-jest.mock("hooks/useIsScreenReaderEnabled", () => ({
+jest.mock("../../../hooks/useIsScreenReaderEnabled", () => ({
   useIsScreenReaderEnabled: () => mockScreenReaderEnabled(),
 }));
 
-jest.mock("atlantis/ErrorMessageWrapper", () => ({
+jest.mock("../../../ErrorMessageWrapper", () => ({
   useErrorMessageContext: () => ({
     elements: {
       el: {
