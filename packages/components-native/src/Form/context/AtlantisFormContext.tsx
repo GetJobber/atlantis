@@ -2,9 +2,8 @@ import { createContext, useContext } from "react";
 import { AtlantisFormContextProps } from "./types";
 
 const defaultValues: AtlantisFormContextProps = {
-  LocalCacheKeys: "",
+  LocalCacheKeys: {},
   useConfirmBeforeBack: () => undefined,
-  useEditMode: () => undefined,
   useInternalFormLocalCache: () => undefined,
   useLocalCache: () => undefined,
 };

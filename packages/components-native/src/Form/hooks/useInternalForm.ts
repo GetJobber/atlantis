@@ -45,12 +45,8 @@ export function useInternalForm<T extends FieldValues, SubmitResponseType>({
   saveButtonHeight,
   messageBannerHeight,
 }: UseInternalFormProps<T, SubmitResponseType>): UseInternalForm<T> {
-  const {
-    useEditMode,
-    useConfirmBeforeBack,
-    LocalCacheKeys,
-    useInternalFormLocalCache,
-  } = useAtlantisFormContext();
+  const { useConfirmBeforeBack, LocalCacheKeys, useInternalFormLocalCache } =
+    useAtlantisFormContext();
 
   const { isOnline } = useAtlantisContext();
 

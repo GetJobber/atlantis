@@ -13,6 +13,7 @@ export * from "./Divider";
 export * from "./EmptyState";
 export * from "./ErrorMessageWrapper";
 export * from "./Flex";
+export * from "./Form";
 export * from "./FormField";
 export * from "./Heading";
 export * from "./Icon";

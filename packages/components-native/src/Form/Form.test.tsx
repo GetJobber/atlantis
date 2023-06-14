@@ -16,10 +16,6 @@ import {
 import { LocalCacheKeys } from "hooks/useLocalCache";
 import { debounceTime } from "hooks/useLocalCache/useLocalCache";
 import { generateLocalCacheKey } from "hooks/useLocalCache/utils/generateLocalCacheKey";
-import {
-  LOCAL_CACHE_SAVE_CANCEL,
-  LOCAL_CACHE_SAVE_SUCCESS,
-} from "hooks/useRecordEvent";
 import * as hooks from "hooks/useConfirmBeforeBack/useConfirmBeforeBack";
 import { appVersion } from "utils/versionInfo";
 import { storage } from "utils/syncStorage";

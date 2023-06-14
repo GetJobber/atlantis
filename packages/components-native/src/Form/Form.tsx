@@ -268,6 +268,7 @@ function InternalForm<T extends FieldValues, S>({
     onSubmitError(error);
 
     if (error?.errorType === FormSubmitErrorType.NetworkError) {
+      // @ts-expect-error We are making the form submission fail so that we can
       // We are making the form submission fail so that we can
       // prevent the isSubmitSuccess to be true
       formMethods.setError("offline", "Error saving form.");
@@ -277,6 +278,7 @@ function InternalForm<T extends FieldValues, S>({
   }
 
   function clearFormErrors() {
+    // @ts-expect-error  We are clearing the error that we previously set
     // We are clearing the error that we previously set
     // when the form had no internet connection
     formMethods.clearErrors("offline");
