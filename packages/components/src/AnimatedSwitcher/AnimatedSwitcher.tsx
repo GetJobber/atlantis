@@ -1,6 +1,15 @@
 import React, { ReactElement, useState } from "react";
 import { AnimatePresence, Variants, motion } from "framer-motion";
 import { IconNames } from "@jobber/design";
+import {
+  DURATION_AVERAGE,
+  DURATION_SIMPLE,
+  FADE,
+  SLIDE_IN_DOWN,
+  SLIDE_IN_UP,
+  SPIN_CLOCK_WISE,
+  SPIN_COUNTER_CLOCK_WISE,
+} from "./transitions";
 import { Icon } from "../Icon";
 
 interface AnimatedSwitcherProps {
@@ -26,50 +35,6 @@ interface AnimatedSwitcherProps {
    */
   readonly type?: "slideFromBottom" | "fade";
 }
-
-const DURATION_SIMPLE = 0.1;
-const DURATION_AVERAGE = 0.2;
-
-const slideInUp = {
-  visible: { y: 0, opacity: 1 },
-  hidden: { y: "10%", opacity: 0 },
-};
-
-const slideInDown = {
-  visible: { y: 0, opacity: 1 },
-  hidden: { y: "-10%", opacity: 0 },
-};
-
-const fade = {
-  visible: { opacity: 1 },
-  hidden: { opacity: 0 },
-};
-
-const spinCounterClockWise: Variants = {
-  visible: {
-    rotate: 0,
-    scale: 1,
-    transition: { duration: DURATION_AVERAGE, ease: "easeOut" },
-  },
-  hidden: {
-    rotate: 180,
-    scale: 0.6,
-    transition: { duration: DURATION_AVERAGE, ease: "easeIn" },
-  },
-};
-
-const spinClockWise: Variants = {
-  visible: {
-    rotate: 0,
-    scale: 1,
-    transition: { duration: DURATION_AVERAGE, ease: "easeOut" },
-  },
-  hidden: {
-    rotate: -180,
-    scale: 0.6,
-    transition: { duration: DURATION_AVERAGE, ease: "easeIn" },
-  },
-};
 
 export function AnimatedSwitcher({
   initialChild,
@@ -121,13 +86,13 @@ export function AnimatedSwitcher({
 
   function getTransitionType(): Variants {
     if (isSwitchingBetweenIcons) {
-      if (switched) return spinCounterClockWise;
-      return spinClockWise;
+      if (switched) return SPIN_COUNTER_CLOCK_WISE;
+      return SPIN_CLOCK_WISE;
     } else if (type === "fade") {
-      return fade;
+      return FADE;
     } else {
-      if (switched) return slideInUp;
-      return slideInDown;
+      if (switched) return SLIDE_IN_UP;
+      return SLIDE_IN_DOWN;
     }
   }
 
