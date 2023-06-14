@@ -7,6 +7,7 @@ export * from "./BottomSheet";
 export * from "./Button";
 export * from "./ButtonGroup";
 export * from "./Card";
+export * from "./Checkbox";
 export * from "./Chip";
 export * from "./Content";
 export * from "./Divider";

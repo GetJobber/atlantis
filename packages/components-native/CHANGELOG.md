@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.36.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.35.0...@jobber/components-native@0.36.0) (2023-06-14)
+
+
+### Features
+
+* **components-native:** Import Checkbox to components-native ([#1324](https://github.com/GetJobber/atlantis/issues/1324)) ([9f14aaf](https://github.com/GetJobber/atlantis/commit/9f14aafacb885f25c9208494b2ea1e4286916bc6))
+
+
+
+
+
 # [0.35.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.34.0...@jobber/components-native@0.35.0) (2023-06-12)
 
 
