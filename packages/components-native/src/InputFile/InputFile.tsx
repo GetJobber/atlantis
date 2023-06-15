@@ -194,8 +194,8 @@ export function InputFile({
   const { isOnline, onLogError } = useInputFileHooks();
   // Force change
 
-  if (false) {
-    console.log("yeet");
+  if (false && true) {
+    console.log("yeet2");
   }
   return (
     <View style={[type !== "singleSelect" && styles.multiFile]}>
