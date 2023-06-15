@@ -4,11 +4,13 @@ import { Platform } from "react-native";
 import { FieldError, UseControllerProps } from "react-hook-form";
 import { XOR } from "ts-xor";
 import { useIntl } from "react-intl";
+import { utcToZonedTime } from "date-fns-tz";
+import { format as formatDate } from "date-fns";
 import { messages } from "./messages";
-import { useFormattedDate } from "../hooks/useFormattedDate";
 import { Clearable, InputFieldWrapperProps } from "../InputFieldWrapper";
 import { FormField } from "../FormField";
 import { InputPressable } from "../InputPressable";
+import { useAtlantisContext } from "../AtlantisContext";
 
 interface BaseInputDateProps
   extends Pick<InputFieldWrapperProps, "invalid" | "disabled" | "placeholder"> {
@@ -149,18 +151,22 @@ function InternalInputDate({
   accessibilityHint,
 }: InputDateProps): JSX.Element {
   const [showPicker, setShowPicker] = useState(false);
-  const formatDate = useFormattedDate();
   const { formatMessage } = useIntl();
+  const { timeZone, dateFormat } = useAtlantisContext();
 
   const date = useMemo(() => {
     if (typeof value === "string") return new Date(value);
     return value;
   }, [value]);
 
-  const formattedDate = useMemo(
-    () => (date && formatDate(date, "accountFormat")) ?? emptyValueLabel,
-    [date, emptyValueLabel, formatDate],
-  );
+  const formattedDate = useMemo(() => {
+    if (date) {
+      const zonedTime = utcToZonedTime(date, timeZone);
+      return formatDate(zonedTime, dateFormat);
+    }
+
+    return emptyValueLabel;
+  }, [date, emptyValueLabel, timeZone, dateFormat]);
 
   const canClearDate = formattedDate === emptyValueLabel ? "never" : clearable;
 
