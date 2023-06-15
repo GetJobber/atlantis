@@ -7,23 +7,22 @@ import {
   launchCamera,
   launchImageLibrary,
 } from "react-native-image-picker";
-import { Alert, NativeModules, Platform, View } from "react-native";
+import { ActionSheetIOS, Alert, Platform, View } from "react-native";
 import { openSettings } from "react-native-permissions";
 import DocumentPicker, {
   DocumentPickerResponse,
   isInProgress,
 } from "react-native-document-picker";
 import React from "react";
-import { useIntl } from "react-intl";
+import { IntlShape, useIntl } from "react-intl";
 import { v4 } from "react-native-uuid";
 import {
   PermissionsType,
   checkAndRequestCameraPermissions,
   checkAndRequestGalleryPermissions,
-} from "utils/permissions";
-import { useIsDeviceOnline } from "hooks/useIsDeviceOnline";
+} from "./utils/permissions";
 import { messages } from "./messages";
-import { UploadError, uploadAssetToS3 } from "./utils/uploadAssetToS3";
+import { UploadError, uploadAsset } from "./utils/uploadAsset";
 import { styles } from "./InputFile.style";
 import {
   CancelCallback,
@@ -49,8 +48,7 @@ import { buildFileUpload } from "./utils/buildFileUpload";
 import { buildSourceFile } from "./utils/buildSourceFile";
 import { useAtlantisContext } from "../AtlantisContext";
 import { Button } from "../Button";
-
-const { JobberWebInterface } = NativeModules;
+import { AtlantisNativeInterface } from "../AtlantisNativeInterface";
 
 type AllowedTypes = "images" | "videos" | "mixed";
 
@@ -171,8 +169,7 @@ const mediaTypes: Record<AllowedTypes, MediaType> = {
 };
 
 function useInputFileHooks() {
-  const isOnline = useIsDeviceOnline();
-  const { onLogError } = useAtlantisContext();
+  const { onLogError, isOnline } = useAtlantisContext();
   return { isOnline, onLogError };
 }
 
@@ -315,7 +312,7 @@ export function InputFile({
         file.fileUpload.key = key;
         file.fileUpload.uploadUrl = encodeURI(`${url}/${key}`);
 
-        uploadAssetToS3(
+        uploadAsset(
           file.sourceFile,
           url,
           fields,
@@ -396,39 +393,39 @@ export function InputFile({
     });
 
     try {
-      JobberWebInterface.openActionSheet(params)
-        .then(async (result: number) => {
-          switch (result) {
-            case FileSource.gallery: {
-              handleMediaSelection(FileSource.gallery);
-              break;
+      if (Platform.OS === "ios") {
+        ActionSheetIOS.showActionSheetWithOptions(
+          {
+            options: menuActions[allowedTypes].map(val => val.title),
+          },
+          (buttonIndex: number) => {
+            const fileSource = menuActions[allowedTypes][buttonIndex].value;
+            handleActionSheetResponse(fileSource).catch((e: Error) => {
+              // catch rejected promises from iOS native layer
+              if (e.message !== "Cancelled by user") {
+                console.error(e);
+                onLogError(
+                  `[File upload] iOS: not able to select media option to upload`,
+                );
+              }
+            });
+          },
+        );
+      } else {
+        AtlantisNativeInterface.openActionSheet(params)
+          .then(async (result: number) => {
+            handleActionSheetResponse(result);
+          })
+          .catch((e: Error) => {
+            // catch rejected promises from iOS native layer
+            if (e.message !== "Cancelled by user") {
+              console.error(e);
+              onLogError(
+                `[File upload] iOS: not able to select media option to upload`,
+              );
             }
-            case FileSource.camera: {
-              handleMediaSelection(FileSource.camera);
-              break;
-            }
-            case FileSource.video: {
-              handleMediaSelection(FileSource.video);
-              break;
-            }
-            case FileSource.document: {
-              handleFileSelection();
-              break;
-            }
-            default: {
-              break;
-            }
-          }
-        })
-        .catch((e: Error) => {
-          // catch rejected promises from iOS native layer
-          if (e.message !== "Cancelled by user") {
-            console.error(e);
-            onLogError(
-              `[File upload] iOS: not able to select media option to upload`,
-            );
-          }
-        });
+          });
+      }
     } catch (e) {
       // @ts-expect-error - Catch rejected promises from Android native layer
       if (e.message !== "Cancelled by user") {
@@ -545,7 +542,11 @@ export function InputFile({
   function processDocumentPickerFiles(
     docPickerFiles: DocumentPickerResponse[],
   ): DocumentPickerResponse[] {
-    const filteredFileList = getFilteredFiles(docPickerFiles);
+    const filteredFileList = getFilteredFiles(
+      docPickerFiles,
+      formatMessage,
+      onInputError,
+    );
     if (filteredFileList.length === 0) return [];
 
     if (!checkFilesSelected(filteredFileList)) return [];
@@ -591,24 +592,6 @@ export function InputFile({
     }
   }
 
-  function getFilteredFiles(
-    files: DocumentPickerResponse[],
-  ): DocumentPickerResponse[] {
-    const partitionedFiles = partitionFilesBySafety(files);
-
-    if (partitionedFiles.unsafe.length > 0) {
-      onInputError?.(
-        formatMessage(messages.invalidFileExtension, {
-          blockedExtensionsFound: getFileExtensions(
-            partitionedFiles.unsafe,
-          ).toString(),
-        }),
-      );
-    }
-
-    return partitionedFiles.safe;
-  }
-
   function checkFilesSelected(
     files: Asset[] | DocumentPickerResponse[],
   ): boolean {
@@ -625,6 +608,30 @@ export function InputFile({
     }
     return true;
   }
+
+  async function handleActionSheetResponse(fileSource: FileSource) {
+    switch (fileSource) {
+      case FileSource.gallery: {
+        handleMediaSelection(FileSource.gallery);
+        break;
+      }
+      case FileSource.camera: {
+        handleMediaSelection(FileSource.camera);
+        break;
+      }
+      case FileSource.video: {
+        handleMediaSelection(FileSource.video);
+        break;
+      }
+      case FileSource.document: {
+        handleFileSelection();
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+  }
 }
 
 function withResponseHandler(
@@ -636,4 +643,24 @@ function withResponseHandler(
   }) {
     launcher(options, handlePickerResponse);
   };
+}
+
+function getFilteredFiles(
+  files: DocumentPickerResponse[],
+  formatMessage: IntlShape["formatMessage"],
+  onInputError?: (message: string) => void,
+): DocumentPickerResponse[] {
+  const partitionedFiles = partitionFilesBySafety(files);
+
+  if (partitionedFiles.unsafe.length > 0) {
+    onInputError?.(
+      formatMessage(messages.invalidFileExtension, {
+        blockedExtensionsFound: getFileExtensions(
+          partitionedFiles.unsafe,
+        ).toString(),
+      }),
+    );
+  }
+
+  return partitionedFiles.safe;
 }

@@ -60,3 +60,26 @@ jest.mock("../hooks/useIsScreenReaderEnabled", () => ({
 jest.spyOn(ReactNative.AccessibilityInfo, "addEventListener").mockReturnValue({
   remove: jest.fn(),
 } as unknown as ReactNative.EmitterSubscription);
+
+jest.mock("react-native-permissions", () =>
+  require("react-native-permissions/mock"),
+);
+
+jest.mock("react-native-image-picker", () =>
+  require("./mockReactNativeImagePicker"),
+);
+
+jest.doMock("react-native", () => {
+  // Extend ReactNative
+  return Object.setPrototypeOf(
+    {
+      NativeModules: {
+        ...ReactNative.NativeModules,
+        AtlantisNativeInterface: {
+          openActionSheet: jest.fn(),
+        },
+      },
+    },
+    ReactNative,
+  );
+});

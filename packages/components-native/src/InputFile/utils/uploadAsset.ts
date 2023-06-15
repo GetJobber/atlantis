@@ -21,7 +21,7 @@ interface ErrorEvent {
 
 export type UploadError = LoadEvent | ErrorEvent;
 
-export function uploadAssetToS3(
+export function uploadAsset(
   asset: SourceFile,
   url: string,
   headers: Headers,
@@ -77,7 +77,7 @@ export function uploadAssetToS3(
       }
     };
 
-    xhr.onerror = _ => {
+    xhr.onerror = () => {
       const errData: ErrorEvent = {
         type: "error",
         message: xhr.responseText,

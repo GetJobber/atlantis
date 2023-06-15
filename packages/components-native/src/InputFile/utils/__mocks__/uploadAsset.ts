@@ -1,6 +1,6 @@
 import { Asset } from "react-native-image-picker";
 
-export function uploadAssetToS3(
+export function uploadAsset(
   _asset: Asset,
   url: string,
   _headers: { [field: string]: string },
