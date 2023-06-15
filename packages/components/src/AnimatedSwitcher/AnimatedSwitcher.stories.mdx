@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
 import { Button } from "@jobber/components/Button";
+import { Text } from "@jobber/components/Text";
 import { AnimatedSwitcher } from ".";
 
 <Meta title="Components/AnimatedSwitcher" component={AnimatedSwitcher} />
@@ -53,34 +54,44 @@ initial icon.
   {() => {
     const [switched, setSwitched] = useState(false);
     return (
-      <div
-        onClick={() => setSwitched(!switched)}
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          gap: 24,
-        }}
-      >
-        <AnimatedSwitcher.Icon
-          switched={switched}
-          initialIcon="add"
-          switchToIcon="checkmark"
-        />
-        <AnimatedSwitcher.Icon
-          switched={switched}
-          initialIcon="menu"
-          switchToIcon="backArrow"
-        />
-        <AnimatedSwitcher.Icon
-          switched={switched}
-          initialIcon="event"
-          switchToIcon="remove"
-        />
-        <AnimatedSwitcher.Icon
-          switched={switched}
-          initialIcon="eye"
-          switchToIcon="eyeCrossed"
-        />
+      <div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            gap: 24,
+            marginBottom: 16,
+          }}
+        >
+          <AnimatedSwitcher.Icon
+            switched={switched}
+            initialIcon="add"
+            switchToIcon="checkmark"
+          />
+          <AnimatedSwitcher.Icon
+            switched={switched}
+            initialIcon="menu"
+            switchToIcon="backArrow"
+          />
+          <AnimatedSwitcher.Icon
+            switched={switched}
+            initialIcon="event"
+            switchToIcon="remove"
+          />
+          <AnimatedSwitcher.Icon
+            switched={switched}
+            initialIcon="eye"
+            switchToIcon="eyeCrossed"
+          />
+        </div>
+        <Text align="center">
+          <Button
+            label="Switch icons"
+            type="tertiary"
+            size="small"
+            onClick={() => setSwitched(!switched)}
+          />
+        </Text>
       </div>
     );
   }}
