@@ -220,9 +220,10 @@ test("it should call the custom validate function if provided", async () => {
   input.blur();
 
   await waitFor(() => {
-    expect(validationHandler).toHaveBeenCalled();
-    // expect(validationHandler).toHaveBeenCalledWith(expectedValidationValue);
-    // Expected: 12
+    expect(validationHandler).toHaveBeenCalledWith(
+      expectedValidationValue,
+      expect.anything(),
+    );
     // Received: 12, {"generatedName--123e4567-e89b-12d3-a456-426655440063": 12}
   });
 });
@@ -253,10 +254,14 @@ test("it should use the custom validate object if provided", async () => {
   input.blur();
 
   await waitFor(() => {
-    expect(validationHandler).toHaveBeenCalled();
-    expect(validationHandler2).toHaveBeenCalled();
-    // expect(validationHandler).toHaveBeenCalledWith(expectedValidationValue);
-    // expect(validationHandler2).toHaveBeenCalledWith(expectedValidationValue);
+    expect(validationHandler).toHaveBeenCalledWith(
+      expectedValidationValue,
+      expect.anything(),
+    );
+    expect(validationHandler2).toHaveBeenCalledWith(
+      expectedValidationValue,
+      expect.anything(),
+    );
   });
 });
 
