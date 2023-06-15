@@ -51,7 +51,7 @@ import { Button } from "../Button";
 import { AtlantisNativeInterface } from "../AtlantisNativeInterface";
 
 type AllowedTypes = "images" | "videos" | "mixed";
-// Force change
+
 export interface InputFileProps {
   /**
    * Allowed File types.
@@ -192,6 +192,11 @@ export function InputFile({
 }: InputFileProps): JSX.Element {
   const { formatMessage } = useIntl();
   const { isOnline, onLogError } = useInputFileHooks();
+  // Force change
+
+  if (false) {
+    console.log("yeet");
+  }
   return (
     <View style={[type !== "singleSelect" && styles.multiFile]}>
       <Button
