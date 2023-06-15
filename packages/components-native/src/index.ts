@@ -9,6 +9,7 @@ export * from "./ButtonGroup";
 export * from "./Card";
 export * from "./Chip";
 export * from "./Content";
+export * from "./ContentOverlay";
 export * from "./Divider";
 export * from "./EmptyState";
 export * from "./ErrorMessageWrapper";
