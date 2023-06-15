@@ -15,7 +15,7 @@ import { Button } from "../Button";
 import { Content } from "../Content";
 import { Text } from "../Text";
 
-jest.unmock("../hooks");
+jest.unmock("../hooks/useIsScreenReaderEnabled");
 function fireLayoutEvent(childrenContent: ReactTestInstance) {
   fireEvent(childrenContent, "onLayout", {
     nativeEvent: {
@@ -265,7 +265,7 @@ describe("when there is a screen reader enabled", () => {
     const contentOverlayScreen = renderAndOpenContentOverlay(options);
 
     expect(
-      contentOverlayScreen.findByTestId("ATL-Overlay-CloseButton"),
+      await contentOverlayScreen.findByTestId("ATL-Overlay-CloseButton"),
     ).toBeDefined();
   });
 });
