@@ -1,5 +1,4 @@
 import React, { PropsWithChildren } from "react";
-import styles from "./Link.css";
 
 interface LinkProps {
   readonly ariaLabel?: string;
@@ -19,9 +18,5 @@ export function Link({
     ...(ariaLabel && { "aria-label": ariaLabel }),
   };
 
-  return (
-    <a className={styles.link} {...linkProps}>
-      {children}
-    </a>
-  );
+  return <a {...linkProps}>{children}</a>;
 }
