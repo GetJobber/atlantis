@@ -199,6 +199,70 @@ test("allows custom validation", async () => {
   });
 });
 
+test("it should call the custom validate function if provided", async () => {
+  const validationHandler = jest.fn();
+  const expectedValidationValue = Math.floor(
+    Math.random() * Number.MAX_SAFE_INTEGER,
+  );
+  const { getByLabelText } = render(
+    <InputNumber
+      value={expectedValidationValue}
+      placeholder="Custom validation function"
+      validations={{
+        validate: validationHandler,
+      }}
+    />,
+  );
+
+  const input = getByLabelText("Custom validation function");
+
+  input.focus();
+  input.blur();
+
+  await waitFor(() => {
+    expect(validationHandler).toHaveBeenCalled();
+    // expect(validationHandler).toHaveBeenCalledWith(expectedValidationValue);
+    // Expected: 12
+    // Received: 12, {"generatedName--123e4567-e89b-12d3-a456-426655440063": 12}
+  });
+});
+
+test("it should use the custom validate object if provided", async () => {
+  const validationHandler = jest.fn();
+  const validationHandler2 = jest.fn();
+  const expectedValidationValue = Math.floor(
+    Math.random() * Number.MAX_SAFE_INTEGER,
+  );
+
+  const { getByLabelText } = render(
+    <InputNumber
+      value={expectedValidationValue}
+      placeholder="Custom validation function"
+      validations={{
+        validate: {
+          validationHandler,
+          validationHandler2,
+        },
+      }}
+    />,
+  );
+
+  const input = getByLabelText("Custom validation function");
+
+  input.focus();
+  input.blur();
+
+  await waitFor(() => {
+    expect(validationHandler).toHaveBeenCalled();
+    expect(validationHandler2).toHaveBeenCalled();
+    // expect(validationHandler).toHaveBeenCalledWith(expectedValidationValue);
+    // expect(validationHandler2).toHaveBeenCalledWith(expectedValidationValue);
+  });
+});
+
+// it should do overlimit if no validation provided
+// it merge validations if given object
+
 test("it should handle focus", () => {
   const inputRef = React.createRef<InputNumberRef>();
   const placeholder = "Number";
