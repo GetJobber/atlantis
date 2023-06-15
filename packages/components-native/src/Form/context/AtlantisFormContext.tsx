@@ -2,7 +2,7 @@ import { createContext, useContext, useRef } from "react";
 import { FieldValues } from "react-hook-form";
 import { AtlantisFormContextProps } from "./types";
 
-const defaultValues = {
+export const defaultValues = {
   useConfirmBeforeBack: () => {
     const ref = useRef(() => undefined);
     return ref;
