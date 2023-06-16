@@ -20,11 +20,40 @@ const ReanimatedView = Reanimated.createAnimatedComponent(View);
 const ReanimatedScrollView = Reanimated.createAnimatedComponent(ScrollView);
 
 interface DisclosureProps {
+  /**
+   * Specifies the main content of the disclosure component.
+   * It can be any React Node - simple text, JSX, or a complex React component.
+   */
   readonly content: React.ReactNode;
+
+  /**
+   * Defines the header of the disclosure component.
+   * Similar to `content`, it can be any React Node.
+   */
   readonly header: React.ReactNode;
+
+  /**
+   * A boolean that determines whether the disclosure component is in an open or closed state.
+   * If `open` is true, the disclosure is in an open state; if false, it's closed.
+   */
   readonly open: boolean;
+
+  /**
+   * A boolean that indicates whether the disclosure component is empty or not.
+   * If `isEmpty` is `true`, there is no content in the disclosure; if false, there is some content.
+   */
   readonly isEmpty: boolean;
+
+  /**
+   * An optional property that determines the duration of the opening and closing animation of the disclosure component.
+   * It's defined in milliseconds.
+   * @default tokens["timing-slowest"]
+   */
   readonly animationDuration?: number;
+
+  /**
+   * A function that is called whenever the disclosure component is toggled between its open and closed states.
+   */
   onToggle(): void;
 }
 
