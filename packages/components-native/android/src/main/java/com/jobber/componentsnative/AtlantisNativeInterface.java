@@ -18,6 +18,8 @@ import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.ReadableArray;
+import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.module.annotations.ReactModule;
 import com.jobber.componentsnative.dialogqueue.adapters.ActionSheetAdapter;
 import com.jobber.componentsnative.dialogqueue.broadcastreceivers.DialogShowBroadcastReceiver;
@@ -63,7 +65,6 @@ public class AtlantisNativeInterface extends ReactContextBaseJavaModule {
 
         @Override
         public void onHostResume() {
-            Log.i(LOG_TAG, "onResult called");
             DialogQueueManager.initialize();
             setUpBroadcastReceivers();
 
@@ -95,7 +96,6 @@ public class AtlantisNativeInterface extends ReactContextBaseJavaModule {
 
     }
 
-
     private void tearDownBroadcastReceivers() {
         BroadcastReceiver[] broadcastReceivers = new BroadcastReceiver[]{
                  mDialogShowBroadcastReceiver
@@ -108,41 +108,36 @@ public class AtlantisNativeInterface extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void openActionSheet(String dialogJsonData, Promise promise) {
-        try {
-            JSONObject dialogData = new JSONObject(dialogJsonData);
+    public void openActionSheet(ReadableMap dialogOptions, Promise promise) {
 
-            JSONArray actions = dialogData.getJSONArray("actions");
-            CharSequence title = dialogData.getString("title");
-            CharSequence[] choices = new CharSequence[actions.length()];
-            int[] actionValue = new int[actions.length()];
+        ReadableArray actions = dialogOptions.getArray("options");
+        CharSequence title = dialogOptions.getString("title");
+        assert actions != null;
+        CharSequence[] choices = new CharSequence[actions.size()];
+        int[] actionValue = new int[actions.size()];
 
-            for (int index = 0; index < actions.length(); index++) {
-                choices[index] = actions.getJSONObject(index).getString("title");
-                actionValue[index] = Integer.parseInt(actions.getJSONObject(index).getString("value"));
-            }
+        for (int index = 0; index < actions.size(); index++) {
+            choices[index] = actions.getMap(index).getString("title");
+            actionValue[index] = actions.getMap(index).getInt("value");
+        }
 
-            ActionSheetAdapter dialog = new ActionSheetAdapter(
-                    title,
-                    choices,
-                    new ActionSheetAdapter.ActionSheetListener() {
-                        @Override
-                        public void onComplete(int choiceIndex) {
-                            if (choiceIndex == -1 ) {
-                                promise.reject("Cancel", "Cancelled by user");
-                            } else {
-                                promise.resolve(actionValue[choiceIndex]);
-                            }
+        ActionSheetAdapter dialog = new ActionSheetAdapter(
+                title,
+                choices,
+                new ActionSheetAdapter.ActionSheetListener() {
+                    @Override
+                    public void onComplete(int choiceIndex) {
+                        if (choiceIndex == -1 ) {
+                            promise.reject("Cancel", "Cancelled by user");
+                        } else {
+                            promise.resolve(actionValue[choiceIndex]);
                         }
                     }
-            );
+                }
+        );
 
-            DialogQueueManager dialogQueueManager = DialogQueueManager.getInstance();
-            dialogQueueManager.addAndShowDialog(dialog, this.getCurrentActivity());
-        } catch (JSONException e) {
-            Log.e(LOG_TAG, "Error trying to deserialize JSON data", e);
-            promise.reject("Error", "Exception throw trying to deserialize JSON data");
-        }
+        DialogQueueManager dialogQueueManager = DialogQueueManager.getInstance();
+        dialogQueueManager.addAndShowDialog(dialog, this.getCurrentActivity());
     }
 
 
