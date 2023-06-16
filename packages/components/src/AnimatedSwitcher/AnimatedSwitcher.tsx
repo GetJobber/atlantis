@@ -38,7 +38,7 @@ export interface AnimatedSwitcherProps {
 
 export function AnimatedSwitcher({
   initialChild,
-  switched = false,
+  switched,
   switchTo,
   type = "slideFromBottom",
 }: AnimatedSwitcherProps) {
