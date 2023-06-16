@@ -23,7 +23,7 @@ function fireLayoutEvent(disclosureContent: ReactTestInstance) {
   });
 }
 
-it("renders a Collapsable item with a header and a content when open is true", () => {
+it("renders a Disclosure with a header and a content when open is true", () => {
   const disclosure = render(
     <Disclosure
       header={<Text>This is the header</Text>}
@@ -39,7 +39,7 @@ it("renders a Collapsable item with a header and a content when open is true", (
   expect(disclosure).toMatchSnapshot();
 });
 
-it("renders a Collapsable item with a header and with a content of size 0 when closed is false", () => {
+it("renders a Disclosure with a header and with a content of size 0 when closed is false", () => {
   const disclosure = render(
     <Disclosure
       header={<Text>This is the header</Text>}
@@ -55,7 +55,7 @@ it("renders a Collapsable item with a header and with a content of size 0 when c
   expect(disclosure).toMatchSnapshot();
 });
 
-it("should not render the caret when the collapsable item is empty", () => {
+it("should not render the caret when the Disclosure is empty", () => {
   const disclosure = render(
     <Disclosure
       header={<Text>This is the header</Text>}

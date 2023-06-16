@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders a Collapsable item with a header and a content when open is true 1`] = `
+exports[`renders a Disclosure with a header and a content when open is true 1`] = `
 <View
   style={
     {
@@ -173,7 +173,7 @@ exports[`renders a Collapsable item with a header and a content when open is tru
 </View>
 `;
 
-exports[`renders a Collapsable item with a header and with a content of size 0 when closed is false 1`] = `
+exports[`renders a Disclosure with a header and with a content of size 0 when closed is false 1`] = `
 <View
   style={
     {
@@ -346,7 +346,7 @@ exports[`renders a Collapsable item with a header and with a content of size 0 w
 </View>
 `;
 
-exports[`should not render the caret when the collapsable item is empty 1`] = `
+exports[`should not render the caret when the Disclosure is empty 1`] = `
 <View
   style={
     {
