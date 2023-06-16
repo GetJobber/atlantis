@@ -22,25 +22,9 @@ import { Link } from "@jobber/components/Link";
   </Story>
 </Canvas>
 
-<!--
-  INTERFACE: This is for the proposal stage of the component
-
-  Provide an example of what the component looks like in code. How would you use
-  it from another React component? This should consist primarily of code blocks.
-  This section can be deleted once the component is built, when the Playground
-  will demonstrate this at a higher fidelity.
--->
-
 ## Props
 
 <ArgsTable of={Link} story="Link" />
-
-<!--
-  It is not necessary to provide an example of each prop. Use usage examples to
-  highlight key features of a component or particular considerations.
-
-  See `Button.mdx` for a good example of this.
--->
 
 ## Usage guidelines
 
@@ -55,16 +39,6 @@ Center).
 `<Link>` should not be used to submit form data, trigger actions, or alter the
 state of the page. Use a `<Button>` for these purposes.
 
-<!--
-  What is the design purpose of this component? How do its responsibilities
-  relate to other components? What should this component not be used for? What
-  are some related components in Atlantis? Try to describe this component not
-  in terms of what it looks like or what elements make it up, but what function
-  it performs or how it enables a user to perform tasks (e.g. “Buttons allow users
-  to initiate, complete, and reverse actions.” vs “Buttons are rectangular elements
-  that have a green background and white text”).
--->
-
 ## Content guidelines
 
 Contents of the link should be textual, and may include some formatting features
@@ -72,15 +46,6 @@ Contents of the link should be textual, and may include some formatting features
 underline probably isn't). The text can be plain, from a `Typography` component,
 a `format`(`Date|Time|Email`) component or similar. Don't use this component to
 wrap other kinds of UI elements to make them clickable.
-
-<!--
-  What type of content does this component present (documents, text, images, other components)?
-  What is the recommended, or expected, amount of content? What is the components’ behaviour when
-  the provided content diverges from what is expected (image aspect ratio, amount of text, video
-  vs audio, filesize)? Are there any important references to the [Product Vocabulary](https://atlantis.getjobber.com/guides/product-vocabulary)
-  that should be made regarding this component? What happens when content is unavailable or unreliable
-  (poor connection, empty states, flaky GPS data?)
--->
 
 ## Accessibility
 
@@ -92,11 +57,6 @@ If it's not possible to make the visible text sufficiently descriptive without
 additional context, set the `ariaLabel` prop to a descriptive string for
 screenreaders. Do _not_ set this prop if it will be redundant to the link text.
 
-<!--
-  Describe the accessibility concerns for the component. How does it handle touch vs cursor vs
-  keyboard events? Should it capture input? What should a screen reader see when it's focuse?
--->
-
 ## Notes
 
 Current behaviour is limited to internally written links within the product and
@@ -104,9 +64,6 @@ not rendering links in user provided content. Additional props and behaviour
 would be important to use this with user generated content and set appropriate
 values for `rel` and `referrerpolicy`.
 
-<!--
-  What decisions worth remembering have gone into this component? Did we consider any potentially valuable
-  functionality that we’re not implementing right now for scope purposes? Are there any design decisions
-  that might need explaining beyond the usage guidelines? This will help consumers understand this component
-  more fully.
--->
+Adding a prop for `OnClick` was considered, but decided against with no clear
+use case that wasn't better served by other components for triggering actions or
+other events for handling the outcome of clicking a link (leaving the page)
