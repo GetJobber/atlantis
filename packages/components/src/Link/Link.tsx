@@ -12,11 +12,13 @@ export function Link({
   url,
   children,
 }: PropsWithChildren<LinkProps>) {
-  const linkProps = {
-    ...(external && { target: "_blank" }),
-    href: url,
-    ...(ariaLabel && { "aria-label": ariaLabel }),
-  };
-
-  return <a {...linkProps}>{children}</a>;
+  return (
+    <a
+      href={url}
+      {...(external && { target: "_blank" })}
+      {...(ariaLabel && { "aria-label": ariaLabel })}
+    >
+      {children}
+    </a>
+  );
 }
