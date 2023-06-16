@@ -49,7 +49,7 @@ jest.mock("framer-motion", () => ({
 
 describe("AnimatedSwitcher", () => {
   describe("On initial render", () => {
-    it("should render the initial child", () => {
+    it("should render initialChild when the switched prop is false", () => {
       renderComponent();
 
       expect(screen.getByTestId(INITIAL_CHILD_TESTID)).toBeInTheDocument();
@@ -63,7 +63,7 @@ describe("AnimatedSwitcher", () => {
       );
     });
 
-    it("should render the second child", () => {
+    it("should render switchTo when the switched prop is false", () => {
       renderComponent({ switched: true });
 
       expect(
