@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.21.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.20.4...@jobber/components@4.21.0) (2023-06-16)
+
+
+### Features
+
+* AnimatedSwitcher ([#1327](https://github.com/GetJobber/atlantis/issues/1327)) ([c4698a5](https://github.com/GetJobber/atlantis/commit/c4698a518043975037543a14594d8bce6ee909ba))
+
+
+
+
+
 ## [4.20.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.20.3...@jobber/components@4.20.4) (2023-06-09)
 
 
