@@ -1,5 +1,4 @@
 import { createContext, useContext, useRef } from "react";
-import { FieldValues } from "react-hook-form";
 import { AtlantisFormContextProps } from "./types";
 
 export const defaultValues = {
@@ -13,10 +12,9 @@ export const defaultValues = {
   }),
 };
 
-export const AtlantisFormContext = createContext(defaultValues);
+export const AtlantisFormContext =
+  createContext<AtlantisFormContextProps>(defaultValues);
 
-export function useAtlantisFormContext<
-  TData extends FieldValues,
->(): AtlantisFormContextProps<TData> {
+export function useAtlantisFormContext(): AtlantisFormContextProps {
   return useContext(AtlantisFormContext);
 }

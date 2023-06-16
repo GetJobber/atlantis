@@ -46,7 +46,7 @@ export function useInternalForm<T extends FieldValues, SubmitResponseType>({
   messageBannerHeight,
 }: UseInternalFormProps<T, SubmitResponseType>): UseInternalForm<T> {
   const { useConfirmBeforeBack, useInternalFormLocalCache } =
-    useAtlantisFormContext<T>();
+    useAtlantisFormContext();
 
   const { isOnline } = useAtlantisContext();
 

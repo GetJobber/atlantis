@@ -18,11 +18,11 @@ interface LocalCacheOptions {
   readonly id?: string | string[];
 }
 
-export interface AtlantisFormContextProps<TData extends FieldValues> {
+export interface AtlantisFormContextProps {
   useConfirmBeforeBack: (
     props: UseConfirmBeforeBackProps,
   ) => MutableRefObject<() => void>;
-  useInternalFormLocalCache: (
+  useInternalFormLocalCache: <TData extends FieldValues>(
     formMethods: UseFormReturn<TData>,
     cacheKey?: string,
     options?: LocalCacheOptions,
