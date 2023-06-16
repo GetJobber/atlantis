@@ -1,232 +1,232 @@
-// import React from "react";
-// import { fireEvent, render, waitFor } from "@testing-library/react-native";
-// import { Host } from "react-native-portalize";
-// import { FormProvider, useForm } from "react-hook-form";
-// import { InputDate } from "./InputDate";
-// import { Button } from "../Button";
+import React from "react";
+import { fireEvent, render, waitFor } from "@testing-library/react-native";
+import { Host } from "react-native-portalize";
+import { FormProvider, useForm } from "react-hook-form";
+import { InputDate } from "./InputDate";
+import { Button } from "../Button";
 
-// describe("InputDate", () => {
-//   describe("Visuals", () => {
-//     const placeholder = "Start time";
-//     const expectedDate = "May 30, 2022";
-//     const value = new Date(2022, 4, 30);
-//     const handleChange = jest.fn();
+describe("InputDate", () => {
+  describe("Visuals", () => {
+    const placeholder = "Start time";
+    const expectedDate = "May 30, 2022";
+    const value = new Date(2022, 4, 30);
+    const handleChange = jest.fn();
 
-//     const setup = () =>
-//       render(
-//         <InputDate
-//           placeholder={placeholder}
-//           value={value}
-//           onChange={handleChange}
-//         />,
-//       );
+    const setup = () =>
+      render(
+        <InputDate
+          placeholder={placeholder}
+          value={value}
+          onChange={handleChange}
+        />,
+      );
 
-//     it("should show a calendar prefix icon", () => {
-//       const screen = setup();
+    it("should show a calendar prefix icon", () => {
+      const screen = setup();
 
-//       const calendarIcon = screen.getByTestId("calendar");
-//       expect(calendarIcon).toBeDefined();
-//       expect(calendarIcon.type).toBe("RNSVGSvgView");
-//     });
+      const calendarIcon = screen.getByTestId("calendar");
+      expect(calendarIcon).toBeDefined();
+      expect(calendarIcon.type).toBe("RNSVGSvgView");
+    });
 
-//     it("should show a formatted date", () => {
-//       const screen = setup();
-//       expect(
-//         screen.getByText(expectedDate, { includeHiddenElements: true }),
-//       ).toBeDefined();
-//     });
+    it("should show a formatted date", () => {
+      const screen = setup();
+      expect(
+        screen.getByText(expectedDate, { includeHiddenElements: true }),
+      ).toBeDefined();
+    });
 
-//     it("should be clearable when there's a value", () => {
-//       const screen = setup();
-//       const clearAction = screen.getByLabelText("Clear input");
-//       expect(clearAction).toBeDefined();
+    it("should be clearable when there's a value", () => {
+      const screen = setup();
+      const clearAction = screen.getByLabelText("Clear input");
+      expect(clearAction).toBeDefined();
 
-//       fireEvent.press(clearAction);
-//       expect(handleChange).toHaveBeenCalledWith(undefined);
-//     });
-//   });
+      fireEvent.press(clearAction);
+      expect(handleChange).toHaveBeenCalledWith(undefined);
+    });
+  });
 
-//   describe("String value", () => {
-//     it("should show a formatted date", () => {
-//       const expectedDate = "May 31, 2022";
-//       const value = new Date(2022, 4, 31).toISOString();
-//       const screen = render(<InputDate value={value} onChange={jest.fn()} />);
+  describe("String value", () => {
+    it("should show a formatted date", () => {
+      const expectedDate = "May 31, 2022";
+      const value = new Date(2022, 4, 31).toISOString();
+      const screen = render(<InputDate value={value} onChange={jest.fn()} />);
 
-//       expect(
-//         screen.getByText(expectedDate, { includeHiddenElements: true }),
-//       ).toBeDefined();
-//     });
-//   });
+      expect(
+        screen.getByText(expectedDate, { includeHiddenElements: true }),
+      ).toBeDefined();
+    });
+  });
 
-//   describe("With emptyValueLabel", () => {
-//     it("should show the emptyValueLabel when there's no value", () => {
-//       const label = "Unscheduled";
-//       const screen = render(<InputDate name="test" emptyValueLabel={label} />);
+  describe("With emptyValueLabel", () => {
+    it("should show the emptyValueLabel when there's no value", () => {
+      const label = "Unscheduled";
+      const screen = render(<InputDate name="test" emptyValueLabel={label} />);
 
-//       expect(
-//         screen.getByText(label, { includeHiddenElements: true }),
-//       ).toBeDefined();
-//       expect(screen.queryByLabelText("Clear input")).toBeNull();
-//     });
+      expect(
+        screen.getByText(label, { includeHiddenElements: true }),
+      ).toBeDefined();
+      expect(screen.queryByLabelText("Clear input")).toBeNull();
+    });
 
-//     it("should not show the emptyValueLabel when there's a value", () => {
-//       const label = "Unscheduled";
-//       const screen = render(
-//         <InputDate
-//           emptyValueLabel={label}
-//           value={new Date()}
-//           onChange={jest.fn()}
-//         />,
-//       );
+    it("should not show the emptyValueLabel when there's a value", () => {
+      const label = "Unscheduled";
+      const screen = render(
+        <InputDate
+          emptyValueLabel={label}
+          value={new Date()}
+          onChange={jest.fn()}
+        />,
+      );
 
-//       expect(screen.queryByText(label)).toBeNull();
-//       expect(screen.getByLabelText("Clear input")).toBeDefined();
-//     });
-//   });
+      expect(screen.queryByText(label)).toBeNull();
+      expect(screen.getByLabelText("Clear input")).toBeDefined();
+    });
+  });
 
-//   describe("with a defaultValue", () => {
-//     it("renders the supplied value", () => {
-//       const { getByText } = render(
-//         <InputDate name="test" defaultValue={new Date("2022-01-01")} />,
-//       );
+  describe("with a defaultValue", () => {
+    it("renders the supplied value", () => {
+      const { getByText } = render(
+        <InputDate name="test" defaultValue={new Date("2022-01-01")} />,
+      );
 
-//       expect(
-//         getByText("Jan 01, 2022", { includeHiddenElements: true }),
-//       ).toBeDefined();
-//     });
-//   });
+      expect(
+        getByText("Jan 01, 2022", { includeHiddenElements: true }),
+      ).toBeDefined();
+    });
+  });
 
-//   describe("Date picker", () => {
-//     const placeholder = "Tap me";
-//     const handleChange = jest.fn();
+  describe("Date picker", () => {
+    const placeholder = "Tap me";
+    const handleChange = jest.fn();
 
-//     function renderDatePicker() {
-//       const screen = render(
-//         <InputDate
-//           placeholder={placeholder}
-//           value={undefined}
-//           onChange={handleChange}
-//         />,
-//       );
+    function renderDatePicker() {
+      const screen = render(
+        <InputDate
+          placeholder={placeholder}
+          value={undefined}
+          onChange={handleChange}
+        />,
+      );
 
-//       fireEvent.press(screen.getByLabelText(placeholder));
-//       expect(screen.getByTestId("inputDate-datePicker")).toBeDefined();
+      fireEvent.press(screen.getByLabelText(placeholder));
+      expect(screen.getByTestId("inputDate-datePicker")).toBeDefined();
 
-//       return screen;
-//     }
+      return screen;
+    }
 
-//     it("should not show a date picker", () => {
-//       const screen = render(<InputDate name="test" />);
-//       expect(screen.queryByTestId("inputDate-datePicker")).toBeNull();
-//     });
+    it("should not show a date picker", () => {
+      const screen = render(<InputDate name="test" />);
+      expect(screen.queryByTestId("inputDate-datePicker")).toBeNull();
+    });
 
-//     it("should fire the onChange with the current value after canceling a date selection", () => {
-//       const screen = renderDatePicker();
+    it("should fire the onChange with the current value after canceling a date selection", () => {
+      const screen = renderDatePicker();
 
-//       fireEvent.press(screen.getByLabelText("Cancel"));
-//       expect(handleChange).toHaveBeenCalledWith(undefined);
-//     });
+      fireEvent.press(screen.getByLabelText("Cancel"));
+      expect(handleChange).toHaveBeenCalledWith(undefined);
+    });
 
-//     it("should fire the onChange after confirming a date selection", () => {
-//       const screen = renderDatePicker();
+    it("should fire the onChange after confirming a date selection", () => {
+      const screen = renderDatePicker();
 
-//       fireEvent.press(screen.getByLabelText("Confirm"));
-//       expect(handleChange).toHaveBeenCalledWith(expect.any(Date));
-//     });
-//   });
-//   const mockOnSubmit = jest.fn();
-//   const saveButtonText = "Submit";
+      fireEvent.press(screen.getByLabelText("Confirm"));
+      expect(handleChange).toHaveBeenCalledWith(expect.any(Date));
+    });
+  });
+  const mockOnSubmit = jest.fn();
+  const saveButtonText = "Submit";
 
-//   const requiredError = "This is required";
-//   function SimpleFormWithProvider({ children, defaultValues }) {
-//     const formMethods = useForm({
-//       reValidateMode: "onChange",
-//       defaultValues,
-//       mode: "onTouched",
-//     });
+  const requiredError = "This is required";
+  function SimpleFormWithProvider({ children, defaultValues }) {
+    const formMethods = useForm({
+      reValidateMode: "onChange",
+      defaultValues,
+      mode: "onTouched",
+    });
 
-//     return (
-//       <FormProvider {...formMethods}>
-//         {children}
-//         <Button
-//           onPress={formMethods.handleSubmit(values => mockOnSubmit(values))}
-//           label={saveButtonText}
-//           accessibilityLabel={saveButtonText}
-//         />
-//       </FormProvider>
-//     );
-//   }
-//   describe("Form controlled", () => {
-//     const pickerName = "datePicker";
-//     const expectedDate = "May 29, 2022";
-//     const value = new Date(2022, 4, 29);
-//     const handleChange = jest.fn();
+    return (
+      <FormProvider {...formMethods}>
+        {children}
+        <Button
+          onPress={formMethods.handleSubmit(values => mockOnSubmit(values))}
+          label={saveButtonText}
+          accessibilityLabel={saveButtonText}
+        />
+      </FormProvider>
+    );
+  }
+  describe("Form controlled", () => {
+    const pickerName = "datePicker";
+    const expectedDate = "May 29, 2022";
+    const value = new Date(2022, 4, 29);
+    const handleChange = jest.fn();
 
-//     const setup = () =>
-//       render(
-//         <SimpleFormWithProvider defaultValues={{ [pickerName]: value }}>
-//           <Host>
-//             <InputDate
-//               name={pickerName}
-//               onChange={handleChange}
-//               validations={{ required: requiredError }}
-//             />
-//           </Host>
-//         </SimpleFormWithProvider>,
-//       );
+    const setup = () =>
+      render(
+        <SimpleFormWithProvider defaultValues={{ [pickerName]: value }}>
+          <Host>
+            <InputDate
+              name={pickerName}
+              onChange={handleChange}
+              validations={{ required: requiredError }}
+            />
+          </Host>
+        </SimpleFormWithProvider>,
+      );
 
-//     it("should show the initial value", async () => {
-//       const screen = setup();
-//       expect(
-//         screen.getByText(expectedDate, {
-//           includeHiddenElements: true,
-//         }),
-//       ).toBeDefined();
-//     });
+    it("should show the initial value", async () => {
+      const screen = setup();
+      expect(
+        screen.getByText(expectedDate, {
+          includeHiddenElements: true,
+        }),
+      ).toBeDefined();
+    });
 
-//     it("should update the value", async () => {
-//       const screen = setup();
+    it("should update the value", async () => {
+      const screen = setup();
 
-//       fireEvent.press(
-//         screen.getByText(expectedDate, { includeHiddenElements: true }),
-//       );
+      fireEvent.press(
+        screen.getByText(expectedDate, { includeHiddenElements: true }),
+      );
 
-//       const expectedNewDate = "Jun 01, 2022";
-//       const newSelectedDate = new Date(2022, 5, 1);
-//       fireEvent(
-//         screen.getByTestId("inputDate-datePicker"),
-//         "onConfirm",
-//         newSelectedDate,
-//       );
+      const expectedNewDate = "Jun 01, 2022";
+      const newSelectedDate = new Date(2022, 5, 1);
+      fireEvent(
+        screen.getByTestId("inputDate-datePicker"),
+        "onConfirm",
+        newSelectedDate,
+      );
 
-//       expect(
-//         screen.getByText(expectedNewDate, { includeHiddenElements: true }),
-//       ).toBeDefined();
-//       expect(handleChange).toHaveBeenCalledWith(newSelectedDate);
-//     });
+      expect(
+        screen.getByText(expectedNewDate, { includeHiddenElements: true }),
+      ).toBeDefined();
+      expect(handleChange).toHaveBeenCalledWith(newSelectedDate);
+    });
 
-//     it("should show the client side validation error", async () => {
-//       const screen = setup();
+    it("should show the client side validation error", async () => {
+      const screen = setup();
 
-//       const clearAction = screen.getByLabelText("Clear input");
-//       expect(clearAction).toBeDefined();
+      const clearAction = screen.getByLabelText("Clear input");
+      expect(clearAction).toBeDefined();
 
-//       fireEvent.press(clearAction);
+      fireEvent.press(clearAction);
 
-//       await waitFor(() => {
-//         expect(
-//           screen.getAllByText(requiredError, { includeHiddenElements: true }),
-//         ).toHaveLength(1);
-//       });
-//     });
+      await waitFor(() => {
+        expect(
+          screen.getAllByText(requiredError, { includeHiddenElements: true }),
+        ).toHaveLength(1);
+      });
+    });
 
-//     it("should clear the input with null value when it is in a form", async () => {
-//       const screen = setup();
-//       const clearAction = screen.getByLabelText("Clear input");
-//       expect(clearAction).toBeDefined();
+    it("should clear the input with null value when it is in a form", async () => {
+      const screen = setup();
+      const clearAction = screen.getByLabelText("Clear input");
+      expect(clearAction).toBeDefined();
 
-//       fireEvent.press(clearAction);
-//       expect(handleChange).toHaveBeenCalledWith(null);
-//     });
-//   });
-// });
+      fireEvent.press(clearAction);
+      expect(handleChange).toHaveBeenCalledWith(null);
+    });
+  });
+});
