@@ -10,6 +10,7 @@ export * from "./Card";
 export * from "./Checkbox";
 export * from "./Chip";
 export * from "./Content";
+export * from "./Disclosure";
 export * from "./Divider";
 export * from "./EmptyState";
 export * from "./ErrorMessageWrapper";
