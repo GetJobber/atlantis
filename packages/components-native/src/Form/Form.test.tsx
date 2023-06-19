@@ -37,10 +37,6 @@ const onChangeSwitchMock = jest.fn();
 const mockScrollToPosition = jest.fn();
 const mockScrollToTop = jest.fn();
 
-jest.mock("@react-navigation/stack", () => ({
-  useHeaderHeight: jest.fn().mockImplementation(() => 200),
-}));
-
 jest.mock("./hooks/useFormViewRefs", () => ({
   useFormViewRefs: () => {
     return {

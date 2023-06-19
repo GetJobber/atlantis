@@ -1,1 +1,0 @@
-export { createSBNavigator } from "./SBNavigator";

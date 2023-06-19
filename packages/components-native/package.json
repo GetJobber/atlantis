@@ -37,8 +37,6 @@
   "dependencies": {
     "@jobber/design": "^0.42.0",
     "@react-native-picker/picker": "^2.4.10",
-    "@react-navigation/native": "^5.9.8",
-    "@react-navigation/stack": "^5.14.9",
     "deepmerge": "^4.2.2",
     "lodash": "^4.17.21",
     "react-hook-form": "^7.30.0",
