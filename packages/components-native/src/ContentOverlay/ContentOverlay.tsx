@@ -66,11 +66,10 @@ function ContentOverlayInternal(
   const insets = useSafeAreaInsets();
   const [position, setPosition] = useState<"top" | "initial">("initial");
   const isScreenReaderEnabled = useIsScreenReaderEnabled();
+  const isFullScreenOrTopPosition =
+    fullScreen || (!adjustToContentHeight && position === "top");
   const shouldShowDismiss =
-    showDismiss ||
-    isScreenReaderEnabled ||
-    fullScreen ||
-    (!adjustToContentHeight && position === "top");
+    showDismiss || isScreenReaderEnabled || isFullScreenOrTopPosition;
   const [showHeaderShadow, setShowHeaderShadow] = useState<boolean>(false);
   const overlayHeader = useRef<View>();
 
