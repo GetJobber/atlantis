@@ -1,7 +1,7 @@
-import { useHeaderHeight } from "@react-navigation/stack";
 import { useWindowDimensions } from "react-native";
 import { EdgeInsets, useSafeAreaInsets } from "react-native-safe-area-context";
 import { KEYBOARD_TOP_PADDING_AUTO_SCROLL } from "../constants";
+import { useAtlantisFormContext } from "../context";
 
 interface UseScreenInformation {
   readonly windowHeight: number;
@@ -10,14 +10,16 @@ interface UseScreenInformation {
 }
 
 export function useScreenInformation(): UseScreenInformation {
+  const { headerHeight } = useAtlantisFormContext();
   const windowHeight = useWindowDimensions().height;
-  const headerHeight = useHeaderHeight() + KEYBOARD_TOP_PADDING_AUTO_SCROLL;
+  const headerHeightWithPadding =
+    headerHeight + KEYBOARD_TOP_PADDING_AUTO_SCROLL;
 
   const insets = useSafeAreaInsets();
 
   return {
     windowHeight,
-    headerHeight,
+    headerHeight: headerHeightWithPadding,
     insets,
   } as const;
 }

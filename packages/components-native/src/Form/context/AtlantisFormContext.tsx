@@ -10,6 +10,7 @@ export const defaultValues = {
     setLocalCache: () => undefined,
     removeLocalCache: () => undefined,
   }),
+  headerHeight: 0,
 };
 
 export const AtlantisFormContext =

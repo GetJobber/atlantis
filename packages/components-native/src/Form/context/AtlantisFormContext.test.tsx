@@ -13,6 +13,7 @@ const useInternalFormLocalCacheMock = jest.fn();
 const providerValues: AtlantisFormContextProps = {
   useConfirmBeforeBack: useConfirmBeforeBackMock,
   useInternalFormLocalCache: useInternalFormLocalCacheMock,
+  headerHeight: 50,
 };
 
 describe("AtlantisFormContext", () => {

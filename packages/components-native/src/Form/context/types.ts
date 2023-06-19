@@ -30,4 +30,5 @@ export interface AtlantisFormContextProps {
     setLocalCache: (data: TData) => void;
     removeLocalCache: () => void;
   };
+  headerHeight: number;
 }
