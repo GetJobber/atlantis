@@ -45,6 +45,7 @@
     "@react-native-picker/picker": "^2.4.10",
     "deepmerge": "^4.2.2",
     "lodash": "^4.17.21",
+    "mime": "^3.0.0",
     "react-hook-form": "^7.30.0",
     "react-intl": "^6.4.2",
     "react-native-localize": "^2.2.6",
