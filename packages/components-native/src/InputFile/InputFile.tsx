@@ -249,6 +249,7 @@ export function InputFile({
   if (Platform.OS === "ios") {
     //Force changes
     //Another one
+    // Undo attempted fixes in package.json
     console.warn("InputFile is not supported on iOS");
   }
   return (
