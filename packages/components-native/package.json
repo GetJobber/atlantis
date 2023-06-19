@@ -53,6 +53,7 @@
     "ts-xor": "^1.1.0"
   },
   "devDependencies": {
+    "@react-navigation/native": "^5.9.8",
     "@react-navigation/stack": "^5.14.9",
     "@testing-library/jest-native": "^5.4.2",
     "@testing-library/react-hooks": "^7.0.2",
