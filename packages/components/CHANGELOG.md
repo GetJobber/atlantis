@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.22.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.21.0...@jobber/components@4.22.0) (2023-06-16)
+
+
+### Features
+
+* Extend Glimmer features ([#1318](https://github.com/GetJobber/atlantis/issues/1318)) ([a6ab624](https://github.com/GetJobber/atlantis/commit/a6ab624accca545e68535758478a52862769d5b9))
+
+
+
+
+
 # [4.21.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.20.4...@jobber/components@4.21.0) (2023-06-16)
 
 
