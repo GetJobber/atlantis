@@ -1,2 +1,2 @@
 export { ContentOverlay } from "./ContentOverlay";
-export type { ContentOverlayRef } from "./ContentOverlay";
+export type { ContentOverlayRef, ModalBackgroundColor } from "./types";
