@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.22.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.22.0...@jobber/components@4.22.1) (2023-06-19)
+
+
+### Bug Fixes
+
+* **components:** InputNumber doesn't run custom validations ([#1330](https://github.com/GetJobber/atlantis/issues/1330)) ([e183e92](https://github.com/GetJobber/atlantis/commit/e183e927b2536cad7574ee290de335ca260ce0d6))
+
+
+
+
+
+# [4.22.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.21.0...@jobber/components@4.22.0) (2023-06-16)
+
+
+### Features
+
+* Extend Glimmer features ([#1318](https://github.com/GetJobber/atlantis/issues/1318)) ([a6ab624](https://github.com/GetJobber/atlantis/commit/a6ab624accca545e68535758478a52862769d5b9))
+
+
+
+
+
+# [4.21.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.20.4...@jobber/components@4.21.0) (2023-06-16)
+
+
+### Features
+
+* AnimatedSwitcher ([#1327](https://github.com/GetJobber/atlantis/issues/1327)) ([c4698a5](https://github.com/GetJobber/atlantis/commit/c4698a518043975037543a14594d8bce6ee909ba))
+
+
+
+
+
 ## [4.20.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.20.3...@jobber/components@4.20.4) (2023-06-09)
 
 
