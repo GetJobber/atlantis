@@ -14,8 +14,7 @@ class AtlantisNativeInterface: RCTEventEmitter {
 
     @objc(openActionSheet:resolver:rejecter:)
     func openActionSheet(_ data: String, resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
-        print("open Action Sheet stub");
-        resolve("Open Action Sheet Stub");
+        print("Use ActionSheetIOS instead");
+        resolve("Use ActionSheetIOS instead");
     }
-
 }
