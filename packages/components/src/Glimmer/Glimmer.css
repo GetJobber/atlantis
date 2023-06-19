@@ -1,29 +1,55 @@
 .glimmer {
+  --glimmer-background: rgba(var(--color-black--rgb), 5%);
+  --glimmer-shine: rgba(var(--color-white--rgb), var(--glimmer-shine-opacity));
+  --glimmer-shine-opacity: 80%;
   --duration-base: calc(var(--timing-slowest) * 4); /* 2s */
   --duration-fast: calc(var(--duration-base) / 2); /* 1s */
 
   width: 100%;
   height: 100%;
   border-radius: var(--radius-base);
-  background-color: var(--color-grey--lightest);
+  background-color: var(--glimmer-background);
   background-image: linear-gradient(
     90deg,
-    var(--color-grey--lightest) 0px,
-    var(--color-white) var(--space-larger),
-    var(--color-grey--lightest) var(--space-extravagant)
+    transparent 0px,
+    var(--glimmer-shine) var(--space-larger),
+    transparent var(--space-extravagant)
   );
   background-repeat: no-repeat;
   background-size: var(--space-extravagant) 100%;
   animation: glimmer 2s infinite linear;
 }
 
+.reverseTheme {
+  --glimmer-background: rgba(var(--color-white--rgb), 10%);
+  --glimmer-shine-opacity: 25%;
+}
+
 @keyframes glimmer {
   0%,
   20% {
-    background-position: calc(var(--space-extravagant) * -1);
+    background-position-x: calc(var(--space-extravagant) * -1);
   }
 
   100% {
-    background-position: calc(100% + var(--space-extravagant));
+    background-position-x: calc(100% + var(--space-extravagant));
   }
+}
+
+.header {
+  width: 30%;
+  max-width: 180px;
+  min-width: 120px;
+}
+
+.button {
+  display: inline-block;
+  width: 100px;
+  height: 36px;
+}
+
+.buttonFill {
+  display: block;
+  width: 100%;
+  min-width: 100px;
 }
