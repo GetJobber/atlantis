@@ -176,6 +176,59 @@ function useInputFileHooks() {
 const IS_ANDROID_33_OR_GREATER =
   Platform.OS === "android" && Platform.Version >= 33;
 
+function getMenuOptions(formatMessage: IntlShape["formatMessage"]) {
+  const menuOptions = {
+    images: [
+      {
+        title: formatMessage(messages.takePhoto),
+        value: FileSource.camera,
+      },
+      {
+        title: formatMessage(messages.chooseFromLibrary),
+        value: FileSource.gallery,
+      },
+    ],
+    videos: [
+      ...(IS_ANDROID_33_OR_GREATER
+        ? []
+        : [
+            {
+              title: formatMessage(messages.takeVideo),
+              value: FileSource.video,
+            },
+          ]),
+      {
+        title: formatMessage(messages.chooseFromLibrary),
+        value: FileSource.gallery,
+      },
+    ],
+    mixed: [
+      {
+        title: formatMessage(messages.takePhoto),
+        value: FileSource.camera,
+      },
+      ...(IS_ANDROID_33_OR_GREATER
+        ? []
+        : [
+            {
+              title: formatMessage(messages.takeVideo),
+              value: FileSource.video,
+            },
+          ]),
+      {
+        title: formatMessage(messages.chooseFromLibrary),
+        value: FileSource.gallery,
+      },
+      {
+        title: formatMessage(messages.browseFiles),
+        value: FileSource.document,
+      },
+    ],
+  };
+
+  return menuOptions;
+}
+
 export function InputFile({
   type = "singleSelect",
   allowedTypes = "mixed",
@@ -192,11 +245,7 @@ export function InputFile({
 }: InputFileProps): JSX.Element {
   const { formatMessage } = useIntl();
   const { isOnline, onLogError } = useInputFileHooks();
-  // Force change
 
-  if (false && true) {
-    console.log("yeet2");
-  }
   return (
     <View style={[type !== "singleSelect" && styles.multiFile]}>
       <Button
@@ -343,101 +392,60 @@ export function InputFile({
   }
 
   function onPress() {
-    const menuActions = {
-      images: [
-        {
-          title: formatMessage(messages.takePhoto),
-          value: FileSource.camera,
-        },
-        {
-          title: formatMessage(messages.chooseFromLibrary),
-          value: FileSource.gallery,
-        },
-      ],
-      videos: [
-        ...(IS_ANDROID_33_OR_GREATER
-          ? []
-          : [
-              {
-                title: formatMessage(messages.takeVideo),
-                value: FileSource.video,
-              },
-            ]),
-        {
-          title: formatMessage(messages.chooseFromLibrary),
-          value: FileSource.gallery,
-        },
-      ],
-      mixed: [
-        {
-          title: formatMessage(messages.takePhoto),
-          value: FileSource.camera,
-        },
-        ...(IS_ANDROID_33_OR_GREATER
-          ? []
-          : [
-              {
-                title: formatMessage(messages.takeVideo),
-                value: FileSource.video,
-              },
-            ]),
-        {
-          title: formatMessage(messages.chooseFromLibrary),
-          value: FileSource.gallery,
-        },
-        {
-          title: formatMessage(messages.browseFiles),
-          value: FileSource.document,
-        },
-      ],
-    };
-
-    const params = JSON.stringify({
+    const menuActions = getMenuOptions(formatMessage);
+    const androidParams = {
       title: "Attach files",
-      actions: menuActions[allowedTypes],
-    });
-
-    try {
-      if (Platform.OS === "ios") {
-        ActionSheetIOS.showActionSheetWithOptions(
-          {
-            options: menuActions[allowedTypes].map(val => val.title),
-          },
-          (buttonIndex: number) => {
-            const fileSource = menuActions[allowedTypes][buttonIndex].value;
-            handleActionSheetResponse(fileSource).catch((e: Error) => {
-              // catch rejected promises from iOS native layer
-              if (e.message !== "Cancelled by user") {
-                console.error(e);
-                onLogError(
-                  `[File upload] iOS: not able to select media option to upload`,
-                );
-              }
-            });
-          },
-        );
-      } else {
-        AtlantisNativeInterface.openActionSheet(params)
+      options: menuActions[allowedTypes],
+    };
+    if (Platform.OS === "ios") {
+      const options = [
+        ...menuActions[allowedTypes].map(val => val.title),
+        "Cancel",
+      ];
+      ActionSheetIOS.showActionSheetWithOptions(
+        {
+          options,
+          title: "Attach files",
+          cancelButtonIndex: options.length - 1,
+        },
+        (buttonIndex: number) => {
+          console.warn(buttonIndex);
+          const fileSource = menuActions[allowedTypes][buttonIndex].value;
+          try {
+            handleActionSheetResponse(fileSource);
+          } catch (e: any) {
+            // catch rejected promises from iOS native layer
+            console.error("iosError", e);
+            if (e.message !== "Cancelled by user") {
+              onLogError(
+                `[File upload] iOS: not able to select media option to upload`,
+              );
+            }
+          }
+        },
+      );
+    } else {
+      try {
+        AtlantisNativeInterface.openActionSheet(androidParams)
           .then(async (result: number) => {
             handleActionSheetResponse(result);
           })
           .catch((e: Error) => {
             // catch rejected promises from iOS native layer
             if (e.message !== "Cancelled by user") {
-              console.error(e);
+              console.log(onLogError);
               onLogError(
-                `[File upload] iOS: not able to select media option to upload`,
+                `[File upload] Android: not able to select media option to upload`,
               );
             }
           });
-      }
-    } catch (e) {
-      // @ts-expect-error - Catch rejected promises from Android native layer
-      if (e.message !== "Cancelled by user") {
-        console.error(e);
-        onLogError(
-          `[File upload] Android: not able to select media option to upload`,
-        );
+      } catch (e: any) {
+        if (e.message !== "Cancelled by user") {
+          console.log(onLogError);
+          onLogError(
+            `[File upload] Android: not able to select media option to upload`,
+          );
+        }
       }
     }
   }
@@ -614,7 +622,7 @@ export function InputFile({
     return true;
   }
 
-  async function handleActionSheetResponse(fileSource: FileSource) {
+  function handleActionSheetResponse(fileSource: FileSource) {
     switch (fileSource) {
       case FileSource.gallery: {
         handleMediaSelection(FileSource.gallery);

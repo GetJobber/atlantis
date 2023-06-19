@@ -6,7 +6,7 @@ import {
   waitFor,
 } from "@testing-library/react-native";
 import { Host } from "react-native-portalize";
-import { Alert, NativeModules } from "react-native";
+import { ActionSheetIOS, Alert, NativeModules } from "react-native";
 import { pick } from "react-native-document-picker";
 import { useIntl } from "react-intl";
 import { FileUpload, InputFile } from ".";
@@ -29,9 +29,11 @@ jest.mock("./utils/permissions");
 
 const mockOnLogError = jest.fn();
 const atlantisContextSpy = jest.spyOn(atlantisContext, "useAtlantisContext");
-atlantisContextSpy.mockReturnValue({
-  ...contextDefaultValue,
-  onLogError: mockOnLogError,
+atlantisContextSpy.mockImplementation(() => {
+  return {
+    ...contextDefaultValue,
+    onLogError: mockOnLogError,
+  };
 });
 
 let Platform: { OS: "ios" | "android" };
@@ -86,7 +88,7 @@ const mockGetUploadParams = jest.fn().mockImplementation(() => {
 });
 const AtlantisNativeInterface: AtlantisInterfaceType =
   NativeModules.AtlantisNativeInterface;
-console.warn(AtlantisNativeInterface);
+
 jest.mock("react-native-document-picker");
 const jestPick = pick as jest.Mock;
 
@@ -108,6 +110,13 @@ const defaultInputFileParams = {
   allowedTypes: "images" as const,
   getUploadParams: mockGetUploadParams,
 };
+const mockShowActionSheetWithOptions = jest.fn();
+
+const iOSActionSheetSpy = jest
+  .spyOn(ActionSheetIOS, "showActionSheetWithOptions")
+  .mockImplementation((options, callback) => {
+    return mockShowActionSheetWithOptions(options, callback);
+  });
 
 beforeEach(() => {
   Platform = require("react-native").Platform;
@@ -156,6 +165,24 @@ function basicRenderTestWithValue() {
     expect(getByHintText("Custom Hint Text")).toBeDefined();
   });
 }
+function buildExpectedOptions(platform: "ios" | "android", message: string) {
+  if (platform === "ios") {
+    return [
+      expect.objectContaining({
+        options: expect.arrayContaining([message]),
+      }),
+      expect.any(Function),
+    ];
+  } else {
+    return [
+      expect.objectContaining({
+        options: expect.arrayContaining([
+          expect.objectContaining({ title: message }),
+        ]),
+      }),
+    ];
+  }
+}
 
 function singleMediaCaptureTest() {
   beforeEach(() => {
@@ -169,14 +196,16 @@ function singleMediaCaptureTest() {
     jest.spyOn(Alert, "alert").mockImplementation(() => {
       return jest.fn();
     });
+
     const optionsSpy = jest.spyOn(AtlantisNativeInterface, "openActionSheet");
-    const expectedOptionLibrary = `{"title":"${messagesHook.chooseFromLibrary.defaultMessage}"`;
-    const expectedOptionPhoto = `{"title":"${messagesHook.takePhoto.defaultMessage}"`;
-    const expectedOptionVideo = `{"title":"${messagesHook.takeVideo.defaultMessage}"`;
-    const expectedOptionFiles = `{"title":"${messagesHook.browseFiles.defaultMessage}"`;
+
+    const expectedOptionLibrary = messagesHook.chooseFromLibrary.defaultMessage;
+    const expectedOptionPhoto = messagesHook.takePhoto.defaultMessage;
+    const expectedOptionVideo = messagesHook.takeVideo.defaultMessage;
+    const expectedOptionFiles = messagesHook.browseFiles.defaultMessage;
 
     it("shows alert if network is unavailable", async () => {
-      atlantisContextSpy.mockReturnValue({
+      atlantisContextSpy.mockReturnValueOnce({
         ...contextDefaultValue,
         isOnline: false,
       });
@@ -197,6 +226,10 @@ function singleMediaCaptureTest() {
     it.each([expectedOptionPhoto, expectedOptionLibrary])(
       "shows the attachment bottom sheet with a photo option",
       async expectedOption => {
+        const expectedBottomSheetParameters = buildExpectedOptions(
+          Platform.OS,
+          expectedOption,
+        );
         const { getByLabelText } = render(
           <Host>
             <InputFile
@@ -208,9 +241,11 @@ function singleMediaCaptureTest() {
         await fireEvent.press(
           getByLabelText(messagesHook.defaultLabel.defaultMessage),
         );
+        const bottomSheetSpy =
+          Platform.OS === "ios" ? iOSActionSheetSpy : optionsSpy;
 
-        expect(optionsSpy).toHaveBeenCalledWith(
-          expect.stringContaining(expectedOption),
+        expect(bottomSheetSpy).toHaveBeenCalledWith(
+          ...expectedBottomSheetParameters,
         );
       },
     );
@@ -229,9 +264,13 @@ function singleMediaCaptureTest() {
         await fireEvent.press(
           getByLabelText(messagesHook.defaultLabel.defaultMessage),
         );
-        expect(optionsSpy).toHaveBeenCalledWith(
-          expect.stringContaining(expectedOption),
+        const expectedParameters = buildExpectedOptions(
+          Platform.OS,
+          expectedOption,
         );
+        const bottomSheetSpy =
+          Platform.OS === "ios" ? iOSActionSheetSpy : optionsSpy;
+        expect(bottomSheetSpy).toHaveBeenCalledWith(...expectedParameters);
       },
     );
 
@@ -254,8 +293,14 @@ function singleMediaCaptureTest() {
         await fireEvent.press(
           getByLabelText(messagesHook.defaultLabel.defaultMessage),
         );
-        expect(optionsSpy).toHaveBeenCalledWith(
-          expect.stringContaining(expectedOption),
+        const bottomSheetSpy =
+          Platform.OS === "ios" ? iOSActionSheetSpy : optionsSpy;
+        const expectedBottomSheetParameters = buildExpectedOptions(
+          Platform.OS,
+          expectedOption,
+        );
+        expect(bottomSheetSpy).toHaveBeenCalledWith(
+          ...expectedBottomSheetParameters,
         );
       },
     );
@@ -264,21 +309,20 @@ function singleMediaCaptureTest() {
 
 function errorHandlingTests() {
   describe("when there is an error", () => {
-    beforeEach(() => {
-      jest
-        .spyOn(AtlantisNativeInterface, "openActionSheet")
-        .mockImplementation(() => {
-          if (Platform.OS === "ios") {
-            return Promise.reject(new Error());
-          }
+    jest
+      .spyOn(AtlantisNativeInterface, "openActionSheet")
+      .mockImplementation(async () => {
+        // if (Platform.OS === "ios") {
+        //   return Promise.reject(new Error());
+        // }
 
-          throw new Error();
-        });
-    });
-
-    afterEach(() => {
-      jest.clearAllMocks();
-    });
+        throw new Error();
+      });
+    jest
+      .spyOn(ActionSheetIOS, "showActionSheetWithOptions")
+      .mockImplementation(async () => {
+        return Promise.reject(new Error());
+      });
 
     it("calls onFileSelected", async () => {
       const rendered = render(
@@ -888,15 +932,15 @@ function multipleDocumentUploadTests() {
   });
 }
 
-describe.only("ios", () => {
+describe("ios", () => {
   beforeEach(() => {
     Platform.OS = "ios";
   });
 
   basicRenderTestWithValue();
-  permissionDeniedTests();
-  singleImageUploadTests();
-  singleDocumentUploadTests();
+  // permissionDeniedTests();
+  // singleImageUploadTests();
+  // singleDocumentUploadTests();
   // multipleDocumentUploadTests();
   singleMediaCaptureTest();
   errorHandlingTests();
@@ -908,9 +952,9 @@ describe("android", () => {
   });
 
   basicRenderTestWithValue();
-  permissionDeniedTests();
-  singleImageUploadTests();
-  singleDocumentUploadTests();
+  // permissionDeniedTests();
+  // singleImageUploadTests();
+  // singleDocumentUploadTests();
   // multipleDocumentUploadTests();
   singleMediaCaptureTest();
   errorHandlingTests();

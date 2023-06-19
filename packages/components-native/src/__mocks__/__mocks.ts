@@ -76,7 +76,7 @@ jest.doMock("react-native", () => {
       NativeModules: {
         ...ReactNative.NativeModules,
         AtlantisNativeInterface: {
-          openActionSheet: jest.fn(),
+          openActionSheet: async () => jest.fn(),
         },
       },
     },
