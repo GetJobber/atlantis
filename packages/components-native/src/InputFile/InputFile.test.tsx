@@ -6,7 +6,7 @@ import {
   waitFor,
 } from "@testing-library/react-native";
 import { Host } from "react-native-portalize";
-import { ActionSheetIOS, Alert, NativeModules } from "react-native";
+import { Alert, NativeModules } from "react-native";
 import { pick } from "react-native-document-picker";
 import { useIntl } from "react-intl";
 import { FileUpload, InputFile } from ".";
@@ -110,13 +110,6 @@ const defaultInputFileParams = {
   allowedTypes: "images" as const,
   getUploadParams: mockGetUploadParams,
 };
-const mockShowActionSheetWithOptions = jest.fn();
-
-const iOSActionSheetSpy = jest
-  .spyOn(ActionSheetIOS, "showActionSheetWithOptions")
-  .mockImplementation((options, callback) => {
-    return mockShowActionSheetWithOptions(options, callback);
-  });
 
 beforeEach(() => {
   Platform = require("react-native").Platform;
@@ -241,8 +234,7 @@ function singleMediaCaptureTest() {
         await fireEvent.press(
           getByLabelText(messagesHook.defaultLabel.defaultMessage),
         );
-        const bottomSheetSpy =
-          Platform.OS === "ios" ? iOSActionSheetSpy : optionsSpy;
+        const bottomSheetSpy = optionsSpy;
 
         expect(bottomSheetSpy).toHaveBeenCalledWith(
           ...expectedBottomSheetParameters,
@@ -268,8 +260,7 @@ function singleMediaCaptureTest() {
           Platform.OS,
           expectedOption,
         );
-        const bottomSheetSpy =
-          Platform.OS === "ios" ? iOSActionSheetSpy : optionsSpy;
+        const bottomSheetSpy = optionsSpy;
         expect(bottomSheetSpy).toHaveBeenCalledWith(...expectedParameters);
       },
     );
@@ -293,8 +284,7 @@ function singleMediaCaptureTest() {
         await fireEvent.press(
           getByLabelText(messagesHook.defaultLabel.defaultMessage),
         );
-        const bottomSheetSpy =
-          Platform.OS === "ios" ? iOSActionSheetSpy : optionsSpy;
+        const bottomSheetSpy = optionsSpy;
         const expectedBottomSheetParameters = buildExpectedOptions(
           Platform.OS,
           expectedOption,
@@ -309,20 +299,16 @@ function singleMediaCaptureTest() {
 
 function errorHandlingTests() {
   describe("when there is an error", () => {
-    jest
-      .spyOn(AtlantisNativeInterface, "openActionSheet")
-      .mockImplementation(async () => {
-        // if (Platform.OS === "ios") {
-        //   return Promise.reject(new Error());
-        // }
-
-        throw new Error();
-      });
-    jest
-      .spyOn(ActionSheetIOS, "showActionSheetWithOptions")
-      .mockImplementation(async () => {
-        return Promise.reject(new Error());
-      });
+    beforeEach(() => {
+      jest
+        .spyOn(AtlantisNativeInterface, "openActionSheet")
+        .mockImplementation(() => {
+          if (Platform.OS === "ios") {
+            return Promise.reject(new Error());
+          }
+          throw new Error();
+        });
+    });
 
     it("calls onFileSelected", async () => {
       const rendered = render(
@@ -932,19 +918,19 @@ function multipleDocumentUploadTests() {
   });
 }
 
-describe("ios", () => {
-  beforeEach(() => {
-    Platform.OS = "ios";
-  });
+// describe("ios", () => {
+//   beforeEach(() => {
+//     Platform.OS = "ios";
+//   });
 
-  basicRenderTestWithValue();
-  // permissionDeniedTests();
-  // singleImageUploadTests();
-  // singleDocumentUploadTests();
-  // multipleDocumentUploadTests();
-  singleMediaCaptureTest();
-  errorHandlingTests();
-});
+//   basicRenderTestWithValue();
+//   // permissionDeniedTests();
+//   // singleImageUploadTests();
+//   // singleDocumentUploadTests();
+//   // multipleDocumentUploadTests();
+//   singleMediaCaptureTest();
+//   errorHandlingTests();
+// });
 
 describe("android", () => {
   beforeEach(() => {
@@ -952,9 +938,9 @@ describe("android", () => {
   });
 
   basicRenderTestWithValue();
-  // permissionDeniedTests();
-  // singleImageUploadTests();
-  // singleDocumentUploadTests();
+  permissionDeniedTests();
+  singleImageUploadTests();
+  singleDocumentUploadTests();
   // multipleDocumentUploadTests();
   singleMediaCaptureTest();
   errorHandlingTests();

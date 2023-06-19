@@ -7,7 +7,7 @@ import {
   launchCamera,
   launchImageLibrary,
 } from "react-native-image-picker";
-import { ActionSheetIOS, Alert, Platform, View } from "react-native";
+import { Alert, Platform, View } from "react-native";
 import { openSettings } from "react-native-permissions";
 import DocumentPicker, {
   DocumentPickerResponse,
@@ -229,6 +229,7 @@ function getMenuOptions(formatMessage: IntlShape["formatMessage"]) {
   return menuOptions;
 }
 
+/* eslint max-statements: ["error", 15] */
 export function InputFile({
   type = "singleSelect",
   allowedTypes = "mixed",
@@ -245,7 +246,9 @@ export function InputFile({
 }: InputFileProps): JSX.Element {
   const { formatMessage } = useIntl();
   const { isOnline, onLogError } = useInputFileHooks();
-
+  if (Platform.OS === "ios") {
+    console.warn("InputFile is not supported on iOS");
+  }
   return (
     <View style={[type !== "singleSelect" && styles.multiFile]}>
       <Button
@@ -397,34 +400,7 @@ export function InputFile({
       title: "Attach files",
       options: menuActions[allowedTypes],
     };
-    if (Platform.OS === "ios") {
-      const options = [
-        ...menuActions[allowedTypes].map(val => val.title),
-        "Cancel",
-      ];
-      ActionSheetIOS.showActionSheetWithOptions(
-        {
-          options,
-          title: "Attach files",
-          cancelButtonIndex: options.length - 1,
-        },
-        (buttonIndex: number) => {
-          console.warn(buttonIndex);
-          const fileSource = menuActions[allowedTypes][buttonIndex].value;
-          try {
-            handleActionSheetResponse(fileSource);
-          } catch (e: any) {
-            // catch rejected promises from iOS native layer
-            console.error("iosError", e);
-            if (e.message !== "Cancelled by user") {
-              onLogError(
-                `[File upload] iOS: not able to select media option to upload`,
-              );
-            }
-          }
-        },
-      );
-    } else {
+    if (Platform.OS === "android") {
       try {
         AtlantisNativeInterface.openActionSheet(androidParams)
           .then(async (result: number) => {
