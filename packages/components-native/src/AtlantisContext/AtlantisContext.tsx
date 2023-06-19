@@ -40,6 +40,11 @@ export interface AtlantisContextProps {
    * The currency symbol Atlantis components will use
    */
   readonly currencySymbol: string;
+
+  /**
+   * The height of the header
+   */
+  readonly headerHeight: number;
 }
 
 export const defaultValues: AtlantisContextProps = {
@@ -52,6 +57,7 @@ export const defaultValues: AtlantisContextProps = {
   },
   floatSeparators: { group: ",", decimal: "." },
   currencySymbol: DEFAULT_CURRENCY_SYMBOL,
+  headerHeight: 50,
 };
 
 export const AtlantisContext = createContext(defaultValues);

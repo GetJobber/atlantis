@@ -8,7 +8,6 @@ import {
 import { Portal } from "react-native-portalize";
 import { useIntl } from "react-intl";
 import { useSafeAreaFrame } from "react-native-safe-area-context";
-import { useHeaderHeight } from "@react-navigation/stack";
 import { styles } from "./Menu.style";
 import { messages } from "./messages";
 import { findViewpoint } from "./utils";
@@ -18,6 +17,7 @@ import { Overlay } from "./components/Overlay";
 import { tokens } from "../utils/design";
 import { Button } from "../Button";
 import { Content } from "../Content";
+import { useAtlantisContext } from "../AtlantisContext";
 
 export function Menu({ menuOptions, customActivator }: MenuProps): JSX.Element {
   const [open, setOpen] = useState<boolean>(false);
@@ -108,7 +108,7 @@ export function Menu({ menuOptions, customActivator }: MenuProps): JSX.Element {
 }
 
 function useScreenInformation() {
-  const headerHeight = useHeaderHeight();
+  const { headerHeight } = useAtlantisContext();
   const windowWidth = useWindowDimensions().width;
   const { height: windowHeight } = useSafeAreaFrame();
 
