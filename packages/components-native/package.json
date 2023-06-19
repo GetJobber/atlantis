@@ -48,7 +48,7 @@
     "mime": "^3.0.0",
     "react-hook-form": "^7.30.0",
     "react-intl": "^6.4.2",
-    "react-native-gesture-handler": "^2.10.2",
+    "react-native-gesture-handler": "^2.10.0",
     "react-native-localize": "^2.2.6",
     "react-native-modalize": "^2.0.13",
     "react-native-permissions": "^3.8.0",

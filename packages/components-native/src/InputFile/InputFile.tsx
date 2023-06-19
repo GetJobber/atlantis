@@ -248,6 +248,7 @@ export function InputFile({
   const { isOnline, onLogError } = useInputFileHooks();
   if (Platform.OS === "ios") {
     //Force changes
+    //Another one
     console.warn("InputFile is not supported on iOS");
   }
   return (
