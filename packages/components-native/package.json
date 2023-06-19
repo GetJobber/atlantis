@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components-native",
-  "version": "0.35.0",
+  "version": "0.37.0",
   "license": "MIT",
   "description": "React Native implementation of Atlantis",
   "repository": {
@@ -43,6 +43,7 @@
   "dependencies": {
     "@jobber/design": "^0.42.0",
     "@react-native-picker/picker": "^2.4.10",
+    "deepmerge": "^4.2.2",
     "lodash": "^4.17.21",
     "react-hook-form": "^7.30.0",
     "react-intl": "^6.4.2",
