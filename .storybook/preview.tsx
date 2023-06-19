@@ -6,6 +6,9 @@ import { InlineCode } from "./components/InlineCode";
 import { DocsWithSidebar } from "./components/DocsWithSidebar";
 import { CustomCanvas } from "./components/CustomCanvas";
 import { SBProvider } from "./components/SBProvider";
+import { createSBNavigator } from "./components/SBNavigator";
+import { NavigationContainer } from "@react-navigation/native";
+
 
 
 import "@jobber/design/foundation.css";
@@ -45,10 +48,25 @@ export const parameters = {
   },
 };
 
+const StoryBookStack = createSBNavigator();
+
 export const decorators = [
   Story => (
     <SBProvider>
       <Story />
     </SBProvider>
   ),
+  Story => {
+    const Screen = () => <Story />;
+
+    return (
+      <SBProvider>
+        <NavigationContainer independent={true}>
+          <StoryBookStack.Navigator>
+            <StoryBookStack.Screen name="Story" component={Screen} />
+          </StoryBookStack.Navigator>
+        </NavigationContainer>
+      </SBProvider>
+    );
+  },
 ]
