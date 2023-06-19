@@ -222,7 +222,7 @@ test("it should call the custom validate function if provided", async () => {
   await waitFor(() => {
     expect(validationHandler).toHaveBeenCalledWith(
       expectedValidationValue,
-      expect.anything(),
+      expect.any(Object),
     );
     // Received: 12, {"generatedName--123e4567-e89b-12d3-a456-426655440063": 12}
   });
@@ -265,8 +265,55 @@ test("it should use the custom validate object if provided", async () => {
   });
 });
 
-// it should do overlimit if no validation provided
-// it merge validations if given object
+test("it should call the min validation if the custom validation passes", async () => {
+  const { getByLabelText, getByText } = render(
+    <InputNumber
+      value={98}
+      min={99}
+      validations={{
+        validate: {
+          alwaysPasses: () => true,
+        },
+      }}
+      placeholder="Count to 100"
+    />,
+  );
+
+  const input = getByLabelText("Count to 100");
+  input.focus();
+  input.blur();
+
+  await waitFor(() => {
+    expect(
+      getByText("Enter a number that is greater than or equal to 99"),
+    ).toBeInTheDocument();
+  });
+});
+
+test("it should call the max validation if the custom validation passes", async () => {
+  const { getByLabelText, getByText } = render(
+    <InputNumber
+      value={101}
+      max={100}
+      validations={{
+        validate: {
+          alwaysPasses: () => true,
+        },
+      }}
+      placeholder="Count to 100"
+    />,
+  );
+
+  const input = getByLabelText("Count to 100");
+  input.focus();
+  input.blur();
+
+  await waitFor(() => {
+    expect(
+      getByText("Enter a number that is less than or equal to 100"),
+    ).toBeInTheDocument();
+  });
+});
 
 test("it should handle focus", () => {
   const inputRef = React.createRef<InputNumberRef>();
