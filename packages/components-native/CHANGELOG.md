@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.37.0...@jobber/components-native@0.38.0) (2023-06-20)
+
+
+### Features
+
+* **components-native:** Import ContentOverlay to components-native ([#1328](https://github.com/GetJobber/atlantis/issues/1328)) ([7bd6857](https://github.com/GetJobber/atlantis/commit/7bd6857cb18ced73dd2aa7448ae5da48f3031cfa))
+
+
+
+
+
 # [0.37.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.36.0...@jobber/components-native@0.37.0) (2023-06-16)
 
 
