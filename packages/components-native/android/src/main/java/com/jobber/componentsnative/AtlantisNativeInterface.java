@@ -140,19 +140,4 @@ public class AtlantisNativeInterface extends ReactContextBaseJavaModule {
         dialogQueueManager.addAndShowDialog(dialog, this.getCurrentActivity());
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
