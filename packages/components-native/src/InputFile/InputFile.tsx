@@ -412,7 +412,6 @@ export function InputFile({
           .catch((e: Error) => {
             // catch rejected promises from iOS native layer
             if (e.message !== "Cancelled by user") {
-              console.log(onLogError);
               onLogError(
                 `[File upload] Android: not able to select media option to upload`,
               );
@@ -420,7 +419,6 @@ export function InputFile({
           });
       } catch (e: any) {
         if (e.message !== "Cancelled by user") {
-          console.log(onLogError);
           onLogError(
             `[File upload] Android: not able to select media option to upload`,
           );
