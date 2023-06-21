@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useRef } from "react";
+import React, { PropsWithChildren } from "react";
 import { IconNames, IconSizes, getIcon } from "@jobber/design";
 import { AnimatePresence, Variants, motion } from "framer-motion";
 
@@ -9,23 +9,6 @@ interface IconSwitcherProps {
 }
 
 const DURATION = 0.2;
-const ICON_SPIN_CLOCKWISE: Variants = {
-  initial: {
-    rotate: -180,
-    scale: 0.6,
-    transition: { duration: DURATION, ease: "easeIn" },
-  },
-  animate: {
-    rotate: 0,
-    scale: 1,
-    transition: { duration: DURATION, ease: "easeOut" },
-  },
-  exit: {
-    rotate: 180,
-    scale: 0.6,
-    transition: { duration: DURATION, ease: "easeIn" },
-  },
-};
 
 export function IconSwitcher({
   name,
@@ -42,7 +25,7 @@ export function IconSwitcher({
   return (
     <AnimatePresence exitBeforeEnter initial={false}>
       <motion.span
-        variants={ICON_SPIN_CLOCKWISE}
+        variants={getVariants()}
         initial="initial"
         animate="animate"
         exit="exit"
@@ -53,4 +36,25 @@ export function IconSwitcher({
       </motion.span>
     </AnimatePresence>
   );
+
+  function getVariants(): Variants {
+    let rotate = 180;
+    let scale = 0.6;
+    const transition = { duration: DURATION, ease: "easeIn" };
+
+    if (name.startsWith("arrow")) {
+      rotate = 90;
+      scale = 1;
+    }
+
+    return {
+      initial: { rotate: rotate * -1, scale, transition },
+      animate: {
+        rotate: 0,
+        scale: 1,
+        transition: { duration: DURATION, ease: "easeOut" },
+      },
+      exit: { rotate, scale, transition },
+    };
+  }
 }
