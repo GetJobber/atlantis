@@ -278,7 +278,7 @@ function FormatFileInternal({
           bottomSheetRef={bottomSheetRef}
           onRemovePress={onRemove}
           bottomSheetOptionsSuffix={bottomSheetOptionsSuffix}
-          onPreviewPress={handlePreviewPress}
+          onPreviewPress={file.showPreview ? handlePreviewPress : undefined}
         />
       </View>
     </AtlantisFormatFileContext.Provider>
