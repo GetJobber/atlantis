@@ -3,12 +3,12 @@ import { RenderAPI, fireEvent, render } from "@testing-library/react-native";
 import { Host } from "react-native-portalize";
 import { useIntl } from "react-intl";
 import { act } from "react-test-renderer";
-import { BottomSheetRef } from "atlantis/BottomSheet/BottomSheet";
 import {
   BottomSheetOptionsSuffix,
   FormatFileBottomSheet,
 } from "./FormatFileBottomSheet";
 import { messages } from "./messages";
+import { BottomSheetRef } from "../../../BottomSheet/BottomSheet";
 
 let Platform: { OS: "ios" | "android" };
 const onRemove = jest.fn();
