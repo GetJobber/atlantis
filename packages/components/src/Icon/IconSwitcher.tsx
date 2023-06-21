@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren, useRef } from "react";
 import { IconNames, IconSizes, getIcon } from "@jobber/design";
 import { AnimatePresence, Variants, motion } from "framer-motion";
 
@@ -30,7 +30,7 @@ const ICON_SPIN_CLOCKWISE: Variants = {
 export function IconSwitcher({
   name,
   size,
-  animated = true,
+  animated = false,
   children,
 }: PropsWithChildren<IconSwitcherProps>) {
   const { svgClassNames } = getIcon({ name, size });

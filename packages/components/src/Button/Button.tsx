@@ -159,7 +159,7 @@ export function Button(props: ButtonProps) {
 function ButtonInternals({ label, icon, size = "base" }: ButtonProps) {
   return (
     <>
-      {icon && <Icon name={icon} size={size} />}
+      {icon && <Icon name={icon} size={size} animated={true} />}
       <Typography
         element="span"
         fontWeight="extraBold"
