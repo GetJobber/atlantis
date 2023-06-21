@@ -1,5 +1,6 @@
 import React from "react";
 import { IconColorNames, IconNames, IconSizes, getIcon } from "@jobber/design";
+import { IconSwitcher } from "./IconSwitcher";
 
 export { IconColorNames, IconNames } from "@jobber/design";
 
@@ -27,29 +28,34 @@ export interface IconProps {
 }
 
 export function Icon({ name, color, customColor, size = "base" }: IconProps) {
-  let icon;
   const { svgClassNames, pathClassNames, paths, viewBox } = getIcon({
     name,
     color: getIconColor(name, color),
     size,
   });
-  if (name === "truck") {
-    icon = getTruck(pathClassNames, customColor);
-  } else {
-    icon = paths.map((path: string) => (
+
+  return (
+    <IconSwitcher name={name} size={size} animated={false}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox={viewBox}
+        className={svgClassNames}
+        data-testid={name}
+      >
+        {getIconPaths()}
+      </svg>
+    </IconSwitcher>
+  );
+
+  function getIconPaths() {
+    if (name === "truck") {
+      return getTruck(pathClassNames, customColor);
+    }
+
+    return paths.map((path: string) => (
       <path key={path} className={pathClassNames} d={path} fill={customColor} />
     ));
   }
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox={viewBox}
-      className={svgClassNames}
-      data-testid={name}
-    >
-      {icon}
-    </svg>
-  );
 }
 
 function getIconColor(name: IconNames, color?: IconColorNames) {
