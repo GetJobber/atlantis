@@ -87,11 +87,11 @@ describe("InputDate", () => {
   describe("with a defaultValue", () => {
     it("renders the supplied value", () => {
       const { getByText } = render(
-        <InputDate name="test" defaultValue={new Date("2022-01-01")} />,
+        <InputDate name="test" defaultValue={new Date("2022-01-17")} />,
       );
 
       expect(
-        getByText("Jan 01, 2022", { includeHiddenElements: true }),
+        getByText("Jan 17, 2022", { includeHiddenElements: true }),
       ).toBeDefined();
     });
   });
@@ -185,14 +185,14 @@ describe("InputDate", () => {
     });
 
     it("should update the value", async () => {
-      const screen = setup();
+      const screen = await setup();
 
       fireEvent.press(
         screen.getByText(expectedDate, { includeHiddenElements: true }),
       );
 
-      const expectedNewDate = "Jun 01, 2022";
-      const newSelectedDate = new Date(2022, 5, 1);
+      const expectedNewDate = "Jun 17, 2022";
+      const newSelectedDate = new Date(2022, 5, 17);
       fireEvent(
         screen.getByTestId("inputDate-datePicker"),
         "onConfirm",
