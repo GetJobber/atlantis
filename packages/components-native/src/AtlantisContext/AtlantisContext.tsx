@@ -59,7 +59,7 @@ export const defaultValues: AtlantisContextProps = {
   },
   floatSeparators: { group: ",", decimal: "." },
   currencySymbol: DEFAULT_CURRENCY_SYMBOL,
-  headerHeight: 50,
+  headerHeight: 0,
 };
 
 export const AtlantisContext = createContext(defaultValues);
