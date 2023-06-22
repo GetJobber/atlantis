@@ -235,6 +235,7 @@ describe("InputDate", () => {
     afterEach(() => {
       jest.spyOn(atlantisContext, "useAtlantisContext").mockRestore();
     });
+
     it("should display MM/DD/YYYY when dateFormat is 'P'", () => {
       jest.spyOn(atlantisContext, "useAtlantisContext").mockReturnValue({
         ...atlantisContext.defaultValues,
