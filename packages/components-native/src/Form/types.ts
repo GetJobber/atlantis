@@ -159,10 +159,10 @@ export interface FormProps<T extends FieldValues, SubmitResponseType> {
    * data on the form. This can be used to support local caching for forms that
    * prefill data without inadvertently applying the cache at the wrong time.
    *
-   * For example this can be used to when an object is being converted from
-   * another (Quote being converted into a Job). This will allow the user to
-   * retrieve data from the cache when trying to convert the same object
-   * (same Quote being converted into a Job) following an app crash.
+   * For example this can be used to when an object is based on data from
+   * another object (Quote being converted into a Job). This will allow
+   * the user to retrieve data from the cache when trying to create the
+   * same object (same Quote being converted into a Job) following an app crash.
    *
    * There is still only one copy of data for each `localCacheKey`.
    * If a user opens the same form the data will only be loaded if the `localCacheId` matches
