@@ -39,7 +39,7 @@ export function IconSwitcher({
 
   function getVariants(): Variants {
     let rotate = 180;
-    let scale = 0.6;
+    let scale = 0.4;
     const transition = { duration: DURATION, ease: "easeIn" };
 
     if (name.startsWith("arrow")) {
@@ -48,13 +48,13 @@ export function IconSwitcher({
     }
 
     return {
-      initial: { rotate: rotate * -1, scale, transition },
+      initial: { rotate, scale, transition },
       animate: {
         rotate: 0,
         scale: 1,
         transition: { duration: DURATION, ease: "easeOut" },
       },
-      exit: { rotate, scale, transition },
+      exit: { rotate: rotate * -1, scale, transition },
     };
   }
 }
