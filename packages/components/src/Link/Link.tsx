@@ -1,18 +1,18 @@
 import React, { PropsWithChildren } from "react";
 
 interface LinkProps {
+  readonly url: string;
   readonly ariaLabel?: string;
   readonly ariaExpanded?: boolean;
   readonly external?: boolean;
-  readonly url: string;
 }
 
 export function Link({
+  url,
+  children,
   ariaLabel,
   ariaExpanded,
   external = false,
-  url,
-  children,
 }: PropsWithChildren<LinkProps>) {
   return (
     <a
