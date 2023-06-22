@@ -1,4 +1,4 @@
-import { useIsMounted } from "@jobber/hooks/src";
+import { useIsMounted } from "@jobber/hooks/useIsMounted";
 import { useCallback, useEffect, useState } from "react";
 import { UseCreateThumbnail } from "../context/types";
 import { CreateThumbnail, FormattedFile } from "../types";
