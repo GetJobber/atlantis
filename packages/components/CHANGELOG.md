@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.22.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.22.0...@jobber/components@4.22.1) (2023-06-19)
+
+
+### Bug Fixes
+
+* **components:** InputNumber doesn't run custom validations ([#1330](https://github.com/GetJobber/atlantis/issues/1330)) ([e183e92](https://github.com/GetJobber/atlantis/commit/e183e927b2536cad7574ee290de335ca260ce0d6))
+
+
+
+
+
 # [4.22.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.21.0...@jobber/components@4.22.0) (2023-06-16)
 
 
