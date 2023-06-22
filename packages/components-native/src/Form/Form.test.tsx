@@ -1,4 +1,3 @@
-/* eslint-disable max-statements */
 import React from "react";
 import { act, fireEvent, render, waitFor } from "@testing-library/react-native";
 import { Alert, Keyboard } from "react-native";

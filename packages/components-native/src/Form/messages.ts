@@ -24,6 +24,7 @@ export const messages = defineMessages({
     defaultMessage: "Network unavailable",
     description: "The title for alert about network unavailable",
   },
+
   unavailableNetworkMessage: {
     id: "unavailableNetworkMessage",
     defaultMessage: "Check your internet connection and try again later.",

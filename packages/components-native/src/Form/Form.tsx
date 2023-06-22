@@ -223,7 +223,6 @@ function InternalForm<T extends FieldValues, S>({
     </FormProvider>
   );
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function handleKeyboardShow(frames: Record<string, any>) {
     setKeyboardScreenY(frames.endCoordinates.screenY);
     setKeyboardHeight(frames.endCoordinates.height);
@@ -279,7 +278,6 @@ function InternalForm<T extends FieldValues, S>({
 
   function clearFormErrors() {
     // @ts-expect-error  We are clearing the error that we previously set
-    // We are clearing the error that we previously set
     // when the form had no internet connection
     formMethods.clearErrors("offline");
   }

@@ -107,47 +107,53 @@ describe("the form save button is loading", () => {
   });
 });
 
-it("renders a secondaryAction element", () => {
-  const pressHandler = jest.fn();
-  const { getByLabelText } = render(
-    <ButtonGroupForTest
-      primaryAction={pressHandler}
-      loading={false}
-      setSecondaryActionLoading={jest.fn()}
-      secondaryAction={[{ label: "hi", handleAction: { onSubmit: jest.fn() } }]}
-    />,
-  );
+describe("when a secondaryActions is passed in", () => {
+  it("renders a secondaryAction element", () => {
+    const pressHandler = jest.fn();
+    const { getByLabelText } = render(
+      <ButtonGroupForTest
+        primaryAction={pressHandler}
+        loading={false}
+        setSecondaryActionLoading={jest.fn()}
+        secondaryAction={[
+          { label: "hi", handleAction: { onSubmit: jest.fn() } },
+        ]}
+      />,
+    );
 
-  expect(getByLabelText(buttonGroupMessage.more.defaultMessage)).toBeDefined();
-});
-
-it("renders a secondaryAction element with and fires the onSubmit and beforeSubmit if available", async () => {
-  const pressHandler = jest.fn(() => Promise.resolve());
-  const beforeSubmitMock = jest.fn().mockImplementation(() => {
-    return Promise.resolve(true);
+    expect(
+      getByLabelText(buttonGroupMessage.more.defaultMessage),
+    ).toBeDefined();
   });
-  const { getByLabelText } = render(
-    <ButtonGroupForTest
-      primaryAction={pressHandler}
-      loading={false}
-      setSecondaryActionLoading={jest.fn()}
-      secondaryAction={[
-        {
-          icon: "trash",
-          label: "hi",
-          handleAction: {
-            onSubmit: pressHandler,
-            onBeforeSubmit: beforeSubmitMock,
+
+  it("renders a secondaryAction element with and fires the onSubmit and beforeSubmit if available", async () => {
+    const pressHandler = jest.fn(() => Promise.resolve());
+    const beforeSubmitMock = jest.fn().mockImplementation(() => {
+      return Promise.resolve(true);
+    });
+    const { getByLabelText } = render(
+      <ButtonGroupForTest
+        primaryAction={pressHandler}
+        loading={false}
+        setSecondaryActionLoading={jest.fn()}
+        secondaryAction={[
+          {
+            icon: "trash",
+            label: "hi",
+            handleAction: {
+              onSubmit: pressHandler,
+              onBeforeSubmit: beforeSubmitMock,
+            },
           },
-        },
-      ]}
-    />,
-  );
-  fireEvent.press(getByLabelText(buttonGroupMessage.more.defaultMessage));
-  expect(getByLabelText("hi")).toBeDefined();
-  fireEvent.press(getByLabelText("hi"));
-  expect(beforeSubmitMock).toHaveBeenCalled();
-  await waitFor(() => {
-    expect(pressHandler).toHaveBeenCalled();
+        ]}
+      />,
+    );
+    fireEvent.press(getByLabelText(buttonGroupMessage.more.defaultMessage));
+    expect(getByLabelText("hi")).toBeDefined();
+    fireEvent.press(getByLabelText("hi"));
+    expect(beforeSubmitMock).toHaveBeenCalled();
+    await waitFor(() => {
+      expect(pressHandler).toHaveBeenCalled();
+    });
   });
 });

@@ -157,9 +157,9 @@ export interface FormProps<T extends FieldValues, SubmitResponseType> {
   /**
    * A string or array of strings that can be used to identify the pre-filled
    * data on the form. This can be used to support local caching for forms that
-   * prefill data without inadvertatly applying the cache at the wrong time.
+   * prefill data without inadvertently applying the cache at the wrong time.
    *
-   * For example this can be used to when an object is being converted from from
+   * For example this can be used to when an object is being converted from
    * another (Quote being converted into a Job). This will allow the user to
    * retrieve data from the cache when trying to convert the same object
    * (same Quote being converted into a Job) following an app crash.
