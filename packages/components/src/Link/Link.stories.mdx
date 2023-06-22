@@ -28,7 +28,7 @@ import { Link } from "@jobber/components/Link";
 ## Usage guidelines
 
 The `<Link>` will render an `<a>` tag with the appropriate `href`, `rel` and
-`target` attributes, and included appropriate iconography for external links.
+`target` attributes, when/as applicable.
 
 A `<Link>` marked external will always open in a new tab. Set this when linking
 away from Jobber or to other applications or sites across Jobber where this
@@ -55,14 +55,3 @@ title of the destination page or a short description of the content.
 If it's not possible to make the visible text sufficiently descriptive without
 additional context, set the `ariaLabel` prop to a descriptive string for
 screenreaders. Do _not_ set this prop if it will be redundant to the link text.
-
-## Notes
-
-Current behaviour is limited to internally written links within the product and
-not rendering links in user provided content. Additional props and behaviour
-would be important to use this with user generated content and set appropriate
-values for `rel` and `referrerpolicy`.
-
-Adding a prop for `OnClick` was considered, but decided against with no clear
-use case that wasn't better served by other components for triggering actions or
-other events for handling the outcome of clicking a link (leaving the page)
