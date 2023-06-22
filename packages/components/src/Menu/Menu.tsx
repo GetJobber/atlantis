@@ -117,7 +117,11 @@ export function Menu({ activator, items }: MenuProps) {
   });
 
   return (
-    <div className={wrapperClasses} ref={wrapperRef}>
+    <div
+      className={wrapperClasses}
+      ref={wrapperRef}
+      onClick={handleParentClick}
+    >
       {React.cloneElement(activator, {
         onClick: toggle(activator.props.onClick),
         id: buttonID,
@@ -195,6 +199,14 @@ export function Menu({ activator, items }: MenuProps) {
     event.preventDefault();
     event.stopPropagation();
     key === "Escape" && hide();
+  }
+
+  function handleParentClick(event: MouseEvent<HTMLDivElement>) {
+    // Since the menu is being rendered within the same parent as the activator,
+    // we need to stop the click event from bubbling up. If the Menu component
+    // gets added within a parent that has a click handler, any click on the
+    // menu will trigger the parent's click handler.
+    event.stopPropagation();
   }
 }
 
