@@ -4,6 +4,7 @@ import { Host } from "react-native-portalize";
 import { FormProvider, useForm } from "react-hook-form";
 import { InputDate } from "./InputDate";
 import { Button } from "../Button";
+import * as atlantisContext from "../AtlantisContext/AtlantisContext";
 
 describe("InputDate", () => {
   describe("Visuals", () => {
@@ -227,6 +228,67 @@ describe("InputDate", () => {
 
       fireEvent.press(clearAction);
       expect(handleChange).toHaveBeenCalledWith(null);
+    });
+  });
+
+  describe("dateFormat pattern", () => {
+    afterEach(() => {
+      jest.spyOn(atlantisContext, "useAtlantisContext").mockRestore();
+    });
+    it("should display MM/DD/YYYY when dateFormat is 'P'", () => {
+      jest.spyOn(atlantisContext, "useAtlantisContext").mockReturnValue({
+        ...atlantisContext.defaultValues,
+        dateFormat: "P",
+      });
+      const expectedDate = "05/24/2023";
+      const value = new Date(2023, 4, 24).toISOString();
+      const screen = render(<InputDate value={value} onChange={jest.fn()} />);
+
+      expect(
+        screen.getByText(expectedDate, { includeHiddenElements: true }),
+      ).toBeDefined();
+    });
+
+    it("should display mmmm d, yyyy when dateFormat is 'PP'", () => {
+      jest.spyOn(atlantisContext, "useAtlantisContext").mockReturnValue({
+        ...atlantisContext.defaultValues,
+        dateFormat: "PP",
+      });
+      const expectedDate = "Feb 20, 2023";
+      const value = new Date(2023, 1, 20).toISOString();
+      const screen = render(<InputDate value={value} onChange={jest.fn()} />);
+
+      expect(
+        screen.getByText(expectedDate, { includeHiddenElements: true }),
+      ).toBeDefined();
+    });
+
+    it("should display mmmmm d, yyyy when dateFormat is 'PPP'", () => {
+      jest.spyOn(atlantisContext, "useAtlantisContext").mockReturnValue({
+        ...atlantisContext.defaultValues,
+        dateFormat: "PPP",
+      });
+      const expectedDate = "July 7th, 2023";
+      const value = new Date(2023, 6, 7).toISOString();
+      const screen = render(<InputDate value={value} onChange={jest.fn()} />);
+
+      expect(
+        screen.getByText(expectedDate, { includeHiddenElements: true }),
+      ).toBeDefined();
+    });
+
+    it("should display dddd, mmmmm d, yyyy when dateFormat is 'PPPP'", () => {
+      jest.spyOn(atlantisContext, "useAtlantisContext").mockReturnValue({
+        ...atlantisContext.defaultValues,
+        dateFormat: "PPPP",
+      });
+      const expectedDate = "Thursday, June 22nd, 2023";
+      const value = new Date(2023, 5, 22).toISOString();
+      const screen = render(<InputDate value={value} onChange={jest.fn()} />);
+
+      expect(
+        screen.getByText(expectedDate, { includeHiddenElements: true }),
+      ).toBeDefined();
     });
   });
 });
