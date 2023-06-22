@@ -3,6 +3,7 @@ import classnames from "classnames";
 import { XOR } from "ts-xor";
 import { Link } from "react-router-dom";
 import { IconNames } from "@jobber/design";
+import { AnimatePresence, motion } from "framer-motion";
 import styles from "./Button.css";
 import { Icon } from "../Icon";
 import { Typography } from "../Typography";
@@ -160,14 +161,24 @@ function ButtonInternals({ label, icon, size = "base" }: ButtonProps) {
   return (
     <>
       {icon && <Icon name={icon} size={size} animated={true} />}
-      <Typography
-        element="span"
-        fontWeight="extraBold"
-        fontFamily="base"
-        size={getTypeSizes(size)}
-      >
-        {label}
-      </Typography>
+      <AnimatePresence exitBeforeEnter initial={false}>
+        <motion.span
+          key={label}
+          initial={{ opacity: 0, x: -8 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: 8 }}
+          transition={{ duration: 0.2 }}
+        >
+          <Typography
+            element="span"
+            fontWeight="extraBold"
+            fontFamily="base"
+            size={getTypeSizes(size)}
+          >
+            {label}
+          </Typography>
+        </motion.span>
+      </AnimatePresence>
     </>
   );
 }
