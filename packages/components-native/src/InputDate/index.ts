@@ -1,1 +1,1 @@
-export { InputDate } from "./InputDate";
+export { InputDate, InputDateProps } from "./InputDate";

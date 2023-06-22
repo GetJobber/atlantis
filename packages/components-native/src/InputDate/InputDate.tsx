@@ -89,7 +89,10 @@ interface DevControlledInputDate extends BaseInputDateProps {
   readonly onChange: (value?: Date) => void;
 }
 
-type InputDateProps = XOR<FormControlledInputDate, DevControlledInputDate>;
+export type InputDateProps = XOR<
+  FormControlledInputDate,
+  DevControlledInputDate
+>;
 
 function formatInvalidState(
   error: FieldError | undefined,
