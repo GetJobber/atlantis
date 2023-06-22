@@ -12,6 +12,7 @@ import { v1 as uuidv1 } from "uuid";
 import classnames from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
+import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { IconNames } from "@jobber/design";
 import styles from "./Menu.css";
 import { Button } from "../Button";
@@ -92,6 +93,7 @@ export function Menu({ activator, items }: MenuProps) {
       setPosition(newPosition);
     }
   }, [visible, fullWidth]);
+  useRefocusOnActivator(visible);
 
   if (!activator) {
     activator = (
@@ -267,8 +269,9 @@ function Action({
   const actionButtonRef = useRef() as RefObject<HTMLButtonElement>;
 
   useEffect(() => {
-    if (actionButtonRef.current && shouldFocus) {
-      actionButtonRef.current.focus();
+    if (shouldFocus) {
+      // Focus on the next tick to allow useRefocusOnActivator to initialize
+      setTimeout(() => actionButtonRef.current?.focus(), 0);
     }
   }, [shouldFocus]);
 
