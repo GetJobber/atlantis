@@ -42,7 +42,9 @@ export interface AtlantisContextProps {
   readonly currencySymbol: string;
 
   /**
-   * The height of the header
+   * The `headerHeight` property represents the height of the app header in Atlantis.
+   * It plays a crucial role in determining the positioning of various elements within the app.
+   * By accurately defining this value, Atlantis can effectively calculate the layout and alignment of its components.
    */
   readonly headerHeight: number;
 }
