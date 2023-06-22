@@ -3,7 +3,6 @@ import { RenderAPI, fireEvent, render } from "@testing-library/react-native";
 import { Host } from "react-native-portalize";
 import { Alert } from "react-native";
 import { useIntl } from "react-intl";
-import { tokens } from "@jobber/design/foundation";
 import { File, FormatFile } from ".";
 import {
   FILE_MOCK_FILE,
@@ -17,12 +16,17 @@ import {
 import { messages } from "./components/FormatFileBottomSheet/messages";
 import { messages as formatFileMessages } from "./messages";
 import { BottomSheetOptionsSuffix } from "./components/FormatFileBottomSheet";
+import { tokens } from "../utils/design";
 import { FileUpload, StatusCode } from "../InputFile";
 
 let Platform: { OS: "ios" | "android" };
 
 const onRemove = jest.fn();
 const mockOnPreview = jest.fn();
+const mockCreateThumbnail = jest.fn(async () => ({
+  thumbnail: "thumbnail",
+  error: false,
+}));
 
 beforeEach(() => {
   Platform = require("react-native").Platform;
@@ -48,6 +52,7 @@ const renderFormatFile = (
         bottomSheetOptionsSuffix={bottomSheetOptionsSuffix}
         showFileTypeIndicator={showFileTypeIndicator}
         onPreviewPress={mockOnPreview}
+        createThumbnail={mockCreateThumbnail}
       />
     </Host>,
   );
@@ -302,6 +307,18 @@ function basicRenderTestWithValue() {
         false,
       );
       expect(queryByTestId("video")).toBeNull();
+    });
+  });
+
+  describe("when an image is used", () => {
+    it("creates a thumbnail", () => {
+      const file = FILE_UPLOAD_MOCK_IMAGE({
+        progress: 1,
+        status: StatusCode.Completed,
+      });
+      renderFormatFile(file, "image");
+
+      expect(mockCreateThumbnail).toHaveBeenCalledTimes(1);
     });
   });
 }

@@ -29,4 +29,4 @@ export interface CreateThumbnailResponse {
 }
 export type CreateThumbnail = (
   formattedFile: FormattedFile,
-) => CreateThumbnailResponse;
+) => Promise<CreateThumbnailResponse>;

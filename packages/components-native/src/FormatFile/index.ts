@@ -5,3 +5,7 @@ export type {
   CreateThumbnail,
   CreateThumbnailResponse,
 } from "./types";
+export type {
+  UseCreateThumbnail,
+  UseCreateThumbnailResponse,
+} from "./context/types";

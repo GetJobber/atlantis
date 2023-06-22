@@ -250,7 +250,7 @@ function FormatFileInternal({
   }, [file, onPreviewPress]);
   const createThumbnail = createThumbnailProp
     ? createThumbnailProp
-    : () => ({ error: false, thumbnail: "" });
+    : async () => ({ error: false, thumbnail: "" });
   const { useCreateThumbnail } = createUseCreateThumbnail(createThumbnail);
 
   return (
