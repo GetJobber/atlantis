@@ -36,7 +36,9 @@
   },
   "dependencies": {
     "@jobber/design": "^0.42.0",
+    "@react-native-clipboard/clipboard": "^1.11.2",
     "@react-native-picker/picker": "^2.4.10",
+    "autolinker": "^4.0.0",
     "deepmerge": "^4.2.2",
     "lodash": "^4.17.21",
     "react-hook-form": "^7.30.0",
