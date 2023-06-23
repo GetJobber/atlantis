@@ -7,7 +7,7 @@ export interface AtlantisContextProps {
   /**
    * The date format Atlantis components would use
    */
-  readonly dateFormat?: string;
+  readonly dateFormat: string;
 
   /**
    * The time format Atlantis components would use
@@ -43,6 +43,7 @@ export interface AtlantisContextProps {
 }
 
 export const defaultValues: AtlantisContextProps = {
+  dateFormat: "PP",
   // The system time is "p"
   timeFormat: "p",
   timeZone: RNLocalize.getTimeZone(),
