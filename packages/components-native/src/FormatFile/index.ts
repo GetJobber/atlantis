@@ -4,6 +4,8 @@ export type {
   File,
   CreateThumbnail,
   CreateThumbnailResponse,
+  FileUpload,
+  StatusCode,
 } from "./types";
 export type {
   UseCreateThumbnail,

@@ -16,8 +16,8 @@ import {
 import { messages } from "./components/FormatFileBottomSheet/messages";
 import { messages as formatFileMessages } from "./messages";
 import { BottomSheetOptionsSuffix } from "./components/FormatFileBottomSheet";
+import { FileUpload, StatusCode } from "./types";
 import { tokens } from "../utils/design";
-import { FileUpload, StatusCode } from "../InputFile";
 
 let Platform: { OS: "ios" | "android" };
 

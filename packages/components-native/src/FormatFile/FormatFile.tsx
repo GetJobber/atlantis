@@ -10,10 +10,15 @@ import {
 } from "./components/FormatFileBottomSheet";
 import { FileView } from "./components/FileView";
 import { acceptedExtensions, videoExtensions } from "./constants";
-import { CreateThumbnail, File, FormattedFile } from "./types";
+import {
+  CreateThumbnail,
+  File,
+  FileUpload,
+  FormattedFile,
+  StatusCode,
+} from "./types";
 import { AtlantisFormatFileContext } from "./context/FormatFileContext";
 import { createUseCreateThumbnail } from "./utils/createUseCreateThumbnail";
-import { FileUpload, StatusCode } from "../InputFile";
 import { BottomSheetRef } from "../BottomSheet/BottomSheet";
 
 interface FormatFileProps<T> {

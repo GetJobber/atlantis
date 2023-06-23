@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Animated, View } from "react-native";
 import { styles } from "./ProgressBar.style";
-import { StatusCode } from "../../../InputFile/types";
+import { StatusCode } from "../../types";
 
 interface ProgressBarProps {
   /**

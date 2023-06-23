@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { ImageBackground, View } from "react-native";
 import { useIntl } from "react-intl";
 import { styles } from "./MediaView.style";
-import { FormattedFile } from "../../types";
+import { FormattedFile, StatusCode } from "../../types";
 import { computeA11yLabel } from "../../utils";
 import { ActivityIndicator } from "../../../ActivityIndicator";
 import { Icon } from "../../../Icon";
-import { StatusCode } from "../../../InputFile/types";
 import { ProgressBar } from "../ProgressBar";
 import { ErrorIcon } from "../ErrorIcon";
 import { useAtlantisFormatFileContext } from "../../context/FormatFileContext";
@@ -41,7 +40,7 @@ export function MediaView({
   });
 
   const hasError = showError || error;
-  const uri = thumbnail;
+  const uri = thumbnail || file.thumbnailUrl || file.source;
 
   return (
     <View accessible={true} accessibilityLabel={a11yLabel}>

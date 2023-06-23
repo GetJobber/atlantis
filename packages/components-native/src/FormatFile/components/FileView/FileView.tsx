@@ -5,9 +5,8 @@ import { IconNames } from "@jobber/design";
 import { styles } from "./FileView.style";
 import { Icon } from "../../../Icon";
 import { Text } from "../../../Text";
-import { FormattedFile } from "../../types";
+import { FormattedFile, StatusCode } from "../../types";
 import { computeA11yLabel } from "../../utils";
-import { StatusCode } from "../../../InputFile/types";
 import { ProgressBar } from "../ProgressBar";
 import { ErrorIcon } from "../ErrorIcon";
 
