@@ -268,7 +268,6 @@ function InternalForm<T extends FieldValues, S>({
 
     if (error?.errorType === FormSubmitErrorType.NetworkError) {
       // @ts-expect-error We are making the form submission fail so that we can
-      // We are making the form submission fail so that we can
       // prevent the isSubmitSuccess to be true
       formMethods.setError("offline", "Error saving form.");
 
