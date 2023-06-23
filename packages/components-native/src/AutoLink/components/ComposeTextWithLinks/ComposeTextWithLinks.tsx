@@ -15,7 +15,7 @@ export function ComposeTextWithLinks({
 }: ComposeTextWithLinksProps): JSX.Element {
   const { formatMessage } = useIntl();
 
-  const isLink = match.getType();
+  const isLink = match?.getType();
 
   if (isLink) {
     return (
