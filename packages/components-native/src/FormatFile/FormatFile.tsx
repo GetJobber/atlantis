@@ -21,7 +21,7 @@ import { AtlantisFormatFileContext } from "./context/FormatFileContext";
 import { createUseCreateThumbnail } from "./utils/createUseCreateThumbnail";
 import { BottomSheetRef } from "../BottomSheet/BottomSheet";
 
-interface FormatFileProps<T> {
+export interface FormatFileProps<T> {
   /**
    * File upload details object. Can be a File or a FileUpload
    */
