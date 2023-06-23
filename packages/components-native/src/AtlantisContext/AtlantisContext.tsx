@@ -40,6 +40,13 @@ export interface AtlantisContextProps {
    * The currency symbol Atlantis components will use
    */
   readonly currencySymbol: string;
+
+  /**
+   * The `headerHeight` property represents the height of the app header in Atlantis.
+   * It plays a crucial role in determining the positioning of various elements within the app.
+   * By accurately defining this value, Atlantis can effectively calculate the layout and alignment of its components.
+   */
+  readonly headerHeight: number;
 }
 
 export const defaultValues: AtlantisContextProps = {
@@ -53,6 +60,7 @@ export const defaultValues: AtlantisContextProps = {
   },
   floatSeparators: { group: ",", decimal: "." },
   currencySymbol: DEFAULT_CURRENCY_SYMBOL,
+  headerHeight: 0,
 };
 
 export const AtlantisContext = createContext(defaultValues);

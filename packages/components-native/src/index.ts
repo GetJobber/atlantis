@@ -29,6 +29,7 @@ export * from "./InputPressable";
 export * from "./InputSearch";
 export * from "./InputTime";
 export * from "./InputText";
+export * from "./Menu";
 export * from "./TextList";
 export * from "./ProgressBar";
 export * from "./Select";
