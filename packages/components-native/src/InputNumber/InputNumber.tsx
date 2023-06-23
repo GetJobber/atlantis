@@ -14,7 +14,7 @@ export interface InputNumberProps
   > {
   readonly value?: number;
   readonly defaultValue?: number;
-  readonly onChange: (newValue?: number | string | undefined) => void;
+  readonly onChange?: (newValue?: number | string | undefined) => void;
   readonly keyboard?: NumberKeyboard;
   /**
    * Used to locate this view in end-to-end tests

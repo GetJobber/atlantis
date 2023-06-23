@@ -7,7 +7,6 @@ import { DocsWithSidebar } from "./components/DocsWithSidebar";
 import { CustomCanvas } from "./components/CustomCanvas";
 import { SBProvider } from "./components/SBProvider";
 
-
 import "@jobber/design/foundation.css";
 import "./assets/css/preview.css";
 
