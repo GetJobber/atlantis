@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.22.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.22.1...@jobber/components@4.22.2) (2023-06-23)
+
+
+### Bug Fixes
+
+* **components:** missing display flex prevented tabs to scroll ([#1339](https://github.com/GetJobber/atlantis/issues/1339)) ([4b8019d](https://github.com/GetJobber/atlantis/commit/4b8019d4b0a54a69db3051f126d44a3dbe7abcc2))
+
+
+
+
+
 ## [4.22.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.22.0...@jobber/components@4.22.1) (2023-06-19)
 
 
