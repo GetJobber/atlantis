@@ -235,6 +235,11 @@ function basicRenderTestWithValue() {
           expect(onRemove).toHaveBeenCalledTimes(1);
         });
       });
+
+      it("creates a thumbnail when a media file is used", () => {
+        const expectedCalls = testId.includes("image") ? 2 : 0;
+        expect(mockCreateThumbnail).toHaveBeenCalledTimes(expectedCalls);
+      });
     },
   );
 
@@ -307,18 +312,6 @@ function basicRenderTestWithValue() {
         false,
       );
       expect(queryByTestId("video")).toBeNull();
-    });
-  });
-
-  describe("when an image is used", () => {
-    it("creates a thumbnail", () => {
-      const file = FILE_UPLOAD_MOCK_IMAGE({
-        progress: 1,
-        status: StatusCode.Completed,
-      });
-      renderFormatFile(file, "image");
-
-      expect(mockCreateThumbnail).toHaveBeenCalledTimes(1);
     });
   });
 }
