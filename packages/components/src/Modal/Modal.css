@@ -1,11 +1,12 @@
 :root {
   --modal--width: calc(var(--base-unit) * 37.5);
-  --modal--padding: var(--space-base);
-}
+  --modal--padding-horizontal: var(--space-base);
+  --modal--padding-vertical: var(--space-base);
+  --modal--padding: var(--modal--padding-vertical)
+    var(--modal--padding-horizontal);
 
-@media (--medium-screens-and-up) {
-  :root {
-    --modal--padding: var(--space-base) var(--space-large);
+  @media (--medium-screens-and-up) {
+    --modal--padding-horizontal: var(--space-large);
   }
 }
 
