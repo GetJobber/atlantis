@@ -11,9 +11,7 @@ const config = {
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@storybook/addon-actions/register",
     "@storybook/addon-interactions",
-    "./addons/expand-all/register.js",
     {
       name: "@storybook/addon-docs",
       options: {
