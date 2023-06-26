@@ -13,8 +13,8 @@ describe("when a Link is rendered", () => {
   });
   it("opens in a new tab if external is set to true", () => {
     const { getByText } = render(
-      <Link url="https://getjobber.com" external={true}>
-        This is a link
+      <Link url={testUrl} external={true}>
+        {testText}
       </Link>,
     );
     const link = getByText("This is a link");
