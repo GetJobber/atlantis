@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { Button } from "@jobber/components/Button";
@@ -364,4 +365,52 @@ sense to allow the `external`, `onClick`, `to`, or `url` props.
       <Button label="Submit" submit={true} />
     </Content>
   </Form>
+</Canvas>
+
+## Delighter and emphasis
+
+The button animates the `icon` and `label` prop whenever you change them instead
+of replacing the whole button with another button. This is a great way to draw
+attention to a button and delight the user whenever they interact with it.
+
+<Canvas>
+  {() => {
+    const [switchedArrows, setSwitchedArrows] = useState(false);
+    const [switchedChecked, setSwitchedChecked] = useState(false);
+    const [switchedShow, setSwitchedShow] = useState(false);
+    const [switchedMenu, setSwitchedMenu] = useState(false);
+    return (
+      <Content>
+        <div>
+          <Button
+            label={switchedArrows ? "Expand" : "Collapse"}
+            icon={switchedArrows ? "arrowDown" : "arrowUp"}
+            type="secondary"
+            onClick={() => setSwitchedArrows(!switchedArrows)}
+          />
+        </div>
+        <div>
+          <Button
+            label={switchedChecked ? "Added" : "Add"}
+            icon={switchedChecked ? "checkmark" : "add"}
+            type="secondary"
+            onClick={() => setSwitchedChecked(!switchedChecked)}
+          />
+        </div>
+        <div>
+          <Button
+            icon={switchedMenu ? "backArrow" : "menu"}
+            ariaLabel="Menu"
+            type="secondary"
+            onClick={() => setSwitchedMenu(!switchedMenu)}
+          />{" "}
+          <Button
+            label={switchedShow ? "Show" : "Hide"}
+            type="secondary"
+            onClick={() => setSwitchedShow(!switchedShow)}
+          />
+        </div>
+      </Content>
+    );
+  }}
 </Canvas>
