@@ -1,10 +1,9 @@
 import { EmailMatch, Match, PhoneMatch } from "autolinker";
-import Clipboard from "@react-native-clipboard/clipboard";
 import { MessageDescriptor } from "react-intl";
 import { Linking } from "react-native";
 import { messages } from "./messages";
 import { LinkType } from "./types";
-import { ShowToastParams, showToast } from "../Toast";
+import { copyTextToClipboard } from "./clipboard";
 
 function hasPrefix(text: string, prefixes: string[]): boolean {
   return prefixes.some(prefix => text.includes(prefix));
@@ -41,18 +40,6 @@ export function getUrl(match: Match, immediateOpen = true): string {
         : (match as PhoneMatch).getNumber();
     default:
       return match.getAnchorHref();
-  }
-}
-
-export function copyTextToClipboard(
-  text: string,
-  toastConfig?: ShowToastParams,
-): void {
-  Clipboard.setString(text);
-
-  if (toastConfig) {
-    const { message, bottomTabsVisible } = toastConfig;
-    showToast({ message, bottomTabsVisible });
   }
 }
 

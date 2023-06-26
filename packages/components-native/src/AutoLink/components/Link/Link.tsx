@@ -1,5 +1,4 @@
 import React from "react";
-// eslint-disable-next-line no-restricted-imports
 import { Text as RNText } from "react-native";
 import { Text } from "../../../Text";
 
