@@ -45,10 +45,11 @@
   background-color: var(--color-surface);
 }
 
-/* Adjust `Content` components public padding to match the modal */
+/* Adjust `Content` and `Tab` components public padding to match the modal */
 
 .modal > * {
   --public-content--padding: var(--modal--padding);
+  --public-tab--inset: var(--modal--padding-horizontal);
 }
 
 /* Remove the nested `Content` components public padding */
