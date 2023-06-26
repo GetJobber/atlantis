@@ -14,7 +14,6 @@ addons.setConfig({
   sidebar: {
     renderLabel: (api) => {
       const ref = React.useRef();
-      // console.log(api);
       useEffect(() => {
         if (api.id.startsWith("components") && api.depth === 1) {
           ref.current?.click()
