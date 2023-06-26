@@ -10,7 +10,9 @@ import { act } from "react-test-renderer";
  * @param milliseconds time to wait in milliseconds
  */
 export async function wait(milliseconds = 0): Promise<void> {
-  await new Promise(resolve => setTimeout(resolve, milliseconds));
+  await new Promise((resolve: (value?: unknown) => void) =>
+    setTimeout(resolve, milliseconds),
+  );
 }
 
 /**
