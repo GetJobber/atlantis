@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.23.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.22.4...@jobber/components@4.23.0) (2023-06-26)
+
+
+### Features
+
+* **components:** Link implementation ([#1334](https://github.com/GetJobber/atlantis/issues/1334)) ([040063c](https://github.com/GetJobber/atlantis/commit/040063c9fc079ba34090ec6a776a2cf95fe5df74))
+
+
+
+
+
 ## [4.22.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.22.3...@jobber/components@4.22.4) (2023-06-26)
 
 
