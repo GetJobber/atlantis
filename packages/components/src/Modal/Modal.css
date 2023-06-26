@@ -32,8 +32,6 @@
 }
 
 .modal {
-  --public-tab--inset: var(--space-large);
-
   position: relative;
   flex: 0 0 auto;
   width: 100%;
