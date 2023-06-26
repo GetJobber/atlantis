@@ -3,7 +3,7 @@ import { View } from "react-native";
 import isNil from "lodash/isNil";
 import { styles } from "./ThumbnailList.style";
 import { FormatFile } from "../FormatFile";
-import { File } from "../FormatFile/types";
+import { CreateThumbnail, File } from "../FormatFile/types";
 
 export enum RowCount {
   TwoRows = 2,
@@ -22,6 +22,7 @@ export interface ThumbnailListProps {
     index: number;
     imageList: File[];
   }) => void;
+  createThumbnail?: CreateThumbnail;
 }
 
 function isImage(file: File) {
@@ -42,6 +43,7 @@ export function ThumbnailList({
   files,
   rowCount = RowCount.TwoRows,
   handleOpenFile,
+  createThumbnail,
 }: ThumbnailListProps): JSX.Element {
   const imageList = filterImages(files);
 
@@ -60,6 +62,7 @@ export function ThumbnailList({
             key={`${file.fileName}-${index}`}
             styleInGrid
             onTap={openFile(file, index)}
+            createThumbnail={createThumbnail}
           />
         );
       })}
