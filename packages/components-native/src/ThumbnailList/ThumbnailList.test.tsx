@@ -39,6 +39,10 @@ const files: File[] = [
 ];
 
 const onOpenFile = jest.fn();
+const mockCreateThumbnail = jest.fn(async () => ({
+  thumbnail: "thumbnail",
+  error: false,
+}));
 
 function setup(snapshot?: boolean) {
   return render(
@@ -46,6 +50,7 @@ function setup(snapshot?: boolean) {
       <ThumbnailList
         files={snapshot ? snapshotFile : files}
         handleOpenFile={onOpenFile}
+        createThumbnail={mockCreateThumbnail}
       />
     </Host>,
   );
@@ -67,5 +72,10 @@ describe("when a an array of files is provided", () => {
       getByLabelText(files[0].fileName ? files[0].fileName : "file"),
     );
     expect(onOpenFile).toHaveBeenCalledTimes(1);
+  });
+
+  it("calls createThumbnail", () => {
+    setup();
+    expect(mockCreateThumbnail).toHaveBeenCalledTimes(2);
   });
 });

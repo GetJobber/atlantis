@@ -22,7 +22,7 @@ export interface ThumbnailListProps {
     index: number;
     imageList: File[];
   }) => void;
-  createThumbnail?: CreateThumbnail;
+  createThumbnail: CreateThumbnail;
 }
 
 function isImage(file: File) {
