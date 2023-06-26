@@ -17,7 +17,7 @@ describe("when a Link is rendered", () => {
         {testText}
       </Link>,
     );
-    const link = getByText("This is a link");
+    const link = getByText(testText);
     expect(link.getAttribute("target")).toBe("_blank");
   });
   it("links to the correct url provided", () => {
