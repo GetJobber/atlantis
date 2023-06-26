@@ -25,17 +25,9 @@ export interface IconProps {
    * Sets a custom color for the icon. Can be a rgb() or hex value.
    */
   readonly customColor?: string;
-
-  readonly animated?: boolean;
 }
 
-export function Icon({
-  name,
-  color,
-  customColor,
-  size = "base",
-  animated = false,
-}: IconProps) {
+export function Icon({ name, color, customColor, size = "base" }: IconProps) {
   const { svgClassNames, pathClassNames, paths, viewBox } = getIcon({
     name,
     color: getIconColor(name, color),
@@ -43,7 +35,7 @@ export function Icon({
   });
 
   return (
-    <IconSwitcher name={name} size={size} animated={animated}>
+    <IconSwitcher name={name} size={size}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox={viewBox}

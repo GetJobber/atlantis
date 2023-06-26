@@ -160,7 +160,7 @@ export function Button(props: ButtonProps) {
 function ButtonInternals({ label, icon, size = "base" }: ButtonProps) {
   return (
     <>
-      {icon && <Icon name={icon} size={size} animated={true} />}
+      {icon && <Icon name={icon} size={size} />}
       <AnimatePresence exitBeforeEnter initial={false}>
         <motion.span
           key={label}

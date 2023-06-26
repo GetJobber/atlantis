@@ -5,7 +5,6 @@ import { AnimatePresence, Variants, motion } from "framer-motion";
 interface IconSwitcherProps {
   readonly name: IconNames;
   readonly size: IconSizes;
-  readonly animated?: boolean;
 }
 
 const DURATION = 0.2;
@@ -14,14 +13,9 @@ const DURATION_FAST = 0.1;
 export function IconSwitcher({
   name,
   size,
-  animated = false,
   children,
 }: PropsWithChildren<IconSwitcherProps>) {
   const { svgClassNames } = getIcon({ name, size });
-
-  if (!animated) {
-    return <>{children}</>;
-  }
 
   return (
     <AnimatePresence exitBeforeEnter initial={false}>
