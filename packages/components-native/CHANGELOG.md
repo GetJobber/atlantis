@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.40.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.40.0...@jobber/components-native@0.40.1) (2023-06-26)
+
+
+### Bug Fixes
+
+* **components-native:** Workaround to make dictation work without duplicating the text ([#1344](https://github.com/GetJobber/atlantis/issues/1344)) ([06fc419](https://github.com/GetJobber/atlantis/commit/06fc4197eed49db9c8beeff5d2cf1e84cba838d9))
+
+
+
+
+
 # [0.40.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.39.0...@jobber/components-native@0.40.0) (2023-06-23)
 
 
