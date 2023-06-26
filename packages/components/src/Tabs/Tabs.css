@@ -25,12 +25,12 @@
 
 .overflowRight:after {
   right: 0;
-  box-shadow: inset -16px 0 16px -16px var(--color-blue);
+  box-shadow: inset -16px 0 16px -16px rgba(var(--color-black--rgb), 0.25);
 }
 
 .overflowLeft:before {
   left: 0;
-  box-shadow: inset 16px 0 16px -16px var(--color-blue);
+  box-shadow: inset 16px 0 16px -16px rgba(var(--color-black--rgb), 0.25);
 }
 
 .tabRow {
