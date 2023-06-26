@@ -9,6 +9,7 @@ interface IconSwitcherProps {
 }
 
 const DURATION = 0.2;
+const DURATION_FAST = 0.1;
 
 export function IconSwitcher({
   name,
@@ -40,11 +41,13 @@ export function IconSwitcher({
   function getVariants(): Variants {
     let rotate = 180;
     let scale = 0.4;
-    const transition = { duration: DURATION, ease: "easeIn" };
+    let duration = DURATION;
+    const transition = { duration, ease: "easeIn" };
 
     if (name.startsWith("arrow")) {
       rotate = 90;
       scale = 1;
+      duration = DURATION_FAST;
     }
 
     return {
@@ -52,7 +55,7 @@ export function IconSwitcher({
       animate: {
         rotate: 0,
         scale: 1,
-        transition: { duration: DURATION, ease: "easeOut" },
+        transition: { duration, ease: "easeOut" },
       },
       exit: { rotate: rotate * -1, scale, transition },
     };
