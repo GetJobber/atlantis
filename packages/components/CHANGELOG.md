@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.22.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.22.3...@jobber/components@4.22.4) (2023-06-26)
+
+
+### Bug Fixes
+
+* responsive tab padding when inside a modal ([#1342](https://github.com/GetJobber/atlantis/issues/1342)) ([d01ceca](https://github.com/GetJobber/atlantis/commit/d01cecaca5a4a635b5c61cf5d90e262e528be3cd))
+
+
+
+
+
 ## [4.22.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.22.2...@jobber/components@4.22.3) (2023-06-26)
 
 
