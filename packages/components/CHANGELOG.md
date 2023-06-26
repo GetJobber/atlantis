@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.22.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.22.2...@jobber/components@4.22.3) (2023-06-26)
+
+
+### Bug Fixes
+
+* **components:** nesting menu on a clickable parent shouldn't trigger the parent click [JOB-72895] ([#1337](https://github.com/GetJobber/atlantis/issues/1337)) ([9bfd847](https://github.com/GetJobber/atlantis/commit/9bfd847ff2a129978847e33daa922e2c2bca53b6))
+
+
+
+
+
 ## [4.22.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.22.1...@jobber/components@4.22.2) (2023-06-23)
 
 
