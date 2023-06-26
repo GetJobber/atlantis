@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.41.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.40.1...@jobber/components-native@0.41.0) (2023-06-26)
+
+
+### Features
+
+* **components-native:** Migrate format file ([#1338](https://github.com/GetJobber/atlantis/issues/1338)) ([8026d1e](https://github.com/GetJobber/atlantis/commit/8026d1ea99f711ae2984549ff5b7a0a46e1dd770))
+
+
+
+
+
 ## [0.40.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.40.0...@jobber/components-native@0.40.1) (2023-06-26)
 
 
