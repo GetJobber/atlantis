@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.41.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.40.1...@jobber/components-native@0.41.0) (2023-06-26)
+
+
+### Features
+
+* **components-native:** Migrate format file ([#1338](https://github.com/GetJobber/atlantis/issues/1338)) ([8026d1e](https://github.com/GetJobber/atlantis/commit/8026d1ea99f711ae2984549ff5b7a0a46e1dd770))
+
+
+
+
+
+## [0.40.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.40.0...@jobber/components-native@0.40.1) (2023-06-26)
+
+
+### Bug Fixes
+
+* **components-native:** Workaround to make dictation work without duplicating the text ([#1344](https://github.com/GetJobber/atlantis/issues/1344)) ([06fc419](https://github.com/GetJobber/atlantis/commit/06fc4197eed49db9c8beeff5d2cf1e84cba838d9))
+
+
+
+
+
+# [0.40.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.39.0...@jobber/components-native@0.40.0) (2023-06-23)
+
+
+### Features
+
+* **components-native:** Import Form to components-native ([#1332](https://github.com/GetJobber/atlantis/issues/1332)) ([2441f82](https://github.com/GetJobber/atlantis/commit/2441f8241932d7a6a65a66769de7218f914013a0))
+
+
+
+
+
+# [0.39.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.38.0...@jobber/components-native@0.39.0) (2023-06-23)
+
+
+### Features
+
+* **components-native:** Import InputDate to components-native ([#1326](https://github.com/GetJobber/atlantis/issues/1326)) ([5ab9cde](https://github.com/GetJobber/atlantis/commit/5ab9cdedb762da4d3e3c4e0137c287f053adf4c6))
+* **components-native:** Import Menu to components-native ([#1335](https://github.com/GetJobber/atlantis/issues/1335)) ([5cc3fc6](https://github.com/GetJobber/atlantis/commit/5cc3fc691d577b5075ca9e7b28d60e4d787cc78d))
+
+
+
+
+
+# [0.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.37.0...@jobber/components-native@0.38.0) (2023-06-20)
+
+
+### Features
+
+* **components-native:** Import ContentOverlay to components-native ([#1328](https://github.com/GetJobber/atlantis/issues/1328)) ([7bd6857](https://github.com/GetJobber/atlantis/commit/7bd6857cb18ced73dd2aa7448ae5da48f3031cfa))
+
+
+
+
+
+# [0.37.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.36.0...@jobber/components-native@0.37.0) (2023-06-16)
+
+
+### Features
+
+* **components-native:** Import Disclosure (currently CollapsableItem in JB) to components-native  ([#1325](https://github.com/GetJobber/atlantis/issues/1325)) ([86b350a](https://github.com/GetJobber/atlantis/commit/86b350a979c0112f7fde3b9ddb19e9ebf7b98154))
+
+
+
+
+
 # [0.36.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.35.0...@jobber/components-native@0.36.0) (2023-06-14)
 
 

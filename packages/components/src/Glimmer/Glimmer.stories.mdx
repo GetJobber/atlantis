@@ -1,8 +1,9 @@
-import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { ArgsTable, Canvas, Meta, Source, Story } from "@storybook/addon-docs";
 import { Banner } from "@jobber/components/Banner";
 import { Card } from "@jobber/components/Card";
 import { Content } from "@jobber/components/Content";
 import { Divider } from "@jobber/components/Divider";
+import { Tab, Tabs } from "@jobber/components/Tabs";
 import { Glimmer } from ".";
 
 <Meta title="Components/Glimmer" component={Glimmer} />
@@ -33,13 +34,52 @@ import { Glimmer } from "@jobber/components/Glimmer";
       timing: "base",
     }}
   >
-    {args => <Glimmer {...args} />}
+    {args => (
+      // Avoid storybook wrapping flex messing with square and circle example works
+      <div>
+        <Glimmer {...args} />
+      </div>
+    )}
   </Story>
 </Canvas>
 
 <ArgsTable of={Glimmer} story="Glimmer" />
 
-## Example
+## Colors
+
+Glimmers adapts to the background you put it in. If you have a grey background,
+the `Glimmer` will automatically darken itself so it's still noticeable.
+
+<Canvas style={{ background: "var(--color-surface--background)" }}>
+  <Glimmer />
+</Canvas>
+
+If you have a darker or coloured background, you can toggle the `reverseTheme`
+to switch the colors so it's still noticeable.
+
+<Canvas style={{ background: "var(--color-surface--reverse)" }}>
+  <Glimmer reverseTheme={true} />
+</Canvas>
+
+## Semantic blocks
+
+A pre-made block can be used to indicate a certain component.
+
+export const semanticComponent = [Glimmer.Header, Glimmer.Text, Glimmer.Button];
+
+<Tabs>
+  {semanticComponent.map((Component, i) => (
+    <Tab key={i} label={Component.displayName}>
+      <Source code={`<${Component.displayName} />`} />
+      <Canvas withSource="none">
+        <Component />
+      </Canvas>
+      <ArgsTable of={Component} />
+    </Tab>
+  ))}
+</Tabs>
+
+## In-depth example
 
 As an example of what `<Glimmer />` can help to build; here's a comments card
 with attachments.
@@ -57,18 +97,14 @@ with attachments.
       >
         <Glimmer size="larger" shape="circle" />
         <Content spacing="small">
-          <Glimmer />
-          <Glimmer size="small" shape="rectangleShorter" />
+          <Glimmer.Header />
+          <Glimmer.Text lines={1} />
         </Content>
       </div>
     </Content>
     <Divider />
     <Content>
-      <Content spacing="small">
-        <Glimmer size="small" />
-        <Glimmer size="small" shape="rectangleShort" />
-        <Glimmer size="small" shape="rectangleShorter" />
-      </Content>
+      <Glimmer.Text />
       <div style={{ display: "flex", gap: "var(--space-base)" }}>
         <Glimmer size="largest" shape="square" />
         <Glimmer size="largest" shape="square" />

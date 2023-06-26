@@ -1,6 +1,7 @@
 import { MissingTranslationError } from "react-intl";
 import mockRNLocalize from "react-native-localize/mock";
 import * as ReactNative from "react-native";
+import React from "react";
 import { MockModal } from "./MockModal";
 
 jest.mock("react-native-localize", () => ({
@@ -60,3 +61,24 @@ jest.mock("../hooks/useIsScreenReaderEnabled", () => ({
 jest.spyOn(ReactNative.AccessibilityInfo, "addEventListener").mockReturnValue({
   remove: jest.fn(),
 } as unknown as ReactNative.EmitterSubscription);
+
+jest.doMock("react-native", () => {
+  // Extend ReactNative
+  return Object.setPrototypeOf(
+    {
+      findNodeHandle: () => {
+        return 1;
+      },
+    },
+    ReactNative,
+  );
+});
+
+// mockRef is needed to properly use our Form component in tests.
+// @ts-expect-error tsc-ci
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const KeyboardAwareScrollView = ({ children }, _ref) => children;
+const mockRef = React.forwardRef(KeyboardAwareScrollView);
+jest.mock("react-native-keyboard-aware-scroll-view", () => {
+  return { KeyboardAwareScrollView: mockRef };
+});

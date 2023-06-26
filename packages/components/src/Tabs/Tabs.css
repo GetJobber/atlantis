@@ -25,16 +25,17 @@
 
 .overflowRight:after {
   right: 0;
-  box-shadow: inset -16px 0 16px -16px var(--color-blue);
+  box-shadow: inset -16px 0 16px -16px rgba(var(--color-black--rgb), 0.25);
 }
 
 .overflowLeft:before {
   left: 0;
-  box-shadow: inset 16px 0 16px -16px var(--color-blue);
+  box-shadow: inset 16px 0 16px -16px rgba(var(--color-black--rgb), 0.25);
 }
 
 .tabRow {
   display: flex;
+  margin: 0;
   margin-bottom: calc(-1 * var(--border-base));
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -45,6 +46,7 @@ ul.tabRow {
 }
 
 .tabRow li {
+  display: flex;
   list-style: none;
 }
 
