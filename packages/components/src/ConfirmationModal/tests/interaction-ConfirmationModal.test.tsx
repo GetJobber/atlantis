@@ -247,7 +247,7 @@ test("message should handle markdown", () => {
 });
 
 test("should have work type button by default", () => {
-  const { getByText } = render(
+  const { getByRole } = render(
     <ConfirmationModal
       title="Should we?"
       message="Do something…"
@@ -255,11 +255,12 @@ test("should have work type button by default", () => {
       confirmLabel="okay"
     />,
   );
-  expect(getByText("okay").parentElement).toHaveClass("work");
+
+  expect(getByRole("button", { name: "okay" })).toHaveClass("work");
 });
 
 test("destructive type should have destructive confirmation button", () => {
-  const { getByText } = render(
+  const { getByRole } = render(
     <ConfirmationModal
       title="Should we?"
       message="Do something…"
@@ -269,11 +270,13 @@ test("destructive type should have destructive confirmation button", () => {
     />,
   );
 
-  expect(getByText("Pull the plug").parentElement).toHaveClass("destructive");
+  expect(getByRole("button", { name: "Pull the plug" })).toHaveClass(
+    "destructive",
+  );
 });
 
 test("Work should have work styled confirmation button", () => {
-  const { getByText } = render(
+  const { getByRole } = render(
     <ConfirmationModal
       title="Should we?"
       message="Do something…"
@@ -283,7 +286,7 @@ test("Work should have work styled confirmation button", () => {
     />,
   );
 
-  expect(getByText("Ok").parentElement).toHaveClass("work");
+  expect(getByRole("button", { name: "Ok" })).toHaveClass("work");
 });
 
 test("should display child component", () => {
