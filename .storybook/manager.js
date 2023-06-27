@@ -14,11 +14,13 @@ addons.setConfig({
   sidebar: {
     renderLabel: (api) => {
       const ref = React.useRef();
-      useEffect(() => {
-        if (api.id.startsWith("components") && api.depth === 1) {
-          ref.current?.click()
-        }
-      }, [])
+        useEffect(() => {
+          if (api.id.startsWith("components")
+            && api.depth === 1
+            && ref.current?.parentElement?.getAttribute("aria-expanded") !== "true") {
+            ref.current?.click()
+          }
+        }, [])
 
       return <span ref={ref}>{api.name}</span>;
     },
