@@ -40,6 +40,7 @@ jest.mock("framer-motion", () => ({
         </div>
       ),
     ),
+    span: jest.requireActual("framer-motion").motion.span,
   },
   AnimatePresence: jest
     .fn()
