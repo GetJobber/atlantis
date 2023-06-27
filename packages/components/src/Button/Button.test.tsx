@@ -1,82 +1,104 @@
 import React from "react";
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { Button } from ".";
 
 it("renders a Button", () => {
-  const { container } = render(<Button label="Submit" />);
-  expect(container).toMatchSnapshot();
+  render(<Button label="Submit" />);
+  const button = screen.getByRole("button", { name: "Submit" });
+  expect(button).toBeInstanceOf(HTMLButtonElement);
+  expect(button).toHaveClass("button base work primary");
+  expect(button).toHaveAttribute("type", "button");
 });
 
 it("renders a secondary Button", () => {
-  const { container } = render(<Button label="Submit" type="secondary" />);
-  expect(container).toMatchSnapshot();
+  render(<Button label="Submit" type="secondary" />);
+  const button = screen.getByRole("button", { name: "Submit" });
+  expect(button).toHaveClass("button base work secondary");
 });
 
 it("renders a tertiary Button", () => {
-  const { container } = render(<Button label="Submit" type="tertiary" />);
-  expect(container).toMatchSnapshot();
+  render(<Button label="Submit" type="tertiary" />);
+  const button = screen.getByRole("button", { name: "Submit" });
+  expect(button).toHaveClass("button base work tertiary");
 });
 
 it("renders a destructuve Button", () => {
-  const { container } = render(
-    <Button label="Submit" variation="destructive" />,
-  );
-  expect(container).toMatchSnapshot();
+  render(<Button label="Submit" variation="destructive" />);
+  const button = screen.getByRole("button", { name: "Submit" });
+  expect(button).toHaveClass("button base destructive primary");
 });
 
 it("renders a learning Button", () => {
-  const { container } = render(<Button label="Submit" variation="learning" />);
-  expect(container).toMatchSnapshot();
+  render(<Button label="Submit" variation="learning" />);
+  const button = screen.getByRole("button", { name: "Submit" });
+  expect(button).toHaveClass("button base learning primary");
 });
 
 it("renders a subtle Button", () => {
-  const { container } = render(<Button label="Submit" variation="subtle" />);
-  expect(container).toMatchSnapshot();
+  render(<Button label="Submit" variation="subtle" />);
+  const button = screen.getByRole("button", { name: "Submit" });
+  expect(button).toHaveClass("button base subtle primary");
 });
 
 it("renders a disabled Button", () => {
-  const { container } = render(<Button label="Submit" disabled={true} />);
-  expect(container).toMatchSnapshot();
+  render(<Button label="Submit" disabled={true} />);
+  const button = screen.getByRole("button", { name: "Submit" });
+  expect(button).toHaveClass("button base disabled primary");
 });
 
 it("renders a Button with a link and opens in new tab", () => {
-  const { container } = render(
-    <Button label="Submit" url="💩.com" external={true} />,
-  );
-  expect(container).toMatchSnapshot();
+  const label = "Go to 💩";
+  const url = "💩.com";
+  render(<Button label={label} url={url} external={true} />);
+  const button = screen.getByRole("link", { name: label });
+  expect(button).toBeInstanceOf(HTMLAnchorElement);
+  expect(button).toHaveClass("button base work primary");
+  expect(button).toHaveAttribute("href", url);
+  expect(button).toHaveAttribute("target", "_blank");
 });
 
 it("renders a Button with an icon", () => {
-  const { container } = render(<Button label="Add" icon="add" />);
-  expect(container).toMatchSnapshot();
+  render(<Button label="Add" icon="add" />);
+  const button = screen.getByRole("button", { name: "Add" });
+  expect(button).toHaveClass("button base hasIconAndLabel work primary");
+  expect(button).toContainElement(screen.getByTestId("add"));
 });
 
 it("renders a Button with an icon on the right", () => {
-  const { container } = render(
-    <Button label="Add" icon="add" iconOnRight={true} />,
+  render(<Button label="Add" icon="add" iconOnRight={true} />);
+  const button = screen.getByRole("button", { name: "Add" });
+  expect(button).toHaveClass(
+    "button base hasIconAndLabel iconOnRight work primary",
   );
-  expect(container).toMatchSnapshot();
+  expect(button).toContainElement(screen.getByTestId("add"));
 });
 
 it("renders a Button that is just an icon", () => {
-  const { container } = render(<Button icon="user" ariaLabel="Person" />);
-  expect(container).toMatchSnapshot();
+  render(<Button icon="user" ariaLabel="Person" />);
+  const button = screen.getByRole("button", { name: "Person" });
+  expect(button).toHaveClass("button base onlyIcon work primary");
+  expect(button).toContainElement(screen.getByTestId("user"));
+  expect(button).toHaveAttribute("aria-label", "Person");
+  expect(screen.queryByText("Person")).not.toBeInTheDocument();
 });
 
 it("renders a small Button", () => {
-  const { container } = render(<Button label="Add" size="small" />);
-  expect(container).toMatchSnapshot();
+  render(<Button label="Add" size="small" />);
+  const button = screen.getByRole("button", { name: "Add" });
+  expect(button).toHaveClass("button small work primary");
 });
 
 it("renders a large Button", () => {
-  const { container } = render(<Button label="Add" size="large" />);
-  expect(container).toMatchSnapshot();
+  render(<Button label="Add" size="large" />);
+  const button = screen.getByRole("button", { name: "Add" });
+  expect(button).toHaveClass("button large work primary");
 });
 
 it("renders a Button with a loading state", () => {
-  const { container } = render(<Button label="Adding" loading={true} />);
-  expect(container).toMatchSnapshot();
+  render(<Button label="Adding" loading={true} />);
+  const button = screen.getByRole("button", { name: "Adding" });
+  expect(button).toHaveClass("button base work primary loading");
 });
 
 test("it should call the handler on click", () => {
@@ -122,12 +144,14 @@ test("it shouldn't call the handler on mouse down when disabled", () => {
 });
 
 it("renders a Link as a Button for routing", () => {
-  const { container } = render(
+  render(
     <Router>
       <Button label="Adding" to="/jobber" />
     </Router>,
   );
-  expect(container).toMatchSnapshot();
+  const button = screen.getByRole("link", { name: "Adding" });
+  expect(button).toBeInstanceOf(HTMLAnchorElement);
+  expect(button).toHaveAttribute("href", "/jobber");
 });
 
 it("renders button type='button' by default", () => {
