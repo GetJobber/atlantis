@@ -1,30 +1,48 @@
-import { render } from "@testing-library/react";
+import { iconClassMap, sizesClassMap } from "@jobber/design";
+import { render, screen } from "@testing-library/react";
 import React from "react";
 import { Icon } from ".";
 
-it("renders dashboard icon", () => {
-  const { container } = render(<Icon name="dashboard" />);
-  expect(container).toMatchSnapshot();
-});
+function getReversedMap(
+  classes: Record<string, string>,
+): Record<string, string> {
+  return Object.entries<string>(classes).reduce(
+    (acc, [key, value]) => ({ ...acc, [value]: key }),
+    {},
+  );
+}
 
-it("renders apple icon", () => {
-  const { container } = render(<Icon name="apple" />);
-  expect(container).toMatchSnapshot();
+const iconClasses = getReversedMap(iconClassMap);
+const sizeClasses = getReversedMap(sizesClassMap);
+
+it("renders an icon", () => {
+  render(<Icon name="dashboard" />);
+
+  const icon = screen.getByTestId("dashboard");
+  expect(icon).toBeInstanceOf(SVGElement);
+  expect(icon).toHaveClass(iconClasses.icon);
+  expect(icon).toHaveClass(sizeClasses.base);
+
+  const parentElement = icon.parentElement;
+  expect(parentElement).toBeInstanceOf(HTMLSpanElement);
+  expect(parentElement).toHaveClass(iconClasses.icon);
+  expect(parentElement).toHaveClass(sizeClasses.base);
 });
 
 it("renders large arrowDown icon", () => {
-  const { container } = render(<Icon name="arrowDown" size="large" />);
-  expect(container).toMatchSnapshot();
-});
+  render(<Icon name="arrowDown" size="large" />);
 
-it("renders thumbsDown icon", () => {
-  const { container } = render(<Icon name="thumbsDown" />);
-  expect(container).toMatchSnapshot();
+  const icon = screen.getByTestId("arrowDown");
+  expect(icon).toHaveClass(sizeClasses.large);
+  expect(icon.parentElement).toHaveClass(sizeClasses.large);
 });
 
 it("renders small more icon", () => {
-  const { container } = render(<Icon name="more" size="small" />);
-  expect(container).toMatchSnapshot();
+  render(<Icon name="more" size="small" />);
+
+  const icon = screen.getByTestId("more");
+  expect(icon).toHaveClass(sizeClasses.small);
+  expect(icon.parentElement).toHaveClass(sizeClasses.small);
 });
 
 it("renders truck icon", () => {
@@ -33,6 +51,7 @@ it("renders truck icon", () => {
 });
 
 it("renders star icon with custom color", () => {
-  const { container } = render(<Icon name="star" customColor="#f33323" />);
-  expect(container).toMatchSnapshot();
+  render(<Icon name="star" customColor="#f33323" />);
+  const icon = screen.getByTestId("star");
+  expect(icon.firstElementChild).toHaveAttribute("fill", "#f33323");
 });
