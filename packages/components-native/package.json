@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components-native",
-  "version": "0.41.0",
+  "version": "0.42.0",
   "license": "MIT",
   "description": "React Native implementation of Atlantis",
   "repository": {
@@ -36,8 +36,8 @@
   },
   "dependencies": {
     "@jobber/design": "^0.42.0",
-    "@react-native-clipboard/clipboard": "^1.11.2",
     "@jobber/hooks": "^2.1.4",
+    "@react-native-clipboard/clipboard": "^1.11.2",
     "@react-native-picker/picker": "^2.4.10",
     "autolinker": "^4.0.0",
     "deepmerge": "^4.2.2",
