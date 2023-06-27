@@ -48,9 +48,13 @@ exports[`renders a simple ConfirmationModal 1`] = `
             type="button"
           >
             <span
-              class="base extraBold base base"
+              style="opacity: 1; transform: none;"
             >
-              We Shall
+              <span
+                class="base extraBold base base"
+              >
+                We Shall
+              </span>
             </span>
           </button>
           <button
@@ -58,9 +62,13 @@ exports[`renders a simple ConfirmationModal 1`] = `
             type="button"
           >
             <span
-              class="base extraBold base base"
+              style="opacity: 1; transform: none;"
             >
-              Cancel
+              <span
+                class="base extraBold base base"
+              >
+                Cancel
+              </span>
             </span>
           </button>
         </div>

@@ -5,17 +5,22 @@ exports[`displays an icon if no image and no initials are set 1`] = `
   <div
     class="avatar isDark"
   >
-    <svg
+    <span
       class="Z6OfUI2sH34- TphtDHcwxDc-"
-      data-testid="person"
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
+      style="transform: none;"
     >
-      <path
-        class="TpLksR41OM0- yAELOSHgxqc-"
-        d="M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0-2a2 2 0 1 1 0-4 2 2 0 0 1 0 4ZM5.29 19h13.42a7.004 7.004 0 0 0-13.42 0Zm-2.245.016C3.949 15 7.711 12 12 12s8.054 3 8.957 7.016a1.567 1.567 0 0 1 .022.574c-.124.807-.901 1.41-1.802 1.41H4.825c-.914 0-1.701-.622-1.807-1.447a1.543 1.543 0 0 1 .027-.537Z"
-      />
-    </svg>
+      <svg
+        class="Z6OfUI2sH34- TphtDHcwxDc-"
+        data-testid="person"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          class="TpLksR41OM0- yAELOSHgxqc-"
+          d="M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0-2a2 2 0 1 1 0-4 2 2 0 0 1 0 4ZM5.29 19h13.42a7.004 7.004 0 0 0-13.42 0Zm-2.245.016C3.949 15 7.711 12 12 12s8.054 3 8.957 7.016a1.567 1.567 0 0 1 .022.574c-.124.807-.901 1.41-1.802 1.41H4.825c-.914 0-1.701-.622-1.807-1.447a1.543 1.543 0 0 1 .027-.537Z"
+        />
+      </svg>
+    </span>
   </div>
 </div>
 `;

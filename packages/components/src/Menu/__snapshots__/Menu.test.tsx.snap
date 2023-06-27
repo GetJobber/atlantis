@@ -13,21 +13,30 @@ exports[`Menu renders 1`] = `
       id="123e4567-e89b-12d3-a456-426655440003"
       type="button"
     >
-      <svg
-        class="Z6OfUI2sH34- TphtDHcwxDc-"
-        data-testid="more"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          class=""
-          d="M4 12a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm6 0a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm8-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"
-        />
-      </svg>
       <span
-        class="base extraBold base base"
+        class="Z6OfUI2sH34- TphtDHcwxDc-"
+        style="transform: none;"
       >
-        More Actions
+        <svg
+          class="Z6OfUI2sH34- TphtDHcwxDc-"
+          data-testid="more"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            class=""
+            d="M4 12a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm6 0a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm8-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"
+          />
+        </svg>
+      </span>
+      <span
+        style="opacity: 1; transform: none;"
+      >
+        <span
+          class="base extraBold base base"
+        >
+          More Actions
+        </span>
       </span>
     </button>
   </div>
@@ -48,9 +57,13 @@ exports[`Menu with custom activator renders 1`] = `
       type="button"
     >
       <span
-        class="base extraBold base base"
+        style="opacity: 1; transform: none;"
       >
-        Menu
+        <span
+          class="base extraBold base base"
+        >
+          Menu
+        </span>
       </span>
     </button>
   </div>

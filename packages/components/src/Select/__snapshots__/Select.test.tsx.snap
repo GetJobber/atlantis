@@ -35,17 +35,22 @@ exports[`renders a Select with many options 1`] = `
         <span
           class="postfix"
         >
-          <svg
+          <span
             class="Z6OfUI2sH34- TphtDHcwxDc-"
-            data-testid="arrowDown"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+            style="transform: none;"
           >
-            <path
-              class=""
-              d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
-            />
-          </svg>
+            <svg
+              class="Z6OfUI2sH34- TphtDHcwxDc-"
+              data-testid="arrowDown"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class=""
+                d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+              />
+            </svg>
+          </span>
         </span>
       </div>
     </div>
@@ -75,17 +80,22 @@ exports[`renders a Select with no options 1`] = `
         <span
           class="postfix"
         >
-          <svg
+          <span
             class="Z6OfUI2sH34- TphtDHcwxDc-"
-            data-testid="arrowDown"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+            style="transform: none;"
           >
-            <path
-              class=""
-              d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
-            />
-          </svg>
+            <svg
+              class="Z6OfUI2sH34- TphtDHcwxDc-"
+              data-testid="arrowDown"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class=""
+                d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+              />
+            </svg>
+          </span>
         </span>
       </div>
     </div>
@@ -119,17 +129,22 @@ exports[`renders a Select with one option 1`] = `
         <span
           class="postfix"
         >
-          <svg
+          <span
             class="Z6OfUI2sH34- TphtDHcwxDc-"
-            data-testid="arrowDown"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+            style="transform: none;"
           >
-            <path
-              class=""
-              d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
-            />
-          </svg>
+            <svg
+              class="Z6OfUI2sH34- TphtDHcwxDc-"
+              data-testid="arrowDown"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class=""
+                d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+              />
+            </svg>
+          </span>
         </span>
       </div>
     </div>
@@ -163,17 +178,22 @@ exports[`renders correctly as large 1`] = `
         <span
           class="postfix"
         >
-          <svg
+          <span
             class="Z6OfUI2sH34- TphtDHcwxDc-"
-            data-testid="arrowDown"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+            style="transform: none;"
           >
-            <path
-              class=""
-              d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
-            />
-          </svg>
+            <svg
+              class="Z6OfUI2sH34- TphtDHcwxDc-"
+              data-testid="arrowDown"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class=""
+                d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+              />
+            </svg>
+          </span>
         </span>
       </div>
     </div>
@@ -207,17 +227,22 @@ exports[`renders correctly as small 1`] = `
         <span
           class="postfix"
         >
-          <svg
+          <span
             class="Z6OfUI2sH34- TphtDHcwxDc-"
-            data-testid="arrowDown"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+            style="transform: none;"
           >
-            <path
-              class=""
-              d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
-            />
-          </svg>
+            <svg
+              class="Z6OfUI2sH34- TphtDHcwxDc-"
+              data-testid="arrowDown"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class=""
+                d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+              />
+            </svg>
+          </span>
         </span>
       </div>
     </div>
@@ -252,17 +277,22 @@ exports[`renders correctly when disabled 1`] = `
         <span
           class="postfix"
         >
-          <svg
+          <span
             class="Z6OfUI2sH34- TphtDHcwxDc-"
-            data-testid="arrowDown"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+            style="transform: none;"
           >
-            <path
-              class=""
-              d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
-            />
-          </svg>
+            <svg
+              class="Z6OfUI2sH34- TphtDHcwxDc-"
+              data-testid="arrowDown"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class=""
+                d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+              />
+            </svg>
+          </span>
         </span>
       </div>
     </div>
@@ -296,17 +326,22 @@ exports[`renders correctly when invalid 1`] = `
         <span
           class="postfix"
         >
-          <svg
+          <span
             class="Z6OfUI2sH34- TphtDHcwxDc-"
-            data-testid="arrowDown"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+            style="transform: none;"
           >
-            <path
-              class=""
-              d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
-            />
-          </svg>
+            <svg
+              class="Z6OfUI2sH34- TphtDHcwxDc-"
+              data-testid="arrowDown"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class=""
+                d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+              />
+            </svg>
+          </span>
         </span>
       </div>
     </div>

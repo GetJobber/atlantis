@@ -21,9 +21,13 @@ exports[`Post Requests renders an InputFile 1`] = `
         type="button"
       >
         <span
-          class="base extraBold small base"
+          style="opacity: 1; transform: none;"
         >
-          Upload File
+          <span
+            class="base extraBold small base"
+          >
+            Upload File
+          </span>
         </span>
       </button>
       <p
@@ -59,9 +63,13 @@ exports[`Post Requests renders an InputFile with multiple images allowed 1`] = `
         type="button"
       >
         <span
-          class="base extraBold small base"
+          style="opacity: 1; transform: none;"
         >
-          Upload Images
+          <span
+            class="base extraBold small base"
+          >
+            Upload Images
+          </span>
         </span>
       </button>
       <p
@@ -96,9 +104,13 @@ exports[`Post Requests renders an InputFile with multiple uploads 1`] = `
         type="button"
       >
         <span
-          class="base extraBold small base"
+          style="opacity: 1; transform: none;"
         >
-          Upload Files
+          <span
+            class="base extraBold small base"
+          >
+            Upload Files
+          </span>
         </span>
       </button>
       <p
@@ -133,9 +145,13 @@ exports[`Post Requests renders an InputFile with only images allowed 1`] = `
         type="button"
       >
         <span
-          class="base extraBold small base"
+          style="opacity: 1; transform: none;"
         >
-          Upload Image
+          <span
+            class="base extraBold small base"
+          >
+            Upload Image
+          </span>
         </span>
       </button>
       <p
@@ -169,9 +185,13 @@ exports[`Post Requests renders an InputFile with proper variations 1`] = `
         type="button"
       >
         <span
-          class="base extraBold small base"
+          style="opacity: 1; transform: none;"
         >
-          Upload File
+          <span
+            class="base extraBold small base"
+          >
+            Upload File
+          </span>
         </span>
       </button>
       <p
@@ -200,9 +220,13 @@ exports[`Post Requests renders an InputFile with proper variations 1`] = `
         type="button"
       >
         <span
-          class="base extraBold small base"
+          style="opacity: 1; transform: none;"
         >
-          Upload File
+          <span
+            class="base extraBold small base"
+          >
+            Upload File
+          </span>
         </span>
       </button>
     </div>
@@ -223,9 +247,13 @@ exports[`Post Requests renders an InputFile with proper variations 1`] = `
       type="button"
     >
       <span
-        class="base extraBold base base"
+        style="opacity: 1; transform: none;"
       >
-        Upload File
+        <span
+          class="base extraBold base base"
+        >
+          Upload File
+        </span>
       </span>
     </button>
   </div>
@@ -245,9 +273,13 @@ exports[`Post Requests renders an InputFile with proper variations 1`] = `
       type="button"
     >
       <span
-        class="base extraBold small base"
+        style="opacity: 1; transform: none;"
       >
-        Upload File
+        <span
+          class="base extraBold small base"
+        >
+          Upload File
+        </span>
       </span>
     </button>
   </div>

@@ -167,9 +167,13 @@ exports[`renders a full FeatureSwitch 1`] = `
           type="button"
         >
           <span
-            class="base extraBold base base"
+            style="opacity: 1; transform: none;"
           >
-            Edit
+            <span
+              class="base extraBold base base"
+            >
+              Edit
+            </span>
           </span>
         </button>
       </div>

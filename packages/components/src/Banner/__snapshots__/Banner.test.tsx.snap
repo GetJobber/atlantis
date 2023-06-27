@@ -26,9 +26,13 @@ exports[`renders a banner with a primary 'learning' action when the type is 'not
           type="button"
         >
           <span
-            class="base extraBold small base"
+            style="opacity: 1; transform: none;"
           >
-            smash me
+            <span
+              class="base extraBold small base"
+            >
+              smash me
+            </span>
           </span>
         </button>
       </div>
@@ -37,17 +41,22 @@ exports[`renders a banner with a primary 'learning' action when the type is 'not
       aria-label="Close this notification"
       class="closeButton"
     >
-      <svg
+      <span
         class="Z6OfUI2sH34- TphtDHcwxDc-"
-        data-testid="cross"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
+        style="transform: none;"
       >
-        <path
-          class="ItL-7gRcsBo-"
-          d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
-        />
-      </svg>
+        <svg
+          class="Z6OfUI2sH34- TphtDHcwxDc-"
+          data-testid="cross"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            class="ItL-7gRcsBo-"
+            d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
+          />
+        </svg>
+      </span>
     </button>
   </div>
 </div>
@@ -79,9 +88,13 @@ exports[`renders a banner with a primary action 1`] = `
           type="button"
         >
           <span
-            class="base extraBold small base"
+            style="opacity: 1; transform: none;"
           >
-            smash me
+            <span
+              class="base extraBold small base"
+            >
+              smash me
+            </span>
           </span>
         </button>
       </div>
@@ -90,17 +103,22 @@ exports[`renders a banner with a primary action 1`] = `
       aria-label="Close this notification"
       class="closeButton"
     >
-      <svg
+      <span
         class="Z6OfUI2sH34- TphtDHcwxDc-"
-        data-testid="cross"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
+        style="transform: none;"
       >
-        <path
-          class="HavlDN2ZD-k-"
-          d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
-        />
-      </svg>
+        <svg
+          class="Z6OfUI2sH34- TphtDHcwxDc-"
+          data-testid="cross"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            class="HavlDN2ZD-k-"
+            d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
+          />
+        </svg>
+      </span>
     </button>
   </div>
 </div>
@@ -129,17 +147,22 @@ exports[`renders a notice banner 1`] = `
       aria-label="Close this notification"
       class="closeButton"
     >
-      <svg
+      <span
         class="Z6OfUI2sH34- TphtDHcwxDc-"
-        data-testid="cross"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
+        style="transform: none;"
       >
-        <path
-          class="ItL-7gRcsBo-"
-          d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
-        />
-      </svg>
+        <svg
+          class="Z6OfUI2sH34- TphtDHcwxDc-"
+          data-testid="cross"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            class="ItL-7gRcsBo-"
+            d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
+          />
+        </svg>
+      </span>
     </button>
   </div>
 </div>
@@ -168,17 +191,22 @@ exports[`renders a success banner 1`] = `
       aria-label="Close this notification"
       class="closeButton"
     >
-      <svg
+      <span
         class="Z6OfUI2sH34- TphtDHcwxDc-"
-        data-testid="cross"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
+        style="transform: none;"
       >
-        <path
-          class="HavlDN2ZD-k-"
-          d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
-        />
-      </svg>
+        <svg
+          class="Z6OfUI2sH34- TphtDHcwxDc-"
+          data-testid="cross"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            class="HavlDN2ZD-k-"
+            d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
+          />
+        </svg>
+      </span>
     </button>
   </div>
 </div>
@@ -207,17 +235,22 @@ exports[`renders a warning banner 1`] = `
       aria-label="Close this notification"
       class="closeButton"
     >
-      <svg
+      <span
         class="Z6OfUI2sH34- TphtDHcwxDc-"
-        data-testid="cross"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
+        style="transform: none;"
       >
-        <path
-          class="aQIlKXSkyDM-"
-          d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
-        />
-      </svg>
+        <svg
+          class="Z6OfUI2sH34- TphtDHcwxDc-"
+          data-testid="cross"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            class="aQIlKXSkyDM-"
+            d="M12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 0 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293a1 1 0 1 0-1.414-1.414L12 10.586Z"
+          />
+        </svg>
+      </span>
     </button>
   </div>
 </div>
