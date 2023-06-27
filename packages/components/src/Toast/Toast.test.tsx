@@ -15,6 +15,11 @@ jest.mock("framer-motion", () => ({
         {children}
       </div>
     )),
+    span: require("react").forwardRef(({ children, ...rest }, ref) => (
+      <span {...rest} ref={ref}>
+        {children}
+      </span>
+    )),
   },
   AnimatePresence: jest
     .fn()
