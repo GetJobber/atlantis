@@ -34,6 +34,7 @@ export * from "./InputTime";
 export * from "./InputText";
 export * from "./Menu";
 export * from "./TextList";
+export * from "./ThumbnailList";
 export * from "./ProgressBar";
 export * from "./Select";
 export * from "./StatusLabel";
