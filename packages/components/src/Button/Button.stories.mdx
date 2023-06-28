@@ -5,7 +5,7 @@ import { Form } from "@jobber/components/Form";
 import { InputNumber } from "@jobber/components/InputNumber";
 import { Content } from "@jobber/components/Content";
 
-<Meta title="Components/Button" component={Button} />
+<Meta title="Components/Actions/Button" component={Button} />
 
 # Button
 
@@ -132,7 +132,7 @@ Actions for all three levels.
 A Primary destructive action will permanently destroy an object carrying
 significant data, such as a job, quote, or client. This destructive action
 should be contained in a
-[ConfirmationModal](../?path=/docs/components-confirmationmodal--confirmation-modal)
+[ConfirmationModal](../?path=/docs/components-overlays-confirmationmodal--confirmation-modal)
 triggered by clicking a secondary or tertiary destructive button.
 
 #### Secondary or Tertiary
@@ -351,8 +351,9 @@ that the URL will change to the appropriate route.
 ## Form submit
 
 Passing the `submit` prop will allow a `Button` to submit a
-[Form](../?path=/docs/components-form--form). Since submitting a form is a
-specific action, only `variation="work"` and `type="primary"` are allowed.
+[Form](../?path=/docs/components-forms-and-inputs-form--form). Since submitting
+a form is a specific action, only `variation="work"` and `type="primary"` are
+allowed.
 
 Since this type of `Button` will only be used to submit a form, it does not make
 sense to allow the `external`, `onClick`, `to`, or `url` props.

@@ -1,14 +1,14 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
 import { useRef, useState } from "react";
-import { ComponentStatus } from "@jobber/docx";
 import { Button } from "@jobber/components/Button";
 import { ConfirmationModal } from ".";
 
 # Confirmation Modal
 
-<ComponentStatus stage="pre" responsive="yes" accessible="yes" />
-
-<Meta title="Components/ConfirmationModal" component={ConfirmationModal} />
+<Meta
+  title="Components/Overlays/ConfirmationModal"
+  component={ConfirmationModal}
+/>
 
 A ConfirmationModal allows users to confirm or cancel actions that they are
 performing. Examples of actions that may need confirmation are navigating off an
@@ -165,7 +165,7 @@ potential consequences.
 ## Related components
 
 - To present non-blocking, contextual, text-only content, use a
-  [Tooltip](../?path=/docs/components-tooltip--tooltip).
+  [Tooltip](../?path=/docs/components-overlays-tooltip--tooltip).
 - To simply present information for users to view, edit, or for a temporary
   change of context, use a regular
-  [Modal](../?path=/docs/components-modal--modal).
+  [Modal](../?path=/docs/components-overlays-modal--modal).

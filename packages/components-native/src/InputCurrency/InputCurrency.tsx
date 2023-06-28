@@ -54,7 +54,7 @@ export const getInternalValue = (
   props: InputCurrencyProps,
   field: ControllerRenderProps<FieldValues, string>,
   formatNumber: (
-    value: number | bigint,
+    value: number,
     opts?: FormatNumberOptions | undefined,
   ) => string,
 ): string => {

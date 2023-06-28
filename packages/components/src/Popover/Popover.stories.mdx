@@ -8,7 +8,7 @@ import { Button } from "@jobber/components/Button";
 import { Popover } from "@jobber/components/Popover";
 
 <Meta
-  title="Components/Popover"
+  title="Components/Overlays/Popover"
   component={Popover}
   parameters={{
     layout: "centered",
@@ -67,7 +67,7 @@ the experience.
 
 If there is an "acknowledgement" CTA for the user to confirm that they
 understand the change, use a `learning`
-[Button](../?path=/docs/components-button--button).
+[Button](../?path=/docs/components-actions-button--button).
 
 <Canvas>
   {() => {
@@ -111,7 +111,8 @@ Reveal a list of available actions to the user. For example, if the user clicks
 on an element and there are four potential actions they might take, Popover is a
 great way to present those actions. If you're looking to provide a menu of
 actions that comes complete with a trigger button,
-[Menu](../?path=/docs/components-menu--menu) has that bundle ready to go.
+[Menu](../?path=/docs/components-navigation-menu--menu) has that bundle ready to
+go.
 
 <Banner type="warning" dismissible={false}>
   A "functional" Popover hasn't been implemented in a componentized fashion yet.
@@ -120,11 +121,11 @@ actions that comes complete with a trigger button,
 ### Related components
 
 To add a menu button that presents multiple actions to the user, use
-[Menu](../?path=/docs/components-menu--menu).
+[Menu](../?path=/docs/components-navigation-menu--menu).
 
 To add a hint about a UI element's function in a permanent fashion (ie revealing
 a Button's label on hover), use
-[Tooltip](../?path=/docs/components-tooltip--tooltip).
+[Tooltip](../?path=/docs/components-overlays-tooltip--tooltip).
 
 To add an inline informational element that the user can dismiss, consider if
 [Banner](../?path=/docs/components-banner--banner) is the right fit for your use

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.43.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.42.1...@jobber/design@0.43.0) (2023-06-28)
+
+
+### Features
+
+* **design:** Add the transfer icon ([#1351](https://github.com/GetJobber/atlantis/issues/1351)) ([1e9911c](https://github.com/GetJobber/atlantis/commit/1e9911cc28e657db052ccd7fc93d1f1fd3ba6f63))
+
+
+
+
+
+## [0.42.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.42.0...@jobber/design@0.42.1) (2023-06-28)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
 # [0.42.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.41.3...@jobber/design@0.42.0) (2023-06-07)
 
 

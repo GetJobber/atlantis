@@ -3,6 +3,82 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.23.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.4...@jobber/components@4.23.5) (2023-06-28)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.3...@jobber/components@4.23.4) (2023-06-28)
+
+
+### Bug Fixes
+
+* **components:** Align and resize icon for multiline input validation messages ([#1347](https://github.com/GetJobber/atlantis/issues/1347)) ([0ed63b8](https://github.com/GetJobber/atlantis/commit/0ed63b8d5be9e8271b6300238ac6651f1d1b0308))
+
+
+
+
+
+## [4.23.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.2...@jobber/components@4.23.3) (2023-06-28)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.1...@jobber/components@4.23.2) (2023-06-27)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.0...@jobber/components@4.23.1) (2023-06-27)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [4.23.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.22.4...@jobber/components@4.23.0) (2023-06-26)
+
+
+### Features
+
+* **components:** Link implementation ([#1334](https://github.com/GetJobber/atlantis/issues/1334)) ([040063c](https://github.com/GetJobber/atlantis/commit/040063c9fc079ba34090ec6a776a2cf95fe5df74))
+
+
+
+
+
+## [4.22.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.22.3...@jobber/components@4.22.4) (2023-06-26)
+
+
+### Bug Fixes
+
+* responsive tab padding when inside a modal ([#1342](https://github.com/GetJobber/atlantis/issues/1342)) ([d01ceca](https://github.com/GetJobber/atlantis/commit/d01cecaca5a4a635b5c61cf5d90e262e528be3cd))
+
+
+
+
+
+## [4.22.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.22.2...@jobber/components@4.22.3) (2023-06-26)
+
+
+### Bug Fixes
+
+* **components:** nesting menu on a clickable parent shouldn't trigger the parent click [JOB-72895] ([#1337](https://github.com/GetJobber/atlantis/issues/1337)) ([9bfd847](https://github.com/GetJobber/atlantis/commit/9bfd847ff2a129978847e33daa922e2c2bca53b6))
+
+
+
+
+
 ## [4.22.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.22.1...@jobber/components@4.22.2) (2023-06-23)
 
 

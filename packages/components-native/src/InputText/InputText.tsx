@@ -267,6 +267,7 @@ function InputTextInternal(
   ref: Ref<InputTextRef>,
 ) {
   const isAndroid = Platform.OS === "android";
+  const isIOS = Platform.OS === "ios";
 
   const {
     input: inputTransform = identity,
@@ -419,7 +420,13 @@ function InputTextInternal(
   );
 
   function handleChangeText(value: string) {
-    const newValue = outputTransform(value);
+    /**
+     * Replacing the U+FFFC character because it's duplicating text
+     * when dictating on iOS 16.
+     * https://github.com/facebook/react-native/issues/36521#issuecomment-1555421134
+     */
+    const removedIOSCharValue = isIOS ? value.replace(/\uFFFC/g, "") : value;
+    const newValue = outputTransform(removedIOSCharValue);
     setHasMiniLabel(Boolean(newValue));
     onChangeText?.(newValue);
     field.onChange(newValue);

@@ -10,6 +10,9 @@ module.exports = {
     "./jestMobileSetupConfig.js",
     "./src/__mocks__/__mocks.ts",
   ],
+  moduleNameMapper: {
+    "^@jobber/hooks/(.*)$": "<rootDir>/../hooks/dist/$1",
+  },
   testPathIgnorePatterns: ["/node_modules/"],
   transformIgnorePatterns: [
     "node_modules/(?!(jest-)?@?react-native|@react-native-community|@react-native)",
