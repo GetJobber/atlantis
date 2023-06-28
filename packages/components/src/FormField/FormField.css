@@ -210,6 +210,7 @@
   text-align: var(--field--textAlign);
   text-overflow: ellipsis;
   white-space: nowrap;
+  pointer-events: none;
   transform: translateY(var(--field--placeholder-transform));
   transition: all var(--timing-quick);
 }
