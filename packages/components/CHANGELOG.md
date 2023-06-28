@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.23.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.3...@jobber/components@4.23.4) (2023-06-28)
+
+
+### Bug Fixes
+
+* **components:** Align and resize icon for multiline input validation messages ([#1347](https://github.com/GetJobber/atlantis/issues/1347)) ([0ed63b8](https://github.com/GetJobber/atlantis/commit/0ed63b8d5be9e8271b6300238ac6651f1d1b0308))
+
+
+
+
+
 ## [4.23.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.2...@jobber/components@4.23.3) (2023-06-28)
 
 **Note:** Version bump only for package @jobber/components
