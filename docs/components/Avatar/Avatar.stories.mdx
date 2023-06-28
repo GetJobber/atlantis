@@ -1,51 +1,23 @@
 import { useState } from "react";
-import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Canvas, Meta } from "@storybook/addon-docs";
 import { Tooltip } from "@jobber/components/Tooltip";
 import { Avatar } from "@jobber/components/Avatar";
 
-<Meta title="Components/Images and Icons/Avatar" component={Avatar} />
+<Meta title="Components/Images and Icons/Avatar/Docs" component={Avatar} />
 
 # Avatar
 
 An avatar will be used to display a visual identifier for an individual user.
 
-```ts
-import { Avatar } from "@jobber/components/Avatar";
-```
-
-<Canvas>
-  <Story
-    name="Avatar"
-    args={{
-      imageUrl:
-        "https://images.unsplash.com/photo-1533858539156-90ea20bafd17?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80",
-      name: "The Jobbler",
-      size: "large",
-      initials: "JBLR",
-      color: "var(--color-indigo)",
-    }}
-  >
-    {args => <Avatar {...args} />}
-  </Story>
-</Canvas>
-
 ## Design & usage guidelines
 
-- Avatars are available in 3 sizes:
-  - `base`: Used by default.
-  - `large`: Use when the avatar is the focal point.
-  - `small`: Use on higher-density/compact pages or components.
-- If an avatar is displayed without a name label, display a tooltip.
-- Initials and background color should have sufficient color contrast to meet
-  AA.
+Avatars are available in 3 sizes:
 
-## Props
-
-<ArgsTable of={Avatar} story="Avatar" />
+- `base`: Used by default
+- `large`: Use when the avatar is the focal point
+- `small`: Use on higher-density/compact pages or components
 
 ## Color
-
-The concept of `color` with an Avatar is currently not used in Jobber.
 
 Use `color` to indicate the background and the border color of an avatar
 component.
@@ -108,6 +80,7 @@ If an avatar is displayed without a name label, display a tooltip.
   </Tooltip>
 </Canvas>
 
-##### Avatar image credit
+## Accessibility
 
-[Gabrielle Henderson on Unplash](https://unsplash.com/photos/noSpEJztSMc)
+Initials and background color should have sufficient color contrast to meet AA
+conformance.

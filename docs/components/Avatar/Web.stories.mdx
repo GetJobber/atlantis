@@ -1,0 +1,32 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Avatar } from "@jobber/components/Avatar";
+
+<Meta title="Components/Images and Icons/Avatar/Web" component={Avatar} />
+
+# Avatar
+
+```ts
+import { Avatar } from "@jobber/components/Avatar";
+```
+
+<Canvas>
+  <Story
+    name="Web"
+    args={{
+      imageUrl:
+        "https://images.unsplash.com/photo-1533858539156-90ea20bafd17?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80",
+      name: "The Jobbler",
+      size: "large",
+      initials: "JBLR",
+      color: "var(--color-indigo)",
+    }}
+  >
+    {args => <Avatar {...args} />}
+  </Story>
+</Canvas>
+
+##### Avatar image credit
+
+[Gabrielle Henderson on Unplash](https://unsplash.com/photos/noSpEJztSMc)
+
+<ArgsTable of={Avatar} story="Web" />
