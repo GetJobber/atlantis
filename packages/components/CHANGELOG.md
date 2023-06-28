@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.23.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.5...@jobber/components@4.23.6) (2023-06-28)
+
+
+### Bug Fixes
+
+* **components:** Make FormField placeholder/label unselectable ([#1343](https://github.com/GetJobber/atlantis/issues/1343)) ([9d91c96](https://github.com/GetJobber/atlantis/commit/9d91c96587403f141fb3b59eed37d8bcd0970691))
+
+
+
+
+
 ## [4.23.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.4...@jobber/components@4.23.5) (2023-06-28)
 
 **Note:** Version bump only for package @jobber/components
