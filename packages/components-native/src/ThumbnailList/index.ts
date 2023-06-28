@@ -1,1 +1,2 @@
-export { ThumbnailList, ThumbnailListProps, RowCount } from "./ThumbnailList";
+export { ThumbnailList } from "./ThumbnailList";
+export * from "./types";

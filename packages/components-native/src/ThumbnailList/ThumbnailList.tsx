@@ -1,29 +1,9 @@
 import React from "react";
 import { View } from "react-native";
 import isNil from "lodash/isNil";
+import { RowCount, ThumbnailListProps } from "./types";
 import { styles } from "./ThumbnailList.style";
-import { FormatFile } from "../FormatFile";
-import { CreateThumbnail, File } from "../FormatFile/types";
-
-export enum RowCount {
-  TwoRows = 2,
-  ThreeRows = 3,
-}
-
-export interface ThumbnailListProps {
-  files: File[];
-  rowCount?: RowCount;
-  handleOpenFile?: ({
-    file,
-    index,
-    imageList,
-  }: {
-    file: File;
-    index: number;
-    imageList: File[];
-  }) => void;
-  createThumbnail: CreateThumbnail;
-}
+import { File, FormatFile } from "../FormatFile";
 
 function isImage(file: File) {
   return !!file.contentType && file.contentType.includes("image/");
