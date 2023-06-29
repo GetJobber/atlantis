@@ -16,7 +16,7 @@ export default {
   },
 } as ComponentMeta<typeof Card>;
 
-const Template1: ComponentStory<typeof Card> = args => (
+const BasicTemplate: ComponentStory<typeof Card> = args => (
   <Card {...args}>
     <Content>
       <Heading level={4}>Details</Heading>
@@ -49,7 +49,7 @@ const Template1: ComponentStory<typeof Card> = args => (
   </Card>
 );
 
-const Template2: ComponentStory<typeof Card> = args => (
+const ClickTemplate: ComponentStory<typeof Card> = args => (
   <Card {...args}>
     <Content>
       <Heading level={4}>View all</Heading>
@@ -60,20 +60,20 @@ const Template2: ComponentStory<typeof Card> = args => (
   </Card>
 );
 
-export const Default = Template1.bind({});
-Default.args = {
+export const Basic = BasicTemplate.bind({});
+Basic.args = {
   header: {
     title: "Company settings",
     action: <Button label="Add New Setting" />,
   },
 };
 
-export const WithURL = Template2.bind({});
+export const WithURL = ClickTemplate.bind({});
 WithURL.args = {
   url: "/",
 };
 
-export const WithOnClick = Template2.bind({});
+export const WithOnClick = ClickTemplate.bind({});
 WithOnClick.args = {
   onClick: e => {
     alert("😻");

@@ -13,7 +13,7 @@ export default {
   },
 } as ComponentMeta<typeof Card>;
 
-const DefaultTemplate: ComponentStory<typeof Card> = args => (
+const BasicTemplate: ComponentStory<typeof Card> = args => (
   <Card {...args}>
     <Content childSpacing={"small"}>
       <Content spacing={"none"} childSpacing={"none"}>
@@ -28,8 +28,8 @@ const DefaultTemplate: ComponentStory<typeof Card> = args => (
   </Card>
 );
 
-export const Default = DefaultTemplate.bind({});
-Default.args = {
+export const Basic = BasicTemplate.bind({});
+Basic.args = {
   header: { title: "Client" },
 };
 
@@ -68,7 +68,7 @@ Elevation.args = {
   elevation: "base",
 };
 
-export const Pressable = DefaultTemplate.bind({});
+export const Pressable = BasicTemplate.bind({});
 Pressable.args = {
   header: {
     title: "Your address",
