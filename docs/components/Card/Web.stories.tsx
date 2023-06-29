@@ -80,3 +80,26 @@ WithOnClick.args = {
     console.log(e.currentTarget);
   },
 };
+
+export const CustomHeader = BasicTemplate.bind({});
+CustomHeader.args = {
+  header: (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        padding: "var(--card--base-padding)",
+        gap: "var(--space-base)",
+        alignItems: "center",
+      }}
+    >
+      <Heading level={2}>My Form</Heading>
+      <Button
+        onClick={() => alert("Dismiss")}
+        icon="cross"
+        type="tertiary"
+        ariaLabel="Dismiss"
+      />
+    </div>
+  ),
+};
