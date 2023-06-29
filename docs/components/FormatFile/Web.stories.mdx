@@ -22,7 +22,7 @@ import { FormatFile } from "@jobber/components/FormatFile";
         type: "image/png",
         size: 213402324,
         progress: 1,
-        src: () => Promise.resolve("https://source.unsplash.com/250x250"),
+        src: () => Promise.resolve("https://picsum.photos/250"),
       },
       onDelete: () => alert("Deleted"),
     }}
@@ -46,7 +46,7 @@ Used to display a file alongside its details.
         type: "image/png",
         size: 213402324,
         progress: 0.5,
-        src: () => Promise.resolve("https://source.unsplash.com/250x250"),
+        src: () => Promise.resolve("https://picsum.photos/250"),
       }}
       display="expanded"
       onDelete={() => alert("Deleted")}
@@ -58,7 +58,7 @@ Used to display a file alongside its details.
         type: "image/png",
         size: 213402324,
         progress: 1,
-        src: () => Promise.resolve("https://source.unsplash.com/250x250"),
+        src: () => Promise.resolve("https://picsum.photos/250"),
       }}
       display="expanded"
       onDelete={() => alert("Deleted")}
@@ -79,8 +79,7 @@ Used to display a cropped smaller version of a file or image.
         type: "image/png",
         size: 213402324,
         progress: 0.5,
-        src: () =>
-          Promise.resolve("https://source.unsplash.com/random/250x250"),
+        src: () => Promise.resolve("https://picsum.photos/250"),
       }}
       displaySize="large"
       display="compact"
@@ -93,7 +92,7 @@ Used to display a cropped smaller version of a file or image.
         type: "image/png",
         size: 213402324,
         progress: 1,
-        src: () => Promise.resolve("https://source.unsplash.com/250x250"),
+        src: () => Promise.resolve("https://picsum.photos/250"),
       }}
       displaySize="large"
       display="compact"

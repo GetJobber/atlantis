@@ -3,13 +3,9 @@ import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
 import { Button } from "@jobber/components/Button";
 import { LightBox } from "@jobber/components/LightBox";
 
-<Meta title="Components/Images and Icons/LightBox" component={LightBox} />
+<Meta title="Components/Images and Icons/LightBox/Web" component={LightBox} />
 
 # Light Box
-
-LightBox is a component designed to display an array of images to the user. A
-user clicks on a control and is shown a carousel style presentation of the
-defined images.
 
 ```ts
 import { LightBox } from "@jobber/components/LightBox";
@@ -33,7 +29,7 @@ export const images = [
 ];
 
 <Canvas>
-  <Story name="LightBox" args={{ images }}>
+  <Story name="Web" args={{ images }}>
     {args => {
       const [open, isOpen] = useState(false);
       return (
@@ -50,23 +46,12 @@ export const images = [
   </Story>
 </Canvas>
 
-<ArgsTable of={LightBox} story="LightBox" />
-
-## Design & usage guidelines
-
-A lightbox's primary goal is to allow users to see a higher resolution view of
-images contained within the page they're viewing. The application of a lightbox
-facilitates smaller thumbnail images to be used in an interface without
-compromising the detail within.
-
-The lightbox should only be used when displaying an image at a greater scale is
-the primary function of opening it. Additional content types would be better
-suited by using a dialogue or alternative method.
+<ArgsTable of={LightBox} story="Web" />
 
 ### onRequestClose
 
 This function receives the index of the last image the user viewed before
-closing the LightBox component with the key lastPosition. This might we useful
+closing the LightBox component with the key `lastPosition`. This might we useful
 if we want to return information about the final state when closed (e.g. for
 analytics).
 
