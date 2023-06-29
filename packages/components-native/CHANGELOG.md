@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.43.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.42.2...@jobber/components-native@0.43.0) (2023-06-28)
+
+
+### Features
+
+* **components-native:** Migrate ThumbnailList ([#1341](https://github.com/GetJobber/atlantis/issues/1341)) ([53b7302](https://github.com/GetJobber/atlantis/commit/53b73021c05d6f22e9f77dd5192257bbd952d27b))
+
+
+
+
+
 ## [0.42.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.42.1...@jobber/components-native@0.42.2) (2023-06-28)
 
 **Note:** Version bump only for package @jobber/components-native
