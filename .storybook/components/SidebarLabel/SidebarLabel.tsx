@@ -27,11 +27,12 @@ export function SidebarLabel(label: Record<string, any>) {
   );
 
   function handleClick(event: MouseEvent<HTMLSpanElement>) {
+    if (!label.children) return;
     const targetID = label.children[0];
 
     if (
       label.type === "group" &&
-      // Ensure we only trigger the selection when it's a second level group
+      // Ensure we only trigger the selection when it's a second level (or deeper) group
       label.depth > 1 &&
       // Ensure we only trigger the selection when it's a doc page. This should
       // still allow Storybook's auto selecting the first story in a group.
@@ -44,7 +45,7 @@ export function SidebarLabel(label: Record<string, any>) {
       // expanding again
       event.stopPropagation();
 
-      selectStory(label.children[0]);
+      selectStory(targetID);
     }
   }
 }
