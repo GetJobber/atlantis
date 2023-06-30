@@ -7,6 +7,7 @@ on:
 jobs:
   pr-title-check:
     name: PR Title Check
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: Check PR title
