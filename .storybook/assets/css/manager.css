@@ -4,9 +4,12 @@ body,
   background-color: var(--color-surface--reverse) !important;
 }
 
-/* stylelint-disable-next-line selector-max-type */
-.sidebar-container *:not(input) {
+.sidebar-container * {
   color: var(--color-text--reverse--secondary) !important;
+}
+
+.sidebar-container .search-field input:focus {
+  color: var(--color-text) !important;
 }
 
 .sidebar-container .sidebar-item {
