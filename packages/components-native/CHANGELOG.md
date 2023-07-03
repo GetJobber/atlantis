@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.43.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.43.0...@jobber/components-native@0.43.1) (2023-07-03)
+
+
+### Bug Fixes
+
+* **components-native:** Install react-native-keyboard-aware-scroll-view as dependency ([#1352](https://github.com/GetJobber/atlantis/issues/1352)) ([17387f9](https://github.com/GetJobber/atlantis/commit/17387f92e63f0bb504c0ecd7ae031fcc2ff80172))
+
+
+
+
+
 # [0.43.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.42.2...@jobber/components-native@0.43.0) (2023-06-28)
 
 
