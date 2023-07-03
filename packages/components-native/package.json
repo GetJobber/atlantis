@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components-native",
-  "version": "0.43.0",
+  "version": "0.43.1",
   "license": "MIT",
   "description": "React Native implementation of Atlantis",
   "repository": {
@@ -63,7 +63,6 @@
     "@types/react-native": "^0.71.6",
     "@types/react-native-uuid": "^1.4.0",
     "metro-react-native-babel-preset": "^0.76.0",
-    "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-test-renderer": "^18.2.0",
     "typescript": "^4.9.5"
   },
