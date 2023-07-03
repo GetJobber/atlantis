@@ -45,6 +45,7 @@
     "lodash": "^4.17.21",
     "react-hook-form": "^7.30.0",
     "react-intl": "^6.4.2",
+    "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-modalize": "^2.0.13",
     "react-native-portalize": "^1.0.7",
     "react-native-svg": "^13.9.0",
