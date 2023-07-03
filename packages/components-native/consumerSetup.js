@@ -7,7 +7,7 @@
 //   };
 // });
 
-// require("react-native-reanimated/lib/reanimated2/jestUtils").setUpTests();
+require("react-native-reanimated/lib/reanimated2/jestUtils").setUpTests();
 
 // jest.mock("react-native-reanimated", () => {
 //   const reanimated = require("react-native-reanimated/mock");
