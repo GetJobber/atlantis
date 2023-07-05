@@ -1,0 +1,54 @@
+/* stylelint-disable-next-line selector-max-type */
+body,
+.sidebar-container {
+  background-color: var(--color-surface--reverse) !important;
+}
+
+.sidebar-container * {
+  color: var(--color-text--reverse--secondary) !important;
+}
+
+.sidebar-container .search-field input:focus {
+  color: var(--color-text) !important;
+}
+
+.sidebar-container .sidebar-item {
+  display: grid;
+  grid-template-columns: max-content max-content auto;
+}
+
+.sidebar-container [data-selected="true"] *,
+.sidebar-container [data-parent-id="components"] *,
+.sidebar-container [data-action="collapse-root"][aria-expanded="true"] * {
+  color: var(--color-text--reverse) !important;
+}
+
+.sidebar-container [data-parent-id="components"],
+.sidebar-container [data-parent-id="false"],
+.sidebar-container [data-action="collapse-root"] {
+  font-family: var(--typography--fontFamily-display);
+}
+
+.sidebar-container [data-parent-id="components"]:not(:first-of-type) {
+  margin-top: var(--space-small);
+}
+
+.sidebar-container [data-action="collapse-root"],
+.sidebar-container [data-parent-id="false"] {
+  font-size: var(--typography--fontSize-large);
+  font-weight: 700;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.sidebar-container [data-parent-id="false"] > svg {
+  display: none;
+}
+
+/**
+ * Remove the gap between the addon panel and the canvas
+ */
+.sto-12bmc4q {
+  border-top: 2px solid var(--color-border) !important;
+  transform: translateY(-1px);
+}

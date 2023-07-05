@@ -6,6 +6,7 @@ import { InlineCode } from "./components/InlineCode";
 import { DocsWithSidebar } from "./components/DocsWithSidebar";
 import { CustomCanvas } from "./components/CustomCanvas";
 import { SBProvider } from "./components/SBProvider";
+import { tokens } from "@jobber/design/foundation";
 
 import "@jobber/design/foundation.css";
 import "./assets/css/preview.css";
@@ -21,6 +22,23 @@ export const parameters = {
   controls: {
     expanded: true,
     sort: "alpha",
+  },
+  backgrounds: {
+    default: "surface",
+    values: [
+      {
+        name: "surface",
+        value: tokens["color-surface"],
+      },
+      {
+        name: "surface background",
+        value: tokens["color-surface--background"],
+      },
+      {
+        name: "dark",
+        value: tokens["color-surface--reverse"],
+      },
+    ],
   },
   options: {
     storySort: {
