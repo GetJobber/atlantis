@@ -51,7 +51,9 @@ export function Playground() {
 
   function getExampleJsCode(): string {
     const exampleComponent = dedent`
-      export function Example() ${getSourceCode(activeStory)}
+      export function Example() {
+        ${getSourceCode(activeStory)}
+      }
     `;
 
     return [getImportStrings(activeStory), exampleComponent]
@@ -86,6 +88,29 @@ function getImportStrings(story: Story): string {
   return "";
 }
 
+function getSourceCode(story: Story) {
+  const parameters = story?.parameters;
+
+  if (parameters && "storySource" in parameters) {
+    let sourceCode: string | undefined;
+
+    const rawSourceCode = parameters.storySource.source;
+    const isBracketFunction = rawSourceCode.startsWith("args => {");
+
+    if (isBracketFunction) {
+      sourceCode = rawSourceCode.replace("args =>", "").slice(1, -1);
+    } else {
+      const sourceCodeArr = RegExp("<((.*|\\n)*)>", "m").exec(rawSourceCode);
+      sourceCode = dedent`return ${sourceCodeArr?.[0]}`;
+    }
+    const { attributes, args } = getAttributeProps(story);
+
+    return sourceCode
+      ?.replace(new RegExp(" {...args}", "g"), attributes)
+      .replace("{args.children}", args?.children);
+  }
+}
+
 function parseSourceStringForImports(source: string) {
   // get components wrapped in < > but not </ >
   const matchingComponents = source?.match(/<[^/](.*?)>/gm);
@@ -103,31 +128,6 @@ function parseSourceStringForImports(source: string) {
   const hookNames = source?.match(/use[State|Effect|Ref]+/gm);
 
   return { componentNames, hookNames };
-}
-
-function getSourceCode(story: Story) {
-  const parameters = story?.parameters;
-
-  if (parameters && "storySource" in parameters) {
-    let sourceCode: string | undefined;
-
-    const rawSourceCode = parameters.storySource.source;
-    const isBracketFunction = rawSourceCode.startsWith("args => {");
-
-    if (isBracketFunction) {
-      sourceCode = rawSourceCode.replace("args =>", "");
-    } else {
-      const sourceCodeArr = RegExp("<((.*|\\n)*)>", "m").exec(rawSourceCode);
-      sourceCode = `{
-        return ${sourceCodeArr?.[0]}
-      }`;
-    }
-    const { attributes, args } = getAttributeProps(story);
-
-    return sourceCode
-      ?.replace(" {...args}", attributes)
-      .replace("{args.children}", args?.children);
-  }
 }
 
 function getAttributeProps(story: Story) {
