@@ -19,7 +19,7 @@ export function Playground() {
   console.log("sbState", sbState);
   console.log("activeStory", activeStory);
 
-  const importsString = activeStory.parameters?.code?.imports;
+  const importsString = getImportStrings(activeStory);
   const canPreview = Boolean(importsString);
 
   return (
@@ -54,10 +54,40 @@ export function Playground() {
       export function Example() {
         return ${getSourceCode(activeStory)}
       }`;
-    return [dedent(importsString), exampleComponent]
+    return [getImportStrings(activeStory), exampleComponent]
       .filter(Boolean)
       .join("\n\n");
   }
+}
+
+function getImportStrings(story: Story): string {
+  const parameters = story?.parameters;
+
+  if (parameters && "storySource" in parameters) {
+    const matchingComponents: string[] =
+      // get components wrapped in < > but not </ >
+      parameters.storySource.source?.match(/<[^/](.*?)>/gm);
+
+    const componentNames = matchingComponents
+      // replace: remove < and >
+      // split: get the first word which is the component name
+      ?.map(component => component.replace(/<|>/g, "").split(" ")[0])
+      // Remove duplicates
+      .filter((component, index, self) => self.indexOf(component) === index)
+      // Only get components that start with a capital letter. This removes the HTML tags.
+      .filter(component => /[A-Z]/.test(component[0]));
+
+    if (componentNames) {
+      return componentNames
+        .map(
+          component =>
+            `import { ${component} } from "@jobber/components/${component}";`,
+        )
+        .join("\n");
+    }
+  }
+
+  return "";
 }
 
 function getSourceCode(story: Story) {
