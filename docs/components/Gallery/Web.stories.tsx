@@ -1,15 +1,20 @@
-import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import React from "react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Gallery } from "@jobber/components/Gallery";
 
-<Meta title="Components/Images and Icons/Gallery/Web" component={Gallery} />
+export default {
+  title: "Components/Images and Icons/Gallery/Web",
+  component: Gallery,
+  parameters: {
+    viewMode: "story",
+  },
+} as ComponentMeta<typeof Gallery>;
 
-# Gallery
+const BasicTemplate: ComponentStory<typeof Gallery> = args => (
+  <Gallery {...args} />
+);
 
-```ts
-import { Gallery } from "@jobber/components/Gallery";
-```
-
-export const files = [
+const files = [
   {
     key: "abc",
     name: "myballisbigandroundIamrollingitontheground.png",
@@ -84,38 +89,13 @@ export const files = [
   },
 ];
 
-<Canvas>
-  <Story name="Web" args={{ files }}>
-    {args => {
-      return (
-        <Gallery
-          {...args}
-          onDelete={file => {
-            alert("Deleted " + file.name);
-          }}
-        />
-      );
-    }}
-  </Story>
-</Canvas>
+export const Basic = BasicTemplate.bind({});
+Basic.args = {
+  files,
+};
 
-<ArgsTable of={Gallery} story="Web" />
-
-### Sizes
-
-The Gallery will set the size of the thumbnails it displays to "default" if a
-size isn't explicitly set, and can also set the size to "large".
-
-<Canvas>
-  <Gallery size="large" files={files} />
-</Canvas>
-
-### Max
-
-The Gallery can be constrained to only show a maximum number of thumbnails, and
-provide the user with a button to display the rest of the thumbnails beyond the
-maximum.
-
-<Canvas>
-  <Gallery max={2} files={files} />
-</Canvas>
+export const MaxFiles = BasicTemplate.bind({});
+MaxFiles.args = {
+  files,
+  max: 3,
+};
