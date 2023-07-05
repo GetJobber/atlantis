@@ -1,0 +1,10 @@
+.sp-wrapper {
+  display: grid;
+  height: 100%;
+  grid-template-columns: auto;
+  grid-template-rows: 50% 50%;
+}
+
+.sp-preview-container {
+  padding: var(--space-large);
+}
