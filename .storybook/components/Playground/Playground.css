@@ -5,6 +5,6 @@
   grid-template-rows: 50% 50%;
 }
 
-.sp-preview-container {
-  padding: var(--space-large);
+.sp-stack {
+  min-width: 0;
 }

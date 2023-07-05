@@ -51,9 +51,9 @@ export function Playground() {
 
   function getExampleJsCode(): string {
     const exampleComponent = dedent`
-      export function Example() {
-        return ${getSourceCode(activeStory)}
-      }`;
+      export function Example() ${getSourceCode(activeStory)}
+    `;
+
     return [getImportStrings(activeStory), exampleComponent]
       .filter(Boolean)
       .join("\n\n");
@@ -64,42 +64,68 @@ function getImportStrings(story: Story): string {
   const parameters = story?.parameters;
 
   if (parameters && "storySource" in parameters) {
-    const matchingComponents: string[] =
-      // get components wrapped in < > but not </ >
-      parameters.storySource.source?.match(/<[^/](.*?)>/gm);
+    const { componentNames, hookNames } = parseSourceStringForImports(
+      parameters.storySource.source,
+    );
 
-    const componentNames = matchingComponents
-      // replace: remove < and >
-      // split: get the first word which is the component name
-      ?.map(component => component.replace(/<|>/g, "").split(" ")[0])
-      // Remove duplicates
-      .filter((component, index, self) => self.indexOf(component) === index)
-      // Only get components that start with a capital letter. This removes the HTML tags.
-      .filter(component => /[A-Z]/.test(component[0]));
+    // Import components from @jobber/components
+    const componentImports =
+      componentNames?.map(component => {
+        return `import { ${component} } from "@jobber/components/${component}";`;
+      }) || [];
 
-    if (componentNames) {
-      return componentNames
-        .map(
-          component =>
-            `import { ${component} } from "@jobber/components/${component}";`,
-        )
-        .join("\n");
-    }
+    // Import hooks from react
+    const hooksImports =
+      hookNames?.map(hook => {
+        return `import { ${hook} } from "react";`;
+      }) || [];
+
+    return [...hooksImports, ...componentImports].join("\n");
   }
 
   return "";
+}
+
+function parseSourceStringForImports(source: string) {
+  // get components wrapped in < > but not </ >
+  const matchingComponents = source?.match(/<[^/](.*?)>/gm);
+
+  const componentNames = matchingComponents
+    // replace: remove < and >
+    // split: get the first word which is the component name
+    ?.map(component => component.replace(/<|>/g, "").split(" ")[0])
+    // Remove duplicates
+    .filter((component, index, self) => self.indexOf(component) === index)
+    // Only get components that start with a capital letter. This removes the HTML tags.
+    .filter(component => /[A-Z]/.test(component[0]));
+
+  // check to see if the source contains any react hooks
+  const hookNames = source?.match(/use[State|Effect|Ref]+/gm);
+
+  return { componentNames, hookNames };
 }
 
 function getSourceCode(story: Story) {
   const parameters = story?.parameters;
 
   if (parameters && "storySource" in parameters) {
+    let sourceCode: string | undefined;
+
     const rawSourceCode = parameters.storySource.source;
-    const sourceCodeArr = RegExp("<((.*|\\n)*)>", "m").exec(rawSourceCode);
+    const isBracketFunction = rawSourceCode.startsWith("args => {");
+
+    if (isBracketFunction) {
+      sourceCode = rawSourceCode.replace("args =>", "");
+    } else {
+      const sourceCodeArr = RegExp("<((.*|\\n)*)>", "m").exec(rawSourceCode);
+      sourceCode = `{
+        return ${sourceCodeArr?.[0]}
+      }`;
+    }
     const { attributes, args } = getAttributeProps(story);
 
-    return sourceCodeArr?.[0]
-      .replace(" {...args}", attributes)
+    return sourceCode
+      ?.replace(" {...args}", attributes)
       .replace("{args.children}", args?.children);
   }
 }
@@ -129,7 +155,7 @@ function getArgs(args: unknown) {
   }
 
   if (typeof args === "object") {
-    return `{${JSON.stringify(args)}}`;
+    return `{${JSON.stringify(args, undefined, 2)}}`;
   }
 
   return `{${args}}`;
