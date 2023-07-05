@@ -15,7 +15,7 @@ const BasicTemplate: ComponentStory<typeof Avatar> = args => (
   <Avatar {...args} />
 );
 
-const TooltipTemplate: ComponentStory<typeof Tooltip> = args => (
+const TooltipTemplate: ComponentStory<typeof Avatar> = args => (
   <Tooltip message="The Jobbler">
     <Avatar {...args} />
   </Tooltip>

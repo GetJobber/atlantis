@@ -1,3 +1,4 @@
+import { Meta } from "@storybook/addon-docs";
 import { LightBox } from "@jobber/components/LightBox";
 
 <Meta title="Components/Images and Icons/LightBox/Docs" component={LightBox} />
@@ -18,3 +19,10 @@ compromising the detail within.
 The LightBox should only be used when displaying an image at a greater scale is
 the primary function of opening it. Additional content types would be better
 suited by using a dialogue or alternative method.
+
+### OnRequestClose
+
+This function receives the index of the last image the user viewed before
+closing the LightBox component with the lastPosition key. This might we useful
+if we want to return information about the final state when closed (e.g. for
+analytics).
