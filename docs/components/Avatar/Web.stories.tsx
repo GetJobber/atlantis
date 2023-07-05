@@ -1,5 +1,5 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Avatar } from "@jobber/components/Avatar";
 import { Tooltip } from "@jobber/components/Tooltip";
 
