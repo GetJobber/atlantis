@@ -6,7 +6,7 @@ import {
   SandpackProvider,
 } from "@codesandbox/sandpack-react";
 import { Args } from "@storybook/addons";
-import dedent from "dedent";
+import dedent from "ts-dedent";
 import "./Playground.css";
 
 export function Playground() {
