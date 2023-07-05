@@ -1,6 +1,7 @@
 import React from "react";
-import { Icon, Content, Flex, Heading } from "@jobber/components-native";
+import { Content, Flex, Heading, Icon } from "@jobber/components-native";
 import { View } from "react-native";
+
 export function IconShowcase() {
   return (
     <>
@@ -18,5 +19,5 @@ export function IconShowcase() {
         </Content>
       </Flex>
     </>
-  )
+  );
 }

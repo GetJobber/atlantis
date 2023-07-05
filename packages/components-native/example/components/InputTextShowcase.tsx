@@ -1,5 +1,11 @@
 import React from "react";
-import { InputText, InputNumber, Content, Flex, Heading } from "@jobber/components-native";
+import {
+  Content,
+  Flex,
+  Heading,
+  InputNumber,
+  InputText,
+} from "@jobber/components-native";
 import { View } from "react-native";
 
 export function InputTextShowcase() {
@@ -15,5 +21,5 @@ export function InputTextShowcase() {
         </Content>
       </Flex>
     </>
-  )
+  );
 }

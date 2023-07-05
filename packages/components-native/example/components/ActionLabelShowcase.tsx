@@ -20,5 +20,5 @@ export function ActionLabelShowCase() {
         </Content>
       </Flex>
     </>
-  )
+  );
 }
