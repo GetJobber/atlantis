@@ -43,5 +43,6 @@
   },
   "peacock.affectActivityBar": false,
   "peacock.affectTitleBar": false,
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "emmet.triggerExpansionOnTab": true,
 }
