@@ -1,0 +1,31 @@
+import { Meta } from "@storybook/addon-docs";
+import { FormatFile } from "@jobber/components/FormatFile";
+
+<Meta
+  title="Components/Images and Icons/FormatFile/Docs"
+  component={FormatFile}
+/>
+
+# Format File
+
+FormatFile will take a file object and display it in a number of lifecycle
+states. It can be used to display a file that has been uploaded, or to display a
+file that is about to be uploaded, as indicated by the progress indicator.
+
+Files can be displayed as either expanded or compact. A compact FormatFile is
+used to display a cropped version of a file or image, while expanded is used to
+display a file alongside its metadata.
+
+## Design & usage guidelines
+
+When contributing to, or consuming the FormatFile component, consider the
+following:
+
+- FormatFile components should take up the full width of the parent container (1
+  or 2 files per row)
+- The delete button will only be displayed if the callback function is passed in
+
+## Related components
+
+- For a thumbnail representation of a user, use
+  [Avatar](../?path=/docs/components-images-and-icons-avatar-docs--page).

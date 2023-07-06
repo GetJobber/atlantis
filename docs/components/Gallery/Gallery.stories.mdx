@@ -1,0 +1,38 @@
+import { Meta } from "@storybook/addon-docs";
+import { Figma } from "storybook-addon-designs/blocks";
+import { Gallery } from "@jobber/components/Gallery";
+
+<Meta title="Components/Images and Icons/Gallery/Docs" component={Gallery} />
+
+# Gallery
+
+The Gallery will layout a set of thumbnails as a group and allows the user to
+tap/click to see them larger.
+
+## Design & usage guidelines
+
+The Gallery can display as many images as the designs call for, but if the
+amount of images becomes too great, the `max` prop can be used to constrain the
+number of images shown.
+
+The Gallery will set the `size` of the thumbnails it displays to `base` by
+default, otherwise the `size` prop can be changed to `large`.
+
+## Responsiveness
+
+Responsiveness of thumbnails are controlled by the Gallery wrapper, thumbnails
+do not get resized. In other words, if the device rendering the Gallery is 500px
+wide, then taking into account padding it will display roughly three thumbnails
+beside each other before wrapping subsequent thumbnails to a new line.
+
+## Accessibility
+
+Each of the thumbnails the Gallery displays are tab navigatable. A hover state
+will also slightly dim a particular thumbnail when the cursor hovers over it.
+
+## Mockup
+
+<Figma
+  collapsable
+  url="https://www.figma.com/file/b7LY6hVMwFOj5maidxPTMB/Design-System-Contribution-%5B-Thumbnail-%2B-Gallery-%5D?node-id=1420%3A19639"
+/>
