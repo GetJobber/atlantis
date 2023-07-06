@@ -56,9 +56,7 @@ export function Playground() {
       }
     `;
 
-    return [getImportStrings(activeStory), exampleComponent]
-      .filter(Boolean)
-      .join("\n\n");
+    return [importsString, exampleComponent].filter(Boolean).join("\n\n");
   }
 }
 
@@ -72,9 +70,10 @@ function getSourceCode(story: Story) {
     const isBracketFunction = rawSourceCode.startsWith("args => {");
 
     if (isBracketFunction) {
+      // remove "args => " and the first and last bracket
       sourceCode = rawSourceCode.replace("args => ", "").slice(1, -1);
-      console.log(sourceCode);
     } else {
+      // find the first < and last >
       const sourceCodeArr = RegExp("<((.*|\\n)*)>", "m").exec(rawSourceCode);
       sourceCode = dedent`return ${sourceCodeArr?.[0]}`;
     }
@@ -82,7 +81,8 @@ function getSourceCode(story: Story) {
 
     return sourceCode
       ?.replace(new RegExp(" {...args}", "g"), attributes)
-      .replace("{args.children}", args?.children);
+      .replace("{args.children}", args?.children)
+      .replace("{children}", args?.children);
   }
 }
 
@@ -105,7 +105,6 @@ function getImportStrings(story: Story): string {
       hookNames?.map(hook => {
         return `import { ${hook} } from "react";`;
       }) || [];
-    console.log(componentImports);
 
     return [...hooksImports, ...componentImports].join("\n");
   }
@@ -142,16 +141,16 @@ function getAttributeProps(story: Story) {
 
     attributes = argsKeys.reduce((currentArgs, arg) => {
       if (arg === "children") return currentArgs;
+
       const rawArgValue = args?.[arg];
-      const argValue = getArgs(rawArgValue);
-      return [currentArgs, ` ${arg}=${argValue}`].join("");
+      return [currentArgs, ` ${arg}=${getArgValue(rawArgValue)}`].join("");
     }, "");
   }
 
   return { attributes, args };
 }
 
-function getArgs(args: unknown) {
+function getArgValue(args: unknown) {
   if (typeof args === "string") {
     return `"${args}"`;
   }
