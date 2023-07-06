@@ -60,7 +60,8 @@ export function Playground() {
   }
 }
 
-function getSourceCode(story: Story) {
+// eslint-disable-next-line max-statements
+function getSourceCode(story: Story): string | undefined {
   const parameters = story?.parameters;
 
   if (parameters && "storySource" in parameters) {
@@ -79,9 +80,17 @@ function getSourceCode(story: Story) {
     }
     const { attributes, args } = getAttributeProps(story);
 
+    if (sourceCode) {
+      Array.from(sourceCode.matchAll(/args\.(\w+)/g)).forEach(match => {
+        sourceCode = sourceCode?.replace(
+          match[0],
+          getArgValue(args?.[match[1]]),
+        );
+      });
+    }
+
     return sourceCode
       ?.replace(new RegExp(" {...args}", "g"), attributes)
-      .replace("{args.children}", args?.children)
       .replace("{children}", args?.children);
   }
 }
