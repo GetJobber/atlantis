@@ -179,7 +179,7 @@ function getArgValue(args: unknown): string {
     const keys = Object.keys(args);
     const newArgs = keys.reduce((currentArgs, key) => {
       const rawArgValue = (args as Record<string, unknown>)?.[key];
-      return [currentArgs, ` ${key}: ${getArgValue(rawArgValue)}`, ", "].join(
+      return [currentArgs, `${key}: ${getArgValue(rawArgValue)}`, ", "].join(
         "",
       );
     }, "");
