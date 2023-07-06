@@ -113,8 +113,8 @@ function getImportStrings(story: Story): string {
 }
 
 function parseSourceStringForImports(source: string) {
-  // get components wrapped in < > but not </ >
-  const matchingComponents = source?.match(/<[^/](.*?)>/gm);
+  // Grab the first word after < and before a space
+  const matchingComponents = source?.match(/<(\S+)/gm);
 
   const componentNames = matchingComponents
     // replace: remove < and >
