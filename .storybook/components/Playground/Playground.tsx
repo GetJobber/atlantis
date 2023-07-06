@@ -113,8 +113,8 @@ function getImportStrings(story: Story): string {
 }
 
 function parseSourceStringForImports(source: string) {
-  // Grab the first word after < and before a space
-  const matchingComponents = source?.match(/<(\S+)/gm);
+  // Grab the first word after <
+  const matchingComponents = source?.match(/<(\w+)/gm);
 
   const componentNames = matchingComponents
     // replace: remove < and >
@@ -143,23 +143,41 @@ function getAttributeProps(story: Story) {
       if (arg === "children") return currentArgs;
 
       const rawArgValue = args?.[arg];
-      return [currentArgs, ` ${arg}=${getArgValue(rawArgValue)}`].join("");
+      return [currentArgs, ` ${arg}={${getArgValue(rawArgValue)}}`].join("");
     }, "");
   }
 
   return { attributes, args };
 }
 
-function getArgValue(args: unknown) {
+function getArgValue(args: unknown): string {
   if (typeof args === "string") {
     return `"${args}"`;
   }
 
-  if (typeof args === "object") {
-    return `{${JSON.stringify(args, undefined, 2)}}`;
+  if (typeof args === "symbol") {
+    return `"${args.toString()}"`;
   }
 
-  return `{${args}}`;
+  if (Array.isArray(args)) {
+    const newArgs = args.reduce((currentArgs, arg) => {
+      return [currentArgs, getArgValue(arg), ", "].join("");
+    }, "");
+    return `[${newArgs}]`;
+  }
+
+  if (args && typeof args === "object") {
+    const keys = Object.keys(args);
+    const newArgs = keys.reduce((currentArgs, key) => {
+      const rawArgValue = (args as Record<string, unknown>)?.[key];
+      return [currentArgs, ` ${key}: ${getArgValue(rawArgValue)}`, ", "].join(
+        "",
+      );
+    }, "");
+    return `{${newArgs}}`;
+  }
+
+  return `${args}`;
 }
 
 function getAppJsCode(): string {
