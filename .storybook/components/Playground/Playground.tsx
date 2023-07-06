@@ -62,6 +62,30 @@ export function Playground() {
   }
 }
 
+function getSourceCode(story: Story) {
+  const parameters = story?.parameters;
+
+  if (parameters && "storySource" in parameters) {
+    let sourceCode: string | undefined;
+
+    const rawSourceCode = parameters.storySource.source;
+    const isBracketFunction = rawSourceCode.startsWith("args => {");
+
+    if (isBracketFunction) {
+      sourceCode = rawSourceCode.replace("args => ", "").slice(1, -1);
+      console.log(sourceCode);
+    } else {
+      const sourceCodeArr = RegExp("<((.*|\\n)*)>", "m").exec(rawSourceCode);
+      sourceCode = dedent`return ${sourceCodeArr?.[0]}`;
+    }
+    const { attributes, args } = getAttributeProps(story);
+
+    return sourceCode
+      ?.replace(new RegExp(" {...args}", "g"), attributes)
+      .replace("{args.children}", args?.children);
+  }
+}
+
 function getImportStrings(story: Story): string {
   const parameters = story?.parameters;
 
@@ -81,34 +105,12 @@ function getImportStrings(story: Story): string {
       hookNames?.map(hook => {
         return `import { ${hook} } from "react";`;
       }) || [];
+    console.log(componentImports);
 
     return [...hooksImports, ...componentImports].join("\n");
   }
 
   return "";
-}
-
-function getSourceCode(story: Story) {
-  const parameters = story?.parameters;
-
-  if (parameters && "storySource" in parameters) {
-    let sourceCode: string | undefined;
-
-    const rawSourceCode = parameters.storySource.source;
-    const isBracketFunction = rawSourceCode.startsWith("args => {");
-
-    if (isBracketFunction) {
-      sourceCode = rawSourceCode.replace("args =>", "").slice(1, -1);
-    } else {
-      const sourceCodeArr = RegExp("<((.*|\\n)*)>", "m").exec(rawSourceCode);
-      sourceCode = dedent`return ${sourceCodeArr?.[0]}`;
-    }
-    const { attributes, args } = getAttributeProps(story);
-
-    return sourceCode
-      ?.replace(new RegExp(" {...args}", "g"), attributes)
-      .replace("{args.children}", args?.children);
-  }
 }
 
 function parseSourceStringForImports(source: string) {
