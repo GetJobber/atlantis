@@ -9,9 +9,23 @@ import { Content } from "@jobber/components/Content";
 # Content
 
 Content is a container component that provides it's child elements with
-consistent vertical spacing and padding.
+consistent vertical or horizontal spacing and padding.
+
+This is useful for when you want to include internal details like text within a
+parent component, such as a
+[Card,](../?path=/docs/components-layouts-and-structure-card-docs--page) while
+maintaining consistent spacing between the elements.
 
 ## Design & usage guidelines
 
 Content should be used whenever you have a container with mixed content that
 requires consistent spacing between the elements.
+
+## Accessibility
+
+Content has limited accessibility concerns. It is a container component that
+does not add any meaningful screen information, nor can it be directly
+interacted with.
+
+Children of the Content component should be presented in a logical order, and
+follow a sensible heirarchy that can be followed by screen readers.
