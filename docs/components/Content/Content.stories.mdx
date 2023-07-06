@@ -1,9 +1,5 @@
-import { Canvas, Meta } from "@storybook/addon-docs";
+import { Meta } from "@storybook/addon-docs";
 import { Content } from "@jobber/components/Content";
-import { Text } from "@jobber/components/Text";
-import { Heading } from "@jobber/components/Heading";
-import { InputText } from "@jobber/components/InputText";
-import { Card } from "@jobber/components/Card";
 
 <Meta
   title="Components/Layouts and Structure/Content/Docs"
@@ -13,35 +9,23 @@ import { Card } from "@jobber/components/Card";
 # Content
 
 Content is a container component that provides it's child elements with
-consistent vertical spacing and padding.
+consistent vertical or horizontal spacing and padding.
+
+This is useful for when you want to include internal details like text within a
+parent component, such as a
+[Card,](../?path=/docs/components-layouts-and-structure-card-docs--page) while
+maintaining consistent spacing between the elements.
 
 ## Design & usage guidelines
 
 Content should be used whenever you have a container with mixed content that
 requires consistent spacing between the elements.
 
-<Canvas>
-  <Content>
-    <Card title="About me">
-      <Content>
-        <Content spacing="large">
-          <Heading level={2}>Sign up!</Heading>
-          <Text>
-            Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis
-            vestibulum. Nulla vitae elit libero, a pharetra augue. Nullam quis
-            risus eget urna mollis ornare vel eu leo. Vestibulum id ligula porta
-            felis euismod semper. Curabitur blandit tempus porttitor.
-          </Text>
-        </Content>
-        <InputText placeholder="Name" />
-        <InputText placeholder="Phone" />
-        <InputText placeholder="Email" />
-        <InputText
-          multiline={true}
-          placeholder="Describe yourself"
-          name="describeAge"
-        />
-      </Content>
-    </Card>
-  </Content>
-</Canvas>
+## Accessibility
+
+Content has limited accessibility concerns. It is a container component that
+does not add any meaningful screen information, nor can it be directly
+interacted with.
+
+Children of the Content component should be presented in a logical order, and
+follow a sensible hierarchy that can be followed by screen readers.
