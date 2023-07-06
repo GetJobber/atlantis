@@ -19,7 +19,7 @@ try {
 
 export const parameters = {
   viewMode: "docs",
-  previewTabs: { "code-tab": { hidden: true } },
+  previewTabs: { code: { hidden: true } },
   controls: {
     expanded: true,
     sort: "alpha",

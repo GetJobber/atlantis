@@ -13,7 +13,7 @@ export default {
   component: Card,
   parameters: {
     viewMode: "story",
-    previewTabs: { "code-tab": { hidden: false } },
+    previewTabs: { code: { hidden: false } },
   },
 } as ComponentMeta<typeof Card>;
 

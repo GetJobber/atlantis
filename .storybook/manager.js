@@ -30,7 +30,7 @@ addons.setConfig({
 });
 
 addons.register("code/tab", () => {
-  addons.add("code-tab", {
+  addons.add("code", {
     type: types.TAB,
     title: "Code",
     route: ({ storyId, refId }) =>
