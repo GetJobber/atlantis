@@ -1,3 +1,4 @@
+import process from "process";
 import React from "react";
 import { Story, useStorybookApi } from "@storybook/api";
 import {
@@ -40,7 +41,7 @@ export function Playground() {
       {canPreview && (
         <div className="sandbox">
           <SandpackPreview />
-          <PlaygroundWarning />
+          {process.env.NODE_ENV !== "production" && <PlaygroundWarning />}
         </div>
       )}
       <SandpackCodeEditor
