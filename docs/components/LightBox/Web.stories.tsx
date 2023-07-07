@@ -8,6 +8,7 @@ export default {
   component: LightBox,
   parameters: {
     viewMode: "story",
+    previewTabs: { code: { hidden: false } },
   },
 } as ComponentMeta<typeof LightBox>;
 

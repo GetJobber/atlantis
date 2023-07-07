@@ -1,13 +1,7 @@
 import { MissingTranslationError } from "react-intl";
-import mockRNLocalize from "react-native-localize/mock";
 import * as ReactNative from "react-native";
 import React from "react";
 import { MockModal } from "./MockModal";
-
-jest.mock("react-native-localize", () => ({
-  ...mockRNLocalize,
-  getTimeZone: () => "UTC",
-}));
 
 jest.mock("react-native/Libraries/Modal/Modal", () => MockModal);
 
