@@ -7,6 +7,7 @@ import {
 } from "@codesandbox/sandpack-react";
 import dedent from "ts-dedent";
 import "./Playground.css";
+import { PlaygroundWarning } from "./PlaygroundWarning";
 
 export function Playground() {
   const { getCurrentStoryData } = useStorybookApi();
@@ -36,7 +37,12 @@ export function Playground() {
         "/Example.tsx": getExampleJsCode(),
       }}
     >
-      {canPreview && <SandpackPreview />}
+      {canPreview && (
+        <div className="sandbox">
+          <SandpackPreview />
+          <PlaygroundWarning />
+        </div>
+      )}
       <SandpackCodeEditor
         showLineNumbers={true}
         showInlineErrors={true}
