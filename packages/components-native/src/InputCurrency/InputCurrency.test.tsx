@@ -1,6 +1,5 @@
 import React from "react";
 import { fireEvent, render, waitFor } from "@testing-library/react-native";
-import RNLocalize from "react-native-localize";
 import { InputCurrency } from "./InputCurrency";
 import { AtlantisContext, AtlantisContextProps } from "../AtlantisContext";
 
@@ -8,7 +7,7 @@ const mockCurrencySymbol = "£";
 const atlantisContext: AtlantisContextProps = {
   currencySymbol: mockCurrencySymbol,
   timeFormat: "p",
-  timeZone: RNLocalize.getTimeZone(),
+  timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
   isOnline: true,
   onLogError: err => {
     return err;
