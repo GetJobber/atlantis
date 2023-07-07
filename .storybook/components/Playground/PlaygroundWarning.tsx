@@ -1,14 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSandpack } from "@codesandbox/sandpack-react";
 import dedent from "ts-dedent";
 
 export function PlaygroundWarning() {
   const { sandpack } = useSandpack();
   const { error } = sandpack;
-
-  useEffect(() => {
-    console.log(error);
-  }, [error]);
 
   if (error?.title === "ModuleNotFoundError") {
     return (
