@@ -1,0 +1,38 @@
+import { Meta } from "@storybook/addon-docs";
+import { Drawer } from "@jobber/components/Drawer";
+
+<Meta title="Components/Layouts and Structure/Drawer/Docs" component={Drawer} />
+
+# Drawer
+
+Drawers are temporary sidebars that allow users to view supplementary content.
+Users can interact with the main content while the drawer is visible.
+
+## Related components
+
+Drawer is similar in some ways to Card and Modal.
+
+For an experience where the user can only interact with one "mode" of content
+(the main view _or_ the contents of the component) use
+[Modal.](../?path=/docs/components-overlays-modal--modal)
+
+For an inline grouping of content that is relevant within the main view and
+non-dismissible, use
+[Card.](../?path=/docs/components-layouts-and-structure-card-docs--page)
+
+## Accessibility
+
+Drawer is built using an
+[aside element](https://www.w3.org/TR/html52/sections.html#the-aside-element) to
+indicate to assistive technology that the content within the Drawer is
+
+> tangentially related to the content of the parenting sectioning content, and
+> which could be considered separate from that content. (W3 Org)
+
+For drawer toggle elements, use `aria-controls` attribute on the trigger and an
+`id` for the drawer element.
+
+### DrawerGrid (Experimental)
+
+A `DrawerGrid` wraps the content and the drawer component. It allows the content
+to fill the available space when a user toggles the drawer.
