@@ -9,6 +9,7 @@ export default {
   component: Disclosure,
   parameters: {
     viewMode: "story",
+    previewTabs: { code: { hidden: false } },
   },
 } as ComponentMeta<typeof Disclosure>;
 
