@@ -1,0 +1,44 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Grid } from "@jobber/components/Grid";
+import { Card } from "@jobber/components/Card";
+import { Content } from "@jobber/components/Content";
+import { Text } from "@jobber/components/Text";
+
+<Meta title="Components/Layouts and Structure/Grid/Docs" component={Grid} />
+
+# Grid
+
+Helps create a layout that conforms to a 12-point grid system.
+
+## Design & usage guidelines (Web)
+
+The Grid is divided up into 12 columns. The `Grid.Cell` child sets how many of
+the 12 columns it takes as a width via `size`. The `Grid.Cell` also includes
+breakpoints of `xs`, `sm`, `md`, `lg`, and `xl`. Those sizes strictly follow our
+[Design Breakpoints](?path=/docs/design-breakpoints--page).
+
+As an example, let's say you have a
+[three column grid](../?path=/story/components-layouts-and-structure-grid-web--three-columns)
+that goes side by side with a 50/25/25 split on medium-sized screens and up.
+But, on a small-sized screen, it stacks on top of each other.
+
+The way you'd achieve that is to:
+
+- Set the `Grid.Cell` child to have a size for `xs` and `md`
+  - example: `{ xs: number, md: number }`
+- All `xs` would be set to `12` so it fills the whole width and automatically
+  stacks on extra-small and small screens
+- The `md` would then get
+  - `6` on Column 1
+  - `3` on Column 2
+  - `3` on Column 3
+- If you sum up the values for `md`, you'd get 12.
+  - If you set the last column to be 4, it'll sum up to 13 and pushes that last
+    column down
+
+### Visualizing the grid lines
+
+If you use a Chromium browser like Google Chrome, Arc, or Safari, you can follow
+Chrome's
+[Inspect CSS grid layouts](https://developer.chrome.com/docs/devtools/css/grid/)
+by using the dev tools.
