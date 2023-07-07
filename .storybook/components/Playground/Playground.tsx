@@ -1,25 +1,21 @@
 import React from "react";
-import { Story, useStorybookApi, useStorybookState } from "@storybook/api";
+import { Story, useStorybookApi } from "@storybook/api";
 import {
   SandpackCodeEditor,
   SandpackPreview,
   SandpackProvider,
 } from "@codesandbox/sandpack-react";
-import { Args } from "@storybook/addons";
 import dedent from "ts-dedent";
 import "./Playground.css";
 
 export function Playground() {
-  const sbState = useStorybookState();
-  const sbAPI = useStorybookApi();
-  const activeStory = sbAPI.getCurrentStoryData() as Story;
+  const { getCurrentStoryData } = useStorybookApi();
+  const activeStory = getCurrentStoryData() as Story;
 
   if (!activeStory) return <></>;
 
-  console.log("sbState", sbState);
-  console.log("activeStory", activeStory);
-
-  const importsString = getImportStrings(activeStory);
+  const { parameters, args } = activeStory;
+  const importsString = getImportStrings(parameters);
   const canPreview = Boolean(importsString);
 
   return (
@@ -52,7 +48,7 @@ export function Playground() {
   function getExampleJsCode(): string {
     const exampleComponent = dedent`
       export function Example() {
-        ${getSourceCode(activeStory)}
+        ${getSourceCode(args, parameters)}
       }
     `;
 
@@ -60,10 +56,10 @@ export function Playground() {
   }
 }
 
-// eslint-disable-next-line max-statements
-function getSourceCode(story: Story): string | undefined {
-  const parameters = story?.parameters;
-
+function getSourceCode(
+  args: Story["args"],
+  parameters: Story["parameters"],
+): string | undefined {
   if (parameters && "storySource" in parameters) {
     let sourceCode: string | undefined;
 
@@ -78,7 +74,7 @@ function getSourceCode(story: Story): string | undefined {
       const sourceCodeArr = RegExp("<((.*|\\n)*)>", "m").exec(rawSourceCode);
       sourceCode = dedent`return ${sourceCodeArr?.[0]}`;
     }
-    const { attributes, args } = getAttributeProps(story);
+    const { attributes } = getAttributeProps(args);
 
     if (sourceCode) {
       Array.from(sourceCode.matchAll(/args\.(\w+)/g)).forEach(match => {
@@ -87,17 +83,15 @@ function getSourceCode(story: Story): string | undefined {
           getArgValue(args?.[match[1]]),
         );
       });
-    }
 
-    return sourceCode
-      ?.replace(new RegExp(" {...args}", "g"), attributes)
-      .replace("{children}", args?.children);
+      return sourceCode
+        ?.replace(new RegExp(" {...args}", "g"), attributes)
+        .replace("{children}", args?.children);
+    }
   }
 }
 
-function getImportStrings(story: Story): string {
-  const parameters = story?.parameters;
-
+function getImportStrings(parameters: Story["parameters"]): string {
   if (parameters && "storySource" in parameters) {
     const { componentNames, hookNames } = parseSourceStringForImports(
       parameters.storySource.source,
@@ -140,12 +134,10 @@ function parseSourceStringForImports(source: string) {
   return { componentNames, hookNames };
 }
 
-function getAttributeProps(story: Story) {
-  let args: Args | undefined;
+function getAttributeProps(args: Story["args"]) {
   let attributes = "";
 
-  if ("args" in story && story.args) {
-    args = story.args;
+  if (args) {
     const argsKeys = Object.keys(args);
 
     attributes = argsKeys.reduce((currentArgs, arg) => {
@@ -156,7 +148,7 @@ function getAttributeProps(story: Story) {
     }, "");
   }
 
-  return { attributes, args };
+  return { attributes };
 }
 
 function getArgValue(args: unknown): string {
