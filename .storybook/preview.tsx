@@ -1,12 +1,12 @@
 import React from "react";
 import { Text } from "@jobber/components/Text";
 import { Content } from "@jobber/components/Content";
+import { tokens } from "@jobber/design/foundation";
 import { Header } from "./components/Header";
 import { InlineCode } from "./components/InlineCode";
 import { DocsWithSidebar } from "./components/DocsWithSidebar";
 import { CustomCanvas } from "./components/CustomCanvas";
 import { SBProvider } from "./components/SBProvider";
-import { tokens } from "@jobber/design/foundation";
 
 import "@jobber/design/foundation.css";
 import "./assets/css/preview.css";
@@ -19,6 +19,7 @@ try {
 
 export const parameters = {
   viewMode: "docs",
+  previewTabs: { code: { hidden: true } },
   controls: {
     expanded: true,
     sort: "alpha",
@@ -68,4 +69,4 @@ export const decorators = [
       <Story />
     </SBProvider>
   ),
-]
+];

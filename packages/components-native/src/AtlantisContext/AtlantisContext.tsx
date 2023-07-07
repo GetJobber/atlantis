@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { createContext, useContext } from "react";
-import RNLocalize from "react-native-localize";
 import { DEFAULT_CURRENCY_SYMBOL } from "../InputCurrency/constants";
 
 export interface AtlantisContextProps {
@@ -53,7 +52,7 @@ export const defaultValues: AtlantisContextProps = {
   dateFormat: "PP",
   // The system time is "p"
   timeFormat: "p",
-  timeZone: RNLocalize.getTimeZone(),
+  timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
   isOnline: true,
   onLogError: _ => {
     return;

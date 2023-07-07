@@ -7,6 +7,7 @@ export default {
   component: Gallery,
   parameters: {
     viewMode: "story",
+    previewTabs: { code: { hidden: false } },
   },
 } as ComponentMeta<typeof Gallery>;
 

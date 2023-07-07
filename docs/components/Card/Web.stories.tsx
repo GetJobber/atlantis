@@ -13,6 +13,7 @@ export default {
   component: Card,
   parameters: {
     viewMode: "story",
+    previewTabs: { code: { hidden: false } },
   },
 } as ComponentMeta<typeof Card>;
 
@@ -62,10 +63,7 @@ const ClickTemplate: ComponentStory<typeof Card> = args => (
 
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
-  header: {
-    title: "Company settings",
-    action: <Button label="Add New Setting" />,
-  },
+  header: "Company settings",
 };
 
 export const WithURL = ClickTemplate.bind({});
@@ -81,25 +79,61 @@ WithOnClick.args = {
   },
 };
 
-export const CustomHeader = BasicTemplate.bind({});
-CustomHeader.args = {
-  header: (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        padding: "var(--card--base-padding)",
-        gap: "var(--space-base)",
-        alignItems: "center",
-      }}
-    >
-      <Heading level={2}>My Form</Heading>
-      <Button
-        onClick={() => alert("Dismiss")}
-        icon="cross"
-        type="tertiary"
-        ariaLabel="Dismiss"
-      />
-    </div>
-  ),
-};
+const CustomHeaderTemplate: ComponentStory<typeof Card> = args => (
+  <Card
+    header={
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          padding: "var(--card--base-padding)",
+          gap: "var(--space-base)",
+          alignItems: "center",
+          backgroundColor: "var(--color-surface--reverse)",
+        }}
+      >
+        <Heading level={2}>
+          <span style={{ color: "var(--color-text--reverse)" }}>
+            The Jobber App
+          </span>
+        </Heading>
+        <Button
+          onClick={() => alert("Dismiss")}
+          icon="cross"
+          type="secondary"
+          variation="subtle"
+          ariaLabel="Dismiss"
+        />
+      </div>
+    }
+    {...args}
+  >
+    <Content>
+      <Text>
+        Stay connected with your team in the field when you put the Jobber app
+        in their hands.
+      </Text>
+      <Button label="Get It Now" fullWidth={true} />
+    </Content>
+  </Card>
+);
+
+export const CustomHeader = CustomHeaderTemplate.bind({});
+
+const HeaderActionTemplate: ComponentStory<typeof Card> = () => (
+  <Card
+    header={{
+      title: "The Jobber App",
+      action: <Button label="Get It Now" />,
+    }}
+  >
+    <Content>
+      <Text>
+        Stay connected with your team in the field when you put the Jobber app
+        in their hands.
+      </Text>
+    </Content>
+  </Card>
+);
+
+export const HeaderAction = HeaderActionTemplate.bind({});

@@ -8,6 +8,7 @@ export default {
   component: Avatar,
   parameters: {
     viewMode: "story",
+    previewTabs: { code: { hidden: false } },
   },
 } as ComponentMeta<typeof Avatar>;
 

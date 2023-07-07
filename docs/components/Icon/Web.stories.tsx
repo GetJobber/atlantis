@@ -7,6 +7,7 @@ export default {
   component: Icon,
   parameters: {
     viewMode: "story",
+    previewTabs: { code: { hidden: false } },
   },
 } as ComponentMeta<typeof Icon>;
 
