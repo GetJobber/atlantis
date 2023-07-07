@@ -99,6 +99,10 @@ function getSourceCode(
 }
 
 function getImportStrings(parameters: Story["parameters"]): string {
+  if (parameters && "code" in parameters && parameters.code?.imports) {
+    return parameters.code.imports;
+  }
+
   if (parameters && "storySource" in parameters) {
     const { componentNames, hookNames } = parseSourceStringForImports(
       parameters.storySource.source,
