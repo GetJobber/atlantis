@@ -30,7 +30,7 @@ export function MediaView({
   const { formatMessage } = useIntl();
   const { useCreateThumbnail } = useAtlantisFormatFileContext();
   const { thumbnail, error } = useCreateThumbnail(file);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const a11yLabel = computeA11yLabel({
     accessibilityLabel,
@@ -52,8 +52,8 @@ export function MediaView({
         resizeMode={styleInGrid ? "cover" : "contain"}
         source={{ uri }}
         testID={"test-image"}
-        onLoadStart={() => setIsLoading(true)}
-        onLoadEnd={() => setIsLoading(false)}
+        onLoadStart={() => setIsLoading(false)}
+        onLoadEnd={() => setIsLoading(true)}
       >
         <Overlay
           isLoading={isLoading}
