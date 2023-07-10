@@ -17,8 +17,14 @@ const BasicTemplate: ComponentStory<typeof ActionLabel> = args => (
 export const Basic = BasicTemplate.bind({});
 Basic.args = { children: "I am a label text" };
 
-export const ColorVariation = BasicTemplate.bind({});
-ColorVariation.args = { variation: "learning", children: "Learning" };
+export const Color = BasicTemplate.bind({});
+Color.args = { variation: "learning", children: "Learning" };
+
+export const DarkBackground = BasicTemplate.bind({});
+DarkBackground.args = { variation: "onPrimary", children: "Light Me Up" };
+DarkBackground.parameters = {
+  backgrounds: { default: "dark" },
+};
 
 export const Disabled = BasicTemplate.bind({});
 Disabled.args = { disabled: true, children: "Disabled" };
