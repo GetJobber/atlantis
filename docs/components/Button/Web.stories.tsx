@@ -50,6 +50,11 @@ const RoutingTemplate: ComponentStory<typeof Button> = () => (
 );
 
 export const ClientSideRouting = RoutingTemplate.bind({});
+ClientSideRouting.parameters = {
+  // Hide this for now. Need some set up to turn the sandbox for this to ON
+  // Need to override import dependencies and install react-router-dom on sandbox
+  previewTabs: { code: { hidden: true } },
+};
 
 const FormTemplate: ComponentStory<typeof Button> = () => (
   <Form onSubmit={() => alert("Wow, what a number")}>
