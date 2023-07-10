@@ -11,7 +11,9 @@ export default {
 } as ComponentMeta<typeof FormatFile>;
 
 const BasicTemplate: ComponentStory<typeof FormatFile> = args => (
-  <FormatFile {...args} />
+  <div style={{ width: 250 }}>
+    <FormatFile {...args} />
+  </div>
 );
 
 export const Image = BasicTemplate.bind({});
