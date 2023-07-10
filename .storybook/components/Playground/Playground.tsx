@@ -1,3 +1,4 @@
+import process from "process";
 import React from "react";
 import { Story, useStorybookApi } from "@storybook/api";
 import {
@@ -7,6 +8,7 @@ import {
 } from "@codesandbox/sandpack-react";
 import dedent from "ts-dedent";
 import "./Playground.css";
+import { PlaygroundWarning } from "./PlaygroundWarning";
 
 export function Playground() {
   const { getCurrentStoryData } = useStorybookApi();
@@ -36,7 +38,12 @@ export function Playground() {
         "/Example.tsx": getExampleJsCode(),
       }}
     >
-      {canPreview && <SandpackPreview />}
+      {canPreview && (
+        <div className="sandbox">
+          <SandpackPreview />
+          {process.env.NODE_ENV !== "production" && <PlaygroundWarning />}
+        </div>
+      )}
       <SandpackCodeEditor
         showLineNumbers={true}
         showInlineErrors={true}
@@ -92,6 +99,10 @@ function getSourceCode(
 }
 
 function getImportStrings(parameters: Story["parameters"]): string {
+  if (parameters && "code" in parameters && parameters.code?.imports) {
+    return parameters.code.imports;
+  }
+
   if (parameters && "storySource" in parameters) {
     const { componentNames, hookNames } = parseSourceStringForImports(
       parameters.storySource.source,

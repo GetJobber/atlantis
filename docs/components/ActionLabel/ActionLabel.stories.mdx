@@ -1,20 +1,20 @@
-import { Canvas, Meta } from "@storybook/addon-docs";
+import { Meta } from "@storybook/addon-docs";
 import { ActionLabel } from "@jobber/components-native";
 
 <Meta title="Components/Actions/ActionLabel/Docs" component={ActionLabel} />
 
 # Action Label
 
-The `ActionLabel` is a base component that is widely used in areas have an
+The ActionLabel is a base component that is widely used in areas that have an
 `onPress` action, like a button.
 
-The aim is to reduce the amount of inconsistencies when a designer or an
-engineer decides to build pressable component that has a text on it. This makes
-it easier to maintain consistency of how we visually present tappable actions.
+The aim is to reduce the number of inconsistencies when a designer or an
+engineer decides to build a pressable component that has text on it. This makes
+it easier to maintain consistency in how we visually present tappable actions.
 
 ## Design & usage guidelines
 
-`ActionLabel` supports similar semantic variations as Button:
+ActionLabel supports similar semantic variations as Button:
 
 - default (equivalent to "work")
 - learning
@@ -24,6 +24,19 @@ it easier to maintain consistency of how we visually present tappable actions.
 with an additional variation of `onPrimary` which should be used when the
 ActionLabel is consumed by a primary Button or other dark surface.
 
-<Canvas>
-  <ActionLabel>I am a label text</ActionLabel>
-</Canvas>
+#### Disable pattern
+
+**As a best practice, do not design with disabled button states. **
+
+This has negative impacts on accessibility as well as an increase in complexity
+for users to understand why the interface is disabled and how to resolve it.
+
+With that said, if you can't design a flow without a disabled state, you can add
+a `disabled` prop to the ActionLabel component.
+
+## Mockup
+
+<Figma
+  collapsable
+  url="https://www.figma.com/file/avvgu5SkbBvS8lGVePBsqO/%F0%9F%92%99-Product%2FMobile?node-id=17175%3A63867"
+/>
