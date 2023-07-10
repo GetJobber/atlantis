@@ -24,6 +24,16 @@ it easier to maintain consistency in how we visually present tappable actions.
 with an additional variation of `onPrimary` which should be used when the
 ActionLabel is consumed by a primary Button or other dark surface.
 
+#### Disable pattern
+
+**As a best practice, do not design with disabled button states. **
+
+This has negative impacts on accessibility as well as an increase in complexity
+for users to understand why the interface is disabled and how to resolve it.
+
+With that said, if you can't design a flow without a disabled state, you can add
+a `disabled` prop to the `ActionLabel` component.
+
 ## Mockup
 
 <Figma
