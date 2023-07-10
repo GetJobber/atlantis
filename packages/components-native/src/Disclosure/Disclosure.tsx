@@ -15,6 +15,7 @@ import { EASE_CUBIC_IN_OUT } from "./constants";
 import { styles } from "./Disclosure.style";
 import { tokens } from "../utils/design";
 import { Icon } from "../Icon";
+import { Text } from "../Text";
 
 const ReanimatedView = Reanimated.createAnimatedComponent(View);
 const ReanimatedScrollView = Reanimated.createAnimatedComponent(ScrollView);
@@ -24,13 +25,13 @@ interface DisclosureProps {
    * Specifies the main content of the disclosure component.
    * It can be any React Node - simple text, JSX, or a complex React component.
    */
-  readonly content: React.ReactNode;
+  readonly content: string;
 
   /**
    * Defines the header of the disclosure component.
    * Similar to `content`, it can be any React Node.
    */
-  readonly header: React.ReactNode;
+  readonly header: string;
 
   /**
    * A boolean that determines whether the disclosure component is in an open or closed state.
@@ -98,7 +99,7 @@ function DisclosureHeader({
     return {
       transform: [{ rotateZ: `${rotateZ.value}deg` }],
     };
-  });
+  }, []);
 
   return (
     <TouchableOpacity
@@ -107,7 +108,7 @@ function DisclosureHeader({
       disabled={isEmpty}
     >
       <View style={styles.headerContainer}>
-        {header}
+        <Text>{header}</Text>
         {!isEmpty && (
           <ReanimatedView style={[animatedStyle]}>
             <Icon name={"arrowUp"} color="grey" />
@@ -155,7 +156,7 @@ function DisclosureContent({
       style={[styles.contentContainer, animatedStyle]}
     >
       <View testID={"content"} onLayout={onContentLayoutChange}>
-        {content}
+        <Text>{content}</Text>
       </View>
     </ReanimatedScrollView>
   );
