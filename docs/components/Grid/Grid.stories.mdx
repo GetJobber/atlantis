@@ -1,8 +1,5 @@
-import { Canvas, Meta } from "@storybook/addon-docs";
+import { Meta } from "@storybook/addon-docs";
 import { Grid } from "@jobber/components/Grid";
-import { Card } from "@jobber/components/Card";
-import { Content } from "@jobber/components/Content";
-import { Text } from "@jobber/components/Text";
 
 <Meta title="Components/Layouts and Structure/Grid/Docs" component={Grid} />
 
@@ -10,7 +7,7 @@ import { Text } from "@jobber/components/Text";
 
 Helps create a layout that conforms to a 12-point grid system.
 
-## Design & usage guidelines (Web)
+## Design & usage guidelines
 
 The Grid is divided up into 12 columns. The `Grid.Cell` child sets how many of
 the 12 columns it takes as a width via `size`. The `Grid.Cell` also includes
@@ -42,3 +39,8 @@ If you use a Chromium browser like Google Chrome, Arc, or Safari, you can follow
 Chrome's
 [Inspect CSS grid layouts](https://developer.chrome.com/docs/devtools/css/grid/)
 by using the dev tools.
+
+## Related Components
+
+When creating a grid layout in a mobile application, use
+[Flex.](../?path=/docs/components-layouts-and-structure-flex-docs--page)
