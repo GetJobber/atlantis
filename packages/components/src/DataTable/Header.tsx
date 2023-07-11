@@ -67,6 +67,13 @@ export function Header<T extends object>({
                     }
                   </div>
                 )}
+                <div
+                  {...{
+                    onMouseDown: header.getResizeHandler(),
+                    onTouchStart: header.getResizeHandler(),
+                    className: styles.resizer,
+                  }}
+                />
               </th>
             );
           })}

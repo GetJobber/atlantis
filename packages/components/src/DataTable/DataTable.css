@@ -15,6 +15,7 @@
 }
 
 .table thead tr th {
+  position: relative;
   padding: var(--space-base);
   border-bottom: var(--border-base) solid var(--color-border);
   color: var(--color-heading);
@@ -113,4 +114,26 @@
   width: 100%;
   justify-content: center;
   align-items: center;
+}
+
+.resizer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 5px;
+  height: 100%;
+  user-select: none;
+  background: rgba(0, 0, 0, 0.5);
+  touch-action: none;
+  cursor: col-resize;
+}
+
+@media (hover: hover) {
+  .resizer {
+    opacity: 0;
+  }
+
+  *:hover > .resizer {
+    opacity: 1;
+  }
 }

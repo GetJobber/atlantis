@@ -99,7 +99,7 @@ export function DataTable<T extends object>({
         style={{ height }}
         ref={ref as LegacyRef<HTMLDivElement> | undefined}
       >
-        <table className={tableClasses}>
+        <table className={tableClasses} style={{ width: table.getTotalSize() }}>
           <Header
             table={table}
             sorting={sorting}

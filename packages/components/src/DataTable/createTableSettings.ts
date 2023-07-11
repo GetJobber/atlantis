@@ -33,6 +33,7 @@ export function createTableSettings<T>(
     data,
     columns,
     state: { ...paginationState, ...sortingState },
+    columnResizeMode: "onChange",
     getCoreRowModel: getCoreRowModel(),
     ...restPaginationSettings,
     ...restSortingSettings,
