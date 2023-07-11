@@ -17,59 +17,6 @@ of possible options.
 If the number of available options is smaller consider a
 [Select](../?path=/docs/components-selections-select--select) instead.
 
-```ts
-import { Autocomplete } from "@jobber/components/Autocomplete";
-```
-
-<Canvas>
-  <Story
-    name="Autocomplete"
-    args={{
-      initialOptions: [],
-      placeholder: "Search for something",
-    }}
-  >
-    {args => {
-      const options = [
-        { value: 1, label: "Nostromo" },
-        { value: 2, label: "Rodger Young" },
-        { value: 3, label: "Serenity" },
-        { value: 4, label: "Sleeper Service" },
-        { value: 5, label: "Enterprise" },
-        { value: 6, label: "Enterprise-D" },
-      ];
-      const [value, setValue] = useState();
-      return (
-        <Autocomplete
-          {...args}
-          value={value}
-          onChange={setValue}
-          getOptions={getOptions}
-          name={"autocompleteInput"}
-          validations={{
-            maxLength: 255,
-            required: {
-              value: true,
-              message: "This is a required field",
-            },
-          }}
-        />
-      );
-      function getOptions(text) {
-        if (text === "") {
-          return options;
-        }
-        const filterRegex = new RegExp(text, "i");
-        return options.filter(option => option.label.match(filterRegex));
-      }
-    }}
-  </Story>
-</Canvas>
-
-## Props
-
-<ArgsTable of={Autocomplete} story="Autocomplete" />
-
 ---
 
 ## With details

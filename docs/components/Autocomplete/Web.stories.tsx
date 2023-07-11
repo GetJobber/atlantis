@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Autocomplete } from "@jobber/components/Autocomplete";
+import { Autocomplete, Option } from "@jobber/components/Autocomplete";
 
 export default {
   title: "Components/Forms and Inputs/Autocomplete/Web",
@@ -20,12 +20,12 @@ const options = [
 ];
 
 const BasicTemplate: ComponentStory<typeof Autocomplete> = args => {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState<Option | undefined>();
   return (
     <Autocomplete
       {...args}
       value={value}
-      onChange={() => setValue(value)}
+      onChange={newValue => setValue(newValue)}
       getOptions={getOptions}
       name={"autocompleteInput"}
       validations={{
@@ -49,5 +49,5 @@ const BasicTemplate: ComponentStory<typeof Autocomplete> = args => {
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
   initialOptions: [],
-  placeholder: "Search for a something",
+  placeholder: "Search for something",
 };
