@@ -5,36 +5,12 @@ import { Form } from "@jobber/components/Form";
 import { InputNumber } from "@jobber/components/InputNumber";
 import { Content } from "@jobber/components/Content";
 
-<Meta title="Components/Actions/Button" component={Button} />
+<Meta title="Components/Actions/Button/Docs" component={Button} />
 
 # Button
 
 Buttons are a core user interface component, as they allow users to initiate,
 complete, and reverse actions.
-
-```ts
-import { Button } from "@jobber/components/Button";
-```
-
-<!-- First <Canvas /> should hold a <Story /> with the same name as <Meta />'s
-title prop. -->
-
-<Canvas>
-  <Story
-    name="Button"
-    args={{
-      label: "Press Me!",
-      onPress: () => alert("👍"),
-    }}
-  >
-    {args => <Button {...args} />}
-  </Story>
-</Canvas>
-
-<!-- ArgsTable should have a story prop that matches the name of the
-<Story /> above so it can have controls under Docs -->
-
-<ArgsTable of={Button} story="Button" />
 
 ## Design & usage guidelines
 
@@ -53,10 +29,6 @@ in Jobber.
 The most important action in a view. Examples include the Save Job button, Log
 In, or the main action in a dialog. There should be one Primary action per view,
 at most.
-
-<!-- After the first <Canvas />, the next ones should not have a story so it
-doesn't get added on the sidebar. We're adding a table of contents sidebar on
-each page that links to headings instead of stories -->
 
 <Canvas>
   <Button label="Do the Thing" />
@@ -165,6 +137,9 @@ comfortably alongside more prominent content.
 
 Think of icon actions in a navigation bar, buttons to dismiss a modal, or opting
 out of completing an action they have triggered.
+
+_Note: This is still known as "Cancel" on mobile. See
+[Mobile/Cancel example](?path=/story/components-actions-button-mobile--cancel)._
 
 #### Primary, Secondary, and Tertiary
 
@@ -322,47 +297,20 @@ A way to communicate to the user that a background action is being performed.
   <Button label="Canceling..." variation="subtle" loading={true} />
 </Canvas>
 
-## Client-side routing
+## Client-side routing (Web only)
 
 A `Button` can be used for client-side routing as well. When using a Button to
 handle the client-side routing, use the `to` prop. Notice when you click below
-that the URL will change to the appropriate route.
+that the URL will change to the appropriate route. See
+[Web/Client Side Routing example](?path=/story/components-actions-button-web--client-side-routing).
 
-<Canvas>
-  <Router basename="/components/button">
-    <Button label="Home" to="/" />
-    <Button label="Office" to="/office" />
-    <Button label="Dentist" to="/dentist" />
-    <hr />
-    <Switch>
-      <Route exact path="/">
-        This is my home, time to get cozy.
-      </Route>
-      <Route exact path="/office">
-        This is my office, time to get to work.
-      </Route>
-      <Route exact path="/dentist">
-        This is the dentist, time to get my teeth fixed.
-      </Route>
-    </Switch>
-  </Router>
-</Canvas>
-
-## Form submit
+## Form submit (Web only)
 
 Passing the `submit` prop will allow a `Button` to submit a
 [Form](../?path=/docs/components-forms-and-inputs-form--form). Since submitting
 a form is a specific action, only `variation="work"` and `type="primary"` are
-allowed.
+allowed. See
+[Web/Form Submit example](?path=/story/components-actions-button-web--form-submit)
 
 Since this type of `Button` will only be used to submit a form, it does not make
 sense to allow the `external`, `onClick`, `to`, or `url` props.
-
-<Canvas>
-  <Form onSubmit={() => alert("Wow, what a number")}>
-    <Content>
-      <InputNumber placeholder="Pick a number" />
-      <Button label="Submit" submit={true} />
-    </Content>
-  </Form>
-</Canvas>

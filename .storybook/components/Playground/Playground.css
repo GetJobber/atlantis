@@ -8,3 +8,16 @@
 .sp-stack {
   min-width: 0;
 }
+
+.sandbox {
+  display: flex;
+}
+
+.localDevNotice {
+  padding: var(--base-unit);
+  background-color: var(--color-warning);
+}
+
+.localDevNotice pre {
+  background-color: var(--color-yellow--light);
+}

@@ -154,6 +154,26 @@ describe("Playground", () => {
       'import { Content } from "@jobber/components/Content";',
     );
   });
+
+  it("should use the parameter code imports when it's available", () => {
+    mockStoryData({
+      // @ts-expect-error - Storybook API types does allow this
+      parameters: {
+        code: {
+          imports: `import { Tabs, Tab } from "@jobber/components/Tab";`,
+        },
+      },
+      sourceCode: `args => <Content>Sup!</Content>`,
+    });
+    const { container } = render(<Playground />);
+
+    expect(container).not.toHaveTextContent(
+      'import { Content } from "@jobber/components/Content";',
+    );
+    expect(container).toHaveTextContent(
+      'import { Tabs, Tab } from "@jobber/components/Tab";',
+    );
+  });
 });
 
 interface MockStoryDataType extends Partial<sbAPI.Story> {
@@ -162,12 +182,13 @@ interface MockStoryDataType extends Partial<sbAPI.Story> {
 
 function mockStoryData({
   sourceCode = "args => <div {...args} />",
+  parameters,
   ...rest
 }: MockStoryDataType) {
   sbAPISpy.mockImplementation(() => ({
     getCurrentStoryData: () => ({
-      parameters: { storySource: { source: sourceCode } },
       ...rest,
+      parameters: { ...parameters, storySource: { source: sourceCode } },
     }),
   }));
 }

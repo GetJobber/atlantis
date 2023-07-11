@@ -1,0 +1,35 @@
+import { Meta } from "@storybook/addon-docs";
+import { Page } from "@jobber/components/Page";
+
+# Page
+
+<Meta title="Components/Layouts and Structure/Page/Docs" component={Page} />
+
+Use Page to build the outermost "main content" container of a view. Page comes
+complete with the ability to add the page title, along with actions, subtitle,
+and a description as needed.
+
+## Design & usage guidelines
+
+Using Page is pretty straightforward - after any navigational elements, Page
+should contain the content the user will be engaging with. If there is any sort
+of footer, it should exist after Page.
+
+### Widths
+
+#### Narrow
+
+Use a `narrow` Page when the content is optimized for a single column, such as a
+form design.
+
+#### Standard
+
+Use a `standard` Page for most "show" state layouts, as it allows for a mix of
+contents in a multi-column layout while keeping things constrained so the user
+does not have to track too far left-to-right as they interact.
+
+#### Fill
+
+A `fill` Page should be used when the content is optimized for wider views, such
+as responsive dashboards and data visualizations, data tables, calendars, or
+otherwise does not benefit from horizontal constraints.

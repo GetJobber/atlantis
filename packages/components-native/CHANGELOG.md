@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.43.5](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.43.4...@jobber/components-native@0.43.5) (2023-07-11)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.43.4](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.43.3...@jobber/components-native@0.43.4) (2023-07-10)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
 ## [0.43.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.43.2...@jobber/components-native@0.43.3) (2023-07-07)
 
 **Note:** Version bump only for package @jobber/components-native

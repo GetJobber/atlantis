@@ -1,6 +1,7 @@
 import React, { PropsWithChildren } from "react";
 import { IntlProvider, IntlConfig } from "react-intl";
 import { SafeAreaProvider, initialWindowMetrics } from "react-native-safe-area-context";
+import { Host } from "react-native-portalize";
 
 export function SBProvider({
   children,
@@ -24,7 +25,7 @@ export function SBProvider({
       onError={onIntlError}
     >
       <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-        {children}
+        <Host>{children}</Host>
       </SafeAreaProvider>
     </IntlProvider>
   );
