@@ -23,7 +23,6 @@ const config = {
       options: {
         modulesToTranspile: ["react-native-reanimated"],
         babelPlugins: [
-          // '@babel/plugin-proposal-export-namespace-from',
           "react-native-reanimated/plugin"],
       },
     },
@@ -31,7 +30,6 @@ const config = {
   features: { buildStoriesJson: true },
   framework: "@storybook/react",
   webpackFinal: async config => {
-    // config.entry = ['babel-polyfill',...config.entry]
     config.plugins = [
       ...config.plugins,
 

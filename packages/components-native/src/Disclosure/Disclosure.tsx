@@ -24,13 +24,13 @@ interface DisclosureProps {
    * Specifies the main content of the disclosure component.
    * It can be any React Node - simple text, JSX, or a complex React component.
    */
-  readonly content: string;
+  readonly content: React.ReactNode;
 
   /**
    * Defines the header of the disclosure component.
    * Similar to `content`, it can be any React Node.
    */
-  readonly header: string;
+  readonly header: React.ReactNode;
 
   /**
    * A boolean that determines whether the disclosure component is in an open or closed state.
@@ -98,7 +98,7 @@ function DisclosureHeader({
     return {
       transform: [{ rotateZ: `${rotateZ.value}deg` }],
     };
-  }, []);
+  });
 
   return (
     <TouchableOpacity
