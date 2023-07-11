@@ -15,7 +15,6 @@ import { EASE_CUBIC_IN_OUT } from "./constants";
 import { styles } from "./Disclosure.style";
 import { tokens } from "../utils/design";
 import { Icon } from "../Icon";
-import { Text } from "../Text";
 
 const ReanimatedView = Reanimated.createAnimatedComponent(View);
 const ReanimatedScrollView = Reanimated.createAnimatedComponent(ScrollView);
@@ -108,7 +107,7 @@ function DisclosureHeader({
       disabled={isEmpty}
     >
       <View style={styles.headerContainer}>
-        <Text>{header}</Text>
+        {header}
         {!isEmpty && (
           <ReanimatedView style={[animatedStyle]}>
             <Icon name={"arrowUp"} color="grey" />
@@ -156,7 +155,7 @@ function DisclosureContent({
       style={[styles.contentContainer, animatedStyle]}
     >
       <View testID={"content"} onLayout={onContentLayoutChange}>
-        <Text>{content}</Text>
+        {content}
       </View>
     </ReanimatedScrollView>
   );
