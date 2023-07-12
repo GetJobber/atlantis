@@ -7,6 +7,9 @@ export default {
   component: Disclosure,
   parameters: {
     viewMode: "story",
+    backgrounds: {
+      default: "surface background",
+    },
   },
 } as ComponentMeta<typeof Disclosure>;
 
