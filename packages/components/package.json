@@ -22,6 +22,7 @@
     "@jobber/design": "^0.43.3",
     "@jobber/formatters": "*",
     "@jobber/hooks": "^2.1.5",
+    "@jobber/qrcode": "^1.0.0",
     "@popperjs/core": "^2.0.6",
     "@std-proposal/temporal": "0.0.1",
     "@tanstack/react-table": "8.5.13",

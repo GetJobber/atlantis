@@ -36,6 +36,7 @@ export * from "./Menu";
 export * from "./TextList";
 export * from "./ThumbnailList";
 export * from "./ProgressBar";
+export * from "./QRCodeSVG";
 export * from "./Select";
 export * from "./StatusLabel";
 export * from "./Switch";
