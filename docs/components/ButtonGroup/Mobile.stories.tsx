@@ -6,6 +6,7 @@ export default {
   title: "Components/Actions/ButtonGroup/Mobile",
   parameters: {
     viewMode: "story",
+    viewport: { defaultViewport: "mobile1" },
   },
   component: ButtonGroup,
   subcomponents: {

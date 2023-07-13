@@ -6,6 +6,7 @@ export default {
   title: "Components/Actions/ButtonGroup/Mobile/ButtonGroup.SecondaryAction",
   parameters: {
     viewMode: "story",
+    viewport: { defaultViewport: "mobile1" },
   },
   component: ButtonGroup.SecondaryAction,
 } as ComponentMeta<typeof ButtonGroup>;
@@ -16,10 +17,9 @@ const Template: ComponentStory<typeof ButtonGroup.SecondaryAction> = args => (
     showCancelInBottomSheet={true}
   >
     <ButtonGroup.PrimaryAction
-      label={"Click that ellipsis"}
-      icon={"arrowRight"}
+      label={"Click that ellipsis >>>"}
       buttonType={"secondary"}
-      onPress={() => console.log("click that ellipsis")}
+      onPress={() => alert("No, not me. The ellipsis!")}
     />
     <ButtonGroup.SecondaryAction {...args} />
   </ButtonGroup>

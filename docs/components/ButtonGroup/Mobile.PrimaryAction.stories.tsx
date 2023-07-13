@@ -6,6 +6,7 @@ export default {
   title: "Components/Actions/ButtonGroup/Mobile/ButtonGroup.PrimaryAction",
   parameters: {
     viewMode: "story",
+    viewport: { defaultViewport: "mobile1" },
   },
   component: ButtonGroup.PrimaryAction,
 } as ComponentMeta<typeof ButtonGroup>;
