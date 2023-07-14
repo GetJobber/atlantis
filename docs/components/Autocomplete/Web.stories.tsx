@@ -7,6 +7,7 @@ export default {
   component: Autocomplete,
   parameters: {
     viewMode: "story",
+    previewTabs: { code: { hidden: false } },
   },
 } as ComponentMeta<typeof Autocomplete>;
 
@@ -82,6 +83,54 @@ const WithDetailsTemplate: ComponentStory<typeof Autocomplete> = args => {
     return withDetailsOptions.filter(option => option.label.match(filterRegex));
   }
 };
+
+const SectionHeadingOptions = [
+  {
+    label: "Ships",
+    options: [
+      { value: 1, label: "Sulaco" },
+      { value: 2, label: "Nostromo" },
+      { value: 3, label: "Serenity" },
+      { value: 4, label: "Sleeper Service" },
+      { value: 5, label: "Enterprise" },
+      { value: 6, label: "Enterprise-D" },
+    ],
+  },
+  {
+    label: "Planets",
+    options: [
+      { value: 7, label: "Endor" },
+      { value: 8, label: "Vulcan" },
+      { value: 9, label: "Bespin" },
+      { value: 10, label: "Tatooine" },
+    ],
+  },
+];
+
+const SectionHeadingTemplate: ComponentStory<typeof Autocomplete> = args => {
+  const [value, setValue] = useState<Option | undefined>();
+  return (
+    <Autocomplete
+      {...args}
+      value={value}
+      onChange={newValue => setValue(newValue)}
+      getOptions={getOptions}
+    />
+  );
+  function getOptions(text: string) {
+    if (text === "") {
+      return SectionHeadingOptions;
+    }
+    const filterRegex = new RegExp(text, "i");
+    return SectionHeadingOptions.map(section => ({
+      ...section,
+      options: section.options.filter(option =>
+        option.label.match(filterRegex),
+      ),
+    }));
+  }
+};
+
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
   initialOptions: [],
@@ -92,4 +141,10 @@ export const WithDetails = WithDetailsTemplate.bind({});
 WithDetails.args = {
   initialOptions: withDetailsOptions,
   placeholder: "Search for something with details",
+};
+
+export const SectionHeading = SectionHeadingTemplate.bind({});
+SectionHeading.args = {
+  initialOptions: SectionHeadingOptions,
+  placeholder: "Search for something under a section heading",
 };
