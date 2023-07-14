@@ -1,0 +1,20 @@
+.container:not(:global(.docs-story) .container) {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: -16px -16px 0;
+}
+
+.story:not(:global(.docs-story) .story) {
+  box-sizing: border-box;
+  padding: var(--space-base);
+  overflow: auto;
+  flex: 1;
+}
+
+.notice {
+  flex: 0;
+  margin-top: var(--space-base);
+  padding: var(--space-base);
+  background-color: var(--color-grey--lighter);
+}

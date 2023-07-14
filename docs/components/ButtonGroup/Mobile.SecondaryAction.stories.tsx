@@ -7,6 +7,7 @@ export default {
   parameters: {
     viewMode: "story",
     viewport: { defaultViewport: "mobile1" },
+    showNativeOnWebDisclaimer: true,
   },
   component: ButtonGroup.SecondaryAction,
 } as ComponentMeta<typeof ButtonGroup>;

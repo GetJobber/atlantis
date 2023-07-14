@@ -7,6 +7,7 @@ export default {
   parameters: {
     viewMode: "story",
     viewport: { defaultViewport: "mobile1" },
+    showNativeOnWebDisclaimer: true,
   },
   component: ButtonGroup.PrimaryAction,
 } as ComponentMeta<typeof ButtonGroup>;
@@ -14,7 +15,7 @@ export default {
 const Template: ComponentStory<typeof ButtonGroup.PrimaryAction> = args => (
   <ButtonGroup>
     <ButtonGroup.PrimaryAction {...args} />
-    <ButtonGroup.PrimaryAction
+    <ButtonGroup.SecondaryAction
       label={"Edit"}
       icon={"edit"}
       onPress={() => console.log("edit")}
