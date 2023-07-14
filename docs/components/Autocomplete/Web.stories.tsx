@@ -27,7 +27,6 @@ const BasicTemplate: ComponentStory<typeof Autocomplete> = args => {
       value={value}
       onChange={newValue => setValue(newValue)}
       getOptions={getOptions}
-      name={"autocompleteInput"}
       validations={{
         maxLength: 255,
         required: {
@@ -46,8 +45,51 @@ const BasicTemplate: ComponentStory<typeof Autocomplete> = args => {
   }
 };
 
+const withDetailsOptions = [
+  {
+    value: 1,
+    label: "Sulaco",
+    description: "They mostly come at night, mostly.",
+    details: "LV-426",
+  },
+  { value: 2, label: "Nostromo", details: "LV-426" },
+  { value: 3, label: "Serenity", description: "I aim to misbehave." },
+  { value: 4, label: "Sleeper Service" },
+  { value: 5, label: "Enterprise" },
+  {
+    value: 6,
+    label: "Enterprise-D",
+    description: "Tea, earl grey, hot.",
+    details: "NCC-1701D",
+  },
+];
+
+const WithDetailsTemplate: ComponentStory<typeof Autocomplete> = args => {
+  const [value, setValue] = useState<Option | undefined>();
+  return (
+    <Autocomplete
+      {...args}
+      value={value}
+      onChange={newValue => setValue(newValue)}
+      getOptions={getOptions}
+    />
+  );
+  function getOptions(text: string) {
+    if (text === "") {
+      return withDetailsOptions;
+    }
+    const filterRegex = new RegExp(text, "i");
+    return withDetailsOptions.filter(option => option.label.match(filterRegex));
+  }
+};
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
   initialOptions: [],
   placeholder: "Search for something",
+};
+
+export const WithDetails = WithDetailsTemplate.bind({});
+WithDetails.args = {
+  initialOptions: withDetailsOptions,
+  placeholder: "Search for something with details",
 };

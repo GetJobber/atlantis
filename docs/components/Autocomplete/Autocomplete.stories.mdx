@@ -1,4 +1,4 @@
-import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Canvas, Meta } from "@storybook/addon-docs";
 import { useState } from "react";
 import cloneDeep from "lodash/cloneDeep";
 import { Button } from "@jobber/components/Button";
@@ -24,48 +24,6 @@ If the number of available options is smaller consider a
 You can add a description to an option, which will appear below the option's
 label. You can also add detail to an option that shows on the option's the
 bottom right. Both of these are optional per option.
-
-<Canvas>
-  {() => {
-    const options = [
-      {
-        value: 1,
-        label: "Sulaco",
-        description: "They mostly come at night, mostly.",
-        details: "LV-426",
-      },
-      { value: 2, label: "Nostromo", details: "LV-426" },
-      { value: 3, label: "Serenity", description: "I aim to misbehave." },
-      { value: 4, label: "Sleeper Service" },
-      { value: 5, label: "Enterprise" },
-      {
-        value: 6,
-        label: "Enterprise-D",
-        description: "Tea, earl grey, hot.",
-        details: "NCC-1701D",
-      },
-    ];
-    const [value, setValue] = useState();
-    return (
-      <Autocomplete
-        value={value}
-        initialOptions={options}
-        onChange={setValue}
-        getOptions={getOptions}
-        placeholder="Search for something"
-      />
-    );
-    function getOptions(text) {
-      if (text === "") {
-        return options;
-      }
-      const filterRegex = new RegExp(text, "i");
-      return options.filter(option =>
-        option.heading ? true : option.label.match(filterRegex)
-      );
-    }
-  }}
-</Canvas>
 
 ## Section headings
 
