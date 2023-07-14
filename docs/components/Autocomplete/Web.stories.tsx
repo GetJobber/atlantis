@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Button } from "@jobber/components/Button";
 import { Autocomplete, Option } from "@jobber/components/Autocomplete";
 
 export default {
@@ -131,9 +132,43 @@ const SectionHeadingTemplate: ComponentStory<typeof Autocomplete> = args => {
   }
 };
 
+const SetAValueTemplate: ComponentStory<typeof Autocomplete> = args => {
+  const [value, setValue] = useState<Option | undefined>(options[0]);
+  return (
+    <>
+      <pre>{JSON.stringify(value, undefined, 2)}</pre>
+      <Autocomplete
+        {...args}
+        value={value}
+        onChange={newValue => setValue(newValue)}
+        getOptions={getOptions}
+      />
+      <Button
+        label="Choose Enterprise"
+        onClick={() => {
+          setValue(options[4]);
+        }}
+      />
+      <Button
+        label="Reset"
+        onClick={() => {
+          setValue(undefined);
+        }}
+      />
+    </>
+  );
+  function getOptions(text: string) {
+    if (text === "") {
+      return options;
+    }
+    const filterRegex = new RegExp(text, "i");
+    return options.filter(option => option.label.match(filterRegex));
+  }
+};
+
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
-  initialOptions: [],
+  initialOptions: options,
   placeholder: "Search for something",
 };
 
@@ -147,4 +182,10 @@ export const SectionHeading = SectionHeadingTemplate.bind({});
 SectionHeading.args = {
   initialOptions: SectionHeadingOptions,
   placeholder: "Search for something under a section heading",
+};
+
+export const SetAValue = SetAValueTemplate.bind({});
+SetAValue.args = {
+  initialOptions: options,
+  placeholder: "Search for something",
 };
