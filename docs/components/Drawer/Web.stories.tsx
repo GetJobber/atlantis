@@ -11,6 +11,7 @@ export default {
   component: Drawer,
   parameters: {
     viewMode: "story",
+    previewTabs: { code: { hidden: false } },
   },
 } as ComponentMeta<typeof Drawer>;
 
