@@ -1,7 +1,4 @@
-import { Canvas, Meta } from "@storybook/addon-docs";
-import { useState } from "react";
-import cloneDeep from "lodash/cloneDeep";
-import { Button } from "@jobber/components/Button";
+import { Meta } from "@storybook/addon-docs";
 import { Autocomplete } from "@jobber/components/Autocomplete";
 
 <Meta
@@ -11,121 +8,35 @@ import { Autocomplete } from "@jobber/components/Autocomplete";
 
 # Autocomplete
 
-An autocomplete allows a user to quickly pick a preset value from a larger list
-of possible options.
+An Autocomplete component allows a user to quickly pick a preset value from a
+larger list of possible options.
 
-If the number of available options is smaller consider a
-[Select](../?path=/docs/components-selections-select--select) instead.
+## Design & usage guidelines
 
----
+The options in an Autocomplete component should be a list of possible values
+that the user can select. These options should be presented in a way that makes
+it easy for the user to find the value they are looking for. There are a few
+ways to achieve this.
 
-## With details
+[Details](../?path=/story/components-forms-and-inputs-autocomplete-web--with-details)
+can be added to an option, which will either appear below the option's label or
+on the bottom right of the option. This can be used to provide more information
+about the option, such as a description or a count.
 
-You can add a description to an option, which will appear below the option's
-label. You can also add detail to an option that shows on the option's the
-bottom right. Both of these are optional per option.
+[Section headings](../?path=/story/components-forms-and-inputs-autocomplete-web--section-heading)
+can be added to an Autocomplete to break up the options into groups. This can be
+useful if there are a lot of options or if the options are related to different
+things.
 
-## Section headings
-
-An autocomplete can provide section headings to break up the options.
-
-## Kitchen sink
-
-This autocomplete uses section headings, details, descriptions and option
-separators.
-
-## Setting a value
-
-You can supply a value to `Autocomplete` in the form of an active `Option`.
-
-<Canvas>
-  {() => {
-    const options = [
-      { value: 1, label: "Nostromo" },
-      { value: 2, label: "Rodger Young" },
-      { value: 3, label: "Serenity" },
-      { value: 4, label: "Sleeper Service" },
-      { value: 5, label: "Enterprise" },
-      { value: 6, label: "Enterprise-D" },
-    ];
-    const [value, setValue] = useState();
-    return (
-      <>
-        <pre>{JSON.stringify(value, undefined, 2)}</pre>
-        <Autocomplete
-          value={value}
-          initialOptions={[]}
-          onChange={setValue}
-          getOptions={getOptions}
-          placeholder="Search for something"
-        />
-        <Button
-          label="Choose the Enterprise"
-          onClick={() => {
-            setValue(options[4]);
-          }}
-        />
-        <Button
-          label="Reset"
-          onClick={() => {
-            setValue();
-          }}
-        />
-      </>
-    );
-    function getOptions(text) {
-      if (text === "") {
-        return options;
-      }
-      const filterRegex = new RegExp(text, "i");
-      return options.filter(option => option.label.match(filterRegex));
-    }
-  }}
-</Canvas>
-
-## Async requests for options
-
-The `getOptions` method expected to be async so you can do any desired requests
-using either promises or `await` in `getOptions`.
-
-<Canvas>
-  {() => {
-    const options = [
-      { value: 1, label: "Nostromo" },
-      { value: 2, label: "Rodger Young" },
-      { value: 3, label: "Serenity" },
-      { value: 4, label: "Sleeper Service" },
-      { value: 5, label: "Enterprise" },
-      { value: 6, label: "Enterprise-D" },
-    ];
-    const [value, setValue] = useState();
-    return (
-      <Autocomplete
-        value={value}
-        initialOptions={[]}
-        onChange={setValue}
-        getOptions={getOptions}
-        placeholder="Search for something"
-      />
-    );
-    async function getOptions(text) {
-      return new Promise(resolve => {
-        setTimeout(() => {
-          if (text === "") {
-            resolve(options);
-          }
-          const filterRegex = new RegExp(text, "i");
-          resolve(options.filter(option => option.label.match(filterRegex)));
-        }, 300);
-      });
-    }
-  }}
-</Canvas>
+You can
+[set a value](../?path=/story/components-forms-and-inputs-autocomplete-web--set-a-value)
+to the Autocomplete component by passing an active option. This will set the
+`value` of the input.
 
 ## Related components
 
-- If you want to present a list of predefined options without text input, use a
-  [Select](../?path=/docs/components-selections-select--select) instead.
+- If you want to present a list of predefined options without text input, or the
+  number of options is smaller, use a
+  [Select](../?path=/docs/components-selections-select--select)
 - If autocompleted results are not required for the text input, use
   [InputText](../?path=/docs/components-forms-and-inputs-inputtext--input-text)
-  instead.
