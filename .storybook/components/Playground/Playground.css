@@ -2,7 +2,7 @@
   display: grid;
   height: 100%;
   grid-template-columns: auto;
-  grid-template-rows: 50% 50%;
+  grid-auto-rows: minmax(50%, auto);
 }
 
 .sp-stack {

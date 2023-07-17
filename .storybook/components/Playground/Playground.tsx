@@ -18,11 +18,16 @@ export function Playground() {
 
   if (!activeStory) return <></>;
 
-  const { parameters, args } = activeStory;
-  const importsString = getImportStrings(parameters);
-  const extraDependencies = getExtraDependencies(parameters);
+  const { parameters, args, type, parent } = activeStory;
+  const isComponentStory = type === "story" && parent.startsWith("components");
 
-  const canPreview = Boolean(importsString);
+  if (!isComponentStory) return <>No can do</>;
+
+  const isComponentsNative = activeStory.parent.endsWith("mobile");
+  const importsString = getImportStrings(parameters, isComponentsNative);
+  const extraDependencies = getExtraDependencies(parameters);
+  const canPreview = Boolean(importsString) && !isComponentsNative;
+
   return (
     <SandpackProvider
       template="react-ts"
@@ -36,7 +41,7 @@ export function Playground() {
         visibleFiles: ["/Example.tsx"],
         activeFile: "/Example.tsx",
       }}
-      theme="dark"
+      theme={canPreview ? "dark" : "light"}
       files={{
         "/App.tsx": getAppJsCode(),
         "/Example.tsx": getExampleJsCode(),
@@ -102,7 +107,8 @@ function getSourceCode(
   }
 }
 
-function getImportStrings(parameters: Story["parameters"]): string {
+function getImportStrings(parameters: Story["parameters"],
+  isComponentsNative: boolean,): string {
   const extraDepencyImports = getExtraDependencyImports(parameters);
 
   if (parameters && "storySource" in parameters) {
@@ -112,25 +118,35 @@ function getImportStrings(parameters: Story["parameters"]): string {
     );
 
     // Import components from @jobber/components
-    const componentImports =
-      componentNames?.map(component => {
-        return `import { ${component} } from "@jobber/components/${component}";`;
-      }) || [];
+    const componentImports = isComponentsNative
+      ? [getSingleModuleImport("@jobber/components-native", componentNames)]
+      : getComponentsImports(componentNames);
 
-    // Import hooks from react
-    const hooksImports =
-      hookNames?.map(hook => {
-        return `import { ${hook} } from "react";`;
-      }) || [];
-
-    return [
-      ...hooksImports,
-      ...componentImports,
-      extraDepencyImports.importString,
-    ].join("\n");
+    return [getSingleModuleImport("react", hookNames), ...componentImports, extraDepencyImports.importString]
+      .filter(Boolean)
+      .join("\n");
   }
 
   return "";
+}
+
+function getComponentsImports(componentNames?: Array<string>) {
+  if (componentNames) {
+    return componentNames.map(
+      name => `import { ${name} } from "@jobber/components/${name}";`,
+    );
+  }
+  return [];
+}
+
+function getSingleModuleImport(
+  moduleName = "react",
+  hookNames?: Array<string> | null,
+) {
+  if (hookNames) {
+    return `import { ${hookNames.join(", ")} } from "${moduleName}";`;
+  }
+  return;
 }
 
 function parseSourceStringForImports(source: string, extraImports: string[]) {
