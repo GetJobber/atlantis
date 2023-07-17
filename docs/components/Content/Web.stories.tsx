@@ -14,6 +14,7 @@ export default {
     backgrounds: {
       default: "surface background",
     },
+    previewTabs: { code: { hidden: false } },
   },
 } as ComponentMeta<typeof Content>;
 

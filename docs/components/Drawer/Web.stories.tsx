@@ -11,6 +11,14 @@ export default {
   component: Drawer,
   parameters: {
     viewMode: "story",
+    previewTabs: {
+      code: {
+        hidden: false,
+        extraImports: {
+          "@jobber/components/Drawer": ["Drawer", "DrawerGrid"],
+        },
+      },
+    },
   },
 } as ComponentMeta<typeof Drawer>;
 

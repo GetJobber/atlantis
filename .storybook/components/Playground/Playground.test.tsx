@@ -155,23 +155,90 @@ describe("Playground", () => {
     );
   });
 
-  it("should use the parameter code imports when it's available", () => {
+  it("should include the parameter extra imports when it's available", () => {
     mockStoryData({
       // @ts-expect-error - Storybook API types does allow this
       parameters: {
-        code: {
-          imports: `import { Tabs, Tab } from "@jobber/components/Tab";`,
+        previewTabs: {
+          code: {
+            extraImports: { "@jobber/components/Tab": ["Tabs", "Tab"] },
+          },
         },
       },
       sourceCode: `args => <Content>Sup!</Content>`,
     });
     const { container } = render(<Playground />);
 
-    expect(container).not.toHaveTextContent(
+    expect(container).toHaveTextContent(
       'import { Content } from "@jobber/components/Content";',
     );
     expect(container).toHaveTextContent(
       'import { Tabs, Tab } from "@jobber/components/Tab";',
+    );
+  });
+
+  it("should allow aliases for extra imports parameter", () => {
+    mockStoryData({
+      // @ts-expect-error - Storybook API types does allow this
+      parameters: {
+        previewTabs: {
+          code: {
+            extraImports: {
+              "react-router-dom": ["Router"],
+            },
+          },
+        },
+      },
+      sourceCode: `args => (
+        <Router basename="/components/button">
+          <Content>Sup!</Content>
+        </Router>)`,
+    });
+    const { container } = render(<Playground />);
+
+    expect(container).toHaveTextContent(
+      'import { Router } from "react-router-dom";',
+    );
+
+    expect(container).not.toHaveTextContent(
+      `import { Router } from "@jobber/components/Router`,
+    );
+  });
+
+  it("should allow imports of subcomponents of @jobber/components", () => {
+    mockStoryData({
+      // @ts-expect-error - Storybook API types does allow this
+      parameters: {
+        previewTabs: {
+          code: {
+            extraImports: {
+              "react-router-dom": ["Router"],
+              "@jobber/components/Drawer": ["DrawerGrid"],
+            },
+          },
+        },
+      },
+      sourceCode: `args => (
+        <Router basename="/components/button">
+        <DrawerGrid>
+          <Content>Sup!</Content>
+          <Drawer>
+            <Content>Hello</Content>
+          </Drawer>
+        </DrawerGrid>
+        </Router>
+        )`,
+    });
+    const { container } = render(<Playground />);
+
+    expect(container).toHaveTextContent(
+      'import { DrawerGrid } from "@jobber/components/Drawer";',
+    );
+    expect(container).toHaveTextContent(
+      'import { Drawer } from "@jobber/components/Drawer";',
+    );
+    expect(container).not.toHaveTextContent(
+      'import { DrawerGrid } from "@jobber/components/DrawerGrid";',
     );
   });
 });

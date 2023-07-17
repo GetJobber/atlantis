@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "4.23.12",
+  "version": "4.23.16",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,7 +19,7 @@
     "dist/*"
   ],
   "dependencies": {
-    "@jobber/design": "^0.43.3",
+    "@jobber/design": "^0.43.4",
     "@jobber/formatters": "*",
     "@jobber/hooks": "^2.1.5",
     "@popperjs/core": "^2.0.6",

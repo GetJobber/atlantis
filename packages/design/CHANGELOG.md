@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.43.4](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.43.3...@jobber/design@0.43.4) (2023-07-17)
+
+
+### Bug Fixes
+
+* **design:** add export tokens from foundation index ([#1387](https://github.com/GetJobber/atlantis/issues/1387)) ([360f148](https://github.com/GetJobber/atlantis/commit/360f148bdf8abe2f93a02862711d91eb9145ffa8))
+
+
+
+
+
 ## [0.43.3](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.43.2...@jobber/design@0.43.3) (2023-07-11)
 
 **Note:** Version bump only for package @jobber/design
