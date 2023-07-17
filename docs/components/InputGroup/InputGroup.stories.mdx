@@ -4,24 +4,23 @@ import { Meta } from "@storybook/addon-docs";
 
 <Meta title="Components/Forms and Inputs/InputGroup/Docs" />
 
-Use InputGroup to show a visual relationship between related input fields. If a
-number of form fields, once submitted, make up a group of content (ie. an
+InputGroup is used to show a visual relationship between two or more related
+input fields. If a number of form fields make up a group of content (e.g. an
 address, or first and last name becoming a full name, start and end times of an
 event) they are great candidates for an InputGroup.
 
-## Nested example
+## Design & useage guidelines
 
 The default layout is for fields to flow in a vertical direction, one above the
 next. Use the `flowDirection` prop to specify when you want fields to flow in a
 horizontal direction.
 
-> **Note:** Nested `InputGroup` components need to be of
-> `flowDirection="horizontal"` to avoid layout issues caused by nesting. Any
-> non-horizontal nested groups will log an error to the console and not be
-> rendered.
+[Nested](../?path=/story/components-forms-and-inputs-inputgroup-web--nested)
+InputGroup components need to be of `flowDirection="horizontal"` to avoid layout
+issues caused by nesting. Any non-horizontal nested groups will log an error to
+the console and not be rendered.
 
-## Nested with Autocomplete
-
-The
-[Autocomplete component](../?path=/docs/components-forms-and-inputs-autocomplete--autocomplete)
-also works inside the `InputGroup`.
+If one of the InputGroup fields has a preset value from a larger list of
+options, it is possible to use
+[Autocomplete](../?path=/docs/components-forms-and-inputs-autocomplete--autocomplete)
+within InputGroup.
