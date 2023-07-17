@@ -221,7 +221,7 @@ function getExtraDependencyImports(parameters: Story["parameters"]): {
 } {
   const extraImportsParameter: PlaygroundImports =
     parameters?.previewTabs?.code?.extraImports || {};
-  const extraDepedencyImports = Object.entries(
+  const extraDependencyImports = Object.entries(
     extraImportsParameter,
   ).reduce<ExtraImports>(
     (previousValue, entry) => {
@@ -262,8 +262,8 @@ function getExtraDependencyImports(parameters: Story["parameters"]): {
     { importStrings: [], componentNames: [] },
   );
   return {
-    importString: extraDepedencyImports.importStrings.join("\n"),
-    componentNames: extraDepedencyImports.componentNames,
+    importString: extraDependencyImports.importStrings.join("\n"),
+    componentNames: extraDependencyImports.componentNames,
   };
 }
 
