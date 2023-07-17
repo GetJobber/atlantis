@@ -15,7 +15,7 @@ export default {
       code: {
         hidden: false,
         extraImports: {
-          "@jobber/components/Drawer": ["DrawerGrid"],
+          "@jobber/components/Drawer": ["Drawer", "DrawerGrid"],
         },
       },
     },
