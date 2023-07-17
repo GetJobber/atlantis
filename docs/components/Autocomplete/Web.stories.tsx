@@ -1,14 +1,21 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Button } from "@jobber/components/Button";
-import { Autocomplete } from "@jobber/components/Autocomplete";
+import { Autocomplete, Option } from "@jobber/components/Autocomplete";
 
 export default {
   title: "Components/Forms and Inputs/Autocomplete/Web",
   component: Autocomplete,
   parameters: {
     viewMode: "story",
-    previewTabs: { code: { hidden: false } },
+    previewTabs: {
+      code: {
+        hidden: false,
+        extraImports: {
+          "@jobber/components/Autocomplete": ["Autocomplete", "Option"],
+        },
+      },
+    },
   },
 } as ComponentMeta<typeof Autocomplete>;
 
@@ -26,7 +33,7 @@ const options = [
 
 const BasicTemplate: ComponentStory<typeof Autocomplete> = args => {
   const basicOptions = args.initialOptions;
-  const [value, setValue] = useState<typeof Option | undefined>();
+  const [value, setValue] = useState<Option | undefined>();
   return (
     <Autocomplete
       {...args}
@@ -72,7 +79,7 @@ const withDetailsOptions = [
 
 const WithDetailsTemplate: ComponentStory<typeof Autocomplete> = args => {
   const detailsOptions = args.initialOptions;
-  const [value, setValue] = useState<typeof Option | undefined>();
+  const [value, setValue] = useState<Option | undefined>();
   return (
     <Autocomplete
       {...args}
@@ -115,7 +122,7 @@ const SectionHeadingOptions = [
 
 const SectionHeadingTemplate: ComponentStory<typeof Autocomplete> = args => {
   const headingOptions = args.initialOptions;
-  const [value, setValue] = useState<typeof Option | undefined>();
+  const [value, setValue] = useState<Option | undefined>();
   return (
     <Autocomplete
       {...args}
@@ -140,9 +147,7 @@ const SectionHeadingTemplate: ComponentStory<typeof Autocomplete> = args => {
 
 const SetAValueTemplate: ComponentStory<typeof Autocomplete> = args => {
   const valueOptions = args.initialOptions;
-  const [value, setValue] = useState<typeof Option | undefined>(
-    valueOptions[0],
-  );
+  const [value, setValue] = useState<Option | undefined>(valueOptions[0]);
   return (
     <>
       <pre>{JSON.stringify(value, undefined, 2)}</pre>
