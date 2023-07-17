@@ -155,25 +155,50 @@ describe("Playground", () => {
     );
   });
 
-  it("should use the parameter code imports when it's available", () => {
+  it("should include the parameter extra imports when it's available", () => {
     mockStoryData({
       // @ts-expect-error - Storybook API types does allow this
       parameters: {
-        code: {
-          imports: `import { Tabs, Tab } from "@jobber/components/Tab";`,
+        previewTabs: {
+          code: {
+            extraImports: { "@jobber/components/Tab": ["Tabs", "Tab"], },
+          },
         },
       },
       sourceCode: `args => <Content>Sup!</Content>`,
     });
     const { container } = render(<Playground />);
 
-    expect(container).not.toHaveTextContent(
+    expect(container).toHaveTextContent(
       'import { Content } from "@jobber/components/Content";',
     );
     expect(container).toHaveTextContent(
       'import { Tabs, Tab } from "@jobber/components/Tab";',
     );
   });
+
+  it("should allow aliases for extra imports parameter", () => {
+    mockStoryData({
+      // @ts-expect-error - Storybook API types does allow this
+      parameters: {
+        previewTabs: {
+          code: {
+            extraImports: {"react-router-dom": [
+          "Route",
+          { name: "BrowserRouter", alias: "Router" },
+          "Switch",
+        ], },
+          },
+        },
+      },
+      sourceCode: `args => <Content>Sup!</Content>`,
+     });
+    const { container } = render(<Playground />);
+
+    expect(container).toHaveTextContent(
+      'import { Route, BrowserRouter as Router, Switch } from "react-router-dom";',
+    );
+  })
 });
 
 interface MockStoryDataType extends Partial<sbAPI.Story> {

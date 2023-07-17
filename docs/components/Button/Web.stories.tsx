@@ -53,7 +53,18 @@ export const ClientSideRouting = RoutingTemplate.bind({});
 ClientSideRouting.parameters = {
   // Hide this for now. Need some set up to turn the sandbox for this to ON
   // Need to override import dependencies and install react-router-dom on sandbox
-  previewTabs: { code: { hidden: true } },
+  previewTabs: {
+    code: {
+      hidden: false,
+      extraImports: {
+        "react-router-dom": [
+          "Route",
+          { name: "BrowserRouter", alias: "Router" },
+          "Switch",
+        ],
+      },
+    },
+  },
 };
 
 const FormTemplate: ComponentStory<typeof Button> = () => (

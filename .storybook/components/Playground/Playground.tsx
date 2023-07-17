@@ -9,6 +9,10 @@ import {
 import dedent from "ts-dedent";
 import "./Playground.css";
 import { PlaygroundWarning } from "./PlaygroundWarning";
+import { PlaygroundImports } from "./types";
+import { THIRD_PARTY_PACKAGE_VERSIONS } from "./constants";
+
+
 
 export function Playground() {
   const { getCurrentStoryData } = useStorybookApi();
@@ -18,14 +22,17 @@ export function Playground() {
 
   const { parameters, args } = activeStory;
   const importsString = getImportStrings(parameters);
-  const canPreview = Boolean(importsString);
+  const extraDependencies = getExtraDependencies(parameters);
 
+  // console.warn(extraDeps)
+  const canPreview = Boolean(importsString);
   return (
     <SandpackProvider
       template="react-ts"
       customSetup={{
         dependencies: {
           "@jobber/components": "latest",
+          ...extraDependencies
         },
       }}
       options={{
@@ -99,13 +106,12 @@ function getSourceCode(
 }
 
 function getImportStrings(parameters: Story["parameters"]): string {
-  if (parameters && "code" in parameters && parameters.code?.imports) {
-    return parameters.code.imports;
-  }
+  const extraDepencyImports = getExtraDependencyImports(parameters);
 
   if (parameters && "storySource" in parameters) {
     const { componentNames, hookNames } = parseSourceStringForImports(
       parameters.storySource.source,
+      extraDepencyImports.componentNames
     );
 
     // Import components from @jobber/components
@@ -120,13 +126,13 @@ function getImportStrings(parameters: Story["parameters"]): string {
         return `import { ${hook} } from "react";`;
       }) || [];
 
-    return [...hooksImports, ...componentImports].join("\n");
+    return [...hooksImports, ...componentImports, extraDepencyImports.importString].join("\n");
   }
 
   return "";
 }
 
-function parseSourceStringForImports(source: string) {
+function parseSourceStringForImports(source: string, extraImports: string[]) {
   // Grab the first word after <
   const matchingComponents = source?.match(/<(\w+)/gm);
 
@@ -137,11 +143,12 @@ function parseSourceStringForImports(source: string) {
     // Remove duplicates
     .filter((component, index, self) => self.indexOf(component) === index)
     // Only get components that start with a capital letter. This removes the HTML tags.
-    .filter(component => /[A-Z]/.test(component[0]));
+    .filter(component => /[A-Z]/.test(component[0]))
+    // Filter out extra imports not in @jobber/components
+    .filter(component => !extraImports.includes(component));
 
   // check to see if the source contains any react hooks
   const hookNames = source?.match(/use[State|Effect|Ref]+/gm);
-
   return { componentNames, hookNames };
 }
 
@@ -200,4 +207,44 @@ function getAppJsCode(): string {
     export default function App() {
       return <Example />
     }`;
+}
+
+interface ExtraImports {
+  importStrings: string[];
+  componentNames: string[];
+}
+
+function getExtraDependencyImports(parameters: Story["parameters"]): {importString: string, componentNames: string[] } {
+  const extraImportsParameter: PlaygroundImports = (parameters?.previewTabs?.code?.extraImports || {});
+  const extraDepedencyImports = Object.entries(extraImportsParameter).reduce<ExtraImports>((previousValue, entry) => {
+    const [key, value] = entry
+
+    const importedComponents: ExtraImports = value.reduce<ExtraImports>((prev, component) => {
+      if (typeof component === "string") {
+        return {importStrings: [...prev.importStrings, component], componentNames: [...prev.componentNames, component]}
+      } else {
+        // Imported component has an alias
+        const {alias, name} = component
+        return {importStrings: [...prev.importStrings,`${name} as ${alias}` ], componentNames: [...prev.componentNames, alias]}
+      }
+    }, {importStrings: [], componentNames: [] })
+
+    return {
+      importStrings: [...previousValue.importStrings, `import { ${importedComponents.importStrings.join(", ")} } from "${key}";`,],
+      componentNames: [...previousValue.componentNames, ...importedComponents.componentNames]
+    }
+  }, {importStrings: [] , componentNames: [] } )
+  return {importString: extraDepedencyImports.importStrings.join("\n"), componentNames: extraDepedencyImports.componentNames}
+
+}
+
+function getExtraDependencies(parameters: Story["parameters"]): Record<string, string> {
+  const extraImportsParameter: PlaygroundImports = (parameters?.previewTabs?.code.extraImports || {});
+
+  const extraDeps = Object.keys(extraImportsParameter)?.reduce((previousVal, key) => {
+    // @jobber/components is already included
+    if (key.match(/@jobber\/components/)) return previousVal;
+    return { ...previousVal, [key]: THIRD_PARTY_PACKAGE_VERSIONS[key] }
+  }, {});
+  return extraDeps
 }
