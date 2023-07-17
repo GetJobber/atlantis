@@ -12,8 +12,6 @@ import { PlaygroundWarning } from "./PlaygroundWarning";
 import { PlaygroundImports } from "./types";
 import { THIRD_PARTY_PACKAGE_VERSIONS } from "./constants";
 
-
-
 export function Playground() {
   const { getCurrentStoryData } = useStorybookApi();
   const activeStory = getCurrentStoryData() as Story;
@@ -24,7 +22,6 @@ export function Playground() {
   const importsString = getImportStrings(parameters);
   const extraDependencies = getExtraDependencies(parameters);
 
-  // console.warn(extraDeps)
   const canPreview = Boolean(importsString);
   return (
     <SandpackProvider
