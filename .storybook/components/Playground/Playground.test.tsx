@@ -161,7 +161,7 @@ describe("Playground", () => {
       parameters: {
         previewTabs: {
           code: {
-            extraImports: { "@jobber/components/Tab": ["Tabs", "Tab"], },
+            extraImports: { "@jobber/components/Tab": ["Tabs", "Tab"] },
           },
         },
       },
@@ -183,22 +183,27 @@ describe("Playground", () => {
       parameters: {
         previewTabs: {
           code: {
-            extraImports: {"react-router-dom": [
-          "Route",
-          { name: "BrowserRouter", alias: "Router" },
-          "Switch",
-        ], },
+            extraImports: {
+              "react-router-dom": ["Router"],
+            },
           },
         },
       },
-      sourceCode: `args => <Content>Sup!</Content>`,
-     });
+      sourceCode: `args => (
+        <Router basename="/components/button">
+          <Content>Sup!</Content>
+        </Router>)`,
+    });
     const { container } = render(<Playground />);
 
     expect(container).toHaveTextContent(
-      'import { Route, BrowserRouter as Router, Switch } from "react-router-dom";',
+      'import { Router } from "react-router-dom";',
     );
-  })
+
+    expect(container).not.toHaveTextContent(
+      `import { Router } from "@jobber/compponents/Router`,
+    );
+  });
 });
 
 interface MockStoryDataType extends Partial<sbAPI.Story> {

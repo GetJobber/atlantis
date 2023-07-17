@@ -29,7 +29,7 @@ export function Playground() {
       customSetup={{
         dependencies: {
           "@jobber/components": "latest",
-          ...extraDependencies
+          ...extraDependencies,
         },
       }}
       options={{
@@ -108,7 +108,7 @@ function getImportStrings(parameters: Story["parameters"]): string {
   if (parameters && "storySource" in parameters) {
     const { componentNames, hookNames } = parseSourceStringForImports(
       parameters.storySource.source,
-      extraDepencyImports.componentNames
+      extraDepencyImports.componentNames,
     );
 
     // Import components from @jobber/components
@@ -123,7 +123,11 @@ function getImportStrings(parameters: Story["parameters"]): string {
         return `import { ${hook} } from "react";`;
       }) || [];
 
-    return [...hooksImports, ...componentImports, extraDepencyImports.importString].join("\n");
+    return [
+      ...hooksImports,
+      ...componentImports,
+      extraDepencyImports.importString,
+    ].join("\n");
   }
 
   return "";
@@ -211,37 +215,71 @@ interface ExtraImports {
   componentNames: string[];
 }
 
-function getExtraDependencyImports(parameters: Story["parameters"]): {importString: string, componentNames: string[] } {
-  const extraImportsParameter: PlaygroundImports = (parameters?.previewTabs?.code?.extraImports || {});
-  const extraDepedencyImports = Object.entries(extraImportsParameter).reduce<ExtraImports>((previousValue, entry) => {
-    const [key, value] = entry
+function getExtraDependencyImports(parameters: Story["parameters"]): {
+  importString: string;
+  componentNames: string[];
+} {
+  const extraImportsParameter: PlaygroundImports =
+    parameters?.previewTabs?.code?.extraImports || {};
+  const extraDepedencyImports = Object.entries(
+    extraImportsParameter,
+  ).reduce<ExtraImports>(
+    (previousValue, entry) => {
+      const [key, value] = entry;
 
-    const importedComponents: ExtraImports = value.reduce<ExtraImports>((prev, component) => {
-      if (typeof component === "string") {
-        return {importStrings: [...prev.importStrings, component], componentNames: [...prev.componentNames, component]}
-      } else {
-        // Imported component has an alias
-        const {alias, name} = component
-        return {importStrings: [...prev.importStrings,`${name} as ${alias}` ], componentNames: [...prev.componentNames, alias]}
-      }
-    }, {importStrings: [], componentNames: [] })
+      const importedComponents: ExtraImports = value.reduce<ExtraImports>(
+        (prev, component) => {
+          if (typeof component === "string") {
+            return {
+              importStrings: [...prev.importStrings, component],
+              componentNames: [...prev.componentNames, component],
+            };
+          } else {
+            // Imported component has an alias
+            const { alias, name } = component;
+            return {
+              importStrings: [...prev.importStrings, `${name} as ${alias}`],
+              componentNames: [...prev.componentNames, alias],
+            };
+          }
+        },
+        { importStrings: [], componentNames: [] },
+      );
 
-    return {
-      importStrings: [...previousValue.importStrings, `import { ${importedComponents.importStrings.join(", ")} } from "${key}";`,],
-      componentNames: [...previousValue.componentNames, ...importedComponents.componentNames]
-    }
-  }, {importStrings: [] , componentNames: [] } )
-  return {importString: extraDepedencyImports.importStrings.join("\n"), componentNames: extraDepedencyImports.componentNames}
-
+      return {
+        importStrings: [
+          ...previousValue.importStrings,
+          `import { ${importedComponents.importStrings.join(
+            ", ",
+          )} } from "${key}";`,
+        ],
+        componentNames: [
+          ...previousValue.componentNames,
+          ...importedComponents.componentNames,
+        ],
+      };
+    },
+    { importStrings: [], componentNames: [] },
+  );
+  return {
+    importString: extraDepedencyImports.importStrings.join("\n"),
+    componentNames: extraDepedencyImports.componentNames,
+  };
 }
 
-function getExtraDependencies(parameters: Story["parameters"]): Record<string, string> {
-  const extraImportsParameter: PlaygroundImports = (parameters?.previewTabs?.code.extraImports || {});
+function getExtraDependencies(
+  parameters: Story["parameters"],
+): Record<string, string> {
+  const extraImportsParameter: PlaygroundImports =
+    parameters?.previewTabs?.code.extraImports || {};
 
-  const extraDeps = Object.keys(extraImportsParameter)?.reduce((previousVal, key) => {
-    // @jobber/components is already included
-    if (key.match(/@jobber\/components/)) return previousVal;
-    return { ...previousVal, [key]: THIRD_PARTY_PACKAGE_VERSIONS[key] }
-  }, {});
-  return extraDeps
+  const extraDeps = Object.keys(extraImportsParameter)?.reduce(
+    (previousVal, key) => {
+      // @jobber/components is already included
+      if (key.match(/@jobber\/components/)) return previousVal;
+      return { ...previousVal, [key]: THIRD_PARTY_PACKAGE_VERSIONS[key] };
+    },
+    {},
+  );
+  return extraDeps;
 }
