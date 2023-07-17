@@ -25,7 +25,7 @@ export function PlaygroundWarning() {
         <p>2. Extra imports are wrong</p>
         <p>
           You can add extra imports by adding your own
-          <code>code.extraImports</code> parameter on the storybook meta tag.
+          <code>previewTabs.code.extraImports</code> parameter on the storybook meta tag.
           You may need to modify `.storybook/components/Playground/constants.ts`
           to add the dependency to the list of Third-party dependencies usable
           in the `Playground`
