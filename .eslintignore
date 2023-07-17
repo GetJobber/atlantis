@@ -6,8 +6,5 @@ packages/design/src/icons/iconStyles.*
 packages/design/icons
 packages/generators/templates
 storybook-static
-!.storybook
-.storybook/*
-!.storybook/components
 
 **/*/*.css.d.ts
