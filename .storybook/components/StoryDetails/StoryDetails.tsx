@@ -10,7 +10,6 @@ interface StoryDetailsProps {
 }
 
 export function StoryDetails({ Story, context }: StoryDetailsProps) {
-  console.log(context);
 
   return (
     <div className={styles.container}>
