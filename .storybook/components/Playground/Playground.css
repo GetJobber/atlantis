@@ -15,6 +15,7 @@
 
 .localDevNotice {
   padding: var(--base-unit);
+  overflow-y: scroll;
   background-color: var(--color-warning);
 }
 
