@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  margin: -16px -16px 0;
+  margin: calc(-1 * var(--space-base)) calc(-1 * var(--space-base)) 0;
 }
 
 .story:not(:global(.docs-story) .story) {
