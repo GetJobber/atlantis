@@ -21,6 +21,9 @@ const options = [
   { value: 6, label: "Enterprise-D" },
 ];
 
+// Each template calls args.initialOptions so that the options
+// are not undefined in the code preview
+
 const BasicTemplate: ComponentStory<typeof Autocomplete> = args => {
   const basicOptions = args.initialOptions;
   const [value, setValue] = useState<Option | undefined>();
@@ -170,30 +173,6 @@ const SetAValueTemplate: ComponentStory<typeof Autocomplete> = args => {
   }
 };
 
-// const AsyncTemplate: ComponentStory<typeof Autocomplete> = args => {
-//   const AsyncOptions = args.initialOptions;
-//   const [value, setValue] = useState<Option | undefined>();
-//   return (
-//     <Autocomplete
-//       {...args}
-//       value={value}
-//       onChange={newValue => setValue(newValue)}
-//       getOptions={getOptions}
-//     />
-//   );
-//   function getOptions(text: string) {
-//     return new Promise<Option[]>(resolve => {
-//       setTimeout(() => {
-//         if (text === "") {
-//           resolve(AsyncOptions);
-//         }
-//         const filterRegex = new RegExp(text, "i");
-//         resolve(AsyncOptions.filter(option => option.label.match(filterRegex)));
-//       }, 300);
-//     });
-//   }
-// };
-
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
   initialOptions: options,
@@ -217,9 +196,3 @@ SetAValue.args = {
   initialOptions: options,
   placeholder: "Search for something",
 };
-
-// export const Async = AsyncTemplate.bind({});
-// Async.args = {
-//   initialOptions: options,
-//   placeholder: "Search for something",
-// };
