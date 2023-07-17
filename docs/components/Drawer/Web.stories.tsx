@@ -12,6 +12,16 @@ export default {
   parameters: {
     viewMode: "story",
     previewTabs: { code: { hidden: false } },
+    code: {
+      imports: [
+        'import { Drawer, DrawerGrid } from "@jobber/components/Drawer";' +
+          'import { useState } from "react";' +
+          'import { Page } from "@jobber/components/Page";' +
+          'import { Content } from "@jobber/components/Content";' +
+          'import { Button } from "@jobber/components/Button";' +
+          'import { Text } from "@jobber/components/Text";',
+      ],
+    },
   },
 } as ComponentMeta<typeof Drawer>;
 
