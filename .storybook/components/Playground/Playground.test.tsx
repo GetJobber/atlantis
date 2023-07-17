@@ -201,7 +201,44 @@ describe("Playground", () => {
     );
 
     expect(container).not.toHaveTextContent(
-      `import { Router } from "@jobber/compponents/Router`,
+      `import { Router } from "@jobber/components/Router`,
+    );
+  });
+
+  it("should allow imports of subcomponents of @jobber/components", () => {
+    mockStoryData({
+      // @ts-expect-error - Storybook API types does allow this
+      parameters: {
+        previewTabs: {
+          code: {
+            extraImports: {
+              "react-router-dom": ["Router"],
+              "@jobber/components/Drawer": ["DrawerGrid"],
+            },
+          },
+        },
+      },
+      sourceCode: `args => (
+        <Router basename="/components/button">
+        <DrawerGrid>
+          <Content>Sup!</Content>
+          <Drawer>
+            <Content>Hello</Content>
+          </Drawer>
+        </DrawerGrid>
+        </Router>
+        )`,
+    });
+    const { container } = render(<Playground />);
+
+    expect(container).toHaveTextContent(
+      'import { DrawerGrid } from "@jobber/components/Drawer";',
+    );
+    expect(container).toHaveTextContent(
+      'import { Drawer } from "@jobber/components/Drawer";',
+    );
+    expect(container).not.toHaveTextContent(
+      'import { DrawerGrid } from "@jobber/components/DrawerGrid";',
     );
   });
 });
