@@ -37,14 +37,16 @@ export function PlaygroundWarning() {
             component: ...,
             parameters: {
               ...,
-              code: {
-                extraImports: {
-                  "react-router-dom": [
-                    "Route",
-                    { name: "BrowserRouter", alias: "Router" },
-                    "Switch",
-                  ],
-                }
+              previewTabs: {
+                code: {
+                  extraImports: {
+                    "react-router-dom": [
+                      "Route",
+                      { name: "BrowserRouter", alias: "Router" },
+                      "Switch",
+                    ],
+                  },
+                },
               },
             },
           } as ComponentMeta<>;`}
