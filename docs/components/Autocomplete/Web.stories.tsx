@@ -22,6 +22,7 @@ const options = [
 ];
 
 const BasicTemplate: ComponentStory<typeof Autocomplete> = args => {
+  const basicOptions = args.initialOptions;
   const [value, setValue] = useState<Option | undefined>();
   return (
     <Autocomplete
@@ -40,10 +41,10 @@ const BasicTemplate: ComponentStory<typeof Autocomplete> = args => {
   );
   function getOptions(text: string) {
     if (text === "") {
-      return options;
+      return basicOptions;
     }
     const filterRegex = new RegExp(text, "i");
-    return options.filter(option => option.label.match(filterRegex));
+    return basicOptions.filter(option => option.label.match(filterRegex));
   }
 };
 
@@ -67,6 +68,7 @@ const withDetailsOptions = [
 ];
 
 const WithDetailsTemplate: ComponentStory<typeof Autocomplete> = args => {
+  const detailsOptions = args.initialOptions;
   const [value, setValue] = useState<Option | undefined>();
   return (
     <Autocomplete
@@ -78,10 +80,10 @@ const WithDetailsTemplate: ComponentStory<typeof Autocomplete> = args => {
   );
   function getOptions(text: string) {
     if (text === "") {
-      return withDetailsOptions;
+      return detailsOptions;
     }
     const filterRegex = new RegExp(text, "i");
-    return withDetailsOptions.filter(option => option.label.match(filterRegex));
+    return detailsOptions.filter(option => option.label.match(filterRegex));
   }
 };
 
@@ -109,6 +111,7 @@ const SectionHeadingOptions = [
 ];
 
 const SectionHeadingTemplate: ComponentStory<typeof Autocomplete> = args => {
+  const headingOptions = args.initialOptions;
   const [value, setValue] = useState<Option | undefined>();
   return (
     <Autocomplete
@@ -120,10 +123,10 @@ const SectionHeadingTemplate: ComponentStory<typeof Autocomplete> = args => {
   );
   function getOptions(text: string) {
     if (text === "") {
-      return SectionHeadingOptions;
+      return headingOptions;
     }
     const filterRegex = new RegExp(text, "i");
-    return SectionHeadingOptions.map(section => ({
+    return headingOptions.map(section => ({
       ...section,
       options: section.options.filter(option =>
         option.label.match(filterRegex),
@@ -133,7 +136,8 @@ const SectionHeadingTemplate: ComponentStory<typeof Autocomplete> = args => {
 };
 
 const SetAValueTemplate: ComponentStory<typeof Autocomplete> = args => {
-  const [value, setValue] = useState<Option | undefined>(options[0]);
+  const valueOptions = args.initialOptions;
+  const [value, setValue] = useState<Option | undefined>(valueOptions[0]);
   return (
     <>
       <pre>{JSON.stringify(value, undefined, 2)}</pre>
@@ -146,7 +150,7 @@ const SetAValueTemplate: ComponentStory<typeof Autocomplete> = args => {
       <Button
         label="Choose Enterprise"
         onClick={() => {
-          setValue(options[4]);
+          setValue(valueOptions[4]);
         }}
       />
       <Button
@@ -159,35 +163,36 @@ const SetAValueTemplate: ComponentStory<typeof Autocomplete> = args => {
   );
   function getOptions(text: string) {
     if (text === "") {
-      return options;
+      return valueOptions;
     }
     const filterRegex = new RegExp(text, "i");
-    return options.filter(option => option.label.match(filterRegex));
+    return valueOptions.filter(option => option.label.match(filterRegex));
   }
 };
 
-const AsyncTemplate: ComponentStory<typeof Autocomplete> = args => {
-  const [value, setValue] = useState<Option | undefined>();
-  return (
-    <Autocomplete
-      {...args}
-      value={value}
-      onChange={newValue => setValue(newValue)}
-      getOptions={getOptions}
-    />
-  );
-  function getOptions(text: string) {
-    return new Promise<Option[]>(resolve => {
-      setTimeout(() => {
-        if (text === "") {
-          resolve(options);
-        }
-        const filterRegex = new RegExp(text, "i");
-        resolve(options.filter(option => option.label.match(filterRegex)));
-      }, 300);
-    });
-  }
-};
+// const AsyncTemplate: ComponentStory<typeof Autocomplete> = args => {
+//   const AsyncOptions = args.initialOptions;
+//   const [value, setValue] = useState<Option | undefined>();
+//   return (
+//     <Autocomplete
+//       {...args}
+//       value={value}
+//       onChange={newValue => setValue(newValue)}
+//       getOptions={getOptions}
+//     />
+//   );
+//   function getOptions(text: string) {
+//     return new Promise<Option[]>(resolve => {
+//       setTimeout(() => {
+//         if (text === "") {
+//           resolve(AsyncOptions);
+//         }
+//         const filterRegex = new RegExp(text, "i");
+//         resolve(AsyncOptions.filter(option => option.label.match(filterRegex)));
+//       }, 300);
+//     });
+//   }
+// };
 
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
@@ -213,8 +218,8 @@ SetAValue.args = {
   placeholder: "Search for something",
 };
 
-export const Async = AsyncTemplate.bind({});
-Async.args = {
-  initialOptions: options,
-  placeholder: "Search for something",
-};
+// export const Async = AsyncTemplate.bind({});
+// Async.args = {
+//   initialOptions: options,
+//   placeholder: "Search for something",
+// };
