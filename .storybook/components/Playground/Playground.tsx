@@ -11,6 +11,7 @@ import "./Playground.css";
 import { PlaygroundWarning } from "./PlaygroundWarning";
 import { PlaygroundImports } from "./types";
 import { THIRD_PARTY_PACKAGE_VERSIONS } from "./constants";
+import { formatCode } from "./utils";
 
 export function Playground() {
   const { getCurrentStoryData } = useStorybookApi();
@@ -68,7 +69,9 @@ export function Playground() {
       }
     `;
 
-    return [importsString, exampleComponent].filter(Boolean).join("\n\n");
+    return formatCode(
+      [importsString, exampleComponent].filter(Boolean).join("\n\n"),
+    );
   }
 }
 
@@ -107,8 +110,10 @@ function getSourceCode(
   }
 }
 
-function getImportStrings(parameters: Story["parameters"],
-  isComponentsNative: boolean,): string {
+function getImportStrings(
+  parameters: Story["parameters"],
+  isComponentsNative: boolean,
+): string {
   const extraDepencyImports = getExtraDependencyImports(parameters);
 
   if (parameters && "storySource" in parameters) {
@@ -122,7 +127,11 @@ function getImportStrings(parameters: Story["parameters"],
       ? [getSingleModuleImport("@jobber/components-native", componentNames)]
       : getComponentsImports(componentNames);
 
-    return [getSingleModuleImport("react", hookNames), ...componentImports, extraDepencyImports.importString]
+    return [
+      getSingleModuleImport("react", hookNames),
+      ...componentImports,
+      extraDepencyImports.importString,
+    ]
       .filter(Boolean)
       .join("\n");
   }
