@@ -6,7 +6,7 @@ import { InputText, InputTextProps, InputTextRef } from "../InputText";
 
 export const InputPassword = forwardRef(InputPasswordInternal);
 
-interface InputPasswordProps
+export interface InputPasswordProps
   extends Omit<
     InputTextProps,
     "keyboard" | "secureTextEntry" | "textContentType" | "clearable"
