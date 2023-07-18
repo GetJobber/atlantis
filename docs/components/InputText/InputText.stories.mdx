@@ -1,35 +1,22 @@
-import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Canvas, Meta } from "@storybook/addon-docs";
 import { useState } from "react";
 import { InputText } from "@jobber/components/InputText";
 import { Button } from "@jobber/components/Button";
 import { Content } from "@jobber/components/Content";
 import { Text } from "@jobber/components/Text";
 
-<Meta title="Cadssad" component={InputText} />
+<Meta
+  title="Components/Forms and Inputs/InputText/Docs"
+  component={InputText}
+/>
 
 # Input Text
 
 Input text is used in forms that accept short or long answers from users.
 
-```ts
-import { InputText } from "@jobber/components/InputText";
-```
+## Design & usage guidelines
 
-<Canvas>
-  <Story
-    name="InputText"
-    args={{
-      defaultValue: "Rocinante",
-      placeholder: "Ship Name",
-    }}
-  >
-    {args => <InputText {...args} />}
-  </Story>
-</Canvas>
-
-<ArgsTable of={InputText} story="InputText" />
-
-## Controlled
+### Controlled
 
 Use this to allow users to provide short answers.
 
@@ -47,7 +34,7 @@ Use this to allow users to provide short answers.
   }}
 </Canvas>
 
-## Multiline
+### Multiline
 
 Use this to allow users to provide long answers. The default number of rows is
 three. Note that `loading={true}` is unimplemented for multiline input text.
@@ -60,7 +47,7 @@ three. Note that `loading={true}` is unimplemented for multiline input text.
   />
 </Canvas>
 
-## Multiline with minimum and maximum
+### Multiline with minimum and maximum
 
 This is to allow flexibility in the displayed textarea size as the user types.
 The textarea will start at a specified minimum and grow to a specified maximum.
@@ -73,7 +60,7 @@ The textarea will start at a specified minimum and grow to a specified maximum.
   />
 </Canvas>
 
-## Prefix/suffix
+### Prefix/suffix
 
 Use a prefix or suffix when additional visual cues about an input's function may
 be helpful.
@@ -107,7 +94,7 @@ focus on the task at hand.
   </Content>
 </Canvas>
 
-## Validation message
+### Validation message
 
 You can add your own custom validation messages on a field to assist the user in
 successfully completing a form. This doesn't _replace_ server-side validation,
