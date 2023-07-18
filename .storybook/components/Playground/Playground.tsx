@@ -15,19 +15,20 @@ import { formatCode } from "./utils";
 
 export function Playground() {
   const { getCurrentStoryData } = useStorybookApi();
-  const activeStory = getCurrentStoryData() as Story;
+  const activeStory = getCurrentStoryData() as Story | undefined;
 
-  if (!activeStory) return <></>;
+  if (!activeStory) {
+    return <></>;
+  }
 
-  const { parameters, args, type, parent } = activeStory;
-  const isComponentStory = type === "story" && parent.startsWith("components");
+  const { isComponentStory, importsString, extraDependencies, canPreview } =
+    getPlaygroundInfo(activeStory);
 
-  if (!isComponentStory) return <>No can do</>;
+  if (!isComponentStory) {
+    return <div className="codeUnavailable" data-testid="code-unavailable" />;
+  }
 
-  const isComponentsNative = activeStory.parent.endsWith("mobile");
-  const importsString = getImportStrings(parameters, isComponentsNative);
-  const extraDependencies = getExtraDependencies(parameters);
-  const canPreview = Boolean(importsString) && !isComponentsNative;
+  const { parameters, args } = activeStory;
 
   return (
     <SandpackProvider
@@ -75,6 +76,19 @@ export function Playground() {
   }
 }
 
+function getPlaygroundInfo({ parameters, type, parent }: Story) {
+  const isComponentsNative = parent.endsWith("mobile");
+  const importsString = getImportStrings(parameters, isComponentsNative);
+
+  return {
+    isComponentsNative,
+    importsString,
+    isComponentStory: type === "story" && parent.startsWith("components"),
+    extraDependencies: getExtraDependencies(parameters),
+    canPreview: Boolean(importsString) && !isComponentsNative,
+  };
+}
+
 function getSourceCode(
   args: Story["args"],
   parameters: Story["parameters"],
@@ -114,12 +128,12 @@ function getImportStrings(
   parameters: Story["parameters"],
   isComponentsNative: boolean,
 ): string {
-  const extraDepencyImports = getExtraDependencyImports(parameters);
+  const extraDependencyImports = getExtraDependencyImports(parameters);
 
   if (parameters && "storySource" in parameters) {
     const { componentNames, hookNames } = parseSourceStringForImports(
       parameters.storySource.source,
-      extraDepencyImports.componentNames,
+      extraDependencyImports.componentNames,
     );
 
     // Import components from @jobber/components
@@ -130,7 +144,7 @@ function getImportStrings(
     return [
       getSingleModuleImport("react", hookNames),
       ...componentImports,
-      extraDepencyImports.importString,
+      extraDependencyImports.importString,
     ]
       .filter(Boolean)
       .join("\n");
