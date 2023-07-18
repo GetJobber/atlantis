@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Button } from "@jobber/components/Button";
-import {
-  Autocomplete,
-  GroupOption,
-  Option,
-} from "@jobber/components/Autocomplete";
+import { Autocomplete, Option } from "@jobber/components/Autocomplete";
 
 export default {
   title: "Components/Forms and Inputs/Autocomplete/Web",
@@ -16,11 +12,7 @@ export default {
       code: {
         hidden: false,
         extraImports: {
-          "@jobber/components/Autocomplete": [
-            "Autocomplete",
-            "Option",
-            "GroupOption",
-          ],
+          "@jobber/components/Autocomplete": ["Autocomplete", "Option"],
         },
       },
     },
@@ -40,9 +32,7 @@ const options = [
 // are not undefined in the code preview
 
 const BasicTemplate: ComponentStory<typeof Autocomplete> = args => {
-  const basicOptions: Option[] = Array.isArray(args.initialOptions)
-    ? args.initialOptions
-    : [];
+  const basicOptions = args.initialOptions;
   const [value, setValue] = useState<Option | undefined>();
   return (
     <Autocomplete
@@ -88,9 +78,7 @@ const withDetailsOptions = [
 ];
 
 const WithDetailsTemplate: ComponentStory<typeof Autocomplete> = args => {
-  const detailsOptions: Option[] = Array.isArray(args.initialOptions)
-    ? args.initialOptions
-    : [];
+  const detailsOptions = args.initialOptions;
   const [value, setValue] = useState<Option | undefined>();
   return (
     <Autocomplete
@@ -133,11 +121,7 @@ const SectionHeadingOptions = [
 ];
 
 const SectionHeadingTemplate: ComponentStory<typeof Autocomplete> = args => {
-  const headingOptions: (Option | GroupOption)[] = Array.isArray(
-    args.initialOptions,
-  )
-    ? args.initialOptions
-    : [];
+  const headingOptions = args.initialOptions;
   const [value, setValue] = useState<Option | undefined>();
   return (
     <Autocomplete
@@ -152,25 +136,17 @@ const SectionHeadingTemplate: ComponentStory<typeof Autocomplete> = args => {
       return headingOptions;
     }
     const filterRegex = new RegExp(text, "i");
-    return headingOptions.map(section => {
-      if ("options" in section) {
-        return {
-          ...section,
-          options: section.options.filter(option =>
-            option.label.match(filterRegex),
-          ),
-        };
-      } else {
-        return section;
-      }
-    });
+    return headingOptions.map(section => ({
+      ...section,
+      options: section.options.filter(option =>
+        option.label.match(filterRegex),
+      ),
+    }));
   }
 };
 
 const SetAValueTemplate: ComponentStory<typeof Autocomplete> = args => {
-  const valueOptions: Option[] = Array.isArray(args.initialOptions)
-    ? args.initialOptions
-    : [];
+  const valueOptions = args.initialOptions;
   const [value, setValue] = useState<Option | undefined>(valueOptions[0]);
   return (
     <>
