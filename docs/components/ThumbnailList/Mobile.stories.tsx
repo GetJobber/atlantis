@@ -7,6 +7,9 @@ export default {
   component: ThumbnailList,
   parameters: {
     viewMode: "story",
+    previewTabs: { code: { hidden: false } },
+    viewport: { defaultViewport: "mobile1" },
+    showNativeOnWebDisclaimer: true,
   },
 } as ComponentMeta<typeof ThumbnailList>;
 
