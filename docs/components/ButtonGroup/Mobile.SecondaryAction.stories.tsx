@@ -6,6 +6,7 @@ export default {
   title: "Components/Actions/ButtonGroup/Mobile/ButtonGroup.SecondaryAction",
   parameters: {
     viewMode: "story",
+    previewTabs: { code: { hidden: false } },
     viewport: { defaultViewport: "mobile1" },
     showNativeOnWebDisclaimer: true,
   },

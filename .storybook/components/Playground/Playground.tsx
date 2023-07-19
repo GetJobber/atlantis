@@ -11,18 +11,25 @@ import "./Playground.css";
 import { PlaygroundWarning } from "./PlaygroundWarning";
 import { PlaygroundImports } from "./types";
 import { THIRD_PARTY_PACKAGE_VERSIONS } from "./constants";
+import { formatCode } from "./utils";
 
 export function Playground() {
   const { getCurrentStoryData } = useStorybookApi();
-  const activeStory = getCurrentStoryData() as Story;
+  const activeStory = getCurrentStoryData() as Story | undefined;
 
-  if (!activeStory) return <></>;
+  if (!activeStory) {
+    return <></>;
+  }
+
+  const { isComponentStory, importsString, extraDependencies, canPreview } =
+    getPlaygroundInfo(activeStory);
+
+  if (!isComponentStory) {
+    return <div className="codeUnavailable" data-testid="code-unavailable" />;
+  }
 
   const { parameters, args } = activeStory;
-  const importsString = getImportStrings(parameters);
-  const extraDependencies = getExtraDependencies(parameters);
 
-  const canPreview = Boolean(importsString);
   return (
     <SandpackProvider
       template="react-ts"
@@ -36,7 +43,7 @@ export function Playground() {
         visibleFiles: ["/Example.tsx"],
         activeFile: "/Example.tsx",
       }}
-      theme="dark"
+      theme={canPreview ? "dark" : "light"}
       files={{
         "/App.tsx": getAppJsCode(),
         "/Example.tsx": getExampleJsCode(),
@@ -63,8 +70,23 @@ export function Playground() {
       }
     `;
 
-    return [importsString, exampleComponent].filter(Boolean).join("\n\n");
+    return formatCode(
+      [importsString, exampleComponent].filter(Boolean).join("\n\n"),
+    );
   }
+}
+
+function getPlaygroundInfo({ parameters, type, title }: Story) {
+  const isComponentsNative = title.includes("/Mobile");
+  const importsString = getImportStrings(parameters, isComponentsNative);
+
+  return {
+    isComponentsNative,
+    importsString,
+    isComponentStory: type === "story" && title.startsWith("Components/"),
+    extraDependencies: getExtraDependencies(parameters),
+    canPreview: Boolean(importsString) && !isComponentsNative,
+  };
 }
 
 function getSourceCode(
@@ -102,35 +124,52 @@ function getSourceCode(
   }
 }
 
-function getImportStrings(parameters: Story["parameters"]): string {
-  const extraDepencyImports = getExtraDependencyImports(parameters);
+function getImportStrings(
+  parameters: Story["parameters"],
+  isComponentsNative: boolean,
+): string {
+  const extraDependencyImports = getExtraDependencyImports(parameters);
 
   if (parameters && "storySource" in parameters) {
     const { componentNames, hookNames } = parseSourceStringForImports(
       parameters.storySource.source,
-      extraDepencyImports.componentNames,
+      extraDependencyImports.componentNames,
     );
 
     // Import components from @jobber/components
-    const componentImports =
-      componentNames?.map(component => {
-        return `import { ${component} } from "@jobber/components/${component}";`;
-      }) || [];
-
-    // Import hooks from react
-    const hooksImports =
-      hookNames?.map(hook => {
-        return `import { ${hook} } from "react";`;
-      }) || [];
+    const componentImports = isComponentsNative
+      ? [getSingleModuleImport("@jobber/components-native", componentNames)]
+      : getComponentsImports(componentNames);
 
     return [
-      ...hooksImports,
+      getSingleModuleImport("react", hookNames),
       ...componentImports,
-      extraDepencyImports.importString,
-    ].join("\n");
+      extraDependencyImports.importString,
+    ]
+      .filter(Boolean)
+      .join("\n");
   }
 
   return "";
+}
+
+function getComponentsImports(componentNames?: Array<string>) {
+  if (componentNames) {
+    return componentNames.map(
+      name => `import { ${name} } from "@jobber/components/${name}";`,
+    );
+  }
+  return [];
+}
+
+function getSingleModuleImport(
+  moduleName = "react",
+  hookNames?: Array<string> | null,
+) {
+  if (hookNames) {
+    return `import { ${hookNames.join(", ")} } from "${moduleName}";`;
+  }
+  return;
 }
 
 function parseSourceStringForImports(source: string, extraImports: string[]) {
