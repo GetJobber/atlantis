@@ -14,11 +14,14 @@ interface BaseToastProps {
 
 interface ActionToastProps extends BaseToastProps {
   /**
-   * @deprecated action will be removed in the next major version
+   * **Deprecated**: action will be removed in the next major version
+   * @deprecated
    */
   action(): void;
+
   /**
-   * @deprecated actionLabel will be removed in the next major version
+   * **Deprecated**: actionLabel will be removed in the next major version
+   * @deprecated
    */
   actionLabel: string;
 }
