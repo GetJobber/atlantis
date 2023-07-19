@@ -1,23 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { XOR } from "ts-xor";
 import styles from "./Toast.css";
 import { Icon, IconColorNames, IconNames } from "../Icon";
 import { Button } from "../Button";
 import { Typography } from "../Typography";
 
-interface BaseToastProps {
+export interface ToastProps {
   readonly variation?: "info" | "success" | "error";
   readonly message: string;
   readonly id?: number;
 }
 
-interface ActionToastProps extends BaseToastProps {
-  action(): void;
-  actionLabel: string;
-}
-
-export type ToastProps = XOR<BaseToastProps, ActionToastProps>;
 type ToastPropsInternal = Omit<ToastProps, "id">;
 
 export interface ToastRef {
@@ -29,12 +22,7 @@ interface Icon {
   color: IconColorNames;
 }
 
-export function Toast({
-  message,
-  variation = "success",
-  action,
-  actionLabel,
-}: ToastPropsInternal) {
+export function Toast({ message, variation = "success" }: ToastPropsInternal) {
   const [visible, setVisible] = useState(true);
   const icon = getIcon();
   let timer: NodeJS.Timeout;
@@ -65,14 +53,6 @@ export function Toast({
             <Typography element="span" size="large">
               {message}
             </Typography>
-
-            {action && (
-              <Button
-                label={`${actionLabel}`}
-                onClick={action}
-                type="tertiary"
-              />
-            )}
 
             <div className={styles.button}>
               <Button

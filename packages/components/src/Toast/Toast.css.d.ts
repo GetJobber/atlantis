@@ -5,7 +5,6 @@ declare const styles: {
   readonly "slice": string;
   readonly "icon": string;
   readonly "button": string;
-  readonly "action": string;
 };
 export = styles;
 

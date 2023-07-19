@@ -69,15 +69,6 @@ it("renders an alert icon variation: 'error' is set", () => {
   expect(getByTestId("alert")).toBeInstanceOf(SVGElement);
 });
 
-it("fires an action callback when the action button is clicked", () => {
-  const mockAction = jest.fn();
-  const { getByText } = render(<MockToast mockAction={mockAction} />);
-
-  fireEvent.click(getByText("No Variation"));
-  fireEvent.click(getByText("Do The Action"));
-  expect(mockAction).toHaveBeenCalledTimes(1);
-});
-
 it("sets a timer and clears the Slice after a certain amount of time", async () => {
   const { getByText, queryAllByText, findAllByText } = render(<MockToast />);
 
@@ -123,10 +114,8 @@ it("stops and starts the timer when the item is hover toggled", async () => {
 /**
  * Mocks out an example of Toast for usage in tests
  */
-interface MockToastProps {
-  mockAction?(): void;
-}
-const MockToast = ({ mockAction }: MockToastProps) => {
+
+const MockToast = () => {
   const buttons = [
     {
       label: "No Variation",
@@ -134,8 +123,6 @@ const MockToast = ({ mockAction }: MockToastProps) => {
         showToast({
           message: infoMessage,
           variation: "info",
-          actionLabel: "Do The Action",
-          action: () => mockAction && mockAction(),
         });
       },
     },

@@ -45,7 +45,3 @@
 .button {
   margin-left: var(--space-base);
 }
-
-.action {
-  margin-left: var(--space-small);
-}
