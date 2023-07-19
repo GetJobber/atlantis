@@ -2,3 +2,6 @@
 
 # tag atlantis on everything!
 * @GetJobber/atlantis
+
+# Ping our brave designers when an icon gets added
+packages/design/assets/icons/ @chris-at-jobber @fagnanm
