@@ -6,6 +6,7 @@ export default {
   title: "Components/Actions/ActionLabel/Mobile",
   parameters: {
     viewMode: "story",
+    previewTabs: { code: { hidden: false } },
   },
   component: ActionLabel,
 } as ComponentMeta<typeof ActionLabel>;
