@@ -38,7 +38,7 @@ const MultiRowTemplate: ComponentStory<typeof Flex> = args => (
     {[
       "Cash",
       "Cheque",
-      "Credit Card",
+      "Credit card",
       "Bank transfer",
       "Money order",
       "Pigeon Mail",
@@ -62,4 +62,5 @@ Nested.args = {
 export const MultiRow = MultiRowTemplate.bind({});
 MultiRow.args = {
   template: ["grow", "grow"],
+  gap: "small",
 };
