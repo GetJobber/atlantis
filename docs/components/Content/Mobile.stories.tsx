@@ -10,6 +10,8 @@ export default {
     backgrounds: {
       default: "surface background",
     },
+    viewport: { defaultViewport: "mobile1" },
+    previewTabs: { code: { hidden: false } },
   },
 } as ComponentMeta<typeof Content>;
 
