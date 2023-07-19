@@ -18,12 +18,18 @@ const config = {
         transcludeMarkdown: true,
       },
     },
-    "@storybook/addon-react-native-web",
+    {
+      name: "@storybook/addon-react-native-web",
+      options: {
+        modulesToTranspile: ["react-native-reanimated"],
+        babelPlugins: [
+          "react-native-reanimated/plugin"],
+      },
+    },
   ],
   features: { buildStoriesJson: true },
   framework: "@storybook/react",
   webpackFinal: async config => {
-
     config.plugins = [
       ...config.plugins,
 
@@ -32,6 +38,8 @@ const config = {
         /react-native-gesture-handler$/,
         path.join(__dirname, "__mocks__/react-native-gesture-handler.tsx"),
       ),
+      new webpack.EnvironmentPlugin({ JEST_WORKER_ID: null }),
+      new webpack.DefinePlugin({ process: { env: {} } })
     ];
 
     /**

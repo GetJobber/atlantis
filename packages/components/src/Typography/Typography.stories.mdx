@@ -21,7 +21,7 @@ import { Typography } from "@jobber/components/Typography";
       children: "Just some type here.",
     }}
   >
-    {args => <Typography {...args} />}
+    {args => <Typography {...args}>{args.children}</Typography>}}
   </Story>
 </Canvas>
 

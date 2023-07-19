@@ -1,0 +1,63 @@
+import { Meta } from "@storybook/addon-docs";
+import { Disclosure } from "@jobber/components/Disclosure";
+
+<Meta
+  title="Components/Layouts and Structure/Disclosure/Docs"
+  component={Disclosure}
+/>
+
+# Disclosure
+
+Disclosure is a component that allows users to progressively reveal content that
+is not essential to the primary objective of a given view.
+
+## Design & usage guidelines
+
+Disclosure is useful for revealing or hiding content that is not essential for
+the user to view all at once. You may want to put content inside of a Disclosure
+to:
+
+- reduce distractions or avoid overwhelming the user
+- hide non-critical controls or options in a form
+
+Disclosure should only be used to contain content or controls that aren't
+required for the user to complete the primary objective of a given view.
+
+For example, if a user has to make a selection between two options to complete a
+task, do not put the selection controls in a Disclosure. A better example of
+using a Disclosure would be if there is an optional setting that a user may want
+to change but is not required to.
+
+## Content guidelines
+
+- `title` should be informative and label the type of content grouped in the
+  body of the Disclosure
+- `children` should be actionable and clear. The contents of a Disclosure can
+  be:
+  - plain text
+  - any React component (except
+    [Page](../?path=/docs/components-layouts-and-structure-page--page) and
+    [Table](../?path=/docs/components-lists-and-tables-table--table))
+
+## Accessibility
+
+- Users should be able to use their keyboard and toggle the component's
+  open/close state
+- Headings are permitted in `summary` elements to provide in-page navigational
+  assistance
+- Include aria-expanded attribute on the trigger to communicate to assistive
+  technology
+- Include aria-controls attribute ties on the trigger to the content it controls
+  using the id of the collapsible container
+- The trigger contains a downward-pointing-arrow to hint that it can be
+  expanded. When the disclosure item is in an expanded state, this is rotated
+  180 degrees to point upwards
+- The icon will be given an `aria-hidden="true"` attribute to hide it from
+  assistive technologies, as well as `focusable="false"` to address an
+  inconsistency in IE and older versions of Edge
+
+### Responsiveness
+
+The Disclosure component should handle both click and touch, as well as keyboard
+inputs. It should fill the width of its container and if the component is less
+than 375px wide, the title will wrap and should not be truncated.

@@ -22,10 +22,13 @@ export function PlaygroundWarning() {
           us support this and open a PR for Atlantis.
         </p>
 
-        <p>2. Auto imports are wrong</p>
+        <p>2. Extra imports are wrong</p>
         <p>
-          You can override the auto-import by adding your own
-          <code>code.imports</code> parameter on the storybook meta tag.
+          You can add extra imports by adding your own
+          <code>previewTabs.code.extraImports</code> parameter on the storybook meta tag.
+          You may need to modify `.storybook/components/Playground/constants.ts`
+          to add the dependency to the list of Third-party dependencies usable
+          in the `Playground`
         </p>
 
         <pre>
@@ -34,8 +37,16 @@ export function PlaygroundWarning() {
             component: ...,
             parameters: {
               ...,
-              code: {
-                imports: 'import { Component } from "@jobber/components/MyComponent";'
+              previewTabs: {
+                code: {
+                  extraImports: {
+                    "react-router-dom": [
+                      "Route",
+                      { name: "BrowserRouter", alias: "Router" },
+                      "Switch",
+                    ],
+                  },
+                },
               },
             },
           } as ComponentMeta<>;`}

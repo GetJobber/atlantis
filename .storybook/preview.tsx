@@ -7,6 +7,7 @@ import { InlineCode } from "./components/InlineCode";
 import { DocsWithSidebar } from "./components/DocsWithSidebar";
 import { CustomCanvas } from "./components/CustomCanvas";
 import { SBProvider } from "./components/SBProvider";
+import { StoryDetails } from "./components/StoryDetails";
 
 import "@jobber/design/foundation.css";
 import "./assets/css/preview.css";
@@ -69,4 +70,5 @@ export const decorators = [
       <Story />
     </SBProvider>
   ),
+  (Story, context) => <StoryDetails Story={Story} context={context} />,
 ];
