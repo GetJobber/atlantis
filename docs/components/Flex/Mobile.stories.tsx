@@ -12,6 +12,8 @@ export default {
     backgrounds: {
       default: "surface background",
     },
+    previewTabs: { code: { hidden: false } },
+    viewport: { defaultViewport: "mobile1" },
   },
 } as ComponentMeta<typeof Flex>;
 
@@ -36,7 +38,7 @@ const MultiRowTemplate: ComponentStory<typeof Flex> = args => (
     {[
       "Cash",
       "Cheque",
-      "Credit card",
+      "Credit Card",
       "Bank transfer",
       "Money order",
       "Pigeon Mail",
@@ -59,5 +61,5 @@ Nested.args = {
 
 export const MultiRow = MultiRowTemplate.bind({});
 MultiRow.args = {
-  template: ["grow", "grow", "grow", "grow"],
+  template: ["grow", "grow"],
 };
