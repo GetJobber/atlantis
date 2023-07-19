@@ -46,7 +46,7 @@ describe("Playground", () => {
   });
 
   it("should render the code unavailable div when it's not a story", () => {
-    mockStoryData({ type: "docs", parent: "design-web" });
+    mockStoryData({ type: "docs", title: "Design/Foundation" });
     const { getByTestId } = render(<Playground />);
 
     expect(getByTestId("code-unavailable")).toBeInTheDocument();
@@ -264,7 +264,7 @@ describe("Playground", () => {
   describe("Mobile stories", () => {
     beforeEach(() => {
       mockStoryData({
-        parent: "components-mobile",
+        title: "Components/Mobile",
         sourceCode: "args => <Button />",
       });
     });
@@ -279,6 +279,7 @@ describe("Playground", () => {
 });
 
 interface MockStoryDataType extends Partial<sbAPI.Story> {
+  title?: string;
   sourceCode?: string;
 }
 
@@ -290,7 +291,7 @@ function mockStoryData({
   sbAPISpy.mockImplementation(() => ({
     getCurrentStoryData: () => ({
       type: "story",
-      parent: "components-web",
+      title: "Components/Web",
       ...rest,
       parameters: { ...parameters, storySource: { source: sourceCode } },
     }),

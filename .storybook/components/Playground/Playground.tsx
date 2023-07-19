@@ -76,14 +76,14 @@ export function Playground() {
   }
 }
 
-function getPlaygroundInfo({ parameters, type, parent }: Story) {
-  const isComponentsNative = parent.endsWith("mobile");
+function getPlaygroundInfo({ parameters, type, title }: Story) {
+  const isComponentsNative = title.includes("/Mobile");
   const importsString = getImportStrings(parameters, isComponentsNative);
 
   return {
     isComponentsNative,
     importsString,
-    isComponentStory: type === "story" && parent.startsWith("components"),
+    isComponentStory: type === "story" && title.startsWith("Components/"),
     extraDependencies: getExtraDependencies(parameters),
     canPreview: Boolean(importsString) && !isComponentsNative,
   };
