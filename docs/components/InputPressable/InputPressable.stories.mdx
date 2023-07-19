@@ -4,6 +4,10 @@ import { Meta } from "@storybook/addon-docs";
 
 # Input Pressable
 
+InputPressable is a component that is used to trigger an action when pressed.
+
+## Design & usage guidelines
+
 This component matches InputText in terms of visual design, but functionality is
 tied to a press action instead of an input. As a result, this component can
 launch a native modal or external library such as the DateTimePicker, instead of
@@ -11,12 +15,9 @@ acting as an input that triggers a keyboard when tapped.
 
 InputPressable can only be used as a controlled component. Given the nature of
 this input component which requires a wrapper to set the value, it doesn't make
-sense for this component to be uncontrolled. InputDateTime, for example, passes
-its value (whether controlled / uncontrolled) to InputPressable in a controlled
-manner. Having the uncontrolled state in both components would be prone to
-inconsistencies and issues.
+sense for this component to be uncontrolled.
 
-To make an InputPressable clearable you need to pass a `clearable` prop set as
+To make an InputPressable clearable you need to pass the `clearable` prop set as
 `always` the reason for this is that InputPressable isn't an input that is
 focused in the same way an InputText would be. When you want to have an input be
 clearable you will also need to provide an `onClear` that will clear the input's
