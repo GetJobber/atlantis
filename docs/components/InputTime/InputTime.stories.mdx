@@ -1,0 +1,18 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Components/Forms and Inputs/InputTime/Docs" />
+
+# Input Time
+
+The InputTime component is a text input that allows the user to enter a time
+value.
+
+## Design & usage guidelines
+
+This component obeys the system locale settings to determine 24 or 12 hour time.
+
+## Events
+
+If the input starts empty the `ChangeEvent` isn't fired until a full time is
+set. Setting just the hour or minute or _period_ (AM/PM) won't fire the event.
+When the last element is set the change event will fire.
