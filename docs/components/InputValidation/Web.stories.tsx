@@ -13,8 +13,8 @@ export default {
   },
 } as ComponentMeta<typeof InputValidation>;
 
-const BasicTemplate: ComponentStory<typeof InputValidation> = () => {
-  const [validationMessages, setValidationMessages] = useState();
+const BasicTemplate: ComponentStory<typeof InputValidation> = args => {
+  const [validationMessages, setValidationMessages] = useState(args.message);
   return (
     <>
       <Text>
@@ -42,3 +42,6 @@ const BasicTemplate: ComponentStory<typeof InputValidation> = () => {
 };
 
 export const Basic = BasicTemplate.bind({});
+Basic.args = {
+  message: "",
+};
