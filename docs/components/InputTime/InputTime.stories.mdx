@@ -11,8 +11,20 @@ value.
 
 This component obeys the system locale settings to determine 24 or 12 hour time.
 
-## Events
+### States
 
-If the input starts empty the `ChangeEvent` isn't fired until a full time is
-set. Setting just the hour or minute or _period_ (AM/PM) won't fire the event.
-When the last element is set the change event will fire.
+A
+[disabled](../?path=/story/components-forms-and-inputs-inputtime-web--disabled)
+state will be visually muted and the input will not be editable. This is similar
+to the
+[read-only](../?path=/story/components-forms-and-inputs-inputtime-web--read-only)
+state, but the input is not muted.
+
+An [invalid](../?path=/story/components-forms-and-inputs-inputtime-web--invalid)
+state will indicate that the input is not valid. This can be used when the input
+is required and the user has not entered a value.
+
+With [event](../?path=/story/components-forms-and-inputs-inputtime-web--event)
+states, if the input is empty to start, the `ChangeEvent` isn't fired until a
+full time is set. Setting just the hour or minute or _period_ (AM/PM) won't fire
+the event. When the last element is set the change event will fire.
