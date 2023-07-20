@@ -7,20 +7,17 @@ import {
 } from "@jobber/components/InputFile";
 import { FormatFile } from "@jobber/components/FormatFile";
 import { Heading } from "@jobber/components/Heading";
+import { Content } from "@jobber/components/Content";
 
 export default {
   title: "Components/Forms and Inputs/InputFile/Web",
   component: InputFile,
   parameters: {
     viewMode: "story",
-    // CAN THIS BE SET FOR A PARTICULAR STORY?
-    // options: { showPanel: false },
+    options: { showPanel: true },
     previewTabs: {
       code: {
         hidden: false,
-        extraImports: {
-          "@std-proposal/temporal": ["CivilTime"],
-        },
       },
     },
   },
@@ -50,9 +47,9 @@ const StatefulTemplate: ComponentStory<typeof InputFile> = args => {
   }
 };
 
-export const VariationsAndSizes: ComponentStory<typeof InputFile> = () => {
+const VariationsAndSizesTemplate: ComponentStory<typeof InputFile> = () => {
   return (
-    <>
+    <Content>
       <Heading level={2}>Dropzone</Heading>
       <InputFile getUploadParams={fetchUploadParams} />
       <InputFile size="small" getUploadParams={fetchUploadParams} />
@@ -64,8 +61,12 @@ export const VariationsAndSizes: ComponentStory<typeof InputFile> = () => {
         size="small"
         getUploadParams={fetchUploadParams}
       />
-    </>
+    </Content>
   );
+};
+export const VariationsAndSizes = VariationsAndSizesTemplate.bind({});
+VariationsAndSizes.parameters = {
+  options: { showPanel: false },
 };
 
 export const UsingUpdateFiles = StatefulTemplate.bind({});
