@@ -1,0 +1,60 @@
+import { Meta } from "@storybook/addon-docs";
+
+# Input File (Web Only)
+
+<Meta title="Components/Forms and Inputs/InputFile/Docs" />
+
+InputFile allows users to upload a file, or multiple files by dragging and
+dropping them into an area on the page or by clicking a button.
+
+## Design & usage guidelines
+
+When contributing to, or consuming the InputFile component, consider the
+following:
+
+- Provide feedback once the file(s) have been dropped and uploading begins.
+
+### getUploadParams
+
+`getUploadParams` is a necessary callback that tells InputFile where and how to
+upload files that are passed to it. It must return an object conforming to the
+`UploadParams` interface. `getUploadParams` can be async, allowing for a network
+request to fetch any extra fields.
+
+```ts
+interface UploadParams {
+  /**
+   * Url to POST file to.
+   */
+  readonly url: string;
+
+  /**
+   * Key to identify file.
+   * If unspecified a random `uuid` will be used.
+   */
+  readonly key?: string;
+
+  /**
+   * Any extra fields to send with the upload POST.
+   * If unspecified only the file will be included.
+   */
+  readonly fields?: { [field: string]: string };
+}
+```
+
+### updateFiles helper
+
+InputFile also exports an `updateFiles` method. This method allows for easily
+updating an array of `FileUpload`s based on their `key` as uploads progress.
+
+```ts
+/**
+ * Upsert a given `FileUpload` into an array of `FileUpload`s.
+ * `key` is used to uniquely identify files.
+ *
+ * @param updatedFile FileUpload File that was updated.
+ * @param files Existing array of FileUploads.
+ * @returns FileUpload[] updated set of files.
+ */
+export function updateFiles(updatedFile: FileUpload, files: FileUpload[]);
+```
