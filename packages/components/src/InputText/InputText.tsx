@@ -13,7 +13,7 @@ import {
   FormFieldProps,
 } from "../FormField";
 
-interface RowRange {
+export interface RowRange {
   min: number;
   max: number;
 }
