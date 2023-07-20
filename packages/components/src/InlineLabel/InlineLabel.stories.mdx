@@ -1,10 +1,19 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
 import { InlineLabel } from "@jobber/components/InlineLabel";
+import { Banner } from "@jobber/components/Banner";
 
-<Meta
-  title="Components/Status and Feedback/InlineLabel"
-  component={InlineLabel}
-/>
+<Meta title="Components/Deprecated/InlineLabel" component={InlineLabel} />
+
+<Banner type="error" dismissible={false}>
+  <p>
+    This component is deprecated. Please use{" "}
+    <a href="../?path=/docs/components-status-and-feedback-statuslabel--status-label">
+      {" "}
+      StatusLabel
+    </a>{" "}
+    instead.
+  </p>
+</Banner>
 
 # Inline Label
 

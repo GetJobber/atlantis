@@ -44,7 +44,7 @@ export const parameters = {
   options: {
     storySort: {
       method: "alphabetical",
-      order: ["Introduction", "Components", "Design", "*", "Changelog"],
+      order: ["Introduction", "Components", ['*', 'Deprecated'], "Design", "*", "Changelog"],
     },
   },
   docs: {
