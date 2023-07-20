@@ -1,10 +1,6 @@
-import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
-import { useRef, useState } from "react";
-import { useFormState } from "@jobber/hooks/useFormState";
+import { Meta } from "@storybook/addon-docs";
 import { Form } from "@jobber/components/Form";
-import { Content } from "@jobber/components/Content";
-import { InputText } from "@jobber/components/InputText";
-import { Button } from "@jobber/components/Button";
+import { Tab, Tabs } from "@jobber/components/Tabs";
 
 <Meta title="Components/Forms and Inputs/Form/Docs" component={Form} />
 
@@ -18,135 +14,77 @@ see the
 [InputText](../?path=/docs/components-forms-and-inputs-inputtext--input-text/#validation-message)
 documentation.
 
-```ts
-import { Form } from "@jobber/components/Form";
-```
+## Design & usages guidelines
 
-<Canvas>
-  <Story name="Form">
-    {args => {
-      const [{ isDirty, isValid }, setFormState] = useFormState();
-      const [first, setFirst] = useState("");
-      return (
-        <Form
-          {...args}
-          onSubmit={() => alert("Submitted 🎉🎉🎉")}
-          onStateChange={setFormState}
-        >
-          <Content>
-            <InputText
-              placeholder="First Name"
-              name="firstName"
-              value={first}
-              onChange={setFirst}
-              validations={{
-                required: {
-                  value: true,
-                  message: "Tell us your name",
-                },
-                minLength: {
-                  value: 3,
-                  message: "Your name is too short.",
-                },
-              }}
-            />
-            <InputText
-              placeholder="Last Name"
-              name="lastName"
-              validations={{
-                required: {
-                  value: true,
-                  message: "Tell us your last name.",
-                },
-              }}
-            />
-            <Button
-              label="Submit Form"
-              submit={true}
-              disabled={!isDirty || !isValid}
-            />
-          </Content>
-        </Form>
-      );
-    }}
-  </Story>
-</Canvas>
+The `<Form>` component has a lot of built-in features which rely on its internal
+state. To take advantage of these features, do not bypass the Form's internal
+state — the fields or inputs within the Form must have a `name` prop and **NOT**
+have a `value` and `onChange` prop.
 
-<ArgsTable of={Form} story="Form" />
+### Save button behaviour (Mobile)
 
-## onStateChange
+#### iOS
 
-`onStateChange` will call whenever the state of the form is changed. It is best
-practice to use the
-[`useFormState`](../?path=/docs/hooks-useformstate--use-form-state) hook with
-the `onStateChange` prop.
+On iOS, the save button will be fixed to the bottom of the viewport until the
+keyboard is opened.
 
-<Canvas>
-  {() => {
-    const [formState, setFormState] = useFormState();
-    return (
-      <>
-        <Form onSubmit={() => alert("submitted")} onStateChange={setFormState}>
-          <InputText
-            placeholder="First Name"
-            name="firstName"
-            validations={{
-              required: {
-                value: true,
-                message: "Tell us your name",
-              },
-              minLength: {
-                value: 3,
-                message: "Your name is too short.",
-              },
-            }}
-          />
-        </Form>
-        <pre>{JSON.stringify(formState, null, 2)}</pre>
-      </>
-    );
-  }}
-</Canvas>
+Once the keyboard is open, the save button will be inline beneath the Form's
+inputs, unless the Form is so short that it does not scroll. In this case, the
+save button will remain fixed above the keyboard.
 
-## Triggering submission
+This prevents the user from accidentally submitting the Form before they have
+completed entering all the relevant information for their work, especially since
+many data points in Jobber cannot be edited once saved.
 
-Submission of a Form can be done outside of the Form itself by using the
-`validate` function that is exposed.
+#### Android
 
-<Canvas>
-  {() => {
-    const formRef = useRef();
-    return (
-      <Content>
-        <Form onSubmit={() => alert("Submitted 🎉🎉🎉")} ref={formRef}>
-          <Content>
-            <InputText
-              placeholder="First Name"
-              name="firstName"
-              validations={{
-                required: {
-                  value: true,
-                  message: "Tell us your name",
-                },
-              }}
-            />
-            <InputText
-              placeholder="Last Name"
-              name="lastName"
-              validations={{
-                required: {
-                  value: true,
-                  message: "Tell us your last name.",
-                },
-              }}
-            />
-          </Content>
-        </Form>
-        <Button
-          label="Submit Form from the outside"
-          onClick={() => formRef.current.submit()}
-        />
-      </Content>
-    );
-  }}
-</Canvas>
+On Android, the save button will always be inline with the contents of the Form.
+
+## Content guidelines
+
+### Inputs
+
+`<Form>` can accept various inputs and selection elements such as (but not
+limited to) `InputText`, `Select`, `Switch`, `Checkbox`, and `Chips`. They
+should be placed inside Cards to indicate grouping when relevant, and groups of
+Cards can be spaced appropriately using `ContentSection`.
+
+### Save Button label (Mobile)
+
+The `saveButtonLabel` property defaults to "Save", but should be made more
+verbose to add context for the user. Use the format "Save {object}", such as
+"Save Job". This helps clarify to the user that tapping the Save Button is not
+saving the single input they are editing, but the entire object.
+
+### Form errors
+
+All error messaging should follow our
+[Product Vocabulary.](?path=/docs/content-product-vocabulary--page)
+
+#### Server-side errors
+
+Server-side error messages will be displayed in a banner atop the `Form` upon a
+failed submission attempt. These are errors where something has gone wrong with
+the data either on the way to, or on the way back from, our servers. If the user
+can address the errors, inform them how to do so in the banner. Otherwise, a
+generic message informing the user that something went wrong is an appropriate
+fallback.
+
+#### Client-side errors
+
+Client-side errors are issues that we can catch and inform the user of before
+they attempt to submit the `Form`, such as a required field left blank or an
+incorrect email address format.
+
+Error messages for individual inputs should appear inline on each impacted
+input. `Form` will automatically scroll to the first invalid (has an error)
+element and display the error message.
+
+## Accessibility (Mobile)
+
+When an error occurs, either server-side or client-side, `Form` will announce
+the message to screen-readers and set focus to the impacted portion of the
+`Form`.
+
+The individual inputs are responsible for accessibility concerns such as the
+labels, types, values, and error messages of each input.

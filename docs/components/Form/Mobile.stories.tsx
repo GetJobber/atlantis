@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Content, Form, InputText } from "@jobber/components-native";
 
@@ -46,20 +46,38 @@ Basic.args = {
     }),
 };
 
-export const HasVisibility = BasicTemplate.bind({});
-HasVisibility.args = {
-  placeholder: "Password",
-  hasVisibility: true,
-};
-
-export const WithError = BasicTemplate.bind({});
-WithError.args = {
-  placeholder: "Password",
-  validations: {
-    required: { value: true, message: "Password is required" },
-    minLength: {
-      value: 10,
-      message: "Password must be at least 10 characters",
-    },
+export const WithSecondaryActions = BasicTemplate.bind({});
+WithSecondaryActions.args = {
+  initialValues: {
+    firstName: "Test",
+    lastName: "Secondary",
+    nickName: "Actions!",
   },
+  onSubmit: value =>
+    new Promise(resolve => {
+      setTimeout(() => resolve(alert(JSON.stringify(value, undefined))), 1000);
+    }),
+  secondaryActions: [
+    {
+      label: "Base",
+      handleAction: {
+        onSubmit: () =>
+          new Promise(resolve => {
+            setTimeout(() => resolve(alert("Base Case")), 1000);
+          }),
+      },
+      icon: "email",
+    },
+    {
+      label: "Destructive Delete",
+      handleAction: {
+        onSubmit: () =>
+          new Promise(resolve => {
+            setTimeout(() => resolve(alert("Base Case")), 1000);
+          }),
+      },
+      icon: "trash",
+      destructive: true,
+    },
+  ],
 };
