@@ -1,0 +1,152 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { useRef, useState } from "react";
+import { useFormState } from "@jobber/hooks/useFormState";
+import { Form } from "@jobber/components/Form";
+import { Content } from "@jobber/components/Content";
+import { InputText } from "@jobber/components/InputText";
+import { Button } from "@jobber/components/Button";
+
+<Meta title="Components/Forms and Inputs/Form/Docs" component={Form} />
+
+# Form
+
+The Form component is a wrapper component that handles the submission and
+validation of forms.
+
+For more information about `validations` using any of the `Input` components,
+see the
+[InputText](../?path=/docs/components-forms-and-inputs-inputtext--input-text/#validation-message)
+documentation.
+
+```ts
+import { Form } from "@jobber/components/Form";
+```
+
+<Canvas>
+  <Story name="Form">
+    {args => {
+      const [{ isDirty, isValid }, setFormState] = useFormState();
+      const [first, setFirst] = useState("");
+      return (
+        <Form
+          {...args}
+          onSubmit={() => alert("Submitted 🎉🎉🎉")}
+          onStateChange={setFormState}
+        >
+          <Content>
+            <InputText
+              placeholder="First Name"
+              name="firstName"
+              value={first}
+              onChange={setFirst}
+              validations={{
+                required: {
+                  value: true,
+                  message: "Tell us your name",
+                },
+                minLength: {
+                  value: 3,
+                  message: "Your name is too short.",
+                },
+              }}
+            />
+            <InputText
+              placeholder="Last Name"
+              name="lastName"
+              validations={{
+                required: {
+                  value: true,
+                  message: "Tell us your last name.",
+                },
+              }}
+            />
+            <Button
+              label="Submit Form"
+              submit={true}
+              disabled={!isDirty || !isValid}
+            />
+          </Content>
+        </Form>
+      );
+    }}
+  </Story>
+</Canvas>
+
+<ArgsTable of={Form} story="Form" />
+
+## onStateChange
+
+`onStateChange` will call whenever the state of the form is changed. It is best
+practice to use the
+[`useFormState`](../?path=/docs/hooks-useformstate--use-form-state) hook with
+the `onStateChange` prop.
+
+<Canvas>
+  {() => {
+    const [formState, setFormState] = useFormState();
+    return (
+      <>
+        <Form onSubmit={() => alert("submitted")} onStateChange={setFormState}>
+          <InputText
+            placeholder="First Name"
+            name="firstName"
+            validations={{
+              required: {
+                value: true,
+                message: "Tell us your name",
+              },
+              minLength: {
+                value: 3,
+                message: "Your name is too short.",
+              },
+            }}
+          />
+        </Form>
+        <pre>{JSON.stringify(formState, null, 2)}</pre>
+      </>
+    );
+  }}
+</Canvas>
+
+## Triggering submission
+
+Submission of a Form can be done outside of the Form itself by using the
+`validate` function that is exposed.
+
+<Canvas>
+  {() => {
+    const formRef = useRef();
+    return (
+      <Content>
+        <Form onSubmit={() => alert("Submitted 🎉🎉🎉")} ref={formRef}>
+          <Content>
+            <InputText
+              placeholder="First Name"
+              name="firstName"
+              validations={{
+                required: {
+                  value: true,
+                  message: "Tell us your name",
+                },
+              }}
+            />
+            <InputText
+              placeholder="Last Name"
+              name="lastName"
+              validations={{
+                required: {
+                  value: true,
+                  message: "Tell us your last name.",
+                },
+              }}
+            />
+          </Content>
+        </Form>
+        <Button
+          label="Submit Form from the outside"
+          onClick={() => formRef.current.submit()}
+        />
+      </Content>
+    );
+  }}
+</Canvas>
