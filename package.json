@@ -131,7 +131,7 @@
     "react-intl": "^6.4.2",
     "react-native": "^0.71.7",
     "react-native-modal-datetime-picker": "^15.0.1",
-    "react-native-safe-area-context": "^4.5.3",
+    "react-native-safe-area-context": "^4.5.2",
     "react-native-web": "^0.18.12",
     "react-router-dom": "^5.3.4",
     "react-test-renderer": "^18.2.0",
