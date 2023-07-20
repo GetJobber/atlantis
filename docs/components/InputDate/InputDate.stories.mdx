@@ -1,0 +1,85 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { InputDate } from "@jobber/components/InputDate";
+
+<Meta title="Components/Forms and Inputs/InputDate/Docs" />
+
+# Input Date
+
+InputDate provides a multi-modal way for the user to select a date, using
+either:
+
+- Form Field
+- Visual calendar selector and comes complete with the ability to re-format user
+  input into an expected date format.
+
+## Design & usage guidelines
+
+The InputDate should be used in most cases where the user needs to select a
+date.
+
+### States
+
+#### Disabled
+
+<Canvas>
+  <InputDate placeholder="Start Date" disabled={true} onChange={undefined} />
+</Canvas>
+
+#### Invalid
+
+<Canvas>
+  <InputDate
+    placeholder="Start date"
+    invalid="Start Date is required"
+    onChange={undefined}
+  />
+</Canvas>
+
+## Content guidelines
+
+The InputDate should only be used to display and submit date values. For other
+input usage, see [Related Components](#related-components).
+
+## Responsiveness
+
+When the InputDate is near the top or bottom of the viewport, the Datepicker
+will adjust its position to remain in view.
+
+The FormField for InputDate will take up the full available width of its parent.
+If used in an
+[InputGroup](../?path=/docs/components-forms-and-inputs-inputgroup-docs--page),
+it will take up the available amount of space left by any other inputs in the
+group.
+
+## Related components
+
+- On web if you do not need an accompanying form field, you can use the
+  [Datepicker](../?path=/docs/components-selections-datepicker--date-picker#date-picker)
+  on its own
+- If you need to allow the user to enter time, use
+  [InputTime](../?path=/docs/components-forms-and-inputs-inputtime--input-time)
+- If you just need a text input, use
+  [InputText](../?path=/docs/components-forms-and-inputs-inputtext-docs--page)
+
+## Notes
+
+Some functionality that we have opted not to introduce at this time, but that
+would be relatively feasible to add in the future:
+
+- allow for the concept of a date-range selection
+- allow for certain days or dates to be excluded from selection
+
+## Accessibility
+
+Accessibility concerns for the InputDate are captured by:
+
+### FormField
+
+Provides a label, announces input type, can be focused, and handles error
+validation and messaging.
+
+### Datepicker
+
+[Datepicker](../?path=/docs/components-selections-datepicker--date-picker#date-picker#accessibility)
+is keyboard-operable and announces the currently-focused date available for
+selection to the user via assistive technology.
