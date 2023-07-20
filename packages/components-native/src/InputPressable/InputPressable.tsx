@@ -10,7 +10,7 @@ import {
   useShowClear,
 } from "../InputFieldWrapper";
 
-interface InputPressableProps {
+export interface InputPressableProps {
   /**
    * Current value of the component
    */

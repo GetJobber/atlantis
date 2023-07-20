@@ -1,35 +1,20 @@
-import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Canvas, Meta } from "@storybook/addon-docs";
 import { useState } from "react";
 import { InputText } from "@jobber/components/InputText";
-import { Button } from "@jobber/components/Button";
 import { Content } from "@jobber/components/Content";
-import { Text } from "@jobber/components/Text";
 
-<Meta title="Components/Forms and Inputs/InputText" component={InputText} />
+<Meta
+  title="Components/Forms and Inputs/InputText/Docs"
+  component={InputText}
+/>
 
 # Input Text
 
 Input text is used in forms that accept short or long answers from users.
 
-```ts
-import { InputText } from "@jobber/components/InputText";
-```
+## Design & usage guidelines
 
-<Canvas>
-  <Story
-    name="InputText"
-    args={{
-      defaultValue: "Rocinante",
-      placeholder: "Ship Name",
-    }}
-  >
-    {args => <InputText {...args} />}
-  </Story>
-</Canvas>
-
-<ArgsTable of={InputText} story="InputText" />
-
-## Controlled
+### Controlled
 
 Use this to allow users to provide short answers.
 
@@ -47,10 +32,13 @@ Use this to allow users to provide short answers.
   }}
 </Canvas>
 
-## Multiline
+### Multiline
 
 Use this to allow users to provide long answers. The default number of rows is
 three. Note that `loading={true}` is unimplemented for multiline input text.
+
+For web, you can set a minimum and maximum number of rows. See:
+[Web/rows example](?path=/story/components-forms-and-inputs-inputtext-web--multiline).
 
 <Canvas>
   <InputText
@@ -60,20 +48,7 @@ three. Note that `loading={true}` is unimplemented for multiline input text.
   />
 </Canvas>
 
-## Multiline with minimum and maximum
-
-This is to allow flexibility in the displayed textarea size as the user types.
-The textarea will start at a specified minimum and grow to a specified maximum.
-
-<Canvas>
-  <InputText
-    defaultValue="Rocinante"
-    multiline={true}
-    rows={{ min: 1, max: 4 }}
-  />
-</Canvas>
-
-## Prefix/suffix
+### Prefix/suffix
 
 Use a prefix or suffix when additional visual cues about an input's function may
 be helpful.
@@ -107,7 +82,7 @@ focus on the task at hand.
   </Content>
 </Canvas>
 
-## Validation message
+### Validation message
 
 You can add your own custom validation messages on a field to assist the user in
 successfully completing a form. This doesn't _replace_ server-side validation,
@@ -173,18 +148,11 @@ This includes, but is not limited to:
   />
 </Canvas>
 
-### Read-only
-
-<Canvas>
-  <InputText
-    placeholder="Your referral code"
-    value="WXYZ100"
-    readonly={true}
-    name="referralCode"
-  />
-</Canvas>
-
 ### Invalid
+
+For mobile, you can pass a string to the `invalid` prop to display an error.
+See:
+[Mobile/invalid example](?path=/story/components-forms-and-inputs-inputtext-mobile--invalid).
 
 <Canvas>
   <InputText
@@ -195,85 +163,9 @@ This includes, but is not limited to:
   />
 </Canvas>
 
-## Sizes
+### Keyboard
 
-### Small
-
-<Canvas>
-  <InputText name="smallField" size="small" placeholder="Duration" />
-</Canvas>
-
-### Large
-
-<Canvas>
-  <InputText name="largeField" size="large" placeholder="Your username" />
-</Canvas>
-
-## Inline
-
-<Canvas>
-  <Text>
-    My name is
-    <InputText
-      name="durationInDays"
-      value="Jeff"
-      size="small"
-      inline={true}
-      maxLength={4}
-      align="center"
-    />
-  </Text>
-</Canvas>
-
-## Insertion
-
-<Canvas>
-  {() => {
-    const [text, setText] = useState("Just some words here.");
-    const textRef = React.createRef();
-    const handleTextChange = newValue => {
-      setText(newValue);
-    };
-    const insert = () => {
-      textRef.current.insert("🎉");
-    };
-    return (
-      <Content>
-        <InputText value={text} onChange={handleTextChange} ref={textRef} />
-        <pre>{text}</pre>
-        <Button label="Insert Emoji" onClick={insert} />
-      </Content>
-    );
-  }}
-</Canvas>
-
-## Focus
-
-<Canvas>
-  {() => {
-    const textARef = React.createRef();
-    const textBRef = React.createRef();
-    const focusA = () => {
-      textARef.current.focus();
-    };
-    const focusB = () => {
-      textBRef.current.focus();
-    };
-    return (
-      <Content>
-        <InputText value="Text input A" ref={textARef} />
-        <InputText value="Text input B" ref={textBRef} />
-        <Button label="Focus text input A" onClick={focusA} />
-        <br />
-        <Button label="Focus text input B" onClick={focusB} />
-      </Content>
-    );
-  }}
-</Canvas>
-
-## Keyboard
-
-Determine what default keyboard appears on mobile web.
+Determine what default keyboard appears on mobile.
 
 <Canvas>
   <InputText
@@ -283,21 +175,7 @@ Determine what default keyboard appears on mobile web.
   />
 </Canvas>
 
-## Loading
-
-Add a loading state to content. Note that `loading={true}` is unimplemented for
-multiline input text, i.e., when `multiline={true}`.
-
-<Canvas>
-  <InputText
-    placeholder="Checking phone number"
-    name="phoneNumber"
-    loading={true}
-    keyboard="numeric"
-  />
-</Canvas>
-
-## Using onValidation
+### Using onValidation (Web)
 
 If you need to capture the error message and render it outside of the component.
 Read the
