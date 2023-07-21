@@ -13,6 +13,14 @@ export default {
   subcomponents: { RadioOption },
   parameters: {
     viewMode: "story",
+    previewTabs: {
+      code: {
+        hidden: false,
+        extraImports: {
+          "@jobber/components/RadioGroup": ["RadioGroup", "RadioOption"],
+        },
+      },
+    },
   },
 } as ComponentMeta<typeof RadioGroup>;
 
@@ -32,12 +40,13 @@ const BasicTemplate: ComponentStory<typeof RadioGroup> = args => {
   );
 };
 
-const DisabledTemplate: ComponentStory<typeof RadioGroup> = () => {
+const DisabledTemplate: ComponentStory<typeof RadioGroup> = args => {
   const [company, setCompany] = useState("apple");
   const [checked, setChecked] = useState(true);
   return (
     <Content spacing="large">
       <RadioGroup
+        {...args}
         onChange={(value: string) => setCompany(value)}
         value={company}
         ariaLabel="Companies"
@@ -57,10 +66,11 @@ const DisabledTemplate: ComponentStory<typeof RadioGroup> = () => {
   );
 };
 
-const DescriptionTemplate: ComponentStory<typeof RadioGroup> = () => {
+const DescriptionTemplate: ComponentStory<typeof RadioGroup> = args => {
   const [company, setCompany] = useState("apple");
   return (
     <RadioGroup
+      {...args}
       onChange={(value: string) => setCompany(value)}
       value={company}
       ariaLabel="Companies"
