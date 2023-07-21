@@ -7,11 +7,7 @@ import { Divider } from "@jobber/components/Divider";
 import { Avatar } from "@jobber/components/Avatar";
 import { RadioGroup, RadioOption } from "@jobber/components/RadioGroup";
 
-<Meta
-  title="Components/Forms and Inputs/RadioGroup"
-  component={RadioGroup}
-  subcomponents={{ RadioOption }}
-/>
+<Meta title="Caaaaa" component={RadioGroup} subcomponents={{ RadioOption }} />
 
 # Radio Group
 
@@ -21,21 +17,6 @@ provided options.
 ```ts
 import { RadioGroup } from "@jobber/components/RadioGroup";
 ```
-
-<Canvas>
-  <Story name="RadioGroup">
-    {() => {
-      const [company, setCompany] = useState("apple");
-      return (
-        <RadioGroup onChange={setCompany} value={company} ariaLabel="Companies">
-          <RadioOption value="apple" label="Apple" />
-          <RadioOption value="google" label="Google" />
-          <RadioOption value="microsoft" label="Microsoft" />
-        </RadioGroup>
-      );
-    }}
-  </Story>
-</Canvas>
 
 <ArgsTable of={RadioGroup} story="RadioGroup" />
 

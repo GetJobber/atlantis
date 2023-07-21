@@ -1,0 +1,29 @@
+import { Meta } from "@storybook/addon-docs";
+import { RadioGroup, RadioOption } from "@jobber/components/RadioGroup";
+
+<Meta
+  title="Components/Forms and Inputs/RadioGroup/Docs"
+  component={RadioGroup}
+  subcomponents={{ RadioOption }}
+/>
+
+# Radio Group
+
+RadioGroup will allow users to choose a single selection from one of a list of
+provided options.
+
+## Usage guidelines
+
+### Rendering RadioOption with children
+
+If the `RadioGroup` is being used to select something other then text, you can
+render the `RadioOptions` with `children`.
+
+**Note:** When using `children`, `label` and `description` are not allowed due
+to the fact that they would collide with the `children` prop.
+
+## Accessibility
+
+**Note:** When using `children` it is the responsibility of the child to supply
+the proper accessible labels. If you are using children that do not contain
+text, an `aria-label` should be provided.
