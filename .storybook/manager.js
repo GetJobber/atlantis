@@ -47,8 +47,8 @@ addons.register('google-analytics', (api) => {
 
   api.on(STORY_CHANGED, () => {
     const { title, name } = api.getCurrentStoryData();
-    const { path } = api.getUrlState();
-    ReactGA.send({ hitType: "pageview", page: path, title: `${title} - ${name}` });
+    const { path, viewMode } = api.getUrlState();
+    ReactGA.send({ hitType: "pageview", page: path, title: `${title} - ${name} - ${viewMode}` });
   });
 
   api.on(STORY_ERRORED, ({ description }) => {
