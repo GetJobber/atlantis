@@ -9,6 +9,10 @@
   align-items: center;
 }
 
+.bannerChildren > a {
+  color: var(--color-text);
+}
+
 .bannerContent {
   display: flex;
   flex: 1 1 auto;
