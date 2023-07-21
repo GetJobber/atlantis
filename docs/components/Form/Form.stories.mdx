@@ -8,19 +8,46 @@ import { Form } from "@jobber/components/Form";
 The Form component is a wrapper component that handles the submission and
 validation of forms.
 
-For more information about `validations` using any of the `Input` components,
-see the
+For more information about `validations` using any of the Input components, see
+the
 [InputText](../?path=/docs/components-forms-and-inputs-inputtext--input-text/#validation-message)
 documentation.
 
 ## Design & usages guidelines
 
-The `<Form>` component has a lot of built-in features which rely on its internal
+The Form component has a lot of built-in features which rely on its internal
 state. To take advantage of these features, do not bypass the Form's internal
 state — the fields or inputs within the Form must have a `name` prop and **NOT**
 have a `value` and `onChange` prop.
 
-### Save button behaviour (Mobile)
+## Content guidelines
+
+### Inputs
+
+Form can accept various inputs and selection elements such as (but not limited
+to)
+[InputText](../?path=/docs/components-forms-and-inputs-inputtext-docs--page),
+[ Select](../?path=/docs/components-selections-select--select),
+[ Switch](../?path=/docs/components-selections-switch--switch-story),
+[ Checkbox](../?path=/docs/components-selections-checkbox--checkbox), and
+[ Chips](../?path=/docs/components-selections-chips--chips). They should be
+placed [Cards](../?path=/docs/components-layouts-and-structure-card-docs--page)
+to indicate grouping when relevant, and groups of Cards can be spaced
+appropriately using ContentSection.
+
+### Save Button label
+
+The `saveButtonLabel` property defaults to "Save", but should be made more
+verbose to add context for the user. Use the format "Save {object}", such as
+"Save Job". This helps clarify to the user that tapping the Save Button is not
+saving the single input they are editing, but the entire object.
+
+### Form errors
+
+All error messaging should follow our
+[Product Vocabulary.](?path=/docs/content-product-vocabulary--page)
+
+## Platform considerations
 
 #### iOS
 
@@ -39,51 +66,29 @@ many data points in Jobber cannot be edited once saved.
 
 On Android, the save button will always be inline with the contents of the Form.
 
-## Content guidelines
-
-### Inputs
-
-`<Form>` can accept various inputs and selection elements such as (but not
-limited to) `InputText`, `Select`, `Switch`, `Checkbox`, and `Chips`. They
-should be placed inside Cards to indicate grouping when relevant, and groups of
-Cards can be spaced appropriately using `ContentSection`.
-
-### Save Button label (Mobile)
-
-The `saveButtonLabel` property defaults to "Save", but should be made more
-verbose to add context for the user. Use the format "Save {object}", such as
-"Save Job". This helps clarify to the user that tapping the Save Button is not
-saving the single input they are editing, but the entire object.
-
-### Form errors
-
-All error messaging should follow our
-[Product Vocabulary.](?path=/docs/content-product-vocabulary--page)
-
 #### Server-side errors
 
-Server-side error messages will be displayed in a banner atop the `Form` upon a
-failed submission attempt. These are errors where something has gone wrong with
-the data either on the way to, or on the way back from, our servers. If the user
-can address the errors, inform them how to do so in the banner. Otherwise, a
-generic message informing the user that something went wrong is an appropriate
-fallback.
+Server-side error messages will be displayed in a banner at the top the Form
+upon a failed submission attempt. These are errors where something has gone
+wrong with the data either on the way to, or on the way back from, our servers.
+If the user can address the errors, inform them how to do so in the banner.
+Otherwise, a generic message informing the user that something went wrong is an
+appropriate fallback.
 
 #### Client-side errors
 
 Client-side errors are issues that we can catch and inform the user of before
-they attempt to submit the `Form`, such as a required field left blank or an
+they attempt to submit the Form, such as a required field left blank or an
 incorrect email address format.
 
 Error messages for individual inputs should appear inline on each impacted
-input. `Form` will automatically scroll to the first invalid (has an error)
+input. Form will automatically scroll to the first invalid (has an error)
 element and display the error message.
 
-## Accessibility (Mobile)
+When an error occurs, either server-side or client-side, Form will announce the
+message to screen-readers and set focus to the impacted portion of the Form.
 
-When an error occurs, either server-side or client-side, `Form` will announce
-the message to screen-readers and set focus to the impacted portion of the
-`Form`.
+## Accessibility (Mobile)
 
 The individual inputs are responsible for accessibility concerns such as the
 labels, types, values, and error messages of each input.

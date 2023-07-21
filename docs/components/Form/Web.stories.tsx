@@ -1,6 +1,6 @@
 import React, { MutableRefObject, useRef, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { useFormState } from "@jobber/hooks/useFormState";
+import { useFormState } from "@jobber/hooks";
 import { Form, FormRef } from "@jobber/components/Form";
 import { Content } from "@jobber/components/Content";
 import { InputText } from "@jobber/components/InputText";
@@ -11,7 +11,14 @@ export default {
   component: Form,
   parameters: {
     viewMode: "story",
-    previewTabs: { code: { hidden: false } },
+    previewTabs: {
+      code: {
+        hidden: false,
+        extraImports: {
+          "@jobber/hooks": ["useFormState"],
+        },
+      },
+    },
   },
 } as ComponentMeta<typeof Form>;
 
