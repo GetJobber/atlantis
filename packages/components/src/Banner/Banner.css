@@ -13,6 +13,10 @@
   color: var(--color-text);
 }
 
+.bannerChildren > a:hover {
+  color: var(--color-blue);
+}
+
 .bannerContent {
   display: flex;
   flex: 1 1 auto;
