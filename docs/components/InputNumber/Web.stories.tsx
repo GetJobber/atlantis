@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { InputNumber } from "@jobber/components/InputNumber";
+import { InputNumber, InputNumberRef } from "@jobber/components/InputNumber";
+import { Content } from "@jobber/components/Content";
+import { Button } from "@jobber/components/Button";
 import { Text } from "@jobber/components/Text";
 
 export default {
@@ -26,28 +28,6 @@ const BasicTemplate: ComponentStory<typeof InputNumber> = args => {
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
   value: 3,
-};
-
-export const Controlled = BasicTemplate.bind({});
-Controlled.args = {
-  value: 30,
-  min: 0,
-  max: 32,
-  placeholder: "Age",
-};
-
-export const Disabled = BasicTemplate.bind({});
-Disabled.args = {
-  value: 1234,
-  disabled: true,
-  placeholder: "SIN Number",
-};
-
-export const ReadOnly = BasicTemplate.bind({});
-ReadOnly.args = {
-  value: 1234,
-  readonly: true,
-  placeholder: "Your PIN number",
 };
 
 export const Invalid = BasicTemplate.bind({});
@@ -85,3 +65,24 @@ Inline.args = {
   maxLength: 2,
   align: "center",
 };
+
+const FocusTemplate: ComponentStory<typeof InputNumber> = args => {
+  const inputNumberRef = React.createRef<InputNumberRef>();
+  const focusInput = () => {
+    inputNumberRef.current?.focus();
+  };
+  const blurInput = () => {
+    inputNumberRef.current?.blur();
+  };
+  return (
+    <Content>
+      <InputNumber {...args} value={5} ref={inputNumberRef} />
+      <Button label="Focus input" onClick={focusInput} />
+      <br />
+      <Button label="Blur input" onClick={blurInput} />
+    </Content>
+  );
+};
+
+export const FocusAndBlur = FocusTemplate.bind({});
+FocusAndBlur.args = {};

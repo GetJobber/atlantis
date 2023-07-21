@@ -1,7 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Content } from "@jobber/components/Content";
-import { Divider, InputNumber } from "@jobber/components-native";
+import { InputNumber } from "@jobber/components-native";
 
 export default {
   title: "Components/Forms and Inputs/InputNumber/Mobile",
@@ -14,19 +13,19 @@ export default {
 } as ComponentMeta<typeof InputNumber>;
 
 const BasicTemplate: ComponentStory<typeof InputNumber> = args => (
-  <div
-    style={{
-      display: "grid",
-      gap: "var(--space-base)",
-    }}
-  >
-    <Content>Some amazing content</Content>
-    <Divider {...args} />
-    <Content>Even more amazing content</Content>
-  </div>
+  <InputNumber {...args} />
 );
 
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
-  size: "base",
+  placeholder: "Quantity",
+  value: 12,
+};
+
+export const Invalid = BasicTemplate.bind({});
+Invalid.args = {
+  placeholder: "Area",
+  invalid: "Enter a number",
+  suffix: { label: "meters" },
+  clearable: "never",
 };
