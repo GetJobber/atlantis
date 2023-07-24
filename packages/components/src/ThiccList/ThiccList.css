@@ -22,15 +22,29 @@
   /* do nothing */
 }
 
+/* Reset button styling */
+.list button {
+  display: block;
+  width: 100%;
+  border: none;
+  text-align: left;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all var(--timing-base);
+  appearance: none;
+}
+
 .listHeader,
-.listContent {
+.listContentItem {
   padding: var(--space-base);
 }
 
 .listHeader {
   position: sticky;
   top: 0;
+  z-index: var(--elevation-base);
   border-bottom: 2px solid var(--color-border);
+  background-color: var(--color-surface);
 }
 
 .listHeaderText {
@@ -38,14 +52,50 @@
 }
 
 .listContent {
-  display: block;
-  width: 100%;
-  border: none;
-  text-align: left;
-  background-color: transparent;
-  appearance: none;
+  position: relative;
 }
 
 .listContent:not(:last-of-type) {
   border-bottom: 1px solid var(--color-border);
+}
+
+.listContentItem:hover {
+  background-color: var(--color-grey--lightest);
+}
+
+.listContentHoverMenu,
+.listContentClickMenu {
+  display: flex;
+  position: absolute;
+  z-index: var(--elevation-base);
+  border-radius: var(--radius-larger);
+  background-color: var(--color-white);
+  gap: var(--space-smaller);
+}
+
+.listContentHoverMenu {
+  top: -30%;
+  right: var(--space-smaller);
+  box-shadow: var(--shadow-base);
+  padding: var(--space-smaller);
+  border: 1px solid var(--color-border);
+}
+
+.listContentClickMenu {
+  box-shadow: var(--shadow-high);
+  flex-direction: column;
+  padding: var(--space-small);
+}
+
+button.listContentClickMenuItem {
+  display: grid;
+  align-items: center;
+  gap: var(--space-base);
+  grid-template-columns: auto max-content;
+  padding: var(--space-small);
+}
+
+.listContentClickMenuItem b {
+  color: var(--color-blue);
+  font-weight: 500;
 }

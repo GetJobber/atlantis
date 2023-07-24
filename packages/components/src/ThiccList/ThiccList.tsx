@@ -7,19 +7,21 @@ import {
   apolloClient,
   getLoadingState,
 } from "./gqlUtils";
+import { ThiccListItem } from "./ThiccListItem";
 import { Button } from "../Button";
 import { Content } from "../Content";
 import { Grid } from "../Grid";
 import { InputText } from "../InputText";
 import { Text } from "../Text";
-import { FormatRelativeDateTime } from "../FormatRelativeDateTime";
 
 const headers = ["Client", "Address", "Tags", "Status", "Activity"];
 
 export function ThiccList() {
   const {
     data,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     refresh,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     nextPage,
     loadingRefresh,
     loadingNextPage,
@@ -35,7 +37,7 @@ export function ThiccList() {
       return items?.allPeople;
     },
   });
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { loadingStatus, loading } = getLoadingState(
     loadingInitialContent,
     loadingRefresh,
@@ -87,27 +89,11 @@ export function ThiccList() {
         </div>
 
         {items.map(({ node }) => (
-          <button key={node.id} className={styles.listContent}>
-            <Grid>
-              <Grid.Cell size={{ xs: 3 }}>
-                <Text>{node.name}</Text>
-              </Grid.Cell>
-              <Grid.Cell size={{ xs: 3 }}>
-                <Text variation="subdued">{node.homeworld.name}</Text>
-              </Grid.Cell>
-              <Grid.Cell size={{ xs: 2 }}>
-                <Text variation="subdued">{node.gender}</Text>
-              </Grid.Cell>
-              <Grid.Cell size={{ xs: 2 }}>
-                <Text variation="subdued">{node.skinColor}</Text>
-              </Grid.Cell>
-              <Grid.Cell size={{ xs: 2 }}>
-                <Text variation="subdued">
-                  <FormatRelativeDateTime date={node.created} />
-                </Text>
-              </Grid.Cell>
-            </Grid>
-          </button>
+          <ThiccListItem
+            onClick={d => console.log(d)}
+            key={node.id}
+            {...node}
+          />
         ))}
       </div>
     </Content>
