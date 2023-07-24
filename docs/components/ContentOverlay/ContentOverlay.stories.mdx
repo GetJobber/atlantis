@@ -1,67 +1,16 @@
-import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Meta } from "@storybook/addon-docs";
 import { Figma } from "storybook-addon-designs/blocks";
-import { useRef } from "react";
-import { View } from "react-native";
-import { Banner } from "@jobber/components/Banner";
-import {
-  Button,
-  Content,
-  ContentOverlay,
-  Text,
-} from "@jobber/components-native";
 
 <Meta title="Components/Overlays/ContentOverlay/Docs" />
 
 # ContentOverlay
 
-`ContentOverlay` allows the user to quickly access information that supports
-their understanding of the primary content of their current view.
-
-<Canvas>
-  <Story
-    name="Content Overlay"
-    args={{
-      title: "Overlay Title",
-      onClose: () => alert("Overlay Dismissed"),
-      onOpen: () => alert("Overlay Opened"),
-      fullScreen: false,
-    }}
-    parameters={{
-      layout: "centered",
-    }}
-  >
-    {args => {
-      const contentOverlayRef = useRef();
-      return (
-        <View
-          style={{
-            width: 300,
-          }}
-        >
-          <ContentOverlay {...args} ref={contentOverlayRef}>
-            <Content>
-              <Text>I am some text inside the ContentOverlay.</Text>
-            </Content>
-          </ContentOverlay>
-          <View>
-            <Button
-              label="Open Overlay"
-              onPress={() => contentOverlayRef.current.open()}
-            />
-          </View>
-        </View>
-      );
-    }}
-  </Story>
-</Canvas>
-
-## Props
-
-<ArgsTable of={ContentOverlay} />
+ContentOverlay allows the user to quickly access information that supports their
+understanding of the primary content of their current view.
 
 ## Usage guidelines
 
-The `<ContentOverlay>` component will allow users to quickly access detailed
+The ContentOverlay component will allow users to quickly access detailed
 information about a topic without having to navigate away from their current
 view.
 

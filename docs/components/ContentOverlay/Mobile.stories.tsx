@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { View } from "react-native";
-import { Content } from "@jobber/components/Content";
 import {
   Button,
+  Content,
   ContentOverlay,
   ContentOverlayRef,
   Text,
@@ -16,6 +16,7 @@ export default {
     viewMode: "story",
     previewTabs: { code: { hidden: false } },
     viewport: { defaultViewport: "mobile1" },
+    showNativeOnWebDisclaimer: true,
   },
 } as ComponentMeta<typeof ContentOverlay>;
 
