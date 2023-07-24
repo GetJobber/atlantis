@@ -1,0 +1,118 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Figma } from "storybook-addon-designs/blocks";
+import { useRef } from "react";
+import { View } from "react-native";
+import { Banner } from "@jobber/components/Banner";
+import {
+  Button,
+  Content,
+  ContentOverlay,
+  Text,
+} from "@jobber/components-native";
+
+<Meta title="Components/Overlays/ContentOverlay/Docs" />
+
+# ContentOverlay
+
+`ContentOverlay` allows the user to quickly access information that supports
+their understanding of the primary content of their current view.
+
+<Canvas>
+  <Story
+    name="Content Overlay"
+    args={{
+      title: "Overlay Title",
+      onClose: () => alert("Overlay Dismissed"),
+      onOpen: () => alert("Overlay Opened"),
+      fullScreen: false,
+    }}
+    parameters={{
+      layout: "centered",
+    }}
+  >
+    {args => {
+      const contentOverlayRef = useRef();
+      return (
+        <View
+          style={{
+            width: 300,
+          }}
+        >
+          <ContentOverlay {...args} ref={contentOverlayRef}>
+            <Content>
+              <Text>I am some text inside the ContentOverlay.</Text>
+            </Content>
+          </ContentOverlay>
+          <View>
+            <Button
+              label="Open Overlay"
+              onPress={() => contentOverlayRef.current.open()}
+            />
+          </View>
+        </View>
+      );
+    }}
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of={ContentOverlay} />
+
+## Usage guidelines
+
+The `<ContentOverlay>` component will allow users to quickly access detailed
+information about a topic without having to navigate away from their current
+view.
+
+## Content guidelines
+
+The ContentOverlay should be able to present any type of content, but its most
+common use case will probably be text and images. Since the overlay's content is
+scrollable on overflow, the amount of content can be as little or as much as
+needed, within reason. Unless content being used within the overlay is fetched
+from an online source, there shouldn't be any concerns about the represented
+content being unreliable.
+
+## Accessibility
+
+ContentOverlay responds to touch events, specifically swiping.
+
+The ContentOverlay heading receives focus when opened. There is an
+accessibilityLabel prop which describes the ContentOverlay. ContentOverlay has a
+heading text for its title, and the close button on the overlay has an
+accessibilityLabel that clearly communicates that it is used for closing the
+overlay.
+
+The overlay uses focus trapping, so that the overlay is immediately focused and
+the user is only able to engage with elements within the overlay view until the
+overlay is closed. After the overlay is closed, focus is returned to the element
+that opened the ContentOverlay.
+
+## Responsiveness
+
+ContentOverlay will take up as much vertical space as needed, minus a small
+amount of space between the top of the overlay and the top of the screen. It
+will also take up the full width of the screen up to a breakpoint of 640px,
+where it will be a maximum width of 640px and be centered on the screen.
+ContentOverlay will always be fixed at the bottom for small screens, but on
+larger screen sizes that are 1024px or greater, they will be centered vertically
+with a maximum height with large spacing on the top and bottom.
+
+The height of a ContentOverlay will accommodate the size of content that it
+holds, and if the content exceeds the space of the overlay, it will overflow and
+be scrollable. When the content of an overlay does not bring the overlay to
+maximum height, the user will have the ability to swipe up to bring the
+ContentOverlay to fullscreen.
+
+## Mockup
+
+<Figma
+  collapsable
+  url="https://www.figma.com/file/avvgu5SkbBvS8lGVePBsqO/Product%2FMobile?node-id=46695%3A174234&t=99B8hWLcDU6BdfTe-1"
+/>
+
+## Notes
+
+`ContentOverlay` uses the same library internally as
+[BottomSheet.](/docs/atlantis-selections-bottomsheet--bottom-sheet)
