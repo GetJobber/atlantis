@@ -1,7 +1,7 @@
-import React, { MutableRefObject, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { useFormState } from "@jobber/hooks";
-import { Form, FormRef } from "@jobber/components/Form";
+import { Form } from "@jobber/components/Form";
 import { Content } from "@jobber/components/Content";
 import { InputText } from "@jobber/components/InputText";
 import { Button } from "@jobber/components/Button";
@@ -16,6 +16,7 @@ export default {
         hidden: false,
         extraImports: {
           "@jobber/hooks": ["useFormState"],
+          "@jobber/components/Form": ["Form", "FormRef"],
         },
       },
     },
@@ -68,11 +69,15 @@ const BasicTemplate: ComponentStory<typeof Form> = args => {
   );
 };
 
-const OnStateChangeTemplate: ComponentStory<typeof Form> = () => {
+const OnStateChangeTemplate: ComponentStory<typeof Form> = args => {
   const [formState, setFormState] = useFormState();
   return (
     <>
-      <Form onSubmit={() => alert("submitted")} onStateChange={setFormState}>
+      <Form
+        {...args}
+        onSubmit={() => alert("submitted")}
+        onStateChange={setFormState}
+      >
         <InputText
           placeholder="First Name"
           name="firstName"
@@ -93,11 +98,11 @@ const OnStateChangeTemplate: ComponentStory<typeof Form> = () => {
   );
 };
 
-const TriggeringSubmissionTemplate: ComponentStory<typeof Form> = () => {
-  const formRef = useRef() as MutableRefObject<FormRef>;
+const TriggeringSubmissionTemplate: ComponentStory<typeof Form> = args => {
+  const formRef = useRef<any>(null);
   return (
     <Content>
-      <Form onSubmit={() => alert("Submitted 🎉🎉🎉")} ref={formRef}>
+      <Form {...args} onSubmit={() => alert("Submitted 🎉🎉🎉")} ref={formRef}>
         <Content>
           <InputText
             placeholder="First Name"
@@ -123,7 +128,7 @@ const TriggeringSubmissionTemplate: ComponentStory<typeof Form> = () => {
       </Form>
       <Button
         label="Submit Form from the outside"
-        onClick={() => formRef.current.submit()}
+        onClick={() => formRef.current?.submit?.()}
       />
     </Content>
   );
