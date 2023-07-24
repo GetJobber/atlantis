@@ -27,7 +27,6 @@
   display: block;
   width: 100%;
   border: none;
-  text-align: left;
   background-color: transparent;
   cursor: pointer;
   transition: all var(--timing-base);
@@ -37,6 +36,7 @@
 .listHeader,
 .listContentItem {
   padding: var(--space-base);
+  text-align: left;
 }
 
 .listHeader {
@@ -64,7 +64,7 @@
 }
 
 .listContentHoverMenu,
-.listContentClickMenu {
+.listContentMenu {
   display: flex;
   position: absolute;
   z-index: var(--elevation-base);
@@ -81,21 +81,37 @@
   border: 1px solid var(--color-border);
 }
 
-.listContentClickMenu {
+.listContentMenu {
+  position: fixed;
   box-shadow: var(--shadow-high);
   flex-direction: column;
   padding: var(--space-small);
 }
 
-button.listContentClickMenuItem {
+button.listContentMenuItem {
   display: grid;
   align-items: center;
   gap: var(--space-base);
   grid-template-columns: auto max-content;
   padding: var(--space-small);
+  text-align: left;
 }
 
-.listContentClickMenuItem b {
+button.listContentMenuItem:hover {
+  background-color: var(--color-grey--lightest);
+}
+
+.listContentMenuItem b {
   color: var(--color-blue);
   font-weight: 500;
+}
+
+.listContentMenuOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--elevation-base);
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
 }

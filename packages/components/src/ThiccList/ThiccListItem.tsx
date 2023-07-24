@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import styles from "./ThiccList.css";
 import { ListQueryType } from "./gqlUtils";
+import { ThiccListItemMenu } from "./ThiccListItemMenu";
 import { FormatRelativeDateTime } from "../FormatRelativeDateTime";
 import { Text } from "../Text";
 import { Grid } from "../Grid";
 import { Button } from "../Button";
 import { Tooltip } from "../Tooltip";
-import { Icon } from "../Icon";
 
 type ListNode = ListQueryType["allPeople"]["edges"][number]["node"];
 
@@ -16,7 +16,11 @@ interface ThiccListItemProps extends ListNode {
 
 export function ThiccListItem({ onClick, ...node }: ThiccListItemProps) {
   const [showHoverMenu, setShowHoverMenu] = useState(false);
-  const [showClickMenu, setShowClickMenu] = useState(false);
+  const [showContextMenu, setShowContextMenu] = useState(false);
+  const [contextMenuPosition, setContextMenuPosition] = useState({
+    x: 0,
+    y: 0,
+  });
 
   return (
     <div
@@ -26,7 +30,9 @@ export function ThiccListItem({ onClick, ...node }: ThiccListItemProps) {
       onContextMenu={e => {
         e.preventDefault();
         console.log(e);
-        setShowClickMenu(true);
+        setContextMenuPosition({ x: e.pageX, y: e.pageY });
+        setShowHoverMenu(false);
+        setShowContextMenu(true);
       }}
     >
       <button
@@ -57,7 +63,10 @@ export function ThiccListItem({ onClick, ...node }: ThiccListItemProps) {
 
       {/* Float-y bits be portaled to the body */}
       {showHoverMenu && (
-        <div className={styles.listContentHoverMenu}>
+        <div
+          className={styles.listContentHoverMenu}
+          onContextMenu={e => e.stopPropagation()}
+        >
           <Tooltip message="Compose Email">
             <Button
               icon="email"
@@ -85,32 +94,11 @@ export function ThiccListItem({ onClick, ...node }: ThiccListItemProps) {
         </div>
       )}
 
-      {showClickMenu && (
-        <div className={styles.listContentClickMenu}>
-          <button className={styles.listContentClickMenuItem}>
-            <Text>
-              <b>Select Client</b>
-            </Text>
-          </button>
-          <button className={styles.listContentClickMenuItem}>
-            <Text>
-              <b>Create new...</b>
-            </Text>
-            <Icon name="arrowRight" color="blue" />
-          </button>
-          <button className={styles.listContentClickMenuItem}>
-            <Text>
-              <b>Tag with...</b>
-            </Text>
-            <Icon name="arrowRight" color="blue" />
-          </button>
-          <button className={styles.listContentClickMenuItem}>
-            <Text>
-              <b>Delete</b>
-            </Text>
-          </button>
-        </div>
-      )}
+      <ThiccListItemMenu
+        visible={showContextMenu}
+        position={contextMenuPosition}
+        onRequestClose={() => setShowContextMenu(false)}
+      />
     </div>
   );
 }

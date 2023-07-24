@@ -6,8 +6,9 @@ declare const styles: {
   readonly "listHeaderText": string;
   readonly "listContent": string;
   readonly "listContentHoverMenu": string;
-  readonly "listContentClickMenu": string;
-  readonly "listContentClickMenuItem": string;
+  readonly "listContentMenu": string;
+  readonly "listContentMenuItem": string;
+  readonly "listContentMenuOverlay": string;
 };
 export = styles;
 
