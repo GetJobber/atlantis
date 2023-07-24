@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { useFormState } from "@jobber/hooks";
-import { Form } from "@jobber/components/Form";
+import { Form, FormRef } from "@jobber/components/Form";
 import { Content } from "@jobber/components/Content";
 import { InputText } from "@jobber/components/InputText";
 import { Button } from "@jobber/components/Button";
@@ -99,7 +99,7 @@ const OnStateChangeTemplate: ComponentStory<typeof Form> = args => {
 };
 
 const TriggeringSubmissionTemplate: ComponentStory<typeof Form> = args => {
-  const formRef = useRef<any>(null);
+  const formRef = useRef<FormRef>(null);
   return (
     <Content>
       <Form {...args} onSubmit={() => alert("Submitted 🎉🎉🎉")} ref={formRef}>
