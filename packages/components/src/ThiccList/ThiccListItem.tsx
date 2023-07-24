@@ -1,20 +1,27 @@
 import React, { useState } from "react";
+import throttle from "lodash/throttle";
+import classNames from "classnames";
 import styles from "./ThiccList.css";
-import { ListQueryType } from "./gqlUtils";
+import { ListNode } from "./gqlUtils";
 import { ThiccListItemMenu } from "./ThiccListItemMenu";
+import { ThiccListActions } from "./ThiccListActions";
 import { FormatRelativeDateTime } from "../FormatRelativeDateTime";
 import { Text } from "../Text";
 import { Grid } from "../Grid";
-import { Button } from "../Button";
-import { Tooltip } from "../Tooltip";
 
-type ListNode = ListQueryType["allPeople"]["edges"][number]["node"];
-
-interface ThiccListItemProps extends ListNode {
-  onClick: (data: ListNode) => void;
+interface ThiccListItemProps {
+  readonly isSelected: boolean;
+  readonly data: ListNode;
+  readonly onClick: (data: ListNode) => void;
+  readonly onDoubleClick: (data: ListNode) => void;
 }
 
-export function ThiccListItem({ onClick, ...node }: ThiccListItemProps) {
+export function ThiccListItem({
+  data,
+  isSelected,
+  onClick,
+  onDoubleClick,
+}: ThiccListItemProps) {
   const [showHoverMenu, setShowHoverMenu] = useState(false);
   const [showContextMenu, setShowContextMenu] = useState(false);
   const [contextMenuPosition, setContextMenuPosition] = useState({
@@ -22,9 +29,13 @@ export function ThiccListItem({ onClick, ...node }: ThiccListItemProps) {
     y: 0,
   });
 
+  const handleClick = throttle(() => onClick(data), 200);
+
   return (
     <div
-      className={styles.listContent}
+      className={classNames(styles.listContent, {
+        [styles.listContentSelected]: isSelected,
+      })}
       onMouseEnter={() => setShowHoverMenu(true)}
       onMouseLeave={() => setShowHoverMenu(false)}
       onContextMenu={e => {
@@ -34,28 +45,32 @@ export function ThiccListItem({ onClick, ...node }: ThiccListItemProps) {
         setShowHoverMenu(false);
         setShowContextMenu(true);
       }}
+      onDoubleClick={() => {
+        handleClick.cancel();
+        onDoubleClick(data);
+      }}
     >
       <button
-        key={node.id}
+        key={data.id}
         className={styles.listContentItem}
-        onClick={() => onClick(node)}
+        onClick={handleClick}
       >
         <Grid>
           <Grid.Cell size={{ xs: 3 }}>
-            <Text>{node.name}</Text>
+            <Text>{data.name}</Text>
           </Grid.Cell>
           <Grid.Cell size={{ xs: 3 }}>
-            <Text variation="subdued">{node.homeworld.name}</Text>
+            <Text variation="subdued">{data.homeworld.name}</Text>
           </Grid.Cell>
           <Grid.Cell size={{ xs: 2 }}>
-            <Text variation="subdued">{node.gender}</Text>
+            <Text variation="subdued">{data.gender}</Text>
           </Grid.Cell>
           <Grid.Cell size={{ xs: 2 }}>
-            <Text variation="subdued">{node.skinColor}</Text>
+            <Text variation="subdued">{data.skinColor}</Text>
           </Grid.Cell>
           <Grid.Cell size={{ xs: 2 }}>
             <Text variation="subdued">
-              <FormatRelativeDateTime date={node.created} />
+              <FormatRelativeDateTime date={data.created} />
             </Text>
           </Grid.Cell>
         </Grid>
@@ -66,31 +81,9 @@ export function ThiccListItem({ onClick, ...node }: ThiccListItemProps) {
         <div
           className={styles.listContentHoverMenu}
           onContextMenu={e => e.stopPropagation()}
+          onMouseLeave={() => setShowHoverMenu(false)}
         >
-          <Tooltip message="Compose Email">
-            <Button
-              icon="email"
-              ariaLabel="Email"
-              variation="subtle"
-              type="secondary"
-            />
-          </Tooltip>
-          <Tooltip message="Create Note">
-            <Button
-              icon="addNote"
-              ariaLabel="Note"
-              variation="subtle"
-              type="secondary"
-            />
-          </Tooltip>
-          <Tooltip message="More actions">
-            <Button
-              icon="more"
-              ariaLabel="More"
-              variation="subtle"
-              type="secondary"
-            />
-          </Tooltip>
+          <ThiccListActions withExport={false} />
         </div>
       )}
 

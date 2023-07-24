@@ -29,6 +29,8 @@ export interface ListQueryType {
   };
 }
 
+export type ListNode = ListQueryType["allPeople"]["edges"][number]["node"];
+
 export const LIST_QUERY = gql`
   query ListQuery($cursor: String) {
     allPeople(first: 10, after: $cursor) {

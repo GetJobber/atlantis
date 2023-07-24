@@ -3,11 +3,13 @@ import { useCollectionQuery } from "@jobber/hooks";
 import styles from "./ThiccList.css";
 import {
   LIST_QUERY,
+  ListNode,
   ListQueryType,
   apolloClient,
   getLoadingState,
 } from "./gqlUtils";
 import { ThiccListItem } from "./ThiccListItem";
+import { ThiccListActions } from "./ThiccListActions";
 import { Button } from "../Button";
 import { Content } from "../Content";
 import { Grid } from "../Grid";
@@ -45,25 +47,32 @@ export function ThiccList() {
   );
 
   const items = data?.allPeople.edges || [];
-  console.log(items);
+  const [selectedItem, setSelectedItem] = React.useState<string[]>([]);
 
   return (
     <Content>
       <Grid>
         <Grid.Cell size={{ xs: 9 }}>
-          <div className={styles.filterActions}>
-            <Button
-              label="Filter Status"
-              icon="add"
-              iconOnRight
-              variation="subtle"
-            />
-            <Button
-              label="Filter Tags"
-              icon="add"
-              iconOnRight
-              variation="subtle"
-            />
+          <div className={styles.actions}>
+            <div className={styles.filterActions}>
+              <Button
+                label="Filter Status"
+                icon="add"
+                iconOnRight
+                variation="subtle"
+              />
+              <Button
+                label="Filter Tags"
+                icon="add"
+                iconOnRight
+                variation="subtle"
+              />
+            </div>
+            {(true || Boolean(selectedItem.length)) && (
+              <div>
+                <ThiccListActions />
+              </div>
+            )}
           </div>
         </Grid.Cell>
         <Grid.Cell size={{ xs: 3 }}>
@@ -90,12 +99,25 @@ export function ThiccList() {
 
         {items.map(({ node }) => (
           <ThiccListItem
-            onClick={d => console.log(d)}
+            isSelected={selectedItem.includes(node.id)}
+            onClick={handleClick}
+            onDoubleClick={d => {
+              console.log(d);
+              alert("Congrats, you double clicked!");
+            }}
             key={node.id}
-            {...node}
+            data={node}
           />
         ))}
       </div>
     </Content>
   );
+
+  function handleClick(item: ListNode): void {
+    if (selectedItem.includes(item.id)) {
+      setSelectedItem(selectedItem.filter(id => id !== item.id));
+    } else {
+      setSelectedItem([...selectedItem, item.id]);
+    }
+  }
 }

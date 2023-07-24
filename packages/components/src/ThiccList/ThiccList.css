@@ -1,3 +1,8 @@
+.actions {
+  display: flex;
+  gap: var(--space-base);
+}
+
 .filterActions {
   --radius-base: 50px;
 
@@ -61,6 +66,14 @@
 
 .listContentItem:hover {
   background-color: var(--color-grey--lightest);
+}
+
+.listContentSelected .listContentItem {
+  background-color: var(--color-lightBlue--lightest);
+}
+
+.listContentSelected .listContentItem:hover {
+  background-color: var(--color-lightBlue--lighter);
 }
 
 .listContentHoverMenu,
