@@ -16,7 +16,7 @@ export interface FormRef {
   submit(): void;
 }
 
-interface FormProps {
+export interface FormProps {
   readonly children: ReactNode;
   /**
    * Callback for when the form has been sucessfully
