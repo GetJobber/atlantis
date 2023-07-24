@@ -7,11 +7,14 @@ export default {
   component: FormatFile,
   parameters: {
     viewMode: "story",
+    previewTabs: { code: { hidden: false } },
+    viewport: { defaultViewport: "mobile1" },
+    showNativeOnWebDisclaimer: true,
   },
 } as ComponentMeta<typeof FormatFile>;
 
 const BasicTemplate: ComponentStory<typeof FormatFile> = args => (
-  <div style={{ width: 250 }}>
+  <div style={{ width: 290 }}>
     <FormatFile {...args} />
   </div>
 );

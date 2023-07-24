@@ -7,6 +7,8 @@ export default {
   component: Icon,
   parameters: {
     viewMode: "story",
+    previewTabs: { code: { hidden: false } },
+    viewport: { defaultViewport: "mobile1" },
   },
 } as ComponentMeta<typeof Icon>;
 

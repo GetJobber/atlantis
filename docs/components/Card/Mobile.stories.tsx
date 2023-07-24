@@ -10,6 +10,8 @@ export default {
     backgrounds: {
       default: "surface background",
     },
+    viewport: { defaultViewport: "mobile1" },
+    previewTabs: { code: { hidden: false } },
   },
 } as ComponentMeta<typeof Card>;
 
@@ -35,13 +37,6 @@ Basic.args = {
 
 const ElevationTemplate: ComponentStory<typeof Card> = args => (
   <Content spacing="none" direction="horizontal">
-    <Card header={{ title: "Property" }}>
-      <Content childSpacing="none">
-        <Text>10130 103 St NW</Text>
-        <Text>Edmonton, Alberta</Text>
-        <Text>T5J 3N9</Text>
-      </Content>
-    </Card>
     <Card header={{ title: "Properties" }}>
       <Content>
         <Card {...args}>

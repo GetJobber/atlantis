@@ -12,10 +12,15 @@ import { PlaygroundWarning } from "./PlaygroundWarning";
 import { PlaygroundImports } from "./types";
 import { THIRD_PARTY_PACKAGE_VERSIONS } from "./constants";
 import { formatCode } from "./utils";
+import { STORY_CHANGED } from '@storybook/core-events';
 
 export function Playground() {
-  const { getCurrentStoryData } = useStorybookApi();
+  const { getCurrentStoryData, emit } = useStorybookApi();
   const activeStory = getCurrentStoryData() as Story | undefined;
+
+  // Emit story changed so GA can track it as a page change. This mimics the
+  // default behaviour of Canvas and Docs tab.
+  emit(STORY_CHANGED);
 
   if (!activeStory) {
     return <></>;

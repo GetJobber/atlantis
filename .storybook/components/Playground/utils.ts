@@ -5,7 +5,7 @@ import parserBabel from "prettier/parser-babel";
 
 export function formatCode(code: string): string {
   return prettierFormat(code, {
-    parser: "babel",
+    parser: "babel-ts",
     plugins: [parserBabel],
   });
 }
