@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { InputNumber, InputNumberRef } from "@jobber/components/InputNumber";
 import { Content } from "@jobber/components/Content";
@@ -67,7 +67,7 @@ Inline.args = {
 };
 
 const FocusTemplate: ComponentStory<typeof InputNumber> = args => {
-  const inputNumberRef = React.createRef<InputNumberRef>();
+  const inputNumberRef = useRef<InputNumberRef>(null);
   const focusInput = () => {
     inputNumberRef.current?.focus();
   };
