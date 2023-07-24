@@ -9,12 +9,13 @@ import {
   getLoadingState,
 } from "./gqlUtils";
 import { ThiccListItem } from "./ThiccListItem";
-import { ThiccListActions } from "./ThiccListActions";
+import { ThiccListAction } from "./ThiccListAction";
 import { Button } from "../Button";
 import { Content } from "../Content";
 import { Grid } from "../Grid";
 import { InputText } from "../InputText";
 import { Text } from "../Text";
+import { AnimatedSwitcher } from "../AnimatedSwitcher";
 
 const headers = ["Client", "Address", "Tags", "Status", "Activity"];
 
@@ -68,11 +69,18 @@ export function ThiccList() {
                 variation="subtle"
               />
             </div>
-            {(true || Boolean(selectedItem.length)) && (
-              <div>
-                <ThiccListActions />
-              </div>
-            )}
+            <AnimatedSwitcher
+              switched={Boolean(selectedItem.length)}
+              initialChild={<div />}
+              switchTo={
+                <div>
+                  <ThiccListAction icon="sendMessage" label="Send message" />
+                  <ThiccListAction icon="addNote" label="Add note" />
+                  <ThiccListAction icon="export" label="Export" />
+                  <ThiccListAction icon="more" label="More actions" />
+                </div>
+              }
+            />
           </div>
         </Grid.Cell>
         <Grid.Cell size={{ xs: 3 }}>

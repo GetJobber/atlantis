@@ -4,7 +4,7 @@ import classNames from "classnames";
 import styles from "./ThiccList.css";
 import { ListNode } from "./gqlUtils";
 import { ThiccListItemMenu } from "./ThiccListItemMenu";
-import { ThiccListActions } from "./ThiccListActions";
+import { ThiccListAction } from "./ThiccListAction";
 import { FormatRelativeDateTime } from "../FormatRelativeDateTime";
 import { Text } from "../Text";
 import { Grid } from "../Grid";
@@ -83,7 +83,9 @@ export function ThiccListItem({
           onContextMenu={e => e.stopPropagation()}
           onMouseLeave={() => setShowHoverMenu(false)}
         >
-          <ThiccListActions withExport={false} />
+          <ThiccListAction label="Compose Email" icon="email" />
+          <ThiccListAction label="Create Note" icon="addNote" />
+          <ThiccListAction label="More actions" icon="more" />
         </div>
       )}
 
