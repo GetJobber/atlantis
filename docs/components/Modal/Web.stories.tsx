@@ -72,7 +72,8 @@ const ActionTemplate: ComponentStory<typeof Modal> = args => {
     setModalOpen(!modalOpen);
   }
   function handlePrimaryAction() {
-    alert("✅");
+    alert(value + " ✅");
+    setModalOpen(false);
   }
   function handleSecondaryAction() {
     setModalOpen(false);
