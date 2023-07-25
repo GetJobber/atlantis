@@ -1,11 +1,12 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { List } from "@jobber/components/List";
+import { List, ListItem } from "@jobber/components/List";
 import { Card } from "@jobber/components/Card";
 
 export default {
   title: "Components/Lists and Tables/List/Web",
   component: List,
+  subcomponents: { ListItem },
   parameters: {
     viewMode: "story",
     previewTabs: { code: { hidden: false } },
