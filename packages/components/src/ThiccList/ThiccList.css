@@ -128,3 +128,15 @@ button.listContentMenuItem:hover {
   height: 100%;
   background-color: transparent;
 }
+
+.inlineLabel {
+  display: flex;
+  gap: var(--space-smaller);
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+.inlineLabel > * {
+  padding: var(--space-smallest) var(--space-smaller);
+  white-space: nowrap;
+}

@@ -11,6 +11,7 @@ declare const styles: {
   readonly "listContentMenu": string;
   readonly "listContentMenuItem": string;
   readonly "listContentMenuOverlay": string;
+  readonly "inlineLabel": string;
 };
 export = styles;
 
