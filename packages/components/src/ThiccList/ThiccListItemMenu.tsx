@@ -8,12 +8,14 @@ interface ThiccListItemMenuProps {
   readonly visible: boolean;
   readonly position: { x: number; y: number };
   readonly onRequestClose: () => void;
+  readonly onSelect: () => void;
 }
 
 export function ThiccListItemMenu({
   visible,
   position,
   onRequestClose,
+  onSelect,
 }: ThiccListItemMenuProps) {
   if (!visible) return <></>;
 
@@ -25,7 +27,7 @@ export function ThiccListItemMenu({
         style={{ left: position.x, top: position.y }}
         onContextMenu={e => e.stopPropagation()}
       >
-        <button className={styles.listContentMenuItem}>
+        <button className={styles.listContentMenuItem} onClick={onSelect}>
           <Text>
             <b>Select Client</b>
           </Text>

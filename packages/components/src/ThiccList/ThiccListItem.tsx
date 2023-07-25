@@ -126,6 +126,10 @@ export function ThiccListItem({
       <ThiccListItemMenu
         visible={showContextMenu}
         position={contextMenuPosition}
+        onSelect={() => {
+          onClick(data);
+          setShowContextMenu(false);
+        }}
         onRequestClose={() => setShowContextMenu(false)}
       />
     </div>
