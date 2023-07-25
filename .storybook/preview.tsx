@@ -45,7 +45,7 @@ export const parameters = {
   options: {
     storySort: {
       method: "alphabetical",
-      order: ["Introduction", "Components", "Design", "*", "Changelog"],
+      order: ["Introduction", "Contributing", "Thicc List", "Components", "Design", "*", "Changelog"],
     },
   },
   docs: {

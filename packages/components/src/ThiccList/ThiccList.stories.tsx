@@ -2,16 +2,16 @@ import React from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { ComponentMeta } from "@storybook/react";
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { ThiccList } from "./ThiccList";
+import { ThiccList as List } from "./ThiccList";
 
 export default {
-  title: "Components/ThiccList",
+  title: "ThiccList",
   parameters: {
     viewMode: "story",
   },
-  component: ThiccList,
-} as ComponentMeta<typeof ThiccList>;
+  component: List,
+} as ComponentMeta<typeof List>;
 
-export const Primary = {
-  render: () => <ThiccList />,
+export const ThiccList = {
+  render: () => <List />,
 };
