@@ -12,7 +12,6 @@ export default {
     viewMode: "story",
     previewTabs: {
       code: {
-        hidden: false,
         extraImports: {
           "@std-proposal/temporal": ["CivilTime"],
         },
