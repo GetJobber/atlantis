@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Tab, Tabs } from "@jobber/components/Tabs";
 
 export default {
-  title: "Components/Lists and Tables/Tabs/Web",
+  title: "Components/Navigation/Tabs/Web",
   component: Tabs,
   subcomponents: { Tab },
   parameters: {
