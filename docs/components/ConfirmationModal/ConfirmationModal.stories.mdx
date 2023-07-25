@@ -52,74 +52,11 @@ which allows you to present a confirmation modal on demand.
 In the example below we have an array of users and then render a button for each
 that presents a confirm modal.
 
-<Canvas>
-  {() => {
-    const confirmationModalRef = useRef();
-    const users = [
-      {
-        id: 1,
-        name: "Bob",
-      },
-      {
-        id: 2,
-        name: "Donald",
-      },
-    ];
-    return (
-      <>
-        {users.map(user => {
-          return (
-            <Button
-              label={`Confirm ${user.name}`}
-              key={user.id}
-              onClick={() => {
-                confirmationModalRef.current.show({
-                  title: "Should we?",
-                  message: `Hang out with **${user.name}**?`,
-                  confirmLabel: "Hangout",
-                  onConfirm: () => alert("✅"),
-                });
-              }}
-            />
-          );
-        })}
-        <ConfirmationModal ref={confirmationModalRef} />
-      </>
-    );
-  }}
-</Canvas>
-
 ## Destructive
 
 If the user is confirming an action that will destroy, delete, or remove
 something, use a destructive ConfirmationModal to visually reinforce the
 potential consequences.
-
-<Canvas>
-  {() => {
-    const [open, setOpen] = useState(false);
-    return (
-      <>
-        <Button
-          label="Delete Bob"
-          variation="destructive"
-          type="secondary"
-          onClick={() => setOpen(true)}
-        />
-        <ConfirmationModal
-          title="Delete Bob?"
-          message={`Deleting Bob will remove their data from your account for good.`}
-          confirmLabel="Delete Bob"
-          open={open}
-          onConfirm={() => alert("Bob has been deleted")}
-          onCancel={() => alert("Bob will not be deleted")}
-          onRequestClose={() => setOpen(false)}
-          variation="destructive"
-        />
-      </>
-    );
-  }}
-</Canvas>
 
 ## Related components
 
