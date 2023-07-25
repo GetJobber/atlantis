@@ -4,6 +4,7 @@ declare const styles: {
   readonly "list": string;
   readonly "listHeader": string;
   readonly "listContentItem": string;
+  readonly "listHeaderButton": string;
   readonly "listHeaderText": string;
   readonly "listContent": string;
   readonly "listContentSelected": string;

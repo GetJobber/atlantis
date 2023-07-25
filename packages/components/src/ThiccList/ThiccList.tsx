@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useCollectionQuery } from "@jobber/hooks";
 import classNames from "classnames";
 import styles from "./ThiccList.css";
@@ -11,6 +11,7 @@ import {
 } from "./gqlUtils";
 import { ThiccListItem } from "./ThiccListItem";
 import { ThiccListAction } from "./ThiccListAction";
+import { SortOrder, getSortedItems } from "./utils";
 import { Button } from "../Button";
 import { Content } from "../Content";
 import { Grid } from "../Grid";
@@ -50,7 +51,9 @@ export function ThiccList() {
   );
 
   const items = data?.allPeople.edges || [];
-  const [selectedItem, setSelectedItem] = React.useState<string[]>([]);
+  const [selectedItem, setSelectedItem] = useState<string[]>([]);
+  const [sortOrder, setSortOrder] = useState<SortOrder>("A-Z");
+  const sortIcon = sortOrder === "A-Z" ? "⏷" : "⏶";
 
   return (
     <Content>
@@ -99,9 +102,24 @@ export function ThiccList() {
           <Grid>
             {headers.map((header, i) => (
               <Grid.Cell key={header} size={{ xs: i <= 1 ? 3 : 2 }}>
-                <Text size="small" variation="subdued">
-                  <b className={styles.listHeaderText}>{header}</b>
-                </Text>
+                {i === 0 ? (
+                  <button
+                    className={styles.listHeaderButton}
+                    onClick={() =>
+                      setSortOrder(sortOrder === "A-Z" ? "Z-A" : "A-Z")
+                    }
+                  >
+                    <Text size="small" variation="subdued">
+                      <b className={styles.listHeaderText}>
+                        {header}, {sortOrder} {sortIcon}
+                      </b>
+                    </Text>
+                  </button>
+                ) : (
+                  <Text size="small" variation="subdued">
+                    <b className={styles.listHeaderText}>{header}</b>
+                  </Text>
+                )}
               </Grid.Cell>
             ))}
           </Grid>
@@ -133,7 +151,7 @@ export function ThiccList() {
             </div>
           ))}
 
-        {items.map(({ node }) => (
+        {getSortedItems(items, sortOrder).map(({ node }) => (
           <ThiccListItem
             isSelected={selectedItem.includes(node.id)}
             onClick={handleClick}

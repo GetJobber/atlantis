@@ -40,7 +40,7 @@
 
 .listHeader,
 .listContentItem {
-  padding: var(--space-base);
+  padding: var(--space-base) var(--space-small);
   text-align: left;
 }
 
@@ -50,6 +50,20 @@
   z-index: var(--elevation-base);
   border-bottom: 2px solid var(--color-border);
   background-color: var(--color-surface);
+}
+
+button.listHeaderButton {
+  display: inline-flex;
+  width: auto;
+  margin-top: calc(var(--space-smaller) * -1);
+  margin-left: calc(var(--space-small) * -1);
+  padding: var(--space-smaller) var(--space-small);
+  border-radius: var(--radius-large);
+  text-align: left;
+}
+
+.listHeaderButton:hover {
+  background-color: var(--color-grey--lightest);
 }
 
 .listHeaderText {

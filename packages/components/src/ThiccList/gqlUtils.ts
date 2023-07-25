@@ -29,7 +29,8 @@ export interface ListQueryType {
   };
 }
 
-export type ListNode = ListQueryType["allPeople"]["edges"][number]["node"];
+export type ListEdges = ListQueryType["allPeople"]["edges"];
+export type ListNode = ListEdges[number]["node"];
 
 export const LIST_QUERY = gql`
   query ListQuery($cursor: String) {
