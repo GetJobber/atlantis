@@ -1,7 +1,4 @@
-import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
-import { useRef, useState } from "react";
-import { Button } from "@jobber/components/Button";
-import { ConfirmationModal } from "@jobber/components/ConfirmationModal";
+import { Meta } from "@storybook/addon-docs";
 
 # Confirmation Modal
 
@@ -13,10 +10,26 @@ edited page or deleting an object.
 
 ## Design & usage guidelines
 
-`ConfirmationModals` should be used to confirm or cancel an action the user is
+ConfirmationModal should be used to confirm or cancel an action the user is
 performing.
 
-Keep language in a `confirmationModal` clear, concise, and consistent.
+If the user is confirming an action that will destroy, delete, or remove
+something, use a
+[destructive](../?path=/story/components-overlays-confirmationmodal-web--destructive)
+ConfirmationModal to visually reinforce the potential consequences.
+
+In some instances, such as when dealing with a collection of items with common
+actions, you may want to place a single ConfirmationModal on a page and then
+call to open it when required for each action. We can do this by using the
+`confirmationModalRef` which exposes a `show` method, allowing you to present a
+confirmation modal on demand. In the
+[Controlled](../?path=/story/components-overlays-confirmationmodal-web--controlled)
+example, we have an array of users and then render a button for each that
+presents a confirm modal.
+
+## Content guidelines
+
+Keep language in a ConfirmationModal clear, concise, and consistent.
 
 Verbs in the title should directly relate to the `confirmLabel`.
 
@@ -39,24 +52,6 @@ Avoid using generic or verbose titles.
 | **Delete job #2121?**                               | **Are you sure?**                                   |
 | Deleting this job will remove all associated visits | Deleting this job will remove all associated visits |
 | Cancel / Delete Job                                 | Cancel / Delete Job                                 |
-
-## Controlled Confirmation Modal
-
-In some instances, such as when dealing with a collection of items with common
-actions, you may want to place a single Confirmation Modal on a page and then
-call to open it when required for each action.
-
-We can do this by using the `confirmationModalRef` which exposes a `show` method
-which allows you to present a confirmation modal on demand.
-
-In the example below we have an array of users and then render a button for each
-that presents a confirm modal.
-
-## Destructive
-
-If the user is confirming an action that will destroy, delete, or remove
-something, use a destructive ConfirmationModal to visually reinforce the
-potential consequences.
 
 ## Related components
 
