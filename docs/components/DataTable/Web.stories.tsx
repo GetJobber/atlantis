@@ -19,6 +19,8 @@ export default {
         hidden: false,
         extraImports: {
           lodash: ["sortBy"],
+          "@jobber/components/Typography": ["Typography"],
+          "@jobber/components/Text": ["Text"],
         },
       },
     },
@@ -145,64 +147,70 @@ Basic.args = {
   ],
 };
 
-export const WithActions = BasicTemplate.bind({});
+const WithActionsTemplate: ComponentStory<typeof DataTable> = args => (
+  <DataTable
+    {...args}
+    columns={[
+      {
+        accessorKey: "name",
+        cell: info => info.getValue(),
+        header: "Name",
+      },
+      {
+        accessorKey: "house",
+        cell: info => info.getValue(),
+        header: "House",
+      },
+      {
+        accessorKey: "region",
+        cell: info => info.getValue(),
+        header: "Region",
+      },
+      {
+        accessorKey: "sigil",
+        cell: info => info.getValue(),
+        header: "Sigil",
+      },
+      {
+        accessorKey: "isAlive",
+        cell: info => info.getValue(),
+        header: "Alive",
+      },
+      {
+        id: "actions",
+        cell: ({ row }) => (
+          <Menu
+            activator={
+              <Button
+                variation="subtle"
+                type="tertiary"
+                icon="more"
+                ariaLabel="more"
+              />
+            }
+            items={[
+              {
+                actions: [
+                  {
+                    label: "Alert",
+                    icon: "alert",
+                    onClick: () => {
+                      alert(JSON.stringify(row.original, null, 2));
+                    },
+                  },
+                ],
+              },
+            ]}
+          />
+        ),
+      },
+    ]}
+  />
+);
+
+export const WithActions = WithActionsTemplate.bind({});
 WithActions.args = {
   data: exampleData,
-  columns: [
-    {
-      accessorKey: "name",
-      cell: info => info.getValue(),
-      header: "Name",
-    },
-    {
-      accessorKey: "house",
-      cell: info => info.getValue(),
-      header: "House",
-    },
-    {
-      accessorKey: "region",
-      cell: info => info.getValue(),
-      header: "Region",
-    },
-    {
-      accessorKey: "sigil",
-      cell: info => info.getValue(),
-      header: "Sigil",
-    },
-    {
-      accessorKey: "isAlive",
-      cell: info => info.getValue(),
-      header: "Alive",
-    },
-    {
-      id: "actions",
-      cell: ({ row }) => (
-        <Menu
-          activator={
-            <Button
-              variation="subtle"
-              type="tertiary"
-              icon="more"
-              ariaLabel="more"
-            />
-          }
-          items={[
-            {
-              actions: [
-                {
-                  label: "Alert",
-                  icon: "alert",
-                  onClick: () => {
-                    alert(JSON.stringify(row.original, null, 2));
-                  },
-                },
-              ],
-            },
-          ]}
-        />
-      ),
-    },
-  ],
 };
 
 export const ClientSidePagination = BasicTemplate.bind({});
@@ -245,36 +253,38 @@ ClientSidePagination.args = {
 
 const HorizontalScrollingTemplate: ComponentStory<typeof DataTable> = args => (
   <div style={{ maxWidth: 400 }}>
-    <DataTable {...args} />
+    <DataTable
+      {...args}
+      columns={[
+        {
+          accessorKey: "name",
+          header: () => <Text variation="success">Name</Text>,
+        },
+        {
+          accessorKey: "house",
+          header: () => <Text variation="success">House</Text>,
+        },
+        {
+          accessorKey: "region",
+          header: () => <Text variation="success">Region</Text>,
+        },
+        {
+          accessorKey: "sigil",
+          header: () => <Text variation="success">Sigil</Text>,
+        },
+        {
+          accessorKey: "isAlive",
+          cell: info => (info.getValue() == "Yes" ? "✅" : "❌"),
+          header: () => <Text variation="success">Alive</Text>,
+        },
+      ]}
+    />
   </div>
 );
 
 export const HorizontalScrolling = HorizontalScrollingTemplate.bind({});
 HorizontalScrolling.args = {
   data: exampleData,
-  columns: [
-    {
-      accessorKey: "name",
-      header: () => <Text variation="success">Name</Text>,
-    },
-    {
-      accessorKey: "house",
-      header: () => <Text variation="success">House</Text>,
-    },
-    {
-      accessorKey: "region",
-      header: () => <Text variation="success">Region</Text>,
-    },
-    {
-      accessorKey: "sigil",
-      header: () => <Text variation="success">Sigil</Text>,
-    },
-    {
-      accessorKey: "isAlive",
-      cell: info => (info.getValue() == "Yes" ? "✅" : "❌"),
-      header: () => <Text variation="success">Alive</Text>,
-    },
-  ],
   pinFirstColumn: true,
 };
 
@@ -336,7 +346,77 @@ ManualSorting.args = {
   ],
 };
 
-export const WithFooterRow = BasicTemplate.bind({});
+const WithFooterRowTemplate: ComponentStory<typeof DataTable> = args => (
+  <DataTable
+    {...args}
+    columns={[
+      {
+        id: "name",
+        accessorKey: "name",
+        header: "Name",
+        footer: "Totals",
+      },
+      {
+        id: "points",
+        accessorKey: "points",
+        header: () => (
+          <div style={{ display: "flex", flex: 1 }}>
+            <Typography align="end" fontWeight="bold">
+              Points
+            </Typography>
+          </div>
+        ),
+        footer: () => (
+          <Typography align="end" fontWeight="bold">
+            10,050,400
+          </Typography>
+        ),
+        cell: info => (
+          <Typography align="end">{<>{info.getValue()}</>}</Typography>
+        ),
+      },
+      {
+        id: "chance",
+        accessorKey: "chance",
+        header: () => (
+          <div style={{ display: "flex", flex: 1 }}>
+            <Typography align="end" fontWeight="bold">
+              Chance (%)
+            </Typography>
+          </div>
+        ),
+        cell: info => (
+          <Typography align="end">
+            <>{info.getValue()}</>
+          </Typography>
+        ),
+      },
+      {
+        id: "power",
+        accessorKey: "power",
+        header: () => (
+          <div style={{ display: "flex", flex: 1 }}>
+            <Typography align="end" fontWeight="bold">
+              Power
+            </Typography>
+          </div>
+        ),
+        footer: () => (
+          <Typography align="end" fontWeight="bold">
+            300,000
+          </Typography>
+        ),
+        cell: info => (
+          <Typography align="end">
+            <>{info.getValue()}</>
+          </Typography>
+        ),
+      },
+    ]}
+  />
+);
+
+export const WithFooterRow = WithFooterRowTemplate.bind({});
 WithFooterRow.args = {
   data: [
     {
@@ -398,70 +478,6 @@ WithFooterRow.args = {
       points: "1,000,000",
       chance: 5,
       power: "50,000",
-    },
-  ],
-  columns: [
-    {
-      id: "name",
-      accessorKey: "name",
-      header: "Name",
-      footer: "Totals",
-    },
-    {
-      id: "points",
-      accessorKey: "points",
-      header: () => (
-        <div style={{ display: "flex", flex: 1 }}>
-          <Typography align="end" fontWeight="bold">
-            Points
-          </Typography>
-        </div>
-      ),
-      footer: () => (
-        <Typography align="end" fontWeight="bold">
-          10,050,400
-        </Typography>
-      ),
-      cell: info => (
-        <Typography align="end">{<>{info.getValue()}</>}</Typography>
-      ),
-    },
-    {
-      id: "chance",
-      accessorKey: "chance",
-      header: () => (
-        <div style={{ display: "flex", flex: 1 }}>
-          <Typography align="end" fontWeight="bold">
-            Chance (%)
-          </Typography>
-        </div>
-      ),
-      cell: info => (
-        <Typography align="end">
-          <>{info.getValue()}</>
-        </Typography>
-      ),
-    },
-    {
-      id: "power",
-      accessorKey: "power",
-      header: () => (
-        <div style={{ display: "flex", flex: 1 }}>
-          <Typography align="end" fontWeight="bold">
-            Power
-          </Typography>
-        </div>
-      ),
-      footer: () => (
-        <Typography align="end" fontWeight="bold">
-          300,000
-        </Typography>
-      ),
-      cell: info => (
-        <Typography align="end">
-          <>{info.getValue()}</>
-        </Typography>
-      ),
     },
   ],
 };
