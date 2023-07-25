@@ -1,38 +1,17 @@
-import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Canvas, Meta } from "@storybook/addon-docs";
 import { useState } from "react";
 import { InputNumber } from "@jobber/components/InputNumber";
-import { Text } from "@jobber/components/Text";
 import { Button } from "@jobber/components/Button";
 import { Content } from "@jobber/components/Content";
 
-<Meta title="Components/Forms and Inputs/InputNumber" component={InputNumber} />
+<Meta
+  title="Components/Forms and Inputs/InputNumber/Docs"
+  component={InputNumber}
+/>
 
 # InputNumber
 
 InputNumber is used in forms that accept numbers as an answer.
-
-```ts
-import { InputNumber } from "@jobber/components/InputNumber";
-```
-
-<Canvas>
-  <Story
-    name="InputNumber"
-    args={{
-      value: 7,
-      max: 11,
-      min: 0,
-      placeholder: "Number",
-    }}
-  >
-    {args => {
-      const [value, setValue] = useState(args.value);
-      return <InputNumber {...args} value={value} onChange={setValue} />;
-    }}
-  </Story>
-</Canvas>
-
-<ArgsTable of={InputNumber} story="InputNumber" />
 
 ## Design & usage guidelines
 
@@ -42,8 +21,6 @@ increments, such as quantity, price, or days (ie 2 days -> 3 days).
 While some types of data may technically be numbers, they can be ill-suited for
 using a number input. For example, phone numbers and credit card numbers provide
 no value to the user by offering an incrementer.
-
----
 
 ## Controlled
 
@@ -86,55 +63,15 @@ no value to the user by offering an incrementer.
   />
 </Canvas>
 
-### Invalid
-
-For more information about available `validations`, see the
-[InputText](../?path=/docs/components-forms-and-inputs-inputtext--input-text/#validation-message)
-docs.
+### Prefix/suffix
 
 <Canvas>
   <InputNumber
-    placeholder="Give a whole number"
-    defaultValue={1.1}
-    invalid={true}
-    name="wholeNumber"
+    defaultValue="100000"
+    placeholder="Invoice Total"
+    prefix={{ label: "$", icon: "invoice" }}
+    suffix={{ label: ".00" }}
   />
-</Canvas>
-
-## Sizes
-
-### Small
-
-<Canvas>
-  <InputNumber name="smallField" size="small" placeholder="Duration" />
-  <InputNumber name="smallField" size="small" placeholder="Duration" />
-</Canvas>
-
-### Large
-
-<Canvas>
-  <InputNumber
-    name="largeField"
-    size="large"
-    placeholder="Duration but bigger"
-  />
-</Canvas>
-
-## Inline
-
-<Canvas>
-  <Text>
-    Follow-up after
-    <InputNumber
-      name="durationInDays"
-      defaultValue={2}
-      size="small"
-      inline={true}
-      maxLength={2}
-      align="center"
-    />
-    days
-  </Text>
 </Canvas>
 
 ## Focus & blur
