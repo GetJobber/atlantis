@@ -1,5 +1,6 @@
 import React from "react";
 import { useCollectionQuery } from "@jobber/hooks";
+import classNames from "classnames";
 import styles from "./ThiccList.css";
 import {
   LIST_QUERY,
@@ -16,6 +17,7 @@ import { Grid } from "../Grid";
 import { InputText } from "../InputText";
 import { Text } from "../Text";
 import { AnimatedSwitcher } from "../AnimatedSwitcher";
+import { Glimmer } from "../Glimmer";
 
 const headers = ["Client", "Address", "Tags", "Status", "Activity"];
 
@@ -40,8 +42,8 @@ export function ThiccList() {
       return items?.allPeople;
     },
   });
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { loadingStatus, loading } = getLoadingState(
+
+  const { loading } = getLoadingState(
     loadingInitialContent,
     loadingRefresh,
     loadingNextPage,
@@ -104,6 +106,32 @@ export function ThiccList() {
             ))}
           </Grid>
         </div>
+
+        {loading &&
+          [...Array(10).keys()].map(num => (
+            <div
+              key={num}
+              className={classNames(styles.listContent, styles.listContentItem)}
+            >
+              <Grid>
+                <Grid.Cell size={{ xs: 3 }}>
+                  <Glimmer />
+                </Grid.Cell>
+                <Grid.Cell size={{ xs: 3 }}>
+                  <Glimmer />
+                </Grid.Cell>
+                <Grid.Cell size={{ xs: 2 }}>
+                  <Glimmer />
+                </Grid.Cell>
+                <Grid.Cell size={{ xs: 2 }}>
+                  <Glimmer />
+                </Grid.Cell>
+                <Grid.Cell size={{ xs: 2 }}>
+                  <Glimmer />
+                </Grid.Cell>
+              </Grid>
+            </div>
+          ))}
 
         {items.map(({ node }) => (
           <ThiccListItem
