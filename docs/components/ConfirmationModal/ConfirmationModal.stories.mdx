@@ -1,52 +1,15 @@
 import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
 import { useRef, useState } from "react";
 import { Button } from "@jobber/components/Button";
-import { ConfirmationModal } from ".";
+import { ConfirmationModal } from "@jobber/components/ConfirmationModal";
 
 # Confirmation Modal
 
-<Meta
-  title="Components/Overlays/ConfirmationModal"
-  component={ConfirmationModal}
-/>
+<Meta title="Components/Overlays/ConfirmationModal/Docs" />
 
 A ConfirmationModal allows users to confirm or cancel actions that they are
 performing. Examples of actions that may need confirmation are navigating off an
 edited page or deleting an object.
-
-```ts
-import {
-  ConfirmationModal,
-  confirmationModalReducer,
-} from "@jobber/components/ConfirmationModal";
-```
-
-<Canvas>
-  <Story
-    name="ConfirmationModal"
-    args={{
-      title: "Should we?",
-      message: `Let's do **something**!`,
-      confirmLabel: "Do it",
-    }}
-  >
-    {args => {
-      const [open, setOpen] = useState(false);
-      return (
-        <>
-          <Button label="Open" onClick={() => setOpen(true)} />
-          <ConfirmationModal
-            {...args}
-            open={open}
-            onConfirm={() => alert("✅")}
-            onCancel={() => alert("🙅‍♂️")}
-            onRequestClose={() => setOpen(false)}
-          />
-        </>
-      );
-    }}
-  </Story>
-</Canvas>
 
 ## Design & usage guidelines
 
@@ -76,10 +39,6 @@ Avoid using generic or verbose titles.
 | **Delete job #2121?**                               | **Are you sure?**                                   |
 | Deleting this job will remove all associated visits | Deleting this job will remove all associated visits |
 | Cancel / Delete Job                                 | Cancel / Delete Job                                 |
-
-## Props
-
-<ArgsTable of={ConfirmationModal} story="ConfirmationModal" />
 
 ## Controlled Confirmation Modal
 
