@@ -40,7 +40,6 @@
 
 .listHeader,
 .listContentItem {
-  padding: var(--space-base) var(--space-small);
   text-align: left;
 }
 
@@ -48,6 +47,7 @@
   position: sticky;
   top: 0;
   z-index: var(--elevation-base);
+  padding: var(--space-small);
   border-bottom: 2px solid var(--color-border);
   background-color: var(--color-surface);
 }
@@ -76,6 +76,10 @@ button.listHeaderButton {
 
 .listContent:not(:last-of-type) {
   border-bottom: 1px solid var(--color-border);
+}
+
+.listContentItem {
+  padding: var(--space-base) var(--space-small);
 }
 
 .listContentItem:hover {

@@ -21,6 +21,25 @@ const status: { label: string; color: InlineLabelColors }[] = [
   { label: "Lead", color: "lightBlue" },
 ];
 
+const address = [
+  "348 Burdett Avenue, Victoria, British Columbia, V8W IE9",
+  "1507 Bellwood Acres Rd, Huntsville, Ontario, P0A 1K0",
+  "3452 Haaglund Rd, Oliver, British Columbia, V0H 1T0",
+  "4874 Bay Street, Toronto, Ontario, M5J 2R8",
+  "2366 Lynden Road, Moonstone, Ontario, L0K 1N0",
+  "3573 90th Avenue, Brooks, Alberta, T0J 0J0",
+  "2108 Alness Street, Toronto, Ontario, M3J 2J1",
+  "727 Brew Creek Rd, Port Hardy, British Columbia, V0N 2P0",
+  "4086 Boulevard Ste-Geneviève, Chicoutimi, Quebec, G7H 5G3",
+  "4571 Ste. Catherine Ouest, Montreal, Quebec, H3A 4G4",
+  "4839 40th Street, Calgary, Alberta, T2A 1C8",
+  "4320 Duke Street, Montreal, Quebec, H3C 5K4",
+  "2383 Charing Cross Rd, Chatham, Ontario, N7M 2G9",
+  "500 Eglinton Avenue, Toronto, Ontario, M4P 1A6",
+  "4386 40th Street, Calgary, Alberta, T2A 1C8",
+  "1946 43rd Avenue, Whitehorse, Yukon, Y1A 2A2",
+];
+
 interface ThiccListItemProps {
   readonly isSelected: boolean;
   readonly data: ListNode;
@@ -52,6 +71,9 @@ export function ThiccListItem({
   const statusNumber = useRef(
     Math.floor(Math.random() * status.length),
   ).current;
+  const addressNumber = useRef(
+    Math.floor(Math.random() * address.length),
+  ).current;
   const selectedStatus = status[statusNumber];
 
   return (
@@ -80,10 +102,12 @@ export function ThiccListItem({
       >
         <Grid>
           <Grid.Cell size={{ xs: 3 }}>
-            <Text>{data.name}</Text>
+            <Text maxLines="single">{data.name}</Text>
           </Grid.Cell>
           <Grid.Cell size={{ xs: 3 }}>
-            <Text variation="subdued">{data.homeworld.name}</Text>
+            <Text variation="subdued" maxLines="single">
+              {data.homeworld.name}, {address[addressNumber]}
+            </Text>
           </Grid.Cell>
           <Grid.Cell size={{ xs: 2 }}>
             <div className={styles.inlineLabel}>

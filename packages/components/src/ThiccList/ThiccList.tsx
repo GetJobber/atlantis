@@ -99,7 +99,7 @@ export function ThiccList() {
 
       <div className={styles.list}>
         <div className={styles.listHeader}>
-          <Grid>
+          <Grid alignItems="center">
             {headers.map((header, i) => (
               <Grid.Cell key={header} size={{ xs: i <= 1 ? 3 : 2 }}>
                 {i === 0 ? (
