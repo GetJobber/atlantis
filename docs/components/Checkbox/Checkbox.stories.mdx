@@ -1,4 +1,5 @@
 import { Meta } from "@storybook/addon-docs";
+import { Figma } from "storybook-addon-designs/blocks";
 
 <Meta title="Components/Selections/Checkbox/Docs" />
 
@@ -9,12 +10,14 @@ A checkbox lets a user select one or more items from a set of options.
 ## Design & usage guidelines
 
 A checkbox is a familiar pattern for users who need to choose from a set of
-options, or opt in to a single choice.
+options, or opt in to a single choice. It allows a user to provide boolean
+input. It can also be in an indeterminate state when we don't know if the
+checkbox is considered checked or not.
 
 A single checkbox, a
 [Switch](../?path=/docs/components-selections-switch--switch-story), and a pair
 of
-[radio buttons](../?path=/docs/components-forms-and-inputs-radiogroup--radio-group)
+[radio buttons](../?path=/docs/components-forms-and-inputs-radiogroup-docs--page)
 can seem similar in theory, as all can represent an either/or decision for the
 user. Use a switch when the user must make a decision to turn something on or
 off, and a single checkbox when a user is opting in to a choice. A pair of radio
@@ -27,12 +30,23 @@ options to choose from. when the volume of Radio options is greater than 5 (or
 there are otherwise critical vertical space constraints) use Select. when the
 labels on a set of Radio options are consistently small (1–2 words), use Chip.
 
+### CheckboxGroup (mobile)
+
+The `<CheckboxGroup>` component is a component that provides a grouping of
+checkboxes. It allows you to optionally provide a label which will allow you to
+control the Checkbox children with a single parent checkbox. If some but not all
+children are checked then the parent checkbox will show the indeterminate state.
+An important thing to note is that when using `<CheckboxGroup>` the child
+Checkboxes must have a name provided as a prop. This is so the CheckboxGroup is
+able to keep track the state of the child Checkboxes. See
+[Checkbox/Mobile/Checkbox Group Example](../?path=/story/components-selections-checkbox-mobile--checkbox-group-example)
+
 ## Related components
 
 - To let people turn a setting on or off instantly, use a
   [Switch](../?path=/docs/components-selections-switch--switch-story).
 - To present a set of options where people can only make a single choice, use a
-  [RadioGroup](../?path=/docs/components-forms-and-inputs-radiogroup--radio-group).
+  [RadioGroup](../?path=/docs/components-forms-and-inputs-radiogroup-docs--page).
 
 ## Mockup
 

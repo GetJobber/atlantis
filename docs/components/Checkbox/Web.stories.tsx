@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Checkbox } from "@jobber/components/Checkbox";
 import { Text } from "@jobber/components/Text";
+import { Link } from "@jobber/components/Link";
 
 export default {
   title: "Components/Selections/Checkbox/Web",
@@ -78,21 +79,10 @@ const ChildrenAsLabelTemplate: ComponentStory<typeof Checkbox> = args => {
   return (
     <Checkbox {...args} checked={checked} onChange={setChecked}>
       <Text>
-        I agree to the
-        <button
-          style={{
-            color: "var(--color-interactive)",
-            fontFamily: "inherit",
-            fontSize: "inherit",
-            padding: "0",
-            textDecoration: "underline",
-            background: "transparent",
-            border: "none",
-          }}
-          onClick={() => alert("Open terms and services")}
-        >
+        I agree to the{" "}
+        <Link url="https://getjobber.com/terms-of-service/" external>
           terms of service
-        </button>
+        </Link>
       </Text>
     </Checkbox>
   );
