@@ -23,6 +23,11 @@
   font-weight: 400;
 }
 
+.batchActions {
+  display: flex;
+  gap: var(--space-smaller);
+}
+
 .list {
   /* do nothing */
 }
@@ -34,7 +39,6 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
-  transition: all var(--timing-base);
   appearance: none;
 }
 
@@ -161,6 +165,8 @@ button.listContentMenuItem:hover {
 }
 
 .overflowTags {
+  --overflow-bg: var(--color-white);
+
   position: absolute;
   top: 0;
   right: 0;
@@ -170,7 +176,19 @@ button.listContentMenuItem:hover {
   background-image: linear-gradient(
     90deg,
     transparent 0,
-    var(--color-white) var(--space-base),
-    var(--color-white) 100%
+    var(--overflow-bg) var(--space-base),
+    var(--overflow-bg) 100%
   );
+}
+
+.listContentItem:hover .overflowTags {
+  --overflow-bg: var(--color-grey--lightest);
+}
+
+.listContentSelected .listContentItem .overflowTags {
+  --overflow-bg: var(--color-lightBlue--lightest);
+}
+
+.listContentSelected .listContentItem:hover .overflowTags {
+  --overflow-bg: var(--color-lightBlue--lighter);
 }

@@ -78,7 +78,7 @@ export function ThiccList() {
               switched={Boolean(selectedItem.length)}
               initialChild={<div />}
               switchTo={
-                <div>
+                <div className={styles.batchActions}>
                   <ThiccListAction icon="sendMessage" label="Send message" />
                   <ThiccListAction icon="addNote" label="Add note" />
                   <ThiccListAction icon="export" label="Export" />

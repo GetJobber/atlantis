@@ -1,6 +1,7 @@
 declare const styles: {
   readonly "actions": string;
   readonly "filterActions": string;
+  readonly "batchActions": string;
   readonly "list": string;
   readonly "listHeader": string;
   readonly "listContentItem": string;
