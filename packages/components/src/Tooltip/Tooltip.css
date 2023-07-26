@@ -18,9 +18,12 @@
   position: relative;
   max-width: calc(var(--base-unit) * 15);
   padding: var(--space-small);
-  border: var(--border-base) solid var(--color-informative);
-  border-radius: var(--radius-base);
-  background-color: var(--color-informative--surface);
+  border-radius: var(--radius-large);
+  background-color: var(--color-surface--reverse);
+}
+
+.tooltip p {
+  color: var(--color-white);
 }
 
 .tooltip .arrow,
@@ -34,8 +37,7 @@
   content: "";
   display: block;
   position: absolute;
-  border: var(--border-base) solid var(--color-informative);
-  background-color: var(--color-informative--surface);
+  background-color: var(--color-surface--reverse);
   transform: rotate(45deg);
 }
 

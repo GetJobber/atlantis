@@ -11,9 +11,14 @@ import styles from "./Tooltip.css";
 import { useTooltipPositioning } from "./useTooltipPositioning";
 import { Text } from "../Text";
 
-const variation = {
-  startOrStop: { scale: 0.6, opacity: 0 },
-  done: { scale: 1, opacity: 1 },
+const variationUp = {
+  startOrStop: { y: 3, opacity: 0 },
+  done: { y: 0, opacity: 1 },
+};
+
+const variationDown = {
+  startOrStop: { y: -3, opacity: 0 },
+  done: { y: 0, opacity: 1 },
 };
 
 interface TooltipProps {
@@ -59,15 +64,10 @@ export function Tooltip({ message, children }: TooltipProps) {
           >
             <motion.div
               className={styles.tooltip}
-              variants={variation}
+              variants={placement === "bottom" ? variationDown : variationUp}
               initial="startOrStop"
               animate="done"
               exit="startOrStop"
-              transition={{
-                type: "spring",
-                damping: 20,
-                stiffness: 300,
-              }}
             >
               <Text>{message}</Text>
               <div
