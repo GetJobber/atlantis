@@ -2,7 +2,7 @@ import React, { Ref, createRef, forwardRef, useImperativeHandle } from "react";
 import { RegisterOptions } from "react-hook-form";
 import { CommonFormFieldProps, FormField, FormFieldProps } from "../FormField";
 
-interface InputNumberProps
+export interface InputNumberProps
   extends CommonFormFieldProps,
     Pick<
       FormFieldProps,
