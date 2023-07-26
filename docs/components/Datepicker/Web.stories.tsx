@@ -73,16 +73,10 @@ const RestrictedDateRateTemplate: ComponentStory<typeof DatePicker> = args => {
   const [date, setDate] = useState(new Date("01/02/2023"));
   const highlightDates = [
     new Date("01/01/2023"),
-    new Date("02/20/2023"),
-    new Date("04/07/2023"),
-    new Date("05/22/2023"),
-    new Date("07/01/2023"),
-    new Date("08/07/2023"),
-    new Date("09/04/2023"),
-    new Date("10/09/2023"),
-    new Date("11/13/2023"),
-    new Date("12/25/2023"),
-    new Date("12/26/2023"),
+    new Date("01/04/2023"),
+    new Date("01/20/2023"),
+    new Date("01/22/2023"),
+    new Date("02/22/2023"),
   ];
   return (
     <Content>
