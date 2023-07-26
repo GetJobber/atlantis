@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.23.40](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.39...@jobber/components@4.23.40) (2023-07-26)
+
+
+### Bug Fixes
+
+* include index.tsx on component packing ([#1429](https://github.com/GetJobber/atlantis/issues/1429)) ([a5f6618](https://github.com/GetJobber/atlantis/commit/a5f6618d93375ff1bd8a8fb18cc993fc87a2d315))
+
+
+
+
+
 ## [4.23.39](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.38...@jobber/components@4.23.39) (2023-07-26)
 
 **Note:** Version bump only for package @jobber/components
