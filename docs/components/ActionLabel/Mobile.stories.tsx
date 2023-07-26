@@ -7,6 +7,7 @@ export default {
   parameters: {
     viewMode: "story",
     previewTabs: { code: { hidden: false } },
+    viewport: { defaultViewport: "mobile1" },
   },
   component: ActionLabel,
 } as ComponentMeta<typeof ActionLabel>;

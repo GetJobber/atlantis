@@ -37,6 +37,7 @@ describe("Playground", () => {
 
   it("should render nothing when there's no story data", () => {
     sbAPISpy.mockImplementation(() => ({
+      emit: jest.fn(),
       getCurrentStoryData: () => undefined,
     }));
     const { container } = render(<Playground />);
@@ -289,6 +290,7 @@ function mockStoryData({
   ...rest
 }: MockStoryDataType) {
   sbAPISpy.mockImplementation(() => ({
+    emit: jest.fn(),
     getCurrentStoryData: () => ({
       type: "story",
       title: "Components/Web",

@@ -51,7 +51,7 @@ jobs:
           else
             if [ "$PUBLISH_SETTING" == "Force Publish Components" ]; then
             FORCE_PUBLISH_SETTINGS="--force-publish @jobber/components"
-            if [ "$PUBLISH_SETTING" == "Force Publish Components-native" ]; then
+            elif [ "$PUBLISH_SETTING" == "Force Publish Components-native" ]; then
             FORCE_PUBLISH_SETTINGS="--force-publish @jobber/components-native"
             elif [ "$PUBLISH_SETTING" == "Force Publish Design" ]; then
             FORCE_PUBLISH_SETTINGS="--force-publish @jobber/design"

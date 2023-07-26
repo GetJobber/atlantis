@@ -12,10 +12,15 @@ import { PlaygroundWarning } from "./PlaygroundWarning";
 import { PlaygroundImports } from "./types";
 import { THIRD_PARTY_PACKAGE_VERSIONS } from "./constants";
 import { formatCode } from "./utils";
+import { STORY_CHANGED } from '@storybook/core-events';
 
 export function Playground() {
-  const { getCurrentStoryData } = useStorybookApi();
+  const { getCurrentStoryData, emit } = useStorybookApi();
   const activeStory = getCurrentStoryData() as Story | undefined;
+
+  // Emit story changed so GA can track it as a page change. This mimics the
+  // default behaviour of Canvas and Docs tab.
+  emit(STORY_CHANGED);
 
   if (!activeStory) {
     return <></>;
@@ -36,6 +41,9 @@ export function Playground() {
       customSetup={{
         dependencies: {
           "@jobber/components": "latest",
+          "@jobber/hooks": "latest",
+          "@apollo/client": "^3.0.0",
+          "graphql": "^15.8.0",
           ...extraDependencies,
         },
       }}
@@ -188,7 +196,7 @@ function parseSourceStringForImports(source: string, extraImports: string[]) {
     .filter(component => !extraImports.includes(component));
 
   // check to see if the source contains any react hooks
-  const hookNames = source?.match(/use[State|Effect|Ref]+/gm);
+  const hookNames = source?.match(/use[State|Effect|Ref|Memo]+/gm);
   return { componentNames, hookNames };
 }
 

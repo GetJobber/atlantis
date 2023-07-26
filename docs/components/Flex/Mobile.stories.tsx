@@ -12,6 +12,8 @@ export default {
     backgrounds: {
       default: "surface background",
     },
+    previewTabs: { code: { hidden: false } },
+    viewport: { defaultViewport: "mobile1" },
   },
 } as ComponentMeta<typeof Flex>;
 
@@ -59,5 +61,6 @@ Nested.args = {
 
 export const MultiRow = MultiRowTemplate.bind({});
 MultiRow.args = {
-  template: ["grow", "grow", "grow", "grow"],
+  template: ["grow", "grow"],
+  gap: "small",
 };
