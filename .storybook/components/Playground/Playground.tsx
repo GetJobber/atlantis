@@ -41,6 +41,9 @@ export function Playground() {
       customSetup={{
         dependencies: {
           "@jobber/components": "latest",
+          "@jobber/hooks": "latest",
+          "@apollo/client": "^3.0.0",
+          "graphql": "^15.8.0",
           ...extraDependencies,
         },
       }}
@@ -193,7 +196,7 @@ function parseSourceStringForImports(source: string, extraImports: string[]) {
     .filter(component => !extraImports.includes(component));
 
   // check to see if the source contains any react hooks
-  const hookNames = source?.match(/use[State|Effect|Ref]+/gm);
+  const hookNames = source?.match(/use[State|Effect|Ref|Memo]+/gm);
   return { componentNames, hookNames };
 }
 
