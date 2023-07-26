@@ -12,6 +12,9 @@ export default {
     previewTabs: {
       code: {
         hidden: false,
+        extraImports: {
+          "@std-proposal/temporal": ["CivilTime"],
+        },
       },
     },
   },
