@@ -10,8 +10,6 @@ import { Typography } from "../Typography";
 interface ListProps {
   /**
    * Array of the list items.
-   *
-   * {@link https://atlantis.frend.space/components/list#list-item-props List Item Props}
    */
   readonly items: ListItemProps[];
 }
