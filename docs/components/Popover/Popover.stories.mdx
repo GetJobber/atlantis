@@ -1,4 +1,5 @@
 import { Meta } from "@storybook/addon-docs";
+import { Banner } from "@jobber/components/Banner";
 
 <Meta title="Components/Overlays/Popover/Docs" />
 
@@ -12,6 +13,33 @@ components.
 
 Some scenarios for Popover include the following:
 
+### Informational
+
+Introducing the user to a new experience, whether their first time using a
+product or to introduce a new or updated functionality in an existing
+experience, Popover can be an excellent choice to highlight a specific piece of
+the experience.
+
+If there is an "acknowledgement" CTA for the user to confirm that they
+understand the change, use a `learning`
+[Button](../?path=/docs/components-actions-button-docs--page).
+
+See
+[Popover/Informational](../?path=/story/components-overlays-popover-web--informational)
+
+### Functional
+
+Reveal a list of available actions to the user. For example, if the user clicks
+on an element and there are four potential actions they might take, Popover is a
+great way to present those actions. If you're looking to provide a menu of
+actions that comes complete with a trigger button,
+[Menu](../?path=/docs/components-navigation-menu--menu) has that bundle ready to
+go.
+
+<Banner type="warning" dismissible={false}>
+  A "functional" Popover hasn't been implemented in a componentized fashion yet.
+</Banner>
+
 ### Related components
 
 To add a menu button that presents multiple actions to the user, use
@@ -22,8 +50,8 @@ a Button's label on hover), use
 [Tooltip](../?path=/docs/components-overlays-tooltip--tooltip).
 
 To add an inline informational element that the user can dismiss, consider if
-[Banner](../?path=/docs/components-banner--banner) is the right fit for your use
-case.
+[Banner](../?path=/docs/components-status-and-feedback-banner--banner) is the
+right fit for your use case.
 
 ## Content guidelines
 
@@ -31,7 +59,7 @@ case.
   lines so the user can get back to what they were doing!
 - In "informational" usage, Popper may have a CTA that allows the user to
   "acknowledge" and dismiss the Popover; this does not replace the need for the
-  dismiss button
+  dismiss button.
 
 ## Accessibility
 
@@ -47,13 +75,3 @@ focus to the button that opened the Popover.
 If your element is effectively acting as an inline DOM element that the user
 would otherwise encounter when traversing the page, this focus management may
 not be necessary.
-
-## Notes
-
-- There is no componentized way to pass in actions for a "functional" Popover
-  yet, but we have a good idea of what that would look like. We believe there
-  may be some opportunity to share elements of Popover with Menu and vice-versa.
-- There is no built-in focus management in Popover, as the specific
-  implementation should drive those considerations
-- Popover uses a plugin called [Popper](https://popper.js.org/react-popper/v2/)
-  to power its' positioning

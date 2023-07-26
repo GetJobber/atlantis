@@ -12,6 +12,7 @@ export default {
   parameters: {
     viewMode: "story",
     previewTabs: { code: { hidden: false } },
+    layout: "fullscreen",
   },
 } as ComponentMeta<typeof Popover>;
 
