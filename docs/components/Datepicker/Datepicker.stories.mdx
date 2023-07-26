@@ -1,11 +1,6 @@
-import { useState } from "react";
-import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
-import { DataDump } from "@jobber/components/DataDump";
-import { Content } from "@jobber/components/Content";
-import { Button } from "@jobber/components/Button";
-import { DatePicker } from "@jobber/components/DatePicker";
+import { Meta } from "@storybook/addon-docs";
 
-<Meta title="Components/Selections/DatePicker" component={DatePicker} />
+<Meta title="Components/Selections/DatePicker/Docs" />
 
 # Date Picker
 
@@ -15,26 +10,6 @@ interface.
 While this component can be used in isolation, the intention is that in many
 cases it will supplement an input component to provide the user with a
 multi-mode opportunity to select a date.
-
-```ts
-import { DatePicker } from "@jobber/components/DatePicker";
-```
-
-<Canvas>
-  <Story name="DatePicker">
-    {args => {
-      const [date, setDate] = useState(args.date);
-      return (
-        <Content>
-          <DatePicker {...args} selected={date} onChange={setDate} />
-          {date && <DataDump defaultOpen data={date} />}
-        </Content>
-      );
-    }}
-  </Story>
-</Canvas>
-
-<ArgsTable of={DatePicker} story="DatePicker" />
 
 ## Design & usage guidelines
 
@@ -57,105 +32,28 @@ series of scheduling questions individually, in sequence.
 In cases like complex scheduling forms where all the factors of a schedule such
 as times, repeating frequency, and duration are being asked, consider using the
 default popover-type behaviour for those use cases to reduce an overwhelming
-volume of UI elements to process at once.
-
-<Canvas>
-  {() => {
-    const [date, setDate] = useState();
-    return (
-      <Content>
-        <div>
-          <DatePicker selected={date} inline onChange={setDate} />
-        </div>
-        {date && <DataDump defaultOpen data={date} />}
-      </Content>
-    );
-  }}
-</Canvas>
+volume of UI elements to process at once. See
+[Inline](../?path=/story/components-selections-datepicker-web--inline) example.
 
 ## Custom activator
 
 If you want to use a different activator to display the `DatePicker` you can
-pass a `React` component as the `activator`.
-
-<Canvas>
-  {() => {
-    const [date, setDate] = useState();
-    return (
-      <Content>
-        <DatePicker
-          selected={date}
-          onChange={setDate}
-          activator={<Button label="My fancy activator" variation="learning" />}
-        />
-        {date && <DataDump defaultOpen data={date} />}
-      </Content>
-    );
-  }}
-</Canvas>
+pass a `React` component as the `activator`. See
+[Custom Activator](../?path=/story/components-selections-datepicker-web--custom-activator)
+example.
 
 ## Restricting date ranges
 
 If you want to enable for selection only a range of dates you can pass `minDate`
-or `maxDate` to the component as props.
-
-<Canvas>
-  {() => {
-    const [date, setDate] = useState(new Date("02/17/2022"));
-    return (
-      <Content>
-        <div>
-          <DatePicker
-            minDate={new Date("02/07/2022")}
-            maxDate={new Date("02/27/2022")}
-            selected={date}
-            inline
-            onChange={setDate}
-          />
-        </div>
-        {date && <DataDump defaultOpen data={date} />}
-      </Content>
-    );
-  }}
-</Canvas>
+or `maxDate` to the component as props. See [Date Range]() example
 
 ## Highlighted dates
 
 If you need to call attention to a series of dates on the calendar, the
 `highlightDates` prop accepts an array of dates that will be displayed with
-additional emphasis.
-
-<Canvas>
-  {() => {
-    const [date, setDate] = useState(new Date("01/02/2023"));
-    const highlightDates = [
-      new Date("01/01/2023"),
-      new Date("02/20/2023"),
-      new Date("04/07/2023"),
-      new Date("05/22/2023"),
-      new Date("07/01/2023"),
-      new Date("08/07/2023"),
-      new Date("09/04/2023"),
-      new Date("10/09/2023"),
-      new Date("11/13/2023"),
-      new Date("12/25/2023"),
-      new Date("12/26/2023"),
-    ];
-    return (
-      <Content>
-        <DatePicker
-          minDate={new Date("01/01/2023")}
-          maxDate={new Date("12/31/2023")}
-          selected={date}
-          inline
-          onChange={setDate}
-          highlightDates={highlightDates}
-        />
-        <DataDump defaultOpen label="highlightDates" data={highlightDates} />
-      </Content>
-    );
-  }}
-</Canvas>
+additional emphasis. See the
+[Highlighted Dates](?path=/story/components-selections-datepicker-web--restricted-date-range)
+example.
 
 ## Accessibility
 
