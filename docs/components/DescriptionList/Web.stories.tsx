@@ -13,7 +13,7 @@ export default {
       code: {
         hidden: false,
         extraImports: {
-          "@std-proposal/temporal": ["CivilTime"],
+          "@std-proposal/temporal": ["CivilDate"],
         },
       },
     },
