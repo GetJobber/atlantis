@@ -19,9 +19,9 @@ export default {
   },
 } as ComponentMeta<typeof Tabs>;
 
-const BasicTemplate: ComponentStory<typeof Tabs> = args => (
-  <Tabs {...args}>
-    <Tab label="Eggs">
+const BasicTemplate: ComponentStory<typeof Tab> = args => (
+  <Tabs>
+    <Tab {...args}>
       🍳 Some eggs are laid by female animals of many different species,
       including birds, reptiles, amphibians, mammals, and fish, and have been
       eaten by humans for thousands of years.
@@ -40,4 +40,6 @@ const BasicTemplate: ComponentStory<typeof Tabs> = args => (
 );
 
 export const Basic = BasicTemplate.bind({});
-Basic.args = {};
+Basic.args = {
+  label: "Eggs",
+};
