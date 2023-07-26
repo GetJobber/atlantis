@@ -6,14 +6,14 @@ import { ThiccList as List } from "./ThiccList";
 import { Layout } from "./Layout";
 
 export default {
-  title: "ThiccList",
+  title: "ListExploration",
   parameters: {
     viewMode: "story",
   },
   component: List,
 } as ComponentMeta<typeof List>;
 
-export const ThiccList = {
+export const ListExploration = {
   render: () => (
     <Layout>
       <List />

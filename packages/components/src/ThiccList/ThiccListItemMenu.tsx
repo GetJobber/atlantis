@@ -1,5 +1,5 @@
 import React from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, Variants, motion } from "framer-motion";
 import styles from "./ThiccList.css";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
