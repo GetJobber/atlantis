@@ -75,6 +75,7 @@ export function ThiccListItem({
     Math.floor(Math.random() * address.length),
   ).current;
   const selectedStatus = status[statusNumber];
+  const maxTags = 3;
 
   return (
     <div
@@ -112,9 +113,16 @@ export function ThiccListItem({
           <Grid.Cell size={{ xs: 2 }}>
             <div className={styles.inlineLabel}>
               <InlineLabel>{data.skinColor}</InlineLabel>
-              {randomNumbersArray.map((num, i) => (
+              {randomNumbersArray.slice(0, 3).map((num, i) => (
                 <InlineLabel key={num + tags[num] + i}>{tags[num]}</InlineLabel>
               ))}
+              <div className={styles.overflowTags}>
+                {randomNumbersArray.length > maxTags && (
+                  <Text variation="subdued">
+                    +{randomNumbersArray.length - maxTags}
+                  </Text>
+                )}
+              </div>
             </div>
           </Grid.Cell>
           <Grid.Cell size={{ xs: 2 }}>

@@ -149,12 +149,28 @@ button.listContentMenuItem:hover {
 
 .inlineLabel {
   display: flex;
+  position: relative;
+  overflow: hidden;
   gap: var(--space-smaller);
   flex-wrap: nowrap;
-  overflow: hidden;
 }
 
 .inlineLabel > * {
   padding: var(--space-smallest) var(--space-smaller);
   white-space: nowrap;
+}
+
+.overflowTags {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  padding: 0;
+  padding-left: var(--space-base);
+  background-image: linear-gradient(
+    90deg,
+    transparent 0,
+    var(--color-white) var(--space-base),
+    var(--color-white) 100%
+  );
 }
