@@ -196,7 +196,12 @@ function parseSourceStringForImports(source: string, extraImports: string[]) {
     .filter(component => !extraImports.includes(component));
 
   // check to see if the source contains any react hooks
-  const hookNames = source?.match(/use[State|Effect|Ref|Memo]+/gm);
+  const hookNameMatches = source?.match(/use[State|Effect|Ref|Memo|Callback]+/gm);
+  // deduplicate matches
+  const hookNames = hookNameMatches?.filter((hook, index) => {
+    return hookNameMatches.indexOf(hook) === index;
+  });
+
   return { componentNames, hookNames };
 }
 
