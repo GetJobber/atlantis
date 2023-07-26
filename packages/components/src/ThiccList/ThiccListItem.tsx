@@ -1,10 +1,12 @@
 import React, { useRef, useState } from "react";
 import throttle from "lodash/throttle";
 import classNames from "classnames";
+import { AnimatePresence, Variants, motion } from "framer-motion";
 import styles from "./ThiccList.css";
 import { ListNode } from "./gqlUtils";
 import { ThiccListItemMenu } from "./ThiccListItemMenu";
 import { ThiccListAction } from "./ThiccListAction";
+import { SideSheet } from "./SideSheet";
 import { FormatRelativeDateTime } from "../FormatRelativeDateTime";
 import { Text } from "../Text";
 import { Grid } from "../Grid";
@@ -46,6 +48,11 @@ interface ThiccListItemProps {
   readonly onClick: (data: ListNode) => void;
   readonly onDoubleClick: (data: ListNode) => void;
 }
+
+const variants: Variants = {
+  hidden: { y: "20%", opacity: 0, pointerEvents: "none" },
+  visible: { y: 0, opacity: 1, pointerEvents: "auto" },
+};
 
 export function ThiccListItem({
   data,
@@ -143,17 +150,26 @@ export function ThiccListItem({
       </button>
 
       {/* Float-y bits be portaled to the body */}
-      {showHoverMenu && (
-        <div
-          className={styles.listContentHoverMenu}
-          onContextMenu={e => e.stopPropagation()}
-          onMouseLeave={() => setShowHoverMenu(false)}
-        >
-          <ThiccListAction label="Compose Email" icon="email" />
-          <ThiccListAction label="Create Note" icon="addNote" />
-          <ThiccListAction label="More actions" icon="more" />
-        </div>
-      )}
+      <AnimatePresence>
+        {showHoverMenu && (
+          <motion.div
+            variants={variants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            transition={{ duration: 0.2, delay: 0.2 }}
+            className={styles.listContentHoverMenu}
+            onContextMenu={e => e.stopPropagation()}
+            onMouseLeave={() => setShowHoverMenu(false)}
+          >
+            <div onClick={SideSheet.show}>
+              <ThiccListAction label="Compose Email" icon="email" />
+            </div>
+            <ThiccListAction label="Create Note" icon="addNote" />
+            <ThiccListAction label="More actions" icon="more" />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <ThiccListItemMenu
         visible={showContextMenu}

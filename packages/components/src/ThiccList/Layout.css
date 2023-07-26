@@ -1,7 +1,15 @@
+/* Reset SB styling */
+/* stylelint-disable-next-line selector-max-type */
+body,
+:global(.StoryDetails__story--2PlQx),
+:global(.StoryDetails__container--2T2pw) {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 .container {
   display: flex;
   height: 100vh;
-  margin: calc(var(--space-base) * -1);
 }
 
 .sidebar {
@@ -81,6 +89,7 @@
 }
 
 .content {
+  position: relative;
   padding: 0 var(--space-base);
   overflow-y: auto;
   flex: 1;

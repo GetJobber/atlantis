@@ -12,6 +12,7 @@ import {
 import { ThiccListItem } from "./ThiccListItem";
 import { ThiccListAction } from "./ThiccListAction";
 import { SortOrder, getSortedItems } from "./utils";
+import { SideSheet } from "./SideSheet";
 import { Button } from "../Button";
 import { Content } from "../Content";
 import { Grid } from "../Grid";
@@ -79,7 +80,9 @@ export function ThiccList() {
               initialChild={<div />}
               switchTo={
                 <div className={styles.batchActions}>
-                  <ThiccListAction icon="sendMessage" label="Send message" />
+                  <div onClick={SideSheet.show}>
+                    <ThiccListAction icon="sendMessage" label="Send message" />
+                  </div>
                   <ThiccListAction icon="addNote" label="Add note" />
                   <ThiccListAction icon="export" label="Export" />
                   <ThiccListAction icon="more" label="More actions" />

@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Layout.css";
+import { SideSheet } from "./SideSheet";
 import { Heading } from "../Heading";
 import { Grid } from "../Grid";
 import { Text } from "../Text";
@@ -106,6 +107,8 @@ export function Layout({ children }: LayoutProps) {
             <Heading level={1}>Clients</Heading>
           </div>
           {children}
+
+          <SideSheet />
         </div>
       </div>
     </div>

@@ -1,0 +1,52 @@
+.sideSheet {
+  position: fixed;
+  top: 56px;
+  right: 0;
+  z-index: var(--elevation-modal);
+  width: 358px;
+  height: 100%;
+  box-shadow: var(--shadow-high);
+  overflow: auto;
+  background-color: var(--color-surface);
+}
+
+.sideSheetHeader {
+  display: grid;
+  grid-template-columns: auto max-content;
+  align-items: center;
+}
+
+.sideSheetHeader,
+.sideSheetContent {
+  padding: var(--space-base);
+}
+
+.sideSheetContent {
+  padding-top: 0;
+}
+
+.emailRecipient {
+  display: flex;
+  align-items: center;
+  gap: var(--space-small);
+}
+
+.submitButton button,
+.emailAttachments button {
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.02),
+    0px 1px 2px 0px rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(54, 49, 20, 0.1) !important;
+  border-radius: var(--radius-base);
+  background-color: rgb(252, 252, 250) !important;
+}
+
+.submitButton button span,
+.emailAttachments button span {
+  color: rgb(22, 22, 21) !important;
+  font-weight: 500 !important;
+}
+
+.submitButton button span {
+  padding: var(--space-base) var(--space-small) !important;
+  font-size: var(--typography--fontSize-large) !important;
+}
