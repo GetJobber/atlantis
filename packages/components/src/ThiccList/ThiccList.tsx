@@ -14,7 +14,6 @@ import { ThiccListAction } from "./ThiccListAction";
 import { SortOrder, getSortedItems } from "./utils";
 import { SideSheet } from "./SideSheet";
 import { Button } from "../Button";
-import { Content } from "../Content";
 import { Grid } from "../Grid";
 import { InputText } from "../InputText";
 import { Text } from "../Text";
@@ -57,51 +56,54 @@ export function ThiccList() {
   const sortIcon = sortOrder === "A-Z" ? "⏷" : "⏶";
 
   return (
-    <Content>
-      <Grid>
-        <Grid.Cell size={{ xs: 9 }}>
-          <div className={styles.actions}>
-            <div className={styles.filterActions}>
-              <Button
-                label="Filter Status"
-                icon="add"
-                iconOnRight
-                variation="subtle"
-              />
-              <Button
-                label="Filter Tags"
-                icon="add"
-                iconOnRight
-                variation="subtle"
+    <div className={styles.list}>
+      <div className={styles.listHeader}>
+        <Grid>
+          <Grid.Cell size={{ xs: 9 }}>
+            <div className={styles.actions}>
+              <div className={styles.filterActions}>
+                <Button
+                  label="Filter Status"
+                  icon="add"
+                  iconOnRight
+                  variation="subtle"
+                />
+                <Button
+                  label="Filter Tags"
+                  icon="add"
+                  iconOnRight
+                  variation="subtle"
+                />
+              </div>
+              <AnimatedSwitcher
+                switched={Boolean(selectedItem.length)}
+                initialChild={<div />}
+                switchTo={
+                  <div className={styles.batchActions}>
+                    <div onClick={SideSheet.show}>
+                      <ThiccListAction
+                        icon="sendMessage"
+                        label="Send message"
+                      />
+                    </div>
+                    <ThiccListAction icon="addNote" label="Add note" />
+                    <ThiccListAction icon="export" label="Export" />
+                    <ThiccListAction icon="more" label="More actions" />
+                  </div>
+                }
               />
             </div>
-            <AnimatedSwitcher
-              switched={Boolean(selectedItem.length)}
-              initialChild={<div />}
-              switchTo={
-                <div className={styles.batchActions}>
-                  <div onClick={SideSheet.show}>
-                    <ThiccListAction icon="sendMessage" label="Send message" />
-                  </div>
-                  <ThiccListAction icon="addNote" label="Add note" />
-                  <ThiccListAction icon="export" label="Export" />
-                  <ThiccListAction icon="more" label="More actions" />
-                </div>
-              }
+          </Grid.Cell>
+          <Grid.Cell size={{ xs: 3 }}>
+            <InputText
+              placeholder="Search.."
+              suffix={{ icon: "search" }}
+              size="small"
             />
-          </div>
-        </Grid.Cell>
-        <Grid.Cell size={{ xs: 3 }}>
-          <InputText
-            placeholder="Search.."
-            suffix={{ icon: "search" }}
-            size="small"
-          />
-        </Grid.Cell>
-      </Grid>
+          </Grid.Cell>
+        </Grid>
 
-      <div className={styles.list}>
-        <div className={styles.listHeader}>
+        <div className={styles.listHeaderTitles}>
           <Grid alignItems="center">
             {headers.map((header, i) => (
               <Grid.Cell key={header} size={{ xs: i <= 1 ? 3 : 2 }}>
@@ -127,7 +129,8 @@ export function ThiccList() {
             ))}
           </Grid>
         </div>
-
+      </div>
+      <div className={styles.listMain}>
         {loading &&
           [...Array(10).keys()].map(num => (
             <div
@@ -167,7 +170,7 @@ export function ThiccList() {
           />
         ))}
       </div>
-    </Content>
+    </div>
   );
 
   function handleClick(item: ListNode): void {

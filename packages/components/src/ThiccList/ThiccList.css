@@ -33,7 +33,8 @@
 }
 
 /* Reset button styling */
-.list button {
+.listMain button,
+.listHeaderButton {
   display: block;
   width: 100%;
   border: none;
@@ -48,12 +49,19 @@
 }
 
 .listHeader {
+  display: flex;
   position: sticky;
   top: 0;
   z-index: var(--elevation-base);
-  padding: var(--space-small);
+  padding: var(--space-small) 0;
   border-bottom: 2px solid var(--color-border);
   background-color: var(--color-surface);
+  flex-direction: column;
+  gap: var(--space-base);
+}
+
+.listHeaderTitles {
+  padding: 0 var(--space-small);
 }
 
 button.listHeaderButton {

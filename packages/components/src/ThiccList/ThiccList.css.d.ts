@@ -3,9 +3,11 @@ declare const styles: {
   readonly "filterActions": string;
   readonly "batchActions": string;
   readonly "list": string;
+  readonly "listMain": string;
+  readonly "listHeaderButton": string;
   readonly "listHeader": string;
   readonly "listContentItem": string;
-  readonly "listHeaderButton": string;
+  readonly "listHeaderTitles": string;
   readonly "listHeaderText": string;
   readonly "listContent": string;
   readonly "listContentSelected": string;
