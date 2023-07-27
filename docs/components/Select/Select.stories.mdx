@@ -1,0 +1,37 @@
+import { ArgsTable, Canvas, Meta } from "@storybook/addon-docs";
+import { Option, Select } from "@jobber/components/Select";
+
+<Meta title="Components/Selections/Select/Docs" component={Select} />
+
+# Select
+
+A Select is used to present a defined list of options to choose from.
+
+## Design & usage guidelines
+
+Nested within the Select component, Option defines the options that can be
+selected.
+
+#### Option Props
+
+<ArgsTable of={Option} />
+
+## States
+
+### Invalid
+
+<Canvas>
+  <Select invalid={true}>
+    <Option value="sad">Tony</Option>
+    <Option value="old">Steve</Option>
+  </Select>
+</Canvas>
+
+### Disabled
+
+<Canvas>
+  <Select disabled={true}>
+    <Option value="sad">Tony</Option>
+    <Option value="old">Steve</Option>
+  </Select>
+</Canvas>
