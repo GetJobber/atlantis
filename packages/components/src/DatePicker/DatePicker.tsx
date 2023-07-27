@@ -74,6 +74,9 @@ interface DatePickerModalProps extends BaseDatePickerProps {
 }
 
 interface DatePickerInlineProps extends BaseDatePickerProps {
+  /**
+   * Determines if the DatePicker should be shown without needing to trigger the Activator.
+   */
   readonly inline?: boolean;
 }
 
