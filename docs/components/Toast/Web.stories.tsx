@@ -3,14 +3,25 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { showToast } from "@jobber/components/Toast";
 import { Button } from "@jobber/components/Button";
 
-type ToastProps = JSXElementConstructor<Parameters<typeof showToast>[0]>;
+type Toast = JSXElementConstructor<Parameters<typeof showToast>[0]>;
 
 export default {
   title: "Components/Status and Feedback/Toast/Web",
-  component: showToast,
-} as ComponentMeta<ToastProps>;
+  component: showToast as Toast,
+  parameters: {
+    viewMode: "story",
+    previewTabs: {
+      code: {
+        hidden: false,
+        extraImports: {
+          "@jobber/components/Toast": ["showToast"],
+        },
+      },
+    },
+  },
+} as ComponentMeta<Toast>;
 
-const Template: ComponentStory<ToastProps> = args => (
+const Template: ComponentStory<Toast> = args => (
   <Button label="Show toast" onClick={() => showToast(args)} />
 );
 
