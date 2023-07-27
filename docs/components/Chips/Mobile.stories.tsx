@@ -96,6 +96,5 @@ InactiveBackgroundColor.args = {
   icon: "clients",
   onPress: () => alert("Clients"),
   accessibilityLabel: "Select clients",
-  isDismissible: true,
   inactiveBackgroundColor: "surface",
 };
