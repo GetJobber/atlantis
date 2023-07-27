@@ -66,7 +66,7 @@ const InitialValueTemplate: ComponentStory<typeof Select> = args => (
     <Option value="tony">Tony</Option>
     <Option value="steve">Steve</Option>
     <Option value="natasha">Natasha</Option>
-    <Option value="yoink">Bob</Option>
+    <Option value="bob">Bob</Option>
   </Select>
 );
 
@@ -83,12 +83,12 @@ Sizes.args = {
 export const InitialValue = InitialValueTemplate.bind({});
 InitialValue.args = {
   placeholder: "Pick a friend",
-  defaultValue: "yoink",
+  defaultValue: "bob",
 };
 
 export const Events = InitialValueTemplate.bind({});
 Events.args = {
   onChange: (newValue: string) => {
-    console.log(newValue);
+    alert("You picked: " + newValue);
   },
 };
