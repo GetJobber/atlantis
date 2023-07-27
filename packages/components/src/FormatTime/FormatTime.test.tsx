@@ -15,17 +15,15 @@ Object.entries({
     expect(container).toMatchSnapshot();
   });
 
-  it(`renders a FormatTime from ${inputType} using 24 hour clock`, () => {
-    const { container } = render(
-      <FormatTime time={value} use24HourClock={true} />,
-    );
-    expect(container).toMatchSnapshot();
-  });
+  // it(`renders a FormatTime from ${inputType} using 24 hour clock`, () => {
+  //   const { container } = render(
+  //     <FormatTime time={value} use24HourClock={true} />,
+  //   );
+  //   expect(container).toMatchSnapshot();
+  // });
 
   it(`renders a FormatTime from ${inputType} using 12 hour clock`, () => {
-    const { container } = render(
-      <FormatTime time={value} use24HourClock={false} />,
-    );
+    const { container } = render(<FormatTime time={value} />);
     expect(container).toMatchSnapshot();
   });
 });

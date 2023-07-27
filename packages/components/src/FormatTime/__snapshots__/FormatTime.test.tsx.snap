@@ -12,12 +12,6 @@ exports[`renders a FormatTime from CivilDate using 12 hour clock 1`] = `
 </div>
 `;
 
-exports[`renders a FormatTime from CivilDate using 24 hour clock 1`] = `
-<div>
-  14:30
-</div>
-`;
-
 exports[`renders a FormatTime from Date 1`] = `
 <div>
   2:30 PM
@@ -30,12 +24,6 @@ exports[`renders a FormatTime from Date using 12 hour clock 1`] = `
 </div>
 `;
 
-exports[`renders a FormatTime from Date using 24 hour clock 1`] = `
-<div>
-  14:30
-</div>
-`;
-
 exports[`renders a FormatTime from ISO8601DateString 1`] = `
 <div>
   2:30 PM
@@ -45,11 +33,5 @@ exports[`renders a FormatTime from ISO8601DateString 1`] = `
 exports[`renders a FormatTime from ISO8601DateString using 12 hour clock 1`] = `
 <div>
   2:30 PM
-</div>
-`;
-
-exports[`renders a FormatTime from ISO8601DateString using 24 hour clock 1`] = `
-<div>
-  14:30
 </div>
 `;
