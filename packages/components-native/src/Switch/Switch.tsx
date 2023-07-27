@@ -17,7 +17,7 @@ interface WithLabelProps extends BaseSwitchProps {
   readonly description?: string;
 }
 
-type SwitchProps = XOR<BaseSwitchProps, WithLabelProps>;
+export type SwitchProps = XOR<BaseSwitchProps, WithLabelProps>;
 
 export function Switch(props: SwitchProps): JSX.Element {
   const switchProps: SwitchProps = {
