@@ -26,7 +26,7 @@ export function Switch(props: SwitchProps): JSX.Element {
   };
 
   const [labelWidth, setLabelWidth] = useState<number | undefined>();
-  console.warn({ BaseSwitch });
+
   return (
     <View style={styles.container}>
       <View style={styles.row}>
