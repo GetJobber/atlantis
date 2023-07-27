@@ -29,3 +29,9 @@ export const Basic = Template.bind({});
 Basic.args = {
   message: "Toast showed",
 };
+
+export const Variation = Template.bind({});
+Variation.args = {
+  message: "Thinking...",
+  variation: "info",
+};

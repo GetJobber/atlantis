@@ -33,6 +33,14 @@ background process that is ongoing, or for feedback that has a longer reading
 length or CTA, use
 [Banner.](../?path=/docs/components-status-and-feedback-banner--banner)
 
+## Variation (Web only)
+
+The primary use case for Toast is success messages.
+
+In some cases, an informational Toast may be used to inform the user of some
+background system activity. See
+[Web/Info example](../?path=/code/components-status-and-feedback-toast-web--variation)
+
 ### Errors
 
 > Do not use Toast for errors. This is currently an available variation, but
@@ -42,23 +50,3 @@ Use [Banner](../?path=/docs/components-status-and-feedback-banner--banner) and
 targeted error messaging (such as
 [InputValidation](../?path=/docs/components-forms-and-inputs-inputvalidation-docs--page))
 so that the user can appropriately assess and recover from the error.
-
-## Variations
-
-The primary use case for Toast is success messages.
-
-In some cases, an informational Toast may be used to inform the user of some
-background system activity.
-
-<Canvas>
-  <Button
-    label="Info Toast"
-    variation="learning"
-    onClick={() =>
-      showToast({
-        message: "Toasting is underway",
-        variation: "info",
-      })
-    }
-  />
-</Canvas>
