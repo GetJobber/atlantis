@@ -1,29 +1,15 @@
-import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
-import { useState } from "react";
+import { Canvas, Meta } from "@storybook/addon-docs";
 import { Switch } from "@jobber/components/Switch";
 
-<Meta title="Components/Selections/Switch" component={Switch} />
+<Meta title="Components/Selections/Switch/Docs" />
 
 # Switch
 
 A switch toggles the state of a single setting to on or off.
 
-```ts
-import { Switch } from "@jobber/components/Switch";
-```
-
 <Canvas>
-  <Story
-    name="Switch"
-    args={{
-      ariaLabel: "Visible to clients",
-    }}
-  >
-    {args => <Switch {...args} />}
-  </Story>
+  <Switch />
 </Canvas>
-
-<ArgsTable of={Switch} story="Switch" />
 
 ---
 
@@ -41,31 +27,6 @@ user must make a decision to turn something on or off, and a single checkbox
 when a user is opting in to a choice. A pair of radio buttons can be used to
 help the user decide between two discrete options, such as “fixed price” and
 “per visit” invoicing options.
-
-## Controlled Switch
-
-A controlled switch can turn something on or off, and can be controlled by
-another UI element on the page. This can useful for two-way interactions where
-manipulating another part of the interface should logically drive the same state
-change.
-
-<Canvas>
-  {() => {
-    const [toggleState, setToggleState] = useState(true);
-    const label = "Toggle example";
-    return (
-      <>
-        <button onClick={() => setToggleState(!toggleState)}>{label}</button>
-        <br />
-        <Switch
-          value={toggleState}
-          onChange={newToggleState => setToggleState(newToggleState)}
-          ariaLabel={label}
-        />
-      </>
-    );
-  }}
-</Canvas>
 
 ## Disabled
 

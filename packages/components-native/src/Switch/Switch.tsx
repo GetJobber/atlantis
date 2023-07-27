@@ -17,7 +17,7 @@ interface WithLabelProps extends BaseSwitchProps {
   readonly description?: string;
 }
 
-type SwitchProps = XOR<BaseSwitchProps, WithLabelProps>;
+export type SwitchProps = XOR<BaseSwitchProps, WithLabelProps>;
 
 export function Switch(props: SwitchProps): JSX.Element {
   const switchProps: SwitchProps = {
@@ -26,7 +26,7 @@ export function Switch(props: SwitchProps): JSX.Element {
   };
 
   const [labelWidth, setLabelWidth] = useState<number | undefined>();
-
+  console.warn({ BaseSwitch });
   return (
     <View style={styles.container}>
       <View style={styles.row}>
