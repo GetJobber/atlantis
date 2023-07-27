@@ -14,18 +14,20 @@ export default {
   component: InputFile,
   parameters: {
     viewMode: "story",
-    options: { showPanel: true },
     previewTabs: {
       code: {
         hidden: false,
+        extraImports: {
+          "@jobber/components/InputFile": [
+            "FileUpload",
+            "InputFile",
+            "updateFiles",
+          ],
+        },
       },
     },
   },
 } as ComponentMeta<typeof InputFile>;
-
-function fetchUploadParams() {
-  return Promise.resolve({ url: "https://httpbin.org/post" });
-}
 
 const StatefulTemplate: ComponentStory<typeof InputFile> = args => {
   const [files, setFiles] = useState<FileUpload[]>([]);
@@ -47,27 +49,44 @@ const StatefulTemplate: ComponentStory<typeof InputFile> = args => {
   }
 };
 
-const VariationsAndSizesTemplate: ComponentStory<typeof InputFile> = () => {
+const VariationsAndSizesTemplate: ComponentStory<typeof InputFile> = args => {
   return (
     <Content>
+      <Heading level={2}>Default</Heading>
+      <InputFile {...args} />
+
       <Heading level={2}>Dropzone</Heading>
-      <InputFile getUploadParams={fetchUploadParams} />
-      <InputFile size="small" getUploadParams={fetchUploadParams} />
+      <InputFile
+        buttonLabel="Base Dropzone Uploader"
+        getUploadParams={fetchUploadParams}
+      />
+      <InputFile
+        size="small"
+        getUploadParams={fetchUploadParams}
+        buttonLabel="Small Dropzone Uploader"
+      />
 
       <Heading level={2}>Button</Heading>
-      <InputFile variation="button" getUploadParams={fetchUploadParams} />
+      <InputFile
+        variation="button"
+        size="base"
+        buttonLabel="Base Button Uploader"
+        getUploadParams={fetchUploadParams}
+      />
       <InputFile
         variation="button"
         size="small"
+        buttonLabel="Small Button Uploader"
         getUploadParams={fetchUploadParams}
       />
     </Content>
   );
+
+  function fetchUploadParams() {
+    return Promise.resolve({ url: "https://httpbin.org/post" });
+  }
 };
 export const VariationsAndSizes = VariationsAndSizesTemplate.bind({});
-VariationsAndSizes.parameters = {
-  options: { showPanel: false },
-};
 
 export const UsingUpdateFiles = StatefulTemplate.bind({});
 UsingUpdateFiles.args = {
