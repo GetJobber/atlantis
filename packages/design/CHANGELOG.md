@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.44.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.44.1...@jobber/design@0.44.2) (2023-07-28)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.44.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.44.0...@jobber/design@0.44.1) (2023-07-26)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+# [0.44.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.43.5...@jobber/design@0.44.0) (2023-07-26)
+
+
+### Features
+
+* **design:** Add the loadingCheck icon ([#1414](https://github.com/GetJobber/atlantis/issues/1414)) ([90de5e9](https://github.com/GetJobber/atlantis/commit/90de5e974586f4aa9775cd7e57ebd3095c2ef75d))
+
+
+
+
+
+## [0.43.5](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.43.4...@jobber/design@0.43.5) (2023-07-26)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
 ## [0.43.4](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.43.3...@jobber/design@0.43.4) (2023-07-17)
 
 

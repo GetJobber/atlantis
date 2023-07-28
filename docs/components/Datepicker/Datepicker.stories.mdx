@@ -1,0 +1,92 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Components/Selections/DatePicker/Docs" />
+
+# Date Picker
+
+A `DatePicker` is used to allow a user to select a date from a visual calendar
+interface.
+
+While this component can be used in isolation, the intention is that in many
+cases it will supplement an input component to provide the user with a
+multi-mode opportunity to select a date.
+
+## Design & usage guidelines
+
+Use Datepicker when you are looking to provide the user with a highly visual
+interface for intuitive date selections.
+
+A classic use case for a standalone Datepicker would be as a means to navigate
+within a larger calendar interface.
+
+It may be beneficial to supplement the Datepicker with alternate means of
+entering their date selection, such as providing a `date` input.
+
+### Inline
+
+Use an inline Datepicker when you have sufficient space in the interface to have
+a permanent date selection fixture, or when date selection is the primary
+function of the interface, such as a stepped flow where the user is asked a
+series of scheduling questions individually, in sequence.
+
+In cases like complex scheduling forms where all the factors of a schedule such
+as times, repeating frequency, and duration are being asked, consider using the
+default popover-type behaviour for those use cases to reduce an overwhelming
+volume of UI elements to process at once. See
+[Inline](../?path=/story/components-selections-datepicker-web--inline) example.
+
+## Custom activator
+
+If you want to use a different activator to display the `DatePicker` you can
+pass a `React` component as the `activator`. See
+[Custom Activator](../?path=/story/components-selections-datepicker-web--custom-activator)
+example.
+
+## Restricting date ranges
+
+If you want to enable for selection only a range of dates you can pass `minDate`
+or `maxDate` to the component as props. See
+[Date Range](../?path=/story/components-selections-datepicker-web--min-date-max-date)
+example.
+
+## Highlighted dates
+
+If you need to call attention to a series of dates on the calendar, the
+`highlightDates` prop accepts an array of dates that will be displayed with
+additional emphasis. See the
+[Highlighted Dates](?path=/story/components-selections-datepicker-web--restricted-date-range)
+example.
+
+## Accessibility
+
+At this point, the `DatePicker` component is a wrapped version of
+[React DatePicker](https://reactdatepicker.com/). This means that the
+accessibility of the component is handled by the `React DatePicker` component.
+
+Users can operate all of the controls by keyboard, including the `tab` to cycle
+between Next/Previous month and the calendar, arrow keys to navigate between
+dates, and `space` and/or `return` to make selections. Pressing `escape` will
+close the Datepicker.
+
+The date available for selection is read aloud to assistive technology in the
+format "Choose {date} (button)". For example, "Choose December 1st, 2021
+(button)".
+
+If using a custom activator, ensure that the activator is keyboard-operable.
+
+## Related components
+
+- If you are looking to use the `DatePicker` in a `Form`, consider the
+  [InputDate](../?path=/docs/components-forms-and-inputs-inputdate-docs--page)
+  component.
+- For a time input, use
+  [InputTime](../?path=/docs/components-forms-and-inputs-inputtime-docs--page)
+- To present dates that have already been selected in a consistent format, use
+  [FormatDate](../?path=/docs/components-utilities-formatdate--format-date)
+- To represent past or future dates and times, use
+  [FormatRelativeDateTime](../?path=/docs/components-utilities-formatrelativedatetime--format-relative-date-time)
+
+## Notes
+
+As mentioned above, the Datepicker wraps
+[React DatePicker](https://reactdatepicker.com/).
