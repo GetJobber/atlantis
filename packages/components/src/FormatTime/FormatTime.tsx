@@ -15,7 +15,10 @@ interface FormatTimeProps {
   readonly use24HourClock?: boolean;
 }
 
-export function FormatTime({ time: inputTime }: FormatTimeProps) {
+export function FormatTime({
+  time: inputTime,
+  use24HourClock,
+}: FormatTimeProps) {
   let dateObject: Date;
 
   if (inputTime instanceof Date) {
@@ -38,12 +41,12 @@ export function FormatTime({ time: inputTime }: FormatTimeProps) {
     );
   }
 
-  return <>{formatCivilTime(dateObject)}</>;
+  return <>{formatCivilTime(dateObject, use24HourClock)}</>;
 }
 
-function formatCivilTime(date: Date) {
+function formatCivilTime(date: Date, use24HourClock?: boolean) {
   return date.toLocaleTimeString(navigator.language, {
-    hourCycle: "h12",
+    hourCycle: use24HourClock ? "h23" : "h12",
     minute: "2-digit",
     hour: "numeric",
   });
