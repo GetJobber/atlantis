@@ -1,32 +1,21 @@
-import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
-import { useState } from "react";
-import { Avatar } from "@jobber/components/Avatar";
-import { Content } from "@jobber/components/Content";
-import { Icon } from "@jobber/components/Icon";
-import { Text } from "@jobber/components/Text";
-import { Chip, Chips } from ".";
-import { useFakeOptionQuery } from "./utils/mdxUtils.ts";
+import { Meta } from "@storybook/addon-docs";
+import { Tab, Tabs } from "@jobber/components/Tabs";
 
-<Meta
-  title="Components/Selections/Chips"
-  component={Chips}
-  subcomponents={{ Chip }}
-/>
+<Meta title="Components/Selections/Chips/Docs" />
 
 # Chips
 
 Chips are a flexible component that can be used for the selection of items from
 a group while preserving vertical space in the interface.
 
-```ts
-import { Chip, Chips } from "@jobber/components/Chips";
-```
-
 ## Usage guidelines
 
-The `<Chip>` will allow users to make selections in scenarios where vertical
-space is at a premium. It has three high-level usages: single-select,
-multi-select, and add/dismiss selection.
+The Chip will allow users to make selections in scenarios where vertical space
+is at a premium. It has three high-level usages: single-select, multi-select,
+and add/dismiss selection.
+
+<Tabs>
+  <Tab label="Web">
 
 ### Single-select
 
@@ -38,42 +27,9 @@ This preserves vertical space while allowing the user to clearly identify which
 item they have selected.
 
 Unlike
-[Radio](../?path=/docs/components-forms-and-inputs-radiogroup--radio-group), the
+[Radio](../?path=/docs/components-forms-and-inputs-radiogroup-docs--page), the
 selected single-select Chip can be de-selected by the user, leaving all
 selections blank.
-
-<Canvas>
-  <Story name="Chips">
-    {args => {
-      const [selected, setSelected] = useState();
-      return (
-        <Content>
-          <Text>
-            You are <u>{selected ? selected : "_______"}</u>
-          </Text>
-          <Chips {...args} selected={selected} onChange={setSelected}>
-            <Chip
-              prefix={<Avatar initials="AZ" />}
-              label="Amazing"
-              value="Amazing"
-            />
-            <Chip
-              prefix={<Icon name="video" />}
-              label="Wonderful"
-              value="Wonderful"
-            />
-            <Chip
-              prefix={<Icon name="starFill" />}
-              label="Brilliant"
-              value="Brilliant"
-            />
-            <Chip label="Magnificent" value="Magnificent" />
-          </Chips>
-        </Content>
-      );
-    }}
-  </Story>
-</Canvas>
 
 ### Multi-select
 
@@ -89,25 +45,6 @@ a [Checkbox](../?path=/docs/components-selections-checkbox-docs--page).
 Similar to Checkbox, a selected multi-select Chip can be de-selected by the
 user, leaving all selections blank.
 
-<Canvas>
-  {() => {
-    const [selected, setSelected] = useState([]);
-    return (
-      <Content>
-        <Text>
-          You are <u>{selected.length ? selected.join(" ") : "_______"}</u>
-        </Text>
-        <Chips type="multiselect" selected={selected} onChange={setSelected}>
-          <Chip label="Amazing" value="Amazing" />
-          <Chip label="Wonderful" value="Wonderful" />
-          <Chip label="Brilliant" value="Brilliant" />
-          <Chip label="Magnificent" value="Magnificent" />
-        </Chips>
-      </Content>
-    );
-  }}
-</Canvas>
-
 ### Add/dismiss selection
 
 When the user will be selecting one or more items by inputting their own Chip
@@ -122,38 +59,28 @@ overwhelming for the user to interpret.
 This format also allows the user to create their own "freeform" Chip options,
 which they can also remove once added.
 
-<Canvas>
-  {() => {
-    const {
-      selected,
-      options,
-      loading,
-      handleLoadMore,
-      handleSearch,
-      handleSelect,
-      handleCustomAdd,
-    } = useFakeOptionQuery();
-    return (
-      <Chips
-        type="dismissible"
-        selected={selected}
-        onChange={handleSelect}
-        onCustomAdd={handleCustomAdd}
-        isLoadingMore={loading}
-        onSearch={handleSearch}
-        onLoadMore={handleLoadMore}
-      >
-        {options.map(name => (
-          <Chip key={name} label={name} value={name} />
-        ))}
-      </Chips>
-    );
-  }}
-</Canvas>
+  </Tab>
+  <Tab label="Mobile">
 
-## Props
+### Accent
 
-<ArgsTable of={Chips} />
+Chip can be themed to one of Jobber's "workflow" colours in an active state when
+the user may benefit from additional visual indication of the type of workflow
+item selected.
+
+### Dismissible
+
+In cases where there are existing selections that the user may need to remove,
+Chip can display a `cross` Icon signifying that these options can be removed.
+
+### Inactive Background Color
+
+In cases where the Chip is on an area whose background is
+`--color-surface--background`, Chip can be made visible by specifying the
+`inactiveBackgroundColor`.
+
+  </Tab>
+</Tabs>
 
 ## Content guidelines
 
@@ -163,6 +90,9 @@ type.
 
 ## Accessibility
 
+<Tabs>
+  <Tab label="Web">
+
 Chips should convey to the user whether it is a "checkbox" or "radio" element
 based on single or multi-select. The Chips in this group have the appropriate
 roles and keyboard operation to allow the user to interact as though they are
@@ -170,6 +100,22 @@ dealing with a checkbox or radio button.
 
 If Chips is set for add/dismiss selections, the dismiss button will notify the
 user that they will "dismiss {label name}" upon press.
+
+  </Tab>
+
+  <Tab label="Mobile">
+
+Chip accessibilityRole by default is `radio` so the view containing it should
+have the accessibilityRole `radiogroup`. Chip labels and the state `checked` or
+`not checked` state are read aloud when focused by assistive technology. If an
+Icon is present, it will not be read aloud as Icons are visually decorative in
+the case of a Chip.
+
+If the accessibilityRole is not `radio` the label is read aloud when focused by
+assistive technology.
+
+  </Tab>
+</Tabs>
 
 ## Responsiveness
 
@@ -185,7 +131,7 @@ out of view in a single row, depending on your use case.
 - [Checkbox](../?path=/docs/components-selections-checkbox-docs--page) should be
   used to allow the user to select "one-or-more-of-many" items (multi-select)
   and the labels for the items are longer than 1 or 2 words.
-- [InlineLabel](../?path=/docs/components-status-and-feedback-inlinelabel--inline-label)
+- [InlineLabel](../?path=/docs/components-status-and-feedback-inlinelabel-docs--page)
   should be used when you just need a rectangular element that displays the
   status of another element.
 

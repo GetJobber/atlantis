@@ -1,37 +1,14 @@
-import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Canvas, Meta } from "@storybook/addon-docs";
 import { Emphasis } from "@jobber/components/Emphasis";
 import { Heading } from "@jobber/components/Heading";
 import { Text } from "@jobber/components/Text";
 
-<Meta title="Components/Text and Typography/Emphasis" component={Emphasis} />
+<Meta title="Components/Text and Typography/Emphasis/Docs" />
 
 # Emphasis
 
 Use this component to emphasize certain content of a Heading or Text component.
 There are variations on Emphasis, each with their own use case and meaning.
-
-```ts
-import { Emphasis } from "@jobber/components/Emphasis";
-```
-
-<Canvas>
-  <Story
-    name="Emphasis"
-    args={{
-      variation: "bold",
-    }}
-  >
-    {args => {
-      return (
-        <Text>
-          To <Emphasis {...args}>boldly</Emphasis> go…
-        </Text>
-      );
-    }}
-  </Story>
-</Canvas>
-
-<ArgsTable of={Emphasis} story="Emphasis" />
 
 ## Design & usage guidelines
 
