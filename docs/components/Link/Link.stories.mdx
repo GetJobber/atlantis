@@ -1,0 +1,36 @@
+import { Meta } from "@storybook/addon-docs";
+
+# Link
+
+<Meta title="Components/Text and Typography/Link/Docs" />
+
+The Link will render an `<a>` tag with the appropriate `href` and `target`
+attributes, when/as applicable.
+
+## Usage guidelines
+
+A Link marked external will always open in a new tab. Set this when linking away
+from Jobber or to other applications or sites across Jobber where this behaviour
+is appropriate (e.g. linking from Jobber Online to the Jobber Help Center).
+
+Link should not be used to submit form data, trigger actions, or alter the state
+of the page. Use a [Button](../?path=/docs/components-actions-button-docs--page)
+for these purposes.
+
+## Content guidelines
+
+Contents of the link should be textual, and may include some formatting features
+(e.g. italic text for emphasis may be appropriate, changing the inherited
+underline probably isn't). The text can be plain, from a `Typography` component,
+a `format`(`Date|Time|Email`) component or similar. Don't use this component to
+wrap other kinds of UI elements to make them clickable.
+
+## Accessibility
+
+Try to ensure the text of the Link is descriptive of the destination. Avoid
+using "click here" or "learn more" as the text of the link, and instead use the
+title of the destination page or a short description of the content.
+
+If it's not possible to make the visible text sufficiently descriptive without
+additional context, set the `ariaLabel` prop to a descriptive string for
+screenreaders. Do _not_ set this prop if it will be redundant to the link text.
