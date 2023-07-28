@@ -1,5 +1,6 @@
 import React from "react";
 import * as RNGestureHandler from "react-native-gesture-handler";
+import { Switch } from "react-native"
 
 module.exports = {
   ...RNGestureHandler,
@@ -31,5 +32,6 @@ module.exports = {
      * to call Exclusive(doubleTap, singleTap).
      */
     Exclusive: () => undefined,
-  }
+  },
+  Switch: Switch
 };

@@ -12,12 +12,11 @@ export default {
 } as ComponentMeta<typeof Banner>;
 
 const BasicTemplate: ComponentStory<typeof Banner> = args => (
-  <Banner {...args} />
+  <Banner {...args}>Your splines are being reticulated</Banner>
 );
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
   type: "notice",
-  children: "Your splines are being reticulated",
 };
 
 const ActionsTemplate: ComponentStory<typeof Banner> = () => (
