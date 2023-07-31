@@ -17,12 +17,14 @@ export default {
 } as ComponentMeta<typeof Countdown>;
 
 const BasicTemplate: ComponentStory<typeof Countdown> = args => (
-  <Countdown {...args} />
+  <Countdown
+    {...args}
+    date={new Date(new Date().getTime() + 25 * 3600 * 1000)}
+  />
 );
 
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
-  date: new Date(new Date().getTime() + 25 * 3600 * 1000),
   granularity: "dhms",
   showUnits: true,
 };
@@ -34,9 +36,9 @@ const OnCompleteTemplate: ComponentStory<typeof Countdown> = args => {
     <div>
       <Button label={"Start Timer"} onClick={() => setStart(true)} />
       {start && (
-        <Emphasis variation={"highlight"}>
+        <Text>
           <Countdown {...args} date={inTenSeconds} />
-        </Emphasis>
+        </Text>
       )}
     </div>
   );
@@ -52,12 +54,19 @@ OnComplete.args = {
 const StylingTemplate: ComponentStory<typeof Countdown> = args => (
   <Content>
     <Text>
-      <Countdown {...args} granularity={"ms"} />
+      <Countdown
+        {...args}
+        date={new Date(new Date().getTime() + 36000 * 1000)}
+        granularity={"ms"}
+      />
     </Text>
     <div />
     <Heading level={1}>
       <Emphasis variation="highlight">
-        <Countdown {...args} />
+        <Countdown
+          {...args}
+          date={new Date(new Date().getTime() + 36000 * 1000)}
+        />
       </Emphasis>
     </Heading>
   </Content>
@@ -67,5 +76,4 @@ export const Styling = StylingTemplate.bind({});
 Styling.args = {
   granularity: "s",
   showUnits: true,
-  date: new Date(new Date().getTime() + 36000 * 1000),
 };
