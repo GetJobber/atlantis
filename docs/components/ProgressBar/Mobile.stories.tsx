@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react-native";
-import { Button, Heading, ProgressBar } from "@jobber/components-native";
+import {
+  Button,
+  Content,
+  Heading,
+  ProgressBar,
+} from "@jobber/components-native";
 
 export default {
   title: "Components/Status and Feedback/ProgressBar/Mobile",
@@ -26,8 +31,9 @@ const WithHeaderTemplate: ComponentStory<typeof ProgressBar> = args => {
       total={totalSteps}
       header={
         <>
-          <Heading level="heading">Upload progress</Heading>
-          <br />
+          <Content>
+            <Heading level="heading">Upload progress</Heading>
+          </Content>
           <Button
             label="Step Back"
             onPress={() => setStep(Math.max(0, step - 1))}
