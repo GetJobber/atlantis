@@ -30,7 +30,7 @@ export function SideSheet() {
   const emails = selectedItems.map(
     item => data.find(d => d.id === item)?.email,
   );
-  const remainingEmails = emails.length - 1;
+  const remainingEmails = (emails.length && emails.length - 1) || 0;
 
   const [showSideSheet, setShowSideSheet] = useState(false);
   setShow = setShowSideSheet;
@@ -66,16 +66,21 @@ export function SideSheet() {
                   <div className={styles.emailRecipient}>
                     <Text>To:</Text>
 
-                    <InternalChip
-                      label={emails?.[0] || "joe.flores@email.com"}
-                      suffix={
-                        <InternalChipButton
-                          icon="remove"
-                          label="Remove"
-                          onClick={() => undefined}
-                        />
-                      }
-                    />
+                    {emails.length ? (
+                      <InternalChip
+                        label={emails?.[0] || "joe.flores@email.com"}
+                        suffix={
+                          <InternalChipButton
+                            icon="remove"
+                            label="Remove"
+                            onClick={() => undefined}
+                          />
+                        }
+                      />
+                    ) : (
+                      <Text variation="subdued">Email address</Text>
+                    )}
+
                     {Boolean(remainingEmails) && (
                       <InternalChip label={`+${remainingEmails}`} />
                     )}
