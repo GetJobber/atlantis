@@ -23,7 +23,8 @@ const sortKey: Record<HeaderLabelType, keyof DataType> = {
 };
 
 export function ThiccList() {
-  const { selectedItems, setSelectedItems } = useThiccListContext();
+  const { selectedItems, setSelectedItems, addOrRemoveSelectedItem } =
+    useThiccListContext();
 
   const [loading, setLoading] = useState(true); // TODO: replace with real loading state
   const [sortOrder, setSortOrder] = useState<SortOrder>("A-Z");
@@ -32,6 +33,8 @@ export function ThiccList() {
   useEffect(() => {
     setTimeout(() => setLoading(false), 2000);
   }, []);
+
+  const sortedData = getSortedItems(data, sortOrder, sortKey[sortedHeader]);
 
   return (
     <div className={styles.list}>
@@ -58,9 +61,11 @@ export function ThiccList() {
                 initialChild={<div />}
                 switchTo={
                   <div className={styles.batchActions}>
-                    <div onClick={SideSheet.show}>
-                      <ThiccListAction icon="sendMessage" label="Email" />
-                    </div>
+                    <ThiccListAction
+                      icon="sendMessage"
+                      label="Email"
+                      onClick={SideSheet.show}
+                    />
                     <ThiccListAction icon="addNote" label="Add note" />
                     <ThiccListAction icon="export" label="Export" />
                     <ThiccListAction icon="more" label="More actions" />
@@ -132,7 +137,7 @@ export function ThiccList() {
           ))}
 
         {!loading &&
-          getSortedItems(data, sortOrder, sortKey[sortedHeader]).map(item => (
+          sortedData.map(item => (
             <ThiccListItem
               isSelected={selectedItems.includes(item.id)}
               onClick={handleClick}
@@ -154,22 +159,19 @@ export function ThiccList() {
   ): void {
     if (event.ctrlKey || event.metaKey) {
       addOrRemoveSelectedItem(item);
+    } else if (event.shiftKey) {
+      const lastSelectedItem = selectedItems[selectedItems.length - 1];
+      const lastSelectedItemIndex = sortedData.findIndex(
+        d => d.id === lastSelectedItem,
+      );
+      const itemIndex = sortedData.findIndex(d => d.id === item.id);
+      const itemsBetween = sortedData.slice(
+        Math.min(lastSelectedItemIndex, itemIndex),
+        Math.max(lastSelectedItemIndex, itemIndex) + 1,
+      );
+      setSelectedItems([...selectedItems, ...itemsBetween.map(d => d.id)]);
     } else {
       addOrRemoveSelectedItem(item, true);
-    }
-  }
-
-  function addOrRemoveSelectedItem(item: DataType, shouldClear = false) {
-    let selectedItemCopy: number[] = [];
-
-    if (!shouldClear) {
-      selectedItemCopy = [...selectedItems];
-    }
-
-    if (selectedItemCopy.includes(item.id)) {
-      setSelectedItems(selectedItemCopy.filter(id => id !== item.id));
-    } else {
-      setSelectedItems([...selectedItemCopy, item.id]);
     }
   }
 }
