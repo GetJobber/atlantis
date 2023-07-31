@@ -228,7 +228,7 @@ function getAttributeProps(args: Story["args"]) {
 
 function getArgValue(args: unknown): string {
   if (typeof args === "string") {
-    return `"${args}"`;
+    return `"${args.replace(/"/g, '\\"')}"`;
   }
 
   if (typeof args === "symbol") {

@@ -2,6 +2,7 @@ import { Canvas, Meta } from "@storybook/addon-docs";
 import { Text } from "@jobber/components/Text";
 import { Checkbox } from "@jobber/components/Checkbox";
 import { Content } from "@jobber/components/Content";
+import { Tab, Tabs } from "@jobber/components/Tabs";
 
 <Meta title="Components/Text and Typography/Text/Docs" component={Text} />
 
@@ -157,3 +158,73 @@ left undefined all the contents are shown.
     </Text>
   </Content>
 </Canvas>
+
+## Platform Considerations
+
+<Tabs>
+  <Tab label="Web">
+
+  <Content>
+
+### Sizes
+
+Text can be used with different sizes.
+
+#### Base
+
+Base is the default size and is optimized for the widest range of uses,
+including:
+
+- Long paragraphs of text content
+- Descriptions of subsequent UI elements
+- Labels on UI elements such as checkboxes and radio buttons
+- Freeform user-generated content
+
+<Canvas>
+  <Text size="base">
+    Stay organized when creating estimates, work orders, and billing documents.
+  </Text>
+</Canvas>
+
+#### Large
+
+Typically large is to be used as an introductory paragraph that gives important
+information about a page, and requires greater prominence.
+
+<Canvas>
+  <Text size="large">
+    Attract new customers by asking happy clients for a Facebook recommendation.
+  </Text>
+</Canvas>
+
+#### Small
+
+The small size is intended to be used as helper content on things like
+checkboxes, radio buttons, inputs or any other UI elements that need help
+provided.
+
+<Canvas>
+  <Text size="small">What is this, a font for 🐜s?</Text>
+</Canvas>
+
+  </Content>
+  </Tab>
+  <Tab label="Mobile">
+
+  <Content>
+
+### Notes
+
+Text uses the core component [Text](https://reactnative.dev/docs/text) from
+`react-native`.
+
+### Copying text
+
+There are a few caveats around copying text on Android and iOS that you can read
+under the Typography documentation.
+
+  </Content>
+
+  </Tab>
+
+</Tabs>
