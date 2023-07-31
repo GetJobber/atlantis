@@ -1,0 +1,45 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Components/Private/InputFieldWrapper/Docs" />
+
+# Input Field Wrapper (Internal)
+
+This component is used to wrap input fields such as `InputText` and
+`InputPressable` to provide common patterns and functionality present in our
+input designs, such as: suffix/prefix icons, placeholders, etc.
+
+Note: example does not have a child component, so no interaction will occur on
+click.
+
+## Design & usage guidelines
+
+### Prefix/Suffix
+
+Use a prefix or suffix when additional visual cues about an input's function may
+be helpful.
+
+Some fields have common visual patterns such as “search” having a magnifying
+glass icon, “Select” having a downwards arrow, or currency inputs having a
+currency symbol. These signifiers reinforce the purpose of the input to increase
+[Recognition over Recall](https://www.nngroup.com/articles/ten-usability-heuristics/)
+and align the input with
+[Consistency and Standards](https://www.nngroup.com/articles/ten-usability-heuristics/).
+With clearer guidance around the purpose of inputs, the user is able to better
+focus on the task at hand. See
+[InputFieldWrapper/Prefix and Suffix example](../?path=/story/components-private-inputfieldwrapper-mobile--prefix-and-suffix).
+
+### Clearable
+
+When setting `showClearAction` to `true` you must also provide an `onClear`
+callback that will clear the input you are wrapping. See `InputDateTime` and
+`InputPressable` or `InputText` for examples.
+
+See
+[InputFieldWrapper/Clearable example](../?path=/story/components-private-inputfieldwrapper-mobile--clearable).
+
+## Related components
+
+Refer to
+[InputText](../?path=/docs/components-forms-and-inputs-inputtext-docs--page) and
+[InputPressable](../?path=/docs/components-forms-and-inputs-inputpressable-docs--page)
+to see implementation examples using InputFieldWrapper.
