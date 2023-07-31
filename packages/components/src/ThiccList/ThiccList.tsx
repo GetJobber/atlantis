@@ -1,5 +1,6 @@
 import React, { MouseEvent, useEffect, useState } from "react";
 import classNames from "classnames";
+import uniq from "lodash/uniq";
 import styles from "./ThiccList.css";
 import { ThiccListItem } from "./ThiccListItem";
 import { ThiccListAction } from "./ThiccListAction";
@@ -169,7 +170,9 @@ export function ThiccList() {
         Math.min(lastSelectedItemIndex, itemIndex),
         Math.max(lastSelectedItemIndex, itemIndex) + 1,
       );
-      setSelectedItems([...selectedItems, ...itemsBetween.map(d => d.id)]);
+      setSelectedItems(
+        uniq([...selectedItems, ...itemsBetween.map(d => d.id)]),
+      );
     } else {
       addOrRemoveSelectedItem(item, true);
     }
