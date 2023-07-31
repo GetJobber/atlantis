@@ -78,6 +78,13 @@ button.listHeaderButton {
   background-color: var(--color-grey--lightest);
 }
 
+.listHeaderSelection {
+  display: flex;
+  align-items: center;
+  gap: var(--space-smaller);
+  margin: -7.035px 0;
+}
+
 .listHeaderText {
   font-weight: 500;
   white-space: nowrap;

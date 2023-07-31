@@ -9,6 +9,7 @@ import { HeaderLabelType, ThiccListHeader } from "./ThiccListHeader";
 import { DataType, data } from "./data";
 import { Button } from "../Button";
 import { Grid } from "../Grid";
+import { Text } from "../Text";
 import { InputText } from "../InputText";
 import { AnimatedSwitcher } from "../AnimatedSwitcher";
 import { Glimmer } from "../Glimmer";
@@ -76,13 +77,28 @@ export function ThiccList() {
         </Grid>
 
         <div className={styles.listHeaderTitles}>
-          <ThiccListHeader
-            sortedHeader={sortedHeader}
-            sortOrder={sortOrder}
-            onClick={(header, sortBy) => {
-              setSortedHeader(header);
-              setSortOrder(sortBy);
-            }}
+          <AnimatedSwitcher
+            switched={selectedItem.length > 1}
+            initialChild={
+              <ThiccListHeader
+                sortedHeader={sortedHeader}
+                sortOrder={sortOrder}
+                onClick={(header, sortBy) => {
+                  setSortedHeader(header);
+                  setSortOrder(sortBy);
+                }}
+              />
+            }
+            switchTo={
+              <div className={styles.listHeaderSelection}>
+                <Text variation="subdued">{selectedItem.length} selected</Text>
+                <Button
+                  label="Deselect All"
+                  onClick={() => setSelectedItem([])}
+                  type="tertiary"
+                />
+              </div>
+            }
           />
         </div>
       </div>

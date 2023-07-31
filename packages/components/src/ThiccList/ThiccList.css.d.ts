@@ -8,6 +8,7 @@ declare const styles: {
   readonly "listHeader": string;
   readonly "listContentItem": string;
   readonly "listHeaderTitles": string;
+  readonly "listHeaderSelection": string;
   readonly "listHeaderText": string;
   readonly "listContent": string;
   readonly "listContentSelected": string;
