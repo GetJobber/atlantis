@@ -1,37 +1,12 @@
-import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
-import { FormatRelativeDateTime } from ".";
+import { Meta } from "@storybook/addon-docs";
 
-<Meta
-  title="Components/Utilities/FormatRelativeDateTime"
-  component={FormatRelativeDateTime}
-/>
+<Meta title="Components/Utilities/FormatRelativeDateTime/Docs" />
 
 # FormatRelativeDateTime
 
 A FormatRelateDateTime displays the date and time using relative wording or
 approximate values. Note. This component only represents current date and dates
 in the past. No future dating.
-
-```ts
-import { FormatRelativeDateTime } from "@jobber/components/FormatRelativeDateTime";
-```
-
-<Canvas>
-  <Story
-    name="FormatRelativeDateTime"
-    args={{
-      date: new Date(new Date().setMinutes(new Date().getMinutes() - 5)),
-    }}
-  >
-    {args => <FormatRelativeDateTime {...args} />}
-  </Story>
-</Canvas>
-
-## Props
-
-<ArgsTable of={FormatRelativeDateTime} story="FormatRelativeDateTime" />
-
----
 
 ## Rules
 
