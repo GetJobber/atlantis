@@ -1,5 +1,4 @@
 import React, { MouseEvent, useState } from "react";
-import throttle from "lodash/throttle";
 import classNames from "classnames";
 import { AnimatePresence, Variants, motion } from "framer-motion";
 import styles from "./ThiccList.css";
@@ -19,7 +18,6 @@ interface ThiccListItemProps {
     data: DataType,
     event: MouseEvent<HTMLButtonElement>,
   ) => void;
-  readonly onDoubleClick: (data: DataType) => void;
 }
 
 const variants: Variants = {
@@ -31,7 +29,6 @@ export function ThiccListItem({
   data,
   isSelected,
   onClick,
-  onDoubleClick,
 }: ThiccListItemProps) {
   const [showHoverMenu, setShowHoverMenu] = useState(false);
   const [showContextMenu, setShowContextMenu] = useState(false);
@@ -39,10 +36,6 @@ export function ThiccListItem({
     x: 0,
     y: 0,
   });
-
-  const handleClick = throttle((event: MouseEvent<HTMLButtonElement>) => {
-    onClick(data, event);
-  }, 200);
   const maxTags = 3;
 
   return (
@@ -53,15 +46,11 @@ export function ThiccListItem({
       onMouseEnter={() => setShowHoverMenu(true)}
       onMouseLeave={() => setShowHoverMenu(false)}
       onContextMenu={toggleContextMenu}
-      onDoubleClick={() => {
-        handleClick.cancel();
-        onDoubleClick(data);
-      }}
     >
       <button
         key={data.id}
         className={styles.listContentItem}
-        onClick={handleClick}
+        onClick={e => onClick(data, e)}
       >
         <Grid>
           <Grid.Cell size={{ xs: 3 }}>

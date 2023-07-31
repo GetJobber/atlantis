@@ -142,10 +142,6 @@ export function ThiccList() {
             <ThiccListItem
               isSelected={selectedItems.includes(item.id)}
               onClick={handleClick}
-              onDoubleClick={d => {
-                console.log(d);
-                alert("Congrats, you double clicked!");
-              }}
               key={item.id}
               data={item}
             />
@@ -174,6 +170,10 @@ export function ThiccList() {
         uniq([...selectedItems, ...itemsBetween.map(d => d.id)]),
       );
     } else {
+      if (selectedItems.length === 1 && selectedItems.includes(item.id)) {
+        return alert("Congrats, you clicked!");
+      }
+
       addOrRemoveSelectedItem(item, true);
     }
   }
