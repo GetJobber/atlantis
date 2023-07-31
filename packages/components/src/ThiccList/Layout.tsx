@@ -104,10 +104,11 @@ export function Layout({ children }: LayoutProps) {
           </Grid>
         </div>
         <div className={styles.content}>
-          <div className={styles.header}>
-            <Heading level={1}>Clients</Heading>
-          </div>
           <ThiccListProvider>
+            <div className={styles.header}>
+              <Heading level={1}>Clients</Heading>
+            </div>
+
             {children}
 
             <SideSheet />

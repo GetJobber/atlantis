@@ -5,6 +5,7 @@ import { DataType } from "./data";
 export interface ThiccListContextProps {
   readonly selectedItems: number[];
   readonly setSelectedItems: (selectedItems: number[]) => void;
+  readonly setActiveItem: (selectedItems: DataType) => void;
   readonly addOrRemoveSelectedItem: (
     item: DataType,
     shouldClear?: boolean,
@@ -15,6 +16,7 @@ export const defaultValues: ThiccListContextProps = {
   selectedItems: [],
   setSelectedItems: () => undefined,
   addOrRemoveSelectedItem: () => undefined,
+  setActiveItem: () => undefined,
 };
 
 export const ThiccListContext = createContext(defaultValues);

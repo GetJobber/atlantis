@@ -24,8 +24,12 @@ const sortKey: Record<HeaderLabelType, keyof DataType> = {
 };
 
 export function ThiccList() {
-  const { selectedItems, setSelectedItems, addOrRemoveSelectedItem } =
-    useThiccListContext();
+  const {
+    selectedItems,
+    setSelectedItems,
+    addOrRemoveSelectedItem,
+    setActiveItem,
+  } = useThiccListContext();
 
   const [loading, setLoading] = useState(true); // TODO: replace with real loading state
   const [sortOrder, setSortOrder] = useState<SortOrder>("A-Z");
@@ -171,7 +175,7 @@ export function ThiccList() {
       );
     } else {
       if (selectedItems.length === 1 && selectedItems.includes(item.id)) {
-        return alert("Congrats, you clicked!");
+        return setActiveItem(item);
       }
 
       addOrRemoveSelectedItem(item, true);
