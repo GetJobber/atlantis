@@ -1,52 +1,22 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import throttle from "lodash/throttle";
 import classNames from "classnames";
 import { AnimatePresence, Variants, motion } from "framer-motion";
 import styles from "./ThiccList.css";
-import { ListNode } from "./gqlUtils";
 import { ThiccListItemMenu } from "./ThiccListItemMenu";
 import { ThiccListAction } from "./ThiccListAction";
 import { SideSheet } from "./SideSheet";
+import { DataType } from "./data";
 import { FormatRelativeDateTime } from "../FormatRelativeDateTime";
 import { Text } from "../Text";
 import { Grid } from "../Grid";
-import { InlineLabel, InlineLabelColors } from "../InlineLabel";
-
-const tags =
-  "Lorem ipsum dolor sit amet consectetur adipisicing elit Ullam placeat nemo dolores eveniet ipsum libero alias autem aspernatur tempore aliquam officiis aliquid et quos aperiam quibusdam vitae animi debitis deserunt".split(
-    " ",
-  );
-
-const status: { label: string; color: InlineLabelColors }[] = [
-  { label: "Active", color: "green" },
-  { label: "Archived", color: "greyBlue" },
-  { label: "Lead", color: "lightBlue" },
-];
-
-const address = [
-  "348 Burdett Avenue, Victoria, British Columbia, V8W IE9",
-  "1507 Bellwood Acres Rd, Huntsville, Ontario, P0A 1K0",
-  "3452 Haaglund Rd, Oliver, British Columbia, V0H 1T0",
-  "4874 Bay Street, Toronto, Ontario, M5J 2R8",
-  "2366 Lynden Road, Moonstone, Ontario, L0K 1N0",
-  "3573 90th Avenue, Brooks, Alberta, T0J 0J0",
-  "2108 Alness Street, Toronto, Ontario, M3J 2J1",
-  "727 Brew Creek Rd, Port Hardy, British Columbia, V0N 2P0",
-  "4086 Boulevard Ste-Geneviève, Chicoutimi, Quebec, G7H 5G3",
-  "4571 Ste. Catherine Ouest, Montreal, Quebec, H3A 4G4",
-  "4839 40th Street, Calgary, Alberta, T2A 1C8",
-  "4320 Duke Street, Montreal, Quebec, H3C 5K4",
-  "2383 Charing Cross Rd, Chatham, Ontario, N7M 2G9",
-  "500 Eglinton Avenue, Toronto, Ontario, M4P 1A6",
-  "4386 40th Street, Calgary, Alberta, T2A 1C8",
-  "1946 43rd Avenue, Whitehorse, Yukon, Y1A 2A2",
-];
+import { InlineLabel } from "../InlineLabel";
 
 interface ThiccListItemProps {
   readonly isSelected: boolean;
-  readonly data: ListNode;
-  readonly onClick: (data: ListNode) => void;
-  readonly onDoubleClick: (data: ListNode) => void;
+  readonly data: DataType;
+  readonly onClick: (data: DataType) => void;
+  readonly onDoubleClick: (data: DataType) => void;
 }
 
 const variants: Variants = {
@@ -68,20 +38,6 @@ export function ThiccListItem({
   });
 
   const handleClick = throttle(() => onClick(data), 200);
-  const date = useRef(randomDate()).current;
-  const tagCount = useRef(Math.floor(Math.random() * 13)).current;
-  const randomNumbersArray = useRef(
-    Array.from({ length: tagCount }, () =>
-      Math.floor(Math.random() * tags.length),
-    ),
-  ).current;
-  const statusNumber = useRef(
-    Math.floor(Math.random() * status.length),
-  ).current;
-  const addressNumber = useRef(
-    Math.floor(Math.random() * address.length),
-  ).current;
-  const selectedStatus = status[statusNumber];
   const maxTags = 3;
 
   return (
@@ -114,36 +70,33 @@ export function ThiccListItem({
           </Grid.Cell>
           <Grid.Cell size={{ xs: 3 }}>
             <Text variation="subdued" maxLines="single">
-              {data.homeworld.name}, {address[addressNumber]}
+              {data.address}
             </Text>
           </Grid.Cell>
           <Grid.Cell size={{ xs: 2 }}>
             <div className={styles.inlineLabel}>
-              <InlineLabel>{data.skinColor}</InlineLabel>
-              {randomNumbersArray.slice(0, 3).map((num, i) => (
-                <InlineLabel key={num + tags[num] + i}>{tags[num]}</InlineLabel>
+              {data.tags.map((tag, i) => (
+                <InlineLabel key={tag + i}>{tag}</InlineLabel>
               ))}
               <div className={styles.overflowTags}>
-                {randomNumbersArray.length > maxTags && (
-                  <Text variation="subdued">
-                    +{randomNumbersArray.length - maxTags}
-                  </Text>
+                {data.tags.length > maxTags && (
+                  <Text variation="subdued">+{data.tags.length - maxTags}</Text>
                 )}
               </div>
             </div>
           </Grid.Cell>
           <Grid.Cell size={{ xs: 2 }}>
-            {selectedStatus.label !== "Active" && (
+            {data.status.label !== "Active" && (
               <div className={styles.inlineLabel}>
-                <InlineLabel color={selectedStatus.color}>
-                  {selectedStatus.label}
+                <InlineLabel color={data.status.color}>
+                  {data.status.label}
                 </InlineLabel>
               </div>
             )}
           </Grid.Cell>
           <Grid.Cell size={{ xs: 2 }}>
             <Text variation="subdued">
-              <FormatRelativeDateTime date={date} />
+              <FormatRelativeDateTime date={data.lastActiveDate} />
             </Text>
           </Grid.Cell>
         </Grid>
@@ -163,7 +116,7 @@ export function ThiccListItem({
             onMouseLeave={() => setShowHoverMenu(false)}
           >
             <div onClick={SideSheet.show}>
-              <ThiccListAction label="Compose Email" icon="email" />
+              <ThiccListAction label="Email" icon="email" />
             </div>
             <ThiccListAction label="Create Note" icon="addNote" />
             <ThiccListAction label="More actions" icon="more" />
@@ -181,13 +134,5 @@ export function ThiccListItem({
         onRequestClose={() => setShowContextMenu(false)}
       />
     </div>
-  );
-}
-
-function randomDate() {
-  const start = new Date(2023, 6, 1);
-  const end = new Date();
-  return new Date(
-    start.getTime() + Math.random() * (end.getTime() - start.getTime()),
   );
 }

@@ -1,59 +1,34 @@
-import React, { useState } from "react";
-import { useCollectionQuery } from "@jobber/hooks";
+import React, { useEffect, useState } from "react";
 import classNames from "classnames";
 import styles from "./ThiccList.css";
-import {
-  LIST_QUERY,
-  ListNode,
-  ListQueryType,
-  apolloClient,
-  getLoadingState,
-} from "./gqlUtils";
 import { ThiccListItem } from "./ThiccListItem";
 import { ThiccListAction } from "./ThiccListAction";
 import { SortOrder, getSortedItems } from "./utils";
 import { SideSheet } from "./SideSheet";
+import { HeaderLabelType, ThiccListHeader } from "./ThiccListHeader";
+import { DataType, data } from "./data";
 import { Button } from "../Button";
 import { Grid } from "../Grid";
 import { InputText } from "../InputText";
-import { Text } from "../Text";
 import { AnimatedSwitcher } from "../AnimatedSwitcher";
 import { Glimmer } from "../Glimmer";
 
-const headers = ["Client", "Address", "Tags", "Status", "Activity"];
+const sortKey: Record<HeaderLabelType, keyof DataType> = {
+  Client: "name",
+  Address: "address",
+  Status: "status",
+  Activity: "lastActiveDate",
+};
 
 export function ThiccList() {
-  const {
-    data,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    refresh,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    nextPage,
-    loadingRefresh,
-    loadingNextPage,
-    loadingInitialContent,
-  } = useCollectionQuery<ListQueryType>({
-    query: LIST_QUERY,
-    queryOptions: {
-      fetchPolicy: "network-only",
-      nextFetchPolicy: "cache-first",
-      client: apolloClient,
-    },
-    getCollectionByPath(items) {
-      return items?.allPeople;
-    },
-  });
-
-  const { loading } = getLoadingState(
-    loadingInitialContent,
-    loadingRefresh,
-    loadingNextPage,
-  );
-
-  const items = data?.allPeople.edges || [];
-  const [selectedItem, setSelectedItem] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true); // TODO: replace with real loading state
+  const [selectedItem, setSelectedItem] = useState<number[]>([]);
   const [sortOrder, setSortOrder] = useState<SortOrder>("A-Z");
-  const sortIcon = sortOrder === "A-Z" ? "⏷" : "⏶";
+  const [sortedHeader, setSortedHeader] = useState<HeaderLabelType>("Client");
+
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 2000);
+  }, []);
 
   return (
     <div className={styles.list}>
@@ -81,10 +56,7 @@ export function ThiccList() {
                 switchTo={
                   <div className={styles.batchActions}>
                     <div onClick={SideSheet.show}>
-                      <ThiccListAction
-                        icon="sendMessage"
-                        label="Send message"
-                      />
+                      <ThiccListAction icon="sendMessage" label="Email" />
                     </div>
                     <ThiccListAction icon="addNote" label="Add note" />
                     <ThiccListAction icon="export" label="Export" />
@@ -104,30 +76,14 @@ export function ThiccList() {
         </Grid>
 
         <div className={styles.listHeaderTitles}>
-          <Grid alignItems="center">
-            {headers.map((header, i) => (
-              <Grid.Cell key={header} size={{ xs: i <= 1 ? 3 : 2 }}>
-                {i === 0 ? (
-                  <button
-                    className={styles.listHeaderButton}
-                    onClick={() =>
-                      setSortOrder(sortOrder === "A-Z" ? "Z-A" : "A-Z")
-                    }
-                  >
-                    <Text size="small" variation="subdued">
-                      <b className={styles.listHeaderText}>
-                        {header}, {sortOrder} {sortIcon}
-                      </b>
-                    </Text>
-                  </button>
-                ) : (
-                  <Text size="small" variation="subdued">
-                    <b className={styles.listHeaderText}>{header}</b>
-                  </Text>
-                )}
-              </Grid.Cell>
-            ))}
-          </Grid>
+          <ThiccListHeader
+            sortedHeader={sortedHeader}
+            sortOrder={sortOrder}
+            onClick={(header, sortBy) => {
+              setSortedHeader(header);
+              setSortOrder(sortBy);
+            }}
+          />
         </div>
       </div>
       <div className={styles.listMain}>
@@ -157,23 +113,24 @@ export function ThiccList() {
             </div>
           ))}
 
-        {getSortedItems(items, sortOrder).map(({ node }) => (
-          <ThiccListItem
-            isSelected={selectedItem.includes(node.id)}
-            onClick={handleClick}
-            onDoubleClick={d => {
-              console.log(d);
-              alert("Congrats, you double clicked!");
-            }}
-            key={node.id}
-            data={node}
-          />
-        ))}
+        {!loading &&
+          getSortedItems(data, sortOrder, sortKey[sortedHeader]).map(item => (
+            <ThiccListItem
+              isSelected={selectedItem.includes(item.id)}
+              onClick={handleClick}
+              onDoubleClick={d => {
+                console.log(d);
+                alert("Congrats, you double clicked!");
+              }}
+              key={item.id}
+              data={item}
+            />
+          ))}
       </div>
     </div>
   );
 
-  function handleClick(item: ListNode): void {
+  function handleClick(item: DataType): void {
     if (selectedItem.includes(item.id)) {
       setSelectedItem(selectedItem.filter(id => id !== item.id));
     } else {

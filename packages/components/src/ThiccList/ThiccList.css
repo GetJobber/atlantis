@@ -80,6 +80,7 @@ button.listHeaderButton {
 
 .listHeaderText {
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .listContent {

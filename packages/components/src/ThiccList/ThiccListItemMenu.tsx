@@ -41,6 +41,11 @@ export function ThiccListItemMenu({
             style={{ left: position.x, top: position.y }}
             onContextMenu={e => e.stopPropagation()}
           >
+            <button className={styles.listContentMenuItem}>
+              <Text>
+                <b>View Client</b>
+              </Text>
+            </button>
             <button className={styles.listContentMenuItem} onClick={onSelect}>
               <Text>
                 <b>Select Client</b>
