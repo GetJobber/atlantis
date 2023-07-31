@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { MouseEvent, useEffect, useState } from "react";
 import classNames from "classnames";
 import styles from "./ThiccList.css";
 import { ThiccListItem } from "./ThiccListItem";
@@ -130,11 +130,28 @@ export function ThiccList() {
     </div>
   );
 
-  function handleClick(item: DataType): void {
-    if (selectedItem.includes(item.id)) {
-      setSelectedItem(selectedItem.filter(id => id !== item.id));
+  function handleClick(
+    item: DataType,
+    event: MouseEvent<HTMLButtonElement>,
+  ): void {
+    if (event.ctrlKey || event.metaKey) {
+      addOrRemoveSelectedItem(item);
     } else {
-      setSelectedItem([...selectedItem, item.id]);
+      addOrRemoveSelectedItem(item, true);
+    }
+  }
+
+  function addOrRemoveSelectedItem(item: DataType, shouldClear = false) {
+    let selectedItemCopy: number[] = [];
+
+    if (!shouldClear) {
+      selectedItemCopy = [...selectedItem];
+    }
+
+    if (selectedItemCopy.includes(item.id)) {
+      setSelectedItem(selectedItemCopy.filter(id => id !== item.id));
+    } else {
+      setSelectedItem([...selectedItemCopy, item.id]);
     }
   }
 }

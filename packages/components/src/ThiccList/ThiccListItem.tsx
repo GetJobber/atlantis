@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { MouseEvent, useState } from "react";
 import throttle from "lodash/throttle";
 import classNames from "classnames";
 import { AnimatePresence, Variants, motion } from "framer-motion";
@@ -15,7 +15,10 @@ import { InlineLabel } from "../InlineLabel";
 interface ThiccListItemProps {
   readonly isSelected: boolean;
   readonly data: DataType;
-  readonly onClick: (data: DataType) => void;
+  readonly onClick: (
+    data: DataType,
+    event: MouseEvent<HTMLButtonElement>,
+  ) => void;
   readonly onDoubleClick: (data: DataType) => void;
 }
 
@@ -37,7 +40,9 @@ export function ThiccListItem({
     y: 0,
   });
 
-  const handleClick = throttle(() => onClick(data), 200);
+  const handleClick = throttle((event: MouseEvent<HTMLButtonElement>) => {
+    onClick(data, event);
+  }, 200);
   const maxTags = 3;
 
   return (
@@ -127,8 +132,8 @@ export function ThiccListItem({
       <ThiccListItemMenu
         visible={showContextMenu}
         position={contextMenuPosition}
-        onSelect={() => {
-          onClick(data);
+        onSelect={event => {
+          onClick(data, event);
           setShowContextMenu(false);
         }}
         onRequestClose={() => setShowContextMenu(false)}

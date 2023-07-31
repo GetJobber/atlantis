@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEvent } from "react";
 import { AnimatePresence, Variants, motion } from "framer-motion";
 import styles from "./ThiccList.css";
 import { Icon } from "../Icon";
@@ -9,7 +9,7 @@ interface ThiccListItemMenuProps {
   readonly visible: boolean;
   readonly position: { x: number; y: number };
   readonly onRequestClose: () => void;
-  readonly onSelect: () => void;
+  readonly onSelect: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
 const variants: Variants = {
