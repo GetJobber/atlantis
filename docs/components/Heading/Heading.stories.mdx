@@ -1,0 +1,68 @@
+import { Meta } from "@storybook/addon-docs";
+import { Tab, Tabs } from "@jobber/components/Tabs";
+
+<Meta title="Components/Text and Typography/Heading/Docs" />
+
+# Heading
+
+Headings are used as the titles of each major section of a page in the
+interface. Reserved for short and important text, Headings create a visual
+hierarchy for the user.
+
+## Design & usage guidelines
+
+<Tabs>
+  <Tab label="Web">
+
+| Level                   | Use case                                                                                                                                                                                                                                |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `<Heading level={1} />` | Should explain the main subject of the page. There should only be one `level={1}` Heading on a page                                                                                                                                     |
+| `<Heading level={2} />` | Used to categorize large groups of content. For example, there are two main categories when creating a new client: client details and property details. This heading can be skipped if there are no large groups that need breaking up. |
+| `<Heading level={3} />` | Used to group content and forms on a single topic.                                                                                                                                                                                      |
+| `<Heading level={4} />` | Used to group contents after a `level={3}` Heading or inside a card component.                                                                                                                                                          |
+| `<Heading level={5} />` | `level={5}` is used to group contents after a `level={4}` Heading.                                                                                                                                                                      |
+| `<Heading level={6} />` | Used to group contents after a `level={5}` Heading or to group small lists of content.                                                                                                                                                  |
+
+  </Tab>
+
+  <Tab label="Mobile">
+
+| Level                              | Use case                                                                                                                                                           |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `<Heading level={"title"} />`      | Should explain the main subject of the page. There should only be one `title` Heading on a page.                                                                   |
+| `<Heading level={"subtitle"} />`   | Used to categorize large groups of content.                                                                                                                        |
+| `<Heading level={"heading"} />`    | Used to group content and forms on a single topic. Like `title` and `subtitle`, `heading` uses [Jobber Pro](../?path=/docs/design-typography--page#font-families). |
+| `<Heading level={"subHeading"} />` | Used to group small lists of content, `subHeading` uses the [Inter](../?path=/docs/design-typography--page#base) font.                                             |
+
+  </Tab>
+</Tabs>
+
+## Content guidelines
+
+The only content that should be used in a Heading is text. Use sentence-case for
+headings. The exception is `Heading 6` in the web Headings, which is capitalized
+as a stylistic reference to the
+[eyebrow typographic pattern.](https://app.uxcel.com/lessons/basics-ii-588#eyebrow-headline-8095)
+
+| ✅ Do                       | ❌ Don't                    |
+| --------------------------- | --------------------------- |
+| Job #21 for Nathaniel Lewis | Job #21 For Nathaniel Lewis |
+| Save job and...             | Save Job And...             |
+| Push notification settings  | Push Notification Settings  |
+
+## Related components
+
+For introductory text after a page title, or paragraph text for body copy, use
+[Text](../?path=/docs/components-text-and-typography-text-docs--page).
+
+## Platform considerations
+
+There are a few caveats around copying text on Android and iOS that you can read
+under the
+[Typography](../?path=/docs/components-text-and-typography-typography--typography)
+documentation.
+
+## Accessibility
+
+The Heading component has the accessibilityRole of 'Header' and will be
+announced to assistive technology as "Header: {text content}".
