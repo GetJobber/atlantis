@@ -1,39 +1,19 @@
-import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
-import { CivilDate } from "@std-proposal/temporal";
-import { FormatDate, strFormatDate } from ".";
-import { Text } from "../Text";
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Text } from "@jobber/components/Text";
+import { strFormatDate } from "@jobber/components/FormatDate";
 
 # FormatDate
 
-<Meta title="Components/Utilities/FormatDate" component={FormatDate} />
+<Meta title="Components/Utilities/FormatDate/Docs" />
 
 In Jobber a FormatDate is used to ensure that the date is displayed in the
 expected format. No text styling is applied, this simply formats the date.
 
-```ts
-import { FormatDate } from "@jobber/components/FormatDate";
-```
+## Design & usage guidelines
 
-<Canvas>
-  <Story
-    name="FormatDate"
-    args={{
-      date: new CivilDate(2020, 2, 26),
-    }}
-  >
-    {args => <FormatDate {...args} />}
-  </Story>
-</Canvas>
+### Getting a string version
 
-## Props
-
-<ArgsTable of={FormatDate} story="FormatDate" />
-
----
-
-## Getting a string version
-
-Use strFormateDate if you need your formatted date as a string so it can be
+Use `strFormateDate` if you need your formatted date as a string so it can be
 passed as an attribute that doesn't allow for a component.
 
 ```ts
