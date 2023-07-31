@@ -1,0 +1,77 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Typography } from "@jobber/components/Typography";
+import { Banner } from "@jobber/components/Banner";
+
+# Typography
+
+<Meta title="Components/Text and Typography/Typography/Docs" />
+
+Base component that defines typographic standards across Jobber.
+
+<Banner type="notice" dismissible={false}>
+
+Typography is the component that powers our Heading and Text components “under
+the hood”. You should first look to use
+[Heading](../?path=/docs/components-text-and-typography-heading--heading) and
+[Text](../?path=/docs/components-text-and-typography-text-docs--page) before you
+reach for Typography.
+
+</Banner>
+
+## Font size
+
+You can refer to the font sizes in our
+[Design/Typography page](../?path=/docs/design-typography--page#font-size).
+
+<Canvas isColumn>
+  <Typography size="smaller">smaller</Typography>
+  <Typography size="small">small</Typography>
+  <Typography size="base">base</Typography>
+  <Typography size="large">large</Typography>
+  <Typography size="larger">larger</Typography>
+  <Typography size="largest">largest</Typography>
+  <Typography size="jumbo">jumbo</Typography>
+  <Typography size="extravagant">extravagant</Typography>
+</Canvas>
+
+## Font weight
+
+<Canvas>
+  <Typography fontWeight="black">Shout</Typography>
+</Canvas>
+
+## Alignment
+
+Uses start and end instead of left and right to allow for resiliency in both LTR
+and RTL applications.
+
+<Canvas isColumn>
+  <Typography align="start">Start</Typography>
+  <Typography align="center">Center</Typography>
+  <Typography align="end">End</Typography>
+</Canvas>
+
+## Platform considerations
+
+React Native has a lot of limitations around Android and iOS when it comes to
+copying text on a device.
+
+#### Android
+
+- ✅ Highlight specific text
+- ✅ Have an option to copy and other smart actions like opening a map when it's
+  an address
+- ❌ It can't highlight the text on anything that is tappable. For example
+  - Button
+  - List
+  - Long press to copy phone, address, etc
+  - In short, anything text you can tap and it does an action like open a modal
+    cannot be highlighted
+
+#### iOS
+
+- ❌ Highlight specific text
+  - ✅ It can only copy all of the block of text
+- ➖ Only have an option to "copy"
+- ✅ Unlike Android, It can copy the text on anything that is tappable
+  - The long press would show a copy action and cancel the press action on it
