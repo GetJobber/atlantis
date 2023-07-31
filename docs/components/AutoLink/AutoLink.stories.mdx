@@ -1,0 +1,36 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Components/Text and Typography/AutoLink/Docs" />
+
+# Auto Link
+
+The AutoLink component is a base component that utilizes the
+[autolinker](https://github.com/gregjacobs/Autolinker.js/) package to find urls,
+phone numbers and emails within a chunk of text. When these linkable items are
+found, they are converted to links that can be interacted with.
+
+This component makes use of the Text component to display both the plain text
+and the links discovered.
+
+In the event a phone number is pressed, after completing the call the user will
+be returned to the app. The same applies when using the detected email.
+
+## Usage guidelines
+
+The AutoLink will detect linkable items within text and allow the user to
+interact with them. You can use flags to determine if you want to ignore certain
+types of links, such as ignoring phone numbers.
+
+This is intended for scenarios where you do not know if the text to display will
+contain links within it. A common use case for this would be when dealing with
+user input.
+
+## Notes
+
+There is an [Autolink](https://github.com/joshswan/react-native-autolink)
+package written by a third party that was investigated to accomplish what this
+component does. Though we were able to provide our own rendering function to
+display our own text instead of RN Text, this still required re-writing a good
+chunk of functionality and still importing the base library to get the proper
+types. Also contained extra things we didn't need. This package was used as
+inspiration into dealing with this problem and building our own.
