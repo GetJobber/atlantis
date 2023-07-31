@@ -134,9 +134,11 @@ button.listHeaderButton {
 
 .listContentMenu {
   position: fixed;
+  min-width: 160px;
   box-shadow: var(--shadow-high);
-  flex-direction: column;
+  box-sizing: border-box;
   padding: var(--space-small);
+  flex-direction: column;
 }
 
 button.listContentMenuItem {

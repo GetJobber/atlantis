@@ -52,13 +52,7 @@ export function ThiccListItem({
       })}
       onMouseEnter={() => setShowHoverMenu(true)}
       onMouseLeave={() => setShowHoverMenu(false)}
-      onContextMenu={e => {
-        e.preventDefault();
-        console.log(e);
-        setContextMenuPosition({ x: e.pageX, y: e.pageY });
-        setShowHoverMenu(false);
-        setShowContextMenu(true);
-      }}
+      onContextMenu={toggleContextMenu}
       onDoubleClick={() => {
         handleClick.cancel();
         onDoubleClick(data);
@@ -120,24 +114,42 @@ export function ThiccListItem({
             onContextMenu={e => e.stopPropagation()}
             onMouseLeave={() => setShowHoverMenu(false)}
           >
-            <div onClick={SideSheet.show}>
-              <ThiccListAction label="Email" icon="email" />
-            </div>
+            <ThiccListAction
+              label="Email"
+              icon="email"
+              onClick={e => {
+                onClick(data, e);
+                SideSheet.show();
+              }}
+            />
             <ThiccListAction label="Create Note" icon="addNote" />
-            <ThiccListAction label="More actions" icon="more" />
+            <ThiccListAction
+              label="More actions"
+              icon="more"
+              onClick={toggleContextMenu}
+            />
           </motion.div>
         )}
       </AnimatePresence>
 
       <ThiccListItemMenu
+        id={data.id}
         visible={showContextMenu}
         position={contextMenuPosition}
-        onSelect={event => {
-          onClick(data, event);
+        onSelect={() => {
           setShowContextMenu(false);
         }}
         onRequestClose={() => setShowContextMenu(false)}
       />
     </div>
   );
+
+  function toggleContextMenu(
+    e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>,
+  ) {
+    e.preventDefault();
+    setContextMenuPosition({ x: e.pageX, y: e.pageY });
+    setShowHoverMenu(false);
+    setShowContextMenu(true);
+  }
 }

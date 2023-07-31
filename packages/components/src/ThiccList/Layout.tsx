@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Layout.css";
 import { SideSheet } from "./SideSheet";
+import { ThiccListContext } from "./ThiccListContext";
+import { DataType } from "./data";
 import { Heading } from "../Heading";
 import { Grid } from "../Grid";
 import { Text } from "../Text";
@@ -36,6 +38,8 @@ const sidebarItems: {
 ];
 
 export function Layout({ children }: LayoutProps) {
+  const [selectedItems, setSelectedItems] = useState<number[]>([]);
+
   return (
     <div className={styles.container}>
       <div className={styles.sidebar}>
@@ -106,11 +110,29 @@ export function Layout({ children }: LayoutProps) {
           <div className={styles.header}>
             <Heading level={1}>Clients</Heading>
           </div>
-          {children}
+          <ThiccListContext.Provider
+            value={{ selectedItems, setSelectedItems, addOrRemoveSelectedItem }}
+          >
+            {children}
 
-          <SideSheet />
+            <SideSheet />
+          </ThiccListContext.Provider>
         </div>
       </div>
     </div>
   );
+
+  function addOrRemoveSelectedItem(item: DataType, shouldClear = false) {
+    let selectedItemCopy: number[] = [];
+
+    if (!shouldClear) {
+      selectedItemCopy = [...selectedItems];
+    }
+
+    if (selectedItemCopy.includes(item.id)) {
+      setSelectedItems(selectedItemCopy.filter(id => id !== item.id));
+    } else {
+      setSelectedItems([...selectedItemCopy, item.id]);
+    }
+  }
 }

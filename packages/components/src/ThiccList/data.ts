@@ -203,6 +203,7 @@ export const data = names.map((name, i) => ({
   status: status[getRandomIndex(status.length)],
   address: `${getRandomIndex(1000)} ${address[getRandomIndex(address.length)]}`,
   lastActiveDate: randomDate(),
+  email: name.toLocaleLowerCase().split(" ").join(".") + "@gmail.com",
 }));
 
 export type DataArray = typeof data;

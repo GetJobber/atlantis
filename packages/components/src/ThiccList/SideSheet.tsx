@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useOnKeyDown } from "@jobber/hooks";
 import styles from "./SideSheet.css";
+import { useThiccListContext } from "./ThiccListContext";
+import { data } from "./data";
 import { Card } from "../Card";
 import { InternalChip } from "../Chips/InternalChip";
 import { InternalChipButton } from "../Chips/InternalChipButton";
@@ -23,6 +25,13 @@ const variants = {
 };
 
 export function SideSheet() {
+  const { selectedItems } = useThiccListContext();
+
+  const emails = selectedItems.map(
+    item => data.find(d => d.id === item)?.email,
+  );
+  const remainingEmails = emails.length - 1;
+
   const [showSideSheet, setShowSideSheet] = useState(false);
   setShow = setShowSideSheet;
 
@@ -58,7 +67,7 @@ export function SideSheet() {
                     <Text>To:</Text>
 
                     <InternalChip
-                      label="joe.flores@email.com"
+                      label={emails?.[0] || "joe.flores@email.com"}
                       suffix={
                         <InternalChipButton
                           icon="remove"
@@ -67,7 +76,9 @@ export function SideSheet() {
                         />
                       }
                     />
-                    <InternalChip label="+3" />
+                    {Boolean(remainingEmails) && (
+                      <InternalChip label={`+${remainingEmails}`} />
+                    )}
                   </div>
                 </Content>
               </Card>

@@ -7,6 +7,7 @@ import { SortOrder, getSortedItems } from "./utils";
 import { SideSheet } from "./SideSheet";
 import { HeaderLabelType, ThiccListHeader } from "./ThiccListHeader";
 import { DataType, data } from "./data";
+import { useThiccListContext } from "./ThiccListContext";
 import { Button } from "../Button";
 import { Grid } from "../Grid";
 import { Text } from "../Text";
@@ -22,8 +23,9 @@ const sortKey: Record<HeaderLabelType, keyof DataType> = {
 };
 
 export function ThiccList() {
+  const { selectedItems, setSelectedItems } = useThiccListContext();
+
   const [loading, setLoading] = useState(true); // TODO: replace with real loading state
-  const [selectedItem, setSelectedItem] = useState<number[]>([]);
   const [sortOrder, setSortOrder] = useState<SortOrder>("A-Z");
   const [sortedHeader, setSortedHeader] = useState<HeaderLabelType>("Client");
 
@@ -52,7 +54,7 @@ export function ThiccList() {
                 />
               </div>
               <AnimatedSwitcher
-                switched={Boolean(selectedItem.length)}
+                switched={Boolean(selectedItems.length)}
                 initialChild={<div />}
                 switchTo={
                   <div className={styles.batchActions}>
@@ -78,7 +80,7 @@ export function ThiccList() {
 
         <div className={styles.listHeaderTitles}>
           <AnimatedSwitcher
-            switched={selectedItem.length > 1}
+            switched={selectedItems.length > 1}
             initialChild={
               <ThiccListHeader
                 sortedHeader={sortedHeader}
@@ -91,10 +93,10 @@ export function ThiccList() {
             }
             switchTo={
               <div className={styles.listHeaderSelection}>
-                <Text variation="subdued">{selectedItem.length} selected</Text>
+                <Text variation="subdued">{selectedItems.length} selected</Text>
                 <Button
                   label="Deselect All"
-                  onClick={() => setSelectedItem([])}
+                  onClick={() => setSelectedItems([])}
                   type="tertiary"
                 />
               </div>
@@ -132,7 +134,7 @@ export function ThiccList() {
         {!loading &&
           getSortedItems(data, sortOrder, sortKey[sortedHeader]).map(item => (
             <ThiccListItem
-              isSelected={selectedItem.includes(item.id)}
+              isSelected={selectedItems.includes(item.id)}
               onClick={handleClick}
               onDoubleClick={d => {
                 console.log(d);
@@ -161,13 +163,13 @@ export function ThiccList() {
     let selectedItemCopy: number[] = [];
 
     if (!shouldClear) {
-      selectedItemCopy = [...selectedItem];
+      selectedItemCopy = [...selectedItems];
     }
 
     if (selectedItemCopy.includes(item.id)) {
-      setSelectedItem(selectedItemCopy.filter(id => id !== item.id));
+      setSelectedItems(selectedItemCopy.filter(id => id !== item.id));
     } else {
-      setSelectedItem([...selectedItemCopy, item.id]);
+      setSelectedItems([...selectedItemCopy, item.id]);
     }
   }
 }

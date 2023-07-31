@@ -1,6 +1,6 @@
 :root {
-  --radius-base: var(--space-smallest);
-  --radius-large: var(--space-smaller);
-  --radius-larger: var(--space-small);
+  --radius-base: var(--space-smaller);
+  --radius-large: var(--space-small);
+  --radius-larger: var(--space-base);
   --radius-circle: 100%;
 }
