@@ -5,27 +5,38 @@ import { FormatTime } from "./FormatTime";
 
 afterEach(cleanup);
 
-Object.entries({
-  CivilDate: new CivilTime(14, 30),
-  ISO8601DateString: "2019-03-30T14:30",
-  Date: new Date("2019-03-30T14:30"),
-}).forEach(([inputType, value]) => {
-  it(`renders a FormatTime from ${inputType}`, () => {
-    const { container } = render(<FormatTime time={value} />);
-    expect(container).toMatchSnapshot();
+describe("FormatTime", () => {
+  describe.each(
+    Object.entries({
+      CivilDate: new CivilTime(14, 30),
+      ISO8601DateString: "2019-03-30T14:30",
+      Date: new Date("2019-03-30T14:30"),
+    }),
+  )("%s", (name, date) => {
+    it("renders a FormatTime", () => {
+      const { container } = render(<FormatTime time={date} />);
+      expect(container.textContent).toBe("2:30 PM");
+    });
+
+    it("renders a FormatTime using 24 hour clock", () => {
+      const { container } = render(
+        <FormatTime time={date} use24HourClock={true} />,
+      );
+      expect(container.textContent).toBe("14:30");
+    });
+
+    it("renders a FormatTime using 12 hour clock", () => {
+      const { container } = render(
+        <FormatTime time={date} use24HourClock={false} />,
+      );
+      expect(container.textContent).toBe("2:30 PM");
+    });
   });
 
-  it(`renders a FormatTime from ${inputType} using 24 hour clock`, () => {
+  it("should render 12:30AM as 00:30 using the 24 hour clock", () => {
     const { container } = render(
-      <FormatTime time={value} use24HourClock={true} />,
+      <FormatTime time="2019-03-30T00:30" use24HourClock={true} />,
     );
-    expect(container).toMatchSnapshot();
-  });
-
-  it(`renders a FormatTime from ${inputType} using 12 hour clock`, () => {
-    const { container } = render(
-      <FormatTime time={value} use24HourClock={false} />,
-    );
-    expect(container).toMatchSnapshot();
+    expect(container.textContent).toBe("00:30");
   });
 });

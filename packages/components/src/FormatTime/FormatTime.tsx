@@ -46,7 +46,7 @@ export function FormatTime({
 
 function formatCivilTime(date: Date, use24HourClock?: boolean) {
   return date.toLocaleTimeString(navigator.language, {
-    hour12: typeof use24HourClock === "boolean" ? !use24HourClock : undefined,
+    hourCycle: use24HourClock ? "h23" : "h12",
     minute: "2-digit",
     hour: "numeric",
   });
