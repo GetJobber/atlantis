@@ -12,8 +12,8 @@ type OptionCollection = XOR<Option[], GroupOption[]>;
 interface AutocompleteProps
   extends Pick<
     FormFieldProps,
-    | "invalid"
     | "inputRef"
+    | "invalid"
     | "name"
     | "onBlur"
     | "onFocus"
@@ -74,7 +74,6 @@ export function Autocomplete({
   value,
   allowFreeForm = true,
   size = undefined,
-  invalid,
   debounce: debounceRate = 300,
   onChange,
   getOptions,
@@ -105,7 +104,6 @@ export function Autocomplete({
       <InputText
         autocomplete={false}
         size={size}
-        invalid={invalid}
         value={inputText}
         onChange={handleInputChange}
         placeholder={placeholder}
