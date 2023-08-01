@@ -1,55 +1,26 @@
-import { Canvas, Meta } from "@storybook/addon-docs";
-import { useState } from "react";
-import { ProgressBar } from "@jobber/components/ProgressBar";
-import { Content } from "@jobber/components/Content";
-import { Button } from "@jobber/components/Button";
+import { Meta } from "@storybook/addon-docs";
 
-<Meta
-  title="Components/Status and Feedback/ProgressBar/Docs"
-  component={ProgressBar}
-/>
+<Meta title="Components/Status and Feedback/ProgressBar/Docs" />
 
-# ProgressBar
+# Progress Bar
 
-A progress bar is a visual indicator of how close something is to completion.
+A ProgressBar is a visual indicator of how close something is to completion.
 
 ## Design & usage guidelines
 
-The progress bar should be used to show "definite" progress; we know exactly how
+The ProgressBar should be used to show "definite" progress; we know exactly how
 close the process is to completion. For "indefinite" progress, where we may not
-know exactly how much longer something might take, use a spinner.
+know exactly how much longer something might take, use a
+[Spinner](..?path=/docs/components-status-and-feedback-spinner-docs--page).
 
-Some great use cases for a progress bar include:
+Some great use cases for a ProgressBar include:
 
 - Setup wizard, where we know how many steps the user has completed and how many
-  steps remain
+  steps remain.
 - File uploads, where we know the total file size and how much data has already
-  been sent
+  been sent.
 
-An example where you might be better served using a spinner:
+An example where you might be better served using a Spinner:
 
 - Loading a calendar within a view, where we do not know it's "complete" until
-  there's no more data left to load
-
-## Example with state
-
-<Canvas>
-  {() => {
-    const [step, setStep] = useState(2);
-    const totalSteps = 4;
-    return (
-      <Content>
-        <Button
-          label="Step Back"
-          onClick={() => setStep(Math.max(0, step - 1))}
-        />{" "}
-        <Button
-          label="Step Forward"
-          onClick={() => setStep(Math.min(totalSteps, step + 1))}
-        />
-        <ProgressBar currentStep={step} totalSteps={totalSteps} />
-        Step: <strong>{step}</strong> of <strong>{totalSteps}</strong>
-      </Content>
-    );
-  }}
-</Canvas>
+  there's no more data left to load.
