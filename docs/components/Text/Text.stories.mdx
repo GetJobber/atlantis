@@ -3,7 +3,7 @@ import { Text } from "@jobber/components/Text";
 import { Checkbox } from "@jobber/components/Checkbox";
 import { Content } from "@jobber/components/Content";
 
-<Meta title="Components/Text and Typography/Text/Docs" component={Text} />
+<Meta title="Components/Text and Typography/Text/Docs" />
 
 # Text
 
@@ -30,15 +30,14 @@ De-emphasize a piece of text that is less important to the user.
 The variation also includes text that conveys feedback messages.
 
 <Canvas>
-  <Text variation="success">Invoice sent</Text>
-  <br />
-  <Text variation="error">Name is required</Text>
-  <br />
-  <Text variation="warn">Your message is over 160 characters</Text>
-  <br />
-  <Text variation="info">
-    Drag to rearrange the order that the fields show up in Jobber
-  </Text>
+  <Content>
+    <Text variation="success">Invoice sent</Text>
+    <Text variation="error">Name is required</Text>
+    <Text variation="warn">Your message is over 160 characters</Text>
+    <Text variation="info">
+      Drag to rearrange the order that the fields show up in Jobber
+    </Text>
+  </Content>
 </Canvas>
 
 ### Disabled
@@ -157,3 +156,60 @@ left undefined all the contents are shown.
     </Text>
   </Content>
 </Canvas>
+
+## Platform Considerations (Web)
+
+### Sizes
+
+Text can be used with different sizes.
+
+#### Base
+
+Base is the default size and is optimized for the widest range of uses,
+including:
+
+- Long paragraphs of text content
+- Descriptions of subsequent UI elements
+- Labels on UI elements such as checkboxes and radio buttons
+- Freeform user-generated content
+
+<Canvas>
+  <Text size="base">
+    Stay organized when creating estimates, work orders, and billing documents.
+  </Text>
+</Canvas>
+
+#### Large
+
+Typically large is to be used as an introductory paragraph that gives important
+information about a page, and requires greater prominence.
+
+<Canvas>
+  <Text size="large">
+    Attract new customers by asking happy clients for a Facebook recommendation.
+  </Text>
+</Canvas>
+
+#### Small
+
+The small size is intended to be used as helper content on things like
+checkboxes, radio buttons, inputs or any other UI elements that need help
+provided.
+
+<Canvas>
+  <Text size="small">What is this, a font for 🐜s?</Text>
+</Canvas>
+
+## Platform Considerations (Mobile)
+
+### Notes
+
+Text uses the core component [Text](https://reactnative.dev/docs/text) from
+`react-native`.
+
+### Copying text
+
+There are a few caveats around copying text on Android and iOS that you can read
+under the
+[Typography](../?path=/docs/components-text-and-typography-typography-docs--page#platform-considerations)
+documentation.
