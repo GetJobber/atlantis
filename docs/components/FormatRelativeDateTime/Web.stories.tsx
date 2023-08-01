@@ -12,10 +12,11 @@ export default {
 } as ComponentMeta<typeof FormatRelativeDateTime>;
 
 const BasicTemplate: ComponentStory<typeof FormatRelativeDateTime> = args => (
-  <FormatRelativeDateTime {...args} />
+  <FormatRelativeDateTime
+    {...args}
+    date={new Date(new Date().setMinutes(new Date().getMinutes() - 5))}
+  />
 );
 
 export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  date: new Date(new Date().setMinutes(new Date().getMinutes() - 5)),
-};
+Basic.args = {};
