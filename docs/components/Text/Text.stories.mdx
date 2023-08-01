@@ -2,9 +2,8 @@ import { Canvas, Meta } from "@storybook/addon-docs";
 import { Text } from "@jobber/components/Text";
 import { Checkbox } from "@jobber/components/Checkbox";
 import { Content } from "@jobber/components/Content";
-import { Tab, Tabs } from "@jobber/components/Tabs";
 
-<Meta title="Components/Text and Typography/Text/Docs" component={Text} />
+<Meta title="Components/Text and Typography/Text/Docs" />
 
 # Text
 
@@ -31,15 +30,14 @@ De-emphasize a piece of text that is less important to the user.
 The variation also includes text that conveys feedback messages.
 
 <Canvas>
-  <Text variation="success">Invoice sent</Text>
-  <br />
-  <Text variation="error">Name is required</Text>
-  <br />
-  <Text variation="warn">Your message is over 160 characters</Text>
-  <br />
-  <Text variation="info">
-    Drag to rearrange the order that the fields show up in Jobber
-  </Text>
+  <Content>
+    <Text variation="success">Invoice sent</Text>
+    <Text variation="error">Name is required</Text>
+    <Text variation="warn">Your message is over 160 characters</Text>
+    <Text variation="info">
+      Drag to rearrange the order that the fields show up in Jobber
+    </Text>
+  </Content>
 </Canvas>
 
 ### Disabled
@@ -159,12 +157,7 @@ left undefined all the contents are shown.
   </Content>
 </Canvas>
 
-## Platform Considerations
-
-<Tabs>
-  <Tab label="Web">
-
-  <Content>
+## Platform Considerations (Web)
 
 ### Sizes
 
@@ -207,11 +200,7 @@ provided.
   <Text size="small">What is this, a font for 🐜s?</Text>
 </Canvas>
 
-  </Content>
-  </Tab>
-  <Tab label="Mobile">
-
-  <Content>
+## Platform Considerations (Mobile)
 
 ### Notes
 
@@ -221,10 +210,6 @@ Text uses the core component [Text](https://reactnative.dev/docs/text) from
 ### Copying text
 
 There are a few caveats around copying text on Android and iOS that you can read
-under the Typography documentation.
-
-  </Content>
-
-  </Tab>
-
-</Tabs>
+under the
+[Typography](../?path=/docs/components-text-and-typography-typography-docs--page#platform-considerations)
+documentation.

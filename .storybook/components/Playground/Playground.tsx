@@ -228,6 +228,7 @@ function getAttributeProps(args: Story["args"]) {
 
 function getArgValue(args: unknown): string {
   if (typeof args === "string") {
+    // Escape quotes if they are already in the string. This prevents issues rendering those stories.
     return `"${args.replace(/"/g, '\\"')}"`;
   }
 

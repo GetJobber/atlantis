@@ -1,6 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 import { Text } from "@jobber/components/Text";
+import { Content } from "@jobber/components/Content";
 
 export default {
   title: "Components/Text and Typography/Text/Web",
@@ -25,9 +26,18 @@ Basic.args = {
     '"640K is more memory than anyone will ever need on a computer" - Not Bill Gates',
 };
 
-export const Sizes = BasicTemplate.bind({});
+const SizesTemplate: ComponentStory<typeof Text> = args => {
+  return (
+    <Content>
+      <Text {...args}>{args.children}</Text>
+      <Text size="small">Sometimes they are small</Text>
+      <Text size="large">Other times they are large</Text>
+    </Content>
+  );
+};
+
+export const Sizes = SizesTemplate.bind({});
 Sizes.args = {
-  children:
-    '"The only good thing about rails is trains run on them" - Michael Paradis',
-  size: "small",
+  children: "Both Trains and Text come in all different kinds of sizes",
+  size: "base",
 };

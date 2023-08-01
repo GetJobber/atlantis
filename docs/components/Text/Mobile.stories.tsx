@@ -24,7 +24,6 @@ export const Basic = BasicTemplate.bind({});
 Basic.args = {
   children:
     '"640K is more memory than anyone will ever need on a computer" - Not Bill Gates',
-  //  children:  '"You gotta crack a few eggs to make a mess" - Michael Paradis'
 };
 
 export const SupportingText = BasicTemplate.bind({});
