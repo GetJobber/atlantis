@@ -1,35 +1,13 @@
-import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
-import { ComponentStatus } from "@jobber/docx";
-import { Content } from "@jobber/components/Content";
-import { Icon } from "@jobber/components/Icon";
-import { Banner } from ".";
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Banner } from "@jobber/components/Banner";
 
 # Banner
 
-<ComponentStatus stage="ready" responsive="yes" accessible="yes" />
-
-<Meta title="Components/Status and Feedback/Banner" component={Banner} />
+<Meta title="Components/Status and Feedback/Banner/Docs" />
 
 Banners provide information about important changes, persistent conditions, and
 system errors. They're positioned at the top of the screen or near the content
 they reference, and are persistent until dismissed or the issue is resolved.
-
-```ts
-import { Banner } from "@jobber/components/Banner";
-```
-
-<Canvas>
-  <Story
-    name="Banner"
-    args={{ type: "notice", children: "Your visits are being scheduled" }}
-  >
-    {({ children, ...args }) => <Banner {...args}>{children}</Banner>}
-  </Story>
-</Canvas>
-
-## Props
-
-<ArgsTable of={Banner} story="Banner" />
 
 ## Design & usage guidelines
 
@@ -42,39 +20,34 @@ align to the text, inputs or other UI elements beneath it. For best results, use
 [Content](../?path=/docs/components-layouts-and-structure-content-docs--page) to
 ensure consistent vertical spacing between Banner and adjacent elements.
 
+#### "Global" Banner (web)
+
 If the Banner is being used as a system-wide message or some other context in
 which it is outside of the main application layout, it should take up the full
 available width.
+
+#### "Global" Banner (mobile)
+
+When the message from a `Banner` is applicable to the entire view, it should be
+positioned directly beneath the Navigation Header and flush to the edges of the
+screen.
 
 ### Types of Banner
 
 There are four types of Banner, each with guidelines for their usage:
 
+- `success` (web only) [<Icon name="link" />](#success-message)
 - `notice` [<Icon name="link" />](#notice-message)
-- `success` [<Icon name="link" />](#success-message)
 - `warning`[<Icon name="link" />](#warning-message)
 - `error` [<Icon name="link" />](#error-message)
 
-### Notice message
-
-Use notice banners to provide information about:
-
-<ul>
-  <li>new functionality</li>
-  <li>background operations</li>
-  <li>general non-blocking advice</li>
-</ul>
-
-Notices should get to the point and inform the user about why the functionality
-or change is important if context is not provided elsewhere.
+### Success message (Web only)
 
 <Canvas>
-  <Banner type="notice">
-    Your import is in progress. Feel free to leave this page while it continues.
+  <Banner type="success">
+    Your subscription will be automatically upgraded in 8 days
   </Banner>
 </Canvas>
-
-### Success message
 
 Success banners are appropriate when:
 
@@ -87,20 +60,36 @@ Otherwise, use
 [Toast](../?path=/docs/components-status-and-feedback-toast-docs--page) as the
 default for success messages.
 
+#### Success messages (mobile)
+
+On mobile, use
+[Toast](../?path=/docs/components-status-and-feedback-toast-docs--page) for a
+success message.
+
+### Notice message
+
 <Canvas>
-  <Banner
-    type="success"
-    primaryAction={{
-      label: "View clients",
-      onClick: () => alert("🎉 Woo hoo"),
-    }}
-    dismissible={false}
-  >
-    Your client import is complete
-  </Banner>
+  <Banner type="notice">Your visits are being scheduled</Banner>
 </Canvas>
 
+Use notice banners to provide information about:
+
+<ul>
+  <li>new functionality</li>
+  <li>background operations</li>
+  <li>general non-blocking advice</li>
+</ul>
+
+Notices should get to the point and inform the user about why the functionality
+or change is important if context is not provided elsewhere.
+
 ### Warning message
+
+<Canvas>
+  <Banner type="warning">
+    Your subscription will be automatically upgraded in 8 days
+  </Banner>
+</Canvas>
 
 Use warning banners when:
 
@@ -114,18 +103,18 @@ possibly unknown impact a user’s changes or actions will have. They should not
 begin with "Warning:" and should not be used as a way to block or redirect a
 workflow.
 
-You should use
+On web, you should use
 [ConfirmationModal](../?path=/docs/components-overlays-confirmationmodal-docs--page)
 when you need to get explicit confirmation from the user before they complete an
 action that is difficult to reverse.
 
+### Error message
+
 <Canvas>
-  <Banner type="warning">
-    Your subscription will be automatically upgraded in 8 days
+  <Banner type="error">
+    Something went wrong. Please try again in a few minutes.
   </Banner>
 </Canvas>
-
-### Error message
 
 Use error banners when:
 
@@ -138,36 +127,40 @@ Use error banners when:
 Errors should explain what happened, and how to address the issue in a concise
 manner.
 
+System errors should avoid technical or intimidating language, and provide ways
+to resolve or troubleshoot the issue if possible.
+
+#### Errors in forms (web)
+
 If an error is directly related to an input, don't use a banner. Use the
 [InputText validation message](../?path=/docs/components-forms-and-inputs-inputtext-docs--page#validation-message)
 component or, if unavailable,
 [InputValidation](../?path=/docs/components-forms-and-inputs-inputvalidation-docs--page).
 Scroll to the first affected field on submission.
 
-For more guidance on wording, check out the
-[Product Vocabulary](../?path=/docs/content-product-vocabulary--page).
+##### Errors in forms (mobile)
 
-<Canvas>
-  <Banner type="error">
-    This link has expired. Please try again using the most recent email in your
-    inbox, or request a new link.
-  </Banner>
-</Canvas>
+In forms, use the error Banner when the response from submitting the form has
+returned errors. The `details` prop can be used to list all individual errors.
 
-<br />
+See
+[Form Errors](../?path=/story/components-status-and-feedback-banner-mobile--form-errors)
+for an example.
 
-System errors should avoid technical or intimidating language, and provide ways
-to resolve or troubleshoot the issue if possible.
+In conjunction, each impacted input should display its own inline error
+messaging to aid in "recognition over recall" as the user scrolls down through
+the form to rectify the issues.
 
-<Canvas>
-  <Banner type="error">
-    Something went wrong. Please try again in a few minutes.
-  </Banner>
-</Canvas>
+If an input can be validated client-side (immediately, before the form is
+submitted to the server), you don't need to provide a Banner that duplicates the
+error messages. Use inline validation on the inputs to prevent the user from
+submitting invalid data. If the user ignores client-side error messages and
+submits anyways, show them the error Banner along with the errors on the
+individual input(s).
 
 ## Content guidelines
 
-Content in banner should:
+Content in Banner should:
 
 - Be concise and kept to only 1 to 2 sentences where possible
 - Avoid exceeding 200 characters
@@ -178,40 +171,32 @@ Content in banner should:
 
 ## Actions in Banners
 
-It is discouraged to use a `<Button />` component when requiring an action
-within a `Banner`. If you require an action, use the `primaryActions` prop. The
-`primaryAction` accepts the same props as the `Button` component.
+### Actions (web)
 
-<Canvas>
-  <Content>
-    <Banner
-      type="notice"
-      primaryAction={{
-        label: "View Plans",
-        onClick: () => alert("Plans"),
-      }}
-      dismissible={false}
-    >
-      Your trial has been extended!
-    </Banner>
-    <Banner
-      type="error"
-      primaryAction={{
-        label: "Refresh",
-        onClick: () => alert("Refreshing"),
-      }}
-    >
-      Network is unavailable. Please check your internet connection.
-    </Banner>
-  </Content>
-</Canvas>
+It is discouraged to use a Button component when requiring an action within a
+Banner. If you require an action, use the `primaryActions` prop. The
+`primaryAction` accepts the same props as the Button component.
+
+See
+[Actions in Banners](../?path=/story/components-status-and-feedback-banner-web--actions-in-banners)
+for some examples.
+
+### Actions (mobile)
+
+Use the `action` prop to specify an `onPress` callback and a `label`. Banner
+will render the action using an
+[ActionLabel](../?path=/docs/components-actions-actionlabel-docs--page).
+
+See
+[Actions in Banners](../?path=/story/components-status-and-feedback-banner-mobile--actions-in-banners)
+for an example.
 
 ## Related components
 
 - To provide low priority, temporary feedback on the outcome of a user action,
   use [Toast](../?path=/docs/components-status-and-feedback-toast-docs--page)
-  instead
+  instead.
 - Use
   [ConfirmationModal](../?path=/docs/components-overlays-confirmationmodal-docs--page)
   when you need to get explicit confirmation from the user before they complete
-  an action
+  an action.
