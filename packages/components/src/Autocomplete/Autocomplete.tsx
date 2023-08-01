@@ -12,7 +12,15 @@ type OptionCollection = XOR<Option[], GroupOption[]>;
 interface AutocompleteProps
   extends Pick<
     FormFieldProps,
-    "size" | "onBlur" | "onFocus" | "invalid" | "name" | "validations"
+    | "invalid"
+    | "inputRef"
+    | "name"
+    | "onBlur"
+    | "onFocus"
+    | "prefix"
+    | "size"
+    | "suffix"
+    | "validations"
   > {
   /**
    * Initial options to show when user first focuses the Autocomplete
@@ -59,11 +67,8 @@ interface AutocompleteProps
   readonly placeholder: string;
 }
 
-/**
- * Max statements disabled here to make room for the
- * debounce functions.
- */
-// eslint-disable-next-line max-statements
+// Max statements increased to make room for the debounce functions
+/* eslint max-statements: ["error", 14] */
 export function Autocomplete({
   initialOptions = [],
   value,
@@ -76,8 +81,8 @@ export function Autocomplete({
   placeholder,
   onBlur,
   onFocus,
-  name,
   validations,
+  ...inputProps
 }: AutocompleteProps) {
   const [options, setOptions] = useState(initialOptions);
   const [menuVisible, setMenuVisible] = useState(false);
@@ -106,8 +111,8 @@ export function Autocomplete({
         placeholder={placeholder}
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
-        name={name}
         validations={validations}
+        {...inputProps}
       />
       {menuVisible && (
         <Menu
