@@ -15,8 +15,8 @@ const BasicTemplate: ComponentStory<typeof Link> = args => (
   <Link {...args}>What is a Link anyway?</Link>
 );
 
-export const Horizontal = BasicTemplate.bind({});
-Horizontal.args = {
+export const Basic = BasicTemplate.bind({});
+Basic.args = {
   url: "https://en.wikipedia.org/wiki/Hyperlink",
   external: true,
 };
