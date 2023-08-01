@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Divider, Heading } from "@jobber/components-native";
+import { Content, Divider, Heading } from "@jobber/components-native";
 
 export default {
   title: "Components/Text and Typography/Heading/Mobile",
@@ -14,7 +14,7 @@ export default {
 
 const LevelsTemplate: ComponentStory<typeof Heading> = args => {
   return (
-    <>
+    <Content>
       <Heading {...args}>New client</Heading>
       <Divider size="base" />
       <Heading level="subtitle">Client details</Heading>
@@ -22,7 +22,7 @@ const LevelsTemplate: ComponentStory<typeof Heading> = args => {
       <Heading level="heading">Additional details</Heading>
       <Divider size="base" />
       <Heading level="subHeading">Receives SMS</Heading>
-    </>
+    </Content>
   );
 };
 
