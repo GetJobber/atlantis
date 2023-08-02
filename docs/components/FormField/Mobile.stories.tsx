@@ -1,5 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { FormProvider, useForm } from "react-hook-form";
 import { FormField, InputText, Text } from "@jobber/components-native";
 
 export default {
@@ -7,9 +8,15 @@ export default {
   component: FormField,
   parameters: {
     viewMode: "story",
-    previewTabs: { code: { hidden: false } },
+    previewTabs: {
+      code: {
+        hidden: false,
+        extraImports: {
+          "react-hook-form": ["useForm", "FormProvider"],
+        },
+      },
+    },
     viewport: { defaultViewport: "mobile1" },
-    showNativeOnWebDisclaimer: true,
   },
 } as ComponentMeta<typeof FormField>;
 
@@ -24,28 +31,32 @@ const BasicTemplate: ComponentStory<typeof FormField> = args => {
 };
 
 const WithValidationsTemplate: ComponentStory<typeof FormField> = args => {
+  const methods = useForm({ mode: "onChange" });
   return (
-    <FormField
-      {...args}
-      validations={{
-        maxLength: {
-          value: 5,
-          message: "Should not exceed 5 characters",
-        },
-      }}
-    >
-      {(field, error) => {
-        return (
-          <>
-            {error && <Text variation="error">{error.message}</Text>}
-            <InputText
-              value={field.value}
-              placeholder="Should not exceed 5 characters"
-            />
-          </>
-        );
-      }}
-    </FormField>
+    <FormProvider {...methods}>
+      <FormField
+        {...args}
+        validations={{
+          maxLength: {
+            value: 5,
+            message: "Should not exceed 5 characters",
+          },
+        }}
+      >
+        {(field, error) => {
+          return (
+            <>
+              {error && <Text variation="error">{error.message}</Text>}
+              <InputText
+                value={field.value}
+                placeholder="Should not exceed 5 characters"
+                onChangeText={field.onChange}
+              />
+            </>
+          );
+        }}
+      </FormField>
+    </FormProvider>
   );
 };
 
