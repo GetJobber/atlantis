@@ -32,7 +32,10 @@ export function useResizeObserver<T extends HTMLElement>({
     width: undefined,
     height: undefined,
   });
-  const onResize = useMemo(() => throttle(setSize, wait), [wait]);
+  const onResize = useMemo(
+    () => throttle(setSize, wait, { trailing: false }),
+    [wait],
+  );
   const { ref } = useResizeObserverPackage<T>({
     onResize,
   });
