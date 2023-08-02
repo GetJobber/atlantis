@@ -228,7 +228,8 @@ function getAttributeProps(args: Story["args"]) {
 
 function getArgValue(args: unknown): string {
   if (typeof args === "string") {
-    return `"${args}"`;
+    // Escape double quotes in args value so they don't cause issues when being passed to codesandbox
+    return `"${args.replace(/"/g, '\\"')}"`;
   }
 
   if (typeof args === "symbol") {

@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.23.66](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.65...@jobber/components@4.23.66) (2023-08-02)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.65](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.64...@jobber/components@4.23.65) (2023-08-02)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.64](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.63...@jobber/components@4.23.64) (2023-08-02)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.63](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.62...@jobber/components@4.23.63) (2023-08-01)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.62](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.61...@jobber/components@4.23.62) (2023-08-01)
+
+
+### Bug Fixes
+
+* update FormatTime logic for 12 or 24 hours ([#1442](https://github.com/GetJobber/atlantis/issues/1442)) ([67869ce](https://github.com/GetJobber/atlantis/commit/67869cea1ceb70a2e56cc5cee73e6fe26907edb1))
+
+
+
+
+
+## [4.23.61](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.60...@jobber/components@4.23.61) (2023-08-01)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 ## [4.23.60](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.59...@jobber/components@4.23.60) (2023-08-01)
 
 **Note:** Version bump only for package @jobber/components
