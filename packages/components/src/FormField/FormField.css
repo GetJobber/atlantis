@@ -87,6 +87,7 @@
 .invalid,
 .invalid:focus-within {
   --field--border-color: var(--color-critical);
+  position: relative;
 }
 
 .disabled {
