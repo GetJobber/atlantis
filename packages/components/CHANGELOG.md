@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.24.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.66...@jobber/components@4.24.0) (2023-08-02)
+
+
+### Features
+
+* **components:** InputText Props for Autocomplete ([#1465](https://github.com/GetJobber/atlantis/issues/1465)) ([7a978ef](https://github.com/GetJobber/atlantis/commit/7a978ef8185d70a57a161e61ea795b1c7b6fd429))
+
+
+
+
+
 ## [4.23.66](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.65...@jobber/components@4.23.66) (2023-08-02)
 
 **Note:** Version bump only for package @jobber/components
