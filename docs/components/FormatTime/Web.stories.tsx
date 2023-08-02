@@ -21,13 +21,11 @@ export default {
 
 const BasicTemplate: ComponentStory<typeof FormatTime> = args => (
   <>
-    <FormatTime {...args} />
+    <FormatTime {...args} time={new CivilTime(2, 35)} />
     -
     <FormatTime {...args} time={new CivilTime(18, 35)} />
   </>
 );
 
 export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  time: new CivilTime(2, 35),
-};
+Basic.args = {};
