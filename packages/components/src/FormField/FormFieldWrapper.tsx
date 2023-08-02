@@ -79,7 +79,7 @@ export function FormFieldWrapper({
   }, [value]);
 
   return (
-    <>
+    <div className={styles.container}>
       <div className={wrapperClasses} style={wrapperInlineStyle}>
         {prefix?.icon && <AffixIcon {...prefix} size={size} />}
         <div className={styles.inputWrapper}>
@@ -109,7 +109,7 @@ export function FormFieldWrapper({
         />
       )}
       {error && !inline && <InputValidation message={error} />}
-    </>
+    </div>
   );
 
   function getAffixPaddding() {

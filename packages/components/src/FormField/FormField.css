@@ -9,6 +9,10 @@
   --public-field--bottom-right-radius: var(--radius-base);
 }
 
+.container {
+  width: 100%;
+}
+
 /**
  * Wrapper
  **/
