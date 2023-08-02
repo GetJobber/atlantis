@@ -10,7 +10,7 @@ import { useIsScreenReaderEnabled } from "../hooks";
 import { Divider } from "../Divider";
 import { Heading } from "../Heading";
 
-interface BottomSheetProps {
+export interface BottomSheetProps {
   readonly children: ReactNode;
 
   /**

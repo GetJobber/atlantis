@@ -1,0 +1,77 @@
+import { Meta } from "@storybook/addon-docs";
+import { Banner } from "@jobber/components/Banner";
+
+<Meta title="Components/Overlays/Popover/Docs" />
+
+# Popover
+
+A Popover displays floating informative and actionable content positioned in
+relation to a target. The Popover can contain content, media, or other
+components.
+
+## Usage guidelines
+
+Some scenarios for Popover include the following:
+
+### Informational
+
+Introducing the user to a new experience, whether their first time using a
+product or to introduce a new or updated functionality in an existing
+experience, Popover can be an excellent choice to highlight a specific piece of
+the experience.
+
+If there is an "acknowledgement" CTA for the user to confirm that they
+understand the change, use a `learning`
+[Button](../?path=/docs/components-actions-button-docs--page).
+
+See
+[Popover/Informational](../?path=/story/components-overlays-popover-web--informational)
+
+### Functional
+
+Reveal a list of available actions to the user. For example, if the user clicks
+on an element and there are four potential actions they might take, Popover is a
+great way to present those actions. If you're looking to provide a menu of
+actions that comes complete with a trigger button,
+[Menu](../?path=/docs/components-navigation-menu--menu) has that bundle ready to
+go.
+
+<Banner type="warning" dismissible={false}>
+  A "functional" Popover hasn't been implemented in a componentized fashion yet.
+</Banner>
+
+### Related components
+
+To add a menu button that presents multiple actions to the user, use
+[Menu](../?path=/docs/components-navigation-menu--menu).
+
+To add a hint about a UI element's function in a permanent fashion (ie revealing
+a Button's label on hover), use
+[Tooltip](../?path=/docs/components-overlays-tooltip--tooltip).
+
+To add an inline informational element that the user can dismiss, consider if
+[Banner](../?path=/docs/components-status-and-feedback-banner-docs--page) is the
+right fit for your use case.
+
+## Content guidelines
+
+- Popover text content should be concise and clear. Try not to go over three
+  lines so the user can get back to what they were doing!
+- In "informational" usage, Popper may have a CTA that allows the user to
+  "acknowledge" and dismiss the Popover; this does not replace the need for the
+  dismiss button.
+
+## Accessibility
+
+Popover has a role of `dialog` as it is an element that the user will be "in
+dialogue" with, whether selecting an action, confirming acknowledgement, or
+dismissing the Popover.
+
+Depending on your use case, you may need to add focus management to your usage
+of Popover; for example, if selecting a Button opens a Popover, you will want to
+then set focus to the Popover, and if the user dismisses the Popover, return
+focus to the button that opened the Popover.
+
+If your element is effectively acting as an inline DOM element that the user
+would otherwise encounter when traversing the page, this focus management may
+not be necessary.

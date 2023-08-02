@@ -1,5 +1,5 @@
 import process from "process";
-import React from "react";
+import React, { useEffect } from "react";
 import { Story, useStorybookApi } from "@storybook/api";
 import {
   SandpackCodeEditor,
@@ -8,19 +8,21 @@ import {
 } from "@codesandbox/sandpack-react";
 import dedent from "ts-dedent";
 import "./Playground.css";
+import { STORY_CHANGED } from "@storybook/core-events";
 import { PlaygroundWarning } from "./PlaygroundWarning";
 import { PlaygroundImports } from "./types";
 import { THIRD_PARTY_PACKAGE_VERSIONS } from "./constants";
 import { formatCode } from "./utils";
-import { STORY_CHANGED } from '@storybook/core-events';
 
 export function Playground() {
   const { getCurrentStoryData, emit } = useStorybookApi();
   const activeStory = getCurrentStoryData() as Story | undefined;
 
-  // Emit story changed so GA can track it as a page change. This mimics the
-  // default behaviour of Canvas and Docs tab.
-  emit(STORY_CHANGED);
+  useEffect(() => {
+    // Emit story changed so GA can track it as a page change. This mimics the
+    // default behaviour of Canvas and Docs tab.
+    emit(STORY_CHANGED);
+  }, []);
 
   if (!activeStory) {
     return <></>;
@@ -43,7 +45,7 @@ export function Playground() {
           "@jobber/components": "latest",
           "@jobber/hooks": "latest",
           "@apollo/client": "^3.0.0",
-          "graphql": "^15.8.0",
+          graphql: "^15.8.0",
           ...extraDependencies,
         },
       }}
@@ -127,6 +129,7 @@ function getSourceCode(
 
       return sourceCode
         ?.replace(new RegExp(" {...args}", "g"), attributes)
+        .replace(new RegExp("(args)", "g"), getArgValue(args))
         .replace("{children}", args?.children);
     }
   }
@@ -144,7 +147,6 @@ function getImportStrings(
       extraDependencyImports.componentNames,
     );
 
-    // Import components from @jobber/components
     const componentImports = isComponentsNative
       ? [getSingleModuleImport("@jobber/components-native", componentNames)]
       : getComponentsImports(componentNames);
@@ -196,7 +198,14 @@ function parseSourceStringForImports(source: string, extraImports: string[]) {
     .filter(component => !extraImports.includes(component));
 
   // check to see if the source contains any react hooks
-  const hookNames = source?.match(/use[State|Effect|Ref|Memo]+/gm);
+  const hookNameMatches = source?.match(
+    /use[State|Effect|Ref|Memo|Callback]+/gm,
+  );
+  // deduplicate matches
+  const hookNames = hookNameMatches?.filter((hook, index) => {
+    return hookNameMatches.indexOf(hook) === index;
+  });
+
   return { componentNames, hookNames };
 }
 
@@ -219,7 +228,8 @@ function getAttributeProps(args: Story["args"]) {
 
 function getArgValue(args: unknown): string {
   if (typeof args === "string") {
-    return `"${args}"`;
+    // Escape double quotes in args value so they don't cause issues when being passed to codesandbox
+    return `"${args.replace(/"/g, '\\"')}"`;
   }
 
   if (typeof args === "symbol") {

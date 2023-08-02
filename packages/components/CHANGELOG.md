@@ -3,6 +3,228 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.24.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.66...@jobber/components@4.24.0) (2023-08-02)
+
+
+### Features
+
+* **components:** InputText Props for Autocomplete ([#1465](https://github.com/GetJobber/atlantis/issues/1465)) ([7a978ef](https://github.com/GetJobber/atlantis/commit/7a978ef8185d70a57a161e61ea795b1c7b6fd429))
+
+
+
+
+
+## [4.23.66](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.65...@jobber/components@4.23.66) (2023-08-02)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.65](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.64...@jobber/components@4.23.65) (2023-08-02)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.64](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.63...@jobber/components@4.23.64) (2023-08-02)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.63](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.62...@jobber/components@4.23.63) (2023-08-01)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.62](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.61...@jobber/components@4.23.62) (2023-08-01)
+
+
+### Bug Fixes
+
+* update FormatTime logic for 12 or 24 hours ([#1442](https://github.com/GetJobber/atlantis/issues/1442)) ([67869ce](https://github.com/GetJobber/atlantis/commit/67869cea1ceb70a2e56cc5cee73e6fe26907edb1))
+
+
+
+
+
+## [4.23.61](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.60...@jobber/components@4.23.61) (2023-08-01)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.60](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.59...@jobber/components@4.23.60) (2023-08-01)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.59](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.58...@jobber/components@4.23.59) (2023-07-31)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.58](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.57...@jobber/components@4.23.58) (2023-07-31)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.57](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.56...@jobber/components@4.23.57) (2023-07-31)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.56](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.55...@jobber/components@4.23.56) (2023-07-31)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.55](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.54...@jobber/components@4.23.55) (2023-07-31)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.54](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.53...@jobber/components@4.23.54) (2023-07-31)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.53](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.52...@jobber/components@4.23.53) (2023-07-28)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.52](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.51...@jobber/components@4.23.52) (2023-07-28)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.51](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.50...@jobber/components@4.23.51) (2023-07-28)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.50](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.49...@jobber/components@4.23.50) (2023-07-27)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.49](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.48...@jobber/components@4.23.49) (2023-07-27)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.48](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.47...@jobber/components@4.23.48) (2023-07-27)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.47](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.46...@jobber/components@4.23.47) (2023-07-27)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.46](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.45...@jobber/components@4.23.46) (2023-07-27)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.45](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.44...@jobber/components@4.23.45) (2023-07-27)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.44](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.43...@jobber/components@4.23.44) (2023-07-26)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.43](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.42...@jobber/components@4.23.43) (2023-07-26)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.42](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.41...@jobber/components@4.23.42) (2023-07-26)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.23.41](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.40...@jobber/components@4.23.41) (2023-07-26)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 ## [4.23.40](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.23.39...@jobber/components@4.23.40) (2023-07-26)
 
 

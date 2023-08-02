@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.44.4](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.44.3...@jobber/design@0.44.4) (2023-08-01)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.44.3](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.44.2...@jobber/design@0.44.3) (2023-07-28)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.44.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.44.1...@jobber/design@0.44.2) (2023-07-28)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.44.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.44.0...@jobber/design@0.44.1) (2023-07-26)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
 # [0.44.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.43.5...@jobber/design@0.44.0) (2023-07-26)
 
 
