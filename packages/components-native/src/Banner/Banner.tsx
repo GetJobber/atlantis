@@ -1,8 +1,9 @@
 import React from "react";
-import { Pressable } from "react-native";
+import { Pressable, View } from "react-native";
 import { BannerProps } from "./types";
 import { BannerTypeStyles } from "./constants";
 import { styles } from "./Banner.style";
+import { BannerPrefix } from "./Prefix/Prefix";
 import { Content } from "../Content";
 import { Text } from "../Text";
 import { TextList } from "../TextList";
@@ -13,6 +14,8 @@ export function Banner({
   details,
   text,
   type,
+  children,
+  prefix,
 }: BannerProps): JSX.Element {
   return (
     <Pressable
@@ -21,8 +24,18 @@ export function Banner({
       onPress={action?.onPress}
     >
       <Content childSpacing="small">
-        <Text level="textSupporting">{text}</Text>
+        <View style={styles.bannerContent}>
+          {prefix?.icon && (
+            <View style={styles.prefixContainer}>
+              <BannerPrefix icon={prefix.icon} />
+            </View>
+          )}
+          <View style={styles.textContainer}>
+            <Text level="textSupporting">{text}</Text>
+          </View>
+        </View>
         {details && <TextList items={details} level="textSupporting" />}
+        {children}
         {action && <ActionLabel align="start">{action.label}</ActionLabel>}
       </Content>
     </Pressable>

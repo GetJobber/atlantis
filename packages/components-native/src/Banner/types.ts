@@ -1,3 +1,4 @@
+import { IconNames } from "@jobber/design";
 import { ReactNode } from "react";
 import { StyleProp, ViewStyle } from "react-native";
 
@@ -47,4 +48,12 @@ export interface BannerProps {
    * The primary theme of the banner, controls the things like the background color
    */
   readonly type: BannerTypes;
+
+  /**
+   * Symbol to display before the text input
+   */
+  readonly prefix?: {
+    icon?: IconNames;
+    label?: string;
+  };
 }

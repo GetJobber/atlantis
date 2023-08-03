@@ -27,17 +27,20 @@ Basic.args = {
   text: "Your import is in progress",
 };
 
-const ActionsTemplate: ComponentStory<typeof Banner> = () => (
+const ActionsTemplate: ComponentStory<typeof Banner> = args => (
   <Banner
+    {...args}
     type="notice"
     action={{
       label: "View Plans",
       onPress: () => alert("Plans"),
     }}
-    text="Your trial has been extended!"
   ></Banner>
 );
 export const ActionsInBanners = ActionsTemplate.bind({});
+ActionsInBanners.args = {
+  text: "Your trial has been extended!",
+};
 
 const ErrorTemplate: ComponentStory<typeof Banner> = args => (
   <Banner {...args}></Banner>
