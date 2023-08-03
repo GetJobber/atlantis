@@ -30,10 +30,6 @@ export const styles = StyleSheet.create({
     alignItems: "center", // to center vertically hopefully
   },
   prefixIcon: {
-    // justifyContent: "center",
     paddingRight: tokens["space-small"],
   },
-  // textContainer: {
-  //   marginTop: tokens["space-smallest"],
-  // },
 });

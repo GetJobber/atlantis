@@ -32,9 +32,9 @@ export function Banner({
           )}
           <View style={styles.textContainer}>
             <Text level="textSupporting">{text}</Text>
+            {details && <TextList items={details} level="textSupporting" />}
           </View>
         </View>
-        {details && <TextList items={details} level="textSupporting" />}
         {children}
         {action && <ActionLabel align="start">{action.label}</ActionLabel>}
       </Content>
