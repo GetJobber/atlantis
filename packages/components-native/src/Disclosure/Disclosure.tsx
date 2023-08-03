@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  LayoutChangeEvent,
-  ScrollView,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { LayoutChangeEvent, TouchableOpacity, View } from "react-native";
 import Reanimated, {
   Easing,
   useAnimatedStyle,
@@ -16,8 +11,8 @@ import { styles } from "./Disclosure.style";
 import { tokens } from "../utils/design";
 import { Icon } from "../Icon";
 
-const ReanimatedView = Reanimated.createAnimatedComponent(View);
-const ReanimatedScrollView = Reanimated.createAnimatedComponent(ScrollView);
+const ReanimatedView = Reanimated.View;
+const ReanimatedScrollView = Reanimated.ScrollView;
 
 interface DisclosureProps {
   /**
