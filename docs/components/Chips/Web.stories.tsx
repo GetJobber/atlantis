@@ -5,7 +5,7 @@ import { Chip, Chips } from "@jobber/components/Chips";
 import { Icon } from "@jobber/components/Icon";
 import { Text } from "@jobber/components/Text";
 import { Avatar } from "@jobber/components/Avatar";
-import { useFakeOptionQuery } from "./utils/mdxUtils";
+import { useFakeOptionQuery } from "./utils/storyUtils";
 
 export default {
   title: "Components/Selections/Chips/Web",
@@ -13,12 +13,19 @@ export default {
   subcomponents: { Chip },
   parameters: {
     viewMode: "story",
-    previewTabs: { code: { hidden: false } },
+    previewTabs: {
+      code: {
+        hidden: false,
+        extraImports: {
+          "@jobber/components/Chips": ["Chips", "Chip"],
+        },
+      },
+    },
   },
 } as ComponentMeta<typeof Chips>;
 
 const BasicTemplate: ComponentStory<typeof Chips> = args => {
-  const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState<string>();
   return (
     <Content>
       <Text>
@@ -50,7 +57,7 @@ export const Basic = BasicTemplate.bind({});
 Basic.args = {};
 
 const MultiSelectTemplate: ComponentStory<typeof Chips> = args => {
-  const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = useState<string[]>([]);
   return (
     <Content>
       <Text>
@@ -104,4 +111,19 @@ const SelectionTemplate: ComponentStory<typeof Chips> = args => {
 export const Selection = SelectionTemplate.bind({});
 Selection.args = {
   type: "dismissible",
+};
+
+Selection.parameters = {
+  previewTabs: {
+    code: {
+      hidden: false,
+      extraImports: {
+        "./useFakeOptionQuery": ["useFakeOptionQuery"],
+      },
+      files: {
+        "/useFakeOptionQuery.ts": require("!raw-loader!./utils/storyUtils")
+          .default,
+      },
+    },
+  },
 };
