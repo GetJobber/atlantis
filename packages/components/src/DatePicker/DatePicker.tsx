@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useRef, useState } from "react";
 import classnames from "classnames";
 import ReactDatePicker from "react-datepicker";
 import { XOR } from "ts-xor";
@@ -118,6 +118,8 @@ export function DatePicker({
     useEffect(focusOnSelectedDate, [open]);
   }
 
+  const datePickerRef = useRef<ReactDatePicker>(null);
+
   return (
     <div className={wrapperClassName} ref={ref}>
       <ReactDatePicker
@@ -127,9 +129,11 @@ export function DatePicker({
         inline={inline}
         disabled={disabled}
         readOnly={readonly}
+        enableTabLoop={false}
         onChange={handleChange}
         maxDate={maxDate}
         minDate={minDate}
+        ref={datePickerRef}
         useWeekdaysShort={true}
         customInput={
           <DatePickerActivator activator={activator} fullWidth={fullWidth} />
@@ -157,6 +161,16 @@ export function DatePicker({
   }
 
   function handleCalendarOpen() {
+    ref.current?.addEventListener("keydown", (event: KeyboardEvent) => {
+      setTimeout(() => {
+        if (
+          event.key === "Tab" &&
+          !ref.current.contains(document.activeElement)
+        ) {
+          datePickerRef.current?.setOpen(false);
+        }
+      }, 0);
+    });
     setOpen(true);
   }
 
