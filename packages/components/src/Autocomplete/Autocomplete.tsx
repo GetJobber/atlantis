@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { Ref, forwardRef, useEffect, useRef, useState } from "react";
 import debounce from "lodash/debounce";
 import { XOR } from "ts-xor";
 import styles from "./Autocomplete.css";
 import { Menu } from "./Menu";
 import { AnyOption, GroupOption, Option } from "./Option";
-import { InputText } from "../InputText";
+import { InputText, InputTextRef } from "../InputText";
 import { FormFieldProps } from "../FormField";
 
 type OptionCollection = XOR<Option[], GroupOption[]>;
@@ -69,20 +69,23 @@ interface AutocompleteProps
 
 // Max statements increased to make room for the debounce functions
 /* eslint max-statements: ["error", 14] */
-export function Autocomplete({
-  initialOptions = [],
-  value,
-  allowFreeForm = true,
-  size = undefined,
-  debounce: debounceRate = 300,
-  onChange,
-  getOptions,
-  placeholder,
-  onBlur,
-  onFocus,
-  validations,
-  ...inputProps
-}: AutocompleteProps) {
+function AutocompleteInternal(
+  {
+    initialOptions = [],
+    value,
+    allowFreeForm = true,
+    size = undefined,
+    debounce: debounceRate = 300,
+    onChange,
+    getOptions,
+    placeholder,
+    onBlur,
+    onFocus,
+    validations,
+    ...inputProps
+  }: AutocompleteProps,
+  ref: Ref<InputTextRef>,
+) {
   const [options, setOptions] = useState(initialOptions);
   const [menuVisible, setMenuVisible] = useState(false);
   const [inputText, setInputText] = useState(value?.label ?? "");
@@ -102,6 +105,7 @@ export function Autocomplete({
   return (
     <div className={styles.autocomplete} ref={autocompleteRef}>
       <InputText
+        ref={ref}
         autocomplete={false}
         size={size}
         value={inputText}
@@ -178,3 +182,5 @@ function mapToOptions(items: AnyOption[]) {
     return result;
   }, []);
 }
+
+export const Autocomplete = forwardRef(AutocompleteInternal);
