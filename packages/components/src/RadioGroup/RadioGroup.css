@@ -61,7 +61,8 @@
   background-color: var(--color-disabled--secondary);
 }
 
-.description {
+.description,
+.children {
   margin-bottom: var(--space-small);
   padding-left: var(--space-large);
 }

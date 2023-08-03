@@ -88,6 +88,20 @@ test("it should render a description", () => {
   expect(getByText("A sound box")).toBeInstanceOf(HTMLParagraphElement);
 });
 
+test("it should render a label, description, and children", () => {
+  const { getByText } = render(
+    <RadioGroup value="" onChange={jest.fn()} ariaLabel="Test Label">
+      <RadioOption value="foo" description="Description" label="Label">
+        Children
+      </RadioOption>
+    </RadioGroup>,
+  );
+
+  expect(getByText("Label")).toBeInstanceOf(HTMLLabelElement);
+  expect(getByText("Description")).toBeInstanceOf(HTMLParagraphElement);
+  expect(getByText("Children")).toBeInstanceOf(HTMLElement);
+});
+
 interface MockProps {
   onChange?(val: string): void;
 }

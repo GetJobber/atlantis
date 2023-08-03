@@ -9,11 +9,12 @@ interface BaseRadioOptions {
   readonly disabled?: boolean;
 }
 
-interface RadioOptionsWithDescription extends BaseRadioOptions {
+interface RadioOptionsWithLabel extends BaseRadioOptions {
   /**
    * The label to appear beside the radio button.
    */
   label: string;
+
   /**
    * Further description of the label.
    */
@@ -21,8 +22,8 @@ interface RadioOptionsWithDescription extends BaseRadioOptions {
 }
 
 type RadioOptionProps = XOR<
-  RadioOptionsWithDescription,
-  PropsWithChildren<BaseRadioOptions>
+  RadioOptionsWithLabel,
+  PropsWithChildren<BaseRadioOptions & Partial<RadioOptionsWithLabel>>
 >;
 
 /**
@@ -46,7 +47,9 @@ interface InternalRadioOptionsWithDescription extends BaseInternalRadioOptions {
 
 type InternalRadioOptionProps = XOR<
   InternalRadioOptionsWithDescription,
-  PropsWithChildren<BaseInternalRadioOptions>
+  PropsWithChildren<
+    BaseInternalRadioOptions & Partial<InternalRadioOptionsWithDescription>
+  >
 >;
 
 export function InternalRadioOption({
@@ -81,6 +84,11 @@ export function InternalRadioOption({
           <Text variation="subdued" size="small">
             {description}
           </Text>
+        </div>
+      )}
+      {children && label && (
+        <div className={styles.children} id={`${inputId}_children`}>
+          {children}
         </div>
       )}
     </div>
