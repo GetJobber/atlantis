@@ -5,7 +5,7 @@ import { styles } from "./FormActionBar.style";
 import { SecondaryActionProp } from "../../types";
 import { FormSaveButton } from "../FormSaveButton";
 
-const ReanimatedView = Reanimated.createAnimatedComponent(View);
+const ReanimatedView = Reanimated.View;
 
 export interface FormActionBarProps {
   readonly keyboardHeight: number;
