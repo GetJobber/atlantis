@@ -112,3 +112,18 @@ export const Selection = SelectionTemplate.bind({});
 Selection.args = {
   type: "dismissible",
 };
+
+Selection.parameters = {
+  previewTabs: {
+    code: {
+      hidden: false,
+      extraImports: {
+        "./useFakeOptionQuery": ["useFakeOptionQuery"],
+      },
+      files: {
+        "/useFakeOptionQuery.ts": require("!raw-loader!./utils/storyUtils")
+          .default,
+      },
+    },
+  },
+};

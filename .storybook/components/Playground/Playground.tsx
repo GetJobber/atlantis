@@ -57,6 +57,7 @@ export function Playground() {
       files={{
         "/App.tsx": getAppJsCode(),
         "/Example.tsx": getExampleJsCode(),
+        ...parameters?.previewTabs?.code?.files,
       }}
     >
       {canPreview && (
