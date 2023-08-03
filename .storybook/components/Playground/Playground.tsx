@@ -50,7 +50,7 @@ export function Playground() {
         },
       }}
       options={{
-        visibleFiles: ["/Example.tsx"],
+        visibleFiles: ["/Example.tsx", ...(Object.keys(parameters?.previewTabs?.code?.files || {}))],
         activeFile: "/Example.tsx",
       }}
       theme={canPreview ? "dark" : "light"}
