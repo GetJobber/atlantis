@@ -16,10 +16,8 @@ export interface BannerPrefixProps {
 
 export function BannerPrefix({ icon }: BannerPrefixProps): JSX.Element {
   return (
-    <View style={styles.fieldAffix}>
-      <View style={styles.prefixIcon}>
-        <Icon name={icon} customColor={tokens["color-greyBlue"]} />
-      </View>
+    <View style={styles.prefixIcon}>
+      <Icon name={icon} customColor={tokens["color-greyBlue"]} />
     </View>
   );
 }

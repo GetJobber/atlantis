@@ -25,11 +25,7 @@ export function Banner({
     >
       <Content childSpacing="small">
         <View style={styles.bannerContent}>
-          {prefix?.icon && (
-            <View style={styles.prefixContainer}>
-              <BannerPrefix icon={prefix.icon} />
-            </View>
-          )}
+          {prefix?.icon && <BannerPrefix icon={prefix.icon} />}
           <View style={styles.textContainer}>
             <Text level="textSupporting">{text}</Text>
             {details && <TextList items={details} level="textSupporting" />}
