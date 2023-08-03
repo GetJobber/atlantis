@@ -82,6 +82,7 @@ interface DatePickerInlineProps extends BaseDatePickerProps {
 
 type DatePickerProps = XOR<DatePickerModalProps, DatePickerInlineProps>;
 
+// eslint-disable-next-line max-statements
 export function DatePicker({
   onChange,
   onMonthChange,
@@ -119,6 +120,7 @@ export function DatePicker({
   }
 
   const datePickerRef = useRef<ReactDatePicker>(null);
+  useDatePickerTabListener(ref, datePickerRef, open, inline, activator);
 
   return (
     <div className={wrapperClassName} ref={ref}>
@@ -161,20 +163,35 @@ export function DatePicker({
   }
 
   function handleCalendarOpen() {
-    ref.current?.addEventListener("keydown", (event: KeyboardEvent) => {
-      setTimeout(() => {
-        if (
-          event.key === "Tab" &&
-          !ref.current.contains(document.activeElement)
-        ) {
-          datePickerRef.current?.setOpen(false);
-        }
-      }, 0);
-    });
     setOpen(true);
   }
 
   function handleCalendarClose() {
     setOpen(false);
   }
+}
+function useDatePickerTabListener(
+  ref: React.RefObject<HTMLDivElement>,
+  datePickerRef: React.RefObject<ReactDatePicker>,
+  open: boolean,
+  inline: boolean | undefined,
+  activator: DatePickerModalProps["activator"],
+) {
+  useEffect(() => {
+    const handleTabbing = (event: KeyboardEvent) => {
+      setTimeout(() => {
+        const activeElementInDatePicker =
+          ref.current && !ref.current.contains(document.activeElement);
+        if (event.key === "Tab" && activeElementInDatePicker) {
+          datePickerRef.current?.setOpen(false);
+        }
+      }, 0);
+    };
+    if (!inline && open && activator) {
+      ref.current?.addEventListener("keydown", handleTabbing);
+    }
+    return () => {
+      ref.current?.removeEventListener("keydown", handleTabbing);
+    };
+  }, [open, datePickerRef, ref, activator]);
 }
