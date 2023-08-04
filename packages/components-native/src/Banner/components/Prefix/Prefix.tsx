@@ -1,16 +1,10 @@
 import React from "react";
 import { IconNames, tokens } from "@jobber/design";
 import { View } from "react-native";
-import { Icon } from "../../Icon";
-import { styles } from "../Banner.style";
+import { Icon } from "../../../Icon";
+import { styles } from "../../Banner.style";
 
-export interface BannerPrefixLabelProps {
-  label: string;
-}
 export interface BannerPrefixProps {
-  // focused: boolean;
-  // hasMiniLabel: boolean;
-  // inputInvalid: boolean;
   icon: IconNames;
 }
 

@@ -3,7 +3,7 @@ import { Pressable, View } from "react-native";
 import { BannerProps } from "./types";
 import { BannerTypeStyles } from "./constants";
 import { styles } from "./Banner.style";
-import { BannerPrefix } from "./Prefix/Prefix";
+import { BannerPrefix } from "./components/Prefix/Prefix";
 import { Content } from "../Content";
 import { Text } from "../Text";
 import { TextList } from "../TextList";

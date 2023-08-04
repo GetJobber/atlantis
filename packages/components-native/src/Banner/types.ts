@@ -54,6 +54,5 @@ export interface BannerProps {
    */
   readonly prefix?: {
     icon?: IconNames;
-    label?: string;
   };
 }

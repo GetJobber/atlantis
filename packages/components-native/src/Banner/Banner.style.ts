@@ -16,10 +16,10 @@ export const styles = StyleSheet.create({
   },
   bannerContent: {
     flexDirection: "row",
-    alignItems: "flex-start", // top of container
+    alignItems: "flex-start",
   },
   textContainer: {
-    flex: 1, // take up all available space and wrap
+    flex: 1,
     marginTop: tokens["space-smallest"],
   },
   prefixIcon: {
