@@ -13,19 +13,8 @@ export default {
 } as ComponentMeta<typeof Banner>;
 
 const BasicTemplate: ComponentStory<typeof Banner> = args => (
-  <>
-    <Banner
-      type="warning"
-      text="Changing line items will remove approval on this quote"
-      {...args}
-    ></Banner>
-  </>
+  <Banner {...args} />
 );
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  type: "notice",
-  text: "Your import is in progress",
-};
 
 const ActionsTemplate: ComponentStory<typeof Banner> = args => (
   <Banner
@@ -35,27 +24,28 @@ const ActionsTemplate: ComponentStory<typeof Banner> = args => (
       label: "View Plans",
       onPress: () => alert("Plans"),
     }}
-  ></Banner>
+  />
 );
+
+export const Basic = BasicTemplate.bind({});
+Basic.args = {
+  type: "notice",
+  text: "Your import is in progress",
+};
+
 export const ActionsInBanners = ActionsTemplate.bind({});
 ActionsInBanners.args = {
   text: "Your trial has been extended!",
 };
 
-const ErrorTemplate: ComponentStory<typeof Banner> = args => (
-  <Banner {...args}></Banner>
-);
-export const Error = ErrorTemplate.bind({});
+export const Error = BasicTemplate.bind({});
 Error.args = {
   type: "error",
   text: "Something has gone wrong. Please retry in a few minutes.",
 };
 
-const FormErrorsTemplate: ComponentStory<typeof Banner> = args => (
-  <Banner {...args}></Banner>
-);
-export const FormErrors = FormErrorsTemplate.bind({});
-FormErrors.args = {
+export const ErrorDetails = BasicTemplate.bind({});
+ErrorDetails.args = {
   type: "error",
   text: "There was an error submitting your form",
   details: [
