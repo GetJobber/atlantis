@@ -158,7 +158,7 @@ describe("Tabbing behavior", () => {
     jest.useRealTimers();
   });
 
-  it("tabbing should not hide the calendar when inline", async () => {
+  it("should not hide the calendar when inline and tabbing", async () => {
     const monthChangeHandler = jest.fn();
     const { queryByText } = render(
       <DatePicker
