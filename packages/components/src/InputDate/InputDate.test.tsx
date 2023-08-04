@@ -1,5 +1,6 @@
 import React from "react";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { act, cleanup, fireEvent, render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { InputDate } from ".";
 
 afterEach(cleanup);
@@ -123,4 +124,38 @@ it("doesn't fire onChange when the new value is invalid", async () => {
     target: { value: badInput },
   });
   expect(changeHandler).toHaveBeenCalledTimes(0);
+});
+
+describe("tabbing accessibility", () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+  afterEach(() => {
+    jest.useRealTimers();
+  });
+  it("should hide the calendar when focus is lost via tabbing", async () => {
+    const date = "11/22/1963";
+    const changeHandler = jest.fn();
+    const { getByDisplayValue, findByText, queryByText } = render(
+      <InputDate value={new Date(date)} onChange={changeHandler} />,
+    );
+
+    const form = getByDisplayValue(date);
+    fireEvent.focus(form);
+
+    await findByText("22");
+
+    act(() => {
+      userEvent.tab();
+      userEvent.tab();
+      userEvent.tab();
+      userEvent.tab();
+      userEvent.tab();
+      userEvent.tab();
+      userEvent.tab();
+      jest.runOnlyPendingTimers();
+    });
+
+    expect(queryByText("22")).toBeNull();
+  });
 });

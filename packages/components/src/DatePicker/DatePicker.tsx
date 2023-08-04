@@ -82,7 +82,6 @@ interface DatePickerInlineProps extends BaseDatePickerProps {
 
 type DatePickerProps = XOR<DatePickerModalProps, DatePickerInlineProps>;
 
-// eslint-disable-next-line max-statements
 export function DatePicker({
   onChange,
   onMonthChange,
@@ -99,6 +98,7 @@ export function DatePicker({
 }: DatePickerProps) {
   const { ref, focusOnSelectedDate } = useFocusOnSelectedDate();
   const [open, setOpen] = useState(false);
+  const { datePickerRef } = useDatePickerFocus(ref, open, inline);
   const wrapperClassName = classnames(styles.datePickerWrapper, {
     // react-datepicker uses this class name to not close the date picker when
     // the activator is clicked
@@ -118,9 +118,6 @@ export function DatePicker({
     useRefocusOnActivator(open);
     useEffect(focusOnSelectedDate, [open]);
   }
-
-  const datePickerRef = useRef<ReactDatePicker>(null);
-  useDatePickerTabListener(ref, datePickerRef, open, inline, activator);
 
   return (
     <div className={wrapperClassName} ref={ref}>
@@ -170,28 +167,38 @@ export function DatePicker({
     setOpen(false);
   }
 }
-function useDatePickerTabListener(
+
+function useDatePickerFocus(
   ref: React.RefObject<HTMLDivElement>,
-  datePickerRef: React.RefObject<ReactDatePicker>,
   open: boolean,
   inline: boolean | undefined,
-  activator: DatePickerModalProps["activator"],
-) {
+): {
+  datePickerRef: React.RefObject<ReactDatePicker>;
+} {
+  const datePickerRef = useRef<ReactDatePicker>(null);
+
+  const handleTabbing = (event: KeyboardEvent) => {
+    setTimeout(() => {
+      if (
+        event.key === "Tab" &&
+        ref.current &&
+        !ref.current.contains(document.activeElement)
+      ) {
+        datePickerRef.current?.setOpen(false);
+      }
+    }, 0);
+  };
+
   useEffect(() => {
-    const handleTabbing = (event: KeyboardEvent) => {
-      setTimeout(() => {
-        const activeElementInDatePicker =
-          ref.current && !ref.current.contains(document.activeElement);
-        if (event.key === "Tab" && activeElementInDatePicker) {
-          datePickerRef.current?.setOpen(false);
-        }
-      }, 0);
-    };
-    if (!inline && open && activator) {
+    if (!inline && open) {
       ref.current?.addEventListener("keydown", handleTabbing);
     }
     return () => {
       ref.current?.removeEventListener("keydown", handleTabbing);
     };
-  }, [open, datePickerRef, ref, activator]);
+  }, [open, ref, inline, handleTabbing]);
+
+  return {
+    datePickerRef,
+  };
 }
