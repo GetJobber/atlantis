@@ -43,15 +43,7 @@ export interface InputTextRef {
   insert(text: string): void;
   blur(): void;
   focus(): void;
-  scrollIntoView({
-    behavior,
-    block,
-    inline,
-  }: {
-    behavior?: ScrollBehavior;
-    block?: ScrollLogicalPosition;
-    inline?: ScrollLogicalPosition;
-  }): void;
+  scrollIntoView(arg?: boolean | ScrollIntoViewOptions): void;
 }
 
 interface MultilineProps extends BaseProps {
@@ -96,10 +88,10 @@ function InputTextInternal(
         input.focus();
       }
     },
-    scrollIntoView: ({ behavior, block, inline }) => {
+    scrollIntoView: arg => {
       const input = inputRef.current;
       if (input) {
-        input.scrollIntoView({ behavior, block, inline });
+        input.scrollIntoView(arg);
       }
     },
   }));
