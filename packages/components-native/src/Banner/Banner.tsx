@@ -15,7 +15,7 @@ export function Banner({
   text,
   type,
   children,
-  prefix,
+  icon,
 }: BannerProps): JSX.Element {
   return (
     <Pressable
@@ -25,7 +25,7 @@ export function Banner({
     >
       <Content childSpacing="small">
         <View style={styles.bannerContent}>
-          {prefix?.icon && <BannerPrefix icon={prefix.icon} />}
+          {icon?.name && <BannerPrefix icon={icon.name} />}
           <View style={styles.textContainer}>
             <Text level="textSupporting">{text}</Text>
             {details && <TextList items={details} level="textSupporting" />}

@@ -50,9 +50,9 @@ export interface BannerProps {
   readonly type: BannerTypes;
 
   /**
-   * Symbol to display before the text input
+   * Adds an icon to the left of the banner text
    */
-  readonly prefix?: {
-    icon: IconNames;
+  readonly icon?: {
+    name: IconNames;
   };
 }
