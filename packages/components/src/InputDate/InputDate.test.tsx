@@ -126,7 +126,7 @@ it("doesn't fire onChange when the new value is invalid", async () => {
   expect(changeHandler).toHaveBeenCalledTimes(0);
 });
 
-describe("tabbing accessibility", () => {
+describe("Tabbing behavior", () => {
   beforeEach(() => {
     jest.useFakeTimers();
   });
@@ -136,23 +136,20 @@ describe("tabbing accessibility", () => {
   it("should hide the calendar when focus is lost via tabbing", async () => {
     const date = "11/22/1963";
     const changeHandler = jest.fn();
+    const expectedTabCount = 5;
     const { getByDisplayValue, findByText, queryByText } = render(
       <InputDate value={new Date(date)} onChange={changeHandler} />,
     );
 
     const form = getByDisplayValue(date);
     fireEvent.focus(form);
-
+    // https://github.com/testing-library/react-testing-library/issues/276#issuecomment-492469539
+    form.focus();
     await findByText("22");
-
     act(() => {
-      userEvent.tab();
-      userEvent.tab();
-      userEvent.tab();
-      userEvent.tab();
-      userEvent.tab();
-      userEvent.tab();
-      userEvent.tab();
+      for (let i = 0; i < expectedTabCount; i++) {
+        userEvent.tab();
+      }
       jest.runOnlyPendingTimers();
     });
 

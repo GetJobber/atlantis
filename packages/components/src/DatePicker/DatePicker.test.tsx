@@ -1,6 +1,7 @@
 import React from "react";
 import { act, cleanup, fireEvent, render } from "@testing-library/react";
 import ReactDatePicker from "react-datepicker";
+import userEvent from "@testing-library/user-event";
 import { DatePicker } from "./DatePicker";
 
 afterEach(cleanup);
@@ -146,6 +147,63 @@ describe("Ensure ReactDatePicker CSS class names exists", () => {
         expect(container.querySelector(className)).toBeTruthy();
       });
     });
+  });
+});
+
+describe("Tabbing behavior", () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+  afterEach(() => {
+    jest.useRealTimers();
+  });
+
+  it("tabbing should not hide the calendar when inline", async () => {
+    const monthChangeHandler = jest.fn();
+    const { queryByText } = render(
+      <DatePicker
+        inline
+        selected={new Date()}
+        onChange={jest.fn()}
+        onMonthChange={monthChangeHandler}
+      />,
+    );
+    // Already focused on the day area of picker
+    expect(
+      document.activeElement?.classList.contains("react-datepicker__day"),
+    ).toBe(true);
+    act(() => {
+      userEvent.tab();
+      jest.runOnlyPendingTimers();
+    });
+    expect(
+      document.activeElement?.classList.contains("react-datepicker__day"),
+    ).toBe(false);
+    expect(queryByText("15")).toBeDefined();
+  });
+  it("should hide the calendar when focus is lost via shift tabbing", async () => {
+    const expectedShiftTabCount = 4;
+    const monthChangeHandler = jest.fn();
+    const { queryByText, getByRole } = render(
+      <DatePicker
+        selected={new Date()}
+        onChange={jest.fn()}
+        onMonthChange={monthChangeHandler}
+      />,
+    );
+    const openButton = await getByRole("button");
+
+    act(() => {
+      fireEvent.click(openButton);
+    });
+    act(() => {
+      for (let i = 0; i < expectedShiftTabCount; i++) {
+        userEvent.tab({ shift: true });
+      }
+      jest.runOnlyPendingTimers();
+    });
+
+    expect(queryByText("15")).toBeNull();
   });
 });
 
