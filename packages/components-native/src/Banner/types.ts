@@ -53,6 +53,6 @@ export interface BannerProps {
    * Symbol to display before the text input
    */
   readonly prefix?: {
-    icon?: IconNames;
+    icon: IconNames;
   };
 }
