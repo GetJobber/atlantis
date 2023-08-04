@@ -50,13 +50,14 @@ export function Playground() {
         },
       }}
       options={{
-        visibleFiles: ["/Example.tsx"],
+        visibleFiles: ["/Example.tsx", ...(Object.keys(parameters?.previewTabs?.code?.files || {}))],
         activeFile: "/Example.tsx",
       }}
       theme={canPreview ? "dark" : "light"}
       files={{
         "/App.tsx": getAppJsCode(),
         "/Example.tsx": getExampleJsCode(),
+        ...parameters?.previewTabs?.code?.files,
       }}
     >
       {canPreview && (
@@ -228,7 +229,8 @@ function getAttributeProps(args: Story["args"]) {
 
 function getArgValue(args: unknown): string {
   if (typeof args === "string") {
-    return `"${args}"`;
+    // Escape double quotes in args value so they don't cause issues when being passed to codesandbox
+    return `"${args.replace(/"/g, '\\"')}"`;
   }
 
   if (typeof args === "symbol") {
