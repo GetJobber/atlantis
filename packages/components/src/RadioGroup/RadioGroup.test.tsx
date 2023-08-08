@@ -34,8 +34,8 @@ test("it should be able to disable options", () => {
       onChange={handleChange}
       ariaLabel="Test Label"
     >
-      <RadioOption value="foo"></RadioOption>
-      <RadioOption value="bear" disabled={true}></RadioOption>
+      <RadioOption value="foo" label="foo"></RadioOption>
+      <RadioOption value="bear" label="bear" disabled={true}></RadioOption>
     </RadioGroup>,
   );
 

@@ -4,53 +4,53 @@ import { v1 as uuidv1 } from "uuid";
 import styles from "./RadioGroup.css";
 import { Text } from "../Text";
 
-interface BaseRadioOptions {
-  readonly value: string | number;
-  readonly disabled?: boolean;
-}
-
-interface RadioOptionsWithLabel extends BaseRadioOptions {
+type BaseRadioOptions = PropsWithChildren<{
   /**
-   * The label to appear beside the radio button.
+   * The value of the radio button.
    */
-  label: string;
+  readonly value: string | number;
+
+  /**
+   * Disables the radio button.
+   */
+  readonly disabled?: boolean;
 
   /**
    * Further description of the label.
    */
-  description?: string;
-}
+  readonly description?: string;
 
-type RadioOptionProps = XOR<
-  RadioOptionsWithLabel,
-  PropsWithChildren<BaseRadioOptions & Partial<RadioOptionsWithLabel>>
->;
+  /**
+   * The label to appear beside the radio button.
+   */
+  readonly label?: string;
+}>;
+
+type RadioOptions = Pick<
+  BaseRadioOptions,
+  Exclude<keyof BaseRadioOptions, "label" | "children">
+> &
+  // At least one of label or children must be provided
+  XOR<
+    Required<Pick<BaseRadioOptions, "label">> &
+      Partial<Pick<BaseRadioOptions, "children">>,
+    Required<Pick<BaseRadioOptions, "children">> &
+      Partial<Pick<BaseRadioOptions, "label">>
+  >;
 
 /**
  * For rendering props only. To make updates to
  * the real RadioOption, look at InternalRadioOption
  */
-export function RadioOption({ children }: PropsWithChildren<RadioOptionProps>) {
+export function RadioOption({ children }: RadioOptions) {
   return <>{children}</>;
 }
 
-interface BaseInternalRadioOptions extends BaseRadioOptions {
+type InternalRadioOptions = RadioOptions & {
   readonly name: string;
   readonly checked: boolean;
   onChange(newValue: string | number): void;
-}
-
-interface InternalRadioOptionsWithDescription extends BaseInternalRadioOptions {
-  label: string;
-  description?: string;
-}
-
-type InternalRadioOptionProps = XOR<
-  InternalRadioOptionsWithDescription,
-  PropsWithChildren<
-    BaseInternalRadioOptions & Partial<InternalRadioOptionsWithDescription>
-  >
->;
+};
 
 export function InternalRadioOption({
   value,
@@ -61,7 +61,7 @@ export function InternalRadioOption({
   checked,
   children,
   onChange,
-}: PropsWithChildren<InternalRadioOptionProps>) {
+}: InternalRadioOptions) {
   const inputId = `${value.toString()}_${uuidv1()}`;
   return (
     <div>
