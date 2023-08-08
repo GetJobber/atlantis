@@ -1,3 +1,6 @@
+/**
+ * For playground purposes only.
+ */
 import uniq from "lodash/uniq";
 import { useEffect, useState } from "react";
 
