@@ -12,7 +12,6 @@ type OptionCollection = XOR<Option[], GroupOption[]>;
 interface AutocompleteProps
   extends Pick<
     FormFieldProps,
-    | "inputRef"
     | "invalid"
     | "name"
     | "onBlur"
@@ -22,6 +21,12 @@ interface AutocompleteProps
     | "suffix"
     | "validations"
   > {
+  /**
+   * @deprecated
+   * Use `ref` instead.
+   */
+  readonly inputRef?: Ref<InputTextRef>;
+
   /**
    * Initial options to show when user first focuses the Autocomplete
    */
