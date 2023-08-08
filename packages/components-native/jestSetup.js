@@ -33,27 +33,3 @@ jest.mock("react-native-reanimated", () => {
     },
   };
 });
-
-jest.mock("./dist/src/Form", () => {
-  const { Form, AtlantisFormContext, ...Actual } =
-    jest.requireActual("./dist/src/Form");
-  const useConfirmBeforeBack = jest.fn(() => jest.fn());
-  const useInternalFormLocalCache = jest.fn(() => ({
-    setLocalCache: jest.fn(),
-    removeLocalCache: jest.fn(),
-  }));
-  return {
-    ...Actual,
-    AtlantisFormContext: AtlantisFormContext,
-    // eslint-disable-next-line react/prop-types
-    Form: ({ children, ...props }) => {
-      return (
-        <AtlantisFormContext.Provider
-          value={{ useConfirmBeforeBack, useInternalFormLocalCache }}
-        >
-          <Form {...props}>{children}</Form>
-        </AtlantisFormContext.Provider>
-      );
-    },
-  };
-});
