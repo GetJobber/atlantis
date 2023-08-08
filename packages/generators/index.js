@@ -39,7 +39,7 @@ module.exports = function (plop, config) {
        *
        * https://plopjs.com/documentation/#addmany
        */
-      answers => Object.assign(answers, { mdx: "mdx" }),
+      answers => Object.assign(answers, { mdx: "mdx", tsx: "tsx" }),
       {
         type: "addMany",
         destination: `docs/components/{{name}}/`,
