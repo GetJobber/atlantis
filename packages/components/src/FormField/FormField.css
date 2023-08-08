@@ -118,8 +118,9 @@
 }
 
 .inline {
-  display: inline-flex;
+  display: inline-block;
   width: auto;
+  margin-left: var(--space-base);
 }
 
 .center {
