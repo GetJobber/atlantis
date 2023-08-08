@@ -1,0 +1,26 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { CivilTime } from "@std-proposal/temporal";
+import { FormatTime } from "@jobber/components/FormatTime";
+
+<Meta title="Components/Utilities/FormatTime/Docs" />
+
+# FormatTime
+
+In Jobber a FormatTime is used to ensure that time is displayed in the expected
+format. No text styling is applied, this simply formats the text.
+
+## Specify format
+
+You can select a specific format to use in FormatTime. See the examples below:
+
+<Canvas>
+  <div>
+    <FormatTime time={new CivilTime(2, 35)} use24HourClock={true} />
+    -
+    <FormatTime time={new CivilTime(18, 35)} use24HourClock={true} />
+    <br />
+    <FormatTime time={new CivilTime(2, 35)} use24HourClock={false} />
+    -
+    <FormatTime time={new CivilTime(18, 35)} use24HourClock={false} />
+  </div>
+</Canvas>
