@@ -25,7 +25,7 @@ interface AutocompleteProps
    * @deprecated
    * Use `ref` instead.
    */
-  readonly inputRef?: Ref<InputTextRef>;
+  readonly inputRef?: FormFieldProps["inputRef"];
 
   /**
    * Initial options to show when user first focuses the Autocomplete
