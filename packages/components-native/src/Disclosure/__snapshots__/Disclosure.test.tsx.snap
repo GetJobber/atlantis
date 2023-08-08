@@ -117,16 +117,18 @@ exports[`renders a Disclosure with a header and a content when open is true 1`] 
     </View>
   </View>
   <RCTScrollView
-    collapsable={false}
     scrollEnabled={false}
-    scrollEventThrottle={0.0001}
     showsHorizontalScrollIndicator={false}
     showsVerticalScrollIndicator={false}
     style={
-      {
-        "height": 100,
-        "paddingTop": 8,
-      }
+      [
+        {
+          "paddingTop": 8,
+        },
+        {
+          "height": 100,
+        },
+      ]
     }
   >
     <View>
@@ -288,16 +290,18 @@ exports[`renders a Disclosure with a header and with a content of size 0 when cl
     </View>
   </View>
   <RCTScrollView
-    collapsable={false}
     scrollEnabled={false}
-    scrollEventThrottle={0.0001}
     showsHorizontalScrollIndicator={false}
     showsVerticalScrollIndicator={false}
     style={
-      {
-        "height": 0,
-        "paddingTop": 8,
-      }
+      [
+        {
+          "paddingTop": 8,
+        },
+        {
+          "height": 0,
+        },
+      ]
     }
   >
     <View>
@@ -427,16 +431,18 @@ exports[`should not render the caret when the Disclosure is empty 1`] = `
     </View>
   </View>
   <RCTScrollView
-    collapsable={false}
     scrollEnabled={false}
-    scrollEventThrottle={0.0001}
     showsHorizontalScrollIndicator={false}
     showsVerticalScrollIndicator={false}
     style={
-      {
-        "height": 0,
-        "paddingTop": 8,
-      }
+      [
+        {
+          "paddingTop": 8,
+        },
+        {
+          "height": 0,
+        },
+      ]
     }
   >
     <View>
