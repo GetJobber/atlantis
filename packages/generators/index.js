@@ -42,6 +42,12 @@ module.exports = function (plop, config) {
       answers => Object.assign(answers, { mdx: "mdx" }),
       {
         type: "addMany",
+        destination: `docs/components/{{name}}/`,
+        base: "templates/docs",
+        templateFiles: `templates/docs/${templateGlob}`,
+      },
+      {
+        type: "addMany",
         destination: `{{path}}/{{name}}/`,
         base: "templates/component",
         templateFiles: `templates/component/${templateGlob}`,
