@@ -46,6 +46,16 @@ transformIgnorePatterns: [
 ],
 ```
 
+Also update the Jest config as to include the `jestSetup.js`
+
+```json
+setupFiles: [
+    ...
+    "./node_modules/@jobber/components-native/jestSetup.js",
+    ...
+  ],
+```
+
 ## Further Reading
 
 More information on Atlantis can be found at
