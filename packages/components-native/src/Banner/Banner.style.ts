@@ -18,9 +18,11 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "flex-start",
   },
-  textContainer: {
+  contentContainer: {
     flex: 1,
-    marginTop: tokens["space-smallest"],
+  },
+  textContainer: {
+    marginTop: tokens["space-minuscule"],
   },
   prefixIcon: {
     paddingRight: tokens["space-small"],

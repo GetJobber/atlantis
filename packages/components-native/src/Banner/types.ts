@@ -30,19 +30,19 @@ export interface BannerProps {
   readonly action?: ActionProps;
 
   /**
-   *  Optional custom content that can be displayed below the text and details
+   * Custom content which will be displayed above the 'details' prop
    */
   readonly children?: ReactNode;
 
   /**
-   * Text to display below the 'text' prop. Will display a single message or bullet points of messages if multiple are provided
+   * Text to display below 'children'. Can be a single message or bullet points of messages if multiple are provided
    */
   readonly details?: string[];
 
   /**
-   * The primary text to display in the banner
+   * @deprecated Use `children` instead
    */
-  readonly text: string;
+  readonly text?: string;
 
   /**
    * The primary theme of the banner, controls the things like the background color
@@ -50,9 +50,7 @@ export interface BannerProps {
   readonly type: BannerTypes;
 
   /**
-   * Adds an icon to the left of the banner text
+   * Adds an icon to the left of the banner content
    */
-  readonly icon?: {
-    name: IconNames;
-  };
+  readonly icon?: IconNames;
 }

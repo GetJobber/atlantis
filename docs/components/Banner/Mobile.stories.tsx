@@ -13,43 +13,44 @@ export default {
 } as ComponentMeta<typeof Banner>;
 
 const BasicTemplate: ComponentStory<typeof Banner> = args => (
-  <Banner {...args} />
+  <Banner {...args}>Your import is in progress</Banner>
 );
 
 const ActionsTemplate: ComponentStory<typeof Banner> = args => (
-  <Banner
-    {...args}
-    type="notice"
-    action={{
-      label: "View Plans",
-      onPress: () => alert("Plans"),
-    }}
-  />
+  <Banner {...args}>Your trial has been extended!</Banner>
+);
+
+const ErrorTemplate: ComponentStory<typeof Banner> = args => (
+  <Banner {...args}>Currently offline. Functionality is limited.</Banner>
+);
+
+const ErrorDetailsTemplate: ComponentStory<typeof Banner> = args => (
+  <Banner {...args}>There was an error submitting your form:</Banner>
 );
 
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
   type: "notice",
-  text: "Your import is in progress",
 };
 
 export const ActionsInBanners = ActionsTemplate.bind({});
 ActionsInBanners.args = {
-  text: "Your trial has been extended!",
+  type: "notice",
+  action: { label: "View Plans", onPress: () => alert("Plans") },
 };
 
-export const Error = BasicTemplate.bind({});
+export const Error = ErrorTemplate.bind({});
 Error.args = {
   type: "error",
-  text: "Something has gone wrong. Please retry in a few minutes.",
+  icon: "offline",
 };
 
-export const ErrorDetails = BasicTemplate.bind({});
+export const ErrorDetails = ErrorDetailsTemplate.bind({});
 ErrorDetails.args = {
   type: "error",
-  text: "There was an error submitting your form",
   details: [
     "This client already exists",
     "This phone number doesn't receive SMS",
   ],
+  icon: "alert",
 };

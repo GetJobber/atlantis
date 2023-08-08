@@ -25,13 +25,17 @@ export function Banner({
     >
       <Content childSpacing="small">
         <View style={styles.bannerContent}>
-          {icon?.name && <BannerPrefix icon={icon.name} />}
-          <View style={styles.textContainer}>
-            <Text level="textSupporting">{text}</Text>
+          {icon && <BannerPrefix icon={icon} />}
+          <View style={styles.contentContainer}>
+            {children}
+            {text && (
+              <div style={styles.textContainer}>
+                <Text level="textSupporting">{text}</Text>
+              </div>
+            )}
             {details && <TextList items={details} level="textSupporting" />}
           </View>
         </View>
-        {children}
         {action && <ActionLabel align="start">{action.label}</ActionLabel>}
       </Content>
     </Pressable>
