@@ -1,0 +1,35 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta
+  title="Changelog/Upcoming Breaking Changes"
+  parameters={{ previewTabs: { canvas: { hidden: true } } }}
+/>
+
+# Upcoming Breaking Changes
+
+## `@jobber/components@5.x.x`
+
+### Autocomplete
+
+Removing `inputRef` from `Autocomplete` component. Use `ref` instead.
+
+Before:
+
+```tsx
+const inputRef = React.useRef(null);
+<Autocomplete inputRef={inputRef} />;
+```
+
+After:
+
+```tsx
+const inputRef = React.useRef(null);
+<Autocomplete ref={inputRef} />;
+```
+
+### showToast
+
+Removing `action` and `actionLabel` from `showToast`.
+
+Since Toasts are shown for a limited amount of time it doesn't make sense to
+show an action that may disappear before the user has a chance to click it.
