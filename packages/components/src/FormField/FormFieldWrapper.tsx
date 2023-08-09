@@ -83,15 +83,20 @@ export function FormFieldWrapper({
       <div className={wrapperClasses} style={wrapperInlineStyle}>
         {prefix?.icon && <AffixIcon {...prefix} size={size} />}
         <div className={styles.inputWrapper}>
-          <label
-            className={styles.label}
-            htmlFor={identifier}
-            style={
-              prefixRef?.current || suffixRef?.current ? labelStyle : undefined
-            }
-          >
-            {placeholder}
-          </label>
+          {placeholder && (
+            <label
+              className={styles.label}
+              htmlFor={identifier}
+              style={
+                prefixRef?.current || suffixRef?.current
+                  ? labelStyle
+                  : undefined
+              }
+            >
+              {placeholder}
+            </label>
+          )}
+
           {prefix?.label && <AffixLabel {...prefix} labelRef={prefixRef} />}
           <div className={styles.childrenWrapper}>{children}</div>
           {suffix?.label && (
