@@ -142,9 +142,36 @@ test("it should handle inserting text", () => {
 
   render(<InputText value={initial} onChange={changeHandler} ref={textRef} />);
 
-  textRef.current.insert("YUP");
+  textRef.current?.insert("YUP");
   expect(changeHandler).toHaveBeenCalledWith(result);
 
-  textRef.current.insert("sure");
+  textRef.current?.insert("sure");
   expect(changeHandler).toHaveBeenCalledWith(secondResult);
+});
+
+test("it should focus input text", () => {
+  const placeholder = "Got milk?";
+
+  const textRef = React.createRef<InputTextRef>();
+
+  const { getByLabelText } = render(
+    <InputText placeholder={placeholder} ref={textRef} />,
+  );
+
+  textRef.current?.focus();
+  expect(getByLabelText(placeholder)).toHaveFocus();
+});
+
+test("it should scroll into view input text", () => {
+  const scrollIntoViewMock = jest.fn();
+  window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
+
+  const placeholder = "Got milk?";
+
+  const textRef = React.createRef<InputTextRef>();
+
+  render(<InputText placeholder={placeholder} ref={textRef} />);
+
+  textRef.current?.scrollIntoView();
+  expect(scrollIntoViewMock).toHaveBeenCalled();
 });
