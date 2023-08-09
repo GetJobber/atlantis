@@ -15,10 +15,6 @@ it("renders a InputTime", () => {
         <div
           class="inputWrapper"
         >
-          <label
-            class="label"
-            for="123e4567-e89b-12d3-a456-426655440001"
-          />
           <div
             class="childrenWrapper"
           >
@@ -47,10 +43,6 @@ it("renders an initial time when given 'defaultValue'", () => {
         <div
           class="inputWrapper"
         >
-          <label
-            class="label"
-            for="123e4567-e89b-12d3-a456-426655440007"
-          />
           <div
             class="childrenWrapper"
           >
@@ -79,10 +71,6 @@ it("renders correctly in a readonly state", () => {
         <div
           class="inputWrapper"
         >
-          <label
-            class="label"
-            for="123e4567-e89b-12d3-a456-426655440009"
-          />
           <div
             class="childrenWrapper"
           >
@@ -112,10 +100,6 @@ it("adds a error border when invalid", () => {
         <div
           class="inputWrapper"
         >
-          <label
-            class="label"
-            for="123e4567-e89b-12d3-a456-426655440015"
-          />
           <div
             class="childrenWrapper"
           >
@@ -143,10 +127,6 @@ it("should set the value when given 'value' and 'onChange'", () => {
         <div
           class="inputWrapper"
         >
-          <label
-            class="label"
-            for="123e4567-e89b-12d3-a456-426655440021"
-          />
           <div
             class="childrenWrapper"
           >
