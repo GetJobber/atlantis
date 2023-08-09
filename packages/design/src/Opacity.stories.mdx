@@ -1,0 +1,26 @@
+import { ArgsTable, Canvas, Meta, Story } from "@storybook/addon-docs";
+
+<Meta title="Design/Opacity" />
+
+# Opacity
+
+Opacity is used to adjust the transparency of an element.
+
+These tokens should be used for particular instances where the transparency of
+an element needs to be altered when pressed, or to modify the transparency of an
+overlay.
+
+export function Opacity({ of: opacity }) {
+  const style = {
+    width: "var(--space-large)",
+    height: "var(--space-large)",
+    backgroundColor: "var(--color-border)",
+    opacity: `var(--opacity-${opacity})`,
+  };
+  return <div style={style} />;
+}
+
+| Opacity             | Visual                   | Value |
+| :------------------ | :----------------------- | :---- |
+| `--opacity-overlay` | <Opacity of="overlay" /> | 0.8   |
+| `--opacity-pressed` | <Opacity of="pressed" /> | 0.6   |

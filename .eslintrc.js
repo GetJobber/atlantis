@@ -3,12 +3,15 @@ require("@jobber/eslint-config/patch-eslint-plugin-resolution.js");
 
 const packageAliases = [
   ["@jobber/components", "./packages/components/src"],
+  ["@jobber/components-native", "./packages/components-native/src"],
   ["@jobber/hooks", "./packages/hooks/src"],
 ];
 
 module.exports = {
   extends: ["@jobber/eslint-config"],
+  root: true,
   settings: {
+    "import/ignore": ["react-native/index"],
     "import/resolver": {
       alias: {
         map: packageAliases,
@@ -22,11 +25,28 @@ module.exports = {
       rules. For now, warn on these.
      */
     "import/no-relative-parent-imports": "warn",
-    "no-restricted-imports": "warn",
+    "no-restricted-imports": [
+      "error",
+      {
+        paths: [
+          {
+            name: "lodash",
+            message: "Import [module] from lodash/[module] instead.",
+          },
+        ],
+      },
+    ],
     "import/no-internal-modules": [
       "error",
       {
-        allow: ["@jobber/components/*", "@jobber/hooks/*", "lodash/*"],
+        allow: [
+          "@jobber/components/*",
+          "@jobber/components-native",
+          "@jobber/hooks/*",
+          "@jobber/design/*",
+          "lodash/*",
+          "utils/*",
+        ],
       },
     ],
   },
@@ -35,11 +55,20 @@ module.exports = {
       files: ["*.stories.mdx"],
       extends: "plugin:mdx/recommended",
       rules: {
-        "react-native/no-inline-styles": "off",
         "no-alert": "off",
         "@typescript-eslint/naming-convention": "off",
         "@typescript-eslint/no-unused-expressions": "off",
         "import/no-extraneous-dependencies": "off",
+      },
+    },
+    {
+      files: ["*.stories.tsx"],
+      rules: {
+        "import/no-relative-parent-imports": "off",
+        "no-alert": "off",
+        "@typescript-eslint/naming-convention": "off",
+        "@typescript-eslint/no-unused-expressions": "off",
+        "import/no-default-export": "off",
       },
     },
   ],

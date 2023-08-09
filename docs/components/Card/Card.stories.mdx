@@ -1,0 +1,48 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Components/Layouts and Structure/Card/Docs" />
+
+# Card
+
+A card is used to group related information and tasks so our users can scan and
+prioritize information more easily.
+
+## Design & usage guidelines
+
+A card is useful for grouping content because of its distinct visual boundaries.
+However, similar to the idea that "making everything stand out means that
+nothing stands out", you should be mindful in your application of cards.
+
+A card should be the smallest-possible self-contained section of content. If you
+find yourself putting a card inside of another card, the outer card should be
+removed, and it may be worth re-assessing the hierarchy of your interface.
+
+### Elevation (Mobile)
+
+By default, it should be assumed that a Card is on the same "plane" as the
+surface it sits on and has no elevation.
+
+If the Card benefits from having elevation indicated, such as when it sits
+overtop another Card or is used in a Carousel fashion, the appropriate elevation
+level can be set. See
+[Mobile/Elevation](../?path=/story/components-layouts-and-structure-card-mobile--elevation)
+for an example.
+
+## Content guidelines
+
+Card headers should be sentence-cased.
+
+| ✅ Do                   | ❌ Don't                |
+| ----------------------- | ----------------------- |
+| Client property details | Client Property Details |
+| Assigned team           | ASSIGNED TEAM           |
+| Required deposit        | Required Deposit        |
+
+## Accessibility
+
+The Card itself is already accessible and does not require any additional setup.
+
+With that said, it should not be wrapped in an element with an `aria-label` or
+`accessibilityLabel` describing it as a card. This is redundant and will cause
+unexpected behaviour for screen readers. For example, adding one on mobile would
+hide the whole card from the screen reader.

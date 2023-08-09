@@ -42,7 +42,7 @@ test("renders an error message when field is invalid", async () => {
   );
 });
 
-test("fires onStateChage when component renders", async () => {
+test("fires onStateChange when component renders", async () => {
   const stateChangeHandler = jest.fn();
   render(<MockForm onSubmit={jest.fn()} onStateChange={stateChangeHandler} />);
 
@@ -50,12 +50,12 @@ test("fires onStateChage when component renders", async () => {
     expect(stateChangeHandler).toHaveBeenCalled();
     expect(stateChangeHandler).toHaveBeenCalledWith({
       isDirty: false,
-      isValid: true,
+      isValid: false,
     });
   });
 });
 
-test("onStateChage updates state when form is valid", async () => {
+test("onStateChange updates state when form is valid", async () => {
   const stateChangeHandler = jest.fn();
   const { getByLabelText } = render(
     <MockForm onSubmit={jest.fn()} onStateChange={stateChangeHandler} />,

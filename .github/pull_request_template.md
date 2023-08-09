@@ -21,6 +21,7 @@
 
   SCOPE should be one of:
     - components
+    - components-native
     - design
     - eslint
     - generators

@@ -1,0 +1,54 @@
+import { ArgsTable, Canvas, Meta, Source } from "@storybook/addon-docs";
+import { Banner } from "@jobber/components/Banner";
+import { Tab, Tabs } from "@jobber/components/Tabs";
+import { Glimmer } from "@jobber/components/Glimmer";
+
+<Meta title="Components/Status and Feedback/Glimmer/Docs" component={Glimmer} />
+
+# Glimmer
+
+<Banner type="warning" dismissible={false}>
+
+**Experimental component**. This component is subject to change and will have
+**breaking changes**, use at your own risk.
+
+</Banner>
+
+Glimmer is a foundational component that is used to build Skeleton (_coming
+soon_) or other components that invoke loading such as an image waiting to load
+on
+[FormatFile](../?path=/docs/components-images-and-icons-formatfile-docs--page).
+
+## Colors
+
+Glimmers adapts to the background you put it in. If you have a grey background,
+the `Glimmer` will automatically darken itself so it's still noticeable.
+
+<Canvas style={{ background: "var(--color-surface--background)" }}>
+  <Glimmer />
+</Canvas>
+
+If you have a darker or coloured background, you can toggle the `reverseTheme`
+to switch the colors so it's still noticeable.
+
+<Canvas style={{ background: "var(--color-surface--reverse)" }}>
+  <Glimmer reverseTheme={true} />
+</Canvas>
+
+## Semantic blocks
+
+A pre-made block can be used to indicate a certain component.
+
+export const semanticComponent = [Glimmer.Header, Glimmer.Text, Glimmer.Button];
+
+<Tabs>
+  {semanticComponent.map((Component, i) => (
+    <Tab key={i} label={Component.displayName}>
+      <Source code={`<${Component.displayName} />`} />
+      <Canvas withSource="none">
+        <Component />
+      </Canvas>
+      <ArgsTable of={Component} />
+    </Tab>
+  ))}
+</Tabs>

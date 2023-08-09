@@ -18,6 +18,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 1`]
               aria-label="Foo"
               checked=""
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440005"
               type="checkbox"
               value=""
             />
@@ -27,12 +28,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 1`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0-"
-                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                  d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
                 />
               </svg>
             </span>
@@ -64,6 +65,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 1`]
             aria-label="Foo"
             checked=""
             class="input indeterminate"
+            id="123e4567-e89b-12d3-a456-426655440005"
             type="checkbox"
             value=""
           />
@@ -73,12 +75,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 1`]
             <svg
               class="Z6OfUI2sH34- qm8vYTlCGG4-"
               data-testid="minus2"
-              viewBox="0 0 1024 1024"
+              viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
                 class="TpLksR41OM0-"
-                d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
               />
             </svg>
           </span>
@@ -167,6 +169,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 2`]
               aria-label="Foo"
               checked=""
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440005"
               type="checkbox"
               value=""
             />
@@ -176,12 +179,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 2`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0-"
-                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                  d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
                 />
               </svg>
             </span>
@@ -211,6 +214,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 2`]
             <input
               aria-label="Foo"
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440006"
               type="checkbox"
               value=""
             />
@@ -220,12 +224,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 2`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0-"
-                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                  d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
                 />
               </svg>
             </span>
@@ -256,6 +260,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 2`]
           <input
             aria-label="Foo"
             class="input indeterminate"
+            id="123e4567-e89b-12d3-a456-426655440006"
             type="checkbox"
             value=""
           />
@@ -265,12 +270,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 2`]
             <svg
               class="Z6OfUI2sH34- qm8vYTlCGG4-"
               data-testid="minus2"
-              viewBox="0 0 1024 1024"
+              viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
                 class="TpLksR41OM0-"
-                d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
               />
             </svg>
           </span>
@@ -359,6 +364,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
               aria-label="Foo"
               checked=""
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440005"
               type="checkbox"
               value=""
             />
@@ -368,12 +374,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0-"
-                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                  d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
                 />
               </svg>
             </span>
@@ -403,6 +409,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
             <input
               aria-label="Foo"
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440006"
               type="checkbox"
               value=""
             />
@@ -412,12 +419,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0-"
-                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                  d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
                 />
               </svg>
             </span>
@@ -448,6 +455,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
               aria-label="Foo"
               checked=""
               class="input"
+              id="123e4567-e89b-12d3-a456-426655440007"
               type="checkbox"
               value=""
             />
@@ -457,12 +465,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0- S4fBuUx-A70-"
-                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                  d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
                 />
               </svg>
             </span>
@@ -494,6 +502,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
             aria-label="Foo"
             checked=""
             class="input"
+            id="123e4567-e89b-12d3-a456-426655440007"
             type="checkbox"
             value=""
           />
@@ -503,12 +512,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 3`]
             <svg
               class="Z6OfUI2sH34- qm8vYTlCGG4-"
               data-testid="checkmark"
-              viewBox="0 0 1024 1024"
+              viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
                 class="TpLksR41OM0- S4fBuUx-A70-"
-                d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
               />
             </svg>
           </span>
@@ -597,6 +606,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
               aria-label="Foo"
               checked=""
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440005"
               type="checkbox"
               value=""
             />
@@ -606,12 +616,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0-"
-                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                  d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
                 />
               </svg>
             </span>
@@ -641,6 +651,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
             <input
               aria-label="Foo"
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440006"
               type="checkbox"
               value=""
             />
@@ -650,12 +661,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0-"
-                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                  d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
                 />
               </svg>
             </span>
@@ -686,6 +697,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
               aria-label="Foo"
               checked=""
               class="input"
+              id="123e4567-e89b-12d3-a456-426655440007"
               type="checkbox"
               value=""
             />
@@ -695,12 +707,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0- S4fBuUx-A70-"
-                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                  d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
                 />
               </svg>
             </span>
@@ -730,6 +742,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
             <input
               aria-label="Foo"
               class="input"
+              id="123e4567-e89b-12d3-a456-426655440008"
               type="checkbox"
               value=""
             />
@@ -739,12 +752,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0- S4fBuUx-A70-"
-                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                  d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
                 />
               </svg>
             </span>
@@ -775,6 +788,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
           <input
             aria-label="Foo"
             class="input"
+            id="123e4567-e89b-12d3-a456-426655440008"
             type="checkbox"
             value=""
           />
@@ -784,12 +798,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 4`]
             <svg
               class="Z6OfUI2sH34- qm8vYTlCGG4-"
               data-testid="checkmark"
-              viewBox="0 0 1024 1024"
+              viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
                 class="TpLksR41OM0- S4fBuUx-A70-"
-                d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
               />
             </svg>
           </span>
@@ -878,6 +892,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
               aria-label="Foo"
               checked=""
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440005"
               type="checkbox"
               value=""
             />
@@ -887,12 +902,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0-"
-                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                  d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
                 />
               </svg>
             </span>
@@ -922,6 +937,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
             <input
               aria-label="Foo"
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440006"
               type="checkbox"
               value=""
             />
@@ -931,12 +947,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0-"
-                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                  d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
                 />
               </svg>
             </span>
@@ -967,6 +983,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
               aria-label="Foo"
               checked=""
               class="input"
+              id="123e4567-e89b-12d3-a456-426655440007"
               type="checkbox"
               value=""
             />
@@ -976,12 +993,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0- S4fBuUx-A70-"
-                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                  d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
                 />
               </svg>
             </span>
@@ -1011,6 +1028,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
             <input
               aria-label="Foo"
               class="input"
+              id="123e4567-e89b-12d3-a456-426655440008"
               type="checkbox"
               value=""
             />
@@ -1020,12 +1038,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0- S4fBuUx-A70-"
-                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                  d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
                 />
               </svg>
             </span>
@@ -1056,8 +1074,9 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
               aria-label="Foo"
               checked=""
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440009"
               type="checkbox"
-              value=""
+              value="true"
             />
             <span
               class="checkBox"
@@ -1065,12 +1084,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0-"
-                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                  d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
                 />
               </svg>
             </span>
@@ -1102,8 +1121,9 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
             aria-label="Foo"
             checked=""
             class="input indeterminate"
+            id="123e4567-e89b-12d3-a456-426655440009"
             type="checkbox"
-            value=""
+            value="true"
           />
           <span
             class="checkBox"
@@ -1111,12 +1131,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 5`]
             <svg
               class="Z6OfUI2sH34- qm8vYTlCGG4-"
               data-testid="minus2"
-              viewBox="0 0 1024 1024"
+              viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
                 class="TpLksR41OM0-"
-                d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
               />
             </svg>
           </span>
@@ -1205,6 +1225,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               aria-label="Foo"
               checked=""
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440005"
               type="checkbox"
               value=""
             />
@@ -1214,12 +1235,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0-"
-                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                  d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
                 />
               </svg>
             </span>
@@ -1249,6 +1270,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
             <input
               aria-label="Foo"
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440006"
               type="checkbox"
               value=""
             />
@@ -1258,12 +1280,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0-"
-                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                  d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
                 />
               </svg>
             </span>
@@ -1294,6 +1316,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               aria-label="Foo"
               checked=""
               class="input"
+              id="123e4567-e89b-12d3-a456-426655440007"
               type="checkbox"
               value=""
             />
@@ -1303,12 +1326,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0- S4fBuUx-A70-"
-                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                  d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
                 />
               </svg>
             </span>
@@ -1338,6 +1361,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
             <input
               aria-label="Foo"
               class="input"
+              id="123e4567-e89b-12d3-a456-426655440008"
               type="checkbox"
               value=""
             />
@@ -1347,12 +1371,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0- S4fBuUx-A70-"
-                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                  d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
                 />
               </svg>
             </span>
@@ -1383,8 +1407,9 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               aria-label="Foo"
               checked=""
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440009"
               type="checkbox"
-              value=""
+              value="true"
             />
             <span
               class="checkBox"
@@ -1392,12 +1417,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0-"
-                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                  d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
                 />
               </svg>
             </span>
@@ -1427,8 +1452,9 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
             <input
               aria-label="Foo"
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440010"
               type="checkbox"
-              value=""
+              value="false"
             />
             <span
               class="checkBox"
@@ -1436,12 +1462,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0-"
-                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                  d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
                 />
               </svg>
             </span>
@@ -1472,8 +1498,9 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
           <input
             aria-label="Foo"
             class="input indeterminate"
+            id="123e4567-e89b-12d3-a456-426655440010"
             type="checkbox"
-            value=""
+            value="false"
           />
           <span
             class="checkBox"
@@ -1481,12 +1508,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 6`]
             <svg
               class="Z6OfUI2sH34- qm8vYTlCGG4-"
               data-testid="minus2"
-              viewBox="0 0 1024 1024"
+              viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
                 class="TpLksR41OM0-"
-                d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
               />
             </svg>
           </span>
@@ -1575,6 +1602,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               aria-label="Foo"
               checked=""
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440005"
               type="checkbox"
               value=""
             />
@@ -1584,12 +1612,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0-"
-                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                  d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
                 />
               </svg>
             </span>
@@ -1619,6 +1647,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
             <input
               aria-label="Foo"
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440006"
               type="checkbox"
               value=""
             />
@@ -1628,12 +1657,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0-"
-                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                  d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
                 />
               </svg>
             </span>
@@ -1664,6 +1693,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               aria-label="Foo"
               checked=""
               class="input"
+              id="123e4567-e89b-12d3-a456-426655440007"
               type="checkbox"
               value=""
             />
@@ -1673,12 +1703,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0- S4fBuUx-A70-"
-                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                  d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
                 />
               </svg>
             </span>
@@ -1708,6 +1738,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
             <input
               aria-label="Foo"
               class="input"
+              id="123e4567-e89b-12d3-a456-426655440008"
               type="checkbox"
               value=""
             />
@@ -1717,12 +1748,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0- S4fBuUx-A70-"
-                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                  d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
                 />
               </svg>
             </span>
@@ -1753,8 +1784,9 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               aria-label="Foo"
               checked=""
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440009"
               type="checkbox"
-              value=""
+              value="true"
             />
             <span
               class="checkBox"
@@ -1762,12 +1794,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0-"
-                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                  d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
                 />
               </svg>
             </span>
@@ -1797,8 +1829,9 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
             <input
               aria-label="Foo"
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440010"
               type="checkbox"
-              value=""
+              value="false"
             />
             <span
               class="checkBox"
@@ -1806,12 +1839,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0-"
-                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                  d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
                 />
               </svg>
             </span>
@@ -1842,8 +1875,9 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               aria-label="Foo"
               checked=""
               class="input"
+              id="123e4567-e89b-12d3-a456-426655440011"
               type="checkbox"
-              value=""
+              value="true"
             />
             <span
               class="checkBox"
@@ -1851,12 +1885,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0- S4fBuUx-A70-"
-                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                  d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
                 />
               </svg>
             </span>
@@ -1888,8 +1922,9 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
             aria-label="Foo"
             checked=""
             class="input"
+            id="123e4567-e89b-12d3-a456-426655440011"
             type="checkbox"
-            value=""
+            value="true"
           />
           <span
             class="checkBox"
@@ -1897,12 +1932,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 7`]
             <svg
               class="Z6OfUI2sH34- qm8vYTlCGG4-"
               data-testid="checkmark"
-              viewBox="0 0 1024 1024"
+              viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
                 class="TpLksR41OM0- S4fBuUx-A70-"
-                d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
               />
             </svg>
           </span>
@@ -1991,6 +2026,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               aria-label="Foo"
               checked=""
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440005"
               type="checkbox"
               value=""
             />
@@ -2000,12 +2036,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0-"
-                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                  d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
                 />
               </svg>
             </span>
@@ -2035,6 +2071,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
             <input
               aria-label="Foo"
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440006"
               type="checkbox"
               value=""
             />
@@ -2044,12 +2081,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0-"
-                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                  d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
                 />
               </svg>
             </span>
@@ -2080,6 +2117,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               aria-label="Foo"
               checked=""
               class="input"
+              id="123e4567-e89b-12d3-a456-426655440007"
               type="checkbox"
               value=""
             />
@@ -2089,12 +2127,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0- S4fBuUx-A70-"
-                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                  d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
                 />
               </svg>
             </span>
@@ -2124,6 +2162,7 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
             <input
               aria-label="Foo"
               class="input"
+              id="123e4567-e89b-12d3-a456-426655440008"
               type="checkbox"
               value=""
             />
@@ -2133,12 +2172,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0- S4fBuUx-A70-"
-                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                  d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
                 />
               </svg>
             </span>
@@ -2169,8 +2208,9 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               aria-label="Foo"
               checked=""
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440009"
               type="checkbox"
-              value=""
+              value="true"
             />
             <span
               class="checkBox"
@@ -2178,12 +2218,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0-"
-                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                  d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
                 />
               </svg>
             </span>
@@ -2213,8 +2253,9 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
             <input
               aria-label="Foo"
               class="input indeterminate"
+              id="123e4567-e89b-12d3-a456-426655440010"
               type="checkbox"
-              value=""
+              value="false"
             />
             <span
               class="checkBox"
@@ -2222,12 +2263,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="minus2"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0-"
-                  d="M782.020 450.424h-536.082c-28.51 0-30.93 23.095-30.93 51.55s2.42 51.55 30.93 51.55h536.082c28.51 0 30.981-23.095 30.981-51.55s-2.472-51.55-30.981-51.55z"
+                  d="M18.329 10.557H5.764c-.668 0-.725.541-.725 1.208 0 .667.057 1.208.725 1.208H18.33c.668 0 .726-.541.726-1.208 0-.667-.058-1.208-.726-1.208Z"
                 />
               </svg>
             </span>
@@ -2258,8 +2299,9 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               aria-label="Foo"
               checked=""
               class="input"
+              id="123e4567-e89b-12d3-a456-426655440011"
               type="checkbox"
-              value=""
+              value="true"
             />
             <span
               class="checkBox"
@@ -2267,12 +2309,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0- S4fBuUx-A70-"
-                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                  d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
                 />
               </svg>
             </span>
@@ -2302,8 +2344,9 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
             <input
               aria-label="Foo"
               class="input"
+              id="123e4567-e89b-12d3-a456-426655440012"
               type="checkbox"
-              value=""
+              value="false"
             />
             <span
               class="checkBox"
@@ -2311,12 +2354,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
               <svg
                 class="Z6OfUI2sH34- qm8vYTlCGG4-"
                 data-testid="checkmark"
-                viewBox="0 0 1024 1024"
+                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   class="TpLksR41OM0- S4fBuUx-A70-"
-                  d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                  d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
                 />
               </svg>
             </span>
@@ -2347,8 +2390,9 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
           <input
             aria-label="Foo"
             class="input"
+            id="123e4567-e89b-12d3-a456-426655440012"
             type="checkbox"
-            value=""
+            value="false"
           />
           <span
             class="checkBox"
@@ -2356,12 +2400,12 @@ exports[`renders each variation of checked, defaultChecked and indeterminate 8`]
             <svg
               class="Z6OfUI2sH34- qm8vYTlCGG4-"
               data-testid="checkmark"
-              viewBox="0 0 1024 1024"
+              viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
                 class="TpLksR41OM0- S4fBuUx-A70-"
-                d="M200.851 510.728c-3.94-4.079-8.652-7.333-13.863-9.571s-10.815-3.416-16.486-3.468c-5.671-0.047-11.294 1.034-16.543 3.182-5.249 2.144-10.017 5.317-14.027 9.327s-7.181 8.777-9.329 14.026c-2.147 5.249-3.228 10.874-3.179 16.545s1.227 11.275 3.465 16.485c2.238 5.21 5.492 9.921 9.571 13.864l200.687 226.051c8.009 8.004 18.869 12.501 30.194 12.501s22.186-4.497 30.194-12.501l482.299-482.303c4.083-3.94 7.333-8.652 9.575-13.863 2.238-5.211 3.412-10.815 3.463-16.486s-1.029-11.294-3.177-16.543c-2.148-5.249-5.321-10.017-9.332-14.027-4.006-4.010-8.777-7.181-14.026-9.329s-10.874-3.228-16.541-3.179c-5.672 0.049-11.275 1.227-16.485 3.465-5.215 2.238-9.926 5.492-13.864 9.571l-452.109 452.108-170.491-195.856z"
+                d="M4.703 12.029a1 1 0 1 0-1.414 1.414l4.699 5.293a1 1 0 0 0 1.414 0L20.695 7.443a1 1 0 1 0-1.414-1.414L8.695 16.615l-3.992-4.586Z"
               />
             </svg>
           </span>

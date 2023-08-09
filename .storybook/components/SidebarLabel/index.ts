@@ -1,0 +1,1 @@
+export { SidebarLabel } from "./SidebarLabel";

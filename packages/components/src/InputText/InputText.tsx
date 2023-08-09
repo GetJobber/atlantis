@@ -1,4 +1,10 @@
-import React, { Ref, createRef, forwardRef, useImperativeHandle } from "react";
+import React, {
+  Ref,
+  forwardRef,
+  useImperativeHandle,
+  useLayoutEffect,
+  useRef,
+} from "react";
 import { XOR } from "ts-xor";
 import {
   CommonFormFieldProps,
@@ -7,7 +13,7 @@ import {
   FormFieldProps,
 } from "../FormField";
 
-interface RowRange {
+export interface RowRange {
   min: number;
   max: number;
 }
@@ -37,6 +43,7 @@ export interface InputTextRef {
   insert(text: string): void;
   blur(): void;
   focus(): void;
+  scrollIntoView(arg?: boolean | ScrollIntoViewOptions): void;
 }
 
 interface MultilineProps extends BaseProps {
@@ -60,8 +67,8 @@ function InputTextInternal(
   props: InputTextPropOptions,
   ref: Ref<InputTextRef>,
 ) {
-  const inputRef = createRef<HTMLTextAreaElement | HTMLInputElement>();
-  const actionsRef = createRef<FieldActionsRef>();
+  const inputRef = useRef<HTMLTextAreaElement | HTMLInputElement>(null);
+  const actionsRef = useRef<FieldActionsRef>(null);
 
   const rowRange = getRowRange();
 
@@ -81,7 +88,19 @@ function InputTextInternal(
         input.focus();
       }
     },
+    scrollIntoView: arg => {
+      const input = inputRef.current;
+      if (input) {
+        input.scrollIntoView(arg);
+      }
+    },
   }));
+
+  useLayoutEffect(() => {
+    if (inputRef && inputRef.current instanceof HTMLTextAreaElement) {
+      resize(inputRef.current);
+    }
+  }, [inputRef.current]);
 
   return (
     <FormField

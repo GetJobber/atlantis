@@ -6,10 +6,9 @@ import React, {
   useImperativeHandle,
 } from "react";
 import {
-  ErrorOption,
+  FieldErrors,
+  FieldValues,
   FormProvider,
-  NestedValue,
-  UnpackNestedValue,
   useForm,
 } from "react-hook-form";
 
@@ -17,13 +16,13 @@ export interface FormRef {
   submit(): void;
 }
 
-interface FormProps<T = NestedValue> {
+export interface FormProps {
   readonly children: ReactNode;
   /**
    * Callback for when the form has been sucessfully
    * submitted.
    */
-  onSubmit?(data: UnpackNestedValue<T>): void;
+  onSubmit?(data: FieldValues): void;
 
   onStateChange?(formState: { isDirty: boolean; isValid: boolean }): void;
 }
@@ -34,11 +33,10 @@ export const Form = forwardRef(function InternalForm(
 ) {
   const methods = useForm({ mode: "onTouched" });
   const {
-    errors,
     trigger,
     handleSubmit,
-    formState: { isDirty, isValid },
     getValues,
+    formState: { isDirty, isValid, errors },
   } = methods;
 
   useEffect(
@@ -84,11 +82,11 @@ export const Form = forwardRef(function InternalForm(
     </FormProvider>
   );
 
-  function submitHandler(data: UnpackNestedValue<NestedValue>) {
+  function submitHandler(data: FieldValues) {
     onSubmit?.(data);
   }
 
-  function errorHandler(errs: ErrorOption) {
+  function errorHandler(errs: FieldErrors<FieldValues>) {
     const firstErrName = Object.keys(errs)[0];
     const element = document.querySelector(
       `[name="${firstErrName}"]`,

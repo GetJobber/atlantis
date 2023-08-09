@@ -1,0 +1,36 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "declaration": true,
+    "declarationDir": "./dist/types",
+    "paths": {
+      "@jobber/hooks/*": [
+        "../../packages/hooks/src/*"
+      ]
+    },
+    "types": [
+      "react-native",
+      "jest"
+    ],
+    "lib": [
+      "es2019"
+    ],
+  },
+  "jsx": "react-native",
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+  ],
+  "references": [
+    {
+      "path": "../hooks"
+    }
+  ]
+}

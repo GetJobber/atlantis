@@ -1,6 +1,7 @@
 import React from "react";
 import classnames from "classnames";
-import { get, groupBy } from "lodash";
+import get from "lodash/get";
+import groupBy from "lodash/groupBy";
 import styles from "./List.css";
 import sectionStyles from "./SectionHeader.css";
 import { ListItem, ListItemProps } from "./ListItem";
@@ -9,8 +10,6 @@ import { Typography } from "../Typography";
 interface ListProps {
   /**
    * Array of the list items.
-   *
-   * {@link https://atlantis.frend.space/components/list#list-item-props List Item Props}
    */
   readonly items: ListItemProps[];
 }

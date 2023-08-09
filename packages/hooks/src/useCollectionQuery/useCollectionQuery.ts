@@ -5,7 +5,7 @@ import {
   SubscribeToMoreOptions,
   useQuery,
 } from "@apollo/client";
-import { cloneDeep } from "lodash";
+import cloneDeep from "lodash/cloneDeep";
 import { useCallback, useEffect, useState } from "react";
 import { config } from "@jobber/formatters";
 import { Node, uniqueNodes } from "./uniqueNodes";

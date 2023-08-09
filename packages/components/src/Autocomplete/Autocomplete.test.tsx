@@ -1,6 +1,7 @@
 import React from "react";
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import { AnyOption, Autocomplete } from ".";
+import { InputTextRef } from "../InputText";
 
 afterEach(cleanup);
 
@@ -74,10 +75,11 @@ test("it should call the getOptions handler with the new value", async () => {
       placeholder={placeholder}
     />,
   );
+
+  fireEvent.change(getByLabelText(placeholder), {
+    target: { value: newValue },
+  });
   await waitFor(() => {
-    fireEvent.change(getByLabelText(placeholder), {
-      target: { value: newValue },
-    });
     expect(changeOptionsHandler).toHaveBeenCalledWith(newValue);
   });
 });
@@ -283,4 +285,49 @@ it("passes the invalid prop to the InputText", () => {
   const invalid = container.querySelector(".invalid");
 
   expect(invalid).toBeInstanceOf(HTMLDivElement);
+});
+
+test("it should focus input text", () => {
+  const placeholder = "Got milk?";
+
+  const textRef = React.createRef<InputTextRef>();
+
+  const { getByLabelText } = render(
+    <Autocomplete
+      value={undefined}
+      onChange={jest.fn()}
+      initialOptions={options}
+      getOptions={returnOptions(options)}
+      placeholder={placeholder}
+      allowFreeForm={false}
+      ref={textRef}
+    />,
+  );
+
+  textRef.current?.focus();
+  expect(getByLabelText(placeholder)).toHaveFocus();
+});
+
+test("it should scroll into view input text", () => {
+  const scrollIntoViewMock = jest.fn();
+  window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
+
+  const placeholder = "Got milk?";
+
+  const textRef = React.createRef<InputTextRef>();
+
+  render(
+    <Autocomplete
+      value={undefined}
+      onChange={jest.fn()}
+      initialOptions={options}
+      getOptions={returnOptions(options)}
+      placeholder={placeholder}
+      allowFreeForm={false}
+      ref={textRef}
+    />,
+  );
+
+  textRef.current?.scrollIntoView();
+  expect(scrollIntoViewMock).toHaveBeenCalled();
 });

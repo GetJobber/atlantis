@@ -150,7 +150,7 @@ follow the following format.
 `<TYPE>(<optional SCOPE>): <conditionally BREAKING CHANGE:> <description>`
 
 Want help with your pull request title? We have a
-[tool to help](../?path=/docs/guides-pull-request-title-generator--page).
+[tool to help](https://atlantis.getjobber.com/?path=/story/guides-pull-request-title-generator--page).
 
 ##### Requesting review
 
@@ -190,3 +190,42 @@ For Example:
 
 _This helps us ensure that we can change our internal style without breaking API
 changes._
+
+## Documentation tools
+
+### Code and sandbox
+
+Some components, like
+[Card](?path=/code/components-layouts-and-structure-card-web--basic), includes a
+"Code" tab on the top right of the screen. This is turned off by default. To
+turn this feature on, add a `parameter` of `previewTabs.code.hidden` and set it
+to `false` on your stories meta.
+
+```ts
+export default {
+   title: ...,
+   component: ...,
+   parameters: {
+      ...,
+      previewTabs: { code: { hidden: false } }, // <-- Add this
+   },
+} as ComponentMeta<YourComponent>;
+```
+
+### Native components disclaimer
+
+We render `@jobber/components-native` code on web and sometimes they don't work
+properly, you can show a warning below the story to explain that some problems
+might arise. Add a `parameter` of `showNativeOnWebDisclaimer` and set it to
+`true` on your stories meta.
+
+```ts
+export default {
+   title: ...,
+   component: ...,
+   parameters: {
+      ...,
+      showNativeOnWebDisclaimer: true, // <-- Add this
+   },
+} as ComponentMeta<YourComponent>;
+```

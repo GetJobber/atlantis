@@ -1,3 +1,4 @@
+const webpack = require("webpack");
 const path = require("path");
 
 const config = {
@@ -5,6 +6,7 @@ const config = {
     "../packages/**/*.stories.mdx",
     "../packages/**/*.stories.@(js|jsx|ts|tsx)",
     "../docs/**/*.stories.mdx",
+    "../docs/**/*.stories.@(js|jsx|ts|tsx)",
   ],
   addons: [
     "@storybook/addon-links",
@@ -16,16 +18,35 @@ const config = {
         transcludeMarkdown: true,
       },
     },
+    {
+      name: "@storybook/addon-react-native-web",
+      options: {
+        modulesToTranspile: ["react-native-reanimated"],
+        babelPlugins: [
+          "react-native-reanimated/plugin"],
+      },
+    },
   ],
   features: { buildStoriesJson: true },
   framework: "@storybook/react",
   webpackFinal: async config => {
+    config.plugins = [
+      ...config.plugins,
+
+      // Mock react-native-gesture-handler to do nothing in web
+      new webpack.NormalModuleReplacementPlugin(
+        /react-native-gesture-handler$/,
+        path.join(__dirname, "__mocks__/react-native-gesture-handler.tsx"),
+      ),
+      new webpack.EnvironmentPlugin({ JEST_WORKER_ID: null }),
+      new webpack.DefinePlugin({ process: { env: {} } })
+    ];
+
     /**
      * Separate existing rules for CSS files
      */
     if (config.module?.rules) {
-      const matcher = (rule) =>
-        rule.test?.toString() === "/\\.css$/";
+      const matcher = rule => rule.test?.toString() === "/\\.css$/";
       const existingRule = config.module.rules.find(matcher);
 
       // CSS rules for 3rd-party package only
@@ -68,7 +89,7 @@ const config = {
       test: /\.mjs$/,
       include: /node_modules/,
       type: "javascript/auto",
-    })
+    });
 
     /**
      * Generate css types on `.css` file save,
@@ -88,12 +109,12 @@ const config = {
               plugins: [
                 require("postcss-import"),
                 require("autoprefixer"),
-                require('@csstools/postcss-global-data')({
+                require("@csstools/postcss-global-data")({
                   files: [
                     require.resolve(
                       path.join(__dirname, "../packages/design/foundation.css"),
                     ),
-                  ]
+                  ],
                 }),
                 require("postcss-preset-env")({
                   stage: 1,
@@ -101,7 +122,7 @@ const config = {
                 }),
               ],
             },
-          }
+          },
         },
       ],
     });
@@ -111,6 +132,10 @@ const config = {
       "@jobber/components": path.resolve(
         __dirname,
         "../packages/components/src",
+      ),
+      "@jobber/components-native": path.resolve(
+        __dirname,
+        "../packages/components-native/src",
       ),
       "@jobber/docx": path.resolve(__dirname, "../packages/docx/src"),
       "@jobber/hooks": path.resolve(__dirname, "../packages/hooks/src"),

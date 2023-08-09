@@ -38,7 +38,7 @@ references:
   npm_install: &npm_install
     run:
       name: Install Dependencies
-      command: npm ci --legacy-peer-deps
+      command: npm ci
 
   github_authenticity: &github_authenticity
     run:
@@ -119,7 +119,10 @@ jobs:
           command:
             npm test -- --runInBand --no-cache --coverage --reporters=jest-junit
           environment:
-            JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
+            JEST_JUNIT_OUTPUT_DIR: "reports/junit/"
+            JEST_JUNIT_OUTPUT_NAME: "js-test-results.xml"
+            JEST_JUNIT_ADD_FILE_ATTRIBUTE: "true"
+            JEST_JUNIT_SUITE_NAME: "{displayName} {title}"
       - store_test_results:
           path: reports/junit
       - store_artifacts:

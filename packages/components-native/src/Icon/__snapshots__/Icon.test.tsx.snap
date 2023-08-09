@@ -1,0 +1,403 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders apple icon 1`] = `
+<RNSVGSvgView
+  align="xMidYMid"
+  bbHeight={24}
+  bbWidth={24}
+  focusable={false}
+  meetOrSlice={0}
+  minX={0}
+  minY={0}
+  style={
+    [
+      {
+        "backgroundColor": "transparent",
+        "borderWidth": 0,
+      },
+      {
+        "display": "flex",
+        "fill": "rgba(101, 120, 132, 1)",
+        "height": 24,
+        "verticalAlign": "middle",
+        "width": 24,
+      },
+      {
+        "flex": 0,
+        "height": 24,
+        "width": 24,
+      },
+    ]
+  }
+  testID="apple"
+  vbHeight={24}
+  vbWidth={24}
+>
+  <RNSVGGroup
+    fill={4284840068}
+    propList={
+      [
+        "fill",
+      ]
+    }
+  >
+    <RNSVGPath
+      d="M18.467 12.754c-.027-2.996 2.453-4.453 2.566-4.52-1.404-2.048-3.581-2.328-4.346-2.35-1.828-.193-3.601 1.094-4.533 1.094-.95 0-2.384-1.076-3.93-1.044-1.988.03-3.849 1.182-4.87 2.97C1.25 12.55 2.82 17.91 4.838 20.856c1.01 1.443 2.189 3.055 3.733 2.998 1.51-.062 2.074-.963 3.897-.963 1.806 0 2.335.963 3.91.927 1.62-.026 2.641-1.45 3.615-2.907 1.166-1.654 1.635-3.283 1.653-3.367-.038-.013-3.147-1.2-3.178-4.79Zm-2.974-8.81c.812-1.015 1.368-2.397 1.213-3.8-1.175.053-2.646.814-3.492 1.807-.75.876-1.418 2.31-1.246 3.66 1.321.099 2.677-.666 3.525-1.666Z"
+      fill={4284840068}
+      propList={
+        [
+          "fill",
+        ]
+      }
+    />
+  </RNSVGGroup>
+</RNSVGSvgView>
+`;
+
+exports[`renders home icon 1`] = `
+<RNSVGSvgView
+  align="xMidYMid"
+  bbHeight={24}
+  bbWidth={24}
+  focusable={false}
+  meetOrSlice={0}
+  minX={0}
+  minY={0}
+  style={
+    [
+      {
+        "backgroundColor": "transparent",
+        "borderWidth": 0,
+      },
+      {
+        "display": "flex",
+        "fill": "rgba(101, 120, 132, 1)",
+        "height": 24,
+        "verticalAlign": "middle",
+        "width": 24,
+      },
+      {
+        "flex": 0,
+        "height": 24,
+        "width": 24,
+      },
+    ]
+  }
+  testID="home"
+  vbHeight={24}
+  vbWidth={24}
+>
+  <RNSVGGroup
+    fill={4284840068}
+    propList={
+      [
+        "fill",
+      ]
+    }
+  >
+    <RNSVGPath
+      d="M13.147 3.582a2 2 0 0 0-2.294 0l-9.426 6.599a1 1 0 1 0 1.147 1.638L5 10.121V18a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3v-7.88l2.427 1.7a1 1 0 0 0 1.146-1.64l-9.426-6.598ZM17 8.721V18a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8.72l5-3.5 5 3.5Z"
+      fill={4284840068}
+      propList={
+        [
+          "fill",
+        ]
+      }
+    />
+  </RNSVGGroup>
+</RNSVGSvgView>
+`;
+
+exports[`renders large arrowDown icon 1`] = `
+<RNSVGSvgView
+  align="xMidYMid"
+  bbHeight={32}
+  bbWidth={32}
+  focusable={false}
+  meetOrSlice={0}
+  minX={0}
+  minY={0}
+  style={
+    [
+      {
+        "backgroundColor": "transparent",
+        "borderWidth": 0,
+      },
+      {
+        "display": "flex",
+        "fill": "rgba(101, 120, 132, 1)",
+        "height": 32,
+        "verticalAlign": "middle",
+        "width": 32,
+      },
+      {
+        "flex": 0,
+        "height": 32,
+        "width": 32,
+      },
+    ]
+  }
+  testID="arrowDown"
+  vbHeight={24}
+  vbWidth={24}
+>
+  <RNSVGGroup
+    fill={4284840068}
+    propList={
+      [
+        "fill",
+      ]
+    }
+  >
+    <RNSVGPath
+      d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+      fill={4284840068}
+      propList={
+        [
+          "fill",
+        ]
+      }
+    />
+  </RNSVGGroup>
+</RNSVGSvgView>
+`;
+
+exports[`renders quote icon with themed color 1`] = `
+<RNSVGSvgView
+  align="xMidYMid"
+  bbHeight={24}
+  bbWidth={24}
+  focusable={false}
+  meetOrSlice={0}
+  minX={0}
+  minY={0}
+  style={
+    [
+      {
+        "backgroundColor": "transparent",
+        "borderWidth": 0,
+      },
+      {
+        "display": "flex",
+        "fill": "rgb(125, 176, 14)",
+        "height": 24,
+        "verticalAlign": "middle",
+        "width": 24,
+      },
+      {
+        "flex": 0,
+        "height": 24,
+        "width": 24,
+      },
+    ]
+  }
+  testID="quote"
+  vbHeight={24}
+  vbWidth={24}
+>
+  <RNSVGGroup
+    fill={4286427150}
+    propList={
+      [
+        "fill",
+      ]
+    }
+  >
+    <RNSVGPath
+      d="M14 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-2 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0Z"
+      fill={4286427150}
+      propList={
+        [
+          "fill",
+        ]
+      }
+    />
+    <RNSVGPath
+      d="M3.586 6C3.196 6.39 3 6.902 3 7.414c0 .512.195 1.024.586 1.414l.99.991C4.315 10.554 4 11.175 4 12a7 7 0 0 0 7 7h9v1a1 1 0 1 0 2 0v-2a1 1 0 0 0-1-1h-3v-5a7 7 0 0 0-7-7c-.825 0-1.446.314-2.18.577l-.992-.991A1.994 1.994 0 0 0 6.414 4c-.512 0-1.023.195-1.414.586L3.586 6Zm3.393.565A7.041 7.041 0 0 0 5.565 7.98L5 7.414 6.414 6l.565.565ZM11 7a5 5 0 0 1 5 5v5h-5a5 5 0 0 1 0-10Z"
+      fill={4286427150}
+      propList={
+        [
+          "fill",
+        ]
+      }
+    />
+  </RNSVGGroup>
+</RNSVGSvgView>
+`;
+
+exports[`renders small more icon 1`] = `
+<RNSVGSvgView
+  align="xMidYMid"
+  bbHeight={16}
+  bbWidth={16}
+  focusable={false}
+  meetOrSlice={0}
+  minX={0}
+  minY={0}
+  style={
+    [
+      {
+        "backgroundColor": "transparent",
+        "borderWidth": 0,
+      },
+      {
+        "display": "flex",
+        "fill": "rgba(101, 120, 132, 1)",
+        "height": 16,
+        "verticalAlign": "middle",
+        "width": 16,
+      },
+      {
+        "flex": 0,
+        "height": 16,
+        "width": 16,
+      },
+    ]
+  }
+  testID="more"
+  vbHeight={24}
+  vbWidth={24}
+>
+  <RNSVGGroup
+    fill={4284840068}
+    propList={
+      [
+        "fill",
+      ]
+    }
+  >
+    <RNSVGPath
+      d="M4 12a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm6 0a2 2 0 1 1 4 0 2 2 0 0 1-4 0Zm8-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"
+      fill={4284840068}
+      propList={
+        [
+          "fill",
+        ]
+      }
+    />
+  </RNSVGGroup>
+</RNSVGSvgView>
+`;
+
+exports[`renders star icon with custom color 1`] = `
+<RNSVGSvgView
+  align="xMidYMid"
+  bbHeight={24}
+  bbWidth={24}
+  focusable={false}
+  meetOrSlice={0}
+  minX={0}
+  minY={0}
+  style={
+    [
+      {
+        "backgroundColor": "transparent",
+        "borderWidth": 0,
+      },
+      {
+        "display": "flex",
+        "fill": "rgba(101, 120, 132, 1)",
+        "height": 24,
+        "verticalAlign": "middle",
+        "width": 24,
+      },
+      {
+        "flex": 0,
+        "height": 24,
+        "width": 24,
+      },
+    ]
+  }
+  testID="star"
+  vbHeight={24}
+  vbWidth={24}
+>
+  <RNSVGGroup
+    fill={4284840068}
+    propList={
+      [
+        "fill",
+      ]
+    }
+  >
+    <RNSVGPath
+      d="m15.673 13.337 3.673-3.58-5.076-.738-2.27-4.6-2.27 4.6-5.076.738 3.673 3.58-.867 5.176L12 16.006l4.54 2.386-.867-5.055ZM12 18.335l-4.505 2.49a1.546 1.546 0 0 1-2.244-1.63l.86-5.137-3.644-3.553a1.546 1.546 0 0 1 .857-2.637l5.037-.732 2.252-4.273a1.547 1.547 0 0 1 2.774 0l2.252 4.273 5.037.732a1.546 1.546 0 0 1 .857 2.637l-3.645 3.553.86 5.139a1.547 1.547 0 0 1-2.243 1.63L12 18.334Z"
+      fill={4294128419}
+      propList={
+        [
+          "fill",
+        ]
+      }
+    />
+  </RNSVGGroup>
+</RNSVGSvgView>
+`;
+
+exports[`renders thumbsDown icon 1`] = `
+<RNSVGSvgView
+  align="xMidYMid"
+  bbHeight={24}
+  bbWidth={24}
+  focusable={false}
+  meetOrSlice={0}
+  minX={0}
+  minY={0}
+  style={
+    [
+      {
+        "backgroundColor": "transparent",
+        "borderWidth": 0,
+      },
+      {
+        "display": "flex",
+        "fill": "rgba(101, 120, 132, 1)",
+        "height": 24,
+        "transform": [
+          {
+            "scaleY": -1,
+          },
+        ],
+        "verticalAlign": "middle",
+        "width": 24,
+      },
+      {
+        "flex": 0,
+        "height": 24,
+        "width": 24,
+      },
+    ]
+  }
+  testID="thumbsDown"
+  vbHeight={24}
+  vbWidth={24}
+>
+  <RNSVGGroup
+    fill={4284840068}
+    matrix={
+      [
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+      ]
+    }
+    propList={
+      [
+        "fill",
+      ]
+    }
+  >
+    <RNSVGPath
+      d="M8 11.78V19h8l3-5.76v-1.29h-7.639l1.036-7.944L8 11.78ZM6.134 11l4.555-8.034c1.124-1.846 3.971-.844 3.691 1.299l-.74 5.685h6.86a.5.5 0 0 1 .5.5v3a1 1 0 0 1-.084.4l-3.276 6.648a.95.95 0 0 1-.44.453c-.132.065-.276.049-.423.049H4c-1.105 0-2-1.045-2-2.15V13a2 2 0 0 1 2-2h2.134ZM6 13H4v6h2v-6Z"
+      fill={4284840068}
+      propList={
+        [
+          "fill",
+        ]
+      }
+    />
+  </RNSVGGroup>
+</RNSVGSvgView>
+`;

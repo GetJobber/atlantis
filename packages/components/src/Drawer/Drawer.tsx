@@ -15,8 +15,8 @@ interface DrawerProps {
   onRequestClose(): void;
 
   /**
-   * Initial open value of the drawer. Only use this when you need to
-   * pre-populate the checked attribute that is not controlled by the component's
+   * Initial open value of the drawer. Only use this when you need to pre-populate
+   * the checked attribute that is not controlled by the component's
    * state. If a state is controlling it, use the `checked` prop instead.
    */
 }

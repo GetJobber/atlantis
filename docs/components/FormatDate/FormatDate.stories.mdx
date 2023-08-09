@@ -1,0 +1,38 @@
+import { Canvas, Meta } from "@storybook/addon-docs";
+import { Text } from "@jobber/components/Text";
+import { strFormatDate } from "@jobber/components/FormatDate";
+
+# FormatDate
+
+<Meta title="Components/Utilities/FormatDate/Docs" />
+
+In Jobber a FormatDate is used to ensure that the date is displayed in the
+expected format. No text styling is applied, this simply formats the date.
+
+## Design & usage guidelines
+
+### Getting a string version
+
+Use `strFormateDate` if you need your formatted date as a string so it can be
+passed as an attribute that doesn't allow for a component.
+
+```ts
+import { strFormatDate } from "@jobber/components/FormatDate";
+```
+
+<Canvas>
+  <Text>{strFormatDate(new Date())}</Text>
+</Canvas>
+
+## Design & usage guidelines
+
+Use FormatDate to ensure that a date is represented as expected.
+
+If there are additional text styling concerns, wrap FormatDate in a
+[Text](../?path=/docs/components-text-and-typography-text-docs--page) component.
+
+If the formatted date is intended to be part of a heading, wrap FormatDate in a
+[Heading](../?path=/docs/components-text-and-typography-heading-docs--page)
+component.
+
+If you require a string instead of a component use strFormatDate.

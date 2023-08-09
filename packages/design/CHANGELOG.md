@@ -3,6 +3,229 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.44.4](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.44.3...@jobber/design@0.44.4) (2023-08-01)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.44.3](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.44.2...@jobber/design@0.44.3) (2023-07-28)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.44.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.44.1...@jobber/design@0.44.2) (2023-07-28)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.44.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.44.0...@jobber/design@0.44.1) (2023-07-26)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+# [0.44.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.43.5...@jobber/design@0.44.0) (2023-07-26)
+
+
+### Features
+
+* **design:** Add the loadingCheck icon ([#1414](https://github.com/GetJobber/atlantis/issues/1414)) ([90de5e9](https://github.com/GetJobber/atlantis/commit/90de5e974586f4aa9775cd7e57ebd3095c2ef75d))
+
+
+
+
+
+## [0.43.5](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.43.4...@jobber/design@0.43.5) (2023-07-26)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.43.4](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.43.3...@jobber/design@0.43.4) (2023-07-17)
+
+
+### Bug Fixes
+
+* **design:** add export tokens from foundation index ([#1387](https://github.com/GetJobber/atlantis/issues/1387)) ([360f148](https://github.com/GetJobber/atlantis/commit/360f148bdf8abe2f93a02862711d91eb9145ffa8))
+
+
+
+
+
+## [0.43.3](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.43.2...@jobber/design@0.43.3) (2023-07-11)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.43.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.43.1...@jobber/design@0.43.2) (2023-07-10)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.43.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.43.0...@jobber/design@0.43.1) (2023-07-05)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+# [0.43.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.42.1...@jobber/design@0.43.0) (2023-06-28)
+
+
+### Features
+
+* **design:** Add the transfer icon ([#1351](https://github.com/GetJobber/atlantis/issues/1351)) ([1e9911c](https://github.com/GetJobber/atlantis/commit/1e9911cc28e657db052ccd7fc93d1f1fd3ba6f63))
+
+
+
+
+
+## [0.42.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.42.0...@jobber/design@0.42.1) (2023-06-28)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+# [0.42.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.41.3...@jobber/design@0.42.0) (2023-06-07)
+
+
+### Features
+
+* **components:** add a runningTimer icon [JOB 70534] ([#1319](https://github.com/GetJobber/atlantis/issues/1319)) ([19e8c99](https://github.com/GetJobber/atlantis/commit/19e8c995524169988f9ccbada0c203782941bb90))
+
+
+
+
+
+## [0.41.3](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.41.2...@jobber/design@0.41.3) (2023-06-01)
+
+
+### Bug Fixes
+
+* **design:** Fix breakpoints with missing "px" units ([#1300](https://github.com/GetJobber/atlantis/issues/1300)) ([20456bc](https://github.com/GetJobber/atlantis/commit/20456bc83f446d5cdff6249f1286ba0c8865525c))
+
+
+
+
+
+## [0.41.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.41.1...@jobber/design@0.41.2) (2023-05-29)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.41.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.41.0...@jobber/design@0.41.1) (2023-05-26)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+# [0.41.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.40.0...@jobber/design@0.41.0) (2023-05-23)
+
+
+### Features
+
+* **design:** change colour code for brand--highlight ([#1280](https://github.com/GetJobber/atlantis/issues/1280)) ([ce44b13](https://github.com/GetJobber/atlantis/commit/ce44b13d728dc305c73e12e1190c28582a651c4f))
+
+
+
+
+
+# [0.40.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.39.0...@jobber/design@0.40.0) (2023-05-19)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+# [0.39.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.38.2...@jobber/design@0.39.0) (2023-05-11)
+
+
+### Features
+
+* Grid component ([#1229](https://github.com/GetJobber/atlantis/issues/1229)) ([8328d6c](https://github.com/GetJobber/atlantis/commit/8328d6c718c533c20853e4fcc281c9dcf36218b2))
+
+
+
+
+
+## [0.38.2](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.38.1...@jobber/design@0.38.2) (2023-05-10)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+## [0.38.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.38.0...@jobber/design@0.38.1) (2023-05-03)
+
+
+### Bug Fixes
+
+* Ensure form fields positioned children are contained ([#1223](https://github.com/GetJobber/atlantis/issues/1223)) ([f882322](https://github.com/GetJobber/atlantis/commit/f88232220da3263ce248ce4109a2ef0de7d1dea4))
+
+
+
+
+
+# [0.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.37.1...@jobber/design@0.38.0) (2023-04-28)
+
+
+### Features
+
+* **design:** Move mobile lineheight into design ([#1211](https://github.com/GetJobber/atlantis/issues/1211)) ([eaabf22](https://github.com/GetJobber/atlantis/commit/eaabf22e1d201763c018d68bfa9a7a2e1f7c09a4)), closes [#1214](https://github.com/GetJobber/atlantis/issues/1214)
+* Icon map generator in 🔱 Atlantis! ([#1190](https://github.com/GetJobber/atlantis/issues/1190)) ([c19e800](https://github.com/GetJobber/atlantis/commit/c19e8007932309b16d00d4c3228be14450f7a3e1))
+
+
+
+
+
+## [0.37.1](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.37.0...@jobber/design@0.37.1) (2023-04-27)
+
+**Note:** Version bump only for package @jobber/design
+
+
+
+
+
+# [0.37.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.36.0...@jobber/design@0.37.0) (2023-04-27)
+
+
+### Features
+
+* **design:** Export mobile foundations files ([#1206](https://github.com/GetJobber/atlantis/issues/1206)) ([043fec4](https://github.com/GetJobber/atlantis/commit/043fec4fec39c7a4f090907a715b118109614095))
+
+
+
+
+
 # [0.36.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.35.0...@jobber/design@0.36.0) (2023-04-26)
 
 

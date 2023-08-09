@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.5](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.1.4...@jobber/hooks@2.1.5) (2023-06-28)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+## [2.1.4](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.1.3...@jobber/hooks@2.1.4) (2023-06-09)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+## [2.1.3](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.1.2...@jobber/hooks@2.1.3) (2023-05-25)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+## [2.1.2](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.1.1...@jobber/hooks@2.1.2) (2023-05-12)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
+## [2.1.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.1.0...@jobber/hooks@2.1.1) (2023-05-01)
+
+**Note:** Version bump only for package @jobber/hooks
+
+
+
+
+
 # [2.1.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.0.2...@jobber/hooks@2.1.0) (2023-04-24)
 
 

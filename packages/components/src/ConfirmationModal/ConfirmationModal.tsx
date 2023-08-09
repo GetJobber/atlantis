@@ -140,22 +140,24 @@ interface BaseConfirmationModalProps {
   onRequestClose?(): void;
 }
 
-interface SimpleConfirmationModalProps extends BaseConfirmationModalProps {
+export interface SimpleConfirmationModalProps
+  extends BaseConfirmationModalProps {
   readonly open: boolean;
   readonly confirmLabel: string;
 }
 
-interface ComplexConfirmationModalProps extends BaseConfirmationModalProps {
+export interface ComplexConfirmationModalProps
+  extends BaseConfirmationModalProps {
   readonly ref: Ref<ConfirmationModalRef>;
   readonly open?: undefined;
 }
 
-interface ChildrenMessage extends BaseConfirmationModalProps {
+export interface ChildrenMessage extends BaseConfirmationModalProps {
   message?: never;
   children: ReactNode;
 }
 
-interface StringMessage extends BaseConfirmationModalProps {
+export interface StringMessage extends BaseConfirmationModalProps {
   message: string;
   children?: never;
 }
