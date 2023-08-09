@@ -27,11 +27,13 @@ export function Banner({
         <View style={styles.bannerContent}>
           {icon && <BannerIcon icon={icon} />}
           <View style={styles.contentContainer}>
-            {children}
+            <View style={styles.childrenContainer}>
+              <BannerChildren>{children}</BannerChildren>
+            </View>
             {text && (
-              <div style={styles.textContainer}>
+              <View style={styles.textContainer}>
                 <Text level="textSupporting">{text}</Text>
-              </div>
+              </View>
             )}
             {details && <TextList items={details} level="textSupporting" />}
           </View>
@@ -40,4 +42,18 @@ export function Banner({
       </Content>
     </Pressable>
   );
+}
+
+function BannerChildren({
+  children,
+}: {
+  children?: React.ReactElement | string;
+}): JSX.Element {
+  if (!children) return <></>;
+
+  if (children && typeof children === "string") {
+    return <Text level="textSupporting">{children}</Text>;
+  }
+
+  return <>{children}</>;
 }

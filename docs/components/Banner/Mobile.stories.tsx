@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Banner } from "@jobber/components-native";
+import { Banner, Text, TextList } from "@jobber/components-native";
 
 export default {
   title: "Components/Status and Feedback/Banner/Mobile",
@@ -24,9 +24,22 @@ const ErrorTemplate: ComponentStory<typeof Banner> = args => (
   <Banner {...args}>Currently offline. Functionality is limited.</Banner>
 );
 
-const ErrorDetailsTemplate: ComponentStory<typeof Banner> = args => (
-  <Banner {...args}>There was an error submitting your form:</Banner>
-);
+const ErrorDetailsTemplate: ComponentStory<typeof Banner> = args => {
+  const listItems = [
+    "This client already exists",
+    "This phone number doesn't receive SMS",
+  ];
+  return (
+    <Banner {...args}>
+      <>
+        <Text level="textSupporting">
+          There was an error submitting your form:
+        </Text>
+        <TextList level="textSupporting" items={listItems} />
+      </>
+    </Banner>
+  );
+};
 
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
@@ -48,9 +61,5 @@ Error.args = {
 export const ErrorDetails = ErrorDetailsTemplate.bind({});
 ErrorDetails.args = {
   type: "error",
-  details: [
-    "This client already exists",
-    "This phone number doesn't receive SMS",
-  ],
   icon: "alert",
 };

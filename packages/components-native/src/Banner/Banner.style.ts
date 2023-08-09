@@ -21,6 +21,9 @@ export const styles = StyleSheet.create({
   contentContainer: {
     flex: 1,
   },
+  childrenContainer: {
+    marginTop: tokens["space-smallest"],
+  },
   textContainer: {
     marginTop: tokens["space-minuscule"],
   },
