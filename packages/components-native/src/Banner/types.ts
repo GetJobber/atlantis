@@ -40,7 +40,8 @@ export interface BannerProps {
   readonly details?: string[];
 
   /**
-   * @deprecated Use `children` instead
+   * **Deprecated**: Use 'children' instead
+   * @deprecated
    */
   readonly text?: string;
 
