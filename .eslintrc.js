@@ -71,5 +71,23 @@ module.exports = {
         "import/no-default-export": "off",
       },
     },
+    {
+      files: ["packages/components-native/**", "docs/**/Mobile.stories.tsx"],
+      rules: {
+        "react/forbid-elements": [
+          "error",
+          {
+            forbid: [
+              { element: "div", message: "Use `<View>` instead" },
+              { element: "span", message: "Use `<View>` instead" },
+              { element: "button", message: "Use `<Button/>` instead" },
+              { element: "a", message: "Use `<AutoLink/>` instead" },
+              { element: "img", message: "Use `<Image/>` instead" },
+              { element: "input", message: "Use a Form input instead" },
+            ],
+          },
+        ],
+      },
+    },
   ],
 };
