@@ -158,7 +158,7 @@ export function Button(props: ButtonProps) {
 
 function ButtonInternals({ label, icon, size = "base" }: ButtonProps) {
   return (
-    <div>
+    <>
       {icon && <Icon name={icon} size={size} />}
       <Typography
         element="span"
@@ -168,7 +168,7 @@ function ButtonInternals({ label, icon, size = "base" }: ButtonProps) {
       >
         {label}
       </Typography>
-    </div>
+    </>
   );
 }
 
