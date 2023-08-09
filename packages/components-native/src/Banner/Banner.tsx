@@ -3,7 +3,7 @@ import { Pressable, View } from "react-native";
 import { BannerProps } from "./types";
 import { BannerTypeStyles } from "./constants";
 import { styles } from "./Banner.style";
-import { BannerPrefix } from "./components/Prefix/Prefix";
+import { BannerIcon } from "./components/BannerIcon/BannerIcon";
 import { Content } from "../Content";
 import { Text } from "../Text";
 import { TextList } from "../TextList";
@@ -25,7 +25,7 @@ export function Banner({
     >
       <Content childSpacing="small">
         <View style={styles.bannerContent}>
-          {icon && <BannerPrefix icon={icon} />}
+          {icon && <BannerIcon icon={icon} />}
           <View style={styles.contentContainer}>
             {children}
             {text && (

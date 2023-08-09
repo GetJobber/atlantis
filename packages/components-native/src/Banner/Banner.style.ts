@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
   textContainer: {
     marginTop: tokens["space-minuscule"],
   },
-  prefixIcon: {
+  bannerIcon: {
     paddingRight: tokens["space-small"],
   },
 });

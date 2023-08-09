@@ -4,13 +4,13 @@ import { View } from "react-native";
 import { Icon } from "../../../Icon";
 import { styles } from "../../Banner.style";
 
-export interface BannerPrefixProps {
+export interface BannerIconProps {
   icon: IconNames;
 }
 
-export function BannerPrefix({ icon }: BannerPrefixProps): JSX.Element {
+export function BannerIcon({ icon }: BannerIconProps): JSX.Element {
   return (
-    <View style={styles.prefixIcon}>
+    <View style={styles.bannerIcon}>
       <Icon name={icon} customColor={tokens["color-greyBlue"]} />
     </View>
   );
