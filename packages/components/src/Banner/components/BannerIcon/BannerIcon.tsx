@@ -1,6 +1,6 @@
 import React from "react";
 import { IconNames } from "@jobber/design";
-import { Icon } from "../Icon";
+import { Icon } from "../../../Icon";
 
 export interface BannerIconProps {
   icon: IconNames;

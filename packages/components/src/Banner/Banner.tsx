@@ -4,7 +4,7 @@ import { IconColorNames, IconNames } from "@jobber/design";
 import { useResizeObserver } from "@jobber/hooks/useResizeObserver";
 import styles from "./Banner.css";
 import types from "./notificationTypes.css";
-import { BannerIcon } from "./BannerIcon";
+import { BannerIcon } from "./components/BannerIcon";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
 import { Button, ButtonProps } from "../Button";
