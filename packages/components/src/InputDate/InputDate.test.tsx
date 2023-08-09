@@ -1,5 +1,5 @@
 import React from "react";
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { act, cleanup, fireEvent, render } from "@testing-library/react";
 import { InputDate } from ".";
 
 afterEach(cleanup);
@@ -16,12 +16,14 @@ it("fires onChange with the new value when you click a date", () => {
   const date = "11/11/2011";
   const newDate = "11/15/2011";
   const changeHandler = jest.fn();
-  const { getByDisplayValue, getByText } = render(
+  const { getByText, getByRole } = render(
     <InputDate value={new Date(date)} onChange={changeHandler} />,
   );
+  const calendarButton = getByRole("button");
 
-  const form = getByDisplayValue(date);
-  fireEvent.focus(form);
+  act(() => {
+    fireEvent.click(calendarButton);
+  });
 
   const selectDate = getByText("15");
   fireEvent.click(selectDate);
@@ -32,7 +34,7 @@ it("shouldn't call onChange with the new value when you click a disabled date", 
   const minDate = "11/9/2011";
   const maxDate = "11/15/2011";
   const changeHandler = jest.fn();
-  const { getByDisplayValue, getByText } = render(
+  const { getByRole, getByText } = render(
     <InputDate
       minDate={new Date(minDate)}
       maxDate={new Date(maxDate)}
@@ -40,9 +42,10 @@ it("shouldn't call onChange with the new value when you click a disabled date", 
       onChange={changeHandler}
     />,
   );
-
-  const form = getByDisplayValue(date);
-  fireEvent.focus(form);
+  const calendarButton = getByRole("button");
+  act(() => {
+    fireEvent.click(calendarButton);
+  });
 
   const selectDate1 = getByText("7");
   fireEvent.click(selectDate1);
@@ -123,4 +126,32 @@ it("doesn't fire onChange when the new value is invalid", async () => {
     target: { value: badInput },
   });
   expect(changeHandler).toHaveBeenCalledTimes(0);
+});
+
+it("doesn't display the calendar when input is focused", () => {
+  const date = "11/11/2011";
+  const changeHandler = jest.fn();
+  const { queryByText, getByDisplayValue } = render(
+    <InputDate value={new Date(date)} onChange={changeHandler} />,
+  );
+  const form = getByDisplayValue(date);
+  act(() => {
+    fireEvent.focus(form);
+  });
+
+  expect(queryByText("15")).toBeNull();
+});
+
+it("displays the calendar when button is pressed", () => {
+  const date = "11/11/2011";
+  const changeHandler = jest.fn();
+  const { getByText, getByRole } = render(
+    <InputDate value={new Date(date)} onChange={changeHandler} />,
+  );
+  const calendarButton = getByRole("button");
+  act(() => {
+    fireEvent.click(calendarButton);
+  });
+
+  expect(getByText("15")).toBeDefined();
 });
