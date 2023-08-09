@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.24.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.24.2...@jobber/components@4.24.3) (2023-08-09)
+
+
+### Bug Fixes
+
+* **components:** Only render the label element if a placeholder value has been provided ([#1475](https://github.com/GetJobber/atlantis/issues/1475)) ([1d6e97c](https://github.com/GetJobber/atlantis/commit/1d6e97c4381889424672b23973a485d9020b3290))
+
+
+
+
+
 ## [4.24.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.24.1...@jobber/components@4.24.2) (2023-08-08)
 
 
