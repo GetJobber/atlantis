@@ -64,7 +64,7 @@ module.exports = function (plop, config) {
           type: "addMany",
           destination: `docs/components/{{name}}/`,
           base: "templates/docs",
-          templateFiles: `templates/docs/*`,
+          templateFiles: `templates/docs/!Mobile*`,
         });
       } else if (answers.type === "native") {
         actions.push({
