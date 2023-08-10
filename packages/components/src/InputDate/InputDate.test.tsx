@@ -128,13 +128,28 @@ it("doesn't fire onChange when the new value is invalid", async () => {
   expect(changeHandler).toHaveBeenCalledTimes(0);
 });
 
-it("doesn't display the calendar when input is focused", () => {
+it("doesn't display the calendar when input is focused with keyboard", () => {
   const date = "11/11/2011";
   const changeHandler = jest.fn();
   const { queryByText, getByDisplayValue } = render(
     <InputDate value={new Date(date)} onChange={changeHandler} />,
   );
   const form = getByDisplayValue(date);
+
+  act(() => {
+    fireEvent.focus(form);
+  });
+
+  expect(queryByText("15")).toBeNull();
+});
+it("doesn't display the calendar when calendar button is focused with keyboard", () => {
+  const date = "11/11/2011";
+  const changeHandler = jest.fn();
+  const { queryByText, getByRole } = render(
+    <InputDate value={new Date(date)} onChange={changeHandler} />,
+  );
+  const form = getByRole("button");
+
   act(() => {
     fireEvent.focus(form);
   });
@@ -149,8 +164,24 @@ it("displays the calendar when button is pressed", () => {
     <InputDate value={new Date(date)} onChange={changeHandler} />,
   );
   const calendarButton = getByRole("button");
+
   act(() => {
     fireEvent.click(calendarButton);
+  });
+
+  expect(getByText("15")).toBeDefined();
+});
+
+it("displays the calendar when input is focused with a click", () => {
+  const date = "11/11/2011";
+  const changeHandler = jest.fn();
+  const { getByText, getByDisplayValue } = render(
+    <InputDate value={new Date(date)} onChange={changeHandler} />,
+  );
+  const form = getByDisplayValue(date);
+
+  act(() => {
+    fireEvent.click(form);
   });
 
   expect(getByText("15")).toBeDefined();

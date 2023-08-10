@@ -69,22 +69,24 @@ export function InputDate(inputProps: InputDateProps) {
         value && formFieldActionsRef.current?.setValue(value);
 
         return (
-          <FormField
-            {...newActivatorProps}
-            {...inputProps}
-            value={value}
-            onChange={(_, event) => onChange && onChange(event)}
-            onBlur={() => {
-              inputProps.onBlur && inputProps.onBlur();
-              activatorProps.onBlur && activatorProps.onBlur();
-            }}
-            onFocus={() => {
-              inputProps.onFocus && inputProps.onFocus();
-              activatorProps.onFocus && activatorProps.onFocus();
-            }}
-            actionsRef={formFieldActionsRef}
-            suffix={suffix}
-          />
+          <div onClick={onClick}>
+            <FormField
+              {...newActivatorProps}
+              {...inputProps}
+              value={value}
+              onChange={(_, event) => onChange && onChange(event)}
+              onBlur={() => {
+                inputProps.onBlur && inputProps.onBlur();
+                activatorProps.onBlur && activatorProps.onBlur();
+              }}
+              onFocus={() => {
+                inputProps.onFocus && inputProps.onFocus();
+                activatorProps.onFocus && activatorProps.onFocus();
+              }}
+              actionsRef={formFieldActionsRef}
+              suffix={suffix}
+            />
+          </div>
         );
       }}
     />
