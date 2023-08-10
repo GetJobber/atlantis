@@ -134,13 +134,13 @@ it("doesn't display the calendar when input is focused with keyboard", () => {
   const { queryByText, getByDisplayValue } = render(
     <InputDate value={new Date(date)} onChange={changeHandler} />,
   );
-  const form = getByDisplayValue(date);
+  const input = getByDisplayValue(date);
 
   act(() => {
-    fireEvent.focus(form);
+    fireEvent.focus(input);
   });
 
-  expect(queryByText("15")).toBeNull();
+  expect(queryByText("15")).not.toBeInTheDocument();
 });
 it("doesn't display the calendar when calendar button is focused with keyboard", () => {
   const date = "11/11/2011";
@@ -148,13 +148,13 @@ it("doesn't display the calendar when calendar button is focused with keyboard",
   const { queryByText, getByRole } = render(
     <InputDate value={new Date(date)} onChange={changeHandler} />,
   );
-  const form = getByRole("button");
+  const calendarButton = getByRole("button");
 
   act(() => {
-    fireEvent.focus(form);
+    fireEvent.focus(calendarButton);
   });
 
-  expect(queryByText("15")).toBeNull();
+  expect(queryByText("15")).not.toBeInTheDocument();
 });
 
 it("displays the calendar when button is pressed", () => {
@@ -169,7 +169,7 @@ it("displays the calendar when button is pressed", () => {
     fireEvent.click(calendarButton);
   });
 
-  expect(getByText("15")).toBeDefined();
+  expect(getByText("15")).toBeInTheDocument();
 });
 
 it("displays the calendar when input is focused with a click", () => {
@@ -178,11 +178,11 @@ it("displays the calendar when input is focused with a click", () => {
   const { getByText, getByDisplayValue } = render(
     <InputDate value={new Date(date)} onChange={changeHandler} />,
   );
-  const form = getByDisplayValue(date);
+  const input = getByDisplayValue(date);
 
   act(() => {
-    fireEvent.click(form);
+    fireEvent.click(input);
   });
 
-  expect(getByText("15")).toBeDefined();
+  expect(getByText("15")).toBeInTheDocument();
 });

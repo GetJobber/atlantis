@@ -69,6 +69,7 @@ export function InputDate(inputProps: InputDateProps) {
         value && formFieldActionsRef.current?.setValue(value);
 
         return (
+          // We prevent the picker from opening on focus for keyboard navigation, so to maintain a good UX for mouse users we want to open the picker on click
           <div onClick={onClick}>
             <FormField
               {...newActivatorProps}
