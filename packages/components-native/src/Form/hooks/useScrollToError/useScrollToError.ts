@@ -6,7 +6,7 @@ import {
   MeasureInWindowOnSuccessCallback,
   Platform,
 } from "react-native";
-import { useIsScreenReaderEnabled } from "../../../hooks/useIsScreenReaderEnabled";
+import { useIsScreenReaderEnabled } from "../../../hooks";
 import { useErrorMessageContext } from "../../../ErrorMessageWrapper";
 
 interface UseScrollToErrorParams<T extends FieldValues> {

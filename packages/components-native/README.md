@@ -46,6 +46,46 @@ transformIgnorePatterns: [
 ],
 ```
 
+Also update the Jest config as to include the `jestSetup.js`
+
+```json
+setupFiles: [
+    ...
+    "./node_modules/@jobber/components-native/jestSetup.js",
+    ...
+  ],
+```
+
+You will also need to create a mock for the Form component
+
+```jsx
+jest.mock("./dist/src/Form", () => {
+  const { Form, AtlantisFormContext, ...Actual } =
+    jest.requireActual("./dist/src/Form");
+  const useConfirmBeforeBack = jest.fn(() => jest.fn());
+  const useInternalFormLocalCache = jest.fn(() => ({
+    setLocalCache: jest.fn(),
+    removeLocalCache: jest.fn(),
+  }));
+  // Or
+  const useConfirmBeforeBack = require("<path-to-your>/useConfirmBeforeBackHook");
+  const useInternalFormLocalCache = require("<path-to-your>/useInternalFormLocalCacheHook");
+  return {
+    ...Actual,
+    AtlantisFormContext: AtlantisFormContext,
+    Form: ({ children, ...props }) => {
+      return (
+        <AtlantisFormContext.Provider
+          value={{ useConfirmBeforeBack, useInternalFormLocalCache }}
+        >
+          <Form {...props}>{children}</Form>
+        </AtlantisFormContext.Provider>
+      );
+    },
+  };
+});
+```
+
 ## Further Reading
 
 More information on Atlantis can be found at
