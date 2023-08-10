@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { act, cleanup, fireEvent, render } from "@testing-library/react";
+import { cleanup, fireEvent, render } from "@testing-library/react";
 import { InputDate } from ".";
 import { Modal } from "../Modal";
 import { Button } from "../Button";
@@ -24,9 +24,7 @@ it("fires onChange with the new value when you click a date", () => {
   );
   const calendarButton = getByRole("button");
 
-  act(() => {
-    fireEvent.click(calendarButton);
-  });
+  fireEvent.click(calendarButton);
 
   const selectDate = getByText("15");
   fireEvent.click(selectDate);
@@ -46,9 +44,7 @@ it("shouldn't call onChange with the new value when you click a disabled date", 
     />,
   );
   const calendarButton = getByRole("button");
-  act(() => {
-    fireEvent.click(calendarButton);
-  });
+  fireEvent.click(calendarButton);
 
   const selectDate1 = getByText("7");
   fireEvent.click(selectDate1);
@@ -139,9 +135,7 @@ it("doesn't display the calendar when input is focused with keyboard", () => {
   );
   const input = getByDisplayValue(date);
 
-  act(() => {
-    fireEvent.focus(input);
-  });
+  fireEvent.focus(input);
 
   expect(queryByText("15")).not.toBeInTheDocument();
 });
@@ -153,9 +147,7 @@ it("doesn't display the calendar when calendar button is focused with keyboard",
   );
   const calendarButton = getByRole("button");
 
-  act(() => {
-    fireEvent.focus(calendarButton);
-  });
+  fireEvent.focus(calendarButton);
 
   expect(queryByText("15")).not.toBeInTheDocument();
 });
@@ -168,9 +160,7 @@ it("displays the calendar when button is pressed", () => {
   );
   const calendarButton = getByRole("button");
 
-  act(() => {
-    fireEvent.click(calendarButton);
-  });
+  fireEvent.click(calendarButton);
 
   expect(getByText("15")).toBeInTheDocument();
 });
@@ -183,9 +173,7 @@ it("displays the calendar when input is focused with a click", () => {
   );
   const input = getByDisplayValue(date);
 
-  act(() => {
-    fireEvent.click(input);
-  });
+  fireEvent.click(input);
 
   expect(getByText("15")).toBeInTheDocument();
 });
