@@ -22,7 +22,7 @@ export default {
   decorators: [
     Story => {
       return (
-        // eslint-disable-next-line react/forbid-elements
+        // eslint-disable-next-line react/forbid-elements -- This is a storybook decorator so it doesn't affect react-native stuff
         <div style={{ height: "90vh" }}>
           <Story />
         </div>
