@@ -11,7 +11,7 @@ export interface BannerIconProps {
 export function BannerIcon({ icon }: BannerIconProps): JSX.Element {
   return (
     <View style={styles.bannerIcon}>
-      <Icon name={icon} customColor={tokens["color-greyBlue"]} />
+      <Icon name={icon} customColor={tokens["color-text"]} />
     </View>
   );
 }
