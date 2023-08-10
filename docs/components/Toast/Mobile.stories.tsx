@@ -1,6 +1,5 @@
 import React, { JSXElementConstructor } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { View } from "react-native";
 import { Button, Toast, showToast } from "@jobber/components-native";
 
 type ToastElement = JSXElementConstructor<Parameters<typeof showToast>[0]>;
@@ -22,11 +21,11 @@ export default {
   },
   decorators: [
     Story => {
-      const height = window.innerHeight * 0.9;
       return (
-        <View style={{ height }}>
+        // eslint-disable-next-line react/forbid-elements
+        <div style={{ height: "90vh" }}>
           <Story />
-        </View>
+        </div>
       );
     },
   ],
