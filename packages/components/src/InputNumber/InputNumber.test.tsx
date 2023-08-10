@@ -17,10 +17,6 @@ it("renders an input type number", () => {
           <div
             class="inputWrapper"
           >
-            <label
-              class="label"
-              for="123e4567-e89b-12d3-a456-426655440001"
-            />
             <div
               class="childrenWrapper"
             >
