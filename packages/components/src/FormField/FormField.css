@@ -9,6 +9,10 @@
   --public-field--bottom-right-radius: var(--radius-base);
 }
 
+.container {
+  width: 100%;
+}
+
 /**
  * Wrapper
  **/
@@ -83,6 +87,7 @@
 .invalid,
 .invalid:focus-within {
   --field--border-color: var(--color-critical);
+  position: relative;
 }
 
 .disabled {
@@ -113,7 +118,7 @@
 }
 
 .inline {
-  display: inline-flex;
+  display: inline-block;
   width: auto;
 }
 

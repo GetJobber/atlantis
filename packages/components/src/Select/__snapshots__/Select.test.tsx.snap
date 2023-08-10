@@ -3,46 +3,54 @@
 exports[`renders a Select with many options 1`] = `
 <div>
   <div
-    class="wrapper select"
+    class="container"
   >
     <div
-      class="inputWrapper"
+      class="wrapper select"
     >
       <div
-        class="childrenWrapper"
+        class="inputWrapper"
       >
-        <select
-          class="input"
-          id="123e4567-e89b-12d3-a456-426655440005"
+        <label
+          class="label"
+          for="123e4567-e89b-12d3-a456-426655440005"
+        />
+        <div
+          class="childrenWrapper"
         >
-          <option>
-            Foo
-          </option>
-          <option>
-            Bar
-          </option>
-          <option>
-            Baz
-          </option>
-          <option>
-            Quux
-          </option>
-        </select>
-        <span
-          class="postfix"
-        >
-          <svg
-            class="Z6OfUI2sH34- TphtDHcwxDc-"
-            data-testid="arrowDown"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+          <select
+            class="input"
+            id="123e4567-e89b-12d3-a456-426655440005"
           >
-            <path
-              class=""
-              d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
-            />
-          </svg>
-        </span>
+            <option>
+              Foo
+            </option>
+            <option>
+              Bar
+            </option>
+            <option>
+              Baz
+            </option>
+            <option>
+              Quux
+            </option>
+          </select>
+          <span
+            class="postfix"
+          >
+            <svg
+              class="Z6OfUI2sH34- TphtDHcwxDc-"
+              data-testid="arrowDown"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class=""
+                d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+              />
+            </svg>
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -52,33 +60,41 @@ exports[`renders a Select with many options 1`] = `
 exports[`renders a Select with no options 1`] = `
 <div>
   <div
-    class="wrapper select"
+    class="container"
   >
     <div
-      class="inputWrapper"
+      class="wrapper select"
     >
       <div
-        class="childrenWrapper"
+        class="inputWrapper"
       >
-        <select
-          class="input"
-          id="123e4567-e89b-12d3-a456-426655440001"
+        <label
+          class="label"
+          for="123e4567-e89b-12d3-a456-426655440001"
         />
-        <span
-          class="postfix"
+        <div
+          class="childrenWrapper"
         >
-          <svg
-            class="Z6OfUI2sH34- TphtDHcwxDc-"
-            data-testid="arrowDown"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+          <select
+            class="input"
+            id="123e4567-e89b-12d3-a456-426655440001"
+          />
+          <span
+            class="postfix"
           >
-            <path
-              class=""
-              d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
-            />
-          </svg>
-        </span>
+            <svg
+              class="Z6OfUI2sH34- TphtDHcwxDc-"
+              data-testid="arrowDown"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class=""
+                d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+              />
+            </svg>
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -88,37 +104,45 @@ exports[`renders a Select with no options 1`] = `
 exports[`renders a Select with one option 1`] = `
 <div>
   <div
-    class="wrapper select"
+    class="container"
   >
     <div
-      class="inputWrapper"
+      class="wrapper select"
     >
       <div
-        class="childrenWrapper"
+        class="inputWrapper"
       >
-        <select
-          class="input"
-          id="123e4567-e89b-12d3-a456-426655440003"
+        <label
+          class="label"
+          for="123e4567-e89b-12d3-a456-426655440003"
+        />
+        <div
+          class="childrenWrapper"
         >
-          <option>
-            Foo
-          </option>
-        </select>
-        <span
-          class="postfix"
-        >
-          <svg
-            class="Z6OfUI2sH34- TphtDHcwxDc-"
-            data-testid="arrowDown"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+          <select
+            class="input"
+            id="123e4567-e89b-12d3-a456-426655440003"
           >
-            <path
-              class=""
-              d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
-            />
-          </svg>
-        </span>
+            <option>
+              Foo
+            </option>
+          </select>
+          <span
+            class="postfix"
+          >
+            <svg
+              class="Z6OfUI2sH34- TphtDHcwxDc-"
+              data-testid="arrowDown"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class=""
+                d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+              />
+            </svg>
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -128,37 +152,45 @@ exports[`renders a Select with one option 1`] = `
 exports[`renders correctly as large 1`] = `
 <div>
   <div
-    class="wrapper large select"
+    class="container"
   >
     <div
-      class="inputWrapper"
+      class="wrapper large select"
     >
       <div
-        class="childrenWrapper"
+        class="inputWrapper"
       >
-        <select
-          class="input"
-          id="123e4567-e89b-12d3-a456-426655440009"
+        <label
+          class="label"
+          for="123e4567-e89b-12d3-a456-426655440009"
+        />
+        <div
+          class="childrenWrapper"
         >
-          <option>
-            Foo
-          </option>
-        </select>
-        <span
-          class="postfix"
-        >
-          <svg
-            class="Z6OfUI2sH34- TphtDHcwxDc-"
-            data-testid="arrowDown"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+          <select
+            class="input"
+            id="123e4567-e89b-12d3-a456-426655440009"
           >
-            <path
-              class=""
-              d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
-            />
-          </svg>
-        </span>
+            <option>
+              Foo
+            </option>
+          </select>
+          <span
+            class="postfix"
+          >
+            <svg
+              class="Z6OfUI2sH34- TphtDHcwxDc-"
+              data-testid="arrowDown"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class=""
+                d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+              />
+            </svg>
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -168,37 +200,45 @@ exports[`renders correctly as large 1`] = `
 exports[`renders correctly as small 1`] = `
 <div>
   <div
-    class="wrapper small select"
+    class="container"
   >
     <div
-      class="inputWrapper"
+      class="wrapper small select"
     >
       <div
-        class="childrenWrapper"
+        class="inputWrapper"
       >
-        <select
-          class="input"
-          id="123e4567-e89b-12d3-a456-426655440007"
+        <label
+          class="label"
+          for="123e4567-e89b-12d3-a456-426655440007"
+        />
+        <div
+          class="childrenWrapper"
         >
-          <option>
-            Foo
-          </option>
-        </select>
-        <span
-          class="postfix"
-        >
-          <svg
-            class="Z6OfUI2sH34- TphtDHcwxDc-"
-            data-testid="arrowDown"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+          <select
+            class="input"
+            id="123e4567-e89b-12d3-a456-426655440007"
           >
-            <path
-              class=""
-              d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
-            />
-          </svg>
-        </span>
+            <option>
+              Foo
+            </option>
+          </select>
+          <span
+            class="postfix"
+          >
+            <svg
+              class="Z6OfUI2sH34- TphtDHcwxDc-"
+              data-testid="arrowDown"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class=""
+                d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+              />
+            </svg>
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -208,38 +248,46 @@ exports[`renders correctly as small 1`] = `
 exports[`renders correctly when disabled 1`] = `
 <div>
   <div
-    class="wrapper select disabled"
+    class="container"
   >
     <div
-      class="inputWrapper"
+      class="wrapper select disabled"
     >
       <div
-        class="childrenWrapper"
+        class="inputWrapper"
       >
-        <select
-          class="input"
-          disabled=""
-          id="123e4567-e89b-12d3-a456-426655440011"
+        <label
+          class="label"
+          for="123e4567-e89b-12d3-a456-426655440011"
+        />
+        <div
+          class="childrenWrapper"
         >
-          <option>
-            Foo
-          </option>
-        </select>
-        <span
-          class="postfix"
-        >
-          <svg
-            class="Z6OfUI2sH34- TphtDHcwxDc-"
-            data-testid="arrowDown"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+          <select
+            class="input"
+            disabled=""
+            id="123e4567-e89b-12d3-a456-426655440011"
           >
-            <path
-              class=""
-              d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
-            />
-          </svg>
-        </span>
+            <option>
+              Foo
+            </option>
+          </select>
+          <span
+            class="postfix"
+          >
+            <svg
+              class="Z6OfUI2sH34- TphtDHcwxDc-"
+              data-testid="arrowDown"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class=""
+                d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+              />
+            </svg>
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -249,37 +297,45 @@ exports[`renders correctly when disabled 1`] = `
 exports[`renders correctly when invalid 1`] = `
 <div>
   <div
-    class="wrapper select invalid"
+    class="container"
   >
     <div
-      class="inputWrapper"
+      class="wrapper select invalid"
     >
       <div
-        class="childrenWrapper"
+        class="inputWrapper"
       >
-        <select
-          class="input"
-          id="123e4567-e89b-12d3-a456-426655440013"
+        <label
+          class="label"
+          for="123e4567-e89b-12d3-a456-426655440013"
+        />
+        <div
+          class="childrenWrapper"
         >
-          <option>
-            Foo
-          </option>
-        </select>
-        <span
-          class="postfix"
-        >
-          <svg
-            class="Z6OfUI2sH34- TphtDHcwxDc-"
-            data-testid="arrowDown"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+          <select
+            class="input"
+            id="123e4567-e89b-12d3-a456-426655440013"
           >
-            <path
-              class=""
-              d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
-            />
-          </svg>
-        </span>
+            <option>
+              Foo
+            </option>
+          </select>
+          <span
+            class="postfix"
+          >
+            <svg
+              class="Z6OfUI2sH34- TphtDHcwxDc-"
+              data-testid="arrowDown"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class=""
+                d="M7.703 8.291a.996.996 0 0 0-1.41.001.994.994 0 0 0 0 1.41l5 5.005a.998.998 0 0 0 1.415 0l5-5a.994.994 0 0 0 0-1.41.995.995 0 0 0-1.411-.001L12 12.584 7.703 8.291Z"
+              />
+            </svg>
+          </span>
+        </div>
       </div>
     </div>
   </div>

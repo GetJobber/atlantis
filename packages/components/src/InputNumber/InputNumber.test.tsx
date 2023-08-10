@@ -9,21 +9,29 @@ it("renders an input type number", () => {
   expect(container).toMatchInlineSnapshot(`
     <div>
       <div
-        class="wrapper"
+        class="container"
       >
         <div
-          class="inputWrapper"
+          class="wrapper"
         >
           <div
-            class="childrenWrapper"
+            class="inputWrapper"
           >
-            <input
-              class="input"
-              id="123e4567-e89b-12d3-a456-426655440001"
-              name="generatedName--123e4567-e89b-12d3-a456-426655440001"
-              type="number"
-              value="123"
+            <label
+              class="label"
+              for="123e4567-e89b-12d3-a456-426655440001"
             />
+            <div
+              class="childrenWrapper"
+            >
+              <input
+                class="input"
+                id="123e4567-e89b-12d3-a456-426655440001"
+                name="generatedName--123e4567-e89b-12d3-a456-426655440001"
+                type="number"
+                value="123"
+              />
+            </div>
           </div>
         </div>
       </div>
