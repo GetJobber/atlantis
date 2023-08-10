@@ -26,12 +26,11 @@ interface BaseRadioOptionProps {
   readonly label?: string;
 
   /**
-   * Provide children elements to render a custom label component if `label` is
-   * not provided, or associated additional content with the radio button if
-   * `label` is provided.
+   * Render a custom label or additional content below the `label`
+   * and `description`.
    *
    * Prefer using `label` and `description` over adding child elements if the
-   * content of either would be text.
+   * content of either would be a string.
    */
   readonly children?: ReactNode;
 }
