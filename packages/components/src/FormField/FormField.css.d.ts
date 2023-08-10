@@ -1,4 +1,5 @@
 declare const styles: {
+  readonly "container": string;
   readonly "wrapper": string;
   readonly "miniLabel": string;
   readonly "large": string;
