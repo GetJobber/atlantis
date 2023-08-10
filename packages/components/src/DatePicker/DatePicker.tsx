@@ -129,6 +129,7 @@ export function DatePicker({
         readOnly={readonly}
         onChange={handleChange}
         maxDate={maxDate}
+        preventOpenOnFocus={true}
         minDate={minDate}
         useWeekdaysShort={true}
         customInput={
