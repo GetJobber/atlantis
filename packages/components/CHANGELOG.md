@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.24.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.24.4...@jobber/components@4.24.5) (2023-08-10)
+
+
+### Bug Fixes
+
+* **components:** Prevent Open on DatePicker Focus ([#1477](https://github.com/GetJobber/atlantis/issues/1477)) ([dd6d0da](https://github.com/GetJobber/atlantis/commit/dd6d0da47874855b16690f557bf38e9889e568a3))
+
+
+
+
+
 ## [4.24.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.24.3...@jobber/components@4.24.4) (2023-08-10)
 
 
