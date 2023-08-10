@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { act, cleanup, fireEvent, render } from "@testing-library/react";
 import { InputDate } from ".";
+import { Modal } from "../Modal";
+import { Button } from "../Button";
+import { Text } from "../Text";
 
 afterEach(cleanup);
 
@@ -186,3 +189,40 @@ it("displays the calendar when input is focused with a click", () => {
 
   expect(getByText("15")).toBeInTheDocument();
 });
+
+describe("when InputDate is used within a Modal", () => {
+  it("should close only the open picker when the escape key is pressed", async () => {
+    const date = "11/11/2011";
+    const { getByRole, getByText, getByDisplayValue, queryByText } = render(
+      <NestedTestComponent date={date} />,
+    );
+    const button = getByRole("button");
+    fireEvent.click(button);
+
+    const input = getByDisplayValue(date);
+    fireEvent.click(input);
+
+    fireEvent.keyDown(input, { key: "Escape" });
+
+    expect(getByText("Test Modal Content")).toBeInTheDocument();
+    expect(queryByText("15")).not.toBeInTheDocument();
+  });
+});
+
+function NestedTestComponent(props: { date: string }): JSX.Element {
+  const [isOpen, setIsOpen] = useState(false);
+  const changeHandler = jest.fn();
+
+  return (
+    <div>
+      <Modal open={isOpen}>
+        <Text>Test Modal Content</Text>
+        <InputDate value={new Date(props.date)} onChange={changeHandler} />
+      </Modal>
+      <Button
+        onClick={() => setIsOpen(!isOpen)}
+        label={isOpen ? "Close" : "Open"}
+      />
+    </div>
+  );
+}
