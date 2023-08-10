@@ -11,10 +11,6 @@ exports[`renders a Select with many options 1`] = `
       <div
         class="inputWrapper"
       >
-        <label
-          class="label"
-          for="123e4567-e89b-12d3-a456-426655440005"
-        />
         <div
           class="childrenWrapper"
         >
@@ -68,10 +64,6 @@ exports[`renders a Select with no options 1`] = `
       <div
         class="inputWrapper"
       >
-        <label
-          class="label"
-          for="123e4567-e89b-12d3-a456-426655440001"
-        />
         <div
           class="childrenWrapper"
         >
@@ -112,10 +104,6 @@ exports[`renders a Select with one option 1`] = `
       <div
         class="inputWrapper"
       >
-        <label
-          class="label"
-          for="123e4567-e89b-12d3-a456-426655440003"
-        />
         <div
           class="childrenWrapper"
         >
@@ -160,10 +148,6 @@ exports[`renders correctly as large 1`] = `
       <div
         class="inputWrapper"
       >
-        <label
-          class="label"
-          for="123e4567-e89b-12d3-a456-426655440009"
-        />
         <div
           class="childrenWrapper"
         >
@@ -208,10 +192,6 @@ exports[`renders correctly as small 1`] = `
       <div
         class="inputWrapper"
       >
-        <label
-          class="label"
-          for="123e4567-e89b-12d3-a456-426655440007"
-        />
         <div
           class="childrenWrapper"
         >
@@ -256,10 +236,6 @@ exports[`renders correctly when disabled 1`] = `
       <div
         class="inputWrapper"
       >
-        <label
-          class="label"
-          for="123e4567-e89b-12d3-a456-426655440011"
-        />
         <div
           class="childrenWrapper"
         >
@@ -305,10 +281,6 @@ exports[`renders correctly when invalid 1`] = `
       <div
         class="inputWrapper"
       >
-        <label
-          class="label"
-          for="123e4567-e89b-12d3-a456-426655440013"
-        />
         <div
           class="childrenWrapper"
         >

@@ -11,10 +11,6 @@ exports[`FormField when small renders 1`] = `
       <div
         class="inputWrapper"
       >
-        <label
-          class="label"
-          for="123e4567-e89b-12d3-a456-426655440005"
-        />
         <div
           class="childrenWrapper"
         >
@@ -42,10 +38,6 @@ exports[`FormField with no props renders 1`] = `
       <div
         class="inputWrapper"
       >
-        <label
-          class="label"
-          for="123e4567-e89b-12d3-a456-426655440001"
-        />
         <div
           class="childrenWrapper"
         >
