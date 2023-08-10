@@ -1,6 +1,5 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { View } from "react-native";
 import { FormatFile } from "@jobber/components-native";
 
 export default {
@@ -15,9 +14,7 @@ export default {
 } as ComponentMeta<typeof FormatFile>;
 
 const BasicTemplate: ComponentStory<typeof FormatFile> = args => (
-  <View style={{ flex: 1 }}>
-    <FormatFile {...args} />
-  </View>
+  <FormatFile {...args} />
 );
 
 export const Image = BasicTemplate.bind({});
