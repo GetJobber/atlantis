@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useRef, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import classnames from "classnames";
 import ReactDatePicker from "react-datepicker";
 import { XOR } from "ts-xor";
@@ -112,7 +112,6 @@ export function DatePicker({
   const datePickerClassNames = classnames(styles.datePicker, {
     [styles.inline]: inline,
   });
-  const { pickerRef } = useEscapeKeyToCloseDatePicker(open, ref);
 
   if (smartAutofocus) {
     useRefocusOnActivator(open);
@@ -122,7 +121,6 @@ export function DatePicker({
   return (
     <div className={wrapperClassName} ref={ref}>
       <ReactDatePicker
-        ref={pickerRef}
         calendarClassName={datePickerClassNames}
         showPopperArrow={false}
         selected={selected}
@@ -166,29 +164,4 @@ export function DatePicker({
   function handleCalendarClose() {
     setOpen(false);
   }
-}
-
-function useEscapeKeyToCloseDatePicker(
-  open: boolean,
-  ref: React.RefObject<HTMLDivElement>,
-): { pickerRef: React.RefObject<ReactDatePicker> } {
-  const pickerRef = useRef<ReactDatePicker>(null);
-
-  const escFunction = (event: KeyboardEvent) => {
-    if (event.key === "Escape" && open) {
-      pickerRef.current?.setOpen(false);
-      event.stopPropagation();
-    }
-  };
-  useEffect(() => {
-    ref.current?.addEventListener("keydown", escFunction);
-
-    return () => {
-      ref.current?.removeEventListener("keydown", escFunction);
-    };
-  }, [open, ref, pickerRef]);
-
-  return {
-    pickerRef,
-  };
 }
