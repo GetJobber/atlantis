@@ -16,14 +16,14 @@ Removing `inputRef` from `Autocomplete` component. Use `ref` instead.
 Before:
 
 ```tsx
-const inputRef = React.useRef(null);
+const inputRef = useRef(null);
 <Autocomplete inputRef={inputRef} />;
 ```
 
 After:
 
 ```tsx
-const inputRef = React.useRef(null);
+const inputRef = useRef(null);
 <Autocomplete ref={inputRef} />;
 ```
 
