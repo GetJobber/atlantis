@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.24.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.24.3...@jobber/components@4.24.4) (2023-08-10)
+
+
+### Bug Fixes
+
+* **components:** Fix input group spacing issues ([#1467](https://github.com/GetJobber/atlantis/issues/1467)) ([7f5ff2f](https://github.com/GetJobber/atlantis/commit/7f5ff2f195c5a3ad8faa1b5ed1949154297b8e5c))
+* **components:** Fix snapshot tests that weren't updated. ([#1480](https://github.com/GetJobber/atlantis/issues/1480)) ([177462f](https://github.com/GetJobber/atlantis/commit/177462fcb12826b7d285ad0147e8aeecab763138))
+
+
+
+
+
 ## [4.24.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.24.2...@jobber/components@4.24.3) (2023-08-09)
 
 
