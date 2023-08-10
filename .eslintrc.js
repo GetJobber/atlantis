@@ -83,7 +83,10 @@ module.exports = {
               { element: "button", message: "Use `<Button/>` instead" },
               { element: "a", message: "Use `<AutoLink/>` instead" },
               { element: "img", message: "Use `<Image/>` instead" },
-              { element: "input", message: "Use one of our `Input` components instead" },
+              {
+                element: "input",
+                message: "Use one of our `Input` components instead",
+              },
             ],
           },
         ],
