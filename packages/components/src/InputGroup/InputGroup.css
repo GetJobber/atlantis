@@ -4,7 +4,6 @@
 
 .horizontal {
   display: flex;
-  align-items: flex-end;
 }
 
 .horizontal > *:not(:last-child) {

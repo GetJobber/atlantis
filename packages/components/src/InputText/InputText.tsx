@@ -1,9 +1,9 @@
 import React, {
   Ref,
-  createRef,
   forwardRef,
   useImperativeHandle,
   useLayoutEffect,
+  useRef,
 } from "react";
 import { XOR } from "ts-xor";
 import {
@@ -43,6 +43,7 @@ export interface InputTextRef {
   insert(text: string): void;
   blur(): void;
   focus(): void;
+  scrollIntoView(arg?: boolean | ScrollIntoViewOptions): void;
 }
 
 interface MultilineProps extends BaseProps {
@@ -66,8 +67,8 @@ function InputTextInternal(
   props: InputTextPropOptions,
   ref: Ref<InputTextRef>,
 ) {
-  const inputRef = createRef<HTMLTextAreaElement | HTMLInputElement>();
-  const actionsRef = createRef<FieldActionsRef>();
+  const inputRef = useRef<HTMLTextAreaElement | HTMLInputElement>(null);
+  const actionsRef = useRef<FieldActionsRef>(null);
 
   const rowRange = getRowRange();
 
@@ -85,6 +86,12 @@ function InputTextInternal(
       const input = inputRef.current;
       if (input) {
         input.focus();
+      }
+    },
+    scrollIntoView: arg => {
+      const input = inputRef.current;
+      if (input) {
+        input.scrollIntoView(arg);
       }
     },
   }));
