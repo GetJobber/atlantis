@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { Pressable, View } from "react-native";
 import { BannerProps } from "./types";
 import { BannerTypeStyles } from "./constants";
@@ -47,7 +47,7 @@ export function Banner({
 function BannerChildren({
   children,
 }: {
-  children?: React.ReactElement | string;
+  children?: ReactElement | ReactElement[] | string;
 }): JSX.Element {
   if (!children) return <></>;
 

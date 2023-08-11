@@ -1,4 +1,5 @@
 import { IconNames } from "@jobber/design";
+import { ReactElement } from "react";
 import { StyleProp, ViewStyle } from "react-native";
 
 export type BannerTypes = "error" | "warning" | "notice";
@@ -31,7 +32,7 @@ export interface BannerProps {
   /**
    * Custom content to be displayed in the banner
    */
-  readonly children?: React.ReactElement | string;
+  readonly children?: ReactElement | ReactElement[] | string;
 
   /**
    * **Deprecated**: Use `children` with a `<TextList level="textSupporting" />` instead
