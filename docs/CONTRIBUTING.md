@@ -97,13 +97,13 @@ requirements before we build.
 
 The documentation requirements cover the following topics:
 
-- Usage guidelines
-- Interface and Props (properties)
+- Design & usage guidelines
 - Content guidelines
+- Related components
+- Related patterns
+- Related resources
+- Platform considerations
 - Accessibility
-- Responsiveness
-- Mockups
-- Notes (additional context)
 
 To create the template for a component proposal, run the command
 `npm run generate` in the Atlantis repository. This command will provide you

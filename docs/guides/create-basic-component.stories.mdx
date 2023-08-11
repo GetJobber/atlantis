@@ -57,7 +57,7 @@ Easy peasy, right?
    own fixing for code that can be automatically fixed.
    [Jobber Wiki: Set up Typescript/Javascript linting](https://jobber.atlassian.net/wiki/spaces/JTW/pages/507740239/Set+up+Typescript+Javascript+linting)
 3. Auto-generate a new component called `AmountCounter` by running
-   `npm run plop` on a new terminal.
+   `npm run generate` on a new terminal.
 
 > Tip: React components are named in **PascalCase**
 
@@ -65,12 +65,20 @@ Once that's done, it should tell you where the files got added.
 
 ```sh
 ? Component Name: AmountCounter
+? Generate for:
+> Web
+> React native
+> Both
+
 ✔  +! 5 files added
  -> /packages/components/src/AmountCounter/index.ts
  -> /packages/components/src/AmountCounter/AmountCounter.css
  -> /packages/components/src/AmountCounter/AmountCounter.mdx
  -> /packages/components/src/AmountCounter/AmountCounter.test.tsx
  -> /packages/components/src/AmountCounter/AmountCounter.tsx
+✔  +! 2 files added
+ -> /docs/components/AmountCounter/Web.stories.tsx
+ -> /docs/components/AmountCounter/AmountCounter.stories.mdx
 ```
 
 ### What are thooooose?!
@@ -82,6 +90,7 @@ Right, I promised to explain them.
 | `index.ts`                  | This tells react what to render. Honestly, You'd rarely have to touch this.                                                                                                                                 |
 | `AmountCounter.tsx`         | This file is where you make the magic happen.                                                                                                                                                               |
 | `AmountCounter.stories.mdx` | This creates the page that you see under Components/AmountCounter. This is where you explain what the magic is doing.                                                                                       |
+| `Web.stories.tsx`           | This file is where you will add the examples of your component. You can add as many examples as you want with different props implementations.                                                              |
 | `AmountCounter.test.tsx`    | Self-explanatory.                                                                                                                                                                                           |
 | `AmountCounter.css`         | Self-explanatory.                                                                                                                                                                                           |
 | `AmountCounter.css.d.ts`    | This wasn't on the original list but it's very important. This is how react knows what class names you added and automagically serializes them so it doesn't clash with other components. More on it later. |
