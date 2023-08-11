@@ -3,7 +3,7 @@ import { Figma } from "storybook-addon-designs/blocks";
 
 # {{ titleCase name }}
 
-<Meta title="Components/Category/{{ name }}" />
+<Meta title="Components/Category/{{ name }}/Docs" />
 
 ## Design & usage guidelines
 
