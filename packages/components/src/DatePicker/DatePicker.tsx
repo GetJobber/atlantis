@@ -176,6 +176,8 @@ function useEscapeKeyToCloseDatePicker(
 
   const escFunction = (event: KeyboardEvent) => {
     if (event.key === "Escape" && open) {
+      // Close the picker ourselves and prevent propagation so that ESC presses with the picker open
+      // do not close parent elements that may also be listening for ESC presses such as Modals
       pickerRef.current?.setOpen(false);
       event.stopPropagation();
     }
