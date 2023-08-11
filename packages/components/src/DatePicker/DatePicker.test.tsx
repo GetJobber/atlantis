@@ -105,6 +105,37 @@ it("should call onMonthChange when the user switches month", async () => {
   expect(monthChangeHandler).toHaveBeenCalledWith(expect.any(Date));
 });
 
+describe("ESC key behavior", () => {
+  const handleEscape = jest.fn();
+  const handleKeyDown = (e: any) => e.key === "Escape" && handleEscape();
+  beforeEach(() => {
+    window.addEventListener("keydown", handleKeyDown);
+  });
+  afterEach(() => {
+    window.removeEventListener("keydown", handleKeyDown);
+  });
+  it("should not trigger parent ESC listener when closed with ESC key", async () => {
+    const { getByRole, queryByRole } = render(
+      <div onKeyDown={handleKeyDown}>
+        <DatePicker selected={new Date()} onChange={jest.fn()} />
+      </div>,
+    );
+    // Open the picker
+    const button = getByRole("button", { name: /open datepicker/i });
+    fireEvent.click(button);
+
+    const nextMonthButton = getByRole("button", { name: /next month/i });
+    nextMonthButton.focus();
+    // Close the picker with ESC
+    fireEvent.keyDown(nextMonthButton, { key: "Escape", code: "Escape" });
+
+    expect(
+      queryByRole("button", { name: /next month/i }),
+    ).not.toBeInTheDocument();
+    expect(handleEscape).not.toHaveBeenCalled();
+  });
+});
+
 describe("Ensure ReactDatePicker CSS class names exists", () => {
   it("should have the click outside class", async () => {
     const { getByRole } = render(<ReactDatePicker onChange={jest.fn} />);
