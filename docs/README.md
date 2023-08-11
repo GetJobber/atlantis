@@ -82,6 +82,8 @@ You should name your component in `PascalCase`.
 npm run generate
 ```
 
+You will be able to select the platform you want to create the component.
+
 #### Example
 
 ```sh
@@ -91,12 +93,20 @@ npm run generate
 > plop
 
 ? Component Name: ExampleComponent
+? Generate for:
+> Web
+> React native
+> Both
+
 ✔  +! 5 files added
  -> /packages/components/src/ExampleComponent/index.ts
  -> /packages/components/src/ExampleComponent/ExampleComponent.css
  -> /packages/components/src/ExampleComponent/ExampleComponent.stories.mdx
  -> /packages/components/src/ExampleComponent/ExampleComponent.test.tsx
  -> /packages/components/src/ExampleComponent/ExampleComponent.tsx
+✔  +! 2 files added
+ -> /docs/components/ExampleComponent/Web.stories.tsx
+ -> /docs/components/ExampleComponent/ExampleComponent.stories.mdx
 ```
 
 ## Testing
@@ -156,7 +166,8 @@ For more information on how the packages are bootstrapped, check out
 ## Contributing
 
 Everyone is a friend of Atlantis and we welcome pull requests. See the
-[contribution guidelines](https://atlantis.getjobber.com/?path=/docs/contributing--page) to learn how.
+[contribution guidelines](https://atlantis.getjobber.com/?path=/docs/contributing--page)
+to learn how.
 
 ## Publishing
 
