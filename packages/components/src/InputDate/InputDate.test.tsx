@@ -190,6 +190,7 @@ describe("when InputDate is used within a Modal", () => {
     const input = getByDisplayValue(date);
     fireEvent.click(input);
 
+    expect(getByText("15")).toBeInTheDocument();
     fireEvent.keyDown(input, { key: "Escape" });
 
     expect(getByText("Test Modal Content")).toBeInTheDocument();
