@@ -1,6 +1,9 @@
-import React from "react";
-import { act, cleanup, fireEvent, render } from "@testing-library/react";
+import React, { useState } from "react";
+import { cleanup, fireEvent, render } from "@testing-library/react";
 import { InputDate } from ".";
+import { Modal } from "../Modal";
+import { Button } from "../Button";
+import { Text } from "../Text";
 
 afterEach(cleanup);
 
@@ -21,9 +24,7 @@ it("fires onChange with the new value when you click a date", () => {
   );
   const calendarButton = getByRole("button");
 
-  act(() => {
-    fireEvent.click(calendarButton);
-  });
+  fireEvent.click(calendarButton);
 
   const selectDate = getByText("15");
   fireEvent.click(selectDate);
@@ -43,9 +44,7 @@ it("shouldn't call onChange with the new value when you click a disabled date", 
     />,
   );
   const calendarButton = getByRole("button");
-  act(() => {
-    fireEvent.click(calendarButton);
-  });
+  fireEvent.click(calendarButton);
 
   const selectDate1 = getByText("7");
   fireEvent.click(selectDate1);
@@ -136,9 +135,7 @@ it("doesn't display the calendar when input is focused with keyboard", () => {
   );
   const input = getByDisplayValue(date);
 
-  act(() => {
-    fireEvent.focus(input);
-  });
+  fireEvent.focus(input);
 
   expect(queryByText("15")).not.toBeInTheDocument();
 });
@@ -150,9 +147,7 @@ it("doesn't display the calendar when calendar button is focused with keyboard",
   );
   const calendarButton = getByRole("button");
 
-  act(() => {
-    fireEvent.focus(calendarButton);
-  });
+  fireEvent.focus(calendarButton);
 
   expect(queryByText("15")).not.toBeInTheDocument();
 });
@@ -165,9 +160,7 @@ it("displays the calendar when button is pressed", () => {
   );
   const calendarButton = getByRole("button");
 
-  act(() => {
-    fireEvent.click(calendarButton);
-  });
+  fireEvent.click(calendarButton);
 
   expect(getByText("15")).toBeInTheDocument();
 });
@@ -180,9 +173,45 @@ it("displays the calendar when input is focused with a click", () => {
   );
   const input = getByDisplayValue(date);
 
-  act(() => {
-    fireEvent.click(input);
-  });
+  fireEvent.click(input);
 
   expect(getByText("15")).toBeInTheDocument();
 });
+
+describe("when InputDate is used within a Modal", () => {
+  it("should close only the open picker when the escape key is pressed", async () => {
+    const date = "11/11/2011";
+    const { getByRole, getByText, getByDisplayValue, queryByText } = render(
+      <NestedTestComponent date={date} />,
+    );
+    const button = getByRole("button");
+    fireEvent.click(button);
+
+    const input = getByDisplayValue(date);
+    fireEvent.click(input);
+
+    expect(getByText("15")).toBeInTheDocument();
+    fireEvent.keyDown(input, { key: "Escape" });
+
+    expect(getByText("Test Modal Content")).toBeInTheDocument();
+    expect(queryByText("15")).not.toBeInTheDocument();
+  });
+});
+
+function NestedTestComponent(props: { date: string }): JSX.Element {
+  const [isOpen, setIsOpen] = useState(false);
+  const changeHandler = jest.fn();
+
+  return (
+    <div>
+      <Modal open={isOpen}>
+        <Text>Test Modal Content</Text>
+        <InputDate value={new Date(props.date)} onChange={changeHandler} />
+      </Modal>
+      <Button
+        onClick={() => setIsOpen(!isOpen)}
+        label={isOpen ? "Close" : "Open"}
+      />
+    </div>
+  );
+}
