@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.25.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.24.5...@jobber/components@4.25.0) (2023-08-11)
+
+
+### Features
+
+* **components:** Permit using children on RadioOption with label  ([#1471](https://github.com/GetJobber/atlantis/issues/1471)) ([10becd8](https://github.com/GetJobber/atlantis/commit/10becd8c65aae492fe2e1fa3766a3c93069b63d5))
+
+
+
+
+
+## [4.24.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.24.4...@jobber/components@4.24.5) (2023-08-10)
+
+
+### Bug Fixes
+
+* **components:** Prevent Open on DatePicker Focus ([#1477](https://github.com/GetJobber/atlantis/issues/1477)) ([dd6d0da](https://github.com/GetJobber/atlantis/commit/dd6d0da47874855b16690f557bf38e9889e568a3))
+
+
+
+
+
+## [4.24.4](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.24.3...@jobber/components@4.24.4) (2023-08-10)
+
+
+### Bug Fixes
+
+* **components:** Fix input group spacing issues ([#1467](https://github.com/GetJobber/atlantis/issues/1467)) ([7f5ff2f](https://github.com/GetJobber/atlantis/commit/7f5ff2f195c5a3ad8faa1b5ed1949154297b8e5c))
+* **components:** Fix snapshot tests that weren't updated. ([#1480](https://github.com/GetJobber/atlantis/issues/1480)) ([177462f](https://github.com/GetJobber/atlantis/commit/177462fcb12826b7d285ad0147e8aeecab763138))
+
+
+
+
+
+## [4.24.3](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.24.2...@jobber/components@4.24.3) (2023-08-09)
+
+
+### Bug Fixes
+
+* **components:** Only render the label element if a placeholder value has been provided ([#1475](https://github.com/GetJobber/atlantis/issues/1475)) ([1d6e97c](https://github.com/GetJobber/atlantis/commit/1d6e97c4381889424672b23973a485d9020b3290))
+
+
+
+
+
 ## [4.24.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.24.1...@jobber/components@4.24.2) (2023-08-08)
 
 

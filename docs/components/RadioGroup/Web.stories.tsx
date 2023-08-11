@@ -4,8 +4,8 @@ import { RadioGroup, RadioOption } from "@jobber/components/RadioGroup";
 import { Content } from "@jobber/components/Content";
 import { Divider } from "@jobber/components/Divider";
 import { Checkbox } from "@jobber/components/Checkbox";
-import { Avatar } from "@jobber/components/Avatar";
-import { Text } from "@jobber/components/Text";
+import { Chip, Chips } from "@jobber/components/Chips";
+import { InputNumber } from "@jobber/components/InputNumber";
 
 export default {
   title: "Components/Forms and Inputs/RadioGroup/Web",
@@ -18,6 +18,7 @@ export default {
         hidden: false,
         extraImports: {
           "@jobber/components/RadioGroup": ["RadioGroup", "RadioOption"],
+          "@jobber/components/Chips": ["Chips", "Chip"],
         },
       },
     },
@@ -94,34 +95,57 @@ const DescriptionTemplate: ComponentStory<typeof RadioGroup> = args => {
   );
 };
 
-const RadioOptionWithChildrenTemplate: ComponentStory<
+const CustomRadioOptionContentTemplate: ComponentStory<
   typeof RadioGroup
-> = () => {
-  const [company, setPhoto] = useState("JBR");
-  const users = [
-    { name: "Jobber", initials: "JBR" },
-    { name: "User 1", initials: "U1" },
-    { name: "User 2", initials: "U2" },
-    { name: "User 3", initials: "U3" },
-    { name: "User 4", initials: "U4" },
-  ];
+> = args => {
+  const [reminderSetting, setReminderSetting] = useState("fixed");
+  const [fixedTimeSetting, setFixedTimeSetting] = useState("MINUTES_30");
+
   return (
-    <>
-      <Content>
-        <Text>Select a user</Text>
-        <RadioGroup
-          onChange={(value: string) => setPhoto(value)}
-          value={company}
-          ariaLabel="Users"
+    <RadioGroup
+      {...args}
+      onChange={(value: string) => setReminderSetting(value)}
+      value={reminderSetting}
+    >
+      <RadioOption
+        value={"fixed"}
+        label="Fixed Time"
+        description="Select from the 15 mins interval"
+      >
+        <Chips
+          onChange={setting => setFixedTimeSetting(setting ?? "MINUTES_30")}
+          selected={fixedTimeSetting}
         >
-          {users.map(user => (
-            <RadioOption value={user.name} key={user.name}>
-              <Avatar initials={user.initials} name={user.name} />
-            </RadioOption>
-          ))}
-        </RadioGroup>
-      </Content>
-    </>
+          <Chip label="15 min" value="MINUTES_15" />
+          <Chip label="30 min" value="MINUTES_30" />
+          <Chip label="45 min" value="MINUTES_45" />
+          <Chip label="60 min" value="MINUTES_60" />
+        </Chips>
+      </RadioOption>
+      <RadioOption
+        value={"specific"}
+        label="Specific Time"
+        description="Set your reminder down to the seconds"
+      >
+        Remind me at{" "}
+        <InputNumber
+          size="small"
+          suffix={{ label: "mins" }}
+          defaultValue={"42"}
+          maxLength={5}
+          inline
+        />{" "}
+        and{" "}
+        <InputNumber
+          size="small"
+          suffix={{ label: "sec" }}
+          defaultValue={"3"}
+          maxLength={5}
+          inline
+        />{" "}
+        interval
+      </RadioOption>
+    </RadioGroup>
   );
 };
 
@@ -131,4 +155,10 @@ export const Description = DescriptionTemplate.bind({});
 
 export const Disabled = DisabledTemplate.bind({});
 
-export const RadioOptionWithChildren = RadioOptionWithChildrenTemplate.bind({});
+export const CustomRadioOptionContent = CustomRadioOptionContentTemplate.bind(
+  {},
+);
+
+CustomRadioOptionContent.args = {
+  ariaLabel: "Reminder Settings",
+};

@@ -20,11 +20,14 @@ export default {
     },
   },
   decorators: [
-    Story => (
-      <div style={{ height: "90vh" }}>
-        <Story />
-      </div>
-    ),
+    Story => {
+      return (
+        // eslint-disable-next-line react/forbid-elements -- This is a storybook decorator so it doesn't affect react-native stuff
+        <div style={{ height: "90vh" }}>
+          <Story />
+        </div>
+      );
+    },
   ],
 } as ComponentMeta<ToastElement>;
 

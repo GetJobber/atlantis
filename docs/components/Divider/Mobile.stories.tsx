@@ -1,5 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { View } from "react-native";
 import { Content } from "@jobber/components/Content";
 import { Divider } from "@jobber/components-native";
 
@@ -14,16 +15,16 @@ export default {
 } as ComponentMeta<typeof Divider>;
 
 const BasicTemplate: ComponentStory<typeof Divider> = args => (
-  <div
+  <View
     style={{
-      display: "grid",
-      gap: "var(--space-base)",
+      display: "flex",
+      gap: 16,
     }}
   >
     <Content>Some amazing content</Content>
     <Divider {...args} />
     <Content>Even more amazing content</Content>
-  </div>
+  </View>
 );
 
 export const Basic = BasicTemplate.bind({});
