@@ -7,7 +7,7 @@ import { Figma } from "storybook-addon-designs/blocks";
 
 ## Design & usage guidelines
 
-The `{{name}}` will... _Add a brief description of the design and usage of the component_
+The {{name}} will... _Add a brief description of the design and usage of the component_
 
 <!--
   What is the design purpose of this component? How do its responsibilities
