@@ -39,7 +39,7 @@
     "framer-motion": "6.3.16",
     "lodash": "^4.17.21",
     "react-countdown": "^2.3.2",
-    "react-datepicker": "^4.10.0",
+    "react-datepicker": "~4.10.0",
     "react-dropzone": "^11.0.2",
     "react-hook-form": "^7.43.7",
     "react-markdown": "^8.0.3",
