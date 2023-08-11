@@ -83,6 +83,7 @@ module.exports = function (plop, config) {
             base: "templates/docs",
             templateFiles: `templates/docs/!(Web)*`,
           },
+          mobileReminder,
         );
       } else {
         actions.push(
@@ -104,6 +105,7 @@ module.exports = function (plop, config) {
             base: "templates/docs",
             templateFiles: `templates/docs/${templateGlob}`,
           },
+          mobileReminder,
         );
       }
 
@@ -111,3 +113,7 @@ module.exports = function (plop, config) {
     },
   });
 };
+
+function mobileReminder() {
+  return "🎉 Mobile Component created!. Remember to add the new component's export to packages/components-native/src/index.ts";
+}
