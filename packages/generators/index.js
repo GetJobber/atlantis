@@ -55,53 +55,55 @@ module.exports = function (plop, config) {
       const actions = [];
 
       if (answers.type === "web") {
-        actions.push({
-          type: "addMany",
-          destination: `{{path}}/{{name}}/`,
-          base: "templates/component",
-          templateFiles: `templates/component/${templateGlob}`,
-        });
-        actions.push({
-          type: "addMany",
-          destination: `docs/components/{{name}}/`,
-          base: "templates/docs",
-          templateFiles: `templates/docs/!(Mobile)*`,
-        });
+        actions.push(
+          {
+            type: "addMany",
+            destination: `{{path}}/{{name}}/`,
+            base: "templates/component",
+            templateFiles: `templates/component/${templateGlob}`,
+          },
+          {
+            type: "addMany",
+            destination: `docs/components/{{name}}/`,
+            base: "templates/docs",
+            templateFiles: `templates/docs/!(Mobile)*`,
+          },
+        );
       } else if (answers.type === "native") {
-        actions.push({
-          type: "addMany",
-          destination: `packages/components-native/src/{{name}}/`,
-          base: "templates/component-native",
-          templateFiles: `templates/component-native/${templateGlob}`,
-        });
-        actions.push({
-          type: "addMany",
-          destination: `docs/components/{{name}}/`,
-          base: "templates/docs",
-          templateFiles: `templates/docs/!(Web)*`,
-        });
+        actions.push(
+          {
+            type: "addMany",
+            destination: `packages/components-native/src/{{name}}/`,
+            base: "templates/component-native",
+            templateFiles: `templates/component-native/${templateGlob}`,
+          },
+          {
+            type: "addMany",
+            destination: `docs/components/{{name}}/`,
+            base: "templates/docs",
+            templateFiles: `templates/docs/!(Web)*`,
+          },
+        );
       } else {
         actions.push(
-          ...[
-            {
-              type: "addMany",
-              destination: `{{path}}/{{name}}/`,
-              base: "templates/component",
-              templateFiles: `templates/component/${templateGlob}`,
-            },
-            {
-              type: "addMany",
-              destination: `packages/components-native/src/{{name}}/`,
-              base: "templates/component-native",
-              templateFiles: `templates/component-native/${templateGlob}`,
-            },
-            {
-              type: "addMany",
-              destination: `docs/components/{{name}}/`,
-              base: "templates/docs",
-              templateFiles: `templates/docs/${templateGlob}`,
-            },
-          ],
+          {
+            type: "addMany",
+            destination: `{{path}}/{{name}}/`,
+            base: "templates/component",
+            templateFiles: `templates/component/${templateGlob}`,
+          },
+          {
+            type: "addMany",
+            destination: `packages/components-native/src/{{name}}/`,
+            base: "templates/component-native",
+            templateFiles: `templates/component-native/${templateGlob}`,
+          },
+          {
+            type: "addMany",
+            destination: `docs/components/{{name}}/`,
+            base: "templates/docs",
+            templateFiles: `templates/docs/${templateGlob}`,
+          },
         );
       }
 
