@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.25.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.25.0...@jobber/components@4.25.1) (2023-08-11)
+
+
+### Bug Fixes
+
+* **components:** Prevent Closing Parent on DatePicker ESC ([#1481](https://github.com/GetJobber/atlantis/issues/1481)) ([d62e30b](https://github.com/GetJobber/atlantis/commit/d62e30bd083f63cef49dc1f7bfda42dd739887ad))
+
+
+
+
+
 # [4.25.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.24.5...@jobber/components@4.25.0) (2023-08-11)
 
 
