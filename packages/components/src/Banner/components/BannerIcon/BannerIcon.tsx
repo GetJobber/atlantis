@@ -7,5 +7,5 @@ export interface BannerIconProps {
 }
 
 export function BannerIcon({ icon }: BannerIconProps): JSX.Element {
-  return <Icon name={icon} customColor={"greyBlue"} />;
+  return <Icon name={icon} color={"greyBlueDark"} />;
 }
