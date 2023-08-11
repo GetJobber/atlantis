@@ -1,9 +1,10 @@
 import React, { ReactNode, useState } from "react";
 import classnames from "classnames";
-import { IconColorNames } from "@jobber/design";
+import { IconColorNames, IconNames } from "@jobber/design";
 import { useResizeObserver } from "@jobber/hooks/useResizeObserver";
 import styles from "./Banner.css";
 import types from "./notificationTypes.css";
+import { BannerIcon } from "./components/BannerIcon";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
 import { Button, ButtonProps } from "../Button";
@@ -18,10 +19,16 @@ interface BannerProps {
    * 'type' is set to 'notice' we change the cta variation to 'learning'
    */
   readonly primaryAction?: ButtonProps;
+
   /**
    * @default true
    */
   readonly dismissible?: boolean;
+
+  /**
+   * Adds an icon to the left of the banner content
+   */
+  readonly icon?: IconNames;
   onDismiss?(): void;
 }
 
@@ -34,6 +41,7 @@ export function Banner({
   type,
   primaryAction,
   dismissible = true,
+  icon,
   onDismiss,
 }: BannerProps) {
   const [showBanner, setShowBanner] = useState(true);
@@ -79,6 +87,7 @@ export function Banner({
           role={type === "error" ? "alert" : "status"}
         >
           <div className={styles.bannerContent}>
+            {icon && <BannerIcon icon={icon} />}
             <div className={styles.bannerChildren}>
               <BannerChildren>{children}</BannerChildren>
             </div>

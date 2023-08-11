@@ -14,12 +14,8 @@ export default {
 const BasicTemplate: ComponentStory<typeof Banner> = args => (
   <Banner {...args}>Your splines are being reticulated</Banner>
 );
-export const Basic = BasicTemplate.bind({});
-Basic.args = {
-  type: "notice",
-};
 
-const ActionsTemplate: ComponentStory<typeof Banner> = () => (
+const ActionsTemplate: ComponentStory<typeof Banner> = args => (
   <>
     <Banner
       type="notice"
@@ -32,17 +28,17 @@ const ActionsTemplate: ComponentStory<typeof Banner> = () => (
       Your trial has been extended!
     </Banner>
     <Banner
-      type="error"
+      {...args}
       primaryAction={{
         label: "Refresh",
         onClick: () => alert("Refreshing"),
       }}
+      icon="offline"
     >
       Network is unavailable. Please check your internet connection.
     </Banner>
   </>
 );
-export const ActionsInBanners = ActionsTemplate.bind({});
 
 const SuccessTemplate: ComponentStory<typeof Banner> = args => (
   <Banner
@@ -55,6 +51,17 @@ const SuccessTemplate: ComponentStory<typeof Banner> = args => (
     Your client import is complete
   </Banner>
 );
+
+export const Basic = BasicTemplate.bind({});
+Basic.args = {
+  type: "notice",
+};
+
+export const ActionsInBanners = ActionsTemplate.bind({});
+ActionsInBanners.args = {
+  type: "error",
+};
+
 export const Success = SuccessTemplate.bind({});
 Success.args = {
   type: "success",

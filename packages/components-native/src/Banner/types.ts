@@ -1,4 +1,5 @@
-import { ReactNode } from "react";
+import { IconNames } from "@jobber/design";
+import { ReactElement } from "react";
 import { StyleProp, ViewStyle } from "react-native";
 
 export type BannerTypes = "error" | "warning" | "notice";
@@ -29,22 +30,29 @@ export interface BannerProps {
   readonly action?: ActionProps;
 
   /**
-   *  Optional custom content that can be displayed below the text and details
+   * Custom content to be displayed in the banner
    */
-  readonly children?: ReactNode;
+  readonly children?: ReactElement | ReactElement[] | string;
 
   /**
-   * Text to display below the 'text' prop. Will display a single message or bullet points of messages if multiple are provided
+   * **Deprecated**: Use `children` with a `<TextList level="textSupporting" />` instead
+   * @deprecated
    */
   readonly details?: string[];
 
   /**
-   * The primary text to display in the banner
+   * **Deprecated**: Use either `children` with a `<Text level="textSupporting" />` or a `string` instead
+   * @deprecated
    */
-  readonly text: string;
+  readonly text?: string;
 
   /**
    * The primary theme of the banner, controls the things like the background color
    */
   readonly type: BannerTypes;
+
+  /**
+   * Adds an icon to the left of the banner content
+   */
+  readonly icon?: IconNames;
 }

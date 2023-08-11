@@ -7,6 +7,55 @@ import { Meta } from "@storybook/addon-docs";
 
 # Upcoming Breaking Changes
 
+## `@jobber/components-native@1.x.x`
+
+### Banner
+
+Deprecating `text` and `details` props in favor of `children`. This aligns
+implementation with the web version of the Banner component.
+
+**Note:** This change to Banner is only available in the
+`@jobber/components-native` package and you will need to update imports if
+currently using `atlantis/Banner`.
+
+Before:
+
+```tsx
+import { Banner } from "atlantis/Banner";
+
+<Banner
+  type="error"
+  text="There was an error submitting your form"
+  details={[
+    "This client already exists",
+    "This phone number doesn't receive SMS",
+  ]}
+/>;
+```
+
+```tsx
+<Banner type="notice" text="Your import is in progress" />
+```
+
+After:
+
+```tsx
+import { Banner } from "@jobber/components-native";
+
+const listItems = [
+  "This client already exists",
+  "This phone number doesn't receive SMS",
+];
+<Banner type="error">
+  <Text level="textSupporting">There was an error submitting your form:</Text>
+  <TextList level="textSupporting" items={listItems} />
+</Banner>;
+```
+
+```tsx
+<Banner type="notice">Your import is in progress</Banner>
+```
+
 ## `@jobber/components@5.x.x`
 
 ### Autocomplete

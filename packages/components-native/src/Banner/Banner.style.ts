@@ -14,4 +14,20 @@ export const styles = StyleSheet.create({
   notice: {
     backgroundColor: tokens["color-informative--surface"],
   },
+  bannerContent: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+  },
+  contentContainer: {
+    flex: 1,
+  },
+  childrenContainer: {
+    marginTop: tokens["space-smallest"],
+  },
+  textContainer: {
+    marginTop: tokens["space-minuscule"],
+  },
+  bannerIcon: {
+    paddingRight: tokens["space-small"],
+  },
 });

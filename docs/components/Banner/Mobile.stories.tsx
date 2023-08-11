@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { Banner } from "@jobber/components-native";
+import { Banner, Text, TextList } from "@jobber/components-native";
 
 export default {
   title: "Components/Status and Feedback/Banner/Mobile",
@@ -13,50 +13,51 @@ export default {
 } as ComponentMeta<typeof Banner>;
 
 const BasicTemplate: ComponentStory<typeof Banner> = args => (
-  <>
-    <Banner
-      type="warning"
-      text="Changing line items will remove approval on this quote"
-      {...args}
-    ></Banner>
-  </>
+  <Banner {...args}>Your import is in progress</Banner>
 );
+
+const ActionsTemplate: ComponentStory<typeof Banner> = args => (
+  <Banner {...args}>Your trial has been extended!</Banner>
+);
+
+const ErrorTemplate: ComponentStory<typeof Banner> = args => (
+  <Banner {...args}>Currently offline. Functionality is limited.</Banner>
+);
+
+const ErrorDetailsTemplate: ComponentStory<typeof Banner> = args => {
+  const listItems = [
+    "This client already exists",
+    "This phone number doesn't receive SMS",
+  ];
+  return (
+    <Banner {...args}>
+      <Text level="textSupporting">
+        There was an error submitting your form:
+      </Text>
+      <TextList level="textSupporting" items={listItems} />
+    </Banner>
+  );
+};
+
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
   type: "notice",
-  text: "Your import is in progress",
 };
 
-const ActionsTemplate: ComponentStory<typeof Banner> = () => (
-  <Banner
-    type="notice"
-    action={{
-      label: "View Plans",
-      onPress: () => alert("Plans"),
-    }}
-    text="Your trial has been extended!"
-  ></Banner>
-);
 export const ActionsInBanners = ActionsTemplate.bind({});
+ActionsInBanners.args = {
+  type: "notice",
+  action: { label: "View Plans", onPress: () => alert("Plans") },
+};
 
-const ErrorTemplate: ComponentStory<typeof Banner> = args => (
-  <Banner {...args}></Banner>
-);
 export const Error = ErrorTemplate.bind({});
 Error.args = {
   type: "error",
-  text: "Something has gone wrong. Please retry in a few minutes.",
+  icon: "offline",
 };
 
-const FormErrorsTemplate: ComponentStory<typeof Banner> = args => (
-  <Banner {...args}></Banner>
-);
-export const FormErrors = FormErrorsTemplate.bind({});
-FormErrors.args = {
+export const ErrorDetails = ErrorDetailsTemplate.bind({});
+ErrorDetails.args = {
   type: "error",
-  text: "There was an error submitting your form",
-  details: [
-    "This client already exists",
-    "This phone number doesn't receive SMS",
-  ],
+  icon: "alert",
 };

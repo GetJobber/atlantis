@@ -7,7 +7,7 @@ import { Banner } from "@jobber/components/Banner";
 
 Banners provide information about important changes, persistent conditions, and
 system errors. They're positioned at the top of the screen or near the content
-they reference, and are persistent until dismissed or the issue is resolved.
+they reference and are persistent until dismissed or the issue is resolved.
 
 ## Design & usage guidelines
 
@@ -16,21 +16,22 @@ they reference, and are persistent until dismissed or the issue is resolved.
 Banner should align to the left and right of the content it is related to.
 
 When using a Banner within a modal or a page layout, this means Banner should
-align to the text, inputs or other UI elements beneath it. For best results, use
+align with the text, inputs or other UI elements beneath it. For best results,
+use
 [Content](../?path=/docs/components-layouts-and-structure-content-docs--page) to
 ensure consistent vertical spacing between Banner and adjacent elements.
 
 #### "Global" Banner (web)
 
-If the Banner is being used as a system-wide message or some other context in
-which it is outside of the main application layout, it should take up the full
-available width.
+If the Banner is being used as a system-wide message or some other context which
+is outside of the main application layout, it should take up the full available
+width.
 
 #### "Global" Banner (mobile)
 
-When the message from a `Banner` is applicable to the entire view, it should be
-positioned directly beneath the Navigation Header and flush to the edges of the
-screen.
+When the message from a Banner is applicable to the entire view, it should be
+positioned directly beneath the Navigation Header and flush with the edges of
+the screen.
 
 ### Types of Banner
 
@@ -53,7 +54,7 @@ Success banners are appropriate when:
 
 <ul>
   <li>success feedback had a call to action</li>
-  <li>success feeback is delayed</li>
+  <li>success feedback is delayed</li>
 </ul>
 
 Otherwise, use
@@ -81,7 +82,7 @@ Use notice banners to provide information about:
 </ul>
 
 Notices should get to the point and inform the user about why the functionality
-or change is important if context is not provided elsewhere.
+or change is important if the context is not provided elsewhere.
 
 ### Warning message
 
@@ -98,10 +99,9 @@ Use warning banners when:
   <li>additional action has to be taken by the user</li>
 </ul>
 
-Warning messages should be one to two short sentences which clearly describe the
-possibly unknown impact a user’s changes or actions will have. They should not
-begin with "Warning:" and should not be used as a way to block or redirect a
-workflow.
+Warning messages should be one to two short sentences that describe the possibly
+unknown impact a user’s changes or actions will have. They should not begin with
+"Warning:" and should not be used as a way to block or redirect a workflow.
 
 On web, you should use
 [ConfirmationModal](../?path=/docs/components-overlays-confirmationmodal-docs--page)
@@ -111,7 +111,7 @@ action that is difficult to reverse.
 ### Error message
 
 <Canvas>
-  <Banner type="error">
+  <Banner type="error" icon="alert">
     Something went wrong. Please try again in a few minutes.
   </Banner>
 </Canvas>
@@ -130,6 +130,9 @@ manner.
 System errors should avoid technical or intimidating language, and provide ways
 to resolve or troubleshoot the issue if possible.
 
+Using an `icon` prop is optional, but can be used to provide additional visual
+context to the user.
+
 #### Errors in forms (web)
 
 If an error is directly related to an input, don't use a banner. Use the
@@ -141,11 +144,9 @@ Scroll to the first affected field on submission.
 ##### Errors in forms (mobile)
 
 In forms, use the error Banner when the response from submitting the form has
-returned errors. The `details` prop can be used to list all individual errors.
-
-See
-[Form Errors](../?path=/story/components-status-and-feedback-banner-mobile--form-errors)
-for an example.
+returned errors. See
+[Error Details](../?path=/story/components-status-and-feedback-banner-mobile--error-details)
+as an example.
 
 In conjunction, each impacted input should display its own inline error
 messaging to aid in "recognition over recall" as the user scrolls down through
@@ -193,7 +194,7 @@ for an example.
 
 ## Related components
 
-- To provide low priority, temporary feedback on the outcome of a user action,
+- To provide low-priority, temporary feedback on the outcome of a user action,
   use [Toast](../?path=/docs/components-status-and-feedback-toast-docs--page)
   instead.
 - Use
