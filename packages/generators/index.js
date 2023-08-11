@@ -53,6 +53,7 @@ module.exports = function (plop, config) {
     actions: answers => {
       Object.assign(answers, { mdx: "mdx", tsx: "tsx" });
       const actions = [];
+
       if (answers.type === "web") {
         actions.push({
           type: "addMany",
@@ -64,7 +65,7 @@ module.exports = function (plop, config) {
           type: "addMany",
           destination: `docs/components/{{name}}/`,
           base: "templates/docs",
-          templateFiles: `templates/docs/!Mobile*`,
+          templateFiles: `templates/docs/!(Mobile)*`,
         });
       } else if (answers.type === "native") {
         actions.push({
@@ -77,7 +78,7 @@ module.exports = function (plop, config) {
           type: "addMany",
           destination: `docs/components/{{name}}/`,
           base: "templates/docs",
-          templateFiles: `templates/docs/!Web*`,
+          templateFiles: `templates/docs/!(Web)*`,
         });
       } else {
         actions.push(
@@ -90,7 +91,7 @@ module.exports = function (plop, config) {
             },
             {
               type: "addMany",
-              destination: `packages/components/src/{{name}}/`,
+              destination: `packages/components-native/src/{{name}}/`,
               base: "templates/component-native",
               templateFiles: `templates/component-native/${templateGlob}`,
             },
@@ -108,59 +109,3 @@ module.exports = function (plop, config) {
     },
   });
 };
-
-// actions: [
-//       /**
-//        * Gatsby is insisting on at least opening every file ending in `.mdx`.
-//        * This allows us to name the template file {{name}}.{{mdx}} and have
-//        * plop rename it to Component.mdx when it runs.
-//        *
-//        * https://plopjs.com/documentation/#addmany
-//        */
-//       answers => Object.assign(answers, { mdx: "mdx", tsx: "tsx" }),
-//       answers => {
-//         const actions = [];
-//         if (answers.type === "web") {
-//           console.log("alo??");
-//           actions.push({
-//             type: "addMany",
-//             destination: `{{path}}/{{name}}/`,
-//             base: "templates/component",
-//             templateFiles: `templates/component/${templateGlob}`,
-//           });
-//         } else if (answers.type === "native") {
-//           actions.push({
-//             type: "addMany",
-//             destination: `packages/components/src/{{name}}/`,
-//             base: "templates/component-native",
-//             templateFiles: `templates/component-native/${templateGlob}`,
-//           });
-//         } else {
-//           actions.push(
-//             ...[
-//               {
-//                 type: "addMany",
-//                 destination: `{{path}}/{{name}}/`,
-//                 base: "templates/component",
-//                 templateFiles: `templates/component/${templateGlob}`,
-//               },
-//               {
-//                 type: "addMany",
-//                 destination: `packages/components/src/{{name}}/`,
-//                 base: "templates/component-native",
-//                 templateFiles: `templates/component-native/${templateGlob}`,
-//               },
-//             ],
-//           );
-//         }
-
-//         actions.push({
-//           type: "addMany",
-//           destination: `docs/components/{{name}}/`,
-//           base: "templates/docs",
-//           templateFiles: `templates/docs/${templateGlob}`,
-//         });
-
-//         return actions;
-//       },
-//     ],
