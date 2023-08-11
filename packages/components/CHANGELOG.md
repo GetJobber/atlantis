@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.25.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.24.5...@jobber/components@4.25.0) (2023-08-11)
+
+
+### Features
+
+* **components:** Permit using children on RadioOption with label  ([#1471](https://github.com/GetJobber/atlantis/issues/1471)) ([10becd8](https://github.com/GetJobber/atlantis/commit/10becd8c65aae492fe2e1fa3766a3c93069b63d5))
+
+
+
+
+
 ## [4.24.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.24.4...@jobber/components@4.24.5) (2023-08-10)
 
 
