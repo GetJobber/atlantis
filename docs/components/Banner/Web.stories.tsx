@@ -1,5 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Emphasis } from "@jobber/components/Emphasis";
 import { Banner } from "@jobber/components/Banner";
 
 export default {
@@ -20,12 +21,19 @@ const ActionsTemplate: ComponentStory<typeof Banner> = args => (
     <Banner
       type="notice"
       primaryAction={{
-        label: "View Plans",
+        type: "primary",
+        label: "Approve Request",
+        onClick: () => alert("Plans"),
+      }}
+      secondaryAction={{
+        type: "secondary",
+        label: "Deny",
         onClick: () => alert("Plans"),
       }}
       dismissible={false}
     >
-      Your trial has been extended!
+      <Emphasis variation="bold">Test User (test@user.com)</Emphasis>
+      has requested to join your team.
     </Banner>
     <Banner
       {...args}

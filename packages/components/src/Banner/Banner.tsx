@@ -19,6 +19,7 @@ interface BannerProps {
    * 'type' is set to 'notice' we change the cta variation to 'learning'
    */
   readonly primaryAction?: ButtonProps;
+  readonly secondaryAction?: ButtonProps;
 
   /**
    * @default true
@@ -40,6 +41,7 @@ export function Banner({
   children,
   type,
   primaryAction,
+  secondaryAction,
   dismissible = true,
   icon,
   onDismiss,
@@ -74,6 +76,17 @@ export function Banner({
     );
   }
 
+  if (secondaryAction != undefined) {
+    secondaryAction = Object.assign(
+      {
+        size: "small",
+        type: "tertiary",
+        variation: type === "notice" ? "learning" : "work",
+      },
+      secondaryAction,
+    );
+  }
+
   const bannerClassNames = classnames(styles.banner, types[type], {
     [styles.medium]: bannerWidth >= bannerWidths.medium,
   });
@@ -94,6 +107,11 @@ export function Banner({
             {primaryAction && (
               <div className={styles.bannerAction}>
                 <Button {...primaryAction} />
+              </div>
+            )}
+            {secondaryAction && (
+              <div className={styles.bannerAction}>
+                <Button {...secondaryAction} />
               </div>
             )}
           </div>
