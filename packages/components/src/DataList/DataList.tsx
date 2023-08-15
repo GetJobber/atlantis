@@ -1,33 +1,78 @@
 import React, { isValidElement, useState } from "react";
 import styles from "./DataList.css";
 import { EmptyState, EmptyStateProps } from "./components/EmptyState";
+import { DataListLayout, DataListLayoutProps } from "./components";
+import {
+  DataListItemType,
+  DataListObject,
+  DataListProps,
+} from "./DataList.types";
+import { getCompoundComponent } from "./DataList.utils";
+import { Text } from "../Text";
+import { FormatDate } from "../FormatDate";
+import { InlineLabel } from "../InlineLabel";
 
-export interface DataListProps {
-  /**
-   * Tell the DataList if the data loading
-   * @default false
-   */
-  loading?: boolean;
-  items: any[];
-
-  /**
-   * Temporary prop for setting default state for if filters are applied
-   * @default false
-   */
-  filterApplied?: boolean;
-
-  children?: React.ReactElement | React.ReactElement[];
-}
 export const EMPTY_FILTER_RESULTS_MESSAGE = "No Results for Selected Filters";
 export const EMPTY_FILTER_RESULTS_ACTION_LABEL = "Clear Filters";
 
-export function DataList({
+export function DataList<T extends DataListObject>({
+  data,
   loading = false,
-  items,
   filterApplied = false,
   children,
-}: DataListProps) {
-  const showEmptyState = !loading && items?.length === 0;
+}: DataListProps<T>) {
+  const layout = getCompoundComponent<DataListLayoutProps<T>>(
+    children,
+    DataListLayout,
+  )?.props.children;
+
+  const elementData = data.map(item => {
+    const keys = Object.keys(item);
+    return keys.reduce((acc, key) => {
+      const currentItem = item[key];
+
+      if (!currentItem) {
+        return acc;
+      }
+
+      if (key === "tags" && Array.isArray(currentItem)) {
+        return {
+          ...acc,
+          [key]: currentItem.map((tag, index) => (
+            <InlineLabel key={index}>{tag}</InlineLabel>
+          )),
+        };
+      }
+
+      if (key === "label" && typeof currentItem === "string") {
+        return {
+          ...acc,
+          [key]: <Text>{currentItem}</Text>,
+        };
+      }
+
+      if (isValidElement(currentItem)) {
+        return { ...acc, [key]: currentItem };
+      }
+
+      if (currentItem instanceof Date) {
+        return {
+          ...acc,
+          [key]: (
+            <Text variation="subdued">
+              <FormatDate date={currentItem} />
+            </Text>
+          ),
+        };
+      }
+
+      return { ...acc, [key]: <Text variation="subdued">{currentItem}</Text> };
+    }, {} as DataListItemType<typeof data>);
+  });
+
+  console.log(elementData);
+
+  const showEmptyState = !loading && data?.length === 0;
   const [isFilterApplied, setIsFilterApplied] = useState(filterApplied);
   const EmptyStateComponent = useDataListEmptyState({
     children,
@@ -40,11 +85,13 @@ export function DataList({
       {/* List title and counter */}
       {/* List header */}
       {/* List content */}
+      {elementData.map(child => layout?.(child))}
       {showEmptyState && EmptyStateComponent}
     </div>
   );
 }
 
+DataList.Layout = DataListLayout;
 DataList.EmptyState = EmptyState;
 
 function useDataListEmptyState({
@@ -87,6 +134,7 @@ function useDataListEmptyState({
     }
   }
 }
+
 function getEmptyStateChild(
   child: React.ReactNode | React.ReactNode[],
 ): child is React.ReactElement<EmptyStateProps> {
