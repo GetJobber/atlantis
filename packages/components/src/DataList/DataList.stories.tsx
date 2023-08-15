@@ -12,25 +12,23 @@ export default {
     viewMode: "story",
   },
   // Comment this out to make it show up in storybook
-  excludeStories: ["Basic"],
   decorators: [
     // Detach from Storybook's layout
     Story => (
-      <div
-        style={{
-          position: "fixed",
-          inset: 0,
-          overflow: "auto",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
+      <div>
         <Story />
       </div>
     ),
   ],
 } as ComponentMeta<typeof DataList>;
 
-const Template: ComponentStory<typeof DataList> = () => <DataList />;
+const Template: ComponentStory<typeof DataList> = args => (
+  <DataList {...args} />
+);
 
 export const Basic = Template.bind({});
+Basic.args = {
+  title: "All Clients",
+  items: ["Leonardo", "Donatello", "Raphael"],
+  loading: false,
+};
