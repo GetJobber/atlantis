@@ -40,7 +40,7 @@ const EmptyStateTemplate: ComponentStory<typeof DataList> = args => (
   <DataList {...args}>
     <DataList.EmptyState
       message="This is empty"
-      recommendedAction={{
+      action={{
         label: "Do a thing",
         onClick: () => alert("A thing has been done"),
       }}
