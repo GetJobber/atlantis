@@ -19,44 +19,22 @@ export function DataList({
 }: DataListInterface) {
   return (
     <div className={styles.wrapper}>
-      {title && (
-        <DataListTitle
-          title={title}
-          showCount={showCount}
-          totalCount={totalCount}
-          loading={loading}
-        />
-      )}
+      <div className={styles.titleContainer}>
+        {title && <Heading level={3}>{title}</Heading>}
+        {showCount && (
+          <div className={styles.results}>
+            {loading ? (
+              <Glimmer size="auto" shape="rectangle" />
+            ) : (
+              <Text>({totalCount} results)</Text>
+            )}
+          </div>
+        )}
+      </div>
+
       {/* List header */}
       {/* List content */}
       {/* List empty state */}
-    </div>
-  );
-}
-
-function DataListTitle({
-  title,
-  showCount,
-  totalCount,
-  loading,
-}: {
-  title?: string;
-  showCount?: boolean;
-  totalCount?: number;
-  loading: boolean;
-}) {
-  return (
-    <div className={styles.titleContainer}>
-      <Heading level={3}>{title}</Heading>
-      {showCount && (
-        <div className={styles.results}>
-          {loading ? (
-            <Glimmer size="auto" shape="rectangle" />
-          ) : (
-            <Text>({totalCount} results)</Text>
-          )}
-        </div>
-      )}
     </div>
   );
 }
