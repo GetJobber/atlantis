@@ -10,17 +10,9 @@ describe("DataList", () => {
     expect(screen.getByText("All Clients")).toBeInTheDocument();
   });
 
-  it("should render the total count if the title and showCount prop is provided", () => {
-    render(
-      <DataList
-        loading={false}
-        title="All Clients"
-        showCount={true}
-        totalCount={10}
-      />,
-    );
+  it("should render the total count if showCount prop is provided", () => {
+    render(<DataList loading={false} showCount={true} totalCount={10} />);
 
-    expect(screen.getByText("All Clients")).toBeInTheDocument();
     expect(screen.getByText("(10 results)")).toBeInTheDocument();
   });
 
