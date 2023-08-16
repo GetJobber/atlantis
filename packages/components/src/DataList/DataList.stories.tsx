@@ -29,6 +29,7 @@ const Template: ComponentStory<typeof DataList> = args => (
 export const Basic = Template.bind({});
 Basic.args = {
   title: "All Clients",
-  items: ["Leonardo", "Donatello", "Raphael"],
   loading: false,
+  showCount: true,
+  totalCount: 50,
 };

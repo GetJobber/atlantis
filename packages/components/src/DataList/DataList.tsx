@@ -7,15 +7,15 @@ import { Text } from "../Text";
 interface DataListInterface {
   title?: string;
   showCount?: boolean;
+  totalCount?: number;
   loading: boolean;
-  items: string[];
 }
 
 export function DataList({
   title,
   showCount = true,
+  totalCount = 0,
   loading,
-  items,
 }: DataListInterface) {
   return (
     <div className={styles.wrapper}>
@@ -23,7 +23,7 @@ export function DataList({
         <DataListTitle
           title={title}
           showCount={showCount}
-          count={items.length}
+          totalCount={totalCount}
           loading={loading}
         />
       )}
@@ -37,12 +37,12 @@ export function DataList({
 function DataListTitle({
   title,
   showCount,
-  count,
+  totalCount,
   loading,
 }: {
   title?: string;
-  showCount: boolean;
-  count: number;
+  showCount?: boolean;
+  totalCount?: number;
   loading: boolean;
 }) {
   return (
@@ -53,7 +53,7 @@ function DataListTitle({
           {loading ? (
             <Glimmer size="auto" shape="rectangle" />
           ) : (
-            <Text>({count} results)</Text>
+            <Text>({totalCount} results)</Text>
           )}
         </div>
       )}
