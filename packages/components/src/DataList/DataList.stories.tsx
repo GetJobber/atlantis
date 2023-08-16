@@ -12,10 +12,19 @@ export default {
     viewMode: "story",
   },
   // Comment this out to make it show up in storybook
+  excludeStories: ["Basic"],
   decorators: [
     // Detach from Storybook's layout
     Story => (
-      <div>
+      <div
+        style={{
+          position: "fixed",
+          inset: 0,
+          overflow: "auto",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         <Story />
       </div>
     ),
