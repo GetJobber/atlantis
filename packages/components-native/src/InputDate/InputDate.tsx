@@ -6,6 +6,7 @@ import { XOR } from "ts-xor";
 import { useIntl } from "react-intl";
 import { utcToZonedTime } from "date-fns-tz";
 import { format as formatDate } from "date-fns";
+import { enUS, es } from "date-fns/locale";
 import { messages } from "./messages";
 import { Clearable, InputFieldWrapperProps } from "../InputFieldWrapper";
 import { FormField } from "../FormField";
@@ -107,6 +108,15 @@ function formatInvalidState(
   return Boolean(error);
 }
 
+function getLocale(locale?: string): Locale {
+  switch (locale) {
+    case "es":
+      return es;
+    default:
+      return enUS;
+  }
+}
+
 const display = Platform.OS === "ios" ? "inline" : "default";
 
 /**
@@ -154,7 +164,7 @@ function InternalInputDate({
   accessibilityHint,
 }: InputDateProps): JSX.Element {
   const [showPicker, setShowPicker] = useState(false);
-  const { formatMessage } = useIntl();
+  const { formatMessage, locale } = useIntl();
   const { timeZone, dateFormat } = useAtlantisContext();
 
   const date = useMemo(() => {
@@ -165,11 +175,13 @@ function InternalInputDate({
   const formattedDate = useMemo(() => {
     if (date) {
       const zonedTime = utcToZonedTime(date, timeZone);
-      return formatDate(zonedTime, dateFormat);
+      return formatDate(zonedTime, dateFormat, {
+        locale: getLocale(locale),
+      });
     }
 
     return emptyValueLabel;
-  }, [date, emptyValueLabel, timeZone, dateFormat]);
+  }, [date, emptyValueLabel, timeZone, dateFormat, locale]);
 
   const canClearDate = formattedDate === emptyValueLabel ? "never" : clearable;
 
