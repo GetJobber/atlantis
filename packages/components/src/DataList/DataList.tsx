@@ -2,15 +2,12 @@ import React, { isValidElement, useState } from "react";
 import styles from "./DataList.css";
 import { EmptyState, EmptyStateProps } from "./components/EmptyState";
 import { DataListLayout, DataListLayoutProps } from "./components";
+import { DataListObject, DataListProps } from "./DataList.types";
 import {
-  DataListItemType,
-  DataListObject,
-  DataListProps,
-} from "./DataList.types";
-import { getCompoundComponent } from "./DataList.utils";
-import { Text } from "../Text";
-import { FormatDate } from "../FormatDate";
-import { InlineLabel } from "../InlineLabel";
+  generateElementsFromData,
+  generateHeaderFromData,
+  getCompoundComponent,
+} from "./DataList.utils";
 
 export const EMPTY_FILTER_RESULTS_MESSAGE = "No Results for Selected Filters";
 export const EMPTY_FILTER_RESULTS_ACTION_LABEL = "Clear Filters";
@@ -26,49 +23,8 @@ export function DataList<T extends DataListObject>({
     DataListLayout,
   )?.props.children;
 
-  const elementData = data.map(item => {
-    const keys = Object.keys(item);
-    return keys.reduce((acc, key) => {
-      const currentItem = item[key];
-
-      if (!currentItem) {
-        return acc;
-      }
-
-      if (key === "tags" && Array.isArray(currentItem)) {
-        return {
-          ...acc,
-          [key]: currentItem.map((tag, index) => (
-            <InlineLabel key={index}>{tag}</InlineLabel>
-          )),
-        };
-      }
-
-      if (key === "label" && typeof currentItem === "string") {
-        return {
-          ...acc,
-          [key]: <Text>{currentItem}</Text>,
-        };
-      }
-
-      if (isValidElement(currentItem)) {
-        return { ...acc, [key]: currentItem };
-      }
-
-      if (currentItem instanceof Date) {
-        return {
-          ...acc,
-          [key]: (
-            <Text variation="subdued">
-              <FormatDate date={currentItem} />
-            </Text>
-          ),
-        };
-      }
-
-      return { ...acc, [key]: <Text variation="subdued">{currentItem}</Text> };
-    }, {} as DataListItemType<typeof data>);
-  });
+  const elementData = generateElementsFromData(data);
+  const headerData = generateHeaderFromData(data);
 
   console.log(elementData);
 
@@ -83,12 +39,16 @@ export function DataList<T extends DataListObject>({
   return (
     <div className={styles.wrapper}>
       {/* List title and counter */}
-      {/* List header */}
-      {/* List content */}
+      <div className={styles.header}>
+        {/* Filters here,since it also sticks to the top */}
+        {layout && layout(headerData)}
+      </div>
       {layout &&
         elementData.map((child, i) => (
-          // TODO: Don't use index as key
-          <React.Fragment key={i}>{layout(child)}</React.Fragment>
+          // TODO: Don't use index as key. Might have to force an ID on the data
+          <div className={styles.listItem} key={i}>
+            {layout(child)}
+          </div>
         ))}
       {showEmptyState && EmptyStateComponent}
     </div>
