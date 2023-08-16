@@ -1,0 +1,8 @@
+.emptyStateWrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: var(--space-base);
+  align-items: center;
+  height: 100%;
+}

@@ -31,6 +31,24 @@ export default {
   ],
 } as ComponentMeta<typeof DataList>;
 
-const Template: ComponentStory<typeof DataList> = () => <DataList />;
+const Template: ComponentStory<typeof DataList> = args => (
+  <DataList {...args} />
+);
 
 export const Basic = Template.bind({});
+const EmptyStateTemplate: ComponentStory<typeof DataList> = args => (
+  <DataList {...args}>
+    <DataList.EmptyState
+      message="This is empty"
+      recommendedAction={{
+        label: "Do a thing",
+        onClick: () => alert("A thing has been done"),
+      }}
+    />
+  </DataList>
+);
+export const EmptyState = EmptyStateTemplate.bind({});
+
+EmptyState.args = {
+  items: [],
+};
