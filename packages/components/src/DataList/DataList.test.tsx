@@ -14,7 +14,6 @@ describe("DataList", () => {
   function renderDataList(dataListProps?: Partial<DataListProps>) {
     const props: DataListProps = {
       items: [],
-
       ...dataListProps,
     };
     return render(<DataList {...props} />);
@@ -26,7 +25,7 @@ describe("DataList", () => {
           <DataList.EmptyState
             {...{
               message: emptyStateMessage,
-              recommendedAction: {
+              action: {
                 label: emptyStateActionLabel,
                 onClick: emptyStateAction,
               },
@@ -54,7 +53,7 @@ describe("DataList", () => {
           <DataList.EmptyState
             {...{
               message: emptyStateMessage,
-              recommendedAction: {
+              action: {
                 label: emptyStateActionLabel,
                 onClick: emptyStateAction,
               },
@@ -73,7 +72,7 @@ describe("DataList", () => {
           <DataList.EmptyState
             {...{
               message: emptyStateMessage,
-              recommendedAction: {
+              action: {
                 label: emptyStateActionLabel,
                 onClick: emptyStateAction,
               },

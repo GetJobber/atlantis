@@ -21,7 +21,7 @@ describe("EmptyState", () => {
       const { getByText } = render(
         <DataListEmptyState
           message={emptyStateMessage}
-          recommendedAction={{
+          action={{
             label: emptyStateActionLabel,
             onClick: emptyStateActionOnClick,
           }}

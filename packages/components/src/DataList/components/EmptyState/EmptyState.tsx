@@ -4,39 +4,32 @@ import styles from "./EmptyState.css";
 import { Button, ButtonProps } from "../../../Button";
 import { Text } from "../../../Text";
 
-interface RecommendedActionBase {
+interface ActionBase {
   label: string;
 }
-interface AnchorRecommendedAction extends RecommendedActionBase {
+interface AnchorAction extends ActionBase {
   url: ButtonProps["url"];
 }
-interface LinkRecommendedAction extends RecommendedActionBase {
+interface LinkAction extends ActionBase {
   to: ButtonProps["to"];
 }
 
-interface ActionRecommendedAction extends RecommendedActionBase {
+interface ClickAction extends ActionBase {
   onClick: ButtonProps["onClick"];
 }
 export interface EmptyStateProps {
   message: string;
-  recommendedAction?: XOR<
-    ActionRecommendedAction,
-    XOR<AnchorRecommendedAction, LinkRecommendedAction>
-  >;
+  action?: XOR<ClickAction, XOR<AnchorAction, LinkAction>>;
 }
 
-export function DataListEmptyState({
-  message,
-  recommendedAction,
-}: EmptyStateProps) {
-  console.warn({ message, recommendedAction });
+export function DataListEmptyState({ message, action }: EmptyStateProps) {
   return (
     <div className={styles.emptyStateWrapper}>
       <Text align="center">{message}</Text>
-      {recommendedAction && (
+      {action && (
         <Button
           {...{
-            ...recommendedAction,
+            ...action,
             type: "secondary",
             variation: "subtle",
           }}

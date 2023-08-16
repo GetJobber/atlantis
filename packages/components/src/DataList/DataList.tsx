@@ -71,7 +71,7 @@ function useDataListEmptyState({
         isFilterApplied
           ? {
               message: EMPTY_FILTER_RESULTS_MESSAGE,
-              recommendedAction: {
+              action: {
                 label: "Clear Filters",
                 onClick: () => {
                   setIsFilterApplied(false);
