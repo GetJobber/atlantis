@@ -85,7 +85,11 @@ export function DataList<T extends DataListObject>({
       {/* List title and counter */}
       {/* List header */}
       {/* List content */}
-      {elementData.map(child => layout?.(child))}
+      {layout &&
+        elementData.map((child, i) => (
+          // TODO: Don't use index as key
+          <React.Fragment key={i}>{layout(child)}</React.Fragment>
+        ))}
       {showEmptyState && EmptyStateComponent}
     </div>
   );
