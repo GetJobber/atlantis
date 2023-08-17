@@ -5,10 +5,20 @@ export type DataListItemType<T extends DataListObject[]> = Record<
   ReactElement
 >;
 
+export type DataListItemTypeFromHeader<T extends DataListHeader<T>> = Record<
+  keyof T,
+  ReactElement
+>;
+
 export type DataListObject = Record<string, ReactNode | Date>;
+
+export type DataListHeader<T extends DataListObject> = {
+  readonly [K in keyof T]?: string;
+};
 
 export interface DataListProps<T extends DataListObject> {
   readonly data: T[];
+  readonly headers: DataListHeader<T>;
 
   /**
    * Tell the DataList if the data loading

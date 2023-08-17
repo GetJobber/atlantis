@@ -14,6 +14,7 @@ export const EMPTY_FILTER_RESULTS_ACTION_LABEL = "Clear Filters";
 
 export function DataList<T extends DataListObject>({
   data,
+  headers,
   loading = false,
   filterApplied = false,
   children,
@@ -24,7 +25,7 @@ export function DataList<T extends DataListObject>({
   )?.props.children;
 
   const elementData = generateElementsFromData(data);
-  const headerData = generateHeaderFromData(data);
+  const headerData = generateHeaderFromData(headers);
 
   console.log(elementData);
 
@@ -40,7 +41,7 @@ export function DataList<T extends DataListObject>({
     <div className={styles.wrapper}>
       {/* List title and counter */}
       <div className={styles.header}>
-        {/* Filters here,since it also sticks to the top */}
+        {/* Filters here, since it also sticks to the top */}
         {layout && layout(headerData)}
       </div>
       {layout &&
