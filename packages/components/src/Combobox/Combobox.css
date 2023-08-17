@@ -1,13 +1,21 @@
 .combobox {
+  position: relative;
   z-index: var(--elevation-tooltip);
   width: max-content;
   max-width: var(--popover--width);
+  max-height: 400px;
   box-shadow: var(--shadow-base);
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
+  overflow: scroll;
   font-size: var(--typography--fontSize-base);
   line-height: normal;
   background: var(--color-surface);
+}
+
+.search {
+  position: sticky;
+  top: 0;
 }
 
 .optionsList {
@@ -56,11 +64,13 @@
 }
 
 .action {
+  position: sticky;
+  bottom: 0;
   width: 100%;
   padding: var(--space-small) var(--space-base);
   border: none;
   text-align: left;
-  background-color: transparent;
+  background-color: var(--color-surface);
 }
 
 .action:hover,

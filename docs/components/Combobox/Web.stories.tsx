@@ -1,7 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Combobox } from "@jobber/components/Combobox";
-import { label } from "@jobber/components/Autocomplete/Autocomplete.css";
 
 export default {
   title: "Components/Category/Combobox/Web",
@@ -16,6 +15,13 @@ const BasicTemplate: ComponentStory<typeof Combobox> = args => (
   <div>
     <Combobox
       {...args}
+      options={[
+        "Bilbo Baggins",
+        "Frodo Baggins",
+        "Pippin Took",
+        "Merry Brandybuck",
+        "Sam Gamgee",
+      ]}
       onSelection={selection => {
         console.log(selection);
       }}

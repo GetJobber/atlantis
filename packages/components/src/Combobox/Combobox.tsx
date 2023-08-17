@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import classnames from "classnames";
 import styles from "./Combobox.css";
-import { Button } from "../Button";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
 import { InputText } from "../InputText";
@@ -11,12 +10,17 @@ interface ComboboxProps {
   /**
    * onSelection handler.
    */
-  onSelection?(event: React.MouseEvent<HTMLButtonElement>): void;
+  onSelection: (selection: string) => void;
 
   /**
    * optional action
    */
   readonly action?: ActionProps;
+
+  /**
+   * options for the combobox
+   */
+  readonly options: string[];
 }
 
 interface ActionProps {
@@ -31,7 +35,7 @@ interface ActionProps {
   readonly label: string;
 }
 
-export function Combobox({ onSelection, action }: ComboboxProps) {
+export function Combobox({ onSelection, action, options }: ComboboxProps) {
   const className = classnames(styles.combobox);
   const [open, setOpen] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
@@ -55,18 +59,17 @@ export function Combobox({ onSelection, action }: ComboboxProps) {
     setSearchValue(event.currentTarget.value);
   }
   function handleSelection(event: React.MouseEvent<HTMLButtonElement>) {
-    setSelectedOption(event.currentTarget.innerText);
+    const selected = event.currentTarget.innerText;
+    setSelectedOption(selected);
     setOpen(false);
     setSearchValue("");
-    onSelection(event.currentTarget.innerText);
+    onSelection(selected);
   }
 
   function handleClearSelection() {
     setSelectedOption("");
     onSelection("");
   }
-
-  const options = ["John Doe", "Jane Doe 2", "Joe Blow"];
 
   return (
     <>
@@ -100,11 +103,14 @@ export function Combobox({ onSelection, action }: ComboboxProps) {
 
       {open && (
         <div className={className} ref={listRef}>
-          <InputText
-            placeholder="Search teammates"
-            onChange={() => handleSearch}
-            size="small"
-          />
+          <div className={styles.search}>
+            <InputText
+              placeholder="Search teammates"
+              onChange={() => handleSearch}
+              size="small"
+            />
+          </div>
+
           <div className={styles.content}>
             <ul className={styles.optionsList}>
               {options.map(option => (
@@ -118,19 +124,19 @@ export function Combobox({ onSelection, action }: ComboboxProps) {
                 </li>
               ))}
             </ul>
-            {action && (
-              <button className={styles.action} onClick={action?.onClick}>
-                <Typography
-                  element="span"
-                  size="base"
-                  textColor="green"
-                  fontWeight="bold"
-                >
-                  {action?.label}
-                </Typography>
-              </button>
-            )}
           </div>
+          {action && (
+            <button className={styles.action} onClick={action?.onClick}>
+              <Typography
+                element="span"
+                size="base"
+                textColor="green"
+                fontWeight="bold"
+              >
+                {action?.label}
+              </Typography>
+            </button>
+          )}
         </div>
       )}
     </>

@@ -1,5 +1,6 @@
 declare const styles: {
   readonly "combobox": string;
+  readonly "search": string;
   readonly "optionsList": string;
   readonly "trigger": string;
   readonly "triggerIcon": string;
