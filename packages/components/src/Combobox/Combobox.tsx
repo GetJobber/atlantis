@@ -4,15 +4,34 @@ import styles from "./Combobox.css";
 import { Button } from "../Button";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
+import { InputText } from "../InputText";
+import { Typography } from "../Typography";
 
 interface ComboboxProps {
   /**
    * onSelection handler.
    */
   onSelection?(event: React.MouseEvent<HTMLButtonElement>): void;
+
+  /**
+   * optional action
+   */
+  readonly action?: ActionProps;
 }
 
-export function Combobox({ onSelection }: ComboboxProps) {
+interface ActionProps {
+  /**
+   * The function that should be performed when the action is pressed
+   */
+  readonly onClick: () => void;
+
+  /**
+   * Helper text displayed for press action
+   */
+  readonly label: string;
+}
+
+export function Combobox({ onSelection, action }: ComboboxProps) {
   const className = classnames(styles.combobox);
   const [open, setOpen] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
@@ -33,7 +52,7 @@ export function Combobox({ onSelection }: ComboboxProps) {
   }, [listRef]);
 
   function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
-    setSearchValue(event.target.value);
+    setSearchValue(event.currentTarget.value);
   }
   function handleSelection(event: React.MouseEvent<HTMLButtonElement>) {
     setSelectedOption(event.currentTarget.innerText);
@@ -81,11 +100,10 @@ export function Combobox({ onSelection }: ComboboxProps) {
 
       {open && (
         <div className={className} ref={listRef}>
-          <input
-            className={styles.input}
+          <InputText
             placeholder="Search teammates"
-            type="text"
-            onChange={handleSearch}
+            onChange={() => handleSearch}
+            size="small"
           />
           <div className={styles.content}>
             <ul className={styles.optionsList}>
@@ -100,7 +118,18 @@ export function Combobox({ onSelection }: ComboboxProps) {
                 </li>
               ))}
             </ul>
-            <Button type="tertiary" label="Add a teammate" />
+            {action && (
+              <button className={styles.action} onClick={action?.onClick}>
+                <Typography
+                  element="span"
+                  size="base"
+                  textColor="green"
+                  fontWeight="bold"
+                >
+                  {action?.label}
+                </Typography>
+              </button>
+            )}
           </div>
         </div>
       )}

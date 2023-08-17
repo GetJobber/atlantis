@@ -54,3 +54,16 @@
 .selection .triggerIcon {
   background-color: var(--color-surface);
 }
+
+.action {
+  width: 100%;
+  padding: var(--space-small) var(--space-base);
+  border: none;
+  text-align: left;
+  background-color: transparent;
+}
+
+.action:hover,
+.action:focus {
+  background-color: var(--color-surface--hover);
+}

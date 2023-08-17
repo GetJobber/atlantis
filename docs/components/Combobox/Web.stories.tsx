@@ -1,6 +1,7 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Combobox } from "@jobber/components/Combobox";
+import { label } from "@jobber/components/Autocomplete/Autocomplete.css";
 
 export default {
   title: "Components/Category/Combobox/Web",
@@ -17,6 +18,12 @@ const BasicTemplate: ComponentStory<typeof Combobox> = args => (
       {...args}
       onSelection={selection => {
         console.log(selection);
+      }}
+      action={{
+        label: "Add a Teammate",
+        onClick: () => {
+          console.log("Action");
+        },
       }}
     />
   </div>

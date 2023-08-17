@@ -4,6 +4,7 @@ declare const styles: {
   readonly "trigger": string;
   readonly "triggerIcon": string;
   readonly "selection": string;
+  readonly "action": string;
 };
 export = styles;
 
