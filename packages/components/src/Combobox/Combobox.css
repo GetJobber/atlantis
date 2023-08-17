@@ -1,0 +1,56 @@
+.combobox {
+  z-index: var(--elevation-tooltip);
+  width: max-content;
+  max-width: var(--popover--width);
+  box-shadow: var(--shadow-base);
+  border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-base);
+  font-size: var(--typography--fontSize-base);
+  line-height: normal;
+  background: var(--color-surface);
+}
+
+.optionsList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.optionsList li {
+  padding: var(--space-small) var(--space-base);
+}
+
+.optionsList li:hover,
+.optionsList li:focus {
+  background-color: var(--color-surface--background);
+}
+
+.trigger {
+  display: inline-flex;
+  gap: var(--space-smaller);
+  padding: var(--space-small);
+  border: 1px dashed var(--color-interactive);
+  border-radius: 20px;
+}
+
+.triggerIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-circle);
+  background-color: var(--color-surface--background);
+}
+
+.selection {
+  display: inline-flex;
+  gap: var(--space-smaller);
+  padding: var(--space-small);
+  border-radius: 20px;
+  background-color: var(--color-surface--background);
+}
+
+.selection .triggerIcon {
+  background-color: var(--color-surface);
+}
