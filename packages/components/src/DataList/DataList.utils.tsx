@@ -10,6 +10,9 @@ import { FormatDate } from "../FormatDate";
 import { InlineLabel } from "../InlineLabel";
 import { Text } from "../Text";
 
+/**
+ * Return the child component that matches the `type` provided
+ */
 export function getCompoundComponent<T>(
   children: ReactElement | ReactElement[],
   type: ReactElement<T>["type"],
@@ -23,6 +26,9 @@ export function getCompoundComponent<T>(
   return isValidElement<T>(element) ? element : undefined;
 }
 
+/**
+ * Generate the default elements the DataList would use on the data provided.
+ */
 export function generateElementsFromData<T extends DataListObject>(data: T[]) {
   type DataListElements = DataListItemType<typeof data>;
 
@@ -38,7 +44,7 @@ export function generateElementsFromData<T extends DataListObject>(data: T[]) {
         acc[key] = (
           // TODO: Create a component specific for this with the experience we want
           <div style={{ display: "flex", gap: 8, overflow: "hidden" }}>
-            {currentItem.map((tag, index) => (
+            {currentItem.filter(Boolean).map((tag, index) => (
               <InlineLabel key={index}>{tag}</InlineLabel>
             ))}
           </div>
@@ -62,6 +68,9 @@ export function generateElementsFromData<T extends DataListObject>(data: T[]) {
   );
 }
 
+/**
+ * Generate the header elements with the default styling
+ */
 export function generateHeaderFromData<T extends DataListObject>(
   headers: DataListHeader<T>,
 ) {
