@@ -1,6 +1,5 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classnames from "classnames";
-import { set } from "lodash";
 import styles from "./Combobox.css";
 import { Button } from "../Button";
 import { Icon } from "../Icon";
@@ -19,6 +18,19 @@ export function Combobox({ onSelection }: ComboboxProps) {
   const [searchValue, setSearchValue] = useState<string>("");
   const [selectedOption, setSelectedOption] = useState<string>("");
   const listRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (listRef.current && !listRef.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [listRef]);
 
   function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
     setSearchValue(event.target.value);
