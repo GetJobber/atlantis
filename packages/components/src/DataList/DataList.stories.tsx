@@ -52,7 +52,7 @@ const Template: ComponentStory<typeof DataList> = args => {
     // nextPage,
     // loadingRefresh,
     // loadingNextPage,
-    // loadingInitialContent,
+    loadingInitialContent,
   } = useCollectionQuery<ListQueryType>({
     query: LIST_QUERY,
     queryOptions: {
@@ -96,6 +96,7 @@ const Template: ComponentStory<typeof DataList> = args => {
         homePopulation: "Home world population",
         created: "Created",
       }}
+      loading={loadingInitialContent}
     >
       <DataList.Layout>
         {(item: DataListItemType<typeof mappedData>) => (
