@@ -24,24 +24,27 @@ export default {
   // excludeStories: ["Basic"],
   decorators: [
     // Detach from Storybook's layout
-    Story => (
-      <div
-        style={{
-          position: "fixed",
-          inset: 0,
-          overflow: "auto",
-          display: "flex",
-          flexDirection: "column",
-          padding: "0px 16px 16px",
-        }}
-      >
-        <Story />
-      </div>
-    ),
+    (Story, { viewMode }) => {
+      if (viewMode === "docs") return <Story />;
+      return (
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            overflow: "auto",
+            display: "flex",
+            flexDirection: "column",
+            padding: "0px 16px 16px",
+          }}
+        >
+          <Story />
+        </div>
+      );
+    },
   ],
 } as ComponentMeta<typeof DataList>;
 
-const Template: ComponentStory<typeof DataList> = () => {
+const Template: ComponentStory<typeof DataList> = args => {
   const {
     data,
     /* See useCollectionQuery for example on how to load more */
@@ -84,7 +87,8 @@ const Template: ComponentStory<typeof DataList> = () => {
 
   return (
     <DataList
-      data={mappedData}
+      {...args}
+      data={(args.data as typeof mappedData) || mappedData}
       headers={{
         label: "Name",
         home: "Home world",
@@ -102,31 +106,27 @@ const Template: ComponentStory<typeof DataList> = () => {
                 <Grid.Cell size={{ xs: 6 }}>{item.home}</Grid.Cell>
               </Grid>
             </Grid.Cell>
-            <Grid.Cell size={{ xs: 3 }}>{item.tags}</Grid.Cell>
             <Grid.Cell size={{ xs: 2 }}>{item.homePopulation}</Grid.Cell>
+            <Grid.Cell size={{ xs: 3 }}>{item.tags}</Grid.Cell>
             <Grid.Cell size={{ xs: 2 }}>{item.created}</Grid.Cell>
           </Grid>
         )}
       </DataList.Layout>
+
+      <DataList.EmptyState
+        message="This is empty"
+        action={{
+          label: "Do a thing",
+          onClick: () => alert("A thing has been done"),
+        }}
+      />
     </DataList>
   );
 };
 
 export const Basic = Template.bind({});
-const EmptyStateTemplate: ComponentStory<typeof DataList> = args => (
-  <DataList {...args}>
-    <DataList.EmptyState
-      message="This is empty"
-      action={{
-        label: "Do a thing",
-        onClick: () => alert("A thing has been done"),
-      }}
-    />
-  </DataList>
-);
-export const EmptyState = EmptyStateTemplate.bind({});
 
+export const EmptyState = Template.bind({});
 EmptyState.args = {
   data: [],
-  headers: {},
 };
