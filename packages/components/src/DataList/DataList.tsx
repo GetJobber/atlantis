@@ -1,43 +1,5 @@
 import React, { useState } from "react";
 import styles from "./DataList.css";
-import { Glimmer } from "../Glimmer";
-import { Text } from "../Text";
-
-interface DataListInterface {
-  title?: string;
-  showCount?: boolean;
-  totalCount?: number;
-  loading: boolean;
-}
-
-export function DataList1({
-  title,
-  showCount = true,
-  totalCount = 0,
-  loading,
-}: DataListInterface) {
-  return (
-    <div className={styles.wrapper}>
-      <div className={styles.titleContainer}>
-        {title && <Heading level={3}>{title}</Heading>}
-        {showCount && (
-          <div className={styles.results}>
-            {loading ? (
-              <Glimmer size="auto" shape="rectangle" />
-            ) : (
-              <Text>({totalCount} results)</Text>
-            )}
-          </div>
-        )}
-      </div>
-
-      {/* List header */}
-      {/* List content */}
-      {/* List empty state */}
-    </div>
-  );
-}
-
 import { EmptyState } from "./components/EmptyState";
 import {
   DataListLayout,
@@ -50,6 +12,8 @@ import {
   generateListItemElements,
   getCompoundComponent,
 } from "./DataList.utils";
+import { Text } from "../Text";
+import { Glimmer } from "../Glimmer";
 import { Heading } from "../Heading";
 
 export function DataList<T extends DataListObject>({
@@ -58,6 +22,9 @@ export function DataList<T extends DataListObject>({
   loading = false,
   filterApplied = false,
   children,
+  title,
+  showCount = true,
+  totalCount = 0,
 }: DataListProps<T>) {
   const layout = getCompoundComponent<DataListLayoutProps<T>>(
     children,
@@ -78,6 +45,18 @@ export function DataList<T extends DataListObject>({
   return (
     <div className={styles.wrapper}>
       {/* List title and counter */}
+      <div className={styles.titleContainer}>
+        {title && <Heading level={3}>{title}</Heading>}
+        {showCount && (
+          <div className={styles.results}>
+            {loading ? (
+              <Glimmer size="auto" shape="rectangle" />
+            ) : (
+              <Text>({totalCount} results)</Text>
+            )}
+          </div>
+        )}
+      </div>
       <div className={styles.header}>
         {/* Filters here, since it also sticks to the top */}
         {headerData && layout?.(headerData)}

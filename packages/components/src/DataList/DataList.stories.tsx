@@ -60,6 +60,7 @@ const Template: ComponentStory<typeof DataList> = args => {
       nextFetchPolicy: "cache-first",
       client: apolloClient,
     },
+
     getCollectionByPath(items) {
       return items?.allPeople;
     },
@@ -97,6 +98,7 @@ const Template: ComponentStory<typeof DataList> = args => {
         created: "Created",
       }}
       loading={loadingInitialContent}
+      totalCount={data?.allPeople.totalCount}
     >
       <DataList.Layout>
         {(item: DataListItemType<typeof mappedData>) => (
@@ -126,12 +128,12 @@ const Template: ComponentStory<typeof DataList> = args => {
 };
 
 export const Basic = Template.bind({});
-Basic.args = {
-  title: "All Clients",
-  loading: false,
-  showCount: true,
-  totalCount: 50,
-};
+// Basic.args = {
+//   title: "All Clients",
+//   loading: false,
+//   showCount: true,
+//   totalCount: 50,
+// };
 export const EmptyState = Template.bind({});
 EmptyState.args = {
   data: [],

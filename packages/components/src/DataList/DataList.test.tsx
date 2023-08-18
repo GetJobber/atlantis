@@ -6,14 +6,8 @@ import {
   EMPTY_FILTER_RESULTS_MESSAGE,
 } from "./DataList.const";
 import { DataListProps } from "./DataList.types";
-import { GLIMMER_TEST_ID } from "../Glimmer";
 
 describe.skip("DataList1", () => {
-  it("should render a title when it's provided", () => {
-    // render(<DataList loading={false} title="All Clients" />);
-    // expect(screen.getByText("All Clients")).toBeInTheDocument();
-  });
-
   it("should render the total count if showCount prop is provided", () => {
     // render(<DataList loading={false} showCount={true} totalCount={10} />);
     // expect(screen.getByText("(10 results)")).toBeInTheDocument();
@@ -40,6 +34,20 @@ describe.skip("DataList1", () => {
 describe("DataList", () => {
   const mockData = [{ name: "John" }];
   const emptyMockData = [] as typeof mockData;
+
+  it("should render a title when it's provided", () => {
+    render(
+      <DataList
+        loading={false}
+        title="All Clients"
+        headers={{}}
+        data={emptyMockData}
+      >
+        <></>
+      </DataList>,
+    );
+    expect(screen.getByText("All Clients")).toBeInTheDocument();
+  });
 
   describe("EmptyState", () => {
     const emptyStateMessage = "No items to display";

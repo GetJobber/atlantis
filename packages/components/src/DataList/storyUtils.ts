@@ -56,6 +56,7 @@ export const LIST_QUERY = gql`
         hasNextPage
         endCursor
       }
+      totalCount
     }
   }
 `;

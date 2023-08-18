@@ -32,4 +32,19 @@ export interface DataListProps<T extends DataListObject> {
    */
   readonly filterApplied?: boolean;
   readonly children: ReactElement | ReactElement[];
+  /**
+   * The title of the DataList
+   */
+  readonly title?: string;
+
+  /** Should the datalist display the count of items on the DataTable?
+   * @default true
+   */
+  readonly showCount?: boolean;
+
+  /** The total number of items in the DataList.
+   * If pagination is needed this should include
+   * the number of items not currently loaded
+   *  */
+  readonly totalCount?: number;
 }
