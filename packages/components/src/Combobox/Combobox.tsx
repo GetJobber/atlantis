@@ -42,6 +42,10 @@ export function Combobox({ onSelection, action, options }: ComboboxProps) {
   const [selectedOption, setSelectedOption] = useState<string>("");
   const listRef = useRef<HTMLDivElement>(null);
 
+  const filteredOptions = options.filter(option =>
+    option.toLowerCase().includes(searchValue.toLowerCase()),
+  );
+
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (listRef.current && !listRef.current.contains(event.target as Node)) {
@@ -56,8 +60,9 @@ export function Combobox({ onSelection, action, options }: ComboboxProps) {
   }, [listRef]);
 
   function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
-    setSearchValue(event.currentTarget.value);
+    setSearchValue(event.target.value);
   }
+
   function handleSelection(event: React.MouseEvent<HTMLButtonElement>) {
     const selected = event.currentTarget.innerText;
     setSelectedOption(selected);
@@ -106,14 +111,14 @@ export function Combobox({ onSelection, action, options }: ComboboxProps) {
           <div className={styles.search}>
             <InputText
               placeholder="Search teammates"
-              onChange={() => handleSearch}
+              onChange={() => handleSearch(event)}
               size="small"
             />
           </div>
 
           <div className={styles.content}>
             <ul className={styles.optionsList}>
-              {options.map(option => (
+              {filteredOptions.map(option => (
                 <li
                   role="button"
                   tabIndex={0}
@@ -123,6 +128,11 @@ export function Combobox({ onSelection, action, options }: ComboboxProps) {
                   {option}
                 </li>
               ))}
+
+              {/* if there are no results matching the search value show no results item */}
+              {filteredOptions.length === 0 && (
+                <li>No results for {searchValue}</li>
+              )}
             </ul>
           </div>
           {action && (
