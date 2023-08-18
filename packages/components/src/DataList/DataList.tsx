@@ -45,7 +45,7 @@ export function DataList<T extends DataListObject>({
       </div>
       {layout &&
         elementData.map((child, i) => (
-          // TODO: Don't use index as key. Might have to force an ID on the data
+          // TODO: Don't use index as key. Might have to force an ID on the data JOB-76773
           <div className={styles.listItem} key={i}>
             {layout(child)}
           </div>

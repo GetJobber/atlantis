@@ -48,7 +48,7 @@ export function generateListItemElements<T extends DataListObject>(data: T[]) {
 
       if (key === "tags" && Array.isArray(currentItem)) {
         acc[key] = (
-          // TODO: Create a component specific for this with the experience we want
+          // TODO: Create a component specific for this with the experience we want JOB-76771
           <div style={{ display: "flex", gap: 8, overflow: "hidden" }}>
             {currentItem.filter(Boolean).map((tag, index) => (
               <InlineLabel key={index}>{tag}</InlineLabel>
