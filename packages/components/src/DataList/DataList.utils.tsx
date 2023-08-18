@@ -69,6 +69,7 @@ export function generateListItemElements<T extends DataListObject>(data: T[]) {
         acc[key] = <Text variation="subdued">{currentItem}</Text>;
       }
 
+      acc[key] = <div role="cell">{acc[key]}</div>;
       return acc;
     }, {} as DataListElements),
   );
@@ -84,9 +85,11 @@ export function generateHeaderElements<T extends DataListObject>(
     (acc, key) => ({
       ...acc,
       [key]: (
-        <Text variation="subdued" maxLines="single" size="small">
-          <b className={styles.headerLabel}>{headers[key]}</b>
-        </Text>
+        <div role="columnheader">
+          <Text variation="subdued" maxLines="single" size="small">
+            <b className={styles.headerLabel}>{headers[key]}</b>
+          </Text>
+        </div>
       ),
     }),
     {} as DataListItemTypeFromHeader<typeof headers>,

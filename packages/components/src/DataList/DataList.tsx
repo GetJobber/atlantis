@@ -39,17 +39,19 @@ export function DataList<T extends DataListObject>({
   return (
     <div className={styles.wrapper}>
       {/* List title and counter */}
-      <div className={styles.header}>
-        {/* Filters here, since it also sticks to the top */}
-        {headerData && layout?.(headerData)}
+      <div role="grid">
+        <div className={styles.header} role="row">
+          {/* Filters here, since it also sticks to the top */}
+          {headerData && layout?.(headerData)}
+        </div>
+        {layout &&
+          elementData.map((child, i) => (
+            // TODO: Don't use index as key. Might have to force an ID on the data JOB-76773
+            <div className={styles.listItem} key={i} role="row">
+              {layout(child)}
+            </div>
+          ))}
       </div>
-      {layout &&
-        elementData.map((child, i) => (
-          // TODO: Don't use index as key. Might have to force an ID on the data JOB-76773
-          <div className={styles.listItem} key={i}>
-            {layout(child)}
-          </div>
-        ))}
       {showEmptyState && EmptyStateComponent}
     </div>
   );
