@@ -18,6 +18,14 @@
   top: 0;
 }
 
+.search .triggerIcon {
+  position: absolute;
+  top: 50%;
+  right: var(--space-smaller);
+  z-index: var(--elevation-tooltip);
+  transform: translateY(-50%);
+}
+
 .optionsList {
   margin: 0;
   padding: 0;

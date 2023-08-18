@@ -100,7 +100,11 @@ export function Combobox({ onSelection, action, options }: ComboboxProps) {
           }}
         >
           <Text>{selectedOption}</Text>
-          <div className={styles.triggerIcon} onClick={handleClearSelection}>
+          <div
+            className={styles.triggerIcon}
+            onClick={handleClearSelection}
+            role="button"
+          >
             <Icon name="remove" size="small" />
           </div>
         </div>
@@ -113,7 +117,19 @@ export function Combobox({ onSelection, action, options }: ComboboxProps) {
               placeholder="Search teammates"
               onChange={() => handleSearch(event)}
               size="small"
+              value={searchValue}
             />
+
+            {/* if there is a search value show the clear icon */}
+            {searchValue && (
+              <div
+                className={styles.triggerIcon}
+                onClick={() => setSearchValue("")}
+                role="button"
+              >
+                <Icon name="remove" size="small" />
+              </div>
+            )}
           </div>
 
           <div className={styles.content}>
