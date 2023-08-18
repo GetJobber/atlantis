@@ -120,6 +120,9 @@ export function Combobox({ onSelection, action, options }: ComboboxProps) {
             <ul className={styles.optionsList}>
               {filteredOptions.map(option => (
                 <li
+                  className={classnames(
+                    option === selectedOption && styles.selectedOption,
+                  )}
                   role="button"
                   tabIndex={0}
                   key={option}

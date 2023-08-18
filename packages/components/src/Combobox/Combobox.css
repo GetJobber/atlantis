@@ -28,6 +28,10 @@
   padding: var(--space-small) var(--space-base);
 }
 
+.selectedOption {
+  background-color: var(--color-surface--background);
+}
+
 .optionsList li:hover,
 .optionsList li:focus {
   background-color: var(--color-surface--background);

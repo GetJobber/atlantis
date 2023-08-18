@@ -2,6 +2,7 @@ declare const styles: {
   readonly "combobox": string;
   readonly "search": string;
   readonly "optionsList": string;
+  readonly "selectedOption": string;
   readonly "trigger": string;
   readonly "triggerIcon": string;
   readonly "selection": string;
