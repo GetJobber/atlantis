@@ -10,3 +10,19 @@
   width: 80px;
   margin-left: var(--space-small);
 }
+.header {
+  position: sticky;
+  top: 0;
+  padding: var(--space-small);
+  border-bottom: var(--border-thick) solid var(--color-border);
+  background-color: var(--color-surface);
+}
+
+.headerLabel {
+  font-weight: 500;
+}
+
+.listItem {
+  padding: var(--space-small);
+  border-bottom: var(--border-base) solid var(--color-border);
+}
