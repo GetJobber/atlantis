@@ -6,6 +6,15 @@ import {
   getCompoundComponent,
 } from "../DataList.utils";
 
+const date = new Date("2001-01-01T00:00:00.000Z");
+
+beforeEach(() => {
+  jest.useFakeTimers();
+  jest.setSystemTime(date);
+});
+
+afterEach(jest.useRealTimers);
+
 describe("Datalist utils", () => {
   describe("getCompundComponent", () => {
     const Component = () => <></>;
@@ -97,9 +106,7 @@ describe("Datalist utils", () => {
     });
 
     it("should generate the correct element", () => {
-      const elementList = generateListItemElements([
-        { date: new Date("01/01/2001") },
-      ]);
+      const elementList = generateListItemElements([{ date }]);
 
       // Snapshot needs updating? See comment #1 above the `describe`.
       expect(elementList[0].date).toMatchInlineSnapshot(`
@@ -107,7 +114,7 @@ describe("Datalist utils", () => {
           variation="subdued"
         >
           <FormatDate
-            date={2001-01-01T07:00:00.000Z}
+            date={2001-01-01T00:00:00.000Z}
           />
         </Text>
       `);
