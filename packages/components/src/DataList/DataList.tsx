@@ -8,8 +8,8 @@ import {
 import { DataListObject, DataListProps } from "./DataList.types";
 import {
   generateDataListEmptyState,
-  generateElementsFromData,
-  generateHeaderFromData,
+  generateHeaderElements,
+  generateListItemElements,
   getCompoundComponent,
 } from "./DataList.utils";
 
@@ -25,8 +25,8 @@ export function DataList<T extends DataListObject>({
     DataListLayout,
   )?.props.children;
 
-  const elementData = generateElementsFromData(data);
-  const headerData = generateHeaderFromData(headers);
+  const elementData = generateListItemElements(data);
+  const headerData = generateHeaderElements(headers);
 
   const showEmptyState = !loading && data.length === 0;
   const [isFilterApplied, setIsFilterApplied] = useState(filterApplied);

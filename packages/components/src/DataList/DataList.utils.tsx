@@ -35,7 +35,7 @@ export function getCompoundComponent<T>(
 /**
  * Generate the default elements the DataList would use on the data provided.
  */
-export function generateElementsFromData<T extends DataListObject>(data: T[]) {
+export function generateListItemElements<T extends DataListObject>(data: T[]) {
   type DataListElements = DataListItemType<typeof data>;
 
   return data.map(item =>
@@ -77,7 +77,7 @@ export function generateElementsFromData<T extends DataListObject>(data: T[]) {
 /**
  * Generate the header elements with the default styling
  */
-export function generateHeaderFromData<T extends DataListObject>(
+export function generateHeaderElements<T extends DataListObject>(
   headers: DataListHeader<T>,
 ) {
   const headerElements = Object.keys(headers).reduce(
