@@ -1,87 +1,66 @@
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
+import { DataList } from "./DataList";
 import {
-  DataList,
-  DataListProps,
   EMPTY_FILTER_RESULTS_ACTION_LABEL,
   EMPTY_FILTER_RESULTS_MESSAGE,
-} from "./DataList";
+} from "./DataList.const";
+import { DataListProps } from "./DataList.types";
 
 describe("DataList", () => {
-  const emptyStateMessage = "No items to display";
-  const emptyStateActionLabel = "Create new item";
-  const emptyStateAction = jest.fn();
-  function renderDataList(dataListProps?: Partial<DataListProps>) {
-    const props: DataListProps = {
-      items: [],
-      ...dataListProps,
-    };
-    return render(<DataList {...props} />);
-  }
+  const mockData = [{ name: "John" }];
+  const emptyMockData = [] as typeof mockData;
+
   describe("EmptyState", () => {
-    it("should render the empty state when there are no items and not loading", () => {
-      const { getByText } = renderDataList({
-        children: (
+    const emptyStateMessage = "No items to display";
+    const emptyStateActionLabel = "Create new item";
+    const emptyStateAction = jest.fn();
+
+    function renderEmptyState(
+      props?: Partial<DataListProps<(typeof mockData)[number]>>,
+    ) {
+      render(
+        <DataList data={emptyMockData} headers={{}} {...props}>
           <DataList.EmptyState
-            {...{
-              message: emptyStateMessage,
-              action: {
-                label: emptyStateActionLabel,
-                onClick: emptyStateAction,
-              },
+            message={emptyStateMessage}
+            action={{
+              label: emptyStateActionLabel,
+              onClick: emptyStateAction,
             }}
           />
-        ),
-      });
-      expect(getByText(emptyStateMessage)).toBeTruthy();
-      expect(getByText(emptyStateActionLabel)).toBeTruthy();
+        </DataList>,
+      );
+    }
+
+    it("should render the empty state when there are no items and not loading", () => {
+      renderEmptyState();
+
+      expect(screen.getByText(emptyStateMessage)).toBeInTheDocument();
+      expect(screen.getByText(emptyStateActionLabel)).toBeInTheDocument();
     });
 
     it("should not render when there are items", () => {
-      const { queryByText } = renderDataList({ items: ["test item"] });
-      expect(queryByText(emptyStateMessage)).not.toBeInTheDocument();
+      renderEmptyState({ data: mockData });
+      expect(screen.queryByText(emptyStateMessage)).not.toBeInTheDocument();
     });
 
     it("should not render when loading", () => {
-      const { queryByText } = renderDataList({ loading: true });
-      expect(queryByText(emptyStateMessage)).not.toBeInTheDocument();
+      renderEmptyState({ loading: true });
+      expect(screen.queryByText(emptyStateMessage)).not.toBeInTheDocument();
     });
 
     it("should call the action when the button is clicked", () => {
-      const { getByText } = renderDataList({
-        children: (
-          <DataList.EmptyState
-            {...{
-              message: emptyStateMessage,
-              action: {
-                label: emptyStateActionLabel,
-                onClick: emptyStateAction,
-              },
-            }}
-          />
-        ),
-      });
-      fireEvent.click(getByText(emptyStateActionLabel));
+      renderEmptyState();
+
+      fireEvent.click(screen.getByText(emptyStateActionLabel));
       expect(emptyStateAction).toHaveBeenCalled();
     });
 
     it("should display clear filters action when there are filters", () => {
-      const { getByText } = renderDataList({
-        filterApplied: true,
-        children: (
-          <DataList.EmptyState
-            {...{
-              message: emptyStateMessage,
-              action: {
-                label: emptyStateActionLabel,
-                onClick: emptyStateAction,
-              },
-            }}
-          />
-        ),
-      });
-      expect(getByText(EMPTY_FILTER_RESULTS_MESSAGE)).toBeTruthy();
-      expect(getByText(EMPTY_FILTER_RESULTS_ACTION_LABEL)).toBeTruthy();
+      renderEmptyState({ filterApplied: true });
+
+      expect(screen.getByText(EMPTY_FILTER_RESULTS_MESSAGE)).toBeTruthy();
+      expect(screen.getByText(EMPTY_FILTER_RESULTS_ACTION_LABEL)).toBeTruthy();
     });
   });
 });
