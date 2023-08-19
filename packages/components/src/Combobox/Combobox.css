@@ -1,5 +1,9 @@
 .combobox {
+  display: inline-block;
+}
+.content {
   position: relative;
+  visibility: visible;
   z-index: var(--elevation-tooltip);
   width: max-content;
   max-width: var(--popover--width);
@@ -11,6 +15,11 @@
   font-size: var(--typography--fontSize-base);
   line-height: normal;
   background: var(--color-surface);
+}
+
+.content.hidden {
+  display: none;
+  visibility: hidden;
 }
 
 .search {
@@ -75,9 +84,13 @@
   background-color: var(--color-surface);
 }
 
-.action {
+.actions {
   position: sticky;
   bottom: 0;
+  width: 100%;
+}
+
+.action {
   width: 100%;
   padding: var(--space-small) var(--space-base);
   border: none;

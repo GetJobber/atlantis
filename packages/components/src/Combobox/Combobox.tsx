@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import classnames from "classnames";
+import { set } from "lodash";
 import styles from "./Combobox.css";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
 import { InputText } from "../InputText";
 import { Typography } from "../Typography";
+import { Button } from "../Button";
 
 interface ComboboxProps {
   /**
@@ -21,6 +23,11 @@ interface ComboboxProps {
    * options for the combobox
    */
   readonly options: string[];
+
+  /**
+   * Trigger label
+   */
+  readonly triggerLabel: string;
 }
 
 interface ActionProps {
@@ -35,20 +42,20 @@ interface ActionProps {
   readonly label: string;
 }
 
-export function Combobox({ onSelection, action, options }: ComboboxProps) {
-  const className = classnames(styles.combobox);
-  const [open, setOpen] = useState<boolean>(false);
-  const [searchValue, setSearchValue] = useState<string>("");
-  const [selectedOption, setSelectedOption] = useState<string>("");
-  const listRef = useRef<HTMLDivElement>(null);
+const ComboboxContext = React.createContext(
+  {} as { open: boolean; setOpen: (open: boolean) => void },
+);
 
-  const filteredOptions = options.filter(option =>
-    option.toLowerCase().includes(searchValue.toLowerCase()),
-  );
+const ComboboxContextProvider = ({ children }) => {
+  const [open, setOpen] = useState<boolean>(false);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (listRef.current && !listRef.current.contains(event.target as Node)) {
+      if (
+        contentRef.current &&
+        !contentRef.current.contains(event.target as Node)
+      ) {
         setOpen(false);
       }
     }
@@ -57,7 +64,52 @@ export function Combobox({ onSelection, action, options }: ComboboxProps) {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [listRef]);
+  }, [contentRef]);
+
+  return (
+    <ComboboxContext.Provider value={{ open, setOpen }}>
+      <div className={styles.combobox} ref={contentRef}>
+        {children}
+      </div>
+    </ComboboxContext.Provider>
+  );
+};
+
+export const Combobox = ({ children }) => {
+  return <ComboboxContextProvider>{children}</ComboboxContextProvider>;
+};
+
+const TriggerButton = ({ onClick, triggerLabel }) => {
+  const { open, setOpen } = React.useContext(ComboboxContext);
+
+  return <Button label={triggerLabel} onClick={() => setOpen(!open)} />;
+};
+
+const TriggerChip = ({ onClick, triggerLabel }) => {
+  const { open, setOpen } = React.useContext(ComboboxContext);
+  return (
+    <div
+      className={styles.trigger}
+      onClick={() => {
+        setOpen(!open);
+      }}
+    >
+      <Text>{triggerLabel}</Text>
+      <div className={styles.triggerIcon}>
+        <Icon name="add" size="small" />
+      </div>
+    </div>
+  );
+};
+
+const Content = ({ children, options, onSelection }) => {
+  const { open, setOpen } = React.useContext(ComboboxContext);
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [selectedOption, setSelectedOption] = useState<string>("");
+
+  const filteredOptions = options.filter(option =>
+    option.toLowerCase().includes(searchValue.toLowerCase()),
+  );
 
   function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
     setSearchValue(event.target.value);
@@ -70,104 +122,68 @@ export function Combobox({ onSelection, action, options }: ComboboxProps) {
     setSearchValue("");
     onSelection(selected);
   }
-
-  function handleClearSelection() {
-    setSelectedOption("");
-    onSelection("");
-  }
-
   return (
-    <>
-      {!selectedOption && (
-        <div
-          className={styles.trigger}
-          onClick={() => {
-            setOpen(!open);
-          }}
-        >
-          <Text>Select a teammate</Text>
-          <div className={styles.triggerIcon}>
-            <Icon name="add" size="small" />
-          </div>
-        </div>
-      )}
+    <div className={classnames(styles.content, !open && styles.hidden)}>
+      <div className={styles.search}>
+        <InputText
+          placeholder="Search teammates"
+          onChange={() => handleSearch(event)}
+          size="small"
+          value={searchValue}
+        />
 
-      {selectedOption && (
-        <div
-          className={styles.selection}
-          onClick={() => {
-            setOpen(!open);
-          }}
-        >
-          <Text>{selectedOption}</Text>
+        {/* if there is a search value show the clear icon */}
+        {searchValue && (
           <div
             className={styles.triggerIcon}
-            onClick={handleClearSelection}
+            onClick={() => setSearchValue("")}
             role="button"
           >
             <Icon name="remove" size="small" />
           </div>
-        </div>
-      )}
-
-      {open && (
-        <div className={className} ref={listRef}>
-          <div className={styles.search}>
-            <InputText
-              placeholder="Search teammates"
-              onChange={() => handleSearch(event)}
-              size="small"
-              value={searchValue}
-            />
-
-            {/* if there is a search value show the clear icon */}
-            {searchValue && (
-              <div
-                className={styles.triggerIcon}
-                onClick={() => setSearchValue("")}
-                role="button"
-              >
-                <Icon name="remove" size="small" />
-              </div>
+        )}
+      </div>
+      <ul className={styles.optionsList}>
+        {filteredOptions.map(option => (
+          <li
+            className={classnames(
+              option === selectedOption && styles.selectedOption,
             )}
-          </div>
+            role="button"
+            tabIndex={0}
+            key={option}
+            onClick={handleSelection}
+          >
+            {option}
+          </li>
+        ))}
 
-          <div className={styles.content}>
-            <ul className={styles.optionsList}>
-              {filteredOptions.map(option => (
-                <li
-                  className={classnames(
-                    option === selectedOption && styles.selectedOption,
-                  )}
-                  role="button"
-                  tabIndex={0}
-                  key={option}
-                  onClick={handleSelection}
-                >
-                  {option}
-                </li>
-              ))}
+        {/* if there are no results matching the search value show no results item */}
+        {filteredOptions.length === 0 && <li>No results for {searchValue}</li>}
+      </ul>
 
-              {/* if there are no results matching the search value show no results item */}
-              {filteredOptions.length === 0 && (
-                <li>No results for {searchValue}</li>
-              )}
-            </ul>
-          </div>
-          {action && (
-            <button className={styles.action} onClick={action?.onClick}>
-              <Typography
-                element="span"
-                size="base"
-                textColor="green"
-                fontWeight="bold"
-              >
-                {action?.label}
-              </Typography>
-            </button>
-          )}
-        </div>
-      )}
-    </>
+      {/* only render actions if their are any */}
+      {children && <div className={styles.actions}>{children}</div>}
+    </div>
   );
-}
+};
+
+const Action = ({ onClick, label }) => {
+  return (
+    <button className={styles.action} onClick={onClick}>
+      <Typography
+        element="span"
+        size="base"
+        textColor="green"
+        fontWeight="bold"
+      >
+        {label}
+      </Typography>
+    </button>
+  );
+};
+
+Combobox.TriggerButton = TriggerButton;
+Combobox.TriggerChip = TriggerChip;
+Combobox.Content = Content;
+Combobox.Action = Action;

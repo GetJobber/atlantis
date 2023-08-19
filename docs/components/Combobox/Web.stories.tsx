@@ -11,29 +11,87 @@ export default {
   },
 } as ComponentMeta<typeof Combobox>;
 
-const BasicTemplate: ComponentStory<typeof Combobox> = args => (
-  <div>
-    <Combobox
-      {...args}
-      options={[
-        "Bilbo Baggins",
-        "Frodo Baggins",
-        "Pippin Took",
-        "Merry Brandybuck",
-        "Sam Gamgee",
-      ]}
-      onSelection={selection => {
-        console.log(selection);
-      }}
-      action={{
-        label: "Add a Teammate",
-        onClick: () => {
-          console.log("Action");
-        },
-      }}
-    />
-  </div>
-);
+const ComboboxButton: ComponentStory<typeof Combobox> = args => {
+  return (
+    <div>
+      <Combobox
+        {...args}
+        onSelection={selection => {
+          console.log(selection);
+        }}
+      >
+        <Combobox.TriggerButton triggerLabel="Select a teammate" />
+        <Combobox.Content
+          options={[
+            "Bilbo Baggins",
+            "Frodo Baggins",
+            "Pippin Took",
+            "Merry Brandybuck",
+            "Sam Gamgee",
+            "Bilbo Baggins",
+            "Frodo Baggins",
+            "Pippin Took",
+            "Merry Brandybuck",
+            "Sam Gamgee",
+            "Bilbo Baggins",
+            "Frodo Baggins",
+            "Pippin Took",
+            "Merry Brandybuck",
+            "Sam Gamgee",
+          ]}
+        >
+          <Combobox.Action
+            label="Add a teammate"
+            onClick={() => {
+              console.log("Action");
+            }}
+          />
+          <Combobox.Action
+            label="Manage teammates"
+            onClick={() => {
+              console.log("Action");
+            }}
+          />
+        </Combobox.Content>
+      </Combobox>
+    </div>
+  );
+};
 
-export const Basic = BasicTemplate.bind({});
-Basic.args = {};
+const ComboboxChip: ComponentStory<typeof Combobox> = args => {
+  return (
+    <div>
+      <Combobox>
+        <Combobox.TriggerChip triggerLabel="Select a tag" />
+        <Combobox.Content
+          options={[
+            "Bilbo Baggins",
+            "Frodo Baggins",
+            "Pippin Took",
+            "Merry Brandybuck",
+            "Sam Gamgee",
+          ]}
+        >
+          <Combobox.Action
+            label="Add a teammate"
+            onClick={() => {
+              console.log("Action");
+            }}
+          />
+          <Combobox.Action
+            label="Manage teammates"
+            onClick={() => {
+              console.log("Action");
+            }}
+          />
+        </Combobox.Content>
+      </Combobox>
+    </div>
+  );
+};
+
+export const Button = ComboboxButton.bind({});
+Button.args = {};
+
+export const Chip = ComboboxChip.bind({});
+Chip.args = {};
