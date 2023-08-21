@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./DataListTags.css";
 import { InlineLabel } from "../../../InlineLabel";
+import { Text } from "../../../Text";
 
 interface DataListTagsProps {
   readonly items: string[];
@@ -35,7 +36,11 @@ export function DataListTags({ items }: DataListTagsProps) {
         </div>
       ))}
 
-      <span className={styles.tagCount}>+{visibleItems}</span>
+      {Boolean(visibleItems) && (
+        <div className={styles.tagCount}>
+          <Text>+{visibleItems}</Text>
+        </div>
+      )}
     </div>
   );
 
