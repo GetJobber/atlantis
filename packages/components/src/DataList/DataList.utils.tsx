@@ -168,19 +168,22 @@ export function renderDataListLayout<T extends DataListObject>(
   const sizePropOfChildren = layouts?.map(layout => layout.props.size || "xs");
   return layouts?.map(layout => {
     const layoutChildren = layout.props.children;
+    const layoutSize = layout.props.size || "xs";
     const largerBreakpoints = sizePropOfChildren?.filter(
-      size =>
-        BREAKPOINTS.indexOf(size) >
-        BREAKPOINTS.indexOf(layout.props.size || "xs"),
+      size => BREAKPOINTS.indexOf(size) > BREAKPOINTS.indexOf(layoutSize),
     );
     const cssVars = getCSSVariablesFromBreakpoints(
-      layout.props.size || "xs",
+      layoutSize,
       largerBreakpoints,
     );
     return elementData.map((child, i) => {
       // TODO: Don't use index as key. Might have to force an ID on the data JOB-76773
       return (
-        <div className={styles.listItem} key={i} style={cssVars}>
+        <div
+          className={styles.listItem}
+          key={`${i}-${layoutSize}`}
+          style={cssVars}
+        >
           {layoutChildren(child)}
         </div>
       );

@@ -1,4 +1,3 @@
-/* eslint-disable max-statements */
 import React, { useState } from "react";
 import styles from "./DataList.css";
 import { EmptyState } from "./components/EmptyState";
