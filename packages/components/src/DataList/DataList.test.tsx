@@ -10,7 +10,7 @@ import { Grid } from "../Grid";
 import { GLIMMER_TEST_ID } from "../Glimmer";
 
 describe("DataList", () => {
-  it("should render the total count if showCount prop is provided", () => {
+  it("should render the total count", () => {
     const mappedData = [{ label: "Name" }];
     render(
       <DataList

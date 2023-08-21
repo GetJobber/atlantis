@@ -131,7 +131,6 @@ export const Basic = Template.bind({});
 Basic.args = {
   title: "All Clients",
   loading: false,
-  showCount: true,
 };
 export const EmptyState = Template.bind({});
 EmptyState.args = {
