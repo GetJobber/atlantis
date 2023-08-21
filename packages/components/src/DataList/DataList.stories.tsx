@@ -21,7 +21,7 @@ export default {
     viewMode: "story",
   },
   // Comment this out to make it show up in storybook
-  excludeStories: ["Basic", "EmptyState"],
+  // excludeStories: ["Basic", "EmptyState"],
   decorators: [
     // Detach from Storybook's layout
     (Story, { viewMode }) => {
@@ -89,7 +89,7 @@ const Template: ComponentStory<typeof DataList> = args => {
   return (
     <DataList
       loading={loadingInitialContent}
-      totalCount={data?.allPeople.totalCount}
+      totalCount={null}
       {...args}
       data={(args.data as typeof mappedData) || mappedData}
       headers={{

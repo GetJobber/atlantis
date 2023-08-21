@@ -15,7 +15,6 @@ describe("DataList", () => {
     render(
       <DataList
         loading={false}
-        showCount={true}
         totalCount={10}
         data={[{ label: "Luke Skywalker" }]}
         headers={{
@@ -34,13 +33,12 @@ describe("DataList", () => {
     expect(screen.getByText("(10 results)")).toBeInTheDocument();
   });
 
-  it("should not render the total count if the showCount prop is false", () => {
+  it("should not render the total count if the totalCount is null", () => {
     const mappedData = [{ label: "Name" }];
     render(
       <DataList
         loading={false}
-        showCount={false}
-        totalCount={10}
+        totalCount={null}
         data={[{ label: "Luke Skywalker" }]}
         headers={{
           label: "Name",
@@ -65,7 +63,6 @@ describe("DataList", () => {
     render(
       <DataList
         loading={true}
-        showCount={true}
         totalCount={10}
         data={[{ label: "Luke Skywalker" }]}
         headers={{

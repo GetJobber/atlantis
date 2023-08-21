@@ -37,14 +37,12 @@ export interface DataListProps<T extends DataListObject> {
    */
   readonly title?: string;
 
-  /** Should the datalist display the count of items on the DataTable?
-   * @default true
-   */
-  readonly showCount?: boolean;
-
-  /** The total number of items in the DataList.
-   * If pagination is needed this should include
-   * the number of items not currently loaded
-   *  */
-  readonly totalCount?: number;
+  /**
+   * Total number of items in the DataList.
+   *
+   * This renders an "N result" text with the DataList
+   * that helps users know how many items they have
+   * in the list
+   **/
+  readonly totalCount?: number | null;
 }

@@ -23,7 +23,6 @@ export function DataList<T extends DataListObject>({
   filterApplied = false,
   children,
   title,
-  showCount = true,
   totalCount = 0,
 }: DataListProps<T>) {
   const layout = getCompoundComponent<DataListLayoutProps<T>>(
@@ -47,12 +46,14 @@ export function DataList<T extends DataListObject>({
       {/* List title and counter */}
       <div className={styles.titleContainer}>
         {title && <Heading level={3}>{title}</Heading>}
-        {showCount && (
+        {totalCount !== null && (
           <div className={styles.results}>
             {loading ? (
               <Glimmer size="auto" shape="rectangle" />
             ) : (
-              <Text>({totalCount} results)</Text>
+              <Text variation="subdued">
+                ({totalCount.toLocaleString()} results)
+              </Text>
             )}
           </div>
         )}
