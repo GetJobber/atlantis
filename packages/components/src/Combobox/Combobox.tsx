@@ -1,7 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import classnames from "classnames";
-import { set } from "lodash";
-import { fi } from "date-fns/locale";
 import styles from "./Combobox.css";
 import { Icon } from "../Icon";
 import { Text } from "../Text";

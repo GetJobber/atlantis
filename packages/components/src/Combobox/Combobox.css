@@ -1,6 +1,7 @@
 .combobox {
   display: inline-block;
 }
+
 .content {
   position: relative;
   visibility: visible;
@@ -80,16 +81,16 @@
   display: inline-flex;
   gap: var(--space-smaller);
   padding: var(--space-small);
-  border: 1px dashed var(--color-interactive);
-  border-radius: 20px;
+  border: var(--border-base) dashed var(--color-interactive);
+  border-radius: calc(var(--radius-large) * 5);
 }
 
 .triggerIcon {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 20px;
-  height: 20px;
+  width: calc(var(--space-smaller) * 5);
+  height: calc(var(--space-smaller) * 5);
   border-radius: var(--radius-circle);
   background-color: var(--color-surface--background);
 }
@@ -98,7 +99,7 @@
   display: inline-flex;
   gap: var(--space-smaller);
   padding: var(--space-small);
-  border-radius: 20px;
+  border-radius: calc(var(--space-smaller) * 5);
   background-color: var(--color-surface--background);
 }
 
