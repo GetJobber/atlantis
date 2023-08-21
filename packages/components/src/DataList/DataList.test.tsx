@@ -6,6 +6,7 @@ import {
   EMPTY_FILTER_RESULTS_MESSAGE,
 } from "./DataList.const";
 import { DataListItemType, DataListProps } from "./DataList.types";
+import { DATALIST_TOTALCOUNT_TEST_ID } from "./components/DataListTotalCount";
 import { GLIMMER_TEST_ID } from "../Glimmer";
 
 describe("DataList", () => {
@@ -58,7 +59,7 @@ describe("DataList", () => {
           <></>
         </DataList>,
       );
-      const results = screen.getByTestId("results");
+      const results = screen.getByTestId(DATALIST_TOTALCOUNT_TEST_ID);
       expect(within(results).getByTestId(GLIMMER_TEST_ID)).toBeInTheDocument();
     });
   });
