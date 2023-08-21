@@ -1,15 +1,18 @@
 .wrapper {
   flex: 1;
 }
+
 .titleContainer {
   display: flex;
   align-items: center;
+  margin-bottom: var(--space-small);
 }
 
 .results {
-  width: 80px;
+  min-width: 80px;
   margin-left: var(--space-small);
 }
+
 .header {
   position: sticky;
   top: 0;

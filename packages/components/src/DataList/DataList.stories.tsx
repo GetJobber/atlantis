@@ -88,6 +88,8 @@ const Template: ComponentStory<typeof DataList> = args => {
 
   return (
     <DataList
+      loading={loadingInitialContent}
+      totalCount={data?.allPeople.totalCount}
       {...args}
       data={(args.data as typeof mappedData) || mappedData}
       headers={{
@@ -97,8 +99,6 @@ const Template: ComponentStory<typeof DataList> = args => {
         homePopulation: "Home world population",
         created: "Created",
       }}
-      loading={loadingInitialContent}
-      totalCount={data?.allPeople.totalCount}
     >
       <DataList.Layout>
         {(item: DataListItemType<typeof mappedData>) => (
@@ -128,12 +128,11 @@ const Template: ComponentStory<typeof DataList> = args => {
 };
 
 export const Basic = Template.bind({});
-// Basic.args = {
-//   title: "All Clients",
-//   loading: false,
-//   showCount: true,
-//   totalCount: 50,
-// };
+Basic.args = {
+  title: "All Clients",
+  loading: false,
+  showCount: true,
+};
 export const EmptyState = Template.bind({});
 EmptyState.args = {
   data: [],

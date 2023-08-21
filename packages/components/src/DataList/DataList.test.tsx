@@ -5,33 +5,87 @@ import {
   EMPTY_FILTER_RESULTS_ACTION_LABEL,
   EMPTY_FILTER_RESULTS_MESSAGE,
 } from "./DataList.const";
-import { DataListProps } from "./DataList.types";
+import { DataListItemType, DataListProps } from "./DataList.types";
+import { Grid } from "../Grid";
+import { GLIMMER_TEST_ID } from "../Glimmer";
 
-describe.skip("DataList1", () => {
+describe("DataList", () => {
   it("should render the total count if showCount prop is provided", () => {
-    // render(<DataList loading={false} showCount={true} totalCount={10} />);
-    // expect(screen.getByText("(10 results)")).toBeInTheDocument();
+    const mappedData = [{ label: "Name" }];
+    render(
+      <DataList
+        loading={false}
+        showCount={true}
+        totalCount={10}
+        data={[{ label: "Luke Skywalker" }]}
+        headers={{
+          label: "Name",
+        }}
+      >
+        <DataList.Layout>
+          {(item: DataListItemType<typeof mappedData>) => (
+            <Grid alignItems="center">
+              <Grid.Cell size={{ xs: 6 }}>{item.label}</Grid.Cell>
+            </Grid>
+          )}
+        </DataList.Layout>
+      </DataList>,
+    );
+    expect(screen.getByText("(10 results)")).toBeInTheDocument();
   });
 
   it("should not render the total count if the showCount prop is false", () => {
-    // render(
-    //   <DataList
-    //     loading={false}
-    //     title="All Clients"
-    //     totalCount={10}
-    //     showCount={false}
-    //   />,
-    // );
-    // expect(screen.getByText("All Clients")).toBeInTheDocument();
-    // expect(screen.queryByText("(10 results)")).toBeNull();
+    const mappedData = [{ label: "Name" }];
+    render(
+      <DataList
+        loading={false}
+        showCount={false}
+        totalCount={10}
+        data={[{ label: "Luke Skywalker" }]}
+        headers={{
+          label: "Name",
+        }}
+        title="All Clients"
+      >
+        <DataList.Layout>
+          {(item: DataListItemType<typeof mappedData>) => (
+            <Grid alignItems="center">
+              <Grid.Cell size={{ xs: 6 }}>{item.label}</Grid.Cell>
+            </Grid>
+          )}
+        </DataList.Layout>
+      </DataList>,
+    );
+    expect(screen.getByText("All Clients")).toBeInTheDocument();
+    expect(screen.queryByText("(10 results)")).toBeNull();
   });
 
   it("should render the Glimmer when loading", () => {
-    // render(<DataList loading={true} title="All Clients" />);
-    // expect(screen.getByTestId(GLIMMER_TEST_ID)).toBeInTheDocument();
+    const mappedData = [{ label: "Name" }];
+    render(
+      <DataList
+        loading={true}
+        showCount={true}
+        totalCount={10}
+        data={[{ label: "Luke Skywalker" }]}
+        headers={{
+          label: "Name",
+        }}
+        title="All Clients"
+      >
+        <DataList.Layout>
+          {(item: DataListItemType<typeof mappedData>) => (
+            <Grid alignItems="center">
+              <Grid.Cell size={{ xs: 6 }}>{item.label}</Grid.Cell>
+            </Grid>
+          )}
+        </DataList.Layout>
+      </DataList>,
+    );
+    expect(screen.getByTestId(GLIMMER_TEST_ID)).toBeInTheDocument();
   });
 });
-describe("DataList", () => {
+describe("DataList EmptyState", () => {
   const mockData = [{ name: "John" }];
   const emptyMockData = [] as typeof mockData;
 
