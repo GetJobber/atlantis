@@ -23,7 +23,7 @@ export function DataList<T extends DataListObject>({
   filterApplied = false,
   children,
   title,
-  totalCount = 0,
+  totalCount,
 }: DataListProps<T>) {
   const layout = getCompoundComponent<DataListLayoutProps<T>>(
     children,
@@ -46,17 +46,7 @@ export function DataList<T extends DataListObject>({
       {/* List title and counter */}
       <div className={styles.titleContainer}>
         {title && <Heading level={3}>{title}</Heading>}
-        {totalCount !== null && (
-          <div className={styles.results}>
-            {loading ? (
-              <Glimmer size="auto" shape="rectangle" />
-            ) : (
-              <Text variation="subdued">
-                ({totalCount.toLocaleString()} results)
-              </Text>
-            )}
-          </div>
-        )}
+        <ResultsCounter totalCount={totalCount} loading={loading} />
       </div>
       <div className={styles.header}>
         {/* Filters here, since it also sticks to the top */}
@@ -70,6 +60,33 @@ export function DataList<T extends DataListObject>({
           </div>
         ))}
       {showEmptyState && EmptyStateComponent}
+    </div>
+  );
+}
+
+function ResultsCounter({
+  totalCount,
+  loading,
+}: {
+  totalCount: number | null | undefined;
+  loading: boolean;
+}) {
+  if (totalCount === undefined) return null;
+  let output = null;
+
+  if (totalCount === null && loading) {
+    output = <Glimmer size="auto" shape="rectangle" />;
+  }
+
+  if (typeof totalCount === "number") {
+    output = (
+      <Text variation="subdued">({totalCount.toLocaleString()} results)</Text>
+    );
+  }
+
+  return (
+    <div className={styles.results} data-testid="results">
+      {output}
     </div>
   );
 }
