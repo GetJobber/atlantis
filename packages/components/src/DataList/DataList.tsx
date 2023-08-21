@@ -10,8 +10,8 @@ import {
   generateDataListEmptyState,
   generateHeaderElements,
   generateListItemElements,
-  getCompoundComponent,
   getCompoundComponents,
+  renderDataListHeader,
   renderDataListLayout,
 } from "./DataList.utils";
 
@@ -22,11 +22,6 @@ export function DataList<T extends DataListObject>({
   filterApplied = false,
   children,
 }: DataListProps<T>) {
-  const layout = getCompoundComponent<DataListLayoutProps<T>>(
-    children,
-    DataListLayout,
-  )?.props.children;
-
   const allLayouts = getCompoundComponents<DataListLayoutProps<T>>(
     children,
     DataListLayout,
@@ -34,8 +29,8 @@ export function DataList<T extends DataListObject>({
 
   const elementData = generateListItemElements(data);
   const headerData = generateHeaderElements(headers);
-
-  const toRender = renderDataListLayout(allLayouts, elementData);
+  const dataListHeaderContent = renderDataListHeader(allLayouts, headerData);
+  const dataListContent = renderDataListLayout(allLayouts, elementData);
   const showEmptyState = !loading && data.length === 0;
   const [isFilterApplied, setIsFilterApplied] = useState(filterApplied);
   const EmptyStateComponent = generateDataListEmptyState({
@@ -47,11 +42,11 @@ export function DataList<T extends DataListObject>({
   return (
     <div className={styles.wrapper}>
       {/* List title and counter */}
+      {/* Filters here, since it also sticks to the top */}
       <div className={styles.header}>
-        {/* Filters here, since it also sticks to the top */}
-        {headerData && layout?.(headerData)}
+        {headerData && dataListHeaderContent?.map(_layout => _layout)}
       </div>
-      {toRender?.flatMap(_layout => _layout).map(_layout => _layout)}
+      {dataListContent?.flatMap(_layout => _layout).map(_layout => _layout)}
       {showEmptyState && EmptyStateComponent}
     </div>
   );

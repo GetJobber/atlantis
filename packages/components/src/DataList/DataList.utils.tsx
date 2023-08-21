@@ -168,16 +168,16 @@ export function renderDataListLayout<T extends DataListObject>(
   layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined,
   elementData: DataListItemType<T[]>[],
 ) {
-  const sizePropOfChildren = layouts?.map(layout => layout.props.size || "xs");
+  const sizePropsOfLayouts = layouts?.map(layout => layout.props.size || "xs");
   return layouts?.map(layout => {
     const layoutChildren = layout.props.children;
     const layoutSize = layout.props.size || "xs";
-    const largerBreakpoints = sizePropOfChildren?.filter(
+    const largerBreakpointsToHide = sizePropsOfLayouts?.filter(
       size => BREAKPOINTS.indexOf(size) > BREAKPOINTS.indexOf(layoutSize),
     );
     const cssVars = getCSSVariablesFromBreakpoints(
       layoutSize,
-      largerBreakpoints,
+      largerBreakpointsToHide,
     );
     return elementData.map((child, i) => {
       // TODO: Don't use index as key. Might have to force an ID on the data JOB-76773
@@ -191,6 +191,32 @@ export function renderDataListLayout<T extends DataListObject>(
         </div>
       );
     });
+  });
+}
+
+export function renderDataListHeader<T extends DataListObject>(
+  layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined,
+  headerData?: DataListItemTypeFromHeader<DataListHeader<T>>,
+) {
+  const sizePropsOfLayouts = layouts?.map(layout => layout.props.size || "xs");
+  return layouts?.map(layout => {
+    const layoutSize = layout.props.size || "xs";
+    const showHeader = layout.props.showHeader ?? true;
+    const largerBreakpointsToHide = sizePropsOfLayouts?.filter(
+      size => BREAKPOINTS.indexOf(size) > BREAKPOINTS.indexOf(layoutSize),
+    );
+    const cssVars = getCSSVariablesFromBreakpoints(
+      layoutSize,
+      largerBreakpointsToHide,
+    );
+
+    return (
+      showHeader && (
+        <div key={layoutSize} style={cssVars} className={styles.headerContent}>
+          {headerData && layout.props.children(headerData)}
+        </div>
+      )
+    );
   });
 }
 
@@ -218,7 +244,7 @@ function getCSSVariablesFromBreakpoints(
       : "none";
     return {
       ...acc,
-      [`--list-item-${breakpoint}-display`]: displayValue,
+      [`--data-list-${breakpoint}-display`]: displayValue,
     };
   }, {} as Record<string, string>);
 }
