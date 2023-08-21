@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 import React, { useState } from "react";
 import styles from "./DataList.css";
 import { EmptyState } from "./components/EmptyState";
@@ -11,6 +12,8 @@ import {
   generateHeaderElements,
   generateListItemElements,
   getCompoundComponent,
+  getCompoundComponents,
+  renderDataListLayout,
 } from "./DataList.utils";
 
 export function DataList<T extends DataListObject>({
@@ -25,9 +28,15 @@ export function DataList<T extends DataListObject>({
     DataListLayout,
   )?.props.children;
 
+  const allLayouts = getCompoundComponents<DataListLayoutProps<T>>(
+    children,
+    DataListLayout,
+  );
+
   const elementData = generateListItemElements(data);
   const headerData = generateHeaderElements(headers);
 
+  const toRender = renderDataListLayout(allLayouts, elementData);
   const showEmptyState = !loading && data.length === 0;
   const [isFilterApplied, setIsFilterApplied] = useState(filterApplied);
   const EmptyStateComponent = generateDataListEmptyState({
@@ -43,13 +52,7 @@ export function DataList<T extends DataListObject>({
         {/* Filters here, since it also sticks to the top */}
         {headerData && layout?.(headerData)}
       </div>
-      {layout &&
-        elementData.map((child, i) => (
-          // TODO: Don't use index as key. Might have to force an ID on the data JOB-76773
-          <div className={styles.listItem} key={i}>
-            {layout(child)}
-          </div>
-        ))}
+      {toRender?.flatMap(_layout => _layout).map(_layout => _layout)}
       {showEmptyState && EmptyStateComponent}
     </div>
   );

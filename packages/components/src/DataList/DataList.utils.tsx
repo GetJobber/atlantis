@@ -9,13 +9,15 @@ import {
 import styles from "./DataList.css";
 import { EmptyState, EmptyStateProps } from "./components/EmptyState";
 import {
+  BREAKPOINTS,
+  Breakpoints,
   EMPTY_FILTER_RESULTS_ACTION_LABEL,
   EMPTY_FILTER_RESULTS_MESSAGE,
 } from "./DataList.const";
+import { DataListLayoutProps } from "./components/DataListLayout";
 import { FormatDate } from "../FormatDate";
 import { InlineLabel } from "../InlineLabel";
 import { Text } from "../Text";
-
 /**
  * Return the child component that matches the `type` provided
  */
@@ -30,6 +32,23 @@ export function getCompoundComponent<T>(
 
   // Comply with the return type without casting it
   return isValidElement<T>(element) ? element : undefined;
+}
+
+/**
+ * Return all instances child component that matches the `type` provided
+ */
+export function getCompoundComponents<T>(
+  children: ReactElement | ReactElement[],
+  type: ReactElement<T>["type"],
+): ReactElement<T>[] {
+  const childrenArray = Children.toArray(children);
+  const elements = childrenArray.filter(
+    (child): child is ReactElement<T> =>
+      isValidElement<T>(child) && child.type === type,
+  );
+
+  // Comply with the return type without casting it
+  return elements || [];
 }
 
 /**
@@ -140,4 +159,60 @@ export function generateDataListEmptyState({
   }
 
   return EmptyStateComponent;
+}
+
+export function renderDataListLayout<T extends DataListObject>(
+  layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined,
+  elementData: DataListItemType<T[]>[],
+) {
+  const sizePropOfChildren = layouts?.map(layout => layout.props.size || "xs");
+  return layouts?.map(layout => {
+    const layoutChildren = layout.props.children;
+    const largerBreakpoints = sizePropOfChildren?.filter(
+      size =>
+        BREAKPOINTS.indexOf(size) >
+        BREAKPOINTS.indexOf(layout.props.size || "xs"),
+    );
+    const cssVars = getCSSVariablesFromBreakpoints(
+      layout.props.size || "xs",
+      largerBreakpoints,
+    );
+    return elementData.map((child, i) => {
+      // TODO: Don't use index as key. Might have to force an ID on the data JOB-76773
+      return (
+        <div className={styles.listItem} key={i} style={cssVars}>
+          {layoutChildren(child)}
+        </div>
+      );
+    });
+  });
+}
+
+export function sortSizeProp(sizeProp: Breakpoints[]) {
+  return sizeProp.sort(
+    (a, b) => BREAKPOINTS.indexOf(a) - BREAKPOINTS.indexOf(b),
+  );
+}
+
+function getCSSVariablesFromBreakpoints(
+  sizeProp: Breakpoints,
+  largerBreakpoints?: Breakpoints[],
+) {
+  const sortedLargerBreakpoints = sortSizeProp(largerBreakpoints || []);
+  const visibleBreakpoints = BREAKPOINTS.slice(
+    BREAKPOINTS.indexOf(sizeProp),
+    sortedLargerBreakpoints[0]
+      ? BREAKPOINTS.indexOf(sortedLargerBreakpoints[0])
+      : undefined,
+  );
+
+  return BREAKPOINTS.reduce((acc, breakpoint) => {
+    const displayValue = visibleBreakpoints.includes(breakpoint)
+      ? "block"
+      : "none";
+    return {
+      ...acc,
+      [`--list-item-${breakpoint}-display`]: displayValue,
+    };
+  }, {} as Record<string, string>);
 }

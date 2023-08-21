@@ -33,3 +33,5 @@ export interface DataListProps<T extends DataListObject> {
   readonly filterApplied?: boolean;
   readonly children: ReactElement | ReactElement[];
 }
+
+export { Breakpoints } from "./DataList.const";

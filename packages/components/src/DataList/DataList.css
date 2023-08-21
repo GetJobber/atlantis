@@ -17,4 +17,22 @@
 .listItem {
   padding: var(--space-small);
   border-bottom: var(--border-base) solid var(--color-border);
+  @media (--small-screens-and-up) {
+    display: var(--list-item-sm-display);
+  }
+
+  @media (--medium-screens-and-up) {
+    display: var(--list-item-md-display);
+  }
+
+  @media (--large-screens-and-up) {
+    display: var(--list-item-lg-display);
+  }
+
+  @media (--extra-large-screens-and-up) {
+    display: var(--list-item-xl-display);
+  }
+}
+.hide {
+  display: none;
 }

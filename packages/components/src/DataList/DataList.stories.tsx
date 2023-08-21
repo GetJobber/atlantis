@@ -21,7 +21,7 @@ export default {
     viewMode: "story",
   },
   // Comment this out to make it show up in storybook
-  excludeStories: ["Basic", "EmptyState"],
+  // excludeStories: ["Basic", "EmptyState"],
   decorators: [
     // Detach from Storybook's layout
     (Story, { viewMode }) => {
@@ -98,7 +98,7 @@ const Template: ComponentStory<typeof DataList> = args => {
       }}
       loading={loadingInitialContent}
     >
-      <DataList.Layout>
+      <DataList.Layout size={"lg"}>
         {(item: DataListItemType<typeof mappedData>) => (
           <Grid alignItems="center">
             <Grid.Cell size={{ xs: 5 }}>
