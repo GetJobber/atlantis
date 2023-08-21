@@ -52,12 +52,13 @@ export function DataListTags({ items }: DataListTagsProps) {
   ) {
     entries.forEach(entry => {
       const index = entry.target.getAttribute("data-tag-element");
-      if (!index || isNaN(Number(index))) return;
+      const indexNumber = Number(index);
+      if (!index || isNaN(indexNumber)) return;
 
-      setVisibleIndex(arr => {
-        const newArr = [...arr];
-        newArr[Number(index)] = entry.intersectionRatio !== 1;
-        return newArr;
+      setVisibleIndex(prevState => {
+        const newState = [...prevState];
+        newState[indexNumber] = entry.intersectionRatio !== 1;
+        return newState;
       });
     });
   }
