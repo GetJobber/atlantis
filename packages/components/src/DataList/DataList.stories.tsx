@@ -72,10 +72,7 @@ const Template: ComponentStory<typeof DataList> = args => {
   //   loadingNextPage,
   // );
 
-  const dummyString =
-    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium obcaecati nemo totam harum, repudiandae nisi necessitatibus velit consequuntur corporis similique".split(
-      " ",
-    );
+  const randomTags = ["SW", "commercial", "pets", "fence"];
   const items = data?.allPeople.edges || [];
   const mappedData = items.map(({ node }) => ({
     label: node.name,
@@ -84,9 +81,9 @@ const Template: ComponentStory<typeof DataList> = args => {
       node.gender,
       node.hairColor?.split(", "),
       node.skinColor?.split(", "),
-      ...dummyString.slice(
-        Math.round(Math.random() * 10),
-        Math.round(11 + Math.random() * 20),
+      ...randomTags.slice(
+        Math.round(Math.random() * 2),
+        Math.round(3 + Math.random() * 4),
       ),
     ],
     homePopulation: node.homeworld.population?.toLocaleString(),

@@ -15,18 +15,21 @@ export function DataListTags({ items }: DataListTagsProps) {
   useEffect(() => {
     if (!window.IntersectionObserver) return;
 
+    // Reset counter every time the items change
+    setVisibleIndex([]);
+
     const observer = new IntersectionObserver(handleIntersection, {
       root: ref.current,
       threshold: buildIntersectionThreshold(items),
     });
 
-    const tagElements = ref.current?.querySelectorAll("[data-tag-element");
-    tagElements?.forEach(tag => observer.observe(tag));
+    const elements = ref.current?.querySelectorAll("[data-tag-element");
+    elements?.forEach(element => observer.observe(element));
 
     return () => {
-      tagElements?.forEach(tag => observer.unobserve(tag));
+      elements?.forEach(element => observer.unobserve(element));
     };
-  }, []);
+  }, [items]);
 
   return (
     <div className={styles.tags} ref={ref}>
@@ -53,7 +56,7 @@ export function DataListTags({ items }: DataListTagsProps) {
 
       setVisibleIndex(arr => {
         const newArr = [...arr];
-        newArr[Number(index)] = entry.intersectionRatio < 0.5;
+        newArr[Number(index)] = entry.intersectionRatio !== 1;
         return newArr;
       });
     });
