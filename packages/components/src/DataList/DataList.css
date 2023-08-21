@@ -10,7 +10,7 @@
   background-color: var(--color-surface);
 }
 
-.headerLabel {
+.headerLabel > * {
   font-weight: 500;
 }
 

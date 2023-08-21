@@ -103,13 +103,16 @@ export function generateHeaderElements<T extends DataListObject>(
     (acc, key) => ({
       ...acc,
       [key]: (
-        <Text variation="subdued" maxLines="single" size="small">
-          <b className={styles.headerLabel}>{headers[key]}</b>
-        </Text>
+        <div className={styles.headerLabel}>
+          <Text variation="subdued" maxLines="single" size="small">
+            {headers[key]}
+          </Text>
+        </div>
       ),
     }),
     {} as DataListItemTypeFromHeader<typeof headers>,
   );
+
   return isEmpty(headerElements) ? undefined : headerElements;
 }
 
