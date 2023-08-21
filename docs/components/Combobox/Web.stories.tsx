@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Combobox } from "@jobber/components/Combobox";
 
 export default {
-  title: "Components/Category/Combobox/Web",
+  title: "Components/Combobox/Combobox/Web",
   component: Combobox,
   parameters: {
     viewMode: "story",
