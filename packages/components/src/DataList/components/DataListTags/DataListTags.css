@@ -1,0 +1,23 @@
+.tags {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  gap: var(--space-small);
+}
+
+.tagCount {
+  --overflow-bg: var(--color-white);
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  padding: 0;
+  padding-left: var(--space-base);
+  background-image: linear-gradient(
+    90deg,
+    transparent 0,
+    var(--overflow-bg) var(--space-base),
+    var(--overflow-bg) 100%
+  );
+}

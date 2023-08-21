@@ -21,7 +21,7 @@ export default {
     viewMode: "story",
   },
   // Comment this out to make it show up in storybook
-  excludeStories: ["Basic", "EmptyState"],
+  // excludeStories: ["Basic", "EmptyState"],
   decorators: [
     // Detach from Storybook's layout
     (Story, { viewMode }) => {
@@ -72,6 +72,10 @@ const Template: ComponentStory<typeof DataList> = args => {
   //   loadingNextPage,
   // );
 
+  const dummyString =
+    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium obcaecati nemo totam harum, repudiandae nisi necessitatibus velit consequuntur corporis similique".split(
+      " ",
+    );
   const items = data?.allPeople.edges || [];
   const mappedData = items.map(({ node }) => ({
     label: node.name,
@@ -80,6 +84,10 @@ const Template: ComponentStory<typeof DataList> = args => {
       node.gender,
       node.hairColor?.split(", "),
       node.skinColor?.split(", "),
+      ...dummyString.slice(
+        Math.round(Math.random() * 10),
+        Math.round(11 + Math.random() * 20),
+      ),
     ],
     homePopulation: node.homeworld.population?.toLocaleString(),
     created: new Date(node.created),
