@@ -5,13 +5,15 @@ import { Glimmer } from "../../../Glimmer";
 
 export const DATALIST_TOTALCOUNT_TEST_ID = "ATL-DataList-TotalCount";
 
+interface DataListTotalCountProps {
+  totalCount?: number | null;
+  loading?: boolean;
+}
+
 export function DataListTotalCount({
   totalCount,
   loading,
-}: {
-  totalCount: number | null | undefined;
-  loading: boolean;
-}) {
+}: DataListTotalCountProps) {
   if (totalCount === undefined) return null;
   let output = null;
 
