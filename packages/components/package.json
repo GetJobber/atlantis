@@ -64,6 +64,7 @@
     "autoprefixer": "^9.5.1",
     "copyfiles": "^2.4.1",
     "glob": "^7.1.4",
+    "jsdom-testing-mocks": "^1.9.0",
     "postcss": "^8.4.21",
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^8.3.0",
