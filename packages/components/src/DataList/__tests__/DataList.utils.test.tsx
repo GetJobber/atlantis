@@ -79,22 +79,14 @@ describe("Datalist utils", () => {
 
       // Snapshot needs updating? See comment #1 above the `describe`.
       expect(elementList[0].tags).toMatchInlineSnapshot(`
-        <div
-          style={
-            {
-              "display": "flex",
-              "gap": 8,
-              "overflow": "hidden",
-            }
+        <DataListTags
+          items={
+            [
+              "uno",
+              "dos",
+            ]
           }
-        >
-          <InlineLabel>
-            uno
-          </InlineLabel>
-          <InlineLabel>
-            dos
-          </InlineLabel>
-        </div>
+        />
       `);
     });
 
