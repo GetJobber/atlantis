@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import classnames from "classnames";
 import { set } from "lodash";
+import { fi } from "date-fns/locale";
 import styles from "./Combobox.css";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
-import { InputText } from "../InputText";
 import { Typography } from "../Typography";
 import { Button } from "../Button";
 
@@ -125,10 +125,11 @@ const Content = ({ children, options, onSelection }) => {
   return (
     <div className={classnames(styles.content, !open && styles.hidden)}>
       <div className={styles.search}>
-        <InputText
+        <input
+          type="search"
+          className={styles.searchInput}
           placeholder="Search teammates"
           onChange={() => handleSearch(event)}
-          size="small"
           value={searchValue}
         />
 
