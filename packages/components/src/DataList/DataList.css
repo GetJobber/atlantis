@@ -11,6 +11,7 @@
 .header {
   position: sticky;
   top: 0;
+  z-index: var(--elevation-base);
   padding: var(--space-small);
   border-bottom: var(--border-thick) solid var(--color-border);
   background-color: var(--color-surface);
