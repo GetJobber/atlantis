@@ -1,7 +1,7 @@
 import React from "react";
 import { act, render, screen } from "@testing-library/react";
 import { mockIntersectionObserver } from "jsdom-testing-mocks";
-import { DataListTags } from "./DataListTags";
+import { DataListTags } from ".";
 
 const observer = mockIntersectionObserver();
 

@@ -12,7 +12,7 @@ import {
   EMPTY_FILTER_RESULTS_ACTION_LABEL,
   EMPTY_FILTER_RESULTS_MESSAGE,
 } from "./DataList.const";
-import { DataListTags } from "./components/DataListTags/DataListTags";
+import { DataListTags } from "./components/DataListTags";
 import { FormatDate } from "../FormatDate";
 import { Text } from "../Text";
 
