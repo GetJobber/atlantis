@@ -23,7 +23,7 @@ export function DataListTags({ items }: DataListTagsProps) {
       threshold: buildIntersectionThreshold(items),
     });
 
-    const elements = ref.current?.querySelectorAll("[data-tag-element");
+    const elements = ref.current?.querySelectorAll("[data-tag-element]");
     elements?.forEach(element => observer.observe(element));
 
     return () => {
@@ -34,7 +34,7 @@ export function DataListTags({ items }: DataListTagsProps) {
   return (
     <div className={styles.tags} ref={ref}>
       {items.filter(Boolean).map((tag, index) => (
-        <div key={index} data-tag-element={index}>
+        <div key={tag} data-tag-element={index}>
           <InlineLabel>{tag}</InlineLabel>
         </div>
       ))}
