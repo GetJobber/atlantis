@@ -3,6 +3,8 @@ import React, {
   ReactElement,
   ReactNode,
   isValidElement,
+  useEffect,
+  useState,
 } from "react";
 import isEmpty from "lodash/isEmpty";
 import {
@@ -15,6 +17,7 @@ import styles from "./DataList.css";
 import { EmptyState, EmptyStateProps } from "./components/EmptyState";
 import {
   BREAKPOINTS,
+  BREAKPOINT_SIZES,
   Breakpoints,
   EMPTY_FILTER_RESULTS_ACTION_LABEL,
   EMPTY_FILTER_RESULTS_MESSAGE,
@@ -166,6 +169,7 @@ export function generateDataListEmptyState({
 export function renderDataListItems<T extends DataListObject>(
   layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined,
   elementData: DataListItemType<T[]>[],
+  mediaMatches?: Record<Breakpoints, boolean>,
 ) {
   return renderDataListLayouts(
     layouts,
@@ -179,12 +183,14 @@ export function renderDataListItems<T extends DataListObject>(
         );
       });
     },
+    mediaMatches,
   );
 }
 
 export function renderDataListHeader<T extends DataListObject>(
   layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined,
   headerData?: DataListItemTypeFromHeader<DataListHeader<T>>,
+  mediaMatches?: Record<Breakpoints, boolean>,
 ) {
   return renderDataListLayouts(
     layouts,
@@ -199,6 +205,7 @@ export function renderDataListHeader<T extends DataListObject>(
         )
       );
     },
+    mediaMatches,
   );
 }
 
@@ -207,27 +214,54 @@ function renderDataListLayouts<T extends DataListObject>(
   renderLayout: (
     layout: React.ReactElement<DataListLayoutProps<T>>,
   ) => ReactNode,
+  mediaMatches?: Record<Breakpoints, boolean>,
 ) {
   const sizePropsOfLayouts = layouts?.map(layout => layout.props.size || "xs");
-  return layouts?.map((layout, index) => {
+  return layouts?.map(layout => {
     const layoutSize = layout.props.size || "xs";
-    const largerBreakpointsToHide = sizePropsOfLayouts?.filter(
-      size => BREAKPOINTS.indexOf(size) > BREAKPOINTS.indexOf(layoutSize),
-    );
-    const cssVars = getCSSVariablesForBreakpoints(
+
+    const isVisible = isLayoutVisible({
       layoutSize,
-      largerBreakpointsToHide,
-    );
-    return (
-      <div
-        style={cssVars}
-        key={`${index}-${layoutSize}`}
-        className={styles.layout}
-      >
-        {renderLayout(layout)}
-      </div>
-    );
+      mediaMatches,
+      sizePropsOfLayouts,
+    });
+
+    return isVisible && renderLayout(layout);
   });
+}
+
+/**
+ *Determine is layout is visible by checking a media query matches for the
+  visible sizes of the layout and there isn't a larger layout that should be rendered
+ */
+function isLayoutVisible({
+  layoutSize,
+  mediaMatches,
+  sizePropsOfLayouts,
+}: {
+  layoutSize: Breakpoints;
+  mediaMatches?: Record<Breakpoints, boolean>;
+  sizePropsOfLayouts?: Breakpoints[];
+}) {
+  const largerBreakpointsToHide = sizePropsOfLayouts?.filter(
+    size => BREAKPOINTS.indexOf(size) > BREAKPOINTS.indexOf(layoutSize),
+  );
+  const sortedLargerBreakpoints = sortSizeProp(largerBreakpointsToHide || []);
+
+  const visibleBreakpoints = BREAKPOINTS.slice(
+    BREAKPOINTS.indexOf(layoutSize),
+    sortedLargerBreakpoints[0]
+      ? BREAKPOINTS.indexOf(sortedLargerBreakpoints[0])
+      : undefined,
+  );
+  return (
+    visibleBreakpoints.some(breakpoint => {
+      return Boolean(mediaMatches?.[breakpoint]);
+    }) &&
+    largerBreakpointsToHide?.reduce<boolean>((acc, breakpoint) => {
+      return acc && !mediaMatches?.[breakpoint];
+    }, true)
+  );
 }
 
 export function sortSizeProp(sizeProp: Breakpoints[]) {
@@ -236,25 +270,47 @@ export function sortSizeProp(sizeProp: Breakpoints[]) {
   );
 }
 
-function getCSSVariablesForBreakpoints(
-  sizeProp: Breakpoints,
-  largerBreakpoints?: Breakpoints[],
-) {
-  const sortedLargerBreakpoints = sortSizeProp(largerBreakpoints || []);
-  const visibleBreakpoints = BREAKPOINTS.slice(
-    BREAKPOINTS.indexOf(sizeProp),
-    sortedLargerBreakpoints[0]
-      ? BREAKPOINTS.indexOf(sortedLargerBreakpoints[0])
-      : undefined,
+export function useGridLayoutMediaQueries() {
+  const mediaQueries = BREAKPOINTS.reduce(
+    (previous, breakpoint) => ({
+      ...previous,
+      [breakpoint]: window.matchMedia(breakpointToMediaQuery(breakpoint)),
+    }),
+    {} as Record<Breakpoints, MediaQueryList>,
   );
 
-  return BREAKPOINTS.reduce((acc, breakpoint) => {
-    const displayValue = visibleBreakpoints.includes(breakpoint)
-      ? "block"
-      : "none";
-    return {
-      ...acc,
-      [`--data-list-${breakpoint}-display`]: displayValue,
+  const initialMatches = BREAKPOINTS.reduce(
+    (previous, breakpoint) => ({
+      ...previous,
+      [breakpoint]: mediaQueries[breakpoint].matches,
+    }),
+    {} as Record<Breakpoints, boolean>,
+  );
+
+  const [matches, setMatches] = useState(initialMatches); // one-time, instantaneous check  useEffect(() => {
+  useEffect(() => {
+    const handlers = BREAKPOINTS.reduce((previous, breakpoint) => {
+      const handler = (e: MediaQueryListEvent) =>
+        setMatches(previousMatches => ({
+          ...previousMatches,
+          [breakpoint]: e.matches,
+        }));
+      mediaQueries[breakpoint].addEventListener("change", handler);
+      return { ...previous, [breakpoint]: handler };
+    }, {} as Record<Breakpoints, (e: MediaQueryListEvent) => void>);
+    return () => {
+      BREAKPOINTS.map(breakpoint => {
+        mediaQueries[breakpoint].removeEventListener(
+          "change",
+          handlers[breakpoint],
+        );
+      });
     };
-  }, {} as Record<string, string>);
+  });
+
+  return matches;
+}
+
+function breakpointToMediaQuery(breakpoint: Breakpoints) {
+  return `(min-width: ${BREAKPOINT_SIZES[breakpoint]}px)`;
 }

@@ -13,6 +13,7 @@ import {
   getCompoundComponents,
   renderDataListHeader,
   renderDataListItems,
+  useGridLayoutMediaQueries,
 } from "./DataList.utils";
 import { DataListTotalCount } from "./components/DataListTotalCount";
 import { Heading } from "../Heading";
@@ -33,8 +34,18 @@ export function DataList<T extends DataListObject>({
 
   const elementData = generateListItemElements(data);
   const headerData = generateHeaderElements(headers);
-  const dataListHeaderContent = renderDataListHeader(allLayouts, headerData);
-  const dataListContent = renderDataListItems(allLayouts, elementData);
+  const mediaMatches = useGridLayoutMediaQueries();
+
+  const dataListHeaderContent = renderDataListHeader(
+    allLayouts,
+    headerData,
+    mediaMatches,
+  );
+  const dataListContent = renderDataListItems(
+    allLayouts,
+    elementData,
+    mediaMatches,
+  );
   const showEmptyState = !loading && data.length === 0;
   const [isFilterApplied, setIsFilterApplied] = useState(filterApplied);
   const EmptyStateComponent = generateDataListEmptyState({

@@ -25,25 +25,3 @@
   padding: var(--space-small);
   border-bottom: var(--border-base) solid var(--color-border);
 }
-
-.layout {
-  @media (--small-screens-and-below) {
-    display: var(--data-list-xs-display);
-  }
-
-  @media (--small-screens-and-up) {
-    display: var(--data-list-sm-display);
-  }
-
-  @media (--medium-screens-and-up) {
-    display: var(--data-list-md-display);
-  }
-
-  @media (--large-screens-and-up) {
-    display: var(--data-list-lg-display);
-  }
-
-  @media (--extra-large-screens-and-up) {
-    display: var(--data-list-xl-display);
-  }
-}

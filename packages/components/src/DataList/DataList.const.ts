@@ -12,3 +12,11 @@ export const EMPTY_FILTER_RESULTS_ACTION_LABEL = "Clear Filters";
  * Breakpoints that we support
  */
 export const BREAKPOINTS = ["xs", "sm", "md", "lg", "xl"] as const;
+
+export const BREAKPOINT_SIZES: Record<Breakpoints, number> = {
+  xs: 0,
+  sm: 490,
+  md: 768,
+  lg: 1080,
+  xl: 1440,
+};

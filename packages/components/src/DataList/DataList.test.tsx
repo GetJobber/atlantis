@@ -3,7 +3,7 @@ import React from "react";
 import { DataListLayoutProps } from "./components/DataListLayout";
 import { DataList } from "./DataList";
 import {
-  BREAKPOINTS,
+  BREAKPOINT_SIZES,
   Breakpoints,
   EMPTY_FILTER_RESULTS_ACTION_LABEL,
   EMPTY_FILTER_RESULTS_MESSAGE,
@@ -15,6 +15,20 @@ import {
 } from "./DataList.types";
 import { DATALIST_TOTALCOUNT_TEST_ID } from "./components/DataListTotalCount";
 import { GLIMMER_TEST_ID } from "../Glimmer";
+
+Object.defineProperty(window, "matchMedia", {
+  writable: true,
+  value: jest.fn().mockImplementation(query => ({
+    matches: true,
+    media: query,
+    onchange: null,
+    addListener: jest.fn(), // deprecated
+    removeListener: jest.fn(), // deprecated
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+  })),
+});
 
 describe("DataList", () => {
   describe("Title and results counter", () => {
@@ -81,18 +95,6 @@ describe("DataList", () => {
     email: "Email",
   };
 
-  function getCssVarForListItem(cssVar: string, testID: string): any[] {
-    const elements = screen.getAllByTestId(testID);
-    return elements.map(element => {
-      if (!element.parentElement || !element.parentElement.parentElement) {
-        return;
-      }
-      return window
-        .getComputedStyle(element.parentElement.parentElement)
-        .getPropertyValue(cssVar);
-    });
-  }
-
   describe("Layout", () => {
     const layoutWrapper = "layout-wrapper";
     const layoutItem = "layout-item";
@@ -115,11 +117,6 @@ describe("DataList", () => {
     it("should render the specified layout", () => {
       expect(screen.getAllByTestId(layoutWrapper)).toHaveLength(3);
       expect(screen.getAllByTestId(layoutItem)).toHaveLength(6);
-      BREAKPOINTS.forEach(size => {
-        expect(
-          getCssVarForListItem(`--data-list-${size}-display`, layoutWrapper),
-        ).toEqual(new Array(3).fill("block"));
-      });
     });
 
     it("should render the data with the default paragraph element", () => {
@@ -129,93 +126,65 @@ describe("DataList", () => {
     });
   });
   describe("Layout Breakpoints", () => {
-    const layoutWrapper = "layout-wrapper";
     const layoutItem = "layout-item";
 
-    function renderLayout(
-      layoutProps?: Partial<DataListLayoutProps<DataListObject>>,
-    ) {
-      return render(
-        <DataList data={mockData} headers={mockHeaders}>
-          <DataList.Layout {...layoutProps}>
-            {(item: DataListItemType<typeof mockData>) => (
-              <div data-testid={layoutWrapper}>
-                <div data-testid={layoutItem}>{item.name}</div>
-                <div data-testid={layoutItem}>{item.email}</div>
-              </div>
-            )}
-          </DataList.Layout>
-        </DataList>,
-      );
+    function setUpMediaQueries(expectedValues: Record<Breakpoints, boolean>) {
+      Object.defineProperty(window, "matchMedia", {
+        writable: true,
+        value: jest.fn().mockImplementation((query: string) => {
+          const queryValue = parseInt(query.match(/(\d+)/)?.[0] || "0", 10);
+          const queryBreakpoint = Object.entries(BREAKPOINT_SIZES).find(
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            ([_, value]) => {
+              return value === queryValue;
+            },
+          )?.[0];
+          const expectedValue = expectedValues[queryBreakpoint as Breakpoints];
+          return {
+            matches: expectedValue,
+            media: query,
+            onchange: null,
+            addListener: jest.fn(), // deprecated
+            removeListener: jest.fn(), // deprecated
+            addEventListener: jest.fn(),
+            removeEventListener: jest.fn(),
+            dispatchEvent: jest.fn(),
+          };
+        }),
+      });
     }
-
-    it.each<{ size: Breakpoints; expected?: Breakpoints[] }>([
-      { size: "xs", expected: ["xs", "sm", "md", "lg", "xl"] },
-      { size: "sm", expected: ["sm", "md", "lg", "xl"] },
-      { size: "md", expected: ["md", "lg", "xl"] },
-      { size: "lg", expected: ["lg", "xl"] },
-      { size: "xl", expected: ["xl"] },
-    ])(
-      "should render the with css variables for sizing $size",
-      ({ size, expected }) => {
-        renderLayout({ size });
-        expect(screen.getAllByTestId(layoutWrapper)).toHaveLength(3);
-        expect(screen.getAllByTestId(layoutItem)).toHaveLength(6);
-        expect(screen.getAllByTestId(layoutWrapper)).toHaveLength(3);
-        expect(screen.getAllByTestId(layoutItem)).toHaveLength(6);
-        const elements = screen.getAllByTestId(layoutWrapper);
-
-        elements.forEach(() => {
-          BREAKPOINTS.forEach(breakpoint => {
-            const expectedDisplay = expected?.includes(breakpoint)
-              ? "block"
-              : "none";
-            expect(
-              getCssVarForListItem(
-                `--data-list-${breakpoint}-display`,
-                layoutWrapper,
-              ),
-            ).toEqual(new Array(3).fill(expectedDisplay));
-          });
-        });
-      },
-    );
 
     it.each<{
       layoutSize1: Breakpoints;
-      expectedLayout1?: Breakpoints[];
+      mockedQueries: Record<Breakpoints, boolean>;
       layoutSize2: Breakpoints;
-      expectedLayout2?: Breakpoints[];
     }>([
       {
         layoutSize1: "xs",
-        expectedLayout1: ["xs"],
+        mockedQueries: { xs: true, sm: true, md: true, lg: true, xl: true },
         layoutSize2: "sm",
-        expectedLayout2: ["sm", "md", "lg", "xl"],
       },
       {
         layoutSize1: "sm",
-        expectedLayout1: ["sm"],
+        mockedQueries: { xs: true, sm: true, md: true, lg: true, xl: true },
         layoutSize2: "md",
-        expectedLayout2: ["md", "lg", "xl"],
       },
       {
         layoutSize1: "md",
-        expectedLayout1: ["md"],
+        mockedQueries: { xs: true, sm: true, md: true, lg: true, xl: true },
         layoutSize2: "lg",
-        expectedLayout2: ["lg", "xl"],
       },
       {
         layoutSize1: "lg",
-        expectedLayout1: ["lg"],
+        mockedQueries: { xs: true, sm: true, md: true, lg: true, xl: true },
         layoutSize2: "xl",
-        expectedLayout2: ["xl"],
       },
     ])(
-      "when multiple layouts are specified it should hide smaller layouts",
-      ({ layoutSize1, layoutSize2, expectedLayout1, expectedLayout2 }) => {
+      "when multiple layouts are specified it should render the larger layout",
+      ({ layoutSize1, layoutSize2, mockedQueries }) => {
         const layout1Wrapper = "layout1-wrapper";
         const layout2Wrapper = "layout2-wrapper";
+        setUpMediaQueries(mockedQueries);
         render(
           <DataList data={mockData} headers={mockHeaders}>
             <DataList.Layout size={layoutSize1}>
@@ -237,38 +206,8 @@ describe("DataList", () => {
           </DataList>,
         );
 
-        const layout1Elements = screen.getAllByTestId(layout1Wrapper);
-        expect(screen.getAllByTestId(layout1Wrapper)).toHaveLength(3);
-
-        layout1Elements.forEach(() => {
-          BREAKPOINTS.forEach(breakpoint => {
-            const expectedDisplay = expectedLayout1?.includes(breakpoint)
-              ? "block"
-              : "none";
-            expect(
-              getCssVarForListItem(
-                `--data-list-${breakpoint}-display`,
-                layout1Wrapper,
-              ),
-            ).toEqual(new Array(3).fill(expectedDisplay));
-          });
-        });
-        const layout2Elements = screen.getAllByTestId(layout2Wrapper);
-        expect(screen.getAllByTestId(layout2Wrapper)).toHaveLength(3);
-
-        layout2Elements.forEach(() => {
-          BREAKPOINTS.forEach(breakpoint => {
-            const expectedDisplay = expectedLayout2?.includes(breakpoint)
-              ? "block"
-              : "none";
-            expect(
-              getCssVarForListItem(
-                `--data-list-${breakpoint}-display`,
-                layout2Wrapper,
-              ),
-            ).toEqual(new Array(3).fill(expectedDisplay));
-          });
-        });
+        expect(screen.queryAllByTestId(layout1Wrapper)).toHaveLength(0);
+        expect(screen.queryAllByTestId(layout2Wrapper)).not.toHaveLength(0);
       },
     );
   });
