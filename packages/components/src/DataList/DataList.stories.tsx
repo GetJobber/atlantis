@@ -80,8 +80,8 @@ const Template: ComponentStory<typeof DataList> = args => {
     home: node.homeworld.name,
     tags: [
       node.gender,
-      node.hairColor?.split(", "),
-      node.skinColor?.split(", "),
+      ...(node.hairColor?.split(", ") || []),
+      ...(node.skinColor?.split(", ") || []),
     ],
     homePopulation: node.homeworld.population?.toLocaleString(),
     created: new Date(node.created),

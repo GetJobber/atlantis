@@ -23,6 +23,16 @@ export interface DataListObject {
    * Styles the string as an emphasized text that differs from other keys.
    */
   readonly label?: string | ReactElement;
+
+  /**
+   * Creates a styled list of tags that overflows and is truncated with a +N.
+   */
+  readonly tags?: string[];
+
+  /**
+   * Support any key. The keys in this object are used as way to determine the
+   * keys you can use on the DataList header, layout, etc.
+   */
   readonly [key: string]: ReactNode | Date;
 }
 
