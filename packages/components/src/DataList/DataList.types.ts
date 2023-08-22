@@ -11,7 +11,18 @@ export type DataListItemTypeFromHeader<
 > = Record<keyof THeader, ReactElement>;
 
 export interface DataListObject {
+  /**
+   * The ID of the data.
+   *
+   * This is used as a key when looping through the data to prevent accidental
+   * rerender when the order of data changes.
+   */
   readonly id: string | number;
+
+  /**
+   * Styles the string as an emphasized text that differs from other keys.
+   */
+  readonly label?: string | ReactElement;
   readonly [key: string]: ReactNode | Date;
 }
 
@@ -24,20 +35,22 @@ export interface DataListProps<T extends DataListObject> {
   readonly headers: DataListHeader<T>;
 
   /**
-   * Tell the DataList if the data loading
+   * Shows the loading state of the DataList.
+   *
    * @default false
    */
   readonly loading?: boolean;
 
   /**
    * Temporary prop for setting default state for if filters are applied
+   *
    * @default false
    */
   readonly filterApplied?: boolean;
   readonly children: ReactElement | ReactElement[];
 
   /**
-   * The title of the DataList
+   * The title of the DataList.
    */
   readonly title?: string;
 
