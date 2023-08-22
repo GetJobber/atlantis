@@ -175,7 +175,7 @@ export function renderDataListLayout<T extends DataListObject>(
     const largerBreakpointsToHide = sizePropsOfLayouts?.filter(
       size => BREAKPOINTS.indexOf(size) > BREAKPOINTS.indexOf(layoutSize),
     );
-    const cssVars = getCSSVariablesFromBreakpoints(
+    const cssVars = getCSSVariablesForBreakpoints(
       layoutSize,
       largerBreakpointsToHide,
     );
@@ -205,10 +205,11 @@ export function renderDataListHeader<T extends DataListObject>(
     const largerBreakpointsToHide = sizePropsOfLayouts?.filter(
       size => BREAKPOINTS.indexOf(size) > BREAKPOINTS.indexOf(layoutSize),
     );
-    const cssVars = getCSSVariablesFromBreakpoints(
+    const cssVars = getCSSVariablesForBreakpoints(
       layoutSize,
       largerBreakpointsToHide,
     );
+    console.log("showHeader", showHeader);
 
     return (
       showHeader && (
@@ -226,7 +227,7 @@ export function sortSizeProp(sizeProp: Breakpoints[]) {
   );
 }
 
-function getCSSVariablesFromBreakpoints(
+function getCSSVariablesForBreakpoints(
   sizeProp: Breakpoints,
   largerBreakpoints?: Breakpoints[],
 ) {

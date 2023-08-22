@@ -9,6 +9,7 @@
   border-bottom: var(--border-thick) solid var(--color-border);
   background-color: var(--color-surface);
 }
+
 .headerContent {
   @media (--small-screens-and-below) {
     display: var(--data-list-xs-display);
