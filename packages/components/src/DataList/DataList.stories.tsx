@@ -161,6 +161,7 @@ const BreakpointTemplate: ComponentStory<typeof DataList> = args => {
       nextFetchPolicy: "cache-first",
       client: apolloClient,
     },
+
     getCollectionByPath(items) {
       return items?.allPeople;
     },
@@ -174,20 +175,29 @@ const BreakpointTemplate: ComponentStory<typeof DataList> = args => {
   // );
 
   const items = data?.allPeople.edges || [];
+
+  const randomTags = ["SW", "commercial", "pets", "fence"];
   const mappedData = items.map(({ node }) => ({
+    id: node.id,
     label: node.name,
     home: node.homeworld.name,
     tags: [
       node.gender,
-      node.hairColor?.split(", "),
-      node.skinColor?.split(", "),
-    ],
+      ...(node.hairColor?.split(", ") || []),
+      ...(node.skinColor?.split(", ") || []),
+      ...randomTags.slice(
+        Math.round(Math.random() * 2),
+        Math.round(3 + Math.random() * 4),
+      ),
+    ].filter(t => t !== "n/a"),
     homePopulation: node.homeworld.population?.toLocaleString(),
     created: new Date(node.created),
   }));
 
   return (
     <DataList
+      loading={loadingInitialContent}
+      totalCount={null}
       {...args}
       data={(args.data as typeof mappedData) || mappedData}
       headers={{
@@ -197,7 +207,6 @@ const BreakpointTemplate: ComponentStory<typeof DataList> = args => {
         homePopulation: "Home world population",
         created: "Created",
       }}
-      loading={loadingInitialContent}
     >
       <DataList.Layout size="lg">
         {(item: DataListItemType<typeof mappedData>) => (
