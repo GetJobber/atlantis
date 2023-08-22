@@ -112,7 +112,7 @@ export function generateHeaderElements<T extends DataListObject>(
         </div>
       ),
     }),
-    {} as DataListItemTypeFromHeader<typeof headers>,
+    {} as DataListItemTypeFromHeader<T, typeof headers>,
   );
 
   return isEmpty(headerElements) ? undefined : headerElements;
@@ -177,7 +177,7 @@ export function renderDataListItems<T extends DataListObject>(
       return elementData.map((child, i) => {
         // TODO: Don't use index as key. Might have to force an ID on the data JOB-76773
         return (
-          <div className={styles.listItem} key={`${i}`}>
+          <div className={styles.listItem} key={`${i}-${child.id}`}>
             {layout.props.children(child)}
           </div>
         );
@@ -189,7 +189,7 @@ export function renderDataListItems<T extends DataListObject>(
 
 export function renderDataListHeader<T extends DataListObject>(
   layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined,
-  headerData?: DataListItemTypeFromHeader<DataListHeader<T>>,
+  headerData?: DataListItemTypeFromHeader<T, DataListHeader<T>>,
   mediaMatches?: Record<Breakpoints, boolean>,
 ) {
   return renderDataListLayouts(
