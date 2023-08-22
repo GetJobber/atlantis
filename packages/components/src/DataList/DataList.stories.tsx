@@ -77,12 +77,13 @@ const Template: ComponentStory<typeof DataList> = args => {
 
   const randomTags = ["SW", "commercial", "pets", "fence"];
   const mappedData = items.map(({ node }) => ({
+    id: node.id,
     label: node.name,
     home: node.homeworld.name,
     tags: [
       node.gender,
-      node.hairColor?.split(", "),
-      node.skinColor?.split(", "),
+      ...(node.hairColor?.split(", ") || []),
+      ...(node.skinColor?.split(", ") || []),
       ...randomTags.slice(
         Math.round(Math.random() * 2),
         Math.round(3 + Math.random() * 4),
