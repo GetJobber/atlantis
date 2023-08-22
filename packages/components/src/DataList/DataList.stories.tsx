@@ -75,6 +75,7 @@ const Template: ComponentStory<typeof DataList> = args => {
 
   const items = data?.allPeople.edges || [];
   const mappedData = items.map(({ node }) => ({
+    id: node.id,
     label: node.name,
     home: node.homeworld.name,
     tags: [

@@ -91,7 +91,7 @@ export function generateHeaderElements<T extends DataListObject>(
         </div>
       ),
     }),
-    {} as DataListItemTypeFromHeader<typeof headers>,
+    {} as DataListItemTypeFromHeader<T, typeof headers>,
   );
 
   return isEmpty(headerElements) ? undefined : headerElements;

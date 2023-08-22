@@ -5,12 +5,15 @@ export type DataListItemType<T extends DataListObject[]> = Record<
   ReactElement
 >;
 
-export type DataListItemTypeFromHeader<T extends DataListHeader<T>> = Record<
-  keyof T,
-  ReactElement
->;
+export type DataListItemTypeFromHeader<
+  TData extends DataListObject,
+  THeader extends DataListHeader<TData>,
+> = Record<keyof THeader, ReactElement>;
 
-export type DataListObject = Record<string, ReactNode | Date>;
+export interface DataListObject {
+  readonly id: string | number;
+  readonly [key: string]: ReactNode | Date;
+}
 
 export type DataListHeader<T extends DataListObject> = {
   readonly [K in keyof T]?: string;
