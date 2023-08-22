@@ -32,4 +32,18 @@ export interface DataListProps<T extends DataListObject> {
    */
   readonly filterApplied?: boolean;
   readonly children: ReactElement | ReactElement[];
+
+  /**
+   * The title of the DataList
+   */
+  readonly title?: string;
+
+  /**
+   * Total number of items in the DataList.
+   *
+   * This renders an "N result" text with the DataList
+   * that helps users know how many items they have
+   * in the list
+   */
+  readonly totalCount?: number | null;
 }

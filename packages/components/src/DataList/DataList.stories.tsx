@@ -60,6 +60,7 @@ const Template: ComponentStory<typeof DataList> = args => {
       nextFetchPolicy: "cache-first",
       client: apolloClient,
     },
+
     getCollectionByPath(items) {
       return items?.allPeople;
     },
@@ -87,6 +88,8 @@ const Template: ComponentStory<typeof DataList> = args => {
 
   return (
     <DataList
+      loading={loadingInitialContent}
+      totalCount={null}
       {...args}
       data={(args.data as typeof mappedData) || mappedData}
       headers={{
@@ -96,7 +99,6 @@ const Template: ComponentStory<typeof DataList> = args => {
         homePopulation: "Home world population",
         created: "Created",
       }}
-      loading={loadingInitialContent}
     >
       <DataList.Layout>
         {(item: DataListItemType<typeof mappedData>) => (
@@ -126,7 +128,10 @@ const Template: ComponentStory<typeof DataList> = args => {
 };
 
 export const Basic = Template.bind({});
-
+Basic.args = {
+  title: "All Clients",
+  loading: false,
+};
 export const EmptyState = Template.bind({});
 EmptyState.args = {
   data: [],
