@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import React from "react";
 import { DataListLayoutProps } from "./components/DataListLayout";
 import { DataList } from "./DataList";
@@ -13,8 +13,64 @@ import {
   DataListObject,
   DataListProps,
 } from "./DataList.types";
+import { DATALIST_TOTALCOUNT_TEST_ID } from "./components/DataListTotalCount";
+import { GLIMMER_TEST_ID } from "../Glimmer";
 
 describe("DataList", () => {
+  describe("Title and results counter", () => {
+    it("should render the total count", () => {
+      render(
+        <DataList
+          loading={false}
+          totalCount={10}
+          data={[{ label: "Luke Skywalker" }]}
+          headers={{
+            label: "Name",
+          }}
+        >
+          <></>
+        </DataList>,
+      );
+      expect(screen.getByText("(10 results)")).toBeInTheDocument();
+    });
+
+    it("should not render the total count if the totalCount is null", () => {
+      render(
+        <DataList
+          loading={false}
+          totalCount={null}
+          data={[{ label: "Luke Skywalker" }]}
+          headers={{
+            label: "Name",
+          }}
+          title="All Clients"
+        >
+          <></>
+        </DataList>,
+      );
+      expect(screen.getByText("All Clients")).toBeInTheDocument();
+      expect(screen.queryByText("(10 results)")).not.toBeInTheDocument();
+    });
+
+    it("should render the Glimmer when loading", () => {
+      render(
+        <DataList
+          loading={true}
+          totalCount={null}
+          data={[{ label: "Luke Skywalker" }]}
+          headers={{
+            label: "Name",
+          }}
+          title="All Clients"
+        >
+          <></>
+        </DataList>,
+      );
+      const results = screen.getByTestId(DATALIST_TOTALCOUNT_TEST_ID);
+      expect(within(results).getByTestId(GLIMMER_TEST_ID)).toBeInTheDocument();
+    });
+  });
+
   const mockData = [
     { name: "John", email: "john@doe.com" },
     { name: "Jane", email: "jane@doe.com" },
@@ -248,6 +304,20 @@ describe("DataList", () => {
       expect(screen.queryByText(mockHeaders.name)).not.toBeInTheDocument();
       expect(screen.queryByText(mockHeaders.email)).not.toBeInTheDocument();
     });
+  });
+
+  it("should render a title when it's provided", () => {
+    render(
+      <DataList
+        loading={false}
+        title="All Clients"
+        headers={{}}
+        data={emptyMockData}
+      >
+        <></>
+      </DataList>,
+    );
+    expect(screen.getByText("All Clients")).toBeInTheDocument();
   });
 
   describe("EmptyState", () => {

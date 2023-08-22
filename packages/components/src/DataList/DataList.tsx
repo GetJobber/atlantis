@@ -14,6 +14,8 @@ import {
   renderDataListHeader,
   renderDataListLayout,
 } from "./DataList.utils";
+import { DataListTotalCount } from "./components/DataListTotalCount";
+import { Heading } from "../Heading";
 
 export function DataList<T extends DataListObject>({
   data,
@@ -21,6 +23,8 @@ export function DataList<T extends DataListObject>({
   loading = false,
   filterApplied = false,
   children,
+  title,
+  totalCount,
 }: DataListProps<T>) {
   const allLayouts = getCompoundComponents<DataListLayoutProps<T>>(
     children,
@@ -42,7 +46,10 @@ export function DataList<T extends DataListObject>({
   return (
     <div className={styles.wrapper}>
       {/* List title and counter */}
-      {/* Filters here, since it also sticks to the top */}
+      <div className={styles.titleContainer}>
+        {title && <Heading level={3}>{title}</Heading>}
+        <DataListTotalCount totalCount={totalCount} loading={loading} />
+      </div>
       <div className={styles.header}>
         {headerData && dataListHeaderContent?.map(_layout => _layout)}
       </div>

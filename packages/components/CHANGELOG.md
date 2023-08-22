@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.26.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.26.5...@jobber/components@4.26.6) (2023-08-22)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 ## [4.26.5](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.26.4...@jobber/components@4.26.5) (2023-08-21)
 
 **Note:** Version bump only for package @jobber/components
