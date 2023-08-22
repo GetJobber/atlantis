@@ -207,7 +207,7 @@ const BreakpointTemplate: ComponentStory<typeof DataList> = args => {
           </Grid>
         )}
       </DataList.Layout>
-      <DataList.Layout size={"xs"}>
+      <DataList.Layout size={"xs"} showHeader={true}>
         {(item: DataListItemType<typeof mappedData>) => (
           <Card>
             <Content>

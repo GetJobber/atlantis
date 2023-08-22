@@ -12,7 +12,7 @@ import {
   generateListItemElements,
   getCompoundComponents,
   renderDataListHeader,
-  renderDataListLayout,
+  renderDataListItems,
 } from "./DataList.utils";
 import { DataListTotalCount } from "./components/DataListTotalCount";
 import { Heading } from "../Heading";
@@ -34,7 +34,7 @@ export function DataList<T extends DataListObject>({
   const elementData = generateListItemElements(data);
   const headerData = generateHeaderElements(headers);
   const dataListHeaderContent = renderDataListHeader(allLayouts, headerData);
-  const dataListContent = renderDataListLayout(allLayouts, elementData);
+  const dataListContent = renderDataListItems(allLayouts, elementData);
   const showEmptyState = !loading && data.length === 0;
   const [isFilterApplied, setIsFilterApplied] = useState(filterApplied);
   const EmptyStateComponent = generateDataListEmptyState({
@@ -50,10 +50,8 @@ export function DataList<T extends DataListObject>({
         {title && <Heading level={3}>{title}</Heading>}
         <DataListTotalCount totalCount={totalCount} loading={loading} />
       </div>
-      <div className={styles.header}>
-        {headerData && dataListHeaderContent?.map(_layout => _layout)}
-      </div>
-      {dataListContent?.flatMap(_layout => _layout).map(_layout => _layout)}
+      {headerData && dataListHeaderContent?.map(_layout => _layout)}
+      {dataListContent?.map(_layout => _layout)}
       {showEmptyState && EmptyStateComponent}
     </div>
   );

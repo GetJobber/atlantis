@@ -84,9 +84,11 @@ describe("DataList", () => {
   function getCssVarForListItem(cssVar: string, testID: string): any[] {
     const elements = screen.getAllByTestId(testID);
     return elements.map(element => {
-      if (!element.parentElement) return;
+      if (!element.parentElement || !element.parentElement.parentElement) {
+        return;
+      }
       return window
-        .getComputedStyle(element.parentElement)
+        .getComputedStyle(element.parentElement.parentElement)
         .getPropertyValue(cssVar);
     });
   }

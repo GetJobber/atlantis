@@ -1,4 +1,9 @@
-import React, { Children, ReactElement, isValidElement } from "react";
+import React, {
+  Children,
+  ReactElement,
+  ReactNode,
+  isValidElement,
+} from "react";
 import isEmpty from "lodash/isEmpty";
 import {
   DataListHeader,
@@ -165,44 +170,54 @@ export function generateDataListEmptyState({
   return EmptyStateComponent;
 }
 
-export function renderDataListLayout<T extends DataListObject>(
+export function renderDataListItems<T extends DataListObject>(
   layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined,
   elementData: DataListItemType<T[]>[],
 ) {
-  const sizePropsOfLayouts = layouts?.map(layout => layout.props.size || "xs");
-  return layouts?.map(layout => {
-    const layoutChildren = layout.props.children;
-    const layoutSize = layout.props.size || "xs";
-    const largerBreakpointsToHide = sizePropsOfLayouts?.filter(
-      size => BREAKPOINTS.indexOf(size) > BREAKPOINTS.indexOf(layoutSize),
-    );
-    const cssVars = getCSSVariablesForBreakpoints(
-      layoutSize,
-      largerBreakpointsToHide,
-    );
-    return elementData.map((child, i) => {
-      // TODO: Don't use index as key. Might have to force an ID on the data JOB-76773
-      return (
-        <div
-          className={styles.listItem}
-          key={`${i}-${layoutSize}`}
-          style={cssVars}
-        >
-          {layoutChildren(child)}
-        </div>
-      );
-    });
-  });
+  return renderDataListLayouts(
+    layouts,
+    (layout: React.ReactElement<DataListLayoutProps<T>>) => {
+      return elementData.map((child, i) => {
+        // TODO: Don't use index as key. Might have to force an ID on the data JOB-76773
+        return (
+          <div className={styles.listItem} key={`${i}`}>
+            {layout.props.children(child)}
+          </div>
+        );
+      });
+    },
+  );
 }
 
 export function renderDataListHeader<T extends DataListObject>(
   layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined,
   headerData?: DataListItemTypeFromHeader<DataListHeader<T>>,
 ) {
+  return renderDataListLayouts(
+    layouts,
+    (layout: React.ReactElement<DataListLayoutProps<T>>) => {
+      const showHeader = layout.props.showHeader ?? true;
+      return (
+        showHeader &&
+        headerData && (
+          <div className={styles.header}>
+            {layout.props.children(headerData)}
+          </div>
+        )
+      );
+    },
+  );
+}
+
+function renderDataListLayouts<T extends DataListObject>(
+  layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined,
+  renderLayout: (
+    layout: React.ReactElement<DataListLayoutProps<T>>,
+  ) => ReactNode,
+) {
   const sizePropsOfLayouts = layouts?.map(layout => layout.props.size || "xs");
-  return layouts?.map(layout => {
+  return layouts?.map((layout, index) => {
     const layoutSize = layout.props.size || "xs";
-    const showHeader = layout.props.showHeader ?? true;
     const largerBreakpointsToHide = sizePropsOfLayouts?.filter(
       size => BREAKPOINTS.indexOf(size) > BREAKPOINTS.indexOf(layoutSize),
     );
@@ -210,13 +225,14 @@ export function renderDataListHeader<T extends DataListObject>(
       layoutSize,
       largerBreakpointsToHide,
     );
-
     return (
-      showHeader && (
-        <div key={layoutSize} style={cssVars} className={styles.headerContent}>
-          {headerData && layout.props.children(headerData)}
-        </div>
-      )
+      <div
+        style={cssVars}
+        key={`${index}-${layoutSize}`}
+        className={styles.layout}
+      >
+        {renderLayout(layout)}
+      </div>
     );
   });
 }
