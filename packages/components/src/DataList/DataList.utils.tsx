@@ -18,6 +18,7 @@ import { DataListLayoutProps } from "./components/DataListLayout";
 import { FormatDate } from "../FormatDate";
 import { InlineLabel } from "../InlineLabel";
 import { Text } from "../Text";
+
 /**
  * Return the child component that matches the `type` provided
  */
@@ -209,7 +210,6 @@ export function renderDataListHeader<T extends DataListObject>(
       layoutSize,
       largerBreakpointsToHide,
     );
-    console.log("showHeader", showHeader);
 
     return (
       showHeader && (
