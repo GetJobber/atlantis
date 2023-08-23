@@ -1,9 +1,4 @@
-import { defineMessages } from "react-intl";
+import en from "./locales/en.json";
+import es from "./locales/es.json";
 
-export const messages = defineMessages({
-  cancel: {
-    id: "cancel",
-    defaultMessage: "Cancel",
-    description: "Text for the cancel action",
-  },
-});
+export const messages: Record<string, typeof en | typeof es> = { en, es };

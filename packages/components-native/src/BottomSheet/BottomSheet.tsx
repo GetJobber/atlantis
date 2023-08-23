@@ -118,7 +118,7 @@ function Footer({
   onCancel: () => void;
 }) {
   const insets = useSafeAreaInsets();
-  const { formatMessage } = useIntl();
+  const { locale } = useIntl();
 
   return (
     <View style={{ marginBottom: insets.bottom }}>
@@ -128,7 +128,7 @@ function Footer({
             <Divider />
           </View>
           <BottomSheetOption
-            text={formatMessage(messages.cancel)}
+            text={messages[locale].cancel}
             icon={"remove"}
             onPress={onCancel}
           />
