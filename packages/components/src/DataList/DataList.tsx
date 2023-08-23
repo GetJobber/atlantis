@@ -61,8 +61,8 @@ export function DataList<T extends DataListObject>({
         {title && <Heading level={3}>{title}</Heading>}
         <DataListTotalCount totalCount={totalCount} loading={loading} />
       </div>
-      {headerData && dataListHeaderContent?.map(_layout => _layout)}
-      {dataListContent?.map(_layout => _layout)}
+      {headerData && dataListHeaderContent}
+      {dataListContent}
       {showEmptyState && EmptyStateComponent}
     </div>
   );

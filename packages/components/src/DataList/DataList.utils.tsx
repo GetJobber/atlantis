@@ -217,7 +217,7 @@ function renderDataListLayouts<T extends DataListObject>(
   mediaMatches?: Record<Breakpoints, boolean>,
 ) {
   const sizePropsOfLayouts = layouts?.map(layout => layout.props.size || "xs");
-  return layouts?.map(layout => {
+  const layoutToRender = layouts?.find(layout => {
     const layoutSize = layout.props.size || "xs";
 
     const isVisible = isLayoutVisible({
@@ -226,8 +226,9 @@ function renderDataListLayouts<T extends DataListObject>(
       sizePropsOfLayouts,
     });
 
-    return isVisible && renderLayout(layout);
+    return isVisible;
   });
+  return layoutToRender && renderLayout(layoutToRender);
 }
 
 /**
@@ -287,7 +288,8 @@ export function useGridLayoutMediaQueries() {
     {} as Record<Breakpoints, boolean>,
   );
 
-  const [matches, setMatches] = useState(initialMatches); // one-time, instantaneous check  useEffect(() => {
+  const [matches, setMatches] = useState(initialMatches);
+  // Set up mediaQuery event handlers
   useEffect(() => {
     const handlers = BREAKPOINTS.reduce((previous, breakpoint) => {
       const handler = (e: MediaQueryListEvent) =>
@@ -306,7 +308,7 @@ export function useGridLayoutMediaQueries() {
         );
       });
     };
-  });
+  }, [mediaQueries]);
 
   return matches;
 }
