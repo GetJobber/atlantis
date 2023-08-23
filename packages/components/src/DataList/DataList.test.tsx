@@ -119,6 +119,7 @@ describe("DataList", () => {
       expect(screen.getByText(data.email)).toBeInstanceOf(HTMLParagraphElement);
     });
   });
+
   describe("Layout Breakpoints", () => {
     const layoutItem = "layout-item";
 
