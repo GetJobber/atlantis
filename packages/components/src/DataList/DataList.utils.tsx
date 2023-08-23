@@ -178,10 +178,10 @@ export function renderDataListItems<T extends DataListObject>(
   return renderDataListLayouts(
     layouts,
     (layout: React.ReactElement<DataListLayoutProps<T>>) => {
-      return elementData.map((child, i) => {
+      return elementData.map(child => {
         // TODO: Don't use index as key. Might have to force an ID on the data JOB-76773
         return (
-          <div className={styles.listItem} key={`${i}-${child.id}`}>
+          <div className={styles.listItem} key={`${child.id}`}>
             {layout.props.children(child)}
           </div>
         );
