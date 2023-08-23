@@ -21,7 +21,7 @@ export default {
     viewMode: "story",
   },
   // Comment this out to make it show up in storybook
-  excludeStories: ["Basic", "EmptyState"],
+  // excludeStories: ["Basic", "EmptyState"],
   decorators: [
     // Detach from Storybook's layout
     (Story, { viewMode }) => {
@@ -74,6 +74,7 @@ const Template: ComponentStory<typeof DataList> = args => {
   // );
 
   const items = data?.allPeople.edges || [];
+  const totalCount = data?.allPeople.totalCount || null;
   const mappedData = items.map(({ node }) => ({
     label: node.name,
     home: node.homeworld.name,
@@ -88,9 +89,9 @@ const Template: ComponentStory<typeof DataList> = args => {
 
   return (
     <DataList
-      loading={loadingInitialContent}
-      totalCount={null}
       {...args}
+      loading={args.loading || loadingInitialContent}
+      totalCount={totalCount}
       data={(args.data as typeof mappedData) || mappedData}
       headers={{
         label: "Name",

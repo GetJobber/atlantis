@@ -13,6 +13,7 @@ import {
   getCompoundComponent,
 } from "./DataList.utils";
 import { DataListTotalCount } from "./components/DataListTotalCount";
+import { DataListLoadingState } from "./components/DataListLoadingState/DataListLoadingState";
 import { Heading } from "../Heading";
 
 export function DataList<T extends DataListObject>({
@@ -51,7 +52,13 @@ export function DataList<T extends DataListObject>({
         {/* Filters here, since it also sticks to the top */}
         {headerData && layout?.(headerData)}
       </div>
+      <DataListLoadingState
+        loading={loading}
+        headers={headers}
+        layout={layout}
+      />
       {layout &&
+        !loading &&
         elementData.map((child, i) => (
           // TODO: Don't use index as key. Might have to force an ID on the data JOB-76773
           <div className={styles.listItem} key={i}>

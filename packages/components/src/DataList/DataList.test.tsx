@@ -7,6 +7,10 @@ import {
 } from "./DataList.const";
 import { DataListItemType, DataListProps } from "./DataList.types";
 import { DATALIST_TOTALCOUNT_TEST_ID } from "./components/DataListTotalCount";
+import {
+  DATALIST_LOADINGSTATE_ROW_TEST_ID,
+  LOADING_STATE_LIMIT_ITEMS,
+} from "./components/DataListLoadingState";
 import { GLIMMER_TEST_ID } from "../Glimmer";
 
 describe("DataList", () => {
@@ -45,7 +49,7 @@ describe("DataList", () => {
       expect(screen.queryByText("(10 results)")).not.toBeInTheDocument();
     });
 
-    it("should render the Glimmer when loading", () => {
+    it("should render the Glimmer on total count when loading", () => {
       render(
         <DataList
           loading={true}
@@ -73,6 +77,38 @@ describe("DataList", () => {
     name: "Name",
     email: "Email",
   };
+
+  describe("Loading State", () => {
+    it("should render 10 rows of placeholder items when the list is loading", () => {
+      render(
+        <DataList
+          loading={true}
+          data={mockData}
+          headers={mockHeaders}
+          title="All Clients"
+        >
+          <DataList.Layout>
+            {(item: DataListItemType<typeof mockData>) => (
+              <div>
+                <div>{item.name}</div>
+                <div>{item.email}</div>
+              </div>
+            )}
+          </DataList.Layout>
+        </DataList>,
+      );
+
+      expect(
+        screen.getAllByTestId(DATALIST_LOADINGSTATE_ROW_TEST_ID).length,
+      ).toBe(10);
+
+      const numberOfColumns = Object.keys(mockHeaders).length;
+
+      expect(screen.getAllByTestId(GLIMMER_TEST_ID).length).toBe(
+        numberOfColumns * LOADING_STATE_LIMIT_ITEMS,
+      );
+    });
+  });
 
   describe("Layout", () => {
     const layoutWrapper = "layout-wrapper";
