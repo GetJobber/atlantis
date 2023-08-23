@@ -166,6 +166,10 @@ export function generateDataListEmptyState({
   return EmptyStateComponent;
 }
 
+/**
+ * Render the data list items with the layout that
+ * should be visible based on its size prop and the size props of the other layouts
+ */
 export function renderDataListItems<T extends DataListObject>(
   layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined,
   elementData: DataListItemType<T[]>[],
@@ -187,6 +191,10 @@ export function renderDataListItems<T extends DataListObject>(
   );
 }
 
+/**
+ * Render the data list header with the layout that
+ * should be visible based on its size prop and the size props of the other layouts
+ */
 export function renderDataListHeader<T extends DataListObject>(
   layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined,
   headerData?: DataListItemTypeFromHeader<T, DataListHeader<T>>,
@@ -209,6 +217,10 @@ export function renderDataListHeader<T extends DataListObject>(
   );
 }
 
+/**
+ * Helper function that will render the layout that should be visible based on
+ * its size prop and the size props of the other layouts
+ */
 function renderDataListLayouts<T extends DataListObject>(
   layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined,
   renderLayout: (
@@ -232,8 +244,8 @@ function renderDataListLayouts<T extends DataListObject>(
 }
 
 /**
- *Determine is layout is visible by checking a media query matches for the
-  visible sizes of the layout and there isn't a larger layout that should be rendered
+ * Determine is layout is visible by checking a media query matches for the
+ * visible sizes of the layout and there isn't a larger layout that should be rendered
  */
 function isLayoutVisible({
   layoutSize,
