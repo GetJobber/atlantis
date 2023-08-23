@@ -13,7 +13,6 @@ import {
   // getLoadingState,
 } from "./storyUtils";
 import { Grid } from "../Grid";
-import { Card } from "../Card";
 import { Content } from "../Content";
 
 export default {
@@ -226,13 +225,11 @@ const BreakpointTemplate: ComponentStory<typeof DataList> = args => {
       </DataList.Layout>
       <DataList.Layout size={"xs"}>
         {(item: DataListItemType<typeof mappedData>) => (
-          <Card>
-            <Content>
-              {item.label}
-              {item.home}
-              {item.created}
-            </Content>
-          </Card>
+          <Content>
+            {item.label}
+            {item.home}
+            {item.created}
+          </Content>
         )}
       </DataList.Layout>
       <DataList.EmptyState
