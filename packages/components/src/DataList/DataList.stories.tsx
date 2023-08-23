@@ -23,7 +23,7 @@ export default {
     viewMode: "story",
   },
   // Comment this out to make it show up in storybook
-  excludeStories: ["Basic", "EmptyState", "Breakpoints"],
+  // excludeStories: ["Basic", "EmptyState", "Breakpoints"],
   decorators: [
     // Detach from Storybook's layout
     (Story, { viewMode }) => {
@@ -227,23 +227,9 @@ const BreakpointTemplate: ComponentStory<typeof DataList> = args => {
         {(item: DataListItemType<typeof mappedData>) => (
           <Card>
             <Content>
-              <Grid>
-                <Grid.Cell size={{ xs: 8 }}>
-                  <Grid>
-                    <Grid.Cell size={{ xs: 12 }}>{item.label}</Grid.Cell>
-                    <Grid.Cell size={{ xs: 12 }}>{item.tags}</Grid.Cell>
-                  </Grid>
-                </Grid.Cell>
-                <Grid.Cell size={{ xs: 4 }}>
-                  <Grid>
-                    <Grid.Cell size={{ xs: 12 }}>{item.home}</Grid.Cell>
-                    <Grid.Cell size={{ xs: 12 }}>
-                      {item.homePopulation}
-                    </Grid.Cell>
-                  </Grid>
-                </Grid.Cell>
-                <Grid.Cell size={{ xs: 12 }}>{item.created}</Grid.Cell>
-              </Grid>
+              {item.label}
+              {item.home}
+              {item.created}
             </Content>
           </Card>
         )}
