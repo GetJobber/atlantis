@@ -204,6 +204,69 @@ describe("DataList", () => {
         expect(screen.queryAllByTestId(layout2Wrapper)).not.toHaveLength(0);
       },
     );
+
+    it.each<{
+      layoutSize1: Breakpoints;
+      mockedQueries: Record<Breakpoints, boolean>;
+      headerVisibility: { [Breakpoint in Breakpoints]?: boolean };
+      isHeaderVisible: boolean;
+      layoutSize2: Breakpoints;
+    }>([
+      {
+        layoutSize1: "xs",
+        mockedQueries: { xs: true, sm: true, md: false, lg: false, xl: false },
+        headerVisibility: { xs: false },
+        isHeaderVisible: false,
+        layoutSize2: "md",
+      },
+      {
+        layoutSize1: "sm",
+        mockedQueries: { xs: true, sm: true, md: true, lg: true, xl: true },
+        headerVisibility: { xs: true },
+        isHeaderVisible: true,
+        layoutSize2: "md",
+      },
+    ])(
+      "should use the header visibility from the smaller layout is not specified",
+      ({
+        layoutSize1,
+        layoutSize2,
+        mockedQueries,
+        headerVisibility,
+        isHeaderVisible,
+      }) => {
+        const layout1Wrapper = "layout1-wrapper";
+        const layout2Wrapper = "layout2-wrapper";
+        setUpMediaQueries(mockedQueries);
+        render(
+          <DataList
+            data={mockData}
+            headers={mockHeaders}
+            headerVisibility={headerVisibility}
+          >
+            <DataList.Layout size={layoutSize1}>
+              {(item: DataListItemType<typeof mockData>) => (
+                <div data-testid={layout1Wrapper}>
+                  <div data-testid={layoutItem}>{item.name}</div>
+                  <div data-testid={layoutItem}>{item.email}</div>
+                </div>
+              )}
+            </DataList.Layout>
+            <DataList.Layout size={layoutSize2}>
+              {(item: DataListItemType<typeof mockData>) => (
+                <div data-testid={layout2Wrapper}>
+                  <div data-testid={layoutItem}>{item.name}</div>
+                  <div data-testid={layoutItem}>{item.email}</div>
+                </div>
+              )}
+            </DataList.Layout>
+          </DataList>,
+        );
+        expect(screen.queryAllByText(mockHeaders.name).length > 0).toBe(
+          isHeaderVisible,
+        );
+      },
+    );
   });
 
   describe("Header", () => {
