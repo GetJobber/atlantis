@@ -38,7 +38,6 @@ export function DataListLoadingState<T extends DataListObject>({
     <>
       {layout &&
         loadingElements.map((child, i) => (
-          // TODO: Don't use index as key. Might have to force an ID on the data JOB-76773
           <div
             className={styles.loadingItem}
             key={i}
