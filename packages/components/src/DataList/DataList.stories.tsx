@@ -207,6 +207,7 @@ const BreakpointTemplate: ComponentStory<typeof DataList> = args => {
         homePopulation: "Home world population",
         created: "Created",
       }}
+      headerVisibility={{ xs: false, lg: true }}
     >
       <DataList.Layout size="lg">
         {(item: DataListItemType<typeof mappedData>) => (
@@ -223,7 +224,7 @@ const BreakpointTemplate: ComponentStory<typeof DataList> = args => {
           </Grid>
         )}
       </DataList.Layout>
-      <DataList.Layout size={"xs"} showHeader={false}>
+      <DataList.Layout size={"xs"}>
         {(item: DataListItemType<typeof mappedData>) => (
           <Card>
             <Content>

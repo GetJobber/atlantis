@@ -13,12 +13,6 @@ export interface DataListLayoutProps<T extends DataListObject> {
    * @default "xs"
    */
   readonly size?: Breakpoints;
-
-  /**
-   * Determines if a header is shown for the layout
-   * @default true
-   */
-  readonly showHeader?: boolean;
 }
 
 export function DataListLayout<T extends DataListObject>(

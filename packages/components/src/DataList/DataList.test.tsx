@@ -1,6 +1,5 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import React from "react";
-import { DataListLayoutProps } from "./components/DataListLayout";
 import { DataList } from "./DataList";
 import {
   BREAKPOINT_SIZES,
@@ -8,11 +7,7 @@ import {
   EMPTY_FILTER_RESULTS_ACTION_LABEL,
   EMPTY_FILTER_RESULTS_MESSAGE,
 } from "./DataList.const";
-import {
-  DataListItemType,
-  DataListObject,
-  DataListProps,
-} from "./DataList.types";
+import { DataListItemType, DataListProps } from "./DataList.types";
 import { DATALIST_TOTALCOUNT_TEST_ID } from "./components/DataListTotalCount";
 import { GLIMMER_TEST_ID } from "../Glimmer";
 
@@ -213,11 +208,17 @@ describe("DataList", () => {
 
   describe("Header", () => {
     function renderLayout(
-      layoutProps?: Partial<DataListLayoutProps<DataListObject>>,
+      headerVisibility?: DataListProps<
+        (typeof mockData)[0]
+      >["headerVisibility"],
     ) {
       render(
-        <DataList data={mockData} headers={mockHeaders}>
-          <DataList.Layout {...layoutProps}>
+        <DataList
+          data={mockData}
+          headers={mockHeaders}
+          headerVisibility={headerVisibility}
+        >
+          <DataList.Layout>
             {(item: DataListItemType<typeof mockData>) => (
               <div>{item.name}</div>
             )}
@@ -240,7 +241,7 @@ describe("DataList", () => {
     });
 
     it("should hide the header if specified on the layout", () => {
-      renderLayout({ showHeader: false });
+      renderLayout({ xs: false });
       expect(screen.queryByText(mockHeaders.name)).not.toBeInTheDocument();
       expect(screen.queryByText(mockHeaders.email)).not.toBeInTheDocument();
     });

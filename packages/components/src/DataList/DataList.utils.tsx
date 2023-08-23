@@ -1,7 +1,6 @@
 import React, {
   Children,
   ReactElement,
-  ReactNode,
   isValidElement,
   useEffect,
   useState,
@@ -22,7 +21,6 @@ import {
   EMPTY_FILTER_RESULTS_ACTION_LABEL,
   EMPTY_FILTER_RESULTS_MESSAGE,
 } from "./DataList.const";
-import { DataListLayoutProps } from "./components/DataListLayout";
 import { DataListTags } from "./components/DataListTags";
 import { FormatDate } from "../FormatDate";
 import { Text } from "../Text";
@@ -164,122 +162,6 @@ export function generateDataListEmptyState({
   }
 
   return EmptyStateComponent;
-}
-
-/**
- * Render the data list items with the layout that
- * should be visible based on its size prop and the size props of the other layouts
- */
-export function renderDataListItems<T extends DataListObject>(
-  layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined,
-  elementData: DataListItemType<T[]>[],
-  mediaMatches?: Record<Breakpoints, boolean>,
-) {
-  return renderDataListLayouts(
-    layouts,
-    (layout: React.ReactElement<DataListLayoutProps<T>>) => {
-      return elementData.map(child => {
-        // TODO: Don't use index as key. Might have to force an ID on the data JOB-76773
-        return (
-          <div className={styles.listItem} key={`${child.id}`}>
-            {layout.props.children(child)}
-          </div>
-        );
-      });
-    },
-    mediaMatches,
-  );
-}
-
-/**
- * Render the data list header with the layout that
- * should be visible based on its size prop and the size props of the other layouts
- */
-export function renderDataListHeader<T extends DataListObject>(
-  layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined,
-  headerData?: DataListItemTypeFromHeader<T, DataListHeader<T>>,
-  mediaMatches?: Record<Breakpoints, boolean>,
-) {
-  return renderDataListLayouts(
-    layouts,
-    (layout: React.ReactElement<DataListLayoutProps<T>>) => {
-      const showHeader = layout.props.showHeader ?? true;
-      return (
-        showHeader &&
-        headerData && (
-          <div className={styles.header}>
-            {layout.props.children(headerData)}
-          </div>
-        )
-      );
-    },
-    mediaMatches,
-  );
-}
-
-/**
- * Helper function that will render the layout that should be visible based on
- * its size prop and the size props of the other layouts
- */
-function renderDataListLayouts<T extends DataListObject>(
-  layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined,
-  renderLayout: (
-    layout: React.ReactElement<DataListLayoutProps<T>>,
-  ) => ReactNode,
-  mediaMatches?: Record<Breakpoints, boolean>,
-) {
-  const sizePropsOfLayouts = layouts?.map(layout => layout.props.size || "xs");
-  const layoutToRender = layouts?.find(layout => {
-    const layoutSize = layout.props.size || "xs";
-
-    const isVisible = isLayoutVisible({
-      layoutSize,
-      mediaMatches,
-      sizePropsOfLayouts,
-    });
-
-    return isVisible;
-  });
-  return layoutToRender && renderLayout(layoutToRender);
-}
-
-/**
- * Determine is layout is visible by checking a media query matches for the
- * visible sizes of the layout and there isn't a larger layout that should be rendered
- */
-function isLayoutVisible({
-  layoutSize,
-  mediaMatches,
-  sizePropsOfLayouts,
-}: {
-  layoutSize: Breakpoints;
-  mediaMatches?: Record<Breakpoints, boolean>;
-  sizePropsOfLayouts?: Breakpoints[];
-}) {
-  const largerBreakpointsToHide = sizePropsOfLayouts?.filter(
-    size => BREAKPOINTS.indexOf(size) > BREAKPOINTS.indexOf(layoutSize),
-  );
-  const sortedLargerBreakpoints = sortSizeProp(largerBreakpointsToHide || []);
-
-  const visibleBreakpoints = BREAKPOINTS.slice(
-    BREAKPOINTS.indexOf(layoutSize),
-    sortedLargerBreakpoints[0]
-      ? BREAKPOINTS.indexOf(sortedLargerBreakpoints[0])
-      : undefined,
-  );
-
-  const isVisibleBreakpoint = visibleBreakpoints.some(breakpoint => {
-    return Boolean(mediaMatches?.[breakpoint]);
-  });
-
-  const largerLayoutIsNotVisible = largerBreakpointsToHide?.reduce<boolean>(
-    (acc, breakpoint) => {
-      return acc && !mediaMatches?.[breakpoint];
-    },
-    true,
-  );
-
-  return isVisibleBreakpoint && largerLayoutIsNotVisible;
 }
 
 export function sortSizeProp(sizeProp: Breakpoints[]) {
