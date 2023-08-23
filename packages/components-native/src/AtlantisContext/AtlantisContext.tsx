@@ -46,6 +46,8 @@ export interface AtlantisContextProps {
    * By accurately defining this value, Atlantis can effectively calculate the layout and alignment of its components.
    */
   readonly headerHeight: number;
+
+  readonly locale: string;
 }
 
 export const defaultValues: AtlantisContextProps = {
@@ -60,6 +62,7 @@ export const defaultValues: AtlantisContextProps = {
   floatSeparators: { group: ",", decimal: "." },
   currencySymbol: DEFAULT_CURRENCY_SYMBOL,
   headerHeight: 0,
+  locale: "en",
 };
 
 export const AtlantisContext = createContext(defaultValues);
