@@ -267,14 +267,19 @@ function isLayoutVisible({
       ? BREAKPOINTS.indexOf(sortedLargerBreakpoints[0])
       : undefined,
   );
-  return (
-    visibleBreakpoints.some(breakpoint => {
-      return Boolean(mediaMatches?.[breakpoint]);
-    }) &&
-    largerBreakpointsToHide?.reduce<boolean>((acc, breakpoint) => {
+
+  const isVisibleBreakpoint = visibleBreakpoints.some(breakpoint => {
+    return Boolean(mediaMatches?.[breakpoint]);
+  });
+
+  const largerLayoutIsNotVisible = largerBreakpointsToHide?.reduce<boolean>(
+    (acc, breakpoint) => {
       return acc && !mediaMatches?.[breakpoint];
-    }, true)
+    },
+    true,
   );
+
+  return isVisibleBreakpoint && largerLayoutIsNotVisible;
 }
 
 export function sortSizeProp(sizeProp: Breakpoints[]) {
