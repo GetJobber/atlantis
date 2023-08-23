@@ -25,7 +25,6 @@ export function DataListItems<T extends DataListObject>({
         return (
           <>
             {elementData.map((child, i) => {
-              // TODO: Don't use index as key. Might have to force an ID on the data JOB-76773
               return (
                 <div className={styles.listItem} key={`${data[i].id}`}>
                   {layout.props.children(child)}
