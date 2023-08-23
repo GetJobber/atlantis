@@ -29,9 +29,8 @@ export function DataListHeader<T extends DataListObject>({
         const matchingMediaQueries = Object.keys(mediaMatches || {}).filter(
           (key): key is Breakpoints => !!mediaMatches?.[key as Breakpoints],
         );
-
         const sortedVisibleBreakpoints = sortSizeProp(matchingMediaQueries);
-
+        // Determines if the header should be visible based on the headerVisibility
         const showHeader = sortedVisibleBreakpoints.reduce(
           (previousVisibility, breakpoint) => {
             return headerVisibility[breakpoint] ?? previousVisibility;

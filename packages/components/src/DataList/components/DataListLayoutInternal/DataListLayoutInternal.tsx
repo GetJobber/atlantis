@@ -57,13 +57,11 @@ export function DataListLayoutInternal<T extends DataListObject>({
   const sizePropsOfLayouts = layouts?.map(layout => layout.props.size || "xs");
   const layoutToRender = layouts?.find(layout => {
     const layoutSize = layout.props.size || "xs";
-
     const isVisible = isLayoutVisible({
       layoutSize,
       mediaMatches,
       sizePropsOfLayouts,
     });
-
     return isVisible;
   });
   return (layoutToRender && renderLayout(layoutToRender)) || <></>;

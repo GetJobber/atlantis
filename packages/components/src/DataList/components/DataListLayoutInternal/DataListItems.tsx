@@ -12,7 +12,6 @@ export function DataListItems<T extends DataListObject>({
   data,
 }: {
   layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined;
-
   mediaMatches?: Record<Breakpoints, boolean>;
   data: T[];
 }) {
