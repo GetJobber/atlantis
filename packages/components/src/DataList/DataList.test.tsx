@@ -14,16 +14,19 @@ import {
 import { GLIMMER_TEST_ID } from "../Glimmer";
 
 describe("DataList", () => {
+  const mockTitle = "All people";
+
   describe("Title and results counter", () => {
+    const mockData = [{ id: 1, label: "Luke Skywalker" }];
+    const mockHeader = { label: "Name" };
+
     it("should render the total count", () => {
       render(
         <DataList
           loading={false}
           totalCount={10}
-          data={[{ label: "Luke Skywalker" }]}
-          headers={{
-            label: "Name",
-          }}
+          data={mockData}
+          headers={mockHeader}
         >
           <></>
         </DataList>,
@@ -36,16 +39,14 @@ describe("DataList", () => {
         <DataList
           loading={false}
           totalCount={null}
-          data={[{ label: "Luke Skywalker" }]}
-          headers={{
-            label: "Name",
-          }}
-          title="All Clients"
+          data={mockData}
+          headers={mockHeader}
+          title={mockTitle}
         >
           <></>
         </DataList>,
       );
-      expect(screen.getByText("All Clients")).toBeInTheDocument();
+      expect(screen.getByText(mockTitle)).toBeInTheDocument();
       expect(screen.queryByText("(10 results)")).not.toBeInTheDocument();
     });
 
@@ -54,11 +55,9 @@ describe("DataList", () => {
         <DataList
           loading={true}
           totalCount={null}
-          data={[{ label: "Luke Skywalker" }]}
-          headers={{
-            label: "Name",
-          }}
-          title="All Clients"
+          data={mockData}
+          headers={mockHeader}
+          title={mockTitle}
         >
           <></>
         </DataList>,
@@ -69,11 +68,11 @@ describe("DataList", () => {
   });
 
   const mockData = [
-    { name: "John", email: "john@doe.com" },
-    { name: "Jane", email: "jane@doe.com" },
+    { id: 1, name: "John", email: "john@doe.com" },
+    { id: 2, name: "Jane", email: "jane@doe.com" },
   ];
   const emptyMockData = [] as typeof mockData;
-  const mockHeaders: Record<keyof (typeof mockData)[number], string> = {
+  const mockHeaders = {
     name: "Name",
     email: "Email",
   };
@@ -170,14 +169,14 @@ describe("DataList", () => {
     render(
       <DataList
         loading={false}
-        title="All Clients"
+        title={mockTitle}
         headers={{}}
         data={emptyMockData}
       >
         <></>
       </DataList>,
     );
-    expect(screen.getByText("All Clients")).toBeInTheDocument();
+    expect(screen.getByText(mockTitle)).toBeInTheDocument();
   });
 
   describe("EmptyState", () => {

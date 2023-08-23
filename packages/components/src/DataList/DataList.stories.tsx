@@ -75,14 +75,21 @@ const Template: ComponentStory<typeof DataList> = args => {
 
   const items = data?.allPeople.edges || [];
   const totalCount = data?.allPeople.totalCount || null;
+
+  const randomTags = ["SW", "commercial", "pets", "fence"];
   const mappedData = items.map(({ node }) => ({
+    id: node.id,
     label: node.name,
     home: node.homeworld.name,
     tags: [
       node.gender,
-      node.hairColor?.split(", "),
-      node.skinColor?.split(", "),
-    ],
+      ...(node.hairColor?.split(", ") || []),
+      ...(node.skinColor?.split(", ") || []),
+      ...randomTags.slice(
+        Math.round(Math.random() * 2),
+        Math.round(3 + Math.random() * 4),
+      ),
+    ].filter(t => t !== "n/a"),
     homePopulation: node.homeworld.population?.toLocaleString(),
     created: new Date(node.created),
   }));

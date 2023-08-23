@@ -47,7 +47,7 @@ describe("Datalist utils", () => {
    */
   describe("generateListItemElements", () => {
     it("should generate a Text component for the label key", () => {
-      const elementList = generateListItemElements([{ label: "Hello" }]);
+      const elementList = generateListItemElements([{ id: 1, label: "Hello" }]);
 
       // Snapshot needs updating? See comment #1 above the `describe`.
       expect(elementList[0].label).toMatchInlineSnapshot(`
@@ -60,6 +60,7 @@ describe("Datalist utils", () => {
     it("should generate a subdued Text component for any random key", () => {
       const elementList = generateListItemElements([
         {
+          id: 1,
           randomKeyThatIsntNormal: "I am a normal text",
         },
       ]);
@@ -75,38 +76,34 @@ describe("Datalist utils", () => {
     });
 
     it("should generate a list of inline label for the tag key", () => {
-      const elementList = generateListItemElements([{ tags: ["uno", "dos"] }]);
+      const elementList = generateListItemElements([
+        { id: 1, tags: ["uno", "dos"] },
+      ]);
 
       // Snapshot needs updating? See comment #1 above the `describe`.
       expect(elementList[0].tags).toMatchInlineSnapshot(`
-        <div
-          style={
-            {
-              "display": "flex",
-              "gap": 8,
-              "overflow": "hidden",
-            }
+        <DataListTags
+          items={
+            [
+              "uno",
+              "dos",
+            ]
           }
-        >
-          <InlineLabel>
-            uno
-          </InlineLabel>
-          <InlineLabel>
-            dos
-          </InlineLabel>
-        </div>
+        />
       `);
     });
 
     it("should generate the element passed in on any key", () => {
-      const elementList = generateListItemElements([{ element: <div /> }]);
+      const elementList = generateListItemElements([
+        { id: 1, element: <div /> },
+      ]);
 
       // Snapshot needs updating? See comment #1 above the `describe`.
       expect(elementList[0].element).toMatchInlineSnapshot(`<div />`);
     });
 
     it("should generate the correct element", () => {
-      const elementList = generateListItemElements([{ date }]);
+      const elementList = generateListItemElements([{ id: 1, date }]);
 
       // Snapshot needs updating? See comment #1 above the `describe`.
       expect(elementList[0].date).toMatchInlineSnapshot(`

@@ -60,8 +60,7 @@ export function DataList<T extends DataListObject>({
       {layout &&
         !loading &&
         elementData.map((child, i) => (
-          // TODO: Don't use index as key. Might have to force an ID on the data JOB-76773
-          <div className={styles.listItem} key={i}>
+          <div className={styles.listItem} key={data[i].id}>
             {layout(child)}
           </div>
         ))}

@@ -12,8 +12,8 @@ import {
   EMPTY_FILTER_RESULTS_ACTION_LABEL,
   EMPTY_FILTER_RESULTS_MESSAGE,
 } from "./DataList.const";
+import { DataListTags } from "./components/DataListTags";
 import { FormatDate } from "../FormatDate";
-import { InlineLabel } from "../InlineLabel";
 import { Text } from "../Text";
 
 /**
@@ -47,14 +47,7 @@ export function generateListItemElements<T extends DataListObject>(data: T[]) {
       }
 
       if (key === "tags" && Array.isArray(currentItem)) {
-        acc[key] = (
-          // TODO: Create a component specific for this with the experience we want JOB-76771
-          <div style={{ display: "flex", gap: 8, overflow: "hidden" }}>
-            {currentItem.filter(Boolean).map((tag, index) => (
-              <InlineLabel key={index}>{tag}</InlineLabel>
-            ))}
-          </div>
-        );
+        acc[key] = <DataListTags items={currentItem} />;
       } else if (key === "label" && typeof currentItem === "string") {
         acc[key] = <Text>{currentItem}</Text>;
       } else if (isValidElement(currentItem)) {
@@ -91,7 +84,7 @@ export function generateHeaderElements<T extends DataListObject>(
         </div>
       ),
     }),
-    {} as DataListItemTypeFromHeader<typeof headers>,
+    {} as DataListItemTypeFromHeader<T, typeof headers>,
   );
 
   return isEmpty(headerElements) ? undefined : headerElements;
