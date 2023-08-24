@@ -9,5 +9,6 @@
   "ProgressBar.complete": "{current} of {total} complete",
   "ProgressBar.inProgress": "{current} of {total} complete, {inProgress} in progress",
   "Select.a11yHint": "Select to open the picker",
-  "Select.emptyValue": "Select an option"
+  "Select.emptyValue": "Select an option",
+  "time": "Time"
 }

@@ -3,16 +3,15 @@ import { FieldError, UseControllerProps } from "react-hook-form";
 import { XOR } from "ts-xor";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { View } from "react-native";
-import { useIntl } from "react-intl";
 import { utcToZonedTime } from "date-fns-tz";
 import { format as formatTime } from "date-fns";
 import { styles } from "./InputTime.style";
-import { messages } from "./messages";
 import { getTimeZoneOffsetInMinutes, roundUpToNearestMinutes } from "./utils";
 import { useAtlantisContext } from "../AtlantisContext";
 import { InputPressable } from "../InputPressable";
 import { FormField } from "../FormField";
 import { Clearable, InputFieldWrapperProps } from "../InputFieldWrapper";
+import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
 interface InputTimeBaseProps
   extends Pick<InputFieldWrapperProps, "invalid" | "disabled" | "placeholder"> {
@@ -135,7 +134,7 @@ function InternalInputTime({
   showIcon = true,
 }: InputTimeProps): JSX.Element {
   const [showPicker, setShowPicker] = useState(false);
-  const { formatMessage } = useIntl();
+  const { t } = useAtlantisI18n();
 
   const { timeZone, timeFormat } = useAtlantisContext();
   const is24Hour = timeFormat === "HH:mm";
@@ -162,7 +161,7 @@ function InternalInputTime({
         clearable={canClearTime}
         disabled={disabled}
         invalid={invalid}
-        placeholder={placeholder ?? formatMessage(messages.time)}
+        placeholder={placeholder ?? t("time")}
         prefix={showIcon ? { icon: "timer" } : undefined}
         value={formattedTime}
         onClear={handleClear}

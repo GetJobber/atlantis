@@ -9,5 +9,6 @@
   "ProgressBar.complete": "{current} de {total} completo",
   "ProgressBar.inProgress": "{current} de {total} completo, {inProgress} en progreso",
   "Select.a11yHint": "Seleccionar para abrir el selector",
-  "Select.emptyValue": "Seleccione una opción"
+  "Select.emptyValue": "Seleccione una opción",
+  "time": "Hora"
 }
