@@ -1,8 +1,8 @@
 {
   "cancel": "Cancel",
   "date": "Date",
+  "dismiss": "Dismiss",
   "more": "More",
   "networkUnavailableTitle": "Network Unavailable",
   "networkUnavailableDescription": "Check your internet connection and try again later."
-
 }
