@@ -1,8 +1,7 @@
 import React, { Ref, forwardRef, useState } from "react";
-import { useIntl } from "react-intl";
 import { IconNames } from "@jobber/design";
-import { messages } from "./messages";
 import { InputText, InputTextProps, InputTextRef } from "../InputText";
+import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
 export const InputPassword = forwardRef(InputPasswordInternal);
 
@@ -23,7 +22,7 @@ function InputPasswordInternal(
   { usePrivacyEye = true, ...props }: InputPasswordProps,
   ref: Ref<InputTextRef>,
 ): JSX.Element {
-  const { formatMessage } = useIntl();
+  const { t } = useAtlantisI18n();
   const [passwordHidden, setPasswordHidden] = useState(true);
   const [privacyEye, setPrivacyEye] = useState<IconNames>("eye");
 
@@ -59,7 +58,7 @@ function InputPasswordInternal(
       validations={{
         required: {
           value: true,
-          message: formatMessage(messages.passwordRequired),
+          message: t("InputPassword.enterPassword"),
         },
         ...props.validations,
       }}
