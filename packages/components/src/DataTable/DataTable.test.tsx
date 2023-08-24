@@ -295,9 +295,14 @@ describe("when the table has no data", () => {
 describe("when the table has a loading prop set to true", () => {
   it("Shows the default amount of loaders for each column", async () => {
     render(
-      <DataTable data={[]} columns={royaltyReportColumns} loading={true} />,
+      <DataTable
+        data={[]}
+        pagination={{ manualPagination: false }}
+        columns={royaltyReportColumns}
+        loading={true}
+      />,
     );
-    expect(await screen.findAllByTestId(GLIMMER_TEST_ID)).toHaveLength(40);
+    expect(await screen.findAllByTestId(GLIMMER_TEST_ID)).toHaveLength(41);
   });
 
   it("Shows the amount of loaders based on smallest items per page value", async () => {
@@ -309,6 +314,6 @@ describe("when the table has a loading prop set to true", () => {
         loading={true}
       />,
     );
-    expect(await screen.findAllByTestId(GLIMMER_TEST_ID)).toHaveLength(80);
+    expect(await screen.findAllByTestId(GLIMMER_TEST_ID)).toHaveLength(81);
   });
 });
