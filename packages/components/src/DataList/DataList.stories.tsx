@@ -22,7 +22,7 @@ export default {
     viewMode: "story",
   },
   // Comment this out to make it show up in storybook
-  excludeStories: ["Basic", "EmptyState", "Breakpoints"],
+  // excludeStories: ["Basic", "EmptyState", "Breakpoints"],
   decorators: [
     // Detach from Storybook's layout
     (Story, { viewMode }) => {

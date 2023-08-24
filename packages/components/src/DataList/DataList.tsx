@@ -10,13 +10,13 @@ import {
   generateDataListEmptyState,
   generateHeaderElements,
   getCompoundComponents,
-  useGridLayoutMediaQueries,
 } from "./DataList.utils";
 import { DataListTotalCount } from "./components/DataListTotalCount";
 import {
   DataListHeader,
   DataListItems,
 } from "./components/DataListLayoutInternal";
+import { useLayoutMediaQueries } from "./hooks/useLayoutMediaQueries";
 import { Heading } from "../Heading";
 
 export function DataList<T extends DataListObject>({
@@ -35,7 +35,7 @@ export function DataList<T extends DataListObject>({
   );
 
   const headerData = generateHeaderElements(headers);
-  const mediaMatches = useGridLayoutMediaQueries();
+  const mediaMatches = useLayoutMediaQueries();
 
   const showEmptyState = !loading && data.length === 0;
   const [isFilterApplied, setIsFilterApplied] = useState(filterApplied);

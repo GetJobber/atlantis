@@ -1,6 +1,8 @@
 import { ReactElement, ReactNode } from "react";
 import { Breakpoints } from "./DataList.const";
 
+export { Breakpoints } from "./DataList.const";
+
 export type DataListItemType<T extends DataListObject[]> = Record<
   keyof T[number],
   ReactElement
@@ -81,5 +83,3 @@ export interface DataListProps<T extends DataListObject> {
    */
   readonly headerVisibility?: { [Breakpoint in Breakpoints]?: boolean };
 }
-
-export { Breakpoints } from "./DataList.const";

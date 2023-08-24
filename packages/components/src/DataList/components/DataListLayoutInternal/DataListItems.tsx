@@ -6,22 +6,24 @@ import { DataListObject } from "../../DataList.types";
 import { generateListItemElements } from "../../DataList.utils";
 import { DataListLayoutProps } from "../DataListLayout/DataListLayout";
 
+interface DataListItemsProps<T extends DataListObject> {
+  layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined;
+  mediaMatches?: Record<Breakpoints, boolean>;
+  data: T[];
+}
+
 export function DataListItems<T extends DataListObject>({
   layouts,
   mediaMatches,
   data,
-}: {
-  layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined;
-  mediaMatches?: Record<Breakpoints, boolean>;
-  data: T[];
-}) {
+}: DataListItemsProps<T>) {
   const elementData = generateListItemElements(data);
 
   return (
     <DataListLayoutInternal
       layouts={layouts}
       mediaMatches={mediaMatches}
-      renderLayout={(layout: React.ReactElement<DataListLayoutProps<T>>) => {
+      renderLayout={layout => {
         return (
           <>
             {elementData.map((child, i) => {

@@ -1,10 +1,4 @@
-import React, {
-  Children,
-  ReactElement,
-  isValidElement,
-  useEffect,
-  useState,
-} from "react";
+import React, { Children, ReactElement, isValidElement } from "react";
 import isEmpty from "lodash/isEmpty";
 import {
   DataListHeader,
@@ -16,7 +10,6 @@ import styles from "./DataList.css";
 import { EmptyState, EmptyStateProps } from "./components/EmptyState";
 import {
   BREAKPOINTS,
-  BREAKPOINT_SIZES,
   Breakpoints,
   EMPTY_FILTER_RESULTS_ACTION_LABEL,
   EMPTY_FILTER_RESULTS_MESSAGE,
@@ -168,50 +161,4 @@ export function sortSizeProp(sizeProp: Breakpoints[]) {
   return sizeProp.sort(
     (a, b) => BREAKPOINTS.indexOf(a) - BREAKPOINTS.indexOf(b),
   );
-}
-
-export function useGridLayoutMediaQueries() {
-  const mediaQueries = BREAKPOINTS.reduce(
-    (previous, breakpoint) => ({
-      ...previous,
-      [breakpoint]: window.matchMedia(breakpointToMediaQuery(breakpoint)),
-    }),
-    {} as Record<Breakpoints, MediaQueryList>,
-  );
-
-  const initialMatches = BREAKPOINTS.reduce(
-    (previous, breakpoint) => ({
-      ...previous,
-      [breakpoint]: mediaQueries[breakpoint].matches,
-    }),
-    {} as Record<Breakpoints, boolean>,
-  );
-
-  const [matches, setMatches] = useState(initialMatches);
-  // Set up mediaQuery event handlers
-  useEffect(() => {
-    const handlers = BREAKPOINTS.reduce((previous, breakpoint) => {
-      const handler = (e: MediaQueryListEvent) =>
-        setMatches(previousMatches => ({
-          ...previousMatches,
-          [breakpoint]: e.matches,
-        }));
-      mediaQueries[breakpoint].addEventListener("change", handler);
-      return { ...previous, [breakpoint]: handler };
-    }, {} as Record<Breakpoints, (e: MediaQueryListEvent) => void>);
-    return () => {
-      BREAKPOINTS.map(breakpoint => {
-        mediaQueries[breakpoint].removeEventListener(
-          "change",
-          handlers[breakpoint],
-        );
-      });
-    };
-  }, [mediaQueries]);
-
-  return matches;
-}
-
-function breakpointToMediaQuery(breakpoint: Breakpoints) {
-  return `(min-width: ${BREAKPOINT_SIZES[breakpoint]}px)`;
 }
