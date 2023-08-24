@@ -5,6 +5,8 @@
   "more": "More",
   "networkUnavailableTitle": "Network Unavailable",
   "networkUnavailableDescription": "Check your internet connection and try again later.",
+  "ProgressBar.complete": "{current} of {total} complete",
+  "ProgressBar.inProgress": "{current} of {total} complete, {inProgress} in progress",
   "Select.a11yHint": "Select to open the picker",
   "Select.emptyValue": "Select an option"
 }

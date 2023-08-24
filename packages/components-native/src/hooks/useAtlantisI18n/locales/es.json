@@ -5,6 +5,8 @@
   "more": "Más",
   "networkUnavailableTitle": "Red no disponible",
   "networkUnavailableDescription": "Compruebe su conexión a Internet e inténtelo de nuevo más adelante.",
+  "ProgressBar.complete": "{current} de {total} completo",
+  "ProgressBar.inProgress": "{current} de {total} completo, {inProgress} en progreso",
   "Select.a11yHint": "Seleccionar para abrir el selector",
   "Select.emptyValue": "Seleccione una opción"
 }

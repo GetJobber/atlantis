@@ -1,11 +1,10 @@
 import React from "react";
 import { View } from "react-native";
-import { useIntl } from "react-intl";
 import { ProgressBarProps } from "./types";
 import { styles } from "./ProgressBar.style";
 import { ProgressBarInner, calculateWidth } from "./ProgressBarInner";
-import { messages } from "./messages";
 import { tokens } from "../utils/design";
+import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
 export function ProgressBar({
   loading,
@@ -15,17 +14,13 @@ export function ProgressBar({
   reverseTheme = false,
   header,
 }: ProgressBarProps): JSX.Element {
-  const { formatMessage } = useIntl();
-  const accessibilityLabel = [];
-  accessibilityLabel.push(formatMessage(messages.complete, { current, total }));
-  inProgress &&
-    accessibilityLabel.push(formatMessage(messages.inProgress, { inProgress }));
+  const { t } = useAtlantisI18n();
 
   return (
     <View
       accessible
       accessibilityRole="progressbar"
-      accessibilityLabel={accessibilityLabel.join(", ")}
+      accessibilityLabel={getA11yLabel()}
     >
       {header}
       <View style={styles.progressBarContainer}>
@@ -55,4 +50,18 @@ export function ProgressBar({
       </View>
     </View>
   );
+
+  function getA11yLabel(): string {
+    const a11yLabelValues = {
+      current: String(current),
+      total: String(total),
+      inProgress: String(inProgress),
+    };
+
+    if (inProgress) {
+      return t("ProgressBar.inProgress", a11yLabelValues);
+    }
+
+    return t("ProgressBar.complete", a11yLabelValues);
+  }
 }
