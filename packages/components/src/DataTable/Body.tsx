@@ -9,7 +9,7 @@ interface BodyProps<T> {
   onRowClick?: (row: Row<T>) => void;
   height?: number;
   emptyState?: ReactNode | ReactNode[];
-  loading?: boolean;
+  loading: boolean;
 }
 
 export function Body<T extends object>({
