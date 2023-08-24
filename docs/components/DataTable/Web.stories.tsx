@@ -518,9 +518,9 @@ const LoadingTemplate: ComponentStory<typeof DataTable> = args => (
 
 export const LoadingState = LoadingTemplate.bind({});
 LoadingState.args = {
-  pagination: { manualPagination: false, itemsPerPage: [5, 10, 15] },
+  pagination: { manualPagination: false, itemsPerPage: [20, 30, 40] },
   sorting: { manualSorting: false },
-  height: 200,
+  height: 600,
   loading: true,
   data: [],
   columns: [
