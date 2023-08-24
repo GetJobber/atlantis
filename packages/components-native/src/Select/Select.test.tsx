@@ -8,7 +8,6 @@ import {
 import { tokens } from "@jobber/design/foundation";
 import { AccessibilityInfo } from "react-native";
 import { Option, Select } from ".";
-import { messages } from "./messages";
 import { SelectInternalPicker } from "./components/SelectInternalPicker";
 
 const A11yInfoSpy = jest.spyOn(AccessibilityInfo, "isScreenReaderEnabled");
@@ -24,6 +23,8 @@ afterEach(() => {
   jest.resetAllMocks();
 });
 
+const defaultPlaceholder = "Select an option";
+
 describe("Select", () => {
   it("renders a Select", () => {
     const component = render(
@@ -34,7 +35,7 @@ describe("Select", () => {
     );
     expect(component.getByTestId("arrowDown")).toBeDefined();
     expect(
-      component.getByText(messages.emptyValue.defaultMessage, {
+      component.getByText(defaultPlaceholder, {
         includeHiddenElements: true,
       }),
     ).toBeDefined();
@@ -191,9 +192,7 @@ describe("Select", () => {
       );
 
       expect(
-        getByText(messages.emptyValue.defaultMessage, {
-          includeHiddenElements: true,
-        }),
+        getByText(defaultPlaceholder, { includeHiddenElements: true }),
       ).toBeDefined();
     });
 
