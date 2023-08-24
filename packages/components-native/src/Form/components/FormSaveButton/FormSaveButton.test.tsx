@@ -4,7 +4,6 @@ import { Host } from "react-native-portalize";
 import { IconNames } from "@jobber/design";
 import { FormSaveButton } from "./FormSaveButton";
 import { messages } from "./messages";
-import { messages as buttonGroupMessage } from "../../../ButtonGroup/messages";
 
 interface TestSecondaryActionProp {
   label: string;
@@ -121,9 +120,7 @@ describe("when a secondaryActions is passed in", () => {
       />,
     );
 
-    expect(
-      getByLabelText(buttonGroupMessage.more.defaultMessage),
-    ).toBeDefined();
+    expect(getByLabelText("More")).toBeDefined();
   });
 
   it("renders a secondaryAction element with and fires the onSubmit and beforeSubmit if available", async () => {
@@ -148,7 +145,7 @@ describe("when a secondaryActions is passed in", () => {
         ]}
       />,
     );
-    fireEvent.press(getByLabelText(buttonGroupMessage.more.defaultMessage));
+    fireEvent.press(getByLabelText("More"));
     expect(getByLabelText("hi")).toBeDefined();
     fireEvent.press(getByLabelText("hi"));
     expect(beforeSubmitMock).toHaveBeenCalled();

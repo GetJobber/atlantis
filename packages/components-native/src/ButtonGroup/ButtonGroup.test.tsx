@@ -2,7 +2,6 @@ import React from "react";
 import { fireEvent, render } from "@testing-library/react-native";
 import { Host } from "react-native-portalize";
 import { Alert } from "react-native";
-import { messages } from "./messages";
 import { ButtonGroup, ButtonGroupProps } from "./ButtonGroup";
 import { Button } from "../Button";
 import * as atlantisContext from "../AtlantisContext/AtlantisContext";
@@ -37,7 +36,7 @@ it("renders a single primary action", () => {
   );
 
   expect(getByText("Create")).not.toBeNull();
-  expect(queryByLabelText(messages.more.defaultMessage)).toBeNull();
+  expect(queryByLabelText("More")).toBeNull();
 });
 
 it("renders 2 primary actions", () => {
@@ -60,7 +59,7 @@ it("renders 2 primary actions", () => {
 
   expect(getByText("Create")).not.toBeNull();
   expect(getByText("Edit")).not.toBeNull();
-  expect(queryByLabelText(messages.more.defaultMessage)).toBeNull();
+  expect(queryByLabelText("More")).toBeNull();
 });
 
 it("does not render more than 2 primary actions but adds a More button", () => {
@@ -90,7 +89,7 @@ it("does not render more than 2 primary actions but adds a More button", () => {
   expect(getByText("Create")).not.toBeNull();
   expect(getByText("Edit")).not.toBeNull();
   expect(queryByText("Mystery")).toBeNull();
-  expect(getByLabelText(messages.more.defaultMessage)).toBeDefined();
+  expect(getByLabelText("More")).toBeDefined();
 });
 
 it("does not render secondary actions", () => {
@@ -119,7 +118,7 @@ it("does not render secondary actions", () => {
   expect(getByText("Create")).not.toBeNull();
   expect(queryByText("Edit")).toBeNull();
   expect(queryByText("Delete")).toBeNull();
-  expect(getByLabelText(messages.more.defaultMessage)).toBeDefined();
+  expect(getByLabelText("More")).toBeDefined();
 });
 
 it("renders first secondary action as a primary action button if no primary action specified", () => {
@@ -141,7 +140,7 @@ it("renders first secondary action as a primary action button if no primary acti
   );
   expect(getByText("Edit")).not.toBeNull();
   expect(queryByText("Delete")).toBeNull();
-  expect(getByLabelText(messages.more.defaultMessage)).toBeDefined();
+  expect(getByLabelText("More")).toBeDefined();
 });
 
 it("fires the press handlers when the primary action buttons are pressed", () => {
@@ -194,7 +193,7 @@ it("opens the secondary action menu when the More button is pressed", () => {
 
   expect(queryByText("Edit")).toBeNull();
 
-  fireEvent.press(getByLabelText(messages.more.defaultMessage));
+  fireEvent.press(getByLabelText("More"));
 
   expect(getByText("Edit")).not.toBeNull();
   expect(getByText("Delete")).not.toBeNull();
@@ -221,7 +220,7 @@ it("renders heading and cancel options if passed in", () => {
     </ButtonGroupForTest>,
   );
 
-  fireEvent.press(getByLabelText(messages.more.defaultMessage));
+  fireEvent.press(getByLabelText("More"));
 
   expect(getByText("Heading")).not.toBeNull();
   expect(getByText("Cancel")).not.toBeNull();
@@ -273,7 +272,7 @@ it("calls onOpenBottomSheet when the secondary actions are opened", () => {
     </ButtonGroupForTest>,
   );
 
-  fireEvent.press(getByLabelText(messages.more.defaultMessage));
+  fireEvent.press(getByLabelText("More"));
 
   expect(mockOnOpen).toHaveBeenCalled();
 });
