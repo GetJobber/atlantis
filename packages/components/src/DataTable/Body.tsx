@@ -64,9 +64,7 @@ export function Body<T extends object>({
             })}
           </tbody>
         ) : (
-          <div className={classNames(styles.emptyState)}>
-            {emptyState} <div>is it loading? {loading}</div>
-          </div>
+          <div className={classNames(styles.emptyState)}>{emptyState}</div>
         )
       ) : (
         <tbody>
