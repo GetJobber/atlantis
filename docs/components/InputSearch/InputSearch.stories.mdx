@@ -1,0 +1,40 @@
+import { Meta } from "@storybook/addon-docs";
+import { Figma } from "storybook-addon-designs/blocks";
+
+<Meta title="Components/Forms and Inputs/InputSearch/Docs" />
+
+# InputSearch
+
+The InputSearch component allows the user to input a keyword to search from
+associated data. It handles debouncing for improved performance when making
+queries.
+
+## Design & usage guidelines
+
+InputSearch will provide a consistent experience for users searching for content
+within the Jobber app. It uses familiar iconography and interactions to make
+searching a simpler experience.
+
+## Content guidelines
+
+The label for InputSearch should help guide the user to find their results. It
+can be helpful to direct the user to use certain types of queries for a given
+search, such as "Search by clients and properties".
+
+It is recommended to use the `search` icon as a prefix to aid users in
+recognizing the functionality of the input.
+
+InputSearch will take up the full available width of its' container.
+
+## Accessibility
+
+Most of the accessibility concerns for InputSearch are handled by `InputText`.
+It is announced as an input and the label and value are read to assistive
+technology. Users can navigate to the clear button to remove the entered value.
+
+## Mockup
+
+<Figma
+  collapsable
+  url="https://www.figma.com/file/avvgu5SkbBvS8lGVePBsqO/Product%2FMobile?node-id=25435%3A166491"
+/>

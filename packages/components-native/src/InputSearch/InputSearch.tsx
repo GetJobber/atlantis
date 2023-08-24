@@ -49,11 +49,11 @@ function SearchInputInternal(
   }: InputSearchProps,
   ref: Ref<InputTextRef>,
 ) {
-  const delayedSearch = debounce(onDebouncedChange, wait);
+  const delayedSearch = debounce(() => onDebouncedChange(value), wait);
   const handleChange = (newValue = "") => onChange(newValue);
 
   useEffect(() => {
-    delayedSearch(value);
+    delayedSearch();
     return delayedSearch.cancel;
   }, [value, delayedSearch]);
 
