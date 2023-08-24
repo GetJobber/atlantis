@@ -68,6 +68,11 @@ export interface DataTableProps<T> {
    * The elements to display when the data table is empty
    */
   emptyState?: ReactNode | ReactNode[];
+
+  /**
+   * When true, shows the loading state of the DataTable
+   */
+  loading?: boolean;
 }
 
 export function DataTable<T extends object>({
@@ -80,6 +85,7 @@ export function DataTable<T extends object>({
   pinFirstColumn,
   onRowClick,
   emptyState,
+  loading,
 }: DataTableProps<T>) {
   const [ref, { exactWidth }] = useResizeObserver();
   const tableSettings = createTableSettings(data, columns, {
@@ -111,6 +117,7 @@ export function DataTable<T extends object>({
             onRowClick={onRowClick}
             height={height ? height * 0.7 : undefined}
             emptyState={emptyState}
+            loading={loading}
           />
           {table.getRowModel().rows.length &&
           exactWidth &&
