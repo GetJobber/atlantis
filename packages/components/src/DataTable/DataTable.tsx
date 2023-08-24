@@ -85,7 +85,7 @@ export function DataTable<T extends object>({
   pinFirstColumn,
   onRowClick,
   emptyState,
-  loading,
+  loading = false,
 }: DataTableProps<T>) {
   const [ref, { exactWidth }] = useResizeObserver();
   const tableSettings = createTableSettings(data, columns, {
@@ -141,6 +141,7 @@ export function DataTable<T extends object>({
               ? pagination.totalItems
               : table.getCoreRowModel().rows.length
           }
+          loading={loading}
         />
       )}
     </div>
