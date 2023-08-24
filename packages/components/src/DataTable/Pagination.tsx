@@ -4,11 +4,13 @@ import styles from "./Pagination.css";
 import { Option, Select } from "../Select";
 import { Button } from "../Button";
 import { Text } from "../Text";
+import { Glimmer } from "../Glimmer";
 
 interface PaginationProps<T> {
   table: Table<T>;
   itemsPerPage?: number[];
   totalItems: number;
+  loading: boolean;
 }
 
 const defaultItemsPerPageOptions = ["10", "20", "30", "40", "50"];
@@ -17,6 +19,7 @@ export function Pagination<T extends object>({
   table,
   itemsPerPage,
   totalItems,
+  loading,
 }: PaginationProps<T>) {
   const { pageIndex, pageSize } = table.getState().pagination;
   const totalRows = totalItems;
@@ -30,7 +33,7 @@ export function Pagination<T extends object>({
   return secondPosition <= 0 ? (
     <div className={styles.pagination}>
       <div className={styles.paginationInfo}>
-        <Text>No items</Text>
+        {!loading ? <Text>No items</Text> : <Glimmer width={200} />}
       </div>
     </div>
   ) : (
