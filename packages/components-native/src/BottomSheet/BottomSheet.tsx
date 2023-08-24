@@ -2,13 +2,12 @@ import React, { ReactNode, Ref, RefObject, forwardRef, useState } from "react";
 import { Modalize } from "react-native-modalize";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Keyboard, View } from "react-native";
-import { useIntl } from "react-intl";
 import { BottomSheetOption } from "./components/BottomSheetOption";
 import { styles } from "./BottomSheet.style";
-import { messages } from "./messages";
 import { useIsScreenReaderEnabled } from "../hooks";
 import { Divider } from "../Divider";
 import { Heading } from "../Heading";
+import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
 export interface BottomSheetProps {
   readonly children: ReactNode;
@@ -118,7 +117,7 @@ function Footer({
   onCancel: () => void;
 }) {
   const insets = useSafeAreaInsets();
-  const { formatMessage } = useIntl();
+  const { t } = useAtlantisI18n();
 
   return (
     <View style={{ marginBottom: insets.bottom }}>
@@ -128,7 +127,7 @@ function Footer({
             <Divider />
           </View>
           <BottomSheetOption
-            text={formatMessage(messages.cancel)}
+            text={t("cancel")}
             icon={"remove"}
             onPress={onCancel}
           />

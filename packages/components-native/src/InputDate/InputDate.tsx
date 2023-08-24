@@ -153,7 +153,7 @@ function InternalInputDate({
   accessibilityHint,
 }: InputDateProps): JSX.Element {
   const [showPicker, setShowPicker] = useState(false);
-  const I18n = useAtlantisI18n();
+  const { t } = useAtlantisI18n();
   const { timeZone, dateFormat } = useAtlantisContext();
 
   const date = useMemo(() => {
@@ -172,7 +172,7 @@ function InternalInputDate({
 
   const canClearDate = formattedDate === emptyValueLabel ? "never" : clearable;
 
-  const placeholderLabel = placeholder ?? I18n.t["InputDate.placeholder"];
+  const placeholderLabel = placeholder ?? t("date");
 
   return (
     <>
