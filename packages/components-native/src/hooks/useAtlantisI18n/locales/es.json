@@ -1,4 +1,10 @@
 {
   "cancel": "Cancelar",
-  "date": "Fecha"
+  "date": "Fecha",
+  "dismiss": "Descartar",
+  "more": "Más",
+  "networkUnavailableTitle": "Red no disponible",
+  "networkUnavailableDescription": "Compruebe su conexión a Internet e inténtelo de nuevo más adelante.",
+  "Select.a11yHint": "Seleccionar para abrir el selector",
+  "Select.emptyValue": "Seleccione una opción"
 }
