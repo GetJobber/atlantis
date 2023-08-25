@@ -6,6 +6,8 @@
   "errors.notANumber": "Enter a number",
   "FormatFile.label": "Attachment Preview",
   "FormatFile.hint": "Select for more options",
+  "FormatFile.preview": "Preview {item}",
+  "FormatFile.remove": "Remove {item}",
   "InputPassword.enterPassword": "Enter a password",
   "loading": "Loading",
   "menu": "Menu",
