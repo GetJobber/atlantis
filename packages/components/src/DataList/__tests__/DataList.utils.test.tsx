@@ -4,7 +4,10 @@ import {
   generateHeaderElements,
   generateListItemElements,
   getCompoundComponent,
+  getCompoundComponents,
+  sortSizeProp,
 } from "../DataList.utils";
+import { BREAKPOINTS } from "../DataList.const";
 
 const date = new Date("2001-01-01T00:00:00.000Z");
 
@@ -133,6 +136,37 @@ describe("Datalist utils", () => {
     it("should return undefined when the value is empty", () => {
       const headerElements = generateHeaderElements({});
       expect(headerElements).toBeUndefined();
+    });
+  });
+
+  describe("Sort Size Prop", () => {
+    it("sorts correctly", () => {
+      expect(sortSizeProp(["xl", "md", "lg", "sm", "xs"])).toEqual(BREAKPOINTS);
+    });
+  });
+
+  describe("getCompoundComponents", () => {
+    const Component = () => <></>;
+    const ComponentDos = () => <></>;
+    it("should return the components I'm looking for", () => {
+      const children = [
+        <Component key="1" />,
+        <ComponentDos key="2" />,
+        <Component key="3" />,
+      ];
+      const components = getCompoundComponents(children, Component);
+
+      expect(components[0]?.type).toBe(Component);
+      expect(components[0]?.type).not.toBe(ComponentDos);
+      expect(components[1]?.type).toBe(Component);
+      expect(components[1]?.type).not.toBe(ComponentDos);
+    });
+
+    it("should return an empty list if the component i'm looking for doesn't exist", () => {
+      const children = [<ComponentDos key="2" />];
+      const component = getCompoundComponents(children, Component);
+
+      expect(component).toHaveLength(0);
     });
   });
 });

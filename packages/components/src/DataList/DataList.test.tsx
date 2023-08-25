@@ -2,6 +2,8 @@ import { fireEvent, render, screen, within } from "@testing-library/react";
 import React from "react";
 import { DataList } from "./DataList";
 import {
+  BREAKPOINT_SIZES,
+  Breakpoints,
   EMPTY_FILTER_RESULTS_ACTION_LABEL,
   EMPTY_FILTER_RESULTS_MESSAGE,
 } from "./DataList.const";
@@ -12,6 +14,20 @@ import {
   LOADING_STATE_LIMIT_ITEMS,
 } from "./components/DataListLoadingState";
 import { GLIMMER_TEST_ID } from "../Glimmer";
+
+Object.defineProperty(window, "matchMedia", {
+  writable: true,
+  value: jest.fn().mockImplementation(query => ({
+    matches: true,
+    media: query,
+    onchange: null,
+    addListener: jest.fn(), // deprecated
+    removeListener: jest.fn(), // deprecated
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+  })),
+});
 
 describe("DataList", () => {
   const mockTitle = "All people";
@@ -86,7 +102,7 @@ describe("DataList", () => {
           headers={mockHeaders}
           title="All Clients"
         >
-          <DataList.Layout>
+          <DataList.Layout size="lg">
             {(item: DataListItemType<typeof mockData>) => (
               <div>
                 <div>{item.name}</div>
@@ -140,10 +156,168 @@ describe("DataList", () => {
     });
   });
 
+  describe("Layout Breakpoints", () => {
+    const layoutItem = "layout-item";
+
+    function setUpMediaQueries(expectedValues: Record<Breakpoints, boolean>) {
+      Object.defineProperty(window, "matchMedia", {
+        writable: true,
+        value: jest.fn().mockImplementation((query: string) => {
+          const queryValue = parseInt(query.match(/(\d+)/)?.[0] || "0", 10);
+          const queryBreakpoint = Object.entries(BREAKPOINT_SIZES).find(
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            ([_, value]) => {
+              return value === queryValue;
+            },
+          )?.[0];
+          const expectedValue = expectedValues[queryBreakpoint as Breakpoints];
+          return {
+            matches: expectedValue,
+            media: query,
+            onchange: null,
+            addListener: jest.fn(), // deprecated
+            removeListener: jest.fn(), // deprecated
+            addEventListener: jest.fn(),
+            removeEventListener: jest.fn(),
+            dispatchEvent: jest.fn(),
+          };
+        }),
+      });
+    }
+
+    it.each<{
+      layoutSize1: Breakpoints;
+      mockedQueries: Record<Breakpoints, boolean>;
+      layoutSize2: Breakpoints;
+    }>([
+      {
+        layoutSize1: "xs",
+        mockedQueries: { xs: true, sm: true, md: true, lg: true, xl: true },
+        layoutSize2: "sm",
+      },
+      {
+        layoutSize1: "sm",
+        mockedQueries: { xs: true, sm: true, md: true, lg: true, xl: true },
+        layoutSize2: "md",
+      },
+      {
+        layoutSize1: "md",
+        mockedQueries: { xs: true, sm: true, md: true, lg: true, xl: true },
+        layoutSize2: "lg",
+      },
+      {
+        layoutSize1: "lg",
+        mockedQueries: { xs: true, sm: true, md: true, lg: true, xl: true },
+        layoutSize2: "xl",
+      },
+    ])(
+      "when multiple layouts are specified it should render the larger layout",
+      ({ layoutSize1, layoutSize2, mockedQueries }) => {
+        const layout1Wrapper = "layout1-wrapper";
+        const layout2Wrapper = "layout2-wrapper";
+        setUpMediaQueries(mockedQueries);
+        render(
+          <DataList data={mockData} headers={mockHeaders}>
+            <DataList.Layout size={layoutSize1}>
+              {(item: DataListItemType<typeof mockData>) => (
+                <div data-testid={layout1Wrapper}>
+                  <div data-testid={layoutItem}>{item.name}</div>
+                  <div data-testid={layoutItem}>{item.email}</div>
+                </div>
+              )}
+            </DataList.Layout>
+            <DataList.Layout size={layoutSize2}>
+              {(item: DataListItemType<typeof mockData>) => (
+                <div data-testid={layout2Wrapper}>
+                  <div data-testid={layoutItem}>{item.name}</div>
+                  <div data-testid={layoutItem}>{item.email}</div>
+                </div>
+              )}
+            </DataList.Layout>
+          </DataList>,
+        );
+
+        expect(screen.queryAllByTestId(layout1Wrapper)).toHaveLength(0);
+        expect(screen.queryAllByTestId(layout2Wrapper)).not.toHaveLength(0);
+      },
+    );
+
+    it.each<{
+      layoutSize1: Breakpoints;
+      mockedQueries: Record<Breakpoints, boolean>;
+      headerVisibility: { [Breakpoint in Breakpoints]?: boolean };
+      isHeaderVisible: boolean;
+      layoutSize2: Breakpoints;
+    }>([
+      {
+        layoutSize1: "xs",
+        mockedQueries: { xs: true, sm: true, md: false, lg: false, xl: false },
+        headerVisibility: { xs: false },
+        isHeaderVisible: false,
+        layoutSize2: "md",
+      },
+      {
+        layoutSize1: "sm",
+        mockedQueries: { xs: true, sm: true, md: true, lg: true, xl: true },
+        headerVisibility: { xs: true },
+        isHeaderVisible: true,
+        layoutSize2: "md",
+      },
+    ])(
+      "should use the header visibility from the smaller layout is not specified",
+      ({
+        layoutSize1,
+        layoutSize2,
+        mockedQueries,
+        headerVisibility,
+        isHeaderVisible,
+      }) => {
+        const layout1Wrapper = "layout1-wrapper";
+        const layout2Wrapper = "layout2-wrapper";
+        setUpMediaQueries(mockedQueries);
+        render(
+          <DataList
+            data={mockData}
+            headers={mockHeaders}
+            headerVisibility={headerVisibility}
+          >
+            <DataList.Layout size={layoutSize1}>
+              {(item: DataListItemType<typeof mockData>) => (
+                <div data-testid={layout1Wrapper}>
+                  <div data-testid={layoutItem}>{item.name}</div>
+                  <div data-testid={layoutItem}>{item.email}</div>
+                </div>
+              )}
+            </DataList.Layout>
+            <DataList.Layout size={layoutSize2}>
+              {(item: DataListItemType<typeof mockData>) => (
+                <div data-testid={layout2Wrapper}>
+                  <div data-testid={layoutItem}>{item.name}</div>
+                  <div data-testid={layoutItem}>{item.email}</div>
+                </div>
+              )}
+            </DataList.Layout>
+          </DataList>,
+        );
+        expect(screen.queryAllByText(mockHeaders.name).length > 0).toBe(
+          isHeaderVisible,
+        );
+      },
+    );
+  });
+
   describe("Header", () => {
-    beforeEach(() => {
+    function renderLayout(
+      headerVisibility?: DataListProps<
+        (typeof mockData)[0]
+      >["headerVisibility"],
+    ) {
       render(
-        <DataList data={mockData} headers={mockHeaders}>
+        <DataList
+          data={mockData}
+          headers={mockHeaders}
+          headerVisibility={headerVisibility}
+        >
           <DataList.Layout>
             {(item: DataListItemType<typeof mockData>) => (
               <div>{item.name}</div>
@@ -151,17 +325,25 @@ describe("DataList", () => {
           </DataList.Layout>
         </DataList>,
       );
-    });
+    }
 
     it("should only render the header that's specified on the layout", () => {
+      renderLayout();
       expect(screen.getByText(mockHeaders.name)).toBeInTheDocument();
       expect(screen.queryByText(mockHeaders.email)).not.toBeInTheDocument();
     });
 
     it("should render the header with the correct element", () => {
+      renderLayout();
       expect(screen.getByText(mockHeaders.name)).toBeInstanceOf(
         HTMLParagraphElement,
       );
+    });
+
+    it("should hide the header if specified on the layout", () => {
+      renderLayout({ xs: false });
+      expect(screen.queryByText(mockHeaders.name)).not.toBeInTheDocument();
+      expect(screen.queryByText(mockHeaders.email)).not.toBeInTheDocument();
     });
   });
 

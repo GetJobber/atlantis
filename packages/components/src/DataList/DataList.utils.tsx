@@ -9,6 +9,8 @@ import {
 import styles from "./DataList.css";
 import { EmptyState, EmptyStateProps } from "./components/EmptyState";
 import {
+  BREAKPOINTS,
+  Breakpoints,
   EMPTY_FILTER_RESULTS_ACTION_LABEL,
   EMPTY_FILTER_RESULTS_MESSAGE,
 } from "./DataList.const";
@@ -30,6 +32,22 @@ export function getCompoundComponent<T>(
 
   // Comply with the return type without casting it
   return isValidElement<T>(element) ? element : undefined;
+}
+
+/**
+ * Return all instances child component that matches the `type` provided
+ */
+export function getCompoundComponents<T>(
+  children: ReactElement | ReactElement[],
+  type: ReactElement<T>["type"],
+): ReactElement<T>[] {
+  const childrenArray = Children.toArray(children);
+  const elements = childrenArray.filter(
+    (child): child is ReactElement<T> =>
+      isValidElement<T>(child) && child.type === type,
+  );
+
+  return elements;
 }
 
 /**
@@ -136,4 +154,10 @@ export function generateDataListEmptyState({
   }
 
   return EmptyStateComponent;
+}
+
+export function sortSizeProp(sizeProp: Breakpoints[]) {
+  return sizeProp.sort(
+    (a, b) => BREAKPOINTS.indexOf(a) - BREAKPOINTS.indexOf(b),
+  );
 }

@@ -2,15 +2,19 @@ import React from "react";
 import styles from "./DataListLoadingState.css";
 import { Glimmer } from "../../../Glimmer";
 import {
+  Breakpoints,
   DataListHeader,
   DataListItemType,
   DataListObject,
 } from "../../DataList.types";
+import { DataListLayoutProps } from "../DataListLayout";
+import { DataListLayoutInternal } from "../DataListLayoutInternal";
 
 interface DataListLoadingStateProps<T extends DataListObject> {
-  loading: boolean;
-  headers: DataListHeader<T>;
-  layout: ((item: DataListItemType<T[]>) => JSX.Element) | undefined;
+  readonly loading: boolean;
+  readonly headers: DataListHeader<T>;
+  readonly layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined;
+  readonly mediaMatches?: Record<Breakpoints, boolean>;
 }
 
 export const LOADING_STATE_LIMIT_ITEMS = 10;
@@ -20,7 +24,8 @@ export const DATALIST_LOADINGSTATE_ROW_TEST_ID =
 export function DataListLoadingState<T extends DataListObject>({
   loading,
   headers,
-  layout,
+  layouts,
+  mediaMatches,
 }: DataListLoadingStateProps<T>) {
   if (!loading) return null;
 
@@ -35,17 +40,22 @@ export function DataListLoadingState<T extends DataListObject>({
   );
 
   return (
-    <>
-      {layout &&
-        loadingElements.map((child, i) => (
-          <div
-            className={styles.loadingItem}
-            key={i}
-            data-testid={DATALIST_LOADINGSTATE_ROW_TEST_ID}
-          >
-            {layout(child)}
-          </div>
-        ))}
-    </>
+    <DataListLayoutInternal
+      layouts={layouts}
+      mediaMatches={mediaMatches}
+      renderLayout={layout => (
+        <>
+          {loadingElements.map((child, i) => (
+            <div
+              className={styles.loadingItem}
+              key={i}
+              data-testid={DATALIST_LOADINGSTATE_ROW_TEST_ID}
+            >
+              {layout.props.children(child)}
+            </div>
+          ))}
+        </>
+      )}
+    />
   );
 }
