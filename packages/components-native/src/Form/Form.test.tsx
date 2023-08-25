@@ -6,7 +6,6 @@ import { Host } from "react-native-portalize";
 import { Form, FormBannerMessage, FormBannerMessageType } from ".";
 import { messages as formErrorBannerMessages } from "./components/FormErrorBanner/messages";
 import { messages } from "./components/FormSaveButton/messages";
-import { messages as formMessages } from "./messages";
 import { FormBannerErrors, FormSubmitErrorType } from "./types";
 import { defaultValues as contextDefaultValue } from "../AtlantisContext";
 import * as atlantisContext from "../AtlantisContext/AtlantisContext";
@@ -207,15 +206,15 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
+const loadingLabel = "Loading";
+const tryAgainLabel = "Try again";
 describe("Form", () => {
   describe("Initial Load", () => {
     it("should show activity indicator", () => {
       const { getByLabelText } = render(
         <FormTest initialLoading={true} onSubmit={onSubmitMock} />,
       );
-      expect(
-        getByLabelText(formMessages.loadingA11YLabel.defaultMessage),
-      ).toBeTruthy();
+      expect(getByLabelText(loadingLabel)).toBeTruthy();
     });
 
     it("should be populated with provided initialValues", () => {
@@ -362,9 +361,7 @@ describe("Form", () => {
       const saveButton = getByLabelText(saveButtonText);
       fireEvent.press(saveButton);
 
-      expect(
-        getByLabelText(formMessages.loadingA11YLabel.defaultMessage),
-      ).toBeTruthy();
+      expect(getByLabelText(loadingLabel)).toBeTruthy();
     });
 
     it("should call beforeSubmit if one is provided", async () => {
@@ -432,14 +429,13 @@ describe("Form", () => {
 
       it("should show offline alert when attempting to save while offline", async () => {
         const alertSpy = jest.spyOn(Alert, "alert");
-        const { formatMessage } = useIntl();
         setup();
 
         await act(wait);
         expect(alertSpy).toHaveBeenCalledTimes(1);
         expect(alertSpy).toHaveBeenCalledWith(
-          formatMessage(formMessages.unavailableNetworkTitle),
-          formatMessage(formMessages.unavailableNetworkMessage),
+          "Network Unavailable",
+          "Check your internet connection and try again later.",
           expect.anything(),
         );
       });
@@ -450,8 +446,7 @@ describe("Form", () => {
         await act(wait);
         const alertActions = alertSpy.mock.calls[0][2];
         const retryAction = alertActions?.find(
-          action =>
-            action.text === formMessages.retryAlertButton.defaultMessage,
+          action => action.text === tryAgainLabel,
         );
         mockSubmit.mockImplementationOnce(() => Promise.resolve());
         retryAction?.onPress?.();
@@ -467,8 +462,7 @@ describe("Form", () => {
         await act(wait);
         const alertActions = alertSpy.mock.calls[0][2];
         const retryAction = alertActions?.find(
-          action =>
-            action.text === formMessages.retryAlertButton.defaultMessage,
+          action => action.text === tryAgainLabel,
         );
         retryAction?.onPress?.();
 

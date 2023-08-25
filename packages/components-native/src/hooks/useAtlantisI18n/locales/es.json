@@ -7,6 +7,7 @@
   "FormatFile.label": "Attachment Preview",
   "FormatFile.hint": "Select for more options",
   "InputPassword.enterPassword": "Escriba una contraseña",
+  "loading": "Cargando",
   "menu": "Menú",
   "more": "Más",
   "networkUnavailableTitle": "Red no disponible",
@@ -16,6 +17,7 @@
   "Select.a11yHint": "Seleccionar para abrir el selector",
   "Select.emptyValue": "Seleccione una opción",
   "time": "Hora",
+  "tryAgain": "Intentar de nuevo",
   "upload.failed": "No se pudo adjuntar el archivo.",
   "upload.inProgress": "Carga de archivo en curso."
 }
