@@ -1,0 +1,240 @@
+import { Canvas, Meta, Story } from "@storybook/addon-docs";
+import { Figma } from "storybook-addon-designs/blocks";
+
+<Meta title="Components/Layouts and Structure/ActionItem" />
+
+# Action Item
+
+ActionItem allows for consistent presentation of text content that can be
+actioned on. It can use icons to provide additional visual context about the
+text content.
+
+## Design & usage guidelines
+
+The ActionItem will provide a familiar pattern for enhancing text content with
+icons and providing actions.
+
+### In a card
+
+ActionItem is commonly used in a Card, where it can be grouped with other
+ActionItems or other elements as needed.
+
+<Canvas
+  style={{
+    background: "var(--color-surface--background)",
+  }}
+>
+  <Story
+    name="In a card"
+    args={{
+      onPress: () => alert("👍"),
+    }}
+  >
+    {args => (
+      <Card>
+        <ActionItem icon={"work"} {...args}>
+          <Text>Service Checklist</Text>
+        </ActionItem>
+        <ActionItem icon={"address"} {...args}>
+          <Text>Address</Text>
+        </ActionItem>
+        <ActionItem title={"Quote #64"} icon={"quote"} {...args} />
+      </Card>
+    )}
+  </Story>
+</Canvas>
+
+### Paired with other elements
+
+In forms in particular, you may find the need to pair an ActionItem with other
+types of content, like an input.
+
+<Canvas
+  style={{
+    background: "var(--color-surface--background)",
+  }}
+>
+  <Story
+    name="With other content types"
+    args={{
+      icon: "person",
+      onPress: () => alert("👍"),
+    }}
+  >
+    {args => (
+      <Card>
+        <Content>
+          <InputDate placeholder="Start date" />
+        </Content>
+        <ActionItem {...args}>
+          <TitledDetail title="Assigned to" displayText="Casey Young" />
+        </ActionItem>
+      </Card>
+    )}
+  </Story>
+</Canvas>
+
+### Action alignment
+
+If the action appears directly related to the title, or otherwise is not
+well-suited to be centered in the ActionItem, you can align the action as
+needed.
+
+<Canvas
+  style={{
+    background: "var(--color-surface--background)",
+  }}
+>
+  <Story
+    name="Action alignment"
+    args={{
+      title: "Service details",
+      actionIconAlignment: "flex-start",
+      onPress: () => alert("👍"),
+    }}
+  >
+    {args => (
+      <Card>
+        <ActionItem {...args}>
+          <TitledDetail
+            title="Please provide as much information as you can"
+            displayText="Cut front, back, and area behind garage. Give the customer a heads up."
+          />
+        </ActionItem>
+      </Card>
+    )}
+  </Story>
+</Canvas>
+
+### Title only
+
+You can use the title and not pass in any children. This is useful when you have
+empty states that require the user's attention.
+
+<Canvas
+  style={{
+    background: "var(--color-surface--background)",
+  }}
+>
+  <Story
+    name="Title only"
+    args={{
+      icon: "person",
+      actionIcon: "add",
+      title: "Add client",
+      onPress: () => alert("👍"),
+    }}
+  >
+    {args => (
+      <Card>
+        <ActionItem {...args} />
+      </Card>
+    )}
+  </Story>
+</Canvas>
+
+### With interactive children
+
+**TLDR** You can tap the things inside of a tappable ActionItem.
+
+When an onPress is provided, the entire ActionItem is tappable for easy
+interactivity. If a child of the ActionItem has an onPress, tapping directly on
+that child will trigger the child item's onPress.
+
+<Canvas
+  style={{
+    background: "var(--color-surface--background)",
+  }}
+>
+  <Story
+    name="With interactive children"
+    args={{
+      icon: "presentation",
+      actionIcon: "link",
+      onPress: () => alert("Tapped the entire action item"),
+    }}
+  >
+    {args => (
+      <Card>
+        <ActionItem {...args}>
+          <Content spacing="none">
+            <Text>You can tap this link or the whole ActionItem</Text>
+            <AutoLink>{"www.getjobber.com"}</AutoLink>
+          </Content>
+        </ActionItem>
+      </Card>
+    )}
+  </Story>
+</Canvas>
+
+### When the user can't action the item
+
+If a user might not be able to perform an action, but they still need to see the
+content (for example, a user who can view their schedule but not edit it), you
+can opt to set the `onPress` as undefined, which will hide the action icon.
+
+<Canvas
+  style={{
+    background: "var(--color-surface--background)",
+  }}
+>
+  <Story name="No action">
+    <Card>
+      <ActionItem icon="userSwitch" title="Team">
+        <Text>Nathaniel Lewis</Text>
+        <Text>Christian Carlino</Text>
+        <Text>Lorna Erikssen</Text>
+      </ActionItem>
+    </Card>
+  </Story>
+</Canvas>
+
+## Related components
+
+To group multiple ActionItems together with dividers between them, use
+ActionItemGroup.
+
+ActionItem is commonly consumed by
+[Card](/docs/atlantis-layouts-and-containers-card--card). In most cases, it will
+also render at least one [Icon](/docs/atlantis-images-and-icons-icon--icon).
+
+If you need to generate a longer list of consistently-formatted content,
+consider using [List.](/docs/atlantis-lists-list--list)
+
+## Content guidelines
+
+ActionItem provides a pre-styled "title", which can be used to consistently
+title the element.
+
+Child content can be whatever you need, but typically consists of either Text or
+TitledDetail.
+
+## Accessibility
+
+The Icons in ActionItem should not be announced to assistive technology. Similar
+to a ListItem, the entire contents of the ActionItem should be read as one
+element.
+
+## Responsiveness
+
+ActionItem takes up the full available width of its parent. The title will
+reflow to a new line, while the icons remain aligned on the leading and trailing
+ends.
+
+The child content will use the responsive behviour of its respective components.
+
+## Mockup
+
+<Figma
+  collapsable
+  url="https://www.figma.com/file/avvgu5SkbBvS8lGVePBsqO/%F0%9F%92%99-Product%2FMobile?node-id=41947%3A224683"
+/>
+
+## Notes
+
+<!--
+  What decisions worth remembering have gone into this component? Did we consider any potentially valuable
+  functionality that we’re not implementing right now for scope purposes? Are there any design decisions
+  that might need explaining beyond the usage guidelines? This will help consumers understand this component
+  more fully.
+-->
