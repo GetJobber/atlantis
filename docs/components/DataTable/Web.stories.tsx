@@ -513,7 +513,84 @@ EmptyState.args = {
 };
 
 const LoadingTemplate: ComponentStory<typeof DataTable> = args => (
-  <DataTable {...args} />
+  <DataTable
+    {...args}
+    columns={[
+      {
+        id: "name",
+        accessorKey: "name",
+        header: "Name",
+        footer: "Totals",
+        cell: info => (
+          <Typography align="end">{<>{info.getValue()}</>}</Typography>
+        ),
+        size: 538,
+        minSize: 438,
+        maxSize: 538,
+      },
+      {
+        id: "points",
+        accessorKey: "points",
+        header: () => (
+          <div style={{ display: "flex", flex: 1 }}>
+            <Typography align="end" fontWeight="bold">
+              Points
+            </Typography>
+          </div>
+        ),
+        footer: () => (
+          <Typography align="end" fontWeight="bold">
+            10,050,400
+          </Typography>
+        ),
+        cell: info => (
+          <Typography align="end">{<>{info.getValue()}</>}</Typography>
+        ),
+        size: 268,
+        minSize: 168,
+        maxSize: 268,
+      },
+      {
+        id: "chance",
+        accessorKey: "chance",
+        header: () => (
+          <div style={{ display: "flex", flex: 1 }}>
+            <Typography align="end" fontWeight="bold">
+              Chance (%)
+            </Typography>
+          </div>
+        ),
+        cell: info => (
+          <Typography align="end">{<>{info.getValue()}</>}</Typography>
+        ),
+        size: 268,
+        minSize: 168,
+        maxSize: 268,
+      },
+      {
+        id: "power",
+        accessorKey: "power",
+        header: () => (
+          <div style={{ display: "flex", flex: 1 }}>
+            <Typography align="end" fontWeight="bold">
+              Power
+            </Typography>
+          </div>
+        ),
+        footer: () => (
+          <Typography align="end" fontWeight="bold">
+            300,000
+          </Typography>
+        ),
+        cell: info => (
+          <Typography align="end">{<>{info.getValue()}</>}</Typography>
+        ),
+        size: 268,
+        minSize: 168,
+        maxSize: 268,
+      },
+    ]}
+  />
 );
 
 export const LoadingState = LoadingTemplate.bind({});
@@ -523,79 +600,4 @@ LoadingState.args = {
   height: 600,
   loading: true,
   data: [],
-  columns: [
-    {
-      id: "name",
-      accessorKey: "name",
-      header: "Name",
-      footer: "Totals",
-      cell: info => (
-        <Typography align="end">{<>{info.getValue()}</>}</Typography>
-      ),
-      size: 538,
-      minSize: 438,
-      maxSize: 538,
-    },
-    {
-      id: "points",
-      accessorKey: "points",
-      header: () => (
-        <div style={{ display: "flex", flex: 1 }}>
-          <Typography align="end" fontWeight="bold">
-            Points
-          </Typography>
-        </div>
-      ),
-      footer: () => (
-        <Typography align="end" fontWeight="bold">
-          10,050,400
-        </Typography>
-      ),
-      cell: info => (
-        <Typography align="end">{<>{info.getValue()}</>}</Typography>
-      ),
-      size: 268,
-      minSize: 168,
-      maxSize: 268,
-    },
-    {
-      id: "chance",
-      accessorKey: "chance",
-      header: () => (
-        <div style={{ display: "flex", flex: 1 }}>
-          <Typography align="end" fontWeight="bold">
-            Chance (%)
-          </Typography>
-        </div>
-      ),
-      cell: info => (
-        <Typography align="end">{<>{info.getValue()}</>}</Typography>
-      ),
-      size: 268,
-      minSize: 168,
-      maxSize: 268,
-    },
-    {
-      id: "power",
-      accessorKey: "power",
-      header: () => (
-        <div style={{ display: "flex", flex: 1 }}>
-          <Typography align="end" fontWeight="bold">
-            Power
-          </Typography>
-        </div>
-      ),
-      footer: () => (
-        <Typography align="end" fontWeight="bold">
-          300,000
-        </Typography>
-      ),
-      cell: info => (
-        <Typography align="end">{<>{info.getValue()}</>}</Typography>
-      ),
-      size: 268,
-      minSize: 168,
-      maxSize: 268,
-    },
-  ],
 };
