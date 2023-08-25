@@ -9,10 +9,14 @@ import { DataListObject, DataListProps } from "./DataList.types";
 import {
   generateDataListEmptyState,
   generateHeaderElements,
-  generateListItemElements,
-  getCompoundComponent,
+  getCompoundComponents,
 } from "./DataList.utils";
 import { DataListTotalCount } from "./components/DataListTotalCount";
+import {
+  DataListHeader,
+  DataListItems,
+} from "./components/DataListLayoutInternal";
+import { useLayoutMediaQueries } from "./hooks/useLayoutMediaQueries";
 import { Heading } from "../Heading";
 
 export function DataList<T extends DataListObject>({
@@ -23,14 +27,15 @@ export function DataList<T extends DataListObject>({
   children,
   title,
   totalCount,
+  headerVisibility = { xs: true, sm: true, md: true, lg: true, xl: true },
 }: DataListProps<T>) {
-  const layout = getCompoundComponent<DataListLayoutProps<T>>(
+  const allLayouts = getCompoundComponents<DataListLayoutProps<T>>(
     children,
     DataListLayout,
-  )?.props.children;
+  );
 
-  const elementData = generateListItemElements(data);
   const headerData = generateHeaderElements(headers);
+  const mediaMatches = useLayoutMediaQueries();
 
   const showEmptyState = !loading && data.length === 0;
   const [isFilterApplied, setIsFilterApplied] = useState(filterApplied);
@@ -47,16 +52,19 @@ export function DataList<T extends DataListObject>({
         {title && <Heading level={3}>{title}</Heading>}
         <DataListTotalCount totalCount={totalCount} loading={loading} />
       </div>
-      <div className={styles.header}>
-        {/* Filters here, since it also sticks to the top */}
-        {headerData && layout?.(headerData)}
-      </div>
-      {layout &&
-        elementData.map((child, i) => (
-          <div className={styles.listItem} key={data[i].id}>
-            {layout(child)}
-          </div>
-        ))}
+      {headerData && (
+        <DataListHeader
+          layouts={allLayouts}
+          headerData={headerData}
+          headerVisibility={headerVisibility}
+          mediaMatches={mediaMatches}
+        />
+      )}
+      <DataListItems
+        data={data}
+        layouts={allLayouts}
+        mediaMatches={mediaMatches}
+      />
       {showEmptyState && EmptyStateComponent}
     </div>
   );

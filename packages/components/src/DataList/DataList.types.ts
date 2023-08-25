@@ -1,4 +1,7 @@
 import { ReactElement, ReactNode } from "react";
+import { Breakpoints } from "./DataList.const";
+
+export { Breakpoints } from "./DataList.const";
 
 export type DataListItemType<T extends DataListObject[]> = Record<
   keyof T[number],
@@ -72,4 +75,11 @@ export interface DataListProps<T extends DataListObject> {
    * in the list
    */
   readonly totalCount?: number | null;
+
+  /**
+   * Determine if the header is visible at a given breakpoint. If one isn't provided,
+   * it will use the value from the next smallest breakpoint that has a value.
+   * @default { xs: true, sm: true, md: true, lg: true, xl: true }
+   */
+  readonly headerVisibility?: { [Breakpoint in Breakpoints]?: boolean };
 }
