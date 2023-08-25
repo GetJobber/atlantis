@@ -4,6 +4,8 @@
   "date": "Date",
   "dismiss": "Dismiss",
   "errors.notANumber": "Enter a number",
+  "FormatFile.label": "Attachment Preview",
+  "FormatFile.hint": "Select for more options",
   "InputPassword.enterPassword": "Enter a password",
   "menu": "Menu",
   "more": "More",
@@ -13,5 +15,7 @@
   "ProgressBar.inProgress": "{current} of {total} complete, {inProgress} in progress",
   "Select.a11yHint": "Select to open the picker",
   "Select.emptyValue": "Select an option",
-  "time": "Time"
+  "time": "Time",
+  "upload.failed": "Failed to upload.",
+  "upload.inProgress": "Upload in progress."
 }

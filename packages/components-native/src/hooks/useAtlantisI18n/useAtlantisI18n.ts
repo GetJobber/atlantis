@@ -4,7 +4,7 @@ import { useAtlantisContext } from "../../AtlantisContext";
 
 export const localizedStrings = { en, es };
 
-interface useAtlantisI18nValue {
+export interface useAtlantisI18nValue {
   readonly locale: string;
   readonly t: (
     message: keyof typeof en,

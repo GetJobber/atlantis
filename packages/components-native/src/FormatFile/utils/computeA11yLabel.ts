@@ -1,26 +1,23 @@
-import { MessageDescriptor } from "react-intl";
-import { messages } from "../messages";
+import { useAtlantisI18nValue } from "../../hooks/useAtlantisI18n";
 
 interface params {
-  accessibilityLabel?: string;
-  showOverlay: boolean;
-  showError: boolean;
-  formatMessage: (message: MessageDescriptor) => string;
+  readonly accessibilityLabel?: string;
+  readonly showOverlay: boolean;
+  readonly showError: boolean;
+  readonly t: useAtlantisI18nValue["t"];
 }
 
 export function computeA11yLabel({
   accessibilityLabel,
   showOverlay,
   showError,
-  formatMessage,
+  t,
 }: params): string {
   if (!showError && showOverlay) {
-    return formatMessage(messages.inProgressAccessibilityLabel);
+    return t("upload.inProgress");
   } else if (showError) {
-    return formatMessage(messages.errorAccessibilityLabel);
+    return t("upload.failed");
   } else {
-    return (
-      accessibilityLabel || formatMessage(messages.defaultAccessibilityLabel)
-    );
+    return accessibilityLabel || t("FormatFile.label");
   }
 }

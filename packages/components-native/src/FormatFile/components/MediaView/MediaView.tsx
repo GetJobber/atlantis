@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { ImageBackground, View } from "react-native";
-import { useIntl } from "react-intl";
 import { styles } from "./MediaView.style";
 import { FormattedFile, StatusCode } from "../../types";
 import { computeA11yLabel } from "../../utils";
@@ -9,6 +8,7 @@ import { Icon } from "../../../Icon";
 import { ProgressBar } from "../ProgressBar";
 import { ErrorIcon } from "../ErrorIcon";
 import { useAtlantisFormatFileContext } from "../../context/FormatFileContext";
+import { useAtlantisI18n } from "../../../hooks/useAtlantisI18n";
 
 interface MediaViewProps {
   accessibilityLabel?: string;
@@ -27,7 +27,7 @@ export function MediaView({
   styleInGrid,
   onUploadComplete,
 }: MediaViewProps): JSX.Element {
-  const { formatMessage } = useIntl();
+  const { t } = useAtlantisI18n();
   const { useCreateThumbnail } = useAtlantisFormatFileContext();
   const { thumbnail, error } = useCreateThumbnail(file);
   const [isLoading, setIsLoading] = useState(false);
@@ -36,7 +36,7 @@ export function MediaView({
     accessibilityLabel,
     showOverlay,
     showError,
-    formatMessage,
+    t,
   });
 
   const hasError = showError || error;

@@ -4,6 +4,8 @@
   "date": "Fecha",
   "dismiss": "Descartar",
   "errors.notANumber": "Escriba un número",
+  "FormatFile.label": "Attachment Preview",
+  "FormatFile.hint": "Select for more options",
   "InputPassword.enterPassword": "Escriba una contraseña",
   "menu": "Menú",
   "more": "Más",
@@ -13,5 +15,7 @@
   "ProgressBar.inProgress": "{current} de {total} completo, {inProgress} en progreso",
   "Select.a11yHint": "Seleccionar para abrir el selector",
   "Select.emptyValue": "Seleccione una opción",
-  "time": "Hora"
+  "time": "Hora",
+  "upload.failed": "No se pudo adjuntar el archivo.",
+  "upload.inProgress": "Carga de archivo en curso."
 }

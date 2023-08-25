@@ -14,7 +14,6 @@ import {
   FILE_UPLOAD_MOCK_PDF,
 } from "./components/_mocks/mockFiles";
 import { messages } from "./components/FormatFileBottomSheet/messages";
-import { messages as formatFileMessages } from "./messages";
 import { BottomSheetOptionsSuffix } from "./components/FormatFileBottomSheet";
 import { FileUpload, StatusCode } from "./types";
 import { tokens } from "../utils/design";
@@ -94,11 +93,7 @@ function basicRenderTestWithValue() {
 
     it("renders a helpful accessibility label", () => {
       const tree = renderFormatFile(file);
-      expect(
-        tree.getByLabelText(
-          formatFileMessages.inProgressAccessibilityLabel.defaultMessage,
-        ),
-      ).toBeDefined();
+      expect(tree.getByLabelText("Upload in progress.")).toBeDefined();
     });
 
     it("renders an overlay on the image when upload status is not completed", () => {
@@ -166,11 +161,7 @@ function basicRenderTestWithValue() {
 
     it("renders a helpful accessibility label", () => {
       const tree = renderFormatFile(file);
-      expect(
-        tree.getByLabelText(
-          formatFileMessages.errorAccessibilityLabel.defaultMessage,
-        ),
-      ).toBeDefined();
+      expect(tree.getByLabelText("Failed to upload.")).toBeDefined();
     });
 
     it("does not render an overlay", () => {
