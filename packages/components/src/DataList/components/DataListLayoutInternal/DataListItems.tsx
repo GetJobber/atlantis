@@ -7,9 +7,9 @@ import { generateListItemElements } from "../../DataList.utils";
 import { DataListLayoutProps } from "../DataListLayout/DataListLayout";
 
 interface DataListItemsProps<T extends DataListObject> {
-  layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined;
-  mediaMatches?: Record<Breakpoints, boolean>;
-  data: T[];
+  readonly layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined;
+  readonly mediaMatches?: Record<Breakpoints, boolean>;
+  readonly data: T[];
 }
 
 export function DataListItems<T extends DataListObject>({

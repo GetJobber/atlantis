@@ -5,11 +5,11 @@ import { sortSizeProp } from "../../DataList.utils";
 import { DataListLayoutProps } from "../DataListLayout/DataListLayout";
 
 interface DataListLayoutInternalProps<T extends DataListObject> {
-  layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined;
-  renderLayout: (
+  readonly layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined;
+  readonly renderLayout: (
     layout: React.ReactElement<DataListLayoutProps<T>>,
   ) => JSX.Element;
-  mediaMatches?: Record<Breakpoints, boolean>;
+  readonly mediaMatches?: Record<Breakpoints, boolean>;
 }
 
 export function DataListLayoutInternal<T extends DataListObject>({
@@ -31,9 +31,9 @@ export function DataListLayoutInternal<T extends DataListObject>({
 }
 
 interface IsLayoutVisibleParams {
-  layoutSize: Breakpoints;
-  mediaMatches?: Record<Breakpoints, boolean>;
-  sizePropsOfLayouts?: Breakpoints[];
+  readonly layoutSize: Breakpoints;
+  readonly mediaMatches?: Record<Breakpoints, boolean>;
+  readonly sizePropsOfLayouts?: Breakpoints[];
 }
 
 /**

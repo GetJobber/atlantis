@@ -47,7 +47,6 @@ export function getCompoundComponents<T>(
       isValidElement<T>(child) && child.type === type,
   );
 
-  // Comply with the return type without casting it
   return elements;
 }
 
