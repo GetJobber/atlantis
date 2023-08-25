@@ -37,16 +37,16 @@ export function DataListHeader<T extends DataListObject>({
     true,
   );
 
+  if (!showHeader || !headerData) return <></>;
+
   return (
     <DataListLayoutInternal
       layouts={layouts}
       renderLayout={layout => {
         return (
-          (showHeader && headerData && (
-            <div className={styles.header}>
-              {layout.props.children(headerData)}
-            </div>
-          )) || <></>
+          <div className={styles.header}>
+            {layout.props.children(headerData)}
+          </div>
         );
       }}
       mediaMatches={mediaMatches}
