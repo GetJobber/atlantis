@@ -12,10 +12,10 @@ import { sortSizeProp } from "../../DataList.utils";
 import { DataListLayoutProps } from "../DataListLayout/DataListLayout";
 
 interface DataListHeaderProps<T extends DataListObject> {
-  layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined;
-  mediaMatches?: Record<Breakpoints, boolean>;
-  headerData?: DataListItemTypeFromHeader<T, DataListHeaderType<T>>;
-  headerVisibility: NonNullable<DataListProps<T>["headerVisibility"]>;
+  readonly layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined;
+  readonly mediaMatches?: Record<Breakpoints, boolean>;
+  readonly headerData?: DataListItemTypeFromHeader<T, DataListHeaderType<T>>;
+  readonly headerVisibility: NonNullable<DataListProps<T>["headerVisibility"]>;
 }
 
 export function DataListHeader<T extends DataListObject>({

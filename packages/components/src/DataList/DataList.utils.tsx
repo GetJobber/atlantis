@@ -48,7 +48,7 @@ export function getCompoundComponents<T>(
   );
 
   // Comply with the return type without casting it
-  return elements || [];
+  return elements;
 }
 
 /**

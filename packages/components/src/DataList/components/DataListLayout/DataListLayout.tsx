@@ -6,7 +6,7 @@ import {
 } from "../../DataList.types";
 
 export interface DataListLayoutProps<T extends DataListObject> {
-  children: (item: DataListItemType<T[]>) => JSX.Element;
+  readonly children: (item: DataListItemType<T[]>) => JSX.Element;
 
   /**
    * The breakpoint at which the layout should be displayed. It will be rendered until a layout with a larger breakpoint is found.
