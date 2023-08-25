@@ -57,7 +57,7 @@ function InputNumberInternal(props: InputNumberProps, ref: Ref<InputTextRef>) {
       validations={{
         pattern: {
           value: NUMBER_VALIDATION_REGEX,
-          message: t("InputNumber.enterNumber"),
+          message: t("errors.notANumber"),
         },
         ...props.validations,
       }}

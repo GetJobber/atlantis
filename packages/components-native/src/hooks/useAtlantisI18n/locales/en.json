@@ -3,7 +3,7 @@
   "confirm": "Confirm",
   "date": "Date",
   "dismiss": "Dismiss",
-  "InputNumber.enterNumber": "Enter a number",
+  "errors.notANumber": "Enter a number",
   "InputPassword.enterPassword": "Enter a password",
   "menu": "Menu",
   "more": "More",
