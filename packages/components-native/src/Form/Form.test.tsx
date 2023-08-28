@@ -3,7 +3,6 @@ import { act, fireEvent, render, waitFor } from "@testing-library/react-native";
 import { Alert, Keyboard } from "react-native";
 import { Host } from "react-native-portalize";
 import { Form, FormBannerMessage, FormBannerMessageType } from ".";
-import { messages } from "./components/FormSaveButton/messages";
 import { FormBannerErrors, FormSubmitErrorType } from "./types";
 import { defaultValues as contextDefaultValue } from "../AtlantisContext";
 import * as atlantisContext from "../AtlantisContext/AtlantisContext";
@@ -71,7 +70,7 @@ const testCheckboxName = "testCheckbox";
 const switchLabel = "switchLabel";
 const checkboxLabel = "checkboxLabel";
 const selectLabel = "selectLabel";
-const saveButtonText = messages.saveButton.defaultMessage;
+const saveButtonText = "Save";
 
 const requiredInputText = "This field is required";
 const minLengthText = "Test is too short";
