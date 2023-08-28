@@ -1,9 +1,8 @@
 import React from "react";
 import { Pressable, View } from "react-native";
-import { useIntl } from "react-intl";
 import { styles } from "./ClearAction.style";
-import { messages } from "./messages";
 import { Icon } from "../../../Icon";
+import { useAtlantisI18n } from "../../../hooks/useAtlantisI18n";
 
 interface ClearActionProps {
   /**
@@ -17,12 +16,12 @@ export function ClearAction({
   onPress,
   hasMarginRight = false,
 }: ClearActionProps): JSX.Element {
-  const { formatMessage } = useIntl();
+  const { t } = useAtlantisI18n();
   return (
     <Pressable
       style={[styles.container, hasMarginRight && styles.addedMargin]}
       onPress={onPress}
-      accessibilityLabel={formatMessage(messages.clearTextLabel)}
+      accessibilityLabel={t("InputFieldWrapper.clear")}
     >
       <View style={styles.circle}>
         <Icon size="small" name="cross" color="interactiveSubtle" />

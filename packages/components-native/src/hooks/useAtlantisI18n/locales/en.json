@@ -11,6 +11,7 @@
   "FormatFile.preview": "Preview {item}",
   "FormatFile.remove": "Remove {item}",
   "goBack": "Go back",
+  "InputFieldWrapper.clear": "Clear input",
   "InputPassword.enterPassword": "Enter a password",
   "loading": "Loading",
   "menu": "Menu",

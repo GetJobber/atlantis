@@ -5,11 +5,9 @@ import {
   render,
   waitFor,
 } from "@testing-library/react-native";
-import { useIntl } from "react-intl";
 import { Platform, TextStyle } from "react-native";
 import { InputText, InputTextProps } from "./InputText";
 import { InputAccessoriesProvider } from "./context";
-import { messages as ClearMessages } from "../InputFieldWrapper/components/ClearAction/messages";
 import {
   Clearable,
   InputFieldWrapperProps,
@@ -39,6 +37,7 @@ function renderInputText(props: InputTextProps): RenderAPI {
   return render(<InputText {...props} />);
 }
 
+const clearInput = "Clear input";
 // eslint-disable-next-line max-statements
 describe("InputText", () => {
   describe("InputFieldWrapper gets the expected props", () => {
@@ -323,30 +322,23 @@ describe("InputText", () => {
 
     describe("clearable set to always", () => {
       it("renders the clear button when there is a value", () => {
-        const { formatMessage } = useIntl();
         const { getByLabelText } = setup({
           clearable: "always",
           value: "test value",
         });
 
-        const clearButton = getByLabelText(
-          formatMessage(ClearMessages.clearTextLabel),
-        );
+        const clearButton = getByLabelText(clearInput);
         expect(clearButton).toBeDefined();
       });
 
       it("doesn't render the clear button if there is no value", () => {
-        const { formatMessage } = useIntl();
         const { queryByLabelText } = setup({ clearable: "always", value: "" });
 
-        const clearButton = queryByLabelText(
-          formatMessage(ClearMessages.clearTextLabel),
-        );
+        const clearButton = queryByLabelText(clearInput);
         expect(clearButton).toBeNull();
       });
 
       it("renders the clear button when there is a value and you are focused", async () => {
-        const { formatMessage } = useIntl();
         const { getByLabelText } = setup({
           clearable: "always",
           value: "test value",
@@ -354,16 +346,13 @@ describe("InputText", () => {
         });
         await fireEvent(getByLabelText("clearableTest"), "focus");
 
-        const clearButton = getByLabelText(
-          formatMessage(ClearMessages.clearTextLabel),
-        );
+        const clearButton = getByLabelText(clearInput);
         expect(clearButton).toBeDefined();
       });
     });
 
     describe("clearable set to when editing", () => {
       it("renders the clear button when there is a value and it is being edited", async () => {
-        const { formatMessage } = useIntl();
         const { getByLabelText } = setup({
           clearable: "while-editing",
           value: "Test Input",
@@ -371,29 +360,23 @@ describe("InputText", () => {
         });
         await fireEvent(getByLabelText("clearableTest"), "focus");
 
-        const clearButton = getByLabelText(
-          formatMessage(ClearMessages.clearTextLabel),
-        );
+        const clearButton = getByLabelText(clearInput);
         expect(clearButton).toBeDefined();
       });
 
       it("doesn't render the clear button if the user isn't editing", () => {
-        const { formatMessage } = useIntl();
         const { queryByLabelText } = setup({
           clearable: "while-editing",
           value: "Test value",
         });
 
-        const clearButton = queryByLabelText(
-          formatMessage(ClearMessages.clearTextLabel),
-        );
+        const clearButton = queryByLabelText(clearInput);
         expect(clearButton).toBeNull();
       });
     });
 
     describe("clearable set to never", () => {
       it("shouldn't show the button when it is being edited", async () => {
-        const { formatMessage } = useIntl();
         const { getByLabelText, queryByLabelText } = setup({
           clearable: "never",
           value: "Test Input",
@@ -401,29 +384,23 @@ describe("InputText", () => {
         });
         await fireEvent(getByLabelText("clearableTest"), "focus");
 
-        const clearButton = queryByLabelText(
-          formatMessage(ClearMessages.clearTextLabel),
-        );
+        const clearButton = queryByLabelText(clearInput);
         expect(clearButton).toBeNull();
       });
 
       it("shouldn't show the clear button when the user is not editing", () => {
-        const { formatMessage } = useIntl();
         const { queryByLabelText } = setup({
           clearable: "never",
           value: "Test Input",
           accessibilityLabel: "clearableTest",
         });
 
-        const clearButton = queryByLabelText(
-          formatMessage(ClearMessages.clearTextLabel),
-        );
+        const clearButton = queryByLabelText(clearInput);
         expect(clearButton).toBeNull();
       });
     });
 
     it("should clear the value when the clear button is pressed", () => {
-      const { formatMessage } = useIntl();
       const onChangeHandler = jest.fn();
       const { getByLabelText } = setup({
         clearable: "always",
@@ -431,15 +408,12 @@ describe("InputText", () => {
         onChangeText: onChangeHandler,
       });
 
-      const clearButton = getByLabelText(
-        formatMessage(ClearMessages.clearTextLabel),
-      );
+      const clearButton = getByLabelText(clearInput);
       fireEvent(clearButton, "press");
       expect(onChangeHandler).toHaveBeenCalledWith("");
     });
 
     it("shouldn't render the clear button if the input is disabled", () => {
-      const { formatMessage } = useIntl();
       const { queryByLabelText } = setup({
         clearable: "always",
         value: "Test value",
@@ -447,9 +421,7 @@ describe("InputText", () => {
         disabled: true,
       });
 
-      const clearButton = queryByLabelText(
-        formatMessage(ClearMessages.clearTextLabel),
-      );
+      const clearButton = queryByLabelText(clearInput);
       expect(clearButton).toBeNull();
     });
   });
