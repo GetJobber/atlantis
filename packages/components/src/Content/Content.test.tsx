@@ -5,44 +5,29 @@ import { Content } from ".";
 afterEach(cleanup);
 
 it("renders a Content", () => {
-  const { container } = render(<Content>Wazaaaaa</Content>);
-  expect(container).toMatchInlineSnapshot(`
-    <div>
-      <div
-        class="padded base"
-      >
-        Wazaaaaa
-      </div>
-    </div>
-  `);
+  const { queryByText } = render(<Content>Wazaaaaa</Content>);
+
+  expect(queryByText("Wazaaaaa")).toBeInTheDocument();
 });
 
 it("renders a Content with a large spacing", () => {
-  const { container } = render(<Content spacing="large">Space me up!</Content>);
-  expect(container).toMatchInlineSnapshot(`
-    <div>
-      <div
-        class="padded large"
-      >
-        Space me up!
-      </div>
-    </div>
-  `);
+  const { queryByText } = render(
+    <Content spacing="large">Space me up!</Content>,
+  );
+  const content = queryByText("Space me up!");
+
+  expect(content).toBeInTheDocument();
+  expect(content).toHaveClass("padded large");
 });
 
 it("renders a Content with a small spacing", () => {
-  const { container } = render(
+  const { queryByText } = render(
     <Content spacing="small">Space me down!</Content>,
   );
-  expect(container).toMatchInlineSnapshot(`
-    <div>
-      <div
-        class="padded small"
-      >
-        Space me down!
-      </div>
-    </div>
-  `);
+  const content = queryByText("Space me down!");
+
+  expect(content).toBeInTheDocument();
+  expect(content).toHaveClass("padded small");
 });
 
 it("renders with a semantic tag when a valid type is set", () => {
