@@ -3,6 +3,7 @@
   "confirm": "Confirmar",
   "date": "Fecha",
   "dismiss": "Descartar",
+  "errors.couldNotSave": "No se pudieron guardar los cambios",
   "errors.notANumber": "Escriba un número",
   "FormatFile.label": "Attachment Preview",
   "FormatFile.hint": "Select for more options",

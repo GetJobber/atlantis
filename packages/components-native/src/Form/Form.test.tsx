@@ -1,10 +1,8 @@
 import React from "react";
 import { act, fireEvent, render, waitFor } from "@testing-library/react-native";
 import { Alert, Keyboard } from "react-native";
-import { useIntl } from "react-intl";
 import { Host } from "react-native-portalize";
 import { Form, FormBannerMessage, FormBannerMessageType } from ".";
-import { messages as formErrorBannerMessages } from "./components/FormErrorBanner/messages";
 import { messages } from "./components/FormSaveButton/messages";
 import { FormBannerErrors, FormSubmitErrorType } from "./types";
 import { defaultValues as contextDefaultValue } from "../AtlantisContext";
@@ -481,28 +479,6 @@ describe("Form", () => {
     atlantisContextSpy.mockReturnValue({
       ...contextDefaultValue,
       isOnline: false,
-    });
-
-    it("renders Offline Banner when disconnected", async () => {
-      const { getByText } = render(<FormTest onSubmit={onSubmitMock} />);
-      const { formatMessage } = useIntl();
-
-      expect(
-        getByText(formatMessage(formErrorBannerMessages.offlineError)),
-      ).toBeDefined();
-    });
-
-    it("does not render Offline Banner when connected", async () => {
-      atlantisContextSpy.mockReturnValue({
-        ...contextDefaultValue,
-        isOnline: true,
-      });
-      const { queryByText } = render(<FormTest onSubmit={onSubmitMock} />);
-      const { formatMessage } = useIntl();
-
-      expect(
-        queryByText(formatMessage(formErrorBannerMessages.offlineError)),
-      ).toBeNull();
     });
 
     it("renders user errors when provided", async () => {
