@@ -38,6 +38,7 @@ it("renders with a semantic tag when a valid type is set", () => {
     </Content>,
   );
   const article = queryByRole("article");
+
   expect(article).toBeInTheDocument();
   expect(article).toHaveClass("padded base");
 });
