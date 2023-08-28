@@ -45,8 +45,8 @@ it("renders a Content with a small spacing", () => {
   `);
 });
 
-it("renders with a semantic tag when a valid tagName is set", () => {
-  const { container } = render(<Content tagName="section">A section!</Content>);
+it("renders with a semantic tag when a valid type is set", () => {
+  const { container } = render(<Content type="section">A section!</Content>);
 
   expect(container).toMatchInlineSnapshot(`
     <div>

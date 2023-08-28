@@ -21,7 +21,7 @@ export default {
 const BasicTemplate: ComponentStory<typeof Content> = args => (
   <Content {...args}>
     <Card title="About me">
-      <Content tagName="section" {...args}>
+      <Content type="section" {...args}>
         <Heading level={2}>Sign up!</Heading>
         <Text>
           Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis

@@ -15,10 +15,10 @@ interface ContentProps {
   /**
    * The html tag name to use as the container element
    * Defaults to 'div'
-   * Must be a valid HTML5 element name
+   * Must be a valid HTML5 element that accepts children
    * @default 'div'
    */
-  readonly tagName?:
+  readonly type?:
     | "section"
     | "aside"
     | "header"
@@ -31,9 +31,9 @@ interface ContentProps {
 export function Content({
   children,
   spacing = "base",
-  tagName = "div",
+  type = "div",
 }: ContentProps) {
   const className = classnames(styles.padded, spacings[spacing]);
 
-  return createElement(tagName, { className }, children);
+  return createElement(type, { className }, children);
 }
