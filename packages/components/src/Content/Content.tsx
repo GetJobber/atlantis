@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode, createElement } from "react";
 import classnames from "classnames";
 import spacings from "./Spacing.css";
 import styles from "./Content.css";
@@ -11,10 +11,22 @@ interface ContentProps {
    * @default base
    */
   readonly spacing?: keyof typeof spacings;
+
+  /**
+   * The html tag name to use as the container element
+   * Defaults to 'div'
+   * Must be a valid HTML5 element name
+   * @default 'div'
+   */
+  readonly tagName?: "section" | "aside" | "header" | "footer" | "main" | "div";
 }
 
-export function Content({ children, spacing = "base" }: ContentProps) {
+export function Content({
+  children,
+  spacing = "base",
+  tagName = "div",
+}: ContentProps) {
   const className = classnames(styles.padded, spacings[spacing]);
 
-  return <div className={className}>{children}</div>;
+  return createElement(tagName, { className }, children);
 }
