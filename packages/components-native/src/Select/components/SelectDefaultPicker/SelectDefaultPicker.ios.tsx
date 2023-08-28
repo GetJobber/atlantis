@@ -8,11 +8,10 @@ import {
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useIntl } from "react-intl";
 import { styles } from "./SelectDefaultPicker.style";
-import { messages } from "./messages";
 import { SelectInternalPickerProps } from "../../types";
 import { SelectPressable } from "../SelectPressable/SelectPressable";
+import { useAtlantisI18n } from "../../../hooks/useAtlantisI18n";
 
 type SelectDefaultPickerProps = SelectInternalPickerProps;
 
@@ -22,7 +21,7 @@ export function SelectDefaultPicker({
   onChange,
 }: SelectDefaultPickerProps): JSX.Element {
   const [show, setShow] = useState(false);
-  const { formatMessage } = useIntl();
+  const { t } = useAtlantisI18n();
   const selectedLanguage = options.find(option => option.isActive);
 
   return (
@@ -36,7 +35,7 @@ export function SelectDefaultPicker({
       >
         <TouchableOpacity style={styles.overlay} onPress={hidePicker} />
         <View style={styles.actionBar}>
-          <Button title={formatMessage(messages.done)} onPress={hidePicker} />
+          <Button title={t("done")} onPress={hidePicker} />
         </View>
         <View style={styles.pickerContainer} testID="select-wheel-picker">
           <SafeAreaView edges={["bottom"]}>

@@ -3,6 +3,7 @@
   "confirm": "Confirm",
   "date": "Date",
   "dismiss": "Dismiss",
+  "done": "Done",
   "errors.couldNotSave": "Could not save changes",
   "errors.notANumber": "Enter a number",
   "FormatFile.label": "Attachment Preview",
