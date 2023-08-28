@@ -14,8 +14,6 @@ interface ContentProps {
 
   /**
    * The html tag name to use as the container element
-   * Defaults to 'div'
-   * Must be a valid HTML5 element that accepts children
    * @default 'div'
    */
   readonly type?:
