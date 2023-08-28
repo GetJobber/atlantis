@@ -13,7 +13,9 @@ interface ContentProps {
   readonly spacing?: keyof typeof spacings;
 
   /**
-   * The html tag name to use as the container element
+   * Change the wrapping element to be one of the available
+   * semantic tags.
+   *
    * @default 'div'
    */
   readonly type?:
