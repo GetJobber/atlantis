@@ -45,5 +45,4 @@ const BasicTemplate: ComponentStory<typeof Content> = args => (
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
   spacing: "small",
-  type: "section",
 };
