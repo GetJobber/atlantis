@@ -115,7 +115,6 @@ export function DataTable<T extends object>({
           <Body
             table={table}
             onRowClick={onRowClick}
-            height={height ? height * 0.7 : undefined}
             emptyState={emptyState}
             loading={loading}
           />
