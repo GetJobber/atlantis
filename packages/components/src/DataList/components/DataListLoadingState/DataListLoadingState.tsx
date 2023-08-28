@@ -43,19 +43,48 @@ export function DataListLoadingState<T extends DataListObject>({
     <DataListLayoutInternal
       layouts={layouts}
       mediaMatches={mediaMatches}
-      renderLayout={layout => (
-        <>
-          {loadingElements.map((child, i) => (
-            <div
-              className={styles.loadingItem}
-              key={i}
-              data-testid={DATALIST_LOADINGSTATE_ROW_TEST_ID}
-            >
-              {layout.props.children(child)}
-            </div>
-          ))}
-        </>
-      )}
+      renderLayout={layout => {
+        if (layout.props.size === "xs") {
+          return <LoadingStateXSBreakpoint />;
+        }
+
+        return (
+          <>
+            {loadingElements.map((child, i) => (
+              <div
+                className={styles.loadingItem}
+                key={i}
+                data-testid={DATALIST_LOADINGSTATE_ROW_TEST_ID}
+              >
+                {layout.props.children(child)}
+              </div>
+            ))}
+          </>
+        );
+      }}
     />
+  );
+}
+
+function LoadingStateXSBreakpoint() {
+  const loadingData = new Array(LOADING_STATE_LIMIT_ITEMS).fill(0);
+  return (
+    <>
+      {loadingData.map((_, i) => {
+        return (
+          <div className={styles.mobileLoadingState} key={i}>
+            <div className={styles.firstMobileGlimmer}>
+              <Glimmer size="small" />
+            </div>
+            <div>
+              <Glimmer size="small" />
+            </div>
+            <div className={styles.thirdMobileGlimmer}>
+              <Glimmer size="small" />
+            </div>
+          </div>
+        );
+      })}
+    </>
   );
 }

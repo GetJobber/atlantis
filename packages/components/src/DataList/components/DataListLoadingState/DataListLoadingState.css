@@ -1,3 +1,19 @@
 .loadingItem {
   padding: var(--space-small);
 }
+
+.mobileLoadingState {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: var(--space-largest);
+  padding: var(--space-base);
+}
+
+.firstMobileGlimmer {
+  width: 80%;
+}
+
+.thirdMobileGlimmer {
+  width: 70%;
+}
