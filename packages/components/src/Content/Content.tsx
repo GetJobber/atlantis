@@ -18,7 +18,14 @@ interface ContentProps {
    * Must be a valid HTML5 element name
    * @default 'div'
    */
-  readonly tagName?: "section" | "aside" | "header" | "footer" | "main" | "div";
+  readonly tagName?:
+    | "section"
+    | "aside"
+    | "header"
+    | "footer"
+    | "article"
+    | "main"
+    | "div";
 }
 
 export function Content({
