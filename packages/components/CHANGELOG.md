@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.27.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.26.9...@jobber/components@4.27.0) (2023-08-28)
+
+
+### Features
+
+* **components:** Support semantic HTML elements for Content root element ([#1503](https://github.com/GetJobber/atlantis/issues/1503)) ([0f4fafc](https://github.com/GetJobber/atlantis/commit/0f4fafc5aa17f2ca616a6ca8674f146ba75ac0b4))
+
+
+
+
+
 ## [4.26.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.26.8...@jobber/components@4.26.9) (2023-08-28)
 
 **Note:** Version bump only for package @jobber/components
