@@ -3,8 +3,6 @@ import { FieldError, UseControllerProps } from "react-hook-form";
 import { XOR } from "ts-xor";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { View } from "react-native";
-import { utcToZonedTime } from "date-fns-tz";
-import { format as formatTime } from "date-fns";
 import { styles } from "./InputTime.style";
 import { getTimeZoneOffsetInMinutes, roundUpToNearestMinutes } from "./utils";
 import { useAtlantisContext } from "../AtlantisContext";
@@ -134,9 +132,9 @@ function InternalInputTime({
   showIcon = true,
 }: InputTimeProps): JSX.Element {
   const [showPicker, setShowPicker] = useState(false);
-  const { t } = useAtlantisI18n();
-
+  const { t, formatTime } = useAtlantisI18n();
   const { timeZone, timeFormat } = useAtlantisContext();
+
   const is24Hour = timeFormat === "HH:mm";
 
   const dateTime = useMemo(
@@ -146,12 +144,11 @@ function InternalInputTime({
 
   const formattedTime = useMemo(() => {
     if (dateTime) {
-      const zonedTime = utcToZonedTime(dateTime, timeZone);
-      return formatTime(zonedTime, timeFormat);
+      return formatTime(dateTime);
     }
 
     return emptyValueLabel;
-  }, [dateTime, emptyValueLabel, timeZone, timeFormat]);
+  }, [dateTime, emptyValueLabel]);
 
   const canClearTime = formattedTime === emptyValueLabel ? "never" : clearable;
 
