@@ -46,15 +46,13 @@ it("renders a Content with a small spacing", () => {
 });
 
 it("renders with a semantic tag when a valid type is set", () => {
-  const { container } = render(<Content type="section">A section!</Content>);
-
-  expect(container).toMatchInlineSnapshot(`
-    <div>
-      <section
-        class="padded base"
-      >
-        A section!
-      </section>
-    </div>
-    `);
+  const { queryByRole } = render(
+    <Content type="article">
+      <h2>My Article</h2>
+      <p>Wow, what an article!</p>
+    </Content>,
+  );
+  const article = queryByRole("article");
+  expect(article).toBeInTheDocument();
+  expect(article).toHaveClass("padded base");
 });
