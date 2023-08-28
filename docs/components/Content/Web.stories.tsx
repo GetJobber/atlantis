@@ -21,7 +21,7 @@ export default {
 const BasicTemplate: ComponentStory<typeof Content> = args => (
   <Content {...args}>
     <Card title="About me">
-      <Content type="section" {...args}>
+      <Content {...args}>
         <Heading level={2}>Sign up!</Heading>
         <Text>
           Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis
@@ -45,4 +45,5 @@ const BasicTemplate: ComponentStory<typeof Content> = args => (
 export const Basic = BasicTemplate.bind({});
 Basic.args = {
   spacing: "small",
+  type: "section",
 };
