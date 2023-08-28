@@ -7,7 +7,6 @@ import { BodyLoading } from "./BodyLoading";
 interface BodyProps<T> {
   table: Table<T>;
   onRowClick?: (row: Row<T>) => void;
-  height?: number;
   emptyState?: ReactNode | ReactNode[];
   loading: boolean;
 }
