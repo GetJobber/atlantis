@@ -1,10 +1,10 @@
 import React from "react";
-import { useIntl } from "react-intl";
 import { Platform } from "react-native";
 import { ComposeTextWithLinksProps } from "../../types";
 import { onLongPressLink, onPressLink } from "../../utils";
 import { Link } from "../Link/Link";
 import { Text } from "../../../Text";
+import { useAtlantisI18n } from "../../../hooks/useAtlantisI18n";
 
 export function ComposeTextWithLinks({
   part,
@@ -13,7 +13,7 @@ export function ComposeTextWithLinks({
   bottomTabsVisible,
   selectable = true,
 }: ComposeTextWithLinksProps): JSX.Element {
-  const { formatMessage } = useIntl();
+  const { t } = useAtlantisI18n();
 
   const isLink = match?.getType();
 
@@ -26,7 +26,7 @@ export function ComposeTextWithLinks({
           if (selectable && Platform.OS === "android") {
             return;
           }
-          onLongPressLink(match, bottomTabsVisible, formatMessage);
+          onLongPressLink(match, bottomTabsVisible, t);
         }}
       >
         {match.getAnchorText()}
