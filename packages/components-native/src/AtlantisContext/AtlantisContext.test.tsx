@@ -20,6 +20,10 @@ const providerValues: AtlantisContextProps = {
   },
   floatSeparators: { decimal: ".", group: "," },
   currencySymbol: "€",
+  headerHeight: 50,
+  setHeaderHeight: _ => {
+    return;
+  },
 };
 
 describe("AtlantisContext", () => {
