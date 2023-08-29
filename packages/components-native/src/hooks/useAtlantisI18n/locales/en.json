@@ -1,9 +1,31 @@
 {
   "cancel": "Cancel",
+  "confirm": "Confirm",
   "date": "Date",
+  "dismiss": "Dismiss",
+  "done": "Done",
+  "ContentOverlay.close": "Close {title} modal",
+  "errors.couldNotSave": "Could not save changes",
+  "errors.notANumber": "Enter a number",
+  "FormatFile.label": "Attachment Preview",
+  "FormatFile.hint": "Select for more options",
+  "FormatFile.preview": "Preview {item}",
+  "FormatFile.remove": "Remove {item}",
+  "goBack": "Go back",
+  "InputFieldWrapper.clear": "Clear input",
+  "InputPassword.enterPassword": "Enter a password",
+  "loading": "Loading",
+  "menu": "Menu",
   "more": "More",
   "networkUnavailableTitle": "Network Unavailable",
   "networkUnavailableDescription": "Check your internet connection and try again later.",
-  "ContentOverlay.close": "Close {title} modal"
-
+  "ProgressBar.complete": "{current} of {total} complete",
+  "ProgressBar.inProgress": "{current} of {total} complete, {inProgress} in progress",
+  "save": "Save",
+  "Select.a11yHint": "Select to open the picker",
+  "Select.emptyValue": "Select an option",
+  "time": "Time",
+  "tryAgain": "Try again",
+  "upload.failed": "Failed to upload.",
+  "upload.inProgress": "Upload in progress."
 }

@@ -1,7 +1,5 @@
 import React, { createRef, useCallback, useState } from "react";
 import { TouchableOpacity, View } from "react-native";
-import { useIntl } from "react-intl";
-import { messages } from "./messages";
 import { styles } from "./FormatFile.style";
 import { MediaView } from "./components/MediaView";
 import {
@@ -20,6 +18,7 @@ import {
 import { AtlantisFormatFileContext } from "./context/FormatFileContext";
 import { createUseCreateThumbnail } from "./utils/createUseCreateThumbnail";
 import { BottomSheetRef } from "../BottomSheet/BottomSheet";
+import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
 export interface FormatFileProps<T> {
   /**
@@ -247,7 +246,7 @@ function FormatFileInternal({
     file.status !== StatusCode.Completed,
   );
 
-  const { formatMessage } = useIntl();
+  const { t } = useAtlantisI18n();
   const bottomSheetRef = createRef<BottomSheetRef>();
 
   const handlePreviewPress = useCallback(() => {
@@ -263,10 +262,7 @@ function FormatFileInternal({
       <View>
         <TouchableOpacity
           accessibilityRole="imagebutton"
-          accessibilityHint={
-            accessibilityHint ??
-            formatMessage(messages.defaultAccessibilityHint)
-          }
+          accessibilityHint={accessibilityHint ?? t("FormatFile.hint")}
           onPress={handleOnPress}
           testID={testID}
         >

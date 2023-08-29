@@ -153,7 +153,7 @@ function InternalInputDate({
   accessibilityHint,
 }: InputDateProps): JSX.Element {
   const [showPicker, setShowPicker] = useState(false);
-  const { t } = useAtlantisI18n();
+  const { t, locale } = useAtlantisI18n();
   const { timeZone, dateFormat } = useAtlantisContext();
 
   const date = useMemo(() => {
@@ -196,6 +196,9 @@ function InternalInputDate({
         maximumDate={maxDate}
         minimumDate={minDate}
         mode="date"
+        confirmTextIOS={t("confirm")}
+        cancelTextIOS={t("cancel")}
+        locale={locale}
         onCancel={handleCancel}
         onConfirm={handleConfirm}
       />

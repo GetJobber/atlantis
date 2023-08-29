@@ -1,9 +1,8 @@
 import React, { RefObject } from "react";
 import { Portal } from "react-native-portalize";
-import { useIntl } from "react-intl";
-import { messages } from "./messages";
 import { BottomSheet, BottomSheetRef } from "../../../BottomSheet/BottomSheet";
 import { BottomSheetOption } from "../../../BottomSheet/components/BottomSheetOption";
+import { useAtlantisI18n } from "../../../hooks/useAtlantisI18n";
 
 export type BottomSheetOptionsSuffix = "receipt" | "image" | "file" | "video";
 
@@ -20,7 +19,7 @@ export const FormatFileBottomSheet = ({
   onRemovePress,
   bottomSheetOptionsSuffix,
 }: FormatFileBottomSheetProps): JSX.Element => {
-  const { formatMessage } = useIntl();
+  const { t } = useAtlantisI18n();
 
   const handlePress = (onPressAction: () => void) => {
     onPressAction();
@@ -34,8 +33,8 @@ export const FormatFileBottomSheet = ({
         {onPreviewPress ? (
           <BottomSheetOption
             icon={"eye"}
-            text={formatMessage(messages.lightBoxPreviewButton, {
-              bottomSheetOptionsSuffix,
+            text={t("FormatFile.preview", {
+              item: bottomSheetOptionsSuffix || "",
             })}
             onPress={() => handlePress(onPreviewPress)}
           />
@@ -44,8 +43,8 @@ export const FormatFileBottomSheet = ({
           <BottomSheetOption
             icon={"trash"}
             destructive={true}
-            text={formatMessage(messages.removeButton, {
-              bottomSheetOptionsSuffix,
+            text={t("FormatFile.remove", {
+              item: bottomSheetOptionsSuffix || "",
             })}
             onPress={() => handlePress(onRemovePress)}
           />

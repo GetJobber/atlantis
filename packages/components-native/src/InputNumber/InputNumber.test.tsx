@@ -1,8 +1,6 @@
 import React from "react";
 import { fireEvent, render, waitFor } from "@testing-library/react-native";
-import { useIntl } from "react-intl";
 import { InputNumber } from ".";
-import { messages } from "./messages";
 
 type OS = "ios" | "android";
 let Platform: { OS: OS };
@@ -28,8 +26,9 @@ it.each(platforms)(
   },
 );
 
+const notANumberErrorMessage = "Enter a number";
+
 it("Displays a validation message when the value is not a number", async () => {
-  const { formatMessage } = useIntl();
   const a11yLabel = "InputNumberTest";
   const onChange = jest.fn();
   const { getByText, getByLabelText } = render(
@@ -42,7 +41,7 @@ it("Displays a validation message when the value is not a number", async () => {
     fireEvent(getByLabelText(a11yLabel), "blur");
   });
   expect(
-    getByText(formatMessage(messages.notANumberError), {
+    getByText(notANumberErrorMessage, {
       includeHiddenElements: true,
     }),
   ).toBeDefined();
@@ -74,7 +73,6 @@ it("doesn't change the value when the input is controlled without an onChange", 
 });
 
 it("passes validation when decimal value is entered", async () => {
-  const { formatMessage } = useIntl();
   const a11yLabel = "InputNumberTest";
   const onChange = jest.fn();
   const { queryByText, getByLabelText } = render(
@@ -86,12 +84,11 @@ it("passes validation when decimal value is entered", async () => {
   await waitFor(() => {
     fireEvent(getByLabelText(a11yLabel), "blur");
   });
-  expect(queryByText(formatMessage(messages.notANumberError))).toBeNull();
+  expect(queryByText(notANumberErrorMessage)).toBeNull();
   expect(onChange).toHaveBeenCalledWith(parseFloat(numInput));
 });
 
 it("passes validation when negative value is entered", async () => {
-  const { formatMessage } = useIntl();
   const a11yLabel = "InputNumberTest";
   const onChange = jest.fn();
   const { queryByText, getByLabelText } = render(
@@ -104,12 +101,11 @@ it("passes validation when negative value is entered", async () => {
   await waitFor(() => {
     fireEvent(getByLabelText(a11yLabel), "blur");
   });
-  expect(queryByText(formatMessage(messages.notANumberError))).toBeNull();
+  expect(queryByText(notANumberErrorMessage)).toBeNull();
   expect(onChange).toHaveBeenCalledWith(parseInt(numInput, 10));
 });
 
 it("passes validation when negative decimal value is entered", async () => {
-  const { formatMessage } = useIntl();
   const a11yLabel = "InputNumberTest";
   const onChange = jest.fn();
   const { queryByText, getByLabelText } = render(
@@ -121,12 +117,11 @@ it("passes validation when negative decimal value is entered", async () => {
   await waitFor(() => {
     fireEvent(getByLabelText(a11yLabel), "blur");
   });
-  expect(queryByText(formatMessage(messages.notANumberError))).toBeNull();
+  expect(queryByText(notANumberErrorMessage)).toBeNull();
   expect(onChange).toHaveBeenCalledWith(parseFloat(numInput));
 });
 
 it("passes validation when explicit positive value is entered", async () => {
-  const { formatMessage } = useIntl();
   const a11yLabel = "InputNumberTest";
   const onChange = jest.fn();
   const { queryByText, getByLabelText } = render(
@@ -139,12 +134,11 @@ it("passes validation when explicit positive value is entered", async () => {
   await waitFor(() => {
     fireEvent(getByLabelText(a11yLabel), "blur");
   });
-  expect(queryByText(formatMessage(messages.notANumberError))).toBeNull();
+  expect(queryByText(notANumberErrorMessage)).toBeNull();
   expect(onChange).toHaveBeenCalledWith(parseInt(numInput, 10));
 });
 
 it("passes validation when e notation value is entered", async () => {
-  const { formatMessage } = useIntl();
   const a11yLabel = "InputNumberTest";
   const onChange = jest.fn();
   const { queryByText, getByLabelText } = render(
@@ -157,12 +151,11 @@ it("passes validation when e notation value is entered", async () => {
   await waitFor(() => {
     fireEvent(getByLabelText(a11yLabel), "blur");
   });
-  expect(queryByText(formatMessage(messages.notANumberError))).toBeNull();
+  expect(queryByText(notANumberErrorMessage)).toBeNull();
   expect(onChange).toHaveBeenCalledWith(parseFloat(numInput));
 });
 
 it("passes validation when e notation decimal value is entered", async () => {
-  const { formatMessage } = useIntl();
   const a11yLabel = "InputNumberTest";
   const onChange = jest.fn();
   const { queryByText, getByLabelText } = render(
@@ -175,12 +168,11 @@ it("passes validation when e notation decimal value is entered", async () => {
   await waitFor(() => {
     fireEvent(getByLabelText(a11yLabel), "blur");
   });
-  expect(queryByText(formatMessage(messages.notANumberError))).toBeNull();
+  expect(queryByText(notANumberErrorMessage)).toBeNull();
   expect(onChange).toHaveBeenCalledWith(parseFloat(numInput));
 });
 
 it("passes validation when e notation for representing decimal value is entered", async () => {
-  const { formatMessage } = useIntl();
   const a11yLabel = "InputNumberTest";
   const onChange = jest.fn();
   const { queryByText, getByLabelText } = render(
@@ -193,7 +185,7 @@ it("passes validation when e notation for representing decimal value is entered"
   await waitFor(() => {
     fireEvent(getByLabelText(a11yLabel), "blur");
   });
-  expect(queryByText(formatMessage(messages.notANumberError))).toBeNull();
+  expect(queryByText(notANumberErrorMessage)).toBeNull();
   expect(onChange).toHaveBeenCalledWith(parseFloat(numInput));
 });
 

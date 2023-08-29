@@ -1,10 +1,9 @@
 import React, { Ref, forwardRef, useState } from "react";
 import { Platform } from "react-native";
-import { useIntl } from "react-intl";
 import flow from "lodash/flow";
 import identity from "lodash/identity";
-import { messages } from "./messages";
 import { InputText, InputTextProps, InputTextRef } from "../InputText";
+import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
 type NumberKeyboard = "decimal-pad" | "numbers-and-punctuation";
 export interface InputNumberProps
@@ -36,7 +35,7 @@ function InputNumberInternal(props: InputNumberProps, ref: Ref<InputTextRef>) {
       return "numeric";
     }
   };
-  const { formatMessage } = useIntl();
+  const { t } = useAtlantisI18n();
   const handleChange = (newValue: number | string | undefined) => {
     props.onChange?.(newValue);
   };
@@ -58,7 +57,7 @@ function InputNumberInternal(props: InputNumberProps, ref: Ref<InputTextRef>) {
       validations={{
         pattern: {
           value: NUMBER_VALIDATION_REGEX,
-          message: formatMessage(messages.notANumberError),
+          message: t("errors.notANumber"),
         },
         ...props.validations,
       }}

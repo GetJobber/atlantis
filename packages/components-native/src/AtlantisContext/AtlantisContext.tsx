@@ -47,6 +47,13 @@ export interface AtlantisContextProps {
    */
   readonly headerHeight: number;
 
+  /**
+   * Change the locale of the components. This updates the strings that comes
+   * with the components, updates the date and time formats, and/or the
+   * native 3rd-party packages.
+   *
+   * @default "en"
+   */
   readonly locale: string;
 }
 

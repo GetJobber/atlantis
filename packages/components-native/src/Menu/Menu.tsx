@@ -6,10 +6,8 @@ import {
   useWindowDimensions,
 } from "react-native";
 import { Portal } from "react-native-portalize";
-import { useIntl } from "react-intl";
 import { useSafeAreaFrame } from "react-native-safe-area-context";
 import { styles } from "./Menu.style";
-import { messages } from "./messages";
 import { findViewpoint } from "./utils";
 import { MenuProps } from "./types";
 import { MenuOption } from "./components/MenuOption";
@@ -18,6 +16,7 @@ import { tokens } from "../utils/design";
 import { Button } from "../Button";
 import { Content } from "../Content";
 import { useAtlantisContext } from "../AtlantisContext";
+import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
 export function Menu({ menuOptions, customActivator }: MenuProps): JSX.Element {
   const [open, setOpen] = useState<boolean>(false);
@@ -26,7 +25,7 @@ export function Menu({ menuOptions, customActivator }: MenuProps): JSX.Element {
   const menuButtonRef = useRef<View | null>();
   const screenInfo = useScreenInformation();
 
-  const { formatMessage } = useIntl();
+  const { t } = useAtlantisI18n();
 
   const findMenuLayout = useCallback(() => {
     if (activatorLayout.current) {
@@ -78,7 +77,7 @@ export function Menu({ menuOptions, customActivator }: MenuProps): JSX.Element {
         {!customActivator && (
           <Button
             icon="more"
-            accessibilityLabel={formatMessage(messages.more)}
+            accessibilityLabel={t("menu")}
             variation="cancel"
             type="tertiary"
             onPress={() => {

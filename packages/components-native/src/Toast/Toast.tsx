@@ -6,28 +6,23 @@ import Toast, {
 } from "react-native-toast-message";
 import { AccessibilityInfo, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useIntl } from "react-intl";
 import { styles } from "./Toast.styles";
-import { messages } from "./messages";
 import { tokens } from "../utils/design";
 import { Text } from "../Text";
 import { IconButton } from "../IconButton";
+import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
 const MAX_TOAST_MESSAGE_LENGTH = 60;
 const ANNOUNCEMENT_DELAY = 100;
 
 function DefaultToast({ text1 }: ToastConfigParams<string>): JSX.Element {
   const { bottom } = useSafeAreaInsets();
-  const { formatMessage } = useIntl();
+  const { t } = useAtlantisI18n();
   const toastContainerStyles = [styles.container, { paddingBottom: bottom }];
   return (
     <View style={toastContainerStyles}>
       <View style={styles.toast}>
-        <TouchableOpacity
-          style={styles.toastMessage}
-          accessibilityRole="alert"
-          accessibilityLabel={formatMessage(messages.toastNotificationLabel)}
-        >
+        <TouchableOpacity style={styles.toastMessage} accessibilityRole="alert">
           <Text reverseTheme>{text1}</Text>
         </TouchableOpacity>
         <View style={styles.toastIcon}>
@@ -35,7 +30,7 @@ function DefaultToast({ text1 }: ToastConfigParams<string>): JSX.Element {
             onPress={Toast.hide}
             name="remove"
             customColor={tokens["color-greyBlue--light"]}
-            accessibilityLabel={formatMessage(messages.dismissA11yLabel)}
+            accessibilityLabel={t("dismiss")}
           />
         </View>
       </View>

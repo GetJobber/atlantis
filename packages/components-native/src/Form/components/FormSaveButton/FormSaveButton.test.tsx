@@ -3,7 +3,6 @@ import { fireEvent, render, waitFor } from "@testing-library/react-native";
 import { Host } from "react-native-portalize";
 import { IconNames } from "@jobber/design";
 import { FormSaveButton } from "./FormSaveButton";
-import { messages } from "./messages";
 
 interface TestSecondaryActionProp {
   label: string;
@@ -61,7 +60,7 @@ describe("the form save button is enabled", () => {
 
   it("renders a save button and calls the onPress handler when pressed", () => {
     const pressHandler = jest.fn();
-    const saveButtonText = messages.saveButton.defaultMessage;
+    const saveButtonText = "Save";
     const { getByLabelText } = render(
       <ButtonGroupForTest
         primaryAction={pressHandler}
