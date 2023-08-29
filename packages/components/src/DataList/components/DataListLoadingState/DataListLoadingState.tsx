@@ -73,15 +73,7 @@ function LoadingStateXSBreakpoint() {
       {loadingData.map((_, i) => {
         return (
           <div className={styles.mobileLoadingState} key={i}>
-            <div className={styles.firstMobileGlimmer}>
-              <Glimmer size="small" />
-            </div>
-            <div>
-              <Glimmer size="small" />
-            </div>
-            <div className={styles.thirdMobileGlimmer}>
-              <Glimmer size="small" />
-            </div>
+            <Glimmer.Text />
           </div>
         );
       })}
