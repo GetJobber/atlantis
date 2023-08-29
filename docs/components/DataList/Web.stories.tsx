@@ -98,16 +98,26 @@ const Template: ComponentStory<typeof DataList> = args => {
           <Grid alignItems="center">
             <Grid.Cell size={{ xs: 5 }}>
               <Grid alignItems="center">
-                <Grid.Cell size={{ xs: 8 }}>
+                <Grid.Cell size={{ xs: 6 }}>
                   {item.label}
                   {item.species}
                 </Grid.Cell>
-                <Grid.Cell size={{ xs: 4 }}>{item.home}</Grid.Cell>
+                <Grid.Cell size={{ xs: 6 }}>{item.home}</Grid.Cell>
               </Grid>
             </Grid.Cell>
             <Grid.Cell size={{ xs: 4 }}>{item.tags}</Grid.Cell>
             <Grid.Cell size={{ xs: 1 }}>{item.gender}</Grid.Cell>
-            <Grid.Cell size={{ xs: 2 }}>{item.created}</Grid.Cell>
+            <Grid.Cell size={{ xs: 2 }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  textAlign: "right",
+                }}
+              >
+                {item.created}
+              </div>
+            </Grid.Cell>
           </Grid>
         )}
       </DataList.Layout>
