@@ -3,6 +3,7 @@
   "date": "Date",
   "more": "More",
   "networkUnavailableTitle": "Network Unavailable",
-  "networkUnavailableDescription": "Check your internet connection and try again later."
+  "networkUnavailableDescription": "Check your internet connection and try again later.",
+  "ContentOverlay.close": "Close {title} modal"
 
 }

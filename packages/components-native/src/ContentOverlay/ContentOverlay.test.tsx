@@ -3,13 +3,11 @@ import { fireEvent, render, waitFor } from "@testing-library/react-native";
 import { AccessibilityInfo, View } from "react-native";
 import { Host } from "react-native-portalize";
 import { ReactTestInstance, act } from "react-test-renderer";
-import { useIntl } from "react-intl";
 import {
   ContentOverlay,
   ContentOverlayRef,
   ModalBackgroundColor,
 } from "./ContentOverlay";
-import { messages } from "./messages";
 import { tokens } from "../utils/design";
 import { Button } from "../Button";
 import { Content } from "../Content";
@@ -232,8 +230,6 @@ describe("when accessibilityLabel prop passed to content overlay", () => {
 
 describe("when accessibilityLabel prop NOT passed to content overlay", () => {
   it("should use default accessibilityLabel", () => {
-    const { formatMessage } = useIntl();
-
     const options: testRendererOptions = {
       ...getDefaultOptions(),
       title: "Awesome Title",
@@ -241,14 +237,8 @@ describe("when accessibilityLabel prop NOT passed to content overlay", () => {
     };
     const contentOverlayScreen = renderAndOpenContentOverlay(options);
 
-    const defaultCloseOverlayA11YLabel = formatMessage(
-      messages.closeOverlayA11YLabel,
-      {
-        title: options.title,
-      },
-    );
     expect(
-      contentOverlayScreen.getAllByLabelText(defaultCloseOverlayA11YLabel),
+      contentOverlayScreen.getAllByLabelText(`Close ${options.title} modal`),
     ).toHaveLength(2);
   });
 });
