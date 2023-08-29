@@ -66,7 +66,9 @@ function getMessageKey(match: Match): I18nKeys {
       return "AutoLink.emailCopied";
     case "phone":
       return "AutoLink.phoneCopied";
-    default:
+    case "url":
       return "AutoLink.urlCopied";
+    default:
+      return "copied";
   }
 }
