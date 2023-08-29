@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import { utcToZonedTime } from "date-fns-tz";
-import { enUS, es } from "date-fns/locale";
+import { es } from "date-fns/locale";
 
 interface DateFormatterOptions {
   readonly locale: string;
@@ -21,11 +21,11 @@ export function dateFormatter(
 /**
  * Change locale string to date-fns locale object.
  */
-function getDateFnsLocale(locale?: string): Locale {
+function getDateFnsLocale(locale?: string): Locale | undefined {
   switch (locale) {
     case "es":
       return es;
     default:
-      return enUS;
+      return;
   }
 }
