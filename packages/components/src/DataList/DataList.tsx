@@ -12,6 +12,7 @@ import {
   getCompoundComponents,
 } from "./DataList.utils";
 import { DataListTotalCount } from "./components/DataListTotalCount";
+import { DataListLoadingState } from "./components/DataListLoadingState/DataListLoadingState";
 import {
   DataListHeader,
   DataListItems,
@@ -60,11 +61,19 @@ export function DataList<T extends DataListObject>({
           mediaMatches={mediaMatches}
         />
       )}
-      <DataListItems
-        data={data}
+      <DataListLoadingState
+        loading={loading}
+        headers={headers}
         layouts={allLayouts}
         mediaMatches={mediaMatches}
       />
+      {!loading && (
+        <DataListItems
+          data={data}
+          layouts={allLayouts}
+          mediaMatches={mediaMatches}
+        />
+      )}
       {showEmptyState && EmptyStateComponent}
     </div>
   );

@@ -27,6 +27,7 @@ export function DataListLayoutInternal<T extends DataListObject>({
     });
     return isVisible;
   });
+
   return (layoutToRender && renderLayout(layoutToRender)) || <></>;
 }
 

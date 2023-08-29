@@ -75,6 +75,7 @@ const Template: ComponentStory<typeof DataList> = args => {
   // );
 
   const items = data?.allPeople.edges || [];
+  const totalCount = data?.allPeople.totalCount || null;
 
   const randomTags = ["SW", "commercial", "pets", "fence"];
   const mappedData = items.map(({ node }) => ({
@@ -96,9 +97,9 @@ const Template: ComponentStory<typeof DataList> = args => {
 
   return (
     <DataList
-      loading={loadingInitialContent}
-      totalCount={null}
       {...args}
+      loading={args.loading || loadingInitialContent}
+      totalCount={totalCount}
       data={(args.data as typeof mappedData) || mappedData}
       headers={{
         label: "Name",
@@ -142,6 +143,8 @@ Basic.args = {
 export const EmptyState = Template.bind({});
 EmptyState.args = {
   data: [],
+  title: "All Clients",
+  loading: false,
 };
 
 const BreakpointTemplate: ComponentStory<typeof DataList> = args => {
@@ -195,9 +198,9 @@ const BreakpointTemplate: ComponentStory<typeof DataList> = args => {
 
   return (
     <DataList
-      loading={loadingInitialContent}
-      totalCount={null}
       {...args}
+      loading={args.loading || loadingInitialContent}
+      totalCount={null}
       data={(args.data as typeof mappedData) || mappedData}
       headers={{
         label: "Name",
@@ -243,4 +246,7 @@ const BreakpointTemplate: ComponentStory<typeof DataList> = args => {
   );
 };
 
-export const Breakpoints = BreakpointTemplate.bind({});
+export const Breakpoints = BreakpointTemplate.bind({
+  title: "All Clients",
+  loading: false,
+});
