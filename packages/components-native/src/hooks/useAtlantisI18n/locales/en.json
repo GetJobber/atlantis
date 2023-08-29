@@ -1,4 +1,7 @@
 {
+  "AutoLink.emailCopied": "Email copied",
+  "AutoLink.phoneCopied": "Phone number copied",
+  "AutoLink.urlCopied": "URL copied",
   "cancel": "Cancel",
   "confirm": "Confirm",
   "date": "Date",
