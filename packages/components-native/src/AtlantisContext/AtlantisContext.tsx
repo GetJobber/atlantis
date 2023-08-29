@@ -46,6 +46,13 @@ export interface AtlantisContextProps {
    * By accurately defining this value, Atlantis can effectively calculate the layout and alignment of its components.
    */
   readonly headerHeight: number;
+
+  /**
+   * The `setHeaderHeight` method allows you to set the height of the app header in Atlantis.
+   * Adjusting this height is essential for ensuring the correct positioning and alignment of various elements within the app.
+   * By setting this value accurately, Atlantis can dynamically adjust the layout of its components based on the specified header height.
+   */
+  readonly setHeaderHeight: (height: number) => void;
 }
 
 export const defaultValues: AtlantisContextProps = {
@@ -60,6 +67,9 @@ export const defaultValues: AtlantisContextProps = {
   floatSeparators: { group: ",", decimal: "." },
   currencySymbol: DEFAULT_CURRENCY_SYMBOL,
   headerHeight: 0,
+  setHeaderHeight: _ => {
+    return;
+  },
 };
 
 export const AtlantisContext = createContext(defaultValues);
