@@ -1,0 +1,67 @@
+diff --git a/docs/components/InputSearch/Mobile.stories.tsx b/docs/components/InputSearch/Mobile.stories.tsx
+index 4afc76a6..3fe8cce1 100644
+--- a/docs/components/InputSearch/Mobile.stories.tsx
++++ b/docs/components/InputSearch/Mobile.stories.tsx
+@@ -1,6 +1,7 @@
+-import React from "react";
++import React, { useState } from "react";
+ import { ComponentMeta, ComponentStory } from "@storybook/react";
+-import { InputSearch } from "@jobber/components-native";
++import { View } from "react-native";
++import { Divider, Heading, InputSearch, Text } from "@jobber/components-native";
+ 
+ export default {
+   title: "Components/Forms and Inputs/InputSearch/Mobile",
+@@ -12,9 +13,31 @@ export default {
+   },
+ } as ComponentMeta<typeof InputSearch>;
+ 
+-const BasicTemplate: ComponentStory<typeof InputSearch> = args => (
+-  <InputSearch {...args} />
+-);
++const BasicTemplate: ComponentStory<typeof InputSearch> = args => {
++  const [value, setValue] = useState("");
++  const [debouncedValue, setDebouncedValue] = useState("");
++
++  const handleDebouncedChange = (searchValue: string) => {
++    setTimeout(() => {
++      setDebouncedValue(searchValue);
++    }, 900);
++  };
++
++  return (
++    <>
++      <InputSearch
++        {...args}
++        value={value}
++        onChange={setValue}
++        onDebouncedChange={handleDebouncedChange}
++      />
++      <View>
++        <Text level="textSupporting">Input value: {value}</Text>
++        <Text level="textSupporting">Debounced value: {debouncedValue}</Text>
++      </View>
++    </>
++  );
++};
+ 
+ export const Basic = BasicTemplate.bind({});
+ Basic.args = {
+diff --git a/packages/components-native/src/InputSearch/InputSearch.tsx b/packages/components-native/src/InputSearch/InputSearch.tsx
+index f4ba750b..92ed8785 100644
+--- a/packages/components-native/src/InputSearch/InputSearch.tsx
++++ b/packages/components-native/src/InputSearch/InputSearch.tsx
+@@ -49,11 +49,11 @@ function SearchInputInternal(
+   }: InputSearchProps,
+   ref: Ref<InputTextRef>,
+ ) {
+-  const delayedSearch = debounce(() => onDebouncedChange(value), wait);
++  const delayedSearch = debounce(onDebouncedChange, wait);
+   const handleChange = (newValue = "") => onChange(newValue);
+ 
+   useEffect(() => {
+-    delayedSearch();
++    delayedSearch(value);
+     return delayedSearch.cancel;
+   }, [value, delayedSearch]);
+ 
