@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.28.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.27.0...@jobber/components@4.28.0) (2023-08-29)
+
+
+### Features
+
+* **components:** Add DataTable loader skeleton [JOB-76695] ([#1499](https://github.com/GetJobber/atlantis/issues/1499)) ([b35f5d3](https://github.com/GetJobber/atlantis/commit/b35f5d33d08a514a6dc076a9561bdd78882e55f0))
+
+
+
+
+
 # [4.27.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.26.9...@jobber/components@4.27.0) (2023-08-28)
 
 
