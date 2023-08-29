@@ -54,9 +54,11 @@ describe("Datalist utils", () => {
 
       // Snapshot needs updating? See comment #1 above the `describe`.
       expect(elementList[0].label).toMatchInlineSnapshot(`
-        <Text>
+        <Heading
+          level={5}
+        >
           Hello
-        </Text>
+        </Heading>
       `);
     });
 
