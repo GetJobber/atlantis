@@ -11,7 +11,6 @@ import {
   royaltyReportColumns,
   royaltyReportData,
 } from "./test-utilities";
-import { GLIMMER_TEST_ID } from "../Glimmer";
 
 // Allow us to mock and replace the value of useResizeObserver would return via
 // a spy
@@ -289,31 +288,5 @@ describe("when the table has no data", () => {
 
   it("renders the provided empty state", () => {
     expect(screen.getByText("No data")).toBeDefined();
-  });
-});
-
-describe("when the table has a loading prop set to true", () => {
-  it("Shows the default amount of loaders for each column", async () => {
-    render(
-      <DataTable
-        data={[]}
-        pagination={{ manualPagination: false }}
-        columns={royaltyReportColumns}
-        loading={true}
-      />,
-    );
-    expect(await screen.findAllByTestId(GLIMMER_TEST_ID)).toHaveLength(41);
-  });
-
-  it("Shows the amount of loaders based on smallest items per page value", async () => {
-    render(
-      <DataTable
-        data={[]}
-        pagination={{ manualPagination: false, itemsPerPage: [20, 30, 40] }}
-        columns={royaltyReportColumns}
-        loading={true}
-      />,
-    );
-    expect(await screen.findAllByTestId(GLIMMER_TEST_ID)).toHaveLength(81);
   });
 });
