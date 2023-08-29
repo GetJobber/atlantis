@@ -4,7 +4,6 @@ import { Host } from "react-native-portalize";
 import { View } from "react-native";
 import { tokens } from "@jobber/design/foundation";
 import { Menu, MenuOptionProps, MenuProps } from ".";
-import { messages } from "./messages";
 import { Icon } from "../Icon";
 import { Button } from "../Button";
 
@@ -24,6 +23,8 @@ const setup = (props?: MenuProps) => {
   );
 };
 
+const menuLabel = "Menu";
+
 describe("Menu", () => {
   beforeEach(() => {
     mockOnPress.mockClear();
@@ -35,7 +36,7 @@ describe("Menu", () => {
     });
 
     expect(getByTestId("more")).toBeDefined();
-    expect(getByLabelText(messages.more.defaultMessage)).toBeDefined();
+    expect(getByLabelText(menuLabel)).toBeDefined();
   });
 
   it("renders every menu option when menu is opened", () => {
@@ -48,7 +49,7 @@ describe("Menu", () => {
       menuOptions,
     });
 
-    fireEvent.press(getByLabelText(messages.more.defaultMessage));
+    fireEvent.press(getByLabelText(menuLabel));
     expect(getByLabelText(menuOptions[0].label)).toBeDefined();
     expect(getByLabelText(menuOptions[1].label)).toBeDefined();
     expect(getByLabelText(menuOptions[2].label)).toBeDefined();
@@ -116,7 +117,7 @@ describe("Menu", () => {
         ],
       });
 
-      fireEvent.press(getByLabelText(messages.more.defaultMessage));
+      fireEvent.press(getByLabelText(menuLabel));
       fireEvent.press(getByLabelText("hi"));
       expect(mockOnPress).toHaveBeenCalled();
     });
@@ -128,7 +129,7 @@ describe("Menu", () => {
         ],
       });
 
-      fireEvent.press(getByLabelText(messages.more.defaultMessage));
+      fireEvent.press(getByLabelText(menuLabel));
       expect(getByTestId("add").props.style).toContainEqual({
         display: "flex",
         fill: tokens["color-critical"],
@@ -150,7 +151,7 @@ describe("Menu", () => {
         ],
       });
 
-      fireEvent.press(getByLabelText(messages.more.defaultMessage));
+      fireEvent.press(getByLabelText(menuLabel));
       fireEvent.press(getByLabelText("hi"));
       expect(mockOnPress).toHaveBeenCalled();
       expect(queryByLabelText("hi")).toBeNull();
@@ -167,7 +168,7 @@ describe("Menu", () => {
           },
         ],
       });
-      fireEvent.press(getByLabelText(messages.more.defaultMessage));
+      fireEvent.press(getByLabelText(menuLabel));
       expect(getByText("Hi")).toBeDefined();
     });
 
@@ -182,7 +183,7 @@ describe("Menu", () => {
           },
         ],
       });
-      fireEvent.press(getByLabelText(messages.more.defaultMessage));
+      fireEvent.press(getByLabelText(menuLabel));
       expect(getByText("hi")).toBeDefined();
     });
   });
@@ -192,7 +193,7 @@ describe("Menu", () => {
       menuOptions: [{ label: "hi", icon: "add", onPress: mockOnPress }],
     });
 
-    fireEvent.press(getByLabelText(messages.more.defaultMessage));
+    fireEvent.press(getByLabelText(menuLabel));
 
     expect(getByTestId("ATL-MENU-OPTIONS")).toBeDefined();
     expect(getByTestId("add")).toBeDefined();

@@ -6,6 +6,7 @@
     "skipLibCheck": true,
     "declaration": true,
     "declarationDir": "./dist/types",
+    "resolveJsonModule": true,
     "paths": {
       "@jobber/hooks/*": [
         "../../packages/hooks/src/*"
@@ -21,7 +22,8 @@
   },
   "jsx": "react-native",
   "include": [
-    "src"
+    "src",
+    "**/*.json"
   ],
   "exclude": [
     "node_modules",

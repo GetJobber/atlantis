@@ -1,28 +1,27 @@
 import { useCallback } from "react";
-import { useIntl } from "react-intl";
 import { Alert } from "react-native";
-import { messages } from "../messages";
+import { useAtlantisI18n } from "../../hooks/useAtlantisI18n";
 
 export function useOfflineHandler(): (
   callback: () => void,
   dismiss: () => void,
 ) => () => void {
-  const { formatMessage } = useIntl();
+  const { t } = useAtlantisI18n();
 
   const handleOfflineSubmit = useCallback(
     (callback: () => void, dismiss: () => void) => {
       return () => {
         Alert.alert(
-          formatMessage(messages.unavailableNetworkTitle),
-          formatMessage(messages.unavailableNetworkMessage),
+          t("networkUnavailableTitle"),
+          t("networkUnavailableDescription"),
           [
             {
-              text: formatMessage(messages.dismissAlertButton),
+              text: t("dismiss"),
               style: "cancel",
               onPress: dismiss,
             },
             {
-              text: formatMessage(messages.retryAlertButton),
+              text: t("tryAgain"),
               style: "default",
               onPress: callback,
             },
@@ -30,7 +29,7 @@ export function useOfflineHandler(): (
         );
       };
     },
-    [formatMessage],
+    [t],
   );
   return handleOfflineSubmit;
 }

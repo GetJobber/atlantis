@@ -3,14 +3,13 @@ import DateTimePicker from "react-native-modal-datetime-picker";
 import { Platform } from "react-native";
 import { FieldError, UseControllerProps } from "react-hook-form";
 import { XOR } from "ts-xor";
-import { useIntl } from "react-intl";
 import { utcToZonedTime } from "date-fns-tz";
 import { format as formatDate } from "date-fns";
-import { messages } from "./messages";
 import { Clearable, InputFieldWrapperProps } from "../InputFieldWrapper";
 import { FormField } from "../FormField";
 import { InputPressable } from "../InputPressable";
 import { useAtlantisContext } from "../AtlantisContext";
+import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
 interface BaseInputDateProps
   extends Pick<InputFieldWrapperProps, "invalid" | "disabled" | "placeholder"> {
@@ -154,7 +153,7 @@ function InternalInputDate({
   accessibilityHint,
 }: InputDateProps): JSX.Element {
   const [showPicker, setShowPicker] = useState(false);
-  const { formatMessage } = useIntl();
+  const { t, locale } = useAtlantisI18n();
   const { timeZone, dateFormat } = useAtlantisContext();
 
   const date = useMemo(() => {
@@ -173,8 +172,7 @@ function InternalInputDate({
 
   const canClearDate = formattedDate === emptyValueLabel ? "never" : clearable;
 
-  const placeholderLabel =
-    placeholder ?? formatMessage(messages.datePlaceholder);
+  const placeholderLabel = placeholder ?? t("date");
 
   return (
     <>
@@ -198,6 +196,9 @@ function InternalInputDate({
         maximumDate={maxDate}
         minimumDate={minDate}
         mode="date"
+        confirmTextIOS={t("confirm")}
+        cancelTextIOS={t("cancel")}
+        locale={locale}
         onCancel={handleCancel}
         onConfirm={handleConfirm}
       />

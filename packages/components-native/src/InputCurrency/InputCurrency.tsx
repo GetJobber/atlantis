@@ -11,10 +11,10 @@ import {
   limitInputWholeDigits,
   parseGivenInput,
 } from "./utils";
-import { messages } from "./messages";
 import { useAtlantisContext } from "../AtlantisContext";
 import { InputText, InputTextProps } from "../InputText";
 import { useFormController } from "../hooks/useFormController";
+import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
 export interface InputCurrencyProps
   extends Omit<
@@ -164,7 +164,7 @@ export function InputCurrency(props: InputCurrencyProps): JSX.Element {
     }
   };
 
-  const { formatMessage } = useIntl();
+  const { t } = useAtlantisI18n();
 
   return (
     <>
@@ -186,7 +186,7 @@ export function InputCurrency(props: InputCurrencyProps): JSX.Element {
         validations={{
           pattern: {
             value: NUMBER_VALIDATION_REGEX,
-            message: formatMessage(messages.notANumberError),
+            message: t("errors.notANumber"),
           },
           ...props.validations,
         }}

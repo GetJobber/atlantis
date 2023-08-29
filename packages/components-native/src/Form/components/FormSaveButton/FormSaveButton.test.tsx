@@ -3,8 +3,6 @@ import { fireEvent, render, waitFor } from "@testing-library/react-native";
 import { Host } from "react-native-portalize";
 import { IconNames } from "@jobber/design";
 import { FormSaveButton } from "./FormSaveButton";
-import { messages } from "./messages";
-import { messages as buttonGroupMessage } from "../../../ButtonGroup/messages";
 
 interface TestSecondaryActionProp {
   label: string;
@@ -62,7 +60,7 @@ describe("the form save button is enabled", () => {
 
   it("renders a save button and calls the onPress handler when pressed", () => {
     const pressHandler = jest.fn();
-    const saveButtonText = messages.saveButton.defaultMessage;
+    const saveButtonText = "Save";
     const { getByLabelText } = render(
       <ButtonGroupForTest
         primaryAction={pressHandler}
@@ -121,9 +119,7 @@ describe("when a secondaryActions is passed in", () => {
       />,
     );
 
-    expect(
-      getByLabelText(buttonGroupMessage.more.defaultMessage),
-    ).toBeDefined();
+    expect(getByLabelText("More")).toBeDefined();
   });
 
   it("renders a secondaryAction element with and fires the onSubmit and beforeSubmit if available", async () => {
@@ -148,7 +144,7 @@ describe("when a secondaryActions is passed in", () => {
         ]}
       />,
     );
-    fireEvent.press(getByLabelText(buttonGroupMessage.more.defaultMessage));
+    fireEvent.press(getByLabelText("More"));
     expect(getByLabelText("hi")).toBeDefined();
     fireEvent.press(getByLabelText("hi"));
     expect(beforeSubmitMock).toHaveBeenCalled();

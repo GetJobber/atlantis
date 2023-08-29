@@ -1,18 +1,14 @@
 import React from "react";
 import { View } from "react-native";
-import { useIntl } from "react-intl";
 import { styles } from "./FormMask.style";
 import { ActivityIndicator } from "../../../ActivityIndicator";
-import { messages } from "../../messages";
+import { useAtlantisI18n } from "../../../hooks/useAtlantisI18n";
 
 export function FormMask(): JSX.Element {
-  const { formatMessage } = useIntl();
+  const { t } = useAtlantisI18n();
 
   return (
-    <View
-      style={styles.mask}
-      accessibilityLabel={formatMessage(messages.loadingA11YLabel)}
-    >
+    <View style={styles.mask} accessibilityLabel={t("loading")}>
       <ActivityIndicator />
     </View>
   );

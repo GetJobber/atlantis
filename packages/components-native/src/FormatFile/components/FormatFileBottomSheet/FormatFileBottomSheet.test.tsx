@@ -1,13 +1,11 @@
 import React, { createRef } from "react";
 import { RenderAPI, fireEvent, render } from "@testing-library/react-native";
 import { Host } from "react-native-portalize";
-import { useIntl } from "react-intl";
 import { act } from "react-test-renderer";
 import {
   BottomSheetOptionsSuffix,
   FormatFileBottomSheet,
 } from "./FormatFileBottomSheet";
-import { messages } from "./messages";
 import { BottomSheetRef } from "../../../BottomSheet/BottomSheet";
 
 let Platform: { OS: "ios" | "android" };
@@ -38,13 +36,8 @@ const basicRenderTestWithValue = () => {
   describe.each([["image"], ["receipt"], ["file"], ["video"]])(
     "when FormatFileBottomSheet for %s is opened",
     bottomSheetOptionsSuffix => {
-      const { formatMessage } = useIntl();
-      const previewLabel = formatMessage(messages.lightBoxPreviewButton, {
-        bottomSheetOptionsSuffix,
-      });
-      const removeLabel = formatMessage(messages.removeButton, {
-        bottomSheetOptionsSuffix,
-      });
+      const previewLabel = `Preview ${bottomSheetOptionsSuffix}`;
+      const removeLabel = `Remove ${bottomSheetOptionsSuffix}`;
       let tree: RenderAPI;
 
       beforeEach(() => {

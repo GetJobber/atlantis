@@ -1,14 +1,13 @@
 import React, { useRef } from "react";
-import { useIntl } from "react-intl";
 import { View } from "react-native";
 import { PrimaryAction, SecondaryAction } from "./ButtonGroupAction";
-import { messages } from "./messages";
 import { styles } from "./ButtonGroup.style";
 import { SecondaryActionSheet } from "./components/SecondaryActionSheet";
 import { getActions, usePreventTapWhenOffline } from "./utils";
 import { ButtonGroupActionElement } from "./types";
 import { Button } from "../Button";
 import { BottomSheetRef } from "../BottomSheet/BottomSheet";
+import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
 export interface ButtonGroupProps {
   readonly children: ButtonGroupActionElement | ButtonGroupActionElement[];
@@ -47,7 +46,7 @@ export function ButtonGroup({
   onCloseBottomSheet,
   allowTapWhenOffline = false,
 }: ButtonGroupProps): JSX.Element {
-  const { formatMessage } = useIntl();
+  const { t } = useAtlantisI18n();
   const { handlePress } = usePreventTapWhenOffline();
   const secondaryActionsRef = useRef<BottomSheetRef>();
   const { primaryActions, secondaryActions } = getActions(children);
@@ -86,7 +85,7 @@ export function ButtonGroup({
         <View style={styles.moreButton}>
           <Button
             icon={"more"}
-            accessibilityLabel={formatMessage(messages.more)}
+            accessibilityLabel={t("more")}
             onPress={handlePress(openBottomSheet)}
             fullHeight={true}
           />
