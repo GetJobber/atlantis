@@ -3,6 +3,68 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.28.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.28.1...@jobber/components@4.28.2) (2023-08-29)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.28.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.28.0...@jobber/components@4.28.1) (2023-08-29)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+# [4.28.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.27.0...@jobber/components@4.28.0) (2023-08-29)
+
+
+### Features
+
+* **components:** Add DataTable loader skeleton [JOB-76695] ([#1499](https://github.com/GetJobber/atlantis/issues/1499)) ([b35f5d3](https://github.com/GetJobber/atlantis/commit/b35f5d33d08a514a6dc076a9561bdd78882e55f0))
+
+
+
+
+
+# [4.27.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.26.9...@jobber/components@4.27.0) (2023-08-28)
+
+
+### Features
+
+* **components:** Support semantic HTML elements for Content root element ([#1503](https://github.com/GetJobber/atlantis/issues/1503)) ([0f4fafc](https://github.com/GetJobber/atlantis/commit/0f4fafc5aa17f2ca616a6ca8674f146ba75ac0b4))
+
+
+
+
+
+## [4.26.9](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.26.8...@jobber/components@4.26.9) (2023-08-28)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.26.8](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.26.7...@jobber/components@4.26.8) (2023-08-22)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
+## [4.26.7](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.26.6...@jobber/components@4.26.7) (2023-08-22)
+
+**Note:** Version bump only for package @jobber/components
+
+
+
+
+
 ## [4.26.6](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.26.5...@jobber/components@4.26.6) (2023-08-22)
 
 **Note:** Version bump only for package @jobber/components

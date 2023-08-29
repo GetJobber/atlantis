@@ -9,11 +9,13 @@ import {
 import styles from "./DataList.css";
 import { EmptyState, EmptyStateProps } from "./components/EmptyState";
 import {
+  BREAKPOINTS,
+  Breakpoints,
   EMPTY_FILTER_RESULTS_ACTION_LABEL,
   EMPTY_FILTER_RESULTS_MESSAGE,
 } from "./DataList.const";
+import { DataListTags } from "./components/DataListTags";
 import { FormatDate } from "../FormatDate";
-import { InlineLabel } from "../InlineLabel";
 import { Text } from "../Text";
 
 /**
@@ -33,6 +35,22 @@ export function getCompoundComponent<T>(
 }
 
 /**
+ * Return all instances child component that matches the `type` provided
+ */
+export function getCompoundComponents<T>(
+  children: ReactElement | ReactElement[],
+  type: ReactElement<T>["type"],
+): ReactElement<T>[] {
+  const childrenArray = Children.toArray(children);
+  const elements = childrenArray.filter(
+    (child): child is ReactElement<T> =>
+      isValidElement<T>(child) && child.type === type,
+  );
+
+  return elements;
+}
+
+/**
  * Generate the default elements the DataList would use on the data provided.
  */
 export function generateListItemElements<T extends DataListObject>(data: T[]) {
@@ -47,14 +65,7 @@ export function generateListItemElements<T extends DataListObject>(data: T[]) {
       }
 
       if (key === "tags" && Array.isArray(currentItem)) {
-        acc[key] = (
-          // TODO: Create a component specific for this with the experience we want JOB-76771
-          <div style={{ display: "flex", gap: 8, overflow: "hidden" }}>
-            {currentItem.filter(Boolean).map((tag, index) => (
-              <InlineLabel key={index}>{tag}</InlineLabel>
-            ))}
-          </div>
-        );
+        acc[key] = <DataListTags items={currentItem} />;
       } else if (key === "label" && typeof currentItem === "string") {
         acc[key] = <Text>{currentItem}</Text>;
       } else if (isValidElement(currentItem)) {
@@ -91,7 +102,7 @@ export function generateHeaderElements<T extends DataListObject>(
         </div>
       ),
     }),
-    {} as DataListItemTypeFromHeader<typeof headers>,
+    {} as DataListItemTypeFromHeader<T, typeof headers>,
   );
 
   return isEmpty(headerElements) ? undefined : headerElements;
@@ -143,4 +154,10 @@ export function generateDataListEmptyState({
   }
 
   return EmptyStateComponent;
+}
+
+export function sortSizeProp(sizeProp: Breakpoints[]) {
+  return sizeProp.sort(
+    (a, b) => BREAKPOINTS.indexOf(a) - BREAKPOINTS.indexOf(b),
+  );
 }
