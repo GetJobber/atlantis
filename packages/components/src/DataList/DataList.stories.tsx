@@ -22,7 +22,7 @@ export default {
     viewMode: "story",
   },
   // Comment this out to make it show up in storybook
-  excludeStories: ["Basic", "EmptyState", "Breakpoints"],
+  // excludeStories: ["Basic", "EmptyState", "Breakpoints"],
   decorators: [
     // Detach from Storybook's layout
     (Story, { viewMode }) => {
@@ -143,6 +143,8 @@ Basic.args = {
 export const EmptyState = Template.bind({});
 EmptyState.args = {
   data: [],
+  title: "All Clients",
+  loading: false,
 };
 
 const BreakpointTemplate: ComponentStory<typeof DataList> = args => {
@@ -196,9 +198,9 @@ const BreakpointTemplate: ComponentStory<typeof DataList> = args => {
 
   return (
     <DataList
-      loading={loadingInitialContent}
-      totalCount={null}
       {...args}
+      loading={args.loading || loadingInitialContent}
+      totalCount={null}
       data={(args.data as typeof mappedData) || mappedData}
       headers={{
         label: "Name",
@@ -244,4 +246,7 @@ const BreakpointTemplate: ComponentStory<typeof DataList> = args => {
   );
 };
 
-export const Breakpoints = BreakpointTemplate.bind({});
+export const Breakpoints = BreakpointTemplate.bind({
+  title: "All Clients",
+  loading: false,
+});

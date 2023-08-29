@@ -27,7 +27,7 @@ export function DataListLayoutInternal<T extends DataListObject>({
     });
     return isVisible;
   });
-  console.log({ layoutToRender });
+
   return (layoutToRender && renderLayout(layoutToRender)) || <></>;
 }
 
