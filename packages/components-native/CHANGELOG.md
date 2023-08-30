@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.45.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.44.2...@jobber/components-native@0.45.0) (2023-08-29)
+
+
+### Features
+
+* **components-native:** add i18n on components native ([#1502](https://github.com/GetJobber/atlantis/issues/1502)) ([a79cdfb](https://github.com/GetJobber/atlantis/commit/a79cdfbd022870b7803ebb48ffeafc750b8bc600))
+
+
+
+
+
 ## [0.44.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.44.1...@jobber/components-native@0.44.2) (2023-08-29)
 
 **Note:** Version bump only for package @jobber/components-native

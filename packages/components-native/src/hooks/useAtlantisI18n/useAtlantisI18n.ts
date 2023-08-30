@@ -4,6 +4,8 @@ import es from "./locales/es.json";
 import { dateFormatter } from "./utils/dateFormatter";
 import { useAtlantisContext } from "../../AtlantisContext";
 
+export type I18nKeys = keyof typeof en;
+
 export interface useAtlantisI18nValue {
   /**
    * The set locale based on the AtlantisContext.
@@ -14,10 +16,7 @@ export interface useAtlantisI18nValue {
    * Returns the translated string depending on the locale. This accepts a 2nd
    * param for string interpolation.
    */
-  readonly t: (
-    message: keyof typeof en,
-    values?: Record<string, string>,
-  ) => string;
+  readonly t: (message: I18nKeys, values?: Record<string, string>) => string;
 
   /**
    * Returns a formatted date string based on the locale and the `dateFormat`

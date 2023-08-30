@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.29.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.28.2...@jobber/components@4.29.0) (2023-08-30)
+
+
+### Features
+
+* **components:** expose data list to the masses ([#1507](https://github.com/GetJobber/atlantis/issues/1507)) ([ff66005](https://github.com/GetJobber/atlantis/commit/ff6600582b28e0e60dacad5bc75e0f95477d18e4))
+
+
+
+
+
 ## [4.28.2](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.28.1...@jobber/components@4.28.2) (2023-08-29)
 
 **Note:** Version bump only for package @jobber/components
