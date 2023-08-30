@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.45.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.45.0...@jobber/components-native@0.45.1) (2023-08-30)
+
+
+### Bug Fixes
+
+* update autolink built in messages to be translateable ([#1505](https://github.com/GetJobber/atlantis/issues/1505)) ([634e1bd](https://github.com/GetJobber/atlantis/commit/634e1bd2da891f5491399350b5f1eec790161d5b))
+
+
+
+
+
 # [0.45.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.44.2...@jobber/components-native@0.45.0) (2023-08-29)
 
 
