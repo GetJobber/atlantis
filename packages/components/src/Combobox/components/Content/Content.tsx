@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import classnames from "classnames";
 import styles from "./Content.css";
 import { Icon } from "../../../Icon";
+import { ComboboxContext } from "../../ComboboxProvider";
 
 interface ContentProps {
   /**
@@ -23,6 +24,7 @@ interface ContentProps {
 export function Content(props: ContentProps): JSX.Element {
   const [searchValue, setSearchValue] = useState<string>("");
   const [selectedOption, setSelectedOption] = useState<string>("");
+  const { open } = React.useContext(ComboboxContext);
 
   const filteredOptions = props.options.filter(option =>
     option.toLowerCase().includes(searchValue.toLowerCase()),

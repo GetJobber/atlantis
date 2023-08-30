@@ -3,13 +3,16 @@ import { TriggerProps } from "./types";
 import styles from "./TriggerChip.css";
 import { Text } from "../../../Text";
 import { Icon } from "../../../Icon";
+import { ComboboxContext } from "../../ComboboxProvider";
 
 export function TriggerChip(props: TriggerProps): JSX.Element {
+  const { open, setOpen } = React.useContext(ComboboxContext);
+
   return (
     <div
       className={styles.trigger}
       onClick={() => {
-        console.log("hi");
+        setOpen(!open);
       }}
     >
       <Text>{props.label}</Text>
