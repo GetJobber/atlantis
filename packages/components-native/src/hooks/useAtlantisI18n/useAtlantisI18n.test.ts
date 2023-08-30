@@ -12,6 +12,7 @@ jest.mock("../../AtlantisContext", () => ({
 
 const spy = jest.spyOn(context, "useAtlantisContext");
 const testDate = new Date("2020-01-01T00:00:00.000Z");
+const dateAfterSpringForward = new Date("2020-04-10T00:00:00.000Z");
 
 beforeEach(() => {
   jest.useFakeTimers();
@@ -78,10 +79,7 @@ describe("useAtlantisI18n", () => {
         ["Europe/London", "Jan 1, 2020"],
         ["Australia/Sydney", "Jan 1, 2020"],
       ])("should return the %s time", (timeZone, expected) => {
-        spy.mockReturnValueOnce({
-          ...context.defaultValues,
-          timeZone,
-        });
+        spy.mockReturnValueOnce({ ...context.defaultValues, timeZone });
 
         const { result } = renderHook(useAtlantisI18n);
         expect(result.current.formatDate(testDate)).toBe(expected);
@@ -109,14 +107,26 @@ describe("useAtlantisI18n", () => {
         ["America/Denver", "5:00 PM"],
         ["Europe/London", "12:00 AM"],
         ["Australia/Sydney", "11:00 AM"],
-      ])("should return the %s time", (timeZone, expected) => {
-        spy.mockReturnValueOnce({
-          ...context.defaultValues,
-          timeZone,
-        });
+      ])("should return the %s zoned time", (timeZone, expected) => {
+        spy.mockReturnValueOnce({ ...context.defaultValues, timeZone });
 
         const { result } = renderHook(useAtlantisI18n);
         expect(result.current.formatTime(testDate)).toBe(expected);
+      });
+
+      it.each([
+        ["America/New_York", "8:00 PM"],
+        ["America/Chicago", "7:00 PM"],
+        ["America/Denver", "6:00 PM"],
+        ["Europe/London", "1:00 AM"],
+        ["Australia/Sydney", "10:00 AM"],
+      ])("should return the %s spring zoned time", (timeZone, expected) => {
+        spy.mockReturnValueOnce({ ...context.defaultValues, timeZone });
+
+        const { result } = renderHook(useAtlantisI18n);
+        expect(result.current.formatTime(dateAfterSpringForward)).toBe(
+          expected,
+        );
       });
     });
   });
