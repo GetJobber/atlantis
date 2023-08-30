@@ -11,7 +11,7 @@ jest.mock("../../AtlantisContext", () => ({
 }));
 
 const spy = jest.spyOn(context, "useAtlantisContext");
-const testDate = new Date("2020-01-01T07:00:00.000Z");
+const testDate = new Date("2020-01-01T00:00:00.000Z");
 
 beforeEach(() => {
   jest.useFakeTimers();
@@ -69,19 +69,55 @@ describe("useAtlantisI18n", () => {
       const { result } = renderHook(useAtlantisI18n);
       expect(result.current.formatDate(testDate)).toBe("1 ene 2020");
     });
+
+    describe("Timezone", () => {
+      it.each([
+        ["America/New_York", "Dec 31, 2019"],
+        ["America/Chicago", "Dec 31, 2019"],
+        ["America/Denver", "Dec 31, 2019"],
+        ["Europe/London", "Jan 1, 2020"],
+        ["Australia/Sydney", "Jan 1, 2020"],
+      ])("should return the %s time", (timeZone, expected) => {
+        spy.mockReturnValueOnce({
+          ...context.defaultValues,
+          timeZone,
+        });
+
+        const { result } = renderHook(useAtlantisI18n);
+        expect(result.current.formatDate(testDate)).toBe(expected);
+      });
+    });
   });
 
   describe("formatTime", () => {
     it("should return the formatted time", () => {
       const { result } = renderHook(useAtlantisI18n);
-      expect(result.current.formatTime(testDate)).toBe("7:00 AM");
+      expect(result.current.formatTime(testDate)).toBe("12:00 AM");
     });
 
     it("should return the date formatted for es", () => {
       spy.mockReturnValueOnce({ ...context.defaultValues, locale: "es" });
 
       const { result } = renderHook(useAtlantisI18n);
-      expect(result.current.formatTime(testDate)).toBe("07:00");
+      expect(result.current.formatTime(testDate)).toBe("00:00");
+    });
+
+    describe("Timezone", () => {
+      it.each([
+        ["America/New_York", "7:00 PM"],
+        ["America/Chicago", "6:00 PM"],
+        ["America/Denver", "5:00 PM"],
+        ["Europe/London", "12:00 AM"],
+        ["Australia/Sydney", "11:00 AM"],
+      ])("should return the %s time", (timeZone, expected) => {
+        spy.mockReturnValueOnce({
+          ...context.defaultValues,
+          timeZone,
+        });
+
+        const { result } = renderHook(useAtlantisI18n);
+        expect(result.current.formatTime(testDate)).toBe(expected);
+      });
     });
   });
 });
