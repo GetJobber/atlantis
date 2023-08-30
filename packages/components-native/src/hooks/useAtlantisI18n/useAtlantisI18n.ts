@@ -2,12 +2,11 @@ import en from "./locales/en.json";
 import es from "./locales/es.json";
 import { useAtlantisContext } from "../../AtlantisContext";
 
+export type I18nKeys = keyof typeof en;
+
 export interface useAtlantisI18nValue {
   readonly locale: string;
-  readonly t: (
-    message: keyof typeof en,
-    values?: Record<string, string>,
-  ) => string;
+  readonly t: (message: I18nKeys, values?: Record<string, string>) => string;
 }
 
 export function useAtlantisI18n(): useAtlantisI18nValue {
