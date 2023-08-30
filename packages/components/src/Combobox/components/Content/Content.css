@@ -1,7 +1,3 @@
-.combobox {
-  display: inline-block;
-}
-
 .content {
   position: relative;
   visibility: visible;
@@ -77,36 +73,6 @@
   background-color: var(--color-surface--background);
 }
 
-.trigger {
-  display: inline-flex;
-  gap: var(--space-smaller);
-  padding: var(--space-small);
-  border: var(--border-base) dashed var(--color-interactive);
-  border-radius: calc(var(--radius-large) * 5);
-}
-
-.triggerIcon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: calc(var(--space-smaller) * 5);
-  height: calc(var(--space-smaller) * 5);
-  border-radius: var(--radius-circle);
-  background-color: var(--color-surface--background);
-}
-
-.selection {
-  display: inline-flex;
-  gap: var(--space-smaller);
-  padding: var(--space-small);
-  border-radius: calc(var(--space-smaller) * 5);
-  background-color: var(--color-surface--background);
-}
-
-.selection .triggerIcon {
-  background-color: var(--color-surface);
-}
-
 .actions {
   position: sticky;
   bottom: 0;
@@ -122,17 +88,4 @@
     rgba(255, 255, 255, 0),
     rgba(255, 255, 255, 1)
   );
-}
-
-.action {
-  width: 100%;
-  padding: var(--space-small) var(--space-base);
-  border: none;
-  text-align: left;
-  background-color: var(--color-surface);
-}
-
-.action:hover,
-.action:focus {
-  background-color: var(--color-surface--hover);
 }
