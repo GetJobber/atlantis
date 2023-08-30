@@ -1,5 +1,3 @@
-// For demo purposes only
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
 export interface ListQueryType {
@@ -18,11 +16,18 @@ export interface ListQueryType {
         gender: string;
         hairColor: string;
         skinColor: string;
+        birthYear: string;
         homeworld: {
+          id: string;
+          name: string;
+          population: number;
+          climates: string[];
+          terrains: string[];
+        };
+        species: {
           name: string;
           id: string;
-          population: number;
-        };
+        } | null;
       };
       cursor: string;
     }>;
@@ -44,10 +49,17 @@ export const LIST_QUERY = gql`
           gender
           hairColor
           skinColor
+          birthYear
           homeworld {
             name
+            climates
             id
             population
+            terrains
+          }
+          species {
+            name
+            id
           }
         }
         cursor
@@ -65,37 +77,3 @@ export const apolloClient = new ApolloClient({
   uri: "https://swapi-graphql.netlify.app/.netlify/functions/index",
   cache: new InMemoryCache(),
 });
-
-interface LoadingState {
-  loadingStatus: string;
-  loading: boolean;
-}
-
-export function getLoadingState(
-  loadingInitialContent: boolean,
-  loadingRefresh: boolean,
-  loadingNextPage: boolean,
-): LoadingState {
-  if (loadingInitialContent) {
-    return {
-      loading: true,
-      loadingStatus: "Initial Loading",
-    };
-  }
-  if (loadingRefresh) {
-    return {
-      loading: true,
-      loadingStatus: "Refreshing",
-    };
-  }
-  if (loadingNextPage) {
-    return {
-      loading: true,
-      loadingStatus: "Fetching More",
-    };
-  }
-  return {
-    loading: false,
-    loadingStatus: "Loaded",
-  };
-}

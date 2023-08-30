@@ -17,6 +17,7 @@ import {
 import { DataListTags } from "./components/DataListTags";
 import { FormatDate } from "../FormatDate";
 import { Text } from "../Text";
+import { Heading } from "../Heading";
 
 /**
  * Return the child component that matches the `type` provided
@@ -67,7 +68,7 @@ export function generateListItemElements<T extends DataListObject>(data: T[]) {
       if (key === "tags" && Array.isArray(currentItem)) {
         acc[key] = <DataListTags items={currentItem} />;
       } else if (key === "label" && typeof currentItem === "string") {
-        acc[key] = <Text>{currentItem}</Text>;
+        acc[key] = <Heading level={5}>{currentItem}</Heading>;
       } else if (isValidElement(currentItem)) {
         acc[key] = currentItem;
       } else if (currentItem instanceof Date) {

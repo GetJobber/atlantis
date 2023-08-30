@@ -30,7 +30,6 @@ export function DataListEmptyState({ message, action }: EmptyStateProps) {
         <Button
           {...{
             ...action,
-            type: "secondary",
             variation: "subtle",
           }}
         />
