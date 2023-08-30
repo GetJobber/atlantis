@@ -7,27 +7,31 @@ import { Typography } from "../Typography";
 import { Button } from "../Button";
 
 interface ComboboxProps {
-  /**
-   * onSelection handler.
-   */
-  onSelection: (selection: string) => void;
+  readonly children: React.ReactNode;
+}
 
-  /**
-   * optional action
-   */
-  readonly action?: ActionProps;
-
+interface ContentProps {
   /**
    * options for the combobox
    */
   readonly options: string[];
 
   /**
+   * onSelection handler.
+   */
+  onSelection: (selection: string) => void;
+
+  /**
+   * actions
+   */
+  readonly children: React.ReactNode;
+}
+interface TriggerProps {
+  /**
    * Trigger label
    */
-  readonly triggerLabel: string;
+  readonly label: string;
 }
-
 interface ActionProps {
   /**
    * The function that should be performed when the action is pressed
@@ -44,7 +48,7 @@ const ComboboxContext = React.createContext(
   {} as { open: boolean; setOpen: (open: boolean) => void },
 );
 
-const ComboboxContextProvider = ({ children }) => {
+const ComboboxContextProvider = (props: ComboboxProps) => {
   const [open, setOpen] = useState<boolean>(false);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -67,23 +71,23 @@ const ComboboxContextProvider = ({ children }) => {
   return (
     <ComboboxContext.Provider value={{ open, setOpen }}>
       <div className={styles.combobox} ref={contentRef}>
-        {children}
+        {props.children}
       </div>
     </ComboboxContext.Provider>
   );
 };
 
-export const Combobox = ({ children }) => {
-  return <ComboboxContextProvider>{children}</ComboboxContextProvider>;
+export const Combobox = (props: ComboboxProps) => {
+  return <ComboboxContextProvider>{props.children}</ComboboxContextProvider>;
 };
 
-const TriggerButton = ({ onClick, triggerLabel }) => {
+const TriggerButton = (props: TriggerProps) => {
   const { open, setOpen } = React.useContext(ComboboxContext);
 
-  return <Button label={triggerLabel} onClick={() => setOpen(!open)} />;
+  return <Button label={props.label} onClick={() => setOpen(!open)} />;
 };
 
-const TriggerChip = ({ onClick, triggerLabel }) => {
+const TriggerChip = (props: TriggerProps) => {
   const { open, setOpen } = React.useContext(ComboboxContext);
   return (
     <div
@@ -92,7 +96,7 @@ const TriggerChip = ({ onClick, triggerLabel }) => {
         setOpen(!open);
       }}
     >
-      <Text>{triggerLabel}</Text>
+      <Text>{props.label}</Text>
       <div className={styles.triggerIcon}>
         <Icon name="add" size="small" />
       </div>
@@ -100,12 +104,12 @@ const TriggerChip = ({ onClick, triggerLabel }) => {
   );
 };
 
-const Content = ({ children, options, onSelection }) => {
+const Content = (props: ContentProps) => {
   const { open, setOpen } = React.useContext(ComboboxContext);
   const [searchValue, setSearchValue] = useState<string>("");
   const [selectedOption, setSelectedOption] = useState<string>("");
 
-  const filteredOptions = options.filter(option =>
+  const filteredOptions = props.options.filter(option =>
     option.toLowerCase().includes(searchValue.toLowerCase()),
   );
 
@@ -118,7 +122,7 @@ const Content = ({ children, options, onSelection }) => {
     setSelectedOption(selected);
     setOpen(false);
     setSearchValue("");
-    onSelection(selected);
+    props.onSelection(selected);
   }
   return (
     <div className={classnames(styles.content, !open && styles.hidden)}>
@@ -127,7 +131,9 @@ const Content = ({ children, options, onSelection }) => {
           type="search"
           className={styles.searchInput}
           placeholder="Search teammates"
-          onChange={() => handleSearch(event)}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            handleSearch(event)
+          }
           value={searchValue}
         />
 
@@ -142,41 +148,40 @@ const Content = ({ children, options, onSelection }) => {
           </div>
         )}
       </div>
-      <ul className={styles.optionsList}>
-        {filteredOptions.map(option => (
-          <li
-            className={classnames(
-              option === selectedOption && styles.selectedOption,
-            )}
-            role="button"
-            tabIndex={0}
-            key={option}
-            onClick={handleSelection}
-          >
-            {option}
-          </li>
-        ))}
 
-        {/* if there are no results matching the search value show no results item */}
-        {filteredOptions.length === 0 && <li>No results for {searchValue}</li>}
-      </ul>
+      {filteredOptions.map(option => (
+        <button
+          className={classnames(
+            option === selectedOption && styles.selectedOption,
+          )}
+          role="button"
+          tabIndex={0}
+          key={option}
+          onClick={handleSelection}
+        >
+          {option}
+        </button>
+      ))}
+
+      {/* if there are no results matching the search value show no results item */}
+      {filteredOptions.length === 0 && <p>No results for {searchValue}</p>}
 
       {/* only render actions if their are any */}
-      {children && <div className={styles.actions}>{children}</div>}
+      {props.children && <div className={styles.actions}>{props.children}</div>}
     </div>
   );
 };
 
-const Action = ({ onClick, label }) => {
+const Action = (props: ActionProps) => {
   return (
-    <button className={styles.action} onClick={onClick}>
+    <button className={styles.action} onClick={props.onClick}>
       <Typography
         element="span"
         size="base"
         textColor="green"
         fontWeight="bold"
       >
-        {label}
+        {props.label}
       </Typography>
     </button>
   );
