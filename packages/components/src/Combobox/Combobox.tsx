@@ -9,7 +9,22 @@ export interface ComboboxProps {
 }
 
 export const Combobox = (props: ComboboxProps): JSX.Element => {
-  const childrenArray = React.Children.toArray(props.children);
+  const { renderContent, renderTrigger } = useComboboxValidation(
+    props.children,
+  );
+  return (
+    <ComboboxContextProvider>
+      {renderTrigger}
+      {renderContent}
+    </ComboboxContextProvider>
+  );
+};
+
+function useComboboxValidation(children: ReactNode): {
+  renderTrigger: ReactNode;
+  renderContent: ReactNode;
+} {
+  const childrenArray = React.Children.toArray(children);
   let renderTrigger: ReactNode, renderContent: ReactNode;
 
   childrenArray.forEach(child => {
@@ -28,13 +43,11 @@ export const Combobox = (props: ComboboxProps): JSX.Element => {
     throw new Error("Combobox must have a trigger and content element");
   }
 
-  return (
-    <ComboboxContextProvider>
-      {renderTrigger}
-      {renderContent}
-    </ComboboxContextProvider>
-  );
-};
+  return {
+    renderContent,
+    renderTrigger,
+  };
+}
 
 function isTriggerElement(child: ReactNode): boolean {
   return (
