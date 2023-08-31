@@ -3,6 +3,17 @@ import React from "react";
 import { Combobox } from "./Combobox";
 
 afterEach(cleanup);
+const mockUseAssert = (condition: boolean, message: string) => {
+  if (condition) {
+    throw new Error(message);
+  }
+};
+jest.mock("../../../hooks", () => {
+  return {
+    useAssert: (...args: [condition: boolean, message: string]) =>
+      mockUseAssert(...args),
+  };
+});
 
 describe("Combobox validation", () => {
   it("renders without error if the correct count and composition of elements are present", () => {
