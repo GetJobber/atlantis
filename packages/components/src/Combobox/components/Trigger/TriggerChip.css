@@ -1,8 +1,8 @@
 .trigger {
   display: inline-flex;
-  gap: var(--space-smaller);
-  padding: var(--space-small);
-  border: var(--border-base) dashed var(--color-interactive);
+  gap: var(--space-small);
+  padding: var(--space-small) var(--space-base);
+  border: var(--border-base) solid rgb(230, 234, 235);
   border-radius: calc(var(--radius-large) * 5);
 }
 
@@ -10,8 +10,4 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: calc(var(--space-smaller) * 5);
-  height: calc(var(--space-smaller) * 5);
-  border-radius: var(--radius-circle);
-  background-color: var(--color-surface--background);
 }

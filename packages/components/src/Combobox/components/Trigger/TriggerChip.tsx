@@ -1,9 +1,10 @@
 import React from "react";
 import { TriggerProps } from "./types";
 import styles from "./TriggerChip.css";
-import { Text } from "../../../Text";
+// import { Text } from "../../../Text";
 import { Icon } from "../../../Icon";
 import { ComboboxContext } from "../../ComboboxProvider";
+import { Typography } from "../../../Typography";
 
 export function TriggerChip(props: TriggerProps): JSX.Element {
   const { open, setOpen } = React.useContext(ComboboxContext);
@@ -15,9 +16,11 @@ export function TriggerChip(props: TriggerProps): JSX.Element {
         setOpen(!open);
       }}
     >
-      <Text>{props.label}</Text>
+      <Typography fontWeight="heavy" textColor="heading">
+        {props.label}
+      </Typography>
       <div className={styles.triggerIcon}>
-        <Icon name="add" size="small" />
+        <Icon color="surfaceReverse" name="add" size="small" />
       </div>
     </div>
   );

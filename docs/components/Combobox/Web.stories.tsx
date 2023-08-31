@@ -13,80 +13,76 @@ export default {
 
 const ComboboxButton: ComponentStory<typeof Combobox> = args => {
   return (
-    <div>
-      <Combobox
-        {...args}
-        onSelection={selection => {
-          console.log(selection);
-        }}
+    <Combobox
+      {...args}
+      onSelection={selection => {
+        console.log(selection);
+      }}
+    >
+      <Combobox.TriggerButton label="Select a teammate" />
+      <Combobox.Content
+        options={[
+          "Bilbo Baggins",
+          "Frodo Baggins",
+          "Pippin Took",
+          "Merry Brandybuck",
+          "Sam Gamgee",
+          "Bilbo Baggins2",
+          "Frodo Baggins2",
+          "Pippin Took2",
+          "Merry Brandybuck2",
+          "Sam Gamgee2",
+          "Bilbo Baggins3",
+          "Frodo Baggins3",
+          "Pippin Took3",
+          "Merry Brandybuck3",
+          "Sam Gamgee3",
+        ]}
       >
-        <Combobox.TriggerButton triggerLabel="Select a teammate" />
-        <Combobox.Content
-          options={[
-            "Bilbo Baggins",
-            "Frodo Baggins",
-            "Pippin Took",
-            "Merry Brandybuck",
-            "Sam Gamgee",
-            "Bilbo Baggins2",
-            "Frodo Baggins2",
-            "Pippin Took2",
-            "Merry Brandybuck2",
-            "Sam Gamgee2",
-            "Bilbo Baggins3",
-            "Frodo Baggins3",
-            "Pippin Took3",
-            "Merry Brandybuck3",
-            "Sam Gamgee3",
-          ]}
-        >
-          <Combobox.Action
-            label="Add a teammate"
-            onClick={() => {
-              console.log("Action");
-            }}
-          />
-          <Combobox.Action
-            label="Manage teammates"
-            onClick={() => {
-              console.log("Action");
-            }}
-          />
-        </Combobox.Content>
-      </Combobox>
-    </div>
+        <Combobox.Action
+          label="Add a teammate"
+          onClick={() => {
+            console.log("Action");
+          }}
+        />
+        <Combobox.Action
+          label="Manage teammates"
+          onClick={() => {
+            console.log("Action");
+          }}
+        />
+      </Combobox.Content>
+    </Combobox>
   );
 };
 
 const ComboboxChip: ComponentStory<typeof Combobox> = args => {
   return (
-    <div>
-      <Combobox {...args}>
-        <Combobox.TriggerChip triggerLabel="Select a tag" />
-        <Combobox.Content
-          options={[
-            "Bilbo Baggins",
-            "Frodo Baggins",
-            "Pippin Took",
-            "Merry Brandybuck",
-            "Sam Gamgee",
-          ]}
-        >
-          <Combobox.Action
-            label="Add a teammate"
-            onClick={() => {
-              console.log("Action");
-            }}
-          />
-          <Combobox.Action
-            label="Manage teammates"
-            onClick={() => {
-              console.log("Action");
-            }}
-          />
-        </Combobox.Content>
-      </Combobox>
-    </div>
+    <Combobox {...args}>
+      <Combobox.TriggerChip label="Tags" />
+      <Combobox.Content
+        options={[
+          "Bilbo Baggins",
+          "Frodo Baggins",
+          "Pippin Took",
+          "Merry Brandybuck",
+          "Sam Gamgee",
+        ]}
+      >
+        <Combobox.Action
+          label="Add a teammate"
+          onClick={() => {
+            console.log("Action");
+          }}
+        />
+        <Combobox.Action
+          label="Manage teammates"
+          onClick={() => {
+            console.log("Action");
+          }}
+        />
+      </Combobox.Content>
+    </Combobox>
   );
 };
 
