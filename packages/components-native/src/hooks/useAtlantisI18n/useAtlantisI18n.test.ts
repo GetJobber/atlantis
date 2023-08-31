@@ -36,7 +36,10 @@ describe("useAtlantisI18n", () => {
 
   describe("Español", () => {
     it("should return español", () => {
-      spy.mockReturnValueOnce({ ...context.defaultValues, locale: "es" });
+      spy.mockReturnValueOnce({
+        ...context.atlantisContextDefaultValues,
+        locale: "es",
+      });
       const { result } = renderHook(useAtlantisI18n);
 
       expect(result.current.t("cancel")).toBe("Cancelar");
@@ -45,7 +48,10 @@ describe("useAtlantisI18n", () => {
 
   describe("Unsupported language", () => {
     it("should return the english translation", () => {
-      spy.mockReturnValueOnce({ ...context.defaultValues, locale: "fr" });
+      spy.mockReturnValueOnce({
+        ...context.atlantisContextDefaultValues,
+        locale: "fr",
+      });
       const { result } = renderHook(useAtlantisI18n);
 
       expect(result.current.t("cancel")).toBe("Cancel");
@@ -65,7 +71,10 @@ describe("useAtlantisI18n", () => {
     });
 
     it("should return the date formatted for es", () => {
-      spy.mockReturnValueOnce({ ...context.defaultValues, locale: "es" });
+      spy.mockReturnValueOnce({
+        ...context.atlantisContextDefaultValues,
+        locale: "es",
+      });
 
       const { result } = renderHook(useAtlantisI18n);
       expect(result.current.formatDate(testDate)).toBe("1 ene 2020");
@@ -79,7 +88,10 @@ describe("useAtlantisI18n", () => {
         ["Europe/London", "Jan 1, 2020"],
         ["Australia/Sydney", "Jan 1, 2020"],
       ])("should return the %s time", (timeZone, expected) => {
-        spy.mockReturnValueOnce({ ...context.defaultValues, timeZone });
+        spy.mockReturnValueOnce({
+          ...context.atlantisContextDefaultValues,
+          timeZone,
+        });
 
         const { result } = renderHook(useAtlantisI18n);
         expect(result.current.formatDate(testDate)).toBe(expected);
@@ -94,7 +106,10 @@ describe("useAtlantisI18n", () => {
     });
 
     it("should return the date formatted for es", () => {
-      spy.mockReturnValueOnce({ ...context.defaultValues, locale: "es" });
+      spy.mockReturnValueOnce({
+        ...context.atlantisContextDefaultValues,
+        locale: "es",
+      });
 
       const { result } = renderHook(useAtlantisI18n);
       expect(result.current.formatTime(testDate)).toBe("00:00");
@@ -108,7 +123,10 @@ describe("useAtlantisI18n", () => {
         ["Europe/London", "12:00 AM"],
         ["Australia/Sydney", "11:00 AM"],
       ])("should return the %s zoned time", (timeZone, expected) => {
-        spy.mockReturnValueOnce({ ...context.defaultValues, timeZone });
+        spy.mockReturnValueOnce({
+          ...context.atlantisContextDefaultValues,
+          timeZone,
+        });
 
         const { result } = renderHook(useAtlantisI18n);
         expect(result.current.formatTime(testDate)).toBe(expected);
@@ -121,7 +139,10 @@ describe("useAtlantisI18n", () => {
         ["Europe/London", "1:00 AM"],
         ["Australia/Sydney", "10:00 AM"],
       ])("should return the %s spring zoned time", (timeZone, expected) => {
-        spy.mockReturnValueOnce({ ...context.defaultValues, timeZone });
+        spy.mockReturnValueOnce({
+          ...context.atlantisContextDefaultValues,
+          timeZone,
+        });
 
         const { result } = renderHook(useAtlantisI18n);
         expect(result.current.formatTime(dateAfterSpringForward)).toBe(

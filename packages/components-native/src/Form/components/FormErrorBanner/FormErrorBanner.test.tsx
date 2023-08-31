@@ -1,7 +1,7 @@
 import React from "react";
 import { cleanup, render } from "@testing-library/react-native";
 import { FormErrorBanner } from "./FormErrorBanner";
-import { defaultValues as contextDefaultValue } from "../../../AtlantisContext";
+import { atlantisContextDefaultValues } from "../../../AtlantisContext";
 import * as atlantisContext from "../../../AtlantisContext/AtlantisContext";
 
 describe("FormErrorBanner", () => {
@@ -9,7 +9,7 @@ describe("FormErrorBanner", () => {
 
   beforeEach(() => {
     atlantisContextSpy.mockReturnValue({
-      ...contextDefaultValue,
+      ...atlantisContextDefaultValues,
       isOnline: true,
     });
   });

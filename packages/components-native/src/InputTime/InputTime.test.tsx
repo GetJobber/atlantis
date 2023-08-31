@@ -162,7 +162,7 @@ describe("Time picker", () => {
 
     it("should be set to 24 hours", () => {
       jest.spyOn(atlantisContext, "useAtlantisContext").mockReturnValue({
-        ...atlantisContext.defaultValues,
+        ...atlantisContext.atlantisContextDefaultValues,
         timeZone: "UTC",
         timeFormat: "HH:mm",
       });
@@ -295,7 +295,7 @@ describe("Timezone conversion", () => {
     );
   it("should display the time in the account timezone", async () => {
     jest.spyOn(atlantisContext, "useAtlantisContext").mockReturnValue({
-      ...atlantisContext.defaultValues,
+      ...atlantisContext.atlantisContextDefaultValues,
       timeZone: "America/Los_Angeles",
     });
 
@@ -309,7 +309,7 @@ describe("Timezone conversion", () => {
 
   it("should have the correct offset on the time picker", async () => {
     jest.spyOn(atlantisContext, "useAtlantisContext").mockReturnValue({
-      ...atlantisContext.defaultValues,
+      ...atlantisContext.atlantisContextDefaultValues,
       timeZone: "America/Los_Angeles",
     });
 

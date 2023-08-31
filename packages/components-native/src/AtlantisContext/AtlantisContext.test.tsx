@@ -4,7 +4,7 @@ import { cleanup, renderHook } from "@testing-library/react-hooks";
 import {
   AtlantisContext,
   AtlantisContextProps,
-  defaultValues,
+  atlantisContextDefaultValues,
   useAtlantisContext,
 } from "./AtlantisContext";
 
@@ -14,6 +14,7 @@ const providerValues: AtlantisContextProps = {
   dateFormat: "MM/DD/YYYY",
   timeFormat: "hh:mm a",
   timeZone: "America/Edmonton",
+  locale: "en",
   isOnline: false,
   onLogError: _ => {
     return;
@@ -31,7 +32,7 @@ describe("AtlantisContext", () => {
     it("should get the default values", () => {
       const { result } = renderHook(() => useAtlantisContext());
 
-      expect(result.current).toMatchObject(defaultValues);
+      expect(result.current).toMatchObject(atlantisContextDefaultValues);
     });
   });
 

@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react";
 import { InputAccessoriesContextProps } from "./types";
 
-const defaultValues: InputAccessoriesContextProps = {
+const inputAccessoriesContextDefaultValues: InputAccessoriesContextProps = {
   elements: {},
   focusedInput: "",
   canFocusNext: false,
@@ -14,7 +14,9 @@ const defaultValues: InputAccessoriesContextProps = {
   setFocusedInput: () => undefined,
 };
 
-export const InputAccessoriesContext = createContext(defaultValues);
+export const InputAccessoriesContext = createContext(
+  inputAccessoriesContextDefaultValues,
+);
 
 export function useInputAccessoriesContext(): InputAccessoriesContextProps {
   return useContext(InputAccessoriesContext);

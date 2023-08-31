@@ -5,7 +5,7 @@ import { Alert } from "react-native";
 import { ButtonGroup, ButtonGroupProps } from "./ButtonGroup";
 import { Button } from "../Button";
 import * as atlantisContext from "../AtlantisContext/AtlantisContext";
-import { defaultValues as contextDefaultValue } from "../AtlantisContext";
+import { atlantisContextDefaultValues } from "../AtlantisContext";
 
 const mockOnOpen = jest.fn();
 
@@ -300,7 +300,7 @@ describe("ButtonGroup Offline/Online", () => {
   it("should show an alert and not fire the onPress", () => {
     const alertSpy = jest.spyOn(Alert, "alert");
     atlantisContextSpy.mockReturnValue({
-      ...contextDefaultValue,
+      ...atlantisContextDefaultValues,
       isOnline: false,
     });
 
