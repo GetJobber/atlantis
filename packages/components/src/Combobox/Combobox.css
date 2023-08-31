@@ -50,6 +50,16 @@
   background-color: var(--color-surface);
 }
 
+.triggerIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(var(--space-smaller) * 5);
+  height: calc(var(--space-smaller) * 5);
+  border-radius: var(--radius-circle);
+  background-color: var(--color-surface--background);
+}
+
 .search .triggerIcon {
   position: absolute;
   top: 50%;
@@ -83,16 +93,6 @@
   padding: var(--space-small);
   border: var(--border-base) dashed var(--color-interactive);
   border-radius: calc(var(--radius-large) * 5);
-}
-
-.triggerIcon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: calc(var(--space-smaller) * 5);
-  height: calc(var(--space-smaller) * 5);
-  border-radius: var(--radius-circle);
-  background-color: var(--color-surface--background);
 }
 
 .selection {
