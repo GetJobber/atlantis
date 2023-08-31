@@ -4,7 +4,7 @@ import { Alert, Keyboard } from "react-native";
 import { Host } from "react-native-portalize";
 import { Form, FormBannerMessage, FormBannerMessageType } from ".";
 import { FormBannerErrors, FormSubmitErrorType } from "./types";
-import { defaultValues as contextDefaultValue } from "../AtlantisContext";
+import { atlantisContextDefaultValues } from "../AtlantisContext";
 import * as atlantisContext from "../AtlantisContext/AtlantisContext";
 import { Text } from "../Text";
 import { Checkbox } from "../Checkbox";
@@ -476,7 +476,7 @@ describe("Form", () => {
     );
 
     atlantisContextSpy.mockReturnValue({
-      ...contextDefaultValue,
+      ...atlantisContextDefaultValues,
       isOnline: false,
     });
 

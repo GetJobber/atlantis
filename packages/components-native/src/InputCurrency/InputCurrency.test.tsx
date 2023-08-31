@@ -4,12 +4,12 @@ import { InputCurrency } from "./InputCurrency";
 import {
   AtlantisContext,
   AtlantisContextProps,
-  defaultValues,
+  atlantisContextDefaultValues,
 } from "../AtlantisContext";
 
 const mockCurrencySymbol = "£";
 const atlantisContext: AtlantisContextProps = {
-  ...defaultValues,
+  ...atlantisContextDefaultValues,
   currencySymbol: mockCurrencySymbol,
   timeFormat: "p",
   timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,

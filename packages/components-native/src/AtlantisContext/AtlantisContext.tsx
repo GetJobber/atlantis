@@ -64,7 +64,7 @@ export interface AtlantisContextProps {
   readonly setHeaderHeight: (height: number) => void;
 }
 
-export const defaultValues: AtlantisContextProps = {
+export const atlantisContextDefaultValues: AtlantisContextProps = {
   dateFormat: "PP",
   // The system time is "p"
   timeFormat: "p",
@@ -82,7 +82,7 @@ export const defaultValues: AtlantisContextProps = {
   },
 };
 
-export const AtlantisContext = createContext(defaultValues);
+export const AtlantisContext = createContext(atlantisContextDefaultValues);
 
 export function useAtlantisContext(): AtlantisContextProps {
   return useContext(AtlantisContext);

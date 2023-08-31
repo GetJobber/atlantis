@@ -1,7 +1,7 @@
 import { createContext, useContext, useRef } from "react";
 import { AtlantisFormContextProps } from "./types";
 
-export const defaultValues = {
+export const atlantisFormContextDefaultValues = {
   useConfirmBeforeBack: () => {
     const ref = useRef(() => undefined);
     return ref;
@@ -12,8 +12,9 @@ export const defaultValues = {
   }),
 };
 
-export const AtlantisFormContext =
-  createContext<AtlantisFormContextProps>(defaultValues);
+export const AtlantisFormContext = createContext<AtlantisFormContextProps>(
+  atlantisFormContextDefaultValues,
+);
 
 export function useAtlantisFormContext(): AtlantisFormContextProps {
   return useContext(AtlantisFormContext);
