@@ -30,7 +30,7 @@ function useComboboxValidation(children: ReactNode): {
   childrenArray.forEach(child => {
     if (isTriggerElement(child)) {
       if (renderTrigger) {
-        throw new Error("Combobox can only have one trigger element");
+        throw new Error("Combobox can only have one Trigger element");
       }
       renderTrigger = child;
     }
@@ -40,7 +40,7 @@ function useComboboxValidation(children: ReactNode): {
   });
 
   if (!renderTrigger || !renderContent) {
-    throw new Error("Combobox must have a trigger and content element");
+    throw new Error("Combobox must have a Trigger and Content element");
   }
 
   return {
