@@ -40,9 +40,9 @@ describe("Combobox validation", () => {
         </Combobox>,
       );
     } catch (e) {
-      error = e;
+      error = e as Error;
     } finally {
-      expect(error.message).toBe(
+      expect(error?.message).toBe(
         "Combobox must have a Trigger and Content element",
       );
     }
@@ -61,9 +61,9 @@ describe("Combobox validation", () => {
         </Combobox>,
       );
     } catch (e) {
-      error = e;
+      error = e as Error;
     } finally {
-      expect(error.message).toBe("Combobox can only have one Trigger element");
+      expect(error?.message).toBe("Combobox can only have one Trigger element");
     }
   });
   it("throws an error if there are multiple of various Trigger elements", () => {
@@ -80,9 +80,9 @@ describe("Combobox validation", () => {
         </Combobox>,
       );
     } catch (e) {
-      error = e;
+      error = e as Error;
     } finally {
-      expect(error.message).toBe("Combobox can only have one Trigger element");
+      expect(error?.message).toBe("Combobox can only have one Trigger element");
     }
   });
   it("throws an error if there is no Content element", () => {
@@ -95,9 +95,9 @@ describe("Combobox validation", () => {
         </Combobox>,
       );
     } catch (e) {
-      error = e;
+      error = e as Error;
     } finally {
-      expect(error.message).toBe(
+      expect(error?.message).toBe(
         "Combobox must have a Trigger and Content element",
       );
     }
@@ -112,9 +112,9 @@ describe("Combobox validation", () => {
         </Combobox>,
       );
     } catch (e) {
-      error = e;
+      error = e as Error;
     } finally {
-      expect(error.message).toBe(
+      expect(error?.message).toBe(
         "Combobox must have a Trigger and Content element",
       );
     }
@@ -130,9 +130,9 @@ describe("Combobox validation", () => {
         </Combobox>,
       );
     } catch (e) {
-      error = e;
+      error = e as Error;
     } finally {
-      expect(error.message).toBe("Combobox can only have one Trigger element");
+      expect(error?.message).toBe("Combobox can only have one Trigger element");
     }
   });
 });
