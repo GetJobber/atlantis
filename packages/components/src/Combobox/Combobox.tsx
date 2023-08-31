@@ -1,9 +1,9 @@
 import React, { ReactNode } from "react";
+import { useAssert } from "@jobber/hooks/useAssert";
 import { Content } from "./components/Content";
 import { Action } from "./components/Action";
 import { TriggerButton, TriggerChip } from "./components/Trigger";
 import { ComboboxContextProvider } from "./ComboboxProvider";
-import { useAssert } from "../../../hooks/src/useAssert";
 
 export interface ComboboxProps {
   readonly children: React.ReactNode;
