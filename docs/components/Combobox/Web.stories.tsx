@@ -61,7 +61,7 @@ const ComboboxButton: ComponentStory<typeof Combobox> = args => {
 const ComboboxChip: ComponentStory<typeof Combobox> = args => {
   return (
     <div>
-      <Combobox>
+      <Combobox {...args}>
         <Combobox.TriggerChip triggerLabel="Select a tag" />
         <Combobox.Content
           options={[
