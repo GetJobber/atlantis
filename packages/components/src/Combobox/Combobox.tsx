@@ -3,6 +3,7 @@ import { Content } from "./components/Content";
 import { Action } from "./components/Action";
 import { TriggerButton, TriggerChip } from "./components/Trigger";
 import { ComboboxContextProvider } from "./ComboboxProvider";
+import { useAssert } from "../../../hooks/src/useAssert";
 
 export interface ComboboxProps {
   readonly children: React.ReactNode;
@@ -30,7 +31,7 @@ function useComboboxValidation(children: ReactNode): {
   childrenArray.forEach(child => {
     if (isTriggerElement(child)) {
       if (renderTrigger) {
-        throw new Error("Combobox can only have one Trigger element");
+        useAssert(true, "Combobox can only have one Trigger element");
       }
       renderTrigger = child;
     }
@@ -40,7 +41,7 @@ function useComboboxValidation(children: ReactNode): {
   });
 
   if (!renderTrigger || !renderContent) {
-    throw new Error("Combobox must have a Trigger and Content element");
+    useAssert(true, "Combobox must have a Trigger and Content element");
   }
 
   return {
