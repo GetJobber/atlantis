@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.46.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.45.1...@jobber/components-native@0.46.0) (2023-08-31)
+
+
+### Features
+
+* **components:** localized date formatter ([#1504](https://github.com/GetJobber/atlantis/issues/1504)) ([27f44d1](https://github.com/GetJobber/atlantis/commit/27f44d1f17e5e3e179531671c0ee43a7ee3fc5a9))
+
+
+
+
+
 ## [0.45.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.45.0...@jobber/components-native@0.45.1) (2023-08-30)
 
 
