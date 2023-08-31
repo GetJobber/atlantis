@@ -3,12 +3,9 @@ import DateTimePicker from "react-native-modal-datetime-picker";
 import { Platform } from "react-native";
 import { FieldError, UseControllerProps } from "react-hook-form";
 import { XOR } from "ts-xor";
-import { utcToZonedTime } from "date-fns-tz";
-import { format as formatDate } from "date-fns";
 import { Clearable, InputFieldWrapperProps } from "../InputFieldWrapper";
 import { FormField } from "../FormField";
 import { InputPressable } from "../InputPressable";
-import { useAtlantisContext } from "../AtlantisContext";
 import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
 interface BaseInputDateProps
@@ -153,8 +150,7 @@ function InternalInputDate({
   accessibilityHint,
 }: InputDateProps): JSX.Element {
   const [showPicker, setShowPicker] = useState(false);
-  const { t, locale } = useAtlantisI18n();
-  const { timeZone, dateFormat } = useAtlantisContext();
+  const { t, locale, formatDate } = useAtlantisI18n();
 
   const date = useMemo(() => {
     if (typeof value === "string") return new Date(value);
@@ -163,12 +159,11 @@ function InternalInputDate({
 
   const formattedDate = useMemo(() => {
     if (date) {
-      const zonedTime = utcToZonedTime(date, timeZone);
-      return formatDate(zonedTime, dateFormat);
+      return formatDate(date);
     }
 
     return emptyValueLabel;
-  }, [date, emptyValueLabel, timeZone, dateFormat]);
+  }, [date, emptyValueLabel]);
 
   const canClearDate = formattedDate === emptyValueLabel ? "never" : clearable;
 
