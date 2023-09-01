@@ -7,7 +7,6 @@ import { defaultValues } from "../../context/DataListContext";
 import * as dataListContext from "../../context/DataListContext/DataListContext";
 
 configMocks({ act });
-
 const observer = mockIntersectionObserver();
 
 const spy = jest.spyOn(dataListContext, "useDataListContext");
@@ -72,7 +71,6 @@ describe("InternalDataListFilters", () => {
       const triggers =
         container.querySelectorAll<HTMLElement>(".overflowTrigger");
 
-      observer.leaveAll();
       observer.enterNode(triggers.item(0));
 
       expect(container).toHaveClass("overflowRight");
@@ -86,7 +84,6 @@ describe("InternalDataListFilters", () => {
       const triggers =
         container.querySelectorAll<HTMLElement>(".overflowTrigger");
 
-      observer.leaveAll();
       observer.enterNode(triggers.item(1));
 
       expect(container).not.toHaveClass("overflowRight");

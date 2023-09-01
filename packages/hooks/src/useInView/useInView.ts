@@ -18,7 +18,7 @@ export function useInView<T extends Element>(): [RefObject<T>, boolean] {
     return () => {
       ref.current && observer.unobserve(ref.current);
     };
-  }, [handleIntersection]);
+  }, [handleIntersection, ref.current]);
 
   return [ref, isInView];
 }
