@@ -1,4 +1,6 @@
 import React, { ReactElement } from "react";
+import classNames from "classnames";
+import { useInView } from "@jobber/hooks/useInView";
 import styles from "./DataListFilters.css";
 import { useDataListContext } from "../../context/DataListContext";
 import { getCompoundComponent } from "../../DataList.utils";
@@ -22,9 +24,28 @@ export function InternalDataListFilters() {
     parentChildren,
     DataListFilters,
   );
+
+  const [leftRef, isLeftVisible] = useInView<HTMLSpanElement>();
+  const [rightRef, isRightVisible] = useInView<HTMLSpanElement>();
+
   if (!component) return null;
 
   const { children } = component.props;
 
-  return <div className={styles.filters}>{children}</div>;
+  return (
+    <div
+      className={classNames(styles.filters, {
+        [styles.overflowLeft]: !isLeftVisible,
+        [styles.overflowRight]: !isRightVisible,
+      })}
+    >
+      <div className={styles.filterActions}>
+        <span ref={leftRef} className={styles.overflowTrigger} />
+
+        {children}
+
+        <span ref={rightRef} className={styles.overflowTrigger} />
+      </div>
+    </div>
+  );
 }

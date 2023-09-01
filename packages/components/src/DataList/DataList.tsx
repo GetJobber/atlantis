@@ -66,17 +66,18 @@ function InternalDataList<T extends DataListObject>({
         <DataListTotalCount totalCount={totalCount} loading={loading} />
       </div>
 
-      {headerData && (
-        <div className={styles.header}>
-          <InternalDataListFilters />
+      <div className={styles.header}>
+        <InternalDataListFilters />
+
+        {headerData && (
           <DataListHeader
             layouts={allLayouts}
             headerData={headerData}
             headerVisibility={headerVisibility}
             mediaMatches={mediaMatches}
           />
-        </div>
-      )}
+        )}
+      </div>
 
       <DataListLoadingState
         loading={loading}

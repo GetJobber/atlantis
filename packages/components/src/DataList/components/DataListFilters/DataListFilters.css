@@ -1,6 +1,44 @@
 .filters {
-  display: flex;
-  gap: var(--space-small);
-  align-items: center;
+  position: relative;
+}
+
+.filterActions {
+  display: grid;
   padding: var(--space-small) 0;
+  overflow-x: auto;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  align-items: center;
+}
+
+.filterActions > :nth-child(n + 3):not(:last-child) {
+  margin-left: var(--space-small);
+}
+
+.overflowTrigger {
+  visibility: hidden;
+}
+
+.overflowLeft::before,
+.overflowRight::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: var(--space-large);
+  height: 100%;
+  background-image: linear-gradient(
+    var(--data-list-filters-overflow-shadow-angle, to right),
+    var(--color-surface) 0%,
+    rgba(var(--color-white--rgb), 0) 100%
+  );
+  pointer-events: none;
+}
+
+.overflowLeft::before {
+  left: 0;
+}
+
+.overflowRight::after {
+  --data-list-filters-overflow-shadow-angle: to left;
+  right: 0;
 }
