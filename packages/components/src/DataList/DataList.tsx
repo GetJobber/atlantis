@@ -18,9 +18,22 @@ import {
   DataListItems,
 } from "./components/DataListLayoutInternal";
 import { useLayoutMediaQueries } from "./hooks/useLayoutMediaQueries";
+import { DataListContext } from "./context/DataListContext";
+import {
+  DataListFilters,
+  InternalDataListFilters,
+} from "./components/DataListFilters";
 import { Heading } from "../Heading";
 
-export function DataList<T extends DataListObject>({
+export function DataList<T extends DataListObject>(props: DataListProps<T>) {
+  return (
+    <DataListContext.Provider value={props}>
+      <InternalDataList {...props} />
+    </DataListContext.Provider>
+  );
+}
+
+function InternalDataList<T extends DataListObject>({
   data,
   headers,
   loading = false,
@@ -48,25 +61,30 @@ export function DataList<T extends DataListObject>({
 
   return (
     <div className={styles.wrapper}>
-      {/* List title and counter */}
       <div className={styles.titleContainer}>
         {title && <Heading level={3}>{title}</Heading>}
         <DataListTotalCount totalCount={totalCount} loading={loading} />
       </div>
+
       {headerData && (
-        <DataListHeader
-          layouts={allLayouts}
-          headerData={headerData}
-          headerVisibility={headerVisibility}
-          mediaMatches={mediaMatches}
-        />
+        <div className={styles.header}>
+          <InternalDataListFilters />
+          <DataListHeader
+            layouts={allLayouts}
+            headerData={headerData}
+            headerVisibility={headerVisibility}
+            mediaMatches={mediaMatches}
+          />
+        </div>
       )}
+
       <DataListLoadingState
         loading={loading}
         headers={headers}
         layouts={allLayouts}
         mediaMatches={mediaMatches}
       />
+
       {!loading && (
         <DataListItems
           data={data}
@@ -74,6 +92,7 @@ export function DataList<T extends DataListObject>({
           mediaMatches={mediaMatches}
         />
       )}
+
       {showEmptyState && EmptyStateComponent}
     </div>
   );
@@ -81,3 +100,4 @@ export function DataList<T extends DataListObject>({
 
 DataList.Layout = DataListLayout;
 DataList.EmptyState = EmptyState;
+DataList.Filters = DataListFilters;
