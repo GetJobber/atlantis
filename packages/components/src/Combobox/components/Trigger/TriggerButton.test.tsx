@@ -16,6 +16,7 @@ function TriggerButtonTestWrapper() {
     </>
   );
 }
+
 describe("TriggerButton", () => {
   it("renders a label", () => {
     const { getByText } = render(

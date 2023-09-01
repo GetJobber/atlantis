@@ -7,6 +7,10 @@
   background-color: var(--color-surface);
 }
 
+.trigger:focus {
+  box-shadow: var(--shadow-focus);
+}
+
 .triggerIcon {
   display: flex;
   justify-content: center;

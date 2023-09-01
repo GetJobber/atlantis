@@ -19,7 +19,11 @@ const ComboboxButton: ComponentStory<typeof Combobox> = args => {
         console.log(selection);
       }}
     >
-      <Combobox.TriggerButton label="Select a teammate" />
+      <Combobox.TriggerButton
+        label="Select a teammate"
+        variation="subtle"
+        type="primary"
+      />
       <Combobox.Content
         options={[
           "Bilbo Baggins",
