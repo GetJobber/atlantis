@@ -3,7 +3,7 @@
   font-weight: 400;
 }
 
-.heavy {
+.semiBold {
   font-family: var(--typography--fontFamily-normal);
   font-weight: 600;
 }
