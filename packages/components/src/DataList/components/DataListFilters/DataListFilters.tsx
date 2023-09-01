@@ -2,6 +2,7 @@ import React, { ReactElement } from "react";
 import classNames from "classnames";
 import { useInView } from "@jobber/hooks/useInView";
 import styles from "./DataListFilters.css";
+import { CONTAINER_TEST_ID } from "./DataListFilter.const";
 import { useDataListContext } from "../../context/DataListContext";
 import { getCompoundComponent } from "../../DataList.utils";
 
@@ -34,6 +35,7 @@ export function InternalDataListFilters() {
 
   return (
     <div
+      data-testid={CONTAINER_TEST_ID}
       className={classNames(styles.filters, {
         [styles.overflowLeft]: !isLeftVisible,
         [styles.overflowRight]: !isRightVisible,
