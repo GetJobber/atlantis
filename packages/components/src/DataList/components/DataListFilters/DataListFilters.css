@@ -1,0 +1,6 @@
+.filters {
+  display: flex;
+  gap: var(--space-small);
+  align-items: center;
+  padding: var(--space-small) 0;
+}
