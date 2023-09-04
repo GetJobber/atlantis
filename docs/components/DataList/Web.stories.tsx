@@ -6,6 +6,8 @@ import { DataList, DataListItemType } from "@jobber/components/DataList";
 import { Grid } from "@jobber/components/Grid";
 import { InlineLabel, InlineLabelColors } from "@jobber/components/InlineLabel";
 import { Content } from "@jobber/components/Content";
+import { Button } from "@jobber/components/Button";
+import { DatePicker } from "@jobber/components/DatePicker";
 import { LIST_QUERY, ListQueryType, apolloClient } from "./storyUtils";
 
 export default {
@@ -93,6 +95,33 @@ const Template: ComponentStory<typeof DataList> = args => {
         created: "Created",
       }}
     >
+      <DataList.Filters>
+        <Button
+          label="Filter gender"
+          variation="subtle"
+          icon="add"
+          iconOnRight={true}
+          onClick={() => alert("Run filter by gender query")}
+        />
+        <Button
+          label="Filter attributes"
+          variation="subtle"
+          icon="add"
+          iconOnRight={true}
+          onClick={() => alert("Run filter by attributes query")}
+        />
+        <DatePicker
+          onChange={date => alert(`Filter by created date: ${date}`)}
+          activator={
+            <Button
+              icon="calendar"
+              ariaLabel="Select date"
+              variation="subtle"
+            />
+          }
+        />
+      </DataList.Filters>
+
       <DataList.Layout size="md">
         {(item: DataListItemType<typeof mappedData>) => (
           <Grid alignItems="center">

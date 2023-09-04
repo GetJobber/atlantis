@@ -44,7 +44,7 @@ export function DataListHeader<T extends DataListObject>({
       layouts={layouts}
       renderLayout={layout => {
         return (
-          <div className={styles.header}>
+          <div className={styles.headerTitles}>
             {layout.props.children(headerData)}
           </div>
         );

@@ -12,9 +12,16 @@
   position: sticky;
   top: 0;
   z-index: var(--elevation-base);
+  background-color: var(--color-surface);
+}
+
+.header:empty {
+  display: none;
+}
+
+.headerTitles {
   padding: var(--space-small);
   border-bottom: var(--border-thick) solid var(--color-border);
-  background-color: var(--color-surface);
 }
 
 .headerLabel > * {

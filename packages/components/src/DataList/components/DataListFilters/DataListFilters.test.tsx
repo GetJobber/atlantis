@@ -1,0 +1,107 @@
+import React from "react";
+import { act, cleanup, render, screen } from "@testing-library/react";
+import { configMocks, mockIntersectionObserver } from "jsdom-testing-mocks";
+import { DataListFilters, InternalDataListFilters } from "./DataListFilters";
+import { CONTAINER_TEST_ID } from "./DataListFilter.const";
+import { defaultValues } from "../../context/DataListContext";
+import * as dataListContext from "../../context/DataListContext/DataListContext";
+
+configMocks({ act });
+const observer = mockIntersectionObserver();
+
+const spy = jest.spyOn(dataListContext, "useDataListContext");
+const contextValueWithRenderableChildren = {
+  ...defaultValues,
+  children: (
+    <DataListFilters>
+      <button />
+      <button />
+      <button />
+    </DataListFilters>
+  ),
+};
+
+afterEach(() => {
+  cleanup();
+  spy.mockReset();
+});
+
+describe("DataListFilters", () => {
+  it("should not render anything", () => {
+    const text = "Don't render me";
+
+    render(
+      <DataListFilters>
+        <div>{text}</div>
+      </DataListFilters>,
+    );
+
+    expect(screen.queryByText(text)).not.toBeInTheDocument();
+  });
+});
+
+describe("InternalDataListFilters", () => {
+  describe("Overflowing fade", () => {
+    it("should show the overflow fade", () => {
+      spy.mockReturnValue(contextValueWithRenderableChildren);
+      render(<InternalDataListFilters />);
+
+      observer.leaveAll();
+
+      expect(screen.getByTestId(CONTAINER_TEST_ID)).toHaveClass(
+        "overflowLeft overflowRight",
+      );
+    });
+
+    it("should not show the overflow fade", () => {
+      spy.mockReturnValue(contextValueWithRenderableChildren);
+      render(<InternalDataListFilters />);
+
+      observer.enterAll();
+
+      expect(screen.getByTestId(CONTAINER_TEST_ID)).not.toHaveClass(
+        "overflowLeft overflowRight",
+      );
+    });
+
+    it("should only show the right overflow fade", () => {
+      spy.mockReturnValue(contextValueWithRenderableChildren);
+      render(<InternalDataListFilters />);
+      const container = screen.getByTestId(CONTAINER_TEST_ID);
+      const triggers =
+        container.querySelectorAll<HTMLElement>(".overflowTrigger");
+
+      observer.enterNode(triggers.item(0));
+
+      expect(container).toHaveClass("overflowRight");
+      expect(container).not.toHaveClass("overflowLeft");
+    });
+
+    it("should only show the left overflow fade", () => {
+      spy.mockReturnValue(contextValueWithRenderableChildren);
+      render(<InternalDataListFilters />);
+      const container = screen.getByTestId(CONTAINER_TEST_ID);
+      const triggers =
+        container.querySelectorAll<HTMLElement>(".overflowTrigger");
+
+      observer.enterNode(triggers.item(1));
+
+      expect(container).not.toHaveClass("overflowRight");
+      expect(container).toHaveClass("overflowLeft");
+    });
+  });
+
+  it("should render the passed in children when DataListFilters is implemented", () => {
+    spy.mockReturnValue(contextValueWithRenderableChildren);
+    render(<InternalDataListFilters />);
+
+    expect(screen.getAllByRole("button")).toHaveLength(3);
+  });
+
+  it("should render nothing when it's DataListFilters is not implemented", () => {
+    spy.mockReturnValue({ ...defaultValues, children: <button /> });
+    render(<InternalDataListFilters />);
+
+    expect(screen.queryByRole("button")).not.toBeInTheDocument();
+  });
+});
