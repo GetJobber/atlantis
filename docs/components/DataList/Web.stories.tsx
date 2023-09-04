@@ -122,6 +122,11 @@ const Template: ComponentStory<typeof DataList> = args => {
         />
       </DataList.Filters>
 
+      <DataList.Search
+        onSearch={search => console.log(search)}
+        placeholder="Search clients..."
+      />
+
       <DataList.Layout size="md">
         {(item: DataListItemType<typeof mappedData>) => (
           <Grid alignItems="center">

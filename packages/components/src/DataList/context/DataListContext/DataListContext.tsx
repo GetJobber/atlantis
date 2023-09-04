@@ -2,6 +2,7 @@ import { createContext, useContext } from "react";
 import { DataListObject, DataListProps } from "../../DataList.types";
 
 export const defaultValues = {
+  title: "",
   data: [],
   headers: {},
   children: [],

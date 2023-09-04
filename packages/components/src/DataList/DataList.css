@@ -32,3 +32,8 @@
   padding: var(--space-small);
   border-bottom: var(--border-base) solid var(--color-border);
 }
+
+.filtersContainer {
+  display: flex;
+  justify-content: space-between;
+}

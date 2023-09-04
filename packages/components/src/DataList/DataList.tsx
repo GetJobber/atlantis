@@ -23,6 +23,10 @@ import {
   DataListFilters,
   InternalDataListFilters,
 } from "./components/DataListFilters";
+import {
+  DataListSearch,
+  InternalDataListSearch,
+} from "./components/DataListSearch";
 import { Heading } from "../Heading";
 
 export function DataList<T extends DataListObject>(props: DataListProps<T>) {
@@ -67,7 +71,11 @@ function InternalDataList<T extends DataListObject>({
       </div>
 
       <div className={styles.header}>
-        <InternalDataListFilters />
+        <div className={styles.filtersContainer}>
+          <InternalDataListFilters />
+
+          <InternalDataListSearch />
+        </div>
 
         {headerData && (
           <DataListHeader
@@ -102,3 +110,4 @@ function InternalDataList<T extends DataListObject>({
 DataList.Layout = DataListLayout;
 DataList.EmptyState = EmptyState;
 DataList.Filters = DataListFilters;
+DataList.Search = DataListSearch;
