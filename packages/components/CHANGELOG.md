@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.30.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.29.0...@jobber/components@4.30.0) (2023-09-04)
+
+
+### Features
+
+* **components:** implement ability to add a data list filters ([#1512](https://github.com/GetJobber/atlantis/issues/1512)) ([8de68a6](https://github.com/GetJobber/atlantis/commit/8de68a671945d7c0c510fcaf6047a28217cdb35b))
+
+
+
+
+
 # [4.29.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.28.2...@jobber/components@4.29.0) (2023-08-30)
 
 

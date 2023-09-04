@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.1.5...@jobber/hooks@2.2.0) (2023-09-04)
+
+
+### Features
+
+* **components:** implement ability to add a data list filters ([#1512](https://github.com/GetJobber/atlantis/issues/1512)) ([8de68a6](https://github.com/GetJobber/atlantis/commit/8de68a671945d7c0c510fcaf6047a28217cdb35b))
+
+
+
+
+
 ## [2.1.5](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.1.4...@jobber/hooks@2.1.5) (2023-06-28)
 
 **Note:** Version bump only for package @jobber/hooks
