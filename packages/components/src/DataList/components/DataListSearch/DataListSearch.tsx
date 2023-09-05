@@ -47,6 +47,20 @@ export function InternalDataListSearch() {
 
   return (
     <>
+      <div
+        className={classNames(styles.searchInput, {
+          [styles.searchInputVisible]: visible,
+        })}
+      >
+        <InputText
+          ref={inputRef}
+          placeholder={placeholder || `Search ${title}...`}
+          onChange={debouncedSearch}
+          prefix={{ icon: "search" }}
+          size="small"
+        />
+      </div>
+
       <div className={styles.searchButton}>
         <AnimatedSwitcher
           switched={visible}
@@ -66,20 +80,6 @@ export function InternalDataListSearch() {
               onClick={toggleSearch}
             />
           }
-        />
-      </div>
-
-      <div
-        className={classNames(styles.searchInput, {
-          [styles.searchInputVisible]: visible,
-        })}
-      >
-        <InputText
-          ref={inputRef}
-          placeholder={placeholder || `Search ${title}...`}
-          onChange={debouncedSearch}
-          prefix={{ icon: "search" }}
-          size="small"
         />
       </div>
     </>

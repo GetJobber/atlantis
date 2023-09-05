@@ -1,9 +1,10 @@
 .searchInput {
   --transition-properties: var(--timing-base) ease-in-out;
+  --button-offset: calc(var(--space-largest) - var(--space-smallest));
 
   position: absolute;
   top: 50%;
-  right: var(--space-largest);
+  right: var(--button-offset);
   visibility: hidden;
   width: 0;
   opacity: 0;
@@ -14,7 +15,7 @@
 
 .searchInputVisible {
   visibility: visible;
-  width: calc(100% - var(--space-largest));
+  width: calc(100% - var(--button-offset));
   opacity: 1;
 }
 
