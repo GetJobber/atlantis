@@ -63,19 +63,12 @@ function useComboboxValidation(children: ReactNode): {
 function isTriggerElement(child: ReactNode): boolean {
   return (
     React.isValidElement(child) &&
-    typeof child !== "string" &&
-    typeof child.type !== "string" &&
     (child.type === TriggerButton || child.type === TriggerChip)
   );
 }
 
 function isContentElement(child: ReactNode): boolean {
-  return (
-    React.isValidElement(child) &&
-    typeof child !== "string" &&
-    typeof child.type !== "string" &&
-    child.type === ComboboxContent
-  );
+  return React.isValidElement(child) && child.type === ComboboxContent;
 }
 
 Combobox.TriggerButton = TriggerButton;
