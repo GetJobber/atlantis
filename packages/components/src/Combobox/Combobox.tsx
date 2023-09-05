@@ -1,6 +1,6 @@
 import React, { ReactElement, ReactNode } from "react";
 import { useAssert } from "@jobber/hooks/useAssert";
-import { ComboboxContent } from "./components/Content";
+import { ComboboxContent } from "./components/ComboboxContent";
 import { Action } from "./components/Action";
 import { TriggerButton, TriggerChip } from "./components/Trigger";
 import { ComboboxContextProvider } from "./ComboboxProvider";
@@ -49,7 +49,7 @@ function useComboboxValidation(children: ReactNode): {
 
   useAssert(
     !triggerElement || !contentElement,
-    "Combobox must have a Trigger and Content element",
+    "Combobox must have a Trigger and Combobox.Content element",
   );
 
   return {
@@ -66,6 +66,7 @@ function isTriggerElement(child: ReactNode): boolean {
     (child.type === TriggerButton || child.type === TriggerChip)
   );
 }
+
 function isContentElement(child: ReactNode): boolean {
   return (
     React.isValidElement(child) &&
