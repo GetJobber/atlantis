@@ -1,6 +1,6 @@
 import React from "react";
-import { TriggerProps } from "./types";
 import styles from "./TriggerChip.css";
+import { TriggerProps } from "../../types";
 import { Text } from "../../../Text";
 import { Icon } from "../../../Icon";
 import { ComboboxContext } from "../../ComboboxProvider";
