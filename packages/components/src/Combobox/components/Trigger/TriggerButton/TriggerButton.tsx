@@ -12,6 +12,8 @@ export function TriggerButton(props: TriggerButtonProps): JSX.Element {
       variation={props.variation}
       type={props.type}
       onClick={() => setOpen(!open)}
+      icon={props.icon}
+      iconOnRight={props.iconOnRight}
     />
   );
 }

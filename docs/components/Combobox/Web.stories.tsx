@@ -23,6 +23,8 @@ const ComboboxButton: ComponentStory<typeof Combobox> = args => {
         label="Select a teammate"
         variation="subtle"
         type="primary"
+        icon="arrowDown"
+        iconOnRight={true}
       />
       <Combobox.Content
         options={[
