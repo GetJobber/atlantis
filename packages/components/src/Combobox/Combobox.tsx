@@ -26,20 +26,26 @@ function useComboboxValidation(children: ReactNode): {
   renderContent: ReactNode;
 } {
   const childrenArray = React.Children.toArray(children);
-  let renderTrigger: ReactNode, renderContent: ReactNode;
+  let renderTrigger: ReactNode,
+    renderContent: ReactNode,
+    multipleTriggersFound = false;
 
   childrenArray.forEach(child => {
-    useAssert(
-      isTriggerElement(child) && !!renderTrigger,
-      "Combobox can only have one Trigger element",
-    );
     if (isTriggerElement(child)) {
+      if (renderTrigger) {
+        multipleTriggersFound = true;
+      }
       renderTrigger = child;
     }
     if (isContentElement(child)) {
       renderContent = child;
     }
   });
+
+  useAssert(
+    multipleTriggersFound,
+    "Combobox can only have one Trigger element",
+  );
 
   useAssert(
     !renderTrigger || !renderContent,
