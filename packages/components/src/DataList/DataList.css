@@ -19,6 +19,14 @@
   display: none;
 }
 
+.headerFilters {
+  display: grid;
+  padding: var(--space-small) 0;
+  gap: var(--space-small);
+  grid-template-columns: auto max-content;
+  align-items: center;
+}
+
 .headerTitles {
   padding: var(--space-small);
   border-bottom: var(--border-thick) solid var(--color-border);
@@ -31,9 +39,4 @@
 .listItem {
   padding: var(--space-small);
   border-bottom: var(--border-base) solid var(--color-border);
-}
-
-.filtersContainer {
-  display: flex;
-  justify-content: space-between;
 }

@@ -71,9 +71,8 @@ function InternalDataList<T extends DataListObject>({
       </div>
 
       <div className={styles.header}>
-        <div className={styles.filtersContainer}>
+        <div className={styles.headerFilters}>
           <InternalDataListFilters />
-
           <InternalDataListSearch />
         </div>
 
