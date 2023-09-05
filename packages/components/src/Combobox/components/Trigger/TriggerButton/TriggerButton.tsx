@@ -1,7 +1,7 @@
 import React from "react";
-import { TriggerButtonProps } from "../types";
 import { Button } from "../../../../Button";
 import { ComboboxContext } from "../../../ComboboxProvider";
+import { TriggerButtonProps } from "../types";
 
 export function TriggerButton(props: TriggerButtonProps): JSX.Element {
   const { open, setOpen } = React.useContext(ComboboxContext);

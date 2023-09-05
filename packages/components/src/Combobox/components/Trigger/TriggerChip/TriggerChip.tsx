@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./TriggerChip.css";
-import { TriggerChipProps } from "../types";
 import { Icon } from "../../../../Icon";
 import { ComboboxContext } from "../../../ComboboxProvider";
 import { Typography } from "../../../../Typography";
+import { TriggerChipProps } from "../types";
 
 export function TriggerChip(props: TriggerChipProps): JSX.Element {
   const { open, setOpen } = React.useContext(ComboboxContext);
