@@ -9,6 +9,6 @@ export interface TriggerProps {
 
 export interface TriggerButtonProps
   extends TriggerProps,
-    Pick<ButtonProps, "type" | "variation"> {}
+    Pick<ButtonProps, "type" | "variation" | "icon" | "iconOnRight"> {}
 
 export type TriggerChipProps = TriggerProps;

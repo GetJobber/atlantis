@@ -3,7 +3,7 @@ import styles from "./TriggerChip.css";
 import { Icon } from "../../../../Icon";
 import { ComboboxContext } from "../../../ComboboxProvider";
 import { Typography } from "../../../../Typography";
-import { TriggerChipProps } from "../types";
+import { TriggerChipProps } from "../../../Combobox.types";
 
 export function TriggerChip(props: TriggerChipProps): JSX.Element {
   const { open, setOpen } = React.useContext(ComboboxContext);

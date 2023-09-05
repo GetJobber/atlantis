@@ -3,7 +3,7 @@ import { useAssert } from "@jobber/hooks/useAssert";
 import { ComboboxContent } from "./components/ComboboxContent";
 import { Action } from "./components/Action";
 import { ComboboxContextProvider } from "./ComboboxProvider";
-import { TriggerButton, TriggerChip } from "./components/Trigger";
+import { TriggerButton, TriggerChip } from "./components/ComboboxTrigger";
 
 export interface ComboboxProps {
   readonly children: ReactElement | ReactElement[];
