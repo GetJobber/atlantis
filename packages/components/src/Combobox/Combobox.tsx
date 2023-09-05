@@ -1,12 +1,12 @@
-import React, { ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import { useAssert } from "@jobber/hooks/useAssert";
-import { Content } from "./components/Content";
+import { ComboboxContent } from "./components/Content";
 import { Action } from "./components/Action";
 import { TriggerButton, TriggerChip } from "./components/Trigger";
 import { ComboboxContextProvider } from "./ComboboxProvider";
 
 export interface ComboboxProps {
-  readonly children: React.ReactNode;
+  readonly children: ReactElement | ReactElement[];
 }
 
 export const Combobox = (props: ComboboxProps): JSX.Element => {
@@ -55,7 +55,7 @@ function isTriggerElement(child: ReactNode): boolean {
     React.isValidElement(child) &&
     typeof child !== "string" &&
     typeof child.type !== "string" &&
-    (child.type.name == "TriggerButton" || child.type.name == "TriggerChip")
+    (child.type === TriggerButton || child.type === TriggerChip)
   );
 }
 function isContentElement(child: ReactNode): boolean {
@@ -63,11 +63,11 @@ function isContentElement(child: ReactNode): boolean {
     React.isValidElement(child) &&
     typeof child !== "string" &&
     typeof child.type !== "string" &&
-    child.type.name == "Content"
+    child.type === ComboboxContent
   );
 }
 
 Combobox.TriggerButton = TriggerButton;
 Combobox.TriggerChip = TriggerChip;
-Combobox.Content = Content;
+Combobox.Content = ComboboxContent;
 Combobox.Action = Action;

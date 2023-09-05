@@ -21,7 +21,7 @@ interface ContentProps {
   readonly children: React.ReactNode;
 }
 
-export function Content(props: ContentProps): JSX.Element {
+export function ComboboxContent(props: ContentProps): JSX.Element {
   const [searchValue, setSearchValue] = useState<string>("");
   const [selectedOption, setSelectedOption] = useState<string>("");
   const { open } = React.useContext(ComboboxContext);

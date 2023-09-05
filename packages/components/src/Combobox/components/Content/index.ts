@@ -1,1 +1,1 @@
-export { Content } from "./Content";
+export { ComboboxContent } from "./Content";
