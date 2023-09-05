@@ -71,7 +71,7 @@ export function InternalDataListSearch() {
 
       <div
         className={classNames(styles.searchInput, {
-          [styles.searchVisible]: visible,
+          [styles.searchInputVisible]: visible,
         })}
       >
         <InputText

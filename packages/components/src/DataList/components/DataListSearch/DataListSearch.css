@@ -1,27 +1,33 @@
 .searchInput {
+  --transition-properties: var(--timing-base) ease-in-out;
+
   position: absolute;
   top: 50%;
   right: var(--space-largest);
   visibility: hidden;
-  z-index: -1;
   width: 0;
   opacity: 0;
   transform: translateY(-50%);
-  transition: all var(--timing-base) ease-in-out;
+  transition: opacity var(--transition-properties),
+    width var(--transition-properties);
+}
 
+.searchInputVisible {
+  visibility: visible;
+  width: calc(100% - var(--space-largest));
+  opacity: 1;
+}
+
+.searchInput,
+.searchInputVisible {
   @media (--medium-screens-and-up) {
     position: static;
+    visibility: visible;
     width: auto;
     opacity: 1;
     transform: none;
+    transition: none;
   }
-}
-
-.searchVisible {
-  visibility: visible;
-  z-index: var(--elevation-base);
-  width: calc(100% - var(--space-largest));
-  opacity: 1;
 }
 
 .searchButton {

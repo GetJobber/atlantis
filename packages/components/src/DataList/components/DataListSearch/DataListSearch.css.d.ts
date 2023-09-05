@@ -1,6 +1,6 @@
 declare const styles: {
   readonly "searchInput": string;
-  readonly "searchVisible": string;
+  readonly "searchInputVisible": string;
   readonly "searchButton": string;
 };
 export = styles;
