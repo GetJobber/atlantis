@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { DataListObject, DataListProps } from "../../DataList.types";
+import { DataListContextProps, DataListObject } from "../../DataList.types";
 
 export const defaultValues = {
   title: "",
@@ -9,7 +9,7 @@ export const defaultValues = {
 };
 
 export const DataListContext =
-  createContext<DataListProps<DataListObject>>(defaultValues);
+  createContext<DataListContextProps<DataListObject>>(defaultValues);
 
 export function useDataListContext() {
   return useContext(DataListContext);

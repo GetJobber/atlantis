@@ -5,10 +5,16 @@ import {
   DataListLayout,
   DataListLayoutProps,
 } from "./components/DataListLayout";
-import { DataListObject, DataListProps } from "./DataList.types";
+import {
+  DataListFiltersProps,
+  DataListObject,
+  DataListProps,
+  DataListSearchProps,
+} from "./DataList.types";
 import {
   generateDataListEmptyState,
   generateHeaderElements,
+  getCompoundComponent,
   getCompoundComponents,
 } from "./DataList.utils";
 import { DataListTotalCount } from "./components/DataListTotalCount";
@@ -18,7 +24,7 @@ import {
   DataListItems,
 } from "./components/DataListLayoutInternal";
 import { useLayoutMediaQueries } from "./hooks/useLayoutMediaQueries";
-import { DataListContext } from "./context/DataListContext";
+import { DataListContext, useDataListContext } from "./context/DataListContext";
 import {
   DataListFilters,
   InternalDataListFilters,
@@ -30,24 +36,37 @@ import {
 import { Heading } from "../Heading";
 
 export function DataList<T extends DataListObject>(props: DataListProps<T>) {
+  const searchComponent = getCompoundComponent<DataListSearchProps>(
+    props.children,
+    DataListSearch,
+  );
+  const filterComponent = getCompoundComponent<DataListFiltersProps>(
+    props.children,
+    DataListFilters,
+  );
+
   return (
-    <DataListContext.Provider value={props}>
-      <InternalDataList {...props} />
+    <DataListContext.Provider
+      value={{ searchComponent, filterComponent, ...props }}
+    >
+      <InternalDataList />
     </DataListContext.Provider>
   );
 }
 
-function InternalDataList<T extends DataListObject>({
-  data,
-  headers,
-  loading = false,
-  filterApplied = false,
-  children,
-  title,
-  totalCount,
-  headerVisibility = { xs: true, sm: true, md: true, lg: true, xl: true },
-}: DataListProps<T>) {
-  const allLayouts = getCompoundComponents<DataListLayoutProps<T>>(
+function InternalDataList() {
+  const {
+    data,
+    headers,
+    loading = false,
+    filterApplied = false,
+    children,
+    title,
+    totalCount,
+    headerVisibility = { xs: true, sm: true, md: true, lg: true, xl: true },
+  } = useDataListContext();
+
+  const allLayouts = getCompoundComponents<DataListLayoutProps<DataListObject>>(
     children,
     DataListLayout,
   );

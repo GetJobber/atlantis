@@ -4,17 +4,11 @@ import classNames from "classnames";
 import { tokens } from "@jobber/design";
 import styles from "./DataListSearch.css";
 import { InputText, InputTextRef } from "../../../InputText";
-import { getCompoundComponent } from "../../DataList.utils";
 import { useDataListContext } from "../../context/DataListContext";
 import { SEARCH_DEBOUNCE_DELAY } from "../../DataList.const";
 import { Button } from "../../../Button";
 import { AnimatedSwitcher } from "../../../AnimatedSwitcher";
-import { DataListFilters } from "../DataListFilters";
-
-interface DataListSearchProps {
-  readonly placeholder?: string;
-  readonly onSearch: (search: string) => void;
-}
+import { DataListSearchProps } from "../../DataList.types";
 
 // This component is meant to capture the props of the DataList.Search
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -29,22 +23,21 @@ export function InternalDataListSearch() {
   const inputRef = useRef<InputTextRef>(null);
   const [visible, setVisible] = useState(false);
 
-  const { children: parentChildren, title } = useDataListContext();
-  const { search, filters } = getListComponents();
+  const { searchComponent, filterComponent, title } = useDataListContext();
 
   const debouncedSearch = useCallback(
     debounce(
-      (value: string) => search?.props?.onSearch(value),
+      (value: string) => searchComponent?.props?.onSearch(value),
       SEARCH_DEBOUNCE_DELAY,
     ),
-    [search?.props.onSearch],
+    [searchComponent?.props.onSearch],
   );
 
-  if (!search) return null;
-  const { placeholder } = search.props;
+  if (!searchComponent) return null;
+  const { placeholder } = searchComponent.props;
 
   return (
-    <div className={classNames({ [styles.withNoFilters]: !filters })}>
+    <div className={classNames({ [styles.withNoFilters]: !filterComponent })}>
       <div
         className={classNames(styles.searchInput, {
           [styles.searchInputVisible]: visible,
@@ -82,16 +75,6 @@ export function InternalDataListSearch() {
       </div>
     </div>
   );
-
-  function getListComponents() {
-    const _search = getCompoundComponent<DataListSearchProps>(
-      parentChildren,
-      DataListSearch,
-    );
-    const _filters = getCompoundComponent(parentChildren, DataListFilters);
-
-    return { search: _search, filters: _filters };
-  }
 
   function getPlaceholder(): string | undefined {
     if (placeholder) return placeholder;
