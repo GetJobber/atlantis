@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useCallback } from "react";
+import debounce from "lodash/debounce";
 import { InputText } from "../../../InputText";
 import { getCompoundComponent } from "../../DataList.utils";
 import { useDataListContext } from "../../context/DataListContext";
+import { SEARCH_DEBOUNCE_DELAY } from "../../DataList.const";
 
 interface DataListSearchProps {
-  onSearch: (search: string) => void;
-  placeholder?: string;
+  readonly placeholder?: string;
+  readonly onSearch: (search: string) => void;
 }
 
 // This component is meant to capture the props of the DataList.Search
@@ -24,14 +26,22 @@ export function InternalDataListSearch() {
     DataListSearch,
   );
 
+  const debouncedSearch = useCallback(
+    debounce(
+      (value: string) => component?.props?.onSearch(value),
+      SEARCH_DEBOUNCE_DELAY,
+    ),
+    [component?.props.onSearch],
+  );
+
   if (!component) return null;
 
-  const { placeholder, onSearch } = component.props;
+  const { placeholder } = component.props;
 
   return (
     <InputText
-      placeholder={placeholder ? placeholder : `Search ${title}...`}
-      onChange={(text: string) => onSearch(text)}
+      placeholder={placeholder || `Search ${title}...`}
+      onChange={debouncedSearch}
       prefix={{ icon: "search" }}
       size="small"
     />
