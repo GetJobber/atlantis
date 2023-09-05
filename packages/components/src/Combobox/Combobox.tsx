@@ -29,10 +29,11 @@ function useComboboxValidation(children: ReactNode): {
   let renderTrigger: ReactNode, renderContent: ReactNode;
 
   childrenArray.forEach(child => {
+    useAssert(
+      isTriggerElement(child) && !!renderTrigger,
+      "Combobox can only have one Trigger element",
+    );
     if (isTriggerElement(child)) {
-      if (renderTrigger) {
-        useAssert(true, "Combobox can only have one Trigger element");
-      }
       renderTrigger = child;
     }
     if (isContentElement(child)) {
@@ -40,9 +41,10 @@ function useComboboxValidation(children: ReactNode): {
     }
   });
 
-  if (!renderTrigger || !renderContent) {
-    useAssert(true, "Combobox must have a Trigger and Content element");
-  }
+  useAssert(
+    !renderTrigger || !renderContent,
+    "Combobox must have a Trigger and Content element",
+  );
 
   return {
     renderContent,
