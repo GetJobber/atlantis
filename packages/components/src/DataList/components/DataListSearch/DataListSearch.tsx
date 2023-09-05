@@ -1,8 +1,9 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import debounce from "lodash/debounce";
 import classNames from "classnames";
+import { tokens } from "@jobber/design";
 import styles from "./DataListSearch.css";
-import { InputText } from "../../../InputText";
+import { InputText, InputTextRef } from "../../../InputText";
 import { getCompoundComponent } from "../../DataList.utils";
 import { useDataListContext } from "../../context/DataListContext";
 import { SEARCH_DEBOUNCE_DELAY } from "../../DataList.const";
@@ -24,13 +25,14 @@ export function DataListSearch(_: DataListSearchProps) {
  * Renders the DataList.Search component
  */
 export function InternalDataListSearch() {
+  const inputRef = useRef<InputTextRef>(null);
+  const [visible, setVisible] = useState(false);
+
   const { children: parentChildren, title } = useDataListContext();
   const component = getCompoundComponent<DataListSearchProps>(
     parentChildren,
     DataListSearch,
   );
-
-  const [visible, setVisible] = useState(false);
 
   const debouncedSearch = useCallback(
     debounce(
@@ -73,6 +75,7 @@ export function InternalDataListSearch() {
         })}
       >
         <InputText
+          ref={inputRef}
           placeholder={placeholder || `Search ${title}...`}
           onChange={debouncedSearch}
           prefix={{ icon: "search" }}
@@ -83,6 +86,11 @@ export function InternalDataListSearch() {
   );
 
   function toggleSearch() {
-    setVisible(!visible);
+    const visibility = !visible;
+    setVisible(visibility);
+
+    if (visibility && inputRef.current) {
+      setTimeout(inputRef.current.focus, tokens["timing-quick"]);
+    }
   }
 }
