@@ -10,6 +10,8 @@ import { Button } from "../../../Button";
 import { AnimatedSwitcher } from "../../../AnimatedSwitcher";
 import { DataListSearchProps } from "../../DataList.types";
 
+export const DATA_LIST_SEARCH_TEST_ID = "ATL-DataList-Search-input-wrapper";
+
 // This component is meant to capture the props of the DataList.Search
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function DataListSearch(_: DataListSearchProps) {
@@ -39,6 +41,7 @@ export function InternalDataListSearch() {
   return (
     <div className={classNames({ [styles.withNoFilters]: !filterComponent })}>
       <div
+        data-testid={DATA_LIST_SEARCH_TEST_ID}
         className={classNames(styles.searchInput, {
           [styles.searchInputVisible]: visible,
         })}
