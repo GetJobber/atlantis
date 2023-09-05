@@ -7,6 +7,7 @@ export const ComboboxContext = React.createContext(
 export interface ComboboxProviderProps {
   readonly children: React.ReactNode;
 }
+
 export function ComboboxContextProvider(
   props: ComboboxProviderProps,
 ): JSX.Element {

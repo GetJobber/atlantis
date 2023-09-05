@@ -1,52 +1,62 @@
-import React, { ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import { useAssert } from "@jobber/hooks/useAssert";
-import { Content } from "./components/Content";
+import { ComboboxContent } from "./components/ComboboxContent";
 import { Action } from "./components/Action";
 import { ComboboxContextProvider } from "./ComboboxProvider";
 import { TriggerButton, TriggerChip } from "./components/Trigger";
 
 export interface ComboboxProps {
-  readonly children: React.ReactNode;
+  readonly children: ReactElement | ReactElement[];
 }
 
+export const COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE =
+  "Combobox can only have one Trigger element";
+export const COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE =
+  "Combobox must have a Trigger and Combobox.Content element";
+
 export const Combobox = (props: ComboboxProps): JSX.Element => {
-  const { renderContent, renderTrigger } = useComboboxValidation(
+  const { contentElement, triggerElement } = useComboboxValidation(
     props.children,
   );
   return (
     <ComboboxContextProvider>
-      {renderTrigger}
-      {renderContent}
+      {triggerElement}
+      {contentElement}
     </ComboboxContextProvider>
   );
 };
 
 function useComboboxValidation(children: ReactNode): {
-  renderTrigger: ReactNode;
-  renderContent: ReactNode;
+  triggerElement: ReactNode;
+  contentElement: ReactNode;
 } {
   const childrenArray = React.Children.toArray(children);
-  let renderTrigger: ReactNode, renderContent: ReactNode;
+  let triggerElement: ReactNode,
+    contentElement: ReactNode,
+    multipleTriggersFound = false;
 
   childrenArray.forEach(child => {
     if (isTriggerElement(child)) {
-      if (renderTrigger) {
-        useAssert(true, "Combobox can only have one Trigger element");
+      if (triggerElement) {
+        multipleTriggersFound = true;
       }
-      renderTrigger = child;
+      triggerElement = child;
     }
     if (isContentElement(child)) {
-      renderContent = child;
+      contentElement = child;
     }
   });
 
-  if (!renderTrigger || !renderContent) {
-    useAssert(true, "Combobox must have a Trigger and Content element");
-  }
+  useAssert(multipleTriggersFound, COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
+
+  useAssert(
+    !triggerElement || !contentElement,
+    COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE,
+  );
 
   return {
-    renderContent,
-    renderTrigger,
+    contentElement,
+    triggerElement,
   };
 }
 
@@ -55,19 +65,20 @@ function isTriggerElement(child: ReactNode): boolean {
     React.isValidElement(child) &&
     typeof child !== "string" &&
     typeof child.type !== "string" &&
-    (child.type.name == "TriggerButton" || child.type.name == "TriggerChip")
+    (child.type === TriggerButton || child.type === TriggerChip)
   );
 }
+
 function isContentElement(child: ReactNode): boolean {
   return (
     React.isValidElement(child) &&
     typeof child !== "string" &&
     typeof child.type !== "string" &&
-    child.type.name == "Content"
+    child.type === ComboboxContent
   );
 }
 
 Combobox.TriggerButton = TriggerButton;
 Combobox.TriggerChip = TriggerChip;
-Combobox.Content = Content;
+Combobox.Content = ComboboxContent;
 Combobox.Action = Action;
