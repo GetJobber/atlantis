@@ -1,12 +1,12 @@
 import { cleanup, render } from "@testing-library/react";
 import React from "react";
-import { Combobox } from "./Combobox";
+import {
+  COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE,
+  COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE,
+  Combobox,
+} from "./Combobox";
 
 afterEach(cleanup);
-
-const triggerErrorMsg = "Combobox can only have one Trigger element";
-const dualErrorMsg =
-  "Combobox must have a Trigger and Combobox.Content element";
 
 describe("Combobox validation", () => {
   it("renders without error if the correct count and composition of elements are present", () => {
@@ -35,7 +35,7 @@ describe("Combobox validation", () => {
     } catch (e) {
       error = e as Error;
     } finally {
-      expect(error?.message).toBe(dualErrorMsg);
+      expect(error?.message).toBe(COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE);
     }
   });
   it("throws an error if there are multiple of the same Trigger element", () => {
@@ -54,7 +54,7 @@ describe("Combobox validation", () => {
     } catch (e) {
       error = e as Error;
     } finally {
-      expect(error?.message).toBe(triggerErrorMsg);
+      expect(error?.message).toBe(COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
     }
   });
   it("throws an error if there are multiple of various Trigger elements", () => {
@@ -73,7 +73,7 @@ describe("Combobox validation", () => {
     } catch (e) {
       error = e as Error;
     } finally {
-      expect(error?.message).toBe(triggerErrorMsg);
+      expect(error?.message).toBe(COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
     }
   });
   it("throws an error if there is no Content element", () => {
@@ -88,7 +88,7 @@ describe("Combobox validation", () => {
     } catch (e) {
       error = e as Error;
     } finally {
-      expect(error?.message).toBe(dualErrorMsg);
+      expect(error?.message).toBe(COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE);
     }
   });
   it("throws an error if there is neither a Content nor Trigger element", () => {
@@ -103,7 +103,7 @@ describe("Combobox validation", () => {
     } catch (e) {
       error = e as Error;
     } finally {
-      expect(error?.message).toBe(dualErrorMsg);
+      expect(error?.message).toBe(COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE);
     }
   });
   it("throws an error if there are multiple Trigger elements and no Content", () => {
@@ -119,7 +119,7 @@ describe("Combobox validation", () => {
     } catch (e) {
       error = e as Error;
     } finally {
-      expect(error?.message).toBe(triggerErrorMsg);
+      expect(error?.message).toBe(COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
     }
   });
 });

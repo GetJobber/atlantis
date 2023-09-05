@@ -9,6 +9,11 @@ export interface ComboboxProps {
   readonly children: ReactElement | ReactElement[];
 }
 
+export const COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE =
+  "Combobox can only have one Trigger element";
+export const COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE =
+  "Combobox must have a Trigger and Combobox.Content element";
+
 export const Combobox = (props: ComboboxProps): JSX.Element => {
   const { contentElement, triggerElement } = useComboboxValidation(
     props.children,
@@ -42,14 +47,11 @@ function useComboboxValidation(children: ReactNode): {
     }
   });
 
-  useAssert(
-    multipleTriggersFound,
-    "Combobox can only have one Trigger element",
-  );
+  useAssert(multipleTriggersFound, COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
 
   useAssert(
     !triggerElement || !contentElement,
-    "Combobox must have a Trigger and Combobox.Content element",
+    COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE,
   );
 
   return {
