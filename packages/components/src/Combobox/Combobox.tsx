@@ -10,35 +10,35 @@ export interface ComboboxProps {
 }
 
 export const Combobox = (props: ComboboxProps): JSX.Element => {
-  const { renderContent, renderTrigger } = useComboboxValidation(
+  const { contentElement, triggerElement } = useComboboxValidation(
     props.children,
   );
   return (
     <ComboboxContextProvider>
-      {renderTrigger}
-      {renderContent}
+      {triggerElement}
+      {contentElement}
     </ComboboxContextProvider>
   );
 };
 
 function useComboboxValidation(children: ReactNode): {
-  renderTrigger: ReactNode;
-  renderContent: ReactNode;
+  triggerElement: ReactNode;
+  contentElement: ReactNode;
 } {
   const childrenArray = React.Children.toArray(children);
-  let renderTrigger: ReactNode,
-    renderContent: ReactNode,
+  let triggerElement: ReactNode,
+    contentElement: ReactNode,
     multipleTriggersFound = false;
 
   childrenArray.forEach(child => {
     if (isTriggerElement(child)) {
-      if (renderTrigger) {
+      if (triggerElement) {
         multipleTriggersFound = true;
       }
-      renderTrigger = child;
+      triggerElement = child;
     }
     if (isContentElement(child)) {
-      renderContent = child;
+      contentElement = child;
     }
   });
 
@@ -48,13 +48,13 @@ function useComboboxValidation(children: ReactNode): {
   );
 
   useAssert(
-    !renderTrigger || !renderContent,
+    !triggerElement || !contentElement,
     "Combobox must have a Trigger and Content element",
   );
 
   return {
-    renderContent,
-    renderTrigger,
+    contentElement,
+    triggerElement,
   };
 }
 
