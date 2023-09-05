@@ -1,0 +1,13 @@
+.header {
+  --offset: 1px;
+
+  position: sticky;
+  top: calc(var(--offset) * -1);
+  z-index: var(--elevation-base);
+  padding-top: var(--offset);
+  background-color: var(--color-surface);
+}
+
+.stuck {
+  border-bottom: solid var(--border-thick) var(--color-border);
+}
