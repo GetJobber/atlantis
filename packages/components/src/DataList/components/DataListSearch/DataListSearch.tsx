@@ -9,6 +9,7 @@ import { useDataListContext } from "../../context/DataListContext";
 import { SEARCH_DEBOUNCE_DELAY } from "../../DataList.const";
 import { Button } from "../../../Button";
 import { AnimatedSwitcher } from "../../../AnimatedSwitcher";
+import { DataListFilters } from "../DataListFilters";
 
 interface DataListSearchProps {
   readonly placeholder?: string;
@@ -29,24 +30,21 @@ export function InternalDataListSearch() {
   const [visible, setVisible] = useState(false);
 
   const { children: parentChildren, title } = useDataListContext();
-  const component = getCompoundComponent<DataListSearchProps>(
-    parentChildren,
-    DataListSearch,
-  );
+  const { search, filters } = getListComponents();
 
   const debouncedSearch = useCallback(
     debounce(
-      (value: string) => component?.props?.onSearch(value),
+      (value: string) => search?.props?.onSearch(value),
       SEARCH_DEBOUNCE_DELAY,
     ),
-    [component?.props.onSearch],
+    [search?.props.onSearch],
   );
 
-  if (!component) return null;
-  const { placeholder } = component.props;
+  if (!search) return null;
+  const { placeholder } = search.props;
 
   return (
-    <>
+    <div className={classNames({ [styles.withNoFilters]: !filters })}>
       <div
         className={classNames(styles.searchInput, {
           [styles.searchInputVisible]: visible,
@@ -54,7 +52,7 @@ export function InternalDataListSearch() {
       >
         <InputText
           ref={inputRef}
-          placeholder={placeholder || `Search ${title}...`}
+          placeholder={getPlaceholder()}
           onChange={debouncedSearch}
           prefix={{ icon: "search" }}
           size="small"
@@ -82,8 +80,24 @@ export function InternalDataListSearch() {
           }
         />
       </div>
-    </>
+    </div>
   );
+
+  function getListComponents() {
+    const _search = getCompoundComponent<DataListSearchProps>(
+      parentChildren,
+      DataListSearch,
+    );
+    const _filters = getCompoundComponent(parentChildren, DataListFilters);
+
+    return { search: _search, filters: _filters };
+  }
+
+  function getPlaceholder(): string | undefined {
+    if (placeholder) return placeholder;
+    if (title) return `Search ${title}...`;
+    return `Search...`;
+  }
 
   function toggleSearch() {
     const visibility = !visible;

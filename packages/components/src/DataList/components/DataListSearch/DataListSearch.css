@@ -38,3 +38,26 @@
     display: none;
   }
 }
+
+/*
+ * No Filters Styling
+ *
+ * When there are no filters, the search input is always visible.
+ * ------------------------------------------------------------------------- */
+
+.withNoFilters .searchInput {
+  position: static;
+  visibility: visible;
+  width: auto;
+  opacity: 1;
+  transform: none;
+  transition: none;
+
+  @media (--medium-screens-and-up) {
+    max-width: 30%;
+  }
+}
+
+.withNoFilters .searchButton {
+  display: none;
+}

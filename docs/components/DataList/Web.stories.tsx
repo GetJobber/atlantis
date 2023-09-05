@@ -124,7 +124,7 @@ const Template: ComponentStory<typeof DataList> = args => {
 
       <DataList.Search
         onSearch={search => console.log(search)}
-        placeholder="Search clients..."
+        placeholder="Search characters..."
       />
 
       <DataList.Layout size="md">
