@@ -8,6 +8,13 @@
   background-color: var(--color-surface);
 }
 
+/**
+ * Use an inner box shadow to create the border that gets covered by the column
+ * headers border when it shows up.
+ *
+ * Mostly to prevent us from writing some complex JS to remove the border when
+ * the column headers show up
+ */
 .stuck {
-  border-bottom: solid var(--border-thick) var(--color-border);
+  box-shadow: inset 0 calc(var(--border-thick) * -1) var(--color-border);
 }

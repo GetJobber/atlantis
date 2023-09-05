@@ -19,9 +19,7 @@ export function DataListStickyHeader({ children }: PropsWithChildren<object>) {
   useEffect(() => {
     if (!window.IntersectionObserver) return;
 
-    const observer = new IntersectionObserver(handleObserver, {
-      threshold: [1],
-    });
+    const observer = new IntersectionObserver(handleObserver, { threshold: 1 });
     ref.current && observer.observe(ref.current);
 
     return () => {
