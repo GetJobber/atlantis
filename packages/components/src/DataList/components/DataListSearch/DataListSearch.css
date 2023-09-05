@@ -1,3 +1,27 @@
-.search {
-  width: 200px;
+.searchInput {
+  display: none;
+  position: absolute;
+  top: 50%;
+  right: var(--space-largest);
+  width: calc(100% - var(--space-largest));
+  transform: translateY(-50%);
+
+  @media (--medium-screens-and-up) {
+    display: block;
+    position: static;
+    width: auto;
+    transform: none;
+  }
+}
+
+.searchVisible {
+  display: block;
+}
+
+.searchButton {
+  display: block;
+
+  @media (--medium-screens-and-up) {
+    display: none;
+  }
 }
