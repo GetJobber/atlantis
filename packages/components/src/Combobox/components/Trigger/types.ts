@@ -1,8 +1,14 @@
 import { ButtonProps } from "../../../Button";
 
-export interface TriggerProps extends Pick<ButtonProps, "type" | "variation"> {
+export interface TriggerProps {
   /**
-   * Trigger label
+   * The label text of the trigger.
    */
   readonly label: string;
 }
+
+export interface TriggerButtonProps
+  extends TriggerProps,
+    Pick<ButtonProps, "type" | "variation"> {}
+
+export type TriggerChipProps = TriggerProps;

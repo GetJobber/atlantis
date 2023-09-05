@@ -1,11 +1,11 @@
 import React from "react";
-import { TriggerProps } from "./types";
 import styles from "./TriggerChip.css";
-import { Icon } from "../../../Icon";
-import { ComboboxContext } from "../../ComboboxProvider";
-import { Typography } from "../../../Typography";
+import { TriggerChipProps } from "../types";
+import { Icon } from "../../../../Icon";
+import { ComboboxContext } from "../../../ComboboxProvider";
+import { Typography } from "../../../../Typography";
 
-export function TriggerChip(props: TriggerProps): JSX.Element {
+export function TriggerChip(props: TriggerChipProps): JSX.Element {
   const { open, setOpen } = React.useContext(ComboboxContext);
 
   return (

@@ -1,47 +1,58 @@
 import React, { useContext } from "react";
 import { fireEvent, render } from "@testing-library/react";
-import { TriggerButton } from "./TriggerButton";
+import { TriggerChip } from "./TriggerChip";
 import {
   ComboboxContext,
   ComboboxContextProvider,
-} from "../../ComboboxProvider";
+} from "../../../ComboboxProvider";
 
-function TriggerButtonTestWrapper() {
+function TriggerChipTestWrapper() {
   const { open } = useContext(ComboboxContext);
 
   return (
     <>
       <span data-testid="combobox-state">{open ? "Open" : "Closed"}</span>
-      <TriggerButton label="Open Combobox" />
+      <TriggerChip label="Open Combobox" />
     </>
   );
 }
-
-describe("TriggerButton", () => {
+describe("TriggerChip", () => {
   it("renders a label", () => {
     const { getByText } = render(
       <ComboboxContextProvider>
-        <TriggerButton label="Open Combobox" />
+        <TriggerChip label="Open Combobox" />
       </ComboboxContextProvider>,
     );
 
     expect(getByText("Open Combobox")).toBeInTheDocument();
   });
 
+  it("renders the 'add' icon", () => {
+    const { getByTestId } = render(
+      <ComboboxContextProvider>
+        <TriggerChip label="Open Combobox" />
+      </ComboboxContextProvider>,
+    );
+
+    const iconElement = getByTestId("add");
+
+    expect(iconElement).toBeInTheDocument();
+  });
+
   it("toggles the combobox when clicked", () => {
     const { getByRole, getByTestId } = render(
       <ComboboxContextProvider>
-        <TriggerButtonTestWrapper />
+        <TriggerChipTestWrapper />
       </ComboboxContextProvider>,
     );
-    const triggerButton = getByRole("button");
+    const triggerChip = getByRole("button");
 
     expect(getByTestId("combobox-state")).toHaveTextContent("Closed");
 
-    fireEvent.click(triggerButton);
+    fireEvent.click(triggerChip);
     expect(getByTestId("combobox-state")).toHaveTextContent("Open");
 
-    fireEvent.click(triggerButton);
+    fireEvent.click(triggerChip);
     expect(getByTestId("combobox-state")).toHaveTextContent("Closed");
   });
 });
