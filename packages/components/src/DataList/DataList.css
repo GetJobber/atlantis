@@ -24,7 +24,6 @@
   padding: var(--space-small) 0;
   gap: var(--space-small);
   grid-template-columns: auto max-content;
-  align-items: center;
 }
 
 .headerTitles {
