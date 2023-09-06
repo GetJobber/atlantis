@@ -1,10 +1,11 @@
 .filters {
+  align-self: center;
   position: relative;
+  min-width: 0;
 }
 
 .filterActions {
   display: grid;
-  padding: var(--space-small) 0;
   overflow-x: auto;
   grid-auto-flow: column;
   grid-auto-columns: max-content;

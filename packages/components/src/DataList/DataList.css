@@ -19,6 +19,13 @@
   display: none;
 }
 
+.headerFilters {
+  display: grid;
+  padding: var(--space-small) 0;
+  gap: var(--space-small);
+  grid-template-columns: auto max-content;
+}
+
 .headerTitles {
   padding: var(--space-small);
   border-bottom: var(--border-thick) solid var(--color-border);
