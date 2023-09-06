@@ -20,7 +20,7 @@ const ComboboxButton: ComponentStory<typeof Combobox> = args => {
           console.log(selection);
         }}
       >
-        <Combobox.TriggerButton triggerLabel="Select a teammate" />
+        <Combobox.TriggerButton label="Select a teammate" />
         <Combobox.Content
           options={[
             "Bilbo Baggins",
@@ -42,15 +42,11 @@ const ComboboxButton: ComponentStory<typeof Combobox> = args => {
         >
           <Combobox.Action
             label="Add a teammate"
-            onClick={() => {
-              console.log("Action");
-            }}
+            onClick={() => alert("Added Teammate")}
           />
           <Combobox.Action
             label="Manage teammates"
-            onClick={() => {
-              console.log("Action");
-            }}
+            onClick={() => alert("Managed Teammate")}
           />
         </Combobox.Content>
       </Combobox>
@@ -62,7 +58,7 @@ const ComboboxChip: ComponentStory<typeof Combobox> = args => {
   return (
     <div>
       <Combobox {...args}>
-        <Combobox.TriggerChip triggerLabel="Select a tag" />
+        <Combobox.TriggerChip label="Select a tag" />
         <Combobox.Content
           options={[
             "Bilbo Baggins",
@@ -74,15 +70,11 @@ const ComboboxChip: ComponentStory<typeof Combobox> = args => {
         >
           <Combobox.Action
             label="Add a teammate"
-            onClick={() => {
-              console.log("Action");
-            }}
+            onClick={() => alert("Added Teammate")}
           />
           <Combobox.Action
             label="Manage teammates"
-            onClick={() => {
-              console.log("Action");
-            }}
+            onClick={() => alert("Managed Teammate")}
           />
         </Combobox.Content>
       </Combobox>
