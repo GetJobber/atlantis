@@ -1,6 +1,4 @@
 .content {
-  position: relative;
-  visibility: visible;
   z-index: var(--elevation-tooltip);
   width: max-content;
   max-width: var(--popover--width);
@@ -17,6 +15,10 @@
 .content.hidden {
   display: none;
   visibility: hidden;
+}
+
+.option {
+  display: block;
 }
 
 .search {

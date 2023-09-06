@@ -1,7 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { RefObject, useEffect, useRef, useState } from "react";
 
 export const ComboboxContext = React.createContext(
-  {} as { open: boolean; setOpen: (open: boolean) => void },
+  {} as {
+    open: boolean;
+    setOpen: (open: boolean) => void;
+    wrapperRef: RefObject<HTMLDivElement>;
+  },
 );
 
 export interface ComboboxProviderProps {
@@ -12,13 +16,13 @@ export function ComboboxContextProvider(
   props: ComboboxProviderProps,
 ): JSX.Element {
   const [open, setOpen] = useState<boolean>(false);
-  const contentRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
-        contentRef.current &&
-        !contentRef.current.contains(event.target as Node)
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target as Node)
       ) {
         setOpen(false);
       }
@@ -28,11 +32,11 @@ export function ComboboxContextProvider(
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [contentRef]);
+  }, [wrapperRef]);
 
   return (
-    <ComboboxContext.Provider value={{ open, setOpen }}>
-      <div ref={contentRef}>{props.children}</div>
+    <ComboboxContext.Provider value={{ open, setOpen, wrapperRef }}>
+      <div ref={wrapperRef}>{props.children}</div>
     </ComboboxContext.Provider>
   );
 }

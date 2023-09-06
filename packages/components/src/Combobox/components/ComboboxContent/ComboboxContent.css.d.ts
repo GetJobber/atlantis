@@ -1,6 +1,7 @@
 declare const styles: {
   readonly "content": string;
   readonly "hidden": string;
+  readonly "option": string;
   readonly "search": string;
   readonly "searchInput": string;
   readonly "triggerIcon": string;
