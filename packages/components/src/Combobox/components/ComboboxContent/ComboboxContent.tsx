@@ -5,11 +5,16 @@ import styles from "./ComboboxContent.css";
 import { Icon } from "../../../Icon";
 import { ComboboxContext } from "../../ComboboxProvider";
 
+interface ComboboxOption {
+  id: string;
+  label: string;
+}
+
 interface ComboboxContentProps {
   /**
    * options for the combobox
    */
-  readonly options: string[];
+  readonly options: ComboboxOption[];
 
   /**
    * onSelection handler.
@@ -25,7 +30,7 @@ interface ComboboxContentProps {
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   const [searchValue, setSearchValue] = useState<string>("");
   const [selectedOption, setSelectedOption] = useState<string>("");
-  const { open, wrapperRef } = React.useContext(ComboboxContext);
+  const { open, setOpen, wrapperRef } = React.useContext(ComboboxContext);
 
   const popperRef = useRef<HTMLDivElement>(null);
   const { styles: popperStyles, attributes } = usePopper(
@@ -45,7 +50,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   );
 
   const filteredOptions = props.options.filter(option =>
-    option.toLowerCase().includes(searchValue.toLowerCase()),
+    option.label.toLowerCase().includes(searchValue.toLowerCase()),
   );
 
   return (
@@ -59,7 +64,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         <input
           type="search"
           className={styles.searchInput}
-          placeholder="Search teammates"
+          placeholder={`Search options`}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             handleSearch(event)
           }
@@ -81,14 +86,15 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         <button
           className={classnames(
             styles.option,
-            option === selectedOption && styles.selectedOption,
+            option.id === selectedOption && styles.selectedOption,
           )}
           role="button"
           tabIndex={0}
-          key={option}
+          key={option.id}
           onClick={handleSelection}
+          data-value={option.id}
         >
-          {option}
+          {option.label}
         </button>
       ))}
 
@@ -103,9 +109,13 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   }
 
   function handleSelection(event: React.MouseEvent<HTMLButtonElement>) {
-    const selected = event.currentTarget.innerText;
-    setSelectedOption(selected);
+    const selected = event.currentTarget.dataset.value;
+
+    if (selected) {
+      setSelectedOption(selected);
+      props.onSelection(selected);
+    }
     setSearchValue("");
-    props.onSelection(selected);
+    setOpen(false);
   }
 }
