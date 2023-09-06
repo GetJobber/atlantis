@@ -1,3 +1,5 @@
+import { tokens } from "@jobber/design";
+
 /**
  *  Grab the type from breakpoints const
  */
@@ -20,3 +22,5 @@ export const BREAKPOINT_SIZES: Record<Breakpoints, number> = {
   lg: 1080,
   xl: 1440,
 };
+
+export const SEARCH_DEBOUNCE_DELAY = tokens["timing-slowest"];

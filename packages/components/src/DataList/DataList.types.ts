@@ -83,3 +83,18 @@ export interface DataListProps<T extends DataListObject> {
    */
   readonly headerVisibility?: { [Breakpoint in Breakpoints]?: boolean };
 }
+
+export interface DataListSearchProps {
+  readonly placeholder?: string;
+  readonly onSearch: (search: string) => void;
+}
+
+export interface DataListFiltersProps {
+  readonly children: ReactElement | ReactElement[];
+}
+
+export interface DataListContextProps<T extends DataListObject>
+  extends DataListProps<T> {
+  readonly filterComponent?: ReactElement<DataListFiltersProps>;
+  readonly searchComponent?: ReactElement<DataListSearchProps>;
+}
