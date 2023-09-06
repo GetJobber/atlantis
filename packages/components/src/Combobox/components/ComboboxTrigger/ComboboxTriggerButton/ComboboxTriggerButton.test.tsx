@@ -1,58 +1,47 @@
 import React, { useContext } from "react";
 import { fireEvent, render } from "@testing-library/react";
-import { TriggerChip } from "./TriggerChip";
+import { ComboboxTriggerButton } from "./ComboboxTriggerButton";
 import {
   ComboboxContext,
   ComboboxContextProvider,
 } from "../../../ComboboxProvider";
 
-function TriggerChipTestWrapper() {
+function TriggerButtonTestWrapper() {
   const { open } = useContext(ComboboxContext);
 
   return (
     <>
       <span data-testid="combobox-state">{open ? "Open" : "Closed"}</span>
-      <TriggerChip label="Open Combobox" />
+      <ComboboxTriggerButton label="Open Combobox" />
     </>
   );
 }
-describe("TriggerChip", () => {
+
+describe("TriggerButton", () => {
   it("renders a label", () => {
     const { getByText } = render(
       <ComboboxContextProvider>
-        <TriggerChip label="Open Combobox" />
+        <ComboboxTriggerButton label="Open Combobox" />
       </ComboboxContextProvider>,
     );
 
     expect(getByText("Open Combobox")).toBeInTheDocument();
   });
 
-  it("renders the 'add' icon", () => {
-    const { getByTestId } = render(
-      <ComboboxContextProvider>
-        <TriggerChip label="Open Combobox" />
-      </ComboboxContextProvider>,
-    );
-
-    const iconElement = getByTestId("add");
-
-    expect(iconElement).toBeInTheDocument();
-  });
-
   it("toggles the combobox when clicked", () => {
     const { getByRole, getByTestId } = render(
       <ComboboxContextProvider>
-        <TriggerChipTestWrapper />
+        <TriggerButtonTestWrapper />
       </ComboboxContextProvider>,
     );
-    const triggerChip = getByRole("button");
+    const triggerButton = getByRole("button");
 
     expect(getByTestId("combobox-state")).toHaveTextContent("Closed");
 
-    fireEvent.click(triggerChip);
+    fireEvent.click(triggerButton);
     expect(getByTestId("combobox-state")).toHaveTextContent("Open");
 
-    fireEvent.click(triggerChip);
+    fireEvent.click(triggerButton);
     expect(getByTestId("combobox-state")).toHaveTextContent("Closed");
   });
 });

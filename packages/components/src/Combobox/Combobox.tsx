@@ -3,7 +3,10 @@ import { useAssert } from "@jobber/hooks/useAssert";
 import { ComboboxContent } from "./components/ComboboxContent";
 import { Action } from "./components/Action";
 import { ComboboxContextProvider } from "./ComboboxProvider";
-import { TriggerButton, TriggerChip } from "./components/ComboboxTrigger";
+import {
+  ComboboxTriggerButton,
+  ComboboxTriggerChip,
+} from "./components/ComboboxTrigger";
 
 export interface ComboboxProps {
   readonly children: ReactElement | ReactElement[];
@@ -63,7 +66,7 @@ function useComboboxValidation(children: ReactNode): {
 function isTriggerElement(child: ReactNode): boolean {
   return (
     React.isValidElement(child) &&
-    (child.type === TriggerButton || child.type === TriggerChip)
+    (child.type === ComboboxTriggerButton || child.type === ComboboxTriggerChip)
   );
 }
 
@@ -71,7 +74,7 @@ function isContentElement(child: ReactNode): boolean {
   return React.isValidElement(child) && child.type === ComboboxContent;
 }
 
-Combobox.TriggerButton = TriggerButton;
-Combobox.TriggerChip = TriggerChip;
+Combobox.TriggerButton = ComboboxTriggerButton;
+Combobox.TriggerChip = ComboboxTriggerChip;
 Combobox.Content = ComboboxContent;
 Combobox.Action = Action;

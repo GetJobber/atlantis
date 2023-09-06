@@ -1,2 +1,2 @@
-export { TriggerButton } from "./TriggerButton/TriggerButton";
-export { TriggerChip } from "./TriggerChip/TriggerChip";
+export { ComboboxTriggerButton } from "./ComboboxTriggerButton/ComboboxTriggerButton";
+export { ComboboxTriggerChip } from "./ComboboxTriggerChip/ComboboxTriggerChip";
