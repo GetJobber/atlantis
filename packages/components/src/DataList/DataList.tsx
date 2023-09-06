@@ -33,6 +33,7 @@ import {
   DataListSearch,
   InternalDataListSearch,
 } from "./components/DataListSearch";
+import { DataListStickyHeader } from "./components/DataListStickyHeader/DataListStickyHeader";
 import { Heading } from "../Heading";
 
 export function DataList<T extends DataListObject>(props: DataListProps<T>) {
@@ -89,7 +90,7 @@ function InternalDataList() {
         <DataListTotalCount totalCount={totalCount} loading={loading} />
       </div>
 
-      <div className={styles.header}>
+      <DataListStickyHeader>
         <div className={styles.headerFilters}>
           <InternalDataListFilters />
           <InternalDataListSearch />
@@ -103,7 +104,7 @@ function InternalDataList() {
             mediaMatches={mediaMatches}
           />
         )}
-      </div>
+      </DataListStickyHeader>
 
       <DataListLoadingState
         loading={loading}
