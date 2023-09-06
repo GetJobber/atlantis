@@ -13,12 +13,7 @@ export default {
 
 const ComboboxButton: ComponentStory<typeof Combobox> = args => {
   return (
-    <Combobox
-      {...args}
-      onSelection={selection => {
-        console.log(selection);
-      }}
-    >
+    <Combobox {...args}>
       <Combobox.TriggerButton
         label="Select a teammate"
         variation="subtle"
@@ -44,6 +39,9 @@ const ComboboxButton: ComponentStory<typeof Combobox> = args => {
           "Merry Brandybuck3",
           "Sam Gamgee3",
         ]}
+        onSelection={selection => {
+          console.log(selection);
+        }}
       >
         <Combobox.Action
           label="Add a teammate"
@@ -74,6 +72,9 @@ const ComboboxChip: ComponentStory<typeof Combobox> = args => {
           "Merry Brandybuck",
           "Sam Gamgee",
         ]}
+        onSelection={selection => {
+          console.log(selection);
+        }}
       >
         <Combobox.Action
           label="Add a teammate"
