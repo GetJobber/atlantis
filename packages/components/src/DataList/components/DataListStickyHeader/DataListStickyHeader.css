@@ -1,5 +1,6 @@
 .header {
   --offset: 1px;
+  --sticky-header-transition-properties: var(--timing-base) ease-in-out;
 
   position: sticky;
   top: calc(var(--offset) * -1);
@@ -9,12 +10,31 @@
 }
 
 /**
- * Use an inner box shadow to create the border that gets covered by the column
- * headers border when it shows up.
+ * Draw a border that gets covered by the column headers border when it shows up.
  *
  * Mostly to prevent us from writing some complex JS to remove the border when
- * the column headers show up
+ * the column headers show up.
  */
-.stuck {
-  box-shadow: inset 0 calc(var(--border-thick) * -1) var(--color-border);
+
+.header::before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  z-index: -1;
+  width: 0;
+  height: 0;
+  background-color: var(--color-border);
+  transform: translateX(-50%);
+  transition: height var(--sticky-header-transition-properties)
+      var(--timing-quick),
+    width var(--sticky-header-transition-properties);
+}
+
+.stuck::before {
+  width: 100%;
+  height: var(--border-thick);
+  transition: height var(--sticky-header-transition-properties),
+    width var(--sticky-header-transition-properties) var(--timing-quick);
 }
