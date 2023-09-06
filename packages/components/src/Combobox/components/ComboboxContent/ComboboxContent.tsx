@@ -1,5 +1,6 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useRef, useState } from "react";
 import classnames from "classnames";
+import { usePopper } from "react-popper";
 import styles from "./ComboboxContent.css";
 import { Icon } from "../../../Icon";
 import { ComboboxContext } from "../../ComboboxProvider";
@@ -24,14 +25,36 @@ interface ComboboxContentProps {
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   const [searchValue, setSearchValue] = useState<string>("");
   const [selectedOption, setSelectedOption] = useState<string>("");
-  const { open } = React.useContext(ComboboxContext);
+  const { open, wrapperRef } = React.useContext(ComboboxContext);
+
+  const popperRef = useRef<HTMLDivElement>(null);
+  const { styles: popperStyles, attributes } = usePopper(
+    wrapperRef.current,
+    popperRef.current,
+    {
+      modifiers: [
+        {
+          name: "flip",
+          options: {
+            fallbackPlacements: ["top-start"],
+          },
+        },
+      ],
+      placement: "bottom-start",
+    },
+  );
 
   const filteredOptions = props.options.filter(option =>
     option.toLowerCase().includes(searchValue.toLowerCase()),
   );
 
   return (
-    <div className={classnames(styles.content, !open && styles.hidden)}>
+    <div
+      ref={popperRef}
+      className={classnames(styles.content, !open && styles.hidden)}
+      style={popperStyles.popper}
+      {...attributes.popper}
+    >
       <div className={styles.search}>
         <input
           type="search"
@@ -57,6 +80,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       {filteredOptions.map(option => (
         <button
           className={classnames(
+            styles.option,
             option === selectedOption && styles.selectedOption,
           )}
           role="button"
