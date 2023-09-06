@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.31.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.30.0...@jobber/components@4.31.0) (2023-09-06)
+
+
+### Bug Fixes
+
+* **components:** add border on DataList header when scrolling without column headers ([#1517](https://github.com/GetJobber/atlantis/issues/1517)) ([b91b32e](https://github.com/GetJobber/atlantis/commit/b91b32e44055e6fd182edf580890d25ac71f4c8e))
+
+
+### Features
+
+* **components:** add search ability for data list ([#1514](https://github.com/GetJobber/atlantis/issues/1514)) ([9aa2d57](https://github.com/GetJobber/atlantis/commit/9aa2d571439bc10c7473750abd3f522ef05ddba2))
+
+
+
+
+
 # [4.30.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.29.0...@jobber/components@4.30.0) (2023-09-04)
 
 
