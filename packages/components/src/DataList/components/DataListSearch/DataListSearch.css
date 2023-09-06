@@ -3,12 +3,12 @@
   --button-offset: calc(var(--space-largest) - var(--space-smallest));
 
   position: absolute;
-  top: 50%;
+  /* Inputs are off by 1 when put beside a button */
+  top: calc(var(--space-small) - 1px);
   right: var(--button-offset);
   visibility: hidden;
   width: 0;
   opacity: 0;
-  transform: translateY(-50%);
   transition: opacity var(--transition-properties),
     width var(--transition-properties), visibility var(--transition-properties);
 }
@@ -26,7 +26,6 @@
     visibility: visible;
     width: auto;
     opacity: 1;
-    transform: none;
     transition: none;
   }
 }
@@ -50,7 +49,6 @@
   visibility: visible;
   width: auto;
   opacity: 1;
-  transform: none;
   transition: none;
 
   @media (--medium-screens-and-up) {
