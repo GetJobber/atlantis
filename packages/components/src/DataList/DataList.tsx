@@ -66,7 +66,7 @@ function InternalDataList() {
     title,
     totalCount,
     headerVisibility = { xs: true, sm: true, md: true, lg: true, xl: true },
-    loadingState,
+    loadingState = "none",
   } = useDataListContext();
 
   const allLayouts = getCompoundComponents<DataListLayoutProps<DataListObject>>(

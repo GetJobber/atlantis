@@ -62,7 +62,7 @@ export interface DataListProps<T extends DataListObject> {
    * - `"filtering"` - loading after a filter is applied
    * - `"loadingMore"` - loading more data after the user scrolls to the bottom
    */
-  readonly loadingState?: "initial" | "filtering" | "loadingMore";
+  readonly loadingState?: "initial" | "filtering" | "loadingMore" | "none";
 
   /**
    * Temporary prop for setting default state for if filters are applied
