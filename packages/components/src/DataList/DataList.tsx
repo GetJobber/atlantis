@@ -71,12 +71,8 @@ function InternalDataList() {
     totalCount,
     headerVisibility = { xs: true, sm: true, md: true, lg: true, xl: true },
     loadingState = "none",
+    layoutComponents,
   } = useDataListContext();
-
-  const allLayouts = getCompoundComponents<DataListLayoutProps<DataListObject>>(
-    children,
-    DataListLayout,
-  );
 
   const headerData = generateHeaderElements(headers);
   const mediaMatches = useLayoutMediaQueries();
@@ -105,7 +101,7 @@ function InternalDataList() {
 
         {headerData && (
           <DataListHeader
-            layouts={allLayouts}
+            layouts={layoutComponents}
             headerData={headerData}
             headerVisibility={headerVisibility}
             mediaMatches={mediaMatches}
@@ -116,7 +112,7 @@ function InternalDataList() {
       {initialLoading && (
         <DataListLoadingState
           headers={headers}
-          layouts={allLayouts}
+          layouts={layoutComponents}
           mediaMatches={mediaMatches}
         />
       )}
@@ -124,7 +120,7 @@ function InternalDataList() {
       {!initialLoading && (
         <DataListItems
           data={data}
-          layouts={allLayouts}
+          layouts={layoutComponents}
           mediaMatches={mediaMatches}
         />
       )}

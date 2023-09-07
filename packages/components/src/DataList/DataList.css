@@ -1,12 +1,13 @@
 .wrapper {
   position: relative;
+  z-index: var(--elevation-default);
   flex: 1;
 }
 
 .titleContainer {
   display: flex;
   position: relative;
-  z-index: 1;
+  z-index: var(--elevation-base);
   margin-bottom: var(--space-small);
   align-items: center;
 }
