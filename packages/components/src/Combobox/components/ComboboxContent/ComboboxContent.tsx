@@ -2,6 +2,7 @@ import React, { ReactElement, useRef, useState } from "react";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
 import { usePopper } from "react-popper";
+import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import styles from "./ComboboxContent.css";
 import { Icon } from "../../../Icon";
 import { ComboboxContext } from "../../ComboboxProvider";
@@ -32,6 +33,12 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   const [searchValue, setSearchValue] = useState<string>("");
   const [selectedOptionId, setSelectedOptionId] = useState<string>("");
   const { open, setOpen, wrapperRef } = React.useContext(ComboboxContext);
+
+  useOnKeyDown(() => {
+    if (open) {
+      setOpen(false);
+    }
+  }, "Escape");
 
   const popperRef = useRef<HTMLDivElement>(null);
   const { styles: popperStyles, attributes } = usePopper(
