@@ -181,10 +181,7 @@ const Template: ComponentStory<typeof DataList> = args => {
 
       <DataList.EmptyState
         message="Character list is looking empty"
-        action={{
-          label: "New Character",
-          onClick: () => alert("New client triggered"),
-        }}
+        action={<Button label="New character" />}
       />
     </DataList>
   );

@@ -4,6 +4,10 @@ import { DataListContext } from "../../context/DataListContext";
 import { DataListEmptyStateProps } from "../../DataList.types";
 import { Text } from "../../../Text";
 import { Button, ButtonProps } from "../../../Button";
+import {
+  EMPTY_FILTER_RESULTS_MESSAGE,
+  EMPTY_RESULTS_MESSAGE,
+} from "../../DataList.const";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function DataListEmptyState(_: DataListEmptyStateProps) {
@@ -30,13 +34,14 @@ export function InternalDataListEmptyState() {
 
     if (filterApplied) {
       return {
-        message: filteredEmptyState?.props.message || "No results found",
+        message:
+          filteredEmptyState?.props.message || EMPTY_FILTER_RESULTS_MESSAGE,
         action: filteredEmptyState?.props.action,
       };
     }
 
     return {
-      message: defaultEmptyState?.props.message || "List is looking empty",
+      message: defaultEmptyState?.props.message || EMPTY_RESULTS_MESSAGE,
       action: defaultEmptyState?.props.action,
     };
   }

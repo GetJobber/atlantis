@@ -1,39 +1,42 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./DataList.css";
-import { EmptyState } from "./components/EmptyState";
 import {
   DataListLayout,
   DataListLayoutProps,
 } from "./components/DataListLayout";
+import { DataListTotalCount } from "./components/DataListTotalCount";
+import { DataListLoadingState } from "./components/DataListLoadingState";
 import {
+  DataListHeader,
+  DataListItems,
+} from "./components/DataListLayoutInternal";
+import {
+  DataListFilters,
+  InternalDataListFilters,
+} from "./components/DataListFilters";
+import { DataListStickyHeader } from "./components/DataListStickyHeader";
+import {
+  DataListSearch,
+  InternalDataListSearch,
+} from "./components/DataListSearch";
+import {
+  DataListEmptyState,
+  InternalDataListEmptyState,
+} from "./components/DataListEmptyState";
+import { DataListContext, useDataListContext } from "./context/DataListContext";
+import {
+  DataListEmptyStateProps,
   DataListFiltersProps,
   DataListObject,
   DataListProps,
   DataListSearchProps,
 } from "./DataList.types";
 import {
-  generateDataListEmptyState,
   generateHeaderElements,
   getCompoundComponent,
   getCompoundComponents,
 } from "./DataList.utils";
-import { DataListTotalCount } from "./components/DataListTotalCount";
-import { DataListLoadingState } from "./components/DataListLoadingState/DataListLoadingState";
-import {
-  DataListHeader,
-  DataListItems,
-} from "./components/DataListLayoutInternal";
 import { useLayoutMediaQueries } from "./hooks/useLayoutMediaQueries";
-import { DataListContext, useDataListContext } from "./context/DataListContext";
-import {
-  DataListFilters,
-  InternalDataListFilters,
-} from "./components/DataListFilters";
-import {
-  DataListSearch,
-  InternalDataListSearch,
-} from "./components/DataListSearch";
-import { DataListStickyHeader } from "./components/DataListStickyHeader/DataListStickyHeader";
 import { Heading } from "../Heading";
 
 export function DataList<T extends DataListObject>(props: DataListProps<T>) {
@@ -45,10 +48,19 @@ export function DataList<T extends DataListObject>(props: DataListProps<T>) {
     props.children,
     DataListFilters,
   );
+  const emptyStateComponents = getCompoundComponents<DataListEmptyStateProps>(
+    props.children,
+    DataListEmptyState,
+  );
 
   return (
     <DataListContext.Provider
-      value={{ searchComponent, filterComponent, ...props }}
+      value={{
+        searchComponent,
+        filterComponent,
+        emptyStateComponents,
+        ...props,
+      }}
     >
       <InternalDataList />
     </DataListContext.Provider>
@@ -60,7 +72,6 @@ function InternalDataList() {
     data,
     headers,
     loading = false,
-    filterApplied = false,
     children,
     title,
     totalCount,
@@ -76,12 +87,6 @@ function InternalDataList() {
   const mediaMatches = useLayoutMediaQueries();
 
   const showEmptyState = !loading && data.length === 0;
-  const [isFilterApplied, setIsFilterApplied] = useState(filterApplied);
-  const EmptyStateComponent = generateDataListEmptyState({
-    children,
-    isFilterApplied,
-    setIsFilterApplied,
-  });
 
   return (
     <div className={styles.wrapper}>
@@ -121,12 +126,12 @@ function InternalDataList() {
         />
       )}
 
-      {showEmptyState && EmptyStateComponent}
+      {showEmptyState && <InternalDataListEmptyState />}
     </div>
   );
 }
 
 DataList.Layout = DataListLayout;
-DataList.EmptyState = EmptyState;
+DataList.EmptyState = DataListEmptyState;
 DataList.Filters = DataListFilters;
 DataList.Search = DataListSearch;

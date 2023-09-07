@@ -1,5 +1,6 @@
 import { ReactElement, ReactNode } from "react";
 import { Breakpoints } from "./DataList.const";
+import { ButtonProps } from "../Button";
 
 export { Breakpoints } from "./DataList.const";
 
@@ -93,8 +94,15 @@ export interface DataListFiltersProps {
   readonly children: ReactElement | ReactElement[];
 }
 
+export interface DataListEmptyStateProps {
+  readonly message: string;
+  readonly action?: ReactElement<ButtonProps>;
+  readonly type?: "filtered" | "empty";
+}
+
 export interface DataListContextProps<T extends DataListObject>
   extends DataListProps<T> {
   readonly filterComponent?: ReactElement<DataListFiltersProps>;
   readonly searchComponent?: ReactElement<DataListSearchProps>;
+  readonly emptyStateComponents?: ReactElement<DataListEmptyStateProps>[];
 }

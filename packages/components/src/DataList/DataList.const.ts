@@ -7,8 +7,8 @@ type ValuesOf<T extends readonly unknown[]> = T[number];
 
 export type Breakpoints = ValuesOf<typeof BREAKPOINTS>;
 
-export const EMPTY_FILTER_RESULTS_MESSAGE = "No Results for Selected Filters";
-export const EMPTY_FILTER_RESULTS_ACTION_LABEL = "Clear Filters";
+export const EMPTY_RESULTS_MESSAGE = "List is looking empty";
+export const EMPTY_FILTER_RESULTS_MESSAGE = "No results for selected filters";
 
 /**
  * Breakpoints that we support

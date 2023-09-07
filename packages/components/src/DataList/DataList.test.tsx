@@ -4,7 +4,6 @@ import { DataList } from "./DataList";
 import {
   BREAKPOINT_SIZES,
   Breakpoints,
-  EMPTY_FILTER_RESULTS_ACTION_LABEL,
   EMPTY_FILTER_RESULTS_MESSAGE,
 } from "./DataList.const";
 import { DataListItemType, DataListProps } from "./DataList.types";
@@ -14,6 +13,7 @@ import {
   LOADING_STATE_LIMIT_ITEMS,
 } from "./components/DataListLoadingState";
 import { GLIMMER_TEST_ID } from "../Glimmer";
+import { Button } from "../Button";
 
 Object.defineProperty(window, "matchMedia", {
   writable: true,
@@ -365,6 +365,9 @@ describe("DataList", () => {
     const emptyStateMessage = "No items to display";
     const emptyStateActionLabel = "Create new item";
     const emptyStateAction = jest.fn();
+    const emptyStateButton = (
+      <Button label={emptyStateActionLabel} onClick={emptyStateAction} />
+    );
 
     function renderEmptyState(
       props?: Partial<DataListProps<(typeof mockData)[number]>>,
@@ -373,10 +376,7 @@ describe("DataList", () => {
         <DataList data={emptyMockData} headers={{}} {...props}>
           <DataList.EmptyState
             message={emptyStateMessage}
-            action={{
-              label: emptyStateActionLabel,
-              onClick: emptyStateAction,
-            }}
+            action={emptyStateButton}
           />
         </DataList>,
       );
@@ -406,11 +406,13 @@ describe("DataList", () => {
       expect(emptyStateAction).toHaveBeenCalled();
     });
 
-    it("should display clear filters action when there are filters", () => {
+    it("should display the default filters empty state when the data list is filtered", () => {
       renderEmptyState({ filterApplied: true });
 
-      expect(screen.getByText(EMPTY_FILTER_RESULTS_MESSAGE)).toBeTruthy();
-      expect(screen.getByText(EMPTY_FILTER_RESULTS_ACTION_LABEL)).toBeTruthy();
+      expect(
+        screen.getByText(EMPTY_FILTER_RESULTS_MESSAGE),
+      ).toBeInTheDocument();
+      expect(screen.queryByRole("button")).not.toBeInTheDocument();
     });
   });
 });
