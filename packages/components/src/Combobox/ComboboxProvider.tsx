@@ -23,7 +23,11 @@ export function ComboboxContextProvider(
     <ComboboxContext.Provider value={{ open, setOpen, wrapperRef }}>
       <div ref={wrapperRef}>
         {open && (
-          <div className={styles.overlay} onClick={() => setOpen(false)}></div>
+          <div
+            className={styles.overlay}
+            onClick={() => setOpen(false)}
+            data-testid="overlay"
+          />
         )}
         {props.children}
       </div>

@@ -12,6 +12,9 @@
   background: var(--color-surface);
 }
 
+/* CAUTION: Tests for content visibility assume this class' presence hides the content
+  * so please be careful if you change this class name, or the css rules within.
+ */
 .content.hidden {
   display: none;
   visibility: hidden;

@@ -48,6 +48,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   const template = (
     <div
       ref={popperRef}
+      data-testid="combobox-content"
       className={classnames(styles.content, !open && styles.hidden)}
       style={popperStyles.popper}
       {...attributes.popper}
