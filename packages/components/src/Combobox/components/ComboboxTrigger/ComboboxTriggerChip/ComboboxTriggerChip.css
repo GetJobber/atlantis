@@ -1,0 +1,18 @@
+.trigger {
+  display: inline-flex;
+  gap: var(--space-small);
+  padding: var(--space-small) var(--space-base);
+  border: var(--border-base) solid rgb(230, 234, 235);
+  border-radius: calc(var(--radius-large) * 5);
+  background-color: var(--color-surface);
+}
+
+.trigger:focus {
+  box-shadow: var(--shadow-focus);
+}
+
+.triggerIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
