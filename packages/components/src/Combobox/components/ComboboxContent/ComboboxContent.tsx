@@ -34,6 +34,14 @@ interface ComboboxContentProps {
    * Placeholder text to display in the search input. Defaults to "Search".
    */
   readonly searchPlaceholder?: string;
+
+  /**
+   * pre selected option
+   * @default ""
+   * @optional
+   * @type string
+   * */
+  readonly preSelectedOption?: string;
 }
 
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
