@@ -32,6 +32,10 @@ import {
   InternalDataListSearch,
 } from "./components/DataListSearch";
 import { DataListStickyHeader } from "./components/DataListStickyHeader/DataListStickyHeader";
+import {
+  DATA_LIST_FILTERING_SPINNER_TEST_ID,
+  DATA_LIST_LOADING_MORE_SPINNER_TEST_ID,
+} from "./DataList.const";
 import { Heading } from "../Heading";
 import { Spinner } from "../Spinner";
 
@@ -126,15 +130,21 @@ function InternalDataList() {
       )}
 
       {loadingState === "filtering" && (
-        <div className={styles.filtering}>
+        <div
+          data-testid={DATA_LIST_FILTERING_SPINNER_TEST_ID}
+          className={styles.filtering}
+        >
           <div className={styles.filteringSpinner}>
-            <Spinner />
+            <Spinner size="small" />
           </div>
         </div>
       )}
 
       {loadingState === "loadingMore" && (
-        <div className={styles.loadingMore}>
+        <div
+          data-testid={DATA_LIST_LOADING_MORE_SPINNER_TEST_ID}
+          className={styles.loadingMore}
+        >
           <Spinner size="small" />
         </div>
       )}
