@@ -15,7 +15,7 @@ export function DataListEmptyState(_: DataListEmptyStateProps) {
 }
 
 export function InternalDataListEmptyState() {
-  const { emptyStateComponents: components, filterApplied } =
+  const { emptyStateComponents: components, filtered } =
     useContext(DataListContext);
   if (!components) return null;
 
@@ -32,7 +32,7 @@ export function InternalDataListEmptyState() {
     const { defaultEmptyState, filteredEmptyState } =
       getEmptyStates(components);
 
-    if (filterApplied) {
+    if (filtered) {
       return {
         message:
           filteredEmptyState?.props.message || EMPTY_FILTER_RESULTS_MESSAGE,

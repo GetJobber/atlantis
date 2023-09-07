@@ -407,7 +407,7 @@ describe("DataList", () => {
     });
 
     it("should display the default filters empty state when the data list is filtered", () => {
-      renderEmptyState({ filterApplied: true });
+      renderEmptyState({ filtered: true });
 
       expect(
         screen.getByText(EMPTY_FILTER_RESULTS_MESSAGE),

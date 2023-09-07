@@ -56,11 +56,9 @@ export interface DataListProps<T extends DataListObject> {
   readonly loading?: boolean;
 
   /**
-   * Temporary prop for setting default state for if filters are applied
-   *
-   * @default false
+   * Adjusts the DataList to show the filtered UX.
    */
-  readonly filterApplied?: boolean;
+  readonly filtered?: boolean;
   readonly children: ReactElement | ReactElement[];
 
   /**
