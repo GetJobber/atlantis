@@ -1,5 +1,6 @@
 import React, { ReactElement, useRef, useState } from "react";
 import classnames from "classnames";
+import ReactDOM from "react-dom";
 import { usePopper } from "react-popper";
 import styles from "./ComboboxContent.css";
 import { Icon } from "../../../Icon";
@@ -29,7 +30,7 @@ interface ComboboxContentProps {
 
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   const [searchValue, setSearchValue] = useState<string>("");
-  const [selectedOption, setSelectedOption] = useState<string>("");
+  const [selectedOptionId, setSelectedOptionId] = useState<string>("");
   const { open, setOpen, wrapperRef } = React.useContext(ComboboxContext);
 
   const popperRef = useRef<HTMLDivElement>(null);
@@ -53,7 +54,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     option.label.toLowerCase().includes(searchValue.toLowerCase()),
   );
 
-  return (
+  const template = (
     <div
       ref={popperRef}
       className={classnames(styles.content, !open && styles.hidden)}
@@ -86,13 +87,12 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         <button
           className={classnames(
             styles.option,
-            option.id === selectedOption && styles.selectedOption,
+            option.id === selectedOptionId && styles.selectedOption,
           )}
-          role="button"
           tabIndex={0}
           key={option.id}
           onClick={handleSelection}
-          data-value={option.id}
+          data-id={option.id}
         >
           {option.label}
         </button>
@@ -104,16 +104,18 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     </div>
   );
 
+  return ReactDOM.createPortal(template, document.body);
+
   function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
     setSearchValue(event.target.value);
   }
 
   function handleSelection(event: React.MouseEvent<HTMLButtonElement>) {
-    const selected = event.currentTarget.dataset.value;
+    const selectedId = event.currentTarget.dataset.id;
 
-    if (selected) {
-      setSelectedOption(selected);
-      props.onSelection(selected);
+    if (selectedId) {
+      setSelectedOptionId(selectedId);
+      props.onSelection(selectedId);
     }
     setSearchValue("");
     setOpen(false);
