@@ -38,12 +38,7 @@ describe("DataList", () => {
 
     it("should render the total count", () => {
       render(
-        <DataList
-          loading={false}
-          totalCount={10}
-          data={mockData}
-          headers={mockHeader}
-        >
+        <DataList totalCount={10} data={mockData} headers={mockHeader}>
           <></>
         </DataList>,
       );
@@ -53,7 +48,6 @@ describe("DataList", () => {
     it("should not render the total count if the totalCount is null", () => {
       render(
         <DataList
-          loading={false}
           totalCount={null}
           data={mockData}
           headers={mockHeader}
@@ -69,7 +63,7 @@ describe("DataList", () => {
     it("should render the Glimmer on total count when loading", () => {
       render(
         <DataList
-          loading={true}
+          loadingState="initial"
           totalCount={null}
           data={mockData}
           headers={mockHeader}
@@ -97,7 +91,7 @@ describe("DataList", () => {
     it("should render 10 rows of placeholder items when the list is loading", () => {
       render(
         <DataList
-          loading={true}
+          loadingState="initial"
           data={mockData}
           headers={mockHeaders}
           title="All Clients"
@@ -349,12 +343,7 @@ describe("DataList", () => {
 
   it("should render a title when it's provided", () => {
     render(
-      <DataList
-        loading={false}
-        title={mockTitle}
-        headers={{}}
-        data={emptyMockData}
-      >
+      <DataList title={mockTitle} headers={{}} data={emptyMockData}>
         <></>
       </DataList>,
     );
@@ -395,7 +384,7 @@ describe("DataList", () => {
     });
 
     it("should not render when loading", () => {
-      renderEmptyState({ loading: true });
+      renderEmptyState({ loadingState: "initial" });
       expect(screen.queryByText(emptyStateMessage)).not.toBeInTheDocument();
     });
 

@@ -61,7 +61,6 @@ function InternalDataList() {
   const {
     data,
     headers,
-    loading = false,
     filterApplied = false,
     children,
     title,
@@ -78,7 +77,8 @@ function InternalDataList() {
   const headerData = generateHeaderElements(headers);
   const mediaMatches = useLayoutMediaQueries();
 
-  const showEmptyState = !loading && data.length === 0;
+  const initialLoading = loadingState === "initial";
+  const showEmptyState = !initialLoading && data.length === 0;
   const [isFilterApplied, setIsFilterApplied] = useState(filterApplied);
   const EmptyStateComponent = generateDataListEmptyState({
     children,
@@ -86,13 +86,11 @@ function InternalDataList() {
     setIsFilterApplied,
   });
 
-  const initialLoading = loadingState === "initial";
-
   return (
     <div className={styles.wrapper}>
       <div className={styles.titleContainer}>
         {title && <Heading level={3}>{title}</Heading>}
-        <DataListTotalCount totalCount={totalCount} loading={loading} />
+        <DataListTotalCount totalCount={totalCount} loading={initialLoading} />
       </div>
 
       <DataListStickyHeader>
@@ -111,7 +109,7 @@ function InternalDataList() {
         )}
       </DataListStickyHeader>
 
-      {loading && (
+      {initialLoading && (
         <DataListLoadingState
           headers={headers}
           layouts={allLayouts}

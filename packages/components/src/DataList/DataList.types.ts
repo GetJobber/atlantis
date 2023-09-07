@@ -56,13 +56,6 @@ export interface DataListProps<T extends DataListObject> {
   readonly headers: DataListHeader<T>;
 
   /**
-   * Shows the loading state of the DataList.
-   *
-   * @default false
-   */
-  readonly loading?: boolean;
-
-  /**
    * Set the loading state of the DataList. There are a few guidelines on when to use what.
    *
    * - `"initial"` - loading the first set of data
