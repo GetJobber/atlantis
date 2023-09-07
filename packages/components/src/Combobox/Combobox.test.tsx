@@ -21,6 +21,7 @@ describe("Combobox validation", () => {
       );
     }).not.toThrow();
   });
+
   it("throws an error if there is no Trigger element", () => {
     expect.assertions(1);
     let error;
@@ -38,6 +39,7 @@ describe("Combobox validation", () => {
       expect(error?.message).toBe(COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE);
     }
   });
+
   it("throws an error if there are multiple of the same Trigger element", () => {
     expect.assertions(1);
     let error;
@@ -57,6 +59,7 @@ describe("Combobox validation", () => {
       expect(error?.message).toBe(COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
     }
   });
+
   it("throws an error if there are multiple of various Trigger elements", () => {
     expect.assertions(1);
     let error;
@@ -76,6 +79,7 @@ describe("Combobox validation", () => {
       expect(error?.message).toBe(COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
     }
   });
+
   it("throws an error if there is no Content element", () => {
     expect.assertions(1);
     let error;
@@ -91,6 +95,7 @@ describe("Combobox validation", () => {
       expect(error?.message).toBe(COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE);
     }
   });
+
   it("throws an error if there is neither a Content nor Trigger element", () => {
     expect.assertions(1);
     let error;
@@ -106,6 +111,7 @@ describe("Combobox validation", () => {
       expect(error?.message).toBe(COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE);
     }
   });
+
   it("throws an error if there are multiple Trigger elements and no Content", () => {
     expect.assertions(1);
     let error;
@@ -136,7 +142,8 @@ describe("ComboboxContent", () => {
     );
     expect(getByTestId("combobox-content")).toHaveClass("hidden");
   });
-  it("should close the content after opening and making a (single) selection", async () => {
+
+  it("should close the content after opening and making a (single) selection", () => {
     const { getByTestId, getByText } = render(
       <Combobox>
         <Combobox.TriggerButton label="Click Me" />
@@ -163,7 +170,7 @@ describe("ComboboxContent", () => {
     expect(getByTestId("combobox-content")).toHaveClass("hidden");
   });
 
-  it("should close the content after opening and pressing ESC", async () => {
+  it("should close the content after opening and pressing ESC", () => {
     const { getByTestId, getByText } = render(
       <Combobox>
         <Combobox.TriggerButton label="Click Me" />
@@ -189,7 +196,7 @@ describe("ComboboxContent", () => {
     expect(getByTestId("combobox-content")).toHaveClass("hidden");
   });
 
-  it("should close the content after opening and clicking outside the content", async () => {
+  it("should close the content after opening and clicking outside the content", () => {
     const { getByTestId, getByText } = render(
       <Combobox>
         <Combobox.TriggerButton label="Click Me" />
