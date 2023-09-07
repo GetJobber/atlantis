@@ -1,6 +1,14 @@
-export interface TriggerProps {
+import { ButtonProps } from "../Button";
+
+export interface ComboboxTriggerProps {
   /**
-   * Trigger label
+   * The label text of the trigger.
    */
   readonly label: string;
 }
+
+export interface ComboboxTriggerButtonProps
+  extends ComboboxTriggerProps,
+    Pick<ButtonProps, "type" | "variation" | "icon" | "iconOnRight"> {}
+
+export type ComboboxTriggerChipProps = ComboboxTriggerProps;
