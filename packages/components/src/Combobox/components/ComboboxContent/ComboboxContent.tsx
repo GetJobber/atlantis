@@ -6,11 +6,7 @@ import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import styles from "./ComboboxContent.css";
 import { Icon } from "../../../Icon";
 import { ComboboxContext } from "../../ComboboxProvider";
-
-interface ComboboxOption {
-  id: string;
-  label: string;
-}
+import { ComboboxOption } from "../../Combobox.types";
 
 interface ComboboxContentProps {
   /**

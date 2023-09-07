@@ -12,3 +12,8 @@ export interface ComboboxTriggerButtonProps
     Pick<ButtonProps, "type" | "variation" | "icon" | "iconOnRight"> {}
 
 export type ComboboxTriggerChipProps = ComboboxTriggerProps;
+
+export interface ComboboxOption {
+  id: string;
+  label: string;
+}
