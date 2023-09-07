@@ -140,7 +140,7 @@ describe("ComboboxContent", () => {
         </Combobox.Content>
       </Combobox>,
     );
-    expect(getByTestId("combobox-content")).toHaveClass("hidden");
+    expect(getByTestId("ATL-Combobox-Content")).toHaveClass("hidden");
   });
 
   it("should close the content after opening and making a (single) selection", () => {
@@ -162,12 +162,12 @@ describe("ComboboxContent", () => {
     const button = getByText("Click Me");
     fireEvent.click(button);
 
-    expect(getByTestId("combobox-content")).not.toHaveClass("hidden");
+    expect(getByTestId("ATL-Combobox-Content")).not.toHaveClass("hidden");
 
     const option = getByText("Bilbo Baggins");
     fireEvent.click(option);
 
-    expect(getByTestId("combobox-content")).toHaveClass("hidden");
+    expect(getByTestId("ATL-Combobox-Content")).toHaveClass("hidden");
   });
 
   it("should close the content after opening and pressing ESC", () => {
@@ -189,11 +189,11 @@ describe("ComboboxContent", () => {
     const button = getByText("Click Me");
     fireEvent.click(button);
 
-    expect(getByTestId("combobox-content")).not.toHaveClass("hidden");
+    expect(getByTestId("ATL-Combobox-Content")).not.toHaveClass("hidden");
 
     fireEvent.keyDown(button, { key: "Escape" });
 
-    expect(getByTestId("combobox-content")).toHaveClass("hidden");
+    expect(getByTestId("ATL-Combobox-Content")).toHaveClass("hidden");
   });
 
   it("should close the content after opening and clicking outside the content", () => {
@@ -215,18 +215,18 @@ describe("ComboboxContent", () => {
     const button = getByText("Click Me");
     fireEvent.click(button);
 
-    expect(getByTestId("combobox-content")).not.toHaveClass("hidden");
+    expect(getByTestId("ATL-Combobox-Content")).not.toHaveClass("hidden");
 
-    const overlay = getByTestId("overlay");
+    const overlay = getByTestId("ATL-Combobox-Overlay");
     fireEvent.click(overlay);
 
-    expect(getByTestId("combobox-content")).toHaveClass("hidden");
+    expect(getByTestId("ATL-Combobox-Content")).toHaveClass("hidden");
   });
 });
 
 describe("ComboboxContent Search", () => {
   it("should have a search input when open", () => {
-    const { getByTestId, getByText } = render(
+    const { getByPlaceholderText, getByText } = render(
       <Combobox>
         <Combobox.TriggerButton label="Click Me" />
         <Combobox.Content
@@ -244,12 +244,12 @@ describe("ComboboxContent Search", () => {
     const button = getByText("Click Me");
     fireEvent.click(button);
 
-    const searchInput = getByTestId("combobox-search");
+    const searchInput = getByPlaceholderText("Search");
     expect(searchInput).toBeInTheDocument();
   });
 
   it("should refine results after entering a search term", () => {
-    const { getByTestId, getByText, queryByText } = render(
+    const { getByPlaceholderText, getByText, queryByText } = render(
       <Combobox>
         <Combobox.TriggerButton label="Click Me" />
         <Combobox.Content
@@ -267,7 +267,7 @@ describe("ComboboxContent Search", () => {
     const button = getByText("Click Me");
     fireEvent.click(button);
 
-    const searchInput = getByTestId("combobox-search");
+    const searchInput = getByPlaceholderText("Search");
     fireEvent.change(searchInput, { target: { value: "Bilbo" } });
 
     expect(getByText("Bilbo Baggins")).toBeInTheDocument();
@@ -275,7 +275,7 @@ describe("ComboboxContent Search", () => {
   });
 
   it("should clear search when clicking the clear button after entering a search term", () => {
-    const { getByTestId, getByText } = render(
+    const { getByTestId, getByPlaceholderText, getByText } = render(
       <Combobox>
         <Combobox.TriggerButton label="Click Me" />
         <Combobox.Content
@@ -293,10 +293,10 @@ describe("ComboboxContent Search", () => {
     const button = getByText("Click Me");
     fireEvent.click(button);
 
-    const searchInput = getByTestId("combobox-search");
+    const searchInput = getByPlaceholderText("Search");
     fireEvent.change(searchInput, { target: { value: "Bilbo" } });
 
-    const clearButton = getByTestId("combobox-search-clear");
+    const clearButton = getByTestId("ATL-Combobox-Content-Search-Clear");
     fireEvent.click(clearButton);
 
     expect(searchInput).toHaveValue("");
@@ -305,7 +305,7 @@ describe("ComboboxContent Search", () => {
   });
 
   it("should display a no results message if nothing matched the search term", () => {
-    const { getByTestId, getByText } = render(
+    const { getByPlaceholderText, getByText } = render(
       <Combobox>
         <Combobox.TriggerButton label="Click Me" />
         <Combobox.Content
@@ -323,7 +323,7 @@ describe("ComboboxContent Search", () => {
     const button = getByText("Click Me");
     fireEvent.click(button);
 
-    const searchInput = getByTestId("combobox-search");
+    const searchInput = getByPlaceholderText("Search");
     fireEvent.change(searchInput, { target: { value: "Bilbo" } });
 
     expect(getByText("No results for Bilbo")).toBeInTheDocument();

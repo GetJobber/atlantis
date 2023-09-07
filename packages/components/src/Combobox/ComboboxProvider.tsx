@@ -26,7 +26,7 @@ export function ComboboxContextProvider(
           <div
             className={styles.overlay}
             onClick={() => setOpen(false)}
-            data-testid="overlay"
+            data-testid="ATL-Combobox-Overlay"
           />
         )}
         {props.children}

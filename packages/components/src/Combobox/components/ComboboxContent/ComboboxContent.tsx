@@ -50,7 +50,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   const template = (
     <div
       ref={popperRef}
-      data-testid="combobox-content"
+      data-testid="ATL-Combobox-Content"
       className={classnames(styles.content, !open && styles.hidden)}
       style={popperStyles.popper}
       {...attributes.popper}
@@ -58,7 +58,6 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       <div className={styles.search}>
         <input
           type="search"
-          data-testid="combobox-search"
           className={styles.searchInput}
           placeholder={props.searchPlaceholder || "Search"}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
@@ -71,7 +70,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
           <div
             className={styles.triggerIcon}
             onClick={() => setSearchValue("")}
-            data-testid="combobox-search-clear"
+            data-testid="ATL-Combobox-Content-Search-Clear"
             aria-label="Clear search"
             role="button"
           >
