@@ -6,7 +6,7 @@ export interface ComboboxActionProps {
   /**
    * The function that should be performed when the action is pressed
    */
-  readonly onClick: () => void;
+  onClick(event: React.MouseEvent<HTMLButtonElement>): void;
 
   /**
    * Helper text displayed for press action
@@ -17,7 +17,11 @@ export interface ComboboxActionProps {
 export function ComboboxAction(props: ComboboxActionProps): JSX.Element {
   return (
     <div className={styles.actionContainer}>
-      <button className={styles.actionButton} onClick={props.onClick}>
+      <button
+        className={styles.actionButton}
+        onClick={props.onClick}
+        aria-label={props.label}
+      >
         <Typography
           element="span"
           size="base"
