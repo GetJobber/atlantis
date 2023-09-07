@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./ComboboxAction.css";
-// import { Typography } from "../../../Typography";
-import { Button } from "../../../Button";
+import { Typography } from "../../../Typography";
 
 export interface ComboboxActionProps {
   /**
@@ -17,18 +16,17 @@ export interface ComboboxActionProps {
 
 export function ComboboxAction(props: ComboboxActionProps): JSX.Element {
   return (
-    // <button className={styles.action} onClick={props.onClick}>
-    //   <Typography
-    //     element="span"
-    //     size="base"
-    //     textColor="green"
-    //     fontWeight="bold" // TODO switch to semiBold once Triggers gets merged
-    //   >
-    //     {props.label}
-    //   </Typography>
-    // </button>
-    <div className={styles.action} onClick={props.onClick}>
-      <Button label={props.label} type="tertiary" />
+    <div className={styles.actionContainer}>
+      <button className={styles.actionButton} onClick={props.onClick}>
+        <Typography
+          element="span"
+          size="base"
+          textColor="green"
+          fontWeight="bold" // TODO needs to be semiBold when that merges
+        >
+          {props.label}
+        </Typography>
+      </button>
     </div>
   );
 }

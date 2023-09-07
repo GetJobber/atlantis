@@ -7,6 +7,7 @@ declare const styles: {
   readonly "optionsList": string;
   readonly "selectedOption": string;
   readonly "actions": string;
+  readonly "actionPadding": string;
 };
 export = styles;
 

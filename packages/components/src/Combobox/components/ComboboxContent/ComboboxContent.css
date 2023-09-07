@@ -99,3 +99,11 @@
     rgba(255, 255, 255, 1)
   );
 }
+
+.actions button:last-child {
+  padding-bottom: var(--space-small);
+}
+
+.actionPadding {
+  padding-bottom: var(--space-small);
+}
