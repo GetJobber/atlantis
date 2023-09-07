@@ -14,6 +14,6 @@ export interface ComboboxTriggerButtonProps
 export type ComboboxTriggerChipProps = ComboboxTriggerProps;
 
 export interface ComboboxOption {
-  id: string;
+  id: string | number;
   label: string;
 }
