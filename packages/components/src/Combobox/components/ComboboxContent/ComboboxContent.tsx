@@ -14,33 +14,39 @@ interface ComboboxOption {
 
 interface ComboboxContentProps {
   /**
-   * options for the combobox
+   * List of selectable options to display.
    */
   readonly options: ComboboxOption[];
 
   /**
-   * onSelection handler.
+   * Callback function invoked upon the selection of an option. Provides the selected option as an argument.
    */
-  readonly onSelection: (selection: string) => void;
+  readonly onSelection: (selection: ComboboxOption) => void;
 
   /**
-   * actions
+   * Optional action button(s) to display at the bottom of the list.
    */
-  readonly children: ReactElement | ReactElement[];
+  readonly children?: ReactElement | ReactElement[];
+
+  /**
+   * Placeholder text to display in the search input. Defaults to "Search".
+   */
+  readonly searchPlaceholder?: string;
 }
 
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   const {
     searchValue,
     setSearchValue,
-    selectedOptionId,
-    setSelectedOptionId,
+    selectedOption,
+    setSelectedOption,
     open,
     setOpen,
     popperRef,
     popperStyles,
     attributes,
   } = useComboboxContent();
+
   const filteredOptions = props.options.filter(option =>
     option.label.toLowerCase().includes(searchValue.toLowerCase()),
   );
@@ -57,7 +63,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         <input
           type="search"
           className={styles.searchInput}
-          placeholder={`Search options`}
+          placeholder={props.searchPlaceholder || "Search"}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             handleSearch(event)
           }
@@ -68,6 +74,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
           <div
             className={styles.triggerIcon}
             onClick={() => setSearchValue("")}
+            aria-label="Clear search"
             role="button"
           >
             <Icon name="remove" size="small" />
@@ -79,12 +86,10 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         <button
           className={classnames(
             styles.option,
-            option.id === selectedOptionId && styles.selectedOption,
+            option.id === selectedOption?.id && styles.selectedOption,
           )}
-          tabIndex={0}
           key={option.id}
-          onClick={handleSelection}
-          data-id={option.id}
+          onClick={() => handleSelection(option)}
         >
           {option.label}
         </button>
@@ -102,13 +107,9 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     setSearchValue(event.target.value);
   }
 
-  function handleSelection(event: React.MouseEvent<HTMLButtonElement>) {
-    const selectedId = event.currentTarget.dataset.id;
-
-    if (selectedId) {
-      setSelectedOptionId(selectedId);
-      props.onSelection(selectedId);
-    }
+  function handleSelection(selection: ComboboxOption) {
+    setSelectedOption(selection);
+    props.onSelection(selection);
     setSearchValue("");
     setOpen(false);
   }
@@ -117,8 +118,10 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
 function useComboboxContent(): {
   searchValue: string;
   setSearchValue: React.Dispatch<React.SetStateAction<string>>;
-  selectedOptionId: string;
-  setSelectedOptionId: React.Dispatch<React.SetStateAction<string>>;
+  selectedOption: ComboboxOption | null;
+  setSelectedOption: React.Dispatch<
+    React.SetStateAction<ComboboxOption | null>
+  >;
   open: boolean;
   setOpen: (open: boolean) => void;
   popperRef: React.RefObject<HTMLDivElement>;
@@ -126,7 +129,9 @@ function useComboboxContent(): {
   attributes: { [key: string]: { [key: string]: string } | undefined };
 } {
   const [searchValue, setSearchValue] = useState<string>("");
-  const [selectedOptionId, setSelectedOptionId] = useState<string>("");
+  const [selectedOption, setSelectedOption] = useState<ComboboxOption | null>(
+    null,
+  );
   const { open, setOpen, wrapperRef } = React.useContext(ComboboxContext);
 
   useOnKeyDown(() => {
@@ -155,8 +160,8 @@ function useComboboxContent(): {
   return {
     searchValue,
     setSearchValue,
-    selectedOptionId,
-    setSelectedOptionId,
+    selectedOption,
+    setSelectedOption,
     open,
     setOpen,
     popperRef,
