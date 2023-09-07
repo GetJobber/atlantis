@@ -1,4 +1,5 @@
-import React, { RefObject, useEffect, useRef, useState } from "react";
+import React, { RefObject, useRef, useState } from "react";
+import styles from "./Combobox.css";
 
 export const ComboboxContext = React.createContext(
   {} as {
@@ -18,25 +19,14 @@ export function ComboboxContextProvider(
   const [open, setOpen] = useState<boolean>(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        wrapperRef.current &&
-        !wrapperRef.current.contains(event.target as Node)
-      ) {
-        setOpen(false);
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [wrapperRef]);
-
   return (
     <ComboboxContext.Provider value={{ open, setOpen, wrapperRef }}>
-      <div ref={wrapperRef}>{props.children}</div>
+      <div ref={wrapperRef}>
+        {open && (
+          <div className={styles.overlay} onClick={() => setOpen(false)}></div>
+        )}
+        {props.children}
+      </div>
     </ComboboxContext.Provider>
   );
 }

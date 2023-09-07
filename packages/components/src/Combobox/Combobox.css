@@ -1,0 +1,13 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: var(--elevation-menu);
+  background-color: var(--color-overlay);
+
+  @media (--small-screens-and-up) {
+    background-color: transparent;
+  }
+}
