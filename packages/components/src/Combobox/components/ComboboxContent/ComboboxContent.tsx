@@ -30,33 +30,17 @@ interface ComboboxContentProps {
 }
 
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
-  const [searchValue, setSearchValue] = useState<string>("");
-  const [selectedOptionId, setSelectedOptionId] = useState<string>("");
-  const { open, setOpen, wrapperRef } = React.useContext(ComboboxContext);
-
-  useOnKeyDown(() => {
-    if (open) {
-      setOpen(false);
-    }
-  }, "Escape");
-
-  const popperRef = useRef<HTMLDivElement>(null);
-  const { styles: popperStyles, attributes } = usePopper(
-    wrapperRef.current,
-    popperRef.current,
-    {
-      modifiers: [
-        {
-          name: "flip",
-          options: {
-            fallbackPlacements: ["top-start"],
-          },
-        },
-      ],
-      placement: "bottom-start",
-    },
-  );
-
+  const {
+    searchValue,
+    setSearchValue,
+    selectedOptionId,
+    setSelectedOptionId,
+    open,
+    setOpen,
+    popperRef,
+    popperStyles,
+    attributes,
+  } = useComboboxContent();
   const filteredOptions = props.options.filter(option =>
     option.label.toLowerCase().includes(searchValue.toLowerCase()),
   );
@@ -127,4 +111,55 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     setSearchValue("");
     setOpen(false);
   }
+}
+
+function useComboboxContent(): {
+  searchValue: string;
+  setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+  selectedOptionId: string;
+  setSelectedOptionId: React.Dispatch<React.SetStateAction<string>>;
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  popperRef: React.RefObject<HTMLDivElement>;
+  popperStyles: { [key: string]: React.CSSProperties };
+  attributes: { [key: string]: { [key: string]: string } | undefined };
+} {
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [selectedOptionId, setSelectedOptionId] = useState<string>("");
+  const { open, setOpen, wrapperRef } = React.useContext(ComboboxContext);
+
+  useOnKeyDown(() => {
+    if (open) {
+      setOpen(false);
+    }
+  }, "Escape");
+
+  const popperRef = useRef<HTMLDivElement>(null);
+  const { styles: popperStyles, attributes } = usePopper(
+    wrapperRef.current,
+    popperRef.current,
+    {
+      modifiers: [
+        {
+          name: "flip",
+          options: {
+            fallbackPlacements: ["top-start"],
+          },
+        },
+      ],
+      placement: "bottom-start",
+    },
+  );
+
+  return {
+    searchValue,
+    setSearchValue,
+    selectedOptionId,
+    setSelectedOptionId,
+    open,
+    setOpen,
+    popperRef,
+    popperStyles,
+    attributes,
+  };
 }
