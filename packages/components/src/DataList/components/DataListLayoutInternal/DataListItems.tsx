@@ -2,9 +2,8 @@ import React from "react";
 import { DataListLayoutInternal } from "./DataListLayoutInternal";
 import { Breakpoints } from "../../DataList.const";
 import styles from "../../DataList.css";
-import { DataListObject } from "../../DataList.types";
+import { DataListLayoutProps, DataListObject } from "../../DataList.types";
 import { generateListItemElements } from "../../DataList.utils";
-import { DataListLayoutProps } from "../DataListLayout/DataListLayout";
 
 interface DataListItemsProps<T extends DataListObject> {
   readonly layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined;

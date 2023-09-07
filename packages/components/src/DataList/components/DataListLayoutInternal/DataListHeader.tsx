@@ -5,11 +5,11 @@ import styles from "../../DataList.css";
 import {
   DataListHeader as DataListHeaderType,
   DataListItemTypeFromHeader,
+  DataListLayoutProps,
   DataListObject,
   DataListProps,
 } from "../../DataList.types";
 import { sortSizeProp } from "../../DataList.utils";
-import { DataListLayoutProps } from "../DataListLayout/DataListLayout";
 
 interface DataListHeaderProps<T extends DataListObject> {
   readonly layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined;
