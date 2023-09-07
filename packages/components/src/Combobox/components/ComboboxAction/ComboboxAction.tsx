@@ -22,7 +22,7 @@ export function ComboboxAction(props: ComboboxActionProps): JSX.Element {
           element="span"
           size="base"
           textColor="green"
-          fontWeight="bold" // TODO needs to be semiBold when that merges
+          fontWeight="semiBold"
         >
           {props.label}
         </Typography>

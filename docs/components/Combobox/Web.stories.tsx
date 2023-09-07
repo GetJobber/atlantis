@@ -46,13 +46,13 @@ const ComboboxButton: ComponentStory<typeof Combobox> = args => {
         <Combobox.Action
           label="Add a teammate"
           onClick={() => {
-            console.log("Action");
+            alert("Added a new teammate ✅");
           }}
         />
         <Combobox.Action
           label="Manage teammates"
           onClick={() => {
-            console.log("Action");
+            alert("Managed teammates 👍");
           }}
         />
       </Combobox.Content>
@@ -79,13 +79,13 @@ const ComboboxChip: ComponentStory<typeof Combobox> = args => {
         <Combobox.Action
           label="Add a teammate"
           onClick={() => {
-            console.log("Action");
+            alert("Added a new teammate ✅");
           }}
         />
         <Combobox.Action
           label="Manage teammates"
           onClick={() => {
-            console.log("Action");
+            alert("Managed teammates 👍");
           }}
         />
       </Combobox.Content>
