@@ -216,3 +216,109 @@ describe("ComboboxContent", () => {
     expect(getByTestId("combobox-content")).toHaveClass("hidden");
   });
 });
+
+describe("ComboboxContent Search", () => {
+  it("should have a search input when open", () => {
+    const { getByTestId, getByText } = render(
+      <Combobox>
+        <Combobox.TriggerButton label="Click Me" />
+        <Combobox.Content
+          options={[
+            { id: "1", label: "Bilbo Baggins" },
+            { id: "2", label: "Frodo Baggins" },
+          ]}
+          onSelection={jest.fn()}
+        >
+          <></>
+        </Combobox.Content>
+      </Combobox>,
+    );
+
+    const button = getByText("Click Me");
+    fireEvent.click(button);
+
+    const searchInput = getByTestId("combobox-search");
+    expect(searchInput).toBeInTheDocument();
+  });
+
+  it("should refine results after entering a search term", () => {
+    const { getByTestId, getByText, queryByText } = render(
+      <Combobox>
+        <Combobox.TriggerButton label="Click Me" />
+        <Combobox.Content
+          options={[
+            { id: "1", label: "Bilbo Baggins" },
+            { id: "2", label: "Frodo Baggins" },
+          ]}
+          onSelection={jest.fn()}
+        >
+          <></>
+        </Combobox.Content>
+      </Combobox>,
+    );
+
+    const button = getByText("Click Me");
+    fireEvent.click(button);
+
+    const searchInput = getByTestId("combobox-search");
+    fireEvent.change(searchInput, { target: { value: "Bilbo" } });
+
+    expect(getByText("Bilbo Baggins")).toBeInTheDocument();
+    expect(queryByText("Frodo Baggins")).not.toBeInTheDocument();
+  });
+
+  it("should clear search when clicking the clear button after entering a search term", () => {
+    const { getByTestId, getByText } = render(
+      <Combobox>
+        <Combobox.TriggerButton label="Click Me" />
+        <Combobox.Content
+          options={[
+            { id: "1", label: "Bilbo Baggins" },
+            { id: "2", label: "Frodo Baggins" },
+          ]}
+          onSelection={jest.fn()}
+        >
+          <></>
+        </Combobox.Content>
+      </Combobox>,
+    );
+
+    const button = getByText("Click Me");
+    fireEvent.click(button);
+
+    const searchInput = getByTestId("combobox-search");
+    fireEvent.change(searchInput, { target: { value: "Bilbo" } });
+
+    const clearButton = getByTestId("combobox-search-clear");
+    fireEvent.click(clearButton);
+
+    expect(searchInput).toHaveValue("");
+    expect(getByText("Bilbo Baggins")).toBeInTheDocument();
+    expect(getByText("Frodo Baggins")).toBeInTheDocument();
+  });
+
+  it("should display a no results message if nothing matched the search term", () => {
+    const { getByTestId, getByText } = render(
+      <Combobox>
+        <Combobox.TriggerButton label="Click Me" />
+        <Combobox.Content
+          options={[
+            { id: "1", label: "Michael Myers" },
+            { id: "2", label: "Jason Vorhees" },
+          ]}
+          onSelection={jest.fn()}
+        >
+          <></>
+        </Combobox.Content>
+      </Combobox>,
+    );
+
+    const button = getByText("Click Me");
+    fireEvent.click(button);
+
+    const searchInput = getByTestId("combobox-search");
+    fireEvent.change(searchInput, { target: { value: "Bilbo" } });
+
+    expect(getByText("No results for Bilbo")).toBeInTheDocument();
+  });
+});

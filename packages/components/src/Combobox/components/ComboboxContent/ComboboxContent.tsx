@@ -58,6 +58,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       <div className={styles.search}>
         <input
           type="search"
+          data-testid="combobox-search"
           className={styles.searchInput}
           placeholder={props.searchPlaceholder || "Search"}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
@@ -70,6 +71,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
           <div
             className={styles.triggerIcon}
             onClick={() => setSearchValue("")}
+            data-testid="combobox-search-clear"
             aria-label="Clear search"
             role="button"
           >
