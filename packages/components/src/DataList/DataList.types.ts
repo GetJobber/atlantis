@@ -44,7 +44,15 @@ export type DataListHeader<T extends DataListObject> = {
 };
 
 export interface DataListProps<T extends DataListObject> {
+  /**
+   * The data to render in the DataList.
+   */
   readonly data: T[];
+
+  /**
+   * The header of the DataList. The object keys are determined by the
+   * keys in the data.
+   */
   readonly headers: DataListHeader<T>;
 
   /**
@@ -55,12 +63,20 @@ export interface DataListProps<T extends DataListObject> {
   readonly loading?: boolean;
 
   /**
+   * Set the loading state of the DataList. There are a few guidelines on when to use what.
+   *
+   * - `"initial"` - loading the first set of data
+   * - `"filtering"` - loading after a filter is applied
+   * - `"loadingMore"` - loading more data after the user scrolls to the bottom
+   */
+  readonly loadingState?: "initial" | "filtering" | "loadingMore";
+
+  /**
    * Temporary prop for setting default state for if filters are applied
    *
    * @default false
    */
   readonly filterApplied?: boolean;
-  readonly children: ReactElement | ReactElement[];
 
   /**
    * The title of the DataList.
@@ -82,9 +98,25 @@ export interface DataListProps<T extends DataListObject> {
    * @default { xs: true, sm: true, md: true, lg: true, xl: true }
    */
   readonly headerVisibility?: { [Breakpoint in Breakpoints]?: boolean };
+
+  readonly children: ReactElement | ReactElement[];
+}
+
+export interface DataListLayoutProps<T extends DataListObject> {
+  readonly children: (item: DataListItemType<T[]>) => JSX.Element;
+
+  /**
+   * The breakpoint at which the layout should be displayed. It will be rendered until a layout with a larger breakpoint is found.
+   * @default "xs"
+   */
+  readonly size?: Breakpoints;
 }
 
 export interface DataListSearchProps {
+  /**
+   * The placeholder text for the search input. This either uses the title prop
+   * prepended by "Search" or just falls back to "Search".
+   */
   readonly placeholder?: string;
   readonly onSearch: (search: string) => void;
 }
@@ -97,4 +129,5 @@ export interface DataListContextProps<T extends DataListObject>
   extends DataListProps<T> {
   readonly filterComponent?: ReactElement<DataListFiltersProps>;
   readonly searchComponent?: ReactElement<DataListSearchProps>;
+  readonly layoutComponents?: ReactElement<DataListLayoutProps<T>>[];
 }

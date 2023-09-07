@@ -1,22 +1,14 @@
 .wrapper {
+  position: relative;
   flex: 1;
 }
 
 .titleContainer {
   display: flex;
-  align-items: center;
+  position: relative;
+  z-index: 1;
   margin-bottom: var(--space-small);
-}
-
-.header {
-  position: sticky;
-  top: 0;
-  z-index: var(--elevation-base);
-  background-color: var(--color-surface);
-}
-
-.header:empty {
-  display: none;
+  align-items: center;
 }
 
 .headerFilters {
@@ -38,4 +30,27 @@
 .listItem {
   padding: var(--space-small);
   border-bottom: var(--border-base) solid var(--color-border);
+}
+
+.filtering {
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color-overlay--dimmed);
+  align-items: center;
+  justify-content: center;
+}
+
+.filteringSpinner {
+  position: sticky;
+  top: 50vh;
+}
+
+.loadingMore {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-small);
 }

@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import styles from "./DataList.css";
 import { EmptyState } from "./components/EmptyState";
-import {
-  DataListLayout,
-  DataListLayoutProps,
-} from "./components/DataListLayout";
+import { DataListLayout } from "./components/DataListLayout";
 import {
   DataListFiltersProps,
+  DataListLayoutProps,
   DataListObject,
   DataListProps,
   DataListSearchProps,
@@ -35,6 +33,7 @@ import {
 } from "./components/DataListSearch";
 import { DataListStickyHeader } from "./components/DataListStickyHeader/DataListStickyHeader";
 import { Heading } from "../Heading";
+import { Spinner } from "../Spinner";
 
 export function DataList<T extends DataListObject>(props: DataListProps<T>) {
   const searchComponent = getCompoundComponent<DataListSearchProps>(
@@ -45,10 +44,13 @@ export function DataList<T extends DataListObject>(props: DataListProps<T>) {
     props.children,
     DataListFilters,
   );
+  const layoutComponents = getCompoundComponents<
+    DataListLayoutProps<DataListObject>
+  >(props.children, DataListLayout);
 
   return (
     <DataListContext.Provider
-      value={{ searchComponent, filterComponent, ...props }}
+      value={{ searchComponent, filterComponent, layoutComponents, ...props }}
     >
       <InternalDataList />
     </DataListContext.Provider>
@@ -65,6 +67,7 @@ function InternalDataList() {
     title,
     totalCount,
     headerVisibility = { xs: true, sm: true, md: true, lg: true, xl: true },
+    loadingState,
   } = useDataListContext();
 
   const allLayouts = getCompoundComponents<DataListLayoutProps<DataListObject>>(
@@ -82,6 +85,8 @@ function InternalDataList() {
     isFilterApplied,
     setIsFilterApplied,
   });
+
+  const initialLoading = loadingState === "initial";
 
   return (
     <div className={styles.wrapper}>
@@ -106,19 +111,34 @@ function InternalDataList() {
         )}
       </DataListStickyHeader>
 
-      <DataListLoadingState
-        loading={loading}
-        headers={headers}
-        layouts={allLayouts}
-        mediaMatches={mediaMatches}
-      />
+      {loading && (
+        <DataListLoadingState
+          headers={headers}
+          layouts={allLayouts}
+          mediaMatches={mediaMatches}
+        />
+      )}
 
-      {!loading && (
+      {!initialLoading && (
         <DataListItems
           data={data}
           layouts={allLayouts}
           mediaMatches={mediaMatches}
         />
+      )}
+
+      {loadingState === "filtering" && (
+        <div className={styles.filtering}>
+          <div className={styles.filteringSpinner}>
+            <Spinner />
+          </div>
+        </div>
+      )}
+
+      {loadingState === "loadingMore" && (
+        <div className={styles.loadingMore}>
+          <Spinner size="small" />
+        </div>
       )}
 
       {showEmptyState && EmptyStateComponent}
