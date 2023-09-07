@@ -4,12 +4,12 @@ import { Typography } from "../../../Typography";
 
 export interface ComboboxActionProps {
   /**
-   * The function that should be performed when the action is pressed
+   * The function to call when the action is clicked.
    */
   onClick(event: React.MouseEvent<HTMLButtonElement>): void;
 
   /**
-   * Helper text displayed for press action
+   * The label text of the action.
    */
   readonly label: string;
 }
