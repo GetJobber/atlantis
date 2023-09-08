@@ -26,3 +26,8 @@ export const BREAKPOINT_SIZES: Record<Breakpoints, number> = {
 };
 
 export const SEARCH_DEBOUNCE_DELAY = tokens["timing-slowest"];
+
+export const DATA_LIST_FILTERING_SPINNER_TEST_ID =
+  "ATL-DataList-filteringSpinner";
+export const DATA_LIST_LOADING_MORE_SPINNER_TEST_ID =
+  "ATL-DataList-loadingMoreSpinner";

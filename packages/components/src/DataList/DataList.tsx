@@ -1,11 +1,8 @@
 import React from "react";
 import styles from "./DataList.css";
-import {
-  DataListLayout,
-  DataListLayoutProps,
-} from "./components/DataListLayout";
 import { DataListTotalCount } from "./components/DataListTotalCount";
 import { DataListLoadingState } from "./components/DataListLoadingState";
+import { DataListLayout } from "./components/DataListLayout";
 import {
   DataListHeader,
   DataListItems,
@@ -27,6 +24,7 @@ import { DataListContext, useDataListContext } from "./context/DataListContext";
 import {
   DataListEmptyStateProps,
   DataListFiltersProps,
+  DataListLayoutProps,
   DataListObject,
   DataListProps,
   DataListSearchProps,
@@ -37,7 +35,12 @@ import {
   getCompoundComponents,
 } from "./DataList.utils";
 import { useLayoutMediaQueries } from "./hooks/useLayoutMediaQueries";
+import {
+  DATA_LIST_FILTERING_SPINNER_TEST_ID,
+  DATA_LIST_LOADING_MORE_SPINNER_TEST_ID,
+} from "./DataList.const";
 import { Heading } from "../Heading";
+import { Spinner } from "../Spinner";
 
 export function DataList<T extends DataListObject>(props: DataListProps<T>) {
   const searchComponent = getCompoundComponent<DataListSearchProps>(
@@ -48,6 +51,9 @@ export function DataList<T extends DataListObject>(props: DataListProps<T>) {
     props.children,
     DataListFilters,
   );
+  const layoutComponents = getCompoundComponents<
+    DataListLayoutProps<DataListObject>
+  >(props.children, DataListLayout);
   const emptyStateComponents = getCompoundComponents<DataListEmptyStateProps>(
     props.children,
     DataListEmptyState,
@@ -58,6 +64,7 @@ export function DataList<T extends DataListObject>(props: DataListProps<T>) {
       value={{
         searchComponent,
         filterComponent,
+        layoutComponents,
         emptyStateComponents,
         ...props,
       }}
@@ -71,28 +78,24 @@ function InternalDataList() {
   const {
     data,
     headers,
-    loading = false,
-    children,
     title,
     totalCount,
     headerVisibility = { xs: true, sm: true, md: true, lg: true, xl: true },
+    loadingState = "none",
+    layoutComponents,
   } = useDataListContext();
-
-  const allLayouts = getCompoundComponents<DataListLayoutProps<DataListObject>>(
-    children,
-    DataListLayout,
-  );
 
   const headerData = generateHeaderElements(headers);
   const mediaMatches = useLayoutMediaQueries();
 
-  const showEmptyState = !loading && data.length === 0;
+  const initialLoading = loadingState === "initial";
+  const showEmptyState = !initialLoading && data.length === 0;
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.titleContainer}>
         {title && <Heading level={3}>{title}</Heading>}
-        <DataListTotalCount totalCount={totalCount} loading={loading} />
+        <DataListTotalCount totalCount={totalCount} loading={initialLoading} />
       </div>
 
       <DataListStickyHeader>
@@ -103,7 +106,7 @@ function InternalDataList() {
 
         {headerData && (
           <DataListHeader
-            layouts={allLayouts}
+            layouts={layoutComponents}
             headerData={headerData}
             headerVisibility={headerVisibility}
             mediaMatches={mediaMatches}
@@ -111,22 +114,43 @@ function InternalDataList() {
         )}
       </DataListStickyHeader>
 
-      <DataListLoadingState
-        loading={loading}
-        headers={headers}
-        layouts={allLayouts}
-        mediaMatches={mediaMatches}
-      />
-
-      {!loading && (
-        <DataListItems
-          data={data}
-          layouts={allLayouts}
+      {initialLoading && (
+        <DataListLoadingState
+          headers={headers}
+          layouts={layoutComponents}
           mediaMatches={mediaMatches}
         />
       )}
 
       {showEmptyState && <InternalDataListEmptyState />}
+
+      {!initialLoading && (
+        <DataListItems
+          data={data}
+          layouts={layoutComponents}
+          mediaMatches={mediaMatches}
+        />
+      )}
+
+      {loadingState === "filtering" && (
+        <div
+          data-testid={DATA_LIST_FILTERING_SPINNER_TEST_ID}
+          className={styles.filtering}
+        >
+          <div className={styles.filteringSpinner}>
+            <Spinner size="small" />
+          </div>
+        </div>
+      )}
+
+      {loadingState === "loadingMore" && (
+        <div
+          data-testid={DATA_LIST_LOADING_MORE_SPINNER_TEST_ID}
+          className={styles.loadingMore}
+        >
+          <Spinner size="small" />
+        </div>
+      )}
     </div>
   );
 }

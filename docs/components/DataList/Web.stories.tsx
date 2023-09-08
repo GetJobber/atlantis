@@ -84,7 +84,7 @@ const Template: ComponentStory<typeof DataList> = args => {
   return (
     <DataList
       {...args}
-      loading={args.loading || loadingInitialContent}
+      loadingState={getLoadingState()}
       totalCount={totalCount}
       data={(args.data as typeof mappedData) || mappedData}
       headers={{
@@ -212,6 +212,11 @@ const Template: ComponentStory<typeof DataList> = args => {
       default:
         return "greyBlue";
     }
+  }
+
+  function getLoadingState() {
+    if (loadingInitialContent) return "initial";
+    return args.loadingState;
   }
 };
 
