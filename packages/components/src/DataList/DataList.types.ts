@@ -92,9 +92,12 @@ export interface DataListProps<T extends DataListObject> {
    */
   readonly headerVisibility?: { [Breakpoint in Breakpoints]?: boolean };
 
-  readonly onLoadMore?: () => void;
-
   readonly children: ReactElement | ReactElement[];
+
+  /**
+   * The callback function when the user scrolls to the bottom of the list.
+   */
+  readonly onLoadMore?: () => void;
 }
 
 export interface DataListLayoutProps<T extends DataListObject> {

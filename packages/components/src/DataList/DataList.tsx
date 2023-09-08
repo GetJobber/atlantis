@@ -139,6 +139,7 @@ function InternalDataList() {
         </div>
       )}
 
+      {shouldRenderLoadMoreTrigger && <DataListLoadMore />}
       {loadingState === "loadingMore" && (
         <div
           data-testid={DATA_LIST_LOADING_MORE_SPINNER_TEST_ID}
@@ -149,7 +150,6 @@ function InternalDataList() {
       )}
 
       {showEmptyState && EmptyStateComponent}
-      {shouldRenderLoadMoreTrigger && <DataListLoadMore />}
     </div>
   );
 }
