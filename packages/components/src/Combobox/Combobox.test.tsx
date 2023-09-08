@@ -1,4 +1,4 @@
-import { cleanup, render } from "@testing-library/react";
+import { cleanup, fireEvent, render } from "@testing-library/react";
 import React from "react";
 import {
   COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE,
@@ -21,6 +21,7 @@ describe("Combobox validation", () => {
       );
     }).not.toThrow();
   });
+
   it("throws an error if there is no Trigger element", () => {
     expect.assertions(1);
     let error;
@@ -38,6 +39,7 @@ describe("Combobox validation", () => {
       expect(error?.message).toBe(COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE);
     }
   });
+
   it("throws an error if there are multiple of the same Trigger element", () => {
     expect.assertions(1);
     let error;
@@ -57,6 +59,7 @@ describe("Combobox validation", () => {
       expect(error?.message).toBe(COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
     }
   });
+
   it("throws an error if there are multiple of various Trigger elements", () => {
     expect.assertions(1);
     let error;
@@ -76,6 +79,7 @@ describe("Combobox validation", () => {
       expect(error?.message).toBe(COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
     }
   });
+
   it("throws an error if there is no Content element", () => {
     expect.assertions(1);
     let error;
@@ -91,6 +95,7 @@ describe("Combobox validation", () => {
       expect(error?.message).toBe(COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE);
     }
   });
+
   it("throws an error if there is neither a Content nor Trigger element", () => {
     expect.assertions(1);
     let error;
@@ -106,6 +111,7 @@ describe("Combobox validation", () => {
       expect(error?.message).toBe(COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE);
     }
   });
+
   it("throws an error if there are multiple Trigger elements and no Content", () => {
     expect.assertions(1);
     let error;
@@ -121,5 +127,205 @@ describe("Combobox validation", () => {
     } finally {
       expect(error?.message).toBe(COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE);
     }
+  });
+});
+
+describe("ComboboxContent", () => {
+  it("should not have the content visible by default", () => {
+    const { getByTestId } = render(
+      <Combobox>
+        <Combobox.TriggerButton label="Button" />
+        <Combobox.Content options={[]} onSelection={jest.fn()}>
+          <></>
+        </Combobox.Content>
+      </Combobox>,
+    );
+    expect(getByTestId("ATL-Combobox-Content")).toHaveClass("hidden");
+  });
+
+  it("should close the content after opening and making a (single) selection", () => {
+    const { getByTestId, getByText } = render(
+      <Combobox>
+        <Combobox.TriggerButton label="Click Me" />
+        <Combobox.Content
+          options={[
+            { id: "1", label: "Bilbo Baggins" },
+            { id: "2", label: "Frodo Baggins" },
+          ]}
+          onSelection={jest.fn()}
+        >
+          <></>
+        </Combobox.Content>
+      </Combobox>,
+    );
+
+    const button = getByText("Click Me");
+    fireEvent.click(button);
+
+    expect(getByTestId("ATL-Combobox-Content")).not.toHaveClass("hidden");
+
+    const option = getByText("Bilbo Baggins");
+    fireEvent.click(option);
+
+    expect(getByTestId("ATL-Combobox-Content")).toHaveClass("hidden");
+  });
+
+  it("should close the content after opening and pressing ESC", () => {
+    const { getByTestId, getByText } = render(
+      <Combobox>
+        <Combobox.TriggerButton label="Click Me" />
+        <Combobox.Content
+          options={[
+            { id: "1", label: "Bilbo Baggins" },
+            { id: "2", label: "Frodo Baggins" },
+          ]}
+          onSelection={jest.fn()}
+        >
+          <></>
+        </Combobox.Content>
+      </Combobox>,
+    );
+
+    const button = getByText("Click Me");
+    fireEvent.click(button);
+
+    expect(getByTestId("ATL-Combobox-Content")).not.toHaveClass("hidden");
+
+    fireEvent.keyDown(button, { key: "Escape" });
+
+    expect(getByTestId("ATL-Combobox-Content")).toHaveClass("hidden");
+  });
+
+  it("should close the content after opening and clicking outside the content", () => {
+    const { getByTestId, getByText } = render(
+      <Combobox>
+        <Combobox.TriggerButton label="Click Me" />
+        <Combobox.Content
+          options={[
+            { id: "1", label: "Bilbo Baggins" },
+            { id: "2", label: "Frodo Baggins" },
+          ]}
+          onSelection={jest.fn()}
+        >
+          <></>
+        </Combobox.Content>
+      </Combobox>,
+    );
+
+    const button = getByText("Click Me");
+    fireEvent.click(button);
+
+    expect(getByTestId("ATL-Combobox-Content")).not.toHaveClass("hidden");
+
+    const overlay = getByTestId("ATL-Combobox-Overlay");
+    fireEvent.click(overlay);
+
+    expect(getByTestId("ATL-Combobox-Content")).toHaveClass("hidden");
+  });
+});
+
+describe("ComboboxContent Search", () => {
+  it("should have a search input when open", () => {
+    const { getByPlaceholderText, getByText } = render(
+      <Combobox>
+        <Combobox.TriggerButton label="Click Me" />
+        <Combobox.Content
+          options={[
+            { id: "1", label: "Bilbo Baggins" },
+            { id: "2", label: "Frodo Baggins" },
+          ]}
+          onSelection={jest.fn()}
+        >
+          <></>
+        </Combobox.Content>
+      </Combobox>,
+    );
+
+    const button = getByText("Click Me");
+    fireEvent.click(button);
+
+    const searchInput = getByPlaceholderText("Search");
+    expect(searchInput).toBeInTheDocument();
+  });
+
+  it("should refine results after entering a search term", () => {
+    const { getByPlaceholderText, getByText, queryByText } = render(
+      <Combobox>
+        <Combobox.TriggerButton label="Click Me" />
+        <Combobox.Content
+          options={[
+            { id: "1", label: "Bilbo Baggins" },
+            { id: "2", label: "Frodo Baggins" },
+          ]}
+          onSelection={jest.fn()}
+        >
+          <></>
+        </Combobox.Content>
+      </Combobox>,
+    );
+
+    const button = getByText("Click Me");
+    fireEvent.click(button);
+
+    const searchInput = getByPlaceholderText("Search");
+    fireEvent.change(searchInput, { target: { value: "Bilbo" } });
+
+    expect(getByText("Bilbo Baggins")).toBeInTheDocument();
+    expect(queryByText("Frodo Baggins")).not.toBeInTheDocument();
+  });
+
+  it("should clear search when clicking the clear button after entering a search term", () => {
+    const { getByTestId, getByPlaceholderText, getByText } = render(
+      <Combobox>
+        <Combobox.TriggerButton label="Click Me" />
+        <Combobox.Content
+          options={[
+            { id: "1", label: "Bilbo Baggins" },
+            { id: "2", label: "Frodo Baggins" },
+          ]}
+          onSelection={jest.fn()}
+        >
+          <></>
+        </Combobox.Content>
+      </Combobox>,
+    );
+
+    const button = getByText("Click Me");
+    fireEvent.click(button);
+
+    const searchInput = getByPlaceholderText("Search");
+    fireEvent.change(searchInput, { target: { value: "Bilbo" } });
+
+    const clearButton = getByTestId("ATL-Combobox-Content-Search-Clear");
+    fireEvent.click(clearButton);
+
+    expect(searchInput).toHaveValue("");
+    expect(getByText("Bilbo Baggins")).toBeInTheDocument();
+    expect(getByText("Frodo Baggins")).toBeInTheDocument();
+  });
+
+  it("should display a no results message if nothing matched the search term", () => {
+    const { getByPlaceholderText, getByText } = render(
+      <Combobox>
+        <Combobox.TriggerButton label="Click Me" />
+        <Combobox.Content
+          options={[
+            { id: "1", label: "Michael Myers" },
+            { id: "2", label: "Jason Vorhees" },
+          ]}
+          onSelection={jest.fn()}
+        >
+          <></>
+        </Combobox.Content>
+      </Combobox>,
+    );
+
+    const button = getByText("Click Me");
+    fireEvent.click(button);
+
+    const searchInput = getByPlaceholderText("Search");
+    fireEvent.change(searchInput, { target: { value: "Bilbo" } });
+
+    expect(getByText("No results for Bilbo")).toBeInTheDocument();
   });
 });
