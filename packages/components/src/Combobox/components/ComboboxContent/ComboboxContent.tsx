@@ -1,4 +1,10 @@
-import React, { ReactElement, useRef, useState } from "react";
+import React, {
+  Dispatch,
+  ReactElement,
+  SetStateAction,
+  useRef,
+  useState,
+} from "react";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
 import { usePopper } from "react-popper";
@@ -41,7 +47,6 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     popperRef,
     popperStyles,
     attributes,
-    searchRef,
   } = useComboboxContent();
 
   const filteredOptions = props.options.filter(option =>
@@ -56,29 +61,11 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       style={popperStyles.popper}
       {...attributes.popper}
     >
-      <div className={styles.search}>
-        <input
-          type="search"
-          ref={searchRef}
-          className={styles.searchInput}
-          placeholder={props.searchPlaceholder || "Search"}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            handleSearch(event)
-          }
-          value={searchValue}
-        />
-
-        {searchValue && (
-          <button
-            className={styles.clearSearch}
-            onClick={clearSearch}
-            data-testid="ATL-Combobox-Content-Search-Clear"
-            aria-label="Clear search"
-          >
-            <Icon name="remove" size="small" />
-          </button>
-        )}
-      </div>
+      <Search
+        searchPlaceholder={props.searchPlaceholder}
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+      />
       <div className={styles.list}>
         {filteredOptions.map(option => (
           <button
@@ -103,20 +90,54 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
 
   return ReactDOM.createPortal(template, document.body);
 
-  function clearSearch() {
-    setSearchValue("");
-    searchRef.current?.focus();
-  }
-
-  function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
-    setSearchValue(event.target.value);
-  }
-
   function handleSelection(selection: ComboboxOption) {
     setSelectedOption(selection);
     props.onSelection(selection);
     setSearchValue("");
     setOpen(false);
+  }
+}
+
+function Search(props: {
+  searchPlaceholder?: string;
+  searchValue: string;
+  setSearchValue: Dispatch<SetStateAction<string>>;
+}): JSX.Element {
+  const searchRef = useRef<HTMLInputElement>(null);
+
+  return (
+    <div className={styles.search}>
+      <input
+        type="search"
+        ref={searchRef}
+        className={styles.searchInput}
+        placeholder={props.searchPlaceholder || "Search"}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          handleSearch(event)
+        }
+        value={props.searchValue}
+      />
+
+      {props.searchValue && (
+        <button
+          className={styles.clearSearch}
+          onClick={clearSearch}
+          data-testid="ATL-Combobox-Content-Search-Clear"
+          aria-label="Clear search"
+        >
+          <Icon name="remove" size="small" />
+        </button>
+      )}
+    </div>
+  );
+
+  function clearSearch() {
+    props.setSearchValue("");
+    searchRef.current?.focus();
+  }
+
+  function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
+    props.setSearchValue(event.target.value);
   }
 }
 
@@ -132,9 +153,7 @@ function useComboboxContent(): {
   popperRef: React.RefObject<HTMLDivElement>;
   popperStyles: { [key: string]: React.CSSProperties };
   attributes: { [key: string]: { [key: string]: string } | undefined };
-  searchRef: React.RefObject<HTMLInputElement>;
 } {
-  const searchRef = useRef<HTMLInputElement>(null);
   const [searchValue, setSearchValue] = useState<string>("");
   const [selectedOption, setSelectedOption] = useState<ComboboxOption | null>(
     null,
@@ -174,6 +193,5 @@ function useComboboxContent(): {
     popperRef,
     popperStyles,
     attributes,
-    searchRef,
   };
 }
