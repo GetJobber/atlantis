@@ -23,21 +23,21 @@ const ComboboxButton: ComponentStory<typeof Combobox> = args => {
       />
       <Combobox.Content
         options={[
-          "Bilbo Baggins",
-          "Frodo Baggins",
-          "Pippin Took",
-          "Merry Brandybuck",
-          "Sam Gamgee",
-          "Bilbo Baggins2",
-          "Frodo Baggins2",
-          "Pippin Took2",
-          "Merry Brandybuck2",
-          "Sam Gamgee2",
-          "Bilbo Baggins3",
-          "Frodo Baggins3",
-          "Pippin Took3",
-          "Merry Brandybuck3",
-          "Sam Gamgee3",
+          { id: "1", label: "Bilbo Baggins" },
+          { id: "2", label: "Frodo Baggins" },
+          { id: "3", label: "Pippin Took" },
+          { id: "4", label: "Merry Brandybuck" },
+          { id: "5", label: "Sam Gamgee" },
+          { id: "6", label: "Bilbo Baggins2" },
+          { id: "7", label: "Frodo Baggins2" },
+          { id: "8", label: "Pippin Took2" },
+          { id: "9", label: "Merry Brandybuck2" },
+          { id: "10", label: "Sam Gamgee2" },
+          { id: "11", label: "Bilbo Baggins3" },
+          { id: "12", label: "Frodo Baggins3" },
+          { id: "13", label: "Pippin Took3" },
+          { id: "14", label: "Merry Brandybuck3" },
+          { id: "15", label: "Sam Gamgee3" },
         ]}
         onSelection={selection => {
           console.log(selection);
@@ -66,11 +66,11 @@ const ComboboxChip: ComponentStory<typeof Combobox> = args => {
       <Combobox.TriggerChip label="Tags" />
       <Combobox.Content
         options={[
-          "Bilbo Baggins",
-          "Frodo Baggins",
-          "Pippin Took",
-          "Merry Brandybuck",
-          "Sam Gamgee",
+          { id: "1", label: "Bilbo Baggins" },
+          { id: "2", label: "Frodo Baggins" },
+          { id: "3", label: "Pippin Took" },
+          { id: "4", label: "Merry Brandybuck" },
+          { id: "5", label: "Sam Gamgee" },
         ]}
         onSelection={selection => {
           console.log(selection);

@@ -1,7 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { RefObject, useRef, useState } from "react";
+import styles from "./Combobox.css";
 
 export const ComboboxContext = React.createContext(
-  {} as { open: boolean; setOpen: (open: boolean) => void },
+  {} as {
+    open: boolean;
+    setOpen: (open: boolean) => void;
+    wrapperRef: RefObject<HTMLDivElement>;
+  },
 );
 
 export interface ComboboxProviderProps {
@@ -12,27 +17,20 @@ export function ComboboxContextProvider(
   props: ComboboxProviderProps,
 ): JSX.Element {
   const [open, setOpen] = useState<boolean>(false);
-  const contentRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        contentRef.current &&
-        !contentRef.current.contains(event.target as Node)
-      ) {
-        setOpen(false);
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [contentRef]);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   return (
-    <ComboboxContext.Provider value={{ open, setOpen }}>
-      <div ref={contentRef}>{props.children}</div>
+    <ComboboxContext.Provider value={{ open, setOpen, wrapperRef }}>
+      <div ref={wrapperRef}>
+        {open && (
+          <div
+            className={styles.overlay}
+            onClick={() => setOpen(false)}
+            data-testid="ATL-Combobox-Overlay"
+          />
+        )}
+        {props.children}
+      </div>
     </ComboboxContext.Provider>
   );
 }
