@@ -45,7 +45,7 @@ const Template: ComponentStory<typeof DataList> = args => {
     // refresh,
     nextPage,
     // loadingRefresh,
-    // loadingNextPage,
+    loadingNextPage,
     loadingInitialContent,
   } = useCollectionQuery<ListQueryType>({
     query: LIST_QUERY,
@@ -203,6 +203,7 @@ const Template: ComponentStory<typeof DataList> = args => {
 
   function getLoadingState() {
     if (loadingInitialContent) return "initial";
+    if (loadingNextPage) return "loadingMore";
     return args.loadingState;
   }
 };
