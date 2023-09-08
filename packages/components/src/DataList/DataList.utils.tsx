@@ -7,13 +7,7 @@ import {
   DataListObject,
 } from "./DataList.types";
 import styles from "./DataList.css";
-import { EmptyState, EmptyStateProps } from "./components/EmptyState";
-import {
-  BREAKPOINTS,
-  Breakpoints,
-  EMPTY_FILTER_RESULTS_ACTION_LABEL,
-  EMPTY_FILTER_RESULTS_MESSAGE,
-} from "./DataList.const";
+import { BREAKPOINTS, Breakpoints } from "./DataList.const";
 import { DataListTags } from "./components/DataListTags";
 import { FormatDate } from "../FormatDate";
 import { Text } from "../Text";
@@ -107,54 +101,6 @@ export function generateHeaderElements<T extends DataListObject>(
   );
 
   return isEmpty(headerElements) ? undefined : headerElements;
-}
-
-interface UseDataListEmptyStateProps {
-  readonly children?: ReactElement | ReactElement[];
-  readonly isFilterApplied: boolean;
-  readonly setIsFilterApplied: (isFilterApplied: boolean) => void;
-}
-
-/**
- * Modify EmptyState to include an empty filter results when filtering happens
- */
-export function generateDataListEmptyState({
-  children,
-  isFilterApplied,
-  setIsFilterApplied,
-}: UseDataListEmptyStateProps):
-  | React.ReactElement<EmptyStateProps>
-  | undefined {
-  if (!children) return;
-
-  const EmptyStateComponent = getCompoundComponent<EmptyStateProps>(
-    children,
-    EmptyState,
-  );
-
-  if (isFilterApplied && isValidElement(EmptyStateComponent)) {
-    let overrideEmptyStateProps: EmptyStateProps | undefined;
-
-    if (isFilterApplied) {
-      overrideEmptyStateProps = {
-        message: EMPTY_FILTER_RESULTS_MESSAGE,
-        action: {
-          label: EMPTY_FILTER_RESULTS_ACTION_LABEL,
-          onClick: () => {
-            setIsFilterApplied(false);
-            alert("Filters Cleared");
-          },
-        },
-      };
-    }
-
-    return React.cloneElement<EmptyStateProps>(
-      EmptyStateComponent,
-      overrideEmptyStateProps,
-    );
-  }
-
-  return EmptyStateComponent;
 }
 
 export function sortSizeProp(sizeProp: Breakpoints[]) {

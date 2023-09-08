@@ -1,5 +1,6 @@
 import { ReactElement, ReactNode } from "react";
 import { Breakpoints } from "./DataList.const";
+import { ButtonProps } from "../Button";
 
 export { Breakpoints } from "./DataList.const";
 
@@ -65,11 +66,9 @@ export interface DataListProps<T extends DataListObject> {
   readonly loadingState?: "initial" | "filtering" | "loadingMore" | "none";
 
   /**
-   * Temporary prop for setting default state for if filters are applied
-   *
-   * @default false
+   * Adjusts the DataList to show the UX when it is filtered.
    */
-  readonly filterApplied?: boolean;
+  readonly filtered?: boolean;
 
   /**
    * The title of the DataList.
@@ -118,9 +117,34 @@ export interface DataListFiltersProps {
   readonly children: ReactElement | ReactElement[];
 }
 
+export interface DataListEmptyStateProps {
+  /**
+   * The message that shows when the DataList is empty.
+   */
+  readonly message: string;
+
+  /**
+   * The action that shows when the DataList is empty.
+   *
+   * This only accepts a Button component. Adding a non-Button component will
+   * throw an error.
+   */
+  readonly action?: ReactElement<ButtonProps>;
+
+  /**
+   * Determine the type of empty state to show.
+   *
+   * By default, it will show the "empty" state when there is no data. If you
+   * want to show the "filtered" type, you need to set the `filtered` prop
+   * to the DataList component.
+   */
+  readonly type?: "filtered" | "empty";
+}
+
 export interface DataListContextProps<T extends DataListObject>
   extends DataListProps<T> {
   readonly filterComponent?: ReactElement<DataListFiltersProps>;
   readonly searchComponent?: ReactElement<DataListSearchProps>;
+  readonly emptyStateComponents?: ReactElement<DataListEmptyStateProps>[];
   readonly layoutComponents?: ReactElement<DataListLayoutProps<T>>[];
 }

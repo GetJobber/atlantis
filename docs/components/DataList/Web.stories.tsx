@@ -180,11 +180,25 @@ const Template: ComponentStory<typeof DataList> = args => {
       </DataList.Layout>
 
       <DataList.EmptyState
+        type="empty"
         message="Character list is looking empty"
-        action={{
-          label: "New Character",
-          onClick: () => alert("New client triggered"),
-        }}
+        action={
+          <Button
+            label="New character"
+            onClick={() => alert("Create a new character")}
+          />
+        }
+      />
+
+      <DataList.EmptyState
+        type="filtered"
+        message="No results for selected filters"
+        action={
+          <Button
+            label="Clear filters"
+            onClick={() => alert("Filters cleared")}
+          />
+        }
       />
     </DataList>
   );
