@@ -2,6 +2,7 @@
   width: 100%;
   box-sizing: border-box;
   padding: 0 var(--space-small);
+  background-color: var(--color-surface);
 }
 
 .actionButton {
