@@ -92,6 +92,8 @@ export interface DataListProps<T extends DataListObject> {
    */
   readonly headerVisibility?: { [Breakpoint in Breakpoints]?: boolean };
 
+  readonly onLoadMore?: () => void;
+
   readonly children: ReactElement | ReactElement[];
 }
 

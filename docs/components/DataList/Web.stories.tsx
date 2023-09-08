@@ -43,7 +43,7 @@ const Template: ComponentStory<typeof DataList> = args => {
     data,
     /* See useCollectionQuery for example on how to load more */
     // refresh,
-    // nextPage,
+    nextPage,
     // loadingRefresh,
     // loadingNextPage,
     loadingInitialContent,
@@ -94,6 +94,7 @@ const Template: ComponentStory<typeof DataList> = args => {
         gender: "Gender",
         created: "Created",
       }}
+      onLoadMore={nextPage}
     >
       <DataList.Filters>
         <Button

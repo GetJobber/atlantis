@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useInView } from "@jobber/hooks/useInView";
 import styles from "./DataList.css";
 import { EmptyState } from "./components/EmptyState";
 import { DataListLayout } from "./components/DataListLayout";
@@ -72,7 +73,16 @@ function InternalDataList() {
     headerVisibility = { xs: true, sm: true, md: true, lg: true, xl: true },
     loadingState = "none",
     layoutComponents,
+    onLoadMore,
   } = useDataListContext();
+  const [inViewRef, isInView] = useInView<HTMLDivElement>();
+
+  useEffect(() => {
+    if (isInView) {
+      console.log("fetch more data");
+      onLoadMore?.();
+    }
+  }, [isInView]);
 
   const headerData = generateHeaderElements(headers);
   const mediaMatches = useLayoutMediaQueries();
@@ -146,6 +156,7 @@ function InternalDataList() {
       )}
 
       {showEmptyState && EmptyStateComponent}
+      {!showEmptyState && <div ref={inViewRef} />}
     </div>
   );
 }
