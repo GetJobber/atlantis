@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useInView } from "@jobber/hooks/useInView";
+import styles from "./DataListLoadMore.css";
 import { useDataListContext } from "../../context/DataListContext";
 
 export function DataListLoadMore() {
@@ -10,5 +11,5 @@ export function DataListLoadMore() {
     isInView && onLoadMore?.();
   }, [isInView]);
 
-  return <div ref={inViewRef} />;
+  return <div ref={inViewRef} className={styles.trigger} />;
 }
