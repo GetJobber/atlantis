@@ -1,6 +1,5 @@
 .content {
   z-index: var(--elevation-tooltip);
-  width: max-content;
   max-width: var(--popover--width);
   max-height: 400px;
   box-shadow: var(--shadow-base);
@@ -29,17 +28,6 @@
   top: 0;
 }
 
-.search::after {
-  content: "";
-  display: block;
-  height: var(--space-small);
-  background-image: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 1),
-    rgba(255, 255, 255, 0)
-  );
-}
-
 .searchInput {
   width: 100%;
   padding: var(--space-base) var(--space-base);
@@ -51,40 +39,64 @@
   background-color: var(--color-surface);
 }
 
-.triggerIcon {
+.clearSearch {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: calc(var(--space-smaller) * 5);
-  height: calc(var(--space-smaller) * 5);
-  border-radius: var(--radius-circle);
-  background-color: var(--color-surface--background);
-}
-
-.search .triggerIcon {
   position: absolute;
+  top: 0;
   top: 50%;
   right: var(--space-small);
   z-index: var(--elevation-tooltip);
-  transform: translateY(-50%);
-}
-
-.optionsList {
-  margin: 0;
+  width: calc(var(--space-smaller) * 5);
+  height: calc(var(--space-smaller) * 5);
   padding: 0;
-  list-style: none;
+  border: none;
+  border-radius: var(--radius-circle);
+  background-color: var(--color-surface--background);
+  transform: translateY(-50%);
+  justify-content: center;
+  align-items: center;
 }
 
-.optionsList li {
-  padding: var(--space-small) var(--space-base);
+.clearSearch:focus {
+  box-shadow: var(--shadow-focus);
+}
+
+.list {
+  padding: var(--space-base);
+}
+
+.search::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: calc(var(--space-base) * -1);
+  left: 0;
+  height: var(--space-base);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.actions::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: calc(var(--space-base) * -1);
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: var(--space-base);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 1)
+  );
 }
 
 .selectedOption {
-  background-color: var(--color-surface--background);
-}
-
-.optionsList li:hover,
-.optionsList li:focus {
   background-color: var(--color-surface--background);
 }
 
@@ -92,15 +104,4 @@
   position: sticky;
   bottom: 0;
   width: 100%;
-}
-
-.actions::before {
-  content: "";
-  display: block;
-  height: var(--space-base);
-  background-image: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 1)
-  );
 }

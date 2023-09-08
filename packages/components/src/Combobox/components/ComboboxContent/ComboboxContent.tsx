@@ -1,4 +1,10 @@
-import React, { ReactElement, useRef, useState } from "react";
+import React, {
+  Dispatch,
+  ReactElement,
+  SetStateAction,
+  useRef,
+  useState,
+} from "react";
 import classnames from "classnames";
 import ReactDOM from "react-dom";
 import { usePopper } from "react-popper";
@@ -55,60 +61,83 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       style={popperStyles.popper}
       {...attributes.popper}
     >
-      <div className={styles.search}>
-        <input
-          type="search"
-          className={styles.searchInput}
-          placeholder={props.searchPlaceholder || "Search"}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            handleSearch(event)
-          }
-          value={searchValue}
-        />
-
-        {searchValue && (
-          <div
-            className={styles.triggerIcon}
-            onClick={() => setSearchValue("")}
-            data-testid="ATL-Combobox-Content-Search-Clear"
-            aria-label="Clear search"
-            role="button"
+      <Search
+        searchPlaceholder={props.searchPlaceholder}
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+      />
+      <div className={styles.list}>
+        {filteredOptions.map(option => (
+          <button
+            className={classnames(
+              styles.option,
+              option.id === selectedOption?.id && styles.selectedOption,
+            )}
+            key={option.id}
+            onClick={() => handleSelection(option)}
           >
-            <Icon name="remove" size="small" />
-          </div>
+            {option.label}
+          </button>
+        ))}
+
+        {filteredOptions.length === 0 && (
+          <p>No results for {`"${searchValue}"`}</p>
         )}
       </div>
-
-      {filteredOptions.map(option => (
-        <button
-          className={classnames(
-            styles.option,
-            option.id === selectedOption?.id && styles.selectedOption,
-          )}
-          key={option.id}
-          onClick={() => handleSelection(option)}
-        >
-          {option.label}
-        </button>
-      ))}
-
-      {filteredOptions.length === 0 && <p>No results for {searchValue}</p>}
-
-      {props.children && <div className={styles.actions}>{props.children}</div>}
+      <div className={styles.actions}>{props.children && props.children}</div>
     </div>
   );
 
   return ReactDOM.createPortal(template, document.body);
-
-  function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
-    setSearchValue(event.target.value);
-  }
 
   function handleSelection(selection: ComboboxOption) {
     setSelectedOption(selection);
     props.onSelection(selection);
     setSearchValue("");
     setOpen(false);
+  }
+}
+
+function Search(props: {
+  searchPlaceholder?: string;
+  searchValue: string;
+  setSearchValue: Dispatch<SetStateAction<string>>;
+}): JSX.Element {
+  const searchRef = useRef<HTMLInputElement>(null);
+
+  return (
+    <div className={styles.search}>
+      <input
+        type="search"
+        ref={searchRef}
+        className={styles.searchInput}
+        placeholder={props.searchPlaceholder || "Search"}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          handleSearch(event)
+        }
+        value={props.searchValue}
+      />
+
+      {props.searchValue && (
+        <button
+          className={styles.clearSearch}
+          onClick={clearSearch}
+          data-testid="ATL-Combobox-Content-Search-Clear"
+          aria-label="Clear search"
+        >
+          <Icon name="remove" size="small" />
+        </button>
+      )}
+    </div>
+  );
+
+  function clearSearch() {
+    props.setSearchValue("");
+    searchRef.current?.focus();
+  }
+
+  function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
+    props.setSearchValue(event.target.value);
   }
 }
 

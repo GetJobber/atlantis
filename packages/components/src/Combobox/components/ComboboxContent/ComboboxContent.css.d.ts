@@ -4,10 +4,10 @@ declare const styles: {
   readonly "option": string;
   readonly "search": string;
   readonly "searchInput": string;
-  readonly "triggerIcon": string;
-  readonly "optionsList": string;
-  readonly "selectedOption": string;
+  readonly "clearSearch": string;
+  readonly "list": string;
   readonly "actions": string;
+  readonly "selectedOption": string;
 };
 export = styles;
 
