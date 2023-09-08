@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useInView } from "@jobber/hooks/useInView";
+import React, { useState } from "react";
 import styles from "./DataList.css";
 import { EmptyState } from "./components/EmptyState";
 import { DataListLayout } from "./components/DataListLayout";
@@ -37,6 +36,7 @@ import {
   DATA_LIST_FILTERING_SPINNER_TEST_ID,
   DATA_LIST_LOADING_MORE_SPINNER_TEST_ID,
 } from "./DataList.const";
+import { DataListLoadMore } from "./components/DataListLoadMore";
 import { Heading } from "../Heading";
 import { Spinner } from "../Spinner";
 
@@ -73,16 +73,7 @@ function InternalDataList() {
     headerVisibility = { xs: true, sm: true, md: true, lg: true, xl: true },
     loadingState = "none",
     layoutComponents,
-    onLoadMore,
   } = useDataListContext();
-  const [inViewRef, isInView] = useInView<HTMLDivElement>();
-
-  useEffect(() => {
-    if (isInView) {
-      console.log("fetch more data");
-      onLoadMore?.();
-    }
-  }, [isInView]);
 
   const headerData = generateHeaderElements(headers);
   const mediaMatches = useLayoutMediaQueries();
@@ -156,7 +147,7 @@ function InternalDataList() {
       )}
 
       {showEmptyState && EmptyStateComponent}
-      {!showEmptyState && <div ref={inViewRef} />}
+      {!showEmptyState && <DataListLoadMore />}
     </div>
   );
 }
