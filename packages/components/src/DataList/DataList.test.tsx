@@ -4,6 +4,8 @@ import { DataList } from "./DataList";
 import {
   BREAKPOINT_SIZES,
   Breakpoints,
+  DATA_LIST_FILTERING_SPINNER_TEST_ID,
+  DATA_LIST_LOADING_MORE_SPINNER_TEST_ID,
   EMPTY_FILTER_RESULTS_ACTION_LABEL,
   EMPTY_FILTER_RESULTS_MESSAGE,
 } from "./DataList.const";
@@ -38,12 +40,7 @@ describe("DataList", () => {
 
     it("should render the total count", () => {
       render(
-        <DataList
-          loading={false}
-          totalCount={10}
-          data={mockData}
-          headers={mockHeader}
-        >
+        <DataList totalCount={10} data={mockData} headers={mockHeader}>
           <></>
         </DataList>,
       );
@@ -53,7 +50,6 @@ describe("DataList", () => {
     it("should not render the total count if the totalCount is null", () => {
       render(
         <DataList
-          loading={false}
           totalCount={null}
           data={mockData}
           headers={mockHeader}
@@ -69,7 +65,7 @@ describe("DataList", () => {
     it("should render the Glimmer on total count when loading", () => {
       render(
         <DataList
-          loading={true}
+          loadingState="initial"
           totalCount={null}
           data={mockData}
           headers={mockHeader}
@@ -94,10 +90,10 @@ describe("DataList", () => {
   };
 
   describe("Loading State", () => {
-    it("should render 10 rows of placeholder items when the list is loading", () => {
+    it("should render 10 rows of placeholder items when the list is in initial loading state", () => {
       render(
         <DataList
-          loading={true}
+          loadingState="initial"
           data={mockData}
           headers={mockHeaders}
           title="All Clients"
@@ -119,9 +115,41 @@ describe("DataList", () => {
 
       const numberOfColumns = Object.keys(mockHeaders).length;
 
-      expect(screen.getAllByTestId(GLIMMER_TEST_ID).length).toBe(
+      expect(screen.getAllByTestId(GLIMMER_TEST_ID)).toHaveLength(
         numberOfColumns * LOADING_STATE_LIMIT_ITEMS,
       );
+    });
+
+    it("should render a spinner when the loading state is filtering", () => {
+      render(
+        <DataList
+          loadingState="filtering"
+          data={mockData}
+          headers={mockHeaders}
+        >
+          <></>
+        </DataList>,
+      );
+
+      expect(
+        screen.getByTestId(DATA_LIST_FILTERING_SPINNER_TEST_ID),
+      ).toBeInTheDocument();
+    });
+
+    it("should render a spinner when the loading state is loadingMore", () => {
+      render(
+        <DataList
+          loadingState="loadingMore"
+          data={mockData}
+          headers={mockHeaders}
+        >
+          <></>
+        </DataList>,
+      );
+
+      expect(
+        screen.getByTestId(DATA_LIST_LOADING_MORE_SPINNER_TEST_ID),
+      ).toBeInTheDocument();
     });
   });
 
@@ -349,12 +377,7 @@ describe("DataList", () => {
 
   it("should render a title when it's provided", () => {
     render(
-      <DataList
-        loading={false}
-        title={mockTitle}
-        headers={{}}
-        data={emptyMockData}
-      >
+      <DataList title={mockTitle} headers={{}} data={emptyMockData}>
         <></>
       </DataList>,
     );
@@ -395,7 +418,7 @@ describe("DataList", () => {
     });
 
     it("should not render when loading", () => {
-      renderEmptyState({ loading: true });
+      renderEmptyState({ loadingState: "initial" });
       expect(screen.queryByText(emptyStateMessage)).not.toBeInTheDocument();
     });
 

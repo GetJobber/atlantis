@@ -5,13 +5,12 @@ import {
   Breakpoints,
   DataListHeader,
   DataListItemType,
+  DataListLayoutProps,
   DataListObject,
 } from "../../DataList.types";
-import { DataListLayoutProps } from "../DataListLayout";
 import { DataListLayoutInternal } from "../DataListLayoutInternal";
 
 interface DataListLoadingStateProps<T extends DataListObject> {
-  readonly loading: boolean;
   readonly headers: DataListHeader<T>;
   readonly layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined;
   readonly mediaMatches?: Record<Breakpoints, boolean>;
@@ -22,13 +21,10 @@ export const DATALIST_LOADINGSTATE_ROW_TEST_ID =
   "ATL-DataList-LoadingState-Row";
 
 export function DataListLoadingState<T extends DataListObject>({
-  loading,
   headers,
   layouts,
   mediaMatches,
 }: DataListLoadingStateProps<T>) {
-  if (!loading) return null;
-
   const loadingData = new Array(LOADING_STATE_LIMIT_ITEMS).fill(headers);
   type DataListElements = DataListItemType<typeof loadingData>;
 

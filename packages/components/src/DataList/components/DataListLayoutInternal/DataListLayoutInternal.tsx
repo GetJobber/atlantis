@@ -1,8 +1,7 @@
 import React from "react";
 import { BREAKPOINTS, Breakpoints } from "../../DataList.const";
-import { DataListObject } from "../../DataList.types";
+import { DataListLayoutProps, DataListObject } from "../../DataList.types";
 import { sortSizeProp } from "../../DataList.utils";
-import { DataListLayoutProps } from "../DataListLayout/DataListLayout";
 
 interface DataListLayoutInternalProps<T extends DataListObject> {
   readonly layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined;
