@@ -15,9 +15,6 @@ export function DataListTags({ items }: DataListTagsProps) {
   useEffect(() => {
     if (!window.IntersectionObserver) return;
 
-    // Reset counter every time the items change
-    setVisibleIndex([]);
-
     const observer = new IntersectionObserver(handleIntersection, {
       root: ref.current,
       threshold: buildIntersectionThreshold(items),
