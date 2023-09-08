@@ -7,6 +7,7 @@ import { Button, ButtonProps } from "../../../Button";
 import {
   EMPTY_FILTER_RESULTS_MESSAGE,
   EMPTY_RESULTS_MESSAGE,
+  EMPTY_STATE_ACTION_BUTTON_ONLY_ERROR,
 } from "../../DataList.const";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -17,8 +18,6 @@ export function DataListEmptyState(_: DataListEmptyStateProps) {
 export function InternalDataListEmptyState() {
   const { emptyStateComponents: components, filtered } =
     useContext(DataListContext);
-  if (!components) return null;
-
   const { message, action } = getMessages();
 
   return (
@@ -55,9 +54,7 @@ function renderButton(action?: ReactElement<ButtonProps>) {
       });
     }
 
-    throw new Error(
-      "DataListEmptyState: action prop must be a Button component",
-    );
+    throw new Error(EMPTY_STATE_ACTION_BUTTON_ONLY_ERROR);
   }
 
   return;

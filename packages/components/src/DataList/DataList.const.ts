@@ -9,6 +9,8 @@ export type Breakpoints = ValuesOf<typeof BREAKPOINTS>;
 
 export const EMPTY_RESULTS_MESSAGE = "List is looking empty";
 export const EMPTY_FILTER_RESULTS_MESSAGE = "No results for selected filters";
+export const EMPTY_STATE_ACTION_BUTTON_ONLY_ERROR =
+  "DataListEmptyState action prop must be a Button component";
 
 /**
  * Breakpoints that we support
