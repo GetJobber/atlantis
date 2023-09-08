@@ -1,11 +1,13 @@
-import { fireEvent, render, screen, within } from "@testing-library/react";
+import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import React from "react";
+import { configMocks, mockIntersectionObserver } from "jsdom-testing-mocks";
 import { DataList } from "./DataList";
 import {
   BREAKPOINT_SIZES,
   Breakpoints,
   DATA_LIST_FILTERING_SPINNER_TEST_ID,
   DATA_LIST_LOADING_MORE_SPINNER_TEST_ID,
+  DATA_LOAD_MORE_TEST_ID,
   EMPTY_FILTER_RESULTS_ACTION_LABEL,
   EMPTY_FILTER_RESULTS_MESSAGE,
 } from "./DataList.const";
@@ -16,6 +18,9 @@ import {
   LOADING_STATE_LIMIT_ITEMS,
 } from "./components/DataListLoadingState";
 import { GLIMMER_TEST_ID } from "../Glimmer";
+
+configMocks({ act });
+const observer = mockIntersectionObserver();
 
 Object.defineProperty(window, "matchMedia", {
   writable: true,
@@ -434,6 +439,56 @@ describe("DataList", () => {
 
       expect(screen.getByText(EMPTY_FILTER_RESULTS_MESSAGE)).toBeTruthy();
       expect(screen.getByText(EMPTY_FILTER_RESULTS_ACTION_LABEL)).toBeTruthy();
+    });
+  });
+
+  describe("Load More", () => {
+    it("should trigger the load more callback", () => {
+      const handleLoadMore = jest.fn();
+      render(
+        <DataList
+          data={mockData}
+          headers={mockHeaders}
+          onLoadMore={handleLoadMore}
+        >
+          <></>
+        </DataList>,
+      );
+      expect(handleLoadMore).not.toHaveBeenCalled();
+
+      observer.enterNode(screen.getByTestId(DATA_LOAD_MORE_TEST_ID));
+      expect(handleLoadMore).toHaveBeenCalled();
+    });
+
+    it("should not have the trigger element", () => {
+      function getElement(props?: Partial<Parameters<typeof DataList>[0]>) {
+        return (
+          <DataList
+            {...props}
+            data={(props?.data as typeof mockData) || mockData}
+            headers={mockHeaders}
+          >
+            <></>
+          </DataList>
+        );
+      }
+
+      const { rerender } = render(getElement());
+
+      // Control test: render trigger element first
+      expect(screen.queryByTestId(DATA_LOAD_MORE_TEST_ID)).toBeInTheDocument();
+
+      // If the data is empty, the load more trigger should not be rendered
+      rerender(getElement({ data: [] }));
+      expect(
+        screen.queryByTestId(DATA_LOAD_MORE_TEST_ID),
+      ).not.toBeInTheDocument();
+
+      // If the data is loading, the load more trigger should not be rendered
+      rerender(getElement({ loadingState: "initial" }));
+      expect(
+        screen.queryByTestId(DATA_LOAD_MORE_TEST_ID),
+      ).not.toBeInTheDocument();
     });
   });
 });

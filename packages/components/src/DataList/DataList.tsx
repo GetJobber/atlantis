@@ -87,6 +87,8 @@ function InternalDataList() {
     setIsFilterApplied,
   });
 
+  const shouldRenderLoadMoreTrigger = !initialLoading && !showEmptyState;
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.titleContainer}>
@@ -147,7 +149,7 @@ function InternalDataList() {
       )}
 
       {showEmptyState && EmptyStateComponent}
-      {!showEmptyState && <DataListLoadMore />}
+      {shouldRenderLoadMoreTrigger && <DataListLoadMore />}
     </div>
   );
 }
