@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.32.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.31.1...@jobber/components@4.32.0) (2023-09-08)
+
+
+### Features
+
+* **components:** add loading state for filtering and loading more on DataList ([#1520](https://github.com/GetJobber/atlantis/issues/1520)) ([2cd6fc7](https://github.com/GetJobber/atlantis/commit/2cd6fc7d8e48771ed24e74f5ca591044223bbef9))
+
+
+
+
+
 ## [4.31.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.31.0...@jobber/components@4.31.1) (2023-09-07)
 
 **Note:** Version bump only for package @jobber/components
