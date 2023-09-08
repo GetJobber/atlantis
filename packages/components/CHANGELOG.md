@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.32.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.32.0...@jobber/components@4.32.1) (2023-09-08)
+
+
+### Bug Fixes
+
+* **components:** adjust no result state of data list ([#1524](https://github.com/GetJobber/atlantis/issues/1524)) ([d683dd4](https://github.com/GetJobber/atlantis/commit/d683dd44decd5bc001a55906dd72c0b921fed0bd))
+
+
+
+
+
 # [4.32.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.31.1...@jobber/components@4.32.0) (2023-09-08)
 
 
