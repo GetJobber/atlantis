@@ -41,6 +41,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     popperRef,
     popperStyles,
     attributes,
+    searchRef,
   } = useComboboxContent();
 
   const filteredOptions = props.options.filter(option =>
@@ -58,6 +59,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       <div className={styles.search}>
         <input
           type="search"
+          ref={searchRef}
           className={styles.searchInput}
           placeholder={props.searchPlaceholder || "Search"}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
@@ -67,38 +69,42 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         />
 
         {searchValue && (
-          <div
-            className={styles.triggerIcon}
-            onClick={() => setSearchValue("")}
+          <button
+            className={styles.clearSearch}
+            onClick={clearSearch}
             data-testid="ATL-Combobox-Content-Search-Clear"
             aria-label="Clear search"
-            role="button"
           >
             <Icon name="remove" size="small" />
-          </div>
+          </button>
         )}
       </div>
+      <div className={styles.list}>
+        {filteredOptions.map(option => (
+          <button
+            className={classnames(
+              styles.option,
+              option.id === selectedOption?.id && styles.selectedOption,
+            )}
+            key={option.id}
+            onClick={() => handleSelection(option)}
+          >
+            {option.label}
+          </button>
+        ))}
 
-      {filteredOptions.map(option => (
-        <button
-          className={classnames(
-            styles.option,
-            option.id === selectedOption?.id && styles.selectedOption,
-          )}
-          key={option.id}
-          onClick={() => handleSelection(option)}
-        >
-          {option.label}
-        </button>
-      ))}
-
-      {filteredOptions.length === 0 && <p>No results for {searchValue}</p>}
-
-      {props.children && <div className={styles.actions}>{props.children}</div>}
+        {filteredOptions.length === 0 && <p>No results for {searchValue}</p>}
+      </div>
+      <div className={styles.actions}>{props.children && props.children}</div>
     </div>
   );
 
   return ReactDOM.createPortal(template, document.body);
+
+  function clearSearch() {
+    setSearchValue("");
+    searchRef.current?.focus();
+  }
 
   function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
     setSearchValue(event.target.value);
@@ -124,7 +130,9 @@ function useComboboxContent(): {
   popperRef: React.RefObject<HTMLDivElement>;
   popperStyles: { [key: string]: React.CSSProperties };
   attributes: { [key: string]: { [key: string]: string } | undefined };
+  searchRef: React.RefObject<HTMLInputElement>;
 } {
+  const searchRef = useRef<HTMLInputElement>(null);
   const [searchValue, setSearchValue] = useState<string>("");
   const [selectedOption, setSelectedOption] = useState<ComboboxOption | null>(
     null,
@@ -164,5 +172,6 @@ function useComboboxContent(): {
     popperRef,
     popperStyles,
     attributes,
+    searchRef,
   };
 }
