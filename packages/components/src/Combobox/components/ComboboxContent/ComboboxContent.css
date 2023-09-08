@@ -58,7 +58,7 @@
 }
 
 .clearSearch:focus {
-  border: 1px solid var(--color-focus);
+  box-shadow: var(--shadow-focus);
 }
 
 .list {

@@ -93,7 +93,9 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
           </button>
         ))}
 
-        {filteredOptions.length === 0 && <p>No results for {searchValue}</p>}
+        {filteredOptions.length === 0 && (
+          <p>No results for {`"${searchValue}"`}</p>
+        )}
       </div>
       <div className={styles.actions}>{props.children && props.children}</div>
     </div>
