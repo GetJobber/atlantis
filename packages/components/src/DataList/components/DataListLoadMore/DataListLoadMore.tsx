@@ -13,10 +13,13 @@ interface DataListLoadMoreProps {
   readonly onBackToTop: () => void;
 }
 
+export const MAX_DATA_COUNT = 50;
+
 export function DataListLoadMore({ onBackToTop }: DataListLoadMoreProps) {
-  const { onLoadMore, loadingState } = useDataListContext();
+  const { onLoadMore, loadingState, data } = useDataListContext();
   const [inViewRef, isInView] = useInView<HTMLDivElement>();
-  const showBackToTop = loadingState !== "loadingMore";
+  const showBackToTop =
+    data.length > MAX_DATA_COUNT && loadingState !== "loadingMore";
 
   useEffect(() => {
     isInView && onLoadMore?.();

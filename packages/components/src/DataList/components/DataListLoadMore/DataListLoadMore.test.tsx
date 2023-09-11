@@ -2,12 +2,16 @@ import React from "react";
 import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { configMocks, mockIntersectionObserver } from "jsdom-testing-mocks";
-import { DataListLoadMore } from "./DataListLoadMore";
+import { DataListLoadMore, MAX_DATA_COUNT } from "./DataListLoadMore";
 import { DataListContext, defaultValues } from "../../context/DataListContext";
 import { DATA_LIST_LOADING_MORE_SPINNER_TEST_ID } from "../../DataList.const";
 
 configMocks({ act });
 const observer = mockIntersectionObserver();
+
+const mockData = Array.from({ length: MAX_DATA_COUNT + 1 }, (_, id) => ({
+  id,
+}));
 
 describe("DataListLoadMore", () => {
   it("should fire the onLoadMore when the target element is visible", () => {
@@ -39,7 +43,7 @@ describe("DataListLoadMore", () => {
 
   it("should not render the loading spinner and show back to top button when it's not loading more", () => {
     render(
-      <DataListContext.Provider value={{ ...defaultValues }}>
+      <DataListContext.Provider value={{ ...defaultValues, data: mockData }}>
         <DataListLoadMore onBackToTop={jest.fn()} />
       </DataListContext.Provider>,
     );
@@ -55,7 +59,7 @@ describe("DataListLoadMore", () => {
   it("should fire the onBackToTop callback", () => {
     const handleBackToTop = jest.fn();
     render(
-      <DataListContext.Provider value={{ ...defaultValues }}>
+      <DataListContext.Provider value={{ ...defaultValues, data: mockData }}>
         <DataListLoadMore onBackToTop={handleBackToTop} />
       </DataListContext.Provider>,
     );
