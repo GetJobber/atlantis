@@ -387,9 +387,7 @@ describe("Combobox Zero Index State", () => {
         </Combobox>,
       );
 
-      expect(
-        getByText("You don't have any teammates yet."),
-      ).toBeInTheDocument();
+      expect(getByText("You don't have any teammates yet")).toBeInTheDocument();
     });
   });
 
@@ -402,7 +400,7 @@ describe("Combobox Zero Index State", () => {
         </Combobox>,
       );
 
-      expect(getByText("No options yet.")).toBeInTheDocument();
+      expect(getByText("No options yet")).toBeInTheDocument();
     });
   });
 });

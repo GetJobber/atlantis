@@ -181,7 +181,7 @@ function getZeroIndexStateText(subjectNoun?: string) {
     return `You don't have any ${subjectNoun} yet.`;
   }
 
-  return "No options yet.";
+  return "No options yet";
 }
 
 function useComboboxContent(
