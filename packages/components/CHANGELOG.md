@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.33.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.32.1...@jobber/components@4.33.0) (2023-09-11)
+
+
+### Features
+
+* **components:** allow DataList to infinite scroll ([#1525](https://github.com/GetJobber/atlantis/issues/1525)) ([8392116](https://github.com/GetJobber/atlantis/commit/8392116c268f8fea944ab64ca69debc8286e1a72))
+
+
+
+
+
 ## [4.32.1](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.32.0...@jobber/components@4.32.1) (2023-09-08)
 
 
