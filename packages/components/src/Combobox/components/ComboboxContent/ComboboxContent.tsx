@@ -14,7 +14,7 @@ import { Icon } from "../../../Icon";
 import { ComboboxContext } from "../../ComboboxProvider";
 import { ComboboxOption } from "../../Combobox.types";
 
-interface ComboboxContentProps {
+export interface ComboboxContentProps {
   /**
    * List of selectable options to display.
    */
