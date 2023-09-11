@@ -1,11 +1,8 @@
-import React, { useEffect } from "react";
-import { useInView } from "@jobber/hooks/useInView";
+import React from "react";
 import styles from "./DataListLoadMore.css";
+import { DataListLoadMoreTrigger } from "./DataListLoadMoreTrigger";
 import { useDataListContext } from "../../context/DataListContext";
-import {
-  DATA_LIST_LOADING_MORE_SPINNER_TEST_ID,
-  DATA_LOAD_MORE_TEST_ID,
-} from "../../DataList.const";
+import { DATA_LIST_LOADING_MORE_SPINNER_TEST_ID } from "../../DataList.const";
 import { Spinner } from "../../../Spinner";
 import { Button } from "../../../Button";
 
@@ -16,22 +13,13 @@ interface DataListLoadMoreProps {
 export const MAX_DATA_COUNT = 50;
 
 export function DataListLoadMore({ onBackToTop }: DataListLoadMoreProps) {
-  const { onLoadMore, loadingState, data } = useDataListContext();
-  const [inViewRef, isInView] = useInView<HTMLDivElement>();
+  const { loadingState, data } = useDataListContext();
   const showBackToTop =
     data.length > MAX_DATA_COUNT && loadingState !== "loadingMore";
 
-  useEffect(() => {
-    isInView && onLoadMore?.();
-  }, [isInView]);
-
   return (
     <>
-      <div
-        ref={inViewRef}
-        className={styles.trigger}
-        data-testid={DATA_LOAD_MORE_TEST_ID}
-      />
+      <DataListLoadMoreTrigger key={data.length} />
 
       {loadingState === "loadingMore" && (
         <div
