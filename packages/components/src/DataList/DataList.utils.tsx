@@ -2,16 +2,12 @@ import React, { Children, ReactElement, isValidElement } from "react";
 import isEmpty from "lodash/isEmpty";
 import {
   DataListHeader,
-  DataListItemType,
   DataListItemTypeFromHeader,
   DataListObject,
 } from "./DataList.types";
 import styles from "./DataList.css";
 import { BREAKPOINTS, Breakpoints } from "./DataList.const";
-import { DataListTags } from "./components/DataListTags";
-import { FormatDate } from "../FormatDate";
 import { Text } from "../Text";
-import { Heading } from "../Heading";
 
 /**
  * Return the child component that matches the `type` provided
@@ -43,41 +39,6 @@ export function getCompoundComponents<T>(
   );
 
   return elements;
-}
-
-/**
- * Generate the default elements the DataList would use on the data provided.
- */
-export function generateListItemElements<T extends DataListObject>(data: T[]) {
-  type DataListElements = DataListItemType<typeof data>;
-
-  return data.map(item =>
-    Object.keys(item).reduce((acc, key: keyof DataListElements) => {
-      const currentItem = item[key];
-
-      if (!currentItem) {
-        return acc;
-      }
-
-      if (key === "tags" && Array.isArray(currentItem)) {
-        acc[key] = <DataListTags items={currentItem} />;
-      } else if (key === "label" && typeof currentItem === "string") {
-        acc[key] = <Heading level={5}>{currentItem}</Heading>;
-      } else if (isValidElement(currentItem)) {
-        acc[key] = currentItem;
-      } else if (currentItem instanceof Date) {
-        acc[key] = (
-          <Text variation="subdued">
-            <FormatDate date={currentItem} />
-          </Text>
-        );
-      } else {
-        acc[key] = <Text variation="subdued">{currentItem}</Text>;
-      }
-
-      return acc;
-    }, {} as DataListElements),
-  );
 }
 
 /**

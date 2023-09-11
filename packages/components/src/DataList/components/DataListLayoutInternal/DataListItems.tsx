@@ -3,7 +3,7 @@ import { DataListLayoutInternal } from "./DataListLayoutInternal";
 import { Breakpoints } from "../../DataList.const";
 import styles from "../../DataList.css";
 import { DataListLayoutProps, DataListObject } from "../../DataList.types";
-import { generateListItemElements } from "../../DataList.utils";
+import { useListItemElements } from "../../hooks/useListItemElements";
 
 interface DataListItemsProps<T extends DataListObject> {
   readonly layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined;
@@ -16,7 +16,7 @@ export function DataListItems<T extends DataListObject>({
   mediaMatches,
   data,
 }: DataListItemsProps<T>) {
-  const elementData = generateListItemElements(data);
+  const elementData = useListItemElements(data);
 
   return (
     <DataListLayoutInternal

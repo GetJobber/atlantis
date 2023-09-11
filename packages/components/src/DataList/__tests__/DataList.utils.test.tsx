@@ -1,13 +1,14 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
+import { renderHook } from "@testing-library/react-hooks";
 import {
   generateHeaderElements,
-  generateListItemElements,
   getCompoundComponent,
   getCompoundComponents,
   sortSizeProp,
 } from "../DataList.utils";
 import { BREAKPOINTS } from "../DataList.const";
+import { useListItemElements } from "../hooks/useListItemElements";
 
 const date = new Date("2001-01-01T00:00:00.000Z");
 
@@ -48,9 +49,11 @@ describe("Datalist utils", () => {
    * 1. If any of the snapshot here needs updating, it's either the code within
    *    the utils have changed or there really is something wrong.
    */
-  describe("generateListItemElements", () => {
+  describe("useListItemElements", () => {
     it("should generate a Text component for the label key", () => {
-      const elementList = generateListItemElements([{ id: 1, label: "Hello" }]);
+      const elementList = renderHook(() =>
+        useListItemElements([{ id: 1, label: "Hello" }]),
+      ).result.current;
 
       // Snapshot needs updating? See comment #1 above the `describe`.
       expect(elementList[0].label).toMatchInlineSnapshot(`
@@ -63,12 +66,14 @@ describe("Datalist utils", () => {
     });
 
     it("should generate a subdued Text component for any random key", () => {
-      const elementList = generateListItemElements([
-        {
-          id: 1,
-          randomKeyThatIsntNormal: "I am a normal text",
-        },
-      ]);
+      const elementList = renderHook(() =>
+        useListItemElements([
+          {
+            id: 1,
+            randomKeyThatIsntNormal: "I am a normal text",
+          },
+        ]),
+      ).result.current;
 
       // Snapshot needs updating? See comment #1 above the `describe`.
       expect(elementList[0].randomKeyThatIsntNormal).toMatchInlineSnapshot(`
@@ -81,9 +86,9 @@ describe("Datalist utils", () => {
     });
 
     it("should generate a list of inline label for the tag key", () => {
-      const elementList = generateListItemElements([
-        { id: 1, tags: ["uno", "dos"] },
-      ]);
+      const elementList = renderHook(() =>
+        useListItemElements([{ id: 1, tags: ["uno", "dos"] }]),
+      ).result.current;
 
       // Snapshot needs updating? See comment #1 above the `describe`.
       expect(elementList[0].tags).toMatchInlineSnapshot(`
@@ -99,16 +104,18 @@ describe("Datalist utils", () => {
     });
 
     it("should generate the element passed in on any key", () => {
-      const elementList = generateListItemElements([
-        { id: 1, element: <div /> },
-      ]);
+      const elementList = renderHook(() =>
+        useListItemElements([{ id: 1, element: <div /> }]),
+      ).result.current;
 
       // Snapshot needs updating? See comment #1 above the `describe`.
       expect(elementList[0].element).toMatchInlineSnapshot(`<div />`);
     });
 
     it("should generate the correct element", () => {
-      const elementList = generateListItemElements([{ id: 1, date }]);
+      const elementList = renderHook(() =>
+        useListItemElements([{ id: 1, date }]),
+      ).result.current;
 
       // Snapshot needs updating? See comment #1 above the `describe`.
       expect(elementList[0].date).toMatchInlineSnapshot(`

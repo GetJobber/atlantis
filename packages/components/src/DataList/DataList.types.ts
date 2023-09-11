@@ -97,6 +97,15 @@ export interface DataListProps<T extends DataListObject> {
    * The callback function when the user scrolls to the bottom of the list.
    */
   readonly onLoadMore?: () => void;
+
+  /**
+   * Possible actions for selected items in the DataList.
+   */
+  readonly actions?: Record<string, (items: DataListObject["id"][]) => void>;
+
+  readonly onSelectChange?: (items: DataListObject["id"][]) => void;
+
+  readonly selectedItems?: DataListObject["id"][];
 }
 
 export interface DataListLayoutProps<T extends DataListObject> {

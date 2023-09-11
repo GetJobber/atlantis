@@ -1,3 +1,4 @@
+import noop from "lodash/noop";
 import { createContext, useContext } from "react";
 import { DataListContextProps, DataListObject } from "../../DataList.types";
 
@@ -6,6 +7,9 @@ export const defaultValues = {
   data: [],
   headers: {},
   children: [],
+  actions: {},
+  onSelectChange: noop,
+  selectedItems: [],
 };
 
 export const DataListContext =

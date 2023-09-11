@@ -84,6 +84,7 @@ const Template: ComponentStory<typeof DataList> = args => {
   return (
     <DataList
       {...args}
+      actions={{}}
       loadingState={getLoadingState()}
       totalCount={totalCount}
       data={(args.data as typeof mappedData) || mappedData}

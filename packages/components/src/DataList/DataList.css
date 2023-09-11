@@ -35,6 +35,11 @@
   border-bottom: var(--border-base) solid var(--color-border);
 }
 
+.selectable {
+  display: flex;
+  row-gap: var(--space-small);
+}
+
 .filtering {
   display: flex;
   position: absolute;
