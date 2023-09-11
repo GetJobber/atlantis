@@ -1,6 +1,7 @@
 import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import React from "react";
 import { configMocks, mockIntersectionObserver } from "jsdom-testing-mocks";
+import userEvent from "@testing-library/user-event";
 import { DataList } from "./DataList";
 import {
   BREAKPOINT_SIZES,
@@ -491,6 +492,24 @@ describe("DataList", () => {
       expect(
         screen.queryByTestId(DATA_LOAD_MORE_TEST_ID),
       ).not.toBeInTheDocument();
+    });
+
+    it("should call the scrollIntoView on the target element", () => {
+      const scrollIntoViewMock = jest.fn();
+      window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
+      render(
+        <DataList data={mockData} headers={mockHeaders}>
+          <></>
+        </DataList>,
+      );
+
+      expect(scrollIntoViewMock).not.toHaveBeenCalled();
+      userEvent.click(screen.getByRole("button", { name: "Back to top" }));
+      expect(scrollIntoViewMock).toHaveBeenCalledWith({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "start",
+      });
     });
   });
 });
