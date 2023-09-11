@@ -9,7 +9,11 @@ import {
 import { Spinner } from "../../../Spinner";
 import { Button } from "../../../Button";
 
-export function DataListLoadMore() {
+interface DataListLoadMoreProps {
+  readonly onBackToTop: () => void;
+}
+
+export function DataListLoadMore({ onBackToTop }: DataListLoadMoreProps) {
   const { onLoadMore, loadingState } = useDataListContext();
   const [inViewRef, isInView] = useInView<HTMLDivElement>();
   const showBackToTop = loadingState !== "loadingMore";
@@ -39,7 +43,7 @@ export function DataListLoadMore() {
         <div className={styles.backToTop}>
           <Button
             label="Back to top"
-            onClick={() => alert("Go back to top")}
+            onClick={onBackToTop}
             size="small"
             variation="subtle"
           />
