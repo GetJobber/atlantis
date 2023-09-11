@@ -42,6 +42,11 @@ interface ComboboxContentProps {
    * @type string
    */
   readonly selected?: string | number;
+
+  /**
+   * The encapsulating noun for the content of the combobox. Should be pluralized.
+   */
+  readonly subjectNoun?: string;
 }
 
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
@@ -58,6 +63,8 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     filteredOptions,
   } = useComboboxContent(props.selected, props.options);
 
+  const optionsExist = props.options.length > 0;
+
   const template = (
     <div
       ref={popperRef}
@@ -72,26 +79,29 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         setSearchValue={setSearchValue}
       />
       <div className={styles.list}>
-        {filteredOptions.map(option => (
-          <label key={option.id}>
-            <input
-              type="radio"
-              className={classnames(
-                styles.option,
-                option.id === selectedOption?.id && styles.selectedOption,
-              )}
-              checked={option.id.toString() === selectedOption?.id.toString()}
-              value={option.label}
-              name={option.label}
-              onChange={() => handleSelection(option)}
-            />
-            {option.label}
-          </label>
-        ))}
+        {optionsExist &&
+          filteredOptions.map(option => (
+            <label key={option.id}>
+              <input
+                type="radio"
+                className={classnames(
+                  styles.option,
+                  option.id === selectedOption?.id && styles.selectedOption,
+                )}
+                checked={option.id.toString() === selectedOption?.id.toString()}
+                value={option.label}
+                name={option.label}
+                onChange={() => handleSelection(option)}
+              />
+              {option.label}
+            </label>
+          ))}
 
-        {filteredOptions.length === 0 && (
+        {optionsExist && filteredOptions.length === 0 && (
           <p>No results for {`"${searchValue}"`}</p>
         )}
+
+        {!optionsExist && <p>{getZeroIndexStateText(props.subjectNoun)}</p>}
       </div>
 
       {props.children && (
@@ -164,6 +174,14 @@ function Search(props: {
   function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
     props.setSearchValue(event.target.value);
   }
+}
+
+function getZeroIndexStateText(subjectNoun?: string) {
+  if (subjectNoun) {
+    return `You don't have any ${subjectNoun} yet.`;
+  }
+
+  return "No options yet.";
 }
 
 function useComboboxContent(
