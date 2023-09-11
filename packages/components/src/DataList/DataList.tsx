@@ -20,6 +20,7 @@ import {
   DataListEmptyState,
   InternalDataListEmptyState,
 } from "./components/DataListEmptyState";
+import { DataListLoadMore } from "./components/DataListLoadMore";
 import { DataListContext, useDataListContext } from "./context/DataListContext";
 import {
   DataListEmptyStateProps,
@@ -91,6 +92,8 @@ function InternalDataList() {
   const initialLoading = loadingState === "initial";
   const showEmptyState = !initialLoading && data.length === 0;
 
+  const shouldRenderLoadMoreTrigger = !initialLoading && !showEmptyState;
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.titleContainer}>
@@ -143,6 +146,7 @@ function InternalDataList() {
         </div>
       )}
 
+      {shouldRenderLoadMoreTrigger && <DataListLoadMore />}
       {loadingState === "loadingMore" && (
         <div
           data-testid={DATA_LIST_LOADING_MORE_SPINNER_TEST_ID}

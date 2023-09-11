@@ -43,9 +43,9 @@ const Template: ComponentStory<typeof DataList> = args => {
     data,
     /* See useCollectionQuery for example on how to load more */
     // refresh,
-    // nextPage,
+    nextPage,
     // loadingRefresh,
-    // loadingNextPage,
+    loadingNextPage,
     loadingInitialContent,
   } = useCollectionQuery<ListQueryType>({
     query: LIST_QUERY,
@@ -94,6 +94,7 @@ const Template: ComponentStory<typeof DataList> = args => {
         gender: "Gender",
         created: "Created",
       }}
+      onLoadMore={nextPage}
     >
       <DataList.Filters>
         <Button
@@ -216,6 +217,7 @@ const Template: ComponentStory<typeof DataList> = args => {
 
   function getLoadingState() {
     if (loadingInitialContent) return "initial";
+    if (loadingNextPage) return "loadingMore";
     return args.loadingState;
   }
 };

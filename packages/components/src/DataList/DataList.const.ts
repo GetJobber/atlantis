@@ -31,3 +31,4 @@ export const DATA_LIST_FILTERING_SPINNER_TEST_ID =
   "ATL-DataList-filteringSpinner";
 export const DATA_LIST_LOADING_MORE_SPINNER_TEST_ID =
   "ATL-DataList-loadingMoreSpinner";
+export const DATA_LOAD_MORE_TEST_ID = "ATL-DataList-LoadMore-trigger";
