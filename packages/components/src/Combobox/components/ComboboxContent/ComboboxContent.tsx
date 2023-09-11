@@ -41,7 +41,7 @@ interface ComboboxContentProps {
    * @optional
    * @type string
    * */
-  readonly preSelectedOption?: string;
+  readonly setSelection?: string;
 }
 
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {

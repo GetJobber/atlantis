@@ -42,7 +42,7 @@ const ComboboxButton: ComponentStory<typeof Combobox> = args => {
         onSelection={selection => {
           console.log(selection);
         }}
-        preSelectedOption="Bilbo Baggins"
+        setSelection="Bilbo Baggins"
       >
         <Combobox.Action
           label="Add a teammate"
