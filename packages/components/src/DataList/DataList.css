@@ -51,7 +51,6 @@
 }
 
 .listItem:hover .selectable > :first-child,
-.listItem:focus-within .selectable > :first-child,
 .listItem:focus .selectable > :first-child,
 .listItem .selectable.selected > :first-child {
   visibility: visible;

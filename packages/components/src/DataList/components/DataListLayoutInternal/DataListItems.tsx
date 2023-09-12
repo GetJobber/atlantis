@@ -63,7 +63,11 @@ function ListItemInternal<T extends DataListObject>({
         <Checkbox
           checked={selectedItems?.includes(item.id)}
           onChange={() => {
-            onSelectChange?.([...selectedItems, item.id]);
+            if (selectedItems.includes(item.id)) {
+              onSelectChange?.(selectedItems.filter(id => id !== item.id));
+            } else {
+              onSelectChange?.([...selectedItems, item.id]);
+            }
           }}
         />
         {children}
