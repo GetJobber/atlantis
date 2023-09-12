@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.34.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.33.0...@jobber/components@4.34.0) (2023-09-12)
+
+
+### Features
+
+* **components:** add 'back to top' on DataList ([#1527](https://github.com/GetJobber/atlantis/issues/1527)) ([fb147e2](https://github.com/GetJobber/atlantis/commit/fb147e267d2b514877ebdf4f62cf1f68321b6a1c))
+
+
+
+
+
 # [4.33.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.32.1...@jobber/components@4.33.0) (2023-09-11)
 
 
