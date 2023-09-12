@@ -57,10 +57,10 @@ const ComboboxButton: ComponentStory<typeof Combobox> = args => {
           "Sam Gamgee3",
 >>>>>>> 4fec09b3 (Revert "Refactor to use a ref")
         ]}
-        onSelection={selection => {
+        onSelect={selection => {
           console.log(selection);
         }}
-        setSelection="Bilbo Baggins"
+        selected="Bilbo Baggins"
       >
         <Combobox.Action
           label="Add a teammate"
@@ -99,7 +99,7 @@ const ComboboxChip: ComponentStory<typeof Combobox> = args => {
           { id: "4", label: "Merry Brandybuck" },
           { id: "5", label: "Sam Gamgee" },
         ]}
-        onSelection={selection => {
+        onSelect={selection => {
           console.log(selection);
         }}
       >

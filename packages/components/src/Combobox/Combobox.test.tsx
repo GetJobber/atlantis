@@ -14,7 +14,7 @@ describe("Combobox validation", () => {
       render(
         <Combobox>
           <Combobox.TriggerButton label="Button" />
-          <Combobox.Content options={[]} onSelection={jest.fn()}>
+          <Combobox.Content options={[]} onSelect={jest.fn()}>
             <></>
           </Combobox.Content>
         </Combobox>,
@@ -28,7 +28,7 @@ describe("Combobox validation", () => {
     try {
       render(
         <Combobox>
-          <Combobox.Content options={[]} onSelection={jest.fn()}>
+          <Combobox.Content options={[]} onSelect={jest.fn()}>
             <></>
           </Combobox.Content>
         </Combobox>,
@@ -48,7 +48,7 @@ describe("Combobox validation", () => {
         <Combobox>
           <Combobox.TriggerButton label="Button" />
           <Combobox.TriggerButton label="Button Again" />
-          <Combobox.Content options={[]} onSelection={jest.fn()}>
+          <Combobox.Content options={[]} onSelect={jest.fn()}>
             <></>
           </Combobox.Content>
         </Combobox>,
@@ -68,7 +68,7 @@ describe("Combobox validation", () => {
         <Combobox>
           <Combobox.TriggerButton label="Button" />
           <Combobox.TriggerChip label="Chippy Chip" />
-          <Combobox.Content options={[]} onSelection={jest.fn()}>
+          <Combobox.Content options={[]} onSelect={jest.fn()}>
             <></>
           </Combobox.Content>
         </Combobox>,
@@ -135,7 +135,7 @@ describe("ComboboxContent", () => {
     const { getByTestId } = render(
       <Combobox>
         <Combobox.TriggerButton label="Button" />
-        <Combobox.Content options={[]} onSelection={jest.fn()}>
+        <Combobox.Content options={[]} onSelect={jest.fn()}>
           <></>
         </Combobox.Content>
       </Combobox>,
@@ -152,7 +152,7 @@ describe("ComboboxContent", () => {
             { id: "1", label: "Bilbo Baggins" },
             { id: "2", label: "Frodo Baggins" },
           ]}
-          onSelection={jest.fn()}
+          onSelect={jest.fn()}
         >
           <></>
         </Combobox.Content>
@@ -179,7 +179,7 @@ describe("ComboboxContent", () => {
             { id: "1", label: "Bilbo Baggins" },
             { id: "2", label: "Frodo Baggins" },
           ]}
-          onSelection={jest.fn()}
+          onSelect={jest.fn()}
         >
           <></>
         </Combobox.Content>
@@ -205,7 +205,7 @@ describe("ComboboxContent", () => {
             { id: "1", label: "Bilbo Baggins" },
             { id: "2", label: "Frodo Baggins" },
           ]}
-          onSelection={jest.fn()}
+          onSelect={jest.fn()}
         >
           <></>
         </Combobox.Content>
@@ -234,7 +234,7 @@ describe("ComboboxContent Search", () => {
             { id: "1", label: "Bilbo Baggins" },
             { id: "2", label: "Frodo Baggins" },
           ]}
-          onSelection={jest.fn()}
+          onSelect={jest.fn()}
         >
           <></>
         </Combobox.Content>
@@ -257,7 +257,7 @@ describe("ComboboxContent Search", () => {
             { id: "1", label: "Bilbo Baggins" },
             { id: "2", label: "Frodo Baggins" },
           ]}
-          onSelection={jest.fn()}
+          onSelect={jest.fn()}
         >
           <></>
         </Combobox.Content>
@@ -283,7 +283,7 @@ describe("ComboboxContent Search", () => {
             { id: "1", label: "Bilbo Baggins" },
             { id: "2", label: "Frodo Baggins" },
           ]}
-          onSelection={jest.fn()}
+          onSelect={jest.fn()}
         >
           <></>
         </Combobox.Content>
@@ -313,7 +313,7 @@ describe("ComboboxContent Search", () => {
             { id: "1", label: "Michael Myers" },
             { id: "2", label: "Jason Vorhees" },
           ]}
-          onSelection={jest.fn()}
+          onSelect={jest.fn()}
         >
           <></>
         </Combobox.Content>

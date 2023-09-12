@@ -23,7 +23,7 @@ interface ComboboxContentProps {
   /**
    * Callback function invoked upon the selection of an option. Provides the selected option as an argument.
    */
-  readonly onSelection: (selection: ComboboxOption) => void;
+  readonly onSelect: (selection: ComboboxOption) => void;
 
   /**
    * Optional action button(s) to display at the bottom of the list.
@@ -41,7 +41,7 @@ interface ComboboxContentProps {
    * @optional
    * @type string
    * */
-  readonly setSelection?: string;
+  readonly selected?: string;
 }
 
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
@@ -116,7 +116,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
 
   function handleSelection(selection: ComboboxOption) {
     setSelectedOption(selection);
-    props.onSelection(selection);
+    props.onSelect(selection);
     setSearchValue("");
     setOpen(false);
   }
