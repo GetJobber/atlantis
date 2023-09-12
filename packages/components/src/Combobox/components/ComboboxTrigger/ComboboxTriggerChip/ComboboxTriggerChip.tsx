@@ -17,7 +17,7 @@ export function ComboboxTriggerChip(
         setOpen(!open);
       }}
     >
-      <Typography fontWeight="semiBold" textColor="heading">
+      <Typography fontWeight="semiBold" textColor="blue">
         {props.label}
       </Typography>
       <div className={styles.triggerIcon}>

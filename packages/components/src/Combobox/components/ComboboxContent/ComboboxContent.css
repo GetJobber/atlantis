@@ -3,8 +3,9 @@
   max-width: var(--popover--width);
   max-height: 400px;
   box-shadow: var(--shadow-base);
+  margin-top: var(--space-small);
   border: var(--border-base) solid var(--color-border);
-  border-radius: var(--radius-base);
+  border-radius: var(--radius-larger);
   overflow: scroll;
   font-size: var(--typography--fontSize-base);
   line-height: normal;
@@ -54,9 +55,8 @@
 .clearSearch {
   display: flex;
   position: absolute;
-  top: 0;
   top: 50%;
-  right: var(--space-small);
+  right: var(--space-base);
   z-index: var(--elevation-tooltip);
   width: calc(var(--space-smaller) * 5);
   height: calc(var(--space-smaller) * 5);
@@ -105,6 +105,7 @@
 }
 
 .selectedOption {
+  border-radius: var(--radius-large);
   background-color: var(--color-surface--background);
 }
 

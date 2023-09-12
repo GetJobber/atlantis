@@ -13,6 +13,7 @@ import styles from "./ComboboxContent.css";
 import { Icon } from "../../../Icon";
 import { ComboboxContext } from "../../ComboboxProvider";
 import { ComboboxOption } from "../../Combobox.types";
+import { Typography } from "../../../Typography";
 
 interface ComboboxContentProps {
   /**
