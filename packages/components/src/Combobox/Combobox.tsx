@@ -1,7 +1,7 @@
 import React, { ReactElement, ReactNode } from "react";
 import { useAssert } from "@jobber/hooks/useAssert";
 import { ComboboxContent } from "./components/ComboboxContent";
-import { Action } from "./components/Action";
+import { ComboboxAction } from "./components/ComboboxAction";
 import { ComboboxContextProvider } from "./ComboboxProvider";
 import {
   ComboboxTriggerButton,
@@ -77,4 +77,4 @@ function isContentElement(child: ReactNode): boolean {
 Combobox.TriggerButton = ComboboxTriggerButton;
 Combobox.TriggerChip = ComboboxTriggerChip;
 Combobox.Content = ComboboxContent;
-Combobox.Action = Action;
+Combobox.Action = ComboboxAction;

@@ -105,3 +105,11 @@
   bottom: 0;
   width: 100%;
 }
+
+.actions button:last-child {
+  padding-bottom: var(--space-small);
+}
+
+.actionPadding {
+  padding-bottom: var(--space-small);
+}

@@ -84,7 +84,23 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
           <p>No results for {`"${searchValue}"`}</p>
         )}
       </div>
-      <div className={styles.actions}>{props.children && props.children}</div>
+
+      {props.children && (
+        <div className={styles.actions}>
+          {React.Children.toArray(props.children).map(
+            (child, index, childrenArray) => (
+              <div
+                key={index}
+                className={
+                  index === childrenArray.length - 1 ? styles.actionPadding : ""
+                }
+              >
+                {child}
+              </div>
+            ),
+          )}
+        </div>
+      )}
     </div>
   );
 

@@ -1,0 +1,25 @@
+.actionContainer {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 var(--space-small);
+  background-color: var(--color-surface);
+}
+
+.actionButton {
+  position: relative;
+  width: 100%;
+  padding: var(--space-small) 0;
+  border: none;
+  text-align: left;
+  background-color: var(--color-surface);
+}
+
+.actionButton:focus {
+  border-radius: var(--radius-large);
+  outline: none;
+  background-color: var(--color-surface--background);
+}
+
+.actionButton span {
+  margin-left: var(--space-small);
+}
