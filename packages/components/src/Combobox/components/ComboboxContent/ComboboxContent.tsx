@@ -10,6 +10,7 @@ import ReactDOM from "react-dom";
 import { usePopper } from "react-popper";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
+import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import styles from "./ComboboxContent.css";
 import { Icon } from "../../../Icon";
 import { ComboboxContext } from "../../ComboboxProvider";
@@ -58,6 +59,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     <div
       ref={popperRef}
       data-testid="ATL-Combobox-Content"
+      tabIndex={0}
       className={classnames(styles.content, !open && styles.hidden)}
       style={popperStyles.popper}
       {...attributes.popper}
@@ -185,7 +187,7 @@ function useComboboxContent(): {
 
   useRefocusOnActivator(open);
 
-  const popperRef = useRef<HTMLDivElement>(null);
+  const popperRef = useFocusTrap<HTMLDivElement>(open);
   const { styles: popperStyles, attributes } = usePopper(
     wrapperRef.current,
     popperRef.current,
