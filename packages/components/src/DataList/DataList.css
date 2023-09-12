@@ -26,10 +26,6 @@
   border-bottom: var(--border-thick) solid var(--color-border);
 }
 
-.headerLabel > * {
-  font-weight: 500;
-}
-
 .listItem {
   padding: var(--space-small);
   border-bottom: var(--border-base) solid var(--color-border);

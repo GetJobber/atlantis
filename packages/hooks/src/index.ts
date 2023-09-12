@@ -2,6 +2,7 @@ export * from "./useAssert";
 export * from "./useCollectionQuery";
 export * from "./useFocusTrap";
 export * from "./useFormState";
+export * from "./useInView";
 export * from "./useIsMounted";
 export * from "./useLiveAnnounce";
 export * from "./useOnKeyDown";

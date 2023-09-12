@@ -95,6 +95,7 @@ const Template: ComponentStory<typeof DataList> = args => {
         created: "Created",
       }}
       onLoadMore={nextPage}
+      onSortingChange={sorting => console.log(sorting)}
     >
       <DataList.Filters>
         <Button
