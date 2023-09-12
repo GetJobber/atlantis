@@ -1,26 +1,26 @@
 import React from "react";
 import { DataListLayoutInternal } from "./DataListLayoutInternal";
-import { Breakpoints } from "../../DataList.const";
 import styles from "../../DataList.css";
-import { DataListLayoutProps, DataListObject } from "../../DataList.types";
+import { DataListObject } from "../../DataList.types";
 import { generateListItemElements } from "../../DataList.utils";
+import { useLayoutMediaQueries } from "../../hooks/useLayoutMediaQueries";
+import { useDataListContext } from "../../context/DataListContext";
 
 interface DataListItemsProps<T extends DataListObject> {
-  readonly layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined;
-  readonly mediaMatches?: Record<Breakpoints, boolean>;
   readonly data: T[];
 }
 
 export function DataListItems<T extends DataListObject>({
-  layouts,
-  mediaMatches,
   data,
 }: DataListItemsProps<T>) {
+  const { layoutComponents } = useDataListContext();
+  const mediaMatches = useLayoutMediaQueries();
+
   const elementData = generateListItemElements(data);
 
   return (
     <DataListLayoutInternal
-      layouts={layouts}
+      layouts={layoutComponents}
       mediaMatches={mediaMatches}
       renderLayout={layout => {
         return (

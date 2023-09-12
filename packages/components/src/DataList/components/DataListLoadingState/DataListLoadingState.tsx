@@ -2,18 +2,16 @@ import React from "react";
 import styles from "./DataListLoadingState.css";
 import { Glimmer } from "../../../Glimmer";
 import {
-  Breakpoints,
   DataListHeader,
   DataListItemType,
-  DataListLayoutProps,
   DataListObject,
 } from "../../DataList.types";
 import { DataListLayoutInternal } from "../DataListLayoutInternal";
+import { useLayoutMediaQueries } from "../../hooks/useLayoutMediaQueries";
+import { useDataListContext } from "../../context/DataListContext";
 
 interface DataListLoadingStateProps<T extends DataListObject> {
   readonly headers: DataListHeader<T>;
-  readonly layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined;
-  readonly mediaMatches?: Record<Breakpoints, boolean>;
 }
 
 export const LOADING_STATE_LIMIT_ITEMS = 10;
@@ -22,9 +20,10 @@ export const DATALIST_LOADINGSTATE_ROW_TEST_ID =
 
 export function DataListLoadingState<T extends DataListObject>({
   headers,
-  layouts,
-  mediaMatches,
 }: DataListLoadingStateProps<T>) {
+  const mediaMatches = useLayoutMediaQueries();
+  const { layoutComponents } = useDataListContext();
+
   const loadingData = new Array(LOADING_STATE_LIMIT_ITEMS).fill(headers);
   type DataListElements = DataListItemType<typeof loadingData>;
 
@@ -37,7 +36,7 @@ export function DataListLoadingState<T extends DataListObject>({
 
   return (
     <DataListLayoutInternal
-      layouts={layouts}
+      layouts={layoutComponents}
       mediaMatches={mediaMatches}
       renderLayout={layout => {
         if (layout.props.size === "xs") {

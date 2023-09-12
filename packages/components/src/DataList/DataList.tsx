@@ -35,7 +35,6 @@ import {
   getCompoundComponent,
   getCompoundComponents,
 } from "./DataList.utils";
-import { useLayoutMediaQueries } from "./hooks/useLayoutMediaQueries";
 import {
   DATA_LIST_FILTERING_SPINNER_TEST_ID,
   DATA_LIST_LOADING_MORE_SPINNER_TEST_ID,
@@ -81,13 +80,10 @@ function InternalDataList() {
     headers,
     title,
     totalCount,
-    headerVisibility = { xs: true, sm: true, md: true, lg: true, xl: true },
     loadingState = "none",
-    layoutComponents,
   } = useDataListContext();
 
   const headerData = generateHeaderElements(headers);
-  const mediaMatches = useLayoutMediaQueries();
 
   const initialLoading = loadingState === "initial";
   const showEmptyState = !initialLoading && data.length === 0;
@@ -107,33 +103,14 @@ function InternalDataList() {
           <InternalDataListSearch />
         </div>
 
-        {headerData && (
-          <DataListHeader
-            layouts={layoutComponents}
-            headerData={headerData}
-            headerVisibility={headerVisibility}
-            mediaMatches={mediaMatches}
-          />
-        )}
+        {headerData && <DataListHeader headerData={headerData} />}
       </DataListStickyHeader>
 
-      {initialLoading && (
-        <DataListLoadingState
-          headers={headers}
-          layouts={layoutComponents}
-          mediaMatches={mediaMatches}
-        />
-      )}
+      {initialLoading && <DataListLoadingState headers={headers} />}
 
       {showEmptyState && <InternalDataListEmptyState />}
 
-      {!initialLoading && (
-        <DataListItems
-          data={data}
-          layouts={layoutComponents}
-          mediaMatches={mediaMatches}
-        />
-      )}
+      {!initialLoading && <DataListItems data={data} />}
 
       {loadingState === "filtering" && (
         <div
