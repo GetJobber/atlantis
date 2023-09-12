@@ -103,8 +103,14 @@ export interface DataListProps<T extends DataListObject> {
    */
   readonly actions?: Record<string, (items: DataListObject["id"][]) => void>;
 
+  /**
+   * Callback when an item row is clicked.
+   */
   readonly onSelectChange?: (items: DataListObject["id"][]) => void;
 
+  /**
+   * The list of Selected Items
+   */
   readonly selectedItems?: DataListObject["id"][];
 }
 
@@ -161,4 +167,5 @@ export interface DataListContextProps<T extends DataListObject>
   readonly searchComponent?: ReactElement<DataListSearchProps>;
   readonly emptyStateComponents?: ReactElement<DataListEmptyStateProps>[];
   readonly layoutComponents?: ReactElement<DataListLayoutProps<T>>[];
+  readonly selectedItems: DataListObject["id"][];
 }

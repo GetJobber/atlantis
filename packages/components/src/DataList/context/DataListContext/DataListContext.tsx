@@ -7,7 +7,7 @@ export const defaultValues = {
   data: [],
   headers: {},
   children: [],
-  actions: {},
+  actions: undefined,
   onSelectChange: noop,
   selectedItems: [],
 };

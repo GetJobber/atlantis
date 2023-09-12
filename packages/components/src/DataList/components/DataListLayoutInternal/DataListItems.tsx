@@ -1,9 +1,12 @@
 import React from "react";
+import classNames from "classnames";
 import { DataListLayoutInternal } from "./DataListLayoutInternal";
 import { Breakpoints } from "../../DataList.const";
 import styles from "../../DataList.css";
 import { DataListLayoutProps, DataListObject } from "../../DataList.types";
-import { useListItemElements } from "../../hooks/useListItemElements";
+import { generateListItemElements } from "../../DataList.utils";
+import { useDataListContext } from "../../context/DataListContext";
+import { Checkbox } from "../../../Checkbox";
 
 interface DataListItemsProps<T extends DataListObject> {
   readonly layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined;
@@ -16,7 +19,7 @@ export function DataListItems<T extends DataListObject>({
   mediaMatches,
   data,
 }: DataListItemsProps<T>) {
-  const elementData = useListItemElements(data);
+  const elementData = generateListItemElements(data);
 
   return (
     <DataListLayoutInternal
@@ -28,7 +31,9 @@ export function DataListItems<T extends DataListObject>({
             {elementData.map((child, i) => {
               return (
                 <div className={styles.listItem} key={`${data[i].id}`}>
-                  {layout.props.children(child)}
+                  <ListItemInternal item={data[i]}>
+                    {layout.props.children(child)}
+                  </ListItemInternal>
                 </div>
               );
             })}
@@ -37,4 +42,33 @@ export function DataListItems<T extends DataListObject>({
       }}
     />
   );
+}
+
+function ListItemInternal<T extends DataListObject>({
+  children,
+  item,
+}: {
+  children: JSX.Element;
+  item: T;
+}) {
+  const { selectedItems, actions, onSelectChange } = useDataListContext();
+
+  if (actions) {
+    return (
+      <div
+        className={classNames(styles.selectable, [
+          selectedItems.length > 0 && styles.selected,
+        ])}
+      >
+        <Checkbox
+          checked={selectedItems?.includes(item.id)}
+          onChange={() => {
+            onSelectChange?.([...selectedItems, item.id]);
+          }}
+        />
+        {children}
+      </div>
+    );
+  }
+  return children;
 }
