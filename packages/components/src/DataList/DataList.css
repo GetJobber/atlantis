@@ -47,7 +47,10 @@
 }
 
 .listItem .selectable > :first-child {
-  visibility: hidden;
+  visibility: visible;
+  @media (--medium-screens-and-up) {
+    visibility: hidden;
+  }
 }
 
 .listItem:hover .selectable > :first-child,
