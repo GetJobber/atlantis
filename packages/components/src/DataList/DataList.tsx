@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styles from "./DataList.css";
 import { DataListTotalCount } from "./components/DataListTotalCount";
 import { DataListLoadingState } from "./components/DataListLoadingState";
@@ -35,10 +35,7 @@ import {
   getCompoundComponent,
   getCompoundComponents,
 } from "./DataList.utils";
-import {
-  DATA_LIST_FILTERING_SPINNER_TEST_ID,
-  DATA_LIST_LOADING_MORE_SPINNER_TEST_ID,
-} from "./DataList.const";
+import { DATA_LIST_FILTERING_SPINNER_TEST_ID } from "./DataList.const";
 import { Heading } from "../Heading";
 import { Spinner } from "../Spinner";
 
@@ -83,6 +80,8 @@ function InternalDataList() {
     loadingState = "none",
   } = useDataListContext();
 
+  const backToTopRef = useRef<HTMLDivElement>(null);
+
   const headerData = generateHeaderElements(headers);
 
   const initialLoading = loadingState === "initial";
@@ -96,6 +95,10 @@ function InternalDataList() {
         {title && <Heading level={3}>{title}</Heading>}
         <DataListTotalCount totalCount={totalCount} loading={initialLoading} />
       </div>
+
+      {/* We need to know where the top of the list is but not necessarily the
+      heading as per the design requirements */}
+      <div ref={backToTopRef} />
 
       <DataListStickyHeader>
         <div className={styles.headerFilters}>
@@ -123,17 +126,23 @@ function InternalDataList() {
         </div>
       )}
 
-      {shouldRenderLoadMoreTrigger && <DataListLoadMore />}
-      {loadingState === "loadingMore" && (
-        <div
-          data-testid={DATA_LIST_LOADING_MORE_SPINNER_TEST_ID}
-          className={styles.loadingMore}
-        >
-          <Spinner size="small" />
-        </div>
+      {shouldRenderLoadMoreTrigger && (
+        <DataListLoadMore onBackToTop={handleBackToTop} />
       )}
     </div>
   );
+
+  function handleBackToTop() {
+    // For testing purposes since jest doesn't know scrollIntoView.
+    // This prevents consumer's tests from needing to mock scrollIntoView.
+    if (!window.HTMLElement.prototype.scrollIntoView) return;
+
+    backToTopRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "start",
+    });
+  }
 }
 
 DataList.Layout = DataListLayout;
