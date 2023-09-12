@@ -9,6 +9,7 @@ import classnames from "classnames";
 import ReactDOM from "react-dom";
 import { usePopper } from "react-popper";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
+import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import styles from "./ComboboxContent.css";
 import { Icon } from "../../../Icon";
 import { ComboboxContext } from "../../ComboboxProvider";
@@ -181,6 +182,8 @@ function useComboboxContent(): {
       setOpen(false);
     }
   }, "Escape");
+
+  useRefocusOnActivator(open);
 
   const popperRef = useRef<HTMLDivElement>(null);
   const { styles: popperStyles, attributes } = usePopper(
