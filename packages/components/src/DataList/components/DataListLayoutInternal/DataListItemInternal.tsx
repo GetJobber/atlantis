@@ -7,11 +7,11 @@ import { DataListObject } from "../../DataList.types";
 
 interface ListItemInternalProps<T extends DataListObject> {
   children: JSX.Element;
-  item: T;
+  data: T;
 }
-export function ListItemInternal<T extends DataListObject>({
+export function DataListItemInternal<T extends DataListObject>({
   children,
-  item,
+  data,
 }: ListItemInternalProps<T>) {
   const { selected, onSelect } = useDataListContext();
 
@@ -23,20 +23,21 @@ export function ListItemInternal<T extends DataListObject>({
         })}
       >
         <Checkbox
-          checked={selected?.includes(item.id)}
+          checked={selected?.includes(data.id)}
           onChange={handleChange}
         />
         {children}
       </div>
     );
   }
+
   return children;
 
   function handleChange() {
-    if (selected?.includes(item.id)) {
-      onSelect?.(selected?.filter(id => id !== item.id));
+    if (selected?.includes(data.id)) {
+      onSelect?.(selected?.filter(id => id !== data.id));
     } else if (selected) {
-      onSelect?.([...selected, item.id]);
+      onSelect?.([...selected, data.id]);
     }
   }
 }

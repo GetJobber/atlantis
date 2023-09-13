@@ -1,6 +1,6 @@
 import React from "react";
 import { DataListLayoutInternal } from "./DataListLayoutInternal";
-import { ListItemInternal } from "./DataListItemInternal";
+import { DataListItemInternal } from "./DataListItemInternal";
 import { Breakpoints } from "../../DataList.const";
 import styles from "../../DataList.css";
 import { DataListLayoutProps, DataListObject } from "../../DataList.types";
@@ -29,9 +29,9 @@ export function DataListItems<T extends DataListObject>({
             {elementData.map((child, i) => {
               return (
                 <div className={styles.listItem} key={`${data[i].id}`}>
-                  <ListItemInternal item={data[i]}>
+                  <DataListItemInternal data={data[i]}>
                     {layout.props.children(child)}
-                  </ListItemInternal>
+                  </DataListItemInternal>
                 </div>
               );
             })}

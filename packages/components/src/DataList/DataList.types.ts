@@ -106,7 +106,7 @@ export interface DataListProps<T extends DataListObject> {
   /**
    * The list of Selected Item ids
    */
-  readonly selected?: Array<T["id"]>;
+  readonly selected?: T["id"][];
 }
 
 export interface DataListLayoutProps<T extends DataListObject> {

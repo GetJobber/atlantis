@@ -6,7 +6,6 @@ export const defaultValues = {
   data: [],
   headers: {},
   children: [],
-  onSelect: undefined,
   selected: [],
 };
 
