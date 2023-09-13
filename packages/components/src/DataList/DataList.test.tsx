@@ -344,12 +344,14 @@ describe("DataList", () => {
       headerVisibility?: DataListProps<
         (typeof mockData)[0]
       >["headerVisibility"],
+      sorting?: DataListProps<(typeof mockData)[0]>["sorting"],
     ) {
       render(
         <DataList
           data={mockData}
           headers={mockHeaders}
           headerVisibility={headerVisibility}
+          sorting={sorting}
         >
           <DataList.Layout>
             {(item: DataListItemType<typeof mockData>) => (
@@ -380,7 +382,7 @@ describe("DataList", () => {
     });
 
     it("should show the sorting arrows when the header is clicked", () => {
-      renderLayout();
+      renderLayout({}, { sortable: ["name"], onSort: jest.fn() });
       const header = screen.getByText(mockHeaders.name);
 
       expect(screen.queryByTestId("arrowUp")).not.toBeInTheDocument();

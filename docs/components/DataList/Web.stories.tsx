@@ -95,7 +95,14 @@ const Template: ComponentStory<typeof DataList> = args => {
         created: "Created",
       }}
       onLoadMore={nextPage}
-      onSortingChange={sorting => console.log(sorting)}
+      sorting={{
+        initialState: {
+          key: "label",
+          direction: "desc",
+        },
+        onSort: sorting => console.log(sorting),
+        sortable: ["label", "home"],
+      }}
     >
       <DataList.Filters>
         <Button

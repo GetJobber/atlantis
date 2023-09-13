@@ -1,10 +1,10 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { Sorting, SortingDirection } from "../../DataList.types";
+import { DataListSortContextProps, Sorting } from "../../DataList.types";
 import { useDataListContext } from "../DataListContext";
 
-const DataListSortContext = createContext({
-  sorting: {
-    direction: SortingDirection.None,
+const DataListSortContext = createContext<DataListSortContextProps>({
+  sortingState: {
+    direction: "none",
     key: "",
   },
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -22,35 +22,34 @@ export function DataListSortProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [sorting, setSorting] = useState<Sorting>({
-    direction: SortingDirection.None,
-    key: "",
-  });
+  const { sorting: sortingProp } = useDataListContext();
 
-  const { onSortingChange } = useDataListContext();
+  const [sortingState, setSortingState] = useState<Sorting>(
+    sortingProp?.initialState || {
+      direction: "none",
+      key: "",
+    },
+  );
 
   function toggleSorting(sortingKey: string) {
-    if (sortingKey === sorting.key) {
-      setSorting({
-        direction:
-          sorting.direction === SortingDirection.Ascending
-            ? SortingDirection.Descending
-            : SortingDirection.Ascending,
+    if (sortingKey === sortingState.key) {
+      setSortingState({
+        direction: sortingState.direction === "asc" ? "desc" : "asc",
         key: sortingKey,
       });
     } else {
-      setSorting({ direction: SortingDirection.Ascending, key: sortingKey });
+      setSortingState({ direction: "asc", key: sortingKey });
     }
   }
 
   useEffect(() => {
-    if (sorting.key) {
-      onSortingChange?.(sorting);
+    if (sortingState.key) {
+      sortingProp?.onSort?.(sortingState);
     }
-  }, [sorting]);
+  }, [sortingState]);
 
   return (
-    <DataListSortContext.Provider value={{ sorting, toggleSorting }}>
+    <DataListSortContext.Provider value={{ sortingState, toggleSorting }}>
       {children}{" "}
     </DataListSortContext.Provider>
   );

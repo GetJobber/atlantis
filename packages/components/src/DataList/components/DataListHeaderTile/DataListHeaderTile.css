@@ -1,6 +1,9 @@
 .headerLabel {
   display: flex;
   align-items: center;
+}
+
+.sortable {
   cursor: pointer;
 }
 
