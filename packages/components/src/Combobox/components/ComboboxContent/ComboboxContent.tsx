@@ -15,6 +15,7 @@ import styles from "./ComboboxContent.css";
 import { Icon } from "../../../Icon";
 import { ComboboxContext } from "../../ComboboxProvider";
 import { ComboboxOption } from "../../Combobox.types";
+import { Text } from "../../../Text";
 
 interface ComboboxContentProps {
   /**
@@ -46,6 +47,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     setSelectedOption,
     open,
     setOpen,
+    actionsRef,
     popperRef,
     popperStyles,
     attributes,
@@ -64,6 +66,9 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       style={popperStyles.popper}
       {...attributes.popper}
     >
+      {React.Children.toArray(props.children).length > 0 && (
+        <SkipToActionsLink actionsRef={actionsRef} />
+      )}
       <Search
         searchPlaceholder={props.searchPlaceholder}
         searchValue={searchValue}
@@ -89,7 +94,11 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       </div>
 
       {props.children && (
-        <div className={styles.actions}>
+        <div
+          className={styles.actions}
+          ref={actionsRef}
+          data-testid="ATL-Combobox-Content-Actions"
+        >
           {React.Children.toArray(props.children).map(
             (child, index, childrenArray) => (
               <div
@@ -115,6 +124,22 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     setSearchValue("");
     setOpen(false);
   }
+}
+
+function SkipToActionsLink(props: {
+  actionsRef: React.RefObject<HTMLDivElement>;
+}): JSX.Element {
+  return (
+    <button
+      className={styles.skipToActionsLink}
+      data-testid="ATL-Combobox-Content-SkipToActions"
+      onClick={() => {
+        props.actionsRef.current?.querySelector("button")?.focus();
+      }}
+    >
+      <Text>Skip to Actions</Text>
+    </button>
+  );
 }
 
 function Search(props: {
@@ -169,6 +194,7 @@ function useComboboxContent(): {
   >;
   open: boolean;
   setOpen: (open: boolean) => void;
+  actionsRef: React.RefObject<HTMLDivElement>;
   popperRef: React.RefObject<HTMLDivElement>;
   popperStyles: { [key: string]: React.CSSProperties };
   attributes: { [key: string]: { [key: string]: string } | undefined };
@@ -187,6 +213,7 @@ function useComboboxContent(): {
 
   useRefocusOnActivator(open);
 
+  const actionsRef = useRef<HTMLDivElement>(null);
   const popperRef = useFocusTrap<HTMLDivElement>(open);
   const { styles: popperStyles, attributes } = usePopper(
     wrapperRef.current,
@@ -211,6 +238,7 @@ function useComboboxContent(): {
     setSelectedOption,
     open,
     setOpen,
+    actionsRef,
     popperRef,
     popperStyles,
     attributes,
