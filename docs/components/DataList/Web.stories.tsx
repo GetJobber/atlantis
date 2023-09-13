@@ -128,6 +128,12 @@ const Template: ComponentStory<typeof DataList> = args => {
         placeholder="Search characters..."
       />
 
+      <DataList.ItemActions>
+        <DataList.Action icon="edit" label="Edit" />
+        <DataList.Action icon="email" label="Email" />
+        <DataList.Action icon="note" label="Add note" />
+      </DataList.ItemActions>
+
       <DataList.Layout size="md">
         {(item: DataListItemType<typeof mappedData>) => (
           <Grid alignItems="center">

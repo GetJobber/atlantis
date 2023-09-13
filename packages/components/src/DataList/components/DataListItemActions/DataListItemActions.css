@@ -1,0 +1,12 @@
+.menu {
+  display: flex;
+  position: absolute;
+  top: -25%;
+  right: 0;
+  z-index: var(--elevation-menu);
+  box-shadow: var(--shadow-base);
+  padding: var(--space-smaller);
+  border-radius: var(--radius-large);
+  background-color: var(--color-surface);
+  gap: var(--space-smaller);
+}

@@ -1,4 +1,5 @@
 import { ReactElement, ReactNode } from "react";
+import { IconNames } from "@jobber/design";
 import { Breakpoints } from "./DataList.const";
 import { ButtonProps } from "../Button";
 
@@ -162,4 +163,23 @@ export interface DataListContextProps<T extends DataListObject>
   readonly searchComponent?: ReactElement<DataListSearchProps>;
   readonly emptyStateComponents?: ReactElement<DataListEmptyStateProps>[];
   readonly layoutComponents?: ReactElement<DataListLayoutProps<T>>[];
+  readonly itemActionComponent?: ReactElement<DataListItemActionsProps<T>>;
+}
+
+type Fragment<T> = T | T[];
+
+export interface DataListItemActionsProps<T extends DataListObject> {
+  // readonly onClick?: (data: T) => void;
+  // readonly url?: string | (data: T) => string;
+  // readonly to?: string | (data: T) => string;
+  readonly children?: Fragment<ReactElement<DataListActionProps<T>>>;
+}
+
+export interface DataListActionProps<T extends DataListObject> {
+  readonly label: string;
+  readonly icon?: IconNames;
+  readonly url?: string | ((data: T) => string);
+  readonly to?: string | ((data: T) => string);
+  readonly destructive?: boolean;
+  readonly onClick?: (data: T) => void;
 }
