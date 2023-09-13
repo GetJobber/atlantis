@@ -178,7 +178,7 @@ function Search(props: {
 
 function getZeroIndexStateText(subjectNoun?: string) {
   if (subjectNoun) {
-    return `You don't have any ${subjectNoun} yet.`;
+    return `You don't have any ${subjectNoun} yet`;
   }
 
   return "No options yet";

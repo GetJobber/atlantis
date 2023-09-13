@@ -373,16 +373,16 @@ describe("Combobox selected value", () => {
 });
 
 describe("Combobox Zero Index State", () => {
-  describe("when no options exist and contentNoun is provided", () => {
+  describe("when no options exist and subjectNoun is provided", () => {
     it("should render the correct zero index state text", () => {
-      const contentNoun = "teammates";
+      const subjectNoun = "teammates";
       const { getByText } = render(
         <Combobox>
           <Combobox.TriggerButton label="Select a teammate" />
           <Combobox.Content
             options={[]}
             onSelect={jest.fn()}
-            subjectNoun={contentNoun}
+            subjectNoun={subjectNoun}
           />
         </Combobox>,
       );
@@ -391,7 +391,7 @@ describe("Combobox Zero Index State", () => {
     });
   });
 
-  describe("when no options exist and contentNoun is not provided", () => {
+  describe("when no options exist and subjectNoun is not provided", () => {
     it("should render the default zero index state text", () => {
       const { getByText } = render(
         <Combobox>
