@@ -403,4 +403,20 @@ describe("Combobox Zero Index State", () => {
       expect(getByText("No options yet")).toBeInTheDocument();
     });
   });
+
+  describe("when options do exist", () => {
+    it("should not render default zero index state text", () => {
+      const { queryByText } = render(
+        <Combobox>
+          <Combobox.TriggerButton label="Select a tax rate" />
+          <Combobox.Content
+            options={[{ id: "1", label: "10%" }]}
+            onSelection={jest.fn()}
+          />
+        </Combobox>,
+      );
+
+      expect(queryByText("No options yet")).not.toBeInTheDocument();
+    });
+  });
 });
