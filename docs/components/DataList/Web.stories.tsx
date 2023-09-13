@@ -81,16 +81,13 @@ const Template: ComponentStory<typeof DataList> = args => {
     created: new Date(node.created),
   }));
 
-  const [selectedItems, setSelectedItems] = useState<Array<number | string>>(
-    [],
-  );
+  const [selectedItems, setSelectedItems] = useState<Array<string>>([]);
 
   return (
     <DataList
       {...args}
-      actions={{}}
-      selectedItems={selectedItems}
-      onSelectChange={setSelectedItems}
+      selected={selectedItems}
+      onSelect={setSelectedItems}
       loadingState={getLoadingState()}
       totalCount={totalCount}
       data={(args.data as typeof mappedData) || mappedData}
