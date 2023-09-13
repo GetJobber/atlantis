@@ -5,16 +5,17 @@ import { useDataListContext } from "../../context/DataListContext";
 import styles from "../../DataList.css";
 import { DataListObject } from "../../DataList.types";
 
+interface ListItemInternalProps<T extends DataListObject> {
+  children: JSX.Element;
+  item: T;
+}
 export function ListItemInternal<T extends DataListObject>({
   children,
   item,
-}: {
-  children: JSX.Element;
-  item: T;
-}) {
+}: ListItemInternalProps<T>) {
   const { selected, onSelect } = useDataListContext();
 
-  if (typeof selected !== "undefined" && onSelect) {
+  if (selected !== undefined && onSelect) {
     return (
       <div
         className={classNames(styles.selectable, {
@@ -23,17 +24,19 @@ export function ListItemInternal<T extends DataListObject>({
       >
         <Checkbox
           checked={selected?.includes(item.id)}
-          onChange={() => {
-            if (selected?.includes(item.id)) {
-              onSelect?.(selected?.filter(id => id !== item.id));
-            } else {
-              onSelect?.([...selected, item.id]);
-            }
-          }}
+          onChange={handleChange}
         />
         {children}
       </div>
     );
   }
   return children;
+
+  function handleChange() {
+    if (selected?.includes(item.id)) {
+      onSelect?.(selected?.filter(id => id !== item.id));
+    } else if (selected) {
+      onSelect?.([...selected, item.id]);
+    }
+  }
 }
