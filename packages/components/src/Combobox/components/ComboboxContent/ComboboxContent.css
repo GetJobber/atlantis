@@ -78,8 +78,6 @@
   right: var(--space-smallest);
   left: var(--space-smallest);
   box-shadow: var(--shadow-focus);
-  /* left: 50%; */
-  /* transform: translateX(-50%); */
   opacity: 1;
 }
 
