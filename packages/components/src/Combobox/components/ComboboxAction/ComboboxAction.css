@@ -8,7 +8,7 @@
 .actionButton {
   position: relative;
   width: 100%;
-  height: 44px;
+  height: calc(var(--space-base) * 2.75);
   padding: var(--space-small) 0;
   border: none;
   text-align: left;
