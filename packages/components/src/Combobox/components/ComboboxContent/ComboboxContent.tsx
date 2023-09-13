@@ -40,7 +40,7 @@ interface ComboboxContentProps {
    * @default ""
    * @optional
    * @type string
-   * */
+   */
   readonly selected?: string | number;
 }
 
