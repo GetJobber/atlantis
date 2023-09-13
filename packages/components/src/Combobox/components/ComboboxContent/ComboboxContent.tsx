@@ -74,7 +74,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       {...attributes.popper}
     >
       <Search
-        searchPlaceholder={props.searchPlaceholder}
+        subjectNoun={props.subjectNoun ?? ""}
         searchValue={searchValue}
         setSearchValue={setSearchValue}
       />
@@ -134,7 +134,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
 }
 
 function Search(props: {
-  searchPlaceholder?: string;
+  subjectNoun: string;
   searchValue: string;
   setSearchValue: Dispatch<SetStateAction<string>>;
 }): JSX.Element {
@@ -146,7 +146,7 @@ function Search(props: {
         type="search"
         ref={searchRef}
         className={styles.searchInput}
-        placeholder={props.searchPlaceholder || "Search"}
+        placeholder={`Search ${props.subjectNoun}` || "Search"}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
           handleSearch(event)
         }
