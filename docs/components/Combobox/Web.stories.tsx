@@ -4,7 +4,7 @@ import { Combobox, ComboboxOption } from "@jobber/components/Combobox";
 import { Button as ClearButton } from "@jobber/components/Button";
 
 export default {
-  title: "Components/Combobox/Combobox/Web",
+  title: "Components/Selections/Combobox/Web",
   component: Combobox,
   parameters: {
     viewMode: "story",
