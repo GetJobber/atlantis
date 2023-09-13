@@ -99,19 +99,14 @@ export interface DataListProps<T extends DataListObject> {
   readonly onLoadMore?: () => void;
 
   /**
-   * Possible actions for selected items in the DataList.
+   * Callback when an item checkbox is clicked.
    */
-  readonly actions?: Record<string, (items: DataListObject["id"][]) => void>;
+  readonly onSelect?: (items: T["id"][]) => void;
 
   /**
-   * Callback when an item row is clicked.
+   * The list of Selected Item ids
    */
-  readonly onSelectChange?: (items: DataListObject["id"][]) => void;
-
-  /**
-   * The list of Selected Items
-   */
-  readonly selectedItems?: DataListObject["id"][];
+  readonly selected?: Array<DataListObject["id"]>;
 }
 
 export interface DataListLayoutProps<T extends DataListObject> {
@@ -167,5 +162,4 @@ export interface DataListContextProps<T extends DataListObject>
   readonly searchComponent?: ReactElement<DataListSearchProps>;
   readonly emptyStateComponents?: ReactElement<DataListEmptyStateProps>[];
   readonly layoutComponents?: ReactElement<DataListLayoutProps<T>>[];
-  readonly selectedItems: DataListObject["id"][];
 }
