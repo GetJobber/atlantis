@@ -47,13 +47,11 @@
 }
 
 .listItem .selectable > :first-child {
-  visibility: visible;
   opacity: 1;
   --transition-properties: var(--timing-base) ease-in-out;
   transition: opacity var(--transition-properties);
 
   @media (--medium-screens-and-up) {
-    visibility: hidden;
     opacity: 0;
   }
 }
@@ -61,7 +59,6 @@
 .listItem:hover .selectable > :first-child,
 .listItem:focus-within .selectable > :first-child,
 .listItem .selectable.selected > :first-child {
-  visibility: visible;
   opacity: 1;
 }
 
