@@ -97,6 +97,12 @@ export interface DataListProps<T extends DataListObject> {
    * The callback function when the user scrolls to the bottom of the list.
    */
   readonly onLoadMore?: () => void;
+
+  readonly sorting?: {
+    sortable: string[];
+    state: DataListSortingState;
+    onSort: (newState: DataListSortingState) => void;
+  };
 }
 
 export interface DataListLayoutProps<T extends DataListObject> {
@@ -152,4 +158,9 @@ export interface DataListContextProps<T extends DataListObject>
   readonly searchComponent?: ReactElement<DataListSearchProps>;
   readonly emptyStateComponents?: ReactElement<DataListEmptyStateProps>[];
   readonly layoutComponents?: ReactElement<DataListLayoutProps<T>>[];
+}
+
+export interface DataListSortingState {
+  direction: "asc" | "desc" | "none";
+  key: string;
 }

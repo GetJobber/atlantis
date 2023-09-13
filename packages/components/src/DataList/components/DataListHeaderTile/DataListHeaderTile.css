@@ -1,0 +1,22 @@
+.headerLabel {
+  display: flex;
+  align-items: center;
+}
+
+.sortable {
+  cursor: pointer;
+}
+
+.headerLabel > * {
+  font-weight: 500;
+}
+
+.arrowUp {
+  position: absolute;
+  bottom: var(--space-small);
+}
+
+.arrowDown {
+  position: absolute;
+  bottom: var(--space-smallest);
+}

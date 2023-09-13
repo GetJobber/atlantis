@@ -346,12 +346,14 @@ describe("DataList", () => {
       headerVisibility?: DataListProps<
         (typeof mockData)[0]
       >["headerVisibility"],
+      sorting?: DataListProps<(typeof mockData)[0]>["sorting"],
     ) {
       render(
         <DataList
           data={mockData}
           headers={mockHeaders}
           headerVisibility={headerVisibility}
+          sorting={sorting}
         >
           <DataList.Layout>
             {(item: DataListItemType<typeof mockData>) => (
@@ -379,6 +381,20 @@ describe("DataList", () => {
       renderLayout({ xs: false });
       expect(screen.queryByText(mockHeaders.name)).not.toBeInTheDocument();
       expect(screen.queryByText(mockHeaders.email)).not.toBeInTheDocument();
+    });
+
+    it("should render the sorting icons when a sorting state is set", () => {
+      renderLayout(
+        {},
+        {
+          sortable: ["name"],
+          state: { key: "name", direction: "asc" },
+          onSort: jest.fn(),
+        },
+      );
+
+      expect(screen.getByTestId("arrowUp")).toBeInTheDocument();
+      expect(screen.getByTestId("arrowDown")).toBeInTheDocument();
     });
   });
 
