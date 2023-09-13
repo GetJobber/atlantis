@@ -47,11 +47,13 @@
 }
 
 .listItem .selectable > :first-child {
+  padding-top: var(--space-smaller);
   opacity: 1;
-  --transition-properties: var(--timing-quick) ease-in-out;
   transition: opacity var(--transition-properties);
+  --transition-properties: var(--timing-quick) ease-in-out;
 
   @media (--medium-screens-and-up) {
+    padding-top: 0;
     opacity: 0;
   }
 }
