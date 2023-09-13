@@ -1,7 +1,8 @@
 .content {
   z-index: var(--elevation-tooltip);
   max-width: var(--popover--width);
-  max-height: 400px;
+  max-height: calc(var(--space-extravagant) * 6.25);
+  min-width: calc(var(--space-extravagant) * 3.75);
   box-shadow: var(--shadow-base);
   margin-top: var(--space-small);
   border: var(--border-base) solid var(--color-border);
@@ -97,11 +98,7 @@
   left: 0;
   width: 100%;
   height: var(--space-base);
-  background-image: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 1)
-  );
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%);
 }
 
 .selectedOption {
@@ -113,6 +110,7 @@
   position: sticky;
   bottom: 0;
   width: 100%;
+  background-color: var(--color-surface);
 }
 
 .actions button:last-child {

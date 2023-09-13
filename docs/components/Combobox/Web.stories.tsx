@@ -71,7 +71,11 @@ const ComboboxChip: ComponentStory<typeof Combobox> = args => {
           { id: "2", label: "Frodo Baggins" },
           { id: "3", label: "Pippin Took" },
           { id: "4", label: "Merry Brandybuck" },
-          { id: "5", label: "Sam Gamgee" },
+          {
+            id: "5",
+            label:
+              "Sam GamgeeSam GamgeeSam GamgeeSam GamgeeSam GamgeeSam Gamgee",
+          },
         ]}
         onSelect={selection => {
           console.log(selection);
