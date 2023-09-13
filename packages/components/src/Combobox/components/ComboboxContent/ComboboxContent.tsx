@@ -155,6 +155,7 @@ function Search(props: {
       />
 
       {props.searchValue && (
+        // <div className={styles.clearSearchContainer}>
         <button
           className={styles.clearSearch}
           onClick={clearSearch}
@@ -163,6 +164,7 @@ function Search(props: {
         >
           <Icon name="remove" size="small" />
         </button>
+        // </div>
       )}
     </div>
   );

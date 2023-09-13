@@ -98,7 +98,11 @@
   left: 0;
   width: 100%;
   height: var(--space-base);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgb(255, 255, 255) 100%
+  );
 }
 
 .selectedOption {
