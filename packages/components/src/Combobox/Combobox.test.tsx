@@ -331,7 +331,7 @@ describe("ComboboxContent Search", () => {
 });
 
 describe("Combobox selected value", () => {
-  it("has a selected option when selected is passed", () => {
+  it("has a selected option when a selected id is passed as a number and option id is a string", () => {
     const { getByRole } = render(
       <Combobox>
         <Combobox.TriggerButton label="Button" />
@@ -339,6 +339,26 @@ describe("Combobox selected value", () => {
           options={[
             { id: "1", label: "Bilbo Baggins" },
             { id: "2", label: "Frodo Baggins" },
+          ]}
+          onSelect={jest.fn()}
+          selected={1}
+        >
+          <></>
+        </Combobox.Content>
+      </Combobox>,
+    );
+    const option = getByRole("radio", { name: "Bilbo Baggins" });
+    expect(option).toBeChecked();
+  });
+
+  it("has a selected option when a selected value is passed as the same type as the option id", () => {
+    const { getByRole } = render(
+      <Combobox>
+        <Combobox.TriggerButton label="Button" />
+        <Combobox.Content
+          options={[
+            { id: 1, label: "Bilbo Baggins" },
+            { id: 2, label: "Frodo Baggins" },
           ]}
           onSelect={jest.fn()}
           selected={1}
