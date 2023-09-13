@@ -384,15 +384,16 @@ describe("DataList", () => {
     });
 
     it("should show the sorting arrows when the header is clicked", () => {
-      renderLayout({}, { sortable: ["name"], onSort: jest.fn() });
-      const header = screen.getByText(mockHeaders.name);
+      renderLayout(
+        {},
+        {
+          sortable: ["name"],
+          state: { direction: "asc", key: "name" },
+          onSort: jest.fn(),
+        },
+      );
 
-      expect(screen.queryByTestId("arrowUp")).not.toBeInTheDocument();
-      expect(screen.queryByTestId("arrowDown")).not.toBeInTheDocument();
-
-      fireEvent.click(header);
       expect(screen.getByTestId("arrowUp")).toBeInTheDocument();
-      fireEvent.click(header);
       expect(screen.getByTestId("arrowDown")).toBeInTheDocument();
     });
   });

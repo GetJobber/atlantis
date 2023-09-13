@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import uniq from "lodash/uniq";
 import { useCollectionQuery } from "@jobber/hooks/useCollectionQuery";
-import { DataList, DataListItemType } from "@jobber/components/DataList";
+import {
+  DataList,
+  DataListItemType,
+  DataListSorting,
+} from "@jobber/components/DataList";
 import { Grid } from "@jobber/components/Grid";
 import { InlineLabel, InlineLabelColors } from "@jobber/components/InlineLabel";
 import { Content } from "@jobber/components/Content";
@@ -60,6 +64,11 @@ const Template: ComponentStory<typeof DataList> = args => {
     },
   });
 
+  const [sortingState, setSortingState] = useState<DataListSorting>({
+    key: "label",
+    direction: "asc",
+  });
+
   const items = data?.allPeople.edges || [];
   const totalCount = data?.allPeople.totalCount || null;
   const mappedData = items.map(({ node }) => ({
@@ -96,11 +105,11 @@ const Template: ComponentStory<typeof DataList> = args => {
       }}
       onLoadMore={nextPage}
       sorting={{
-        initialState: {
-          key: "label",
-          direction: "desc",
+        state: sortingState,
+        onSort: sorting => {
+          console.log(sorting);
+          setSortingState(sorting);
         },
-        onSort: sorting => console.log(sorting),
         sortable: ["label", "home"],
       }}
     >

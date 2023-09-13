@@ -44,7 +44,7 @@ export type DataListHeader<T extends DataListObject> = {
   readonly [K in keyof T]?: string;
 };
 
-export interface Sorting {
+export interface DataListSorting {
   readonly key: string;
   readonly direction: "asc" | "desc" | "none";
 }
@@ -103,7 +103,7 @@ export interface DataListProps<T extends DataListObject> {
    */
   readonly onLoadMore?: () => void;
 
-  readonly onSortingChange?: (sorting: Sorting) => void;
+  readonly onSortingChange?: (sorting: DataListSorting) => void;
 
   /**
    * `sortable`: List of keys that are sortable.
@@ -112,8 +112,8 @@ export interface DataListProps<T extends DataListObject> {
    */
   readonly sorting?: {
     sortable: string[];
-    initialState?: Sorting;
-    onSort: (sorting: Sorting) => void;
+    state?: DataListSorting;
+    onSort: (sorting: DataListSorting) => void;
   };
 }
 
@@ -170,9 +170,4 @@ export interface DataListContextProps<T extends DataListObject>
   readonly searchComponent?: ReactElement<DataListSearchProps>;
   readonly emptyStateComponents?: ReactElement<DataListEmptyStateProps>[];
   readonly layoutComponents?: ReactElement<DataListLayoutProps<T>>[];
-}
-
-export interface DataListSortContextProps {
-  sortingState: Sorting;
-  toggleSorting: (key: string) => void;
 }
