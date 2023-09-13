@@ -23,7 +23,6 @@ const ComboboxButton: ComponentStory<typeof Combobox> = args => {
       />
       <Combobox.Content
         options={[
-<<<<<<< HEAD
           { id: "1", label: "Bilbo Baggins" },
           { id: "2", label: "Frodo Baggins" },
           { id: "3", label: "Pippin Took" },
@@ -39,47 +38,22 @@ const ComboboxButton: ComponentStory<typeof Combobox> = args => {
           { id: "13", label: "Pippin Took3" },
           { id: "14", label: "Merry Brandybuck3" },
           { id: "15", label: "Sam Gamgee3" },
-=======
-          "Bilbo Baggins",
-          "Frodo Baggins",
-          "Pippin Took",
-          "Merry Brandybuck",
-          "Sam Gamgee",
-          "Bilbo Baggins2",
-          "Frodo Baggins2",
-          "Pippin Took2",
-          "Merry Brandybuck2",
-          "Sam Gamgee2",
-          "Bilbo Baggins3",
-          "Frodo Baggins3",
-          "Pippin Took3",
-          "Merry Brandybuck3",
-          "Sam Gamgee3",
->>>>>>> 4fec09b3 (Revert "Refactor to use a ref")
         ]}
         onSelect={selection => {
           console.log(selection);
         }}
-        selected="Bilbo Baggins"
+        selected={1}
       >
         <Combobox.Action
           label="Add a teammate"
           onClick={() => {
-<<<<<<< HEAD
             alert("Added a new teammate ✅");
-=======
-            console.log("Action");
->>>>>>> 4fec09b3 (Revert "Refactor to use a ref")
           }}
         />
         <Combobox.Action
           label="Manage teammates"
           onClick={() => {
-<<<<<<< HEAD
             alert("Managed teammates 👍");
-=======
-            console.log("Action");
->>>>>>> 4fec09b3 (Revert "Refactor to use a ref")
           }}
         />
       </Combobox.Content>

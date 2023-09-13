@@ -329,3 +329,25 @@ describe("ComboboxContent Search", () => {
     expect(getByText('No results for "Bilbo"')).toBeInTheDocument();
   });
 });
+
+describe("Combobox selected value", () => {
+  it("has a selected option when selected is passed", () => {
+    const { getByRole } = render(
+      <Combobox>
+        <Combobox.TriggerButton label="Button" />
+        <Combobox.Content
+          options={[
+            { id: "1", label: "Bilbo Baggins" },
+            { id: "2", label: "Frodo Baggins" },
+          ]}
+          onSelect={jest.fn()}
+          selected={1}
+        >
+          <></>
+        </Combobox.Content>
+      </Combobox>,
+    );
+    const option = getByRole("radio", { name: "Bilbo Baggins" });
+    expect(option).toBeChecked();
+  });
+});

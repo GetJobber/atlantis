@@ -41,7 +41,7 @@ interface ComboboxContentProps {
    * @optional
    * @type string
    * */
-  readonly selected?: string;
+  readonly selected?: string | number;
 }
 
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
@@ -55,11 +55,8 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     popperRef,
     popperStyles,
     attributes,
-  } = useComboboxContent();
-
-  const filteredOptions = props.options.filter(option =>
-    option.label.toLowerCase().includes(searchValue.toLowerCase()),
-  );
+    filteredOptions,
+  } = useComboboxContent(props.selected, props.options);
 
   const template = (
     <div
@@ -76,16 +73,20 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       />
       <div className={styles.list}>
         {filteredOptions.map(option => (
-          <button
-            className={classnames(
-              styles.option,
-              option.id === selectedOption?.id && styles.selectedOption,
-            )}
-            key={option.id}
-            onClick={() => handleSelection(option)}
-          >
+          <label key={option.id}>
+            <input
+              type="radio"
+              className={classnames(
+                styles.option,
+                option.id === selectedOption?.id && styles.selectedOption,
+              )}
+              checked={option.id.toString() === selectedOption?.id.toString()}
+              value={option.label}
+              name={option.label}
+              onChange={() => handleSelection(option)}
+            />
             {option.label}
-          </button>
+          </label>
         ))}
 
         {filteredOptions.length === 0 && (
@@ -165,7 +166,10 @@ function Search(props: {
   }
 }
 
-function useComboboxContent(): {
+function useComboboxContent(
+  selected: string | number | undefined,
+  options: ComboboxOption[],
+): {
   searchValue: string;
   setSearchValue: React.Dispatch<React.SetStateAction<string>>;
   selectedOption: ComboboxOption | null;
@@ -177,12 +181,20 @@ function useComboboxContent(): {
   popperRef: React.RefObject<HTMLDivElement>;
   popperStyles: { [key: string]: React.CSSProperties };
   attributes: { [key: string]: { [key: string]: string } | undefined };
+  filteredOptions: ComboboxOption[];
 } {
+  const defaultValue = options.find(
+    option => option.id.toString() === selected?.toString(),
+  );
   const [searchValue, setSearchValue] = useState<string>("");
   const [selectedOption, setSelectedOption] = useState<ComboboxOption | null>(
-    null,
+    defaultValue || null,
   );
   const { open, setOpen, wrapperRef } = React.useContext(ComboboxContext);
+
+  const filteredOptions = options.filter(option =>
+    option.label.toLowerCase().includes(searchValue.toLowerCase()),
+  );
 
   useOnKeyDown(() => {
     if (open) {
@@ -217,5 +229,6 @@ function useComboboxContent(): {
     popperRef,
     popperStyles,
     attributes,
+    filteredOptions,
   };
 }
