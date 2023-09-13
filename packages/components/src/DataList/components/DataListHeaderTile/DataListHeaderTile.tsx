@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./DataListHeaderTile.css";
-import { useDataListContext } from "../../context/DataListContext";
 import {
   DataListHeader,
   DataListObject,
@@ -8,7 +7,7 @@ import {
 } from "../../DataList.types";
 import { Text } from "../../../Text";
 import { Icon } from "../../../Icon";
-import { useDataListSorting } from "../../hooks/useDataListSorting";
+import { useDataListSortContext } from "../../context/DataListSortContext/DataListSortContext";
 
 interface DataListHeaderTileProps<T extends DataListObject> {
   headers: DataListHeader<T>;
@@ -19,7 +18,7 @@ export function DataListHeaderTile<T extends DataListObject>({
   headers,
   headerKey,
 }: DataListHeaderTileProps<T>) {
-  const { toggleSorting, sorting } = useDataListSorting();
+  const { toggleSorting, sorting } = useDataListSortContext();
 
   return (
     <div

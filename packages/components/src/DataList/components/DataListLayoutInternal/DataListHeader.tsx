@@ -10,6 +10,7 @@ import {
   DataListProps,
 } from "../../DataList.types";
 import { sortSizeProp } from "../../DataList.utils";
+import { DataListSortProvider } from "../../context/DataListSortContext";
 
 interface DataListHeaderProps<T extends DataListObject> {
   readonly layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined;
@@ -40,16 +41,18 @@ export function DataListHeader<T extends DataListObject>({
   if (!showHeader || !headerData) return <></>;
 
   return (
-    <DataListLayoutInternal
-      layouts={layouts}
-      renderLayout={layout => {
-        return (
-          <div className={styles.headerTitles}>
-            {layout.props.children(headerData)}
-          </div>
-        );
-      }}
-      mediaMatches={mediaMatches}
-    />
+    <DataListSortProvider>
+      <DataListLayoutInternal
+        layouts={layouts}
+        renderLayout={layout => {
+          return (
+            <div className={styles.headerTitles}>
+              {layout.props.children(headerData)}
+            </div>
+          );
+        }}
+        mediaMatches={mediaMatches}
+      />
+    </DataListSortProvider>
   );
 }

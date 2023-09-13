@@ -378,6 +378,19 @@ describe("DataList", () => {
       expect(screen.queryByText(mockHeaders.name)).not.toBeInTheDocument();
       expect(screen.queryByText(mockHeaders.email)).not.toBeInTheDocument();
     });
+
+    it("should show the sorting arrows when the header is clicked", () => {
+      renderLayout();
+      const header = screen.getByText(mockHeaders.name);
+
+      expect(screen.queryByTestId("arrowUp")).not.toBeInTheDocument();
+      expect(screen.queryByTestId("arrowDown")).not.toBeInTheDocument();
+
+      fireEvent.click(header);
+      expect(screen.getByTestId("arrowUp")).toBeInTheDocument();
+      fireEvent.click(header);
+      expect(screen.getByTestId("arrowDown")).toBeInTheDocument();
+    });
   });
 
   it("should render a title when it's provided", () => {
