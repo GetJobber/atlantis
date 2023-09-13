@@ -48,7 +48,7 @@
 
 .listItem .selectable > :first-child {
   opacity: 1;
-  --transition-properties: var(--timing-base) ease-in-out;
+  --transition-properties: var(--timing-quick) ease-in-out;
   transition: opacity var(--transition-properties);
 
   @media (--medium-screens-and-up) {
