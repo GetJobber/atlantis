@@ -39,17 +39,11 @@
   bottom: 0;
   left: 0;
   background-color: var(--color-overlay--dimmed);
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 
 .filteringSpinner {
   position: sticky;
   top: 50vh;
-}
-
-.loadingMore {
-  display: flex;
-  justify-content: center;
-  padding: var(--space-small);
 }

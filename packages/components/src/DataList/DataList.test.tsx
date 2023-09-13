@@ -1,6 +1,7 @@
 import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import React from "react";
 import { configMocks, mockIntersectionObserver } from "jsdom-testing-mocks";
+import userEvent from "@testing-library/user-event";
 import { DataList } from "./DataList";
 import {
   BREAKPOINT_SIZES,
@@ -16,6 +17,7 @@ import {
   DATALIST_LOADINGSTATE_ROW_TEST_ID,
   LOADING_STATE_LIMIT_ITEMS,
 } from "./components/DataListLoadingState";
+import { MAX_DATA_COUNT } from "./components/DataListLoadMore";
 import { GLIMMER_TEST_ID } from "../Glimmer";
 import { Button } from "../Button";
 
@@ -506,6 +508,30 @@ describe("DataList", () => {
       expect(
         screen.queryByTestId(DATA_LOAD_MORE_TEST_ID),
       ).not.toBeInTheDocument();
+    });
+
+    it("should call the scrollIntoView on the target element", () => {
+      const scrollIntoViewMock = jest.fn();
+      window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
+      render(
+        <DataList
+          data={Array.from({ length: MAX_DATA_COUNT + 1 }, (_, id) => ({
+            id,
+          }))}
+          headers={{ id: "ID" }}
+        >
+          <></>
+        </DataList>,
+      );
+
+      expect(scrollIntoViewMock).not.toHaveBeenCalled();
+
+      userEvent.click(screen.getByRole("button", { name: "Back to top" }));
+      expect(scrollIntoViewMock).toHaveBeenCalledWith({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "start",
+      });
     });
   });
 });

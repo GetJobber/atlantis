@@ -6,7 +6,6 @@ declare const styles: {
   readonly "listItem": string;
   readonly "filtering": string;
   readonly "filteringSpinner": string;
-  readonly "loadingMore": string;
 };
 export = styles;
 
