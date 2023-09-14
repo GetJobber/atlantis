@@ -106,8 +106,11 @@
 }
 
 .selectedOption {
+  display: flex;
   border-radius: var(--radius-large);
   background-color: var(--color-surface--background);
+  justify-content: space-between;
+  align-items: center;
 }
 
 .actions {
