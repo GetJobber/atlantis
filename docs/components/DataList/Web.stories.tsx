@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import uniq from "lodash/uniq";
 import { useCollectionQuery } from "@jobber/hooks/useCollectionQuery";
@@ -81,16 +81,12 @@ const Template: ComponentStory<typeof DataList> = args => {
     created: new Date(node.created),
   }));
 
-  const [selectedItems, setSelectedItems] = useState<Array<string>>([]);
-
   return (
     <DataList
       {...args}
-      selected={selectedItems}
-      onSelect={setSelectedItems}
       loadingState={getLoadingState()}
       totalCount={totalCount}
-      data={(args.data as typeof mappedData) || mappedData}
+      data={args.data || mappedData}
       headers={{
         label: "Name",
         home: "Home world",
