@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { AnimatePresence } from "framer-motion";
 import { DataListLayoutInternal } from "./DataListLayoutInternal";
 import { DataListItemInternal } from "./DataListItemInternal";
 import { Breakpoints } from "../../DataList.const";
@@ -36,15 +37,17 @@ export function DataListItems<T extends DataListObject>({
                   onMouseEnter={() => setHover(item.id)}
                   onMouseLeave={() => setHover(undefined)}
                   className={styles.listItem}
-                  key={`${data[i].id}`}
+                  key={`${item.id}`}
                 >
                   <DataListItemInternal item={data[i]}>
                     {layout.props.children(child)}
                   </DataListItemInternal>
 
-                  {hover === item.id && (
-                    <InternalDataListItemActions item={item} />
-                  )}
+                  <AnimatePresence>
+                    {hover === item.id && (
+                      <InternalDataListItemActions item={item} />
+                    )}
+                  </AnimatePresence>
                 </div>
               );
             })}
