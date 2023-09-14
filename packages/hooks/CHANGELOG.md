@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.2.1...@jobber/hooks@2.3.0) (2023-09-14)
+
+
+### Features
+
+* **components:** JOB-78452 Select DataList row ([#1529](https://github.com/GetJobber/atlantis/issues/1529)) ([3b503b6](https://github.com/GetJobber/atlantis/commit/3b503b63930fa5ea1f276cbac9287050c1139520))
+
+
+
+
+
 ## [2.2.1](https://github.com/GetJobber/atlantis/compare/@jobber/hooks@2.2.0...@jobber/hooks@2.2.1) (2023-09-07)
 
 **Note:** Version bump only for package @jobber/hooks
