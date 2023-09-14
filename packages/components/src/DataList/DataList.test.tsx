@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import React from "react";
 import { configMocks, mockIntersectionObserver } from "jsdom-testing-mocks";
@@ -11,7 +12,11 @@ import {
   DATA_LOAD_MORE_TEST_ID,
   EMPTY_FILTER_RESULTS_MESSAGE,
 } from "./DataList.const";
-import { DataListItemType, DataListProps } from "./DataList.types";
+import {
+  DataListItemType,
+  DataListProps,
+  DataListSorting,
+} from "./DataList.types";
 import { DATALIST_TOTALCOUNT_TEST_ID } from "./components/DataListTotalCount";
 import {
   DATALIST_LOADINGSTATE_ROW_TEST_ID,
@@ -382,19 +387,62 @@ describe("DataList", () => {
       expect(screen.queryByText(mockHeaders.name)).not.toBeInTheDocument();
       expect(screen.queryByText(mockHeaders.email)).not.toBeInTheDocument();
     });
+  });
+
+  describe("Sorting", () => {
+    function MockSortingLayout({
+      sorting,
+    }: {
+      sorting: DataListProps<(typeof mockData)[0]>["sorting"];
+    }) {
+      return (
+        <DataList data={mockData} headers={mockHeaders} sorting={sorting}>
+          <DataList.Layout>
+            {(item: DataListItemType<typeof mockData>) => (
+              <div>{item.name}</div>
+            )}
+          </DataList.Layout>
+        </DataList>
+      );
+    }
 
     it("should show the sorting arrows when the header is clicked", () => {
-      renderLayout(
-        {},
-        {
-          sortable: ["name"],
-          state: { direction: "asc", key: "name" },
-          onSort: jest.fn(),
-        },
+      const mockOnSort = jest.fn();
+      const expectedSorting = {
+        direction: "asc",
+        key: "name",
+      } as DataListSorting;
+
+      const { rerender } = render(
+        <MockSortingLayout
+          sorting={{
+            sortable: ["name"],
+            onSort: mockOnSort,
+            state: undefined,
+          }}
+        />,
       );
 
-      expect(screen.getByTestId("arrowUp")).toBeInTheDocument();
-      expect(screen.getByTestId("arrowDown")).toBeInTheDocument();
+      expect(screen.queryByTestId("arrowUp")).not.toBeInTheDocument();
+      expect(screen.queryByTestId("arrowDown")).not.toBeInTheDocument();
+
+      const nameHeader = screen.getByText(mockHeaders.name);
+      fireEvent.click(nameHeader);
+
+      expect(mockOnSort).toHaveBeenCalledWith(expectedSorting);
+
+      rerender(
+        <MockSortingLayout
+          sorting={{
+            sortable: ["name"],
+            onSort: mockOnSort,
+            state: expectedSorting,
+          }}
+        />,
+      );
+
+      expect(screen.queryByTestId("arrowUp")).toBeInTheDocument();
+      expect(screen.queryByTestId("arrowDown")).toBeInTheDocument();
     });
   });
 

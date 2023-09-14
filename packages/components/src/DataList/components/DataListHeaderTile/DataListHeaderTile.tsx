@@ -1,10 +1,10 @@
 import React from "react";
 import classnames from "classnames";
 import styles from "./DataListHeaderTile.css";
-import { DataListHeader, DataListObject } from "../../DataList.types";
+import { SortingArrows } from "./SortingArrows";
 import { Text } from "../../../Text";
-import { Icon } from "../../../Icon";
 import { useDataListContext } from "../../context/DataListContext";
+import { DataListHeader, DataListObject } from "../../DataList.types";
 
 interface DataListHeaderTileProps<T extends DataListObject> {
   headers: DataListHeader<T>;
@@ -21,52 +21,36 @@ export function DataListHeaderTile<T extends DataListObject>({
   const sortingState = sorting?.state;
 
   function toggleSorting(sortingKey: string) {
-    if (sortingKey === sortingState?.key) {
-      sorting?.onSort({
-        direction: sortingState.direction === "asc" ? "desc" : "asc",
-        key: sortingKey,
-      });
-    } else {
-      sorting?.onSort({ direction: "asc", key: sortingKey });
+    if (sortingState?.direction === "desc") {
+      sorting?.onSort(undefined);
+      return;
     }
+
+    sorting?.onSort({
+      direction: sortingState?.direction === "asc" ? "desc" : "asc",
+      key: sortingKey,
+    });
   }
 
+  function handleOnClick() {
+    if (!isSortable) return;
+
+    toggleSorting(headerKey);
+  }
+
+  const Tag = isSortable ? "button" : "div";
+
   return (
-    <div
+    <Tag
       className={classnames(styles.headerLabel, {
         [styles.sortable]: isSortable,
       })}
-      onClick={isSortable ? () => toggleSorting(headerKey) : undefined}
+      onClick={handleOnClick}
     >
-      <Text variation="subdued" maxLines="single" size="small">
-        {headers[headerKey]}
-      </Text>
+      <Text maxLines="single">{headers[headerKey]}</Text>
       {sortingState?.key === headerKey && (
         <SortingArrows order={sortingState.direction} />
       )}
-    </div>
-  );
-}
-
-function SortingArrows({ order }: { order: "asc" | "desc" | "none" }) {
-  if (order === "none") return <></>;
-
-  return (
-    <div>
-      <span className={styles.arrowUp}>
-        <Icon
-          name="arrowUp"
-          color={order === "asc" ? "greyBlue" : "blue"}
-          size="small"
-        />
-      </span>
-      <span className={styles.arrowDown}>
-        <Icon
-          name="arrowDown"
-          color={order === "desc" ? "greyBlue" : "blue"}
-          size="small"
-        />
-      </span>
-    </div>
+    </Tag>
   );
 }

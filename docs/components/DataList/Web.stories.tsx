@@ -64,10 +64,12 @@ const Template: ComponentStory<typeof DataList> = args => {
     },
   });
 
-  const [sortingState, setSortingState] = useState<DataListSorting>({
-    key: "label",
-    direction: "asc",
-  });
+  const [sortingState, setSortingState] = useState<DataListSorting | undefined>(
+    {
+      key: "label",
+      direction: "asc",
+    },
+  );
 
   const items = data?.allPeople.edges || [];
   const totalCount = data?.allPeople.totalCount || null;
