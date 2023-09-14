@@ -1,5 +1,6 @@
 import React, { CSSProperties, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, Variants, motion } from "framer-motion";
+import { tokens } from "@jobber/design";
 import styles from "./DataListActionsMenu.css";
 import { useDataListContext } from "../../context/DataListContext";
 
@@ -11,6 +12,11 @@ interface DataListActionsMenuProps {
   };
   readonly onRequestClose: () => void;
 }
+
+const variants: Variants = {
+  hidden: { opacity: 0, y: -10 },
+  visible: { opacity: 1, y: 0 },
+};
 
 export function DataListActionsMenu({
   visible = false,
@@ -30,10 +36,12 @@ export function DataListActionsMenu({
           <div className={styles.overlay} onClick={onRequestClose} />
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
             ref={setRef}
+            variants={variants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            transition={{ duration: tokens["timing-base"] / 1000 }}
             className={styles.menu}
             style={getPositionCssVars()}
           >
@@ -60,9 +68,10 @@ export function DataListActionsMenu({
 
     const xIsOffScreen = x + width > window.innerWidth;
     const yIsOffScreen = y + height > window.innerHeight;
+    const yOffSet = y + height - window.innerHeight;
 
     const newPosX = Math.floor(xIsOffScreen ? x - width : x);
-    const newPosY = Math.floor(yIsOffScreen ? y - height : y);
+    const newPosY = Math.floor(yIsOffScreen ? y - yOffSet : y);
     return { posX: newPosX, posY: newPosY };
   }
 }
