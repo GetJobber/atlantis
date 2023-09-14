@@ -9,6 +9,7 @@ interface ListItemInternalProps<T extends DataListObject> {
   readonly children: JSX.Element;
   readonly item: T;
 }
+
 export function DataListItemInternal<T extends DataListObject>({
   children,
   item,
