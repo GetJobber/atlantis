@@ -2,6 +2,7 @@ import React, {
   Dispatch,
   ReactElement,
   SetStateAction,
+  useEffect,
   useRef,
   useState,
 } from "react";
@@ -70,6 +71,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         <SkipToActionsLink actionsRef={actionsRef} />
       )}
       <Search
+        open={open}
         searchPlaceholder={props.searchPlaceholder}
         searchValue={searchValue}
         setSearchValue={setSearchValue}
@@ -145,9 +147,18 @@ function SkipToActionsLink(props: {
 function Search(props: {
   searchPlaceholder?: string;
   searchValue: string;
+  open: boolean;
   setSearchValue: Dispatch<SetStateAction<string>>;
 }): JSX.Element {
   const searchRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (props.open) {
+      setTimeout(() => {
+        searchRef.current?.focus();
+      }, 0);
+    }
+  }, [props.open]);
 
   return (
     <div className={styles.search}>

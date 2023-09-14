@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import React from "react";
 import {
   COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE,
@@ -298,6 +298,32 @@ describe("ComboboxContent Search", () => {
 
     const searchInput = getByPlaceholderText("Search");
     expect(searchInput).toBeInTheDocument();
+  });
+
+  it("should focus search input after opening", async () => {
+    const { getByPlaceholderText, getByText } = render(
+      <Combobox>
+        <Combobox.TriggerButton label="Click Me" />
+        <Combobox.Content
+          options={[
+            { id: "1", label: "Bilbo Baggins" },
+            { id: "2", label: "Frodo Baggins" },
+          ]}
+          onSelection={jest.fn()}
+        >
+          <></>
+        </Combobox.Content>
+      </Combobox>,
+    );
+
+    const button = getByText("Click Me");
+    fireEvent.click(button);
+
+    const searchInput = getByPlaceholderText("Search");
+
+    await waitFor(() => {
+      expect(searchInput).toHaveFocus();
+    });
   });
 
   it("should refine results after entering a search term", () => {
