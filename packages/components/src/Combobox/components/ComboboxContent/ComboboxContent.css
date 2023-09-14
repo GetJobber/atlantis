@@ -61,26 +61,6 @@
   box-shadow: var(--shadow-focus);
 }
 
-.skipToActionsLink {
-  position: absolute;
-  top: var(--space-smallest);
-  left: -600px;
-  z-index: var(--elevation-toast);
-  padding: var(--space-smaller);
-  border: none;
-  text-align: center;
-  background-color: var(--color-surface);
-  opacity: 0;
-  transition: var(--timing-base);
-}
-
-.skipToActionsLink:focus {
-  right: var(--space-smallest);
-  left: var(--space-smallest);
-  box-shadow: var(--shadow-focus);
-  opacity: 1;
-}
-
 .list {
   padding: var(--space-base);
 }

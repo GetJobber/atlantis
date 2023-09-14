@@ -224,58 +224,6 @@ describe("ComboboxContent", () => {
   });
 });
 
-describe("Combobox SkipToActionsLink", () => {
-  it("should not render the SkipToActionsLink if there are no children", () => {
-    const { queryByTestId } = render(
-      <Combobox>
-        <Combobox.TriggerButton label="Button" />
-        <Combobox.Content
-          options={[]}
-          onSelection={jest.fn()}
-        ></Combobox.Content>
-      </Combobox>,
-    );
-    expect(
-      queryByTestId("ATL-Combobox-Content-SkipToActions"),
-    ).not.toBeInTheDocument();
-  });
-
-  it("should render the SkipToActionsLink if there are children", () => {
-    const { getByTestId } = render(
-      <Combobox>
-        <Combobox.TriggerButton label="Button" />
-        <Combobox.Content options={[]} onSelection={jest.fn()}>
-          <Combobox.Action label="Boop" onClick={jest.fn()} />
-        </Combobox.Content>
-      </Combobox>,
-    );
-    expect(
-      getByTestId("ATL-Combobox-Content-SkipToActions"),
-    ).toBeInTheDocument();
-  });
-
-  it("should focus the first action when the SkipToActionsLink is activated", () => {
-    const { getByTestId } = render(
-      <Combobox>
-        <Combobox.TriggerButton label="Button" />
-        <Combobox.Content options={[]} onSelection={jest.fn()}>
-          <Combobox.Action label="Beep" onClick={jest.fn()} />
-          <Combobox.Action label="Boop" onClick={jest.fn()} />
-        </Combobox.Content>
-      </Combobox>,
-    );
-    const skipToActionsLink = getByTestId(
-      "ATL-Combobox-Content-SkipToActions",
-    ) as HTMLAnchorElement;
-    const actions = getByTestId("ATL-Combobox-Content-Actions");
-
-    fireEvent.click(skipToActionsLink);
-
-    expect(actions.querySelector("button")).toHaveFocus();
-    expect(actions.querySelector("button")).toHaveTextContent("Beep");
-  });
-});
-
 describe("ComboboxContent Search", () => {
   it("should have a search input when open", () => {
     const { getByPlaceholderText, getByText } = render(
