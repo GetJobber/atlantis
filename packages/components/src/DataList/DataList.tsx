@@ -65,6 +65,7 @@ export function DataList<T extends DataListObject>(props: DataListProps<T>) {
         layoutComponents,
         emptyStateComponents,
         ...props,
+        selected: props.selected ?? [],
       }}
     >
       <InternalDataList />

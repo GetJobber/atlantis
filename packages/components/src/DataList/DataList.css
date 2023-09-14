@@ -31,6 +31,35 @@
   border-bottom: var(--border-base) solid var(--color-border);
 }
 
+.selectable {
+  display: grid;
+  column-gap: var(--space-small);
+  align-items: flex-start;
+  grid-template-columns: max-content minmax(0px, auto);
+
+  @media (--medium-screens-and-up) {
+    align-items: center;
+  }
+}
+
+.listItem .selectable > :first-child {
+  padding-top: var(--space-smaller);
+  opacity: 1;
+  transition: opacity var(--transition-properties);
+  --transition-properties: var(--timing-quick) ease-in-out;
+
+  @media (--medium-screens-and-up) {
+    padding-top: 0;
+    opacity: 0;
+  }
+}
+
+.listItem:hover .selectable > :first-child,
+.listItem:focus-within .selectable > :first-child,
+.listItem .selectable.selected > :first-child {
+  opacity: 1;
+}
+
 .filtering {
   display: flex;
   position: absolute;

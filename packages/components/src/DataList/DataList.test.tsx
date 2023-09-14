@@ -481,11 +481,13 @@ describe("DataList", () => {
     });
 
     it("should not have the trigger element", () => {
-      function getElement(props?: Partial<Parameters<typeof DataList>[0]>) {
+      function getElement(
+        props?: Partial<DataListProps<(typeof mockData)[0]>>,
+      ) {
         return (
           <DataList
             {...props}
-            data={(props?.data as typeof mockData) || mockData}
+            data={props?.data || mockData}
             headers={mockHeaders}
           >
             <></>

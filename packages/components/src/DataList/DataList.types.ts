@@ -103,8 +103,6 @@ export interface DataListProps<T extends DataListObject> {
    */
   readonly onLoadMore?: () => void;
 
-  readonly onSortingChange?: (sorting: DataListSorting) => void;
-
   /**
    * `sortable`: List of keys that are sortable.
    * `initialState`: The initial state of the sorting.
@@ -115,6 +113,15 @@ export interface DataListProps<T extends DataListObject> {
     state?: DataListSorting;
     onSort: (sorting: DataListSorting) => void;
   };
+  /**
+   * Callback when an item checkbox is clicked.
+   */
+  readonly onSelect?: (items: T["id"][]) => void;
+
+  /**
+   * The list of Selected Item ids
+   */
+  readonly selected?: T["id"][];
 }
 
 export interface DataListLayoutProps<T extends DataListObject> {
