@@ -29,7 +29,7 @@ export function DataListItems<T extends DataListObject>({
             {elementData.map((child, i) => {
               return (
                 <div className={styles.listItem} key={`${data[i].id}`}>
-                  <DataListItemInternal data={data[i]}>
+                  <DataListItemInternal item={data[i]}>
                     {layout.props.children(child)}
                   </DataListItemInternal>
                 </div>
