@@ -86,7 +86,7 @@ const Template: ComponentStory<typeof DataList> = args => {
       {...args}
       loadingState={getLoadingState()}
       totalCount={totalCount}
-      data={(args.data as typeof mappedData) || mappedData}
+      data={args.data || mappedData}
       headers={{
         label: "Name",
         home: "Home world",

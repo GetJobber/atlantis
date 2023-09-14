@@ -97,6 +97,16 @@ export interface DataListProps<T extends DataListObject> {
    * The callback function when the user scrolls to the bottom of the list.
    */
   readonly onLoadMore?: () => void;
+
+  /**
+   * Callback when an item checkbox is clicked.
+   */
+  readonly onSelect?: (items: T["id"][]) => void;
+
+  /**
+   * The list of Selected Item ids
+   */
+  readonly selected?: T["id"][];
 }
 
 export interface DataListLayoutProps<T extends DataListObject> {

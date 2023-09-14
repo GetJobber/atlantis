@@ -5,6 +5,8 @@ declare const styles: {
   readonly "headerTitles": string;
   readonly "headerLabel": string;
   readonly "listItem": string;
+  readonly "selectable": string;
+  readonly "selected": string;
   readonly "filtering": string;
   readonly "filteringSpinner": string;
 };

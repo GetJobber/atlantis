@@ -6,6 +6,7 @@ export const defaultValues = {
   data: [],
   headers: {},
   children: [],
+  selected: [],
 };
 
 export const DataListContext =
