@@ -3,6 +3,87 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.46.4](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.46.3...@jobber/components-native@0.46.4) (2023-09-14)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.46.3](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.46.2...@jobber/components-native@0.46.3) (2023-09-07)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.46.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.46.1...@jobber/components-native@0.46.2) (2023-09-04)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.46.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.46.0...@jobber/components-native@0.46.1) (2023-08-31)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+# [0.46.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.45.1...@jobber/components-native@0.46.0) (2023-08-31)
+
+
+### Features
+
+* **components:** localized date formatter ([#1504](https://github.com/GetJobber/atlantis/issues/1504)) ([27f44d1](https://github.com/GetJobber/atlantis/commit/27f44d1f17e5e3e179531671c0ee43a7ee3fc5a9))
+
+
+
+
+
+## [0.45.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.45.0...@jobber/components-native@0.45.1) (2023-08-30)
+
+
+### Bug Fixes
+
+* update autolink built in messages to be translateable ([#1505](https://github.com/GetJobber/atlantis/issues/1505)) ([634e1bd](https://github.com/GetJobber/atlantis/commit/634e1bd2da891f5491399350b5f1eec790161d5b))
+
+
+
+
+
+# [0.45.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.44.2...@jobber/components-native@0.45.0) (2023-08-29)
+
+
+### Features
+
+* **components-native:** add i18n on components native ([#1502](https://github.com/GetJobber/atlantis/issues/1502)) ([a79cdfb](https://github.com/GetJobber/atlantis/commit/a79cdfbd022870b7803ebb48ffeafc750b8bc600))
+
+
+
+
+
+## [0.44.2](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.44.1...@jobber/components-native@0.44.2) (2023-08-29)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
+## [0.44.1](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.44.0...@jobber/components-native@0.44.1) (2023-08-22)
+
+**Note:** Version bump only for package @jobber/components-native
+
+
+
+
+
 # [0.44.0](https://github.com/GetJobber/atlantis/compare/@jobber/components-native@0.43.18...@jobber/components-native@0.44.0) (2023-08-11)
 
 

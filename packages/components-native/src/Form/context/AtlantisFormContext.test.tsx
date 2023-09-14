@@ -3,7 +3,7 @@ import { renderHook } from "@testing-library/react-hooks";
 import { AtlantisFormContextProps } from "./types";
 import {
   AtlantisFormContext,
-  defaultValues,
+  atlantisFormContextDefaultValues,
   useAtlantisFormContext,
 } from "./AtlantisFormContext";
 
@@ -13,7 +13,6 @@ const useInternalFormLocalCacheMock = jest.fn();
 const providerValues: AtlantisFormContextProps = {
   useConfirmBeforeBack: useConfirmBeforeBackMock,
   useInternalFormLocalCache: useInternalFormLocalCacheMock,
-  headerHeight: 50,
 };
 
 describe("AtlantisFormContext", () => {
@@ -25,7 +24,7 @@ describe("AtlantisFormContext", () => {
     it("should get the default values", () => {
       const { result } = renderHook(() => useAtlantisFormContext());
 
-      expect(result.current).toMatchObject(defaultValues);
+      expect(result.current).toMatchObject(atlantisFormContextDefaultValues);
     });
   });
 

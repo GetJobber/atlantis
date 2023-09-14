@@ -19,10 +19,8 @@ import {
   useWindowDimensions,
 } from "react-native";
 import { Portal } from "react-native-portalize";
-import { useIntl } from "react-intl";
 import { useKeyboardVisibility } from "./hooks/useKeyboardVisibility";
 import { styles } from "./ContentOverlay.style";
-import { messages } from "./messages";
 import { useViewLayoutHeight } from "./hooks/useViewLayoutHeight";
 import {
   ContentOverlayProps,
@@ -33,6 +31,7 @@ import { useIsScreenReaderEnabled } from "../hooks";
 import { IconButton } from "../IconButton";
 import { tokens } from "../utils/design";
 import { Heading } from "../Heading";
+import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
 export const ContentOverlay = forwardRef(ContentOverlayPortal);
 const ContentOverlayModal = forwardRef(ContentOverlayInternal);
@@ -61,7 +60,7 @@ function ContentOverlayInternal(
 ): JSX.Element {
   isDraggable = onBeforeExit ? false : isDraggable;
   const isCloseableOnOverlayTap = onBeforeExit ? false : true;
-  const { formatMessage } = useIntl();
+  const { t } = useAtlantisI18n();
   const { width: windowWidth, height: windowHeight } = useWindowDimensions();
   const insets = useSafeAreaInsets();
   const [position, setPosition] = useState<"top" | "initial">("initial");
@@ -203,12 +202,9 @@ function ContentOverlayInternal(
   );
 
   function renderHeader() {
-    const closeOverlayA11YLabel = formatMessage(
-      messages.closeOverlayA11YLabel,
-      {
-        title: title,
-      },
-    );
+    const closeOverlayA11YLabel = t("ContentOverlay.close", {
+      title: title,
+    });
 
     const headerStyles = [
       styles.header,

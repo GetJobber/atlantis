@@ -1,6 +1,5 @@
 import React from "react";
 import { View } from "react-native";
-import { useIntl } from "react-intl";
 import { IconNames } from "@jobber/design";
 import { styles } from "./FileView.style";
 import { Icon } from "../../../Icon";
@@ -9,6 +8,7 @@ import { FormattedFile, StatusCode } from "../../types";
 import { computeA11yLabel } from "../../utils";
 import { ProgressBar } from "../ProgressBar";
 import { ErrorIcon } from "../ErrorIcon";
+import { useAtlantisI18n } from "../../../hooks/useAtlantisI18n";
 
 interface FileViewProps {
   accessibilityLabel?: string;
@@ -27,12 +27,12 @@ export function FileView({
   showError,
   onUploadComplete,
 }: FileViewProps): JSX.Element {
-  const { formatMessage } = useIntl();
+  const { t } = useAtlantisI18n();
   const a11yLabel = computeA11yLabel({
     accessibilityLabel,
     showOverlay,
     showError,
-    formatMessage,
+    t,
   });
 
   const freezeProgressBar =

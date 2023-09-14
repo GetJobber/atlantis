@@ -1,5 +1,6 @@
 import React, { MouseEvent, useEffect, useRef } from "react";
 import { useStorybookApi } from "@storybook/api";
+import { alphaComponents } from "./alphaComponents";
 
 export function SidebarLabel(label: Record<string, any>) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -23,6 +24,19 @@ export function SidebarLabel(label: Record<string, any>) {
   return (
     <span ref={ref} onClick={handleClick}>
       {label.name}
+      {alphaComponents.includes(label.name) && (
+        <span
+          style={{
+            marginLeft: "var(--space-small)",
+            padding: "var(--space-smallest)",
+            backgroundColor: "var(--color-yellow--dark)",
+            fontSize: "var(--typography--fontSize-small)",
+            borderRadius: "var(--radius-large)",
+          }}
+        >
+          Alpha
+        </span>
+      )}
     </span>
   );
 

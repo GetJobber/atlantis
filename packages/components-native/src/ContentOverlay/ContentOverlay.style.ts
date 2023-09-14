@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import { tokens } from "../utils/design";
 
 const modalBorderRadius = tokens["radius-larger"];
-const titleOffsetFromHandle = tokens["space-small"] + tokens["space-smallest"];
+const titleOffsetFromHandle = tokens["space-base"];
 
 export const styles = StyleSheet.create({
   handle: {
@@ -66,5 +66,6 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     paddingLeft: tokens["space-base"],
     paddingRight: tokens["space-smaller"],
+    flexGrow: 1,
   },
 });

@@ -2,7 +2,6 @@ import React from "react";
 import { RenderAPI, fireEvent, render } from "@testing-library/react-native";
 import { Host } from "react-native-portalize";
 import { Alert } from "react-native";
-import { useIntl } from "react-intl";
 import { File, FormatFile } from ".";
 import {
   FILE_MOCK_FILE,
@@ -13,8 +12,6 @@ import {
   FILE_UPLOAD_MOCK_IMAGE,
   FILE_UPLOAD_MOCK_PDF,
 } from "./components/_mocks/mockFiles";
-import { messages } from "./components/FormatFileBottomSheet/messages";
-import { messages as formatFileMessages } from "./messages";
 import { BottomSheetOptionsSuffix } from "./components/FormatFileBottomSheet";
 import { FileUpload, StatusCode } from "./types";
 import { tokens } from "../utils/design";
@@ -94,11 +91,7 @@ function basicRenderTestWithValue() {
 
     it("renders a helpful accessibility label", () => {
       const tree = renderFormatFile(file);
-      expect(
-        tree.getByLabelText(
-          formatFileMessages.inProgressAccessibilityLabel.defaultMessage,
-        ),
-      ).toBeDefined();
+      expect(tree.getByLabelText("Upload in progress.")).toBeDefined();
     });
 
     it("renders an overlay on the image when upload status is not completed", () => {
@@ -166,11 +159,7 @@ function basicRenderTestWithValue() {
 
     it("renders a helpful accessibility label", () => {
       const tree = renderFormatFile(file);
-      expect(
-        tree.getByLabelText(
-          formatFileMessages.errorAccessibilityLabel.defaultMessage,
-        ),
-      ).toBeDefined();
+      expect(tree.getByLabelText("Failed to upload.")).toBeDefined();
     });
 
     it("does not render an overlay", () => {
@@ -206,10 +195,7 @@ function basicRenderTestWithValue() {
     "when a uploaded %s is being used",
     (bottomSheetOptionsSuffix, testId, file) => {
       let tree: RenderAPI;
-      const { formatMessage } = useIntl();
-      const removeLabel = formatMessage(messages.removeButton, {
-        bottomSheetOptionsSuffix: bottomSheetOptionsSuffix,
-      });
+      const removeLabel = `Remove ${bottomSheetOptionsSuffix}`;
 
       beforeEach(() => {
         jest.clearAllMocks();
@@ -244,12 +230,8 @@ function basicRenderTestWithValue() {
   );
 
   describe("when the preview option is tapped", () => {
-    const { formatMessage } = useIntl();
-
     it("calls onPreview with a valid image", () => {
-      const previewLabel = formatMessage(messages.lightBoxPreviewButton, {
-        bottomSheetOptionsSuffix: "image",
-      });
+      const previewLabel = "Preview image";
       const { getByTestId, getByLabelText } = renderFormatFile(
         FILE_UPLOAD_MOCK_IMAGE({ progress: 1, status: StatusCode.Completed }),
         "image",
@@ -260,9 +242,7 @@ function basicRenderTestWithValue() {
     });
 
     it("calls onPreview with a valid pdf file", () => {
-      const previewLabel = formatMessage(messages.lightBoxPreviewButton, {
-        bottomSheetOptionsSuffix: "file",
-      });
+      const previewLabel = "Preview file";
       const { getByTestId, getByLabelText } = renderFormatFile(
         FILE_UPLOAD_MOCK_PDF({ progress: 1, status: StatusCode.Completed }),
         "file",
@@ -273,9 +253,7 @@ function basicRenderTestWithValue() {
     });
 
     it("calls onPreview with a valid external PDF file", () => {
-      const previewLabel = formatMessage(messages.lightBoxPreviewButton, {
-        bottomSheetOptionsSuffix: "file",
-      });
+      const previewLabel = "Preview file";
       const { getByTestId, getByLabelText } = renderFormatFile(
         FILE_MOCK_PDF,
         "file",
@@ -286,9 +264,7 @@ function basicRenderTestWithValue() {
     });
 
     it("does not show the preview option with an unaccepted file", () => {
-      const previewLabel = formatMessage(messages.lightBoxPreviewButton, {
-        bottomSheetOptionsSuffix: "file",
-      });
+      const previewLabel = "Preview file";
       const { getByTestId, queryByLabelText } = renderFormatFile(
         FILE_UPLOAD_MOCK_FILE({ progress: 1, status: StatusCode.Completed }),
         "file",

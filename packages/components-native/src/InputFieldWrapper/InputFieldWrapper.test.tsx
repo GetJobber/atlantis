@@ -2,13 +2,11 @@ import React from "react";
 import { RenderAPI, fireEvent, render } from "@testing-library/react-native";
 // eslint-disable-next-line no-restricted-imports
 import { Text, ViewStyle } from "react-native";
-import { useIntl } from "react-intl";
 import {
   InputFieldWrapper,
   InputFieldWrapperProps,
   commonInputStyles,
 } from ".";
-import { messages as clearMessages } from "./components/ClearAction";
 import { styles } from "./InputFieldWrapper.style";
 import { typographyStyles } from "../Typography";
 
@@ -32,6 +30,7 @@ function renderWithSuffixLabel(hasValue: boolean): RenderAPI {
   return renderInputFieldWrapper({ suffix: mockLabel, hasValue });
 }
 
+const clearInput = "Clear input";
 describe("InputFieldWrapper", () => {
   it("renders an invalid InputFieldWrapper", () => {
     const { getByTestId } = renderInputFieldWrapper({ invalid: true });
@@ -120,36 +119,26 @@ describe("InputFieldWrapper", () => {
 
   describe("ClearAction", () => {
     it("renders the Clear Action Button when showClearAction is true", () => {
-      const { formatMessage } = useIntl();
       const { getByLabelText } = renderInputFieldWrapper({
         showClearAction: true,
       });
-      expect(
-        getByLabelText(formatMessage(clearMessages.clearTextLabel)),
-      ).toBeDefined();
+      expect(getByLabelText(clearInput)).toBeDefined();
     });
 
     it("does not render the Clear Action Button when showClearAction is false", () => {
-      const { formatMessage } = useIntl();
       const { queryByLabelText } = renderInputFieldWrapper({
         showClearAction: false,
       });
-      expect(
-        queryByLabelText(formatMessage(clearMessages.clearTextLabel)),
-      ).toBeNull();
+      expect(queryByLabelText(clearInput)).toBeNull();
     });
 
     it("calls onClear when the Clear Action button is pressed", () => {
-      const { formatMessage } = useIntl();
       const onClear = jest.fn();
       const { getByLabelText } = renderInputFieldWrapper({
         showClearAction: true,
         onClear: onClear,
       });
-      fireEvent(
-        getByLabelText(formatMessage(clearMessages.clearTextLabel)),
-        "press",
-      );
+      fireEvent(getByLabelText(clearInput), "press");
       expect(onClear).toHaveBeenCalled();
     });
   });
