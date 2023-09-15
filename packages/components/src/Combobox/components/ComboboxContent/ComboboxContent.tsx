@@ -44,7 +44,8 @@ interface ComboboxContentProps {
   readonly selected?: string | number;
 
   /**
-   * The encapsulating noun for the content of the combobox. Should be pluralized.
+   * The encapsulating noun for the content of the combobox. Used
+   * in the empty state, and search placeholder. Should be pluralized.
    */
   readonly subjectNoun?: string;
 }

@@ -66,19 +66,16 @@ const ComboboxChip: ComponentStory<typeof Combobox> = args => {
     <Combobox {...args}>
       <Combobox.TriggerChip label="Tags" />
       <Combobox.Content
-        options={
-          [
-            // { id: "1", label: "Bilbo Baggins" },
-            // { id: "2", label: "Frodo Baggins" },
-            // { id: "3", label: "Pippin Took" },
-            // { id: "4", label: "Merry Brandybuck" },
-            // { id: "5", label: "Sam Gamgee" },
-          ]
-        }
+        options={[
+          { id: "1", label: "Bilbo Baggins" },
+          { id: "2", label: "Frodo Baggins" },
+          { id: "3", label: "Pippin Took" },
+          { id: "4", label: "Merry Brandybuck" },
+          { id: "5", label: "Sam Gamgee" },
+        ]}
         onSelect={selection => {
           console.log(selection);
         }}
-        // subjectNoun="teammates"
       >
         <Combobox.Action
           label="Add Teammate"
