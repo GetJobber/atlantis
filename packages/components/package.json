@@ -1,6 +1,6 @@
 {
   "name": "@jobber/components",
-  "version": "4.26.1",
+  "version": "4.35.0",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -21,7 +21,7 @@
   "dependencies": {
     "@jobber/design": "^0.44.4",
     "@jobber/formatters": "*",
-    "@jobber/hooks": "^2.1.5",
+    "@jobber/hooks": "^2.3.0",
     "@popperjs/core": "^2.0.6",
     "@std-proposal/temporal": "0.0.1",
     "@tanstack/react-table": "8.5.13",
@@ -64,6 +64,7 @@
     "autoprefixer": "^9.5.1",
     "copyfiles": "^2.4.1",
     "glob": "^7.1.4",
+    "jsdom-testing-mocks": "^1.9.0",
     "postcss": "^8.4.21",
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^8.3.0",

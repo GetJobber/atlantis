@@ -2,7 +2,6 @@ import React from "react";
 import { fireEvent, render } from "@testing-library/react-native";
 import { copyTextToClipboard } from "./clipboard";
 import { AutoLink } from "./AutoLink";
-import { messages } from "./messages";
 
 const mockOpenUrl = jest.fn();
 jest.mock("react-native/Libraries/Linking/Linking", () => ({
@@ -48,7 +47,7 @@ describe("AutoLink", () => {
       fireEvent(getByText(linkText), "onLongPress");
 
       const expectedToastConfig = {
-        message: messages.urlCopied.defaultMessage,
+        message: "URL copied",
         bottomTabsVisible: true,
       };
       expect(copyTextToClipboard).toHaveBeenCalledWith(
@@ -104,7 +103,7 @@ describe("AutoLink", () => {
       fireEvent(getByText(emailText), "onLongPress");
 
       const expectedToastConfig = {
-        message: messages.emailCopied.defaultMessage,
+        message: "Email copied",
         bottomTabsVisible: true,
       };
       expect(copyTextToClipboard).toHaveBeenCalledWith(
@@ -158,7 +157,7 @@ describe("AutoLink", () => {
       fireEvent(getByText(phoneText), "onLongPress");
 
       const expectedToastConfig = {
-        message: messages.phoneCopied.defaultMessage,
+        message: "Phone number copied",
         bottomTabsVisible: true,
       };
       expect(copyTextToClipboard).toHaveBeenCalledWith(

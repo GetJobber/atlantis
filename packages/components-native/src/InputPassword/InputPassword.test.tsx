@@ -1,7 +1,6 @@
 import React from "react";
 import { fireEvent, render, waitFor } from "@testing-library/react-native";
 import { InputPassword } from "./InputPassword";
-import { messages } from "./messages";
 import { InputFieldWrapperProps } from "../InputFieldWrapper";
 
 const MockInputFieldWrapper = jest.fn();
@@ -30,7 +29,7 @@ describe("InputPassword", () => {
     });
 
     expect(
-      getByText(messages.passwordRequired.defaultMessage, {
+      getByText("Enter a password", {
         includeHiddenElements: true,
       }),
     ).toBeDefined();

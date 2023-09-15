@@ -238,7 +238,7 @@ describe("InputDate", () => {
 
     it("should display MM/DD/YYYY when dateFormat is 'P'", () => {
       jest.spyOn(atlantisContext, "useAtlantisContext").mockReturnValue({
-        ...atlantisContext.defaultValues,
+        ...atlantisContext.atlantisContextDefaultValues,
         dateFormat: "P",
       });
       const expectedDate = "05/24/2023";
@@ -252,7 +252,7 @@ describe("InputDate", () => {
 
     it("should display mmmm d, yyyy when dateFormat is 'PP'", () => {
       jest.spyOn(atlantisContext, "useAtlantisContext").mockReturnValue({
-        ...atlantisContext.defaultValues,
+        ...atlantisContext.atlantisContextDefaultValues,
         dateFormat: "PP",
       });
       const expectedDate = "Feb 20, 2023";
@@ -266,7 +266,7 @@ describe("InputDate", () => {
 
     it("should display mmmmm d, yyyy when dateFormat is 'PPP'", () => {
       jest.spyOn(atlantisContext, "useAtlantisContext").mockReturnValue({
-        ...atlantisContext.defaultValues,
+        ...atlantisContext.atlantisContextDefaultValues,
         dateFormat: "PPP",
       });
       const expectedDate = "July 7th, 2023";
@@ -280,7 +280,7 @@ describe("InputDate", () => {
 
     it("should display dddd, mmmmm d, yyyy when dateFormat is 'PPPP'", () => {
       jest.spyOn(atlantisContext, "useAtlantisContext").mockReturnValue({
-        ...atlantisContext.defaultValues,
+        ...atlantisContext.atlantisContextDefaultValues,
         dateFormat: "PPPP",
       });
       const expectedDate = "Thursday, June 22nd, 2023";

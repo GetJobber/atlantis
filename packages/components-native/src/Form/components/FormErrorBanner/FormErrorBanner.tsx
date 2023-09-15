@@ -1,25 +1,16 @@
 import React from "react";
-import { useIntl } from "react-intl";
-import { messages } from "./messages";
 import { FormBannerErrors } from "../../types";
-import { useAtlantisContext } from "../../../AtlantisContext";
 import { Banner } from "../../../Banner";
+import { useAtlantisI18n } from "../../../hooks/useAtlantisI18n";
 
 export function FormErrorBanner({
   networkError,
   bannerError,
 }: FormBannerErrors): JSX.Element {
-  const { formatMessage } = useIntl();
-  const { isOnline } = useAtlantisContext();
+  const { t } = useAtlantisI18n();
 
-  if (!isOnline) {
-    return (
-      <Banner text={formatMessage(messages.offlineError)} type={"error"} />
-    );
-  } else if (networkError) {
-    return (
-      <Banner text={formatMessage(messages.networkError)} type={"error"} />
-    );
+  if (networkError) {
+    return <Banner type={"error"}>{t("errors.couldNotSave")}</Banner>;
   } else if (bannerError) {
     return (
       <Banner
@@ -28,7 +19,7 @@ export function FormErrorBanner({
         type={"error"}
       />
     );
-  } else {
-    return <></>;
   }
+
+  return <></>;
 }

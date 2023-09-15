@@ -4,7 +4,6 @@ import { AccessibilityInfo, View } from "react-native";
 import { Host, Portal } from "react-native-portalize";
 import { BottomSheet } from ".";
 import { BottomSheetRef } from "./BottomSheet";
-import { messages } from "./messages";
 import { waitForUntestableRender } from "../utils/test/wait";
 import { Text } from "../Text";
 
@@ -79,7 +78,7 @@ it("BottomSheet can be closed with the cancel action", async () => {
     ref.current?.open();
   });
 
-  fireEvent.press(getByText(messages.cancel.defaultMessage));
+  fireEvent.press(getByText("Cancel"));
 
   await waitFor(() => {
     expect(queryByText("BottomSheet")).toBeNull();
@@ -98,7 +97,7 @@ describe("when loading is provided and true", () => {
       ref.current?.open();
     });
 
-    expect(queryByText(messages.cancel.defaultMessage)).toBeNull();
+    expect(queryByText("Cancel")).toBeNull();
   });
 });
 
@@ -143,7 +142,7 @@ describe("when there is a screen reader enabled", () => {
       ref.current?.open();
     });
 
-    fireEvent.press(getByText(messages.cancel.defaultMessage));
+    fireEvent.press(getByText("Cancel"));
 
     await waitFor(() => {
       expect(queryByText("BottomSheet")).toBeNull();

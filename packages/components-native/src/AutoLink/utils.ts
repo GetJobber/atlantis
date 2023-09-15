@@ -1,9 +1,7 @@
 import { EmailMatch, Match, PhoneMatch } from "autolinker";
-import { MessageDescriptor } from "react-intl";
 import { Linking } from "react-native";
-import { messages } from "./messages";
-import { LinkType } from "./types";
 import { copyTextToClipboard } from "./clipboard";
+import { I18nKeys, useAtlantisI18nValue } from "../hooks/useAtlantisI18n";
 
 function hasPrefix(text: string, prefixes: string[]): boolean {
   return prefixes.some(prefix => text.includes(prefix));
@@ -46,12 +44,12 @@ export function getUrl(match: Match, immediateOpen = true): string {
 export function onLongPressLink(
   match: Match,
   bottomTabsVisible: boolean,
-  formatMessage: (message: MessageDescriptor) => string,
+  t: useAtlantisI18nValue["t"],
 ): void {
   const linkUrl = getUrl(match, false);
 
   const toastConfig = {
-    message: formatMessage(messages[`${match.getType() as LinkType}Copied`]),
+    message: t(getMessageKey(match)),
     bottomTabsVisible,
   };
   copyTextToClipboard(linkUrl, toastConfig);
@@ -60,4 +58,17 @@ export function onLongPressLink(
 export function onPressLink(match: Match): void {
   const linkUrl = getUrl(match);
   Linking.openURL(linkUrl);
+}
+
+function getMessageKey(match: Match): I18nKeys {
+  switch (match.getType()) {
+    case "email":
+      return "AutoLink.emailCopied";
+    case "phone":
+      return "AutoLink.phoneCopied";
+    case "url":
+      return "AutoLink.urlCopied";
+    default:
+      return "copied";
+  }
 }

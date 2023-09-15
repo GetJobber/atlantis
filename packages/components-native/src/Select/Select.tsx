@@ -1,15 +1,14 @@
 import React, { ReactElement } from "react";
 import { View } from "react-native";
-import { useIntl } from "react-intl";
 import { RegisterOptions } from "react-hook-form";
 import { styles } from "./Select.style";
 import { SelectInternalPicker } from "./components/SelectInternalPicker";
-import { messages } from "./messages";
 import { InputFieldWrapper } from "../InputFieldWrapper";
 import { Icon } from "../Icon";
 import { TextVariation } from "../Typography";
 import { Text } from "../Text";
 import { useFormController } from "../hooks";
+import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
 export interface SelectOption {
   /**
@@ -111,7 +110,7 @@ export function Select({
     value: value ?? defaultValue,
   });
 
-  const { formatMessage } = useIntl();
+  const { t } = useAtlantisI18n();
   const internalValue = value ?? field.value;
   const textVariation = getTextVariation({
     disabled,
@@ -134,7 +133,7 @@ export function Select({
         accessible={true}
         accessibilityLabel={getA11yLabel()}
         accessibilityValue={{ text: getValue() }}
-        accessibilityHint={formatMessage(messages.a11yHint)}
+        accessibilityHint={t("Select.a11yHint")}
         accessibilityRole="button"
         accessibilityState={{ disabled: disabled }}
       >
@@ -207,7 +206,7 @@ export function Select({
 
     if (!internalValue || placeholder) {
       options.unshift({
-        label: placeholder || formatMessage(messages.emptyValue),
+        label: placeholder || t("Select.emptyValue"),
         value: "",
         isActive: !internalValue,
       });
@@ -220,9 +219,7 @@ export function Select({
     const options = getOptions();
 
     const activeValue = options.find(option => option.isActive);
-    return (
-      activeValue?.label || placeholder || formatMessage(messages.emptyValue)
-    );
+    return activeValue?.label || placeholder || t("Select.emptyValue");
   }
 }
 

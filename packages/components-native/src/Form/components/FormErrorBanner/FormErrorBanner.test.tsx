@@ -1,9 +1,7 @@
 import React from "react";
 import { cleanup, render } from "@testing-library/react-native";
-import { useIntl } from "react-intl";
 import { FormErrorBanner } from "./FormErrorBanner";
-import { messages as formErrorBannerMessages } from "./messages";
-import { defaultValues as contextDefaultValue } from "../../../AtlantisContext";
+import { atlantisContextDefaultValues } from "../../../AtlantisContext";
 import * as atlantisContext from "../../../AtlantisContext/AtlantisContext";
 
 describe("FormErrorBanner", () => {
@@ -11,70 +9,25 @@ describe("FormErrorBanner", () => {
 
   beforeEach(() => {
     atlantisContextSpy.mockReturnValue({
-      ...contextDefaultValue,
+      ...atlantisContextDefaultValues,
       isOnline: true,
     });
   });
 
-  const { formatMessage } = useIntl();
-  const networkError = new Error();
+  const networkError = "An error occurred";
   const userError = {
     title: "My error",
     messages: ["userError1", "userError2"],
   };
-  const validationErrors = [
-    "This is the first validation error",
-    "This is the second validation error",
-  ];
-
-  it("should render Offline banner when offline", () => {
-    atlantisContextSpy.mockReturnValue({
-      ...contextDefaultValue,
-      isOnline: false,
-    });
-    const { getByText, queryByText } = render(
-      <FormErrorBanner
-        // @ts-expect-error tsc-ci
-        networkError={networkError}
-        bannerError={userError}
-        validationErrors={validationErrors}
-        actionLabel="Action"
-      />,
-    );
-
-    // Show: Offline Message
-    expect(
-      getByText(formatMessage(formErrorBannerMessages.offlineError)),
-    ).toBeDefined();
-
-    // Hide: Network Error, User Error, Validation Error
-    expect(
-      queryByText(formatMessage(formErrorBannerMessages.networkError)),
-    ).toBeNull();
-
-    expect(queryByText(userError.title)).toBeNull();
-  });
+  const couldNotSavechanges = "Could not save changes";
 
   it("should render network error banner when online and network errors exist", () => {
     const { getByText, queryByText } = render(
-      <FormErrorBanner
-        // @ts-expect-error tsc-ci
-        networkError={networkError}
-        bannerError={userError}
-        actionLabel="action"
-      />,
+      <FormErrorBanner networkError={networkError} bannerError={userError} />,
     );
 
-    // Show: Network Error
-    expect(
-      getByText(formatMessage(formErrorBannerMessages.networkError)),
-    ).toBeDefined();
-
-    // Hide: Offline Message, User Error, Validation Error
-    expect(
-      queryByText(formatMessage(formErrorBannerMessages.offlineError)),
-    ).toBeNull();
-
+    // Show: Network Error only
+    expect(getByText(couldNotSavechanges)).toBeDefined();
     expect(queryByText(userError.title)).toBeNull();
   });
 
@@ -83,19 +36,11 @@ describe("FormErrorBanner", () => {
       <FormErrorBanner bannerError={userError} />,
     );
 
-    // Show: User Error
+    // Show: User Error only
     expect(getByText(userError.title)).toBeDefined();
     expect(getByText(userError.messages[0])).toBeDefined();
     expect(getByText(userError.messages[1])).toBeDefined();
-
-    // Hide: Offline Message, Network Error, Validation Error
-    expect(
-      queryByText(formatMessage(formErrorBannerMessages.offlineError)),
-    ).toBeNull();
-
-    expect(
-      queryByText(formatMessage(formErrorBannerMessages.networkError)),
-    ).toBeNull();
+    expect(queryByText(couldNotSavechanges)).toBeNull();
   });
 
   it("should render user error banner with just title when online", () => {
@@ -106,17 +51,9 @@ describe("FormErrorBanner", () => {
       <FormErrorBanner bannerError={userErrorJustTitle} />,
     );
 
-    // Show: User Error
+    // Show: User Error only
     expect(getByText(userErrorJustTitle.title)).toBeDefined();
-
-    // Hide: Offline Message, Network Error, Validation Error
-    expect(
-      queryByText(formatMessage(formErrorBannerMessages.offlineError)),
-    ).toBeNull();
-
-    expect(
-      queryByText(formatMessage(formErrorBannerMessages.networkError)),
-    ).toBeNull();
+    expect(queryByText(couldNotSavechanges)).toBeNull();
   });
 });
 

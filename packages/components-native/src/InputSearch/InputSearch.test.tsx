@@ -5,9 +5,7 @@ import {
   render,
   waitFor,
 } from "@testing-library/react-native";
-import { useIntl } from "react-intl";
 import { InputSearch } from "./InputSearch";
-import { messages as clearMessages } from "../InputFieldWrapper/components/ClearAction";
 
 const accessibilityLabelSearch = "Search";
 const accessibilityHint = "Search clients, properties, quotes, etc.";
@@ -63,14 +61,11 @@ describe("InputSearch", () => {
 
   it("clears the search value when the clear button is pressed", () => {
     searchValue = "test search value";
-    const { formatMessage } = useIntl();
     const { getByLabelText } = setup();
 
     fireEvent(getByLabelText(accessibilityLabelSearch), "focus");
 
-    const inputSearchClearButton = getByLabelText(
-      formatMessage(clearMessages.clearTextLabel),
-    );
+    const inputSearchClearButton = getByLabelText("Clear input");
     fireEvent.press(inputSearchClearButton);
     expect(mockOnChange).toHaveBeenCalledWith("");
   });

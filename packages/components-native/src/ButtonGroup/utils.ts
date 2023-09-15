@@ -1,7 +1,5 @@
 import React, { useCallback } from "react";
-import { useIntl } from "react-intl";
 import { Alert } from "react-native";
-import { messages } from "./messages";
 import {
   ButtonGroupActionElement,
   ButtonGroupPrimaryActionElement,
@@ -12,6 +10,7 @@ import {
   SecondaryAction,
 } from "./ButtonGroupAction";
 import { useAtlantisContext } from "../AtlantisContext/AtlantisContext";
+import { useAtlantisI18n } from "../hooks/useAtlantisI18n";
 
 interface UsePreventTapWhenOfflineShape {
   readonly handlePress: (
@@ -24,7 +23,7 @@ interface UsePreventTapWhenOfflineShape {
  * online or offline
  */
 export function usePreventTapWhenOffline(): UsePreventTapWhenOfflineShape {
-  const { formatMessage } = useIntl();
+  const { t } = useAtlantisI18n();
   const { isOnline } = useAtlantisContext();
 
   const handlePress = useCallback(
@@ -33,11 +32,11 @@ export function usePreventTapWhenOffline(): UsePreventTapWhenOfflineShape {
 
       return () =>
         Alert.alert(
-          formatMessage(messages.unavailableNetworkTitle),
-          formatMessage(messages.unavailableNetworkMessage),
+          t("networkUnavailableTitle"),
+          t("networkUnavailableDescription"),
         );
     },
-    [formatMessage, isOnline],
+    [isOnline],
   );
 
   return { handlePress };

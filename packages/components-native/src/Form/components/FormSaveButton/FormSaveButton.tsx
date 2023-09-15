@@ -1,12 +1,11 @@
 import React from "react";
-import { useIntl } from "react-intl";
 import { useFormContext } from "react-hook-form";
-import { messages } from "./messages";
 import { FormSaveButtonProps, SecondaryActionProp } from "../../types";
 import {
   ButtonGroup,
   ButtonGroupSecondaryActionProps,
 } from "../../../ButtonGroup";
+import { useAtlantisI18n } from "../../../hooks/useAtlantisI18n";
 
 export function FormSaveButton({
   primaryAction,
@@ -17,7 +16,7 @@ export function FormSaveButton({
   onOpenBottomSheet,
   onCloseBottomSheet,
 }: FormSaveButtonProps): JSX.Element {
-  const { formatMessage } = useIntl();
+  const { t } = useAtlantisI18n();
   const formContext = useFormContext();
   const buttonActions = useButtonGroupAction(secondaryActions);
 
@@ -34,7 +33,7 @@ export function FormSaveButton({
               <ButtonGroup.PrimaryAction
                 key={index}
                 onPress={primaryAction}
-                label={label ?? formatMessage(messages.saveButton)}
+                label={label ?? t("save")}
                 loading={loading}
               />
             );
@@ -69,7 +68,7 @@ export function FormSaveButton({
       : [];
 
     buttonGroupActionProps.unshift({
-      label: label ?? formatMessage(messages.saveButton),
+      label: label ?? t("save"),
       onPress: primaryAction,
       loading: loading,
       icon: undefined,

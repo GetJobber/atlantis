@@ -1,10 +1,15 @@
 import React from "react";
 import { fireEvent, render, waitFor } from "@testing-library/react-native";
 import { InputCurrency } from "./InputCurrency";
-import { AtlantisContext, AtlantisContextProps } from "../AtlantisContext";
+import {
+  AtlantisContext,
+  AtlantisContextProps,
+  atlantisContextDefaultValues,
+} from "../AtlantisContext";
 
 const mockCurrencySymbol = "£";
 const atlantisContext: AtlantisContextProps = {
+  ...atlantisContextDefaultValues,
   currencySymbol: mockCurrencySymbol,
   timeFormat: "p",
   timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,

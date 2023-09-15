@@ -1,6 +1,7 @@
 import React, { PropsWithChildren, useState } from "react";
 import { DocsContainer, DocsContainerProps } from "@storybook/addon-docs";
 import { Button } from "@jobber/components/Button";
+import { Banner } from "@jobber/components/Banner";
 import * as styles from "./DocsWithSidebar.css";
 import { TableOfContents } from "../TableOfContents";
 
@@ -31,6 +32,12 @@ export function DocsWithSidebar({
     <div className={styles.wrapper}>
       <div className={styles.content}>
         <DocsContainer context={context} {...rest}>
+          {context.parameters?.alpha && (
+            <Banner type="warning" dismissible={false}>
+              This component is a work in progress. Breaking changes are
+              expected on a minor version release.
+            </Banner>
+          )}
           {children}
         </DocsContainer>
       </div>

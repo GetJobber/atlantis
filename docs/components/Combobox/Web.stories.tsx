@@ -39,9 +39,10 @@ const ComboboxButton: ComponentStory<typeof Combobox> = args => {
           { id: "14", label: "Merry Brandybuck3" },
           { id: "15", label: "Sam Gamgee3" },
         ]}
-        onSelection={selection => {
+        onSelect={selection => {
           console.log(selection);
         }}
+        selected={1}
       >
         <Combobox.Action
           label="Add a teammate"
@@ -72,7 +73,7 @@ const ComboboxChip: ComponentStory<typeof Combobox> = args => {
           { id: "4", label: "Merry Brandybuck" },
           { id: "5", label: "Sam Gamgee" },
         ]}
-        onSelection={selection => {
+        onSelect={selection => {
           console.log(selection);
         }}
       >

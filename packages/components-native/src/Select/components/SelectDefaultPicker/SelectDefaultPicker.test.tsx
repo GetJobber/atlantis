@@ -2,7 +2,6 @@ import React from "react";
 import { cleanup, fireEvent, render } from "@testing-library/react-native";
 import { AccessibilityInfo, View } from "react-native";
 import { SelectDefaultPicker } from "./SelectDefaultPicker";
-import { messages } from "./messages";
 import { Text } from "../../../Text";
 
 const A11yInfoSpy = jest.spyOn(AccessibilityInfo, "isScreenReaderEnabled");
@@ -55,7 +54,7 @@ describe("SelectDefaultPicker", () => {
     const screen = setup();
 
     fireEvent.press(screen.getByText(childText));
-    fireEvent.press(screen.getByText(messages.done.defaultMessage));
+    fireEvent.press(screen.getByText("Done"));
     expect(
       screen.getByTestId("SelectDefaultPicker").findAllByType(MockPicker),
     ).toEqual([]);
