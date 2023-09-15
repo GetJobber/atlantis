@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import uniq from "lodash/uniq";
+import { useLazyQuery } from "@apollo/client";
 import { useCollectionQuery } from "@jobber/hooks/useCollectionQuery";
 import { DataList, DataListItemType } from "@jobber/components/DataList";
 import { Grid } from "@jobber/components/Grid";
@@ -8,7 +9,13 @@ import { InlineLabel, InlineLabelColors } from "@jobber/components/InlineLabel";
 import { Content } from "@jobber/components/Content";
 import { Button } from "@jobber/components/Button";
 import { DatePicker } from "@jobber/components/DatePicker";
-import { LIST_QUERY, ListQueryType, apolloClient } from "./storyUtils";
+import {
+  LAZY_LIST_IDS_QUERY,
+  LIST_QUERY,
+  ListIDsQueryType,
+  ListQueryType,
+  apolloClient,
+} from "./storyUtils";
 
 export default {
   title: "Components/Lists and Tables/DataList/Web",
@@ -61,6 +68,15 @@ const Template: ComponentStory<typeof DataList> = args => {
     },
   });
 
+  const [getIDs, { loading: loadingIDs }] = useLazyQuery<ListIDsQueryType>(
+    LAZY_LIST_IDS_QUERY,
+    {
+      fetchPolicy: "network-only",
+      nextFetchPolicy: "cache-first",
+      client: apolloClient,
+    },
+  );
+
   const items = data?.allPeople.edges || [];
   const totalCount = data?.allPeople.totalCount || null;
   const mappedData = items.map(({ node }) => ({
@@ -98,11 +114,13 @@ const Template: ComponentStory<typeof DataList> = args => {
       onLoadMore={nextPage}
       selected={selected}
       onSelect={setSelected}
-      onSelectAll={() =>
-        alert(
-          "Due to the nature of select all in an infinite list, you—the developer—would have to query all ID's in your data and set them to state.",
-        )
-      }
+      onSelectAll={async () => {
+        const idsQuery = await getIDs();
+        const ids = idsQuery?.data?.allPeople?.edges?.map(
+          ({ node }) => node.id,
+        );
+        ids && setSelected(ids);
+      }}
     >
       <DataList.Filters>
         <Button
@@ -225,7 +243,7 @@ const Template: ComponentStory<typeof DataList> = args => {
 
   function getLoadingState() {
     if (loadingInitialContent) return "initial";
-    if (loadingNextPage) return "loadingMore";
+    if (loadingNextPage || loadingIDs) return "loadingMore";
     return args.loadingState;
   }
 };
