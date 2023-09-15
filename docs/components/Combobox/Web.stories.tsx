@@ -45,13 +45,13 @@ const ComboboxButton: ComponentStory<typeof Combobox> = args => {
         selected={1}
       >
         <Combobox.Action
-          label="Add a teammate"
+          label="Add Teammate"
           onClick={() => {
             alert("Added a new teammate ✅");
           }}
         />
         <Combobox.Action
-          label="Manage teammates"
+          label="Manage Teammates"
           onClick={() => {
             alert("Managed teammates 👍");
           }}
@@ -78,13 +78,13 @@ const ComboboxChip: ComponentStory<typeof Combobox> = args => {
         }}
       >
         <Combobox.Action
-          label="Add a teammate"
+          label="Add Teammate"
           onClick={() => {
             alert("Added a new teammate ✅");
           }}
         />
         <Combobox.Action
-          label="Manage teammates"
+          label="Manage Teammates"
           onClick={() => {
             alert("Managed teammates 👍");
           }}

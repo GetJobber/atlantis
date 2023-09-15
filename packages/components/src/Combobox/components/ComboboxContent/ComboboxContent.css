@@ -34,6 +34,7 @@
   border: none;
   border-bottom: var(--border-base) solid var(--color-border);
   border-radius: 0;
+  font-family: var(--typography--fontFamily-normal);
   font-size: var(--typography--fontSize-base);
   line-height: normal;
   background-color: var(--color-surface);

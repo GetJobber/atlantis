@@ -371,3 +371,52 @@ describe("Combobox selected value", () => {
     expect(option).toBeChecked();
   });
 });
+
+describe("Combobox Zero Index State", () => {
+  describe("when no options exist and subjectNoun is provided", () => {
+    it("should render the correct zero index state text", () => {
+      const subjectNoun = "teammates";
+      const { getByText } = render(
+        <Combobox>
+          <Combobox.TriggerButton label="Select a teammate" />
+          <Combobox.Content
+            options={[]}
+            onSelect={jest.fn()}
+            subjectNoun={subjectNoun}
+          />
+        </Combobox>,
+      );
+
+      expect(getByText("You don't have any teammates yet")).toBeInTheDocument();
+    });
+  });
+
+  describe("when no options exist and subjectNoun is not provided", () => {
+    it("should render the default zero index state text", () => {
+      const { getByText } = render(
+        <Combobox>
+          <Combobox.TriggerButton label="Select a tax rate" />
+          <Combobox.Content options={[]} onSelect={jest.fn()} />
+        </Combobox>,
+      );
+
+      expect(getByText("No options yet")).toBeInTheDocument();
+    });
+  });
+
+  describe("when options do exist", () => {
+    it("should not render default zero index state text", () => {
+      const { queryByText } = render(
+        <Combobox>
+          <Combobox.TriggerButton label="Select a tax rate" />
+          <Combobox.Content
+            options={[{ id: "1", label: "10%" }]}
+            onSelect={jest.fn()}
+          />
+        </Combobox>,
+      );
+
+      expect(queryByText("No options yet")).not.toBeInTheDocument();
+    });
+  });
+});
