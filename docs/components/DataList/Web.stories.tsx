@@ -236,6 +236,8 @@ const Template: ComponentStory<typeof DataList> = args => {
   }
 
   async function handleSelectAll() {
+    if (totalCount === selected.length) return setSelected([]);
+
     const idsQuery = await getIDs();
     const ids = idsQuery?.data?.allPeople?.edges?.map(({ node }) => node.id);
     ids && setSelected(ids);
