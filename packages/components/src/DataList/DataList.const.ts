@@ -32,3 +32,6 @@ export const DATA_LIST_FILTERING_SPINNER_TEST_ID =
 export const DATA_LIST_LOADING_MORE_SPINNER_TEST_ID =
   "ATL-DataList-loadingMoreSpinner";
 export const DATA_LOAD_MORE_TEST_ID = "ATL-DataList-LoadMore-trigger";
+
+export const TRANSITION_DURATION_IN_SECONDS = tokens["timing-base"] / 1000;
+export const TRANSITION_DELAY_IN_SECONDS = tokens["timing-quick"] / 1000;

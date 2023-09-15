@@ -128,6 +128,23 @@ const Template: ComponentStory<typeof DataList> = args => {
         placeholder="Search characters..."
       />
 
+      <DataList.ItemActions>
+        <DataList.Action icon="edit" label="Edit" onClick={handleActionClick} />
+        <DataList.Action
+          icon="sendMessage"
+          label="Message"
+          onClick={handleActionClick}
+        />
+        <DataList.Action label="Create new..." onClick={handleActionClick} />
+        <DataList.Action label="Add attribute..." onClick={handleActionClick} />
+        <DataList.Action
+          icon="trash"
+          label="Delete"
+          destructive={true}
+          onClick={handleActionClick}
+        />
+      </DataList.ItemActions>
+
       <DataList.Layout size="md">
         {(item: DataListItemType<typeof mappedData>) => (
           <Grid alignItems="center">
@@ -203,6 +220,10 @@ const Template: ComponentStory<typeof DataList> = args => {
       />
     </DataList>
   );
+
+  function handleActionClick(item: (typeof mappedData)[number]) {
+    alert(`You clicked the action for ${item.label}`);
+  }
 
   function getColor(gender: string): InlineLabelColors | undefined {
     switch (gender) {
