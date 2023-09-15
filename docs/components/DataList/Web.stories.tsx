@@ -129,12 +129,33 @@ const Template: ComponentStory<typeof DataList> = args => {
       />
 
       <DataList.ItemActions>
-        <DataList.Action icon="edit" label="Edit" />
-        <DataList.Action icon="email" label="Email" />
-        <DataList.Action label="Add note" />
-        <DataList.Action label="Create new..." />
-        <DataList.Action label="Tag with..." />
-        <DataList.Action label="Delete" destructive={true} />
+        <DataList.Action
+          icon="edit"
+          label="Edit"
+          onClick={item => alert(`You clicked the action for ${item.label}`)}
+        />
+        <DataList.Action
+          icon="email"
+          label="Email"
+          onClick={item => alert(`You clicked the action for ${item.label}`)}
+        />
+        <DataList.Action
+          label="Add note"
+          onClick={item => alert(`You clicked the action for ${item.label}`)}
+        />
+        <DataList.Action
+          label="Create new..."
+          onClick={item => alert(`You clicked the action for ${item.label}`)}
+        />
+        <DataList.Action
+          label="Tag with..."
+          onClick={item => alert(`You clicked the action for ${item.label}`)}
+        />
+        <DataList.Action
+          label="Delete"
+          destructive={true}
+          onClick={item => alert(`You clicked the action for ${item.label}`)}
+        />
       </DataList.ItemActions>
 
       <DataList.Layout size="md">

@@ -1,12 +1,7 @@
-import React, {
-  Children,
-  MouseEvent,
-  ReactElement,
-  isValidElement,
-  useState,
-} from "react";
+import React, { Children, ReactElement, isValidElement } from "react";
 import { Variants, motion } from "framer-motion";
 import styles from "./DataListItemActions.css";
+import { DataListItemActionsOverflow } from "./DataListItemActionsOverflow";
 import { useDataListContext } from "../../context/DataListContext";
 import {
   DataListActionProps,
@@ -14,8 +9,6 @@ import {
   DataListObject,
 } from "../../DataList.types";
 import { Button } from "../../../Button";
-import { DataListActionsMenu } from "../DataListActionsMenu";
-import { InternalDataListAction } from "../DataListAction";
 import {
   TRANSITION_DELAY_IN_SECONDS,
   TRANSITION_DURATION_IN_SECONDS,
@@ -42,8 +35,6 @@ export function InternalDataListItemActions<T extends DataListObject>({
   item,
 }: InternalDataListItemActionsProps<T>) {
   const { itemActionComponent } = useDataListContext();
-  const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
-  const [showMenu, setShowMenu] = useState(false);
   if (!itemActionComponent) return null;
 
   const { children } = itemActionComponent.props;
@@ -53,9 +44,6 @@ export function InternalDataListItemActions<T extends DataListObject>({
     );
   const exposedActions = getExposedActions(childrenArray);
   childrenArray.splice(0, exposedActions.length);
-  const hasIconOffset = childrenArray.some(
-    child => child.props.icon !== undefined,
-  );
 
   return (
     <motion.div
@@ -84,39 +72,9 @@ export function InternalDataListItemActions<T extends DataListObject>({
         );
       })}
 
-      <Button
-        icon="more"
-        ariaLabel="More actions"
-        type="secondary"
-        variation="subtle"
-        onClick={handleMoreClick}
-      />
-
-      <DataListActionsMenu
-        visible={showMenu}
-        position={menuPosition}
-        onRequestClose={() => setShowMenu(false)}
-      >
-        {childrenArray.map(action => {
-          return (
-            <InternalDataListAction
-              key={action.props.label}
-              {...action.props}
-              withIconOffset={hasIconOffset}
-              item={item}
-            />
-          );
-        })}
-      </DataListActionsMenu>
+      <DataListItemActionsOverflow actions={childrenArray} item={item} />
     </motion.div>
   );
-
-  function handleMoreClick(event: MouseEvent<HTMLButtonElement>): void {
-    setShowMenu(true);
-
-    const rect = event.currentTarget.getBoundingClientRect();
-    setMenuPosition({ x: rect.x + rect.width, y: rect.y + rect.height });
-  }
 }
 
 function getExposedActions<T extends DataListObject>(
