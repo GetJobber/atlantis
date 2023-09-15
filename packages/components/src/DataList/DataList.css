@@ -26,15 +26,9 @@
   grid-template-columns: auto max-content;
 }
 
-.headerTitles,
-.selectable {
-  display: grid;
-  grid-template-columns: max-content minmax(0px, auto);
-  align-items: center;
-  column-gap: var(--space-small);
-}
-
 .headerTitles {
+  display: grid;
+  align-items: center;
   min-height: var(--space-largest);
   padding: var(--space-small);
   border-bottom: var(--border-thick) solid var(--color-border);
@@ -57,11 +51,18 @@
 }
 
 .selectable {
+  display: grid;
   align-items: flex-start;
 
   @media (--medium-screens-and-up) {
     align-items: center;
   }
+}
+
+.headerTitles.selectable,
+.selectable {
+  grid-template-columns: max-content minmax(0px, auto);
+  column-gap: var(--space-small);
 }
 
 .listItem .selectable > :first-child {

@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 import { DataListLayoutInternal } from "./DataListLayoutInternal";
 import { Breakpoints } from "../../DataList.const";
 import styles from "../../DataList.css";
@@ -56,32 +57,42 @@ export function DataListHeader<T extends DataListObject>({
     <DataListLayoutInternal
       layouts={layouts}
       mediaMatches={mediaMatches}
-      renderLayout={layout => (
-        <div className={styles.headerTitles}>
-          <Checkbox
-            checked={isAllSelected}
-            indeterminate={selected.length > 0 && !isAllSelected}
-            onChange={onSelectAll}
-          />
+      renderLayout={layout => {
+        if (onSelectAll === undefined) {
+          return (
+            <div className={styles.headerTitles}>
+              {layout.props.children(headerData)}
+            </div>
+          );
+        }
 
-          <AnimatedSwitcher
-            switched={Boolean(selected.length)}
-            initialChild={layout.props.children(headerData)}
-            switchTo={
-              <div className={styles.headerBatchSelect}>
-                <Text>
-                  <b>{selected.length} selected</b>
-                </Text>
-                <Button
-                  label="Deselect All"
-                  onClick={() => onSelect?.([])}
-                  type="tertiary"
-                />
-              </div>
-            }
-          />
-        </div>
-      )}
+        return (
+          <div className={classNames(styles.headerTitles, styles.selectable)}>
+            <Checkbox
+              checked={isAllSelected}
+              indeterminate={selected.length > 0 && !isAllSelected}
+              onChange={onSelectAll}
+            />
+
+            <AnimatedSwitcher
+              switched={Boolean(selected.length)}
+              initialChild={layout.props.children(headerData)}
+              switchTo={
+                <div className={styles.headerBatchSelect}>
+                  <Text>
+                    <b>{selected.length} selected</b>
+                  </Text>
+                  <Button
+                    label="Deselect All"
+                    onClick={() => onSelect?.([])}
+                    type="tertiary"
+                  />
+                </div>
+              }
+            />
+          </div>
+        );
+      }}
     />
   );
 }

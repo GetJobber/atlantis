@@ -3,9 +3,9 @@ declare const styles: {
   readonly "titleContainer": string;
   readonly "headerFilters": string;
   readonly "headerTitles": string;
-  readonly "selectable": string;
   readonly "headerBatchSelect": string;
   readonly "listItem": string;
+  readonly "selectable": string;
   readonly "selected": string;
   readonly "filtering": string;
   readonly "filteringSpinner": string;
