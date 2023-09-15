@@ -1,3 +1,8 @@
+.wrapper,
+.wrapper * {
+  box-sizing: border-box;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -30,12 +35,20 @@
 }
 
 .headerTitles {
+  min-height: var(--space-largest);
   padding: var(--space-small);
   border-bottom: var(--border-thick) solid var(--color-border);
 }
 
-.headerLabel > * {
+.headerBatchSelect > p {
   font-weight: 500;
+}
+
+.headerBatchSelect {
+  display: flex;
+  align-items: center;
+  gap: var(--space-smaller);
+  margin: calc(var(--space-small) * -1) 0;
 }
 
 .listItem {

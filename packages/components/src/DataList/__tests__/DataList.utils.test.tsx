@@ -131,8 +131,7 @@ describe("Datalist utils", () => {
 
       const element = screen.getByText(name);
       expect(element).toBeInstanceOf(HTMLParagraphElement);
-      expect(element).toHaveClass("small textSecondary textTruncate");
-      expect(element.parentElement).toHaveClass("headerLabel");
+      expect(element).toHaveClass("regular textSecondary textTruncate");
     });
 
     it("should return undefined when the value is empty", () => {

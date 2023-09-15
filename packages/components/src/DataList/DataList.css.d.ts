@@ -4,7 +4,7 @@ declare const styles: {
   readonly "headerFilters": string;
   readonly "headerTitles": string;
   readonly "selectable": string;
-  readonly "headerLabel": string;
+  readonly "headerBatchSelect": string;
   readonly "listItem": string;
   readonly "selected": string;
   readonly "filtering": string;

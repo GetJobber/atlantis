@@ -12,6 +12,9 @@ import {
 import { sortSizeProp } from "../../DataList.utils";
 import { Checkbox } from "../../../Checkbox";
 import { useDataListContext } from "../../context/DataListContext";
+import { AnimatedSwitcher } from "../../../AnimatedSwitcher";
+import { Button } from "../../../Button";
+import { Text } from "../../../Text";
 
 interface DataListHeaderProps<T extends DataListObject> {
   readonly layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined;
@@ -26,7 +29,7 @@ export function DataListHeader<T extends DataListObject>({
   headerData,
   headerVisibility,
 }: DataListHeaderProps<T>) {
-  const { data, selected = [], onSelectAll } = useDataListContext();
+  const { data, selected = [], onSelectAll, onSelect } = useDataListContext();
   const matchingMediaQueries = Object.keys(mediaMatches || {}).filter(
     (key): key is Breakpoints => !!mediaMatches?.[key as Breakpoints],
   );
@@ -42,25 +45,38 @@ export function DataListHeader<T extends DataListObject>({
 
   if (!showHeader || !headerData) return <></>;
 
-  const isAllSelected = data.length > 0 && data.length === selected?.length;
+  const isAllSelected = data.length > 0 && data.length === selected.length;
 
   return (
     <DataListLayoutInternal
       layouts={layouts}
-      renderLayout={layout => {
-        return (
-          <div className={styles.headerTitles}>
-            <Checkbox
-              checked={isAllSelected}
-              indeterminate={selected?.length > 0 && !isAllSelected}
-              onChange={onSelectAll}
-            />
-
-            {layout.props.children(headerData)}
-          </div>
-        );
-      }}
       mediaMatches={mediaMatches}
+      renderLayout={layout => (
+        <div className={styles.headerTitles}>
+          <Checkbox
+            checked={isAllSelected}
+            indeterminate={selected.length > 0 && !isAllSelected}
+            onChange={onSelectAll}
+          />
+
+          <AnimatedSwitcher
+            switched={Boolean(selected.length)}
+            initialChild={layout.props.children(headerData)}
+            switchTo={
+              <div className={styles.headerBatchSelect}>
+                <Text>
+                  <b>{selected.length} selected</b>
+                </Text>
+                <Button
+                  label="Deselect All"
+                  onClick={() => onSelect?.([])}
+                  type="tertiary"
+                />
+              </div>
+            }
+          />
+        </div>
+      )}
     />
   );
 }

@@ -6,7 +6,6 @@ import {
   DataListItemTypeFromHeader,
   DataListObject,
 } from "./DataList.types";
-import styles from "./DataList.css";
 import { BREAKPOINTS, Breakpoints } from "./DataList.const";
 import { DataListTags } from "./components/DataListTags";
 import { FormatDate } from "../FormatDate";
@@ -90,11 +89,9 @@ export function generateHeaderElements<T extends DataListObject>(
     (acc, key) => ({
       ...acc,
       [key]: (
-        <div className={styles.headerLabel}>
-          <Text variation="subdued" maxLines="single" size="small">
-            {headers[key]}
-          </Text>
-        </div>
+        <Text variation="subdued" maxLines="single">
+          {headers[key]}
+        </Text>
       ),
     }),
     {} as DataListItemTypeFromHeader<T, typeof headers>,
