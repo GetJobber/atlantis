@@ -200,9 +200,5 @@ export interface DataListActionProps<T extends DataListObject> {
 
 export interface InternalDataListActionProps<T extends DataListObject>
   extends DataListActionProps<T> {
-  /**
-   * Adds a space the size of the icon to the left of the label.
-   */
-  readonly withIconOffset: boolean;
   readonly item: T;
 }

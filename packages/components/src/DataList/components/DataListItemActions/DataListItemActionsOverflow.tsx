@@ -21,8 +21,6 @@ export function DataListItemActionsOverflow<T extends DataListObject>({
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
   const [showMenu, setShowMenu] = useState(false);
 
-  const hasIconOffset = actions.some(child => child.props.icon !== undefined);
-
   return (
     <>
       <Tooltip message="More actions">
@@ -41,11 +39,7 @@ export function DataListItemActionsOverflow<T extends DataListObject>({
         onRequestClose={handleClose}
       >
         {Children.map(actions, action => (
-          <InternalDataListAction
-            {...action.props}
-            withIconOffset={hasIconOffset}
-            item={item}
-          />
+          <InternalDataListAction {...action.props} item={item} />
         ))}
       </DataListActionsMenu>
     </>

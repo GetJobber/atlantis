@@ -1,5 +1,4 @@
 import React from "react";
-import classNames from "classnames";
 import styles from "./DataListAction.css";
 import {
   DataListActionProps,
@@ -22,18 +21,11 @@ export function InternalDataListAction<T extends DataListObject>({
   destructive,
   onClick,
   item,
-  withIconOffset,
 }: InternalDataListActionProps<T>) {
   return (
-    <button
-      className={classNames(styles.action, {
-        [styles.withIconOffset]: withIconOffset,
-      })}
-      onClick={() => onClick?.(item)}
-    >
-      <div>
-        {icon && <Icon name={icon} color={destructive ? "critical" : "blue"} />}
-      </div>
+    <button className={styles.action} onClick={() => onClick?.(item)}>
+      {icon && <Icon name={icon} color={destructive ? "critical" : "blue"} />}
+
       <Typography textColor={destructive ? "critical" : "blue"}>
         <span className={styles.label}>{label}</span>
       </Typography>

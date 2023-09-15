@@ -1,5 +1,5 @@
 .action {
-  display: grid;
+  display: flex;
   width: 100%;
   min-height: 44px;
   padding: var(--space-small);
@@ -9,8 +9,6 @@
   background: none;
   cursor: pointer;
   transition: background var(--timing-base) ease;
-  grid-auto-flow: column;
-  grid-auto-columns: max-content;
   appearance: none;
   align-items: center;
   gap: var(--space-small);
@@ -19,10 +17,6 @@
 .action:hover,
 .action:focus {
   background-color: var(--color-surface--hover);
-}
-
-.withIconOffset {
-  grid-template-columns: minmax(var(--space-large), max-content) auto;
 }
 
 .label {
