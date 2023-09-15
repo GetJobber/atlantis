@@ -3,8 +3,8 @@ import styles from "./SortingArrows.css";
 import { Icon } from "../../../Icon";
 
 export function SortingArrows({ order }: { order: "asc" | "desc" }) {
-  const activeColor = "greyBlue";
-  const inactiveColor = "blue";
+  const activeColor = "blue";
+  const inactiveColor = "greyBlueLighter";
 
   return (
     <div>

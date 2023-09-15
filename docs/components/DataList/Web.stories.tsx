@@ -64,13 +64,6 @@ const Template: ComponentStory<typeof DataList> = args => {
     },
   });
 
-  const [sortingState, setSortingState] = useState<DataListSorting | undefined>(
-    {
-      key: "label",
-      direction: "asc",
-    },
-  );
-
   const items = data?.allPeople.edges || [];
   const totalCount = data?.allPeople.totalCount || null;
   const mappedData = items.map(({ node }) => ({
@@ -91,6 +84,10 @@ const Template: ComponentStory<typeof DataList> = args => {
     homePopulation: node.homeworld.population?.toLocaleString(),
     created: new Date(node.created),
   }));
+
+  const [sortingState, setSortingState] = useState<DataListSorting | undefined>(
+    undefined,
+  );
 
   return (
     <DataList

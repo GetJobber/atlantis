@@ -1,9 +1,6 @@
 .headerLabel {
   display: flex;
   align-items: center;
-}
-
-button.headerLabel {
   padding: 0;
   border: none;
   background-color: transparent;

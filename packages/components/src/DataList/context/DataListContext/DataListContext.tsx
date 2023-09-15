@@ -7,13 +7,6 @@ export const defaultValues = {
   headers: {},
   children: [],
   selected: [],
-  sorting: {
-    sortable: [],
-    state: undefined,
-    onSort: () => {
-      return;
-    },
-  },
 };
 
 export const DataListContext =

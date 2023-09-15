@@ -109,7 +109,7 @@ export interface DataListProps<T extends DataListObject> {
    * `onSort`: The callback function when the user sorting a column.
    */
   readonly sorting?: {
-    readonly sortable: Array<keyof DataListHeader<T>>;
+    readonly sortable: (keyof DataListHeader<T>)[];
     readonly state: DataListSorting | undefined;
     readonly onSort: (sorting?: DataListSorting) => void;
   };

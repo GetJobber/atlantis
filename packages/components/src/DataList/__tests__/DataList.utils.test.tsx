@@ -129,8 +129,6 @@ describe("Datalist utils", () => {
       const headerElements = generateHeaderElements({ name });
       render(headerElements?.name || <></>);
 
-      screen.logTestingPlaygroundURL();
-
       const element = screen.getByText(name);
       expect(element).toBeInstanceOf(HTMLParagraphElement);
       expect(element).toHaveClass("base text textTruncate");

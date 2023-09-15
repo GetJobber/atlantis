@@ -7,8 +7,8 @@ import { useDataListContext } from "../../context/DataListContext";
 import { DataListHeader, DataListObject } from "../../DataList.types";
 
 interface DataListHeaderTileProps<T extends DataListObject> {
-  headers: DataListHeader<T>;
-  headerKey: string;
+  readonly headers: DataListHeader<T>;
+  readonly headerKey: string;
 }
 
 export function DataListHeaderTile<T extends DataListObject>({
@@ -19,6 +19,22 @@ export function DataListHeaderTile<T extends DataListObject>({
 
   const isSortable = sorting?.sortable.includes(headerKey);
   const sortingState = sorting?.state;
+
+  const Tag = isSortable ? "button" : "div";
+
+  return (
+    <Tag
+      className={classnames(styles.headerLabel, {
+        [styles.sortable]: isSortable,
+      })}
+      onClick={handleOnClick}
+    >
+      <Text maxLines="single">{headers[headerKey]}</Text>
+      {sortingState?.key === headerKey && (
+        <SortingArrows order={sortingState.direction} />
+      )}
+    </Tag>
+  );
 
   function toggleSorting(sortingKey: string) {
     if (sortingState?.direction === "desc") {
@@ -37,20 +53,4 @@ export function DataListHeaderTile<T extends DataListObject>({
 
     toggleSorting(headerKey);
   }
-
-  const Tag = isSortable ? "button" : "div";
-
-  return (
-    <Tag
-      className={classnames(styles.headerLabel, {
-        [styles.sortable]: isSortable,
-      })}
-      onClick={handleOnClick}
-    >
-      <Text maxLines="single">{headers[headerKey]}</Text>
-      {sortingState?.key === headerKey && (
-        <SortingArrows order={sortingState.direction} />
-      )}
-    </Tag>
-  );
 }
