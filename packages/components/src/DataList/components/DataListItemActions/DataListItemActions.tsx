@@ -6,7 +6,6 @@ import React, {
   useState,
 } from "react";
 import { Variants, motion } from "framer-motion";
-import { tokens } from "@jobber/design";
 import styles from "./DataListItemActions.css";
 import { useDataListContext } from "../../context/DataListContext";
 import {
@@ -17,6 +16,10 @@ import {
 import { Button } from "../../../Button";
 import { DataListActionsMenu } from "../DataListActionsMenu";
 import { InternalDataListAction } from "../DataListAction";
+import {
+  TRANSITION_DELAY_IN_SECONDS,
+  TRANSITION_DURATION_IN_SECONDS,
+} from "../../DataList.const";
 
 // This component is meant to capture the props of the DataList.ItemActions
 export function DataListItemActions<T extends DataListObject>(
@@ -61,8 +64,8 @@ export function InternalDataListItemActions<T extends DataListObject>({
       animate="visible"
       exit="hidden"
       transition={{
-        duration: tokens["timing-base"] / 1000,
-        delay: tokens["timing-quick"] / 1000,
+        duration: TRANSITION_DURATION_IN_SECONDS,
+        delay: TRANSITION_DELAY_IN_SECONDS,
       }}
       className={styles.menu}
     >
