@@ -29,7 +29,12 @@ export function DataListHeader<T extends DataListObject>({
   headerData,
   headerVisibility,
 }: DataListHeaderProps<T>) {
-  const { data, selected = [], onSelectAll, onSelect } = useDataListContext();
+  const {
+    totalCount = 0,
+    selected = [],
+    onSelectAll,
+    onSelect,
+  } = useDataListContext();
   const matchingMediaQueries = Object.keys(mediaMatches || {}).filter(
     (key): key is Breakpoints => !!mediaMatches?.[key as Breakpoints],
   );
@@ -45,7 +50,7 @@ export function DataListHeader<T extends DataListObject>({
 
   if (!showHeader || !headerData) return <></>;
 
-  const isAllSelected = data.length > 0 && data.length === selected.length;
+  const isAllSelected = Boolean(totalCount) && totalCount === selected.length;
 
   return (
     <DataListLayoutInternal
