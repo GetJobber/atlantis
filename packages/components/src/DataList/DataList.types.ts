@@ -169,21 +169,40 @@ export interface DataListContextProps<T extends DataListObject>
 type Fragment<T> = T | T[];
 
 export interface DataListItemActionsProps<T extends DataListObject> {
-  // readonly onClick?: (data: T) => void;
-  // readonly url?: string | (data: T) => string;
-  // readonly to?: string | (data: T) => string;
+  /**
+   * The actions to render for each item in the DataList. This only accepts the
+   * DataList.Action component.
+   */
   readonly children?: Fragment<ReactElement<DataListActionProps<T>>>;
 }
 
 export interface DataListActionProps<T extends DataListObject> {
+  /**
+   * The label of the action
+   */
   readonly label: string;
+
+  /**
+   * The icon beside the label
+   */
   readonly icon?: IconNames;
+
+  /**
+   * Adjust the styling of an action label and icon to be more destructive.
+   */
   readonly destructive?: boolean;
+
+  /**
+   * The callback function when the action is clicked.
+   */
   readonly onClick?: (data: T) => void;
 }
 
 export interface InternalDataListActionProps<T extends DataListObject>
   extends DataListActionProps<T> {
+  /**
+   * Adds a space the size of the icon to the left of the label.
+   */
   readonly withIconOffset: boolean;
   readonly item: T;
 }
