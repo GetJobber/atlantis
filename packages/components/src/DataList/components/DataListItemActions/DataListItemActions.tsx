@@ -13,6 +13,7 @@ import {
   TRANSITION_DELAY_IN_SECONDS,
   TRANSITION_DURATION_IN_SECONDS,
 } from "../../DataList.const";
+import { Tooltip } from "../../../Tooltip";
 
 // This component is meant to capture the props of the DataList.ItemActions
 export function DataListItemActions<T extends DataListObject>(
@@ -57,18 +58,19 @@ export function InternalDataListItemActions<T extends DataListObject>({
       }}
       className={styles.menu}
     >
-      {exposedActions.map(action => {
-        if (!action.props.icon) return <></>;
+      {exposedActions.map(({ props }) => {
+        if (!props.icon) return <></>;
 
         return (
-          <Button
-            key={action.props.label}
-            icon={action.props.icon}
-            ariaLabel={action.props.label}
-            onClick={() => action.props.onClick?.(item)}
-            type="secondary"
-            variation="subtle"
-          />
+          <Tooltip key={props.label} message={props.label}>
+            <Button
+              icon={props.icon}
+              ariaLabel={props.label}
+              onClick={() => props.onClick?.(item)}
+              type="secondary"
+              variation="subtle"
+            />
+          </Tooltip>
         );
       })}
 

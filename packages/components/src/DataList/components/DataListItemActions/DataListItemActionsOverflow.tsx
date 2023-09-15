@@ -1,5 +1,6 @@
 import React, { Children, MouseEvent, ReactElement, useState } from "react";
 import { Button } from "../../../Button";
+import { Tooltip } from "../../../Tooltip";
 import {
   DataListActionProps,
   DataListObject,
@@ -24,13 +25,15 @@ export function DataListItemActionsOverflow<T extends DataListObject>({
 
   return (
     <>
-      <Button
-        icon="more"
-        ariaLabel="More actions"
-        type="secondary"
-        variation="subtle"
-        onClick={handleMoreClick}
-      />
+      <Tooltip message="More actions">
+        <Button
+          icon="more"
+          ariaLabel="More actions"
+          type="secondary"
+          variation="subtle"
+          onClick={handleMoreClick}
+        />
+      </Tooltip>
 
       <DataListActionsMenu
         visible={showMenu}
