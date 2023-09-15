@@ -1,6 +1,9 @@
 import React, { CSSProperties, PropsWithChildren, useState } from "react";
 import { AnimatePresence, Variants, motion } from "framer-motion";
 import { tokens } from "@jobber/design";
+import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
+import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
+import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import styles from "./DataListActionsMenu.css";
 
 interface DataListActionsMenuProps {
@@ -25,6 +28,10 @@ export function DataListActionsMenu({
 }: PropsWithChildren<DataListActionsMenuProps>) {
   const [ref, setRef] = useState<HTMLDivElement | null>();
 
+  useRefocusOnActivator(visible);
+  const focusTrapRef = useFocusTrap<HTMLDivElement>(visible);
+  useOnKeyDown(onRequestClose, "Escape");
+
   return (
     <AnimatePresence>
       {visible && (
@@ -41,7 +48,9 @@ export function DataListActionsMenu({
             className={styles.menu}
             style={getPositionCssVars()}
           >
-            {children}
+            <div tabIndex={0} ref={focusTrapRef}>
+              {children}
+            </div>
           </motion.div>
         </>
       )}

@@ -16,7 +16,8 @@
   gap: var(--space-small);
 }
 
-.action:hover {
+.action:hover,
+.action:focus {
   background-color: var(--color-surface--hover);
 }
 
