@@ -411,7 +411,7 @@ describe("Combobox Zero Index State", () => {
           <Combobox.TriggerButton label="Select a tax rate" />
           <Combobox.Content
             options={[{ id: "1", label: "10%" }]}
-            onSelection={jest.fn()}
+            onSelect={jest.fn()}
           />
         </Combobox>,
       );
