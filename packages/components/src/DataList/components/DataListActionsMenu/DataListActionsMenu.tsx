@@ -1,8 +1,7 @@
-import React, { CSSProperties, useState } from "react";
+import React, { CSSProperties, PropsWithChildren, useState } from "react";
 import { AnimatePresence, Variants, motion } from "framer-motion";
 import { tokens } from "@jobber/design";
 import styles from "./DataListActionsMenu.css";
-import { useDataListContext } from "../../context/DataListContext";
 
 interface DataListActionsMenuProps {
   readonly visible: boolean;
@@ -22,12 +21,9 @@ export function DataListActionsMenu({
   visible = false,
   position,
   onRequestClose,
-}: DataListActionsMenuProps) {
+  children,
+}: PropsWithChildren<DataListActionsMenuProps>) {
   const [ref, setRef] = useState<HTMLDivElement | null>();
-
-  const { itemActionComponent } = useDataListContext();
-  if (!itemActionComponent) return null;
-  const { children } = itemActionComponent.props;
 
   return (
     <AnimatePresence>

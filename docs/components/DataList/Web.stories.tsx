@@ -132,6 +132,9 @@ const Template: ComponentStory<typeof DataList> = args => {
         <DataList.Action icon="edit" label="Edit" />
         <DataList.Action icon="email" label="Email" />
         <DataList.Action label="Add note" />
+        <DataList.Action label="Create new..." />
+        <DataList.Action label="Tag with..." />
+        <DataList.Action label="Delete" destructive={true} />
       </DataList.ItemActions>
 
       <DataList.Layout size="md">

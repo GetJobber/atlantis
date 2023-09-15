@@ -178,8 +178,12 @@ export interface DataListItemActionsProps<T extends DataListObject> {
 export interface DataListActionProps<T extends DataListObject> {
   readonly label: string;
   readonly icon?: IconNames;
-  readonly url?: string | ((data: T) => string);
-  readonly to?: string | ((data: T) => string);
   readonly destructive?: boolean;
   readonly onClick?: (data: T) => void;
+}
+
+export interface InternalDataListActionProps<T extends DataListObject>
+  extends DataListActionProps<T> {
+  readonly withIconOffset: boolean;
+  readonly item: T;
 }

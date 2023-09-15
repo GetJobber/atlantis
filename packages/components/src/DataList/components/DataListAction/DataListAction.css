@@ -9,14 +9,19 @@
   background: none;
   cursor: pointer;
   transition: background var(--timing-base) ease;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
   appearance: none;
   align-items: center;
-  grid-template-columns: minmax(var(--space-large), max-content) auto;
   gap: var(--space-small);
 }
 
 .action:hover {
   background-color: var(--color-surface--hover);
+}
+
+.withIconOffset {
+  grid-template-columns: minmax(var(--space-large), max-content) auto;
 }
 
 .label {

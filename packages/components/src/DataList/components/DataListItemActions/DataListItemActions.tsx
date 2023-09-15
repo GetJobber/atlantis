@@ -1,4 +1,10 @@
-import React, { Children, ReactElement, isValidElement, useState } from "react";
+import React, {
+  Children,
+  MouseEvent,
+  ReactElement,
+  isValidElement,
+  useState,
+} from "react";
 import { Variants, motion } from "framer-motion";
 import { tokens } from "@jobber/design";
 import styles from "./DataListItemActions.css";
@@ -10,6 +16,7 @@ import {
 } from "../../DataList.types";
 import { Button } from "../../../Button";
 import { DataListActionsMenu } from "../DataListActionsMenu";
+import { InternalDataListAction } from "../DataListAction";
 
 // This component is meant to capture the props of the DataList.ItemActions
 export function DataListItemActions<T extends DataListObject>(
@@ -20,7 +27,7 @@ export function DataListItemActions<T extends DataListObject>(
 }
 
 interface InternalDataListItemActionsProps<T extends DataListObject> {
-  item: T;
+  readonly item: T;
 }
 
 const variants: Variants = {
@@ -38,10 +45,14 @@ export function InternalDataListItemActions<T extends DataListObject>({
 
   const { children } = itemActionComponent.props;
   const childrenArray =
-    Children.toArray(children).filter<
-      ReactElement<DataListActionProps<DataListObject>>
-    >(isValidElement);
-  const exposedActions = childrenArray.slice(0, 2);
+    Children.toArray(children).filter<ReactElement<DataListActionProps<T>>>(
+      isValidElement,
+    );
+  const exposedActions = getExposedActions(childrenArray);
+  childrenArray.splice(0, exposedActions.length);
+  const hasIconOffset = childrenArray.some(
+    child => child.props.icon !== undefined,
+  );
 
   return (
     <motion.div
@@ -49,7 +60,10 @@ export function InternalDataListItemActions<T extends DataListObject>({
       initial="hidden"
       animate="visible"
       exit="hidden"
-      transition={{ duration: tokens["timing-base"] / 1000 }}
+      transition={{
+        duration: tokens["timing-base"] / 1000,
+        delay: tokens["timing-quick"] / 1000,
+      }}
       className={styles.menu}
     >
       {exposedActions.map(action => {
@@ -72,19 +86,55 @@ export function InternalDataListItemActions<T extends DataListObject>({
         ariaLabel="More actions"
         type="secondary"
         variation="subtle"
-        onClick={event => {
-          setShowMenu(true);
-
-          const rect = event.currentTarget.getBoundingClientRect();
-          setMenuPosition({ x: rect.x + rect.width, y: rect.y + rect.height });
-        }}
+        onClick={handleMoreClick}
       />
 
       <DataListActionsMenu
         visible={showMenu}
         position={menuPosition}
         onRequestClose={() => setShowMenu(false)}
-      />
+      >
+        {childrenArray.map(action => {
+          return (
+            <InternalDataListAction
+              key={action.props.label}
+              {...action.props}
+              withIconOffset={hasIconOffset}
+              item={item}
+            />
+          );
+        })}
+      </DataListActionsMenu>
     </motion.div>
   );
+
+  function handleMoreClick(event: MouseEvent<HTMLButtonElement>): void {
+    setShowMenu(true);
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    setMenuPosition({ x: rect.x + rect.width, y: rect.y + rect.height });
+  }
+}
+
+function getExposedActions<T extends DataListObject>(
+  childrenArray: ReactElement<DataListActionProps<T>>[],
+) {
+  const firstTwoChildren = childrenArray.slice(0, 2);
+
+  return firstTwoChildren.reduce((result: typeof childrenArray, child, i) => {
+    const hasIcon = Boolean(child.props.icon);
+
+    const isFirstChild = i === 0;
+    if (isFirstChild && hasIcon) {
+      return [...result, child];
+    }
+
+    const isSecondChild = i === 1;
+    const hasFirstChild = result.length === 1;
+    if (isSecondChild && hasIcon && hasFirstChild) {
+      return [...result, child];
+    }
+
+    return result;
+  }, []);
 }
