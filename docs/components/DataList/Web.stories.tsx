@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import uniq from "lodash/uniq";
 import { useCollectionQuery } from "@jobber/hooks/useCollectionQuery";
@@ -39,6 +39,7 @@ export default {
 } as ComponentMeta<typeof DataList>;
 
 const Template: ComponentStory<typeof DataList> = args => {
+  const [selected, setSelected] = useState<string[]>([]);
   const {
     data,
     /* See useCollectionQuery for example on how to load more */
@@ -86,7 +87,7 @@ const Template: ComponentStory<typeof DataList> = args => {
       {...args}
       loadingState={getLoadingState()}
       totalCount={totalCount}
-      data={args.data || mappedData}
+      data={(args.data as typeof mappedData) || mappedData}
       headers={{
         label: "Name",
         home: "Home world",
@@ -95,6 +96,9 @@ const Template: ComponentStory<typeof DataList> = args => {
         created: "Created",
       }}
       onLoadMore={nextPage}
+      selected={selected}
+      onSelect={setSelected}
+      onSelectAll={() => alert("select all")}
     >
       <DataList.Filters>
         <Button
