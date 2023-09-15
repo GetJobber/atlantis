@@ -40,7 +40,10 @@ import { DATA_LIST_FILTERING_SPINNER_TEST_ID } from "./DataList.const";
 import { Heading } from "../Heading";
 import { Spinner } from "../Spinner";
 
-export function DataList<T extends DataListObject>(props: DataListProps<T>) {
+export function DataList<T extends DataListObject>({
+  sorting,
+  ...props
+}: DataListProps<T>) {
   const searchComponent = getCompoundComponent<DataListSearchProps>(
     props.children,
     DataListSearch,
@@ -66,6 +69,8 @@ export function DataList<T extends DataListObject>(props: DataListProps<T>) {
         emptyStateComponents,
         ...props,
         selected: props.selected ?? [],
+        // T !== DataListObject
+        sorting: sorting as DataListProps<DataListObject>["sorting"],
       }}
     >
       <InternalDataList />

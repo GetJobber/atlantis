@@ -105,12 +105,12 @@ export interface DataListProps<T extends DataListObject> {
 
   /**
    * `sortable`: List of keys that are sortable.
-   * `state`: The initial state of the sorting.
+   * `state`: The state of the sorting.
    * `onSort`: The callback function when the user sorting a column.
    */
   readonly sorting?: {
     readonly sortable: Array<keyof DataListHeader<T>>;
-    readonly state?: DataListSorting;
+    readonly state: DataListSorting | undefined;
     readonly onSort: (sorting?: DataListSorting) => void;
   };
 
