@@ -59,7 +59,7 @@ export function InternalDataListItemActions<T extends DataListObject>({
       className={styles.menu}
     >
       {exposedActions.map(({ props }) => {
-        if (!props.icon) return <></>;
+        if (!props.icon) return null;
 
         return (
           <Tooltip key={props.label} message={props.label}>

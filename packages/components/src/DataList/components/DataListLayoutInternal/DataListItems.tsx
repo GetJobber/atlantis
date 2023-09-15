@@ -37,7 +37,7 @@ export function DataListItems<T extends DataListObject>({
                   onMouseEnter={() => setHover(item.id)}
                   onMouseLeave={() => setHover(undefined)}
                   className={styles.listItem}
-                  key={`${item.id}`}
+                  key={item.id}
                 >
                   <DataListItemInternal item={data[i]}>
                     {layout.props.children(child)}

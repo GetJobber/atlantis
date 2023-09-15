@@ -22,11 +22,13 @@ export function InternalDataListAction<T extends DataListObject>({
   onClick,
   item,
 }: InternalDataListActionProps<T>) {
+  const color = destructive ? "critical" : "blue";
+
   return (
     <button className={styles.action} onClick={() => onClick?.(item)}>
-      {icon && <Icon name={icon} color={destructive ? "critical" : "blue"} />}
+      {icon && <Icon name={icon} color={color} />}
 
-      <Typography textColor={destructive ? "critical" : "blue"}>
+      <Typography textColor={color}>
         <span className={styles.label}>{label}</span>
       </Typography>
     </button>

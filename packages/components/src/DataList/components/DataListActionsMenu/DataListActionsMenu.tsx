@@ -1,10 +1,10 @@
 import React, { CSSProperties, PropsWithChildren, useState } from "react";
 import { AnimatePresence, Variants, motion } from "framer-motion";
-import { tokens } from "@jobber/design";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import styles from "./DataListActionsMenu.css";
+import { TRANSITION_DELAY_IN_SECONDS } from "../../DataList.const";
 
 interface DataListActionsMenuProps {
   readonly visible: boolean;
@@ -44,7 +44,7 @@ export function DataListActionsMenu({
             initial="hidden"
             animate="visible"
             exit="hidden"
-            transition={{ duration: tokens["timing-base"] / 1000 }}
+            transition={{ duration: TRANSITION_DELAY_IN_SECONDS }}
             className={styles.menu}
             style={getPositionCssVars()}
           >
