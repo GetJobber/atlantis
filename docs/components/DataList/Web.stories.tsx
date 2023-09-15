@@ -98,7 +98,11 @@ const Template: ComponentStory<typeof DataList> = args => {
       onLoadMore={nextPage}
       selected={selected}
       onSelect={setSelected}
-      onSelectAll={() => alert("select all")}
+      onSelectAll={() =>
+        alert(
+          "Due to the nature of select all in an infinite list, you—the developer—would have to query all ID's in your data and set them to state.",
+        )
+      }
     >
       <DataList.Filters>
         <Button
