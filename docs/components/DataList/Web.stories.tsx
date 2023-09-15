@@ -47,26 +47,20 @@ export default {
 
 const Template: ComponentStory<typeof DataList> = args => {
   const [selected, setSelected] = useState<string[]>([]);
-  const {
-    data,
-    /* See useCollectionQuery for example on how to load more */
-    // refresh,
-    nextPage,
-    // loadingRefresh,
-    loadingNextPage,
-    loadingInitialContent,
-  } = useCollectionQuery<ListQueryType>({
-    query: LIST_QUERY,
-    queryOptions: {
-      fetchPolicy: "network-only",
-      nextFetchPolicy: "cache-first",
-      client: apolloClient,
-    },
 
-    getCollectionByPath(items) {
-      return items?.allPeople;
-    },
-  });
+  const { data, nextPage, loadingNextPage, loadingInitialContent } =
+    useCollectionQuery<ListQueryType>({
+      query: LIST_QUERY,
+      queryOptions: {
+        fetchPolicy: "network-only",
+        nextFetchPolicy: "cache-first",
+        client: apolloClient,
+      },
+
+      getCollectionByPath(items) {
+        return items?.allPeople;
+      },
+    });
 
   const [getIDs, { loading: loadingIDs }] = useLazyQuery<ListIDsQueryType>(
     LAZY_LIST_IDS_QUERY,
@@ -114,13 +108,7 @@ const Template: ComponentStory<typeof DataList> = args => {
       onLoadMore={nextPage}
       selected={selected}
       onSelect={setSelected}
-      onSelectAll={async () => {
-        const idsQuery = await getIDs();
-        const ids = idsQuery?.data?.allPeople?.edges?.map(
-          ({ node }) => node.id,
-        );
-        ids && setSelected(ids);
-      }}
+      onSelectAll={handleSelectAll}
     >
       <DataList.Filters>
         <Button
@@ -245,6 +233,12 @@ const Template: ComponentStory<typeof DataList> = args => {
     if (loadingInitialContent) return "initial";
     if (loadingNextPage || loadingIDs) return "loadingMore";
     return args.loadingState;
+  }
+
+  async function handleSelectAll() {
+    const idsQuery = await getIDs();
+    const ids = idsQuery?.data?.allPeople?.edges?.map(({ node }) => node.id);
+    ids && setSelected(ids);
   }
 };
 
