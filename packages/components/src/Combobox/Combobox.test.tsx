@@ -226,7 +226,7 @@ describe("ComboboxContent", () => {
 
 describe("Combobox selected value", () => {
   it("has a selected option when a selected id is passed as a number and option id is a string", () => {
-    const { getByRole } = render(
+    const { getByText } = render(
       <Combobox>
         <Combobox.TriggerButton label="Button" />
         <Combobox.Content
@@ -241,12 +241,12 @@ describe("Combobox selected value", () => {
         </Combobox.Content>
       </Combobox>,
     );
-    const option = getByRole("radio", { name: "Bilbo Baggins" });
-    expect(option).toBeChecked();
+    const option = getByText("Bilbo Baggins");
+    expect(option).toHaveClass("selectedOption");
   });
 
   it("has a selected option when a selected value is passed as the same type as the option id", () => {
-    const { getByRole } = render(
+    const { getByText } = render(
       <Combobox>
         <Combobox.TriggerButton label="Button" />
         <Combobox.Content
@@ -261,8 +261,8 @@ describe("Combobox selected value", () => {
         </Combobox.Content>
       </Combobox>,
     );
-    const option = getByRole("radio", { name: "Bilbo Baggins" });
-    expect(option).toBeChecked();
+    const option = getByText("Bilbo Baggins");
+    expect(option).toHaveClass("selectedOption");
   });
 });
 

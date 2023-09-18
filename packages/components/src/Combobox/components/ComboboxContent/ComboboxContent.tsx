@@ -79,23 +79,20 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         searchValue={searchValue}
         setSearchValue={setSearchValue}
       />
-      <div className={styles.list}>
+      <div className={styles.optionsList}>
         {optionsExist &&
           filteredOptions.map(option => (
-            <label key={option.id}>
-              <input
-                type="radio"
-                className={classnames(
-                  styles.option,
-                  option.id === selectedOption?.id && styles.selectedOption,
-                )}
-                checked={option.id.toString() === selectedOption?.id.toString()}
-                value={option.label}
-                name={option.label}
-                onChange={() => handleSelection(option)}
-              />
+            <button
+              key={option.id}
+              onClick={() => handleSelection(option)}
+              className={classnames(
+                styles.option,
+                option.id.toString() === selectedOption?.id.toString() &&
+                  styles.selectedOption,
+              )}
+            >
               {option.label}
-            </label>
+            </button>
           ))}
 
         {optionsExist && filteredOptions.length === 0 && (
