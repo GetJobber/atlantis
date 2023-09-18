@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.37.0...@jobber/components@4.38.0) (2023-09-18)
+
+
+### Features
+
+* **components:** Add optional role to Button ([#1536](https://github.com/GetJobber/atlantis/issues/1536)) ([8d1c6be](https://github.com/GetJobber/atlantis/commit/8d1c6be7ab9f1d83c117f44f3f4ae4330a9bc868))
+
+
+
+
+
 # [4.37.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.36.0...@jobber/components@4.37.0) (2023-09-18)
 
 
