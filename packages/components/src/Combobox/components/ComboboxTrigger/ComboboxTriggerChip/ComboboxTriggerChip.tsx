@@ -13,6 +13,10 @@ export function ComboboxTriggerChip(
   return (
     <button
       className={styles.trigger}
+      role="combobox"
+      aria-expanded={open}
+      aria-haspopup="dialog"
+      aria-controls="ATL-Combobox-Content"
       onClick={() => {
         setOpen(!open);
       }}

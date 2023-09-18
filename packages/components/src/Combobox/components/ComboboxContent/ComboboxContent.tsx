@@ -72,6 +72,8 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   const template = (
     <div
       ref={popperRef}
+      role="dialog"
+      id="ATL-Combobox-Content"
       data-testid="ATL-Combobox-Content"
       tabIndex={0}
       className={classnames(styles.content, !open && styles.hidden)}

@@ -45,7 +45,7 @@ describe("TriggerChip", () => {
         <TriggerChipTestWrapper />
       </ComboboxContextProvider>,
     );
-    const triggerChip = getByRole("button");
+    const triggerChip = getByRole("combobox");
 
     expect(getByTestId("combobox-state")).toHaveTextContent("Closed");
 
