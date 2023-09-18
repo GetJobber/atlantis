@@ -7,20 +7,38 @@ import { Meta } from "@storybook/addon-docs";
 
 # Combobox
 
-Combobox is a selection component that allows users to select a single option
-from a dropdown.
+The Combobox component is designed to provide a versatile and accessible
+interface for selecting options from a list. Comboboxes can be used for a
+variety of scenarios, such as selecting items from a predefined list, filtering
+and searching through data.
 
 ## Design & usage guidelines
 
 Combobox is composed of three main parts:
 
-1. Combobox Trigger - This is the element that opens and closes the dropdown.
-2. Combobox Content - This displays the available options for selection, as well
-   as the search functionality and Actions.
-3. Combobox Action - Situated at the bottom of the Content, these optional
-   Actions allow users to perform additional tasks such as adding new options.
+#### Combobox Trigger
 
-When composing Combobox, keep in mind:
+There are two primary options for trigger elements of the Combobox,
+TriggerButton and TriggerChip. You must have one Trigger component.
 
-- You must have one Trigger component and one Content component.
-- Actions are optional.
+Triggers serve as the user-facing interface to open and close the Combobox and
+initiate option selection. The choice between them depends on the design and
+user experience requirements.
+
+#### Combobox Content
+
+This component is an integral part of the Combobox and is responsible for
+displaying the list of selectable options, handling user interactions, and
+managing the search functionality.
+
+#### Combobox Action
+
+Situated at the bottom of the Content, these optional Actions allow users to
+perform custom tasks such as adding a new option.
+
+The Combobox component's primary function is to facilitate option selection and
+searching within a list of items. It should be used in scenarios where users
+need to choose from a set of options, with the added benefit of filtering and
+customization.
+
+## Content guidelines
