@@ -72,7 +72,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   const template = (
     <div
       ref={popperRef}
-      role="dialog"
+      role="listbox"
       id="ATL-Combobox-Content"
       data-testid="ATL-Combobox-Content"
       tabIndex={0}

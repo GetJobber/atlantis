@@ -15,7 +15,7 @@ export function ComboboxTriggerChip(
       className={styles.trigger}
       role="combobox"
       aria-expanded={open}
-      aria-haspopup="dialog"
+      aria-haspopup="listbox"
       aria-controls="ATL-Combobox-Content"
       onClick={() => {
         setOpen(!open);
