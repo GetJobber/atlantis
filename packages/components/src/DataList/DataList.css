@@ -27,8 +27,9 @@
 }
 
 .headerTitles {
-  display: grid;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   min-height: var(--space-largest);
   padding: var(--space-small);
   border-bottom: var(--border-thick) solid var(--color-border);
@@ -59,10 +60,24 @@
   }
 }
 
-.headerTitles.selectable,
-.selectable {
+.selectable,
+.headerTitles .selectable {
   grid-template-columns: max-content minmax(0px, auto);
   column-gap: var(--space-small);
+}
+
+.headerTitles .selectable {
+  display: grid;
+  align-items: center;
+}
+
+.selectAllCheckbox {
+  display: flex;
+  visibility: hidden;
+}
+
+.selectAllCheckbox.visible {
+  visibility: visible;
 }
 
 .listItem .selectable > :first-child {

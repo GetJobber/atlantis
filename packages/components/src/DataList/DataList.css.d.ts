@@ -6,6 +6,8 @@ declare const styles: {
   readonly "headerBatchSelect": string;
   readonly "listItem": string;
   readonly "selectable": string;
+  readonly "selectAllCheckbox": string;
+  readonly "visible": string;
   readonly "selected": string;
   readonly "filtering": string;
   readonly "filteringSpinner": string;
