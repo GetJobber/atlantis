@@ -1,0 +1,15 @@
+.headerLabel {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+
+.sortable {
+  cursor: pointer;
+}
+
+.headerLabel > * {
+  font-weight: 500;
+}

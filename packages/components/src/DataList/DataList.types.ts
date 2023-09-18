@@ -45,6 +45,11 @@ export type DataListHeader<T extends DataListObject> = {
   readonly [K in keyof T]?: string;
 };
 
+export interface DataListSorting {
+  readonly key: string;
+  readonly direction: "asc" | "desc";
+}
+
 export interface DataListProps<T extends DataListObject> {
   /**
    * The data to render in the DataList.
@@ -98,6 +103,17 @@ export interface DataListProps<T extends DataListObject> {
    * The callback function when the user scrolls to the bottom of the list.
    */
   readonly onLoadMore?: () => void;
+
+  /**
+   * `sortable`: List of keys that are sortable.
+   * `state`: The state of the sorting.
+   * `onSort`: The callback function when the user sorting a column.
+   */
+  readonly sorting?: {
+    readonly sortable: (keyof DataListHeader<T>)[];
+    readonly state: DataListSorting | undefined;
+    readonly onSort: (sorting?: DataListSorting) => void;
+  };
 
   /**
    * Callback when an item checkbox is clicked.
