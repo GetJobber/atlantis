@@ -3,6 +3,7 @@ import classNames from "classnames";
 import { useInView } from "@jobber/hooks/useInView";
 import styles from "./DataListFilters.css";
 import { CONTAINER_TEST_ID } from "./DataListFilter.const";
+import { DataListSort } from "./components/DataListSort";
 import { useDataListContext } from "../../context/DataListContext";
 import { getCompoundComponent } from "../../DataList.utils";
 
@@ -45,6 +46,8 @@ export function InternalDataListFilters() {
         <span ref={leftRef} className={styles.overflowTrigger} />
 
         {children}
+
+        <DataListSort />
 
         <span ref={rightRef} className={styles.overflowTrigger} />
       </div>
