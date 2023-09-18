@@ -25,6 +25,7 @@ import { DataListContext, useDataListContext } from "./context/DataListContext";
 import {
   DataListEmptyStateProps,
   DataListFiltersProps,
+  DataListItemActionsProps,
   DataListLayoutProps,
   DataListObject,
   DataListProps,
@@ -37,6 +38,8 @@ import {
 } from "./DataList.utils";
 import { useLayoutMediaQueries } from "./hooks/useLayoutMediaQueries";
 import { DATA_LIST_FILTERING_SPINNER_TEST_ID } from "./DataList.const";
+import { DataListItemActions } from "./components/DataListItemActions";
+import { DataListAction } from "./components/DataListAction";
 import { Heading } from "../Heading";
 import { Spinner } from "../Spinner";
 
@@ -56,6 +59,9 @@ export function DataList<T extends DataListObject>(props: DataListProps<T>) {
     props.children,
     DataListEmptyState,
   );
+  const itemActionComponent = getCompoundComponent<
+    DataListItemActionsProps<DataListObject>
+  >(props.children, DataListItemActions);
 
   return (
     <DataListContext.Provider
@@ -64,6 +70,7 @@ export function DataList<T extends DataListObject>(props: DataListProps<T>) {
         filterComponent,
         layoutComponents,
         emptyStateComponents,
+        itemActionComponent,
         ...props,
         selected: props.selected ?? [],
       }}
@@ -173,3 +180,5 @@ DataList.Layout = DataListLayout;
 DataList.EmptyState = DataListEmptyState;
 DataList.Filters = DataListFilters;
 DataList.Search = DataListSearch;
+DataList.ItemActions = DataListItemActions;
+DataList.Action = DataListAction;

@@ -1,0 +1,13 @@
+.menu {
+  display: flex;
+  position: absolute;
+  top: calc(var(--space-small) * -1);
+  right: 0;
+  z-index: var(--elevation-menu);
+  box-shadow: var(--shadow-base);
+  padding: var(--space-smaller);
+  border: var(--border-base) solid var(--color-border);
+  border-radius: var(--radius-larger);
+  background-color: var(--color-surface);
+  gap: var(--space-smaller);
+}
