@@ -276,8 +276,11 @@ const Template: ComponentStory<typeof DataList> = args => {
     if (totalCount === selected.length) return setSelected([]);
 
     const idsQuery = await getIDs();
-    const ids = idsQuery?.data?.allPeople?.edges?.map(({ node }) => node.id);
-    ids && setSelected(ids);
+    const edges = idsQuery?.data?.allPeople?.edges;
+    if (!edges) return;
+
+    const ids = edges.map(({ node }) => node.id);
+    setSelected(ids);
   }
 };
 
