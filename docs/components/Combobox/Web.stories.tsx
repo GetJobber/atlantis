@@ -42,7 +42,7 @@ const ComboboxButton: ComponentStory<typeof Combobox> = args => {
         onSelect={selection => {
           console.log(selection);
         }}
-        selected={1}
+        selected={3}
       >
         <Combobox.Action
           label="Add Teammate"

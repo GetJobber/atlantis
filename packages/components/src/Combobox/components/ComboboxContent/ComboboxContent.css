@@ -8,9 +8,9 @@
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-larger);
   overflow: scroll;
-  font-size: var(--typography--fontSize-base);
-  line-height: normal;
+  overflow-y: auto;
   background: var(--color-surface);
+  /* font-size: var(--typography--fontSize-base); */
 }
 
 /* CAUTION: Tests for content visibility assume this class' presence hides the content
@@ -89,6 +89,71 @@
   );
 }
 
+.searchInput {
+  width: 100%;
+  padding: var(--space-base);
+  border: none;
+  border-bottom: var(--border-base) solid var(--color-border);
+  font-family: var(--typography--fontFamily-normal);
+  font-size: var(--typography--fontSize-base);
+}
+
+.clearSearch {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  right: var(--space-base);
+  z-index: var(--elevation-tooltip);
+  width: calc(var(--space-small) * 3);
+  height: calc(var(--space-small) * 3);
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-circle);
+  background-color: var(--color-surface--background);
+  transform: translateY(-50%);
+  justify-content: center;
+  align-items: center;
+}
+
+.clearSearch:focus {
+  box-shadow: var(--shadow-focus);
+}
+
+/* OPTIONS */
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+.optionContainer {
+  display: flex;
+  width: 100%;
+  height: 44px;
+  box-sizing: border-box;
+  padding: 0 var(--space-small);
+  align-items: center;
+}
+
+.selectedOption,
+.optionContainer:hover,
+.optionContainer:focus-within {
+  border-radius: var(--radius-large);
+  background-color: var(--color-surface--background);
+}
+
+.selectedOption {
+  justify-content: space-between;
+}
+
+.list {
+  padding: 8px;
+}
+
 .actions::before {
   content: "";
   display: block;
@@ -96,7 +161,6 @@
   top: calc(var(--space-base) * -1);
   right: 0;
   left: 0;
-  width: 100%;
   height: var(--space-base);
   background: linear-gradient(
     180deg,
@@ -105,23 +169,11 @@
   );
 }
 
-.selectedOption {
-  display: flex;
-  border-radius: var(--radius-large);
-  background-color: var(--color-surface--background);
-  justify-content: space-between;
-  align-items: center;
-}
-
 .actions {
   position: sticky;
   bottom: 0;
   width: 100%;
   background-color: var(--color-surface);
-}
-
-.actions button:last-child {
-  padding-bottom: var(--space-small);
 }
 
 .actionPadding {

@@ -124,11 +124,20 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
 
   return ReactDOM.createPortal(template, document.body);
 
-  function handleSelection(selection: ComboboxOption) {
+  function handleSelection(
+    selection: ComboboxOption,
+    event?:
+      | React.KeyboardEvent<HTMLInputElement>
+      | React.MouseEvent<HTMLLabelElement>,
+  ) {
     setSelectedOption(selection);
     props.onSelect(selection);
     setSearchValue("");
     setOpen(false);
+
+    if (event instanceof KeyboardEvent) {
+      event.preventDefault();
+    }
   }
 }
 
