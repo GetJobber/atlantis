@@ -3,6 +3,7 @@ declare const styles: {
   readonly "grey": string;
   readonly "greyBlue": string;
   readonly "greyBlueDark": string;
+  readonly "greyBlueLighter": string;
   readonly "blue": string;
   readonly "lightBlue": string;
   readonly "green": string;

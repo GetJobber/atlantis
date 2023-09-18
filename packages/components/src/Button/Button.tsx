@@ -82,11 +82,21 @@ interface SubmitButtonProps
   submit: boolean;
 }
 
+interface BasicButtonProps extends ButtonFoundationProps {
+  /**
+   * Used to override the default button role.
+   */
+  readonly role?: string;
+}
+
 export type ButtonProps = XOR<
   BaseActionProps,
   XOR<DestructiveActionProps, SubmitActionProps>
 > &
-  XOR<SubmitButtonProps, XOR<ButtonLinkProps, ButtonAnchorProps>> &
+  XOR<
+    XOR<SubmitButtonProps, BasicButtonProps>,
+    XOR<ButtonLinkProps, ButtonAnchorProps>
+  > &
   XOR<ButtonIconProps, ButtonLabelProps>;
 
 export function Button(props: ButtonProps) {
@@ -105,6 +115,7 @@ export function Button(props: ButtonProps) {
     loading,
     onClick,
     onMouseDown,
+    role,
     size = "base",
     type = "primary",
     url,
@@ -139,6 +150,7 @@ export function Button(props: ButtonProps) {
     "aria-haspopup": ariaHaspopup,
     "aria-expanded": ariaExpanded,
     "aria-label": ariaLabel,
+    role: role,
   };
 
   const buttonInternals = <ButtonInternals {...props} />;

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.45.0](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.44.4...@jobber/design@0.45.0) (2023-09-18)
+
+
+### Features
+
+* **components:** Add sorting to DataList ([#1533](https://github.com/GetJobber/atlantis/issues/1533)) ([4280c5c](https://github.com/GetJobber/atlantis/commit/4280c5cfbc0ec6409ffe11f246d92722f1170d4a))
+
+
+
+
+
 ## [0.44.4](https://github.com/GetJobber/atlantis/compare/@jobber/design@0.44.3...@jobber/design@0.44.4) (2023-08-01)
 
 **Note:** Version bump only for package @jobber/design

@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import uniq from "lodash/uniq";
 import { useCollectionQuery } from "@jobber/hooks/useCollectionQuery";
-import { DataList, DataListItemType } from "@jobber/components/DataList";
+import {
+  DataList,
+  DataListItemType,
+  DataListSorting,
+} from "@jobber/components/DataList";
 import { Grid } from "@jobber/components/Grid";
 import { InlineLabel, InlineLabelColors } from "@jobber/components/InlineLabel";
 import { Content } from "@jobber/components/Content";
@@ -81,6 +85,10 @@ const Template: ComponentStory<typeof DataList> = args => {
     created: new Date(node.created),
   }));
 
+  const [sortingState, setSortingState] = useState<DataListSorting | undefined>(
+    undefined,
+  );
+
   return (
     <DataList
       {...args}
@@ -95,6 +103,14 @@ const Template: ComponentStory<typeof DataList> = args => {
         created: "Created",
       }}
       onLoadMore={nextPage}
+      sorting={{
+        state: sortingState,
+        onSort: sorting => {
+          console.log(sorting);
+          setSortingState(sorting);
+        },
+        sortable: ["label", "home"],
+      }}
     >
       <DataList.Filters>
         <Button
@@ -127,6 +143,23 @@ const Template: ComponentStory<typeof DataList> = args => {
         onSearch={search => console.log(search)}
         placeholder="Search characters..."
       />
+
+      <DataList.ItemActions>
+        <DataList.Action icon="edit" label="Edit" onClick={handleActionClick} />
+        <DataList.Action
+          icon="sendMessage"
+          label="Message"
+          onClick={handleActionClick}
+        />
+        <DataList.Action label="Create new..." onClick={handleActionClick} />
+        <DataList.Action label="Add attribute..." onClick={handleActionClick} />
+        <DataList.Action
+          icon="trash"
+          label="Delete"
+          destructive={true}
+          onClick={handleActionClick}
+        />
+      </DataList.ItemActions>
 
       <DataList.Layout size="md">
         {(item: DataListItemType<typeof mappedData>) => (
@@ -203,6 +236,10 @@ const Template: ComponentStory<typeof DataList> = args => {
       />
     </DataList>
   );
+
+  function handleActionClick(item: (typeof mappedData)[number]) {
+    alert(`You clicked the action for ${item.label}`);
+  }
 
   function getColor(gender: string): InlineLabelColors | undefined {
     switch (gender) {

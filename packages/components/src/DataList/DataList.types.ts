@@ -1,4 +1,5 @@
 import { ReactElement, ReactNode } from "react";
+import { IconNames } from "@jobber/design";
 import { Breakpoints } from "./DataList.const";
 import { ButtonProps } from "../Button";
 
@@ -43,6 +44,11 @@ export interface DataListObject {
 export type DataListHeader<T extends DataListObject> = {
   readonly [K in keyof T]?: string;
 };
+
+export interface DataListSorting {
+  readonly key: string;
+  readonly direction: "asc" | "desc";
+}
 
 export interface DataListProps<T extends DataListObject> {
   /**
@@ -97,6 +103,17 @@ export interface DataListProps<T extends DataListObject> {
    * The callback function when the user scrolls to the bottom of the list.
    */
   readonly onLoadMore?: () => void;
+
+  /**
+   * `sortable`: List of keys that are sortable.
+   * `state`: The state of the sorting.
+   * `onSort`: The callback function when the user sorting a column.
+   */
+  readonly sorting?: {
+    readonly sortable: (keyof DataListHeader<T>)[];
+    readonly state: DataListSorting | undefined;
+    readonly onSort: (sorting?: DataListSorting) => void;
+  };
 
   /**
    * Callback when an item checkbox is clicked.
@@ -162,4 +179,42 @@ export interface DataListContextProps<T extends DataListObject>
   readonly searchComponent?: ReactElement<DataListSearchProps>;
   readonly emptyStateComponents?: ReactElement<DataListEmptyStateProps>[];
   readonly layoutComponents?: ReactElement<DataListLayoutProps<T>>[];
+  readonly itemActionComponent?: ReactElement<DataListItemActionsProps<T>>;
+}
+
+type Fragment<T> = T | T[];
+
+export interface DataListItemActionsProps<T extends DataListObject> {
+  /**
+   * The actions to render for each item in the DataList. This only accepts the
+   * DataList.Action component.
+   */
+  readonly children?: Fragment<ReactElement<DataListActionProps<T>>>;
+}
+
+export interface DataListActionProps<T extends DataListObject> {
+  /**
+   * The label of the action
+   */
+  readonly label: string;
+
+  /**
+   * The icon beside the label
+   */
+  readonly icon?: IconNames;
+
+  /**
+   * Adjust the styling of an action label and icon to be more destructive.
+   */
+  readonly destructive?: boolean;
+
+  /**
+   * The callback function when the action is clicked.
+   */
+  readonly onClick?: (data: T) => void;
+}
+
+export interface InternalDataListActionProps<T extends DataListObject>
+  extends DataListActionProps<T> {
+  readonly item: T;
 }
