@@ -8,6 +8,7 @@ import {
 } from "./DataList.types";
 import { BREAKPOINTS, Breakpoints } from "./DataList.const";
 import { DataListTags } from "./components/DataListTags";
+import { DataListHeaderTile } from "./components/DataListHeaderTile/DataListHeaderTile";
 import { FormatDate } from "../FormatDate";
 import { Text } from "../Text";
 import { Heading } from "../Heading";
@@ -88,11 +89,7 @@ export function generateHeaderElements<T extends DataListObject>(
   const headerElements = Object.keys(headers).reduce(
     (acc, key) => ({
       ...acc,
-      [key]: (
-        <Text variation="subdued" maxLines="single">
-          {headers[key]}
-        </Text>
-      ),
+      [key]: <DataListHeaderTile headers={headers} headerKey={key} />,
     }),
     {} as DataListItemTypeFromHeader<T, typeof headers>,
   );
