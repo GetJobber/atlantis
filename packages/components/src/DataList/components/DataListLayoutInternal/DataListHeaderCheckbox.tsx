@@ -14,15 +14,14 @@ interface DataListHeaderCheckbox {
 
 export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
   const {
-    totalCount = 0,
+    data,
+    totalCount,
     selected = [],
     onSelectAll,
     onSelect,
   } = useDataListContext();
 
   if (!onSelectAll && !onSelect) return children;
-
-  const isAllSelected = Boolean(totalCount) && totalCount === selected.length;
 
   return (
     <div className={classNames(styles.selectable)}>
@@ -32,8 +31,8 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
         })}
       >
         <Checkbox
-          checked={isAllSelected}
-          indeterminate={selected.length > 0 && !isAllSelected}
+          checked={isAllSelected()}
+          indeterminate={selected.length > 0 && !isAllSelected()}
           onChange={onSelectAll}
         />
       </div>
@@ -56,4 +55,18 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
       />
     </div>
   );
+
+  function isAllSelected() {
+    // If there's a totalCount, we can use that to accurately determine if the
+    // user have "selected all".
+    if (totalCount) {
+      return totalCount === selected.length;
+    }
+
+    // Otherwise, we'll use the total count of data. This is not as reliable, as
+    // it's possible that the would select all loaded data while we're
+    // loading more. It's still hard to get to that state as the load more
+    // triggers before you see the last item.
+    return data.length > 0 && selected.length >= data.length;
+  }
 }
