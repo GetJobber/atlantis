@@ -47,7 +47,7 @@ export type DataListHeader<T extends DataListObject> = {
 
 export interface DataListSorting {
   readonly key: string;
-  readonly direction: "asc" | "desc";
+  readonly order: "asc" | "desc";
 }
 
 export interface DataListProps<T extends DataListObject> {

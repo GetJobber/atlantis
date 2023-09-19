@@ -31,19 +31,19 @@ export function DataListHeaderTile<T extends DataListObject>({
     >
       <Text maxLines="single">{headers[headerKey]}</Text>
       {sortingState?.key === headerKey && (
-        <DataListSortingArrows order={sortingState.direction} />
+        <DataListSortingArrows order={sortingState.order} />
       )}
     </Tag>
   );
 
   function toggleSorting(sortingKey: string) {
-    if (sortingState?.direction === "desc") {
+    if (sortingState?.order === "desc") {
       sorting?.onSort(undefined);
       return;
     }
 
     sorting?.onSort({
-      direction: sortingState?.direction === "asc" ? "desc" : "asc",
+      order: sortingState?.order === "asc" ? "desc" : "asc",
       key: sortingKey,
     });
   }

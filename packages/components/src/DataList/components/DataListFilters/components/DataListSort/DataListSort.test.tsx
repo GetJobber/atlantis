@@ -128,7 +128,7 @@ describe("DataListSort", () => {
 
       expect(handleSort).toHaveBeenCalledWith({
         key: name,
-        direction: "asc",
+        order: "asc",
       });
     });
 
@@ -141,7 +141,7 @@ describe("DataListSort", () => {
   describe("'Ordered by' change", () => {
     const initialSortingState: DataListSorting = {
       key: "label",
-      direction: "asc",
+      order: "asc",
     };
 
     beforeEach(() => {
@@ -173,7 +173,7 @@ describe("DataListSort", () => {
       userEvent.click(screen.getByRole("radio", { name: "Descending" }));
       expect(handleSort).toHaveBeenCalledWith({
         ...initialSortingState,
-        direction: "desc",
+        order: "desc",
       });
     });
   });

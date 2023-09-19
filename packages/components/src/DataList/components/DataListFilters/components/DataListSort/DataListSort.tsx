@@ -41,7 +41,7 @@ export function DataListSort() {
           </Chips>
 
           <Heading level={5}>Ordered by</Heading>
-          <Chips selected={state?.direction} onChange={handleSortingChange}>
+          <Chips selected={state?.order} onChange={handleSortingChange}>
             <Chip label="Ascending" value="asc" disabled={canChangeOrder} />
             <Chip label="Descending" value="desc" disabled={canChangeOrder} />
           </Chips>
@@ -72,12 +72,12 @@ export function DataListSort() {
     const label = state && headers[state.key];
     if (!label) return "Sort by";
 
-    return `Sort by: ${label}, ${state.direction}`;
+    return `Sort by: ${label}, ${state.order}`;
   }
 
   function handleKeyChange(value?: string) {
     if (value && value !== "none") {
-      onSort({ key: value, direction: state?.direction || "asc" });
+      onSort({ key: value, order: state?.order || "asc" });
       return;
     }
 
@@ -86,7 +86,7 @@ export function DataListSort() {
 
   function handleSortingChange(value: "asc" | "desc") {
     if (state?.key && value) {
-      onSort({ key: state.key, direction: value });
+      onSort({ key: state.key, order: value });
       return;
     }
   }

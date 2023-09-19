@@ -409,10 +409,10 @@ describe("DataList", () => {
 
     it("should show the sorting arrows when the header is clicked", () => {
       const mockOnSort = jest.fn();
-      const expectedSorting = {
-        direction: "asc",
+      const expectedSorting: DataListSorting = {
+        order: "asc",
         key: "name",
-      } as DataListSorting;
+      };
 
       const { rerender } = render(
         <MockSortingLayout
