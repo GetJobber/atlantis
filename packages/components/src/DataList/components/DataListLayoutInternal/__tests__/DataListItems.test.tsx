@@ -1,4 +1,11 @@
-import { cleanup, render, screen, waitFor } from "@testing-library/react";
+import {
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from "@testing-library/react";
 import React from "react";
 import omit from "lodash/omit";
 import userEvent from "@testing-library/user-event";
@@ -7,6 +14,8 @@ import { defaultValues } from "../../../context/DataListContext";
 import * as dataListContext from "../../../context/DataListContext/DataListContext";
 import { DataListLayout } from "../../DataListLayout";
 import { DataListItemType } from "../../../DataList.types";
+import { DataListItemActions } from "../../DataListItemActions";
+import { DataListAction } from "../../DataListAction";
 
 const spy = jest.spyOn(dataListContext, "useDataListContext");
 const mockData = [
@@ -28,6 +37,12 @@ const contextValueWithRenderableChildren = {
         </div>
       )}
     </DataListLayout>
+  ),
+  itemActionComponent: (
+    <DataListItemActions>
+      <DataListAction label="Edit" onClick={jest.fn()} />
+      <DataListAction label="Delete" onClick={jest.fn()} />
+    </DataListItemActions>
   ),
 };
 
@@ -117,6 +132,50 @@ describe("DataListItems", () => {
 
       expect(onSelectMock).toHaveBeenCalledTimes(1);
       expect(onSelectMock).toHaveBeenCalledWith([mockData[1].id]);
+    });
+  });
+
+  describe("Context menu", () => {
+    it("should render context menu when right clicking on a list item", () => {
+      spy.mockReturnValue({ ...contextValueWithRenderableChildren });
+      renderItems();
+
+      expect(screen.queryByRole("menu")).not.toBeInTheDocument();
+
+      const listItem = screen.getByText(mockData[0].label);
+      userEvent.hover(listItem);
+      fireEvent.contextMenu(listItem);
+
+      const menuElement = screen.getByRole("menu");
+      expect(menuElement).toBeInTheDocument();
+      expect(within(menuElement).getAllByRole("button")).toHaveLength(2);
+    });
+
+    it("should not render context menu when right clicking on a list item and itemActionComponent is not provided", () => {
+      spy.mockReturnValue({
+        ...contextValueWithRenderableChildren,
+        itemActionComponent: undefined,
+      });
+      renderItems();
+
+      const listItem = screen.getByText(mockData[0].label);
+      userEvent.hover(listItem);
+      fireEvent.contextMenu(listItem);
+
+      expect(screen.queryByRole("menu")).not.toBeInTheDocument();
+    });
+
+    it("should not close the menu when hovering out of the target", () => {
+      spy.mockReturnValue({ ...contextValueWithRenderableChildren });
+      renderItems();
+
+      const listItem = screen.getByText(mockData[0].label);
+      userEvent.hover(listItem);
+      fireEvent.contextMenu(listItem);
+
+      userEvent.unhover(listItem);
+
+      expect(screen.getByRole("menu")).toBeInTheDocument();
     });
   });
 });

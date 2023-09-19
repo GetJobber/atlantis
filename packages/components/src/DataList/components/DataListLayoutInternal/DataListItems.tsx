@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Children, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import classNames from "classnames";
 import { DataListLayoutInternal } from "./DataListLayoutInternal";
@@ -68,7 +68,7 @@ export function DataListItems<T extends DataListObject>({
                     onRequestClose={() => setContextPosition(undefined)}
                   >
                     {contextMenuActions &&
-                      React.Children.map(contextMenuActions, action => (
+                      Children.map(contextMenuActions, action => (
                         <InternalDataListAction
                           key={item.id}
                           {...action.props}
