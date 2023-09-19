@@ -6,6 +6,7 @@ import { CONTAINER_TEST_ID } from "./DataListFilter.const";
 import { DataListSort } from "./components/DataListSort";
 import { useDataListContext } from "../../context/DataListContext";
 import { getCompoundComponent } from "../../DataList.utils";
+import { useShowHeader } from "../../hooks/useShowHeader";
 
 interface DataListFiltersProps {
   readonly children: ReactElement | ReactElement[];
@@ -22,6 +23,7 @@ export function DataListFilters(_: DataListFiltersProps) {
  */
 export function InternalDataListFilters() {
   const { children: parentChildren } = useDataListContext();
+  const showHeader = useShowHeader();
   const component = getCompoundComponent<DataListFiltersProps>(
     parentChildren,
     DataListFilters,
@@ -47,7 +49,7 @@ export function InternalDataListFilters() {
 
         {children}
 
-        <DataListSort />
+        {!showHeader && <DataListSort />}
 
         <span ref={rightRef} className={styles.overflowTrigger} />
       </div>
