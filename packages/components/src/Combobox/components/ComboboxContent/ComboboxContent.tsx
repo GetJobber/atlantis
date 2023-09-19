@@ -11,9 +11,9 @@ import { usePopper } from "react-popper";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import styles from "./ComboboxContent.css";
 import { Icon } from "../../../Icon";
+import { Text } from "../../../Text";
 import { ComboboxContext } from "../../ComboboxProvider";
 import { ComboboxOption } from "../../Combobox.types";
-import { Typography } from "../../../Typography";
 
 interface ComboboxContentProps {
   /**
@@ -82,25 +82,38 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       />
       <ul className={styles.optionsList}>
         {optionsExist &&
-          filteredOptions.map(option => (
-            <li
-              key={option.id}
-              onClick={() => handleSelection(option)}
-              className={classnames(
-                styles.option,
-                option.id.toString() === selectedOption?.id.toString() &&
-                  styles.selectedOption,
-              )}
-            >
-              {option.label}
-            </li>
-          ))}
+          filteredOptions.map(option => {
+            const isSelected =
+              option.id.toString() === selectedOption?.id.toString();
+            return (
+              <li
+                key={option.id}
+                onClick={() => handleSelection(option)}
+                className={classnames(
+                  styles.option,
+                  isSelected && styles.selectedOption,
+                )}
+                tabIndex={0}
+              >
+                {option.label}
+                {isSelected && <Icon name="checkmark" color="blue" />}
+              </li>
+            );
+          })}
 
         {optionsExist && filteredOptions.length === 0 && (
-          <p>No results for {`"${searchValue}"`}</p>
+          <div className={styles.filterMessage}>
+            <Text variation="subdued">No results for {`“${searchValue}”`}</Text>
+          </div>
         )}
 
-        {!optionsExist && <p>{getZeroIndexStateText(props.subjectNoun)}</p>}
+        {!optionsExist && (
+          <div className={styles.emptyStateMessage}>
+            <Text variation="subdued">
+              {getZeroIndexStateText(props.subjectNoun)}
+            </Text>
+          </div>
+        )}
       </ul>
 
       {props.children && (
@@ -164,7 +177,6 @@ function Search(props: {
       />
 
       {props.searchValue && (
-        // <div className={styles.clearSearchContainer}>
         <button
           className={styles.clearSearch}
           onClick={clearSearch}
@@ -173,7 +185,6 @@ function Search(props: {
         >
           <Icon name="remove" size="small" />
         </button>
-        // </div>
       )}
     </div>
   );

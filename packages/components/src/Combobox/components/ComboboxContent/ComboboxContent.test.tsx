@@ -82,7 +82,7 @@ describe("ComboboxContent Search", () => {
     const searchInput = getByPlaceholderText("Search");
     fireEvent.change(searchInput, { target: { value: "Bilbo" } });
 
-    expect(getByText('No results for "Bilbo"')).toBeInTheDocument();
+    expect(getByText("No results for “Bilbo”")).toBeInTheDocument();
   });
 });
 
