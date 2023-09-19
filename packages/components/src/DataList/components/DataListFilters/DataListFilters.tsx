@@ -24,6 +24,7 @@ export function DataListFilters(_: DataListFiltersProps) {
 export function InternalDataListFilters() {
   const { children: parentChildren } = useDataListContext();
   const showHeader = useShowHeader();
+  const showSortButton = !showHeader;
   const component = getCompoundComponent<DataListFiltersProps>(
     parentChildren,
     DataListFilters,
@@ -32,9 +33,9 @@ export function InternalDataListFilters() {
   const [leftRef, isLeftVisible] = useInView<HTMLSpanElement>();
   const [rightRef, isRightVisible] = useInView<HTMLSpanElement>();
 
-  if (!component) return null;
+  if (!showSortButton && !component) return null;
 
-  const { children } = component.props;
+  const children = component?.props.children;
 
   return (
     <div
@@ -47,9 +48,9 @@ export function InternalDataListFilters() {
       <div className={styles.filterActions}>
         <span ref={leftRef} className={styles.overflowTrigger} />
 
-        {children}
+        {children && children}
 
-        {!showHeader && <DataListSort />}
+        {showSortButton && <DataListSort />}
 
         <span ref={rightRef} className={styles.overflowTrigger} />
       </div>
