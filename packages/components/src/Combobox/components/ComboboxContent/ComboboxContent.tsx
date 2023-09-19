@@ -54,6 +54,7 @@ interface ComboboxContentProps {
 }
 
 export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
+  const optionsExist = props.options.length > 0;
   const {
     searchValue,
     setSearchValue,
@@ -67,7 +68,11 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     filteredOptions,
   } = useComboboxContent(props.selected, props.options);
 
-  const optionsExist = props.options.length > 0;
+  const { optionsListRef, setFocusedOption } = useComboboxAccessibility(
+    optionsExist,
+    open,
+    handleSelection,
+  );
 
   const template = (
     <div
@@ -85,7 +90,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         searchValue={searchValue}
         setSearchValue={setSearchValue}
       />
-      <ul className={styles.optionsList} role="listbox">
+      <ul className={styles.optionsList} role="listbox" ref={optionsListRef}>
         {optionsExist &&
           filteredOptions.map(option => {
             const isSelected =
@@ -95,6 +100,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
               <li
                 key={option.id}
                 tabIndex={0}
+                onFocus={() => setFocusedOption(option)}
                 role="option"
                 aria-selected={isSelected}
                 onClick={() => handleSelection(option)}
@@ -204,6 +210,46 @@ function getZeroIndexStateText(subjectNoun?: string) {
   }
 
   return "No options yet";
+}
+
+function useComboboxAccessibility(
+  optionsExist: boolean,
+  open: boolean,
+  selectionCallback: (selection: ComboboxOption) => void,
+): {
+  optionsListRef: React.RefObject<HTMLUListElement>;
+  setFocusedOption: React.Dispatch<SetStateAction<ComboboxOption | null>>;
+} {
+  const optionsListRef = useRef<HTMLUListElement>(null);
+  const [focusedOption, setFocusedOption] = useState<ComboboxOption | null>(
+    null,
+  );
+
+  useEffect(() => {
+    if (optionsExist && open) {
+      optionsListRef.current?.addEventListener("keydown", handleListKeydown);
+    }
+
+    return () => {
+      optionsListRef.current?.removeEventListener("keydown", handleListKeydown);
+    };
+  }, [open, optionsExist, optionsListRef, focusedOption]);
+
+  function handleListKeydown(event: KeyboardEvent) {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (focusedOption) {
+        selectionCallback(focusedOption);
+      }
+    }
+  }
+
+  return {
+    optionsListRef,
+    setFocusedOption,
+  };
 }
 
 function useComboboxContent(
