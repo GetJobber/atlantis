@@ -1,7 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import styles from "./DataListHeaderTile.css";
-import { SortingArrows } from "./SortingArrows";
+import { DataListSortingArrows } from "./DataListSortingArrows";
 import { Text } from "../../../Text";
 import { useDataListContext } from "../../context/DataListContext";
 import { DataListHeader, DataListObject } from "../../DataList.types";
@@ -31,7 +31,7 @@ export function DataListHeaderTile<T extends DataListObject>({
     >
       <Text maxLines="single">{headers[headerKey]}</Text>
       {sortingState?.key === headerKey && (
-        <SortingArrows order={sortingState.direction} />
+        <DataListSortingArrows order={sortingState.direction} />
       )}
     </Tag>
   );

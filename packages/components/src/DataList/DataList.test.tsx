@@ -23,6 +23,7 @@ import {
   LOADING_STATE_LIMIT_ITEMS,
 } from "./components/DataListLoadingState";
 import { MAX_DATA_COUNT } from "./components/DataListLoadMore";
+import { SORTING_ICON_TEST_ID } from "./components/DataListHeaderTile/DataListSortingArrows";
 import { GLIMMER_TEST_ID } from "../Glimmer";
 import { Button } from "../Button";
 
@@ -423,8 +424,9 @@ describe("DataList", () => {
         />,
       );
 
-      expect(screen.queryByTestId("arrowUp")).not.toBeInTheDocument();
-      expect(screen.queryByTestId("arrowDown")).not.toBeInTheDocument();
+      expect(
+        screen.queryByTestId(SORTING_ICON_TEST_ID),
+      ).not.toBeInTheDocument();
 
       const nameHeader = screen.getByText(mockHeaders.name);
       fireEvent.click(nameHeader);
@@ -441,8 +443,7 @@ describe("DataList", () => {
         />,
       );
 
-      expect(screen.queryByTestId("arrowUp")).toBeInTheDocument();
-      expect(screen.queryByTestId("arrowDown")).toBeInTheDocument();
+      expect(screen.queryByTestId(SORTING_ICON_TEST_ID)).toBeInTheDocument();
     });
   });
 

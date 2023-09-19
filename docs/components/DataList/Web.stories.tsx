@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import uniq from "lodash/uniq";
+import { useLazyQuery } from "@apollo/client";
 import { useCollectionQuery } from "@jobber/hooks/useCollectionQuery";
 import {
   DataList,
@@ -12,7 +13,13 @@ import { InlineLabel, InlineLabelColors } from "@jobber/components/InlineLabel";
 import { Content } from "@jobber/components/Content";
 import { Button } from "@jobber/components/Button";
 import { DatePicker } from "@jobber/components/DatePicker";
-import { LIST_QUERY, ListQueryType, apolloClient } from "./storyUtils";
+import {
+  LAZY_LIST_IDS_QUERY,
+  LIST_QUERY,
+  ListIDsQueryType,
+  ListQueryType,
+  apolloClient,
+} from "./storyUtils";
 
 export default {
   title: "Components/Lists and Tables/DataList/Web",
@@ -43,26 +50,30 @@ export default {
 } as ComponentMeta<typeof DataList>;
 
 const Template: ComponentStory<typeof DataList> = args => {
-  const {
-    data,
-    /* See useCollectionQuery for example on how to load more */
-    // refresh,
-    nextPage,
-    // loadingRefresh,
-    loadingNextPage,
-    loadingInitialContent,
-  } = useCollectionQuery<ListQueryType>({
-    query: LIST_QUERY,
-    queryOptions: {
+  const [selected, setSelected] = useState<string[]>([]);
+
+  const { data, nextPage, loadingNextPage, loadingInitialContent } =
+    useCollectionQuery<ListQueryType>({
+      query: LIST_QUERY,
+      queryOptions: {
+        fetchPolicy: "network-only",
+        nextFetchPolicy: "cache-first",
+        client: apolloClient,
+      },
+
+      getCollectionByPath(items) {
+        return items?.allPeople;
+      },
+    });
+
+  const [getIDs, { loading: loadingIDs }] = useLazyQuery<ListIDsQueryType>(
+    LAZY_LIST_IDS_QUERY,
+    {
       fetchPolicy: "network-only",
       nextFetchPolicy: "cache-first",
       client: apolloClient,
     },
-
-    getCollectionByPath(items) {
-      return items?.allPeople;
-    },
-  });
+  );
 
   const items = data?.allPeople.edges || [];
   const totalCount = data?.allPeople.totalCount || null;
@@ -94,7 +105,7 @@ const Template: ComponentStory<typeof DataList> = args => {
       {...args}
       loadingState={getLoadingState()}
       totalCount={totalCount}
-      data={args.data || mappedData}
+      data={(args.data as typeof mappedData) || mappedData}
       headers={{
         label: "Name",
         home: "Home world",
@@ -103,6 +114,9 @@ const Template: ComponentStory<typeof DataList> = args => {
         created: "Created",
       }}
       onLoadMore={nextPage}
+      selected={selected}
+      onSelect={setSelected}
+      onSelectAll={handleSelectAll}
       sorting={{
         state: sortingState,
         onSort: sorting => {
@@ -254,8 +268,19 @@ const Template: ComponentStory<typeof DataList> = args => {
 
   function getLoadingState() {
     if (loadingInitialContent) return "initial";
-    if (loadingNextPage) return "loadingMore";
+    if (loadingNextPage || loadingIDs) return "loadingMore";
     return args.loadingState;
+  }
+
+  async function handleSelectAll() {
+    if (totalCount === selected.length) return setSelected([]);
+
+    const idsQuery = await getIDs();
+    const edges = idsQuery?.data?.allPeople?.edges;
+    if (!edges) return;
+
+    const ids = edges.map(({ node }) => node.id);
+    setSelected(ids);
   }
 };
 

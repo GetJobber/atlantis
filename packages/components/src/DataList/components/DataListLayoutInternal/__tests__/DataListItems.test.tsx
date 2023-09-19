@@ -2,11 +2,11 @@ import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import React from "react";
 import omit from "lodash/omit";
 import userEvent from "@testing-library/user-event";
-import { DataListItems } from "./DataListItems";
-import { defaultValues } from "../../context/DataListContext";
-import * as dataListContext from "../../context/DataListContext/DataListContext";
-import { DataListLayout } from "../DataListLayout";
-import { DataListItemType } from "../../DataList.types";
+import { DataListItems } from "../DataListItems";
+import { defaultValues } from "../../../context/DataListContext";
+import * as dataListContext from "../../../context/DataListContext/DataListContext";
+import { DataListLayout } from "../../DataListLayout";
+import { DataListItemType } from "../../../DataList.types";
 
 const spy = jest.spyOn(dataListContext, "useDataListContext");
 const mockData = [

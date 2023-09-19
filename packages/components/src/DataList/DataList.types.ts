@@ -124,6 +124,8 @@ export interface DataListProps<T extends DataListObject> {
    * The list of Selected Item ids
    */
   readonly selected?: T["id"][];
+
+  readonly onSelectAll?: () => void;
 }
 
 export interface DataListLayoutProps<T extends DataListObject> {

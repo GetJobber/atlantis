@@ -1,5 +1,7 @@
 import React from "react";
+import classNames from "classnames";
 import { DataListLayoutInternal } from "./DataListLayoutInternal";
+import { DataListHeaderCheckbox } from "./DataListHeaderCheckbox";
 import { Breakpoints } from "../../DataList.const";
 import styles from "../../DataList.css";
 import {
@@ -37,19 +39,19 @@ export function DataListHeader<T extends DataListObject>({
     true,
   );
 
-  if (!showHeader || !headerData) return <></>;
+  if (!showHeader || !headerData) return null;
 
   return (
     <DataListLayoutInternal
       layouts={layouts}
-      renderLayout={layout => {
-        return (
-          <div className={styles.headerTitles}>
-            {layout.props.children(headerData)}
-          </div>
-        );
-      }}
       mediaMatches={mediaMatches}
+      renderLayout={layout => (
+        <div className={classNames(styles.headerTitles)}>
+          <DataListHeaderCheckbox>
+            {layout.props.children(headerData)}
+          </DataListHeaderCheckbox>
+        </div>
+      )}
     />
   );
 }

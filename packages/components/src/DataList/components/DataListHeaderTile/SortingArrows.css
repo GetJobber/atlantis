@@ -1,9 +1,0 @@
-.arrowUp {
-  position: absolute;
-  bottom: calc(var(--space-base) - var(--space-smallest));
-}
-
-.arrowDown {
-  position: absolute;
-  bottom: var(--space-small);
-}
