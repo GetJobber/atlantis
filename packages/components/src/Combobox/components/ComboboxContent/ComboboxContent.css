@@ -20,16 +20,18 @@
 }
 
 .optionsList {
-  display: flex;
-  padding: var(--space-base);
-  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .option {
-  border: none;
-  border-radius: var(--radius-large);
-  text-align: left;
-  background: none;
+  padding: var(--space-small) var(--space-base);
+  cursor: pointer;
+}
+
+.option:hover {
+  background-color: var(--color-surface--background);
 }
 
 .search {

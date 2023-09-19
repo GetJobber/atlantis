@@ -79,10 +79,10 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         searchValue={searchValue}
         setSearchValue={setSearchValue}
       />
-      <div className={styles.optionsList}>
+      <ul className={styles.optionsList}>
         {optionsExist &&
           filteredOptions.map(option => (
-            <button
+            <li
               key={option.id}
               onClick={() => handleSelection(option)}
               className={classnames(
@@ -92,7 +92,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
               )}
             >
               {option.label}
-            </button>
+            </li>
           ))}
 
         {optionsExist && filteredOptions.length === 0 && (
@@ -100,7 +100,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         )}
 
         {!optionsExist && <p>{getZeroIndexStateText(props.subjectNoun)}</p>}
-      </div>
+      </ul>
 
       {props.children && (
         <div className={styles.actions}>
