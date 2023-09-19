@@ -7,7 +7,7 @@
 }
 
 .tagCount {
-  --overflow-bg: var(--color-white);
+  --overflow-bg: var(--data-list-item-active-color, var(--color-white));
 
   display: flex;
   position: absolute;
@@ -22,4 +22,5 @@
     var(--overflow-bg) 100%
   );
   align-items: center;
+  transition: all var(--timing-base);
 }

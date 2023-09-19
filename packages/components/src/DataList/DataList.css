@@ -50,11 +50,12 @@
   position: relative;
   padding: var(--space-small);
   border-bottom: var(--border-base) solid var(--color-border);
-  transition: all var(--timing-base) ease-in-out;
+  transition: all var(--timing-base);
 }
 
 .listItem.active {
-  background-color: rgb(243, 245, 246);
+  --data-list-item-active-color: rgb(243, 245, 246);
+  background-color: var(--data-list-item-active-color);
 }
 
 .selectable {
