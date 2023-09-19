@@ -51,6 +51,7 @@
 .searchInput {
   width: 100%;
   padding: var(--space-base);
+  padding-right: calc(var(--space-large) * 2.25);
   border: none;
   border-bottom: var(--border-base) solid var(--color-border);
   font-family: var(--typography--fontFamily-normal);
