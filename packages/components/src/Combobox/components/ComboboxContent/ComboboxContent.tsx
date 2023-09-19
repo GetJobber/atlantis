@@ -72,7 +72,6 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   const template = (
     <div
       ref={popperRef}
-      role="listbox"
       id="ATL-Combobox-Content"
       data-testid="ATL-Combobox-Content"
       tabIndex={0}
@@ -86,21 +85,28 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         searchValue={searchValue}
         setSearchValue={setSearchValue}
       />
-      <ul className={styles.optionsList}>
+      <ul className={styles.optionsList} role="listbox">
         {optionsExist &&
-          filteredOptions.map(option => (
-            <li
-              key={option.id}
-              onClick={() => handleSelection(option)}
-              className={classnames(
-                styles.option,
-                option.id.toString() === selectedOption?.id.toString() &&
-                  styles.selectedOption,
-              )}
-            >
-              {option.label}
-            </li>
-          ))}
+          filteredOptions.map(option => {
+            const isSelected =
+              option.id.toString() === selectedOption?.id.toString();
+
+            return (
+              <li
+                key={option.id}
+                tabIndex={0}
+                role="option"
+                aria-selected={isSelected}
+                onClick={() => handleSelection(option)}
+                className={classnames(
+                  styles.option,
+                  isSelected && styles.selectedOption,
+                )}
+              >
+                {option.label}
+              </li>
+            );
+          })}
 
         {optionsExist && filteredOptions.length === 0 && (
           <p>No results for {`"${searchValue}"`}</p>
@@ -110,7 +116,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
       </ul>
 
       {props.children && (
-        <div className={styles.actions}>
+        <div className={styles.actions} role="group">
           {React.Children.toArray(props.children).map(
             (child, index, childrenArray) => (
               <div
