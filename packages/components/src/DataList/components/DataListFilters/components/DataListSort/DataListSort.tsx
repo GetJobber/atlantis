@@ -1,10 +1,10 @@
 import React, { useRef, useState } from "react";
-import { useDataListContext } from "../../../../context/DataListContext";
-import { Button } from "../../../../../Button";
-import { Popover } from "../../../../../Popover";
-import { Content } from "../../../../../Content";
-import { Chip, Chips } from "../../../../../Chips";
-import { Heading } from "../../../../../Heading";
+import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
+import { Button } from "@jobber/components/Button";
+import { Popover } from "@jobber/components/Popover";
+import { Content } from "@jobber/components/Content";
+import { Chip, Chips } from "@jobber/components/Chips";
+import { Heading } from "@jobber/components/Heading";
 
 export function DataListSort() {
   const { sorting, headers } = useDataListContext();
@@ -85,7 +85,7 @@ export function DataListSort() {
   }
 
   function handleSortingChange(value: "asc" | "desc") {
-    if (state?.key) {
+    if (state?.key && value) {
       onSort({ key: state.key, direction: value });
       return;
     }
