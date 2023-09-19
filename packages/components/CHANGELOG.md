@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.39.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.38.0...@jobber/components@4.39.0) (2023-09-19)
+
+
+### Features
+
+* **components:** support select all and deselect all on DataList ([#1539](https://github.com/GetJobber/atlantis/issues/1539)) ([2b5a231](https://github.com/GetJobber/atlantis/commit/2b5a23117a16452b5c7da6a4da06326027a32ffe))
+
+
+
+
+
 # [4.38.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.37.0...@jobber/components@4.38.0) (2023-09-18)
 
 
