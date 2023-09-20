@@ -42,3 +42,20 @@ need to choose from a set of options, with the added benefit of filtering and
 customization.
 
 ## Content guidelines
+
+Combobox is designed to handle lists of selectable options, so the component is
+primarily text based.
+
+You may customize the trigger and action `label`. Refer to the
+[Product Vocabulary](../?path=/docs/content-product-vocabulary--page) for
+consistency in terminology and naming conventions when setting these values.
+
+The ComboboxContent also has an optional `subjectNoun` prop which is the
+encapsulating noun for the content of the Combobox. It will be used in the empty
+state of the Combobox, as well as the noun within the search placeholder. For
+example, if your Combobox is a list of possible tax rates to choose from, the
+`subjectNoun` would be `"tax rates"`. In the search placeholder, it would read
+`"Search tax rates"` and if there are no tax rates, the empty state would read
+`"You don't have any tax rates yet"`. If no `subjectNoun` is provided, the
+search placeholder will read `"Search"` and the empty state will read
+`"No options yet"`.
