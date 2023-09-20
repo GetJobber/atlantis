@@ -2,6 +2,7 @@ import React, {
   Dispatch,
   ReactElement,
   SetStateAction,
+  useEffect,
   useRef,
   useState,
 } from "react";
@@ -41,7 +42,7 @@ interface ComboboxContentProps {
    * @optional
    * @type string
    */
-  readonly selected?: string | number;
+  readonly selected?: string | number | null;
 
   /**
    * The encapsulating noun for the content of the combobox. Used
@@ -185,7 +186,7 @@ function getZeroIndexStateText(subjectNoun?: string) {
 }
 
 function useComboboxContent(
-  selected: string | number | undefined,
+  selected: string | number | undefined | null,
   options: ComboboxOption[],
 ): {
   searchValue: string;
@@ -208,6 +209,10 @@ function useComboboxContent(
   const [selectedOption, setSelectedOption] = useState<ComboboxOption | null>(
     defaultValue || null,
   );
+  useEffect(() => {
+    setSelectedOption(defaultValue || null);
+  }, [selected]);
+
   const { open, setOpen, wrapperRef } = React.useContext(ComboboxContext);
 
   const filteredOptions = options.filter(option =>
