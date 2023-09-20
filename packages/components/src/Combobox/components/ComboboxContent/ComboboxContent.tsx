@@ -69,7 +69,6 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   } = useComboboxContent(props.selected, props.options);
 
   const { optionsListRef } = useComboboxAccessibility(
-    optionsExist,
     open,
     handleSelection,
     popperRef,
@@ -213,7 +212,6 @@ function getZeroIndexStateText(subjectNoun?: string) {
 }
 
 function useComboboxAccessibility(
-  optionsExist: boolean,
   open: boolean,
   selectionCallback: (selection: ComboboxOption) => void,
   containerRef: React.RefObject<HTMLDivElement>,
@@ -221,15 +219,12 @@ function useComboboxAccessibility(
 ): {
   optionsListRef: React.RefObject<HTMLUListElement>;
 } {
-  const hasOptionsVisible = optionsExist && open && filteredOptions.length > 0;
+  const hasOptionsVisible = open && filteredOptions.length > 0;
   const optionsListRef = useRef<HTMLUListElement>(null);
-  const initialOption = filteredOptions.length > 0 ? filteredOptions[0] : null;
-  const [focusedOption, setFocusedOption] = useState<ComboboxOption | null>(
-    initialOption,
-  );
+  const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    if (optionsExist && open) {
+    if (open) {
       containerRef.current?.addEventListener("keydown", handleContentKeydown);
     }
 
@@ -239,7 +234,7 @@ function useComboboxAccessibility(
         handleContentKeydown,
       );
     };
-  }, [open, optionsExist, optionsListRef, focusedOption, filteredOptions]);
+  }, [open, optionsListRef, focusedIndex, filteredOptions]);
 
   function handleContentKeydown(event: KeyboardEvent) {
     if (!hasOptionsVisible) return;
@@ -247,52 +242,49 @@ function useComboboxAccessibility(
     if (event.key === "Enter" || event.key === " ") {
       handleKeyboardSelection(event);
     }
-    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
-      handleKeyboardNavigation(event);
+    if (event.key === "ArrowDown") {
+      handleKeyboardNavigation(event, 1);
+    }
+    if (event.key === "ArrowUp") {
+      handleKeyboardNavigation(event, -1);
     }
   }
 
-  function handleKeyboardNavigation(event: KeyboardEvent) {
+  function handleKeyboardNavigation(event: KeyboardEvent, indexChange: number) {
+    if (!hasOptionsVisible) return;
+
+    let newIndex;
+
     event.preventDefault();
 
-    if (hasOptionsVisible) {
-      const indexChange =
-        event.key === "ArrowDown" ? 1 : event.key === "ArrowUp" ? -1 : 0;
+    if (focusedIndex === null) {
+      newIndex = 0;
+      setFocusedIndex(0);
+    } else {
+      newIndex = focusedIndex + indexChange;
 
-      if (indexChange) {
-        // focused option might not be in the filtered
-        // need to reset it with filteredOptions
-        const currentIndex = filteredOptions.findIndex(
-          option => option.id === focusedOption?.id,
-        );
-        if (currentIndex !== -1) {
-          const newIndex = currentIndex + indexChange;
-          const newOption = filteredOptions[newIndex];
+      if (newIndex < 0 || newIndex >= filteredOptions.length) return;
 
-          if (newOption) {
-            setFocusedOption(newOption);
-            const optionElement = optionsListRef.current?.children[
-              newIndex
-            ] as HTMLElement;
-            optionElement?.focus();
-          }
-        }
-      }
+      setFocusedIndex(newIndex);
     }
+    const optionElement = optionsListRef.current?.children[
+      newIndex
+    ] as HTMLElement;
+    optionElement?.focus();
   }
 
   function handleKeyboardSelection(event: KeyboardEvent) {
     const activeElementInList = optionsListRef.current?.contains(
       document.activeElement,
     );
-    // Do not prevent enter key for Actions or Search clearing
+
     if (!activeElementInList) return;
 
     event.preventDefault();
     event.stopPropagation();
 
-    if (focusedOption) {
-      selectionCallback(focusedOption);
+    if (focusedIndex !== null) {
+      selectionCallback(filteredOptions[focusedIndex]);
     }
   }
 
