@@ -223,6 +223,8 @@ function useComboboxAccessibility(
   const optionsListRef = useRef<HTMLUListElement>(null);
   const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
 
+  useEffect(() => setFocusedIndex(null), [open, filteredOptions.length]);
+
   useEffect(() => {
     if (open) {
       containerRef.current?.addEventListener("keydown", handleContentKeydown);
@@ -240,6 +242,12 @@ function useComboboxAccessibility(
     if (!hasOptionsVisible) return;
 
     if (event.key === "Enter" || event.key === " ") {
+      const activeElementInList = optionsListRef.current?.contains(
+        document.activeElement,
+      );
+
+      if (!activeElementInList) return;
+
       handleKeyboardSelection(event);
     }
     if (event.key === "ArrowDown") {
@@ -274,12 +282,6 @@ function useComboboxAccessibility(
   }
 
   function handleKeyboardSelection(event: KeyboardEvent) {
-    const activeElementInList = optionsListRef.current?.contains(
-      document.activeElement,
-    );
-
-    if (!activeElementInList) return;
-
     event.preventDefault();
     event.stopPropagation();
 
