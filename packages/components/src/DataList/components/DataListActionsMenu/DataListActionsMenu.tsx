@@ -3,6 +3,7 @@ import { AnimatePresence, Variants, motion } from "framer-motion";
 import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
+import { createPortal } from "react-dom";
 import styles from "./DataListActionsMenu.css";
 import { TRANSITION_DELAY_IN_SECONDS } from "../../DataList.const";
 
@@ -32,7 +33,7 @@ export function DataListActionsMenu({
   const focusTrapRef = useFocusTrap<HTMLDivElement>(visible);
   useOnKeyDown(onRequestClose, "Escape");
 
-  return (
+  return createPortal(
     <AnimatePresence>
       {visible && (
         <>
@@ -54,7 +55,8 @@ export function DataListActionsMenu({
           </motion.div>
         </>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   );
 
   function getPositionCssVars() {
