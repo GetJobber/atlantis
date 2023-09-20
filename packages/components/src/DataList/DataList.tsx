@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./DataList.css";
 import { DataListTotalCount } from "./components/DataListTotalCount";
 import { DataListLoadingState } from "./components/DataListLoadingState";
@@ -21,6 +21,9 @@ import {
   InternalDataListEmptyState,
 } from "./components/DataListEmptyState";
 import { DataListLoadMore } from "./components/DataListLoadMore";
+import { DataListItemActions } from "./components/DataListItemActions";
+import { DataListAction } from "./components/DataListAction";
+import { DataListLayoutActions } from "./components/DataListLayoutActions";
 import { DataListContext, useDataListContext } from "./context/DataListContext";
 import {
   DataListEmptyStateProps,
@@ -38,8 +41,6 @@ import {
 } from "./DataList.utils";
 import { useLayoutMediaQueries } from "./hooks/useLayoutMediaQueries";
 import { DATA_LIST_FILTERING_SPINNER_TEST_ID } from "./DataList.const";
-import { DataListItemActions } from "./components/DataListItemActions";
-import { DataListAction } from "./components/DataListAction";
 import { Heading } from "../Heading";
 import { Spinner } from "../Spinner";
 
@@ -47,6 +48,8 @@ export function DataList<T extends DataListObject>({
   sorting,
   ...props
 }: DataListProps<T>) {
+  const [hasInLayoutActions, setHasInLayoutActions] = useState(false);
+
   const searchComponent = getCompoundComponent<DataListSearchProps>(
     props.children,
     DataListSearch,
@@ -74,6 +77,8 @@ export function DataList<T extends DataListObject>({
         layoutComponents,
         emptyStateComponents,
         itemActionComponent,
+        hasInLayoutActions,
+        setHasInLayoutActions,
         ...props,
         selected: props.selected ?? [],
         // T !== DataListObject
@@ -182,6 +187,7 @@ function InternalDataList() {
 }
 
 DataList.Layout = DataListLayout;
+DataList.LayoutActions = DataListLayoutActions;
 DataList.EmptyState = DataListEmptyState;
 DataList.Filters = DataListFilters;
 DataList.Search = DataListSearch;

@@ -182,6 +182,14 @@ export interface DataListContextProps<T extends DataListObject>
   readonly emptyStateComponents?: ReactElement<DataListEmptyStateProps>[];
   readonly layoutComponents?: ReactElement<DataListLayoutProps<T>>[];
   readonly itemActionComponent?: ReactElement<DataListItemActionsProps<T>>;
+
+  /**
+   * Determine if the consumer of the DataList manually added an action to the
+   * layout. This is used to determine if the DataList should render the
+   * action column.
+   */
+  readonly hasInLayoutActions: boolean;
+  readonly setHasInLayoutActions: (state: boolean) => void;
 }
 
 type Fragment<T> = T | T[];

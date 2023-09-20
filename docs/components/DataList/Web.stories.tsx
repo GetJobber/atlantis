@@ -223,6 +223,7 @@ const Template: ComponentStory<typeof DataList> = args => {
             </div>
             {item.tags}
             {item.created}
+            <DataList.LayoutActions />
           </Content>
         )}
       </DataList.Layout>
