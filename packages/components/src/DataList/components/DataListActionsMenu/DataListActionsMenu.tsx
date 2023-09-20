@@ -4,6 +4,7 @@ import { useFocusTrap } from "@jobber/hooks/useFocusTrap";
 import { useRefocusOnActivator } from "@jobber/hooks/useRefocusOnActivator";
 import { useOnKeyDown } from "@jobber/hooks/useOnKeyDown";
 import { createPortal } from "react-dom";
+import { tokens } from "@jobber/design/foundation";
 import styles from "./DataListActionsMenu.css";
 import { TRANSITION_DELAY_IN_SECONDS } from "../../DataList.const";
 
@@ -75,9 +76,10 @@ export function DataListActionsMenu({
 
     const xIsOffScreen = x + width > window.innerWidth;
     const yIsOffScreen = y + height > window.innerHeight;
+    const xOffSet = x + width - window.innerWidth + tokens["space-base"];
     const yOffSet = y + height - window.innerHeight;
 
-    const newPosX = Math.floor(xIsOffScreen ? x - width : x);
+    const newPosX = Math.floor(xIsOffScreen ? x - xOffSet : x);
     const newPosY = Math.floor(yIsOffScreen ? y - yOffSet : y);
     return { posX: newPosX, posY: newPosY };
   }

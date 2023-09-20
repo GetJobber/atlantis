@@ -49,7 +49,7 @@ export function DataListItemActionsOverflow<T extends DataListObject>({
     setShowMenu(true);
 
     const rect = event.currentTarget.getBoundingClientRect();
-    const posX = rect.x + rect.width;
+    const posX = rect.x;
     const posY = rect.y + rect.height;
 
     setMenuPosition({ x: posX, y: posY });
