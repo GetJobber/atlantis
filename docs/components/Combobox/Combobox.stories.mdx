@@ -1,5 +1,3 @@
-import { Meta } from "@storybook/addon-docs";
-
 <Meta
   title="Components/Selections/Combobox/Docs"
   parameters={{ alpha: true }}
@@ -7,39 +5,40 @@ import { Meta } from "@storybook/addon-docs";
 
 # Combobox
 
-The Combobox component is designed to provide a versatile and accessible
-interface for selecting options from a list. Comboboxes can be used for a
-variety of scenarios, such as selecting items from a predefined list, filtering
-and searching through data.
+The `Combobox` is designed to provide a versatile and accessible interface for
+selecting options from a list. `Combobox` can be used for a variety of
+scenarios, such as selecting items from a predefined list, filtering and
+searching through data.
 
 ## Design & usage guidelines
 
-Combobox is composed of three main parts:
+The `Combobox` component's primary function is to facilitate option selection
+and searching within a list of items. It should be used in scenarios where users
+need to choose from a set of options, with the added benefit of filtering and
+customization.
 
-#### Combobox Trigger
+### Structure
 
-There are two primary options for trigger elements of the Combobox,
-TriggerButton and TriggerChip. You must have one Trigger component.
+`Combobox` is composed of three main parts:
 
-Triggers serve as the user-facing interface to open and close the Combobox and
+#### Trigger
+
+The trigger is the user-facing interface to open and close the `Combobox` and
 initiate option selection. The choice between them depends on the design and
 user experience requirements.
 
-#### Combobox Content
+There are two primary options for trigger elements of the `Combobox`,
+`TriggerButton` and `TriggerChip`. You must have one trigger component.
 
-This component is an integral part of the Combobox and is responsible for
-displaying the list of selectable options, handling user interactions, and
-managing the search functionality.
+#### Content
 
-#### Combobox Action
+This component is responsible for displaying the list of selectable options,
+handling user interactions, and managing search functionality.
 
-Situated at the bottom of the Content, these optional Actions allow users to
-perform custom tasks such as adding a new option.
+#### Action
 
-The Combobox component's primary function is to facilitate option selection and
-searching within a list of items. It should be used in scenarios where users
-need to choose from a set of options, with the added benefit of filtering and
-customization.
+Actions are an optional way to allow users to perform custom tasks such as
+adding a new item to the list of options.
 
 ## Content guidelines
 
@@ -50,17 +49,46 @@ You may customize the trigger and action `label`. Refer to the
 [Product Vocabulary](../?path=/docs/content-product-vocabulary--page) for
 consistency in terminology and naming conventions when setting these values.
 
-You may also set an optional `subjectNoun` for the Combobox Content. This will
-be used in the empty state of the Combobox, as well as the noun within the
+You may also set an optional `subjectNoun` for the `Combobox` content. This will
+be used in the empty state of the `Combobox`, as well as the noun within the
 search placeholder.
 
-#### Empty states
+Follow InputText content guidelines for the text input.
 
-In cases where the list of options is empty, the Combobox Content will display a
-message indicating the absence of options. The default will read, _"No options
+Follow Button content guidelines for the actions.
+
+### Empty states
+
+In cases where the list of options is empty, the `Combobox` content will display
+a message indicating the absence of options. The default will read, _"No options
 yet"_ or _"You don't have any [subjectNoun] yet"_ if you've set the
 `subjectNoun` prop.
 
 If options are available, but the search query does not match any of them, the
 Combobox Content will display a message indicating that no options match the
 search query.
+
+## Accessibility
+
+### Keyboard operation
+
+- The trigger can be actioned with `space` or `return`
+- The Comobox confines tabbing to within itself while it's open using
+  [useFocusTrap](https://atlantis.getjobber.com/?path=/docs/hooks-usefocustrap--use-focus-trap)
+- Pressing `esc` will close the `Combobox` and return focus to the trigger using
+  [useRefocusOnActivator](https://atlantis.getjobber.com/?path=/docs/hooks-userefocusonactivator--use-refocus-on-activator)
+- The search input is automatically focused when the `Combobox` opens. The
+  button to clear the input can be focused with `tab`
+- Pressing `tab` again will set focus to the options list, which are navigated
+  by the `up` and `down` arrow keys, and actioned with `space` or `return`
+- Pressing `tab` again will set focus to the actions (if present), or return
+  focus to the input if not
+
+### Assistive technology
+
+- The trigger element is given a `role="combobox"` to inform the user the type
+  of content they'll be interacting with
+- Once the user opens the `Combobox`, the search input is focused and announced
+- The title and "selected/unselected" status of each item is announced as the
+  user navigates the options
+- The actions (if present) are announced and operable as buttons
