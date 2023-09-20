@@ -54,7 +54,7 @@
 }
 
 .listItem.active {
-  --data-list-item-active-color: rgb(243, 245, 246);
+  --data-list-item-active-color: var(--color-surface--background);
   background-color: var(--data-list-item-active-color);
 }
 
