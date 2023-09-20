@@ -68,10 +68,12 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     filteredOptions,
   } = useComboboxContent(props.selected, props.options);
 
-  const { optionsListRef, setFocusedOption } = useComboboxAccessibility(
+  const { optionsListRef } = useComboboxAccessibility(
     optionsExist,
     open,
     handleSelection,
+    popperRef,
+    filteredOptions,
   );
 
   const template = (
@@ -99,15 +101,13 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
             return (
               <li
                 key={option.id}
-                tabIndex={0}
-                onFocus={() => setFocusedOption(option)}
+                tabIndex={-1}
                 role="option"
                 aria-selected={isSelected}
                 onClick={() => handleSelection(option)}
-                className={classnames(
-                  styles.option,
-                  isSelected && styles.selectedOption,
-                )}
+                className={classnames(styles.option, {
+                  [styles.selectedOption]: isSelected,
+                })}
               >
                 {option.label}
               </li>
@@ -216,39 +216,88 @@ function useComboboxAccessibility(
   optionsExist: boolean,
   open: boolean,
   selectionCallback: (selection: ComboboxOption) => void,
+  containerRef: React.RefObject<HTMLDivElement>,
+  filteredOptions: ComboboxOption[],
 ): {
   optionsListRef: React.RefObject<HTMLUListElement>;
-  setFocusedOption: React.Dispatch<SetStateAction<ComboboxOption | null>>;
 } {
+  const hasOptionsVisible = optionsExist && open && filteredOptions.length > 0;
   const optionsListRef = useRef<HTMLUListElement>(null);
+  const initialOption = filteredOptions.length > 0 ? filteredOptions[0] : null;
   const [focusedOption, setFocusedOption] = useState<ComboboxOption | null>(
-    null,
+    initialOption,
   );
 
   useEffect(() => {
     if (optionsExist && open) {
-      optionsListRef.current?.addEventListener("keydown", handleListKeydown);
+      containerRef.current?.addEventListener("keydown", handleContentKeydown);
     }
 
     return () => {
-      optionsListRef.current?.removeEventListener("keydown", handleListKeydown);
+      containerRef.current?.removeEventListener(
+        "keydown",
+        handleContentKeydown,
+      );
     };
-  }, [open, optionsExist, optionsListRef, focusedOption]);
+  }, [open, optionsExist, optionsListRef, focusedOption, filteredOptions]);
 
-  function handleListKeydown(event: KeyboardEvent) {
+  function handleContentKeydown(event: KeyboardEvent) {
+    if (!hasOptionsVisible) return;
+
     if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      event.stopPropagation();
+      handleKeyboardSelection(event);
+    }
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      handleKeyboardNavigation(event);
+    }
+  }
 
-      if (focusedOption) {
-        selectionCallback(focusedOption);
+  function handleKeyboardNavigation(event: KeyboardEvent) {
+    event.preventDefault();
+
+    if (hasOptionsVisible) {
+      const indexChange =
+        event.key === "ArrowDown" ? 1 : event.key === "ArrowUp" ? -1 : 0;
+
+      if (indexChange) {
+        // focused option might not be in the filtered
+        // need to reset it with filteredOptions
+        const currentIndex = filteredOptions.findIndex(
+          option => option.id === focusedOption?.id,
+        );
+        if (currentIndex !== -1) {
+          const newIndex = currentIndex + indexChange;
+          const newOption = filteredOptions[newIndex];
+
+          if (newOption) {
+            setFocusedOption(newOption);
+            const optionElement = optionsListRef.current?.children[
+              newIndex
+            ] as HTMLElement;
+            optionElement?.focus();
+          }
+        }
       }
+    }
+  }
+
+  function handleKeyboardSelection(event: KeyboardEvent) {
+    const activeElementInList = optionsListRef.current?.contains(
+      document.activeElement,
+    );
+    // Do not prevent enter key for Actions or Search clearing
+    if (!activeElementInList) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (focusedOption) {
+      selectionCallback(focusedOption);
     }
   }
 
   return {
     optionsListRef,
-    setFocusedOption,
   };
 }
 
