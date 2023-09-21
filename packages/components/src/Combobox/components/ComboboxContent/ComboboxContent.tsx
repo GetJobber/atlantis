@@ -235,7 +235,6 @@ function useComboboxAccessibility(
   useEffect(() => {
     if (open && selectedElement) {
       selectedElement.scrollIntoView({
-        behavior: "instant",
         block: "nearest",
       });
     }
