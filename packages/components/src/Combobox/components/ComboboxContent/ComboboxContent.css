@@ -1,7 +1,7 @@
 .content {
   z-index: var(--elevation-tooltip);
   max-width: var(--popover--width);
-  max-height: calc(var(--space-extravagant) * 6.25);
+  max-height: calc(var(--space-largest) * 8.75);
   min-width: calc(var(--space-extravagant) * 3.75);
   box-shadow: var(--shadow-base);
   margin-top: var(--space-small);
@@ -31,7 +31,7 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--space-small);
-  color: var(--color-blue);
+  color: var(--color-heading);
   font-weight: 500;
   cursor: pointer;
 }
