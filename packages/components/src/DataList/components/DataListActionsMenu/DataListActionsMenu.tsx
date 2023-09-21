@@ -41,6 +41,7 @@ export function DataListActionsMenu({
           <div className={styles.overlay} onClick={onRequestClose} />
 
           <motion.div
+            role="menu"
             ref={setRef}
             variants={variants}
             initial="hidden"

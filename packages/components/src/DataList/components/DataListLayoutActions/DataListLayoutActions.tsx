@@ -1,6 +1,6 @@
 import React, { Children, ReactElement, useEffect } from "react";
 import { useDataListContext } from "../../context/DataListContext";
-import { useDataListLayoutContext } from "../../context/DataListLayoutContext/DataListLayoutContext";
+import { useDataListLayoutContext } from "../../context/DataListLayoutContext";
 import { DataListItemActionsOverflow } from "../DataListItemActions/DataListItemActionsOverflow";
 
 export function DataListLayoutActions() {
