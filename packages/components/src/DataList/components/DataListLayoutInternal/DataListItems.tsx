@@ -8,6 +8,7 @@ import { DataListLayoutProps, DataListObject } from "../../DataList.types";
 import { generateListItemElements } from "../../DataList.utils";
 import { InternalDataListItemActions } from "../DataListItemActions";
 import { useDataListContext } from "../../context/DataListContext";
+import { DataListLayoutContext } from "../../context/DataListLayoutContext/DataListLayoutContext";
 
 interface DataListItemsProps<T extends DataListObject> {
   readonly layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined;
@@ -20,42 +21,62 @@ export function DataListItems<T extends DataListObject>({
   mediaMatches,
   data,
 }: DataListItemsProps<T>) {
-  const { hasInLayoutActions } = useDataListContext();
+  const { hasInLayoutActions, setHasInLayoutActions } = useDataListContext();
   const elementData = generateListItemElements(data);
-  const [hover, setHover] = useState<T["id"]>();
+  const [activeID, setActiveID] = useState<T["id"]>();
+  const [activeItem, setActiveItem] = useState<T>();
 
   return (
-    <DataListLayoutInternal
-      layouts={layouts}
-      mediaMatches={mediaMatches}
-      renderLayout={layout => {
-        return (
-          <>
-            {elementData.map((child, i) => {
-              const item = data[i];
+    <DataListLayoutContext.Provider
+      value={{ hasInLayoutActions, setHasInLayoutActions, activeItem }}
+    >
+      <DataListLayoutInternal
+        layouts={layouts}
+        mediaMatches={mediaMatches}
+        renderLayout={layout => {
+          return (
+            <>
+              {elementData.map((child, i) => {
+                const item = data[i];
 
-              return (
-                <div
-                  onMouseEnter={() => setHover(item.id)}
-                  onMouseLeave={() => setHover(undefined)}
-                  className={styles.listItem}
-                  key={item.id}
-                >
-                  <DataListItemInternal item={data[i]}>
-                    {layout.props.children(child)}
-                  </DataListItemInternal>
+                return (
+                  <div
+                    // Set the active item whenever the element or any of its
+                    // children are clicked
+                    onClick={handleSetActiveItem(item)}
+                    onMouseEnter={handleSetActiveItem(item)}
+                    onMouseLeave={handleUnsetActiveItem}
+                    className={styles.listItem}
+                    key={item.id}
+                  >
+                    <DataListItemInternal item={data[i]}>
+                      {layout.props.children(child)}
+                    </DataListItemInternal>
 
-                  <AnimatePresence>
-                    {hover === item.id && !hasInLayoutActions && (
-                      <InternalDataListItemActions item={item} />
-                    )}
-                  </AnimatePresence>
-                </div>
-              );
-            })}
-          </>
-        );
-      }}
-    />
+                    <AnimatePresence>
+                      {activeID === item.id && !hasInLayoutActions && (
+                        <InternalDataListItemActions item={item} />
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+            </>
+          );
+        }}
+      />
+    </DataListLayoutContext.Provider>
   );
+
+  function handleSetActiveItem(item: T) {
+    return () => {
+      setActiveID(item.id);
+      setActiveItem(item);
+    };
+  }
+
+  function handleUnsetActiveItem() {
+    setActiveID(undefined);
+    setActiveItem(undefined);
+  }
 }

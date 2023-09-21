@@ -192,6 +192,14 @@ export interface DataListContextProps<T extends DataListObject>
   readonly setHasInLayoutActions: (state: boolean) => void;
 }
 
+export interface DataListLayoutContextProps<T extends DataListObject>
+  extends Pick<
+    DataListContextProps<T>,
+    "setHasInLayoutActions" | "hasInLayoutActions"
+  > {
+  readonly activeItem?: T;
+}
+
 type Fragment<T> = T | T[];
 
 export interface DataListItemActionsProps<T extends DataListObject> {
