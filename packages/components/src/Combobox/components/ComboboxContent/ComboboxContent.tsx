@@ -60,6 +60,8 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     setSearchValue,
     selectedOption,
     setSelectedOption,
+    selectedElement,
+    setSelectedElement,
     open,
     setOpen,
     popperRef,
@@ -75,6 +77,7 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     popperRef,
     filteredOptions,
     optionsListRef,
+    selectedElement,
   );
 
   const template = (
@@ -101,6 +104,9 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
 
             return (
               <li
+                ref={listItem => {
+                  if (isSelected) setSelectedElement(listItem);
+                }}
                 key={option.id}
                 tabIndex={-1}
                 role="option"
@@ -219,11 +225,21 @@ function useComboboxAccessibility(
   containerRef: React.RefObject<HTMLDivElement>,
   filteredOptions: ComboboxOption[],
   optionsListRef: React.RefObject<HTMLUListElement>,
+  selectedElement: HTMLElement | null,
 ): void {
   const hasOptionsVisible = open && filteredOptions.length > 0;
   const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
 
   useEffect(() => setFocusedIndex(null), [open, filteredOptions.length]);
+
+  useEffect(() => {
+    if (open && selectedElement) {
+      selectedElement.scrollIntoView({
+        behavior: "instant",
+        block: "nearest",
+      });
+    }
+  }, [open]);
 
   useEffect(() => {
     if (open) {
@@ -293,6 +309,8 @@ function useComboboxContent(
   setSelectedOption: React.Dispatch<
     React.SetStateAction<ComboboxOption | null>
   >;
+  selectedElement: HTMLElement | null;
+  setSelectedElement: React.Dispatch<React.SetStateAction<HTMLElement | null>>;
   open: boolean;
   setOpen: (open: boolean) => void;
   popperRef: React.RefObject<HTMLDivElement>;
@@ -307,6 +325,9 @@ function useComboboxContent(
   const [searchValue, setSearchValue] = useState<string>("");
   const [selectedOption, setSelectedOption] = useState<ComboboxOption | null>(
     defaultValue || null,
+  );
+  const [selectedElement, setSelectedElement] = useState<HTMLElement | null>(
+    null,
   );
   const { open, setOpen, wrapperRef } = React.useContext(ComboboxContext);
 
@@ -345,6 +366,8 @@ function useComboboxContent(
     setSearchValue,
     selectedOption,
     setSelectedOption,
+    selectedElement,
+    setSelectedElement,
     open,
     setOpen,
     popperRef,
