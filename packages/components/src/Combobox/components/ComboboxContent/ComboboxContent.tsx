@@ -66,13 +66,15 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
     popperStyles,
     attributes,
     filteredOptions,
+    optionsListRef,
   } = useComboboxContent(props.selected, props.options);
 
-  const { optionsListRef } = useComboboxAccessibility(
+  useComboboxAccessibility(
     open,
     handleSelection,
     popperRef,
     filteredOptions,
+    optionsListRef,
   );
 
   const template = (
@@ -216,11 +218,9 @@ function useComboboxAccessibility(
   selectionCallback: (selection: ComboboxOption) => void,
   containerRef: React.RefObject<HTMLDivElement>,
   filteredOptions: ComboboxOption[],
-): {
-  optionsListRef: React.RefObject<HTMLUListElement>;
-} {
+  optionsListRef: React.RefObject<HTMLUListElement>,
+): void {
   const hasOptionsVisible = open && filteredOptions.length > 0;
-  const optionsListRef = useRef<HTMLUListElement>(null);
   const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
 
   useEffect(() => setFocusedIndex(null), [open, filteredOptions.length]);
@@ -289,10 +289,6 @@ function useComboboxAccessibility(
       selectionCallback(filteredOptions[focusedIndex]);
     }
   }
-
-  return {
-    optionsListRef,
-  };
 }
 
 function useComboboxContent(
@@ -311,6 +307,7 @@ function useComboboxContent(
   popperStyles: { [key: string]: React.CSSProperties };
   attributes: { [key: string]: { [key: string]: string } | undefined };
   filteredOptions: ComboboxOption[];
+  optionsListRef: React.RefObject<HTMLUListElement>;
 } {
   const defaultValue = options.find(
     option => option.id.toString() === selected?.toString(),
@@ -333,6 +330,7 @@ function useComboboxContent(
 
   useRefocusOnActivator(open);
 
+  const optionsListRef = useRef<HTMLUListElement>(null);
   const popperRef = useFocusTrap<HTMLDivElement>(open);
   const { styles: popperStyles, attributes } = usePopper(
     wrapperRef.current,
@@ -361,5 +359,6 @@ function useComboboxContent(
     popperStyles,
     attributes,
     filteredOptions,
+    optionsListRef,
   };
 }

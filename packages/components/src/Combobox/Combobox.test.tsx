@@ -14,9 +14,10 @@ describe("Combobox validation", () => {
       render(
         <Combobox>
           <Combobox.TriggerButton label="Button" />
-          <Combobox.Content options={[]} onSelect={jest.fn()}>
-            <></>
-          </Combobox.Content>
+          <Combobox.Content
+            options={[]}
+            onSelect={jest.fn()}
+          ></Combobox.Content>
         </Combobox>,
       );
     }).not.toThrow();
@@ -28,9 +29,10 @@ describe("Combobox validation", () => {
     try {
       render(
         <Combobox>
-          <Combobox.Content options={[]} onSelect={jest.fn()}>
-            <></>
-          </Combobox.Content>
+          <Combobox.Content
+            options={[]}
+            onSelect={jest.fn()}
+          ></Combobox.Content>
         </Combobox>,
       );
     } catch (e) {
@@ -48,9 +50,10 @@ describe("Combobox validation", () => {
         <Combobox>
           <Combobox.TriggerButton label="Button" />
           <Combobox.TriggerButton label="Button Again" />
-          <Combobox.Content options={[]} onSelect={jest.fn()}>
-            <></>
-          </Combobox.Content>
+          <Combobox.Content
+            options={[]}
+            onSelect={jest.fn()}
+          ></Combobox.Content>
         </Combobox>,
       );
     } catch (e) {
@@ -68,9 +71,10 @@ describe("Combobox validation", () => {
         <Combobox>
           <Combobox.TriggerButton label="Button" />
           <Combobox.TriggerChip label="Chippy Chip" />
-          <Combobox.Content options={[]} onSelect={jest.fn()}>
-            <></>
-          </Combobox.Content>
+          <Combobox.Content
+            options={[]}
+            onSelect={jest.fn()}
+          ></Combobox.Content>
         </Combobox>,
       );
     } catch (e) {
@@ -135,9 +139,7 @@ describe("ComboboxContent", () => {
     const { getByTestId } = render(
       <Combobox>
         <Combobox.TriggerButton label="Button" />
-        <Combobox.Content options={[]} onSelect={jest.fn()}>
-          <></>
-        </Combobox.Content>
+        <Combobox.Content options={[]} onSelect={jest.fn()}></Combobox.Content>
       </Combobox>,
     );
     expect(getByTestId("ATL-Combobox-Content")).toHaveClass("hidden");
@@ -153,9 +155,7 @@ describe("ComboboxContent", () => {
             { id: "2", label: "Frodo Baggins" },
           ]}
           onSelect={jest.fn()}
-        >
-          <></>
-        </Combobox.Content>
+        ></Combobox.Content>
       </Combobox>,
     );
 
@@ -180,9 +180,7 @@ describe("ComboboxContent", () => {
             { id: "2", label: "Frodo Baggins" },
           ]}
           onSelect={jest.fn()}
-        >
-          <></>
-        </Combobox.Content>
+        ></Combobox.Content>
       </Combobox>,
     );
 
@@ -206,9 +204,7 @@ describe("ComboboxContent", () => {
             { id: "2", label: "Frodo Baggins" },
           ]}
           onSelect={jest.fn()}
-        >
-          <></>
-        </Combobox.Content>
+        ></Combobox.Content>
       </Combobox>,
     );
 
@@ -235,9 +231,7 @@ describe("Combobox Search", () => {
             { id: "2", label: "Frodo Baggins" },
           ]}
           onSelect={jest.fn()}
-        >
-          <></>
-        </Combobox.Content>
+        ></Combobox.Content>
       </Combobox>,
     );
 
@@ -264,9 +258,7 @@ describe("Combobox selected value", () => {
           ]}
           onSelect={jest.fn()}
           selected={1}
-        >
-          <></>
-        </Combobox.Content>
+        ></Combobox.Content>
       </Combobox>,
     );
     const option = getByText("Bilbo Baggins");
@@ -284,9 +276,7 @@ describe("Combobox selected value", () => {
           ]}
           onSelect={jest.fn()}
           selected={1}
-        >
-          <></>
-        </Combobox.Content>
+        ></Combobox.Content>
       </Combobox>,
     );
     const option = getByText("Bilbo Baggins");
