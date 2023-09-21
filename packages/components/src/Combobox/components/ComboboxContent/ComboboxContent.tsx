@@ -261,22 +261,18 @@ function useComboboxAccessibility(
   function handleKeyboardNavigation(event: KeyboardEvent, indexChange: number) {
     if (!hasOptionsVisible) return;
 
-    let newIndex;
+    const newIndex = focusedIndex === null ? 0 : focusedIndex + indexChange;
 
-    event.preventDefault();
+    if (newIndex < 0 || newIndex >= filteredOptions.length) return;
 
-    if (focusedIndex === null) {
-      newIndex = 0;
-    } else {
-      newIndex = focusedIndex + indexChange;
-
-      if (newIndex < 0 || newIndex >= filteredOptions.length) return;
-    }
     const optionElement = optionsListRef.current?.children[
       newIndex
     ] as HTMLElement;
+
     optionElement?.focus();
     setFocusedIndex(newIndex);
+    event.preventDefault();
+    event.stopPropagation();
   }
 
   function handleKeyboardSelection(event: KeyboardEvent) {
