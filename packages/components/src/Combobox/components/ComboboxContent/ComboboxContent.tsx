@@ -267,18 +267,16 @@ function useComboboxAccessibility(
 
     if (focusedIndex === null) {
       newIndex = 0;
-      setFocusedIndex(0);
     } else {
       newIndex = focusedIndex + indexChange;
 
       if (newIndex < 0 || newIndex >= filteredOptions.length) return;
-
-      setFocusedIndex(newIndex);
     }
     const optionElement = optionsListRef.current?.children[
       newIndex
     ] as HTMLElement;
     optionElement?.focus();
+    setFocusedIndex(newIndex);
   }
 
   function handleKeyboardSelection(event: KeyboardEvent) {
