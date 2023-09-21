@@ -259,8 +259,6 @@ function useComboboxAccessibility(
   }
 
   function handleKeyboardNavigation(event: KeyboardEvent, indexChange: number) {
-    if (!hasOptionsVisible) return;
-
     const newIndex = focusedIndex === null ? 0 : focusedIndex + indexChange;
 
     if (newIndex < 0 || newIndex >= filteredOptions.length) return;
