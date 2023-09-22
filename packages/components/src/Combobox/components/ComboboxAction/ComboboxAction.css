@@ -13,8 +13,10 @@
   border: none;
   text-align: left;
   background-color: var(--color-surface);
+  cursor: pointer;
 }
 
+.actionButton:hover,
 .actionButton:focus {
   border-radius: var(--radius-large);
   outline: none;
