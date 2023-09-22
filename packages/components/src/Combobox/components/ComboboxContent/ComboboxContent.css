@@ -1,7 +1,7 @@
 .content {
   z-index: var(--elevation-tooltip);
   max-width: var(--popover--width);
-  max-height: calc(var(--space-largest) * 8.75);
+  max-height: calc(var(--space-largest) * 8.25);
   min-width: calc(var(--space-extravagant) * 3.75);
   box-shadow: var(--shadow-base);
   margin-top: var(--space-small);
@@ -28,12 +28,14 @@
 
 .option {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  min-height: calc((var(--space-largest) - var(--space-smaller)));
+  box-sizing: border-box;
   padding: var(--space-small);
   color: var(--color-heading);
   font-weight: 500;
   cursor: pointer;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .selectedOption,
