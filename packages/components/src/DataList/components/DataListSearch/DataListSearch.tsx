@@ -25,7 +25,8 @@ export function InternalDataListSearch() {
   const inputRef = useRef<InputTextRef>(null);
   const [visible, setVisible] = useState(false);
 
-  const { searchComponent, filterComponent, title } = useDataListContext();
+  const { searchComponent, filterComponent, sorting, title } =
+    useDataListContext();
 
   const debouncedSearch = useCallback(
     debounce(
@@ -39,7 +40,11 @@ export function InternalDataListSearch() {
   const { placeholder } = searchComponent.props;
 
   return (
-    <div className={classNames({ [styles.withNoFilters]: !filterComponent })}>
+    <div
+      className={classNames({
+        [styles.withNoFilters]: !filterComponent && !sorting,
+      })}
+    >
       <div
         data-testid={DATA_LIST_SEARCH_TEST_ID}
         className={classNames(styles.searchInput, {

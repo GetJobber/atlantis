@@ -5,6 +5,7 @@ import { DataListFilters, InternalDataListFilters } from "./DataListFilters";
 import { CONTAINER_TEST_ID } from "./DataListFilter.const";
 import { defaultValues } from "../../context/DataListContext";
 import * as dataListContext from "../../context/DataListContext/DataListContext";
+import * as useShowHeader from "../../hooks/useShowHeader";
 
 configMocks({ act });
 const observer = mockIntersectionObserver();
@@ -20,10 +21,12 @@ const contextValueWithRenderableChildren = {
     </DataListFilters>
   ),
 };
+const showHeaderSpy = jest.spyOn(useShowHeader, "useShowHeader");
 
 afterEach(() => {
   cleanup();
   spy.mockReset();
+  showHeaderSpy.mockReset();
 });
 
 describe("DataListFilters", () => {
@@ -103,5 +106,32 @@ describe("InternalDataListFilters", () => {
     render(<InternalDataListFilters />);
 
     expect(screen.queryByRole("button")).not.toBeInTheDocument();
+  });
+
+  describe("Sort", () => {
+    const mockContextValueWithSorting = {
+      ...contextValueWithRenderableChildren,
+      sorting: { sortable: ["name"], state: undefined, onSort: jest.fn() },
+    };
+
+    it("should render the sort button when the header is not there", () => {
+      spy.mockReturnValue(mockContextValueWithSorting);
+      showHeaderSpy.mockReturnValueOnce(false);
+      render(<InternalDataListFilters />);
+
+      expect(
+        screen.getByRole("button", { name: "Sort by" }),
+      ).toBeInTheDocument();
+    });
+
+    it("should not render the sort button when the header is there", () => {
+      spy.mockReturnValue(mockContextValueWithSorting);
+      showHeaderSpy.mockReturnValueOnce(true);
+      render(<InternalDataListFilters />);
+
+      expect(
+        screen.queryByRole("button", { name: "Sort by" }),
+      ).not.toBeInTheDocument();
+    });
   });
 });
