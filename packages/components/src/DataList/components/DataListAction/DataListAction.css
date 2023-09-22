@@ -5,6 +5,7 @@
   padding: var(--space-small);
   border: none;
   border-radius: 0;
+  font-size: var(--typography--fontSize-base);
   text-align: left;
   background: none;
   cursor: pointer;
