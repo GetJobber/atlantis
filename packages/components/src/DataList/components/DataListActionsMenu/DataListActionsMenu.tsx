@@ -50,6 +50,7 @@ export function DataListActionsMenu({
             transition={{ duration: TRANSITION_DELAY_IN_SECONDS }}
             className={styles.menu}
             style={getPositionCssVars()}
+            onClick={onRequestClose}
           >
             <div tabIndex={0} ref={focusTrapRef}>
               {children}
