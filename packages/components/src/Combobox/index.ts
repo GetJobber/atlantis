@@ -5,3 +5,4 @@ export {
   COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE,
 } from "./Combobox";
 export { ComboboxContextProvider } from "./ComboboxProvider";
+export { ComboboxOption } from "./Combobox.types";
