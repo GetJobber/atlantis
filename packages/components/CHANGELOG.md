@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.40.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.39.0...@jobber/components@4.40.0) (2023-09-22)
+
+
+### Features
+
+* **components:** move sorting to a button when the header disappears ([#1541](https://github.com/GetJobber/atlantis/issues/1541)) ([84010c3](https://github.com/GetJobber/atlantis/commit/84010c3d57c1a111137c31155063f0e3c37c0c47))
+
+
+
+
+
 # [4.39.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.38.0...@jobber/components@4.39.0) (2023-09-19)
 
 
