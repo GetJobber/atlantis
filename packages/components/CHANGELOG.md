@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.41.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.40.0...@jobber/components@4.41.0) (2023-09-22)
+
+
+### Features
+
+* **components:** add context menu on data list ([#1542](https://github.com/GetJobber/atlantis/issues/1542)) ([6c4f0b1](https://github.com/GetJobber/atlantis/commit/6c4f0b172ea351a5810d21d6146287213c19448b))
+
+
+
+
+
 # [4.40.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.39.0...@jobber/components@4.40.0) (2023-09-22)
 
 
