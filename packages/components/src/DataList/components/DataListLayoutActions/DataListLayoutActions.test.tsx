@@ -4,10 +4,12 @@ import { DataListLayoutActions } from "./DataListLayoutActions";
 import { DataListContext, defaultValues } from "../../context/DataListContext";
 import { DataListItemActions } from "../DataListItemActions";
 import { DataListAction } from "../DataListAction";
-import { DataListLayoutContext } from "../../context/DataListLayoutContext";
+import {
+  DataListLayoutContext,
+  defaultValues as layoutDefaultValues,
+} from "../../context/DataListLayoutContext";
 
-const mockMainSetHasInLayoutActions = jest.fn();
-const mockLayoutSetHasInLayoutActions = jest.fn();
+const mockSetHasInLayoutActions = jest.fn();
 const mockItemActionComponent = jest.fn<JSX.Element | undefined, []>(() => (
   <DataListItemActions>
     <DataListAction label="Edit" />
@@ -29,21 +31,15 @@ describe("DataListLayoutActions.test", () => {
   it("should let the layout context know that it can be rendered", () => {
     renderComponent();
 
-    expect(mockLayoutSetHasInLayoutActions).toHaveBeenCalledWith(true);
-  });
-
-  it("should not let the main context know that it can be rendered because that's the layouts job", () => {
-    renderComponent();
-
-    expect(mockMainSetHasInLayoutActions).not.toHaveBeenCalled();
+    expect(mockSetHasInLayoutActions).toHaveBeenCalledWith(true);
   });
 
   it("should let the layout context know that it has been removed", () => {
     const { unmount } = renderComponent();
-    expect(mockLayoutSetHasInLayoutActions).toHaveBeenCalledWith(true);
+    expect(mockSetHasInLayoutActions).toHaveBeenCalledWith(true);
 
     unmount();
-    expect(mockLayoutSetHasInLayoutActions).toHaveBeenCalledWith(false);
+    expect(mockSetHasInLayoutActions).toHaveBeenCalledWith(false);
   });
 
   it("should not render when there's no actions to render", () => {
@@ -69,7 +65,6 @@ function MockMainContextProvider({ children }: PropsWithChildren<object>) {
     <DataListContext.Provider
       value={{
         ...defaultValues,
-        setHasInLayoutActions: mockMainSetHasInLayoutActions,
         itemActionComponent: mockItemActionComponent(),
       }}
     >
@@ -82,8 +77,10 @@ function MocklayoutContextProvider({ children }: PropsWithChildren<object>) {
   return (
     <DataListLayoutContext.Provider
       value={{
-        ...defaultValues,
-        setHasInLayoutActions: mockLayoutSetHasInLayoutActions,
+        ...layoutDefaultValues,
+        isInLayoutProvider: true,
+        hasInLayoutActions: false,
+        setHasInLayoutActions: mockSetHasInLayoutActions,
         activeItem: { id: 1 },
       }}
     >

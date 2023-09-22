@@ -6,6 +6,7 @@ import {
 } from "../../DataList.types";
 
 export const defaultValues: DataListLayoutContextProps<DataListObject> = {
+  isInLayoutProvider: false,
   hasInLayoutActions: false,
   setHasInLayoutActions: noop,
 };

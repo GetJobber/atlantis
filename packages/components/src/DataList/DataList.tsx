@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import styles from "./DataList.css";
 import { DataListTotalCount } from "./components/DataListTotalCount";
 import { DataListLoadingState } from "./components/DataListLoadingState";
@@ -48,8 +48,6 @@ export function DataList<T extends DataListObject>({
   sorting,
   ...props
 }: DataListProps<T>) {
-  const [hasInLayoutActions, setHasInLayoutActions] = useState(false);
-
   const searchComponent = getCompoundComponent<DataListSearchProps>(
     props.children,
     DataListSearch,
@@ -77,8 +75,6 @@ export function DataList<T extends DataListObject>({
         layoutComponents,
         emptyStateComponents,
         itemActionComponent,
-        hasInLayoutActions,
-        setHasInLayoutActions,
         ...props,
         selected: props.selected ?? [],
         // T !== DataListObject

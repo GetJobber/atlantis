@@ -7,7 +7,6 @@ import styles from "../../DataList.css";
 import { DataListLayoutProps, DataListObject } from "../../DataList.types";
 import { generateListItemElements } from "../../DataList.utils";
 import { InternalDataListItemActions } from "../DataListItemActions";
-import { useDataListContext } from "../../context/DataListContext";
 import { DataListLayoutContext } from "../../context/DataListLayoutContext";
 
 interface DataListItemsProps<T extends DataListObject> {
@@ -21,14 +20,19 @@ export function DataListItems<T extends DataListObject>({
   mediaMatches,
   data,
 }: DataListItemsProps<T>) {
-  const { hasInLayoutActions, setHasInLayoutActions } = useDataListContext();
   const elementData = generateListItemElements(data);
+  const [hasInLayoutActions, setHasInLayoutActions] = useState(false);
   const [activeID, setActiveID] = useState<T["id"]>();
   const [activeItem, setActiveItem] = useState<T>();
 
   return (
     <DataListLayoutContext.Provider
-      value={{ hasInLayoutActions, setHasInLayoutActions, activeItem }}
+      value={{
+        isInLayoutProvider: true,
+        hasInLayoutActions,
+        setHasInLayoutActions,
+        activeItem,
+      }}
     >
       <DataListLayoutInternal
         layouts={layouts}
