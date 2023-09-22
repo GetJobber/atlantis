@@ -18,7 +18,7 @@ const mockItemActionComponent = jest.fn<JSX.Element | undefined, []>(() => (
   </DataListItemActions>
 ));
 
-describe("DataListLayoutActions.test", () => {
+describe("DataListLayoutActions", () => {
   it("should render a more action", () => {
     renderComponent();
 
