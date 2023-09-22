@@ -23,6 +23,7 @@ const mockData = [
   { id: 2, label: "Anakin Skywalker" },
 ];
 const mockHeader = { label: "Name" };
+const mockEditClick = jest.fn();
 const contextValueWithRenderableChildren = {
   ...defaultValues,
   data: mockData,
@@ -40,7 +41,7 @@ const contextValueWithRenderableChildren = {
   ),
   itemActionComponent: (
     <DataListItemActions>
-      <DataListAction label="Edit" onClick={jest.fn()} />
+      <DataListAction label="Edit" onClick={mockEditClick} />
       <DataListAction label="Delete" onClick={jest.fn()} />
     </DataListItemActions>
   ),
@@ -144,11 +145,45 @@ describe("DataListItems", () => {
 
       const listItem = screen.getByText(mockData[0].label);
       userEvent.hover(listItem);
+
       fireEvent.contextMenu(listItem);
 
       const menuElement = screen.getByRole("menu");
       expect(menuElement).toBeInTheDocument();
       expect(within(menuElement).getAllByRole("button")).toHaveLength(2);
+    });
+
+    it("should render context menu in the right position when right clicking on a list item", () => {
+      spy.mockReturnValue({ ...contextValueWithRenderableChildren });
+      renderItems();
+
+      const listItem = screen.getByText(mockData[0].label);
+      userEvent.hover(listItem);
+
+      const clientX = 20;
+      const clientY = 30;
+      fireEvent.contextMenu(listItem, { clientX, clientY });
+
+      const menuElement = screen.getByRole("menu");
+      expect(menuElement).toHaveStyle({
+        "--actions-menu-x": `${clientX}px`,
+        "--actions-menu-y": `${clientY}px`,
+      });
+    });
+
+    it("should have the correct item when clicking the edit button", () => {
+      spy.mockReturnValue({ ...contextValueWithRenderableChildren });
+      renderItems();
+
+      const selectedItem = mockData[1];
+      const listItem = screen.getByText(selectedItem.label);
+      userEvent.hover(listItem);
+      fireEvent.contextMenu(listItem);
+
+      const menuElement = screen.getByRole("menu");
+      const editButton = within(menuElement).getByText("Edit");
+      userEvent.click(editButton);
+      expect(mockEditClick).toHaveBeenCalledWith(selectedItem);
     });
 
     it("should not render context menu when right clicking on a list item and itemActionComponent is not provided", () => {
