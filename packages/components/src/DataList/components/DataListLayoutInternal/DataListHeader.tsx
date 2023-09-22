@@ -11,7 +11,7 @@ import {
   DataListObject,
   DataListProps,
 } from "../../DataList.types";
-import { sortSizeProp } from "../../DataList.utils";
+import { useShowHeader } from "../../hooks/useShowHeader";
 
 interface DataListHeaderProps<T extends DataListObject> {
   readonly layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined;
@@ -24,20 +24,8 @@ export function DataListHeader<T extends DataListObject>({
   layouts,
   mediaMatches,
   headerData,
-  headerVisibility,
 }: DataListHeaderProps<T>) {
-  const matchingMediaQueries = Object.keys(mediaMatches || {}).filter(
-    (key): key is Breakpoints => !!mediaMatches?.[key as Breakpoints],
-  );
-  const sortedVisibleBreakpoints = sortSizeProp(matchingMediaQueries);
-
-  // Determines if the header should be visible based on the headerVisibility
-  const showHeader = sortedVisibleBreakpoints.reduce(
-    (previousVisibility, breakpoint) => {
-      return headerVisibility[breakpoint] ?? previousVisibility;
-    },
-    true,
-  );
+  const showHeader = useShowHeader();
 
   if (!showHeader || !headerData) return null;
 
