@@ -1,4 +1,4 @@
-import React, { Children, useState } from "react";
+import React, { Children, useMemo, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import classNames from "classnames";
 import { DataListLayoutInternal } from "./DataListLayoutInternal";
@@ -24,7 +24,7 @@ export function DataListItems<T extends DataListObject>({
   data,
 }: DataListItemsProps<T>) {
   const { itemActionComponent } = useDataListContext();
-  const elementData = generateListItemElements(data);
+  const elementData = useMemo(() => generateListItemElements(data), [data]);
   const [activeID, setActiveID] = useState<T["id"]>();
   const [contextPosition, setContextPosition] =
     useState<Record<"x" | "y", number>>();
@@ -90,7 +90,7 @@ export function DataListItems<T extends DataListObject>({
   }
 
   function handleMouseLeave() {
-    !contextPosition && setActiveID(undefined);
+    !isContextMenuVisible && setActiveID(undefined);
   }
 
   function handleContextMenu(event: React.MouseEvent<HTMLDivElement>) {
