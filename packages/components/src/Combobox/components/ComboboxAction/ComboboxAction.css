@@ -16,10 +16,14 @@
   cursor: pointer;
 }
 
-.actionButton:hover,
 .actionButton:focus {
+  box-shadow: var(--shadow-focus);
   border-radius: var(--radius-large);
-  outline: none;
+  background-color: var(--color-surface--background);
+}
+
+.actionButton:hover {
+  border-radius: var(--radius-large);
   background-color: var(--color-surface--background);
 }
 

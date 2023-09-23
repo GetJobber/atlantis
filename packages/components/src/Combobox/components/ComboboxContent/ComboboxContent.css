@@ -1,7 +1,7 @@
 .content {
   z-index: var(--elevation-tooltip);
   max-width: var(--popover--width);
-  max-height: calc(var(--space-largest) * 8.25);
+  max-height: calc(var(--space-largest) * 8.75);
   min-width: calc(var(--space-extravagant) * 3.75);
   box-shadow: var(--shadow-base);
   margin-top: var(--space-small);
@@ -13,14 +13,34 @@
 }
 
 /* CAUTION: Tests for content visibility assume this class' presence hides the content
-  * so please be careful if you change this class name, or the css rules within.
- */
+* so please be careful if you change this class name, or the css rules within.
+*/
 .content.hidden {
   display: none;
   visibility: hidden;
 }
 
+.clearSearch {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  right: var(--space-base);
+  z-index: var(--elevation-tooltip);
+  width: calc(var(--space-small) * 3);
+  height: calc(var(--space-small) * 3);
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-circle);
+  background-color: var(--color-surface--background);
+  transform: translateY(-50%);
+  justify-content: center;
+  align-items: center;
+}
+
 .optionsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-smaller);
   margin: 0;
   padding: var(--space-small);
   list-style: none;
@@ -45,6 +65,11 @@
   background-color: var(--color-surface--background);
 }
 
+.option:focus,
+.clearSearch:focus {
+  box-shadow: var(--shadow-focus);
+}
+
 .search {
   position: sticky;
   top: 0;
@@ -58,27 +83,6 @@
   border-bottom: var(--border-base) solid var(--color-border);
   font-family: var(--typography--fontFamily-normal);
   font-size: var(--typography--fontSize-base);
-}
-
-.clearSearch {
-  display: flex;
-  position: absolute;
-  top: 50%;
-  right: var(--space-base);
-  z-index: var(--elevation-tooltip);
-  width: calc(var(--space-small) * 3);
-  height: calc(var(--space-small) * 3);
-  padding: 0;
-  border: none;
-  border-radius: var(--radius-circle);
-  background-color: var(--color-surface--background);
-  transform: translateY(-50%);
-  justify-content: center;
-  align-items: center;
-}
-
-.clearSearch:focus {
-  box-shadow: var(--shadow-focus);
 }
 
 .filterMessage,
@@ -122,7 +126,10 @@
 }
 
 .actions {
+  display: flex;
+  flex-direction: column;
   position: sticky;
+  gap: var(--space-smaller);
   bottom: 0;
   width: 100%;
   background-color: var(--color-surface);
