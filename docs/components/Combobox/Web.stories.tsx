@@ -17,7 +17,7 @@ const ComboboxButton: ComponentStory<typeof Combobox> = args => {
   return (
     <Combobox {...args}>
       <Combobox.TriggerButton
-        label="Select a teammate"
+        label="Select Teammate"
         variation="subtle"
         type="primary"
         icon="arrowDown"
@@ -43,6 +43,7 @@ const ComboboxButton: ComponentStory<typeof Combobox> = args => {
           setSelected(selection);
         }}
         selected={selected}
+        subjectNoun="teammates"
       >
         <Combobox.Action
           label="Add Teammate"
@@ -65,7 +66,7 @@ const ComboboxChip: ComponentStory<typeof Combobox> = args => {
   const [selected, setSelected] = useState<ComboboxOption | null>(null);
   return (
     <Combobox {...args}>
-      <Combobox.TriggerChip label="Tags" />
+      <Combobox.TriggerChip label="Teammates" />
       <Combobox.Content
         options={[
           { id: "1", label: "Bilbo Baggins" },
