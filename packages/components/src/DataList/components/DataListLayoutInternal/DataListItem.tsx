@@ -1,19 +1,19 @@
 import React, { Children, MouseEvent, ReactElement, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import classNames from "classnames";
-import { DataListItemInternal } from "./DataListItemInternal";
-import { useDataListContext } from "../../context/DataListContext";
+import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
+import { useDataListLayoutContext } from "@jobber/components/DataList/context/DataListLayoutContext";
 import {
   DataListItemType,
   DataListLayoutProps,
   DataListObject,
-} from "../../DataList.types";
-import { InternalDataListItemActions } from "../DataListItemActions";
-import { DataListActionsMenu } from "../DataListActionsMenu";
-import { InternalDataListAction } from "../DataListAction";
-import { useDataListLayoutContext } from "../../context/DataListLayoutContext";
-import styles from "../../DataList.css";
-import { DataListLayoutActionsContext } from "../DataListLayoutActions/DataListLayoutContext/DataListLayoutContext";
+} from "@jobber/components/DataList/DataList.types";
+import { InternalDataListItemActions } from "@jobber/components/DataList/components/DataListItemActions";
+import { DataListActionsMenu } from "@jobber/components/DataList/components/DataListActionsMenu";
+import { InternalDataListAction } from "@jobber/components/DataList/components/DataListAction";
+import { DataListLayoutActionsContext } from "@jobber/components/DataList/components/DataListLayoutActions/DataListLayoutContext";
+import styles from "@jobber/components/DataList/DataList.css";
+import { DataListItemInternal } from "./DataListItemInternal";
 
 interface DataListItem<T extends DataListObject> {
   readonly item: DataListItemType<T[]>;
