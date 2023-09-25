@@ -29,7 +29,6 @@ export function DataListItems<T extends DataListObject>({
         isInLayoutProvider: true,
         hasInLayoutActions,
         setHasInLayoutActions,
-        activeItem: { id: 1 },
       }}
     >
       <DataListLayoutInternal

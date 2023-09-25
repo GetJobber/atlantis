@@ -184,9 +184,8 @@ export interface DataListContextProps<T extends DataListObject>
   readonly itemActionComponent?: ReactElement<DataListItemActionsProps<T>>;
 }
 
-export interface DataListLayoutContextProps<T extends DataListObject> {
+export interface DataListLayoutContextProps {
   readonly isInLayoutProvider: boolean;
-  readonly activeItem?: T;
 
   /**
    * Determine if the consumer of the DataList manually added an action to the
@@ -195,6 +194,10 @@ export interface DataListLayoutContextProps<T extends DataListObject> {
    */
   readonly hasInLayoutActions: boolean;
   readonly setHasInLayoutActions: (state: boolean) => void;
+}
+
+export interface DataListLayoutActionsContextProps<T extends DataListObject> {
+  readonly activeItem?: T;
 }
 
 type Fragment<T> = T | T[];

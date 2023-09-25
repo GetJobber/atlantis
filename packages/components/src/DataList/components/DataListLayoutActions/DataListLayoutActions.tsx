@@ -4,14 +4,16 @@ import React, {
   ReactElement,
   useEffect,
 } from "react";
+import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
+import { useDataListLayoutContext } from "@jobber/components/DataList/context/DataListLayoutContext";
+import { DataListItemActionsOverflow } from "@jobber/components/DataList/components/DataListItemActions";
+import { useDataListLayoutActionsContext } from "./DataListLayoutContext";
 import styles from "./DataListLayoutActions.css";
-import { useDataListContext } from "../../context/DataListContext";
-import { useDataListLayoutContext } from "../../context/DataListLayoutContext";
-import { DataListItemActionsOverflow } from "../DataListItemActions/DataListItemActionsOverflow";
 
 export function DataListLayoutActions() {
   const { itemActionComponent } = useDataListContext();
-  const { setHasInLayoutActions, activeItem } = useDataListLayoutContext();
+  const { setHasInLayoutActions } = useDataListLayoutContext();
+  const { activeItem } = useDataListLayoutActionsContext();
 
   const { children: actionsChildren } = itemActionComponent?.props || {};
   const actions = Children.toArray(actionsChildren) as ReactElement[];

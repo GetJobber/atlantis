@@ -13,6 +13,7 @@ import { DataListActionsMenu } from "../DataListActionsMenu";
 import { InternalDataListAction } from "../DataListAction";
 import { useDataListLayoutContext } from "../../context/DataListLayoutContext";
 import styles from "../../DataList.css";
+import { DataListLayoutActionsContext } from "../DataListLayoutActions/DataListLayoutContext/DataListLayoutContext";
 
 interface DataListItem<T extends DataListObject> {
   readonly item: DataListItemType<T[]>;
@@ -39,44 +40,43 @@ export function DataListItem<T extends DataListObject>({
     showMenu && isContextMenuVisible && Boolean(contextMenuActions);
 
   return (
-    <div
-      // Set the active item whenever the element or any of its
-      // children are clicked
-      onClick={handleShowMenu}
-      onMouseEnter={handleShowMenu}
-      onMouseLeave={handleHideMenu}
-      onContextMenu={handleContextMenu}
-      className={classNames(styles.listItem, {
-        [styles.active]: showMenu && isContextMenuVisible,
-      })}
-      key={rawItem.id}
-    >
-      <DataListItemInternal item={rawItem}>
-        {layout.props.children(item)}
-      </DataListItemInternal>
+    <DataListLayoutActionsContext.Provider value={{ activeItem: rawItem }}>
+      <div
+        onMouseEnter={handleShowMenu}
+        onMouseLeave={handleHideMenu}
+        onContextMenu={handleContextMenu}
+        className={classNames(styles.listItem, {
+          [styles.active]: showMenu && isContextMenuVisible,
+        })}
+        key={rawItem.id}
+      >
+        <DataListItemInternal item={rawItem}>
+          {layout.props.children(item)}
+        </DataListItemInternal>
 
-      <AnimatePresence>
-        {showMenu && !hasInLayoutActions && (
-          <InternalDataListItemActions item={rawItem} />
-        )}
+        <AnimatePresence>
+          {showMenu && !hasInLayoutActions && (
+            <InternalDataListItemActions item={rawItem} />
+          )}
 
-        <DataListActionsMenu
-          key={rawItem.id}
-          visible={shouldShowContextMenu}
-          position={contextPosition || { x: 0, y: 0 }}
-          onRequestClose={() => setContextPosition(undefined)}
-        >
-          {contextMenuActions &&
-            Children.map(contextMenuActions, action => (
-              <InternalDataListAction
-                key={rawItem.id}
-                {...action.props}
-                item={rawItem}
-              />
-            ))}
-        </DataListActionsMenu>
-      </AnimatePresence>
-    </div>
+          <DataListActionsMenu
+            key={rawItem.id}
+            visible={shouldShowContextMenu}
+            position={contextPosition || { x: 0, y: 0 }}
+            onRequestClose={() => setContextPosition(undefined)}
+          >
+            {contextMenuActions &&
+              Children.map(contextMenuActions, action => (
+                <InternalDataListAction
+                  key={rawItem.id}
+                  {...action.props}
+                  item={rawItem}
+                />
+              ))}
+          </DataListActionsMenu>
+        </AnimatePresence>
+      </div>
+    </DataListLayoutActionsContext.Provider>
   );
 
   function handleShowMenu() {
