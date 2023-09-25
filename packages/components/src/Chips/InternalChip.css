@@ -4,6 +4,10 @@
  * - InternalChipMultiSelect
  */
 
+:root {
+  --color-surface--background--hover: var(--color-greyBlue--lighter); /* delete once PR 1545 has merged */
+}
+
 .wrapper {
   display: flex;
   gap: var(--space-small);
