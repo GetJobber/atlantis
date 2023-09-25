@@ -159,11 +159,11 @@ const ComboboxClearSelection: ComponentStory<typeof Combobox> = args => {
   );
 };
 
-export const Button = ComboboxButton.bind({});
-Button.args = {};
+export const TriggerButton = ComboboxButton.bind({});
+TriggerButton.args = {};
 
-export const Chip = ComboboxChip.bind({});
-Chip.args = {};
+export const TriggerChip = ComboboxChip.bind({});
+TriggerChip.args = {};
 
 export const ClearSelection = ComboboxClearSelection.bind({});
 ClearSelection.args = {};
