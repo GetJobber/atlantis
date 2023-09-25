@@ -99,7 +99,10 @@ const ComboboxChip: ComponentStory<typeof Combobox> = args => {
 };
 
 const ComboboxClearSelection: ComponentStory<typeof Combobox> = args => {
-  const [selected, setSelected] = useState<ComboboxOption | null>(null);
+  const [selected, setSelected] = useState<ComboboxOption | null>({
+    id: "1",
+    label: "Bilbo Baggins",
+  });
 
   return (
     <>
