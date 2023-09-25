@@ -10,7 +10,7 @@ import { InternalDataListAction } from "../DataListAction";
 import { DataListActionsMenu } from "../DataListActionsMenu";
 
 interface DataListItemActionsOverflowProps<T extends DataListObject>
-  extends Pick<InternalDataListActionProps<T>, "item"> {
+  extends Partial<Pick<InternalDataListActionProps<T>, "item">> {
   readonly actions: ReactElement<DataListActionProps<T>>[];
 }
 
@@ -33,15 +33,17 @@ export function DataListItemActionsOverflow<T extends DataListObject>({
         />
       </Tooltip>
 
-      <DataListActionsMenu
-        visible={showMenu}
-        position={menuPosition}
-        onRequestClose={handleClose}
-      >
-        {Children.map(actions, action => (
-          <InternalDataListAction {...action.props} item={item} />
-        ))}
-      </DataListActionsMenu>
+      {item && (
+        <DataListActionsMenu
+          visible={showMenu}
+          position={menuPosition}
+          onRequestClose={handleClose}
+        >
+          {Children.map(actions, action => (
+            <InternalDataListAction {...action.props} item={item} />
+          ))}
+        </DataListActionsMenu>
+      )}
     </>
   );
 
@@ -49,7 +51,7 @@ export function DataListItemActionsOverflow<T extends DataListObject>({
     setShowMenu(true);
 
     const rect = event.currentTarget.getBoundingClientRect();
-    const posX = rect.x + rect.width;
+    const posX = rect.x;
     const posY = rect.y + rect.height;
 
     setMenuPosition({ x: posX, y: posY });
