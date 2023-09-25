@@ -5,6 +5,7 @@ import {
   COMBOBOX_TRIGGER_COUNT_ERROR_MESSAGE,
   Combobox,
 } from "./Combobox";
+import { ComboboxOption } from "./Combobox.types";
 
 afterEach(cleanup);
 
@@ -17,6 +18,7 @@ describe("Combobox validation", () => {
           <Combobox.Content
             options={[]}
             onSelect={jest.fn()}
+            selected={null}
           ></Combobox.Content>
         </Combobox>,
       );
@@ -32,6 +34,7 @@ describe("Combobox validation", () => {
           <Combobox.Content
             options={[]}
             onSelect={jest.fn()}
+            selected={null}
           ></Combobox.Content>
         </Combobox>,
       );
@@ -53,6 +56,7 @@ describe("Combobox validation", () => {
           <Combobox.Content
             options={[]}
             onSelect={jest.fn()}
+            selected={null}
           ></Combobox.Content>
         </Combobox>,
       );
@@ -74,6 +78,7 @@ describe("Combobox validation", () => {
           <Combobox.Content
             options={[]}
             onSelect={jest.fn()}
+            selected={null}
           ></Combobox.Content>
         </Combobox>,
       );
@@ -139,7 +144,11 @@ describe("ComboboxContent", () => {
     const { getByTestId } = render(
       <Combobox>
         <Combobox.TriggerButton label="Button" />
-        <Combobox.Content options={[]} onSelect={jest.fn()}></Combobox.Content>
+        <Combobox.Content
+          options={[]}
+          onSelect={jest.fn()}
+          selected={null}
+        ></Combobox.Content>
       </Combobox>,
     );
     expect(getByTestId("ATL-Combobox-Content")).toHaveClass("hidden");
@@ -155,6 +164,7 @@ describe("ComboboxContent", () => {
             { id: "2", label: "Frodo Baggins" },
           ]}
           onSelect={jest.fn()}
+          selected={null}
         ></Combobox.Content>
       </Combobox>,
     );
@@ -180,6 +190,7 @@ describe("ComboboxContent", () => {
             { id: "2", label: "Frodo Baggins" },
           ]}
           onSelect={jest.fn()}
+          selected={null}
         ></Combobox.Content>
       </Combobox>,
     );
@@ -204,6 +215,7 @@ describe("ComboboxContent", () => {
             { id: "2", label: "Frodo Baggins" },
           ]}
           onSelect={jest.fn()}
+          selected={null}
         ></Combobox.Content>
       </Combobox>,
     );
@@ -231,6 +243,7 @@ describe("Combobox Search", () => {
             { id: "2", label: "Frodo Baggins" },
           ]}
           onSelect={jest.fn()}
+          selected={null}
         ></Combobox.Content>
       </Combobox>,
     );
@@ -247,6 +260,18 @@ describe("Combobox Search", () => {
 });
 
 describe("Combobox selected value", () => {
+  it("has no selected option when a null selected value is passed", () => {
+    const { getByText } = render(<ClearSelectionCombobox />);
+
+    const option = getByText("Bilbo Baggins");
+    const clearButton = getByText("Clear Selection");
+
+    expect(option).toHaveClass("selectedOption");
+
+    fireEvent.click(clearButton);
+    fireEvent.click(getByText("Button"));
+    expect(option).not.toHaveClass("selectedOption");
+  });
   it("has a selected option when a selected id is passed as a number and option id is a string", () => {
     const { getByText } = render(
       <Combobox>
@@ -257,7 +282,7 @@ describe("Combobox selected value", () => {
             { id: "2", label: "Frodo Baggins" },
           ]}
           onSelect={jest.fn()}
-          selected={1}
+          selected={{ id: 1, label: "Bilbo Baggins" }}
         ></Combobox.Content>
       </Combobox>,
     );
@@ -275,7 +300,7 @@ describe("Combobox selected value", () => {
             { id: 2, label: "Frodo Baggins" },
           ]}
           onSelect={jest.fn()}
-          selected={1}
+          selected={{ id: 1, label: "Bilbo Baggins" }}
         ></Combobox.Content>
       </Combobox>,
     );
@@ -295,6 +320,7 @@ describe("Combobox Zero Index State", () => {
             options={[]}
             onSelect={jest.fn()}
             subjectNoun={subjectNoun}
+            selected={null}
           />
         </Combobox>,
       );
@@ -308,7 +334,7 @@ describe("Combobox Zero Index State", () => {
       const { getByText } = render(
         <Combobox>
           <Combobox.TriggerButton label="Select a tax rate" />
-          <Combobox.Content options={[]} onSelect={jest.fn()} />
+          <Combobox.Content options={[]} onSelect={jest.fn()} selected={null} />
         </Combobox>,
       );
 
@@ -324,6 +350,7 @@ describe("Combobox Zero Index State", () => {
           <Combobox.Content
             options={[{ id: "1", label: "10%" }]}
             onSelect={jest.fn()}
+            selected={null}
           />
         </Combobox>,
       );
@@ -332,3 +359,29 @@ describe("Combobox Zero Index State", () => {
     });
   });
 });
+
+function ClearSelectionCombobox() {
+  const [selected, setSelected] = React.useState<ComboboxOption | null>({
+    id: 1,
+    label: "Bilbo Baggins",
+  });
+
+  return (
+    <>
+      <button onClick={() => setSelected(null)}>Clear Selection</button>
+      <Combobox>
+        <Combobox.TriggerButton label="Button" />
+        <Combobox.Content
+          options={[
+            { id: "1", label: "Bilbo Baggins" },
+            { id: "2", label: "Frodo Baggins" },
+          ]}
+          onSelect={jest.fn()}
+          selected={selected}
+        >
+          <></>
+        </Combobox.Content>
+      </Combobox>
+    </>
+  );
+}
