@@ -3,9 +3,10 @@ declare const styles: {
   readonly "chip": string;
   readonly "hasPrefix": string;
   readonly "hasSuffix": string;
+  readonly "active": string;
   readonly "clickable": string;
   readonly "input": string;
-  readonly "active": string;
+  readonly "activeIndicator": string;
   readonly "invalid": string;
   readonly "disabled": string;
   readonly "button": string;

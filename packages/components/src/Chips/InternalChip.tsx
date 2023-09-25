@@ -5,6 +5,7 @@ import { InternalChipProps } from "./ChipTypes";
 import { InternalChipAffix } from "./InternalChipAffix";
 import { Typography } from "../Typography";
 import { Tooltip } from "../Tooltip";
+import { Icon } from "../Icon";
 
 export function InternalChip({
   label,
@@ -46,6 +47,9 @@ export function InternalChip({
         <span ref={setTruncateRef}>{label}</span>
       </Typography>
       <InternalChipAffix affix={suffix} {...affixProps} />
+      <div className={styles.activeIndicator}>
+        <Icon name="checkmark" color="heading" size="small"></Icon>
+      </div>
     </Tag>
   );
 

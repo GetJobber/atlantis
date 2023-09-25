@@ -16,13 +16,13 @@
   position: relative;
   max-width: 100%;
   box-sizing: border-box;
-  padding: var(--space-small);
-  border: var(--border-base) solid var(--color-border);
-  border-radius: var(--radius-larger);
-  color: var(--color-text--secondary);
+  padding: var(--space-small) var(--space-base);
+  min-height: calc(var(--space-largest) - var(--space-small));
+  border-radius: calc(var(--space-base) + var(--space-smaller));
+  color: var(--color-heading);
   text-align: left;
   vertical-align: middle;
-  background-color: var(--color-surface);
+  background-color: var(--color-surface--background);
   transition: var(--timing-base) ease-in-out;
   transition-property: background-color, box-shadow, color;
   grid-template-columns: max-content;
@@ -30,17 +30,14 @@
   gap: var(--space-small);
 }
 
-.hasPrefix,
-.hasSuffix {
-  padding: calc(var(--space-smaller) + var(--space-smallest)) var(--space-small);
-}
-
 .hasPrefix {
   grid-template-columns: min-content 1fr;
+  padding-left: var(--space-small);
 }
 
-.hasSuffix {
-  grid-template-columns: 1fr min-content;
+.hasSuffix, .active {
+  grid-template-columns: 1fr min-content min-content;
+  padding-right: var(--space-small);
 }
 
 .hasPrefix.hasSuffix {
@@ -49,7 +46,6 @@
 
 .clickable,
 .input ~ .chip {
-  box-shadow: var(--shadow-base);
   cursor: pointer;
   appearance: none;
 }
@@ -67,17 +63,25 @@
 .clickable:hover,
 .input ~ .chip:not(.active):hover,
 .input:focus ~ .chip:not(.active) {
-  background-color: var(--color-surface--hover);
+  background-color: var(--color-surface--background--hover);
 }
 
 /**
  * States
  */
 
-.chip.active {
-  border-color: var(--color-surface--reverse);
-  color: var(--color-text--reverse);
-  background-color: var(--color-surface--reverse);
+.activeIndicator {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-circle);
+  height: var(--space-large);
+  width: var(--space-large);
+  display: none;
+}
+
+.chip.active .activeIndicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .chip.invalid {
