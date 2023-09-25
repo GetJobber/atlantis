@@ -1,0 +1,99 @@
+import React, { Children, MouseEvent, ReactElement, useState } from "react";
+import { AnimatePresence } from "framer-motion";
+import classNames from "classnames";
+import { DataListItemInternal } from "./DataListItemInternal";
+import { useDataListContext } from "../../context/DataListContext";
+import {
+  DataListItemType,
+  DataListLayoutProps,
+  DataListObject,
+} from "../../DataList.types";
+import { InternalDataListItemActions } from "../DataListItemActions";
+import { DataListActionsMenu } from "../DataListActionsMenu";
+import { InternalDataListAction } from "../DataListAction";
+import { useDataListLayoutContext } from "../../context/DataListLayoutContext";
+import styles from "../../DataList.css";
+
+interface DataListItem<T extends DataListObject> {
+  readonly item: DataListItemType<T[]>;
+  readonly index: number;
+  readonly layout: ReactElement<DataListLayoutProps<T>>;
+}
+
+export function DataListItem<T extends DataListObject>({
+  item,
+  index,
+  layout,
+}: DataListItem<T>) {
+  const { data, itemActionComponent } = useDataListContext();
+  const { hasInLayoutActions } = useDataListLayoutContext();
+  const [showMenu, setShowMenu] = useState(false);
+  const [contextPosition, setContextPosition] =
+    useState<Record<"x" | "y", number>>();
+
+  const rawItem = data[index];
+
+  const contextMenuActions = itemActionComponent?.props.children;
+  const isContextMenuVisible = Boolean(contextPosition);
+  const shouldShowContextMenu =
+    showMenu && isContextMenuVisible && Boolean(contextMenuActions);
+
+  return (
+    <div
+      // Set the active item whenever the element or any of its
+      // children are clicked
+      onClick={handleShowMenu}
+      onMouseEnter={handleShowMenu}
+      onMouseLeave={handleHideMenu}
+      onContextMenu={handleContextMenu}
+      className={classNames(styles.listItem, {
+        [styles.active]: showMenu && isContextMenuVisible,
+      })}
+      key={rawItem.id}
+    >
+      <DataListItemInternal item={rawItem}>
+        {layout.props.children(item)}
+      </DataListItemInternal>
+
+      <AnimatePresence>
+        {showMenu && !hasInLayoutActions && (
+          <InternalDataListItemActions item={rawItem} />
+        )}
+
+        <DataListActionsMenu
+          key={rawItem.id}
+          visible={shouldShowContextMenu}
+          position={contextPosition || { x: 0, y: 0 }}
+          onRequestClose={() => setContextPosition(undefined)}
+        >
+          {contextMenuActions &&
+            Children.map(contextMenuActions, action => (
+              <InternalDataListAction
+                key={rawItem.id}
+                {...action.props}
+                item={rawItem}
+              />
+            ))}
+        </DataListActionsMenu>
+      </AnimatePresence>
+    </div>
+  );
+
+  function handleShowMenu() {
+    setShowMenu(true);
+  }
+
+  function handleHideMenu() {
+    setShowMenu(false);
+  }
+
+  function handleContextMenu(event: MouseEvent<HTMLDivElement>) {
+    if (!contextMenuActions || isContextMenuVisible) return;
+
+    event.preventDefault();
+    setContextPosition({
+      x: event.clientX,
+      y: event.clientY,
+    });
+  }
+}

@@ -1,17 +1,13 @@
-import React, { Children, useMemo, useState } from "react";
-import { AnimatePresence } from "framer-motion";
-import classNames from "classnames";
+import React, { useMemo, useState } from "react";
+import { Breakpoints } from "@jobber/components/DataList/DataList.const";
+import {
+  DataListLayoutProps,
+  DataListObject,
+} from "@jobber/components/DataList/DataList.types";
+import { generateListItemElements } from "@jobber/components/DataList/DataList.utils";
+import { DataListLayoutContext } from "@jobber/components/DataList/context/DataListLayoutContext";
 import { DataListLayoutInternal } from "./DataListLayoutInternal";
-import { DataListItemInternal } from "./DataListItemInternal";
-import { Breakpoints } from "../../DataList.const";
-import styles from "../../DataList.css";
-import { DataListLayoutProps, DataListObject } from "../../DataList.types";
-import { generateListItemElements } from "../../DataList.utils";
-import { InternalDataListItemActions } from "../DataListItemActions";
-import { useDataListContext } from "../../context/DataListContext";
-import { DataListActionsMenu } from "../DataListActionsMenu";
-import { InternalDataListAction } from "../DataListAction";
-import { DataListLayoutContext } from "../../context/DataListLayoutContext";
+import { DataListItem } from "./DataListItem";
 
 interface DataListItemsProps<T extends DataListObject> {
   readonly layouts: React.ReactElement<DataListLayoutProps<T>>[] | undefined;
@@ -24,16 +20,8 @@ export function DataListItems<T extends DataListObject>({
   mediaMatches,
   data,
 }: DataListItemsProps<T>) {
-  const { itemActionComponent } = useDataListContext();
   const elementData = useMemo(() => generateListItemElements(data), [data]);
   const [hasInLayoutActions, setHasInLayoutActions] = useState(false);
-  const [activeID, setActiveID] = useState<T["id"]>();
-  const [activeItem, setActiveItem] = useState<T>();
-  const [contextPosition, setContextPosition] =
-    useState<Record<"x" | "y", number>>();
-
-  const contextMenuActions = itemActionComponent?.props.children;
-  const isContextMenuVisible = Boolean(contextPosition);
 
   return (
     <DataListLayoutContext.Provider
@@ -41,7 +29,7 @@ export function DataListItems<T extends DataListObject>({
         isInLayoutProvider: true,
         hasInLayoutActions,
         setHasInLayoutActions,
-        activeItem,
+        activeItem: { id: 1 },
       }}
     >
       <DataListLayoutInternal
@@ -49,79 +37,17 @@ export function DataListItems<T extends DataListObject>({
         mediaMatches={mediaMatches}
         renderLayout={layout => (
           <>
-            {elementData.map((child, i) => {
-              const item = data[i];
-              const isActive = activeID === item.id;
-              const shouldShowContextMenu =
-                isActive && isContextMenuVisible && Boolean(contextMenuActions);
-
-              return (
-                <div
-                  // Set the active item whenever the element or any of its
-                  // children are clicked
-                  onClick={handleSetActiveItem(item)}
-                  onMouseEnter={handleSetActiveItem(item)}
-                  onMouseLeave={handleUnsetActiveItem}
-                  onContextMenu={handleContextMenu}
-                  className={classNames(styles.listItem, {
-                    [styles.active]: isActive && isContextMenuVisible,
-                  })}
-                  key={item.id}
-                >
-                  <DataListItemInternal item={data[i]}>
-                    {layout.props.children(child)}
-                  </DataListItemInternal>
-
-                  <AnimatePresence>
-                    {activeID === item.id && !hasInLayoutActions && (
-                      <InternalDataListItemActions item={item} />
-                    )}
-
-                    <DataListActionsMenu
-                      key={item.id}
-                      visible={shouldShowContextMenu}
-                      position={contextPosition || { x: 0, y: 0 }}
-                      onRequestClose={() => setContextPosition(undefined)}
-                    >
-                      {contextMenuActions &&
-                        Children.map(contextMenuActions, action => (
-                          <InternalDataListAction
-                            key={item.id}
-                            {...action.props}
-                            item={item}
-                          />
-                        ))}
-                    </DataListActionsMenu>
-                  </AnimatePresence>
-                </div>
-              );
-            })}
+            {elementData.map((child, i) => (
+              <DataListItem
+                key={data[i].id}
+                index={i}
+                item={child}
+                layout={layout}
+              />
+            ))}
           </>
         )}
       />
     </DataListLayoutContext.Provider>
   );
-
-  function handleSetActiveItem(item: T) {
-    return () => {
-      setActiveID(item.id);
-      setActiveItem(item);
-    };
-  }
-
-  function handleUnsetActiveItem() {
-    if (isContextMenuVisible) return;
-    setActiveID(undefined);
-    setActiveItem(undefined);
-  }
-
-  function handleContextMenu(event: React.MouseEvent<HTMLDivElement>) {
-    if (!contextMenuActions || isContextMenuVisible) return;
-
-    event.preventDefault();
-    setContextPosition({
-      x: event.clientX,
-      y: event.clientY,
-    });
-  }
 }
