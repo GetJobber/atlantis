@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.42.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.41.0...@jobber/components@4.42.0) (2023-09-25)
+
+
+### Features
+
+* **components:** DataList Layout pluggable actions ([#1544](https://github.com/GetJobber/atlantis/issues/1544)) ([e19c76d](https://github.com/GetJobber/atlantis/commit/e19c76d7e811f98500db32b4ddf54152079635c9))
+
+
+
+
+
 # [4.41.0](https://github.com/GetJobber/atlantis/compare/@jobber/components@4.40.0...@jobber/components@4.41.0) (2023-09-22)
 
 
