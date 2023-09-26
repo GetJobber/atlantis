@@ -34,7 +34,7 @@ describe("TriggerButton", () => {
         <TriggerButtonTestWrapper />
       </ComboboxContextProvider>,
     );
-    const triggerButton = getByRole("button");
+    const triggerButton = getByRole("combobox");
 
     expect(getByTestId("combobox-state")).toHaveTextContent("Closed");
 

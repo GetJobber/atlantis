@@ -1,11 +1,9 @@
 .content {
   z-index: var(--elevation-tooltip);
   max-width: var(--popover--width);
-  max-height: 400px;
   box-shadow: var(--shadow-base);
   border: var(--border-base) solid var(--color-border);
   border-radius: var(--radius-base);
-  overflow: scroll;
   font-size: var(--typography--fontSize-base);
   line-height: normal;
   background: var(--color-surface);
@@ -20,8 +18,10 @@
 }
 
 .optionsList {
+  max-height: 300px;
   margin: 0;
   padding: 0;
+  overflow: scroll;
   list-style: none;
 }
 
@@ -35,8 +35,7 @@
 }
 
 .search {
-  position: sticky;
-  top: 0;
+  position: relative;
 }
 
 .searchInput {

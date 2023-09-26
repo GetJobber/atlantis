@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render } from "@testing-library/react";
+import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import React from "react";
 import {
   COMBOBOX_REQUIRED_CHILDREN_ERROR_MESSAGE,
@@ -15,9 +15,11 @@ describe("Combobox validation", () => {
       render(
         <Combobox>
           <Combobox.TriggerButton label="Button" />
-          <Combobox.Content options={[]} onSelect={jest.fn()} selected={null}>
-            <></>
-          </Combobox.Content>
+          <Combobox.Content
+            options={[]}
+            onSelect={jest.fn()}
+            selected={null}
+          ></Combobox.Content>
         </Combobox>,
       );
     }).not.toThrow();
@@ -29,9 +31,11 @@ describe("Combobox validation", () => {
     try {
       render(
         <Combobox>
-          <Combobox.Content options={[]} onSelect={jest.fn()} selected={null}>
-            <></>
-          </Combobox.Content>
+          <Combobox.Content
+            options={[]}
+            onSelect={jest.fn()}
+            selected={null}
+          ></Combobox.Content>
         </Combobox>,
       );
     } catch (e) {
@@ -49,9 +53,11 @@ describe("Combobox validation", () => {
         <Combobox>
           <Combobox.TriggerButton label="Button" />
           <Combobox.TriggerButton label="Button Again" />
-          <Combobox.Content options={[]} onSelect={jest.fn()} selected={null}>
-            <></>
-          </Combobox.Content>
+          <Combobox.Content
+            options={[]}
+            onSelect={jest.fn()}
+            selected={null}
+          ></Combobox.Content>
         </Combobox>,
       );
     } catch (e) {
@@ -69,9 +75,11 @@ describe("Combobox validation", () => {
         <Combobox>
           <Combobox.TriggerButton label="Button" />
           <Combobox.TriggerChip label="Chippy Chip" />
-          <Combobox.Content options={[]} onSelect={jest.fn()} selected={null}>
-            <></>
-          </Combobox.Content>
+          <Combobox.Content
+            options={[]}
+            onSelect={jest.fn()}
+            selected={null}
+          ></Combobox.Content>
         </Combobox>,
       );
     } catch (e) {
@@ -136,9 +144,11 @@ describe("ComboboxContent", () => {
     const { getByTestId } = render(
       <Combobox>
         <Combobox.TriggerButton label="Button" />
-        <Combobox.Content options={[]} onSelect={jest.fn()} selected={null}>
-          <></>
-        </Combobox.Content>
+        <Combobox.Content
+          options={[]}
+          onSelect={jest.fn()}
+          selected={null}
+        ></Combobox.Content>
       </Combobox>,
     );
     expect(getByTestId("ATL-Combobox-Content")).toHaveClass("hidden");
@@ -155,9 +165,7 @@ describe("ComboboxContent", () => {
           ]}
           onSelect={jest.fn()}
           selected={null}
-        >
-          <></>
-        </Combobox.Content>
+        ></Combobox.Content>
       </Combobox>,
     );
 
@@ -183,9 +191,7 @@ describe("ComboboxContent", () => {
           ]}
           onSelect={jest.fn()}
           selected={null}
-        >
-          <></>
-        </Combobox.Content>
+        ></Combobox.Content>
       </Combobox>,
     );
 
@@ -210,9 +216,7 @@ describe("ComboboxContent", () => {
           ]}
           onSelect={jest.fn()}
           selected={null}
-        >
-          <></>
-        </Combobox.Content>
+        ></Combobox.Content>
       </Combobox>,
     );
 
@@ -228,16 +232,44 @@ describe("ComboboxContent", () => {
   });
 });
 
+describe("Combobox Search", () => {
+  it("should focus search input after opening", async () => {
+    const { getByPlaceholderText, getByText } = render(
+      <Combobox>
+        <Combobox.TriggerButton label="Click Me" />
+        <Combobox.Content
+          options={[
+            { id: "1", label: "Bilbo Baggins" },
+            { id: "2", label: "Frodo Baggins" },
+          ]}
+          onSelect={jest.fn()}
+          selected={null}
+        ></Combobox.Content>
+      </Combobox>,
+    );
+
+    const button = getByText("Click Me");
+    fireEvent.click(button);
+
+    const searchInput = getByPlaceholderText("Search");
+
+    await waitFor(() => {
+      expect(searchInput).toHaveFocus();
+    });
+  });
+});
+
 describe("Combobox selected value", () => {
   it("has no selected option when a null selected value is passed", () => {
     const { getByText } = render(<ClearSelectionCombobox />);
 
-    fireEvent.click(getByText("Button"));
-
     const option = getByText("Bilbo Baggins");
-    expect(option).toHaveClass("selectedOption");
     const clearButton = getByText("Clear Selection");
+
+    expect(option).toHaveClass("selectedOption");
+
     fireEvent.click(clearButton);
+    fireEvent.click(getByText("Button"));
     expect(option).not.toHaveClass("selectedOption");
   });
   it("has a selected option when a selected id is passed as a number and option id is a string", () => {
@@ -251,9 +283,7 @@ describe("Combobox selected value", () => {
           ]}
           onSelect={jest.fn()}
           selected={{ id: 1, label: "Bilbo Baggins" }}
-        >
-          <></>
-        </Combobox.Content>
+        ></Combobox.Content>
       </Combobox>,
     );
     const option = getByText("Bilbo Baggins");
@@ -271,9 +301,7 @@ describe("Combobox selected value", () => {
           ]}
           onSelect={jest.fn()}
           selected={{ id: 1, label: "Bilbo Baggins" }}
-        >
-          <></>
-        </Combobox.Content>
+        ></Combobox.Content>
       </Combobox>,
     );
     const option = getByText("Bilbo Baggins");

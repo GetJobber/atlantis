@@ -10,6 +10,11 @@ export function ComboboxTriggerButton(
 
   return (
     <Button
+      role="combobox"
+      aria-expanded={open}
+      aria-haspopup="listbox"
+      aria-controls="ATL-Combobox-Content"
+      aria-autocomplete="list"
       label={props.label}
       variation={props.variation}
       type={props.type}
