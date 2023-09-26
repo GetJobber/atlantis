@@ -81,15 +81,14 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
         {optionsExist &&
           filteredOptions.map(option => {
             const isSelected =
-              option.id.toString() === selectedOption?.id.toString();
+              option.id.toString() === props.selected?.id.toString();
             return (
               <li
                 key={option.id}
                 onClick={() => handleSelection(option)}
                 className={classnames(
                   styles.option,
-                  option.id.toString() === props.selected?.id.toString() &&
-                    styles.selectedOption,
+                  isSelected && styles.selectedOption,
                 )}
                 tabIndex={0}
               >
