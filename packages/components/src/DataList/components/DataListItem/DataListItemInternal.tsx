@@ -23,11 +23,11 @@ export function DataListItemInternal<T extends DataListObject>({
           [styles.selected]: selected?.length,
         })}
       >
+        {children}
         <Checkbox
           checked={selected?.includes(item.id)}
           onChange={handleChange}
         />
-        {children}
       </div>
     );
   }

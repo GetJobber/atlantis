@@ -128,6 +128,11 @@
 }
 
 .listItem .selectable > :first-child {
+  order: 2;
+}
+
+.listItem .selectable > :last-child {
+  order: 1;
   padding-top: var(--space-smaller);
   opacity: 1;
   transition: opacity var(--transition-properties);
@@ -139,9 +144,9 @@
   }
 }
 
-.listItem:hover .selectable > :first-child,
-.listItem:focus-within .selectable > :first-child,
-.listItem .selectable.selected > :first-child {
+.listItem:hover .selectable > :last-child,
+.listItem:focus-within .selectable > :last-child,
+.listItem .selectable.selected > :last-child {
   opacity: 1;
 }
 
