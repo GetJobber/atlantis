@@ -17,6 +17,7 @@ export function ComboboxTriggerChip(
       aria-expanded={open}
       aria-haspopup="listbox"
       aria-controls="ATL-Combobox-Content"
+      aria-autocomplete="list"
       onClick={() => {
         setOpen(!open);
       }}

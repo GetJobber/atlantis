@@ -34,10 +34,6 @@
   background-color: var(--color-surface--background);
 }
 
-.option:focus {
-  background-color: rgb(34, 153, 221);
-}
-
 .search {
   position: relative;
 }
