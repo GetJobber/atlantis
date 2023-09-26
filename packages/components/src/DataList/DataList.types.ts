@@ -208,6 +208,10 @@ export interface DataListItemActionsProps<T extends DataListObject> {
    * DataList.Action component.
    */
   readonly children?: Fragment<ReactElement<DataListActionProps<T>>>;
+
+  readonly onClick?: (item: T) => void;
+  readonly href?: string | ((item: T) => string);
+  readonly to?: string | ((item: T) => string);
 }
 
 export interface DataListActionProps<T extends DataListObject> {
