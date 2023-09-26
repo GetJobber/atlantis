@@ -69,10 +69,12 @@
 }
 
 .listItemClickable {
+  display: block;
   margin: calc(var(--space-small) * -1) 0;
   padding: var(--space-small) 0;
   border: none;
   text-align: left;
+  text-decoration: none;
   background-color: transparent;
   cursor: pointer;
 }
