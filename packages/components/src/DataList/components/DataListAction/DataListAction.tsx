@@ -25,7 +25,16 @@ export function InternalDataListAction<T extends DataListObject>({
   const color = destructive ? "critical" : "blue";
 
   return (
-    <button className={styles.action} onClick={() => onClick?.(item)}>
+    <button
+      className={styles.action}
+      onClick={() => {
+        if (item) {
+          onClick?.(item);
+        } else {
+          onClick?.();
+        }
+      }}
+    >
       {icon && <Icon name={icon} color={color} />}
 
       <Typography textColor={color}>

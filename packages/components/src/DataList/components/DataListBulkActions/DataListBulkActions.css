@@ -1,0 +1,4 @@
+.bulkActionsContainer {
+  display: flex;
+  gap: var(--space-smaller);
+}

@@ -102,3 +102,23 @@ export function sortSizeProp(sizeProp: Breakpoints[]) {
     (a, b) => BREAKPOINTS.indexOf(a) - BREAKPOINTS.indexOf(b),
   );
 }
+export function getExposedActions(childrenArray: ReactElement[]) {
+  const firstTwoChildren = childrenArray.slice(0, 2);
+
+  return firstTwoChildren.reduce((result: typeof childrenArray, child, i) => {
+    const hasIcon = Boolean(child.props.icon);
+
+    const isFirstChild = i === 0;
+    if (isFirstChild && hasIcon) {
+      return [...result, child];
+    }
+
+    const isSecondChild = i === 1;
+    const hasFirstChild = result.length === 1;
+    if (isSecondChild && hasIcon && hasFirstChild) {
+      return [...result, child];
+    }
+
+    return result;
+  }, []);
+}

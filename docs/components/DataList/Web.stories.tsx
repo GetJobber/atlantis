@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 import React, { useState } from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import uniq from "lodash/uniq";
@@ -175,6 +176,34 @@ const Template: ComponentStory<typeof DataList> = args => {
         />
       </DataList.ItemActions>
 
+      <DataList.BulkActions>
+        <DataList.Action
+          icon="edit"
+          label="Edit"
+          onClick={handleBulkActionClick}
+        />
+        <DataList.Action
+          icon="sendMessage"
+          label="Message"
+          onClick={handleBulkActionClick}
+        />
+        <DataList.Action
+          label="Create new..."
+          icon="add"
+          onClick={handleBulkActionClick}
+        />
+        <DataList.Action
+          label="Add attribute..."
+          onClick={handleBulkActionClick}
+        />
+        <DataList.Action
+          icon="trash"
+          label="Delete"
+          destructive={true}
+          onClick={handleBulkActionClick}
+        />
+      </DataList.BulkActions>
+
       <DataList.Layout size="md">
         {(item: DataListItemType<typeof mappedData>) => (
           <Grid alignItems="center">
@@ -251,8 +280,12 @@ const Template: ComponentStory<typeof DataList> = args => {
     </DataList>
   );
 
-  function handleActionClick(item: (typeof mappedData)[number]) {
-    alert(`You clicked the action for ${item.label}`);
+  function handleActionClick(item: (typeof mappedData)[number] | undefined) {
+    alert(`You clicked the action for ${item?.label}`);
+  }
+
+  function handleBulkActionClick() {
+    console.log("You clicked on a bulk action", selected);
   }
 
   function getColor(gender: string): InlineLabelColors | undefined {

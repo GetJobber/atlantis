@@ -182,6 +182,7 @@ export interface DataListContextProps<T extends DataListObject>
   readonly emptyStateComponents?: ReactElement<DataListEmptyStateProps>[];
   readonly layoutComponents?: ReactElement<DataListLayoutProps<T>>[];
   readonly itemActionComponent?: ReactElement<DataListItemActionsProps<T>>;
+  readonly bulkActionsComponent?: ReactElement<DataListItemActionsProps<T>>;
 }
 
 type Fragment<T> = T | T[];
@@ -192,6 +193,14 @@ export interface DataListItemActionsProps<T extends DataListObject> {
    * DataList.Action component.
    */
   readonly children?: Fragment<ReactElement<DataListActionProps<T>>>;
+}
+
+export interface DataListBulkActionsProps {
+  /**
+   * The actions to render for each item in the DataList. This only accepts the
+   * DataList.Action component.
+   */
+  readonly children?: Fragment<ReactElement<DataListBulkActionProps>>;
 }
 
 export interface DataListActionProps<T extends DataListObject> {
@@ -213,10 +222,18 @@ export interface DataListActionProps<T extends DataListObject> {
   /**
    * The callback function when the action is clicked.
    */
-  readonly onClick?: (data: T) => void;
+  readonly onClick?: (data?: T) => void;
+}
+
+export interface DataListBulkActionProps
+  extends DataListActionProps<DataListObject> {
+  /**
+   * The callback function when the action is clicked.
+   */
+  readonly onClick?: () => void;
 }
 
 export interface InternalDataListActionProps<T extends DataListObject>
   extends DataListActionProps<T> {
-  readonly item: T;
+  readonly item?: T;
 }

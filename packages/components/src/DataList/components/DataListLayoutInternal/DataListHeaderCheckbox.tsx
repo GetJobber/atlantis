@@ -7,6 +7,7 @@ import { Checkbox } from "../../../Checkbox";
 import { Text } from "../../../Text";
 import { useDataListContext } from "../../context/DataListContext";
 import styles from "../../DataList.css";
+import { InternalDataListBulkActions } from "../DataListBulkActions";
 
 interface DataListHeaderCheckbox {
   readonly children: ReactElement;
@@ -50,6 +51,7 @@ export function DataListHeaderCheckbox({ children }: DataListHeaderCheckbox) {
               onClick={() => onSelect?.([])}
               type="tertiary"
             />
+            <InternalDataListBulkActions />
           </div>
         }
       />
