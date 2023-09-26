@@ -1,9 +1,9 @@
-import classNames from "classnames";
 import React from "react";
-import { Checkbox } from "../../../Checkbox";
-import { useDataListContext } from "../../context/DataListContext";
-import styles from "../../DataList.css";
-import { DataListObject } from "../../DataList.types";
+import classNames from "classnames";
+import { Checkbox } from "@jobber/components/Checkbox";
+import { useDataListContext } from "@jobber/components/DataList/context/DataListContext";
+import { DataListObject } from "@jobber/components/DataList/DataList.types";
+import styles from "@jobber/components/DataList/DataList.css";
 
 interface ListItemInternalProps<T extends DataListObject> {
   readonly children: JSX.Element;
