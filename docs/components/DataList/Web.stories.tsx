@@ -251,7 +251,17 @@ const Template: ComponentStory<typeof DataList> = args => {
               {item.gender}
             </div>
             {item.tags}
-            {item.created}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "auto max-content",
+                gap: 8,
+                alignItems: "center",
+              }}
+            >
+              {item.created}
+              <DataList.LayoutActions />
+            </div>
           </Content>
         )}
       </DataList.Layout>
