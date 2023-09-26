@@ -63,7 +63,7 @@
 .datePicker :global(.react-datepicker__day--outside-month) {
   border-radius: 0;
   color: var(--color-text);
-  background: var(--color-disabled--secondary);
+  background: var(--color-surface--background);
 }
 
 .datePicker :global(.react-datepicker__day--disabled) {
@@ -99,6 +99,11 @@
 .datePicker :global(.react-datepicker__day):hover,
 .datePicker :global(.react-datepicker__day):focus {
   background: var(--color-surface--hover);
+}
+
+.datePicker :global(.react-datepicker__day--outside-month):hover,
+.datePicker :global(.react-datepicker__day--outside-month):focus {
+  background: var(--color-surface--background--hover);
 }
 
 .datePicker :global(.react-datepicker__day):focus {
