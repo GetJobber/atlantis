@@ -45,13 +45,13 @@
 
   /* Surfaces and Borders */
   --color-surface: var(--color-white);
-  --color-surface--hover: var(--color-grey--lightest);
+  --color-surface--hover: var(--color-greyBlue--lightest);
   --color-surface--active: var(--color-green--lightest);
-  --color-surface--background: var(--color-grey--lightest);
+  --color-surface--background: var(--color-greyBlue--lightest);
   --color-surface--background--hover: var(--color-greyBlue--lighter);
   --color-surface--reverse: var(--color-blue);
 
-  --color-border: var(--color-grey--lighter);
+  --color-border: var(--color-blue--lightest);
   --color-border--section: var(--color-blue);
 
   --color-overlay: rgba(var(--color-black--rgb), 0.32);
