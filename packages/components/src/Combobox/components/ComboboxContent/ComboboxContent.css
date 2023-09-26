@@ -1,7 +1,6 @@
 .content {
   z-index: var(--elevation-tooltip);
   max-width: var(--popover--width);
-  max-height: calc(var(--space-largest) * 8.75);
   min-width: calc(var(--space-extravagant) * 3.75);
   box-shadow: var(--shadow-base);
   margin-top: var(--space-small);
@@ -43,6 +42,8 @@
   gap: var(--space-smaller);
   margin: 0;
   padding: var(--space-small);
+  max-height: 300px;
+  overflow: scroll;
   list-style: none;
 }
 
@@ -71,8 +72,7 @@
 }
 
 .search {
-  position: sticky;
-  top: 0;
+  position: relative;
 }
 
 .searchInput {
