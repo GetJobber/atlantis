@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import React from "react";
 import {
   generateHeaderElements,
-  generateListItemElements,
+  generateListItemElement,
   getCompoundComponent,
   getCompoundComponents,
   sortSizeProp,
@@ -48,12 +48,12 @@ describe("Datalist utils", () => {
    * 1. If any of the snapshot here needs updating, it's either the code within
    *    the utils have changed or there really is something wrong.
    */
-  describe("generateListItemElements", () => {
+  describe("generateListItemElement", () => {
     it("should generate a Text component for the label key", () => {
-      const elementList = generateListItemElements([{ id: 1, label: "Hello" }]);
+      const elementList = generateListItemElement({ id: 1, label: "Hello" });
 
       // Snapshot needs updating? See comment #1 above the `describe`.
-      expect(elementList[0].label).toMatchInlineSnapshot(`
+      expect(elementList.label).toMatchInlineSnapshot(`
         <Heading
           level={5}
         >
@@ -63,15 +63,13 @@ describe("Datalist utils", () => {
     });
 
     it("should generate a subdued Text component for any random key", () => {
-      const elementList = generateListItemElements([
-        {
-          id: 1,
-          randomKeyThatIsntNormal: "I am a normal text",
-        },
-      ]);
+      const elementList = generateListItemElement({
+        id: 1,
+        randomKeyThatIsntNormal: "I am a normal text",
+      });
 
       // Snapshot needs updating? See comment #1 above the `describe`.
-      expect(elementList[0].randomKeyThatIsntNormal).toMatchInlineSnapshot(`
+      expect(elementList.randomKeyThatIsntNormal).toMatchInlineSnapshot(`
         <Text
           variation="subdued"
         >
@@ -81,12 +79,13 @@ describe("Datalist utils", () => {
     });
 
     it("should generate a list of inline label for the tag key", () => {
-      const elementList = generateListItemElements([
-        { id: 1, tags: ["uno", "dos"] },
-      ]);
+      const elementList = generateListItemElement({
+        id: 1,
+        tags: ["uno", "dos"],
+      });
 
       // Snapshot needs updating? See comment #1 above the `describe`.
-      expect(elementList[0].tags).toMatchInlineSnapshot(`
+      expect(elementList.tags).toMatchInlineSnapshot(`
         <DataListTags
           items={
             [
@@ -99,19 +98,17 @@ describe("Datalist utils", () => {
     });
 
     it("should generate the element passed in on any key", () => {
-      const elementList = generateListItemElements([
-        { id: 1, element: <div /> },
-      ]);
+      const elementList = generateListItemElement({ id: 1, element: <div /> });
 
       // Snapshot needs updating? See comment #1 above the `describe`.
-      expect(elementList[0].element).toMatchInlineSnapshot(`<div />`);
+      expect(elementList.element).toMatchInlineSnapshot(`<div />`);
     });
 
     it("should generate the correct element", () => {
-      const elementList = generateListItemElements([{ id: 1, date }]);
+      const elementList = generateListItemElement({ id: 1, date });
 
       // Snapshot needs updating? See comment #1 above the `describe`.
-      expect(elementList[0].date).toMatchInlineSnapshot(`
+      expect(elementList.date).toMatchInlineSnapshot(`
         <Text
           variation="subdued"
         >
