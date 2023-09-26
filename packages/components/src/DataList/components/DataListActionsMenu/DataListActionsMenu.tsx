@@ -38,8 +38,6 @@ export function DataListActionsMenu({
     <AnimatePresence>
       {visible && (
         <>
-          <div className={styles.overlay} onClick={onRequestClose} />
-
           <motion.div
             role="menu"
             ref={setRef}
@@ -56,6 +54,12 @@ export function DataListActionsMenu({
               {children}
             </div>
           </motion.div>
+
+          <button
+            className={styles.overlay}
+            onClick={onRequestClose}
+            aria-label="Close menu"
+          />
         </>
       )}
     </AnimatePresence>,
