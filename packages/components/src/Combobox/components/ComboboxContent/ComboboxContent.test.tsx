@@ -13,6 +13,7 @@ describe("ComboboxContent Search", () => {
             { id: "2", label: "Frodo Baggins" },
           ]}
           onSelect={jest.fn()}
+          selected={null}
         ></Combobox.Content>
         ,
       </MockComboboxProvider>,
@@ -31,6 +32,7 @@ describe("ComboboxContent Search", () => {
             { id: "2", label: "Frodo Baggins" },
           ]}
           onSelect={jest.fn()}
+          selected={null}
         ></Combobox.Content>
       </MockComboboxProvider>,
     );
@@ -51,6 +53,7 @@ describe("ComboboxContent Search", () => {
             { id: "2", label: "Frodo Baggins" },
           ]}
           onSelect={jest.fn()}
+          selected={null}
         ></Combobox.Content>
       </MockComboboxProvider>,
     );
@@ -75,6 +78,7 @@ describe("ComboboxContent Search", () => {
             { id: "2", label: "Jason Vorhees" },
           ]}
           onSelect={jest.fn()}
+          selected={null}
         ></Combobox.Content>
       </MockComboboxProvider>,
     );

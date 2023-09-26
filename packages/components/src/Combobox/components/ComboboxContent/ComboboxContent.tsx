@@ -39,10 +39,9 @@ interface ComboboxContentProps {
   /**
    * pre selected option
    * @default ""
-   * @optional
    * @type string
    */
-  readonly selected?: string | number;
+  readonly selected: ComboboxOption | null;
 
   /**
    * The encapsulating noun for the content of the combobox. Used
@@ -55,15 +54,13 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
   const {
     searchValue,
     setSearchValue,
-    selectedOption,
-    setSelectedOption,
     open,
     setOpen,
     popperRef,
     popperStyles,
     attributes,
     filteredOptions,
-  } = useComboboxContent(props.selected, props.options);
+  } = useComboboxContent(props.options);
 
   const optionsExist = props.options.length > 0;
 
@@ -91,7 +88,8 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
                 onClick={() => handleSelection(option)}
                 className={classnames(
                   styles.option,
-                  isSelected && styles.selectedOption,
+                  option.id.toString() === props.selected?.id.toString() &&
+                    styles.selectedOption,
                 )}
                 tabIndex={0}
               >
@@ -137,20 +135,10 @@ export function ComboboxContent(props: ComboboxContentProps): JSX.Element {
 
   return ReactDOM.createPortal(template, document.body);
 
-  function handleSelection(
-    selection: ComboboxOption,
-    event?:
-      | React.KeyboardEvent<HTMLInputElement>
-      | React.MouseEvent<HTMLLabelElement>,
-  ) {
-    setSelectedOption(selection);
+  function handleSelection(selection: ComboboxOption) {
     props.onSelect(selection);
     setSearchValue("");
     setOpen(false);
-
-    if (event instanceof KeyboardEvent) {
-      event.preventDefault();
-    }
   }
 }
 
@@ -207,16 +195,9 @@ function getZeroIndexStateText(subjectNoun?: string) {
   return "No options yet";
 }
 
-function useComboboxContent(
-  selected: string | number | undefined,
-  options: ComboboxOption[],
-): {
+function useComboboxContent(options: ComboboxOption[]): {
   searchValue: string;
   setSearchValue: React.Dispatch<React.SetStateAction<string>>;
-  selectedOption: ComboboxOption | null;
-  setSelectedOption: React.Dispatch<
-    React.SetStateAction<ComboboxOption | null>
-  >;
   open: boolean;
   setOpen: (open: boolean) => void;
   popperRef: React.RefObject<HTMLDivElement>;
@@ -224,13 +205,7 @@ function useComboboxContent(
   attributes: { [key: string]: { [key: string]: string } | undefined };
   filteredOptions: ComboboxOption[];
 } {
-  const defaultValue = options.find(
-    option => option.id.toString() === selected?.toString(),
-  );
   const [searchValue, setSearchValue] = useState<string>("");
-  const [selectedOption, setSelectedOption] = useState<ComboboxOption | null>(
-    defaultValue || null,
-  );
   const { open, setOpen, wrapperRef } = React.useContext(ComboboxContext);
 
   const filteredOptions = options.filter(option =>
@@ -263,8 +238,6 @@ function useComboboxContent(
   return {
     searchValue,
     setSearchValue,
-    selectedOption,
-    setSelectedOption,
     open,
     setOpen,
     popperRef,
