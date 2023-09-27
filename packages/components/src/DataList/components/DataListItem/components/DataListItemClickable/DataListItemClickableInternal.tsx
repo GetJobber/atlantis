@@ -41,11 +41,15 @@ export function DataListItemClickableInternal<T extends DataListObject>({
     );
   }
 
-  return (
-    <button className={styles.listItemClickable} onClick={handleClick}>
-      {children}
-    </button>
-  );
+  if (onClick) {
+    return (
+      <button className={styles.listItemClickable} onClick={handleClick}>
+        {children}
+      </button>
+    );
+  }
+
+  return <>{children}</>;
 
   function handleClick() {
     activeItem && onClick?.(activeItem);

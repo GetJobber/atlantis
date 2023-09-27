@@ -158,7 +158,7 @@ const Template: ComponentStory<typeof DataList> = args => {
         placeholder="Search characters..."
       />
 
-      <DataList.ItemActions onClick={item => console.log(item)}>
+      <DataList.ItemActions onClick={handleActionClick}>
         <DataList.Action icon="edit" label="Edit" onClick={handleActionClick} />
         <DataList.Action
           icon="sendMessage"
