@@ -102,20 +102,20 @@ export function sortSizeProp(sizeProp: Breakpoints[]) {
     (a, b) => BREAKPOINTS.indexOf(a) - BREAKPOINTS.indexOf(b),
   );
 }
-export function getExposedActions(childrenArray: ReactElement[]) {
-  const firstTwoChildren = childrenArray.slice(0, 2);
 
-  return firstTwoChildren.reduce((result: typeof childrenArray, child, i) => {
+export function getExposedActions(
+  childrenArray: ReactElement[],
+  childCount = 2,
+) {
+  const firstNChildren = childrenArray.slice(0, childCount);
+
+  return firstNChildren.reduce((result: typeof childrenArray, child, i) => {
     const hasIcon = Boolean(child.props.icon);
 
-    const isFirstChild = i === 0;
-    if (isFirstChild && hasIcon) {
-      return [...result, child];
-    }
+    if (!hasIcon) return result; // If the child does not have an icon, continue.
 
-    const isSecondChild = i === 1;
-    const hasFirstChild = result.length === 1;
-    if (isSecondChild && hasIcon && hasFirstChild) {
+    // If it's the first child or if the previous child was added, then add this child.
+    if (i === 0 || (i < childCount && result.length === i)) {
       return [...result, child];
     }
 

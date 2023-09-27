@@ -41,7 +41,6 @@
 
 .headerBatchSelect {
   display: flex;
-
   align-items: center;
   gap: var(--space-smaller);
   margin: calc(var(--space-small) * -1) 0;
