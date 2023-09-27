@@ -37,7 +37,7 @@ export function DataListActionsMenu({
   return createPortal(
     <AnimatePresence>
       {visible && (
-        <>
+        <div ref={focusTrapRef}>
           <motion.div
             role="menu"
             ref={setRef}
@@ -50,9 +50,7 @@ export function DataListActionsMenu({
             style={getPositionCssVars()}
             onClick={onRequestClose}
           >
-            <div tabIndex={0} ref={focusTrapRef}>
-              {children}
-            </div>
+            {children}
           </motion.div>
 
           <button
@@ -60,7 +58,7 @@ export function DataListActionsMenu({
             onClick={onRequestClose}
             aria-label="Close menu"
           />
-        </>
+        </div>
       )}
     </AnimatePresence>,
     document.body,
