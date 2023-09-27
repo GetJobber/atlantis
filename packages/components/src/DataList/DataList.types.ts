@@ -210,8 +210,8 @@ export interface DataListItemActionsProps<T extends DataListObject> {
 
 export interface DataListBulkActionsProps {
   /**
-   * The actions to render for each item in the DataList. This only accepts the
-   * DataList.Action component.
+   * The actions to render on the top of the DataList to make actions to multiple items.
+   * This only accepts the DataList.Action component.
    */
   readonly children?: Fragment<ReactElement<DataListBulkActionProps>>;
 }

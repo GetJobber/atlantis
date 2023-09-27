@@ -26,6 +26,7 @@ import { DataListAction } from "./components/DataListAction";
 import { DataListLayoutActions } from "./components/DataListLayoutActions";
 import { DataListContext, useDataListContext } from "./context/DataListContext";
 import {
+  DataListBulkActionsProps,
   DataListEmptyStateProps,
   DataListFiltersProps,
   DataListItemActionsProps,
@@ -67,9 +68,10 @@ export function DataList<T extends DataListObject>({
   const itemActionComponent = getCompoundComponent<
     DataListItemActionsProps<DataListObject>
   >(props.children, DataListItemActions);
-  const bulkActionsComponent = getCompoundComponent<
-    DataListItemActionsProps<DataListObject>
-  >(props.children, DataListBulkActions);
+  const bulkActionsComponent = getCompoundComponent<DataListBulkActionsProps>(
+    props.children,
+    DataListBulkActions,
+  );
 
   return (
     <DataListContext.Provider
@@ -220,8 +222,12 @@ DataList.Search = DataListSearch;
 DataList.ItemActions = DataListItemActions;
 
 /**
+ * Defines the group actions you could do on multiple DataList items.
+ */
+DataList.BulkActions = DataListBulkActions;
+
+/**
  * Defines the action in a DataList. This should be used inside the
  * DataListItemActions component.
  */
 DataList.Action = DataListAction;
-DataList.BulkActions = DataListBulkActions;

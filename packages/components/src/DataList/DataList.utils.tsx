@@ -114,8 +114,10 @@ export function getExposedActions(
 
     if (!hasIcon) return result; // If the child does not have an icon, continue.
 
+    const isLastChildAdded = result.length === i;
+
     // If it's the first child or if the previous child was added, then add this child.
-    if (i === 0 || (i < childCount && result.length === i)) {
+    if (i === 0 || (i < childCount && isLastChildAdded)) {
       return [...result, child];
     }
 
