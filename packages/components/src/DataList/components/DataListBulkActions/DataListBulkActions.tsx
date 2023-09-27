@@ -9,7 +9,6 @@ import { DataListBulkActionsProps } from "../../DataList.types";
 import { useDataListContext } from "../../context/DataListContext";
 import { DataListItemActionsOverflow } from "../DataListItemActions/DataListItemActionsOverflow";
 import { getExposedActions } from "../../DataList.utils";
-import { useResponsiveSizing } from "../../hooks/useResponsiveSizing";
 
 // This component is meant to capture the props of the DataList.BulkActions
 export function DataListBulkActions(
@@ -27,10 +26,7 @@ export function InternalDataListBulkActions() {
   const childrenArray =
     Children.toArray(children).filter<ReactElement>(isValidElement);
 
-  const { sm } = useResponsiveSizing();
-
-  // Collapse all actions under "More actions" when breakpoint is smaller than sm
-  const exposedActions = sm ? getExposedActions(childrenArray, 3) : [];
+  const exposedActions = getExposedActions(childrenArray, 3);
   childrenArray.splice(0, exposedActions.length);
 
   const [leftRef, isLeftVisible] = useInView<HTMLSpanElement>();
