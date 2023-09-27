@@ -25,8 +25,8 @@
   top: 50%;
   right: var(--space-base);
   z-index: var(--elevation-tooltip);
-  width: calc(var(--space-small) * 3);
-  height: calc(var(--space-small) * 3);
+  width: var(--space-large);
+  height: var(--space-large);
   padding: 0;
   border: none;
   border-radius: var(--radius-circle);
@@ -52,17 +52,18 @@
   min-height: calc((var(--space-largest) - var(--space-smaller)));
   box-sizing: border-box;
   padding: var(--space-small);
+  border-radius: var(--radius-large);
   color: var(--color-heading);
   font-weight: 500;
   cursor: pointer;
   justify-content: space-between;
   align-items: center;
+  transition: all var(--timing-base);
 }
 
 .selectedOption,
 .option:hover,
 .option:focus {
-  border-radius: var(--radius-large);
   background-color: var(--color-surface--background);
 }
 
@@ -103,11 +104,6 @@
     rgba(255, 255, 255, 1),
     rgba(255, 255, 255, 0)
   );
-}
-
-.selectedOption {
-  border-radius: var(--radius-large);
-  background-color: var(--color-surface--background);
 }
 
 .actions::before {
